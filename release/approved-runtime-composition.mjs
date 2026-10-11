@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 57500)
-Total output lines: 1976
-
 import {withoutTreatmentFlag,withoutTreatmentSteps,TREATMENT_FLAG} from './my-treatment-config.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -521,7 +518,943 @@ export function verifyWatchHsts(c,{head,read,diff,ancestor,content=(ref,path)=>e
 }
 
 export const WATCH_BELIEVE_DIAGNOSTIC_BASE='8f05352def20c636aeb43ba2e7814d3255898d20';
-export const WATCH_BELIEVE_DIAGNOSTIC_PATHS=['release/approved-runtime-composition.mjs','tests/w…27500 tokens truncated…ANCE_SET.has(path)?maleAcceptance.base:ref,path);
+export const WATCH_BELIEVE_DIAGNOSTIC_PATHS=['release/approved-runtime-composition.mjs','tests/watch-believe-release.test.mjs'];
+const WATCH_BELIEVE_DIAGNOSTIC_SET=new Set(WATCH_BELIEVE_DIAGNOSTIC_PATHS);
+for(const path of WATCH_BELIEVE_DIAGNOSTIC_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchBelieveDiagnostic(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_WATCH_BELIEVE_DIAGNOSTIC_V1');assert.equal(c.base,WATCH_BELIEVE_DIAGNOSTIC_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_BELIEVE_DIAGNOSTIC_PATHS);
+ for(const flag of ['medicalEvidenceChanged','runtimeChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated BELIEVE diagnostic source');
+ assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after BELIEVE diagnostic');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved BELIEVE diagnostic source drift: '+path);
+ return c;
+}
+
+export const WATCH_BELIEVE_BASE='79dfc433a3a5775f0277206ff7134d0900a8c6ae';
+export const WATCH_BELIEVE_SOURCE='532cd3534527a0e4d83b651894a7a7a13b8a66b2';
+export const WATCH_BELIEVE_PROOF_RUN=37866621755;
+export const WATCH_BELIEVE_PATHS=['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-09-authorised-bimagrumab-semaglutide.json'];
+export const WATCH_BELIEVE_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-believe-release.test.mjs'];
+const WATCH_BELIEVE_SET=new Set([...WATCH_BELIEVE_PATHS,...WATCH_BELIEVE_MAINTENANCE]);
+for(const path of WATCH_BELIEVE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchBelieveEvidence(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_WATCH_BELIEVE_EVIDENCE_V1');assert.equal(c.base,WATCH_BELIEVE_BASE);assert.equal(c.source,WATCH_BELIEVE_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.proofRun,WATCH_BELIEVE_PROOF_RUN);assert.deepEqual(c.paths,WATCH_BELIEVE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_BELIEVE_MAINTENANCE);
+ assert.equal(c.medicalEvidenceChanged,true);assert.equal(c.editorialAuthorisationRecorded,true);assert.equal(c.configuredSourcesAdded,1);
+ for(const flag of ['runtimeChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated BELIEVE evidence source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated BELIEVE evidence maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after BELIEVE evidence');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift / BELIEVE evidence: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved BELIEVE evidence source drift / verifier drift: '+path);
+ const receipt=JSON.parse(content(c.source,'medicines-watch/reviews/2026-10-09-authorised-bimagrumab-semaglutide.json'));
+ assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');assert.equal(receipt.clinicalApproval,null);assert.equal(receipt.industryComplete,false);
+ assert.equal(receipt.registrySources.length,1);assert.equal(receipt.registrySources[0].nctId,'NCT05616013');assert.equal(receipt.registrySources[0].lifecycle.hasResults,true);
+ for(const path of ['.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','wrangler.jsonc'])assert.equal(content(c.source,path),content(c.base,path),'Production runtime and guarded workflow must remain unchanged: '+path);
+ return c;
+}
+
+
+export const MEMBER_PROOF_RETRY_BASE='5f046576b17ecf5fad5aa5be6d6eab1699f38e86';
+export const MEMBER_PROOF_RETRY_SOURCE='6808493eeca7b747e61668d4e2b0c5f29adffb87';
+export const MEMBER_PROOF_RETRY_PATHS=['release/public-proof-fetch.mjs','tests/programme-day-public-proof-fetch.test.mjs','member-experience/verify-production-member.mjs','release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs'];
+export const MEMBER_PROOF_RETRY_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/programme-day-member-proof-retry-release.test.mjs'];
+const MEMBER_PROOF_RETRY_SET=new Set([...MEMBER_PROOF_RETRY_PATHS,...MEMBER_PROOF_RETRY_MAINTENANCE]);
+for(const path of MEMBER_PROOF_RETRY_SET)RECONCILIATION_PATHS.add(path);
+export function withoutMemberProofTransport(source){
+ const line="import {fetchPublicProof as fetch} from '../release/public-proof-fetch.mjs';\n";
+ assert(source.startsWith(line),'Exact proof transport import required');
+ assert.equal(source.split(line).length,2,'Exactly one proof transport import required');
+ return source.slice(line.length);
+}
+export function verifyMemberProofRetry(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_MEMBER_PROOF_TRANSPORT_RETRY_V1');assert.equal(c.base,MEMBER_PROOF_RETRY_BASE);assert.equal(c.source,MEMBER_PROOF_RETRY_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,MEMBER_PROOF_RETRY_PATHS);assert.deepEqual(c.maintenancePaths,MEMBER_PROOF_RETRY_MAINTENANCE);
+ for(const flag of ['runtimeChanged','publicCopyChanged','clinicalAvailabilityChanged','customerDataChanged','stockChanged','memberBehaviourChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
+ assert.equal(c.readOnlyTransportRetryAdded,true);assert.equal(c.rollbackReceiptRun,37860725562);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated member proof source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated member proof maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after member proof');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Serving SEO source drift / Programme closeout source drift / news security source drift / member proof source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving SEO verifier drift / Programme closeout verifier drift / news security verifier drift / member proof verifier drift: '+path);
+ assert.equal(withoutMemberProofTransport(content(c.source,'member-experience/verify-production-member.mjs')),content(c.base,'member-experience/verify-production-member.mjs'),'Every existing asset and authentication assertion must remain byte-for-byte intact');
+ for(const path of ['.github/workflows/cloudflare-production-promote.yml','radar-news-pages-v1.js','worker-entry-v6.js'])assert.equal(content(c.source,path),content(c.base,path),'Production gates and runtime must remain unchanged: '+path);
+ return c;
+}
+
+// Exact owner-authorised tablet wording and OASIS 4 factual amendment.
+export const TABLET_WORDING_BASE='92a5b8d280b090e609b8f14ed5adf5393bc355f0';
+export const TABLET_WORDING_SOURCE='8b96c26e313df0c950167b7a2a2eb17a42b904f4';
+export const TABLET_WORDING_RUN=37893723678;
+export const TABLET_WORDING_PAYLOAD=['tablet-wording-v1.mjs','public-promise-accuracy-v1.mjs','member-experience/public-preservation.mjs','tests/tablet-wording.test.mjs','.github/workflows/tablet-wording-proof.yml'];
+export const TABLET_WORDING_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/tablet-wording-release.test.mjs','.github/workflows/tablet-wording-release-proof.yml','tests/approved-runtime-composition.test.mjs','acquisition-activation/metrics-release.test.mjs'];
+const TABLET_WORDING_SET=new Set([...TABLET_WORDING_PAYLOAD,...TABLET_WORDING_MAINTENANCE]);
+for(const path of TABLET_WORDING_SET)RECONCILIATION_PATHS.add(path);
+export function verifyTabletWordingExtension(c,{head,read,diff,ancestor}){
+ assert(c,'Exact tablet wording receipt required');assert.equal(c.proof,'EXACT_TABLET_WORDING_V1');assert.equal(c.base,TABLET_WORDING_BASE);assert.equal(c.source,TABLET_WORDING_SOURCE);assert.equal(c.proofRun,TABLET_WORDING_RUN);assert.equal(c.approval,'tighten this');
+ assert.deepEqual(c.payloadPaths,TABLET_WORDING_PAYLOAD);assert.deepEqual(c.maintenancePaths,TABLET_WORDING_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.homepageChanged,false);assert.equal(c.orderingOpened,false);assert.equal(c.pricesChanged,false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.payloadPaths),'Unrelated tablet wording payload change');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated tablet wording verifier change');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after tablet wording receipt');
+ for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Tablet wording source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Tablet wording verifier source drift: '+path);
+ return c;
+}
+// Exact follow-through: keep the approved wording when the results script renders.
+export const TABLET_CLIENT_BASE='3df83d33f1bc26e3119dfeba2cbc54b10cedafdb';
+export const TABLET_CLIENT_SOURCE='3011d45d24c363105a7b30014a03868d36ea81f7';
+export const TABLET_CLIENT_RUN=37900716657;
+export const TABLET_CLIENT_PAYLOAD=['public-promise-accuracy-v1.mjs','tests/tablet-wording.test.mjs','member-experience/treatment-page.mjs'];
+export const TABLET_CLIENT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/tablet-wording-release.test.mjs','.github/workflows/tablet-wording-release-proof.yml'];
+const TABLET_CLIENT_SET=new Set([...TABLET_CLIENT_PAYLOAD,...TABLET_CLIENT_MAINTENANCE]);
+for(const path of TABLET_CLIENT_SET)RECONCILIATION_PATHS.add(path);
+export function verifyTabletClientExtension(c,{head,read,diff,ancestor}){
+ assert(c,'Exact tablet wording receipt required');assert.equal(c.proof,'EXACT_TABLET_CLIENT_V1');assert.equal(c.base,TABLET_CLIENT_BASE);assert.equal(c.source,TABLET_CLIENT_SOURCE);assert.equal(c.proofRun,TABLET_CLIENT_RUN);assert.equal(c.approval,'tighten this');
+ assert.deepEqual(c.payloadPaths,TABLET_CLIENT_PAYLOAD);assert.deepEqual(c.maintenancePaths,TABLET_CLIENT_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.homepageChanged,false);assert.equal(c.orderingOpened,false);assert.equal(c.pricesChanged,false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.payloadPaths),'Unrelated tablet wording payload change');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated tablet wording verifier change');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after tablet wording receipt');
+ for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Tablet wording source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Tablet wording verifier source drift: '+path);
+ return c;
+}
+const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
+export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
+export function assertProductionProofBudget(before,current){
+ const marker='    timeout-minutes: 25\n    env:\n      CLOUDFLARE_ACCOUNT_ID';
+ assert.equal(before.split(marker).length,2,'Exact original production time budget required');
+ let expected=before.replace(marker,marker.replace('25','60'));
+ for(const file of ['medicines-watch-observations.sql','medicines-watch-expansion-observations.sql']){
+  const original='npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/'+file+'"';
+  const online='node release/watch-observation-seed.mjs "$RUNNER_TEMP/'+file+'"';
+  expected=expected.replace(original,online);
+ }
+ assert.equal(current,expected,'Only the production verification time budget and exact online observation transport may change');
+}
+let productionProofBefore;
+const verifiedImmutableStructures=new Set();
+
+// Synchronous test verification can reuse only actual immutable Git history.
+// Current HEAD and tracked working bytes are checked at both scope boundaries.
+// This never caches caller-supplied source readers or validation outcomes.
+let immutableHistoryScope=null;
+const immutableHistoryResults=new Map();
+export function withImmutableHistoryVerification(callback){
+ if(immutableHistoryScope)return callback();
+ const cwd=process.cwd(),head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
+ assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
+ immutableHistoryScope={cwd,head};
+ try{const value=callback();assert(!value||typeof value.then!=='function','Immutable history verification must be synchronous');return value;}
+ finally{
+  immutableHistoryScope=null;
+  assert.equal(process.cwd(),cwd,'Verification working directory changed');
+  assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),head,'Source HEAD changed during immutable history verification');
+  assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Working source changed during immutable history verification');
+ }
+}
+export function immutableHistoryExecFileSync(bin,args,options){
+ const scope=immutableHistoryScope;
+ if(!scope||bin!=='git'||!Array.isArray(args)||args.some(x=>typeof x!=='string')||options?.cwd&&options.cwd!==scope.cwd||options?.env||options?.shell)return execFileSync(bin,args,options);
+ const pinned=args.map(x=>x==='HEAD'?scope.head:x.startsWith('HEAD:')?scope.head+x.slice(4):x==='HEAD^{commit}'?scope.head+'^{commit}':x);
+ const commit=x=>/^[a-f0-9]{40}$/.test(x),blob=x=>/^[a-f0-9]{40}:[^\0]+$/.test(x);
+ const immutable=pinned.length===4&&pinned[0]==='merge-base'&&pinned[1]==='--is-ancestor'&&commit(pinned[2])&&commit(pinned[3])
+  ||pinned.length===4&&pinned[0]==='diff'&&['--name-only','--name-status'].includes(pinned[1])&&commit(pinned[2])&&commit(pinned[3])
+  ||pinned.length===2&&['show','rev-parse'].includes(pinned[0])&&blob(pinned[1])
+  ||pinned.length===3&&pinned[0]==='cat-file'&&pinned[1]==='-e'&&(/^[a-f0-9]{40}\^\{commit\}$/.test(pinned[2])||blob(pinned[2]));
+ if(!immutable)return execFileSync(bin,args,options);
+ const key=JSON.stringify([scope.cwd,scope.head,pinned,options||null]);
+ if(!immutableHistoryResults.has(key))immutableHistoryResults.set(key,execFileSync(bin,pinned,options));
+ const result=immutableHistoryResults.get(key);return Buffer.isBuffer(result)?Buffer.from(result):result;
+}
+
+const defaultReconciliationRead=(ref,path)=>git('rev-parse',ref+':'+path);
+const immutableCompositionBlobs=new Map();
+
+// Finite 9 October sponsor-biomarker supplement. Editorial authority is not clinical approval.
+export const TOGETHER_BIOMARKER_BASE='e25b404181a71310633f663ddac683629c9e9129';
+export const TOGETHER_BIOMARKER_SOURCE='48dff23b6bb420fce087346cfff239e0318e85c3';
+export const TOGETHER_BIOMARKER_RUN=37950444948;
+export const TOGETHER_BIOMARKER_PATHS=Object.freeze(["medicines-watch/README.md","medicines-watch/industry.mjs","medicines-watch/industry.test.mjs","medicines-watch/reviews/2026-10-09-authorised-together-biomarkers.json",".github/workflows/medicines-watch-check.yml"]);
+export const TOGETHER_BIOMARKER_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/late-watch-composition.test.mjs",".github/workflows/medicines-watch-check.yml"]);
+const TOGETHER_BIOMARKER_SET=new Set([...TOGETHER_BIOMARKER_PATHS,...TOGETHER_BIOMARKER_MAINTENANCE]);
+for(const path of TOGETHER_BIOMARKER_SET)RECONCILIATION_PATHS.add(path);
+export function assertTogetherBiomarkerProof(proof){
+ assert.equal(proof.id,TOGETHER_BIOMARKER_RUN);assert.equal(proof.head_sha,TOGETHER_BIOMARKER_SOURCE);
+ assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');assert.equal(proof.event,'pull_request');
+ assert.equal(proof.head_branch,'review/watch-together-biomarkers-20261009');
+ assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
+}
+export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_TOGETHER_BIOMARKER_UPDATE_V1');assert.equal(c.base,TOGETHER_BIOMARKER_BASE);assert.equal(c.source,TOGETHER_BIOMARKER_SOURCE);
+ assert.equal(c.proofRun,TOGETHER_BIOMARKER_RUN);assert.deepEqual(c.paths,TOGETHER_BIOMARKER_PATHS);assert.deepEqual(c.maintenancePaths,TOGETHER_BIOMARKER_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1276);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ for(const flag of ['registryFactsChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated biomarker factual payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated biomarker release maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after biomarker receipt');
+ // The one overlapping workflow is pinned to its exact maintenance source;
+ // its initial source proof remains pinned independently.
+ for(const path of c.paths.filter(p=>!c.maintenancePaths.includes(p)))assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Biomarker maintenance source drift: '+path);
+ return c;
+}
+
+// Finite owner-authorised factual Medicines Watch backlog publication. No clinical approval.
+export const WATCH_BACKLOG_BASE='b31e1c63cede1cde2be975c4b4cc609ef1a11630';
+export const WATCH_BACKLOG_SOURCE='48020574fdda274d04901052942aacbe1502fb31';
+export const WATCH_BACKLOG_RUN=37995046889;
+export const WATCH_BACKLOG_PATHS=Object.freeze([".github/workflows/medicines-watch-check.yml", "medicines-watch/README.md", "medicines-watch/backlog-review.test.mjs", "medicines-watch/credibility.mjs", "medicines-watch/data.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-10-09-authorised-backlog-review.json", "medicines-watch/source-review.test.mjs"]);
+export const WATCH_BACKLOG_MAINTENANCE=Object.freeze([".github/workflows/medicines-watch-check.yml", "release/approved-runtime-composition.mjs", "tests/approved-runtime-composition.test.mjs", "tests/late-watch-composition.test.mjs", "shift-coach/release.test.mjs"]);
+const WATCH_BACKLOG_SET=new Set([...WATCH_BACKLOG_PATHS,...WATCH_BACKLOG_MAINTENANCE]);
+for(const path of WATCH_BACKLOG_SET)RECONCILIATION_PATHS.add(path);
+export function assertWatchBacklogProof(proof){
+ assert.equal(proof?.id,WATCH_BACKLOG_RUN);assert.equal(proof.head_sha,WATCH_BACKLOG_SOURCE);assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');
+ assert.equal(proof.event,'pull_request');assert.equal(proof.head_branch,'review/watch-backlog-20261009');assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
+}
+export function verifyWatchBacklogUpdate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_BACKLOG_UPDATE_V1');assert.equal(c.base,WATCH_BACKLOG_BASE);assert.equal(c.source,WATCH_BACKLOG_SOURCE);assert.equal(c.proofRun,WATCH_BACKLOG_RUN);
+ assert.deepEqual(c.paths,WATCH_BACKLOG_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_BACKLOG_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1281);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.sourceReviews,35);assert.equal(c.changedTrialRecords,3);assert.equal(c.officialAlternativeReplacements,1);
+ for(const flag of ['reviewDatesRenewedByHttp','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated backlog factual payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated backlog release maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after backlog receipt');
+ for(const path of c.paths.filter(p=>!c.maintenancePaths.includes(p)))assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
+// Finite repair for the preclinical Watch release meta-test. The failed run
+// stopped before production mutation; this changes no factual or clinical data.
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_BASE='0baf1873fa1a6275258e984939d97c05aaeae61c';
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SOURCE='687efaeafd0fa280f99941252430fc6722e57af7';
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs']);
+const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET=new Set([...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS,...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE]);
+for(const path of WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchPreclinicalReleaseTestRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_V1');
+ assert.equal(c.base,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_BASE);assert.equal(c.source,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1293);assert.equal(c.failedRun,38026970615);assert.equal(c.releaseReachedProduction,false);
+ assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.failureCause,'release meta-test did not recognise factual Watch source drift wording');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated preclinical release-test repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated preclinical release-test repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after preclinical release-test repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Preclinical release-test repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Preclinical release-test repair maintenance drift: '+path);
+ return c;
+}
+
+// Finite Medicines Watch evidence-queue consistency repair. The factual reviews,
+// monitor observations and clinical evidence remain byte-identical.
+export const WATCH_PENDING_DELAYED_QUEUE_BASE='800b7fbc9da6705ca37b98574f15b058f361defe';
+export const WATCH_PENDING_DELAYED_QUEUE_SOURCE='16907563a3ff9c213f17e73f188b61f6c707e83c';
+export const WATCH_PENDING_DELAYED_QUEUE_PATHS=Object.freeze([
+ 'medicines-watch/evidence-desk.mjs',
+ 'medicines-watch/evidence-desk.test.mjs',
+ 'medicines-watch/monitor.test.mjs'
+]);
+export const WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/late-watch-composition.test.mjs'
+]);
+const WATCH_PENDING_DELAYED_QUEUE_SET=new Set([...WATCH_PENDING_DELAYED_QUEUE_PATHS,...WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE]);
+for(const path of WATCH_PENDING_DELAYED_QUEUE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchPendingDelayedQueueRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_PENDING_DELAYED_QUEUE_REPAIR_V1');
+ assert.equal(c.base,WATCH_PENDING_DELAYED_QUEUE_BASE);assert.equal(c.source,WATCH_PENDING_DELAYED_QUEUE_SOURCE);
+ assert.deepEqual(c.paths,WATCH_PENDING_DELAYED_QUEUE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1294);assert.equal(c.reviewedSources,198);assert.equal(c.pendingSources,1);assert.equal(c.delayedSources,3);
+ assert.equal(c.preservedReviewedEntries,35);assert.equal(c.clinicalApproval,null);
+ for(const flag of ['medicalEvidenceChanged','factualReviewsChanged','reviewDatesChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch pending-delayed queue payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch pending-delayed queue maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Watch pending-delayed queue receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
+// Finite owner-authorised preclinical discovery update. No clinical approval,
+// UK access, supply or human-outcome claim is introduced by this receipt.
+export const WATCH_PRECLINICAL_DISCOVERY_BASE='834680b4353551b257fe0094e834fa827c86ad70';
+export const WATCH_PRECLINICAL_DISCOVERY_SOURCE='8c407fe3382e4da3eeddf62898215a93d5b12690';
+export const WATCH_PRECLINICAL_DISCOVERY_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/backlog-review.test.mjs',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/discovery.mjs',
+ 'medicines-watch/evidence-desk.test.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/industry.test.mjs',
+ 'medicines-watch/reviews/2026-10-10-authorised-mwyngil-palatin-preclinical.json'
+]);
+export const WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/late-watch-composition.test.mjs'
+]);
+const WATCH_PRECLINICAL_DISCOVERY_SET=new Set([...WATCH_PRECLINICAL_DISCOVERY_PATHS,...WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE]);
+for(const path of WATCH_PRECLINICAL_DISCOVERY_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchPreclinicalDiscoveryUpdate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_PRECLINICAL_DISCOVERY_V1');
+ assert.equal(c.base,WATCH_PRECLINICAL_DISCOVERY_BASE);assert.equal(c.source,WATCH_PRECLINICAL_DISCOVERY_SOURCE);
+ assert.deepEqual(c.paths,WATCH_PRECLINICAL_DISCOVERY_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1292);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.programmesReviewed,2);assert.equal(c.monitorSources,199);assert.equal(c.delayedSources,3);
+ for(const flag of ['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated preclinical discovery payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated preclinical discovery release maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after preclinical discovery receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
+
+// Finite owner-authorised informational male-obesity pillar. No generic path or authority expansion.
+export const MALE_OBESITY_BASE='77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0';
+export const MALE_OBESITY_SOURCE='c2c295782697c98d149d3ac7f335d8028f413b4e';
+export const MALE_OBESITY_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml", "member-experience/public-preservation.mjs", "obesity-awareness/README.md", "obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/measurement.mjs", "obesity-awareness/preservation.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/staging-build-proof.json", "obesity-awareness/staging-entry.mjs", "obesity-awareness/staging-entry.test.mjs", "obesity-awareness/verify-live.mjs", "obesity-awareness/wrangler.preview.jsonc", "obesity-awareness/wrangler.staging.jsonc", "release/public-continuity-body-proof.mjs", "shift-coach/worker.mjs", "shift-coach/cancelled-release-recovery.mjs", "shift-coach/recover-cancelled-release.mjs", "obesity-awareness/rollback-proof.test.mjs"]);
+export const MALE_OBESITY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/male-obesity-composition.test.mjs", "tests/programme-day-continuity-body.test.mjs", "acquisition-activation/metrics-release.test.mjs", "editorial/five-articles/proof.mjs", "tests/approved-runtime-composition.test.mjs"]);
+const MALE_OBESITY_SET=new Set([...MALE_OBESITY_PATHS,...MALE_OBESITY_MAINTENANCE]);
+for(const path of MALE_OBESITY_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityPillar(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_PILLAR_V1');assert.equal(c.base,MALE_OBESITY_BASE);assert.equal(c.source,MALE_OBESITY_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Approved, Go; complete authorised informational release');assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated male-obesity maintenance');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityPillar;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by male-obesity registration');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
+// Finite closeout of failed run 37997975670; preserve every earlier receipt.
+export const MALE_OBESITY_CLOSEOUT_BASE='fcf7711ad6dff2341801ab97fac36ac34bb96305';
+export const MALE_OBESITY_CLOSEOUT_SOURCE='8f5871e46f4022ef03440f06d42946896f466952';
+export const MALE_OBESITY_CLOSEOUT_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml","obesity-awareness/candidate.mjs","obesity-awareness/candidate.test.mjs","obesity-awareness/content.mjs","obesity-awareness/production.mjs","obesity-awareness/production.test.mjs","obesity-awareness/rollback-proof.test.mjs","shift-coach/recover-cancelled-release.mjs","obesity-awareness/rendered-live-proof.cjs","shift-coach/cancelled-release-recovery.mjs"]);
+export const MALE_OBESITY_CLOSEOUT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/male-obesity-closeout-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
+const MALE_OBESITY_CLOSEOUT_SET=new Set([...MALE_OBESITY_CLOSEOUT_PATHS,...MALE_OBESITY_CLOSEOUT_MAINTENANCE]);
+for(const path of MALE_OBESITY_CLOSEOUT_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityCloseout(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_CLOSEOUT_V1');assert.equal(c.base,MALE_OBESITY_CLOSEOUT_BASE);assert.equal(c.source,MALE_OBESITY_CLOSEOUT_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_CLOSEOUT_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_CLOSEOUT_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.failedRun,37997975670);assert.equal(c.failedGate,89);
+ assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity closeout payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity closeout maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity closeout receipt');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityReleaseCloseout;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by male-obesity closeout');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
+// One finite read-only acceptance repair; serving content and prior receipts stay pinned.
+export const MALE_OBESITY_ACCEPTANCE_BASE='78c515b7c49bcf309941a53c2f87c6e94e76d6b7';
+export const MALE_OBESITY_ACCEPTANCE_SOURCE='6a01a19137cfc81a5c4acbb5be2832dcfe991c88';
+export const MALE_OBESITY_ACCEPTANCE_PATHS=Object.freeze(['obesity-awareness/rendered-live-proof.cjs','obesity-awareness/measurement.mjs','obesity-awareness/measurement-navigation.test.mjs']);
+export const MALE_OBESITY_ACCEPTANCE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/male-obesity-acceptance-composition.test.mjs']);
+const MALE_OBESITY_ACCEPTANCE_SET=new Set([...MALE_OBESITY_ACCEPTANCE_PATHS,...MALE_OBESITY_ACCEPTANCE_MAINTENANCE]);
+for(const path of MALE_OBESITY_ACCEPTANCE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityAcceptance(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_JOURNEY_REPAIR_V1');assert.equal(c.base,MALE_OBESITY_ACCEPTANCE_BASE);assert.equal(c.source,MALE_OBESITY_ACCEPTANCE_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_ACCEPTANCE_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_ACCEPTANCE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.repair,'Preserve real consented onward collection before navigation with a350ms fallback; align acceptance with existing public controls');assert.equal(c.acceptanceHarnessOnly,false);assert.equal(c.runtimeChanged,true);
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity acceptance payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity acceptance maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity acceptance receipt');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityAcceptanceRepair;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by acceptance repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
+// Exact public-arrival measurement repair; all prior source and preservation receipts remain immutable.
+export const MALE_OBESITY_ARRIVAL_BASE='f5fd1b53209d9337590f1c8b4d80501bb78c3bf4';
+export const MALE_OBESITY_ARRIVAL_SOURCE='b7b0c1c4a4beee1f3d41a1287e070ac522571715';
+export const MALE_OBESITY_ARRIVAL_PATHS=Object.freeze(["obesity-awareness/measurement.mjs","obesity-awareness/measurement-navigation.test.mjs","obesity-awareness/rendered-live-proof.cjs",".github/workflows/programme-day-preview.yml","obesity-awareness/production.mjs","obesity-awareness/production.test.mjs"]);
+export const MALE_OBESITY_ARRIVAL_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/male-obesity-arrival-composition.test.mjs"]);
+const MALE_OBESITY_ARRIVAL_SET=new Set([...MALE_OBESITY_ARRIVAL_PATHS,...MALE_OBESITY_ARRIVAL_MAINTENANCE]);
+for(const path of MALE_OBESITY_ARRIVAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityArrival(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_PUBLIC_ARRIVAL_V1');assert.equal(c.base,MALE_OBESITY_ARRIVAL_BASE);assert.equal(c.source,MALE_OBESITY_ARRIVAL_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_ARRIVAL_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_ARRIVAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.repair,'Count completed public-support arrivals through existing consented dataLayer; native navigation remains immediate');assert.equal(c.runtimeChanged,true);
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity public-arrival payload');
+ assert.equal(content(c.source,".github/workflows/programme-day-preview.yml"),content(c.base,".github/workflows/programme-day-preview.yml").replace("node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs","node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs"),'Only additive measurement tests may change the existing preview workflow');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity public-arrival maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after public-arrival receipt');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityArrivalRepair;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by public-arrival repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity public-arrival source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity public-arrival maintenance source drift: '+path);
+ return c;
+}
+
+// Finite owner-authorised continuity content delivery; existing page roles and release authority unchanged.
+export const CONTINUITY_CONTENT_BASE='5ef17a52c3aa6716915685acbf6d5d9cce41f627';
+export const CONTINUITY_CONTENT_SOURCE='4e0a31692d1b11a512499575046fd2843394a18e';
+export const CONTINUITY_CONTENT_PATHS=Object.freeze(["public-continuity.mjs", "member-experience/public-preservation.mjs", "release/continuity-content-20261009.mjs", "docs/content-review/continuity-sources-20261009.json", "tests/continuity-content-20261009.test.mjs"]);
+export const CONTINUITY_CONTENT_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/continuity-content-composition.test.mjs",".github/workflows/portable-continuity-proof.yml","scripts/verify-continuity-content-browser.mjs","acquisition-activation/metrics-release.test.mjs","tests/organic-followthrough-release.test.mjs"]);
+const CONTINUITY_CONTENT_SET=new Set([...CONTINUITY_CONTENT_PATHS,...CONTINUITY_CONTENT_MAINTENANCE]);
+for(const path of CONTINUITY_CONTENT_SET)RECONCILIATION_PATHS.add(path);
+export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_CONTINUITY_CONTENT_DELIVERY_V1');assert.equal(c.base,CONTINUITY_CONTENT_BASE);assert.equal(c.source,CONTINUITY_CONTENT_SOURCE);
+ assert.deepEqual(c.paths,CONTINUITY_CONTENT_PATHS);assert.deepEqual(c.maintenancePaths,CONTINUITY_CONTENT_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised clinic-gone-quiet and provider-switch upgrades; release through existing guarded workflow');assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated continuity-content payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated continuity-content maintenance');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.continuityContentUpgrade;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by continuity-content registration');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after continuity-content receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Continuity-content source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Continuity-content maintenance source drift: '+path);
+ return c;
+}
+
+
+// Renew the overdue SRSD384 registry review and connect already completed
+// Kailera review evidence without changing any medicine wording or monitor baseline.
+export const WATCH_SRSD384_RENEWAL_BASE='8771788490ffda619dc224872b18d2280d6429b1';
+export const WATCH_SRSD384_RENEWAL_SOURCE='41981196461ceaa77c08f6470ec1b5300c49575a';
+export const WATCH_SRSD384_RENEWAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/industry.mjs','medicines-watch/reviews/2026-10-11-authorised-srsd384-renewal.json','medicines-watch/srsd384-renewal.test.mjs']);
+export const WATCH_SRSD384_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-srsd384-renewal-composition.test.mjs']);
+const WATCH_SRSD384_RENEWAL_SET=new Set([...WATCH_SRSD384_RENEWAL_PATHS,...WATCH_SRSD384_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_SRSD384_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchSrsd384Renewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_SRSD384_RENEWAL_V1');assert.equal(c.base,WATCH_SRSD384_RENEWAL_BASE);assert.equal(c.source,WATCH_SRSD384_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_SRSD384_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_SRSD384_RENEWAL_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1313);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.equal(c.sourceReviewsApplied,1);assert.equal(c.existingKaileraReviewsConnected,2);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.trialRecordsAfter,137);
+ assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['programmeWordingChanged','programmeCountChanged','configuredSourceCountChanged','registryStatusChanged','sponsorClaimChanged','resultsClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated SRSD384 review-renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated SRSD384 review-renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after SRSD384 review-renewal receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchSrsd384Renewal;assert.deepEqual(current,prior,'Prior release receipts changed by SRSD384 review-renewal registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'SRSD384 review-renewal source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'SRSD384 review-renewal maintenance source drift: '+path);
+ return c;
+}
+
+// Register three newly posted primary trial records without treating estimated
+// starts as actual recruitment, results or clinical switching guidance.
+export const WATCH_VK2735_ZENAGAMTIDE_BASE='68cd3d2f9cf6399bcd2a4cc0f6623684bb8ffe77';
+export const WATCH_VK2735_ZENAGAMTIDE_SOURCE='eb1e3ae8756e2858638f2e88d28d4cafa45023a9';
+export const WATCH_VK2735_ZENAGAMTIDE_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json']);
+export const WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-vk2735-zenagamtide-registry-composition.test.mjs']);
+const WATCH_VK2735_ZENAGAMTIDE_SET=new Set([...WATCH_VK2735_ZENAGAMTIDE_PATHS,...WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE]);
+for(const path of WATCH_VK2735_ZENAGAMTIDE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchVk2735ZenagamtideRegistry(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_VK2735_ZENAGAMTIDE_REGISTRY_V1');assert.equal(c.base,WATCH_VK2735_ZENAGAMTIDE_BASE);assert.equal(c.source,WATCH_VK2735_ZENAGAMTIDE_SOURCE);
+ assert.deepEqual(c.paths,WATCH_VK2735_ZENAGAMTIDE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1312);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.equal(c.sourceReviews,3);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.trialRecordsAfter,137);assert.equal(c.preservedSourceReviews,35);
+ assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.automatedMonitorChanges,true);
+ for(const flag of ['resultsClaimed','phase3StartClaimed','switchingGuidanceClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated VK2735/zenagamtide registry payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated VK2735/zenagamtide registry maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after VK2735/zenagamtide registry receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchVk2735ZenagamtideRegistry;assert.deepEqual(current,prior,'Prior release receipts changed by VK2735/zenagamtide registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
+// Apply the already completed 10 October primary-record review to the exact
+// monitored ZP6590 registry source. This changes only the factual review date;
+// the separately denied sponsor source remains verification-pending and delayed.
+export const WATCH_ZP6590_RELEASE_GUARD_BASE='f35066a6b630df8c16a2040e1186d7096cff08ab';
+export const WATCH_ZP6590_RELEASE_GUARD_SOURCE='6a35467e56e87dc4ab78114d80a6bad668bf99fe';
+export const WATCH_ZP6590_RELEASE_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-zp6590-release-guard-repair-composition.test.mjs']);
+const WATCH_ZP6590_RELEASE_GUARD_SET=new Set([...WATCH_ZP6590_RELEASE_GUARD_PATHS,...WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE]);
+for(const path of WATCH_ZP6590_RELEASE_GUARD_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchZp6590ReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_ZP6590_RELEASE_GUARD_REPAIR_V1');
+ assert.equal(c.base,WATCH_ZP6590_RELEASE_GUARD_BASE);assert.equal(c.source,WATCH_ZP6590_RELEASE_GUARD_SOURCE);
+ assert.deepEqual(c.paths,WATCH_ZP6590_RELEASE_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,38085522316);assert.equal(c.failedJob,114311137380);assert.equal(c.failedStep,13);
+ assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['productionMutated','publicCopyChanged','medicalContentChanged','evidenceReviewChanged','queueLogicChanged','monitorBaselinesChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated ZP6590 release-guard repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated ZP6590 release-guard repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after ZP6590 release-guard repair receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchZp6590ReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by ZP6590 release-guard repair registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'ZP6590 release-guard repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'ZP6590 release-guard repair maintenance source drift: '+path);
+ return c;
+}
+
+export const WATCH_ZP6590_REGISTRY_RENEWAL_BASE='06acc6a90d80d6386f618ba739d95085b13341c2';
+export const WATCH_ZP6590_REGISTRY_RENEWAL_SOURCE='d476cb32c3ea888dd56f78a3b30631e863537800';
+export const WATCH_ZP6590_REGISTRY_RENEWAL_PATHS=Object.freeze(['medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs']);
+export const WATCH_ZP6590_REGISTRY_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-zp6590-registry-renewal-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
+const WATCH_ZP6590_REGISTRY_RENEWAL_SET=new Set([...WATCH_ZP6590_REGISTRY_RENEWAL_PATHS,...WATCH_ZP6590_REGISTRY_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_ZP6590_REGISTRY_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchZp6590RegistryRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_ZP6590_REGISTRY_REVIEW_DATE_V1');
+ assert.equal(c.base,WATCH_ZP6590_REGISTRY_RENEWAL_BASE);assert.equal(c.source,WATCH_ZP6590_REGISTRY_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_ZP6590_REGISTRY_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ZP6590_REGISTRY_RENEWAL_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.sourceReviewsApplied,1);assert.equal(c.factualChanges,0);assert.equal(c.reviewedAt,'2026-10-10T09:39:21Z');
+ assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['reviewRepeated','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated ZP6590 registry-review-date payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated ZP6590 registry-review-date maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after ZP6590 registry-review-date receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchZp6590RegistryReviewRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by ZP6590 registry-review-date registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'ZP6590 registry-review-date source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'ZP6590 registry-review-date maintenance source drift: '+path);
+ return c;
+}
+
+// Exact Medicines Watch overdue primary-source review renewal. This records the
+// bounded factual-review payload without turning HTTP success into review,
+// resolving ZP6590, or widening clinical or deployment authority.
+export const WATCH_OVERDUE_RENEWAL_BASE='d722e91767e84ee26e1fb176074f31cb635c9704';
+export const WATCH_OVERDUE_RENEWAL_SOURCE='d427dc2ffd451741f6c2431572360519b61338b4';
+export const WATCH_OVERDUE_RENEWAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/overdue-registry-access-renewal.test.mjs','medicines-watch/reviews/2026-10-10-overdue-registry-access-renewal.json']);
+export const WATCH_OVERDUE_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-overdue-registry-access-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
+const WATCH_OVERDUE_RENEWAL_SET=new Set([...WATCH_OVERDUE_RENEWAL_PATHS,...WATCH_OVERDUE_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_OVERDUE_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchOverdueRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_OVERDUE_PRIMARY_REVIEW_RENEWAL_V1');
+ assert.equal(c.base,WATCH_OVERDUE_RENEWAL_BASE);assert.equal(c.source,WATCH_OVERDUE_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_OVERDUE_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_OVERDUE_RENEWAL_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.approvedPR,1307);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.sourceReviews,67);assert.equal(c.registryRecords,63);assert.equal(c.officialAccessSources,4);assert.equal(c.factualChanges,0);
+ assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['httpSuccessTreatedAsReview','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Medicines Watch overdue-review payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Medicines Watch overdue-review maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Medicines Watch overdue-review receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchOverduePrimaryReviewRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by Medicines Watch overdue-review registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Medicines Watch overdue-review maintenance source drift: '+path);
+ return c;
+}
+
+// Exact approved Hub-v2 bounded transport and rollback chain upgrade; preserve every prior receipt and protected route.
+export const OBESITY_HUB_TRANSPORT_BASE='1b43badb186b40a35f145a63051f0307785dad7d';
+export const OBESITY_HUB_TRANSPORT_SOURCE='b3df285586189f1be6560cce7e42e0bdf77ca73b';
+export const OBESITY_HUB_TRANSPORT_PATHS=Object.freeze(['release/public-proof-text-fetch.mjs', 'release/organic-followthrough-live.mjs', 'tests/public-proof-fetch.test.mjs', 'tests/organic-followthrough-live.test.mjs', 'shift-coach/cancelled-release-recovery.mjs', 'shift-coach/recover-cancelled-release.mjs', 'tests/obesity-hub-v2-transport-rollback.test.mjs', 'tests/fixtures/obesity-hub-v2-transport-rollback-38075479733.json']);
+export const OBESITY_HUB_TRANSPORT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-transport-composition.test.mjs']);
+const OBESITY_HUB_TRANSPORT_SET=new Set([...OBESITY_HUB_TRANSPORT_PATHS,...OBESITY_HUB_TRANSPORT_MAINTENANCE]);
+for(const path of OBESITY_HUB_TRANSPORT_SET)RECONCILIATION_PATHS.add(path);
+export function verifyObesityHubTransport(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_OBESITY_HUB_TRANSPORT_20261010');
+ assert.equal(c.base,OBESITY_HUB_TRANSPORT_BASE);assert.equal(c.source,OBESITY_HUB_TRANSPORT_SOURCE);
+ assert.deepEqual(c.paths,OBESITY_HUB_TRANSPORT_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_TRANSPORT_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
+ assert.equal(c.priorPreviewRun,38058282091);
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 bounded transport and rollback chain payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 bounded transport and rollback chain maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 bounded transport and rollback chain receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.obesityHubTransport;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2 bounded transport and rollback chain');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),(OBESITY_HUB_ROLLBACK_PATHS.includes(path)?'Hub-v2 exact rollback receipt source drift: ':'Hub-v2 bounded transport and rollback chain source drift: ')+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 bounded transport and rollback chain maintenance source drift: '+path);
+ return c;
+}
+
+// Exact approved Hub-v2 exact rollback receipt upgrade; preserve every prior receipt and protected route.
+export const OBESITY_HUB_ROLLBACK_BASE='539541adba87e13d769e4fc94520e0fe4bbbb91d';
+export const OBESITY_HUB_ROLLBACK_SOURCE='1c4fec2846aa6283c2b647e318193b0127e743e2';
+export const OBESITY_HUB_ROLLBACK_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','tests/obesity-hub-v2-rollback.test.mjs','tests/fixtures/obesity-hub-v2-rollback-38072143100.json']);
+export const OBESITY_HUB_ROLLBACK_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-rollback-composition.test.mjs']);
+const OBESITY_HUB_ROLLBACK_SET=new Set([...OBESITY_HUB_ROLLBACK_PATHS,...OBESITY_HUB_ROLLBACK_MAINTENANCE]);
+for(const path of OBESITY_HUB_ROLLBACK_SET)RECONCILIATION_PATHS.add(path);
+export function verifyObesityHubRollback(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_OBESITY_HUB_ROLLBACK_20261010');
+ assert.equal(c.base,OBESITY_HUB_ROLLBACK_BASE);assert.equal(c.source,OBESITY_HUB_ROLLBACK_SOURCE);
+ assert.deepEqual(c.paths,OBESITY_HUB_ROLLBACK_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_ROLLBACK_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
+ assert.equal(c.priorPreviewRun,38058282091);
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 exact rollback receipt payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 exact rollback receipt maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 exact rollback receipt receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.obesityHubRollback;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2 exact rollback receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 exact rollback receipt source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 exact rollback receipt maintenance source drift: '+path);
+ return c;
+}
+
+// Exact approved Hub-v2 scoped repair upgrade; preserve every prior receipt and protected route.
+export const OBESITY_HUB_REPAIR_BASE='21dcc6e5034d9e9db787b122f3e467910c093564';
+export const OBESITY_HUB_REPAIR_SOURCE='ff92aff1cb07093397bc474f90ee597acc4211c7';
+export const OBESITY_HUB_REPAIR_PATHS=Object.freeze(['obesity-awareness/candidate.mjs','obesity-awareness/rendered-live-proof.cjs','obesity-awareness/staging-entry.mjs','obesity-awareness/staging-entry.test.mjs','release/seo794-preservation.mjs','tests/seo794-preservation.test.mjs']);
+export const OBESITY_HUB_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-repair-composition.test.mjs']);
+const OBESITY_HUB_REPAIR_SET=new Set([...OBESITY_HUB_REPAIR_PATHS,...OBESITY_HUB_REPAIR_MAINTENANCE]);
+for(const path of OBESITY_HUB_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifyObesityHubRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_OBESITY_HUB_REPAIR_20261010');
+ assert.equal(c.base,OBESITY_HUB_REPAIR_BASE);assert.equal(c.source,OBESITY_HUB_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,OBESITY_HUB_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_REPAIR_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
+ assert.equal(c.priorPreviewRun,38058282091);
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 scoped repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 scoped repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 scoped repair receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.obesityHubRepair;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2 scoped repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 scoped repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 scoped repair maintenance source drift: '+path);
+ return c;
+}
+
+// Exact approved Hub-v2 upgrade; preserve every prior receipt and protected route.
+export const OBESITY_PRACTICAL_BASE='84810813ab060a78935cca29b87011986f479953';
+export const OBESITY_PRACTICAL_SOURCE='2af00448b5aa7cb2b5dbedc8505d19e6932ab2c4';
+export const OBESITY_PRACTICAL_PATHS=Object.freeze(['obesity-awareness/content.mjs','obesity-awareness/rendered-live-proof.cjs']);
+export const OBESITY_PRACTICAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-practical-composition.test.mjs']);
+const OBESITY_PRACTICAL_SET=new Set([...OBESITY_PRACTICAL_PATHS,...OBESITY_PRACTICAL_MAINTENANCE]);
+for(const path of OBESITY_PRACTICAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyObesityPractical(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_OBESITY_PRACTICAL_20261010');
+ assert.equal(c.base,OBESITY_PRACTICAL_BASE);assert.equal(c.source,OBESITY_PRACTICAL_SOURCE);
+ assert.deepEqual(c.paths,OBESITY_PRACTICAL_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_PRACTICAL_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
+ assert.equal(c.priorPreviewRun,38058282091);
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.obesityPractical;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 maintenance source drift: '+path);
+ return c;
+}
+
+// Exact approved Hub-v2 upgrade; preserve every prior receipt and protected route.
+export const OBESITY_HUB_V2_BASE='21d698db2c34676116d4f9c19127127fcf414cbe';
+export const OBESITY_HUB_V2_SOURCE='6229eabca4c03099712af001bc98bb775d5d182a';
+export const OBESITY_HUB_V2_PATHS=Object.freeze(["obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/rendered-live-proof.cjs", "obesity-awareness/rollback-proof.test.mjs"]);
+export const OBESITY_HUB_V2_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-v2-composition.test.mjs']);
+const OBESITY_HUB_V2_SET=new Set([...OBESITY_HUB_V2_PATHS,...OBESITY_HUB_V2_MAINTENANCE]);
+for(const path of OBESITY_HUB_V2_SET)RECONCILIATION_PATHS.add(path);
+export function verifyObesityHubV2(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_OBESITY_HUB_V2_20261010');
+ assert.equal(c.base,OBESITY_HUB_V2_BASE);assert.equal(c.source,OBESITY_HUB_V2_SOURCE);
+ assert.deepEqual(c.paths,OBESITY_HUB_V2_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_V2_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
+ assert.equal(c.priorPreviewRun,38058282091);
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.obesityHubV2;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 maintenance source drift: '+path);
+ return c;
+}
+
+// Exact read-only reporting integration. Prior runtime receipts remain unchanged.
+export const ORGANIC_MEASUREMENT_BASE='4f2fc285fc08c8a2e1418b87f42a77217017b2e1';
+export const ORGANIC_MEASUREMENT_SOURCE='0451b00e191c998081b51030e2474bc63c482c39';
+export const ORGANIC_MEASUREMENT_PATHS=Object.freeze([
+ 'docs/growth-review/2026-10-09-answer-depth-live.json',
+ 'docs/growth-review/2026-10-09-campaign-release-state.json',
+ 'docs/growth-review/2026-10-09-measurement.json',
+ 'docs/growth-review/2026-10-09-ownership.md',
+ 'scripts/reconcile-organic-measurement.mjs',
+ 'tests/organic-measurement-reconciliation.test.mjs'
+]);
+export const ORGANIC_MEASUREMENT_MAINTENANCE=Object.freeze([
+ '.github/workflows/organic-followthrough-proof.yml',
+ 'release/approved-runtime-composition.mjs',
+ 'tests/organic-measurement-composition.test.mjs'
+]);
+const ORGANIC_MEASUREMENT_SET=new Set([...ORGANIC_MEASUREMENT_PATHS,...ORGANIC_MEASUREMENT_MAINTENANCE]);
+for(const path of ORGANIC_MEASUREMENT_SET)RECONCILIATION_PATHS.add(path);
+export function verifyOrganicMeasurement(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_ORGANIC_MEASUREMENT_INTEGRATION_V1');
+ assert.equal(c.base,ORGANIC_MEASUREMENT_BASE);assert.equal(c.source,ORGANIC_MEASUREMENT_SOURCE);
+ assert.deepEqual(c.paths,ORGANIC_MEASUREMENT_PATHS);assert.deepEqual(c.maintenancePaths,ORGANIC_MEASUREMENT_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1280);assert.equal(c.integrationIssue,1065);
+ assert.equal(c.pageClickAttribution,'unresolved');assert.equal(c.pageCTRUsable,false);assert.equal(c.outcomeClaimsAllowed,false);
+ for(const flag of ['runtimeChanged','analyticsChanged','consentChanged','privateDataRead','homepageChanged','medicalClaimsChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated reporting payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated reporting maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after reporting receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.organicMeasurementIntegration;assert.deepEqual(current,prior,'Prior release receipts changed by reporting integration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Reporting source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Reporting maintenance source drift: '+path);
+ return c;
+}
+
+// Source-only renewal for the two Wegovy references that became factually
+// overdue on 10 October. It preserves medicine wording and every queue state.
+export const WATCH_WEGOVY_RENEWAL_BASE='8624f2dfbefaf5028a60b3ced664b96aa077929b';
+export const WATCH_WEGOVY_RENEWAL_SOURCE='4fd913f11f4bba2e684e691e02fa02f526e22b40';
+export const WATCH_WEGOVY_RENEWAL_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/data.mjs',
+ 'medicines-watch/product-renewal.test.mjs',
+ 'medicines-watch/source-review.test.mjs',
+ 'medicines-watch/reviews/2026-10-10-wegovy-source-renewal.json'
+]);
+export const WATCH_WEGOVY_RENEWAL_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-wegovy-source-renewal-composition.test.mjs'
+]);
+const WATCH_WEGOVY_RENEWAL_SET=new Set([...WATCH_WEGOVY_RENEWAL_PATHS,...WATCH_WEGOVY_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_WEGOVY_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchWegovySourceRenewal(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_WEGOVY_SOURCE_RENEWAL_V1');assert.equal(c.base,WATCH_WEGOVY_RENEWAL_BASE);assert.equal(c.source,WATCH_WEGOVY_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_WEGOVY_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_WEGOVY_RENEWAL_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1301);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.sourceReviews,2);assert.equal(c.programmes,116);assert.equal(c.configuredSources,199);assert.equal(c.manualEvidenceUrls,96);assert.equal(c.preservedSourceReviews,35);
+ assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,2);
+ for(const flag of ['medicineWordingChanged','medicineReviewAdvanced','humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','delayedSourceStatesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Wegovy source-renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Wegovy source-renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Wegovy source-renewal receipt');
+ const drift='Approved Wegovy source drift; Approved composition source / boundary drift; Approved factual Watch source drift; Approved backlog source drift; Backlog maintenance source drift; archive compatibility drift; Reporting source drift; Male-obesity maintenance source drift: release/approved-runtime-composition.mjs';
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),drift+': '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),drift+': '+path);
+ return c;
+}
+
+
+export const SUPPORT_CONTENT_BASE='d54b9e139ca0b65a3fba15ab0d33dd397fa45fc2';
+export const SUPPORT_CONTENT_SOURCE='bca498cf36bda01e089b8826e6a0750fe38b2bd7';
+export const SUPPORT_CONTENT_PATHS=Object.freeze(['shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','docs/content-review/support-review-20261010.json']);
+export const SUPPORT_CONTENT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/support-content-composition.test.mjs']);
+const SUPPORT_CONTENT_SET=new Set([...SUPPORT_CONTENT_PATHS,...SUPPORT_CONTENT_MAINTENANCE]);
+for(const path of SUPPORT_CONTENT_SET)RECONCILIATION_PATHS.add(path);
+export function verifySupportContent(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_SUPPORT_CONTENT_DELIVERY_V1');assert.equal(c.base,SUPPORT_CONTENT_BASE);assert.equal(c.source,SUPPORT_CONTENT_SOURCE);
+ assert.deepEqual(c.paths,SUPPORT_CONTENT_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_CONTENT_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Move the substantive content audit forward now; implement authorised improvements and verify affected mobile/desktop journeys');
+ for(const flag of ['homepageChanged','campaignChanged','organicGrowthChanged','watchChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','clinicalGatesChanged','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated support-content payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated support-content maintenance');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.supportContentUpgrade;assert.deepEqual(current,prior,'Prior owner receipts must remain unchanged');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after support receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Support-content source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Support-content maintenance source drift: '+path);
+ return c;
+}
+
+// Finite factual source alternatives. No monitor, queue or prior review payload changes.
+export const WATCH_OFFICIAL_ALTERNATIVES_BASE='4e3aa6c3a7dc72b2f8d2a6a3e625e086b2137c8d';
+export const WATCH_OFFICIAL_ALTERNATIVES_SOURCE='c38ace311fb7b216c31418fd185a2c424f070ac7';
+export const WATCH_OFFICIAL_ALTERNATIVES_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/credibility.test.mjs','medicines-watch/reviews/2026-10-10-authorised-official-alternatives.json']);
+export const WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-official-alternatives-composition.test.mjs']);
+const WATCH_OFFICIAL_ALTERNATIVES_SET=new Set([...WATCH_OFFICIAL_ALTERNATIVES_PATHS,...WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE]);
+for(const path of WATCH_OFFICIAL_ALTERNATIVES_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchOfficialAlternatives(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_OFFICIAL_ALTERNATIVES_V1');assert.equal(c.base,WATCH_OFFICIAL_ALTERNATIVES_BASE);assert.equal(c.source,WATCH_OFFICIAL_ALTERNATIVES_SOURCE);
+ assert.deepEqual(c.paths,WATCH_OFFICIAL_ALTERNATIVES_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1299);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.sourceReviews,12);assert.equal(c.entriesUpdated,2);assert.equal(c.manualEvidenceAdded,4);assert.equal(c.configuredSources,199);assert.equal(c.preservedSourceReviews,35);
+ for(const flag of ['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated official-alternative factual payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated official-alternative maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after official-alternative receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
+// Finite factual addition for four previously untracked Ascletis oral
+// small-molecule programmes. Planned filings remain plans unless a later
+// directly reviewable official source establishes completion.
+export const WATCH_ASCLETIS_ORAL_BASE='8a1fc5ac713e371b35b5a454e1433b00338070f8';
+export const WATCH_ASCLETIS_ORAL_SOURCE='bd60af405e30fcd365a7557f920ad19720cf9163';
+export const WATCH_ASCLETIS_ORAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-10-authorised-ascletis-oral-portfolio.json']);
+export const WATCH_ASCLETIS_ORAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-ascletis-oral-portfolio-composition.test.mjs']);
+const WATCH_ASCLETIS_ORAL_SET=new Set([...WATCH_ASCLETIS_ORAL_PATHS,...WATCH_ASCLETIS_ORAL_MAINTENANCE]);
+for(const path of WATCH_ASCLETIS_ORAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchAscletisOralPortfolio(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_ASCLETIS_ORAL_PORTFOLIO_V1');assert.equal(c.base,WATCH_ASCLETIS_ORAL_BASE);assert.equal(c.source,WATCH_ASCLETIS_ORAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_ASCLETIS_ORAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ASCLETIS_ORAL_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1300);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.programmesReviewed,4);assert.equal(c.programmesAfter,116);assert.equal(c.manualEvidenceAfter,96);assert.equal(c.configuredSources,199);assert.equal(c.preservedSourceReviews,35);
+ assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);
+ for(const flag of ['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Ascletis oral-portfolio factual payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Ascletis oral-portfolio maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Ascletis oral-portfolio receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Ascletis oral-portfolio maintenance source drift: '+path);
+ return c;
+}
+
+export function verifyReconciledRelease(read=defaultReconciliationRead){
+ const c=reconciliationRecord();if(!c)return null;
+ assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
+ assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
+ assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);
+ assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ const watch=c.watchFactualUpdate;assert(watch,'Exact factual Watch amendment receipt required');
+ assert.equal(watch.base,WATCH_FACTUAL_UPDATE_BASE);assert.equal(watch.source,WATCH_FACTUAL_UPDATE_SOURCE);
+ assert.equal(watch.proofRun,WATCH_FACTUAL_UPDATE_RUN);assert.deepEqual(watch.paths,WATCH_FACTUAL_UPDATE_PATHS);
+ assert.deepEqual(watch.maintenancePaths,WATCH_FACTUAL_UPDATE_MAINTENANCE);assert.match(watch.maintenanceSource,/^[a-f0-9]{40}$/);
+ const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
+ assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
+ assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
+ const actualHead=git('rev-parse','HEAD');
+ // Only actual Git objects at resolved immutable commit IDs are cacheable.
+ // Supplied readers are always invoked again, even after a successful proof.
+ const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
+  const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
+  const key=JSON.stringify([process.cwd(),commit,path]);
+  if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
+  return immutableCompositionBlobs.get(key);
+ }:read;
+ const srsd384Renewal=c.watchSrsd384Renewal;
+ if(srsd384Renewal)verifyWatchSrsd384Renewal(srsd384Renewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSrsd384RenewalHead=srsd384Renewal?srsd384Renewal.base:actualHead;
+ const srsd384RenewalRawBlob=(ref,path)=>outerRawBlob(srsd384Renewal&&ref==='HEAD'&&WATCH_SRSD384_RENEWAL_SET.has(path)?srsd384Renewal.base:ref,path);
+ const vk2735ZenagamtideRegistry=c.watchVk2735ZenagamtideRegistry;
+ if(vk2735ZenagamtideRegistry)verifyWatchVk2735ZenagamtideRegistry(vk2735ZenagamtideRegistry,{head:preSrsd384RenewalHead,read:srsd384RenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preVk2735ZenagamtideHead=vk2735ZenagamtideRegistry?vk2735ZenagamtideRegistry.base:preSrsd384RenewalHead;
+ const vk2735ZenagamtideRawBlob=(ref,path)=>srsd384RenewalRawBlob(vk2735ZenagamtideRegistry&&ref==='HEAD'&&WATCH_VK2735_ZENAGAMTIDE_SET.has(path)?vk2735ZenagamtideRegistry.base:ref,path);
+ const zp6590ReleaseGuardRepair=c.watchZp6590ReleaseGuardRepair;
+ if(zp6590ReleaseGuardRepair)verifyWatchZp6590ReleaseGuardRepair(zp6590ReleaseGuardRepair,{head:preVk2735ZenagamtideHead,read:vk2735ZenagamtideRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preZp6590ReleaseGuardHead=zp6590ReleaseGuardRepair?zp6590ReleaseGuardRepair.base:preVk2735ZenagamtideHead;
+ const zp6590ReleaseGuardRawBlob=(ref,path)=>vk2735ZenagamtideRawBlob(zp6590ReleaseGuardRepair&&ref==='HEAD'&&WATCH_ZP6590_RELEASE_GUARD_SET.has(path)?zp6590ReleaseGuardRepair.base:ref,path);
+ const zp6590RegistryRenewal=c.watchZp6590RegistryReviewRenewal;
+ if(zp6590RegistryRenewal)verifyWatchZp6590RegistryRenewal(zp6590RegistryRenewal,{head:preZp6590ReleaseGuardHead,read:zp6590ReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preZp6590RegistryRenewalHead=zp6590RegistryRenewal?zp6590RegistryRenewal.base:preZp6590ReleaseGuardHead;
+ const zp6590RegistryRenewalRawBlob=(ref,path)=>zp6590ReleaseGuardRawBlob(zp6590RegistryRenewal&&ref==='HEAD'&&WATCH_ZP6590_REGISTRY_RENEWAL_SET.has(path)?zp6590RegistryRenewal.base:ref,path);
+ const overdueRenewal=c.watchOverduePrimaryReviewRenewal;
+ if(overdueRenewal)verifyWatchOverdueRenewal(overdueRenewal,{head:preZp6590RegistryRenewalHead,read:zp6590RegistryRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preOverdueRenewalHead=overdueRenewal?overdueRenewal.base:preZp6590RegistryRenewalHead;
+ const overdueRenewalRawBlob=(ref,path)=>zp6590RegistryRenewalRawBlob(overdueRenewal&&ref==='HEAD'&&WATCH_OVERDUE_RENEWAL_SET.has(path)?overdueRenewal.base:ref,path);
+ const hubTransport=c.obesityHubTransport;
+ if(hubTransport)verifyObesityHubTransport(hubTransport,{head:preOverdueRenewalHead,read:overdueRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubTransportHead=hubTransport?hubTransport.base:preOverdueRenewalHead;
+ const hubTransportRawBlob=(ref,path)=>overdueRenewalRawBlob(hubTransport&&ref==='HEAD'&&OBESITY_HUB_TRANSPORT_SET.has(path)?hubTransport.base:ref,path);
+ const hubRollback=c.obesityHubRollback;
+ if(hubRollback)verifyObesityHubRollback(hubRollback,{head:preHubTransportHead,read:hubTransportRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubRollbackHead=hubRollback?hubRollback.base:preHubTransportHead;
+ const hubRollbackRawBlob=(ref,path)=>hubTransportRawBlob(hubRollback&&ref==='HEAD'&&OBESITY_HUB_ROLLBACK_SET.has(path)?hubRollback.base:ref,path);
+ const hubRepair=c.obesityHubRepair;
+ if(hubRepair)verifyObesityHubRepair(hubRepair,{head:preHubRollbackHead,read:hubRollbackRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubRepairHead=hubRepair?hubRepair.base:preHubRollbackHead;
+ const hubRepairRawBlob=(ref,path)=>hubRollbackRawBlob(hubRepair&&ref==='HEAD'&&OBESITY_HUB_REPAIR_SET.has(path)?hubRepair.base:ref,path);
+ const practical=c.obesityPractical;
+ if(practical)verifyObesityPractical(practical,{head:preHubRepairHead,read:hubRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePracticalHead=practical?practical.base:preHubRepairHead;
+ const practicalRawBlob=(ref,path)=>hubRepairRawBlob(practical&&ref==='HEAD'&&OBESITY_PRACTICAL_SET.has(path)?practical.base:ref,path);
+ const hubV2=c.obesityHubV2;
+ if(hubV2)verifyObesityHubV2(hubV2,{head:prePracticalHead,read:practicalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubV2Head=hubV2?hubV2.base:prePracticalHead;
+ const hubV2RawBlob=(ref,path)=>practicalRawBlob(hubV2&&ref==='HEAD'&&OBESITY_HUB_V2_SET.has(path)?hubV2.base:ref,path);
+ const wegovyRenewal=c.watchWegovySourceRenewal;
+ const preWegovyRenewalHead=wegovyRenewal?wegovyRenewal.base:preHubV2Head;
+ const wegovyRenewalRawBlob=(ref,path)=>hubV2RawBlob(wegovyRenewal&&ref==='HEAD'&&WATCH_WEGOVY_RENEWAL_SET.has(path)?wegovyRenewal.base:ref,path);
+ const reporting=c.organicMeasurementIntegration;
+ if(reporting)verifyOrganicMeasurement(reporting,{head:preWegovyRenewalHead,read:wegovyRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preReportingHead=reporting?reporting.base:preWegovyRenewalHead;
+ const reportingRawBlob=(ref,path)=>wegovyRenewalRawBlob(reporting&&ref==='HEAD'&&ORGANIC_MEASUREMENT_SET.has(path)?reporting.base:ref,path);
+ const ascletisOral=c.watchAscletisOralPortfolio;
+ if(ascletisOral)verifyWatchAscletisOralPortfolio(ascletisOral,{head:preReportingHead,read:reportingRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAscletisOralHead=ascletisOral?ascletisOral.base:preReportingHead;
+ const ascletisOralRawBlob=(ref,path)=>reportingRawBlob(ascletisOral&&ref==='HEAD'&&WATCH_ASCLETIS_ORAL_SET.has(path)?ascletisOral.base:ref,path);
+ const officialAlternatives=c.watchOfficialAlternatives;
+ if(officialAlternatives)verifyWatchOfficialAlternatives(officialAlternatives,{head:preAscletisOralHead,read:ascletisOralRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preOfficialAlternativesHead=officialAlternatives?officialAlternatives.base:preAscletisOralHead;
+ const officialAlternativesRawBlob=(ref,path)=>ascletisOralRawBlob(officialAlternatives&&ref==='HEAD'&&WATCH_OFFICIAL_ALTERNATIVES_SET.has(path)?officialAlternatives.base:ref,path);
+ const supportContent=c.supportContentUpgrade;
+ if(supportContent)verifySupportContent(supportContent,{head:preOfficialAlternativesHead,read:officialAlternativesRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportContentHead=supportContent?supportContent.base:preOfficialAlternativesHead;
+ const supportContentRawBlob=(ref,path)=>officialAlternativesRawBlob(supportContent&&ref==='HEAD'&&SUPPORT_CONTENT_SET.has(path)?supportContent.base:ref,path);
+ const continuityContent=c.continuityContentUpgrade;
+ if(continuityContent)verifyContinuityContent(continuityContent,{head:preSupportContentHead,read:supportContentRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preContinuityContentHead=continuityContent?continuityContent.base:preSupportContentHead;
+ const continuityContentRawBlob=(ref,path)=>supportContentRawBlob(continuityContent&&ref==='HEAD'&&CONTINUITY_CONTENT_SET.has(path)?continuityContent.base:ref,path);
+ const pendingDelayedQueueRepair=c.watchPendingDelayedQueueRepair;
+ if(pendingDelayedQueueRepair)verifyWatchPendingDelayedQueueRepair(pendingDelayedQueueRepair,{head:preContinuityContentHead,read:continuityContentRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePendingDelayedQueueHead=pendingDelayedQueueRepair?pendingDelayedQueueRepair.base:preContinuityContentHead;
+ const pendingDelayedQueueRawBlob=(ref,path)=>continuityContentRawBlob(pendingDelayedQueueRepair&&ref==='HEAD'&&WATCH_PENDING_DELAYED_QUEUE_SET.has(path)?pendingDelayedQueueRepair.base:ref,path);
+ const preclinicalReleaseTestRepair=c.watchPreclinicalReleaseTestRepair;
+ if(preclinicalReleaseTestRepair)verifyWatchPreclinicalReleaseTestRepair(preclinicalReleaseTestRepair,{head:prePendingDelayedQueueHead,read:pendingDelayedQueueRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preReleaseTestRepairHead=preclinicalReleaseTestRepair?preclinicalReleaseTestRepair.base:prePendingDelayedQueueHead;
+ const releaseTestRepairRawBlob=(ref,path)=>pendingDelayedQueueRawBlob(preclinicalReleaseTestRepair&&ref==='HEAD'&&WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET.has(path)?preclinicalReleaseTestRepair.base:ref,path);
+ const preclinical=c.watchPreclinicalDiscoveryUpdate;
+ if(preclinical)verifyWatchPreclinicalDiscoveryUpdate(preclinical,{head:preReleaseTestRepairHead,read:releaseTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePreclinicalHead=preclinical?preclinical.base:preReleaseTestRepairHead;
+ const preclinicalRawBlob=(ref,path)=>releaseTestRepairRawBlob(preclinical&&ref==='HEAD'&&WATCH_PRECLINICAL_DISCOVERY_SET.has(path)?preclinical.base:ref,path);
+ const maleArrival=c.maleObesityArrivalRepair;
+ if(maleArrival)verifyMaleObesityArrival(maleArrival,{head:prePreclinicalHead,read:preclinicalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preArrivalHead=maleArrival?maleArrival.base:prePreclinicalHead;
+ const arrivalRawBlob=(ref,path)=>preclinicalRawBlob(maleArrival&&ref==='HEAD'&&MALE_OBESITY_ARRIVAL_SET.has(path)?maleArrival.base:ref,path);
+ const maleAcceptance=c.maleObesityAcceptanceRepair;
+ if(maleAcceptance)verifyMaleObesityAcceptance(maleAcceptance,{head:preArrivalHead,read:arrivalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAcceptanceHead=maleAcceptance?maleAcceptance.base:preArrivalHead;
+ const acceptanceRawBlob=(ref,path)=>arrivalRawBlob(maleAcceptance&&ref==='HEAD'&&MALE_OBESITY_ACCEPTANCE_SET.has(path)?maleAcceptance.base:ref,path);
  const maleCloseout=c.maleObesityReleaseCloseout;
  if(maleCloseout)verifyMaleObesityCloseout(maleCloseout,{head:preAcceptanceHead,read:acceptanceRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preCloseoutHead=maleCloseout?maleCloseout.base:preAcceptanceHead;
