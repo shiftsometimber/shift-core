@@ -1920,6 +1920,40 @@
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
   },
+  "watchSrsd384ReleaseGuardRepair": {
+    "proof": "EXACT_WATCH_SRSD384_RELEASE_GUARD_REPAIR_V1",
+    "base": "9eede1e5382dee2d957791312977e8ea69657163",
+    "source": "271c935f9d663392de6f114d3867c0a1ffbe7e8e",
+    "maintenanceSource": "9332552743f11798775589a0447e08070994f14d",
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-srsd384-release-guard-repair-composition.test.mjs"
+    ],
+    "approvedPR": 1314,
+    "integrationIssue": 1065,
+    "failedRun": 38105692270,
+    "failedJob": 114370685366,
+    "failedStep": 13,
+    "releaseReachedProduction": false,
+    "failureGate": "Verify B1 release scope before any production mutation",
+    "failureCause": "release meta-test did not recognise SRSD384 review-renewal source drift wording",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "queueLogicChanged": false,
+    "monitorBaselinesChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
   "watchSrsd384Renewal": {
     "proof": "EXACT_WATCH_SRSD384_RENEWAL_V1",
     "base": "8771788490ffda619dc224872b18d2280d6429b1",
