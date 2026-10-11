@@ -1730,6 +1730,47 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// Finite PR1326 discovery publication. Evidence stays manual until complete registry review.
+export const WATCH_ALNYLAM_RNAI_BASE='15ed39a78d29d97f26feb020328e03d4d02ff070';
+export const WATCH_ALNYLAM_RNAI_SOURCE='b42a72e40415e4ebb9ae362cc34bc9ffc836e686';
+export const WATCH_ALNYLAM_RNAI_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/alnylam-rnai-discovery.test.mjs',
+ 'medicines-watch/azelaprag-renewal.test.mjs',
+ 'medicines-watch/backlog-review.test.mjs',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/evidence-desk.test.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/industry.test.mjs',
+ 'medicines-watch/reviews/2026-10-11-authorised-alnylam-rnai-discovery.json'
+]);
+export const WATCH_ALNYLAM_RNAI_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-alnylam-rnai-discovery-composition.test.mjs'
+]);
+const WATCH_ALNYLAM_RNAI_SET=new Set([...WATCH_ALNYLAM_RNAI_PATHS,...WATCH_ALNYLAM_RNAI_MAINTENANCE]);
+for(const path of WATCH_ALNYLAM_RNAI_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchAlnylamRnaiDiscovery(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_ALNYLAM_RNAI_DISCOVERY_20261011');
+ assert.equal(c.base,WATCH_ALNYLAM_RNAI_BASE);assert.equal(c.source,WATCH_ALNYLAM_RNAI_SOURCE);
+ assert.deepEqual(c.paths,WATCH_ALNYLAM_RNAI_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ALNYLAM_RNAI_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1326);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.reviewedAt,'2026-10-11T16:47:11Z');
+ assert.deepEqual(c.programmeIds,['aln2232','aln6222']);assert.equal(c.programmesBefore,116);assert.equal(c.programmesAfter,118);
+ assert.equal(c.configuredSources,202);assert.equal(c.manualEvidenceBefore,96);assert.equal(c.manualEvidenceAfter,101);
+ assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmeSummaryFactualReviewNeeded,66);
+ assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,2);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['monitorBaselinesChanged','monitorLogicChanged','queueLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Alnylam RNAi discovery payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Alnylam RNAi discovery maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Alnylam RNAi discovery receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchAlnylamRnaiDiscovery;assert.deepEqual(current,prior,'Prior release receipts changed by Alnylam RNAi discovery registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Alnylam RNAi discovery source drift / Backlog maintenance source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Alnylam RNAi discovery maintenance source drift / Watch azelaprag renewal maintenance source drift / Backlog maintenance source drift: '+path);
+ return c;
+}
+
 // Finite PR1325 factual renewal, rebased only after PR1323 terminal acceptance.
 // The five reviewed payload blobs retain their original factual review dates.
 export const WATCH_AZELAPRAG_RENEWAL_BASE='5102e0c9f52e5d8722a2b1e7f1e73148f73edd45';
@@ -1791,10 +1832,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchAlnylamRnaiDiscovery=c.watchAlnylamRnaiDiscovery;
+ if(watchAlnylamRnaiDiscovery)verifyWatchAlnylamRnaiDiscovery(watchAlnylamRnaiDiscovery,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAlnylamHead=watchAlnylamRnaiDiscovery?watchAlnylamRnaiDiscovery.base:actualHead;
+ const alnylamRawBlob=(ref,path)=>outerRawBlob(watchAlnylamRnaiDiscovery&&ref==='HEAD'&&WATCH_ALNYLAM_RNAI_SET.has(path)?watchAlnylamRnaiDiscovery.base:ref,path);
  const watchAzelapragRenewal=c.watchAzelapragRenewal;
- if(watchAzelapragRenewal)verifyWatchAzelapragRenewal(watchAzelapragRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preAzelapragHead=watchAzelapragRenewal?watchAzelapragRenewal.base:actualHead;
- const azelapragRawBlob=(ref,path)=>outerRawBlob(watchAzelapragRenewal&&ref==='HEAD'&&WATCH_AZELAPRAG_RENEWAL_SET.has(path)?watchAzelapragRenewal.base:ref,path);
+ if(watchAzelapragRenewal)verifyWatchAzelapragRenewal(watchAzelapragRenewal,{head:preAlnylamHead,read:alnylamRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAzelapragHead=watchAzelapragRenewal?watchAzelapragRenewal.base:preAlnylamHead;
+ const azelapragRawBlob=(ref,path)=>alnylamRawBlob(watchAzelapragRenewal&&ref==='HEAD'&&WATCH_AZELAPRAG_RENEWAL_SET.has(path)?watchAzelapragRenewal.base:ref,path);
  const waistRollbackRetention=c.waistRollbackRetention;
  if(waistRollbackRetention)verifyWaistRollbackRetention(waistRollbackRetention,{head:preAzelapragHead,read:azelapragRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preWaistRollbackHead=waistRollbackRetention?waistRollbackRetention.base:preAzelapragHead;
