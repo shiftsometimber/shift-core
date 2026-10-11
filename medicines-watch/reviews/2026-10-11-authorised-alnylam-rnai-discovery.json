@@ -1,0 +1,143 @@
+{
+  "reviewedAt": "2026-10-11T16:47:11Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Standing Medicines Watch instruction: supported factual additions and corrections may go live without repeat permission.",
+    "scope": "Publish two primary-source-reviewed Alnylam obesity research summaries through the guarded workflow; this is editorial authorisation, not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "discovery": {
+    "method": "Separate current-date and undated topic searches for obesity combinations, non-incretin mechanisms, smaller developers and sponsor pipelines, followed by exact-name repository checks and review of Alnylam's official pipeline, trial pages and dated investor releases.",
+    "limitations": "ClinicalTrials.gov's interactive record and API were not directly retrievable in this review environment. Exact NCT identifiers, enrolment state, participant counts and study dates were therefore taken from Alnylam's own current trial pages, with sponsor stage and target corroborated by its dated releases and July 2026 pipeline. No registry fingerprint or automatic monitor baseline is approved by this receipt."
+  },
+  "entries": [
+    {
+      "id": "aln2232",
+      "name": "ALN-2232",
+      "developer": "Alnylam Pharmaceuticals",
+      "group": "research",
+      "stage": "Recruiting Phase 1/2 monotherapy and tirzepatide co-initiation study",
+      "summary": "An investigational RNA-interference therapeutic targeting ACVR1C in adipose tissue. Alnylam's current trial page describes an enrolling 156-participant study of single and multiple ALN-2232 doses, including a separate part co-initiated with tirzepatide; the sponsor reported Phase 1 initiation on 30 April 2026.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for ALN-2232 or its use with tirzepatide.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Research participation does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "Recruitment and planned study endpoints are not results. Co-initiation is an investigational trial design, not an approved combination, dosing or switching regimen. The sponsor's expectation of Phase 1 data in the second half of 2026 is a plan, not a completed event.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-11T16:47:11Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Alnylam ALN-2232-001 trial page",
+          "url": "https://clinicaltrials.alnylam.com/trials/7463846",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-11T16:47:11Z",
+          "checkScope": "Official sponsor trial page read for enrolling status, NCT07463846, 156 participants, interventions and 2 March 2026 to 2 March 2028 study dates; publication and update dates were not verified; not automatically content-monitored."
+        },
+        {
+          "title": "Alnylam Q1 2026 results",
+          "url": "https://investors.alnylam.com/press-release?id=f5afb36f-7396-4cca-921b-cfc50cdf9341",
+          "sourcePublishedAt": "2026-04-30",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-11T16:47:11Z",
+          "checkScope": "Original sponsor release read for Phase 1 initiation, ACVR1C target, adipose-directed RNAi description and planned later data; not automatically content-monitored."
+        },
+        {
+          "title": "Alnylam clinical development pipeline",
+          "url": "https://www.alnylam.com/alnylam-rnai-pipeline",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-07-01",
+          "reviewedAt": "2026-10-11T16:47:11Z",
+          "checkScope": "Official pipeline read for current Phase 1 placement, ACVR1C target and obesity/weight-management indication; the page says updated July 2026 but does not state a day; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "aln6222",
+      "name": "ALN-6222",
+      "developer": "Alnylam Pharmaceuticals",
+      "group": "research",
+      "stage": "Recruiting first-in-human Phase 1",
+      "summary": "A separate investigational RNA-interference therapeutic targeting inhibin E (INHBE). Alnylam's current trial page describes an enrolling, placebo-controlled, single-ascending-dose Phase 1 study of subcutaneous ALN-6222 in 88 adults with obesity; the sponsor reported trial initiation on 30 July 2026.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for ALN-6222.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Research participation does not establish lawful UK retail supply or pharmacy stock.",
+      "limitations": "First-in-human recruitment is not evidence of efficacy, safety, muscle preservation, strength or function. The study dates and participant count describe the sponsor's current trial record; no results were reviewed.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-11T16:47:11Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Alnylam ALN-6222-001 trial page",
+          "url": "https://clinicaltrials.alnylam.com/trials/7624071",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-11T16:47:11Z",
+          "checkScope": "Official sponsor trial page read for enrolling status, NCT07624071, 88 participants, single-dose design and 4 June 2026 to 14 December 2027 study dates; publication and update dates were not verified; not automatically content-monitored."
+        },
+        {
+          "title": "Alnylam Q2 2026 results",
+          "url": "https://investors.alnylam.com/press-release?id=ddc78e15-7847-4066-8fdb-3562023a60f4",
+          "sourcePublishedAt": "2026-07-30",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-11T16:47:11Z",
+          "checkScope": "Original sponsor release read for Phase 1 initiation, INHBE target and adult-obesity scope; not automatically content-monitored."
+        },
+        {
+          "title": "Alnylam clinical development pipeline",
+          "url": "https://www.alnylam.com/alnylam-rnai-pipeline",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-07-01",
+          "reviewedAt": "2026-10-11T16:47:11Z",
+          "checkScope": "Official pipeline read for current Phase 1 placement, INHBE target and obesity/weight-management indication; the page says updated July 2026 but does not state a day; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "detailedBefore": 6,
+    "detailedAfter": 6,
+    "widerBefore": 110,
+    "widerAfter": 112,
+    "totalBefore": 116,
+    "totalAfter": 118,
+    "configuredSourcesBefore": 202,
+    "configuredSourcesAfter": 202,
+    "manualEvidenceBefore": 96,
+    "manualEvidenceAfter": 101,
+    "programmeSummaryFactualReviewNeededBefore": 66,
+    "programmeSummaryFactualReviewNeededAfter": 66
+  },
+  "preserved": {
+    "completedFactualReviews": 35,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "configuredSourceMonitorLogicChanged": false,
+    "monitorBaselinesChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "clinicalApprovalChanged": false,
+    "externalCommunicationsSent": false,
+    "customerDataChanged": false,
+    "memberTreatmentChanged": false,
+    "checkoutChanged": false
+  },
+  "remainingObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "state": ["verification_pending", "check_delayed"],
+      "obstacle": "The sponsor pipeline remains denied to the configured monitor; accessible registry, CTIS and sponsor-report evidence corroborate stage but do not certify the blocked page's latest internally inconsistent wording.",
+      "nextAction": "Use a stable directly reviewable Zealand artefact or deliberately reviewed replacement source; do not repeatedly retry the denied endpoint or collapse pending review into retrieval delay."
+    },
+    {
+      "id": "alnylam-registry-api",
+      "state": ["manual_follow_up"],
+      "obstacle": "The ClinicalTrials.gov API records for NCT07463846 and NCT07624071 were not directly retrievable in this review environment.",
+      "nextAction": "At the next material registry review, retrieve and read the complete official records before considering configured lifecycle monitoring; do not infer a baseline from sponsor pages or third-party mirrors."
+    }
+  ]
+}
