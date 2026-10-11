@@ -942,6 +942,32 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Finite repair for the SRSD384 release meta-test. The failed run stopped
+// before production mutation; this changes no evidence, review or public data.
+export const WATCH_SRSD384_RELEASE_GUARD_BASE='9eede1e5382dee2d957791312977e8ea69657163';
+export const WATCH_SRSD384_RELEASE_GUARD_SOURCE='271c935f9d663392de6f114d3867c0a1ffbe7e8e';
+export const WATCH_SRSD384_RELEASE_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const WATCH_SRSD384_RELEASE_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-srsd384-release-guard-repair-composition.test.mjs']);
+const WATCH_SRSD384_RELEASE_GUARD_SET=new Set([...WATCH_SRSD384_RELEASE_GUARD_PATHS,...WATCH_SRSD384_RELEASE_GUARD_MAINTENANCE]);
+for(const path of WATCH_SRSD384_RELEASE_GUARD_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchSrsd384ReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_SRSD384_RELEASE_GUARD_REPAIR_V1');
+ assert.equal(c.base,WATCH_SRSD384_RELEASE_GUARD_BASE);assert.equal(c.source,WATCH_SRSD384_RELEASE_GUARD_SOURCE);
+ assert.deepEqual(c.paths,WATCH_SRSD384_RELEASE_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_SRSD384_RELEASE_GUARD_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1314);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38105692270);assert.equal(c.failedJob,114370685366);assert.equal(c.failedStep,13);
+ assert.equal(c.releaseReachedProduction,false);assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.failureCause,'release meta-test did not recognise SRSD384 review-renewal source drift wording');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','queueLogicChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated SRSD384 release-guard repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated SRSD384 release-guard repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after SRSD384 release-guard repair receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchSrsd384ReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by SRSD384 release-guard repair registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'SRSD384 release-guard repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'SRSD384 release-guard repair maintenance drift: '+path);
+ return c;
+}
+
 // Renew the overdue SRSD384 registry review and connect already completed
 // Kailera review evidence without changing any medicine wording or monitor baseline.
 export const WATCH_SRSD384_RENEWAL_BASE='8771788490ffda619dc224872b18d2280d6429b1';
@@ -1372,10 +1398,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const srsd384ReleaseGuardRepair=c.watchSrsd384ReleaseGuardRepair;
+ if(srsd384ReleaseGuardRepair)verifyWatchSrsd384ReleaseGuardRepair(srsd384ReleaseGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSrsd384ReleaseGuardHead=srsd384ReleaseGuardRepair?srsd384ReleaseGuardRepair.base:actualHead;
+ const srsd384ReleaseGuardRawBlob=(ref,path)=>outerRawBlob(srsd384ReleaseGuardRepair&&ref==='HEAD'&&WATCH_SRSD384_RELEASE_GUARD_SET.has(path)?srsd384ReleaseGuardRepair.base:ref,path);
  const srsd384Renewal=c.watchSrsd384Renewal;
- if(srsd384Renewal)verifyWatchSrsd384Renewal(srsd384Renewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSrsd384RenewalHead=srsd384Renewal?srsd384Renewal.base:actualHead;
- const srsd384RenewalRawBlob=(ref,path)=>outerRawBlob(srsd384Renewal&&ref==='HEAD'&&WATCH_SRSD384_RENEWAL_SET.has(path)?srsd384Renewal.base:ref,path);
+ if(srsd384Renewal)verifyWatchSrsd384Renewal(srsd384Renewal,{head:preSrsd384ReleaseGuardHead,read:srsd384ReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSrsd384RenewalHead=srsd384Renewal?srsd384Renewal.base:preSrsd384ReleaseGuardHead;
+ const srsd384RenewalRawBlob=(ref,path)=>srsd384ReleaseGuardRawBlob(srsd384Renewal&&ref==='HEAD'&&WATCH_SRSD384_RENEWAL_SET.has(path)?srsd384Renewal.base:ref,path);
  const vk2735ZenagamtideRegistry=c.watchVk2735ZenagamtideRegistry;
  if(vk2735ZenagamtideRegistry)verifyWatchVk2735ZenagamtideRegistry(vk2735ZenagamtideRegistry,{head:preSrsd384RenewalHead,read:srsd384RenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preVk2735ZenagamtideHead=vk2735ZenagamtideRegistry?vk2735ZenagamtideRegistry.base:preSrsd384RenewalHead;
