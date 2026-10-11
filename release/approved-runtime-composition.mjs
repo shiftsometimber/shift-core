@@ -1532,8 +1532,8 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const rgtVctSourceRenewalRawBlob=(ref,path)=>outerRawBlob(rgtVctSourceRenewal&&ref==='HEAD'&&WATCH_RGT_VCT_RENEWAL_SET.has(path)?rgtVctSourceRenewal.base:ref,path);
  const programmeSummaryReleaseGuardRepair=c.watchProgrammeSummaryReleaseGuardRepair;
  if(programmeSummaryReleaseGuardRepair)verifyWatchProgrammeSummaryReleaseGuardRepair(programmeSummaryReleaseGuardRepair,{head:preRgtVctSourceRenewalHead,read:rgtVctSourceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preProgrammeSummaryReleaseGuardHead=programmeSummaryReleaseGuardRepair?programmeSummaryReleaseGuardRepair.base:actualHead;
- const programmeSummaryReleaseGuardRawBlob=(ref,path)=>outerRawBlob(programmeSummaryReleaseGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SET.has(path)?programmeSummaryReleaseGuardRepair.base:ref,path);
+ const preProgrammeSummaryReleaseGuardHead=programmeSummaryReleaseGuardRepair?programmeSummaryReleaseGuardRepair.base:preRgtVctSourceRenewalHead;
+ const programmeSummaryReleaseGuardRawBlob=(ref,path)=>rgtVctSourceRenewalRawBlob(programmeSummaryReleaseGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SET.has(path)?programmeSummaryReleaseGuardRepair.base:ref,path);
  const programmeSummaryQueueMatcherRepair=c.watchProgrammeSummaryQueueMatcherRepair;
  if(programmeSummaryQueueMatcherRepair)verifyWatchProgrammeSummaryQueueMatcherRepair(programmeSummaryQueueMatcherRepair,{head:preProgrammeSummaryReleaseGuardHead,read:programmeSummaryReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preProgrammeSummaryQueueMatcherHead=programmeSummaryQueueMatcherRepair?programmeSummaryQueueMatcherRepair.base:preProgrammeSummaryReleaseGuardHead;
