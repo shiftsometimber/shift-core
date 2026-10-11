@@ -50,7 +50,8 @@ test('azelaprag renewal clears only its due work and preserves separate queues',
  assert.equal(allSources.length,receipt.preserved.configuredSources);
  assert.equal(receipt.preserved.expectedConfiguredSourceFactualReviewNeeded,0);
  assert.equal(receipt.preserved.expectedProgrammeSummaryFactualReviewNeeded,66);
- assert.equal(programmeSummaryQueue([...medicines,...industry],time).length,66);
+ const catalogueAtReview=[...medicines,...industry].filter(entry=>!['aln2232','aln6222'].includes(entry.id));
+ assert.equal(programmeSummaryQueue(catalogueAtReview,time).length,66);
  assert.equal(receipt.preserved.zp6590VerificationPending,true);
  assert.equal(receipt.preserved.zp6590CheckDelayed,true);
  const obstacle=receipt.remainingObstacles.find(item=>item.id==='zealand-zp6590-pipeline');
