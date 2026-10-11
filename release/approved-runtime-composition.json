@@ -2253,5 +2253,40 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchRgtVctDriftCategoryRepair": {
+    "proof": "EXACT_WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_V1",
+    "base": "6b281196dcd77401be62deecd822cd2da06bd32c",
+    "source": "6696042f3a1dc8ccf29769ebe02cccab23c423ed",
+    "maintenanceSource": "f9b106a1e99f4da74b823ad8852a0b021d44cbe5",
+    "paths": [
+      "release/approved-runtime-composition.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-rgt-vct-drift-category-repair-composition.test.mjs"
+    ],
+    "approvedPR": 1318,
+    "integrationIssue": 1065,
+    "failedRun": 38117296398,
+    "failureGate": "Programme day preview",
+    "repair": "retain shared fail-closed drift category",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
