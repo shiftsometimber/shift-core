@@ -1,0 +1,99 @@
+{
+  "reviewedAt": "2026-10-11T07:31:22Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational source reviews to go live without repeat permission.",
+    "scope": "Renew only two configured-source factual review dates after directly reviewing the current official Viking sponsor announcement and the current Asda Online Doctor provider page. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sources": [
+    {
+      "id": "vk2735-maintenance-viking",
+      "title": "Viking: VK2735 maintenance-study topline results",
+      "url": "https://ir.vikingtherapeutics.com/2026-09-22-Viking-Therapeutics-Announces-Positive-Topline-Results-from-Maintenance-Study-of-GLP-1-GIP-Agonist-VK2735-Demonstrating-the-Promise-of-Multiple-Maintenance-Dosing-Regimens",
+      "sourcePublishedAt": "2026-09-22",
+      "reviewedAt": "2026-10-11T07:31:22Z",
+      "previousReviewedAt": "2026-10-04T07:06:53Z",
+      "reviewedFingerprint": "76baac7175aaf87f6d6389759356bb3a6f58e228565b895626ca84bac4dc80cc",
+      "previousReviewedFingerprint": "76baac7175aaf87f6d6389759356bb3a6f58e228565b895626ca84bac4dc80cc",
+      "monitorLastAttemptAt": "2026-10-11T06:31:35.633Z",
+      "monitorHttpStatus": 200,
+      "monitorStatus": "current",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "reviewedSections": [
+        "topline result status",
+        "21-week induction and 12-week maintenance design",
+        "monthly and every-other-week regimens",
+        "population and limitations",
+        "planned oral-maintenance part"
+      ],
+      "assessment": "The complete current Viking sponsor announcement remains consistent with the bounded Watch summary: approximately 180 otherwise healthy adults with obesity entered a 21-week weekly subcutaneous induction and a 12-week randomized maintenance period. Monthly and every-other-week figures remain sponsor-reported topline observations, not peer-reviewed results, an approved dosing schedule, UK authorisation, NICE/NHS access, supply or clinical approval. The planned oral-maintenance part is still not treated as completed.",
+      "uncertainty": "Sponsor-reported topline results have not been independently peer reviewed here; future development, regulatory review and longer-term durability remain uncertain."
+    },
+    {
+      "id": "wegovy-tablet-private",
+      "title": "UK provider: oral Wegovy private availability",
+      "url": "https://onlinedoctor.asda.com/uk/wegovy-pill.html",
+      "sourcePublishedAt": null,
+      "sourcePageLastReviewed": "2026-08-05",
+      "reviewedAt": "2026-10-11T07:31:22Z",
+      "previousReviewedAt": "2026-10-04T07:06:53Z",
+      "reviewedFingerprint": "42ac4017bdc14d4e089d32eb3e2c5014af1fab98d55dc434fc5475a0984c080e",
+      "previousReviewedFingerprint": "42ac4017bdc14d4e089d32eb3e2c5014af1fab98d55dc434fc5475a0984c080e",
+      "monitorLastAttemptAt": "2026-10-11T06:31:35.633Z",
+      "monitorHttpStatus": 200,
+      "monitorStatus": "current",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "reviewedSections": [
+        "Where can I buy the Wegovy pill?",
+        "Can I get the Wegovy pill on the NHS?",
+        "Are Wegovy pills available in the UK right now?",
+        "provider stock and price panel",
+        "page medical-review date"
+      ],
+      "assessment": "The current provider page still offers a private prescription route after an online consultation and doctor review, states that oral Wegovy is not currently available on the NHS, labels its own service in stock from £87.97 and displays a 5 August 2026 medical-review date. The Watch continues to use this only as a provider statement about its own private service; it is not proof of SHIFT stock, general UK supply, NHS access or clinical approval. Provider speculation about future NHS approval and comparative efficacy remains excluded.",
+      "uncertainty": "Provider availability and price are time-sensitive and can change without notice; individual eligibility and stock are not guaranteed."
+    }
+  ],
+  "changes": {
+    "sourceReviewDatesRenewed": 2,
+    "programmeWordingChanged": false,
+    "programmeReviewDatesChanged": false,
+    "configuredSourceCountChanged": false,
+    "programmeCountChanged": false,
+    "monitorBaselinesChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseShapeChanged": false,
+    "medicalClaimsChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyClaimChanged": false
+  },
+  "preserved": {
+    "completedFactualReviews": 35,
+    "programmes": 116,
+    "configuredSources": 202,
+    "programmeSummaryFactualReviewNeeded": 66,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "externalCommunicationsSent": false,
+    "customerDataChanged": false,
+    "memberTreatmentChanged": false,
+    "checkoutChanged": false
+  },
+  "remainingObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "state": [
+        "verification_pending",
+        "check_delayed"
+      ],
+      "obstacle": "Configured sponsor monitor still receives HTTP 403 and has no approved baseline; the readable sponsor page remains internally inconsistent with its Phase 1 badge and preclinical/first-in-human narrative.",
+      "nextAction": "Retain registry/CTIS corroboration while deliberately reviewing a stable directly reviewable Zealand artefact or a bounded replacement source; do not retry the denied endpoint repeatedly."
+    }
+  ]
+}
