@@ -1480,6 +1480,30 @@ export function verifyWatchAscletisOralPortfolio(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Renew six unchanged RGT-075 and CX11/VCT220 registry records after
+// complete primary-source rereview; do not renew the separate programme queue.
+export const WATCH_RGT_VCT_RENEWAL_BASE='68d4c1cd8ef36ca47fe079a5706b6ee84fb8a502';
+export const WATCH_RGT_VCT_RENEWAL_SOURCE='49f69628a0862eb140be814065e4ba06f1798d02';
+export const WATCH_RGT_VCT_RENEWAL_PATHS=Object.freeze(['medicines-watch/credibility.mjs','medicines-watch/reviews/2026-10-11-authorised-rgt-vct-source-renewal.json','medicines-watch/rgt-vct-source-renewal.test.mjs']);
+export const WATCH_RGT_VCT_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-source-renewal-composition.test.mjs']);
+const WATCH_RGT_VCT_RENEWAL_SET=new Set([...WATCH_RGT_VCT_RENEWAL_PATHS,...WATCH_RGT_VCT_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_RGT_VCT_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRgtVctSourceRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_SOURCE_RENEWAL_V1');assert.equal(c.base,WATCH_RGT_VCT_RENEWAL_BASE);assert.equal(c.source,WATCH_RGT_VCT_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_RGT_VCT_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.equal(c.sourceReviewsApplied,6);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.preservedSourceReviews,35);assert.equal(c.configuredSourceFactualReviewNeeded,0);assert.equal(c.programmeSummaryFactualReviewNeeded,66);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','programmeSummaryQueueChanged','configuredSourceCountChanged','registryLifecycleChanged','resultsClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT source-renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT source-renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT source-renewal receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctSourceRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT source-renewal registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'RGT/VCT source-renewal source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'RGT/VCT source-renewal maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -1502,8 +1526,12 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const rgtVctSourceRenewal=c.watchRgtVctSourceRenewal;
+ if(rgtVctSourceRenewal)verifyWatchRgtVctSourceRenewal(rgtVctSourceRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRgtVctSourceRenewalHead=rgtVctSourceRenewal?rgtVctSourceRenewal.base:actualHead;
+ const rgtVctSourceRenewalRawBlob=(ref,path)=>outerRawBlob(rgtVctSourceRenewal&&ref==='HEAD'&&WATCH_RGT_VCT_RENEWAL_SET.has(path)?rgtVctSourceRenewal.base:ref,path);
  const programmeSummaryReleaseGuardRepair=c.watchProgrammeSummaryReleaseGuardRepair;
- if(programmeSummaryReleaseGuardRepair)verifyWatchProgrammeSummaryReleaseGuardRepair(programmeSummaryReleaseGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ if(programmeSummaryReleaseGuardRepair)verifyWatchProgrammeSummaryReleaseGuardRepair(programmeSummaryReleaseGuardRepair,{head:preRgtVctSourceRenewalHead,read:rgtVctSourceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preProgrammeSummaryReleaseGuardHead=programmeSummaryReleaseGuardRepair?programmeSummaryReleaseGuardRepair.base:actualHead;
  const programmeSummaryReleaseGuardRawBlob=(ref,path)=>outerRawBlob(programmeSummaryReleaseGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SET.has(path)?programmeSummaryReleaseGuardRepair.base:ref,path);
  const programmeSummaryQueueMatcherRepair=c.watchProgrammeSummaryQueueMatcherRepair;
