@@ -736,7 +736,7 @@ export function verifyWatchBacklogUpdate(c,{head,read,diff,ancestor}){
 // Finite repair for the preclinical Watch release meta-test. The failed run
 // stopped before production mutation; this changes no factual or clinical data.
 export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_BASE='0baf1873fa1a6275258e984939d97c05aaeae61c';
-export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SOURCE='687efaeafd0fa280f99941252430fc6722e57af7';
+export const WATCH_PRECLINICAL_RELEASE_TEST_b0a740046d5f97ff7aca23834b5d7d1897e0243a='687efaeafd0fa280f99941252430fc6722e57af7';
 export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
 export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs']);
 const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET=new Set([...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS,...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE]);
@@ -1691,6 +1691,26 @@ export function verifyWaistReadingStrip(c,{head,read,diff,ancestor,content=(ref,
  return c;
 }
 
+// Finite verification-only correction after guarded rollback38127628997.
+export const WAIST_SETTLE_BASE='0131449471a6a2ca936ad672b55351e5cfa4ee31';
+export const WAIST_SETTLE_SOURCE='REPAIR_SOURCE';
+export const WAIST_SETTLE_PATHS=Object.freeze(['scripts/verify-tool-calculators-browser.cjs']);
+export const WAIST_SETTLE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/waist-keyboard-settle-composition.test.mjs']);
+const WAIST_SETTLE_SET=new Set([...WAIST_SETTLE_PATHS,...WAIST_SETTLE_MAINTENANCE]);
+for(const path of WAIST_SETTLE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWaistKeyboardSettle(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WAIST_KEYBOARD_VISIBLE_UNIT_SETTLE_20261011');assert.equal(c.base,WAIST_SETTLE_BASE);assert.equal(c.source,WAIST_SETTLE_SOURCE);
+ assert.deepEqual(c.paths,WAIST_SETTLE_PATHS);assert.deepEqual(c.maintenancePaths,WAIST_SETTLE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.originalPR,1308);assert.equal(c.failedRun,38127628997);
+ for(const flag of ['publicPayloadChanged','homepageChanged','calculatorChanged','medicalClaimsChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated waist keyboard settle payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated waist keyboard settle maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after keyboard settle receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.waistKeyboardSettle;assert.deepEqual(current,prior,'Prior release receipts changed by keyboard settle');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Waist keyboard source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Waist keyboard maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -1713,10 +1733,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const waistKeyboardSettle=c.waistKeyboardSettle;
+ if(waistKeyboardSettle)verifyWaistKeyboardSettle(waistKeyboardSettle,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preWaistSettleHead=waistKeyboardSettle?waistKeyboardSettle.base:actualHead;
+ const waistSettleRawBlob=(ref,path)=>outerRawBlob(waistKeyboardSettle&&ref==='HEAD'&&WAIST_SETTLE_SET.has(path)?waistKeyboardSettle.base:ref,path);
  const waistReadingStrip=c.waistReadingStrip;
- if(waistReadingStrip)verifyWaistReadingStrip(waistReadingStrip,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preWaistStripHead=waistReadingStrip?waistReadingStrip.base:actualHead;
- const waistStripRawBlob=(ref,path)=>outerRawBlob(waistReadingStrip&&ref==='HEAD'&&WAIST_STRIP_SET.has(path)?waistReadingStrip.base:ref,path);
+ if(waistReadingStrip)verifyWaistReadingStrip(waistReadingStrip,{head:preWaistSettleHead,read:waistSettleRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preWaistStripHead=waistReadingStrip?waistReadingStrip.base:preWaistSettleHead;
+ const waistStripRawBlob=(ref,path)=>waistSettleRawBlob(waistReadingStrip&&ref==='HEAD'&&WAIST_STRIP_SET.has(path)?waistReadingStrip.base:ref,path);
  const twoSourceReleaseGuardRepair=c.watchTwoSourceFreshnessReleaseGuardRepair;
  if(twoSourceReleaseGuardRepair)verifyWatchTwoSourceReleaseGuardRepair(twoSourceReleaseGuardRepair,{head:preWaistStripHead,read:waistStripRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preTwoSourceReleaseGuardRepairHead=twoSourceReleaseGuardRepair?twoSourceReleaseGuardRepair.base:preWaistStripHead;
