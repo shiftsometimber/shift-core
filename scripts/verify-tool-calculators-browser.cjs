@@ -30,6 +30,9 @@ async function verifyWaistReadingStripJourney(browser,checks){
    const calculate=async()=>{
     await page.waitForFunction(()=>typeof document.getElementById('whForm')?.onsubmit==='function');
     await page.locator('#whForm').getByRole('button',{name:'Metric',exact:true}).press('Enter');
+    // The existing flow updates visible unit classes on its next task; wait before native Tab.
+    await page.locator('#whHeightCm').waitFor({state:'visible'});
+    await page.locator('#whHeightFt').waitFor({state:'hidden'});
     const keyboardSelect=async(id,value)=>{
      await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement?.id),id,'Metric inputs must be reachable in keyboard order');
      const values=await page.locator('#'+id).evaluate(e=>Array.from(e.options,o=>o.value)),index=values.indexOf(value);assert(index>=0);
