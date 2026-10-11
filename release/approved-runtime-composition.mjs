@@ -736,7 +736,7 @@ export function verifyWatchBacklogUpdate(c,{head,read,diff,ancestor}){
 // Finite repair for the preclinical Watch release meta-test. The failed run
 // stopped before production mutation; this changes no factual or clinical data.
 export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_BASE='0baf1873fa1a6275258e984939d97c05aaeae61c';
-export const WATCH_PRECLINICAL_RELEASE_TEST_b0a740046d5f97ff7aca23834b5d7d1897e0243a='687efaeafd0fa280f99941252430fc6722e57af7';
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SOURCE='687efaeafd0fa280f99941252430fc6722e57af7';
 export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
 export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs']);
 const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET=new Set([...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS,...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE]);
@@ -1693,7 +1693,7 @@ export function verifyWaistReadingStrip(c,{head,read,diff,ancestor,content=(ref,
 
 // Finite verification-only correction after guarded rollback38127628997.
 export const WAIST_SETTLE_BASE='0131449471a6a2ca936ad672b55351e5cfa4ee31';
-export const WAIST_SETTLE_SOURCE='REPAIR_SOURCE';
+export const WAIST_SETTLE_SOURCE='b0a740046d5f97ff7aca23834b5d7d1897e0243a';
 export const WAIST_SETTLE_PATHS=Object.freeze(['scripts/verify-tool-calculators-browser.cjs']);
 export const WAIST_SETTLE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/waist-keyboard-settle-composition.test.mjs']);
 const WAIST_SETTLE_SET=new Set([...WAIST_SETTLE_PATHS,...WAIST_SETTLE_MAINTENANCE]);

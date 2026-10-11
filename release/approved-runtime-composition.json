@@ -2487,32 +2487,5 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
-  },
-  "waistKeyboardSettle": {
-    "proof": "EXACT_WAIST_KEYBOARD_VISIBLE_UNIT_SETTLE_20261011",
-    "base": "0131449471a6a2ca936ad672b55351e5cfa4ee31",
-    "source": "b0a740046d5f97ff7aca23834b5d7d1897e0243a",
-    "paths": [
-      "scripts/verify-tool-calculators-browser.cjs"
-    ],
-    "maintenanceSource": "add04d85257324e0c62a01416da2a51e29eabfb8",
-    "maintenancePaths": [
-      "release/approved-runtime-composition.mjs",
-      "tests/waist-keyboard-settle-composition.test.mjs"
-    ],
-    "integrationIssue": 1065,
-    "originalPR": 1308,
-    "failedRun": 38127628997,
-    "publicPayloadChanged": false,
-    "homepageChanged": false,
-    "calculatorChanged": false,
-    "medicalClaimsChanged": false,
-    "analyticsChanged": false,
-    "consentChanged": false,
-    "externalCommunicationsSent": false,
-    "genericAdoptionAllowed": false,
-    "deploymentAuthorityBroadened": false,
-    "rollbackAuthorityBroadened": false,
-    "existingGatesWeakened": false
   }
 }
