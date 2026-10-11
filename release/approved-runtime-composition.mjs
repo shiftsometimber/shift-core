@@ -1480,6 +1480,30 @@ export function verifyWatchAscletisOralPortfolio(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Finite repair for the production release's existing Watch drift regression.
+// The failed run stopped before deployment; this only recognises the new exact label.
+export const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_BASE='f8d7eb306cfa4e038ad0b58b2912ef5169e852c9';
+export const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SOURCE='b48a5d21f3b20fe1b815605fb464e4e8904eb683';
+export const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-release-test-repair-composition.test.mjs']);
+const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SET=new Set([...WATCH_RGT_VCT_RELEASE_TEST_REPAIR_PATHS,...WATCH_RGT_VCT_RELEASE_TEST_REPAIR_MAINTENANCE]);
+for(const path of WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRgtVctReleaseTestRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_RELEASE_TEST_REPAIR_V1');assert.equal(c.base,WATCH_RGT_VCT_RELEASE_TEST_REPAIR_BASE);assert.equal(c.source,WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,WATCH_RGT_VCT_RELEASE_TEST_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_RELEASE_TEST_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1319);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38117956535);assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.releaseReachedProduction,false);
+ assert.equal(c.repair,'recognise exact RGT/VCT source-renewal drift label in coaching release test');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT coaching release-test source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT coaching release-test maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT coaching release-test repair');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctReleaseTestRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT coaching release-test repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: RGT/VCT coaching release-test source: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT coaching release-test maintenance: '+path);
+ return c;
+}
+
 // Exact correction for the one overlapping shared-verifier path in the
 // preceding receipt. The independent source file and maintenance set are disjoint.
 export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_BASE='7e769e11dff4a8b7f650173e4fb64d9e5215b7f9';
@@ -1599,10 +1623,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const rgtVctReleaseTestRepair=c.watchRgtVctReleaseTestRepair;
+ if(rgtVctReleaseTestRepair)verifyWatchRgtVctReleaseTestRepair(rgtVctReleaseTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRgtVctReleaseTestRepairHead=rgtVctReleaseTestRepair?rgtVctReleaseTestRepair.base:actualHead;
+ const rgtVctReleaseTestRepairRawBlob=(ref,path)=>outerRawBlob(rgtVctReleaseTestRepair&&ref==='HEAD'&&WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SET.has(path)?rgtVctReleaseTestRepair.base:ref,path);
  const rgtVctDriftCategoryOverlapRepair=c.watchRgtVctDriftCategoryOverlapRepair;
- if(rgtVctDriftCategoryOverlapRepair)verifyWatchRgtVctDriftCategoryOverlap(rgtVctDriftCategoryOverlapRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRgtVctDriftCategoryOverlapHead=rgtVctDriftCategoryOverlapRepair?rgtVctDriftCategoryOverlapRepair.base:actualHead;
- const rgtVctDriftCategoryOverlapRawBlob=(ref,path)=>outerRawBlob(rgtVctDriftCategoryOverlapRepair&&ref==='HEAD'&&WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SET.has(path)?rgtVctDriftCategoryOverlapRepair.base:ref,path);
+ if(rgtVctDriftCategoryOverlapRepair)verifyWatchRgtVctDriftCategoryOverlap(rgtVctDriftCategoryOverlapRepair,{head:preRgtVctReleaseTestRepairHead,read:rgtVctReleaseTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRgtVctDriftCategoryOverlapHead=rgtVctDriftCategoryOverlapRepair?rgtVctDriftCategoryOverlapRepair.base:preRgtVctReleaseTestRepairHead;
+ const rgtVctDriftCategoryOverlapRawBlob=(ref,path)=>rgtVctReleaseTestRepairRawBlob(rgtVctDriftCategoryOverlapRepair&&ref==='HEAD'&&WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SET.has(path)?rgtVctDriftCategoryOverlapRepair.base:ref,path);
  const rgtVctDriftCategoryRepair=c.watchRgtVctDriftCategoryRepair;
  if(rgtVctDriftCategoryRepair)verifyWatchRgtVctDriftCategoryRepair(rgtVctDriftCategoryRepair,{head:preRgtVctDriftCategoryOverlapHead,read:rgtVctDriftCategoryOverlapRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preRgtVctDriftCategoryRepairHead=rgtVctDriftCategoryRepair?rgtVctDriftCategoryRepair.base:preRgtVctDriftCategoryOverlapHead;
