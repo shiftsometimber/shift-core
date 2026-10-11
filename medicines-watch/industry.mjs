@@ -1,4 +1,5 @@
 import officialAlternatives from './reviews/2026-10-10-authorised-official-alternatives.json' with {type:'json'};
+import srsd384Renewal from './reviews/2026-10-11-authorised-srsd384-renewal.json' with {type:'json'};
 import vk2735ZenagamtideRegistry from './reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json' with {type:'json'};
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import togetherBiomarkers from './reviews/2026-10-09-authorised-together-biomarkers.json' with {type:'json'};
@@ -88,6 +89,9 @@ export const industrySources = [...evidence.sources,...followup.sources,...conti
 }).map(s => s.id===backlogReview.sourceReplacement.id?backlogReview.sourceReplacement:s).map(s=>{
  const review=backlogReview.sources.find(r=>r.id===s.id);
  return review?{...s,reviewedAt:review.reviewedAt,reviewedFingerprint:review.reviewedFingerprint}:s;
+}).map(s=>{
+ const review=officialAlternatives.sourceReviews.find(r=>r.url===s.url||r.url===s.checkUrl);
+ return review?{...s,reviewedAt:review.reviewedAt}:s;
 }).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
@@ -415,6 +419,11 @@ export const industry = [...originalIndustry.map(e => {
   return {...e,...change.fields,reviewedAt:officialAlternatives.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  })
+ .map(e=>e.id==='srsd384'?{...e,
+  reviewedAt:srsd384Renewal.reviewedAt,
+  additionalEvidence:(e.additionalEvidence||[]).map(link=>
+   link.url==='https://clinicaltrials.gov/study/NCT07557355'||link.url==='https://siriusrna.com/html/companynews/119.html'
+    ?{...link,reviewedAt:srsd384Renewal.reviewedAt}:link)}:e)
  .map(e=>{
   const change=vk2735ZenagamtideRegistry.changes.find(c=>c.id===e.id);
   if(!change)return e;
