@@ -1733,10 +1733,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const supportRecovery=c.supportRecovery;
+ if(supportRecovery)verifySupportRecovery(supportRecovery,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportRecoveryHead=supportRecovery?supportRecovery.base:actualHead;
+ const supportRecoveryRawBlob=(ref,path)=>outerRawBlob(supportRecovery&&ref==='HEAD'&&SUPPORT_RECOVERY_SET.has(path)?supportRecovery.base:ref,path);
  const waistKeyboardSettle=c.waistKeyboardSettle;
- if(waistKeyboardSettle)verifyWaistKeyboardSettle(waistKeyboardSettle,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preWaistSettleHead=waistKeyboardSettle?waistKeyboardSettle.base:actualHead;
- const waistSettleRawBlob=(ref,path)=>outerRawBlob(waistKeyboardSettle&&ref==='HEAD'&&WAIST_SETTLE_SET.has(path)?waistKeyboardSettle.base:ref,path);
+ if(waistKeyboardSettle)verifyWaistKeyboardSettle(waistKeyboardSettle,{head:preSupportRecoveryHead,read:supportRecoveryRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preWaistSettleHead=waistKeyboardSettle?waistKeyboardSettle.base:preSupportRecoveryHead;
+ const waistSettleRawBlob=(ref,path)=>supportRecoveryRawBlob(waistKeyboardSettle&&ref==='HEAD'&&WAIST_SETTLE_SET.has(path)?waistKeyboardSettle.base:ref,path);
  const waistReadingStrip=c.waistReadingStrip;
  if(waistReadingStrip)verifyWaistReadingStrip(waistReadingStrip,{head:preWaistSettleHead,read:waistSettleRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preWaistStripHead=waistReadingStrip?waistReadingStrip.base:preWaistSettleHead;
@@ -2391,3 +2395,22 @@ export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+
+// Finite support recovery; all prior owner receipts remain unchanged.
+export const SUPPORT_RECOVERY_BASE='2a192db7a52b90e02a7b46d06d7d119e49fdc7ed';
+export const SUPPORT_RECOVERY_SOURCE='b902eae8608afd4f3e8f97f68a1b4bca6d5df90f';
+export const SUPPORT_RECOVERY_PATHS=Object.freeze(["docs/content-review/contact-human-handoff-20261011.md", "docs/content-review/support-recovery-20261011.json", "docs/content-review/support-recovery-browser-proof-20261011.json", "frontend/member/turnstile-auth-v1.js", "shift-coach/public-trust-repair.mjs", "shift-coach/support-content-20261010.mjs", "tests/support-recovery-20261011.test.mjs"]);
+export const SUPPORT_RECOVERY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/support-recovery-composition.test.mjs"]);
+const SUPPORT_RECOVERY_SET=new Set([...SUPPORT_RECOVERY_PATHS,...SUPPORT_RECOVERY_MAINTENANCE]);
+for(const path of SUPPORT_RECOVERY_SET)RECONCILIATION_PATHS.add(path);
+export function verifySupportRecovery(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_SUPPORT_RECOVERY_20261011');assert.equal(c.base,SUPPORT_RECOVERY_BASE);assert.equal(c.source,SUPPORT_RECOVERY_SOURCE);
+ assert.deepEqual(c.paths,SUPPORT_RECOVERY_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_RECOVERY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'staged_owner_release_lane');
+ for(const flag of ['homepageChanged','primaryNavigationChanged','campaignChanged','organicGrowthChanged','watchChanged','memberDataChanged','checkoutChanged','mailRoutingChanged','turnstileWeakened','clinicalGatesChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated support recovery payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated support recovery maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after support recovery receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.supportRecovery;assert.deepEqual(current,prior,'Prior release receipts changed by support recovery');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Support recovery source drift / Support content source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Support recovery maintenance source drift / Waist keyboard maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
+ return c;
+}
