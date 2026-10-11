@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 15
     env:
       ACCEPTANCE_SOURCE: 5753da269d0f5f45b7ad572dc7ecde73e2c0fde9
-      HOLDER_MODE: issue
+      HOLDER_MODE: diagnostic
     steps:
       - uses: actions/checkout@v4
         with:
