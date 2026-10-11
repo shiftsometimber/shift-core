@@ -2323,5 +2323,41 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchRgtVctReleaseTestRepair": {
+    "proof": "EXACT_WATCH_RGT_VCT_RELEASE_TEST_REPAIR_V1",
+    "base": "f8d7eb306cfa4e038ad0b58b2912ef5169e852c9",
+    "source": "b48a5d21f3b20fe1b815605fb464e4e8904eb683",
+    "maintenanceSource": "4ceec1a7fa63dc08617272040b89d735af73e804",
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-rgt-vct-release-test-repair-composition.test.mjs"
+    ],
+    "approvedPR": 1319,
+    "integrationIssue": 1065,
+    "failedRun": 38117956535,
+    "failureGate": "Verify B1 release scope before any production mutation",
+    "releaseReachedProduction": false,
+    "repair": "recognise exact RGT/VCT source-renewal drift label in coaching release test",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
