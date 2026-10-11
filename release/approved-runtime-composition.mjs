@@ -942,6 +942,31 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Finite matcher-label repair for the programme-summary queue guard receipt.
+// It changes only the release verifier and cannot alter Watch content or state.
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_BASE='05c66c1c694853ed888b925b5ecc6e66bb16e8af';
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS=Object.freeze(['release/approved-runtime-composition.mjs']);
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE=Object.freeze(['tests/watch-programme-summary-queue-matcher-repair-composition.test.mjs']);
+const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET=new Set([...WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS,...WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE]);
+for(const path of WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchProgrammeSummaryQueueMatcherRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_REPAIR_V1');
+ assert.equal(c.base,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);
+ assert.deepEqual(c.paths,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1316);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38113438635);assert.equal(c.failedJob,114393529381);assert.equal(c.failedStep,4);
+ assert.equal(c.releaseReachedProduction,false);assert.equal(c.failureGate,'Programme day preview composition meta-test');assert.equal(c.failureCause,'outer guard source-drift label was not covered by the finite byte-pin matcher');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated programme-summary queue matcher-repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated programme-summary queue matcher-repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after programme-summary queue matcher-repair receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryQueueMatcherRepair;assert.deepEqual(current,prior,'Prior release receipts changed by programme-summary queue matcher repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue maintenance drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
+ return c;
+}
+
 // Finite repair for programme-summary queue meta-test matchers. The failed
 // preview stopped before production mutation and changes no Watch evidence.
 export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_BASE='acfe32e3ac58db79f4ec518d8667b99f65dd982f';
@@ -963,8 +988,8 @@ export function verifyWatchProgrammeSummaryQueueGuardRepair(c,{head,read,diff,an
  assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated programme-summary queue guard-repair maintenance');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after programme-summary queue guard-repair receipt');
  const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryQueueGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by programme-summary queue guard repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Programme-summary queue guard-repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Programme-summary queue guard-repair maintenance drift: '+path);
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue maintenance drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
  return c;
 }
 
@@ -1451,10 +1476,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const programmeSummaryQueueMatcherRepair=c.watchProgrammeSummaryQueueMatcherRepair;
+ if(programmeSummaryQueueMatcherRepair)verifyWatchProgrammeSummaryQueueMatcherRepair(programmeSummaryQueueMatcherRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preProgrammeSummaryQueueMatcherHead=programmeSummaryQueueMatcherRepair?programmeSummaryQueueMatcherRepair.base:actualHead;
+ const programmeSummaryQueueMatcherRawBlob=(ref,path)=>outerRawBlob(programmeSummaryQueueMatcherRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET.has(path)?programmeSummaryQueueMatcherRepair.base:ref,path);
  const programmeSummaryQueueGuardRepair=c.watchProgrammeSummaryQueueGuardRepair;
- if(programmeSummaryQueueGuardRepair)verifyWatchProgrammeSummaryQueueGuardRepair(programmeSummaryQueueGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preProgrammeSummaryQueueGuardHead=programmeSummaryQueueGuardRepair?programmeSummaryQueueGuardRepair.base:actualHead;
- const programmeSummaryQueueGuardRawBlob=(ref,path)=>outerRawBlob(programmeSummaryQueueGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SET.has(path)?programmeSummaryQueueGuardRepair.base:ref,path);
+ if(programmeSummaryQueueGuardRepair)verifyWatchProgrammeSummaryQueueGuardRepair(programmeSummaryQueueGuardRepair,{head:preProgrammeSummaryQueueMatcherHead,read:programmeSummaryQueueMatcherRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preProgrammeSummaryQueueGuardHead=programmeSummaryQueueGuardRepair?programmeSummaryQueueGuardRepair.base:preProgrammeSummaryQueueMatcherHead;
+ const programmeSummaryQueueGuardRawBlob=(ref,path)=>programmeSummaryQueueMatcherRawBlob(programmeSummaryQueueGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SET.has(path)?programmeSummaryQueueGuardRepair.base:ref,path);
  const programmeSummaryQueue=c.watchProgrammeSummaryQueue;
  if(programmeSummaryQueue)verifyWatchProgrammeSummaryQueue(programmeSummaryQueue,{head:preProgrammeSummaryQueueGuardHead,read:programmeSummaryQueueGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preProgrammeSummaryQueueHead=programmeSummaryQueue?programmeSummaryQueue.base:preProgrammeSummaryQueueGuardHead;
