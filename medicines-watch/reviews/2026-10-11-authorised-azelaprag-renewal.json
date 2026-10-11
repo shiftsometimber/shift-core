@@ -1,0 +1,139 @@
+{
+  "reviewedAt": "2026-10-11T13:10:56Z",
+  "baseCommit": "2a192db7a52b90e02a7b46d06d7d119e49fdc7ed",
+  "reviewType": "Bounded overdue factual review of the azelaprag sponsor statement, trial record and corroborating annual filing",
+  "editorialAuthorisation": "Matt's standing authority covers evidence-backed informational Watch updates. This is not clinical approval.",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sources": [
+    {
+      "id": "azelaprag-bioage-discontinuation",
+      "title": "BioAge Labs: STRIDES Phase 2 discontinuation",
+      "url": "https://ir.bioagelabs.com/news-releases/news-release-details/bioage-labs-announces-discontinuation-strides-phase-2-clinical",
+      "sourcePublishedAt": "2024-12-06",
+      "reviewedAt": "2026-10-11T13:10:56Z",
+      "previousReviewedAt": "2026-10-04T12:21:42Z",
+      "rawResponseSha256": "03d6a99124e491b0b7a11229f437eedcefd3897d3fc9e1951b5d4d97a8e354bc",
+      "reviewedFingerprint": "0080170ec76c06b5c251ad17226440a7807402e108d6ed1c995fe9fc0c07aba5",
+      "previousReviewedFingerprint": "0080170ec76c06b5c251ad17226440a7807402e108d6ed1c995fe9fc0c07aba5",
+      "httpLastModified": "2026-10-05T13:08:00Z",
+      "monitorLastAttemptAt": "2026-10-11T12:00:37.665Z",
+      "monitorHttpStatus": 200,
+      "monitorStatus": "awaiting_review",
+      "monitorCheckStatus": "current",
+      "monitorReviewStatus": "awaiting_review",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "assessment": "The complete current sponsor announcement was retrieved and read. It still reports the 6 December 2024 decision to discontinue STRIDES after liver transaminitis without clinically significant symptoms in some participants receiving azelaprag, with no transaminase elevations reported in the tirzepatide-only group. It still records 204 enrolled participants, 11 observations in azelaprag groups, stopped dosing and enrolment, and off-drug follow-up. The normalized claim fingerprint remains identical despite a later HTTP Last-Modified value.",
+      "uncertainty": "This is a sponsor report. It does not independently establish causation, a rate outside the studied regimens, an efficacy or muscle-function result, UK authorisation, NICE/NHS access, actual UK supply or clinical approval."
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct06515418",
+      "nctId": "NCT06515418",
+      "url": "https://clinicaltrials.gov/study/NCT06515418",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06515418",
+      "sourcePublishedAt": "2024-07-23",
+      "sourceUpdatedAt": "2025-03-13",
+      "reviewedAt": "2026-10-11T13:10:56Z",
+      "previousReviewedAt": "2026-10-04T12:21:42Z",
+      "rawResponseSha256": "7f6b057bbfaa9cade04f485c4fc58b1544065f6b907777e5fbaea781abb287e9",
+      "reviewedFingerprint": "c7e60ac3b739c60de594cfaae6772d270457b3749e561c92ee777353d04093f1",
+      "previousReviewedFingerprint": "c7e60ac3b739c60de594cfaae6772d270457b3749e561c92ee777353d04093f1",
+      "status": "TERMINATED",
+      "whyStopped": "Dosing of both study drugs has been discontinued due to observation of liver transaminitis without clinically significant symptoms in some subjects receiving azelaprag. All participant visits have been completed.",
+      "phase": "PHASE2",
+      "enrollment": {
+        "count": 204,
+        "type": "ACTUAL"
+      },
+      "start": {
+        "date": "2024-06-27",
+        "type": "ACTUAL"
+      },
+      "primaryCompletion": {
+        "date": "2025-02-06",
+        "type": "ACTUAL"
+      },
+      "completion": {
+        "date": "2025-02-12",
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "monitorLastAttemptAt": "2026-10-11T12:00:37.665Z",
+      "monitorHttpStatus": 200,
+      "monitorStatus": "awaiting_review",
+      "monitorCheckStatus": "current",
+      "monitorReviewStatus": "awaiting_review",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "assessment": "The complete current sponsor-submitted API record was retrieved and read. It remains terminated with the same stopping reason, actual enrolment and dates, and no posted results. The normalized lifecycle fingerprint remains identical."
+    }
+  ],
+  "programme": {
+    "id": "azelaprag",
+    "reviewedAt": "2026-10-11T13:10:56Z",
+    "previousReviewedAt": "2026-10-04T12:21:42Z",
+    "wordingChanged": false,
+    "assessment": "The discontinued programme summary remains accurate after rereading the complete sponsor announcement, complete registry record and complete BioAge annual filing. No efficacy, body-composition or muscle-preservation result is posted or inferred.",
+    "additionalEvidence": [
+      {
+        "url": "https://clinicaltrials.gov/study/NCT06515418",
+        "sourcePublishedAt": "2024-07-23",
+        "sourceUpdatedAt": "2025-03-13",
+        "reviewedAt": "2026-10-11T13:10:56Z"
+      },
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1709941/000095017025042759/bioa-20241231.htm",
+        "sourcePublishedAt": "2025-03-20",
+        "sourceUpdatedAt": null,
+        "reviewedAt": "2026-10-11T13:10:56Z",
+        "rawResponseSha256": "db2d8c7662b0a68d54e136500bd660740272c4212262cceb919b3e4c4ed517cf",
+        "assessment": "The complete filing was reread. It states that BioAge terminated development of azelaprag in January 2025. The filing creation timestamp and official SEC Last-Modified header verify 20 March 2025 as the publication date, correcting the earlier unverified null date without changing the programme claim."
+      }
+    ]
+  },
+  "finding": "Both configured sources and the wider programme summary are unchanged after actual primary-source review. Successful HTTP checks were not used as review substitutes. The SEC filing date is now verified as 20 March 2025; no medical wording changes.",
+  "changes": {
+    "sourceReviewDatesRenewed": 2,
+    "programmeReviewDatesRenewed": 1,
+    "programmeWordingChanged": false,
+    "configuredSourceCountChanged": false,
+    "programmeCountChanged": false,
+    "monitorBaselinesChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseShapeChanged": false,
+    "medicalClaimsChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyClaimChanged": false,
+    "manualEvidencePublicationDateCorrected": 1
+  },
+  "preserved": {
+    "completedFactualReviews": 35,
+    "programmes": 116,
+    "configuredSources": 202,
+    "expectedConfiguredSourceFactualReviewNeeded": 0,
+    "expectedProgrammeSummaryFactualReviewNeeded": 66,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "externalCommunicationsSent": false,
+    "customerDataChanged": false,
+    "memberTreatmentChanged": false,
+    "checkoutChanged": false
+  },
+  "remainingObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "state": [
+        "verification_pending",
+        "check_delayed"
+      ],
+      "obstacle": "The configured sponsor monitor still receives HTTP 403 and has no approved baseline; accessible Zealand evidence remains internally inconsistent about Phase 1 versus preclinical or first-in-human state.",
+      "nextAction": "Retain registry and CTIS corroboration while deliberately reviewing a stable directly reviewable Zealand artefact or a bounded replacement source; do not repeatedly retry the denied endpoint."
+    }
+  ],
+  "monitoring": "Recurring configured-source freshness, programme-summary reviews and broader discovery remain open."
+}

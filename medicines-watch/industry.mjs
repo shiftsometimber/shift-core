@@ -1,4 +1,5 @@
 import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
+import azelapragRenewal from './reviews/2026-10-11-authorised-azelaprag-renewal.json' with {type:'json'};
 import officialAlternatives from './reviews/2026-10-10-authorised-official-alternatives.json' with {type:'json'};
 import srsd384Renewal from './reviews/2026-10-11-authorised-srsd384-renewal.json' with {type:'json'};
 import vk2735ZenagamtideRegistry from './reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json' with {type:'json'};
@@ -96,6 +97,9 @@ export const industrySources = [...evidence.sources,...followup.sources,...conti
 }).map(s=>{
  const review=officialAlternatives.sourceReviews.find(r=>r.url===s.url||r.url===s.checkUrl);
  return review?{...s,reviewedAt:review.reviewedAt}:s;
+}).map(s=>{
+ const renewal=azelapragRenewal.sources.find(r=>r.id===s.id);
+ return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
 }).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
@@ -428,6 +432,12 @@ export const industry = [...originalIndustry.map(e => {
   additionalEvidence:(e.additionalEvidence||[]).map(link=>
    link.url==='https://clinicaltrials.gov/study/NCT07557355'||link.url==='https://siriusrna.com/html/companynews/119.html'
     ?{...link,reviewedAt:srsd384Renewal.reviewedAt}:link)}:e)
+ .map(e=>e.id===azelapragRenewal.programme.id?{...e,
+  reviewedAt:azelapragRenewal.programme.reviewedAt,
+  additionalEvidence:(e.additionalEvidence||[]).map(link=>{
+   const review=azelapragRenewal.programme.additionalEvidence.find(item=>item.url===link.url);
+   return review?{...link,sourcePublishedAt:review.sourcePublishedAt,sourceUpdatedAt:review.sourceUpdatedAt,reviewedAt:review.reviewedAt}:link;
+  })}:e)
  .map(e=>{
   const change=vk2735ZenagamtideRegistry.changes.find(c=>c.id===e.id);
   if(!change)return e;
