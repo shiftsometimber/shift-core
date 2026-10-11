@@ -2288,5 +2288,40 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchRgtVctDriftCategoryOverlapRepair": {
+    "proof": "EXACT_WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_REPAIR_V1",
+    "base": "7e769e11dff4a8b7f650173e4fb64d9e5215b7f9",
+    "source": "febc76e01aaf447e570e9134fe2abd93cdfa42f1",
+    "maintenanceSource": "b33d91735f83ea949cd56fa85fb1e3169976ce3c",
+    "paths": [
+      "release/watch-rgt-vct-drift-category-overlap-repair.json"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-rgt-vct-drift-category-overlap-composition.test.mjs"
+    ],
+    "approvedPR": 1318,
+    "integrationIssue": 1065,
+    "failedRun": 38117465443,
+    "failureGate": "Medicines Watch checks",
+    "repair": "pin overlapping shared verifier to preceding maintenance source",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
