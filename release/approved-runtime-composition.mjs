@@ -947,7 +947,7 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 export const WATCH_PROGRAMME_SUMMARY_QUEUE_BASE='6708985126190919a7826a58ed21f5b30a2fa7d3';
 export const WATCH_PROGRAMME_SUMMARY_QUEUE_SOURCE='be1c6afab2369f447585383b6849c5779b8689f8';
 export const WATCH_PROGRAMME_SUMMARY_QUEUE_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/evidence-desk.mjs','medicines-watch/evidence-desk.test.mjs']);
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-programme-summary-queue-composition.test.mjs']);
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','tests/watch-programme-summary-queue-composition.test.mjs']);
 const WATCH_PROGRAMME_SUMMARY_QUEUE_SET=new Set([...WATCH_PROGRAMME_SUMMARY_QUEUE_PATHS,...WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE]);
 for(const path of WATCH_PROGRAMME_SUMMARY_QUEUE_SET)RECONCILIATION_PATHS.add(path);
 export function verifyWatchProgrammeSummaryQueue(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
