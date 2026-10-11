@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {verifyWatchTaldefgrobepAttainRenewal,WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_BASE as base,WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_SOURCE as source,WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_PATHS as paths,WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_MAINTENANCE as maintenance,RECONCILIATION_MANIFEST} from '../release/approved-runtime-composition.mjs';
+
+const falseFlags=['programmeWordingChanged','programmeReviewDatesChanged','configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','monitorLogicChanged','queueLogicChanged','healthResponseChanged','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'];
+const receipt=()=>({proof:'EXACT_WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_20261011',base,source,paths:[...paths],maintenancePaths:[...maintenance],maintenanceSource:'a'.repeat(40),integrationIssue:1065,publicationStatus:'owner_authorised_factual_publication',clinicalApproval:null,industryComplete:false,reviewedAt:'2026-10-11T20:40:31Z',sourceReviewsApplied:2,sourceIds:['registry-nct07281495','registry-nct06584916'],unchangedFingerprints:['1bdb60c0234e5e7babea960bea4a448ef7c51e8dbf81ee70d91a60362e9d7f2c','504a69920fee24c6c1465d8e387b9632a17dd7850212e7d2c15fcff643490357'],preservedSourceReviews:35,programmesAfter:118,configuredSources:202,programmeSummaryFactualReviewNeeded:68,zp6590VerificationPending:true,zp6590CheckDelayed:true,monitoringFinished:false,...Object.fromEntries(falseFlags.map(key=>[key,false]))});
+const options=()=>({head:'b'.repeat(40),read:()=> 'same',ancestor:()=>{},content:(ref)=>JSON.stringify(ref===base?{prior:true}:{prior:true,watchTaldefgrobepAttainRenewal:{}}),diff:(a)=>a===base?[...paths]:a===source?[...maintenance]:[RECONCILIATION_MANIFEST]});
+
+test('taldefgrobep and ATTAIN-MAINTAIN renewal composition is finite and preserves boundaries',()=>{
+ verifyWatchTaldefgrobepAttainRenewal(receipt(),options());
+ for(const patch of [{base:'f'.repeat(40)},{source:'f'.repeat(40)},{integrationIssue:1},{publicationStatus:'other'},{clinicalApproval:true},{industryComplete:true},{sourceReviewsApplied:1},{sourceIds:['wrong']},{unchangedFingerprints:['wrong']},{preservedSourceReviews:34},{programmesAfter:117},{configuredSources:201},{programmeSummaryFactualReviewNeeded:67},{zp6590VerificationPending:false},{zp6590CheckDelayed:false},{monitoringFinished:true},...falseFlags.map(key=>({[key]:true}))])assert.throws(()=>verifyWatchTaldefgrobepAttainRenewal({...receipt(),...patch},options()));
+ for(const boundary of [base,source,'a'.repeat(40)]){const o=options(),diff=o.diff;o.diff=(a,b)=>a===boundary?[...diff(a,b),'worker.js']:diff(a,b);assert.throws(()=>verifyWatchTaldefgrobepAttainRenewal(receipt(),o));}
+});
+
+test('every renewal payload and maintenance byte remains pinned',()=>{
+ for(const path of [...paths,...maintenance]){const o=options();o.read=(ref,p)=>ref==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyWatchTaldefgrobepAttainRenewal(receipt(),o),/Taldefgrobep\/ATTAIN-MAINTAIN renewal/);}
+});

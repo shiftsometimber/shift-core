@@ -1,5 +1,11 @@
 # Treatments: Medicines & Peptides Watch
 
+## 11 October taldefgrobep and ATTAIN-MAINTAIN registry renewal
+
+`reviews/2026-10-11-authorised-taldefgrobep-attain-maintain-renewal.json` records an actual rereview of the complete ClinicalTrials.gov API records for NCT07281495 and NCT06584916 after their configured-source review windows expired. Both normalized lifecycle fingerprints remain unchanged. Taldefgrobep remains active, not recruiting, Phase II, with 150 estimated participants, estimated September 2026 completion and no posted results. ATTAIN-MAINTAIN remains completed, Phase IIIb, with 376 actual participants, actual 21 November 2025 completion and no registry results posted; its already reviewed publication is not reinterpreted here.
+
+Only the two registry-source review dates advance. Programme wording and review dates, registry lifecycle claims, monitor baselines and logic, the 118-programme catalogue, 202 configured sources, completed 35-review publication and separate 68-item programme-summary queue remain unchanged. Estimated dates are not silently presented as completed events, trial completion is not an approved switching regimen, and no UK authorisation, NICE/NHS access, supply or clinical approval is inferred. ZP6590 remains both `verification_pending` and `check_delayed`. Authoritative alternate-source work, programme-summary reviews and broad discovery remain ongoing with their own dates and next actions; monitoring is not finished.
+
 ## 11 October Alnylam RNAi discovery
 
 `reviews/2026-10-11-authorised-alnylam-rnai-discovery.json` closes two non-incretin and combination gaps found by a separate current-date and undated discovery pass. Alnylam's current sponsor trial page records ALN-2232 as an enrolling 156-participant Phase I/II study with single- and multiple-dose parts plus a distinct tirzepatide co-initiation part. Its 30 April release confirms Phase I initiation and the ACVR1C adipose-targeted RNAi mechanism. A separate sponsor trial page records ALN-6222 as an enrolling 88-participant first-in-human Phase I study; the 30 July release identifies its INHBE target and confirms initiation.
