@@ -11,8 +11,60 @@ const cases=[
  {path:'/tools/walking',form:'walkForm',fields:{'#walkWeightKg':'80','[name="minutes"]':'30','[name="pace"]':'3.5'},result:'walkR',expected:'147 kcal'},
  {path:'/tools/water',form:'waterForm',fields:{'#waterWeightKg':'80'},result:'waterR',expected:'2.4 L'}
 ];
+// Affected acceptance only: exact approved strip, keyboard and recovery at380/1440.
+async function verifyWaistReadingStripJourney(browser,checks){
+ const origin='https://shiftsometimber.co.uk';
+ const expected=[['BMI calculator','/tools/bmi'],['Understand obesity and choose one step','/male-obesity'],['Start Here','/start-here']];
+ for(const width of [380,1440]){
+  const context=await browser.newContext({viewport:{width,height:900},serviceWorkers:'block'}),page=await context.newPage();
+  try{
+   const response=await page.goto(origin+'/tools/waist-height',{waitUntil:'commit',timeout:60000});assert.equal(response.status(),200);
+   await page.locator('#sstCookieSettings').waitFor({state:'visible',timeout:60000});
+   if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();
+   await page.getByRole('button',{name:'Necessary only',exact:true}).click();
+   const checkStrip=async()=>{
+    const strip=page.locator('#seo-authority-links');await strip.waitFor({state:'visible'});
+    assert.deepEqual(await strip.locator('a').evaluateAll(es=>es.map(e=>[e.textContent,e.getAttribute('href')])),expected);
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Waist tool sideways scroll');
+   };
+   const calculate=async()=>{
+    await page.waitForFunction(()=>typeof document.getElementById('whForm')?.onsubmit==='function');
+    await page.locator('#whForm').getByRole('button',{name:'Metric',exact:true}).press('Enter');
+    const keyboardSelect=async(id,value)=>{
+     await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement?.id),id,'Metric inputs must be reachable in keyboard order');
+     const values=await page.locator('#'+id).evaluate(e=>Array.from(e.options,o=>o.value)),index=values.indexOf(value);assert(index>=0);
+     const fromEnd=values.length-1-index<index;await page.keyboard.press(fromEnd?'End':'Home');
+     for(let i=0;i<(fromEnd?values.length-1-index:index);i++)await page.keyboard.press(fromEnd?'ArrowUp':'ArrowDown');
+     assert.equal(await page.locator('#'+id).inputValue(),value,'Native select keyboard choice');
+    };
+    await keyboardSelect('whHeightCm','180');await keyboardSelect('waistCm','90');
+    await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement?.textContent.trim()),'Calculate ratio');await page.keyboard.press('Enter');
+    await page.waitForFunction(()=>document.getElementById('whR')?.textContent.includes('0.50'));
+    const actual=await page.locator('#whR').innerText();assert(actual.includes('0.50 is in the increased band.')&&actual.includes('increased central adiposity.')&&/not a diagnosis/i.test(actual)&&/35/.test(actual),'Correct result and screening limitation required');return actual;
+   };
+   await checkStrip();const initialResult=await calculate();
+   await page.locator('#seo-authority-links a').first().focus();
+   for(const [,path]of expected){assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('href')),path,'Reading-strip Tab order');if(path!==expected.at(-1)[1])await page.keyboard.press('Tab');}
+   await page.keyboard.press('Shift+Tab');assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('href')),expected[1][1],'Reverse keyboard recovery');
+   await page.locator('#whR').scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/waist-result-'+width+'.png'});
+   await page.locator('#seo-authority-links').scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/waist-strip-'+width+'.png'});
+   const onward=[];
+   for(const [name,path] of expected){
+    const link=page.locator('#seo-authority-links').getByRole('link',{name,exact:true});await link.focus();assert(await link.evaluate(e=>e===document.activeElement));
+    const [r]=await Promise.all([page.waitForNavigation({waitUntil:'commit',timeout:60000}),page.keyboard.press('Enter')]);assert.equal(r.status(),200);assert.equal(new URL(page.url()).pathname,path);await page.locator('main h1').waitFor({state:'visible',timeout:60000});
+    onward.push({name,path,status:r.status(),h1:await page.locator('main h1').innerText(),keyboard:'Tab/native selection/Enter; Shift+Tab recovery'});
+    await page.goBack({waitUntil:'commit',timeout:60000});assert.equal(new URL(page.url()).pathname,'/tools/waist-height');await page.locator('#whForm').waitFor({state:'visible'});await checkStrip();
+   }
+   await page.reload({waitUntil:'commit',timeout:60000});await page.locator('#whForm').waitFor({state:'visible'});await checkStrip();const refreshedResult=await calculate();
+   checks.push({viewportWidth:width,path:'/tools/waist-height',case:'approved reading-strip keyboard/onward/Back/refresh acceptance',passed:true,strip:expected,onward,initialResult,refreshedResult,analyticsChoice:'Necessary only',noAccountCreated:true,classification:'Controlled public Chromium QA; not physical-device or customer-outcome evidence'});
+  }catch(error){checks.push({viewportWidth:width,path:'/tools/waist-height',case:'approved reading-strip keyboard/onward/Back/refresh acceptance',passed:false,error:error.message});}
+  finally{await context.close();}
+ }
+}
+
 (async()=>{fs.mkdirSync(dir,{recursive:true});const browser=await chromium.launch({headless:true});const checks=[];
 try{
+ await verifyWaistReadingStripJourney(browser,checks);
  for(const [label,viewport] of [['mobile',{width:390,height:844}],['desktop',{width:1440,height:1000}]]){
   const context=await browser.newContext({viewport,serviceWorkers:'block'});const page=await context.newPage();
   for(const c of cases){

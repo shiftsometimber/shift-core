@@ -69,6 +69,19 @@ export function amendBmiAwarenessRoute(path,input){
  for(const [before,after,count]of changes){if(html.split(before).length-1!==count||html.includes(after))throw Error('awareness_bmi_source_drift');html=html.split(before).join(after)}
  return html;
 }
+// Approved 10 October: change only the waist-height tool's existing reading strip.
+export function amendWaistAwarenessRoute(path,input){
+ if(path!=='/tools/waist-height')return input;
+ const before='<a href="/guides/nhs-weight-loss-medication-pathways">NHS medication guide</a> · <a href="/mounjaro">Mounjaro for men</a>';
+ const after='<a href="/male-obesity">Understand obesity and choose one step</a> · <a href="/start-here">Start Here</a>';
+  const strips=[...input.matchAll(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi)].filter(m=>m[0].includes('<strong>Useful next reads: </strong>'));
+ if(strips.length!==1)throw Error('awareness_waist_source_drift');
+ const strip=strips[0][0];
+ if(!strip.includes('<a href="/tools/bmi">BMI calculator</a>'))throw Error('awareness_waist_source_drift');
+ if(strip.includes(after)&&!strip.includes(before))return input;
+ if(strip.split(before).length!==2||strip.includes(after))throw Error('awareness_waist_source_drift');
+ return input.replace(strip,()=>strip.replace(before,after));
+}
 const hubContextLinks = Object.freeze({
  '/tools/waist-height':'Put this measurement in context: understand obesity in men and choose a useful next step.',
  '/research/uk-mens-weight-health-statistics':'What do these measurements mean for you? Read our male-obesity guide.',
@@ -81,6 +94,7 @@ const hubContextLinks = Object.freeze({
  '/husband-help':'Share our male-obesity guide if he wants an explanation and one useful next step.'
 });
 export function amendSupportingDocument(path,input){
+ input=amendWaistAwarenessRoute(path,input);
  if(path==='/tools/bmi')return amendBmiAwarenessRoute(path,input);
  if(hubContextLinks[path]){
   if((input.match(mainRE)||[]).length!==1)throw Error('awareness_invalid_shell');
