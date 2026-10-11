@@ -2218,5 +2218,40 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchRgtVctReleaseGuardRepair": {
+    "proof": "EXACT_WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_V1",
+    "base": "95b14a502dec187f6bbf0687cfde18ab49788bae",
+    "source": "775dd2d7248a5bb87bbfb2c56cdceb5f628ab55a",
+    "maintenanceSource": "499111ecc0d44137b8545c368ecc424bd17b883e",
+    "paths": [
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-rgt-vct-release-guard-repair-composition.test.mjs"
+    ],
+    "approvedPR": 1318,
+    "integrationIssue": 1065,
+    "failedRun": 38117053153,
+    "failureGate": "Programme day preview",
+    "repair": "recognise exact RGT/VCT source-renewal drift label",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
