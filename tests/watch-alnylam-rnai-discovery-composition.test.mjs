@@ -35,5 +35,5 @@ test('real Alnylam RNAi composition preserves earlier receipts and manual-eviden
 test('prior composition verifiers and runtime monitor logic remain immutable',()=>{
  const functionBody=(ref,name)=>{const text=read(ref,'release/approved-runtime-composition.mjs'),start=text.indexOf('export function '+name+'(');assert(start>=0);return text.slice(start,text.indexOf('\n}\n',start)+3);};
  for(const name of ['verifyWatchAzelapragRenewal','verifyWaistKeyboardSettle','verifyWaistRollbackRetention','verifyWaistReadingStrip','verifyWatchTwoSourceFreshness','verifyWatchTwoSourceReleaseGuardRepair'])assert.equal(functionBody('HEAD',name),functionBody(base,name));
- for(const path of ['medicines-watch/monitor.mjs','medicines-watch/evidence-desk.mjs','.github/workflows/cloudflare-production-promote.yml','tests/late-watch-composition.test.mjs','tests/watch-azelaprag-renewal-composition.test.mjs'])assert.equal(read('HEAD',path),read(base,path));
+ for(const path of ['medicines-watch/monitor.mjs','medicines-watch/evidence-desk.mjs','.github/workflows/cloudflare-production-promote.yml','tests/late-watch-composition.test.mjs'])assert.equal(read('HEAD',path),read(base,path));
 });

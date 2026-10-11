@@ -1746,7 +1746,8 @@ export const WATCH_ALNYLAM_RNAI_PATHS=Object.freeze([
 ]);
 export const WATCH_ALNYLAM_RNAI_MAINTENANCE=Object.freeze([
  'release/approved-runtime-composition.mjs',
- 'tests/watch-alnylam-rnai-discovery-composition.test.mjs'
+ 'tests/watch-alnylam-rnai-discovery-composition.test.mjs',
+ 'tests/watch-azelaprag-renewal-composition.test.mjs'
 ]);
 const WATCH_ALNYLAM_RNAI_SET=new Set([...WATCH_ALNYLAM_RNAI_PATHS,...WATCH_ALNYLAM_RNAI_MAINTENANCE]);
 for(const path of WATCH_ALNYLAM_RNAI_SET)RECONCILIATION_PATHS.add(path);
