@@ -2091,5 +2091,42 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchProgrammeSummaryQueueMatcherRepair": {
+    "proof": "EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_REPAIR_V1",
+    "base": "05c66c1c694853ed888b925b5ecc6e66bb16e8af",
+    "source": "749d23f6d8ebfa933c9ef49e63ca344c6986202d",
+    "maintenanceSource": "772566cb59a25fbd3cfadd59ced233f7ece8e08e",
+    "paths": [
+      "release/approved-runtime-composition.mjs"
+    ],
+    "maintenancePaths": [
+      "tests/watch-programme-summary-queue-matcher-repair-composition.test.mjs"
+    ],
+    "approvedPR": 1316,
+    "integrationIssue": 1065,
+    "failedRun": 38113438635,
+    "failedJob": 114393529381,
+    "failedStep": 4,
+    "releaseReachedProduction": false,
+    "failureGate": "Programme day preview composition meta-test",
+    "failureCause": "outer guard source-drift label was not covered by the finite byte-pin matcher",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
