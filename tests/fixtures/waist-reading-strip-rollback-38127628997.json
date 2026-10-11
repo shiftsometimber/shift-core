@@ -1,0 +1,1262 @@
+{
+  "classification": "Authenticated GitHub run/job/owned/rollback report receipts; active/version objects model the exact next provider-verified starting point, not invented live observations",
+  "active": {
+    "id": "b6a002f3-055f-450a-9b31-b6130404950c",
+    "source": "wrangler",
+    "versions": [
+      {
+        "version_id": "7bd43656-c15c-457a-ba87-5e6fb425ce48",
+        "percentage": 100
+      }
+    ],
+    "annotations": {
+      "workers/triggered_by": "deployment",
+      "workers/message": "Owned release failed post-deployment checks; restore captured runtime and preserve current data"
+    }
+  },
+  "version": {
+    "id": "7bd43656-c15c-457a-ba87-5e6fb425ce48",
+    "metadata": {
+      "created_on": "2026-10-11T08:53:27.690073Z",
+      "source": "wrangler"
+    },
+    "annotations": {
+      "workers/triggered_by": "version_upload"
+    }
+  },
+  "run": {
+    "id": 38127628997,
+    "name": "Cloudflare Production Promote",
+    "node_id": "WFR_kwLOTzTotc8AAAAI4JVyxQ",
+    "head_branch": "main",
+    "head_sha": "0131449471a6a2ca936ad672b55351e5cfa4ee31",
+    "path": ".github/workflows/cloudflare-production-promote.yml",
+    "display_title": "Use approved obesity and Start Here reading links in waist calculator…",
+    "run_number": 1144,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow_id": 334347571,
+    "check_suite_id": 103301398114,
+    "check_suite_node_id": "CS_kwDOTzTotc8AAAAYDT4-Yg",
+    "url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38127628997",
+    "html_url": "https://github.com/shiftsometimber/shift-core/actions/runs/38127628997",
+    "pull_requests": [],
+    "created_at": "2026-10-11T09:13:58Z",
+    "updated_at": "2026-10-11T09:43:59Z",
+    "actor": {
+      "login": "shiftsometimber",
+      "id": 315011648,
+      "node_id": "U_kgDOEsayQA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/315011648?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/shiftsometimber",
+      "html_url": "https://github.com/shiftsometimber",
+      "followers_url": "https://api.github.com/users/shiftsometimber/followers",
+      "following_url": "https://api.github.com/users/shiftsometimber/following{/other_user}",
+      "gists_url": "https://api.github.com/users/shiftsometimber/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/shiftsometimber/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/shiftsometimber/subscriptions",
+      "organizations_url": "https://api.github.com/users/shiftsometimber/orgs",
+      "repos_url": "https://api.github.com/users/shiftsometimber/repos",
+      "events_url": "https://api.github.com/users/shiftsometimber/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/shiftsometimber/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-10-11T09:13:58Z",
+    "triggering_actor": {
+      "login": "shiftsometimber",
+      "id": 315011648,
+      "node_id": "U_kgDOEsayQA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/315011648?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/shiftsometimber",
+      "html_url": "https://github.com/shiftsometimber",
+      "followers_url": "https://api.github.com/users/shiftsometimber/followers",
+      "following_url": "https://api.github.com/users/shiftsometimber/following{/other_user}",
+      "gists_url": "https://api.github.com/users/shiftsometimber/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/shiftsometimber/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/shiftsometimber/subscriptions",
+      "organizations_url": "https://api.github.com/users/shiftsometimber/orgs",
+      "repos_url": "https://api.github.com/users/shiftsometimber/repos",
+      "events_url": "https://api.github.com/users/shiftsometimber/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/shiftsometimber/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38127628997/jobs",
+    "logs_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38127628997/logs",
+    "check_suite_url": "https://api.github.com/repos/shiftsometimber/shift-core/check-suites/103301398114",
+    "artifacts_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38127628997/artifacts",
+    "cancel_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38127628997/cancel",
+    "rerun_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38127628997/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/workflows/334347571",
+    "head_commit": {
+      "id": "0131449471a6a2ca936ad672b55351e5cfa4ee31",
+      "tree_id": "43709a60a1283872589fbf43227b2b195d502a19",
+      "message": "Use approved obesity and Start Here reading links in waist calculator (#1308)\n\nUse the approved obesity and Start Here links in the waist calculator",
+      "timestamp": "2026-10-11T09:13:55Z",
+      "author": {
+        "name": "shiftsometimber",
+        "email": "it@shiftsometimber.co.uk"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com"
+      }
+    },
+    "repository": {
+      "id": 1328867509,
+      "node_id": "R_kgDOTzTotQ",
+      "name": "shift-core",
+      "full_name": "shiftsometimber/shift-core",
+      "private": false,
+      "owner": {
+        "login": "shiftsometimber",
+        "id": 315011648,
+        "node_id": "U_kgDOEsayQA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/315011648?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/shiftsometimber",
+        "html_url": "https://github.com/shiftsometimber",
+        "followers_url": "https://api.github.com/users/shiftsometimber/followers",
+        "following_url": "https://api.github.com/users/shiftsometimber/following{/other_user}",
+        "gists_url": "https://api.github.com/users/shiftsometimber/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/shiftsometimber/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/shiftsometimber/subscriptions",
+        "organizations_url": "https://api.github.com/users/shiftsometimber/orgs",
+        "repos_url": "https://api.github.com/users/shiftsometimber/repos",
+        "events_url": "https://api.github.com/users/shiftsometimber/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/shiftsometimber/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/shiftsometimber/shift-core",
+      "description": null,
+      "fork": false,
+      "url": "https://api.github.com/repos/shiftsometimber/shift-core",
+      "forks_url": "https://api.github.com/repos/shiftsometimber/shift-core/forks",
+      "keys_url": "https://api.github.com/repos/shiftsometimber/shift-core/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/shiftsometimber/shift-core/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/shiftsometimber/shift-core/teams",
+      "hooks_url": "https://api.github.com/repos/shiftsometimber/shift-core/hooks",
+      "issue_events_url": "https://api.github.com/repos/shiftsometimber/shift-core/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/shiftsometimber/shift-core/events",
+      "assignees_url": "https://api.github.com/repos/shiftsometimber/shift-core/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/shiftsometimber/shift-core/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/shiftsometimber/shift-core/tags",
+      "blobs_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/shiftsometimber/shift-core/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/shiftsometimber/shift-core/languages",
+      "stargazers_url": "https://api.github.com/repos/shiftsometimber/shift-core/stargazers",
+      "contributors_url": "https://api.github.com/repos/shiftsometimber/shift-core/contributors",
+      "subscribers_url": "https://api.github.com/repos/shiftsometimber/shift-core/subscribers",
+      "subscription_url": "https://api.github.com/repos/shiftsometimber/shift-core/subscription",
+      "commits_url": "https://api.github.com/repos/shiftsometimber/shift-core/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/shiftsometimber/shift-core/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/shiftsometimber/shift-core/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/shiftsometimber/shift-core/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/shiftsometimber/shift-core/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/shiftsometimber/shift-core/merges",
+      "archive_url": "https://api.github.com/repos/shiftsometimber/shift-core/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/shiftsometimber/shift-core/downloads",
+      "issues_url": "https://api.github.com/repos/shiftsometimber/shift-core/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/shiftsometimber/shift-core/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/shiftsometimber/shift-core/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/shiftsometimber/shift-core/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/shiftsometimber/shift-core/labels{/name}",
+      "releases_url": "https://api.github.com/repos/shiftsometimber/shift-core/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/shiftsometimber/shift-core/deployments"
+    },
+    "head_repository": {
+      "id": 1328867509,
+      "node_id": "R_kgDOTzTotQ",
+      "name": "shift-core",
+      "full_name": "shiftsometimber/shift-core",
+      "private": false,
+      "owner": {
+        "login": "shiftsometimber",
+        "id": 315011648,
+        "node_id": "U_kgDOEsayQA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/315011648?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/shiftsometimber",
+        "html_url": "https://github.com/shiftsometimber",
+        "followers_url": "https://api.github.com/users/shiftsometimber/followers",
+        "following_url": "https://api.github.com/users/shiftsometimber/following{/other_user}",
+        "gists_url": "https://api.github.com/users/shiftsometimber/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/shiftsometimber/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/shiftsometimber/subscriptions",
+        "organizations_url": "https://api.github.com/users/shiftsometimber/orgs",
+        "repos_url": "https://api.github.com/users/shiftsometimber/repos",
+        "events_url": "https://api.github.com/users/shiftsometimber/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/shiftsometimber/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/shiftsometimber/shift-core",
+      "description": null,
+      "fork": false,
+      "url": "https://api.github.com/repos/shiftsometimber/shift-core",
+      "forks_url": "https://api.github.com/repos/shiftsometimber/shift-core/forks",
+      "keys_url": "https://api.github.com/repos/shiftsometimber/shift-core/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/shiftsometimber/shift-core/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/shiftsometimber/shift-core/teams",
+      "hooks_url": "https://api.github.com/repos/shiftsometimber/shift-core/hooks",
+      "issue_events_url": "https://api.github.com/repos/shiftsometimber/shift-core/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/shiftsometimber/shift-core/events",
+      "assignees_url": "https://api.github.com/repos/shiftsometimber/shift-core/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/shiftsometimber/shift-core/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/shiftsometimber/shift-core/tags",
+      "blobs_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/shiftsometimber/shift-core/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/shiftsometimber/shift-core/languages",
+      "stargazers_url": "https://api.github.com/repos/shiftsometimber/shift-core/stargazers",
+      "contributors_url": "https://api.github.com/repos/shiftsometimber/shift-core/contributors",
+      "subscribers_url": "https://api.github.com/repos/shiftsometimber/shift-core/subscribers",
+      "subscription_url": "https://api.github.com/repos/shiftsometimber/shift-core/subscription",
+      "commits_url": "https://api.github.com/repos/shiftsometimber/shift-core/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/shiftsometimber/shift-core/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/shiftsometimber/shift-core/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/shiftsometimber/shift-core/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/shiftsometimber/shift-core/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/shiftsometimber/shift-core/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/shiftsometimber/shift-core/merges",
+      "archive_url": "https://api.github.com/repos/shiftsometimber/shift-core/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/shiftsometimber/shift-core/downloads",
+      "issues_url": "https://api.github.com/repos/shiftsometimber/shift-core/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/shiftsometimber/shift-core/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/shiftsometimber/shift-core/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/shiftsometimber/shift-core/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/shiftsometimber/shift-core/labels{/name}",
+      "releases_url": "https://api.github.com/repos/shiftsometimber/shift-core/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/shiftsometimber/shift-core/deployments"
+    }
+  },
+  "job": {
+    "id": 114435239490,
+    "run_id": 38127628997,
+    "workflow_name": "Cloudflare Production Promote",
+    "head_branch": "main",
+    "run_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38127628997",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOTzTotc8AAAAapN8uQg",
+    "head_sha": "0131449471a6a2ca936ad672b55351e5cfa4ee31",
+    "url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/114435239490",
+    "html_url": "https://github.com/shiftsometimber/shift-core/actions/runs/38127628997/job/114435239490",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-10-11T09:14:16Z",
+    "started_at": "2026-10-11T09:14:18Z",
+    "completed_at": "2026-10-11T09:43:58Z",
+    "name": "promote",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-11T09:14:19Z",
+        "completed_at": "2026-10-11T09:14:20Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-11T09:14:20Z",
+        "completed_at": "2026-10-11T09:14:30Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-11T09:14:30Z",
+        "completed_at": "2026-10-11T09:14:35Z"
+      },
+      {
+        "name": "Fail closed when deploy credential is absent",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-11T09:14:35Z",
+        "completed_at": "2026-10-11T09:14:35Z"
+      },
+      {
+        "name": "Require recorded coaching launch decisions before production work",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-11T09:14:35Z",
+        "completed_at": "2026-10-11T09:15:17Z"
+      },
+      {
+        "name": "Require exact approved growth preview and release verification",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-11T09:15:17Z",
+        "completed_at": "2026-10-11T09:18:09Z"
+      },
+      {
+        "name": "Require the exact successful heading preview before production work",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-11T09:18:09Z",
+        "completed_at": "2026-10-11T09:18:10Z"
+      },
+      {
+        "name": "Require verified homepage speed candidate and current CSS bytes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-11T09:18:10Z",
+        "completed_at": "2026-10-11T09:18:10Z"
+      },
+      {
+        "name": "Install exact Wrangler toolchain",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-11T09:18:10Z",
+        "completed_at": "2026-10-11T09:18:14Z"
+      },
+      {
+        "name": "Recover only the evidenced cancelled runtime to the last verified release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-10-11T09:18:14Z",
+        "completed_at": "2026-10-11T09:18:56Z"
+      },
+      {
+        "name": "Prepare and launch verification browsers before deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-10-11T09:18:56Z",
+        "completed_at": "2026-10-11T09:19:14Z"
+      },
+      {
+        "name": "Adopt the exact already-completed growth deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-10-11T09:19:14Z",
+        "completed_at": "2026-10-11T09:20:17Z"
+      },
+      {
+        "name": "Verify B1 release scope before any production mutation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-10-11T09:20:17Z",
+        "completed_at": "2026-10-11T09:26:04Z"
+      },
+      {
+        "name": "Verify article retry, publication and notification contracts",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-10-11T09:26:04Z",
+        "completed_at": "2026-10-11T09:26:05Z"
+      },
+      {
+        "name": "Verify acquisition consent and same-account activation join",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-10-11T09:26:05Z",
+        "completed_at": "2026-10-11T09:27:16Z"
+      },
+      {
+        "name": "Verify five source-specific articles without changing unrelated pages",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16,
+        "started_at": "2026-10-11T09:27:16Z",
+        "completed_at": "2026-10-11T09:27:16Z"
+      },
+      {
+        "name": "Verify My Treatment schema preservation and release boundaries",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17,
+        "started_at": "2026-10-11T09:27:16Z",
+        "completed_at": "2026-10-11T09:27:16Z"
+      },
+      {
+        "name": "Verify member experience and Grub account integration",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-10-11T09:27:16Z",
+        "completed_at": "2026-10-11T09:27:24Z"
+      },
+      {
+        "name": "Verify Passport consent, migration and preservation before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19,
+        "started_at": "2026-10-11T09:27:24Z",
+        "completed_at": "2026-10-11T09:27:24Z"
+      },
+      {
+        "name": "Verify catalogue authority, additive publication guards and timing",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20,
+        "started_at": "2026-10-11T09:27:24Z",
+        "completed_at": "2026-10-11T09:27:58Z"
+      },
+      {
+        "name": "Verify reminder delivery and proactive acknowledgement before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21,
+        "started_at": "2026-10-11T09:27:58Z",
+        "completed_at": "2026-10-11T09:28:02Z"
+      },
+      {
+        "name": "Verify approved PWA, device consent and exact presentation preservation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22,
+        "started_at": "2026-10-11T09:28:02Z",
+        "completed_at": "2026-10-11T09:28:03Z"
+      },
+      {
+        "name": "Prove Daily Shift is a fluid one-thumb front door",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23,
+        "started_at": "2026-10-11T09:28:03Z",
+        "completed_at": "2026-10-11T09:28:03Z"
+      },
+      {
+        "name": "Prove My Timber has reached the 75 percent all-green bar",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-10-11T09:28:03Z",
+        "completed_at": "2026-10-11T09:28:03Z"
+      },
+      {
+        "name": "Prove the My Timber production candidate is complete",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-10-11T09:28:03Z",
+        "completed_at": "2026-10-11T09:28:03Z"
+      },
+      {
+        "name": "Prove signed-in members can reach the site and The Lounge",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-10-11T09:28:03Z",
+        "completed_at": "2026-10-11T09:28:03Z"
+      },
+      {
+        "name": "Verify security-check timeouts and retry before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-10-11T09:28:03Z",
+        "completed_at": "2026-10-11T09:28:03Z"
+      },
+      {
+        "name": "Prove persistent member login remains secure",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28,
+        "started_at": "2026-10-11T09:28:03Z",
+        "completed_at": "2026-10-11T09:28:04Z"
+      },
+      {
+        "name": "Prove Ask Timber handles every explicit request part",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29,
+        "started_at": "2026-10-11T09:28:04Z",
+        "completed_at": "2026-10-11T09:28:04Z"
+      },
+      {
+        "name": "Block SEO deployment regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30,
+        "started_at": "2026-10-11T09:28:04Z",
+        "completed_at": "2026-10-11T09:28:04Z"
+      },
+      {
+        "name": "Prove Health rendering, canonical uniqueness and public endpoint security",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-10-11T09:28:04Z",
+        "completed_at": "2026-10-11T09:28:05Z"
+      },
+      {
+        "name": "Prove My Journey end to end before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32,
+        "started_at": "2026-10-11T09:28:05Z",
+        "completed_at": "2026-10-11T09:28:06Z"
+      },
+      {
+        "name": "Prove medicine front door, commercial safety and full purchase lifecycle",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33,
+        "started_at": "2026-10-11T09:28:06Z",
+        "completed_at": "2026-10-11T09:28:06Z"
+      },
+      {
+        "name": "Verify Medicines Watch evidence, monitor and public isolation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 34,
+        "started_at": "2026-10-11T09:28:06Z",
+        "completed_at": "2026-10-11T09:28:24Z"
+      },
+      {
+        "name": "Verify Radar retrieval, publication edition, dates and correction races",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 35,
+        "started_at": "2026-10-11T09:28:24Z",
+        "completed_at": "2026-10-11T09:28:27Z"
+      },
+      {
+        "name": "Verify owner-authorised automatic news and human-decision preservation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 36,
+        "started_at": "2026-10-11T09:28:27Z",
+        "completed_at": "2026-10-11T09:28:27Z"
+      },
+      {
+        "name": "Verify newsroom publication ordering and combined controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 37,
+        "started_at": "2026-10-11T09:28:27Z",
+        "completed_at": "2026-10-11T09:28:28Z"
+      },
+      {
+        "name": "Verify BabyLoveGrowth intake and exact approved public article",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 38,
+        "started_at": "2026-10-11T09:28:28Z",
+        "completed_at": "2026-10-11T09:28:29Z"
+      },
+      {
+        "name": "Verify HQ article schema and retained editorial approvals",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 39,
+        "started_at": "2026-10-11T09:28:29Z",
+        "completed_at": "2026-10-11T09:28:30Z"
+      },
+      {
+        "name": "Verify exact current main before production mutations",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 40,
+        "started_at": "2026-10-11T09:28:30Z",
+        "completed_at": "2026-10-11T09:28:31Z"
+      },
+      {
+        "name": "Verify discovery privacy, crisis and reporting regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 41,
+        "started_at": "2026-10-11T09:28:31Z",
+        "completed_at": "2026-10-11T09:28:31Z"
+      },
+      {
+        "name": "Apply pharmacy-readiness database additions",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 42,
+        "started_at": "2026-10-11T09:28:31Z",
+        "completed_at": "2026-10-11T09:28:31Z"
+      },
+      {
+        "name": "Initialise Medicines Watch source observations",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 43,
+        "started_at": "2026-10-11T09:28:31Z",
+        "completed_at": "2026-10-11T09:28:31Z"
+      },
+      {
+        "name": "Initialise reviewed Medicines Watch expansion observations",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 44,
+        "started_at": "2026-10-11T09:28:31Z",
+        "completed_at": "2026-10-11T09:31:57Z"
+      },
+      {
+        "name": "Publish only the exact previously authorised Grub recipe expansion",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 45,
+        "started_at": "2026-10-11T09:31:57Z",
+        "completed_at": "2026-10-11T09:31:57Z"
+      },
+      {
+        "name": "Verify existing production food catalogue without account writes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 46,
+        "started_at": "2026-10-11T09:31:57Z",
+        "completed_at": "2026-10-11T09:32:02Z"
+      },
+      {
+        "name": "Verify the isolated Evidence Inbox connection without writes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 47,
+        "started_at": "2026-10-11T09:32:02Z",
+        "completed_at": "2026-10-11T09:32:07Z"
+      },
+      {
+        "name": "Verify retained SHIFT interpretations throughout the archive",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 48,
+        "started_at": "2026-10-11T09:32:07Z",
+        "completed_at": "2026-10-11T09:32:41Z"
+      },
+      {
+        "name": "Verify AI Gateway budgets before production deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 49,
+        "started_at": "2026-10-11T09:32:41Z",
+        "completed_at": "2026-10-11T09:32:42Z"
+      },
+      {
+        "name": "Capture AI frontend and aggregate knowledge foundation before release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 50,
+        "started_at": "2026-10-11T09:32:42Z",
+        "completed_at": "2026-10-11T09:34:16Z"
+      },
+      {
+        "name": "Prove public tool checks and guarded rollback in isolation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 51,
+        "started_at": "2026-10-11T09:34:16Z",
+        "completed_at": "2026-10-11T09:35:01Z"
+      },
+      {
+        "name": "Capture current Worker deployment for rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 52,
+        "started_at": "2026-10-11T09:35:01Z",
+        "completed_at": "2026-10-11T09:35:04Z"
+      },
+      {
+        "name": "Seed recent discovery snapshots without publishing or sending notifications",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 53,
+        "started_at": "2026-10-11T09:35:04Z",
+        "completed_at": "2026-10-11T09:35:04Z"
+      },
+      {
+        "name": "Capture current public pages before this member release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 54,
+        "started_at": "2026-10-11T09:35:04Z",
+        "completed_at": "2026-10-11T09:35:05Z"
+      },
+      {
+        "name": "Retain rollback deployment record",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 55,
+        "started_at": "2026-10-11T09:35:05Z",
+        "completed_at": "2026-10-11T09:35:06Z"
+      },
+      {
+        "name": "Prepare exact additive Passport schema and rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 56,
+        "started_at": "2026-10-11T09:35:06Z",
+        "completed_at": "2026-10-11T09:35:09Z"
+      },
+      {
+        "name": "Prepare additive daily check-in feedback store",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 57,
+        "started_at": "2026-10-11T09:35:09Z",
+        "completed_at": "2026-10-11T09:35:09Z"
+      },
+      {
+        "name": "Capture protected catalogue and stock without customer records",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 58,
+        "started_at": "2026-10-11T09:35:09Z",
+        "completed_at": "2026-10-11T09:36:42Z"
+      },
+      {
+        "name": "Prepare only the explicitly approved Member Details contact table",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 59,
+        "started_at": "2026-10-11T09:36:42Z",
+        "completed_at": "2026-10-11T09:38:15Z"
+      },
+      {
+        "name": "Prepare the exact additive signup-alert delivery store",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 60,
+        "started_at": "2026-10-11T09:38:15Z",
+        "completed_at": "2026-10-11T09:39:44Z"
+      },
+      {
+        "name": "Prepare exact additive My Treatment stores",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 61,
+        "started_at": "2026-10-11T09:39:44Z",
+        "completed_at": "2026-10-11T09:41:14Z"
+      },
+      {
+        "name": "Index existing public SHIFT pages for AI without publishing website content",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 62,
+        "started_at": "2026-10-11T09:41:14Z",
+        "completed_at": "2026-10-11T09:41:14Z"
+      },
+      {
+        "name": "Deploy current main to production",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 63,
+        "started_at": "2026-10-11T09:41:14Z",
+        "completed_at": "2026-10-11T09:42:58Z"
+      },
+      {
+        "name": "Begin verification of the deployed runtime",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 64,
+        "started_at": "2026-10-11T09:42:58Z",
+        "completed_at": "2026-10-11T09:42:58Z"
+      },
+      {
+        "name": "Restore the exact approved version after the evidenced harness-only rollback",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 65,
+        "started_at": "2026-10-11T09:42:58Z",
+        "completed_at": "2026-10-11T09:42:58Z"
+      },
+      {
+        "name": "Wait briefly for route propagation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 66,
+        "started_at": "2026-10-11T09:42:58Z",
+        "completed_at": "2026-10-11T09:43:08Z"
+      },
+      {
+        "name": "Verify nine public tool pages against the owned deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 67,
+        "started_at": "2026-10-11T09:43:08Z",
+        "completed_at": "2026-10-11T09:43:10Z"
+      },
+      {
+        "name": "Verify calculator journeys and specific tool guidance live",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 68,
+        "started_at": "2026-10-11T09:43:10Z",
+        "completed_at": "2026-10-11T09:43:45Z"
+      },
+      {
+        "name": "Verify rendered knowledge headings and direct About link live",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 69,
+        "started_at": "2026-10-11T09:43:45Z",
+        "completed_at": "2026-10-11T09:43:45Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 70,
+        "started_at": "2026-10-11T09:43:45Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Verify exact live app assets and website isolation",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 71,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Verify approved growth copy live on desktop and phone viewport",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 72,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Measure and retain live homepage mobile speed",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 73,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 74,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Verify live AI knowledge, response timing and exact reviewed chat assets",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 75,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Verify exact Member Details and frontend repair delivery",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 76,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Publish the exact owner-approved illustrated Wegovy guide",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 77,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Publish the reconciled oral semaglutide guide",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 78,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Verify the reconciled oral semaglutide guide",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 79,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Verify the Wegovy guide, three images, author, Knowledge listing and sitemap",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 80,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Verify five revised articles, metadata, downloads and sitemap on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 81,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Retain five-article live proof",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 82,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Prove activated Passport delivery and private routes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 83,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Verify live My Treatment delivery and private APIs",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 84,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:46Z"
+      },
+      {
+        "name": "Retain Passport migration and live evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 85,
+        "started_at": "2026-10-11T09:43:46Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Publish only the fixed owner-authorised catalogue when approved",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 86,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Publish the exact owner-authorised newsroom batch when approved",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 87,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Prove existing public content and login asset are preserved outside exact approved additions",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 88,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Prove public Life Back, food-noise guidance and their linked journeys",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 89,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Verify approved Programme day and catalogue artwork live",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 90,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Prove newsroom publication order on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 91,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Verify SHIFT take labels and original dates on every live news article",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 92,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Prove exact member scripts and authentication on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 93,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Verify exact PWA assets, full-account entry and device privacy on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 94,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Prove Medicines Watch and its source checks on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 95,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Verify live access sources without granting clinical review for Orders display",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 96,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Verify the six reviewed SEO pages and their linked destinations live",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 97,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 98,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Prove the complete SEO closeout on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 99,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Prove repaired templates, sharing cards, direct links and real FAQ destinations",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 100,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Prove automatic article metadata and the shared security policy",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 101,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Record independent public HTTP latency after promotion",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 102,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:47Z"
+      },
+      {
+        "name": "Retain public preservation evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 103,
+        "started_at": "2026-10-11T09:43:47Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Prove deployed public audit repairs",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 104,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Prove discovery repair source and anonymous boundaries on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 105,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Retain discovery repair live proof",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 106,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Prove deployed Progress client matches current Git authority",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 107,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Record Radar metadata repair and remaining source failures without writes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 108,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Retain Radar diagnosis after deployment",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 109,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Prove newer restricted routes are on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 110,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Prove Shift Me premium static assets are actually published",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 111,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Prove SHIFT Health editorial imagery is actually published",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 112,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Verify B1 protected catalogue and stock remain identical",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 113,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:48Z"
+      },
+      {
+        "name": "Restore the captured runtime if a post-deployment gate failed",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 114,
+        "started_at": "2026-10-11T09:43:48Z",
+        "completed_at": "2026-10-11T09:43:52Z"
+      },
+      {
+        "name": "Verify nine public tool pages after owned rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 115,
+        "started_at": "2026-10-11T09:43:52Z",
+        "completed_at": "2026-10-11T09:43:55Z"
+      },
+      {
+        "name": "Verify query-string log redaction after deployment or rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 116,
+        "started_at": "2026-10-11T09:43:55Z",
+        "completed_at": "2026-10-11T09:43:55Z"
+      },
+      {
+        "name": "Record public tool verification status before retaining evidence",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 117,
+        "started_at": "2026-10-11T09:43:55Z",
+        "completed_at": "2026-10-11T09:43:55Z"
+      },
+      {
+        "name": "Retain B1 runtime-only release evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 118,
+        "started_at": "2026-10-11T09:43:55Z",
+        "completed_at": "2026-10-11T09:43:56Z"
+      },
+      {
+        "name": "Report final public tool release status",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 119,
+        "started_at": "2026-10-11T09:43:56Z",
+        "completed_at": "2026-10-11T09:43:56Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 237,
+        "started_at": "2026-10-11T09:43:56Z",
+        "completed_at": "2026-10-11T09:43:56Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 238,
+        "started_at": "2026-10-11T09:43:56Z",
+        "completed_at": "2026-10-11T09:43:56Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 239,
+        "started_at": "2026-10-11T09:43:56Z",
+        "completed_at": "2026-10-11T09:43:56Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/shiftsometimber/shift-core/check-runs/114435239490",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000030269,
+    "runner_name": "GitHub Actions 1000030269",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "logs": "{\"kind\":\"owned_runtime_deployment\",\"at\":\"2026-10-11T09:42:57.154Z\",\"source\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\",\"run\":\"38127628997\",\"deploymentId\":\"85e987ee-13e8-45b5-9e72-3944aba9cb32\",\"versionId\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\",\"previousDeploymentId\":\"c5c40b92-6797-4e15-aa96-191b705ddb59\",\"previousVersionId\":\"7bd43656-c15c-457a-ba87-5e6fb425ce48\",\"dataRestored\":false}\n{\"kind\":\"guarded_release_verification\",\"source\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\",\"run\":\"38127628997\",\"workflowStatus\":\"failure\",\"releaseVerified\":false,\"status\":\"failed\",\"deployedVersion\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\",\"deployChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"deploy\",\"source\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\",\"run\":\"38127628997\",\"checkedAt\":\"2026-10-11T09:43:08.090Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"85e987ee-13e8-45b5-9e72-3944aba9cb32\",\"versionId\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\",\"percentage\":100},\"expected\":{\"deploymentId\":\"85e987ee-13e8-45b5-9e72-3944aba9cb32\",\"versionId\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\"},\"afterChecks\":{\"deploymentId\":\"85e987ee-13e8-45b5-9e72-3944aba9cb32\",\"versionId\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\",\"percentage\":100},\"finishedAt\":\"2026-10-11T09:43:10.879Z\"},\"rollbackChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"rollback\",\"source\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\",\"run\":\"38127628997\",\"checkedAt\":\"2026-10-11T09:43:52.471Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"d903e170f5450da9490f65f40ba0bdfcfe452e5c382e59fd8d2ef69a6cf99b69\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"b6a002f3-055f-450a-9b31-b6130404950c\",\"versionId\":\"7bd43656-c15c-457a-ba87-5e6fb425ce48\",\"percentage\":100},\"expected\":{\"deploymentId\":\"c5c40b92-6797-4e15-aa96-191b705ddb59\",\"versionId\":\"7bd43656-c15c-457a-ba87-5e6fb425ce48\",\"percentage\":100,\"checkSource\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\"},\"deploymentSource\":\"captured prior runtime; see deployment-before.json\",\"afterChecks\":{\"deploymentId\":\"b6a002f3-055f-450a-9b31-b6130404950c\",\"versionId\":\"7bd43656-c15c-457a-ba87-5e6fb425ce48\",\"percentage\":100},\"finishedAt\":\"2026-10-11T09:43:55.085Z\"},\"note\":\"Rollback checks do not turn the failed release into a verified release.\"}\n{\"kind\":\"guarded_release_verification\",\"source\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\",\"run\":\"38127628997\",\"workflowStatus\":\"failure\",\"releaseVerified\":false,\"status\":\"failed\",\"deployedVersion\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\",\"deployChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"deploy\",\"source\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\",\"run\":\"38127628997\",\"checkedAt\":\"2026-10-11T09:43:08.090Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"85e987ee-13e8-45b5-9e72-3944aba9cb32\",\"versionId\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\",\"percentage\":100},\"expected\":{\"deploymentId\":\"85e987ee-13e8-45b5-9e72-3944aba9cb32\",\"versionId\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\"},\"afterChecks\":{\"deploymentId\":\"85e987ee-13e8-45b5-9e72-3944aba9cb32\",\"versionId\":\"ae3eb1f5-061e-429e-97cb-af78ded2e6e3\",\"percentage\":100},\"finishedAt\":\"2026-10-11T09:43:10.879Z\"},\"rollbackChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"rollback\",\"source\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\",\"run\":\"38127628997\",\"checkedAt\":\"2026-10-11T09:43:52.471Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"d903e170f5450da9490f65f40ba0bdfcfe452e5c382e59fd8d2ef69a6cf99b69\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"b6a002f3-055f-450a-9b31-b6130404950c\",\"versionId\":\"7bd43656-c15c-457a-ba87-5e6fb425ce48\",\"percentage\":100},\"expected\":{\"deploymentId\":\"c5c40b92-6797-4e15-aa96-191b705ddb59\",\"versionId\":\"7bd43656-c15c-457a-ba87-5e6fb425ce48\",\"percentage\":100,\"checkSource\":\"0131449471a6a2ca936ad672b55351e5cfa4ee31\"},\"deploymentSource\":\"captured prior runtime; see deployment-before.json\",\"afterChecks\":{\"deploymentId\":\"b6a002f3-055f-450a-9b31-b6130404950c\",\"versionId\":\"7bd43656-c15c-457a-ba87-5e6fb425ce48\",\"percentage\":100},\"finishedAt\":\"2026-10-11T09:43:55.085Z\"},\"note\":\"Rollback checks do not turn the failed release into a verified release.\"}\nCurrent Version ID: 7bd43656-c15c-457a-ba87-5e6fb425ce48",
+  "priorProof": {
+    "run": 38125005838,
+    "source": "5753da269d0f5f45b7ad572dc7ecde73e2c0fde9",
+    "version": "7bd43656-c15c-457a-ba87-5e6fb425ce48",
+    "deployment": "c5c40b92-6797-4e15-aa96-191b705ddb59"
+  }
+}
