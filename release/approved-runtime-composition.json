@@ -2128,5 +2128,43 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchProgrammeSummaryReleaseGuardRepair": {
+    "proof": "EXACT_WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_REPAIR_V1",
+    "base": "a9d34638b8adaf5f326391bbf93c7af6ce0432ef",
+    "source": "1997dcd37301acb8de3d27a763361ca6a775d45a",
+    "maintenanceSource": "14d50ec1cfcfd99bd8f4ba66844fc1c5920388fd",
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-programme-summary-release-guard-repair-composition.test.mjs"
+    ],
+    "approvedPR": 1317,
+    "integrationIssue": 1065,
+    "failedRun": 38114045551,
+    "failedJob": 114395315656,
+    "failedStep": 13,
+    "releaseReachedProduction": false,
+    "failureGate": "Verify B1 release scope before any production mutation",
+    "failureCause": "release meta-test did not recognise programme-summary queue source drift wording",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
