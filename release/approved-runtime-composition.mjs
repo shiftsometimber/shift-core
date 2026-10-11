@@ -1711,6 +1711,25 @@ export function verifyWaistKeyboardSettle(c,{head,read,diff,ancestor,content=(re
  return c;
 }
 
+// Retain only the authenticated rollback of PR1308; never adopt an unknown runtime.
+export const WAIST_ROLLBACK_BASE='2a192db7a52b90e02a7b46d06d7d119e49fdc7ed';
+export const WAIST_ROLLBACK_SOURCE='0aea912d1e909694282f1ddee534a0c0bfa7ce43';
+export const WAIST_ROLLBACK_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','tests/waist-rollback-retention.test.mjs','tests/fixtures/waist-reading-strip-rollback-38127628997.json']);
+export const WAIST_ROLLBACK_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/waist-rollback-composition.test.mjs']);
+const WAIST_ROLLBACK_SET=new Set([...WAIST_ROLLBACK_PATHS,...WAIST_ROLLBACK_MAINTENANCE]);
+for(const path of WAIST_ROLLBACK_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_PR1308_AUTHENTICATED_ROLLBACK_RETENTION_20261011');assert.equal(c.base,WAIST_ROLLBACK_BASE);assert.equal(c.source,WAIST_ROLLBACK_SOURCE);
+ assert.deepEqual(c.paths,WAIST_ROLLBACK_PATHS);assert.deepEqual(c.maintenancePaths,WAIST_ROLLBACK_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.integrationIssue,1065);assert.equal(c.originalPR,1308);assert.equal(c.failedRun,38127628997);
+ for(const flag of ['publicPayloadChanged','homepageChanged','calculatorChanged','medicalClaimsChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated waist rollback retention payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated waist rollback retention maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after rollback retention receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.waistRollbackRetention;assert.deepEqual(current,prior,'Prior release receipts changed by rollback retention');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Waist rollback retention source drift / Hub-v2 bounded transport and rollback chain source drift / Hub-v2 exact rollback receipt source drift / Hub-v2 source drift / Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Waist rollback retention maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -1733,10 +1752,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const waistRollbackRetention=c.waistRollbackRetention;
+ if(waistRollbackRetention)verifyWaistRollbackRetention(waistRollbackRetention,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preWaistRollbackHead=waistRollbackRetention?waistRollbackRetention.base:actualHead;
+ const waistRollbackRawBlob=(ref,path)=>outerRawBlob(waistRollbackRetention&&ref==='HEAD'&&WAIST_ROLLBACK_SET.has(path)?waistRollbackRetention.base:ref,path);
  const waistKeyboardSettle=c.waistKeyboardSettle;
- if(waistKeyboardSettle)verifyWaistKeyboardSettle(waistKeyboardSettle,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preWaistSettleHead=waistKeyboardSettle?waistKeyboardSettle.base:actualHead;
- const waistSettleRawBlob=(ref,path)=>outerRawBlob(waistKeyboardSettle&&ref==='HEAD'&&WAIST_SETTLE_SET.has(path)?waistKeyboardSettle.base:ref,path);
+ if(waistKeyboardSettle)verifyWaistKeyboardSettle(waistKeyboardSettle,{head:preWaistRollbackHead,read:waistRollbackRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preWaistSettleHead=waistKeyboardSettle?waistKeyboardSettle.base:preWaistRollbackHead;
+ const waistSettleRawBlob=(ref,path)=>waistRollbackRawBlob(waistKeyboardSettle&&ref==='HEAD'&&WAIST_SETTLE_SET.has(path)?waistKeyboardSettle.base:ref,path);
  const waistReadingStrip=c.waistReadingStrip;
  if(waistReadingStrip)verifyWaistReadingStrip(waistReadingStrip,{head:preWaistSettleHead,read:waistSettleRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preWaistStripHead=waistReadingStrip?waistReadingStrip.base:preWaistSettleHead;
