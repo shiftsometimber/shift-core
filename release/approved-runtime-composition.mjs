@@ -1730,6 +1730,31 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// Finite release-meta repair for the Alnylam discovery receipt. The inner
+// byte pin already failed closed; this only teaches the outer regression test
+// the receipt's exact drift label.
+export const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_BASE='521058604747c4819709251aa36ddfaaac376a88';
+export const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SOURCE='8ac8e6d98df3a0a0c3f27a3f44c0175fd3ff4c8b';
+export const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-alnylam-release-guard-repair-composition.test.mjs']);
+const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SET=new Set([...WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_PATHS,...WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_MAINTENANCE]);
+for(const path of WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchAlnylamReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_V1');assert.equal(c.base,WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_BASE);assert.equal(c.source,WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1327);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38158492201);assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.releaseReachedProduction,false);
+ assert.equal(c.repair,'recognise exact Alnylam RNAi discovery drift label');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Alnylam release-guard repair source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Alnylam release-guard repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Alnylam release-guard repair');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchAlnylamReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by Alnylam release-guard repair registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Alnylam release-guard repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Alnylam release-guard repair maintenance source drift: '+path);
+ return c;
+}
+
 // Finite PR1326 discovery publication. Evidence stays manual until complete registry review.
 export const WATCH_ALNYLAM_RNAI_BASE='15ed39a78d29d97f26feb020328e03d4d02ff070';
 export const WATCH_ALNYLAM_RNAI_SOURCE='b42a72e40415e4ebb9ae362cc34bc9ffc836e686';
@@ -1833,10 +1858,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchAlnylamReleaseGuardRepair=c.watchAlnylamReleaseGuardRepair;
+ if(watchAlnylamReleaseGuardRepair)verifyWatchAlnylamReleaseGuardRepair(watchAlnylamReleaseGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAlnylamReleaseGuardRepairHead=watchAlnylamReleaseGuardRepair?watchAlnylamReleaseGuardRepair.base:actualHead;
+ const alnylamReleaseGuardRepairRawBlob=(ref,path)=>outerRawBlob(watchAlnylamReleaseGuardRepair&&ref==='HEAD'&&WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SET.has(path)?watchAlnylamReleaseGuardRepair.base:ref,path);
  const watchAlnylamRnaiDiscovery=c.watchAlnylamRnaiDiscovery;
- if(watchAlnylamRnaiDiscovery)verifyWatchAlnylamRnaiDiscovery(watchAlnylamRnaiDiscovery,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preAlnylamHead=watchAlnylamRnaiDiscovery?watchAlnylamRnaiDiscovery.base:actualHead;
- const alnylamRawBlob=(ref,path)=>outerRawBlob(watchAlnylamRnaiDiscovery&&ref==='HEAD'&&WATCH_ALNYLAM_RNAI_SET.has(path)?watchAlnylamRnaiDiscovery.base:ref,path);
+ if(watchAlnylamRnaiDiscovery)verifyWatchAlnylamRnaiDiscovery(watchAlnylamRnaiDiscovery,{head:preAlnylamReleaseGuardRepairHead,read:alnylamReleaseGuardRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAlnylamHead=watchAlnylamRnaiDiscovery?watchAlnylamRnaiDiscovery.base:preAlnylamReleaseGuardRepairHead;
+ const alnylamRawBlob=(ref,path)=>alnylamReleaseGuardRepairRawBlob(watchAlnylamRnaiDiscovery&&ref==='HEAD'&&WATCH_ALNYLAM_RNAI_SET.has(path)?watchAlnylamRnaiDiscovery.base:ref,path);
  const watchAzelapragRenewal=c.watchAzelapragRenewal;
  if(watchAzelapragRenewal)verifyWatchAzelapragRenewal(watchAzelapragRenewal,{head:preAlnylamHead,read:alnylamRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preAzelapragHead=watchAzelapragRenewal?watchAzelapragRenewal.base:preAlnylamHead;
