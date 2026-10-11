@@ -1667,6 +1667,30 @@ export function verifyWatchTwoSourceFreshness(c,{head,read,diff,ancestor,content
  return c;
 }
 
+// Exact Matt-approved two-link reading strip; all prior receipts remain intact.
+export const WAIST_STRIP_BASE='5753da269d0f5f45b7ad572dc7ecde73e2c0fde9';
+export const WAIST_STRIP_SOURCE='1b2591ab02aa7079754808835164ae50090fd58d';
+export const WAIST_STRIP_APPROVED='8ec727ef20a055b9bff5eb2e45e23e3b59bfae5e';
+export const WAIST_STRIP_PATHS=Object.freeze(['obesity-awareness/candidate.mjs','obesity-awareness/waist-reading-strip.test.mjs']);
+export const WAIST_STRIP_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/waist-reading-strip-composition.test.mjs','scripts/verify-tool-calculators-browser.cjs']);
+const WAIST_STRIP_SET=new Set([...WAIST_STRIP_PATHS,...WAIST_STRIP_MAINTENANCE]);
+for(const path of WAIST_STRIP_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWaistReadingStrip(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_APPROVED_WAIST_READING_STRIP_20261011');
+ assert.equal(c.base,WAIST_STRIP_BASE);assert.equal(c.source,WAIST_STRIP_SOURCE);assert.equal(c.approvedCandidateHead,WAIST_STRIP_APPROVED);
+ assert.deepEqual(c.paths,WAIST_STRIP_PATHS);assert.deepEqual(c.maintenancePaths,WAIST_STRIP_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.approvedPR,1308);assert.equal(c.publicationStatus,'exact_two_links_authorised_by_Matt_20261011');
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','medicalClaimsChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.approvedCandidateHead,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated waist reading-strip payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated waist reading-strip maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after waist strip receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.waistReadingStrip;assert.deepEqual(current,prior,'Prior release receipts changed by waist strip');
+ for(const path of c.paths){assert.equal(read(c.source,path),read(c.approvedCandidateHead,path),'Exact approved original PR payload required: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Waist reading-strip source drift / Hub-v2 scoped repair source drift: '+path);}
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Waist reading-strip maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -1689,10 +1713,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const waistReadingStrip=c.waistReadingStrip;
+ if(waistReadingStrip)verifyWaistReadingStrip(waistReadingStrip,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preWaistStripHead=waistReadingStrip?waistReadingStrip.base:actualHead;
+ const waistStripRawBlob=(ref,path)=>outerRawBlob(waistReadingStrip&&ref==='HEAD'&&WAIST_STRIP_SET.has(path)?waistReadingStrip.base:ref,path);
  const twoSourceReleaseGuardRepair=c.watchTwoSourceFreshnessReleaseGuardRepair;
- if(twoSourceReleaseGuardRepair)verifyWatchTwoSourceReleaseGuardRepair(twoSourceReleaseGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preTwoSourceReleaseGuardRepairHead=twoSourceReleaseGuardRepair?twoSourceReleaseGuardRepair.base:actualHead;
- const twoSourceReleaseGuardRepairRawBlob=(ref,path)=>outerRawBlob(twoSourceReleaseGuardRepair&&ref==='HEAD'&&WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_SET.has(path)?twoSourceReleaseGuardRepair.base:ref,path);
+ if(twoSourceReleaseGuardRepair)verifyWatchTwoSourceReleaseGuardRepair(twoSourceReleaseGuardRepair,{head:preWaistStripHead,read:waistStripRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preTwoSourceReleaseGuardRepairHead=twoSourceReleaseGuardRepair?twoSourceReleaseGuardRepair.base:preWaistStripHead;
+ const twoSourceReleaseGuardRepairRawBlob=(ref,path)=>waistStripRawBlob(twoSourceReleaseGuardRepair&&ref==='HEAD'&&WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_SET.has(path)?twoSourceReleaseGuardRepair.base:ref,path);
  const twoSourceFreshness=c.watchTwoSourceFreshness;
  if(twoSourceFreshness)verifyWatchTwoSourceFreshness(twoSourceFreshness,{head:preTwoSourceReleaseGuardRepairHead,read:twoSourceReleaseGuardRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preTwoSourceFreshnessHead=twoSourceFreshness?twoSourceFreshness.base:preTwoSourceReleaseGuardRepairHead;
