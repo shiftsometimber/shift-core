@@ -1,0 +1,39 @@
+{
+  "reviewedAt": "2026-10-11T02:05:33Z",
+  "baseCommit": "8771788490ffda619dc224872b18d2280d6429b1",
+  "reviewType": "Bounded overdue factual review and existing review-date reconciliation",
+  "editorialAuthorisation": "Matt's standing authority covers evidence-backed informational Watch updates. This is not clinical approval.",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "source": {
+    "id": "registry-nct07557355",
+    "url": "https://clinicaltrials.gov/study/NCT07557355",
+    "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07557355",
+    "sourcePublishedAt": "2026-04-29",
+    "sourceUpdatedAt": "2026-06-05",
+    "reviewedAt": "2026-10-11T02:05:33Z",
+    "rawResponseSha256": "d4f14b1cfb7f1cf8ba46e92cd2c75ed2c0176122c88ae14dd11479af9bb3f63a",
+    "reviewedFingerprint": "e4b8ca47dacfa96f9538950cbaba9400b913ea1a32f34dcae1e01d7c679f7d64",
+    "assessment": "The complete current sponsor-submitted API record was retrieved and read. It remains NOT_YET_RECRUITING, Phase 1/2, with an estimated June 2026 start, 78 estimated participants, estimated October 2027 primary and overall completion, and no posted results. Its claim fingerprint is unchanged."
+  },
+  "sponsorEvidence": {
+    "originalUrl": "https://siriusrna.com/html/companynews/119.html",
+    "reviewUrl": "https://www.siriusrna.com/html/companynews/119.html",
+    "sourcePublishedAt": "2026-07-01",
+    "sourceUpdatedAt": null,
+    "reviewedAt": "2026-10-11T02:05:33Z",
+    "rawResponseSha256": "e081595dbfc1aee9a2b2ae4919d0455860f025f6dd73f7858b4a256878e49bf9",
+    "access": "The original no-www route returned HTTP 502 during this review. The official www route returned the complete company announcement and was used instead of repeatedly retrying the failed route.",
+    "assessment": "The complete original sponsor announcement still reports first participant dosing, Australian Phase 1/2a research, Part A monotherapy and Part B combination with tirzepatide in participants with type 2 diabetes, with interim data planned for the first half of 2027. Sponsor statements about fat reduction and muscle preservation remain development aims informed by genetics and preclinical work, not demonstrated human outcomes."
+  },
+  "finding": "The registry-versus-sponsor discrepancy remains unresolved and both dated accounts must stay visible. The review does not infer recruitment from first dosing, convert estimated dates to completed events, establish efficacy or safety, approve a combination regimen, or establish UK authorisation, NICE/NHS access or actual supply.",
+  "publication": {
+    "programmeWordingChanged": false,
+    "programmeCountChanged": false,
+    "configuredSourceCountChanged": false,
+    "reviewDateRenewed": true,
+    "kaileraReconciliation": "The already completed 10 October Kailera reviews are connected to their two monitored source records using the existing immutable official-alternatives receipt; no evidence or wording is rereviewed or changed.",
+    "zp6590": "Remains verification_pending and check_delayed. This review does not alter or certify the blocked Zealand pipeline source.",
+    "monitoring": "Recurring source freshness and broader discovery remain open."
+  }
+}

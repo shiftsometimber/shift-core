@@ -2,6 +2,12 @@
 
 Public route: `/treatment-centre/medicines-watch`. Entry point is Treatments only. No member or My Timber integration. This is a continuously expanding selected weight-management reference, not an exhaustive medicine database, prescribing tool, stock service or recommendation ranking.
 
+## 11 October SRSD384 review renewal and source-date reconciliation
+
+`reviews/2026-10-11-authorised-srsd384-renewal.json` records a complete rereview of the SRSD384 ClinicalTrials.gov API record after its seven-day factual-review window expired. The registry remains not yet recruiting with an estimated June 2026 start, 78 estimated participants, estimated October 2027 completion and no posted results. Sirius's complete 1 July sponsor announcement was read through its working official `www` route after the no-`www` endpoint returned HTTP 502. It still reports first participant dosing. The two dated accounts remain visibly discrepant; neither is silently used to overwrite the other.
+
+The programme wording and claim fingerprint remain unchanged. Only the affected registry source and SRSD384 evidence-summary review dates advance. The same bounded repair connects the already completed 10 October Kailera reviews in `reviews/2026-10-10-authorised-official-alternatives.json` to their two configured monitor records; it does not repeat those reviews or alter Kailera wording. Programme and source counts, UK authorisation, NICE/NHS access, actual supply and clinical approval remain unchanged. ZP6590 remains both `verification_pending` and `check_delayed`, and recurring freshness and discovery remain open.
+
 ## 10 October oral VK2735 Phase 3 and zenagamtide switching records
 
 `reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json` records full review of three sponsor-submitted ClinicalTrials.gov records first posted on 9 October. SUNRISE 1 and SUNRISE 2 are separate oral VK2735 Phase III studies in adults without and with type 2 diabetes. Each plans 560 participants and remains not yet recruiting. A separate Phase I study plans to assess tolerability when 60 adults switch from maintenance tirzepatide to subcutaneous zenagamtide; it also remains not yet recruiting.

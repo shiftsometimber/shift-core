@@ -942,6 +942,31 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Renew the overdue SRSD384 registry review and connect already completed
+// Kailera review evidence without changing any medicine wording or monitor baseline.
+export const WATCH_SRSD384_RENEWAL_BASE='8771788490ffda619dc224872b18d2280d6429b1';
+export const WATCH_SRSD384_RENEWAL_SOURCE='41981196461ceaa77c08f6470ec1b5300c49575a';
+export const WATCH_SRSD384_RENEWAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/industry.mjs','medicines-watch/reviews/2026-10-11-authorised-srsd384-renewal.json','medicines-watch/srsd384-renewal.test.mjs']);
+export const WATCH_SRSD384_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','tests/watch-srsd384-renewal-composition.test.mjs']);
+const WATCH_SRSD384_RENEWAL_SET=new Set([...WATCH_SRSD384_RENEWAL_PATHS,...WATCH_SRSD384_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_SRSD384_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchSrsd384Renewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_SRSD384_RENEWAL_V1');assert.equal(c.base,WATCH_SRSD384_RENEWAL_BASE);assert.equal(c.source,WATCH_SRSD384_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_SRSD384_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_SRSD384_RENEWAL_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1313);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.equal(c.sourceReviewsApplied,1);assert.equal(c.existingKaileraReviewsConnected,2);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.trialRecordsAfter,137);
+ assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['programmeWordingChanged','programmeCountChanged','configuredSourceCountChanged','registryStatusChanged','sponsorClaimChanged','resultsClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated SRSD384 review-renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated SRSD384 review-renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after SRSD384 review-renewal receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchSrsd384Renewal;assert.deepEqual(current,prior,'Prior release receipts changed by SRSD384 review-renewal registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'SRSD384 review-renewal source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'SRSD384 review-renewal maintenance source drift: '+path);
+ return c;
+}
+
 // Register three newly posted primary trial records without treating estimated
 // starts as actual recruitment, results or clinical switching guidance.
 export const WATCH_VK2735_ZENAGAMTIDE_BASE='68cd3d2f9cf6399bcd2a4cc0f6623684bb8ffe77';
@@ -1347,10 +1372,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const srsd384Renewal=c.watchSrsd384Renewal;
+ if(srsd384Renewal)verifyWatchSrsd384Renewal(srsd384Renewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSrsd384RenewalHead=srsd384Renewal?srsd384Renewal.base:actualHead;
+ const srsd384RenewalRawBlob=(ref,path)=>outerRawBlob(srsd384Renewal&&ref==='HEAD'&&WATCH_SRSD384_RENEWAL_SET.has(path)?srsd384Renewal.base:ref,path);
  const vk2735ZenagamtideRegistry=c.watchVk2735ZenagamtideRegistry;
- if(vk2735ZenagamtideRegistry)verifyWatchVk2735ZenagamtideRegistry(vk2735ZenagamtideRegistry,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preVk2735ZenagamtideHead=vk2735ZenagamtideRegistry?vk2735ZenagamtideRegistry.base:actualHead;
- const vk2735ZenagamtideRawBlob=(ref,path)=>outerRawBlob(vk2735ZenagamtideRegistry&&ref==='HEAD'&&WATCH_VK2735_ZENAGAMTIDE_SET.has(path)?vk2735ZenagamtideRegistry.base:ref,path);
+ if(vk2735ZenagamtideRegistry)verifyWatchVk2735ZenagamtideRegistry(vk2735ZenagamtideRegistry,{head:preSrsd384RenewalHead,read:srsd384RenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preVk2735ZenagamtideHead=vk2735ZenagamtideRegistry?vk2735ZenagamtideRegistry.base:preSrsd384RenewalHead;
+ const vk2735ZenagamtideRawBlob=(ref,path)=>srsd384RenewalRawBlob(vk2735ZenagamtideRegistry&&ref==='HEAD'&&WATCH_VK2735_ZENAGAMTIDE_SET.has(path)?vk2735ZenagamtideRegistry.base:ref,path);
  const zp6590ReleaseGuardRepair=c.watchZp6590ReleaseGuardRepair;
  if(zp6590ReleaseGuardRepair)verifyWatchZp6590ReleaseGuardRepair(zp6590ReleaseGuardRepair,{head:preVk2735ZenagamtideHead,read:vk2735ZenagamtideRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preZp6590ReleaseGuardHead=zp6590ReleaseGuardRepair?zp6590ReleaseGuardRepair.base:preVk2735ZenagamtideHead;
