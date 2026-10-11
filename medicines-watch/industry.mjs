@@ -1,3 +1,4 @@
+import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
 import officialAlternatives from './reviews/2026-10-10-authorised-official-alternatives.json' with {type:'json'};
 import srsd384Renewal from './reviews/2026-10-11-authorised-srsd384-renewal.json' with {type:'json'};
 import vk2735ZenagamtideRegistry from './reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json' with {type:'json'};
@@ -81,6 +82,9 @@ import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-en
 import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
 export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source,...evidenceDesk.sources,...vk2735Maintenance.sources,...azelapragDiscontinuation.sources,...ribupatideSpecialistWave.sources,...gzc8072Publication.sources,...asc30AuroraCorrection.sources,...asc36OralPublication.sources,...vikingRhythmRegistryReview.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===hansohOlatorepatideReview.source.id?hansohOlatorepatideReview.source:s).map(s => {
+ const renewal=twoSourceFreshness.sources.find(r=>r.id===s.id);
+ return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+}).map(s => {
  const renewal=overdueSourceRenewal.sources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
 }).map(s => {
