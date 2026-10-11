@@ -942,6 +942,84 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Finite matcher-label repair for the programme-summary queue guard receipt.
+// It changes only the release verifier and cannot alter Watch content or state.
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_BASE='05c66c1c694853ed888b925b5ecc6e66bb16e8af';
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS=Object.freeze(['release/approved-runtime-composition.mjs']);
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE=Object.freeze(['tests/watch-programme-summary-queue-matcher-repair-composition.test.mjs']);
+const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET=new Set([...WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS,...WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE]);
+for(const path of WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchProgrammeSummaryQueueMatcherRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_REPAIR_V1');
+ assert.equal(c.base,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);
+ assert.deepEqual(c.paths,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1316);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38113438635);assert.equal(c.failedJob,114393529381);assert.equal(c.failedStep,4);
+ assert.equal(c.releaseReachedProduction,false);assert.equal(c.failureGate,'Programme day preview composition meta-test');assert.equal(c.failureCause,'outer guard source-drift label was not covered by the finite byte-pin matcher');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated programme-summary queue matcher-repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated programme-summary queue matcher-repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after programme-summary queue matcher-repair receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryQueueMatcherRepair;assert.deepEqual(current,prior,'Prior release receipts changed by programme-summary queue matcher repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue maintenance drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
+ return c;
+}
+
+// Finite repair for programme-summary queue meta-test matchers. The failed
+// preview stopped before production mutation and changes no Watch evidence.
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_BASE='acfe32e3ac58db79f4ec518d8667b99f65dd982f';
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SOURCE='8cbc9f5b3233105eec88a85c9fd23f248cbd03da';
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_PATHS=Object.freeze(['tests/approved-runtime-composition.test.mjs']);
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-programme-summary-queue-release-guard-repair-composition.test.mjs']);
+const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SET=new Set([...WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_PATHS,...WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_MAINTENANCE]);
+for(const path of WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchProgrammeSummaryQueueGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_REPAIR_V1');
+ assert.equal(c.base,WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_BASE);assert.equal(c.source,WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SOURCE);
+ assert.deepEqual(c.paths,WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1316);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38113247981);assert.equal(c.failedJob,114392980271);assert.equal(c.failedStep,4);
+ assert.equal(c.releaseReachedProduction,false);assert.equal(c.failureGate,'Programme day preview composition meta-test');assert.equal(c.failureCause,'byte-pin matcher did not recognise programme-summary queue maintenance drift wording');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated programme-summary queue guard-repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated programme-summary queue guard-repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after programme-summary queue guard-repair receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryQueueGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by programme-summary queue guard repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue maintenance drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
+ return c;
+}
+
+// Disclose programme-summary review debt separately from the configured-source
+// queue without renewing evidence, reviews or monitor baselines.
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_BASE='6708985126190919a7826a58ed21f5b30a2fa7d3';
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_SOURCE='272e07c1d37380f16e398e5f2b7a98defee61582';
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/evidence-desk.mjs','medicines-watch/evidence-desk.test.mjs']);
+export const WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','tests/watch-programme-summary-queue-composition.test.mjs']);
+const WATCH_PROGRAMME_SUMMARY_QUEUE_SET=new Set([...WATCH_PROGRAMME_SUMMARY_QUEUE_PATHS,...WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE]);
+for(const path of WATCH_PROGRAMME_SUMMARY_QUEUE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchProgrammeSummaryQueue(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_V1');
+ assert.equal(c.base,WATCH_PROGRAMME_SUMMARY_QUEUE_BASE);assert.equal(c.source,WATCH_PROGRAMME_SUMMARY_QUEUE_SOURCE);
+ assert.deepEqual(c.paths,WATCH_PROGRAMME_SUMMARY_QUEUE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1316);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.observedConfiguredSourceFactualReviewCount,0);assert.equal(c.observedProgrammeSummaryReviewCount,58);assert.equal(c.widerProgrammeCount,110);
+ assert.equal(c.queuesSeparated,true);assert.equal(c.sevenDayRuleReused,true);assert.equal(c.unchangedCheckDoesNotRenew,true);assert.equal(c.industryComplete,false);assert.equal(c.zp6590PendingDelayedPreserved,true);
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','configuredSourceQueueSemanticsChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch programme-summary queue payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch programme-summary queue maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Watch programme-summary queue receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryQueue;assert.deepEqual(current,prior,'Prior release receipts changed by Watch programme-summary queue registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
+ return c;
+}
+
 // Finite repair for the SRSD384 release meta-test. The failed run stopped
 // before production mutation; this changes no evidence, review or public data.
 export const WATCH_SRSD384_RELEASE_GUARD_BASE='9eede1e5382dee2d957791312977e8ea69657163';
@@ -1398,10 +1476,22 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const programmeSummaryQueueMatcherRepair=c.watchProgrammeSummaryQueueMatcherRepair;
+ if(programmeSummaryQueueMatcherRepair)verifyWatchProgrammeSummaryQueueMatcherRepair(programmeSummaryQueueMatcherRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preProgrammeSummaryQueueMatcherHead=programmeSummaryQueueMatcherRepair?programmeSummaryQueueMatcherRepair.base:actualHead;
+ const programmeSummaryQueueMatcherRawBlob=(ref,path)=>outerRawBlob(programmeSummaryQueueMatcherRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET.has(path)?programmeSummaryQueueMatcherRepair.base:ref,path);
+ const programmeSummaryQueueGuardRepair=c.watchProgrammeSummaryQueueGuardRepair;
+ if(programmeSummaryQueueGuardRepair)verifyWatchProgrammeSummaryQueueGuardRepair(programmeSummaryQueueGuardRepair,{head:preProgrammeSummaryQueueMatcherHead,read:programmeSummaryQueueMatcherRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preProgrammeSummaryQueueGuardHead=programmeSummaryQueueGuardRepair?programmeSummaryQueueGuardRepair.base:preProgrammeSummaryQueueMatcherHead;
+ const programmeSummaryQueueGuardRawBlob=(ref,path)=>programmeSummaryQueueMatcherRawBlob(programmeSummaryQueueGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SET.has(path)?programmeSummaryQueueGuardRepair.base:ref,path);
+ const programmeSummaryQueue=c.watchProgrammeSummaryQueue;
+ if(programmeSummaryQueue)verifyWatchProgrammeSummaryQueue(programmeSummaryQueue,{head:preProgrammeSummaryQueueGuardHead,read:programmeSummaryQueueGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preProgrammeSummaryQueueHead=programmeSummaryQueue?programmeSummaryQueue.base:preProgrammeSummaryQueueGuardHead;
+ const programmeSummaryQueueRawBlob=(ref,path)=>programmeSummaryQueueGuardRawBlob(programmeSummaryQueue&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_SET.has(path)?programmeSummaryQueue.base:ref,path);
  const srsd384ReleaseGuardRepair=c.watchSrsd384ReleaseGuardRepair;
- if(srsd384ReleaseGuardRepair)verifyWatchSrsd384ReleaseGuardRepair(srsd384ReleaseGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSrsd384ReleaseGuardHead=srsd384ReleaseGuardRepair?srsd384ReleaseGuardRepair.base:actualHead;
- const srsd384ReleaseGuardRawBlob=(ref,path)=>outerRawBlob(srsd384ReleaseGuardRepair&&ref==='HEAD'&&WATCH_SRSD384_RELEASE_GUARD_SET.has(path)?srsd384ReleaseGuardRepair.base:ref,path);
+ if(srsd384ReleaseGuardRepair)verifyWatchSrsd384ReleaseGuardRepair(srsd384ReleaseGuardRepair,{head:preProgrammeSummaryQueueHead,read:programmeSummaryQueueRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSrsd384ReleaseGuardHead=srsd384ReleaseGuardRepair?srsd384ReleaseGuardRepair.base:preProgrammeSummaryQueueHead;
+ const srsd384ReleaseGuardRawBlob=(ref,path)=>programmeSummaryQueueRawBlob(srsd384ReleaseGuardRepair&&ref==='HEAD'&&WATCH_SRSD384_RELEASE_GUARD_SET.has(path)?srsd384ReleaseGuardRepair.base:ref,path);
  const srsd384Renewal=c.watchSrsd384Renewal;
  if(srsd384Renewal)verifyWatchSrsd384Renewal(srsd384Renewal,{head:preSrsd384ReleaseGuardHead,read:srsd384ReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preSrsd384RenewalHead=srsd384Renewal?srsd384Renewal.base:preSrsd384ReleaseGuardHead;

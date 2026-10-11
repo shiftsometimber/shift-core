@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {matchesSearch,evidenceQueue,manualEvidence,evidenceDeskMarkup} from './evidence-desk.mjs';
+import {matchesSearch,evidenceQueue,manualEvidence,programmeSummaryQueue,evidenceDeskMarkup} from './evidence-desk.mjs';
 import {sources,medicines} from './data.mjs';import {industry} from './industry.mjs';
 import {industryMarkup} from './industry-page.mjs';import {registrySources,registryEvidenceMarkup} from './credibility.mjs';
 import {topicQueriesForDate,summariseTopicDiscovery,discoveryTopics} from './discovery.mjs';
@@ -33,6 +33,20 @@ test('queue preserves reviewed-delayed, pending-delayed and changed-delayed dist
   {id:'pending-delayed',review:false,delayed:true,pending:true},
   {id:'changed-delayed',review:true,delayed:true,pending:false}
  ]);
+});
+test('configured-source and programme-summary review queues stay visibly separate',()=>{
+ const entries=[
+  {id:'old',name:'Old programme',reviewedAt:'2026-09-20T00:00:00Z',additionalEvidence:[]},
+  {id:'current',name:'Current programme',reviewedAt:'2026-10-02T00:00:00Z',additionalEvidence:[]}
+ ];
+ const due=programmeSummaryQueue(entries,now);
+ assert.deepEqual(due.map(item=>item.entry.id),['old']);
+ const html=evidenceDeskMarkup([],entries,{available:true,sources:[]},now);
+ assert.match(html,/Configured-source factual review needed \(0\)/);
+ assert.match(html,/Programme-summary factual review needed \(1\)/);
+ assert.match(html,/href="#industry-old"/);
+ assert.match(html,/unchanged source check does not renew this summary/i);
+ assert.match(html,/Neither count measures industry completeness/);
 });
 test('coverage directory deduplicates exact configured URLs and escapes evidence',()=>{
  const entries=[{name:'<A>',additionalEvidence:[{title:'<source>',url:'https://example.com/a'}]},{name:'B',evidenceLinks:[{url:'https://example.com/a'}]}];
