@@ -1499,8 +1499,8 @@ export function verifyWatchRgtVctReleaseGuardRepair(c,{head,read,diff,ancestor,c
  assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT release-guard repair maintenance');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT release-guard repair');
  const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT release-guard repair registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'RGT/VCT release-guard repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'RGT/VCT release-guard repair maintenance source drift: '+path);
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: RGT/VCT release-guard repair source: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT release-guard repair maintenance: '+path);
  return c;
 }
 
