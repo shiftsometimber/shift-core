@@ -947,7 +947,7 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 export const WATCH_SRSD384_RENEWAL_BASE='8771788490ffda619dc224872b18d2280d6429b1';
 export const WATCH_SRSD384_RENEWAL_SOURCE='41981196461ceaa77c08f6470ec1b5300c49575a';
 export const WATCH_SRSD384_RENEWAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/industry.mjs','medicines-watch/reviews/2026-10-11-authorised-srsd384-renewal.json','medicines-watch/srsd384-renewal.test.mjs']);
-export const WATCH_SRSD384_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-srsd384-renewal-composition.test.mjs']);
+export const WATCH_SRSD384_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','tests/watch-srsd384-renewal-composition.test.mjs']);
 const WATCH_SRSD384_RENEWAL_SET=new Set([...WATCH_SRSD384_RENEWAL_PATHS,...WATCH_SRSD384_RENEWAL_MAINTENANCE]);
 for(const path of WATCH_SRSD384_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
 export function verifyWatchSrsd384Renewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
