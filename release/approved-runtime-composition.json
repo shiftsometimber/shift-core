@@ -2008,5 +2008,49 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchProgrammeSummaryQueue": {
+    "proof": "EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_V1",
+    "base": "6708985126190919a7826a58ed21f5b30a2fa7d3",
+    "source": "be1c6afab2369f447585383b6849c5779b8689f8",
+    "maintenanceSource": "03c9c0652b59e8b742fad8d31135eca48b6d49d6",
+    "paths": [
+      "medicines-watch/README.md",
+      "medicines-watch/evidence-desk.mjs",
+      "medicines-watch/evidence-desk.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-programme-summary-queue-composition.test.mjs"
+    ],
+    "approvedPR": 1315,
+    "integrationIssue": 1065,
+    "publicationStatus": "owner_authorised_factual_publication",
+    "clinicalApproval": null,
+    "observedConfiguredSourceFactualReviewCount": 0,
+    "observedProgrammeSummaryReviewCount": 58,
+    "widerProgrammeCount": 110,
+    "queuesSeparated": true,
+    "sevenDayRuleReused": true,
+    "unchangedCheckDoesNotRenew": true,
+    "industryComplete": false,
+    "zp6590PendingDelayedPreserved": true,
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "configuredSourceQueueSemanticsChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
