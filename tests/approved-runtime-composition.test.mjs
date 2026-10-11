@@ -104,7 +104,7 @@ test('factual Watch amendment requires the exact passed hosted source rather tha
 });
 test('new factual sources remain byte-pinned after successful historical lookups',()=>{
  verifyReconciledRelease();
- for(const path of WATCH_FACTUAL_UPDATE_PATHS)assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:factual Watch source drift|Approved backlog source drift|Backlog maintenance source drift|ZP6590 registry-review-date source drift|SRSD384 review-renewal source drift|Watch programme-summary queue source drift)/);
+ for(const path of WATCH_FACTUAL_UPDATE_PATHS)assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:factual Watch source drift|Approved backlog source drift|Backlog maintenance source drift|ZP6590 registry-review-date source drift|SRSD384 review-renewal source drift|Watch programme-summary queue source drift|RGT\/VCT source-renewal source drift)/);
  const read=reconciliationHistoricalRead((ref,p)=>ref);
  assert.equal(read('HEAD','medicines-watch/industry.mjs'),COMPOSITION_BASE);
  assert.equal(read('HEAD','checkout.mjs'),'HEAD');
