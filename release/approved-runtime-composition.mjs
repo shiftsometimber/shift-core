@@ -1601,6 +1601,47 @@ export function verifyWatchRgtVctSourceRenewal(c,{head,read,diff,ancestor,conten
  return c;
 }
 
+
+// Finite two-source freshness renewal after direct primary-source review.
+// This advances only the exact configured-source review dates; it does not
+// change programme wording, monitoring baselines, queue semantics or ZP6590.
+export const WATCH_TWO_SOURCE_FRESHNESS_BASE='1184eebca8b5d5920b57db553289f6b46ee06300';
+export const WATCH_TWO_SOURCE_FRESHNESS_SOURCE='c7ecc33edc2b22bf991b5713f8526836e0700ff2';
+export const WATCH_TWO_SOURCE_FRESHNESS_PATHS=Object.freeze([
+ 'medicines-watch/data.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/product-renewal.test.mjs',
+ 'medicines-watch/provider-review.test.mjs',
+ 'medicines-watch/reviews/2026-10-11-authorised-two-source-freshness.json',
+ 'medicines-watch/source-review.test.mjs',
+ 'medicines-watch/two-source-freshness.test.mjs'
+]);
+export const WATCH_TWO_SOURCE_FRESHNESS_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-two-source-freshness-composition.test.mjs'
+]);
+const WATCH_TWO_SOURCE_FRESHNESS_SET=new Set([...WATCH_TWO_SOURCE_FRESHNESS_PATHS,...WATCH_TWO_SOURCE_FRESHNESS_MAINTENANCE]);
+for(const path of WATCH_TWO_SOURCE_FRESHNESS_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchTwoSourceFreshness(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_TWO_SOURCE_FRESHNESS_V1');
+ assert.equal(c.base,WATCH_TWO_SOURCE_FRESHNESS_BASE);assert.equal(c.source,WATCH_TWO_SOURCE_FRESHNESS_SOURCE);
+ assert.deepEqual(c.paths,WATCH_TWO_SOURCE_FRESHNESS_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_TWO_SOURCE_FRESHNESS_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1320);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.sourceReviewsApplied,2);
+ assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);
+ assert.equal(c.configuredSourceFactualReviewNeeded,0);assert.equal(c.programmeSummaryFactualReviewNeeded,66);
+ assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','healthResponseChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated two-source freshness payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated two-source freshness maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after two-source freshness receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchTwoSourceFreshness;assert.deepEqual(current,prior,'Prior release receipts changed by two-source freshness registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: two-source freshness payload: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: two-source freshness maintenance: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -1623,10 +1664,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const twoSourceFreshness=c.watchTwoSourceFreshness;
+ if(twoSourceFreshness)verifyWatchTwoSourceFreshness(twoSourceFreshness,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preTwoSourceFreshnessHead=twoSourceFreshness?twoSourceFreshness.base:actualHead;
+ const twoSourceFreshnessRawBlob=(ref,path)=>outerRawBlob(twoSourceFreshness&&ref==='HEAD'&&WATCH_TWO_SOURCE_FRESHNESS_SET.has(path)?twoSourceFreshness.base:ref,path);
  const rgtVctReleaseTestRepair=c.watchRgtVctReleaseTestRepair;
- if(rgtVctReleaseTestRepair)verifyWatchRgtVctReleaseTestRepair(rgtVctReleaseTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRgtVctReleaseTestRepairHead=rgtVctReleaseTestRepair?rgtVctReleaseTestRepair.base:actualHead;
- const rgtVctReleaseTestRepairRawBlob=(ref,path)=>outerRawBlob(rgtVctReleaseTestRepair&&ref==='HEAD'&&WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SET.has(path)?rgtVctReleaseTestRepair.base:ref,path);
+ if(rgtVctReleaseTestRepair)verifyWatchRgtVctReleaseTestRepair(rgtVctReleaseTestRepair,{head:preTwoSourceFreshnessHead,read:twoSourceFreshnessRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRgtVctReleaseTestRepairHead=rgtVctReleaseTestRepair?rgtVctReleaseTestRepair.base:preTwoSourceFreshnessHead;
+ const rgtVctReleaseTestRepairRawBlob=(ref,path)=>twoSourceFreshnessRawBlob(rgtVctReleaseTestRepair&&ref==='HEAD'&&WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SET.has(path)?rgtVctReleaseTestRepair.base:ref,path);
  const rgtVctDriftCategoryOverlapRepair=c.watchRgtVctDriftCategoryOverlapRepair;
  if(rgtVctDriftCategoryOverlapRepair)verifyWatchRgtVctDriftCategoryOverlap(rgtVctDriftCategoryOverlapRepair,{head:preRgtVctReleaseTestRepairHead,read:rgtVctReleaseTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preRgtVctDriftCategoryOverlapHead=rgtVctDriftCategoryOverlapRepair?rgtVctDriftCategoryOverlapRepair.base:preRgtVctReleaseTestRepairHead;
