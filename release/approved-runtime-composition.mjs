@@ -1730,6 +1730,27 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// Finite outer-meta repair after the current-head release test rejected the
+// already fail-closed renewal drift label. It changes no evidence or runtime.
+export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_BASE='95c6c9fc78eb49d2fb40e57b1ecc5bcd7fbf5fb2';
+export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_SOURCE='084d87cfa1fd2b61a9d12e37e61bda9f5158ab9f';
+export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-taldefgrobep-attain-release-guard-repair-composition.test.mjs']);
+const WATCH_TALDEFGROBEP_ATTAIN_GUARD_SET=new Set([...WATCH_TALDEFGROBEP_ATTAIN_GUARD_PATHS,...WATCH_TALDEFGROBEP_ATTAIN_GUARD_MAINTENANCE]);
+for(const path of WATCH_TALDEFGROBEP_ATTAIN_GUARD_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchTaldefgrobepAttainGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_TALDEFGROBEP_ATTAIN_GUARD_REPAIR_V1');assert.equal(c.base,WATCH_TALDEFGROBEP_ATTAIN_GUARD_BASE);assert.equal(c.source,WATCH_TALDEFGROBEP_ATTAIN_GUARD_SOURCE);
+ assert.deepEqual(c.paths,WATCH_TALDEFGROBEP_ATTAIN_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_TALDEFGROBEP_ATTAIN_GUARD_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.failureGate,'exact current Watch files remain pinned');assert.equal(c.releaseReachedProduction,false);assert.equal(c.repair,'recognise exact taldefgrobep/ATTAIN-MAINTAIN renewal drift label');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated taldefgrobep/ATTAIN-MAINTAIN guard repair source');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated taldefgrobep/ATTAIN-MAINTAIN guard repair maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after taldefgrobep/ATTAIN-MAINTAIN guard repair');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchTaldefgrobepAttainGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by taldefgrobep/ATTAIN-MAINTAIN guard repair registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Taldefgrobep/ATTAIN-MAINTAIN guard repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Taldefgrobep/ATTAIN-MAINTAIN guard repair maintenance source drift: '+path);
+ return c;
+}
+
 // Finite release-meta repair for the Alnylam discovery receipt. The inner
 // byte pin already failed closed; this only teaches the outer regression test
 // the receipt's exact drift label.
@@ -1893,10 +1914,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchTaldefgrobepAttainGuardRepair=c.watchTaldefgrobepAttainGuardRepair;
+ if(watchTaldefgrobepAttainGuardRepair)verifyWatchTaldefgrobepAttainGuardRepair(watchTaldefgrobepAttainGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preTaldefgrobepAttainGuardHead=watchTaldefgrobepAttainGuardRepair?watchTaldefgrobepAttainGuardRepair.base:actualHead;
+ const taldefgrobepAttainGuardRawBlob=(ref,path)=>outerRawBlob(watchTaldefgrobepAttainGuardRepair&&ref==='HEAD'&&WATCH_TALDEFGROBEP_ATTAIN_GUARD_SET.has(path)?watchTaldefgrobepAttainGuardRepair.base:ref,path);
  const watchTaldefgrobepAttainRenewal=c.watchTaldefgrobepAttainRenewal;
- if(watchTaldefgrobepAttainRenewal)verifyWatchTaldefgrobepAttainRenewal(watchTaldefgrobepAttainRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preTaldefgrobepAttainHead=watchTaldefgrobepAttainRenewal?watchTaldefgrobepAttainRenewal.base:actualHead;
- const taldefgrobepAttainRawBlob=(ref,path)=>outerRawBlob(watchTaldefgrobepAttainRenewal&&ref==='HEAD'&&WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_SET.has(path)?watchTaldefgrobepAttainRenewal.base:ref,path);
+ if(watchTaldefgrobepAttainRenewal)verifyWatchTaldefgrobepAttainRenewal(watchTaldefgrobepAttainRenewal,{head:preTaldefgrobepAttainGuardHead,read:taldefgrobepAttainGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preTaldefgrobepAttainHead=watchTaldefgrobepAttainRenewal?watchTaldefgrobepAttainRenewal.base:preTaldefgrobepAttainGuardHead;
+ const taldefgrobepAttainRawBlob=(ref,path)=>taldefgrobepAttainGuardRawBlob(watchTaldefgrobepAttainRenewal&&ref==='HEAD'&&WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_SET.has(path)?watchTaldefgrobepAttainRenewal.base:ref,path);
  const watchAlnylamReleaseGuardRepair=c.watchAlnylamReleaseGuardRepair;
  if(watchAlnylamReleaseGuardRepair)verifyWatchAlnylamReleaseGuardRepair(watchAlnylamReleaseGuardRepair,{head:preTaldefgrobepAttainHead,read:taldefgrobepAttainRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preAlnylamReleaseGuardRepairHead=watchAlnylamReleaseGuardRepair?watchAlnylamReleaseGuardRepair.base:preTaldefgrobepAttainHead;
