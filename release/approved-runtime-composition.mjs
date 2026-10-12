@@ -2297,11 +2297,11 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const currentRawHead=git('rev-parse','HEAD'),treatmentCompiledDelivery=c.treatmentCompiledDelivery;
  if(treatmentCompiledDelivery)verifyTreatmentCompiledComposition(treatmentCompiledDelivery,{head:currentRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preTreatmentHead=treatmentCompiledDelivery?treatmentCompiledDelivery.base:currentRawHead;
- const treatmentRead=(ref,path)=>read(treatmentCompiledDelivery&&ref==='HEAD'&&[...TREATMENT_COMPILED_PATHS,...TREATMENT_COMPILED_MAINTENANCE].includes(path)?treatmentCompiledDelivery.base:ref,path);
+ const compiledDeliveryRead=(ref,path)=>read(treatmentCompiledDelivery&&ref==='HEAD'&&[...TREATMENT_COMPILED_PATHS,...TREATMENT_COMPILED_MAINTENANCE].includes(path)?treatmentCompiledDelivery.base:ref,path);
  const contactRollbackRuntime=c.contactRollbackRuntime;
- if(contactRollbackRuntime)verifyContactRuntimeComposition(contactRollbackRuntime,{head:preTreatmentHead,read:treatmentRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ if(contactRollbackRuntime)verifyContactRuntimeComposition(contactRollbackRuntime,{head:preTreatmentHead,read:compiledDeliveryRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preContactHead=contactRollbackRuntime?contactRollbackRuntime.base:preTreatmentHead;
- const contactRead=(ref,path)=>treatmentRead(contactRollbackRuntime&&ref==='HEAD'&&[...CONTACT_RUNTIME_PATHS,...CONTACT_RUNTIME_MAINT].includes(path)?contactRollbackRuntime.base:ref,path);
+ const contactRead=(ref,path)=>compiledDeliveryRead(contactRollbackRuntime&&ref==='HEAD'&&[...CONTACT_RUNTIME_PATHS,...CONTACT_RUNTIME_MAINT].includes(path)?contactRollbackRuntime.base:ref,path);
  const githubProofEpipeRetry=c.githubProofEpipeRetry;
  if(githubProofEpipeRetry)verifyGithubProofEpipeRetry(githubProofEpipeRetry,{head:preContactHead,read:contactRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preGithubProofEpipeHead=githubProofEpipeRetry?githubProofEpipeRetry.base:preContactHead;

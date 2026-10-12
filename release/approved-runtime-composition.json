@@ -3636,49 +3636,5 @@
       "date": "2026-10-12",
       "reason": "Preserve original classification assertions through verified pre-EPIPE historical views"
     }
-  },
-  "treatmentCompiledDelivery": {
-    "proof": "EXACT_COMPILED_MY_TREATMENT_DELIVERY_20261013",
-    "base": "e13c49dde529f82155498b875ea0ef7bb3169bf8",
-    "source": "e279e1c80dad999373d215084295a75391795508",
-    "paths": [
-      "release/my-treatment-live.mjs",
-      "release/my-treatment-compiled-control.mjs",
-      "tests/my-treatment-compiled-control.test.mjs",
-      "release/my-treatment-rollback-runtime.mjs",
-      "tests/my-treatment-rollback-runtime.test.mjs",
-      "docs/my-treatment-rollback-evidence-20261013.json",
-      "shift-coach/recover-cancelled-release.mjs",
-      ".github/workflows/my-treatment-compiled-proof.yml"
-    ],
-    "maintenanceSource": "d9419fb16eb9e0c87189854f5f5670cb884b8e50",
-    "maintenancePaths": [
-      "release/approved-runtime-composition.mjs",
-      "release/my-treatment-compiled-scope.mjs",
-      "tests/my-treatment-compiled-composition.test.mjs",
-      "release/my-timber-progress-journey-scope.mjs",
-      "tests/contact-rollback-composition.test.mjs",
-      "tests/my-timber-progress-journey-composition.test.mjs",
-      ".github/workflows/shift-coach-integration.yml",
-      ".github/workflows/cloudflare-production-promote.yml"
-    ],
-    "integrationIssue": 1065,
-    "failedRun": 38316073865,
-    "failedJob": 115032993314,
-    "exactCompiledAssetEquality": true,
-    "retentionOnly": true,
-    "failedReleaseAccepted": false,
-    "preDeploymentCompiledCheck": true,
-    "runtimeChanged": false,
-    "productBytesChanged": false,
-    "publicCopyChanged": false,
-    "customerDataChanged": false,
-    "externalCommunicationsSent": false,
-    "paidModelEnabled": false,
-    "formatNormalisationAllowed": false,
-    "existingGatesWeakened": false,
-    "genericAdoptionAllowed": false,
-    "deploymentAuthorityBroadened": false,
-    "rollbackAuthorityBroadened": false
   }
 }
