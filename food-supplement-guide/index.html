@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="SHIFT's private food-first guide. Explore everyday meals, supplement evidence and one sensible next step.">
+  <meta name="theme-color" content="#050505">
+  <title>Food & Supplements | SHIFT</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="guide.js" defer></script>
+</head>
+<body>
+  <a href="#start" class="skip-link">Skip to your starting point</a>
+  <header class="header">
+    <a href="#top" class="brand" aria-label="SHIFT Some Timber — back to top"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-name">SHIFT <span>SOME</span> TIMBER<span class="brand-sub">GET YOUR LIFE BACK.</span></span></a>
+    <span class="private-label"><i aria-hidden="true"></i> PRIVATE REVIEW</span>
+  </header>
+  <nav class="nav" aria-label="Guide sections"><a href="#start">Your start</a><a href="#food">Food</a><a href="#supplements">Supplements</a><a href="#next">Next step</a></nav>
+  <main id="top">
+    <section class="hero wrap">
+      <div><p class="eyebrow">THE SHIFT GUIDE · FOOD & SUPPLEMENTS</p><h1>LESS HYPE.<br>MORE <span class="olive">USEFUL.</span></h1><p class="hero-text">Make the food you do eat work harder for you. Then decide whether anything else earns its place.</p><a href="#start" class="button primary">Find your starting point <span aria-hidden="true">↗</span></a><p class="micro">A few taps. No diet score. No shopping basket.</p></div>
+      <aside class="hero-card"><span class="index-no">01 / THE RULE OF THUMB</span><div class="plate-art" aria-hidden="true"><div class="plate-inner"><span>FOOD<br>FIRST.</span></div><span class="plate-dot dot-one"></span><span class="plate-dot dot-two"></span><span class="plate-dot dot-three"></span></div><h2>Your cupboard doesn’t need to look like a chemist.</h2><p>A useful supplement has a clear job. A varied diet, a specific need and the evidence matter more than the promise on the tub.</p><a class="text-link" href="#evidence">How we judge usefulness <span aria-hidden="true">→</span></a></aside>
+    </section>
+    <div class="principle-strip"><span>FOOD FIRST</span><span>EVIDENCE IN PLAIN ENGLISH</span><span>BUYING NOTHING IS AN OPTION</span></div>
+    <section id="start" class="wrap section">
+      <div class="section-heading"><div><p class="eyebrow">01 · YOUR STARTING POINT</p><h2>What matters to you today?</h2></div><p>Choose one focus. Change it whenever you like.</p></div>
+      <div class="goal-grid" role="group" aria-label="Your main goal">
+        <button class="goal active" data-sfg-goal="basics" aria-pressed="true"><span class="goal-icon" aria-hidden="true">◎</span><strong>Cover the basics</strong><span>Eat well. Keep it simple.</span></button>
+        <button class="goal" data-sfg-goal="weight" aria-pressed="false"><span class="goal-icon" aria-hidden="true">↘</span><strong>Manage my weight</strong><span>Make smaller meals count.</span></button>
+        <button class="goal" data-sfg-goal="strength" aria-pressed="false"><span class="goal-icon" aria-hidden="true">↗</span><strong>Get stronger</strong><span>Support the work you put in.</span></button>
+        <button class="goal" data-sfg-goal="energy" aria-pressed="false"><span class="goal-icon" aria-hidden="true">✳</span><strong>Feel less tired</strong><span>Look beyond an “energy” pill.</span></button>
+        <button class="goal" data-sfg-goal="gut" aria-pressed="false"><span class="goal-icon" aria-hidden="true">≈</span><strong>Look after my gut</strong><span>Food, fibre and context.</span></button>
+        <button class="goal" data-sfg-goal="sleep" aria-pressed="false"><span class="goal-icon" aria-hidden="true">☾</span><strong>Sleep better</strong><span>Sort the routine first.</span></button>
+      </div>
+      <div class="context-grid">
+        <div class="field"><label for="diet">How do you usually eat?</label><select id="diet"><option value="mixed">A mix of foods</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option></select></div>
+        <div class="field"><label for="appetite">How is your appetite?</label><select id="appetite"><option value="usual">About usual</option><option value="smaller">Smaller / eating less</option><option value="glp1">Smaller while using a GLP-1</option></select></div>
+        <div class="context-checks"><label><input id="budget" type="checkbox"> Keep it cupboard friendly</label><label><input id="training" type="checkbox"> I do regular strength training</label></div>
+      </div>
+      <p class="privacy-note">Your choices stay in this tab. No account, tracking or health details needed. Refresh starts afresh.</p>
+      <div id="starting-result" class="starting-result" aria-live="polite" aria-atomic="true"></div>
+      <p class="small safety-line">For adults. General information, not a diagnosis or a prescription. If you take medicines, have a health condition, have had bariatric surgery or need a special diet, check with your pharmacist, GP or dietitian before adding supplements. Keep following any prescribed plan. <a href="#evidence">Why this matters</a></p>
+    </section>
+    <section id="food" class="food-section"><div class="wrap section">
+      <div class="section-heading"><div><p class="eyebrow">02 · MAKE FOOD WORK FOR YOU</p><h2>A proper meal.<br>No spreadsheet required.</h2></div><p>Build one meal you would actually eat. This is an idea, not a complete daily diet or a portion prescription.</p></div>
+      <div class="food-grid">
+        <div class="food-builder"><div class="meal-tabs" role="group" aria-label="Meal"><button data-sfg-meal="breakfast" aria-pressed="false">Breakfast</button><button data-sfg-meal="lunch" class="active" aria-pressed="true">Lunch</button><button data-sfg-meal="dinner" aria-pressed="false">Dinner</button></div>
+          <div class="field"><label for="meal-protein"><span class="step-circle">1</span> A protein food</label><select id="meal-protein"></select></div>
+          <div class="field"><label for="meal-starch"><span class="step-circle">2</span> A starchy food</label><select id="meal-starch"></select></div>
+          <div class="field"><label for="meal-colour"><span class="step-circle">3</span> Some fruit or veg</label><select id="meal-colour"></select></div>
+          <p class="small">Adjust portions to your needs. Check allergens and follow your own dietary advice.</p>
+        </div>
+        <div class="meal-output"><p class="eyebrow">YOUR MEAL IDEA</p><h3 id="meal-title"></h3><p id="meal-instructions"></p><div id="meal-tags" class="tag-row"></div><h4>A small shopping list</h4><div id="shopping-list"></div><button id="use-meal" class="button primary">Make this my next step <span aria-hidden="true">→</span></button><p id="meal-status" class="small" role="status"></p></div>
+      </div>
+      <div class="food-notes"><article><span class="note-no">01</span><h3>Variety beats perfection.</h3><p>Include different food groups over the day. Fresh, frozen and tinned fruit and veg can all contribute. Fortified dairy alternatives can be useful; check the label.</p><a class="text-link" href="https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/" target="_blank" rel="noopener noreferrer">NHS balanced diet ↗</a></article><article><span class="note-no">02</span><h3>Give fibre some attention.</h3><p>The adult aim is 30g a day. Oats, wholegrains, beans, fruit and veg help. Build variety into your meals rather than relying on one powder.</p><a class="text-link" href="https://www.nhs.uk/live-well/eat-well/digestive-health/how-to-get-more-fibre-into-your-diet/" target="_blank" rel="noopener noreferrer">NHS fibre guide ↗</a></article><article><span class="note-no">03</span><h3>Eating less? Keep eating well.</h3><p>If a GLP-1 reduces your appetite, keep meals regular and include protein. If eating becomes difficult, you feel unwell or have troublesome side effects, contact your prescriber promptly.</p><a class="text-link" href="https://www.bda.uk.com/food-health/glp-1-obesity-medications.html" target="_blank" rel="noopener noreferrer">BDA eating well with GLP-1s ↗</a></article></div>
+    </div></section>
+    <section id="supplements" class="wrap section">
+      <div class="section-heading"><div><p class="eyebrow">03 · THE SUPPLEMENT SHELF</p><h2>What earns its place?</h2></div><p>Usefulness changes with your situation. Evidence for a nutrient is not proof that every product works.</p></div>
+      <div class="shelf-toolbar"><div class="field search-field"><label class="sr-only" for="search">Search supplements</label><input id="search" type="search" placeholder="Search: vitamin D, protein…"></div><div class="field"><label class="sr-only" for="filter">Filter by usefulness</label><select id="filter"><option value="all">All usefulness levels</option><option value="consider">Worth considering</option><option value="food">Food first / optional</option><option value="ask">Ask a professional</option><option value="skip">Not a priority</option></select></div></div>
+      <p id="result-count" class="small" aria-live="polite"></p><div id="supplement-grid" class="supplement-grid"></div>
+      <div id="comparison-panel" class="comparison-panel" hidden><div class="section-heading"><h3>Your comparison</h3><button id="clear-compare" class="text-button">Clear comparison</button></div><div id="comparison-content"></div></div>
+      <div class="cost-box"><div><p class="eyebrow">THE PRICE ON THE TUB ISN’T THE WHOLE PRICE</p><h3>What does it cost per month?</h3><p>Use the pack’s serving information. This checks cost, not whether the dose or product is suitable.</p><button id="cost-example" class="text-button">Try an illustrative example</button></div><form id="cost-form" class="cost-form" novalidate><div class="field"><label for="price">Pack price (£)</label><input id="price" type="number" min="0" max="10000" step="0.01" inputmode="decimal" placeholder="18.00"></div><div class="field"><label for="servings">Servings per pack</label><input id="servings" type="number" min="1" max="100000" step="1" inputmode="numeric" placeholder="60"></div><div class="field"><label for="daily">Servings per day*</label><input id="daily" type="number" min="0.01" max="100" step="0.01" inputmode="decimal" placeholder="1"></div><p id="cost-result" class="cost-result" aria-live="polite">Enter the three figures to compare cost.</p><p class="small">*Use label or professional instructions; do not change a dose to change the price. Monthly estimate uses 30 days and excludes delivery.</p></form></div>
+    </section>
+    <section id="next" class="next-section"><div class="wrap section">
+      <div class="section-heading"><div><p class="eyebrow">04 · YOUR NEXT SHIFT</p><h2>One useful step.<br>That’s enough for today.</h2></div><p>A shortlist is something to investigate, not an instruction to take it.</p></div>
+      <div class="next-grid"><div><fieldset id="action-options"><legend>Choose your next step</legend></fieldset><div class="shortlist-box"><h3>Your reading shortlist</h3><div id="shortlist"></div></div></div><aside class="plan-card"><p class="eyebrow">YOUR TAKEAWAY</p><h3 id="plan-title"></h3><p id="plan-body"></p><p class="plan-safety">Before buying: check the purpose, dose, duplicated ingredients, allergens and medicine interactions with a pharmacist if needed. Don’t stop prescribed treatment.</p><div class="plan-actions"><button id="download" class="button primary">Download my takeaway ↓</button><button id="print" class="button secondary">Print / save as PDF</button></div><p id="download-status" class="small" role="status"></p><p class="small">Downloads stay on your device. Nothing is sent to SHIFT or added to My Timber.</p></aside></div>
+      <div class="follow-through"><strong>Take it into your week.</strong><p>You can use this takeaway as a prompt for your next food check-in in My Timber. This private guide does not connect to your account.</p></div>
+    </div></section>
+    <section id="evidence" class="wrap section evidence-section"><p class="eyebrow">THE SMALL PRINT, MADE READABLE</p><h2>Evidence you can inspect.</h2><div class="evidence-grid"><div><h3>Our judgement, explained.</h3><p>“Worth considering” means there is a relevant reason to read more. “Food first / optional” means a supplement may have a role, but it is not the starting point. “Ask a professional” means context or testing matters. “Not a priority” means we would not put it ahead of the basics for this goal.</p><p>These are SHIFT editorial judgements, not clinical ratings. The evidence labels describe the type and limits of the support, not a guarantee of benefit.</p><details><summary>Who should get individual advice?</summary><p>If you take medicines, have kidney or liver disease, another health condition, a restricted diet or previous bariatric surgery, ask your pharmacist, GP or registered dietitian. Supplements can interact with medicines and contain overlapping ingredients. Do not use this guide to diagnose or treat a deficiency.</p><p>Persistent tiredness, unexplained weight loss or difficulty eating deserve proper assessment. Seek urgent help for severe symptoms. If you use a GLP-1 and feel unwell, have pain or are vomiting, contact your prescriber promptly.</p></details></div><div><h3>Sources, not sales pitches.</h3><p>Content checked against the linked sources on <strong>12 October 2026</strong>. That check date is not the publication date. Some official pages are older; their dates and limits are shown below.</p><p>Original SHIFT wording and interaction design. No affiliate links, product rankings, stock claims or checkout. This private version has not had an external clinical review.</p><details><summary>Open the evidence register</summary><div id="sources"></div></details></div></div></section>
+  </main>
+  <footer class="footer wrap"><div><strong>SHIFT <span>SOME</span> TIMBER.</strong><p>GET YOUR LIFE BACK.</p></div><p>Private review · Food before hype · © SHIFT 2026</p><button id="reset" class="text-button">Reset my choices</button></footer>
+  <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-top"><span class="eyebrow">THE STRAIGHT ANSWER</span><button id="close-dialog" class="close-button" aria-label="Close supplement details">×</button></div><div id="detail-content"></div></dialog>
+  <div class="sr-only" id="announcer" role="status" aria-live="polite"></div>
+  <noscript><p class="wrap">The interactive guide needs JavaScript. The food-first advice and source links above remain readable.</p></noscript>
+</body>
+</html>
