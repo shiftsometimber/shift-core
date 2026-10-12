@@ -1,3 +1,4 @@
+import {requestTreatmentPatterns,patternAnswer} from './member-experience/treatment-patterns.mjs';
 import {publicSiteStreamMessages} from './public-site-stream.mjs';
 import {publicAnswerCache} from './member-experience/ai-public-answer-cache.mjs';
 import {fastPublicAnswer,savedFactKind,savedFactAnswer} from './member-experience/ai-fast-answers.mjs';
@@ -56,6 +57,14 @@ export async function askTimberRoutes(request,env){
   if(urgent){
     console.log('ask_timber_safe_redirect',JSON.stringify({requestId,category:urgent.category}));
     return json({ok:true,requestId,mode:'safety',...urgent},200,request);
+  }
+  // Member-requested recorded-pattern answers use verified facts, not model inference.
+  // Preserve urgent handling above and the existing authentication/consent boundary.
+  if(body.usePatterns===true){
+    if(body.personalisation===false||body.useJourney!==true)return json({ok:false,error:'personalisation_required',requestId},409,request);
+    const result=await requestTreatmentPatterns(request,env,body.patternSources);
+    if(result.status!==200)return json({ok:false,requestId,...result.data},result.status,request);
+    return json({ok:true,requestId,mode:'recorded_patterns',delivery:'verified_recorded_facts',journeyUsed:true,answer:patternAnswer(result.data.patterns),patterns:result.data.patterns,keyPoints:[],nextSteps:[],followUps:[],sources:[],confidence:'low',limitations:'Descriptive saved-record comparisons; no proven correlation or causal attribution.'},200,request);
   }
   // Static urgent-help signposting must survive missing AI/database bindings.
   if(!env.AI||!env.DB)return json({ok:false,error:'service_unavailable',requestId},503,request);

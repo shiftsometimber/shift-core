@@ -55,7 +55,13 @@ function oneUsefulAction(latest,active){const steps=num(latest?.steps)||0;if(ste
 function daypart(){const h=new Date().getHours();return h<12?'Morning':h<18?'Afternoon':'Evening';}
 
 export async function progressSummary(env,uid){
-  const {results=[]}=await env.DB.prepare(`SELECT * FROM progress_entries WHERE user_id=? ORDER BY recorded_on ASC,id ASC LIMIT 1000`).bind(uid).all();
+  const {results:progressRows=[]}=await env.DB.prepare(`SELECT * FROM progress_entries WHERE user_id=? ORDER BY recorded_on ASC,id ASC LIMIT 1000`).bind(uid).all();
+  // Read only the owned numeric weight from existing treatment logs. No notes,
+  // symptoms, new stores or duplicate progress writes are needed.
+  const treatmentRows=env.MY_TREATMENT_ENABLED==='true'?(await env.DB.prepare("SELECT occurred_at,created_at,CASE WHEN json_valid(body_json) THEN json_extract(body_json,'$.checkin.weight') END AS weight_kg FROM member_treatment_events WHERE user_id=? AND kind='checkin' ORDER BY occurred_at ASC,rowid ASC LIMIT 1000").bind(uid).all()).results||[]:[];
+  const savedAt=value=>{const text=String(value||'');const stamp=Date.parse(/^\d{4}-\d{2}-\d{2} \d/.test(text)?text.replace(' ','T')+'Z':text);return Number.isFinite(stamp)?stamp:0;};
+  const weights=treatmentRows.filter(row=>typeof row.weight_kg==='number'&&Number.isFinite(row.weight_kg)&&row.weight_kg>=20&&row.weight_kg<=400&&Number.isFinite(Date.parse(row.occurred_at))).map(row=>{const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(row.occurred_at)).map(p=>[p.type,p.value]));return{recorded_on:parts.year+'-'+parts.month+'-'+parts.day,weight_kg:row.weight_kg,_savedAt:savedAt(row.created_at||row.occurred_at)};});
+  const results=weights.length?[...progressRows.map(row=>({...row,_savedAt:savedAt(row.created_at)})),...weights].sort((a,b)=>String(a.recorded_on).localeCompare(String(b.recorded_on))||a._savedAt-b._savedAt):progressRows;
   if(!results.length)return{state:'empty',headline:'Your progress story starts with the first check-in.',metrics:[],milestones:[]};
   const first=results[0],latest=results[results.length-1];
   const state=await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(uid).first();
@@ -67,10 +73,10 @@ export async function progressSummary(env,uid){
     if(!readings.length)return null;
     const firstReading=readings[0],lastReading=readings.at(-1);
     const result=metric(key,label,readings.length>1?firstReading[field]:null,lastReading[field],unit,lower);
-    return {...result,observations:readings.length,started_on:firstReading.recorded_on,latest_on:lastReading.recorded_on};
+    return {...result,observations:readings.length,started_on:firstReading.recorded_on,latest_on:lastReading.recorded_on,series:readings.map(row=>({on:row.recorded_on,value:num(row[field])}))};
   }).filter(Boolean);
   const weight=metrics.find(m=>m.key==='weight')?.latest??null;const imperial=weight?kgToStone(weight):null;
-  return{state:'ready',units,headline:'Since you started',started_on:first.recorded_on,latest_on:latest.recorded_on,entries:results.length,latest_weight:weight?{kg:weight,stone:imperial.stone,lb:imperial.lb}:null,metrics,milestones:milestones(metrics),message:'Progress is bigger than weight. Shift keeps the useful signals together without turning every day into a test.'};
+  return{state:'ready',units,headline:'Since you started',started_on:first.recorded_on,latest_on:latest.recorded_on,entries:results.length,historyMayBeLimited:progressRows.length===1000||treatmentRows.length===1000,latest_weight:weight?{kg:weight,stone:imperial.stone,lb:imperial.lb}:null,metrics,milestones:milestones(metrics),message:'Progress is bigger than weight. Shift keeps the useful signals together without turning every day into a test.'};
 }
 function metric(key,label,start,end,unit,lowerIsBetter){const a=num(start),b=num(end);if(a===null&&b===null)return null;const delta=a!==null&&b!==null?+(b-a).toFixed(1):null;let direction='not_enough_data';if(delta!==null){if(Math.abs(delta)<0.05)direction='same';else if(lowerIsBetter===true)direction=delta<0?'improving':'up';else if(lowerIsBetter===false)direction=delta>0?'improving':'down';else direction=delta<0?'down':'up';}return{key,label,start:a,latest:b,delta,unit,direction};}
 function milestones(metrics){return metrics.filter(m=>m.direction==='improving').slice(0,4).map(m=>({key:m.key,label:`${m.label} moving the right way`,detail:m.delta===null?'':`${m.delta>0?'+':''}${m.delta} ${m.unit} since first log`}));}

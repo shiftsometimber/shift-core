@@ -7,3 +7,32 @@ test('actual 45-second contact timeout retains retry state and never returns a t
 test('authentication timeout keeps its established sign-in recovery',async()=>{const f=fixture();const p=f.window.SSTTurnstile.getToken('member_login',f.form);await ready(f);[...f.timers.values()].find(t=>t.ms===45000).fn();await assert.rejects(p,/Please try signing in again/);});
 test('support copy provides independently sourced urgent action inside the existing content column',()=>{const html='<html><head></head><body><main><div><section><div>Existing</div></section></div></main></body></html>';const result=supportContent(html,'/medical-disclaimer');assert(result.includes('href="tel:999"'));assert(result.includes('href="/help#urgent-help"'));assert(result.includes('https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/'));assert(result.indexOf('Choose the right help now')<result.indexOf('</div></section></div></main>'));assert.equal(supportContent(html,'/'),html);});
 test('help recovery matches actual actions and fails closed if its insertion boundary changes',()=>{const old='<p>For registration, verification, sign-in or password-reset problems, start at <a href="/member-login">My Timber sign-in</a>. Never send your password by email.</p>';const result=supportContent('<head></head><body>'+old+'<h2>Health and urgent support</h2></body>','/help');for(const text of ['Send a fresh verification email','Forgotten your password?','Send reset link','id="urgent-help"','Do not create another account'])assert(result.includes(text));assert.throws(()=>supportContent('<head></head>changed','/help'),/Expected existing help/);});
+
+import {preserveSupportRecovery} from '../release/support-recovery-preservation.mjs';
+test('Help preservation admits only the exact reviewed recovery and still fingerprints every other byte',()=>{
+ const old=Buffer.from('<html><head></head><body><p>For registration, verification, sign-in or password-reset problems, start at <a href="/member-login">My Timber sign-in</a>. Never send your password by email.</p><h2>Health and urgent support</h2><p>Existing urgent routes</p></body></html>');
+ const current=Buffer.from(supportContent(old.toString(),'/help'));
+ assert(preserveSupportRecovery('/help',old).equals(old));assert(preserveSupportRecovery('/help',current,{required:true}).equals(old));
+ assert.throws(()=>preserveSupportRecovery('/help',old,{required:true}),/missing/);
+ for(const changed of[current.toString().replace('Do not create another account','Create another account'),current.toString().replace('data-support-controls','data-other-controls'),current.toString().replace('id="urgent-help"','id="changed"'),current.toString().replace('</body>','<section data-support-recovery="2026-10-11"></section></body>')])assert.throws(()=>preserveSupportRecovery('/help',Buffer.from(changed)),/drift|Duplicate|Partial/);
+ const outside=Buffer.from(current.toString().replace('Existing urgent routes','Changed urgent routes'));assert(!preserveSupportRecovery('/help',outside).equals(old));
+ assert.equal(preserveSupportRecovery('/other',current),current);
+});
+
+import {SUPPORT_TURNSTILE_PRIOR,SUPPORT_TURNSTILE_CURRENT} from '../release/support-recovery-preservation.mjs';
+test('security-client preservation accepts only both immutable registered versions and requires the released recovery',()=>{
+ const path='/turnstile-auth-v1.js?v=timeout-20260912',prior=Buffer.from(SUPPORT_TURNSTILE_PRIOR),current=Buffer.from(SUPPORT_TURNSTILE_CURRENT);
+ assert.equal(current.toString(),source);assert(preserveSupportRecovery(path,prior).equals(prior));assert(preserveSupportRecovery(path,current,{required:true}).equals(prior));
+ assert.throws(()=>preserveSupportRecovery(path,prior,{required:true}),/missing/);
+ for(const body of [current.toString()+' ',prior.toString()+' ',current.toString().replace('45000','45001'),current.toString().replace('Your message has not been sent.','Your message was sent.')])assert.throws(()=>preserveSupportRecovery(path,Buffer.from(body)),/source drift/);
+});
+
+import {pillarChromeStyle} from '../obesity-awareness/candidate.mjs';
+import {recoveryControls} from '../shift-coach/support-content-20261010.mjs';
+test('actual compiled Help head keeps the exact approved trailing pillar chrome and all original bytes',()=>{
+ const old='<html><head></head><body><p>For registration, verification, sign-in or password-reset problems, start at <a href="/member-login">My Timber sign-in</a>. Never send your password by email.</p><h2>Health and urgent support</h2><p>Existing urgent routes</p></body></html>';
+ const current=supportContent(old,'/help'),wrapped=current.replace('</head>',pillarChromeStyle+'</head>');
+ assert.equal(preserveSupportRecovery('/help',Buffer.from(wrapped),{required:true}).toString(),old.replace('</head>',pillarChromeStyle+'</head>'));
+ for(const tail of [pillarChromeStyle+'<style>unapproved</style>',pillarChromeStyle.replace('data-pillar-chrome','data-pillar-changed'),'<!--moved-->'])assert.throws(()=>preserveSupportRecovery('/help',Buffer.from(current.replace('</head>',tail+'</head>')),{required:true}),/head boundary/);
+ assert.throws(()=>preserveSupportRecovery('/help',Buffer.from(wrapped.replace(recoveryControls,'').replace('</body>',recoveryControls+'</body>')),{required:true}),/head boundary/);
+});

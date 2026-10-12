@@ -1,3 +1,4 @@
+import {journeyPortabilityRoutes} from './journey-portability.mjs';
 import {unitSettingsRoute} from './unit-settings.mjs';
 import {deviceHealthRoutes,readDeviceHealth} from './device-health.mjs';
 import {saveCheckinWithAction,latestCheckinAction,reviewCheckinAction} from './checkin-followup.mjs';
@@ -14,7 +15,7 @@ export async function appendHealthExport(request,env,response){
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
  const payload=await response.json();
  payload.deviceHealth=await readDeviceHealth(env.DB,auth.userId);
- for(const [key,table]of [['journeyWeeklyCheckIns','my_journey_weekly_checkins'],['savedPlans','shift_plans'],['dailyCheckinActions','daily_checkin_actions']]){
+ for(const [key,table]of [['journeyWeeklyCheckIns','my_journey_weekly_checkins'],['savedPlans','shift_plans'],['dailyCheckinActions','daily_checkin_actions'],['foodEaten','member_food_entries'],['privateProgressPhotos','shift_progress_photos_v2']]){
   const exists=await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").bind(table).first();
   payload[key]=exists?(await env.DB.prepare(`SELECT * FROM ${table} WHERE user_id=? ORDER BY id`).bind(auth.userId).all()).results:[];
  }
@@ -42,6 +43,7 @@ export async function persistFitReplacement(request,env,response,input){
 }
 export async function memberHealthRoutes(request,env){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return null;
+ const portable=await journeyPortabilityRoutes(request,env);if(portable)return portable;
  const device=await deviceHealthRoutes(request,env);if(device)return device;
  const units=await unitSettingsRoute(request,env);if(units)return units;
  const path=new URL(request.url).pathname.replace(/\/+$/,''),method=request.method;

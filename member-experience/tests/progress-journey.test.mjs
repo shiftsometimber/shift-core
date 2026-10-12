@@ -1,0 +1,26 @@
+import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import{readFileSync}from'node:fs';
+import{weightProjection,supplyEstimate,validateSupplyDetails}from'../progress-journey.mjs';
+const now=Date.parse('2026-10-12T12:00:00Z'),DAY=86400000;
+const weights=Array.from({length:9},(_,i)=>({on:new Date(now-(32-i*4)*DAY).toISOString().slice(0,10),value:100-i*.4}));
+test('projection requires sufficiently spread, distinct, recent readings and declines unstable or steady trends',()=>{
+ assert.equal(weightProjection([],now).status,'unavailable');assert.equal(weightProjection(weights.slice(1),now).status,'ready');assert.equal(weightProjection(weights.slice(2),now).status,'unavailable');assert.equal(weightProjection(weights.map(p=>({...p,on:'2026-10-12'})),now).status,'unavailable');assert.equal(weightProjection(weights,now+9*DAY).status,'unavailable');assert.equal(weightProjection(weights.map(p=>({...p,value:100})),now).status,'unavailable');assert.equal(weightProjection(weights.map((p,i)=>({...p,value:100+(i%2?5:-5)})),now).status,'unavailable');
+});
+test('projection is a bounded scenario, excludes impossible/future readings, and has no clinical target',()=>{
+ const actual=weightProjection(weights,now);assert.equal(actual.status,'ready');assert.equal(actual.projection.length,5);assert.equal(actual.to,'2026-11-09');assert.equal(actual.projection.at(-1).value,94);assert.match(actual.meaning,/not a probability interval/);assert.deepEqual(weightProjection([...weights,{on:'2026-02-30',value:80},{on:'2026-10-13',value:80},{on:'2026-10-12',value:null}],now),actual);assert.equal(weightProjection(weights.map((p,i)=>({...p,value:100+i*.4})),now).weeklyChangeKg,.7);
+});
+test('browser projection stays identical to the tested pure model and renders a separate optional extension',()=>{
+ const src=readFileSync(new URL('../../frontend/member/member-progress-v1.js',import.meta.url),'utf8');const c={document:{body:{dataset:{memberTools:'v1'}},readyState:'loading',addEventListener(){}},window:{},location:{pathname:'/member/dashboard'},Date,setTimeout};vm.runInNewContext(src.replace('  function boot(){','  globalThis.projection=weightProjection;globalThis.chart=progressChartMarkup;globalThis.markers=contextMarkers;\n  function boot(){'),c);
+ assert.deepEqual(JSON.parse(JSON.stringify(c.projection(weights,now))),weightProjection(weights,now));const m={key:'weight',label:'Weight',series:weights},forecast=weightProjection(weights,now);assert.doesNotMatch(c.chart(m,'kg','all',now),/data-informational-projection/);const html=c.chart(m,'kg','all',now,380,forecast);assert.match(html,/data-informational-projection/);assert.match(html,/data-trend-scenarios/);assert.doesNotMatch(html,/NaN|Infinity/);assert.match(html,/Latest recorded/);
+ const markers=c.markers(m,{status:'available',doses:[{id:'d',at:'2026-10-12T06:00:00Z',medicine:'Prescribed',dose:'Member record'}],symptoms:[]},'all',now,380,forecast);assert.match(markers,/Recorded strength/);assert.match(markers,/x="230\.40"/);
+});
+const t={id:'a',supply:2,next_at:'2026-10-13T12:00:00Z',status:'active'};const event=(kind,details={},date='2026-10-11T12:00:00Z',id='a')=>({treatment_id:id,kind,details,occurred_at:date});const plan={intervalDays:7,leadDays:3,usableUntil:null};
+test('supply uses confirmed quantity, prescribed interval and provider lead time; never infers a missed dose',()=>{
+ assert.equal(supplyEstimate(t,[],now).status,'setup');const events=[event('supply_updated',{supplyDetails:plan})];const a=supplyEstimate(t,events,now);assert.equal(a.nextUncoveredScheduledDate,'2026-10-27T12:00:00.000Z');assert.equal(a.checkBy,'2026-10-24T12:00:00.000Z');assert.equal(supplyEstimate({...t,next_at:'2026-10-10'},events,now).status,'confirm');assert.equal(supplyEstimate({...t,status:'paused'},events,now).status,'paused');assert.match(a.limitation,/No automatic order/);
+});
+test('expiry boundary uses the first uncovered scheduled dose and subtracts lead time',()=>{
+ for(const [usableUntil,due]of [['2026-10-13T12:00:00Z','2026-10-13T12:00:00.000Z'],['2026-10-14T00:00:00Z','2026-10-20T12:00:00.000Z']]){const a=supplyEstimate({...t,supply:4},[event('supply_updated',{supplyDetails:{...plan,usableUntil}})],now);assert.equal(a.nextUncoveredScheduledDate,due);assert.equal(Date.parse(a.checkBy),Date.parse(due)-3*DAY);}assert.equal(supplyEstimate(t,[event('supply_updated',{supplyDetails:{...plan,usableUntil:'2026-10-12T00:00:00Z'}})],now).status,'confirm');
+});
+test('ordering does not imply delivery, new supply replaces old details, and other treatments are ignored',()=>{
+ const confirmed=event('supply_updated',{supplyDetails:plan}),order=event('repeat_order',{},'2026-10-12T10:00:00Z');assert.equal(supplyEstimate(t,[confirmed,order],now).status,'order_recorded');assert.equal(supplyEstimate(t,[confirmed,order,event('supply_updated',{},'2026-10-12T11:00:00Z')],now).status,'setup');assert.equal(supplyEstimate(t,[event('supply_updated',{supplyDetails:plan},undefined,'other')],now).status,'setup');
+});
+test('supply plan rejects automatic recommendations or unbounded inputs',()=>{assert.equal(validateSupplyDetails(plan),plan);for(const p of [{...plan,intervalDays:0},{...plan,leadDays:61},{...plan,usableUntil:'bad'},{...plan,dose:'change'},{...plan,intervalDays:'7'}])assert.throws(()=>validateSupplyDetails(p));});

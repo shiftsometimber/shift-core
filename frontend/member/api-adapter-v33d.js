@@ -59,6 +59,8 @@
     if(meta.waistCm) form.append('waistCm',String(meta.waistCm));
     form.append('capturedAt',meta.capturedAt||new Date().toISOString());
     form.append('source',meta.source||'upload');
+    if(meta.note)form.append('note',meta.note);
+    if(meta.operationId)form.append('operationId',meta.operationId);
     try{
       const res=await fetch(V1+'/shift/progress-photo',{method:'POST',credentials:'include',cache:'no-store',body:form});
       const ct=res.headers.get('content-type')||'';const body=ct.includes('application/json')?await res.json():{message:await res.text()};

@@ -1,3 +1,4 @@
+import {myTimberHistoricalRecord,myTimberHistoricalIntegrationWorkflow} from '../release/my-timber-progress-journey-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -54,13 +55,13 @@ test('integration budget repair rejects source drift, unregistered scope, missin
  const c=options();c.content=ref=>JSON.stringify(ref===r.base?{retained:'same'}:{retained:'changed',supportRecoveryIntegrationBudget:{}});assert.throws(()=>verify(r,c),/Prior release receipts/);
 });
 test('actual workflow changes only its execution budget and preserves every runtime and browser assertion',()=>{
- const before=read(r.base,r.paths[0]),after=read('HEAD',r.paths[0]);
+ const before=read(r.base,r.paths[0]),after=myTimberHistoricalIntegrationWorkflow(read('HEAD',r.paths[0]));
  assert.equal((before.match(/timeout-minutes: 30/g)||[]).length,1);
  assert.equal(after,before.replace('timeout-minutes: 30','timeout-minutes: 60'));
  for(const path of ['.github/workflows/cloudflare-production-promote.yml','shift-coach/scope.mjs','release/fit-300-scope.mjs','shift-coach/full-page-proof.mjs','shift-coach/browser-proof.mjs','shift-coach/member-record-browser.mjs','shift-coach/public-trust-browser.mjs','tests/tablet-routine-browser.mjs','frontend/member/turnstile-auth-v1.js','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','worker.js'])assert.equal(read('HEAD',path),read(r.base,path));
 });
 test('actual budget composition preserves all prior receipts and historical verifier bodies',()=>{
- const current=verifyReconciledRelease();assert.equal(current.supportRecoveryIntegrationBudget.source,r.source);
+ const current=myTimberHistoricalRecord(verifyReconciledRelease());assert.equal(current.supportRecoveryIntegrationBudget.source,r.source);
  const prior=JSON.parse(read(r.base,manifest)),retained=structuredClone(current);delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
  for(const path of [...r.paths,...r.maintenancePaths])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
  const before=read(r.base,'release/approved-runtime-composition.mjs'),after=read('HEAD','release/approved-runtime-composition.mjs');
