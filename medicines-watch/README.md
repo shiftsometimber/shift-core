@@ -1,5 +1,11 @@
 # Treatments: Medicines & Peptides Watch
 
+## 12 October Rhythm source-monitor repair
+
+`reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json` records a bounded alternate-source repair for the two Rhythm Pharmaceuticals pages that repeatedly returned HTTP 403 to the production checker. The public evidence links remain the original bivamelagon and RM-718 sponsor announcements. Their automatic `checkUrl` routes now use the corresponding official Rhythm-hosted PDF versions after both complete PDFs were retrieved, read and exact-byte fingerprinted.
+
+The medicine wording, programme-summary dates, monitor logic, 119 programmes, 204 configured sources and 102 manually followed evidence URLs do not change. The separate time-based programme-summary queue contains 69 items at this review instant; this source-route repair does not renew any of them. This is the 40th completed factual-review receipt. The prior HTML fingerprints and failed production observations remain recorded; successful local PDF reads do not seed green production observations. ZP6590 remains `verification_pending` plus `check_delayed`. Authoritative alternate-source work, programme-summary reviews and open-ended discovery continue with their own dates and next actions. Monitoring is not finished, and editorial authorisation is not clinical approval.
+
 ## 12 October due-source renewal and MariTide comparison discovery
 
 `reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json` records a complete rereview of the five configured sources that became due after the preceding release: the Gan & Lee GZC8072 page, NCT07784699, the Ascletis AURORA announcement, NCT07743463 and NCT07743450. Their claim-bearing fingerprints and trial lifecycles remain unchanged, none is withdrawn, and only the source and associated GZC8072/ASC30 programme review dates advance.
