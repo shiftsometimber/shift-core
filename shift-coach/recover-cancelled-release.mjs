@@ -1,3 +1,4 @@
+import {TREATMENT_ROLLBACK,verifyMyTreatmentRollback} from '../release/my-treatment-rollback-runtime.mjs';
 import {CONTACT_ROLLBACK,verifyContactRollback} from '../release/contact-rollback-runtime.mjs';
 import {SUPPORT_RUNTIME,verifySupportRuntime} from '../release/live-support-runtime.mjs';
 import {OWNER_RUNTIME,verifyOwnerRuntime} from '../release/owner-captured-runtime.mjs';
@@ -36,6 +37,12 @@ else if(before.id===restoredLaterRuntime.deployment){
  restoredLaterRuntimeProof=await verifyRestoredLaterRuntime(before,version,get,getLogs);
  const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during restoration ownership verification');
  decision='retain';
+}
+else if(before.id===TREATMENT_ROLLBACK.deployment){
+ const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact My Treatment rollback logs unavailable');return r.text();};
+ const priorActive=JSON.parse(wrangler('deployments','list','--json')).find(d=>d.id===TREATMENT_ROLLBACK.previousDeployment);assert(priorActive,'Exact previous contact rollback metadata unavailable');
+ ownedProof=await verifyMyTreatmentRollback(before,version,priorActive,get,getLogs);
+ const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during exact My Treatment rollback verification');decision='retain';
 }
 else if(before.id===CONTACT_ROLLBACK.deployment){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact contact rollback logs unavailable');return r.text();};
@@ -125,3 +132,4 @@ if(decision==='restore'){
 }
 mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.run:restoredContinuityRuntimeProof?restoredContinuityRuntime.run:restoredPassportRuntimeProof?restoredPassportRuntime.run:restoredToolRuntimeProof?restoredToolRuntime.run:restoredLaterRuntimeProof?restoredLaterRuntime.run:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.run:unattributedProof?unattributedRuntimeRecovery.run:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.version:restoredContinuityRuntimeProof?restoredContinuityRuntimeProof.version:restoredPassportRuntimeProof?restoredPassportRuntimeProof.version:restoredToolRuntimeProof?restoredToolRuntimeProof.version:restoredLaterRuntimeProof?restoredLaterRuntimeProof.verifiedVersion:ownerCapturedProof?ownerCapturedProof.version:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedVersion:unattributedProof?unattributedRuntimeRecovery.verifiedVersion:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.verifiedRun:restoredContinuityRuntimeProof?restoredContinuityRuntimeProof.verifiedRun:restoredPassportRuntimeProof?restoredPassportRuntimeProof.verifiedRun:restoredToolRuntimeProof?restoredToolRuntimeProof.verifiedRun:restoredLaterRuntimeProof?restoredLaterRuntimeProof.verifiedRun:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedRun:unattributedProof?unattributedRuntimeRecovery.verifiedRun:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(restoredMaleObesityRuntimeProof?{restoredMaleObesityRuntimeProof}:{}),...(ownerCapturedProof?{ownerCapturedProof}:{}),...(restoredLaterRuntimeProof?{restoredLaterRuntimeProof}:{}),...(restoredToolRuntimeProof?{restoredToolRuntimeProof}:{}),...(restoredPassportRuntimeProof?{restoredPassportRuntimeProof}:{}),...(restoredContinuityRuntimeProof?{restoredContinuityRuntimeProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),...(unattributedProof?{unattributedRuntimeRecovery:unattributedProof}:{}),...(laterUnattributedProof?{laterUnattributedRuntimeRecovery:laterUnattributedProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
 console.log('PASS exact cancelled-release recovery: '+decision+' verified runtime; no data rollback');
+
