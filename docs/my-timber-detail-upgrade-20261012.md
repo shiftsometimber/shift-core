@@ -1,3 +1,7 @@
+# Latest extension: recorded jab/symptom/food/Fit patterns
+
+The working 12 October pattern extension supersedes the earlier candidate status below. See [my-timber-patterns-20261012.md](my-timber-patterns-20261012.md) for behaviour, current evidence, limits and the combined finite 13-path release scope. Earlier source and receipts remain preserved. Production integration is still pending.
+
 # My Timber — progress charts and quick logging — 12 October 2026
 
 Status: built and locally verified; not merged or deployed; physical acceptance remains open.
