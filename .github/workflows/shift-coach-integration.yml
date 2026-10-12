@@ -4,7 +4,7 @@ on:
     branches: [live/shift-ai-coaching-20261002]
     paths: [shift-coach/**, wrangler.coaching.jsonc, .github/workflows/shift-coach-integration.yml]
   pull_request:
-    paths: [shift-coach/**, wrangler.coaching.jsonc, .github/workflows/shift-coach-integration.yml]
+    paths: [shift-coach/**, wrangler.coaching.jsonc, .github/workflows/shift-coach-integration.yml, ask-timber-v1.js, docs/my-timber-detail-upgrade-20261012.md, docs/my-timber-patterns-20261012.md, docs/my-timber-progress-journey-20261012.md, docs/my-timber-progress-journey-20261012.receipt.json, frontend/member/api-adapter-v33d.js, frontend/member/member-progress-v1.js, member-daily-v2.js, member-experience/entry.mjs, member-experience/food-diary-client.mjs, member-experience/grub-runtime.mjs, member-experience/health-routes.mjs, member-experience/journey-portability.mjs, member-experience/progress-journey.mjs, member-experience/staging/verify-treatment-detail.mjs, member-experience/tests/journey-portability.test.mjs, member-experience/tests/progress-journey.test.mjs, member-experience/tests/treatment-detail.test.mjs, member-experience/tests/treatment-patterns.test.mjs, member-experience/treatment-detail.mjs, member-experience/treatment-page.mjs, member-experience/treatment-patterns.mjs, member-experience/treatment-routes.mjs, my-journey-v1.js, privacy-health-erasure-route-v1.js, shift-visualise-v1.js, tests/progress-charts.test.mjs, tests/progress-photo-journey.test.mjs]
 permissions:
   contents: read
 jobs:
@@ -36,6 +36,13 @@ jobs:
         run: node shift-coach/workerd-proof.cjs
       - run: npm install --prefix "$RUNNER_TEMP/coaching-qa" --no-audit --no-fund playwright@1.63.0
       - run: "$RUNNER_TEMP/coaching-qa/node_modules/.bin/playwright install --with-deps chromium"
+      - name: Verify My Timber progress journey with synthetic account records
+        env:
+          TREATMENT_PLAYWRIGHT_PACKAGE: ${{ runner.temp }}/coaching-qa/package.json
+          TREATMENT_DETAIL_PROOF_DIR: ${{ runner.temp }}/coaching-proof/my-timber-progress-journey
+        run: |
+          node --test tests/progress-charts.test.mjs tests/progress-photo-journey.test.mjs member-experience/tests/progress-journey.test.mjs member-experience/tests/journey-portability.test.mjs
+          node member-experience/staging/verify-treatment-detail.mjs
       - name: Exercise synthetic accounts through the actual session-authenticated coaching routes
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/coaching-qa/node_modules/playwright

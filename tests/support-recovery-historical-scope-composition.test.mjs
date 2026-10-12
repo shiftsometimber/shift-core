@@ -1,3 +1,4 @@
+import {myTimberHistoricalRecord} from '../release/my-timber-progress-journey-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -55,7 +56,7 @@ test('Fit adapter exposes the verified historical head only for legacy HEAD name
  for(const p of ['shift-coach/unapproved-runtime.mjs','migrations/unapproved.sql'])assert.equal(reconciliationPath(p),false);
 });
 test('actual scope repair preserves the complete prior receipts and all original verifier bodies',()=>{
- const current=verifyReconciledRelease();assert.equal(current.supportRecoveryHistoricalScope.source,r.source);
+ const current=myTimberHistoricalRecord(verifyReconciledRelease());assert.equal(current.supportRecoveryHistoricalScope.source,r.source);
  const prior=JSON.parse(read(r.base,manifest)),retained=structuredClone(current);delete retained.supportRecoveryHistoricalScope;delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
  for(const path of [...r.paths,...r.maintenancePaths])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
  for(const path of ['worker.js','shift-coach/scope.mjs','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','frontend/member/turnstile-auth-v1.js','medicines-watch/README.md','medicines-watch/industry.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.equal(read('HEAD',path),read(r.base,path));

@@ -1,3 +1,4 @@
+import {MY_TIMBER_PROGRESS_PATHS,MY_TIMBER_PROGRESS_MAINTENANCE,verifyMyTimberProgressJourney} from './my-timber-progress-journey-scope.mjs';
 import {withoutTreatmentFlag,withoutTreatmentSteps,TREATMENT_FLAG} from './my-treatment-config.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -117,6 +118,7 @@ export const PROOF_TRANSPORT_SOURCE='d601b545686a74dfe51c6f57a5712b11fba510f9';
 export const PROOF_TRANSPORT_PATHS=['release/growth-preflight.mjs','release/github-proof-get.mjs','tests/github-proof-get.test.mjs'];
 export const PROOF_TRANSPORT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST,...WATCH_FACTUAL_UPDATE_PATHS,...WATCH_FACTUAL_UPDATE_MAINTENANCE,...PROOF_TRANSPORT_PATHS,...PROOF_TRANSPORT_MAINTENANCE]);
+for(const path of [...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE])RECONCILIATION_PATHS.add(path);
 export const MY_TREATMENT_BASE='793b5135ce7bcdb42d77597b238c769c32a7dc67';
 export const MY_TREATMENT_SOURCE='8681d219edc06be15c24135741877c47ee36b011';
 export const MY_TREATMENT_PATHS=['.github/workflows/cloudflare-production-promote.yml','.github/workflows/my-treatment-production-check.yml','member-experience/TREATMENT-PRODUCTION-RELEASE.md','member-experience/entry.mjs','member-experience/tests/treatment-model.test.mjs','member-experience/tests/treatment.test.mjs','member-experience/treatment-model.mjs','member-experience/treatment-page.mjs','member-experience/treatment-privacy.mjs','member-experience/treatment-reminders.mjs','member-experience/treatment-routes.mjs','member-experience/treatment-service-worker.mjs','member-experience/treatment.sql','privacy-health-erasure-route-v1.js','release/my-treatment-config.mjs','release/my-treatment-live.mjs','release/my-treatment-schema.mjs','shift-coach/release-contract.mjs','tests/my-treatment-release.test.mjs','worker-entry-v6.js','wrangler.coaching.jsonc','wrangler.jsonc'];
@@ -2261,7 +2263,9 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const actualHead=git('rev-parse','HEAD');
+ const currentRawHead=git('rev-parse','HEAD'),myTimberJourney=c.myTimberProgressJourney;
+ if(myTimberJourney)verifyMyTimberProgressJourney(myTimberJourney,{head:currentRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const actualHead=myTimberJourney?myTimberJourney.base:currentRawHead;
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
  const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
@@ -2269,7 +2273,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
- }:read;
+ }:myTimberJourney?(ref,path)=>read(ref==='HEAD'&&[...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?myTimberJourney.base:ref,path):read;
  const supportBudgetTestRepair=c.supportRecoveryIntegrationBudgetTestRepair;
  if(supportBudgetTestRepair)verifySupportBudgetTestRepair(supportBudgetTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preSupportBudgetTestRepairHead=supportBudgetTestRepair?supportBudgetTestRepair.base:actualHead;
@@ -2696,7 +2700,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const treatmentWorkflow=treatment?withoutTreatmentSteps(currentWorkflow):currentWorkflow;
  assertProductionProofBudget(productionProofBefore,closeout?withoutProgrammeLiveGate(treatmentWorkflow):treatmentWorkflow);
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
- assert.equal(git('rev-parse','HEAD'),actualHead,'Source HEAD changed during composition verification');
+ assert.equal(git('rev-parse','HEAD'),currentRawHead,'Source HEAD changed during composition verification');
  return c;
 }
 const mappedCompositionReaders=new WeakSet();
