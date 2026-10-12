@@ -2616,7 +2616,9 @@
     "proof": "EXACT_WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_V1",
     "base": "521058604747c4819709251aa36ddfaaac376a88",
     "source": "8ac8e6d98df3a0a0c3f27a3f44c0175fd3ff4c8b",
-    "paths": ["shift-coach/release.test.mjs"],
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
     "maintenancePaths": [
       "release/approved-runtime-composition.mjs",
       "tests/watch-alnylam-release-guard-repair-composition.test.mjs"
@@ -2678,7 +2680,10 @@
     "clinicalApproval": null,
     "industryComplete": false,
     "reviewedAt": "2026-10-11T16:47:11Z",
-    "programmeIds": ["aln2232", "aln6222"],
+    "programmeIds": [
+      "aln2232",
+      "aln6222"
+    ],
     "programmesBefore": 116,
     "programmesAfter": 118,
     "configuredSources": 202,
@@ -2734,7 +2739,10 @@
     "industryComplete": false,
     "reviewedAt": "2026-10-11T20:40:31Z",
     "sourceReviewsApplied": 2,
-    "sourceIds": ["registry-nct07281495", "registry-nct06584916"],
+    "sourceIds": [
+      "registry-nct07281495",
+      "registry-nct06584916"
+    ],
     "unchangedFingerprints": [
       "1bdb60c0234e5e7babea960bea4a448ef7c51e8dbf81ee70d91a60362e9d7f2c",
       "504a69920fee24c6c1465d8e387b9632a17dd7850212e7d2c15fcff643490357"
@@ -2781,7 +2789,9 @@
     "proof": "EXACT_WATCH_TALDEFGROBEP_ATTAIN_GUARD_REPAIR_V1",
     "base": "95c6c9fc78eb49d2fb40e57b1ecc5bcd7fbf5fb2",
     "source": "084d87cfa1fd2b61a9d12e37e61bda9f5158ab9f",
-    "paths": ["shift-coach/release.test.mjs"],
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
     "maintenancePaths": [
       "release/approved-runtime-composition.mjs",
       "tests/watch-taldefgrobep-attain-release-guard-repair-composition.test.mjs"
@@ -2840,7 +2850,16 @@
     "reviewedAt": "2026-10-12T00:46:47Z",
     "sourceReviewsApplied": 8,
     "programmeReviewsApplied": 3,
-    "sourceIds": ["registry-nct07101783", "registry-nct07184632", "registry-nct07415954", "registry-nct07525791", "registry-nct07639021", "registry-nct07767175", "registry-nct07754461", "hansoh-olatorepatide-20260604"],
+    "sourceIds": [
+      "registry-nct07101783",
+      "registry-nct07184632",
+      "registry-nct07415954",
+      "registry-nct07525791",
+      "registry-nct07639021",
+      "registry-nct07767175",
+      "registry-nct07754461",
+      "hansoh-olatorepatide-20260604"
+    ],
     "unchangedRegistryFingerprints": [
       "54be7a6010c945d0abe2441e86a8b82a748bcceb5af7cae79678c9c81ca27b35",
       "07e01ac6dcb507a235dbffc9bf092c72b196a230a1a9096806989a4d843d5185",
@@ -2913,7 +2932,11 @@
     "reviewedAt": "2026-10-11T22:33:19Z",
     "sourceReviewsApplied": 3,
     "programmeReviewsApplied": 3,
-    "sourceIds": ["registry-nct07589686", "registry-nct07517042", "registry-nct07654374"],
+    "sourceIds": [
+      "registry-nct07589686",
+      "registry-nct07517042",
+      "registry-nct07654374"
+    ],
     "unchangedFingerprints": [
       "7472d8e9ff7bfc674013a3a2e5ba291f2b5d4fe8e08257cb2c984d2337d0a24f",
       "d30d414c70aaa7b589ea815eda7790e94097f02fceb56a9df8eac84fd3380ce5",
@@ -2991,10 +3014,23 @@
     "publicationStatus": "owner_authorised_factual_publication",
     "clinicalApproval": null,
     "industryComplete": false,
-    "reviewedAt": ["2026-10-12T02:43:21Z", "2026-10-12T02:49:39Z"],
+    "reviewedAt": [
+      "2026-10-12T02:43:21Z",
+      "2026-10-12T02:49:39Z"
+    ],
     "sourceReviewsApplied": 9,
     "programmeReviewsApplied": 2,
-    "sourceIds": ["hengrui-ribupatide-pmos-20260708", "registry-nct06595797", "registry-nct06974851", "registry-nct06994650", "registry-nct07551492", "registry-nct07559136", "registry-nct07670884", "registry-nct07660848", "registry-nct07808073"],
+    "sourceIds": [
+      "hengrui-ribupatide-pmos-20260708",
+      "registry-nct06595797",
+      "registry-nct06974851",
+      "registry-nct06994650",
+      "registry-nct07551492",
+      "registry-nct07559136",
+      "registry-nct07670884",
+      "registry-nct07660848",
+      "registry-nct07808073"
+    ],
     "reviewedFingerprints": [
       "563c54b397ae9180b32c9b3113fee38852c29d9e8ade01faea283613b783da30",
       "0bed9d97e1a9e22a1a11a3ef08e81d0ab05a8fe8d73a58bd8ee2cab8f2e92bba",
@@ -3071,7 +3107,14 @@
     "reviewedAt": "2026-10-12T05:02:00Z",
     "sourceReviewsApplied": 6,
     "programmeReviewsApplied": 3,
-    "sourceIds": ["ganlee-gzc8072-20260907", "registry-nct07784699", "ascletis-asc30-aurora-first-dose-20260830", "registry-nct07743463", "registry-nct07743450", "registry-nct07866066"],
+    "sourceIds": [
+      "ganlee-gzc8072-20260907",
+      "registry-nct07784699",
+      "ascletis-asc30-aurora-first-dose-20260830",
+      "registry-nct07743463",
+      "registry-nct07743450",
+      "registry-nct07866066"
+    ],
     "reviewedFingerprints": [
       "1ed471c800e14e097582461b9dfe58f79cbc64579edb69597ba0601db45c6a73",
       "eb71180cf8a8d8066ef1cf769e1218856ec76be8046b9b2eae6715aa03e1b0a1",
@@ -3137,7 +3180,10 @@
     "reviewedAt": "2026-10-12T10:36:09Z",
     "sourceReviewsApplied": 2,
     "programmeReviewsApplied": 0,
-    "sourceIds": ["bivamelagon-rhythm-20250709", "rm718-rhythm-20260804"],
+    "sourceIds": [
+      "bivamelagon-rhythm-20250709",
+      "rm718-rhythm-20260804"
+    ],
     "reviewedFingerprints": [
       "9f0faf3cb0d4f6b24e93601eee0a6090ef2f604e8e22b3cc9315dd3e67343805",
       "d10fbca2dfa163968fa0dd3fc406d5a15118fbe5b1d23339455e54ebb3805fa6"
@@ -3230,6 +3276,178 @@
     "analyticsChanged": false,
     "consentChanged": false,
     "checkoutChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
+  "watchAlnylamLaterReviewTestRepair": {
+    "proof": "EXACT_WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_20261012",
+    "base": "6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19",
+    "source": "29fd4812df4394d344b6d0df321aab9672a0e4e2",
+    "paths": [
+      "tests/watch-alnylam-rnai-discovery-composition.test.mjs",
+      "tests/watch-alnylam-release-guard-repair-composition.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-alnylam-later-review-test-repair-composition.test.mjs"
+    ],
+    "maintenanceSource": "da51ac6bd6e46bfcf9bd8ec49834ac8f1919eee9",
+    "integrationIssue": 1065,
+    "publicationStatus": "staged_master_test_repair",
+    "repair": "compare historical Alnylam paths with exact later reviewed sources",
+    "baselineFailureReproduced": true,
+    "runtimeChanged": false,
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "monitorLogicChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "homepageChanged": false,
+    "primaryNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
+  "supportRecovery": {
+    "proof": "EXACT_SUPPORT_RECOVERY_20261011",
+    "base": "4df439d8fb03f29f030e25c413e40f0fac57c042",
+    "source": "fb8f56205c00e24f1f54194dea9a99a5d0c0a884",
+    "paths": [
+      "docs/content-review/contact-human-handoff-20261011.md",
+      "docs/content-review/support-recovery-20261011.json",
+      "docs/content-review/support-recovery-browser-proof-20261011.json",
+      "frontend/member/turnstile-auth-v1.js",
+      "shift-coach/public-trust-repair.mjs",
+      "shift-coach/support-content-20261010.mjs",
+      "tests/support-recovery-20261011.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/support-recovery-composition.test.mjs"
+    ],
+    "maintenanceSource": "b2552308cd4d83e37ae77381add3c4b43e7f63e1",
+    "integrationIssue": 1065,
+    "publicationStatus": "staged_owner_release_lane",
+    "homepageChanged": false,
+    "primaryNavigationChanged": false,
+    "campaignChanged": false,
+    "organicGrowthChanged": false,
+    "watchChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "mailRoutingChanged": false,
+    "turnstileWeakened": false,
+    "clinicalGatesChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
+  "supportRecoveryHistoricalScope": {
+    "proof": "EXACT_SUPPORT_RECOVERY_HISTORICAL_SCOPE_20261012",
+    "base": "03490ebe9294d1ca069351244d5fdb2f9dc59785",
+    "source": "9ebb818260f24bc21008953d1a336812058574bb",
+    "paths": [
+      "release/fit-300-scope.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/support-recovery-historical-scope-composition.test.mjs"
+    ],
+    "maintenanceSource": "9333d41a74547d038118a91a624767cf093067f9",
+    "integrationIssue": 1065,
+    "publicationStatus": "staged_master_scope_repair",
+    "failedWorkflowRun": 38275467124,
+    "failedJob": 114899734173,
+    "historicalDiffOnly": true,
+    "runtimeChanged": false,
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "monitorLogicChanged": false,
+    "homepageChanged": false,
+    "primaryNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "mailRoutingChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
+  "supportRecoveryIntegrationBudget": {
+    "proof": "EXACT_SUPPORT_RECOVERY_INTEGRATION_BUDGET_20261012",
+    "base": "e33d2d554af1a2d279f722bf9c7d8bf2ea2f4b7c",
+    "source": "3f47b52d7656f05a136c03f7d05071fc826e7b16",
+    "paths": [
+      ".github/workflows/shift-coach-integration.yml"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/support-recovery-integration-budget-composition.test.mjs"
+    ],
+    "maintenanceSource": "0c98c3e91f1093161cbc1322ae315eac60c03ca8",
+    "integrationIssue": 1065,
+    "publicationStatus": "staged_master_ci_budget_repair",
+    "failedWorkflowRun": 38278150805,
+    "failedJob": 114908583075,
+    "failedHead": "e33d2d554af1a2d279f722bf9c7d8bf2ea2f4b7c",
+    "observedJobConclusion": "cancelled",
+    "cancellationAnnotation": "The job has exceeded the maximum execution time of 30m0s",
+    "priorJobMinutes": 30,
+    "jobMinutes": 60,
+    "runtimeChanged": false,
+    "browserAssertionsChanged": false,
+    "testScopeChanged": false,
+    "productPerformanceThresholdsChanged": false,
+    "workflowTriggersChanged": false,
+    "workflowPermissionsChanged": false,
+    "productionWorkflowChanged": false,
+    "homepageChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalGatesChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
+  "supportRecoveryIntegrationBudgetTestRepair": {
+    "proof": "EXACT_SUPPORT_BUDGET_PRIOR_RECEIPT_TEST_REPAIR_20261012",
+    "base": "c0b39e7642d83ac9536830a24c2504998a316439",
+    "source": "efd7ed91143d6a9adbcf466ffbf040709ab40239",
+    "paths": [
+      "tests/support-recovery-historical-scope-composition.test.mjs",
+      "tests/support-recovery-integration-budget-composition.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/support-recovery-integration-budget-test-repair-composition.test.mjs"
+    ],
+    "maintenanceSource": "36395e58c812a4b0398f22ba525537637771b5b1",
+    "integrationIssue": 1065,
+    "publicationStatus": "staged_master_prior_receipt_test_repair",
+    "failedHead": "c0b39e7642d83ac9536830a24c2504998a316439",
+    "failedTest": "actual scope repair preserves the complete prior receipts and all original verifier bodies",
+    "runtimeChanged": false,
+    "workflowChanged": false,
+    "browserAssertionsChanged": false,
+    "productPerformanceThresholdsChanged": false,
+    "priorReceiptAssertionsRemoved": false,
+    "clinicalGatesChanged": false,
+    "homepageChanged": false,
     "customerDataChanged": false,
     "externalCommunicationsSent": false,
     "genericAdoptionAllowed": false,

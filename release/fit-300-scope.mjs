@@ -1,4 +1,4 @@
-import {reconciliationHistoricalRef,LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from './approved-runtime-composition.mjs';
+import {reconciliationHistoricalRef,reconciliationHead,LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from './approved-runtime-composition.mjs';
 import {METRICS_PATHS,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import {RANKING_GROWTH_PATHS,rankingGrowthGitArgs} from './seo-growth-scope.mjs';
 export const WATCH_RECONCILIATION_BASE='e723261284d733476370c0e19d3ac7c516d9b8b6';
@@ -89,7 +89,14 @@ export const IMAGE_VIEWER_PATHS=new Set(['shift-coach/member-image-viewer.mjs','
 export const FIT300_PATHS=new Set([...IMAGE_VIEWER_PATHS,'fit-expansion-serving-manifest-v1.mjs','release/fit-300-scope.mjs','release/fit-300-activation.json','tests/fit-expansion-publication.test.mjs','scripts/b1-release-scope.mjs','release/app-scope.mjs','shift-coach/release-contract.mjs','shift-coach/release-manifest.json']);
 const LATER_UNATTRIBUTED_WATCH_RELEASE_PATHS=new Set([...LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED,...LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE]);
 export const READONLY_ORGANIC_PATHS=new Set(['.github/workflows/organic-growth-content.yml','editorial/organic-growth-20261005/README.md','editorial/organic-growth-20261005/baseline.json','editorial/organic-growth-20261005/intent-map.json','editorial/organic-growth-20261005/nhs-weight-loss-drugs.json','editorial/organic-growth-20261005/publication.test.mjs','editorial/organic-growth-20261005/publish.mjs','editorial/organic-growth-20261005/release-receipt.json','editorial/organic-growth-20261005/wegovy-side-effects-timeline.json']);
-const git=(...args)=>execFileSync('git',rankingGrowthGitArgs(args),{encoding:'utf8'}).trim();
+// A fully authenticated later composition is read at its immutable historical
+// head by these original Fit path classifiers. Actual current payload bytes and
+// every finite boundary are verified before this adapter exposes that view.
+export function fit300HistoricalGitArgs(args){
+ if(args[0]!=='diff'||args[1]!=='--name-only'||args[3]!=='HEAD')return args;
+ return [...args.slice(0,3),reconciliationHead(),...args.slice(4)];
+}
+const git=(...args)=>execFileSync('git',rankingGrowthGitArgs(fit300HistoricalGitArgs(args)),{encoding:'utf8'}).trim();
 const sha=b=>createHash('sha256').update(b).digest('hex');
 
 export function validateFit300(){
