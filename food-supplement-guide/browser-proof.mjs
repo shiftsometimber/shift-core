@@ -1,9 +1,9 @@
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import{createHash}from'node:crypto';import{createRequire}from'node:module';import{fileURLToPath}from'node:url';
-import{renderFoodGuideDocument,GUIDE_ASSETS,GUIDE_PATH}from'./production.mjs';import{guideStyles,guideData,guideRuntime}from'./content.mjs';
+import{renderFoodGuideDocument,GUIDE_ASSETS,GUIDE_PATH}from'./production.mjs';import{guideMarkup,guideStyles,guideData,guideRuntime}from'./content.mjs';
 const require=createRequire(import.meta.url),{chromium}=process.env.PLAYWRIGHT_MODULE?require(process.env.PLAYWRIGHT_MODULE):await import('playwright');
 const root=path.dirname(fileURLToPath(import.meta.url)),out=path.join(root,'evidence-food-only');fs.mkdirSync(out,{recursive:true});
 const base='https://shiftsometimber.co.uk',r=await fetch(base+'/programme',{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,'Current public shell unavailable');const shell=await r.text(),html=renderFoodGuideDocument(shell),assets=Object.fromEntries([['styles.css','text/css',guideStyles],['data.js','text/javascript',guideData],['guide.js','text/javascript',guideRuntime]].map(([n,type,body])=>[GUIDE_ASSETS+n,{type,body}]));
-const codeHash=createHash('sha256').update(guideStyles+guideData+guideRuntime).digest('hex'),checks=[],blocked=[],errors=[];let current='setup',width=0;
+const codeHash=createHash('sha256').update(guideMarkup+guideStyles+guideData+guideRuntime).digest('hex'),checks=[],blocked=[],errors=[];let current='setup',width=0;
 const browser=await chromium.launch({headless:true});
 try{
 for(width of[390,1440]){

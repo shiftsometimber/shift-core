@@ -7,7 +7,7 @@ const main=html.match(/<main id="top">([\s\S]*?)<\/main>/)[1];
 const nav=html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
 const dialog='';
 const reset='<div class="guide-controls"><button id="reset" class="text-button">Reset my choices</button></div>';
-const markup='<main id="shift-food-guide"><div id="top"></div>'+nav+main.replace('This preview doesn’t connect to your account.','Your takeaway is not saved automatically to your account.').replace('This private version has not had an external clinical review.','This guide has not had an external clinical review.').replace('No account, tracking or health details needed.','No account or health details needed.')+reset+'</main>'+dialog+'<div class="guide-announcer" id="announcer" role="status" aria-live="polite"></div>';
+const markup='<main id="shift-food-guide"><div id="top"></div>'+nav+main.replace('This preview doesn’t connect to your account.','Your takeaway is not saved automatically to your account.').replace('This private version has not had an external clinical review.','This guide has not had an external clinical review.').replace('No account, tracking or health details needed.','No account or health details needed.').replaceAll('Nothing is sent to SHIFT or saved to My Timber.','Your food choices are not sent to SHIFT or saved to My Timber.')+reset+'</main>'+dialog+'<div class="guide-announcer" id="announcer" role="status" aria-live="polite"></div>';
 function selector(s){
  s=s.trim();
  if(s===':root')return '#shift-food-guide, #detail-dialog';
