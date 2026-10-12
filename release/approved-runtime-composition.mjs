@@ -2218,6 +2218,36 @@ export function verifySupportRecoveryIntegrationBudget(c,{head,read,diff,ancesto
  return c;
 }
 
+
+export const SUPPORT_BUDGET_TEST_REPAIR_BASE='c0b39e7642d83ac9536830a24c2504998a316439';
+export const SUPPORT_BUDGET_TEST_REPAIR_SOURCE='efd7ed91143d6a9adbcf466ffbf040709ab40239';
+export const SUPPORT_BUDGET_TEST_REPAIR_PATHS=["tests/support-recovery-historical-scope-composition.test.mjs","tests/support-recovery-integration-budget-composition.test.mjs"];
+export const SUPPORT_BUDGET_TEST_REPAIR_MAINTENANCE=["release/approved-runtime-composition.mjs","tests/support-recovery-integration-budget-test-repair-composition.test.mjs"];
+const SUPPORT_BUDGET_TEST_REPAIR_SET=new Set([...SUPPORT_BUDGET_TEST_REPAIR_PATHS,...SUPPORT_BUDGET_TEST_REPAIR_MAINTENANCE]);
+for(const path of SUPPORT_BUDGET_TEST_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifySupportBudgetTestRepair(c,{head,read,diff,ancestor,content=(ref,path)=>publicToolImmutableGit('show',ref+':'+path)}){
+ assert.equal(c?.proof,'EXACT_SUPPORT_BUDGET_PRIOR_RECEIPT_TEST_REPAIR_20261012');
+ assert.equal(c.base,SUPPORT_BUDGET_TEST_REPAIR_BASE);assert.equal(c.source,SUPPORT_BUDGET_TEST_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,SUPPORT_BUDGET_TEST_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_BUDGET_TEST_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'staged_master_prior_receipt_test_repair');
+ assert.equal(c.failedHead,SUPPORT_BUDGET_TEST_REPAIR_BASE);assert.equal(c.failedTest,'actual scope repair preserves the complete prior receipts and all original verifier bodies');
+ for(const flag of ["runtimeChanged","workflowChanged","browserAssertionsChanged","productPerformanceThresholdsChanged","priorReceiptAssertionsRemoved","clinicalGatesChanged","homepageChanged","customerDataChanged","externalCommunicationsSent","genericAdoptionAllowed","deploymentAuthorityBroadened","rollbackAuthorityBroadened","existingGatesWeakened"])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated budget prior-receipt test payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated budget prior-receipt test maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after budget prior-receipt test repair');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(current,prior,'Prior release receipts changed by budget prior-receipt test repair');
+ const changes=[
+  [SUPPORT_BUDGET_TEST_REPAIR_PATHS[0],'delete retained.supportRecoveryHistoricalScope;assert.deepEqual(retained,prior);','delete retained.supportRecoveryHistoricalScope;delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);'],
+  [SUPPORT_BUDGET_TEST_REPAIR_PATHS[1],'delete retained.supportRecoveryIntegrationBudget;assert.deepEqual(retained,prior);','delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);']
+ ];
+ for(const [path,beforeFragment,afterFragment] of changes){const before=content(c.base,path);assert.equal(before.split(beforeFragment).length,2,'Exactly one prior-receipt comparison required: '+path);assert.equal(content(c.source,path),before.replace(beforeFragment,afterFragment),'Only the named verified later receipts may be separated from the historical comparison: '+path);}
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift / Support historical-scope source drift / Integration budget source drift / Budget prior-receipt test source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift / Waist keyboard maintenance source drift / Support recovery maintenance source drift / Alnylam later-review test maintenance source drift / Support historical-scope source drift / Integration budget source drift / Budget prior-receipt test source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -2240,10 +2270,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const supportBudgetTestRepair=c.supportRecoveryIntegrationBudgetTestRepair;
+ if(supportBudgetTestRepair)verifySupportBudgetTestRepair(supportBudgetTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportBudgetTestRepairHead=supportBudgetTestRepair?supportBudgetTestRepair.base:actualHead;
+ const supportBudgetTestRepairRawBlob=(ref,path)=>outerRawBlob(supportBudgetTestRepair&&ref==='HEAD'&&SUPPORT_BUDGET_TEST_REPAIR_SET.has(path)?supportBudgetTestRepair.base:ref,path);
  const supportRecoveryIntegrationBudget=c.supportRecoveryIntegrationBudget;
- if(supportRecoveryIntegrationBudget)verifySupportRecoveryIntegrationBudget(supportRecoveryIntegrationBudget,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSupportRecoveryIntegrationBudgetHead=supportRecoveryIntegrationBudget?supportRecoveryIntegrationBudget.base:actualHead;
- const supportRecoveryIntegrationBudgetRawBlob=(ref,path)=>outerRawBlob(supportRecoveryIntegrationBudget&&ref==='HEAD'&&SUPPORT_RECOVERY_INTEGRATION_BUDGET_SET.has(path)?supportRecoveryIntegrationBudget.base:ref,path);
+ if(supportRecoveryIntegrationBudget)verifySupportRecoveryIntegrationBudget(supportRecoveryIntegrationBudget,{head:preSupportBudgetTestRepairHead,read:supportBudgetTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportRecoveryIntegrationBudgetHead=supportRecoveryIntegrationBudget?supportRecoveryIntegrationBudget.base:preSupportBudgetTestRepairHead;
+ const supportRecoveryIntegrationBudgetRawBlob=(ref,path)=>supportBudgetTestRepairRawBlob(supportRecoveryIntegrationBudget&&ref==='HEAD'&&SUPPORT_RECOVERY_INTEGRATION_BUDGET_SET.has(path)?supportRecoveryIntegrationBudget.base:ref,path);
  const supportRecoveryHistoricalScope=c.supportRecoveryHistoricalScope;
  if(supportRecoveryHistoricalScope)verifySupportRecoveryHistoricalScope(supportRecoveryHistoricalScope,{head:preSupportRecoveryIntegrationBudgetHead,read:supportRecoveryIntegrationBudgetRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preSupportRecoveryHistoricalScopeHead=supportRecoveryHistoricalScope?supportRecoveryHistoricalScope.base:preSupportRecoveryIntegrationBudgetHead;
