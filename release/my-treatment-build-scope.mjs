@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';import{execFileSync}from'node:child_process';
+export const TREATMENT_BUILD_BASE='e13c49dde529f82155498b875ea0ef7bb3169bf8';
+export const TREATMENT_BUILD_SOURCE='a6de674e6a692610852ea5ae8301fb611ae73e95';
+export const TREATMENT_BUILD_PATHS=Object.freeze(["release/my-treatment-compiled-runtime.mjs","release/my-treatment-live.mjs","tests/my-treatment-compiled-runtime.test.mjs","release/my-treatment-build-rollback.mjs","tests/my-treatment-build-rollback.test.mjs","docs/my-treatment-build-repair-20261013.json","shift-coach/recover-cancelled-release.mjs",".github/workflows/shift-coach-integration.yml"]);
+export const TREATMENT_BUILD_MAINT=Object.freeze(["release/approved-runtime-composition.mjs","release/my-treatment-build-scope.mjs","tests/my-treatment-build-composition.test.mjs","release/my-timber-progress-journey-scope.mjs","tests/my-timber-progress-journey-composition.test.mjs","tests/contact-rollback-composition.test.mjs"]);
+export const TREATMENT_BUILD_FLAGS=Object.freeze(['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','customerDataChanged','externalCommunicationsSent','paidModelEnabled','deploymentAuthorityBroadened','rollbackAuthorityBroadened','genericAdoptionAllowed','existingGatesWeakened','liveBytesUsedAsExpectation','formatNormalisationAdded']);
+const manifest='release/approved-runtime-composition.json',sorted=a=>[...a].sort();
+export function verifyTreatmentBuildComposition(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_COMPILED_TREATMENT_BUILD_AND_OWNED_ROLLBACK_20261013');assert.equal(c.base,TREATMENT_BUILD_BASE);assert.equal(c.source,TREATMENT_BUILD_SOURCE);assert.deepEqual(c.paths,TREATMENT_BUILD_PATHS);assert.deepEqual(c.maintenancePaths,TREATMENT_BUILD_MAINT);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.failedPromotion,38316073865);assert.equal(c.failedJob,115032993314);assert.equal(c.integrationIssue,1065);assert.equal(c.retentionOnly,true);assert.equal(c.failedReleaseAccepted,false);assert.equal(c.fullAssetByteComparison,true);assert.equal(c.existingEightLiveChecksRetained,true);for(const flag of TREATMENT_BUILD_FLAGS)assert.equal(c[flag],false);
+ for(const ref of[c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated compiled treatment proof payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated compiled proof maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[manifest],'Unreviewed change after compiled proof receipt');
+ const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.myTreatmentBuildProof;assert.deepEqual(current,prior,'All prior immutable release declarations must remain unchanged');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Contact retention source drift: Compiled treatment source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Contact retention maintenance drift: Compiled treatment maintenance drift: '+path);
+ return c;
+}
+function currentBuild(){
+ const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim(),content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'}),record=JSON.parse(content('HEAD',manifest)),c=record.myTreatmentBuildProof;
+ if(c)verifyTreatmentBuildComposition(c,{head:git('rev-parse','HEAD'),read:(r,p)=>git('rev-parse',r+':'+p),diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content});
+ return {record,c,content};
+}
+export function treatmentBuildHistoricalFile(path,bytes){const{c,content}=currentBuild();assert(['release/approved-runtime-composition.mjs','.github/workflows/shift-coach-integration.yml'].includes(path),'Unlisted build historical file');assert.equal(bytes,content('HEAD',path),'Historical input must be exact current bytes');return c?content(c.base,path):bytes;}

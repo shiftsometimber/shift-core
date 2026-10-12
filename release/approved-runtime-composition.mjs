@@ -1,3 +1,4 @@
+import {TREATMENT_BUILD_PATHS,TREATMENT_BUILD_MAINT,verifyTreatmentBuildComposition} from './my-treatment-build-scope.mjs';
 import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposition} from './contact-rollback-scope.mjs';
 import {MY_TIMBER_PROGRESS_PATHS,MY_TIMBER_PROGRESS_MAINTENANCE,verifyMyTimberProgressJourney} from './my-timber-progress-journey-scope.mjs';
 import {withoutTreatmentFlag,withoutTreatmentSteps,TREATMENT_FLAG} from './my-treatment-config.mjs';
@@ -120,6 +121,7 @@ export const PROOF_TRANSPORT_PATHS=['release/growth-preflight.mjs','release/gith
 export const PROOF_TRANSPORT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST,...WATCH_FACTUAL_UPDATE_PATHS,...WATCH_FACTUAL_UPDATE_MAINTENANCE,...PROOF_TRANSPORT_PATHS,...PROOF_TRANSPORT_MAINTENANCE]);
 for(const path of [...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE])RECONCILIATION_PATHS.add(path);
+for(const path of [...TREATMENT_BUILD_PATHS,...TREATMENT_BUILD_MAINT])RECONCILIATION_PATHS.add(path);
 for(const path of [...CONTACT_RUNTIME_PATHS,...CONTACT_RUNTIME_MAINT])RECONCILIATION_PATHS.add(path);
 export const MY_TREATMENT_BASE='793b5135ce7bcdb42d77597b238c769c32a7dc67';
 export const MY_TREATMENT_SOURCE='8681d219edc06be15c24135741877c47ee36b011';
@@ -2292,10 +2294,12 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const currentRawHead=git('rev-parse','HEAD'),contactRollbackRuntime=c.contactRollbackRuntime;
- if(contactRollbackRuntime)verifyContactRuntimeComposition(contactRollbackRuntime,{head:currentRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const buildRawHead=git('rev-parse','HEAD'),myTreatmentBuildProof=c.myTreatmentBuildProof;
+ if(myTreatmentBuildProof)verifyTreatmentBuildComposition(myTreatmentBuildProof,{head:buildRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const currentRawHead=myTreatmentBuildProof?myTreatmentBuildProof.base:buildRawHead,buildRead=(ref,path)=>read(myTreatmentBuildProof&&ref==='HEAD'&&[...TREATMENT_BUILD_PATHS,...TREATMENT_BUILD_MAINT].includes(path)?myTreatmentBuildProof.base:ref,path),contactRollbackRuntime=c.contactRollbackRuntime;
+ if(contactRollbackRuntime)verifyContactRuntimeComposition(contactRollbackRuntime,{head:currentRawHead,read:buildRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preContactHead=contactRollbackRuntime?contactRollbackRuntime.base:currentRawHead;
- const contactRead=(ref,path)=>read(contactRollbackRuntime&&ref==='HEAD'&&[...CONTACT_RUNTIME_PATHS,...CONTACT_RUNTIME_MAINT].includes(path)?contactRollbackRuntime.base:ref,path);
+ const contactRead=(ref,path)=>buildRead(contactRollbackRuntime&&ref==='HEAD'&&[...CONTACT_RUNTIME_PATHS,...CONTACT_RUNTIME_MAINT].includes(path)?contactRollbackRuntime.base:ref,path);
  const githubProofEpipeRetry=c.githubProofEpipeRetry;
  if(githubProofEpipeRetry)verifyGithubProofEpipeRetry(githubProofEpipeRetry,{head:preContactHead,read:contactRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preGithubProofEpipeHead=githubProofEpipeRetry?githubProofEpipeRetry.base:preContactHead;
