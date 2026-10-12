@@ -55,6 +55,7 @@ import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import ard201Pause from './reviews/2026-10-05-authorised-ard201-pause.json' with {type:'json'};
 import asc36OralPublication from './reviews/2026-10-05-authorised-asc36-oral.json' with {type:'json'};
+import asc36SourceRenewal from './reviews/2026-10-12-authorised-asc36-source-renewal.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import asc30AuroraCorrection from './reviews/2026-10-05-authorised-asc30-aurora-phase3.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
@@ -1407,7 +1408,7 @@ test('oral ASC36 promotion stays formulation-specific and does not invent regist
  assert.match(entry.supply,/does not establish lawful UK retail supply/);
  assert.deepEqual(entry.sourceIds,['ascletis-asc36-oral-phase1-20260908']);
  const source=industrySources.find(item=>item.id==='ascletis-asc36-oral-phase1-20260908');
- assert.equal(source.reviewedAt,asc36OralPublication.reviewedAt);
+ assert.equal(source.reviewedAt,asc36SourceRenewal.reviewedAt);
  assert.equal(source.contentSelector,'.team_text');
  assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
  assert.equal(asc36OralPublication.discoveryPass.failedChecks.length,0);

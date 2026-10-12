@@ -1,0 +1,95 @@
+{
+  "reviewedAt": "2026-10-12T11:55:30Z",
+  "publicationStatus": "owner_authorised_factual_source_renewal",
+  "ownerEditorialAuthorisation": {
+    "date": "2026-10-12",
+    "standingPublicationAuthorisation": "Needed evidence-backed informational Watch updates may merge and deploy after required checks."
+  },
+  "reviewType": "Complete primary-source factual rereview; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "medicineWordingChanged": false,
+  "programmeReviewDateChanged": false,
+  "monitorLogicChanged": false,
+  "source": {
+    "id": "ascletis-asc36-oral-phase1-20260908",
+    "title": "Ascletis: US Phase I study initiated for ASC36 oral tablets",
+    "url": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1453/l/en-us.html",
+    "checkUrl": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1453/l/en-us.html",
+    "format": "html",
+    "contentSelector": ".team_text",
+    "sourcePublishedAt": "2026-09-08",
+    "sourceUpdatedAt": null,
+    "sourceDateLabel": "Source publication date",
+    "previousReviewedAt": "2026-10-05T11:27:10Z",
+    "reviewedAt": "2026-10-12T11:55:30Z",
+    "requiredTerms": ["ASC36 oral tablets", "86 participants", "initiated a U.S. Phase I study"],
+    "previousReviewedFingerprint": "bb52bfb18d82adf8113eee808450543f5927d46dc5fda65e90d203c9564a4f39",
+    "reviewedFingerprint": "bb52bfb18d82adf8113eee808450543f5927d46dc5fda65e90d203c9564a4f39",
+    "evidenceType": "Original Ascletis sponsor announcement; study initiation and plans, not trial results or marketing authorisation",
+    "withdrawn": false,
+    "wordingChanged": false
+  },
+  "retrieval": {
+    "retrievedAt": "2026-10-12T11:55:30Z",
+    "httpStatus": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 16300,
+    "responseSha256": "ef557f52838f4b3cc7d4747f5281454569f35ff4a59ebe81ff9e91ef5fb348e9",
+    "assessment": "The complete original sponsor announcement remains unchanged. It reports US Phase I initiation after IND clearance and describes planned single- and multiple-ascending oral doses in 86 participants with obesity or overweight. It still does not identify first dosing, recruitment status, locations or typed study dates. Animal bioavailability, half-life, weight and food-intake findings remain non-human evidence rather than human results."
+  },
+  "registrySearch": {
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.term=ASC36&pageSize=100",
+    "checkedAt": "2026-10-12T11:56:25Z",
+    "httpStatus": 200,
+    "responseBytes": 16,
+    "responseSha256": "e5660ca1fb1bc482c0112c159084af7c325461ac1624b4de41dd67edef2981b9",
+    "recordsReturned": 0,
+    "boundary": "The exact-name API search returned no public record. This incomplete indexed-source check is not proof that no registry or study exists."
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-12T11:55:00Z",
+    "httpStatus": 200,
+    "status": "awaiting_review",
+    "configuredSources": 204,
+    "currentSources": 202,
+    "sourceReviewNeeded": ["ascletis-asc36-oral-phase1-20260908"],
+    "checkDelayed": ["zealand-zp6590-pipeline"],
+    "boundary": "The ASC36 monitor observation is current but its seven-day factual review expired. Availability did not renew it. ZP6590 remains separately verification_pending plus check_delayed."
+  },
+  "discoveryPass": {
+    "performedAt": "2026-10-12T10:33:00Z",
+    "method": "Separate current-date ClinicalTrials.gov obesity/overweight update search plus broader ongoing topic-based discovery review, followed by an exact ASC36 registry search at 11:56:25Z.",
+    "result": "No newly posted or updated obesity/overweight registry record was returned for 10 through 12 October in the broader pass, and the exact ASC36 search returned zero records. These are incomplete indexed-source checks, not proof of no industry change.",
+    "industryComplete": false
+  },
+  "monitoring": {
+    "sourceCountBefore": 204,
+    "sourceCountAfter": 204,
+    "configuredSourceReviewQueueBefore": 1,
+    "configuredSourceReviewQueueAfter": 0,
+    "priorCompletedReviews": 40,
+    "completedReviewsAfter": 41,
+    "programmeSummaryFactualReviewNeeded": 70,
+    "thresholdsChanged": false,
+    "successesSeeded": false
+  },
+  "preserved": {
+    "programmes": 119,
+    "configuredSources": 204,
+    "manualEvidence": 102,
+    "programmeSummaryFactualReviewNeeded": 70,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "medicalClaimsChanged": false,
+    "programmeReviewDatesChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "clinicalApprovalChanged": false,
+    "monitorLogicChanged": false,
+    "monitoringFinished": false
+  },
+  "nextAction": "Run complete Watch and exact-head release checks, publish through the guarded review route, and require a fresh uncached production health observation before treating the factual source review as current. Continue the independent 70-item programme-summary queue and open-ended discovery with their own dates."
+}

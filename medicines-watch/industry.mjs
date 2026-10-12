@@ -1,4 +1,6 @@
 import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
+import rhythmPdfAlternatives from './reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json' with {type:'json'};
+import asc36SourceRenewal from './reviews/2026-10-12-authorised-asc36-source-renewal.json' with {type:'json'};
 import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
 import ly4329090Discovery from './reviews/2026-10-12-authorised-ly4329090-discovery.json' with {type:'json'};
 import ribupatideSpecialistRenewal from './reviews/2026-10-12-authorised-ribupatide-specialist-renewal.json' with {type:'json'};
@@ -114,7 +116,9 @@ export const industrySources = [...evidence.sources,...followup.sources,...conti
  reviewedFingerprint:ribupatideSpecialistRenewal.sponsorSource.reviewedFingerprint}:s).map(s=>{
  const renewal=gzcAsc30Maritide.sourceReviews.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
-}).map(s => ({
+}).map(s => rhythmPdfAlternatives.sources.find(r=>r.id===s.id)||s).map(s=>s.id===asc36SourceRenewal.source.id?{...s,
+ reviewedAt:asc36SourceRenewal.source.reviewedAt,
+ reviewedFingerprint:asc36SourceRenewal.source.reviewedFingerprint}:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,

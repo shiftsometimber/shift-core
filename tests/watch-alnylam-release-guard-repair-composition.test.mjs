@@ -34,6 +34,6 @@ test('Alnylam inner verifier, negative drift tests and monitor logic remain immu
  const functionBody=(ref,name)=>{const text=read(ref,'release/approved-runtime-composition.mjs'),start=text.indexOf('export function '+name+'(');assert(start>=0);return text.slice(start,text.indexOf('\n}\n',start)+3);};
  assert.equal(functionBody('HEAD','verifyWatchAlnylamRnaiDiscovery'),functionBody(base,'verifyWatchAlnylamRnaiDiscovery'));
  for(const path of ['medicines-watch/monitor.mjs','medicines-watch/evidence-desk.mjs','.github/workflows/cloudflare-production-promote.yml','tests/late-watch-composition.test.mjs'])assert.equal(read('HEAD',path),read(base,path));
- const current=verifyReconciledRelease(),registered=current.watchRibupatideLy4329090.maintenanceSource;
+ const current=verifyReconciledRelease(),registered=current.watchAlnylamLaterReviewTestRepair?.source??current.watchRibupatideLy4329090.maintenanceSource;
  assert.equal(read('HEAD','tests/watch-alnylam-rnai-discovery-composition.test.mjs'),read(registered,'tests/watch-alnylam-rnai-discovery-composition.test.mjs'));
 });
