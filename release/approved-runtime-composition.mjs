@@ -2145,6 +2145,24 @@ export function verifyWatchAzelapragRenewal(c,{head,read,diff,ancestor,content=(
  return c;
 }
 
+export const WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_BASE='6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19';
+export const WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_SOURCE='29fd4812df4394d344b6d0df321aab9672a0e4e2';
+export const WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_PATHS=Object.freeze(["tests/watch-alnylam-rnai-discovery-composition.test.mjs", "tests/watch-alnylam-release-guard-repair-composition.test.mjs"]);
+export const WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/watch-alnylam-later-review-test-repair-composition.test.mjs"]);
+const WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_SET=new Set([...WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_PATHS,...WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_MAINTENANCE]);
+export function verifyWatchAlnylamLaterReviewTestRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_20261012');assert.equal(c.base,WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_BASE);assert.equal(c.source,WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'staged_master_test_repair');assert.equal(c.repair,'compare historical Alnylam paths with exact later reviewed sources');assert.equal(c.baselineFailureReproduced,true);assert.equal(c.runtimeChanged,false);
+ for(const flag of ["medicalEvidenceChanged", "reviewDatesChanged", "programmeWordingChanged", "monitorLogicChanged", "queueLogicChanged", "healthResponseChanged", "homepageChanged", "primaryNavigationChanged", "memberDataChanged", "checkoutChanged", "externalCommunicationsSent", "genericAdoptionAllowed", "deploymentAuthorityBroadened", "rollbackAuthorityBroadened", "existingGatesWeakened"])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Alnylam later-review test payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Alnylam later-review test maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Alnylam later-review test receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchAlnylamLaterReviewTestRepair;assert.deepEqual(current,prior,'Prior release receipts changed by Alnylam later-review test repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift / Alnylam later-review test source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift / Waist keyboard maintenance source drift / Support recovery maintenance source drift / Alnylam later-review test maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -2167,10 +2185,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchAlnylamLaterReviewTestRepair=c.watchAlnylamLaterReviewTestRepair;
+ if(watchAlnylamLaterReviewTestRepair)verifyWatchAlnylamLaterReviewTestRepair(watchAlnylamLaterReviewTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAlnylamLaterReviewTestRepairHead=watchAlnylamLaterReviewTestRepair?watchAlnylamLaterReviewTestRepair.base:actualHead;
+ const alnylamLaterReviewTestRepairRawBlob=(ref,path)=>outerRawBlob(watchAlnylamLaterReviewTestRepair&&ref==='HEAD'&&WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_SET.has(path)?watchAlnylamLaterReviewTestRepair.base:ref,path);
  const watchAsc36SourceRenewal=c.watchAsc36SourceRenewal;
- if(watchAsc36SourceRenewal)verifyWatchAsc36SourceRenewal(watchAsc36SourceRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preAsc36SourceRenewalHead=watchAsc36SourceRenewal?watchAsc36SourceRenewal.base:actualHead;
- const asc36SourceRenewalRawBlob=(ref,path)=>outerRawBlob(watchAsc36SourceRenewal&&ref==='HEAD'&&WATCH_ASC36_SOURCE_RENEWAL_SET.has(path)?watchAsc36SourceRenewal.base:ref,path);
+ if(watchAsc36SourceRenewal)verifyWatchAsc36SourceRenewal(watchAsc36SourceRenewal,{head:preAlnylamLaterReviewTestRepairHead,read:alnylamLaterReviewTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAsc36SourceRenewalHead=watchAsc36SourceRenewal?watchAsc36SourceRenewal.base:preAlnylamLaterReviewTestRepairHead;
+ const asc36SourceRenewalRawBlob=(ref,path)=>alnylamLaterReviewTestRepairRawBlob(watchAsc36SourceRenewal&&ref==='HEAD'&&WATCH_ASC36_SOURCE_RENEWAL_SET.has(path)?watchAsc36SourceRenewal.base:ref,path);
  const watchRhythmPdfAlternatives=c.watchRhythmPdfAlternatives;
  if(watchRhythmPdfAlternatives)verifyWatchRhythmPdfAlternatives(watchRhythmPdfAlternatives,{head:preAsc36SourceRenewalHead,read:asc36SourceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preRhythmPdfAlternativesHead=watchRhythmPdfAlternatives?watchRhythmPdfAlternatives.base:preAsc36SourceRenewalHead;
