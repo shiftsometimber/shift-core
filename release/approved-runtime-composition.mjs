@@ -2270,10 +2270,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const supportPublicPreservation=c.supportRecoveryPublicPreservation;
+ if(supportPublicPreservation)verifySupportPublicPreservation(supportPublicPreservation,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportPublicPreservationHead=supportPublicPreservation?supportPublicPreservation.base:actualHead;
+ const supportPublicPreservationRawBlob=(ref,path)=>outerRawBlob(supportPublicPreservation&&ref==='HEAD'&&SUPPORT_PUBLIC_PRESERVATION_SET.has(path)?supportPublicPreservation.base:ref,path);
  const supportBudgetTestRepair=c.supportRecoveryIntegrationBudgetTestRepair;
- if(supportBudgetTestRepair)verifySupportBudgetTestRepair(supportBudgetTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSupportBudgetTestRepairHead=supportBudgetTestRepair?supportBudgetTestRepair.base:actualHead;
- const supportBudgetTestRepairRawBlob=(ref,path)=>outerRawBlob(supportBudgetTestRepair&&ref==='HEAD'&&SUPPORT_BUDGET_TEST_REPAIR_SET.has(path)?supportBudgetTestRepair.base:ref,path);
+ if(supportBudgetTestRepair)verifySupportBudgetTestRepair(supportBudgetTestRepair,{head:preSupportPublicPreservationHead,read:supportPublicPreservationRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportBudgetTestRepairHead=supportBudgetTestRepair?supportBudgetTestRepair.base:preSupportPublicPreservationHead;
+ const supportBudgetTestRepairRawBlob=(ref,path)=>supportPublicPreservationRawBlob(supportBudgetTestRepair&&ref==='HEAD'&&SUPPORT_BUDGET_TEST_REPAIR_SET.has(path)?supportBudgetTestRepair.base:ref,path);
  const supportRecoveryIntegrationBudget=c.supportRecoveryIntegrationBudget;
  if(supportRecoveryIntegrationBudget)verifySupportRecoveryIntegrationBudget(supportRecoveryIntegrationBudget,{head:preSupportBudgetTestRepairHead,read:supportBudgetTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preSupportRecoveryIntegrationBudgetHead=supportRecoveryIntegrationBudget?supportRecoveryIntegrationBudget.base:preSupportBudgetTestRepairHead;
@@ -2996,3 +3000,30 @@ export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+
+// Finite CI-only compatibility for the approved Help and contact security deltas.
+export const SUPPORT_PUBLIC_PRESERVATION_BASE='7da4c5406a59bcd929240bd72cb5c7a7b96c8b60';
+export const SUPPORT_PUBLIC_PRESERVATION_SOURCE='c5bd50321c88aeeb1af40a32ebf0de21ece375be';
+export const SUPPORT_PUBLIC_PRESERVATION_PATHS=Object.freeze(["release/support-recovery-preservation.mjs","member-experience/public-preservation.mjs","tests/support-recovery-preservation.test.mjs","release/app-preflight.mjs","tests/support-recovery-historical-scope-composition.test.mjs","tests/support-recovery-integration-budget-composition.test.mjs","tests/support-recovery-integration-budget-test-repair-composition.test.mjs"]);
+export const SUPPORT_PUBLIC_PRESERVATION_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/support-recovery-public-preservation-composition.test.mjs"]);
+const SUPPORT_PUBLIC_PRESERVATION_SET=new Set([...SUPPORT_PUBLIC_PRESERVATION_PATHS,...SUPPORT_PUBLIC_PRESERVATION_MAINTENANCE]);
+for(const path of SUPPORT_PUBLIC_PRESERVATION_SET)RECONCILIATION_PATHS.add(path);
+export function verifySupportPublicPreservation(c,{head,read,diff,ancestor,content=(ref,path)=>publicToolImmutableGit('show',ref+':'+path)}){
+ assert.equal(c?.proof,'EXACT_SUPPORT_PUBLIC_PRESERVATION_REPAIR_20261012');assert.equal(c.base,SUPPORT_PUBLIC_PRESERVATION_BASE);assert.equal(c.source,SUPPORT_PUBLIC_PRESERVATION_SOURCE);
+ assert.deepEqual(c.paths,SUPPORT_PUBLIC_PRESERVATION_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_PUBLIC_PRESERVATION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'approved_existing_guarded_contact_repair');
+ assert.equal(c.failedRun,38291781709);assert.equal(c.failedJob,114953466887);assert.equal(c.rollbackDeployment,'4a9c25dc-4208-43f1-9e72-12ee11eba7ac');
+ assert.equal(c.helpSource,'0f25e3cd425fa87159cdeb1b3d4222bf8341ac67');assert.equal(c.transportSource,'79e3055163e81ce8befbcfa09fc52226dd43f594');
+ for(const flag of ["runtimeChanged","workflowChanged","browserAssertionsChanged","productPerformanceThresholdsChanged","priorReceiptAssertionsRemoved","clinicalGatesChanged","homepageChanged","customerDataChanged","externalCommunicationsSent","genericAdoptionAllowed","deploymentAuthorityBroadened","rollbackAuthorityBroadened","existingGatesWeakened"])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource,c.helpSource,c.transportSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated support preservation payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated support preservation maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after support preservation repair');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.supportRecoveryPublicPreservation;assert.deepEqual(current,prior,'Prior release receipts changed by support preservation repair');
+ assert.equal(content(c.source,'member-experience/public-preservation.mjs'),content(c.helpSource,'member-experience/public-preservation.mjs'),'Retain every original full-public preservation assertion');
+ assert.equal(content(c.source,'release/app-preflight.mjs'),content(c.transportSource,'release/app-preflight.mjs'),'Retain the exact approved bounded transport repair and all acceptance checks');
+ for(const {path,pattern,replacement} of [{"path":"tests/support-recovery-historical-scope-composition.test.mjs","pattern":"retained=structuredClone(current);delete retained.supportRecoveryHistoricalScope;delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;","replacement":"retained=JSON.parse(read('e33d2d554af1a2d279f722bf9c7d8bf2ea2f4b7c',manifest));delete retained.supportRecoveryHistoricalScope;","ref":"e33d2d554af1a2d279f722bf9c7d8bf2ea2f4b7c"},{"path":"tests/support-recovery-integration-budget-composition.test.mjs","pattern":"retained=structuredClone(current);delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;","replacement":"retained=JSON.parse(read('c0b39e7642d83ac9536830a24c2504998a316439',manifest));delete retained.supportRecoveryIntegrationBudget;","ref":"c0b39e7642d83ac9536830a24c2504998a316439"},{"path":"tests/support-recovery-integration-budget-test-repair-composition.test.mjs","pattern":"retained=structuredClone(current);delete retained.supportRecoveryIntegrationBudgetTestRepair;","replacement":"retained=JSON.parse(read('dd35edb7f0b4f2fe8ce9d8f9d8832d62c37d93ad',manifest));delete retained.supportRecoveryIntegrationBudgetTestRepair;","ref":"dd35edb7f0b4f2fe8ce9d8f9d8832d62c37d93ad"}]){const before=content(c.base,path);assert.equal(before.split(pattern).length,2,'Exactly one historical receipt comparison required');assert.equal(content(c.source,path),before.replace(pattern,replacement),'Only the immutable publication snapshot may change; retain current verification and every assertion');}
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift / Support historical-scope source drift / Integration budget source drift / Budget prior-receipt test source drift / Support public preservation source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift / Waist keyboard maintenance source drift / Support recovery maintenance source drift / Alnylam later-review test maintenance source drift / Support historical-scope source drift / Integration budget source drift / Budget prior-receipt test source drift / Support public preservation maintenance source drift: '+path);
+ return c;
+}
