@@ -59,3 +59,15 @@ test('nutrition snapshots reject unknown, nonnumeric, negative and excessive ent
 test('nutrition snapshots appear in the owned PDF and privacy export, not in another member record',async()=>{
  const {appendTreatmentExport}=await import('../treatment-privacy.mjs');const {env,one,two,id,event}=await fixture();const checkin={weight:null,appetite:'Usual',energy:'Usual',sideEffects:'',foodNote:'PRIVATE FOOD SNAPSHOT',proteinGrams:20,waterMl:250};await treatmentRoutes(req('/events',one,{...event,kind:'checkin',checkin}),env);const pdf=await(await treatmentRoutes(req('/summary.pdf?period=all&treatment='+id,one),env)).text();assert.match(pdf,/PRIVATE FOOD SNAPSHOT/);assert.match(pdf,/Protein so far that day: 20 g/);assert.match(pdf,/Water so far that day: 250 ml/);const exportRequest=new Request('https://preview.invalid/v1/privacy/export',{method:'POST',headers:{Cookie:'sst_session='+one}});const exported=await(await appendTreatmentExport(exportRequest,env,Response.json({}))).json();assert.deepEqual(exported.myTreatment.events.find(e=>e.kind==='checkin').details.checkin,checkin);assert.equal((await(await treatmentRoutes(req('',two),env)).json()).events.length,0);
 });
+
+test('one-item logs save without unrelated appetite or energy questions',async()=>{
+ for(const checkin of [{weight:93.2},{waterMl:250},{proteinGrams:0},{foodNote:'Synthetic meal'},{appetite:'Low'},{energy:'Usual'},{sideEffects:'Synthetic symptom'},{sideEffects:'',symptomImpact:'None'}]){
+  const {env,one,event}=await fixture();const body={...event,kind:'checkin',checkin};assert.equal((await treatmentRoutes(req('/events',one,body),env)).status,201);assert.equal((await treatmentRoutes(req('/events',one,body),env)).status,200);const data=await(await treatmentRoutes(req('',one),env)).json();assert.deepEqual(data.events.find(e=>e.kind==='checkin').details.checkin,checkin);assert.equal(data.treatments[0].supply,4);
+ }
+});
+test('empty one-item logs do not create a false check-in',async()=>{
+ for(const checkin of [{},{weight:null},{foodNote:' '},{sideEffects:''},{symptomImpact:'None'}]){const {env,one,event}=await fixture();const r=await treatmentRoutes(req('/events',one,{...event,kind:'checkin',checkin}),env);assert.equal(r.status,400);assert.equal((await(await treatmentRoutes(req('',one),env)).json()).events.length,1);}
+});
+test('a water-only record preserves unknown symptom, appetite and energy values',()=>{
+ const text=describeTreatmentEvent({kind:'checkin',details:{checkin:{waterMl:250}}},INJECTION_SITES);assert.match(text,/Appetite: Not recorded/);assert.match(text,/Energy: Not recorded/);assert.match(text,/Reported side effects: Not recorded/);assert.doesNotMatch(text,/None reported/);
+});

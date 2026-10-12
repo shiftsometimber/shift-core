@@ -1,83 +1,97 @@
-# My Timber daily treatment detail — 12 October 2026
+# My Timber — progress charts and quick logging — 12 October 2026
 
-Status: built and locally verified; not merged, deployed or accepted on physical devices.
+Status: built and locally verified; not merged or deployed; physical acceptance remains open.
 
-Matt authorised progressing the existing app at 07:54 BST on 12 October after reviewing GLP-1 Tracker: My GLP1 Journey. This is an additive first tranche within the existing #1065 source/release lane. It extends My Treatment and points to the existing Journey, Progress, Life Back and Grub destinations. It does not create another master queue or claim another chat has been commanded.
+Matt authorised the first upgrade at 07:54 BST, then explicitly added progress charts and smooth, quick, easy logging at 09:21 BST. This extends the same existing branch and #1065 source/release lane. The first-stage commit 67d8135c578cdbb5a898fa09e889efef0bf4b3ad and its original receipts remain in history.
 
-## User-visible changes
+## Everyday use
 
-- Dose logging optionally records the actual injection location for Mounjaro, Wegovy and liraglutide. Current shows the most recent recorded dose/time/location. Older entries stay valid and missing sites stay unrecorded.
-- Treatment check-ins can record how symptoms affected the member's day and their reported start time.
-- Optional expandable food notes, protein estimates and water snapshots support a quick daily record. These are snapshots, not a complete intake diary, nutritional targets or totals inferred by adding repeated check-ins.
-- The new Timeline puts doses and check-ins together with treatment and period filters. All entries remain member-reported. The diary is not monitored and does not establish symptom causation.
-- The doctor summary/PDF includes the same new recorded fields. Medical disclosures stay excluded by default. Nothing is sent automatically.
-- Clear links lead to the current Journey, measurements/photos, Life Back and food tools. Existing progress assets and Life Back calculation are retained.
-- Appetite and energy require an explicit choice on a new check-in; a default no longer creates a reported Usual value.
+The member chooses one thing: Weight, Water, Food, How I feel or Symptoms.
+- Weight and Water each show one input and one Save button.
+- Food starts with a note; protein/water extras are expandable.
+- Appetite and energy are independently optional; weight or water never requires either.
+- Symptoms start with one note or the explicit No symptoms to record action. Effect/start time stay expandable.
+- Dose time defaults to now, with optional time/note changes behind an expander; location remains optional.
+- Add-treatment setup, instructions/supply/reminders and wider Journey tools stay expandable.
+- Unsaved quick-log values remain only in memory. A fresh authenticated owned-record read is required before restoration. Missing ownership or 401 clears the draft. Restoration does not force focus/scroll and swallow the next tap.
+- One operation ID and the first submission time survive a failed quick-save retry. No blank unrelated values or fabricated Usual ratings are saved.
 
-## Source and protected baseline
+The original optional-health consent, member isolation, licensed-medicine boundaries, supply logic, reminders and medical-disclosure controls remain.
+
+## Progress charts
+
+Charts appear at the top of the existing Progress surface. Weight, waist, systolic/diastolic BP, steps, sleep and mood use recorded values from the canonical Progress summary, with one measure selector and all/4-week/12-week periods. Dot selection, keyboard arrows and an expandable readings table support exploration.
+
+Weight units follow kg, lb or stone/lb preferences. Empty and single-point states show no invented line or forecast. Missing values remain missing; genuine zero remains zero. Calendar spacing is real; the latest saved reading per day is plotted.
+
+The summary reads existing account-owned treatment weights as well as progress entries. It selects only numeric weight and timestamps from treatment events, not symptom/food notes, and never copies or writes progress rows. This adds one bounded database SELECT under the existing My Treatment flag; chart controls add no network request. No new datastore, schema, model/provider or paid service is used.
+
+Existing bounded history is retained: up to 1,000 progress records and 1,000 treatment check-ins. A cap notice appears when either boundary is reached. Life Back remains the existing score, not a new clinical or competing score.
+
+## Source
 
 Repository: shiftsometimber/shift-core.
 Branch: codex/my-timber-journey-detail-20261012.
-Base: 91d6a15fec847ef7b1f6dc5828dee84853b3eb27, the current #1334 terminal serving source at preparation time.
+Base: 91d6a15fec847ef7b1f6dc5828dee84853b3eb27.
 Worktree: /Users/shiftsometimberltd/SST/shift-my-timber-journey-detail-20261012.
 
-Exactly six paths:
+Exactly nine paths relative to the base:
 1. member-experience/treatment-detail.mjs
 2. member-experience/treatment-page.mjs
 3. member-experience/treatment-routes.mjs
 4. member-experience/tests/treatment-detail.test.mjs
 5. member-experience/staging/verify-treatment-detail.mjs
 6. docs/my-timber-detail-upgrade-20261012.md
+7. member-daily-v2.js
+8. frontend/member/member-progress-v1.js
+9. tests/progress-charts.test.mjs
 
-Existing event JSON stores and existing optional-health export/erasure are reused. No schema or runtime configuration changes. Homepage, public content, primary app navigation, prescribing, medicine availability, checkout, stock, notification implementation, native packages/keys/testers and release guards are unchanged.
+Homepage, public copy, global navigation, prescribing, stock/checkout, runtime configuration, notification implementation, native packages/keys/testers and existing release guards are unchanged.
 
-## Actual validation
+## Actual verification
 
-- Focused suite: 27 passed, zero failures/skips.
-- Existing My Treatment integration suite plus all member-experience tests, discovery repairs, AI-connected member and schema/release tests: 362 passed, zero failures, one existing real-model pilot test skipped. No real-model call or paid provider use.
-- Actual local Chromium with real candidate HTML/CSS/runtime and real treatment routes over an in-memory synthetic database: 380 and 1440 px. Save, failure/retained-fields/retry, symptom/food/protein/water records, keyboard timeline, 28-day/full-history filters, text-only rendering, local PDF download, reload persistence, links and no overflow passed. Local expired-session record clearing and no duplicate dose on retry passed.
-- Candidate Worker compiled through the existing Wrangler dry-run. No deployment occurred.
-- Module and emitted-browser JavaScript syntax and git diff --check passed.
-- Browser screenshots were inspected internally; no screenshot deliverable or physical-device acceptance is claimed.
+- Focused treatment/model/progress suites: 42 pass, zero failures/skips.
+- Broader member integration suite: 377 pass, zero failures, one existing real-model pilot test skipped. No real-model or paid-provider call.
+- Local Chromium, 380 and 1440 px: previous dose/site/history/owned-PDF/refresh/period/text-safety checks retained; independent logs, optional expanders, owned draft return plus successful next tap, quick-save retry, charts/layout, metric/period controls without an extra request, keyboard/readings table, all weight units, shared treatment weights and other-account exclusion pass.
+- Synthetic expired-session private-record clearing and duplicate-dose prevention pass.
+- Existing frontend source gate passes; the configured Worker compiles through its standard dry-run.
+- Browser screenshots inspected internally, not saved as deliverables. These are candidate results, not live, physical or independent-user acceptance.
 
-Receipts on authorised SST Mac:
-- /Users/shiftsometimberltd/SST/my-timber-detail-tests-20261012.log
-- /Users/shiftsometimberltd/SST/my-timber-detail-regressions-20261012.log
-- /Users/shiftsometimberltd/SST/my-timber-detail-build-20261012.log
-- /Users/shiftsometimberltd/SST/my-timber-detail-browser-20261012.log
-- /Users/shiftsometimberltd/SST/my-timber-detail-proof-20261012/receipt.json
+The mobile return/save test caught forced focus during draft restoration; the fix suppresses that autofocus. The passing verifier explicitly requires the subsequent water POST to return 201. It was not changed to bypass the tap or weaken the save assertion.
 
-Local browser command:
-TREATMENT_PLAYWRIGHT_PACKAGE=/Users/shiftsometimberltd/SST/shift-rollout-grub-safety-20261006/package.json TREATMENT_DETAIL_PROOF_DIR=/Users/shiftsometimberltd/SST/my-timber-detail-proof-20261012 node member-experience/staging/verify-treatment-detail.mjs
+Current receipts on authorised SST Mac:
+- /Users/shiftsometimberltd/SST/my-timber-smooth-focused-20261012.log
+- /Users/shiftsometimberltd/SST/my-timber-smooth-regressions-20261012.log
+- /Users/shiftsometimberltd/SST/my-timber-smooth-browser-20261012.log
+- /Users/shiftsometimberltd/SST/my-timber-smooth-source-gate-20261012.log
+- /Users/shiftsometimberltd/SST/my-timber-smooth-build-20261012.log
+- /Users/shiftsometimberltd/SST/my-timber-smooth-proof-20261012/receipt.json
 
-This is local candidate evidence. Existing production and physical acceptance receipts are preserved; they are not silently rebound to changed source.
+Original first-stage receipts under my-timber-detail-* remain historical and unchanged. The browser verifier is the current candidate source.
 
-## Exact release handoff
+## Guarded release handoff
 
 Existing #1065 owner must:
-1. Recover the branch and current serving/main state; rebase only when the serial lane permits.
-2. Add a finite composition registration for exactly the six reviewed paths. Preserve the immutable inner verifier, prior source registrations, negative drift tests and original failure receipts. No guard weakening or blanket allowlist.
-3. Require every applicable exact-head gate and candidate browser suite to pass. Then use one same-source guarded promotion through #1065.
-4. Close software delivery only on terminal releaseVerified and current live asset/source identity, anonymous API denial and signed-in mobile/desktop dose/check-in/timeline/PDF read-back.
-5. Keep actual iPhone/Android, closed-app reminders, PDF share/save/cancel and HealthKit/Health Connect acceptance with their existing holders and sole receipt sheet. Recheck only affected native UI/PDF behaviour; do not withdraw a review, upload a build, reset a key or change access.
-6. Retain open ordinary entry/recovery, real support, broader Shift AI safety/operating and elapsed-expiry browser/persistence requirements.
+1. Recover current main/serving and this same branch; rebase only when the serial lane permits.
+2. Add finite composition registration for exactly these nine paths. Preserve immutable verifier bytes, previous source registrations, negative drift tests and prior release/failure receipts. No blanket allowlist, repinning of unrun evidence or guard weakening.
+3. Pass every applicable exact-head gate and the current candidate browser suite; then run one same-source guarded promotion.
+4. Verify both treatment runtime and the Git-authoritative Progress client actually serving, anonymous private-API denial, signed-in mobile/desktop single-item saves, owned chart records/units/periods, draft return/next tap, duplicate prevention and owned PDF. Member frontend assets currently cache for five minutes; verify the actual refreshed serving client rather than assuming an already open client updated.
+5. Keep physical iPhone/Android, closed-app reminders, HealthKit/Health Connect and native PDF share/save/cancel with their original holders and sole receipt sheet. Recheck affected shared UI/PDF behaviour; no store upload, review withdrawal, key reset or access change.
+6. Retain ordinary entry/recovery, actual support, elapsed-expiry browser/persistence and broader Shift AI operational acceptance requirements.
 
-No merge, deployment, external communication, paid generation or store change is claimed.
+No PR, issue comment, external message, deployment, paid generation or commitment has occurred. Source publication alone is not live delivery.
 
-## Next product increments
+## Remaining product increments
 
-- Extend convenient food logging inside existing Grub so it works independently of treatment; distinguish planned food from food actually eaten and keep missing nutrition distinct from zero.
-- Develop editable photo-assisted food estimates only after an exact cost/privacy/data-retention design. No paid model, image upload or supplier activation is authorised by this local implementation.
-- Bring existing measurements, progress photos and Life Back into a clearer common journey overview using their current data/consent/source rules, rather than a competing progress score.
-- Evaluate usefulness with real first-use and mature week-four return/helpfulness denominators, separate from synthetic QA. Recruitment and all communications still require the approved complete draft and recipients.
+Grub logging independent of treatment and editable photo-assisted food estimates remain separate increments. Photo work needs an exact cost/privacy/retention design before any image upload or paid model activation. Existing real first-use and mature week-four return/helpfulness measures remain distinct from synthetic QA; recruitment and communications require complete draft/recipient approval.
 
 ## Proposed draft PR — not created or sent
 
-Title: Improve My Treatment dose history and daily records
+Title: Add progress charts and simplify My Timber daily logging
 
 Body:
-Members can now record where they injected, review their last recorded dose, and see doses beside symptom and daily food/water check-ins in a filtered treatment timeline. The same optional details appear in their owned doctor summary/PDF, with disclosures still excluded by default.
+Members can review their recorded weight, waist, blood pressure, steps, sleep and mood in the existing Progress screen, with period filters, their chosen weight units, selectable dots and a readable data table. Account-owned weights already saved in My Treatment join the summary on read without copying records or returning symptom notes.
 
-This additive first tranche reuses existing member event stores and privacy controls. The six-path source is prepared for the existing #1065 owner to register through the finite composition guard before integration; no production or native-store change has occurred.
+Daily logging now starts with one task. Weight and Water need one value; Food, How I feel and Symptoms accept independent entries, with extra details expandable. Draft return preserves the member's values without stealing focus, and failed-save retries retain one operation identity. Existing dose/site history and owned doctor/PDF summaries are included in the same tranche.
 
-Validation: 27 focused tests pass; 362 broader regressions pass with one pre-existing real-model pilot test skipped. Local Chromium at 380/1440 verifies saves, failed-save recovery, keyboard/filter behaviour, owned PDF download, reload, expired-record clearing and text-only rendering. The configured Worker dry-run compiles. Live and physical-device acceptance remain with the existing release and device owners.
+This nine-path candidate remains in the #1065 lane for finite composition registration and exact-head gates. No production or native-store change has occurred. Validation: 42 focused tests and 377 broader tests pass; one existing real-model pilot test is skipped. Local Chromium at 380/1440 passes the logging, chart, return/retry, privacy and PDF cases; the frontend source gate and configured Worker dry-run pass. Live and physical acceptance remain with the existing owners.

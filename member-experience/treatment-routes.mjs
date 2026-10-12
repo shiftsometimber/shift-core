@@ -71,12 +71,18 @@ export async function treatmentRoutes(request,env){
  if(body.kind==='schedule_updated'&&body.nextAt!==null&&(!text(body.nextAt,40)||!Number.isFinite(Date.parse(body.nextAt))))return reply({error:'invalid_schedule'},400);
  if(body.kind==='reminder_updated'&&typeof body.enabled!=='boolean')return reply({error:'invalid_reminder'},400);
  if(body.kind==='checkin'){
-  const c=body.checkin;if(!object(c)||Object.keys(c).some(k=>!['weight','appetite','energy','sideEffects','symptomImpact','symptomStartedAt','foodNote','proteinGrams','waterMl'].includes(k))||c.weight!==null&&(!Number.isFinite(c.weight)||c.weight<20||c.weight>400)||!['Low','Usual','High'].includes(c.appetite)||!['Low','Usual','High'].includes(c.energy)||text(c.sideEffects,2000)===null)return reply({error:'invalid_checkin'},400);
-  if('foodNote' in c&&text(c.foodNote,2000)===null)return reply({error:'invalid_food_note',message:'Keep your food note under 2,000 characters.'},400);
-  if('proteinGrams' in c&&(!Number.isFinite(c.proteinGrams)||c.proteinGrams<0||c.proteinGrams>500))return reply({error:'invalid_protein_entry',message:'Enter a protein amount from 0 to 500 g, or leave it blank.'},400);
-  if('waterMl' in c&&(!Number.isFinite(c.waterMl)||c.waterMl<0||c.waterMl>10000))return reply({error:'invalid_water_entry',message:'Enter a water amount from 0 to 10,000 ml, or leave it blank.'},400);
-  if('symptomImpact' in c&&(!SYMPTOM_IMPACTS.includes(c.symptomImpact)||c.symptomImpact!=='None'&&!c.sideEffects.trim()))return reply({error:'invalid_symptom_impact',message:'Choose the effect on your day and add a symptom note, or leave this blank.'},400);
-  if('symptomStartedAt' in c&&(!text(c.symptomStartedAt,40)||!Number.isFinite(Date.parse(c.symptomStartedAt))||Date.parse(c.symptomStartedAt)>Date.parse(body.occurredAt)||!c.sideEffects.trim()))return reply({error:'invalid_symptom_start',message:'Add a symptom note and a valid start time before this check-in, or leave the start time blank.'},400);
+  const c=body.checkin,has=k=>Object.prototype.hasOwnProperty.call(c,k);
+  if(!object(c)||Object.keys(c).some(k=>!['weight','appetite','energy','sideEffects','symptomImpact','symptomStartedAt','foodNote','proteinGrams','waterMl'].includes(k)))return reply({error:'invalid_checkin'},400);
+  if(has('weight')&&c.weight!==null&&(!Number.isFinite(c.weight)||c.weight<20||c.weight>400))return reply({error:'invalid_checkin'},400);
+  for(const key of ['appetite','energy'])if(has(key)&&!['Low','Usual','High'].includes(c[key]))return reply({error:'invalid_checkin'},400);
+  if(has('sideEffects')&&text(c.sideEffects,2000)===null)return reply({error:'invalid_checkin'},400);
+  if(has('foodNote')&&text(c.foodNote,2000)===null)return reply({error:'invalid_food_note',message:'Keep your food note under 2,000 characters.'},400);
+  if(has('proteinGrams')&&(!Number.isFinite(c.proteinGrams)||c.proteinGrams<0||c.proteinGrams>500))return reply({error:'invalid_protein_entry',message:'Enter a protein amount from 0 to 500 g, or leave it blank.'},400);
+  if(has('waterMl')&&(!Number.isFinite(c.waterMl)||c.waterMl<0||c.waterMl>10000))return reply({error:'invalid_water_entry',message:'Enter a water amount from 0 to 10,000 ml, or leave it blank.'},400);
+  if(has('symptomImpact')&&(!SYMPTOM_IMPACTS.includes(c.symptomImpact)||c.symptomImpact!=='None'&&!c.sideEffects?.trim()))return reply({error:'invalid_symptom_impact',message:'Choose the effect on your day and add a symptom note, or leave this blank.'},400);
+  if(has('symptomStartedAt')&&(!text(c.symptomStartedAt,40)||!Number.isFinite(Date.parse(c.symptomStartedAt))||Date.parse(c.symptomStartedAt)>Date.parse(body.occurredAt)||!c.sideEffects?.trim()))return reply({error:'invalid_symptom_start',message:'Add a symptom note and a valid start time before this check-in, or leave the start time blank.'},400);
+  const meaningful=has('weight')&&c.weight!==null||has('appetite')||has('energy')||c.sideEffects?.trim()||c.foodNote?.trim()||has('proteinGrams')||has('waterMl')||has('sideEffects')&&c.sideEffects===''&&c.symptomImpact==='None';
+  if(!meaningful)return reply({error:'empty_checkin',message:'Add the one thing you want to record before saving.'},400);
  }
  const record=await env.DB.prepare('SELECT id,medicine FROM member_treatment_records WHERE id=? AND user_id=?').bind(body.treatmentId,auth.userId).first();if(!record)return reply({error:'treatment_not_found'},404);
  if('injectionSite' in body&&!INJECTION_MEDICINES.includes(record.medicine))return reply({error:'injection_site_not_applicable',message:'An injection site cannot be recorded for this treatment.'},400);

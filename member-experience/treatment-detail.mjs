@@ -15,7 +15,7 @@ export function describeTreatmentEvent(event,sites=[]){
   const c=d.checkin,lines=[
    'Weight: '+(c.weight===null||c.weight===undefined?'Not recorded':c.weight+' kg'),
    'Appetite: '+(c.appetite||'Not recorded')+' · Energy: '+(c.energy||'Not recorded'),
-   'Reported side effects: '+(c.sideEffects||'None reported')
+   'Reported side effects: '+(c.sideEffects===undefined?'Not recorded':c.sideEffects||'None reported')
   ];
   if(c.foodNote)lines.push('Food note: '+c.foodNote);
   if(c.proteinGrams!==undefined)lines.push('Protein so far that day: '+c.proteinGrams+' g (member estimate)');
