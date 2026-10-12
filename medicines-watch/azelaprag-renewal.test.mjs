@@ -39,22 +39,26 @@ test('azelaprag renewal requires actual unchanged primary-source review',()=>{
 
 test('azelaprag renewal clears only its due work and preserves separate queues',()=>{
  const time=Date.parse(receipt.reviewedAt);
+ const sourcesAtReview=allSources.filter(source=>source.id!=='registry-nct07808073');
  const health={sources:reviewedSources.map(review=>{
   const source=allSources.find(candidate=>candidate.id===review.id);
   return {...projectSourceHealth(source,observation(source,time),time),id:source.id};
  })};
- const sourceQueue=evidenceQueue(allSources,health,time);
+ const sourceQueue=evidenceQueue(sourcesAtReview,health,time);
  assert.ok(!sourceQueue.some(item=>reviewedSources.some(review=>review.id===item.source.id)));
  assert.equal(receipt.preserved.completedFactualReviews,35);
  assert.equal(receipt.preserved.programmes,116);
- assert.equal(allSources.length,receipt.preserved.configuredSources);
+ assert.equal(sourcesAtReview.length,receipt.preserved.configuredSources);
  assert.equal(receipt.preserved.expectedConfiguredSourceFactualReviewNeeded,0);
  assert.equal(receipt.preserved.expectedProgrammeSummaryFactualReviewNeeded,66);
  const priorDates=new Map([
   ['zynergy-petrelintide-enicepatide','2026-10-04T21:37:32Z'],['mazdutide','2026-10-04T21:37:32Z'],['aleniglipron','2026-10-04T21:37:32Z'],
-  ['nnc06620419','2026-10-04T23:40:55Z'],['nnc07218060','2026-10-04T23:40:55Z'],['olatorepatide','2026-10-05T00:36:00Z']
+  ['nnc06620419','2026-10-04T23:40:55Z'],['nnc07218060','2026-10-04T23:40:55Z'],['olatorepatide','2026-10-05T00:36:00Z'],
+  ['ribupatide-oral','2026-10-05T02:34:35Z'],['kai4729','2026-10-05T02:34:35Z']
  ]);
- const catalogueAtReview=[...medicines,...industry].filter(entry=>!['aln2232','aln6222'].includes(entry.id)).map(entry=>priorDates.has(entry.id)?{...entry,reviewedAt:priorDates.get(entry.id)}:entry);
+ const catalogueAtReview=[...medicines,...industry]
+  .filter(entry=>!['aln2232','aln6222','taldefgrobep-alfa','rv8451','ly4329090'].includes(entry.id))
+  .map(entry=>priorDates.has(entry.id)?{...entry,reviewedAt:priorDates.get(entry.id)}:entry);
  assert.equal(programmeSummaryQueue(catalogueAtReview,time).length,66);
  assert.equal(receipt.preserved.zp6590VerificationPending,true);
  assert.equal(receipt.preserved.zp6590CheckDelayed,true);

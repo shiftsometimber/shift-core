@@ -23,13 +23,14 @@ test('Alnylam RNAi boundaries, ancestry and every source drift fail closed',()=>
 
 test('real Alnylam RNAi composition preserves earlier receipts and manual-evidence boundaries',()=>{
  const current=verifyReconciledRelease();assert.equal(current.watchAlnylamRnaiDiscovery.source,source);
- const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);delete retained.watchAlnylamRnaiDiscovery;assert.deepEqual(retained,prior);
+ const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);for(const key of Object.keys(retained))if(!(key in prior))delete retained[key];assert.deepEqual(retained,prior);
  for(const path of [...paths,...maintenance])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
  const factual=JSON.parse(read('HEAD','medicines-watch/reviews/2026-10-11-authorised-alnylam-rnai-discovery.json'));
  assert.equal(factual.automatedMonitorChanges,false);assert.equal(factual.clinicalApproval,null);assert.equal(factual.entries.length,2);
  assert.deepEqual(factual.remainingObstacles.find(item=>item.id==='zealand-zp6590-pipeline').state,['verification_pending','check_delayed']);
  assert.deepEqual(factual.remainingObstacles.find(item=>item.id==='alnylam-registry-api').state,['manual_follow_up']);
- for(const path of paths)assert.equal(read('HEAD',path),read(source,path));
+ const laterPaths=new Set(current.watchRibupatideLy4329090.paths);
+ for(const path of paths)assert.equal(read('HEAD',path),read(laterPaths.has(path)?current.watchRibupatideLy4329090.source:source,path));
 });
 
 test('prior composition verifiers and runtime monitor logic remain immutable',()=>{

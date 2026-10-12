@@ -1,4 +1,6 @@
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
+import ly4329090Discovery from './reviews/2026-10-12-authorised-ly4329090-discovery.json' with {type:'json'};
+import ribupatideSpecialistRenewal from './reviews/2026-10-12-authorised-ribupatide-specialist-renewal.json' with {type:'json'};
 import novoHansohRenewal from './reviews/2026-10-12-authorised-novo-hansoh-renewal.json' with {type:'json'};
 import internationalMaintenanceRenewal from './reviews/2026-10-11-authorised-international-maintenance-renewal.json' with {type:'json'};
 import taldefgrobepAttainMaintainRenewal from './reviews/2026-10-11-authorised-taldefgrobep-attain-maintain-renewal.json' with {type:'json'};
@@ -65,7 +67,10 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
  }).map(s=>{
   const renewal=novoHansohRenewal.registrySources.find(r=>r.id===s.id);
   return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
- });
+ }).map(s=>{
+  const renewal=ribupatideSpecialistRenewal.registrySources.find(r=>r.id===s.id);
+  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+ }).concat(ly4329090Discovery.registrySources);
 export const supportSources=receipt.supportSources.map(s=>{
  const renewal=overdueRegistryAccessRenewal.supportSources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;

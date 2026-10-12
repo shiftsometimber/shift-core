@@ -1,4 +1,6 @@
 import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
+import ly4329090Discovery from './reviews/2026-10-12-authorised-ly4329090-discovery.json' with {type:'json'};
+import ribupatideSpecialistRenewal from './reviews/2026-10-12-authorised-ribupatide-specialist-renewal.json' with {type:'json'};
 import novoHansohRenewal from './reviews/2026-10-12-authorised-novo-hansoh-renewal.json' with {type:'json'};
 import internationalMaintenanceRenewal from './reviews/2026-10-11-authorised-international-maintenance-renewal.json' with {type:'json'};
 import alnylamRnaiDiscovery from './reviews/2026-10-11-authorised-alnylam-rnai-discovery.json' with {type:'json'};
@@ -106,7 +108,9 @@ export const industrySources = [...evidence.sources,...followup.sources,...conti
 }).map(s=>s.id===novoHansohRenewal.hansohSource.id?{...s,
  reviewedAt:novoHansohRenewal.hansohSource.reviewedAt,
  reviewedFingerprint:novoHansohRenewal.hansohSource.reviewedFingerprint,
- contentSelector:novoHansohRenewal.hansohSource.contentSelector}:s).map(s => ({
+ contentSelector:novoHansohRenewal.hansohSource.contentSelector}:s).map(s=>s.id===ribupatideSpecialistRenewal.sponsorSource.id?{...s,
+ reviewedAt:ribupatideSpecialistRenewal.sponsorSource.reviewedAt,
+ reviewedFingerprint:ribupatideSpecialistRenewal.sponsorSource.reviewedFingerprint}:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -184,7 +188,7 @@ export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
 }),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries,...broaderDiscovery.entries,...internationalOmissions.entries,...expandedDiscovery.entries,...ubt251Publication.entries,...sgb7342Publication.entries,...abbvAsc30TernBimagrumab.entries,...registryOmissions.entries,...enobosarmSemaglutide.entries,...expandedRegistryWave.entries,...semaglutideSpecialistTrials.entries,...glimrCopd.entries,...specialistRegistryFollowup.entries,...na931Publication.entries]
- .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries,novoSpecialistWave.entries,gzc8072Publication.entries,ard201Pause.entries,asc36OralPublication.entries,te8105Phase2b.entries,semaglutideSpecialistSarcopeniaWave.entries,kalohexis710go.entries,gubUcn2Mbl949.entries,vikingRhythmRegistryReview.entries,gs4571TirzepatideMenopause.entries,togetherPsoriaticDisease.entries,mwyngilPalatinPreclinical.entries,ascletisOralPortfolio.entries,alnylamRnaiDiscovery.entries)
+ .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries,novoSpecialistWave.entries,gzc8072Publication.entries,ard201Pause.entries,asc36OralPublication.entries,te8105Phase2b.entries,semaglutideSpecialistSarcopeniaWave.entries,kalohexis710go.entries,gubUcn2Mbl949.entries,vikingRhythmRegistryReview.entries,gs4571TirzepatideMenopause.entries,togetherPsoriaticDisease.entries,mwyngilPalatinPreclinical.entries,ascletisOralPortfolio.entries,alnylamRnaiDiscovery.entries,ly4329090Discovery.entries)
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
@@ -483,4 +487,12 @@ export const industry = [...originalIndustry.map(e => {
     const supporting=e.id==='nnc06620419'&&link.url.endsWith(novoHansohRenewal.supportingRecordReview.nctId);
     return registry||supporting?{...link,reviewedAt:review.reviewedAt}:link;
    })};
+ }).map(e=>{
+  const review=ribupatideSpecialistRenewal.programmeReviews.find(item=>item.id===e.id);
+  const relevant=[ribupatideSpecialistRenewal.sponsorSource,...ribupatideSpecialistRenewal.registrySources];
+  const additionalEvidence=(e.additionalEvidence||[]).map(link=>{
+   const source=relevant.find(item=>item.url===link.url||item.nctId&&link.url.endsWith(item.nctId));
+   return source?{...link,reviewedAt:ribupatideSpecialistRenewal.reviewedAt}:link;
+  });
+  return review?{...e,reviewedAt:review.reviewedAt,additionalEvidence}:{...e,additionalEvidence};
  });

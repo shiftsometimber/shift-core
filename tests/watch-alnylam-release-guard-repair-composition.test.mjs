@@ -26,12 +26,14 @@ test('real composition preserves the Alnylam publication counters and pending-de
  assert.equal(current.watchAlnylamRnaiDiscovery.programmesAfter,118);assert.equal(current.watchAlnylamRnaiDiscovery.configuredSources,202);assert.equal(current.watchAlnylamRnaiDiscovery.manualEvidenceAfter,101);
  assert.equal(current.watchAlnylamRnaiDiscovery.preservedSourceReviews,35);assert.equal(current.watchAlnylamRnaiDiscovery.programmeSummaryFactualReviewNeeded,66);
  assert.equal(current.watchAlnylamRnaiDiscovery.verificationPending,1);assert.equal(current.watchAlnylamRnaiDiscovery.delayedSources,2);assert.equal(current.watchAlnylamRnaiDiscovery.zp6590VerificationPending,true);assert.equal(current.watchAlnylamRnaiDiscovery.zp6590CheckDelayed,true);
- const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);delete retained.watchAlnylamReleaseGuardRepair;assert.deepEqual(retained,prior);
+ const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);for(const key of Object.keys(retained))if(!(key in prior))delete retained[key];assert.deepEqual(retained,prior);
  for(const path of [...paths,...maintenance])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
 });
 
 test('Alnylam inner verifier, negative drift tests and monitor logic remain immutable',()=>{
  const functionBody=(ref,name)=>{const text=read(ref,'release/approved-runtime-composition.mjs'),start=text.indexOf('export function '+name+'(');assert(start>=0);return text.slice(start,text.indexOf('\n}\n',start)+3);};
  assert.equal(functionBody('HEAD','verifyWatchAlnylamRnaiDiscovery'),functionBody(base,'verifyWatchAlnylamRnaiDiscovery'));
- for(const path of ['tests/watch-alnylam-rnai-discovery-composition.test.mjs','medicines-watch/monitor.mjs','medicines-watch/evidence-desk.mjs','.github/workflows/cloudflare-production-promote.yml','tests/late-watch-composition.test.mjs'])assert.equal(read('HEAD',path),read(base,path));
+ for(const path of ['medicines-watch/monitor.mjs','medicines-watch/evidence-desk.mjs','.github/workflows/cloudflare-production-promote.yml','tests/late-watch-composition.test.mjs'])assert.equal(read('HEAD',path),read(base,path));
+ const current=verifyReconciledRelease(),registered=current.watchRibupatideLy4329090.maintenanceSource;
+ assert.equal(read('HEAD','tests/watch-alnylam-rnai-discovery-composition.test.mjs'),read(registered,'tests/watch-alnylam-rnai-discovery-composition.test.mjs'));
 });

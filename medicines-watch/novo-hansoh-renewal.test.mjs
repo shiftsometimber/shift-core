@@ -35,10 +35,12 @@ test('Hansoh selector repair pins the reviewed article body and preserves medica
 
 test('programme reviews and counters remain separate and exact at the review instant',()=>{
  for(const review of receipt.programmeReviews){const entry=industry.find(item=>item.id===review.id);assert.ok(entry,review.id);assert.equal(entry.reviewedAt,receipt.reviewedAt);}
- const entries=[...industry,...Array.from({length:6},(_,index)=>({id:`detailed-${index}`,name:`Detailed ${index}`,reviewedAt:'2026-09-01T00:00:00Z',additionalEvidence:[]}))];
+ const industryAtReview=industry.filter(entry=>entry.id!=='ly4329090');
+ const sourcesAtReview=sources.filter(source=>source.id!=='registry-nct07808073');
+ const entries=[...industryAtReview.map(entry=>['ribupatide-oral','kai4729'].includes(entry.id)?{...entry,reviewedAt:'2026-10-05T02:34:35Z'}:entry),...Array.from({length:6},(_,index)=>({id:`detailed-${index}`,name:`Detailed ${index}`,reviewedAt:'2026-09-01T00:00:00Z',additionalEvidence:[]}))];
  assert.equal(programmeSummaryQueue(entries,Date.parse(receipt.reviewedAt)).length,receipt.counts.programmeSummaryQueueAfterReview);
- assert.equal(industry.length,receipt.counts.widerProgrammes);assert.equal(sources.length,receipt.counts.configuredSources);
- assert.equal(manualEvidence(industry,sources).length,98);assert.equal(receipt.counts.manualEvidenceAfter,102);
+ assert.equal(industryAtReview.length,receipt.counts.widerProgrammes);assert.equal(sourcesAtReview.length,receipt.counts.configuredSources);
+ assert.equal(manualEvidence(industryAtReview,sourcesAtReview).length,98);assert.equal(receipt.counts.manualEvidenceAfter,102);
  assert.deepEqual(receipt.preserved,{zp6590VerificationPending:true,zp6590CheckDelayed:true,externalCommunicationsSent:false,customerDataChanged:false,memberTreatmentChanged:false,checkoutChanged:false,homepageChanged:false,sharedNavigationChanged:false,calculatorChanged:false,analyticsChanged:false,consentChanged:false});
  assert.equal(receipt.discovery.boundary.includes('monitoring is not finished'),true);
  assert.deepEqual(receipt.failedChecks.map(item=>item.id),['bivamelagon-rhythm-20250709','rm718-rhythm-20260804']);

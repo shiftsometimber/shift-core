@@ -1730,6 +1730,57 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// Complete ribupatide source renewal plus one independently discovered Lilly
+// registry programme. Content, maintenance and receipt remain three commits.
+export const WATCH_RIBUPATIDE_LY4329090_BASE='4ebbfda8c34109e037a1e0ef3aef7e4835e30b70';
+export const WATCH_RIBUPATIDE_LY4329090_SOURCE='5c909269507ad2f828afc066ffd0f040c6f939df';
+export const WATCH_RIBUPATIDE_LY4329090_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/alnylam-rnai-discovery.test.mjs',
+ 'medicines-watch/azelaprag-renewal.test.mjs',
+ 'medicines-watch/backlog-review.test.mjs',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/credibility.test.mjs',
+ 'medicines-watch/evidence-desk.test.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/industry.test.mjs',
+ 'medicines-watch/ly4329090-discovery.test.mjs',
+ 'medicines-watch/novo-hansoh-renewal.test.mjs',
+ 'medicines-watch/reviews/2026-10-12-authorised-ly4329090-discovery.json',
+ 'medicines-watch/reviews/2026-10-12-authorised-ribupatide-specialist-renewal.json',
+ 'medicines-watch/rgt-vct-source-renewal.test.mjs',
+ 'medicines-watch/ribupatide-specialist-renewal.test.mjs'
+]);
+export const WATCH_RIBUPATIDE_LY4329090_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-alnylam-release-guard-repair-composition.test.mjs',
+ 'tests/watch-alnylam-rnai-discovery-composition.test.mjs',
+ 'tests/watch-azelaprag-renewal-composition.test.mjs',
+ 'tests/watch-ribupatide-ly4329090-composition.test.mjs'
+]);
+const WATCH_RIBUPATIDE_LY4329090_SET=new Set([...WATCH_RIBUPATIDE_LY4329090_PATHS,...WATCH_RIBUPATIDE_LY4329090_MAINTENANCE]);
+for(const path of WATCH_RIBUPATIDE_LY4329090_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRibupatideLy4329090(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_RIBUPATIDE_LY4329090_20261012');
+ assert.equal(c.base,WATCH_RIBUPATIDE_LY4329090_BASE);assert.equal(c.source,WATCH_RIBUPATIDE_LY4329090_SOURCE);
+ assert.deepEqual(c.paths,WATCH_RIBUPATIDE_LY4329090_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RIBUPATIDE_LY4329090_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.deepEqual(c.reviewedAt,['2026-10-12T02:43:21Z','2026-10-12T02:49:39Z']);assert.equal(c.sourceReviewsApplied,9);assert.equal(c.programmeReviewsApplied,2);
+ assert.deepEqual(c.sourceIds,['hengrui-ribupatide-pmos-20260708','registry-nct06595797','registry-nct06974851','registry-nct06994650','registry-nct07551492','registry-nct07559136','registry-nct07670884','registry-nct07660848','registry-nct07808073']);
+ assert.deepEqual(c.reviewedFingerprints,['563c54b397ae9180b32c9b3113fee38852c29d9e8ade01faea283613b783da30','0bed9d97e1a9e22a1a11a3ef08e81d0ab05a8fe8d73a58bd8ee2cab8f2e92bba','f4fec692b8aeb2fdedbcaf17830d39f7947e4a47908f1da2a3409d4c91dccc96','a06f76f413ec649e85963818edd8b98eb1519904a732cb38e402333e70ebe600','38b19ba1faa00fea948b9cfc5ac6f833c6518022225cd527a03b503c9f639c00','9ae80da1943467db19cbd14b5fb89e213caac996bc3730252853d28c07d8eb89','e0ba5c9e70ebfc41e7ea0389ecaef3b16f21be08c53e14f0ed7bfa34baf83c02','efb500da2888bf06d4e248897604ab9671cc8c6f63125ff89f5e7603db581e66','571cff58158558e75dc2427106d305134bdf3df77ce2e8244548dd22c946fbb1']);
+ assert.equal(c.priorCompletedReviews,36);assert.equal(c.completedReviewsAfter,38);assert.equal(c.programmesAfter,119);assert.equal(c.configuredSources,203);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.configuredSourceReviewQueue,0);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
+ assert.equal(c.newConfiguredSourceAdded,true);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.monitoringFinished,false);
+ for(const flag of ['resultsClaimedFromRegistry','monitorLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated ribupatide/LY4329090 payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated ribupatide/LY4329090 maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after ribupatide/LY4329090 receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRibupatideLy4329090;assert.deepEqual(current,prior,'Prior release receipts changed by ribupatide/LY4329090 registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift / Approved backlog source drift: medicines-watch/ribupatide LY4329090 payload: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift: medicines-watch/ribupatide LY4329090 maintenance: '+path);
+ return c;
+}
+
 // Complete overdue-source review and one bounded sponsor-evidence addition.
 // Content, maintenance and receipt remain three separately reviewable commits.
 export const WATCH_NOVO_HANSOH_RENEWAL_BASE='dd784ac853b78ff39ed12d3ef1f909d1f2058437';
@@ -1994,10 +2045,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchRibupatideLy4329090=c.watchRibupatideLy4329090;
+ if(watchRibupatideLy4329090)verifyWatchRibupatideLy4329090(watchRibupatideLy4329090,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRibupatideLy4329090Head=watchRibupatideLy4329090?watchRibupatideLy4329090.base:actualHead;
+ const ribupatideLy4329090RawBlob=(ref,path)=>outerRawBlob(watchRibupatideLy4329090&&ref==='HEAD'&&WATCH_RIBUPATIDE_LY4329090_SET.has(path)?watchRibupatideLy4329090.base:ref,path);
  const watchNovoHansohRenewal=c.watchNovoHansohRenewal;
- if(watchNovoHansohRenewal)verifyWatchNovoHansohRenewal(watchNovoHansohRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preNovoHansohRenewalHead=watchNovoHansohRenewal?watchNovoHansohRenewal.base:actualHead;
- const novoHansohRenewalRawBlob=(ref,path)=>outerRawBlob(watchNovoHansohRenewal&&ref==='HEAD'&&WATCH_NOVO_HANSOH_RENEWAL_SET.has(path)?watchNovoHansohRenewal.base:ref,path);
+ if(watchNovoHansohRenewal)verifyWatchNovoHansohRenewal(watchNovoHansohRenewal,{head:preRibupatideLy4329090Head,read:ribupatideLy4329090RawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preNovoHansohRenewalHead=watchNovoHansohRenewal?watchNovoHansohRenewal.base:preRibupatideLy4329090Head;
+ const novoHansohRenewalRawBlob=(ref,path)=>ribupatideLy4329090RawBlob(watchNovoHansohRenewal&&ref==='HEAD'&&WATCH_NOVO_HANSOH_RENEWAL_SET.has(path)?watchNovoHansohRenewal.base:ref,path);
  const watchInternationalMaintenanceRenewal=c.watchInternationalMaintenanceRenewal;
  if(watchInternationalMaintenanceRenewal)verifyWatchInternationalMaintenanceRenewal(watchInternationalMaintenanceRenewal,{head:preNovoHansohRenewalHead,read:novoHansohRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preInternationalMaintenanceRenewalHead=watchInternationalMaintenanceRenewal?watchInternationalMaintenanceRenewal.base:preNovoHansohRenewalHead;
