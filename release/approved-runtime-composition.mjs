@@ -1730,6 +1730,45 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// Two denied Rhythm HTML checks move to their complete official PDF versions.
+// Public links and medical wording stay fixed; content, maintenance and receipt
+// remain three commits.
+export const WATCH_RHYTHM_PDF_ALTERNATIVES_BASE='91d6a15fec847ef7b1f6dc5828dee84853b3eb27';
+export const WATCH_RHYTHM_PDF_ALTERNATIVES_SOURCE='8ed0bd41a752f76ffd309219d8e3dade4698ced1';
+export const WATCH_RHYTHM_PDF_ALTERNATIVES_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/backlog-review.test.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json',
+ 'medicines-watch/rhythm-pdf-alternatives.test.mjs'
+]);
+export const WATCH_RHYTHM_PDF_ALTERNATIVES_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-rhythm-pdf-alternatives-composition.test.mjs'
+]);
+const WATCH_RHYTHM_PDF_ALTERNATIVES_SET=new Set([...WATCH_RHYTHM_PDF_ALTERNATIVES_PATHS,...WATCH_RHYTHM_PDF_ALTERNATIVES_MAINTENANCE]);
+for(const path of WATCH_RHYTHM_PDF_ALTERNATIVES_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRhythmPdfAlternatives(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_RHYTHM_PDF_ALTERNATIVES_20261012');
+ assert.equal(c.base,WATCH_RHYTHM_PDF_ALTERNATIVES_BASE);assert.equal(c.source,WATCH_RHYTHM_PDF_ALTERNATIVES_SOURCE);
+ assert.deepEqual(c.paths,WATCH_RHYTHM_PDF_ALTERNATIVES_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RHYTHM_PDF_ALTERNATIVES_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_source_monitor_repair');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.reviewedAt,'2026-10-12T10:36:09Z');
+ assert.equal(c.sourceReviewsApplied,2);assert.equal(c.programmeReviewsApplied,0);
+ assert.deepEqual(c.sourceIds,['bivamelagon-rhythm-20250709','rm718-rhythm-20260804']);
+ assert.deepEqual(c.reviewedFingerprints,['9f0faf3cb0d4f6b24e93601eee0a6090ef2f604e8e22b3cc9315dd3e67343805','d10fbca2dfa163968fa0dd3fc406d5a15118fbe5b1d23339455e54ebb3805fa6']);
+ assert.equal(c.priorCompletedReviews,39);assert.equal(c.completedReviewsAfter,40);assert.equal(c.programmesAfter,119);assert.equal(c.configuredSources,204);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.configuredSourceReviewQueue,0);assert.equal(c.programmeSummaryFactualReviewNeeded,69);
+ assert.equal(c.successesSeeded,false);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.monitoringFinished,false);
+ for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','configuredSourceCountChanged','monitorLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Rhythm PDF alternate-source payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Rhythm PDF alternate-source maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Rhythm PDF alternate-source receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRhythmPdfAlternatives;assert.deepEqual(current,prior,'Prior release receipts changed by Rhythm PDF alternate-source registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift / Approved backlog source drift: medicines-watch/Rhythm PDF alternatives payload: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift: medicines-watch/Rhythm PDF alternatives maintenance: '+path);
+ return c;
+}
+
 // Five complete unchanged source renewals plus one bounded MariTide registry
 // addition. Content, maintenance and receipt remain three commits.
 export const WATCH_GZC_ASC30_MARITIDE_BASE='678393727a1bbe508822d6ba38b420c66571e247';
@@ -2092,10 +2131,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchRhythmPdfAlternatives=c.watchRhythmPdfAlternatives;
+ if(watchRhythmPdfAlternatives)verifyWatchRhythmPdfAlternatives(watchRhythmPdfAlternatives,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRhythmPdfAlternativesHead=watchRhythmPdfAlternatives?watchRhythmPdfAlternatives.base:actualHead;
+ const rhythmPdfAlternativesRawBlob=(ref,path)=>outerRawBlob(watchRhythmPdfAlternatives&&ref==='HEAD'&&WATCH_RHYTHM_PDF_ALTERNATIVES_SET.has(path)?watchRhythmPdfAlternatives.base:ref,path);
  const watchGzcAsc30Maritide=c.watchGzcAsc30Maritide;
- if(watchGzcAsc30Maritide)verifyWatchGzcAsc30Maritide(watchGzcAsc30Maritide,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preGzcAsc30MaritideHead=watchGzcAsc30Maritide?watchGzcAsc30Maritide.base:actualHead;
- const gzcAsc30MaritideRawBlob=(ref,path)=>outerRawBlob(watchGzcAsc30Maritide&&ref==='HEAD'&&WATCH_GZC_ASC30_MARITIDE_SET.has(path)?watchGzcAsc30Maritide.base:ref,path);
+ if(watchGzcAsc30Maritide)verifyWatchGzcAsc30Maritide(watchGzcAsc30Maritide,{head:preRhythmPdfAlternativesHead,read:rhythmPdfAlternativesRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preGzcAsc30MaritideHead=watchGzcAsc30Maritide?watchGzcAsc30Maritide.base:preRhythmPdfAlternativesHead;
+ const gzcAsc30MaritideRawBlob=(ref,path)=>rhythmPdfAlternativesRawBlob(watchGzcAsc30Maritide&&ref==='HEAD'&&WATCH_GZC_ASC30_MARITIDE_SET.has(path)?watchGzcAsc30Maritide.base:ref,path);
  const watchRibupatideLy4329090=c.watchRibupatideLy4329090;
  if(watchRibupatideLy4329090)verifyWatchRibupatideLy4329090(watchRibupatideLy4329090,{head:preGzcAsc30MaritideHead,read:gzcAsc30MaritideRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preRibupatideLy4329090Head=watchRibupatideLy4329090?watchRibupatideLy4329090.base:preGzcAsc30MaritideHead;

@@ -1,10 +1,11 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import officialAlternatives from './reviews/2026-10-10-authorised-official-alternatives.json' with {type:'json'};
+import rhythmPdfAlternatives from './reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json' with {type:'json'};
 import {sources,REVIEWED_AT} from './data.mjs';import {industry} from './industry.mjs';import {registrySources} from './credibility.mjs';
 test('backlog review advances only independently reviewed sources and preserves clinical uncertainty',()=>{
  assert.equal(receipt.sources.length,35);assert.equal(REVIEWED_AT,'2026-09-15T21:28:30Z');assert.equal(receipt.clinicalApproval,null);assert.equal(receipt.industryComplete,false);
- for(const r of receipt.sources){const s=sources.find(s=>s.id===r.id),later=officialAlternatives.sourceReviews.find(review=>review.url===s.url||review.url===s.checkUrl);assert.equal(s.reviewedAt,later?.reviewedAt||r.reviewedAt);assert.equal(s.reviewedFingerprint,r.reviewedFingerprint);assert.equal(r.withdrawn,false);assert.match(r.responseSha256,/^[a-f0-9]{64}$/);}
+ for(const r of receipt.sources){const s=sources.find(s=>s.id===r.id),pdf=rhythmPdfAlternatives.sources.find(review=>review.id===s.id),later=officialAlternatives.sourceReviews.find(review=>review.url===s.url||review.url===s.checkUrl);assert.equal(s.reviewedAt,pdf?.reviewedAt||later?.reviewedAt||r.reviewedAt);assert.equal(s.reviewedFingerprint,pdf?.reviewedFingerprint||r.reviewedFingerprint);assert.equal(r.withdrawn,false);assert.match(r.responseSha256,/^[a-f0-9]{64}$/);}
  for(const s of sources.filter(s=>!receipt.sources.some(r=>r.id===s.id)))assert.notEqual(s.reviewedAt,receipt.reviewedAt);
 });
 test('changed registry records remove stale recruitment, dates and enrollment without publishing outcomes',()=>{

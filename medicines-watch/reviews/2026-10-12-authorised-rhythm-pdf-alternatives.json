@@ -1,0 +1,130 @@
+{
+  "reviewedAt": "2026-10-12T10:36:09Z",
+  "publicationStatus": "owner_authorised_source_monitor_repair",
+  "ownerEditorialAuthorisation": {
+    "date": "2026-10-12",
+    "standingPublicationAuthorisation": "Needed evidence-backed informational Watch updates may merge and deploy after required checks."
+  },
+  "reviewType": "Complete primary-source factual review of official sponsor-hosted alternate artefacts; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "medicineWordingChanged": false,
+  "programmeReviewDatesChanged": false,
+  "monitorLogicChanged": false,
+  "sources": [
+    {
+      "id": "bivamelagon-rhythm-20250709",
+      "title": "Rhythm: bivamelagon Phase 2 topline results",
+      "url": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon",
+      "checkUrl": "https://ir.rhythmtx.com/node/12446/pdf",
+      "format": "pdf",
+      "sourcePublishedAt": "2025-07-09",
+      "sourceDateLabel": "Sponsor announcement date",
+      "reviewedAt": "2026-10-12T10:36:09Z",
+      "requiredTerms": ["Bivamelagon", "hypothalamic obesity", "Phase 2"],
+      "reviewedFingerprint": "9f0faf3cb0d4f6b24e93601eee0a6090ef2f604e8e22b3cc9315dd3e67343805",
+      "evidenceType": "Original sponsor announcement; topline results, not regulatory approval"
+    },
+    {
+      "id": "rm718-rhythm-20260804",
+      "title": "Rhythm: preliminary RM-718 Phase 2 data",
+      "url": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-preliminary-data-phase-2-trial",
+      "checkUrl": "https://ir.rhythmtx.com/node/13501/pdf",
+      "format": "pdf",
+      "sourcePublishedAt": "2026-08-04",
+      "sourceDateLabel": "Sponsor announcement date",
+      "reviewedAt": "2026-10-12T10:36:09Z",
+      "requiredTerms": ["RM-718", "hypothalamic obesity", "Phase 2"],
+      "reviewedFingerprint": "d10fbca2dfa163968fa0dd3fc406d5a15118fbe5b1d23339455e54ebb3805fa6",
+      "evidenceType": "Original sponsor announcement; preliminary results, not regulatory approval"
+    }
+  ],
+  "retrievals": [
+    {
+      "id": "bivamelagon-rhythm-20250709",
+      "retrievedAt": "2026-10-12T10:36:04Z",
+      "httpStatus": 200,
+      "contentType": "application/pdf",
+      "bytes": 280402,
+      "responseSha256": "9f0faf3cb0d4f6b24e93601eee0a6090ef2f604e8e22b3cc9315dd3e67343805",
+      "assessment": "The complete official Rhythm PDF reproduces the 9 July 2025 announcement: sponsor-reported topline results from a 28-person placebo-controlled Phase 2 acquired-hypothalamic-obesity study and plans to seek regulatory advice. It does not establish general-obesity efficacy, UK authorisation, NICE or NHS access, lawful UK supply or clinical approval."
+    },
+    {
+      "id": "rm718-rhythm-20260804",
+      "retrievedAt": "2026-10-12T10:36:08Z",
+      "httpStatus": 200,
+      "contentType": "application/pdf",
+      "bytes": 270065,
+      "responseSha256": "d10fbca2dfa163968fa0dd3fc406d5a15118fbe5b1d23339455e54ebb3805fa6",
+      "assessment": "The complete official Rhythm PDF reproduces the 4 August 2026 announcement: preliminary open-label Phase 2 acquired-hypothalamic-obesity findings from 11 enrolled participants, with seven contributing the week-16 BMI analysis. It does not establish comparative or long-term benefit, general-obesity use, UK authorisation, NICE or NHS access, lawful UK supply or clinical approval."
+    }
+  ],
+  "history": [
+    {
+      "id": "bivamelagon-rhythm-20250709",
+      "previousCheckUrl": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon",
+      "previousFormat": "html",
+      "previousReviewedFingerprint": "9dae9e1e06d882975c3c8257e8d197b03c80627a06d1933f859df553e871b341",
+      "lastSuccessfulAt": "2026-10-12T08:15:02.378Z",
+      "failedAt": "2026-10-12T10:30:02.425Z",
+      "failure": "HTTP 403 from the production checker",
+      "replacementReason": "Retain the public sponsor announcement while checking its official sponsor-hosted PDF version after repeated access denials on the HTML route."
+    },
+    {
+      "id": "rm718-rhythm-20260804",
+      "previousCheckUrl": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-preliminary-data-phase-2-trial",
+      "previousFormat": "html",
+      "previousReviewedFingerprint": "0d8e5c4d20bfee3a25fb5fb81900669eb258cc47a317b238e92d7721e97e185c",
+      "lastSuccessfulAt": "2026-10-12T07:00:02.714Z",
+      "failedAt": "2026-10-12T10:30:02.425Z",
+      "failure": "HTTP 403 from the production checker",
+      "replacementReason": "Retain the public sponsor announcement while checking its official sponsor-hosted PDF version after repeated access denials on the HTML route."
+    }
+  ],
+  "monitoring": {
+    "sourceCountBefore": 204,
+    "sourceCountAfter": 204,
+    "configuredSourceReviewQueueBefore": 0,
+    "configuredSourceReviewQueueAfter": 0,
+    "priorCompletedReviews": 39,
+    "completedReviewsAfter": 40,
+    "programmeSummaryFactualReviewNeeded": 69,
+    "thresholdsChanged": false,
+    "successesSeeded": false,
+    "expected": "The production checker must independently retrieve and match both official Rhythm PDFs. A local fetch, merge, deployment or successful HTTP response alone is not a green production observation."
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-12T10:30:02.425Z",
+    "httpStatus": 200,
+    "status": "check_delayed",
+    "configuredSources": 204,
+    "currentSources": 201,
+    "delayedSources": ["zealand-zp6590-pipeline", "bivamelagon-rhythm-20250709", "rm718-rhythm-20260804"],
+    "boundary": "The two reviewed Rhythm HTML routes failed with HTTP 403. ZP6590 remains separately verification_pending plus check_delayed. Availability does not renew unrelated reviews or establish industry completeness."
+  },
+  "discoveryPass": {
+    "performedAt": "2026-10-12T10:33:00Z",
+    "method": "Separate current-date ClinicalTrials.gov obesity/overweight update search plus broader ongoing topic-based discovery review.",
+    "result": "No newly posted or updated obesity/overweight registry record was returned for 10 through 12 October in this pass. This is an incomplete indexed-source check, not proof of no industry change.",
+    "industryComplete": false
+  },
+  "preserved": {
+    "programmes": 119,
+    "configuredSources": 204,
+    "manualEvidence": 102,
+    "programmeSummaryFactualReviewNeeded": 69,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "medicalClaimsChanged": false,
+    "monitorLogicChanged": false,
+    "healthResponseChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "clinicalApprovalChanged": false,
+    "monitoringFinished": false
+  },
+  "uncertainty": "Exact-byte PDF monitoring treats any upstream byte change as awaiting review and does not extract or approve changed medical claims. A removed document, redirect, non-PDF response, invalid PDF or changed bytes remains a failure or review flag.",
+  "nextAction": "Run the complete Watch and release-scope checks, publish the exact passing commit through the guarded review route, and require a fresh uncached live health observation before treating either repaired source as current."
+}
