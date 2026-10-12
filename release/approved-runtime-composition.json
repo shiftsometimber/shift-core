@@ -3636,49 +3636,5 @@
       "date": "2026-10-12",
       "reason": "Preserve original classification assertions through verified pre-EPIPE historical views"
     }
-  },
-  "myTreatmentBuildProof": {
-    "proof": "EXACT_COMPILED_TREATMENT_BUILD_AND_OWNED_ROLLBACK_20261013",
-    "date": "2026-10-13",
-    "base": "e13c49dde529f82155498b875ea0ef7bb3169bf8",
-    "source": "a6de674e6a692610852ea5ae8301fb611ae73e95",
-    "paths": [
-      "release/my-treatment-compiled-runtime.mjs",
-      "release/my-treatment-live.mjs",
-      "tests/my-treatment-compiled-runtime.test.mjs",
-      "release/my-treatment-build-rollback.mjs",
-      "tests/my-treatment-build-rollback.test.mjs",
-      "docs/my-treatment-build-repair-20261013.json",
-      "shift-coach/recover-cancelled-release.mjs",
-      ".github/workflows/shift-coach-integration.yml"
-    ],
-    "maintenanceSource": "5c396c7dc1d01b12cebc621bca14466a97c2003d",
-    "maintenancePaths": [
-      "release/approved-runtime-composition.mjs",
-      "release/my-treatment-build-scope.mjs",
-      "tests/my-treatment-build-composition.test.mjs",
-      "release/my-timber-progress-journey-scope.mjs",
-      "tests/my-timber-progress-journey-composition.test.mjs",
-      "tests/contact-rollback-composition.test.mjs"
-    ],
-    "failedPromotion": 38316073865,
-    "failedJob": 115032993314,
-    "integrationIssue": 1065,
-    "retentionOnly": true,
-    "failedReleaseAccepted": false,
-    "fullAssetByteComparison": true,
-    "existingEightLiveChecksRetained": true,
-    "runtimeChanged": false,
-    "publicCopyChanged": false,
-    "medicalEvidenceChanged": false,
-    "customerDataChanged": false,
-    "externalCommunicationsSent": false,
-    "paidModelEnabled": false,
-    "deploymentAuthorityBroadened": false,
-    "rollbackAuthorityBroadened": false,
-    "genericAdoptionAllowed": false,
-    "existingGatesWeakened": false,
-    "liveBytesUsedAsExpectation": false,
-    "formatNormalisationAdded": false
   }
 }
