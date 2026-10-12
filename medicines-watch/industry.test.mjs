@@ -60,6 +60,7 @@ import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-
 import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zupreme-registry.json' with {type:'json'};
 import ribupatideSpecialistWave from './reviews/2026-10-05-authorised-ribupatide-specialist-wave.json' with {type:'json'};
 import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
+import novoHansohRenewal from './reviews/2026-10-12-authorised-novo-hansoh-renewal.json' with {type:'json'};
 import gzc8072Publication from './reviews/2026-10-05-authorised-gzc8072.json' with {type:'json'};
 import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' with {type:'json'};
 import semaglutideSpecialistSarcopeniaWave from './reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json' with {type:'json'};
@@ -1349,11 +1350,12 @@ test('Hansoh source review renews only the read claim-bearing baseline',()=>{
  assert.equal(hansohOlatorepatideReview.monitoring.successesSeeded,false);
  assert.match(hansohOlatorepatideReview.monitoring.result,/complete primary-source read/);
  const source=industrySources.find(item=>item.id==='hansoh-olatorepatide-20260604');
- assert.equal(source.reviewedAt,hansohOlatorepatideReview.reviewedAt);
- assert.equal(source.reviewedFingerprint,hansohOlatorepatideReview.source.reviewedFingerprint);
+ assert.equal(source.reviewedAt,novoHansohRenewal.reviewedAt);
+ assert.equal(source.reviewedFingerprint,novoHansohRenewal.hansohSource.reviewedFingerprint);
+ assert.equal(novoHansohRenewal.hansohSource.previousReviewedFingerprint,hansohOlatorepatideReview.source.reviewedFingerprint);
  assert.notEqual(source.reviewedFingerprint,hansohOlatorepatideReview.monitoring.previousReviewedFingerprint);
  const entry=industry.find(item=>item.id==='olatorepatide');
- assert.equal(entry.reviewedAt,hansohOlatorepatideReview.reviewedAt);
+ assert.equal(entry.reviewedAt,novoHansohRenewal.reviewedAt);
  assert.match(entry.stage,/Chinese NDA accepted following Phase III/);
  assert.match(entry.summary,/Acceptance is not marketing approval/);
  assert.match(entry.ukAuthorisation,/Not established.*reviewed evidence/);

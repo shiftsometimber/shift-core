@@ -28,8 +28,13 @@ test('Alnylam RNAi discovery adds two distinct bounded programmes',()=>{
 
 test('Alnylam evidence remains manual and preserves established queues and uncertainty',()=>{
  assert.equal(medicines.length+industry.length,118);assert.equal(sources.length,202);
- assert.equal(manualEvidence([...medicines,...industry],[...sources,...industrySources]).length,101);
- const catalogueAtReview=[...medicines,...industry].map(entry=>['zynergy-petrelintide-enicepatide','mazdutide','aleniglipron'].includes(entry.id)?{...entry,reviewedAt:'2026-10-04T21:37:32Z'}:entry);
+ const entriesAtReview=[...medicines,...industry].map(entry=>({...entry,additionalEvidence:(entry.additionalEvidence||[]).filter(link=>Date.parse(link.reviewedAt)<=Date.parse(receipt.reviewedAt))}));
+ assert.equal(manualEvidence(entriesAtReview,[...sources,...industrySources]).length,101);
+ const futureRenewalDates=new Map([
+  ['zynergy-petrelintide-enicepatide','2026-10-04T21:37:32Z'],['mazdutide','2026-10-04T21:37:32Z'],['aleniglipron','2026-10-04T21:37:32Z'],
+  ['nnc06620419','2026-10-04T23:40:55Z'],['nnc07218060','2026-10-04T23:40:55Z'],['olatorepatide','2026-10-05T00:36:00Z']
+ ]);
+ const catalogueAtReview=[...medicines,...industry].map(entry=>futureRenewalDates.has(entry.id)?{...entry,reviewedAt:futureRenewalDates.get(entry.id)}:entry);
  assert.equal(programmeSummaryQueue(catalogueAtReview,Date.parse(receipt.reviewedAt)).length,66);
  assert.equal(receipt.preserved.completedFactualReviews,35);
  assert.equal(receipt.preserved.zp6590VerificationPending,true);assert.equal(receipt.preserved.zp6590CheckDelayed,true);

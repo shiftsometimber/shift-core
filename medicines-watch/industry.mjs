@@ -1,4 +1,5 @@
 import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
+import novoHansohRenewal from './reviews/2026-10-12-authorised-novo-hansoh-renewal.json' with {type:'json'};
 import internationalMaintenanceRenewal from './reviews/2026-10-11-authorised-international-maintenance-renewal.json' with {type:'json'};
 import alnylamRnaiDiscovery from './reviews/2026-10-11-authorised-alnylam-rnai-discovery.json' with {type:'json'};
 import azelapragRenewal from './reviews/2026-10-11-authorised-azelaprag-renewal.json' with {type:'json'};
@@ -102,7 +103,10 @@ export const industrySources = [...evidence.sources,...followup.sources,...conti
 }).map(s=>{
  const renewal=azelapragRenewal.sources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
-}).map(s => ({
+}).map(s=>s.id===novoHansohRenewal.hansohSource.id?{...s,
+ reviewedAt:novoHansohRenewal.hansohSource.reviewedAt,
+ reviewedFingerprint:novoHansohRenewal.hansohSource.reviewedFingerprint,
+ contentSelector:novoHansohRenewal.hansohSource.contentSelector}:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -457,5 +461,26 @@ export const industry = [...originalIndustry.map(e => {
    additionalEvidence:(e.additionalEvidence||[]).map(link=>{
     const source=internationalMaintenanceRenewal.registrySources.find(item=>item.entryId===e.id&&item.nctId&&link.url.endsWith(item.nctId));
     return source?{...link,reviewedAt:review.reviewedAt}:link;
+   })};
+ }).map(e=>{
+  const review=novoHansohRenewal.programmeReviews.find(item=>item.id===e.id);
+  if(!review)return e;
+  if(e.id==='olatorepatide')return {...e,
+   summary:e.summary+' '+novoHansohRenewal.olatorepatideEvidence.summary,
+   limitations:e.limitations+' '+novoHansohRenewal.olatorepatideEvidence.limitations,
+   reviewedAt:review.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),{
+    title:novoHansohRenewal.olatorepatideEvidence.title,
+    url:novoHansohRenewal.olatorepatideEvidence.url,
+    sourcePublishedAt:novoHansohRenewal.olatorepatideEvidence.sourcePublishedAt,
+    sourceUpdatedAt:novoHansohRenewal.olatorepatideEvidence.sourceUpdatedAt,
+    reviewedAt:novoHansohRenewal.olatorepatideEvidence.reviewedAt,
+    checkScope:novoHansohRenewal.olatorepatideEvidence.checkScope
+   }]};
+  return {...e,reviewedAt:review.reviewedAt,
+   additionalEvidence:(e.additionalEvidence||[]).map(link=>{
+    const registry=novoHansohRenewal.registrySources.find(item=>item.entryId===e.id&&link.url.endsWith(item.nctId));
+    const supporting=e.id==='nnc06620419'&&link.url.endsWith(novoHansohRenewal.supportingRecordReview.nctId);
+    return registry||supporting?{...link,reviewedAt:review.reviewedAt}:link;
    })};
  });
