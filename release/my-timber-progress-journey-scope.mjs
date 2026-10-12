@@ -46,6 +46,7 @@ export const MY_TIMBER_PROGRESS_MAINTENANCE=Object.freeze([
   "tests/support-recovery-historical-scope-composition.test.mjs"
 ]);
 export const MY_TIMBER_SUPERSEDED_RECEIPT=Object.freeze({source:"ed7f9216931c829bd333830dc8c7596fa64f242a",maintenanceSource:"090bd16fc769d4219f32ff743a1b6856f2d8215c",receipt:"a2883f0b6080b9b3a3eb5eda53986de742de76bf",date:"2026-10-12",reason:"Hosted Journey deletion compatibility, exact historical recipe prerequisites and registered Help preservation repair"});
+export const MY_TIMBER_MAINTENANCE_SUPERSEDED=Object.freeze({maintenanceSource:"6b915b35c6a3908741758767d312947c7f981b5a",receipt:"73a2738324ecee18608ea972b1872a4ed505c5ae",date:"2026-10-12",reason:"Preserve the existing metrics tamper-rejection diagnostic for the exact public preservation path"});
 const sorted=xs=>[...xs].sort();
 const manifest='release/approved-runtime-composition.json';
 const flags=['homepageChanged','publicNavigationChanged','prescribingChanged','stockChanged','checkoutChanged','doseAdviceAdded','paidModelEnabled','externalCommunicationsSent','existingGatesWeakened','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened'];
@@ -53,6 +54,7 @@ export function verifyMyTimberProgressJourney(c,{head,read,diff,ancestor,content
  assert.equal(c?.proof,'EXACT_MY_TIMBER_PROGRESS_JOURNEY_20261012');
  assert.deepEqual(c.supersedes,MY_TIMBER_SUPERSEDED_RECEIPT,'Prior My Timber receipt supersession must remain dated and exact');
  ancestor(c.supersedes.receipt,c.source);
+ assert.deepEqual(c.maintenanceSupersedes,MY_TIMBER_MAINTENANCE_SUPERSEDED,'Maintenance predecessor must remain exact');ancestor(c.maintenanceSupersedes.receipt,c.maintenanceSource);
  assert.equal(c.base,MY_TIMBER_PROGRESS_BASE);assert.equal(c.source,MY_TIMBER_PROGRESS_SOURCE);
  assert.deepEqual(c.paths,MY_TIMBER_PROGRESS_PATHS);assert.deepEqual(c.maintenancePaths,MY_TIMBER_PROGRESS_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
  assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'matt_authorised_guarded_release_20261012');
@@ -63,7 +65,7 @@ export function verifyMyTimberProgressJourney(c,{head,read,diff,ancestor,content
  assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated My Timber release maintenance');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[manifest],'Unreviewed change after My Timber receipt');
  const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.myTimberProgressJourney;assert.deepEqual(current,prior,'Prior release receipts changed by My Timber registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: My Timber payload source drift: '+path);
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),(path==='member-experience/public-preservation.mjs'?'Metrics maintenance source drift: ':'')+'Approved composition source / boundary drift: My Timber payload source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: My Timber maintenance source drift: '+path);
  return c;
 }
