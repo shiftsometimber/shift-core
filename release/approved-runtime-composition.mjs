@@ -1730,6 +1730,48 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// Complete overdue-source review and one bounded sponsor-evidence addition.
+// Content, maintenance and receipt remain three separately reviewable commits.
+export const WATCH_NOVO_HANSOH_RENEWAL_BASE='dd784ac853b78ff39ed12d3ef1f909d1f2058437';
+export const WATCH_NOVO_HANSOH_RENEWAL_SOURCE='49dd053c3b7c6524e6e09da04df6d061ac83ebae';
+export const WATCH_NOVO_HANSOH_RENEWAL_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/alnylam-rnai-discovery.test.mjs',
+ 'medicines-watch/azelaprag-renewal.test.mjs',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/industry.test.mjs',
+ 'medicines-watch/novo-hansoh-renewal.test.mjs',
+ 'medicines-watch/reviews/2026-10-12-authorised-novo-hansoh-renewal.json'
+]);
+export const WATCH_NOVO_HANSOH_RENEWAL_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-novo-hansoh-renewal-composition.test.mjs'
+]);
+const WATCH_NOVO_HANSOH_RENEWAL_SET=new Set([...WATCH_NOVO_HANSOH_RENEWAL_PATHS,...WATCH_NOVO_HANSOH_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_NOVO_HANSOH_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchNovoHansohRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_NOVO_HANSOH_RENEWAL_20261012');
+ assert.equal(c.base,WATCH_NOVO_HANSOH_RENEWAL_BASE);assert.equal(c.source,WATCH_NOVO_HANSOH_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_NOVO_HANSOH_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_NOVO_HANSOH_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.equal(c.reviewedAt,'2026-10-12T00:46:47Z');assert.equal(c.sourceReviewsApplied,8);assert.equal(c.programmeReviewsApplied,3);
+ assert.deepEqual(c.sourceIds,['registry-nct07101783','registry-nct07184632','registry-nct07415954','registry-nct07525791','registry-nct07639021','registry-nct07767175','registry-nct07754461','hansoh-olatorepatide-20260604']);
+ assert.deepEqual(c.unchangedRegistryFingerprints,['54be7a6010c945d0abe2441e86a8b82a748bcceb5af7cae79678c9c81ca27b35','07e01ac6dcb507a235dbffc9bf092c72b196a230a1a9096806989a4d843d5185','d254cb3be21a9e8fa07aeb524c5843675c7b35375f81051f6844925b121e7be4','9de33b2ebf249e96b4ef101569b47eb002fbaf1f4610311e80396346b360fedd','907113149dd3923d0b9bf6e06aadec4148ed6c340f44e610c49eea42ccc3f26a','d79047e397e78e0effb0b34e6f207d608d2f46dd705d0e9808806d75943636ab','d4a70059ff926a61abd70366de0d1b30ef3b565d8b1137341395e66f23945300']);
+ assert.equal(c.hansohSelector,'.text');assert.equal(c.hansohFingerprint,'9dfbbff6a3914b52c4b395d1a8dc5156a4f2c34f2bfde8da1b374e61873b7ca2');
+ assert.equal(c.priorCompletedReviews,35);assert.equal(c.completedReviewsAfter,36);assert.equal(c.programmesAfter,118);assert.equal(c.configuredSources,202);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
+ assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.rhythmDelayedSources,2);assert.equal(c.monitoringFinished,false);
+ for(const flag of ['configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimedFromRegistry','monitorLogicChanged','queueLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Novo/Hansoh renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Novo/Hansoh renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Novo/Hansoh renewal receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchNovoHansohRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by Novo/Hansoh renewal registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: medicines-watch/novo-hansoh renewal payload: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: medicines-watch/novo-hansoh renewal maintenance: '+path);
+ return c;
+}
+
 // Finite outer-meta repair after the current-head release test rejected the
 // already fail-closed renewal drift label. It changes no evidence or runtime.
 export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_BASE='b184d1cd50ed7c833d9e2d0f39a66e55362a5227';
@@ -1952,10 +1994,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchNovoHansohRenewal=c.watchNovoHansohRenewal;
+ if(watchNovoHansohRenewal)verifyWatchNovoHansohRenewal(watchNovoHansohRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preNovoHansohRenewalHead=watchNovoHansohRenewal?watchNovoHansohRenewal.base:actualHead;
+ const novoHansohRenewalRawBlob=(ref,path)=>outerRawBlob(watchNovoHansohRenewal&&ref==='HEAD'&&WATCH_NOVO_HANSOH_RENEWAL_SET.has(path)?watchNovoHansohRenewal.base:ref,path);
  const watchInternationalMaintenanceRenewal=c.watchInternationalMaintenanceRenewal;
- if(watchInternationalMaintenanceRenewal)verifyWatchInternationalMaintenanceRenewal(watchInternationalMaintenanceRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preInternationalMaintenanceRenewalHead=watchInternationalMaintenanceRenewal?watchInternationalMaintenanceRenewal.base:actualHead;
- const internationalMaintenanceRenewalRawBlob=(ref,path)=>outerRawBlob(watchInternationalMaintenanceRenewal&&ref==='HEAD'&&WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SET.has(path)?watchInternationalMaintenanceRenewal.base:ref,path);
+ if(watchInternationalMaintenanceRenewal)verifyWatchInternationalMaintenanceRenewal(watchInternationalMaintenanceRenewal,{head:preNovoHansohRenewalHead,read:novoHansohRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preInternationalMaintenanceRenewalHead=watchInternationalMaintenanceRenewal?watchInternationalMaintenanceRenewal.base:preNovoHansohRenewalHead;
+ const internationalMaintenanceRenewalRawBlob=(ref,path)=>novoHansohRenewalRawBlob(watchInternationalMaintenanceRenewal&&ref==='HEAD'&&WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SET.has(path)?watchInternationalMaintenanceRenewal.base:ref,path);
  const watchTaldefgrobepAttainGuardRepair=c.watchTaldefgrobepAttainGuardRepair;
  if(watchTaldefgrobepAttainGuardRepair)verifyWatchTaldefgrobepAttainGuardRepair(watchTaldefgrobepAttainGuardRepair,{head:preInternationalMaintenanceRenewalHead,read:internationalMaintenanceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preTaldefgrobepAttainGuardHead=watchTaldefgrobepAttainGuardRepair?watchTaldefgrobepAttainGuardRepair.base:preInternationalMaintenanceRenewalHead;
