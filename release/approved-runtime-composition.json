@@ -3556,5 +3556,40 @@
       "date": "2026-10-12",
       "reason": "Retain original metrics tamper-rejection diagnostic for the exact approved app-preflight transport path"
     }
+  },
+  "runtimeBaselineRollbackRetention": {
+    "proof": "EXACT_CURRENT_BASELINE_ROLLBACK_RETENTION_20261012",
+    "base": "c7bf1d69ffcb5629955edfdd75b83a1a87c7587b",
+    "source": "8782ee73e16f941bacded468b6a8453974a9e38a",
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/runtime-baseline-rollback-retention-composition.test.mjs"
+    ],
+    "maintenanceSource": "3c1556da12767786624f63a88bc8bf798d637404",
+    "integrationIssue": 1065,
+    "failedPromotionRun": 38306227092,
+    "failedPromotionJob": 115003854540,
+    "failedStep": 10,
+    "originalSuccessfulRun": 38248635395,
+    "originalSuccessfulJob": 114828666204,
+    "failedContactRun": 38291781709,
+    "failedContactJob": 114953466887,
+    "activeDeployment": "4a9c25dc-4208-43f1-9e72-12ee11eba7ac",
+    "activeVersion": "534545ec-7445-49bf-9333-47b08b7ad631",
+    "failedContactDeployment": "5cdcd96c-e280-4282-bbee-150e8f765353",
+    "failedContactVersion": "dc0dd65f-6df9-46d1-a6b0-02bbd2232cac",
+    "runtimeChanged": false,
+    "customerDataChanged": false,
+    "publicCopyChanged": false,
+    "failedReleasePromoted": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
