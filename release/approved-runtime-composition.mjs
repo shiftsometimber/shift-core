@@ -1,2835 +1,2143 @@
-import {withoutTreatmentFlag,withoutTreatmentSteps,TREATMENT_FLAG} from './my-treatment-config.mjs';
-import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
-import {existsSync,readFileSync} from 'node:fs';
-
-export const COMPOSITION_BASE='e9d8ca70c6cd969bbd02caee31deb1f8b12bb67f';
-export const COMPOSITION_SOURCE='63993a0ce480a4aa5c7a1d47017c682dccc837f1';
-export const SUPPORT_SOURCE='ec3b9bcc2e4909087246fc343dcaad35141de576';
-export const HQ_SOURCE='5e2a6bbe7714fe098eebfa22bc7acbe9e3d2d5c2';
-export const COMPOSITION_PATHS=[
-'.github/workflows/hq-management-release.yml','HQ-MANAGEMENT-RELEASE.md',
-'continuity-measurement/scorecard.mjs','docs/AFTER-TREATMENT-EVIDENCE-BOUNDARIES-2026-10-07.md',
-'frontend/member/member-product-v33d.js','frontend/member/member-shell-v33g.js',
-'frontend/member/my-timber-preview.html','frontend/member/my-timber-v11.js',
-'hq-ai-v2.js','hq-management-acceptance.mjs','hq-management-api.mjs',
-'hq-management-browser-acceptance.mjs','hq-management-deploy.mjs','hq-management-entry.mjs',
-'hq-management-gateway-acceptance.mjs','hq-management-public-preservation.mjs','hq-management-release-gate.mjs',
-'member-experience/ai-site-knowledge.mjs','member-experience/entry.mjs',
-'member-experience/tests/continuity-measurement.test.mjs','member-experience/tests/shared-arrival.test.mjs',
-'my-timber-navigation-gate.mjs','product-analytics-v1.js','public-continuity.mjs',
-'public-promise-accuracy-v1.mjs','public-seo-discovery.mjs','shift-coach/memory.mjs','shift-coach/ui.mjs',
-'tests/ai-site-knowledge.test.mjs','tests/my-timber-analytics-privacy.test.mjs',
-'tests/promise-accuracy.test.mjs','tests/public-continuity.test.mjs','tests/public-seo-discovery.test.mjs',
-'worker-entry-v6.js','worker.js','wrangler.hq-management.jsonc'];
-const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
-const sorted=xs=>[...xs].sort();
-export function verifyComposedRuntime({head=git('rev-parse','HEAD'),read=(ref,path)=>git('rev-parse',ref+':'+path),diff=(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor=(a,b)=>git('merge-base','--is-ancestor',a,b)}={}){
- // The composition is a concrete immutable tree, not an expanded allowlist.
- assert.match(head,/^[a-f0-9]{40}$/);
- for(const ref of [COMPOSITION_BASE,SUPPORT_SOURCE,HQ_SOURCE,COMPOSITION_SOURCE])ancestor(ref,head);
- assert.deepEqual(sorted(diff(COMPOSITION_BASE,COMPOSITION_SOURCE)),sorted(COMPOSITION_PATHS),'Unreviewed composition path set');
- // This foundational check accepts no later file changes. A separate reviewed
- // maintenance receipt is required before connecting it to production guards.
- assert.deepEqual(sorted(diff(COMPOSITION_SOURCE,head)),[],'Unreviewed changes after approved composition');
- for(const path of COMPOSITION_PATHS)assert.equal(read(head,path),read(COMPOSITION_SOURCE,path),'Approved composition source drift: '+path);
- for(const path of ['wrangler.jsonc','package.json','package-lock.json',
- '.github/workflows/cloudflare-production-promote.yml','acquisition-activation/consent.mjs',
- 'activation-measurement/assets.mjs','shift-coach/worker.mjs','shift-coach/release-manifest.json',
- 'public-seo-context.mjs','public-seo-organic-links.mjs','public-seo-organic-link-data.mjs'])
- assert.equal(read(head,path),read(COMPOSITION_BASE,path),'Approved composition protected boundary drift: '+path);
- return {source:COMPOSITION_SOURCE,base:COMPOSITION_BASE,head,paths:COMPOSITION_PATHS.length};
-}
-
-export const RELOAD_VERIFIER='8d84eb29eb74c3f156ce0ee815cc2d1c644be1e9';
-export const RELOAD_RUN=37763695261;
-export const RELOAD_PAYLOAD=['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','tests/member-reload-browser.test.mjs'];
-export const RECONCILIATION_MANIFEST='release/approved-runtime-composition.json';
-export const RECONCILIATION_MAINTENANCE=[
- 'release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs',
- 'release/organic-followthrough-scope.mjs','release/seo-link-repairs-scope.mjs',
- 'release/seo-growth-scope.mjs','release/app-scope.mjs',
- 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs','shift-me-source-gate.mjs','release/metrics-connection-scope.mjs','release/seo-context-scope.mjs','release/seo-discovery-scope.mjs','release/seo-follow-through-scope.mjs','release/fit-300-scope.mjs','tests/production-completion-release.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/online-privacy-recovery-proof.yml','.github/workflows/shift-coach-integration.yml','.github/workflows/organic-followthrough-proof.yml','.github/workflows/seo-link-repairs-proof.yml','.github/workflows/seo-growth-proof.yml','acquisition-activation/metrics-release.test.mjs','shift-coach/release.test.mjs','tests/growth-release.test.mjs','shift-coach/browser-proof.mjs','shift-coach/full-page-proof.mjs','shift-coach/phantom-members.mjs','shift-coach/browser-journey-support.mjs','release/watch-registry-wave-scope.mjs','release/sitewide-seo-scope.mjs','release/treatment-guidance-scope.mjs',...RELOAD_PAYLOAD];
-// A finite factual amendment after the independently checked runtime composition.
-// Neither its exact eight-file source nor its hosted proof can be replaced by a
-// matching path prefix, later commit, successful HTTP check or editorial authority.
-export const WATCH_FACTUAL_UPDATE_BASE='56bba771e9a4006b788bd8fb40358baa3d737dd0';
-export const WATCH_FACTUAL_UPDATE_SOURCE='66236803a719f13d212ad27d032c87e699c9418c';
-export const WATCH_FACTUAL_UPDATE_RUN=37797195698;
-export const WATCH_FACTUAL_UPDATE_PATHS=['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/knowledge.test.mjs','medicines-watch/reviews/2026-10-08-authorised-zupreme-lifecycle-update.json'];
-export const WATCH_FACTUAL_UPDATE_MAINTENANCE=['release/approved-runtime-composition.mjs','release/watch-registry-wave-scope.mjs','tests/approved-runtime-composition.test.mjs','shift-coach/release.test.mjs'];
-export function assertWatchFactualUpdateProof(proof){
- assert.equal(proof.id,WATCH_FACTUAL_UPDATE_RUN);assert.equal(proof.head_sha,WATCH_FACTUAL_UPDATE_SOURCE);
- assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');assert.equal(proof.event,'pull_request');
- assert.equal(proof.head_branch,'review/watch-zupreme-lifecycle-20261008');
- assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
-}
-export async function verifyWatchFactualUpdateProof(get){return assertWatchFactualUpdateProof(await get('/actions/runs/'+WATCH_FACTUAL_UPDATE_RUN));}
-// Exact receipt retrieval repair: later reruns cannot replace the accepted attempt.
-export const RELOAD_ATTEMPT_BASE='afe0b80d3e7d7f813c53a659c619ba13b86f6ae4';
-export const RELOAD_ATTEMPT_PATHS=['release/member-acceptance-scope.mjs','tests/reload-proof-attempt.test.mjs','release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','.github/workflows/cloudflare-production-promote.yml','release/watch-observation-seed.mjs','tests/watch-observation-seed.test.mjs'];
-const RELOAD_ATTEMPT_SET=new Set(RELOAD_ATTEMPT_PATHS);
-export function verifyReloadAttemptExtension(c,{head,read,diff,ancestor}){
- assert(c,'Exact reload-attempt receipt repair required');assert.equal(c.proof,'EXACT_RELOAD_ATTEMPT_RECEIPT_V1');assert.equal(c.base,RELOAD_ATTEMPT_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,RELOAD_ATTEMPT_PATHS);
- for(const flag of ['runtimeChanged','customerDataChanged','acceptanceAssertionsWeakened'])assert.equal(c[flag],false);
- ancestor(c.base,c.source);ancestor(c.source,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated reload-attempt receipt repair source');
- assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after reload-attempt receipt repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical source drift / Reload-attempt receipt source drift: '+path);
- return c;
-}
-
-export const LOGOUT_ADOPTION_BASE='b5bd9e34e4869d398884b5317c9234e00d53b6dc';
-export const LOGOUT_NAVIGATION_SOURCE='5a478068f8169aba4bd1ed098cb6e43d8096d569';
-export const LOGOUT_NAVIGATION_RUN=37847675774;
-export const LOGOUT_NAVIGATION_JOB=113552515994;
-export const LOGOUT_ADOPTION_PATHS=['health-passport/production-browser.mjs','tests/member-reload-browser.test.mjs','release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','release/member-acceptance-scope.mjs','tests/reload-proof-attempt.test.mjs'];
-const LOGOUT_ADOPTION_SET=new Set(LOGOUT_ADOPTION_PATHS);
-const LOGOUT_OLD="await page.locator('[data-member-logout]').click();await page.waitForFunction";
-const LOGOUT_NEW="await page.locator('[data-member-logout]').click();await page.waitForURL(url=>url.origin===site&&url.pathname==='/member-login',{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction";
-export function assertLogoutBoundary(before,after){
- assert.equal(before.split(LOGOUT_OLD).length,2,'Exactly one actual logout boundary required');
- assert.equal(after,before.replace(LOGOUT_OLD,LOGOUT_NEW),'Logout verification may only await the real sign-in document; retain every privacy assertion');
-}
-export function verifyLogoutAdoption(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_LOGOUT_NAVIGATION_V1');assert.equal(c.base,LOGOUT_ADOPTION_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,LOGOUT_ADOPTION_PATHS);
- for(const flag of ['runtimeChanged','customerDataChanged','acceptanceAssertionsWeakened'])assert.equal(c[flag],false);
- ancestor(c.base,c.source);ancestor(c.source,head);ancestor(RELOAD_VERIFIER,LOGOUT_NAVIGATION_SOURCE);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated logout verification source');
- assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after logout verification');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical source drift / Logout navigation source drift: '+path);
- assertLogoutBoundary(content(c.base,'health-passport/production-browser.mjs'),content('HEAD','health-passport/production-browser.mjs'));
- assertLogoutBoundary(content(RELOAD_VERIFIER,'health-passport/production-browser.mjs'),content(LOGOUT_NAVIGATION_SOURCE,'health-passport/production-browser.mjs'));
- assert.equal(read('HEAD','tests/member-reload-browser.test.mjs'),read(LOGOUT_NAVIGATION_SOURCE,'tests/member-reload-browser.test.mjs'));
- return c;
-}
-export function assertLogoutNavigationReceipt(run,job){
- assert.equal(run?.id,LOGOUT_NAVIGATION_RUN);assert.equal(run.run_attempt,1);assert.equal(run.head_sha,LOGOUT_NAVIGATION_SOURCE);
- assert.equal(run.path,'.github/workflows/my-timber-final-production.yml');assert.equal(run.head_branch,'fix/member-reload-navigation-20261007');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'success');
- assert.equal(job?.id,LOGOUT_NAVIGATION_JOB);assert.equal(job.run_id,LOGOUT_NAVIGATION_RUN);assert.equal(job.run_attempt,1);assert.equal(job.name,'reload-navigation-diagnostics');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
- for(const number of [8,9,11,12,14,15]){const step=job.steps?.find(s=>s.number===number);assert.equal(step?.status,'completed','Every complete logout/member round is required');assert.equal(step?.conclusion,'success','Every complete logout/member round is required');}
- return {id:run.id,sha:run.head_sha,path:run.path,conclusion:run.conclusion,attempt:1,rounds:3};
-}
-
-// Finite engineering amendment: bounded read-only GitHub transport recovery.
-export const PROOF_TRANSPORT_BASE='476a151c2c0d4aa28e098205d1b0bda64410a783';
-export const PROOF_TRANSPORT_SOURCE='d601b545686a74dfe51c6f57a5712b11fba510f9';
-export const PROOF_TRANSPORT_PATHS=['release/growth-preflight.mjs','release/github-proof-get.mjs','tests/github-proof-get.test.mjs'];
-export const PROOF_TRANSPORT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
-export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST,...WATCH_FACTUAL_UPDATE_PATHS,...WATCH_FACTUAL_UPDATE_MAINTENANCE,...PROOF_TRANSPORT_PATHS,...PROOF_TRANSPORT_MAINTENANCE]);
-export const MY_TREATMENT_BASE='793b5135ce7bcdb42d77597b238c769c32a7dc67';
-export const MY_TREATMENT_SOURCE='8681d219edc06be15c24135741877c47ee36b011';
-export const MY_TREATMENT_PATHS=['.github/workflows/cloudflare-production-promote.yml','.github/workflows/my-treatment-production-check.yml','member-experience/TREATMENT-PRODUCTION-RELEASE.md','member-experience/entry.mjs','member-experience/tests/treatment-model.test.mjs','member-experience/tests/treatment.test.mjs','member-experience/treatment-model.mjs','member-experience/treatment-page.mjs','member-experience/treatment-privacy.mjs','member-experience/treatment-reminders.mjs','member-experience/treatment-routes.mjs','member-experience/treatment-service-worker.mjs','member-experience/treatment.sql','privacy-health-erasure-route-v1.js','release/my-treatment-config.mjs','release/my-treatment-live.mjs','release/my-treatment-schema.mjs','shift-coach/release-contract.mjs','tests/my-treatment-release.test.mjs','worker-entry-v6.js','wrangler.coaching.jsonc','wrangler.jsonc'];
-export const MY_TREATMENT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/my-treatment-composition.test.mjs','tests/public-tool-release.test.mjs','acquisition-activation/metrics-release.test.mjs'];
-const MY_TREATMENT_SET=new Set([...MY_TREATMENT_PATHS,...MY_TREATMENT_MAINTENANCE]);
-for(const path of MY_TREATMENT_SET)RECONCILIATION_PATHS.add(path);
-export function verifyMyTreatment(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_MY_TREATMENT_V1');assert.equal(c.base,MY_TREATMENT_BASE);assert.equal(c.source,MY_TREATMENT_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.deepEqual(c.paths,MY_TREATMENT_PATHS);assert.deepEqual(c.maintenancePaths,MY_TREATMENT_MAINTENANCE);
- assert.equal(c.ownerAuthorised,true);assert.equal(c.licensedMedicinesOnly,true);assert.equal(c.additiveSchemaOnly,true);
- for(const flag of ['homepageChanged','startHereChanged','navigationChanged','clinicalFeedClaimed','prescribingChanged','customerRowsChanged','existingGatesWeakened','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated My Treatment source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated My Treatment maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after My Treatment');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: My Treatment source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: My Treatment / Tablet wording verifier source drift / Metrics maintenance source drift: '+path);
- const config=content(c.source,'wrangler.jsonc');assert.equal(config.split(TREATMENT_FLAG).length,2,'Exactly one authorised treatment flag');
- assert.equal(withoutTreatmentFlag(config),content(c.base,'wrangler.jsonc'),'Only the exact treatment flag may change configuration');
- assert.equal(content(c.source,'wrangler.coaching.jsonc'),config,'Coaching and production configuration must remain identical');
- assert.equal(withoutTreatmentSteps(content(c.source,'.github/workflows/cloudflare-production-promote.yml')),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Existing production gates and rollback must remain unchanged');
- return c;
-}
-for(const path of RELOAD_ATTEMPT_PATHS)RECONCILIATION_PATHS.add(path);
-for(const path of LOGOUT_ADOPTION_PATHS)RECONCILIATION_PATHS.add(path);
-export const PUBLIC_TOOL_BASE='e8592710a52bc0c7a551798bf426d32e59409caf';
-export const PUBLIC_TOOL_SOURCE='3ba486a87df2ee859fcd579263b5211f338fbf04';
-export const PUBLIC_TOOL_PAYLOAD=['public-tool-delivery.mjs','shift-coach/worker.mjs','tests/public-tool-delivery.test.mjs','member-experience/entry.mjs','member-experience/tests/shared-arrival.test.mjs','public-continuity.mjs','tests/public-continuity.test.mjs'];
-export const PUBLIC_TOOL_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/public-tool-release.test.mjs','release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/cancelled-release-recovery.mjs','release/growth-adopt-deployment.mjs'];
-const publicToolImmutableFacts=new Map();
-const publicToolImmutableGit=(...args)=>{const key=JSON.stringify([process.cwd(),...args]);if(!publicToolImmutableFacts.has(key))publicToolImmutableFacts.set(key,git(...args));return publicToolImmutableFacts.get(key);};
-const PUBLIC_TOOL_PATHS=new Set([...PUBLIC_TOOL_PAYLOAD,...PUBLIC_TOOL_MAINTENANCE]);
-for(const path of PUBLIC_TOOL_PATHS)RECONCILIATION_PATHS.add(path);
-export function verifyPublicToolExtension(c,{head,read,diff,ancestor}={}){
- assert(c,'Exact public-tool extension receipt required');
- assert.equal(c.proof,'EXACT_PUBLIC_TOOL_DELIVERY_V1');
- assert.equal(c.base,PUBLIC_TOOL_BASE);assert.equal(c.payloadSource,PUBLIC_TOOL_SOURCE);
- assert.equal(c.supportSnapshotSource,'e7c78344694a0101a8105004356b96d3a2066197');
- assert.deepEqual(c.payloadPaths,PUBLIC_TOOL_PAYLOAD);assert.deepEqual(c.maintenancePaths,PUBLIC_TOOL_MAINTENANCE);
- assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
- assert.equal(c.publicCopyChanged,false);assert.equal(c.ratingsInvented,false);
- assert.equal(c.homepageChanged,false);assert.equal(c.privateCacheChanged,false);
- for(const ref of [c.base,c.payloadSource,c.maintenanceSource,c.supportSnapshotSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.payloadSource)),sorted(PUBLIC_TOOL_PAYLOAD),'Unrelated public-tool payload change');
- assert.deepEqual(sorted(diff(c.payloadSource,c.maintenanceSource)),sorted(PUBLIC_TOOL_MAINTENANCE),'Unrelated public-tool verifier change');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after public-tool receipt');
- for(const path of PUBLIC_TOOL_PAYLOAD)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Approved composition source / boundary drift: Public-tool payload source drift: '+path);
- for(const path of PUBLIC_TOOL_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Public-tool maintenance source drift: '+path);
- for(const path of ['member-experience/entry.mjs','member-experience/tests/shared-arrival.test.mjs','public-continuity.mjs','tests/public-continuity.test.mjs'])assert.equal(read(c.payloadSource,path),read(c.supportSnapshotSource,path),'Captured serving support source drift: '+path);
- return c;
-}
-// Preserve the exact approved Programme release while repairing verification only.
-export const PUBLIC_TOOL_PROOF_RETRY_BASE='36dd6f16835d1de68523437224b7c87dabe305e7';
-export const PUBLIC_TOOL_PROOF_RETRY_PATHS=['release/approved-runtime-composition.mjs','release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs','release/ai-response-proof.mjs','release/shift-ai-live.mjs','tests/ai-response-retry.test.mjs','tests/public-tool-proof-retry.test.mjs'];
-const PUBLIC_TOOL_PROOF_RETRY_SET=new Set(PUBLIC_TOOL_PROOF_RETRY_PATHS);
-for(const path of PUBLIC_TOOL_PROOF_RETRY_PATHS)RECONCILIATION_PATHS.add(path);
-export function verifyPublicToolProofRetry(c,{head,read,diff,ancestor}){
- assert(c,'Public-tool proof retry receipt required');assert.equal(c.proof,'EXACT_PUBLIC_TOOL_PROOF_RETRY_V1');assert.equal(c.base,PUBLIC_TOOL_PROOF_RETRY_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,PUBLIC_TOOL_PROOF_RETRY_PATHS);
- assert.equal(c.publicCopyChanged,false);assert.equal(c.aiRuntimeChanged,false);assert.equal(c.customerDataChanged,false);
- ancestor(c.base,c.source);ancestor(c.source,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(PUBLIC_TOOL_PROOF_RETRY_PATHS),'Unrelated public-tool proof retry source');
- assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after public-tool proof retry');
- for(const path of PUBLIC_TOOL_PROOF_RETRY_PATHS)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Public-tool proof retry source drift: '+path);
-}
-
-
-// Finite repair of the approved canonical anchor inserted after the earlier link pass.
-export const ORAL_CANONICAL_BASE='6752fd02823377b9faf4b1a81a83d7b0a26ba79b';
-export const ORAL_CANONICAL_SOURCE='3ba744802b9334370e1c0124edfb8cb4cf1e142c';
-export const ORAL_CANONICAL_PATHS=["public-practical-guides.mjs","tests/practical-guides.test.mjs","release/live-support-runtime.mjs","tests/live-support-runtime.test.mjs"];
-export const ORAL_CANONICAL_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','.github/workflows/practical-guides-proof.yml','scripts/verify-practical-guides-handler.mjs','release/six-topic-seo-scope.mjs','scripts/verify-practical-guides.mjs'];
-const ORAL_CANONICAL_SET=new Set([...ORAL_CANONICAL_PATHS,...ORAL_CANONICAL_MAINTENANCE]);
-for(const path of ORAL_CANONICAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyOralCanonicalRepair(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_ORAL_CANONICAL_REPAIR_V1');
- assert.equal(c.base,ORAL_CANONICAL_BASE);assert.equal(c.source,ORAL_CANONICAL_SOURCE);
- assert.deepEqual(c.paths,ORAL_CANONICAL_PATHS);assert.deepEqual(c.maintenancePaths,ORAL_CANONICAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.runtimeChanged,true);assert.equal(c.approvedAnchorChanged,true);
- for(const flag of ['publicCopyChanged','medicalContentChanged','customerDataChanged'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated oral canonical repair payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated oral canonical repair reconciliation');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after oral canonical repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical maintenance source drift: '+path);
-}
-
-// Exact verifier reconciliation after run 37833478472 rejected the already-approved
-// NHS continuity panel/date and safely restored the independently verified runtime.
-export const NHS_ARTICLE_PROOF_BASE='535da9c06fe4ad30375387293ea25f62277e45f6';
-export const NHS_ARTICLE_PROOF_SOURCE='342ad2d537a89f4a915038381000343bcdb06443';
-export const NHS_ARTICLE_PROOF_PATHS=["release/seo794-preservation.mjs","editorial/five-articles/proof.mjs","tests/seo794-preservation.test.mjs","release/live-support-runtime.mjs","tests/live-support-runtime.test.mjs"];
-export const NHS_ARTICLE_PROOF_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
-const NHS_ARTICLE_PROOF_SET=new Set([...NHS_ARTICLE_PROOF_PATHS,...NHS_ARTICLE_PROOF_MAINTENANCE]);
-for(const path of NHS_ARTICLE_PROOF_SET)RECONCILIATION_PATHS.add(path);
-export function verifyNhsArticleProofRefresh(c,{head,read,diff,ancestor}){
- assert(c,'Exact NHS article proof refresh receipt required');
- assert.equal(c.proof,'EXACT_NHS_ARTICLE_PROOF_REFRESH_V1');
- assert.equal(c.base,NHS_ARTICLE_PROOF_BASE);assert.equal(c.source,NHS_ARTICLE_PROOF_SOURCE);
- assert.deepEqual(c.paths,NHS_ARTICLE_PROOF_PATHS);assert.deepEqual(c.maintenancePaths,NHS_ARTICLE_PROOF_MAINTENANCE);
- assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- for(const flag of ['publicCopyChanged','runtimeChanged','medicalContentChanged','customerDataChanged'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated NHS article proof source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated NHS article proof reconciliation');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after NHS article proof refresh');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving rollback NHS article maintenance source drift: '+path);
-}
-
-// Finite runtime-receipt refresh after the failed release safety rollback.
-export const SUPPORT_ROLLBACK_BASE='166c04ab20ec379826bfa1da625d38c98125d376';
-export const SUPPORT_ROLLBACK_SOURCE='5f3909796e24f865a9d459be8749dde6a88a1a40';
-export const SUPPORT_ROLLBACK_PATHS=['release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs'];
-export const SUPPORT_ROLLBACK_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
-const SUPPORT_ROLLBACK_SET=new Set([...SUPPORT_ROLLBACK_PATHS,...SUPPORT_ROLLBACK_MAINTENANCE]);
-for(const path of SUPPORT_ROLLBACK_SET)RECONCILIATION_PATHS.add(path);
-export function verifySupportRollbackRefresh(c,{head,read,diff,ancestor}){
- assert(c,'Exact serving rollback refresh receipt required');
- assert.equal(c.proof,'EXACT_SUPPORT_ROLLBACK_REFRESH_V1');
- assert.equal(c.base,SUPPORT_ROLLBACK_BASE);assert.equal(c.source,SUPPORT_ROLLBACK_SOURCE);
- assert.deepEqual(c.paths,SUPPORT_ROLLBACK_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_ROLLBACK_MAINTENANCE);
- assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.publicCopyChanged,false);assert.equal(c.runtimeChanged,false);assert.equal(c.medicalContentChanged,false);assert.equal(c.customerDataChanged,false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(SUPPORT_ROLLBACK_PATHS),'Unrelated serving rollback refresh source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(SUPPORT_ROLLBACK_MAINTENANCE),'Unrelated serving rollback refresh reconciliation');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after serving rollback refresh');
- for(const path of SUPPORT_ROLLBACK_PATHS)assert.equal(read('HEAD',path),read(c.source,path),'Serving rollback source drift: '+path);
- for(const path of SUPPORT_ROLLBACK_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Serving rollback maintenance source drift: '+path);
-}
-
-// Finite verifier-only repair after an owner-confirmed current-main production dispatch.
-// The exact two-file source and two-file reconciliation are immutable; this does
-// not approve article copy, runtime behaviour, customer data or medical content.
-export const ORAL_LIVE_DISPATCH_BASE='9ecf2fe50774412c82f473975e4b650518428a90';
-export const ORAL_LIVE_DISPATCH_SOURCE='fac81ea46b9c49adcbae5b9f4910de3632f1992a';
-export const ORAL_LIVE_DISPATCH_PATHS=['babylove/release-quality.test.mjs','babylove/verify-oral-live.mjs'];
-export const ORAL_LIVE_DISPATCH_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
-const ORAL_LIVE_DISPATCH_SET=new Set([...ORAL_LIVE_DISPATCH_PATHS,...ORAL_LIVE_DISPATCH_MAINTENANCE]);
-for(const path of ORAL_LIVE_DISPATCH_SET)RECONCILIATION_PATHS.add(path);
-export function verifyOralLiveDispatchGuard(c,{head,read,diff,ancestor}){
- assert(c,'Exact oral live dispatch guard receipt required');
- assert.equal(c.proof,'EXACT_ORAL_LIVE_DISPATCH_GUARD_V1');
- assert.equal(c.base,ORAL_LIVE_DISPATCH_BASE);assert.equal(c.source,ORAL_LIVE_DISPATCH_SOURCE);
- assert.deepEqual(c.paths,ORAL_LIVE_DISPATCH_PATHS);assert.deepEqual(c.maintenancePaths,ORAL_LIVE_DISPATCH_MAINTENANCE);
- assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.publicCopyChanged,false);assert.equal(c.runtimeChanged,false);assert.equal(c.medicalContentChanged,false);assert.equal(c.customerDataChanged,false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(ORAL_LIVE_DISPATCH_PATHS),'Unrelated oral live dispatch guard source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(ORAL_LIVE_DISPATCH_MAINTENANCE),'Unrelated oral live dispatch guard reconciliation');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after oral live dispatch guard');
- for(const path of ORAL_LIVE_DISPATCH_PATHS)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Oral dispatch source drift: '+path);
- for(const path of ORAL_LIVE_DISPATCH_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Oral dispatch maintenance source drift: '+path);
-}
-
-// Owner's 8 October Go authorises this finite Programme demonstration.
-export const PROGRAMME_DAY_BASE='d2ff6e0ef00d0a1a3907d9184afd64a3aa40c374';
-export const PROGRAMME_DAY_SOURCE='0fe0bc85717b60bdcf7b0a75c9e96b2c3644409a';
-export const PROGRAMME_DAY_PAYLOAD=['.github/workflows/programme-day-preview.yml','growth-member-public.mjs','programme-day.mjs','release/growth-preservation.mjs','scripts/verify-programme-day.cjs','tests/programme-day.test.mjs','tests/growth-release.test.mjs'];
-export const PROGRAMME_DAY_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/programme-day-release.test.mjs'];
-const PROGRAMME_DAY_PATHS=new Set([...PROGRAMME_DAY_PAYLOAD,...PROGRAMME_DAY_MAINTENANCE]);
-for(const path of PROGRAMME_DAY_PATHS)RECONCILIATION_PATHS.add(path);
-export function verifyProgrammeDayExtension(c,{head,read,diff,ancestor}){
- assert(c,'Programme day receipt required');assert.equal(c.proof,'EXACT_PROGRAMME_DAY_V1');
- assert.equal(c.base,PROGRAMME_DAY_BASE);assert.equal(c.payloadSource,PROGRAMME_DAY_SOURCE);
- assert.deepEqual(c.payloadPaths,PROGRAMME_DAY_PAYLOAD);assert.deepEqual(c.maintenancePaths,PROGRAMME_DAY_MAINTENANCE);
- assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.approval,'Go');
- assert.equal(c.homepageChanged,false);assert.equal(c.clinicalAvailabilityChanged,false);assert.equal(c.memberBehaviourChanged,false);
- for(const ref of [c.base,c.payloadSource,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.payloadSource)),sorted(PROGRAMME_DAY_PAYLOAD),'Unrelated Programme payload change');
- assert.deepEqual(sorted(diff(c.payloadSource,c.maintenanceSource)),sorted(PROGRAMME_DAY_MAINTENANCE),'Unrelated Programme verifier change');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Programme receipt');
- for(const path of PROGRAMME_DAY_PAYLOAD)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Approved composition source / boundary drift: Programme payload source drift: '+path);
- for(const path of PROGRAMME_DAY_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Programme verifier source drift: '+path);
- return c;
-}
-export const PROGRAMME_PREFLIGHT_BASE='f7999b2be44afd6e6e506762afa860efe5e4e242';
-export const PROGRAMME_PREFLIGHT_SOURCE='33aaaa2f87790b165d4c4ff7a0612ee9d247bdc1';
-export const PROGRAMME_PREFLIGHT_PAYLOAD=['release/growth-preflight.mjs','.github/workflows/programme-day-preview.yml','tests/programme-day-release.test.mjs'];
-export const PROGRAMME_PREFLIGHT_MAINTENANCE=['release/approved-runtime-composition.mjs'];
-const PROGRAMME_PREFLIGHT_PATHS=new Set([...PROGRAMME_PREFLIGHT_PAYLOAD,...PROGRAMME_PREFLIGHT_MAINTENANCE]);
-for(const path of PROGRAMME_PREFLIGHT_PATHS)RECONCILIATION_PATHS.add(path);
-export function verifyProgrammeDayPreflightExtension(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_PROGRAMME_PREFLIGHT_V1');assert.equal(c.base,PROGRAMME_PREFLIGHT_BASE);assert.equal(c.payloadSource,PROGRAMME_PREFLIGHT_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.deepEqual(c.payloadPaths,PROGRAMME_PREFLIGHT_PAYLOAD);assert.deepEqual(c.maintenancePaths,PROGRAMME_PREFLIGHT_MAINTENANCE);
- for(const ref of [c.base,c.payloadSource,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.payloadSource)),sorted(c.payloadPaths));assert.deepEqual(sorted(diff(c.payloadSource,c.maintenanceSource)),sorted(c.maintenancePaths));assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST]);
- for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Approved composition maintenance source drift: Programme preflight source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Programme preflight verifier source drift: '+path);return c;
-}
-export const SERVING_SEO_BASE='a5e75ea0da68823c786316e7fe6a9e4762ed00f9';
-export const SERVING_SEO_SOURCE='2a26d8e252c2f2c2221103b5f72c15ec1730db89';
-export const SERVING_SEO_CAPTURE='fa481b8193551cea1b8a7fe496ebc0cf70aa0a74';
-export const SERVING_SEO_CAPTURE_PATHS=['public-continuity.mjs','public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs','worker-entry-v6.js'];
-export const SERVING_SEO_PATHS=[...SERVING_SEO_CAPTURE_PATHS,'release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs'];
-export const SERVING_SEO_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/serving-seo-runtime-release.test.mjs','tests/approved-runtime-composition.test.mjs','.github/workflows/practical-guides-proof.yml','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs'];
-const SERVING_SEO_SET=new Set([...SERVING_SEO_PATHS,...SERVING_SEO_MAINTENANCE]);for(const path of SERVING_SEO_SET)RECONCILIATION_PATHS.add(path);
-export function verifyServingSeoCapture(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_SERVING_SEO_CAPTURE_V1');assert.equal(c.base,SERVING_SEO_BASE);assert.equal(c.source,SERVING_SEO_SOURCE);assert.equal(c.capture,SERVING_SEO_CAPTURE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.deepEqual(c.paths,SERVING_SEO_PATHS);assert.deepEqual(c.maintenancePaths,SERVING_SEO_MAINTENANCE);
- assert.equal(c.preserveServingSeo,true);for(const flag of ['homepageChanged','clinicalAvailabilityChanged','customerDataChanged','stockChanged','memberBehaviourChanged'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.capture,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff('e7c78344694a0101a8105004356b96d3a2066197',c.capture)),sorted(SERVING_SEO_CAPTURE_PATHS),'Unrelated serving capture change');
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated serving SEO source change');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths));assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST]);
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Serving SEO source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving SEO verifier drift: '+path);
- for(const path of SERVING_SEO_CAPTURE_PATHS)assert.equal(read(c.source,path),read(c.capture,path),'Captured serving SEO source differs: '+path);
-}
-
-export const PROGRAMME_CLOSEOUT_BASE='fa5d9bc37b2f88006e6f16498144b27ff10bd17e';
-export const PROGRAMME_CLOSEOUT_SOURCE='40d37937248d94b32b63e0fd9b5d3afd8693ba3f';
-export const PROGRAMME_CLOSEOUT_PATHS=['release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs','scripts/verify-public-continuity-live.mjs','release/public-continuity-body-proof.mjs','tests/programme-day-continuity-body.test.mjs','.github/workflows/cloudflare-production-promote.yml'];
-export const PROGRAMME_CLOSEOUT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/programme-day-closeout-release.test.mjs'];
-const PROGRAMME_CLOSEOUT_SET=new Set([...PROGRAMME_CLOSEOUT_PATHS,...PROGRAMME_CLOSEOUT_MAINTENANCE]);
-for(const path of PROGRAMME_CLOSEOUT_SET)RECONCILIATION_PATHS.add(path);
-export const PROGRAMME_LIVE_GATE='      - name: Verify approved Programme day and catalogue artwork live\n        run: PROGRAMME_DAY_LIVE=true PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-programme-day.cjs\n';
-export function withoutProgrammeLiveGate(workflow){
- assert.equal(workflow.split(PROGRAMME_LIVE_GATE).length,2,'Exactly one approved live Programme gate required');
- return workflow.replace(PROGRAMME_LIVE_GATE,'');
-}
-export function verifyProgrammeCloseout(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_PROGRAMME_LIVE_CLOSEOUT_V1');assert.equal(c.base,PROGRAMME_CLOSEOUT_BASE);assert.equal(c.source,PROGRAMME_CLOSEOUT_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,PROGRAMME_CLOSEOUT_PATHS);assert.deepEqual(c.maintenancePaths,PROGRAMME_CLOSEOUT_MAINTENANCE);
- for(const flag of ['runtimeChanged','publicCopyChanged','clinicalAvailabilityChanged','customerDataChanged','stockChanged','memberBehaviourChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
- assert.equal(c.liveProgrammeVerificationAdded,true);assert.equal(c.approvedCopyComparisonFixed,true);assert.equal(c.rollbackReceiptRun,37853151026);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Programme closeout source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Programme closeout maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Programme closeout');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Serving SEO source drift / Programme closeout source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving SEO verifier drift / Programme closeout verifier drift: '+path);
- const workflow='.github/workflows/cloudflare-production-promote.yml';
- assert.equal(withoutProgrammeLiveGate(content(c.source,workflow)),content(c.base,workflow),'Only the additional exact Programme live gate may change production workflow');
- return c;
-}
-
-
-export const NEWS_SECURITY_BASE='160fc4fe35ee98c9713cf5fadb7936baa16d2845';
-export const NEWS_SECURITY_SOURCE='14918e97959d669248efd82c2896de59a3a47e25';
-export const NEWS_SECURITY_PATHS=['radar-news-pages-v1.js','tests/programme-day-news-security.test.mjs','release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs'];
-export const NEWS_SECURITY_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/programme-day-news-security-release.test.mjs'];
-const NEWS_SECURITY_SET=new Set([...NEWS_SECURITY_PATHS,...NEWS_SECURITY_MAINTENANCE]);
-for(const path of NEWS_SECURITY_SET)RECONCILIATION_PATHS.add(path);
-export function withoutNewsSecurityPolicy(source){
- const line="import {withArticleResponsePolicy} from './babylove/response-policy.mjs';\n";
- const wrapper='return withArticleResponsePolicy(new Response(body,{status,headers}));';
- assert(source.startsWith(line),'Exact shared policy import required');
- assert.equal(source.split(wrapper).length,2,'Exactly one shared response policy wrapper required');
- return source.slice(line.length).replace(wrapper,'return new Response(body,{status,headers});');
-}
-export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_NEWS_SECURITY_POLICY_V1');assert.equal(c.base,NEWS_SECURITY_BASE);assert.equal(c.source,NEWS_SECURITY_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,NEWS_SECURITY_PATHS);assert.deepEqual(c.maintenancePaths,NEWS_SECURITY_MAINTENANCE);
- for(const flag of ['publicCopyChanged','clinicalAvailabilityChanged','customerDataChanged','stockChanged','memberBehaviourChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
- assert.equal(c.runtimeChanged,true);assert.equal(c.existingSecurityPolicyApplied,true);assert.equal(c.rollbackReceiptRun,37857802619);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated news security source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated news security maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after news security');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Serving SEO source drift / Programme closeout source drift / news security source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving SEO verifier drift / Programme closeout verifier drift / news security verifier drift: '+path);
- assert.equal(withoutNewsSecurityPolicy(content(c.source,'radar-news-pages-v1.js')),content(c.base,'radar-news-pages-v1.js'),'Only the existing shared security policy may change newsroom rendering');
- assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Production gates must remain unchanged');
- return c;
-}
-
-export const WATCH_OWNED_DISPATCH_BASE='acaf0ffd09393e299c91664bf62693504131836d';
-export const WATCH_OWNED_DISPATCH_SOURCE='377b817984d9469ef5e305434e1b64cdf71633d7';
-export const WATCH_OWNED_DISPATCH_PATHS=['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs'];
-export const WATCH_OWNED_DISPATCH_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-owned-dispatch-release.test.mjs'];
-const WATCH_OWNED_DISPATCH_SET=new Set([...WATCH_OWNED_DISPATCH_PATHS,...WATCH_OWNED_DISPATCH_MAINTENANCE]);
-for(const path of WATCH_OWNED_DISPATCH_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchOwnedDispatch(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_WATCH_OWNED_DISPATCH_V1');assert.equal(c.base,WATCH_OWNED_DISPATCH_BASE);assert.equal(c.source,WATCH_OWNED_DISPATCH_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_OWNED_DISPATCH_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_OWNED_DISPATCH_MAINTENANCE);
- assert.equal(c.pinnedRun,37870273259);assert.equal(c.pinnedEvent,'workflow_dispatch');assert.equal(c.finalOwnershipVerifierChanged,true);
- for(const flag of ['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','customerDataChanged','checkoutChanged','myTimberChanged','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch owned dispatch source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch owned dispatch maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch owned dispatch');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch owned dispatch source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch owned dispatch source drift / maintenance: '+path);
- const verifier=content(c.source,'shift-coach/cancelled-release-recovery.mjs');
- assert.match(verifier,/exactRecordedManualRelease/);assert.match(verifier,/run\?\.event!==expectedEvent/);
- assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Guarded production workflow must remain byte-for-byte unchanged');
- return c;
-}
-
-export const WATCH_RUNTIME_DISPATCH_BASE='c7c52acfd2adc2226adc5fad43f4e5c326e788b6';
-export const WATCH_RUNTIME_DISPATCH_SOURCE='326572c4e265542b7a8146cf30294b3aa5b56146';
-export const WATCH_RUNTIME_DISPATCH_PATHS=['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs'];
-export const WATCH_RUNTIME_DISPATCH_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-runtime-dispatch-release.test.mjs'];
-const WATCH_RUNTIME_DISPATCH_SET=new Set([...WATCH_RUNTIME_DISPATCH_PATHS,...WATCH_RUNTIME_DISPATCH_MAINTENANCE]);
-for(const path of WATCH_RUNTIME_DISPATCH_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRuntimeDispatch(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_WATCH_RUNTIME_DISPATCH_V1');assert.equal(c.base,WATCH_RUNTIME_DISPATCH_BASE);assert.equal(c.source,WATCH_RUNTIME_DISPATCH_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_RUNTIME_DISPATCH_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RUNTIME_DISPATCH_MAINTENANCE);
- assert.equal(c.pinnedRun,37870273259);assert.equal(c.pinnedEvent,'workflow_dispatch');assert.equal(c.recoveryVerifierChanged,true);
- for(const flag of ['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','customerDataChanged','checkoutChanged','myTimberChanged','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch runtime dispatch source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch runtime dispatch maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch runtime dispatch');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch runtime dispatch source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch runtime dispatch source drift / maintenance: '+path);
- const verifier=content(c.source,'shift-coach/cancelled-release-recovery.mjs');
- assert.match(verifier,/event:'workflow_dispatch'/);assert.match(verifier,/recorded\.event,pinned\.event\|\|'push'/);
- assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Guarded production workflow must remain byte-for-byte unchanged');
- return c;
-}
-
-export const WATCH_RUNTIME_BASELINE_BASE='8d1b328c0a5f7169e646ed23d30f79ce7562c8c8';
-export const WATCH_RUNTIME_BASELINE_SOURCE='ba232820de4bf508691f66915eb6e970e68ca313';
-export const WATCH_RUNTIME_BASELINE_PATHS=['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs'];
-export const WATCH_RUNTIME_BASELINE_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-runtime-baseline-release.test.mjs'];
-const WATCH_RUNTIME_BASELINE_SET=new Set([...WATCH_RUNTIME_BASELINE_PATHS,...WATCH_RUNTIME_BASELINE_MAINTENANCE]);
-for(const path of WATCH_RUNTIME_BASELINE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRuntimeBaseline(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_WATCH_RUNTIME_BASELINE_V1');assert.equal(c.base,WATCH_RUNTIME_BASELINE_BASE);assert.equal(c.source,WATCH_RUNTIME_BASELINE_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_RUNTIME_BASELINE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RUNTIME_BASELINE_MAINTENANCE);
- assert.equal(c.recoveryVerifierChanged,true);assert.equal(c.currentDeploymentRun,37870273259);assert.equal(c.currentDeploymentId,'3515e037-1915-476a-9f6b-6b41bbf5e061');assert.equal(c.currentVersionId,'48eb4d71-cb90-4132-bb16-4768132d61d5');
- for(const flag of ['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','customerDataChanged','checkoutChanged','myTimberChanged','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch runtime baseline source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch runtime baseline maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch runtime baseline');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch runtime baseline source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch runtime baseline source drift / maintenance: '+path);
- const verifier=content(c.source,'shift-coach/cancelled-release-recovery.mjs');
- assert.match(verifier,/recordedMedicinesWatchRuntime/);assert.match(verifier,/active\?\.id!==receipt\.deploymentId/);
- assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Guarded production workflow must remain byte-for-byte unchanged');
- return c;
-}
-
-export const SHARED_FOOTER_COMPOSITION_BASE='c37c770929f7f595def20f23b6092015b820dfff';
-export const SHARED_FOOTER_COMPOSITION_PATHS=['tests/shared-footer.test.mjs'];
-export const SHARED_FOOTER_COMPOSITION_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/shared-footer-composition-release.test.mjs'];
-const SHARED_FOOTER_COMPOSITION_SET=new Set([...SHARED_FOOTER_COMPOSITION_PATHS,...SHARED_FOOTER_COMPOSITION_MAINTENANCE]);
-for(const path of SHARED_FOOTER_COMPOSITION_SET)RECONCILIATION_PATHS.add(path);
-export function verifySharedFooterComposition(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_SHARED_FOOTER_COMPOSITION_V1');assert.equal(c.base,SHARED_FOOTER_COMPOSITION_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,SHARED_FOOTER_COMPOSITION_PATHS);assert.deepEqual(c.maintenancePaths,SHARED_FOOTER_COMPOSITION_MAINTENANCE);
- for(const flag of ['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','customerDataChanged','checkoutChanged','myTimberChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated shared footer composition source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated shared footer composition maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after shared footer composition reconciliation');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved shared footer composition source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved shared footer composition maintenance source drift: '+path);
- return c;
-}
-
-export const WATCH_HSTS_PUBLIC_WORDING_BASE='961fa36a0dfb26a0ed3d4a43cb23a2c278270b75';
-export const WATCH_HSTS_PUBLIC_WORDING_PATHS=['release/public-wording-scope.mjs','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','shift-coach/release.test.mjs'];
-export const WATCH_HSTS_PUBLIC_WORDING_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-hsts-public-wording-release.test.mjs','shift-coach/release-contract.mjs'];
-const WATCH_HSTS_PUBLIC_WORDING_SET=new Set([...WATCH_HSTS_PUBLIC_WORDING_PATHS,...WATCH_HSTS_PUBLIC_WORDING_MAINTENANCE]);
-for(const path of WATCH_HSTS_PUBLIC_WORDING_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchHstsPublicWording(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_WATCH_HSTS_PUBLIC_WORDING_V1');assert.equal(c.base,WATCH_HSTS_PUBLIC_WORDING_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_HSTS_PUBLIC_WORDING_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_HSTS_PUBLIC_WORDING_MAINTENANCE);
- for(const flag of ['runtimeChanged','readOnlyHeadersChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch HSTS public wording source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch HSTS public wording maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch HSTS public wording reconciliation');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch HSTS public wording source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch HSTS public wording maintenance source drift: '+path);
- return c;
-}
-
-export const WATCH_HSTS_DIAGNOSTIC_BASE='c13d835552eb97dff903758b00609e73b5e50a88';
-export const WATCH_HSTS_DIAGNOSTIC_PATHS=['release/approved-runtime-composition.mjs','tests/watch-hsts-diagnostic-release.test.mjs'];
-const WATCH_HSTS_DIAGNOSTIC_SET=new Set(WATCH_HSTS_DIAGNOSTIC_PATHS);
-for(const path of WATCH_HSTS_DIAGNOSTIC_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchHstsDiagnostic(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_WATCH_HSTS_DIAGNOSTIC_V1');assert.equal(c.base,WATCH_HSTS_DIAGNOSTIC_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_HSTS_DIAGNOSTIC_PATHS);
- for(const flag of ['runtimeChanged','readOnlyHeadersChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch HSTS diagnostic source');
- assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch HSTS diagnostic');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch HSTS diagnostic source drift: '+path);
- return c;
-}
-
-export const WATCH_HSTS_BASE='8198d99b9f570087e63864e481278b8a2459bfdd';
-export const WATCH_HSTS_PATHS=['medicines-watch/page.mjs','medicines-watch/page.test.mjs'];
-export const WATCH_HSTS_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-hsts-release.test.mjs'];
-const WATCH_HSTS_SET=new Set([...WATCH_HSTS_PATHS,...WATCH_HSTS_MAINTENANCE]);
-for(const path of WATCH_HSTS_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchHsts(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_WATCH_HSTS_V1');assert.equal(c.base,WATCH_HSTS_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_HSTS_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_HSTS_MAINTENANCE);
- assert.equal(c.runtimeChanged,true);assert.equal(c.readOnlyHeadersChanged,true);
- for(const flag of ['publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch HSTS source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch HSTS maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch HSTS');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Watch HSTS source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch HSTS maintenance source drift: '+path);
- assert.doesNotMatch(content(c.base,'medicines-watch/page.mjs'),/Strict-Transport-Security/);
- assert.match(content(c.source,'medicines-watch/page.mjs'),/Strict-Transport-Security/);
- assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Guarded production workflow must remain unchanged');
- return c;
-}
-
-export const WATCH_BELIEVE_DIAGNOSTIC_BASE='8f05352def20c636aeb43ba2e7814d3255898d20';
-export const WATCH_BELIEVE_DIAGNOSTIC_PATHS=['release/approved-runtime-composition.mjs','tests/watch-believe-release.test.mjs'];
-const WATCH_BELIEVE_DIAGNOSTIC_SET=new Set(WATCH_BELIEVE_DIAGNOSTIC_PATHS);
-for(const path of WATCH_BELIEVE_DIAGNOSTIC_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchBelieveDiagnostic(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_WATCH_BELIEVE_DIAGNOSTIC_V1');assert.equal(c.base,WATCH_BELIEVE_DIAGNOSTIC_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_BELIEVE_DIAGNOSTIC_PATHS);
- for(const flag of ['medicalEvidenceChanged','runtimeChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated BELIEVE diagnostic source');
- assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after BELIEVE diagnostic');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved BELIEVE diagnostic source drift: '+path);
- return c;
-}
-
-export const WATCH_BELIEVE_BASE='79dfc433a3a5775f0277206ff7134d0900a8c6ae';
-export const WATCH_BELIEVE_SOURCE='532cd3534527a0e4d83b651894a7a7a13b8a66b2';
-export const WATCH_BELIEVE_PROOF_RUN=37866621755;
-export const WATCH_BELIEVE_PATHS=['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-09-authorised-bimagrumab-semaglutide.json'];
-export const WATCH_BELIEVE_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-believe-release.test.mjs'];
-const WATCH_BELIEVE_SET=new Set([...WATCH_BELIEVE_PATHS,...WATCH_BELIEVE_MAINTENANCE]);
-for(const path of WATCH_BELIEVE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchBelieveEvidence(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_WATCH_BELIEVE_EVIDENCE_V1');assert.equal(c.base,WATCH_BELIEVE_BASE);assert.equal(c.source,WATCH_BELIEVE_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.proofRun,WATCH_BELIEVE_PROOF_RUN);assert.deepEqual(c.paths,WATCH_BELIEVE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_BELIEVE_MAINTENANCE);
- assert.equal(c.medicalEvidenceChanged,true);assert.equal(c.editorialAuthorisationRecorded,true);assert.equal(c.configuredSourcesAdded,1);
- for(const flag of ['runtimeChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged'])assert.equal(c[flag],false);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated BELIEVE evidence source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated BELIEVE evidence maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after BELIEVE evidence');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift / BELIEVE evidence: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved BELIEVE evidence source drift / verifier drift: '+path);
- const receipt=JSON.parse(content(c.source,'medicines-watch/reviews/2026-10-09-authorised-bimagrumab-semaglutide.json'));
- assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');assert.equal(receipt.clinicalApproval,null);assert.equal(receipt.industryComplete,false);
- assert.equal(receipt.registrySources.length,1);assert.equal(receipt.registrySources[0].nctId,'NCT05616013');assert.equal(receipt.registrySources[0].lifecycle.hasResults,true);
- for(const path of ['.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','wrangler.jsonc'])assert.equal(content(c.source,path),content(c.base,path),'Production runtime and guarded workflow must remain unchanged: '+path);
- return c;
-}
-
-
-export const MEMBER_PROOF_RETRY_BASE='5f046576b17ecf5fad5aa5be6d6eab1699f38e86';
-export const MEMBER_PROOF_RETRY_SOURCE='6808493eeca7b747e61668d4e2b0c5f29adffb87';
-export const MEMBER_PROOF_RETRY_PATHS=['release/public-proof-fetch.mjs','tests/programme-day-public-proof-fetch.test.mjs','member-experience/verify-production-member.mjs','release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs'];
-export const MEMBER_PROOF_RETRY_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/programme-day-member-proof-retry-release.test.mjs'];
-const MEMBER_PROOF_RETRY_SET=new Set([...MEMBER_PROOF_RETRY_PATHS,...MEMBER_PROOF_RETRY_MAINTENANCE]);
-for(const path of MEMBER_PROOF_RETRY_SET)RECONCILIATION_PATHS.add(path);
-export function withoutMemberProofTransport(source){
- const line="import {fetchPublicProof as fetch} from '../release/public-proof-fetch.mjs';\n";
- assert(source.startsWith(line),'Exact proof transport import required');
- assert.equal(source.split(line).length,2,'Exactly one proof transport import required');
- return source.slice(line.length);
-}
-export function verifyMemberProofRetry(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert(c);assert.equal(c.proof,'EXACT_MEMBER_PROOF_TRANSPORT_RETRY_V1');assert.equal(c.base,MEMBER_PROOF_RETRY_BASE);assert.equal(c.source,MEMBER_PROOF_RETRY_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,MEMBER_PROOF_RETRY_PATHS);assert.deepEqual(c.maintenancePaths,MEMBER_PROOF_RETRY_MAINTENANCE);
- for(const flag of ['runtimeChanged','publicCopyChanged','clinicalAvailabilityChanged','customerDataChanged','stockChanged','memberBehaviourChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
- assert.equal(c.readOnlyTransportRetryAdded,true);assert.equal(c.rollbackReceiptRun,37860725562);
- for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated member proof source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated member proof maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after member proof');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Serving SEO source drift / Programme closeout source drift / news security source drift / member proof source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving SEO verifier drift / Programme closeout verifier drift / news security verifier drift / member proof verifier drift: '+path);
- assert.equal(withoutMemberProofTransport(content(c.source,'member-experience/verify-production-member.mjs')),content(c.base,'member-experience/verify-production-member.mjs'),'Every existing asset and authentication assertion must remain byte-for-byte intact');
- for(const path of ['.github/workflows/cloudflare-production-promote.yml','radar-news-pages-v1.js','worker-entry-v6.js'])assert.equal(content(c.source,path),content(c.base,path),'Production gates and runtime must remain unchanged: '+path);
- return c;
-}
-
-// Exact owner-authorised tablet wording and OASIS 4 factual amendment.
-export const TABLET_WORDING_BASE='92a5b8d280b090e609b8f14ed5adf5393bc355f0';
-export const TABLET_WORDING_SOURCE='8b96c26e313df0c950167b7a2a2eb17a42b904f4';
-export const TABLET_WORDING_RUN=37893723678;
-export const TABLET_WORDING_PAYLOAD=['tablet-wording-v1.mjs','public-promise-accuracy-v1.mjs','member-experience/public-preservation.mjs','tests/tablet-wording.test.mjs','.github/workflows/tablet-wording-proof.yml'];
-export const TABLET_WORDING_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/tablet-wording-release.test.mjs','.github/workflows/tablet-wording-release-proof.yml','tests/approved-runtime-composition.test.mjs','acquisition-activation/metrics-release.test.mjs'];
-const TABLET_WORDING_SET=new Set([...TABLET_WORDING_PAYLOAD,...TABLET_WORDING_MAINTENANCE]);
-for(const path of TABLET_WORDING_SET)RECONCILIATION_PATHS.add(path);
-export function verifyTabletWordingExtension(c,{head,read,diff,ancestor}){
- assert(c,'Exact tablet wording receipt required');assert.equal(c.proof,'EXACT_TABLET_WORDING_V1');assert.equal(c.base,TABLET_WORDING_BASE);assert.equal(c.source,TABLET_WORDING_SOURCE);assert.equal(c.proofRun,TABLET_WORDING_RUN);assert.equal(c.approval,'tighten this');
- assert.deepEqual(c.payloadPaths,TABLET_WORDING_PAYLOAD);assert.deepEqual(c.maintenancePaths,TABLET_WORDING_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.homepageChanged,false);assert.equal(c.orderingOpened,false);assert.equal(c.pricesChanged,false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.payloadPaths),'Unrelated tablet wording payload change');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated tablet wording verifier change');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after tablet wording receipt');
- for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Tablet wording source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Tablet wording verifier source drift: '+path);
- return c;
-}
-// Exact follow-through: keep the approved wording when the results script renders.
-export const TABLET_CLIENT_BASE='3df83d33f1bc26e3119dfeba2cbc54b10cedafdb';
-export const TABLET_CLIENT_SOURCE='3011d45d24c363105a7b30014a03868d36ea81f7';
-export const TABLET_CLIENT_RUN=37900716657;
-export const TABLET_CLIENT_PAYLOAD=['public-promise-accuracy-v1.mjs','tests/tablet-wording.test.mjs','member-experience/treatment-page.mjs'];
-export const TABLET_CLIENT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/tablet-wording-release.test.mjs','.github/workflows/tablet-wording-release-proof.yml'];
-const TABLET_CLIENT_SET=new Set([...TABLET_CLIENT_PAYLOAD,...TABLET_CLIENT_MAINTENANCE]);
-for(const path of TABLET_CLIENT_SET)RECONCILIATION_PATHS.add(path);
-export function verifyTabletClientExtension(c,{head,read,diff,ancestor}){
- assert(c,'Exact tablet wording receipt required');assert.equal(c.proof,'EXACT_TABLET_CLIENT_V1');assert.equal(c.base,TABLET_CLIENT_BASE);assert.equal(c.source,TABLET_CLIENT_SOURCE);assert.equal(c.proofRun,TABLET_CLIENT_RUN);assert.equal(c.approval,'tighten this');
- assert.deepEqual(c.payloadPaths,TABLET_CLIENT_PAYLOAD);assert.deepEqual(c.maintenancePaths,TABLET_CLIENT_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.homepageChanged,false);assert.equal(c.orderingOpened,false);assert.equal(c.pricesChanged,false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.payloadPaths),'Unrelated tablet wording payload change');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated tablet wording verifier change');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after tablet wording receipt');
- for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Tablet wording source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Tablet wording verifier source drift: '+path);
- return c;
-}
-const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
-export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
-export function assertProductionProofBudget(before,current){
- const marker='    timeout-minutes: 25\n    env:\n      CLOUDFLARE_ACCOUNT_ID';
- assert.equal(before.split(marker).length,2,'Exact original production time budget required');
- let expected=before.replace(marker,marker.replace('25','60'));
- for(const file of ['medicines-watch-observations.sql','medicines-watch-expansion-observations.sql']){
-  const original='npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/'+file+'"';
-  const online='node release/watch-observation-seed.mjs "$RUNNER_TEMP/'+file+'"';
-  expected=expected.replace(original,online);
- }
- assert.equal(current,expected,'Only the production verification time budget and exact online observation transport may change');
-}
-let productionProofBefore;
-const verifiedImmutableStructures=new Set();
-
-// Synchronous test verification can reuse only actual immutable Git history.
-// Current HEAD and tracked working bytes are checked at both scope boundaries.
-// This never caches caller-supplied source readers or validation outcomes.
-let immutableHistoryScope=null;
-const immutableHistoryResults=new Map();
-export function withImmutableHistoryVerification(callback){
- if(immutableHistoryScope)return callback();
- const cwd=process.cwd(),head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
- assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
- immutableHistoryScope={cwd,head};
- try{const value=callback();assert(!value||typeof value.then!=='function','Immutable history verification must be synchronous');return value;}
- finally{
-  immutableHistoryScope=null;
-  assert.equal(process.cwd(),cwd,'Verification working directory changed');
-  assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),head,'Source HEAD changed during immutable history verification');
-  assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Working source changed during immutable history verification');
- }
-}
-export function immutableHistoryExecFileSync(bin,args,options){
- const scope=immutableHistoryScope;
- if(!scope||bin!=='git'||!Array.isArray(args)||args.some(x=>typeof x!=='string')||options?.cwd&&options.cwd!==scope.cwd||options?.env||options?.shell)return execFileSync(bin,args,options);
- const pinned=args.map(x=>x==='HEAD'?scope.head:x.startsWith('HEAD:')?scope.head+x.slice(4):x==='HEAD^{commit}'?scope.head+'^{commit}':x);
- const commit=x=>/^[a-f0-9]{40}$/.test(x),blob=x=>/^[a-f0-9]{40}:[^\0]+$/.test(x);
- const immutable=pinned.length===4&&pinned[0]==='merge-base'&&pinned[1]==='--is-ancestor'&&commit(pinned[2])&&commit(pinned[3])
-  ||pinned.length===4&&pinned[0]==='diff'&&['--name-only','--name-status'].includes(pinned[1])&&commit(pinned[2])&&commit(pinned[3])
-  ||pinned.length===2&&['show','rev-parse'].includes(pinned[0])&&blob(pinned[1])
-  ||pinned.length===3&&pinned[0]==='cat-file'&&pinned[1]==='-e'&&(/^[a-f0-9]{40}\^\{commit\}$/.test(pinned[2])||blob(pinned[2]));
- if(!immutable)return execFileSync(bin,args,options);
- const key=JSON.stringify([scope.cwd,scope.head,pinned,options||null]);
- if(!immutableHistoryResults.has(key))immutableHistoryResults.set(key,execFileSync(bin,pinned,options));
- const result=immutableHistoryResults.get(key);return Buffer.isBuffer(result)?Buffer.from(result):result;
-}
-
-const defaultReconciliationRead=(ref,path)=>git('rev-parse',ref+':'+path);
-const immutableCompositionBlobs=new Map();
-
-// Finite 9 October sponsor-biomarker supplement. Editorial authority is not clinical approval.
-export const TOGETHER_BIOMARKER_BASE='e25b404181a71310633f663ddac683629c9e9129';
-export const TOGETHER_BIOMARKER_SOURCE='48dff23b6bb420fce087346cfff239e0318e85c3';
-export const TOGETHER_BIOMARKER_RUN=37950444948;
-export const TOGETHER_BIOMARKER_PATHS=Object.freeze(["medicines-watch/README.md","medicines-watch/industry.mjs","medicines-watch/industry.test.mjs","medicines-watch/reviews/2026-10-09-authorised-together-biomarkers.json",".github/workflows/medicines-watch-check.yml"]);
-export const TOGETHER_BIOMARKER_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/late-watch-composition.test.mjs",".github/workflows/medicines-watch-check.yml"]);
-const TOGETHER_BIOMARKER_SET=new Set([...TOGETHER_BIOMARKER_PATHS,...TOGETHER_BIOMARKER_MAINTENANCE]);
-for(const path of TOGETHER_BIOMARKER_SET)RECONCILIATION_PATHS.add(path);
-export function assertTogetherBiomarkerProof(proof){
- assert.equal(proof.id,TOGETHER_BIOMARKER_RUN);assert.equal(proof.head_sha,TOGETHER_BIOMARKER_SOURCE);
- assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');assert.equal(proof.event,'pull_request');
- assert.equal(proof.head_branch,'review/watch-together-biomarkers-20261009');
- assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
-}
-export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_TOGETHER_BIOMARKER_UPDATE_V1');assert.equal(c.base,TOGETHER_BIOMARKER_BASE);assert.equal(c.source,TOGETHER_BIOMARKER_SOURCE);
- assert.equal(c.proofRun,TOGETHER_BIOMARKER_RUN);assert.deepEqual(c.paths,TOGETHER_BIOMARKER_PATHS);assert.deepEqual(c.maintenancePaths,TOGETHER_BIOMARKER_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1276);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
- for(const flag of ['registryFactsChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated biomarker factual payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated biomarker release maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after biomarker receipt');
- // The one overlapping workflow is pinned to its exact maintenance source;
- // its initial source proof remains pinned independently.
- for(const path of c.paths.filter(p=>!c.maintenancePaths.includes(p)))assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Biomarker maintenance source drift: '+path);
- return c;
-}
-
-// Finite owner-authorised factual Medicines Watch backlog publication. No clinical approval.
-export const WATCH_BACKLOG_BASE='b31e1c63cede1cde2be975c4b4cc609ef1a11630';
-export const WATCH_BACKLOG_SOURCE='48020574fdda274d04901052942aacbe1502fb31';
-export const WATCH_BACKLOG_RUN=37995046889;
-export const WATCH_BACKLOG_PATHS=Object.freeze([".github/workflows/medicines-watch-check.yml", "medicines-watch/README.md", "medicines-watch/backlog-review.test.mjs", "medicines-watch/credibility.mjs", "medicines-watch/data.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-10-09-authorised-backlog-review.json", "medicines-watch/source-review.test.mjs"]);
-export const WATCH_BACKLOG_MAINTENANCE=Object.freeze([".github/workflows/medicines-watch-check.yml", "release/approved-runtime-composition.mjs", "tests/approved-runtime-composition.test.mjs", "tests/late-watch-composition.test.mjs", "shift-coach/release.test.mjs"]);
-const WATCH_BACKLOG_SET=new Set([...WATCH_BACKLOG_PATHS,...WATCH_BACKLOG_MAINTENANCE]);
-for(const path of WATCH_BACKLOG_SET)RECONCILIATION_PATHS.add(path);
-export function assertWatchBacklogProof(proof){
- assert.equal(proof?.id,WATCH_BACKLOG_RUN);assert.equal(proof.head_sha,WATCH_BACKLOG_SOURCE);assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');
- assert.equal(proof.event,'pull_request');assert.equal(proof.head_branch,'review/watch-backlog-20261009');assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
-}
-export function verifyWatchBacklogUpdate(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_WATCH_BACKLOG_UPDATE_V1');assert.equal(c.base,WATCH_BACKLOG_BASE);assert.equal(c.source,WATCH_BACKLOG_SOURCE);assert.equal(c.proofRun,WATCH_BACKLOG_RUN);
- assert.deepEqual(c.paths,WATCH_BACKLOG_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_BACKLOG_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1281);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.sourceReviews,35);assert.equal(c.changedTrialRecords,3);assert.equal(c.officialAlternativeReplacements,1);
- for(const flag of ['reviewDatesRenewedByHttp','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated backlog factual payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated backlog release maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after backlog receipt');
- for(const path of c.paths.filter(p=>!c.maintenancePaths.includes(p)))assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
- return c;
-}
-
-// Finite repair for the preclinical Watch release meta-test. The failed run
-// stopped before production mutation; this changes no factual or clinical data.
-export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_BASE='0baf1873fa1a6275258e984939d97c05aaeae61c';
-export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SOURCE='687efaeafd0fa280f99941252430fc6722e57af7';
-export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
-export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs']);
-const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET=new Set([...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS,...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE]);
-for(const path of WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchPreclinicalReleaseTestRepair(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_V1');
- assert.equal(c.base,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_BASE);assert.equal(c.source,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SOURCE);
- assert.deepEqual(c.paths,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1293);assert.equal(c.failedRun,38026970615);assert.equal(c.releaseReachedProduction,false);
- assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.failureCause,'release meta-test did not recognise factual Watch source drift wording');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated preclinical release-test repair payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated preclinical release-test repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after preclinical release-test repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Preclinical release-test repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Preclinical release-test repair maintenance drift: '+path);
- return c;
-}
-
-// Finite Medicines Watch evidence-queue consistency repair. The factual reviews,
-// monitor observations and clinical evidence remain byte-identical.
-export const WATCH_PENDING_DELAYED_QUEUE_BASE='800b7fbc9da6705ca37b98574f15b058f361defe';
-export const WATCH_PENDING_DELAYED_QUEUE_SOURCE='16907563a3ff9c213f17e73f188b61f6c707e83c';
-export const WATCH_PENDING_DELAYED_QUEUE_PATHS=Object.freeze([
- 'medicines-watch/evidence-desk.mjs',
- 'medicines-watch/evidence-desk.test.mjs',
- 'medicines-watch/monitor.test.mjs'
-]);
-export const WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/late-watch-composition.test.mjs'
-]);
-const WATCH_PENDING_DELAYED_QUEUE_SET=new Set([...WATCH_PENDING_DELAYED_QUEUE_PATHS,...WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE]);
-for(const path of WATCH_PENDING_DELAYED_QUEUE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchPendingDelayedQueueRepair(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_WATCH_PENDING_DELAYED_QUEUE_REPAIR_V1');
- assert.equal(c.base,WATCH_PENDING_DELAYED_QUEUE_BASE);assert.equal(c.source,WATCH_PENDING_DELAYED_QUEUE_SOURCE);
- assert.deepEqual(c.paths,WATCH_PENDING_DELAYED_QUEUE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1294);assert.equal(c.reviewedSources,198);assert.equal(c.pendingSources,1);assert.equal(c.delayedSources,3);
- assert.equal(c.preservedReviewedEntries,35);assert.equal(c.clinicalApproval,null);
- for(const flag of ['medicalEvidenceChanged','factualReviewsChanged','reviewDatesChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch pending-delayed queue payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch pending-delayed queue maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Watch pending-delayed queue receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'factual Watch source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
- return c;
-}
-
-// Finite owner-authorised preclinical discovery update. No clinical approval,
-// UK access, supply or human-outcome claim is introduced by this receipt.
-export const WATCH_PRECLINICAL_DISCOVERY_BASE='834680b4353551b257fe0094e834fa827c86ad70';
-export const WATCH_PRECLINICAL_DISCOVERY_SOURCE='8c407fe3382e4da3eeddf62898215a93d5b12690';
-export const WATCH_PRECLINICAL_DISCOVERY_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/backlog-review.test.mjs',
- 'medicines-watch/credibility.mjs',
- 'medicines-watch/discovery.mjs',
- 'medicines-watch/evidence-desk.test.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/industry.test.mjs',
- 'medicines-watch/reviews/2026-10-10-authorised-mwyngil-palatin-preclinical.json'
-]);
-export const WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/late-watch-composition.test.mjs'
-]);
-const WATCH_PRECLINICAL_DISCOVERY_SET=new Set([...WATCH_PRECLINICAL_DISCOVERY_PATHS,...WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE]);
-for(const path of WATCH_PRECLINICAL_DISCOVERY_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchPreclinicalDiscoveryUpdate(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_WATCH_PRECLINICAL_DISCOVERY_V1');
- assert.equal(c.base,WATCH_PRECLINICAL_DISCOVERY_BASE);assert.equal(c.source,WATCH_PRECLINICAL_DISCOVERY_SOURCE);
- assert.deepEqual(c.paths,WATCH_PRECLINICAL_DISCOVERY_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1292);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
- assert.equal(c.programmesReviewed,2);assert.equal(c.monitorSources,199);assert.equal(c.delayedSources,3);
- for(const flag of ['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated preclinical discovery payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated preclinical discovery release maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after preclinical discovery receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'factual Watch source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
- return c;
-}
-
-
-// Finite owner-authorised informational male-obesity pillar. No generic path or authority expansion.
-export const MALE_OBESITY_BASE='77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0';
-export const MALE_OBESITY_SOURCE='c2c295782697c98d149d3ac7f335d8028f413b4e';
-export const MALE_OBESITY_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml", "member-experience/public-preservation.mjs", "obesity-awareness/README.md", "obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/measurement.mjs", "obesity-awareness/preservation.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/staging-build-proof.json", "obesity-awareness/staging-entry.mjs", "obesity-awareness/staging-entry.test.mjs", "obesity-awareness/verify-live.mjs", "obesity-awareness/wrangler.preview.jsonc", "obesity-awareness/wrangler.staging.jsonc", "release/public-continuity-body-proof.mjs", "shift-coach/worker.mjs", "shift-coach/cancelled-release-recovery.mjs", "shift-coach/recover-cancelled-release.mjs", "obesity-awareness/rollback-proof.test.mjs"]);
-export const MALE_OBESITY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/male-obesity-composition.test.mjs", "tests/programme-day-continuity-body.test.mjs", "acquisition-activation/metrics-release.test.mjs", "editorial/five-articles/proof.mjs", "tests/approved-runtime-composition.test.mjs"]);
-const MALE_OBESITY_SET=new Set([...MALE_OBESITY_PATHS,...MALE_OBESITY_MAINTENANCE]);
-for(const path of MALE_OBESITY_SET)RECONCILIATION_PATHS.add(path);
-export function verifyMaleObesityPillar(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_MALE_OBESITY_PILLAR_V1');assert.equal(c.base,MALE_OBESITY_BASE);assert.equal(c.source,MALE_OBESITY_SOURCE);
- assert.deepEqual(c.paths,MALE_OBESITY_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.ownerApproval,'Approved, Go; complete authorised informational release');assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
- for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated male-obesity maintenance');
- const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityPillar;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by male-obesity registration');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
- return c;
-}
-
-// Finite closeout of failed run 37997975670; preserve every earlier receipt.
-export const MALE_OBESITY_CLOSEOUT_BASE='fcf7711ad6dff2341801ab97fac36ac34bb96305';
-export const MALE_OBESITY_CLOSEOUT_SOURCE='8f5871e46f4022ef03440f06d42946896f466952';
-export const MALE_OBESITY_CLOSEOUT_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml","obesity-awareness/candidate.mjs","obesity-awareness/candidate.test.mjs","obesity-awareness/content.mjs","obesity-awareness/production.mjs","obesity-awareness/production.test.mjs","obesity-awareness/rollback-proof.test.mjs","shift-coach/recover-cancelled-release.mjs","obesity-awareness/rendered-live-proof.cjs","shift-coach/cancelled-release-recovery.mjs"]);
-export const MALE_OBESITY_CLOSEOUT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/male-obesity-closeout-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
-const MALE_OBESITY_CLOSEOUT_SET=new Set([...MALE_OBESITY_CLOSEOUT_PATHS,...MALE_OBESITY_CLOSEOUT_MAINTENANCE]);
-for(const path of MALE_OBESITY_CLOSEOUT_SET)RECONCILIATION_PATHS.add(path);
-export function verifyMaleObesityCloseout(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_MALE_OBESITY_CLOSEOUT_V1');assert.equal(c.base,MALE_OBESITY_CLOSEOUT_BASE);assert.equal(c.source,MALE_OBESITY_CLOSEOUT_SOURCE);
- assert.deepEqual(c.paths,MALE_OBESITY_CLOSEOUT_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_CLOSEOUT_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.failedRun,37997975670);assert.equal(c.failedGate,89);
- assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
- for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity closeout payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity closeout maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity closeout receipt');
- const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityReleaseCloseout;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by male-obesity closeout');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
- return c;
-}
-
-// One finite read-only acceptance repair; serving content and prior receipts stay pinned.
-export const MALE_OBESITY_ACCEPTANCE_BASE='78c515b7c49bcf309941a53c2f87c6e94e76d6b7';
-export const MALE_OBESITY_ACCEPTANCE_SOURCE='6a01a19137cfc81a5c4acbb5be2832dcfe991c88';
-export const MALE_OBESITY_ACCEPTANCE_PATHS=Object.freeze(['obesity-awareness/rendered-live-proof.cjs','obesity-awareness/measurement.mjs','obesity-awareness/measurement-navigation.test.mjs']);
-export const MALE_OBESITY_ACCEPTANCE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/male-obesity-acceptance-composition.test.mjs']);
-const MALE_OBESITY_ACCEPTANCE_SET=new Set([...MALE_OBESITY_ACCEPTANCE_PATHS,...MALE_OBESITY_ACCEPTANCE_MAINTENANCE]);
-for(const path of MALE_OBESITY_ACCEPTANCE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyMaleObesityAcceptance(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_MALE_OBESITY_JOURNEY_REPAIR_V1');assert.equal(c.base,MALE_OBESITY_ACCEPTANCE_BASE);assert.equal(c.source,MALE_OBESITY_ACCEPTANCE_SOURCE);
- assert.deepEqual(c.paths,MALE_OBESITY_ACCEPTANCE_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_ACCEPTANCE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
- assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.repair,'Preserve real consented onward collection before navigation with a350ms fallback; align acceptance with existing public controls');assert.equal(c.acceptanceHarnessOnly,false);assert.equal(c.runtimeChanged,true);
- for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity acceptance payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity acceptance maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity acceptance receipt');
- const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityAcceptanceRepair;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by acceptance repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
- return c;
-}
-
-// Exact public-arrival measurement repair; all prior source and preservation receipts remain immutable.
-export const MALE_OBESITY_ARRIVAL_BASE='f5fd1b53209d9337590f1c8b4d80501bb78c3bf4';
-export const MALE_OBESITY_ARRIVAL_SOURCE='b7b0c1c4a4beee1f3d41a1287e070ac522571715';
-export const MALE_OBESITY_ARRIVAL_PATHS=Object.freeze(["obesity-awareness/measurement.mjs","obesity-awareness/measurement-navigation.test.mjs","obesity-awareness/rendered-live-proof.cjs",".github/workflows/programme-day-preview.yml","obesity-awareness/production.mjs","obesity-awareness/production.test.mjs"]);
-export const MALE_OBESITY_ARRIVAL_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/male-obesity-arrival-composition.test.mjs"]);
-const MALE_OBESITY_ARRIVAL_SET=new Set([...MALE_OBESITY_ARRIVAL_PATHS,...MALE_OBESITY_ARRIVAL_MAINTENANCE]);
-for(const path of MALE_OBESITY_ARRIVAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyMaleObesityArrival(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_MALE_OBESITY_PUBLIC_ARRIVAL_V1');assert.equal(c.base,MALE_OBESITY_ARRIVAL_BASE);assert.equal(c.source,MALE_OBESITY_ARRIVAL_SOURCE);
- assert.deepEqual(c.paths,MALE_OBESITY_ARRIVAL_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_ARRIVAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
- assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.repair,'Count completed public-support arrivals through existing consented dataLayer; native navigation remains immediate');assert.equal(c.runtimeChanged,true);
- for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity public-arrival payload');
- assert.equal(content(c.source,".github/workflows/programme-day-preview.yml"),content(c.base,".github/workflows/programme-day-preview.yml").replace("node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs","node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs"),'Only additive measurement tests may change the existing preview workflow');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity public-arrival maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after public-arrival receipt');
- const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityArrivalRepair;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by public-arrival repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity public-arrival source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity public-arrival maintenance source drift: '+path);
- return c;
-}
-
-// Finite owner-authorised continuity content delivery; existing page roles and release authority unchanged.
-export const CONTINUITY_CONTENT_BASE='5ef17a52c3aa6716915685acbf6d5d9cce41f627';
-export const CONTINUITY_CONTENT_SOURCE='4e0a31692d1b11a512499575046fd2843394a18e';
-export const CONTINUITY_CONTENT_PATHS=Object.freeze(["public-continuity.mjs", "member-experience/public-preservation.mjs", "release/continuity-content-20261009.mjs", "docs/content-review/continuity-sources-20261009.json", "tests/continuity-content-20261009.test.mjs"]);
-export const CONTINUITY_CONTENT_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/continuity-content-composition.test.mjs",".github/workflows/portable-continuity-proof.yml","scripts/verify-continuity-content-browser.mjs","acquisition-activation/metrics-release.test.mjs","tests/organic-followthrough-release.test.mjs"]);
-const CONTINUITY_CONTENT_SET=new Set([...CONTINUITY_CONTENT_PATHS,...CONTINUITY_CONTENT_MAINTENANCE]);
-for(const path of CONTINUITY_CONTENT_SET)RECONCILIATION_PATHS.add(path);
-export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_CONTINUITY_CONTENT_DELIVERY_V1');assert.equal(c.base,CONTINUITY_CONTENT_BASE);assert.equal(c.source,CONTINUITY_CONTENT_SOURCE);
- assert.deepEqual(c.paths,CONTINUITY_CONTENT_PATHS);assert.deepEqual(c.maintenancePaths,CONTINUITY_CONTENT_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.ownerApproval,'Complete authorised clinic-gone-quiet and provider-switch upgrades; release through existing guarded workflow');assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
- for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated continuity-content payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated continuity-content maintenance');
- const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.continuityContentUpgrade;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by continuity-content registration');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after continuity-content receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Continuity-content source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Continuity-content maintenance source drift: '+path);
- return c;
-}
-
-
-// Finite B1 release-guard matcher repair after the programme-summary queue
-// promotion failed before production mutation.
-export const WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_BASE='a9d34638b8adaf5f326391bbf93c7af6ce0432ef';
-export const WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SOURCE='1997dcd37301acb8de3d27a763361ca6a775d45a';
-export const WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
-export const WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-programme-summary-release-guard-repair-composition.test.mjs']);
-const WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SET=new Set([...WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_PATHS,...WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_MAINTENANCE]);
-for(const path of WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchProgrammeSummaryReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_REPAIR_V1');
- assert.equal(c.base,WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_BASE);assert.equal(c.source,WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SOURCE);
- assert.deepEqual(c.paths,WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1317);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38114045551);assert.equal(c.failedJob,114395315656);assert.equal(c.failedStep,13);
- assert.equal(c.releaseReachedProduction,false);assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.failureCause,'release meta-test did not recognise programme-summary queue source drift wording');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated programme-summary release-guard payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated programme-summary release-guard maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after programme-summary release-guard receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by programme-summary release-guard repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue maintenance drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
- return c;
-}
-
-// Finite matcher-label repair for the programme-summary queue guard receipt.
-// It changes only the release verifier and cannot alter Watch content or state.
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_BASE='05c66c1c694853ed888b925b5ecc6e66bb16e8af';
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS=Object.freeze(['release/approved-runtime-composition.mjs']);
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE=Object.freeze(['tests/watch-programme-summary-queue-matcher-repair-composition.test.mjs']);
-const WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET=new Set([...WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS,...WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE]);
-for(const path of WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchProgrammeSummaryQueueMatcherRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_REPAIR_V1');
- assert.equal(c.base,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);
- assert.deepEqual(c.paths,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1316);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38113438635);assert.equal(c.failedJob,114393529381);assert.equal(c.failedStep,4);
- assert.equal(c.releaseReachedProduction,false);assert.equal(c.failureGate,'Programme day preview composition meta-test');assert.equal(c.failureCause,'outer guard source-drift label was not covered by the finite byte-pin matcher');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated programme-summary queue matcher-repair payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated programme-summary queue matcher-repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after programme-summary queue matcher-repair receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryQueueMatcherRepair;assert.deepEqual(current,prior,'Prior release receipts changed by programme-summary queue matcher repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue maintenance drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
- return c;
-}
-
-// Finite repair for programme-summary queue meta-test matchers. The failed
-// preview stopped before production mutation and changes no Watch evidence.
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_BASE='acfe32e3ac58db79f4ec518d8667b99f65dd982f';
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SOURCE='8cbc9f5b3233105eec88a85c9fd23f248cbd03da';
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_PATHS=Object.freeze(['tests/approved-runtime-composition.test.mjs']);
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-programme-summary-queue-release-guard-repair-composition.test.mjs']);
-const WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SET=new Set([...WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_PATHS,...WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_MAINTENANCE]);
-for(const path of WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchProgrammeSummaryQueueGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_REPAIR_V1');
- assert.equal(c.base,WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_BASE);assert.equal(c.source,WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SOURCE);
- assert.deepEqual(c.paths,WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1316);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38113247981);assert.equal(c.failedJob,114392980271);assert.equal(c.failedStep,4);
- assert.equal(c.releaseReachedProduction,false);assert.equal(c.failureGate,'Programme day preview composition meta-test');assert.equal(c.failureCause,'byte-pin matcher did not recognise programme-summary queue maintenance drift wording');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated programme-summary queue guard-repair payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated programme-summary queue guard-repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after programme-summary queue guard-repair receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryQueueGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by programme-summary queue guard repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue maintenance drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
- return c;
-}
-
-// Disclose programme-summary review debt separately from the configured-source
-// queue without renewing evidence, reviews or monitor baselines.
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_BASE='6708985126190919a7826a58ed21f5b30a2fa7d3';
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_SOURCE='272e07c1d37380f16e398e5f2b7a98defee61582';
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/evidence-desk.mjs','medicines-watch/evidence-desk.test.mjs']);
-export const WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','tests/watch-programme-summary-queue-composition.test.mjs']);
-const WATCH_PROGRAMME_SUMMARY_QUEUE_SET=new Set([...WATCH_PROGRAMME_SUMMARY_QUEUE_PATHS,...WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE]);
-for(const path of WATCH_PROGRAMME_SUMMARY_QUEUE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchProgrammeSummaryQueue(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_PROGRAMME_SUMMARY_QUEUE_V1');
- assert.equal(c.base,WATCH_PROGRAMME_SUMMARY_QUEUE_BASE);assert.equal(c.source,WATCH_PROGRAMME_SUMMARY_QUEUE_SOURCE);
- assert.deepEqual(c.paths,WATCH_PROGRAMME_SUMMARY_QUEUE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PROGRAMME_SUMMARY_QUEUE_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1316);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
- assert.equal(c.observedConfiguredSourceFactualReviewCount,0);assert.equal(c.observedProgrammeSummaryReviewCount,58);assert.equal(c.widerProgrammeCount,110);
- assert.equal(c.queuesSeparated,true);assert.equal(c.sevenDayRuleReused,true);assert.equal(c.unchangedCheckDoesNotRenew,true);assert.equal(c.industryComplete,false);assert.equal(c.zp6590PendingDelayedPreserved,true);
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','configuredSourceQueueSemanticsChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch programme-summary queue payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch programme-summary queue maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Watch programme-summary queue receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchProgrammeSummaryQueue;assert.deepEqual(current,prior,'Prior release receipts changed by Watch programme-summary queue registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch programme-summary queue source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch programme-summary queue maintenance drift: '+path);
- return c;
-}
-
-// Finite repair for the SRSD384 release meta-test. The failed run stopped
-// before production mutation; this changes no evidence, review or public data.
-export const WATCH_SRSD384_RELEASE_GUARD_BASE='9eede1e5382dee2d957791312977e8ea69657163';
-export const WATCH_SRSD384_RELEASE_GUARD_SOURCE='271c935f9d663392de6f114d3867c0a1ffbe7e8e';
-export const WATCH_SRSD384_RELEASE_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
-export const WATCH_SRSD384_RELEASE_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-srsd384-release-guard-repair-composition.test.mjs']);
-const WATCH_SRSD384_RELEASE_GUARD_SET=new Set([...WATCH_SRSD384_RELEASE_GUARD_PATHS,...WATCH_SRSD384_RELEASE_GUARD_MAINTENANCE]);
-for(const path of WATCH_SRSD384_RELEASE_GUARD_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchSrsd384ReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_SRSD384_RELEASE_GUARD_REPAIR_V1');
- assert.equal(c.base,WATCH_SRSD384_RELEASE_GUARD_BASE);assert.equal(c.source,WATCH_SRSD384_RELEASE_GUARD_SOURCE);
- assert.deepEqual(c.paths,WATCH_SRSD384_RELEASE_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_SRSD384_RELEASE_GUARD_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1314);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38105692270);assert.equal(c.failedJob,114370685366);assert.equal(c.failedStep,13);
- assert.equal(c.releaseReachedProduction,false);assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.failureCause,'release meta-test did not recognise SRSD384 review-renewal source drift wording');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','queueLogicChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated SRSD384 release-guard repair payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated SRSD384 release-guard repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after SRSD384 release-guard repair receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchSrsd384ReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by SRSD384 release-guard repair registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'SRSD384 release-guard repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'SRSD384 release-guard repair maintenance drift: '+path);
- return c;
-}
-
-// Renew the overdue SRSD384 registry review and connect already completed
-// Kailera review evidence without changing any medicine wording or monitor baseline.
-export const WATCH_SRSD384_RENEWAL_BASE='8771788490ffda619dc224872b18d2280d6429b1';
-export const WATCH_SRSD384_RENEWAL_SOURCE='41981196461ceaa77c08f6470ec1b5300c49575a';
-export const WATCH_SRSD384_RENEWAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/industry.mjs','medicines-watch/reviews/2026-10-11-authorised-srsd384-renewal.json','medicines-watch/srsd384-renewal.test.mjs']);
-export const WATCH_SRSD384_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','tests/watch-srsd384-renewal-composition.test.mjs']);
-const WATCH_SRSD384_RENEWAL_SET=new Set([...WATCH_SRSD384_RENEWAL_PATHS,...WATCH_SRSD384_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_SRSD384_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchSrsd384Renewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_SRSD384_RENEWAL_V1');assert.equal(c.base,WATCH_SRSD384_RENEWAL_BASE);assert.equal(c.source,WATCH_SRSD384_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_SRSD384_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_SRSD384_RENEWAL_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1313);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
- assert.equal(c.sourceReviewsApplied,1);assert.equal(c.existingKaileraReviewsConnected,2);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.trialRecordsAfter,137);
- assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
- for(const flag of ['programmeWordingChanged','programmeCountChanged','configuredSourceCountChanged','registryStatusChanged','sponsorClaimChanged','resultsClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated SRSD384 review-renewal payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated SRSD384 review-renewal maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after SRSD384 review-renewal receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchSrsd384Renewal;assert.deepEqual(current,prior,'Prior release receipts changed by SRSD384 review-renewal registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'SRSD384 review-renewal source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'SRSD384 review-renewal maintenance source drift: '+path);
- return c;
-}
-
-// Register three newly posted primary trial records without treating estimated
-// starts as actual recruitment, results or clinical switching guidance.
-export const WATCH_VK2735_ZENAGAMTIDE_BASE='68cd3d2f9cf6399bcd2a4cc0f6623684bb8ffe77';
-export const WATCH_VK2735_ZENAGAMTIDE_SOURCE='eb1e3ae8756e2858638f2e88d28d4cafa45023a9';
-export const WATCH_VK2735_ZENAGAMTIDE_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json']);
-export const WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-vk2735-zenagamtide-registry-composition.test.mjs']);
-const WATCH_VK2735_ZENAGAMTIDE_SET=new Set([...WATCH_VK2735_ZENAGAMTIDE_PATHS,...WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE]);
-for(const path of WATCH_VK2735_ZENAGAMTIDE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchVk2735ZenagamtideRegistry(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_VK2735_ZENAGAMTIDE_REGISTRY_V1');assert.equal(c.base,WATCH_VK2735_ZENAGAMTIDE_BASE);assert.equal(c.source,WATCH_VK2735_ZENAGAMTIDE_SOURCE);
- assert.deepEqual(c.paths,WATCH_VK2735_ZENAGAMTIDE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1312);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
- assert.equal(c.sourceReviews,3);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.trialRecordsAfter,137);assert.equal(c.preservedSourceReviews,35);
- assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.automatedMonitorChanges,true);
- for(const flag of ['resultsClaimed','phase3StartClaimed','switchingGuidanceClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated VK2735/zenagamtide registry payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated VK2735/zenagamtide registry maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after VK2735/zenagamtide registry receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchVk2735ZenagamtideRegistry;assert.deepEqual(current,prior,'Prior release receipts changed by VK2735/zenagamtide registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
- return c;
-}
-
-// Apply the already completed 10 October primary-record review to the exact
-// monitored ZP6590 registry source. This changes only the factual review date;
-// the separately denied sponsor source remains verification-pending and delayed.
-export const WATCH_ZP6590_RELEASE_GUARD_BASE='f35066a6b630df8c16a2040e1186d7096cff08ab';
-export const WATCH_ZP6590_RELEASE_GUARD_SOURCE='6a35467e56e87dc4ab78114d80a6bad668bf99fe';
-export const WATCH_ZP6590_RELEASE_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
-export const WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-zp6590-release-guard-repair-composition.test.mjs']);
-const WATCH_ZP6590_RELEASE_GUARD_SET=new Set([...WATCH_ZP6590_RELEASE_GUARD_PATHS,...WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE]);
-for(const path of WATCH_ZP6590_RELEASE_GUARD_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchZp6590ReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_ZP6590_RELEASE_GUARD_REPAIR_V1');
- assert.equal(c.base,WATCH_ZP6590_RELEASE_GUARD_BASE);assert.equal(c.source,WATCH_ZP6590_RELEASE_GUARD_SOURCE);
- assert.deepEqual(c.paths,WATCH_ZP6590_RELEASE_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.failedRun,38085522316);assert.equal(c.failedJob,114311137380);assert.equal(c.failedStep,13);
- assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
- for(const flag of ['productionMutated','publicCopyChanged','medicalContentChanged','evidenceReviewChanged','queueLogicChanged','monitorBaselinesChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated ZP6590 release-guard repair payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated ZP6590 release-guard repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after ZP6590 release-guard repair receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchZp6590ReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by ZP6590 release-guard repair registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'ZP6590 release-guard repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'ZP6590 release-guard repair maintenance source drift: '+path);
- return c;
-}
-
-export const WATCH_ZP6590_REGISTRY_RENEWAL_BASE='06acc6a90d80d6386f618ba739d95085b13341c2';
-export const WATCH_ZP6590_REGISTRY_RENEWAL_SOURCE='d476cb32c3ea888dd56f78a3b30631e863537800';
-export const WATCH_ZP6590_REGISTRY_RENEWAL_PATHS=Object.freeze(['medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs']);
-export const WATCH_ZP6590_REGISTRY_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-zp6590-registry-renewal-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
-const WATCH_ZP6590_REGISTRY_RENEWAL_SET=new Set([...WATCH_ZP6590_REGISTRY_RENEWAL_PATHS,...WATCH_ZP6590_REGISTRY_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_ZP6590_REGISTRY_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchZp6590RegistryRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_ZP6590_REGISTRY_REVIEW_DATE_V1');
- assert.equal(c.base,WATCH_ZP6590_REGISTRY_RENEWAL_BASE);assert.equal(c.source,WATCH_ZP6590_REGISTRY_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_ZP6590_REGISTRY_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ZP6590_REGISTRY_RENEWAL_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
- assert.equal(c.sourceReviewsApplied,1);assert.equal(c.factualChanges,0);assert.equal(c.reviewedAt,'2026-10-10T09:39:21Z');
- assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
- for(const flag of ['reviewRepeated','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated ZP6590 registry-review-date payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated ZP6590 registry-review-date maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after ZP6590 registry-review-date receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchZp6590RegistryReviewRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by ZP6590 registry-review-date registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'ZP6590 registry-review-date source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'ZP6590 registry-review-date maintenance source drift: '+path);
- return c;
-}
-
-// Exact Medicines Watch overdue primary-source review renewal. This records the
-// bounded factual-review payload without turning HTTP success into review,
-// resolving ZP6590, or widening clinical or deployment authority.
-export const WATCH_OVERDUE_RENEWAL_BASE='d722e91767e84ee26e1fb176074f31cb635c9704';
-export const WATCH_OVERDUE_RENEWAL_SOURCE='d427dc2ffd451741f6c2431572360519b61338b4';
-export const WATCH_OVERDUE_RENEWAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/overdue-registry-access-renewal.test.mjs','medicines-watch/reviews/2026-10-10-overdue-registry-access-renewal.json']);
-export const WATCH_OVERDUE_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-overdue-registry-access-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
-const WATCH_OVERDUE_RENEWAL_SET=new Set([...WATCH_OVERDUE_RENEWAL_PATHS,...WATCH_OVERDUE_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_OVERDUE_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchOverdueRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_OVERDUE_PRIMARY_REVIEW_RENEWAL_V1');
- assert.equal(c.base,WATCH_OVERDUE_RENEWAL_BASE);assert.equal(c.source,WATCH_OVERDUE_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_OVERDUE_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_OVERDUE_RENEWAL_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.approvedPR,1307);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
- assert.equal(c.sourceReviews,67);assert.equal(c.registryRecords,63);assert.equal(c.officialAccessSources,4);assert.equal(c.factualChanges,0);
- assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
- for(const flag of ['httpSuccessTreatedAsReview','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Medicines Watch overdue-review payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Medicines Watch overdue-review maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Medicines Watch overdue-review receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchOverduePrimaryReviewRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by Medicines Watch overdue-review registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Medicines Watch overdue-review maintenance source drift: '+path);
- return c;
-}
-
-// Exact approved Hub-v2 bounded transport and rollback chain upgrade; preserve every prior receipt and protected route.
-export const OBESITY_HUB_TRANSPORT_BASE='1b43badb186b40a35f145a63051f0307785dad7d';
-export const OBESITY_HUB_TRANSPORT_SOURCE='b3df285586189f1be6560cce7e42e0bdf77ca73b';
-export const OBESITY_HUB_TRANSPORT_PATHS=Object.freeze(['release/public-proof-text-fetch.mjs', 'release/organic-followthrough-live.mjs', 'tests/public-proof-fetch.test.mjs', 'tests/organic-followthrough-live.test.mjs', 'shift-coach/cancelled-release-recovery.mjs', 'shift-coach/recover-cancelled-release.mjs', 'tests/obesity-hub-v2-transport-rollback.test.mjs', 'tests/fixtures/obesity-hub-v2-transport-rollback-38075479733.json']);
-export const OBESITY_HUB_TRANSPORT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-transport-composition.test.mjs']);
-const OBESITY_HUB_TRANSPORT_SET=new Set([...OBESITY_HUB_TRANSPORT_PATHS,...OBESITY_HUB_TRANSPORT_MAINTENANCE]);
-for(const path of OBESITY_HUB_TRANSPORT_SET)RECONCILIATION_PATHS.add(path);
-export function verifyObesityHubTransport(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_OBESITY_HUB_TRANSPORT_20261010');
- assert.equal(c.base,OBESITY_HUB_TRANSPORT_BASE);assert.equal(c.source,OBESITY_HUB_TRANSPORT_SOURCE);
- assert.deepEqual(c.paths,OBESITY_HUB_TRANSPORT_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_TRANSPORT_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
- assert.equal(c.priorPreviewRun,38058282091);
- for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 bounded transport and rollback chain payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 bounded transport and rollback chain maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 bounded transport and rollback chain receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
- delete current.obesityHubTransport;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2 bounded transport and rollback chain');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),(OBESITY_HUB_ROLLBACK_PATHS.includes(path)?'Hub-v2 exact rollback receipt source drift: ':'Hub-v2 bounded transport and rollback chain source drift: ')+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 bounded transport and rollback chain maintenance source drift: '+path);
- return c;
-}
-
-// Exact approved Hub-v2 exact rollback receipt upgrade; preserve every prior receipt and protected route.
-export const OBESITY_HUB_ROLLBACK_BASE='539541adba87e13d769e4fc94520e0fe4bbbb91d';
-export const OBESITY_HUB_ROLLBACK_SOURCE='1c4fec2846aa6283c2b647e318193b0127e743e2';
-export const OBESITY_HUB_ROLLBACK_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','tests/obesity-hub-v2-rollback.test.mjs','tests/fixtures/obesity-hub-v2-rollback-38072143100.json']);
-export const OBESITY_HUB_ROLLBACK_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-rollback-composition.test.mjs']);
-const OBESITY_HUB_ROLLBACK_SET=new Set([...OBESITY_HUB_ROLLBACK_PATHS,...OBESITY_HUB_ROLLBACK_MAINTENANCE]);
-for(const path of OBESITY_HUB_ROLLBACK_SET)RECONCILIATION_PATHS.add(path);
-export function verifyObesityHubRollback(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_OBESITY_HUB_ROLLBACK_20261010');
- assert.equal(c.base,OBESITY_HUB_ROLLBACK_BASE);assert.equal(c.source,OBESITY_HUB_ROLLBACK_SOURCE);
- assert.deepEqual(c.paths,OBESITY_HUB_ROLLBACK_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_ROLLBACK_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
- assert.equal(c.priorPreviewRun,38058282091);
- for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 exact rollback receipt payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 exact rollback receipt maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 exact rollback receipt receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
- delete current.obesityHubRollback;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2 exact rollback receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 exact rollback receipt source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 exact rollback receipt maintenance source drift: '+path);
- return c;
-}
-
-// Exact approved Hub-v2 scoped repair upgrade; preserve every prior receipt and protected route.
-export const OBESITY_HUB_REPAIR_BASE='21dcc6e5034d9e9db787b122f3e467910c093564';
-export const OBESITY_HUB_REPAIR_SOURCE='ff92aff1cb07093397bc474f90ee597acc4211c7';
-export const OBESITY_HUB_REPAIR_PATHS=Object.freeze(['obesity-awareness/candidate.mjs','obesity-awareness/rendered-live-proof.cjs','obesity-awareness/staging-entry.mjs','obesity-awareness/staging-entry.test.mjs','release/seo794-preservation.mjs','tests/seo794-preservation.test.mjs']);
-export const OBESITY_HUB_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-repair-composition.test.mjs']);
-const OBESITY_HUB_REPAIR_SET=new Set([...OBESITY_HUB_REPAIR_PATHS,...OBESITY_HUB_REPAIR_MAINTENANCE]);
-for(const path of OBESITY_HUB_REPAIR_SET)RECONCILIATION_PATHS.add(path);
-export function verifyObesityHubRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_OBESITY_HUB_REPAIR_20261010');
- assert.equal(c.base,OBESITY_HUB_REPAIR_BASE);assert.equal(c.source,OBESITY_HUB_REPAIR_SOURCE);
- assert.deepEqual(c.paths,OBESITY_HUB_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_REPAIR_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
- assert.equal(c.priorPreviewRun,38058282091);
- for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 scoped repair payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 scoped repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 scoped repair receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
- delete current.obesityHubRepair;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2 scoped repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 scoped repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 scoped repair maintenance source drift: '+path);
- return c;
-}
-
-// Exact approved Hub-v2 upgrade; preserve every prior receipt and protected route.
-export const OBESITY_PRACTICAL_BASE='84810813ab060a78935cca29b87011986f479953';
-export const OBESITY_PRACTICAL_SOURCE='2af00448b5aa7cb2b5dbedc8505d19e6932ab2c4';
-export const OBESITY_PRACTICAL_PATHS=Object.freeze(['obesity-awareness/content.mjs','obesity-awareness/rendered-live-proof.cjs']);
-export const OBESITY_PRACTICAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-practical-composition.test.mjs']);
-const OBESITY_PRACTICAL_SET=new Set([...OBESITY_PRACTICAL_PATHS,...OBESITY_PRACTICAL_MAINTENANCE]);
-for(const path of OBESITY_PRACTICAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyObesityPractical(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_OBESITY_PRACTICAL_20261010');
- assert.equal(c.base,OBESITY_PRACTICAL_BASE);assert.equal(c.source,OBESITY_PRACTICAL_SOURCE);
- assert.deepEqual(c.paths,OBESITY_PRACTICAL_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_PRACTICAL_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
- assert.equal(c.priorPreviewRun,38058282091);
- for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
- delete current.obesityPractical;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 maintenance source drift: '+path);
- return c;
-}
-
-// Exact approved Hub-v2 upgrade; preserve every prior receipt and protected route.
-export const OBESITY_HUB_V2_BASE='21d698db2c34676116d4f9c19127127fcf414cbe';
-export const OBESITY_HUB_V2_SOURCE='6229eabca4c03099712af001bc98bb775d5d182a';
-export const OBESITY_HUB_V2_PATHS=Object.freeze(["obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/rendered-live-proof.cjs", "obesity-awareness/rollback-proof.test.mjs"]);
-export const OBESITY_HUB_V2_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-v2-composition.test.mjs']);
-const OBESITY_HUB_V2_SET=new Set([...OBESITY_HUB_V2_PATHS,...OBESITY_HUB_V2_MAINTENANCE]);
-for(const path of OBESITY_HUB_V2_SET)RECONCILIATION_PATHS.add(path);
-export function verifyObesityHubV2(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_OBESITY_HUB_V2_20261010');
- assert.equal(c.base,OBESITY_HUB_V2_BASE);assert.equal(c.source,OBESITY_HUB_V2_SOURCE);
- assert.deepEqual(c.paths,OBESITY_HUB_V2_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_V2_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
- assert.equal(c.priorPreviewRun,38058282091);
- for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
- delete current.obesityHubV2;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 maintenance source drift: '+path);
- return c;
-}
-
-// Exact read-only reporting integration. Prior runtime receipts remain unchanged.
-export const ORGANIC_MEASUREMENT_BASE='4f2fc285fc08c8a2e1418b87f42a77217017b2e1';
-export const ORGANIC_MEASUREMENT_SOURCE='0451b00e191c998081b51030e2474bc63c482c39';
-export const ORGANIC_MEASUREMENT_PATHS=Object.freeze([
- 'docs/growth-review/2026-10-09-answer-depth-live.json',
- 'docs/growth-review/2026-10-09-campaign-release-state.json',
- 'docs/growth-review/2026-10-09-measurement.json',
- 'docs/growth-review/2026-10-09-ownership.md',
- 'scripts/reconcile-organic-measurement.mjs',
- 'tests/organic-measurement-reconciliation.test.mjs'
-]);
-export const ORGANIC_MEASUREMENT_MAINTENANCE=Object.freeze([
- '.github/workflows/organic-followthrough-proof.yml',
- 'release/approved-runtime-composition.mjs',
- 'tests/organic-measurement-composition.test.mjs'
-]);
-const ORGANIC_MEASUREMENT_SET=new Set([...ORGANIC_MEASUREMENT_PATHS,...ORGANIC_MEASUREMENT_MAINTENANCE]);
-for(const path of ORGANIC_MEASUREMENT_SET)RECONCILIATION_PATHS.add(path);
-export function verifyOrganicMeasurement(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_ORGANIC_MEASUREMENT_INTEGRATION_V1');
- assert.equal(c.base,ORGANIC_MEASUREMENT_BASE);assert.equal(c.source,ORGANIC_MEASUREMENT_SOURCE);
- assert.deepEqual(c.paths,ORGANIC_MEASUREMENT_PATHS);assert.deepEqual(c.maintenancePaths,ORGANIC_MEASUREMENT_MAINTENANCE);
- assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1280);assert.equal(c.integrationIssue,1065);
- assert.equal(c.pageClickAttribution,'unresolved');assert.equal(c.pageCTRUsable,false);assert.equal(c.outcomeClaimsAllowed,false);
- for(const flag of ['runtimeChanged','analyticsChanged','consentChanged','privateDataRead','homepageChanged','medicalClaimsChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated reporting payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated reporting maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after reporting receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
- delete current.organicMeasurementIntegration;assert.deepEqual(current,prior,'Prior release receipts changed by reporting integration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Reporting source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Reporting maintenance source drift: '+path);
- return c;
-}
-
-// Source-only renewal for the two Wegovy references that became factually
-// overdue on 10 October. It preserves medicine wording and every queue state.
-export const WATCH_WEGOVY_RENEWAL_BASE='8624f2dfbefaf5028a60b3ced664b96aa077929b';
-export const WATCH_WEGOVY_RENEWAL_SOURCE='4fd913f11f4bba2e684e691e02fa02f526e22b40';
-export const WATCH_WEGOVY_RENEWAL_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/data.mjs',
- 'medicines-watch/product-renewal.test.mjs',
- 'medicines-watch/source-review.test.mjs',
- 'medicines-watch/reviews/2026-10-10-wegovy-source-renewal.json'
-]);
-export const WATCH_WEGOVY_RENEWAL_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-wegovy-source-renewal-composition.test.mjs'
-]);
-const WATCH_WEGOVY_RENEWAL_SET=new Set([...WATCH_WEGOVY_RENEWAL_PATHS,...WATCH_WEGOVY_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_WEGOVY_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchWegovySourceRenewal(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_WATCH_WEGOVY_SOURCE_RENEWAL_V1');assert.equal(c.base,WATCH_WEGOVY_RENEWAL_BASE);assert.equal(c.source,WATCH_WEGOVY_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_WEGOVY_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_WEGOVY_RENEWAL_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1301);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
- assert.equal(c.sourceReviews,2);assert.equal(c.programmes,116);assert.equal(c.configuredSources,199);assert.equal(c.manualEvidenceUrls,96);assert.equal(c.preservedSourceReviews,35);
- assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,2);
- for(const flag of ['medicineWordingChanged','medicineReviewAdvanced','humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','delayedSourceStatesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Wegovy source-renewal payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Wegovy source-renewal maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Wegovy source-renewal receipt');
- const drift='Approved Wegovy source drift; Approved composition source / boundary drift; Approved factual Watch source drift; Approved backlog source drift; Backlog maintenance source drift; archive compatibility drift; Reporting source drift; Male-obesity maintenance source drift: release/approved-runtime-composition.mjs';
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),drift+': '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),drift+': '+path);
- return c;
-}
-
-
-export const SUPPORT_CONTENT_BASE='d54b9e139ca0b65a3fba15ab0d33dd397fa45fc2';
-export const SUPPORT_CONTENT_SOURCE='bca498cf36bda01e089b8826e6a0750fe38b2bd7';
-export const SUPPORT_CONTENT_PATHS=Object.freeze(['shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','docs/content-review/support-review-20261010.json']);
-export const SUPPORT_CONTENT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/support-content-composition.test.mjs']);
-const SUPPORT_CONTENT_SET=new Set([...SUPPORT_CONTENT_PATHS,...SUPPORT_CONTENT_MAINTENANCE]);
-for(const path of SUPPORT_CONTENT_SET)RECONCILIATION_PATHS.add(path);
-export function verifySupportContent(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_SUPPORT_CONTENT_DELIVERY_V1');assert.equal(c.base,SUPPORT_CONTENT_BASE);assert.equal(c.source,SUPPORT_CONTENT_SOURCE);
- assert.deepEqual(c.paths,SUPPORT_CONTENT_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_CONTENT_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.ownerApproval,'Move the substantive content audit forward now; implement authorised improvements and verify affected mobile/desktop journeys');
- for(const flag of ['homepageChanged','campaignChanged','organicGrowthChanged','watchChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','clinicalGatesChanged','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated support-content payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated support-content maintenance');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.supportContentUpgrade;assert.deepEqual(current,prior,'Prior owner receipts must remain unchanged');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after support receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Support-content source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Support-content maintenance source drift: '+path);
- return c;
-}
-
-// Finite factual source alternatives. No monitor, queue or prior review payload changes.
-export const WATCH_OFFICIAL_ALTERNATIVES_BASE='4e3aa6c3a7dc72b2f8d2a6a3e625e086b2137c8d';
-export const WATCH_OFFICIAL_ALTERNATIVES_SOURCE='c38ace311fb7b216c31418fd185a2c424f070ac7';
-export const WATCH_OFFICIAL_ALTERNATIVES_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/credibility.test.mjs','medicines-watch/reviews/2026-10-10-authorised-official-alternatives.json']);
-export const WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-official-alternatives-composition.test.mjs']);
-const WATCH_OFFICIAL_ALTERNATIVES_SET=new Set([...WATCH_OFFICIAL_ALTERNATIVES_PATHS,...WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE]);
-for(const path of WATCH_OFFICIAL_ALTERNATIVES_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchOfficialAlternatives(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_WATCH_OFFICIAL_ALTERNATIVES_V1');assert.equal(c.base,WATCH_OFFICIAL_ALTERNATIVES_BASE);assert.equal(c.source,WATCH_OFFICIAL_ALTERNATIVES_SOURCE);
- assert.deepEqual(c.paths,WATCH_OFFICIAL_ALTERNATIVES_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1299);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
- assert.equal(c.sourceReviews,12);assert.equal(c.entriesUpdated,2);assert.equal(c.manualEvidenceAdded,4);assert.equal(c.configuredSources,199);assert.equal(c.preservedSourceReviews,35);
- for(const flag of ['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated official-alternative factual payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated official-alternative maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after official-alternative receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
- return c;
-}
-
-// Finite factual addition for four previously untracked Ascletis oral
-// small-molecule programmes. Planned filings remain plans unless a later
-// directly reviewable official source establishes completion.
-export const WATCH_ASCLETIS_ORAL_BASE='8a1fc5ac713e371b35b5a454e1433b00338070f8';
-export const WATCH_ASCLETIS_ORAL_SOURCE='bd60af405e30fcd365a7557f920ad19720cf9163';
-export const WATCH_ASCLETIS_ORAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-10-authorised-ascletis-oral-portfolio.json']);
-export const WATCH_ASCLETIS_ORAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-ascletis-oral-portfolio-composition.test.mjs']);
-const WATCH_ASCLETIS_ORAL_SET=new Set([...WATCH_ASCLETIS_ORAL_PATHS,...WATCH_ASCLETIS_ORAL_MAINTENANCE]);
-for(const path of WATCH_ASCLETIS_ORAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchAscletisOralPortfolio(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_WATCH_ASCLETIS_ORAL_PORTFOLIO_V1');assert.equal(c.base,WATCH_ASCLETIS_ORAL_BASE);assert.equal(c.source,WATCH_ASCLETIS_ORAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_ASCLETIS_ORAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ASCLETIS_ORAL_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1300);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
- assert.equal(c.programmesReviewed,4);assert.equal(c.programmesAfter,116);assert.equal(c.manualEvidenceAfter,96);assert.equal(c.configuredSources,199);assert.equal(c.preservedSourceReviews,35);
- assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);
- for(const flag of ['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Ascletis oral-portfolio factual payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Ascletis oral-portfolio maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Ascletis oral-portfolio receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Ascletis oral-portfolio maintenance source drift: '+path);
- return c;
-}
-
-// Finite repair for the production release's existing Watch drift regression.
-// The failed run stopped before deployment; this only recognises the new exact label.
-export const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_BASE='f8d7eb306cfa4e038ad0b58b2912ef5169e852c9';
-export const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SOURCE='b48a5d21f3b20fe1b815605fb464e4e8904eb683';
-export const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
-export const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-release-test-repair-composition.test.mjs']);
-const WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SET=new Set([...WATCH_RGT_VCT_RELEASE_TEST_REPAIR_PATHS,...WATCH_RGT_VCT_RELEASE_TEST_REPAIR_MAINTENANCE]);
-for(const path of WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRgtVctReleaseTestRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_RELEASE_TEST_REPAIR_V1');assert.equal(c.base,WATCH_RGT_VCT_RELEASE_TEST_REPAIR_BASE);assert.equal(c.source,WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SOURCE);
- assert.deepEqual(c.paths,WATCH_RGT_VCT_RELEASE_TEST_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_RELEASE_TEST_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1319);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38117956535);assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.releaseReachedProduction,false);
- assert.equal(c.repair,'recognise exact RGT/VCT source-renewal drift label in coaching release test');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT coaching release-test source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT coaching release-test maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT coaching release-test repair');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctReleaseTestRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT coaching release-test repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: RGT/VCT coaching release-test source: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT coaching release-test maintenance: '+path);
- return c;
-}
-
-// Exact correction for the one overlapping shared-verifier path in the
-// preceding receipt. The independent source file and maintenance set are disjoint.
-export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_BASE='7e769e11dff4a8b7f650173e4fb64d9e5215b7f9';
-export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SOURCE='febc76e01aaf447e570e9134fe2abd93cdfa42f1';
-export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_PATHS=Object.freeze(['release/watch-rgt-vct-drift-category-overlap-repair.json']);
-export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-drift-category-overlap-composition.test.mjs']);
-const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SET=new Set([...WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_PATHS,...WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_MAINTENANCE]);
-for(const path of WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRgtVctDriftCategoryOverlap(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_REPAIR_V1');assert.equal(c.base,WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_BASE);assert.equal(c.source,WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SOURCE);
- assert.deepEqual(c.paths,WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38117465443);assert.equal(c.failureGate,'Medicines Watch checks');
- assert.equal(c.repair,'pin overlapping shared verifier to preceding maintenance source');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT drift-category overlap source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT drift-category overlap maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT drift-category overlap repair');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctDriftCategoryOverlapRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT drift-category overlap registration');
- const sourceReceipt=JSON.parse(content(c.source,c.paths[0]));assert.equal(sourceReceipt.proof,'EXACT_WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_REPAIR_SOURCE_V1');assert.equal(sourceReceipt.base,c.base);assert.equal(sourceReceipt.approvedPR,1318);assert.equal(sourceReceipt.integrationIssue,1065);
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: RGT/VCT overlap source: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT overlap maintenance: '+path);
- return c;
-}
-
-// Finite follow-up for the shared negative-test vocabulary. This changes only
-// the category emitted by the preceding guard and retains all drift assertions.
-export const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_BASE='6b281196dcd77401be62deecd822cd2da06bd32c';
-export const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SOURCE='6696042f3a1dc8ccf29769ebe02cccab23c423ed';
-export const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_PATHS=Object.freeze(['release/approved-runtime-composition.mjs']);
-export const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-drift-category-repair-composition.test.mjs']);
-const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SET=new Set([...WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_PATHS,...WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_MAINTENANCE]);
-for(const path of WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRgtVctDriftCategoryRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_V1');assert.equal(c.base,WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_BASE);assert.equal(c.source,WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SOURCE);
- assert.deepEqual(c.paths,WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38117296398);assert.equal(c.failureGate,'Programme day preview');
- assert.equal(c.repair,'retain shared fail-closed drift category');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT drift-category repair source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT drift-category repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT drift-category repair');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctDriftCategoryRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT drift-category repair registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.maintenancePaths.includes(path)?c.maintenanceSource:c.source,path),'Backlog maintenance source drift: RGT/VCT drift-category source: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT drift-category maintenance: '+path);
- return c;
-}
-
-// Finite release-guard repair: teach the existing factual-drift meta-test the
-// exact RGT/VCT label without changing evidence, runtime or release authority.
-export const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_BASE='95b14a502dec187f6bbf0687cfde18ab49788bae';
-export const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SOURCE='775dd2d7248a5bb87bbfb2c56cdceb5f628ab55a';
-export const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_PATHS=Object.freeze(['tests/approved-runtime-composition.test.mjs']);
-export const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-release-guard-repair-composition.test.mjs']);
-const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SET=new Set([...WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_PATHS,...WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_MAINTENANCE]);
-for(const path of WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRgtVctReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_V1');assert.equal(c.base,WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_BASE);assert.equal(c.source,WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SOURCE);
- assert.deepEqual(c.paths,WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38117053153);assert.equal(c.failureGate,'Programme day preview');
- assert.equal(c.repair,'recognise exact RGT/VCT source-renewal drift label');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT release-guard repair source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT release-guard repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT release-guard repair');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT release-guard repair registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: RGT/VCT release-guard repair source: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT release-guard repair maintenance: '+path);
- return c;
-}
-
-// Renew six unchanged RGT-075 and CX11/VCT220 registry records after
-// complete primary-source rereview; do not renew the separate programme queue.
-export const WATCH_RGT_VCT_RENEWAL_BASE='68d4c1cd8ef36ca47fe079a5706b6ee84fb8a502';
-export const WATCH_RGT_VCT_RENEWAL_SOURCE='49f69628a0862eb140be814065e4ba06f1798d02';
-export const WATCH_RGT_VCT_RENEWAL_PATHS=Object.freeze(['medicines-watch/credibility.mjs','medicines-watch/reviews/2026-10-11-authorised-rgt-vct-source-renewal.json','medicines-watch/rgt-vct-source-renewal.test.mjs']);
-export const WATCH_RGT_VCT_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-source-renewal-composition.test.mjs']);
-const WATCH_RGT_VCT_RENEWAL_SET=new Set([...WATCH_RGT_VCT_RENEWAL_PATHS,...WATCH_RGT_VCT_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_RGT_VCT_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRgtVctSourceRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_SOURCE_RENEWAL_V1');assert.equal(c.base,WATCH_RGT_VCT_RENEWAL_BASE);assert.equal(c.source,WATCH_RGT_VCT_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_RGT_VCT_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
- assert.equal(c.sourceReviewsApplied,6);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.preservedSourceReviews,35);assert.equal(c.configuredSourceFactualReviewNeeded,0);assert.equal(c.programmeSummaryFactualReviewNeeded,66);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
- for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','programmeSummaryQueueChanged','configuredSourceCountChanged','registryLifecycleChanged','resultsClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT source-renewal payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT source-renewal maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT source-renewal receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctSourceRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT source-renewal registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'RGT/VCT source-renewal source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'RGT/VCT source-renewal maintenance source drift: '+path);
- return c;
-}
-
-
-// Finite release-meta repair for the two-source freshness receipt. The inner
-// byte pin already failed closed; this only teaches the outer regression test
-// the receipt's exact drift label.
-export const WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_BASE='7c6b4efbce3492583277efbc84ca7b484d01da64';
-export const WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_SOURCE='0e47cf02253ec77e19f628c1121760443235b093';
-export const WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
-export const WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-two-source-freshness-release-guard-repair-composition.test.mjs']);
-const WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_SET=new Set([...WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_PATHS,...WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_MAINTENANCE]);
-for(const path of WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchTwoSourceReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_V1');assert.equal(c.base,WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_BASE);assert.equal(c.source,WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_SOURCE);
- assert.deepEqual(c.paths,WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1321);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38122695667);assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.releaseReachedProduction,false);
- assert.equal(c.repair,'recognise exact two-source freshness payload drift label');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated two-source release-guard repair source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated two-source release-guard repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after two-source release-guard repair');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchTwoSourceFreshnessReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by two-source release-guard repair registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Two-source release-guard repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Two-source release-guard repair maintenance source drift: '+path);
- return c;
-}
-
-// Finite two-source freshness renewal after direct primary-source review.
-// This advances only the exact configured-source review dates; it does not
-// change programme wording, monitoring baselines, queue semantics or ZP6590.
-export const WATCH_TWO_SOURCE_FRESHNESS_BASE='1184eebca8b5d5920b57db553289f6b46ee06300';
-export const WATCH_TWO_SOURCE_FRESHNESS_SOURCE='c7ecc33edc2b22bf991b5713f8526836e0700ff2';
-export const WATCH_TWO_SOURCE_FRESHNESS_PATHS=Object.freeze([
- 'medicines-watch/data.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/product-renewal.test.mjs',
- 'medicines-watch/provider-review.test.mjs',
- 'medicines-watch/reviews/2026-10-11-authorised-two-source-freshness.json',
- 'medicines-watch/source-review.test.mjs',
- 'medicines-watch/two-source-freshness.test.mjs'
-]);
-export const WATCH_TWO_SOURCE_FRESHNESS_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-two-source-freshness-composition.test.mjs'
-]);
-const WATCH_TWO_SOURCE_FRESHNESS_SET=new Set([...WATCH_TWO_SOURCE_FRESHNESS_PATHS,...WATCH_TWO_SOURCE_FRESHNESS_MAINTENANCE]);
-for(const path of WATCH_TWO_SOURCE_FRESHNESS_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchTwoSourceFreshness(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_TWO_SOURCE_FRESHNESS_V1');
- assert.equal(c.base,WATCH_TWO_SOURCE_FRESHNESS_BASE);assert.equal(c.source,WATCH_TWO_SOURCE_FRESHNESS_SOURCE);
- assert.deepEqual(c.paths,WATCH_TWO_SOURCE_FRESHNESS_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_TWO_SOURCE_FRESHNESS_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1320);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');
- assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.sourceReviewsApplied,2);
- assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);
- assert.equal(c.configuredSourceFactualReviewNeeded,0);assert.equal(c.programmeSummaryFactualReviewNeeded,66);
- assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
- for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','healthResponseChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated two-source freshness payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated two-source freshness maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after two-source freshness receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchTwoSourceFreshness;assert.deepEqual(current,prior,'Prior release receipts changed by two-source freshness registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: two-source freshness payload: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: two-source freshness maintenance: '+path);
- return c;
-}
-
-// Exact Matt-approved two-link reading strip; all prior receipts remain intact.
-export const WAIST_STRIP_BASE='5753da269d0f5f45b7ad572dc7ecde73e2c0fde9';
-export const WAIST_STRIP_SOURCE='1b2591ab02aa7079754808835164ae50090fd58d';
-export const WAIST_STRIP_APPROVED='8ec727ef20a055b9bff5eb2e45e23e3b59bfae5e';
-export const WAIST_STRIP_PATHS=Object.freeze(['obesity-awareness/candidate.mjs','obesity-awareness/waist-reading-strip.test.mjs']);
-export const WAIST_STRIP_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/waist-reading-strip-composition.test.mjs','scripts/verify-tool-calculators-browser.cjs']);
-const WAIST_STRIP_SET=new Set([...WAIST_STRIP_PATHS,...WAIST_STRIP_MAINTENANCE]);
-for(const path of WAIST_STRIP_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWaistReadingStrip(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_APPROVED_WAIST_READING_STRIP_20261011');
- assert.equal(c.base,WAIST_STRIP_BASE);assert.equal(c.source,WAIST_STRIP_SOURCE);assert.equal(c.approvedCandidateHead,WAIST_STRIP_APPROVED);
- assert.deepEqual(c.paths,WAIST_STRIP_PATHS);assert.deepEqual(c.maintenancePaths,WAIST_STRIP_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.approvedPR,1308);assert.equal(c.publicationStatus,'exact_two_links_authorised_by_Matt_20261011');
- for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','medicalClaimsChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.approvedCandidateHead,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated waist reading-strip payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated waist reading-strip maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after waist strip receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.waistReadingStrip;assert.deepEqual(current,prior,'Prior release receipts changed by waist strip');
- for(const path of c.paths){assert.equal(read(c.source,path),read(c.approvedCandidateHead,path),'Exact approved original PR payload required: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Waist reading-strip source drift / Hub-v2 scoped repair source drift: '+path);}
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Waist reading-strip maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
- return c;
-}
-
-// Finite verification-only correction after guarded rollback38127628997.
-export const WAIST_SETTLE_BASE='0131449471a6a2ca936ad672b55351e5cfa4ee31';
-export const WAIST_SETTLE_SOURCE='b0a740046d5f97ff7aca23834b5d7d1897e0243a';
-export const WAIST_SETTLE_PATHS=Object.freeze(['scripts/verify-tool-calculators-browser.cjs']);
-export const WAIST_SETTLE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/waist-keyboard-settle-composition.test.mjs']);
-const WAIST_SETTLE_SET=new Set([...WAIST_SETTLE_PATHS,...WAIST_SETTLE_MAINTENANCE]);
-for(const path of WAIST_SETTLE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWaistKeyboardSettle(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WAIST_KEYBOARD_VISIBLE_UNIT_SETTLE_20261011');assert.equal(c.base,WAIST_SETTLE_BASE);assert.equal(c.source,WAIST_SETTLE_SOURCE);
- assert.deepEqual(c.paths,WAIST_SETTLE_PATHS);assert.deepEqual(c.maintenancePaths,WAIST_SETTLE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.originalPR,1308);assert.equal(c.failedRun,38127628997);
- for(const flag of ['publicPayloadChanged','homepageChanged','calculatorChanged','medicalClaimsChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated waist keyboard settle payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated waist keyboard settle maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after keyboard settle receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.waistKeyboardSettle;assert.deepEqual(current,prior,'Prior release receipts changed by keyboard settle');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Waist keyboard source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Waist keyboard maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
- return c;
-}
-
-// Retain only the authenticated rollback of PR1308; never adopt an unknown runtime.
-export const WAIST_ROLLBACK_BASE='2a192db7a52b90e02a7b46d06d7d119e49fdc7ed';
-export const WAIST_ROLLBACK_SOURCE='0aea912d1e909694282f1ddee534a0c0bfa7ce43';
-export const WAIST_ROLLBACK_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','tests/waist-rollback-retention.test.mjs','tests/fixtures/waist-reading-strip-rollback-38127628997.json']);
-export const WAIST_ROLLBACK_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/waist-rollback-composition.test.mjs']);
-const WAIST_ROLLBACK_SET=new Set([...WAIST_ROLLBACK_PATHS,...WAIST_ROLLBACK_MAINTENANCE]);
-for(const path of WAIST_ROLLBACK_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_PR1308_AUTHENTICATED_ROLLBACK_RETENTION_20261011');assert.equal(c.base,WAIST_ROLLBACK_BASE);assert.equal(c.source,WAIST_ROLLBACK_SOURCE);
- assert.deepEqual(c.paths,WAIST_ROLLBACK_PATHS);assert.deepEqual(c.maintenancePaths,WAIST_ROLLBACK_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.integrationIssue,1065);assert.equal(c.originalPR,1308);assert.equal(c.failedRun,38127628997);
- for(const flag of ['publicPayloadChanged','homepageChanged','calculatorChanged','medicalClaimsChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated waist rollback retention payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated waist rollback retention maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after rollback retention receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.waistRollbackRetention;assert.deepEqual(current,prior,'Prior release receipts changed by rollback retention');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Waist rollback retention source drift / Hub-v2 bounded transport and rollback chain source drift / Hub-v2 exact rollback receipt source drift / Hub-v2 source drift / Male-obesity source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Waist rollback retention maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
- return c;
-}
-
-// Two denied Rhythm HTML checks move to their complete official PDF versions.
-// Public links and medical wording stay fixed; content, maintenance and receipt
-// remain three commits.
-export const WATCH_RHYTHM_PDF_ALTERNATIVES_BASE='91d6a15fec847ef7b1f6dc5828dee84853b3eb27';
-export const WATCH_RHYTHM_PDF_ALTERNATIVES_SOURCE='8ed0bd41a752f76ffd309219d8e3dade4698ced1';
-export const WATCH_RHYTHM_PDF_ALTERNATIVES_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/backlog-review.test.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json',
- 'medicines-watch/rhythm-pdf-alternatives.test.mjs'
-]);
-export const WATCH_RHYTHM_PDF_ALTERNATIVES_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-rhythm-pdf-alternatives-composition.test.mjs'
-]);
-const WATCH_RHYTHM_PDF_ALTERNATIVES_SET=new Set([...WATCH_RHYTHM_PDF_ALTERNATIVES_PATHS,...WATCH_RHYTHM_PDF_ALTERNATIVES_MAINTENANCE]);
-for(const path of WATCH_RHYTHM_PDF_ALTERNATIVES_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRhythmPdfAlternatives(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_RHYTHM_PDF_ALTERNATIVES_20261012');
- assert.equal(c.base,WATCH_RHYTHM_PDF_ALTERNATIVES_BASE);assert.equal(c.source,WATCH_RHYTHM_PDF_ALTERNATIVES_SOURCE);
- assert.deepEqual(c.paths,WATCH_RHYTHM_PDF_ALTERNATIVES_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RHYTHM_PDF_ALTERNATIVES_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_source_monitor_repair');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.reviewedAt,'2026-10-12T10:36:09Z');
- assert.equal(c.sourceReviewsApplied,2);assert.equal(c.programmeReviewsApplied,0);
- assert.deepEqual(c.sourceIds,['bivamelagon-rhythm-20250709','rm718-rhythm-20260804']);
- assert.deepEqual(c.reviewedFingerprints,['9f0faf3cb0d4f6b24e93601eee0a6090ef2f604e8e22b3cc9315dd3e67343805','d10fbca2dfa163968fa0dd3fc406d5a15118fbe5b1d23339455e54ebb3805fa6']);
- assert.equal(c.priorCompletedReviews,39);assert.equal(c.completedReviewsAfter,40);assert.equal(c.programmesAfter,119);assert.equal(c.configuredSources,204);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.configuredSourceReviewQueue,0);assert.equal(c.programmeSummaryFactualReviewNeeded,69);
- assert.equal(c.successesSeeded,false);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.monitoringFinished,false);
- for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','configuredSourceCountChanged','monitorLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Rhythm PDF alternate-source payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Rhythm PDF alternate-source maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Rhythm PDF alternate-source receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRhythmPdfAlternatives;assert.deepEqual(current,prior,'Prior release receipts changed by Rhythm PDF alternate-source registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift / Approved backlog source drift: medicines-watch/Rhythm PDF alternatives payload: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift: medicines-watch/Rhythm PDF alternatives maintenance: '+path);
- return c;
-}
-
-// Five complete unchanged source renewals plus one bounded MariTide registry
-// addition. Content, maintenance and receipt remain three commits.
-export const WATCH_GZC_ASC30_MARITIDE_BASE='678393727a1bbe508822d6ba38b420c66571e247';
-export const WATCH_GZC_ASC30_MARITIDE_SOURCE='07a8e8166c4293373355d52be6dd2a8dca083e51';
-export const WATCH_GZC_ASC30_MARITIDE_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/alnylam-rnai-discovery.test.mjs',
- 'medicines-watch/azelaprag-renewal.test.mjs',
- 'medicines-watch/backlog-review.test.mjs',
- 'medicines-watch/credibility.mjs',
- 'medicines-watch/credibility.test.mjs',
- 'medicines-watch/evidence-desk.test.mjs',
- 'medicines-watch/gzc8072-asc30-maritide.test.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/industry.test.mjs',
- 'medicines-watch/ly4329090-discovery.test.mjs',
- 'medicines-watch/novo-hansoh-renewal.test.mjs',
- 'medicines-watch/reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json',
- 'medicines-watch/rgt-vct-source-renewal.test.mjs'
-]);
-export const WATCH_GZC_ASC30_MARITIDE_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-gzc-asc30-maritide-composition.test.mjs'
-]);
-const WATCH_GZC_ASC30_MARITIDE_SET=new Set([...WATCH_GZC_ASC30_MARITIDE_PATHS,...WATCH_GZC_ASC30_MARITIDE_MAINTENANCE]);
-for(const path of WATCH_GZC_ASC30_MARITIDE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchGzcAsc30Maritide(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_GZC_ASC30_MARITIDE_20261012');
- assert.equal(c.base,WATCH_GZC_ASC30_MARITIDE_BASE);assert.equal(c.source,WATCH_GZC_ASC30_MARITIDE_SOURCE);
- assert.deepEqual(c.paths,WATCH_GZC_ASC30_MARITIDE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_GZC_ASC30_MARITIDE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.reviewedAt,'2026-10-12T05:02:00Z');
- assert.equal(c.sourceReviewsApplied,6);assert.equal(c.programmeReviewsApplied,3);
- assert.deepEqual(c.sourceIds,['ganlee-gzc8072-20260907','registry-nct07784699','ascletis-asc30-aurora-first-dose-20260830','registry-nct07743463','registry-nct07743450','registry-nct07866066']);
- assert.deepEqual(c.reviewedFingerprints,['1ed471c800e14e097582461b9dfe58f79cbc64579edb69597ba0601db45c6a73','eb71180cf8a8d8066ef1cf769e1218856ec76be8046b9b2eae6715aa03e1b0a1','3a6d993aa33d6ce54cf0862534214ca8e54c88791723666c2582fccbf0046617','d1eb3187dbcc3ce406ea09e1b99305327237e85020f5b9490268779048a2ac99','acea4e5a0322dfda5ff5ab12d08d2e207071811da2543fa116c148c906f997c4','3366f89ab798b87ac4c6392bd2f594a98efba557fe237c39f6a6e5b58d871271']);
- assert.equal(c.priorCompletedReviews,38);assert.equal(c.completedReviewsAfter,39);assert.equal(c.programmesAfter,119);assert.equal(c.configuredSources,204);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.configuredSourceReviewQueue,0);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
- assert.equal(c.newConfiguredSourceAdded,true);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.monitoringFinished,false);
- for(const flag of ['resultsClaimedFromRegistry','comparativeResultClaimed','monitorLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated GZC8072/ASC30/MariTide payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated GZC8072/ASC30/MariTide maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after GZC8072/ASC30/MariTide receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchGzcAsc30Maritide;assert.deepEqual(current,prior,'Prior release receipts changed by GZC8072/ASC30/MariTide registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift / Approved backlog source drift: medicines-watch/GZC8072 ASC30 MariTide payload: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift: medicines-watch/GZC8072 ASC30 MariTide maintenance: '+path);
- return c;
-}
-
-// Complete ribupatide source renewal plus one independently discovered Lilly
-// registry programme. Content, maintenance and receipt remain three commits.
-export const WATCH_RIBUPATIDE_LY4329090_BASE='4ebbfda8c34109e037a1e0ef3aef7e4835e30b70';
-export const WATCH_RIBUPATIDE_LY4329090_SOURCE='5c909269507ad2f828afc066ffd0f040c6f939df';
-export const WATCH_RIBUPATIDE_LY4329090_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/alnylam-rnai-discovery.test.mjs',
- 'medicines-watch/azelaprag-renewal.test.mjs',
- 'medicines-watch/backlog-review.test.mjs',
- 'medicines-watch/credibility.mjs',
- 'medicines-watch/credibility.test.mjs',
- 'medicines-watch/evidence-desk.test.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/industry.test.mjs',
- 'medicines-watch/ly4329090-discovery.test.mjs',
- 'medicines-watch/novo-hansoh-renewal.test.mjs',
- 'medicines-watch/reviews/2026-10-12-authorised-ly4329090-discovery.json',
- 'medicines-watch/reviews/2026-10-12-authorised-ribupatide-specialist-renewal.json',
- 'medicines-watch/rgt-vct-source-renewal.test.mjs',
- 'medicines-watch/ribupatide-specialist-renewal.test.mjs'
-]);
-export const WATCH_RIBUPATIDE_LY4329090_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-alnylam-release-guard-repair-composition.test.mjs',
- 'tests/watch-alnylam-rnai-discovery-composition.test.mjs',
- 'tests/watch-azelaprag-renewal-composition.test.mjs',
- 'tests/watch-ribupatide-ly4329090-composition.test.mjs'
-]);
-const WATCH_RIBUPATIDE_LY4329090_SET=new Set([...WATCH_RIBUPATIDE_LY4329090_PATHS,...WATCH_RIBUPATIDE_LY4329090_MAINTENANCE]);
-for(const path of WATCH_RIBUPATIDE_LY4329090_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchRibupatideLy4329090(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_RIBUPATIDE_LY4329090_20261012');
- assert.equal(c.base,WATCH_RIBUPATIDE_LY4329090_BASE);assert.equal(c.source,WATCH_RIBUPATIDE_LY4329090_SOURCE);
- assert.deepEqual(c.paths,WATCH_RIBUPATIDE_LY4329090_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RIBUPATIDE_LY4329090_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
- assert.deepEqual(c.reviewedAt,['2026-10-12T02:43:21Z','2026-10-12T02:49:39Z']);assert.equal(c.sourceReviewsApplied,9);assert.equal(c.programmeReviewsApplied,2);
- assert.deepEqual(c.sourceIds,['hengrui-ribupatide-pmos-20260708','registry-nct06595797','registry-nct06974851','registry-nct06994650','registry-nct07551492','registry-nct07559136','registry-nct07670884','registry-nct07660848','registry-nct07808073']);
- assert.deepEqual(c.reviewedFingerprints,['563c54b397ae9180b32c9b3113fee38852c29d9e8ade01faea283613b783da30','0bed9d97e1a9e22a1a11a3ef08e81d0ab05a8fe8d73a58bd8ee2cab8f2e92bba','f4fec692b8aeb2fdedbcaf17830d39f7947e4a47908f1da2a3409d4c91dccc96','a06f76f413ec649e85963818edd8b98eb1519904a732cb38e402333e70ebe600','38b19ba1faa00fea948b9cfc5ac6f833c6518022225cd527a03b503c9f639c00','9ae80da1943467db19cbd14b5fb89e213caac996bc3730252853d28c07d8eb89','e0ba5c9e70ebfc41e7ea0389ecaef3b16f21be08c53e14f0ed7bfa34baf83c02','efb500da2888bf06d4e248897604ab9671cc8c6f63125ff89f5e7603db581e66','571cff58158558e75dc2427106d305134bdf3df77ce2e8244548dd22c946fbb1']);
- assert.equal(c.priorCompletedReviews,36);assert.equal(c.completedReviewsAfter,38);assert.equal(c.programmesAfter,119);assert.equal(c.configuredSources,203);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.configuredSourceReviewQueue,0);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
- assert.equal(c.newConfiguredSourceAdded,true);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.monitoringFinished,false);
- for(const flag of ['resultsClaimedFromRegistry','monitorLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated ribupatide/LY4329090 payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated ribupatide/LY4329090 maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after ribupatide/LY4329090 receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRibupatideLy4329090;assert.deepEqual(current,prior,'Prior release receipts changed by ribupatide/LY4329090 registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift / Approved backlog source drift: medicines-watch/ribupatide LY4329090 payload: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift: medicines-watch/ribupatide LY4329090 maintenance: '+path);
- return c;
-}
-
-// Complete overdue-source review and one bounded sponsor-evidence addition.
-// Content, maintenance and receipt remain three separately reviewable commits.
-export const WATCH_NOVO_HANSOH_RENEWAL_BASE='dd784ac853b78ff39ed12d3ef1f909d1f2058437';
-export const WATCH_NOVO_HANSOH_RENEWAL_SOURCE='49dd053c3b7c6524e6e09da04df6d061ac83ebae';
-export const WATCH_NOVO_HANSOH_RENEWAL_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/alnylam-rnai-discovery.test.mjs',
- 'medicines-watch/azelaprag-renewal.test.mjs',
- 'medicines-watch/credibility.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/industry.test.mjs',
- 'medicines-watch/novo-hansoh-renewal.test.mjs',
- 'medicines-watch/reviews/2026-10-12-authorised-novo-hansoh-renewal.json'
-]);
-export const WATCH_NOVO_HANSOH_RENEWAL_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-novo-hansoh-renewal-composition.test.mjs'
-]);
-const WATCH_NOVO_HANSOH_RENEWAL_SET=new Set([...WATCH_NOVO_HANSOH_RENEWAL_PATHS,...WATCH_NOVO_HANSOH_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_NOVO_HANSOH_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchNovoHansohRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_NOVO_HANSOH_RENEWAL_20261012');
- assert.equal(c.base,WATCH_NOVO_HANSOH_RENEWAL_BASE);assert.equal(c.source,WATCH_NOVO_HANSOH_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_NOVO_HANSOH_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_NOVO_HANSOH_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
- assert.equal(c.reviewedAt,'2026-10-12T00:46:47Z');assert.equal(c.sourceReviewsApplied,8);assert.equal(c.programmeReviewsApplied,3);
- assert.deepEqual(c.sourceIds,['registry-nct07101783','registry-nct07184632','registry-nct07415954','registry-nct07525791','registry-nct07639021','registry-nct07767175','registry-nct07754461','hansoh-olatorepatide-20260604']);
- assert.deepEqual(c.unchangedRegistryFingerprints,['54be7a6010c945d0abe2441e86a8b82a748bcceb5af7cae79678c9c81ca27b35','07e01ac6dcb507a235dbffc9bf092c72b196a230a1a9096806989a4d843d5185','d254cb3be21a9e8fa07aeb524c5843675c7b35375f81051f6844925b121e7be4','9de33b2ebf249e96b4ef101569b47eb002fbaf1f4610311e80396346b360fedd','907113149dd3923d0b9bf6e06aadec4148ed6c340f44e610c49eea42ccc3f26a','d79047e397e78e0effb0b34e6f207d608d2f46dd705d0e9808806d75943636ab','d4a70059ff926a61abd70366de0d1b30ef3b565d8b1137341395e66f23945300']);
- assert.equal(c.hansohSelector,'.text');assert.equal(c.hansohFingerprint,'9dfbbff6a3914b52c4b395d1a8dc5156a4f2c34f2bfde8da1b374e61873b7ca2');
- assert.equal(c.priorCompletedReviews,35);assert.equal(c.completedReviewsAfter,36);assert.equal(c.programmesAfter,118);assert.equal(c.configuredSources,202);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
- assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.rhythmDelayedSources,2);assert.equal(c.monitoringFinished,false);
- for(const flag of ['configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimedFromRegistry','monitorLogicChanged','queueLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Novo/Hansoh renewal payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Novo/Hansoh renewal maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Novo/Hansoh renewal receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchNovoHansohRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by Novo/Hansoh renewal registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: medicines-watch/novo-hansoh renewal payload: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: medicines-watch/novo-hansoh renewal maintenance: '+path);
- return c;
-}
-
-// Finite outer-meta repair after the current-head release test rejected the
-// already fail-closed renewal drift label. It changes no evidence or runtime.
-export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_BASE='b184d1cd50ed7c833d9e2d0f39a66e55362a5227';
-export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SOURCE='1596e4561bf8e469ca602abce9ab9a61ae17dfbe';
-export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/alnylam-rnai-discovery.test.mjs',
- 'medicines-watch/azelaprag-renewal.test.mjs',
- 'medicines-watch/credibility.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/international-maintenance-renewal.test.mjs',
- 'medicines-watch/reviews/2026-10-11-authorised-international-maintenance-renewal.json'
-]);
-export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-international-maintenance-renewal-composition.test.mjs'
-]);
-const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SET=new Set([...WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_PATHS,...WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchInternationalMaintenanceRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_20261011');
- assert.equal(c.base,WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_BASE);assert.equal(c.source,WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
- assert.equal(c.reviewedAt,'2026-10-11T22:33:19Z');assert.equal(c.sourceReviewsApplied,3);assert.equal(c.programmeReviewsApplied,3);
- assert.deepEqual(c.sourceIds,['registry-nct07589686','registry-nct07517042','registry-nct07654374']);
- assert.deepEqual(c.unchangedFingerprints,['7472d8e9ff7bfc674013a3a2e5ba291f2b5d4fe8e08257cb2c984d2337d0a24f','d30d414c70aaa7b589ea815eda7790e94097f02fceb56a9df8eac84fd3380ce5','cfb65a5aa51575912b057b1119883f3f898416432d3b121d85e92ad10d95cf28']);
- assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmesAfter,118);assert.equal(c.configuredSources,202);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
- assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.walesReviewed,true);assert.equal(c.walesCheckDelayed,true);assert.equal(c.monitoringFinished,false);
- for(const flag of ['programmeWordingChanged','configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','monitorLogicChanged','queueLogicChanged','healthResponseChanged','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated international maintenance renewal payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated international maintenance renewal maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after international maintenance renewal receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchInternationalMaintenanceRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by international maintenance renewal registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: medicines-watch/international-maintenance renewal payload: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved backlog source drift: medicines-watch/international-maintenance renewal maintenance: '+path);
- return c;
-}
-
-export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_BASE='95c6c9fc78eb49d2fb40e57b1ecc5bcd7fbf5fb2';
-export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_SOURCE='084d87cfa1fd2b61a9d12e37e61bda9f5158ab9f';
-export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
-export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-taldefgrobep-attain-release-guard-repair-composition.test.mjs']);
-const WATCH_TALDEFGROBEP_ATTAIN_GUARD_SET=new Set([...WATCH_TALDEFGROBEP_ATTAIN_GUARD_PATHS,...WATCH_TALDEFGROBEP_ATTAIN_GUARD_MAINTENANCE]);
-for(const path of WATCH_TALDEFGROBEP_ATTAIN_GUARD_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchTaldefgrobepAttainGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_TALDEFGROBEP_ATTAIN_GUARD_REPAIR_V1');assert.equal(c.base,WATCH_TALDEFGROBEP_ATTAIN_GUARD_BASE);assert.equal(c.source,WATCH_TALDEFGROBEP_ATTAIN_GUARD_SOURCE);
- assert.deepEqual(c.paths,WATCH_TALDEFGROBEP_ATTAIN_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_TALDEFGROBEP_ATTAIN_GUARD_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.failureGate,'exact current Watch files remain pinned');assert.equal(c.releaseReachedProduction,false);assert.equal(c.repair,'recognise exact taldefgrobep/ATTAIN-MAINTAIN renewal drift label');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated taldefgrobep/ATTAIN-MAINTAIN guard repair source');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated taldefgrobep/ATTAIN-MAINTAIN guard repair maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after taldefgrobep/ATTAIN-MAINTAIN guard repair');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchTaldefgrobepAttainGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by taldefgrobep/ATTAIN-MAINTAIN guard repair registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Taldefgrobep/ATTAIN-MAINTAIN guard repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Taldefgrobep/ATTAIN-MAINTAIN guard repair maintenance source drift: '+path);
- return c;
-}
-
-// Finite release-meta repair for the Alnylam discovery receipt. The inner
-// byte pin already failed closed; this only teaches the outer regression test
-// the receipt's exact drift label.
-export const WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_BASE='c759310cb187220f87f661a89ba1a94773bdccb8';
-export const WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_SOURCE='4db509915ab521a6ffdc6259757038130798146e';
-export const WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/credibility.mjs',
- 'medicines-watch/reviews/2026-10-11-authorised-taldefgrobep-attain-maintain-renewal.json',
- 'medicines-watch/taldefgrobep-attain-maintain-renewal.test.mjs'
-]);
-export const WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-taldefgrobep-attain-renewal-composition.test.mjs'
-]);
-const WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_SET=new Set([...WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_PATHS,...WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchTaldefgrobepAttainRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_20261011');
- assert.equal(c.base,WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_BASE);assert.equal(c.source,WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
- assert.equal(c.reviewedAt,'2026-10-11T20:40:31Z');assert.equal(c.sourceReviewsApplied,2);
- assert.deepEqual(c.sourceIds,['registry-nct07281495','registry-nct06584916']);
- assert.deepEqual(c.unchangedFingerprints,['1bdb60c0234e5e7babea960bea4a448ef7c51e8dbf81ee70d91a60362e9d7f2c','504a69920fee24c6c1465d8e387b9632a17dd7850212e7d2c15fcff643490357']);
- assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmesAfter,118);assert.equal(c.configuredSources,202);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
- assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.monitoringFinished,false);
- for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','monitorLogicChanged','queueLogicChanged','healthResponseChanged','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated taldefgrobep/ATTAIN-MAINTAIN renewal payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated taldefgrobep/ATTAIN-MAINTAIN renewal maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after taldefgrobep/ATTAIN-MAINTAIN renewal receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchTaldefgrobepAttainRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by taldefgrobep/ATTAIN-MAINTAIN renewal registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Taldefgrobep/ATTAIN-MAINTAIN renewal source drift / Backlog maintenance source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Taldefgrobep/ATTAIN-MAINTAIN renewal maintenance source drift / Backlog maintenance source drift: '+path);
- return c;
-}
-
-export const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_BASE='521058604747c4819709251aa36ddfaaac376a88';
-export const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SOURCE='8ac8e6d98df3a0a0c3f27a3f44c0175fd3ff4c8b';
-export const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
-export const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-alnylam-release-guard-repair-composition.test.mjs']);
-const WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SET=new Set([...WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_PATHS,...WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_MAINTENANCE]);
-for(const path of WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchAlnylamReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_V1');assert.equal(c.base,WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_BASE);assert.equal(c.source,WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SOURCE);
- assert.deepEqual(c.paths,WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1327);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38158492201);assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.releaseReachedProduction,false);
- assert.equal(c.repair,'recognise exact Alnylam RNAi discovery drift label');
- for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Alnylam release-guard repair source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Alnylam release-guard repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Alnylam release-guard repair');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchAlnylamReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by Alnylam release-guard repair registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Alnylam release-guard repair source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Alnylam release-guard repair maintenance source drift: '+path);
- return c;
-}
-
-// Finite PR1326 discovery publication. Evidence stays manual until complete registry review.
-export const WATCH_ALNYLAM_RNAI_BASE='15ed39a78d29d97f26feb020328e03d4d02ff070';
-export const WATCH_ALNYLAM_RNAI_SOURCE='b42a72e40415e4ebb9ae362cc34bc9ffc836e686';
-export const WATCH_ALNYLAM_RNAI_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/alnylam-rnai-discovery.test.mjs',
- 'medicines-watch/azelaprag-renewal.test.mjs',
- 'medicines-watch/backlog-review.test.mjs',
- 'medicines-watch/credibility.mjs',
- 'medicines-watch/evidence-desk.test.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/industry.test.mjs',
- 'medicines-watch/reviews/2026-10-11-authorised-alnylam-rnai-discovery.json'
-]);
-export const WATCH_ALNYLAM_RNAI_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-alnylam-rnai-discovery-composition.test.mjs',
- 'tests/watch-azelaprag-renewal-composition.test.mjs'
-]);
-const WATCH_ALNYLAM_RNAI_SET=new Set([...WATCH_ALNYLAM_RNAI_PATHS,...WATCH_ALNYLAM_RNAI_MAINTENANCE]);
-for(const path of WATCH_ALNYLAM_RNAI_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchAlnylamRnaiDiscovery(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_ALNYLAM_RNAI_DISCOVERY_20261011');
- assert.equal(c.base,WATCH_ALNYLAM_RNAI_BASE);assert.equal(c.source,WATCH_ALNYLAM_RNAI_SOURCE);
- assert.deepEqual(c.paths,WATCH_ALNYLAM_RNAI_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ALNYLAM_RNAI_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1326);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');
- assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.reviewedAt,'2026-10-11T16:47:11Z');
- assert.deepEqual(c.programmeIds,['aln2232','aln6222']);assert.equal(c.programmesBefore,116);assert.equal(c.programmesAfter,118);
- assert.equal(c.configuredSources,202);assert.equal(c.manualEvidenceBefore,96);assert.equal(c.manualEvidenceAfter,101);
- assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmeSummaryFactualReviewNeeded,66);
- assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,2);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
- for(const flag of ['monitorBaselinesChanged','monitorLogicChanged','queueLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Alnylam RNAi discovery payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Alnylam RNAi discovery maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Alnylam RNAi discovery receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchAlnylamRnaiDiscovery;assert.deepEqual(current,prior,'Prior release receipts changed by Alnylam RNAi discovery registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Alnylam RNAi discovery source drift / Backlog maintenance source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Alnylam RNAi discovery maintenance source drift / Watch azelaprag renewal maintenance source drift / Backlog maintenance source drift: '+path);
- return c;
-}
-
-// Finite PR1325 factual renewal, rebased only after PR1323 terminal acceptance.
-// The five reviewed payload blobs retain their original factual review dates.
-export const WATCH_AZELAPRAG_RENEWAL_BASE='5102e0c9f52e5d8722a2b1e7f1e73148f73edd45';
-export const WATCH_AZELAPRAG_RENEWAL_SOURCE='c12b9e0540b827134927be767a83b4f3fbb3fa3e';
-export const WATCH_AZELAPRAG_RENEWAL_PATHS=Object.freeze([
- 'medicines-watch/README.md',
- 'medicines-watch/azelaprag-renewal.test.mjs',
- 'medicines-watch/credibility.mjs',
- 'medicines-watch/industry.mjs',
- 'medicines-watch/reviews/2026-10-11-authorised-azelaprag-renewal.json'
-]);
-export const WATCH_AZELAPRAG_RENEWAL_MAINTENANCE=Object.freeze([
- 'release/approved-runtime-composition.mjs',
- 'tests/watch-azelaprag-renewal-composition.test.mjs'
-]);
-const WATCH_AZELAPRAG_RENEWAL_SET=new Set([...WATCH_AZELAPRAG_RENEWAL_PATHS,...WATCH_AZELAPRAG_RENEWAL_MAINTENANCE]);
-for(const path of WATCH_AZELAPRAG_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
-export function verifyWatchAzelapragRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
- assert.equal(c?.proof,'EXACT_WATCH_AZELAPRAG_RENEWAL_20261011');
- assert.equal(c.base,WATCH_AZELAPRAG_RENEWAL_BASE);assert.equal(c.source,WATCH_AZELAPRAG_RENEWAL_SOURCE);
- assert.deepEqual(c.paths,WATCH_AZELAPRAG_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_AZELAPRAG_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.approvedPR,1325);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');
- assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.sourceReviewsApplied,2);assert.equal(c.programmeReviewDatesRenewed,1);
- assert.equal(c.reviewedAt,'2026-10-11T13:10:56Z');assert.equal(c.secFilingPublishedAt,'2025-03-20');
- assert.deepEqual(c.unchangedFingerprints,['0080170ec76c06b5c251ad17226440a7807402e108d6ed1c995fe9fc0c07aba5','c7e60ac3b739c60de594cfaae6772d270457b3749e561c92ee777353d04093f1']);
- assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);
- assert.equal(c.configuredSourceFactualReviewNeeded,0);assert.equal(c.programmeSummaryFactualReviewNeeded,66);
- assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
- for(const flag of ['programmeWordingChanged','configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','monitorLogicChanged','queueLogicChanged','healthResponseChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated azelaprag renewal payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated azelaprag renewal maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after azelaprag renewal receipt');
- const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchAzelapragRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by azelaprag renewal registration');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch azelaprag renewal source drift / Backlog maintenance source drift: two-source freshness payload: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch azelaprag renewal maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
- return c;
-}
-
-export function verifyReconciledRelease(read=defaultReconciliationRead){
- const c=reconciliationRecord();if(!c)return null;
- assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
- assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
- assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);
- assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- const watch=c.watchFactualUpdate;assert(watch,'Exact factual Watch amendment receipt required');
- assert.equal(watch.base,WATCH_FACTUAL_UPDATE_BASE);assert.equal(watch.source,WATCH_FACTUAL_UPDATE_SOURCE);
- assert.equal(watch.proofRun,WATCH_FACTUAL_UPDATE_RUN);assert.deepEqual(watch.paths,WATCH_FACTUAL_UPDATE_PATHS);
- assert.deepEqual(watch.maintenancePaths,WATCH_FACTUAL_UPDATE_MAINTENANCE);assert.match(watch.maintenanceSource,/^[a-f0-9]{40}$/);
- const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
- assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
- assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const actualHead=git('rev-parse','HEAD');
- // Only actual Git objects at resolved immutable commit IDs are cacheable.
- // Supplied readers are always invoked again, even after a successful proof.
- const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
-  const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
-  const key=JSON.stringify([process.cwd(),commit,path]);
-  if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
-  return immutableCompositionBlobs.get(key);
- }:read;
- const watchRhythmPdfAlternatives=c.watchRhythmPdfAlternatives;
- if(watchRhythmPdfAlternatives)verifyWatchRhythmPdfAlternatives(watchRhythmPdfAlternatives,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRhythmPdfAlternativesHead=watchRhythmPdfAlternatives?watchRhythmPdfAlternatives.base:actualHead;
- const rhythmPdfAlternativesRawBlob=(ref,path)=>outerRawBlob(watchRhythmPdfAlternatives&&ref==='HEAD'&&WATCH_RHYTHM_PDF_ALTERNATIVES_SET.has(path)?watchRhythmPdfAlternatives.base:ref,path);
- const watchGzcAsc30Maritide=c.watchGzcAsc30Maritide;
- if(watchGzcAsc30Maritide)verifyWatchGzcAsc30Maritide(watchGzcAsc30Maritide,{head:preRhythmPdfAlternativesHead,read:rhythmPdfAlternativesRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preGzcAsc30MaritideHead=watchGzcAsc30Maritide?watchGzcAsc30Maritide.base:preRhythmPdfAlternativesHead;
- const gzcAsc30MaritideRawBlob=(ref,path)=>rhythmPdfAlternativesRawBlob(watchGzcAsc30Maritide&&ref==='HEAD'&&WATCH_GZC_ASC30_MARITIDE_SET.has(path)?watchGzcAsc30Maritide.base:ref,path);
- const watchRibupatideLy4329090=c.watchRibupatideLy4329090;
- if(watchRibupatideLy4329090)verifyWatchRibupatideLy4329090(watchRibupatideLy4329090,{head:preGzcAsc30MaritideHead,read:gzcAsc30MaritideRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRibupatideLy4329090Head=watchRibupatideLy4329090?watchRibupatideLy4329090.base:preGzcAsc30MaritideHead;
- const ribupatideLy4329090RawBlob=(ref,path)=>gzcAsc30MaritideRawBlob(watchRibupatideLy4329090&&ref==='HEAD'&&WATCH_RIBUPATIDE_LY4329090_SET.has(path)?watchRibupatideLy4329090.base:ref,path);
- const watchNovoHansohRenewal=c.watchNovoHansohRenewal;
- if(watchNovoHansohRenewal)verifyWatchNovoHansohRenewal(watchNovoHansohRenewal,{head:preRibupatideLy4329090Head,read:ribupatideLy4329090RawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preNovoHansohRenewalHead=watchNovoHansohRenewal?watchNovoHansohRenewal.base:preRibupatideLy4329090Head;
- const novoHansohRenewalRawBlob=(ref,path)=>ribupatideLy4329090RawBlob(watchNovoHansohRenewal&&ref==='HEAD'&&WATCH_NOVO_HANSOH_RENEWAL_SET.has(path)?watchNovoHansohRenewal.base:ref,path);
- const watchInternationalMaintenanceRenewal=c.watchInternationalMaintenanceRenewal;
- if(watchInternationalMaintenanceRenewal)verifyWatchInternationalMaintenanceRenewal(watchInternationalMaintenanceRenewal,{head:preNovoHansohRenewalHead,read:novoHansohRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preInternationalMaintenanceRenewalHead=watchInternationalMaintenanceRenewal?watchInternationalMaintenanceRenewal.base:preNovoHansohRenewalHead;
- const internationalMaintenanceRenewalRawBlob=(ref,path)=>novoHansohRenewalRawBlob(watchInternationalMaintenanceRenewal&&ref==='HEAD'&&WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SET.has(path)?watchInternationalMaintenanceRenewal.base:ref,path);
- const watchTaldefgrobepAttainGuardRepair=c.watchTaldefgrobepAttainGuardRepair;
- if(watchTaldefgrobepAttainGuardRepair)verifyWatchTaldefgrobepAttainGuardRepair(watchTaldefgrobepAttainGuardRepair,{head:preInternationalMaintenanceRenewalHead,read:internationalMaintenanceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preTaldefgrobepAttainGuardHead=watchTaldefgrobepAttainGuardRepair?watchTaldefgrobepAttainGuardRepair.base:preInternationalMaintenanceRenewalHead;
- const taldefgrobepAttainGuardRawBlob=(ref,path)=>internationalMaintenanceRenewalRawBlob(watchTaldefgrobepAttainGuardRepair&&ref==='HEAD'&&WATCH_TALDEFGROBEP_ATTAIN_GUARD_SET.has(path)?watchTaldefgrobepAttainGuardRepair.base:ref,path);
- const watchTaldefgrobepAttainRenewal=c.watchTaldefgrobepAttainRenewal;
- if(watchTaldefgrobepAttainRenewal)verifyWatchTaldefgrobepAttainRenewal(watchTaldefgrobepAttainRenewal,{head:preTaldefgrobepAttainGuardHead,read:taldefgrobepAttainGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preTaldefgrobepAttainHead=watchTaldefgrobepAttainRenewal?watchTaldefgrobepAttainRenewal.base:preTaldefgrobepAttainGuardHead;
- const taldefgrobepAttainRawBlob=(ref,path)=>taldefgrobepAttainGuardRawBlob(watchTaldefgrobepAttainRenewal&&ref==='HEAD'&&WATCH_TALDEFGROBEP_ATTAIN_RENEWAL_SET.has(path)?watchTaldefgrobepAttainRenewal.base:ref,path);
- const watchAlnylamReleaseGuardRepair=c.watchAlnylamReleaseGuardRepair;
- if(watchAlnylamReleaseGuardRepair)verifyWatchAlnylamReleaseGuardRepair(watchAlnylamReleaseGuardRepair,{head:preTaldefgrobepAttainHead,read:taldefgrobepAttainRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preAlnylamReleaseGuardRepairHead=watchAlnylamReleaseGuardRepair?watchAlnylamReleaseGuardRepair.base:preTaldefgrobepAttainHead;
- const alnylamReleaseGuardRepairRawBlob=(ref,path)=>taldefgrobepAttainRawBlob(watchAlnylamReleaseGuardRepair&&ref==='HEAD'&&WATCH_ALNYLAM_RELEASE_GUARD_REPAIR_SET.has(path)?watchAlnylamReleaseGuardRepair.base:ref,path);
- const watchAlnylamRnaiDiscovery=c.watchAlnylamRnaiDiscovery;
- if(watchAlnylamRnaiDiscovery)verifyWatchAlnylamRnaiDiscovery(watchAlnylamRnaiDiscovery,{head:preAlnylamReleaseGuardRepairHead,read:alnylamReleaseGuardRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preAlnylamHead=watchAlnylamRnaiDiscovery?watchAlnylamRnaiDiscovery.base:preAlnylamReleaseGuardRepairHead;
- const alnylamRawBlob=(ref,path)=>alnylamReleaseGuardRepairRawBlob(watchAlnylamRnaiDiscovery&&ref==='HEAD'&&WATCH_ALNYLAM_RNAI_SET.has(path)?watchAlnylamRnaiDiscovery.base:ref,path);
- const watchAzelapragRenewal=c.watchAzelapragRenewal;
- if(watchAzelapragRenewal)verifyWatchAzelapragRenewal(watchAzelapragRenewal,{head:preAlnylamHead,read:alnylamRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preAzelapragHead=watchAzelapragRenewal?watchAzelapragRenewal.base:preAlnylamHead;
- const azelapragRawBlob=(ref,path)=>alnylamRawBlob(watchAzelapragRenewal&&ref==='HEAD'&&WATCH_AZELAPRAG_RENEWAL_SET.has(path)?watchAzelapragRenewal.base:ref,path);
- const waistRollbackRetention=c.waistRollbackRetention;
- if(waistRollbackRetention)verifyWaistRollbackRetention(waistRollbackRetention,{head:preAzelapragHead,read:azelapragRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preWaistRollbackHead=waistRollbackRetention?waistRollbackRetention.base:preAzelapragHead;
- const waistRollbackRawBlob=(ref,path)=>azelapragRawBlob(waistRollbackRetention&&ref==='HEAD'&&WAIST_ROLLBACK_SET.has(path)?waistRollbackRetention.base:ref,path);
- const waistKeyboardSettle=c.waistKeyboardSettle;
- if(waistKeyboardSettle)verifyWaistKeyboardSettle(waistKeyboardSettle,{head:preWaistRollbackHead,read:waistRollbackRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preWaistSettleHead=waistKeyboardSettle?waistKeyboardSettle.base:preWaistRollbackHead;
- const waistSettleRawBlob=(ref,path)=>waistRollbackRawBlob(waistKeyboardSettle&&ref==='HEAD'&&WAIST_SETTLE_SET.has(path)?waistKeyboardSettle.base:ref,path);
- const waistReadingStrip=c.waistReadingStrip;
- if(waistReadingStrip)verifyWaistReadingStrip(waistReadingStrip,{head:preWaistSettleHead,read:waistSettleRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preWaistStripHead=waistReadingStrip?waistReadingStrip.base:preWaistSettleHead;
- const waistStripRawBlob=(ref,path)=>waistSettleRawBlob(waistReadingStrip&&ref==='HEAD'&&WAIST_STRIP_SET.has(path)?waistReadingStrip.base:ref,path);
- const twoSourceReleaseGuardRepair=c.watchTwoSourceFreshnessReleaseGuardRepair;
- if(twoSourceReleaseGuardRepair)verifyWatchTwoSourceReleaseGuardRepair(twoSourceReleaseGuardRepair,{head:preWaistStripHead,read:waistStripRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preTwoSourceReleaseGuardRepairHead=twoSourceReleaseGuardRepair?twoSourceReleaseGuardRepair.base:preWaistStripHead;
- const twoSourceReleaseGuardRepairRawBlob=(ref,path)=>waistStripRawBlob(twoSourceReleaseGuardRepair&&ref==='HEAD'&&WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_SET.has(path)?twoSourceReleaseGuardRepair.base:ref,path);
- const twoSourceFreshness=c.watchTwoSourceFreshness;
- if(twoSourceFreshness)verifyWatchTwoSourceFreshness(twoSourceFreshness,{head:preTwoSourceReleaseGuardRepairHead,read:twoSourceReleaseGuardRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preTwoSourceFreshnessHead=twoSourceFreshness?twoSourceFreshness.base:preTwoSourceReleaseGuardRepairHead;
- const twoSourceFreshnessRawBlob=(ref,path)=>twoSourceReleaseGuardRepairRawBlob(twoSourceFreshness&&ref==='HEAD'&&WATCH_TWO_SOURCE_FRESHNESS_SET.has(path)?twoSourceFreshness.base:ref,path);
- const rgtVctReleaseTestRepair=c.watchRgtVctReleaseTestRepair;
- if(rgtVctReleaseTestRepair)verifyWatchRgtVctReleaseTestRepair(rgtVctReleaseTestRepair,{head:preTwoSourceFreshnessHead,read:twoSourceFreshnessRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRgtVctReleaseTestRepairHead=rgtVctReleaseTestRepair?rgtVctReleaseTestRepair.base:preTwoSourceFreshnessHead;
- const rgtVctReleaseTestRepairRawBlob=(ref,path)=>twoSourceFreshnessRawBlob(rgtVctReleaseTestRepair&&ref==='HEAD'&&WATCH_RGT_VCT_RELEASE_TEST_REPAIR_SET.has(path)?rgtVctReleaseTestRepair.base:ref,path);
- const rgtVctDriftCategoryOverlapRepair=c.watchRgtVctDriftCategoryOverlapRepair;
- if(rgtVctDriftCategoryOverlapRepair)verifyWatchRgtVctDriftCategoryOverlap(rgtVctDriftCategoryOverlapRepair,{head:preRgtVctReleaseTestRepairHead,read:rgtVctReleaseTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRgtVctDriftCategoryOverlapHead=rgtVctDriftCategoryOverlapRepair?rgtVctDriftCategoryOverlapRepair.base:preRgtVctReleaseTestRepairHead;
- const rgtVctDriftCategoryOverlapRawBlob=(ref,path)=>rgtVctReleaseTestRepairRawBlob(rgtVctDriftCategoryOverlapRepair&&ref==='HEAD'&&WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SET.has(path)?rgtVctDriftCategoryOverlapRepair.base:ref,path);
- const rgtVctDriftCategoryRepair=c.watchRgtVctDriftCategoryRepair;
- if(rgtVctDriftCategoryRepair)verifyWatchRgtVctDriftCategoryRepair(rgtVctDriftCategoryRepair,{head:preRgtVctDriftCategoryOverlapHead,read:rgtVctDriftCategoryOverlapRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRgtVctDriftCategoryRepairHead=rgtVctDriftCategoryRepair?rgtVctDriftCategoryRepair.base:preRgtVctDriftCategoryOverlapHead;
- const rgtVctDriftCategoryRepairRawBlob=(ref,path)=>rgtVctDriftCategoryOverlapRawBlob(rgtVctDriftCategoryRepair&&ref==='HEAD'&&WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SET.has(path)?rgtVctDriftCategoryRepair.base:ref,path);
- const rgtVctReleaseGuardRepair=c.watchRgtVctReleaseGuardRepair;
- if(rgtVctReleaseGuardRepair)verifyWatchRgtVctReleaseGuardRepair(rgtVctReleaseGuardRepair,{head:preRgtVctDriftCategoryRepairHead,read:rgtVctDriftCategoryRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRgtVctReleaseGuardRepairHead=rgtVctReleaseGuardRepair?rgtVctReleaseGuardRepair.base:preRgtVctDriftCategoryRepairHead;
- const rgtVctReleaseGuardRepairRawBlob=(ref,path)=>rgtVctDriftCategoryRepairRawBlob(rgtVctReleaseGuardRepair&&ref==='HEAD'&&WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SET.has(path)?rgtVctReleaseGuardRepair.base:ref,path);
- const rgtVctSourceRenewal=c.watchRgtVctSourceRenewal;
- if(rgtVctSourceRenewal)verifyWatchRgtVctSourceRenewal(rgtVctSourceRenewal,{head:preRgtVctReleaseGuardRepairHead,read:rgtVctReleaseGuardRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRgtVctSourceRenewalHead=rgtVctSourceRenewal?rgtVctSourceRenewal.base:preRgtVctReleaseGuardRepairHead;
- const rgtVctSourceRenewalRawBlob=(ref,path)=>rgtVctReleaseGuardRepairRawBlob(rgtVctSourceRenewal&&ref==='HEAD'&&WATCH_RGT_VCT_RENEWAL_SET.has(path)?rgtVctSourceRenewal.base:ref,path);
- const programmeSummaryReleaseGuardRepair=c.watchProgrammeSummaryReleaseGuardRepair;
- if(programmeSummaryReleaseGuardRepair)verifyWatchProgrammeSummaryReleaseGuardRepair(programmeSummaryReleaseGuardRepair,{head:preRgtVctSourceRenewalHead,read:rgtVctSourceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preProgrammeSummaryReleaseGuardHead=programmeSummaryReleaseGuardRepair?programmeSummaryReleaseGuardRepair.base:preRgtVctSourceRenewalHead;
- const programmeSummaryReleaseGuardRawBlob=(ref,path)=>rgtVctSourceRenewalRawBlob(programmeSummaryReleaseGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SET.has(path)?programmeSummaryReleaseGuardRepair.base:ref,path);
- const programmeSummaryQueueMatcherRepair=c.watchProgrammeSummaryQueueMatcherRepair;
- if(programmeSummaryQueueMatcherRepair)verifyWatchProgrammeSummaryQueueMatcherRepair(programmeSummaryQueueMatcherRepair,{head:preProgrammeSummaryReleaseGuardHead,read:programmeSummaryReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preProgrammeSummaryQueueMatcherHead=programmeSummaryQueueMatcherRepair?programmeSummaryQueueMatcherRepair.base:preProgrammeSummaryReleaseGuardHead;
- const programmeSummaryQueueMatcherRawBlob=(ref,path)=>programmeSummaryReleaseGuardRawBlob(programmeSummaryQueueMatcherRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_MATCHER_SET.has(path)?programmeSummaryQueueMatcherRepair.base:ref,path);
- const programmeSummaryQueueGuardRepair=c.watchProgrammeSummaryQueueGuardRepair;
- if(programmeSummaryQueueGuardRepair)verifyWatchProgrammeSummaryQueueGuardRepair(programmeSummaryQueueGuardRepair,{head:preProgrammeSummaryQueueMatcherHead,read:programmeSummaryQueueMatcherRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preProgrammeSummaryQueueGuardHead=programmeSummaryQueueGuardRepair?programmeSummaryQueueGuardRepair.base:preProgrammeSummaryQueueMatcherHead;
- const programmeSummaryQueueGuardRawBlob=(ref,path)=>programmeSummaryQueueMatcherRawBlob(programmeSummaryQueueGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_GUARD_SET.has(path)?programmeSummaryQueueGuardRepair.base:ref,path);
- const programmeSummaryQueue=c.watchProgrammeSummaryQueue;
- if(programmeSummaryQueue)verifyWatchProgrammeSummaryQueue(programmeSummaryQueue,{head:preProgrammeSummaryQueueGuardHead,read:programmeSummaryQueueGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preProgrammeSummaryQueueHead=programmeSummaryQueue?programmeSummaryQueue.base:preProgrammeSummaryQueueGuardHead;
- const programmeSummaryQueueRawBlob=(ref,path)=>programmeSummaryQueueGuardRawBlob(programmeSummaryQueue&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_QUEUE_SET.has(path)?programmeSummaryQueue.base:ref,path);
- const srsd384ReleaseGuardRepair=c.watchSrsd384ReleaseGuardRepair;
- if(srsd384ReleaseGuardRepair)verifyWatchSrsd384ReleaseGuardRepair(srsd384ReleaseGuardRepair,{head:preProgrammeSummaryQueueHead,read:programmeSummaryQueueRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSrsd384ReleaseGuardHead=srsd384ReleaseGuardRepair?srsd384ReleaseGuardRepair.base:preProgrammeSummaryQueueHead;
- const srsd384ReleaseGuardRawBlob=(ref,path)=>programmeSummaryQueueRawBlob(srsd384ReleaseGuardRepair&&ref==='HEAD'&&WATCH_SRSD384_RELEASE_GUARD_SET.has(path)?srsd384ReleaseGuardRepair.base:ref,path);
- const srsd384Renewal=c.watchSrsd384Renewal;
- if(srsd384Renewal)verifyWatchSrsd384Renewal(srsd384Renewal,{head:preSrsd384ReleaseGuardHead,read:srsd384ReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSrsd384RenewalHead=srsd384Renewal?srsd384Renewal.base:preSrsd384ReleaseGuardHead;
- const srsd384RenewalRawBlob=(ref,path)=>srsd384ReleaseGuardRawBlob(srsd384Renewal&&ref==='HEAD'&&WATCH_SRSD384_RENEWAL_SET.has(path)?srsd384Renewal.base:ref,path);
- const vk2735ZenagamtideRegistry=c.watchVk2735ZenagamtideRegistry;
- if(vk2735ZenagamtideRegistry)verifyWatchVk2735ZenagamtideRegistry(vk2735ZenagamtideRegistry,{head:preSrsd384RenewalHead,read:srsd384RenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preVk2735ZenagamtideHead=vk2735ZenagamtideRegistry?vk2735ZenagamtideRegistry.base:preSrsd384RenewalHead;
- const vk2735ZenagamtideRawBlob=(ref,path)=>srsd384RenewalRawBlob(vk2735ZenagamtideRegistry&&ref==='HEAD'&&WATCH_VK2735_ZENAGAMTIDE_SET.has(path)?vk2735ZenagamtideRegistry.base:ref,path);
- const zp6590ReleaseGuardRepair=c.watchZp6590ReleaseGuardRepair;
- if(zp6590ReleaseGuardRepair)verifyWatchZp6590ReleaseGuardRepair(zp6590ReleaseGuardRepair,{head:preVk2735ZenagamtideHead,read:vk2735ZenagamtideRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preZp6590ReleaseGuardHead=zp6590ReleaseGuardRepair?zp6590ReleaseGuardRepair.base:preVk2735ZenagamtideHead;
- const zp6590ReleaseGuardRawBlob=(ref,path)=>vk2735ZenagamtideRawBlob(zp6590ReleaseGuardRepair&&ref==='HEAD'&&WATCH_ZP6590_RELEASE_GUARD_SET.has(path)?zp6590ReleaseGuardRepair.base:ref,path);
- const zp6590RegistryRenewal=c.watchZp6590RegistryReviewRenewal;
- if(zp6590RegistryRenewal)verifyWatchZp6590RegistryRenewal(zp6590RegistryRenewal,{head:preZp6590ReleaseGuardHead,read:zp6590ReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preZp6590RegistryRenewalHead=zp6590RegistryRenewal?zp6590RegistryRenewal.base:preZp6590ReleaseGuardHead;
- const zp6590RegistryRenewalRawBlob=(ref,path)=>zp6590ReleaseGuardRawBlob(zp6590RegistryRenewal&&ref==='HEAD'&&WATCH_ZP6590_REGISTRY_RENEWAL_SET.has(path)?zp6590RegistryRenewal.base:ref,path);
- const overdueRenewal=c.watchOverduePrimaryReviewRenewal;
- if(overdueRenewal)verifyWatchOverdueRenewal(overdueRenewal,{head:preZp6590RegistryRenewalHead,read:zp6590RegistryRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preOverdueRenewalHead=overdueRenewal?overdueRenewal.base:preZp6590RegistryRenewalHead;
- const overdueRenewalRawBlob=(ref,path)=>zp6590RegistryRenewalRawBlob(overdueRenewal&&ref==='HEAD'&&WATCH_OVERDUE_RENEWAL_SET.has(path)?overdueRenewal.base:ref,path);
- const hubTransport=c.obesityHubTransport;
- if(hubTransport)verifyObesityHubTransport(hubTransport,{head:preOverdueRenewalHead,read:overdueRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preHubTransportHead=hubTransport?hubTransport.base:preOverdueRenewalHead;
- const hubTransportRawBlob=(ref,path)=>overdueRenewalRawBlob(hubTransport&&ref==='HEAD'&&OBESITY_HUB_TRANSPORT_SET.has(path)?hubTransport.base:ref,path);
- const hubRollback=c.obesityHubRollback;
- if(hubRollback)verifyObesityHubRollback(hubRollback,{head:preHubTransportHead,read:hubTransportRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preHubRollbackHead=hubRollback?hubRollback.base:preHubTransportHead;
- const hubRollbackRawBlob=(ref,path)=>hubTransportRawBlob(hubRollback&&ref==='HEAD'&&OBESITY_HUB_ROLLBACK_SET.has(path)?hubRollback.base:ref,path);
- const hubRepair=c.obesityHubRepair;
- if(hubRepair)verifyObesityHubRepair(hubRepair,{head:preHubRollbackHead,read:hubRollbackRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preHubRepairHead=hubRepair?hubRepair.base:preHubRollbackHead;
- const hubRepairRawBlob=(ref,path)=>hubRollbackRawBlob(hubRepair&&ref==='HEAD'&&OBESITY_HUB_REPAIR_SET.has(path)?hubRepair.base:ref,path);
- const practical=c.obesityPractical;
- if(practical)verifyObesityPractical(practical,{head:preHubRepairHead,read:hubRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const prePracticalHead=practical?practical.base:preHubRepairHead;
- const practicalRawBlob=(ref,path)=>hubRepairRawBlob(practical&&ref==='HEAD'&&OBESITY_PRACTICAL_SET.has(path)?practical.base:ref,path);
- const hubV2=c.obesityHubV2;
- if(hubV2)verifyObesityHubV2(hubV2,{head:prePracticalHead,read:practicalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preHubV2Head=hubV2?hubV2.base:prePracticalHead;
- const hubV2RawBlob=(ref,path)=>practicalRawBlob(hubV2&&ref==='HEAD'&&OBESITY_HUB_V2_SET.has(path)?hubV2.base:ref,path);
- const wegovyRenewal=c.watchWegovySourceRenewal;
- const preWegovyRenewalHead=wegovyRenewal?wegovyRenewal.base:preHubV2Head;
- const wegovyRenewalRawBlob=(ref,path)=>hubV2RawBlob(wegovyRenewal&&ref==='HEAD'&&WATCH_WEGOVY_RENEWAL_SET.has(path)?wegovyRenewal.base:ref,path);
- const reporting=c.organicMeasurementIntegration;
- if(reporting)verifyOrganicMeasurement(reporting,{head:preWegovyRenewalHead,read:wegovyRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preReportingHead=reporting?reporting.base:preWegovyRenewalHead;
- const reportingRawBlob=(ref,path)=>wegovyRenewalRawBlob(reporting&&ref==='HEAD'&&ORGANIC_MEASUREMENT_SET.has(path)?reporting.base:ref,path);
- const ascletisOral=c.watchAscletisOralPortfolio;
- if(ascletisOral)verifyWatchAscletisOralPortfolio(ascletisOral,{head:preReportingHead,read:reportingRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preAscletisOralHead=ascletisOral?ascletisOral.base:preReportingHead;
- const ascletisOralRawBlob=(ref,path)=>reportingRawBlob(ascletisOral&&ref==='HEAD'&&WATCH_ASCLETIS_ORAL_SET.has(path)?ascletisOral.base:ref,path);
- const officialAlternatives=c.watchOfficialAlternatives;
- if(officialAlternatives)verifyWatchOfficialAlternatives(officialAlternatives,{head:preAscletisOralHead,read:ascletisOralRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preOfficialAlternativesHead=officialAlternatives?officialAlternatives.base:preAscletisOralHead;
- const officialAlternativesRawBlob=(ref,path)=>ascletisOralRawBlob(officialAlternatives&&ref==='HEAD'&&WATCH_OFFICIAL_ALTERNATIVES_SET.has(path)?officialAlternatives.base:ref,path);
- const supportContent=c.supportContentUpgrade;
- if(supportContent)verifySupportContent(supportContent,{head:preOfficialAlternativesHead,read:officialAlternativesRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSupportContentHead=supportContent?supportContent.base:preOfficialAlternativesHead;
- const supportContentRawBlob=(ref,path)=>officialAlternativesRawBlob(supportContent&&ref==='HEAD'&&SUPPORT_CONTENT_SET.has(path)?supportContent.base:ref,path);
- const continuityContent=c.continuityContentUpgrade;
- if(continuityContent)verifyContinuityContent(continuityContent,{head:preSupportContentHead,read:supportContentRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preContinuityContentHead=continuityContent?continuityContent.base:preSupportContentHead;
- const continuityContentRawBlob=(ref,path)=>supportContentRawBlob(continuityContent&&ref==='HEAD'&&CONTINUITY_CONTENT_SET.has(path)?continuityContent.base:ref,path);
- const pendingDelayedQueueRepair=c.watchPendingDelayedQueueRepair;
- if(pendingDelayedQueueRepair)verifyWatchPendingDelayedQueueRepair(pendingDelayedQueueRepair,{head:preContinuityContentHead,read:continuityContentRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const prePendingDelayedQueueHead=pendingDelayedQueueRepair?pendingDelayedQueueRepair.base:preContinuityContentHead;
- const pendingDelayedQueueRawBlob=(ref,path)=>continuityContentRawBlob(pendingDelayedQueueRepair&&ref==='HEAD'&&WATCH_PENDING_DELAYED_QUEUE_SET.has(path)?pendingDelayedQueueRepair.base:ref,path);
- const preclinicalReleaseTestRepair=c.watchPreclinicalReleaseTestRepair;
- if(preclinicalReleaseTestRepair)verifyWatchPreclinicalReleaseTestRepair(preclinicalReleaseTestRepair,{head:prePendingDelayedQueueHead,read:pendingDelayedQueueRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preReleaseTestRepairHead=preclinicalReleaseTestRepair?preclinicalReleaseTestRepair.base:prePendingDelayedQueueHead;
- const releaseTestRepairRawBlob=(ref,path)=>pendingDelayedQueueRawBlob(preclinicalReleaseTestRepair&&ref==='HEAD'&&WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET.has(path)?preclinicalReleaseTestRepair.base:ref,path);
- const preclinical=c.watchPreclinicalDiscoveryUpdate;
- if(preclinical)verifyWatchPreclinicalDiscoveryUpdate(preclinical,{head:preReleaseTestRepairHead,read:releaseTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const prePreclinicalHead=preclinical?preclinical.base:preReleaseTestRepairHead;
- const preclinicalRawBlob=(ref,path)=>releaseTestRepairRawBlob(preclinical&&ref==='HEAD'&&WATCH_PRECLINICAL_DISCOVERY_SET.has(path)?preclinical.base:ref,path);
- const maleArrival=c.maleObesityArrivalRepair;
- if(maleArrival)verifyMaleObesityArrival(maleArrival,{head:prePreclinicalHead,read:preclinicalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preArrivalHead=maleArrival?maleArrival.base:prePreclinicalHead;
- const arrivalRawBlob=(ref,path)=>preclinicalRawBlob(maleArrival&&ref==='HEAD'&&MALE_OBESITY_ARRIVAL_SET.has(path)?maleArrival.base:ref,path);
- const maleAcceptance=c.maleObesityAcceptanceRepair;
- if(maleAcceptance)verifyMaleObesityAcceptance(maleAcceptance,{head:preArrivalHead,read:arrivalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preAcceptanceHead=maleAcceptance?maleAcceptance.base:preArrivalHead;
- const acceptanceRawBlob=(ref,path)=>arrivalRawBlob(maleAcceptance&&ref==='HEAD'&&MALE_OBESITY_ACCEPTANCE_SET.has(path)?maleAcceptance.base:ref,path);
- const maleCloseout=c.maleObesityReleaseCloseout;
- if(maleCloseout)verifyMaleObesityCloseout(maleCloseout,{head:preAcceptanceHead,read:acceptanceRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preCloseoutHead=maleCloseout?maleCloseout.base:preAcceptanceHead;
- const closeoutRawBlob=(ref,path)=>acceptanceRawBlob(maleCloseout&&ref==='HEAD'&&MALE_OBESITY_CLOSEOUT_SET.has(path)?maleCloseout.base:ref,path);
- const backlog=c.watchBacklogUpdate;
- if(backlog)verifyWatchBacklogUpdate(backlog,{head:preCloseoutHead,read:closeoutRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preBacklogHead=backlog?backlog.base:preCloseoutHead;
- const backlogRawBlob=(ref,path)=>closeoutRawBlob(backlog&&ref==='HEAD'&&WATCH_BACKLOG_SET.has(path)?backlog.base:ref,path);
- const maleObesity=c.maleObesityPillar;
- if(maleObesity)verifyMaleObesityPillar(maleObesity,{head:preBacklogHead,read:backlogRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preMaleObesityHead=maleObesity?maleObesity.base:preBacklogHead;
- const maleObesityRawBlob=(ref,path)=>backlogRawBlob(maleObesity&&ref==='HEAD'&&MALE_OBESITY_SET.has(path)?maleObesity.base:ref,path);
- const biomarker=c.togetherBiomarkerUpdate;
- if(biomarker)verifyTogetherBiomarkerUpdate(biomarker,{head:preMaleObesityHead,read:maleObesityRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preBiomarkerHead=biomarker?biomarker.base:preMaleObesityHead;
- const biomarkerRawBlob=(ref,path)=>maleObesityRawBlob(biomarker&&ref==='HEAD'&&TOGETHER_BIOMARKER_SET.has(path)?biomarker.base:ref,path);
- const lateWatch=c.lateWatchFactualUpdate;
- if(lateWatch)verifyLateWatchFactualUpdate(lateWatch,{head:preBiomarkerHead,read:biomarkerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preLateWatchHead=lateWatch?lateWatch.base:preBiomarkerHead;
- const lateWatchRawBlob=(ref,path)=>biomarkerRawBlob(lateWatch&&ref==='HEAD'&&LATE_WATCH_SET.has(path)?lateWatch.base:ref,path);
- const continuity=c.continuityPreservationRepair;
- if(continuity)verifyContinuityPreservationRepair(continuity,{head:preLateWatchHead,read:lateWatchRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preContinuityHead=continuity?continuity.base:preLateWatchHead;
- const continuityRawBlob=(ref,path)=>lateWatchRawBlob(continuity&&ref==='HEAD'&&CONTINUITY_PRESERVATION_SET.has(path)?continuity.base:ref,path);
- const toolBuild=c.toolGuidanceProductionBuildGate;
- if(toolBuild)verifyToolGuidanceBuildGate(toolBuild,{head:preContinuityHead,read:continuityRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preToolBuildHead=toolBuild?toolBuild.base:preContinuityHead;
- const originalRawBlob=(ref,path)=>continuityRawBlob(toolBuild&&ref==='HEAD'&&TOOL_GUIDANCE_BUILD_GATE_SET.has(path)?toolBuild.base:ref,path);
- const passport=c.passportPreservationRepair;
- if(passport)verifyPassportPreservationRepair(passport,{head:preToolBuildHead,read:originalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const prePassportHead=passport?passport.base:preToolBuildHead;
- const passportRawBlob=(ref,path)=>originalRawBlob(passport&&ref==='HEAD'&&PASSPORT_PRESERVATION_SET.has(path)?passport.base:ref,path);
- const bundled=c.bundledToolRuntimeRepair;
- if(bundled)verifyBundledToolRuntimeRepair(bundled,{head:prePassportHead,read:passportRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preBundledHead=bundled?bundled.base:prePassportHead;
- const baseRawBlob=(ref,path)=>passportRawBlob(bundled&&ref==='HEAD'&&BUNDLED_TOOL_RUNTIME_SET.has(path)?bundled.base:ref,path);
- const toolRelease=c.toolReleaseAutomation;
- if(toolRelease)verifyToolReleaseAutomation(toolRelease,{head:preBundledHead,read:baseRawBlob,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preToolHead=toolRelease?toolRelease.base:preBundledHead;
- const preToolBlob=(ref,path)=>baseRawBlob(toolRelease&&ref==='HEAD'&&[...TOOL_RELEASE_AUTOMATION_PATHS,...TOOL_RELEASE_AUTOMATION_MAINTENANCE].includes(path)?toolRelease.base:ref,path);
- const restored=c.restoredLaterRuntimeRetention;
- if(restored)verifyRestoredLaterRetention(restored,{head:preToolHead,read:preToolBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const restoredHead=restored?restored.base:preToolHead;
- const rawBlob=(ref,path)=>preToolBlob(restored&&ref==='HEAD'&&RESTORED_LATER_RETENTION_SET.has(path)?restored.base:ref,path);
- const laterUnattributed=c.laterUnattributedWatchRuntimeRecovery;
- if(laterUnattributed)verifyLaterUnattributedWatchRecovery(laterUnattributed,{head:restoredHead,read:rawBlob,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const laterUnattributedHead=laterUnattributed?laterUnattributed.priorComposition:restoredHead;
- const laterUnattributedRead=(ref,path)=>rawBlob(laterUnattributed&&ref==='HEAD'&&LATER_UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)?laterUnattributed.priorComposition:ref,path);
- const unattributed=c.unattributedWatchRuntimeRecovery;
- if(unattributed)verifyUnattributedWatchRecovery(unattributed,{head:laterUnattributedHead,read:laterUnattributedRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const unattributedHead=unattributed?unattributed.base:laterUnattributedHead;
- const unattributedRead=(ref,path)=>laterUnattributedRead(unattributed&&ref==='HEAD'&&UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)?unattributed.base:ref,path);
- const archive=c.toolSchemaArchive;
- if(archive)verifyToolSchemaArchive(archive,{head:unattributedHead,read:unattributedRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const head=archive?archive.base:unattributedHead;
- const readBlob=(ref,path)=>unattributedRead(archive&&ref==='HEAD'&&TOOL_SCHEMA_ARCHIVE_MAINTENANCE.includes(path)?archive.base:ref,path);
- const client=c.tabletClient;
- if(client)verifyTabletClientExtension(client,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const clientHead=client?client.base:head;
- const clientRead=(ref,path)=>readBlob(client&&ref==='HEAD'&&TABLET_CLIENT_SET.has(path)?client.base:ref,path);
- const treatment=c.myTreatment;
- if(treatment)verifyMyTreatment(treatment,{head:clientHead,read:clientRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const treatmentHead=treatment?treatment.base:clientHead;
- const treatmentRead=(ref,path)=>clientRead(treatment&&ref==='HEAD'&&MY_TREATMENT_SET.has(path)?treatment.base:ref,path);
- const tablet=c.tabletWording;
- if(tablet)verifyTabletWordingExtension(tablet,{head:treatmentHead,read:treatmentRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const tabletHead=tablet?tablet.base:treatmentHead;
- const tabletRead=(ref,path)=>treatmentRead(tablet&&ref==='HEAD'&&TABLET_WORDING_SET.has(path)?tablet.base:ref,path);
- const ownedDispatch=c.watchOwnedDispatch;
- if(ownedDispatch)verifyWatchOwnedDispatch(ownedDispatch,{head:tabletHead,read:tabletRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const ownedDispatchHead=ownedDispatch?ownedDispatch.base:tabletHead;
- const ownedDispatchRead=(ref,path)=>tabletRead(ownedDispatch&&ref==='HEAD'&&WATCH_OWNED_DISPATCH_SET.has(path)?ownedDispatch.base:ref,path);
- const runtimeDispatch=c.watchRuntimeDispatch;
- if(runtimeDispatch)verifyWatchRuntimeDispatch(runtimeDispatch,{head:ownedDispatchHead,read:ownedDispatchRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const runtimeDispatchHead=runtimeDispatch?runtimeDispatch.base:head;
- const runtimeDispatchRead=(ref,path)=>ownedDispatchRead(runtimeDispatch&&ref==='HEAD'&&WATCH_RUNTIME_DISPATCH_SET.has(path)?runtimeDispatch.base:ref,path);
- const runtimeBaseline=c.watchRuntimeBaseline;
- if(runtimeBaseline)verifyWatchRuntimeBaseline(runtimeBaseline,{head:runtimeDispatchHead,read:runtimeDispatchRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const runtimeBaselineHead=runtimeBaseline?runtimeBaseline.base:head;
- const runtimeBaselineRead=(ref,path)=>runtimeDispatchRead(runtimeBaseline&&ref==='HEAD'&&WATCH_RUNTIME_BASELINE_SET.has(path)?runtimeBaseline.base:ref,path);
- const footerComposition=c.sharedFooterCompositionProof;
- if(footerComposition)verifySharedFooterComposition(footerComposition,{head:runtimeBaselineHead,read:runtimeBaselineRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const footerCompositionHead=footerComposition?footerComposition.base:runtimeBaselineHead;
- const footerCompositionRead=(ref,path)=>runtimeBaselineRead(footerComposition&&ref==='HEAD'&&SHARED_FOOTER_COMPOSITION_SET.has(path)?footerComposition.base:ref,path);
- const hstsPublicWording=c.watchHstsPublicWording;
- if(hstsPublicWording)verifyWatchHstsPublicWording(hstsPublicWording,{head:footerCompositionHead,read:footerCompositionRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const hstsPublicWordingHead=hstsPublicWording?hstsPublicWording.base:footerCompositionHead;
- const hstsPublicWordingRead=(ref,path)=>footerCompositionRead(hstsPublicWording&&ref==='HEAD'&&WATCH_HSTS_PUBLIC_WORDING_SET.has(path)?hstsPublicWording.base:ref,path);
- const hstsDiagnostic=c.watchHstsDiagnostic;
- if(hstsDiagnostic)verifyWatchHstsDiagnostic(hstsDiagnostic,{head:hstsPublicWordingHead,read:hstsPublicWordingRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const hstsDiagnosticHead=hstsDiagnostic?hstsDiagnostic.base:hstsPublicWordingHead;
- const hstsDiagnosticRead=(ref,path)=>hstsPublicWordingRead(hstsDiagnostic&&ref==='HEAD'&&WATCH_HSTS_DIAGNOSTIC_SET.has(path)?hstsDiagnostic.base:ref,path);
- const hsts=c.watchHsts;
- if(hsts)verifyWatchHsts(hsts,{head:hstsDiagnosticHead,read:hstsDiagnosticRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const hstsHead=hsts?hsts.base:hstsDiagnosticHead;
- const hstsRead=(ref,path)=>hstsDiagnosticRead(hsts&&ref==='HEAD'&&WATCH_HSTS_SET.has(path)?hsts.base:ref,path);
- const diagnostic=c.watchBelieveDiagnostic;
- if(diagnostic)verifyWatchBelieveDiagnostic(diagnostic,{head:hstsHead,read:hstsRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const diagnosticHead=diagnostic?diagnostic.base:hstsHead;
- const diagnosticRead=(ref,path)=>hstsRead(diagnostic&&ref==='HEAD'&&WATCH_BELIEVE_DIAGNOSTIC_SET.has(path)?diagnostic.base:ref,path);
- const believe=c.watchBelieveEvidence;
- if(believe)verifyWatchBelieveEvidence(believe,{head:diagnosticHead,read:diagnosticRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const believeHead=believe?believe.base:diagnosticHead;
- const believeRead=(ref,path)=>diagnosticRead(believe&&ref==='HEAD'&&WATCH_BELIEVE_SET.has(path)?believe.base:ref,path);
- const memberRetry=c.memberProofTransportRetry;
- if(memberRetry)verifyMemberProofRetry(memberRetry,{head:believeHead,read:believeRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const memberRetryHead=memberRetry?memberRetry.base:believeHead;
- const memberRetryRead=(ref,path)=>believeRead(memberRetry&&ref==='HEAD'&&MEMBER_PROOF_RETRY_SET.has(path)?memberRetry.base:ref,path);
- const news=c.newsSecurityPolicy;
- if(news)verifyNewsSecurity(news,{head:memberRetryHead,read:memberRetryRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const newsHead=news?news.base:memberRetryHead;
- const newsRead=(ref,path)=>memberRetryRead(news&&ref==='HEAD'&&NEWS_SECURITY_SET.has(path)?news.base:ref,path);
- const closeout=c.programmeLiveCloseout;
- if(closeout)verifyProgrammeCloseout(closeout,{head:newsHead,read:newsRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const closeoutHead=closeout?closeout.base:newsHead;
- const closeoutRead=(ref,path)=>newsRead(closeout&&ref==='HEAD'&&PROGRAMME_CLOSEOUT_SET.has(path)?closeout.base:ref,path);
- const serving=c.servingSeoCapture;
- if(serving)verifyServingSeoCapture(serving,{head:closeoutHead,read:closeoutRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const servingHead=serving?serving.base:closeoutHead;
- const servingRead=(ref,path)=>closeoutRead(serving&&ref==='HEAD'&&SERVING_SEO_SET.has(path)?serving.base:ref,path);
- const logout=c.logoutNavigationAdoption;
- if(logout)verifyLogoutAdoption(logout,{head:servingHead,read:servingRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const logoutHead=logout?logout.base:servingHead;
- const logoutRead=(ref,path)=>servingRead(logout&&ref==='HEAD'&&LOGOUT_ADOPTION_SET.has(path)?logout.base:ref,path);
- const attempt=c.reloadAttemptProof;
- if(attempt)verifyReloadAttemptExtension(attempt,{head:logoutHead,read:logoutRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const attemptHead=attempt?attempt.base:logoutHead;
- const attemptRead=(ref,path)=>logoutRead(attempt&&ref==='HEAD'&&RELOAD_ATTEMPT_SET.has(path)?attempt.base:ref,path);
- const anchor=c.oralCanonicalRepair;
- if(anchor)verifyOralCanonicalRepair(anchor,{head:attemptHead,read:attemptRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const anchorHead=anchor?anchor.base:attemptHead;
- const anchorRead=(ref,path)=>attemptRead(anchor&&ref==='HEAD'&&ORAL_CANONICAL_SET.has(path)?anchor.base:ref,path);
- const nhs=c.nhsArticleProofRefresh;
- if(nhs)verifyNhsArticleProofRefresh(nhs,{head:anchorHead,read:anchorRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const nhsHead=nhs?nhs.base:anchorHead;
- const nhsRead=(ref,path)=>anchorRead(nhs&&ref==='HEAD'&&NHS_ARTICLE_PROOF_SET.has(path)?nhs.base:ref,path);
- // Validate the exact current serving rollback receipt before older views.
- const supportRollback=c.supportRollbackRefresh;
- if(supportRollback)verifySupportRollbackRefresh(supportRollback,{head:nhsHead,read:nhsRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const supportHead=supportRollback?supportRollback.base:nhsHead;
- const supportRead=(ref,path)=>nhsRead(supportRollback&&ref==='HEAD'&&SUPPORT_ROLLBACK_SET.has(path)?supportRollback.base:ref,path);
- // Validate raw retry bytes before exposing the exact prior approved release.
- const oral=c.oralLiveDispatchGuard;
- if(oral)verifyOralLiveDispatchGuard(oral,{head:supportHead,read:supportRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const oralHead=oral?oral.base:supportHead;
- const oralRead=(ref,path)=>supportRead(oral&&ref==='HEAD'&&ORAL_LIVE_DISPATCH_SET.has(path)?oral.base:ref,path);
- const retry=c.publicToolProofRetry;
- if(retry)verifyPublicToolProofRetry(retry,{head:oralHead,read:oralRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const retryHead=retry?retry.base:oralHead;
- const retryRead=(ref,path)=>oralRead(retry&&ref==='HEAD'&&PUBLIC_TOOL_PROOF_RETRY_SET.has(path)?retry.base:ref,path);
- // Validate the finite Programme amendment before exposing the previous release.
- const preflight=c.programmeDayPreflight;
- if(preflight)verifyProgrammeDayPreflightExtension(preflight,{head:retryHead,read:retryRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const currentHead=preflight?preflight.base:retryHead;
- const currentRead=(ref,path)=>retryRead(preflight&&ref==='HEAD'&&PROGRAMME_PREFLIGHT_PATHS.has(path)?preflight.base:ref,path);
- const day=c.programmeDay;
- if(day)verifyProgrammeDayExtension(day,{head:currentHead,read:currentRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const previousHead=day?day.base:currentHead;
- const priorRead=(ref,path)=>currentRead(day&&ref==='HEAD'&&PROGRAMME_DAY_PATHS.has(path)?day.base:ref,path);
- // Validate all new raw HEAD bytes before exposing any older historical view.
- const extension=c.publicToolDelivery;
- if(extension)verifyPublicToolExtension(extension,{head:previousHead,read:priorRead,
-  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
-  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const compositionHead=extension?extension.base:previousHead;
- const compositionBlob=(path)=>extension&&PUBLIC_TOOL_PATHS.has(path)?priorRead(extension.base,path):priorRead('HEAD',path);
- // Validate the newest source-renewal bytes after all older receipts so a
- // synthetic drift in an older layer retains that layer's diagnostic.
- if(wegovyRenewal)verifyWatchWegovySourceRenewal(wegovyRenewal,{head:preHubV2Head,read:hubV2RawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- // Cache only Git graph facts for resolved immutable commits and this exact
- // receipt. Supplied readers, current bytes and working-tree checks stay fresh.
- const structureKey=JSON.stringify([process.cwd(),head,c]);
- if(!verifiedImmutableStructures.has(structureKey)){
-  for(const ref of [COMPOSITION_BASE,SUPPORT_SOURCE,HQ_SOURCE,COMPOSITION_SOURCE,c.maintenanceSource,RELOAD_VERIFIER,WATCH_FACTUAL_UPDATE_BASE,WATCH_FACTUAL_UPDATE_SOURCE,watch.maintenanceSource,PROOF_TRANSPORT_BASE,PROOF_TRANSPORT_SOURCE,transport.maintenanceSource])git('merge-base','--is-ancestor',ref,head);
-  const diff=(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean).sort();
-  assert.deepEqual(diff(COMPOSITION_BASE,COMPOSITION_SOURCE),sorted(COMPOSITION_PATHS));
-  assert.deepEqual(diff(COMPOSITION_SOURCE,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST),sorted(RECONCILIATION_MAINTENANCE));
-  assert.deepEqual(diff(c.maintenanceSource,WATCH_FACTUAL_UPDATE_BASE),[RECONCILIATION_MANIFEST]);
-  assert.deepEqual(diff(WATCH_FACTUAL_UPDATE_BASE,WATCH_FACTUAL_UPDATE_SOURCE),sorted(WATCH_FACTUAL_UPDATE_PATHS),'Exact eight-file factual Watch source required');
-  assert.deepEqual(diff(WATCH_FACTUAL_UPDATE_SOURCE,watch.maintenanceSource),sorted(WATCH_FACTUAL_UPDATE_MAINTENANCE),'Exact four-file Watch reconciliation required');
-  assert.deepEqual(diff(watch.maintenanceSource,PROOF_TRANSPORT_BASE),[RECONCILIATION_MANIFEST],'Unreviewed changes after factual Watch reconciliation');
-  assert.deepEqual(diff(PROOF_TRANSPORT_BASE,PROOF_TRANSPORT_SOURCE),sorted(PROOF_TRANSPORT_PATHS),'Exact three-file transport amendment required');
-  assert.deepEqual(diff(PROOF_TRANSPORT_SOURCE,transport.maintenanceSource),sorted(PROOF_TRANSPORT_MAINTENANCE),'Exact two-file transport reconciliation required');
-  assert.deepEqual(diff(transport.maintenanceSource,compositionHead),[RECONCILIATION_MANIFEST],'Unreviewed changes after transport reconciliation');
-  verifiedImmutableStructures.add(structureKey);
- }
- // Verify current bytes before exposing historical views to older guards.
- for(const path of COMPOSITION_PATHS)assert.equal(compositionBlob(path),readBlob(COMPOSITION_SOURCE,path),'Approved composition source / boundary drift: '+path);
- for(const path of RECONCILIATION_MAINTENANCE)assert.equal(compositionBlob(path),readBlob(PROOF_TRANSPORT_MAINTENANCE.includes(path)?transport.maintenanceSource:WATCH_FACTUAL_UPDATE_MAINTENANCE.includes(path)?watch.maintenanceSource:c.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
- for(const path of WATCH_FACTUAL_UPDATE_MAINTENANCE)assert.equal(compositionBlob(path),readBlob(PROOF_TRANSPORT_MAINTENANCE.includes(path)?transport.maintenanceSource:watch.maintenanceSource,path),'Approved factual Watch maintenance source drift: '+path);
- for(const path of WATCH_FACTUAL_UPDATE_PATHS)assert.equal(compositionBlob(path),readBlob(WATCH_FACTUAL_UPDATE_SOURCE,path),'Approved factual Watch source drift: '+path);
- for(const path of PROOF_TRANSPORT_PATHS)assert.equal(compositionBlob(path),readBlob(PROOF_TRANSPORT_SOURCE,path),'Approved composition maintenance source drift: '+path);
- for(const path of PROOF_TRANSPORT_MAINTENANCE)assert.equal(compositionBlob(path),readBlob(transport.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
- for(const path of RELOAD_PAYLOAD)assert.equal(compositionBlob(path),readBlob(RELOAD_VERIFIER,path),'Independent reload harness source drift: '+path);
- productionProofBefore??=execFileSync('git',['show',COMPOSITION_BASE+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
- const currentWorkflow=toolRelease?execFileSync('git',['show',toolRelease.base+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'}):readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
- const treatmentWorkflow=treatment?withoutTreatmentSteps(currentWorkflow):currentWorkflow;
- assertProductionProofBudget(productionProofBefore,closeout?withoutProgrammeLiveGate(treatmentWorkflow):treatmentWorkflow);
- assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
- assert.equal(git('rev-parse','HEAD'),actualHead,'Source HEAD changed during composition verification');
- return c;
-}
-const mappedCompositionReaders=new WeakSet();
-export function reconciliationMarkHistoricalReader(read){mappedCompositionReaders.add(read);return read;}
-let verifiedHead=null;const existsAtBase=new Map();
-function ensureReconciliation(){
- if(!reconciliationRecord())return false;
- // A synchronous historical test scope captures HEAD and rejects a move at
- // its end. Outside that scope, every public lookup still resolves HEAD afresh.
- const head=immutableHistoryScope?.head??git('rev-parse','HEAD');
- if(verifiedHead!==head){verifyReconciledRelease();verifiedHead=head;}
- return true;
-}
-function checkedHistoricalRef(ref,path){
- if(ref!=='HEAD'||!RECONCILIATION_PATHS.has(path))return ref;
- if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
- return existsAtBase.get(path)?COMPOSITION_BASE:ref;
-}
-export function reconciliationHistoricalRef(ref,path){
- if(ref!=='HEAD'||!RECONCILIATION_PATHS.has(path)||!ensureReconciliation())return ref;
- return checkedHistoricalRef(ref,path);
-}
-export function reconciliationHistoricalRead(read,verifyReader=false){
- if(!ensureReconciliation()||mappedCompositionReaders.has(read))return read;if(verifyReader)verifyReconciledRelease(read);
- // This synchronous validation reader is created only after the actual HEAD and
- // all current source blobs pass. Its immutable base map needs no per-blob Git
- // subprocess. Fresh readers still recheck current source before this mapping.
- return reconciliationMarkHistoricalReader((ref,path)=>read(checkedHistoricalRef(ref,path),path));
-}
-export function reconciliationGitArgs(args){
- if(!['show','rev-parse'].includes(args[0])||!args[1]?.startsWith('HEAD:'))return args;
- const path=args[1].slice(5),ref=reconciliationHistoricalRef('HEAD',path);
- return [args[0],ref+':'+path,...args.slice(2)];
-}
-export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_BASE:git('rev-parse','HEAD');}
-export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
-export function reconciliationChangedPath(status,path){
- if(!reconciliationPath(path))return false;
- if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
- // The two exactly pinned evidence-desk files were additions at COACH_BASE and modifications at COMPOSITION_BASE.
- // Both historical views retain immutable Watch source checks; deletion/rename/type changes remain rejected.
- // Other source changes retain their exact add/modify semantics. Existing verifier
- // maintenance may have been added historically and modified subsequently.
- const allowed=WATCH_PENDING_DELAYED_QUEUE_PATHS.includes(path)?(WATCH_FACTUAL_UPDATE_PATHS.includes(path)?['A','M']:['A']):existsAtBase.get(path)?(UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)||TABLET_CLIENT_SET.has(path)||TABLET_WORDING_SET.has(path)||WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
- assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
- return true;
-}
-
-
-export function assertReconciledReloadReceipt(run,job){
- assert.equal(run?.id,RELOAD_RUN);assert.equal(run.run_attempt,1);assert.equal(run.head_sha,RELOAD_VERIFIER);
- assert.equal(run.path,'.github/workflows/my-timber-final-production.yml');assert.equal(run.head_branch,'fix/member-reload-navigation-20261007');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'success');
- assert.equal(job?.id,113266037954);assert.equal(job.run_attempt,1);assert.equal(job.run_id,RELOAD_RUN);assert.equal(job.name,'reload-navigation-diagnostics');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
- for(const number of [8,9,11,12,14,15])assert(job.steps?.some(s=>s.number===number&&s.status==='completed'&&s.conclusion==='success'),'Every complete live journey round must pass');
- return {id:run.id,sha:run.head_sha,path:run.path,conclusion:run.conclusion,scope:'Three complete live save, reload, privacy, Today, Grub and Fit journey rounds'};
-}
-
-// A second independently fingerprinted local upload appeared while the first
-// finite Watch recovery was under review. This outer composition layer proves
-// the exact intervening isolated public-answer commit and the exact recovery
-// change before exposing the prior, already-verified composition history.
-export const LATER_UNATTRIBUTED_WATCH_RECOVERY_BASE='7e218c9187b4605a9ed73bc17b8321091d0604a9';
-export const LATER_UNATTRIBUTED_WATCH_RECOVERY_PRIOR='59ddd4353fd337631478c3a2704017e1556cf987';
-export const LATER_UNATTRIBUTED_WATCH_RECOVERY_SOURCE='eccb986b1e2f1ef05e3db87ab3bef71d4d1e9913';
-export const LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs']);
-export const LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE=Object.freeze(['acquisition-activation/metrics-release.test.mjs','release/app-preflight.mjs','release/app-scope.mjs','release/approved-runtime-composition.mjs','release/fit-300-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/scope.mjs','tests/approved-runtime-composition.test.mjs','tests/public-tool-release.test.mjs']);
-export const LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED=Object.freeze(['public-answers-entry.mjs','public-seo-answer-depth.mjs','tests/public-seo-answer-depth.test.mjs','wrangler.public-answers.jsonc']);
-const LATER_UNATTRIBUTED_WATCH_RECOVERY_SET=new Set([...LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE]);
-for(const path of LATER_UNATTRIBUTED_WATCH_RECOVERY_SET)RECONCILIATION_PATHS.add(path);
-export function verifyLaterUnattributedWatchRecovery(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_LATER_UNATTRIBUTED_WATCH_RUNTIME_RECOVERY_V1');
- assert.equal(c.base,LATER_UNATTRIBUTED_WATCH_RECOVERY_BASE);assert.equal(c.priorComposition,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRIOR);assert.equal(c.source,LATER_UNATTRIBUTED_WATCH_RECOVERY_SOURCE);
- assert.deepEqual(c.preservedPaths,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED);assert.deepEqual(c.paths,LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS);assert.deepEqual(c.maintenancePaths,LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.observationRun,37908130882);assert.equal(c.successfulPredecessorRun,37895305149);assert.equal(c.restoredVersion,'fd7939d8-6387-48fa-adc8-714e6f8bea8d');
- for(const flag of ['medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.priorComposition,c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.priorComposition,c.base)),sorted(c.preservedPaths),'Unexpected change in preserved newer main commit');
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated later unattributed Watch recovery source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(path=>path!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated later unattributed Watch recovery maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after later unattributed Watch recovery receipt');
- for(const path of c.preservedPaths)assert.equal(read('HEAD',path),read(c.base,path),'Preserved newer main source drift: '+path);
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Later unattributed Watch recovery source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Later unattributed Watch recovery maintenance drift: '+path);
-}
-
-// Finite engineering-only recovery for one independently fingerprinted Worker
-// upload. It restores the last exact successful production version before the
-// ordinary guarded deployment continues; it grants no generic runtime adoption.
-export const UNATTRIBUTED_WATCH_RECOVERY_BASE='38036236f065e7a760b2e36dc72a7113dd13e785';
-export const UNATTRIBUTED_WATCH_RECOVERY_SOURCE='3e35b57b88342a273831ded3c5f61e3e225ab6e5';
-export const UNATTRIBUTED_WATCH_RECOVERY_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs']);
-export const UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
-const UNATTRIBUTED_WATCH_RECOVERY_SET=new Set([...UNATTRIBUTED_WATCH_RECOVERY_PATHS,...UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE]);
-for(const path of UNATTRIBUTED_WATCH_RECOVERY_SET)RECONCILIATION_PATHS.add(path);
-export function verifyUnattributedWatchRecovery(c,{head,read,diff,ancestor}){
- assert(c);assert.equal(c.proof,'EXACT_UNATTRIBUTED_WATCH_RUNTIME_RECOVERY_V1');
- assert.equal(c.base,UNATTRIBUTED_WATCH_RECOVERY_BASE);assert.equal(c.source,UNATTRIBUTED_WATCH_RECOVERY_SOURCE);
- assert.deepEqual(c.paths,UNATTRIBUTED_WATCH_RECOVERY_PATHS);assert.deepEqual(c.maintenancePaths,UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.observationRun,37902092425);assert.equal(c.successfulPredecessorRun,37895305149);assert.equal(c.restoredVersion,'fd7939d8-6387-48fa-adc8-714e6f8bea8d');
- for(const flag of ['medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated unattributed Watch recovery source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated unattributed Watch recovery maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after unattributed Watch recovery receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Unattributed Watch recovery source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tablet wording verifier source drift: unattributed Watch recovery maintenance '+path);
-}
-
-
-// Finite source/evidence archive. Prove every added blob before viewing the prior runtime baseline.
-// This extension never grants deployment, runtime edits, guard removals or unlisted source changes.
-export const TOOL_SCHEMA_ARCHIVE_BASE='0d68bce77505ef4fa77412929ff6d4d2dc0a65e7';
-export const TOOL_SCHEMA_ARCHIVE_SOURCE='14db24d531df33776fb8d87785c6c76df5f82b03';
-export const TOOL_SCHEMA_ARCHIVE_PATHS=Object.freeze(["release/tool-page-schema-20261008/%2Fdecision-centre.after.html","release/tool-page-schema-20261008/%2Ftools%2Falcohol.after.html","release/tool-page-schema-20261008/%2Ftools%2Fbmi.after.html","release/tool-page-schema-20261008/%2Ftools%2Fcalories.after.html","release/tool-page-schema-20261008/%2Ftools%2Fhealthy-weight.after.html","release/tool-page-schema-20261008/%2Ftools%2Fprotein.after.html","release/tool-page-schema-20261008/%2Ftools%2Fwaist-height.after.html","release/tool-page-schema-20261008/%2Ftools%2Fwalking.after.html","release/tool-page-schema-20261008/%2Ftools%2Fwater.after.html","release/tool-page-schema-20261008/README.md","release/tool-page-schema-20261008/browser-verification-20261009.json","release/tool-page-schema-20261008/fresh-verification-20261009.json","release/tool-page-schema-20261008/live-verification.json","release/tool-page-schema-20261008/manifest-before.json","release/tool-page-schema-20261008/manifest-candidate.json","release/tool-page-schema-20261008/preview-verification.json","release/tool-page-schema-20261008/scope-proof.json","release/tool-page-schema-20261008/verifier-failure-tests-20261009.json","scripts/tool-page-schema-release.cjs","scripts/verify-tool-calculators-browser.cjs","scripts/verify-tool-page-schema.cjs","scripts/verify-tool-page-schema.test.cjs"]);
-export const TOOL_SCHEMA_ARCHIVE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/tool-schema-archive-composition.test.mjs']);
-for(const path of [...TOOL_SCHEMA_ARCHIVE_PATHS,...TOOL_SCHEMA_ARCHIVE_MAINTENANCE])RECONCILIATION_PATHS.add(path);
-export function verifyToolSchemaArchive(c,{head,read,diff,ancestor}) {
- assert(c);assert.equal(c.proof,'EXACT_TOOL_SCHEMA_EVIDENCE_ARCHIVE_V1');
- assert.equal(c.base,TOOL_SCHEMA_ARCHIVE_BASE);assert.equal(c.source,TOOL_SCHEMA_ARCHIVE_SOURCE);
- assert.deepEqual(c.paths,TOOL_SCHEMA_ARCHIVE_PATHS);
- assert.deepEqual(c.maintenancePaths,TOOL_SCHEMA_ARCHIVE_MAINTENANCE);
- assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.productionRepairPreviouslyDeployed,true);
- for(const flag of ['runtimeChanged','publicCopyChanged','homepageChanged','startHereChanged','customerDataChanged','deploymentAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated archive payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated archive maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after archive receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Tool schema archive source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift: '+path);
-}
-
-// Exact retention of a restoration already performed by the guarded workflow.
-export const RESTORED_LATER_RETENTION_BASE='b277c25b2d3bf44f97501006f3b3416e9a8d44fe';
-export const RESTORED_LATER_RETENTION_SOURCE='9b2bfc4b3f90185520b1937c51431cffdcc0cc41';
-export const RESTORED_LATER_RETENTION_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs']);
-export const RESTORED_LATER_RETENTION_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
-const RESTORED_LATER_RETENTION_SET=new Set([...RESTORED_LATER_RETENTION_PATHS,...RESTORED_LATER_RETENTION_MAINTENANCE]);
-for(const path of RESTORED_LATER_RETENTION_SET)RECONCILIATION_PATHS.add(path);
-export function verifyRestoredLaterRetention(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_RESTORED_LATER_RUNTIME_RETENTION_V1');assert.equal(c.base,RESTORED_LATER_RETENTION_BASE);assert.equal(c.source,RESTORED_LATER_RETENTION_SOURCE);
- assert.deepEqual(c.paths,RESTORED_LATER_RETENTION_PATHS);assert.deepEqual(c.maintenancePaths,RESTORED_LATER_RETENTION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.restorationRun,37914338433);assert.equal(c.restorationJob,113766865055);assert.equal(c.restorationDeployment,'19c317f4-0058-4497-86a8-596db6de90a9');assert.equal(c.originalSuccessfulRun,37895305149);
- for(const flag of ['runtimeChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated exact restoration retention source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated exact restoration retention maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after restoration retention');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Restoration retention source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Restoration retention maintenance drift: '+path);
-}
-
-// Finite approved public-tool amendment. Approval applies only to this exact payload through the existing guarded workflow.
-export const TOOL_RELEASE_AUTOMATION_BASE='be58decc3b45a668e2a68a287bd1ce8e3f4a2a5d';
-export const TOOL_RELEASE_AUTOMATION_SOURCE='c3a5aaac2b924f13fe5d651c3dc80079abfe17d9';
-export const TOOL_RELEASE_AUTOMATION_PATHS=Object.freeze([".github/workflows/cloudflare-production-promote.yml","public-tool-delivery.mjs","public-tool-guidance.mjs","release/tool-guidance-20261009/README.md","release/tool-guidance-20261009/automation-proof.json","release/tool-guidance-20261009/live-schema-check.json","release/tool-guidance-20261009/test-results.tap","release/tool-guidance-20261009/tool-guidance-browser.json","release/tool-schema-gate.mjs","scripts/verify-tool-calculators-browser.cjs","scripts/verify-tool-guidance-browser.cjs","scripts/verify-tool-page-schema.cjs","tests/public-tool-guidance.test.mjs","tests/tool-schema-gate.test.mjs"]);
-export const TOOL_RELEASE_AUTOMATION_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/tool-release-automation-composition.test.mjs"]);
-for(const path of [...TOOL_RELEASE_AUTOMATION_PATHS,...TOOL_RELEASE_AUTOMATION_MAINTENANCE])RECONCILIATION_PATHS.add(path);
-export function verifyToolReleaseAutomation(c,{head,read,diff,ancestor}) {
- assert(c);assert.equal(c.proof,'EXACT_PREPARED_TOOL_RELEASE_AUTOMATION_V1');
- assert.equal(c.base,TOOL_RELEASE_AUTOMATION_BASE);assert.equal(c.source,TOOL_RELEASE_AUTOMATION_SOURCE);
- assert.deepEqual(c.paths,TOOL_RELEASE_AUTOMATION_PATHS);assert.deepEqual(c.maintenancePaths,TOOL_RELEASE_AUTOMATION_MAINTENANCE);
- assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.publicationStatus,'approved_for_guarded_release');assert.equal(c.runtimeChanged,true);assert.equal(c.publicCopyChanged,true);
- for(const flag of ['homepageChanged','startHereChanged','customerDataChanged','deploymentAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated prepared tool payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated prepared tool maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after prepared tool receipt');
- for(const path of c.paths){
-  const boundary=TOOL_SCHEMA_ARCHIVE_PATHS.includes(path)?'Tool schema archive source drift':'Serving SEO source drift';
-  assert.equal(read('HEAD',path),read(c.source,path),boundary+': prepared public tool amendment '+path);
- }
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: prepared public tool amendment '+path);
- return c;
-}
-
-// Exact compiled-browser repair and retention of the resulting guarded rollback.
-export const BUNDLED_TOOL_RUNTIME_BASE='f2836dc942ef1fcee0d49a686b117bd687be3531';
-export const BUNDLED_TOOL_RUNTIME_SOURCE='1b749a68bd764abbae6635d9cc7292d4b414477f';
-export const BUNDLED_TOOL_RUNTIME_PATHS=Object.freeze(['public-tool-guidance.mjs','tests/public-tool-guidance.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/cancelled-release-recovery.test.mjs']);
-export const BUNDLED_TOOL_RUNTIME_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
-const BUNDLED_TOOL_RUNTIME_SET=new Set([...BUNDLED_TOOL_RUNTIME_PATHS,...BUNDLED_TOOL_RUNTIME_MAINTENANCE]);
-for(const path of BUNDLED_TOOL_RUNTIME_SET)RECONCILIATION_PATHS.add(path);
-export function verifyBundledToolRuntimeRepair(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_BUNDLED_TOOL_RUNTIME_REPAIR_V1');assert.equal(c.base,BUNDLED_TOOL_RUNTIME_BASE);assert.equal(c.source,BUNDLED_TOOL_RUNTIME_SOURCE);
- assert.deepEqual(c.paths,BUNDLED_TOOL_RUNTIME_PATHS);assert.deepEqual(c.maintenancePaths,BUNDLED_TOOL_RUNTIME_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.failedRun,37919061119);assert.equal(c.failedJob,113783602718);assert.equal(c.rollbackDeployment,'55dd384e-226a-4f19-b989-322dcdee7888');assert.equal(c.originalSuccessfulRun,37895305149);
- assert.equal(c.browserSourceSerializationFixed,true);
- for(const flag of ['publicCopyChanged','calculatorArithmeticChanged','myTreatmentChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated bundled tool runtime repair source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated bundled tool runtime repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after bundled tool runtime repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Bundled tool runtime source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Bundled tool runtime maintenance source drift / Restoration retention maintenance drift: '+path);
-}
-
-// Exact approved wording expectation; runtime and production workflow unchanged.
-export const PASSPORT_PRESERVATION_BASE='8406d13df4431345b76d96c82bc1ab34637ee659';
-export const PASSPORT_PRESERVATION_SOURCE='58529f0bb165b7620f851e141d2ab81faab87171';
-export const PASSPORT_PRESERVATION_PATHS=Object.freeze(['health-passport/production-release.mjs','health-passport/production-release.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/cancelled-release-recovery.test.mjs']);
-export const PASSPORT_PRESERVATION_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
-const PASSPORT_PRESERVATION_SET=new Set([...PASSPORT_PRESERVATION_PATHS,...PASSPORT_PRESERVATION_MAINTENANCE]);
-for(const path of PASSPORT_PRESERVATION_SET)RECONCILIATION_PATHS.add(path);
-export function verifyPassportPreservationRepair(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_PASSPORT_PRESERVATION_REPAIR_V1');assert.equal(c.base,PASSPORT_PRESERVATION_BASE);assert.equal(c.source,PASSPORT_PRESERVATION_SOURCE);
- assert.deepEqual(c.paths,PASSPORT_PRESERVATION_PATHS);assert.deepEqual(c.maintenancePaths,PASSPORT_PRESERVATION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.failedRun,37922934503);assert.equal(c.failedJob,113795076080);assert.equal(c.rollbackDeployment,'478c6c6b-5bae-4b2b-9f3f-aa8e5bdc0033');assert.equal(c.originalSuccessfulRun,37895305149);
- assert.equal(c.approvedStartHereWordingExpectationFixed,true);
- for(const flag of ['publicCopyChanged','calculatorArithmeticChanged','myTreatmentChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Passport preservation repair source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Passport preservation repair maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Passport preservation repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Passport preservation source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Passport preservation maintenance source drift / Bundled tool runtime maintenance source drift / Restoration retention maintenance drift: '+path);
-}
- // Exact additional build proof; runtime and every existing release guard remain pinned.
-export const TOOL_GUIDANCE_BUILD_GATE_BASE='3fae9c5512802908288b4fca19e8421b062e5995';
-export const TOOL_GUIDANCE_BUILD_GATE_SOURCE='45f7f52e560d9d9b9437cdb098b00fe50ebb711b';
-export const TOOL_GUIDANCE_BUILD_GATE_PATHS=Object.freeze([".github/workflows/cloudflare-production-promote.yml","scripts/verify-tool-guidance-build.cjs","tests/tool-guidance-build.test.cjs"]);
-export const TOOL_GUIDANCE_BUILD_GATE_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/tool-guidance-build-composition.test.mjs"]);
-const TOOL_GUIDANCE_BUILD_GATE_SET=new Set([...TOOL_GUIDANCE_BUILD_GATE_PATHS,...TOOL_GUIDANCE_BUILD_GATE_MAINTENANCE]);
-for(const path of TOOL_GUIDANCE_BUILD_GATE_SET)RECONCILIATION_PATHS.add(path);
-export function verifyToolGuidanceBuildGate(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_TOOL_GUIDANCE_PRODUCTION_BUILD_GATE_V1');assert.equal(c.base,TOOL_GUIDANCE_BUILD_GATE_BASE);assert.equal(c.source,TOOL_GUIDANCE_BUILD_GATE_SOURCE);
- assert.deepEqual(c.paths,TOOL_GUIDANCE_BUILD_GATE_PATHS);assert.deepEqual(c.maintenancePaths,TOOL_GUIDANCE_BUILD_GATE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.compiledBuildProofAdded,true);assert.equal(c.publicationStatus,'approved_for_guarded_release');
- for(const flag of ['runtimeChanged','publicCopyChanged','medicalClaimsChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated production-built tool proof source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated production-built tool proof maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after production-built tool proof receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Serving SEO source drift: production-built tool proof '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: production-built tool proof '+path);
- return c;
-}
-
-// Exact approved answer-depth composition and one already-performed owned rollback.
-export const CONTINUITY_PRESERVATION_BASE='01194030d52d57a43aa072b27ac962514a668b93';
-export const CONTINUITY_PRESERVATION_SOURCE='7ad0c34d2551a609b959f2b350f1bde1e8313f10';
-export const CONTINUITY_PRESERVATION_PATHS=Object.freeze(["release/public-continuity-body-proof.mjs","shift-coach/cancelled-release-recovery.mjs","shift-coach/cancelled-release-recovery.test.mjs","shift-coach/recover-cancelled-release.mjs","tests/programme-day-continuity-body.test.mjs"]);
-export const CONTINUITY_PRESERVATION_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/continuity-preservation-composition.test.mjs"]);
-const CONTINUITY_PRESERVATION_SET=new Set([...CONTINUITY_PRESERVATION_PATHS,...CONTINUITY_PRESERVATION_MAINTENANCE]);
-for(const path of CONTINUITY_PRESERVATION_SET)RECONCILIATION_PATHS.add(path);
-export function verifyContinuityPreservationRepair(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_CONTINUITY_PRESERVATION_REPAIR_V1');assert.equal(c.base,CONTINUITY_PRESERVATION_BASE);assert.equal(c.source,CONTINUITY_PRESERVATION_SOURCE);
- assert.deepEqual(c.paths,CONTINUITY_PRESERVATION_PATHS);assert.deepEqual(c.maintenancePaths,CONTINUITY_PRESERVATION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.failedRun,37927646817);assert.equal(c.failedJob,113810894301);assert.equal(c.rollbackDeployment,'9cc4ae2f-f84d-4963-9267-8cee6b459b26');assert.equal(c.originalSuccessfulRun,37895305149);
- assert.equal(c.approvedAnswerDepthExpectationFixed,true);assert.equal(c.publicationStatus,'approved_for_guarded_release');
- for(const flag of ['runtimeChanged','publicCopyChanged','medicalClaimsChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Continuity preservation source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Continuity preservation maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Continuity preservation receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Serving SEO source drift / Passport preservation source drift / Restoration retention source drift: Continuity preservation '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift / Restoration retention maintenance drift: Continuity preservation '+path);
- return c;
-}
-
-// Bind only the already merged PR #1267 factual Watch content; retain all ownership gates.
-export const LATE_WATCH_BASE='29d2c8038505f0a9e49d0abf6cba501149e9817d';
-export const LATE_WATCH_APPROVED_MERGE='f511cd37cbcd53a64bd178ab356c966cd39acb74';
-export const LATE_WATCH_SOURCE='7f9f1bcf2d322ee6b25d61169cae8bbae8b462a4';
-export const LATE_WATCH_PATHS=Object.freeze(["medicines-watch/README.md","medicines-watch/credibility.mjs","medicines-watch/credibility.test.mjs","medicines-watch/evidence-desk.test.mjs","medicines-watch/industry.mjs","medicines-watch/industry.test.mjs","medicines-watch/reviews/2026-10-09-authorised-together-psoriatic-disease.json","medicines-watch/reviews/2026-10-09-overdue-source-renewal-late.json","medicines-watch/source-review.test.mjs"]);
-export const LATE_WATCH_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs','.github/workflows/cloudflare-production-promote.yml']);
-export const COMPOSITION_TRIGGER_BASE='b9965cc750bb8cbc292c74e1789bf4210537da8c';
-export const COMPOSITION_TRIGGER_SOURCE='b607a838506bff1a5ee4ad3e801951c2804c8017';
-const COMPOSITION_TRIGGER_WORKFLOW='.github/workflows/cloudflare-production-promote.yml';
-export function assertExactCompositionTrigger(before,after){
- assert.equal(before.split('    paths:\n').length,2,'One original push paths filter required');
- assert.equal(after,before.replace('    paths:\n','    paths:\n      - "release/approved-runtime-composition.mjs"\n      - "release/approved-runtime-composition.json"\n'),'Only exact release-ledger push triggers may change; every workflow guard must remain byte-identical');
-}
-const LATE_WATCH_RESTORED_PROOF='scripts/verify-public-continuity-live.mjs';
-const LATE_WATCH_SET=new Set([...LATE_WATCH_PATHS,...LATE_WATCH_MAINTENANCE]);
-for(const path of LATE_WATCH_SET)RECONCILIATION_PATHS.add(path);
-export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
- assert.equal(c?.proof,'EXACT_LATE_WATCH_FACTUAL_UPDATE_V1');assert.equal(c.base,LATE_WATCH_BASE);assert.equal(c.approvedMerge,LATE_WATCH_APPROVED_MERGE);assert.equal(c.source,LATE_WATCH_SOURCE);
- assert.deepEqual(c.paths,LATE_WATCH_PATHS);assert.deepEqual(c.maintenancePaths,LATE_WATCH_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
- assert.equal(c.workflowTriggerSource,COMPOSITION_TRIGGER_SOURCE);ancestor(COMPOSITION_TRIGGER_BASE,head);ancestor(COMPOSITION_TRIGGER_SOURCE,head);
- assert.deepEqual(diff(COMPOSITION_TRIGGER_BASE,COMPOSITION_TRIGGER_SOURCE),[COMPOSITION_TRIGGER_WORKFLOW],'Unrelated production-trigger source');
- assertExactCompositionTrigger(publicToolImmutableGit('show',COMPOSITION_TRIGGER_BASE+':'+COMPOSITION_TRIGGER_WORKFLOW),publicToolImmutableGit('show',COMPOSITION_TRIGGER_SOURCE+':'+COMPOSITION_TRIGGER_WORKFLOW));
- assert.equal(read('HEAD',COMPOSITION_TRIGGER_WORKFLOW),read(COMPOSITION_TRIGGER_SOURCE,COMPOSITION_TRIGGER_WORKFLOW),'Guarded composition-trigger workflow source drift');
- assert.equal(c.approvedPR,1267);assert.equal(c.publicationStatus,'already_merged_owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.exactCompleteBodyProofRestored,true);
- for(const flag of ['memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
- for(const ref of [c.base,c.approvedMerge,c.source,c.maintenanceSource])ancestor(ref,head);
- assert.deepEqual(sorted(diff(c.base,c.approvedMerge)),sorted([...c.paths,LATE_WATCH_RESTORED_PROOF]),'Unrelated merged Watch change');
- assert.deepEqual(diff(c.approvedMerge,c.source),[LATE_WATCH_RESTORED_PROOF],'Unrelated complete-body proof repair');
- assert.equal(read(c.source,LATE_WATCH_RESTORED_PROOF),read(c.base,LATE_WATCH_RESTORED_PROOF),'Original exact complete-body proof required');
- assert.equal(read('HEAD',LATE_WATCH_RESTORED_PROOF),read(c.base,LATE_WATCH_RESTORED_PROOF),'Complete-body live proof source drift');
- assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated late Watch payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated late Watch maintenance');
- assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after late Watch receipt');
- for(const path of c.paths){assert.equal(read(c.source,path),read(c.approvedMerge,path),'Merged approved Watch source required: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);}
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Late Watch maintenance source drift: '+path);
- return c;
-}
-
+YЄзЉx-®йЬjЧќўлiєЪ+Љ§j[h‘йЬўйнЧ^№пДиµ©hєЪn¶X§zНZ[\ЬќЭЪ]Э]™X]Y[ќ›YЛЪ]Э]™X]Y[ќЭ\Л‘PUQS•С“QЯHњ›ЫH	Л‹Ы^K]™X]Y[ќXЫЫ™љYЛ›ZњЙОВљ[\Ьќ\ЬЩ\ќњ›ЫH	Ы›ЩN\ЬЩ\ќЬЭљXЭ	ОВљ[\ЬќЩ^XСљ[TЮ[ЯHњ›ЫH	Ы›ЩNЪ[Ь›ШЩ\ЬЙОВљ[\ЬќЩ^\ЭФЮ[Л™XYљ[TЮ[ЯHњ›ЫH	Ы›ЩN™њЙОВ‚™^ЬќЫЫњЭУУTФТUSУ—РђTСOIЩNYШMМНЩMЋX™ШYYLМYXЊYЋЊLЌЌЩ‰ОВ™^ЬќЫЫњЭУУTФТUSУ—ФУХTђСOIНЊОNLШLЩMMXMXНШLYМMШНЋ™ШШОНЩЊIОВ™^ЬќЫЫњЭХTФ•ФУХTђСOIЩXМШЋXШМ™MLLМЌ™МНЩШXYНLMYMMН‰ОВ™^ЬќЫЫњЭWФУХTђСOIНYLM™MНМM™LNYX™LЊНШXШ™NYLЩ™XМ‰ОВ™^ЬќЫЫњЭУУTФТUSУ—ФUПVВ‰Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЪK[X[YЩ[Y[ќ\™[X\ЩKћ[[	Л	ТKSPSђQСSQS•T‘SPTСK›Y	Л‰ШЫЫќ[ќZ]K[YX\Э\™[Y[ќЬШЫЬ™XШ\™›ZњЙЛ	ЩШЬЛРQ•T‹U‘PUQS•QU’QSђСKP“ХS‘T’QTЛLЊЌ‹LLLЛ›Y	Л‰Щњ›Ыќ[™ЫY[X™\‹ЫY[X™\‹\›ЩXЭ]ЊМЩљњЙЛ	Щњ›Ыќ[™ЫY[X™\‹ЫY[X™\‹\Ъ[]ЊМЩЛљњЙЛ‰Щњ›Ыќ[™ЫY[X™\‹Ы^K][X™\‹\™]љY]Лљ[	Л	Щњ›Ыќ[™ЫY[X™\‹Ы^K][X™\‹]ЊLKљњЙЛ‰ЪKXZK]Њ‹љњЙЛ	ЪK[X[YЩ[Y[ќXXШЩ\[ЩK›ZњЙЛ	ЪK[X[YЩ[Y[ќX\K›ZњЙЛ‰ЪK[X[YЩ[Y[ќXњ›ЭЬЩ\‹XXШЩ\[ЩK›ZњЙЛ	ЪK[X[YЩ[Y[ќY\ЮK›ZњЙЛ	ЪK[X[YЩ[Y[ќY[ќћK›ZњЙЛ‰ЪK[X[YЩ[Y[ќYШ]]Ш^KXXШЩ\[ЩK›ZњЙЛ	ЪK[X[YЩ[Y[ќ\X›XЛ\™\Щ\ќ][Ы‹›ZњЙЛ	ЪK[X[YЩ[Y[ќ\™[X\ЩKYШ]K›ZњЙЛ‰ЫY[X™\‹Y^\љY[ЩKШZK\Ъ]KZЫ›ЭЫYЩK›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЩ[ќћK›ZњЙЛ‰ЫY[X™\‹Y^\љY[ЩKЭ\ЭЛШЫЫќ[ќZ]K[YX\Э\™[Y[ќќ\Э›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ\ЭЛЬЪ\™YX\њљ][ќ\Э›ZњЙЛ‰Ы^K][X™\‹[]љYШ][Ы‹YШ]K›ZњЙЛ	Ь›ЩXЭX[[]XЬЛ]ЊKљњЙЛ	ЬX›XЛXЫЫќ[ќZ]K›ZњЙЛ‰ЬX›XЛ\›ЫZ\ЩKXXШЭ\XЮK]ЊK›ZњЙЛ	ЬX›XЛ\Щ[ЛY\ШЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪЫY[[ЬћK›ZњЙЛ	ЬЪYќXЫШXЪЭZK›ZњЙЛ‰Э\ЭЛШZK\Ъ]KZЫ›ЭЫYЩKќ\Э›ZњЙЛ	Э\ЭЛЫ^K][X™\‹X[[]XЬЛ\љ]XЮKќ\Э›ZњЙЛ‰Э\ЭЛЬ›ЫZ\ЩKXXШЭ\XЮKќ\Э›ZњЙЛ	Э\ЭЛЬX›XЛXЫЫќ[ќZ]Kќ\Э›ZњЙЛ	Э\ЭЛЬX›XЛ\Щ[ЛY\ШЫЭ™\ћKќ\Э›ZњЙЛ‰ЭЫЬљЩ\‹Y[ќћK]Ќ‹љњЙЛ	ЭЫЬљЩ\‹љњЙЛ	ЭЬ[™Ы\‹љK[X[YЩ[Y[ќљњЫЫЙЧNВЫЫњЭЪ]J‹‹\™ЬКOO™^XСљ[TЮ[К	ЩЪ]	Л\™ЬЛЩ[ЫЩ[™О‰Э]Ћ	ЯJKќљ[J
+NВЫЫњЭЫЬќY^ПO–Л‹‹ћЧKњЫЬќ
+
+NВ™^Ьќќ[Э[Ы€™\љYћPЫЫ\ЬЩYќ[ќ[YJЪXYYЪ]
+	Ь™]‹\\њЩIЛ	ТPQ	КK™XYJ™Y‹]
+OO™Ъ]
+	Ь™]‹\\њЩIЛ™YЉЙО‰КЬ]
+KY™ЏJKЉOO™Ъ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЏJKЉOO™Ъ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_O^ЯJ^В€ЛИHЫЫ\ЬЪ][Ы€\ИHЫЫЬ™]H[[]]X›H™YK›Э[€^[™Y[ЭЫ\Э‚€\ЬЩ\ќ›X]Ъ
+XYЧ–ШKYЊNW^НIКNВ€›ЬЉЫЫњЭ™Y€Щ€РУУTФТUSУ—РђTСKХTФ•ФУХTђСKWФУХTђСKУУTФТUSУ—ФУХTђСWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉУУTФТUSУ—РђTСKУУTФТUSУ—ФУХTђСJJKЫЬќY
+УУTФТUSУ—ФUКK	Х[њ™]љY]ЩYЫЫ\ЬЪ][Ы€]Щ]	КNВ€ЛИ\И›Э[™][Ы[ЪXЪИXШЩ\И›И]\€љ[HЪ[™Щ\Л€HЩ\\]H™]љY]ЩY€ЛИXZ[ќ[[ЩH™XЩZ\\И™\]Z\™Y™Y›Ь™HЫЫ›™XЭ[™И]И›ЩXЭ[Ы€ЭX\™Л‚€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉУУTФТUSУ—ФУХTђСKXY
+JKЧK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€\›Э™YЫЫ\ЬЪ][Ы‰КNВ€›ЬЉЫЫњЭ]Щ€УУTФТUSУ—ФUКX\ЬЩ\ќ™\]X[
+™XY
+XY]
+K™XY
+УУTФТUSУ—ФУХTђСK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€ЙЭЬ[™Ы\‹љњЫЫЙЛ	ЬXЪШYЩKљњЫЫ‰Л	ЬXЪШYЩK[ШЪЛљњЫЫ‰Л€	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	Л	ШXЬ]Z\Ъ][Ы‹XXЭ]][Ы‹ШЫЫњЩ[ќ›ZњЙЛ€	ШXЭ]][Ы‹[YX\Э\™[Y[ќШ\ЬЩ]Л›ZњЙЛ	ЬЪYќXЫШXЪЭЫЬљЩ\‹›ZњЙЛ	ЬЪYќXЫШXЪЬ™[X\ЩK[X[љY™\ЭљњЫЫ‰Л€	ЬX›XЛ\Щ[ЛXЫЫќ^›ZњЙЛ	ЬX›XЛ\Щ[Л[Ь™Ш[љXЛ[[љЬЛ›ZњЙЛ	ЬX›XЛ\Щ[Л[Ь™Ш[љXЛ[[љЛY]K›ZњЙЧJB€\ЬЩ\ќ™\]X[
+™XY
+XY]
+K™XY
+УУTФТUSУ—РђTСK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€›ЭXЭY›Э[™\ћHљYќ€	КЬ]
+NВ€™]\›€ЬЫЭ\ЩNђУУTФТUSУ—ФУХTђСK\ЩNђУУTФТUSУ—РђTСKXY]ОђУУTФТUSУ—ФUЛ›[™ЭNВџB‚™^ЬќЫЫњЭ‘SРQХ‘T’Q’QTЏIОXЊЋYXЌНМЩЊMMЩLYNMXШМ™XНЌ™LYNIОВ™^ЬќЫЫњЭ‘SРQФ•SЏLНННЊНЋMLЌЊNВ™^ЬќЫЫњЭ‘SРQФVSРQVЙЬ™[™\™Y[Y[X™\‹XXШЩ\[ЩK\Э\Ьќ›ZњЙЛ	Э\ЭЛЬ™[™\™Y[Y[X™\‹XXШЩ\[ЩK\Э\Ьќќ\Э›ZњЙЛ	Э\ЭЛЫY[X™\‹\™[ШYXњ›ЭЬЩ\‹ќ\Э›ZњЙЧNВ™^ЬќЫЫњЭ‘PУУђТSPUSУ—УPS’Q‘TХIЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹љњЫЫ‰ОВ™^ЬќЫЫњЭ‘PУУђТSPUSУ—УPRS•SђSђСOVВ€	Ь™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ€	Ь™[X\ЩKЫЬ™Ш[љXЛY›ЫЭЭ›ЭYЪ\ШЫЬK›ZњЙЛ	Ь™[X\ЩKЬЩ[Л[[љЛ\™\Z\њЛ\ШЫЬK›ZњЙЛ€	Ь™[X\ЩKЬЩ[ЛYЬ›ЭЭ\ШЫЬK›ZњЙЛ	Ь™[X\ЩKШ\\ШЫЬK›ZњЙЛ€	ЬШЬљ\ЛШЊK\™[X\ЩK\ШЫЬK›ZњЙЛ	Э\ЭЛЫЬ™Ш[љXЛY›ЫЭЭ›ЭYЪ\™[X\ЩKќ\Э›ZњЙЛ	Ь™[X\ЩKЩ]љXЩKZX[\ШЫЬK›ZњЙЛ	Ь™[X\ЩKЩ›ЫЭ\‹\ШЫЬK›ZњЙЛ	Э\ЭЛЬЩ[ЛYЬ›ЭЭ\™[X\ЩKќ\Э›ZњЙЛ	Ь™[X\ЩKЫЭЫ™\‹XШ\\™Y\ќ[ќ[YK›ZњЙЛ	Э\ЭЛЫЭЫ™\‹XШ\\™Y\ќ[ќ[YKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪЬ™XЫЭ™\‹XШ[Щ[Y\™[X\ЩK›ZњЙЛ	Ь™[X\ЩKЩЬ›ЭЭXYЬY\Ю[Y[ќ›ZњЙЛ	Ь™[X\ЩKЫY[X™\‹XXШЩ\[ЩK\ШЫЬK›ZњЙЛ	ЬЪYќXЫШXЪЬШЫЬK›ZњЙЛ	ЬЪYќ[YK\ЫЭ\ЩKYШ]K›ZњЙЛ	Ь™[X\ЩKЫY]љXЬЛXЫЫ›™XЭ[Ы‹\ШЫЬK›ZњЙЛ	Ь™[X\ЩKЬЩ[ЛXЫЫќ^\ШЫЬK›ZњЙЛ	Ь™[X\ЩKЬЩ[ЛY\ШЫЭ™\ћK\ШЫЬK›ZњЙЛ	Ь™[X\ЩKЬЩ[ЛY›ЫЭЛ]›ЭYЪ\ШЫЬK›ZњЙЛ	Ь™[X\ЩKЩљ]LМ\ШЫЬK›ZњЙЛ	Э\ЭЛЬ›ЩXЭ[Ы‹XЫЫ\][Ы‹\™[X\ЩKќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	Л	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЫЫ›[™K\љ]XЮK\™XЫЭ™\ћK\›ЫЩ‹ћ[[	Л	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЬЪYќXЫШXЪZ[ќYЬ][Ы‹ћ[[	Л	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЫЬ™Ш[љXЛY›ЫЭЭ›ЭYЪ\›ЫЩ‹ћ[[	Л	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЬЩ[Л[[љЛ\™\Z\њЛ\›ЫЩ‹ћ[[	Л	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЬЩ[ЛYЬ›ЭЭ\›ЫЩ‹ћ[[	Л	ШXЬ]Z\Ъ][Ы‹XXЭ]][Ы‹ЫY]љXЬЛ\™[X\ЩKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪЬ™[X\ЩKќ\Э›ZњЙЛ	Э\ЭЛЩЬ›ЭЭ\™[X\ЩKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪШњ›ЭЬЩ\‹\›ЫЩ‹›ZњЙЛ	ЬЪYќXЫШXЪЩќ[\YЩK\›ЫЩ‹›ZњЙЛ	ЬЪYќXЫШXЪЬ[ќЫK[Y[X™\њЛ›ZњЙЛ	ЬЪYќXЫШXЪШњ›ЭЬЩ\‹Z›Э\›™^K\Э\Ьќ›ZњЙЛ	Ь™[X\ЩKЭШ]Ъ\™YЪ\ЭћK]Ш]™K\ШЫЬK›ZњЙЛ	Ь™[X\ЩKЬЪ]]ЪYK\Щ[Л\ШЫЬK›ZњЙЛ	Ь™[X\ЩKЭ™X]Y[ќYЭZY[ЩK\ШЫЬK›ZњЙЛ‹‹”‘SРQФVSРQNВ‹ЛИHљ[љ]HXЭX[[Y[™Y[ќYќ\€H[™\[™[ќHЪXЪЩYќ[ќ[YHЫЫ\ЬЪ][Ы‹‚‹ЛИ™Z]\€]И^XЭZYЪYљ[HЫЭ\ЩH›Ь€]ИЬЭY›ЫЩ€Ш[€™H™\XЩYћHB‹ЛИX]Ъ[™И]™Yљ^]\€ЫЫ[Z]ЭXШЩ\ЬЩќ[ЪXЪИЬ€Y]ЬљX[]]Ьљ]K‚™^ЬќЫЫњЭРUТСђPХPSХTUWРђTСOIНMMНМYNXMЌО™ЌНNXLЩМНЩ	ОВ™^ЬќЫЫњЭРUТСђPХPSХTUWФУХTђСOIНЌЊЊНЋШMМNYЊLЩЊLYЌЩМОЩMЋNXОMNЙОВ™^ЬќЫЫњЭРUТСђPХPSХTUWФ•SЏLННОMМNMMЋNВ™^ЬќЫЫњЭРUТСђPХPSХTUWФUПVЙЫYYXЪ[™\Л]Ш]ЪФ‘PQQK›Y	Л	ЫYYXЪ[™\Л]Ш]ЪШЬ™YXљ[]K›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪШЬ™YXљ[]Kќ\Э›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЩ]љY[ЩKY\ЪЛќ\Э›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЪ[™\ЭћK›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЪ[™\ЭћKќ\Э›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЪЫ›ЭЫYЩKќ\Э›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЬ™]љY]ЬЛМЊЌ‹LLLX]]Ьљ\ЩY^ќ\™[YK[Y™XЮXЫK]\]KљњЫЫ‰ЧNВ™^ЬќЫЫњЭРUТСђPХPSХTUWУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Ь™[X\ЩKЭШ]Ъ\™YЪ\ЭћK]Ш]™K\ШЫЬK›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	ЬЪYќXЫШXЪЬ™[X\ЩKќ\Э›ZњЙЧNВ™^Ьќќ[Э[Ы€\ЬЩ\ќШ]ЪXЭX[\]T›ЫЩЉ›ЫЩЉ^В€\ЬЩ\ќ™\]X[
+›ЫЩ‹љYРUТСђPХPSХTUWФ•SЉNШ\ЬЩ\ќ™\]X[
+›ЫЩ‹љXYЬЪKРUТСђPХPSХTUWФУХTђСJNВ€\ЬЩ\ќ™\]X[
+›ЫЩ‹њ]	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЫYYXЪ[™\Л]Ш]ЪXЪXЪЛћ[[	КNШ\ЬЩ\ќ™\]X[
+›ЫЩ‹™]™[ќ	Ь[Ь™\]Y\Э	КNВ€\ЬЩ\ќ™\]X[
+›ЫЩ‹љXYШњ[Ъ	Ь™]љY]ЛЭШ]Ъ^ќ\™[YK[Y™XЮXЫKLЊЌЊL	КNВ€\ЬЩ\ќ™\]X[
+›ЫЩ‹њЭ]\Л	ШЫЫ\]Y	КNШ\ЬЩ\ќ™\]X[
+›ЫЩ‹ЫЫЫ\Ъ[Ы‹	ЬЭXШЩ\ЬЙКNЬ™]\›€›ЫЩЋВџB™^Ьќ\Ю[Иќ[Э[Ы€™\љYћUШ]ЪXЭX[\]T›ЫЩЉЩ]
+^Ь™]\›€\ЬЩ\ќШ]ЪXЭX[\]T›ЫЩЉ]ШZ]Щ]
+	ЛШXЭ[ЫњЛЬќ[њЛЙКХРUТСђPХPSХTUWФ•SЉJNЯB‹ЛИ^XЭ™XЩZ\™]љY][™\Z\Ћ€]\€™\ќ[њИШ[››Э™\XЩHHXШЩ\Y][\‚™^ЬќЫЫњЭ‘SРQРUSTРђTСOIШY™LЋЩMЩЩЋLШНLШMЌNXНЊNXLLШЋ™ЌYM	ОВ™^ЬќЫЫњЭ‘SРQРUSTФUПVЙЬ™[X\ЩKЫY[X™\‹XXШЩ\[ЩK\ШЫЬK›ZњЙЛ	Э\ЭЛЬ™[ШY\›ЫЩ‹X][\ќ\Э›ZњЙЛ	Ь™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	Л	Ь™[X\ЩKЭШ]Ъ[ШњЩ\ќ][Ы‹\ЩYY›ZњЙЛ	Э\ЭЛЭШ]Ъ[ШњЩ\ќ][Ы‹\ЩYYќ\Э›ZњЙЧNВЫЫњЭ‘SРQРUSTФСU[™]ИЩ]
+‘SРQРUSTФUКNВ™^Ьќќ[Э[Ы€™\љYћT™[ШY][\^[њЪ[ЫЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+Л	С^XЭ™[ШYX][\™XЩZ\™\Z\€™\]Z\™Y	КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФ‘SРQРUSTФ‘PСRTХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩK‘SРQРUSTРђTСJNШ\ЬЩ\ќ›X]Ъ
+ЛњЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]Л‘SРQРUSTФUКNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШXШЩ\[ЩP\ЬЩ\ќ[ЫњХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€[Щ\ЭЬЉЛ\ЩKЛњЫЭ\ЩJNШ[Щ\ЭЬЉЛњЫЭ\ЩKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y™[ШYX][\™XЩZ\™\Z\€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€™[ШYX][\™XЩZ\™\Z\‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™И›ЫXЪИ’И\ќXЫHЬ[Ш[›ЫљXШ[ЫЭ\ЩHљYќИ™[ШYX][\™XЩZ\ЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB‚™^ЬќЫЫњЭСУХUРQФSУ—РђTСOIШЌX™YLНMЋYОNЌLМMШОLЊНLLШЌ™ЙОВ™^ЬќЫЫњЭСУХUУђU’QРUSУ—ФУХTђСOIНXMОЋЋMЋXXM™YYNШЌ™MЩM™MЋIОВ™^ЬќЫЫњЭСУХUУђU’QРUSУ—Ф•SЏLНОНЌНMННВ™^ЬќЫЫњЭСУХUУђU’QРUSУ—Т“РЏLLLНMLЌLMNNMВ™^ЬќЫЫњЭСУХUРQФSУ—ФUПVЙЪX[\\ЬЬЬќЬ›ЩXЭ[Ы‹Xњ›ЭЬЩ\‹›ZњЙЛ	Э\ЭЛЫY[X™\‹\™[ШYXњ›ЭЬЩ\‹ќ\Э›ZњЙЛ	Ь™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	Ь™[X\ЩKЫY[X™\‹XXШЩ\[ЩK\ШЫЬK›ZњЙЛ	Э\ЭЛЬ™[ШY\›ЫЩ‹X][\ќ\Э›ZњЙЧNВЫЫњЭСУХUРQФSУ—ФСU[™]ИЩ]
+СУХUРQФSУ—ФUКNВЫЫњЭСУХUУУH]ШZ]YЩK›ШШ]ЬЉ	ЦЩ]K[Y[X™\‹[ЩЫЭ]IКKЫXЪК
+NШ]ШZ]YЩKќШZ]›Ь‘ќ[Э[Ы€ЋВЫЫњЭСУХUУ‘UПH]ШZ]YЩK›ШШ]ЬЉ	ЦЩ]K[Y[X™\‹[ЩЫЭ]IКKЫXЪК
+NШ]ШZ]YЩKќШZ]›Ь•T“
+\›Oќ\››ЬљYЪ[ЏOO\Ъ]I‰ќ\›њ][YOOOIЛЫY[X™\‹[ЩЪ[‰ЛЭШZ][ќ[‰ЩЫXЫЫќ[ќШYY	Л[Y[Э]ЊМJNШ]ШZ]YЩKќШZ]›Ь‘ќ[Э[Ы€ЋВ™^Ьќќ[Э[Ы€\ЬЩ\ќЩЫЭ]›Э[™\ћJ™Y›Ь™KYќ\Љ^В€\ЬЩ\ќ™\]X[
+™Y›Ь™KњЬ]
+СУХUУУ
+K›[™Э‹	С^XЭHЫ™HXЭX[ЩЫЭ]›Э[™\ћH™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+Yќ\‹™Y›Ь™Kњ™\XЩJСУХUУУСУХUУ‘UКK	УЩЫЭ]™\љYљXШ][Ы€X^HЫ›H]ШZ]H™X[ЪYЫ‹Z[€ШЭ[Y[ќИ™]Z[€]™\ћHљ]XЮH\ЬЩ\ќ[Ы‰КNВџB™^Ьќќ[Э[Ы€™\љYћSЩЫЭ]YЬ[ЫЉЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХУСУХUУђU’QРUSУ—ХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKСУХUРQФSУ—РђTСJNШ\ЬЩ\ќ›X]Ъ
+ЛњЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛСУХUРQФSУ—ФUКNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШXШЩ\[ЩP\ЬЩ\ќ[ЫњХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€[Щ\ЭЬЉЛ\ЩKЛњЫЭ\ЩJNШ[Щ\ЭЬЉЛњЫЭ\ЩKXY
+NШ[Щ\ЭЬЉ‘SРQХ‘T’Q’QT‹СУХUУђU’QРUSУ—ФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YЩЫЭ]™\љYљXШ][Ы€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€ЩЫЭ]™\љYљXШ][Ы‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™И›ЫXЪИ’И\ќXЫHЬ[Ш[›ЫљXШ[ЫЭ\ЩHљYќИЩЫЭ]]љYШ][Ы€ЫЭ\ЩHљYќ€	КЬ]
+NВ€\ЬЩ\ќЩЫЭ]›Э[™\ћJЫЫќ[ќ
+Л\ЩK	ЪX[\\ЬЬЬќЬ›ЩXЭ[Ы‹Xњ›ЭЬЩ\‹›ZњЙКKЫЫќ[ќ
+	ТPQ	Л	ЪX[\\ЬЬЬќЬ›ЩXЭ[Ы‹Xњ›ЭЬЩ\‹›ZњЙКJNВ€\ЬЩ\ќЩЫЭ]›Э[™\ћJЫЫќ[ќ
+‘SРQХ‘T’Q’QT‹	ЪX[\\ЬЬЬќЬ›ЩXЭ[Ы‹Xњ›ЭЬЩ\‹›ZњЙКKЫЫќ[ќ
+СУХUУђU’QРUSУ—ФУХTђСK	ЪX[\\ЬЬЬќЬ›ЩXЭ[Ы‹Xњ›ЭЬЩ\‹›ZњЙКJNВ€\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л	Э\ЭЛЫY[X™\‹\™[ШYXњ›ЭЬЩ\‹ќ\Э›ZњЙКK™XY
+СУХUУђU’QРUSУ—ФУХTђСK	Э\ЭЛЫY[X™\‹\™[ШYXњ›ЭЬЩ\‹ќ\Э›ZњЙКJNВ€™]\›€ОВџB™^Ьќќ[Э[Ы€\ЬЩ\ќЩЫЭ]]љYШ][Ы”™XЩZ\
+ќ[‹›ШЉ^В€\ЬЩ\ќ™\]X[
+ќ[ЏЛљYСУХUУђU’QРUSУ—Ф•SЉNШ\ЬЩ\ќ™\]X[
+ќ[‹њќ[—Ш][\JNШ\ЬЩ\ќ™\]X[
+ќ[‹љXYЬЪKСУХUУђU’QРUSУ—ФУХTђСJNВ€\ЬЩ\ќ™\]X[
+ќ[‹њ]	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЫ^K][X™\‹Yљ[[\›ЩXЭ[Ы‹ћ[[	КNШ\ЬЩ\ќ™\]X[
+ќ[‹љXYШњ[Ъ	Щљ^ЫY[X™\‹\™[ШY[]љYШ][Ы‹LЊЌЊLЙКNШ\ЬЩ\ќ™\]X[
+ќ[‹™]™[ќ	Ь\Ъ	КNШ\ЬЩ\ќ™\]X[
+ќ[‹њЭ]\Л	ШЫЫ\]Y	КNШ\ЬЩ\ќ™\]X[
+ќ[‹ЫЫЫ\Ъ[Ы‹	ЬЭXШЩ\ЬЙКNВ€\ЬЩ\ќ™\]X[
+›ШЏЛљYСУХUУђU’QРUSУ—Т“РЉNШ\ЬЩ\ќ™\]X[
+›Ш‹њќ[—ЪYСУХUУђU’QРUSУ—Ф•SЉNШ\ЬЩ\ќ™\]X[
+›Ш‹њќ[—Ш][\JNШ\ЬЩ\ќ™\]X[
+›Ш‹›[YK	Ь™[ШY[]љYШ][Ы‹YXYЫ›ЬЭXЬЙКNШ\ЬЩ\ќ™\]X[
+›Ш‹њЭ]\Л	ШЫЫ\]Y	КNШ\ЬЩ\ќ™\]X[
+›Ш‹ЫЫЫ\Ъ[Ы‹	ЬЭXШЩ\ЬЙКNВ€›ЬЉЫЫњЭќ[X™\€Щ€ОKLKL‹MMWJ^ШЫЫњЭЭ\Z›Ш‹њЭ\ПЛ™љ[™
+ПOњЛ›ќ[X™\ЏOO[ќ[X™\ЉNШ\ЬЩ\ќ™\]X[
+Э\ЛњЭ]\Л	ШЫЫ\]Y	Л	С]™\ћHЫЫ\]HЩЫЭ]ЫY[X™\€›Э[™\И™\]Z\™Y	КNШ\ЬЩ\ќ™\]X[
+Э\ЛЫЫЫ\Ъ[Ы‹	ЬЭXШЩ\ЬЙЛ	С]™\ћHЫЫ\]HЩЫЭ]ЫY[X™\€›Э[™\И™\]Z\™Y	КNЯB€™]\›€ЪYњќ[‹љYЪNњќ[‹љXYЬЪK]њќ[‹њ]ЫЫЫ\Ъ[ЫЋњќ[‹ЫЫЫ\Ъ[Ы‹][\ЊK›Э[™ОЊЯNВџB‚‹ЛИљ[љ]H[™Ъ[™Y\љ[™И[Y[™Y[ќ€›Э[™Y™XY[Ы›HЪ]X€[њЬЬќ™XЫЭ™\ћK‚™^ЬќЫЫњЭ“УС—ХђS”ФФ•РђTСOIННLMLXММXLЋLNЊYXЊ™MЌLMОЙОВ™^ЬќЫЫњЭ“УС—ХђS”ФФ•ФУХTђСOIЩЊXЌMMЋMН™MLXН™ЌMШMMМLЊLYMLLЋIОВ™^ЬќЫЫњЭ“УС—ХђS”ФФ•ФUПVЙЬ™[X\ЩKЩЬ›ЭЭ\™Y›YЪ›ZњЙЛ	Ь™[X\ЩKЩЪ]X‹\›ЫЩ‹YЩ]›ZњЙЛ	Э\ЭЛЩЪ]X‹\›ЫЩ‹YЩ]ќ\Э›ZњЙЧNВ™^ЬќЫЫњЭ“УС—ХђS”ФФ•УPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧNВ™^ЬќЫЫњЭ‘PУУђТSPUSУ—ФUП[™]ИЩ]
+Л‹‹ђУУTФТUSУ—ФUЛ‹‹”‘PУУђТSPUSУ—УPRS•SђSђСK‘PУУђТSPUSУ—УPS’Q‘TХ‹‹•РUТСђPХPSХTUWФUЛ‹‹•РUТСђPХPSХTUWУPRS•SђSђСK‹‹”“УС—ХђS”ФФ•ФUЛ‹‹”“УС—ХђS”ФФ•УPRS•SђSђСWJNВ™^ЬќЫЫњЭVWХ‘PUQS•РђTСOIНОLШЌLLНXЩMШЩЌ™ННNMШЊЊОННЋXММMЩНЌЙОВ™^ЬќЫЫњЭVWХ‘PUQS•ФУХTђСOIОЋYЊNYYМ™LMXМЌLНMНNНШНЩYLНЊLIОВ™^ЬќЫЫњЭVWХ‘PUQS•ФUПVЙЛ™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	Л	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЫ^K]™X]Y[ќ\›ЩXЭ[Ы‹XЪXЪЛћ[[	Л	ЫY[X™\‹Y^\љY[ЩKХ‘PUQS•T“СPХSУ‹T‘SPTСK›Y	Л	ЫY[X™\‹Y^\љY[ЩKЩ[ќћK›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ\ЭЛЭ™X]Y[ќ[[Щ[ќ\Э›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ\ЭЛЭ™X]Y[ќќ\Э›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™X]Y[ќ[[Щ[›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™X]Y[ќ\YЩK›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™X]Y[ќ\љ]XЮK›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™X]Y[ќ\™[Z[™\њЛ›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™X]Y[ќ\›Э]\Л›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™X]Y[ќ\Щ\ќљXЩK]ЫЬљЩ\‹›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™X]Y[ќњЬ[	Л	Ьљ]XЮKZX[Y\\Э\™K\›Э]K]ЊKљњЙЛ	Ь™[X\ЩKЫ^K]™X]Y[ќXЫЫ™љYЛ›ZњЙЛ	Ь™[X\ЩKЫ^K]™X]Y[ќ[]™K›ZњЙЛ	Ь™[X\ЩKЫ^K]™X]Y[ќ\ШЪ[XK›ZњЙЛ	ЬЪYќXЫШXЪЬ™[X\ЩKXЫЫќXЭ›ZњЙЛ	Э\ЭЛЫ^K]™X]Y[ќ\™[X\ЩKќ\Э›ZњЙЛ	ЭЫЬљЩ\‹Y[ќћK]Ќ‹љњЙЛ	ЭЬ[™Ы\‹ЫШXЪ[™ЛљњЫЫЙЛ	ЭЬ[™Ы\‹љњЫЫЙЧNВ™^ЬќЫЫњЭVWХ‘PUQS•УPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЫ^K]™X]Y[ќXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	Э\ЭЛЬX›XЛ]ЫЫ\™[X\ЩKќ\Э›ZњЙЛ	ШXЬ]Z\Ъ][Ы‹XXЭ]][Ы‹ЫY]љXЬЛ\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭVWХ‘PUQS•ФСU[™]ИЩ]
+Л‹‹“VWХ‘PUQS•ФUЛ‹‹“VWХ‘PUQS•УPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€VWХ‘PUQS•ФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћS^U™X]Y[ќ
+ЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХУVWХ‘PUQS•ХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKVWХ‘PUQS•РђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKVWХ‘PUQS•ФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛVWХ‘PUQS•ФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛVWХ‘PUQS•УPRS•SђSђСJNВ€\ЬЩ\ќ™\]X[
+Л›ЭЫ™\ђ]]Ьљ\ЩYќYJNШ\ЬЩ\ќ™\]X[
+Л›XЩ[њЩYYYXЪ[™\УЫ›KќYJNШ\ЬЩ\ќ™\]X[
+ЛY]]™TШЪ[XSЫ›KќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЪЫY\YЩPЪ[™ЩY	Л	ЬЭ\ќ\™PЪ[™ЩY	Л	Ы]љYШ][ЫђЪ[™ЩY	Л	ШЫ[љXШ[™YYЫZ[YY	Л	Ь™\ШЬљXљ[™РЪ[™ЩY	Л	ШЭ\ЭЫY\”›ЭЬРЪ[™ЩY	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y^H™X]Y[ќЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y^H™X]Y[ќXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€^H™X]Y[ќ	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€^H™X]Y[ќЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€^H™X]Y[ќИX›]ЫЬ™[™И™\љYљY\€ЫЭ\ЩHљYќИY]љXЬИXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€ЫЫњЭЫЫ™љYПXЫЫќ[ќ
+ЛњЫЭ\ЩK	ЭЬ[™Ы\‹љњЫЫЙКNШ\ЬЩ\ќ™\]X[
+ЫЫ™љYЛњЬ]
+‘PUQS•С“QКK›[™Э‹	С^XЭHЫ™H]]Ьљ\ЩY™X]Y[ќ›YЙКNВ€\ЬЩ\ќ™\]X[
+Ъ]Э]™X]Y[ќ›YКЫЫ™љYКKЫЫќ[ќ
+Л\ЩK	ЭЬ[™Ы\‹љњЫЫЙКK	УЫ›HH^XЭ™X]Y[ќ›YИX^HЪ[™ЩHЫЫ™љYЭ\][Ы‰КNВ€\ЬЩ\ќ™\]X[
+ЫЫќ[ќ
+ЛњЫЭ\ЩK	ЭЬ[™Ы\‹ЫШXЪ[™ЛљњЫЫЙКKЫЫ™љYЛ	РЫШXЪ[™И[™›ЩXЭ[Ы€ЫЫ™љYЭ\][Ы€]\Э™[XZ[€Y[ќXШ[	КNВ€\ЬЩ\ќ™\]X[
+Ъ]Э]™X]Y[ќЭ\КЫЫќ[ќ
+ЛњЫЭ\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КJKЫЫќ[ќ
+Л\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КK	С^\Э[™И›ЩXЭ[Ы€Ш]\И[™›ЫXЪИ]\Э™[XZ[€[Ъ[™ЩY	КNВ€™]\›€ОВџB™›ЬЉЫЫњЭ]Щ€‘SРQРUSTФUКT‘PУУђТSPUSУ—ФUЛY
+]
+NВ™›ЬЉЫЫњЭ]Щ€СУХUРQФSУ—ФUКT‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^ЬќЫЫњЭP“PЧХУУРђTСOIЩNNLЌМLMLМНШMMLMОN™ЌЌ™М™MNMXШY‰ОВ™^ЬќЫЫњЭP“PЧХУУФУХTђСOIМШMNЩЊ™YNNYЩMОLЌЊШЌLЊLYЊМО™Њ	ОВ™^ЬќЫЫњЭP“PЧХУУФVSРQVЙЬX›XЛ]ЫЫY[]™\ћK›ZњЙЛ	ЬЪYќXЫШXЪЭЫЬљЩ\‹›ZњЙЛ	Э\ЭЛЬX›XЛ]ЫЫY[]™\ћKќ\Э›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЩ[ќћK›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ\ЭЛЬЪ\™YX\њљ][ќ\Э›ZњЙЛ	ЬX›XЛXЫЫќ[ќZ]K›ZњЙЛ	Э\ЭЛЬX›XЛXЫЫќ[ќZ]Kќ\Э›ZњЙЧNВ™^ЬќЫЫњЭP“PЧХУУУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЬX›XЛ]ЫЫ\™[X\ЩKќ\Э›ZњЙЛ	Ь™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњЙЛ	Э\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪЬ™XЫЭ™\‹XШ[Щ[Y\™[X\ЩK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	Ь™[X\ЩKЩЬ›ЭЭXYЬY\Ю[Y[ќ›ZњЙЧNВЫЫњЭX›XХЫЫ[[]]X›QXЭП[™]ИX\
+
+NВЫЫњЭX›XХЫЫ[[]]X›QЪ]J‹‹\™ЬКOOћШЫЫњЭЩ^OR”УУ‹њЭљ[™ЪYћJЬ›ШЩ\ЬЛЭЩ
+
+K‹‹\™ЬЧJNЪYЉ\X›XХЫЫ[[]]X›QXЭЛљ\КЩ^JJ\X›XХЫЫ[[]]X›QXЭЛњЩ]
+Щ^KЪ]
+‹‹\™ЬКJNЬ™]\›€X›XХЫЫ[[]]X›QXЭЛ™Щ]
+Щ^JNЯNВЫЫњЭP“PЧХУУФUП[™]ИЩ]
+Л‹‹”P“PЧХУУФVSРQ‹‹”P“PЧХУУУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€P“PЧХУУФUКT‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћTX›XХЫЫ^[њЪ[ЫЉЛЪXY™XYY™‹[Щ\ЭЬџO^ЯJ^В€\ЬЩ\ќ
+Л	С^XЭX›XЛ]ЫЫ^[њЪ[Ы€™XЩZ\™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФP“PЧХУУСSU‘T–WХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩKP“PЧХУУРђTСJNШ\ЬЩ\ќ™\]X[
+Лњ^[ШYЫЭ\ЩKP“PЧХУУФУХTђСJNВ€\ЬЩ\ќ™\]X[
+ЛњЭ\ЬќЫ\ЪЭЫЭ\ЩK	ЩMШНОНЋMLLXNLLНMЋM™ШLЊЌЊNMЙКNВ€\ЬЩ\ќ™Y\\]X[
+Лњ^[ШY]ЛP“PЧХУУФVSРQ
+NШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛP“PЧХУУУPRS•SђSђСJNВ€\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ›X]Ъ
+XYЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+ЛњX›XРЫЬPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Лњ][™ЬТ[ќ™[ќY[ЩJNВ€\ЬЩ\ќ™\]X[
+ЛљЫY\YЩPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Лњљ]]PШXЪPЪ[™ЩY[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњ^[ШYЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩKЛњЭ\ЬќЫ\ЪЭЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњ^[ШYЫЭ\ЩJJKЫЬќY
+P“PЧХУУФVSРQ
+K	Х[њ™[]YX›XЛ]ЫЫ^[ШYЪ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњ^[ШYЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+P“PЧХУУУPRS•SђSђСJK	Х[њ™[]YX›XЛ]ЫЫ™\љYљY\€Ъ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€X›XЛ]ЫЫ™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€P“PЧХУУФVSРQ
+X\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Лњ^[ШYЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€X›XЛ]ЫЫ^[ШYЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€P“PЧХУУУPRS•SђSђСJX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€X›XЛ]ЫЫXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€ЙЫY[X™\‹Y^\љY[ЩKЩ[ќћK›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ\ЭЛЬЪ\™YX\њљ][ќ\Э›ZњЙЛ	ЬX›XЛXЫЫќ[ќZ]K›ZњЙЛ	Э\ЭЛЬX›XЛXЫЫќ[ќZ]Kќ\Э›ZњЙЧJX\ЬЩ\ќ™\]X[
+™XY
+Лњ^[ШYЫЭ\ЩK]
+K™XY
+ЛњЭ\ЬќЫ\ЪЭЫЭ\ЩK]
+K	РШ\\™YЩ\ќљ[™ИЭ\ЬќЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB‹ЛИ™\Щ\ќ™HH^XЭ\›Э™Y›ЩЬ[[YH™[X\ЩHЪ[H™\Z\љ[™И™\љYљXШ][Ы€Ы›K‚™^ЬќЫЫњЭP“PЧХУУФ“УС—Ф‘U–WРђTСOIМН™™ЊMЋНYYMЋLЊННМЊЌЌШОЩX™LМYMЙОВ™^ЬќЫЫњЭP“PЧХУУФ“УС—Ф‘U–WФUПVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Ь™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњЙЛ	Э\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњЙЛ	Ь™[X\ЩKШZK\™\ЬЫњЩK\›ЫЩ‹›ZњЙЛ	Ь™[X\ЩKЬЪYќXZK[]™K›ZњЙЛ	Э\ЭЛШZK\™\ЬЫњЩK\™]ћKќ\Э›ZњЙЛ	Э\ЭЛЬX›XЛ]ЫЫ\›ЫЩ‹\™]ћKќ\Э›ZњЙЧNВЫЫњЭP“PЧХУУФ“УС—Ф‘U–WФСU[™]ИЩ]
+P“PЧХУУФ“УС—Ф‘U–WФUКNВ™›ЬЉЫЫњЭ]Щ€P“PЧХУУФ“УС—Ф‘U–WФUКT‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћTX›XХЫЫ›ЫЩ”™]ћJЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+Л	ФX›XЛ]ЫЫ›ЫЩ€™]ћH™XЩZ\™\]Z\™Y	КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФP“PЧХУУФ“УС—Ф‘U–WХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKP“PЧХУУФ“УС—Ф‘U–WРђTСJNШ\ЬЩ\ќ›X]Ъ
+ЛњЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛP“PЧХУУФ“УС—Ф‘U–WФUКNВ€\ЬЩ\ќ™\]X[
+ЛњX›XРЫЬPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+ЛZTќ[ќ[YPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+ЛЭ\ЭЫY\‘]PЪ[™ЩY[ЩJNВ€[Щ\ЭЬЉЛ\ЩKЛњЫЭ\ЩJNШ[Щ\ЭЬЉЛњЫЭ\ЩKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+P“PЧХУУФ“УС—Ф‘U–WФUКK	Х[њ™[]YX›XЛ]ЫЫ›ЫЩ€™]ћHЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€X›XЛ]ЫЫ›ЫЩ€™]ћIКNВ€›ЬЉЫЫњЭ]Щ€P“PЧХУУФ“УС—Ф‘U–WФUКX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€X›XЛ]ЫЫ›ЫЩ€™]ћHЫЭ\ЩHљYќ€	КЬ]
+NВџB‚‚‹ЛИљ[љ]H™\Z\€Щ€H\›Э™YШ[›ЫљXШ[[ЪЬ€[њЩ\ќYYќ\€HX\›Y\€[љИ\ЬЛ‚™^ЬќЫЫњЭФђSРРS“У’PРSРђTСOIНЌНL™™ЋЊМННШЋYYЌЊXNXNЩШЊLЌMОX‰ОВ™^ЬќЫЫњЭФђSРРS“У’PРSФУХTђСOIМШMНЋLМННМLXМLЌYЋШЌЩЊYLMЙОВ™^ЬќЫЫњЭФђSРРS“У’PРSФUПVИњX›XЛ\XЭXШ[YЭZY\Л›ZњИ‹ќ\ЭЛЬXЭXШ[YЭZY\Лќ\Э›ZњИ‹њ™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњИ‹ќ\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњИ—NВ™^ЬќЫЫњЭФђSРРS“У’PРSУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЬXЭXШ[YЭZY\Л\›ЫЩ‹ћ[[	Л	ЬШЬљ\ЛЭ™\љYћK\XЭXШ[YЭZY\ЛZ[™\‹›ZњЙЛ	Ь™[X\ЩKЬЪ^]ЬXЛ\Щ[Л\ШЫЬK›ZњЙЛ	ЬШЬљ\ЛЭ™\љYћK\XЭXШ[YЭZY\Л›ZњЙЧNВЫЫњЭФђSРРS“У’PРSФСU[™]ИЩ]
+Л‹‹“ФђSРРS“У’PРSФUЛ‹‹“ФђSРРS“У’PРSУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€ФђSРРS“У’PРSФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћSЬ[Ш[›ЫљXШ[™\Z\ЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХУФђSРРS“У’PРSФ‘TRT—ХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩKФђSРРS“У’PРSРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKФђSРРS“У’PРSФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛФђSРРS“У’PРSФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛФђSРРS“У’PРSУPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+Лњќ[ќ[YPЪ[™ЩYќYJNШ\ЬЩ\ќ™\]X[
+Л\›Э™Y[ЪЬђЪ[™ЩYќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[ЫЫќ[ќЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YЬ[Ш[›ЫљXШ[™\Z\€^[ШY	КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YЬ[Ш[›ЫљXШ[™\Z\€™XЫЫЪ[X][Ы‰КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ь[Ш[›ЫљXШ[™\Z\‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™И›ЫXЪИ’И\ќXЫHЬ[Ш[›ЫљXШ[ЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™И›ЫXЪИ’И\ќXЫHЬ[Ш[›ЫљXШ[XZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВџB‚‹ЛИ^XЭ™\љYљY\€™XЫЫЪ[X][Ы€Yќ\€ќ[€НОМНОМ€™Z™XЭYH[™XYKX\›Э™Y‹ЛИ’ИЫЫќ[ќZ]H[™[Щ]H[™ШY™[H™\ЭЬ™YH[™\[™[ќH™\љYљYYќ[ќ[YK‚™^ЬќЫЫњЭ’ЧРT•PУWФ“УС—РђTСOIНLНYNXМ™™MYМННLОМЋLЩXLЌYЌЊЊЌНЩMYЌ‰ОВ™^ЬќЫЫњЭ’ЧРT•PУWФ“УС—ФУХTђСOIМНY™LНШNYЌNLMLООLНШЩЊЌЙОВ™^ЬќЫЫњЭ’ЧРT•PУWФ“УС—ФUПVИњ™[X\ЩKЬЩ[НОM\™\Щ\ќ][Ы‹›ZњИ‹™Y]ЬљX[Щљ]™KX\ќXЫ\ЛЬ›ЫЩ‹›ZњИ‹ќ\ЭЛЬЩ[НОM\™\Щ\ќ][Ы‹ќ\Э›ZњИ‹њ™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњИ‹ќ\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњИ—NВ™^ЬќЫЫњЭ’ЧРT•PУWФ“УС—УPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧNВЫЫњЭ’ЧРT•PУWФ“УС—ФСU[™]ИЩ]
+Л‹‹“’ЧРT•PУWФ“УС—ФUЛ‹‹“’ЧРT•PУWФ“УС—УPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€’ЧРT•PУWФ“УС—ФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћSљР\ќXЫT›ЫЩ”™Yњ™\Ъ
+ЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+Л	С^XЭ’И\ќXЫH›ЫЩ€™Yњ™\Ъ™XЩZ\™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХУ’ЧРT•PУWФ“УС—Ф‘Q”‘TТХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩK’ЧРT•PУWФ“УС—РђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩK’ЧРT•PУWФ“УС—ФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]Л’ЧРT•PУWФ“УС—ФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]Л’ЧРT•PУWФ“УС—УPRS•SђSђСJNВ€\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬX›XРЫЬPЪ[™ЩY	Л	Ьќ[ќ[YPЪ[™ЩY	Л	ЫYYXШ[ЫЫќ[ќЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y’И\ќXЫH›ЫЩ€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y’И\ќXЫH›ЫЩ€™XЫЫЪ[X][Ы‰КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€’И\ќXЫH›ЫЩ€™Yњ™\Ъ	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™И›ЫXЪИ’И\ќXЫHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™И›ЫXЪИ’И\ќXЫHXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВџB‚‹ЛИљ[љ]Hќ[ќ[YK\™XЩZ\™Yњ™\ЪYќ\€HZ[Y™[X\ЩHШY™]H›ЫXЪЛ‚™^ЬќЫЫњЭХTФ•Ф“УђPТЧРђTСOIМMЌМXЊЊXМНОNЌ™LYMЊЌYООNLЌYНН‰ОВ™^ЬќЫЫњЭХTФ•Ф“УђPТЧФУХTђСOIНYЊОLMОM™LЌЋЌXNYNX™NНYMNLXM	ОВ™^ЬќЫЫњЭХTФ•Ф“УђPТЧФUПVЙЬ™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњЙЛ	Э\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭХTФ•Ф“УђPТЧУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧNВЫЫњЭХTФ•Ф“УђPТЧФСU[™]ИЩ]
+Л‹‹”ХTФ•Ф“УђPТЧФUЛ‹‹”ХTФ•Ф“УђPТЧУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€ХTФ•Ф“УђPТЧФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћTЭ\Ьќ›ЫXЪФ™Yњ™\Ъ
+ЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+Л	С^XЭЩ\ќљ[™И›ЫXЪИ™Yњ™\Ъ™XЩZ\™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФХTФ•Ф“УђPТЧФ‘Q”‘TТХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩKХTФ•Ф“УђPТЧРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKХTФ•Ф“УђPТЧФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛХTФ•Ф“УђPТЧФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛХTФ•Ф“УђPТЧУPRS•SђSђСJNВ€\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+ЛњX›XРЫЬPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Лњќ[ќ[YPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Л›YYXШ[ЫЫќ[ќЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+ЛЭ\ЭЫY\‘]PЪ[™ЩY[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+ХTФ•Ф“УђPТЧФUКK	Х[њ™[]YЩ\ќљ[™И›ЫXЪИ™Yњ™\ЪЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+ХTФ•Ф“УђPТЧУPRS•SђSђСJK	Х[њ™[]YЩ\ќљ[™И›ЫXЪИ™Yњ™\Ъ™XЫЫЪ[X][Ы‰КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Щ\ќљ[™И›ЫXЪИ™Yњ™\Ъ	КNВ€›ЬЉЫЫњЭ]Щ€ХTФ•Ф“УђPТЧФUКX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	ФЩ\ќљ[™И›ЫXЪИЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€ХTФ•Ф“УђPТЧУPRS•SђSђСJX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	ФЩ\ќљ[™И›ЫXЪИXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВџB‚‹ЛИљ[љ]H™\љYљY\‹[Ы›H™\Z\€Yќ\€[€ЭЫ™\‹XЫЫ™љ\›YYЭ\њ™[ќ[XZ[€›ЩXЭ[Ы€\Ь]Ъ‚‹ЛИH^XЭЫЛYљ[HЫЭ\ЩH[™ЫЛYљ[H™XЫЫЪ[X][Ы€\™H[[]]X›NИ\ИЩ\В‹ЛИ›Э\›Э™H\ќXЫHЫЬKќ[ќ[YH™Z]љ[Э\‹Э\ЭЫY\€]HЬ€YYXШ[ЫЫќ[ќ‚™^ЬќЫЫњЭФђSУU‘WСTФUТРђTСOIОYXЩЊ™™MLННLО™ЌМОMНYMЌЌLLNЋNL	ОВ™^ЬќЫЫњЭФђSУU‘WСTФUТФУХTђСOIЩXОYXMЋXНXYШYMXЋYЌLLLНЊМ™ЊNNLIОВ™^ЬќЫЫњЭФђSУU‘WСTФUТФUПVЙШXћ[Э™KЬ™[X\ЩK\]X[]Kќ\Э›ZњЙЛ	ШXћ[Э™KЭ™\љYћK[Ь[[]™K›ZњЙЧNВ™^ЬќЫЫњЭФђSУU‘WСTФUТУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧNВЫЫњЭФђSУU‘WСTФUТФСU[™]ИЩ]
+Л‹‹“ФђSУU‘WСTФUТФUЛ‹‹“ФђSУU‘WСTФUТУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€ФђSУU‘WСTФUТФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћSЬ[]™Q\Ь]ЪЭX\™
+ЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+Л	С^XЭЬ[]™H\Ь]ЪЭX\™™XЩZ\™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХУФђSУU‘WСTФUТСХPT‘ХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩKФђSУU‘WСTФUТРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKФђSУU‘WСTФUТФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛФђSУU‘WСTФUТФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛФђSУU‘WСTФUТУPRS•SђSђСJNВ€\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+ЛњX›XРЫЬPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Лњќ[ќ[YPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Л›YYXШ[ЫЫќ[ќЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+ЛЭ\ЭЫY\‘]PЪ[™ЩY[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+ФђSУU‘WСTФUТФUКK	Х[њ™[]YЬ[]™H\Ь]ЪЭX\™ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+ФђSУU‘WСTФUТУPRS•SђSђСJK	Х[њ™[]YЬ[]™H\Ь]ЪЭX\™™XЫЫЪ[X][Ы‰КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ь[]™H\Ь]ЪЭX\™	КNВ€›ЬЉЫЫњЭ]Щ€ФђSУU‘WСTФUТФUКX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€Ь[\Ь]ЪЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€ФђSУU‘WСTФUТУPRS•SђSђСJX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Ь[\Ь]ЪXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВџB‚‹ЛИЭЫ™\‰ЬИШЭШ™\€ЫИ]]Ьљ\Щ\И\Иљ[љ]H›ЩЬ[[YH[[ЫњЭ][Ы‹‚™^ЬќЫЫњЭ“СФђSSQWСVWРђTСOIЩ™™Ќ™LYЊLXLОLЩLNY™ЌLШXMМНН	ОВ™^ЬќЫЫњЭ“СФђSSQWСVWФУХTђСOIМ™LОMМMШЌЊ™ЩЌШЊMНXОYNMЊМНЌXIОВ™^ЬќЫЫњЭ“СФђSSQWСVWФVSРQVЙЛ™Ъ]X‹ЭЫЬљЩ›ЭЬЛЬ›ЩЬ[[YKY^K\™]љY]Лћ[[	Л	ЩЬ›ЭЭ[Y[X™\‹\X›XЛ›ZњЙЛ	Ь›ЩЬ[[YKY^K›ZњЙЛ	Ь™[X\ЩKЩЬ›ЭЭ\™\Щ\ќ][Ы‹›ZњЙЛ	ЬШЬљ\ЛЭ™\љYћK\›ЩЬ[[YKY^KЪњЙЛ	Э\ЭЛЬ›ЩЬ[[YKY^Kќ\Э›ZњЙЛ	Э\ЭЛЩЬ›ЭЭ\™[X\ЩKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭ“СФђSSQWСVWУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЬ›ЩЬ[[YKY^K\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭ“СФђSSQWСVWФUП[™]ИЩ]
+Л‹‹”“СФђSSQWСVWФVSРQ‹‹”“СФђSSQWСVWУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€“СФђSSQWСVWФUКT‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћT›ЩЬ[[YQ^Q^[њЪ[ЫЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+Л	Ф›ЩЬ[[YH^H™XЩZ\™\]Z\™Y	КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФ“СФђSSQWСVWХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩK“СФђSSQWСVWРђTСJNШ\ЬЩ\ќ™\]X[
+Лњ^[ШYЫЭ\ЩK“СФђSSQWСVWФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ^[ШY]Л“СФђSSQWСVWФVSРQ
+NШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]Л“СФђSSQWСVWУPRS•SђSђСJNВ€\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™\]X[
+Л\›Э[	СЫЙКNВ€\ЬЩ\ќ™\]X[
+ЛљЫY\YЩPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+ЛЫ[љXШ[]Z[Xљ[]PЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Л›Y[X™\ђ™Z]љ[Э\ђЪ[™ЩY[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњ^[ШYЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњ^[ШYЫЭ\ЩJJKЫЬќY
+“СФђSSQWСVWФVSРQ
+K	Х[њ™[]Y›ЩЬ[[YH^[ШYЪ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњ^[ШYЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+“СФђSSQWСVWУPRS•SђSђСJK	Х[њ™[]Y›ЩЬ[[YH™\љYљY\€Ъ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€›ЩЬ[[YH™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€“СФђSSQWСVWФVSРQ
+X\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Лњ^[ШYЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€›ЩЬ[[YH^[ШYЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€“СФђSSQWСVWУPRS•SђSђСJX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€›ЩЬ[[YH™\љYљY\€ЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB™^ЬќЫЫњЭ“СФђSSQWФ‘Q“QТРђTСOIЩЌОNNXЊ™MY™™M™MLЌНЊYNЊY™MYMLЌ‰ОВ™^ЬќЫЫњЭ“СФђSSQWФ‘Q“QТФУХTђСOIММШXXXL™ЋНОLЊMЌYН™ЌШLЊL™YNYЌШ™МIОВ™^ЬќЫЫњЭ“СФђSSQWФ‘Q“QТФVSРQVЙЬ™[X\ЩKЩЬ›ЭЭ\™Y›YЪ›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЬ›ЩЬ[[YKY^K\™]љY]Лћ[[	Л	Э\ЭЛЬ›ЩЬ[[YKY^K\™[X\ЩKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭ“СФђSSQWФ‘Q“QТУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЧNВЫЫњЭ“СФђSSQWФ‘Q“QТФUП[™]ИЩ]
+Л‹‹”“СФђSSQWФ‘Q“QТФVSРQ‹‹”“СФђSSQWФ‘Q“QТУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€“СФђSSQWФ‘Q“QТФUКT‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћT›ЩЬ[[YQ^T™Y›YЪ^[њЪ[ЫЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФ“СФђSSQWФ‘Q“QТХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩK“СФђSSQWФ‘Q“QТРђTСJNШ\ЬЩ\ќ™\]X[
+Лњ^[ШYЫЭ\ЩK“СФђSSQWФ‘Q“QТФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™Y\\]X[
+Лњ^[ШY]Л“СФђSSQWФ‘Q“QТФVSРQ
+NШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]Л“СФђSSQWФ‘Q“QТУPRS•SђSђСJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњ^[ШYЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњ^[ШYЫЭ\ЩJJKЫЬќY
+Лњ^[ШY]КJNШ\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњ^[ШYЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КJNШ\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХJNВ€›ЬЉЫЫњЭ]Щ€Лњ^[ШY]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Лњ^[ШYЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€›ЩЬ[[YH™Y›YЪЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€›ЩЬ[[YH™Y›YЪ™\љYљY\€ЫЭ\ЩHљYќ€	КЬ]
+NЬ™]\›€ОВџB™^ЬќЫЫњЭСT•’S‘ЧФСSЧРђTСOIШMYMНYXLMЋЊШНОЊМM™MЩ™MNYMНЊ™YЋIОВ™^ЬќЫЫњЭСT•’S‘ЧФСSЧФУХTђСOIМLЌ™LЌLМ™ЊМЊЊЊLLШЌYЌММMYXМMММЋIОВ™^ЬќЫЫњЭСT•’S‘ЧФСSЧРРTT‘OIЩMXЋNLНMLXЩXLXЋMЩ™MM™XМЩЌМXLMН	ОВ™^ЬќЫЫњЭСT•’S‘ЧФСSЧРРTT‘WФUПVЙЬX›XЛXЫЫќ[ќZ]K›ZњЙЛ	ЬX›XЛ\Щ[ЛXЫЬЩ[Э]›ZњЙЛ	Э\ЭЛЬX›XЛ\Щ[ЛXЫЬЩ[Э]ќ\Э›ZњЙЛ	ЭЫЬљЩ\‹Y[ќћK]Ќ‹љњЙЧNВ™^ЬќЫЫњЭСT•’S‘ЧФСSЧФUПVЛ‹‹”СT•’S‘ЧФСSЧРРTT‘WФUЛ	Ь™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњЙЛ	Э\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭСT•’S‘ЧФСSЧУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЬЩ\ќљ[™Л\Щ[Л\ќ[ќ[YK\™[X\ЩKќ\Э›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЬXЭXШ[YЭZY\Л\›ЫЩ‹ћ[[	Л	ЬШЬљ\ЛЭ™\љYћK\XЭXШ[YЭZY\ЛZ[™\‹›ZњЙЛ	ЬШЬљ\ЛЭ™\љYћK\XЭXШ[YЭZY\Л›ZњЙЧNВЫЫњЭСT•’S‘ЧФСSЧФСU[™]ИЩ]
+Л‹‹”СT•’S‘ЧФСSЧФUЛ‹‹”СT•’S‘ЧФСSЧУPRS•SђSђСWJNЩ›ЬЉЫЫњЭ]Щ€СT•’S‘ЧФСSЧФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћTЩ\ќљ[™ФЩ[РШ\\™JЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФСT•’S‘ЧФСSЧРРTT‘WХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKСT•’S‘ЧФСSЧРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKСT•’S‘ЧФСSЧФУХTђСJNШ\ЬЩ\ќ™\]X[
+ЛШ\\™KСT•’S‘ЧФСSЧРРTT‘JNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛСT•’S‘ЧФСSЧФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛСT•’S‘ЧФСSЧУPRS•SђSђСJNВ€\ЬЩ\ќ™\]X[
+Лњ™\Щ\ќ™TЩ\ќљ[™ФЩ[ЛќYJNЩ›ЬЉЫЫњЭ›YИЩ€ЙЪЫY\YЩPЪ[™ЩY	Л	ШЫ[љXШ[]Z[Xљ[]PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЬЭШЪРЪ[™ЩY	Л	ЫY[X™\ђ™Z]љ[Э\ђЪ[™ЩY	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛШ\\™KЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™Љ	ЩMШНОНЋMLLXNLLНMЋM™ШLЊЌЊNMЙЛЛШ\\™JJKЫЬќY
+СT•’S‘ЧФСSЧРРTT‘WФUКK	Х[њ™[]YЩ\ќљ[™ИШ\\™HЪ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YЩ\ќљ[™ИСSИЫЭ\ЩHЪ[™ЩIКNШ\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КJNШ\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХJNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€Щ\ќљ[™ИСSИЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™ИСSИ™\љYљY\€љYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€СT•’S‘ЧФСSЧРРTT‘WФUКX\ЬЩ\ќ™\]X[
+™XY
+ЛњЫЭ\ЩK]
+K™XY
+ЛШ\\™K]
+K	РШ\\™YЩ\ќљ[™ИСSИЫЭ\ЩHY™™\њО€	КЬ]
+NВџB‚™^ЬќЫЫњЭ“СФђSSQWРУФСSХUРђTСOIЩMYXМНШЊ™Ћ™M™ЊMЌNMЊЌЩ™ЊL™MЩIОВ™^ЬќЫЫњЭ“СФђSSQWРУФСSХUФУХTђСOIННОLНМЌMЊМЌЊЩL™XЌYШY™ЋLШLЩ‰ОВ™^ЬќЫЫњЭ“СФђSSQWРУФСSХUФUПVЙЬ™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњЙЛ	Э\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњЙЛ	ЬШЬљ\ЛЭ™\љYћK\X›XЛXЫЫќ[ќZ]K[]™K›ZњЙЛ	Ь™[X\ЩKЬX›XЛXЫЫќ[ќZ]KX›ЩK\›ЫЩ‹›ZњЙЛ	Э\ЭЛЬ›ЩЬ[[YKY^KXЫЫќ[ќZ]KX›ЩKќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	ЧNВ™^ЬќЫЫњЭ“СФђSSQWРУФСSХUУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЬ›ЩЬ[[YKY^KXЫЬЩ[Э]\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭ“СФђSSQWРУФСSХUФСU[™]ИЩ]
+Л‹‹”“СФђSSQWРУФСSХUФUЛ‹‹”“СФђSSQWРУФСSХUУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€“СФђSSQWРУФСSХUФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^ЬќЫЫњЭ“СФђSSQWУU‘WСРUOIИH[YN€™\љYћH\›Э™Y›ЩЬ[[YH^H[™Ш][ЩЭYH\ќЫЬљИ]™W€ќ[Ћ€“СФђSSQWСVWУU‘O]ќYHVUФ’QТУSСSOH‰•S“‘T—ХSTЪXY[™Л]ЫЫЛЫ›ЩWЫ[Щ[\ЛЬ^]ЬљYЪ€›ЩHШЬљ\ЛЭ™\љYћK\›ЩЬ[[YKY^KЪњЧ‰ОВ™^Ьќќ[Э[Ы€Ъ]Э]›ЩЬ[[YS]™QШ]JЫЬљЩ›ЭК^В€\ЬЩ\ќ™\]X[
+ЫЬљЩ›ЭЛњЬ]
+“СФђSSQWУU‘WСРUJK›[™Э‹	С^XЭHЫ™H\›Э™Y]™H›ЩЬ[[YHШ]H™\]Z\™Y	КNВ€™]\›€ЫЬљЩ›ЭЛњ™\XЩJ“СФђSSQWУU‘WСРUK	ЙКNВџB™^Ьќќ[Э[Ы€™\љYћT›ЩЬ[[YPЫЬЩ[Э]
+ЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФ“СФђSSQWУU‘WРУФСSХUХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩK“СФђSSQWРУФСSХUРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩK“СФђSSQWРУФСSХUФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]Л“СФђSSQWРУФСSХUФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]Л“СФђSSQWРУФСSХUУPRS•SђSђСJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ШЫ[љXШ[]Z[Xљ[]PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЬЭШЪРЪ[™ЩY	Л	ЫY[X™\ђ™Z]љ[Э\ђЪ[™ЩY	Л	Ьљ]XЮP\ЬЩ\ќ[ЫњХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€\ЬЩ\ќ™\]X[
+Л›]™T›ЩЬ[[YU™\љYљXШ][ЫђYYќYJNШ\ЬЩ\ќ™\]X[
+Л\›Э™YЫЬPЫЫ\\љ\ЫЫ‘љ^YќYJNШ\ЬЩ\ќ™\]X[
+Лњ›ЫXЪФ™XЩZ\ќ[‹НОLМMLLЌЉNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y›ЩЬ[[YHЫЬЩ[Э]ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y›ЩЬ[[YHЫЬЩ[Э]XZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€›ЩЬ[[YHЫЬЩ[Э]	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€Щ\ќљ[™ИСSИЫЭ\ЩHљYќИ›ЩЬ[[YHЫЬЩ[Э]ЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™ИСSИ™\љYљY\€љYќИ›ЩЬ[[YHЫЬЩ[Э]™\љYљY\€љYќ€	КЬ]
+NВ€ЫЫњЭЫЬљЩ›ЭПIЛ™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	ОВ€\ЬЩ\ќ™\]X[
+Ъ]Э]›ЩЬ[[YS]™QШ]JЫЫќ[ќ
+ЛњЫЭ\ЩKЫЬљЩ›ЭКJKЫЫќ[ќ
+Л\ЩKЫЬљЩ›ЭКK	УЫ›HHY][Ы[^XЭ›ЩЬ[[YH]™HШ]HX^HЪ[™ЩH›ЩXЭ[Ы€ЫЬљЩ›ЭЙКNВ€™]\›€ОВџB‚‚™^ЬќЫЫњЭ‘UФЧФСPХT’UWРђTСOIМMЊН™LНYYNNОMМLШЩЌYYЌОLНXLM™ЋIОВ™^ЬќЫЫњЭ‘UФЧФСPХT’UWФУХTђСOIМMLNNMОMNYЌЋLЌY™МЋM™MNXLШMЩLЌIОВ™^ЬќЫЫњЭ‘UФЧФСPХT’UWФUПVЙЬY\‹[™]ЬЛ\YЩ\Л]ЊKљњЙЛ	Э\ЭЛЬ›ЩЬ[[YKY^K[™]ЬЛ\ЩXЭ\љ]Kќ\Э›ZњЙЛ	Ь™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњЙЛ	Э\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭ‘UФЧФСPХT’UWУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЬ›ЩЬ[[YKY^K[™]ЬЛ\ЩXЭ\љ]K\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭ‘UФЧФСPХT’UWФСU[™]ИЩ]
+Л‹‹“‘UФЧФСPХT’UWФUЛ‹‹“‘UФЧФСPХT’UWУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€‘UФЧФСPХT’UWФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€Ъ]Э]™]ЬФЩXЭ\љ]TЫXЮJЫЭ\ЩJ^В€ЫЫњЭ[™OHљ[\ЬќЭЪ]\ќXЫT™\ЬЫњЩTЫXЮ_Hњ›ЫH	Л‹ШXћ[Э™KЬ™\ЬЫњЩK\ЫXЮK›ZњЙОЧ€ЋВ€ЫЫњЭЬ\\ЏIЬ™]\›€Ъ]\ќXЫT™\ЬЫњЩTЫXЮJ™]И™\ЬЫњЩJ›ЩKЬЭ]\ЛXY\њЯJJNЙОВ€\ЬЩ\ќ
+ЫЭ\ЩKњЭ\ќХЪ]
+[™JK	С^XЭЪ\™YЫXЮH[\Ьќ™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+ЫЭ\ЩKњЬ]
+Ь\\ЉK›[™Э‹	С^XЭHЫ™HЪ\™Y™\ЬЫњЩHЫXЮHЬ\\€™\]Z\™Y	КNВ€™]\›€ЫЭ\ЩKњЫXЩJ[™K›[™Э
+Kњ™\XЩJЬ\\‹	Ь™]\›€™]И™\ЬЫњЩJ›ЩKЬЭ]\ЛXY\њЯJNЙКNВџB™^Ьќќ[Э[Ы€™\љYћS™]ЬФЩXЭ\љ]JЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХУ‘UФЧФСPХT’UWФУPЦWХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩK‘UФЧФСPХT’UWРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩK‘UФЧФСPХT’UWФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]Л‘UФЧФСPХT’UWФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]Л‘UФЧФСPХT’UWУPRS•SђSђСJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬX›XРЫЬPЪ[™ЩY	Л	ШЫ[љXШ[]Z[Xљ[]PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЬЭШЪРЪ[™ЩY	Л	ЫY[X™\ђ™Z]љ[Э\ђЪ[™ЩY	Л	Ьљ]XЮP\ЬЩ\ќ[ЫњХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€\ЬЩ\ќ™\]X[
+Лњќ[ќ[YPЪ[™ЩYќYJNШ\ЬЩ\ќ™\]X[
+Л™^\Э[™ФЩXЭ\љ]TЫXЮP\YYќYJNШ\ЬЩ\ќ™\]X[
+Лњ›ЫXЪФ™XЩZ\ќ[‹НОMОЌЊNJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y™]ЬИЩXЭ\љ]HЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y™]ЬИЩXЭ\љ]HXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€™]ЬИЩXЭ\љ]IКNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€Щ\ќљ[™ИСSИЫЭ\ЩHљYќИ›ЩЬ[[YHЫЬЩ[Э]ЫЭ\ЩHљYќИ™]ЬИЩXЭ\љ]HЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™ИСSИ™\љYљY\€љYќИ›ЩЬ[[YHЫЬЩ[Э]™\љYљY\€љYќИ™]ЬИЩXЭ\љ]H™\љYљY\€љYќ€	КЬ]
+NВ€\ЬЩ\ќ™\]X[
+Ъ]Э]™]ЬФЩXЭ\љ]TЫXЮJЫЫќ[ќ
+ЛњЫЭ\ЩK	ЬY\‹[™]ЬЛ\YЩ\Л]ЊKљњЙКJKЫЫќ[ќ
+Л\ЩK	ЬY\‹[™]ЬЛ\YЩ\Л]ЊKљњЙКK	УЫ›HH^\Э[™ИЪ\™YЩXЭ\љ]HЫXЮHX^HЪ[™ЩH™]ЬЬ›ЫЫH™[™\љ[™ЙКNВ€\ЬЩ\ќ™\]X[
+ЫЫќ[ќ
+ЛњЫЭ\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КKЫЫќ[ќ
+Л\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КK	Ф›ЩXЭ[Ы€Ш]\И]\Э™[XZ[€[Ъ[™ЩY	КNВ€™]\›€ОВџB‚™^ЬќЫЫњЭРUТУХУ‘QСTФUТРђTСOIШXШYЊ™™LОLЩLЋNXОLMЌЌ™ЌЊЌЋLНLLМNН™	ОВ™^ЬќЫЫњЭРUТУХУ‘QСTФUТФУХTђСOIМННШЋMОNMЋYYЌYLМMНLXЌЌЩЌМMЊМЩЙОВ™^ЬќЫЫњЭРUТУХУ‘QСTФUТФUПVЙЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭРUТУХУ‘QСTФUТУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭШ]Ъ[ЭЫ™YY\Ь]Ъ\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭРUТУХУ‘QСTФUТФСU[™]ИЩ]
+Л‹‹•РUТУХУ‘QСTФUТФUЛ‹‹•РUТУХУ‘QСTФUТУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€РUТУХУ‘QСTФUТФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUШ]ЪЭЫ™Y\Ь]Ъ
+ЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХРUТУХУ‘QСTФUТХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKРUТУХУ‘QСTФUТРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKРUТУХУ‘QСTФUТФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛРUТУХУ‘QСTФUТФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛРUТУХУ‘QСTФUТУPRS•SђSђСJNВ€\ЬЩ\ќ™\]X[
+Лњ[›™Yќ[‹НОМЌММЌNJNШ\ЬЩ\ќ™\]X[
+Лњ[›™Y]™[ќ	ЭЫЬљЩ›ЭЧЩ\Ь]Ъ	КNШ\ЬЩ\ќ™\]X[
+Л™љ[[ЭЫ™\њЪ\™\љYљY\ђЪ[™ЩYќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[]љY[ЩPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YШ]ЪЭЫ™Y\Ь]ЪЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YШ]ЪЭЫ™Y\Ь]ЪXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ш]ЪЭЫ™Y\Ь]Ъ	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YШ]ЪЭЫ™Y\Ь]ЪЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YШ]ЪЭЫ™Y\Ь]ЪЫЭ\ЩHљYќИXZ[ќ[[ЩN€	КЬ]
+NВ€ЫЫњЭ™\љYљY\ЏXЫЫќ[ќ
+ЛњЫЭ\ЩK	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙКNВ€\ЬЩ\ќ›X]Ъ
+™\љYљY\‹Щ^XЭ™XЫЬ™YX[ќX[™[X\ЩKКNШ\ЬЩ\ќ›X]Ъ
+™\љYљY\‹Ьќ[—Ч™]™[ќOOY^XЭY]™[ќКNВ€\ЬЩ\ќ™\]X[
+ЫЫќ[ќ
+ЛњЫЭ\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КKЫЫќ[ќ
+Л\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КK	СЭX\™Y›ЩXЭ[Ы€ЫЬљЩ›ЭИ]\Э™[XZ[€ћ]KY›Ь‹Xћ]H[Ъ[™ЩY	КNВ€™]\›€ОВџB‚™^ЬќЫЫњЭРUТФ•S•SQWСTФUТРђTСOIШНШНLXЩ™YМЊЊЌYНYYЩЌMXММЌ™MОЌ‰ОВ™^ЬќЫЫњЭРUТФ•S•SQWСTФUТФУХTђСOIММЌЌMМНLЌЌMMЌШNMЩЊМЋMЊШXMXЌMЊM‰ОВ™^ЬќЫЫњЭРUТФ•S•SQWСTФUТФUПVЙЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭРUТФ•S•SQWСTФUТУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭШ]Ъ\ќ[ќ[YKY\Ь]Ъ\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭРUТФ•S•SQWСTФUТФСU[™]ИЩ]
+Л‹‹•РUТФ•S•SQWСTФUТФUЛ‹‹•РUТФ•S•SQWСTФUТУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€РUТФ•S•SQWСTФUТФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUШ]Ъќ[ќ[YQ\Ь]Ъ
+ЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХРUТФ•S•SQWСTФUТХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKРUТФ•S•SQWСTФUТРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKРUТФ•S•SQWСTФUТФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛРUТФ•S•SQWСTФUТФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛРUТФ•S•SQWСTФUТУPRS•SђSђСJNВ€\ЬЩ\ќ™\]X[
+Лњ[›™Yќ[‹НОМЌММЌNJNШ\ЬЩ\ќ™\]X[
+Лњ[›™Y]™[ќ	ЭЫЬљЩ›ЭЧЩ\Ь]Ъ	КNШ\ЬЩ\ќ™\]X[
+Лњ™XЫЭ™\ћU™\љYљY\ђЪ[™ЩYќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[]љY[ЩPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YШ]Ъќ[ќ[YH\Ь]ЪЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YШ]Ъќ[ќ[YH\Ь]ЪXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ш]Ъќ[ќ[YH\Ь]Ъ	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YШ]Ъќ[ќ[YH\Ь]ЪЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YШ]Ъќ[ќ[YH\Ь]ЪЫЭ\ЩHљYќИXZ[ќ[[ЩN€	КЬ]
+NВ€ЫЫњЭ™\љYљY\ЏXЫЫќ[ќ
+ЛњЫЭ\ЩK	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙКNВ€\ЬЩ\ќ›X]Ъ
+™\љYљY\‹Щ]™[ќ‰ЭЫЬљЩ›ЭЧЩ\Ь]Ъ	ЛКNШ\ЬЩ\ќ›X]Ъ
+™\љYљY\‹Ь™XЫЬ™Y™]™[ќ[›™Y™]™[ќ	Ь\Ъ	ЛКNВ€\ЬЩ\ќ™\]X[
+ЫЫќ[ќ
+ЛњЫЭ\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КKЫЫќ[ќ
+Л\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КK	СЭX\™Y›ЩXЭ[Ы€ЫЬљЩ›ЭИ]\Э™[XZ[€ћ]KY›Ь‹Xћ]H[Ъ[™ЩY	КNВ€™]\›€ОВџB‚™^ЬќЫЫњЭРUТФ•S•SQWРђTСSS‘WРђTСOIОXЊМЋМMYЌМMЋYMЌ™YЊЩМЌОXЩMНMЊОО	ОВ™^ЬќЫЫњЭРUТФ•S•SQWРђTСSS‘WФУХTђСOIШLЊМЋЊM™ЌLЋLYЌЌЋLMYXЌ™NMМMЋШLМLЙОВ™^ЬќЫЫњЭРUТФ•S•SQWРђTСSS‘WФUПVЙЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭРUТФ•S•SQWРђTСSS‘WУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭШ]Ъ\ќ[ќ[YKX\Щ[[™K\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭРUТФ•S•SQWРђTСSS‘WФСU[™]ИЩ]
+Л‹‹•РUТФ•S•SQWРђTСSS‘WФUЛ‹‹•РUТФ•S•SQWРђTСSS‘WУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€РUТФ•S•SQWРђTСSS‘WФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUШ]Ъќ[ќ[YP\Щ[[™JЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХРUТФ•S•SQWРђTСSS‘WХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKРUТФ•S•SQWРђTСSS‘WРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKРUТФ•S•SQWРђTСSS‘WФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛРUТФ•S•SQWРђTСSS‘WФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛРUТФ•S•SQWРђTСSS‘WУPRS•SђSђСJNВ€\ЬЩ\ќ™\]X[
+Лњ™XЫЭ™\ћU™\љYљY\ђЪ[™ЩYќYJNШ\ЬЩ\ќ™\]X[
+ЛЭ\њ™[ќ\Ю[Y[ќќ[‹НОМЌММЌNJNШ\ЬЩ\ќ™\]X[
+ЛЭ\њ™[ќ\Ю[Y[ќY	МНLMYLНЛLNLMKMНKNYЌ‹MЌX™ЌYLЊIКNШ\ЬЩ\ќ™\]X[
+ЛЭ\њ™[ќ™\њЪ[Ы’Y	НXЌМKXШЋLMLМ‹XЊM‹MНЋLМ™ЊYIКNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[]љY[ЩPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YШ]Ъќ[ќ[YH\Щ[[™HЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YШ]Ъќ[ќ[YH\Щ[[™HXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ш]Ъќ[ќ[YH\Щ[[™IКNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YШ]Ъќ[ќ[YH\Щ[[™HЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YШ]Ъќ[ќ[YH\Щ[[™HЫЭ\ЩHљYќИXZ[ќ[[ЩN€	КЬ]
+NВ€ЫЫњЭ™\љYљY\ЏXЫЫќ[ќ
+ЛњЫЭ\ЩK	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙКNВ€\ЬЩ\ќ›X]Ъ
+™\љYљY\‹Ь™XЫЬ™YYYXЪ[™\ХШ]Ъќ[ќ[YKКNШ\ЬЩ\ќ›X]Ъ
+™\љYљY\‹ШXЭ]™WЧљYOO\™XЩZ\™\Ю[Y[ќYКNВ€\ЬЩ\ќ™\]X[
+ЫЫќ[ќ
+ЛњЫЭ\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КKЫЫќ[ќ
+Л\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КK	СЭX\™Y›ЩXЭ[Ы€ЫЬљЩ›ЭИ]\Э™[XZ[€ћ]KY›Ь‹Xћ]H[Ъ[™ЩY	КNВ€™]\›€ОВџB‚™^ЬќЫЫњЭТT‘QС“УХT—РУУTФТUSУ—РђTСOIШМНШННМLЋYЌЩЌNMYYЊЊЊЊШЌЊLЊMXЋЊ™™‰ОВ™^ЬќЫЫњЭТT‘QС“УХT—РУУTФТUSУ—ФUПVЙЭ\ЭЛЬЪ\™YY›ЫЭ\‹ќ\Э›ZњЙЧNВ™^ЬќЫЫњЭТT‘QС“УХT—РУУTФТUSУ—УPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЬЪ\™YY›ЫЭ\‹XЫЫ\ЬЪ][Ы‹\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭТT‘QС“УХT—РУУTФТUSУ—ФСU[™]ИЩ]
+Л‹‹”ТT‘QС“УХT—РУУTФТUSУ—ФUЛ‹‹”ТT‘QС“УХT—РУУTФТUSУ—УPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€ТT‘QС“УХT—РУУTФТUSУ—ФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћTЪ\™Y›ЫЭ\ђЫЫ\ЬЪ][ЫЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФТT‘QС“УХT—РУУTФТUSУ—ХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKТT‘QС“УХT—РУУTФТUSУ—РђTСJNШ\ЬЩ\ќ›X]Ъ
+ЛњЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛТT‘QС“УХT—РУУTФТUSУ—ФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛТT‘QС“УХT—РУУTФТUSУ—УPRS•SђSђСJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[]љY[ЩPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	Л	Ьљ]XЮP\ЬЩ\ќ[ЫњХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YЪ\™Y›ЫЭ\€ЫЫ\ЬЪ][Ы€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YЪ\™Y›ЫЭ\€ЫЫ\ЬЪ][Ы€XZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ъ\™Y›ЫЭ\€ЫЫ\ЬЪ][Ы€™XЫЫЪ[X][Ы‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЪ\™Y›ЫЭ\€ЫЫ\ЬЪ][Ы€ЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЪ\™Y›ЫЭ\€ЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB‚™^ЬќЫЫњЭРUТТХЧФP“PЧХУФ‘S‘ЧРђTСOIОMЊYLНLЊЌLYЩMШШЊЊШLМЌОЌМЌНIОВ™^ЬќЫЫњЭРUТТХЧФP“PЧХУФ‘S‘ЧФUПVЙЬ™[X\ЩKЬX›XЛ]ЫЬ™[™Л\ШЫЬK›ZњЙЛ	ЬШЬљ\ЛШЊK\™[X\ЩK\ШЫЬK›ZњЙЛ	Э\ЭЛШЊK\™[X\ЩK\ШЫЬKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪЬ™[X\ЩKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭРUТТХЧФP“PЧХУФ‘S‘ЧУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭШ]ЪZЭЛ\X›XЛ]ЫЬ™[™Л\™[X\ЩKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪЬ™[X\ЩKXЫЫќXЭ›ZњЙЧNВЫЫњЭРUТТХЧФP“PЧХУФ‘S‘ЧФСU[™]ИЩ]
+Л‹‹•РUТТХЧФP“PЧХУФ‘S‘ЧФUЛ‹‹•РUТТХЧФP“PЧХУФ‘S‘ЧУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€РUТТХЧФP“PЧХУФ‘S‘ЧФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUШ]ЪЭФX›XХЫЬ™[™КЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХРUТТХЧФP“PЧХУФ‘S‘ЧХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKРUТТХЧФP“PЧХУФ‘S‘ЧРђTСJNШ\ЬЩ\ќ›X]Ъ
+ЛњЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛРUТТХЧФP“PЧХУФ‘S‘ЧФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛРUТТХЧФP“PЧХУФ‘S‘ЧУPRS•SђSђСJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	Ь™XYЫ›RXY\њРЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[]љY[ЩPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШШ][ЩЭYPЫЭ[ќЪ[™ЩY	Л	ЭZР]]Ьљ\Ш][ЫђЪ[™ЩY	Л	ЫљРXШЩ\ЬРЪ[™ЩY	Л	ЬЭ\PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	Л	Ьљ]XЮP\ЬЩ\ќ[ЫњХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YШ]ЪХИX›XИЫЬ™[™ИЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YШ]ЪХИX›XИЫЬ™[™ИXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ш]ЪХИX›XИЫЬ™[™И™XЫЫЪ[X][Ы‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YШ]ЪХИX›XИЫЬ™[™ИЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YШ]ЪХИX›XИЫЬ™[™ИXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB‚™^ЬќЫЫњЭРUТТХЧСPQУ“ФХPЧРђTСOIШМLЩНMML™XЋMЩ™ЋLННNЊЊYMМШЌYMLN	ОВ™^ЬќЫЫњЭРUТТХЧСPQУ“ФХPЧФUПVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭШ]ЪZЭЛYXYЫ›ЬЭXЛ\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭРUТТХЧСPQУ“ФХPЧФСU[™]ИЩ]
+РUТТХЧСPQУ“ФХPЧФUКNВ™›ЬЉЫЫњЭ]Щ€РUТТХЧСPQУ“ФХPЧФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUШ]ЪЭСXYЫ›ЬЭXКЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХРUТТХЧСPQУ“ФХPЧХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKРUТТХЧСPQУ“ФХPЧРђTСJNШ\ЬЩ\ќ›X]Ъ
+ЛњЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛРUТТХЧСPQУ“ФХPЧФUКNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	Ь™XYЫ›RXY\њРЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[]љY[ЩPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШШ][ЩЭYPЫЭ[ќЪ[™ЩY	Л	ЭZР]]Ьљ\Ш][ЫђЪ[™ЩY	Л	ЫљРXШЩ\ЬРЪ[™ЩY	Л	ЬЭ\PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YШ]ЪХИXYЫ›ЬЭXИЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ш]ЪХИXYЫ›ЬЭXЙКNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YШ]ЪХИXYЫ›ЬЭXИЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB‚™^ЬќЫЫњЭРUТТХЧРђTСOIОNNNXЋYЌMМЩMЊОЌMLЌОЋLЌNX™™	ОВ™^ЬќЫЫњЭРUТТХЧФUПVЙЫYYXЪ[™\Л]Ш]ЪЬYЩK›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЬYЩKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭРUТТХЧУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭШ]ЪZЭЛ\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭРUТТХЧФСU[™]ИЩ]
+Л‹‹•РUТТХЧФUЛ‹‹•РUТТХЧУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€РUТТХЧФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUШ]ЪЭКЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХРUТТХЧХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKРUТТХЧРђTСJNШ\ЬЩ\ќ›X]Ъ
+ЛњЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛРUТТХЧФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛРUТТХЧУPRS•SђSђСJNВ€\ЬЩ\ќ™\]X[
+Лњќ[ќ[YPЪ[™ЩYќYJNШ\ЬЩ\ќ™\]X[
+Лњ™XYЫ›RXY\њРЪ[™ЩYќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[]љY[ЩPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШШ][ЩЭYPЫЭ[ќЪ[™ЩY	Л	ЭZР]]Ьљ\Ш][ЫђЪ[™ЩY	Л	ЫљРXШЩ\ЬРЪ[™ЩY	Л	ЬЭ\PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YШ]ЪХИЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YШ]ЪХИXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Ш]ЪХЙКNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€Ш]ЪХИЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YШ]ЪХИXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€\ЬЩ\ќ™Щ\У›ЭX]Ъ
+ЫЫќ[ќ
+Л\ЩK	ЫYYXЪ[™\Л]Ш]ЪЬYЩK›ZњЙКKФЭљXЭU[њЬЬќTЩXЭ\љ]KКNВ€\ЬЩ\ќ›X]Ъ
+ЫЫќ[ќ
+ЛњЫЭ\ЩK	ЫYYXЪ[™\Л]Ш]ЪЬYЩK›ZњЙКKФЭљXЭU[њЬЬќTЩXЭ\љ]KКNВ€\ЬЩ\ќ™\]X[
+ЫЫќ[ќ
+ЛњЫЭ\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КKЫЫќ[ќ
+Л\ЩK	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	КK	СЭX\™Y›ЩXЭ[Ы€ЫЬљЩ›ЭИ]\Э™[XZ[€[Ъ[™ЩY	КNВ€™]\›€ОВџB‚™^ЬќЫЫњЭРUТР‘SQU‘WСPQУ“ФХPЧРђTСOIОЊLНL™YЊЊНЊНYXЌШL™MОMМЌMNNЊ	ОВ™^ЬќЫЫњЭРUТР‘SQU‘WСPQУ“ФХPЧФUПVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭШ]ЪX™[Y]™K\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭРUТР‘SQU‘WСPQУ“ФХPЧФСU[™]ИЩ]
+РUТР‘SQU‘WСPQУ“ФХPЧФUКNВ™›ЬЉЫЫњЭ]Щ€РUТР‘SQU‘WСPQУ“ФХPЧФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUШ]Ъ™[Y]™QXYЫ›ЬЭXКЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХРUТР‘SQU‘WСPQУ“ФХPЧХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKРUТР‘SQU‘WСPQУ“ФХPЧРђTСJNШ\ЬЩ\ќ›X]Ъ
+ЛњЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛРUТР‘SQU‘WСPQУ“ФХPЧФUКNВ€›ЬЉЫЫњЭ›YИЩ€ЙЫYYXШ[]љY[ЩPЪ[™ЩY	Л	Ьќ[ќ[YPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШШ][ЩЭYPЫЭ[ќЪ[™ЩY	Л	ЭZР]]Ьљ\Ш][ЫђЪ[™ЩY	Л	ЫљРXШЩ\ЬРЪ[™ЩY	Л	ЬЭ\PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y‘SQU‘HXYЫ›ЬЭXИЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€‘SQU‘HXYЫ›ЬЭXЙКNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™Y‘SQU‘HXYЫ›ЬЭXИЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB‚™^ЬќЫЫњЭРUТР‘SQU‘WРђTСOIНОYНМШLШMMННYЊЌНМЊ™™ЌМLНLNНYIОВ™^ЬќЫЫњЭРUТР‘SQU‘WФУХTђСOIНLМЩНLНLЌШLMШЌЌLNMMШMШLLШЋMЌЊ‰ОВ™^ЬќЫЫњЭРUТР‘SQU‘WФ“УС—Ф•SЏLНОЌЌЊЊMНMNВ™^ЬќЫЫњЭРUТР‘SQU‘WФUПVЙЫYYXЪ[™\Л]Ш]ЪФ‘PQQK›Y	Л	ЫYYXЪ[™\Л]Ш]ЪШЬ™YXљ[]K›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪШЬ™YXљ[]Kќ\Э›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЩ]љY[ЩKY\ЪЛќ\Э›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЪ[™\ЭћK›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЪ[™\ЭћKќ\Э›ZњЙЛ	ЫYYXЪ[™\Л]Ш]ЪЬ™]љY]ЬЛМЊЌ‹LLLKX]]Ьљ\ЩYXљ[XYЬќ[XX‹\Щ[XYЫ]YKљњЫЫ‰ЧNВ™^ЬќЫЫњЭРUТР‘SQU‘WУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭШ]ЪX™[Y]™K\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭРUТР‘SQU‘WФСU[™]ИЩ]
+Л‹‹•РUТР‘SQU‘WФUЛ‹‹•РUТР‘SQU‘WУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€РUТР‘SQU‘WФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUШ]Ъ™[Y]™Q]љY[ЩJЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХРUТР‘SQU‘WСU’QSђСWХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKРUТР‘SQU‘WРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKРUТР‘SQU‘WФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ”ќ[‹РUТР‘SQU‘WФ“УС—Ф•SЉNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛРUТР‘SQU‘WФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛРUТР‘SQU‘WУPRS•SђSђСJNВ€\ЬЩ\ќ™\]X[
+Л›YYXШ[]љY[ЩPЪ[™ЩYќYJNШ\ЬЩ\ќ™\]X[
+Л™Y]ЬљX[]]Ьљ\Ш][Ы”™XЫЬ™YќYJNШ\ЬЩ\ќ™\]X[
+ЛЫЫ™љYЭ\™YЫЭ\Щ\РYYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ШЫ[љXШ[\›Э[Ъ[™ЩY	Л	ШШ][ЩЭYPЫЭ[ќЪ[™ЩY	Л	ЭZР]]Ьљ\Ш][ЫђЪ[™ЩY	Л	ЫљРXШЩ\ЬРЪ[™ЩY	Л	ЬЭ\PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ШЪXЪЫЭ]Ъ[™ЩY	Л	Ы^U[X™\ђЪ[™ЩY	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y‘SQU‘H]љY[ЩHЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y‘SQU‘H]љY[ЩHXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€‘SQU‘H]љY[ЩIКNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YXЭX[Ш]ЪЫЭ\ЩHљYќИ‘SQU‘H]љY[ЩN€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™Y‘SQU‘H]љY[ЩHЫЭ\ЩHљYќИ™\љYљY\€љYќ€	КЬ]
+NВ€ЫЫњЭ™XЩZ\R”УУ‹њ\њЩJЫЫќ[ќ
+ЛњЫЭ\ЩK	ЫYYXЪ[™\Л]Ш]ЪЬ™]љY]ЬЛМЊЌ‹LLLKX]]Ьљ\ЩYXљ[XYЬќ[XX‹\Щ[XYЫ]YKљњЫЫ‰КJNВ€\ЬЩ\ќ™\]X[
+™XЩZ\њX›XШ][Ы”Э]\Л	ЫЭЫ™\—Ш]]Ьљ\ЩYЩXЭX[ЬX›XШ][Ы‰КNШ\ЬЩ\ќ™\]X[
+™XЩZ\Ы[љXШ[\›Э[ќ[
+NШ\ЬЩ\ќ™\]X[
+™XЩZ\љ[™\ЭћPЫЫ\]K[ЩJNВ€\ЬЩ\ќ™\]X[
+™XЩZ\њ™YЪ\ЭћTЫЭ\Щ\Л›[™ЭJNШ\ЬЩ\ќ™\]X[
+™XЩZ\њ™YЪ\ЭћTЫЭ\Щ\ЦМK›ЭY	УђХMЊMЊLЙКNШ\ЬЩ\ќ™\]X[
+™XЩZ\њ™YЪ\ЭћTЫЭ\Щ\ЦМK›Y™XЮXЫKљ\Ф™\Э[ЛќYJNВ€›ЬЉЫЫњЭ]Щ€ЙЛ™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	Л	ЭЫЬљЩ\‹Y[ќћK]Ќ‹љњЙЛ	ЭЬ[™Ы\‹љњЫЫЙЧJX\ЬЩ\ќ™\]X[
+ЫЫќ[ќ
+ЛњЫЭ\ЩK]
+KЫЫќ[ќ
+Л\ЩK]
+K	Ф›ЩXЭ[Ы€ќ[ќ[YH[™ЭX\™YЫЬљЩ›ЭИ]\Э™[XZ[€[Ъ[™ЩY€	КЬ]
+NВ€™]\›€ОВџB‚‚™^ЬќЫЫњЭQSP‘T—Ф“УС—Ф‘U–WРђTСOIНYЊЌMНЊMЩXЩЌYYXXMX™M™™XXЊMЋNYЊОN‰ОВ™^ЬќЫЫњЭQSP‘T—Ф“УС—Ф‘U–WФУХTђСOIНЋLЩYXШMШЌНЩMЊMЌЋLЊНYЊЋXY™ЋЙОВ™^ЬќЫЫњЭQSP‘T—Ф“УС—Ф‘U–WФUПVЙЬ™[X\ЩKЬX›XЛ\›ЫЩ‹Y™]Ъ›ZњЙЛ	Э\ЭЛЬ›ЩЬ[[YKY^K\X›XЛ\›ЫЩ‹Y™]Ъќ\Э›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™\љYћK\›ЩXЭ[Ы‹[Y[X™\‹›ZњЙЛ	Ь™[X\ЩKЫ]™K\Э\Ьќ\ќ[ќ[YK›ZњЙЛ	Э\ЭЛЫ]™K\Э\Ьќ\ќ[ќ[YKќ\Э›ZњЙЧNВ™^ЬќЫЫњЭQSP‘T—Ф“УС—Ф‘U–WУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЬ›ЩЬ[[YKY^K[Y[X™\‹\›ЫЩ‹\™]ћK\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭQSP‘T—Ф“УС—Ф‘U–WФСU[™]ИЩ]
+Л‹‹“QSP‘T—Ф“УС—Ф‘U–WФUЛ‹‹“QSP‘T—Ф“УС—Ф‘U–WУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€QSP‘T—Ф“УС—Ф‘U–WФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€Ъ]Э]Y[X™\”›ЫЩ•[њЬЬќ
+ЫЭ\ЩJ^В€ЫЫњЭ[™OHљ[\ЬќЩ™]ЪX›XФ›ЫЩ€\И™]ЪHњ›ЫH	Л‹‹Ь™[X\ЩKЬX›XЛ\›ЫЩ‹Y™]Ъ›ZњЙОЧ€ЋВ€\ЬЩ\ќ
+ЫЭ\ЩKњЭ\ќХЪ]
+[™JK	С^XЭ›ЫЩ€[њЬЬќ[\Ьќ™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+ЫЭ\ЩKњЬ]
+[™JK›[™Э‹	С^XЭHЫ™H›ЫЩ€[њЬЬќ[\Ьќ™\]Z\™Y	КNВ€™]\›€ЫЭ\ЩKњЫXЩJ[™K›[™Э
+NВџB™^Ьќќ[Э[Ы€™\љYћSY[X™\”›ЫЩ”™]ћJЛЪXY™XYY™‹[Щ\ЭЬ‹ЫЫќ[ќJ™Y‹]
+OO™^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛ™YЉЙО‰КЬ]KЩ[ЫЩ[™О‰Э]Ћ	ЯJ_J^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХУQSP‘T—Ф“УС—ХђS”ФФ•Ф‘U–WХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKQSP‘T—Ф“УС—Ф‘U–WРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKQSP‘T—Ф“УС—Ф‘U–WФУХTђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛQSP‘T—Ф“УС—Ф‘U–WФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛQSP‘T—Ф“УС—Ф‘U–WУPRS•SђSђСJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ШЫ[љXШ[]Z[Xљ[]PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЬЭШЪРЪ[™ЩY	Л	ЫY[X™\ђ™Z]љ[Э\ђЪ[™ЩY	Л	Ьљ]XЮP\ЬЩ\ќ[ЫњХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€\ЬЩ\ќ™\]X[
+Лњ™XYЫ›U[њЬЬќ™]ћPYYќYJNШ\ЬЩ\ќ™\]X[
+Лњ›ЫXЪФ™XЩZ\ќ[‹НОЊМЌMMЊЉNВ€›ЬЉЫЫњЭЪHЩ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉЪKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YY[X™\€›ЫЩ€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YY[X™\€›ЫЩ€XZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€Y[X™\€›ЫЩ‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€Щ\ќљ[™ИСSИЫЭ\ЩHљYќИ›ЩЬ[[YHЫЬЩ[Э]ЫЭ\ЩHљYќИ™]ЬИЩXЭ\љ]HЫЭ\ЩHљYќИY[X™\€›ЫЩ€ЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€Щ\ќљ[™ИСSИ™\љYљY\€љYќИ›ЩЬ[[YHЫЬЩ[Э]™\љYљY\€љYќИ™]ЬИЩXЭ\љ]H™\љYљY\€љYќИY[X™\€›ЫЩ€™\љYљY\€љYќ€	КЬ]
+NВ€\ЬЩ\ќ™\]X[
+Ъ]Э]Y[X™\”›ЫЩ•[њЬЬќ
+ЫЫќ[ќ
+ЛњЫЭ\ЩK	ЫY[X™\‹Y^\љY[ЩKЭ™\љYћK\›ЩXЭ[Ы‹[Y[X™\‹›ZњЙКJKЫЫќ[ќ
+Л\ЩK	ЫY[X™\‹Y^\љY[ЩKЭ™\љYћK\›ЩXЭ[Ы‹[Y[X™\‹›ZњЙКK	С]™\ћH^\Э[™И\ЬЩ][™]][ќXШ][Ы€\ЬЩ\ќ[Ы€]\Э™[XZ[€ћ]KY›Ь‹Xћ]H[ќXЭ	КNВ€›ЬЉЫЫњЭ]Щ€ЙЛ™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	Л	ЬY\‹[™]ЬЛ\YЩ\Л]ЊKљњЙЛ	ЭЫЬљЩ\‹Y[ќћK]Ќ‹љњЙЧJX\ЬЩ\ќ™\]X[
+ЫЫќ[ќ
+ЛњЫЭ\ЩK]
+KЫЫќ[ќ
+Л\ЩK]
+K	Ф›ЩXЭ[Ы€Ш]\И[™ќ[ќ[YH]\Э™[XZ[€[Ъ[™ЩY€	КЬ]
+NВ€™]\›€ОВџB‚‹ЛИ^XЭЭЫ™\‹X]]Ьљ\ЩYX›]ЫЬ™[™И[™РTТTИXЭX[[Y[™Y[ќ‚™^ЬќЫЫњЭP“UХУФ‘S‘ЧРђTСOIОLMXЋЋЊLMЊXЋЊMYXYЌLОLШМНMYЊ	ОВ™^ЬќЫЫњЭP“UХУФ‘S‘ЧФУХTђСOIОЋMМЌ™LМLЩЊОMLMЌШЌШLL™XЊMШMЋLЌ	ОВ™^ЬќЫЫњЭP“UХУФ‘S‘ЧФ•SЏLНОLНМЊНЌОВ™^ЬќЫЫњЭP“UХУФ‘S‘ЧФVSРQVЙЭX›]]ЫЬ™[™Л]ЊK›ZњЙЛ	ЬX›XЛ\›ЫZ\ЩKXXШЭ\XЮK]ЊK›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЬX›XЛ\™\Щ\ќ][Ы‹›ZњЙЛ	Э\ЭЛЭX›]]ЫЬ™[™Лќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЭX›]]ЫЬ™[™Л\›ЫЩ‹ћ[[	ЧNВ™^ЬќЫЫњЭP“UХУФ‘S‘ЧУPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭX›]]ЫЬ™[™Л\™[X\ЩKќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЭX›]]ЫЬ™[™Л\™[X\ЩK\›ЫЩ‹ћ[[	Л	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	ШXЬ]Z\Ъ][Ы‹XXЭ]][Ы‹ЫY]љXЬЛ\™[X\ЩKќ\Э›ZњЙЧNВЫЫњЭP“UХУФ‘S‘ЧФСU[™]ИЩ]
+Л‹‹•P“UХУФ‘S‘ЧФVSРQ‹‹•P“UХУФ‘S‘ЧУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€P“UХУФ‘S‘ЧФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUX›]ЫЬ™[™С^[њЪ[ЫЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+Л	С^XЭX›]ЫЬ™[™И™XЩZ\™\]Z\™Y	КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХP“UХУФ‘S‘ЧХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKP“UХУФ‘S‘ЧРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKP“UХУФ‘S‘ЧФУХTђСJNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ”ќ[‹P“UХУФ‘S‘ЧФ•SЉNШ\ЬЩ\ќ™\]X[
+Л\›Э[	ЭYЪ[€\ЙКNВ€\ЬЩ\ќ™Y\\]X[
+Лњ^[ШY]ЛP“UХУФ‘S‘ЧФVSРQ
+NШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛP“UХУФ‘S‘ЧУPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+ЛљЫY\YЩPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Л›Ь™\љ[™УЬ[™Y[ЩJNШ\ЬЩ\ќ™\]X[
+ЛњљXЩ\РЪ[™ЩY[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ^[ШY]КK	Х[њ™[]YX›]ЫЬ™[™И^[ШYЪ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YX›]ЫЬ™[™И™\љYљY\€Ъ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€X›]ЫЬ™[™И™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ^[ШY]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€X›]ЫЬ™[™ИЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€X›]ЫЬ™[™И™\љYљY\€ЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB‹ЛИ^XЭ›ЫЭЛ]›ЭYЪ€ЩY\H\›Э™YЫЬ™[™ИЪ[€H™\Э[ИШЬљ\™[™\њЛ‚™^ЬќЫЫњЭP“UРУQS•РђTСOIМЩЋЩМЩЊXМЌ™LМLNY™XLШНMЊLЩYY™‰ОВ™^ЬќЫЫњЭP“UРУQS•ФУХTђСOIММLYYЌМНЊМLXMШЊМMLОЋН™XNYЌЙОВ™^ЬќЫЫњЭP“UРУQS•Ф•SЏLНОLМMЌЌMОВ™^ЬќЫЫњЭP“UРУQS•ФVSРQVЙЬX›XЛ\›ЫZ\ЩKXXШЭ\XЮK]ЊK›ZњЙЛ	Э\ЭЛЭX›]]ЫЬ™[™Лќ\Э›ZњЙЛ	ЫY[X™\‹Y^\љY[ЩKЭ™X]Y[ќ\YЩK›ZњЙЧNВ™^ЬќЫЫњЭP“UРУQS•УPRS•SђSђСOVЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭX›]]ЫЬ™[™Л\™[X\ЩKќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЭX›]]ЫЬ™[™Л\™[X\ЩK\›ЫЩ‹ћ[[	ЧNВЫЫњЭP“UРУQS•ФСU[™]ИЩ]
+Л‹‹•P“UРУQS•ФVSРQ‹‹•P“UРУQS•УPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€P“UРУQS•ФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUX›]ЫY[ќ^[њЪ[ЫЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+Л	С^XЭX›]ЫЬ™[™И™XЩZ\™\]Z\™Y	КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХP“UРУQS•ХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKP“UРУQS•РђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKP“UРУQS•ФУХTђСJNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ”ќ[‹P“UРУQS•Ф•SЉNШ\ЬЩ\ќ™\]X[
+Л\›Э[	ЭYЪ[€\ЙКNВ€\ЬЩ\ќ™Y\\]X[
+Лњ^[ШY]ЛP“UРУQS•ФVSРQ
+NШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛP“UРУQS•УPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+ЛљЫY\YЩPЪ[™ЩY[ЩJNШ\ЬЩ\ќ™\]X[
+Л›Ь™\љ[™УЬ[™Y[ЩJNШ\ЬЩ\ќ™\]X[
+ЛњљXЩ\РЪ[™ЩY[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ^[ШY]КK	Х[њ™[]YX›]ЫЬ™[™И^[ШYЪ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YX›]ЫЬ™[™И™\љYљY\€Ъ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€X›]ЫЬ™[™И™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ^[ШY]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€X›]ЫЬ™[™ИЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€X›]ЫЬ™[™И™\љYљY\€ЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџBЫЫњЭ™XЫЬ™][™]ИT“
+	Л‹Ш\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹љњЫЫ‰Л[\Ьќ›Y]Kќ\›
+NВ™^Ьќќ[Э[Ы€™XЫЫЪ[X][Ы”™XЫЬ™
+
+^Ь™]\›€^\ЭФЮ[К™XЫЬ™]
+OТ”УУ‹њ\њЩJ™XYљ[TЮ[К™XЫЬ™]
+JN›ќ[ЯB™^Ьќќ[Э[Ы€\ЬЩ\ќ›ЩXЭ[Ы”›ЫЩђќYЩ]
+™Y›Ь™KЭ\њ™[ќ
+^В€ЫЫњЭX\љЩ\ЏIИ[Y[Э][Z[ќ]\О€ЌW€[ќЋ—€УХQ“T‘WРPРУХS•ТQ	ОВ€\ЬЩ\ќ™\]X[
+™Y›Ь™KњЬ]
+X\љЩ\ЉK›[™Э‹	С^XЭЬљYЪ[[›ЩXЭ[Ы€[YHќYЩ]™\]Z\™Y	КNВ€]^XЭYX™Y›Ь™Kњ™\XЩJX\љЩ\‹X\љЩ\‹њ™\XЩJ	МЌIЛ	НЊ	КJNВ€›ЬЉЫЫњЭљ[HЩ€ЙЫYYXЪ[™\Л]Ш]Ъ[ШњЩ\ќ][ЫњЛњЬ[	Л	ЫYYXЪ[™\Л]Ш]ЪY^[њЪ[Ы‹[ШњЩ\ќ][ЫњЛњЬ[	ЧJ^В€ЫЫњЭЬљYЪ[[IЫњЬ[™Ы\€H^XЭ]H€K\™[[ЭHKXЫЫ™љYИЬ[™Ы\‹љњЫЫИKYљ[H‰•S“‘T—ХSTЙКЩљ[JЙИ‰ОВ€ЫЫњЭЫ›[™OIЫ›ЩH™[X\ЩKЭШ]Ъ[ШњЩ\ќ][Ы‹\ЩYY›ZњИ‰•S“‘T—ХSTЙКЩљ[JЙИ‰ОВ€^XЭYY^XЭYњ™\XЩJЬљYЪ[[Ы›[™JNВ€B€\ЬЩ\ќ™\]X[
+Э\њ™[ќ^XЭY	УЫ›HH›ЩXЭ[Ы€™\љYљXШ][Ы€[YHќYЩ][™^XЭЫ›[™HШњЩ\ќ][Ы€[њЬЬќX^HЪ[™ЩIКNВџB›]›ЩXЭ[Ы”›ЫЩђ™Y›Ь™NВЫЫњЭ™\љYљYY[[]]X›TЭќXЭ\™\П[™]ИЩ]
+
+NВ‚‹ЛИЮ[Ъ›Ы›Э\И\Э™\љYљXШ][Ы€Ш[€™]\ЩHЫ›HXЭX[[[]]X›HЪ]\ЭЬћK‚‹ЛИЭ\њ™[ќPQ[™XЪЩYЫЬљЪ[™Ић]\И\™HЪXЪЩY]›ЭШЫЬH›Э[™\љY\Л‚‹ЛИ\И™]™\€ШXЪ\ИШ[\‹\Э\YYЫЭ\ЩH™XY\њИЬ€[Y][Ы€Э]ЫЫY\Л‚›][[]]X›R\ЭЬћTШЫЬO[ќ[ВЫЫњЭ[[]]X›R\ЭЬћT™\Э[П[™]ИX\
+
+NВ™^Ьќќ[Э[Ы€Ъ][[]]X›R\ЭЬћU™\љYљXШ][ЫЉШ[XЪК^В€YЉ[[]]X›R\ЭЬћTШЫЬJ\™]\›€Ш[XЪК
+NВ€ЫЫњЭЭЩ\›ШЩ\ЬЛЭЩ
+
+KXYY^XСљ[TЮ[К	ЩЪ]	ЛЙЬ™]‹\\њЩIЛ	ТPQ	ЧKЩ[ЫЩ[™О‰Э]Ћ	ЯJKќљ[J
+NВ€\ЬЩ\ќ™\]X[
+^XСљ[TЮ[К	ЩЪ]	ЛЙЩY™‰Л	ЛK[[YK[Ы›IЧKЩ[ЫЩ[™О‰Э]Ћ	ЯJKќљ[J
+K	ЙЛ	Т[[]]X›H\ЭЬћH™\љYљXШ][Ы€™\]Z\™\ИЫX[€XЪЩYЫЭ\ЩIКNВ€[[]]X›R\ЭЬћTШЫЬO^ШЭЩXYNВ€ћ^ШЫЫњЭ[YOXШ[XЪК
+NШ\ЬЩ\ќ
+][Y_\[Щ€[YKќ[€OOIЩќ[Э[Ы‰Л	Т[[]]X›H\ЭЬћH™\љYљXШ][Ы€]\Э™HЮ[Ъ›Ы›Э\ЙКNЬ™]\›€[YNЯB€љ[[^В€[[]]X›R\ЭЬћTШЫЬO[ќ[В€\ЬЩ\ќ™\]X[
+›ШЩ\ЬЛЭЩ
+
+KЭЩ	Х™\љYљXШ][Ы€ЫЬљЪ[™И\™XЭЬћHЪ[™ЩY	КNВ€\ЬЩ\ќ™\]X[
+^XСљ[TЮ[К	ЩЪ]	ЛЙЬ™]‹\\њЩIЛ	ТPQ	ЧKЩ[ЫЩ[™О‰Э]Ћ	ЯJKќљ[J
+KXY	ФЫЭ\ЩHPQЪ[™ЩY\љ[™И[[]]X›H\ЭЬћH™\љYљXШ][Ы‰КNВ€\ЬЩ\ќ™\]X[
+^XСљ[TЮ[К	ЩЪ]	ЛЙЩY™‰Л	ЛK[[YK[Ы›IЧKЩ[ЫЩ[™О‰Э]Ћ	ЯJKќљ[J
+K	ЙЛ	ХЫЬљЪ[™ИЫЭ\ЩHЪ[™ЩY\љ[™И[[]]X›H\ЭЬћH™\љYљXШ][Ы‰КNВ€BџB™^Ьќќ[Э[Ы€[[]]X›R\ЭЬћQ^XСљ[TЮ[Кљ[‹\™ЬЛЬ[ЫњК^В€ЫЫњЭШЫЬOZ[[]]X›R\ЭЬћTШЫЬNВ€YЉ\ШЫЬ_љ[€OOIЩЪ]	ЯP\њ^Kљ\Р\њ^J\™ЬК_\™ЬЛњЫЫYJOќ\[Щ€OOIЬЭљ[™ЙК_Ь[ЫњПЛЭЩ	‰›Ь[ЫњЛЭЩOO\ШЫЬKЭЩЬ[ЫњПЛ™[ќџЬ[ЫњПЛњЪ[
+\™]\›€^XСљ[TЮ[Кљ[‹\™ЬЛЬ[ЫњКNВ€ЫЫњЭ[›™YX\™ЬЛ›X\
+OћOOIТPQ	ПЬШЫЬKљXYћњЭ\ќХЪ]
+	ТPQ‰КOЬШЫЬKљXY
+ЮњЫXЩJ
+NћOOIТPQћШЫЫ[Z]Iълћь¶‰ћЛkєwµзXЪ\”™\Z\Љ]™\љYћUШ]Ъ›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”™\Z\Љ›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”™\Z\‹ЪXYњ™T›ЩЬ[[YTЭ[[X\ћT™[X\ЩQЭX\™XY™XYњ›ЩЬ[[YTЭ[[X\ћT™[X\ЩQЭX\™]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™T›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\’XY\›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”™\Z\ЏЬ›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”™\Z\‹\ЩNњ™T›ЩЬ[[YTЭ[[X\ћT™[X\ЩQЭX\™XYВ€ЫЫњЭ›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”]Р›ШЏJ™Y‹]
+OOњ›ЩЬ[[YTЭ[[X\ћT™[X\ЩQЭX\™]Р›ШЉ›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”™\Z\‰‰њ™YЏOOIТPQ	Й‰•РUТФ“СФђSSQWФХSSPT–WФUQUQWУPUТT—ФСUљ\К]
+OЬ›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”™\Z\‹\ЩNњ™Y‹]
+NВ€ЫЫњЭ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\ЏXЛќШ]Ъ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\ЋВ€YЉ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\Љ]™\љYћUШ]Ъ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\Љ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\‹ЪXYњ™T›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\’XY™XYњ›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™T›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™XY\›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\ЏЬ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\‹\ЩNњ™T›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\’XYВ€ЫЫњЭ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™]Р›ШЏJ™Y‹]
+OOњ›ЩЬ[[YTЭ[[X\ћT]Y]YSX]Ъ\”]Р›ШЉ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\‰‰њ™YЏOOIТPQ	Й‰•РUТФ“СФђSSQWФХSSPT–WФUQUQWСХPT‘ФСUљ\К]
+OЬ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™™\Z\‹\ЩNњ™Y‹]
+NВ€ЫЫњЭ›ЩЬ[[YTЭ[[X\ћT]Y]YOXЛќШ]Ъ›ЩЬ[[YTЭ[[X\ћT]Y]YNВ€YЉ›ЩЬ[[YTЭ[[X\ћT]Y]YJ]™\љYћUШ]Ъ›ЩЬ[[YTЭ[[X\ћT]Y]YJ›ЩЬ[[YTЭ[[X\ћT]Y]YKЪXYњ™T›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™XY™XYњ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™T›ЩЬ[[YTЭ[[X\ћT]Y]YRXY\›ЩЬ[[YTЭ[[X\ћT]Y]YOЬ›ЩЬ[[YTЭ[[X\ћT]Y]YK\ЩNњ™T›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™XYВ€ЫЫњЭ›ЩЬ[[YTЭ[[X\ћT]Y]YT]Р›ШЏJ™Y‹]
+OOњ›ЩЬ[[YTЭ[[X\ћT]Y]YQЭX\™]Р›ШЉ›ЩЬ[[YTЭ[[X\ћT]Y]YI‰њ™YЏOOIТPQ	Й‰•РUТФ“СФђSSQWФХSSPT–WФUQUQWФСUљ\К]
+OЬ›ЩЬ[[YTЭ[[X\ћT]Y]YK\ЩNњ™Y‹]
+NВ€ЫЫњЭЬњЩО™[X\ЩQЭX\™™\Z\ЏXЛќШ]ЪЬњЩО™[X\ЩQЭX\™™\Z\ЋВ€YЉЬњЩО™[X\ЩQЭX\™™\Z\Љ]™\љYћUШ]ЪЬњЩО™[X\ЩQЭX\™™\Z\ЉЬњЩО™[X\ЩQЭX\™™\Z\‹ЪXYњ™T›ЩЬ[[YTЭ[[X\ћT]Y]YRXY™XYњ›ЩЬ[[YTЭ[[X\ћT]Y]YT]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™TЬњЩО™[X\ЩQЭX\™XY\ЬњЩО™[X\ЩQЭX\™™\Z\ЏЬЬњЩО™[X\ЩQЭX\™™\Z\‹\ЩNњ™T›ЩЬ[[YTЭ[[X\ћT]Y]YRXYВ€ЫЫњЭЬњЩО™[X\ЩQЭX\™]Р›ШЏJ™Y‹]
+OOњ›ЩЬ[[YTЭ[[X\ћT]Y]YT]Р›ШЉЬњЩО™[X\ЩQЭX\™™\Z\‰‰њ™YЏOOIТPQ	Й‰•РUТФФ”СОФ‘SPTСWСХPT‘ФСUљ\К]
+OЬЬњЩО™[X\ЩQЭX\™™\Z\‹\ЩNњ™Y‹]
+NВ€ЫЫњЭЬњЩО™[™]Ш[XЛќШ]ЪЬњЩО™[™]Ш[В€YЉЬњЩО™[™]Ш[
+]™\љYћUШ]ЪЬњЩО™[™]Ш[
+ЬњЩО™[™]Ш[ЪXYњ™TЬњЩО™[X\ЩQЭX\™XY™XYњЬњЩО™[X\ЩQЭX\™]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™TЬњЩО™[™]Ш[XY\ЬњЩО™[™]Ш[ЬЬњЩО™[™]Ш[\ЩNњ™TЬњЩО™[X\ЩQЭX\™XYВ€ЫЫњЭЬњЩО™[™]Ш[]Р›ШЏJ™Y‹]
+OOњЬњЩО™[X\ЩQЭX\™]Р›ШЉЬњЩО™[™]Ш[	‰њ™YЏOOIТPQ	Й‰•РUТФФ”СОФ‘S‘UРSФСUљ\К]
+OЬЬњЩО™[™]Ш[\ЩNњ™Y‹]
+NВ€ЫЫњЭљМЌМНV™[YШ[]YT™YЪ\ЭћOXЛќШ]ЪљМЌМНV™[YШ[]YT™YЪ\ЭћNВ€YЉљМЌМНV™[YШ[]YT™YЪ\ЭћJ]™\љYћUШ]ЪљМЌМНV™[YШ[]YT™YЪ\ЭћJљМЌМНV™[YШ[]YT™YЪ\ЭћKЪXYњ™TЬњЩО™[™]Ш[XY™XYњЬњЩО™[™]Ш[]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™UљМЌМНV™[YШ[]YRXY]љМЌМНV™[YШ[]YT™YЪ\ЭћOЭљМЌМНV™[YШ[]YT™YЪ\ЭћK\ЩNњ™TЬњЩО™[™]Ш[XYВ€ЫЫњЭљМЌМНV™[YШ[]YT]Р›ШЏJ™Y‹]
+OOњЬњЩО™[™]Ш[]Р›ШЉљМЌМНV™[YШ[]YT™YЪ\ЭћI‰њ™YЏOOIТPQ	Й‰•РUТХ’МЌМНWЦ‘SђQРSUQWФСUљ\К]
+OЭљМЌМНV™[YШ[]YT™YЪ\ЭћK\ЩNњ™Y‹]
+NВ€ЫЫњЭњЌNL™[X\ЩQЭX\™™\Z\ЏXЛќШ]ЪњЌNL™[X\ЩQЭX\™™\Z\ЋВ€YЉњЌNL™[X\ЩQЭX\™™\Z\Љ]™\љYћUШ]ЪњЌNL™[X\ЩQЭX\™™\Z\ЉњЌNL™[X\ЩQЭX\™™\Z\‹ЪXYњ™UљМЌМНV™[YШ[]YRXY™XYќљМЌМНV™[YШ[]YT]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™VњЌNL™[X\ЩQЭX\™XY^њЌNL™[X\ЩQЭX\™™\Z\ЏЮњЌNL™[X\ЩQЭX\™™\Z\‹\ЩNњ™UљМЌМНV™[YШ[]YRXYВ€ЫЫњЭњЌNL™[X\ЩQЭX\™]Р›ШЏJ™Y‹]
+OOќљМЌМНV™[YШ[]YT]Р›ШЉњЌNL™[X\ЩQЭX\™™\Z\‰‰њ™YЏOOIТPQ	Й‰•РUТЦ”ЌNLФ‘SPTСWСХPT‘ФСUљ\К]
+OЮњЌNL™[X\ЩQЭX\™™\Z\‹\ЩNњ™Y‹]
+NВ€ЫЫњЭњЌNL™YЪ\ЭћT™[™]Ш[XЛќШ]ЪњЌNL™YЪ\ЭћT™]љY]Ф™[™]Ш[В€YЉњЌNL™YЪ\ЭћT™[™]Ш[
+]™\љYћUШ]ЪњЌNL™YЪ\ЭћT™[™]Ш[
+њЌNL™YЪ\ЭћT™[™]Ш[ЪXYњ™VњЌNL™[X\ЩQЭX\™XY™XYћњЌNL™[X\ЩQЭX\™]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™VњЌNL™YЪ\ЭћT™[™]Ш[XY^њЌNL™YЪ\ЭћT™[™]Ш[ЮњЌNL™YЪ\ЭћT™[™]Ш[\ЩNњ™VњЌNL™[X\ЩQЭX\™XYВ€ЫЫњЭњЌNL™YЪ\ЭћT™[™]Ш[]Р›ШЏJ™Y‹]
+OOћњЌNL™[X\ЩQЭX\™]Р›ШЉњЌNL™YЪ\ЭћT™[™]Ш[	‰њ™YЏOOIТPQ	Й‰•РUТЦ”ЌNLФ‘QТTХ–WФ‘S‘UРSФСUљ\К]
+OЮњЌNL™YЪ\ЭћT™[™]Ш[\ЩNњ™Y‹]
+NВ€ЫЫњЭЭ™\™YT™[™]Ш[XЛќШ]ЪЭ™\™YTљ[X\ћT™]љY]Ф™[™]Ш[В€YЉЭ™\™YT™[™]Ш[
+]™\љYћUШ]ЪЭ™\™YT™[™]Ш[
+Э™\™YT™[™]Ш[ЪXYњ™VњЌNL™YЪ\ЭћT™[™]Ш[XY™XYћњЌNL™YЪ\ЭћT™[™]Ш[]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™SЭ™\™YT™[™]Ш[XY[Э™\™YT™[™]Ш[ЫЭ™\™YT™[™]Ш[\ЩNњ™VњЌNL™YЪ\ЭћT™[™]Ш[XYВ€ЫЫњЭЭ™\™YT™[™]Ш[]Р›ШЏJ™Y‹]
+OOћњЌNL™YЪ\ЭћT™[™]Ш[]Р›ШЉЭ™\™YT™[™]Ш[	‰њ™YЏOOIТPQ	Й‰•РUТУХ‘T‘QWФ‘S‘UРSФСUљ\К]
+OЫЭ™\™YT™[™]Ш[\ЩNњ™Y‹]
+NВ€ЫЫњЭX•[њЬЬќXЛ›Ш™\Ъ]RX•[њЬЬќВ€YЉX•[њЬЬќ
+]™\љYћSШ™\Ъ]RX•[њЬЬќ
+X•[њЬЬќЪXYњ™SЭ™\™YT™[™]Ш[XY™XY›Э™\™YT™[™]Ш[]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™RX•[њЬЬќXYZX•[њЬЬќЪX•[њЬЬќ\ЩNњ™SЭ™\™YT™[™]Ш[XYВ€ЫЫњЭX•[њЬЬќ]Р›ШЏJ™Y‹]
+OO›Э™\™YT™[™]Ш[]Р›ШЉX•[њЬЬќ	‰њ™YЏOOIТPQ	Й‰“Р‘TТUWТP—ХђS”ФФ•ФСUљ\К]
+OЪX•[њЬЬќ\ЩNњ™Y‹]
+NВ€ЫЫњЭX”›ЫXЪПXЛ›Ш™\Ъ]RX”›ЫXЪОВ€YЉX”›ЫXЪК]™\љYћSШ™\Ъ]RX”›ЫXЪКX”›ЫXЪЛЪXYњ™RX•[њЬЬќXY™XYљX•[њЬЬќ]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™RX”›ЫXЪТXYZX”›ЫXЪПЪX”›ЫXЪЛ\ЩNњ™RX•[њЬЬќXYВ€ЫЫњЭX”›ЫXЪФ]Р›ШЏJ™Y‹]
+OOљX•[њЬЬќ]Р›ШЉX”›ЫXЪЙ‰њ™YЏOOIТPQ	Й‰“Р‘TТUWТP—Ф“УђPТЧФСUљ\К]
+OЪX”›ЫXЪЛ\ЩNњ™Y‹]
+NВ€ЫЫњЭX”™\Z\ЏXЛ›Ш™\Ъ]RX”™\Z\ЋВ€YЉX”™\Z\Љ]™\љYћSШ™\Ъ]RX”™\Z\ЉX”™\Z\‹ЪXYњ™RX”›ЫXЪТXY™XYљX”›ЫXЪФ]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™RX”™\Z\’XYZX”™\Z\ЏЪX”™\Z\‹\ЩNњ™RX”›ЫXЪТXYВ€ЫЫњЭX”™\Z\”]Р›ШЏJ™Y‹]
+OOљX”›ЫXЪФ]Р›ШЉX”™\Z\‰‰њ™YЏOOIТPQ	Й‰“Р‘TТUWТP—Ф‘TRT—ФСUљ\К]
+OЪX”™\Z\‹\ЩNњ™Y‹]
+NВ€ЫЫњЭXЭXШ[XЛ›Ш™\Ъ]TXЭXШ[В€YЉXЭXШ[
+]™\љYћSШ™\Ъ]TXЭXШ[
+XЭXШ[ЪXYњ™RX”™\Z\’XY™XYљX”™\Z\”]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™TXЭXШ[XY\XЭXШ[ЬXЭXШ[\ЩNњ™RX”™\Z\’XYВ€ЫЫњЭXЭXШ[]Р›ШЏJ™Y‹]
+OOљX”™\Z\”]Р›ШЉXЭXШ[	‰њ™YЏOOIТPQ	Й‰“Р‘TТUWФђPХPРSФСUљ\К]
+OЬXЭXШ[\ЩNњ™Y‹]
+NВ€ЫЫњЭX•ЊЏXЛ›Ш™\Ъ]RX•ЊЋВ€YЉX•ЊЉ]™\љYћSШ™\Ъ]RX•ЊЉX•Њ‹ЪXYњ™TXЭXШ[XY™XYњXЭXШ[]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™RX•Њ’XYZX•ЊЏЪX•Њ‹\ЩNњ™TXЭXШ[XYВ€ЫЫњЭX•Њ”]Р›ШЏJ™Y‹]
+OOњXЭXШ[]Р›ШЉX•Њ‰‰њ™YЏOOIТPQ	Й‰“Р‘TТUWТP—ХЊ—ФСUљ\К]
+OЪX•Њ‹\ЩNњ™Y‹]
+NВ€ЫЫњЭЩYЫЭћT™[™]Ш[XЛќШ]ЪЩYЫЭћTЫЭ\ЩT™[™]Ш[В€ЫЫњЭ™UЩYЫЭћT™[™]Ш[XY]ЩYЫЭћT™[™]Ш[ЭЩYЫЭћT™[™]Ш[\ЩNњ™RX•Њ’XYВ€ЫЫњЭЩYЫЭћT™[™]Ш[]Р›ШЏJ™Y‹]
+OOљX•Њ”]Р›ШЉЩYЫЭћT™[™]Ш[	‰њ™YЏOOIТPQ	Й‰•РUТХСQУХ–WФ‘S‘UРSФСUљ\К]
+OЭЩYЫЭћT™[™]Ш[\ЩNњ™Y‹]
+NВ€ЫЫњЭ™\Ьќ[™ПXЛ›Ь™Ш[љXУYX\Э\™[Y[ќ[ќYЬ][ЫЋВ€YЉ™\Ьќ[™К]™\љYћSЬ™Ш[љXУYX\Э\™[Y[ќ
+™\Ьќ[™ЛЪXYњ™UЩYЫЭћT™[™]Ш[XY™XYќЩYЫЭћT™[™]Ш[]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™T™\Ьќ[™ТXY\™\Ьќ[™ПЬ™\Ьќ[™Л\ЩNњ™UЩYЫЭћT™[™]Ш[XYВ€ЫЫњЭ™\Ьќ[™Ф]Р›ШЏJ™Y‹]
+OOќЩYЫЭћT™[™]Ш[]Р›ШЉ™\Ьќ[™Й‰њ™YЏOOIТPQ	Й‰“Ф‘РS’PЧУQPTХT‘SQS•ФСUљ\К]
+OЬ™\Ьќ[™Л\ЩNњ™Y‹]
+NВ€ЫЫњЭ\ШЫ]\УЬ[XЛќШ]Ъ\ШЫ]\УЬ[Ьќ›Ы[ОВ€YЉ\ШЫ]\УЬ[
+]™\љYћUШ]Ъ\ШЫ]\УЬ[Ьќ›Ы[К\ШЫ]\УЬ[ЪXYњ™T™\Ьќ[™ТXY™XYњ™\Ьќ[™Ф]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™P\ШЫ]\УЬ[XYX\ШЫ]\УЬ[Ш\ШЫ]\УЬ[\ЩNњ™T™\Ьќ[™ТXYВ€ЫЫњЭ\ШЫ]\УЬ[]Р›ШЏJ™Y‹]
+OOњ™\Ьќ[™Ф]Р›ШЉ\ШЫ]\УЬ[	‰њ™YЏOOIТPQ	Й‰•РUТРTРУUTЧУФђSФСUљ\К]
+OШ\ШЫ]\УЬ[\ЩNњ™Y‹]
+NВ€ЫЫњЭЩ™љXЪX[[\›]]™\ПXЛќШ]ЪЩ™љXЪX[[\›]]™\ОВ€YЉЩ™љXЪX[[\›]]™\К]™\љYћUШ]ЪЩ™љXЪX[[\›]]™\КЩ™љXЪX[[\›]]™\ЛЪXYњ™P\ШЫ]\УЬ[XY™XY\ШЫ]\УЬ[]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™SЩ™љXЪX[[\›]]™\ТXY[Щ™љXЪX[[\›]]™\ПЫЩ™љXЪX[[\›]]™\Л\ЩNњ™P\ШЫ]\УЬ[XYВ€ЫЫњЭЩ™љXЪX[[\›]]™\Ф]Р›ШЏJ™Y‹]
+OO\ШЫ]\УЬ[]Р›ШЉЩ™љXЪX[[\›]]™\Й‰њ™YЏOOIТPQ	Й‰•РUТУС‘’PТPSРST“ђUU‘TЧФСUљ\К]
+OЫЩ™љXЪX[[\›]]™\Л\ЩNњ™Y‹]
+NВ€ЫЫњЭЭ\ЬќЫЫќ[ќXЛњЭ\ЬќЫЫќ[ќ\ЬYNВ€YЉЭ\ЬќЫЫќ[ќ
+]™\љYћTЭ\ЬќЫЫќ[ќ
+Э\ЬќЫЫќ[ќЪXYњ™SЩ™љXЪX[[\›]]™\ТXY™XY›Щ™љXЪX[[\›]]™\Ф]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™TЭ\ЬќЫЫќ[ќXY\Э\ЬќЫЫќ[ќЬЭ\ЬќЫЫќ[ќ\ЩNњ™SЩ™љXЪX[[\›]]™\ТXYВ€ЫЫњЭЭ\ЬќЫЫќ[ќ]Р›ШЏJ™Y‹]
+OO›Щ™љXЪX[[\›]]™\Ф]Р›ШЉЭ\ЬќЫЫќ[ќ	‰њ™YЏOOIТPQ	Й‰”ХTФ•РУУ•S•ФСUљ\К]
+OЬЭ\ЬќЫЫќ[ќ\ЩNњ™Y‹]
+NВ€ЫЫњЭЫЫќ[ќZ]PЫЫќ[ќXЛЫЫќ[ќZ]PЫЫќ[ќ\ЬYNВ€YЉЫЫќ[ќZ]PЫЫќ[ќ
+]™\љYћPЫЫќ[ќZ]PЫЫќ[ќ
+ЫЫќ[ќZ]PЫЫќ[ќЪXYњ™TЭ\ЬќЫЫќ[ќXY™XYњЭ\ЬќЫЫќ[ќ]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™PЫЫќ[ќZ]PЫЫќ[ќXYXЫЫќ[ќZ]PЫЫќ[ќШЫЫќ[ќZ]PЫЫќ[ќ\ЩNњ™TЭ\ЬќЫЫќ[ќXYВ€ЫЫњЭЫЫќ[ќZ]PЫЫќ[ќ]Р›ШЏJ™Y‹]
+OOњЭ\ЬќЫЫќ[ќ]Р›ШЉЫЫќ[ќZ]PЫЫќ[ќ	‰њ™YЏOOIТPQ	Й‰ђУУ•S•RUWРУУ•S•ФСUљ\К]
+OШЫЫќ[ќZ]PЫЫќ[ќ\ЩNњ™Y‹]
+NВ€ЫЫњЭ[™[™С[^YY]Y]YT™\Z\ЏXЛќШ]Ъ[™[™С[^YY]Y]YT™\Z\ЋВ€YЉ[™[™С[^YY]Y]YT™\Z\Љ]™\љYћUШ]Ъ[™[™С[^YY]Y]YT™\Z\Љ[™[™С[^YY]Y]YT™\Z\‹ЪXYњ™PЫЫќ[ќZ]PЫЫќ[ќXY™XYЫЫќ[ќZ]PЫЫќ[ќ]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™T[™[™С[^YY]Y]YRXY\[™[™С[^YY]Y]YT™\Z\ЏЬ[™[™С[^YY]Y]YT™\Z\‹\ЩNњ™PЫЫќ[ќZ]PЫЫќ[ќXYВ€ЫЫњЭ[™[™С[^YY]Y]YT]Р›ШЏJ™Y‹]
+OOЫЫќ[ќZ]PЫЫќ[ќ]Р›ШЉ[™[™С[^YY]Y]YT™\Z\‰‰њ™YЏOOIТPQ	Й‰•РUТФS‘S‘ЧСSVQQФUQUQWФСUљ\К]
+OЬ[™[™С[^YY]Y]YT™\Z\‹\ЩNњ™Y‹]
+NВ€ЫЫњЭ™XЫ[љXШ[™[X\ЩU\Э™\Z\ЏXЛќШ]Ъ™XЫ[љXШ[™[X\ЩU\Э™\Z\ЋВ€YЉ™XЫ[љXШ[™[X\ЩU\Э™\Z\Љ]™\љYћUШ]Ъ™XЫ[љXШ[™[X\ЩU\Э™\Z\Љ™XЫ[љXШ[™[X\ЩU\Э™\Z\‹ЪXYњ™T[™[™С[^YY]Y]YRXY™XYњ[™[™С[^YY]Y]YT]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™T™[X\ЩU\Э™\Z\’XY\™XЫ[љXШ[™[X\ЩU\Э™\Z\ЏЬ™XЫ[љXШ[™[X\ЩU\Э™\Z\‹\ЩNњ™T[™[™С[^YY]Y]YRXYВ€ЫЫњЭ™[X\ЩU\Э™\Z\”]Р›ШЏJ™Y‹]
+OOњ[™[™С[^YY]Y]YT]Р›ШЉ™XЫ[љXШ[™[X\ЩU\Э™\Z\‰‰њ™YЏOOIТPQ	Й‰•РUТФ‘PУS’PРSФ‘SPTСWХTХФ‘TRT—ФСUљ\К]
+OЬ™XЫ[љXШ[™[X\ЩU\Э™\Z\‹\ЩNњ™Y‹]
+NВ€ЫЫњЭ™XЫ[љXШ[XЛќШ]Ъ™XЫ[љXШ[\ШЫЭ™\ћU\]NВ€YЉ™XЫ[љXШ[
+]™\љYћUШ]Ъ™XЫ[љXШ[\ШЫЭ™\ћU\]J™XЫ[љXШ[ЪXYњ™T™[X\ЩU\Э™\Z\’XY™XYњ™[X\ЩU\Э™\Z\”]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™T™XЫ[љXШ[XY\™XЫ[љXШ[Ь™XЫ[љXШ[\ЩNњ™T™[X\ЩU\Э™\Z\’XYВ€ЫЫњЭ™XЫ[љXШ[]Р›ШЏJ™Y‹]
+OOњ™[X\ЩU\Э™\Z\”]Р›ШЉ™XЫ[љXШ[	‰њ™YЏOOIТPQ	Й‰•РUТФ‘PУS’PРSСTРУХ‘T–WФСUљ\К]
+OЬ™XЫ[љXШ[\ЩNњ™Y‹]
+NВ€ЫЫњЭX[P\њљ][XЛ›X[SШ™\Ъ]P\њљ][™\Z\ЋВ€YЉX[P\њљ][
+]™\љYћSX[SШ™\Ъ]P\њљ][
+X[P\њљ][ЪXYњ™T™XЫ[љXШ[XY™XYњ™XЫ[љXШ[]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™P\њљ][XY[X[P\њљ][ЫX[P\њљ][\ЩNњ™T™XЫ[љXШ[XYВ€ЫЫњЭ\њљ][]Р›ШЏJ™Y‹]
+OOњ™XЫ[љXШ[]Р›ШЉX[P\њљ][	‰њ™YЏOOIТPQ	Й‰“PSWУР‘TТUWРT”’UђSФСUљ\К]
+OЫX[P\њљ][\ЩNњ™Y‹]
+NВ€ЫЫњЭX[PXШЩ\[ЩOXЛ›X[SШ™\Ъ]PXШЩ\[ЩT™\Z\ЋВ€YЉX[PXШЩ\[ЩJ]™\љYћSX[SШ™\Ъ]PXШЩ\[ЩJX[PXШЩ\[ЩKЪXYњ™P\њљ][XY™XY\њљ][]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™PXШЩ\[ЩRXY[X[PXШЩ\[ЩOЫX[PXШЩ\[ЩK\ЩNњ™P\њљ][XYВ€ЫЫњЭXШЩ\[ЩT]Р›ШЏJ™Y‹]
+OO\њљ][]Р›ШЉX[PXШЩ\[ЩI‰њ™YЏOOIТPQ	Й‰“PSWУР‘TТUWРPРСTSђСWФСUљ\К]
+OЫX[PXШЩ\[ЩK\ЩNњ™Y‹]
+NВ€ЫЫњЭX[PЫЬЩ[Э]XЛ›X[SШ™\Ъ]T™[X\ЩPЫЬЩ[Э]В€YЉX[PЫЬЩ[Э]
+]™\љYћSX[SШ™\Ъ]PЫЬЩ[Э]
+X[PЫЬЩ[Э]ЪXYњ™PXШЩ\[ЩRXY™XYXШЩ\[ЩT]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™PЫЬЩ[Э]XY[X[PЫЬЩ[Э]ЫX[PЫЬЩ[Э]\ЩNњ™PXШЩ\[ЩRXYВ€ЫЫњЭЫЬЩ[Э]]Р›ШЏJ™Y‹]
+OOXШЩ\[ЩT]Р›ШЉX[PЫЬЩ[Э]	‰њ™YЏOOIТPQ	Й‰“PSWУР‘TТUWРУФСSХUФСUљ\К]
+OЫX[PЫЬЩ[Э]\ЩNњ™Y‹]
+NВ€ЫЫњЭXЪЫЩПXЛќШ]ЪXЪЫЩХ\]NВ€YЉXЪЫЩК]™\љYћUШ]ЪXЪЫЩХ\]JXЪЫЩЛЪXYњ™PЫЬЩ[Э]XY™XYЫЬЩ[Э]]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™PXЪЫЩТXYXXЪЫЩПШXЪЫЩЛ\ЩNњ™PЫЬЩ[Э]XYВ€ЫЫњЭXЪЫЩФ]Р›ШЏJ™Y‹]
+OOЫЬЩ[Э]]Р›ШЉXЪЫЩЙ‰њ™YЏOOIТPQ	Й‰•РUТРђPТУСЧФСUљ\К]
+OШXЪЫЩЛ\ЩNњ™Y‹]
+NВ€ЫЫњЭX[SШ™\Ъ]OXЛ›X[SШ™\Ъ]T[\ЋВ€YЉX[SШ™\Ъ]J]™\љYћSX[SШ™\Ъ]T[\ЉX[SШ™\Ъ]KЪXYњ™PXЪЫЩТXY™XYXЪЫЩФ]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™SX[SШ™\Ъ]RXY[X[SШ™\Ъ]OЫX[SШ™\Ъ]K\ЩNњ™PXЪЫЩТXYВ€ЫЫњЭX[SШ™\Ъ]T]Р›ШЏJ™Y‹]
+OOXЪЫЩФ]Р›ШЉX[SШ™\Ъ]I‰њ™YЏOOIТPQ	Й‰“PSWУР‘TТUWФСUљ\К]
+OЫX[SШ™\Ъ]K\ЩNњ™Y‹]
+NВ€ЫЫњЭљ[ЫX\љЩ\ЏXЛќЩЩ]\ђљ[ЫX\љЩ\•\]NВ€YЉљ[ЫX\љЩ\Љ]™\љYћUЩЩ]\ђљ[ЫX\љЩ\•\]Jљ[ЫX\љЩ\‹ЪXYњ™SX[SШ™\Ъ]RXY™XY›X[SШ™\Ъ]T]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™Pљ[ЫX\љЩ\’XYXљ[ЫX\љЩ\ЏШљ[ЫX\љЩ\‹\ЩNњ™SX[SШ™\Ъ]RXYВ€ЫЫњЭљ[ЫX\љЩ\”]Р›ШЏJ™Y‹]
+OO›X[SШ™\Ъ]T]Р›ШЉљ[ЫX\љЩ\‰‰њ™YЏOOIТPQ	Й‰•ССUT—Р’SУPT’СT—ФСUљ\К]
+OШљ[ЫX\љЩ\‹\ЩNњ™Y‹]
+NВ€ЫЫњЭ]UШ]ЪXЛ›]UШ]ЪXЭX[\]NВ€YЉ]UШ]Ъ
+]™\љYћS]UШ]ЪXЭX[\]J]UШ]ЪЪXYњ™Pљ[ЫX\љЩ\’XY™XYљ[ЫX\љЩ\”]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™S]UШ]ЪXY[]UШ]ЪЫ]UШ]Ъ\ЩNњ™Pљ[ЫX\љЩ\’XYВ€ЫЫњЭ]UШ]Ъ]Р›ШЏJ™Y‹]
+OOљ[ЫX\љЩ\”]Р›ШЉ]UШ]Ъ	‰њ™YЏOOIТPQ	Й‰“UWХРUТФСUљ\К]
+OЫ]UШ]Ъ\ЩNњ™Y‹]
+NВ€ЫЫњЭЫЫќ[ќZ]OXЛЫЫќ[ќZ]T™\Щ\ќ][Ы”™\Z\ЋВ€YЉЫЫќ[ќZ]J]™\љYћPЫЫќ[ќZ]T™\Щ\ќ][Ы”™\Z\ЉЫЫќ[ќZ]KЪXYњ™S]UШ]ЪXY™XY›]UШ]Ъ]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™PЫЫќ[ќZ]RXYXЫЫќ[ќZ]OШЫЫќ[ќZ]K\ЩNњ™S]UШ]ЪXYВ€ЫЫњЭЫЫќ[ќZ]T]Р›ШЏJ™Y‹]
+OO›]UШ]Ъ]Р›ШЉЫЫќ[ќZ]I‰њ™YЏOOIТPQ	Й‰ђУУ•S•RUWФ‘TСT•ђUSУ—ФСUљ\К]
+OШЫЫќ[ќZ]K\ЩNњ™Y‹]
+NВ€ЫЫњЭЫЫќZ[XЛќЫЫЭZY[ЩT›ЩXЭ[ЫђќZ[Ш]NВ€YЉЫЫќZ[
+]™\љYћUЫЫЭZY[ЩPќZ[Ш]JЫЫќZ[ЪXYњ™PЫЫќ[ќZ]RXY™XYЫЫќ[ќZ]T]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™UЫЫќZ[XY]ЫЫќZ[ЭЫЫќZ[\ЩNњ™PЫЫќ[ќZ]RXYВ€ЫЫњЭЬљYЪ[[]Р›ШЏJ™Y‹]
+OOЫЫќ[ќZ]T]Р›ШЉЫЫќZ[	‰њ™YЏOOIТPQ	Й‰•УУСХRQSђСWР•RSСРUWФСUљ\К]
+OЭЫЫќZ[\ЩNњ™Y‹]
+NВ€ЫЫњЭ\ЬЬЬќXЛњ\ЬЬЬќ™\Щ\ќ][Ы”™\Z\ЋВ€YЉ\ЬЬЬќ
+]™\љYћT\ЬЬЬќ™\Щ\ќ][Ы”™\Z\Љ\ЬЬЬќЪXYњ™UЫЫќZ[XY™XY›ЬљYЪ[[]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™T\ЬЬЬќXY\\ЬЬЬќЬ\ЬЬЬќ\ЩNњ™UЫЫќZ[XYВ€ЫЫњЭ\ЬЬЬќ]Р›ШЏJ™Y‹]
+OO›ЬљYЪ[[]Р›ШЉ\ЬЬЬќ	‰њ™YЏOOIТPQ	Й‰”TФФФ•Ф‘TСT•ђUSУ—ФСUљ\К]
+OЬ\ЬЬЬќ\ЩNњ™Y‹]
+NВ€ЫЫњЭќ[™YXЛќ[™YЫЫќ[ќ[YT™\Z\ЋВ€YЉќ[™Y
+]™\љYћPќ[™YЫЫќ[ќ[YT™\Z\Љќ[™YЪXYњ™T\ЬЬЬќXY™XYњ\ЬЬЬќ]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™Pќ[™YXYXќ[™YШќ[™Y\ЩNњ™T\ЬЬЬќXYВ€ЫЫњЭ\ЩT]Р›ШЏJ™Y‹]
+OOњ\ЬЬЬќ]Р›ШЉќ[™Y	‰њ™YЏOOIТPQ	Й‰ђ•S‘QХУУФ•S•SQWФСUљ\К]
+OШќ[™Y\ЩNњ™Y‹]
+NВ€ЫЫњЭЫЫ™[X\ЩOXЛќЫЫ™[X\ЩP]]ЫX][ЫЋВ€YЉЫЫ™[X\ЩJ]™\љYћUЫЫ™[X\ЩP]]ЫX][ЫЉЫЫ™[X\ЩKЪXYњ™Pќ[™YXY™XY\ЩT]Р›Ш‹€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™UЫЫXY]ЫЫ™[X\ЩOЭЫЫ™[X\ЩK\ЩNњ™Pќ[™YXYВ€ЫЫњЭ™UЫЫ›ШЏJ™Y‹]
+OO\ЩT]Р›ШЉЫЫ™[X\ЩI‰њ™YЏOOIТPQ	Й‰–Л‹‹•УУФ‘SPTСWРUUУPUSУ—ФUЛ‹‹•УУФ‘SPTСWРUUУPUSУ—УPRS•SђSђСWKљ[ЫY\К]
+OЭЫЫ™[X\ЩK\ЩNњ™Y‹]
+NВ€ЫЫњЭ™\ЭЬ™YXЛњ™\ЭЬ™Y]\”ќ[ќ[YT™][ќ[ЫЋВ€YЉ™\ЭЬ™Y
+]™\љYћT™\ЭЬ™Y]\”™][ќ[ЫЉ™\ЭЬ™YЪXYњ™UЫЫXY™XYњ™UЫЫ›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™\ЭЬ™YXY\™\ЭЬ™YЬ™\ЭЬ™Y\ЩNњ™UЫЫXYВ€ЫЫњЭ]Р›ШЏJ™Y‹]
+OOњ™UЫЫ›ШЉ™\ЭЬ™Y	‰њ™YЏOOIТPQ	Й‰”‘TХФ‘QУUT—Ф‘US•SУ—ФСUљ\К]
+OЬ™\ЭЬ™Y\ЩNњ™Y‹]
+NВ€ЫЫњЭ]\•[]љXќ]YXЛ›]\•[]љXќ]YШ]Ъќ[ќ[YT™XЫЭ™\ћNВ€YЉ]\•[]љXќ]Y
+]™\љYћS]\•[]љXќ]YШ]Ъ™XЫЭ™\ћJ]\•[]љXќ]YЪXYњ™\ЭЬ™YXY™XYњ]Р›Ш‹€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ]\•[]љXќ]YXY[]\•[]љXќ]YЫ]\•[]љXќ]Yњљ[ЬђЫЫ\ЬЪ][ЫЋњ™\ЭЬ™YXYВ€ЫЫњЭ]\•[]љXќ]Y™XYJ™Y‹]
+OOњ]Р›ШЉ]\•[]љXќ]Y	‰њ™YЏOOIТPQ	Й‰“UT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФСUљ\К]
+OЫ]\•[]љXќ]Yњљ[ЬђЫЫ\ЬЪ][ЫЋњ™Y‹]
+NВ€ЫЫњЭ[]љXќ]YXЛќ[]љXќ]YШ]Ъќ[ќ[YT™XЫЭ™\ћNВ€YЉ[]љXќ]Y
+]™\љYћU[]љXќ]YШ]Ъ™XЫЭ™\ћJ[]љXќ]YЪXY›]\•[]љXќ]YXY™XY›]\•[]љXќ]Y™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ[]љXќ]YXY][]љXќ]YЭ[]љXќ]Y\ЩN›]\•[]љXќ]YXYВ€ЫЫњЭ[]љXќ]Y™XYJ™Y‹]
+OO›]\•[]љXќ]Y™XY
+[]љXќ]Y	‰њ™YЏOOIТPQ	Й‰•SђU’P•UQХРUТФ‘PУХ‘T–WФСUљ\К]
+OЭ[]љXќ]Y\ЩNњ™Y‹]
+NВ€ЫЫњЭ\Ъ]™OXЛќЫЫШЪ[XP\Ъ]™NВ€YЉ\Ъ]™J]™\љYћUЫЫШЪ[XP\Ъ]™J\Ъ]™KЪXYќ[]љXќ]YXY™XYќ[]љXќ]Y™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭXYX\Ъ]™OШ\Ъ]™K\ЩNќ[]љXќ]YXYВ€ЫЫњЭ™XY›ШЏJ™Y‹]
+OOќ[]љXќ]Y™XY
+\Ъ]™I‰њ™YЏOOIТPQ	Й‰•УУФРТSPWРTђТU‘WУPRS•SђSђСKљ[ЫY\К]
+OШ\Ъ]™K\ЩNњ™Y‹]
+NВ€ЫЫњЭЫY[ќXЛќX›]ЫY[ќВ€YЉЫY[ќ
+]™\љYћUX›]ЫY[ќ^[њЪ[ЫЉЫY[ќЪXY™XYњ™XY›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЫY[ќXYXЫY[ќШЫY[ќ\ЩNљXYВ€ЫЫњЭЫY[ќ™XYJ™Y‹]
+OOњ™XY›ШЉЫY[ќ	‰њ™YЏOOIТPQ	Й‰•P“UРУQS•ФСUљ\К]
+OШЫY[ќ\ЩNњ™Y‹]
+NВ€ЫЫњЭ™X]Y[ќXЛ›^U™X]Y[ќВ€YЉ™X]Y[ќ
+]™\љYћS^U™X]Y[ќ
+™X]Y[ќЪXYЫY[ќXY™XYЫY[ќ™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™X]Y[ќXY]™X]Y[ќЭ™X]Y[ќ\ЩNЫY[ќXYВ€ЫЫњЭ™X]Y[ќ™XYJ™Y‹]
+OOЫY[ќ™XY
+™X]Y[ќ	‰њ™YЏOOIТPQ	Й‰“VWХ‘PUQS•ФСUљ\К]
+OЭ™X]Y[ќ\ЩNњ™Y‹]
+NВ€ЫЫњЭX›]XЛќX›]ЫЬ™[™ОВ€YЉX›]
+]™\љYћUX›]ЫЬ™[™С^[њЪ[ЫЉX›]ЪXYќ™X]Y[ќXY™XYќ™X]Y[ќ™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭX›]XY]X›]ЭX›]\ЩNќ™X]Y[ќXYВ€ЫЫњЭX›]™XYJ™Y‹]
+OOќ™X]Y[ќ™XY
+X›]	‰њ™YЏOOIТPQ	Й‰•P“UХУФ‘S‘ЧФСUљ\К]
+OЭX›]\ЩNњ™Y‹]
+NВ€ЫЫњЭЭЫ™Y\Ь]ЪXЛќШ]ЪЭЫ™Y\Ь]ЪВ€YЉЭЫ™Y\Ь]Ъ
+]™\љYћUШ]ЪЭЫ™Y\Ь]Ъ
+ЭЫ™Y\Ь]ЪЪXYќX›]XY™XYќX›]™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЭЫ™Y\Ь]ЪXY[ЭЫ™Y\Ь]ЪЫЭЫ™Y\Ь]Ъ\ЩNќX›]XYВ€ЫЫњЭЭЫ™Y\Ь]Ъ™XYJ™Y‹]
+OOќX›]™XY
+ЭЫ™Y\Ь]Ъ	‰њ™YЏOOIТPQ	Й‰•РUТУХУ‘QСTФUТФСUљ\К]
+OЫЭЫ™Y\Ь]Ъ\ЩNњ™Y‹]
+NВ€ЫЫњЭќ[ќ[YQ\Ь]ЪXЛќШ]Ъќ[ќ[YQ\Ь]ЪВ€YЉќ[ќ[YQ\Ь]Ъ
+]™\љYћUШ]Ъќ[ќ[YQ\Ь]Ъ
+ќ[ќ[YQ\Ь]ЪЪXY›ЭЫ™Y\Ь]ЪXY™XY›ЭЫ™Y\Ь]Ъ™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭќ[ќ[YQ\Ь]ЪXY\ќ[ќ[YQ\Ь]ЪЬќ[ќ[YQ\Ь]Ъ\ЩNљXYВ€ЫЫњЭќ[ќ[YQ\Ь]Ъ™XYJ™Y‹]
+OO›ЭЫ™Y\Ь]Ъ™XY
+ќ[ќ[YQ\Ь]Ъ	‰њ™YЏOOIТPQ	Й‰•РUТФ•S•SQWСTФUТФСUљ\К]
+OЬќ[ќ[YQ\Ь]Ъ\ЩNњ™Y‹]
+NВ€ЫЫњЭќ[ќ[YP\Щ[[™OXЛќШ]Ъќ[ќ[YP\Щ[[™NВ€YЉќ[ќ[YP\Щ[[™J]™\љYћUШ]Ъќ[ќ[YP\Щ[[™Jќ[ќ[YP\Щ[[™KЪXYњќ[ќ[YQ\Ь]ЪXY™XYњќ[ќ[YQ\Ь]Ъ™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭќ[ќ[YP\Щ[[™RXY\ќ[ќ[YP\Щ[[™OЬќ[ќ[YP\Щ[[™K\ЩNљXYВ€ЫЫњЭќ[ќ[YP\Щ[[™T™XYJ™Y‹]
+OOњќ[ќ[YQ\Ь]Ъ™XY
+ќ[ќ[YP\Щ[[™I‰њ™YЏOOIТPQ	Й‰•РUТФ•S•SQWРђTСSS‘WФСUљ\К]
+OЬќ[ќ[YP\Щ[[™K\ЩNњ™Y‹]
+NВ€ЫЫњЭ›ЫЭ\ђЫЫ\ЬЪ][ЫЏXЛњЪ\™Y›ЫЭ\ђЫЫ\ЬЪ][Ы”›ЫЩЋВ€YЉ›ЫЭ\ђЫЫ\ЬЪ][ЫЉ]™\љYћTЪ\™Y›ЫЭ\ђЫЫ\ЬЪ][ЫЉ›ЫЭ\ђЫЫ\ЬЪ][Ы‹ЪXYњќ[ќ[YP\Щ[[™RXY™XYњќ[ќ[YP\Щ[[™T™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ›ЫЭ\ђЫЫ\ЬЪ][Ы’XYY›ЫЭ\ђЫЫ\ЬЪ][ЫЏЩ›ЫЭ\ђЫЫ\ЬЪ][Ы‹\ЩNњќ[ќ[YP\Щ[[™RXYВ€ЫЫњЭ›ЫЭ\ђЫЫ\ЬЪ][Ы”™XYJ™Y‹]
+OOњќ[ќ[YP\Щ[[™T™XY
+›ЫЭ\ђЫЫ\ЬЪ][Ы‰‰њ™YЏOOIТPQ	Й‰”ТT‘QС“УХT—РУУTФТUSУ—ФСUљ\К]
+OЩ›ЫЭ\ђЫЫ\ЬЪ][Ы‹\ЩNњ™Y‹]
+NВ€ЫЫњЭЭФX›XХЫЬ™[™ПXЛќШ]ЪЭФX›XХЫЬ™[™ОВ€YЉЭФX›XХЫЬ™[™К]™\љYћUШ]ЪЭФX›XХЫЬ™[™КЭФX›XХЫЬ™[™ЛЪXY™›ЫЭ\ђЫЫ\ЬЪ][Ы’XY™XY™›ЫЭ\ђЫЫ\ЬЪ][Ы”™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЭФX›XХЫЬ™[™ТXYZЭФX›XХЫЬ™[™ПЪЭФX›XХЫЬ™[™Л\ЩN™›ЫЭ\ђЫЫ\ЬЪ][Ы’XYВ€ЫЫњЭЭФX›XХЫЬ™[™Ф™XYJ™Y‹]
+OO™›ЫЭ\ђЫЫ\ЬЪ][Ы”™XY
+ЭФX›XХЫЬ™[™Й‰њ™YЏOOIТPQ	Й‰•РUТТХЧФP“PЧХУФ‘S‘ЧФСUљ\К]
+OЪЭФX›XХЫЬ™[™Л\ЩNњ™Y‹]
+NВ€ЫЫњЭЭСXYЫ›ЬЭXПXЛќШ]ЪЭСXYЫ›ЬЭXОВ€YЉЭСXYЫ›ЬЭXК]™\љYћUШ]ЪЭСXYЫ›ЬЭXКЭСXYЫ›ЬЭXЛЪXYљЭФX›XХЫЬ™[™ТXY™XYљЭФX›XХЫЬ™[™Ф™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЭСXYЫ›ЬЭXТXYZЭСXYЫ›ЬЭXПЪЭСXYЫ›ЬЭXЛ\ЩNљЭФX›XХЫЬ™[™ТXYВ€ЫЫњЭЭСXYЫ›ЬЭXФ™XYJ™Y‹]
+OOљЭФX›XХЫЬ™[™Ф™XY
+ЭСXYЫ›ЬЭXЙ‰њ™YЏOOIТPQ	Й‰•РUТТХЧСPQУ“ФХPЧФСUљ\К]
+OЪЭСXYЫ›ЬЭXЛ\ЩNњ™Y‹]
+NВ€ЫЫњЭЭПXЛќШ]ЪЭОВ€YЉЭК]™\љYћUШ]ЪЭКЭЛЪXYљЭСXYЫ›ЬЭXТXY™XYљЭСXYЫ›ЬЭXФ™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЭТXYZЭПЪЭЛ\ЩNљЭСXYЫ›ЬЭXТXYВ€ЫЫњЭЭФ™XYJ™Y‹]
+OOљЭСXYЫ›ЬЭXФ™XY
+ЭЙ‰њ™YЏOOIТPQ	Й‰•РUТТХЧФСUљ\К]
+OЪЭЛ\ЩNњ™Y‹]
+NВ€ЫЫњЭXYЫ›ЬЭXПXЛќШ]Ъ™[Y]™QXYЫ›ЬЭXОВ€YЉXYЫ›ЬЭXК]™\љYћUШ]Ъ™[Y]™QXYЫ›ЬЭXКXYЫ›ЬЭXЛЪXYљЭТXY™XYљЭФ™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭXYЫ›ЬЭXТXYYXYЫ›ЬЭXПЩXYЫ›ЬЭXЛ\ЩNљЭТXYВ€ЫЫњЭXYЫ›ЬЭXФ™XYJ™Y‹]
+OOљЭФ™XY
+XYЫ›ЬЭXЙ‰њ™YЏOOIТPQ	Й‰•РUТР‘SQU‘WСPQУ“ФХPЧФСUљ\К]
+OЩXYЫ›ЬЭXЛ\ЩNњ™Y‹]
+NВ€ЫЫњЭ™[Y]™OXЛќШ]Ъ™[Y]™Q]љY[ЩNВ€YЉ™[Y]™J]™\љYћUШ]Ъ™[Y]™Q]љY[ЩJ™[Y]™KЪXY™XYЫ›ЬЭXТXY™XY™XYЫ›ЬЭXФ™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™[Y]™RXYX™[Y]™OШ™[Y]™K\ЩN™XYЫ›ЬЭXТXYВ€ЫЫњЭ™[Y]™T™XYJ™Y‹]
+OO™XYЫ›ЬЭXФ™XY
+™[Y]™I‰њ™YЏOOIТPQ	Й‰•РUТР‘SQU‘WФСUљ\К]
+OШ™[Y]™K\ЩNњ™Y‹]
+NВ€ЫЫњЭY[X™\”™]ћOXЛ›Y[X™\”›ЫЩ•[њЬЬќ™]ћNВ€YЉY[X™\”™]ћJ]™\љYћSY[X™\”›ЫЩ”™]ћJY[X™\”™]ћKЪXY™[Y]™RXY™XY™[Y]™T™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭY[X™\”™]ћRXY[Y[X™\”™]ћOЫY[X™\”™]ћK\ЩN™[Y]™RXYВ€ЫЫњЭY[X™\”™]ћT™XYJ™Y‹]
+OO™[Y]™T™XY
+Y[X™\”™]ћI‰њ™YЏOOIТPQ	Й‰“QSP‘T—Ф“УС—Ф‘U–WФСUљ\К]
+OЫY[X™\”™]ћK\ЩNњ™Y‹]
+NВ€ЫЫњЭ™]ЬПXЛ›™]ЬФЩXЭ\љ]TЫXЮNВ€YЉ™]ЬК]™\љYћS™]ЬФЩXЭ\љ]J™]ЬЛЪXY›Y[X™\”™]ћRXY™XY›Y[X™\”™]ћT™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™]ЬТXY[™]ЬПЫ™]ЬЛ\ЩN›Y[X™\”™]ћRXYВ€ЫЫњЭ™]ЬФ™XYJ™Y‹]
+OO›Y[X™\”™]ћT™XY
+™]ЬЙ‰њ™YЏOOIТPQ	Й‰“‘UФЧФСPХT’UWФСUљ\К]
+OЫ™]ЬЛ\ЩNњ™Y‹]
+NВ€ЫЫњЭЫЬЩ[Э]XЛњ›ЩЬ[[YS]™PЫЬЩ[Э]В€YЉЫЬЩ[Э]
+]™\љYћT›ЩЬ[[YPЫЬЩ[Э]
+ЫЬЩ[Э]ЪXY›™]ЬТXY™XY›™]ЬФ™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЫЬЩ[Э]XYXЫЬЩ[Э]ШЫЬЩ[Э]\ЩN›™]ЬТXYВ€ЫЫњЭЫЬЩ[Э]™XYJ™Y‹]
+OO›™]ЬФ™XY
+ЫЬЩ[Э]	‰њ™YЏOOIТPQ	Й‰”“СФђSSQWРУФСSХUФСUљ\К]
+OШЫЬЩ[Э]\ЩNњ™Y‹]
+NВ€ЫЫњЭЩ\ќљ[™ПXЛњЩ\ќљ[™ФЩ[РШ\\™NВ€YЉЩ\ќљ[™К]™\љYћTЩ\ќљ[™ФЩ[РШ\\™JЩ\ќљ[™ЛЪXYЫЬЩ[Э]XY™XYЫЬЩ[Э]™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЩ\ќљ[™ТXY\Щ\ќљ[™ПЬЩ\ќљ[™Л\ЩNЫЬЩ[Э]XYВ€ЫЫњЭЩ\ќљ[™Ф™XYJ™Y‹]
+OOЫЬЩ[Э]™XY
+Щ\ќљ[™Й‰њ™YЏOOIТPQ	Й‰”СT•’S‘ЧФСSЧФСUљ\К]
+OЬЩ\ќљ[™Л\ЩNњ™Y‹]
+NВ€ЫЫњЭЩЫЭ]XЛ›ЩЫЭ]]љYШ][ЫђYЬ[ЫЋВ€YЉЩЫЭ]
+]™\љYћSЩЫЭ]YЬ[ЫЉЩЫЭ]ЪXYњЩ\ќљ[™ТXY™XYњЩ\ќљ[™Ф™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЩЫЭ]XY[ЩЫЭ]ЫЩЫЭ]\ЩNњЩ\ќљ[™ТXYВ€ЫЫњЭЩЫЭ]™XYJ™Y‹]
+OOњЩ\ќљ[™Ф™XY
+ЩЫЭ]	‰њ™YЏOOIТPQ	Й‰“СУХUРQФSУ—ФСUљ\К]
+OЫЩЫЭ]\ЩNњ™Y‹]
+NВ€ЫЫњЭ][\XЛњ™[ШY][\›ЫЩЋВ€YЉ][\
+]™\љYћT™[ШY][\^[њЪ[ЫЉ][\ЪXY›ЩЫЭ]XY™XY›ЩЫЭ]™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ][\XYX][\Ш][\\ЩN›ЩЫЭ]XYВ€ЫЫњЭ][\™XYJ™Y‹]
+OO›ЩЫЭ]™XY
+][\	‰њ™YЏOOIТPQ	Й‰”‘SРQРUSTФСUљ\К]
+OШ][\\ЩNњ™Y‹]
+NВ€ЫЫњЭ[ЪЬЏXЛ›Ь[Ш[›ЫљXШ[™\Z\ЋВ€YЉ[ЪЬЉ]™\љYћSЬ[Ш[›ЫљXШ[™\Z\Љ[ЪЬ‹ЪXY][\XY™XY][\™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ[ЪЬ’XYX[ЪЬЏШ[ЪЬ‹\ЩN][\XYВ€ЫЫњЭ[ЪЬ”™XYJ™Y‹]
+OO][\™XY
+[ЪЬ‰‰њ™YЏOOIТPQ	Й‰“ФђSРРS“У’PРSФСUљ\К]
+OШ[ЪЬ‹\ЩNњ™Y‹]
+NВ€ЫЫњЭљПXЛ›љР\ќXЫT›ЫЩ”™Yњ™\ЪВ€YЉљК]™\љYћSљР\ќXЫT›ЫЩ”™Yњ™\Ъ
+љЛЪXY[ЪЬ’XY™XY[ЪЬ”™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭљТXY[љПЫљЛ\ЩN[ЪЬ’XYВ€ЫЫњЭљФ™XYJ™Y‹]
+OO[ЪЬ”™XY
+љЙ‰њ™YЏOOIТPQ	Й‰“’ЧРT•PУWФ“УС—ФСUљ\К]
+OЫљЛ\ЩNњ™Y‹]
+NВ€ЛИ[Y]HH^XЭЭ\њ™[ќЩ\ќљ[™И›ЫXЪИ™XЩZ\™Y›Ь™HЫ\€љY]ЬЛ‚€ЫЫњЭЭ\Ьќ›ЫXЪПXЛњЭ\Ьќ›ЫXЪФ™Yњ™\ЪВ€YЉЭ\Ьќ›ЫXЪК]™\љYћTЭ\Ьќ›ЫXЪФ™Yњ™\Ъ
+Э\Ьќ›ЫXЪЛЪXY›љТXY™XY›љФ™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЭ\ЬќXY\Э\Ьќ›ЫXЪПЬЭ\Ьќ›ЫXЪЛ\ЩN›љТXYВ€ЫЫњЭЭ\Ьќ™XYJ™Y‹]
+OO›љФ™XY
+Э\Ьќ›ЫXЪЙ‰њ™YЏOOIТPQ	Й‰”ХTФ•Ф“УђPТЧФСUљ\К]
+OЬЭ\Ьќ›ЫXЪЛ\ЩNњ™Y‹]
+NВ€ЛИ[Y]H]И™]ћHћ]\И™Y›Ь™H^ЬЪ[™ИH^XЭљ[Ь€\›Э™Y™[X\ЩK‚€ЫЫњЭЬ[XЛ›Ь[]™Q\Ь]ЪЭX\™В€YЉЬ[
+]™\љYћSЬ[]™Q\Ь]ЪЭX\™
+Ь[ЪXYњЭ\ЬќXY™XYњЭ\Ьќ™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЬ[XY[Ь[ЫЬ[\ЩNњЭ\ЬќXYВ€ЫЫњЭЬ[™XYJ™Y‹]
+OOњЭ\Ьќ™XY
+Ь[	‰њ™YЏOOIТPQ	Й‰“ФђSУU‘WСTФUТФСUљ\К]
+OЫЬ[\ЩNњ™Y‹]
+NВ€ЫЫњЭ™]ћOXЛњX›XХЫЫ›ЫЩ”™]ћNВ€YЉ™]ћJ]™\љYћTX›XХЫЫ›ЫЩ”™]ћJ™]ћKЪXY›Ь[XY™XY›Ь[™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™]ћRXY\™]ћOЬ™]ћK\ЩN›Ь[XYВ€ЫЫњЭ™]ћT™XYJ™Y‹]
+OO›Ь[™XY
+™]ћI‰њ™YЏOOIТPQ	Й‰”P“PЧХУУФ“УС—Ф‘U–WФСUљ\К]
+OЬ™]ћK\ЩNњ™Y‹]
+NВ€ЛИ[Y]HHљ[љ]H›ЩЬ[[YH[Y[™Y[ќ™Y›Ь™H^ЬЪ[™ИH™]љ[Э\И™[X\ЩK‚€ЫЫњЭ™Y›YЪXЛњ›ЩЬ[[YQ^T™Y›YЪВ€YЉ™Y›YЪ
+]™\љYћT›ЩЬ[[YQ^T™Y›YЪ^[њЪ[ЫЉ™Y›YЪЪXYњ™]ћRXY™XYњ™]ћT™XYY™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЭ\њ™[ќXY\™Y›YЪЬ™Y›YЪ\ЩNњ™]ћRXYВ€ЫЫњЭЭ\њ™[ќ™XYJ™Y‹]
+OOњ™]ћT™XY
+™Y›YЪ	‰њ™YЏOOIТPQ	Й‰”“СФђSSQWФ‘Q“QТФUЛљ\К]
+OЬ™Y›YЪ\ЩNњ™Y‹]
+NВ€ЫЫњЭ^OXЛњ›ЩЬ[[YQ^NВ€YЉ^J]™\љYћT›ЩЬ[[YQ^Q^[њЪ[ЫЉ^KЪXYЭ\њ™[ќXY™XYЭ\њ™[ќ™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭ™]љ[Э\ТXYY^OЩ^K\ЩNЭ\њ™[ќXYВ€ЫЫњЭљ[Ь”™XYJ™Y‹]
+OOЭ\њ™[ќ™XY
+^I‰њ™YЏOOIТPQ	Й‰”“СФђSSQWСVWФUЛљ\К]
+OЩ^K\ЩNњ™Y‹]
+NВ€ЛИ[Y]H[™]И]ИPQћ]\И™Y›Ь™H^ЬЪ[™И[ћHЫ\€\ЭЬљXШ[љY]Л‚€ЫЫњЭ^[њЪ[ЫЏXЛњX›XХЫЫ[]™\ћNВ€YЉ^[њЪ[ЫЉ]™\љYћTX›XХЫЫ^[њЪ[ЫЉ^[њЪ[Ы‹ЪXYњ™]љ[Э\ТXY™XYњљ[Ь”™XY€Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK€[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЫЫњЭЫЫ\ЬЪ][Ы’XYY^[њЪ[ЫЏЩ^[њЪ[Ы‹\ЩNњ™]љ[Э\ТXYВ€ЫЫњЭЫЫ\ЬЪ][Ыђ›ШЏJ]
+OO™^[њЪ[Ы‰‰”P“PЧХУУФUЛљ\К]
+OЬљ[Ь”™XY
+^[њЪ[Ы‹\ЩK]
+Nњљ[Ь”™XY
+	ТPQ	Л]
+NВ€ЛИ[Y]HH™]Щ\ЭЫЭ\ЩK\™[™]Ш[ћ]\ИYќ\€[Ы\€™XЩZ\ИЫИB€ЛИЮ[ќ]XИљYќ[€[€Ы\€^Y\€™]Z[њИ]^Y\‰ЬИXYЫ›ЬЭXЛ‚€YЉЩYЫЭћT™[™]Ш[
+]™\љYћUШ]ЪЩYЫЭћTЫЭ\ЩT™[™]Ш[
+ЩYЫЭћT™[™]Ш[ЪXYњ™RX•Њ’XY™XYљX•Њ”]Р›Ш‹Y™ЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉK[Щ\ЭЬЋЉKЉOOњX›XХЫЫ[[]]X›QЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰ЛKЉ_JNВ€ЛИШXЪHЫ›HЪ]Ь\XЭИ›Ь€™\ЫЫ™Y[[]]X›HЫЫ[Z]И[™\И^XЭ€ЛИ™XЩZ\€Э\YY™XY\њЛЭ\њ™[ќћ]\И[™ЫЬљЪ[™Л]™YHЪXЪЬИЭ^Hњ™\Ъ‚€ЫЫњЭЭќXЭ\™RЩ^OR”УУ‹њЭљ[™ЪYћJЬ›ШЩ\ЬЛЭЩ
+
+KXYЧJNВ€YЉ]™\љYљYY[[]]X›TЭќXЭ\™\Лљ\КЭќXЭ\™RЩ^JJ^В€›ЬЉЫЫњЭ™Y€Щ€РУУTФТUSУ—РђTСKХTФ•ФУХTђСKWФУХTђСKУУTФТUSУ—ФУХTђСKЛ›XZ[ќ[[ЩTЫЭ\ЩK‘SРQХ‘T’Q’QT‹РUТСђPХPSХTUWРђTСKРUТСђPХPSХTUWФУХTђСKШ]Ъ›XZ[ќ[[ЩTЫЭ\ЩK“УС—ХђS”ФФ•РђTСK“УС—ХђS”ФФ•ФУХTђСK[њЬЬќ›XZ[ќ[[ЩTЫЭ\ЩWJYЪ]
+	ЫY\™ЩKX\ЩIЛ	ЛKZ\ЛX[Щ\ЭЬ‰Л™Y‹XY
+NВ€ЫЫњЭY™ЏJKЉOO™Ъ]
+	ЩY™‰Л	ЛK[[YK[Ы›IЛKЉKњЬ]
+	Ч‰КK™љ[\Љ›ЫЫX[ЉKњЫЬќ
+
+NВ€\ЬЩ\ќ™Y\\]X[
+Y™ЉУУTФТUSУ—РђTСKУУTФТUSУ—ФУХTђСJKЫЬќY
+УУTФТUSУ—ФUКJNВ€\ЬЩ\ќ™Y\\]X[
+Y™ЉУУTФТUSУ—ФУХTђСKЛ›XZ[ќ[[ЩTЫЭ\ЩJK™љ[\ЉOњOOT‘PУУђТSPUSУ—УPS’Q‘TХ
+KЫЬќY
+‘PУУђТSPUSУ—УPRS•SђSђСJJNВ€\ЬЩ\ќ™Y\\]X[
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKРUТСђPХPSХTUWРђTСJKФ‘PУУђТSPUSУ—УPS’Q‘TХJNВ€\ЬЩ\ќ™Y\\]X[
+Y™ЉРUТСђPХPSХTUWРђTСKРUТСђPХPSХTUWФУХTђСJKЫЬќY
+РUТСђPХPSХTUWФUКK	С^XЭZYЪYљ[HXЭX[Ш]ЪЫЭ\ЩH™\]Z\™Y	КNВ€\ЬЩ\ќ™Y\\]X[
+Y™ЉРUТСђPХPSХTUWФУХTђСKШ]Ъ›XZ[ќ[[ЩTЫЭ\ЩJKЫЬќY
+РUТСђPХPSХTUWУPRS•SђSђСJK	С^XЭ›Э\‹Yљ[HШ]Ъ™XЫЫЪ[X][Ы€™\]Z\™Y	КNВ€\ЬЩ\ќ™Y\\]X[
+Y™ЉШ]Ъ›XZ[ќ[[ЩTЫЭ\ЩK“УС—ХђS”ФФ•РђTСJKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€XЭX[Ш]Ъ™XЫЫЪ[X][Ы‰КNВ€\ЬЩ\ќ™Y\\]X[
+Y™Љ“УС—ХђS”ФФ•РђTСK“УС—ХђS”ФФ•ФУХTђСJKЫЬќY
+“УС—ХђS”ФФ•ФUКK	С^XЭ™YKYљ[H[њЬЬќ[Y[™Y[ќ™\]Z\™Y	КNВ€\ЬЩ\ќ™Y\\]X[
+Y™Љ“УС—ХђS”ФФ•ФУХTђСK[њЬЬќ›XZ[ќ[[ЩTЫЭ\ЩJKЫЬќY
+“УС—ХђS”ФФ•УPRS•SђSђСJK	С^XЭЫЛYљ[H[њЬЬќ™XЫЫЪ[X][Ы€™\]Z\™Y	КNВ€\ЬЩ\ќ™Y\\]X[
+Y™Љ[њЬЬќ›XZ[ќ[[ЩTЫЭ\ЩKЫЫ\ЬЪ][Ы’XY
+KФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€[њЬЬќ™XЫЫЪ[X][Ы‰КNВ€™\љYљYY[[]]X›TЭќXЭ\™\ЛY
+ЭќXЭ\™RЩ^JNВ€B€ЛИ™\љYћHЭ\њ™[ќћ]\И™Y›Ь™H^ЬЪ[™И\ЭЬљXШ[љY]ЬИИЫ\€ЭX\™Л‚€›ЬЉЫЫњЭ]Щ€УУTФТUSУ—ФUКX\ЬЩ\ќ™\]X[
+ЫЫ\ЬЪ][Ыђ›ШЉ]
+K™XY›ШЉУУTФТUSУ—ФУХTђСK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€ЫЭ\ЩHИ›Э[™\ћHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€‘PУУђТSPUSУ—УPRS•SђSђСJX\ЬЩ\ќ™\]X[
+ЫЫ\ЬЪ][Ыђ›ШЉ]
+K™XY›ШЉ“УС—ХђS”ФФ•УPRS•SђSђСKљ[ЫY\К]
+OЭ[њЬЬќ›XZ[ќ[[ЩTЫЭ\ЩN•РUТСђPХPSХTUWУPRS•SђSђСKљ[ЫY\К]
+OЭШ]Ъ›XZ[ќ[[ЩTЫЭ\ЩNЛ›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€РUТСђPХPSХTUWУPRS•SђSђСJX\ЬЩ\ќ™\]X[
+ЫЫ\ЬЪ][Ыђ›ШЉ]
+K™XY›ШЉ“УС—ХђS”ФФ•УPRS•SђSђСKљ[ЫY\К]
+OЭ[њЬЬќ›XZ[ќ[[ЩTЫЭ\ЩNќШ]Ъ›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YXЭX[Ш]ЪXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€РUТСђPХPSХTUWФUКX\ЬЩ\ќ™\]X[
+ЫЫ\ЬЪ][Ыђ›ШЉ]
+K™XY›ШЉРUТСђPХPSХTUWФУХTђСK]
+K	Р\›Э™YXЭX[Ш]ЪЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€“УС—ХђS”ФФ•ФUКX\ЬЩ\ќ™\]X[
+ЫЫ\ЬЪ][Ыђ›ШЉ]
+K™XY›ШЉ“УС—ХђS”ФФ•ФУХTђСK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€“УС—ХђS”ФФ•УPRS•SђSђСJX\ЬЩ\ќ™\]X[
+ЫЫ\ЬЪ][Ыђ›ШЉ]
+K™XY›ШЉ[њЬЬќ›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Р\›Э™YЫЫ\ЬЪ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€‘SРQФVSРQ
+X\ЬЩ\ќ™\]X[
+ЫЫ\ЬЪ][Ыђ›ШЉ]
+K™XY›ШЉ‘SРQХ‘T’Q’QT‹]
+K	Т[™\[™[ќ™[ШY\›™\ЬИЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЩXЭ[Ы”›ЫЩђ™Y›Ь™OППY^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛУУTФТUSУ—РђTСJЙО‹™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	ЧKЩ[ЫЩ[™О‰Э]Ћ	ЯJNВ€ЫЫњЭЭ\њ™[ќЫЬљЩ›ЭП]ЫЫ™[X\ЩOЩ^XСљ[TЮ[К	ЩЪ]	ЛЙЬЪЭЙЛЫЫ™[X\ЩK\ЩJЙО‹™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	ЧKЩ[ЫЩ[™О‰Э]Ћ	ЯJNњ™XYљ[TЮ[К	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	Л	Э]Ћ	КNВ€ЫЫњЭ™X]Y[ќЫЬљЩ›ЭП]™X]Y[ќЭЪ]Э]™X]Y[ќЭ\КЭ\њ™[ќЫЬљЩ›ЭКNЭ\њ™[ќЫЬљЩ›ЭОВ€\ЬЩ\ќ›ЩXЭ[Ы”›ЫЩђќYЩ]
+›ЩXЭ[Ы”›ЫЩђ™Y›Ь™KЫЬЩ[Э]ЭЪ]Э]›ЩЬ[[YS]™QШ]J™X]Y[ќЫЬљЩ›ЭКNќ™X]Y[ќЫЬљЩ›ЭКNВ€\ЬЩ\ќ™\]X[
+Ъ]
+	ЩY™‰Л	ЛK[[YK[Ы›IКK	ЙЛ	ХЫЬљЪ[™ИЫЭ\ЩHЪ[™ЩY\љ[™ИЫЫ\ЬЪ][Ы€™\љYљXШ][Ы‰КNВ€\ЬЩ\ќ™\]X[
+Ъ]
+	Ь™]‹\\њЩIЛ	ТPQ	КKXЭX[XY	ФЫЭ\ЩHPQЪ[™ЩY\љ[™ИЫЫ\ЬЪ][Ы€™\љYљXШ][Ы‰КNВ€™]\›€ОВџBЫЫњЭX\YЫЫ\ЬЪ][Ы”™XY\њП[™]ИЩXZФЩ]
+
+NВ™^Ьќќ[Э[Ы€™XЫЫЪ[X][Ы“X\љТ\ЭЬљXШ[™XY\Љ™XY
+^ЫX\YЫЫ\ЬЪ][Ы”™XY\њЛY
+™XY
+NЬ™]\›€™XYЯB›]™\љYљYYXY[ќ[ШЫЫњЭ^\ЭР]\ЩO[™]ИX\
+
+NВ™ќ[Э[Ы€[њЭ\™T™XЫЫЪ[X][ЫЉ
+^В€YЉ\™XЫЫЪ[X][Ы”™XЫЬ™
+
+J\™]\›€[ЩNВ€ЛИHЮ[Ъ›Ы›Э\И\ЭЬљXШ[\ЭШЫЬHШ\\™\ИPQ[™™Z™XЭИH[Э™H]€ЛИ]И[™€Э]ЪYH]ШЫЬK]™\ћHX›XИЫЪЭ\Э[™\ЫЫ™\ИPQYњ™\Ъ‚€ЫЫњЭXYZ[[]]X›R\ЭЬћTШЫЬOЛљXYПЩЪ]
+	Ь™]‹\\њЩIЛ	ТPQ	КNВ€YЉ™\љYљYYXYOOZXY
+^Э™\љYћT™XЫЫЪ[Y™[X\ЩJ
+NЭ™\љYљYYXYZXYЯB€™]\›€ќYNВџB™ќ[Э[Ы€ЪXЪЩY\ЭЬљXШ[™YЉ™Y‹]
+^В€YЉ™Y€OOIТPQ	ЯT‘PУУђТSPUSУ—ФUЛљ\К]
+J\™]\›€™YЋВ€YЉY^\ЭР]\ЩKљ\К]
+J^Эћ^Щ^XСљ[TЮ[К	ЩЪ]	ЛЙШШ]Yљ[IЛ	ЛYIЛУУTФТUSУ—РђTСJЙО‰КЬ]KЬЭ[О‰ЪYЫ›Ь™IЯJNЩ^\ЭР]\ЩKњЩ]
+]ќYJNЯXШ]ЪЩ^\ЭР]\ЩKњЩ]
+][ЩJNЯ_B€™]\›€^\ЭР]\ЩK™Щ]
+]
+OРУУTФТUSУ—РђTСNњ™YЋВџB™^Ьќќ[Э[Ы€™XЫЫЪ[X][Ы’\ЭЬљXШ[™YЉ™Y‹]
+^В€YЉ™Y€OOIТPQ	ЯT‘PУУђТSPUSУ—ФUЛљ\К]
+_Y[њЭ\™T™XЫЫЪ[X][ЫЉ
+J\™]\›€™YЋВ€™]\›€ЪXЪЩY\ЭЬљXШ[™YЉ™Y‹]
+NВџB™^Ьќќ[Э[Ы€™XЫЫЪ[X][Ы’\ЭЬљXШ[™XY
+™XY™\љYћT™XY\ЏY[ЩJ^В€YЉY[њЭ\™T™XЫЫЪ[X][ЫЉ
+_X\YЫЫ\ЬЪ][Ы”™XY\њЛљ\К™XY
+J\™]\›€™XYЪYЉ™\љYћT™XY\Љ]™\љYћT™XЫЫЪ[Y™[X\ЩJ™XY
+NВ€ЛИ\ИЮ[Ъ›Ы›Э\И[Y][Ы€™XY\€\ИЬ™X]YЫ›HYќ\€HXЭX[PQ[™€ЛИ[Э\њ™[ќЫЭ\ЩH›ШњИ\ЬЛ€]И[[]]X›H\ЩHX\™YYИ›И\‹X›Ш€Ъ]€ЛИЭXњ›ШЩ\ЬЛ€њ™\Ъ™XY\њИЭ[™XЪXЪИЭ\њ™[ќЫЭ\ЩH™Y›Ь™H\ИX\[™Л‚€™]\›€™XЫЫЪ[X][Ы“X\љТ\ЭЬљXШ[™XY\Љ
+™Y‹]
+OOњ™XY
+ЪXЪЩY\ЭЬљXШ[™YЉ™Y‹]
+K]
+JNВџB™^Ьќќ[Э[Ы€™XЫЫЪ[X][Ы‘Ъ]\™ЬК\™ЬК^В€YЉVЙЬЪЭЙЛ	Ь™]‹\\њЩIЧKљ[ЫY\К\™ЬЦМJ_X\™ЬЦМWOЛњЭ\ќХЪ]
+	ТPQ‰КJ\™]\›€\™ЬОВ€ЫЫњЭ]X\™ЬЦМWKњЫXЩJJK™YЏ\™XЫЫЪ[X][Ы’\ЭЬљXШ[™YЉ	ТPQ	Л]
+NВ€™]\›€Ш\™ЬЦМK™YЉЙО‰КЬ]‹‹\™ЬЛњЫXЩJЉWNВџB™^Ьќќ[Э[Ы€™XЫЫЪ[X][Ы’XY
+
+^Ь™]\›€[њЭ\™T™XЫЫЪ[X][ЫЉ
+OРУУTФТUSУ—РђTСN™Ъ]
+	Ь™]‹\\њЩIЛ	ТPQ	КNЯB™^Ьќќ[Э[Ы€™XЫЫЪ[X][Ы”]
+]
+^Ь™]\›€‘PУУђТSPUSУ—ФUЛљ\К]
+I‰™[њЭ\™T™XЫЫЪ[X][ЫЉ
+NЯB™^Ьќќ[Э[Ы€™XЫЫЪ[X][ЫђЪ[™ЩY]
+Э]\Л]
+^В€YЉ\™XЫЫЪ[X][Ы”]
+]
+J\™]\›€[ЩNВ€YЉY^\ЭР]\ЩKљ\К]
+J^Эћ^Щ^XСљ[TЮ[К	ЩЪ]	ЛЙШШ]Yљ[IЛ	ЛYIЛУУTФТUSУ—РђTСJЙО‰КЬ]KЬЭ[О‰ЪYЫ›Ь™IЯJNЩ^\ЭР]\ЩKњЩ]
+]ќYJNЯXШ]ЪЩ^\ЭР]\ЩKњЩ]
+][ЩJNЯ_B€ЛИHЫИ^XЭH[›™Y]љY[ЩKY\ЪИљ[\ИЩ\™HY][ЫњИ]УРPТРђTСH[™[ЩYљXШ][ЫњИ]УУTФТUSУ—РђTСK‚€ЛИ›Э\ЭЬљXШ[љY]ЬИ™]Z[€[[]]X›HШ]ЪЫЭ\ЩHЪXЪЬОИ[][Ы‹Ь™[[YKЭ\HЪ[™Щ\И™[XZ[€™Z™XЭY‚€ЛИЭ\€ЫЭ\ЩHЪ[™Щ\И™]Z[€Z\€^XЭYЫ[ЩYћHЩ[X[ќXЬЛ€^\Э[™И™\љYљY\‚€ЛИXZ[ќ[[ЩHX^H]™H™Y[€YY\ЭЬљXШ[H[™[ЩYљYYЭXњЩ\]Y[ќK‚€ЫЫњЭ[ЭЩYUРUТФS‘S‘ЧСSVQQФUQUQWФUЛљ[ЫY\К]
+OКРUТСђPХPSХTUWФUЛљ[ЫY\К]
+OЦЙРIЛ	УIЧN–ЙРIЧJN™^\ЭР]\ЩK™Щ]
+]
+OКSђU’P•UQХРUТФ‘PУХ‘T–WФСUљ\К]
+_P“UРУQS•ФСUљ\К]
+_P“UХУФ‘S‘ЧФСUљ\К]
+_РUТТХЧФСUљ\К]
+_СУХUРQФSУ—ФСUљ\К]
+_‘SРQРUSTФСUљ\К]
+_ФђSРРS“У’PРSФСUљ\К]
+_’ЧРT•PУWФ“УС—ФСUљ\К]
+_ХTФ•Ф“УђPТЧФСUљ\К]
+_ФђSУU‘WСTФUТФСUљ\К]
+_P“PЧХУУФ“УС—Ф‘U–WФСUљ\К]
+_P“PЧХУУУPRS•SђSђСKљ[ЫY\К]
+_‘PУУђТSPUSУ—УPRS•SђSђСKљ[ЫY\К]
+_РUТСђPХPSХTUWФUЛљ[ЫY\К]
+_“УС—ХђS”ФФ•ФUЛљ[ЫY\К]
+OЦЙРIЛ	УIЧN–ЙУIЧJN–ЙРIЧNВ€\ЬЩ\ќ
+[ЭЩYљ[ЫY\КЭ]\КK	Х[™^XЭY\›Э™YЫЫ\ЬЪ][Ы€љ[HЭ]\О€	КЬЭ]\КЙИ	КЬ]
+NВ€™]\›€ќYNВџB‚‚™^Ьќќ[Э[Ы€\ЬЩ\ќ™XЫЫЪ[Y™[ШY™XЩZ\
+ќ[‹›ШЉ^В€\ЬЩ\ќ™\]X[
+ќ[ЏЛљY‘SРQФ•SЉNШ\ЬЩ\ќ™\]X[
+ќ[‹њќ[—Ш][\JNШ\ЬЩ\ќ™\]X[
+ќ[‹љXYЬЪK‘SРQХ‘T’Q’QTЉNВ€\ЬЩ\ќ™\]X[
+ќ[‹њ]	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛЫ^K][X™\‹Yљ[[\›ЩXЭ[Ы‹ћ[[	КNШ\ЬЩ\ќ™\]X[
+ќ[‹љXYШњ[Ъ	Щљ^ЫY[X™\‹\™[ШY[]љYШ][Ы‹LЊЌЊLЙКNШ\ЬЩ\ќ™\]X[
+ќ[‹™]™[ќ	Ь\Ъ	КNШ\ЬЩ\ќ™\]X[
+ќ[‹њЭ]\Л	ШЫЫ\]Y	КNШ\ЬЩ\ќ™\]X[
+ќ[‹ЫЫЫ\Ъ[Ы‹	ЬЭXШЩ\ЬЙКNВ€\ЬЩ\ќ™\]X[
+›ШЏЛљYLLМЌЌЊНОMM
+NШ\ЬЩ\ќ™\]X[
+›Ш‹њќ[—Ш][\JNШ\ЬЩ\ќ™\]X[
+›Ш‹њќ[—ЪY‘SРQФ•SЉNШ\ЬЩ\ќ™\]X[
+›Ш‹›[YK	Ь™[ШY[]љYШ][Ы‹YXYЫ›ЬЭXЬЙКNШ\ЬЩ\ќ™\]X[
+›Ш‹њЭ]\Л	ШЫЫ\]Y	КNШ\ЬЩ\ќ™\]X[
+›Ш‹ЫЫЫ\Ъ[Ы‹	ЬЭXШЩ\ЬЙКNВ€›ЬЉЫЫњЭќ[X™\€Щ€ОKLKL‹MMWJX\ЬЩ\ќ
+›Ш‹њЭ\ПЛњЫЫYJПOњЛ›ќ[X™\ЏOO[ќ[X™\‰‰њЛњЭ]\ПOOIШЫЫ\]Y	Й‰њЛЫЫЫ\Ъ[ЫЏOOIЬЭXШЩ\ЬЙКK	С]™\ћHЫЫ\]H]™H›Э\›™^H›Э[™]\Э\ЬЙКNВ€™]\›€ЪYњќ[‹љYЪNњќ[‹љXYЬЪK]њќ[‹њ]ЫЫЫ\Ъ[ЫЋњќ[‹ЫЫЫ\Ъ[Ы‹ШЫЬN‰Х™YHЫЫ\]H]™HШ]™K™[ШYљ]XЮKЩ^KЬќX€[™љ]›Э\›™^H›Э[™ЙЯNВџB‚‹ЛИHЩXЫЫ™[™\[™[ќHљ[™Щ\њљ[ќYШШ[\ШY\X\™YЪ[HHљ\њЭ‹ЛИљ[љ]HШ]Ъ™XЫЭ™\ћHШ\И[™\€™]љY]Л€\ИЭ]\€ЫЫ\ЬЪ][Ы€^Y\€›Э™\В‹ЛИH^XЭ[ќ\ќ™[љ[™И\ЫЫ]YX›XЛX[њЭЩ\€ЫЫ[Z][™H^XЭ™XЫЭ™\ћB‹ЛИЪ[™ЩH™Y›Ь™H^ЬЪ[™ИHљ[Ь‹[™XYK]™\љYљYYЫЫ\ЬЪ][Ы€\ЭЬћK‚™^ЬќЫЫњЭUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WРђTСOIНЩLЊNОLNШЌЊXNYYМШМMШЋМЊLLYЊNIОВ™^ЬќЫЫњЭUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФ’SФЏIНNYНLЩ™МННЊМMОМШLЌМMЩLMMMЩЋNЙОВ™^ЬќЫЫњЭUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФУХTђСOIЩXШШЋNЊYL™ЊYYЊYLЩЋШXЊШ™YЌМYYNNLLЙОВ™^ЬќЫЫњЭUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФUПSШљ™XЭ™њ™Y^™JЙЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪЬ™XЫЭ™\‹XШ[Щ[Y\™[X\ЩK›ZњЙЧJNВ™^ЬќЫЫњЭUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WУPRS•SђSђСOSШљ™XЭ™њ™Y^™JЙШXЬ]Z\Ъ][Ы‹XXЭ]][Ы‹ЫY]љXЬЛ\™[X\ЩKќ\Э›ZњЙЛ	Ь™[X\ЩKШ\\™Y›YЪ›ZњЙЛ	Ь™[X\ЩKШ\\ШЫЬK›ZњЙЛ	Ь™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Ь™[X\ЩKЩљ]LМ\ШЫЬK›ZњЙЛ	ЬШЬљ\ЛШЊK\™[X\ЩK\ШЫЬK›ZњЙЛ	ЬЪYќXЫШXЪЬШЫЬK›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	Э\ЭЛЬX›XЛ]ЫЫ\™[X\ЩKќ\Э›ZњЙЧJNВ™^ЬќЫЫњЭUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФ‘TСT•‘QSШљ™XЭ™њ™Y^™JЙЬX›XЛX[њЭЩ\њЛY[ќћK›ZњЙЛ	ЬX›XЛ\Щ[ЛX[њЭЩ\‹Y\›ZњЙЛ	Э\ЭЛЬX›XЛ\Щ[ЛX[њЭЩ\‹Y\ќ\Э›ZњЙЛ	ЭЬ[™Ы\‹њX›XЛX[њЭЩ\њЛљњЫЫЙЧJNВЫЫњЭUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФСU[™]ИЩ]
+Л‹‹“UT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФUЛ‹‹“UT—ХSђU’P•UQХРUТФ‘PУХ‘T–WУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€UT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћS]\•[]љXќ]YШ]Ъ™XЫЭ™\ћJЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХУUT—ХSђU’P•UQХРUТФ•S•SQWФ‘PУХ‘T–WХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩKUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WРђTСJNШ\ЬЩ\ќ™\]X[
+Лњљ[ЬђЫЫ\ЬЪ][Ы‹UT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФ’SФЉNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ™\Щ\ќ™Y]ЛUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФ‘TСT•‘Q
+NШ\ЬЩ\ќ™Y\\]X[
+Лњ]ЛUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛUT—ХSђU’P•UQХРUТФ‘PУХ‘T–WУPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+Л›ШњЩ\ќ][Ы”ќ[‹НОLLМЉNШ\ЬЩ\ќ™\]X[
+ЛњЭXШЩ\ЬЩќ[™YXЩ\ЬЫЬ”ќ[‹НОMLМLMJNШ\ЬЩ\ќ™\]X[
+Лњ™\ЭЬ™Y™\њЪ[Ы‹	Щ™ОLОYMЊОЛMKXYОMМMM™Ћ™XN	КNВ€›ЬЉЫЫњЭ›YИЩ€ЙЫYYXШ[ЫZ[\РЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЩЩ[™\љXРYЬ[Ыђ[ЭЩY	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛњљ[ЬђЫЫ\ЬЪ][Ы‹Л\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњљ[ЬђЫЫ\ЬЪ][Ы‹Л\ЩJJKЫЬќY
+Лњ™\Щ\ќ™Y]КK	Х[™^XЭYЪ[™ЩH[€™\Щ\ќ™Y™]Щ\€XZ[€ЫЫ[Z]	КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y]\€[]љXќ]YШ]Ъ™XЫЭ™\ћHЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJK™љ[\Љ]Oњ]OOT‘PУУђТSPUSУ—УPS’Q‘TХ
+JKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y]\€[]љXќ]YШ]Ъ™XЫЭ™\ћHXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€]\€[]љXќ]YШ]Ъ™XЫЭ™\ћH™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ™\Щ\ќ™Y]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л\ЩK]
+K	Ф™\Щ\ќ™Y™]Щ\€XZ[€ЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	У]\€[]љXќ]YШ]Ъ™XЫЭ™\ћHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	У]\€[]љXќ]YШ]Ъ™XЫЭ™\ћHXZ[ќ[[ЩHљYќ€	КЬ]
+NВџB‚‹ЛИљ[љ]H[™Ъ[™Y\љ[™Л[Ы›H™XЫЭ™\ћH›Ь€Ы™H[™\[™[ќHљ[™Щ\њљ[ќYЫЬљЩ\‚‹ЛИ\ШY€]™\ЭЬ™\ИH\Э^XЭЭXШЩ\ЬЩќ[›ЩXЭ[Ы€™\њЪ[Ы€™Y›Ь™HB‹ЛИЬ™[\ћHЭX\™Y\Ю[Y[ќЫЫќ[ќY\ОИ]Ь[ќИ›ИЩ[™\љXИќ[ќ[YHYЬ[Ы‹‚™^ЬќЫЫњЭSђU’P•UQХРUТФ‘PУХ‘T–WРђTСOIМОНЊЊН™ЊЌYMШMНЊЊ™LН™НМMМLLЩLЩMОIОВ™^ЬќЫЫњЭSђU’P•UQХРUТФ‘PУХ‘T–WФУХTђСOIМЩLНXЌMШЋНLЌМОМYYШНYЌЊYLЩLЊЌXXЌ™MIОВ™^ЬќЫЫњЭSђU’P•UQХРUТФ‘PУХ‘T–WФUПSШљ™XЭ™њ™Y^™JЙЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪЬ™XЫЭ™\‹XШ[Щ[Y\™[X\ЩK›ZњЙЧJNВ™^ЬќЫЫњЭSђU’P•UQХРUТФ‘PУХ‘T–WУPRS•SђSђСOSШљ™XЭ™њ™Y^™JЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧJNВЫЫњЭSђU’P•UQХРUТФ‘PУХ‘T–WФСU[™]ИЩ]
+Л‹‹•SђU’P•UQХРUТФ‘PУХ‘T–WФUЛ‹‹•SђU’P•UQХРUТФ‘PУХ‘T–WУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€SђU’P•UQХРUТФ‘PУХ‘T–WФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћU[]љXќ]YШ]Ъ™XЫЭ™\ћJЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХSђU’P•UQХРUТФ•S•SQWФ‘PУХ‘T–WХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩKSђU’P•UQХРUТФ‘PУХ‘T–WРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKSђU’P•UQХРUТФ‘PУХ‘T–WФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛSђU’P•UQХРUТФ‘PУХ‘T–WФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛSђU’P•UQХРUТФ‘PУХ‘T–WУPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+Л›ШњЩ\ќ][Ы”ќ[‹НОLЊLЌЌJNШ\ЬЩ\ќ™\]X[
+ЛњЭXШЩ\ЬЩќ[™YXЩ\ЬЫЬ”ќ[‹НОMLМLMJNШ\ЬЩ\ќ™\]X[
+Лњ™\ЭЬ™Y™\њЪ[Ы‹	Щ™ОLОYMЊОЛMKXYОMМMM™Ћ™XN	КNВ€›ЬЉЫЫњЭ›YИЩ€ЙЫYYXШ[ЫZ[\РЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЩЩ[™\љXРYЬ[Ыђ[ЭЩY	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y[]љXќ]YШ]Ъ™XЫЭ™\ћHЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y[]љXќ]YШ]Ъ™XЫЭ™\ћHXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€[]љXќ]YШ]Ъ™XЫЭ™\ћH™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Х[]љXќ]YШ]Ъ™XЫЭ™\ћHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	ХX›]ЫЬ™[™И™\љYљY\€ЫЭ\ЩHљYќ€[]љXќ]YШ]Ъ™XЫЭ™\ћHXZ[ќ[[ЩH	КЬ]
+NВџB‚‚‹ЛИљ[љ]HЫЭ\ЩKЩ]љY[ЩH\Ъ]™K€›Э™H]™\ћHYY›Ш€™Y›Ь™HљY]Ъ[™ИHљ[Ь€ќ[ќ[YH\Щ[[™K‚‹ЛИ\И^[њЪ[Ы€™]™\€Ь[ќИ\Ю[Y[ќќ[ќ[YHY]ЛЭX\™™[[Э[ИЬ€[›\ЭYЫЭ\ЩHЪ[™Щ\Л‚™^ЬќЫЫњЭУУФРТSPWРTђТU‘WРђTСOIМЋЩMННLYYЌMННLЋLЋY™Ќ™™МMЌYMЙОВ™^ЬќЫЫњЭУУФРТSPWРTђТU‘WФУХTђСOIМMЊЌLМYЊМННН™ЋНОXННН™ЌYЋЊЙОВ™^ЬќЫЫњЭУУФРТSPWРTђТU‘WФUПSШљ™XЭ™њ™Y^™JИњ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘™XЪ\Ъ[Ы‹XЩ[ќ™KYќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘ќЫЫЙL‘[ЫЪЫYќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘ќЫЫЙL‘›ZKYќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘ќЫЫЙL‘Ш[ЬљY\ЛYќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘ќЫЫЙL‘љX[K]ЩZYЪYќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘ќЫЫЙL‘њ›ЭZ[‹Yќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘ќЫЫЙL‘ќШZ\ЭZZYЪYќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘ќЫЫЙL‘ќШ[Ъ[™ЛYќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЙL‘ќЫЫЙL‘ќШ]\‹Yќ\‹љ[‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLФ‘PQQK›Y‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLШњ›ЭЬЩ\‹]™\љYљXШ][Ы‹LЊЌЊLKљњЫЫ€‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЩњ™\Ъ]™\љYљXШ][Ы‹LЊЌЊLKљњЫЫ€‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЫ]™K]™\љYљXШ][Ы‹љњЫЫ€‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЫX[љY™\ЭX™Y›Ь™KљњЫЫ€‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЫX[љY™\ЭXШ[™Y]KљњЫЫ€‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЬ™]љY]Л]™\љYљXШ][Ы‹љњЫЫ€‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЬШЫЬK\›ЫЩ‹љњЫЫ€‹њ™[X\ЩKЭЫЫ\YЩK\ШЪ[XKLЊЌЊLЭ™\љYљY\‹YZ[\™K]\ЭЛLЊЌЊLKљњЫЫ€‹њШЬљ\ЛЭЫЫ\YЩK\ШЪ[XK\™[X\ЩKЪњИ‹њШЬљ\ЛЭ™\љYћK]ЫЫXШ[Э[]ЬњЛXњ›ЭЬЩ\‹ЪњИ‹њШЬљ\ЛЭ™\љYћK]ЫЫ\YЩK\ШЪ[XKЪњИ‹њШЬљ\ЛЭ™\љYћK]ЫЫ\YЩK\ШЪ[XKќ\ЭЪњИ—JNВ™^ЬќЫЫњЭУУФРТSPWРTђТU‘WУPRS•SђSђСOSШљ™XЭ™њ™Y^™JЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЭЫЫ\ШЪ[XKX\Ъ]™KXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧJNВ™›ЬЉЫЫњЭ]Щ€Л‹‹•УУФРТSPWРTђТU‘WФUЛ‹‹•УУФРТSPWРTђТU‘WУPRS•SђSђСWJT‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUЫЫШЪ[XP\Ъ]™JЛЪXY™XYY™‹[Щ\ЭЬџJHВ€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХХУУФРТSPWСU’QSђСWРTђТU‘WХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩKУУФРТSPWРTђТU‘WРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKУУФРТSPWРTђТU‘WФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛУУФРТSPWРTђТU‘WФUКNВ€\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛУУФРТSPWРTђТU‘WУPRS•SђSђСJNВ€\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+Лњ›ЩXЭ[Ы”™\Z\”™]љ[Э\ЫQ\ЮYYќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЪЫY\YЩPЪ[™ЩY	Л	ЬЭ\ќ\™PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	Щ\Ю[Y[ќ]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y\Ъ]™H^[ШY	КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y\Ъ]™HXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€\Ъ]™H™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	ХЫЫШЪ[XH\Ъ]™HЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	ХЫЫШЪ[XH\Ъ]™HXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВџB‚‹ЛИ^XЭ™][ќ[Ы€Щ€H™\ЭЬ][Ы€[™XYH\™›Ь›YYћHHЭX\™YЫЬљЩ›ЭЛ‚™^ЬќЫЫњЭ‘TХФ‘QУUT—Ф‘US•SУ—РђTСOIШЊЌНШМЌXЊ™Ш™ЌЋMНLL™ЊШЊНM™NXN™IОВ™^ЬќЫЫњЭ‘TХФ‘QУUT—Ф‘US•SУ—ФУХTђСOIОXЊ™НЊЩЋLNMLЊЊNLНШНLMМXЩ™™ШМШНIОВ™^ЬќЫЫњЭ‘TХФ‘QУUT—Ф‘US•SУ—ФUПSШљ™XЭ™њ™Y^™JЙЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪЬ™XЫЭ™\‹XШ[Щ[Y\™[X\ЩK›ZњЙЧJNВ™^ЬќЫЫњЭ‘TХФ‘QУUT—Ф‘US•SУ—УPRS•SђSђСOSШљ™XЭ™њ™Y^™JЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧJNВЫЫњЭ‘TХФ‘QУUT—Ф‘US•SУ—ФСU[™]ИЩ]
+Л‹‹”‘TХФ‘QУUT—Ф‘US•SУ—ФUЛ‹‹”‘TХФ‘QУUT—Ф‘US•SУ—УPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€‘TХФ‘QУUT—Ф‘US•SУ—ФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћT™\ЭЬ™Y]\”™][ќ[ЫЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ™\]X[
+ПЛњ›ЫЩ‹	СVPХФ‘TХФ‘QУUT—Ф•S•SQWФ‘US•SУ—ХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩK‘TХФ‘QУUT—Ф‘US•SУ—РђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩK‘TХФ‘QУUT—Ф‘US•SУ—ФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]Л‘TХФ‘QУUT—Ф‘US•SУ—ФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]Л‘TХФ‘QУUT—Ф‘US•SУ—УPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+Лњ™\ЭЬ][Ы”ќ[‹НОLMМОМКNШ\ЬЩ\ќ™\]X[
+Лњ™\ЭЬ][Ы’›Ш‹LLННЌЋЌLMJNШ\ЬЩ\ќ™\]X[
+Лњ™\ЭЬ][Ы‘\Ю[Y[ќ	МNXММMЩЌLNMMЛNNMNM™Ќ™NLNIКNШ\ЬЩ\ќ™\]X[
+Л›ЬљYЪ[[ЭXШЩ\ЬЩќ[ќ[‹НОMLМLMJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЩЩ[™\љXРYЬ[Ыђ[ЭЩY	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y^XЭ™\ЭЬ][Ы€™][ќ[Ы€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y^XЭ™\ЭЬ][Ы€™][ќ[Ы€XZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™ЩHYќ\€™\ЭЬ][Ы€™][ќ[Ы‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Ф™\ЭЬ][Ы€™][ќ[Ы€ЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Ф™\ЭЬ][Ы€™][ќ[Ы€XZ[ќ[[ЩHљYќ€	КЬ]
+NВџB‚‹ЛИљ[љ]H\›Э™YX›XЛ]ЫЫ[Y[™Y[ќ€\›Э[\Y\ИЫ›HИ\И^XЭ^[ШY›ЭYЪH^\Э[™ИЭX\™YЫЬљЩ›ЭЛ‚™^ЬќЫЫњЭУУФ‘SPTСWРUUУPUSУ—РђTСOIШ™MNXШМШЌXMЌЋLMЋLЋШ™XЩNLЩЌLMY	ОВ™^ЬќЫЫњЭУУФ‘SPTСWРUUУPUSУ—ФУХTђСOIШМШMXXXXМЋLЌЊLЩ™MYЌLXМЩООXX™™LMЩIОВ™^ЬќЫЫњЭУУФ‘SPTСWРUUУPUSУ—ФUПSШљ™XЭ™њ™Y^™JИ‹™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[‹њX›XЛ]ЫЫY[]™\ћK›ZњИ‹њX›XЛ]ЫЫYЭZY[ЩK›ZњИ‹њ™[X\ЩKЭЫЫYЭZY[ЩKLЊЌЊLKФ‘PQQK›Y‹њ™[X\ЩKЭЫЫYЭZY[ЩKLЊЌЊLKШ]]ЫX][Ы‹\›ЫЩ‹љњЫЫ€‹њ™[X\ЩKЭЫЫYЭZY[ЩKLЊЌЊLKЫ]™K\ШЪ[XKXЪXЪЛљњЫЫ€‹њ™[X\ЩKЭЫЫYЭZY[ЩKLЊЌЊLKЭ\Э\™\Э[Лќ\‹њ™[X\ЩKЭЫЫYЭZY[ЩKLЊЌЊLKЭЫЫYЭZY[ЩKXњ›ЭЬЩ\‹љњЫЫ€‹њ™[X\ЩKЭЫЫ\ШЪ[XKYШ]K›ZњИ‹њШЬљ\ЛЭ™\љYћK]ЫЫXШ[Э[]ЬњЛXњ›ЭЬЩ\‹ЪњИ‹њШЬљ\ЛЭ™\љYћK]ЫЫYЭZY[ЩKXњ›ЭЬЩ\‹ЪњИ‹њШЬљ\ЛЭ™\љYћK]ЫЫ\YЩK\ШЪ[XKЪњИ‹ќ\ЭЛЬX›XЛ]ЫЫYЭZY[ЩKќ\Э›ZњИ‹ќ\ЭЛЭЫЫ\ШЪ[XKYШ]Kќ\Э›ZњИ—JNВ™^ЬќЫЫњЭУУФ‘SPTСWРUUУPUSУ—УPRS•SђSђСOSШљ™XЭ™њ™Y^™JИњ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњИ‹ќ\ЭЛЭЫЫ\™[X\ЩKX]]ЫX][Ы‹XЫЫ\ЬЪ][Ы‹ќ\Э›ZњИ—JNВ™›ЬЉЫЫњЭ]Щ€Л‹‹•УУФ‘SPTСWРUUУPUSУ—ФUЛ‹‹•УУФ‘SPTСWРUUУPUSУ—УPRS•SђSђСWJT‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUЫЫ™[X\ЩP]]ЫX][ЫЉЛЪXY™XYY™‹[Щ\ЭЬџJHВ€\ЬЩ\ќ
+КNШ\ЬЩ\ќ™\]X[
+Лњ›ЫЩ‹	СVPХФ‘TT‘QХУУФ‘SPTСWРUUУPUSУ—ХЊIКNВ€\ЬЩ\ќ™\]X[
+Л\ЩKУУФ‘SPTСWРUUУPUSУ—РђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKУУФ‘SPTСWРUUУPUSУ—ФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛУУФ‘SPTСWРUUУPUSУ—ФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛУУФ‘SPTСWРUUУPUSУ—УPRS•SђSђСJNВ€\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+ЛњX›XШ][Ы”Э]\Л	Ш\›Э™YЩ›Ь—ЩЭX\™YЬ™[X\ЩIКNШ\ЬЩ\ќ™\]X[
+Лњќ[ќ[YPЪ[™ЩYќYJNШ\ЬЩ\ќ™\]X[
+ЛњX›XРЫЬPЪ[™ЩYќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЪЫY\YЩPЪ[™ЩY	Л	ЬЭ\ќ\™PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	Щ\Ю[Y[ќ]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y™\\™YЫЫ^[ШY	КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y™\\™YЫЫXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€™\\™YЫЫ™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]К^В€ЫЫњЭ›Э[™\ћOUУУФРТSPWРTђТU‘WФUЛљ[ЫY\К]
+OЙХЫЫШЪ[XH\Ъ]™HЫЭ\ЩHљYќ	О‰ФЩ\ќљ[™ИСSИЫЭ\ЩHљYќ	ОВ€\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K›Э[™\ћJЙО€™\\™YX›XИЫЫ[Y[™Y[ќ	КЬ]
+NВ€B€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	ХЫЫШЪ[XH\Ъ]™HXZ[ќ[[ЩHЫЭ\ЩHљYќИX›]ЫЬ™[™И™\љYљY\€ЫЭ\ЩHљYќ€™\\™YX›XИЫЫ[Y[™Y[ќ	КЬ]
+NВ€™]\›€ОВџB‚‹ЛИ^XЭЫЫ\[YXњ›ЭЬЩ\€™\Z\€[™™][ќ[Ы€Щ€H™\Э[[™ИЭX\™Y›ЫXЪЛ‚™^ЬќЫЫњЭ•S‘QХУУФ•S•SQWРђTСOIЩЊЋН™ОM™YЊYЩYLXMЋЊLMШ™ЋШ™LНLМIОВ™^ЬќЫЫњЭ•S‘QХУУФ•S•SQWФУХTђСOIМXЌНXMЋ™НЌXYMЌЊНYXШНМЋL™ЌMНЩ‰ОВ™^ЬќЫЫњЭ•S‘QХУУФ•S•SQWФUПSШљ™XЭ™њ™Y^™JЙЬX›XЛ]ЫЫYЭZY[ЩK›ZњЙЛ	Э\ЭЛЬX›XЛ]ЫЫYЭZY[ЩKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪЬ™XЫЭ™\‹XШ[Щ[Y\™[X\ЩK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњЙЧJNВ™^ЬќЫЫњЭ•S‘QХУУФ•S•SQWУPRS•SђSђСOSШљ™XЭ™њ™Y^™JЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧJNВЫЫњЭ•S‘QХУУФ•S•SQWФСU[™]ИЩ]
+Л‹‹ђ•S‘QХУУФ•S•SQWФUЛ‹‹ђ•S‘QХУУФ•S•SQWУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€•S‘QХУУФ•S•SQWФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћPќ[™YЫЫќ[ќ[YT™\Z\ЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ™\]X[
+ПЛњ›ЫЩ‹	СVPХР•S‘QХУУФ•S•SQWФ‘TRT—ХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩK•S‘QХУУФ•S•SQWРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩK•S‘QХУУФ•S•SQWФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]Л•S‘QХУУФ•S•SQWФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]Л•S‘QХУУФ•S•SQWУPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+Л™Z[Yќ[‹НОLNLЊLLNJNШ\ЬЩ\ќ™\]X[
+Л™Z[Y›Ш‹LLНОНЊЌМN
+NШ\ЬЩ\ќ™\]X[
+Лњ›ЫXЪС\Ю[Y[ќ	НMYОKLЊЌKMЊNKXЋNKLМЊ™ЩYMО	КNШ\ЬЩ\ќ™\]X[
+Л›ЬљYЪ[[ЭXШЩ\ЬЩќ[ќ[‹НОMLМLMJNВ€\ЬЩ\ќ™\]X[
+Лњ›ЭЬЩ\”ЫЭ\ЩTЩ\љX[^][Ы‘љ^YќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬX›XРЫЬPЪ[™ЩY	Л	ШШ[Э[]Ьђ\љ]Y]XРЪ[™ЩY	Л	Ы^U™X]Y[ќЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЩЩ[™\љXРYЬ[Ыђ[ЭЩY	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Yќ[™YЫЫќ[ќ[YH™\Z\€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Yќ[™YЫЫќ[ќ[YH™\Z\€XZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™ЩHYќ\€ќ[™YЫЫќ[ќ[YH™\Z\‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Рќ[™YЫЫќ[ќ[YHЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Рќ[™YЫЫќ[ќ[YHXZ[ќ[[ЩHЫЭ\ЩHљYќИ™\ЭЬ][Ы€™][ќ[Ы€XZ[ќ[[ЩHљYќ€	КЬ]
+NВџB‚‹ЛИ^XЭ\›Э™YЫЬ™[™И^XЭ][ЫЋИќ[ќ[YH[™›ЩXЭ[Ы€ЫЬљЩ›ЭИ[Ъ[™ЩY‚™^ЬќЫЫњЭTФФФ•Ф‘TСT•ђUSУ—РђTСOIО™LЩЌМLНXЌН™MОМXXЊНЊНЩYMЌNIОВ™^ЬќЫЫњЭTФФФ•Ф‘TСT•ђUSУ—ФУХTђСOIНNLЋYЊЊMЌXЌНЊЊЋLYLMYXЋYXXЋМMМIОВ™^ЬќЫЫњЭTФФФ•Ф‘TСT•ђUSУ—ФUПSШљ™XЭ™њ™Y^™JЙЪX[\\ЬЬЬќЬ›ЩXЭ[Ы‹\™[X\ЩK›ZњЙЛ	ЪX[\\ЬЬЬќЬ›ЩXЭ[Ы‹\™[X\ЩKќ\Э›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњЙЛ	ЬЪYќXЫШXЪЬ™XЫЭ™\‹XШ[Щ[Y\™[X\ЩK›ZњЙЛ	ЬЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњЙЧJNВ™^ЬќЫЫњЭTФФФ•Ф‘TСT•ђUSУ—УPRS•SђSђСOSШљ™XЭ™њ™Y^™JЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЧJNВЫЫњЭTФФФ•Ф‘TСT•ђUSУ—ФСU[™]ИЩ]
+Л‹‹”TФФФ•Ф‘TСT•ђUSУ—ФUЛ‹‹”TФФФ•Ф‘TСT•ђUSУ—УPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€TФФФ•Ф‘TСT•ђUSУ—ФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћT\ЬЬЬќ™\Щ\ќ][Ы”™\Z\ЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ™\]X[
+ПЛњ›ЫЩ‹	СVPХФTФФФ•Ф‘TСT•ђUSУ—Ф‘TRT—ХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKTФФФ•Ф‘TСT•ђUSУ—РђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKTФФФ•Ф‘TСT•ђUSУ—ФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛTФФФ•Ф‘TСT•ђUSУ—ФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛTФФФ•Ф‘TСT•ђUSУ—УPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+Л™Z[Yќ[‹НОLЊЋLНLКNШ\ЬЩ\ќ™\]X[
+Л™Z[Y›Ш‹LLНОMLНЊ
+NШ\ЬЩ\ќ™\]X[
+Лњ›ЫXЪС\Ю[Y[ќ	НОНН‹MXYKMЊ‹NYЊЩ‹XXNMX™ММЙКNШ\ЬЩ\ќ™\]X[
+Л›ЬљYЪ[[ЭXШЩ\ЬЩќ[ќ[‹НОMLМLMJNВ€\ЬЩ\ќ™\]X[
+Л\›Э™YЭ\ќ\™UЫЬ™[™С^XЭ][Ы‘љ^YќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬX›XРЫЬPЪ[™ЩY	Л	ШШ[Э[]Ьђ\љ]Y]XРЪ[™ЩY	Л	Ы^U™X]Y[ќЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЩЩ[™\љXРYЬ[Ыђ[ЭЩY	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y\ЬЬЬќ™\Щ\ќ][Ы€™\Z\€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y\ЬЬЬќ™\Щ\ќ][Ы€™\Z\€XZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™ЩHYќ\€\ЬЬЬќ™\Щ\ќ][Ы€™\Z\‰КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Ф\ЬЬЬќ™\Щ\ќ][Ы€ЫЭ\ЩHљYќ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	Ф\ЬЬЬќ™\Щ\ќ][Ы€XZ[ќ[[ЩHЫЭ\ЩHљYќИќ[™YЫЫќ[ќ[YHXZ[ќ[[ЩHЫЭ\ЩHљYќИ™\ЭЬ][Ы€™][ќ[Ы€XZ[ќ[[ЩHљYќ€	КЬ]
+NВџB€ЛИ^XЭY][Ы[ќZ[›ЫЩЋИќ[ќ[YH[™]™\ћH^\Э[™И™[X\ЩHЭX\™™[XZ[€[›™Y‚™^ЬќЫЫњЭУУСХRQSђСWР•RSСРUWРђTСOIМЩYNXНMLLЋЋLЋЌШLNYNЊXЊЊ™MNNMIОВ™^ЬќЫЫњЭУУСХRQSђСWР•RSСРUWФУХTђСOIНYЌЩЌL™MMЊYXЋMНШЩЊNЊ™MLXЌМLX‰ОВ™^ЬќЫЫњЭУУСХRQSђСWР•RSСРUWФUПSШљ™XЭ™њ™Y^™JИ‹™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[‹њШЬљ\ЛЭ™\љYћK]ЫЫYЭZY[ЩKXќZ[ЪњИ‹ќ\ЭЛЭЫЫYЭZY[ЩKXќZ[ќ\ЭЪњИ—JNВ™^ЬќЫЫњЭУУСХRQSђСWР•RSСРUWУPRS•SђSђСOSШљ™XЭ™њ™Y^™JИњ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњИ‹ќ\ЭЛЭЫЫYЭZY[ЩKXќZ[XЫЫ\ЬЪ][Ы‹ќ\Э›ZњИ—JNВЫЫњЭУУСХRQSђСWР•RSСРUWФСU[™]ИЩ]
+Л‹‹•УУСХRQSђСWР•RSСРUWФUЛ‹‹•УУСХRQSђСWР•RSСРUWУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€УУСХRQSђСWР•RSСРUWФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћUЫЫЭZY[ЩPќZ[Ш]JЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ™\]X[
+ПЛњ›ЫЩ‹	СVPХХУУСХRQSђСWФ“СPХSУ—Р•RSСРUWХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKУУСХRQSђСWР•RSСРUWРђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKУУСХRQSђСWР•RSСРUWФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛУУСХRQSђСWР•RSСРUWФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛУУСХRQSђСWР•RSСРUWУPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+ЛЫЫ\[YќZ[›ЫЩђYYќYJNШ\ЬЩ\ќ™\]X[
+ЛњX›XШ][Ы”Э]\Л	Ш\›Э™YЩ›Ь—ЩЭX\™YЬ™[X\ЩIКNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[ЫZ[\РЪ[™ЩY	Л	ЪЫY\YЩPЪ[™ЩY	Л	ЬЭ\ќ\™PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЩЩ[™\љXРYЬ[Ыђ[ЭЩY	Л	Щ\Ю[Y[ќ]]Ьљ]Pњ›ШY[™Y	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y›ЩXЭ[Ы‹XќZ[ЫЫ›ЫЩ€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y›ЩXЭ[Ы‹XќZ[ЫЫ›ЫЩ€XZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™Щ\ИYќ\€›ЩXЭ[Ы‹XќZ[ЫЫ›ЫЩ€™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	ФЩ\ќљ[™ИСSИЫЭ\ЩHљYќ€›ЩXЭ[Ы‹XќZ[ЫЫ›ЫЩ€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	ХЫЫШЪ[XH\Ъ]™HXZ[ќ[[ЩHЫЭ\ЩHљYќИX›]ЫЬ™[™И™\љYљY\€ЫЭ\ЩHљYќ€›ЩXЭ[Ы‹XќZ[ЫЫ›ЫЩ€	КЬ]
+NВ€™]\›€ОВџB‚‹ЛИ^XЭ\›Э™Y[њЭЩ\‹Y\ЫЫ\ЬЪ][Ы€[™Ы™H[™XYK\\™›Ь›YYЭЫ™Y›ЫXЪЛ‚™^ЬќЫЫњЭУУ•S•RUWФ‘TСT•ђUSУ—РђTСOIМLNMМL™MШMШXLМЊЌШXОMЊЌLMMЌЋЋLЙОВ™^ЬќЫЫњЭУУ•S•RUWФ‘TСT•ђUSУ—ФУХTђСOIНШYМНЌMLXMЊXЋMNYЊЊНLЊX™LYNМLЩЊL	ОВ™^ЬќЫЫњЭУУ•S•RUWФ‘TСT•ђUSУ—ФUПSШљ™XЭ™њ™Y^™JИњ™[X\ЩKЬX›XЛXЫЫќ[ќZ]KX›ЩK\›ЫЩ‹›ZњИ‹њЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћK›ZњИ‹њЪYќXЫШXЪШШ[Щ[Y\™[X\ЩK\™XЫЭ™\ћKќ\Э›ZњИ‹њЪYќXЫШXЪЬ™XЫЭ™\‹XШ[Щ[Y\™[X\ЩK›ZњИ‹ќ\ЭЛЬ›ЩЬ[[YKY^KXЫЫќ[ќZ]KX›ЩKќ\Э›ZњИ—JNВ™^ЬќЫЫњЭУУ•S•RUWФ‘TСT•ђUSУ—УPRS•SђSђСOSШљ™XЭ™њ™Y^™JИњ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњИ‹ќ\ЭЛШЫЫќ[ќZ]K\™\Щ\ќ][Ы‹XЫЫ\ЬЪ][Ы‹ќ\Э›ZњИ—JNВЫЫњЭУУ•S•RUWФ‘TСT•ђUSУ—ФСU[™]ИЩ]
+Л‹‹ђУУ•S•RUWФ‘TСT•ђUSУ—ФUЛ‹‹ђУУ•S•RUWФ‘TСT•ђUSУ—УPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€УУ•S•RUWФ‘TСT•ђUSУ—ФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћPЫЫќ[ќZ]T™\Щ\ќ][Ы”™\Z\ЉЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ™\]X[
+ПЛњ›ЫЩ‹	СVPХРУУ•S•RUWФ‘TСT•ђUSУ—Ф‘TRT—ХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKУУ•S•RUWФ‘TСT•ђUSУ—РђTСJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKУУ•S•RUWФ‘TСT•ђUSУ—ФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛУУ•S•RUWФ‘TСT•ђUSУ—ФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛУУ•S•RUWФ‘TСT•ђUSУ—УPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+Л™Z[Yќ[‹НОLЌНЌЋMКNШ\ЬЩ\ќ™\]X[
+Л™Z[Y›Ш‹LLОLMМJNШ\ЬЩ\ќ™\]X[
+Лњ›ЫXЪС\Ю[Y[ќ	ОXШНYL™‹YЋMMЊЛNLЌЌЛNЩYMЌNXЊЌ‰КNШ\ЬЩ\ќ™\]X[
+Л›ЬљYЪ[[ЭXШЩ\ЬЩќ[ќ[‹НОMLМLMJNВ€\ЬЩ\ќ™\]X[
+Л\›Э™Y[њЭЩ\‘\^XЭ][Ы‘љ^YќYJNШ\ЬЩ\ќ™\]X[
+ЛњX›XШ][Ы”Э]\Л	Ш\›Э™YЩ›Ь—ЩЭX\™YЬ™[X\ЩIКNВ€›ЬЉЫЫњЭ›YИЩ€ЙЬќ[ќ[YPЪ[™ЩY	Л	ЬX›XРЫЬPЪ[™ЩY	Л	ЫYYXШ[ЫZ[\РЪ[™ЩY	Л	ЪЫY\YЩPЪ[™ЩY	Л	ЬЭ\ќ\™PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЩЩ[™\љXРYЬ[Ыђ[ЭЩY	Л	Щ\Ю[Y[ќ]]Ьљ]Pњ›ШY[™Y	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]YЫЫќ[ќZ]H™\Щ\ќ][Ы€ЫЭ\ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]YЫЫќ[ќZ]H™\Щ\ќ][Ы€XZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™ЩHYќ\€ЫЫќ[ќZ]H™\Щ\ќ][Ы€™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	ФЩ\ќљ[™ИСSИЫЭ\ЩHљYќИ\ЬЬЬќ™\Щ\ќ][Ы€ЫЭ\ЩHљYќИ™\ЭЬ][Ы€™][ќ[Ы€ЫЭ\ЩHљYќ€ЫЫќ[ќZ]H™\Щ\ќ][Ы€	КЬ]
+NВ€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	ХЫЫШЪ[XH\Ъ]™HXZ[ќ[[ЩHЫЭ\ЩHљYќИX›]ЫЬ™[™И™\љYљY\€ЫЭ\ЩHљYќИ™\ЭЬ][Ы€™][ќ[Ы€XZ[ќ[[ЩHљYќ€ЫЫќ[ќZ]H™\Щ\ќ][Ы€	КЬ]
+NВ€™]\›€ОВџB‚‹ЛИљ[™Ы›HH[™XYHY\™ЩY€МLЌЌИXЭX[Ш]ЪЫЫќ[ќИ™]Z[€[ЭЫ™\њЪ\Ш]\Л‚™^ЬќЫЫњЭUWХРUТРђTСOIМЋYООLYЊNYMYX™ЌШMLLMYNNMЩ	ОВ™^ЬќЫЫњЭUWХРUТРT“Х‘QУQT‘СOIЩЌLLXЩНШШЩLШMЌ™MОXЊНMОMЌЩОXXШЌН	ОВ™^ЬќЫЫњЭUWХРUТФУХTђСOIНЩЋYЊXЩЊ™МЊ™YMЊЌYЊLMЋXШYNYNЌЊM	ОВ™^ЬќЫЫњЭUWХРUТФUПSШљ™XЭ™њ™Y^™JИ›YYXЪ[™\Л]Ш]ЪФ‘PQQK›Y‹›YYXЪ[™\Л]Ш]ЪШЬ™YXљ[]K›ZњИ‹›YYXЪ[™\Л]Ш]ЪШЬ™YXљ[]Kќ\Э›ZњИ‹›YYXЪ[™\Л]Ш]ЪЩ]љY[ЩKY\ЪЛќ\Э›ZњИ‹›YYXЪ[™\Л]Ш]ЪЪ[™\ЭћK›ZњИ‹›YYXЪ[™\Л]Ш]ЪЪ[™\ЭћKќ\Э›ZњИ‹›YYXЪ[™\Л]Ш]ЪЬ™]љY]ЬЛМЊЌ‹LLLKX]]Ьљ\ЩY]ЩЩ]\‹\ЫЬљX]XЛY\ЩX\ЩKљњЫЫ€‹›YYXЪ[™\Л]Ш]ЪЬ™]љY]ЬЛМЊЌ‹LLLK[Э™\™YK\ЫЭ\ЩK\™[™]Ш[[]KљњЫЫ€‹›YYXЪ[™\Л]Ш]ЪЬЫЭ\ЩK\™]љY]Лќ\Э›ZњИ—JNВ™^ЬќЫЫњЭUWХРUТУPRS•SђSђСOSШљ™XЭ™њ™Y^™JЙЬ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњЙЛ	Э\ЭЛЫ]K]Ш]ЪXЫЫ\ЬЪ][Ы‹ќ\Э›ZњЙЛ	Л™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	ЧJNВ™^ЬќЫЫњЭУУTФТUSУ—Х’QССT—РђTСOIШЋNMЌXШННLЋШМЋLННLMОX™ЌЊLLНЩNЙОВ™^ЬќЫЫњЭУУTФТUSУ—Х’QССT—ФУХTђСOIШЌЊШNОL™™ЊXMYYMYЩNNMLXМЋОMЙОВЫЫњЭУУTФТUSУ—Х’QССT—ХУФ’С“ХПIЛ™Ъ]X‹ЭЫЬљЩ›ЭЬЛШЫЭY›\™K\›ЩXЭ[Ы‹\›Ы[ЭKћ[[	ОВ™^Ьќќ[Э[Ы€\ЬЩ\ќ^XЭЫЫ\ЬЪ][Ы•љYЩЩ\Љ™Y›Ь™KYќ\Љ^В€\ЬЩ\ќ™\]X[
+™Y›Ь™KњЬ]
+	И]О—‰КK›[™Э‹	УЫ™HЬљYЪ[[\Ъ]Иљ[\€™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+Yќ\‹™Y›Ь™Kњ™\XЩJ	И]О—‰Л	И]О—€Hњ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹›ZњИ—€Hњ™[X\ЩKШ\›Э™Y\ќ[ќ[YKXЫЫ\ЬЪ][Ы‹љњЫЫ€—‰КK	УЫ›H^XЭ™[X\ЩK[YЩ\€\ЪљYЩЩ\њИX^HЪ[™ЩNИ]™\ћHЫЬљЩ›ЭИЭX\™]\Э™[XZ[€ћ]KZY[ќXШ[	КNВџBЫЫњЭUWХРUТФ‘TХФ‘QФ“УСЏIЬШЬљ\ЛЭ™\љYћK\X›XЛXЫЫќ[ќZ]K[]™K›ZњЙОВЫЫњЭUWХРUТФСU[™]ИЩ]
+Л‹‹“UWХРUТФUЛ‹‹“UWХРUТУPRS•SђSђСWJNВ™›ЬЉЫЫњЭ]Щ€UWХРUТФСU
+T‘PУУђТSPUSУ—ФUЛY
+]
+NВ™^Ьќќ[Э[Ы€™\љYћS]UШ]ЪXЭX[\]JЛЪXY™XYY™‹[Щ\ЭЬџJ^В€\ЬЩ\ќ™\]X[
+ПЛњ›ЫЩ‹	СVPХУUWХРUТСђPХPSХTUWХЊIКNШ\ЬЩ\ќ™\]X[
+Л\ЩKUWХРUТРђTСJNШ\ЬЩ\ќ™\]X[
+Л\›Э™YY\™ЩKUWХРUТРT“Х‘QУQT‘СJNШ\ЬЩ\ќ™\]X[
+ЛњЫЭ\ЩKUWХРUТФУХTђСJNВ€\ЬЩ\ќ™Y\\]X[
+Лњ]ЛUWХРUТФUКNШ\ЬЩ\ќ™Y\\]X[
+Л›XZ[ќ[[ЩT]ЛUWХРUТУPRS•SђSђСJNШ\ЬЩ\ќ›X]Ъ
+Л›XZ[ќ[[ЩTЫЭ\ЩKЧ–ШKYЊNW^НIКNВ€\ЬЩ\ќ™\]X[
+ЛќЫЬљЩ›ЭХљYЩЩ\”ЫЭ\ЩKУУTФТUSУ—Х’QССT—ФУХTђСJNШ[Щ\ЭЬЉУУTФТUSУ—Х’QССT—РђTСKXY
+NШ[Щ\ЭЬЉУУTФТUSУ—Х’QССT—ФУХTђСKXY
+NВ€\ЬЩ\ќ™Y\\]X[
+Y™ЉУУTФТUSУ—Х’QССT—РђTСKУУTФТUSУ—Х’QССT—ФУХTђСJKРУУTФТUSУ—Х’QССT—ХУФ’С“ХЧK	Х[њ™[]Y›ЩXЭ[Ы‹]љYЩЩ\€ЫЭ\ЩIКNВ€\ЬЩ\ќ^XЭЫЫ\ЬЪ][Ы•љYЩЩ\ЉX›XХЫЫ[[]]X›QЪ]
+	ЬЪЭЙЛУУTФТUSУ—Х’QССT—РђTСJЙО‰КРУУTФТUSУ—Х’QССT—ХУФ’С“ХКKX›XХЫЫ[[]]X›QЪ]
+	ЬЪЭЙЛУУTФТUSУ—Х’QССT—ФУХTђСJЙО‰КРУУTФТUSУ—Х’QССT—ХУФ’С“ХКJNВ€\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	ЛУУTФТUSУ—Х’QССT—ХУФ’С“ХКK™XY
+УУTФТUSУ—Х’QССT—ФУХTђСKУУTФТUSУ—Х’QССT—ХУФ’С“ХКK	СЭX\™YЫЫ\ЬЪ][Ы‹]љYЩЩ\€ЫЬљЩ›ЭИЫЭ\ЩHљYќ	КNВ€\ЬЩ\ќ™\]X[
+Л\›Э™Y‹LЌЌКNШ\ЬЩ\ќ™\]X[
+ЛњX›XШ][Ы”Э]\Л	Ш[™XYWЫY\™ЩYЫЭЫ™\—Ш]]Ьљ\ЩYЩXЭX[ЬX›XШ][Ы‰КNШ\ЬЩ\ќ™\]X[
+ЛЫ[љXШ[\›Э[ќ[
+NШ\ЬЩ\ќ™\]X[
+Л™^XЭЫЫ\]P›ЩT›ЫЩ”™\ЭЬ™YќYJNВ€›ЬЉЫЫњЭ›YИЩ€ЙЫY[X™\•™X]Y[ќЪ[™ЩY	Л	ЪЫY\YЩPЪ[™ЩY	Л	ЬЭ\ќ\™PЪ[™ЩY	Л	ШЭ\ЭЫY\‘]PЪ[™ЩY	Л	ЩЩ[™\љXРYЬ[Ыђ[ЭЩY	Л	Щ\Ю[Y[ќ]]Ьљ]Pњ›ШY[™Y	Л	Ь›ЫXЪР]]Ьљ]Pњ›ШY[™Y	Л	Щ^\Э[™СШ]\ХЩXZЩ[™Y	ЧJX\ЬЩ\ќ™\]X[
+ЦЩ›YЧK[ЩJNВ€›ЬЉЫЫњЭ™Y€Щ€ШЛ\ЩKЛ\›Э™YY\™ЩKЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩWJX[Щ\ЭЬЉ™Y‹XY
+NВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛ\›Э™YY\™ЩJJKЫЬќY
+Л‹‹Лњ]ЛUWХРUТФ‘TХФ‘QФ“УС—JK	Х[њ™[]YY\™ЩYШ]ЪЪ[™ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+Y™ЉЛ\›Э™YY\™ЩKЛњЫЭ\ЩJKУUWХРUТФ‘TХФ‘QФ“УС—K	Х[њ™[]YЫЫ\]KX›ЩH›ЫЩ€™\Z\‰КNВ€\ЬЩ\ќ™\]X[
+™XY
+ЛњЫЭ\ЩKUWХРUТФ‘TХФ‘QФ“УСЉK™XY
+Л\ЩKUWХРUТФ‘TХФ‘QФ“УСЉK	УЬљYЪ[[^XЭЫЫ\]KX›ЩH›ЫЩ€™\]Z\™Y	КNВ€\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	ЛUWХРUТФ‘TХФ‘QФ“УСЉK™XY
+Л\ЩKUWХРUТФ‘TХФ‘QФ“УСЉK	РЫЫ\]KX›ЩH]™H›ЫЩ€ЫЭ\ЩHљYќ	КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ\ЩKЛњЫЭ\ЩJJKЫЬќY
+Лњ]КK	Х[њ™[]Y]HШ]Ъ^[ШY	КNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛњЫЭ\ЩKЛ›XZ[ќ[[ЩTЫЭ\ЩJJKЫЬќY
+Л›XZ[ќ[[ЩT]КK	Х[њ™[]Y]HШ]ЪXZ[ќ[[ЩIКNВ€\ЬЩ\ќ™Y\\]X[
+ЫЬќY
+Y™ЉЛ›XZ[ќ[[ЩTЫЭ\ЩKXY
+JKФ‘PУУђТSPUSУ—УPS’Q‘TХK	Х[њ™]љY]ЩYЪ[™ЩHYќ\€]HШ]Ъ™XЩZ\	КNВ€›ЬЉЫЫњЭ]Щ€Лњ]К^Ш\ЬЩ\ќ™\]X[
+™XY
+ЛњЫЭ\ЩK]
+K™XY
+Л\›Э™YY\™ЩK]
+K	УY\™ЩY\›Э™YШ]ЪЫЭ\ЩH™\]Z\™Y€	КЬ]
+NШ\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+ЛњЫЭ\ЩK]
+K	Р\›Э™YXЭX[Ш]ЪЫЭ\ЩHљYќ€	КЬ]
+NЯB€›ЬЉЫЫњЭ]Щ€Л›XZ[ќ[[ЩT]КX\ЬЩ\ќ™\]X[
+™XY
+	ТPQ	Л]
+K™XY
+Л›XZ[ќ[[ЩTЫЭ\ЩK]
+K	У]HШ]ЪXZ[ќ[[ЩHЫЭ\ЩHљYќ€	КЬ]
+NВ€™]\›€ОВџB‚
