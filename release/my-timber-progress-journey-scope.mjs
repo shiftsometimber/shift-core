@@ -1,3 +1,4 @@
+import {verifyReconciledRelease} from './approved-runtime-composition.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const MY_TIMBER_PROGRESS_BASE="7da4c5406a59bcd929240bd72cb5c7a7b96c8b60";
@@ -79,6 +80,8 @@ export function verifyMyTimberProgressJourney(c,{head,read,diff,ancestor,content
 }
 
 const rawGit=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
-function verifyCurrentJourney(){const c=JSON.parse(execFileSync('git',['show','HEAD:'+manifest],{encoding:'utf8'}));if(c.myTimberProgressJourney)verifyMyTimberProgressJourney(c.myTimberProgressJourney,{head:rawGit('rev-parse','HEAD'),read:(ref,path)=>rawGit('rev-parse',ref+':'+path),diff:(a,b)=>rawGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>rawGit('merge-base','--is-ancestor',a,b)});return c;}
-export function myTimberHistoricalRecord(record){const current=verifyCurrentJourney();assert.deepEqual(record,current,'Only the fully verified current record can expose the prior historical view');const prior=structuredClone(record);delete prior.myTimberProgressJourney;return prior;}
+function verifyCurrentJourney(){const c=JSON.parse(execFileSync('git',['show','HEAD:'+manifest],{encoding:'utf8'}));if(c.githubProofEpipeRetry||c.contactRollbackRuntime)verifyReconciledRelease();else if(c.myTimberProgressJourney)verifyMyTimberProgressJourney(c.myTimberProgressJourney,{head:rawGit('rev-parse','HEAD'),read:(ref,path)=>rawGit('rev-parse',ref+':'+path),diff:(a,b)=>rawGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>rawGit('merge-base','--is-ancestor',a,b)});return c;}
+export function myTimberHistoricalRecord(record){const current=verifyCurrentJourney();assert.deepEqual(record,current,'Only the fully verified current record can expose the prior historical view');const prior=structuredClone(record);delete prior.myTimberProgressJourney;delete prior.githubProofEpipeRetry;delete prior.contactRollbackRuntime;return prior;}
 export function myTimberHistoricalIntegrationWorkflow(after){const current=verifyCurrentJourney();assert.equal(after,execFileSync('git',['show','HEAD:.github/workflows/shift-coach-integration.yml'],{encoding:'utf8'}),'Current integration workflow bytes differ');return current.myTimberProgressJourney?execFileSync('git',['show',MY_TIMBER_PROGRESS_BASE+':.github/workflows/shift-coach-integration.yml'],{encoding:'utf8'}):after;}
+
+export function myTimberHistoricalFile(path,bytes){const c=verifyCurrentJourney();assert.equal(bytes,execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}),'Historical file must be exact current bytes');assert(['release/approved-runtime-composition.mjs','.github/workflows/shift-coach-integration.yml'].includes(path),'Unlisted historical file');const base=path==='release/approved-runtime-composition.mjs'?c.githubProofEpipeRetry?.base:c.contactRollbackRuntime?.base;return base?execFileSync('git',['show',base+':'+path],{encoding:'utf8'}):bytes;}
