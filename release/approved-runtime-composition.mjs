@@ -2199,6 +2199,25 @@ export function verifySupportRecoveryHistoricalScope(c,{head,read,diff,ancestor,
  return c;
 }
 
+export const SUPPORT_RECOVERY_INTEGRATION_BUDGET_BASE='e33d2d554af1a2d279f722bf9c7d8bf2ea2f4b7c';
+export const SUPPORT_RECOVERY_INTEGRATION_BUDGET_SOURCE='3f47b52d7656f05a136c03f7d05071fc826e7b16';
+export const SUPPORT_RECOVERY_INTEGRATION_BUDGET_PATHS=Object.freeze([".github/workflows/shift-coach-integration.yml"]);
+export const SUPPORT_RECOVERY_INTEGRATION_BUDGET_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/support-recovery-integration-budget-composition.test.mjs"]);
+const SUPPORT_RECOVERY_INTEGRATION_BUDGET_SET=new Set([...SUPPORT_RECOVERY_INTEGRATION_BUDGET_PATHS,...SUPPORT_RECOVERY_INTEGRATION_BUDGET_MAINTENANCE]);
+for(const path of SUPPORT_RECOVERY_INTEGRATION_BUDGET_SET)RECONCILIATION_PATHS.add(path);
+export function verifySupportRecoveryIntegrationBudget(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_SUPPORT_RECOVERY_INTEGRATION_BUDGET_20261012');assert.equal(c.base,SUPPORT_RECOVERY_INTEGRATION_BUDGET_BASE);assert.equal(c.source,SUPPORT_RECOVERY_INTEGRATION_BUDGET_SOURCE);
+ assert.deepEqual(c.paths,SUPPORT_RECOVERY_INTEGRATION_BUDGET_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_RECOVERY_INTEGRATION_BUDGET_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'staged_master_ci_budget_repair');assert.equal(c.failedWorkflowRun,38278150805);assert.equal(c.failedJob,114908583075);assert.equal(c.failedHead,SUPPORT_RECOVERY_INTEGRATION_BUDGET_BASE);assert.equal(c.observedJobConclusion,'cancelled');assert.equal(c.cancellationAnnotation,'The job has exceeded the maximum execution time of 30m0s');assert.equal(c.priorJobMinutes,30);assert.equal(c.jobMinutes,60);
+ for(const flag of ["runtimeChanged", "browserAssertionsChanged", "testScopeChanged", "productPerformanceThresholdsChanged", "workflowTriggersChanged", "workflowPermissionsChanged", "productionWorkflowChanged", "homepageChanged", "medicalEvidenceChanged", "clinicalGatesChanged", "memberDataChanged", "checkoutChanged", "externalCommunicationsSent", "genericAdoptionAllowed", "deploymentAuthorityBroadened", "rollbackAuthorityBroadened", "existingGatesWeakened"])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated integration budget payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated integration budget maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after integration budget receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.supportRecoveryIntegrationBudget;assert.deepEqual(current,prior,'Prior release receipts changed by integration budget repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / Coaching release source drift / Integration budget source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift / Waist keyboard maintenance source drift / Support recovery maintenance source drift / Alnylam later-review test maintenance source drift / Support historical-scope source drift / Integration budget source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -2221,10 +2240,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const supportRecoveryIntegrationBudget=c.supportRecoveryIntegrationBudget;
+ if(supportRecoveryIntegrationBudget)verifySupportRecoveryIntegrationBudget(supportRecoveryIntegrationBudget,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportRecoveryIntegrationBudgetHead=supportRecoveryIntegrationBudget?supportRecoveryIntegrationBudget.base:actualHead;
+ const supportRecoveryIntegrationBudgetRawBlob=(ref,path)=>outerRawBlob(supportRecoveryIntegrationBudget&&ref==='HEAD'&&SUPPORT_RECOVERY_INTEGRATION_BUDGET_SET.has(path)?supportRecoveryIntegrationBudget.base:ref,path);
  const supportRecoveryHistoricalScope=c.supportRecoveryHistoricalScope;
- if(supportRecoveryHistoricalScope)verifySupportRecoveryHistoricalScope(supportRecoveryHistoricalScope,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSupportRecoveryHistoricalScopeHead=supportRecoveryHistoricalScope?supportRecoveryHistoricalScope.base:actualHead;
- const supportRecoveryHistoricalScopeRawBlob=(ref,path)=>outerRawBlob(supportRecoveryHistoricalScope&&ref==='HEAD'&&SUPPORT_RECOVERY_HISTORICAL_SCOPE_SET.has(path)?supportRecoveryHistoricalScope.base:ref,path);
+ if(supportRecoveryHistoricalScope)verifySupportRecoveryHistoricalScope(supportRecoveryHistoricalScope,{head:preSupportRecoveryIntegrationBudgetHead,read:supportRecoveryIntegrationBudgetRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportRecoveryHistoricalScopeHead=supportRecoveryHistoricalScope?supportRecoveryHistoricalScope.base:preSupportRecoveryIntegrationBudgetHead;
+ const supportRecoveryHistoricalScopeRawBlob=(ref,path)=>supportRecoveryIntegrationBudgetRawBlob(supportRecoveryHistoricalScope&&ref==='HEAD'&&SUPPORT_RECOVERY_HISTORICAL_SCOPE_SET.has(path)?supportRecoveryHistoricalScope.base:ref,path);
  const supportRecovery=c.supportRecovery;
  if(supportRecovery)verifySupportRecovery(supportRecovery,{head:preSupportRecoveryHistoricalScopeHead,read:supportRecoveryHistoricalScopeRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preSupportRecoveryHead=supportRecovery?supportRecovery.base:preSupportRecoveryHistoricalScopeHead;
