@@ -1,5 +1,5 @@
 import {guideMarkup,guideStyles,guideData,guideRuntime} from './content.mjs';
-export const GUIDE_PATH='/guides/food-and-supplements';
+export const GUIDE_PATH='/guides/food-guide';
 export const GUIDE_ASSETS='/assets/food-supplement-guide/';
 // Existing nutrition pages are the verified discovery surfaces. No supplement
 // product page or stock is invented; explicit future product paths can be added
@@ -18,7 +18,7 @@ export function renderFoodGuideDocument(shell){
   .replace(/data-template=["']shift-programme["']/g,'data-template="food-supplement-guide"')
   .replace(/(<a\b[^>]*href=["']\/programme["'][^>]*?)\saria-current=["']page["']/gi,'$1');
  const canonical='https://shiftsometimber.co.uk'+GUIDE_PATH;
- html=html.replace('</head>','<title>Food &amp; Supplements: What Is Worth Taking? | SHIFT</title><meta name="description" content="A food-first guide for men: explore goals, diet context, supplement evidence and one practical next step."><link rel="canonical" href="'+canonical+'"><meta property="og:title" content="Food &amp; Supplements | SHIFT"><meta property="og:type" content="website"><meta property="og:url" content="'+canonical+'"><meta property="og:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><link rel="stylesheet" href="'+GUIDE_ASSETS+'styles.css?v=20261012"><script defer src="'+GUIDE_ASSETS+'data.js?v=20261012"></script><script defer src="'+GUIDE_ASSETS+'guide.js?v=20261012"></script></head>');
+ html=html.replace('</head>','<title>Food that works for you | SHIFT</title><meta name="description" content="A practical food guide for men: familiar meal ideas, diet context, a cupboard list and one useful next step."><link rel="canonical" href="'+canonical+'"><meta property="og:title" content="Food that works for you | SHIFT"><meta property="og:type" content="website"><meta property="og:url" content="'+canonical+'"><meta property="og:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><link rel="stylesheet" href="'+GUIDE_ASSETS+'styles.css?v=20261012"><script defer src="'+GUIDE_ASSETS+'data.js?v=20261012"></script><script defer src="'+GUIDE_ASSETS+'guide.js?v=20261012"></script></head>');
  return html.replace(/href=["']#main-content["']/g,'href="#shift-food-guide"');
 }
 export async function foodSupplementGuideRoute(request,loadShell){
@@ -33,7 +33,7 @@ export async function foodSupplementGuideRoute(request,loadShell){
  headers.set('Content-Type','text/html; charset=utf-8');headers.set('Cache-Control','no-store');headers.set('X-Shift-Food-Guide','20261012');
  return new Response(request.method==='HEAD'?null:html,{status:200,headers});
 }
-export const guideDiscoveryNote='<aside data-food-supplement-guide="20261012" aria-label="Food and supplement guide" style="margin:20px auto;padding:18px;max-width:1100px;border:1px solid #707762;background:#e7e3da;color:#050505;box-sizing:border-box"><strong>Food first. Supplements with a purpose.</strong><p style="margin:8px 0;color:#050505">Explore your goal, ordinary meals and the evidence before deciding whether anything is worth taking.</p><a href="'+GUIDE_PATH+'" style="color:#050505;font-weight:700;display:inline-block;padding:10px 0">Open the Food &amp; Supplements guide →</a></aside>';
+export const guideDiscoveryNote='<aside data-food-supplement-guide="20261012" aria-label="Food guide" style="margin:20px auto;padding:18px;max-width:1100px;border:1px solid #707762;background:#e7e3da;color:#050505;box-sizing:border-box"><strong>Good food. Real life.</strong><p style="margin:8px 0;color:#050505">Find a familiar meal, make a useful swap and leave with one practical food step.</p><a href="'+GUIDE_PATH+'" style="color:#050505;font-weight:700;display:inline-block;padding:10px 0">Open the SHIFT food guide →</a></aside>';
 export async function withFoodGuideDiscovery(request,response){
  if(request.method!=='GET'||response.status!==200||!response.headers.get('Content-Type')?.includes('text/html')||!DISCOVERY_PATHS.has(normal(new URL(request.url).pathname)))return response;
  const before=await response.text();

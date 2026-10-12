@@ -1,3 +1,17 @@
+# Current edition — food only
+
+Matt's 21:24BST direction holds supplement publication; his 21:31BST Build authorises this food-only preparation and private preview. Proposed public route is now `/guides/food-guide`, with the same four bounded discovery surfaces. Do not publish the earlier mixed guide unchanged. No public release is performed by this candidate.
+
+Nine original meal ideas, diet-compatible variants, six food focuses, optional appetite context, three kept ideas, grouped shopping/cupboard ticks, one stable chosen next step, timing and a text/print takeaway. All40 focused logic/route/nutrition/shell/footer checks pass; the10 food interaction checks exercise882 compatible context/variant renders. The original wrong810 count expectation was corrected to6×3×(19+17+13)=882; every scenario had already passed. No personal nutrient targets, calories/macros, guaranteed weight-loss outcomes, kitchen-trial or My Timber persistence claims.
+
+Browser receipt below is historical for the mixed edition. Food-only browser QA is unverified: the managed Sites browser capability is unavailable and no alternative managed preview path was improvised. Real390/1440 pointer/keyboard/layout, actual download/PDF and canonical-shell live acceptance remain release conditions. The retained browser-qa.cjs identifies the historical mixed test, not current acceptance.
+
+The private preview is deployed independently through Sites. The main website candidate must go through the existing#1065 owner-held registration, exact-head gates, guarded release and affected live acceptance. Homepage and shared shell/consent source are unchanged. Supplements remain private until a partner is agreed and Matt explicitly confirms the final scope.
+
+---
+
+## Historical mixed-guide evidence
+
 # SHIFT Food & Supplements — integration candidate
 
 Matt approved the proposed placement with “Go” on 12 October 2026 at 18:50 BST.

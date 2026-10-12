@@ -1,3 +1,5 @@
+// HISTORICAL MIXED-EDITION QA ONLY. Do not use this receipt/script as food-only acceptance.
+// Current food-only code requires revised 390/1440 actual browser proof before public acceptance.
 // Real Chrome candidate overlay on the existing production shell. All modifying
 // requests and telemetry are blocked. This is candidate QA, not live acceptance.
 const fs=require('fs'),assert=require('assert/strict'),path=require('path'),crypto=require('crypto');
