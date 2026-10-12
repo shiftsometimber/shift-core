@@ -1,4 +1,4 @@
-import {verifyReconciledRelease} from './approved-runtime-composition.mjs';
+import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposition} from './contact-rollback-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const MY_TIMBER_PROGRESS_BASE="7da4c5406a59bcd929240bd72cb5c7a7b96c8b60";
@@ -80,7 +80,24 @@ export function verifyMyTimberProgressJourney(c,{head,read,diff,ancestor,content
 }
 
 const rawGit=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
-function verifyCurrentJourney(){const c=JSON.parse(execFileSync('git',['show','HEAD:'+manifest],{encoding:'utf8'}));if(c.githubProofEpipeRetry||c.contactRollbackRuntime)verifyReconciledRelease();else if(c.myTimberProgressJourney)verifyMyTimberProgressJourney(c.myTimberProgressJourney,{head:rawGit('rev-parse','HEAD'),read:(ref,path)=>rawGit('rev-parse',ref+':'+path),diff:(a,b)=>rawGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>rawGit('merge-base','--is-ancestor',a,b)});return c;}
+function verifyCurrentJourney(){
+ const manifest='release/approved-runtime-composition.json',c=JSON.parse(execFileSync('git',['show','HEAD:'+manifest],{encoding:'utf8'})),head=rawGit('rev-parse','HEAD');
+ const read=(ref,path)=>rawGit('rev-parse',ref+':'+path),diff=(a,b)=>rawGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor=(a,b)=>rawGit('merge-base','--is-ancestor',a,b),content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'});
+ const contact=c.contactRollbackRuntime;if(contact)verifyContactRuntimeComposition(contact,{head,read,diff,ancestor,content});
+ const preContact=contact?contact.base:head,contactRead=(ref,path)=>read(contact&&ref==='HEAD'&&[...CONTACT_RUNTIME_PATHS,...CONTACT_RUNTIME_MAINT].includes(path)?contact.base:ref,path);
+ const e=c.githubProofEpipeRetry,epaths=['release/github-proof-get.mjs','tests/github-proof-get.test.mjs'],em=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','tests/github-proof-epipe-composition.test.mjs'];
+ if(e){
+  assert.equal(e.proof,'EXACT_GITHUB_PROOF_EPIPE_RETRY_20261012');assert.equal(e.base,'c7bf1d69ffcb5629955edfdd75b83a1a87c7587b');assert.equal(e.source,'c2a3a255b6067316925de437364e8bf74bd12fae');assert.equal(e.maintenanceSource,'9e8a1c25268b4f9758673f49caa950d281070fbd');assert.deepEqual(e.paths,epaths);assert.deepEqual(e.maintenancePaths,em);assert.equal(e.failedRun,38306227092);assert.equal(e.failedStep,'Require exact approved growth preview and release verification');assert.equal(e.observedCode,'EPIPE');assert.equal(e.deploymentAttempted,false);
+  for(const flag of ['runtimeChanged','publicCopyChanged','workflowChanged','approvalAssertionsChanged','httpErrorsRetried','malformedEvidenceAccepted','customerDataChanged','externalCommunicationsSent','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(e[flag],false);
+  for(const ref of[e.base,e.source,e.maintenanceSource])ancestor(ref,preContact);ancestor(e.base,e.source);ancestor(e.source,e.maintenanceSource);
+  assert.deepEqual([...diff(e.base,e.source)].sort(),[...epaths].sort());assert.deepEqual([...diff(e.source,e.maintenanceSource)].sort(),[...em].sort());assert.deepEqual(diff(e.maintenanceSource,preContact),[manifest]);
+  const prior=JSON.parse(content(e.base,manifest)),current=JSON.parse(content(preContact,manifest));delete current.githubProofEpipeRetry;assert.deepEqual(current,prior);
+  assert.equal(content(e.source,epaths[0]),content(e.base,epaths[0]).replace("'ECONNRESET','ETIMEDOUT'","'ECONNRESET','EPIPE','ETIMEDOUT'"));
+  for(const path of epaths)assert.equal(contactRead('HEAD',path),read(e.source,path));for(const path of em)assert.equal(contactRead('HEAD',path),read(e.maintenanceSource,path));
+ }
+ const viewHead=e?e.base:preContact,viewRead=(ref,path)=>contactRead(e&&ref==='HEAD'&&[...epaths,...em].includes(path)?e.base:ref,path);
+ if(c.myTimberProgressJourney)verifyMyTimberProgressJourney(c.myTimberProgressJourney,{head:viewHead,read:viewRead,diff,ancestor,content});return c;
+}
 export function myTimberHistoricalRecord(record){const current=verifyCurrentJourney();assert.deepEqual(record,current,'Only the fully verified current record can expose the prior historical view');const prior=structuredClone(record);delete prior.myTimberProgressJourney;delete prior.githubProofEpipeRetry;delete prior.contactRollbackRuntime;return prior;}
 export function myTimberHistoricalIntegrationWorkflow(after){const current=verifyCurrentJourney();assert.equal(after,execFileSync('git',['show','HEAD:.github/workflows/shift-coach-integration.yml'],{encoding:'utf8'}),'Current integration workflow bytes differ');return current.myTimberProgressJourney?execFileSync('git',['show',MY_TIMBER_PROGRESS_BASE+':.github/workflows/shift-coach-integration.yml'],{encoding:'utf8'}):after;}
 

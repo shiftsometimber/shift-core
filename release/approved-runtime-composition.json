@@ -3586,40 +3586,5 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
-  },
-  "contactRollbackRuntime": {
-    "proof": "EXACT_CONTACT_ROLLBACK_RETENTION_AFTER_EPIPE_20261012",
-    "base": "17cf6a9da79782f7ae2fb7452caa25b203d6c138",
-    "source": "61330cbb0c649baf4e2b40bd8a1c342aef0daf56",
-    "paths": [
-      "release/contact-rollback-runtime.mjs",
-      "tests/contact-rollback-runtime.test.mjs",
-      "docs/contact-rollback-evidence-20261012.json",
-      "shift-coach/recover-cancelled-release.mjs",
-      ".github/workflows/shift-coach-integration.yml"
-    ],
-    "maintenancePaths": [
-      "release/approved-runtime-composition.mjs",
-      "release/contact-rollback-scope.mjs",
-      "tests/contact-rollback-composition.test.mjs",
-      "release/my-timber-progress-journey-scope.mjs",
-      "tests/my-timber-progress-journey-composition.test.mjs"
-    ],
-    "maintenanceSource": "408b68adefe311624db9f6fe8a6aad3849a0fef4",
-    "originalCandidate": "2b2bfcef3bc4466de3e2bbc8fc0fe98c918234f8",
-    "failedPromotion": 38306227092,
-    "integrationIssue": 1065,
-    "retentionOnly": true,
-    "failedReleaseAccepted": false,
-    "runtimeChanged": false,
-    "publicCopyChanged": false,
-    "medicalEvidenceChanged": false,
-    "customerDataChanged": false,
-    "externalCommunicationsSent": false,
-    "paidModelEnabled": false,
-    "deploymentAuthorityBroadened": false,
-    "rollbackAuthorityBroadened": false,
-    "genericAdoptionAllowed": false,
-    "existingGatesWeakened": false
   }
 }
