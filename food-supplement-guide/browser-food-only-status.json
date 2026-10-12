@@ -1,0 +1,32 @@
+{
+  "status": "failed_then_diagnostics_blocked",
+  "recordedAt": "2026-10-12T21:38:27.754668+00:00",
+  "candidateHash": "97bddcc5382f941aa37dd7eff5cfded0c62bbf146f2b720497f859c43f2b8297",
+  "candidateSource": "7778b5ff6030e4527ab98c8bc8218dbc53edd196",
+  "base": "c7bf1d69ffcb5629955edfdd75b83a1a87c7587b",
+  "actualRun": {
+    "device": "SST-MacBook-Pro.local",
+    "pid": 51768,
+    "exit": 1,
+    "durationSeconds": 4.3,
+    "failedCheck": "all six focus controls and useful starting point",
+    "assertion": {
+      "actual": "false",
+      "expected": "true",
+      "line": 22
+    },
+    "cause": "unclassified; do not assume a product or test-timing cause"
+  },
+  "diagnostics": {
+    "writeCall": "b3f9cc84-3581-401b-b0ec-9ebc1eb32b25",
+    "writeOutcome": "Timeout - no response from device; read-back also timed out",
+    "readCalls": [
+      "be25930e-bedb-4d5f-a3ba-07d2fc808989",
+      "9c1c487c-db41-4570-a2e0-ee8f0b4df245",
+      "90a128f5-a35e-4040-adf5-c62301aed550"
+    ],
+    "browserAlternative": "Cloud browser URL http://terminal.local:4174/qa-390 rejected with net::ERR_BLOCKED_BY_CLIENT; not bot detection or a website outage",
+    "qaServer": "Own temporary GET/HEAD-only server stopped with exit130; no API or modifying requests were forwarded"
+  },
+  "acceptance": "Not passed; no food-only mobile/desktop, actual download or PDF proof is claimed. Historical mixed receipt remains separate."
+}

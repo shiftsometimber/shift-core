@@ -1,0 +1,37 @@
+name: Food guide browser candidate proof
+on:
+  push:
+    branches: [codex/food-guide-ready-20261012]
+permissions:
+  contents: read
+concurrency:
+  group: food-guide-candidate-only
+  cancel-in-progress: false
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify food behaviour and protected merged source
+        run: node --test food-supplement-guide/food-guide.test.cjs food-supplement-guide/entry-preservation.test.mjs tests/food-supplement-guide.test.mjs tests/nutrition-mytimber.test.mjs tests/public-shell-contract.test.mjs tests/shared-footer.test.mjs
+      - name: Install the existing pinned browser test toolchain
+        run: |
+          npm install --prefix "$RUNNER_TEMP/food-guide-qa" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/food-guide-qa/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Check the food-only candidate with modifying requests blocked
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/food-guide-qa/node_modules/playwright
+        run: node food-supplement-guide/browser-proof.mjs
+      - name: Retain browser receipts and diagnostic captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: food-guide-browser-candidate
+          path: food-supplement-guide/evidence-food-only
+          if-no-files-found: warn
