@@ -2250,6 +2250,33 @@ export function verifySupportBudgetTestRepair(c,{head,read,diff,ancestor,content
  return c;
 }
 
+// Finite transport repair after guarded release 38306227092 failed closed
+// before deployment on an undici write EPIPE while reading immutable GitHub
+// proof. Only that transport code and its focused tests are changed.
+export const GITHUB_PROOF_EPIPE_BASE='c7bf1d69ffcb5629955edfdd75b83a1a87c7587b';
+export const GITHUB_PROOF_EPIPE_SOURCE='c2a3a255b6067316925de437364e8bf74bd12fae';
+export const GITHUB_PROOF_EPIPE_PATHS=Object.freeze(['release/github-proof-get.mjs','tests/github-proof-get.test.mjs']);
+export const GITHUB_PROOF_EPIPE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','tests/github-proof-epipe-composition.test.mjs']);
+const GITHUB_PROOF_EPIPE_SET=new Set([...GITHUB_PROOF_EPIPE_PATHS,...GITHUB_PROOF_EPIPE_MAINTENANCE]);
+for(const path of GITHUB_PROOF_EPIPE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(ref,path)=>publicToolImmutableGit('show',ref+':'+path)}){
+ assert.equal(c?.proof,'EXACT_GITHUB_PROOF_EPIPE_RETRY_20261012');
+ assert.equal(c.base,GITHUB_PROOF_EPIPE_BASE);assert.equal(c.source,GITHUB_PROOF_EPIPE_SOURCE);
+ assert.deepEqual(c.paths,GITHUB_PROOF_EPIPE_PATHS);assert.deepEqual(c.maintenancePaths,GITHUB_PROOF_EPIPE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,38306227092);assert.equal(c.failedStep,'Require exact approved growth preview and release verification');assert.equal(c.observedCode,'EPIPE');assert.equal(c.deploymentAttempted,false);
+ for(const flag of ['runtimeChanged','publicCopyChanged','workflowChanged','approvalAssertionsChanged','httpErrorsRetried','malformedEvidenceAccepted','customerDataChanged','externalCommunicationsSent','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated GitHub proof EPIPE transport source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated GitHub proof EPIPE maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after GitHub proof EPIPE receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.githubProofEpipeRetry;assert.deepEqual(current,prior,'Prior release receipts changed by GitHub proof EPIPE repair');
+ const before=content(c.base,'release/github-proof-get.mjs'),after=content(c.source,'release/github-proof-get.mjs');
+ assert.equal(after,before.replace("'ECONNRESET','ETIMEDOUT'","'ECONNRESET','EPIPE','ETIMEDOUT'"),'Only EPIPE may join the existing bounded transient transport set');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift / GitHub proof EPIPE source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift / Approved composition source / boundary drift / GitHub proof EPIPE maintenance drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -2263,9 +2290,13 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const currentRawHead=git('rev-parse','HEAD'),myTimberJourney=c.myTimberProgressJourney;
- if(myTimberJourney)verifyMyTimberProgressJourney(myTimberJourney,{head:currentRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const actualHead=myTimberJourney?myTimberJourney.base:currentRawHead;
+ const currentRawHead=git('rev-parse','HEAD'),githubProofEpipeRetry=c.githubProofEpipeRetry;
+ if(githubProofEpipeRetry)verifyGithubProofEpipeRetry(githubProofEpipeRetry,{head:currentRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preGithubProofEpipeHead=githubProofEpipeRetry?githubProofEpipeRetry.base:currentRawHead;
+ const githubProofEpipeRead=(ref,path)=>read(githubProofEpipeRetry&&ref==='HEAD'&&GITHUB_PROOF_EPIPE_SET.has(path)?githubProofEpipeRetry.base:ref,path);
+ const myTimberJourney=c.myTimberProgressJourney;
+ if(myTimberJourney)verifyMyTimberProgressJourney(myTimberJourney,{head:preGithubProofEpipeHead,read:githubProofEpipeRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const actualHead=myTimberJourney?myTimberJourney.base:preGithubProofEpipeHead;
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
  const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
@@ -2273,7 +2304,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
- }:myTimberJourney?(ref,path)=>read(ref==='HEAD'&&[...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?myTimberJourney.base:ref,path):read;
+ }:myTimberJourney?(ref,path)=>githubProofEpipeRead(ref==='HEAD'&&[...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?myTimberJourney.base:ref,path):githubProofEpipeRead;
  const supportBudgetTestRepair=c.supportRecoveryIntegrationBudgetTestRepair;
  if(supportBudgetTestRepair)verifySupportBudgetTestRepair(supportBudgetTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preSupportBudgetTestRepairHead=supportBudgetTestRepair?supportBudgetTestRepair.base:actualHead;
@@ -2744,7 +2775,7 @@ export function reconciliationChangedPath(status,path){
  // Both historical views retain immutable Watch source checks; deletion/rename/type changes remain rejected.
  // Other source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=WATCH_PENDING_DELAYED_QUEUE_PATHS.includes(path)?(WATCH_FACTUAL_UPDATE_PATHS.includes(path)?['A','M']:['A']):existsAtBase.get(path)?(UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)||TABLET_CLIENT_SET.has(path)||TABLET_WORDING_SET.has(path)||WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=WATCH_PENDING_DELAYED_QUEUE_PATHS.includes(path)?(WATCH_FACTUAL_UPDATE_PATHS.includes(path)?['A','M']:['A']):existsAtBase.get(path)?(GITHUB_PROOF_EPIPE_SET.has(path)||UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)||TABLET_CLIENT_SET.has(path)||TABLET_WORDING_SET.has(path)||WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):GITHUB_PROOF_EPIPE_PATHS.includes(path)?['A','M']:['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
