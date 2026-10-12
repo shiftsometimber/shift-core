@@ -1,5 +1,4 @@
 {
-  "status": "failed_then_diagnostics_blocked",
   "recordedAt": "2026-10-12T21:38:27.754668+00:00",
   "candidateHash": "97bddcc5382f941aa37dd7eff5cfded0c62bbf146f2b720497f859c43f2b8297",
   "candidateSource": "7778b5ff6030e4527ab98c8bc8218dbc53edd196",
@@ -28,5 +27,19 @@
     "browserAlternative": "Cloud browser URL http://terminal.local:4174/qa-390 rejected with net::ERR_BLOCKED_BY_CLIENT; not bot detection or a website outage",
     "qaServer": "Own temporary GET/HEAD-only server stopped with exit130; no API or modifying requests were forwarded"
   },
-  "acceptance": "Not passed; no food-only mobile/desktop, actual download or PDF proof is claimed. Historical mixed receipt remains separate."
+  "historicalStatus": "failed_then_diagnostics_blocked",
+  "historicalAcceptance": "Not passed; no food-only mobile/desktop, actual download or PDF proof is claimed. Historical mixed receipt remains separate.",
+  "status": "candidate_browser_verified",
+  "acceptance": {
+    "source": "d1d57d5713c526363033f2af66e7316e2c36dbc5",
+    "codeHash": "c981d2c658d95244f07578b9bc0a6759135d0305fed93f5a038b65a841148c51",
+    "checkedAt": "2026-10-12T22:01:11.960Z",
+    "run": 38314014841,
+    "artifact": 11775792583,
+    "checks": 26,
+    "pageErrors": 0,
+    "scope": "Real hosted Chromium390/1440 food-only candidate overlay over the current public shell; not deployed-source, signed-in, physical-device or clinical acceptance",
+    "print": "Real PDF takeaway isolated from canonical footer/news; two pages",
+    "mainDeployment": "Not performed; existing #1065 source owner must register, gate and promote"
+  }
 }
