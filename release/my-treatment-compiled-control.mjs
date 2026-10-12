@@ -28,7 +28,7 @@ export async function compiledTreatmentAssets({cwd=process.cwd()}={}){
  writeFileSync(join(directory,'compile.log'),log);
  const scriptPath=join(directory,'worker.js'),bundleSha256=hash(readFileSync(scriptPath));
  const require=createRequire(join(cwd,'node_modules/wrangler/package.json'));
- const {Miniflare,convertV4MiniflareOptions}=require('miniflare');
+ const {Miniflare,convertV4MiniflareOptions}=require(process.env.TREATMENT_MINIFLARE||'miniflare');
  const options={modules:true,modulesRoot:dirname(scriptPath),scriptPath,compatibilityDate:'2026-08-09',compatibilityFlags:['nodejs_compat'],d1Databases:['DB'],bindings:{MEMBER_EXPERIENCE_V1_ENABLED:'true',MY_TREATMENT_ENABLED:'true'},outboundService:()=>new Response('External requests are disabled in this local asset proof',{status:503})};
  const mf=new Miniflare(typeof convertV4MiniflareOptions==='function'?convertV4MiniflareOptions(options):options),assets={};
  try{

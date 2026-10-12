@@ -18,10 +18,12 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - run: npm install --prefix "$RUNNER_TEMP/treatment-proof-runtime" --no-audit --no-fund wrangler@4.146.0
       - name: Prove actual compiled responses and both immutable rollback chains
         env:
           RUN_TREATMENT_COMPILED_PROOF: 'true'
           WRANGLER_SEND_METRICS: 'false'
+          TREATMENT_MINIFLARE: ${{ runner.temp }}/treatment-proof-runtime/node_modules/miniflare
         run: node --test tests/my-treatment-compiled-control.test.mjs tests/my-treatment-rollback-runtime.test.mjs
       - uses: actions/upload-artifact@v4
         if: always()
