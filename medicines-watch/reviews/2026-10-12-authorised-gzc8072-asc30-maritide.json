@@ -1,0 +1,191 @@
+{
+  "reviewedAt": "2026-10-12T05:02:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Renew five due GZC8072 and ASC30/AURORA source reviews after complete unchanged-source rereview, and add one newly discovered MariTide Phase 3 comparison record to the existing programme. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sourceReviews": [
+    {
+      "id": "ganlee-gzc8072-20260907",
+      "url": "https://www.ganlee.com/detail/865.html",
+      "previousReviewedAt": "2026-10-05T03:47:54Z",
+      "reviewedAt": "2026-10-12T05:02:00Z",
+      "previousReviewedFingerprint": "1ed471c800e14e097582461b9dfe58f79cbc64579edb69597ba0601db45c6a73",
+      "reviewedFingerprint": "1ed471c800e14e097582461b9dfe58f79cbc64579edb69597ba0601db45c6a73",
+      "sourcePublishedAt": "2026-09-07",
+      "sourceUpdatedAt": null,
+      "httpStatus": 200,
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete Gan & Lee page remains readable and unchanged at the claim-bearing fingerprint. It still reports Chinese clinical-trial permission for investigational once-weekly oral peptide GLP-1 receptor agonist GZC8072 and explicitly says the product remains in the clinical-trial stage. This is not marketing authorisation, a result, UK access or supply."
+    },
+    {
+      "id": "registry-nct07784699",
+      "nctId": "NCT07784699",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07784699",
+      "previousReviewedAt": "2026-10-05T03:47:54Z",
+      "reviewedAt": "2026-10-12T05:02:00Z",
+      "previousReviewedFingerprint": "eb71180cf8a8d8066ef1cf769e1218856ec76be8046b9b2eae6715aa03e1b0a1",
+      "reviewedFingerprint": "eb71180cf8a8d8066ef1cf769e1218856ec76be8046b9b2eae6715aa03e1b0a1",
+      "sourcePublishedAt": "2026-08-25",
+      "sourceUpdatedAt": "2026-09-30",
+      "httpStatus": 200,
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete sponsor-submitted record is unchanged: recruiting Phase 1 in China, actual 2 September 2026 start, 126 estimated participants, estimated 18 August 2027 completion and no posted results. The registry does not establish efficacy, an approved weekly regimen, UK authorisation, NHS access or supply."
+    },
+    {
+      "id": "ascletis-asc30-aurora-first-dose-20260830",
+      "url": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1447/l/en-us.html",
+      "previousReviewedAt": "2026-10-05T04:34:32Z",
+      "reviewedAt": "2026-10-12T05:02:00Z",
+      "previousReviewedFingerprint": "3a6d993aa33d6ce54cf0862534214ca8e54c88791723666c2582fccbf0046617",
+      "reviewedFingerprint": "3a6d993aa33d6ce54cf0862534214ca8e54c88791723666c2582fccbf0046617",
+      "sourcePublishedAt": "2026-08-30",
+      "sourceUpdatedAt": null,
+      "httpStatus": 200,
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete Ascletis page is unchanged at the claim-bearing fingerprint. It continues to report first dosing in the AURORA Phase 3 programme and planned topline and filing events. Those plans are not results, approvals, UK access or supply."
+    },
+    {
+      "id": "registry-nct07743463",
+      "nctId": "NCT07743463",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07743463",
+      "previousReviewedAt": "2026-10-05T04:34:32Z",
+      "reviewedAt": "2026-10-12T05:02:00Z",
+      "previousReviewedFingerprint": "d1eb3187dbcc3ce406ea09e1b99305327237e85020f5b9490268779048a2ac99",
+      "reviewedFingerprint": "d1eb3187dbcc3ce406ea09e1b99305327237e85020f5b9490268779048a2ac99",
+      "sourcePublishedAt": "2026-08-03",
+      "sourceUpdatedAt": "2026-09-16",
+      "httpStatus": 200,
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete AURORA-1 record is unchanged: recruiting Phase 3, actual 31 August 2026 start, 3,003 estimated participants, estimated July 2028 completion and no posted results. Recruitment is not efficacy, safety, authorisation, access or supply evidence."
+    },
+    {
+      "id": "registry-nct07743450",
+      "nctId": "NCT07743450",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07743450",
+      "previousReviewedAt": "2026-10-05T04:34:32Z",
+      "reviewedAt": "2026-10-12T05:02:00Z",
+      "previousReviewedFingerprint": "acea4e5a0322dfda5ff5ab12d08d2e207071811da2543fa116c148c906f997c4",
+      "reviewedFingerprint": "acea4e5a0322dfda5ff5ab12d08d2e207071811da2543fa116c148c906f997c4",
+      "sourcePublishedAt": "2026-08-03",
+      "sourceUpdatedAt": "2026-09-16",
+      "httpStatus": 200,
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete AURORA-2 record is unchanged: recruiting specialist type 2 diabetes Phase 3, actual 28 August 2026 start, 1,560 estimated participants, estimated July 2028 completion and no posted results. This is not evidence for people without diabetes, approval, access or supply."
+    }
+  ],
+  "programmeReviews": [
+    {"id":"gzc8072","previousReviewedAt":"2026-10-05T03:47:54Z","reviewedAt":"2026-10-12T05:02:00Z","wordingChanged":false},
+    {"id":"asc30-oral","previousReviewedAt":"2026-10-05T04:34:32Z","reviewedAt":"2026-10-12T05:02:00Z","wordingChanged":false},
+    {"id":"maritide","previousReviewedAt":"2026-10-06T23:40:00Z","reviewedAt":"2026-10-12T05:02:00Z","wordingChanged":true}
+  ],
+  "maritideChange": {
+    "id": "maritide",
+    "stage": "Phase 3 MARITIME programme; extension and cardiovascular-outcomes studies recruiting; MARITIME-T2D-3 not yet recruiting",
+    "summaryToAppend": "A separate sponsor-submitted Phase 3 MARITIME-T2D-3 record, first posted 8 October 2026, plans to compare once-monthly maridebart cafraglutide with once-weekly semaglutide as add-on therapy in 1,300 estimated adults with type 2 diabetes. Its primary endpoint is HbA1c non-inferiority at week 68; body-weight measures are secondary outcomes.",
+    "limitationsToAppend": "MARITIME-T2D-3 remains not yet recruiting and has no posted results. Its 2 November 2026 start, enrolment and 2028 completion dates are estimates. A comparator design and planned non-inferiority and superiority analyses are not comparative findings, an approved monthly regimen, a general-obesity result, UK authorisation, NICE or NHS access, lawful UK supply or clinical approval.",
+    "additionalEvidence": {
+      "title": "ClinicalTrials.gov NCT07866066: MARITIME-T2D-3 MariTide versus semaglutide",
+      "url": "https://clinicaltrials.gov/study/NCT07866066",
+      "sourcePublishedAt": "2026-10-08",
+      "sourceUpdatedAt": "2026-10-08",
+      "reviewedAt": "2026-10-12T05:02:00Z",
+      "checkScope": "Sponsor-submitted Phase 3 record read for not-yet-recruiting status, type 2 diabetes population, comparator design, estimated dates and enrolment, primary HbA1c endpoint, secondary body-weight outcomes and absence of posted results. Automatic monitoring covers record lifecycle only, not outcomes."
+    }
+  },
+  "registrySources": [
+    {
+      "id": "registry-nct07866066",
+      "nctId": "NCT07866066",
+      "title": "ClinicalTrials.gov NCT07866066: MARITIME-T2D-3 MariTide versus semaglutide",
+      "url": "https://clinicaltrials.gov/study/NCT07866066",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07866066",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07866066", "Amgen"],
+      "reviewedAt": "2026-10-12T05:02:00Z",
+      "sourcePublishedAt": "2026-10-08",
+      "sourceUpdatedAt": "2026-10-08",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes, non-inferiority or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07866066",
+        "title": "Maridebart Cafraglutide Versus Semaglutide in Participants With Type 2 Diabetes",
+        "sponsor": "Amgen",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count":1300,"type":"ESTIMATED"},
+        "start": {"date":"2026-11-02","type":"ESTIMATED"},
+        "primaryCompletion": {"date":"2028-09-04","type":"ESTIMATED"},
+        "completion": {"date":"2028-12-04","type":"ESTIMATED"},
+        "firstPosted": {"date":"2026-10-08","type":"ACTUAL"},
+        "lastUpdated": {"date":"2026-10-08","type":"ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["maritide"],
+      "rawResponseSha256": "c13876eab7ac87c2ab6e2a426d9cfbd6a692deb392d8bef9efc12cca654ccb39",
+      "reviewedFingerprint": "3366f89ab798b87ac4c6392bd2f594a98efba557fe237c39f6a6e5b58d871271"
+    }
+  ],
+  "configuredSourcePass": {
+    "observedAt": "2026-10-12T05:00:38Z",
+    "status": "awaiting_review",
+    "configuredSources": 203,
+    "dueSourcesReviewed": 5,
+    "preservedDelayedSources": ["zealand-zp6590-pipeline", "bivamelagon-rhythm-20250709", "rm718-rhythm-20260804"],
+    "boundary": "The SELECT-only response identified five due factual source reviews. Complete source rereview, not a successful HTTP response, supports these renewals. ZP6590 remains verification_pending plus check_delayed; the two Rhythm sponsor pages remain reviewed plus check_delayed."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date ClinicalTrials.gov API pass reviewed all 157 obesity or overweight records posted or updated from 5 through 9 October 2026, followed by broader undated primary sponsor, regulator, formulation, combination, muscle-preservation, specialist-indication and stopped-programme searches.",
+    "included": "NCT07866066 was absent from current main and open Watch review work. Its complete sponsor-submitted record supports one bounded specialist-indication addition to the existing MariTide programme and one configured lifecycle source.",
+    "notDuplicated": "Newly surfaced oral VK2735, zenagamtide switching, TE-8105, semaglutide bariatric, muscle-function and other records already represented in dated receipts were not duplicated.",
+    "incomplete": true,
+    "boundary": "Search indexing can lag, selected domains cannot prove industry completeness, and authoritative alternate-source work plus programme-summary reviews remain ongoing with their own dates and next actions. Monitoring is not finished."
+  },
+  "counts": {
+    "priorCompletedReviews": 38,
+    "completedReviewsAfter": 39,
+    "programmes": 119,
+    "configuredSourcesBefore": 203,
+    "configuredSourcesAfter": 204,
+    "manualEvidence": 102,
+    "configuredSourceReviewQueueBefore": 5,
+    "configuredSourceReviewQueueAfter": 0,
+    "programmeSummaryFactualReviewNeededBefore": 70,
+    "programmeSummaryFactualReviewNeededAfter": 68
+  },
+  "preserved": {
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "medicalClaimsChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "monitorLogicChanged": false,
+    "healthResponseChanged": false,
+    "homepageChanged": false,
+    "navigationChanged": false,
+    "calculatorChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false,
+    "checkoutChanged": false,
+    "customerDataChanged": false
+  },
+  "nextAction": "Run the complete Watch and exact composition gates, merge the exact passing head through issue #1065, complete one guarded production promotion, then verify live counters, all six reviewed sources, Treatments entry and the preserved pending/delayed states."
+}

@@ -35,9 +35,10 @@ test('Hansoh selector repair pins the reviewed article body and preserves medica
 
 test('programme reviews and counters remain separate and exact at the review instant',()=>{
  for(const review of receipt.programmeReviews){const entry=industry.find(item=>item.id===review.id);assert.ok(entry,review.id);assert.equal(entry.reviewedAt,receipt.reviewedAt);}
- const industryAtReview=industry.filter(entry=>entry.id!=='ly4329090');
- const sourcesAtReview=sources.filter(source=>source.id!=='registry-nct07808073');
- const entries=[...industryAtReview.map(entry=>['ribupatide-oral','kai4729'].includes(entry.id)?{...entry,reviewedAt:'2026-10-05T02:34:35Z'}:entry),...Array.from({length:6},(_,index)=>({id:`detailed-${index}`,name:`Detailed ${index}`,reviewedAt:'2026-09-01T00:00:00Z',additionalEvidence:[]}))];
+ const industryAtReview=industry.filter(entry=>entry.id!=='ly4329090').map(entry=>({...entry,additionalEvidence:(entry.additionalEvidence||[]).filter(link=>Date.parse(link.reviewedAt)<=Date.parse(receipt.reviewedAt))}));
+ const sourcesAtReview=sources.filter(source=>!['registry-nct07808073','registry-nct07866066'].includes(source.id));
+ const previousDates=new Map([['ribupatide-oral','2026-10-05T02:34:35Z'],['kai4729','2026-10-05T02:34:35Z'],['gzc8072','2026-10-05T03:47:54Z'],['asc30-oral','2026-10-05T04:34:32Z'],['maritide','2026-10-06T23:40:00Z']]);
+ const entries=[...industryAtReview.map(entry=>previousDates.has(entry.id)?{...entry,reviewedAt:previousDates.get(entry.id)}:entry),...Array.from({length:6},(_,index)=>({id:`detailed-${index}`,name:`Detailed ${index}`,reviewedAt:'2026-09-01T00:00:00Z',additionalEvidence:[]}))];
  assert.equal(programmeSummaryQueue(entries,Date.parse(receipt.reviewedAt)).length,receipt.counts.programmeSummaryQueueAfterReview);
  assert.equal(industryAtReview.length,receipt.counts.widerProgrammes);assert.equal(sourcesAtReview.length,receipt.counts.configuredSources);
  assert.equal(manualEvidence(industryAtReview,sourcesAtReview).length,98);assert.equal(receipt.counts.manualEvidenceAfter,102);

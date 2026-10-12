@@ -1,3 +1,4 @@
+import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
 import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
 import ly4329090Discovery from './reviews/2026-10-12-authorised-ly4329090-discovery.json' with {type:'json'};
 import ribupatideSpecialistRenewal from './reviews/2026-10-12-authorised-ribupatide-specialist-renewal.json' with {type:'json'};
@@ -110,7 +111,10 @@ export const industrySources = [...evidence.sources,...followup.sources,...conti
  reviewedFingerprint:novoHansohRenewal.hansohSource.reviewedFingerprint,
  contentSelector:novoHansohRenewal.hansohSource.contentSelector}:s).map(s=>s.id===ribupatideSpecialistRenewal.sponsorSource.id?{...s,
  reviewedAt:ribupatideSpecialistRenewal.sponsorSource.reviewedAt,
- reviewedFingerprint:ribupatideSpecialistRenewal.sponsorSource.reviewedFingerprint}:s).map(s => ({
+ reviewedFingerprint:ribupatideSpecialistRenewal.sponsorSource.reviewedFingerprint}:s).map(s=>{
+ const renewal=gzcAsc30Maritide.sourceReviews.find(r=>r.id===s.id);
+ return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+}).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -495,4 +499,13 @@ export const industry = [...originalIndustry.map(e => {
    return source?{...link,reviewedAt:ribupatideSpecialistRenewal.reviewedAt}:link;
   });
   return review?{...e,reviewedAt:review.reviewedAt,additionalEvidence}:{...e,additionalEvidence};
+ }).map(e=>{
+  const review=gzcAsc30Maritide.programmeReviews.find(item=>item.id===e.id);
+  const change=e.id===gzcAsc30Maritide.maritideChange.id?gzcAsc30Maritide.maritideChange:null;
+  const existing=(e.additionalEvidence||[]).map(link=>{
+   const source=gzcAsc30Maritide.sourceReviews.find(item=>item.url===link.url||item.nctId&&link.url.endsWith(item.nctId));
+   return source?{...link,reviewedAt:gzcAsc30Maritide.reviewedAt}:link;
+  });
+  if(change)return {...e,stage:change.stage,summary:e.summary+' '+change.summaryToAppend,limitations:e.limitations+' '+change.limitationsToAppend,reviewedAt:gzcAsc30Maritide.reviewedAt,additionalEvidence:[...existing,change.additionalEvidence]};
+  return review?{...e,reviewedAt:gzcAsc30Maritide.reviewedAt,additionalEvidence:existing}:e;
  });

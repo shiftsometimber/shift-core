@@ -25,9 +25,9 @@ test('LY4329090 discovery adds one bounded early Lilly programme from the comple
 });
 
 test('LY4329090 addition preserves exact counters, separate queues and medical boundaries',()=>{
- assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,203);
+ assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);
  assert.equal(manualEvidence([...medicines,...industry],sources).length,102);
- assert.equal(programmeSummaryQueue([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,68);
+ assert.equal(programmeSummaryQueue([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,71);
  assert.deepEqual(receipt.counts,{priorCompletedReviews:37,completedReviewsAfter:38,detailedProgrammes:6,widerProgrammesBefore:112,widerProgrammesAfter:113,totalProgrammesBefore:118,totalProgrammesAfter:119,configuredSourcesBefore:202,configuredSourcesAfter:203,manualEvidenceBefore:102,manualEvidenceAfter:102,configuredSourceReviewQueueAfter:0,programmeSummaryFactualReviewNeededAfter:68});
  assert.equal(receipt.discoveryPass.incomplete,true);assert.match(receipt.discoveryPass.boundary,/monitoring is not finished/);
  for(const flag of ['monitorLogicChanged','existingMonitorBaselinesChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','externalCommunicationsSent','customerDataChanged','memberTreatmentChanged','checkoutChanged','homepageChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged'])assert.equal(receipt.preserved[flag],false);

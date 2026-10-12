@@ -1,6 +1,7 @@
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
+import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
 import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
 import mwyngilPalatinPreclinical from './reviews/2026-10-10-authorised-mwyngil-palatin-preclinical.json' with {type:'json'};
 import ascletisOralPortfolio from './reviews/2026-10-10-authorised-ascletis-oral-portfolio.json' with {type:'json'};
@@ -478,7 +479,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,113);assert.equal(sources.length,203);
+ assert.equal(medicines.length,6);assert.equal(industry.length,113);assert.equal(sources.length,204);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,119);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1300,7 +1301,7 @@ test('GZC8072 promotion separates trial initiation, estimates and UK access',()=
  assert.equal(registry.lifecycle.hasResults,false);
  assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
  const sponsor=industrySources.find(source=>source.id==='ganlee-gzc8072-20260907');
- assert.equal(sponsor.reviewedAt,gzc8072Publication.reviewedAt);
+ assert.equal(sponsor.reviewedAt,gzcAsc30Maritide.reviewedAt);
  assert.match(sponsor.reviewedFingerprint,/^[a-f0-9]{64}$/);
 });
 
@@ -1337,7 +1338,7 @@ test('ASC30 AURORA correction separates trial populations, estimates and planned
  assert.deepEqual(asc30AuroraCorrection.registrySources.find(source=>source.nctId==='NCT07743463').lifecycle.enrollment,{count:3003,type:'ESTIMATED'});
  assert.deepEqual(asc30AuroraCorrection.registrySources.find(source=>source.nctId==='NCT07743450').lifecycle.enrollment,{count:1560,type:'ESTIMATED'});
  const sponsor=industrySources.find(source=>source.id==='ascletis-asc30-aurora-first-dose-20260830');
- assert.equal(sponsor.reviewedAt,asc30AuroraCorrection.reviewedAt);
+ assert.equal(sponsor.reviewedAt,gzcAsc30Maritide.reviewedAt);
  assert.match(sponsor.reviewedFingerprint,/^[a-f0-9]{64}$/);
 });
 
@@ -1705,7 +1706,7 @@ test('TOGETHER biomarker follow-up does not renew registry evidence or change UK
  assert.match(item.summary,/9 October 2026/);assert.match(item.summary,/circulating proteins and blood gene expression/);
  assert.match(item.limitations,/not a new trial or independently established clinical benefit/);
  assert.equal(item.clinicalApproval,null);assert.match(item.ukAuthorisation,/does not establish a UK marketing authorisation/);
- assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,203);
+ assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);
  for(const old of togetherPsoriaticDisease.registrySources){const current=registrySources.find(s=>s.id===old.id);assert.equal(current.reviewedAt,old.reviewedAt);assert.equal(current.reviewedFingerprint,old.reviewedFingerprint);}
 });
 
@@ -1725,7 +1726,7 @@ test('Mwyngil and Palatin additions remain bounded preclinical evidence',()=>{
  assert.match(palatin.summary,/hypothalamic obesity, Prader-Willi syndrome and Bardet-Biedl syndrome/);
  assert.match(palatin.limitations,/future targets subject to funding, not completed events/);
  assert.ok(discoveryDomains.includes('mwyngil.com'));assert.ok(discoveryDomains.includes('palatin.com'));
- assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,203);
+ assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);
 });
 
 test('Ascletis oral portfolio additions remain preclinical and preserve missed filing uncertainty',()=>{
@@ -1740,7 +1741,7 @@ test('Ascletis oral portfolio additions remain preclinical and preserve missed f
  }
  assert.match(industry.find(item=>item.id==='asc39-oral').limitations,/not presented as submitted, cleared or as trial initiation/);
  assert.match(industry.find(item=>item.id==='asc30-48-fdc').limitations,/fourth-quarter filing remains a plan/);
- assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,203);
+ assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);
 });
 
 test('new oral VK2735 and zenagamtide records stay registered research, not completed starts',()=>{
@@ -1763,5 +1764,5 @@ test('new oral VK2735 and zenagamtide records stay registered research, not comp
   assert.deepEqual(source.lifecycle.start,{date:start,type:'ESTIMATED'});assert.deepEqual(source.lifecycle.enrollment,{count,type:'ESTIMATED'});
   assert.equal(source.lifecycle.hasResults,false);assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
  }
- assert.equal(registrySources.length,138);assert.equal(sources.length,203);
+ assert.equal(registrySources.length,139);assert.equal(sources.length,204);
 });
