@@ -1,0 +1,167 @@
+{
+  "scope": "Local synthetic candidate acceptance; not live or physical-device proof",
+  "parent": "6f1cbe8a34035d6345f39a230478b32c3f9b99ab",
+  "regression": {
+    "total": 396,
+    "pass": 396,
+    "fail": 0,
+    "skip": 0
+  },
+  "sourceGate": "passed",
+  "originalPhotoSourceGate": "passed",
+  "configuredWorkerDryRun": "passed",
+  "browser": {
+    "at": "2026-10-12T18:27:44.449Z",
+    "scope": "Local synthetic charts and smooth-logging candidate acceptance, not live or physical-device proof",
+    "checks": [
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "last-dose/site",
+          "dose-save/failure/retry",
+          "symptom/food/water-save",
+          "keyboard-timeline",
+          "28-day/full-history-filter",
+          "text-only-note-rendering",
+          "PDF-download",
+          "reload-persistence",
+          "existing-journey-links",
+          "no-overflow"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "explicit-source-selection",
+          "actual-owned-insights-route",
+          "dated-jab/symptom-markers",
+          "select-and-tap-details",
+          "actual-Ask-Timber-fact-answer-no-provider",
+          "food-context-visible",
+          "source-withdrawal-clears-context",
+          "pattern-no-overflow"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "independent-weight/feel/symptom/water/food-saves",
+          "optional-fields-collapsed",
+          "RAM-draft-return",
+          "quick-save-failure/retry",
+          "progress-chart-mobile/layout",
+          "metric/period-selection-no-extra-request",
+          "keyboard-point/readings-table",
+          "all-weight-units",
+          "owned-treatment-weights-in-chart",
+          "other-account-not-shown"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "optional-trend-extension",
+          "actual-photo-adapter/routes-save-compare-delete",
+          "private-photo-no-model",
+          "CSV-preview-confirm-actual-import-route",
+          "current-Grub-page-eaten-food-save-repeat-delete",
+          "journey-and-food-no-overflow"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "last-dose/site",
+          "dose-save/failure/retry",
+          "symptom/food/water-save",
+          "keyboard-timeline",
+          "28-day/full-history-filter",
+          "text-only-note-rendering",
+          "PDF-download",
+          "reload-persistence",
+          "existing-journey-links",
+          "no-overflow"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "explicit-source-selection",
+          "actual-owned-insights-route",
+          "dated-jab/symptom-markers",
+          "select-and-tap-details",
+          "actual-Ask-Timber-fact-answer-no-provider",
+          "food-context-visible",
+          "source-withdrawal-clears-context",
+          "pattern-no-overflow"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "independent-weight/feel/symptom/water/food-saves",
+          "optional-fields-collapsed",
+          "RAM-draft-return",
+          "quick-save-failure/retry",
+          "progress-chart-mobile/layout",
+          "metric/period-selection-no-extra-request",
+          "keyboard-point/readings-table",
+          "all-weight-units",
+          "owned-treatment-weights-in-chart",
+          "other-account-not-shown"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "optional-trend-extension",
+          "actual-photo-adapter/routes-save-compare-delete",
+          "private-photo-no-model",
+          "CSV-preview-confirm-actual-import-route",
+          "current-Grub-page-eaten-food-save-repeat-delete",
+          "journey-and-food-no-overflow"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "expired-private-record-cleared",
+          "no-duplicate-dose-on-retry"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "sourceSha256": {
+    "frontend/member/api-adapter-v33d.js": "24042c8982b1b24d468a6ba6879ad016e4098794576d568cae883668709754e0",
+    "frontend/member/member-progress-v1.js": "57a9cb373a35f6c645eba17094015e10c3304f3aa50f6d7231f0a5afed430e16",
+    "member-experience/entry.mjs": "901f1927a4f42cb089371b76594814258ad8c58cc1ba2c3cb84d4abc986e6ad3",
+    "member-experience/grub-runtime.mjs": "81e586943f2bf7034e9fd5a22cbb6aafcd64bf770306662d669f363830d50e2c",
+    "member-experience/health-routes.mjs": "233798c7e351a784f6d33613e21a5a7a27a5b7758e39a668f3cec24f3819553d",
+    "member-experience/staging/verify-treatment-detail.mjs": "07bcf5f92c60c1add1bb448b7bb5536d19f14087007a296db0a7ff43337dadbd",
+    "member-experience/tests/treatment-detail.test.mjs": "a7a14d60e6d699f87129ca320c5701a5afaa29d9b43a8f4213be6cc3b4a4fd3f",
+    "member-experience/tests/treatment-patterns.test.mjs": "3d6ae5b1f42409d4e2c4884ff5218ec6f5970d4f74c1ce783734cbaaa90f8125",
+    "member-experience/treatment-detail.mjs": "9e7fa01346e26982e56a75f53b443d571e2980badc2538afbc3374ee21aca967",
+    "member-experience/treatment-page.mjs": "5199b163d065f3289e418e1a31d2e8f2497ec720a217092338af8adb362933a2",
+    "member-experience/treatment-patterns.mjs": "68b47c51550e5ea81e9b4ae9489c4105d479638c600d667044892f0e536fdfd0",
+    "member-experience/treatment-routes.mjs": "f9f1b3152b0ef80d2483551d0708aa9718bff0ecc3a2be6f86cf2c4a449e7ed4",
+    "my-journey-v1.js": "e0f68079c8dbbd3cd1dcd1188c5aad9067ad5e8c14d3170e2459944d322c7a60",
+    "privacy-health-erasure-route-v1.js": "5cfc93c3144857b703d65375ba62f3b9fcbdb3847923e2429631b3a636d45409",
+    "shift-visualise-v1.js": "ab15b652bc191035d661ea1c75b578b30ed1ffad841ce0be589cb15244ac487b",
+    "member-experience/food-diary-client.mjs": "2c88351b16705638142184f231afd4e50f49e2f4410a231e95a93fae21af14ab",
+    "member-experience/journey-portability.mjs": "d7b1291e1f43f45e7297c69946b9f5b1aac38f0ec63daae51fc35523a64ff982",
+    "member-experience/progress-journey.mjs": "f65c1421bcc03443596eeba068cb1e54dfde66edba1b87d668def3f5139617b4",
+    "member-experience/tests/journey-portability.test.mjs": "53f5cf98f35f84626f73fb9df768e4a5c1fff935eafb2a22fb3409347d3de046",
+    "member-experience/tests/progress-journey.test.mjs": "355a44ed14609ae0cbee7f343b04382ea2668728e141ed374c46bbe15367b0b0",
+    "tests/progress-photo-journey.test.mjs": "e399cc0f3e6abfabd07e4310a3958d1a73d14d59dc309854f6cc16aa1d8dab3e"
+  }
+}

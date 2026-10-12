@@ -17,11 +17,11 @@ export function selectPatternSources(value){
 
 // Descriptive co-recording only. No symptom diagnosis, dose advice, prediction,
 // statistical significance or causal attribution. Missing reports stay unknown.
-export function buildTreatmentPatterns({records=[],events=[],progress=[],preferences={},sources=['treatment'],now=Date.now(),limited=false}){
+export function buildTreatmentPatterns({records=[],events=[],progress=[],foodEntries=[],preferences={},sources=['treatment'],now=Date.now(),limited=false}){
  sources=selectPatternSources(sources);
  const since=now-84*DAY,selected=new Set(sources),owned=new Map(records.filter(r=>INJECTION_MEDICINES.includes(r.medicine)).map(r=>[r.id,r]));
  const rows=events.filter(e=>owned.has(e.treatment_id)&&Number.isFinite(stamp(e.occurred_at))&&stamp(e.occurred_at)<=now&&stamp(e.occurred_at)>=since).map(e=>({...e,details:parse(e.body_json??e.details)})).sort((a,b)=>stamp(a.occurred_at)-stamp(b.occurred_at)||Number(a.sequence||0)-Number(b.sequence||0));
- const doses=rows.filter(e=>e.kind==='dose_taken').map(e=>({id:e.id,treatmentId:e.treatment_id,medicine:owned.get(e.treatment_id).medicine,at:e.occurred_at,site:INJECTION_SITES.find(s=>s.value===e.details.injectionSite)?.label||null,dose:null,doseMeaning:'Dose strength was not captured on this event; current prescription text is not a historical dose.'}));
+ const doses=rows.filter(e=>e.kind==='dose_taken').map(e=>({id:e.id,treatmentId:e.treatment_id,medicine:owned.get(e.treatment_id).medicine,at:e.occurred_at,site:INJECTION_SITES.find(s=>s.value===e.details.injectionSite)?.label||null,dose:typeof e.details.doseStrength==='string'?e.details.doseStrength.slice(0,80):null,doseMeaning:typeof e.details.doseStrength==='string'?'Strength recorded by the member for this dose.':'Dose strength was not captured on this event; current prescription text is not a historical dose.'}));
  const checks=rows.filter(e=>e.kind==='checkin'&&e.details.checkin&&typeof e.details.checkin==='object').map(e=>({id:e.id,treatmentId:e.treatment_id,at:e.occurred_at,c:e.details.checkin}));
  const symptoms=checks.filter(e=>typeof e.c.sideEffects==='string'&&e.c.sideEffects.trim()&&(!Number.isFinite(stamp(e.c.symptomStartedAt))||stamp(e.c.symptomStartedAt)>=since)).map(e=>{const onset=stamp(e.c.symptomStartedAt),valid=Number.isFinite(onset)&&onset<=stamp(e.at)&&onset>=since;return{id:e.id,treatmentId:e.treatmentId,note:e.c.sideEffects.trim().slice(0,2000),impact:e.c.symptomImpact||null,at:valid?e.c.symptomStartedAt:e.at,loggedAt:e.at,timeBasis:valid?'reported_onset':'log_time_onset_unknown'}});
  const observations=[],windows=[];
@@ -40,6 +40,7 @@ export function buildTreatmentPatterns({records=[],events=[],progress=[],prefere
   else if(c.c.sideEffects===''&&c.c.symptomImpact==='None'&&d.symptoms!==true)d.symptoms=false;
   if(selected.has('food')){if(numeric(c.c.proteinGrams)&&c.c.proteinGrams>=0&&c.c.proteinGrams<=500)d.proteinGrams=c.c.proteinGrams;if(typeof c.c.foodNote==='string'&&c.c.foodNote.trim())d.foodNote=c.c.foodNote.trim().slice(0,2000);}
  }
+ if(selected.has('food'))for(const r of foodEntries){const c=parse(r.body_json),on=r.recorded_on;if(!validDay(on)||on<day(since)||on>day(now)||typeof c.food!=='string'||!c.food.trim())continue;const d=get(on);d.foodEaten=d.foodEaten||[];if(d.foodEaten.length<20)d.foodEaten.push({food:c.food.slice(0,500),...(numeric(c.proteinG)?{proteinG:c.proteinG}:{}),...(numeric(c.waterMl)?{waterMl:c.waterMl}:{})});}
  if(selected.has('progress'))for(const p of progress){if(!validDay(p.recorded_on)||p.recorded_on<day(since)||p.recorded_on>day(now))continue;const d=get(p.recorded_on);for(const [key,min,max]of [['steps',0,100000],['sleep_hours',0,24]])if(numeric(p[key])&&p[key]>=min&&p[key]<=max&&(key!=='protein_g'||selected.has('food')))d[key==='protein_g'?'proteinGrams':key]=p[key];}
  if(selected.has('fit'))for(const e of Object.values(preferences.fitJourney?.entries||{})){if(e?.status!=='done'||!validDay(e.recordedOn)||e.recordedOn<day(since)||e.recordedOn>day(now))continue;const d=get(e.recordedOn);d.exercisesDone=(d.exercisesDone||0)+1;}
  const contextDays=[...daily.values()].sort((a,b)=>a.on.localeCompare(b.on));
@@ -62,10 +63,11 @@ export async function readTreatmentPatterns(env,userId,sources,now=Date.now()){
  const records=(await env.DB.prepare('SELECT id,medicine FROM member_treatment_records WHERE user_id=?').bind(userId).all()).results||[];
  const events=(await env.DB.prepare("SELECT e.id,e.treatment_id,e.kind,e.body_json,e.occurred_at,e.rowid AS sequence FROM member_treatment_events e INNER JOIN member_treatment_records t ON t.id=e.treatment_id AND t.user_id=e.user_id WHERE e.user_id=? AND e.kind IN ('dose_taken','checkin') AND julianday(e.occurred_at)>=julianday(?) AND julianday(e.occurred_at)<=julianday(?) ORDER BY e.occurred_at DESC,e.rowid DESC LIMIT 1001").bind(userId,since,new Date(now).toISOString()).all()).results||[];
  const progress=sources.includes('progress')?(await env.DB.prepare('SELECT recorded_on,steps,sleep_hours FROM progress_entries WHERE user_id=? AND recorded_on>=? AND recorded_on<=? ORDER BY recorded_on DESC,id DESC LIMIT 1001').bind(userId,day(now-84*DAY),day(now)).all()).results||[]:[];
+ let foodEntries=[];if(sources.includes('food')&&await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='member_food_entries'").first())foodEntries=(await env.DB.prepare('SELECT recorded_on,body_json FROM member_food_entries WHERE user_id=? AND recorded_on>=? AND recorded_on<=? ORDER BY recorded_on,created_at LIMIT 1001').bind(userId,day(now-84*DAY),day(now)).all()).results||[];
  // A withdrawal racing the reads must suppress the derived output too.
  if(!await trackingConsent(env.DB,userId))return{status:'tracking_off'};
  const latest=parse((await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(userId).first())?.preferences);if(latest.myJourney?.setup?.paused===true)return{status:'paused'};
- return buildTreatmentPatterns({records,events:events.slice(0,1000),progress:progress.slice(0,1000).reverse(),preferences,sources,now,limited:events.length>1000||progress.length>1000});
+ return buildTreatmentPatterns({records,events:events.slice(0,1000),progress:progress.slice(0,1000).reverse(),foodEntries:foodEntries.slice(0,1000),preferences,sources,now,limited:events.length>1000||progress.length>1000||foodEntries.length>1000});
 }
 export async function requestTreatmentPatterns(request,env,sources){
  let selected;try{selected=selectPatternSources(sources)}catch{return{status:400,data:{error:'invalid_pattern_sources'}}}

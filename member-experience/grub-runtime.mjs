@@ -4,7 +4,7 @@ import {grubIntelligenceClient} from './grub-intelligence-client.mjs';
 export const grubRuntime=String.raw`(()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let workspace=null,busy=false,activeFilter='',sequence=0,ingredients=[],pending=null;
-const known=new Map(),notice=$('#grubAccountStatus');
+const known=new Map(),notice=$('#grubAccountStatus');if(!notice)return;
 const remember=list=>(list||[]).forEach(r=>known.set(r.id,r));
 async function api(path,body){const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),20000);try{
  const r=await fetch('/v1/grub/'+path,{method:body?'POST':'GET',credentials:'same-origin',cache:'no-store',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,signal:ctrl.signal});
@@ -77,7 +77,7 @@ open(location.hash.slice(1));load();
 
 export function upgradeGrubHTML(html,{staging=false}={}){
  html=html.replace(/<script\b[^>]*src="[^"]*(?:member-grub-v8|member-grub-persistence-v1)[^"]*"[^>]*>[\s\S]*?<\/script>/g,'');
- html=html.replace('</body>','<script defer src="/assets/member-experience/grub.mjs"></script></body>');
+ html=html.replace('</body>','<script defer src="/assets/member-experience/grub.mjs"></script><script defer src="/assets/member-experience/food-diary.mjs"></script></body>');
  const status='<div class="grub-account"><p id="grubAccountStatus" role="status" aria-live="polite">Loading your saved food…</p><div class="grub-actions"><button id="grubReload">Reload saved food</button><a href="'+(staging?'/staging/sign-in':'/member/dashboard')+'">Sign in</a><details class="grub-signout"><summary>Account actions</summary><p>Finished using My Timber on this device?</p><button id="grubSignOut">Sign out</button></details>'+'</div></div>';
  html=html.replace('<nav class="grub-v8-tabs"',status+'<section id="grubActionReceipt" class="grub-empty" aria-label="Saved food confirmation" hidden></section><section id="grubTodayChoice" aria-label="Your chosen meal"></section><section id="grubRecommendation" aria-label="Your meal recommendation"><p>Loading your recommendation…</p></section><nav class="grub-v8-tabs"');
  html=html.replace(/<label>Anything to work around\?[\s\S]*?<\/label>/,'<label>Servings per meal<select id="grubServings">'+Array.from({length:8},(_,i)=>'<option>'+(i+1)+'</option>').join('')+'</select></label><label>Ingredients to leave out (comma-separated)<input id="grubPrefs" placeholder="Fish, mushrooms"></label><p>Breakfast, lunch and dinner from the reviewed recipe library. This is not an allergy checker: check every recipe and product label. Shopping quantities scale to the servings you choose. Fast plans use reviewed meals taking 25 minutes or less, including lunch recipes for dinner. The planner spreads choices across meal types.</p>');

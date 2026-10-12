@@ -1,5 +1,7 @@
 # My Timber recorded patterns — 12 October 2026
 
+The subsequent optional forecast, supply, photo, food and portability increment is documented in [the current source handoff](my-timber-progress-journey-20261012.md). Evidence below belongs to the earlier patterns tree; new dose events may now record strength, while legacy values remain unknown.
+
 Matt approved the jab-context mockup at 12:25 BST and requested a working first version at 12:43 BST. This source extends the same codex/my-timber-journey-detail-20261012 candidate. It is locally verified, not merged, deployed, clinically approved or physical-device accepted.
 
 ## Working first version

@@ -1,3 +1,4 @@
+import {supplyEstimate,validateSupplyDetails} from './progress-journey.mjs';
 import {requestTreatmentPatterns} from './treatment-patterns.mjs';
 import {projectTreatment,summaryPdf} from './treatment-model.mjs';
 import {INJECTION_MEDICINES,INJECTION_SITES,SYMPTOM_IMPACTS,describeTreatmentEvent} from './treatment-detail.mjs';
@@ -24,7 +25,7 @@ export async function readTreatment(DB,userId){
  const events=(await DB.prepare('SELECT rowid AS sequence,* FROM member_treatment_events WHERE user_id=? ORDER BY occurred_at DESC').bind(userId).all()).results;
  const medical=(await DB.prepare('SELECT revision,body_json,confirmed_at FROM member_medical_disclosures WHERE user_id=? ORDER BY revision DESC').bind(userId).all()).results;
  const parsed=events.map(e=>({...e,details:JSON.parse(e.body_json)}));
- return {treatments:treatments.map(t=>projectTreatment(t,parsed)),events:events.map(e=>({...e,details:JSON.parse(e.body_json),body_json:undefined})),medical:medical.map(e=>({revision:e.revision,details:JSON.parse(e.body_json),confirmedAt:e.confirmed_at,source:'member'})),reminderDeliveryAvailable:false};
+ return {treatments:treatments.map(t=>{const projected=projectTreatment(t,parsed);return {...projected,supplyEstimate:supplyEstimate(projected,parsed)};}),events:events.map(e=>({...e,details:JSON.parse(e.body_json),body_json:undefined})),medical:medical.map(e=>({revision:e.revision,details:JSON.parse(e.body_json),confirmedAt:e.confirmed_at,source:'member'})),reminderDeliveryAvailable:false};
 }
 export async function treatmentRoutes(request,env){
  const path=new URL(request.url).pathname;if(!path.startsWith(root))return null;
@@ -71,20 +72,24 @@ export async function treatmentRoutes(request,env){
   if(result.meta.changes!==1)return reply({error:'record_changed',message:'Reload the current medical details before saving.'},409);
   return reply({ok:true,revision:body.revision+1},201);
  }
- if(!object(body)||Object.keys(body).some(k=>!['treatmentId','kind','occurredAt','note','operationId','supply','nextAt','enabled','checkin','injectionSite'].includes(k))||!['dose_taken','repeat_order','prescription_record','paused','finished','resumed','note','supply_updated','schedule_updated','reminder_updated','checkin'].includes(body.kind)||!text(body.note,2000)||!text(body.treatmentId,100)||!text(body.operationId,100)||!text(body.occurredAt,40)||!Number.isFinite(Date.parse(body.occurredAt))||Date.parse(body.occurredAt)>Date.now()+60000)return reply({error:'invalid_event'},400);
+ if(!object(body)||Object.keys(body).some(k=>!['treatmentId','kind','occurredAt','note','operationId','supply','nextAt','enabled','checkin','injectionSite','doseStrength','supplyDetails'].includes(k))||!['dose_taken','repeat_order','prescription_record','paused','finished','resumed','note','supply_updated','schedule_updated','reminder_updated','checkin'].includes(body.kind)||!text(body.note,2000)||!text(body.treatmentId,100)||!text(body.operationId,100)||!text(body.occurredAt,40)||!Number.isFinite(Date.parse(body.occurredAt))||Date.parse(body.occurredAt)>Date.now()+60000)return reply({error:'invalid_event'},400);
+ if('doseStrength' in body&&(body.kind!=='dose_taken'||!text(body.doseStrength,80)))return reply({error:'invalid_dose_strength'},400);
+ if('supplyDetails' in body){if(body.kind!=='supply_updated')return reply({error:'invalid_supply_details'},400);try{validateSupplyDetails(body.supplyDetails);}catch{return reply({error:'invalid_supply_details'},400);}}
  if('injectionSite' in body&&(body.kind!=='dose_taken'||!INJECTION_SITES.some(s=>s.value===body.injectionSite)))return reply({error:'invalid_injection_site',message:'Choose a listed injection site, or leave it unrecorded.'},400);
  if(body.kind==='supply_updated'&&(!Number.isInteger(body.supply)||body.supply<0||body.supply>1000))return reply({error:'invalid_supply'},400);
  if(body.kind==='schedule_updated'&&body.nextAt!==null&&(!text(body.nextAt,40)||!Number.isFinite(Date.parse(body.nextAt))))return reply({error:'invalid_schedule'},400);
  if(body.kind==='reminder_updated'&&typeof body.enabled!=='boolean')return reply({error:'invalid_reminder'},400);
  if(body.kind==='checkin'){
   const c=body.checkin,has=k=>Object.prototype.hasOwnProperty.call(c,k);
-  if(!object(c)||Object.keys(c).some(k=>!['weight','appetite','energy','sideEffects','symptomImpact','symptomStartedAt','foodNote','proteinGrams','waterMl'].includes(k)))return reply({error:'invalid_checkin'},400);
+  if(!object(c)||Object.keys(c).some(k=>!['weight','appetite','energy','sideEffects','symptomImpact','symptomStartedAt','foodNote','proteinGrams','waterMl','symptomType','symptomSeverity'].includes(k)))return reply({error:'invalid_checkin'},400);
   if(has('weight')&&c.weight!==null&&(!Number.isFinite(c.weight)||c.weight<20||c.weight>400))return reply({error:'invalid_checkin'},400);
   for(const key of ['appetite','energy'])if(has(key)&&!['Low','Usual','High'].includes(c[key]))return reply({error:'invalid_checkin'},400);
   if(has('sideEffects')&&text(c.sideEffects,2000)===null)return reply({error:'invalid_checkin'},400);
   if(has('foodNote')&&text(c.foodNote,2000)===null)return reply({error:'invalid_food_note',message:'Keep your food note under 2,000 characters.'},400);
   if(has('proteinGrams')&&(!Number.isFinite(c.proteinGrams)||c.proteinGrams<0||c.proteinGrams>500))return reply({error:'invalid_protein_entry',message:'Enter a protein amount from 0 to 500 g, or leave it blank.'},400);
   if(has('waterMl')&&(!Number.isFinite(c.waterMl)||c.waterMl<0||c.waterMl>10000))return reply({error:'invalid_water_entry',message:'Enter a water amount from 0 to 10,000 ml, or leave it blank.'},400);
+  if(has('symptomType')&&(typeof c.symptomType!=='string'||!['Nausea','Reflux','Bloating','Constipation','Diarrhoea','Fatigue','Headache','Other'].includes(c.symptomType)||!c.sideEffects?.trim()))return reply({error:'invalid_symptom_type'},400);
+  if(has('symptomSeverity')&&(!Number.isInteger(c.symptomSeverity)||c.symptomSeverity<0||c.symptomSeverity>10||!c.sideEffects?.trim()))return reply({error:'invalid_symptom_severity'},400);
   if(has('symptomImpact')&&(!SYMPTOM_IMPACTS.includes(c.symptomImpact)||c.symptomImpact!=='None'&&!c.sideEffects?.trim()))return reply({error:'invalid_symptom_impact',message:'Choose the effect on your day and add a symptom note, or leave this blank.'},400);
   if(has('symptomStartedAt')&&(!text(c.symptomStartedAt,40)||!Number.isFinite(Date.parse(c.symptomStartedAt))||Date.parse(c.symptomStartedAt)>Date.parse(body.occurredAt)||!c.sideEffects?.trim()))return reply({error:'invalid_symptom_start',message:'Add a symptom note and a valid start time before this check-in, or leave the start time blank.'},400);
   const meaningful=has('weight')&&c.weight!==null||has('appetite')||has('energy')||c.sideEffects?.trim()||c.foodNote?.trim()||has('proteinGrams')||has('waterMl')||has('sideEffects')&&c.sideEffects===''&&c.symptomImpact==='None';
@@ -93,7 +98,7 @@ export async function treatmentRoutes(request,env){
  const record=await env.DB.prepare('SELECT id,medicine FROM member_treatment_records WHERE id=? AND user_id=?').bind(body.treatmentId,auth.userId).first();if(!record)return reply({error:'treatment_not_found'},404);
  if('injectionSite' in body&&!INJECTION_MEDICINES.includes(record.medicine))return reply({error:'injection_site_not_applicable',message:'An injection site cannot be recorded for this treatment.'},400);
  const previous=await env.DB.prepare('SELECT * FROM member_treatment_events WHERE id=?').bind(body.operationId).first();
- const eventDetails={note:body.note};if('injectionSite' in body)eventDetails.injectionSite=body.injectionSite;if(body.kind==='supply_updated')eventDetails.supply=body.supply;if(body.kind==='schedule_updated')eventDetails.nextAt=body.nextAt;if(body.kind==='reminder_updated')eventDetails.enabled=body.enabled;if(body.kind==='checkin')eventDetails.checkin=body.checkin;const details=JSON.stringify(eventDetails);if(previous){if(previous.user_id!==auth.userId||previous.treatment_id!==body.treatmentId||previous.kind!==body.kind||previous.body_json!==details||previous.occurred_at!==body.occurredAt)return reply({error:'operation_conflict'},409);return reply({ok:true,id:previous.id});}
+ const eventDetails={note:body.note};if('doseStrength' in body)eventDetails.doseStrength=body.doseStrength.trim();if('supplyDetails' in body)eventDetails.supplyDetails=body.supplyDetails;if('injectionSite' in body)eventDetails.injectionSite=body.injectionSite;if(body.kind==='supply_updated')eventDetails.supply=body.supply;if(body.kind==='schedule_updated')eventDetails.nextAt=body.nextAt;if(body.kind==='reminder_updated')eventDetails.enabled=body.enabled;if(body.kind==='checkin')eventDetails.checkin=body.checkin;const details=JSON.stringify(eventDetails);if(previous){if(previous.user_id!==auth.userId||previous.treatment_id!==body.treatmentId||previous.kind!==body.kind||previous.body_json!==details||previous.occurred_at!==body.occurredAt)return reply({error:'operation_conflict'},409);return reply({ok:true,id:previous.id});}
  await env.DB.prepare('INSERT INTO member_treatment_events(id,user_id,treatment_id,kind,body_json,occurred_at,created_at) VALUES(?,?,?,?,?,?,?)').bind(body.operationId,auth.userId,body.treatmentId,body.kind,details,body.occurredAt,at).run();
  // Dose logs do not invent stock, schedules or a prescription change. Each is separate.
  return reply({ok:true,id:body.operationId},201);

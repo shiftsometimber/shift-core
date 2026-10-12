@@ -20,11 +20,14 @@ export function describeTreatmentEvent(event,sites=[]){
   if(c.foodNote)lines.push('Food note: '+c.foodNote);
   if(c.proteinGrams!==undefined)lines.push('Protein so far that day: '+c.proteinGrams+' g (member estimate)');
   if(c.waterMl!==undefined)lines.push('Water so far that day: '+c.waterMl+' ml (member report)');
+  if(c.symptomType)lines.push('Symptom: '+c.symptomType);
+  if(c.symptomSeverity!==undefined)lines.push('Member-rated severity: '+c.symptomSeverity+'/10');
   if(c.symptomImpact)lines.push('Effect on your day: '+c.symptomImpact);
   if(c.symptomStartedAt)lines.push('Reported symptom start: '+new Date(c.symptomStartedAt).toLocaleString('en-GB',{timeZone:'Europe/London'})+' (Europe/London)');
   return lines.join('\n');
  }
  const lines=[d.note||d.prescriptionDetails||''];
+ if(event.kind==='dose_taken'&&d.doseStrength)lines.push('Recorded strength: '+d.doseStrength);
  if(event.kind==='dose_taken'&&d.injectionSite)lines.push('Injection site: '+(sites.find(s=>s.value===d.injectionSite)?.label||'Not recorded'));
  return lines.filter(Boolean).join('\n');
 }
