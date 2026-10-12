@@ -29,8 +29,16 @@ test('real Alnylam RNAi composition preserves earlier receipts and manual-eviden
  assert.equal(factual.automatedMonitorChanges,false);assert.equal(factual.clinicalApproval,null);assert.equal(factual.entries.length,2);
  assert.deepEqual(factual.remainingObstacles.find(item=>item.id==='zealand-zp6590-pipeline').state,['verification_pending','check_delayed']);
  assert.deepEqual(factual.remainingObstacles.find(item=>item.id==='alnylam-registry-api').state,['manual_follow_up']);
- const laterPaths=new Set(current.watchRibupatideLy4329090.paths);
- for(const path of paths)assert.equal(read('HEAD',path),read(laterPaths.has(path)?current.watchRibupatideLy4329090.source:source,path));
+ // The full verifier has authenticated every receipt before this historical-path comparison.
+ const reviewedChanges=Object.values(current).filter(review=>review&&Array.isArray(review.paths)&&/^[a-f0-9]{40}$/.test(review.source));
+ for(const path of paths){
+  let reviewedSource=source;
+  for(const review of reviewedChanges)if(review.paths.includes(path)&&review.source!==reviewedSource){
+   try{execFileSync('git',['merge-base','--is-ancestor',reviewedSource,review.source]);reviewedSource=review.source;}
+   catch(error){if(error.status!==1)throw error;}
+  }
+  assert.equal(read('HEAD',path),read(reviewedSource,path));
+ }
 });
 
 test('prior composition verifiers and runtime monitor logic remain immutable',()=>{
