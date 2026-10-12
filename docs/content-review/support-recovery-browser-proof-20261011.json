@@ -1,0 +1,262 @@
+{
+  "at": "2026-10-11T12:26:15.537Z",
+  "mode": "candidate interception over live documents; controlled provider timeout; no security bypass and all modifying requests blocked",
+  "results": [
+    {
+      "path": "/contact",
+      "width": 390,
+      "fullMainReviewed": true,
+      "words": 189,
+      "overflow": false,
+      "floating": [],
+      "floatingKeyboardOpenEscapeFocusReturn": true,
+      "cookieKeyboardReopen": true,
+      "minimum44px": true
+    },
+    {
+      "path": "/help",
+      "width": 390,
+      "fullMainReviewed": true,
+      "words": 618,
+      "overflow": false,
+      "floating": [],
+      "floatingKeyboardOpenEscapeFocusReturn": true,
+      "cookieKeyboardReopen": true,
+      "minimum44px": true,
+      "resetFormOpened": true,
+      "resetEmailRequested": false,
+      "backRefresh": true
+    },
+    {
+      "path": "/medical-disclaimer",
+      "width": 390,
+      "fullMainReviewed": true,
+      "words": 183,
+      "overflow": false,
+      "floating": [],
+      "floatingKeyboardOpenEscapeFocusReturn": true,
+      "cookieKeyboardReopen": true,
+      "minimum44px": true,
+      "keyboardHandoff": "/help#urgent-help",
+      "backRefresh": true
+    },
+    {
+      "path": "/terms-of-sale",
+      "width": 390,
+      "fullMainReviewed": true,
+      "words": 287,
+      "overflow": false,
+      "floating": [
+        {
+          "tag": "BUTTON",
+          "id": "askTimberLaunch",
+          "text": "Ask Timber",
+          "label": null,
+          "expanded": null,
+          "width": 166.984375,
+          "height": 52
+        },
+        {
+          "tag": "BUTTON",
+          "id": "sstCookieSettings",
+          "text": "Cookie choices",
+          "label": null,
+          "expanded": null,
+          "width": 127.71875,
+          "height": 40
+        }
+      ]
+    },
+    {
+      "path": "/refunds",
+      "width": 390,
+      "fullMainReviewed": true,
+      "words": 282,
+      "overflow": false,
+      "floating": [
+        {
+          "tag": "BUTTON",
+          "id": "askTimberLaunch",
+          "text": "Ask Timber",
+          "label": null,
+          "expanded": null,
+          "width": 166.984375,
+          "height": 52
+        },
+        {
+          "tag": "BUTTON",
+          "id": "sstCookieSettings",
+          "text": "Cookie choices",
+          "label": null,
+          "expanded": null,
+          "width": 127.71875,
+          "height": 40
+        }
+      ]
+    },
+    {
+      "path": "/accessibility",
+      "width": 390,
+      "fullMainReviewed": true,
+      "words": 116,
+      "overflow": false,
+      "floating": [],
+      "floatingKeyboardOpenEscapeFocusReturn": true,
+      "cookieKeyboardReopen": true,
+      "minimum44px": true
+    },
+    {
+      "path": "/contact",
+      "width": 390,
+      "controlledSecurityTimeout": true,
+      "keyboardRetry": true,
+      "fieldsPreserved": true,
+      "newSecurityWidget": true,
+      "callbacks": {
+        "renders": 2,
+        "removed": 2
+      },
+      "contactPost": 0,
+      "externalMessages": 0
+    },
+    {
+      "width": 390,
+      "blockedModifyingRequests": [
+        "/v1/acquisition-attribution",
+        "/v1/acquisition-attribution",
+        "/v1/acquisition-attribution",
+        "/v1/acquisition-attribution",
+        "/v1/acquisition-attribution"
+      ],
+      "successfulModifyingRequests": 0
+    },
+    {
+      "path": "/contact",
+      "width": 1440,
+      "fullMainReviewed": true,
+      "words": 189,
+      "overflow": false,
+      "floating": [],
+      "floatingKeyboardOpenEscapeFocusReturn": true,
+      "cookieKeyboardReopen": true,
+      "minimum44px": true
+    },
+    {
+      "path": "/help",
+      "width": 1440,
+      "fullMainReviewed": true,
+      "words": 618,
+      "overflow": false,
+      "floating": [],
+      "floatingKeyboardOpenEscapeFocusReturn": true,
+      "cookieKeyboardReopen": true,
+      "minimum44px": true,
+      "resetFormOpened": true,
+      "resetEmailRequested": false,
+      "backRefresh": true
+    },
+    {
+      "path": "/medical-disclaimer",
+      "width": 1440,
+      "fullMainReviewed": true,
+      "words": 183,
+      "overflow": false,
+      "floating": [],
+      "floatingKeyboardOpenEscapeFocusReturn": true,
+      "cookieKeyboardReopen": true,
+      "minimum44px": true,
+      "keyboardHandoff": "/help#urgent-help",
+      "backRefresh": true
+    },
+    {
+      "path": "/terms-of-sale",
+      "width": 1440,
+      "fullMainReviewed": true,
+      "words": 287,
+      "overflow": false,
+      "floating": [
+        {
+          "tag": "BUTTON",
+          "id": "askTimberLaunch",
+          "text": "Ask Timber",
+          "label": null,
+          "expanded": null,
+          "width": 166.984375,
+          "height": 52
+        },
+        {
+          "tag": "BUTTON",
+          "id": "sstCookieSettings",
+          "text": "Cookie choices",
+          "label": null,
+          "expanded": null,
+          "width": 131.109375,
+          "height": 40.46875
+        }
+      ]
+    },
+    {
+      "path": "/refunds",
+      "width": 1440,
+      "fullMainReviewed": true,
+      "words": 282,
+      "overflow": false,
+      "floating": [
+        {
+          "tag": "BUTTON",
+          "id": "askTimberLaunch",
+          "text": "Ask Timber",
+          "label": null,
+          "expanded": null,
+          "width": 166.984375,
+          "height": 52
+        },
+        {
+          "tag": "BUTTON",
+          "id": "sstCookieSettings",
+          "text": "Cookie choices",
+          "label": null,
+          "expanded": null,
+          "width": 131.109375,
+          "height": 40.46875
+        }
+      ]
+    },
+    {
+      "path": "/accessibility",
+      "width": 1440,
+      "fullMainReviewed": true,
+      "words": 116,
+      "overflow": false,
+      "floating": [],
+      "floatingKeyboardOpenEscapeFocusReturn": true,
+      "cookieKeyboardReopen": true,
+      "minimum44px": true
+    },
+    {
+      "path": "/contact",
+      "width": 1440,
+      "controlledSecurityTimeout": true,
+      "keyboardRetry": true,
+      "fieldsPreserved": true,
+      "newSecurityWidget": true,
+      "callbacks": {
+        "renders": 2,
+        "removed": 2
+      },
+      "contactPost": 0,
+      "externalMessages": 0
+    },
+    {
+      "width": 1440,
+      "blockedModifyingRequests": [
+        "/v1/acquisition-attribution",
+        "/v1/acquisition-attribution",
+        "/v1/acquisition-attribution",
+        "/v1/acquisition-attribution",
+        "/v1/acquisition-attribution"
+      ],
+      "successfulModifyingRequests": 0
+    }
+  ]
+}

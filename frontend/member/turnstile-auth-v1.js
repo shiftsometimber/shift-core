@@ -46,7 +46,7 @@
       if(!c.enabled||!c.siteKey)throw problem('Secure sign-in is temporarily unavailable. Please try again.');
       await script();
       return new Promise((resolve,reject)=>{
-        const node=document.createElement('div');node.className='sst-turnstile';node.setAttribute('aria-label','Sign-in security check');
+        const node=document.createElement('div');node.className='sst-turnstile';node.setAttribute('aria-label',action==='contact_enquiry'?'Message security check':'Sign-in security check');
         node.style.cssText='display:block;grid-column:1/-1;max-width:100%;min-height:65px;margin:12px 0;';
         const button=form?.querySelector('button');if(button)button.before(node);else(form||document.body).appendChild(node);
         let id,done=false;
@@ -68,7 +68,13 @@
       });
     })();
     pending.set(action,task);
-    try{return await task}finally{if(pending.get(action)===task)pending.delete(action)}
+    try{return await task}catch(error){
+      if(action==='contact_enquiry'){
+        const retry=error.code==='security_check_timeout'?'The security check timed out.':'The security check could not be completed.';
+        error.message=retry+' Your message has not been sent. Your details are still in this form. Choose Send securely to try the security check again.';
+      }
+      throw error;
+    }finally{if(pending.get(action)===task)pending.delete(action)}
   }
   async function protect(path,data={}){const action=actions[path];if(!action)return data;const token=await getToken(action);return token?{...data,turnstileToken:token}:data}
   window.SSTTurnstile={protect,getToken,config};

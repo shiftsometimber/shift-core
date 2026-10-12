@@ -60,7 +60,7 @@ export function repairHtml(html,path){
 }
 export async function withTrustRepair(request,response){
  const path=pathOf(request);if(path==='/')return response;
- const relevant=pages[path]||photoEntry(path)||path.startsWith('/member/')||/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)||/urgent-help|crisis|suicid/.test(path)||['/robots.txt','/lounge','/contact','/complaints','/treatment-centre','/advertise-with-us','/commercial-principles','/articles/stopping-glp1'].includes(path);
+ const relevant=pages[path]||photoEntry(path)||path.startsWith('/member/')||/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)||/urgent-help|crisis|suicid/.test(path)||['/help','/medical-disclaimer','/robots.txt','/lounge','/contact','/complaints','/treatment-centre','/advertise-with-us','/commercial-principles','/articles/stopping-glp1'].includes(path);
  if(!relevant)return response;
  const headers=new Headers(response.headers);
  if(path==='/robots.txt'&&response.ok){let body=await response.text();body=body.replace(/^.*clinician-dashboard-v3d.*\n?/gm,'');headers.delete('Content-Length');headers.delete('ETag');return new Response(body,{status:200,headers});}
