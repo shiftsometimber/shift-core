@@ -3454,5 +3454,44 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "supportRecoveryPublicPreservation": {
+    "proof": "EXACT_SUPPORT_PUBLIC_PRESERVATION_REPAIR_20261012",
+    "base": "7da4c5406a59bcd929240bd72cb5c7a7b96c8b60",
+    "source": "c5bd50321c88aeeb1af40a32ebf0de21ece375be",
+    "paths": [
+      "release/support-recovery-preservation.mjs",
+      "member-experience/public-preservation.mjs",
+      "tests/support-recovery-preservation.test.mjs",
+      "release/app-preflight.mjs",
+      "tests/support-recovery-historical-scope-composition.test.mjs",
+      "tests/support-recovery-integration-budget-composition.test.mjs",
+      "tests/support-recovery-integration-budget-test-repair-composition.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/support-recovery-public-preservation-composition.test.mjs"
+    ],
+    "maintenanceSource": "986bbf3dd280da56875643bbc934cfe9e9a3117f",
+    "integrationIssue": 1065,
+    "publicationStatus": "approved_existing_guarded_contact_repair",
+    "failedRun": 38291781709,
+    "failedJob": 114953466887,
+    "rollbackDeployment": "4a9c25dc-4208-43f1-9e72-12ee11eba7ac",
+    "helpSource": "0f25e3cd425fa87159cdeb1b3d4222bf8341ac67",
+    "transportSource": "79e3055163e81ce8befbcfa09fc52226dd43f594",
+    "runtimeChanged": false,
+    "workflowChanged": false,
+    "browserAssertionsChanged": false,
+    "productPerformanceThresholdsChanged": false,
+    "priorReceiptAssertionsRemoved": false,
+    "clinicalGatesChanged": false,
+    "homepageChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
