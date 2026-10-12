@@ -1,3 +1,4 @@
+import {myTimberHistoricalFile} from '../release/my-timber-progress-journey-scope.mjs';
 import {myTimberHistoricalRecord,myTimberHistoricalIntegrationWorkflow} from '../release/my-timber-progress-journey-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -64,7 +65,7 @@ test('actual budget composition preserves all prior receipts and historical veri
  const current=myTimberHistoricalRecord(verifyReconciledRelease());assert.equal(current.supportRecoveryIntegrationBudget.source,r.source);
  const prior=JSON.parse(read(r.base,manifest)),retained=structuredClone(current);delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
  for(const path of [...r.paths,...r.maintenancePaths])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
- const before=read(r.base,'release/approved-runtime-composition.mjs'),after=read('HEAD','release/approved-runtime-composition.mjs');
+ const before=read(r.base,'release/approved-runtime-composition.mjs'),after=myTimberHistoricalFile('release/approved-runtime-composition.mjs',read('HEAD','release/approved-runtime-composition.mjs'));
  const body=(t,name)=>{const start=t.indexOf('export function '+name+'(');return t.slice(start,t.indexOf('\n}\n',start)+3);};
  for(const match of before.matchAll(/export function (\w+)\(/g))if(match[1]!=='verifyReconciledRelease')assert.equal(body(after,match[1]),body(before,match[1]),match[1]);
 });
