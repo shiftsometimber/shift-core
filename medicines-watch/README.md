@@ -1,5 +1,11 @@
 # Treatments: Medicines & Peptides Watch
 
+## 12 October ASC36 source renewal
+
+`reviews/2026-10-12-authorised-asc36-source-renewal.json` records a complete reread of Ascletis' unchanged oral ASC36 Phase I announcement after its configured-source review became due. The complete sponsor page remains 16,300 bytes with response SHA-256 `ef557f52838f4b3cc7d4747f5281454569f35ff4a59ebe81ff9e91ef5fb348e9`; its bounded claim-bearing text retains fingerprint `bb52bfb18d82adf8113eee808450543f5927d46dc5fda65e90d203c9564a4f39`. A fresh exact-name ClinicalTrials.gov API search still returned no public record. The source review date advances, but the programme wording and programme-summary review date do not.
+
+This is the 41st completed factual-review receipt. The catalogue remains 119 programmes, 204 configured sources and 102 manually followed evidence URLs. The separate time-based programme-summary queue contains 70 items at this review instant. ZP6590 remains `verification_pending` plus `check_delayed`. No monitor logic, UK authorisation, NHS access, supply or clinical claim changes. Authoritative alternate-source work, programme-summary review and broader discovery remain ongoing; monitoring is not finished, and editorial authorisation is not clinical approval.
+
 ## 12 October Rhythm source-monitor repair
 
 `reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json` records a bounded alternate-source repair for the two Rhythm Pharmaceuticals pages that repeatedly returned HTTP 403 to the production checker. The public evidence links remain the original bivamelagon and RM-718 sponsor announcements. Their automatic `checkUrl` routes now use the corresponding official Rhythm-hosted PDF versions after both complete PDFs were retrieved, read and exact-byte fingerprinted.

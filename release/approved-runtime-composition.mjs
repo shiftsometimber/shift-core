@@ -1730,6 +1730,42 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// One complete unchanged Ascletis source rereview advances only the configured
+// source date. Programme wording and its separate summary date stay fixed.
+export const WATCH_ASC36_SOURCE_RENEWAL_BASE='920ba3d1e8f25f2c599a90b7307e7c3629589710';
+export const WATCH_ASC36_SOURCE_RENEWAL_SOURCE='5ce2f8284b6d44fa590f96d83514fcfa2fa93acf';
+export const WATCH_ASC36_SOURCE_RENEWAL_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/asc36-source-renewal.test.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/industry.test.mjs',
+ 'medicines-watch/reviews/2026-10-12-authorised-asc36-source-renewal.json'
+]);
+export const WATCH_ASC36_SOURCE_RENEWAL_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-asc36-source-renewal-composition.test.mjs'
+]);
+const WATCH_ASC36_SOURCE_RENEWAL_SET=new Set([...WATCH_ASC36_SOURCE_RENEWAL_PATHS,...WATCH_ASC36_SOURCE_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_ASC36_SOURCE_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchAsc36SourceRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_ASC36_SOURCE_RENEWAL_20261012');
+ assert.equal(c.base,WATCH_ASC36_SOURCE_RENEWAL_BASE);assert.equal(c.source,WATCH_ASC36_SOURCE_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_ASC36_SOURCE_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ASC36_SOURCE_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_source_renewal');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.reviewedAt,'2026-10-12T11:55:30Z');
+ assert.equal(c.sourceReviewsApplied,1);assert.equal(c.programmeReviewsApplied,0);assert.equal(c.sourceId,'ascletis-asc36-oral-phase1-20260908');assert.equal(c.reviewedFingerprint,'bb52bfb18d82adf8113eee808450543f5927d46dc5fda65e90d203c9564a4f39');
+ assert.equal(c.priorCompletedReviews,40);assert.equal(c.completedReviewsAfter,41);assert.equal(c.programmesAfter,119);assert.equal(c.configuredSources,204);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.configuredSourceReviewQueue,0);assert.equal(c.programmeSummaryFactualReviewNeeded,70);
+ assert.equal(c.successesSeeded,false);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.monitoringFinished,false);
+ for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','configuredSourceCountChanged','monitorLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated ASC36 source-renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated ASC36 source-renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after ASC36 source-renewal receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchAsc36SourceRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by ASC36 source-renewal registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift / Approved backlog source drift: medicines-watch/ASC36 source-renewal payload: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift: medicines-watch/ASC36 source-renewal maintenance: '+path);
+ return c;
+}
+
 // Two denied Rhythm HTML checks move to their complete official PDF versions.
 // Public links and medical wording stay fixed; content, maintenance and receipt
 // remain three commits.
@@ -2131,10 +2167,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchAsc36SourceRenewal=c.watchAsc36SourceRenewal;
+ if(watchAsc36SourceRenewal)verifyWatchAsc36SourceRenewal(watchAsc36SourceRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAsc36SourceRenewalHead=watchAsc36SourceRenewal?watchAsc36SourceRenewal.base:actualHead;
+ const asc36SourceRenewalRawBlob=(ref,path)=>outerRawBlob(watchAsc36SourceRenewal&&ref==='HEAD'&&WATCH_ASC36_SOURCE_RENEWAL_SET.has(path)?watchAsc36SourceRenewal.base:ref,path);
  const watchRhythmPdfAlternatives=c.watchRhythmPdfAlternatives;
- if(watchRhythmPdfAlternatives)verifyWatchRhythmPdfAlternatives(watchRhythmPdfAlternatives,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRhythmPdfAlternativesHead=watchRhythmPdfAlternatives?watchRhythmPdfAlternatives.base:actualHead;
- const rhythmPdfAlternativesRawBlob=(ref,path)=>outerRawBlob(watchRhythmPdfAlternatives&&ref==='HEAD'&&WATCH_RHYTHM_PDF_ALTERNATIVES_SET.has(path)?watchRhythmPdfAlternatives.base:ref,path);
+ if(watchRhythmPdfAlternatives)verifyWatchRhythmPdfAlternatives(watchRhythmPdfAlternatives,{head:preAsc36SourceRenewalHead,read:asc36SourceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRhythmPdfAlternativesHead=watchRhythmPdfAlternatives?watchRhythmPdfAlternatives.base:preAsc36SourceRenewalHead;
+ const rhythmPdfAlternativesRawBlob=(ref,path)=>asc36SourceRenewalRawBlob(watchRhythmPdfAlternatives&&ref==='HEAD'&&WATCH_RHYTHM_PDF_ALTERNATIVES_SET.has(path)?watchRhythmPdfAlternatives.base:ref,path);
  const watchGzcAsc30Maritide=c.watchGzcAsc30Maritide;
  if(watchGzcAsc30Maritide)verifyWatchGzcAsc30Maritide(watchGzcAsc30Maritide,{head:preRhythmPdfAlternativesHead,read:rhythmPdfAlternativesRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preGzcAsc30MaritideHead=watchGzcAsc30Maritide?watchGzcAsc30Maritide.base:preRhythmPdfAlternativesHead;
