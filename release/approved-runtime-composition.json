@@ -3270,5 +3270,41 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "supportRecovery": {
+    "proof": "EXACT_SUPPORT_RECOVERY_20261011",
+    "base": "4df439d8fb03f29f030e25c413e40f0fac57c042",
+    "source": "fb8f56205c00e24f1f54194dea9a99a5d0c0a884",
+    "paths": [
+      "docs/content-review/contact-human-handoff-20261011.md",
+      "docs/content-review/support-recovery-20261011.json",
+      "docs/content-review/support-recovery-browser-proof-20261011.json",
+      "frontend/member/turnstile-auth-v1.js",
+      "shift-coach/public-trust-repair.mjs",
+      "shift-coach/support-content-20261010.mjs",
+      "tests/support-recovery-20261011.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/support-recovery-composition.test.mjs"
+    ],
+    "maintenanceSource": "b2552308cd4d83e37ae77381add3c4b43e7f63e1",
+    "integrationIssue": 1065,
+    "publicationStatus": "staged_owner_release_lane",
+    "homepageChanged": false,
+    "primaryNavigationChanged": false,
+    "campaignChanged": false,
+    "organicGrowthChanged": false,
+    "watchChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "mailRoutingChanged": false,
+    "turnstileWeakened": false,
+    "clinicalGatesChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
