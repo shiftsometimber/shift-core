@@ -28,13 +28,14 @@ test('Alnylam RNAi discovery adds two distinct bounded programmes',()=>{
 
 test('Alnylam evidence remains manual and preserves established queues and uncertainty',()=>{
  const entriesAtReview=[...medicines,...industry].filter(entry=>entry.id!=='ly4329090').map(entry=>({...entry,additionalEvidence:(entry.additionalEvidence||[]).filter(link=>Date.parse(link.reviewedAt)<=Date.parse(receipt.reviewedAt))}));
- const sourcesAtReview=sources.filter(source=>source.id!=='registry-nct07808073');
+ const sourcesAtReview=sources.filter(source=>!['registry-nct07808073','registry-nct07866066'].includes(source.id));
  assert.equal(entriesAtReview.length,118);assert.equal(sourcesAtReview.length,202);
  assert.equal(manualEvidence(entriesAtReview,[...sourcesAtReview,...industrySources]).length,101);
  const futureRenewalDates=new Map([
   ['zynergy-petrelintide-enicepatide','2026-10-04T21:37:32Z'],['mazdutide','2026-10-04T21:37:32Z'],['aleniglipron','2026-10-04T21:37:32Z'],
   ['nnc06620419','2026-10-04T23:40:55Z'],['nnc07218060','2026-10-04T23:40:55Z'],['olatorepatide','2026-10-05T00:36:00Z'],
-  ['ribupatide-oral','2026-10-05T02:34:35Z'],['kai4729','2026-10-05T02:34:35Z']
+  ['ribupatide-oral','2026-10-05T02:34:35Z'],['kai4729','2026-10-05T02:34:35Z'],
+  ['gzc8072','2026-10-05T03:47:54Z'],['asc30-oral','2026-10-05T04:34:32Z'],['maritide','2026-10-06T23:40:00Z']
  ]);
  const catalogueAtReview=[...medicines,...industry]
   .filter(entry=>!['taldefgrobep-alfa','rv8451','ly4329090'].includes(entry.id))

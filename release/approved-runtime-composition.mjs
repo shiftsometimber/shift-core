@@ -1730,6 +1730,53 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// Five complete unchanged source renewals plus one bounded MariTide registry
+// addition. Content, maintenance and receipt remain three commits.
+export const WATCH_GZC_ASC30_MARITIDE_BASE='678393727a1bbe508822d6ba38b420c66571e247';
+export const WATCH_GZC_ASC30_MARITIDE_SOURCE='07a8e8166c4293373355d52be6dd2a8dca083e51';
+export const WATCH_GZC_ASC30_MARITIDE_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/alnylam-rnai-discovery.test.mjs',
+ 'medicines-watch/azelaprag-renewal.test.mjs',
+ 'medicines-watch/backlog-review.test.mjs',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/credibility.test.mjs',
+ 'medicines-watch/evidence-desk.test.mjs',
+ 'medicines-watch/gzc8072-asc30-maritide.test.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/industry.test.mjs',
+ 'medicines-watch/ly4329090-discovery.test.mjs',
+ 'medicines-watch/novo-hansoh-renewal.test.mjs',
+ 'medicines-watch/reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json',
+ 'medicines-watch/rgt-vct-source-renewal.test.mjs'
+]);
+export const WATCH_GZC_ASC30_MARITIDE_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-gzc-asc30-maritide-composition.test.mjs'
+]);
+const WATCH_GZC_ASC30_MARITIDE_SET=new Set([...WATCH_GZC_ASC30_MARITIDE_PATHS,...WATCH_GZC_ASC30_MARITIDE_MAINTENANCE]);
+for(const path of WATCH_GZC_ASC30_MARITIDE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchGzcAsc30Maritide(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_GZC_ASC30_MARITIDE_20261012');
+ assert.equal(c.base,WATCH_GZC_ASC30_MARITIDE_BASE);assert.equal(c.source,WATCH_GZC_ASC30_MARITIDE_SOURCE);
+ assert.deepEqual(c.paths,WATCH_GZC_ASC30_MARITIDE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_GZC_ASC30_MARITIDE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.reviewedAt,'2026-10-12T05:02:00Z');
+ assert.equal(c.sourceReviewsApplied,6);assert.equal(c.programmeReviewsApplied,3);
+ assert.deepEqual(c.sourceIds,['ganlee-gzc8072-20260907','registry-nct07784699','ascletis-asc30-aurora-first-dose-20260830','registry-nct07743463','registry-nct07743450','registry-nct07866066']);
+ assert.deepEqual(c.reviewedFingerprints,['1ed471c800e14e097582461b9dfe58f79cbc64579edb69597ba0601db45c6a73','eb71180cf8a8d8066ef1cf769e1218856ec76be8046b9b2eae6715aa03e1b0a1','3a6d993aa33d6ce54cf0862534214ca8e54c88791723666c2582fccbf0046617','d1eb3187dbcc3ce406ea09e1b99305327237e85020f5b9490268779048a2ac99','acea4e5a0322dfda5ff5ab12d08d2e207071811da2543fa116c148c906f997c4','3366f89ab798b87ac4c6392bd2f594a98efba557fe237c39f6a6e5b58d871271']);
+ assert.equal(c.priorCompletedReviews,38);assert.equal(c.completedReviewsAfter,39);assert.equal(c.programmesAfter,119);assert.equal(c.configuredSources,204);assert.equal(c.manualEvidenceAfter,102);assert.equal(c.configuredSourceReviewQueue,0);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
+ assert.equal(c.newConfiguredSourceAdded,true);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.monitoringFinished,false);
+ for(const flag of ['resultsClaimedFromRegistry','comparativeResultClaimed','monitorLogicChanged','healthResponseChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated GZC8072/ASC30/MariTide payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated GZC8072/ASC30/MariTide maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after GZC8072/ASC30/MariTide receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchGzcAsc30Maritide;assert.deepEqual(current,prior,'Prior release receipts changed by GZC8072/ASC30/MariTide registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift / Approved backlog source drift: medicines-watch/GZC8072 ASC30 MariTide payload: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift: medicines-watch/GZC8072 ASC30 MariTide maintenance: '+path);
+ return c;
+}
+
 // Complete ribupatide source renewal plus one independently discovered Lilly
 // registry programme. Content, maintenance and receipt remain three commits.
 export const WATCH_RIBUPATIDE_LY4329090_BASE='4ebbfda8c34109e037a1e0ef3aef7e4835e30b70';
@@ -2045,10 +2092,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchGzcAsc30Maritide=c.watchGzcAsc30Maritide;
+ if(watchGzcAsc30Maritide)verifyWatchGzcAsc30Maritide(watchGzcAsc30Maritide,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preGzcAsc30MaritideHead=watchGzcAsc30Maritide?watchGzcAsc30Maritide.base:actualHead;
+ const gzcAsc30MaritideRawBlob=(ref,path)=>outerRawBlob(watchGzcAsc30Maritide&&ref==='HEAD'&&WATCH_GZC_ASC30_MARITIDE_SET.has(path)?watchGzcAsc30Maritide.base:ref,path);
  const watchRibupatideLy4329090=c.watchRibupatideLy4329090;
- if(watchRibupatideLy4329090)verifyWatchRibupatideLy4329090(watchRibupatideLy4329090,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preRibupatideLy4329090Head=watchRibupatideLy4329090?watchRibupatideLy4329090.base:actualHead;
- const ribupatideLy4329090RawBlob=(ref,path)=>outerRawBlob(watchRibupatideLy4329090&&ref==='HEAD'&&WATCH_RIBUPATIDE_LY4329090_SET.has(path)?watchRibupatideLy4329090.base:ref,path);
+ if(watchRibupatideLy4329090)verifyWatchRibupatideLy4329090(watchRibupatideLy4329090,{head:preGzcAsc30MaritideHead,read:gzcAsc30MaritideRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRibupatideLy4329090Head=watchRibupatideLy4329090?watchRibupatideLy4329090.base:preGzcAsc30MaritideHead;
+ const ribupatideLy4329090RawBlob=(ref,path)=>gzcAsc30MaritideRawBlob(watchRibupatideLy4329090&&ref==='HEAD'&&WATCH_RIBUPATIDE_LY4329090_SET.has(path)?watchRibupatideLy4329090.base:ref,path);
  const watchNovoHansohRenewal=c.watchNovoHansohRenewal;
  if(watchNovoHansohRenewal)verifyWatchNovoHansohRenewal(watchNovoHansohRenewal,{head:preRibupatideLy4329090Head,read:ribupatideLy4329090RawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preNovoHansohRenewalHead=watchNovoHansohRenewal?watchNovoHansohRenewal.base:preRibupatideLy4329090Head;

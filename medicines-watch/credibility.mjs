@@ -1,4 +1,5 @@
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
+import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
 import ly4329090Discovery from './reviews/2026-10-12-authorised-ly4329090-discovery.json' with {type:'json'};
 import ribupatideSpecialistRenewal from './reviews/2026-10-12-authorised-ribupatide-specialist-renewal.json' with {type:'json'};
 import novoHansohRenewal from './reviews/2026-10-12-authorised-novo-hansoh-renewal.json' with {type:'json'};
@@ -70,7 +71,10 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
  }).map(s=>{
   const renewal=ribupatideSpecialistRenewal.registrySources.find(r=>r.id===s.id);
   return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
- }).concat(ly4329090Discovery.registrySources);
+ }).map(s=>{
+  const renewal=gzcAsc30Maritide.sourceReviews.find(r=>r.id===s.id);
+  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+ }).concat(ly4329090Discovery.registrySources,gzcAsc30Maritide.registrySources);
 export const supportSources=receipt.supportSources.map(s=>{
  const renewal=overdueRegistryAccessRenewal.supportSources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
@@ -108,6 +112,7 @@ export function industryReviewFlag(entry,health,now=Date.now()) {
   return '';
 }
 export const changes=[
+ {date:'2026-10-12',kind:'Due sources renewed and MariTide comparison research added',text:'Rereviewed five unchanged GZC8072 and ASC30/AURORA sources after they became due, without changing their programme wording or lifecycle claims. Added the newly posted MARITIME-T2D-3 record to the existing MariTide programme: it remains not yet recruiting, its dates and enrolment are estimates, and its comparator design is not a comparative result, approved regimen, UK authorisation, NHS access, supply or clinical approval. The catalogue remains 119 programmes while configured sources rise to 204.',anchor:'industry-maritide'},
  {date:'2026-10-11',kind:'Alnylam RNAi obesity programmes added',text:'Added ALN-2232 and ALN-6222 as separate early clinical obesity programmes after review of Alnylam\'s current pipeline, sponsor trial pages and dated investor releases. ALN-2232 has an enrolling Phase 1/2 study with a separate tirzepatide co-initiation part; ALN-6222 has an enrolling first-in-human Phase 1 study. Recruitment and planned endpoints are not results, and no approved combination, UK authorisation, NICE/NHS access, supply or clinical approval is inferred. The catalogue now contains 118 programmes; configured sources remain 202.',anchor:'industry-aln2232'},
  {date:'2026-10-10',kind:'Oral VK2735 Phase 3 and zenagamtide switching records added',text:'Added two newly posted oral VK2735 Phase 3 SUNRISE records and a separate Phase 1 tirzepatide-to-zenagamtide switch-tolerability record. All three remain not yet recruiting with no posted results; their starts, enrolment and completion remain estimates. Trial registration does not establish actual dosing, comparative benefit, an approved switching or oral regimen, UK authorisation, NICE/NHS access, supply or clinical approval. The catalogue remains 116 programmes while configured sources rise to 202.',anchor:'industry-vk2735'},
  {date:'2026-10-10',kind:'Oral amylin and fixed-dose portfolio gap corrected',text:'Added four separate preclinical Ascletis oral small-molecule programmes: ASC39, ASC30_39 FDC, ASC30_48 FDC and ASC30_48_39 FDC. The reviewed sponsor evidence reports only non-human findings and planned US IND filings; no accessible official source reviewed on 10 October confirmed the planned third-quarter filings, first dosing or a human trial. No human efficacy or safety, UK authorisation, NICE/NHS access, supply or clinical approval is inferred. The catalogue now contains 116 programmes.',anchor:'industry-asc39-oral'},

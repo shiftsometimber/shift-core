@@ -44,7 +44,7 @@ test('source renewal does not silently renew the separate programme-summary queu
 });
 
 test('renewal preserves ZP6590 pending-delayed uncertainty and all source counts',()=>{
- assert.equal(sources.length,203);
+ assert.equal(sources.length,204);
  const zp=sources.find(source=>source.id==='zealand-zp6590-pipeline');
  assert.ok(zp);
  assert.notEqual(zp.reviewedAt,renewal.reviewedAt);

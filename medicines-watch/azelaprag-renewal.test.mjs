@@ -39,7 +39,7 @@ test('azelaprag renewal requires actual unchanged primary-source review',()=>{
 
 test('azelaprag renewal clears only its due work and preserves separate queues',()=>{
  const time=Date.parse(receipt.reviewedAt);
- const sourcesAtReview=allSources.filter(source=>source.id!=='registry-nct07808073');
+ const sourcesAtReview=allSources.filter(source=>!['registry-nct07808073','registry-nct07866066'].includes(source.id));
  const health={sources:reviewedSources.map(review=>{
   const source=allSources.find(candidate=>candidate.id===review.id);
   return {...projectSourceHealth(source,observation(source,time),time),id:source.id};
@@ -54,7 +54,8 @@ test('azelaprag renewal clears only its due work and preserves separate queues',
  const priorDates=new Map([
   ['zynergy-petrelintide-enicepatide','2026-10-04T21:37:32Z'],['mazdutide','2026-10-04T21:37:32Z'],['aleniglipron','2026-10-04T21:37:32Z'],
   ['nnc06620419','2026-10-04T23:40:55Z'],['nnc07218060','2026-10-04T23:40:55Z'],['olatorepatide','2026-10-05T00:36:00Z'],
-  ['ribupatide-oral','2026-10-05T02:34:35Z'],['kai4729','2026-10-05T02:34:35Z']
+  ['ribupatide-oral','2026-10-05T02:34:35Z'],['kai4729','2026-10-05T02:34:35Z'],
+  ['gzc8072','2026-10-05T03:47:54Z'],['asc30-oral','2026-10-05T04:34:32Z'],['maritide','2026-10-06T23:40:00Z']
  ]);
  const catalogueAtReview=[...medicines,...industry]
   .filter(entry=>!['aln2232','aln6222','taldefgrobep-alfa','rv8451','ly4329090'].includes(entry.id))
