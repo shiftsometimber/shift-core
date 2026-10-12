@@ -1,0 +1,137 @@
+{
+  "capturedAt": "2026-10-12T21:08:33.066Z",
+  "source": "Original GitHub attempt/job/log records; active deployment and version are modelled fixture inputs. Active.created_on is a synthetic within-window time, not a provider timestamp.",
+  "active": {
+    "id": "4a9c25dc-4208-43f1-9e72-12ee11eba7ac",
+    "source": "wrangler",
+    "created_on": "2026-10-12T19:14:58Z",
+    "annotations": {
+      "workers/message": "Owned release failed post-deployment checks; restore captured runtime and preserve current data",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "534545ec-7445-49bf-9333-47b08b7ad631",
+        "percentage": 100
+      }
+    ]
+  },
+  "version": {
+    "id": "534545ec-7445-49bf-9333-47b08b7ad631",
+    "metadata": {
+      "created_on": "2026-10-12T13:48:41.560182Z",
+      "source": "wrangler"
+    },
+    "annotations": {
+      "workers/triggered_by": "version_upload"
+    }
+  },
+  "failed": {
+    "id": 38291781709,
+    "head_sha": "7da4c5406a59bcd929240bd72cb5c7a7b96c8b60",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "event": "push",
+    "head_branch": "main",
+    "path": ".github/workflows/cloudflare-production-promote.yml"
+  },
+  "failedJob": {
+    "id": 114953466887,
+    "run_id": 38291781709,
+    "head_sha": "7da4c5406a59bcd929240bd72cb5c7a7b96c8b60",
+    "run_attempt": 1,
+    "name": "promote",
+    "status": "completed",
+    "conclusion": "failure",
+    "steps": [
+      {
+        "name": "Deploy current main to production",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 63,
+        "started_at": "2026-10-12T19:07:42Z",
+        "completed_at": "2026-10-12T19:09:46Z"
+      },
+      {
+        "name": "Prove existing public content and login asset are preserved outside exact approved additions",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 88,
+        "started_at": "2026-10-12T19:14:49Z",
+        "completed_at": "2026-10-12T19:14:53Z"
+      },
+      {
+        "name": "Restore the captured runtime if a post-deployment gate failed",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 114,
+        "started_at": "2026-10-12T19:14:54Z",
+        "completed_at": "2026-10-12T19:14:59Z"
+      },
+      {
+        "name": "Verify nine public tool pages after owned rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 115,
+        "started_at": "2026-10-12T19:14:59Z",
+        "completed_at": "2026-10-12T19:15:03Z"
+      }
+    ]
+  },
+  "failedLogs": "2026-10-12T19:09:45.4074020Z {\"kind\":\"owned_runtime_deployment\",\"at\":\"2026-10-12T19:09:45.406Z\",\"source\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\",\"run\":\"38291781709\",\"deploymentId\":\"5cdcd96c-e280-4282-bbee-150e8f765353\",\"versionId\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\",\"previousDeploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"previousVersionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"dataRestored\":false}\n2026-10-12T19:14:58.5919139Z Current Version ID: 534545ec-7445-49bf-9333-47b08b7ad631\n2026-10-12T19:15:05.2500616Z {\"kind\":\"guarded_release_verification\",\"source\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\",\"run\":\"38291781709\",\"workflowStatus\":\"failure\",\"releaseVerified\":false,\"status\":\"failed\",\"deployedVersion\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\",\"deployChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"deploy\",\"source\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\",\"run\":\"38291781709\",\"checkedAt\":\"2026-10-12T19:09:56.392Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"5cdcd96c-e280-4282-bbee-150e8f765353\",\"versionId\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\",\"percentage\":100},\"expected\":{\"deploymentId\":\"5cdcd96c-e280-4282-bbee-150e8f765353\",\"versionId\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\"},\"afterChecks\":{\"deploymentId\":\"5cdcd96c-e280-4282-bbee-150e8f765353\",\"versionId\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\",\"percentage\":100},\"finishedAt\":\"2026-10-12T19:09:59.459Z\"},\"rollbackChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"rollback\",\"source\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\",\"run\":\"38291781709\",\"checkedAt\":\"2026-10-12T19:14:59.766Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"4a9c25dc-4208-43f1-9e72-12ee11eba7ac\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100},\"expected\":{\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100,\"checkSource\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\"},\"deploymentSource\":\"captured prior runtime; see deployment-before.json\",\"afterChecks\":{\"deploymentId\":\"4a9c25dc-4208-43f1-9e72-12ee11eba7ac\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100},\"finishedAt\":\"2026-10-12T19:15:03.587Z\"},\"note\":\"Rollback checks do not turn the failed release into a verified release.\"}\n2026-10-12T19:15:06.4866075Z {\"kind\":\"guarded_release_verification\",\"source\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\",\"run\":\"38291781709\",\"workflowStatus\":\"failure\",\"releaseVerified\":false,\"status\":\"failed\",\"deployedVersion\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\",\"deployChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"deploy\",\"source\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\",\"run\":\"38291781709\",\"checkedAt\":\"2026-10-12T19:09:56.392Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"5cdcd96c-e280-4282-bbee-150e8f765353\",\"versionId\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\",\"percentage\":100},\"expected\":{\"deploymentId\":\"5cdcd96c-e280-4282-bbee-150e8f765353\",\"versionId\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\"},\"afterChecks\":{\"deploymentId\":\"5cdcd96c-e280-4282-bbee-150e8f765353\",\"versionId\":\"dc0dd65f-6df9-46d1-a6b0-02bbd2232cac\",\"percentage\":100},\"finishedAt\":\"2026-10-12T19:09:59.459Z\"},\"rollbackChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"rollback\",\"source\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\",\"run\":\"38291781709\",\"checkedAt\":\"2026-10-12T19:14:59.766Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"4a9c25dc-4208-43f1-9e72-12ee11eba7ac\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100},\"expected\":{\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100,\"checkSource\":\"7da4c5406a59bcd929240bd72cb5c7a7b96c8b60\"},\"deploymentSource\":\"captured prior runtime; see deployment-before.json\",\"afterChecks\":{\"deploymentId\":\"4a9c25dc-4208-43f1-9e72-12ee11eba7ac\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100},\"finishedAt\":\"2026-10-12T19:15:03.587Z\"},\"note\":\"Rollback checks do not turn the failed release into a verified release.\"}",
+  "verified": {
+    "id": 38248635395,
+    "head_sha": "6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19",
+    "run_attempt": 5,
+    "status": "completed",
+    "conclusion": "success",
+    "event": "push",
+    "head_branch": "main",
+    "path": ".github/workflows/cloudflare-production-promote.yml"
+  },
+  "verifiedJob": {
+    "id": 114828666204,
+    "run_id": 38248635395,
+    "head_sha": "6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19",
+    "run_attempt": 5,
+    "name": "promote",
+    "status": "completed",
+    "conclusion": "success",
+    "steps": [
+      {
+        "name": "Deploy current main to production",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 63,
+        "started_at": "2026-10-12T13:46:53Z",
+        "completed_at": "2026-10-12T13:48:50Z"
+      },
+      {
+        "name": "Prove existing public content and login asset are preserved outside exact approved additions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 88,
+        "started_at": "2026-10-12T13:53:57Z",
+        "completed_at": "2026-10-12T13:54:01Z"
+      },
+      {
+        "name": "Restore the captured runtime if a post-deployment gate failed",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 114,
+        "started_at": "2026-10-12T14:00:28Z",
+        "completed_at": "2026-10-12T14:00:28Z"
+      },
+      {
+        "name": "Verify nine public tool pages after owned rollback",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 115,
+        "started_at": "2026-10-12T14:00:28Z",
+        "completed_at": "2026-10-12T14:00:28Z"
+      }
+    ]
+  },
+  "verifiedLogs": "2026-10-12T13:48:49.5484104Z {\"kind\":\"owned_runtime_deployment\",\"at\":\"2026-10-12T13:48:49.547Z\",\"source\":\"6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19\",\"run\":\"38248635395\",\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"previousDeploymentId\":\"2b196375-923b-48dd-b8f2-00b2bf67d62c\",\"previousVersionId\":\"d94d29bd-b25b-4777-bc88-ad5eb260fa9d\",\"dataRestored\":false}\n2026-10-12T14:00:30.2630117Z {\"kind\":\"guarded_release_verification\",\"source\":\"6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19\",\"run\":\"38248635395\",\"workflowStatus\":\"success\",\"releaseVerified\":true,\"status\":\"verified\",\"deployedVersion\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"deployChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"deploy\",\"source\":\"6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19\",\"run\":\"38248635395\",\"checkedAt\":\"2026-10-12T13:49:00.921Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100},\"expected\":{\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\"},\"afterChecks\":{\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100},\"finishedAt\":\"2026-10-12T13:49:04.813Z\"},\"rollbackChecks\":null,\"note\":\"Verification also requires every existing workflow gate to succeed.\"}\n2026-10-12T14:00:31.3916331Z {\"kind\":\"guarded_release_verification\",\"source\":\"6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19\",\"run\":\"38248635395\",\"workflowStatus\":\"success\",\"releaseVerified\":true,\"status\":\"verified\",\"deployedVersion\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"deployChecks\":{\"kind\":\"public_tool_release_check\",\"stage\":\"deploy\",\"source\":\"6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19\",\"run\":\"38248635395\",\"checkedAt\":\"2026-10-12T13:49:00.921Z\",\"scope\":\"Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.\",\"status\":\"passed\",\"toolChecksVerified\":true,\"checks\":[{\"path\":\"/decision-centre\",\"status\":200,\"htmlSha256\":\"4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a\",\"jsonBlocks\":3,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/alcohol\",\"status\":200,\"htmlSha256\":\"7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/bmi\",\"status\":200,\"htmlSha256\":\"a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/calories\",\"status\":200,\"htmlSha256\":\"c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/healthy-weight\",\"status\":200,\"htmlSha256\":\"b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/protein\",\"status\":200,\"htmlSha256\":\"1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/waist-height\",\"status\":200,\"htmlSha256\":\"63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/walking\",\"status\":200,\"htmlSha256\":\"180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce\",\"jsonBlocks\":5,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true},{\"path\":\"/tools/water\",\"status\":200,\"htmlSha256\":\"61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1\",\"jsonBlocks\":4,\"applicationItems\":0,\"canonicalWebPageItems\":1,\"passed\":true}],\"errors\":[],\"deployed\":{\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100},\"expected\":{\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\"},\"afterChecks\":{\"deploymentId\":\"4254eee7-cae4-41bd-a0b6-19844758c332\",\"versionId\":\"534545ec-7445-49bf-9333-47b08b7ad631\",\"percentage\":100},\"finishedAt\":\"2026-10-12T13:49:04.813Z\"},\"rollbackChecks\":null,\"note\":\"Verification also requires every existing workflow gate to succeed.\"}"
+}
