@@ -18,3 +18,11 @@ test('Help preservation admits only the exact reviewed recovery and still finger
  const outside=Buffer.from(current.toString().replace('Existing urgent routes','Changed urgent routes'));assert(!preserveSupportRecovery('/help',outside).equals(old));
  assert.equal(preserveSupportRecovery('/other',current),current);
 });
+
+import {SUPPORT_TURNSTILE_PRIOR,SUPPORT_TURNSTILE_CURRENT} from '../release/support-recovery-preservation.mjs';
+test('security-client preservation accepts only both immutable registered versions and requires the released recovery',()=>{
+ const path='/turnstile-auth-v1.js?v=timeout-20260912',prior=Buffer.from(SUPPORT_TURNSTILE_PRIOR),current=Buffer.from(SUPPORT_TURNSTILE_CURRENT);
+ assert.equal(current.toString(),source);assert(preserveSupportRecovery(path,prior).equals(prior));assert(preserveSupportRecovery(path,current,{required:true}).equals(prior));
+ assert.throws(()=>preserveSupportRecovery(path,prior,{required:true}),/missing/);
+ for(const body of [current.toString()+' ',prior.toString()+' ',current.toString().replace('45000','45001'),current.toString().replace('Your message has not been sent.','Your message was sent.')])assert.throws(()=>preserveSupportRecovery(path,Buffer.from(body)),/source drift/);
+});
