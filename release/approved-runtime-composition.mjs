@@ -2250,6 +2250,34 @@ export function verifySupportBudgetTestRepair(c,{head,read,diff,ancestor,content
  return c;
 }
 
+
+// Retain only the exact owned rollback deployment now serving the already
+// successful Watch runtime. This is evidence registration, not generic runtime
+// adoption: no Worker bytes, customer data, public copy or release authority
+// may change, and the failed contact source is never treated as successful.
+export const RUNTIME_BASELINE_ROLLBACK_BASE='c7bf1d69ffcb5629955edfdd75b83a1a87c7587b';
+export const RUNTIME_BASELINE_ROLLBACK_SOURCE='8782ee73e16f941bacded468b6a8453974a9e38a';
+export const RUNTIME_BASELINE_ROLLBACK_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs']);
+export const RUNTIME_BASELINE_ROLLBACK_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/runtime-baseline-rollback-retention-composition.test.mjs']);
+const RUNTIME_BASELINE_ROLLBACK_SET=new Set([...RUNTIME_BASELINE_ROLLBACK_PATHS,...RUNTIME_BASELINE_ROLLBACK_MAINTENANCE,RECONCILIATION_MANIFEST]);
+for(const path of RUNTIME_BASELINE_ROLLBACK_SET)RECONCILIATION_PATHS.add(path);
+export function verifyRuntimeBaselineRollbackRetention(c,{head,read,diff,ancestor,content=(ref,path)=>publicToolImmutableGit('show',ref+':'+path)}){
+ assert.equal(c?.proof,'EXACT_CURRENT_BASELINE_ROLLBACK_RETENTION_20261012');assert.equal(c.base,RUNTIME_BASELINE_ROLLBACK_BASE);assert.equal(c.source,RUNTIME_BASELINE_ROLLBACK_SOURCE);
+ assert.deepEqual(c.paths,RUNTIME_BASELINE_ROLLBACK_PATHS);assert.deepEqual(c.maintenancePaths,RUNTIME_BASELINE_ROLLBACK_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.failedPromotionRun,38306227092);assert.equal(c.failedPromotionJob,115003854540);assert.equal(c.failedStep,10);
+ assert.equal(c.originalSuccessfulRun,38248635395);assert.equal(c.originalSuccessfulJob,114828666204);assert.equal(c.failedContactRun,38291781709);assert.equal(c.failedContactJob,114953466887);
+ assert.equal(c.activeDeployment,'4a9c25dc-4208-43f1-9e72-12ee11eba7ac');assert.equal(c.activeVersion,'534545ec-7445-49bf-9333-47b08b7ad631');assert.equal(c.failedContactDeployment,'5cdcd96c-e280-4282-bbee-150e8f765353');assert.equal(c.failedContactVersion,'dc0dd65f-6df9-46d1-a6b0-02bbd2232cac');
+ for(const flag of ['runtimeChanged','customerDataChanged','publicCopyChanged','failedReleasePromoted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated current-baseline rollback evidence payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated current-baseline rollback evidence maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after current-baseline rollback evidence receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.runtimeBaselineRollbackRetention;assert.deepEqual(current,prior,'Prior release receipts changed by current-baseline rollback evidence registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Current-baseline rollback evidence source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Current-baseline rollback evidence maintenance drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -2263,9 +2291,13 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const currentRawHead=git('rev-parse','HEAD'),myTimberJourney=c.myTimberProgressJourney;
- if(myTimberJourney)verifyMyTimberProgressJourney(myTimberJourney,{head:currentRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const actualHead=myTimberJourney?myTimberJourney.base:currentRawHead;
+ const currentRawHead=git('rev-parse','HEAD'),runtimeBaselineRollbackRetention=c.runtimeBaselineRollbackRetention;
+ if(runtimeBaselineRollbackRetention)verifyRuntimeBaselineRollbackRetention(runtimeBaselineRollbackRetention,{head:currentRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRuntimeBaselineRollbackHead=runtimeBaselineRollbackRetention?runtimeBaselineRollbackRetention.base:currentRawHead;
+ const runtimeBaselineRollbackRawBlob=(ref,path)=>read(runtimeBaselineRollbackRetention&&ref==='HEAD'&&RUNTIME_BASELINE_ROLLBACK_SET.has(path)?runtimeBaselineRollbackRetention.base:ref,path);
+ const myTimberJourney=c.myTimberProgressJourney;
+ if(myTimberJourney)verifyMyTimberProgressJourney(myTimberJourney,{head:preRuntimeBaselineRollbackHead,read:runtimeBaselineRollbackRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const actualHead=myTimberJourney?myTimberJourney.base:preRuntimeBaselineRollbackHead;
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
  const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
@@ -2273,7 +2305,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
- }:myTimberJourney?(ref,path)=>read(ref==='HEAD'&&[...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?myTimberJourney.base:ref,path):read;
+ }:myTimberJourney?(ref,path)=>runtimeBaselineRollbackRawBlob(ref==='HEAD'&&[...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?myTimberJourney.base:ref,path):runtimeBaselineRollbackRawBlob;
  const supportBudgetTestRepair=c.supportRecoveryIntegrationBudgetTestRepair;
  if(supportBudgetTestRepair)verifySupportBudgetTestRepair(supportBudgetTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preSupportBudgetTestRepairHead=supportBudgetTestRepair?supportBudgetTestRepair.base:actualHead;
