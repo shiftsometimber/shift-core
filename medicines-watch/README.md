@@ -1,5 +1,11 @@
 # Treatments: Medicines & Peptides Watch
 
+## 12 October Novo registry and Hansoh olatorepatide renewal
+
+`reviews/2026-10-12-authorised-novo-hansoh-renewal.json` records a complete review of eight configured sources that crossed the seven-day boundary. Seven ClinicalTrials.gov lifecycle fingerprints remain unchanged: five NNC0662-0419 records, the NNC0721-8060 first-in-human record and the survodutide type 2 diabetes record. The NNC0662-0419 and NNC0721-8060 programme summaries were reread in full; the survodutide source date advances without renewing its wider multi-source summary. Hansoh's 4 June olatorepatide article is unchanged, but its old selector had begun hashing an unrelated rotating news sidebar, so the reviewed baseline now targets only the article body.
+
+A separate 2 October Hansoh announcement adds sponsor-reported LIGHTEN Phase III findings to the existing olatorepatide programme, clearly labelled as Chinese conference evidence rather than registry results, a full paper, UK authorisation, NICE/NHS access, supply or clinical approval. The prior 35 completed receipts, 118 programmes and 202 configured sources are preserved; this bounded review is the 36th receipt, adds one manually followed evidence URL, and reduces the queues at review time from 8 to 0 configured sources and from 71 to 68 programme summaries. Fresh HTTP 403s for two Rhythm sponsor pages remain delayed, and ZP6590 remains `verification_pending` plus `check_delayed`. Authoritative alternate-source work and programme-summary review remain ongoing; monitoring is not finished.
+
 ## 11 October international maintenance registry and summary renewal
 
 `reviews/2026-10-11-authorised-international-maintenance-renewal.json` records a complete rereview of NCT07589686, NCT07517042 and NCT07654374 after their configured-source and associated programme-summary review windows expired. All three normalized lifecycle fingerprints remain unchanged. ZYNERGY remains not yet recruiting despite its passed estimated start; ASCEND-1 and ACCOMPLISH-2 remain recruiting after actual starts. Enrolment and completion remain estimates and none has posted results.

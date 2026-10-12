@@ -1,0 +1,211 @@
+{
+  "reviewedAt": "2026-10-12T00:46:47Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational source and summary reviews to go live without repeat permission.",
+    "scope": "Renew seven unchanged ClinicalTrials.gov lifecycle reviews, repair one Hansoh article selector after a complete reread, and add a separate dated Hansoh sponsor announcement to the existing olatorepatide summary. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted complete primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "registrySources": [
+    {
+      "id": "registry-nct07101783", "nctId": "NCT07101783", "entryId": "nnc06620419",
+      "reviewedAt": "2026-10-12T00:46:47Z", "previousReviewedAt": "2026-10-04T23:40:55Z",
+      "sourcePublishedAt": "2025-08-03", "sourceUpdatedAt": "2025-12-23", "httpStatus": 200, "bytes": 7147,
+      "responseSha256": "1175d124247645291cdf6ca6164a1b074f7306f48b1fc29390e1e89b50652c2f",
+      "reviewedFingerprint": "54be7a6010c945d0abe2441e86a8b82a748bcceb5af7cae79678c9c81ca27b35",
+      "previousReviewedFingerprint": "54be7a6010c945d0abe2441e86a8b82a748bcceb5af7cae79678c9c81ca27b35",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07101783 remains a completed Phase 1 pharmacokinetic study of NNC0662-0419 in Japanese, Chinese and non-Asian participants with overweight or obesity. It records 100 actual participants, an actual 1 August 2025 start and actual 31 October 2025 primary and overall completion, with no posted results.",
+      "uncertainty": "Completed registry status is not evidence of efficacy or safety and no registry results are posted. The record does not establish an approved regimen, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07184632", "nctId": "NCT07184632", "entryId": "nnc06620419",
+      "reviewedAt": "2026-10-12T00:46:47Z", "previousReviewedAt": "2026-10-04T23:40:55Z",
+      "sourcePublishedAt": "2025-09-22", "sourceUpdatedAt": "2026-05-07", "httpStatus": 200, "bytes": 9608,
+      "responseSha256": "d74d68df8f7b6855700816d0727fccd5af995d7af90773221e60cdc3e5b3cf07",
+      "reviewedFingerprint": "07e01ac6dcb507a235dbffc9bf092c72b196a230a1a9096806989a4d843d5185",
+      "previousReviewedFingerprint": "07e01ac6dcb507a235dbffc9bf092c72b196a230a1a9096806989a4d843d5185",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07184632 remains active, not recruiting Phase 2 dose-finding research in 224 actual participants with overweight or obesity after an actual 1 October 2025 start. Primary and overall completion remain estimated for 14 December 2026 and no results are posted.",
+      "uncertainty": "Active, not recruiting does not mean completed and the estimated completion may change. Dose-finding design is not an approved regimen or evidence of comparative benefit, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07415954", "nctId": "NCT07415954", "entryId": "nnc06620419",
+      "reviewedAt": "2026-10-12T00:46:47Z", "previousReviewedAt": "2026-10-04T23:40:55Z",
+      "sourcePublishedAt": "2026-02-17", "sourceUpdatedAt": "2026-09-11", "httpStatus": 200, "bytes": 19982,
+      "responseSha256": "2ada224095480a92784d509ce2d1d9dac5e401fb16759446463ac3e7022bd1af",
+      "reviewedFingerprint": "d254cb3be21a9e8fa07aeb524c5843675c7b35375f81051f6844925b121e7be4",
+      "previousReviewedFingerprint": "d254cb3be21a9e8fa07aeb524c5843675c7b35375f81051f6844925b121e7be4",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07415954 remains recruiting Phase 2 research in people with type 2 diabetes after an actual 17 April 2026 start. It retains an estimated 270 participants, estimated September and October 2027 primary and overall completion, and no posted results.",
+      "uncertainty": "Recruiting and an actual start are not results. This type 2 diabetes study must not be presented as completed weight-management evidence, and estimated enrolment and completion do not establish benefit, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07525791", "nctId": "NCT07525791", "entryId": "nnc06620419",
+      "reviewedAt": "2026-10-12T00:46:47Z", "previousReviewedAt": "2026-10-04T23:40:55Z",
+      "sourcePublishedAt": "2026-04-13", "sourceUpdatedAt": "2026-09-30", "httpStatus": 200, "bytes": 9490,
+      "responseSha256": "e303a50add7df1ddbd83d737367ea7c85acb8e0fc6c12bfbe1add94bd76c2bb2",
+      "reviewedFingerprint": "9de33b2ebf249e96b4ef101569b47eb002fbaf1f4610311e80396346b360fedd",
+      "previousReviewedFingerprint": "9de33b2ebf249e96b4ef101569b47eb002fbaf1f4610311e80396346b360fedd",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07525791 remains active, not recruiting Phase 1 supportive research assessing oral-contraceptive pharmacokinetics and gastric emptying in 41 actual participants after an actual 7 April 2026 start. Its May and June 2027 completions remain estimated and no results are posted.",
+      "uncertainty": "This supportive pharmacokinetic study does not establish contraceptive guidance, treatment benefit or an approved regimen. Active, not recruiting is not completion, and the record does not establish UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07639021", "nctId": "NCT07639021", "entryId": "nnc06620419",
+      "reviewedAt": "2026-10-12T00:46:47Z", "previousReviewedAt": "2026-10-04T23:40:55Z",
+      "sourcePublishedAt": "2026-06-10", "sourceUpdatedAt": "2026-09-16", "httpStatus": 200, "bytes": 10046,
+      "responseSha256": "fcf49b4753fc7227d26c8bf1247cd482a62f097d10d9bbf2b0c0e9f8013a1daa",
+      "reviewedFingerprint": "907113149dd3923d0b9bf6e06aadec4148ed6c340f44e610c49eea42ccc3f26a",
+      "previousReviewedFingerprint": "907113149dd3923d0b9bf6e06aadec4148ed6c340f44e610c49eea42ccc3f26a",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07639021 remains active, not recruiting Phase 2 dose-escalation research in 233 actual participants with obesity after an actual 9 June 2026 start. Primary and overall completion remain estimated for 14 June 2027 and no results are posted.",
+      "uncertainty": "Dose-escalation plans do not establish a preferred or approved regimen. Active, not recruiting does not mean completed, and the record does not establish efficacy, safety, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07767175", "nctId": "NCT07767175", "entryId": "nnc07218060",
+      "reviewedAt": "2026-10-12T00:46:47Z", "previousReviewedAt": "2026-10-04T23:40:55Z",
+      "sourcePublishedAt": "2026-08-17", "sourceUpdatedAt": "2026-09-04", "httpStatus": 200, "bytes": 7613,
+      "responseSha256": "f523889fb7569f055e0f9ab62f3d4328eff69f24e4de5e9a6479728757da112e",
+      "reviewedFingerprint": "d79047e397e78e0effb0b34e6f207d608d2f46dd705d0e9808806d75943636ab",
+      "previousReviewedFingerprint": "d79047e397e78e0effb0b34e6f207d608d2f46dd705d0e9808806d75943636ab",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07767175 remains a recruiting first-in-human Phase 1 study of subcutaneous NNC0721-8060 after an actual 12 August 2026 start. It retains 142 estimated participants, estimated 23 September 2027 primary and overall completion and no posted results.",
+      "uncertainty": "First-in-human recruitment is early safety and pharmacology research, not evidence of weight-management benefit. Estimated enrolment and completion, and the semaglutide comparator arm, do not establish equivalence, superiority, an approved combination, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07754461", "nctId": "NCT07754461", "entryId": "survodutide",
+      "reviewedAt": "2026-10-12T00:46:47Z", "previousReviewedAt": "2026-10-04T23:40:55Z",
+      "sourcePublishedAt": "2026-08-10", "sourceUpdatedAt": "2026-09-30", "httpStatus": 200, "bytes": 53338,
+      "responseSha256": "61cb46513888d4e8a18085c79690aa2c1333a967e544242965ae778c592e6ab6",
+      "reviewedFingerprint": "d4a70059ff926a61abd70366de0d1b30ef3b565d8b1137341395e66f23945300",
+      "previousReviewedFingerprint": "d4a70059ff926a61abd70366de0d1b30ef3b565d8b1137341395e66f23945300",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07754461 remains a recruiting Phase 3 glycaemic-control study of survodutide in people with type 2 diabetes after an actual 24 August 2026 start. It retains 600 estimated participants, estimated January 2028 primary completion, estimated May 2028 overall completion and no posted results.",
+      "uncertainty": "Recruitment and an actual start are not results. This specialist-indication study is not a completed weight-management result or a new authorised indication. Estimated enrolment and completion do not establish efficacy, safety, UK authorisation, NICE or NHS access, supply or clinical approval."
+    }
+  ],
+  "hansohSource": {
+    "id": "hansoh-olatorepatide-20260604",
+    "url": "https://www.hansoh.cn/en/news/news-detail-514034.htm",
+    "checkUrl": "https://www.hansoh.cn/en/news/news-detail-514034.htm",
+    "format": "html",
+    "sourcePublishedAt": "2026-06-04",
+    "reviewedAt": "2026-10-12T00:46:47Z",
+    "previousReviewedAt": "2026-10-05T00:36:00Z",
+    "httpStatus": 200,
+    "bytes": 64583,
+    "responseSha256": "765721344ad919660e10e82e0b4d4c91c29727f61e27752b652a8237925ae21a",
+    "contentSelector": ".text",
+    "previousContentSelector": ".news_detail01",
+    "reviewedFingerprint": "9dfbbff6a3914b52c4b395d1a8dc5156a4f2c34f2bfde8da1b374e61873b7ca2",
+    "previousReviewedFingerprint": "047d8ec5f8deb52e418798e4124fc723fab05df97cc87ba6656ffa2f730956d4",
+    "withdrawn": false,
+    "wordingChanged": false,
+    "assessment": "The complete 4 June Hansoh announcement was reread and still supports Chinese NMPA acceptance of the olatorepatide chronic-weight-management NDA after Phase 3; acceptance is not approval. The old .news_detail01 selector now also contains a rotating Hot-news sidebar, so unrelated 12 October news changed its fingerprint. The narrower .text selector identifies the same article body and is adopted as the reviewed claim-bearing baseline.",
+    "uncertainty": "Changing the selector is a source-specific configuration repair, not a monitoring-logic change or a medical approval. It does not establish UK authorisation, NICE or NHS access, UK supply or clinical approval."
+  },
+  "programmeReviews": [
+    {"id": "nnc06620419", "reviewedAt": "2026-10-12T00:46:47Z", "wordingChanged": false, "supportingRecordReviewed": "NCT06737536"},
+    {"id": "nnc07218060", "reviewedAt": "2026-10-12T00:46:47Z", "wordingChanged": false},
+    {"id": "olatorepatide", "reviewedAt": "2026-10-12T00:46:47Z", "wordingChanged": true}
+  ],
+  "supportingRecordReview": {
+    "nctId": "NCT06737536", "url": "https://clinicaltrials.gov/study/NCT06737536", "reviewedAt": "2026-10-12T00:46:47Z",
+    "sourcePublishedAt": "2024-12-17", "sourceUpdatedAt": "2025-09-19", "httpStatus": 200, "bytes": 7646,
+    "responseSha256": "5e2a19361c763941e45248d9df0f53bfed197148a6f9886f54c5f5b835cf19fe",
+    "assessment": "The complete current API record was read to review the six-record NNC0662-0419 programme as a whole. It remains completed Phase 1 research in 100 actual participants after an actual 18 December 2024 start and 26 July 2025 completion, with no posted results."
+  },
+  "olatorepatideEvidence": {
+    "title": "Hansoh: EASD 2026 LIGHTEN Phase III olatorepatide presentation",
+    "url": "https://www.hansoh.cn/en/news/news-detail-514084.htm",
+    "sourcePublishedAt": "2026-10-02",
+    "sourceUpdatedAt": null,
+    "reviewedAt": "2026-10-12T00:46:47Z",
+    "httpStatus": 200,
+    "bytes": 68106,
+    "responseSha256": "07da547626eb0d4da8a9bae38956f226be7326ffb6c03d959f36fa12ae9a5aac",
+    "checkScope": "Complete original sponsor announcement read for the Chinese LIGHTEN Phase III design, participant count, completion, estimands, group-level weight changes and sponsor-reported gastrointestinal event rates; not automatically content-monitored.",
+    "summary": "Hansoh's 2 October sponsor announcement reports a 48-week randomized, double-blind, placebo-controlled Chinese Phase III LIGHTEN study in 604 adults with overweight or obesity. It reports 90.1% completion and, under the efficacy estimand, mean body-weight changes of -12.5%, -17.5% and -19.3% for weekly olatorepatide 5 mg, 10 mg and 15 mg versus -2.7% for placebo. Under the treatment-regimen estimand it reports -11.8%, -17.0% and -18.7% versus -2.5%.",
+    "limitations": "These are sponsor-reported conference findings, not registry-posted results or a reviewed full paper. The sponsor reports average nausea, vomiting, diarrhoea and constipation rates across treatment groups and no treatment-related discontinuations or withdrawals; the Watch does not adopt the announcement's comparative tolerability framing. The Chinese study population and group averages are not personal predictions, a cross-trial ranking, UK authorisation, NICE or NHS access, UK supply, an approved dose or clinical approval."
+  },
+  "changes": {
+    "sourceReviewDatesRenewed": 8,
+    "programmeReviewDatesRenewed": 3,
+    "programmeWordingChanged": true,
+    "configuredSourceCountChanged": false,
+    "programmeCountChanged": false,
+    "registryLifecycleChanged": false,
+    "resultsClaimedFromRegistry": false,
+    "monitorBaselineChanged": true,
+    "sourceSpecificSelectorChanged": true,
+    "monitorLogicChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseShapeChanged": false,
+    "medicalEvidenceSummaryChanged": true,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyClaimChanged": false,
+    "clinicalApprovalChanged": false
+  },
+  "counts": {
+    "detailedProgrammes": 6,
+    "widerProgrammes": 112,
+    "totalProgrammes": 118,
+    "configuredSources": 202,
+    "manualEvidenceBefore": 101,
+    "manualEvidenceAfter": 102,
+    "configuredSourceReviewQueueBefore": 8,
+    "configuredSourceReviewQueueAfterReview": 0,
+    "programmeSummaryQueueBefore": 71,
+    "programmeSummaryQueueAfterReview": 68,
+    "priorCompletedReviewReceipts": 35,
+    "completedReviewReceiptsAfter": 36
+  },
+  "preserved": {
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "externalCommunicationsSent": false,
+    "customerDataChanged": false,
+    "memberTreatmentChanged": false,
+    "checkoutChanged": false,
+    "homepageChanged": false,
+    "sharedNavigationChanged": false,
+    "calculatorChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false
+  },
+  "failedChecks": [
+    {
+      "id": "bivamelagon-rhythm-20250709",
+      "observedAt": "2026-10-12T00:15:02.290Z",
+      "httpStatus": 403,
+      "disposition": "Preserve the last successful observation and reviewed evidence; this fresh access failure does not renew or withdraw the source.",
+      "nextAction": "Retry on the normal bounded monitor schedule and seek a stable original sponsor alternative if denial persists."
+    },
+    {
+      "id": "rm718-rhythm-20260804",
+      "observedAt": "2026-10-12T00:15:02.290Z",
+      "httpStatus": 403,
+      "disposition": "Preserve the last successful observation and reviewed evidence; this fresh access failure does not renew or withdraw the source.",
+      "nextAction": "Retry on the normal bounded monitor schedule and seek a stable original sponsor alternative if denial persists."
+    }
+  ],
+  "remainingObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "state": ["verification_pending", "check_delayed"],
+      "obstacle": "Configured sponsor monitoring still receives HTTP 403 and has no approved baseline.",
+      "nextAction": "Retain registry and CTIS corroboration while reviewing a stable directly reviewable Zealand artefact or a bounded replacement source; do not repeatedly retry the denied endpoint."
+    }
+  ],
+  "discovery": {
+    "method": "A separate current-date and broader undated topic pass searched primary sponsor announcements and ClinicalTrials.gov beyond the configured source list and named developers.",
+    "usefulAddition": "The 2 October Hansoh LIGHTEN announcement was previously untracked and is attached to the existing olatorepatide programme rather than creating a duplicate.",
+    "duplicatesAvoided": ["NCT07861100 AMBIENCE", "NCT07857473 TE-8105", "Lilly EloraTZP", "Zealand ZUPREME-2", "Boehringer SYNCHRONIZE-2"],
+    "boundary": "The pass is non-exhaustive. Authoritative alternate-source work and programme-summary reviews remain ongoing with their own dates and next actions; monitoring is not finished."
+  },
+  "nextAction": "Run exact-head Watch and release gates, publish through the guarded production workflow, then verify the serving source and fresh uncached SELECT-only health response."
+}
