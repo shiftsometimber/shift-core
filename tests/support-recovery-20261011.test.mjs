@@ -26,3 +26,13 @@ test('security-client preservation accepts only both immutable registered versio
  assert.throws(()=>preserveSupportRecovery(path,prior,{required:true}),/missing/);
  for(const body of [current.toString()+' ',prior.toString()+' ',current.toString().replace('45000','45001'),current.toString().replace('Your message has not been sent.','Your message was sent.')])assert.throws(()=>preserveSupportRecovery(path,Buffer.from(body)),/source drift/);
 });
+
+import {pillarChromeStyle} from '../obesity-awareness/candidate.mjs';
+import {recoveryControls} from '../shift-coach/support-content-20261010.mjs';
+test('actual compiled Help head keeps the exact approved trailing pillar chrome and all original bytes',()=>{
+ const old='<html><head></head><body><p>For registration, verification, sign-in or password-reset problems, start at <a href="/member-login">My Timber sign-in</a>. Never send your password by email.</p><h2>Health and urgent support</h2><p>Existing urgent routes</p></body></html>';
+ const current=supportContent(old,'/help'),wrapped=current.replace('</head>',pillarChromeStyle+'</head>');
+ assert.equal(preserveSupportRecovery('/help',Buffer.from(wrapped),{required:true}).toString(),old.replace('</head>',pillarChromeStyle+'</head>'));
+ for(const tail of [pillarChromeStyle+'<style>unapproved</style>',pillarChromeStyle.replace('data-pillar-chrome','data-pillar-changed'),'<!--moved-->'])assert.throws(()=>preserveSupportRecovery('/help',Buffer.from(current.replace('</head>',tail+'</head>')),{required:true}),/head boundary/);
+ assert.throws(()=>preserveSupportRecovery('/help',Buffer.from(wrapped.replace(recoveryControls,'').replace('</body>',recoveryControls+'</body>')),{required:true}),/head boundary/);
+});

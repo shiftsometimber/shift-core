@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
+import {pillarChromeStyle} from '../obesity-awareness/candidate.mjs';
 import {accountRecovery,recoveryControls,controlRecovery} from '../shift-coach/support-content-20261010.mjs';
 const asset='frontend/member/turnstile-auth-v1.js';
 export const SUPPORT_TURNSTILE_PRIOR=execFileSync('git',['show','4df439d8fb03f29f030e25c413e40f0fac57c042:'+asset],{encoding:'utf8'});
@@ -27,7 +28,7 @@ export function preserveSupportRecovery(path,input,{required=false}={}){
  for(const block of blocks)assert.equal(count(block),present,'Partial Help support recovery');
  assert.equal(count(oldHeading)+count(newHeading),1,'Help urgent heading drift');
  assert.equal(count(newHeading),present,'Help urgent anchor drift');
- if(present){assert.equal(count(paragraph+accountRecovery),1,'Help recovery position drift');assert.equal(count(recoveryControls+'</head>'),1,'Help controls position drift');assert.equal(count(controlRecovery+'</body>'),1,'Help control script position drift');}
+ if(present){assert.equal(count(paragraph+accountRecovery),1,'Help recovery position drift');assert.equal(count(recoveryControls+'</head>')+count(recoveryControls+pillarChromeStyle+'</head>'),1,'Help controls position drift outside exact approved head boundary');assert.equal(count(controlRecovery+'</body>'),1,'Help control script position drift');}
  if(required)assert.equal(present,1,'Reviewed Help support recovery missing');
  let normal=html;for(const block of blocks)normal=normal.replace(block,'');
  return Buffer.from(normal.replace(newHeading,oldHeading));

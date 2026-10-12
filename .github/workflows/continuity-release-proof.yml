@@ -23,13 +23,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Retain exact historical recipe image proof prerequisites
-        run: |
-          git fetch --no-tags origin 67635799d3647172cc38f60137052f0c68b33b82 2b727bff6a33adb9bc37716314a0ace19e141bdb
-          git cat-file -e 67635799d3647172cc38f60137052f0c68b33b82^{commit}
-          git cat-file -e 2b727bff6a33adb9bc37716314a0ace19e141bdb^{commit}
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
