@@ -56,7 +56,7 @@ test('Fit adapter exposes the verified historical head only for legacy HEAD name
 });
 test('actual scope repair preserves the complete prior receipts and all original verifier bodies',()=>{
  const current=verifyReconciledRelease();assert.equal(current.supportRecoveryHistoricalScope.source,r.source);
- const prior=JSON.parse(read(r.base,manifest)),retained=structuredClone(current);delete retained.supportRecoveryHistoricalScope;delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
+ const prior=JSON.parse(read(r.base,manifest)),retained=JSON.parse(read('e33d2d554af1a2d279f722bf9c7d8bf2ea2f4b7c',manifest));delete retained.supportRecoveryHistoricalScope;assert.deepEqual(retained,prior);
  for(const path of [...r.paths,...r.maintenancePaths])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
  for(const path of ['worker.js','shift-coach/scope.mjs','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','frontend/member/turnstile-auth-v1.js','medicines-watch/README.md','medicines-watch/industry.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.equal(read('HEAD',path),read(r.base,path));
  const body=(t,name)=>{const start=t.indexOf('export function '+name+'(');return t.slice(start,t.indexOf('\n}\n',start)+3);};

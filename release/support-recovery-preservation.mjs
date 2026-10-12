@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
+import {pillarChromeStyle} from '../obesity-awareness/candidate.mjs';
 import {accountRecovery,recoveryControls,controlRecovery} from '../shift-coach/support-content-20261010.mjs';
 
 // Only the frozen, approved /help additions are reversible here. All other
@@ -51,7 +52,7 @@ export function preserveSupportRecovery(path,input,{required=false}={}){
  assert.equal(count(html,oldHeading),0,'Help has duplicate urgent headings');
  const oldParagraph='<p>For registration, verification, sign-in or password-reset problems, start at <a href="/member-login">My Timber sign-in</a>. Never send your password by email.</p>';
  assert.equal(count(html,oldParagraph+accountRecovery),1,'Help recovery moved outside approved insertion boundary');
- assert.equal(count(html,recoveryControls+'</head>'),1,'Help recovery style moved');
+ assert.equal(count(html,recoveryControls+'</head>')+count(html,recoveryControls+pillarChromeStyle+'</head>'),1,'Help recovery style moved outside exact approved head boundary');
  assert.equal(count(html,controlRecovery+'</body>'),1,'Help recovery script moved');
  return Buffer.from(html.replace(accountRecovery,'').replace(recoveryControls,'').replace(controlRecovery,'').replace(currentHeading,oldHeading));
 }

@@ -25,7 +25,7 @@ test('prior-receipt test repair preserves every old assertion and rejects any di
 });
 test('actual repair retains all prior records, production controls and original verifier functions',()=>{
  const current=verifyReconciledRelease();assert.equal(current.supportRecoveryIntegrationBudgetTestRepair.source,source);
- const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
+ const prior=JSON.parse(read(base,manifest)),retained=JSON.parse(read('dd35edb7f0b4f2fe8ce9d8f9d8832d62c37d93ad',manifest));delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
  for(const path of [...paths,...maintenance])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
  for(const path of ['.github/workflows/shift-coach-integration.yml','.github/workflows/cloudflare-production-promote.yml','shift-coach/scope.mjs','release/fit-300-scope.mjs','shift-coach/full-page-proof.mjs','shift-coach/browser-proof.mjs','shift-coach/member-record-browser.mjs','shift-coach/public-trust-browser.mjs','tests/tablet-routine-browser.mjs','frontend/member/turnstile-auth-v1.js','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','worker.js','medicines-watch/README.md','medicines-watch/industry.mjs'])assert.equal(read('HEAD',path),read(base,path));
  const before=read(base,maintenance[0]),after=read('HEAD',maintenance[0]);

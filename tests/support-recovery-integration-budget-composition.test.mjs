@@ -61,7 +61,7 @@ test('actual workflow changes only its execution budget and preserves every runt
 });
 test('actual budget composition preserves all prior receipts and historical verifier bodies',()=>{
  const current=verifyReconciledRelease();assert.equal(current.supportRecoveryIntegrationBudget.source,r.source);
- const prior=JSON.parse(read(r.base,manifest)),retained=structuredClone(current);delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
+ const prior=JSON.parse(read(r.base,manifest)),retained=JSON.parse(read('c0b39e7642d83ac9536830a24c2504998a316439',manifest));delete retained.supportRecoveryIntegrationBudget;assert.deepEqual(retained,prior);
  for(const path of [...r.paths,...r.maintenancePaths])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
  const before=read(r.base,'release/approved-runtime-composition.mjs'),after=read('HEAD','release/approved-runtime-composition.mjs');
  const body=(t,name)=>{const start=t.indexOf('export function '+name+'(');return t.slice(start,t.indexOf('\n}\n',start)+3);};

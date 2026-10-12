@@ -1,3 +1,4 @@
+import {pillarChromeStyle} from '../obesity-awareness/candidate.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -56,4 +57,10 @@ test('security client rejects missing recovery, changed bytes and appended auth 
 test('security preservation has no wildcard URL, homepage or unrelated-page adoption',()=>{
  const {current}=supportSecuritySnapshots();
  for(const path of ['/','/help','/contact','/member-login','/turnstile-auth-v1.js','/turnstile-auth-v1.js?v=other'])assert.equal(preserveSupportSecurity(path,current,{required:true}),current);
+});
+
+test('compiled public wrapper permits only its exact approved trailing head style',()=>{
+ const wrapped=current.replace('</head>',pillarChromeStyle+'</head>');
+ assert.equal(preserveSupportRecovery('/help',Buffer.from(wrapped),{required:true}).toString(),old.replace('</head>',pillarChromeStyle+'</head>'));
+ for(const tail of [pillarChromeStyle+'<style>unapproved</style>',pillarChromeStyle.replace('data-pillar-chrome','data-pillar-changed'),'<!--moved-->'])assert.throws(()=>preserveSupportRecovery('/help',Buffer.from(current.replace('</head>',tail+'</head>')),{required:true}),/head boundary/);
 });

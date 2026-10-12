@@ -1,3 +1,4 @@
+import {createGithubProofGet} from './github-proof-get.mjs';
 import {metricsPreflightPath,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import {verifySixTopicSeoProof} from './six-topic-seo-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS} from './fit-300-scope.mjs';
@@ -18,7 +19,7 @@ verifyMetricsConnection();
 validateAppSource();
 validateRecipeImages();
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
-async function get(path){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json()}
+const get=createGithubProofGet();
 await verifySixTopicSeoProof(get);
 await verifyDeviceHealthProof(get);
 await verifyPublicWordingProof(get);
