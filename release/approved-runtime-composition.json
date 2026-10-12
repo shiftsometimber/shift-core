@@ -3586,5 +3586,55 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "contactRollbackRuntime": {
+    "proof": "EXACT_CONTACT_ROLLBACK_RETENTION_AFTER_EPIPE_20261012",
+    "base": "17cf6a9da79782f7ae2fb7452caa25b203d6c138",
+    "source": "61330cbb0c649baf4e2b40bd8a1c342aef0daf56",
+    "paths": [
+      "release/contact-rollback-runtime.mjs",
+      "tests/contact-rollback-runtime.test.mjs",
+      "docs/contact-rollback-evidence-20261012.json",
+      "shift-coach/recover-cancelled-release.mjs",
+      ".github/workflows/shift-coach-integration.yml"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "release/contact-rollback-scope.mjs",
+      "tests/contact-rollback-composition.test.mjs",
+      "release/my-timber-progress-journey-scope.mjs",
+      "tests/my-timber-progress-journey-composition.test.mjs",
+      "tests/support-recovery-historical-scope-composition.test.mjs",
+      "tests/support-recovery-integration-budget-composition.test.mjs",
+      "tests/support-recovery-integration-budget-test-repair-composition.test.mjs"
+    ],
+    "maintenanceSource": "8c9ac4d3f62b66ca234c27597ceb765a97c7f5e5",
+    "originalCandidate": "2b2bfcef3bc4466de3e2bbc8fc0fe98c918234f8",
+    "failedPromotion": 38306227092,
+    "integrationIssue": 1065,
+    "retentionOnly": true,
+    "failedReleaseAccepted": false,
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "paidModelEnabled": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "genericAdoptionAllowed": false,
+    "existingGatesWeakened": false,
+    "maintenanceSupersedes": {
+      "maintenanceSource": "408b68adefe311624db9f6fe8a6aad3849a0fef4",
+      "receipt": "193d651bccc1a500e35ae9a21606786a25c68212",
+      "date": "2026-10-12",
+      "reason": "Verify both immutable outer layers without an ESM import cycle"
+    },
+    "historicalAssertionsSupersedes": {
+      "maintenanceSource": "6fe4087250f0e65789f427a9b97787742d6dd683",
+      "receipt": "e4b2fb35ea11fcfe8d2cd7d02577ed929eda416b",
+      "date": "2026-10-12",
+      "reason": "Preserve original classification assertions through verified pre-EPIPE historical views"
+    }
   }
 }
