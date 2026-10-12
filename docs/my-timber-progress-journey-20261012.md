@@ -78,3 +78,7 @@ Combined candidate contains 28 finite paths relative to the original base:
 - `shift-visualise-v1.js`
 - `tests/progress-charts.test.mjs`
 - `tests/progress-photo-journey.test.mjs`
+
+## Hosted repair, 12 October 2026
+
+The original registered payload remains in Git history at ed7f9216931c829bd333830dc8c7596fa64f242a, maintenance 090bd16fc769d4219f32ff743a1b6856f2d8215c and sealed receipt a2883f0b6080b9b3a3eb5eda53986de742de76bf. This dated supersession fixes the owned Journey deletion source-marker compatibility, adds real SQLite cross-account deletion coverage, and restores full historical recipe proof objects in the continuity runner without changing its existing assertions. The prior main production release failed /help preservation because its already-registered exact 11 October support recovery had no pre/post normalisation. A finite three-block and urgent-anchor normaliser now compares that registered transition while retaining every other Help byte and rejecting partial, duplicate or drifted blocks. No support page content, contact sending, prescribing, checkout or stock is changed in this repair.

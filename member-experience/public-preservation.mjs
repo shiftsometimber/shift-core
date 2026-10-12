@@ -1,4 +1,5 @@
 import {preserveContinuityUpgrade} from '../release/continuity-content-20261009.mjs';
+import {preserveSupportRecovery} from '../release/support-recovery-preservation.mjs';
 import {preservePillarChrome} from '../obesity-awareness/preservation.mjs';
 import {verifyOrganicDelivery} from '../release/organic-followthrough-live.mjs';
 import {preserveTabletWording} from '../tablet-wording-v1.mjs';
@@ -73,6 +74,7 @@ for(const path of paths){
  preserved=preserveSeo794(path,preserved,{required:Boolean(before)});
  preserved=preserveReviewedContrastGuard(path,preserved,{required:Boolean(before)});
  preserved=preserveSixTopicSeo(path,preserved,{required:Boolean(before)});
+ preserved=preserveSupportRecovery(path,preserved,{required:Boolean(before)});
  // Apply only the exact already-withdrawn photo options to both comparison
  // sides. The rest of the complete sign-in document remains hash compared.
  if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));
