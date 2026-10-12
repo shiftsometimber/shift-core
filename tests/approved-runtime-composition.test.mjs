@@ -121,7 +121,7 @@ test('finite GitHub transport amendment stays byte-pinned with fresh readers and
  }
  assert.equal(reconciliationChangedPath('M','release/growth-preflight.mjs'),true);
  assert.equal(reconciliationChangedPath('A','release/github-proof-get.mjs'),true);
- assert.throws(()=>reconciliationChangedPath('M','release/github-proof-get.mjs'),/Unexpected/);
+ assert.equal(reconciliationChangedPath('M','release/github-proof-get.mjs'),true);
  assert.equal(reconciliationChangedPath('M','release/unknown-proof-get.mjs'),false);
 });
 

@@ -1,13 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createGithubProofGet} from '../release/github-proof-get.mjs';
-const socket=()=>Object.assign(new TypeError('fetch failed'),{cause:{code:'UND_ERR_SOCKET'}});
-test('a closed socket retries the same authenticated read and returns actual evidence',async()=>{
+const socket=(code='UND_ERR_SOCKET')=>Object.assign(new TypeError('fetch failed'),{cause:{code}});
+test('closed sockets and broken writes retry the same authenticated read and return actual evidence',async()=>{
+ for(const code of ['UND_ERR_SOCKET','EPIPE']){
  const calls=[],waits=[],proof={head_sha:'actual',conclusion:'failure'};
- const get=createGithubProofGet({token:'synthetic-token',wait:async ms=>waits.push(ms),fetcher:async(url,options)=>{calls.push({url,options});if(calls.length<3)throw socket();return {ok:true,json:async()=>proof};}});
+ const get=createGithubProofGet({token:'synthetic-token',wait:async ms=>waits.push(ms),fetcher:async(url,options)=>{calls.push({url,options});if(calls.length<3)throw socket(code);return {ok:true,json:async()=>proof};}});
  assert.equal(await get('/actions/runs/123'),proof);assert.deepEqual(waits,[1000,2000]);
  for(const {url,options} of calls){assert.equal(url,'https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/123');assert.equal(options.method,'GET');assert.equal(options.headers.Authorization,'Bearer synthetic-token');assert(options.signal instanceof AbortSignal);}
  assert.throws(()=>assert.equal(proof.conclusion,'success'));
+ }
 });
 test('three transport failures stop rather than produce a successful proof',async()=>{
  let attempts=0;const get=createGithubProofGet({wait:async()=>{},fetcher:async()=>{attempts++;throw socket();}});

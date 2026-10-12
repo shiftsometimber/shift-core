@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {setTimeout as delay} from 'node:timers/promises';
 const repo='https://api.github.com/repos/shiftsometimber/shift-core';
-const transient=new Set(['UND_ERR_SOCKET','ECONNRESET','ETIMEDOUT','UND_ERR_CONNECT_TIMEOUT']);
+const transient=new Set(['UND_ERR_SOCKET','ECONNRESET','EPIPE','ETIMEDOUT','UND_ERR_CONNECT_TIMEOUT']);
 // Only transport failures from this repository's GET proof lookup are retried.
 // HTTP errors, malformed evidence and every caller's approval assertions fail closed.
 export function createGithubProofGet({fetcher=fetch,token=process.env.GITHUB_TOKEN,wait=delay}={}){
