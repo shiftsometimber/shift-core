@@ -410,3 +410,39 @@ test('exact owned Continuity rollback retains only the original successful runti
  for(const patch of [{decision:'restore'},{run:1},{dataChanged:true},{customerRecordsRead:1},{ownedProof:{}},{restoredContinuityRuntimeProof:{...proof,failedDeployment:'other'}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},f.a));
  assert.throws(()=>verifiedStartingPoint(record,{...f.a,id:'other'}));
 });
+
+import {restoredCurrentBaselineRuntime,verifiedCurrentBaselineRollback} from './cancelled-release-recovery.mjs';
+const currentBaselineRollbackFixture=()=>{
+ const p=restoredCurrentBaselineRuntime;
+ const a={id:p.deployment,versions:[{version_id:p.version,percentage:100}]};
+ const version={id:p.version,metadata:{created_on:'2026-10-12T13:48:41.560182Z',source:'wrangler'},annotations:{'workers/triggered_by':'version_upload'}};
+ const verified={id:p.verifiedRun,head_sha:p.verifiedSource,run_attempt:5,status:'completed',conclusion:'success',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const verifiedJob={id:p.verifiedJob,run_id:p.verifiedRun,name:'promote',status:'completed',conclusion:'success'};
+ const successfulOwned={kind:'owned_runtime_deployment',source:p.verifiedSource,run:String(p.verifiedRun),deploymentId:p.previousDeployment,versionId:p.version,previousDeploymentId:'2b196375-923b-48dd-b8f2-00b2bf67d62c',previousVersionId:'d94d29bd-b25b-4777-bc88-ad5eb260fa9d',dataRestored:false};
+ const failed={id:p.run,head_sha:p.source,run_attempt:1,status:'completed',conclusion:'failure',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const failedJob={id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure',steps:[[10,'Recover only the evidenced cancelled runtime to the last verified release','success'],[63,'Deploy current main to production','success'],[88,'Prove existing public content and login asset are preserved outside exact approved additions','failure'],[114,'Restore the captured runtime if a post-deployment gate failed','success'],[115,'Verify nine public tool pages after owned rollback','success'],[117,'Record public tool verification status before retaining evidence','failure'],[119,'Report final public tool release status','failure']].map(([number,name,conclusion])=>({number,name,conclusion}))};
+ const failedOwned={kind:'owned_runtime_deployment',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:p.previousDeployment,previousVersionId:p.version,dataRestored:false};
+ const restored={deploymentId:p.deployment,versionId:p.version,percentage:100};
+ const report={kind:'guarded_release_verification',source:p.source,run:String(p.run),workflowStatus:'failure',releaseVerified:false,status:'failed',deployedVersion:p.failedVersion,deployChecks:{status:'passed',toolChecksVerified:true,deployed:{deploymentId:p.failedDeployment,versionId:p.failedVersion,percentage:100}},rollbackChecks:{status:'passed',toolChecksVerified:true,expected:{deploymentId:p.previousDeployment,versionId:p.version,percentage:100,checkSource:p.source},deployed:restored,afterChecks:restored}};
+ const verifiedLogs=()=>JSON.stringify(successfulOwned);
+ const failedLogs=()=>[JSON.stringify(failedOwned),JSON.stringify(report),JSON.stringify(report)].join('\n');
+ return {p,a,version,verified,verifiedJob,successfulOwned,failed,failedJob,failedOwned,report,verifiedLogs,failedLogs};
+};
+test('the current baseline rollback is retained only through its exact original success and guarded rollback evidence',()=>{
+ const f=currentBaselineRollbackFixture(),check=(a=f.a,v=f.version,failed=f.failed,failedJob=f.failedJob,failedLogs=f.failedLogs(),verified=f.verified,verifiedJob=f.verifiedJob,verifiedLogs=f.verifiedLogs())=>verifiedCurrentBaselineRollback(a,v,failed,failedJob,failedLogs,verified,verifiedJob,verifiedLogs);
+ assert.equal(check(),true);
+ for(const patch of [{id:'other'},{versions:[{version_id:f.p.version,percentage:50}]}])assert.equal(check({...f.a,...patch}),false);
+ for(const patch of [{id:'other'},{metadata:{...f.version.metadata,created_on:'other'}},{metadata:{...f.version.metadata,source:'other'}},{annotations:{}},{annotations:{...f.version.annotations,'workers/tag':'unexpected'}}])assert.equal(check(f.a,{...f.version,...patch}),false);
+ for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{run_attempt:2},{conclusion:'success'},{event:'workflow_dispatch'},{head_branch:'preview'},{path:'other'}])assert.equal(check(f.a,f.version,{...f.failed,...patch}),false);
+ assert.equal(check(f.a,f.version,f.failed,{...f.failedJob,steps:f.failedJob.steps.slice(1)}),false);
+ for(const patch of [{dataRestored:true},{previousDeploymentId:'other'},{deploymentId:'other'},{versionId:'other'}]){const original={...f.failedOwned};Object.assign(f.failedOwned,patch);assert.equal(check(),false);Object.assign(f.failedOwned,original);}
+ for(const patch of [{releaseVerified:true},{workflowStatus:'success'},{source:'f'.repeat(40)},{rollbackChecks:{...f.report.rollbackChecks,status:'failed'}},{rollbackChecks:{...f.report.rollbackChecks,afterChecks:{...f.report.rollbackChecks.afterChecks,percentage:50}}}]){const original={...f.report};Object.assign(f.report,patch);assert.equal(check(),false);Object.assign(f.report,original);}
+ assert.equal(check(f.a,f.version,f.failed,f.failedJob,f.failedLogs(),{...f.verified,conclusion:'failure'}),false);
+ assert.equal(check(f.a,f.version,f.failed,f.failedJob,f.failedLogs(),f.verified,{...f.verifiedJob,id:1}),false);
+ for(const patch of [{previousDeploymentId:'other'},{dataRestored:true},{source:'f'.repeat(40)}]){const original={...f.successfulOwned};Object.assign(f.successfulOwned,patch);assert.equal(check(),false);Object.assign(f.successfulOwned,original);}
+ assert.equal(check(f.a,f.version,f.failed,f.failedJob,''),false);
+ const record={decision:'retain',run:f.p.run,from:f.p.version,to:f.p.version,verifiedRun:f.p.verifiedRun,ownedProof:null,restoredCurrentBaselineRuntimeProof:{...f.p},customerRecordsRead:0,dataChanged:false};
+ assert.deepEqual(verifiedStartingPoint(record,f.a),{source:f.p.verifiedSource,version:f.p.version,run:f.p.verifiedRun});
+ for(const patch of [{decision:'restore'},{run:1},{from:'other'},{to:'other'},{verifiedRun:1},{ownedProof:{}},{customerRecordsRead:1},{dataChanged:true},{restoredCurrentBaselineRuntimeProof:{...f.p,deployment:'other'}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},f.a));
+ assert.throws(()=>verifiedStartingPoint(record,{...f.a,id:'other'}));
+});

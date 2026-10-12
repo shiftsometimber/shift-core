@@ -80,6 +80,12 @@ export function verifiedArticleRuntime(active,run,job){
 // Carry the earlier same-job recovery proof forward without reverting its
 // verified newer runtime to the historical fallback pointer.
 export function verifiedStartingPoint(record,active){
+ if(record?.restoredCurrentBaselineRuntimeProof){
+  const r=record.restoredCurrentBaselineRuntimeProof;assert.deepEqual(r,currentBaselineRollbackProof());assertCurrentBaselineRollbackDeployment(active);
+  assert.equal(record.decision,'retain');assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
+  assert.equal(record.run,restoredCurrentBaselineRuntime.run);assert.equal(record.from,r.version);assert.equal(record.to,r.version);assert.equal(record.verifiedRun,r.verifiedRun);
+  return {source:r.verifiedSource,version:r.version,run:r.verifiedRun};
+ }
  if(record?.restoredMaleObesityRuntimeProof){
   const r=record.restoredMaleObesityRuntimeProof;assert.deepEqual(r,maleObesityRollbackProof(maleObesityRollbackFor(active)));assertMaleObesityRollbackDeployment(active);
   assert.equal(record.decision,'retain');assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
@@ -173,6 +179,53 @@ export async function recentSuccessfulPromotions(get,active){
 // promoted to verified status; its captured predecessor must have succeeded.
 export const technicalRecovery=Object.freeze({run:37512509413,job:112437645245,source:'36301f661e9a2e220c15e7f1ccf070612186242b',deployment:'ec4aeeed-9656-4bc0-8e9d-6d751d6fac77',version:'81f4a3a8-9b25-4bb5-bd0d-1e870cfc0206',verifiedRun:37510903784,verifiedJob:112431598699,verifiedSource:'ddde14b19d6ef79547e27afb4ed76bf1f4e39f05',verifiedDeployment:'3f64ff03-76c6-4aaf-bc66-f4c3865711d9',verifiedVersion:'35e9b183-12c6-4a22-a68b-1a9ee3c8cef4'});
 const ownedFrom=logs=>String(logs).split('\n').flatMap(line=>{const at=line.indexOf('{"kind":"owned_runtime_deployment"');if(at<0)return[];try{return[JSON.parse(line.slice(at))]}catch{return[]}});
+
+// Exact rollback produced by the failed contact/support release on 12 October.
+// The failed source is never promoted to verified status. Retention requires
+// the original successful Watch deployment, the failed release's owned deploy
+// receipt and both exact guarded rollback reports to agree with the one active
+// deployment/version pair.
+export const restoredCurrentBaselineRuntime=Object.freeze({
+ run:38291781709,job:114953466887,source:'7da4c5406a59bcd929240bd72cb5c7a7b96c8b60',
+ deployment:'4a9c25dc-4208-43f1-9e72-12ee11eba7ac',version:'534545ec-7445-49bf-9333-47b08b7ad631',
+ failedDeployment:'5cdcd96c-e280-4282-bbee-150e8f765353',failedVersion:'dc0dd65f-6df9-46d1-a6b0-02bbd2232cac',
+ previousDeployment:'4254eee7-cae4-41bd-a0b6-19844758c332',
+ verifiedRun:38248635395,verifiedJob:114828666204,verifiedSource:'6ca3e8ca2a6eca7fbfa0ee485121a086a6f17d19'
+});
+const currentBaselineRollbackProof=()=>({...restoredCurrentBaselineRuntime});
+function assertCurrentBaselineRollbackDeployment(active){
+ const p=restoredCurrentBaselineRuntime;assert.equal(active?.id,p.deployment);assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}]);
+}
+const guardedReportsFrom=logs=>String(logs).split('\n').flatMap(line=>{const at=line.indexOf('{"kind":"guarded_release_verification"');if(at<0)return[];try{return[JSON.parse(line.slice(at))]}catch{return[]}});
+export function verifiedCurrentBaselineRollback(active,version,failed,failedJob,failedLogs,verified,verifiedJob,verifiedLogs){
+ const p=restoredCurrentBaselineRuntime;
+ try{assertCurrentBaselineRollbackDeployment(active)}catch{return false}
+ if(version?.id!==p.version||version.metadata?.created_on!=='2026-10-12T13:48:41.560182Z'||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ if(verified?.id!==p.verifiedRun||verified.head_sha!==p.verifiedSource||verified.run_attempt!==5||verified.status!=='completed'||verified.conclusion!=='success'||verified.event!=='push'||verified.head_branch!=='main'||verified.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(verifiedJob?.id!==p.verifiedJob||verifiedJob.run_id!==p.verifiedRun||verifiedJob.name!=='promote'||verifiedJob.status!=='completed'||verifiedJob.conclusion!=='success')return false;
+ const predecessor={id:p.previousDeployment,versions:[{version_id:p.version,percentage:100}]};
+ const successful=ownedFrom(verifiedLogs).filter(o=>verifiedOwnedRuntime(predecessor,verified,verifiedJob,o)&&o.previousDeploymentId==='2b196375-923b-48dd-b8f2-00b2bf67d62c'&&o.previousVersionId==='d94d29bd-b25b-4777-bc88-ad5eb260fa9d'&&o.dataRestored===false);
+ if(successful.length!==1)return false;
+ if(failed?.id!==p.run||failed.head_sha!==p.source||failed.run_attempt!==1||failed.status!=='completed'||failed.conclusion!=='failure'||failed.event!=='push'||failed.head_branch!=='main'||failed.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(failedJob?.id!==p.job||failedJob.run_id!==p.run||failedJob.name!=='promote'||failedJob.status!=='completed'||failedJob.conclusion!=='failure')return false;
+ for(const [number,name,conclusion] of [[10,'Recover only the evidenced cancelled runtime to the last verified release','success'],[63,'Deploy current main to production','success'],[88,'Prove existing public content and login asset are preserved outside exact approved additions','failure'],[114,'Restore the captured runtime if a post-deployment gate failed','success'],[115,'Verify nine public tool pages after owned rollback','success'],[117,'Record public tool verification status before retaining evidence','failure'],[119,'Report final public tool release status','failure']])if(!failedJob.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const failedOwned=ownedFrom(failedLogs).filter(o=>o.source===p.source&&String(o.run)===String(p.run)&&o.deploymentId===p.failedDeployment&&o.versionId===p.failedVersion&&o.previousDeploymentId===p.previousDeployment&&o.previousVersionId===p.version&&o.dataRestored===false);
+ if(failedOwned.length!==1)return false;
+ const reports=guardedReportsFrom(failedLogs);if(reports.length!==2)return false;
+ return reports.every(r=>r.source===p.source&&String(r.run)===String(p.run)&&r.workflowStatus==='failure'&&r.releaseVerified===false&&r.status==='failed'&&r.deployedVersion===p.failedVersion
+  &&r.deployChecks?.status==='passed'&&r.deployChecks.toolChecksVerified===true&&r.deployChecks.deployed?.deploymentId===p.failedDeployment&&r.deployChecks.deployed.versionId===p.failedVersion&&r.deployChecks.deployed.percentage===100
+  &&r.rollbackChecks?.status==='passed'&&r.rollbackChecks.toolChecksVerified===true&&r.rollbackChecks.expected?.deploymentId===p.previousDeployment&&r.rollbackChecks.expected.versionId===p.version&&r.rollbackChecks.expected.percentage===100&&r.rollbackChecks.expected.checkSource===p.source
+  &&r.rollbackChecks.deployed?.deploymentId===p.deployment&&r.rollbackChecks.deployed.versionId===p.version&&r.rollbackChecks.deployed.percentage===100
+  &&r.rollbackChecks.afterChecks?.deploymentId===p.deployment&&r.rollbackChecks.afterChecks.versionId===p.version&&r.rollbackChecks.afterChecks.percentage===100);
+}
+export async function verifyCurrentBaselineRollback(active,version,get,getLogs){
+ const p=restoredCurrentBaselineRuntime;
+ const [failed,verified,failedJobs,verifiedJobs,failedLogs,verifiedLogs]=await Promise.all([
+  get('/actions/runs/'+p.run),get('/actions/runs/'+p.verifiedRun),get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100'),get('/actions/runs/'+p.verifiedRun+'/jobs?filter=latest&per_page=100'),getLogs(p.job),getLogs(p.verifiedJob)
+ ]);
+ assert(verifiedCurrentBaselineRollback(active,version,failed,failedJobs.jobs?.find(j=>j.id===p.job),failedLogs,verified,verifiedJobs.jobs?.find(j=>j.id===p.verifiedJob),verifiedLogs),'Exact successful baseline, failed contact release and owned rollback evidence required');
+ return currentBaselineRollbackProof();
+}
 export function verifiedTechnicalCancelledRecovery(active,failed,job,failedLogs,verified,verifiedJob,verifiedLogs){
  const p=technicalRecovery;
  if(active?.id!==p.deployment||active.versions?.length!==1||active.versions[0].percentage!==100||active.versions[0].version_id!==p.version)return false;
