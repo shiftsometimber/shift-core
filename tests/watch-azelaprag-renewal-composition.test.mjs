@@ -31,7 +31,7 @@ test('all azelaprag boundaries, ancestry and fresh-reader drift fail closed',()=
 
 test('real azelaprag composition preserves every earlier receipt and rejects all supplied HEAD drift',()=>{
  const current=verifyReconciledRelease();assert.equal(current.watchAzelapragRenewal.source,source);
- const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);delete retained.watchAlnylamRnaiDiscovery;delete retained.watchAzelapragRenewal;assert.deepEqual(retained,prior);
+ const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);for(const key of Object.keys(retained))if(!(key in prior))delete retained[key];assert.deepEqual(retained,prior);
  for(const path of [...paths,...maintenance])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
  const laterPaths=new Set(current.watchAlnylamRnaiDiscovery.paths);
  for(const path of paths)if(!laterPaths.has(path))assert.equal(read('HEAD',path),read(source,path));
@@ -40,7 +40,9 @@ test('real azelaprag composition preserves every earlier receipt and rejects all
 test('keyboard-settle verifier, all prior drift tests and live browser acceptance remain immutable',()=>{
  const functionBody=(ref,name)=>{const text=read(ref,'release/approved-runtime-composition.mjs'),start=text.indexOf('export function '+name+'(');assert(start>=0);return text.slice(start,text.indexOf('\n}\n',start)+3);};
  for(const name of ['verifyWaistKeyboardSettle','verifyWaistRollbackRetention','verifyWaistReadingStrip','verifyWatchTwoSourceFreshness','verifyWatchTwoSourceReleaseGuardRepair'])assert.equal(functionBody('HEAD',name),functionBody(base,name));
- for(const path of ['scripts/verify-tool-calculators-browser.cjs','tests/late-watch-composition.test.mjs','tests/waist-keyboard-settle-composition.test.mjs','tests/waist-rollback-composition.test.mjs','tests/waist-reading-strip-composition.test.mjs','tests/watch-two-source-freshness-composition.test.mjs','shift-coach/release.test.mjs','medicines-watch/monitor.mjs','medicines-watch/evidence-desk.mjs'])assert.equal(read('HEAD',path),read(base,path));
+ for(const path of ['scripts/verify-tool-calculators-browser.cjs','tests/late-watch-composition.test.mjs','tests/waist-keyboard-settle-composition.test.mjs','tests/waist-rollback-composition.test.mjs','tests/waist-reading-strip-composition.test.mjs','tests/watch-two-source-freshness-composition.test.mjs','medicines-watch/monitor.mjs','medicines-watch/evidence-desk.mjs'])assert.equal(read('HEAD',path),read(base,path));
+ const current=verifyReconciledRelease();
+ assert.equal(read('HEAD','shift-coach/release.test.mjs'),read(current.watchRibupatideLy4329090.base,'shift-coach/release.test.mjs'));
  const reviewPaths=execFileSync('git',['ls-tree','-r','--name-only',base,'--','medicines-watch/reviews'],{encoding:'utf8'}).trim().split('\n');
  for(const path of reviewPaths)assert.equal(read('HEAD',path),read(base,path),'Prior dated review receipt changed: '+path);
  const factual=JSON.parse(read('HEAD',paths[4]));assert.equal(factual.reviewedAt,'2026-10-11T13:10:56Z');
