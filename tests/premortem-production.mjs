@@ -20,7 +20,7 @@ if(process.env.HOLDER_MODE==='diagnostic'){
   report.telemetry.push({label:q.label,view,checkedAt:new Date().toISOString(),count:j.result?.events?.count,events:(j.result?.events?.events||[]).map(e=>({at:e.timestamp,request:e.$workers?.requestId||e.$metadata?.requestId,ray:e.$metadata?.rayId,trace:e.$metadata?.traceId,type:e.$metadata?.type,wallMs:e.$workers?.wallTimeMs,cpuMs:e.$workers?.cpuTimeMs,outcome:e.$workers?.outcome,status:e.$workers?.event?.response?.status,spanName:e.$metadata?.spanName,duration:e.$metadata?.duration})),traces:(j.result?.traces||[]).map(t=>({traceId:t.traceId,spans:t.spans,durationMs:t.traceDurationMs}))});
  }
  report.servingAfter=await serving();report.status='Read-only historical trace and current-Ray timing query; held session untouched';save();console.log(JSON.stringify(report));
-}else if(process.env.HOLDER_MODE==='recovery'){encrypt({oidc:await oidc(),run:process.env.GITHUB_RUN_ID},'recovery.enc.json');report.status='Fresh OIDC encrypted to existing holder; no new identity or session created';save();console.log(JSON.stringify(report));}
+}else if(process.env.HOLDER_MODE==='recovery'){encrypt({oidc:await oidc(),run:process.env.GITHUB_RUN_ID},'recovery.enc.json');report.servingAfter=await serving();report.status='Fresh OIDC encrypted to existing holder; no new identity or session created';save();console.log(JSON.stringify(report));}
 else{
  const email='shiftsometimber+structured-authrender-expiry-'+Date.now()+'@gmail.com',password='Sst-'+randomUUID()+'-Aa1!',marker='natural-expiry-'+randomUUID();
  let v=await request('/v1/auth/register',{method:'POST',body:{email,password,firstName:'Fictional expiry acceptance',source:'commissioning-premortem',rememberMe:false},identity:true});assert.equal(v.r.status,201);
