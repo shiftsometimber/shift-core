@@ -3423,5 +3423,36 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "supportRecoveryIntegrationBudgetTestRepair": {
+    "proof": "EXACT_SUPPORT_BUDGET_PRIOR_RECEIPT_TEST_REPAIR_20261012",
+    "base": "c0b39e7642d83ac9536830a24c2504998a316439",
+    "source": "efd7ed91143d6a9adbcf466ffbf040709ab40239",
+    "paths": [
+      "tests/support-recovery-historical-scope-composition.test.mjs",
+      "tests/support-recovery-integration-budget-composition.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/support-recovery-integration-budget-test-repair-composition.test.mjs"
+    ],
+    "maintenanceSource": "36395e58c812a4b0398f22ba525537637771b5b1",
+    "integrationIssue": 1065,
+    "publicationStatus": "staged_master_prior_receipt_test_repair",
+    "failedHead": "c0b39e7642d83ac9536830a24c2504998a316439",
+    "failedTest": "actual scope repair preserves the complete prior receipts and all original verifier bodies",
+    "runtimeChanged": false,
+    "workflowChanged": false,
+    "browserAssertionsChanged": false,
+    "productPerformanceThresholdsChanged": false,
+    "priorReceiptAssertionsRemoved": false,
+    "clinicalGatesChanged": false,
+    "homepageChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
