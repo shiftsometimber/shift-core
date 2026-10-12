@@ -2,6 +2,20 @@ name: Food guide browser candidate proof
 on:
   push:
     branches: [codex/food-guide-ready-20261012]
+    paths:
+      - ".github/workflows/food-guide-browser-qa.yml"
+      - "food-supplement-guide/index.html"
+      - "food-supplement-guide/data.js"
+      - "food-supplement-guide/guide.js"
+      - "food-supplement-guide/styles.css"
+      - "food-supplement-guide/build-content.mjs"
+      - "food-supplement-guide/content.mjs"
+      - "food-supplement-guide/production.mjs"
+      - "food-supplement-guide/browser-proof.mjs"
+      - "food-supplement-guide/food-guide.test.cjs"
+      - "food-supplement-guide/entry-preservation.test.mjs"
+      - "tests/food-supplement-guide.test.mjs"
+      - "worker-entry-v6.js"
 permissions:
   contents: read
 concurrency:
