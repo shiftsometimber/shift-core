@@ -41,7 +41,7 @@ jobs:
           TREATMENT_PLAYWRIGHT_PACKAGE: ${{ runner.temp }}/coaching-qa/package.json
           TREATMENT_DETAIL_PROOF_DIR: ${{ runner.temp }}/coaching-proof/my-timber-progress-journey
         run: |
-          node --test tests/progress-charts.test.mjs tests/progress-photo-journey.test.mjs member-experience/tests/progress-journey.test.mjs member-experience/tests/journey-portability.test.mjs tests/contact-rollback-runtime.test.mjs
+          node --test tests/progress-charts.test.mjs tests/progress-photo-journey.test.mjs member-experience/tests/progress-journey.test.mjs member-experience/tests/journey-portability.test.mjs tests/contact-rollback-runtime.test.mjs tests/my-treatment-compiled-runtime.test.mjs tests/my-treatment-build-rollback.test.mjs
           node member-experience/staging/verify-treatment-detail.mjs
       - name: Exercise synthetic accounts through the actual session-authenticated coaching routes
         env:

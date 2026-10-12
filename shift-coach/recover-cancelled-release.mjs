@@ -1,3 +1,4 @@
+import {TREATMENT_BUILD_ROLLBACK,verifyTreatmentBuildRollback} from '../release/my-treatment-build-rollback.mjs';
 import {CONTACT_ROLLBACK,verifyContactRollback} from '../release/contact-rollback-runtime.mjs';
 import {SUPPORT_RUNTIME,verifySupportRuntime} from '../release/live-support-runtime.mjs';
 import {OWNER_RUNTIME,verifyOwnerRuntime} from '../release/owner-captured-runtime.mjs';
@@ -36,6 +37,11 @@ else if(before.id===restoredLaterRuntime.deployment){
  restoredLaterRuntimeProof=await verifyRestoredLaterRuntime(before,version,get,getLogs);
  const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during restoration ownership verification');
  decision='retain';
+}
+else if(before.id===TREATMENT_BUILD_ROLLBACK.deployment){
+ const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact treatment-build rollback logs unavailable');return r.text();};
+ ownedProof=await verifyTreatmentBuildRollback(before,version,get,getLogs);
+ const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during treatment-build rollback verification');decision='retain';
 }
 else if(before.id===CONTACT_ROLLBACK.deployment){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact contact rollback logs unavailable');return r.text();};
