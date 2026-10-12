@@ -478,8 +478,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,112);assert.equal(sources.length,202);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,118);
+ assert.equal(medicines.length,6);assert.equal(industry.length,113);assert.equal(sources.length,203);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,119);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -1010,7 +1010,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,112);
+ assert.equal(industry.length,113);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1561,7 +1561,7 @@ test('registry follow-up adds exact lifecycles without duplicating programmes or
  assert.equal(registryLifecycleFollowup.clinicalApproval,null);
  assert.equal(registryLifecycleFollowup.industryComplete,false);
  assert.deepEqual(registryLifecycleFollowup.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:103,totalBefore:109,totalAfter:109,configuredSourcesBefore:184,configuredSourcesAfter:190,trialRecordsBefore:119,trialRecordsAfter:125});
- assert.equal(industry.length,112);
+ assert.equal(industry.length,113);
  const ribupatide=industry.find(entry=>entry.id==='ribupatide-injection');
  assert.match(ribupatide.summary,/2,530 participants/);
  assert.match(ribupatide.summary,/1,270 with diabetes/);
@@ -1605,7 +1605,7 @@ test('ENITH Phase 3 and specialist emugrobart lifecycles preserve results and di
  assert.equal(enicepatideEmugrobartRegistry.clinicalApproval,null);
  assert.equal(enicepatideEmugrobartRegistry.industryComplete,false);
  assert.deepEqual(enicepatideEmugrobartRegistry.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:103,totalBefore:109,totalAfter:109,configuredSourcesBefore:190,configuredSourcesAfter:193,trialRecordsBefore:125,trialRecordsAfter:128});
- assert.equal(industry.length,112);
+ assert.equal(industry.length,113);
  const enicepatide=industry.find(entry=>entry.id==='enicepatide');
  assert.match(enicepatide.summary,/ENITH-1 and ENITH-2 Phase 3 records are recruiting/);
  assert.match(enicepatide.summary,/2,000 participants without type 2 diabetes/);
@@ -1705,7 +1705,7 @@ test('TOGETHER biomarker follow-up does not renew registry evidence or change UK
  assert.match(item.summary,/9 October 2026/);assert.match(item.summary,/circulating proteins and blood gene expression/);
  assert.match(item.limitations,/not a new trial or independently established clinical benefit/);
  assert.equal(item.clinicalApproval,null);assert.match(item.ukAuthorisation,/does not establish a UK marketing authorisation/);
- assert.equal(medicines.length+industry.length,118);assert.equal(sources.length,202);
+ assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,203);
  for(const old of togetherPsoriaticDisease.registrySources){const current=registrySources.find(s=>s.id===old.id);assert.equal(current.reviewedAt,old.reviewedAt);assert.equal(current.reviewedFingerprint,old.reviewedFingerprint);}
 });
 
@@ -1725,7 +1725,7 @@ test('Mwyngil and Palatin additions remain bounded preclinical evidence',()=>{
  assert.match(palatin.summary,/hypothalamic obesity, Prader-Willi syndrome and Bardet-Biedl syndrome/);
  assert.match(palatin.limitations,/future targets subject to funding, not completed events/);
  assert.ok(discoveryDomains.includes('mwyngil.com'));assert.ok(discoveryDomains.includes('palatin.com'));
- assert.equal(medicines.length+industry.length,118);assert.equal(sources.length,202);
+ assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,203);
 });
 
 test('Ascletis oral portfolio additions remain preclinical and preserve missed filing uncertainty',()=>{
@@ -1740,7 +1740,7 @@ test('Ascletis oral portfolio additions remain preclinical and preserve missed f
  }
  assert.match(industry.find(item=>item.id==='asc39-oral').limitations,/not presented as submitted, cleared or as trial initiation/);
  assert.match(industry.find(item=>item.id==='asc30-48-fdc').limitations,/fourth-quarter filing remains a plan/);
- assert.equal(medicines.length+industry.length,118);assert.equal(sources.length,202);
+ assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,203);
 });
 
 test('new oral VK2735 and zenagamtide records stay registered research, not completed starts',()=>{
@@ -1763,5 +1763,5 @@ test('new oral VK2735 and zenagamtide records stay registered research, not comp
   assert.deepEqual(source.lifecycle.start,{date:start,type:'ESTIMATED'});assert.deepEqual(source.lifecycle.enrollment,{count,type:'ESTIMATED'});
   assert.equal(source.lifecycle.hasResults,false);assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
  }
- assert.equal(registrySources.length,137);assert.equal(sources.length,202);
+ assert.equal(registrySources.length,138);assert.equal(sources.length,203);
 });

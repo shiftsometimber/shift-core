@@ -1,0 +1,172 @@
+{
+  "reviewedAt": "2026-10-12T02:43:21Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational source and summary reviews to go live without repeat permission.",
+    "scope": "Renew one unchanged Hengrui sponsor announcement and seven unchanged ClinicalTrials.gov lifecycle reviews after complete primary-source rereading, and renew only the two associated programme summaries that independently crossed their seven-day boundary. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted complete primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sponsorSource": {
+    "id": "hengrui-ribupatide-pmos-20260708",
+    "url": "https://www.hengrui.com/en/media/detail-991.html",
+    "sourcePublishedAt": "2026-07-08",
+    "sourceUpdatedAt": null,
+    "reviewedAt": "2026-10-12T02:43:21Z",
+    "previousReviewedAt": "2026-10-05T02:34:35Z",
+    "httpStatus": 200,
+    "bytes": 10807,
+    "responseSha256": "b5f219f7a432e077f1a09178e8f995452dc486fa77002dcb7aaf657d8c5037c1",
+    "reviewedFingerprint": "563c54b397ae9180b32c9b3113fee38852c29d9e8ade01faea283613b783da30",
+    "previousReviewedFingerprint": "563c54b397ae9180b32c9b3113fee38852c29d9e8ade01faea283613b783da30",
+    "withdrawn": false,
+    "wordingChanged": false,
+    "assessment": "The complete current Hengrui announcement was read. It still reports sponsor topline findings from the randomized, double-blind, placebo-controlled Phase 2 HRS9531-207 study, identifies NCT06595797, states that 158 participants were randomized across three ribupatide doses and placebo, and retains the previously bounded week-32 group findings and sponsor safety account.",
+    "uncertainty": "The announcement remains a sponsor topline report rather than independently peer-reviewed evidence or registry-posted results. Its 158 participants remain distinct from the older registry's 144 estimated participants and UNKNOWN status. It does not establish an approved polycystic-ovary-syndrome regimen, UK authorisation, NICE or NHS access, UK supply, comparative superiority or clinical approval."
+  },
+  "registrySources": [
+    {
+      "id": "registry-nct06595797", "nctId": "NCT06595797", "entryIds": ["ribupatide-injection"],
+      "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z",
+      "sourcePublishedAt": "2024-09-19", "sourceUpdatedAt": "2024-09-19", "httpStatus": 200, "bytes": 12353,
+      "responseSha256": "cd36baf9cb1f46ec111878a0357cb1f099f133577c1529b09593382d4ce2ea2d",
+      "reviewedFingerprint": "0bed9d97e1a9e22a1a11a3ef08e81d0ab05a8fe8d73a58bd8ee2cab8f2e92bba",
+      "previousReviewedFingerprint": "0bed9d97e1a9e22a1a11a3ef08e81d0ab05a8fe8d73a58bd8ee2cab8f2e92bba",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT06595797 remains UNKNOWN Phase 2 research in obesity with polycystic ovary syndrome, with 144 estimated participants, an estimated September 2024 start, estimated December 2025 completion and no posted results. The record is unchanged from its 19 September 2024 update.",
+      "uncertainty": "UNKNOWN status and passed estimated dates do not establish recruitment, completion or results. The older registry estimate remains separate from Hengrui's later 158-participant sponsor report and does not establish efficacy, safety, an approved indication, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct06974851", "nctId": "NCT06974851", "entryIds": ["ribupatide-injection"],
+      "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z",
+      "sourcePublishedAt": "2025-05-16", "sourceUpdatedAt": "2025-11-17", "httpStatus": 200, "bytes": 11912,
+      "responseSha256": "0ae011459661ad3c1a7e86c72e732c0a925d9cec5071c12e6576cf45b0f8765a",
+      "reviewedFingerprint": "f4fec692b8aeb2fdedbcaf17830d39f7947e4a47908f1da2a3409d4c91dccc96",
+      "previousReviewedFingerprint": "f4fec692b8aeb2fdedbcaf17830d39f7947e4a47908f1da2a3409d4c91dccc96",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current API record was read. NCT06974851 remains recruiting Phase 3 research in obesity with obstructive sleep apnoea without PAP therapy after an actual 25 July 2025 start, with 140 estimated participants, estimated December 2026 completion and no posted results.",
+      "uncertainty": "Recruiting status and an actual start are not efficacy or safety results. Estimated enrolment and completion do not establish an authorised sleep-apnoea indication, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct06994650", "nctId": "NCT06994650", "entryIds": ["ribupatide-injection"],
+      "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z",
+      "sourcePublishedAt": "2025-05-29", "sourceUpdatedAt": "2026-01-26", "httpStatus": 200, "bytes": 6155,
+      "responseSha256": "26f9e889e8fa8b8625ba041e2a661a0eb4e2ea216b941ccfab9dc5d05e10538b",
+      "reviewedFingerprint": "a06f76f413ec649e85963818edd8b98eb1519904a732cb38e402333e70ebe600",
+      "previousReviewedFingerprint": "a06f76f413ec649e85963818edd8b98eb1519904a732cb38e402333e70ebe600",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current API record was read. NCT06994650 remains recruiting Phase 3 research in obesity with obstructive sleep apnoea during PAP therapy after an actual 13 August 2025 start, with 140 estimated participants, estimated December 2026 primary completion, estimated January 2027 overall completion and no posted results.",
+      "uncertainty": "The PAP-treated population is separate from NCT06974851. Recruitment and dates do not establish results, an authorised indication, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07551492", "nctId": "NCT07551492", "entryIds": ["ribupatide-injection"],
+      "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z",
+      "sourcePublishedAt": "2026-04-24", "sourceUpdatedAt": "2026-09-08", "httpStatus": 200, "bytes": 9343,
+      "responseSha256": "f7693cb1c60502ecd1f296f0924e61c9f0832d1176908afc75058896d110047a",
+      "reviewedFingerprint": "38b19ba1faa00fea948b9cfc5ac6f833c6518022225cd527a03b503c9f639c00",
+      "previousReviewedFingerprint": "38b19ba1faa00fea948b9cfc5ac6f833c6518022225cd527a03b503c9f639c00",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current API record was read. NCT07551492 remains a recruiting Phase 3 cardiovascular-outcomes study after an actual 29 May 2026 start, with 9,262 estimated participants, estimated May 2031 primary completion, estimated June 2031 overall completion and no posted results.",
+      "uncertainty": "This event-driven study's enrolment and completion remain estimates. Recruitment is not a cardiovascular benefit, completed outcome or new indication and does not establish UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07559136", "nctId": "NCT07559136", "entryIds": ["ribupatide-injection"],
+      "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z",
+      "sourcePublishedAt": "2026-04-30", "sourceUpdatedAt": "2026-09-28", "httpStatus": 200, "bytes": 6214,
+      "responseSha256": "191140dff5b4eed77c467a314af630056d23bdc3a77565d6350564c65fed2e6c",
+      "reviewedFingerprint": "9ae80da1943467db19cbd14b5fb89e213caac996bc3730252853d28c07d8eb89",
+      "previousReviewedFingerprint": "9ae80da1943467db19cbd14b5fb89e213caac996bc3730252853d28c07d8eb89",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current API record was read. NCT07559136 remains active, not recruiting Phase 1 research in Chinese adolescents with obesity after an actual 12 June 2026 start. It retains 48 actual participants, estimated February 2027 primary completion, estimated April 2027 overall completion and no posted results.",
+      "uncertainty": "Active, not recruiting is not completion. Adolescent safety and pharmacology research does not establish efficacy, an authorised paediatric indication, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07670884", "nctId": "NCT07670884", "entryIds": ["ribupatide-oral"],
+      "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z",
+      "sourcePublishedAt": "2026-06-26", "sourceUpdatedAt": "2026-08-13", "httpStatus": 200, "bytes": 7747,
+      "responseSha256": "bc19f7b0a38f3dd61d26b83760ad3172146e94d68d59c210a47a45e5b038fa7a",
+      "reviewedFingerprint": "e0ba5c9e70ebfc41e7ea0389ecaef3b16f21be08c53e14f0ed7bfa34baf83c02",
+      "previousReviewedFingerprint": "e0ba5c9e70ebfc41e7ea0389ecaef3b16f21be08c53e14f0ed7bfa34baf83c02",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current API record was read. NCT07670884 remains a recruiting Chinese Phase 3 study of HRS9531 tablets after an actual 24 July 2026 start, with 675 estimated participants, estimated October 2027 primary completion, estimated November 2027 overall completion and no posted results.",
+      "uncertainty": "This formulation-specific Chinese record does not confirm the separately planned global oral programme, efficacy, an approved oral regimen, UK authorisation, NICE or NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07660848", "nctId": "NCT07660848", "entryIds": ["ribupatide-injection", "kai4729"],
+      "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z",
+      "sourcePublishedAt": "2026-06-22", "sourceUpdatedAt": "2026-08-26", "httpStatus": 200, "bytes": 7319,
+      "responseSha256": "56e3902e75e377788371c845e6d28125392e965a0d300fe387d81f0e07fb4414",
+      "reviewedFingerprint": "efb500da2888bf06d4e248897604ab9671cc8c6f63125ff89f5e7603db581e66",
+      "previousReviewedFingerprint": "efb500da2888bf06d4e248897604ab9671cc8c6f63125ff89f5e7603db581e66",
+      "withdrawn": false, "wordingChanged": false, "lifecycleChanged": false,
+      "assessment": "The complete current API record was read. NCT07660848 remains recruiting Phase 2 MASH research with separate HRS-4729, HRS9531 and matching-placebo arms after an actual 14 August 2026 start, with 160 estimated participants, estimated March 2028 primary completion, estimated July 2028 overall completion and no posted results.",
+      "uncertainty": "A recruiting multi-arm MASH study does not establish completed efficacy, an approved combination or either programme's wider weight-management stage. It does not establish UK authorisation, NICE or NHS access, supply or clinical approval."
+    }
+  ],
+  "programmeReviews": [
+    {
+      "id": "ribupatide-oral", "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z", "wordingChanged": false,
+      "assessment": "The current oral ribupatide summary was reread against the unchanged NCT07670884 record and the already current Kailera sponsor source. It remains accurate: the Chinese Phase 3 record is recruiting after an actual start, while separately planned global Phase 3 initiation is not treated as completed."
+    },
+    {
+      "id": "kai4729", "reviewedAt": "2026-10-12T02:43:21Z", "previousReviewedAt": "2026-10-05T02:34:35Z", "wordingChanged": false,
+      "assessment": "The current KAI-4729 / HRS-4729 summary was reread against the unchanged NCT07660848 record and the already current Kailera sponsor source. It remains accurate: the Chinese MASH study is recruiting, and separately planned outside-China Phase 1 initiation is not inferred."
+    }
+  ],
+  "changes": {
+    "sourceReviewDatesRenewed": 8,
+    "programmeReviewDatesRenewed": 2,
+    "programmeWordingChanged": false,
+    "configuredSourceCountChanged": false,
+    "programmeCountChanged": false,
+    "registryLifecycleChanged": false,
+    "resultsClaimedFromRegistry": false,
+    "monitorBaselinesChanged": false,
+    "monitorLogicChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseShapeChanged": false,
+    "medicalClaimsChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyClaimChanged": false,
+    "clinicalApprovalChanged": false
+  },
+  "counts": {
+    "priorCompletedReviews": 36,
+    "completedReviewsAfter": 37,
+    "detailedProgrammes": 6,
+    "widerProgrammes": 112,
+    "totalProgrammes": 118,
+    "configuredSources": 202,
+    "manualEvidence": 102,
+    "configuredSourceReviewQueueBefore": 8,
+    "configuredSourceReviewQueueAfter": 0,
+    "programmeSummaryFactualReviewNeededBefore": 70,
+    "programmeSummaryFactualReviewNeededAfter": 68
+  },
+  "preserved": {
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "vk2735MaintenanceCurrent": true,
+    "wegovyTabletPrivateCurrent": true,
+    "externalCommunicationsSent": false,
+    "customerDataChanged": false,
+    "memberTreatmentChanged": false,
+    "checkoutChanged": false,
+    "homepageChanged": false,
+    "sharedNavigationChanged": false,
+    "calculatorChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false
+  },
+  "remainingObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "state": ["verification_pending", "check_delayed"],
+      "evidence": "The configured sponsor endpoint remains HTTP 403 and has no approved green baseline.",
+      "nextAction": "Retain the reviewed registry, CTIS and interim-report corroboration while seeking a stable current Zealand artefact or deliberately reviewed authoritative replacement. Do not approve the blocked endpoint from availability alone."
+    }
+  ],
+  "discoveryBoundary": "Authoritative alternate-source work, the remaining 68 programme-summary reviews and broad dated plus undated discovery remain ongoing with their own dates and next actions. Selected sources do not establish industry completeness and monitoring is not finished."
+}
