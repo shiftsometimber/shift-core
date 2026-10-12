@@ -42,3 +42,14 @@ export async function withFoodGuideDiscovery(request,response){
  for(const k of ['content-length','content-encoding','etag','last-modified'])headers.delete(k);
  return new Response(after,{status:response.status,statusText:response.statusText,headers});
 }
+// Finite inverse for the existing preservation owner to adopt only after exact
+// source verification. No existing preservation caller or assertion is changed.
+export function stripFoodGuideDiscovery(html,path){
+ if(!DISCOVERY_PATHS.has(normal(path)))return html;
+ const marker='data-food-supplement-guide="20261012"',count=html.split(marker).length-1;
+ if(!count)return html;
+ if(count!==1||!html.includes(guideDiscoveryNote))throw Error('Food-guide discovery differs from the exact reviewed addition');
+ const main=html.match(/<main\b[^>]*>/i),start=main?main.index+main[0].length:-1;
+ if(start<0||html.slice(start,start+guideDiscoveryNote.length)!==guideDiscoveryNote)throw Error('Food-guide discovery is outside its exact reviewed position');
+ return html.slice(0,start)+html.slice(start+guideDiscoveryNote.length);
+}

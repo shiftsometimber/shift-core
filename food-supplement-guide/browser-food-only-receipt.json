@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-12T21:47:18.332Z",
+  "source": "8e2f996f749177bd72f9b8b545b071368853e1e0",
+  "codeHash": "1d153ad0622487c2ebd14d3fd74db0e7c3036d884ae960b6ae7968f55886649e",
+  "shellHash": "f92dd6389dc6579297218f1a5aedef19d007c4346bf0d3c03b2fbdc6fbee14ba",
+  "checks": [
+    {
+      "width": 390,
+      "name": "initial food-only rendering and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "all six focus controls update state and advice",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "optional vegan and GLP-1 context",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "all nine meal ideas and every compatible ingredient swap",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "three kept ideas limit and removal",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "clear kept ideas and selected next step survives browsing",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "diet changes remove incompatible saved and chosen foods",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "shopping groups ingredients and retains cupboard ticks",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "all next-step actions, timing and keyboard focus",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "actual text download has selected food, cupboard ticks and sources",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "print payload and real generated PDF",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "reset and refresh clear choices",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "recipe/body/shopping text meets 4.5 contrast",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "initial food-only rendering and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "all six focus controls update state and advice",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "optional vegan and GLP-1 context",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "all nine meal ideas and every compatible ingredient swap",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "three kept ideas limit and removal",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "clear kept ideas and selected next step survives browsing",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "diet changes remove incompatible saved and chosen foods",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "shopping groups ingredients and retains cupboard ticks",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "all next-step actions, timing and keyboard focus",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "actual text download has selected food, cupboard ticks and sources",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "print payload and real generated PDF",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "reset and refresh clear choices",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "recipe/body/shopping text meets 4.5 contrast",
+      "pass": true
+    }
+  ],
+  "blockedRequests": [
+    {
+      "method": "GET",
+      "path": "/v1/radar/ticker"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/acquisition-attribution"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/radar/ticker"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/radar/ticker"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/acquisition-attribution"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/radar/ticker"
+    }
+  ],
+  "pageErrors": [],
+  "scope": "Real hosted Chromium390/1440 food-only candidate overlay over the current public shell; not deployed-source, signed-in, physical-device or clinical acceptance"
+}
