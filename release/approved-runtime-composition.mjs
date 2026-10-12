@@ -2180,6 +2180,25 @@ export function verifySupportRecovery(c,{head,read,diff,ancestor,content=(ref,pa
  return c;
 }
 
+export const SUPPORT_RECOVERY_HISTORICAL_SCOPE_BASE='03490ebe9294d1ca069351244d5fdb2f9dc59785';
+export const SUPPORT_RECOVERY_HISTORICAL_SCOPE_SOURCE='9ebb818260f24bc21008953d1a336812058574bb';
+export const SUPPORT_RECOVERY_HISTORICAL_SCOPE_PATHS=Object.freeze(["release/fit-300-scope.mjs"]);
+export const SUPPORT_RECOVERY_HISTORICAL_SCOPE_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/support-recovery-historical-scope-composition.test.mjs"]);
+const SUPPORT_RECOVERY_HISTORICAL_SCOPE_SET=new Set([...SUPPORT_RECOVERY_HISTORICAL_SCOPE_PATHS,...SUPPORT_RECOVERY_HISTORICAL_SCOPE_MAINTENANCE]);
+for(const path of [...SUPPORT_RECOVERY_SET,...WATCH_ALNYLAM_LATER_REVIEW_TEST_REPAIR_SET,...SUPPORT_RECOVERY_HISTORICAL_SCOPE_SET])RECONCILIATION_PATHS.add(path);
+export function verifySupportRecoveryHistoricalScope(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_SUPPORT_RECOVERY_HISTORICAL_SCOPE_20261012');assert.equal(c.base,SUPPORT_RECOVERY_HISTORICAL_SCOPE_BASE);assert.equal(c.source,SUPPORT_RECOVERY_HISTORICAL_SCOPE_SOURCE);
+ assert.deepEqual(c.paths,SUPPORT_RECOVERY_HISTORICAL_SCOPE_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_RECOVERY_HISTORICAL_SCOPE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'staged_master_scope_repair');assert.equal(c.failedWorkflowRun,38275467124);assert.equal(c.failedJob,114899734173);assert.equal(c.historicalDiffOnly,true);
+ for(const flag of ["runtimeChanged", "medicalEvidenceChanged", "reviewDatesChanged", "monitorLogicChanged", "homepageChanged", "primaryNavigationChanged", "memberDataChanged", "checkoutChanged", "mailRoutingChanged", "externalCommunicationsSent", "genericAdoptionAllowed", "deploymentAuthorityBroadened", "rollbackAuthorityBroadened", "existingGatesWeakened"])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated support historical-scope payload');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated support historical-scope maintenance');assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after support historical-scope receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.supportRecoveryHistoricalScope;assert.deepEqual(current,prior,'Prior release receipts changed by support historical-scope repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Fit payload source drift / Support historical-scope source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'archive maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift / Waist keyboard maintenance source drift / Support recovery maintenance source drift / Alnylam later-review test maintenance source drift / Support historical-scope source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -2202,10 +2221,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const supportRecoveryHistoricalScope=c.supportRecoveryHistoricalScope;
+ if(supportRecoveryHistoricalScope)verifySupportRecoveryHistoricalScope(supportRecoveryHistoricalScope,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportRecoveryHistoricalScopeHead=supportRecoveryHistoricalScope?supportRecoveryHistoricalScope.base:actualHead;
+ const supportRecoveryHistoricalScopeRawBlob=(ref,path)=>outerRawBlob(supportRecoveryHistoricalScope&&ref==='HEAD'&&SUPPORT_RECOVERY_HISTORICAL_SCOPE_SET.has(path)?supportRecoveryHistoricalScope.base:ref,path);
  const supportRecovery=c.supportRecovery;
- if(supportRecovery)verifySupportRecovery(supportRecovery,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSupportRecoveryHead=supportRecovery?supportRecovery.base:actualHead;
- const supportRecoveryRawBlob=(ref,path)=>outerRawBlob(supportRecovery&&ref==='HEAD'&&SUPPORT_RECOVERY_SET.has(path)?supportRecovery.base:ref,path);
+ if(supportRecovery)verifySupportRecovery(supportRecovery,{head:preSupportRecoveryHistoricalScopeHead,read:supportRecoveryHistoricalScopeRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportRecoveryHead=supportRecovery?supportRecovery.base:preSupportRecoveryHistoricalScopeHead;
+ const supportRecoveryRawBlob=(ref,path)=>supportRecoveryHistoricalScopeRawBlob(supportRecovery&&ref==='HEAD'&&SUPPORT_RECOVERY_SET.has(path)?supportRecovery.base:ref,path);
  const watchAlnylamLaterReviewTestRepair=c.watchAlnylamLaterReviewTestRepair;
  if(watchAlnylamLaterReviewTestRepair)verifyWatchAlnylamLaterReviewTestRepair(watchAlnylamLaterReviewTestRepair,{head:preSupportRecoveryHead,read:supportRecoveryRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preAlnylamLaterReviewTestRepairHead=watchAlnylamLaterReviewTestRepair?watchAlnylamLaterReviewTestRepair.base:preSupportRecoveryHead;
