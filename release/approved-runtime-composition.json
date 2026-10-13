@@ -3686,5 +3686,45 @@
       "date": "2026-10-13",
       "reason": "Preserve the same payload and original root bytes without a duplicate lexical binding"
     }
+  },
+  "finiteGrowthRepair": {
+    "proof": "EXACT_APPROVED_FINITE_GROWTH_20261013",
+    "base": "009b3a4a6f53a9545c73270ad1869e96f1e1a7d8",
+    "source": "98b2c9237d5a37edf8cc7b0cde63fedd8de81ba0",
+    "approvedSource": "221405a7344a5b2cdf30681d6620d2bd9a32855c",
+    "ownerApproval": "Matt: Do; 12 October 2026 19:50 BST",
+    "integrationIssue": 1065,
+    "paths": [
+      "public-response-policy.mjs",
+      "public-seo-technical-data.mjs",
+      "public-tool-delivery.mjs",
+      "shift-coach/worker.mjs",
+      "tests/growth-finite-response-policy.test.mjs",
+      "tests/public-seo-technical.test.mjs"
+    ],
+    "maintenanceSource": "b2ed3fac30a72f62d86d5261349aa9ec4f89c2f1",
+    "maintenancePaths": [
+      "release/finite-growth-scope.mjs",
+      "release/approved-runtime-composition.mjs",
+      "release/my-treatment-compiled-scope.mjs",
+      "release/my-timber-progress-journey-scope.mjs",
+      "tests/finite-growth-composition.test.mjs",
+      "tests/my-treatment-compiled-composition.test.mjs",
+      ".github/workflows/shift-coach-integration.yml",
+      "obesity-awareness/rendered-live-proof.cjs"
+    ],
+    "publicBodyChanged": false,
+    "memberProductChanged": false,
+    "clinicalChanged": false,
+    "stockChanged": false,
+    "customerDataChanged": false,
+    "consentChanged": false,
+    "analyticsChanged": false,
+    "externalCommunicationsSent": false,
+    "paidModelEnabled": false,
+    "existingGatesWeakened": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false
   }
 }
