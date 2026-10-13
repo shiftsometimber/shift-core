@@ -32,10 +32,10 @@ test('old approval, release and failure records cannot be rewritten by the new s
 });
 test('passing source review never supplies missing publication or production approval',()=>{
   const c=fixture();verify(c,options());assert.throws(()=>authority(c),/approval is missing/);
-  const approval={owner:'Matt',instruction:'Publish and guarded deploy this exact member repair',source,maintenanceSource:c.maintenanceSource,recordedAt:'2026-10-13T12:00:00+01:00',integrationIssue:1065,emailAuthority:false,rollbackAuthorityBroadened:false};
+  const approval={owner:'Matt',instruction:'Do',scope:'Existing My Timber upgrade through #1065, including photo access and deletion verification; bounded corrective work only',source,maintenanceSource:c.maintenanceSource,recordedAt:'2026-10-12T18:46:03Z',integrationIssue:1065,emailAuthority:false,rollbackAuthorityBroadened:false};
   // This is only a synthetic negative/positive authority fixture, not a real approval.
   assert.deepEqual(authority({...c,releaseApproval:approval}),approval);
-  for(const patch of [{owner:'assumed'},{instruction:'Go'},{source:'f'.repeat(40)},{maintenanceSource:'f'.repeat(40)},{recordedAt:null},{integrationIssue:1},{emailAuthority:true},{rollbackAuthorityBroadened:true}])assert.throws(()=>authority({...c,releaseApproval:{...approval,...patch}}));
+  for(const patch of [{owner:'assumed'},{instruction:'Go'},{scope:'broader production'},{source:'f'.repeat(40)},{maintenanceSource:'f'.repeat(40)},{recordedAt:null},{integrationIssue:1},{emailAuthority:true},{rollbackAuthorityBroadened:true}])assert.throws(()=>authority({...c,releaseApproval:{...approval,...patch}}));
 });
 test('actual current source validates before exposing the unchanged earlier record to historical guards',()=>{
   const current=JSON.parse(readFileSync(manifest,'utf8'));assert(current.memberConsentRepair);

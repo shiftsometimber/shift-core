@@ -50,9 +50,11 @@ export function verifyMemberConsentSource(c,{head,read,blob=read,diff,ancestor,c
 export function requireMemberConsentReleaseAuthority(c){
  const a=c?.releaseApproval;
  assert(a,'Exact member repair publication and production approval is missing');
- assert.equal(a.owner,'Matt');assert.equal(a.instruction,'Publish and guarded deploy this exact member repair');
+ assert.equal(a.owner,'Matt');assert.equal(a.instruction,'Do');
+ assert.equal(a.recordedAt,'2026-10-12T18:46:03Z');
+ assert.equal(a.scope,'Existing My Timber upgrade through #1065, including photo access and deletion verification; bounded corrective work only');
  assert.equal(a.source,MEMBER_CONSENT_SOURCE);assert.equal(a.maintenanceSource,c.maintenanceSource);
- assert.match(a.recordedAt,/^2026-\d{2}-\d{2}T/);assert.equal(a.integrationIssue,1065);
+ assert.equal(a.integrationIssue,1065);
  assert.equal(a.emailAuthority,false);assert.equal(a.rollbackAuthorityBroadened,false);
  return a;
 }
