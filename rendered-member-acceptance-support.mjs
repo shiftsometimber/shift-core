@@ -67,7 +67,11 @@ export async function chooseOptionalHealthTracking(page,{site}){
       if(!await summary.isVisible())continue;
       await summary.click({timeout:remaining()});opened=true;break;
     }
-    if(!opened)throw new Error('Optional health-tracking settings have no visible disclosure control');
+    if(!opened){
+      // Retain structural state only, never member text, identifiers or storage.
+      const state=await choice.evaluate(el=>{const chain=[];for(let n=el;n&&chain.length<12;n=n.parentElement){const s=getComputedStyle(n);chain.push({tag:n.tagName,id:n.id,classes:String(n.className||''),display:s.display,visibility:s.visibility,hidden:n.hidden,open:n.tagName==='DETAILS'?n.open:null})}return{path:location.pathname,chain}});
+      throw new Error('Optional health-tracking settings have no visible disclosure control: '+JSON.stringify(state));
+    }
   }
   await choice.waitFor({state:'visible',timeout:remaining()});
   const label=(await choice.innerText()).trim();

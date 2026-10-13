@@ -71,7 +71,7 @@ test('optional tracking acceptance exercises unselected settings controls and ve
 test('hidden optional tracking controls cannot be bypassed when a visible disclosure is absent',async()=>{
  for(const missingDisclosure of [true,false]){
   const h=harness();await commissioningLogin(h.page,identity);const original=h.page.locator;
-  h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},isVisible:async()=>false,locator:()=>({count:async()=>missingDisclosure?0:1,nth:()=>({locator:()=>({isVisible:async()=>false,click:async()=>assert.fail('Hidden disclosure clicked')})})}),click:async()=>assert.fail('Hidden consent control clicked')}:original(selector);
+  h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},isVisible:async()=>false,evaluate:async()=>({path:'/member/settings',chain:[{tag:'BUTTON',id:'healthConsentAction',hidden:false}]}),locator:()=>({count:async()=>missingDisclosure?0:1,nth:()=>({locator:()=>({isVisible:async()=>false,click:async()=>assert.fail('Hidden disclosure clicked')})})}),click:async()=>assert.fail('Hidden consent control clicked')}:original(selector);
   await assert.rejects(chooseOptionalHealthTracking(h.page,{site}),/no visible disclosure control/);
   assert.equal(h.clicks.length,0);assert.equal(h.requests.filter(x=>x.method==='POST').length,1);
  }
