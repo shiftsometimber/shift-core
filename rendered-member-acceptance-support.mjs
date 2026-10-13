@@ -54,6 +54,15 @@ export async function chooseOptionalHealthTracking(page,{site}){
   await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded',timeout:30000});
   await chooseNecessaryCookies(page);
   const choice=page.locator('#healthConsentAction');
+  await choice.waitFor({state:'attached',timeout:15000});
+  // Settings groups the real controls inside Privacy. Open that visible
+  // disclosure as a member would; do not force visibility or grant by API.
+  const privacy=choice.locator('xpath=ancestor::details[not(@open)][1]');
+  if(await privacy.count()){
+    const summary=privacy.locator(':scope > summary').first();
+    await summary.waitFor({state:'visible',timeout:15000});
+    await summary.click();
+  }
   await choice.waitFor({state:'visible',timeout:15000});
   const label=(await choice.innerText()).trim();
   if(label==='Review and opt in'){
