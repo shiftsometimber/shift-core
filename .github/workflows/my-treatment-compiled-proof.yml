@@ -1,0 +1,33 @@
+name: My Treatment Compiled Asset Proof
+on:
+  push:
+    branches: [codex/my-treatment-compiled-proof-20261012]
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm install --prefix "$RUNNER_TEMP/treatment-proof-runtime" --no-audit --no-fund wrangler@4.146.0
+      - name: Prove actual compiled responses and both immutable rollback chains
+        env:
+          RUN_TREATMENT_COMPILED_PROOF: 'true'
+          WRANGLER_SEND_METRICS: 'false'
+          TREATMENT_MINIFLARE: ${{ runner.temp }}/treatment-proof-runtime/node_modules/miniflare
+        run: node --test tests/my-treatment-compiled-control.test.mjs tests/my-treatment-rollback-runtime.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: my-treatment-compiled-proof-${{ github.sha }}
+          path: b1-runtime-release/my-treatment-compiled-proof.json
+          if-no-files-found: warn
