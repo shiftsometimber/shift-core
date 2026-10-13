@@ -1,0 +1,240 @@
+{
+  "recordedAt": "2026-10-13T17:07:34.723280+00:00",
+  "state": "source-and-synthetic-verified; not deployed or clinically approved",
+  "base": "c9756798dd271260c8812e419fae5f0d7c61e194",
+  "baseTree": "04cc61c1e2283d2fba3411666bf5a57ef2979940",
+  "branch": "codex/my-timber-week-source-20261013",
+  "marketSurvey": {
+    "directOrOverlapping": 8,
+    "adjacent": 5,
+    "method": "primary public product material; vendor claims, not hands-on acceptance"
+  },
+  "tests": {
+    "currentMemberProgress": 397,
+    "pass": 397,
+    "fail": 0,
+    "skip": 0,
+    "focusedAndRetained": 70
+  },
+  "browser": {
+    "at": "2026-10-13T17:01:33.191Z",
+    "scope": "Actual candidate clients/routes with fictional SQLite; not production, clinical, ordinary-user or physical-device acceptance",
+    "checks": [
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "existing-Progress-integration",
+          "owned-day-three-and-seven-day-view",
+          "single-day-mobile-and-keyboard-picker",
+          "unknowns-and-model-review-pending",
+          "actual-note-failure/retry/reopen-one-write",
+          "safe-text-not-HTML",
+          "selected-source-clear",
+          "factual-export",
+          "illustrative-model-labelled-fictional",
+          "consent-withdrawal-clear",
+          "expiry-clear",
+          "no-other-account-records",
+          "no-horizontal-overflow"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "existing-Progress-integration",
+          "owned-day-three-and-seven-day-view",
+          "single-day-mobile-and-keyboard-picker",
+          "unknowns-and-model-review-pending",
+          "actual-note-failure/retry/reopen-one-write",
+          "safe-text-not-HTML",
+          "selected-source-clear",
+          "factual-export",
+          "illustrative-model-labelled-fictional",
+          "consent-withdrawal-clear",
+          "expiry-clear",
+          "no-other-account-records",
+          "no-horizontal-overflow"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "retainedBrowser": {
+    "at": "2026-10-13T16:53:43.914Z",
+    "scope": "Local synthetic charts and smooth-logging candidate acceptance, not live or physical-device proof",
+    "checks": [
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "last-dose/site",
+          "dose-save/failure/retry",
+          "symptom/food/water-save",
+          "keyboard-timeline",
+          "28-day/full-history-filter",
+          "text-only-note-rendering",
+          "PDF-download",
+          "reload-persistence",
+          "existing-journey-links",
+          "no-overflow"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "explicit-source-selection",
+          "actual-owned-insights-route",
+          "dated-jab/symptom-markers",
+          "select-and-tap-details",
+          "actual-Ask-Timber-fact-answer-no-provider",
+          "food-context-visible",
+          "source-withdrawal-clears-context",
+          "pattern-no-overflow"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "independent-weight/feel/symptom/water/food-saves",
+          "optional-fields-collapsed",
+          "RAM-draft-return",
+          "quick-save-failure/retry",
+          "progress-chart-mobile/layout",
+          "metric/period-selection-no-extra-request",
+          "keyboard-point/readings-table",
+          "all-weight-units",
+          "owned-treatment-weights-in-chart",
+          "other-account-not-shown"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "fixture-current-consent-and-saved-preferences",
+          "withdrawal-blocks-private-photo-request",
+          "pause-blocks-private-photo-request",
+          "owned-photo-delete-after-withdrawal"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "optional-trend-extension",
+          "actual-photo-adapter/routes-save-compare-delete",
+          "private-photo-no-model",
+          "CSV-preview-confirm-actual-import-route",
+          "current-Grub-page-eaten-food-save-repeat-delete",
+          "journey-and-food-no-overflow"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "last-dose/site",
+          "dose-save/failure/retry",
+          "symptom/food/water-save",
+          "keyboard-timeline",
+          "28-day/full-history-filter",
+          "text-only-note-rendering",
+          "PDF-download",
+          "reload-persistence",
+          "existing-journey-links",
+          "no-overflow"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "explicit-source-selection",
+          "actual-owned-insights-route",
+          "dated-jab/symptom-markers",
+          "select-and-tap-details",
+          "actual-Ask-Timber-fact-answer-no-provider",
+          "food-context-visible",
+          "source-withdrawal-clears-context",
+          "pattern-no-overflow"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "independent-weight/feel/symptom/water/food-saves",
+          "optional-fields-collapsed",
+          "RAM-draft-return",
+          "quick-save-failure/retry",
+          "progress-chart-mobile/layout",
+          "metric/period-selection-no-extra-request",
+          "keyboard-point/readings-table",
+          "all-weight-units",
+          "owned-treatment-weights-in-chart",
+          "other-account-not-shown"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "fixture-current-consent-and-saved-preferences",
+          "withdrawal-blocks-private-photo-request",
+          "pause-blocks-private-photo-request",
+          "owned-photo-delete-after-withdrawal"
+        ]
+      },
+      {
+        "width": 1440,
+        "pass": true,
+        "checks": [
+          "optional-trend-extension",
+          "actual-photo-adapter/routes-save-compare-delete",
+          "private-photo-no-model",
+          "CSV-preview-confirm-actual-import-route",
+          "current-Grub-page-eaten-food-save-repeat-delete",
+          "journey-and-food-no-overflow"
+        ]
+      },
+      {
+        "width": 380,
+        "pass": true,
+        "checks": [
+          "expired-private-record-cleared",
+          "no-duplicate-dose-on-retry"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "build": {
+    "configuredWorkerDryRunExit": 0,
+    "workerSha256": "0e63933beb41d262e1ff48c5fcb52eacb2a5b618dc36d992bac02d7fefc604eb"
+  },
+  "preservedVerifierBlob": "31c7bf5bb87d301dc8b232f43a443b177a012007",
+  "clinicalModelReview": "pending; real route contains no curve points",
+  "productionFlagChanged": false,
+  "realHealthRecordsUsed": false,
+  "communicationsSent": false,
+  "paidProviderActivated": false,
+  "physicalIosObserved": "Mac only; no connected mobile in fresh xctrace inventory",
+  "fileSha256": {
+    "frontend/member/member-progress-v1.js": "49672794e1c1c418998e3093ce20ec4d10cc4f0a89d759dc0bd51bbdcb1fa5c3",
+    "member-experience/entry.mjs": "36be29340a16556348f7fb1d37ec8700e650e44f7cb8b6281d0a50e2885663ce",
+    "member-experience/treatment-routes.mjs": "1757d6e9b8adbba3d69b8261faa85cab22884739621708f043df48344c62183c",
+    "member-experience/treatment-week.mjs": "c11cdf3cf86c2d613242e90b183a7de1afff1e7099ec6aff0e9c610d502ffee2",
+    "member-experience/treatment-week-route.mjs": "a3c8ed9bf8477e04a9b2e02f29ee094a913b5cd17da606d1c90c3077c9880a00",
+    "member-experience/treatment-week-client.mjs": "d596fe9001e1ada64764ccdabbcc7b4ce40f7449b4c20e4b052f682ca3b5a24b",
+    "member-experience/tests/treatment-week.test.mjs": "1fb9c31fbe37f69d9a2e33e0769b7b2ad3949a2ed7b50f2717289927a99eb3d7",
+    "member-experience/tests/treatment-week-route.test.mjs": "6bfc15aa29d4f90999237394803bd3356b6bbf5e65ccb580dac56b22a4106ec6",
+    "member-experience/staging/verify-treatment-week.mjs": "507d10b3840aebbeee40f4801ca5d36d63e8f798e25cd81f18112df60baed621",
+    "docs/my-timber-app-benchmark-20261013.md": "8a49e736a358ee4f4d6e521c0c6e1a02bfe275169bde33a8d9d867b5df929b18",
+    "docs/my-timber-treatment-week-20261013.md": "39204261425a764fac822a6e01c10f22f0471b326ca150e99bb065cd7528bf0c"
+  },
+  "selfHashExcluded": true
+}

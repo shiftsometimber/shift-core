@@ -1,5 +1,6 @@
 import {foodDiaryRuntime} from './food-diary-client.mjs';
 import {treatmentHTML,treatmentRuntime,treatmentStyles} from './treatment-page.mjs';
+import {treatmentWeekRuntime,treatmentWeekStyles} from './treatment-week-client.mjs';
 import {treatmentServiceWorker} from './treatment-service-worker.mjs';
 import {ingredientStyles} from './grub-ingredients.mjs';
 import {deviceHealthRuntime,deviceHealthStyles} from './device-health-client.mjs';
@@ -35,6 +36,8 @@ export function memberExperienceRoutes(request, env) {
     const treatment={'/member/treatment':[treatmentHTML(false),'text/html'],'/member/treatment.html':[treatmentHTML(false),'text/html'],'/assets/member-experience/treatment.mjs':[treatmentRuntime,'text/javascript'],'/assets/member-experience/treatment.css':[treatmentStyles,'text/css'],'/treatment-sw.js':[treatmentServiceWorker,'text/javascript'],'/treatment-manifest.json':[JSON.stringify({name:'My Timber',short_name:'My Timber',start_url:'/member/treatment',scope:'/member/',display:'standalone',theme_color:'#050505',background_color:'#050505'}),'application/manifest+json']}[path];
     if(treatment)return new Response(request.method==='HEAD'?null:treatment[0],{headers:{...privateHeaders,'Content-Type':treatment[1]+'; charset=utf-8',...(path==='/treatment-sw.js'?{'Service-Worker-Allowed':'/member/'}:{})}});
   }
+  if(path==='/assets/member-experience/treatment-week.mjs')return new Response(request.method==='HEAD'?null:treatmentWeekRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  if(path==='/assets/member-experience/treatment-week.css')return new Response(request.method==='HEAD'?null:treatmentWeekStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/device-health.mjs')return new Response(request.method==='HEAD'?null:deviceHealthRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:ordersHTML(env.WORK_V1_ENABLED==='true'),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
   if(path==='/assets/member-experience/orders.mjs')return new Response(request.method==='HEAD'?null:ordersRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});

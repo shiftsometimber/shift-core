@@ -1,5 +1,6 @@
 import {supplyEstimate,validateSupplyDetails} from './progress-journey.mjs';
 import {requestTreatmentPatterns} from './treatment-patterns.mjs';
+import {requestRecordedTreatmentWeek,requestTreatmentWeekNote} from './treatment-week-route.mjs';
 import {projectTreatment,summaryPdf} from './treatment-model.mjs';
 import {INJECTION_MEDICINES,INJECTION_SITES,SYMPTOM_IMPACTS,describeTreatmentEvent} from './treatment-detail.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
@@ -31,12 +32,19 @@ export async function treatmentRoutes(request,env){
  const path=new URL(request.url).pathname;if(!path.startsWith(root))return null;
  // Isolated preview feature until clinical-source, retention and reminder acceptance pass.
  if(env.MY_TREATMENT_PREVIEW_ENABLED!=='true'&&env.MY_TREATMENT_ENABLED!=='true')return reply({error:'not_enabled'},404);
- if(![root,root+'/records',root+'/events',root+'/medical',root+'/summary.pdf',root+'/native-reminders',root+'/insights'].includes(path))return reply({error:'not_found'},404);
- if(!['GET','POST'].includes(request.method)||request.method==='GET'&&![root,root+'/summary.pdf',root+'/native-reminders',root+'/insights'].includes(path))return reply({error:'method_not_allowed'},405);
+ if(![root,root+'/records',root+'/events',root+'/medical',root+'/summary.pdf',root+'/native-reminders',root+'/insights',root+'/week',root+'/week-note'].includes(path))return reply({error:'not_found'},404);
+ if(!['GET','POST'].includes(request.method)||request.method==='GET'&&![root,root+'/summary.pdf',root+'/native-reminders',root+'/insights',root+'/week'].includes(path))return reply({error:'method_not_allowed'},405);
+ if(path===root+'/week'){
+  const sources=(new URL(request.url).searchParams.get('sources')||'').split(',');
+  const result=await requestRecordedTreatmentWeek(request,env,sources);return reply(result.data,result.status);
+ }
+ if(path===root+'/week-note'){
+  const result=await requestTreatmentWeekNote(request,env);return reply(result.data,result.status);
+ }
  if(path===root+'/insights'){
   if(request.method!=='GET')return reply({error:'method_not_allowed'},405);
   const sources=(new URL(request.url).searchParams.get('sources')||'').split(',');
-  const result=await requestTreatmentPatterns(request,env,sources);return reply(result.data,result.status);
+  const result=await requestTreatmentPatterns(request,env,sources);return reply(result.status===200?{...result.data,weekViewAvailable:env.MY_TIMBER_WEEK_VIEW_ENABLED==='true'}:result.data,result.status);
  }
  if(request.method==='POST'&&(request.headers.get('Origin')!==new URL(request.url).origin||!request.headers.get('Content-Type')?.startsWith('application/json')))return reply({error:'origin_not_allowed'},403);
  let auth;try{auth=await authenticateMember(request,env);}catch{return reply({error:'authentication_unavailable'},503);}if(auth.response)return reply({error:'authentication_required'},401);
