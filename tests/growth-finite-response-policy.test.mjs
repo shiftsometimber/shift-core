@@ -1,3 +1,4 @@
+import {rootShareHistoricalFile} from '../release/root-share-preview-scope.mjs';
 import {createHash} from 'node:crypto';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -65,7 +66,7 @@ test('outer wrapper preserves cron, bindings and context and runs after the obes
  assert.equal(calls,2);
 });
 test('real production source places header policy after the final obesity adapter',()=>{
- const source=readFileSync('shift-coach/worker.mjs','utf8');
+ const source=rootShareHistoricalFile('shift-coach/worker.mjs',readFileSync('shift-coach/worker.mjs','utf8'));
  assert.match(source,/export default withPublicResponsePolicyWorker\(withMaleObesity\(composedWorker\)\);/);
  assert.match(source,/await core\.scheduled\(controller,env,ctx\)/);
 });

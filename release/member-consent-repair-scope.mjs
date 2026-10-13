@@ -1,3 +1,4 @@
+import {rootShareHistoricalView,rootShareHistoricalFile} from './root-share-preview-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
@@ -68,13 +69,13 @@ export function requireMemberConsentReleaseAuthority(c){
  return a;
 }
 export function memberConsentHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=git('rev-parse','HEAD');
+ const sharingView=rootShareHistoricalView(reader,{defaultReader}),rawHead=sharingView.head;
  const resolve=ref=>{const sha=ref==='HEAD'?rawHead:ref;assert.match(sha,/^[a-f0-9]{40}$/,'Immutable member fact requires a resolved commit');return sha;};
- const pinned=(ref,path)=>immutable('rev-parse',resolve(ref)+':'+path).trim();
- const contents=(ref,path)=>immutable('show',resolve(ref)+':'+path);
- const rawRead=defaultReader?pinned:reader;
- const current=JSON.parse(contents(rawHead,manifest)),repair=current.memberConsentRepair;
- if(!repair)return {record:current,rawHead,head:rawHead,read:rawRead,content:contents};
+ const pinned=(ref,path)=>sharingView.blob(ref,path);
+ const contents=(ref,path)=>sharingView.content(ref,path);
+ const rawRead=sharingView.read;
+ const current=sharingView.record,repair=current.memberConsentRepair;
+ if(!repair)return {record:current,rawHead,servingHead:sharingView.rawHead,head:rawHead,read:rawRead,content:contents};
  verifyMemberConsentSource(repair,{head:rawHead,read:rawRead,blob:pinned,diff:(a,b)=>immutable('diff','--name-only',resolve(a),resolve(b)).trim().split('\n').filter(Boolean),ancestor:(a,b)=>immutable('merge-base','--is-ancestor',resolve(a),resolve(b)),content:contents});
  const record=structuredClone(current);delete record.memberConsentRepair;
  const changed=new Set([...repair.paths,...repair.maintenancePaths,manifest]);
@@ -85,10 +86,11 @@ export function memberConsentHistoricalView(reader=null,{defaultReader=reader===
   if(path!==manifest)assert.equal(rawRead('HEAD',path),rawRead(expected,path),'Approved composition source / boundary drift / Member historical source drift: '+path);
   return rawRead(repair.base,path);
  };
- return {record,rawHead,head:repair.base,read,content:(ref,path)=>contents(ref==='HEAD'?repair.base:ref,path)};
+ return {record,rawHead,servingHead:sharingView.rawHead,head:repair.base,read,content:(ref,path)=>contents(ref==='HEAD'?repair.base:ref,path)};
 }
 export function memberConsentHistoricalFile(path,bytes){
- const view=memberConsentHistoricalView();assert.equal(bytes,content('HEAD',path),'Historical file must be exact current bytes');
+ bytes=rootShareHistoricalFile(path,bytes);
+ const view=memberConsentHistoricalView();assert.equal(bytes,content(view.rawHead,path),'Historical file must be exact current bytes');
  if(view.rawHead===view.head)return bytes;
  if(!MEMBER_CONSENT_MAINTENANCE.includes(path)){
   assert.equal(bytes,content(MEMBER_CONSENT_BASE,path),'Unlisted historical file must be unchanged');
