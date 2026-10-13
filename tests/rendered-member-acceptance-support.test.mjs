@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {commissioningLogin,memberReady,memberReload,requireMemberPanel,chooseNecessaryCookies,chooseOptionalHealthTracking} from '../rendered-member-acceptance-support.mjs';
+import {commissioningLogin,memberReady,memberReload,requireMemberPanel,chooseNecessaryCookies,chooseOptionalHealthTracking,withdrawOptionalHealthTracking} from '../rendered-member-acceptance-support.mjs';
 
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';
 const identity={site,api,oidc:'synthetic-oidc-test-value',email:'shiftsometimber+structured-acceptance-test@gmail.com',password:'test-only'};
@@ -75,6 +75,20 @@ test('hidden optional tracking controls cannot be bypassed when a visible disclo
   await assert.rejects(chooseOptionalHealthTracking(h.page,{site}),/no visible disclosure control/);
   assert.equal(h.clicks.length,0);assert.equal(h.requests.filter(x=>x.method==='POST').length,1);
  }
+});
+
+test('explicit withdrawal uses the visible control and requires the latest saved refusal, without an API consent write',async()=>{
+ for(const serverGrant of [0,1]){
+  const h=harness();await commissioningLogin(h.page,identity);let clicked=false;
+  const original=h.page.locator,get=h.page.context().request.get;
+  h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},isVisible:async()=>true,innerText:async()=>clicked?'Review and opt in':'Withdraw consent',click:async()=>{clicked=true;h.clicks.push('Withdraw consent')}}:original(selector);
+  h.page.waitForFunction=async()=>assert.equal(clicked,true);
+  h.page.context().request.get=async(url,options)=>url===api+'/v1/consents'?{ok:()=>true,json:async()=>({consents:[{id:1,consent_type:'my_shift_health_tracking',granted:1},{id:2,consent_type:'my_shift_health_tracking',granted:serverGrant}]})}:get(url,options);
+  if(serverGrant===0)assert.deepEqual(await withdrawOptionalHealthTracking(h.page,{site}),{choice:'explicit optional withdrawal',identityVerified:true,saved:true});
+  else await assert.rejects(withdrawOptionalHealthTracking(h.page,{site}),/choice was not saved/);
+  assert.deepEqual(h.clicks,['Withdraw consent']);assert.equal(h.requests.filter(x=>x.method==='POST').length,1);
+ }
+ await assert.rejects(withdrawOptionalHealthTracking(harness().page,{site}),/verified synthetic identity/);
 });
 
 test('a successful API login does not pass an unready signed-out interface',async()=>{
