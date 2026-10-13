@@ -1,3 +1,4 @@
+import {ROOT_SHARE_TRANSPORT_ROLLBACK,verifyRootShareTransportRollback} from '../release/root-share-transport-rollback.mjs';
 import {TREATMENT_ROLLBACK,verifyMyTreatmentRollback} from '../release/my-treatment-rollback-runtime.mjs';
 import {CONTACT_ROLLBACK,verifyContactRollback} from '../release/contact-rollback-runtime.mjs';
 import {SUPPORT_RUNTIME,verifySupportRuntime} from '../release/live-support-runtime.mjs';
@@ -17,7 +18,12 @@ const version=JSON.parse(wrangler('versions','view',activeVersion,'--json'));
 const versionObservation={kind:'runtime_recovery_version_observation',id:version.id,createdOn:version.metadata?.created_on,source:version.metadata?.source,triggeredBy:version.annotations?.['workers/triggered_by']||null,tag:version.annotations?.['workers/tag']||null,message:version.annotations?.['workers/message']||null};
 console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
 let restoredMaleObesityRuntimeProof,decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof,restoredLaterRuntimeProof,restoredToolRuntimeProof,restoredPassportRuntimeProof,restoredContinuityRuntimeProof;
-if(before.id===ROOT_SHARE_ROLLBACK.deployment){
+if(before.id===ROOT_SHARE_TRANSPORT_ROLLBACK.deployment){
+ const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned transport rollback logs unavailable');return r.text();};
+ const getArtifact=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/'+id+'/zip',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned transport rollback artifact unavailable');return Buffer.from(await r.arrayBuffer());};
+ ownedProof=await verifyRootShareTransportRollback(before,version,get,getLogs,getArtifact,async()=>[active()]);
+ const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during exact transport rollback and fresh public verification');decision='retain';
+}else if(before.id===ROOT_SHARE_ROLLBACK.deployment){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned sharing rollback logs unavailable');return r.text();};
  const getArtifact=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/'+id+'/zip',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned sharing rollback artifact unavailable');return Buffer.from(await r.arrayBuffer());};
  ownedProof=await verifyRootShareRollback(before,version,get,getLogs,getArtifact);

@@ -5,6 +5,7 @@ import {mkdirSync,readFileSync,writeFileSync,appendFileSync,existsSync} from 'no
 import {pathToFileURL} from 'node:url';
 import {latestDeployment} from './runtime-rollback-guard.mjs';
 import checker from '../scripts/verify-tool-page-schema.cjs';
+import transport from './root-share-preview-transport.cjs';
 
 const directory='b1-runtime-release';
 function identity(deployment) { return {deploymentId:deployment.id,versionId:deployment.versions[0].version_id,percentage:100}; }
@@ -41,7 +42,7 @@ export async function verifyToolRelease({stage,source,run,inventory,readJson,fet
    // The restored runtime belongs to the captured prior release, not this check source.
    receipt.deploymentSource='captured prior runtime; see deployment-before.json';
   }
-  receipt.checks=await checker.verifyAll(fetchImpl);
+  const transportRetries=[];receipt.checks=await checker.verifyAll(transport.wrapPublicFetch(fetchImpl,r=>transportRetries.push(r)));if(transportRetries.length)receipt.transportRetries=transportRetries;
   const after=identity(latestDeployment(await inventory()));receipt.afterChecks=after;
   assert.deepEqual(after,receipt.deployed,'Deployment changed while verification was running');
   for(const check of receipt.checks)if(!check.passed)receipt.errors.push(`${check.path}: ${check.error}`);
