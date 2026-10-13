@@ -1,3 +1,4 @@
+import {memberConsentHistoricalView} from './member-consent-repair-scope.mjs';
 import {FINITE_GROWTH_PATHS,FINITE_GROWTH_MAINTENANCE,verifyFiniteGrowth} from './finite-growth-scope.mjs';
 import {TREATMENT_COMPILED_PATHS,TREATMENT_COMPILED_MAINTENANCE,verifyTreatmentCompiledComposition} from './my-treatment-compiled-scope.mjs';
 import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposition} from './contact-rollback-scope.mjs';
@@ -2284,7 +2285,7 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 }
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
- const c=reconciliationRecord();if(!c)return null;
+ const memberView=memberConsentHistoricalView(read),c=memberView.record;read=memberView.read;if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
  assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
  assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);
@@ -2296,7 +2297,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const growthRawHead=git('rev-parse','HEAD'),finiteGrowth=c.finiteGrowthRepair;
+ const growthRawHead=memberView.head,finiteGrowth=c.finiteGrowthRepair;
  if(finiteGrowth)verifyFiniteGrowth(finiteGrowth,{head:growthRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const growthRead=(ref,path)=>read(finiteGrowth&&ref==='HEAD'&&[...FINITE_GROWTH_PATHS,...FINITE_GROWTH_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?finiteGrowth.base:ref,path);
  const currentRawHead=finiteGrowth?finiteGrowth.base:growthRawHead,treatmentCompiledDelivery=c.treatmentCompiledDelivery;
@@ -2748,7 +2749,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const treatmentWorkflow=treatment?withoutTreatmentSteps(currentWorkflow):currentWorkflow;
  assertProductionProofBudget(productionProofBefore,closeout?withoutProgrammeLiveGate(treatmentWorkflow):treatmentWorkflow);
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
- assert.equal(git('rev-parse','HEAD'),growthRawHead,'Source HEAD changed during composition verification');
+ assert.equal(git('rev-parse','HEAD'),memberView.rawHead,'Source HEAD changed during composition verification');
  return c;
 }
 const mappedCompositionReaders=new WeakSet();
