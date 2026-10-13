@@ -6,9 +6,9 @@ import {verifyMemberConsentSource as verify,requireMemberConsentReleaseAuthority
 const manifest='release/approved-runtime-composition.json';
 const fixture=()=>({proof:'EXACT_MEMBER_CONSENT_REPAIR_SOURCE_20261013',base,source,integrationIssue:1065,paths:[...paths],maintenancePaths:[...maintenance],maintenanceSource:'a'.repeat(40),releaseApproval:null,...Object.fromEntries(flags.map(f=>[f,false]))});
 const options=()=>({head:'b'.repeat(40),read:(ref,path)=>blobs[path]||'maintenance',blob:(ref,path)=>blobs[path]||'maintenance',ancestor:()=>{},diff:a=>a===base?[...paths]:a===source?[...maintenance]:[manifest],content:ref=>JSON.stringify(ref===base?{retained:true}:{retained:true,memberConsentRepair:{}})});
-test('source review admits only eleven immutable repair paths and nine bounded maintenance paths',()=>{
+test('source review admits only eleven immutable repair paths and eight bounded maintenance paths',()=>{
   assert.doesNotThrow(()=>verify(fixture(),options()));
-  assert.equal(paths.length,11);assert.equal(maintenance.length,9);
+  assert.equal(paths.length,11);assert.equal(maintenance.length,8);
   assert(!paths.includes('obesity-awareness/rendered-live-proof.cjs'));
   assert(!paths.includes('member-experience/grub-routes.mjs'));
 });
@@ -63,11 +63,7 @@ test('source classification lists only the exact member paths and preserves add/
   }
   assert.equal(reconciliationChangedPath('A','tests/unreviewed-member-feature.mjs'),false);
 });
-test('coaching release retains every original check after independently verifying the member payload',()=>{
+test('coaching release retains every original byte and uses the existing independently verified historical reader',()=>{
  const path='shift-coach/release-contract.mjs',current=readFileSync(path,'utf8');
- const hook="import {memberConsentHistoricalView} from '../release/member-consent-repair-scope.mjs';\n";
- const before=" const proof=validateCoachingSource((ref,p)=>git('rev-parse',ref+':'+p),manifest);";
- const after=" const proof=validateCoachingSource(memberConsentHistoricalView().read,manifest);";
- assert.equal(current.split(hook).length,2);assert.equal(current.split(after).length,2);
- assert.equal(current.replace(hook,'').replace(after,before),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
+ assert.equal(current,execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
 });
