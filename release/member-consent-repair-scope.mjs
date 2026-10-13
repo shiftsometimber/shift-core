@@ -24,6 +24,7 @@ export const MEMBER_CONSENT_MAINTENANCE=Object.freeze([
  "release/approved-runtime-composition.mjs",
  "tests/finite-growth-composition.test.mjs",
  "tests/my-treatment-compiled-composition.test.mjs",
+ "shift-coach/release-contract.mjs",
  ".github/workflows/shift-coach-integration.yml",
  ".github/workflows/cloudflare-production-promote.yml"
 ]);

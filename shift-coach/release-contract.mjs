@@ -1,3 +1,4 @@
+import {memberConsentHistoricalView} from '../release/member-consent-repair-scope.mjs';
 import {withoutTreatmentFlag} from '../release/my-treatment-config.mjs';
 import {metricsChangedPath,verifyMetricsConnection} from '../release/metrics-connection-scope.mjs';
 import {RANKING_GROWTH_PATHS,RANKING_GROWTH_EXISTING,verifyRankingGrowth,rankingGrowthHistoricalRead,rankingGrowthPinnedRef} from '../release/seo-growth-scope.mjs';
@@ -202,7 +203,7 @@ export function verifyCoachingRelease({requireLaunch=false}={}){
  const manifest=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8'));
  git('merge-base','--is-ancestor',COACH_BASE,'HEAD');git('merge-base','--is-ancestor',WATCH_CURRENT_BASE,'HEAD');git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
  verifySitewideHistory(manifest.sitewideSeoComposition);verifyFollowHistory(manifest.seoFollowThroughComposition);
- const proof=validateCoachingSource((ref,p)=>git('rev-parse',ref+':'+p),manifest);
+ const proof=validateCoachingSource(memberConsentHistoricalView().read,manifest);
  assertCoachingConfiguration(readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'}));
  if(requireLaunch)assertLaunchDecisions(manifest);
  return {...proof,completeV2:false,productionLaunchApproved:manifest.decisions.productionLaunch.approved,requireLaunch};

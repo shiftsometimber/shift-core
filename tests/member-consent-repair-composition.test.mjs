@@ -6,9 +6,9 @@ import {verifyMemberConsentSource as verify,requireMemberConsentReleaseAuthority
 const manifest='release/approved-runtime-composition.json';
 const fixture=()=>({proof:'EXACT_MEMBER_CONSENT_REPAIR_SOURCE_20261013',base,source,integrationIssue:1065,paths:[...paths],maintenancePaths:[...maintenance],maintenanceSource:'a'.repeat(40),releaseApproval:null,...Object.fromEntries(flags.map(f=>[f,false]))});
 const options=()=>({head:'b'.repeat(40),read:(ref,path)=>blobs[path]||'maintenance',blob:(ref,path)=>blobs[path]||'maintenance',ancestor:()=>{},diff:a=>a===base?[...paths]:a===source?[...maintenance]:[manifest],content:ref=>JSON.stringify(ref===base?{retained:true}:{retained:true,memberConsentRepair:{}})});
-test('source review admits only eleven immutable repair paths and eight bounded maintenance paths',()=>{
+test('source review admits only eleven immutable repair paths and nine bounded maintenance paths',()=>{
   assert.doesNotThrow(()=>verify(fixture(),options()));
-  assert.equal(paths.length,11);assert.equal(maintenance.length,8);
+  assert.equal(paths.length,11);assert.equal(maintenance.length,9);
   assert(!paths.includes('obesity-awareness/rendered-live-proof.cjs'));
   assert(!paths.includes('member-experience/grub-routes.mjs'));
 });
@@ -51,4 +51,23 @@ test('both workflow hooks are exactly additive, with every earlier production/in
   for(const [path,hook]of Object.entries(hooks)){
     const current=readFileSync(path,'utf8');assert.equal(current.split(hook).length,2);assert.equal(current.replace(hook,''),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
   }
+});
+test('source classification lists only the exact member paths and preserves add/modify and destructive-status guards',async()=>{
+  const {reconciliationChangedPath,MEMBER_CONSENT_ADDITIONAL_PATHS}=await import('../release/approved-runtime-composition.mjs');
+  assert(MEMBER_CONSENT_ADDITIONAL_PATHS.length>0);
+  for(const path of MEMBER_CONSENT_ADDITIONAL_PATHS){
+    let existed=true;try{execFileSync('git',['cat-file','-e',base+':'+path],{stdio:'ignore'});}catch{existed=false;}
+    assert.equal(reconciliationChangedPath(existed?'M':'A',path),true);
+    if(!existed)assert.throws(()=>reconciliationChangedPath('M',path),/Unexpected/);
+    for(const status of ['D','R','R100','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
+  }
+  assert.equal(reconciliationChangedPath('A','tests/unreviewed-member-feature.mjs'),false);
+});
+test('coaching release retains every original check after independently verifying the member payload',()=>{
+ const path='shift-coach/release-contract.mjs',current=readFileSync(path,'utf8');
+ const hook="import {memberConsentHistoricalView} from '../release/member-consent-repair-scope.mjs';\n";
+ const before=" const proof=validateCoachingSource((ref,p)=>git('rev-parse',ref+':'+p),manifest);";
+ const after=" const proof=validateCoachingSource(memberConsentHistoricalView().read,manifest);";
+ assert.equal(current.split(hook).length,2);assert.equal(current.split(after).length,2);
+ assert.equal(current.replace(hook,'').replace(after,before),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
 });
