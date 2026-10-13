@@ -2286,7 +2286,7 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const memberDefaultRead=read===defaultReconciliationRead;
- const memberView=memberConsentHistoricalView(read),c=memberView.record;read=memberView.read;if(!c)return null;
+ const memberView=memberConsentHistoricalView(read,{defaultReader:memberDefaultRead}),c=memberView.record;read=memberView.read;if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
  assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
  assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);

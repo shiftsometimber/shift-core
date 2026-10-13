@@ -31,6 +31,12 @@ export const MEMBER_CONSENT_FLAGS=Object.freeze(['homepageChanged','clinicalChan
 const manifest='release/approved-runtime-composition.json',sorted=a=>[...a].sort();
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'});
+const immutableFacts=new Map();
+const immutable=(...args)=>{
+ const key=JSON.stringify([process.cwd(),...args]);
+ if(!immutableFacts.has(key))immutableFacts.set(key,execFileSync('git',args,{encoding:'utf8'}));
+ return immutableFacts.get(key);
+};
 export function verifyMemberConsentSource(c,{head,read,blob=read,diff,ancestor,content:contents}){
  assert.equal(c?.proof,'EXACT_MEMBER_CONSENT_REPAIR_SOURCE_20261013');
  assert.equal(c.base,MEMBER_CONSENT_BASE);assert.equal(c.source,MEMBER_CONSENT_SOURCE);assert.equal(c.integrationIssue,1065);
@@ -59,20 +65,25 @@ export function requireMemberConsentReleaseAuthority(c){
  assert.equal(a.emailAuthority,false);assert.equal(a.rollbackAuthorityBroadened,false);
  return a;
 }
-export function memberConsentHistoricalView(reader=(ref,path)=>git('rev-parse',ref+':'+path)){
- const rawHead=git('rev-parse','HEAD'),current=JSON.parse(content('HEAD',manifest)),repair=current.memberConsentRepair;
- if(!repair)return {record:current,rawHead,head:rawHead,read:reader,content};
- verifyMemberConsentSource(repair,{head:rawHead,read:reader,blob:(ref,path)=>git('rev-parse',ref+':'+path),diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content});
+export function memberConsentHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ const rawHead=git('rev-parse','HEAD');
+ const resolve=ref=>{const sha=ref==='HEAD'?rawHead:ref;assert.match(sha,/^[a-f0-9]{40}$/,'Immutable member fact requires a resolved commit');return sha;};
+ const pinned=(ref,path)=>immutable('rev-parse',resolve(ref)+':'+path).trim();
+ const contents=(ref,path)=>immutable('show',resolve(ref)+':'+path);
+ const rawRead=defaultReader?pinned:reader;
+ const current=JSON.parse(contents(rawHead,manifest)),repair=current.memberConsentRepair;
+ if(!repair)return {record:current,rawHead,head:rawHead,read:rawRead,content:contents};
+ verifyMemberConsentSource(repair,{head:rawHead,read:rawRead,blob:pinned,diff:(a,b)=>immutable('diff','--name-only',resolve(a),resolve(b)).trim().split('\n').filter(Boolean),ancestor:(a,b)=>immutable('merge-base','--is-ancestor',resolve(a),resolve(b)),content:contents});
  const record=structuredClone(current);delete record.memberConsentRepair;
  const changed=new Set([...repair.paths,...repair.maintenancePaths,manifest]);
  const read=(ref,path)=>{
-  if(ref!=='HEAD')return reader(ref,path);
+  if(ref!=='HEAD')return rawRead(ref,path);
   const expected=repair.paths.includes(path)?repair.source:repair.maintenancePaths.includes(path)?repair.maintenanceSource:repair.base;
   // Preserve fresh supplied-reader checks even after a verified historical view.
-  if(path!==manifest)assert.equal(reader('HEAD',path),reader(expected,path),'Approved composition source / boundary drift / Member historical source drift: '+path);
-  return reader(repair.base,path);
+  if(path!==manifest)assert.equal(rawRead('HEAD',path),rawRead(expected,path),'Approved composition source / boundary drift / Member historical source drift: '+path);
+  return rawRead(repair.base,path);
  };
- return {record,rawHead,head:repair.base,read,content:(ref,path)=>content(ref==='HEAD'?repair.base:ref,path)};
+ return {record,rawHead,head:repair.base,read,content:(ref,path)=>contents(ref==='HEAD'?repair.base:ref,path)};
 }
 export function memberConsentHistoricalFile(path,bytes){
  const view=memberConsentHistoricalView();assert.equal(bytes,content('HEAD',path),'Historical file must be exact current bytes');
