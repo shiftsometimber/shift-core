@@ -3807,7 +3807,7 @@
       ".github/workflows/cloudflare-production-promote.yml",
       "tests/growth-finite-response-policy.test.mjs"
     ],
-    "maintenanceSource": "a36ca0394382781d7995fbeee8664eafa51287e7",
+    "maintenanceSource": "d340218ffd6e7c746614a080d3d4fdbe5ef859f5",
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",

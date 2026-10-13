@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {verifyRootShareSource as verify,requireRootShareAuthority as authority,rootShareHistoricalView,rootShareHistoricalFile,ROOT_SHARE_BASE as base,ROOT_SHARE_SOURCE as source,ROOT_SHARE_PATHS as paths,ROOT_SHARE_BLOBS as blobs,ROOT_SHARE_MAINTENANCE as maintenance,ROOT_SHARE_FLAGS as flags,ROOT_SHARE_APPROVAL as approval} from '../release/root-share-preview-scope.mjs';
-import {jpegDimensions,verifyRootPreservation} from '../release/root-share-preview-live.mjs';
+import {jpegDimensions,verifyRootPreservation,verifyRootHeadPreservation} from '../release/root-share-preview-live.mjs';
 import {replaceRootShareImage} from '../share-preview/metadata.mjs';
 import {sharePreviewBytes} from '../share-preview/asset.mjs';
 const manifest='release/approved-runtime-composition.json';
@@ -30,6 +30,17 @@ test('original workflow gates and permission bytes survive only the three additi
 });
 test('live inverse accepts exactly the new two image links and rejects unrelated copy or image drift',()=>{
  const html='<meta property="og:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><main>Original approved copy</main>',bytes=Buffer.from(html),live=Buffer.from(replaceRootShareImage(html));assert(verifyRootPreservation(bytes,live));assert.throws(()=>verifyRootPreservation(bytes,Buffer.from(live.toString().replace('Original','Changed'))));assert.throws(()=>verifyRootPreservation(bytes,bytes));assert.deepEqual(jpegDimensions(sharePreviewBytes()),{width:1200,height:630});assert.throws(()=>jpegDimensions(Buffer.from('not an image')));
+});
+test('HEAD retains its own actual policy when the existing GET policy differs',()=>{
+ const getHeaders={'content-type':'text/html; charset=utf-8','cache-control':'no-store'},headHeaders={...getHeaders,'cache-control':'public, max-age=0, must-revalidate'},before={path:'/',headers:headHeaders};
+ assert(verifyRootHeadPreservation(before,{path:'/',headers:{...headHeaders},body:new Uint8Array()}));
+ assert.throws(()=>verifyRootHeadPreservation(before,{path:'/',headers:getHeaders,body:new Uint8Array()}),/own pre-release HEAD baseline/);
+});
+test('HEAD acceptance rejects absent baseline, changed policy, wrong path and a response body',()=>{
+ const headers={'cache-control':'public, max-age=0, must-revalidate','content-type':'text/html; charset=utf-8','content-security-policy':"default-src 'self'",'strict-transport-security':'max-age=31536000; includeSubDomains','x-content-type-options':'nosniff','referrer-policy':'strict-origin-when-cross-origin','permissions-policy':'camera=()','x-frame-options':'SAMEORIGIN'},before={path:'/',headers},head={path:'/',headers:{...headers},body:new Uint8Array()};
+ assert.throws(()=>verifyRootHeadPreservation(null,head),/baseline/);
+ assert.throws(()=>verifyRootHeadPreservation({...before,path:'/programme'},head));assert.throws(()=>verifyRootHeadPreservation(before,{...head,path:'/programme'}));assert.throws(()=>verifyRootHeadPreservation(before,{...head,body:new Uint8Array([1])}),/bodyless/);
+ for(const key of Object.keys(headers))assert.throws(()=>verifyRootHeadPreservation(before,{...head,headers:{...headers,[key]:'changed'}}),/own pre-release HEAD baseline/);
 });
 
 test('original response-policy assertions and tests remain byte-identical after a verified source adapter',()=>{let s=readFileSync('tests/growth-finite-response-policy.test.mjs','utf8');const line="import {rootShareHistoricalFile} from '../release/root-share-preview-scope.mjs';\n";assert.equal(s.split(line).length,2);s=s.replace(line,'').replace(" const source=rootShareHistoricalFile('shift-coach/worker.mjs',readFileSync('shift-coach/worker.mjs','utf8'));"," const source=readFileSync('shift-coach/worker.mjs','utf8');");assert.equal(s,execFileSync('git',['show',base+':tests/growth-finite-response-policy.test.mjs'],{encoding:'utf8'}));});
