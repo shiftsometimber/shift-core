@@ -23,6 +23,7 @@ export const MEMBER_CONSENT_MAINTENANCE=Object.freeze([
  "release/finite-growth-scope.mjs",
  "release/approved-runtime-composition.mjs",
  "tests/finite-growth-composition.test.mjs",
+ "tests/my-treatment-compiled-composition.test.mjs",
  ".github/workflows/shift-coach-integration.yml",
  ".github/workflows/cloudflare-production-promote.yml"
 ]);

@@ -6,9 +6,9 @@ import {verifyMemberConsentSource as verify,requireMemberConsentReleaseAuthority
 const manifest='release/approved-runtime-composition.json';
 const fixture=()=>({proof:'EXACT_MEMBER_CONSENT_REPAIR_SOURCE_20261013',base,source,integrationIssue:1065,paths:[...paths],maintenancePaths:[...maintenance],maintenanceSource:'a'.repeat(40),releaseApproval:null,...Object.fromEntries(flags.map(f=>[f,false]))});
 const options=()=>({head:'b'.repeat(40),read:(ref,path)=>blobs[path]||'maintenance',blob:(ref,path)=>blobs[path]||'maintenance',ancestor:()=>{},diff:a=>a===base?[...paths]:a===source?[...maintenance]:[manifest],content:ref=>JSON.stringify(ref===base?{retained:true}:{retained:true,memberConsentRepair:{}})});
-test('source review admits only eleven immutable repair paths and seven bounded maintenance paths',()=>{
+test('source review admits only eleven immutable repair paths and eight bounded maintenance paths',()=>{
   assert.doesNotThrow(()=>verify(fixture(),options()));
-  assert.equal(paths.length,11);assert.equal(maintenance.length,7);
+  assert.equal(paths.length,11);assert.equal(maintenance.length,8);
   assert(!paths.includes('obesity-awareness/rendered-live-proof.cjs'));
   assert(!paths.includes('member-experience/grub-routes.mjs'));
 });
