@@ -3,6 +3,7 @@ import {CONTACT_ROLLBACK,verifyContactRollback} from '../release/contact-rollbac
 import {SUPPORT_RUNTIME,verifySupportRuntime} from '../release/live-support-runtime.mjs';
 import {OWNER_RUNTIME,verifyOwnerRuntime} from '../release/owner-captured-runtime.mjs';
 import {SITEWIDE_VERSION,verifySitewideRuntime} from '../release/sitewide-seo-scope.mjs';
+import {ROOT_SHARE_ROLLBACK,verifyRootShareRollback} from '../release/root-share-preview-rollback.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
 import {restoredWaistReadingStripRuntime,restoredMaleObesityHubV2TransportRuntime,restoredMaleObesityHubV2Runtime,restoredMaleObesitySupportRuntime,restoredMaleObesityRuntime,verifyMaleObesityRollback,restoredContinuityRuntime,verifyContinuityRollback,restoredPassportRuntime,verifyPassportRollback,restoredToolRuntime,verifyToolRollback,restoredLaterRuntime,verifyRestoredLaterRuntime,tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime,technicalRecovery,verifyTechnicalCancelledRuntime,unattributedRuntimeRecovery,verifyUnattributedRuntime,laterUnattributedRuntimeRecovery,verifyLaterUnattributedRuntime,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
 assert.equal(process.env.GITHUB_REF,'refs/heads/main');verifyCoachingRelease({requireLaunch:true});
@@ -16,7 +17,13 @@ const version=JSON.parse(wrangler('versions','view',activeVersion,'--json'));
 const versionObservation={kind:'runtime_recovery_version_observation',id:version.id,createdOn:version.metadata?.created_on,source:version.metadata?.source,triggeredBy:version.annotations?.['workers/triggered_by']||null,tag:version.annotations?.['workers/tag']||null,message:version.annotations?.['workers/message']||null};
 console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
 let restoredMaleObesityRuntimeProof,decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof,restoredLaterRuntimeProof,restoredToolRuntimeProof,restoredPassportRuntimeProof,restoredContinuityRuntimeProof;
-if([restoredWaistReadingStripRuntime.deployment,restoredMaleObesityRuntime.deployment,restoredMaleObesitySupportRuntime.deployment,restoredMaleObesityHubV2Runtime.deployment,restoredMaleObesityHubV2TransportRuntime.deployment].includes(before.id)){
+if(before.id===ROOT_SHARE_ROLLBACK.deployment){
+ const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned sharing rollback logs unavailable');return r.text();};
+ const getArtifact=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/'+id+'/zip',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned sharing rollback artifact unavailable');return Buffer.from(await r.arrayBuffer());};
+ ownedProof=await verifyRootShareRollback(before,version,get,getLogs,getArtifact);
+ const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during exact sharing rollback verification');decision='retain';
+}
+else if([restoredWaistReadingStripRuntime.deployment,restoredMaleObesityRuntime.deployment,restoredMaleObesitySupportRuntime.deployment,restoredMaleObesityHubV2Runtime.deployment,restoredMaleObesityHubV2TransportRuntime.deployment].includes(before.id)){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned rollback logs unavailable');return r.text();};
  restoredMaleObesityRuntimeProof=await verifyMaleObesityRollback(before,version,get,getLogs);const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during exact owned rollback verification');decision='retain';
 }
