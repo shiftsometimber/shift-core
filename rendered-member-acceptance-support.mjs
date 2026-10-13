@@ -54,7 +54,22 @@ export async function chooseOptionalHealthTracking(page,{site}){
   await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded',timeout:30000});
   await chooseNecessaryCookies(page);
   const choice=page.locator('#healthConsentAction');
-  await choice.waitFor({state:'visible',timeout:15000});
+  // Settings groups are real closed disclosures in the shared app/web layout.
+  // Open their visible summaries, rather than forcing the hidden consent button.
+  // Keep the original fifteen-second visibility budget across all of this work.
+  const deadline=Date.now()+15000,remaining=()=>Math.max(1,deadline-Date.now());
+  await choice.waitFor({state:'attached',timeout:remaining()});
+  for(let depth=0;depth<5&&!await choice.isVisible();depth++){
+    const closed=choice.locator('xpath=ancestor::details[not(@open)]');
+    let opened=false;
+    for(let i=0;i<await closed.count();i++){
+      const summary=closed.nth(i).locator(':scope > summary');
+      if(!await summary.isVisible())continue;
+      await summary.click({timeout:remaining()});opened=true;break;
+    }
+    if(!opened)throw new Error('Optional health-tracking settings have no visible disclosure control');
+  }
+  await choice.waitFor({state:'visible',timeout:remaining()});
   const label=(await choice.innerText()).trim();
   if(label==='Review and opt in'){
     await choice.click();
