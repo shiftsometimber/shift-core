@@ -512,6 +512,7 @@ export const ARTICLE_IDENTITY_REPAIRS={
   }
 };
 export const NOINDEX_SITEMAP_PATHS=[
+  "/medicine-news/retatrutide-fakes-research-is-not-a-treatment-offer",
   "/medicine-news/acquired-hypothalamic-obesity-treatment-lifestyle-interventions",
   "/medicine-news/asthma-reliever-overuse-mhra-reminder",
   "/medicine-news/at673-semaglutide-clinical-trial",

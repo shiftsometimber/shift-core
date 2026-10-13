@@ -1,7 +1,7 @@
 import {improveToolGuidance} from './public-tool-guidance.mjs';
 // Bounded repair for the nine free public tools observed in the Semrush audit.
 export const TOOL_PATHS = new Set(['/tools/waist-height','/tools/walking','/tools/water','/tools/healthy-weight','/tools/bmi','/tools/calories','/decision-centre','/tools/alcohol','/tools/protein']);
-export const PUBLIC_STYLES = new Set(['/assets/shift-recovery-v6.css','/assets/shift-calculator-flow-v1.css','/assets/ask-timber-drawer-v2.css','/seo-wave2-v15.css','/assets/v136-desolation-recovery.css','/assets/v137-estate-closeout.css','/assets/header-navigation-v2.css','/assets/my-timber-pwa.css','/assets/shift-service-bridge-v1.css']);
+export const PUBLIC_STYLES = new Set(['/assets/shift-recovery-v6.css','/assets/shift-calculator-flow-v1.css','/assets/ask-timber-drawer-v2.css','/seo-wave2-v15.css','/assets/v136-desolation-recovery.css','/assets/v137-estate-closeout.css','/assets/header-navigation-v2.css','/assets/shift-service-bridge-v1.css']);
 const ORIGIN = 'https://shiftsometimber.co.uk';
 function repairNode(node) {
  if (Array.isArray(node)) return node.map(repairNode);
@@ -22,6 +22,12 @@ export async function withPublicToolDelivery(response,request) {
  const url=new URL(request.url);
  if(url.origin!==ORIGIN || !['GET','HEAD'].includes(request.method) || response.status!==200) return response;
  const type=response.headers.get('Content-Type')||'';
+ // Keep the existing member stylesheet uncached, including HEAD/query variants.
+ if(url.pathname==='/assets/my-timber-pwa.css' && type.split(';')[0].trim().toLowerCase()==='text/css') {
+  const headers=new Headers(response.headers);
+  headers.set('Cache-Control',/\bprivate\b/i.test(response.headers.get('Cache-Control')||'')?'private, no-store':'no-store');
+  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+ }
  if(PUBLIC_STYLES.has(url.pathname) && type.split(';')[0].trim().toLowerCase()==='text/css' && !request.headers.has('Authorization') && !response.headers.has('Set-Cookie') && !/\bprivate\b/i.test(response.headers.get('Cache-Control')||'') && !/(?:^|,)\s*(?:cookie|authorization|\*)\s*(?:,|$)/i.test(response.headers.get('Vary')||'')) {
   const headers=new Headers(response.headers);
   headers.set('Cache-Control','public, max-age=300, must-revalidate');
