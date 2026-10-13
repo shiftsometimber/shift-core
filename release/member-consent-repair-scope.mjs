@@ -74,7 +74,10 @@ export function memberConsentHistoricalView(reader=(ref,path)=>git('rev-parse',r
 export function memberConsentHistoricalFile(path,bytes){
  const view=memberConsentHistoricalView();assert.equal(bytes,content('HEAD',path),'Historical file must be exact current bytes');
  if(view.rawHead===view.head)return bytes;
- assert(MEMBER_CONSENT_MAINTENANCE.includes(path),'Unlisted member maintenance historical file');
+ if(!MEMBER_CONSENT_MAINTENANCE.includes(path)){
+  assert.equal(bytes,content(MEMBER_CONSENT_BASE,path),'Unlisted historical file must be unchanged');
+  return bytes;
+ }
  return content(MEMBER_CONSENT_BASE,path);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
