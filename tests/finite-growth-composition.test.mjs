@@ -6,8 +6,12 @@ import {verifyFiniteGrowth as verify,finiteGrowthHistoricalView,FINITE_GROWTH_BA
 const manifest='release/approved-runtime-composition.json';
 const fixture=()=>({proof:'EXACT_APPROVED_FINITE_GROWTH_20261013',base,source,approvedSource,ownerApproval:'Matt: Do; 12 October 2026 19:50 BST',integrationIssue:1065,paths:[...paths],maintenancePaths:[...maintenance],maintenanceSource:'a'.repeat(40),...Object.fromEntries(flags.map(f=>[f,false]))});
 const old="    assert((await page.locator('main').innerText()).includes('Increased'));",replacement="    assert.match(await page.locator('main').innerText(), /\\bincreased\\b/i);";
-const options=()=>({head:'b'.repeat(40),read:(ref,path)=>blobs[path]||'same',ancestor:()=>{},diff:a=>a===base?[...paths]:a===source?[...maintenance]:[manifest],content:(ref,path)=>path===manifest?JSON.stringify(ref===base?{retained:true}:{retained:true,finiteGrowthRepair:{}}):ref===base?old:replacement});
+const options=()=>({head:'b'.repeat(40),blob:(ref,path)=>blobs[path],read:(ref,path)=>blobs[path]||'same',ancestor:()=>{},diff:a=>a===base?[...paths]:a===source?[...maintenance]:[manifest],content:(ref,path)=>path===manifest?JSON.stringify(ref===base?{retained:true}:{retained:true,finiteGrowthRepair:{}}):ref===base?old:replacement});
 test('only the approved six frozen growth blobs and bounded verification maintenance are accepted',()=>verify(fixture(),options()));
+test('content and sentinel readers remain compatible while independent Git identities stay pinned',()=>{
+ for(const read of [()=> 'same',(ref,path)=>'contents for '+path])assert.doesNotThrow(()=>verify(fixture(),{...options(),read}));
+ for(const ref of [source,'HEAD'])for(const path of paths){const o=options(),blob=o.blob;o.read=()=> 'same';o.blob=(r,p)=>r===ref&&p===path?'f'.repeat(40):blob(r,p);assert.throws(()=>verify(fixture(),o),/growth (?:blob changed|source drift)/);}
+});
 test('all source identities, owner approval and authority boundaries are mandatory',()=>{
  for(const patch of [{base:'f'.repeat(40)},{source:'f'.repeat(40)},{approvedSource:'f'.repeat(40)},{ownerApproval:'assumed'},{integrationIssue:1},...flags.map(f=>({[f]:true}))])assert.throws(()=>verify({...fixture(),...patch},options()));
 });

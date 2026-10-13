@@ -23,7 +23,7 @@ const manifest='release/approved-runtime-composition.json',sorted=a=>[...a].sort
 const paths=new Set([...FINITE_GROWTH_PATHS,...FINITE_GROWTH_MAINTENANCE,manifest]);
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'});
-export function verifyFiniteGrowth(c,{head,read,diff,ancestor,content:contents=content}){
+export function verifyFiniteGrowth(c,{head,read,diff,ancestor,content:contents=content,blob=(ref,path)=>git('rev-parse',ref+':'+path)}){
  assert.equal(c?.proof,'EXACT_APPROVED_FINITE_GROWTH_20261013');
  assert.equal(c.base,FINITE_GROWTH_BASE);assert.equal(c.source,FINITE_GROWTH_SOURCE);assert.equal(c.approvedSource,FINITE_GROWTH_APPROVED_SOURCE);
  assert.equal(c.ownerApproval,'Matt: Do; 12 October 2026 19:50 BST');assert.equal(c.integrationIssue,1065);
@@ -37,7 +37,9 @@ export function verifyFiniteGrowth(c,{head,read,diff,ancestor,content:contents=c
  assert.deepEqual(diff(c.maintenanceSource,head),[manifest],'Unreviewed change after finite growth receipt');
  const prior=JSON.parse(contents(c.base,manifest)),current=JSON.parse(contents(head,manifest));
  delete current.finiteGrowthRepair;assert.deepEqual(current,prior,'Every existing release receipt must remain unchanged');
- for(const path of c.paths){assert.equal(read(c.source,path),FINITE_GROWTH_BLOBS[path],'Exact approved growth blob changed: '+path);assert.equal(read('HEAD',path),FINITE_GROWTH_BLOBS[path],'Approved growth source drift: '+path);}
+ // The caller's reader may return contents, blob IDs or test sentinels.
+ // Pin real Git objects independently, then preserve its fresh-reader contract.
+ for(const path of c.paths){assert.equal(blob(c.source,path),FINITE_GROWTH_BLOBS[path],'Exact approved growth blob changed: '+path);assert.equal(blob('HEAD',path),FINITE_GROWTH_BLOBS[path],'Approved growth source drift: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Approved growth source drift: '+path);}
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Finite growth maintenance source drift: '+path);
  const before=contents(c.base,'obesity-awareness/rendered-live-proof.cjs');
  const old="    assert((await page.locator('main').innerText()).includes('Increased'));";
