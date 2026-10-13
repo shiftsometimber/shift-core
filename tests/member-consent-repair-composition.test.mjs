@@ -6,9 +6,9 @@ import {verifyMemberConsentSource as verify,requireMemberConsentReleaseAuthority
 const manifest='release/approved-runtime-composition.json';
 const fixture=()=>({proof:'EXACT_MEMBER_CONSENT_REPAIR_SOURCE_20261013',base,source,integrationIssue:1065,paths:[...paths],maintenancePaths:[...maintenance],maintenanceSource:'a'.repeat(40),releaseApproval:null,...Object.fromEntries(flags.map(f=>[f,false]))});
 const options=()=>({head:'b'.repeat(40),read:(ref,path)=>blobs[path]||'maintenance',blob:(ref,path)=>blobs[path]||'maintenance',ancestor:()=>{},diff:a=>a===base?[...paths]:a===source?[...maintenance]:[manifest],content:ref=>JSON.stringify(ref===base?{retained:true}:{retained:true,memberConsentRepair:{}})});
-test('source review admits only twelve immutable repair paths and eight bounded maintenance paths',()=>{
+test('source review admits only thirteen immutable repair/evidence paths and eight bounded maintenance paths',()=>{
   assert.doesNotThrow(()=>verify(fixture(),options()));
-  assert.equal(paths.length,12);assert.equal(maintenance.length,8);
+  assert.equal(paths.length,13);assert.equal(maintenance.length,8);
   assert(!paths.includes('obesity-awareness/rendered-live-proof.cjs'));
   assert(!paths.includes('member-experience/grub-routes.mjs'));
 });
@@ -65,5 +65,14 @@ test('source classification lists only the exact member paths and preserves add/
 });
 test('coaching release retains every original byte and uses the existing independently verified historical reader',()=>{
  const path='shift-coach/release-contract.mjs',current=readFileSync(path,'utf8');
+ assert.equal(current,execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
+});
+
+test('Programme image evidence preserves the exact original assertion, selectors, budget and destinations',()=>{
+ const path='scripts/verify-programme-day.cjs';let current=readFileSync(path,'utf8');
+ const detail=",complete:x.complete,naturalWidth:x.naturalWidth,loading:x.loading,bounds:{top:x.getBoundingClientRect().top,bottom:x.getBoundingClientRect().bottom}";
+ const capture="fs.writeFileSync('programme-day-proof/state-'+width+'.json',JSON.stringify({width,...state},null,2));";
+ assert.equal(current.split(detail).length,2);assert.equal(current.split(capture).length,2);
+ current=current.replace(detail,'').replace(capture,'');
  assert.equal(current,execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
 });
