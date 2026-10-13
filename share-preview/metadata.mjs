@@ -1,3 +1,4 @@
+import {streamRootShareImage} from './stream.mjs';
 import {SHARE_PREVIEW_PATH,SHARE_PREVIEW_SHA256,sharePreviewBytes} from './asset.mjs';
 export const LEGACY_SHARE_URL='https://shiftsometimber.co.uk/assets/og-default.jpg';
 export const APPROVED_SHARE_URL='https://shiftsometimber.co.uk'+SHARE_PREVIEW_PATH;
@@ -30,7 +31,7 @@ export async function withRootSharePreview(response,request){
  if(new URL(request.url).pathname!=='/'||!['GET','HEAD'].includes(request.method)||!response?.ok||!response.headers.get('Content-Type')?.includes('text/html'))return response;
  const headers=new Headers(response.headers);
  for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
- const body=request.method==='HEAD'?null:replaceRootShareImage(await response.text());
+ const body=request.method==='HEAD'?null:streamRootShareImage(response.body,replaceRootShareImage);
  return new Response(body,{status:response.status,statusText:response.statusText,headers});
 }
 

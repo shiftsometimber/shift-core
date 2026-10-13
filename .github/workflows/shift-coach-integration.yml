@@ -18,7 +18,7 @@ jobs:
         with: {node-version: 24}
       - run: npm ci --no-audit --no-fund
       - name: Verify exact approved homepage sharing repair
-        run: node --test tests/root-share-preview.test.mjs tests/root-share-preview-composition.test.mjs tests/root-share-preview-rollback.test.mjs tests/root-share-preview-transport.test.mjs tests/root-share-transport-rollback.test.mjs
+        run: node --test tests/root-share-preview.test.mjs tests/root-share-preview-composition.test.mjs tests/root-share-preview-rollback.test.mjs tests/root-share-preview-transport.test.mjs tests/root-share-transport-rollback.test.mjs tests/root-share-stream.test.mjs tests/root-share-speed-rollback.test.mjs
       - name: Verify bounded member consent source and request-evidence privacy
         run: node --test tests/member-consent-repair-composition.test.mjs tests/photo-tracking-choice.test.mjs tests/request-evidence-privacy.test.mjs
       - name: Verify exact approved finite growth and retained obesity assertions
