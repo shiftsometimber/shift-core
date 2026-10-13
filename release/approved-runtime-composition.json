@@ -3805,9 +3805,13 @@
       "release/approved-runtime-composition.mjs",
       ".github/workflows/shift-coach-integration.yml",
       ".github/workflows/cloudflare-production-promote.yml",
-      "tests/growth-finite-response-policy.test.mjs"
+      "tests/growth-finite-response-policy.test.mjs",
+      "release/root-share-preview-rollback.mjs",
+      "tests/root-share-preview-rollback.test.mjs",
+      "docs/root-share-owned-rollback-20261013.json",
+      "shift-coach/recover-cancelled-release.mjs"
     ],
-    "maintenanceSource": "d340218ffd6e7c746614a080d3d4fdbe5ef859f5",
+    "maintenanceSource": "d60224270b92c5e73fb72cec72b7d4768067e146",
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
