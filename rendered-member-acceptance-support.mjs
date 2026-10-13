@@ -45,6 +45,38 @@ export async function memberReady(page,{site,panel=null}){
   await waitForMemberUI(page,{panel});
 }
 
+// An explicit acceptance step for the already verified fictional identity.
+// It exercises the ordinary settings controls and never grants consent through
+// an API shortcut, a DOM mutation or a forced click.
+export async function chooseOptionalHealthTracking(page,{site}){
+  const identity=identities.get(page.context());
+  if(!identity||identity.site!==site||!SYNTHETIC.test(identity.email))throw new Error('Optional tracking acceptance requires the verified synthetic identity');
+  await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded',timeout:30000});
+  await chooseNecessaryCookies(page);
+  const choice=page.locator('#healthConsentAction');
+  await choice.waitFor({state:'visible',timeout:15000});
+  const label=(await choice.innerText()).trim();
+  if(label==='Review and opt in'){
+    await choice.click();
+    const dialog=page.locator('dialog.health-consent-dialog-v42n');
+    await dialog.waitFor({state:'visible',timeout:15000});
+    const checkbox=dialog.locator('#healthConsentCheck'),agree=dialog.locator('#healthConsentContinue');
+    if(await checkbox.isChecked()||!await agree.isDisabled())throw new Error('Optional consent must begin unselected');
+    await checkbox.check();
+    await agree.click();
+    await dialog.waitFor({state:'detached',timeout:15000});
+  }else if(label!=='Withdraw consent')throw new Error('Unexpected optional health-tracking control');
+  const me=await page.context().request.get(site+'/v1/me',{headers:{Origin:site,'Cache-Control':'no-cache'}});
+  const user=await me.json().catch(()=>null);
+  if(!me.ok()||String(user?.user?.email||'').toLowerCase()!==identity.email)throw new Error('Optional tracking choice lost the verified synthetic identity');
+  const response=await page.context().request.get(identity.api+'/v1/consents',{headers:{Origin:site,'Cache-Control':'no-cache'}});
+  const body=await response.json().catch(()=>null);
+  const rows=body?.consents;
+  const latest=Array.isArray(rows)?rows.filter(row=>row.consent_type==='my_shift_health_tracking').sort((a,b)=>Number(b.id)-Number(a.id))[0]:null;
+  if(!response.ok()||Number(latest?.granted)!==1)throw new Error('The explicit optional tracking choice was not saved');
+  return {choice:'explicit optional opt-in',identityVerified:true,saved:true};
+}
+
 export async function memberReload(page,{site,panel=null}){
   const identity=identities.get(page.context());
   if(!identity||identity.site!==site)throw new Error('Member reload requires a verified commissioning session');

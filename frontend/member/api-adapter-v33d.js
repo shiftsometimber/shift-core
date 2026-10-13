@@ -51,7 +51,26 @@
     }finally{clearTimeout(timer)}
   }
 
+  async function requirePhotoTracking(){
+    // Read the current account's choice afresh. Do not reuse a browser consent
+    // cache across withdrawal, logout or a different signed-in account.
+    const result=await request('/consents');
+    if(!Array.isArray(result?.consents))throw apiError({error:'health_consent_unavailable',message:'Your health-tracking choice could not be checked. Please try again.'},503);
+    const choices=result.consents.filter(row=>row?.consent_type==='my_shift_health_tracking');
+    if(choices.some(row=>!Number.isSafeInteger(Number(row.id))||Number(row.id)<1))throw apiError({error:'health_consent_unavailable',message:'Your health-tracking choice could not be checked. Please try again.'},503);
+    const latest=choices.sort((a,b)=>Number(b.id)-Number(a.id))[0];
+    if(Number(latest?.granted)!==1)throw apiError({error:'health_consent_required',message:'Review optional health tracking before using your private photos.'},409);
+    const state=await request('/member-state');
+    let preferences=state?.state?.preferences;
+    if(typeof preferences==='string'){try{preferences=JSON.parse(preferences);}catch{throw apiError({error:'health_consent_unavailable',message:'Your tracking settings could not be checked. Please try again.'},503);}}
+    if(!preferences||typeof preferences!=='object'||Array.isArray(preferences))throw apiError({error:'health_consent_unavailable',message:'Your tracking settings could not be checked. Please try again.'},503);
+    if(preferences?.myJourney?.setup?.paused===true)throw apiError({error:'health_consent_required',message:'Optional health tracking is paused. Review your tracking choice before using private photos.'},409);
+  }
   async function saveProgressPhoto(file,meta={}){
+    // This runs only after the member presses Save. The existing dialog records
+    // an explicit choice; declining it never sends a photo or changes consent.
+    if(typeof window.SST_HEALTH_CONSENT?.ensure!=='function'||!await window.SST_HEALTH_CONSENT.ensure())throw apiError({error:'health_consent_required',message:'Nothing saved. Optional health tracking is your choice.'},409);
+    await requirePhotoTracking();
     const form=new FormData();
     form.append('image',file,'shift-progress.jpg');
     form.append('consent','true');
@@ -71,6 +90,9 @@
     }
   }
   async function listProgressPhotos(){
+    // A background load must never open a consent dialog or request photos
+    // while optional tracking is off. The server remains the final authority.
+    await requirePhotoTracking();
     const res=await fetch(V1+'/shift/progress-photo',{credentials:'include',cache:'no-store'});
     const body=await res.json(); if(!res.ok) throw apiError(body,res.status); return body;
   }
