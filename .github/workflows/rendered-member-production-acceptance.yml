@@ -49,6 +49,7 @@ jobs:
           import assert from 'node:assert/strict';
           import {execFileSync} from 'node:child_process';
           const baseline='c9756798dd271260c8812e419fae5f0d7c61e194';
+          execFileSync('git',['fetch','--no-tags','--depth=1','origin',baseline],{stdio:'inherit'});
           const allowed=new Set(['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','.github/workflows/rendered-member-production-acceptance.yml','.github/workflows/my-timber-final-production.yml']);
           const changed=execFileSync('git',['diff','--name-only',baseline,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
           assert(changed.every(path=>allowed.has(path)),'Verification branch changed serving source');
