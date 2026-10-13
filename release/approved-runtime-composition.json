@@ -3863,5 +3863,51 @@
       "headersChanged": false,
       "performanceGateChanged": false
     }
+  },
+  "photoCalendarRepair": {
+    "proof": "EXACT_EXISTING_PRIVATE_PHOTO_CALENDAR_REPAIR_20261014",
+    "base": "cc3916d88d66c70dd7be7276ba80a16001c2bbd5",
+    "source": "51752936793508c6e3e7f42f7067baba144e626e",
+    "paths": [
+      "frontend/member/member-progress-v1.js",
+      "tests/photo-calendar.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/photo-calendar-scope.mjs",
+      "tests/photo-calendar-composition.test.mjs",
+      "release/root-share-preview-scope.mjs",
+      "tests/root-share-preview-composition.test.mjs",
+      ".github/workflows/shift-coach-integration.yml",
+      "docs/photo-calendar-repair-20261014.json"
+    ],
+    "maintenanceSource": "481cf55eb5b53fee3cf9daa65533cf7cc4cf112e",
+    "integrationIssue": 1065,
+    "releaseApproval": {
+      "owner": "Matt",
+      "instruction": "Do",
+      "recordedAt": "2026-10-12T18:46:03Z",
+      "scope": "Existing My Timber upgrade through #1065, including photo access and deletion verification; bounded corrective work only",
+      "source": "9610259f261ff0a125c9af753d447268d7ab2e3d",
+      "maintenanceSource": "dac6e5c392cd89b122598b37be44d9565cd1b7ba",
+      "integrationIssue": 1065,
+      "emailAuthority": false,
+      "rollbackAuthorityBroadened": false
+    },
+    "selectedLondonDateRestored": true,
+    "futureInstantCutoffChanged": false,
+    "homepageChanged": false,
+    "clinicalChanged": false,
+    "stockChanged": false,
+    "customerRecordsRead": false,
+    "storedRecordsRewritten": false,
+    "sourceConsentAutomaticallyGranted": false,
+    "storagePolicyChanged": false,
+    "emailGeneratingStepsStarted": false,
+    "externalCommunicationsSent": false,
+    "paidModelEnabled": false,
+    "existingGatesWeakened": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false
   }
 }
