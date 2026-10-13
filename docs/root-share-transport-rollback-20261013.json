@@ -1,0 +1,2447 @@
+{
+  "failedRun": {
+    "id": 38457803277,
+    "head_sha": "456cb0ca91a9d01c06e62d8984460a3661fd5953",
+    "conclusion": "failure",
+    "status": "completed",
+    "event": "push",
+    "head_branch": "main",
+    "run_attempt": 1,
+    "path": ".github/workflows/cloudflare-production-promote.yml"
+  },
+  "failedJob": {
+    "id": 115505092155,
+    "name": "promote",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_id": 38457803277,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Fail closed when deploy credential is absent",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Require recorded coaching launch decisions before production work",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Require exact approved growth preview and release verification",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Require the exact successful heading preview before production work",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Require verified homepage speed candidate and current CSS bytes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Install exact Wrangler toolchain",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Recover only the evidenced cancelled runtime to the last verified release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Prepare and launch verification browsers before deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Adopt the exact already-completed growth deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Verify B1 release scope before any production mutation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Verify article retry, publication and notification contracts",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Verify acquisition consent and same-account activation join",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Verify five source-specific articles without changing unrelated pages",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Verify My Treatment schema preservation and release boundaries",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Verify member experience and Grub account integration",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Verify Passport consent, migration and preservation before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      },
+      {
+        "name": "Verify catalogue authority, additive publication guards and timing",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20
+      },
+      {
+        "name": "Verify reminder delivery and proactive acknowledgement before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21
+      },
+      {
+        "name": "Verify approved PWA, device consent and exact presentation preservation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22
+      },
+      {
+        "name": "Prove Daily Shift is a fluid one-thumb front door",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23
+      },
+      {
+        "name": "Prove My Timber has reached the 75 percent all-green bar",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24
+      },
+      {
+        "name": "Prove the My Timber production candidate is complete",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25
+      },
+      {
+        "name": "Prove signed-in members can reach the site and The Lounge",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26
+      },
+      {
+        "name": "Verify security-check timeouts and retry before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27
+      },
+      {
+        "name": "Prove persistent member login remains secure",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28
+      },
+      {
+        "name": "Prove Ask Timber handles every explicit request part",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29
+      },
+      {
+        "name": "Block SEO deployment regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30
+      },
+      {
+        "name": "Prove Health rendering, canonical uniqueness and public endpoint security",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31
+      },
+      {
+        "name": "Prove My Journey end to end before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32
+      },
+      {
+        "name": "Prove medicine front door, commercial safety and full purchase lifecycle",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33
+      },
+      {
+        "name": "Verify Medicines Watch evidence, monitor and public isolation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 34
+      },
+      {
+        "name": "Verify Radar retrieval, publication edition, dates and correction races",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 35
+      },
+      {
+        "name": "Verify owner-authorised automatic news and human-decision preservation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 36
+      },
+      {
+        "name": "Verify newsroom publication ordering and combined controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 37
+      },
+      {
+        "name": "Verify BabyLoveGrowth intake and exact approved public article",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 38
+      },
+      {
+        "name": "Verify HQ article schema and retained editorial approvals",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 39
+      },
+      {
+        "name": "Verify exact current main before production mutations",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 40
+      },
+      {
+        "name": "Verify discovery privacy, crisis and reporting regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 41
+      },
+      {
+        "name": "Apply pharmacy-readiness database additions",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 42
+      },
+      {
+        "name": "Initialise Medicines Watch source observations",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 43
+      },
+      {
+        "name": "Initialise reviewed Medicines Watch expansion observations",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 44
+      },
+      {
+        "name": "Publish only the exact previously authorised Grub recipe expansion",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 45
+      },
+      {
+        "name": "Verify existing production food catalogue without account writes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 46
+      },
+      {
+        "name": "Verify the isolated Evidence Inbox connection without writes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 47
+      },
+      {
+        "name": "Verify retained SHIFT interpretations throughout the archive",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 48
+      },
+      {
+        "name": "Verify AI Gateway budgets before production deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 49
+      },
+      {
+        "name": "Capture AI frontend and aggregate knowledge foundation before release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 50
+      },
+      {
+        "name": "Prove public tool checks and guarded rollback in isolation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 51
+      },
+      {
+        "name": "Capture current Worker deployment for rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 52
+      },
+      {
+        "name": "Seed recent discovery snapshots without publishing or sending notifications",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 53
+      },
+      {
+        "name": "Capture current public pages before this member release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 54
+      },
+      {
+        "name": "Retain rollback deployment record",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 55
+      },
+      {
+        "name": "Prepare exact additive Passport schema and rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 56
+      },
+      {
+        "name": "Prepare additive daily check-in feedback store",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 57
+      },
+      {
+        "name": "Capture protected catalogue and stock without customer records",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 58
+      },
+      {
+        "name": "Prepare only the explicitly approved Member Details contact table",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 59
+      },
+      {
+        "name": "Prepare the exact additive signup-alert delivery store",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 60
+      },
+      {
+        "name": "Prepare exact additive My Treatment stores",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 61
+      },
+      {
+        "name": "Index existing public SHIFT pages for AI without publishing website content",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 62
+      },
+      {
+        "name": "Require exact approved homepage sharing repair and retain baseline",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 63
+      },
+      {
+        "name": "Require exact member repair publication and production approval",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 64
+      },
+      {
+        "name": "Verify compiled My Treatment responses before runtime deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 65
+      },
+      {
+        "name": "Deploy current main to production",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 66
+      },
+      {
+        "name": "Begin verification of the deployed runtime",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 67
+      },
+      {
+        "name": "Restore the exact approved version after the evidenced harness-only rollback",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 68
+      },
+      {
+        "name": "Wait briefly for route propagation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 69
+      },
+      {
+        "name": "Verify nine public tool pages against the owned deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 70
+      },
+      {
+        "name": "Verify calculator journeys and specific tool guidance live",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 71
+      },
+      {
+        "name": "Verify rendered knowledge headings and direct About link live",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 72
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 73
+      },
+      {
+        "name": "Verify corrected homepage sharing image and exact page preservation live",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 74
+      },
+      {
+        "name": "Verify exact live app assets and website isolation",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 75
+      },
+      {
+        "name": "Verify approved growth copy live on desktop and phone viewport",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 76
+      },
+      {
+        "name": "Measure and retain live homepage mobile speed",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 77
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 78
+      },
+      {
+        "name": "Verify live AI knowledge, response timing and exact reviewed chat assets",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 79
+      },
+      {
+        "name": "Verify exact Member Details and frontend repair delivery",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 80
+      },
+      {
+        "name": "Publish the exact owner-approved illustrated Wegovy guide",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 81
+      },
+      {
+        "name": "Publish the reconciled oral semaglutide guide",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 82
+      },
+      {
+        "name": "Verify the reconciled oral semaglutide guide",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 83
+      },
+      {
+        "name": "Verify the Wegovy guide, three images, author, Knowledge listing and sitemap",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 84
+      },
+      {
+        "name": "Verify five revised articles, metadata, downloads and sitemap on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 85
+      },
+      {
+        "name": "Retain five-article live proof",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 86
+      },
+      {
+        "name": "Prove activated Passport delivery and private routes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 87
+      },
+      {
+        "name": "Verify live My Treatment delivery and private APIs",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 88
+      },
+      {
+        "name": "Retain Passport migration and live evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 89
+      },
+      {
+        "name": "Publish only the fixed owner-authorised catalogue when approved",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 90
+      },
+      {
+        "name": "Publish the exact owner-authorised newsroom batch when approved",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 91
+      },
+      {
+        "name": "Prove existing public content and login asset are preserved outside exact approved additions",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 92
+      },
+      {
+        "name": "Prove public Life Back, food-noise guidance and their linked journeys",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 93
+      },
+      {
+        "name": "Verify approved Programme day and catalogue artwork live",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 94
+      },
+      {
+        "name": "Prove newsroom publication order on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 95
+      },
+      {
+        "name": "Verify SHIFT take labels and original dates on every live news article",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 96
+      },
+      {
+        "name": "Prove exact member scripts and authentication on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 97
+      },
+      {
+        "name": "Verify exact PWA assets, full-account entry and device privacy on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 98
+      },
+      {
+        "name": "Prove Medicines Watch and its source checks on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 99
+      },
+      {
+        "name": "Verify live access sources without granting clinical review for Orders display",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 100
+      },
+      {
+        "name": "Verify the six reviewed SEO pages and their linked destinations live",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 101
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 102
+      },
+      {
+        "name": "Prove the complete SEO closeout on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 103
+      },
+      {
+        "name": "Prove repaired templates, sharing cards, direct links and real FAQ destinations",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 104
+      },
+      {
+        "name": "Prove automatic article metadata and the shared security policy",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 105
+      },
+      {
+        "name": "Record independent public HTTP latency after promotion",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 106
+      },
+      {
+        "name": "Retain public preservation evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 107
+      },
+      {
+        "name": "Prove deployed public audit repairs",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 108
+      },
+      {
+        "name": "Prove discovery repair source and anonymous boundaries on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 109
+      },
+      {
+        "name": "Retain discovery repair live proof",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 110
+      },
+      {
+        "name": "Prove deployed Progress client matches current Git authority",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 111
+      },
+      {
+        "name": "Record Radar metadata repair and remaining source failures without writes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 112
+      },
+      {
+        "name": "Retain Radar diagnosis after deployment",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 113
+      },
+      {
+        "name": "Prove newer restricted routes are on live traffic",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 114
+      },
+      {
+        "name": "Prove Shift Me premium static assets are actually published",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 115
+      },
+      {
+        "name": "Prove SHIFT Health editorial imagery is actually published",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 116
+      },
+      {
+        "name": "Verify B1 protected catalogue and stock remain identical",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 117
+      },
+      {
+        "name": "Restore the captured runtime if a post-deployment gate failed",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 118
+      },
+      {
+        "name": "Verify nine public tool pages after owned rollback",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 119
+      },
+      {
+        "name": "Verify query-string log redaction after deployment or rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 120
+      },
+      {
+        "name": "Record public tool verification status before retaining evidence",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 121
+      },
+      {
+        "name": "Retain B1 runtime-only release evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 122
+      },
+      {
+        "name": "Report final public tool release status",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 123
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 245
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 246
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 247
+      }
+    ]
+  },
+  "failedLogs": "2026-10-13T20:25:21.1246748Z {\"kind\":\"owned_runtime_deployment\",\"at\":\"2026-10-13T20:25:21.123Z\",\"source\":\"456cb0ca91a9d01c06e62d8984460a3661fd5953\",\"run\":\"38457803277\",\"deploymentId\":\"d60ec692-63c3-4c44-85a9-072d8bd283fb\",\"versionId\":\"2f8f21b7-7c04-4f36-959f-9b299d2c8a25\",\"previousDeploymentId\":\"2c101c54-9a10-4890-a3e7-f292e964d4a7\",\"previousVersionId\":\"c2b4ad51-201a-4704-ab32-ec76ca5c8918\",\"dataRestored\":false}\n2026-10-13T20:30:06.9678561Z \u2570\u200a SUCCESS \u200aWorker Version c2b4ad51-201a-4704-ab32-ec76ca5c8918 has been deployed to 100% of traffic.",
+  "artifact": {
+    "id": 11846642044,
+    "name": "b1-runtime-release-38457803277",
+    "size_in_bytes": 651673,
+    "url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/11846642044",
+    "archive_download_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/11846642044/zip",
+    "expired": false,
+    "created_at": "2026-10-13T20:30:27Z",
+    "expires_at": "2027-01-11T19:48:42Z",
+    "updated_at": "2026-10-13T20:30:27Z",
+    "digest": "sha256:99b7de490ca0c644f794038ae5b5ce00af3d451a8020392517070de9880daac1",
+    "workflow_run": {
+      "id": 38457803277,
+      "repository_id": 1328867509,
+      "head_repository_id": 1328867509,
+      "head_branch": "main",
+      "head_sha": "456cb0ca91a9d01c06e62d8984460a3661fd5953"
+    }
+  },
+  "receiptSource": "Actual immutable failed artifact11846642044 and actual source/job receipts; original verified predecessor from its retained exact fixture. freshChecks is SYNTHETIC UNIT-ONLY, never an actual live follow-up receipt.",
+  "active": {
+    "id": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+    "versions": [
+      {
+        "version_id": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "percentage": 100
+      }
+    ]
+  },
+  "version": {
+    "id": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+    "metadata": {
+      "created_on": "2026-10-13T15:51:54.847698Z",
+      "source": "wrangler"
+    },
+    "annotations": {
+      "workers/triggered_by": "version_upload"
+    }
+  },
+  "verifiedRun": {
+    "id": 38420048446,
+    "head_sha": "c9756798dd271260c8812e419fae5f0d7c61e194",
+    "head_branch": "main",
+    "event": "push",
+    "conclusion": "success",
+    "status": "completed",
+    "run_attempt": 1,
+    "path": ".github/workflows/cloudflare-production-promote.yml"
+  },
+  "verifiedJob": {
+    "id": 115374804411,
+    "run_id": 38420048446,
+    "name": "promote",
+    "status": "completed",
+    "conclusion": "success",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Fail closed when deploy credential is absent",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Require recorded coaching launch decisions before production work",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Require exact approved growth preview and release verification",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Require the exact successful heading preview before production work",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Require verified homepage speed candidate and current CSS bytes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Install exact Wrangler toolchain",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Recover only the evidenced cancelled runtime to the last verified release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Prepare and launch verification browsers before deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Adopt the exact already-completed growth deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Verify B1 release scope before any production mutation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Verify article retry, publication and notification contracts",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Verify acquisition consent and same-account activation join",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Verify five source-specific articles without changing unrelated pages",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Verify My Treatment schema preservation and release boundaries",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Verify member experience and Grub account integration",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Verify Passport consent, migration and preservation before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      },
+      {
+        "name": "Verify catalogue authority, additive publication guards and timing",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20
+      },
+      {
+        "name": "Verify reminder delivery and proactive acknowledgement before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21
+      },
+      {
+        "name": "Verify approved PWA, device consent and exact presentation preservation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22
+      },
+      {
+        "name": "Prove Daily Shift is a fluid one-thumb front door",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23
+      },
+      {
+        "name": "Prove My Timber has reached the 75 percent all-green bar",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24
+      },
+      {
+        "name": "Prove the My Timber production candidate is complete",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25
+      },
+      {
+        "name": "Prove signed-in members can reach the site and The Lounge",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26
+      },
+      {
+        "name": "Verify security-check timeouts and retry before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27
+      },
+      {
+        "name": "Prove persistent member login remains secure",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 28
+      },
+      {
+        "name": "Prove Ask Timber handles every explicit request part",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29
+      },
+      {
+        "name": "Block SEO deployment regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30
+      },
+      {
+        "name": "Prove Health rendering, canonical uniqueness and public endpoint security",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31
+      },
+      {
+        "name": "Prove My Journey end to end before promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32
+      },
+      {
+        "name": "Prove medicine front door, commercial safety and full purchase lifecycle",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33
+      },
+      {
+        "name": "Verify Medicines Watch evidence, monitor and public isolation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 34
+      },
+      {
+        "name": "Verify Radar retrieval, publication edition, dates and correction races",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 35
+      },
+      {
+        "name": "Verify owner-authorised automatic news and human-decision preservation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 36
+      },
+      {
+        "name": "Verify newsroom publication ordering and combined controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 37
+      },
+      {
+        "name": "Verify BabyLoveGrowth intake and exact approved public article",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 38
+      },
+      {
+        "name": "Verify HQ article schema and retained editorial approvals",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 39
+      },
+      {
+        "name": "Verify exact current main before production mutations",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 40
+      },
+      {
+        "name": "Verify discovery privacy, crisis and reporting regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 41
+      },
+      {
+        "name": "Apply pharmacy-readiness database additions",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 42
+      },
+      {
+        "name": "Initialise Medicines Watch source observations",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 43
+      },
+      {
+        "name": "Initialise reviewed Medicines Watch expansion observations",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 44
+      },
+      {
+        "name": "Publish only the exact previously authorised Grub recipe expansion",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 45
+      },
+      {
+        "name": "Verify existing production food catalogue without account writes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 46
+      },
+      {
+        "name": "Verify the isolated Evidence Inbox connection without writes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 47
+      },
+      {
+        "name": "Verify retained SHIFT interpretations throughout the archive",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 48
+      },
+      {
+        "name": "Verify AI Gateway budgets before production deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 49
+      },
+      {
+        "name": "Capture AI frontend and aggregate knowledge foundation before release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 50
+      },
+      {
+        "name": "Prove public tool checks and guarded rollback in isolation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 51
+      },
+      {
+        "name": "Capture current Worker deployment for rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 52
+      },
+      {
+        "name": "Seed recent discovery snapshots without publishing or sending notifications",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 53
+      },
+      {
+        "name": "Capture current public pages before this member release",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 54
+      },
+      {
+        "name": "Retain rollback deployment record",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 55
+      },
+      {
+        "name": "Prepare exact additive Passport schema and rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 56
+      },
+      {
+        "name": "Prepare additive daily check-in feedback store",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 57
+      },
+      {
+        "name": "Capture protected catalogue and stock without customer records",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 58
+      },
+      {
+        "name": "Prepare only the explicitly approved Member Details contact table",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 59
+      },
+      {
+        "name": "Prepare the exact additive signup-alert delivery store",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 60
+      },
+      {
+        "name": "Prepare exact additive My Treatment stores",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 61
+      },
+      {
+        "name": "Index existing public SHIFT pages for AI without publishing website content",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 62
+      },
+      {
+        "name": "Require exact member repair publication and production approval",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 63
+      },
+      {
+        "name": "Verify compiled My Treatment responses before runtime deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 64
+      },
+      {
+        "name": "Deploy current main to production",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 65
+      },
+      {
+        "name": "Begin verification of the deployed runtime",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 66
+      },
+      {
+        "name": "Restore the exact approved version after the evidenced harness-only rollback",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 67
+      },
+      {
+        "name": "Wait briefly for route propagation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 68
+      },
+      {
+        "name": "Verify nine public tool pages against the owned deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 69
+      },
+      {
+        "name": "Verify calculator journeys and specific tool guidance live",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 70
+      },
+      {
+        "name": "Verify rendered knowledge headings and direct About link live",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 71
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 72
+      },
+      {
+        "name": "Verify exact live app assets and website isolation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 73
+      },
+      {
+        "name": "Verify approved growth copy live on desktop and phone viewport",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 74
+      },
+      {
+        "name": "Measure and retain live homepage mobile speed",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 75
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 76
+      },
+      {
+        "name": "Verify live AI knowledge, response timing and exact reviewed chat assets",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 77
+      },
+      {
+        "name": "Verify exact Member Details and frontend repair delivery",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 78
+      },
+      {
+        "name": "Publish the exact owner-approved illustrated Wegovy guide",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 79
+      },
+      {
+        "name": "Publish the reconciled oral semaglutide guide",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 80
+      },
+      {
+        "name": "Verify the reconciled oral semaglutide guide",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 81
+      },
+      {
+        "name": "Verify the Wegovy guide, three images, author, Knowledge listing and sitemap",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 82
+      },
+      {
+        "name": "Verify five revised articles, metadata, downloads and sitemap on live traffic",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 83
+      },
+      {
+        "name": "Retain five-article live proof",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 84
+      },
+      {
+        "name": "Prove activated Passport delivery and private routes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 85
+      },
+      {
+        "name": "Verify live My Treatment delivery and private APIs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 86
+      },
+      {
+        "name": "Retain Passport migration and live evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 87
+      },
+      {
+        "name": "Publish only the fixed owner-authorised catalogue when approved",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 88
+      },
+      {
+        "name": "Publish the exact owner-authorised newsroom batch when approved",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 89
+      },
+      {
+        "name": "Prove existing public content and login asset are preserved outside exact approved additions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 90
+      },
+      {
+        "name": "Prove public Life Back, food-noise guidance and their linked journeys",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 91
+      },
+      {
+        "name": "Verify approved Programme day and catalogue artwork live",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 92
+      },
+      {
+        "name": "Prove newsroom publication order on live traffic",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 93
+      },
+      {
+        "name": "Verify SHIFT take labels and original dates on every live news article",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 94
+      },
+      {
+        "name": "Prove exact member scripts and authentication on live traffic",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 95
+      },
+      {
+        "name": "Verify exact PWA assets, full-account entry and device privacy on live traffic",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 96
+      },
+      {
+        "name": "Prove Medicines Watch and its source checks on live traffic",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 97
+      },
+      {
+        "name": "Verify live access sources without granting clinical review for Orders display",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 98
+      },
+      {
+        "name": "Verify the six reviewed SEO pages and their linked destinations live",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 99
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 100
+      },
+      {
+        "name": "Prove the complete SEO closeout on live traffic",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 101
+      },
+      {
+        "name": "Prove repaired templates, sharing cards, direct links and real FAQ destinations",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 102
+      },
+      {
+        "name": "Prove automatic article metadata and the shared security policy",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 103
+      },
+      {
+        "name": "Record independent public HTTP latency after promotion",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 104
+      },
+      {
+        "name": "Retain public preservation evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 105
+      },
+      {
+        "name": "Prove deployed public audit repairs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 106
+      },
+      {
+        "name": "Prove discovery repair source and anonymous boundaries on live traffic",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 107
+      },
+      {
+        "name": "Retain discovery repair live proof",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 108
+      },
+      {
+        "name": "Prove deployed Progress client matches current Git authority",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 109
+      },
+      {
+        "name": "Record Radar metadata repair and remaining source failures without writes",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 110
+      },
+      {
+        "name": "Retain Radar diagnosis after deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 111
+      },
+      {
+        "name": "Prove newer restricted routes are on live traffic",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 112
+      },
+      {
+        "name": "Prove Shift Me premium static assets are actually published",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 113
+      },
+      {
+        "name": "Prove SHIFT Health editorial imagery is actually published",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 114
+      },
+      {
+        "name": "Verify B1 protected catalogue and stock remain identical",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 115
+      },
+      {
+        "name": "Restore the captured runtime if a post-deployment gate failed",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 116
+      },
+      {
+        "name": "Verify nine public tool pages after owned rollback",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 117
+      },
+      {
+        "name": "Verify query-string log redaction after deployment or rollback",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 118
+      },
+      {
+        "name": "Record public tool verification status before retaining evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 119
+      },
+      {
+        "name": "Retain B1 runtime-only release evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 120
+      },
+      {
+        "name": "Report final public tool release status",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 121
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 241
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 242
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 243
+      }
+    ]
+  },
+  "verifiedLogs": "2026-10-13T15:52:04.7556528Z {\"kind\":\"owned_runtime_deployment\",\"at\":\"2026-10-13T15:52:04.754Z\",\"source\":\"c9756798dd271260c8812e419fae5f0d7c61e194\",\"run\":\"38420048446\",\"deploymentId\":\"c467c3f0-4644-4ce1-b543-fb731fc9305c\",\"versionId\":\"c2b4ad51-201a-4704-ab32-ec76ca5c8918\",\"previousDeploymentId\":\"c60f4a8b-6353-405b-ab5b-ae7a9975e624\",\"previousVersionId\":\"5f855b44-5f50-4669-883e-d26e515df2eb\",\"dataRestored\":false}",
+  "files": {
+    "rollback": {
+      "at": "2026-10-13T20:30:10.117Z",
+      "restoredVersion": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "deployment": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+      "dataRestored": false,
+      "reason": "Post-deployment gate failed; release remains failed."
+    },
+    "report": {
+      "kind": "guarded_release_verification",
+      "source": "456cb0ca91a9d01c06e62d8984460a3661fd5953",
+      "run": "38457803277",
+      "workflowStatus": "failure",
+      "releaseVerified": false,
+      "status": "failed",
+      "deployedVersion": "2f8f21b7-7c04-4f36-959f-9b299d2c8a25",
+      "deployChecks": {
+        "kind": "public_tool_release_check",
+        "stage": "deploy",
+        "source": "456cb0ca91a9d01c06e62d8984460a3661fd5953",
+        "run": "38457803277",
+        "checkedAt": "2026-10-13T20:25:35.074Z",
+        "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+        "status": "passed",
+        "toolChecksVerified": true,
+        "checks": [
+          {
+            "path": "/decision-centre",
+            "status": 200,
+            "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+            "jsonBlocks": 3,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/alcohol",
+            "status": 200,
+            "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/bmi",
+            "status": 200,
+            "htmlSha256": "a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/calories",
+            "status": 200,
+            "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/healthy-weight",
+            "status": 200,
+            "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/protein",
+            "status": 200,
+            "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+            "jsonBlocks": 5,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/waist-height",
+            "status": 200,
+            "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/walking",
+            "status": 200,
+            "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+            "jsonBlocks": 5,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/water",
+            "status": 200,
+            "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          }
+        ],
+        "errors": [],
+        "deployed": {
+          "deploymentId": "d60ec692-63c3-4c44-85a9-072d8bd283fb",
+          "versionId": "2f8f21b7-7c04-4f36-959f-9b299d2c8a25",
+          "percentage": 100
+        },
+        "expected": {
+          "deploymentId": "d60ec692-63c3-4c44-85a9-072d8bd283fb",
+          "versionId": "2f8f21b7-7c04-4f36-959f-9b299d2c8a25"
+        },
+        "afterChecks": {
+          "deploymentId": "d60ec692-63c3-4c44-85a9-072d8bd283fb",
+          "versionId": "2f8f21b7-7c04-4f36-959f-9b299d2c8a25",
+          "percentage": 100
+        },
+        "finishedAt": "2026-10-13T20:25:44.596Z"
+      },
+      "rollbackChecks": {
+        "kind": "public_tool_release_check",
+        "stage": "rollback",
+        "source": "456cb0ca91a9d01c06e62d8984460a3661fd5953",
+        "run": "38457803277",
+        "checkedAt": "2026-10-13T20:30:10.165Z",
+        "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+        "status": "failed",
+        "toolChecksVerified": false,
+        "checks": [
+          {
+            "path": "/decision-centre",
+            "status": 200,
+            "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+            "jsonBlocks": 3,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/alcohol",
+            "status": 200,
+            "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/bmi",
+            "passed": false,
+            "error": "fetch failed"
+          },
+          {
+            "path": "/tools/calories",
+            "status": 200,
+            "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/healthy-weight",
+            "status": 200,
+            "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/protein",
+            "status": 200,
+            "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+            "jsonBlocks": 5,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/waist-height",
+            "status": 200,
+            "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/walking",
+            "status": 200,
+            "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+            "jsonBlocks": 5,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/water",
+            "status": 200,
+            "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          }
+        ],
+        "errors": [
+          "/tools/bmi: fetch failed",
+          "One or more public tool checks failed\n\n1 !== 0\n"
+        ],
+        "deployed": {
+          "deploymentId": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+          "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+          "percentage": 100
+        },
+        "expected": {
+          "deploymentId": "2c101c54-9a10-4890-a3e7-f292e964d4a7",
+          "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+          "percentage": 100,
+          "checkSource": "456cb0ca91a9d01c06e62d8984460a3661fd5953"
+        },
+        "deploymentSource": "captured prior runtime; see deployment-before.json",
+        "afterChecks": {
+          "deploymentId": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+          "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+          "percentage": 100
+        },
+        "finishedAt": "2026-10-13T20:30:25.387Z"
+      },
+      "note": "Rollback checks do not turn the failed release into a verified release."
+    },
+    "owned": {
+      "kind": "owned_runtime_deployment",
+      "at": "2026-10-13T20:25:21.123Z",
+      "source": "456cb0ca91a9d01c06e62d8984460a3661fd5953",
+      "run": "38457803277",
+      "deploymentId": "d60ec692-63c3-4c44-85a9-072d8bd283fb",
+      "versionId": "2f8f21b7-7c04-4f36-959f-9b299d2c8a25",
+      "previousDeploymentId": "2c101c54-9a10-4890-a3e7-f292e964d4a7",
+      "previousVersionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "dataRestored": false
+    },
+    "checks": {
+      "kind": "public_tool_release_check",
+      "stage": "rollback",
+      "source": "456cb0ca91a9d01c06e62d8984460a3661fd5953",
+      "run": "38457803277",
+      "checkedAt": "2026-10-13T20:30:10.165Z",
+      "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+      "status": "failed",
+      "toolChecksVerified": false,
+      "checks": [
+        {
+          "path": "/decision-centre",
+          "status": 200,
+          "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+          "jsonBlocks": 3,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/alcohol",
+          "status": 200,
+          "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/bmi",
+          "passed": false,
+          "error": "fetch failed"
+        },
+        {
+          "path": "/tools/calories",
+          "status": 200,
+          "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/healthy-weight",
+          "status": 200,
+          "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/protein",
+          "status": 200,
+          "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+          "jsonBlocks": 5,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/waist-height",
+          "status": 200,
+          "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/walking",
+          "status": 200,
+          "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+          "jsonBlocks": 5,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/water",
+          "status": 200,
+          "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        }
+      ],
+      "errors": [
+        "/tools/bmi: fetch failed",
+        "One or more public tool checks failed\n\n1 !== 0\n"
+      ],
+      "deployed": {
+        "deploymentId": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+        "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "percentage": 100
+      },
+      "expected": {
+        "deploymentId": "2c101c54-9a10-4890-a3e7-f292e964d4a7",
+        "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "percentage": 100,
+        "checkSource": "456cb0ca91a9d01c06e62d8984460a3661fd5953"
+      },
+      "deploymentSource": "captured prior runtime; see deployment-before.json",
+      "afterChecks": {
+        "deploymentId": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+        "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "percentage": 100
+      },
+      "finishedAt": "2026-10-13T20:30:25.387Z"
+    },
+    "calculators": {
+      "verifiedAt": "2026-10-13T20:29:55.636Z",
+      "scope": "Live Chromium desktop/mobile calculator interactions and Decision Centre tab clicks; no member accounts, purchases or submissions",
+      "checks": [
+        {
+          "viewportWidth": 380,
+          "path": "/tools/waist-height",
+          "case": "approved reading-strip keyboard/onward/Back/refresh acceptance",
+          "passed": true,
+          "strip": [
+            [
+              "BMI calculator",
+              "/tools/bmi"
+            ],
+            [
+              "Understand obesity and choose one step",
+              "/male-obesity"
+            ],
+            [
+              "Start Here",
+              "/start-here"
+            ]
+          ],
+          "onward": [
+            {
+              "name": "BMI calculator",
+              "path": "/tools/bmi",
+              "status": 200,
+              "h1": "One useful number. Not the whole verdict.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            },
+            {
+              "name": "Understand obesity and choose one step",
+              "path": "/male-obesity",
+              "status": 200,
+              "h1": "Male obesity: what it means for your health. What to do next.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            },
+            {
+              "name": "Start Here",
+              "path": "/start-here",
+              "status": 200,
+              "h1": "Let\u2019s get you sorted.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            }
+          ],
+          "initialResult": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this indicates increased central adiposity. A ratio of 0.50 is in the increased band.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nMeasure halfway between the bottom of your ribs and the top of your hips, after breathing out naturally. Record waist, height and date so the next measurement is comparable. Use the ratio as a discussion point alongside BMI and other health information.\n\nCHOOSE WHAT HAPPENS NEXT\n\nChoose the action that fits this result\nCheck the NHS waist measurement instructions \u2192\nBuild my Shift plan\n\u2192",
+          "refreshedResult": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this indicates increased central adiposity. A ratio of 0.50 is in the increased band.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nMeasure halfway between the bottom of your ribs and the top of your hips, after breathing out naturally. Record waist, height and date so the next measurement is comparable. Use the ratio as a discussion point alongside BMI and other health information.\n\nCHOOSE WHAT HAPPENS NEXT\n\nChoose the action that fits this result\nCheck the NHS waist measurement instructions \u2192\nBuild my Shift plan\n\u2192",
+          "analyticsChoice": "Necessary only",
+          "noAccountCreated": true,
+          "classification": "Controlled public Chromium QA; not physical-device or customer-outcome evidence"
+        },
+        {
+          "viewportWidth": 1440,
+          "path": "/tools/waist-height",
+          "case": "approved reading-strip keyboard/onward/Back/refresh acceptance",
+          "passed": true,
+          "strip": [
+            [
+              "BMI calculator",
+              "/tools/bmi"
+            ],
+            [
+              "Understand obesity and choose one step",
+              "/male-obesity"
+            ],
+            [
+              "Start Here",
+              "/start-here"
+            ]
+          ],
+          "onward": [
+            {
+              "name": "BMI calculator",
+              "path": "/tools/bmi",
+              "status": 200,
+              "h1": "One useful number. Not the whole verdict.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            },
+            {
+              "name": "Understand obesity and choose one step",
+              "path": "/male-obesity",
+              "status": 200,
+              "h1": "Male obesity: what it means for your health. What to do next.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            },
+            {
+              "name": "Start Here",
+              "path": "/start-here",
+              "status": 200,
+              "h1": "Let\u2019s get you sorted.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            }
+          ],
+          "initialResult": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this indicates increased central adiposity. A ratio of 0.50 is in the increased band.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nMeasure halfway between the bottom of your ribs and the top of your hips, after breathing out naturally. Record waist, height and date so the next measurement is comparable. Use the ratio as a discussion point alongside BMI and other health information.\n\nCHOOSE WHAT HAPPENS NEXT\n\nChoose the action that fits this result\nCheck the NHS waist measurement instructions \u2192\nBuild my Shift plan\n\u2192",
+          "refreshedResult": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this indicates increased central adiposity. A ratio of 0.50 is in the increased band.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nMeasure halfway between the bottom of your ribs and the top of your hips, after breathing out naturally. Record waist, height and date so the next measurement is comparable. Use the ratio as a discussion point alongside BMI and other health information.\n\nCHOOSE WHAT HAPPENS NEXT\n\nChoose the action that fits this result\nCheck the NHS waist measurement instructions \u2192\nBuild my Shift plan\n\u2192",
+          "analyticsChoice": "Necessary only",
+          "noAccountCreated": true,
+          "classification": "Controlled public Chromium QA; not physical-device or customer-outcome evidence"
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/alcohol",
+          "passed": false,
+          "error": "page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://shiftsometimber.co.uk/tools/alcohol\", waiting until \"load\"\n",
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/bmi",
+          "inputs": {
+            "#bmiHeightCm": "180",
+            "#bmiWeightKg": "80"
+          },
+          "expected": "BMI: 24.7",
+          "result": "YOUR USEFUL NUMBER\n\nBMI: 24.7\n\nScreening reference only: not a diagnosis, NHS-access decision or treatment-eligibility result.\n\nUsing standard adult BMI classifications, this falls within the standard healthy reference r",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/calories",
+          "inputs": {
+            "#calHeightCm": "180",
+            "#calWeightKg": "80",
+            "#calAge": "40",
+            "[name=\"activity\"]": "1.2"
+          },
+          "expected": "2076 kcal/day",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 2076 kcal/day\n\nPlanning estimate only: not a prescribed intake, guaranteed deficit or treatment target.\n\nEstimated maintenance energy using the Mifflin-St Jeor equation for adult men and your ",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/healthy-weight",
+          "inputs": {
+            "#rangeHeightCm": "180"
+          },
+          "expected": "59.9\u201380.7 kg",
+          "result": "YOUR USEFUL NUMBER\n\n59.9\u201380.7 kg\n\nApproximately 9 st 6 lb\u201312 st 10 lb, corresponding to BMI 18.5\u201324.9 for your height.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this wee",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/protein",
+          "inputs": {
+            "#proteinWeightKg": "80",
+            "[name=\"level\"]": "1.6"
+          },
+          "expected": "128 g protein/day",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 128 g protein/day\n\nPlanning estimate only: not an individual clinical prescription; health and body-weight context can change what is appropriate.\n\nBased on the selected grams-per-kilogram pla",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/waist-height",
+          "inputs": {
+            "#whHeightCm": "180",
+            "#waistCm": "90"
+          },
+          "expected": "0.50",
+          "result": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this ind",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/walking",
+          "inputs": {
+            "#walkWeightKg": "80",
+            "[name=\"minutes\"]": "30",
+            "[name=\"pace\"]": "3.5"
+          },
+          "expected": "147 kcal",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 147 kcal\n\nEstimated using standard MET values for your selected walking pace.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nUse time a",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/water",
+          "inputs": {
+            "#waterWeightKg": "80"
+          },
+          "expected": "2.4 L",
+          "result": "YOUR USEFUL NUMBER\n\nRough starting point: 2.4 L (4.2 UK pints)\n\nIllustrative estimate using 30 ml/kg.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nStart with reg",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/decision-centre",
+          "case": "tab Treatment routes",
+          "passed": true,
+          "tab": {
+            "active": "active",
+            "selected": null,
+            "target": "routes"
+          },
+          "mainText": "Choose one route to explore, then prepare three questions\n\nFor a new visit, use Treatment Finder to enter your preferences and explore the options. It does not decide clinical eligibility or guarantee access to treatment.\n\nWHAT SHIFT DOES\n\nTurn usefu"
+        },
+        {
+          "viewport": "mobile",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: NHS pathway checker",
+          "passed": true
+        },
+        {
+          "viewport": "mobile",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: Weight-loss scenarios",
+          "passed": true
+        },
+        {
+          "viewport": "mobile",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: GP report",
+          "passed": true
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/alcohol",
+          "inputs": {
+            "[name=\"ml\"]": "568",
+            "[name=\"abv\"]": "4",
+            "[name=\"n\"]": "2"
+          },
+          "expected": "4.5 units total",
+          "result": "YOUR USEFUL NUMBER\n\n4.5 units total\n\n2.3 units per drink \u00d7 2.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nCalculate each type of drink you actually had, then ad",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/bmi",
+          "inputs": {
+            "#bmiHeightCm": "180",
+            "#bmiWeightKg": "80"
+          },
+          "expected": "BMI: 24.7",
+          "result": "YOUR USEFUL NUMBER\n\nBMI: 24.7\n\nScreening reference only: not a diagnosis, NHS-access decision or treatment-eligibility result.\n\nUsing standard adult BMI classifications, this falls within the standard healthy reference r",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/calories",
+          "inputs": {
+            "#calHeightCm": "180",
+            "#calWeightKg": "80",
+            "#calAge": "40",
+            "[name=\"activity\"]": "1.2"
+          },
+          "expected": "2076 kcal/day",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 2076 kcal/day\n\nPlanning estimate only: not a prescribed intake, guaranteed deficit or treatment target.\n\nEstimated maintenance energy using the Mifflin-St Jeor equation for adult men and your ",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/healthy-weight",
+          "inputs": {
+            "#rangeHeightCm": "180"
+          },
+          "expected": "59.9\u201380.7 kg",
+          "result": "YOUR USEFUL NUMBER\n\n59.9\u201380.7 kg\n\nApproximately 9 st 6 lb\u201312 st 10 lb, corresponding to BMI 18.5\u201324.9 for your height.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this wee",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/protein",
+          "inputs": {
+            "#proteinWeightKg": "80",
+            "[name=\"level\"]": "1.6"
+          },
+          "expected": "128 g protein/day",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 128 g protein/day\n\nPlanning estimate only: not an individual clinical prescription; health and body-weight context can change what is appropriate.\n\nBased on the selected grams-per-kilogram pla",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/waist-height",
+          "inputs": {
+            "#whHeightCm": "180",
+            "#waistCm": "90"
+          },
+          "expected": "0.50",
+          "result": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this ind",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/walking",
+          "inputs": {
+            "#walkWeightKg": "80",
+            "[name=\"minutes\"]": "30",
+            "[name=\"pace\"]": "3.5"
+          },
+          "expected": "147 kcal",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 147 kcal\n\nEstimated using standard MET values for your selected walking pace.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nUse time a",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/water",
+          "inputs": {
+            "#waterWeightKg": "80"
+          },
+          "expected": "2.4 L",
+          "result": "YOUR USEFUL NUMBER\n\nRough starting point: 2.4 L (4.2 UK pints)\n\nIllustrative estimate using 30 ml/kg.\n\nUseful estimate\u2014not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nStart with reg",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/decision-centre",
+          "case": "tab Treatment routes",
+          "passed": true,
+          "tab": {
+            "active": "active",
+            "selected": null,
+            "target": "routes"
+          },
+          "mainText": "Choose one route to explore, then prepare three questions\n\nFor a new visit, use Treatment Finder to enter your preferences and explore the options. It does not decide clinical eligibility or guarantee access to treatment.\n\nWHAT SHIFT DOES\n\nTurn usefu"
+        },
+        {
+          "viewport": "desktop",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: NHS pathway checker",
+          "passed": true
+        },
+        {
+          "viewport": "desktop",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: Weight-loss scenarios",
+          "passed": true
+        },
+        {
+          "viewport": "desktop",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: GP report",
+          "passed": true
+        }
+      ]
+    },
+    "recovery": {
+      "at": "2026-10-13T19:55:18.406Z",
+      "decision": "retain",
+      "run": 37512509413,
+      "from": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "to": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "verifiedRun": 38420048446,
+      "ownedProof": {
+        "run": 38420048446,
+        "source": "c9756798dd271260c8812e419fae5f0d7c61e194",
+        "version": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "deployment": "2c101c54-9a10-4890-a3e7-f292e964d4a7",
+        "evidenceKind": "exact-successful-source-and-guarded-owned-rollback",
+        "failedRun": 38443047663,
+        "failedJob": 115454432183,
+        "artifact": 11839142516,
+        "artifactSha256": "a72d6e823245c3b75009ee2fb6edf3d4b2b0146569d95e51964a7cdb9c7c530d",
+        "rollbackCheckedAt": "2026-10-13T18:40:32.254Z",
+        "dataChanged": false,
+        "customerRecordsRead": 0,
+        "newRollbackPerformed": false
+      },
+      "customerRecordsRead": 0,
+      "dataChanged": false
+    }
+  },
+  "freshChecks": {
+    "kind": "public_tool_release_check",
+    "stage": "rollback",
+    "source": "456cb0ca91a9d01c06e62d8984460a3661fd5953",
+    "run": "38457803277",
+    "checkedAt": "2026-10-13T20:45:00Z",
+    "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+    "status": "passed",
+    "toolChecksVerified": true,
+    "checks": [
+      {
+        "path": "/decision-centre",
+        "status": 200,
+        "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+        "jsonBlocks": 3,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/alcohol",
+        "status": 200,
+        "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/bmi",
+        "status": 200,
+        "htmlSha256": "a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/calories",
+        "status": 200,
+        "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/healthy-weight",
+        "status": 200,
+        "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/protein",
+        "status": 200,
+        "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+        "jsonBlocks": 5,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/waist-height",
+        "status": 200,
+        "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/walking",
+        "status": 200,
+        "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+        "jsonBlocks": 5,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/water",
+        "status": 200,
+        "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "deployed": {
+      "deploymentId": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+      "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "percentage": 100
+    },
+    "expected": {
+      "deploymentId": "2c101c54-9a10-4890-a3e7-f292e964d4a7",
+      "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "percentage": 100,
+      "checkSource": "456cb0ca91a9d01c06e62d8984460a3661fd5953"
+    },
+    "afterChecks": {
+      "deploymentId": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+      "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "percentage": 100
+    },
+    "finishedAt": "2026-10-13T20:45:01Z",
+    "syntheticFixtureOnly": true
+  }
+}

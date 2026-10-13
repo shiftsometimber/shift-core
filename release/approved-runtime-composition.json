@@ -3809,13 +3809,20 @@
       "release/root-share-preview-rollback.mjs",
       "tests/root-share-preview-rollback.test.mjs",
       "docs/root-share-owned-rollback-20261013.json",
-      "shift-coach/recover-cancelled-release.mjs"
+      "shift-coach/recover-cancelled-release.mjs",
+      "release/root-share-preview-transport.cjs",
+      "tests/root-share-preview-transport.test.mjs",
+      "release/root-share-transport-rollback.mjs",
+      "tests/root-share-transport-rollback.test.mjs",
+      "docs/root-share-transport-rollback-20261013.json",
+      "scripts/verify-tool-calculators-browser.cjs",
+      "release/tool-schema-gate.mjs"
     ],
-    "maintenanceSource": "d60224270b92c5e73fb72cec72b7d4768067e146",
+    "maintenanceSource": "44b3f11f001c06ebe7cd2726dc7df5922324c096",
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",

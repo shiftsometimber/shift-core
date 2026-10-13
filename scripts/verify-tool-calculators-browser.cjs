@@ -1,5 +1,6 @@
 const fs=require('node:fs'),assert=require('node:assert/strict');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const {retryPublicRead}=require('../release/root-share-preview-transport.cjs');
 const dir=process.argv[2];assert(dir,'Evidence directory required');
 const cases=[
  {path:'/tools/alcohol',form:'alcForm',fields:{'[name="ml"]':'568','[name="abv"]':'4','[name="n"]':'2'},result:'alcR',expected:'4.5 units total'},
@@ -65,7 +66,7 @@ async function verifyWaistReadingStripJourney(browser,checks){
  }
 }
 
-(async()=>{fs.mkdirSync(dir,{recursive:true});const browser=await chromium.launch({headless:true});const checks=[];
+(async()=>{fs.mkdirSync(dir,{recursive:true});const browser=await chromium.launch({headless:true});const checks=[],transportRetries=[];
 try{
  await verifyWaistReadingStripJourney(browser,checks);
  for(const [label,viewport] of [['mobile',{width:390,height:844}],['desktop',{width:1440,height:1000}]]){
@@ -73,7 +74,7 @@ try{
   for(const c of cases){
    const errors=[];const listener=e=>errors.push(e.message);page.on('pageerror',listener);
    try{
-    const response=await page.goto('https://shiftsometimber.co.uk'+c.path,{waitUntil:'load',timeout:30000});assert.equal(response.status(),200);
+    const response=await retryPublicRead(()=>page.goto('https://shiftsometimber.co.uk'+c.path,{waitUntil:'load',timeout:30000}),{url:'https://shiftsometimber.co.uk'+c.path,kind:'navigation',record:r=>transportRetries.push(r)});assert.equal(response.status(),200);
     const form=page.locator('#'+c.form);await page.waitForFunction(id=>typeof document.getElementById(id)?.onsubmit==='function',c.form);
     if(c.form!=='alcForm')await form.getByRole('button',{name:'Metric',exact:true}).click();
     for(const [selector,value] of Object.entries(c.fields)){const element=form.locator(selector);if(await element.evaluate(e=>e.tagName)==='SELECT')await element.selectOption(value);else await element.fill(value);}
@@ -92,7 +93,7 @@ try{
    }catch(error){checks.push({viewport:label,path:c.path,passed:false,error:error.message,pageErrors:errors});}
    page.off('pageerror',listener);
   }
-  await page.goto('https://shiftsometimber.co.uk/decision-centre',{waitUntil:'load'});
+  await retryPublicRead(()=>page.goto('https://shiftsometimber.co.uk/decision-centre',{waitUntil:'load'}),{url:'https://shiftsometimber.co.uk/decision-centre',kind:'navigation',record:r=>transportRetries.push(r)});
   for(const name of ['Treatment routes','NHS pathway checker','Weight-loss scenarios','GP report']){
    try{const button=page.getByRole('button',{name,exact:true});if(await button.isDisabled()){assert(await page.locator('[data-tool-guidance="20261009"]').count(),'Unavailable tab has no explanation');checks.push({viewport:label,path:'/decision-centre',case:'unavailable without a saved profile: '+name,passed:true});continue;}await button.click();checks.push({viewport:label,path:'/decision-centre',case:'tab '+name,passed:true,tab:await button.evaluate(e=>({active:e.className,selected:e.getAttribute('aria-selected'),target:e.dataset.tab||e.dataset.dcTab||null})),mainText:(await page.locator('main').innerText()).slice(0,250)});}
    catch(error){checks.push({viewport:label,path:'/decision-centre',case:name,passed:false,error:error.message});}
@@ -100,7 +101,7 @@ try{
   await context.close();
  }
 }finally{await browser.close();}
-const receipt={verifiedAt:new Date().toISOString(),scope:'Live Chromium desktop/mobile calculator interactions and Decision Centre tab clicks; no member accounts, purchases or submissions',checks};
+const receipt={verifiedAt:new Date().toISOString(),scope:'Live Chromium desktop/mobile calculator interactions and Decision Centre tab clicks; no member accounts, purchases or submissions',checks,transportRetries};
 fs.writeFileSync(dir+'/browser-verification-20261009.json',JSON.stringify(receipt,null,2));
 console.log(JSON.stringify(receipt));if(checks.some(c=>!c.passed))process.exitCode=1;
 })().catch(error=>{console.error(error);process.exitCode=1});
