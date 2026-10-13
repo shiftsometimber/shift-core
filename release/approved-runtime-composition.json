@@ -3726,5 +3726,58 @@
     "genericAdoptionAllowed": false,
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false
+  },
+  "memberConsentRepair": {
+    "proof": "EXACT_MEMBER_CONSENT_REPAIR_SOURCE_20261013",
+    "base": "fc196ebeaf47e04fbe5aec8d9ddefc93b9a50a5e",
+    "source": "c44221d219f870c1683cb7837e63c1c2038b95f8",
+    "integrationIssue": 1065,
+    "paths": [
+      "frontend/member/api-adapter-v33d.js",
+      "frontend/member/member-product-v33d.js",
+      "g2-011-progress-story-production.mjs",
+      "g2-013-progress-picture-rendered-production.mjs",
+      "g2-014-progress-picture-premium-production.mjs",
+      "health-passport/acceptance-diagnostics.mjs",
+      "my-timber-final-production.mjs",
+      "rendered-member-acceptance-support.mjs",
+      "tests/photo-tracking-choice.test.mjs",
+      "tests/rendered-member-acceptance-support.test.mjs",
+      "tests/request-evidence-privacy.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/member-consent-repair-scope.mjs",
+      "tests/member-consent-repair-composition.test.mjs",
+      "release/finite-growth-scope.mjs",
+      "release/approved-runtime-composition.mjs",
+      "tests/finite-growth-composition.test.mjs",
+      ".github/workflows/shift-coach-integration.yml",
+      ".github/workflows/cloudflare-production-promote.yml"
+    ],
+    "maintenanceSource": "7347078681a1bbd5beb7aa0fdea0158020d8e439",
+    "releaseApproval": {
+      "owner": "Matt",
+      "instruction": "Do",
+      "recordedAt": "2026-10-12T18:46:03Z",
+      "scope": "Existing My Timber upgrade through #1065, including photo access and deletion verification; bounded corrective work only",
+      "source": "c44221d219f870c1683cb7837e63c1c2038b95f8",
+      "maintenanceSource": "7347078681a1bbd5beb7aa0fdea0158020d8e439",
+      "integrationIssue": 1065,
+      "emailAuthority": false,
+      "rollbackAuthorityBroadened": false
+    },
+    "homepageChanged": false,
+    "clinicalChanged": false,
+    "stockChanged": false,
+    "customerDataChanged": false,
+    "sourceConsentAutomaticallyGranted": false,
+    "storagePolicyChanged": false,
+    "emailGeneratingStepsStarted": false,
+    "externalCommunicationsSent": false,
+    "paidModelEnabled": false,
+    "existingGatesWeakened": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false
   }
 }
