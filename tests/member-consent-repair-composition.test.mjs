@@ -1,3 +1,4 @@
+import {rootShareHistoricalFile} from '../release/root-share-preview-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -49,7 +50,7 @@ test('actual current source validates before exposing the unchanged earlier reco
 test('both workflow hooks are exactly additive, with every earlier production/integration permission and gate byte preserved',()=>{
   const hooks={'.github/workflows/shift-coach-integration.yml':'      - name: Verify bounded member consent source and request-evidence privacy\n        run: node --test tests/member-consent-repair-composition.test.mjs tests/photo-tracking-choice.test.mjs tests/request-evidence-privacy.test.mjs\n','.github/workflows/cloudflare-production-promote.yml':'      - name: Require exact member repair publication and production approval\n        run: node release/member-consent-repair-scope.mjs --require-release-authority\n'};
   for(const [path,hook]of Object.entries(hooks)){
-    const current=readFileSync(path,'utf8');assert.equal(current.split(hook).length,2);assert.equal(current.replace(hook,''),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
+    const current=rootShareHistoricalFile(path,readFileSync(path,'utf8'));assert.equal(current.split(hook).length,2);assert.equal(current.replace(hook,''),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
   }
 });
 test('source classification lists only the exact member paths and preserves add/modify and destructive-status guards',async()=>{

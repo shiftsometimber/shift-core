@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {pathToFileURL} from 'node:url';
+export const ROOT_SHARE_BASE="c9756798dd271260c8812e419fae5f0d7c61e194";
+export const ROOT_SHARE_SOURCE="da67872e84109577d5c6e6eff5cb9a85206c537f";
+export const ROOT_SHARE_BLOBS=Object.freeze({"share-preview/README.md": "df1850fd93f86bf85f8bb1079e3b5663cc0b4f90", "share-preview/asset.mjs": "118cd1b69ee1509b955aadd4f37e133f261e6a4b", "share-preview/metadata.mjs": "9e1f593cf54be97aa37fc469b6d80b0f57a2c671", "share-preview/shift-share-20261013.jpg": "d73567cfed6b2e43f74831fb4459b0e038bb2970", "share-preview/shift-share-20261013.svg": "a9d9d9c6eb163d48f968aa2f7301d4d0a728bebe", "shift-coach/worker.mjs": "76e3964f05ed0930c0e8fbc5bb8044827d24240a", "tests/root-share-preview.test.mjs": "cd6ec16bfa55a8888629cfa97a48aaf7c3a3ddb7"});
+export const ROOT_SHARE_PATHS=Object.freeze(Object.keys(ROOT_SHARE_BLOBS));
+export const ROOT_SHARE_MAINTENANCE=Object.freeze(["release/root-share-preview-scope.mjs", "tests/root-share-preview-composition.test.mjs", "release/root-share-preview-live.mjs", "release/member-consent-repair-scope.mjs", "tests/member-consent-repair-composition.test.mjs", "release/approved-runtime-composition.mjs", ".github/workflows/shift-coach-integration.yml", ".github/workflows/cloudflare-production-promote.yml", "tests/growth-finite-response-policy.test.mjs"]);
+export const ROOT_SHARE_APPROVAL=Object.freeze({owner:'Matt',instruction:'Sorry this needs deploying - it’s a huge fault !',recordedAt:'2026-10-13T17:17:57Z',scope:'Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065',source:ROOT_SHARE_SOURCE,integrationIssue:1065,emailAuthority:false,rollbackAuthorityBroadened:false});
+export const ROOT_SHARE_FLAGS=Object.freeze(['homepageBodyChanged','homepageTitleDescriptionChanged','faviconChanged','memberProductChanged','clinicalChanged','stockChanged','customerDataChanged','consentChanged','paidModelEnabled','externalCommunicationsSent','emailGeneratingStepsStarted','existingGatesWeakened','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened']);
+const manifest='release/approved-runtime-composition.json',sort=a=>[...a].sort();
+// Cache only immutable object facts, never HEAD identity, worktree state or a supplied reader.
+const immutableFacts=new Map();
+function fact(...a){
+ const immutable=(['show','rev-parse'].includes(a[0])&&/^[a-f0-9]{40}:/.test(a[1]||''))||(a[0]==='diff'&&a[1]==='--name-only'&&a.slice(2).length===2&&a.slice(2).every(r=>/^[a-f0-9]{40}$/.test(r)))||(a[0]==='merge-base'&&a[1]==='--is-ancestor'&&a.slice(2).length===2&&a.slice(2).every(r=>/^[a-f0-9]{40}$/.test(r)));
+ if(!immutable)return execFileSync('git',a,{encoding:'utf8'});
+ const key=JSON.stringify([process.cwd(),...a]);if(!immutableFacts.has(key))immutableFacts.set(key,execFileSync('git',a,{encoding:'utf8'}));return immutableFacts.get(key);
+}
+const git=(...a)=>fact(...a).trim();
+const contents=(ref,path)=>fact('show',(ref==='HEAD'?git('rev-parse','HEAD'):ref)+':'+path);
+export function requireRootShareAuthority(c){
+ assert.deepEqual(c?.releaseApproval,ROOT_SHARE_APPROVAL,'Exact prepared preview publication approval required');return c.releaseApproval;
+}
+export function verifyRootShareSource(c,{head,read,blob=read,diff,ancestor,content}){
+ assert.equal(c?.proof,'EXACT_APPROVED_ROOT_SHARE_PREVIEW_20261013');assert.equal(c.base,ROOT_SHARE_BASE);assert.equal(c.source,ROOT_SHARE_SOURCE);assert.equal(c.integrationIssue,1065);
+ assert.deepEqual(c.paths,ROOT_SHARE_PATHS);assert.deepEqual(c.maintenancePaths,ROOT_SHARE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ for(const flag of ROOT_SHARE_FLAGS)assert.equal(c[flag],false,'Root sharing boundary: '+flag);requireRootShareAuthority(c);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sort(diff(c.base,c.source)),sort(c.paths),'Unrelated sharing payload');assert.deepEqual(sort(diff(c.source,c.maintenanceSource)),sort(c.maintenancePaths),'Unrelated sharing maintenance');assert.deepEqual(diff(c.maintenanceSource,head),[manifest],'Unreviewed change after sharing registration');
+ for(const p of c.paths){assert.equal(blob(c.source,p),ROOT_SHARE_BLOBS[p],'Frozen sharing source drift: '+p);assert.equal(blob('HEAD',p),ROOT_SHARE_BLOBS[p],'Approved composition source / boundary drift / sharing source drift: '+p);assert.equal(read('HEAD',p),read(c.source,p),'Approved composition source / boundary drift / sharing source drift: '+p);}
+ for(const p of c.maintenancePaths){assert.equal(blob('HEAD',p),blob(c.maintenanceSource,p),'Approved composition source / boundary drift / sharing maintenance drift: '+p);assert.equal(read('HEAD',p),read(c.maintenanceSource,p),'Approved composition source / boundary drift / sharing maintenance drift: '+p);}
+ const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.rootSharePreview;assert.deepEqual(current,prior,'Every prior approval, watermark and release record must remain unchanged');return c;
+}
+export function rootShareHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ const rawHead=git('rev-parse','HEAD'),current=JSON.parse(contents(rawHead,manifest)),repair=current.rootSharePreview;
+ const rawBlob=(ref,p)=>git('rev-parse',(ref==='HEAD'?rawHead:ref)+':'+p),rawRead=defaultReader?rawBlob:reader;
+ if(!repair)return {record:current,rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:(ref,p)=>contents(ref==='HEAD'?rawHead:ref,p)};
+ verifyRootShareSource(repair,{head:rawHead,read:rawRead,blob:rawBlob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:(ref,p)=>contents(ref==='HEAD'?rawHead:ref,p)});
+ const record=structuredClone(current);delete record.rootSharePreview;const changed=new Set([...repair.paths,...repair.maintenancePaths,manifest]);
+ const mapped=(ref,p)=>ref==='HEAD'&&changed.has(p)?repair.base:ref;
+ return {record,rawHead,head:repair.base,read:(ref,p)=>rawRead(mapped(ref,p),p),blob:(ref,p)=>rawBlob(mapped(ref,p),p),content:(ref,p)=>contents(mapped(ref,p)==='HEAD'?rawHead:mapped(ref,p),p)};
+}
+export function rootShareHistoricalFile(p,bytes){
+ const view=rootShareHistoricalView();assert.equal(bytes,contents('HEAD',p),'Historical file must match actual current sharing source');
+ if(view.rawHead===view.head)return bytes;return contents(view.head,p);
+}
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const view=rootShareHistoricalView();if(process.argv.includes('--require-release-authority'))requireRootShareAuthority(JSON.parse(contents('HEAD',manifest)).rootSharePreview);console.log('PASS exact root sharing source and scoped publication authority');}

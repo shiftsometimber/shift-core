@@ -1,3 +1,4 @@
+import {ROOT_SHARE_BASE,ROOT_SHARE_PATHS,ROOT_SHARE_MAINTENANCE} from './root-share-preview-scope.mjs';
 import {memberConsentHistoricalView,MEMBER_CONSENT_BASE,MEMBER_CONSENT_PATHS,MEMBER_CONSENT_MAINTENANCE} from './member-consent-repair-scope.mjs';
 import {FINITE_GROWTH_PATHS,FINITE_GROWTH_MAINTENANCE,verifyFiniteGrowth} from './finite-growth-scope.mjs';
 import {TREATMENT_COMPILED_PATHS,TREATMENT_COMPILED_MAINTENANCE,verifyTreatmentCompiledComposition} from './my-treatment-compiled-scope.mjs';
@@ -2301,7 +2302,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
  const growthRawHead=memberView.head,finiteGrowth=c.finiteGrowthRepair;
- if(finiteGrowth)verifyFiniteGrowth(finiteGrowth,{head:growthRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ if(finiteGrowth)verifyFiniteGrowth(finiteGrowth,{head:growthRawHead,read,blob:(ref,path)=>publicToolImmutableGit('rev-parse',(ref==='HEAD'?memberView.head:ref)+':'+path).trim(),diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const growthRead=(ref,path)=>read(finiteGrowth&&ref==='HEAD'&&[...FINITE_GROWTH_PATHS,...FINITE_GROWTH_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?finiteGrowth.base:ref,path);
  const currentRawHead=finiteGrowth?finiteGrowth.base:growthRawHead,treatmentCompiledDelivery=c.treatmentCompiledDelivery;
  if(treatmentCompiledDelivery)verifyTreatmentCompiledComposition(treatmentCompiledDelivery,{head:currentRawHead,read:growthRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
@@ -2752,7 +2753,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const treatmentWorkflow=treatment?withoutTreatmentSteps(currentWorkflow):currentWorkflow;
  assertProductionProofBudget(productionProofBefore,closeout?withoutProgrammeLiveGate(treatmentWorkflow):treatmentWorkflow);
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
- assert.equal(git('rev-parse','HEAD'),memberView.rawHead,'Source HEAD changed during composition verification');
+ assert.equal(git('rev-parse','HEAD'),memberView.servingHead||memberView.rawHead,'Source HEAD changed during composition verification');
  return c;
 }
 const mappedCompositionReaders=new WeakSet();
@@ -2791,6 +2792,10 @@ export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_B
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
+ if(ROOT_SHARE_ADDITIONAL_PATHS.includes(path)){
+  let existed;try{execFileSync('git',['cat-file','-e',ROOT_SHARE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  assert((existed?['A','M']:['A']).includes(status),'Unexpected approved composition file status: '+status+' '+path);return true;
+ }
  if(MEMBER_CONSENT_ADDITIONAL_PATHS.includes(path)){
   if(!memberExistsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',MEMBER_CONSENT_BASE+':'+path],{stdio:'ignore'});memberExistsAtBase.set(path,true);}catch{memberExistsAtBase.set(path,false);}}
   const allowed=memberExistsAtBase.get(path)?['A','M']:['A'];
@@ -3063,3 +3068,6 @@ export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
 // retain their original status rules and destructive-change checks.
 export const MEMBER_CONSENT_ADDITIONAL_PATHS=Object.freeze([...MEMBER_CONSENT_SET].filter(path=>!RECONCILIATION_PATHS.has(path)));
 for(const path of MEMBER_CONSENT_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(path);
+
+export const ROOT_SHARE_ADDITIONAL_PATHS=Object.freeze([...ROOT_SHARE_PATHS,...ROOT_SHARE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
+for(const p of ROOT_SHARE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
