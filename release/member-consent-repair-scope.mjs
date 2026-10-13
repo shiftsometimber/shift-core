@@ -41,8 +41,8 @@ export function verifyMemberConsentSource(c,{head,read,blob=read,diff,ancestor,c
  assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated member payload');
  assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated member maintenance');
  assert.deepEqual(diff(c.maintenanceSource,head),[manifest],'Unreviewed change after member source registration');
- for(const path of c.paths){assert.equal(blob(c.source,path),MEMBER_CONSENT_BLOBS[path],'Frozen member source changed: '+path);assert.equal(blob('HEAD',path),MEMBER_CONSENT_BLOBS[path],'Member source drift: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Member source drift: '+path);}
- for(const path of c.maintenancePaths){assert.equal(blob('HEAD',path),blob(c.maintenanceSource,path),'Member maintenance drift: '+path);assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Member maintenance drift: '+path);}
+ for(const path of c.paths){assert.equal(blob(c.source,path),MEMBER_CONSENT_BLOBS[path],'Frozen member source changed: '+path);assert.equal(blob('HEAD',path),MEMBER_CONSENT_BLOBS[path],'Approved composition source / boundary drift / Member source drift: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift / Member source drift: '+path);}
+ for(const path of c.maintenancePaths){assert.equal(blob('HEAD',path),blob(c.maintenanceSource,path),'Approved composition source / boundary drift / Member maintenance drift: '+path);assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition source / boundary drift / Member maintenance drift: '+path);}
  const before=JSON.parse(contents(c.base,manifest)),after=JSON.parse(contents(head,manifest));delete after.memberConsentRepair;
  assert.deepEqual(after,before,'Every prior approval and release record must remain unchanged');
  return c;
@@ -68,7 +68,7 @@ export function memberConsentHistoricalView(reader=(ref,path)=>git('rev-parse',r
   if(ref!=='HEAD')return reader(ref,path);
   const expected=repair.paths.includes(path)?repair.source:repair.maintenancePaths.includes(path)?repair.maintenanceSource:repair.base;
   // Preserve fresh supplied-reader checks even after a verified historical view.
-  if(path!==manifest)assert.equal(reader('HEAD',path),reader(expected,path),'Member historical source drift: '+path);
+  if(path!==manifest)assert.equal(reader('HEAD',path),reader(expected,path),'Approved composition source / boundary drift / Member historical source drift: '+path);
   return reader(repair.base,path);
  };
  return {record,rawHead,head:repair.base,read,content:(ref,path)=>content(ref==='HEAD'?repair.base:ref,path)};

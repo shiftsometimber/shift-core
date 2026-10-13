@@ -2285,6 +2285,7 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 }
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
+ const memberDefaultRead=read===defaultReconciliationRead;
  const memberView=memberConsentHistoricalView(read),c=memberView.record;read=memberView.read;if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
  assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
@@ -2317,7 +2318,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const actualHead=myTimberJourney?myTimberJourney.base:preGithubProofEpipeHead;
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
- const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
+ const outerRawBlob=memberDefaultRead?(ref,path)=>{
   const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
