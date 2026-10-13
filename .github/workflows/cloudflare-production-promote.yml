@@ -499,6 +499,8 @@ jobs:
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file evidence/shift-ai-site-index/index.sql
           cp evidence/shift-ai-site-index/index.json b1-runtime-release/shift-ai-public-index.json
           sha256sum evidence/shift-ai-site-index/index.sql > b1-runtime-release/shift-ai-public-index.sha256
+      - name: Require exact member repair publication and production approval
+        run: node release/member-consent-repair-scope.mjs --require-release-authority
       - name: Verify compiled My Treatment responses before runtime deployment
         env:
           RUN_TREATMENT_COMPILED_PROOF: 'true'

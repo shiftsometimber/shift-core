@@ -1,3 +1,4 @@
+import {memberConsentHistoricalView,memberConsentHistoricalFile} from './member-consent-repair-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const FINITE_GROWTH_BASE='009b3a4a6f53a9545c73270ad1869e96f1e1a7d8';
@@ -49,15 +50,15 @@ export function verifyFiniteGrowth(c,{head,read,diff,ancestor,content:contents=c
  return c;
 }
 export function finiteGrowthHistoricalView(){
- const record=JSON.parse(content('HEAD',manifest)),rawHead=git('rev-parse','HEAD'),repair=record.finiteGrowthRepair;
- const read=(ref,path)=>git('rev-parse',ref+':'+path);
- if(repair)verifyFiniteGrowth(repair,{head:rawHead,read,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content});
+ const memberView=memberConsentHistoricalView(),record=memberView.record,rawHead=memberView.head,repair=record.finiteGrowthRepair;
+ const read=memberView.read;
+ if(repair)verifyFiniteGrowth(repair,{head:rawHead,read,blob:(ref,path)=>git('rev-parse',(ref==='HEAD'?memberView.head:ref)+':'+path),diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:memberView.content});
  const mappedRef=(ref,path)=>repair&&ref==='HEAD'&&paths.has(path)?repair.base:ref;
  const previousRecord=structuredClone(record);delete previousRecord.finiteGrowthRepair;
- return {record,previousRecord,rawHead,head:repair?repair.base:rawHead,read:(ref,path)=>read(mappedRef(ref,path),path),content:(ref,path)=>content(mappedRef(ref,path),path)};
+ return {record,previousRecord,rawHead,head:repair?repair.base:rawHead,read:(ref,path)=>read(mappedRef(ref,path),path),content:(ref,path)=>memberView.content(mappedRef(ref,path),path)};
 }
 export function finiteGrowthHistoricalFile(path,bytes){
- const view=finiteGrowthHistoricalView();assert.equal(bytes,content('HEAD',path),'Historical file must be exact current bytes');
+ const original=memberConsentHistoricalFile(path,bytes);const view=finiteGrowthHistoricalView();assert.equal(original,content(view.rawHead,path),'Historical file must be verified earlier bytes');
  assert(FINITE_GROWTH_MAINTENANCE.includes(path),'Unlisted finite growth historical file');
- return view.record.finiteGrowthRepair?content(FINITE_GROWTH_BASE,path):bytes;
+ return view.record.finiteGrowthRepair?content(FINITE_GROWTH_BASE,path):original;
 }

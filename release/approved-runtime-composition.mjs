@@ -1,3 +1,4 @@
+import {memberConsentHistoricalView,MEMBER_CONSENT_BASE,MEMBER_CONSENT_PATHS,MEMBER_CONSENT_MAINTENANCE} from './member-consent-repair-scope.mjs';
 import {FINITE_GROWTH_PATHS,FINITE_GROWTH_MAINTENANCE,verifyFiniteGrowth} from './finite-growth-scope.mjs';
 import {TREATMENT_COMPILED_PATHS,TREATMENT_COMPILED_MAINTENANCE,verifyTreatmentCompiledComposition} from './my-treatment-compiled-scope.mjs';
 import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposition} from './contact-rollback-scope.mjs';
@@ -125,6 +126,8 @@ for(const path of [...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE
 for(const path of [...CONTACT_RUNTIME_PATHS,...CONTACT_RUNTIME_MAINT])RECONCILIATION_PATHS.add(path);
 for(const path of [...TREATMENT_COMPILED_PATHS,...TREATMENT_COMPILED_MAINTENANCE])RECONCILIATION_PATHS.add(path);
 for(const path of [...FINITE_GROWTH_PATHS,...FINITE_GROWTH_MAINTENANCE])RECONCILIATION_PATHS.add(path);
+const MEMBER_CONSENT_SET=new Set([...MEMBER_CONSENT_PATHS,...MEMBER_CONSENT_MAINTENANCE]);
+const memberExistsAtBase=new Map();
 export const MY_TREATMENT_BASE='793b5135ce7bcdb42d77597b238c769c32a7dc67';
 export const MY_TREATMENT_SOURCE='8681d219edc06be15c24135741877c47ee36b011';
 export const MY_TREATMENT_PATHS=['.github/workflows/cloudflare-production-promote.yml','.github/workflows/my-treatment-production-check.yml','member-experience/TREATMENT-PRODUCTION-RELEASE.md','member-experience/entry.mjs','member-experience/tests/treatment-model.test.mjs','member-experience/tests/treatment.test.mjs','member-experience/treatment-model.mjs','member-experience/treatment-page.mjs','member-experience/treatment-privacy.mjs','member-experience/treatment-reminders.mjs','member-experience/treatment-routes.mjs','member-experience/treatment-service-worker.mjs','member-experience/treatment.sql','privacy-health-erasure-route-v1.js','release/my-treatment-config.mjs','release/my-treatment-live.mjs','release/my-treatment-schema.mjs','shift-coach/release-contract.mjs','tests/my-treatment-release.test.mjs','worker-entry-v6.js','wrangler.coaching.jsonc','wrangler.jsonc'];
@@ -2284,7 +2287,8 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 }
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
- const c=reconciliationRecord();if(!c)return null;
+ const memberDefaultRead=read===defaultReconciliationRead;
+ const memberView=memberConsentHistoricalView(read,{defaultReader:memberDefaultRead}),c=memberView.record;read=memberView.read;if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
  assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
  assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);
@@ -2296,7 +2300,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const growthRawHead=git('rev-parse','HEAD'),finiteGrowth=c.finiteGrowthRepair;
+ const growthRawHead=memberView.head,finiteGrowth=c.finiteGrowthRepair;
  if(finiteGrowth)verifyFiniteGrowth(finiteGrowth,{head:growthRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const growthRead=(ref,path)=>read(finiteGrowth&&ref==='HEAD'&&[...FINITE_GROWTH_PATHS,...FINITE_GROWTH_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?finiteGrowth.base:ref,path);
  const currentRawHead=finiteGrowth?finiteGrowth.base:growthRawHead,treatmentCompiledDelivery=c.treatmentCompiledDelivery;
@@ -2316,7 +2320,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const actualHead=myTimberJourney?myTimberJourney.base:preGithubProofEpipeHead;
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
- const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
+ const outerRawBlob=memberDefaultRead?(ref,path)=>{
   const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
@@ -2748,7 +2752,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const treatmentWorkflow=treatment?withoutTreatmentSteps(currentWorkflow):currentWorkflow;
  assertProductionProofBudget(productionProofBefore,closeout?withoutProgrammeLiveGate(treatmentWorkflow):treatmentWorkflow);
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
- assert.equal(git('rev-parse','HEAD'),growthRawHead,'Source HEAD changed during composition verification');
+ assert.equal(git('rev-parse','HEAD'),memberView.rawHead,'Source HEAD changed during composition verification');
  return c;
 }
 const mappedCompositionReaders=new WeakSet();
@@ -2787,6 +2791,12 @@ export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_B
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
+ if(MEMBER_CONSENT_ADDITIONAL_PATHS.includes(path)){
+  if(!memberExistsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',MEMBER_CONSENT_BASE+':'+path],{stdio:'ignore'});memberExistsAtBase.set(path,true);}catch{memberExistsAtBase.set(path,false);}}
+  const allowed=memberExistsAtBase.get(path)?['A','M']:['A'];
+  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
+  return true;
+ }
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // The two exactly pinned evidence-desk files were additions at COACH_BASE and modifications at COMPOSITION_BASE.
  // Both historical views retain immutable Watch source checks; deletion/rename/type changes remain rejected.
@@ -3048,3 +3058,8 @@ export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+
+// Add only paths absent from the complete historical registry. Existing paths
+// retain their original status rules and destructive-change checks.
+export const MEMBER_CONSENT_ADDITIONAL_PATHS=Object.freeze([...MEMBER_CONSENT_SET].filter(path=>!RECONCILIATION_PATHS.has(path)));
+for(const path of MEMBER_CONSENT_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(path);

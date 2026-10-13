@@ -227,7 +227,7 @@ async function loadSavedPhotos(){
   const r=await SST_API.listProgressPhotos();
   const photos=r.photos||[];
   box.innerHTML=photos.length?photos.map(x=>`<div class="mp-plan" data-photo-id="${esc(x.id)}"><strong>${esc((x.captured_at||x.created_at||'').slice(0,10))}</strong>${x.weight_kg?` · ${esc(formatWeightKg(x.weight_kg))}`:''}${x.waist_cm?` · ${esc((localStorage.getItem('shiftWaistUnit')==='in'?(Number(x.waist_cm)/2.54).toFixed(1)+' in':Number(x.waist_cm).toFixed(1)+' cm'))} waist`:''}<div><img src="${SST_API.progressPhotoUrl(x.id)}" alt="Saved real progress photo" style="max-width:180px;max-height:260px;margin-top:8px"></div><button class="mp-btn ghost photo-delete" data-photo-delete="${esc(x.id)}" type="button">Delete photo</button></div>`).join(''):'<p class="mp-muted">No saved progress photos yet.</p>';
- }catch(e){box.innerHTML='<p class="mp-muted">Saved photos could not be loaded.</p>'}
+ }catch(e){box.replaceChildren();const message=document.createElement('p');message.className='mp-muted';message.textContent=e.code==='health_consent_required'?'Optional health tracking is off or paused. Review your choice in My Timber privacy settings before viewing private photos.':e.status===401?'Please sign in again to view your private photos.':'Saved photos could not be loaded. Your saved records have not been changed.';box.append(message);}
 }
 
 function fillSelect(el,values,label=v=>v){if(!el)return;el.innerHTML=values.map(v=>`<option value="${v}">${label(v)}</option>`).join('')}

@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 24}
       - run: npm ci --no-audit --no-fund
+      - name: Verify bounded member consent source and request-evidence privacy
+        run: node --test tests/member-consent-repair-composition.test.mjs tests/photo-tracking-choice.test.mjs tests/request-evidence-privacy.test.mjs
       - name: Verify exact approved finite growth and retained obesity assertions
         run: node --test tests/finite-growth-composition.test.mjs tests/growth-finite-response-policy.test.mjs tests/public-seo-technical.test.mjs
       - run: node shift-coach/scope.mjs
