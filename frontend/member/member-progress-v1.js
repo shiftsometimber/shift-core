@@ -155,6 +155,20 @@ function weightProjection(series, now=Date.now()) {
     chart.onkeydown=e=>{const point=e.target.closest?.('[data-point]');if(!point)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();show(e);}if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const points=[...chart.querySelectorAll('[data-point]')],index=points.indexOf(point),next=e.key==='Home'?0:e.key==='End'?points.length-1:Math.max(0,Math.min(points.length-1,index+(e.key==='ArrowRight'?1:-1)));points[next].focus();}};
   }
 
+  function photoCalendarTimestamp(on){
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(on)||!Number.isFinite(Date.parse(on+'T00:00:00Z'))||new Date(on+'T00:00:00Z').toISOString().slice(0,10)!==on)throw Error('Choose a valid photo date.');
+    const midnight=Date.parse(on+'T00:00:00Z'),zone=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',timeZoneName:'shortOffset'});
+    let minutes=0;
+    for(let i=0;i<2;i++){
+      const name=zone.formatToParts(new Date(midnight-minutes*60000)).find(p=>p.type==='timeZoneName')?.value;
+      const offset=/^GMT(?:([+-])(\d{1,2})(?::(\d{2}))?)?$/.exec(name||'');
+      if(!offset)throw Error('Photo date could not be confirmed.');
+      minutes=offset[1]?(offset[1]==='-'?-1:1)*(Number(offset[2])*60+Number(offset[3]||0)):0;
+    }
+    const suffix=minutes===0?'Z':(minutes<0?'-':'+')+String(Math.floor(Math.abs(minutes)/60)).padStart(2,'0')+':'+String(Math.abs(minutes)%60).padStart(2,'0');
+    return on+'T00:00:00'+suffix;
+  }
+
   const photoDate=on=>{const at=Date.parse(String(on).slice(0,10)+'T00:00:00Z');return Number.isFinite(at)?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'Europe/London'}).format(new Date(at)):'Unknown date';};
   let clearPrivatePhotos=()=>{};
   function mountPhotoJourney(host){
@@ -197,7 +211,7 @@ function weightProjection(series, now=Date.now()) {
     form.addEventListener('input',()=>{operation=null;});
     form.onsubmit=async e=>{e.preventDefault();const file=form.elements.photo.files[0];if(!file||!form.reportValidity())return;const v=version,button=form.querySelector('button');button.disabled=true;for(const input of form.elements)input.disabled=true;status.textContent='Resizing and saving your private photo…';
       try{const bitmap=await createImageBitmap(file),scale=Math.min(1,1000/Math.max(bitmap.width,bitmap.height)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.78));if(!active(v))return;if(!blob||blob.size>512000)throw Error('Choose a smaller photo and try again.');
-        if(!operation)operation={id:crypto.randomUUID(),file:new File([blob],'private-progress.jpg',{type:'image/jpeg'}),meta:{capturedAt:form.elements.on.value+'T00:00:00Z',source:'progress_journey',note:form.elements.note.value.trim(),...(form.elements.weight.value?{weightKg:Number(form.elements.weight.value)}:{})}};
+        if(!operation)operation={id:crypto.randomUUID(),file:new File([blob],'private-progress.jpg',{type:'image/jpeg'}),meta:{capturedAt:photoCalendarTimestamp(form.elements.on.value),source:'progress_journey',note:form.elements.note.value.trim(),...(form.elements.weight.value?{weightKg:Number(form.elements.weight.value)}:{})}};
         await SST_API.saveProgressPhoto(operation.file,{...operation.meta,operationId:operation.id});if(!active(v))return;operation=null;form.reset();form.elements.on.value=today;status.textContent='Private photo saved. No image generation was used.';await load();
       }catch(e){if(active(v))fail(e);}finally{for(const input of form.elements)input.disabled=false;}
     };
