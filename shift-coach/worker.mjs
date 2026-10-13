@@ -1,3 +1,4 @@
+import {withPublicResponsePolicyWorker} from '../public-response-policy.mjs';
 import {withMaleObesity} from '../obesity-awareness/production.mjs';
 import {withPublicToolDelivery} from '../public-tool-delivery.mjs';
 import {withContextSeo} from '../public-seo-context.mjs';
@@ -50,4 +51,4 @@ const composedWorker = {
  }
 };
 
-export default withMaleObesity(composedWorker);
+export default withPublicResponsePolicyWorker(withMaleObesity(composedWorker));

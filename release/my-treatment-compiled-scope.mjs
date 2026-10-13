@@ -1,3 +1,4 @@
+import {finiteGrowthHistoricalView} from './finite-growth-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const TREATMENT_COMPILED_BASE='e13c49dde529f82155498b875ea0ef7bb3169bf8';
@@ -20,9 +21,9 @@ export function verifyTreatmentCompiledComposition(c,{head,read,diff,ancestor,co
 }
 const raw=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim(),content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'});
 export function verifiedTreatmentHistoricalView(){
- const record=JSON.parse(content('HEAD',manifest)),head=raw('rev-parse','HEAD'),repair=record.treatmentCompiledDelivery;
- if(repair)verifyTreatmentCompiledComposition(repair,{head,read:(ref,path)=>raw('rev-parse',ref+':'+path),diff:(a,b)=>raw('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>raw('merge-base','--is-ancestor',a,b),content});
- return {record,head:repair?repair.base:head,read:(ref,path)=>raw('rev-parse',(repair&&ref==='HEAD'&&[...repair.paths,...repair.maintenancePaths,manifest].includes(path)?repair.base:ref)+':'+path)};
+ const view=finiteGrowthHistoricalView(),record=view.record,head=view.head,repair=record.treatmentCompiledDelivery;
+ if(repair)verifyTreatmentCompiledComposition(repair,{head,read:view.read,diff:(a,b)=>raw('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>raw('merge-base','--is-ancestor',a,b),content:view.content});
+ return {record,head:repair?repair.base:head,read:(ref,path)=>view.read(repair&&ref==='HEAD'&&[...repair.paths,...repair.maintenancePaths,manifest].includes(path)?repair.base:ref,path)};
 }
-export function treatmentHistoricalRecord(record){const {record:current}=verifiedTreatmentHistoricalView();assert.deepEqual(record,current,'Only the verified current record can expose a historical view');const prior=structuredClone(record);delete prior.treatmentCompiledDelivery;return prior;}
+export function treatmentHistoricalRecord(record){const {record:current}=verifiedTreatmentHistoricalView();assert.deepEqual(record,current,'Only the verified current record can expose a historical view');const prior=structuredClone(record);delete prior.finiteGrowthRepair;delete prior.treatmentCompiledDelivery;return prior;}
 export function treatmentHistoricalFile(path,bytes){const {record}=verifiedTreatmentHistoricalView();assert.equal(bytes,content('HEAD',path),'Historical file must be the exact current bytes');assert(TREATMENT_COMPILED_MAINTENANCE.includes(path),'Unlisted historical file');return record.treatmentCompiledDelivery?content(record.treatmentCompiledDelivery.base,path):bytes;}

@@ -20,8 +20,8 @@ test('publisher logos, real article images, FAQs and malformed JSON remain untou
  }
  assert.equal(repairTechnicalHtml('<script type="application/ld+json">{broken}</script>','/mental-health/feeling-low'),'<script type="application/ld+json">{broken}</script>');
 });
-test('sitemap removes only the 163 proven noindex URLs and retains unknown future publications',()=>{
- assert.equal(NOINDEX_SITEMAP_PATHS.length,163);assert.equal(new Set(NOINDEX_SITEMAP_PATHS).size,163);
+test('sitemap removes the 163 prior exclusions plus the exact quarantined Reta briefing and retains unknown future publications',()=>{
+ assert.equal(NOINDEX_SITEMAP_PATHS.length,164);assert.equal(new Set(NOINDEX_SITEMAP_PATHS).size,164);
  const keep=['/','/start-here','/new-future-article'];
  const entries=path=>'<url><loc>'+origin+path+'</loc><lastmod>2026-10-06</lastmod></url>';
  const xml='<urlset>'+[...NOINDEX_SITEMAP_PATHS,...keep].map(entries).join('')+'</urlset>';

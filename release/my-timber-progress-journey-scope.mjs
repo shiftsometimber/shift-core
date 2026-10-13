@@ -1,3 +1,4 @@
+import {finiteGrowthHistoricalView} from './finite-growth-scope.mjs';
 import {TREATMENT_COMPILED_PATHS,TREATMENT_COMPILED_MAINTENANCE,verifyTreatmentCompiledComposition} from './my-treatment-compiled-scope.mjs';
 import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposition} from './contact-rollback-scope.mjs';
 import assert from 'node:assert/strict';
@@ -82,8 +83,8 @@ export function verifyMyTimberProgressJourney(c,{head,read,diff,ancestor,content
 
 const rawGit=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 function verifyCurrentJourney(){
- const manifest='release/approved-runtime-composition.json',c=JSON.parse(execFileSync('git',['show','HEAD:'+manifest],{encoding:'utf8'})),head=rawGit('rev-parse','HEAD');
- const read=(ref,path)=>rawGit('rev-parse',ref+':'+path),diff=(a,b)=>rawGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor=(a,b)=>rawGit('merge-base','--is-ancestor',a,b),content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'});
+ const manifest='release/approved-runtime-composition.json',view=finiteGrowthHistoricalView(),c=view.record,head=view.head;
+ const read=view.read,diff=(a,b)=>rawGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor=(a,b)=>rawGit('merge-base','--is-ancestor',a,b),content=view.content;
  const treatment=c.treatmentCompiledDelivery;if(treatment)verifyTreatmentCompiledComposition(treatment,{head,read,diff,ancestor,content});
  const preTreatment=treatment?treatment.base:head,treatmentRead=(ref,path)=>read(treatment&&ref==='HEAD'&&[...TREATMENT_COMPILED_PATHS,...TREATMENT_COMPILED_MAINTENANCE].includes(path)?treatment.base:ref,path);
  const contact=c.contactRollbackRuntime;if(contact)verifyContactRuntimeComposition(contact,{head:preTreatment,read:treatmentRead,diff,ancestor,content});
@@ -101,7 +102,7 @@ function verifyCurrentJourney(){
  const viewHead=e?e.base:preContact,viewRead=(ref,path)=>contactRead(e&&ref==='HEAD'&&[...epaths,...em].includes(path)?e.base:ref,path);
  if(c.myTimberProgressJourney)verifyMyTimberProgressJourney(c.myTimberProgressJourney,{head:viewHead,read:viewRead,diff,ancestor,content});return c;
 }
-export function myTimberHistoricalRecord(record){const current=verifyCurrentJourney();assert.deepEqual(record,current,'Only the fully verified current record can expose the prior historical view');const prior=structuredClone(record);delete prior.myTimberProgressJourney;delete prior.githubProofEpipeRetry;delete prior.contactRollbackRuntime;delete prior.treatmentCompiledDelivery;return prior;}
+export function myTimberHistoricalRecord(record){const current=verifyCurrentJourney();assert.deepEqual(record,current,'Only the fully verified current record can expose the prior historical view');const prior=structuredClone(record);delete prior.finiteGrowthRepair;delete prior.myTimberProgressJourney;delete prior.githubProofEpipeRetry;delete prior.contactRollbackRuntime;delete prior.treatmentCompiledDelivery;return prior;}
 export function myTimberHistoricalIntegrationWorkflow(after){const current=verifyCurrentJourney();assert.equal(after,execFileSync('git',['show','HEAD:.github/workflows/shift-coach-integration.yml'],{encoding:'utf8'}),'Current integration workflow bytes differ');return current.myTimberProgressJourney?execFileSync('git',['show',MY_TIMBER_PROGRESS_BASE+':.github/workflows/shift-coach-integration.yml'],{encoding:'utf8'}):after;}
 
 export function myTimberHistoricalFile(path,bytes){const c=verifyCurrentJourney();assert.equal(bytes,execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}),'Historical file must be exact current bytes');assert(['release/approved-runtime-composition.mjs','.github/workflows/shift-coach-integration.yml'].includes(path),'Unlisted historical file');const base=path==='release/approved-runtime-composition.mjs'?c.githubProofEpipeRetry?.base:c.contactRollbackRuntime?.base;return base?execFileSync('git',['show',base+':'+path],{encoding:'utf8'}):bytes;}
