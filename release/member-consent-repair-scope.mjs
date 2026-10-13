@@ -33,15 +33,7 @@ const content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'ut
 export function verifyMemberConsentSource(c,{head,read,blob=read,diff,ancestor,content:contents}){
  assert.equal(c?.proof,'EXACT_MEMBER_CONSENT_REPAIR_SOURCE_20261013');
  assert.equal(c.base,MEMBER_CONSENT_BASE);assert.equal(c.source,MEMBER_CONSENT_SOURCE);assert.equal(c.integrationIssue,1065);
- assert.deepEqual(c.paths,MEMBER_CONSENT_PATHS);assert.deepEqual(c.maintenancePaths,MEMBER_CONSENT_[
- "release/member-consent-repair-scope.mjs",
- "tests/member-consent-repair-composition.test.mjs",
- "release/finite-growth-scope.mjs",
- "release/approved-runtime-composition.mjs",
- "tests/finite-growth-composition.test.mjs",
- ".github/workflows/shift-coach-integration.yml",
- ".github/workflows/cloudflare-production-promote.yml"
-]);
+ assert.deepEqual(c.paths,MEMBER_CONSENT_PATHS);assert.deepEqual(c.maintenancePaths,MEMBER_CONSENT_MAINTENANCE);
  assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
  for(const f of MEMBER_CONSENT_FLAGS)assert.equal(c[f],false,'Member repair boundary: '+f);
  for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
