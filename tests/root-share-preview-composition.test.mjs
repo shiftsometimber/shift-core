@@ -1,3 +1,4 @@
+import {photoCalendarHistoricalFile} from '../release/photo-calendar-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -26,7 +27,7 @@ test('actual registered source is verified before exposing unchanged historical 
 });
 test('original workflow gates and permission bytes survive only the three additive sharing hooks',()=>{
  const hooks={'.github/workflows/shift-coach-integration.yml':['      - name: Verify exact approved homepage sharing repair\n        run: node --test tests/root-share-preview.test.mjs tests/root-share-preview-composition.test.mjs tests/root-share-preview-rollback.test.mjs tests/root-share-preview-transport.test.mjs tests/root-share-transport-rollback.test.mjs tests/root-share-stream.test.mjs tests/root-share-speed-rollback.test.mjs\n'],'.github/workflows/cloudflare-production-promote.yml':['      - name: Require exact approved homepage sharing repair and retain baseline\n        run: |\n          node release/root-share-preview-scope.mjs --require-release-authority\n          node release/root-share-preview-live.mjs before\n','      - name: Verify corrected homepage sharing image and exact page preservation live\n        run: node release/root-share-preview-live.mjs after\n']};
- for(const [p,list]of Object.entries(hooks)){let current=readFileSync(p,'utf8');for(const h of list){assert.equal(current.split(h).length,2);current=current.replace(h,'');}assert.equal(current,execFileSync('git',['show',base+':'+p],{encoding:'utf8'}));}
+ for(const [p,list]of Object.entries(hooks)){let current=photoCalendarHistoricalFile(p,readFileSync(p,'utf8'));for(const h of list){assert.equal(current.split(h).length,2);current=current.replace(h,'');}assert.equal(current,execFileSync('git',['show',base+':'+p],{encoding:'utf8'}));}
 });
 test('live inverse accepts exactly the new two image links and rejects unrelated copy or image drift',()=>{
  const html='<meta property="og:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg"><main>Original approved copy</main>',bytes=Buffer.from(html),live=Buffer.from(replaceRootShareImage(html));assert(verifyRootPreservation(bytes,live));assert.throws(()=>verifyRootPreservation(bytes,Buffer.from(live.toString().replace('Original','Changed'))));assert.throws(()=>verifyRootPreservation(bytes,bytes));assert.deepEqual(jpegDimensions(sharePreviewBytes()),{width:1200,height:630});assert.throws(()=>jpegDimensions(Buffer.from('not an image')));

@@ -1,0 +1,51 @@
+{
+  "recordedAt": "2026-10-13T23:47:21Z",
+  "defect": {
+    "run": 38482890220,
+    "job": 115589473002,
+    "source": "cc3916d88d66c70dd7be7276ba80a16001c2bbd5",
+    "at": "2026-10-13T23:36:01Z",
+    "artifact": 11859420564,
+    "bytes": 1054516,
+    "sha256": "8070e45f22297fefda0234f515c583de9e01d43e63ad736c2dc6f85d0f5ede8f",
+    "uiMessage": "Check the date and optional measurements or note.",
+    "utcDate": "2026-10-13",
+    "londonDate": "2026-10-14",
+    "submitted": "2026-10-14T00:00:00Z",
+    "corrected": "2026-10-14T00:00:00+01:00",
+    "originalApiFutureToleranceMilliseconds": 60000,
+    "previouslyPassedMobileGroups": 3,
+    "failedGroup": "private-photo save/image rendering",
+    "pageErrors": [],
+    "productionRequests": false
+  },
+  "authority": {
+    "owner": "Matt",
+    "instruction": "Do",
+    "recordedAt": "2026-10-12T18:46:03Z",
+    "scope": "Existing My Timber upgrade through #1065, including photo access and deletion verification; bounded corrective work only",
+    "source": "9610259f261ff0a125c9af753d447268d7ab2e3d",
+    "maintenanceSource": "dac6e5c392cd89b122598b37be44d9565cd1b7ba",
+    "integrationIssue": 1065,
+    "emailAuthority": false,
+    "rollbackAuthorityBroadened": false
+  },
+  "scope": "Only encode the already selected London photo date with its correct midnight UTC offset. Existing form, label, date max, API 60-second future rejection, consent/pause/session/isolation/deletion/storage/retention/image constraints remain. No stored record is rewritten.",
+  "localTests": {
+    "count": 4,
+    "status": "passed",
+    "clockFrozenToActualFailure": true,
+    "dstAndLeapAndYearBoundaries": true,
+    "futureAndInvalidDenied": true
+  },
+  "rootPreview": "Original approved artwork, two metadata links, streaming source and all required live speed/security/cache/stock checks remain separate and unchanged.",
+  "production": "Not yet merged/deployed/verified. No workaround, forced click, date alteration in the staging verifier or unchanged failed production rerun.",
+  "ownerUpgrade": {
+    "library": "libfile_62abfd61b8188191b77cb1dbc5139803",
+    "version": 8,
+    "source": "8e8895afb82bd82e2354fc69acbcd9acfe39fba4",
+    "optionalSwitch": "off",
+    "clinicalCurve": "not activated",
+    "note": "Existing treatment-week builder/source is preserved; this repairs the already serving photo feature only."
+  }
+}

@@ -1,3 +1,4 @@
+import {photoCalendarHistoricalView} from './photo-calendar-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
@@ -37,13 +38,13 @@ export function verifyRootShareSource(c,{head,read,blob=read,diff,ancestor,conte
  const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.rootSharePreview;assert.deepEqual(current,prior,'Every prior approval, watermark and release record must remain unchanged');return c;
 }
 export function rootShareHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=git('rev-parse','HEAD'),current=JSON.parse(contents(rawHead,manifest)),repair=current.rootSharePreview;
- const rawBlob=(ref,p)=>git('rev-parse',(ref==='HEAD'?rawHead:ref)+':'+p),rawRead=defaultReader?rawBlob:reader;
- if(!repair)return {record:current,rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:(ref,p)=>contents(ref==='HEAD'?rawHead:ref,p)};
+ const calendar=photoCalendarHistoricalView(reader,{defaultReader}),rawHead=calendar.head,current=calendar.record,repair=current.rootSharePreview;
+ const rawBlob=calendar.blob,rawRead=calendar.read;
+ if(!repair)return {record:current,rawHead:calendar.rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:(ref,p)=>contents(ref==='HEAD'?rawHead:ref,p)};
  verifyRootShareSource(repair,{head:rawHead,read:rawRead,blob:rawBlob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:(ref,p)=>contents(ref==='HEAD'?rawHead:ref,p)});
  const record=structuredClone(current);delete record.rootSharePreview;const changed=new Set([...repair.paths,...repair.maintenancePaths,manifest]);
  const mapped=(ref,p)=>ref==='HEAD'&&changed.has(p)?repair.base:ref;
- return {record,rawHead,head:repair.base,read:(ref,p)=>rawRead(mapped(ref,p),p),blob:(ref,p)=>rawBlob(mapped(ref,p),p),content:(ref,p)=>contents(mapped(ref,p)==='HEAD'?rawHead:mapped(ref,p),p)};
+ return {record,rawHead:calendar.rawHead,head:repair.base,read:(ref,p)=>rawRead(mapped(ref,p),p),blob:(ref,p)=>rawBlob(mapped(ref,p),p),content:(ref,p)=>contents(mapped(ref,p)==='HEAD'?rawHead:mapped(ref,p),p)};
 }
 export function rootShareHistoricalFile(p,bytes){
  const view=rootShareHistoricalView();assert.equal(bytes,contents('HEAD',p),'Historical file must match actual current sharing source');
