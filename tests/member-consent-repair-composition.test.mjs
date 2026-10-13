@@ -42,7 +42,9 @@ test('actual current source validates before exposing the unchanged earlier reco
   const view=memberConsentHistoricalView();assert.equal(view.head,base);
   assert.deepEqual(view.record,JSON.parse(execFileSync('git',['show',base+':'+manifest],{encoding:'utf8'})));
   for(const path of paths){let earlier;try{earlier=execFileSync('git',['rev-parse',base+':'+path],{encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();}catch{assert.throws(()=>view.read('HEAD',path));continue;}assert.equal(view.read('HEAD',path),earlier);}
-  for(const path of ['worker-entry-v6.js',...paths])assert.throws(()=>memberConsentHistoricalView((ref,p)=>ref==='HEAD'&&p===path?'drift':execFileSync('git',['rev-parse',ref+':'+p],{encoding:'utf8'}).trim()).read('HEAD',path),/drift/);
+  for(const path of paths)assert.throws(()=>memberConsentHistoricalView((ref,p)=>ref==='HEAD'&&p===path?'drift':execFileSync('git',['rev-parse',ref+':'+p],{encoding:'utf8'}).trim()).read('HEAD',path),/drift/);
+  const originalReader=(ref,path)=>path==='worker-entry-v6.js'&&ref==='HEAD'?'original-caller-sentinel':execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim();
+  assert.equal(memberConsentHistoricalView(originalReader).read('HEAD','worker-entry-v6.js'),'original-caller-sentinel','Unaffected source reads must reach their existing original verifier unchanged');
 });
 test('both workflow hooks are exactly additive, with every earlier production/integration permission and gate byte preserved',()=>{
   const hooks={'.github/workflows/shift-coach-integration.yml':'      - name: Verify bounded member consent source and request-evidence privacy\n        run: node --test tests/member-consent-repair-composition.test.mjs tests/photo-tracking-choice.test.mjs tests/request-evidence-privacy.test.mjs\n','.github/workflows/cloudflare-production-promote.yml':'      - name: Require exact member repair publication and production approval\n        run: node release/member-consent-repair-scope.mjs --require-release-authority\n'};

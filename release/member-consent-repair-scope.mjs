@@ -77,7 +77,7 @@ export function memberConsentHistoricalView(reader=null,{defaultReader=reader===
  const record=structuredClone(current);delete record.memberConsentRepair;
  const changed=new Set([...repair.paths,...repair.maintenancePaths,manifest]);
  const read=(ref,path)=>{
-  if(ref!=='HEAD')return rawRead(ref,path);
+  if(ref!=='HEAD'||!changed.has(path))return rawRead(ref,path);
   const expected=repair.paths.includes(path)?repair.source:repair.maintenancePaths.includes(path)?repair.maintenanceSource:repair.base;
   // Preserve fresh supplied-reader checks even after a verified historical view.
   if(path!==manifest)assert.equal(rawRead('HEAD',path),rawRead(expected,path),'Approved composition source / boundary drift / Member historical source drift: '+path);
