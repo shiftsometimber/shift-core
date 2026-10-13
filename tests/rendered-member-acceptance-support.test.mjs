@@ -15,7 +15,7 @@ function harness({sessionEmail=identity.email,sessionStatus=200,loginStatus=200,
       // Execute the readiness predicate against both an authenticated and a
       // signed-out DOM: a stale body class must never turn either into a pass.
       const previous=globalThis.document;
-      globalThis.document={querySelector:selector=>selector==='#previewMember'?{classList:{contains:()=>shown},hidden:!shown,getBoundingClientRect:()=>({height:shown?300:0})}:selector==='#previewAuth'?{hidden:shown}:selector.startsWith('#panel-')?{classList:{contains:()=>clicks.length>0}}:null};
+      globalThis.document={querySelector:selector=>selector==='#previewMember'?{classList:{contains:()=>shown},hidden:!shown,getBoundingClientRect:()=>({height:shown?300:0})}:selector==='#healthConsentAction'?{closest:()=>({getClientRects:()=>shown?[{}]:[]})}:selector==='#previewAuth'?{hidden:shown}:selector.startsWith('#panel-')?{classList:{contains:()=>clicks.length>0}}:null};
       try{if(!fn(arg))throw Error('readiness timeout')}finally{globalThis.document=previous}
     },evaluate:async()=>({path:'/member/dashboard',memberReady:shown,memberHidden:!shown,authHidden:shown,panels:[]}),
     locator:selector=>selector==='.cookie-banner-v3a'||selector.startsWith('script[')?{count:async()=>0}:selector==='#appMore'?{count:async()=>0}:selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>({isVisible:async()=>controlVisible,click:async()=>clicks.push(selector),locator:()=>({count:async()=>0})})}};
@@ -82,13 +82,20 @@ test('explicit withdrawal uses the visible control and requires the latest saved
   const h=harness();await commissioningLogin(h.page,identity);let clicked=false;
   const original=h.page.locator,get=h.page.context().request.get;
   h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},isVisible:async()=>true,innerText:async()=>clicked?'Review and opt in':'Withdraw consent',click:async()=>{clicked=true;h.clicks.push('Withdraw consent')}}:original(selector);
-  h.page.waitForFunction=async()=>assert.equal(clicked,true);
+  let waits=0;h.page.waitForFunction=async()=>assert.equal(clicked,waits++>0);
   h.page.context().request.get=async(url,options)=>url===api+'/v1/consents'?{ok:()=>true,json:async()=>({consents:[{id:1,consent_type:'my_shift_health_tracking',granted:1},{id:2,consent_type:'my_shift_health_tracking',granted:serverGrant}]})}:get(url,options);
   if(serverGrant===0)assert.deepEqual(await withdrawOptionalHealthTracking(h.page,{site}),{choice:'explicit optional withdrawal',identityVerified:true,saved:true});
   else await assert.rejects(withdrawOptionalHealthTracking(h.page,{site}),/choice was not saved/);
   assert.deepEqual(h.clicks,['Withdraw consent']);assert.equal(h.requests.filter(x=>x.method==='POST').length,1);
  }
  await assert.rejects(withdrawOptionalHealthTracking(harness().page,{site}),/verified synthetic identity/);
+});
+
+test('optional tracking must wait for the genuine visible Settings parent and never open controls on an unready signed-out page',async()=>{
+ const h=harness({shown:false});await commissioningLogin(h.page,identity);const original=h.page.locator;
+ h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},isVisible:async()=>assert.fail('Disclosure considered before parent readiness'),click:async()=>assert.fail('Consent clicked before parent readiness')}:original(selector);
+ await assert.rejects(chooseOptionalHealthTracking(h.page,{site}),/readiness timeout/);
+ assert.equal(h.clicks.length,0);assert.equal(h.requests.filter(x=>x.method==='POST').length,1);
 });
 
 test('a successful API login does not pass an unready signed-out interface',async()=>{

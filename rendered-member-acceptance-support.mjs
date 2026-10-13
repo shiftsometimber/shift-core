@@ -87,6 +87,10 @@ async function openOptionalHealthControl(page,{site}){
   // Keep the original fifteen-second visibility budget across all of this work.
   const deadline=Date.now()+15000,remaining=()=>Math.max(1,deadline-Date.now());
   await choice.waitFor({state:'attached',timeout:remaining()});
+  // The real session-state layer keeps the entire Settings main hidden until
+  // authentication finishes. Wait for that actual visible parent before trying
+  // its disclosure, inside the same original visibility deadline.
+  await page.waitForFunction(()=>document.querySelector('#healthConsentAction')?.closest('main')?.getClientRects().length>0,null,{timeout:remaining()});
   for(let depth=0;depth<5&&!await choice.isVisible();depth++){
     const closed=choice.locator('xpath=ancestor::details[not(@open)]');
     let opened=false;
