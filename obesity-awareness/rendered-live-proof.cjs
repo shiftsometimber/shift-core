@@ -92,7 +92,7 @@ function observeCollector(page,records){
     await page.locator('#whHeightCm').selectOption('180');await page.locator('#waistCm').selectOption('90');
     await page.getByRole('button',{name:'Calculate ratio',exact:true}).click();
     await page.waitForFunction(()=>document.getElementById('whR')?.textContent.includes('0.50'));
-    assert((await page.locator('main').innerText()).includes('Increased'));
+    assert.match(await page.locator('main').innerText(), /\bincreased\b/i);
     assert(await page.locator('[data-obesity-context-link] a').isVisible());
     await page.screenshot({path:dir+'/'+width+'-waist.png'});
     await page.locator('[data-obesity-context-link] a').click();assert.equal(new URL(page.url()).pathname,'/male-obesity');

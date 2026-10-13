@@ -1,3 +1,4 @@
+import {FINITE_GROWTH_PATHS,FINITE_GROWTH_MAINTENANCE,verifyFiniteGrowth} from './finite-growth-scope.mjs';
 import {TREATMENT_COMPILED_PATHS,TREATMENT_COMPILED_MAINTENANCE,verifyTreatmentCompiledComposition} from './my-treatment-compiled-scope.mjs';
 import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposition} from './contact-rollback-scope.mjs';
 import {MY_TIMBER_PROGRESS_PATHS,MY_TIMBER_PROGRESS_MAINTENANCE,verifyMyTimberProgressJourney} from './my-timber-progress-journey-scope.mjs';
@@ -123,6 +124,7 @@ export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATIO
 for(const path of [...MY_TIMBER_PROGRESS_PATHS,...MY_TIMBER_PROGRESS_MAINTENANCE])RECONCILIATION_PATHS.add(path);
 for(const path of [...CONTACT_RUNTIME_PATHS,...CONTACT_RUNTIME_MAINT])RECONCILIATION_PATHS.add(path);
 for(const path of [...TREATMENT_COMPILED_PATHS,...TREATMENT_COMPILED_MAINTENANCE])RECONCILIATION_PATHS.add(path);
+for(const path of [...FINITE_GROWTH_PATHS,...FINITE_GROWTH_MAINTENANCE])RECONCILIATION_PATHS.add(path);
 export const MY_TREATMENT_BASE='793b5135ce7bcdb42d77597b238c769c32a7dc67';
 export const MY_TREATMENT_SOURCE='8681d219edc06be15c24135741877c47ee36b011';
 export const MY_TREATMENT_PATHS=['.github/workflows/cloudflare-production-promote.yml','.github/workflows/my-treatment-production-check.yml','member-experience/TREATMENT-PRODUCTION-RELEASE.md','member-experience/entry.mjs','member-experience/tests/treatment-model.test.mjs','member-experience/tests/treatment.test.mjs','member-experience/treatment-model.mjs','member-experience/treatment-page.mjs','member-experience/treatment-privacy.mjs','member-experience/treatment-reminders.mjs','member-experience/treatment-routes.mjs','member-experience/treatment-service-worker.mjs','member-experience/treatment.sql','privacy-health-erasure-route-v1.js','release/my-treatment-config.mjs','release/my-treatment-live.mjs','release/my-treatment-schema.mjs','shift-coach/release-contract.mjs','tests/my-treatment-release.test.mjs','worker-entry-v6.js','wrangler.coaching.jsonc','wrangler.jsonc'];
@@ -2294,10 +2296,13 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const currentRawHead=git('rev-parse','HEAD'),treatmentCompiledDelivery=c.treatmentCompiledDelivery;
- if(treatmentCompiledDelivery)verifyTreatmentCompiledComposition(treatmentCompiledDelivery,{head:currentRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const growthRawHead=git('rev-parse','HEAD'),finiteGrowth=c.finiteGrowthRepair;
+ if(finiteGrowth)verifyFiniteGrowth(finiteGrowth,{head:growthRawHead,read,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const growthRead=(ref,path)=>read(finiteGrowth&&ref==='HEAD'&&[...FINITE_GROWTH_PATHS,...FINITE_GROWTH_MAINTENANCE,RECONCILIATION_MANIFEST].includes(path)?finiteGrowth.base:ref,path);
+ const currentRawHead=finiteGrowth?finiteGrowth.base:growthRawHead,treatmentCompiledDelivery=c.treatmentCompiledDelivery;
+ if(treatmentCompiledDelivery)verifyTreatmentCompiledComposition(treatmentCompiledDelivery,{head:currentRawHead,read:growthRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preTreatmentHead=treatmentCompiledDelivery?treatmentCompiledDelivery.base:currentRawHead;
- const compiledDeliveryRead=(ref,path)=>read(treatmentCompiledDelivery&&ref==='HEAD'&&[...TREATMENT_COMPILED_PATHS,...TREATMENT_COMPILED_MAINTENANCE].includes(path)?treatmentCompiledDelivery.base:ref,path);
+ const compiledDeliveryRead=(ref,path)=>growthRead(treatmentCompiledDelivery&&ref==='HEAD'&&[...TREATMENT_COMPILED_PATHS,...TREATMENT_COMPILED_MAINTENANCE].includes(path)?treatmentCompiledDelivery.base:ref,path);
  const contactRollbackRuntime=c.contactRollbackRuntime;
  if(contactRollbackRuntime)verifyContactRuntimeComposition(contactRollbackRuntime,{head:preTreatmentHead,read:compiledDeliveryRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preContactHead=contactRollbackRuntime?contactRollbackRuntime.base:preTreatmentHead;
@@ -2743,7 +2748,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const treatmentWorkflow=treatment?withoutTreatmentSteps(currentWorkflow):currentWorkflow;
  assertProductionProofBudget(productionProofBefore,closeout?withoutProgrammeLiveGate(treatmentWorkflow):treatmentWorkflow);
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
- assert.equal(git('rev-parse','HEAD'),currentRawHead,'Source HEAD changed during composition verification');
+ assert.equal(git('rev-parse','HEAD'),growthRawHead,'Source HEAD changed during composition verification');
  return c;
 }
 const mappedCompositionReaders=new WeakSet();
