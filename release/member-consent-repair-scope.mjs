@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
 export const MEMBER_CONSENT_BASE= "fc196ebeaf47e04fbe5aec8d9ddefc93b9a50a5e";
-export const MEMBER_CONSENT_SOURCE= "c44221d219f870c1683cb7837e63c1c2038b95f8";
+export const MEMBER_CONSENT_SOURCE= "0b72c599121957c85e4d476a3a60e85031d8f8c9";
 export const MEMBER_CONSENT_BLOBS=Object.freeze({
  "frontend/member/api-adapter-v33d.js": "8d71b0314e5a80a35447a5412ac62acd4763b231",
  "frontend/member/member-product-v33d.js": "6798dcbdff6b1631608b28a9cad799eb2cc11197",
@@ -11,6 +11,7 @@ export const MEMBER_CONSENT_BLOBS=Object.freeze({
  "g2-014-progress-picture-premium-production.mjs": "197e25284a15c7f91db108ac34f6a6c50c979594",
  "health-passport/acceptance-diagnostics.mjs": "c2507de334bb6ebbaf3cb4153dba61a908a8bcc1",
  "my-timber-final-production.mjs": "f0592648232bcd1d49dfb498c1ed1e7efaba9a32",
+ "member-experience/staging/verify-treatment-detail.mjs": "31c7bf5bb87d301dc8b232f43a443b177a012007",
  "rendered-member-acceptance-support.mjs": "fea6008413c80a69e120cff606c9bb564d690e55",
  "tests/photo-tracking-choice.test.mjs": "18b625601da21714374ea3a29e99b7cead880978",
  "tests/rendered-member-acceptance-support.test.mjs": "467a4fac8152fa396201b8688a54f30a0244dc04",
