@@ -51,10 +51,7 @@ export async function memberReady(page,{site,panel=null}){
 export async function chooseOptionalHealthTracking(page,{site}){
   const identity=identities.get(page.context());
   if(!identity||identity.site!==site||!SYNTHETIC.test(identity.email))throw new Error('Optional tracking acceptance requires the verified synthetic identity');
-  await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded',timeout:30000});
-  await chooseNecessaryCookies(page);
-  const choice=page.locator('#healthConsentAction');
-  await choice.waitFor({state:'visible',timeout:15000});
+  const choice=await openOptionalHealthControl(page,{site});
   const label=(await choice.innerText()).trim();
   if(label==='Review and opt in'){
     await choice.click();
@@ -66,6 +63,53 @@ export async function chooseOptionalHealthTracking(page,{site}){
     await agree.click();
     await dialog.waitFor({state:'detached',timeout:15000});
   }else if(label!=='Withdraw consent')throw new Error('Unexpected optional health-tracking control');
+  await verifyOptionalHealthChoice(page,identity,{site,granted:1});
+  return {choice:'explicit optional opt-in',identityVerified:true,saved:true};
+}
+
+export async function withdrawOptionalHealthTracking(page,{site}){
+  const identity=identities.get(page.context());
+  if(!identity||identity.site!==site||!SYNTHETIC.test(identity.email))throw new Error('Optional tracking acceptance requires the verified synthetic identity');
+  const choice=await openOptionalHealthControl(page,{site});
+  if((await choice.innerText()).trim()!=='Withdraw consent')throw new Error('Withdrawal requires the visible currently granted tracking control');
+  await choice.click();
+  await page.waitForFunction(()=>document.querySelector('#healthConsentAction')?.textContent.trim()==='Review and opt in',null,{timeout:15000});
+  await verifyOptionalHealthChoice(page,identity,{site,granted:0});
+  return {choice:'explicit optional withdrawal',identityVerified:true,saved:true};
+}
+
+async function openOptionalHealthControl(page,{site}){
+  await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded',timeout:30000});
+  await chooseNecessaryCookies(page);
+  const choice=page.locator('#healthConsentAction');
+  // Settings groups are real closed disclosures in the shared app/web layout.
+  // Open their visible summaries, rather than forcing the hidden consent button.
+  // Keep the original fifteen-second visibility budget across all of this work.
+  const deadline=Date.now()+15000,remaining=()=>Math.max(1,deadline-Date.now());
+  await choice.waitFor({state:'attached',timeout:remaining()});
+  // The real session-state layer keeps the entire Settings main hidden until
+  // authentication finishes. Wait for that actual visible parent before trying
+  // its disclosure, inside the same original visibility deadline.
+  await page.waitForFunction(()=>document.querySelector('#healthConsentAction')?.closest('main')?.getClientRects().length>0,null,{timeout:remaining()});
+  for(let depth=0;depth<5&&!await choice.isVisible();depth++){
+    const closed=choice.locator('xpath=ancestor::details[not(@open)]');
+    let opened=false;
+    for(let i=0;i<await closed.count();i++){
+      const summary=closed.nth(i).locator(':scope > summary');
+      if(!await summary.isVisible())continue;
+      await summary.click({timeout:remaining()});opened=true;break;
+    }
+    if(!opened){
+      // Retain structural state only, never member text, identifiers or storage.
+      const state=await choice.evaluate(el=>{const chain=[];for(let n=el;n&&chain.length<12;n=n.parentElement){const s=getComputedStyle(n);chain.push({tag:n.tagName,id:n.id,classes:String(n.className||''),display:s.display,visibility:s.visibility,hidden:n.hidden,open:n.tagName==='DETAILS'?n.open:null})}return{path:location.pathname,chain}});
+      throw new Error('Optional health-tracking settings have no visible disclosure control: '+JSON.stringify(state));
+    }
+  }
+  await choice.waitFor({state:'visible',timeout:remaining()});
+  return choice;
+}
+
+async function verifyOptionalHealthChoice(page,identity,{site,granted}){
   const me=await page.context().request.get(site+'/v1/me',{headers:{Origin:site,'Cache-Control':'no-cache'}});
   const user=await me.json().catch(()=>null);
   if(!me.ok()||String(user?.user?.email||'').toLowerCase()!==identity.email)throw new Error('Optional tracking choice lost the verified synthetic identity');
@@ -73,8 +117,7 @@ export async function chooseOptionalHealthTracking(page,{site}){
   const body=await response.json().catch(()=>null);
   const rows=body?.consents;
   const latest=Array.isArray(rows)?rows.filter(row=>row.consent_type==='my_shift_health_tracking').sort((a,b)=>Number(b.id)-Number(a.id))[0]:null;
-  if(!response.ok()||Number(latest?.granted)!==1)throw new Error('The explicit optional tracking choice was not saved');
-  return {choice:'explicit optional opt-in',identityVerified:true,saved:true};
+  if(!response.ok()||Number(latest?.granted)!==granted)throw new Error('The explicit optional tracking choice was not saved');
 }
 
 export async function memberReload(page,{site,panel=null}){
