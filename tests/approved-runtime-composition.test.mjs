@@ -1,3 +1,4 @@
+import './ci-execution-stack-20261014.test.mjs';
 import './release-machinery-repair-composition.test.mjs';
 import './immutable-git-facts-20261014.test.mjs';
 import test from 'node:test';
