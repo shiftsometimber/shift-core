@@ -1,3 +1,4 @@
+import {ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
 import assert from 'node:assert/strict';
 import {assertGitTrackedSourceVisible,nativeGitSourceDifference,immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const RELEASE_MACHINERY_REPAIR_BASE='685ede249cd20c4801d0a25227fed16d46860618';
@@ -57,13 +58,13 @@ export function verifyReleaseMachineryRepairFacts(policy,c,facts){
  return c;
  }finally{try{cleanSource('exit');}finally{assert.equal(headNow(),actualHead,'Release machinery source drift: Source HEAD changed during repair verification');}}
 }
-export function verifyReleaseMachineryRepair(c,{head=currentHead(),read=rawBlob,readContent=rawContent,readDiff=rawDiff,isAncestor=rawAncestor}={}){
- const actualHead=currentHead();
+function verifyReleaseMachineryRepairOriginal(c,{head=currentHead(),read=rawBlob,readContent=rawContent,readDiff=rawDiff,isAncestor=rawAncestor}={},ci=null){
+ const actualHead=ci?ci.head:currentHead();
  // Resolve only native defaults within the paired clean-source/HEAD boundary.
  // Supplied readers still receive literal HEAD freshly on every assertion.
  const frozenRead=read===rawBlob?(ref,path)=>rawBlob(ref==='HEAD'?actualHead:ref,path):read;
  const frozenContent=readContent===rawContent?(ref,path)=>rawContent(ref==='HEAD'?actualHead:ref,path):readContent;
- return verifyReleaseMachineryRepairFacts(RELEASE_MACHINERY_REPAIR_POLICY,c,{head,actualHead,read:frozenRead,readContent:frozenContent,readDiff,isAncestor,blob:rawBlob,content:rawContent,diff:rawDiff,ancestor:rawAncestor,headNow:currentHead,cleanSource:assertCleanSource});
+ return verifyReleaseMachineryRepairFacts(RELEASE_MACHINERY_REPAIR_POLICY,c,{head,actualHead,read:frozenRead,readContent:frozenContent,readDiff,isAncestor,blob:ci?ci.blob:rawBlob,content:ci?ci.content:rawContent,diff:ci?ci.diff:rawDiff,ancestor:ci?ci.ancestor:rawAncestor,headNow:ci?()=>{ci.assertCurrent();return ci.head;}:currentHead,cleanSource:ci?()=>ci.assertCurrent():assertCleanSource});
 }
 function currentRef(view,ref){return ref==='HEAD'||ref===view.rawHead}
 function authentic(value,ref,path,head){
@@ -71,14 +72,14 @@ function authentic(value,ref,path,head){
  const expected=rawContent(head,path),prefix='tree '+head+':'+path+'\n';
  return expected.startsWith(prefix)&&value===expected.replace(prefix,'tree '+ref+':'+path+'\n');
 }
-export function releaseMachineryRepairHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=currentHead(),record=JSON.parse(rawContent(rawHead,manifest)),c=record[key],sourceReader=defaultReader?rawBlob:reader;assert.equal(typeof sourceReader,'function','A source reader is required');
+function releaseMachineryRepairHistoricalViewOriginal(reader=null,{defaultReader=reader===null}={},ci=null){
+ const rawHead=ci?ci.head:currentHead(),record=ci?ci.record:JSON.parse(rawContent(rawHead,manifest)),c=record[key],sourceReader=ci?reader:defaultReader?rawBlob:reader;assert.equal(typeof sourceReader,'function','A source reader is required');
  if(!c)return{rawHead,head:rawHead,record,affected:()=>false,read:sourceReader,blob:rawBlob,content:rawContent,currentContent:rawContent,authentic:(v,r,p)=>authentic(v,r,p,rawHead)};
- assertCleanSource('projection entry');verifyReleaseMachineryRepair(c,{head:rawHead});
+ assertCleanSource('projection entry');verifyReleaseMachineryRepairOriginal(c,{head:rawHead,...(ci?{read:ci.blob,readContent:ci.content,readDiff:ci.diff,isAncestor:ci.ancestor}:{})},ci);
  const paths=new Set([...c.paths,...c.maintenancePaths,manifest]),affected=p=>paths.has(p)||[...paths].some(x=>x.startsWith(p+'/')),view={rawHead,head:c.base,affected,currentContent:rawContent,authentic:(v,r,p)=>authentic(v,r,p,rawHead)};
  const map=(r,p)=>currentRef(view,r)&&affected(p)?c.base:r==='HEAD'?rawHead:r;
  const read=releaseMachineryRepairAuthenticatedRead(sourceReader,view,{defaultReader});
- const prior=structuredClone(record);delete prior[key];assertCleanSource('projection exit');assert.equal(currentHead(),rawHead,'Release machinery source drift: Source HEAD changed during repair projection');
+ const prior=structuredClone(record);delete prior[key];assertCleanSource('projection exit');assert.equal(ci?(ci.assertCurrent(),ci.head):currentHead(),rawHead,'Release machinery source drift: Source HEAD changed during repair projection');
  return{...view,record:prior,read,blob:(r,p)=>rawBlob(map(r,p),p),content:(r,p)=>rawContent(map(r,p),p)};
 }
 // Authentication adapter is pure; its view must already have admitted actual
@@ -115,5 +116,39 @@ export function releaseMachineryRepairLegacyContent(reader,view=releaseMachinery
   const value=!view.authentic(a,'HEAD',p)?a:!view.authentic(b,view.rawHead,p)?b:r==='HEAD'?a:b;
   if(p===manifest){try{const supplied=JSON.parse(value);delete supplied[key];return JSON.stringify(supplied);}catch{return value;}}
   return view.authentic(value,r==='HEAD'?'HEAD':view.rawHead,p)?reader(view.head,p):value;
+ };
+}
+
+// The sole later layer is the independently admitted CI execution. Its literal
+// base and full source are checked before an original machinery assertion runs.
+export function verifyReleaseMachineryRepair(c,options={}){
+ const ci=ciExecutionHistoricalView();
+ if(ci.head===ci.rawHead)return verifyReleaseMachineryRepairOriginal(c,options);
+ assert.equal(options.head??ci.rawHead,ci.rawHead,'Release machinery source drift: Actual raw ci HEAD required');
+ return verifyReleaseMachineryRepairOriginal(c,{head:ci.head,
+  read:ciExecutionAuthenticatedRead(options.read==null||options.read===rawBlob?null:options.read,ci),
+  readContent:ciExecutionAuthenticatedContent(options.readContent==null||options.readContent===rawContent?null:options.readContent,ci),
+  readDiff:ciExecutionAuthenticatedDiff(options.readDiff??rawDiff,ci),
+  isAncestor:ciExecutionAuthenticatedAncestor(options.isAncestor??rawAncestor,ci)},ci);
+}
+export function releaseMachineryRepairHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ const ci=ciExecutionHistoricalView(reader===rawBlob?null:reader);
+ if(ci.head===ci.rawHead)return releaseMachineryRepairHistoricalViewOriginal(reader,{defaultReader});
+ const inner=releaseMachineryRepairHistoricalViewOriginal(ci.read,{defaultReader:false},ci);
+ const ref=r=>r===ci.rawHead?'HEAD':r;
+ return {...inner,rawHead:ci.rawHead,affected:p=>ci.affected(p)||inner.affected(p),
+  read:(r,p)=>inner.read(ref(r),p),blob:(r,p)=>inner.blob(ref(r),p),content:(r,p)=>inner.content(ref(r),p),
+  currentContent:rawContent,authentic:ci.authentic,ciExecutionContext:ci};
+}
+export function releaseMachineryRepairAuthenticatedContent(reader,view=releaseMachineryRepairHistoricalView()){
+ if(!view.ciExecutionContext)return releaseMachineryRepairLegacyContent(reader,view);
+ const ci=view.ciExecutionContext;
+ const supplied=reader;reader=(r,p)=>{const value=supplied(r,p);assert(ci.nativeContentAuthentic(value,r,p),'CI-execution source drift: Supplied repair content changed at '+r+':'+p);return value;};
+ return(r,p)=>{
+  if((r==='HEAD'||r===view.rawHead||r===view.head)&&view.affected(p)){
+   assert(ci.authentic(reader('HEAD',p),'HEAD',p),'Release machinery source drift: Unauthentic supplied HEAD content: '+p);
+   assert(ci.authentic(reader(view.rawHead,p),view.rawHead,p),'Release machinery source drift: Unauthentic supplied raw-head content: '+p);
+   const value=reader(view.head,p);assert.equal(value,rawContent(view.head,p),'Release machinery source drift: Supplied projected content changed: '+p);return value;
+  }return reader(r,p);
  };
 }
