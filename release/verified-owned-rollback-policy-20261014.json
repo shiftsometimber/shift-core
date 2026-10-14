@@ -1,0 +1,45 @@
+{
+  "repositoryId": 1328867509,
+  "failed": {
+    "run": 38617722281,
+    "job": 116042642082,
+    "attempt": 2,
+    "source": "685ede249cd20c4801d0a25227fed16d46860618",
+    "artifact": {
+      "id": 11924028061,
+      "run": 38617722281,
+      "source": "685ede249cd20c4801d0a25227fed16d46860618",
+      "bytes": 6349566,
+      "sha256": "a12ce0593243d2274b54ff5a6b5bca98a522bde36fd81716f03a01518f44ac1e"
+    },
+    "logs": {
+      "bytes": 1643185,
+      "sha256": "17ce7fbcc126c42dcb1c2ea49b824fcb3699ba66472186e81576f316ce9d2fdf"
+    },
+    "rollback": {
+      "bytes": 248,
+      "sha256": "098f4c18e72253cf3617a40ebdbb4ae5e9e98e594ac8032f8517b1e5c8baf001"
+    },
+    "stockBefore": {
+      "bytes": 696,
+      "sha256": "6b78959f0d4287ca92e7261ade1109ab51bfc0ba38994d961d5f1af9691e8ed4"
+    }
+  },
+  "prior": {
+    "run": 38570047979,
+    "job": 115872767450,
+    "attempt": 1,
+    "source": "5eba55df9065887562e94eb2ff35cb88bffc941b",
+    "artifact": {
+      "id": 11900896010,
+      "run": 38570047979,
+      "source": "5eba55df9065887562e94eb2ff35cb88bffc941b",
+      "bytes": 6466251,
+      "sha256": "2a088d872c8eb674f6df1960f7c7f76fea6e6610bc7d9d6a4dd4d0bcc5c8e79f"
+    },
+    "logs": {
+      "bytes": 1781196,
+      "sha256": "59470ec004200b4beb19f00a0d94fbd506bb236fe9f622675c4f6e3606658911"
+    }
+  }
+}

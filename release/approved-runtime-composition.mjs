@@ -13,6 +13,7 @@ import {MY_TIMBER_PROGRESS_PATHS,MY_TIMBER_PROGRESS_MAINTENANCE,verifyMyTimberPr
 import {withoutTreatmentFlag,withoutTreatmentSteps,TREATMENT_FLAG} from './my-treatment-config.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {existsSync,readFileSync} from 'node:fs';
 
 export const COMPOSITION_BASE='e9d8ca70c6cd969bbd02caee31deb1f8b12bb67f';
@@ -662,31 +663,90 @@ const verifiedImmutableStructures=new Set();
 // This never caches caller-supplied source readers or validation outcomes.
 let immutableHistoryScope=null;
 const immutableHistoryResults=new Map();
+// Keep the complete execution environment private and isolate every cached native fact.
+const immutableEnvironmentSignature=()=>JSON.stringify(Object.keys(process.env).sort().map(key=>[key,process.env[key]]));
 export function withImmutableHistoryVerification(callback){
  if(immutableHistoryScope)return callback();
  const cwd=process.cwd(),head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
- assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
- immutableHistoryScope={cwd,head};
+ assert.equal(execFileSync('git',['diff','--name-only','HEAD','--'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
+ const scopeReplacements=replacementState();
+ immutableHistoryScope={cwd,head,environment:immutableEnvironmentSignature(),replacements:scopeReplacements};
  try{const value=callback();assert(!value||typeof value.then!=='function','Immutable history verification must be synchronous');return value;}
  finally{
   immutableHistoryScope=null;
   assert.equal(process.cwd(),cwd,'Verification working directory changed');
   assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),head,'Source HEAD changed during immutable history verification');
-  assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Working source changed during immutable history verification');
+  assert.equal(execFileSync('git',['diff','--name-only','HEAD','--'],{encoding:'utf8'}).trim(),'','Working source changed during immutable history verification');
+  assert.deepEqual(replacementState(),scopeReplacements,'Git replacement state changed during immutable history verification');
  }
+}
+function replacementState(){
+ const mode=process.env.GIT_NO_REPLACE_OBJECTS??null,base=process.env.GIT_REPLACE_REF_BASE??null;
+ return {mode,base,refs:execFileSync('git',['for-each-ref','--format=%(refname) %(objectname)',base??'refs/replace/'],{encoding:'utf8'})};
+}
+const immutableTrees=new Map(),immutableBlobBytes=new Map();
+function trustedFactOptions(options){
+ if(options===undefined)return true;
+ if(!options||Object.getPrototypeOf(options)!==Object.prototype)return false;
+ const descriptors=Object.getOwnPropertyDescriptors(options);
+ if(Reflect.ownKeys(descriptors).some(k=>typeof k!=='string'||!['encoding','maxBuffer','cwd'].includes(k)||!('value'in descriptors[k])))return false;
+ if(options.cwd!==undefined&&(typeof options.cwd!=='string'||!options.cwd))return false;
+ if(options.encoding!==undefined&&options.encoding!==null&&options.encoding!=='buffer'&&!Buffer.isEncoding(options.encoding))return false;
+ return options.maxBuffer===undefined||Number.isSafeInteger(options.maxBuffer)&&options.maxBuffer>=0;
+}
+function immutableFact(scope,args,options){
+ if(args.length!==2||!['show','rev-parse'].includes(args[0]))return null;
+ const match=/^([a-f0-9]{40}):([^\0]+)$/.exec(args[1]);if(!match)return null;
+ const [,ref,path]=match;if(path.startsWith('/')||path.split('/').some(p=>!p||p==='.'||p==='..'))return null;
+ const namespace=JSON.stringify([scope.cwd,scope.environment]);
+ const treeKey=namespace+' '+ref;
+ if(!immutableTrees.has(treeKey)){
+  let raw;try{raw=execFileSync('git',['ls-tree','-r','-t','-z','--full-tree',ref],{maxBuffer:32*1024*1024,stdio:'pipe'});}catch{return null;}
+  const entries=new Map();let start=0;
+  for(let end=raw.indexOf(0,start);end!==-1;end=raw.indexOf(0,start)){
+   const line=raw.subarray(start,end),tab=line.indexOf(9);if(tab<0)return null;
+   const metadata=/^([0-7]{6}) (blob|tree|commit) ([a-f0-9]{40})$/.exec(line.subarray(0,tab).toString('ascii'));if(!metadata)return null;
+   const nameBytes=line.subarray(tab+1),name=nameBytes.toString('utf8');
+   if(Buffer.from(name,'utf8').equals(nameBytes)){if(entries.has(name))return null;entries.set(name,{type:metadata[2],oid:metadata[3]});}
+   start=end+1;
+  }
+  if(start!==raw.length)return null;immutableTrees.set(treeKey,entries);
+ }
+ const entry=immutableTrees.get(treeKey).get(path);if(!entry)return null;
+ const limit=options?.maxBuffer??1024*1024;
+ if(args[0]==='rev-parse'){
+  const bytes=Buffer.from(entry.oid+'\n');return bytes.length>limit?null:{bytes};
+ }
+ if(entry.type!=='blob')return null;
+ const blobKey=namespace+' '+entry.oid;
+ if(!immutableBlobBytes.has(blobKey)){
+  let bytes;try{bytes=execFileSync('git',['cat-file','blob',entry.oid],{maxBuffer:limit,stdio:'pipe'});}catch{return null;}
+  assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),entry.oid,'Native immutable blob bytes do not match their Git object ID');
+  immutableBlobBytes.set(blobKey,bytes);
+ }
+ const bytes=immutableBlobBytes.get(blobKey);
+ assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),entry.oid,'Cached immutable blob bytes do not match their Git object ID');
+ return bytes.length>limit?null:{bytes};
 }
 export function immutableHistoryExecFileSync(bin,args,options){
  const scope=immutableHistoryScope;
- if(!scope||bin!=='git'||!Array.isArray(args)||args.some(x=>typeof x!=='string')||options?.cwd&&options.cwd!==scope.cwd||options?.env||options?.shell)return execFileSync(bin,args,options);
- const pinned=args.map(x=>x==='HEAD'?scope.head:x.startsWith('HEAD:')?scope.head+x.slice(4):x==='HEAD^{commit}'?scope.head+'^{commit}':x);
+ if(!scope||process.cwd()!==scope.cwd||immutableEnvironmentSignature()!==scope.environment||bin!=='git'||!Array.isArray(args)||args.some(x=>typeof x!=='string')||!trustedFactOptions(options)||options?.cwd&&options.cwd!==scope.cwd)return execFileSync(bin,args,options);
+ // HEAD, symbolic aliases, mutable state and replacement-enabled objects are
+ // always native reads. Only explicit immutable object identities are reused.
+ if(scope.replacements.mode!=='1'&&scope.replacements.refs.trim()||Object.keys(process.env).some(key=>key.startsWith('GIT_TRACE')))return execFileSync(bin,args,options);
  const commit=x=>/^[a-f0-9]{40}$/.test(x),blob=x=>/^[a-f0-9]{40}:[^\0]+$/.test(x);
- const immutable=pinned.length===4&&pinned[0]==='merge-base'&&pinned[1]==='--is-ancestor'&&commit(pinned[2])&&commit(pinned[3])
-  ||pinned.length===4&&pinned[0]==='diff'&&['--name-only','--name-status'].includes(pinned[1])&&commit(pinned[2])&&commit(pinned[3])
-  ||pinned.length===2&&['show','rev-parse'].includes(pinned[0])&&blob(pinned[1])
-  ||pinned.length===3&&pinned[0]==='cat-file'&&pinned[1]==='-e'&&(/^[a-f0-9]{40}\^\{commit\}$/.test(pinned[2])||blob(pinned[2]));
+ const immutable=args.length===4&&args[0]==='merge-base'&&args[1]==='--is-ancestor'&&commit(args[2])&&commit(args[3])
+  ||args.length===4&&args[0]==='diff'&&['--name-only','--name-status'].includes(args[1])&&commit(args[2])&&commit(args[3])
+  ||args.length===2&&['show','rev-parse'].includes(args[0])&&blob(args[1])
+  ||args.length===3&&args[0]==='cat-file'&&args[1]==='-e'&&(/^[a-f0-9]{40}\^\{commit\}$/.test(args[2])||blob(args[2]));
  if(!immutable)return execFileSync(bin,args,options);
- const key=JSON.stringify([scope.cwd,scope.head,pinned,options||null]);
- if(!immutableHistoryResults.has(key))immutableHistoryResults.set(key,execFileSync(bin,pinned,options));
+ const fact=immutableFact(scope,args,options);
+ if(fact)return options?.encoding&&options.encoding!=='buffer'?fact.bytes.toString(options.encoding):Buffer.from(fact.bytes);
+ // Unknown paths/objects, aliases, tree/commit show and unsupported queries
+ // retain Git's original command, diagnostics and child-process error shape.
+ if(args.length===2&&['show','rev-parse'].includes(args[0]))return execFileSync(bin,args,options);
+ const key=JSON.stringify([scope.cwd,scope.head,scope.environment,scope.replacements,args,options||null]);
+ if(!immutableHistoryResults.has(key))immutableHistoryResults.set(key,execFileSync(bin,args,options));
  const result=immutableHistoryResults.get(key);return Buffer.isBuffer(result)?Buffer.from(result):result;
 }
 
