@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 24}
       - run: npm ci --no-audit --no-fund
+      - name: Verify exact retained photo acceptance maintenance
+        run: node --test tests/photo-acceptance-maintenance-composition.test.mjs tests/rendered-member-acceptance-support.test.mjs
       - name: Verify exact approved root sharing preservation and restoration
         run: node --test tests/root-share-public-preservation.test.mjs tests/root-share-preservation-rollback.test.mjs tests/root-share-completion-composition.test.mjs
       - name: Verify bounded London private-photo date correction

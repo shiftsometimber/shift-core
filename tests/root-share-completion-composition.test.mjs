@@ -1,3 +1,4 @@
+import {photoAcceptanceHistoricalFile} from '../release/photo-acceptance-maintenance-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -41,7 +42,7 @@ test('unlisted changes, missing ancestry, edited prior approvals, original compa
 });
 test('actual exact source is checked before any historical view or A/M path admission',()=>{
  const v=c.rootShareCompletionHistoricalView();assert.equal(v.head,base);assert.deepEqual(v.record,JSON.parse(execFileSync('git',['show',base+':'+manifest],{encoding:'utf8'})));
- for(const[p,inverse]of [['member-experience/public-preservation.mjs',c.originalCompletionPublic],['shift-coach/recover-cancelled-release.mjs',c.originalCompletionRecovery],['release/photo-calendar-scope.mjs',c.originalCompletionCalendar],['tests/photo-calendar-composition.test.mjs',c.originalCompletionCalendarTest],['release/approved-runtime-composition.mjs',c.originalCompletionRuntime],['.github/workflows/shift-coach-integration.yml',c.originalCompletionWorkflow],['tests/root-share-preview-rollback.test.mjs',c.originalCompletionLegacyTest]])assert.equal(inverse(readFileSync(p,'utf8')),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}));
+ for(const[p,inverse]of [['member-experience/public-preservation.mjs',c.originalCompletionPublic],['shift-coach/recover-cancelled-release.mjs',c.originalCompletionRecovery],['release/photo-calendar-scope.mjs',c.originalCompletionCalendar],['tests/photo-calendar-composition.test.mjs',c.originalCompletionCalendarTest],['release/approved-runtime-composition.mjs',c.originalCompletionRuntime],['.github/workflows/shift-coach-integration.yml',c.originalCompletionWorkflow],['tests/root-share-preview-rollback.test.mjs',c.originalCompletionLegacyTest]])assert.equal(inverse(photoAcceptanceHistoricalFile(p,readFileSync(p,'utf8'))),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}));
  for(const p of [...paths,...maintenance])assert.throws(()=>c.rootShareCompletionHistoricalView((r,q)=>r==='HEAD'&&q===p?'tampered':execFileSync('git',['rev-parse',r+':'+q],{encoding:'utf8'}).trim()),/drift/);
  const raw=readFileSync('release/approved-runtime-composition.mjs','utf8');assert(raw.includes('if(!reconciliationPath(path))return false;'));assert(raw.includes("Unexpected approved sharing completion file status: "));assert(raw.includes("(existed?['A','M']:['A']).includes(status)"));
 });
