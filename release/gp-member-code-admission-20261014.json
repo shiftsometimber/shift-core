@@ -29,13 +29,13 @@
     "release/source-objects/hq-static-packaging.bundle",
     "release/gp-ci-source-prerequisites-20261014.mjs",
     "tests/gp-ci-source-prerequisites-20261014.test.mjs",
+    ".github/workflows/cloudflare-production-promote.yml",
+    ".github/workflows/shift-coach-integration.yml",
     ".github/workflows/readiness-preservation.yml",
     ".github/workflows/health-passport-preview.yml",
-    ".github/workflows/cloudflare-production-promote.yml",
     ".github/workflows/programme-day-preview.yml",
-    ".github/workflows/shift-coach-integration.yml",
-    ".github/workflows/production-completion-proof.yml",
-    ".github/workflows/tablet-wording-release-proof.yml"
+    ".github/workflows/tablet-wording-release-proof.yml",
+    ".github/workflows/production-completion-proof.yml"
   ],
   "authority": {
     "owner": "Matt",
