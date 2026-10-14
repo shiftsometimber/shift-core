@@ -20,7 +20,7 @@ jobs:
       - name: Verify one frozen finite source and every retained bound
         run: node --test tests/combined-finite-composition-20261014.test.mjs tests/combined-dashboard-bootstrap-20261014.test.mjs tests/immutable-reference-fixture-20261014.test.mjs tests/combined-legacy-projection-20261014.test.mjs tests/combined-legacy-boundary-comparators-20261014.test.mjs tests/combined-hq-preservation-20261014.test.mjs tests/combined-organic-legacy-contract-20261014.test.mjs tests/combined-organic-admission-negative-20261014.test.mjs tests/combined-original-gp-object-20261014.test.mjs member-experience/tests/weight-import-mapping*.test.mjs gp-directory/*.test.mjs tests/mens-journey-20261012.test.mjs tests/food-supplement-guide.test.mjs food-supplement-guide/*.test.mjs food-supplement-guide/*.test.cjs tests/pilot-monitor-config.test.mjs medicines-watch/*.test.mjs
       - name: Verify exact My Timber baseline starting-point hand-off
-        run: node --test tests/my-timber-week-closeout-composition.test.mjs tests/photo-baseline-starting-point-20261014.test.mjs
+        run: node --test tests/my-timber-week-closeout-composition.test.mjs tests/photo-baseline-starting-point-20261014.test.mjs tests/my-timber-recorded-week-activation-composition.test.mjs
       - name: Verify approved My Timber week code and retained clinical activation hold
         run: node --test tests/my-timber-week-composition.test.mjs member-experience/tests/treatment-week.test.mjs member-experience/tests/treatment-week-route.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/photo-cancelled-stock-completion-20261014.test.mjs
       - name: Verify exact retained photo acceptance maintenance

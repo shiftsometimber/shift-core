@@ -3829,7 +3829,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -3937,7 +3937,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4010,7 +4010,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4085,7 +4085,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4158,7 +4158,7 @@
             "integrationIssue": 1065,
             "releaseApproval": {
               "owner": "Matt",
-              "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+              "instruction": "Sorry this needs deploying - it’s a huge fault !",
               "recordedAt": "2026-10-13T17:17:57Z",
               "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
               "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4803,5 +4803,71 @@
     "failedPriorProgressRun": 38608295556,
     "failedPriorProgressJob": 116004767283,
     "originalImportConfirmationAndAllOtherStepsRetained": true
+  },
+  "myTimberRecordedWeekActivation20261014": {
+    "proof": "EXACT_RECORDED_WEEK_FACTUAL_ACTIVATION_20261014",
+    "base": "685ede249cd20c4801d0a25227fed16d46860618",
+    "source": "6b568cde59e639f7138de719cb1bdce92b21b2d9",
+    "maintenanceSource": "08d50b907e93a6d7cbb46e1a56dd8d3045e51bbd",
+    "paths": [
+      "member-experience/treatment-week-route.mjs",
+      "member-experience/treatment-week-client.mjs",
+      "wrangler.jsonc",
+      "member-experience/tests/treatment-week-route.test.mjs",
+      "docs/my-timber-recorded-week-activation-20261014.json",
+      "wrangler.coaching.jsonc"
+    ],
+    "maintenancePaths": [
+      "release/my-timber-recorded-week-scope-20261014.mjs",
+      "tests/my-timber-recorded-week-activation-composition.test.mjs",
+      "release/combined-finite-scope-20261014.mjs",
+      "release/my-treatment-config.mjs",
+      "release/approved-runtime-composition.mjs",
+      ".github/workflows/shift-coach-integration.yml",
+      "member-experience/tests/weight-import-mapping-ui.test.mjs",
+      "member-experience/staging/verify-treatment-week.mjs"
+    ],
+    "authority": {
+      "schema": "my-timber-recorded-week-activation/v1",
+      "owner": "Matt",
+      "instruction": "Action this. We don’t want an review",
+      "recordedAt": "2026-10-14T19:20:45.941Z",
+      "base": "685ede249cd20c4801d0a25227fed16d46860618",
+      "scope": "Activate factual recorded treatment weeks, selected owned context, private notes and factual exports",
+      "externalReviewRequiredForThisScope": false,
+      "flag": {
+        "name": "MY_TIMBER_WEEK_VIEW_ENABLED",
+        "value": "true",
+        "config": "wrangler.jsonc",
+        "mirroredConfig": "wrangler.coaching.jsonc"
+      },
+      "clinicalModelEnabled": false,
+      "medicationLevelEstimateIncluded": false,
+      "symptomPredictionIncluded": false,
+      "clinicalApprovalClaimed": false,
+      "prescribingChanged": false,
+      "customerRecordsUsedForTests": false,
+      "emailAuthority": false,
+      "paidModelEnabled": false,
+      "stockChanged": false,
+      "homepageChanged": false,
+      "ordinaryDeviceEvidenceNotInferred": true,
+      "previousClinicalModelDraftRetained": true
+    },
+    "scope": "recorded_facts_only",
+    "externalReviewRequired": false,
+    "weekEnabled": true,
+    "clinicalModelEnabled": false,
+    "medicationLevelsIncluded": false,
+    "symptomPredictionIncluded": false,
+    "clinicalApprovalClaimed": false,
+    "homepageChanged": false,
+    "stockChanged": false,
+    "emailAuthority": false,
+    "paidModelEnabled": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "originalAssertionsRemoved": false,
+    "timeoutsChanged": false
   }
 }
