@@ -1,3 +1,4 @@
+import {myTimberWeekCloseoutHistoricalView,closeoutRuntimeIfPresent,closeoutWorkflowIfPresent} from './my-timber-week-closeout-scope.mjs';
 export const WEEK_SCOPE_IMPORT="import {withImmutableHistoryVerification,immutableHistoryExecFileSync} from '../release/approved-runtime-composition.mjs';\n";
 export const WEEK_SCOPE_ALIAS="const execFileSync=(...args)=>immutableHistoryExecFileSync(...args);\n";
 export const WEEK_SCOPE_BEGIN="const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim(),candidate=process.env.SHIFT_COACH_SOURCE||'HEAD';\n";
@@ -96,8 +97,8 @@ export function originalWeekB1(s){
  assert.equal(s.split(WEEK_B1_BEGIN+' return withImmutableHistoryVerification(()=>{\n').length,2);s=s.replace(WEEK_B1_BEGIN+' return withImmutableHistoryVerification(()=>{\n',WEEK_B1_BEGIN);
  const wrapped=" return report;\n });\n}\nconst sha=value=>createHash('sha256').update(value).digest('hex');\n";assert.equal(s.split(wrapped).length,2);return s.replace(wrapped,WEEK_B1_END);
 }
-export function originalWeekRuntime(s){for(const part of[WEEK_RUNTIME_IMPORT,WEEK_RUNTIME_BRANCH,WEEK_RUNTIME_FOOTER])s=once(s,part);return s;}
-export function originalWeekWorkflow(s){for(const p of[WEEK_WORKFLOW_STEP,WEEK_BROWSER_ENV,WEEK_BROWSER_RUN])s=once(s,p);return s;}
+export function originalWeekRuntime(s){s=closeoutRuntimeIfPresent(s);for(const part of[WEEK_RUNTIME_IMPORT,WEEK_RUNTIME_BRANCH,WEEK_RUNTIME_FOOTER])s=once(s,part);return s;}
+export function originalWeekWorkflow(s){s=closeoutWorkflowIfPresent(s);for(const p of[WEEK_WORKFLOW_STEP,WEEK_BROWSER_ENV,WEEK_BROWSER_RUN])s=once(s,p);return s;}
 export function originalWeekPhotoTest(s){s=once(s,WEEK_PHOTO_TEST_IMPORT);assert.equal(s.split(WEEK_PHOTO_TEST_NEW).length,2);return s.replace(WEEK_PHOTO_TEST_NEW,WEEK_PHOTO_TEST_OLD);}
 export const weekRuntimeIfPresent=s=>s.includes(WEEK_RUNTIME_IMPORT)?originalWeekRuntime(s):s;
 export const weekWorkflowIfPresent=s=>s.includes(WEEK_WORKFLOW_STEP)?originalWeekWorkflow(s):s;
@@ -126,13 +127,13 @@ export function verifyMyTimberWeekSource(c,{head,read,blob=read,diff,ancestor,co
  return c;
 }
 export function myTimberWeekHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=git('rev-parse','HEAD'),current=JSON.parse(bytes(rawHead,manifest));
- const blob=(r,p)=>git('rev-parse',(r==='HEAD'?rawHead:r)+':'+p),read=defaultReader?blob:reader,content=(r,p)=>bytes(r==='HEAD'?rawHead:r,p),c=current.myTimberWeekCode;
- if(!c)return{rawHead,head:rawHead,record:current,read,blob,content};
+ const overlay=myTimberWeekCloseoutHistoricalView(reader,{defaultReader}),rawHead=overlay.head,current=overlay.record;
+ const blob=overlay.blob,read=overlay.read,content=overlay.content,c=current.myTimberWeekCode;
+ if(!c)return{rawHead:overlay.rawHead,head:rawHead,record:current,read,blob,content};
  verifyMyTimberWeekSource(c,{head:rawHead,read,blob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content});
  const record=structuredClone(current);delete record.myTimberWeekCode;
  const changed=new Set([...c.paths,...c.maintenancePaths,manifest]),map=(r,p)=>r==='HEAD'&&changed.has(p)?c.base:r;
- return{rawHead,head:c.base,record,read:(r,p)=>read(map(r,p),p),blob:(r,p)=>blob(map(r,p),p),content:(r,p)=>content(map(r,p),p)};
+ return{rawHead:overlay.rawHead,head:c.base,record,read:(r,p)=>read(map(r,p),p),blob:(r,p)=>blob(map(r,p),p),content:(r,p)=>content(map(r,p),p)};
 }
 export function myTimberWeekHistoricalFile(p,s){
  const view=myTimberWeekHistoricalView(),actual=bytes(view.rawHead,p);if(view.rawHead===view.head){assert.equal(s,actual);return s;}
