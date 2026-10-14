@@ -3829,7 +3829,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it’s a huge fault !",
+      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -3937,7 +3937,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it’s a huge fault !",
+      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4010,7 +4010,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it’s a huge fault !",
+          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4085,7 +4085,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it’s a huge fault !",
+          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4158,7 +4158,7 @@
             "integrationIssue": 1065,
             "releaseApproval": {
               "owner": "Matt",
-              "instruction": "Sorry this needs deploying - it’s a huge fault !",
+              "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
               "recordedAt": "2026-10-13T17:17:57Z",
               "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
               "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4369,5 +4369,58 @@
         }
       }
     }
+  },
+  "myTimberWeekCloseout20261014": {
+    "proof": "ONE_EXACT_MY_TIMBER_WEEK_STARTING_POINT_HANDOFF_20261014",
+    "base": "d8e18770f2cae616a5082d63af13f34dee1fa68e",
+    "source": "0f766b93ffd29dcff1c04c8f260e8be038842efa",
+    "paths": [
+      "release/growth-adopt-deployment.mjs",
+      "release/photo-baseline-starting-point-20261014.mjs",
+      "tests/photo-baseline-starting-point-20261014.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/my-timber-week-closeout-scope.mjs",
+      "tests/my-timber-week-closeout-composition.test.mjs",
+      "release/my-timber-week-scope.mjs",
+      "release/approved-runtime-composition.mjs",
+      ".github/workflows/shift-coach-integration.yml",
+      "tests/my-timber-week-composition.test.mjs"
+    ],
+    "maintenanceSource": "25e427556df39a87b0a7a3f03f9cf3da5b3b08ed",
+    "integrationIssue": 1065,
+    "existingApprovalReference": {
+      "owner": "Matt",
+      "instruction": "Deploy - agreed",
+      "recordedAt": "2026-10-14T06:38:20Z",
+      "source": "8e8895afb82bd82e2354fc69acbcd9acfe39fba4",
+      "scope": "Deploy the exact connected treatment-week code through #1065; optional member activation and qualified clinical/model review remain held",
+      "integrationIssue": 1065,
+      "emailAuthority": false,
+      "modelReviewGranted": false,
+      "activationGranted": false,
+      "rollbackAuthorityBroadened": false
+    },
+    "failedProduction": {
+      "run": 38547091900,
+      "job": 115795854207,
+      "source": "d8e18770f2cae616a5082d63af13f34dee1fa68e",
+      "result": "failure_before_deployment",
+      "predicate": "cancelled source cannot satisfy success; exact baseline hand-off only"
+    },
+    "applicationChanged": false,
+    "activationEnabled": false,
+    "modelReviewGranted": false,
+    "clinicalChanged": false,
+    "homepageChanged": false,
+    "stockChanged": false,
+    "configurationChanged": false,
+    "emailGeneratingStepsStarted": false,
+    "externalCommunicationsSent": false,
+    "paidModelEnabled": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false,
+    "timeoutsChanged": false
   }
 }
