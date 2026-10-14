@@ -1,3 +1,5 @@
+import './release-machinery-repair-composition.test.mjs';
+import './immutable-git-facts-20261014.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {verifyComposedRuntime,COMPOSITION_BASE,COMPOSITION_SOURCE,COMPOSITION_PATHS} from '../release/approved-runtime-composition.mjs';
