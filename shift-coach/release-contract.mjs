@@ -1,3 +1,4 @@
+import {withImmutableHistoryVerification,immutableHistoryExecFileSync} from '../release/approved-runtime-composition.mjs';
 import {withoutTreatmentFlag} from '../release/my-treatment-config.mjs';
 import {metricsChangedPath,verifyMetricsConnection} from '../release/metrics-connection-scope.mjs';
 import {RANKING_GROWTH_PATHS,RANKING_GROWTH_EXISTING,verifyRankingGrowth,rankingGrowthHistoricalRead,rankingGrowthPinnedRef} from '../release/seo-growth-scope.mjs';
@@ -7,7 +8,7 @@ import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../re
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
 import {validateWatchSourceComposition,validateRolloutPhotoComposition,validateSeoFitComposition,SEO_FIT_COMPOSITION_PATHS,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead,ACCEPTANCE_RELOAD_VERIFIER_PATHS,validateBaselineRepair,baselineHistoricalRead,CATALOGUE_COPY_PATHS,CATALOGUE_COPY_SOURCE} from '../release/fit-300-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+const execFileSync=(...args)=>immutableHistoryExecFileSync(...args);
 import {readFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 export const COACH_BASE='afa730029198f39b60f6ea82d6469e5681d93575';
@@ -129,6 +130,7 @@ export function validateCoachingPins(read,manifest){
  return true;
 }
 export function validateCoachingSource(read,manifest){
+ return withImmutableHistoryVerification(()=>{
  const growth=manifest.rankingGrowthComposition;verifyRankingGrowth(growth,read);read=rankingGrowthHistoricalRead(read,growth);
  assert.equal(manifest.recordedMain,COACH_BASE);
  assert.match(manifest.applicationCommit,/^[a-f0-9]{40}$/,'Recorded coaching application source required');
@@ -167,6 +169,7 @@ export function validateCoachingSource(read,manifest){
  for(const p of ['docs/content-review/2026-10-03-public-copy-preview.json','docs/content-review/2026-10-03-public-copy-residual.json'])assert.equal(read('HEAD',p),read('6578113c754a60e75d0cd9b3cd94f2d546444409',p),'Merged public-copy receipt source drift: '+p);
  for(const p of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',p),read(watchCurrentSource(p),p),'Current Watch source drift: '+p);
  return {recordedMain:COACH_BASE,applicationCommit:manifest.applicationCommit,paths:manifest.pinnedPaths.length};
+ });
 }
 export function assertLaunchDecisions(manifest){
  const receipt=(key)=>{const d=manifest.decisions?.[key];assert(d?.approved===true,'Launch decision not approved: '+key);for(const field of ['decidedBy','decidedAt','evidence'])assert(typeof d[field]==='string'&&d[field].trim(),'Decision evidence absent: '+key+'.'+field);return d;};
@@ -195,6 +198,7 @@ export function ensureReviewedHistory(run=execFileSync){
  }
 }
 export function verifyCoachingRelease({requireLaunch=false}={}){
+ return withImmutableHistoryVerification(()=>{
  verifyMetricsConnection();
  ensureReviewedHistory();
  validateDeviceHealthSource();
@@ -206,5 +210,6 @@ export function verifyCoachingRelease({requireLaunch=false}={}){
  assertCoachingConfiguration(readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'}));
  if(requireLaunch)assertLaunchDecisions(manifest);
  return {...proof,completeV2:false,productionLaunchApproved:manifest.decisions.productionLaunch.approved,requireLaunch};
+ });
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)console.log(JSON.stringify(verifyCoachingRelease({requireLaunch:process.argv.includes('--require-launch')})));

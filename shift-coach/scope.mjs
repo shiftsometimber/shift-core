@@ -1,12 +1,14 @@
+import {withImmutableHistoryVerification,immutableHistoryExecFileSync} from '../release/approved-runtime-composition.mjs';
 import {reconciliationHistoricalRead,reconciliationPath,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from '../release/approved-runtime-composition.mjs';
 import {RECIPE_IMAGE_PATHS,validateRecipeImages} from '../release/recipe-image-scope.mjs';
 import {WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave} from '../release/watch-registry-wave-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+const execFileSync=(...args)=>immutableHistoryExecFileSync(...args);
 import {readFileSync} from 'node:fs';
 import {COACH_BASE,COACH_ADDITIONS,COACH_BACKEND_PATHS,assertCoachingChangedPath,verifyCoachingRelease} from './release-contract.mjs';
 export const base=COACH_BASE;export const additions=COACH_ADDITIONS;
+withImmutableHistoryVerification(()=>{
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim(),candidate=process.env.SHIFT_COACH_SOURCE||'HEAD';
 git('merge-base','--is-ancestor',base,candidate);
 validateRecipeImages();
@@ -43,3 +45,4 @@ validateWatchRegistryWave(reconciliationHistoricalRead((ref,path)=>git('rev-pars
 for(const path of [...additions,...COACH_BACKEND_PATHS])assert.equal(git('rev-parse',candidate+':'+path),git('rev-parse','HEAD:'+path),'Candidate payload changed in merge: '+path);
 assert.equal(readFileSync('wrangler.coaching.jsonc','utf8'),readFileSync('wrangler.jsonc','utf8'));
 console.log(JSON.stringify({...verifyCoachingRelease(),listedAdditions:additions.size,listedBackendChanges:COACH_BACKEND_PATHS.size,productionActivated:false}));
+});

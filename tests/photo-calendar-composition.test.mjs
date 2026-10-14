@@ -1,3 +1,4 @@
+import {myTimberWeekHistoricalFile} from '../release/my-timber-week-scope.mjs';
 import {rootShareCompletionHistoricalFile} from '../release/root-share-completion-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -35,7 +36,7 @@ test('unrelated source paths, missing ancestry, changed original approvals or by
 });
 test('actual final source is verified before unchanged original member and sharing views are exposed',()=>{
  const view=photoCalendarHistoricalView();assert.equal(view.head,base);assert.deepEqual(view.record,JSON.parse(execFileSync('git',['show',base+':'+manifest],{encoding:'utf8'})));
- assert.equal(inverse(readFileSync('frontend/member/member-progress-v1.js','utf8')),execFileSync('git',['show',base+':frontend/member/member-progress-v1.js'],{encoding:'utf8'}));
+ assert.equal(inverse(myTimberWeekHistoricalFile('frontend/member/member-progress-v1.js',readFileSync('frontend/member/member-progress-v1.js','utf8'))),execFileSync('git',['show',base+':frontend/member/member-progress-v1.js'],{encoding:'utf8'}));
  assert.equal(originalPhotoCalendarRootScope(readFileSync('release/root-share-preview-scope.mjs','utf8')),execFileSync('git',['show',base+':release/root-share-preview-scope.mjs'],{encoding:'utf8'}));
  assert.equal(originalPhotoCalendarRootTest(readFileSync('tests/root-share-preview-composition.test.mjs','utf8')),execFileSync('git',['show',base+':tests/root-share-preview-composition.test.mjs'],{encoding:'utf8'}));
  assert.equal(originalPhotoCalendarRuntime(rootShareCompletionHistoricalFile('release/approved-runtime-composition.mjs',readFileSync('release/approved-runtime-composition.mjs','utf8'))),execFileSync('git',['show',base+':release/approved-runtime-composition.mjs'],{encoding:'utf8'}));

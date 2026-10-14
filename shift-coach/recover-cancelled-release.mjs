@@ -1,3 +1,4 @@
+import {PHOTO_CANCELLED,completeExactPhotoCancelledStock} from '../release/photo-cancelled-stock-completion-20261014.mjs';
 import {ROOT_SHARE_PRESERVATION_ROLLBACK,verifyRootSharePreservationRollback} from '../release/root-share-preservation-rollback.mjs';
 import {ROOT_SHARE_SPEED_ROLLBACK,verifyRootShareSpeedRollback} from '../release/root-share-speed-rollback.mjs';
 import {ROOT_SHARE_TRANSPORT_ROLLBACK,verifyRootShareTransportRollback} from '../release/root-share-transport-rollback.mjs';
@@ -20,7 +21,19 @@ const version=JSON.parse(wrangler('versions','view',activeVersion,'--json'));
 const versionObservation={kind:'runtime_recovery_version_observation',id:version.id,createdOn:version.metadata?.created_on,source:version.metadata?.source,triggeredBy:version.annotations?.['workers/triggered_by']||null,tag:version.annotations?.['workers/tag']||null,message:version.annotations?.['workers/message']||null};
 console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
 let restoredMaleObesityRuntimeProof,decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof,restoredLaterRuntimeProof,restoredToolRuntimeProof,restoredPassportRuntimeProof,restoredContinuityRuntimeProof;
-if(before.id===ROOT_SHARE_PRESERVATION_ROLLBACK.deployment){
+if(before.id===PHOTO_CANCELLED.deployment){
+ const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact original photo job logs required');return r.text();};
+ const getArtifact=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/'+id+'/zip',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact original photo archive required');return Buffer.from(await r.arrayBuffer());};
+ const freshSnapshot=async()=>{
+  const tables={};for(const table of ['medicine_products','medicine_variants','medicine_inventory']){
+   const sql='SELECT * FROM '+table+' ORDER BY '+(table==='medicine_inventory'?'variant_id':'id');
+   const raw=JSON.parse(wrangler('d1','execute','DB','--remote','--json','--command',sql));assert(raw.length&&raw.every(r=>r.success),'Original public stock snapshot query required');
+   const rows=raw.flatMap(r=>r.results||[]);tables[table]={rows:rows.length,sha256:createHash('sha256').update(JSON.stringify(rows)).digest('hex')};
+  }
+  return{phase:'after',checkedAt:new Date().toISOString(),release:process.env.GITHUB_SHA,tables,configurationSha256:createHash('sha256').update(readFileSync('wrangler.jsonc')).digest('hex'),customerRecordsRead:false,productionWrites:0};
+ };
+ ownedProof=await completeExactPhotoCancelledStock(before,version,get,getLogs,getArtifact,async()=>[active()],freshSnapshot);const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved after one exact cancelled photo baseline completion');decision='retain';
+}else if(before.id===ROOT_SHARE_PRESERVATION_ROLLBACK.deployment){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned preservation rollback logs unavailable');return r.text();};
  const getArtifact=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/'+id+'/zip',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact owned preservation rollback artifact unavailable');return Buffer.from(await r.arrayBuffer());};
  ownedProof=await verifyRootSharePreservationRollback(before,version,get,getLogs,getArtifact,async()=>[active()]);

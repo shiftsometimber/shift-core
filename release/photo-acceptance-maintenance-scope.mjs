@@ -1,3 +1,4 @@
+import {myTimberWeekHistoricalView,myTimberWeekHistoricalFile,weekRuntimeIfPresent,weekWorkflowIfPresent,weekRootIfPresent} from './my-timber-week-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
@@ -25,10 +26,10 @@ export const RUNTIME_BRANCH=" if(PHOTO_ACCEPTANCE_ADDITIONAL_PATHS.includes(path
 export const RUNTIME_FOOTER="\nexport const PHOTO_ACCEPTANCE_ADDITIONAL_PATHS=Object.freeze([...PHOTO_ACCEPTANCE_PATHS,...PHOTO_ACCEPTANCE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));\nfor(const p of PHOTO_ACCEPTANCE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);\n";
 export const WORKFLOW_HOOK="      - name: Verify exact retained photo acceptance maintenance\n        run: node --test tests/photo-acceptance-maintenance-composition.test.mjs tests/rendered-member-acceptance-support.test.mjs\n";
 const exactlyOnce=(s,a,b='')=>{assert.equal(s.split(a).length,2,'Exact single photo maintenance inverse required');return s.replace(a,b);};
-export function originalPhotoAcceptanceRoot(s){s=exactlyOnce(s,ROOT_IMPORT);for(const[a,b]of [[ROOT_HEAD_NEW,ROOT_HEAD_OLD],[ROOT_READ_NEW,ROOT_READ_OLD],[ROOT_FILE_NEW,ROOT_FILE_OLD]])s=exactlyOnce(s,a,b);assert.equal(s.split(ROOT_RAW_NEW).length,3,'Exact two actual-HEAD identity hooks required');return s.replaceAll(ROOT_RAW_NEW,ROOT_RAW_OLD);}
+export function originalPhotoAcceptanceRoot(s){s=weekRootIfPresent(s);s=exactlyOnce(s,ROOT_IMPORT);for(const[a,b]of [[ROOT_HEAD_NEW,ROOT_HEAD_OLD],[ROOT_READ_NEW,ROOT_READ_OLD],[ROOT_FILE_NEW,ROOT_FILE_OLD]])s=exactlyOnce(s,a,b);assert.equal(s.split(ROOT_RAW_NEW).length,3,'Exact two actual-HEAD identity hooks required');return s.replaceAll(ROOT_RAW_NEW,ROOT_RAW_OLD);}
 export function originalPhotoAcceptanceTest(s){return exactlyOnce(exactlyOnce(s,TEST_IMPORT),TEST_NEW,TEST_OLD);}
-export function originalPhotoAcceptanceRuntime(s){for(const a of [RUNTIME_IMPORT,RUNTIME_BRANCH,RUNTIME_FOOTER])s=exactlyOnce(s,a);return s;}
-export function originalPhotoAcceptanceWorkflow(s){return exactlyOnce(s,WORKFLOW_HOOK);}
+export function originalPhotoAcceptanceRuntime(s){s=weekRuntimeIfPresent(s);for(const a of [RUNTIME_IMPORT,RUNTIME_BRANCH,RUNTIME_FOOTER])s=exactlyOnce(s,a);return s;}
+export function originalPhotoAcceptanceWorkflow(s){s=weekWorkflowIfPresent(s);return exactlyOnce(s,WORKFLOW_HOOK);}
 const manifest='release/approved-runtime-composition.json',sort=a=>[...a].sort();
 const immutableFacts=new Map();
 function git(...args){const immutable=args.slice(1).every(a=>!a.includes('HEAD')),key=JSON.stringify([process.cwd(),...args]);if(!immutable)return execFileSync('git',args,{encoding:'utf8'});if(!immutableFacts.has(key))immutableFacts.set(key,execFileSync('git',args,{encoding:'utf8'}));return immutableFacts.get(key);}
@@ -46,13 +47,13 @@ export function verifyPhotoAcceptanceMaintenance(c,{head,read,blob=read,diff,anc
  return c;
 }
 export function photoAcceptanceHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=git('rev-parse','HEAD').trim(),contents=(r,p)=>git('show',(r==='HEAD'?rawHead:r)+':'+p),current=JSON.parse(contents(rawHead,manifest)),c=current.photoAcceptanceMaintenance;
- const rawBlob=(r,p)=>git('rev-parse',(r==='HEAD'?rawHead:r)+':'+p).trim(),rawRead=defaultReader?rawBlob:reader;
- if(!c)return{record:current,rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:contents};
+ const week=myTimberWeekHistoricalView(reader,{defaultReader}),rawHead=week.head,contents=week.content,current=week.record,c=current.photoAcceptanceMaintenance;
+ const rawBlob=week.blob,rawRead=week.read;
+ if(!c)return{record:current,rawHead:week.rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:contents};
  verifyPhotoAcceptanceMaintenance(c,{head:rawHead,read:rawRead,blob:rawBlob,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:contents});
  const record=structuredClone(current);delete record.photoAcceptanceMaintenance;const changed=new Set([...c.paths,...c.maintenancePaths,manifest]),mapped=(r,p)=>r==='HEAD'&&changed.has(p)?c.base:r;
- return{record,rawHead,head:c.base,read:(r,p)=>rawRead(mapped(r,p),p),blob:(r,p)=>rawBlob(mapped(r,p),p),content:(r,p)=>contents(mapped(r,p),p)};
+ return{record,rawHead:week.rawHead,head:c.base,read:(r,p)=>rawRead(mapped(r,p),p),blob:(r,p)=>rawBlob(mapped(r,p),p),content:(r,p)=>contents(mapped(r,p),p)};
 }
-export function photoAcceptanceHistoricalFile(p,bytes){const v=photoAcceptanceHistoricalView();assert.equal(bytes,git('show',v.rawHead+':'+p),'Actual current photo maintenance file required');return v.rawHead===v.head?bytes:git('show',v.head+':'+p);}
+export function photoAcceptanceHistoricalFile(p,bytes){const week=myTimberWeekHistoricalView();bytes=myTimberWeekHistoricalFile(p,bytes);const v=photoAcceptanceHistoricalView();assert.equal(bytes,git('show',week.head+':'+p),'Actual current photo maintenance file required');return week.head===v.head?bytes:git('show',v.head+':'+p);}
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){photoAcceptanceHistoricalView();console.log('PASS exact retained photo test source, total15s, every original gate and prior identity');}
 
