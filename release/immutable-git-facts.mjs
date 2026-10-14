@@ -234,14 +234,7 @@ export function immutableHistoryExecFileSync(bin,args,options){
   if(fact.bytes.length<=limit)return options?.encoding&&options.encoding!=='buffer'?fact.bytes.toString(options.encoding):Buffer.from(fact.bytes);
   return execFileSync(bin,args,options);
  }
- if(context)return execFileSync(bin,args,options);
- // Unknown/unsupported native contexts retain the already verified bounded
- // synchronous blob-fact path; HEAD and mutable commands still remain native.
- const scope=immutableHistoryScope;
- if(!scope||process.cwd()!==scope.cwd||immutableEnvironmentSignature()!==scope.environment||options?.cwd&&options.cwd!==scope.cwd)return execFileSync(bin,args,options);
- if(scope.replacements.mode!=='1'&&scope.replacements.refs.trim()||Object.keys(process.env).some(key=>key.startsWith('GIT_TRACE')))return execFileSync(bin,args,options);
- if(!scope.factsFresh||scope.marker===null||repositoryMarker(scope.repository)!==scope.marker){scope.factsFresh=false;return execFileSync(bin,args,options);}
- const fallback=immutableFact(scope,args,options);
- if(fallback)return options?.encoding&&options.encoding!=='buffer'?fallback.bytes.toString(options.encoding):Buffer.from(fallback.bytes);
+ // Unknown or unsupported contexts cannot certify reusable native facts.
+ // Preserve native object and configuration errors at the point of every read.
  return execFileSync(bin,args,options);
 }

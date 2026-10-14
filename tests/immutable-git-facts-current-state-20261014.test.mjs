@@ -194,3 +194,46 @@ test('native source difference exposes an unrelated deletion hidden by rename de
   assert.equal(nativeGitSourceDifference(before,after).every(path=>path==='allowed-destination.txt'),false,'The bounded source guard must reject the otherwise concealed unrelated deletion');
  });
 });
+
+test('unsupported native context retains actual missing-object failure after warming scoped blob',()=>fixture(({dir,first})=>{
+ const priorNamespace=process.env.GIT_NAMESPACE;
+ try{
+  process.env.GIT_NAMESPACE='immutable-unsupported-context-regression';
+  const args=['show',first+':file.txt'],oid=performanceGit('rev-parse',first+':file.txt');
+  const object=join(dir,'.git','objects',oid.slice(0,2),oid.slice(2)),saved=join(dir,'.git','unsupported-context-saved-object');
+  scope(()=>{
+   performanceSame(args);
+   performanceRename(object,saved);
+   try{assert.equal(performanceSame(args).ok,false,'Unsupported context must preserve native missing-object failure, even after a successful scoped read');}
+   finally{performanceRename(saved,object);}
+   performanceSame(args);
+  });
+ }finally{if(priorNamespace===undefined)delete process.env.GIT_NAMESPACE;else process.env.GIT_NAMESPACE=priorNamespace;}
+}));
+
+test('unsupported native context retains custom configuration failure after warming scoped blob',()=>fixture(({dir,first})=>{
+ const prior=Object.fromEntries(['GIT_NAMESPACE','GIT_CONFIG_GLOBAL'].map(key=>[key,process.env[key]]));
+ const config=join(dir,'.git','unsupported-context-global-config'),args=['show',first+':file.txt'];
+ try{
+  writeFileSync(config,'# valid custom global configuration\n');
+  process.env.GIT_NAMESPACE='immutable-unsupported-config-regression';process.env.GIT_CONFIG_GLOBAL=config;
+  scope(()=>{
+   performanceSame(args);writeFileSync(config,'invalid [ config\n');
+   try{assert.equal(performanceSame(args).ok,false,'Unsupported context must preserve native custom-config failure after a successful scoped read');}
+   finally{writeFileSync(config,'# valid custom global configuration\n');}
+   performanceSame(args);
+  });
+ }finally{for(const [key,value]of Object.entries(prior))if(value===undefined)delete process.env[key];else process.env[key]=value;}
+}));
+
+test('supported native context preserves repeated literal output reuse after unsupported fallback is disabled',t=>performanceDirectoryFixture(({firstDirectory})=>{
+ if(!performanceSupportedNativeContext()){t.skip('Native Git does not expose the complete supported file-ref configuration context');return;}
+ const args=['show',firstDirectory+':directory'],expected=performanceNative('git',args,{encoding:'utf8'});
+ const measured=performanceCount(()=>{
+  const pass=()=>{for(let n=0;n<20;n++)assert.equal(read('git',args,{encoding:'utf8'}),expected);};
+  pass();scope(pass);scope(pass);
+ });
+ const shows=measured.calls.filter(([bin,argv])=>bin==='git'&&JSON.stringify(argv)===JSON.stringify(args)).length;
+ assert(shows<8,'Supported context must retain native literal-directory output reuse across guarded scopes');
+ console.log(JSON.stringify({kind:'supported_context_reuse_after_fail_closed_fallback',requestedReads:60,nativeDirectoryShows:shows,outputByteEquality:true}));
+}));
