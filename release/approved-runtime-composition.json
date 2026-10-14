@@ -3910,5 +3910,67 @@
     "genericAdoptionAllowed": false,
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false
+  },
+  "rootShareCompletionRepair": {
+    "proof": "EXACT_ROOT_SHARE_PUBLIC_PRESERVATION_COMPLETION_20261014",
+    "base": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+    "source": "b1826523154ef7e86b1e020d6bf47221a080090f",
+    "paths": [
+      "release/root-share-public-preservation.mjs",
+      "member-experience/public-preservation.mjs",
+      "tests/root-share-public-preservation.test.mjs",
+      "release/root-share-preservation-rollback.mjs",
+      "tests/root-share-preservation-rollback.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "docs/root-share-preservation-failure-20261014.json"
+    ],
+    "maintenanceSource": "f4f5f4635eee68926151e00bbceb886a2e71183b",
+    "maintenancePaths": [
+      "release/root-share-completion-scope.mjs",
+      "tests/root-share-completion-composition.test.mjs",
+      "release/photo-calendar-scope.mjs",
+      "tests/photo-calendar-composition.test.mjs",
+      "release/approved-runtime-composition.mjs",
+      ".github/workflows/shift-coach-integration.yml",
+      "tests/root-share-preview-rollback.test.mjs"
+    ],
+    "integrationIssue": 1065,
+    "releaseApproval": {
+      "owner": "Matt",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
+      "recordedAt": "2026-10-13T17:17:57Z",
+      "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
+      "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
+      "integrationIssue": 1065,
+      "emailAuthority": false,
+      "rollbackAuthorityBroadened": false
+    },
+    "approvedRootImageURLsNormalised": 2,
+    "fullOriginalPageComparisonRetained": true,
+    "failedRun": 38490570380,
+    "restorationDeployment": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+    "runtimePayloadChanged": false,
+    "artworkChanged": false,
+    "visibleHomepageChanged": false,
+    "clinicalChanged": false,
+    "stockChanged": false,
+    "customerDataChanged": false,
+    "consentChanged": false,
+    "paidModelEnabled": false,
+    "externalCommunicationsSent": false,
+    "emailGeneratingStepsStarted": false,
+    "existingGatesWeakened": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "maintenanceSupersedes": {
+      "source": "2ab2d99a5c9925cccfe3f76e39d21027235384a1",
+      "maintenanceSource": "221f537682ea3ef26665013b7fe60d8f4a503e22",
+      "failedSourceRuns": [
+        38497437253,
+        38497437281
+      ],
+      "reason": "Retain original additive-recovery byte comparison through verified current view and original contiguous source-drift rejection diagnostic"
+    }
   }
 }
