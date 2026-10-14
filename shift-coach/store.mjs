@@ -11,14 +11,26 @@ export async function activeConsent(DB,member){return DB.prepare("SELECT id,gran
 export function usable(state,consent){return !!state&&Number(consent?.granted)===1&&state.consentId===Number(consent.id);}
 // Dedicated Life Back writes own the containing revision. Profile and Journey
 // saves already preserve this entire progress object. No new schema or auth.
-export async function mutate(DB,member,type,operation,now=Date.now(),{initialise=false,expectedRevision,consentId}={}){
+export async function mutate(DB,member,type,operation,now=Date.now(),{initialise=false,expectedRevision,consentId,beforeWrite}={}){
  const consent=await activeConsent(DB,member);
  if(Number(consent?.granted)!==1||consentId&&consentId!==Number(consent.id))throw Object.assign(Error('health_consent_required'),{status:409});
  const {revision,state:stored}=await load(DB,member);
  if(expectedRevision!==undefined&&revision!==expectedRevision)throw Object.assign(Error('state_changed_retry'),{status:409});
  if(!usable(stored,consent)&&!initialise)throw Object.assign(Error('coaching_setup_required'),{status:409});
  const state=usable(stored,consent)?stored:{...initialState(),consentId:Number(consent.id)};
+ // Operations may change member context, but they cannot rewrite the stored
+ // decision history. Explicit deletion only removes references to deleted
+ // owned content; event IDs, timestamps and outcomes remain intact.
+ const auditBefore=structuredClone(state.audit);
+ const ownedIds=s=>new Set([...s.facts,...s.reviews,...(s.workingRoutines||[])].map(x=>x.id));
+ const previousIds=ownedIds(state);
  const result=await operation(state);
+ let expectedAudit=auditBefore;
+ if(['delete-item','working-delete','working-detail'].includes(type)){
+  const currentIds=ownedIds(state),removed=new Set([...previousIds].filter(id=>!currentIds.has(id)));
+  expectedAudit=auditBefore.map(e=>({...e,dataUsed:e.dataUsed.filter(id=>!removed.has(id))}));
+ }
+ if(JSON.stringify(state.audit)!==JSON.stringify(expectedAudit))throw Object.assign(Error('audit_history_changed'),{status:409});
  state.audit.push({id:uid(),at:now,type,outcome:result?.outcome||'recorded',dataUsed:result?.dataUsed||[],reason:result?.reason||type,channel:'my_timber'});
  // Explicit rolling retention keeps snapshots bounded; confirmed facts, rejects
  // and the member's last accepted action are never silently discarded.
@@ -27,6 +39,14 @@ export async function mutate(DB,member,type,operation,now=Date.now(),{initialise
  state.nightRuns=state.nightRuns.filter(x=>x.at>=cutoff);
  if(JSON.stringify(state).length>250000)throw Object.assign(Error('coaching_history_full'),{status:409});
  const body=JSON.stringify(state),at=new Date(now).toISOString();
+ // A mutable proactive-off check belongs after every awaited operation,
+ // immediately before issuing the conditional write. Never accept an async
+ // guard whose result could arrive after the write has already started.
+ if(beforeWrite!==undefined){
+  if(typeof beforeWrite!=='function'||beforeWrite.constructor.name==='AsyncFunction')throw Object.assign(Error('synchronous_write_guard_required'),{status:409});
+  const checked=beforeWrite();
+  if(checked&&typeof checked.then==='function'){Promise.resolve(checked).catch(()=>{});throw Object.assign(Error('synchronous_write_guard_required'),{status:409});}
+ }
  const resultSQL=await DB.prepare("UPDATE member_state SET preferences=json_set(CASE WHEN json_type(preferences,'$.lifeBack.progress')='object' THEN preferences ELSE json_set(CASE WHEN json_type(preferences,'$.lifeBack')='object' THEN preferences ELSE json_set(preferences,'$.lifeBack',json('{}')) END,'$.lifeBack.progress',json('{\"version\":3,\"revision\":0,\"goalId\":\"personal-start\",\"goal\":\"Your personal goal\",\"entries\":[],\"operations\":[]}')) END,?,json(?),'$.lifeBack.progress.revision',?),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND "+consentSQL+" AND (SELECT id FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=?")
  .bind(statePath,body,revision+1,at,member,revision,member,member,member,Number(consent.id)).run();
  if(Number(resultSQL.meta?.changes)!==1)throw Object.assign(Error('state_changed_retry'),{status:409});

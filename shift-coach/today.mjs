@@ -1,6 +1,6 @@
 import {knowledgeFor} from './knowledge.mjs';
 import {eligibleWorkingRoutines,workingRoutineTask,workingRoutineOptions,routineContext} from './working-routines.mjs';
-import {library,tone,knowledgePolicy,everydayTask,treatmentSupport,challengeLabels,availableActions} from './voice.mjs';import {fact,uid} from './store.mjs';import {canExecute} from './permissions.mjs';import {boundary} from './safety.mjs';
+import {library,tone,knowledgePolicy,everydayTask,treatmentSupport,challengeLabels,availableActions} from './voice.mjs';import {fact,uid} from './store.mjs';import {canExecute} from './permissions.mjs';import {personalContextBoundary} from './safety.mjs';
 export function prepareToday(state,now=Date.now(),variation=null){
  const current=readToday(state);
  if(current?.status==='accepted'&&!variation)return current;
@@ -10,7 +10,7 @@ export function prepareToday(state,now=Date.now(),variation=null){
  state.queue=state.queue.filter(q=>!replacedIds.has(q.actionId));
  for(const p of state.weeklyPlans)if(replacedIds.has(p.actionId)||!p.actionId&&replaced.some(a=>a.title===p.title))p.retired=true;
  const goal=fact(state,'goal'),week=fact(state,'week'),focus=fact(state,'focus'),challenge=fact(state,'challenge');
- if([goal,week].some(f=>f&&!boundary(f.value).coaching))return null;
+ if(!personalContextBoundary(state).coaching)return null;
  const c=state.constraints?.value||{};
  let candidates=availableActions(state);
  if(challenge?.value==='sore-knees'&&focus?.value==='movement')candidates=candidates.filter(a=>a.challenges.includes('sore-knees'));
