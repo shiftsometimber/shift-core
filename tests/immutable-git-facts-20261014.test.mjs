@@ -7,6 +7,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {performance} from 'node:perf_hooks';
 import {withImmutableHistoryVerification as scope,immutableHistoryExecFileSync as read} from '../release/immutable-git-facts.mjs';
+import './immutable-git-facts-current-state-20261014.test.mjs';
 const native=cp.execFileSync;
 const git=(...args)=>native('git',args,{encoding:'utf8',stdio:'pipe'}).trim();
 const binary=Buffer.from([0xef,0xbb,0xbf,0x41,0,0xff,0xfe,10]);
