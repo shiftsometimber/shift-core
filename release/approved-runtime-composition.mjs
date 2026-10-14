@@ -1,3 +1,4 @@
+import {COMBINED_FINITE_BASE,COMBINED_FINITE_PATHS,COMBINED_FINITE_MAINTENANCE} from './combined-finite-scope-20261014.mjs';
 import {MY_TIMBER_WEEK_CLOSEOUT_BASE,MY_TIMBER_WEEK_CLOSEOUT_PATHS,MY_TIMBER_WEEK_CLOSEOUT_MAINTENANCE} from './my-timber-week-closeout-scope.mjs';
 import {MY_TIMBER_WEEK_BASE,MY_TIMBER_WEEK_PATHS,MY_TIMBER_WEEK_MAINTENANCE} from './my-timber-week-scope.mjs';
 import {PHOTO_ACCEPTANCE_BASE,PHOTO_ACCEPTANCE_PATHS,PHOTO_ACCEPTANCE_MAINTENANCE} from './photo-acceptance-maintenance-scope.mjs';
@@ -2294,7 +2295,16 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const memberDefaultRead=read===defaultReconciliationRead;
- const memberView=memberConsentHistoricalView(read,{defaultReader:memberDefaultRead}),c=memberView.record;read=memberView.read;if(!c)return null;
+ // Preserve the original fail-closed assertion and its error identity. The one
+ // overlapping original Watch diagnostic must remain recognisable to its owner.
+ let memberView;
+ try{memberView=memberConsentHistoricalView(read,{defaultReader:memberDefaultRead});}
+ catch(error){
+  const diagnostic='Approved composition source / boundary drift / sharing maintenance drift: .github/workflows/cloudflare-production-promote.yml';
+  if(!memberDefaultRead&&reconciliationRecord()?.combinedFinite20261014&&error?.code==='ERR_ASSERTION'&&error.message.startsWith(diagnostic))error.message='Late Watch source drift: '+error.message;
+  throw error;
+ }
+ const c=memberView.record;read=memberView.read;if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
  assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
  assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);
@@ -2797,6 +2807,10 @@ export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_B
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
+ if(COMBINED_FINITE_ADDITIONAL_PATHS.includes(path)){
+  let existed;try{execFileSync('git',['cat-file','-e',COMBINED_FINITE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  assert.equal(status,existed?'M':'A','Unexpected exact combined finite status: '+status+' '+path);return true;
+ }
  if(MY_TIMBER_WEEK_CLOSEOUT_ADDITIONAL_PATHS.includes(path)){
   let existed;try{execFileSync('git',['cat-file','-e',MY_TIMBER_WEEK_CLOSEOUT_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
   assert((existed?['A','M']:['A']).includes(status),'Unexpected exact My Timber closeout status: '+status+' '+path);return true;
@@ -3111,3 +3125,6 @@ for(const p of MY_TIMBER_WEEK_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
 
 export const MY_TIMBER_WEEK_CLOSEOUT_ADDITIONAL_PATHS=Object.freeze([...MY_TIMBER_WEEK_CLOSEOUT_PATHS,...MY_TIMBER_WEEK_CLOSEOUT_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of MY_TIMBER_WEEK_CLOSEOUT_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+
+export const COMBINED_FINITE_ADDITIONAL_PATHS=Object.freeze([...COMBINED_FINITE_PATHS,...COMBINED_FINITE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
+for(const p of COMBINED_FINITE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);

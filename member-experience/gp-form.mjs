@@ -1,6 +1,7 @@
+import {gpDirectoryClient} from '../gp-directory/client.mjs';
 // Optional GP-directory assistance for the existing assessment form only.
 // No submission interception, clinical decisions, stored-profile reads or account writes.
-export const gpFormRuntime=String.raw`(()=>{
+export const legacyGpFormRuntime=String.raw`(()=>{
 'use strict';
 const form=document.querySelector('form#assessment'),practice=form?.querySelector('[name="gpPractice"]'),postcode=form?.querySelector('[name="gpPostcode"]');
 if(!practice||!postcode||!practice.closest('label')||document.getElementById('assessmentGpLookup'))return;
@@ -41,3 +42,5 @@ select.addEventListener('change',()=>{
 });
 window.addEventListener('pagehide',invalidate);
 })();`;
+
+export const gpFormRuntime=gpDirectoryClient;

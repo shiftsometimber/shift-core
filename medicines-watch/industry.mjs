@@ -1,3 +1,4 @@
+import teAscRenewal from './reviews/2026-10-12-authorised-te8105-asc36-renewal.json' with {type:'json'};
 import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
 import rhythmPdfAlternatives from './reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json' with {type:'json'};
 import asc36SourceRenewal from './reviews/2026-10-12-authorised-asc36-source-renewal.json' with {type:'json'};
@@ -512,4 +513,8 @@ export const industry = [...originalIndustry.map(e => {
   });
   if(change)return {...e,stage:change.stage,summary:e.summary+' '+change.summaryToAppend,limitations:e.limitations+' '+change.limitationsToAppend,reviewedAt:gzcAsc30Maritide.reviewedAt,additionalEvidence:[...existing,change.additionalEvidence]};
   return review?{...e,reviewedAt:gzcAsc30Maritide.reviewedAt,additionalEvidence:existing}:e;
+ }).map(e=>{
+  const renewed=teAscRenewal.programmeSummaryReviews.find(r=>r.id===e.id);
+  if(!renewed)return e;
+  return {...e,reviewedAt:renewed.reviewedAt,additionalEvidence:(e.additionalEvidence||[]).map(link=>({...link,reviewedAt:renewed.reviewedAt}))};
  });

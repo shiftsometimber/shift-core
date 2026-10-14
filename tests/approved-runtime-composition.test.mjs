@@ -186,10 +186,11 @@ test('late-inserted oral canonical repair is finite and preserves medical and cu
 });
 
 
-const logoutRawCache=new Map();
+import {createImmutableFixtureRead} from './immutable-reference-fixture-20261014.mjs';
+const logoutRawRead=createImmutableFixtureRead(directGit);
 function rawDriftReader(path){return(ref,p)=>{
  if(ref==='HEAD'&&p===path)return 'changed';
- const key=ref+':'+p;if(!logoutRawCache.has(key))logoutRawCache.set(key,directGit('git',['show',key],{encoding:'utf8'}));return logoutRawCache.get(key);
+ return logoutRawRead(ref,p);
 };}
 
 import {verifyReloadAttemptExtension,RELOAD_ATTEMPT_BASE,RELOAD_ATTEMPT_PATHS} from '../release/approved-runtime-composition.mjs';

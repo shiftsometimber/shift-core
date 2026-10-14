@@ -1,3 +1,4 @@
+import {verifyOrganicOriginalMaleComparison} from './organic-original-comparison-20261014.mjs';
 import {reconciliationHistoricalRef,reconciliationMarkHistoricalReader,reconciliationHistoricalRead,reconciliationHead,reconciliationPath,reconciliationChangedPath,RECONCILIATION_PATHS} from './approved-runtime-composition.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';import {existsSync,readFileSync} from 'node:fs';
@@ -18,6 +19,7 @@ export function verifyOrganicComposition(read=raw,boundaryRead=read){
  const c=organicRecord();if(!c)return null;
  assert.equal(c.proof,'APPROVED_PUBLIC_ALIAS_FOLLOWTHROUGH_V1');assert.equal(c.base,ORGANIC_BASE);assert.equal(c.payloadSource,ORGANIC_PAYLOAD);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
  assert.deepEqual(c.payloadPaths,ORGANIC_PAYLOAD_PATHS);assert.deepEqual(c.maintenancePaths,ORGANIC_MAINTENANCE_PATHS);assert.deepEqual(c.approval,APPROVAL);
+ if(read!==raw&&reconciliationHistoricalRead(read,false)!==read)verifyOrganicOriginalMaleComparison(read);
  const head=git('rev-parse','HEAD'),resolved=(ref,p)=>immutable('rev-parse',(ref==='HEAD'?head:ref)+':'+p);if(read===raw)read=resolved;if(boundaryRead===raw)boundaryRead=resolved;
  read=reconciliationHistoricalRead(read,true);boundaryRead=reconciliationHistoricalRead(boundaryRead,true);
  const historicalHead=reconciliationHead();

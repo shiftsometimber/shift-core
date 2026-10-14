@@ -9,8 +9,9 @@ const own=(v,k)=>Object.prototype.hasOwnProperty.call(v,k);
 const object=v=>v&&typeof v==='object'&&!Array.isArray(v);
 const CORE=['first_name','last_name','phone','date_of_birth','postcode'];
 const INPUT_CORE=['firstName','lastName','phone','dateOfBirth','postcode'];
-const CONTACT=['address1','address2','town','county','gpPractice','gpPostcode','gpCode'];
-const MAX={firstName:100,lastName:100,phone:50,dateOfBirth:10,postcode:12,address1:120,address2:120,town:100,county:100,gpPractice:160,gpPostcode:12,gpCode:12};
+const CONTACT=['address1','address2','town','county','gpPractice','gpPostcode','gpCode','gpAddress','gpSelectionMode'];
+const OPTIONAL=new Set(['gpAddress','gpSelectionMode']);
+const MAX={firstName:100,lastName:100,phone:50,dateOfBirth:10,postcode:12,address1:120,address2:120,town:100,county:100,gpPractice:160,gpPostcode:12,gpCode:12,gpAddress:500,gpSelectionMode:12};
 const error=(code,message,status=400)=>json({ok:false,error:code,message},status);
 async function hash(value){const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(value)));return [...new Uint8Array(bytes)].map(n=>n.toString(16).padStart(2,'0')).join('');}
 export function normalisePostcode(value){const s=value.replace(/\s+/g,'').toUpperCase();return s?s.slice(0,-3)+' '+s.slice(-3):'';}
@@ -19,6 +20,7 @@ export function validateMemberDetails(input,today=new Date().toISOString().slice
  if(!object(input)||Object.keys(input).some(k=>!Object.keys(MAX).includes(k)))throw Error('Please use the member details fields shown on this page.');
  const out={};
  for(const[k,max]of Object.entries(MAX)){
+  if(OPTIONAL.has(k)&&!own(input,k)){out[k]='';continue;}
   if(!own(input,k)||typeof input[k]!=='string'||input[k].trim().length>max||/[\u0000-\u001f\u007f]/.test(input[k]))throw Error('Please check '+k+' and try again.');
   out[k]=input[k].trim();
  }
@@ -30,6 +32,8 @@ export function validateMemberDetails(input,today=new Date().toISOString().slice
  out.gpCode=out.gpCode.toUpperCase();
  if(out.gpCode&&!/^[A-Z0-9]{3,12}$/.test(out.gpCode))throw Error('Choose a GP suggestion again or clear the practice and enter it manually.');
  if(!out.gpPractice&&(out.gpCode||out.gpPostcode))throw Error('Enter your GP practice name or clear the GP details.');
+ if(out.gpSelectionMode&&!['directory','manual','no_gp'].includes(out.gpSelectionMode))throw Error('Choose a valid GP status.');
+ if(out.gpSelectionMode==='no_gp'&&(out.gpPractice||out.gpPostcode||out.gpCode||out.gpAddress))throw Error('Clear GP details when selecting no GP.');
  return out;
 }
 async function record(env,userId){
@@ -41,7 +45,7 @@ async function record(env,userId){
  const revision=await hash({core:CORE.map(k=>u[k]??null),version:row?.revision??0,body:row?.body_json??'{}'});
  return {u,row,details,revision};
 }
-const view=(s,env)=> ({ok:true,details:{...s.details,email:s.u.email},revision:s.revision,updatedAt:s.row?.updated_at||null,addressLookupConfigured:false,gpLookupConfigured:env?.MEMBER_GP_LOOKUP_ENABLED==='true'});
+const view=(s,env)=> ({ok:true,details:{...s.details,email:s.u.email},revision:s.revision,updatedAt:s.row?.updated_at||null,addressLookupConfigured:false,gpLookupConfigured:env?.MEMBER_GP_LOOKUP_ENABLED==='true',gpDirectoryV2:env?.MEMBER_GP_DIRECTORY_V2_ENABLED==='true'});
 // The user ID is always derived from the existing authenticated session. No client
 // account selector, order write, preference replacement, AI request or analytics call.
 export async function memberDetailsRoute(request,env){
@@ -60,6 +64,8 @@ export async function memberDetailsRoute(request,env){
  let body;try{const text=await request.text();if(new TextEncoder().encode(text).length>8192)return error('too_large','Your form is too large. Please check the fields.',413);body=JSON.parse(text);}catch{return error('invalid_json','Your changes could not be read. Please try again.');}
  if(!object(body)||Object.keys(body).some(k=>!['details','revision','operationId'].includes(k))||typeof body.revision!=='string'||!/^[a-f0-9]{64}$/.test(body.revision)||typeof body.operationId!=='string'||!/^[a-f0-9-]{36}$/.test(body.operationId))return error('invalid_request','Reload your saved details before making this change.');
  let values;try{values=validateMemberDetails(body.details);}catch(e){return error('invalid_details',e.message);}
+ const sameGp=['gpPractice','gpPostcode','gpCode'].every(k=>values[k]===current.details[k]);
+ for(const key of OPTIONAL)if(!own(body.details,key)&&sameGp)values[key]=current.details[key];
  if(current.row?.last_operation===body.operationId){
   if(JSON.stringify(values)!==JSON.stringify(current.details))return error('operation_conflict','This save reference has already been used. Reload your saved details.',409);
   return json(view(current,env));

@@ -1,3 +1,4 @@
+import {compactLiteralExcludes} from './combined-finite-scope-20261014.mjs';
 import {reconciliationGitArgs,reconciliationHistoricalRead,reconciliationPath,RECONCILIATION_PATHS,verifyReconciledRelease,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from './approved-runtime-composition.mjs';
 import {METRICS_PATHS,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import {rankingGrowthHistoricalRef} from './seo-growth-scope.mjs';
@@ -47,7 +48,7 @@ export function validateAppSource(){
  validateRecipeImages();
  verifyCoachingRelease();
  validateDeviceHealthSource();
- const git=(...args)=>execFileSync('git',reconciliationGitArgs(args),{encoding:'utf8'}).trim();
+ const git=(...args)=>execFileSync('git',compactLiteralExcludes(reconciliationGitArgs(args)),{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',APP_BASE,'HEAD');
  validateFooterSource();
  validateMemberDesignSource();

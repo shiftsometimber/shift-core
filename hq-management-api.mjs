@@ -1,3 +1,4 @@
+import {gpDirectoryHqRoute} from './gp-directory/hq.mjs';
 import {continuityScorecard} from './continuity-measurement/scorecard.mjs';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 export function londonMidnight(day){
@@ -41,6 +42,7 @@ export async function managementReport(DB,{permissions=[],start,end,kind='manage
  return{ok:true,kind,period,generatedAt:new Date().toISOString(),metrics,limitations:[...new Set(limitations)],privacy:'Aggregate only. No member identities, health measurements or free text.',definitions:'Unavailable figures are not zero. Cohort and snapshot measures carry their own labelled scope.'};
 }
 export async function managementRoute(request,env,ctx,authenticate){
+ const gp=await gpDirectoryHqRoute(request,env,ctx,authenticate);if(gp)return gp;
  if(request.method==='OPTIONS')return null;
  const url=new URL(request.url),path=url.pathname;if(!['/v1/hq/management/report','/v1/hq/management/export'].includes(path))return null;
  if(!['GET','POST'].includes(request.method)||request.method==='POST'&&path.endsWith('/report')||request.method==='GET'&&path.endsWith('/export'))return json({ok:false,error:'method_not_allowed'},405);
