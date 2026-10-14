@@ -12,16 +12,21 @@ function transportState(git,state){
  const graft=git(['rev-parse','--git-path','info/grafts']).trim();assert.equal(state(graft),null,'Original GP provenance rejects graft metadata');
  return {head:git(['rev-parse','HEAD']).trim(),tree:git(['rev-parse','HEAD^{tree}']).trim(),refs:git(['for-each-ref','--format=%(refname) %(objectname)']),tracked:git(['status','--porcelain','--untracked-files=no']),staged:git(['diff','--cached','--name-status']),index:state(git(['rev-parse','--git-path','index']).trim()),fetchHead:state(git(['rev-parse','--git-path','FETCH_HEAD']).trim())};
 }
+function originalObjectsAvailable(git){
+ for(const [object,type]of [[ORIGINAL_GP_SOURCE,'commit'],[ORIGINAL_GP_TREE,'tree'],...Object.values(ORIGINAL_GP_BLOBS).map(blob=>[blob,'blob'])]){
+  try{git(['cat-file','-e',object+'^{'+type+'}']);}
+  catch(error){if(error.status===128)return false;throw error;}
+ }return true;
+}
 // Object availability only. Actual source admission remains the unchanged finite/ancestry/payload proofs.
 export function ensureCombinedOriginalGpSource({git=rawGit,state=fileState}={}){
  const before=transportState(git,state);let fetched=false;
- try{git(['cat-file','-e',ORIGINAL_GP_SOURCE+'^{commit}']);}
- catch(error){
-  if(error.status!==128)throw error;
+ if(!originalObjectsAvailable(git)){
   const origin=git(['remote','get-url','origin']).trim();
   assert(['https://github.com/shiftsometimber/shift-core','https://github.com/shiftsometimber/shift-core.git','git@github.com:shiftsometimber/shift-core.git'].includes(origin),'Only the established shift-core origin can supply the exact original GP object');
   git(['fetch','--no-tags','--no-write-fetch-head','origin',ORIGINAL_GP_SOURCE]);fetched=true;
  }
+ assert(originalObjectsAvailable(git),'Exact original GP commit, tree and protected blobs must all be available after transport');
  assert.equal(git(['cat-file','-t',ORIGINAL_GP_SOURCE]).trim(),'commit','Original GP source object must be a commit');
  assert.equal(git(['rev-parse',ORIGINAL_GP_SOURCE+'^{tree}']).trim(),ORIGINAL_GP_TREE,'Exact original GP tree required');
  for(const [path,expected]of Object.entries(ORIGINAL_GP_BLOBS))assert.equal(git(['rev-parse',ORIGINAL_GP_SOURCE+':'+path]).trim(),expected,'Exact original GP path/blob required: '+path);
