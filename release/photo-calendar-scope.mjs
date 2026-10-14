@@ -1,3 +1,4 @@
+import {rootShareCompletionHistoricalView} from './root-share-completion-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
@@ -42,12 +43,12 @@ export function verifyPhotoCalendarSource(c,{head,read,blob=read,diff,ancestor,c
  const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.photoCalendarRepair;assert.deepEqual(current,prior,'All prior approvals, sharing source, watermarks and release evidence unchanged');assert.deepEqual(prior.memberConsentRepair.releaseApproval,PHOTO_CALENDAR_APPROVAL);return c;
 }
 export function photoCalendarHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=git('rev-parse','HEAD'),current=JSON.parse(contents(rawHead,manifest)),c=current.photoCalendarRepair;
- const rawBlob=(ref,p)=>git('rev-parse',(ref==='HEAD'?rawHead:ref)+':'+p),rawRead=defaultReader?rawBlob:reader,rawContent=(ref,p)=>contents(ref==='HEAD'?rawHead:ref,p);
- if(!c)return{record:current,rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:rawContent};
+ const completion=rootShareCompletionHistoricalView(reader,{defaultReader}),rawHead=completion.head,current=completion.record,c=current.photoCalendarRepair;
+ const rawBlob=completion.blob,rawRead=completion.read,rawContent=completion.content;
+ if(!c)return{record:current,rawHead:completion.rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:rawContent};
  verifyPhotoCalendarSource(c,{head:rawHead,read:rawRead,blob:rawBlob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:rawContent});
  const record=structuredClone(current);delete record.photoCalendarRepair;const changed=new Set([...c.paths,...c.maintenancePaths,manifest]),mapped=(ref,p)=>ref==='HEAD'&&changed.has(p)?c.base:ref;
- return{record,rawHead,head:c.base,read:(r,p)=>rawRead(mapped(r,p),p),blob:(r,p)=>rawBlob(mapped(r,p),p),content:(r,p)=>rawContent(mapped(r,p),p)};
+ return{record,rawHead:completion.rawHead,head:c.base,read:(r,p)=>rawRead(mapped(r,p),p),blob:(r,p)=>rawBlob(mapped(r,p),p),content:(r,p)=>rawContent(mapped(r,p),p)};
 }
 export function photoCalendarHistoricalFile(p,bytes){const view=photoCalendarHistoricalView();assert.equal(bytes,contents(view.rawHead,p),'Actual current file required');return view.rawHead===view.head?bytes:contents(view.head,p);}
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){photoCalendarHistoricalView();console.log('PASS exact bounded London photo timestamp correction and retained authority');}
