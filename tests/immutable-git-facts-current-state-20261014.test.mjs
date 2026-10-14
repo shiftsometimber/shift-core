@@ -194,3 +194,22 @@ test('native source difference exposes an unrelated deletion hidden by rename de
   assert.equal(nativeGitSourceDifference(before,after).every(path=>path==='allowed-destination.txt'),false,'The bounded source guard must reject the otherwise concealed unrelated deletion');
  });
 });
+
+
+test('scoped alternate-backed warmed reads retain native failure after a donor object vanishes',()=>fixture(({dir,first})=>{
+ const initial=process.cwd(),borrower=mkdtempSync(join(tmpdir(),'immutable-scoped-alternate-'));
+ const oid=performanceGit('rev-parse',first+':file.txt'),object=join(dir,'.git','objects',oid.slice(0,2),oid.slice(2)),saved=join(dir,'.git','saved-scoped-alternate-object');
+ let hidden=false;
+ try{
+  process.chdir(borrower);performanceGit('init','-q');performanceGit('config','user.name','Alternate fixture');performanceGit('config','user.email','alternate@example.invalid');
+  writeFileSync('borrower-only.txt','independent local borrower history\n');performanceGit('add','.');performanceGit('commit','-qm','local borrower source');
+  writeFileSync('.git/objects/info/alternates',join(dir,'.git','objects')+'\n');
+  scope(()=>{
+   const args=['show',first+':file.txt'];performanceSame(args);
+   performanceRename(object,saved);hidden=true;
+   try{assert.equal(performanceSame(args).ok,false,'An unchanged borrower scope must retain the vanished donor-object error');}
+   finally{performanceRename(saved,object);hidden=false;}
+   performanceSame(args);
+  });
+ }finally{if(hidden)performanceRename(saved,object);process.chdir(initial);rmSync(borrower,{recursive:true,force:true});}
+}));
