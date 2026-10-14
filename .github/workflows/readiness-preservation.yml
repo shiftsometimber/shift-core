@@ -39,6 +39,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: npm ci --no-audit --no-fund
+      - name: Prepare exact original GP core source objects without changing references
+        run: node release/prepare-gp-source-objects-20261014.mjs --core "$PWD"
       - name: Verify connected journeys, treatment records and preservation
         run: |
           node --test member-experience/tests/*.test.mjs member-experience/staging/tool-routes.test.mjs tests/ai-connected*.test.mjs tests/adaptive-*.test.mjs tests/my-timber-analytics*.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/act2b-workflow-preservation.test.mjs tests/schema-readiness.test.mjs tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs

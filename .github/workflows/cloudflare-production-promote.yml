@@ -255,6 +255,8 @@ jobs:
       - name: Fail closed when deploy credential is absent
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
+      - name: Prepare exact original GP core source objects without changing references
+        run: node release/prepare-gp-source-objects-20261014.mjs --core "$PWD"
       - name: Require recorded coaching launch decisions before production work
         run: node shift-coach/release-contract.mjs --require-launch
       - name: Require exact approved growth preview and release verification

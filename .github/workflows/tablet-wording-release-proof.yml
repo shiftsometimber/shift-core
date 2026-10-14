@@ -19,6 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prepare exact original GP core source objects without changing references
+        run: node release/prepare-gp-source-objects-20261014.mjs --core "$PWD"
       - run: node --test tests/tablet-wording.test.mjs tests/tablet-wording-release.test.mjs tests/promise-accuracy.test.mjs tests/public-treatment-guidance.test.mjs
       - name: Verify exact current release and pinned tablet proof
         env:

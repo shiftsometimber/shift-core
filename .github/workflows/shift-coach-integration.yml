@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 24}
       - run: npm ci --no-audit --no-fund
+      - name: Prepare exact original GP core source objects without changing references
+        run: node release/prepare-gp-source-objects-20261014.mjs --core "$PWD"
       - name: Verify one frozen finite source and every retained bound
         run: node --test tests/combined-finite-composition-20261014.test.mjs tests/combined-dashboard-bootstrap-20261014.test.mjs tests/immutable-reference-fixture-20261014.test.mjs tests/combined-legacy-projection-20261014.test.mjs tests/combined-legacy-boundary-comparators-20261014.test.mjs tests/combined-hq-preservation-20261014.test.mjs tests/combined-organic-legacy-contract-20261014.test.mjs tests/combined-organic-admission-negative-20261014.test.mjs tests/combined-original-gp-object-20261014.test.mjs member-experience/tests/weight-import-mapping*.test.mjs gp-directory/*.test.mjs tests/mens-journey-20261012.test.mjs tests/food-supplement-guide.test.mjs food-supplement-guide/*.test.mjs food-supplement-guide/*.test.cjs tests/pilot-monitor-config.test.mjs medicines-watch/*.test.mjs
       - name: Verify exact My Timber baseline starting-point hand-off
