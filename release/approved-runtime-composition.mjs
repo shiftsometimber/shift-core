@@ -1,3 +1,4 @@
+import {PHOTO_CALENDAR_BASE,PHOTO_CALENDAR_PATHS,PHOTO_CALENDAR_MAINTENANCE} from './photo-calendar-scope.mjs';
 import {ROOT_SHARE_BASE,ROOT_SHARE_PATHS,ROOT_SHARE_MAINTENANCE} from './root-share-preview-scope.mjs';
 import {memberConsentHistoricalView,MEMBER_CONSENT_BASE,MEMBER_CONSENT_PATHS,MEMBER_CONSENT_MAINTENANCE} from './member-consent-repair-scope.mjs';
 import {FINITE_GROWTH_PATHS,FINITE_GROWTH_MAINTENANCE,verifyFiniteGrowth} from './finite-growth-scope.mjs';
@@ -2792,6 +2793,10 @@ export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_B
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
+ if(PHOTO_CALENDAR_ADDITIONAL_PATHS.includes(path)){
+  let existed;try{execFileSync('git',['cat-file','-e',PHOTO_CALENDAR_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  assert((existed?['A','M']:['A']).includes(status),'Unexpected approved photo calendar file status: '+status+' '+path);return true;
+ }
  if(ROOT_SHARE_ADDITIONAL_PATHS.includes(path)){
   let existed;try{execFileSync('git',['cat-file','-e',ROOT_SHARE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
   assert((existed?['A','M']:['A']).includes(status),'Unexpected approved composition file status: '+status+' '+path);return true;
@@ -3071,3 +3076,6 @@ for(const path of MEMBER_CONSENT_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(path)
 
 export const ROOT_SHARE_ADDITIONAL_PATHS=Object.freeze([...ROOT_SHARE_PATHS,...ROOT_SHARE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of ROOT_SHARE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+
+export const PHOTO_CALENDAR_ADDITIONAL_PATHS=Object.freeze([...PHOTO_CALENDAR_PATHS,...PHOTO_CALENDAR_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
+for(const p of PHOTO_CALENDAR_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
