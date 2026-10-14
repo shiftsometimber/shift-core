@@ -90,3 +90,4 @@ writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,co
 console.log(before?'PASS: all '+paths.length+' public/login responses preserve existing content; exact approved Continuity entries and Life Back link are checked before comparison.':'Captured all '+paths.length+' public/login response hashes, including full raw-body hashes.');
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await runPublicPreservation();
+
