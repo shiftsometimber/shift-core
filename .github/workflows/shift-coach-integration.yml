@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 24}
       - run: npm ci --no-audit --no-fund
+      - name: Verify approved My Timber week code and retained clinical activation hold
+        run: node --test tests/my-timber-week-composition.test.mjs member-experience/tests/treatment-week.test.mjs member-experience/tests/treatment-week-route.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/photo-cancelled-stock-completion-20261014.test.mjs
       - name: Verify exact retained photo acceptance maintenance
         run: node --test tests/photo-acceptance-maintenance-composition.test.mjs tests/rendered-member-acceptance-support.test.mjs
       - name: Verify exact approved root sharing preservation and restoration
@@ -57,10 +59,12 @@ jobs:
       - name: Verify My Timber progress journey with synthetic account records
         env:
           TREATMENT_PLAYWRIGHT_PACKAGE: ${{ runner.temp }}/coaching-qa/package.json
+          TREATMENT_WEEK_PROOF_DIR: ${{ runner.temp }}/coaching-proof/my-timber-week
           TREATMENT_DETAIL_PROOF_DIR: ${{ runner.temp }}/coaching-proof/my-timber-progress-journey
         run: |
           node --test tests/progress-charts.test.mjs tests/progress-photo-journey.test.mjs member-experience/tests/progress-journey.test.mjs member-experience/tests/journey-portability.test.mjs tests/contact-rollback-runtime.test.mjs
           node member-experience/staging/verify-treatment-detail.mjs
+          node member-experience/staging/verify-treatment-week.mjs
       - name: Exercise synthetic accounts through the actual session-authenticated coaching routes
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/coaching-qa/node_modules/playwright

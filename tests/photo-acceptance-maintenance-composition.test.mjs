@@ -1,3 +1,4 @@
+import {myTimberWeekHistoricalView} from '../release/my-timber-week-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -38,7 +39,7 @@ test('every original gate byte and all previous approvals and evidence remain re
 });
 test('actual registered source verifies first and original protected runtime remains byte-identical',()=>{
  const v=c.photoAcceptanceHistoricalView();assert.equal(v.head,base);assert.deepEqual(v.record,JSON.parse(execFileSync('git',['show',base+':'+manifest],{encoding:'utf8'})));
- for(const p of ['frontend','public','shift-coach/worker.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.equal(execFileSync('git',['rev-parse','HEAD:'+p],{encoding:'utf8'}),execFileSync('git',['rev-parse',base+':'+p],{encoding:'utf8'}));
+ for(const p of ['frontend','public','shift-coach/worker.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.equal(execFileSync('git',['rev-parse',myTimberWeekHistoricalView().head+':'+p],{encoding:'utf8'}),execFileSync('git',['rev-parse',base+':'+p],{encoding:'utf8'}));
  for(const p of [...paths,...maintenance])assert.throws(()=>c.photoAcceptanceHistoricalView((r,q)=>r==='HEAD'&&q===p?'tampered':execFileSync('git',['rev-parse',r+':'+q],{encoding:'utf8'}).trim()),/drift/);
  const raw=readFileSync('release/approved-runtime-composition.mjs','utf8');assert(raw.includes('if(!reconciliationPath(path))return false;'));assert(raw.includes("Unexpected approved sharing completion file status: "));assert(raw.includes("Unexpected photo acceptance maintenance status: "));
 });

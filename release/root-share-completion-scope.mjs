@@ -1,3 +1,4 @@
+import {weekPhotoTestIfPresent,weekRecoveryIfPresent} from './my-timber-week-scope.mjs';
 import {photoAcceptanceHistoricalView,photoAcceptanceHistoricalFile} from './photo-acceptance-maintenance-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -19,9 +20,9 @@ export const COMPLETION_WORKFLOW_HOOK="      - name: Verify exact approved root 
 export const COMPLETION_WORKFLOW_PATH_HOOK=", release/root-share-preservation-rollback.mjs, release/root-share-completion-scope.mjs";
 const once=(bytes,part)=>{assert.equal(bytes.split(part).length,2,'Exact single completion inverse required');return bytes.replace(part,'');};
 export function originalCompletionPublic(bytes){bytes=once(bytes,COMPLETION_PUBLIC_IMPORT);assert.equal(bytes.split(COMPLETION_PUBLIC_NEW).length,2);return bytes.replace(COMPLETION_PUBLIC_NEW,COMPLETION_PUBLIC_OLD);}
-export function originalCompletionRecovery(bytes){return once(once(bytes,COMPLETION_RECOVERY_IMPORT),COMPLETION_RECOVERY_BRANCH);}
+export function originalCompletionRecovery(bytes){bytes=weekRecoveryIfPresent(bytes);return once(once(bytes,COMPLETION_RECOVERY_IMPORT),COMPLETION_RECOVERY_BRANCH);}
 export function originalCompletionCalendar(bytes){bytes=once(bytes,COMPLETION_CALENDAR_IMPORT);for(const[a,b]of [[COMPLETION_CALENDAR_NEW1,COMPLETION_CALENDAR_OLD1],[COMPLETION_CALENDAR_NEW2,COMPLETION_CALENDAR_OLD2]]){assert.equal(bytes.split(a).length,2);bytes=bytes.replace(a,b);}assert.equal(bytes.split('rawHead:completion.rawHead').length,3);return bytes.replaceAll('rawHead:completion.rawHead','rawHead');}
-export function originalCompletionCalendarTest(bytes){bytes=once(bytes,COMPLETION_TEST_IMPORT);assert.equal(bytes.split(COMPLETION_TEST_NEW).length,2);return bytes.replace(COMPLETION_TEST_NEW,COMPLETION_TEST_OLD);}
+export function originalCompletionCalendarTest(bytes){bytes=weekPhotoTestIfPresent(bytes);bytes=once(bytes,COMPLETION_TEST_IMPORT);assert.equal(bytes.split(COMPLETION_TEST_NEW).length,2);return bytes.replace(COMPLETION_TEST_NEW,COMPLETION_TEST_OLD);}
 export function originalCompletionRuntime(bytes){for(const part of [COMPLETION_RUNTIME_IMPORT,COMPLETION_RUNTIME_BRANCH,COMPLETION_RUNTIME_FOOTER])bytes=once(bytes,part);return bytes;}
 export function originalCompletionLegacyTest(bytes){bytes=once(bytes,COMPLETION_LEGACY_TEST_IMPORT);assert.equal(bytes.split(COMPLETION_LEGACY_TEST_NEW).length,2);return bytes.replace(COMPLETION_LEGACY_TEST_NEW,COMPLETION_LEGACY_TEST_OLD);}
 export function originalCompletionWorkflow(bytes){return once(once(bytes,COMPLETION_WORKFLOW_HOOK),COMPLETION_WORKFLOW_PATH_HOOK);}

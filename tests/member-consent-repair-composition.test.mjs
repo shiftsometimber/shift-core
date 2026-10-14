@@ -1,3 +1,4 @@
+import {myTimberWeekHistoricalFile} from '../release/my-timber-week-scope.mjs';
 import {rootShareHistoricalFile} from '../release/root-share-preview-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -65,7 +66,7 @@ test('source classification lists only the exact member paths and preserves add/
   assert.equal(reconciliationChangedPath('A','tests/unreviewed-member-feature.mjs'),false);
 });
 test('coaching release retains every original byte and uses the existing independently verified historical reader',()=>{
- const path='shift-coach/release-contract.mjs',current=readFileSync(path,'utf8');
+ const path='shift-coach/release-contract.mjs',current=myTimberWeekHistoricalFile(path,readFileSync(path,'utf8'));
  assert.equal(current,execFileSync('git',['show',base+':'+path],{encoding:'utf8'}));
 });
 

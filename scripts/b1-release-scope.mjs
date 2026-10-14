@@ -1,3 +1,4 @@
+import {withImmutableHistoryVerification,immutableHistoryExecFileSync} from '../release/approved-runtime-composition.mjs';
 import {reconciliationGitArgs,reconciliationHistoricalRead,reconciliationPath,RECONCILIATION_PATHS,verifyReconciledRelease,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from '../release/approved-runtime-composition.mjs';
 import {METRICS_PATHS,verifyMetricsConnection} from '../release/metrics-connection-scope.mjs';
 import {followHistoricalRead} from '../release/seo-follow-through-scope.mjs';
@@ -13,7 +14,7 @@ import {FOUNDATION_CANDIDATE,FOUNDATION_PATHS,validateFoundation} from '../relea
 import {AI_CANDIDATE,AI_BASE,validateAiRelease} from '../release/shift-ai-scope.mjs';
 import {originalHomeSpeedSource} from '../release/home-banner-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+const execFileSync=(...args)=>immutableHistoryExecFileSync(...args);
 import {existsSync,mkdirSync,readFileSync,writeFileSync,appendFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
@@ -145,6 +146,7 @@ function verifyHeadingRepair(){
  for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',reconciliationGitArgs(['show','HEAD:'+path]),{encoding:'utf8'}));else assert.equal(followHistoricalRead(reconciliationHistoricalRead((ref,p)=>git('rev-parse',ref+':'+p)),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition)('HEAD',path),git('rev-parse',(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
 }
 export function verifyScope(){
+ return withImmutableHistoryVerification(()=>{
  const reconciliation=verifyReconciledRelease();
  const metricsConnection=verifyMetricsConnection();
  validateFit300();
@@ -217,6 +219,7 @@ export function verifyScope(){
  mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
  if(process.env.GITHUB_OUTPUT)appendFileSync(process.env.GITHUB_OUTPUT,'runtime_only=true\ngrub_publication=false\n');
  return report;
+ });
 }
 const sha=value=>createHash('sha256').update(value).digest('hex');
 export function assertPreserved(before,after){
