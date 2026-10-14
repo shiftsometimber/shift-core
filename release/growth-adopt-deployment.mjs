@@ -1,3 +1,6 @@
+import {PHOTO_CANCELLED} from './photo-cancelled-stock-completion-20261014.mjs';
+import {PHOTO_STARTING_KIND,exactPhotoStartingPoint} from './photo-baseline-starting-point-20261014.mjs';
+import {createHash} from 'node:crypto';
 import {SUPPORT_RUNTIME,verifySupportRuntime} from './live-support-runtime.mjs';
 import {OWNER_RUNTIME,verifyOwnerRuntime} from './owner-captured-runtime.mjs';
 import {SITEWIDE_VERSION,verifySitewideRuntime} from './sitewide-seo-scope.mjs';
@@ -12,10 +15,25 @@ import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
-const point=verifiedStartingPoint(JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json')),active);
+const baselineRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
+let point;
+if(active.id===PHOTO_CANCELLED.deployment){
+ const get=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact original photo provider evidence required');return r.json();};
+ const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.text();};
+ const getArtifact=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/'+id+'/zip',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return Buffer.from(await r.arrayBuffer());};
+ const inventory=async()=>[JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0]];
+ const freshSnapshot=async()=>{const tables={};for(const table of ['medicine_products','medicine_variants','medicine_inventory']){
+  const sql='SELECT * FROM '+table+' ORDER BY '+(table==='medicine_inventory'?'variant_id':'id'),raw=JSON.parse(wrangler('d1','execute','DB','--remote','--json','--command',sql));assert(raw.length&&raw.every(r=>r.success));const rows=raw.flatMap(r=>r.results||[]);tables[table]={rows:rows.length,sha256:createHash('sha256').update(JSON.stringify(rows)).digest('hex')};
+ }return{phase:'after',checkedAt:new Date().toISOString(),release:process.env.GITHUB_SHA,tables,configurationSha256:createHash('sha256').update(readFileSync('wrangler.jsonc')).digest('hex'),customerRecordsRead:false,productionWrites:0};};
+ point=await exactPhotoStartingPoint(baselineRecord,active,JSON.parse(wrangler('versions','view',PHOTO_CANCELLED.version,'--json')),get,getLogs,getArtifact,inventory,freshSnapshot);
+ mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/photo-baseline-starting-point.json',JSON.stringify(point,null,2));
+}else point=verifiedStartingPoint(baselineRecord,active);
 const BASE=point.source,VERSION=point.version;
 let receipt={id:null};
-if(point.kind!==OWNER_RUNTIME.kind&&point.kind!==SUPPORT_RUNTIME.kind){
+if(point.kind===PHOTO_STARTING_KIND){
+ assert.equal(point.source,PHOTO_CANCELLED.source);assert.equal(point.version,PHOTO_CANCELLED.version);assert.equal(point.run,PHOTO_CANCELLED.run);assert.equal(point.originalRunAccepted,false);assert.equal(point.reconstruction.originalRunAccepted,false);assert.equal(point.reconstruction.baselineStockCompleted,true);
+ receipt={id:PHOTO_CANCELLED.run,conclusion:'cancelled',originalRunAccepted:false,evidenceKind:PHOTO_STARTING_KIND};
+}else if(point.kind!==OWNER_RUNTIME.kind&&point.kind!==SUPPORT_RUNTIME.kind){
 const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+point.run,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);receipt=await r.json();assert.equal(receipt.id,point.run);assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 if(point.run===catalogueRuntime.run){
