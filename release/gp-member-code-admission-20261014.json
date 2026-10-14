@@ -1,0 +1,65 @@
+{
+  "proof": "EXACT_A021_GP_MEMBER_CODE_20261014",
+  "base": "f82bdb66a54d4b2778f4df737648b127cc1f748d",
+  "originalSource": "3655de34b128950553cda7f6a7b612adab338b5c",
+  "originalTree": "d895dc3ed7b86a468f27a171f5beb3824d09ef33",
+  "payloadSource": "1998c18e1a51cc367b069cf8ad68894bcaa1289a",
+  "maintenanceSource": "00f76ea85fa0a44b5c048a2aab8b41a1f9869a40",
+  "paths": [
+    "gp-directory/client.mjs",
+    "gp-directory/hq-member-gp-browser.mjs",
+    "gp-directory/hq-member-gp-client.js",
+    "gp-directory/hq-member-gp-preparation-receipt.json",
+    "gp-directory/hq-member-gp.mjs",
+    "gp-directory/hq-member-gp.test.mjs",
+    "gp-directory/saved-profile-browser-receipt.json",
+    "gp-directory/saved-profile-browser.mjs",
+    "hq-management-api.mjs",
+    "hq-management-entry.mjs",
+    "member-experience/gp-form.mjs"
+  ],
+  "maintenancePaths": [
+    "release/gp-member-code-admission-20261014.mjs",
+    "tests/gp-member-code-admission-20261014.test.mjs",
+    "release/prepare-gp-source-objects-20261014.mjs",
+    "tests/prepare-gp-source-objects-20261014.test.mjs",
+    "release/source-objects/core-original.bundle",
+    "release/source-objects/core-saved-profile.bundle",
+    "release/source-objects/hq-original.bundle",
+    "release/source-objects/hq-static-packaging.bundle",
+    "release/gp-ci-source-prerequisites-20261014.mjs",
+    "tests/gp-ci-source-prerequisites-20261014.test.mjs",
+    ".github/workflows/readiness-preservation.yml",
+    ".github/workflows/health-passport-preview.yml",
+    ".github/workflows/cloudflare-production-promote.yml",
+    ".github/workflows/programme-day-preview.yml",
+    ".github/workflows/shift-coach-integration.yml",
+    ".github/workflows/production-completion-proof.yml",
+    ".github/workflows/tablet-wording-release-proof.yml"
+  ],
+  "authority": {
+    "owner": "Matt",
+    "instruction": "Deploy A021 member and HQ code before enabling A011 GP lookup flags.",
+    "recordedLocal": "14 October 2026 21:53 BST",
+    "integrationIssue": 1065,
+    "flagsEnabled": false,
+    "emailAuthority": false,
+    "notificationSent": false,
+    "clinicalRegistrationVerified": false,
+    "partnerControlsChanged": false,
+    "broaderProductionAuthority": false,
+    "genericAdoptionAllowed": false
+  },
+  "savedProfileSource": "0ae606fe5fd254cf717c3a853d7829801aaa8934",
+  "savedProfileTree": "b132bc8866b64c7e131cbcc5a1d7c9d5078e1462",
+  "sourceAuthorities": {
+    "A021": {
+      "source": "3655de34b128950553cda7f6a7b612adab338b5c",
+      "scope": "Seven original member GP editing backend/client/test/evidence/routing paths."
+    },
+    "A011": {
+      "source": "0ae606fe5fd254cf717c3a853d7829801aaa8934",
+      "scope": "Four original saved-profile code/evidence paths only; both configuration paths excluded."
+    }
+  }
+}
