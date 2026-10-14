@@ -4201,5 +4201,75 @@
         }
       }
     }
+  },
+  "photoAcceptanceMaintenance": {
+    "proof": "EXACT_RETAINED_PHOTO_ACCEPTANCE_MAINTENANCE_20261014",
+    "base": "77a1f511ee93243351b4b885fb604f33ac623d4d",
+    "source": "301c8ae0f8d004e3d3abc8379a22121738ae0989",
+    "maintenanceSource": "624273fdbcd7007124f52ed609147c26fa8bfb1e",
+    "integrationIssue": 1065,
+    "paths": [
+      "g2-013-progress-picture-rendered-production.mjs",
+      "rendered-member-acceptance-support.mjs",
+      "tests/rendered-member-acceptance-support.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/photo-acceptance-maintenance-scope.mjs",
+      "tests/photo-acceptance-maintenance-composition.test.mjs",
+      "release/root-share-completion-scope.mjs",
+      "tests/root-share-completion-composition.test.mjs",
+      "release/approved-runtime-composition.mjs",
+      ".github/workflows/shift-coach-integration.yml",
+      "docs/photo-acceptance-maintenance-20261014.json"
+    ],
+    "existingApprovalReference": {
+      "owner": "Matt",
+      "instruction": "Do",
+      "recordedAt": "2026-10-12T18:46:03Z",
+      "scope": "Existing My Timber upgrade through #1065, including photo access and deletion verification; bounded corrective work only",
+      "source": "9610259f261ff0a125c9af753d447268d7ab2e3d",
+      "maintenanceSource": "dac6e5c392cd89b122598b37be44d9565cd1b7ba",
+      "integrationIssue": 1065,
+      "emailAuthority": false,
+      "rollbackAuthorityBroadened": false
+    },
+    "releaseApproval": {
+      "owner": "Matt",
+      "instruction": "Deploy",
+      "recordedAt": "2026-10-14T06:38:34Z",
+      "scope": "Prepared three-file photo-consent verification correction through #1065; required finite maintenance only; no runtime or business change",
+      "source": "301c8ae0f8d004e3d3abc8379a22121738ae0989",
+      "integrationIssue": 1065,
+      "emailAuthority": false,
+      "rollbackAuthorityBroadened": false
+    },
+    "verificationEvidence": {
+      "source": "2477783ae8dac9c055a620958d1112611296b57a",
+      "base": "77a1f511ee93243351b4b885fb604f33ac623d4d",
+      "servingProduction": 38507512275,
+      "renderedRun": 38518868843,
+      "renderedJob": 115703730442,
+      "renderedTerminal": "2026-10-14T05:58:43Z",
+      "memberRun": 38518868807,
+      "memberJob": 115703729989,
+      "memberTerminal": "2026-10-14T05:56:54Z",
+      "renderedArtifact": 11872774088,
+      "renderedBytes": 4833869,
+      "renderedSHA256": "ecd9965e21871c55a168bf9e27902a4b52f56faf05754c7c5273b73b1c7b9861",
+      "singleVisibilityDeadlineMs": 15000
+    },
+    "runtimeChanged": false,
+    "homepageChanged": false,
+    "clinicalChanged": false,
+    "stockChanged": false,
+    "customerDataChanged": false,
+    "consentAutomaticallyGranted": false,
+    "storagePolicyChanged": false,
+    "paidModelEnabled": false,
+    "emailGeneratingStepsStarted": false,
+    "externalCommunicationsSent": false,
+    "existingGatesWeakened": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false
   }
 }
