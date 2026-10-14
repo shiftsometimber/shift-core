@@ -1,3 +1,4 @@
+import {PHOTO_ACCEPTANCE_BASE,PHOTO_ACCEPTANCE_PATHS,PHOTO_ACCEPTANCE_MAINTENANCE} from './photo-acceptance-maintenance-scope.mjs';
 import {ROOT_SHARE_COMPLETION_BASE,ROOT_SHARE_COMPLETION_PATHS,ROOT_SHARE_COMPLETION_MAINTENANCE} from './root-share-completion-scope.mjs';
 import {PHOTO_CALENDAR_BASE,PHOTO_CALENDAR_PATHS,PHOTO_CALENDAR_MAINTENANCE} from './photo-calendar-scope.mjs';
 import {ROOT_SHARE_BASE,ROOT_SHARE_PATHS,ROOT_SHARE_MAINTENANCE} from './root-share-preview-scope.mjs';
@@ -2794,6 +2795,10 @@ export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_B
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
+ if(PHOTO_ACCEPTANCE_ADDITIONAL_PATHS.includes(path)){
+  let existed;try{execFileSync('git',['cat-file','-e',PHOTO_ACCEPTANCE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  assert((existed?['A','M']:['A']).includes(status),'Unexpected photo acceptance maintenance status: '+status+' '+path);return true;
+ }
  if(ROOT_SHARE_COMPLETION_ADDITIONAL_PATHS.includes(path)){
   let existed;try{execFileSync('git',['cat-file','-e',ROOT_SHARE_COMPLETION_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
   assert((existed?['A','M']:['A']).includes(status),'Unexpected approved sharing completion file status: '+status+' '+path);return true;
@@ -3087,3 +3092,6 @@ for(const p of PHOTO_CALENDAR_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
 
 export const ROOT_SHARE_COMPLETION_ADDITIONAL_PATHS=Object.freeze([...ROOT_SHARE_COMPLETION_PATHS,...ROOT_SHARE_COMPLETION_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of ROOT_SHARE_COMPLETION_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+
+export const PHOTO_ACCEPTANCE_ADDITIONAL_PATHS=Object.freeze([...PHOTO_ACCEPTANCE_PATHS,...PHOTO_ACCEPTANCE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
+for(const p of PHOTO_ACCEPTANCE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);

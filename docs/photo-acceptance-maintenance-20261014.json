@@ -1,0 +1,22 @@
+{
+  "scope": "Prepared three-file photo test correction",
+  "source": "301c8ae0f8d004e3d3abc8379a22121738ae0989",
+  "base": "77a1f511ee93243351b4b885fb604f33ac623d4d",
+  "approval": {
+    "owner": "Matt",
+    "instruction": "Deploy",
+    "recordedAt": "2026-10-14T06:38:34Z"
+  },
+  "verificationSource": "2477783ae8dac9c055a620958d1112611296b57a",
+  "renderedRun": 38518868843,
+  "memberRun": 38518868807,
+  "priorFailedRun": 38511927145,
+  "totalVisibilityDeadlineMs": 15000,
+  "state": "exact source prepared; production not yet deployed",
+  "runtimeChanged": false,
+  "emailAuthority": false,
+  "rollbackAuthorityBroadened": false,
+  "optionalMedicationModel": "OFF; qualified review remains separate",
+  "physicalAcceptance": "open; not substituted by browser tests",
+  "preservation": "Every older gate and manifest receipt retained through exact inverses before historical views"
+}

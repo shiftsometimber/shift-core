@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {commissioningLogin,memberReady,memberReload,requireMemberPanel,chooseNecessaryCookies,chooseOptionalHealthTracking} from '../rendered-member-acceptance-support.mjs';
+import {commissioningLogin,memberReady,memberReload,requireMemberPanel,chooseNecessaryCookies,chooseOptionalHealthTracking,withdrawOptionalHealthTracking} from '../rendered-member-acceptance-support.mjs';
 
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';
 const identity={site,api,oidc:'synthetic-oidc-test-value',email:'shiftsometimber+structured-acceptance-test@gmail.com',password:'test-only'};
@@ -15,7 +15,7 @@ function harness({sessionEmail=identity.email,sessionStatus=200,loginStatus=200,
       // Execute the readiness predicate against both an authenticated and a
       // signed-out DOM: a stale body class must never turn either into a pass.
       const previous=globalThis.document;
-      globalThis.document={querySelector:selector=>selector==='#previewMember'?{classList:{contains:()=>shown},hidden:!shown,getBoundingClientRect:()=>({height:shown?300:0})}:selector==='#previewAuth'?{hidden:shown}:selector.startsWith('#panel-')?{classList:{contains:()=>clicks.length>0}}:null};
+      globalThis.document={querySelector:selector=>selector==='#previewMember'?{classList:{contains:()=>shown},hidden:!shown,getBoundingClientRect:()=>({height:shown?300:0})}:selector==='#healthConsentAction'?{closest:()=>({getClientRects:()=>shown?[{}]:[]})}:selector==='#previewAuth'?{hidden:shown}:selector.startsWith('#panel-')?{classList:{contains:()=>clicks.length>0}}:null};
       try{if(!fn(arg))throw Error('readiness timeout')}finally{globalThis.document=previous}
     },evaluate:async()=>({path:'/member/dashboard',memberReady:shown,memberHidden:!shown,authHidden:shown,panels:[]}),
     locator:selector=>selector==='.cookie-banner-v3a'||selector.startsWith('script[')?{count:async()=>0}:selector==='#appMore'?{count:async()=>0}:selector.startsWith('#panel-')?host:{count:async()=>1,nth:()=>({isVisible:async()=>controlVisible,click:async()=>clicks.push(selector),locator:()=>({count:async()=>0})})}};
@@ -51,18 +51,51 @@ test('optional tracking choice cannot run without a verified fictional identity'
 });
 
 test('optional tracking acceptance exercises unselected settings controls and verifies the saved current identity',async()=>{
+ for(const closedGroups of [0,2]){
   const h=harness();await commissioningLogin(h.page,identity);
-  let checked=false,chosen=false;
+  let checked=false,chosen=false,opened=0;
   const originalGet=h.page.context().request.get;
   h.page.context().request.get=async(url,options)=>url===api+'/v1/consents'?{ok:()=>true,json:async()=>({consents:[{id:1,consent_type:'my_shift_health_tracking',granted:chosen?1:0}]})}:originalGet(url,options);
   const checkbox={isChecked:async()=>checked,check:async()=>{checked=true;h.clicks.push('explicit checkbox');}};
   const agree={isDisabled:async()=>!checked,click:async()=>{assert.equal(checked,true);chosen=true;h.clicks.push('Agree & continue');}};
   const dialog={waitFor:async({state})=>{if(state==='detached')assert.equal(chosen,true);},locator:selector=>selector==='#healthConsentCheck'?checkbox:agree};
   const originalLocator=h.page.locator;
-  h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},innerText:async()=>'Review and opt in',click:async()=>h.clicks.push('Review and opt in')}:selector==='dialog.health-consent-dialog-v42n'?dialog:originalLocator(selector);
+  const choice={waitFor:async({state,timeout})=>{assert(timeout>0&&timeout<=15000);if(state==='visible')assert.equal(opened,closedGroups);},isVisible:async()=>opened===closedGroups,innerText:async()=>'Review and opt in',click:async()=>{assert.equal(opened,closedGroups);h.clicks.push('Review and opt in');},locator:()=>({count:async()=>closedGroups-opened,nth:i=>({locator:()=>({isVisible:async()=>i===0,click:async({timeout})=>{assert(timeout>0&&timeout<=15000);opened++;h.clicks.push('Open settings disclosure');}})})})};
+  h.page.locator=selector=>selector==='#healthConsentAction'?choice:selector==='dialog.health-consent-dialog-v42n'?dialog:originalLocator(selector);
   assert.deepEqual(await chooseOptionalHealthTracking(h.page,{site}),{choice:'explicit optional opt-in',identityVerified:true,saved:true});
-  assert.deepEqual(h.navigations,[site+'/member/settings']);assert.deepEqual(h.clicks,['Review and opt in','explicit checkbox','Agree & continue']);
+  assert.deepEqual(h.navigations,[site+'/member/settings']);assert.deepEqual(h.clicks,[...Array(closedGroups).fill('Open settings disclosure'),'Review and opt in','explicit checkbox','Agree & continue']);
   assert.equal(h.requests.filter(x=>x.method==='POST').length,1,'Only the original commissioning login uses the API POST shortcut');
+ }
+});
+
+test('hidden optional tracking controls cannot be bypassed when a visible disclosure is absent',async()=>{
+ for(const missingDisclosure of [true,false]){
+  const h=harness();await commissioningLogin(h.page,identity);const original=h.page.locator;
+  h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},isVisible:async()=>false,evaluate:async()=>({path:'/member/settings',chain:[{tag:'BUTTON',id:'healthConsentAction',hidden:false}]}),locator:()=>({count:async()=>missingDisclosure?0:1,nth:()=>({locator:()=>({isVisible:async()=>false,click:async()=>assert.fail('Hidden disclosure clicked')})})}),click:async()=>assert.fail('Hidden consent control clicked')}:original(selector);
+  await assert.rejects(chooseOptionalHealthTracking(h.page,{site}),/no visible disclosure control/);
+  assert.equal(h.clicks.length,0);assert.equal(h.requests.filter(x=>x.method==='POST').length,1);
+ }
+});
+
+test('explicit withdrawal uses the visible control and requires the latest saved refusal, without an API consent write',async()=>{
+ for(const serverGrant of [0,1]){
+  const h=harness();await commissioningLogin(h.page,identity);let clicked=false;
+  const original=h.page.locator,get=h.page.context().request.get;
+  h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},isVisible:async()=>true,innerText:async()=>clicked?'Review and opt in':'Withdraw consent',click:async()=>{clicked=true;h.clicks.push('Withdraw consent')}}:original(selector);
+  let waits=0;h.page.waitForFunction=async()=>assert.equal(clicked,waits++>0);
+  h.page.context().request.get=async(url,options)=>url===api+'/v1/consents'?{ok:()=>true,json:async()=>({consents:[{id:1,consent_type:'my_shift_health_tracking',granted:1},{id:2,consent_type:'my_shift_health_tracking',granted:serverGrant}]})}:get(url,options);
+  if(serverGrant===0)assert.deepEqual(await withdrawOptionalHealthTracking(h.page,{site}),{choice:'explicit optional withdrawal',identityVerified:true,saved:true});
+  else await assert.rejects(withdrawOptionalHealthTracking(h.page,{site}),/choice was not saved/);
+  assert.deepEqual(h.clicks,['Withdraw consent']);assert.equal(h.requests.filter(x=>x.method==='POST').length,1);
+ }
+ await assert.rejects(withdrawOptionalHealthTracking(harness().page,{site}),/verified synthetic identity/);
+});
+
+test('optional tracking must wait for the genuine visible Settings parent and never open controls on an unready signed-out page',async()=>{
+ const h=harness({shown:false});await commissioningLogin(h.page,identity);const original=h.page.locator;
+ h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},isVisible:async()=>assert.fail('Disclosure considered before parent readiness'),click:async()=>assert.fail('Consent clicked before parent readiness')}:original(selector);
+ await assert.rejects(chooseOptionalHealthTracking(h.page,{site}),/readiness timeout/);
+ assert.equal(h.clicks.length,0);assert.equal(h.requests.filter(x=>x.method==='POST').length,1);
 });
 
 test('a successful API login does not pass an unready signed-out interface',async()=>{

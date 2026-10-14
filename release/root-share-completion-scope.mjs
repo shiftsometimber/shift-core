@@ -1,3 +1,4 @@
+import {photoAcceptanceHistoricalView,photoAcceptanceHistoricalFile} from './photo-acceptance-maintenance-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
@@ -41,12 +42,12 @@ export function verifyRootShareCompletionSource(c,{head,read,blob=read,diff,ance
  const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.rootShareCompletionRepair;assert.deepEqual(current,prior,'All prior identities/approvals/watermarks/evidence preserved');assert.deepEqual(prior.rootSharePreview.releaseApproval,ROOT_SHARE_COMPLETION_APPROVAL);return c;
 }
 export function rootShareCompletionHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=git('rev-parse','HEAD'),current=JSON.parse(contents(rawHead,manifest)),c=current.rootShareCompletionRepair;
- const rawBlob=(r,p)=>git('rev-parse',(r==='HEAD'?rawHead:r)+':'+p),rawRead=defaultReader?rawBlob:reader,rawContent=(r,p)=>contents(r==='HEAD'?rawHead:r,p);
- if(!c)return{record:current,rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:rawContent};
+ const overlay=photoAcceptanceHistoricalView(reader,{defaultReader}),rawHead=overlay.head,current=overlay.record,c=current.rootShareCompletionRepair;
+ const rawBlob=overlay.blob,rawRead=overlay.read,rawContent=overlay.content;
+ if(!c)return{record:current,rawHead:overlay.rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:rawContent};
  verifyRootShareCompletionSource(c,{head:rawHead,read:rawRead,blob:rawBlob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:rawContent});
  const record=structuredClone(current);delete record.rootShareCompletionRepair;const changed=new Set([...c.paths,...c.maintenancePaths,manifest]),mapped=(r,p)=>r==='HEAD'&&changed.has(p)?c.base:r;
- return{record,rawHead,head:c.base,read:(r,p)=>rawRead(mapped(r,p),p),blob:(r,p)=>rawBlob(mapped(r,p),p),content:(r,p)=>rawContent(mapped(r,p),p)};
+ return{record,rawHead:overlay.rawHead,head:c.base,read:(r,p)=>rawRead(mapped(r,p),p),blob:(r,p)=>rawBlob(mapped(r,p),p),content:(r,p)=>rawContent(mapped(r,p),p)};
 }
-export function rootShareCompletionHistoricalFile(p,bytes){const v=rootShareCompletionHistoricalView();assert.equal(bytes,contents(v.rawHead,p),'Actual current completion file required');return v.rawHead===v.head?bytes:contents(v.head,p);}
+export function rootShareCompletionHistoricalFile(p,bytes){const photo=photoAcceptanceHistoricalView();bytes=photoAcceptanceHistoricalFile(p,bytes);const v=rootShareCompletionHistoricalView();assert.equal(bytes,contents(photo.head,p),'Actual current completion file required');return photo.head===v.head?bytes:contents(v.head,p);}
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){rootShareCompletionHistoricalView();console.log('PASS exact approved sharing diagnostic delta, every original source gate and scoped authority');}
