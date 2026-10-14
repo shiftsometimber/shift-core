@@ -1,0 +1,69 @@
+{
+  "candidateOnly": true,
+  "production": false,
+  "notificationsSent": 0,
+  "checks": [
+    {
+      "width": 390,
+      "case": "explicit request/confirmation; full fill; separate unchecked consent; no overflow"
+    },
+    {
+      "width": 390,
+      "case": "typed details preserved; editing invalidates pending saved choice"
+    },
+    {
+      "width": 390,
+      "case": "expired preserves manual form and consent"
+    },
+    {
+      "width": 390,
+      "case": "no_gp preserves manual form and consent"
+    },
+    {
+      "width": 390,
+      "case": "malformed preserves manual form and consent"
+    },
+    {
+      "width": 390,
+      "case": "late response cannot replace manual edits"
+    },
+    {
+      "width": 390,
+      "case": "pagehide clears saved personal summary"
+    },
+    {
+      "width": 1440,
+      "case": "explicit request/confirmation; full fill; separate unchecked consent; no overflow"
+    },
+    {
+      "width": 1440,
+      "case": "typed details preserved; editing invalidates pending saved choice"
+    },
+    {
+      "width": 1440,
+      "case": "expired preserves manual form and consent"
+    },
+    {
+      "width": 1440,
+      "case": "no_gp preserves manual form and consent"
+    },
+    {
+      "width": 1440,
+      "case": "malformed preserves manual form and consent"
+    },
+    {
+      "width": 1440,
+      "case": "late response cannot replace manual edits"
+    },
+    {
+      "width": 1440,
+      "case": "pagehide clears saved personal summary"
+    }
+  ],
+  "errors": [],
+  "externalRequests": 0,
+  "status": "passed",
+  "profileReads": 14,
+  "noAccountWrites": true,
+  "originalAssessmentSHA256": "cd200c46acab71b291660c9678a604dc6c8da97df1889de72df32bec642898be"
+}

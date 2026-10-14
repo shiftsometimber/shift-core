@@ -1,0 +1,158 @@
+{
+  "checkedAt": "2026-10-14T20:40:59.245822+00:00",
+  "scope": "Detached private source preparation; no hosted gate or deployment",
+  "coreParent": "685ede249cd20c4801d0a25227fed16d46860618",
+  "frontendParent": "4ce3247c989970fe395ef86ac2cdcabad448d2f8",
+  "frontendBase": "d2df57b400bdb0072d10c1ef9c2cb0e938ef5f03",
+  "unchangedFrozenGpPacketTree": "b132bc8866b64c7e131cbcc5a1d7c9d5078e1462",
+  "sqliteBackendTests": {
+    "pass": 9,
+    "fail": 0,
+    "skip": 0
+  },
+  "chromeComponent": {
+    "componentOnly": true,
+    "ordinaryAuthentication": false,
+    "production": false,
+    "notificationsSent": 0,
+    "checks": [
+      {
+        "width": 390,
+        "case": "explicit directory selection; no save before confirmation; save/reopen"
+      },
+      {
+        "width": 390,
+        "case": "manual save/reopen; two-way member isolation"
+      },
+      {
+        "width": 390,
+        "case": "stale revision rejects without overwriting; edits retained; explicit reload"
+      },
+      {
+        "width": 390,
+        "case": "unreadable saved response; same-operation retry; one audit/write"
+      },
+      {
+        "width": 390,
+        "case": "failed save preserves edits and last saved value"
+      },
+      {
+        "width": 390,
+        "case": "late previous-member response clears GP editor; cannot save under mixed member context"
+      },
+      {
+        "width": 390,
+        "case": "mobile/desktop no overflow; keyboard order; inspected preview prepared"
+      },
+      {
+        "width": 390,
+        "case": "server role revocation denies and clears private form"
+      },
+      {
+        "width": 390,
+        "case": "close and logout clear retained private GP data"
+      },
+      {
+        "width": 1440,
+        "case": "explicit directory selection; no save before confirmation; save/reopen"
+      },
+      {
+        "width": 1440,
+        "case": "manual save/reopen; two-way member isolation"
+      },
+      {
+        "width": 1440,
+        "case": "stale revision rejects without overwriting; edits retained; explicit reload"
+      },
+      {
+        "width": 1440,
+        "case": "unreadable saved response; same-operation retry; one audit/write"
+      },
+      {
+        "width": 1440,
+        "case": "failed save preserves edits and last saved value"
+      },
+      {
+        "width": 1440,
+        "case": "late previous-member response clears GP editor; cannot save under mixed member context"
+      },
+      {
+        "width": 1440,
+        "case": "mobile/desktop no overflow; keyboard order; inspected preview prepared"
+      },
+      {
+        "width": 1440,
+        "case": "server role revocation denies and clears private form"
+      },
+      {
+        "width": 1440,
+        "case": "close and logout clear retained private GP data"
+      }
+    ],
+    "errors": [],
+    "externalRequests": 0
+  },
+  "actualDashboardSourceBrowser": {
+    "widths": [
+      390,
+      1440
+    ],
+    "bootAndMemberModalSave": "PASS",
+    "mockedApiOnly": true,
+    "pageErrors": 0,
+    "ordinaryAuthentication": false
+  },
+  "dryRuns": {
+    "isolatedHqWorker": "PASS",
+    "actualHqStaticFrontend": "PASS"
+  },
+  "originalManagementAcceptance": "PASS",
+  "preservation": {
+    "originalReadOnlyDirectoryRoute": true,
+    "memberSelfSessionBoundary": true,
+    "rolesAndPermissions": true,
+    "memberDetailsSchema": true,
+    "configsAndFlags": true,
+    "wholeOriginalSourceInverses": true
+  },
+  "productionWrites": 0,
+  "remoteFlagsChanged": false,
+  "notificationsSent": 0,
+  "emailsOrContactTests": 0,
+  "sourceHashes": {
+    "gp-directory/hq-member-gp.mjs": "a1ab307b9f353e973448222944316def511d7b56817fa3e9ae386bcbd4254c03",
+    "gp-directory/hq-member-gp-client.js": "926885a44e2fce27821adbcd528dacadef0cc2b91b9710e28b25b23102e40bd4",
+    "gp-directory/hq-member-gp.test.mjs": "0a88826b00eb177b984730dda3e50a0edacaef598e632932eb94729acfc85a0d",
+    "gp-directory/hq-member-gp-browser.mjs": "960e4aade0cc121a331bd939903c0ac5bdffccc5526d780f5f36531bd0615e5a",
+    "hq-management-api.mjs": "c35abe5acb81e993b393c1fa03591ca66ba09039b37a09602d7039b9282991b5",
+    "hq-management-entry.mjs": "526497ed572574837ecb9aefbaa5787b12a282140d8ec289fdda4619b469c755"
+  },
+  "frontendHashes": {
+    "gp-directory.js": "3bd648f751c0327ddaea5218f52813da8504ed895d08ca620b02313c0021c237",
+    "hq.js": "6b04ed3247400c062819bbe4b465f263d30e51275bac36059bef3c71e6ee170c"
+  },
+  "liveAcceptanceStillOpen": "Existing actual member/HQ holder sessions; same-serving authorised release; no physical or ordinary auth inference",
+  "harnessHistory": [
+    "Attempt1 retained: Chrome automatically retried a dropped response, so unknown-confirmation case now injects an unreadable saved response.",
+    "Attempt2 retained: fieldset itself is not a Playwright enabled-control target; final assertion checks the disabled GP input.",
+    "Attempt3 retained: dialog close event is queued; final assertion waits for actual privacy-clear event."
+  ],
+  "evidence": [
+    "/tmp/shift-hq-gp-member-tests-final-20261014.log",
+    "/tmp/shift-hq-gp-browser-final2-20261014.log",
+    "/tmp/shift-hq-gp-full-source-browser-final2-20261014.log",
+    "/tmp/shift-hq-gp-original-management-20261014.log",
+    "/tmp/shift-hq-gp-member-backend-frozen-20261014.log",
+    "/tmp/shift-hq-gp-member-frontend-frozen-20261014.log",
+    "/tmp/shift-hq-gp-member-tests-race-final-20261014.log",
+    "/tmp/shift-hq-gp-browser-race-final-20261014.log",
+    "/tmp/shift-hq-gp-member-backend-race-final-20261014.log"
+  ],
+  "supersedesCorePreparation": "7c79ff129764bd657f122fbf6c22b292a0f44b73",
+  "independentReview": {
+    "materialFinding": "Directory active-version/canonical-row race before DB.batch",
+    "resolution": "Exact current active complete version and canonical practice predicates are now inside the same transactional INSERT SELECT as member/core CAS.",
+    "result": "Reviewed fix; no other material defect found in bounded backend/client/routing scope.",
+    "qualifiedOrLiveAcceptance": false
+  }
+}
