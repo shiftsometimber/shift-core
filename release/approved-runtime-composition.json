@@ -4271,5 +4271,103 @@
     "existingGatesWeakened": false,
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false
+  },
+  "myTimberWeekCode": {
+    "proof": "EXACT_MY_TIMBER_WEEK_CODE_HELD_ACTIVATION_20261014",
+    "base": "9167d3ae3ffd0ba81da115ea0578637ede5ef832",
+    "source": "e80ab18db5046f7c13ad1b5cdd28beb4cac57c35",
+    "candidate": "8e8895afb82bd82e2354fc69acbcd9acfe39fba4",
+    "paths": [
+      "docs/my-timber-app-benchmark-20261013.md",
+      "docs/my-timber-treatment-week-20261013.md",
+      "docs/my-timber-treatment-week-20261013.receipt.json",
+      "frontend/member/member-progress-v1.js",
+      "member-experience/entry.mjs",
+      "member-experience/staging/verify-treatment-week.mjs",
+      "member-experience/tests/treatment-week-route.test.mjs",
+      "member-experience/tests/treatment-week.test.mjs",
+      "member-experience/treatment-routes.mjs",
+      "member-experience/treatment-week-client.mjs",
+      "member-experience/treatment-week-route.mjs",
+      "member-experience/treatment-week.mjs"
+    ],
+    "maintenanceSource": "505e0d8f31347bf6a7fd8629d82dd31b519b0d62",
+    "maintenancePaths": [
+      "release/my-timber-week-scope.mjs",
+      "tests/my-timber-week-composition.test.mjs",
+      "release/photo-acceptance-maintenance-scope.mjs",
+      "release/root-share-completion-scope.mjs",
+      "release/approved-runtime-composition.mjs",
+      ".github/workflows/shift-coach-integration.yml",
+      "tests/photo-calendar-composition.test.mjs",
+      "tests/photo-acceptance-maintenance-composition.test.mjs",
+      "shift-coach/release-contract.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "release/photo-cancelled-stock-completion-20261014.mjs",
+      "tests/photo-cancelled-stock-completion-20261014.test.mjs",
+      "tests/member-consent-repair-composition.test.mjs",
+      "shift-coach/scope.mjs",
+      "scripts/b1-release-scope.mjs"
+    ],
+    "releaseApproval": {
+      "owner": "Matt",
+      "instruction": "Deploy - agreed",
+      "recordedAt": "2026-10-14T06:38:20Z",
+      "source": "8e8895afb82bd82e2354fc69acbcd9acfe39fba4",
+      "scope": "Deploy the exact connected treatment-week code through #1065; optional member activation and qualified clinical/model review remain held",
+      "integrationIssue": 1065,
+      "emailAuthority": false,
+      "modelReviewGranted": false,
+      "activationGranted": false,
+      "rollbackAuthorityBroadened": false
+    },
+    "integrationIssue": 1065,
+    "photoVerificationSource": "301c8ae0f8d004e3d3abc8379a22121738ae0989",
+    "modelReviewStatus": "pending",
+    "productionWeekSwitch": "absent/off",
+    "activationEnabled": false,
+    "qualifiedReviewGranted": false,
+    "homepageChanged": false,
+    "clinicalAdviceAdded": false,
+    "prescribingChanged": false,
+    "stockChanged": false,
+    "checkoutChanged": false,
+    "customerDataMigration": false,
+    "paidModelEnabled": false,
+    "externalCommunicationsSent": false,
+    "emailGeneratingStepsStarted": false,
+    "existingGatesWeakened": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "exactCancelledPhotoBaseline": {
+      "source": "9167d3ae3ffd0ba81da115ea0578637ede5ef832",
+      "run": 38527223352,
+      "job": 115730418888,
+      "deployment": "8be2ef4c-e00c-418b-87ee-f4f1233d24c7",
+      "version": "55de38ee-ddc9-4c29-a8a0-b580775242d5",
+      "previousSource": "77a1f511ee93243351b4b885fb604f33ac623d4d",
+      "previousRun": 38507512275,
+      "previousJob": 115668367027,
+      "previousDeployment": "393f7a40-10f9-41b6-934b-5627bb09e4c1",
+      "previousVersion": "779eea92-d8a7-4c29-81ac-8ba62260c096",
+      "artifact": 11878991663,
+      "artifactBytes": 6457394,
+      "artifactSHA256": "c44b0b7722c4e59cc07db568c0f0721260c43c0c227073ba382b598565c0acf1",
+      "configurationSha256": "a030adf52fc1f5ee82f327aad59b9552dc598ff3471792f3a3d7242e7217d387",
+      "tables": {
+        "medicine_products": {
+          "rows": 7,
+          "sha256": "c8bd883da93a22686a8ef600f1b1d2c60b7a1e6726ac360d5c94f34f2a740031"
+        },
+        "medicine_variants": {
+          "rows": 39,
+          "sha256": "8b3faf0e3bbb1cf756a6fd20b549bb1c1a58b1b2493a96a46282f2666ea565f8"
+        },
+        "medicine_inventory": {
+          "rows": 38,
+          "sha256": "651986206bb0e9b1b833aa9da2eb031864946cda98a5e1a9e71f880d2eef49bb"
+        }
+      }
+    }
   }
 }
