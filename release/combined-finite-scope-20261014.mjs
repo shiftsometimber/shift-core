@@ -1,4 +1,3 @@
-import {releaseMachineryRepairHistoricalView,releaseMachineryRepairLegacyRead,releaseMachineryRepairLegacyContent} from './release-machinery-repair-scope-20261014.mjs';
 import {ensureCombinedOriginalGpSource} from './combined-original-gp-object-20261014.mjs';
 export const COMBINED_FINITE_BASE="5eba55df9065887562e94eb2ff35cb88bffc941b";
 export const COMBINED_FINITE_SOURCE="49c50935ddb67d0730f66da41e0a59b4f151df8e";
@@ -42,7 +41,7 @@ export function verifyCombinedHqSource({head,content,blob}){
  assert.equal(blob(p.gpInputSource,'hq-management-entry.mjs'),p.gpEntryInputBlob);assert.equal(blob(p.gpInputSource,'hq-management-api.mjs'),p.gpApiInputBlob);assert.equal(blob(head,'hq-management-api.mjs'),p.gpApiInputBlob,'Exact original dormant GP API retained');
  return p;
 }
-export function verifyCombinedFiniteOriginal(c,{head,read,blob=read,content,diff,ancestor}){
+export function verifyCombinedFinite(c,{head,read,blob=read,content,diff,ancestor}){
  const {maintenanceSource,...record}=c||{};assert.deepEqual(record,COMBINED_FINITE_RECORD,'One exact authorised finite record and holds required');
  assert.match(maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
  for(const ref of [c.base,c.source,maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,maintenanceSource);
@@ -76,22 +75,10 @@ export function verifyCombinedFiniteOriginal(c,{head,read,blob=read,content,diff
  assert.deepEqual(current,prior,'Prior approvals, watermarks, failures and every historical record retained');
  return c;
 }
-export function verifyCombinedFinite(c,options){
- const repair=releaseMachineryRepairHistoricalView();
- if(options.head!==repair.rawHead||repair.head===repair.rawHead)return verifyCombinedFiniteOriginal(c,options);
- const {head,read,blob=read,content,diff,ancestor}=options;
- const projectedDiff=(a,b)=>{
-  if(b!==head&&b!=='HEAD')return diff(a,b);
-  assert.deepEqual(diff(a,b),git('diff','--name-only',a,head).trim().split('\n').filter(Boolean),'Unreviewed supplied release machinery source drift');
-  return diff(a,repair.head);
- };
- return verifyCombinedFiniteOriginal(c,{head:repair.head,read:releaseMachineryRepairLegacyRead(read,repair),blob:releaseMachineryRepairLegacyRead(blob,repair),content:releaseMachineryRepairLegacyContent(content,repair),diff:projectedDiff,ancestor});
-}
 export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const repair=releaseMachineryRepairHistoricalView(reader,{defaultReader});
- const rawHead=repair.head,content=(ref,path)=>repair.content(ref==='HEAD'?rawHead:ref,path);
- const blob=(ref,path)=>repair.blob(ref==='HEAD'?rawHead:ref,path),rawRead=repair.read,current=repair.record,c=current.combinedFinite20261014;
- const normal=(ref,path)=>exactCombinedDirectoryDisplay(rawRead(ref,path),repair.affected(path)&&(ref==='HEAD'||ref===repair.rawHead)?repair.head:ref,path);
+ const rawHead=git('rev-parse','HEAD').trim(),content=(ref,path)=>rawContent(ref==='HEAD'?rawHead:ref,path);
+ const blob=(ref,path)=>rawBlob(ref==='HEAD'?rawHead:ref,path),rawRead=defaultReader?blob:reader,current=JSON.parse(content(rawHead,manifest)),c=current.combinedFinite20261014;
+ const normal=(ref,path)=>exactCombinedDirectoryDisplay(rawRead(ref,path),ref,path);
  if(!c)return{rawHead,head:rawHead,record:current,content,blob,read:normal};
  verifyCombinedFinite(c,{head:rawHead,read:rawRead,blob,content,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)});
  const changed=new Set([...c.paths,...c.maintenancePaths,manifest]);
@@ -105,8 +92,8 @@ export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader==
   return normal(map(ref,path),path);
  };
  const record=structuredClone(current);delete record.combinedFinite20261014;
- assert.equal(git('rev-parse','HEAD').trim(),repair.rawHead,'Source HEAD changed during combined verification');
- return{rawHead:repair.rawHead,head:c.base,record,read,blob:(ref,path)=>blob(map(ref,path),path),content:(ref,path)=>content(map(ref,path),path)};
+ assert.equal(git('rev-parse','HEAD').trim(),rawHead,'Source HEAD changed during combined verification');
+ return{rawHead,head:c.base,record,read,blob:(ref,path)=>blob(map(ref,path),path),content:(ref,path)=>content(map(ref,path),path)};
 }
 // Pure compatibility projection for established abstract legacy comparison contracts.
 // It NEVER authenticates a supplied current reader or authorises a deployment.
@@ -116,7 +103,6 @@ export function combinedFiniteLegacyHistoricalView(reader=null,{defaultReader=re
  assert.equal(git('diff','--cached','--name-only').trim(),'','Staged source changed before legacy projection');
  if(defaultReader)return{...actual,currentReaderAuthenticated:true,legacyComparisonOnly:false};
  assert.equal(typeof reader,'function','A legacy comparison reader is required');
- reader=releaseMachineryRepairLegacyRead(reader,releaseMachineryRepairHistoricalView());
  const current=JSON.parse(rawContent(actual.rawHead,manifest)),c=current.combinedFinite20261014;
  const changed=new Set(c?[...c.paths,...c.maintenancePaths,manifest]:[]);
  const affected=path=>changed.has(path)||[...changed].some(p=>p.startsWith(path+'/'));

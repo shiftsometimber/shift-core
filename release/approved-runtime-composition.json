@@ -3829,7 +3829,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it’s a huge fault !",
+      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -3937,7 +3937,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it’s a huge fault !",
+      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4010,7 +4010,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it’s a huge fault !",
+          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4085,7 +4085,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it’s a huge fault !",
+          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4158,7 +4158,7 @@
             "integrationIssue": 1065,
             "releaseApproval": {
               "owner": "Matt",
-              "instruction": "Sorry this needs deploying - it’s a huge fault !",
+              "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
               "recordedAt": "2026-10-13T17:17:57Z",
               "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
               "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4803,62 +4803,5 @@
     "failedPriorProgressRun": 38608295556,
     "failedPriorProgressJob": 116004767283,
     "originalImportConfirmationAndAllOtherStepsRetained": true
-  },
-  "releaseMachineryRepair20261014": {
-    "proof": "EXACT_BOUNDED_RELEASE_MACHINERY_REPAIR_20261014",
-    "base": "685ede249cd20c4801d0a25227fed16d46860618",
-    "source": "480d43136ca087cda0d31259c00ae7cc78b738a3",
-    "paths": [
-      ".github/workflows/cloudflare-production-promote.yml",
-      "release/app-index-freshness.mjs",
-      "release/approved-runtime-composition.mjs",
-      "release/combined-original-gp-object-20261014.mjs",
-      "release/github-proof-get.mjs",
-      "release/growth-adopt-deployment.mjs",
-      "release/public-index-preflight.mjs",
-      "release/verified-owned-rollback-current.mjs",
-      "release/verified-owned-rollback-policy-20261014.json",
-      "release/verified-owned-rollback.mjs",
-      "shift-coach/recover-cancelled-release.mjs",
-      "tests/app-index-freshness.test.mjs",
-      "tests/approved-runtime-composition.test.mjs",
-      "tests/combined-original-gp-object-completeness-20261014.test.mjs",
-      "tests/github-proof-get.test.mjs",
-      "tests/github-proof-reuse.test.mjs",
-      "tests/immutable-git-facts-20261014.test.mjs",
-      "tests/public-index-preflight.test.mjs",
-      "tests/rollback-stock-workflow.test.mjs",
-      "tests/verified-owned-rollback-current.test.mjs",
-      "tests/verified-owned-rollback.test.mjs"
-    ],
-    "maintenancePaths": [
-      "release/release-machinery-repair-scope-20261014.mjs",
-      "tests/release-machinery-repair-composition.test.mjs",
-      "release/combined-finite-scope-20261014.mjs",
-      "release/approved-runtime-composition.mjs"
-    ],
-    "integrationIssue": 1065,
-    "authority": {
-      "owner": "Matt",
-      "instruction": "Treat the accumulated release bottleneck as one bounded engineering repair.",
-      "recordedAt": "2026-10-14T19:43:44Z"
-    },
-    "runtimeChanged": false,
-    "homepageChanged": false,
-    "privacyChanged": false,
-    "consentChanged": false,
-    "clinicalSafetyChanged": false,
-    "stockChanged": false,
-    "emailAuthority": false,
-    "spendingGranted": false,
-    "publicationAuthorityBroadened": false,
-    "rollbackAuthorityBroadened": false,
-    "genericAdoptionAllowed": false,
-    "originalAssertionsRemoved": false,
-    "timeAllowancesIncreased": false,
-    "unknownVersionsAccepted": false,
-    "alteredReceiptsAccepted": false,
-    "suppliedReadersCached": false,
-    "maintenanceSource": "e866ac31b7056374d9095bb88f49a8ff01d0e649"
   }
 }
