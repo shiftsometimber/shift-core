@@ -40,6 +40,23 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Prove unchanged serving runtime before verification-branch sign-in
+        if: github.event_name == 'push' && github.ref == 'refs/heads/verification/member-design-20261002'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module - <<'NODE'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          const baseline='77a1f511ee93243351b4b885fb604f33ac623d4d';
+          execFileSync('git',['fetch','--no-tags','--depth=1','origin',baseline],{stdio:'inherit'});
+          const allowed=new Set(['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','.github/workflows/rendered-member-production-acceptance.yml','.github/workflows/my-timber-final-production.yml']);
+          const changed=execFileSync('git',['diff','--name-only',baseline,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          assert(changed.every(path=>allowed.has(path)),'Verification branch changed serving source');
+          const response=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38507512275',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
+          assert(response.ok);const receipt=await response.json();assert.equal(receipt.head_sha,baseline);assert.equal(receipt.conclusion,'success');
+          console.log('PASS exact prior guarded source and test-only delta; no runtime deployment');
+          NODE
       - name: Acquire growth-loop commissioning identity
         id: oidc_growth
         shell: bash
@@ -156,3 +173,4 @@ jobs:
           test "$G2_013_OUTCOME" = success
           test "$G2_014_OUTCOME" = success
           test "$G2_015_OUTCOME" = success
+

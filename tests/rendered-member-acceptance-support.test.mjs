@@ -52,17 +52,72 @@ test('optional tracking choice cannot run without a verified fictional identity'
 
 test('optional tracking acceptance exercises unselected settings controls and verifies the saved current identity',async()=>{
   const h=harness();await commissioningLogin(h.page,identity);
-  let checked=false,chosen=false;
+  let checked=false,chosen=false,privacyOpen=false;
   const originalGet=h.page.context().request.get;
   h.page.context().request.get=async(url,options)=>url===api+'/v1/consents'?{ok:()=>true,json:async()=>({consents:[{id:1,consent_type:'my_shift_health_tracking',granted:chosen?1:0}]})}:originalGet(url,options);
   const checkbox={isChecked:async()=>checked,check:async()=>{checked=true;h.clicks.push('explicit checkbox');}};
   const agree={isDisabled:async()=>!checked,click:async()=>{assert.equal(checked,true);chosen=true;h.clicks.push('Agree & continue');}};
   const dialog={waitFor:async({state})=>{if(state==='detached')assert.equal(chosen,true);},locator:selector=>selector==='#healthConsentCheck'?checkbox:agree};
   const originalLocator=h.page.locator;
-  h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async()=>{},innerText:async()=>'Review and opt in',click:async()=>h.clicks.push('Review and opt in')}:selector==='dialog.health-consent-dialog-v42n'?dialog:originalLocator(selector);
+  const privacySummary={waitFor:async()=>{},click:async()=>{privacyOpen=true;h.clicks.push('Privacy');}};
+  const privacy={count:async()=>privacyOpen?0:1,locator:()=>({first:()=>privacySummary})};
+  h.page.locator=selector=>selector==='#healthConsentAction'?{waitFor:async({state})=>{if(state==='visible')assert.equal(privacyOpen,true,'Real Privacy disclosure must be opened before hidden consent controls');},locator:()=>privacy,innerText:async()=>'Review and opt in',click:async()=>h.clicks.push('Review and opt in')}:selector==='dialog.health-consent-dialog-v42n'?dialog:originalLocator(selector);
   assert.deepEqual(await chooseOptionalHealthTracking(h.page,{site}),{choice:'explicit optional opt-in',identityVerified:true,saved:true});
-  assert.deepEqual(h.navigations,[site+'/member/settings']);assert.deepEqual(h.clicks,['Review and opt in','explicit checkbox','Agree & continue']);
+  assert.deepEqual(h.navigations,[site+'/member/settings']);assert.deepEqual(h.clicks,['Privacy','Review and opt in','explicit checkbox','Agree & continue']);
   assert.equal(h.requests.filter(x=>x.method==='POST').length,1,'Only the original commissioning login uses the API POST shortcut');
+});
+
+function optionalDisclosureHarness({closed=true,hasDisclosure=true,summaryVisible=true,reveals=true,initialChecked=false,initialAgreeEnabled=false,latestGranted=1,changedIdentity=false,label='Review and opt in'}={}){
+  const h=harness();let opened=!closed,checked=initialChecked,chosen=label==='Withdraw consent';
+  const originalGet=h.page.context().request.get,originalLocator=h.page.locator;
+  h.page.context().request.get=async(url,options)=>{
+    if(url===api+'/v1/consents')return{ok:()=>true,json:async()=>({consents:[{id:1,consent_type:'my_shift_health_tracking',granted:1},{id:2,consent_type:'my_shift_health_tracking',granted:chosen?latestGranted:0}]})};
+    if(changedIdentity&&url===site+'/v1/me'&&h.navigations.length)return{ok:()=>true,json:async()=>({user:{email:'different@example.test'}})};
+    return originalGet(url,options);
+  };
+  const summary={waitFor:async options=>{assert.deepEqual(options,{state:'visible',timeout:15000});if(!summaryVisible)throw Error('visible disclosure summary failed');},click:async options=>{assert.equal(options,undefined);opened=true;h.clicks.push('Health tracking summary');}};
+  const disclosure={count:async()=>Number(hasDisclosure&&closed),locator:selector=>{assert.equal(selector,':scope > summary');return{first:()=>summary}}};
+  const choice={locator:selector=>{assert.equal(selector,'xpath=ancestor::details[not(@open)][1]');return disclosure},waitFor:async options=>{assert.equal(options.timeout,15000);assert.ok(['attached','visible'].includes(options.state));if(options.state==='visible'&&(!opened||!reveals))throw Error('original 15000ms visibility budget failed');},innerText:async()=>label,click:async options=>{assert.equal(options,undefined);assert.ok(opened&&reveals);h.clicks.push('Review and opt in');}};
+  const checkbox={isChecked:async()=>checked,check:async options=>{assert.equal(options,undefined);checked=true;h.clicks.push('explicit checkbox');}};
+  const agree={isDisabled:async()=>!checked&&!initialAgreeEnabled,click:async options=>{assert.equal(options,undefined);assert.equal(checked,true);chosen=true;h.clicks.push('Agree & continue');}};
+  const dialog={waitFor:async({state,timeout})=>{assert.equal(timeout,15000);if(state==='detached')assert.equal(chosen,true)},locator:selector=>selector==='#healthConsentCheck'?checkbox:agree};
+  h.page.locator=selector=>selector==='#healthConsentAction'?choice:selector==='dialog.health-consent-dialog-v42n'?dialog:originalLocator(selector);
+  return h;
+}
+
+test('a collapsed Health tracking section is opened through its visible ordinary summary before explicit consent',async()=>{
+  const h=optionalDisclosureHarness();await commissioningLogin(h.page,identity);
+  assert.deepEqual(await chooseOptionalHealthTracking(h.page,{site}),{choice:'explicit optional opt-in',identityVerified:true,saved:true});
+  assert.deepEqual(h.clicks,['Health tracking summary','Review and opt in','explicit checkbox','Agree & continue']);
+  assert.equal(h.requests.filter(x=>x.method==='POST').length,1,'No consent API write replaces the ordinary choice');
+});
+
+test('missing disclosure, hidden summary and still-hidden choice fail without forcing or a longer wait',async()=>{
+  for(const [options,expected,clicks] of [[{hasDisclosure:false},/15000ms/,[]],[{summaryVisible:false},/visible disclosure summary/,[]],[{reveals:false},/15000ms/,['Health tracking summary']]]){
+    const h=optionalDisclosureHarness(options);await commissioningLogin(h.page,identity);
+    await assert.rejects(chooseOptionalHealthTracking(h.page,{site}),expected);assert.deepEqual(h.clicks,clicks);
+  }
+});
+
+test('already open settings and previously granted tracking do not reopen or regrant consent',async()=>{
+  const h=optionalDisclosureHarness({closed:false,label:'Withdraw consent'});await commissioningLogin(h.page,identity);
+  assert.deepEqual(await chooseOptionalHealthTracking(h.page,{site}),{choice:'explicit optional opt-in',identityVerified:true,saved:true});
+  assert.deepEqual(h.clicks,[]);
+});
+
+test('preselected or initially enabled consent and unexpected labels remain rejected',async()=>{
+  for(const [options,expected] of [[{initialChecked:true},/begin unselected/],[{initialAgreeEnabled:true},/begin unselected/],[{label:'Unknown'},/Unexpected optional/]]){
+    const h=optionalDisclosureHarness(options);await commissioningLogin(h.page,identity);
+    await assert.rejects(chooseOptionalHealthTracking(h.page,{site}),expected);
+    assert.ok(!h.clicks.includes('explicit checkbox')&&!h.clicks.includes('Agree & continue'));
+  }
+});
+
+test('a changed identity or latest withdrawn consent cannot be disguised by an older grant',async()=>{
+  for(const [options,expected] of [[{changedIdentity:true},/lost the verified synthetic identity/],[{latestGranted:0},/choice was not saved/]]){
+    const h=optionalDisclosureHarness(options);await commissioningLogin(h.page,identity);
+    await assert.rejects(chooseOptionalHealthTracking(h.page,{site}),expected);
+  }
 });
 
 test('a successful API login does not pass an unready signed-out interface',async()=>{
@@ -173,3 +228,4 @@ test('an unfinished request must be stopped before retry and cancellation failur
  calls=0;h.page.context().newCDPSession=async()=>({send:async()=>{throw Error('cannot cancel unfinished document')},detach:async()=>{}});
  await assert.rejects(memberReload(h.page,{site}),/cannot cancel/);assert.equal(calls,1);
 });
+
