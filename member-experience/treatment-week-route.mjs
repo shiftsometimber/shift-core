@@ -27,7 +27,7 @@ export async function readRecordedTreatmentWeek(env,userId,sources,now=Date.now(
  if(paused(latest))return{status:'paused'};
  const limited=events.length>1000||context.progress.length>1000||context.food.length>1000;
  context.progress=context.progress.slice(0,1000);context.food=context.food.slice(0,1000);
- return{status:'available',week:{...buildRecordedWeek({records,events:events.slice(0,1000),now,limited}),context}};
+ return{status:'available',week:{...buildRecordedWeek({records,events:events.slice(0,1000),now,limited}),curve:{status:'not_included',scope:'recorded_facts_only'},context}};
 }
 export async function requestRecordedTreatmentWeek(request,env,sources){
  if(request.method!=='GET')return{status:405,data:{error:'method_not_allowed'}};

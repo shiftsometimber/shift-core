@@ -1,0 +1,27 @@
+{
+  "schema": "my-timber-recorded-week-activation/v1",
+  "owner": "Matt",
+  "instruction": "Action this. We don’t want an review",
+  "recordedAt": "2026-10-14T19:20:45.941Z",
+  "base": "685ede249cd20c4801d0a25227fed16d46860618",
+  "scope": "Activate factual recorded treatment weeks, selected owned context, private notes and factual exports",
+  "externalReviewRequiredForThisScope": false,
+  "flag": {
+    "name": "MY_TIMBER_WEEK_VIEW_ENABLED",
+    "value": "true",
+    "config": "wrangler.jsonc",
+    "mirroredConfig": "wrangler.coaching.jsonc"
+  },
+  "clinicalModelEnabled": false,
+  "medicationLevelEstimateIncluded": false,
+  "symptomPredictionIncluded": false,
+  "clinicalApprovalClaimed": false,
+  "prescribingChanged": false,
+  "customerRecordsUsedForTests": false,
+  "emailAuthority": false,
+  "paidModelEnabled": false,
+  "stockChanged": false,
+  "homepageChanged": false,
+  "ordinaryDeviceEvidenceNotInferred": true,
+  "previousClinicalModelDraftRetained": true
+}
