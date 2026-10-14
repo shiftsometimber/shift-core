@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {recordedWeekActivationHistoricalView,verifyRecordedWeekActivation,withoutRecordedWeekActivationFlag,RECORDED_WEEK_ACTIVATION_FLAG} from '../release/my-timber-recorded-week-scope-20261014.mjs';
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim(),head=git('rev-parse','HEAD');
+const current=JSON.parse(execFileSync('git',['show',head+':release/approved-runtime-composition.json'],{encoding:'utf8'})),c=current.myTimberRecordedWeekActivation20261014;
+test('exact owner factual week activation is admitted; all prior ledger entries preserved',()=>{const v=recordedWeekActivationHistoricalView();assert.equal(v.head,c.base);assert.equal(v.rawHead,head);assert(!v.record.myTimberRecordedWeekActivation20261014);verifyRecordedWeekActivation(c,{head});});
+for(const flag of ['clinicalModelEnabled','symptomPredictionIncluded','clinicalApprovalClaimed','genericAdoptionAllowed','rollbackAuthorityBroadened','timeoutsChanged'])test('reject broadened activation '+flag,()=>assert.throws(()=>verifyRecordedWeekActivation({...c,[flag]:true},{head})));
+test('a fresh caller cannot substitute a different route blob',()=>{let calls=0;const read=(r,p)=>{calls++;return p==='member-experience/treatment-week-route.mjs'&&r==='HEAD'?'forged':git('rev-parse',r+':'+p)};assert.throws(()=>verifyRecordedWeekActivation(c,{head,read}),/source drift/i);assert(calls>0);});
+test('configuration projection admits only exact one registered flag',()=>{const actual=execFileSync('git',['show',head+':wrangler.jsonc'],{encoding:'utf8'});assert.equal(withoutRecordedWeekActivationFlag(actual),actual.replace(RECORDED_WEEK_ACTIVATION_FLAG,''));assert.throws(()=>withoutRecordedWeekActivationFlag(actual+'\n// foreign mutation\n'),/exact current authorised/);});

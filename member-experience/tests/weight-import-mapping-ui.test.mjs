@@ -1,3 +1,4 @@
+import {recordedWeekActivationHistoricalView} from '../../release/my-timber-recorded-week-scope-20261014.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -23,6 +24,6 @@ test('mapping must be explicit, shows converted dates and kilograms, and uses on
  assert.match(component,/response.status===401\|\|response.status===409/);
 });
 test('no native widget, build, tester, production config or model source is changed by the CSV interface',()=>{
- const diff=execFileSync('git',['diff','--name-only',retained.base,'HEAD','--','my-timber-app','wrangler.jsonc','wrangler.coaching.jsonc','shift-coach/worker.mjs'],{encoding:'utf8'}).trim();
+ const diff=execFileSync('git',['diff','--name-only',retained.base,recordedWeekActivationHistoricalView().head,'--','my-timber-app','wrangler.jsonc','wrangler.coaching.jsonc','shift-coach/worker.mjs'],{encoding:'utf8'}).trim();
  assert.equal(diff,'');
 });

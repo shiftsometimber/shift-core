@@ -1,3 +1,4 @@
+import {recordedWeekActivationHistoricalView,recordedWeekActivationLegacyRead} from './my-timber-recorded-week-scope-20261014.mjs';
 import {ensureCombinedOriginalGpSource} from './combined-original-gp-object-20261014.mjs';
 export const COMBINED_FINITE_BASE="5eba55df9065887562e94eb2ff35cb88bffc941b";
 export const COMBINED_FINITE_SOURCE="49c50935ddb67d0730f66da41e0a59b4f151df8e";
@@ -41,7 +42,7 @@ export function verifyCombinedHqSource({head,content,blob}){
  assert.equal(blob(p.gpInputSource,'hq-management-entry.mjs'),p.gpEntryInputBlob);assert.equal(blob(p.gpInputSource,'hq-management-api.mjs'),p.gpApiInputBlob);assert.equal(blob(head,'hq-management-api.mjs'),p.gpApiInputBlob,'Exact original dormant GP API retained');
  return p;
 }
-export function verifyCombinedFinite(c,{head,read,blob=read,content,diff,ancestor}){
+export function verifyCombinedFiniteOriginal(c,{head,read,blob=read,content,diff,ancestor}){
  const {maintenanceSource,...record}=c||{};assert.deepEqual(record,COMBINED_FINITE_RECORD,'One exact authorised finite record and holds required');
  assert.match(maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
  for(const ref of [c.base,c.source,maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,maintenanceSource);
@@ -75,10 +76,31 @@ export function verifyCombinedFinite(c,{head,read,blob=read,content,diff,ancesto
  assert.deepEqual(current,prior,'Prior approvals, watermarks, failures and every historical record retained');
  return c;
 }
+
+export function verifyCombinedFinite(c,options){
+ const activation=recordedWeekActivationHistoricalView();
+ if(options.head!==activation.rawHead||activation.head===activation.rawHead)return verifyCombinedFiniteOriginal(c,options);
+ const {head,read,blob=read,content,diff,ancestor}=options;
+ const projectedContent=(r,p)=>{
+  if(r===head||r==='HEAD'||r===activation.head){
+   const current=content(r===activation.head?head:r,p),authentic=rawContent(head,p);
+   if(p===manifest){const record=JSON.parse(current);delete record.myTimberRecordedWeekActivation20261014;return JSON.stringify(record);}
+   return current===authentic?rawContent(activation.head,p):current;
+  }return content(r,p);
+ };
+ const projectedDiff=(a,b)=>{
+  if(b!==head&&b!=='HEAD')return diff(a,b);
+  assert.deepEqual(diff(a,b),git('diff','--name-only',a,head).trim().split('\n').filter(Boolean),'Unreviewed supplied activation source drift');
+  return diff(a,activation.head);
+ };
+ return verifyCombinedFiniteOriginal(c,{head:activation.head,read:recordedWeekActivationLegacyRead(read,activation),blob:recordedWeekActivationLegacyRead(blob,activation),content:projectedContent,diff:projectedDiff,ancestor});
+}
+
 export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=git('rev-parse','HEAD').trim(),content=(ref,path)=>rawContent(ref==='HEAD'?rawHead:ref,path);
- const blob=(ref,path)=>rawBlob(ref==='HEAD'?rawHead:ref,path),rawRead=defaultReader?blob:reader,current=JSON.parse(content(rawHead,manifest)),c=current.combinedFinite20261014;
- const normal=(ref,path)=>exactCombinedDirectoryDisplay(rawRead(ref,path),ref,path);
+ const activation=recordedWeekActivationHistoricalView();
+ const rawHead=activation.head,content=(ref,path)=>activation.content(ref==='HEAD'?rawHead:ref,path);
+ const blob=(ref,path)=>activation.blob(ref==='HEAD'?rawHead:ref,path),rawRead=defaultReader?blob:recordedWeekActivationLegacyRead(reader,activation),current=activation.record,c=current.combinedFinite20261014;
+ const normal=(ref,path)=>exactCombinedDirectoryDisplay(rawRead(ref,path),ref==='HEAD'?rawHead:ref,path);
  if(!c)return{rawHead,head:rawHead,record:current,content,blob,read:normal};
  verifyCombinedFinite(c,{head:rawHead,read:rawRead,blob,content,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)});
  const changed=new Set([...c.paths,...c.maintenancePaths,manifest]);
@@ -92,8 +114,8 @@ export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader==
   return normal(map(ref,path),path);
  };
  const record=structuredClone(current);delete record.combinedFinite20261014;
- assert.equal(git('rev-parse','HEAD').trim(),rawHead,'Source HEAD changed during combined verification');
- return{rawHead,head:c.base,record,read,blob:(ref,path)=>blob(map(ref,path),path),content:(ref,path)=>content(map(ref,path),path)};
+ assert.equal(git('rev-parse','HEAD').trim(),activation.rawHead,'Source HEAD changed during combined verification');
+ return{rawHead:activation.rawHead,head:c.base,record,read,blob:(ref,path)=>blob(map(ref,path),path),content:(ref,path)=>content(map(ref,path),path)};
 }
 // Pure compatibility projection for established abstract legacy comparison contracts.
 // It NEVER authenticates a supplied current reader or authorises a deployment.
@@ -103,13 +125,15 @@ export function combinedFiniteLegacyHistoricalView(reader=null,{defaultReader=re
  assert.equal(git('diff','--cached','--name-only').trim(),'','Staged source changed before legacy projection');
  if(defaultReader)return{...actual,currentReaderAuthenticated:true,legacyComparisonOnly:false};
  assert.equal(typeof reader,'function','A legacy comparison reader is required');
+ const activation=recordedWeekActivationHistoricalView();
+ reader=recordedWeekActivationLegacyRead(reader,activation);
  const current=JSON.parse(rawContent(actual.rawHead,manifest)),c=current.combinedFinite20261014;
  const changed=new Set(c?[...c.paths,...c.maintenancePaths,manifest]:[]);
  const affected=path=>changed.has(path)||[...changed].some(p=>p.startsWith(path+'/'));
  const read=(ref,path)=>{
   if(ref==='HEAD'&&affected(path)){
    const headValue=reader('HEAD',path),aliasValue=reader(actual.rawHead,path);
-   if(exactCombinedDirectoryDisplay(headValue,'HEAD',path)!==exactCombinedDirectoryDisplay(aliasValue,actual.rawHead,path))return headValue;
+   if(exactCombinedDirectoryDisplay(headValue,activation.affected(path)?activation.head:'HEAD',path)!==exactCombinedDirectoryDisplay(aliasValue,activation.affected(path)?activation.head:actual.rawHead,path))return headValue;
    return exactCombinedDirectoryDisplay(reader(actual.head,path),actual.head,path);
   }
   return exactCombinedDirectoryDisplay(reader(ref,path),ref,path);
