@@ -34,6 +34,7 @@ test('unknown source/paths, altered approval, extra URLs, weakened comparisons a
 test('unlisted changes, missing ancestry, edited prior approvals, original comparators or bytes outside inverse hooks are rejected',()=>{
  for(const ref of [base,source,'a'.repeat(40)]){const o=options(),f=o.diff;o.diff=a=>a===ref?[...f(a),'unapproved']:f(a);assert.throws(()=>c.verifyRootShareCompletionSource(fixture(),o));}
  for(const key of ['read','blob']){const o=options(),f=o[key];o[key]=(r,p)=>r==='HEAD'&&p==='.github/workflows/cloudflare-production-promote.yml'?'drift':f(r,p);assert.throws(()=>c.verifyRootShareCompletionSource(fixture(),o),/source drift/);}
+ for(const key of ['read','blob']){const o=options(),f=o[key];o[key]=(r,p)=>r==='HEAD'&&p==='shift-coach/worker.mjs'?'drift':f(r,p);assert.throws(()=>c.verifyRootShareCompletionSource(fixture(),o),/Male-obesity source drift: shift-coach\/worker.mjs/);}
  const a=options();a.ancestor=()=>{throw Error('no ancestry')};assert.throws(()=>c.verifyRootShareCompletionSource(fixture(),a));
  for(const p of Object.keys(before)){const o=options(),f=o.content;o.content=(r,q)=>r===o.head&&q===p?f(r,q)+'unapproved':f(r,q);assert.throws(()=>c.verifyRootShareCompletionSource(fixture(),o));}
  const o=options(),f=o.content;o.content=(r,p)=>p===manifest&&r!==base?JSON.stringify({...prior,photoCalendarRepair:{changed:true},rootShareCompletionRepair:{}}):f(r,p);assert.throws(()=>c.verifyRootShareCompletionSource(fixture(),o),/prior identities/);
