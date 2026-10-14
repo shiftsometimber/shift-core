@@ -256,3 +256,49 @@ test('supported native context preserves repeated literal output reuse after uns
  assert(shows<8,'Supported context must retain native literal-directory output reuse across guarded scopes');
  console.log(JSON.stringify({kind:'supported_context_reuse_after_fail_closed_fallback',requestedReads:60,nativeDirectoryShows:shows,outputByteEquality:true}));
 }));
+
+
+for(const missing of ['commit','root','intermediate'])test('cold inventory paths retain native errors after a required '+missing+' object vanishes',()=>fixture(({dir})=>{
+ performanceMkdir('cold-directory');writeFileSync('cold-directory/first.txt','first cold payload\n');writeFileSync('cold-directory/second.txt','second cold payload\n');performanceGit('add','.');performanceGit('commit','-qm','cold inventory source');
+ const ref=performanceGit('rev-parse','HEAD'),oid=missing==='commit'?ref:performanceGit('rev-parse',missing==='root'?ref+'^{tree}':ref+':cold-directory');
+ performanceSame(['show',ref+':cold-directory/first.txt']);
+ const object=join(dir,'.git','objects',oid.slice(0,2),oid.slice(2)),saved=join(dir,'.git','cold-saved-'+missing);performanceRename(object,saved);
+ try{
+  if(missing==='intermediate'){
+   assert.equal(performanceSame(['rev-parse',ref+':cold-directory']).ok,true,'Native rev-parse may return a missing target tree object identifier');
+   assert.equal(performanceSame(['show',ref+':cold-directory']).ok,false,'Native show requires the actual target tree');
+  }
+  assert.equal(performanceSame(['show',ref+':cold-directory/second.txt']).ok,false,'A cold source path must authenticate its actual '+missing+' object');
+  assert.equal(performanceSame(['rev-parse',ref+':cold-directory/second.txt']).ok,false,'A required parent/commit removal must retain native resolution failure');
+ }finally{performanceRename(saved,object);}
+ performanceSame(['show',ref+':cold-directory/second.txt']);
+}));
+
+test('a cold same-object path cannot reuse warmed blob bytes after the actual blob disappears',()=>fixture(({dir})=>{
+ writeFileSync('cold-shared-first.txt','shared cold blob\n');writeFileSync('cold-shared-second.txt','shared cold blob\n');performanceGit('add','.');performanceGit('commit','-qm','same object cold paths');
+ const ref=performanceGit('rev-parse','HEAD'),oid=performanceGit('rev-parse',ref+':cold-shared-first.txt');
+ performanceSame(['show',ref+':cold-shared-first.txt']);
+ const object=join(dir,'.git','objects',oid.slice(0,2),oid.slice(2)),saved=join(dir,'.git','cold-saved-shared-blob');performanceRename(object,saved);
+ try{
+  assert.equal(performanceSame(['show',ref+':cold-shared-second.txt']).ok,false,'Actual cat-file byte provenance must survive a different path sharing its object identifier');
+  assert.equal(performanceSame(['rev-parse',ref+':cold-shared-second.txt']).ok,true,'Native rev-parse may resolve a missing target blob identifier');
+ }finally{performanceRename(saved,object);}
+ performanceSame(['show',ref+':cold-shared-second.txt']);
+}));
+
+test('a newly admitted inventory cannot certify previously warmed absent blob bytes or an untracked tag peel chain',()=>fixture(({dir})=>{
+ writeFileSync('cold-inventory-shared.txt','shared across inventory commits\n');performanceGit('add','.');performanceGit('commit','-qm','first blob inventory');const first=performanceGit('rev-parse','HEAD');
+ writeFileSync('cold-unrelated.txt','unrelated inventory mutation\n');performanceGit('add','.');performanceGit('commit','-qm','second blob inventory');const second=performanceGit('rev-parse','HEAD'),oid=performanceGit('rev-parse',first+':cold-inventory-shared.txt');
+ performanceSame(['show',first+':cold-inventory-shared.txt']);
+ const object=join(dir,'.git','objects',oid.slice(0,2),oid.slice(2)),saved=join(dir,'.git','cold-saved-inventory-blob');performanceRename(object,saved);
+ try{
+  assert.equal(performanceSame(['show',second+':cold-inventory-shared.txt']).ok,false,'A successful native ls-tree cannot certify absent blob bytes from an earlier inventory');
+  assert.equal(performanceSame(['rev-parse',second+':cold-inventory-shared.txt']).ok,true,'Missing target blob still permits native identifier resolution in a new inventory');
+ }finally{performanceRename(saved,object);}
+ performanceSame(['show',second+':cold-inventory-shared.txt']);
+ performanceGit('tag','-am','cold annotated reference','cold-annotated-reference',second);const tag=performanceGit('rev-parse','cold-annotated-reference');
+ performanceSame(['show',tag+':file.txt']);
+ const commitObject=join(dir,'.git','objects',second.slice(0,2),second.slice(2)),savedCommit=join(dir,'.git','cold-saved-peeled-commit');performanceRename(commitObject,savedCommit);
+ try{assert.equal(performanceSame(['show',tag+':cold-inventory-shared.txt']).ok,false,'An annotated tag must remain native when its full peel chain is not authenticated');}
+ finally{performanceRename(savedCommit,commitObject);}
+}));

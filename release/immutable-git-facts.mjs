@@ -132,8 +132,10 @@ function immutableFact(scope,args,options){
  const match=/^([a-f0-9]{40}):([^\0]+)$/.exec(args[1]);if(!match)return null;
  const [,ref,path]=match;if(path.startsWith('/')||path.split('/').some(p=>!p||p==='.'||p==='..'))return null;
  const namespace=scope.factNamespace??JSON.stringify([scope.cwd,scope.environment,scope.contextSignature??null]);
+ const context=scope.nativeContext;
  const treeKey=namespace+' '+ref;
  if(!immutableTrees.has(treeKey)){
+  try{const type=execFileSync('git',['cat-file','-t',ref],{encoding:'utf8',maxBuffer:1024,stdio:'pipe'}).trim();if(type!=='commit'&&type!=='tree')return null;}catch{return null;}
   let raw;try{raw=execFileSync('git',['ls-tree','-r','-t','-z','--full-tree',ref],{maxBuffer:32*1024*1024,stdio:'pipe'});}catch{return null;}
   const entries=new Map();let start=0;
   for(let end=raw.indexOf(0,start);end!==-1;end=raw.indexOf(0,start)){
@@ -146,27 +148,43 @@ function immutableFact(scope,args,options){
   if(start!==raw.length)return null;
   try{entries.rootTree=execFileSync('git',['rev-parse',ref+'^{tree}'],{encoding:'utf8'}).trim();}catch{return null;}
   if(!/^[a-f0-9]{40}$/.test(entries.rootTree))return null;
+  if(context){
+   const oids=[...new Set([ref,entries.rootTree,...[...entries.values()].filter(entry=>entry.type==='tree').map(entry=>entry.oid)])];
+   const provenance=new Map();for(const oid of oids){const value=looseObjectState(context,oid);if(value===null)return null;provenance.set(oid,value);}
+   entries.provenance={base:context.useStorage,objects:provenance};
+  }
   immutableTrees.set(treeKey,entries);
  }
- const entry=immutableTrees.get(treeKey).get(path);if(!entry)return null;
+ const tree=immutableTrees.get(treeKey),entry=tree.get(path);if(!entry)return null;
+ if(context){
+  const needed=[ref,tree.rootTree];let prefix='';for(const segment of path.split('/').slice(0,-1)){prefix=prefix?prefix+'/'+segment:segment;const parent=tree.get(prefix);if(parent?.type==='tree')needed.push(parent.oid);}
+  const proof=tree.provenance;if(!proof||proof.base!==context.useStorage||needed.some(oid=>!proof.objects.has(oid)||looseObjectState(context,oid)!==proof.objects.get(oid))){immutableTrees.delete(treeKey);return null;}
+ }
  const limit=options?.maxBuffer??1024*1024;
  if(args[0]==='rev-parse'){
   const bytes=Buffer.from(entry.oid+'\n');return bytes.length>limit?null:{bytes,oid:entry.oid,type:entry.type};
  }
  if(entry.type!=='blob')return null;
  const blobKey=namespace+' '+entry.oid;
+ if(context&&immutableBlobBytes.has(blobKey)){const previous=immutableBlobBytes.get(blobKey);const current=storageState(context,[entry.oid],context.useStorage);if(current===null||previous.storage!==current)immutableBlobBytes.delete(blobKey);}
  if(!immutableBlobBytes.has(blobKey)){
+  const before=context?storageState(context,[entry.oid],context.useStorage):null;if(context&&before===null)return null;
   let bytes;try{bytes=execFileSync('git',['cat-file','blob',entry.oid],{maxBuffer:limit,stdio:'pipe'});}catch{return null;}
   assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),entry.oid,'Native immutable blob bytes do not match their Git object ID');
-  immutableBlobBytes.set(blobKey,bytes);
+  const storage=context?storageState(context,[entry.oid],context.useStorage):null;if(context&&(storage===null||storage!==before))return null;
+  immutableBlobBytes.set(blobKey,{bytes,storage});
  }
- const bytes=immutableBlobBytes.get(blobKey);
+ const bytes=immutableBlobBytes.get(blobKey).bytes;
  assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),entry.oid,'Cached immutable blob bytes do not match their Git object ID');
  return bytes.length>limit?null:{bytes,oid:entry.oid,type:entry.type};
 }
 // Shared native facts retain full point-of-use repository/environment identity.
 // This does not reuse callback outputs, admission results, HEAD, diff or ancestry.
 const nativeFactContexts=new Map(),nativeFactOutputs=new Map();let nextNativeFactNamespace=0;
+function looseObjectState(context,oid){
+ if(!/^[a-f0-9]{40}$/.test(oid))return null;
+ try{const s=lstatSync(resolve(context.objectDirectory,oid.slice(0,2),oid.slice(2)),{bigint:true,throwIfNoEntry:false});if(!s)return'absent';if(s.isSymbolicLink()||!s.isFile())return null;return JSON.stringify([s.dev.toString(),s.ino.toString(),s.mode.toString(),s.size.toString(),s.mtimeNs.toString(),s.ctimeNs.toString()]);}catch{return null;}
+}
 function storageState(context,objects=[],baseStorage=undefined){
  try{
   const stat=path=>{try{const s=lstatSync(path,{bigint:true,throwIfNoEntry:false});if(!s)return'absent';if(s.isSymbolicLink())return null;return[s.dev.toString(),s.ino.toString(),s.mode.toString(),s.size.toString(),s.mtimeNs.toString(),s.ctimeNs.toString()];}catch(error){if(error.code==='ENOENT')return'absent';throw error;}};
@@ -214,9 +232,9 @@ function nativeLiteralFact(args,options,context){
   assert.equal(createHash('sha256').update(cached.bytes).digest('hex'),cached.digest,'Cached immutable native output bytes do not match their digest');
   return cached;
  }
- const frame={cwd:context.cwd,environment:context.environment,contextSignature:context.cacheNamespace,factNamespace:context.cacheNamespace};
+ const frame={cwd:context.cwd,environment:context.environment,contextSignature:context.cacheNamespace,factNamespace:context.cacheNamespace,nativeContext:context};
  const fact=immutableFact(frame,args,options),namespace=frame.factNamespace;
- const tree=immutableTrees.get(namespace+' '+ref),entry=tree?.get(path);if(!entry)return null;
+ const tree=immutableTrees.get(namespace+' '+ref),entry=tree?.get(path);if(!entry||!fact&&entry.type!=='tree')return null;
  let bytes=fact?.bytes,type=entry.type,oid=entry.oid;
  if(!bytes){
   if(args[0]!=='show'||type!=='tree')return null;
