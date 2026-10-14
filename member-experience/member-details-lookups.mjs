@@ -1,4 +1,5 @@
 import {gpFormRuntime} from './gp-form.mjs';
+import {searchDirectory} from '../gp-directory/search.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 const headers={'Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','Vary':'Cookie','X-Robots-Tag':'noindex, nofollow'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
@@ -45,6 +46,10 @@ export async function memberDetailsLookupRoute(request,env){
  if(rateLimited(auth.userId))return json({error:'slow_down',message:'Please wait a moment before searching again. Manual entry is always available.'},429);
  const query=String(u.searchParams.get('q')||'').trim();if(query.length<3||query.length>80||/[\u0000-\u001f]/.test(query))return json({error:'invalid_search',message:'Enter at least three characters of your GP practice name.'},400);
  if(env.MEMBER_GP_LOOKUP_ENABLED!=='true')return json({error:'gp_lookup_unavailable',message:'GP suggestions are unavailable here. Enter your practice manually.'},503);
+ if(env.MEMBER_GP_DIRECTORY_V2_ENABLED==='true'){
+  try{return json(await searchDirectory(env.DB,{query,near:u.searchParams.get('near')||''}));}
+  catch(error){return json({error:error.message,message:'The UK directory could not load. Your details are unchanged; manual entry still works.'},error.message.startsWith('invalid_')?400:503);}
+ }
  const key=query.toLowerCase(),cached=gpCache.get(key);if(cached&&cached.until>Date.now())return json(cached.value);
  if(busy>=2)return json({error:'gp_lookup_busy',message:'The practice search is busy. Try again or enter your GP manually.'},503);
  busy++;

@@ -1,0 +1,128 @@
+{
+  "reviewedAt": "2026-10-12T16:39:36.680983+00:00",
+  "reviewType": "Primary-source factual review and discovery; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sourceRenewals": [
+    {
+      "id": "registry-nct07857473",
+      "url": "https://clinicaltrials.gov/study/NCT07857473",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07857473",
+      "sourcePublishedAt": "2026-10-05",
+      "sourceUpdatedAt": "2026-10-05",
+      "reviewedAt": "2026-10-12T16:39:36.680983+00:00",
+      "previousReviewedAt": "2026-10-05T12:35:34Z",
+      "reviewedFingerprint": "ab03de21379df00829649331da78513f1a6a7b46770fcf1f92026739d473222f",
+      "previousReviewedFingerprint": "ab03de21379df00829649331da78513f1a6a7b46770fcf1f92026739d473222f",
+      "lifecycle": {
+        "nctId": "NCT07857473",
+        "title": "A Study to Investigate the Safety and Efficacy of TE-8105 in Overweight or Obesity Participants",
+        "sponsor": "Immunwork, Inc.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 204,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-10",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-02",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-02",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-10-05",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-05",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "rawResponseSha256": "7d105c243065ff2fcf90213f7e9cf30499be679169001963b4656432e2d20e41",
+      "responseBytes": 13830,
+      "withdrawn": false,
+      "wordingChanged": false
+    }
+  ],
+  "programmeSummaryReviews": [
+    {
+      "id": "te8105",
+      "previousReviewedAt": "2026-10-05T12:35:34Z",
+      "reviewedAt": "2026-10-12T16:39:36.680983+00:00",
+      "completePrimaryEvidenceRead": true,
+      "completeExistingWordingRead": true,
+      "wordingChanged": false,
+      "assessment": "Complete registry and all current programme fields read. NOT_YET_RECRUITING, estimated enrolment/start/completion, two Australian locations, no posted results and all UK authorisation/NHS/supply limits remain unchanged."
+    },
+    {
+      "id": "asc36-oral",
+      "previousReviewedAt": "2026-10-05T11:27:10Z",
+      "reviewedAt": "2026-10-12T16:39:36.680983+00:00",
+      "completePrimaryEvidenceRead": true,
+      "completeExistingWordingRead": true,
+      "wordingChanged": false,
+      "assessment": "Complete unchanged 8 September sponsor article and programme fields read. US IND clearance and initiation remain sponsor reports. First dose/recruitment/locations/dates are unspecified; animal findings remain separate from human results. Fresh exact-name registry search returned zero, without proving no record exists."
+    }
+  ],
+  "preserved": {
+    "programmes": 119,
+    "configuredSources": 204,
+    "manualEvidenceUrls": 102,
+    "publicCompletedReviews": 41,
+    "programmeSummaryQueueAtRead": 71,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "monitorSuccessesSeeded": false,
+    "medicalWordingChanged": false,
+    "productionWrites": 0
+  },
+  "directSourceRecoveryChecks": [
+    {
+      "id": "hrs1596-hengrui-20260929",
+      "checkedAt": "2026-10-12T16:37:53.819Z",
+      "reviewedFingerprint": "efef49786abf566da9b187e326092aa38627954d09577ab271fba0f6bc07b929",
+      "unchanged": true,
+      "withdrawn": false,
+      "renewalRequested": false,
+      "productionObservationChanged": false
+    },
+    {
+      "id": "hengrui-ribupatide-pmos-20260708",
+      "checkedAt": "2026-10-12T16:37:53.819Z",
+      "reviewedFingerprint": "563c54b397ae9180b32c9b3113fee38852c29d9e8ade01faea283613b783da30",
+      "unchanged": true,
+      "withdrawn": false,
+      "renewalRequested": false,
+      "productionObservationChanged": false
+    }
+  ],
+  "retrievalFailures": [
+    "CGX sponsor patients page direct HTTP403; complete page read through web reader",
+    "CGX original first-dose page direct HTTP403; complete announcement read through web reader",
+    "ISRCTN HTML holding page; complete official XML API successfully retrieved",
+    "Ascletis web reader unavailable; complete direct HTML successfully retrieved"
+  ],
+  "publicationStatus": "owner_authorised_factual_renewal",
+  "wordingChanged": false,
+  "monitorLogicChanged": false,
+  "priorCompletedReviews": 41,
+  "completedReviewsAfter": 42,
+  "sourceReviewsApplied": 1,
+  "programmeReviewsApplied": 2,
+  "summaryQueueBefore": 71,
+  "summaryQueueAfter": 69,
+  "ownerEditorialAuthorisation": "Standing approved factual publication; #1065 finite source/release coordination and all exact-head/live gates remain required."
+}

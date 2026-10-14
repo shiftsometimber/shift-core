@@ -1,0 +1,157 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-12T18:19:58.149Z",
+  "candidateHash": "244b95240df16c9938a320809eb1e72f70584aaf5f1ba39c7d36a246738df902",
+  "checks": [
+    {
+      "width": 390,
+      "name": "initial rendering and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "body text has readable contrast",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "all six goals change advice",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "vegan, small appetite and training decisions",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "all three meals and next-step handoff",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "search, no matches and filter recovery",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "comparison, cap and clear",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "modal, keyboard Escape and focus return",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "shortlist and buy-nothing result",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "cost example and zero-servings rejection",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "local takeaway download contents",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "print layout produces a PDF",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "name": "reset and refresh clear choices",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "initial rendering and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "body text has readable contrast",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "all six goals change advice",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "vegan, small appetite and training decisions",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "all three meals and next-step handoff",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "search, no matches and filter recovery",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "comparison, cap and clear",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "modal, keyboard Escape and focus return",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "shortlist and buy-nothing result",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "cost example and zero-servings rejection",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "local takeaway download contents",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "print layout produces a PDF",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "name": "reset and refresh clear choices",
+      "pass": true
+    }
+  ],
+  "blockedRequests": [
+    {
+      "method": "GET",
+      "path": "/v1/radar/ticker"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/radar/ticker"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/radar/ticker"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/radar/ticker"
+    }
+  ],
+  "pageErrors": [],
+  "scope": "Real Chrome 390/1440 candidate overlay; not deployed-source or independent human acceptance"
+}
