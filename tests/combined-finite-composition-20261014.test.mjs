@@ -1,0 +1,31 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
+import {verifyCombinedFinite,combinedFiniteHistoricalView,exactCombinedDirectoryDisplay} from '../release/combined-finite-scope-20261014.mjs';
+const immutableFixtureFacts=new Map();const git=(...a)=>{const fixed=['rev-parse','show'].includes(a[0])&&/^[a-f0-9]{40}:/.test(a[1]||'');const key=JSON.stringify([process.cwd(),a]);if(fixed&&immutableFixtureFacts.has(key))return immutableFixtureFacts.get(key);const value=execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}).trim();if(fixed)immutableFixtureFacts.set(key,value);return value;},head=git('rev-parse','HEAD'),content=(r,p)=>execFileSync('git',['show',(r==='HEAD'?head:r)+':'+p],{encoding:'utf8',maxBuffer:64e6}),c=JSON.parse(content(head,'release/approved-runtime-composition.json')).combinedFinite20261014;
+const e={head,blob:(r,p)=>git('rev-parse',(r==='HEAD'?head:r)+':'+p),read:(r,p)=>git('rev-parse',(r==='HEAD'?head:r)+':'+p),content,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)};
+test('one current finite payload exposes only the frozen original baseline to historical guards',()=>{assert(verifyCombinedFinite(c,e));const v=combinedFiniteHistoricalView();assert.equal(v.head,c.base);assert.equal(v.record.combinedFinite20261014,undefined);assert.equal(v.rawHead,head);});
+test('every actual raw payload and maintenance path remains independently protected',()=>{for(const p of [...new Set([...c.paths,...c.maintenancePaths])])assert.throws(()=>verifyCombinedFinite(c,{...e,read:(r,q)=>r==='HEAD'&&q===p?'drift':e.read(r,q)}),/source drift/);});
+test('unreviewed source, maintenance, registration tail, ancestry and historical receipt rewrite fail closed',()=>{for(const boundary of[c.base,c.source,c.maintenanceSource])assert.throws(()=>verifyCombinedFinite(c,{...e,diff:(a,b)=>a===boundary?[...e.diff(a,b),'worker.js']:e.diff(a,b)}),/Unrelated|Unreviewed/);assert.throws(()=>verifyCombinedFinite(c,{...e,ancestor:()=>{throw Error('no ancestry');}}),/ancestry/);assert.throws(()=>verifyCombinedFinite({...c,emailsSent:true},e),/exact authorised finite/);const changed=JSON.parse(content(head,'release/approved-runtime-composition.json'));changed.myTimberWeekCode.activationEnabled=true;assert.throws(()=>verifyCombinedFinite(c,{...e,content:(r,p)=>r===head&&p==='release/approved-runtime-composition.json'?JSON.stringify(changed):content(r,p)}),/Prior approvals/);});
+test('authentic tree displays canonicalise only a complete authentic tree; malformed bodies remain different',()=>{for(const p of ['my-timber-app','public']){const authentic=content(head,p),alias=content('HEAD',p);assert.equal(exactCombinedDirectoryDisplay(authentic,head,p),exactCombinedDirectoryDisplay(alias,'HEAD',p));for(const altered of [authentic+'extra',authentic.slice(0,-4),authentic.replace(/\n/,'\nextra')])assert.equal(exactCombinedDirectoryDisplay(altered,head,p),altered);}});
+test('a content reader cannot fabricate an approved changed directory or original unchanged file',()=>{for(const p of ['frontend','member-experience'])assert.throws(()=>combinedFiniteHistoricalView((r,q)=>r==='HEAD'&&q===p?'bad':content(r,q),{defaultReader:false}).read('HEAD',p),/source drift/);for(const p of ['wrangler.jsonc','.github/workflows/cloudflare-production-promote.yml'])assert.throws(()=>verifyCombinedFinite(c,{...e,read:(r,q)=>r==='HEAD'&&q===p?'changed':e.read(r,q)}),/source drift/);});
+
+import {compactLiteralExcludes} from '../release/combined-finite-scope-20261014.mjs';
+import {mkdtempSync,mkdirSync,writeFileSync,rmSync} from 'node:fs';import {tmpdir} from 'node:os';import {join} from 'node:path';
+test('literal exclusion compaction removes only children already excluded by an existing exact parent',()=>{
+ const args=['diff','base','HEAD','--','member-experience',':(exclude)assets/food/a.webp',':(exclude)assets/food',':(exclude)assets/foodish/a.webp',':(exclude)assets/f?od/b.webp'];
+ assert.deepEqual(compactLiteralExcludes(args),['diff','base','HEAD','--','member-experience',':(exclude)assets/food',':(exclude)assets/foodish/a.webp',':(exclude)assets/f?od/b.webp']);
+ for(const a of [['show','HEAD:file'],['diff','base','HEAD']])assert.equal(compactLiteralExcludes(a),a);
+});
+test('actual Git diff is identical before and after compaction, including a changed unknown file outside the excluded directory',()=>{
+ const dir=mkdtempSync(join(tmpdir(),'shift-literal-pathspec-'));
+ try{
+  const run=(...a)=>execFileSync('git',['-C',dir,...a],{encoding:'utf8'}).trim();run('init','-q');run('config','user.name','Synthetic verifier');run('config','user.email','verifier@example.invalid');
+  mkdirSync(join(dir,'assets/food'),{recursive:true});writeFileSync(join(dir,'assets/food/a'),'one');writeFileSync(join(dir,'unknown.mjs'),'original');run('add','.');run('commit','-qm','Fixture');
+  writeFileSync(join(dir,'assets/food/a'),'changed');writeFileSync(join(dir,'assets/food/new'),'new');writeFileSync(join(dir,'unknown.mjs'),'changed');
+  const args=['diff','--name-status','HEAD','--','.',':(exclude)assets/food/a',':(exclude)assets/food/new',':(exclude)assets/food'];
+  assert.equal(run(...args),run(...compactLiteralExcludes(args)));assert.match(run(...compactLiteralExcludes(args)),/M\s+unknown\.mjs/);
+ }finally{rmSync(dir,{recursive:true,force:true});}
+});
+
+test('fabricating both current aliases cannot forge a fresh directory reader',()=>{for(const p of ['frontend','member-experience','public'])assert.throws(()=>combinedFiniteHistoricalView((r,q)=>q===p&&(r==='HEAD'||r===head)?'fabricated-current-directory':content(r,q),{defaultReader:false}).read('HEAD',p),/source drift/);});
+
+test('non-directory values are returned byte-for-byte without unnecessary metadata lookup',()=>{for(const value of ['ordinary file bytes','not a hash','a'.repeat(40),'tree-shaped prose without header',null]){if(typeof value==='string'&&value.startsWith('tree '))continue;assert.equal(exactCombinedDirectoryDisplay(value,'unresolved-fixture-ref','ordinary.txt'),value);}assert.throws(()=>exactCombinedDirectoryDisplay('tree unresolved-fixture-ref:frontend\nmalformed\n','unresolved-fixture-ref','frontend'));});

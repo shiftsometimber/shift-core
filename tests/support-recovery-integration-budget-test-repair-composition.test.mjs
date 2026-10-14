@@ -1,3 +1,4 @@
+import {combinedPositiveHistoricalRead} from '../release/combined-finite-scope-20261014.mjs';
 import {myTimberHistoricalFile} from '../release/my-timber-progress-journey-scope.mjs';
 import {myTimberHistoricalRecord,myTimberHistoricalIntegrationWorkflow} from '../release/my-timber-progress-journey-scope.mjs';
 import test from 'node:test';
@@ -29,7 +30,8 @@ test('actual repair retains all prior records, production controls and original 
  const current=myTimberHistoricalRecord(verifyReconciledRelease());assert.equal(current.supportRecoveryIntegrationBudgetTestRepair.source,source);
  const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
  for(const path of [...paths,...maintenance])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
- for(const path of ['.github/workflows/shift-coach-integration.yml','.github/workflows/cloudflare-production-promote.yml','shift-coach/scope.mjs','release/fit-300-scope.mjs','shift-coach/full-page-proof.mjs','shift-coach/browser-proof.mjs','shift-coach/member-record-browser.mjs','shift-coach/public-trust-browser.mjs','tests/tablet-routine-browser.mjs','frontend/member/turnstile-auth-v1.js','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','worker.js','medicines-watch/README.md','medicines-watch/industry.mjs'])assert.equal(path==='.github/workflows/shift-coach-integration.yml'?myTimberHistoricalIntegrationWorkflow(read('HEAD',path)):read('HEAD',path),read(base,path));
+ const positiveRead=combinedPositiveHistoricalRead(read);
+ for(const path of ['.github/workflows/shift-coach-integration.yml','.github/workflows/cloudflare-production-promote.yml','shift-coach/scope.mjs','release/fit-300-scope.mjs','shift-coach/full-page-proof.mjs','shift-coach/browser-proof.mjs','shift-coach/member-record-browser.mjs','shift-coach/public-trust-browser.mjs','tests/tablet-routine-browser.mjs','frontend/member/turnstile-auth-v1.js','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','worker.js','medicines-watch/README.md','medicines-watch/industry.mjs'])assert.equal(path==='.github/workflows/shift-coach-integration.yml'?myTimberHistoricalIntegrationWorkflow(read('HEAD',path)):positiveRead('HEAD',path),read(base,path));
  const before=read(base,maintenance[0]),after=myTimberHistoricalFile(maintenance[0],read('HEAD',maintenance[0]));
  const body=(t,name)=>{const start=t.indexOf('export function '+name+'(');return t.slice(start,t.indexOf('\n}\n',start)+3);};
  for(const match of before.matchAll(/export function (\w+)\(/g))if(match[1]!=='verifyReconciledRelease')assert.equal(body(after,match[1]),body(before,match[1]),match[1]);

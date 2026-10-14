@@ -1,3 +1,4 @@
+import {combinedLegacyValidationRead} from './combined-finite-scope-20261014.mjs';
 import {weekPhotoTestIfPresent,weekRecoveryIfPresent} from './my-timber-week-scope.mjs';
 import {photoAcceptanceHistoricalView,photoAcceptanceHistoricalFile} from './photo-acceptance-maintenance-scope.mjs';
 import assert from 'node:assert/strict';
@@ -46,7 +47,7 @@ export function rootShareCompletionHistoricalView(reader=null,{defaultReader=rea
  const overlay=photoAcceptanceHistoricalView(reader,{defaultReader}),rawHead=overlay.head,current=overlay.record,c=current.rootShareCompletionRepair;
  const rawBlob=overlay.blob,rawRead=overlay.read,rawContent=overlay.content;
  if(!c)return{record:current,rawHead:overlay.rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:rawContent};
- verifyRootShareCompletionSource(c,{head:rawHead,read:rawRead,blob:rawBlob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:rawContent});
+ verifyRootShareCompletionSource(c,{head:rawHead,read:combinedLegacyValidationRead(rawRead,rawBlob,{defaultReader,ownPaths:c.paths,maintenancePaths:c.maintenancePaths,protectedPaths:["share-preview/metadata.mjs","share-preview/stream.mjs","share-preview/asset.mjs","share-preview/shift-share-20261013.jpg","share-preview/shift-share-20261013.svg","shift-coach/worker.mjs","frontend/member/member-progress-v1.js","shift-visualise-v1.js",".github/workflows/cloudflare-production-promote.yml","medicines-watch/preservation.mjs"]}),blob:rawBlob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:rawContent});
  const record=structuredClone(current);delete record.rootShareCompletionRepair;const changed=new Set([...c.paths,...c.maintenancePaths,manifest]),mapped=(r,p)=>r==='HEAD'&&changed.has(p)?c.base:r;
  return{record,rawHead:overlay.rawHead,head:c.base,read:(r,p)=>rawRead(mapped(r,p),p),blob:(r,p)=>rawBlob(mapped(r,p),p),content:(r,p)=>rawContent(mapped(r,p),p)};
 }

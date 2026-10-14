@@ -1,3 +1,4 @@
+import {combinedPositiveHistoricalRead} from '../release/combined-finite-scope-20261014.mjs';
 import {myTimberHistoricalFile} from '../release/my-timber-progress-journey-scope.mjs';
 import {myTimberHistoricalRecord} from '../release/my-timber-progress-journey-scope.mjs';
 import test from 'node:test';
@@ -60,7 +61,8 @@ test('actual scope repair preserves the complete prior receipts and all original
  const current=myTimberHistoricalRecord(verifyReconciledRelease());assert.equal(current.supportRecoveryHistoricalScope.source,r.source);
  const prior=JSON.parse(read(r.base,manifest)),retained=structuredClone(current);delete retained.supportRecoveryHistoricalScope;delete retained.supportRecoveryIntegrationBudget;delete retained.supportRecoveryIntegrationBudgetTestRepair;assert.deepEqual(retained,prior);
  for(const path of [...r.paths,...r.maintenancePaths])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
- for(const path of ['worker.js','shift-coach/scope.mjs','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','frontend/member/turnstile-auth-v1.js','medicines-watch/README.md','medicines-watch/industry.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.equal(read('HEAD',path),read(r.base,path));
+ const positiveRead=combinedPositiveHistoricalRead(read);
+ for(const path of ['worker.js','shift-coach/scope.mjs','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','frontend/member/turnstile-auth-v1.js','medicines-watch/README.md','medicines-watch/industry.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.equal(positiveRead('HEAD',path),read(r.base,path));
  const body=(t,name)=>{const start=t.indexOf('export function '+name+'(');return t.slice(start,t.indexOf('\n}\n',start)+3);};
  for(const path of ['release/approved-runtime-composition.mjs','release/fit-300-scope.mjs']){
   const before=read(r.base,path),after=path==='release/approved-runtime-composition.mjs'?myTimberHistoricalFile(path,read('HEAD',path)):read('HEAD',path);
