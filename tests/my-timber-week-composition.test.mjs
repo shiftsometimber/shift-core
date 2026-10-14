@@ -1,11 +1,12 @@
+import {myTimberWeekCloseoutHistoricalView} from '../release/my-timber-week-closeout-scope.mjs';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {MY_TIMBER_WEEK_BASE,MY_TIMBER_WEEK_PATHS,MY_TIMBER_WEEK_MAINTENANCE,verifyMyTimberWeekSource,myTimberWeekHistoricalView} from '../release/my-timber-week-scope.mjs';
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
-const head=git('rev-parse','HEAD'),content=(r,p)=>execFileSync('git',['show',(r==='HEAD'?head:r)+':'+p],{encoding:'utf8'});
+const closeout=myTimberWeekCloseoutHistoricalView(),head=closeout.head,content=closeout.content;
 const c=JSON.parse(content(head,'release/approved-runtime-composition.json')).myTimberWeekCode;
-const read=(r,p)=>git('rev-parse',(r==='HEAD'?head:r)+':'+p);
+const read=closeout.read;
 const env={head,read,content,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)};
 test('exact current composed source admits code while keeping activation and review off',()=>{verifyMyTimberWeekSource(c,env);const v=myTimberWeekHistoricalView();assert.equal(v.head,MY_TIMBER_WEEK_BASE);assert.equal(v.record.myTimberWeekCode,undefined);assert.equal(v.read('HEAD','frontend/member/member-progress-v1.js'),read(MY_TIMBER_WEEK_BASE,'frontend/member/member-progress-v1.js'));});
 test('deployment approval cannot turn into qualified review or activation authority',()=>{for(const k of ['activationEnabled','qualifiedReviewGranted','paidModelEnabled','emailGeneratingStepsStarted','existingGatesWeakened','genericAdoptionAllowed','rollbackAuthorityBroadened'])assert.throws(()=>verifyMyTimberWeekSource({...c,[k]:true},env),/held boundary/);assert.throws(()=>verifyMyTimberWeekSource({...c,releaseApproval:{...c.releaseApproval,modelReviewGranted:true}},env),/does not grant clinical/);});
