@@ -1,0 +1,1668 @@
+{
+  "failedRun": {
+    "id": 38490570380,
+    "head_sha": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+    "status": "completed",
+    "conclusion": "failure",
+    "event": "push",
+    "head_branch": "main",
+    "run_attempt": 1,
+    "path": ".github/workflows/cloudflare-production-promote.yml"
+  },
+  "failedJob": {
+    "id": 115614601504,
+    "run_id": 38490570380,
+    "name": "promote",
+    "status": "completed",
+    "conclusion": "failure",
+    "steps": [
+      {
+        "name": "Restore the captured runtime if a post-deployment gate failed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Prove existing public content and login asset are preserved outside exact approved additions",
+        "conclusion": "failure"
+      }
+    ]
+  },
+  "artifact": {
+    "id": 11863453201,
+    "size_in_bytes": 6467093,
+    "digest": "sha256:c3993f19464bb32e811899776d9ef6d59e2ace5018c5836d5b594f1094c7ca20",
+    "name": "b1-runtime-release-38490570380",
+    "expired": false,
+    "workflow_run": {
+      "id": 38490570380,
+      "head_sha": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f"
+    }
+  },
+  "speedArtifact": {
+    "id": 11862798097,
+    "size_in_bytes": 1944749,
+    "digest": "sha256:5f9ba69806019b7c9692764a3d1bc5d48677a1260edcd4c991560ab6aa16fa31",
+    "name": "home-speed-live-f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+    "expired": false,
+    "workflow_run": {
+      "id": 38490570380,
+      "head_sha": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f"
+    }
+  },
+  "preservationArtifact": {
+    "id": 11862733414,
+    "size_in_bytes": 23781,
+    "digest": "sha256:bf96c0e5b76544fba5d4da5205e4f8d79408148406ae36b3c7d27c508608aace",
+    "name": "member-public-preservation-38490570380",
+    "expired": false,
+    "workflow_run": {
+      "id": 38490570380,
+      "head_sha": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f"
+    }
+  },
+  "failedLogs": "2026-10-14T01:11:52.0086701Z {\"kind\":\"owned_runtime_deployment\",\"at\":\"2026-10-14T01:11:52.007Z\",\"source\":\"f9f79dfb6038c4bf5eb95b06d656a76cef992e0f\",\"run\":\"38490570380\",\"deploymentId\":\"cde3ec63-6d49-40d4-9d3c-62c906339aab\",\"versionId\":\"0b26282e-24ee-4115-ac0c-0b1842e7a7a4\",\"previousDeploymentId\":\"085be230-0add-46fc-91d8-bab90c808612\",\"previousVersionId\":\"c2b4ad51-201a-4704-ab32-ec76ca5c8918\",\"dataRestored\":false}\nError: Homepage changed outside the exact approved stigma alt update\nWorker Version c2b4ad51-201a-4704-ab32-ec76ca5c8918 has been deployed to 100% of traffic.",
+  "verifiedRun": {
+    "id": 38420048446,
+    "head_sha": "c9756798dd271260c8812e419fae5f0d7c61e194",
+    "status": "completed",
+    "conclusion": "success",
+    "event": "push",
+    "head_branch": "main",
+    "run_attempt": 1,
+    "path": ".github/workflows/cloudflare-production-promote.yml"
+  },
+  "verifiedJob": {
+    "id": 115374804411,
+    "run_id": 38420048446,
+    "name": "promote",
+    "status": "completed",
+    "conclusion": "success",
+    "steps": [
+      {
+        "name": "Verify B1 protected catalogue and stock remain identical",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 115
+      },
+      {
+        "name": "Restore the captured runtime if a post-deployment gate failed",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 116
+      },
+      {
+        "name": "Report final public tool release status",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 121
+      }
+    ]
+  },
+  "verifiedLogs": "2026-10-13T15:52:04.7556528Z {\"kind\":\"owned_runtime_deployment\",\"at\":\"2026-10-13T15:52:04.754Z\",\"source\":\"c9756798dd271260c8812e419fae5f0d7c61e194\",\"run\":\"38420048446\",\"deploymentId\":\"c467c3f0-4644-4ce1-b543-fb731fc9305c\",\"versionId\":\"c2b4ad51-201a-4704-ab32-ec76ca5c8918\",\"previousDeploymentId\":\"c60f4a8b-6353-405b-ab5b-ae7a9975e624\",\"previousVersionId\":\"5f855b44-5f50-4669-883e-d26e515df2eb\",\"dataRestored\":false}",
+  "version": {
+    "id": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+    "metadata": {
+      "created_on": "2026-10-13T15:51:54.847698Z",
+      "source": "wrangler"
+    },
+    "annotations": {
+      "workers/triggered_by": "version_upload"
+    }
+  },
+  "active": {
+    "id": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+    "versions": [
+      {
+        "version_id": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-14T01:19:00.000Z",
+    "syntheticFixtureOnly": true
+  },
+  "files": {
+    "rollback": {
+      "at": "2026-10-14T01:19:01.266Z",
+      "restoredVersion": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "deployment": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+      "dataRestored": false,
+      "reason": "Post-deployment gate failed; release remains failed."
+    },
+    "report": {
+      "kind": "guarded_release_verification",
+      "source": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+      "run": "38490570380",
+      "workflowStatus": "failure",
+      "releaseVerified": false,
+      "status": "failed",
+      "deployedVersion": "0b26282e-24ee-4115-ac0c-0b1842e7a7a4",
+      "deployChecks": {
+        "kind": "public_tool_release_check",
+        "stage": "deploy",
+        "source": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+        "run": "38490570380",
+        "checkedAt": "2026-10-14T01:12:03.148Z",
+        "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+        "status": "passed",
+        "toolChecksVerified": true,
+        "checks": [
+          {
+            "path": "/decision-centre",
+            "status": 200,
+            "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+            "jsonBlocks": 3,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/alcohol",
+            "status": 200,
+            "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/bmi",
+            "status": 200,
+            "htmlSha256": "a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/calories",
+            "status": 200,
+            "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/healthy-weight",
+            "status": 200,
+            "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/protein",
+            "status": 200,
+            "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+            "jsonBlocks": 5,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/waist-height",
+            "status": 200,
+            "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/walking",
+            "status": 200,
+            "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+            "jsonBlocks": 5,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/water",
+            "status": 200,
+            "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          }
+        ],
+        "errors": [],
+        "deployed": {
+          "deploymentId": "cde3ec63-6d49-40d4-9d3c-62c906339aab",
+          "versionId": "0b26282e-24ee-4115-ac0c-0b1842e7a7a4",
+          "percentage": 100
+        },
+        "expected": {
+          "deploymentId": "cde3ec63-6d49-40d4-9d3c-62c906339aab",
+          "versionId": "0b26282e-24ee-4115-ac0c-0b1842e7a7a4"
+        },
+        "afterChecks": {
+          "deploymentId": "cde3ec63-6d49-40d4-9d3c-62c906339aab",
+          "versionId": "0b26282e-24ee-4115-ac0c-0b1842e7a7a4",
+          "percentage": 100
+        },
+        "finishedAt": "2026-10-14T01:12:06.373Z"
+      },
+      "rollbackChecks": {
+        "kind": "public_tool_release_check",
+        "stage": "rollback",
+        "source": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+        "run": "38490570380",
+        "checkedAt": "2026-10-14T01:19:01.320Z",
+        "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+        "status": "passed",
+        "toolChecksVerified": true,
+        "checks": [
+          {
+            "path": "/decision-centre",
+            "status": 200,
+            "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+            "jsonBlocks": 3,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/alcohol",
+            "status": 200,
+            "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/bmi",
+            "status": 200,
+            "htmlSha256": "a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/calories",
+            "status": 200,
+            "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/healthy-weight",
+            "status": 200,
+            "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/protein",
+            "status": 200,
+            "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+            "jsonBlocks": 5,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/waist-height",
+            "status": 200,
+            "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/walking",
+            "status": 200,
+            "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+            "jsonBlocks": 5,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          },
+          {
+            "path": "/tools/water",
+            "status": 200,
+            "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+            "jsonBlocks": 4,
+            "applicationItems": 0,
+            "canonicalWebPageItems": 1,
+            "passed": true
+          }
+        ],
+        "errors": [],
+        "deployed": {
+          "deploymentId": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+          "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+          "percentage": 100
+        },
+        "expected": {
+          "deploymentId": "085be230-0add-46fc-91d8-bab90c808612",
+          "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+          "percentage": 100,
+          "checkSource": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f"
+        },
+        "deploymentSource": "captured prior runtime; see deployment-before.json",
+        "afterChecks": {
+          "deploymentId": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+          "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+          "percentage": 100
+        },
+        "finishedAt": "2026-10-14T01:19:04.425Z"
+      },
+      "note": "Rollback checks do not turn the failed release into a verified release."
+    },
+    "owned": {
+      "kind": "owned_runtime_deployment",
+      "at": "2026-10-14T01:11:52.007Z",
+      "source": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+      "run": "38490570380",
+      "deploymentId": "cde3ec63-6d49-40d4-9d3c-62c906339aab",
+      "versionId": "0b26282e-24ee-4115-ac0c-0b1842e7a7a4",
+      "previousDeploymentId": "085be230-0add-46fc-91d8-bab90c808612",
+      "previousVersionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "dataRestored": false
+    },
+    "checks": {
+      "kind": "public_tool_release_check",
+      "stage": "rollback",
+      "source": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+      "run": "38490570380",
+      "checkedAt": "2026-10-14T01:19:01.320Z",
+      "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+      "status": "passed",
+      "toolChecksVerified": true,
+      "checks": [
+        {
+          "path": "/decision-centre",
+          "status": 200,
+          "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+          "jsonBlocks": 3,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/alcohol",
+          "status": 200,
+          "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/bmi",
+          "status": 200,
+          "htmlSha256": "a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/calories",
+          "status": 200,
+          "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/healthy-weight",
+          "status": 200,
+          "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/protein",
+          "status": 200,
+          "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+          "jsonBlocks": 5,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/waist-height",
+          "status": 200,
+          "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/walking",
+          "status": 200,
+          "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+          "jsonBlocks": 5,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        },
+        {
+          "path": "/tools/water",
+          "status": 200,
+          "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+          "jsonBlocks": 4,
+          "applicationItems": 0,
+          "canonicalWebPageItems": 1,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "deployed": {
+        "deploymentId": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+        "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "percentage": 100
+      },
+      "expected": {
+        "deploymentId": "085be230-0add-46fc-91d8-bab90c808612",
+        "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "percentage": 100,
+        "checkSource": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f"
+      },
+      "deploymentSource": "captured prior runtime; see deployment-before.json",
+      "afterChecks": {
+        "deploymentId": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+        "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "percentage": 100
+      },
+      "finishedAt": "2026-10-14T01:19:04.425Z"
+    },
+    "recovery": {
+      "at": "2026-10-14T00:37:59.463Z",
+      "decision": "retain",
+      "run": 37512509413,
+      "from": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "to": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "verifiedRun": 38420048446,
+      "ownedProof": {
+        "run": 38420048446,
+        "source": "c9756798dd271260c8812e419fae5f0d7c61e194",
+        "version": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+        "deployment": "085be230-0add-46fc-91d8-bab90c808612",
+        "evidenceKind": "exact-owned-speed-rollback-with-fresh-original-public-checks",
+        "failedRun": 38475017107,
+        "failedJob": 115563608490,
+        "artifact": 11857022005,
+        "artifactSha256": "fbf4ec6015ab93f2542241bdb2a1d22453da33f40382b76f59202d7f0df323c0",
+        "speedArtifact": 11856107187,
+        "speedSha256": "9bdf324c501ab3a1e40eeb323b0c640d3d3f546af37e0fadd8e56048d3774a94",
+        "rollbackCheckedAt": "2026-10-14T00:37:58.414Z",
+        "freshPublicChecks": {
+          "kind": "public_tool_release_check",
+          "stage": "rollback",
+          "source": "f99113ec3bf77a774ea872b5d9fac7320bd683ea",
+          "run": "38475017107",
+          "checkedAt": "2026-10-14T00:37:55.377Z",
+          "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+          "status": "passed",
+          "toolChecksVerified": true,
+          "checks": [
+            {
+              "path": "/decision-centre",
+              "status": 200,
+              "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+              "jsonBlocks": 3,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            },
+            {
+              "path": "/tools/alcohol",
+              "status": 200,
+              "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+              "jsonBlocks": 4,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            },
+            {
+              "path": "/tools/bmi",
+              "status": 200,
+              "htmlSha256": "a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3",
+              "jsonBlocks": 4,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            },
+            {
+              "path": "/tools/calories",
+              "status": 200,
+              "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+              "jsonBlocks": 4,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            },
+            {
+              "path": "/tools/healthy-weight",
+              "status": 200,
+              "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+              "jsonBlocks": 4,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            },
+            {
+              "path": "/tools/protein",
+              "status": 200,
+              "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+              "jsonBlocks": 5,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            },
+            {
+              "path": "/tools/waist-height",
+              "status": 200,
+              "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+              "jsonBlocks": 4,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            },
+            {
+              "path": "/tools/walking",
+              "status": 200,
+              "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+              "jsonBlocks": 5,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            },
+            {
+              "path": "/tools/water",
+              "status": 200,
+              "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+              "jsonBlocks": 4,
+              "applicationItems": 0,
+              "canonicalWebPageItems": 1,
+              "passed": true
+            }
+          ],
+          "errors": [],
+          "deployed": {
+            "deploymentId": "085be230-0add-46fc-91d8-bab90c808612",
+            "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+            "percentage": 100
+          },
+          "expected": {
+            "deploymentId": "7b3aa2e6-6328-4d46-8dfd-0934d471c8e7",
+            "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+            "percentage": 100,
+            "checkSource": "f99113ec3bf77a774ea872b5d9fac7320bd683ea"
+          },
+          "deploymentSource": "captured prior runtime; see deployment-before.json",
+          "afterChecks": {
+            "deploymentId": "085be230-0add-46fc-91d8-bab90c808612",
+            "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+            "percentage": 100
+          },
+          "finishedAt": "2026-10-14T00:37:58.414Z"
+        },
+        "customerRecordsRead": 0,
+        "dataChanged": false,
+        "newRollbackPerformed": false
+      },
+      "customerRecordsRead": 0,
+      "dataChanged": false
+    },
+    "calculators": {
+      "verifiedAt": "2026-10-14T01:12:59.498Z",
+      "scope": "Live Chromium desktop/mobile calculator interactions and Decision Centre tab clicks; no member accounts, purchases or submissions",
+      "checks": [
+        {
+          "viewportWidth": 380,
+          "path": "/tools/waist-height",
+          "case": "approved reading-strip keyboard/onward/Back/refresh acceptance",
+          "passed": true,
+          "strip": [
+            [
+              "BMI calculator",
+              "/tools/bmi"
+            ],
+            [
+              "Understand obesity and choose one step",
+              "/male-obesity"
+            ],
+            [
+              "Start Here",
+              "/start-here"
+            ]
+          ],
+          "onward": [
+            {
+              "name": "BMI calculator",
+              "path": "/tools/bmi",
+              "status": 200,
+              "h1": "One useful number. Not the whole verdict.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            },
+            {
+              "name": "Understand obesity and choose one step",
+              "path": "/male-obesity",
+              "status": 200,
+              "h1": "Male obesity: what it means for your health. What to do next.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            },
+            {
+              "name": "Start Here",
+              "path": "/start-here",
+              "status": 200,
+              "h1": "Let’s get you sorted.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            }
+          ],
+          "initialResult": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this indicates increased central adiposity. A ratio of 0.50 is in the increased band.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nMeasure halfway between the bottom of your ribs and the top of your hips, after breathing out naturally. Record waist, height and date so the next measurement is comparable. Use the ratio as a discussion point alongside BMI and other health information.\n\nCHOOSE WHAT HAPPENS NEXT\n\nChoose the action that fits this result\nCheck the NHS waist measurement instructions →\nBuild my Shift plan\n→",
+          "refreshedResult": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this indicates increased central adiposity. A ratio of 0.50 is in the increased band.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nMeasure halfway between the bottom of your ribs and the top of your hips, after breathing out naturally. Record waist, height and date so the next measurement is comparable. Use the ratio as a discussion point alongside BMI and other health information.\n\nCHOOSE WHAT HAPPENS NEXT\n\nChoose the action that fits this result\nCheck the NHS waist measurement instructions →\nBuild my Shift plan\n→",
+          "analyticsChoice": "Necessary only",
+          "noAccountCreated": true,
+          "classification": "Controlled public Chromium QA; not physical-device or customer-outcome evidence"
+        },
+        {
+          "viewportWidth": 1440,
+          "path": "/tools/waist-height",
+          "case": "approved reading-strip keyboard/onward/Back/refresh acceptance",
+          "passed": true,
+          "strip": [
+            [
+              "BMI calculator",
+              "/tools/bmi"
+            ],
+            [
+              "Understand obesity and choose one step",
+              "/male-obesity"
+            ],
+            [
+              "Start Here",
+              "/start-here"
+            ]
+          ],
+          "onward": [
+            {
+              "name": "BMI calculator",
+              "path": "/tools/bmi",
+              "status": 200,
+              "h1": "One useful number. Not the whole verdict.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            },
+            {
+              "name": "Understand obesity and choose one step",
+              "path": "/male-obesity",
+              "status": 200,
+              "h1": "Male obesity: what it means for your health. What to do next.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            },
+            {
+              "name": "Start Here",
+              "path": "/start-here",
+              "status": 200,
+              "h1": "Let’s get you sorted.",
+              "keyboard": "Tab/native selection/Enter; Shift+Tab recovery"
+            }
+          ],
+          "initialResult": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this indicates increased central adiposity. A ratio of 0.50 is in the increased band.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nMeasure halfway between the bottom of your ribs and the top of your hips, after breathing out naturally. Record waist, height and date so the next measurement is comparable. Use the ratio as a discussion point alongside BMI and other health information.\n\nCHOOSE WHAT HAPPENS NEXT\n\nChoose the action that fits this result\nCheck the NHS waist measurement instructions →\nBuild my Shift plan\n→",
+          "refreshedResult": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this indicates increased central adiposity. A ratio of 0.50 is in the increased band.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nMeasure halfway between the bottom of your ribs and the top of your hips, after breathing out naturally. Record waist, height and date so the next measurement is comparable. Use the ratio as a discussion point alongside BMI and other health information.\n\nCHOOSE WHAT HAPPENS NEXT\n\nChoose the action that fits this result\nCheck the NHS waist measurement instructions →\nBuild my Shift plan\n→",
+          "analyticsChoice": "Necessary only",
+          "noAccountCreated": true,
+          "classification": "Controlled public Chromium QA; not physical-device or customer-outcome evidence"
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/alcohol",
+          "inputs": {
+            "[name=\"ml\"]": "568",
+            "[name=\"abv\"]": "4",
+            "[name=\"n\"]": "2"
+          },
+          "expected": "4.5 units total",
+          "result": "YOUR USEFUL NUMBER\n\n4.5 units total\n\n2.3 units per drink × 2.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nCalculate each type of drink you actually had, then ad",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/alcohol",
+          "case": "negative quantity rejected by native form validation",
+          "passed": true
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/alcohol",
+          "case": "recalculation updates result to 2.3 units",
+          "passed": true
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/bmi",
+          "inputs": {
+            "#bmiHeightCm": "180",
+            "#bmiWeightKg": "80"
+          },
+          "expected": "BMI: 24.7",
+          "result": "YOUR USEFUL NUMBER\n\nBMI: 24.7\n\nScreening reference only: not a diagnosis, NHS-access decision or treatment-eligibility result.\n\nUsing standard adult BMI classifications, this falls within the standard healthy reference r",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/calories",
+          "inputs": {
+            "#calHeightCm": "180",
+            "#calWeightKg": "80",
+            "#calAge": "40",
+            "[name=\"activity\"]": "1.2"
+          },
+          "expected": "2076 kcal/day",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 2076 kcal/day\n\nPlanning estimate only: not a prescribed intake, guaranteed deficit or treatment target.\n\nEstimated maintenance energy using the Mifflin-St Jeor equation for adult men and your ",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/healthy-weight",
+          "inputs": {
+            "#rangeHeightCm": "180"
+          },
+          "expected": "59.9–80.7 kg",
+          "result": "YOUR USEFUL NUMBER\n\n59.9–80.7 kg\n\nApproximately 9 st 6 lb–12 st 10 lb, corresponding to BMI 18.5–24.9 for your height.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this wee",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/protein",
+          "inputs": {
+            "#proteinWeightKg": "80",
+            "[name=\"level\"]": "1.6"
+          },
+          "expected": "128 g protein/day",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 128 g protein/day\n\nPlanning estimate only: not an individual clinical prescription; health and body-weight context can change what is appropriate.\n\nBased on the selected grams-per-kilogram pla",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/waist-height",
+          "inputs": {
+            "#whHeightCm": "180",
+            "#waistCm": "90"
+          },
+          "expected": "0.50",
+          "result": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this ind",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/walking",
+          "inputs": {
+            "#walkWeightKg": "80",
+            "[name=\"minutes\"]": "30",
+            "[name=\"pace\"]": "3.5"
+          },
+          "expected": "147 kcal",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 147 kcal\n\nEstimated using standard MET values for your selected walking pace.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nUse time a",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/tools/water",
+          "inputs": {
+            "#waterWeightKg": "80"
+          },
+          "expected": "2.4 L",
+          "result": "YOUR USEFUL NUMBER\n\nRough starting point: 2.4 L (4.2 UK pints)\n\nIllustrative estimate using 30 ml/kg.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nStart with reg",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "mobile",
+          "path": "/decision-centre",
+          "case": "tab Treatment routes",
+          "passed": true,
+          "tab": {
+            "active": "active",
+            "selected": null,
+            "target": "routes"
+          },
+          "mainText": "Choose one route to explore, then prepare three questions\n\nFor a new visit, use Treatment Finder to enter your preferences and explore the options. It does not decide clinical eligibility or guarantee access to treatment.\n\nWHAT SHIFT DOES\n\nTurn usefu"
+        },
+        {
+          "viewport": "mobile",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: NHS pathway checker",
+          "passed": true
+        },
+        {
+          "viewport": "mobile",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: Weight-loss scenarios",
+          "passed": true
+        },
+        {
+          "viewport": "mobile",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: GP report",
+          "passed": true
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/alcohol",
+          "inputs": {
+            "[name=\"ml\"]": "568",
+            "[name=\"abv\"]": "4",
+            "[name=\"n\"]": "2"
+          },
+          "expected": "4.5 units total",
+          "result": "YOUR USEFUL NUMBER\n\n4.5 units total\n\n2.3 units per drink × 2.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nCalculate each type of drink you actually had, then ad",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/bmi",
+          "inputs": {
+            "#bmiHeightCm": "180",
+            "#bmiWeightKg": "80"
+          },
+          "expected": "BMI: 24.7",
+          "result": "YOUR USEFUL NUMBER\n\nBMI: 24.7\n\nScreening reference only: not a diagnosis, NHS-access decision or treatment-eligibility result.\n\nUsing standard adult BMI classifications, this falls within the standard healthy reference r",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/calories",
+          "inputs": {
+            "#calHeightCm": "180",
+            "#calWeightKg": "80",
+            "#calAge": "40",
+            "[name=\"activity\"]": "1.2"
+          },
+          "expected": "2076 kcal/day",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 2076 kcal/day\n\nPlanning estimate only: not a prescribed intake, guaranteed deficit or treatment target.\n\nEstimated maintenance energy using the Mifflin-St Jeor equation for adult men and your ",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/healthy-weight",
+          "inputs": {
+            "#rangeHeightCm": "180"
+          },
+          "expected": "59.9–80.7 kg",
+          "result": "YOUR USEFUL NUMBER\n\n59.9–80.7 kg\n\nApproximately 9 st 6 lb–12 st 10 lb, corresponding to BMI 18.5–24.9 for your height.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this wee",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/protein",
+          "inputs": {
+            "#proteinWeightKg": "80",
+            "[name=\"level\"]": "1.6"
+          },
+          "expected": "128 g protein/day",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 128 g protein/day\n\nPlanning estimate only: not an individual clinical prescription; health and body-weight context can change what is appropriate.\n\nBased on the selected grams-per-kilogram pla",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/waist-height",
+          "inputs": {
+            "#whHeightCm": "180",
+            "#waistCm": "90"
+          },
+          "expected": "0.50",
+          "result": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this ind",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/walking",
+          "inputs": {
+            "#walkWeightKg": "80",
+            "[name=\"minutes\"]": "30",
+            "[name=\"pace\"]": "3.5"
+          },
+          "expected": "147 kcal",
+          "result": "YOUR USEFUL NUMBER\n\nApprox. 147 kcal\n\nEstimated using standard MET values for your selected walking pace.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nUse time a",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/tools/water",
+          "inputs": {
+            "#waterWeightKg": "80"
+          },
+          "expected": "2.4 L",
+          "result": "YOUR USEFUL NUMBER\n\nRough starting point: 2.4 L (4.2 UK pints)\n\nIllustrative estimate using 30 ml/kg.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nUse your result this week\n\nStart with reg",
+          "passed": true,
+          "horizontalOverflow": false,
+          "pageErrors": []
+        },
+        {
+          "viewport": "desktop",
+          "path": "/decision-centre",
+          "case": "tab Treatment routes",
+          "passed": true,
+          "tab": {
+            "active": "active",
+            "selected": null,
+            "target": "routes"
+          },
+          "mainText": "Choose one route to explore, then prepare three questions\n\nFor a new visit, use Treatment Finder to enter your preferences and explore the options. It does not decide clinical eligibility or guarantee access to treatment.\n\nWHAT SHIFT DOES\n\nTurn usefu"
+        },
+        {
+          "viewport": "desktop",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: NHS pathway checker",
+          "passed": true
+        },
+        {
+          "viewport": "desktop",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: Weight-loss scenarios",
+          "passed": true
+        },
+        {
+          "viewport": "desktop",
+          "path": "/decision-centre",
+          "case": "unavailable without a saved profile: GP report",
+          "passed": true
+        }
+      ],
+      "transportRetries": []
+    },
+    "share": {
+      "proof": "ROOT_SHARE_EXACT_LIVE_PRESERVATION_20261013",
+      "checkedAt": "2026-10-14T01:14:00.988Z",
+      "releaseSource": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+      "results": [
+        {
+          "path": "/",
+          "sha256": "904c8a04dbf424cca69b5fcc3cf1b02b57db4b4dc5aa93897615821a80a98ca2",
+          "headers": {
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "no-store",
+            "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "x-content-type-options": "nosniff",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+            "x-frame-options": "SAMEORIGIN"
+          }
+        },
+        {
+          "path": "/programme",
+          "sha256": "f92dd6389dc6579297218f1a5aedef19d007c4346bf0d3c03b2fbdc6fbee14ba",
+          "headers": {
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "no-store",
+            "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "x-content-type-options": "nosniff",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+            "x-frame-options": "SAMEORIGIN"
+          }
+        },
+        {
+          "path": "/shift-newsroom",
+          "sha256": "1c9b2ee210b9d38205a38461f66251941a5db6f93a339f9f08c76fcc525ef248",
+          "headers": {
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "no-store",
+            "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "x-content-type-options": "nosniff",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+            "x-frame-options": "SAMEORIGIN"
+          }
+        },
+        {
+          "path": "/male-obesity",
+          "sha256": "aed8464742b9292bc08c008b8b0329d8c28d855f8be8d375dc75d4befa86efb5",
+          "headers": {
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "no-store",
+            "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "x-content-type-options": "nosniff",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+            "x-frame-options": "SAMEORIGIN"
+          }
+        },
+        {
+          "path": "/assets/og-default.jpg",
+          "sha256": "0820585d26251f11d34d47f9f821aea75ec4d6baf8ff5663d094515f85d7107d",
+          "headers": {
+            "content-type": "image/jpeg",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-security-policy": null,
+            "strict-transport-security": null,
+            "x-content-type-options": "nosniff",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "permissions-policy": null,
+            "x-frame-options": null
+          }
+        },
+        {
+          "path": "/assets/favicon-32.png?v=104e",
+          "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+          "headers": {
+            "content-type": "image/png",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-security-policy": null,
+            "strict-transport-security": null,
+            "x-content-type-options": "nosniff",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "permissions-policy": null,
+            "x-frame-options": null
+          }
+        },
+        {
+          "path": "/member-login",
+          "sha256": "dac10e8198a381570488901b4f4a4352a7ece8980647bc488ae7afa1d61d28b7",
+          "headers": {
+            "content-type": "text/html",
+            "cache-control": "no-store",
+            "content-security-policy": null,
+            "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+            "x-content-type-options": "nosniff",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "permissions-policy": "camera=(self), microphone=(), geolocation=(), payment=(self)",
+            "x-frame-options": "DENY"
+          }
+        }
+      ],
+      "image": {
+        "path": "/assets/shift-share-20261013.jpg",
+        "sha256": "3883eff4a91c91c2db15c754e27fa3c4fc55585af10f98a55fc7337756685987",
+        "headers": {
+          "content-type": "image/jpeg",
+          "cache-control": "public, max-age=31536000, immutable",
+          "content-security-policy": null,
+          "strict-transport-security": null,
+          "x-content-type-options": "nosniff",
+          "referrer-policy": null,
+          "permissions-policy": null,
+          "x-frame-options": null
+        }
+      },
+      "crawlerRootMatches": true,
+      "rootOnlyTwoImageURLsChanged": true,
+      "headImageAndRoot": true,
+      "existingWhatsAppCardsRefreshGuaranteed": false,
+      "emailTestsRun": false,
+      "externalMessagesSent": false
+    },
+    "speed": {
+      "runs": [
+        {
+          "lcp": 2464.384,
+          "cls": 0,
+          "tbt": 0,
+          "score": 95
+        },
+        {
+          "lcp": 2817.062,
+          "cls": 0,
+          "tbt": 0,
+          "score": 93
+        },
+        {
+          "lcp": 2195.142,
+          "cls": 0.006703235298367214,
+          "tbt": 9,
+          "score": 99
+        }
+      ],
+      "median": {
+        "lcp": 2464.384,
+        "cls": 0,
+        "tbt": 0,
+        "score": 95
+      },
+      "targetMs": 2500,
+      "tolerancePercent": 20,
+      "limitMs": 3000,
+      "targetMet": true,
+      "timingStatus": "target_met"
+    },
+    "pagesBefore": {
+      "checkedAt": "2026-10-14T01:00:20.044Z",
+      "pages": [
+        {
+          "path": "/mens-mental-health",
+          "status": 200,
+          "sha256": "85d119aa6edc233aab9ca9a91b026c82d2c6f8318f669e2b76c865d6119ac8c2",
+          "bytes": 44012,
+          "preservedSha256": "85d119aa6edc233aab9ca9a91b026c82d2c6f8318f669e2b76c865d6119ac8c2",
+          "preservedBytes": 44012,
+          "actualSha256": "dd4315354e67018a84e68260beae343f4700795922c8320b87016778851a3340",
+          "actualBytes": 56984,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/clinic-gone-quiet",
+          "status": 200,
+          "sha256": "af5d087ca49b7e1b9c40ae9ed742424ce18e5589681f62c88c79aea039fa1879",
+          "bytes": 30922,
+          "preservedSha256": "af5d087ca49b7e1b9c40ae9ed742424ce18e5589681f62c88c79aea039fa1879",
+          "preservedBytes": 30922,
+          "actualSha256": "94354de341478cdb0abdbc50f550032da718619e05fbfce476c409068e85b3db",
+          "actualBytes": 47054,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/provider-switch",
+          "status": 200,
+          "sha256": "17804d7ba92c6a8f0f6b99fb37b1b01c9cf3375c3d77c6aae2bbb45f400838b1",
+          "bytes": 30420,
+          "preservedSha256": "17804d7ba92c6a8f0f6b99fb37b1b01c9cf3375c3d77c6aae2bbb45f400838b1",
+          "preservedBytes": 30420,
+          "actualSha256": "773e9f12d090d5f80843e9cb780c972b22cc0c52d64b07b51b27ccb81df0ef61",
+          "actualBytes": 47358,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "sha256": "5830d08c5989334cf70f87ae80b7813eb87d7b5eec1e7fd74e777d6d587bf877",
+          "bytes": 325656,
+          "preservedSha256": "5713d5948153525daad7c8a9e1f0ca1cb2729f9331b4e57413a4cc5a730a0be4",
+          "preservedBytes": 325610,
+          "homeStigmaAlt": true,
+          "actualSha256": "63a94996d73561b1774cdeceda3924eb13dccea0735562570b1714ed9a578d19",
+          "actualBytes": 204124,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/start-here",
+          "status": 200,
+          "sha256": "3998a4cf07c45a3905c1ec61bb9eb4a15de27adab7fa825bd5ab9e4e3d117a28",
+          "bytes": 50159,
+          "preservedSha256": "3998a4cf07c45a3905c1ec61bb9eb4a15de27adab7fa825bd5ab9e4e3d117a28",
+          "preservedBytes": 50159,
+          "actualSha256": "6c0e33232b2722a469ec16a8b0fa1837c7828da70c212d50dad1e69eda8aa644",
+          "actualBytes": 62436,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/programme",
+          "status": 200,
+          "sha256": "13d2f415319840ebdb904d70a6f9196ffdab9a28bb56f3831521a98ec7d577f8",
+          "bytes": 29200,
+          "preservedSha256": "f69888c97dbea60b9e18964c97280a6a9927942b4152487a384f45884877dc21",
+          "preservedBytes": 29101,
+          "programmeTwitterImage": true,
+          "programmeJourneyLink": true,
+          "actualSha256": "f92dd6389dc6579297218f1a5aedef19d007c4346bf0d3c03b2fbdc6fbee14ba",
+          "actualBytes": 50342,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/help",
+          "status": 200,
+          "sha256": "120e1fb9db417b730b6f584db12e717c64ceefef9a616e875a9b9e5a2d8d4ce8",
+          "bytes": 29428,
+          "preservedSha256": "120e1fb9db417b730b6f584db12e717c64ceefef9a616e875a9b9e5a2d8d4ce8",
+          "preservedBytes": 29428,
+          "actualSha256": "a80425173e80e747dfa63f6c672f9b178fc9357ab7cc87a2e044144a257f7ad0",
+          "actualBytes": 47964,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/shift-health",
+          "status": 200,
+          "sha256": "7876c4c3d883f3e666c338490e5848b5a5073dbf32931b2a9f8a7ee1138074e0",
+          "bytes": 39765,
+          "preservedSha256": "17aaa0f684897be046f01bfa00ff03ebaaeaf9b3dfdb167f4c21461d1b4c9a33",
+          "preservedBytes": 39676,
+          "shiftHealthTwitterImage": true,
+          "actualSha256": "0974a497f7cb9e45f774635cbfe597d9e87accaa0288328dac6604dd912f62b0",
+          "actualBytes": 53960,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/treatment-centre",
+          "status": 200,
+          "sha256": "c55fea4d752cd5e93e304beb24a06c8481b76cb63132eb208984bb58c82458c4",
+          "bytes": 47732,
+          "preservedSha256": "0fc474b8e5626985da71fd11ba0af5b536c60927591a102393c6f0c4919b1f6d",
+          "preservedBytes": 45670,
+          "treatmentsWatchEntry": true,
+          "relatedGuide": true,
+          "relatedGuideRevision": "current",
+          "authoritySha256": "74b67c449567c546737cd006b665182dd077da0b40c1d607674794f011f42d16",
+          "authorityBytes": 47317,
+          "actualSha256": "b82c84c151a005dcbd1f16b289f988412eccabd5ead7428e8939d96a9550a26b",
+          "actualBytes": 61420,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/about",
+          "status": 200,
+          "sha256": "20c931e45fb03406f14fbb6319170a21154d8504ffabde9ab9e816587cf83f8f",
+          "bytes": 35848,
+          "preservedSha256": "20c931e45fb03406f14fbb6319170a21154d8504ffabde9ab9e816587cf83f8f",
+          "preservedBytes": 35848,
+          "actualSha256": "495e2fbdb2ecb19e3a6e44c7826361b8723df91bfebec00c964177a1502bd0a7",
+          "actualBytes": 47954,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/explore-knowledge",
+          "status": 200,
+          "sha256": "2e3792292aa6206c283b2913b45bda50dfdfe2232f131ee3881fa34b840aa231",
+          "bytes": 119034,
+          "preservedSha256": "2e3792292aa6206c283b2913b45bda50dfdfe2232f131ee3881fa34b840aa231",
+          "preservedBytes": 119034,
+          "actualSha256": "73c8984a4cd2eecbc4dd15ccec399edc8dd8c149edcc2764fa4ee1c369aec094",
+          "actualBytes": 133570,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/shop",
+          "status": 200,
+          "sha256": "f422f8c7c863034a29be5b61734a22d92bf1c4177dca6ff4007a784697a3ebd2",
+          "bytes": 26879,
+          "preservedSha256": "f422f8c7c863034a29be5b61734a22d92bf1c4177dca6ff4007a784697a3ebd2",
+          "preservedBytes": 26879,
+          "actualSha256": "94a576d8c0a82c6d6cf422db6f1b047da9702609613efeb9988e7850fafadafb",
+          "actualBytes": 38992,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/work-with-us",
+          "status": 200,
+          "sha256": "3e1e4ccf53869f6ce23f2315451ac0c1cdd6359098254fb9b9057db431f7e566",
+          "bytes": 30561,
+          "preservedSha256": "3e1e4ccf53869f6ce23f2315451ac0c1cdd6359098254fb9b9057db431f7e566",
+          "preservedBytes": 30561,
+          "actualSha256": "5bb0fd7be292d34ca9dfee146cd52395faed613fa97a9eca9f74288db02d17ab",
+          "actualBytes": 42674,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/member-login",
+          "status": 200,
+          "sha256": "a0f6370803203feb37f4c9d6df7ed3719c9f4bf98f18c858ca8f55b8670063d6",
+          "bytes": 43784,
+          "preservedSha256": "a0f6370803203feb37f4c9d6df7ed3719c9f4bf98f18c858ca8f55b8670063d6",
+          "preservedBytes": 43784,
+          "actualSha256": "dac10e8198a381570488901b4f4a4352a7ece8980647bc488ae7afa1d61d28b7",
+          "actualBytes": 60202,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/turnstile-auth-v1.js?v=timeout-20260912",
+          "status": 200,
+          "sha256": "f263162055532bf088fefc7c0aa3bf6b6f8ab78e59186400e4c5038a895a1a6a",
+          "bytes": 5034,
+          "preservedSha256": "f263162055532bf088fefc7c0aa3bf6b6f8ab78e59186400e4c5038a895a1a6a",
+          "preservedBytes": 5034,
+          "actualSha256": "8320b681a691ea4be2dc449f85a284d2d55c5c13fea1593d9223ee37da0fd7a2",
+          "actualBytes": 5461,
+          "continuityAdditionRemoved": false
+        },
+        {
+          "path": "/articles/stopping-glp1",
+          "status": 200,
+          "sha256": "72b0b3831556665c25db6a37aba3f31522381e8996d0f54828fc54977388f5f8",
+          "bytes": 47066,
+          "preservedSha256": "72b0b3831556665c25db6a37aba3f31522381e8996d0f54828fc54977388f5f8",
+          "preservedBytes": 47066,
+          "actualSha256": "85d93f474f9240d8642a45e16a82a2fcc6410933696bfeeb295480a9663bd4ab",
+          "actualBytes": 60449,
+          "continuityAdditionRemoved": true
+        }
+      ],
+      "comparison": "baseline",
+      "organicDelivery": null
+    },
+    "pagesAfter": {
+      "checkedAt": "2026-10-14T01:18:55.179Z",
+      "pages": [
+        {
+          "path": "/mens-mental-health",
+          "status": 200,
+          "sha256": "85d119aa6edc233aab9ca9a91b026c82d2c6f8318f669e2b76c865d6119ac8c2",
+          "bytes": 44012,
+          "preservedSha256": "85d119aa6edc233aab9ca9a91b026c82d2c6f8318f669e2b76c865d6119ac8c2",
+          "preservedBytes": 44012,
+          "actualSha256": "dd4315354e67018a84e68260beae343f4700795922c8320b87016778851a3340",
+          "actualBytes": 56984,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/clinic-gone-quiet",
+          "status": 200,
+          "sha256": "af5d087ca49b7e1b9c40ae9ed742424ce18e5589681f62c88c79aea039fa1879",
+          "bytes": 30922,
+          "preservedSha256": "af5d087ca49b7e1b9c40ae9ed742424ce18e5589681f62c88c79aea039fa1879",
+          "preservedBytes": 30922,
+          "actualSha256": "94354de341478cdb0abdbc50f550032da718619e05fbfce476c409068e85b3db",
+          "actualBytes": 47054,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/provider-switch",
+          "status": 200,
+          "sha256": "17804d7ba92c6a8f0f6b99fb37b1b01c9cf3375c3d77c6aae2bbb45f400838b1",
+          "bytes": 30420,
+          "preservedSha256": "17804d7ba92c6a8f0f6b99fb37b1b01c9cf3375c3d77c6aae2bbb45f400838b1",
+          "preservedBytes": 30420,
+          "actualSha256": "773e9f12d090d5f80843e9cb780c972b22cc0c52d64b07b51b27ccb81df0ef61",
+          "actualBytes": 47358,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "sha256": "87f4d9ba48b5a315a4f0b086fe0e63b53d44c58b76304b29284b855f68c4b343",
+          "bytes": 325676,
+          "preservedSha256": "eff677f777b333a4814c820daa8a2c1e4e7df867c1afa9d1dc2949c55b405d90",
+          "preservedBytes": 325630,
+          "homeStigmaAlt": true,
+          "actualSha256": "904c8a04dbf424cca69b5fcc3cf1b02b57db4b4dc5aa93897615821a80a98ca2",
+          "actualBytes": 204144,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/start-here",
+          "status": 200,
+          "sha256": "3998a4cf07c45a3905c1ec61bb9eb4a15de27adab7fa825bd5ab9e4e3d117a28",
+          "bytes": 50159,
+          "preservedSha256": "3998a4cf07c45a3905c1ec61bb9eb4a15de27adab7fa825bd5ab9e4e3d117a28",
+          "preservedBytes": 50159,
+          "actualSha256": "6c0e33232b2722a469ec16a8b0fa1837c7828da70c212d50dad1e69eda8aa644",
+          "actualBytes": 62436,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/programme",
+          "status": 200,
+          "sha256": "13d2f415319840ebdb904d70a6f9196ffdab9a28bb56f3831521a98ec7d577f8",
+          "bytes": 29200,
+          "preservedSha256": "f69888c97dbea60b9e18964c97280a6a9927942b4152487a384f45884877dc21",
+          "preservedBytes": 29101,
+          "programmeTwitterImage": true,
+          "programmeJourneyLink": true,
+          "actualSha256": "f92dd6389dc6579297218f1a5aedef19d007c4346bf0d3c03b2fbdc6fbee14ba",
+          "actualBytes": 50342,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/help",
+          "status": 200,
+          "sha256": "120e1fb9db417b730b6f584db12e717c64ceefef9a616e875a9b9e5a2d8d4ce8",
+          "bytes": 29428,
+          "preservedSha256": "120e1fb9db417b730b6f584db12e717c64ceefef9a616e875a9b9e5a2d8d4ce8",
+          "preservedBytes": 29428,
+          "actualSha256": "a80425173e80e747dfa63f6c672f9b178fc9357ab7cc87a2e044144a257f7ad0",
+          "actualBytes": 47964,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/shift-health",
+          "status": 200,
+          "sha256": "7876c4c3d883f3e666c338490e5848b5a5073dbf32931b2a9f8a7ee1138074e0",
+          "bytes": 39765,
+          "preservedSha256": "17aaa0f684897be046f01bfa00ff03ebaaeaf9b3dfdb167f4c21461d1b4c9a33",
+          "preservedBytes": 39676,
+          "shiftHealthTwitterImage": true,
+          "actualSha256": "0974a497f7cb9e45f774635cbfe597d9e87accaa0288328dac6604dd912f62b0",
+          "actualBytes": 53960,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/treatment-centre",
+          "status": 200,
+          "sha256": "c55fea4d752cd5e93e304beb24a06c8481b76cb63132eb208984bb58c82458c4",
+          "bytes": 47732,
+          "preservedSha256": "0fc474b8e5626985da71fd11ba0af5b536c60927591a102393c6f0c4919b1f6d",
+          "preservedBytes": 45670,
+          "treatmentsWatchEntry": true,
+          "relatedGuide": true,
+          "relatedGuideRevision": "current",
+          "authoritySha256": "74b67c449567c546737cd006b665182dd077da0b40c1d607674794f011f42d16",
+          "authorityBytes": 47317,
+          "actualSha256": "b82c84c151a005dcbd1f16b289f988412eccabd5ead7428e8939d96a9550a26b",
+          "actualBytes": 61420,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/about",
+          "status": 200,
+          "sha256": "20c931e45fb03406f14fbb6319170a21154d8504ffabde9ab9e816587cf83f8f",
+          "bytes": 35848,
+          "preservedSha256": "20c931e45fb03406f14fbb6319170a21154d8504ffabde9ab9e816587cf83f8f",
+          "preservedBytes": 35848,
+          "actualSha256": "495e2fbdb2ecb19e3a6e44c7826361b8723df91bfebec00c964177a1502bd0a7",
+          "actualBytes": 47954,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/explore-knowledge",
+          "status": 200,
+          "sha256": "2e3792292aa6206c283b2913b45bda50dfdfe2232f131ee3881fa34b840aa231",
+          "bytes": 119034,
+          "preservedSha256": "2e3792292aa6206c283b2913b45bda50dfdfe2232f131ee3881fa34b840aa231",
+          "preservedBytes": 119034,
+          "actualSha256": "73c8984a4cd2eecbc4dd15ccec399edc8dd8c149edcc2764fa4ee1c369aec094",
+          "actualBytes": 133570,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/shop",
+          "status": 200,
+          "sha256": "f422f8c7c863034a29be5b61734a22d92bf1c4177dca6ff4007a784697a3ebd2",
+          "bytes": 26879,
+          "preservedSha256": "f422f8c7c863034a29be5b61734a22d92bf1c4177dca6ff4007a784697a3ebd2",
+          "preservedBytes": 26879,
+          "actualSha256": "94a576d8c0a82c6d6cf422db6f1b047da9702609613efeb9988e7850fafadafb",
+          "actualBytes": 38992,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/work-with-us",
+          "status": 200,
+          "sha256": "3e1e4ccf53869f6ce23f2315451ac0c1cdd6359098254fb9b9057db431f7e566",
+          "bytes": 30561,
+          "preservedSha256": "3e1e4ccf53869f6ce23f2315451ac0c1cdd6359098254fb9b9057db431f7e566",
+          "preservedBytes": 30561,
+          "actualSha256": "5bb0fd7be292d34ca9dfee146cd52395faed613fa97a9eca9f74288db02d17ab",
+          "actualBytes": 42674,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/member-login",
+          "status": 200,
+          "sha256": "a0f6370803203feb37f4c9d6df7ed3719c9f4bf98f18c858ca8f55b8670063d6",
+          "bytes": 43784,
+          "preservedSha256": "a0f6370803203feb37f4c9d6df7ed3719c9f4bf98f18c858ca8f55b8670063d6",
+          "preservedBytes": 43784,
+          "actualSha256": "dac10e8198a381570488901b4f4a4352a7ece8980647bc488ae7afa1d61d28b7",
+          "actualBytes": 60202,
+          "continuityAdditionRemoved": true
+        },
+        {
+          "path": "/turnstile-auth-v1.js?v=timeout-20260912",
+          "status": 200,
+          "sha256": "f263162055532bf088fefc7c0aa3bf6b6f8ab78e59186400e4c5038a895a1a6a",
+          "bytes": 5034,
+          "preservedSha256": "f263162055532bf088fefc7c0aa3bf6b6f8ab78e59186400e4c5038a895a1a6a",
+          "preservedBytes": 5034,
+          "actualSha256": "8320b681a691ea4be2dc449f85a284d2d55c5c13fea1593d9223ee37da0fd7a2",
+          "actualBytes": 5461,
+          "continuityAdditionRemoved": false
+        },
+        {
+          "path": "/articles/stopping-glp1",
+          "status": 200,
+          "sha256": "72b0b3831556665c25db6a37aba3f31522381e8996d0f54828fc54977388f5f8",
+          "bytes": 47066,
+          "preservedSha256": "72b0b3831556665c25db6a37aba3f31522381e8996d0f54828fc54977388f5f8",
+          "preservedBytes": 47066,
+          "actualSha256": "85d93f474f9240d8642a45e16a82a2fcc6410933696bfeeb295480a9663bd4ab",
+          "actualBytes": 60449,
+          "continuityAdditionRemoved": true
+        }
+      ],
+      "comparison": "failed",
+      "error": "Homepage changed outside the exact approved stigma alt update"
+    }
+  },
+  "freshChecks": {
+    "kind": "public_tool_release_check",
+    "stage": "rollback",
+    "source": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f",
+    "run": "38490570380",
+    "checkedAt": "2026-10-14T01:19:01.320Z",
+    "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+    "status": "passed",
+    "toolChecksVerified": true,
+    "checks": [
+      {
+        "path": "/decision-centre",
+        "status": 200,
+        "htmlSha256": "4239effdf103621f3f75c2a4bb8873f67bbce5ef283f112c41df6d1c158ae59a",
+        "jsonBlocks": 3,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/alcohol",
+        "status": 200,
+        "htmlSha256": "7d0a17d4f6c5ff2bf2f26e19ad4c46208384321d0c45f266107c1cfda5a6b3a3",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/bmi",
+        "status": 200,
+        "htmlSha256": "a02c2b64b04cc7b84efd859b8695cf2f18997c9d90113d125641b50ad3b1bbf3",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/calories",
+        "status": 200,
+        "htmlSha256": "c5badcbab2b5a89ba2038803610981745949a5b3313e5999ffdd8a75fe4e3321",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/healthy-weight",
+        "status": 200,
+        "htmlSha256": "b5bd50a1cd485e31793ff1c8309da5ddc8851ab61a76f179c193539b272b2360",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/protein",
+        "status": 200,
+        "htmlSha256": "1d68a9ac54bcea5212645f45d7f984797e0dac2390f3c5372d2b259ec744a8d6",
+        "jsonBlocks": 5,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/waist-height",
+        "status": 200,
+        "htmlSha256": "63fa373a7964a96667e5f71e7b52513dfe6afcb180a72e6c39e50ce13d5b071d",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/walking",
+        "status": 200,
+        "htmlSha256": "180d8127301b03af591bc765387b08953f18814de5be2b9de9667c91ad7bf9ce",
+        "jsonBlocks": 5,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/water",
+        "status": 200,
+        "htmlSha256": "61b23d92d43a3c1b076782ec492076e7bc889939995a09872e9c2b7c7580d5a1",
+        "jsonBlocks": 4,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "deployed": {
+      "deploymentId": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+      "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "percentage": 100
+    },
+    "expected": {
+      "deploymentId": "085be230-0add-46fc-91d8-bab90c808612",
+      "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "percentage": 100,
+      "checkSource": "f9f79dfb6038c4bf5eb95b06d656a76cef992e0f"
+    },
+    "deploymentSource": "captured prior runtime; see deployment-before.json",
+    "afterChecks": {
+      "deploymentId": "43c2cc4f-40da-413a-97bc-f93cce3f8cf6",
+      "versionId": "c2b4ad51-201a-4704-ab32-ec76ca5c8918",
+      "percentage": 100
+    },
+    "finishedAt": "2026-10-14T01:20:04.425Z",
+    "syntheticFixtureOnly": true
+  },
+  "fixtureOnly": true,
+  "scope": "Exact historical failure identities plus explicitly synthetic creation/fresh-check values for negative unit fixtures only; not execution or physical acceptance evidence"
+}
