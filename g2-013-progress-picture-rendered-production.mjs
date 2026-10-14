@@ -1,5 +1,5 @@
 import {chromium} from 'playwright';
-import {commissioningLogin,memberReady,requireMemberPanel,chooseOptionalHealthTracking} from './rendered-member-acceptance-support.mjs';
+import {commissioningLogin,memberReady,requireMemberPanel,chooseOptionalHealthTracking,withdrawOptionalHealthTracking} from './rendered-member-acceptance-support.mjs';
 import fs from 'node:fs';import path from 'node:path';import {randomUUID} from 'node:crypto';
 const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
@@ -18,6 +18,33 @@ async function assertEmpty(row,p,label){await p.waitForFunction(()=>/No saved pr
 const browser=await chromium.launch({headless:true});try{for(const[id,viewport]of Object.entries({desktop:{width:1440,height:900},mobile390:{width:390,height:844}})){const row={id,viewport,pageErrors:[],console:[]};report.cases.push(row);let ctxA,ctxB;const emailA=`shiftsometimber+structured-g2013-a-${Date.now()}-${id}@gmail.com`,emailB=`shiftsometimber+structured-g2013-b-${Date.now()}-${id}@gmail.com`;try{await register(emailA);ctxA=await browser.newContext({viewport,reducedMotion:'reduce'});let p=await ctxA.newPage();p.on('pageerror',e=>row.pageErrors.push(clean(e?.message||e).slice(0,500)));p.on('console',m=>{if(m.type()==='error')row.console.push(clean(m.text()).slice(0,500))});await login(p,emailA);row.trackingChoice=await chooseOptionalHealthTracking(p,{site:SITE});await progressPanel(p);row.saved=await saveThroughUi(p);await assertSaved(row,p,'afterSave');let geom=await p.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,panel:Math.round(document.querySelector('#panel-visualise')?.getBoundingClientRect().width||0),client:document.documentElement.clientWidth}));row.geometry=geom;if(geom.overflow>0)fail(`${id}-overflow-after-save`,JSON.stringify(geom));await p.screenshot({path:path.join(OUT,`${id}-saved.png`),fullPage:true});await login(p,emailA);await progressPanel(p);await p.waitForSelector('#savedPhotos [data-photo-id]',{state:'visible',timeout:20000});await assertSaved(row,p,'afterReload');await p.evaluate(()=>window.SST_API.logout());await login(p,emailA);await progressPanel(p);await p.waitForSelector('#savedPhotos [data-photo-id]',{state:'visible',timeout:20000});await assertSaved(row,p,'afterReturnLogin');
       await register(emailB);ctxB=await browser.newContext({viewport,reducedMotion:'reduce'});const pb=await ctxB.newPage();await login(pb,emailB);row.otherMemberTrackingChoice=await chooseOptionalHealthTracking(pb,{site:SITE});await progressPanel(pb);await assertEmpty(row,pb,'otherMemberView');
       const del=p.locator('#savedPhotos [data-photo-delete]').first();await del.click();await p.waitForFunction(()=>/No saved progress photos yet/i.test(document.querySelector('#savedPhotos')?.textContent||''),null,{timeout:20000});await assertEmpty(row,p,'afterDelete');await login(p,emailA);await progressPanel(p);await p.waitForSelector('#savedPhotos',{state:'attached',timeout:15000});await assertEmpty(row,p,'afterDeleteReload');await p.evaluate(()=>window.SST_API.logout());await login(p,emailA);await progressPanel(p);await assertEmpty(row,p,'afterDeleteReturnLogin');
+      // Additive live privacy slices on this same fictional account. Keep every
+      // original save, return, other-account and deletion assertion above.
+      await saveThroughUi(p);
+      const ownedPhoto=await p.locator('#savedPhotos [data-photo-id]').first().getAttribute('data-photo-id');
+      if(!ownedPhoto)throw new Error('Owned withdrawal-test photo marker missing');
+      row.withdrawalChoice=await withdrawOptionalHealthTracking(p,{site:SITE});
+      let privateReads=0,privateWrites=0;
+      const countPrivate=request=>{const pathname=new URL(request.url()).pathname;if(!pathname.startsWith('/v1/shift/progress-photo'))return;if(request.method()==='GET')privateReads++;if(request.method()==='POST')privateWrites++;};
+      p.on('request',countPrivate);
+      await progressPanel(p);
+      const refusal=await p.evaluate(async()=>{try{await window.SST_API.listProgressPhotos();return{denied:false}}catch(e){return{denied:true,status:e.status,code:e.code}}});
+      if(!refusal.denied||refusal.status!==409||refusal.code!=='health_consent_required'||privateReads!==0)throw new Error('Withdrawal did not refuse private photo reads before the endpoint');
+      row.withdrawalRefusal={...refusal,privatePhotoReads:privateReads};
+      const input=p.locator('#photoInput');await revealUserControl(input);await input.setInputFiles({name:'progress-declined.png',mimeType:'image/png',buffer:png});
+      await p.waitForSelector('#photoPreview',{state:'visible',timeout:10000});
+      const originalConsent=p.locator('#savePhotoConsent');await revealUserControl(originalConsent);await originalConsent.check();
+      const save=p.locator('#saveOriginal');await revealUserControl(save);await save.click();
+      const optional=p.locator('dialog.health-consent-dialog-v42n');await optional.waitFor({state:'visible',timeout:15000});
+      if(await optional.locator('#healthConsentCheck').isChecked()||!await optional.locator('#healthConsentContinue').isDisabled())throw new Error('Declined optional tracking did not begin unselected');
+      await optional.getByRole('button',{name:'Not now',exact:true}).click();await optional.waitFor({state:'detached',timeout:15000});
+      await p.waitForFunction(()=>/Nothing saved/i.test(document.querySelector('#visualStatus')?.textContent||''),null,{timeout:15000});
+      if(privateWrites!==0)throw new Error('Declining optional health tracking sent a private photo');
+      row.declinedSave={privatePhotoWrites:privateWrites,outcome:'Nothing saved'};
+      await p.evaluate(async photoId=>window.SST_API.deleteProgressPhoto(photoId),ownedPhoto);
+      row.ownedDeleteAfterWithdrawal=true;
+      p.off('request',countPrivate);
+      row.regrantChoice=await chooseOptionalHealthTracking(p,{site:SITE});await progressPanel(p);await assertEmpty(row,p,'afterWithdrawalDeleteRegrant');
       if(row.pageErrors.length)fail(`${id}-page-errors`,JSON.stringify(row.pageErrors));
     }catch(e){fail(`${id}-exception`,clean(e?.message||e).slice(0,1800))}finally{write();if(ctxB)await ctxB.close().catch(()=>{});if(ctxA)await ctxA.close().catch(()=>{})}}}finally{await browser.close();write()}
 console.log(JSON.stringify(report,null,2));if(report.failures.length)throw new Error(`G2-013 rendered production proof failed ${report.failures.length}`);console.log('PASS G2-013 Progress Picture: member saves a real photo through the rendered product, sees private retained history across reload/logout/login on desktop and 390px, another member sees none, and deletion persists across reload/return.');
