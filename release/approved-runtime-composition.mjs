@@ -1,3 +1,4 @@
+import {RECORDED_WEEK_ACTIVATION_PATHS,RECORDED_WEEK_ACTIVATION_MAINTENANCE} from './my-timber-recorded-week-scope-20261014.mjs';
 import {COMBINED_FINITE_BASE,COMBINED_FINITE_PATHS,COMBINED_FINITE_MAINTENANCE} from './combined-finite-scope-20261014.mjs';
 import {MY_TIMBER_WEEK_CLOSEOUT_BASE,MY_TIMBER_WEEK_CLOSEOUT_PATHS,MY_TIMBER_WEEK_CLOSEOUT_MAINTENANCE} from './my-timber-week-closeout-scope.mjs';
 import {MY_TIMBER_WEEK_BASE,MY_TIMBER_WEEK_PATHS,MY_TIMBER_WEEK_MAINTENANCE} from './my-timber-week-scope.mjs';
@@ -3102,3 +3103,6 @@ import {RELEASE_MACHINERY_REPAIR_PATHS,RELEASE_MACHINERY_REPAIR_MAINTENANCE} fro
 // One exact authorised release-machinery repair; existing registrations remain unchanged.
 export const RELEASE_MACHINERY_REPAIR_ADDITIONAL_PATHS=Object.freeze([...RELEASE_MACHINERY_REPAIR_PATHS,...RELEASE_MACHINERY_REPAIR_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of RELEASE_MACHINERY_REPAIR_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+
+// Exact factual-week stack; all original machinery and prior registrations remain.
+for(const p of [...RECORDED_WEEK_ACTIVATION_PATHS,...RECORDED_WEEK_ACTIVATION_MAINTENANCE])RECONCILIATION_PATHS.add(p);

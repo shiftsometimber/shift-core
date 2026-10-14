@@ -1,4 +1,4 @@
-import {releaseMachineryRepairHistoricalView,releaseMachineryRepairAuthenticatedRead,releaseMachineryRepairLegacyRead,releaseMachineryRepairLegacyContent} from './release-machinery-repair-scope-20261014.mjs';
+import {releaseMachineryRepairHistoricalView,releaseMachineryRepairAuthenticatedRead,releaseMachineryRepairLegacyRead,releaseMachineryRepairLegacyContent,releaseMachineryRepairAuthenticatedContent} from './release-machinery-repair-scope-20261014.mjs';
 import {ensureCombinedOriginalGpSource} from './combined-original-gp-object-20261014.mjs';
 export const COMBINED_FINITE_BASE="5eba55df9065887562e94eb2ff35cb88bffc941b";
 export const COMBINED_FINITE_SOURCE="49c50935ddb67d0730f66da41e0a59b4f151df8e";
@@ -75,12 +75,27 @@ export function verifyCombinedFinite(c,options){
  const repair=releaseMachineryRepairHistoricalView();
  if(options.head!==repair.rawHead||repair.head===repair.rawHead)return verifyCombinedFiniteOriginal(c,options);
  const {head,read,blob=read,content,diff,ancestor}=options;
+ if(repair.recordedWeekContext){
+  const nativeDiff=(a,b)=>git('diff','--no-renames','--name-only',a,b).trim().split('\n').filter(Boolean);
+  const stackDiff=(a,b)=>{
+   if(b!==repair.head&&b!==head&&b!=='HEAD')return diff(a,b);
+   for(const r of ['HEAD',head])assert.deepEqual([...diff(a,r)].sort(),[...nativeDiff(a,head)].sort(),'Recorded-week source drift: Supplied combined raw diff changed');
+   const projected=diff(a,repair.head);assert.deepEqual([...projected].sort(),[...nativeDiff(a,repair.head)].sort(),'Recorded-week source drift: Supplied combined projected diff changed');return projected;
+  };
+  const stackAncestor=(a,b)=>{
+   if(b!==repair.head&&b!==head&&b!=='HEAD'){git('merge-base','--is-ancestor',a,b);const historical=ancestor(a,b);assert.notEqual(historical,false,'Recorded-week source drift: Supplied combined historical ancestry changed');return historical;}
+   for(const r of ['HEAD',head]){git('merge-base','--is-ancestor',a,head);assert.notEqual(ancestor(a,r),false,'Recorded-week source drift: Supplied combined raw ancestry changed');}
+   git('merge-base','--is-ancestor',a,repair.head);const projected=ancestor(a,repair.head);assert.notEqual(projected,false,'Recorded-week source drift: Supplied combined projected ancestry changed');return projected;
+  };
+  try{repair.recordedWeekContext.assertCurrent();return verifyCombinedFiniteOriginal(c,{head:repair.head,read:releaseMachineryRepairAuthenticatedRead(read,repair),blob:releaseMachineryRepairAuthenticatedRead(blob,repair),content:releaseMachineryRepairAuthenticatedContent(content,repair),diff:stackDiff,ancestor:stackAncestor});}
+  finally{repair.recordedWeekContext.assertCurrent();}
+ }
  const projectedDiff=(a,b)=>{
   if(b!==head&&b!=='HEAD')return diff(a,b);
   assert.deepEqual(diff(a,b),git('diff','--name-only',a,head).trim().split('\n').filter(Boolean),'Unreviewed supplied release machinery source drift');
   return diff(a,repair.head);
  };
- return verifyCombinedFiniteOriginal(c,{head:repair.head,read:releaseMachineryRepairAuthenticatedRead(read,repair),blob:releaseMachineryRepairAuthenticatedRead(blob,repair),content:releaseMachineryRepairLegacyContent(content,repair),diff:projectedDiff,ancestor});
+ return verifyCombinedFiniteOriginal(c,{head:repair.head,read:releaseMachineryRepairAuthenticatedRead(read,repair),blob:releaseMachineryRepairAuthenticatedRead(blob,repair),content:releaseMachineryRepairAuthenticatedContent(content,repair),diff:projectedDiff,ancestor});
 }
 export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader===null}={}){
  const repair=releaseMachineryRepairHistoricalView(reader,{defaultReader});
