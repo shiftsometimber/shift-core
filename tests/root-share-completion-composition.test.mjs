@@ -21,7 +21,7 @@ const after={
  'release/photo-calendar-scope.mjs':c.COMPLETION_CALENDAR_IMPORT+before['release/photo-calendar-scope.mjs'].replace(c.COMPLETION_CALENDAR_OLD1,c.COMPLETION_CALENDAR_NEW1).replace(c.COMPLETION_CALENDAR_OLD2,c.COMPLETION_CALENDAR_NEW2).replaceAll('rawHead,head','rawHead:completion.rawHead,head'),
  'tests/photo-calendar-composition.test.mjs':c.COMPLETION_TEST_IMPORT+c.COMPLETION_TEST_NEW,
  'release/approved-runtime-composition.mjs':c.COMPLETION_RUNTIME_IMPORT+before['release/approved-runtime-composition.mjs']+c.COMPLETION_RUNTIME_BRANCH+c.COMPLETION_RUNTIME_FOOTER,
- '.github/workflows/shift-coach-integration.yml':c.COMPLETION_WORKFLOW_HOOK+before['.github/workflows/shift-coach-integration.yml']
+ '.github/workflows/shift-coach-integration.yml':c.COMPLETION_WORKFLOW_HOOK+c.COMPLETION_WORKFLOW_PATH_HOOK+before['.github/workflows/shift-coach-integration.yml']
 };
 const prior={rootSharePreview:{releaseApproval:c.ROOT_SHARE_COMPLETION_APPROVAL},photoCalendarRepair:{originalAuthority:true}};
 const options=()=>({head:'b'.repeat(40),read:(r,p)=>c.ROOT_SHARE_COMPLETION_BLOBS[p]||'same',blob:(r,p)=>c.ROOT_SHARE_COMPLETION_BLOBS[p]||'same',ancestor:()=>{},diff:a=>a===base?paths:a===source?maintenance:[manifest],content:(r,p)=>p===manifest?JSON.stringify(r===base?prior:{...prior,rootShareCompletionRepair:{}}):(r===base?before:after)[p]});
