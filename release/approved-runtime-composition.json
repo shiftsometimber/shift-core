@@ -5248,7 +5248,7 @@
       "prior97ByteExactPrefix": true,
       "frozenHelper39AndKernelUnchanged": true,
       "nativeContextWorkflowsCapsRuntimeApprovalsUnchanged": true,
-      "pureSourceExtractedWitnesses": 3,
+      "pureSourceExtractedWitnesses": 4,
       "selectedOwnerComponentBlob": "798957c4015038aafb9f79bd19d32ed01492e5ac",
       "selectedOwnerReviewBlob": "3ef6abb3cf0f5e609b0067936cc053fea24fe7bb",
       "focusedOwnerMac28Receipt": {
@@ -5274,8 +5274,10 @@
         "nodeVersion": "v24.21.0",
         "boundary": "Actual isolated Mac Git equivalence plus source-extracted guard witnesses. NOT full97, bound successor source admission, hosted, deployment, live acceptance or proven timing remedy."
       },
-      "nativeAcceptanceOrTimingFitClaimed": false
+      "nativeAcceptanceOrTimingFitClaimed": false,
+      "failed93c4NativeReceipt": "6a655c16e694bd380b520d48768b9cb6a92e4cd5",
+      "cumulativeScopeInverseCorrection": "Authenticate and undo newest Repair-status source change to exact prior dff5 first; only then apply the retained earlier direct-clean scope inverse to that authenticated prior view. Original guards and assertions retained."
     },
-    "maintenanceSource": "f07298d11a9234fa9ede862a330c12450b7041b7"
+    "maintenanceSource": "22d9f10b89e16e547394b810c16f14f90304ab6c"
   }
 }

@@ -1229,3 +1229,22 @@ import './fresh-food-source-clean-20261015.test.mjs';
   const w=fixture({value:Buffer.alloc(0),working:'changed\n'});assert.throws(()=>w.guard('stage'),/Tracked repair source changed at stage/);assert.equal(w.events.filter(x=>x[0]==='diff').length,1);
  });
 }
+
+{
+ test('Repair literal owner intake: cumulative scope inverse authenticates newest before retained direct-clean inverse',()=>{
+  const scopePath='release/food-diary-london-date-scope-20261015.mjs',policy=FOOD_DIARY_LONDON_DATE_POLICY;
+  const current=content(foodHead,scopePath),prior=policy.repairCleanStatusEquivalence20261015Prior,old=content(prior.head,scopePath);
+  const undo=(value,pairs)=>{for(const[a,b]of[...pairs].reverse()){assert(b&&value.split(b).length===2,'Every actual cumulative inverse fragment must remain unique');value=value.replace(b,a);}return value;};
+  const pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m;
+  const restored=undo(current,policy.repairCleanStatusEquivalenceScopeInverse),newPolicy=restored.match(pattern),oldPolicy=old.match(pattern);
+  assert(newPolicy&&oldPolicy);const authenticatedPrior=restored.replace(newPolicy[0],oldPolicy[0]);assert.equal(authenticatedPrior,old);
+  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:authenticatedPrior,encoding:'utf8'}).trim(),prior.scopeBlob);
+  const physical=current.split('\n').filter(line=>line.startsWith(' const repairStatusPrior=')||line.startsWith(' const directCleanPrior='));
+  assert.equal(physical.length,2);assert(physical[0].startsWith(' const repairStatusPrior='));
+  assert(physical[0].includes("assert.equal(repairStatusRestoredScope.replace(repairStatusNewPolicy[0],repairStatusOldPolicy[0]),repairStatusPriorScope,"));
+  assert(physical[1].includes("directRestoredScope=inverse('Food direct-clean scope',repairStatusRestoredScope.replace(repairStatusNewPolicy[0],repairStatusOldPolicy[0]),policy.directFoodNativeCleanExtensionScopeInverse)"));
+  assert(!physical[1].includes("directRestoredScope=inverse('Food direct-clean scope',content(head,"));
+  const earlier=undo(authenticatedPrior,policy.directFoodNativeCleanExtensionScopeInverse);
+  assert.notEqual(earlier,authenticatedPrior);assert(!earlier.includes('\n const directCleanPrior='));
+ });
+}
