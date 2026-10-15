@@ -2,11 +2,16 @@
 // Existing account runtimes remain responsible for every saved action.
 const scope='html body[data-member-design="20261001"]:is(#approved-member-design,[data-member-design]):is(#approved-member-palette,[data-member-design]):is(#approved-member-layout,[data-member-design])[data-member-experience-ui="20261015"]';
 const rule=(selector,body)=>selector.split('|').map(s=>scope+' '+s).join(',')+'{'+body.split(';').filter(Boolean).map(s=>s+'!important').join(';')+'}\n';
+// The native host reserves the measured fixed bars. Match that model only when
+// its trusted member-shell marker is present; the web and PWA keep sticky chrome.
+const nativeScope=scope.replace(/^html /,'html[data-my-timber-native-shell] ');
 export const appExperienceStyles=scope+'{background:#f5f2eb!important;color:#050505!important;margin:0!important;padding-bottom:calc(94px + env(safe-area-inset-bottom))!important}\n'+
 scope+'[data-app-panel="1"]{padding:0!important;margin:0!important}\n'+
 scope+'[data-app-panel="1"] main{padding:0!important;margin:0!important}\n'+
 rule('main','background:#f5f2eb;color:#050505;max-width:1040px;padding:24px 20px 40px')+
 rule('#todayBrand','position:sticky;top:0;z-index:44;min-height:64px;padding-top:max(8px,env(safe-area-inset-top));padding-bottom:8px;box-sizing:border-box')+
+nativeScope+' #todayBrand[data-member-design-header]{position:fixed!important;inset:0 0 auto!important;z-index:1000!important;width:100%!important;transform:none!important}\n'+
+nativeScope+' #appBottomNav{position:fixed!important;inset:auto 0 0!important;z-index:1000!important;width:100%!important;transform:none!important}\n'+
 rule('#todayBrand .member-design-mark','width:34px;height:34px')+
 rule('.member-section-name','display:block;font-size:12px;line-height:1.3;letter-spacing:.02em;color:#e7e3da;-webkit-text-fill-color:#e7e3da;font-weight:400;margin-top:4px')+
 rule('#appBottomNav','z-index:60;box-shadow:0 -6px 24px #05050512')+
