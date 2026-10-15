@@ -5077,16 +5077,18 @@
       "testMaintenance": "Only the exact Programme pair count/cap requirement and aggregate inverse selection are maintained; strict inverses restore every byte of the prior Food38 test and then the original Food23 witness."
     },
     "maintenanceRevision": {
-      "name": "directFoodNativeCleanExtension20261015",
+      "name": "repairCleanStatusEquivalence20261015",
       "prior": {
-        "head": "80ab2f42d8d814b907b7fc4cb157c3cbb29d4407",
-        "tree": "beb780fb9560d44060f09b0788541b290416be13",
-        "ledgerBlob": "fe9329133d476d4f1cd3fad9bcea3e289dada058",
-        "scopeBlob": "832a606e16d7e49a163215771052a24b0f11afb4",
-        "foodTestBlob": "4c2d5c579a7b2c078353743a0305442e0c2b31a4",
-        "maintenanceSource": "46e2f2258eac55a17b1c25df8b0b6894862a7b4b"
+        "head": "dff5ae0b0ad7f783f1e29e4f7afff469b7800003",
+        "tree": "3baf7e70aae719eecdb58c75f51df21beb49212e",
+        "ledgerBlob": "1d127925b5619bf8b3895fddbb27a4594b3824f7",
+        "scopeBlob": "e479ed1abc2da600eedce6dd4ef90b1ee1642809",
+        "repairBlob": "985612b7b6ec6b335e821587e0df6cfb5fd7a46d",
+        "foodTestBlob": "4a33615a0839f18c31a32ab9e2de903ef625366b",
+        "maintenanceSource": "82b95299f19bc5211ea48e0d4c00eec1393b85be",
+        "nativeAdmission": "TIMEOUT_NOT_FULL97_PASS"
       },
-      "scope": "Extend only the native clean binding inside FoodOriginal to the already frozen823 fresh per-call ordinary-detached-checkout certificate, retaining the exact original native clean as fallback. This supersedes only the prior historical-view-only/native-binding limitation; the earlier subrecord remains a byte-exact prior-revision witness, not a claim that this later direct binding is unchanged.",
+      "scope": "Only Repair assertCleanSource: retain fresh visibility first, allow one fresh native strict detached clean status at the original first-diff position, otherwise retain both literal lazy original diffs. No hint/result/reader/validator outcome cache. Prior dff5 remains timed out and unaccepted.",
       "sourceAndTestInversesRequired": true
     },
     "ciSourceCompatibility20261015": {
@@ -5226,6 +5228,54 @@
       "newPureWitnessesAreRealModuleAcceptance": false,
       "fullGateOrPerformanceBudgetPassClaimed": false
     },
-    "maintenanceSource": "82b95299f19bc5211ea48e0d4c00eec1393b85be"
+    "repairCleanStatusEquivalence20261015": {
+      "kind": "FINITE_LITERAL_OWNER_REPAIR_FRESH_STATUS_EQUIVALENCE_20261015",
+      "prior": {
+        "head": "dff5ae0b0ad7f783f1e29e4f7afff469b7800003",
+        "tree": "3baf7e70aae719eecdb58c75f51df21beb49212e",
+        "ledgerBlob": "1d127925b5619bf8b3895fddbb27a4594b3824f7",
+        "scopeBlob": "e479ed1abc2da600eedce6dd4ef90b1ee1642809",
+        "repairBlob": "985612b7b6ec6b335e821587e0df6cfb5fd7a46d",
+        "foodTestBlob": "4a33615a0839f18c31a32ab9e2de903ef625366b",
+        "maintenanceSource": "82b95299f19bc5211ea48e0d4c00eec1393b85be",
+        "nativeAdmission": "TIMEOUT_NOT_FULL97_PASS"
+      },
+      "scope": "Only Repair assertCleanSource: retain fresh visibility first, allow one fresh native strict detached clean status at the original first-diff position, otherwise retain both literal lazy original diffs. No hint/result/reader/validator outcome cache. Prior dff5 remains timed out and unaccepted.",
+      "originalVisibilityAndLazyDiffAssertionsLiteral": true,
+      "freshNativeExecAndParserEligibilityRequired": true,
+      "strictNumericByteParserOnly": true,
+      "allProjectionHeadCiCallbackFinallyBodiesUnchanged": true,
+      "prior97ByteExactPrefix": true,
+      "frozenHelper39AndKernelUnchanged": true,
+      "nativeContextWorkflowsCapsRuntimeApprovalsUnchanged": true,
+      "pureSourceExtractedWitnesses": 3,
+      "selectedOwnerComponentBlob": "798957c4015038aafb9f79bd19d32ed01492e5ac",
+      "selectedOwnerReviewBlob": "3ef6abb3cf0f5e609b0067936cc053fea24fe7bb",
+      "focusedOwnerMac28Receipt": {
+        "status": "PASS",
+        "atUtc": "2026-10-15T15:39:30.426706+00:00",
+        "startedAtUtc": "2026-10-15T15:39:28.311412+00:00",
+        "elapsedSeconds": 2.115287209,
+        "exitCode": 0,
+        "timedOut": false,
+        "counts": {
+          "tests": 28,
+          "pass": 28,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "ownedGroupEmpty": true,
+        "inputsUnchanged": true,
+        "packetSHA256": "caa511671086864c5544ee9a0588d4376889a48ff22193bf64474c7313692930",
+        "root": "/Users/shiftsometimberltd/SST/shift-machinery-status-parity-v2-20261015-umu9u042",
+        "tapSHA256": "cf4f4ba6cb99ef7e300075853f71d6134ee2439a3fb93f6120cfca08e56d01b4",
+        "nodeVersion": "v24.21.0",
+        "boundary": "Actual isolated Mac Git equivalence plus source-extracted guard witnesses. NOT full97, bound successor source admission, hosted, deployment, live acceptance or proven timing remedy."
+      },
+      "nativeAcceptanceOrTimingFitClaimed": false
+    },
+    "maintenanceSource": "f07298d11a9234fa9ede862a330c12450b7041b7"
   }
 }

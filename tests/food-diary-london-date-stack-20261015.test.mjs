@@ -1187,3 +1187,45 @@ import './fresh-food-source-clean-20261015.test.mjs';
   assert.equal(hints,1,'The native hint cannot replace a privateW guard');assert.equal(legacy,1);
  });
 }
+
+// Three pure intake witnesses; retain the separate actual owner28 Mac receipt.
+{
+ const policy=FOOD_DIARY_LONDON_DATE_POLICY,prior=policy.repairCleanStatusEquivalence20261015Prior;
+ const repairPath='release/release-machinery-repair-scope-20261014.mjs',scopePath='release/food-diary-london-date-scope-20261015.mjs',testsPath='tests/food-diary-london-date-stack-20261015.test.mjs';
+ const source=content(foodHead,repairPath),oldSource=content(prior.head,repairPath);
+ const undo=(value,pairs)=>{for(const[before,after,kind]of[...pairs].reverse()){assert(after&&value.split(after).length===2);if(kind==='suffix')assert(value.endsWith(after));value=value.replace(after,before);}return value;};
+ const lineAnchor=(text,needle)=>{const positions=[];for(let at=text.indexOf(needle);at>=0;at=text.indexOf(needle,at+needle.length))positions.push(at);assert.equal(positions.length,1,'Unique physical source anchor required');return positions[0];};
+ const a=lineAnchor(source,'\n// A hint may replace only two clean-success diff probes. Visibility and the\n');
+ const b=lineAnchor(source,'\nfunction assertCleanSource(stage){');
+ const e=lineAnchor(source,'\nfunction inverseMaintenance(');assert(a<b&&b<e);
+ const helper=source.slice(a+1,b),guard=source.slice(b+1,e);
+ function fixture({value=Buffer.from('# branch.oid '+'1'.repeat(40)+'\0# branch.head (detached)\0'),working='',staged='',workingError=null,stagedError=null,visibilityError=null}={}){
+  const events=[];
+  const native=(command,args,options)=>{events.push(['status',command,[...args],{...options}]);return value;};
+  const git=(...args)=>{events.push(['diff',[...args]]);if(args.includes('--cached')){if(stagedError)throw stagedError;return staged;}if(workingError)throw workingError;return working;};
+  const visible=stage=>{events.push(['visibility',stage]);if(visibilityError)throw visibilityError;};
+  const make=new Function('assert','git','assertGitTrackedSourceVisible','initial','let repairNativeExecFileSync=initial;\n'+helper+'\n'+guard+'\nreturn {guard:assertCleanSource,replaceNative(fn){repairNativeExecFileSync=fn;}};');
+  return {...make(assert,git,visible,native),events};
+ }
+ test('Repair literal owner intake: exact798 component and complete prior97 source tests and records restore',()=>{
+  assert.equal(blob(foodHead,repairPath),'798957c4015038aafb9f79bd19d32ed01492e5ac');assert.equal(blob(prior.head,repairPath),prior.repairBlob);
+  assert.equal(undo(source,policy.repairCleanStatusEquivalenceSourceInverse),oldSource);
+  assert.equal(undo(source,policy.inverses[repairPath]),content(c.base,repairPath),'All historical Repair assertions restore to the exact original source');
+  const currentScope=content(foodHead,scopePath),oldScope=content(prior.head,scopePath),restored=undo(currentScope,policy.repairCleanStatusEquivalenceScopeInverse),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,oldPolicy=oldScope.match(pattern),newPolicy=restored.match(pattern);assert(oldPolicy&&newPolicy);assert.equal(restored.replace(newPolicy[0],oldPolicy[0]),oldScope);
+  const currentTests=content(foodHead,testsPath),oldTests=content(prior.head,testsPath);assert(currentTests.startsWith(oldTests));assert.equal(undo(currentTests,policy.repairCleanStatusEquivalenceFood97Inverse),oldTests);
+  for(const[name,expected]of Object.entries(policy.repairCleanStatusEquivalenceOriginalTestBlobs))assert.equal(execFileSync('git',['hash-object','--stdin'],{input:undo(currentTests,policy[name]),encoding:'utf8'}).trim(),expected);
+  assert.equal(c.repairCleanStatusEquivalence20261015.selectedOwnerComponentBlob,'798957c4015038aafb9f79bd19d32ed01492e5ac');assert.equal(c.repairCleanStatusEquivalence20261015.nativeAcceptanceOrTimingFitClaimed,false);
+ });
+ test('Repair literal owner intake: exact source-extracted guard keeps fresh visibility and fresh strict probe',()=>{
+  const f=fixture();f.guard('entry');f.guard('exit');assert.deepEqual(f.events.map(x=>x[0]),['visibility','status','visibility','status']);
+  for(const x of f.events.filter(x=>x[0]==='status')){assert.equal(x[1],'git');assert.deepEqual(x[2],['--no-optional-locks','status','--porcelain=v2','-z','--branch','--untracked-files=no','--ignore-submodules=none']);assert.deepEqual(x[3],{maxBuffer:32*1024*1024,stdio:'pipe'});}
+ });
+ test('Repair literal owner intake: exact old lazy errors visibility and private executor boundary survive',()=>{
+  const fallback=[['diff','--name-only','HEAD','--'],['diff','--cached','--name-only','--']];
+  const f=fixture({value:Buffer.alloc(0)});f.guard('empty');assert.deepEqual(f.events.filter(x=>x[0]==='diff').map(x=>x[1]),fallback);
+  const native=fixture();native.replaceNative(()=>Buffer.from('# branch.oid '+'1'.repeat(40)+'\0# branch.head (detached)\0'));native.guard('foreign');assert.deepEqual(native.events.map(x=>x[0]),['visibility','diff','diff']);
+  const visibilityError=Error('same original visibility'),v=fixture({visibilityError});assert.throws(()=>v.guard('entry'),x=>x===visibilityError);assert.deepEqual(v.events,[['visibility','entry']]);
+  for(const slot of['workingError','stagedError']){const error=Error('same original '+slot),x=fixture({value:Buffer.alloc(0),[slot]:error});assert.throws(()=>x.guard('failure'),e=>e===error);assert.deepEqual(x.events.filter(x=>x[0]==='diff').map(x=>x[1]),slot==='workingError'?[fallback[0]]:fallback);}
+  const w=fixture({value:Buffer.alloc(0),working:'changed\n'});assert.throws(()=>w.guard('stage'),/Tracked repair source changed at stage/);assert.equal(w.events.filter(x=>x[0]==='diff').length,1);
+ });
+}

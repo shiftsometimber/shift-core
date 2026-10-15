@@ -1,5 +1,6 @@
 import {ciExecutionNativeReaderProvenance,verifyCiExecutionAllowance,ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
 import assert from 'node:assert/strict';
+import {execFileSync as repairNativeExecFileSync} from 'node:child_process';
 import {assertGitTrackedSourceVisible,nativeGitSourceDifference,immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const RELEASE_MACHINERY_REPAIR_BASE='685ede249cd20c4801d0a25227fed16d46860618';
 export const RELEASE_MACHINERY_REPAIR_SOURCE="22cb217988021d5d3ddf2eff74ca012401ab955b";
@@ -15,10 +16,35 @@ const manifest=RELEASE_MACHINERY_REPAIR_MANIFEST,key=RELEASE_MACHINERY_REPAIR_KE
 const nativeCiReadSources=new WeakMap();
 function git(...args){return execFileSync('git',args,{encoding:'utf8',maxBuffer:64e6});}
 const rawBlob=(r,p)=>git('rev-parse',r+':'+p).trim(),rawContent=(r,p)=>git('show',r+':'+p),rawDiff=nativeGitSourceDifference,rawAncestor=(a,b)=>git('merge-base','--is-ancestor',a,b),currentHead=()=>git('rev-parse','HEAD').trim();
+// A hint may replace only two clean-success diff probes. Visibility and the
+// original lazy working/staged assertions remain at every original call site.
+const repairStatusExec=repairNativeExecFileSync;
+const repairStatusEnvironment=process.env;
+const repairStatusBuffer=Buffer,repairStatusIsBuffer=Buffer.isBuffer,repairStatusIsView=ArrayBuffer.isView;
+const repairStatusLength=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype),'length').get;
+const repairStatusApply=Reflect.apply;
+function freshRepairCleanStatus(){
+ try{
+  if(repairNativeExecFileSync!==repairStatusExec||process.env!==repairStatusEnvironment||Buffer!==repairStatusBuffer||Buffer.isBuffer!==repairStatusIsBuffer||ArrayBuffer.isView!==repairStatusIsView)return false;
+  for(const name in process.env)if(name[0]==='G'&&name[1]==='I'&&name[2]==='T'&&name[3]==='_'&&name!=='GIT_PAGER')return false;
+  const bytes=repairNativeExecFileSync('git',['--no-optional-locks','status','--porcelain=v2','-z','--branch','--untracked-files=no','--ignore-submodules=none'],{maxBuffer:32*1024*1024,stdio:'pipe'});
+  // isBuffer alone accepts a Proxy around a Buffer. The native view and
+  // captured typed-array length checks exclude proxies and Buffer-like objects.
+  if(!repairStatusIsBuffer(bytes)||!repairStatusIsView(bytes)||repairStatusApply(repairStatusLength,bytes,[])!==79)return false;
+  const first=[35,32,98,114,97,110,99,104,46,111,105,100,32],last=[35,32,98,114,97,110,99,104,46,104,101,97,100,32,40,100,101,116,97,99,104,101,100,41,0];
+  for(let i=0;i<first.length;i++)if(bytes[i]!==first[i])return false;
+  let nonzero=false;for(let i=13;i<53;i++){const n=bytes[i];if(!(n>=48&&n<=57||n>=97&&n<=102))return false;if(n!==48)nonzero=true;}
+  if(!nonzero||bytes[53]!==0)return false;
+  for(let i=0;i<last.length;i++)if(bytes[54+i]!==last[i])return false;
+  return true;
+ }catch{return false;}
+}
 function assertCleanSource(stage){
  assertGitTrackedSourceVisible(stage);
+ if(!freshRepairCleanStatus()){
  assert.equal(git('diff','--name-only','HEAD','--').trim(),'','Release machinery source drift: Tracked repair source changed at '+stage);
  assert.equal(git('diff','--cached','--name-only','--').trim(),'','Release machinery source drift: Staged repair source changed at '+stage);
+ }
 }
 function inverseMaintenance(path,value,pairs){
  assert(Array.isArray(pairs)&&pairs.length,'Exact maintenance inverse required: '+path);
