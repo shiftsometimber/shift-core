@@ -1,5 +1,6 @@
-import {ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
+import {ciExecutionNativeReaderProvenance,verifyCiExecutionAllowance,ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
 import assert from 'node:assert/strict';
+import {execFileSync as repairNativeExecFileSync} from 'node:child_process';
 import {assertGitTrackedSourceVisible,nativeGitSourceDifference,immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const RELEASE_MACHINERY_REPAIR_BASE='685ede249cd20c4801d0a25227fed16d46860618';
 export const RELEASE_MACHINERY_REPAIR_SOURCE="22cb217988021d5d3ddf2eff74ca012401ab955b";
@@ -12,12 +13,38 @@ export const RELEASE_MACHINERY_REPAIR_RECORD=Object.freeze({proof:'EXACT_BOUNDED
 export const RELEASE_MACHINERY_REPAIR_PROTECTED=Object.freeze(['frontend','public','my-timber-app','member-experience','medicines-watch','wrangler.jsonc','wrangler.coaching.jsonc','shift-coach/worker.mjs','worker-entry-v6.js','worker.js','release/ai-response-proof.mjs','release/shift-ai-live.mjs','privacy-health-erasure-route-v1.js','package.json','package-lock.json']);
 export const RELEASE_MACHINERY_REPAIR_POLICY=Object.freeze({record:RELEASE_MACHINERY_REPAIR_RECORD,inverses:RELEASE_MACHINERY_REPAIR_INVERSES,protectedPaths:RELEASE_MACHINERY_REPAIR_PROTECTED});
 const manifest=RELEASE_MACHINERY_REPAIR_MANIFEST,key=RELEASE_MACHINERY_REPAIR_KEY,sorted=a=>[...a].sort();
+const nativeCiReadSources=new WeakMap();
 function git(...args){return execFileSync('git',args,{encoding:'utf8',maxBuffer:64e6});}
 const rawBlob=(r,p)=>git('rev-parse',r+':'+p).trim(),rawContent=(r,p)=>git('show',r+':'+p),rawDiff=nativeGitSourceDifference,rawAncestor=(a,b)=>git('merge-base','--is-ancestor',a,b),currentHead=()=>git('rev-parse','HEAD').trim();
+// A hint may replace only two clean-success diff probes. Visibility and the
+// original lazy working/staged assertions remain at every original call site.
+const repairStatusExec=repairNativeExecFileSync;
+const repairStatusEnvironment=process.env;
+const repairStatusBuffer=Buffer,repairStatusIsBuffer=Buffer.isBuffer,repairStatusIsView=ArrayBuffer.isView;
+const repairStatusLength=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype),'length').get;
+const repairStatusApply=Reflect.apply;
+function freshRepairCleanStatus(){
+ try{
+  if(repairNativeExecFileSync!==repairStatusExec||process.env!==repairStatusEnvironment||Buffer!==repairStatusBuffer||Buffer.isBuffer!==repairStatusIsBuffer||ArrayBuffer.isView!==repairStatusIsView)return false;
+  for(const name in process.env)if(name[0]==='G'&&name[1]==='I'&&name[2]==='T'&&name[3]==='_'&&name!=='GIT_PAGER')return false;
+  const bytes=repairNativeExecFileSync('git',['--no-optional-locks','status','--porcelain=v2','-z','--branch','--untracked-files=no','--ignore-submodules=none'],{maxBuffer:32*1024*1024,stdio:'pipe'});
+  // isBuffer alone accepts a Proxy around a Buffer. The native view and
+  // captured typed-array length checks exclude proxies and Buffer-like objects.
+  if(!repairStatusIsBuffer(bytes)||!repairStatusIsView(bytes)||repairStatusApply(repairStatusLength,bytes,[])!==79)return false;
+  const first=[35,32,98,114,97,110,99,104,46,111,105,100,32],last=[35,32,98,114,97,110,99,104,46,104,101,97,100,32,40,100,101,116,97,99,104,101,100,41,0];
+  for(let i=0;i<first.length;i++)if(bytes[i]!==first[i])return false;
+  let nonzero=false;for(let i=13;i<53;i++){const n=bytes[i];if(!(n>=48&&n<=57||n>=97&&n<=102))return false;if(n!==48)nonzero=true;}
+  if(!nonzero||bytes[53]!==0)return false;
+  for(let i=0;i<last.length;i++)if(bytes[54+i]!==last[i])return false;
+  return true;
+ }catch{return false;}
+}
 function assertCleanSource(stage){
  assertGitTrackedSourceVisible(stage);
+ if(!freshRepairCleanStatus()){
  assert.equal(git('diff','--name-only','HEAD','--').trim(),'','Release machinery source drift: Tracked repair source changed at '+stage);
  assert.equal(git('diff','--cached','--name-only','--').trim(),'','Release machinery source drift: Staged repair source changed at '+stage);
+ }
 }
 function inverseMaintenance(path,value,pairs){
  assert(Array.isArray(pairs)&&pairs.length,'Exact maintenance inverse required: '+path);
@@ -78,6 +105,7 @@ function releaseMachineryRepairHistoricalViewOriginal(reader=null,{defaultReader
  assertCleanSource('projection entry');verifyReleaseMachineryRepairOriginal(c,{head:rawHead,...(ci?{read:ci.blob,readContent:ci.content,readDiff:ci.diff,isAncestor:ci.ancestor}:{})},ci);
  const paths=new Set([...c.paths,...c.maintenancePaths,manifest]),affected=p=>paths.has(p)||[...paths].some(x=>x.startsWith(p+'/')),view={rawHead,head:c.base,affected,currentContent:rawContent,authentic:(v,r,p)=>authentic(v,r,p,rawHead)};
  const map=(r,p)=>currentRef(view,r)&&affected(p)?c.base:r==='HEAD'?rawHead:r;
+ const nativeProof=ci&&ciExecutionNativeReaderProvenance(sourceReader);if(nativeProof?.kind==='read'&&nativeProof.view===ci&&ci.head===rawHead)nativeCiReadSources.set(view,sourceReader);
  const read=releaseMachineryRepairAuthenticatedRead(sourceReader,view,{defaultReader});
  const prior=structuredClone(record);delete prior[key];assertCleanSource('projection exit');assert.equal(ci?(ci.assertCurrent(),ci.head):currentHead(),rawHead,'Release machinery source drift: Source HEAD changed during repair projection');
  return{...view,record:prior,read,blob:(r,p)=>rawBlob(map(r,p),p),content:(r,p)=>rawContent(map(r,p),p)};
@@ -86,9 +114,10 @@ function releaseMachineryRepairHistoricalViewOriginal(reader=null,{defaultReader
 // source. Both current spellings are checked on every call, including directories.
 export function releaseMachineryRepairAuthenticatedRead(reader,view,{defaultReader=false}={}){
  assert.equal(typeof reader,'function');if(view.rawHead===view.head)return reader;
+ const nativeCiSource=nativeCiReadSources.get(view)===reader;
  return(r,p)=>{
   if(currentRef(view,r)&&view.affected(p)){
-   if(!defaultReader){assert(view.authentic(reader('HEAD',p),'HEAD',p),'Release machinery source drift: Unauthentic supplied HEAD repair reader: '+p);assert(view.authentic(reader(view.rawHead,p),view.rawHead,p),'Release machinery source drift: Unauthentic supplied raw-alias repair reader: '+p);}
+   if(!defaultReader&&!nativeCiSource){assert(view.authentic(reader('HEAD',p),'HEAD',p),'Release machinery source drift: Unauthentic supplied HEAD repair reader: '+p);assert(view.authentic(reader(view.rawHead,p),view.rawHead,p),'Release machinery source drift: Unauthentic supplied raw-alias repair reader: '+p);}
    return reader(view.head,p);
   }return reader(defaultReader&&r==='HEAD'?view.rawHead:r,p);
  };
@@ -125,6 +154,7 @@ export function verifyReleaseMachineryRepair(c,options={}){
  const ci=ciExecutionHistoricalView();
  if(ci.head===ci.rawHead)return verifyReleaseMachineryRepairOriginal(c,options);
  assert.equal(options.head??ci.rawHead,ci.rawHead,'Release machinery source drift: Actual raw ci HEAD required');
+ if(ci.foodDiaryLondonDateContext)verifyCiExecutionAllowance(JSON.parse(rawContent(ci.rawHead,manifest)).ciExecutionAllowance20261014,{head:ci.rawHead,read:options.read??rawBlob,readContent:options.readContent??rawContent,readDiff:options.readDiff??rawDiff,isAncestor:options.isAncestor??rawAncestor});
  return verifyReleaseMachineryRepairOriginal(c,{head:ci.head,
   read:ciExecutionAuthenticatedRead(options.read==null||options.read===rawBlob?null:options.read,ci),
   readContent:ciExecutionAuthenticatedContent(options.readContent==null||options.readContent===rawContent?null:options.readContent,ci),
