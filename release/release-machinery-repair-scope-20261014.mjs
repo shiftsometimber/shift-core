@@ -1,4 +1,4 @@
-import {ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
+import {verifyCiExecutionAllowance,ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
 import assert from 'node:assert/strict';
 import {assertGitTrackedSourceVisible,nativeGitSourceDifference,immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const RELEASE_MACHINERY_REPAIR_BASE='685ede249cd20c4801d0a25227fed16d46860618';
@@ -125,6 +125,7 @@ export function verifyReleaseMachineryRepair(c,options={}){
  const ci=ciExecutionHistoricalView();
  if(ci.head===ci.rawHead)return verifyReleaseMachineryRepairOriginal(c,options);
  assert.equal(options.head??ci.rawHead,ci.rawHead,'Release machinery source drift: Actual raw ci HEAD required');
+ if(ci.foodDiaryLondonDateContext)verifyCiExecutionAllowance(JSON.parse(rawContent(ci.rawHead,manifest)).ciExecutionAllowance20261014,{head:ci.rawHead,read:options.read??rawBlob,readContent:options.readContent??rawContent,readDiff:options.readDiff??rawDiff,isAncestor:options.isAncestor??rawAncestor});
  return verifyReleaseMachineryRepairOriginal(c,{head:ci.head,
   read:ciExecutionAuthenticatedRead(options.read==null||options.read===rawBlob?null:options.read,ci),
   readContent:ciExecutionAuthenticatedContent(options.readContent==null||options.readContent===rawContent?null:options.readContent,ci),

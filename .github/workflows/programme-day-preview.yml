@@ -16,11 +16,41 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - run: node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs
-      - run: node scripts/b1-release-scope.mjs
-      - run: node release/growth-preflight.mjs
+      - name: Run all original source gates and wait for every result
         env:
           GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          proof=programme-day-proof/source-gates
+          mkdir -p "$proof" || exit 1
+          git rev-parse HEAD > "$proof/head.txt" || exit 1
+          (
+            unset GITHUB_TOKEN
+            node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs
+          ) > "$proof/source-tests.log" 2>&1 &
+          source_pid=$!
+          (
+            unset GITHUB_TOKEN
+            node scripts/b1-release-scope.mjs
+          ) > "$proof/b1-scope.log" 2>&1 &
+          b1_pid=$!
+          (
+            node release/growth-preflight.mjs
+          ) > "$proof/growth-preflight.log" 2>&1 &
+          growth_pid=$!
+          failed=0
+          wait "$source_pid"
+          source_status=$?
+          wait "$b1_pid"
+          b1_status=$?
+          wait "$growth_pid"
+          growth_status=$?
+          if ! printf 'source-tests\t%s\nb1-scope\t%s\ngrowth-preflight\t%s\n' "$source_status" "$b1_status" "$growth_status" > "$proof/status.tsv"; then failed=1; fi
+          for status in "$source_status" "$b1_status" "$growth_status"; do
+            if [ "$status" -ne 0 ]; then failed=1; fi
+          done
+          if ! cat "$proof/source-tests.log" "$proof/b1-scope.log" "$proof/growth-preflight.log" "$proof/status.tsv"; then failed=1; fi
+          exit "$failed"
       - run: npm install --prefix "$RUNNER_TEMP/programme-tools" --no-audit --no-fund playwright@1.63.0
       - run: '"$RUNNER_TEMP/programme-tools/node_modules/.bin/playwright" install --with-deps chromium'
       - run: node scripts/verify-programme-day.cjs
