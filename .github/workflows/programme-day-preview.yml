@@ -26,7 +26,7 @@ jobs:
           import {join} from 'node:path';
           import {tmpdir} from 'node:os';
           import {createHash} from 'node:crypto';
-          const tasks=Object.freeze([{"id":"source-tests","body":"node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs"},{"id":"b1-scope","body":"node scripts/b1-release-scope.mjs"},{"id":"growth-preflight","body":"node release/growth-preflight.mjs","tokenRole":"programme-growth"}]);
+          const tasks=Object.freeze([{"id":"source-tests","body":"node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs"},{"id":"b1-scope","body":"node scripts/b1-release-scope.mjs"},{"id":"growth-preflight","body":"node release/growth-preflight.mjs","tokenRole":"programme-growth"},{"id":"browser-toolchain","body":"npm install --prefix \"$RUNNER_TEMP/programme-tools\" --no-audit --no-fund playwright@1.63.0\n\"$RUNNER_TEMP/programme-tools/node_modules/.bin/playwright\" install --with-deps chromium"}]);
           const poolId="programme";
           const proofDir=join('programme-day-proof','source-gates');
           const programmeGrowthToken=poolId==='programme'?process.env.GITHUB_TOKEN:undefined;if(poolId==='programme')delete process.env.GITHUB_TOKEN;
@@ -88,8 +88,6 @@ jobs:
           evidence('final-source-json',()=>writeFileSync(join(proofDir,'source-final.json'),JSON.stringify({before:sourceBefore,after:sourceAfter,unchanged:sourceUnchanged},null,2)+'\n'));
           if(!hydrationFailed)phase='finished';finishedAt=now();let failed=hydrationFailed||Boolean(cancelled)||evidenceFailed||!sourceUnchanged||results.some(result=>result.status!=='passed');record('pool-finished',{failed});if(evidenceFailed&&!failed){failed=true;events[events.length-1].failed=true;save();}process.exitCode=failed?1:0;
           SHIFT_CI_POOL
-      - run: npm install --prefix "$RUNNER_TEMP/programme-tools" --no-audit --no-fund playwright@1.63.0
-      - run: '"$RUNNER_TEMP/programme-tools/node_modules/.bin/playwright" install --with-deps chromium'
       - run: node scripts/verify-programme-day.cjs
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/programme-tools/node_modules/playwright

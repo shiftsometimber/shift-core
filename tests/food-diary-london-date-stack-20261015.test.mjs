@@ -43,18 +43,24 @@ test('the food receipt owns the exact two-file runtime payload while original ma
  assert.equal(c.compositionSynchronousHistoryScope,true,'The finite Food receipt must explicitly own only the existing synchronous history scope around the public verifier');
  const composition='release/approved-runtime-composition.mjs',originalSignature='export function verifyReconciledRelease(read=defaultReconciliationRead){\n',privateSignature='function verifyReconciledReleaseOriginal(read){\n',bodyEnd='\n}\nconst mappedCompositionReaders=new WeakSet();',originalBody=content(c.base,composition).split(originalSignature)[1].split(bodyEnd)[0],currentBody=content(foodHead,composition).split(privateSignature)[1].split(bodyEnd)[0];assert.equal(currentBody,originalBody,'Every original verifier body byte and callback assertion remains exact');assert(content(foodHead,composition).includes(originalSignature+' return withImmutableHistoryVerification(()=>verifyReconciledReleaseOriginal(read));\n}\n'+privateSignature),'Only the exact synchronous wrapper is allowed');
 });
+function programmeBeforeToolchainOverlap(path,bytes){
+ if(path!=='.github/workflows/programme-day-preview.yml')return bytes;
+ const prior=FOOD_DIARY_LONDON_DATE_POLICY.ciProgrammeToolchainOverlap20261015Prior,pool=FOOD_DIARY_LONDON_DATE_POLICY.ciProgrammeToolchainPool20261015,[before,after]=pool.workflowPair;
+ assert(after&&bytes.split(after).length===2,'One exact admitted Programme setup scheduling fragment is required');const restored=bytes.replace(after,before);
+ assert.equal(restored,content(prior.head,path),'Every raw Programme byte outside the exact setup scheduling pair remains unchanged');assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored,encoding:'utf8'}).trim(),prior.workflowBlob,'Exact prior Programme workflow blob required');return restored;
+}
 test('the exact original21 CI witness production60 and configurations survive the runtime repair',()=>{
  assert.equal(blob(foodHead,ciWitness),'b5aee29bfa2e7e4fa01de2585df074eb3ee40907');assert.equal(content(foodHead,ciWitness),content(c.base,'tests/ci-execution-stack-20261014.test.mjs'));assert.equal(blob(foodHead,'tests/ci-execution-stack-20261014.test.mjs'),'cec36f99782ed977a23827bfa67d400876948d25');
  const production='.github/workflows/cloudflare-production-promote.yml';assert.match(content(foodHead,production),/^    timeout-minutes: 60$/m);
  for(const path of[production,'.github/workflows/production-completion-proof.yml','.github/workflows/approved-ranking-proof.yml','wrangler.jsonc','wrangler.coaching.jsonc','package.json','package-lock.json','worker-entry-v6.js','worker.js','frontend','public','my-timber-app','shift-coach/worker.mjs','member-state-fast-v1.js','member-experience/health-routes.mjs']){if(FOOD_DIARY_LONDON_DATE_POLICY.ciExecutionWorkflowPaths.includes(path)){const restored=executionOriginalCiWorkflow(path,content(foodHead,path));assert.equal(restored,content(c.base,path),'Only the exact authorised CI orchestration may change protected workflow bytes: '+path);assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored,encoding:'utf8'}).trim(),blob(c.base,path),'The exact inverse must restore the original protected workflow Git blob: '+path);}else assert.equal(blob(foodHead,path),blob(c.base,path),'Protected source changed: '+path);}
  assert.equal(c.ciProgrammeConcurrency,true,'The finite Food receipt must explicitly own Programme source-gate concurrency');
- const programme='.github/workflows/programme-day-preview.yml',pairs=FOOD_DIARY_LONDON_DATE_POLICY.inverses[programme];assert.equal(pairs.length,3,'Only the original Programme aggregate, exact bounded two-slot successor and named wall-clock allowance are authorised');
+ const programme='.github/workflows/programme-day-preview.yml',pairs=FOOD_DIARY_LONDON_DATE_POLICY.inverses[programme];assert.equal(pairs.length,4,'Only the original Programme aggregate, exact bounded two-slot successor, named wall-clock allowance and one exact setup scheduling inverse are authorised');assert.deepEqual(pairs.at(-1),FOOD_DIARY_LONDON_DATE_POLICY.ciProgrammeToolchainPool20261015.workflowPair);
  const original=content(c.base,programme),current=content(foodHead,programme);assert.equal(executionOriginalCiWorkflow(programme,current),original,'Programme named timeout120 allowance, read-only permission, install, browser and every byte outside the exact source-gate and cap replacements remain exact');assert.equal(execFileSync('git',['hash-object','--stdin'],{input:executionOriginalCiWorkflow(programme,current),encoding:'utf8'}).trim(),blob(c.base,programme),'The exact Programme inverse restores its original Git blob');
  assert.match(current,/^    timeout-minutes: 120$/m);assert.match(current,/^permissions:\n  contents: read$/m);
 });
 test('the exact Programme aggregate starts every original gate and waits for all failures with isolated token scope and complete logs',()=>{
  const workflow='.github/workflows/programme-day-preview.yml',pairs=FOOD_DIARY_LONDON_DATE_POLICY.inverses[workflow],before=pairs[0][0],after=pairs[1][1];
- const original=content(c.base,workflow),current=content(foodHead,workflow),marker='        run: |\n';
+ const original=content(c.base,workflow),current=programmeBeforeToolchainOverlap(workflow,content(foodHead,workflow)),marker='        run: |\n';
  assert.equal(after.split(marker).length,2,'One literal aggregate shell block is required');
  const embedded=after.slice(after.indexOf(marker)+marker.length).split('\n').map(line=>{if(!line)return'';assert(line.startsWith('          '),'Exact workflow shell indentation required');return line.slice(10);}).join('\n');
  const commands=[...before.matchAll(/^      - run: (node [^\n]+)$/gm)].map(match=>match[1]);assert.equal(commands.length,3,'All three original command bodies must remain');
@@ -302,7 +308,7 @@ async function ciPoolUntil(check,label,timeout=6000){const deadline=Date.now()+t
 function ciPoolJson(path){return JSON.parse(ciPoolRead(path,'utf8'));}
 
 function ciPoolFixture(pool,{scenario='normal',failRole='',tokenTuple='original'}={}){
- const root=ciPoolTemp(ciPoolJoin(ciPoolTmpdir(),'shift-ci-pool-witness-')),poolId=JSON.parse(pool.script.match(/^const poolId=(.+);$/m)[1]),roles=pool.tasks.map(task=>task.id),trace=ciPoolJoin(root,'fixture-events.jsonl');assert.equal(roles.length,3);
+ const root=ciPoolTemp(ciPoolJoin(ciPoolTmpdir(),'shift-ci-pool-witness-')),poolId=JSON.parse(pool.script.match(/^const poolId=(.+);$/m)[1]),roles=pool.tasks.map(task=>task.id),trace=ciPoolJoin(root,'fixture-events.jsonl');assert(['completion','programme'].includes(poolId));assert.equal(roles.length,poolId==='programme'?4:3);if(poolId==='programme')assert.deepEqual(roles,['source-tests','b1-scope','growth-preflight','browser-toolchain']);
  assert(['join(process.env.RUNNER_TEMP||tmpdir(),\'ci-source-proof\',poolId)',"join('programme-day-proof','source-gates')"].includes(pool.proofDirExpression),'Only the actual admitted proof-directory expressions are supported');
  const proof=poolId==='programme'?ciPoolJoin(root,'programme-day-proof','source-gates'):ciPoolJoin(root,'ci-source-proof',poolId);
  const git=(...args)=>ciPoolExec('git',args,{cwd:root,encoding:'utf8',stdio:['ignore','pipe','pipe']});
@@ -342,6 +348,15 @@ output('complete');event('finished');writeFileSync(join(root,id+'.finished'),'co
   async close(){if(!closed){child.kill('SIGTERM');await Promise.race([terminal,ciPoolDelay(2500)]);if(!closed){child.kill('SIGKILL');await terminal;}}ciPoolRemove(root,{recursive:true,force:true});}};
 }
 async function ciPoolReleaseSchedule(f){
+ if(f.poolId==='programme'){
+  assert.deepEqual(f.roles,['source-tests','b1-scope','growth-preflight','browser-toolchain']);const[first,second,third,fourth]=f.roles;
+  await ciPoolUntil(()=>f.started(first)&&f.started(second),'the two original Programme slots');assert(!f.started(third)&&!f.started(fourth));
+  await ciPoolUntil(()=>f.stdout.includes(first+':stdout:start')&&f.stdout.includes(second+':stderr:start'),'live Programme progress before release');assert(!f.finished(first)&&!f.finished(second));
+  f.release(second);await ciPoolUntil(()=>f.started(third),'queued original growth after B1');assert(f.finished(second)&&!f.finished(first)&&!f.started(fourth));
+  f.release(third);await ciPoolUntil(()=>f.started(fourth),'mandatory queued setup after growth');assert(f.finished(third)&&!f.finished(first),'The actual fourth setup role overlaps the still-running original source');
+  f.release(fourth);await ciPoolUntil(()=>f.finished(fourth),'mandatory setup completion');assert(!f.finished(first),'Setup completion alone cannot finish the source gate');f.release(first);return;
+ }
+ assert.equal(f.poolId,'completion');assert.equal(f.roles.length,3);
  const[first,second,third]=f.roles;await ciPoolUntil(()=>f.started(first)&&f.started(second),'the first two controlled slots');
  assert(!f.started(third),'The third original command must wait for an execution slot');assert(!f.finished(first));assert(!f.finished(second));
  await ciPoolUntil(()=>f.stdout.includes(first+':stdout:start')&&f.stdout.includes(second+':stderr:start'),'live progress while both children are blocked');
@@ -350,7 +365,7 @@ async function ciPoolReleaseSchedule(f){
 }
 function ciPoolAssertAllFinished(f,result,{failure='',evidenceFailure=false,sourceChanged=false}={}){
  assert.equal(result.signal,null);assert.equal(result.code,failure||evidenceFailure||sourceChanged?1:0);const state=f.state();assert.equal(state.phase,'finished');assert.equal(state.active,0);assert.equal(state.maxConcurrent,2);assert.equal(state.cancelled,null);assert.equal(state.sourceUnchanged,!sourceChanged);assert.deepEqual(state.sourceBefore,f.initial);
- assert.equal(state.results.length,3);for(const row of state.results){assert(f.finished(row.id),'Every original command must complete before aggregate terminal status');assert.equal(row.status,row.id===failure?'failed':'passed');assert.equal(row.exitCode,row.id===failure?7:0);assert.equal(row.signal,null);assert(row.startedAt&&row.finishedAt);assert.equal(row.bodySha256,ciPoolHash('sha256').update(f.tasks.find(t=>t.id===row.id).body).digest('hex'));}
+ assert.equal(state.results.length,f.roles.length);for(const row of state.results){assert(f.finished(row.id),'Every original command must complete before aggregate terminal status');assert.equal(row.status,row.id===failure?'failed':'passed');assert.equal(row.exitCode,row.id===failure?7:0);assert.equal(row.signal,null);assert(row.startedAt&&row.finishedAt);assert.equal(row.bodySha256,ciPoolHash('sha256').update(f.tasks.find(t=>t.id===row.id).body).digest('hex'));}
  assert.equal(Math.max(...state.events.map(event=>event.active)),2,'Two real execution slots are used');assert(state.events.every(event=>event.active>=0&&event.active<=2),'The pool must never exceed its configured bound');assert.deepEqual(state.events.filter(event=>event.event==='command-started').map(event=>event.id),f.roles,'Every original command takes its declared slot in order');
  const trace=f.events(),firstChild=trace.findIndex(event=>event.type==='started');assert.deepEqual(trace.slice(0,firstChild).map(event=>[event.type,event.id]),[['hydrate-module','reviewed'],['hydrate-start','reviewed'],['hydrate-done','reviewed'],['hydrate-module','gp'],['hydrate-start','gp'],['hydrate-done','gp']],'Both hydration module initialisations and invocations finish serially before any child');assert(trace.slice(0,firstChild).every(event=>event.token===(f.poolId!=='programme')),'Programme hydration has no token; other pools preserve their original environment');
  assert.equal(state.events.at(-1).event,'pool-finished');assert.equal(state.events.at(-1).failed,Boolean(failure||evidenceFailure||sourceChanged));return state;
@@ -363,7 +378,7 @@ async function ciPoolTokenTupleWitness(tokenTuple){
    const out=id+':stdout:start\n'+id+':stdout:complete\n',err=id+':stderr:start\n'+id+':stderr:complete\n';assert.equal(ciPoolRead(ciPoolJoin(f.proof,id+'.stdout.log'),'utf8'),out);assert.equal(ciPoolRead(ciPoolJoin(f.proof,id+'.stderr.log'),'utf8'),err);const combined=ciPoolRead(ciPoolJoin(f.proof,id+'.log'),'utf8');for(const line of(out+err).trim().split('\n'))assert(combined.includes(line+'\n'));for(const other of f.roles.filter(role=>role!==id))assert(!combined.includes(other+':'));
   }
   assert.deepEqual(ciPoolRead(ciPoolJoin(f.proof,'status.tsv'),'utf8').trim().split('\n'),f.roles.map(id=>id+'\t0'));assert.equal(ciPoolRead(ciPoolJoin(f.proof,'head.txt'),'utf8'),f.initial.head+'\n');assert.deepEqual(ciPoolJson(ciPoolJoin(f.proof,'source-final.json')),{before:f.initial,after:f.initial,unchanged:true});
-  return{tokenTuple,exitCode:result.code,children:3,passed:3,maxActive:Math.max(...state.events.map(event=>event.active)),hydrationTokenAbsent:f.events().filter(event=>event.type.startsWith('hydrate-')).every(event=>event.token===false),environments,completeSeparateLogs:true,liveProgressBeforeRelease:true,sourceUnchanged:state.sourceUnchanged};
+  return{tokenTuple,exitCode:result.code,children:f.roles.length,passed:f.roles.length,maxActive:Math.max(...state.events.map(event=>event.active)),hydrationTokenAbsent:f.events().filter(event=>event.type.startsWith('hydrate-')).every(event=>event.token===false),environments,completeSeparateLogs:true,liveProgressBeforeRelease:true,sourceUnchanged:state.sourceUnchanged};
  }finally{await f.close();}
 }
 
@@ -686,9 +701,9 @@ test('actual byte-pinned Food route with explicit local auth stubs and real SQLi
   assert.deepEqual(Object.keys(allowance.workflowTimeoutMinutes).sort(),wallClockCaps.map(([p])=>p).sort());
   for(const[path,before,after]of wallClockCaps){
    assert(after<=360);assert.deepEqual(allowance.workflowTimeoutMinutes[path],{before,after});
-   const current=content(foodHead,path),previous=content(prior.head,path),restored=restoreWallClockOnly(path,restoreIntegrationSchedulingOnly(path,current),previous);assert.equal(restored,previous);assert.deepEqual(policy.ciWallClockAllowance20261015InversePairs[path],['    timeout-minutes: '+before+'\n','    timeout-minutes: '+after+'\n']);
+   const current=content(foodHead,path),previous=content(prior.head,path),restored=restoreWallClockOnly(path,restoreIntegrationSchedulingOnly(path,programmeBeforeToolchainOverlap(path,current)),previous);assert.equal(restored,previous);assert.deepEqual(policy.ciWallClockAllowance20261015InversePairs[path],['    timeout-minutes: '+before+'\n','    timeout-minutes: '+after+'\n']);
    assert.equal(executionOriginalCiWorkflow(path,current),content(c.base,path),'Complete strict inverses still restore the exact original CI workflow');
-   for(const changed of[current.replace('    timeout-minutes: '+after+'\n','    timeout-minutes: '+(after+1)+'\n'),current+'\n# unapproved workflow change\n',current.replace('node ','node --trace-warnings '),current.replace('runs-on:','runs-on-unapproved:')])assert.throws(()=>restoreWallClockOnly(path,restoreIntegrationSchedulingOnly(path,changed),previous),/exact|unchanged/,'Cap admission must reject any additional byte change');
+   for(const changed of[current.replace('    timeout-minutes: '+after+'\n','    timeout-minutes: '+(after+1)+'\n'),current+'\n# unapproved workflow change\n',current.replace('node ','node --trace-warnings '),current.replace('runs-on:','runs-on-unapproved:')])assert.throws(()=>restoreWallClockOnly(path,restoreIntegrationSchedulingOnly(path,programmeBeforeToolchainOverlap(path,changed)),previous),/exact|unchanged/,'Cap admission must reject any additional byte change');
   }
   const production='.github/workflows/cloudflare-production-promote.yml';assert.equal(content(foodHead,production),content(prior.head,production));assert.match(content(foodHead,production),/^    timeout-minutes: 60$/m);
   const restored38=policy.ciWallClockFood38SourceInverse.reduceRight((bytes,[before,after,kind])=>{assert(after&&bytes.split(after).length===2,'One exact Food38 restoration fragment is required');if(kind==='suffix')assert(bytes.endsWith(after));return bytes.replace(after,before);},content(foodHead,prior.foodTestPath));
@@ -922,3 +937,192 @@ test('a fake spawn failure is recorded once while every remaining original still
  }
 });
 }
+
+/* Pure mechanics appended to the actual Food policy. No real children,
+   hydrators, browser, network or installation command executes in this fixture. */
+import programmeToolchainFixtureTest from 'node:test';
+import programmeToolchainFixtureAssert from 'node:assert/strict';
+import * as programmeToolchainFixtureFs from 'node:fs';
+import * as programmeToolchainFixturePath from 'node:path';
+import * as programmeToolchainFixtureOs from 'node:os';
+import * as programmeToolchainFixtureEvents from 'node:events';
+import * as programmeToolchainFixtureCrypto from 'node:crypto';
+{
+const test=programmeToolchainFixtureTest,assert=programmeToolchainFixtureAssert;
+const {readFileSync,mkdtempSync,mkdirSync,writeFileSync,appendFileSync,renameSync,rmSync}=programmeToolchainFixtureFs;
+const {join,resolve,sep}=programmeToolchainFixturePath;
+const {tmpdir}=programmeToolchainFixtureOs;
+const {EventEmitter}=programmeToolchainFixtureEvents;
+const {createHash}=programmeToolchainFixtureCrypto;
+const setupPolicy=FOOD_DIARY_LONDON_DATE_POLICY,packet=setupPolicy.ciProgrammeToolchainPool20261015,setupPrior=setupPolicy.ciProgrammeToolchainOverlap20261015Prior;
+const runner=setupPolicy.ciExecutionPools.programme.script;
+const current=content(foodHead,packet.workflowPath),original=content(setupPrior.head,packet.workflowPath);
+const inverse={before:packet.workflowPair[0],after:packet.workflowPair[1]};
+const tasks=[...packet.originalTasks,packet.setupTask],ids=tasks.map(task=>task.id);
+const expectedBodies=new Map(tasks.map(task=>[task.body,task]));
+const HEAD='a'.repeat(40),TREE='b'.repeat(40),CHANGED='c'.repeat(40);
+const hash=value=>createHash('sha256').update(value).digest('hex');
+const blob=value=>createHash('sha1').update('blob '+Buffer.byteLength(value)+'\0').update(value).digest('hex');
+const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
+
+function injectedBody(){
+ let value=runner;
+ for(const literal of[
+  "import {spawn,execFileSync} from 'node:child_process';\n",
+  "import {mkdirSync,writeFileSync,appendFileSync,renameSync} from 'node:fs';\n",
+  "import {join} from 'node:path';\n",
+  "import {tmpdir} from 'node:os';\n",
+  "import {createHash} from 'node:crypto';\n",
+ ]){assert.equal(value.split(literal).length,2);value=value.replace(literal,'');}
+ for(const[before,after]of[
+  ["await import('./shift-coach/release-contract.mjs')","await __fixture.hydrator('reviewed')"],
+  ["await import('./release/combined-original-gp-object-20261014.mjs')","await __fixture.hydrator('original-gp')"],
+ ]){assert.equal(value.split(before).length,2);value=value.replace(before,after);}
+ assert(!/^\s*import\s/m.test(value));assert(!/\bimport\s*\(/.test(value));
+ return value+'\nreturn state();\n';
+}
+
+function fixture({changeHead=false,evidenceFailure=null,spawnFailure=null,hydrationFailure=null}={}){
+ const dir=mkdtempSync(join(tmpdir(),'shift-programme-toolchain-fixture-'));
+ const events=[],spawns=[],children=new Map(),alive=new Set(),kills=[],hydrations=[],gitCalls=[];
+ const originalEnv={RUNNER_TEMP:join(dir,'runner-temp'),PATH:'/fixture-only/bin',GITHUB_TOKEN:'synthetic-programme-token',NODE_TEST_CONTEXT:'existing-synthetic-context',PRESERVED:'unchanged'};
+ const processFake=new EventEmitter();processFake.env={...originalEnv};processFake.pid=810000;processFake.exitCode=undefined;
+ for(const key of['stdout','stderr']){processFake[key]=new EventEmitter();processFake[key].chunks=[];processFake[key].write=value=>{processFake[key].chunks.push(String(value));return true;};}
+ let nextPid=820000,peak=0,head=HEAD,changed=false,injected=false,settled=false,terminalState=null,terminalError=null,browserInvocations=0;
+ const confined=path=>{const absolute=resolve(dir,String(path));assert(absolute===dir||absolute.startsWith(dir+sep));return absolute;};
+ function failEvidence(operation,path){
+  const hit=!injected&&(evidenceFailure==='log'&&operation==='append'&&String(path).endsWith('/browser-toolchain.stdout.log')
+   ||evidenceFailure==='status'&&operation==='rename'&&spawns.length>0&&String(path).endsWith('/status.json'));
+  if(hit){injected=true;throw Object.assign(Error('Declared fake evidence failure'),{code:'E_FIXTURE_IO'});}
+ }
+ const fsFake={
+  mkdirSync:(path,...args)=>mkdirSync(confined(path),...args),
+  writeFileSync:(path,...args)=>writeFileSync(confined(path),...args),
+  appendFileSync:(path,...args)=>{failEvidence('append',path);return appendFileSync(confined(path),...args);},
+  renameSync:(before,after)=>{failEvidence('rename',after);return renameSync(confined(before),confined(after));},
+ };
+ const execFake=(file,args,options)=>{
+  assert.equal(file,'git');assert.deepEqual(args.slice(0,1),['rev-parse']);assert.equal(args.length,2);assert(['HEAD','HEAD^{tree}'].includes(args[1]));
+  gitCalls.push([...args]);events.push({kind:'source-read',args:[...args],spawned:spawns.length});const value=(args[1]==='HEAD'?head:TREE)+'\n';return options?.encoding?value:Buffer.from(value);
+ };
+ function finish(id,{code=0,signal=null,logs=true,streamError=false}={}){
+  const child=children.get(id);assert(child&&alive.has(child.pid),'Only an owned active fake child may finish');
+  if(logs){child.stdout.emit('data',Buffer.from(id+':stdout:start\n'));child.stderr.emit('data',Buffer.from(id+':stderr:start\n'));child.stdout.emit('data',Buffer.from(id+':stdout:complete\n'));child.stderr.emit('data',Buffer.from(id+':stderr:complete\n'));}
+  if(streamError)child.stdout.emit('error',Object.assign(Error('Declared fake stream failure'),{code:'E_FIXTURE_STREAM'}));
+  alive.delete(child.pid);events.push({kind:'close',id,code,signal,active:alive.size});
+  if(changeHead&&!changed){changed=true;head=CHANGED;}
+  child.emit('close',code,signal);
+ }
+ const spawnFake=(file,args,options)=>{
+  assert.equal(file,'bash');assert.deepEqual(args.slice(0,-1),['--noprofile','--norc','-e','-o','pipefail','-c']);assert.equal(args.length,7);
+  const task=expectedBodies.get(args.at(-1));assert(task,'Only an exact original source or exact serial setup body may run');
+  assert.deepEqual(options.stdio,['ignore','pipe','pipe']);assert.equal(options.detached,true);
+  assert.deepEqual(hydrations,['reviewed','original-gp']);assert(alive.size<2);assert(!spawns.some(row=>row.id===task.id));
+  const expected={...originalEnv};if(task.id!=='growth-preflight')delete expected.GITHUB_TOKEN;
+  assert.deepEqual(options.env,expected,'Original environment and exact growth-only token tuple remain unchanged');
+  assert.equal(gitCalls.length,2,'Initial native source identity is captured exactly once before commands');
+  const child=new EventEmitter();child.pid=nextPid++;child.id=task.id;child.stdout=new EventEmitter();child.stderr=new EventEmitter();
+  spawns.push({id:task.id,body:args.at(-1),env:{...options.env},pid:child.pid});
+  if(task.id===spawnFailure)throw Object.assign(Error('Declared fake spawn failure'),{code:'E_FIXTURE_SPAWN'});
+  children.set(task.id,child);alive.add(child.pid);peak=Math.max(peak,alive.size);events.push({kind:'spawn',id:task.id,active:alive.size});return child;
+ };
+ processFake.kill=(pid,signal)=>{
+  assert(pid<0&&Number.isInteger(pid));assert.equal(signal,'SIGTERM');const child=[...children.values()].find(value=>value.pid===-pid&&alive.has(value.pid));
+  if(!child)throw Object.assign(Error('No owned fake group'),{code:'ESRCH'});
+  kills.push({pid,signal,id:child.id});queueMicrotask(()=>{if(alive.has(child.pid))finish(child.id,{code:null,signal:'SIGTERM',logs:false});});return true;
+ };
+ const hydrator=async kind=>{
+  assert(!Object.hasOwn(processFake.env,'GITHUB_TOKEN'),'Hydrator import must not inherit the Programme token');
+  const hydrate=()=>{assert(!Object.hasOwn(processFake.env,'GITHUB_TOKEN'));assert.equal(spawns.length,0);hydrations.push(kind);if(kind===hydrationFailure)throw Object.assign(Error('Declared fake hydration failure'),{code:'E_FIXTURE_HYDRATION'});};
+  return kind==='reviewed'?{ensureReviewedHistory:hydrate}:{ensureCombinedOriginalGpSource:hydrate};
+ };
+ const forbidden=()=>{throw Error('No real network, process, import or external operation is permitted');};
+ const execute=new AsyncFunction('spawn','execFileSync','mkdirSync','writeFileSync','appendFileSync','renameSync','join','tmpdir','createHash','process','__fixture','fetch','require','globalThis','setTimeout','setInterval',injectedBody());
+ const terminal=execute(spawnFake,execFake,fsFake.mkdirSync,fsFake.writeFileSync,fsFake.appendFileSync,fsFake.renameSync,join,()=>dir,createHash,processFake,{hydrator},forbidden,forbidden,Object.freeze({}),forbidden,forbidden);
+ terminal.then(value=>{terminalState=value;settled=true;},error=>{terminalError=error;settled=true;});
+ return {dir,events,spawns,alive,kills,hydrations,gitCalls,process:processFake,terminal,finish,
+  get peak(){return peak;},get settled(){return settled;},get terminalState(){return terminalState;},get terminalError(){return terminalError;},get injected(){return injected;},
+  get browserInvocations(){return browserInvocations;},
+  read:name=>readFileSync(join(dir,'programme-day-proof/source-gates',name),'utf8'),
+  async until(predicate,label){for(let tries=0;tries<1000;tries++){if(predicate())return;if(settled){if(terminalError)throw terminalError;throw Error('Runner ended before '+label);}await new Promise(setImmediate);}throw Error('Fake runner did not reach '+label);},
+  async workflowBarrier(){const value=await terminal;if(processFake.exitCode===0){assert.equal(value.phase,'finished');assert.equal(value.cancelled,null);assert.equal(value.active,0);assert.equal(value.evidenceFailed,false);assert.equal(value.sourceUnchanged,true);assert.equal(value.results.length,4);assert(value.results.every(row=>row.status==='passed'&&row.exitCode===0));browserInvocations++;}return value;},
+  async close(){if(!settled){processFake.emit('SIGTERM');await terminal.catch(()=>{});}assert.equal(alive.size,0);rmSync(dir,{recursive:true,force:true});}
+ };
+}
+
+async function drain(f,{failedId=null,streamErrorId=null}={}){
+ for(const id of ids){await f.until(()=>f.spawns.some(row=>row.id===id),'start '+id);const row=f.spawns.find(row=>row.id===id);if(f.alive.has(row.pid))f.finish(id,{code:id===failedId?7:0,streamError:id===streamErrorId});}
+ return f.workflowBarrier();
+}
+
+function allOnce(f,state,{failedId=null,completeLogs=true}={}){
+ assert.deepEqual(f.spawns.map(row=>row.id),ids);assert.equal(f.peak,2);assert.equal(f.alive.size,0);
+ assert.deepEqual(state.results.map(row=>row.id),ids);assert.equal(state.maxConcurrent,2);assert.equal(state.active,0);assert.equal(state.phase,'finished');
+ assert.deepEqual(f.hydrations,['reviewed','original-gp']);assert.deepEqual(f.gitCalls,[['rev-parse','HEAD'],['rev-parse','HEAD^{tree}'],['rev-parse','HEAD'],['rev-parse','HEAD^{tree}']]);
+ for(const task of tasks){const result=state.results.find(row=>row.id===task.id);assert.equal(result.bodySha256,hash(task.body));assert.equal(result.status,task.id===failedId?'failed':'passed');assert.equal(result.exitCode,task.id===failedId?7:0);if(completeLogs){assert.equal(f.read(task.id+'.stdout.log'),task.id+':stdout:start\n'+task.id+':stdout:complete\n');assert.equal(f.read(task.id+'.stderr.log'),task.id+':stderr:start\n'+task.id+':stderr:complete\n');}}
+ assert.deepEqual(JSON.parse(f.read('commands.json')).tasks,tasks);
+ assert.deepEqual(f.read('status.tsv').trim().split('\n'),ids.map(id=>id+'\t'+(id===failedId?7:0)));
+}
+
+test('Programme toolchain: private full inverse retains exact source tuples scheduler cap and actual browser suffix',()=>{
+ assert.equal(blob(original),'e5687f8cade5478a8b8abbf3463ec47746dabb48');assert.equal(blob(current),packet.newBlob);assert.equal(hash(current),packet.newSha256);assert.equal(hash(runner),packet.runnerSha256);
+ assert.equal(current.split(inverse.after).length,2);assert.equal(current.replace(inverse.after,inverse.before),original);
+ assert.equal(packet.maxConcurrent,2);assert.equal(packet.timeoutMinutes,120);assert.match(current,/^    timeout-minutes: 120$/m);
+ const declaration=runner.match(/^const tasks=Object\.freeze\((.*)\);$/m)[1];assert.deepEqual(JSON.parse(declaration),tasks);assert.deepEqual(ids,['source-tests','b1-scope','growth-preflight','browser-toolchain']);assert.equal(Object.hasOwn(tasks[3],'tokenRole'),false);
+ const setup='npm install --prefix "$RUNNER_TEMP/programme-tools" --no-audit --no-fund playwright@1.63.0\n"$RUNNER_TEMP/programme-tools/node_modules/.bin/playwright" install --with-deps chromium';assert.equal(tasks[3].body,setup);
+ const marker='      - run: node scripts/verify-programme-day.cjs\n';assert.equal(current.slice(current.indexOf(marker)),original.slice(original.indexOf(marker)),'Browser/env/upload suffix remains actual byte-identical');
+ assert(!current.slice(current.indexOf('          SHIFT_CI_POOL\n')).includes('npm install'));
+});
+
+test('Programme toolchain: one fourth setup slot overlaps the long source only after its queued turn and all four run once',async()=>{
+ const f=fixture();try{
+  await f.until(()=>f.spawns.length===2,'first two source commands');assert.deepEqual(f.spawns.map(row=>row.id),ids.slice(0,2));f.finish('b1-scope');await f.until(()=>f.spawns.length===3,'queued original growth');
+  assert.equal(f.spawns.some(row=>row.id==='browser-toolchain'),false);f.finish('growth-preflight');await f.until(()=>f.spawns.length===4,'queued setup');
+  assert(f.alive.has(f.spawns.find(row=>row.id==='source-tests').pid));f.finish('browser-toolchain');assert.equal(f.settled,false);assert.equal(f.browserInvocations,0,'Setup success alone cannot open the browser barrier');
+  f.finish('source-tests');const state=await f.workflowBarrier();allOnce(f,state);assert.equal(f.process.exitCode,0);assert.equal(f.browserInvocations,1);assert.equal(state.events.at(-1).failed,false);
+ }finally{await f.close();}
+});
+
+test('Programme toolchain: failure of any original source or mandatory serial setup waits all four and blocks browser acceptance',async()=>{
+ for(const failedId of ids){const f=fixture();try{const state=await drain(f,{failedId});allOnce(f,state,{failedId});assert.equal(f.process.exitCode,1);assert.equal(f.browserInvocations,0);assert.equal(state.events.at(-1).failed,true);}finally{await f.close();}}
+});
+
+test('Programme toolchain: cancellation stops only owned active groups waits their close and starts neither queued growth nor setup',async()=>{
+ const f=fixture();try{await f.until(()=>f.spawns.length===2,'two owned groups');f.process.emit('SIGTERM');const state=await f.workflowBarrier();assert.equal(f.process.exitCode,1);assert.equal(f.browserInvocations,0);assert.equal(f.alive.size,0);assert.deepEqual(f.spawns.map(row=>row.id),ids.slice(0,2));assert.deepEqual(f.kills.map(row=>row.id),ids.slice(0,2));assert(state.results.slice(0,2).every(row=>row.status==='signalled'));assert(state.results.slice(2).every(row=>row.status==='cancelled-before-start'));assert.equal(state.cancelled,'SIGTERM');}finally{await f.close();}
+});
+
+test('Programme toolchain: fresh source drift with the same tree and evidence sink or stream failures cannot produce browser success',async()=>{
+ for(const options of[{changeHead:true},{evidenceFailure:'log'},{evidenceFailure:'status'},{streamErrorId:'browser-toolchain'}]){
+  const f=fixture(options);try{const state=await drain(f,{streamErrorId:options.streamErrorId});assert.equal(f.process.exitCode,1);assert.equal(f.browserInvocations,0);assert.equal(f.alive.size,0);assert.equal(f.spawns.length,4);assert(state.results.every(row=>row.status==='passed'));
+   if(options.changeHead){assert.equal(state.sourceUnchanged,false);assert.deepEqual(state.sourceBefore,{head:HEAD,tree:TREE});assert.deepEqual(state.sourceAfter,{head:CHANGED,tree:TREE});}else{assert.equal(state.evidenceFailed,true);assert(state.evidenceErrors.length>0);if(options.evidenceFailure)assert.equal(f.injected,true);}
+  }finally{await f.close();}
+ }
+});
+
+test('Programme toolchain: failed setup spawn is mandatory and failed hydration starts no source or install process',async()=>{
+ const f=fixture({spawnFailure:'browser-toolchain'});try{const state=await drain(f);assert.equal(f.spawns.length,4);assert.equal(f.alive.size,0);assert.equal(f.process.exitCode,1);assert.equal(f.browserInvocations,0);assert.equal(state.results[3].status,'spawn-failed');assert.equal(state.results[3].errorCode,'E_FIXTURE_SPAWN');assert(state.results.slice(0,3).every(row=>row.status==='passed'));}finally{await f.close();}
+ for(const kind of['reviewed','original-gp']){const f=fixture({hydrationFailure:kind});try{const state=await f.workflowBarrier();assert.equal(f.spawns.length,0);assert.equal(f.process.exitCode,1);assert.equal(f.browserInvocations,0);assert(state.results.every(row=>row.status==='not-started'));}finally{await f.close();}}
+});
+
+test('Programme toolchain: raw fourth-role admission rejects omission body token barrier cap and slot drift',()=>{
+ assert.deepEqual(setupPolicy.ciExecutionPools.programme.tasks,tasks);
+ assert.deepEqual(tasks.slice(0,3),packet.originalTasks);
+ assert.deepEqual(c.ciProgrammeToolchainOverlap20261015,setupPolicy.ciProgrammeToolchainOverlap20261015);
+ assert.equal(c.originalFood48ByteExactInverse,true);
+ const path=packet.workflowPath,check=bytes=>assert.equal(executionOriginalCiWorkflow(path,bytes),content(c.base,path));
+ check(current);
+ const declared=setupPolicy.ciExecutionPools.programme.taskDeclaration;
+ assert.equal(current.split(declared).length,2);
+ const mutations=[
+  value=>value.replace(declared,'const tasks=Object.freeze('+JSON.stringify(tasks.slice(0,3))+');'),
+  value=>value.replace(declared,'const tasks=Object.freeze('+JSON.stringify(tasks.map(t=>t.id==='browser-toolchain'?{...t,body:t.body.split('\n').reverse().join('\n')}:t))+');'),
+  value=>value.replace(declared,'const tasks=Object.freeze('+JSON.stringify(tasks.map(t=>t.id==='browser-toolchain'?{...t,tokenRole:'programme-growth'}:t))+');'),
+  value=>value.replace('process.exitCode=failed?1:0;','process.exitCode=0;'),
+  value=>value.replace('const maxConcurrent=2;','const maxConcurrent=3;'),
+  value=>value.replace('    timeout-minutes: 120\n','    timeout-minutes: 121\n'),
+  value=>value.replace('      - run: node scripts/verify-programme-day.cjs\n','      - run: node scripts/verify-programme-day.cjs # unapproved\n'),
+ ];
+ for(const mutate of mutations){const changed=mutate(current);assert.notEqual(changed,current);assert.throws(()=>check(changed));}
+});
+}
+

@@ -5075,21 +5075,21 @@
       "testMaintenance": "Only the exact Programme pair count/cap requirement and aggregate inverse selection are maintained; strict inverses restore every byte of the prior Food38 test and then the original Food23 witness."
     },
     "maintenanceRevision": {
-      "name": "ciIntegrationGlobalScheduling20261015",
+      "name": "ciProgrammeToolchainOverlap20261015",
       "prior": {
-        "head": "f6288460640eab5873b5fa56f7ffdd1958376532",
-        "tree": "6063f21f24c0770b35a0a6d13deb14a90a3a5aba",
+        "head": "06842295b581decd49b92d23262649f949ea89e0",
+        "tree": "cb56ace15bd970087aeb735651b8e0719a5b820a",
         "ledgerPath": "release/approved-runtime-composition.json",
-        "ledgerBlob": "4a63440eb30f7bc9576ee504fafc173e919c13ec",
+        "ledgerBlob": "074968bb473cea61e83711d7e9c3975a4faef973",
         "scopePath": "release/food-diary-london-date-scope-20261015.mjs",
-        "scopeBlob": "9a2f76beeddaf9803a7f2e08c03673c5eeb0a950",
+        "scopeBlob": "bef06448989226e383fa653274d6edff2b862842",
         "foodTestPath": "tests/food-diary-london-date-stack-20261015.test.mjs",
-        "foodTestBlob": "197fb68d40f5e7a5aec1606bceb158c53f9a11fa",
-        "workflowPath": ".github/workflows/shift-coach-integration.yml",
-        "workflowBlob": "ec24c3e05c7dca9ba5b76f8e05147006a52f2ba5",
-        "maintenanceSource": "9fda7fd6419ca00803e2dacb3bca5e4510569999"
+        "foodTestBlob": "219eddea8bbb562b98ec06718770e6cde5d4bf52",
+        "workflowPath": ".github/workflows/programme-day-preview.yml",
+        "workflowBlob": "e5687f8cade5478a8b8abbf3463ec47746dabb48",
+        "maintenanceSource": "153fca0d7e329aeeef66cde41559b87e56eb30b4"
       },
-      "scope": "One global two-slot queue for the twelve unchanged independent Integration command bodies; retain both serial role hydration sequences, separate role evidence, and the exact scope barrier before compiled/runtime/browser acceptance.",
+      "scope": "Append the two unchanged serial Playwright setup commands as one mandatory fourth role in the existing two-slot Programme pool; preserve the original three source tuples, token isolation, wait-all evidence and browser barrier.",
       "sourceAndTestInversesRequired": true
     },
     "ciSourceCompatibility20261015": {
@@ -5145,6 +5145,41 @@
       "performanceBudgetPassClaimed": false
     },
     "originalFood41ByteExactInverse": true,
-    "maintenanceSource": "153fca0d7e329aeeef66cde41559b87e56eb30b4"
+    "ciProgrammeToolchainOverlap20261015": {
+      "kind": "FINITE_PROGRAMME_TOOLCHAIN_OVERLAP_20261015",
+      "prior": {
+        "head": "06842295b581decd49b92d23262649f949ea89e0",
+        "tree": "cb56ace15bd970087aeb735651b8e0719a5b820a",
+        "ledgerPath": "release/approved-runtime-composition.json",
+        "ledgerBlob": "074968bb473cea61e83711d7e9c3975a4faef973",
+        "scopePath": "release/food-diary-london-date-scope-20261015.mjs",
+        "scopeBlob": "bef06448989226e383fa653274d6edff2b862842",
+        "foodTestPath": "tests/food-diary-london-date-stack-20261015.test.mjs",
+        "foodTestBlob": "219eddea8bbb562b98ec06718770e6cde5d4bf52",
+        "workflowPath": ".github/workflows/programme-day-preview.yml",
+        "workflowBlob": "e5687f8cade5478a8b8abbf3463ec47746dabb48",
+        "maintenanceSource": "153fca0d7e329aeeef66cde41559b87e56eb30b4"
+      },
+      "decision": "Engineering setup scheduling repair under retained release-repair authority, not new Matt approval or a timing-fit claim.",
+      "scope": "Append the two unchanged serial Playwright setup commands as one mandatory fourth role in the existing two-slot Programme pool; preserve the original three source tuples, token isolation, wait-all evidence and browser barrier.",
+      "originalThreeSourceCommandsAndOrderUnchanged": true,
+      "setupCommandsUnchangedAndSerial": true,
+      "allFourRolesMandatory": true,
+      "setupTokenGranted": false,
+      "maxConcurrent": 2,
+      "programmeTimeoutMinutes": 120,
+      "productionTimeoutMinutes": 60,
+      "originalFood48ExactInverse": true,
+      "original48ByteExactPrefix": false,
+      "originalSourceAssertionsAndFreshnessGuardsRetained": true,
+      "browserVerifierEnvironmentAndUploadSuffixByteExact": true,
+      "kernelChanged": false,
+      "runtimeChanged": false,
+      "providerWritesPerformed": false,
+      "spendingAuthorityBroadened": false,
+      "performanceBudgetPassClaimed": false
+    },
+    "originalFood48ByteExactInverse": true,
+    "maintenanceSource": "f7f2c14a119d35db1e24a2b942e2a23db25f1b81"
   }
 }
