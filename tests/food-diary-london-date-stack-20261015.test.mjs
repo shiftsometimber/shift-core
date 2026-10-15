@@ -1128,3 +1128,62 @@ test('Programme toolchain: raw fourth-role admission rejects omission body token
 
 
 import './fresh-food-source-clean-20261015.test.mjs';
+
+// Pure source/binding witnesses only. The unchanged frozen39 native helper
+// cases remain required; these three cases are not real-module acceptance.
+{
+ const directScopePath='release/food-diary-london-date-scope-20261015.mjs';
+ const directTestPath='tests/food-diary-london-date-stack-20261015.test.mjs';
+ const directPolicy=FOOD_DIARY_LONDON_DATE_POLICY;
+ const directPrior=directPolicy.directFoodNativeCleanExtension20261015Prior;
+ const directCurrentSource=content(foodHead,directScopePath);
+ const directPriorSource=content(directPrior.head,directScopePath);
+ const directPolicyLine=/^const policy=(\{[^\n]+\});\nconst manifest=/m;
+ const directLine=(bytes,prefix)=>{const matches=bytes.split('\n').filter(line=>line.startsWith(prefix));assert.equal(matches.length,1);return matches[0];};
+ const directInverse=(bytes,pairs)=>{for(const[before,after,kind]of[...pairs].reverse()){assert(after&&bytes.split(after).length===2);if(kind==='suffix')assert(bytes.endsWith(after));bytes=bytes.replace(after,before);}return bytes;};
+ function directBinding(facts,readFacts,privateW=null){
+  const declaration=directLine(directCurrentSource,' const {blob,content,diff,ancestor}=privateW??foodNativeFacts,');
+  return new Function('privateW','foodNativeFacts','foodNativeReadFacts',declaration+'\nreturn {blob,content,diff,ancestor,currentHead,clean};')(privateW,facts,readFacts);
+ }
+ function directReadFacts(facts,hint){
+  const declaration=directLine(directCurrentSource,'const foodNativeReadFacts=Object.freeze(');
+  return new Function('foodNativeFacts','freshFoodSourceClean',declaration+'\nreturn foodNativeReadFacts;')(facts,hint);
+ }
+ test('Food direct clean extension: complete prior94 scope and all earlier witnesses restore exactly',()=>{
+  assert.equal(blob(directPrior.head,ledger),directPrior.ledgerBlob);assert.equal(blob(directPrior.head,directScopePath),directPrior.scopeBlob);assert.equal(blob(directPrior.head,directTestPath),directPrior.foodTestBlob);
+  assert.deepEqual(JSON.parse(content(directPrior.head,ledger))[key],directPrior.record);
+  const restored=directInverse(directCurrentSource,directPolicy.directFoodNativeCleanExtensionScopeInverse);
+  const before=directPriorSource.match(directPolicyLine),after=restored.match(directPolicyLine);assert(before&&after);
+  assert.equal(restored.replace(after[0],before[0]),directPriorSource,'The complete original scope restores byte for byte');
+  const currentTests=content(foodHead,directTestPath),priorTests=content(directPrior.head,directTestPath);
+  assert(currentTests.startsWith(priorTests),'Every original94 byte remains an exact prefix');
+  assert.equal(directInverse(currentTests,directPolicy.directFoodNativeCleanExtensionFood94Inverse),priorTests);
+  for(const[name,expected]of Object.entries(directPolicy.directFoodNativeCleanExtensionOriginalTestBlobs))assert.equal(execFileSync('git',['hash-object','--stdin'],{input:directInverse(currentTests,directPolicy[name]),encoding:'utf8'}).trim(),expected,name+' remains an exact complete inverse');
+  assert.deepEqual(c.nativeFreshFoodSourceGuard20261015,directPrior.record.nativeFreshFoodSourceGuard20261015,'The earlier historical-only revision remains an exact historical witness');
+  assert.equal(c.directFoodNativeCleanExtension20261015.directNativeCleanBindingChanged,true);
+  assert.equal(c.directFoodNativeCleanExtension20261015.fullGateOrPerformanceBudgetPassClaimed,false);
+  for(const path of['release/fresh-food-source-clean-20261015.mjs','tests/fresh-food-source-clean-20261015.test.mjs','release/immutable-git-facts.mjs'])assert.equal(blob(foodHead,path),blob(directPrior.head,path),'No helper, original39 assertion or kernel change: '+path);
+  const originalStart=directCurrentSource.match(/^function verifyFoodDiaryLondonDateRepairOriginal\(/m);assert(originalStart);
+  const originalEnd=directCurrentSource.indexOf('\nexport function verifyFoodDiaryLondonDateRepair(',originalStart.index);assert(originalEnd>originalStart.index);
+  const originalBody=directCurrentSource.slice(originalStart.index,originalEnd);
+  assert.equal((originalBody.match(/\bclean\(\);/g)||[]).length,3,'Entry, in-scope and finally clean calls remain');
+  assert.equal(directLine(directCurrentSource,'function clean(){'),directLine(directPriorSource,'function clean(){'),'The complete original native clean body remains exact');
+  assert.equal(directLine(directCurrentSource,' }finally{clean();assert.equal(currentHead(),actual,'),directLine(directPriorSource,' }finally{clean();assert.equal(currentHead(),actual,'),'The post-clean raw HEAD assertion remains exact');
+ });
+ test('Food direct clean extension: exact native binding invokes a fresh hint for every clean call',()=>{
+  let hints=0,legacy=0;const identity=()=>head;
+  const facts=Object.freeze({blob:identity,content:identity,diff:identity,ancestor:identity,currentHead:identity,clean(){legacy++;}});
+  const reads=directReadFacts(facts,()=>{hints++;return true;}),bound=directBinding(facts,reads);
+  assert.equal(bound.blob,facts.blob);assert.equal(bound.content,facts.content);assert.equal(bound.diff,facts.diff);assert.equal(bound.ancestor,facts.ancestor);assert.equal(bound.currentHead,facts.currentHead);
+  bound.clean();bound.clean();bound.clean();assert.equal(hints,3,'A positive result is never reused as a guard outcome');assert.equal(legacy,0);
+ });
+ test('Food direct clean extension: negative hints retain exact original errors and privateW retains its own guards',()=>{
+  const originalError=Object.assign(Error('Exact owned original clean failure'),{code:'E_DIRECT_CLEAN_FIXTURE'});let hints=0,legacy=0;
+  const identity=()=>head,facts=Object.freeze({blob:identity,content:identity,diff:identity,ancestor:identity,currentHead:identity,clean(){legacy++;throw originalError;}});
+  const reads=directReadFacts(facts,()=>{hints++;return false;}),bound=directBinding(facts,reads);
+  assert.throws(()=>bound.clean(),error=>error===originalError);assert.equal(hints,1);assert.equal(legacy,1,'A negative or unsupported certificate enters the unchanged native fallback');
+  let privateCalls=0;const privateW=Object.freeze({...facts,head,assertCurrent(){privateCalls++;}}),privateBound=directBinding(facts,reads,privateW);
+  privateBound.clean();privateBound.clean();privateBound.clean();assert.equal(privateBound.currentHead(),head);assert.equal(privateCalls,4);
+  assert.equal(hints,1,'The native hint cannot replace a privateW guard');assert.equal(legacy,1);
+ });
+}

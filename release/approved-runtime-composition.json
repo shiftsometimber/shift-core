@@ -5077,16 +5077,16 @@
       "testMaintenance": "Only the exact Programme pair count/cap requirement and aggregate inverse selection are maintained; strict inverses restore every byte of the prior Food38 test and then the original Food23 witness."
     },
     "maintenanceRevision": {
-      "name": "nativeFreshFoodSourceGuard20261015",
+      "name": "directFoodNativeCleanExtension20261015",
       "prior": {
-        "head": "07a8df5850f641d471519b9cf86336018dafde53",
-        "tree": "90b5ff1cc0817af898da2fef62262df5988fef0d",
-        "ledgerBlob": "93475273702b3dcc178d6026c18f899554e013da",
-        "scopeBlob": "49a5f79106ff27238af54008886785c2aa4e867c",
-        "foodTestBlob": "7d466fc9dbeb5178932fb0d5c6fd4a1c97a7f37e",
-        "maintenanceSource": "f7f2c14a119d35db1e24a2b942e2a23db25f1b81"
+        "head": "80ab2f42d8d814b907b7fc4cb157c3cbb29d4407",
+        "tree": "beb780fb9560d44060f09b0788541b290416be13",
+        "ledgerBlob": "fe9329133d476d4f1cd3fad9bcea3e289dada058",
+        "scopeBlob": "832a606e16d7e49a163215771052a24b0f11afb4",
+        "foodTestBlob": "4c2d5c579a7b2c078353743a0305442e0c2b31a4",
+        "maintenanceSource": "46e2f2258eac55a17b1c25df8b0b6894862a7b4b"
       },
-      "scope": "Only Food native historical-view clean checks may use the exact frozen823 positive ordinary-detached-checkout hint. Every call freshly reads index HEAD configuration and selectors and runs exact conservative native status. Unsupported or instrumented contexts execute the original clean function unchanged.",
+      "scope": "Extend only the native clean binding inside FoodOriginal to the already frozen823 fresh per-call ordinary-detached-checkout certificate, retaining the exact original native clean as fallback. This supersedes only the prior historical-view-only/native-binding limitation; the earlier subrecord remains a byte-exact prior-revision witness, not a claim that this later direct binding is unchanged.",
       "sourceAndTestInversesRequired": true
     },
     "ciSourceCompatibility20261015": {
@@ -5201,6 +5201,31 @@
       "frozenHelperTestBlob": "0e01d8f6bafc25f487c2336e0c6b64471303221f",
       "fullGateOrProductionPassClaimed": false
     },
-    "maintenanceSource": "46e2f2258eac55a17b1c25df8b0b6894862a7b4b"
+    "directFoodNativeCleanExtension20261015": {
+      "kind": "FINITE_DIRECT_FOOD_NATIVE_CLEAN_EXTENSION_20261015",
+      "prior": {
+        "head": "80ab2f42d8d814b907b7fc4cb157c3cbb29d4407",
+        "tree": "beb780fb9560d44060f09b0788541b290416be13",
+        "ledgerBlob": "fe9329133d476d4f1cd3fad9bcea3e289dada058",
+        "scopeBlob": "832a606e16d7e49a163215771052a24b0f11afb4",
+        "foodTestBlob": "4c2d5c579a7b2c078353743a0305442e0c2b31a4",
+        "maintenanceSource": "46e2f2258eac55a17b1c25df8b0b6894862a7b4b"
+      },
+      "scope": "Extend only the native clean binding inside FoodOriginal to the already frozen823 fresh per-call ordinary-detached-checkout certificate, retaining the exact original native clean as fallback. This supersedes only the prior historical-view-only/native-binding limitation; the earlier subrecord remains a byte-exact prior-revision witness, not a claim that this later direct binding is unchanged.",
+      "directNativeCleanBindingChanged": true,
+      "priorHistoricalOnlySubrecordPreservedAsPriorRevisionWitness": true,
+      "originalCleanBodyAndThreeCallPositionsUnchanged": true,
+      "privateWGuardBranchUnchanged": true,
+      "nativePostCleanHeadChecksUnchanged": true,
+      "allSuppliedCallbacksAndProvenanceUnchanged": true,
+      "frozen823HelperAndOriginal39TestsUnchanged": true,
+      "original94ByteExactPrefix": true,
+      "allEarlierTestInversesRetained": true,
+      "kernelWorkflowsCapsRuntimeApprovalsRollbackUnchanged": true,
+      "newPureWitnesses": 3,
+      "newPureWitnessesAreRealModuleAcceptance": false,
+      "fullGateOrPerformanceBudgetPassClaimed": false
+    },
+    "maintenanceSource": "82b95299f19bc5211ea48e0d4c00eec1393b85be"
   }
 }
