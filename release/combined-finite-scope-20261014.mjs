@@ -1,3 +1,4 @@
+import {myTimberExperienceHistoricalView,experienceLegacyComparisonRead} from './my-timber-experience-scope-20261015.mjs';
 import {ensureCombinedOriginalGpSource} from './combined-original-gp-object-20261014.mjs';
 export const COMBINED_FINITE_BASE="5eba55df9065887562e94eb2ff35cb88bffc941b";
 export const COMBINED_FINITE_SOURCE="49c50935ddb67d0730f66da41e0a59b4f151df8e";
@@ -76,10 +77,10 @@ export function verifyCombinedFinite(c,{head,read,blob=read,content,diff,ancesto
  return c;
 }
 export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const rawHead=git('rev-parse','HEAD').trim(),content=(ref,path)=>rawContent(ref==='HEAD'?rawHead:ref,path);
- const blob=(ref,path)=>rawBlob(ref==='HEAD'?rawHead:ref,path),rawRead=defaultReader?blob:reader,current=JSON.parse(content(rawHead,manifest)),c=current.combinedFinite20261014;
+ const experience=myTimberExperienceHistoricalView(reader,{defaultReader}),rawHead=experience.head,content=experience.content;
+ const blob=experience.blob,rawRead=experience.read,current=experience.record,c=current.combinedFinite20261014;
  const normal=(ref,path)=>exactCombinedDirectoryDisplay(rawRead(ref,path),ref,path);
- if(!c)return{rawHead,head:rawHead,record:current,content,blob,read:normal};
+ if(!c)return{rawHead:experience.rawHead,head:rawHead,record:current,content,blob,read:normal};
  verifyCombinedFinite(c,{head:rawHead,read:rawRead,blob,content,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)});
  const changed=new Set([...c.paths,...c.maintenancePaths,manifest]);
  const affected=path=>changed.has(path)||[...changed].some(p=>p.startsWith(path+'/'));
@@ -92,8 +93,8 @@ export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader==
   return normal(map(ref,path),path);
  };
  const record=structuredClone(current);delete record.combinedFinite20261014;
- assert.equal(git('rev-parse','HEAD').trim(),rawHead,'Source HEAD changed during combined verification');
- return{rawHead,head:c.base,record,read,blob:(ref,path)=>blob(map(ref,path),path),content:(ref,path)=>content(map(ref,path),path)};
+ assert.equal(git('rev-parse','HEAD').trim(),experience.rawHead,'Source HEAD changed during combined verification');
+ return{rawHead:experience.rawHead,head:c.base,record,read,blob:(ref,path)=>blob(map(ref,path),path),content:(ref,path)=>content(map(ref,path),path)};
 }
 // Pure compatibility projection for established abstract legacy comparison contracts.
 // It NEVER authenticates a supplied current reader or authorises a deployment.
@@ -103,6 +104,7 @@ export function combinedFiniteLegacyHistoricalView(reader=null,{defaultReader=re
  assert.equal(git('diff','--cached','--name-only').trim(),'','Staged source changed before legacy projection');
  if(defaultReader)return{...actual,currentReaderAuthenticated:true,legacyComparisonOnly:false};
  assert.equal(typeof reader,'function','A legacy comparison reader is required');
+ reader=experienceLegacyComparisonRead(reader,actual.rawHead);
  const current=JSON.parse(rawContent(actual.rawHead,manifest)),c=current.combinedFinite20261014;
  const changed=new Set(c?[...c.paths,...c.maintenancePaths,manifest]:[]);
  const affected=path=>changed.has(path)||[...changed].some(p=>p.startsWith(path+'/'));

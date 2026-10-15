@@ -1,3 +1,4 @@
+import {EXPERIENCE_BASE,EXPERIENCE_PATHS,EXPERIENCE_MAINTENANCE} from './my-timber-experience-scope-20261015.mjs';
 import {COMBINED_FINITE_BASE,COMBINED_FINITE_PATHS,COMBINED_FINITE_MAINTENANCE} from './combined-finite-scope-20261014.mjs';
 import {MY_TIMBER_WEEK_CLOSEOUT_BASE,MY_TIMBER_WEEK_CLOSEOUT_PATHS,MY_TIMBER_WEEK_CLOSEOUT_MAINTENANCE} from './my-timber-week-closeout-scope.mjs';
 import {MY_TIMBER_WEEK_BASE,MY_TIMBER_WEEK_PATHS,MY_TIMBER_WEEK_MAINTENANCE} from './my-timber-week-scope.mjs';
@@ -2806,6 +2807,10 @@ export function reconciliationGitArgs(args){
 export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_BASE:git('rev-parse','HEAD');}
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
+ if(EXPERIENCE_ADDITIONAL_PATHS.includes(path)){
+  let existed;try{execFileSync('git',['cat-file','-e',EXPERIENCE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  assert.equal(status,existed?'M':'A','Unexpected exact My Timber experience status: '+status+' '+path);return true;
+ }
  if(!reconciliationPath(path))return false;
  if(COMBINED_FINITE_ADDITIONAL_PATHS.includes(path)){
   let existed;try{execFileSync('git',['cat-file','-e',COMBINED_FINITE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
@@ -3128,3 +3133,6 @@ for(const p of MY_TIMBER_WEEK_CLOSEOUT_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add
 
 export const COMBINED_FINITE_ADDITIONAL_PATHS=Object.freeze([...COMBINED_FINITE_PATHS,...COMBINED_FINITE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of COMBINED_FINITE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+
+export const EXPERIENCE_ADDITIONAL_PATHS=Object.freeze([...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
+for(const p of EXPERIENCE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
