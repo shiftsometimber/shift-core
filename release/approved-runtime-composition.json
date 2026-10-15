@@ -5248,7 +5248,7 @@
       "prior97ByteExactPrefix": true,
       "frozenHelper39AndKernelUnchanged": true,
       "nativeContextWorkflowsCapsRuntimeApprovalsUnchanged": true,
-      "pureSourceExtractedWitnesses": 4,
+      "pureSourceExtractedWitnesses": 5,
       "selectedOwnerComponentBlob": "798957c4015038aafb9f79bd19d32ed01492e5ac",
       "selectedOwnerReviewBlob": "3ef6abb3cf0f5e609b0067936cc053fea24fe7bb",
       "focusedOwnerMac28Receipt": {
@@ -5276,8 +5276,22 @@
       },
       "nativeAcceptanceOrTimingFitClaimed": false,
       "failed93c4NativeReceipt": "6a655c16e694bd380b520d48768b9cb6a92e4cd5",
-      "cumulativeScopeInverseCorrection": "Authenticate and undo newest Repair-status source change to exact prior dff5 first; only then apply the retained earlier direct-clean scope inverse to that authenticated prior view. Original guards and assertions retained."
+      "cumulativeScopeInverseCorrection": "Authenticate and undo newest Repair-status source change to exact prior dff5 first; only then apply the retained earlier direct-clean scope inverse to that authenticated prior view. Original guards and assertions retained.",
+      "failed67NativeReceipt": "faf41088cf6e2e02cd0465046042e0ecfeb72d6c",
+      "originalComparisonBaselineRetained": {
+        "head": "8ede36cdf092a4a49064fdb71cb87dc8255e0728",
+        "ciBlob": "7bb762fb35847cda5ed1b5d17ba0462d4d597743",
+        "repairBlob": "985612b7b6ec6b335e821587e0df6cfb5fd7a46d"
+      },
+      "postStatusAdapterComparison": {
+        "head": "93c4badbc7d7c8d52ffc3402cf9a375db17d2a7a",
+        "ciBlob": "7bb762fb35847cda5ed1b5d17ba0462d4d597743",
+        "repairBlob": "798957c4015038aafb9f79bd19d32ed01492e5ac",
+        "wholeOriginalRepairRestorationRequired": true,
+        "original66TestBodyUnchanged": true,
+        "genericComparisonExemption": false
+      }
     },
-    "maintenanceSource": "22d9f10b89e16e547394b810c16f14f90304ab6c"
+    "maintenanceSource": "b1db7da5ee16fd2f7bf56e91a3c5068a66f995e9"
   }
 }

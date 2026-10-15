@@ -1242,9 +1242,24 @@ import './fresh-food-source-clean-20261015.test.mjs';
   const physical=current.split('\n').filter(line=>line.startsWith(' const repairStatusPrior=')||line.startsWith(' const directCleanPrior='));
   assert.equal(physical.length,2);assert(physical[0].startsWith(' const repairStatusPrior='));
   assert(physical[0].includes("assert.equal(repairStatusRestoredScope.replace(repairStatusNewPolicy[0],repairStatusOldPolicy[0]),repairStatusPriorScope,"));
-  assert(physical[1].includes("directRestoredScope=inverse('Food direct-clean scope',repairStatusRestoredScope.replace(repairStatusNewPolicy[0],repairStatusOldPolicy[0]),policy.directFoodNativeCleanExtensionScopeInverse)"));
-  assert(!physical[1].includes("directRestoredScope=inverse('Food direct-clean scope',content(head,"));
-  const earlier=undo(authenticatedPrior,policy.directFoodNativeCleanExtensionScopeInverse);
+  assert(physical[1].includes("directRestoredScope=inverse('Food direct-clean scope',content(head,'release/food-diary-london-date-scope-20261015.mjs'),policy.directFoodNativeCleanExtensionScopeInverse)"));
+  assert.deepEqual(policy.directFoodNativeCleanExtensionScopeInverse.slice(-policy.repairCleanStatusEquivalenceScopeInverse.length),policy.repairCleanStatusEquivalenceScopeInverse);
+  const earlier=undo(current,policy.directFoodNativeCleanExtensionScopeInverse);
   assert.notEqual(earlier,authenticatedPrior);assert(!earlier.includes('\n const directCleanPrior='));
+ });
+}
+
+{
+ test('Repair literal owner intake: exact original adapter baseline survives the registered guard-only exception',()=>{
+  const p=FOOD_DIARY_LONDON_DATE_POLICY,original=p.combinedFactoryOriginalPrior,selected=p.combinedFactoryPrior,repair='release/release-machinery-repair-scope-20261014.mjs',ci='release/ci-execution-scope-20261014.mjs';
+  assert.equal(original.head,'8ede36cdf092a4a49064fdb71cb87dc8255e0728');assert.equal(original.blob,'87fc3bfa54ad25ac8d9428d078f3861ff8230553');
+  assert.equal(selected.head,'93c4badbc7d7c8d52ffc3402cf9a375db17d2a7a');assert.equal(selected.blob,'6c38486beb296382f16c5694193b67ea5f9341ca');
+  assert.equal(blob(original.head,repair),'985612b7b6ec6b335e821587e0df6cfb5fd7a46d');assert.equal(blob(selected.head,repair),'798957c4015038aafb9f79bd19d32ed01492e5ac');
+  assert.equal(content(foodHead,repair),content(selected.head,repair));assert.equal(content(foodHead,ci),content(original.head,ci));assert.equal(content(selected.head,ci),content(original.head,ci));
+  const undo=value=>{for(const[a,b]of[...p.repairCleanStatusEquivalenceSourceInverse].reverse()){assert(b&&value.split(b).length===2);value=value.replace(b,a);}return value;};
+  assert.equal(undo(content(foodHead,repair)),content(original.head,repair),'Every native/foreign adapter byte outside the exact guard-only inverse remains original');
+  assert.throws(()=>undo(content(foodHead,repair).replace('const repairStatusExec=repairNativeExecFileSync;','const repairStatusExec=()=>true;')));
+  const scope=content(foodHead,'release/food-diary-london-date-scope-20261015.mjs').split('\n').find(line=>line.startsWith(' const repairStatusPrior='));
+  assert(scope.includes('Original Combined adapter baseline must remain exact'));assert(scope.includes('Only the exact literal owner component comparison is admitted'));
  });
 }
