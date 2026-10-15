@@ -77,7 +77,7 @@ rule('#deviceHealth button','background:#050505;color:#e7e3da;-webkit-text-fill-
 rule('.device-connection-summary','display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0')+
 rule('.device-connection-summary>div','padding:14px;border:1px solid #b7bcad;border-radius:12px')+
 rule('.device-connection-summary strong|.device-connection-summary span','display:block')+
-rule('main :is(button,a,summary,select,input,textarea)','scroll-margin-top:90px')+
+rule('main :is(button,a,summary,select,input,textarea)','scroll-margin-top:90px;scroll-margin-bottom:calc(94px + env(safe-area-inset-bottom))')+
 rule('main :is(h1,h2,h3,h4,article,section[id])','scroll-margin-top:90px')+
 rule('main :is(button,a,summary,select,input,textarea):focus-visible','outline:3px solid #050505;outline-offset:3px')+
 `#memberMoreDialog{position:fixed;inset:auto 0 0;margin:0 auto;width:100%;max-width:640px;max-height:calc(100dvh - 40px);box-sizing:border-box;border:0;border-radius:22px 22px 0 0;padding:24px 24px max(24px,env(safe-area-inset-bottom));overflow:auto;background:#f5f2eb;color:#050505;font:16px/1.5 Arial,sans-serif}#memberMoreDialog::backdrop{background:#05050599}#memberMoreDialog header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}#memberMoreDialog h2{margin:0;font-size:28px}#memberMoreDialog :is(a,button){min-height:48px;box-sizing:border-box;font:inherit;border:1px solid #d2cfc4;border-radius:10px;color:#050505;background:#e7e3da;text-align:left;padding:12px 14px;text-decoration:none}#memberMoreDialog nav{display:grid;gap:8px}#memberMoreDialog h3{font-size:13px;color:#4d5545;margin:18px 0 8px}#memberMoreDialog :is(a,button):focus-visible{outline:3px solid #050505;outline-offset:2px}#memberMoreUtilities{display:flex;flex-wrap:wrap;gap:8px}#memberMoreUtilities :is(#sstCookieSettings,#askTimberLaunch){position:static!important;inset:auto!important;transform:none!important;box-shadow:none!important;color:#050505!important;background:#e7e3da!important;max-width:100%!important}#memberMoreUtilities #askTimberLaunch{display:none!important}`+
@@ -144,6 +144,22 @@ export const appExperienceClient=String.raw`(()=>{
   const target=location.hash&&document.getElementById(location.hash.slice(1));if(target){for(let p=target.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS'&&!p.open)p.open=true}
  }
  const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;refresh()})}};
+ function revealEditingControl(){
+  let owner=document,field=document.activeElement,offset=0;
+  try{
+   if(field?.tagName==='IFRAME'){const frame=field,inside=frame.contentDocument?.activeElement;if(inside){field=inside;offset=frame.getBoundingClientRect().top;}}
+   else if(window.frameElement&&parent.document.body.dataset.memberExperienceUi==='20261015'){owner=parent.document;offset=window.frameElement.getBoundingClientRect().top;}
+  }catch{}
+  if(!field?.matches('input,textarea,select,[contenteditable="true"]')||field.matches('[type="hidden"],[type="checkbox"],[type="radio"],[type="range"],[type="file"],[type="button"],[type="submit"]')||field.closest('dialog[open]'))return;
+  const win=owner.defaultView,viewport=win.visualViewport,header=owner.querySelector('#todayBrand'),nav=owner.querySelector('#appBottomNav'),r=field.getBoundingClientRect();
+  const top=Math.max(header?.getBoundingClientRect().bottom||0,viewport?.offsetTop||0)+12;
+  const bottom=Math.min(nav?.getBoundingClientRect().top||win.innerHeight,(viewport?.offsetTop||0)+(viewport?.height||win.innerHeight))-12;
+  if(r.top+offset<top||r.bottom+offset>bottom)field.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});
+ }
+ const scheduleEditingControl=()=>requestAnimationFrame(revealEditingControl);
+ document.addEventListener('focusin',scheduleEditingControl);
+ addEventListener('resize',scheduleEditingControl,{passive:true});
+ window.visualViewport?.addEventListener('resize',scheduleEditingControl,{passive:true});
  document.addEventListener('click',e=>{
   const trigger=e.target.closest?.('#appMore');if(trigger&&more){e.preventDefault();returnFocus=trigger;more.showModal();trigger.setAttribute('aria-expanded','true')}
   const toggle=e.target.closest?.('button[data-exercise-overview="toggle"]');if(toggle){const s=toggle.closest('.sf-session'),open=s.dataset.exerciseOverview!=='true';s.dataset.exerciseOverview=String(open);toggle.setAttribute('aria-expanded',String(open));text(toggle,open?'Return to current exercise':'View exercise list')}
