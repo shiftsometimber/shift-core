@@ -48,7 +48,7 @@ rule('.grub-pagination','display:flex;gap:12px;justify-content:space-between;ali
 rule('.sf-builder-grid','display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px')+
 rule('.sf-builder-grid>label','min-width:0')+
 rule('.sf-ring|.sf-session .sf-current-step','display:none')+
-rule('.sf-session.active [data-sf-start]|.sf-session:not(.active) .member-session-pause','display:none')+
+rule('.sf-session.active [data-sf-start]|.sf-session:not(.active) .member-session-pause|.sf-session[data-session-finished="true"] .member-session-pause','display:none')+
 rule('.member-session-progress','margin:12px 0 20px;padding:0;background:transparent')+
 rule('.member-session-progress p','font-size:14px;margin:6px 0')+
 rule('.member-session-progress progress','width:100%;height:8px;accent-color:#707762')+
@@ -111,12 +111,13 @@ export const appExperienceClient=String.raw`(()=>{
   for(const selector of ['#sstTodayContext','#sstTreatmentJourney','#sstFiveLoops','#myHealthPlanV2','#wholeManNextShift']){const n=$(selector);if(n&&!support.contains(n))support.append(n)}
  }
  function fit(){
-  const builder=$('.sf-builder');if(builder&&!builder.dataset.experienceReady){builder.dataset.experienceReady='true';const detail=builder.closest('details');if(detail)detail.open=true}
+  const builder=$('.sf-builder');if(builder){builder.dataset.experienceReady='true';const detail=builder.closest('details');if(detail&&!detail.dataset.memberExperienceSetup){detail.dataset.memberExperienceSetup='true';detail.open=true}}
   all('#fitOutput .sf-session').forEach(session=>{
    const cards=[...session.querySelectorAll('.sf-exercise')];if(!cards.length)return;
    const done=cards.filter(c=>c.dataset.completion==='done').length,skipped=cards.filter(c=>c.dataset.completion==='skipped').length,first=cards.find(c=>!['done','skipped'].includes(c.dataset.completion));
    let box=session.querySelector('.member-session-progress');if(!box){box=node('div','member-session-progress');const p=node('p'),progress=node('progress'),overview=node('button','','View exercise list'),pause=node('button','member-session-pause','Pause session');pause.type='button';pause.dataset.pauseSession='true';progress.setAttribute('aria-label','Saved session progress');overview.type='button';overview.dataset.exerciseOverview='toggle';overview.setAttribute('aria-expanded','false');box.append(p,progress,overview,pause);session.querySelector('.sf-session-head')?.after(box)}
-   text(box.querySelector('p'),done+' completed'+(skipped?' · '+skipped+' skipped':'')+' · '+cards.length+' exercises');const progress=box.querySelector('progress');if(progress.max!==cards.length)progress.max=cards.length;if(progress.value!==done+skipped)progress.value=done+skipped;
+   if(session.dataset.sessionFinished!==String(!first))session.dataset.sessionFinished=String(!first);box.querySelector('p').setAttribute('role','status');
+   text(box.querySelector('p'),(!first?'Session finished · ':'')+done+' completed'+(skipped?' · '+skipped+' skipped':'')+' · '+cards.length+' exercises');const progress=box.querySelector('progress');if(progress.max!==cards.length)progress.max=cards.length;if(progress.value!==done+skipped)progress.value=done+skipped;
    cards.forEach(card=>{const current=card===first;if(card.dataset.currentExercise!==String(current))card.dataset.currentExercise=String(current);const h=card.querySelector('h4');if(h&&!h.dataset.originalTitle){h.dataset.originalTitle=h.textContent;text(h,h.textContent.replace(/\s+[—–]\s+.+$/,''))}
     const rest=Number(card.querySelector('[data-sf-metrics]')?.textContent.match(/(\d+)\s*SEC REST/i)?.[1]||card.dataset.baseRest||0);
     if(!card.querySelector('.member-rest-control')&&rest){const control=node('div','member-rest-control'),b=node('button','','Start rest · '+rest+' sec'),out=node('output');b.type='button';b.dataset.restSeconds=String(rest);control.append(b,out);card.querySelector('.sf-exercise-main')?.append(control)}

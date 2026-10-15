@@ -12,6 +12,7 @@
         "More, health, privacy and keyboard dismissal work",
         "Varied discovery, combined filters, explicit sorting, refresh and actual account save",
         "Fit builder, active movement focus, saved completion, rest, pause and resume",
+        "Session resumes from saved progress after refresh and finishes with accurate completion feedback",
         "Connected health shows truthful browser and empty-source states",
         "Privacy choices remain reachable and usable after initial choice",
         "Real check-in control saves to the isolated member and leaves the second account unchanged",
@@ -30,6 +31,7 @@
       "checks": [
         "Today opens with check-in, one visible navigation and no website footer",
         "More, health, privacy and keyboard dismissal work",
+        "Did-not-fit produces a one-minute step; did-not-help changes the approach in kind",
         "Prepared coaching becomes the one primary step; acceptance and did-not-fit feedback save through the existing UI",
         "Varied discovery, combined filters, explicit sorting, refresh and actual account save",
         "Fit builder, active movement focus, saved completion, rest, pause and resume",
@@ -82,6 +84,9 @@
     }
   ],
   "passed": true,
-  "implementationCommit": "cc269df06c19d03deab5fd78814141ac9692e956",
-  "runnerCommit": "3f7cc9bf"
+  "implementationBase": "cfcdee424d75d05561a2537b747994bda065635a",
+  "workingSourceHashes": {
+    "member-experience/app-experience.mjs": "42f76241b218f612d99cd5c868784cd6b7b9dc9b49f718e524a8b14af9442a0a",
+    "shift-coach/member-experience-proof.mjs": "862c831214a3f102c2d517f68b2cc3719675b6bdd9ff39f097d9c58898991fe1"
+  }
 }
