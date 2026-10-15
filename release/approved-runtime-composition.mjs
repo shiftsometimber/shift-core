@@ -1,3 +1,4 @@
+import {FOOD_DIARY_LONDON_DATE_PATHS,FOOD_DIARY_LONDON_DATE_MAINTENANCE} from './food-diary-london-date-scope-20261015.mjs';
 import {CI_EXECUTION_PATHS,CI_EXECUTION_MAINTENANCE} from './ci-execution-scope-20261014.mjs';
 import {COMBINED_FINITE_BASE,COMBINED_FINITE_PATHS,COMBINED_FINITE_MAINTENANCE} from './combined-finite-scope-20261014.mjs';
 import {MY_TIMBER_WEEK_CLOSEOUT_BASE,MY_TIMBER_WEEK_CLOSEOUT_PATHS,MY_TIMBER_WEEK_CLOSEOUT_MAINTENANCE} from './my-timber-week-closeout-scope.mjs';
@@ -3106,3 +3107,6 @@ for(const p of RELEASE_MACHINERY_REPAIR_ADDITIONAL_PATHS)RECONCILIATION_PATHS.ad
 
 // Exact CI-execution stack; all original machinery and prior registrations remain.
 for(const p of [...CI_EXECUTION_PATHS,...CI_EXECUTION_MAINTENANCE])RECONCILIATION_PATHS.add(p);
+
+// Exact observed Food calendar repair; all prior registrations remain.
+for(const p of [...FOOD_DIARY_LONDON_DATE_PATHS,...FOOD_DIARY_LONDON_DATE_MAINTENANCE])RECONCILIATION_PATHS.add(p);
