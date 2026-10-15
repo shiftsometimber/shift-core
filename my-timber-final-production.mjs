@@ -6,7 +6,7 @@ import {randomUUID} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {commissioningLogin,memberReady,requireMemberPanel,chooseNecessaryCookies} from './rendered-member-acceptance-support.mjs';
 
-import {verifyLiveTools} from './release/app-member-live.mjs';
+import {verifyLiveTools,openMemberTool} from './release/app-member-live.mjs';
 
 const SITE=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const API=(process.env.SHIFT_API_BASE||'https://api.shiftsometimber.co.uk').replace(/\/$/,'');
@@ -113,7 +113,7 @@ try{
   assert.equal(dailyAfter.connected?.meal?.recipeId,chosen.id,'An adjustment must preserve the chosen meal');
   assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'An adjustment must preserve the saved Grub workspace');
   const savedFitBefore=await account('/v1/fit/activity');assert.equal(savedFitBefore.plan?.minutes_per_day,30,'Context must not silently replace the retained Fit plan');
-  await page.locator('#appTab-fit').click();
+  await openMemberTool(page,'fit');
   const fitFrame=page.frameLocator('#appTool-fit iframe');
   await page.locator('#appTool-fit').waitFor({state:'visible',timeout:45000});
   const fitSetup=fitFrame.locator('[data-app-fit-setup]'),fitSetupSummary=fitSetup.locator(':scope > summary');
