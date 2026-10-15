@@ -3829,7 +3829,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -3937,7 +3937,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4010,7 +4010,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4085,7 +4085,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4158,7 +4158,7 @@
             "integrationIssue": 1065,
             "releaseApproval": {
               "owner": "Matt",
-              "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+              "instruction": "Sorry this needs deploying - it’s a huge fault !",
               "recordedAt": "2026-10-13T17:17:57Z",
               "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
               "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4925,5 +4925,226 @@
     "runtimeChanged": false,
     "qualifiedClinicalActivationGranted": false,
     "maintenanceSource": "ff682cf3b0025e87fbf71062151ef97d726676b1"
+  },
+  "foodDiaryLondonDateRepair20261015": {
+    "proof": "EXACT_FOOD_DIARY_LONDON_DATE_REPAIR_20261015",
+    "base": "5bbcb7f4e172b6f28b7bdd2920f03976103fcb98",
+    "baseTree": "1eeb005c4300b3fb55cc3f5b786ef37f8988d5c4",
+    "source": "909412d89d82f3656f9942ff3665fccf6c961c9b",
+    "sourceTree": "c20e79cafa067b78910c6967875258ed447d1a1b",
+    "paths": [
+      "member-experience/journey-portability.mjs",
+      "member-experience/tests/food-diary-london-date-20261015.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/food-diary-london-date-scope-20261015.mjs",
+      "release/ci-execution-scope-20261014.mjs",
+      "release/release-machinery-repair-scope-20261014.mjs",
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs",
+      "tests/food-diary-london-date-stack-20261015.test.mjs",
+      "release/ci-original-test-context-20261015.mjs",
+      "release/ci-execution-stack-original-20261015.mjs",
+      "tests/ci-execution-stack-20261014.test.mjs",
+      ".github/workflows/programme-day-preview.yml",
+      ".github/workflows/production-completion-proof.yml",
+      ".github/workflows/approved-ranking-proof.yml",
+      ".github/workflows/shift-coach-integration.yml",
+      "release/combined-finite-scope-20261014.mjs",
+      "release/food-diary-live-20261015.mjs",
+      "release/growth-member-live.mjs",
+      ".github/workflows/rendered-member-production-acceptance.yml"
+    ],
+    "integrationIssue": 1065,
+    "authority": {
+      "owner": "Matt",
+      "recordedAt": "2026-10-14T21:22:47Z",
+      "scope": "Release repair for PR1359 tonight; continue after failures with honest reporting",
+      "engineeringDecision": "Repair the observed Grub London-calendar rejection at the BST midnight boundary, run the three unchanged independent Programme source proof commands concurrently with wait-all failure aggregation, place the unchanged public composition verifier inside the existing synchronous immutable-history scope, and remove only inherited NODE_TEST_CONTEXT from the original CI test child environment so all unchanged original assertions execute; retain UTC weight import, every source assertion and supplied callback, every existing browser assertion and all current CI and production time limits; route only the exact independently minted native Food reader through the CI current-alias branch once, preserving its paired current-source guards and every foreign callback and historical same-ref check; preserve exact canonical CI reader origin through only the existing affected repair-current branch, retaining its actual native Food entry/exit guards and all foreign callback, legacy flag and historical same-reference behaviour; after actual Completion and Ranking 20-minute and Programme 30-minute cancellations, run every unchanged original command in a bounded two-slot wait-all pool, serially authenticate the existing history hydrators before source snapshots, preserve Integration source barriers and multi-command order, keep all token grants and time limits, and maintain only the two explicitly affected workflow-orchestration requirements with exact restoration of the original Food23 witness; after actual8ede proof-job time-limit failures, avoid only the factory-local duplicate Combined repair admission by invoking its unchanged Original verifier within its already admitted CI context with fresh entry/exit guards, retain the exact public no-CI fallback, and classify only existing public rejected nonraw-head fallback errors on the same Error object without changing any result, predicate, callback or original assertion; after actual6de two20-minute critical-path failures, combine only the two hot Food clean diff probes into a fresh detached clean-only status hint, with exact legacy fallback and original hidden/ref/graft/post-clean HEAD checks; add bounded live Food save/readback proof on the original Growth holder and exact pre-existing prepared isolated compiled-asset runtime; no original assertion, command, cap, holder budget or authority changed"
+    },
+    "runtimeChanged": true,
+    "ciProgrammeConcurrency": true,
+    "compositionSynchronousHistoryScope": true,
+    "compositionVerifierBodySha256": "192791b5ca373372a39a52bd18eff40786f80b111e6d16f1e4183166554c1e60",
+    "originalCiTestContextIsolation": true,
+    "homepageChanged": false,
+    "privacyChanged": false,
+    "consentChanged": false,
+    "clinicalSafetyChanged": false,
+    "stockChanged": false,
+    "emailAuthority": false,
+    "spendingGranted": false,
+    "publicationAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "genericAdoptionAllowed": false,
+    "originalAssertionsRemoved": false,
+    "browserAssertionsChanged": false,
+    "timeAllowancesIncreased": true,
+    "weightImportUtcSemanticsChanged": false,
+    "unknownVersionsAccepted": false,
+    "alteredReceiptsAccepted": false,
+    "suppliedReadersCached": false,
+    "nativeProvenance": true,
+    "nativeCiRepairProvenance": true,
+    "ciExecutionConcurrency": true,
+    "ciExecutionMaxConcurrent": 2,
+    "ciExecutionSerialHistoryHydration": true,
+    "ciWorkflowAssertionMaintenance": true,
+    "foodOriginal23ByteExactInverse": true,
+    "combinedFactoryLocalOriginal": true,
+    "combinedFactoryFreshSourceGuards": true,
+    "combinedWrongHeadDiagnostic": true,
+    "foodFreshCleanOnlyProbe": true,
+    "foodProbeExactLegacyFallback": true,
+    "foodLiveAcceptanceHarness": true,
+    "foodOriginal29ByteExactPrefix": false,
+    "renderedCompiledAssetRuntime": true,
+    "originalFood38ByteExactInverse": true,
+    "ciWallClockAllowance20261015": {
+      "kind": "FINITE_CI_WALL_CLOCK_ALLOWANCE_20261015",
+      "decision": "Engineering execution allowance under the retained Matt release-repair authority; supersedes only the earlier engineering CI job wall-clock caps, without claiming a later Matt approval or completion estimate.",
+      "authorityReference": {
+        "owner": "Matt",
+        "recordedAt": "2026-10-14T21:22:47Z",
+        "scope": "Release repair for PR1359 tonight; continue after failures with honest reporting"
+      },
+      "prior": {
+        "head": "6f6f9ba15dec7832bc1d6df0f9e3e71225daa123",
+        "tree": "15f71ad6eb9e848f595142882dc095fd59939e71",
+        "ledgerPath": "release/approved-runtime-composition.json",
+        "ledgerBlob": "e1a18b31c6962f1d9200520955d52fab4485ecd6",
+        "scopePath": "release/food-diary-london-date-scope-20261015.mjs",
+        "scopeBlob": "aa79dacf434afb8685499204ebd377cfb631c95a",
+        "foodTestPath": "tests/food-diary-london-date-stack-20261015.test.mjs",
+        "foodTestBlob": "8cde6a73928c148afae7feb791b916014ebd7793",
+        "maintenanceSource": "1c3ff37cefd7ea58cc1fe3d11d134cdb39a55898"
+      },
+      "workflowTimeoutMinutes": {
+        ".github/workflows/production-completion-proof.yml": {
+          "before": 20,
+          "after": 90
+        },
+        ".github/workflows/approved-ranking-proof.yml": {
+          "before": 20,
+          "after": 90
+        },
+        ".github/workflows/programme-day-preview.yml": {
+          "before": 30,
+          "after": 120
+        },
+        ".github/workflows/shift-coach-integration.yml": {
+          "before": 60,
+          "after": 240
+        }
+      },
+      "productionTimeoutMinutes": 60,
+      "githubHostedMaximumMinutes": 360,
+      "observedBasis": {
+        "priorProofJobs": "Completion and Ranking repeatedly cancelled at their original 20-minute limits while retained commands were incomplete; Programme cancelled at 30 minutes. These are retained historical failures, not current success.",
+        "integration": "The first six observed Integration child commands totalled 114.82 CPU-minutes; three first-pool commands were unfinished or unstarted and the complete second pool and browser phases remained. CPU time is not elapsed completion time.",
+        "headroom": "90/90/120/240 provides finite execution headroom below the hosted 360-minute maximum; it is not a completion forecast or acceptance waiver."
+      },
+      "costBasis": {
+        "repository": "shiftsometimber/shift-core",
+        "repositoryVisibility": "public",
+        "repositoryVerifiedAt": "2026-10-15T04:25:53Z",
+        "runner": "unchanged existing standard GitHub-hosted runner",
+        "standardPublicRunnerComputeMinutesFree": true,
+        "largerOrPaidRunnerEnabled": false,
+        "storageUsageAndQuotaVerified": false,
+        "storageAndRetentionSettingsChanged": false,
+        "newSpendingAuthority": false,
+        "qualification": "Official GitHub documentation makes standard hosted compute free for public repositories. Artifact/cache storage is governed separately; no account-wide storage usage or zero total cost is asserted, and no storage expansion or spending is authorised.",
+        "sources": [
+          "https://docs.github.com/en/billing/concepts/product-billing/github-actions",
+          "https://docs.github.com/en/actions/reference/limits"
+        ]
+      },
+      "preserved": {
+        "commands": true,
+        "assertionsAndDuplicateCases": true,
+        "maxConcurrent": 2,
+        "permissionsAndTokenGrants": true,
+        "historyHydrators": true,
+        "runnerAndEnvironment": true,
+        "barriersAndArtifacts": true,
+        "productThresholds": true,
+        "productionAndRollbackAuthority": true,
+        "originalCiAndRepairRecords": true
+      },
+      "testMaintenance": "Only the exact Programme pair count/cap requirement and aggregate inverse selection are maintained; strict inverses restore every byte of the prior Food38 test and then the original Food23 witness."
+    },
+    "maintenanceRevision": {
+      "name": "ciIntegrationGlobalScheduling20261015",
+      "prior": {
+        "head": "f6288460640eab5873b5fa56f7ffdd1958376532",
+        "tree": "6063f21f24c0770b35a0a6d13deb14a90a3a5aba",
+        "ledgerPath": "release/approved-runtime-composition.json",
+        "ledgerBlob": "4a63440eb30f7bc9576ee504fafc173e919c13ec",
+        "scopePath": "release/food-diary-london-date-scope-20261015.mjs",
+        "scopeBlob": "9a2f76beeddaf9803a7f2e08c03673c5eeb0a950",
+        "foodTestPath": "tests/food-diary-london-date-stack-20261015.test.mjs",
+        "foodTestBlob": "197fb68d40f5e7a5aec1606bceb158c53f9a11fa",
+        "workflowPath": ".github/workflows/shift-coach-integration.yml",
+        "workflowBlob": "ec24c3e05c7dca9ba5b76f8e05147006a52f2ba5",
+        "maintenanceSource": "9fda7fd6419ca00803e2dacb3bca5e4510569999"
+      },
+      "scope": "One global two-slot queue for the twelve unchanged independent Integration command bodies; retain both serial role hydration sequences, separate role evidence, and the exact scope barrier before compiled/runtime/browser acceptance.",
+      "sourceAndTestInversesRequired": true
+    },
+    "ciSourceCompatibility20261015": {
+      "kind": "FINITE_CI_SOURCE_COMPATIBILITY_20261015",
+      "prior": {
+        "head": "a214a2f1f9e02e41441a696f543405465449ba62",
+        "tree": "1b4f85ee0d85945097a825a6f31f184e66b63434",
+        "ledgerPath": "release/approved-runtime-composition.json",
+        "ledgerBlob": "242aad5910b3180b1ba6a02b7a757abf8f57cf83",
+        "scopePath": "release/food-diary-london-date-scope-20261015.mjs",
+        "scopeBlob": "4973918635c84d7c3efe115fb99539d146cae5e1",
+        "foodTestPath": "tests/food-diary-london-date-stack-20261015.test.mjs",
+        "foodTestBlob": "17f03f895ad2196aa00591cc7bf910037eae76ca",
+        "maintenanceSource": "54a16bb031ac0bb310af300e2030d997e14bca00"
+      },
+      "reason": "Actual inherited 6f6 Programme failures revealed that the native-origin warm witness counted only legacy diff argv after the authorised clean-status equivalence, and that supplied directory callbacks were rejected during Food factory construction before the unchanged returned-reader rejection contract could execute.",
+      "warmGuardRequirement": "Credit only an actual returned Buffer with exact conservative status argv and strict detached nonzero40hex two-record NUL grammar, or each corresponding original legacy diff. At least four working and four staged checks remain required; original visibility and fresh HEAD counts remain exact.",
+      "constructorBoundary": "Only FoodHistorical non-null admissionRead at HEAD or its actual rawHead and the exact five existing directory paths uses native facts.blob during construction. Every supplied file callback, direct verifier and returned authenticated reader stays unchanged and strict.",
+      "prior39ExactInverse": true,
+      "returnedReaderBodyUnchanged": true,
+      "directVerifierBodyUnchangedExceptPriorIdentityAuthentication": true,
+      "nativeProvenanceUnchanged": true,
+      "runtimeCommandsCapsAndAuthorityUnchanged": true
+    },
+    "originalFood39ByteExactInverse": true,
+    "ciIntegrationGlobalScheduling20261015": {
+      "kind": "FINITE_INTEGRATION_GLOBAL_TWO_SLOT_SCHEDULING_20261015",
+      "prior": {
+        "head": "f6288460640eab5873b5fa56f7ffdd1958376532",
+        "tree": "6063f21f24c0770b35a0a6d13deb14a90a3a5aba",
+        "ledgerPath": "release/approved-runtime-composition.json",
+        "ledgerBlob": "4a63440eb30f7bc9576ee504fafc173e919c13ec",
+        "scopePath": "release/food-diary-london-date-scope-20261015.mjs",
+        "scopeBlob": "9a2f76beeddaf9803a7f2e08c03673c5eeb0a950",
+        "foodTestPath": "tests/food-diary-london-date-stack-20261015.test.mjs",
+        "foodTestBlob": "197fb68d40f5e7a5aec1606bceb158c53f9a11fa",
+        "workflowPath": ".github/workflows/shift-coach-integration.yml",
+        "workflowBlob": "ec24c3e05c7dca9ba5b76f8e05147006a52f2ba5",
+        "maintenanceSource": "9fda7fd6419ca00803e2dacb3bca5e4510569999"
+      },
+      "decision": "Engineering scheduling repair under the retained existing release-repair authority, not a new Matt approval or a timing-fit claim.",
+      "scope": "One global two-slot queue for the twelve unchanged independent Integration command bodies; retain both serial role hydration sequences, separate role evidence, and the exact scope barrier before compiled/runtime/browser acceptance.",
+      "allOriginalCommandsAndEnvironmentsUnchanged": true,
+      "allOriginalAssertionsAndSourceGuardsUnchanged": true,
+      "allOriginalFood41ExactInverse": true,
+      "globalMaxConcurrent": 2,
+      "integrationTimeoutMinutes": 240,
+      "productionTimeoutMinutes": 60,
+      "laterAcceptanceStepsUnchanged": true,
+      "kernelChanged": false,
+      "providerWritesPerformed": false,
+      "spendingAuthorityBroadened": false,
+      "performanceBudgetPassClaimed": false
+    },
+    "originalFood41ByteExactInverse": true,
+    "maintenanceSource": "153fca0d7e329aeeef66cde41559b87e56eb30b4"
   }
 }
