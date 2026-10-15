@@ -13,6 +13,14 @@ import {CATALOGUE_PUBLICATION_RELEASE} from '../catalogue-publication-release-v1
 import {publishFixedCatalogue} from '../catalogue-publication-core.mjs';
 import {startCoaching,savedCoaching} from './browser-journey-support.mjs';
 const root=process.cwd(),out=process.env.EXPERIENCE_PROOF_OUT||'/tmp/my-timber-experience-proof-20261015';mkdirSync(out,{recursive:true});
+const externalFetch=globalThis.fetch,blockedOutbound=[];
+globalThis.fetch=(input,init)=>{
+ const method=String(init?.method||input?.method||'GET').toUpperCase(),url=new URL(typeof input==='string'||input instanceof URL?String(input):input.url);
+ if(!['GET','HEAD'].includes(method)||url.hostname==='api.shiftsometimber.co.uk'||url.pathname.startsWith('/v1/')){
+  blockedOutbound.push({method,path:url.origin+url.pathname});throw new Error('Synthetic member fixture blocks external APIs and mutations');
+ }
+ return externalFetch(input,init);
+};
 const DB=fixture();DB.exec=async sql=>{DB.sqlite.exec(sql);return {success:true}};
 DB.sqlite.exec('DROP TABLE progress_entries;DROP TABLE check_ins;DROP TABLE audit_log;CREATE TABLE cases(id INTEGER PRIMARY KEY,user_id INTEGER);CREATE TABLE pharmacy_orders(id INTEGER PRIMARY KEY,user_id INTEGER);');
 for(const c of ['email','first_name','last_name','phone','postcode','created_at','updated_at'])DB.sqlite.exec('ALTER TABLE users ADD COLUMN '+c+' TEXT');

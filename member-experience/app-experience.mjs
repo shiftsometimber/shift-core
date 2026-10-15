@@ -86,7 +86,7 @@ export const appExperienceClient=String.raw`(()=>{
  const $=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];
  const node=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n};
  const text=(n,v)=>{if(n&&n.textContent!==v)n.textContent=v};
- const link=(label,href)=>{const a=node('a','',label);a.href=href;return a};
+ const link=(label,href)=>{const a=node('a','',label);a.href=href;const tool=/^\/member\/(grub|fit|life-back)(?:[?#]|$)/.exec(href);if(tool)a.dataset.appOpen=tool[1];return a};
  let queued=false,more,returnFocus;
  function mountMore(){
   if(document.body.dataset.appPanel==='1'||$('#memberMoreDialog'))return;
