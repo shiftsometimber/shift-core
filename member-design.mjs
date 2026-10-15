@@ -1,4 +1,5 @@
-// Matt's approved 1 October green/black My Timber design. Presentation only.
+import {appExperienceStyles,appExperienceClient} from './member-experience/app-experience.mjs';
+// Original 1 October presentation, with Matt's authorised 15 October usability update.
 // Existing nodes, event handlers, records, API routes and consent own all actions.
 export const memberDesignVersion='20261001';
 const scope='html body[data-member-design="20261001"]:is(#approved-member-design,[data-member-design]):is(#approved-member-palette,[data-member-design]):is(#approved-member-layout,[data-member-design])';
@@ -139,7 +140,7 @@ scope+'[data-app-panel="1"] :is(#todayBrand,#appBottomNav,#sst-footer-c,footer,.
 css('main :is(a,button,summary,input,select,textarea):focus-visible','outline:3px solid #050505;outline-offset:3px')+
 css('#appBottomNav :is(a,button):focus-visible|#todayBrand a:focus-visible','outline:3px solid #e7e3da;outline-offset:2px')+
 scope+' [hidden]:is(#approved-member-hidden,[hidden]):is(#approved-member-hidden-rule,[hidden]){display:none!important}\n'+
-'@media print{'+css('#todayBrand|#appBottomNav','display:none')+'}';
+'@media print{'+css('#todayBrand|#appBottomNav','display:none')+'}'+appExperienceStyles;
 
 const paths={today:'M3 11 12 3l9 8M5 10v11h5v-6h4v6h5V10',journey:'M5 20v-5m7 5V9m7 11V4',grub:'M5 3v7m3-7v7M3 3v6a3 3 0 0 0 6 0M6 12v9M18 3v18m0-18c-5 3-5 10 0 10',fit:'M4 8v8m3-11v14m10-14v14m3-11v8M7 12h10',more:'M4 12h.01M12 12h.01M20 12h.01',account:'M16 7a4 4 0 1 0-8 0 4 4 0 0 0 8 0M4 21v-2a8 8 0 0 1 16 0v2'};
 const icon=key=>'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+paths[key]+'"/></svg>';
@@ -147,7 +148,7 @@ const header='<header id="todayBrand" data-member-design-header><a href="/member
 const bottom='<nav id="appBottomNav" aria-label="My Timber navigation">'+[['Today','today','/member/dashboard#today'],['Journey','journey','/member/dashboard#journey'],['Grub','grub','/member/grub'],['Fit','fit','/member/fit']].map(([label,key,href])=>'<a href="'+href+'"'+(['grub','fit'].includes(key)?' data-app-open="'+key+'"':'')+'>'+icon(key)+'<span>'+label+'</span></a>').join('')+'<button id="appMore" type="button" aria-expanded="false">'+icon('more')+'<span>More</span></button></nav>';
 export function memberDesignDocument(html){
  if(!html.includes('data-app-layout="preview"')||html.includes('data-member-design="20261001"'))return html;
- return html.replace(/<body([^>]*)>/,(_,attrs)=>'<body'+attrs+' data-member-design="20261001">'+header)
+ return html.replace(/<body([^>]*)>/,(_,attrs)=>'<body'+attrs+' data-member-design="20261001" data-member-experience-ui="20261015">'+header)
   .replace(/<nav id="appBottomNav"[\s\S]*?<\/nav>/,bottom)
   .replace('</body>','<style data-approved-member-design>'+memberDesignStyles+'</style></body>');
 }
@@ -168,11 +169,12 @@ export const memberDesignClient=String.raw`(()=>{
   const root=document.getElementById('todayActions');
   if(root?.classList.contains('app-today-v3')){
    const nav=root.querySelector('.app-today-shortcuts'),layout=root.querySelector('.today-layout'),next=root.querySelector('.mtm-next'),focus=root.querySelector('.today-focus');
-   if(nav&&next&&nav.nextElementSibling!==next)nav.after(next);
+   const anchor=root.querySelector('.member-coaching-primary')||root.querySelector('.member-today-intro')||nav;
+   if(anchor&&next&&anchor.nextElementSibling!==next)anchor.after(next);
    if(layout&&focus&&focus.previousElementSibling!==layout)layout.after(focus);
   }
   const tool=document.body.dataset.appTool,hash=location.hash||'#today';
-  if(tool&&tool!==activeTool){const previous=activeTool;activeTool=tool;if(previous!==null)window.scrollTo({top:0,left:0,behavior:'instant'});}
+  if(tool&&tool!==activeTool)activeTool=tool;
   if(tool&&tool!=='today')outerScroll(document.querySelector('#appTool-'+tool+' iframe'));
   document.querySelectorAll('#appBottomNav a').forEach(a=>{
    const u=new URL(a.href),name=u.pathname.split('/').pop();
@@ -185,4 +187,4 @@ export const memberDesignClient=String.raw`(()=>{
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','style']})},{once:true});else{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','style']})}
  document.addEventListener('load',event=>{if(event.target.matches?.('.app-tool-frame'))schedule()},true);
  document.addEventListener('sst:today-rendered',schedule);addEventListener('hashchange',schedule);addEventListener('popstate',schedule);
-})();`;
+})();`+appExperienceClient;

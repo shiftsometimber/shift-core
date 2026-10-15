@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-15",
+  "base": "685ede249cd20c4801d0a25227fed16d46860618",
+  "status": "implemented and browser-tested; NOT production-deployed; physical acceptance outstanding",
+  "functional": {
+    "tests": 557,
+    "passed": 557,
+    "failed": 0,
+    "command": "node --test member-experience/tests/*.test.mjs preview/app-layout/*.test.mjs tests/app-layout-live.test.mjs my-timber-app/tests/health-bridge.test.mjs my-timber-pwa/*.test.mjs shift-coach/integration.test.mjs shift-coach/fit-active-edit.test.mjs"
+  },
+  "bundle": {
+    "command": "wrangler deploy --dry-run --config wrangler.jsonc",
+    "passed": true,
+    "deployed": false
+  },
+  "productionSourceGate": {
+    "tests": 23,
+    "passed": 11,
+    "failed": 12,
+    "reason": "Exact existing combined release rejects the unadmitted successor UI payload: Unreviewed combined registration tail. No gate weakened or bypassed."
+  },
+  "releaseDependency": {
+    "issue": 1065,
+    "activePullRequest": 1359,
+    "observedHead": "2c7480821fa949dc32c74f6b18bb0d782d594d88",
+    "requiredAction": "Admit this exact payload and evidence as a successor through the existing release lane after the active repair and established queue. Rebase/re-run against the resulting main; do not direct-deploy this branch."
+  },
+  "health": {
+    "scope": [
+      "weight",
+      "heart rate",
+      "blood pressure"
+    ],
+    "physicalPassed": false,
+    "installedBuildsTested": [],
+    "iPhone": "Matt\u2019s iPhone 17 Pro Max is listed unavailable by devicectl",
+    "Android": "No connected Android test device / adb access",
+    "remainingPhysicalTests": [
+      "grant/refuse/revoke permission",
+      "no-data handling",
+      "accurate known-reading import",
+      "repeat-import duplicate prevention",
+      "reopen",
+      "disconnect",
+      "account isolation"
+    ],
+    "syntheticData": "Local SQLite fixture / synthetic bridge only. No readings added to a personal device store."
+  },
+  "preservation": {
+    "publicHomepageSourceChanged": false,
+    "clinicalSafeguardsChanged": false,
+    "memberRecordsMigrated": false,
+    "consentControlsRemoved": false,
+    "commercialConfigChanged": false,
+    "appReviewSubmissionChanged": false
+  },
+  "sourceFiles": {
+    "member-design.mjs": "db64ed806a00dc7f504e8acfee8e109705d216a50bc6b0521996384296fb958f",
+    "member-experience/app-experience.mjs": "a71213fdb7d9525c2d3af8415a964d30567b99b4ec9ebd18201b55c63df184a2",
+    "member-experience/chrome.mjs": "b2096fb14dc8ba4ea8960875955fec296490825c85594066843a5b2ab71a63ec",
+    "member-experience/device-health-client.mjs": "5b7c1a2251108a6d6ccef074f072ceb06bb6b92910aa06b9b9ec6ada4a7e9805",
+    "member-experience/grub-runtime.mjs": "ed3f224ddb285be185c8d89bb145c3ab599356a34c940eaf44359f21d1dc85b5",
+    "member-experience/grub-search.mjs": "727c411aa75a1231408633fe127a73345f264777504230f3a02030b88b46caa0",
+    "member-experience/tests/discovery-options.test.mjs": "a320dbde376f91e2f450d337bda76d7083702f0597edafdc095fa936ab8b30ec",
+    "my-timber-pwa/service-worker.mjs": "58aa472b4ff33f7328386221e1726bece6ce9976ceeef1de07223536b4e441ca",
+    "preview/app-layout/presentation.mjs": "33b2516af52a9c2d2bd3e62a0b8dfdc06d5bde023cb196fc554d1ae88830a454",
+    "preview/app-layout/tabs.mjs": "2df7e0d040eaaf06915e79d12d1d4e703571ba4c3f9bf2929a38dfb4241924bc",
+    "preview/app-layout/today.mjs": "fb3509fb4595342684596078059f416d4dc26f522e23be96bcfb09f978ef35ce",
+    "shift-coach/member-experience-proof.mjs": "069384104e28eb7ba0f6731c4244994408bd725720d41e04a369701652863fe7",
+    "shift-coach/ui.mjs": "f5c6672cc2838e696b95e622f1de0e1ce6e6ab2caf908ac385cf8962273ad3ca"
+  }
+}

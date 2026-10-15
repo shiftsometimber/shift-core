@@ -1,7 +1,6 @@
-import {approvedFooter,approvedFooterStyles,sharedFooterBaseStyles} from '../shared-footer.mjs';
 // One service-worker URL preserves existing Fit push subscriptions. No Cache API,
 // offline writes or stored member data. Browser installation is not offline access.
-const offlinePage=`<!doctype html><html lang="en"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My Timber — connection needed</title><body style="background:#050505;color:#e7e3da;font:18px/1.6 Arial;padding:28px"><h1>You’re offline.</h1><p>Reconnect to open My Timber. No new changes have been saved by this screen.</p><a style="color:#e7e3da" href="/member/dashboard#today">Try My Timber again</a>${approvedFooter}${sharedFooterBaseStyles}${approvedFooterStyles}</body></html>`;
+const offlinePage=`<!doctype html><html lang="en-GB"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>My Timber — connection needed</title><body style="margin:0;background:#f5f2eb;color:#050505;font:18px/1.6 Arial,sans-serif"><header style="padding:max(16px,env(safe-area-inset-top)) 20px 16px;background:#050505;color:#e7e3da;font-weight:700">MY TIMBER</header><main style="max-width:560px;margin:auto;padding:32px max(20px,env(safe-area-inset-left)) max(32px,env(safe-area-inset-bottom))"><h1>You’re offline.</h1><p>Reconnect to open My Timber. No new changes have been saved by this screen.</p><form action="/member/dashboard#today" method="get"><button type="submit" style="display:inline-block;min-height:48px;padding:12px 18px;box-sizing:border-box;border:0;border-radius:10px;background:#050505;color:#e7e3da;font:inherit;cursor:pointer">Try My Timber again</button></form></main></body></html>`;
 export const serviceWorker=String.raw`
 'use strict';
 self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
@@ -25,4 +24,3 @@ self.addEventListener('fetch',event=>{
  event.respondWith(fetch(event.request).catch(()=>new Response(${JSON.stringify(offlinePage)},{status:503,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}})));
 });
 `;
-
