@@ -2786,7 +2786,7 @@ export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
  if(["babylove/corrected-public-rows.json","babylove/dynamic-public.mjs","babylove/seo-repairs-20261016.test.mjs","public-https-redirect.mjs","public-https-redirect.test.mjs","release/seo-audit-scope-20261016.mjs","tests/seo-audit-scope-20261016.test.mjs"].includes(path)){
-  let existed;try{execFileSync('git',['cat-file','-e','18c01034f132d54aafdb9d71c12700893f87412f:'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  let existed;try{execFileSync('git',['cat-file','-e','15b37fae028ff40ef926c09de83902fe7e8c8c8d:'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
   if(status===(existed?'M':'A'))return true;
  }
  if(COMBINED_FINITE_ADDITIONAL_PATHS.includes(path)){

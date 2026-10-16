@@ -920,6 +920,14 @@ jobs:
         run: node scripts/verify-public-continuity-live.mjs
       - name: Verify approved Programme day and catalogue artwork live
         run: PROGRAMME_DAY_LIVE=true PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-programme-day.cjs
+      - name: Retain original Programme day browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: programme-day-live-${{ github.sha }}
+          path: programme-day-proof/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Prove newsroom publication order on live traffic
         run: node scripts/verify-newsroom-order-live.mjs
       - name: Verify SHIFT take labels and original dates on every live news article

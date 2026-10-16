@@ -74,6 +74,7 @@ test('the privacy command extractor preserves all31 literal original commands an
  assert.equal(s.maximumConcurrent,2);assert.equal(s.productionTimeoutMinutes,60);assert.equal(s.privacyTimeoutMinutes,60);
 });
 
+function programmeBeforeRetainedImageEvidence(source){const block="Retain original Programme day browser evidence\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: programme-day-live-${{ github.sha }}\n          path: programme-day-proof/\n          if-no-files-found: warn\n          retention-days: 30\n      - name: ",anchor="      - name: Verify approved Programme day and catalogue artwork live\n        run: PROGRAMME_DAY_LIVE=true PLAYWRIGHT_MODULE=\"$RUNNER_TEMP/heading-tools/node_modules/playwright\" node scripts/verify-programme-day.cjs\n      - name: ";if(!source.includes(block))return source;assert.equal(source.split(block).length,2,'Only one exact original Programme evidence artifact is admitted');const index=source.indexOf(block);assert(source.slice(0,index).endsWith(anchor),'Programme evidence must follow the exact unchanged original live image command');return source.replace(block,'');}
 const currentSource=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
 const policy=()=>JSON.parse(currentSource('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\{[^\n]+\});\nconst manifest=/m)[1]);
 const blobHash=s=>createHash('sha1').update('blob '+Buffer.byteLength(s)+'\0').update(s).digest('hex');
@@ -92,7 +93,7 @@ test('all33 production source blocks and required local preparations preserve th
  const run=block=>{const m=/^        run: (.*)\n/m.exec(block);assert(m);return m[1]==='|'?block.slice(m.index+m[0].length).split(/(?<=\n)/).map(line=>line.startsWith('          ')?line.slice(10):line).join(''):m[1]+'\n';};
  const expected=[4,5,6,7,...Array.from({length:29},(_,i)=>i+12)];assert.deepEqual(s.tasks.map(t=>t.originalStep).sort((a,b)=>a-b),expected);
  for(const task of s.tasks){const prepared=s.preparations.find(x=>x.originalStep===task.originalStep)?.body??'',old=run(blocks[task.originalStep-1]);if(prepared)assert.equal(old.split(prepared).length,2);assert.equal(task.body,prepared?old.replace(prepared,''):old);}
- assert(current.endsWith(blocks.slice(40).join('')),'Every original provider, source-boundary, compiled, deployment, stock, live and rollback byte remains');assert(current.startsWith(original.slice(0,start)),'Triggers, frozen checkout ownership, permissions, environment and60min cap remain');
+ assert(programmeBeforeRetainedImageEvidence(current).endsWith(blocks.slice(40).join('')),'Every original provider, source-boundary, compiled, deployment, stock, live and rollback byte remains');assert(current.startsWith(original.slice(0,start)),'Triggers, frozen checkout ownership, permissions, environment and60min cap remain');
  const setup=current.indexOf('Prepare original local source fixtures'),barrier=current.indexOf('node release/bounded-source-checks-20261016.mjs production'),recovery=current.indexOf('Recover only the evidenced cancelled runtime');assert(setup<barrier&&barrier<recovery);
  assert.equal(current.split('        id: scope\n').length,2);assert(current.includes('RUN_TREATMENT_COMPILED_PROOF:'));assert(current.includes('TREATMENT_MINIFLARE:'));assert(!s.tasks.some(t=>t.body.includes('tests/my-treatment-compiled-control.test.mjs')),'Compiled proof retains its required later toolchain and environment');
 });
@@ -137,3 +138,18 @@ test('all three original literal-test assertion bodies restore exactly after onl
 
 // Keep original source assertions and exercise the actual launch prerequisite.
 import './bounded-source-admission-dependencies-20261016.test.mjs';
+
+// The exact one-step evidence addition never permits another workflow change.
+test('Programme evidence reader restores the entire original current workflow and every dollar byte',()=>{
+ const current=policy().inverses['.github/workflows/cloudflare-production-promote.yml'][0][1],restored=programmeBeforeRetainedImageEvidence(current);
+ assert.equal(blobHash(restored),'d446aefeb1a19279903456dfbbbaca7fd79de9d0');assert.equal(programmeBeforeRetainedImageEvidence(restored),restored);
+});
+test('Programme evidence reader retains unknown bytes for original rejection and rejects duplicates or relocation',()=>{
+ const current=policy().inverses['.github/workflows/cloudflare-production-promote.yml'][0][1],restored=programmeBeforeRetainedImageEvidence(current);
+ const block=current.slice(restored.indexOf('      - name: Prove newsroom publication order on live traffic'),current.indexOf('      - name: Prove newsroom publication order on live traffic'));
+ for(const changed of [current+'\n# unapproved\n',current.replace('contents: read','contents: write')])assert.notEqual(programmeBeforeRetainedImageEvidence(changed),restored);
+ const exactBlock="Retain original Programme day browser evidence\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: programme-day-live-${{ github.sha }}\n          path: programme-day-proof/\n          if-no-files-found: warn\n          retention-days: 30\n      - name: ";
+ assert.throws(()=>programmeBeforeRetainedImageEvidence(current+exactBlock),/one exact/);
+ assert.throws(()=>programmeBeforeRetainedImageEvidence(exactBlock+current.replace(exactBlock,'')),/follow the exact/);
+ const changedBlock=current.replace('programme-day-proof/','programme-day-proof-altered/');assert.equal(programmeBeforeRetainedImageEvidence(changedBlock),changedBlock);assert.notEqual(changedBlock,restored);
+});
