@@ -1048,7 +1048,7 @@ jobs:
         run: node scripts/b1-release-scope.mjs --snapshot after
       - name: Restore the captured runtime if a post-deployment gate failed
         id: runtime_rollback
-        if: ${{ failure() && steps.runtime_deploy.outcome == 'success' || (failure() && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success') }}
+        if: ${{ always() && (failure() || cancelled()) && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success')) }}
         run: node release/member-details-rollback.mjs
       - name: Verify protected catalogue and stock after owned rollback
         if: ${{ always() && steps.runtime_rollback.outcome == 'success' && steps.protected_stock_before.outcome == 'success' }}
