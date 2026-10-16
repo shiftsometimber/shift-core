@@ -483,6 +483,7 @@ jobs:
         if: steps.scope.outputs.runtime_only != 'true'
         run: npx wrangler d1 execute DB --remote --config wrangler.jsonc --file member-experience/checkin-followup.sql
       - name: Capture protected catalogue and stock without customer records
+        id: protected_stock_before
         run: node scripts/b1-release-scope.mjs --snapshot before
       - name: Prepare only the explicitly approved Member Details contact table
         run: node release/member-details-schema.mjs
@@ -490,8 +491,11 @@ jobs:
         run: node release/member-signup-alert-schema.mjs
       - name: Prepare exact additive My Treatment stores
         run: node release/my-treatment-schema.mjs
+      - name: Recheck public index at point of use
+        id: public_index_freshness
+        run: node release/public-index-preflight.mjs decision
       - name: Index existing public SHIFT pages for AI without publishing website content
-        if: steps.growth_deployed.outputs.existing_index != 'true'
+        if: steps.public_index_freshness.outputs.existing_index != 'true'
         run: |
           node scripts/b1-release-scope.mjs
           node scripts/catalogue-publication-client.mjs --verify-main
@@ -499,6 +503,8 @@ jobs:
           npx wrangler d1 execute DB --remote --config wrangler.jsonc --file evidence/shift-ai-site-index/index.sql
           cp evidence/shift-ai-site-index/index.json b1-runtime-release/shift-ai-public-index.json
           sha256sum evidence/shift-ai-site-index/index.sql > b1-runtime-release/shift-ai-public-index.sha256
+      - name: Require current public evidence throughout release verification
+        run: node release/public-index-preflight.mjs require
       - name: Require exact approved homepage sharing repair and retain baseline
         run: |
           node release/root-share-preview-scope.mjs --require-release-authority
@@ -765,6 +771,9 @@ jobs:
         id: runtime_rollback
         if: ${{ failure() && steps.runtime_deploy.outcome == 'success' || (failure() && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success') }}
         run: node release/member-details-rollback.mjs
+      - name: Verify protected catalogue and stock after owned rollback
+        if: ${{ always() && steps.runtime_rollback.outcome == 'success' && steps.protected_stock_before.outcome == 'success' }}
+        run: node scripts/b1-release-scope.mjs --snapshot after
       - name: Verify nine public tool pages after owned rollback
         if: ${{ always() && steps.runtime_rollback.outcome == 'success' }}
         run: node release/tool-schema-gate.mjs rollback
