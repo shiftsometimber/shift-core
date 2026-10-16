@@ -37,7 +37,7 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
  const row={requirement:'GP directory member flow',source,at:new Date().toISOString(),synthetic:true,realCustomerWrites:0,notificationsSent:0,urls:[site+'/member/settings'],checks:[],status:'running'};
  report.checks.push(row);
  let holderId=null,baseline=null,guardContext=null,guardPage=null,handler=null,interruptSave=false,interruptSearch=false,lastSave=null;
- const blocked=[],pageErrors=[];
+ const blocked=[],pageErrors=[],suppressedAutomaticRequests=[];
  const onPageError=e=>pageErrors.push(e.message);
  async function self(){holderId=await identity(page,{site,api,email,holderId});}
  async function read(path){await self();assertGpRequest({url:site+path,method:'GET'});const r=await page.context().request.get(site+path,{headers:{Origin:site,'Cache-Control':'no-cache'}});assert.equal(r.status(),200,path);assert.match(r.headers()['cache-control']||'',/no-store/);return r.json();}
@@ -48,6 +48,11 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
    const req=route.request(),u=new URL(req.url()),method=req.method();
    try{
     assert(!HELD.test(u.pathname),'Held email/support/commitment path');
+    // Keep unrelated automatic telemetry and PWA status outside this GP-only
+    // acceptance transaction. They are aborted, never permitted or mocked.
+    if(method==='POST'&&[site,api].includes(u.origin)&&['/cdn-cgi/rum','/v1/my-timber-pwa/status'].includes(u.pathname)){
+     suppressedAutomaticRequests.push({origin:u.origin,path:u.pathname,method,action:'aborted_without_egress'});await route.abort('blockedbyclient');return;
+    }
     if(!['GET','HEAD','OPTIONS'].includes(method)){
      await self();assertGpRequest({url:req.url(),method,body:req.postDataJSON(),baseline:baseline.details});
      if(interruptSave){interruptSave=false;await route.abort('failed');return;}
@@ -61,6 +66,10 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
  async function uninstall(){if(guardContext&&handler)await guardContext.unroute('**/*',handler);if(guardPage)guardPage.off('pageerror',onPageError);guardContext=null;guardPage=null;handler=null;}
  async function open(){
   await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});
+  const disclosure=page.locator('details:has(#memberDetailsForm)');assert.equal(await disclosure.count(),1,'One normal member-details disclosure required');
+  assert.equal((await disclosure.locator('summary').innerText()).trim(),'Personal & delivery details');
+  if(await disclosure.getAttribute('open')===null)await disclosure.locator('summary').click();
+  assert.notEqual(await disclosure.getAttribute('open'),null,'Normal member-details navigation must open the panel');
   await page.locator('#memberDetailsForm[data-gp-directory-v2="true"]').waitFor({state:'visible',timeout:30000});
   await page.waitForFunction(()=>document.querySelector('#memberDetailsFields')?.disabled===false,{},{timeout:30000});
   assert.equal(await page.locator('#memberEmail').inputValue(),email);await self();
@@ -129,7 +138,7 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
   const marker={schema:'gp-existing-holder-isolation/v1',source,synthetic:true,holderId,gpHashes:Object.fromEntries(GP_FIELDS.map(k=>[k,sha(String(finalProfile.details[k]??''))])),at:new Date().toISOString()};
   const raw=JSON.stringify(marker,null,2)+'\n';writeFileSync(join(dir,'gp-isolation-marker.json'),raw);row.markerMetadataSha256=sha(raw);row.twoAccountIsolation='Requires the next existing desktop holder receipt';row.hqSignedInAcceptance=false;row.ordinarySignupAcceptance=false;row.servingIdentity='The release owner separately binds terminal production deployment; assets match this exact checked-out source before and after';row.status='pass';return page;
  }catch(error){row.status='fail';row.error=String(error.message).replaceAll(email,'[synthetic]');throw error;}
- finally{await uninstall();row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;}
+ finally{await uninstall();row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;row.suppressedAutomaticRequests=suppressedAutomaticRequests;}
 }
 
 export async function verifyGpIsolationFromExistingHolder({page,site,api,email}){
