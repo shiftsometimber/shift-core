@@ -20,6 +20,8 @@ async function loadCatalogue(){
     $('serviceInsulinLabel').hidden=!injection;
     window.SHIFT_SERVICE_ELIGIBILITY=()=>({insulinUse:$('serviceInsulin').value,eligibility:{heightCm:Number($('serviceHeight').value),weightKg:Number($('serviceWeight').value),weightRelatedCondition:$('serviceCondition').value}});
     select.innerHTML=product.variants.map(v=>`<option value="${v.id}" data-price="${v.pricePence}" data-status="${v.status}">${v.strengthLabel} · ${money(v.pricePence)} · ${v.status==='available'?'In stock':'Out of stock'}</option>`).join('')||'<option>No current variants</option>';
+    const requestedVariant=Number(new URLSearchParams(location.search).get('variant'));
+    if(product.variants.some(v=>Number(v.id)===requestedVariant))select.value=String(requestedVariant);
     select.disabled=!product.variants.length;
     const sync=()=>{
       const o=select.selectedOptions[0],available=o?.dataset.status==='available';
@@ -38,12 +40,17 @@ async function loadCatalogue(){
       const variantId=Number(select.value);
       let verification=null;try{verification=JSON.parse(sessionStorage.getItem(`sst-medicine-verification:${variantId}`)||'null')}catch{}
       if(!verification?.token||Date.parse(verification.expiresAt)<=Date.now()){
-        location.assign(`/treatment-assessment?variant=${encodeURIComponent(variantId)}&returnTo=${encodeURIComponent(location.pathname+location.search)}`);
+        const target=new URL(location.href);target.searchParams.set('variant',String(variantId));
+        location.assign(`/treatment-assessment?variant=${encodeURIComponent(variantId)}&returnTo=${encodeURIComponent(target.pathname+target.search+target.hash)}`);
         return;
       }
       button.disabled=true;
       try{
-        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,verificationToken:verification.token,...(window.SHIFT_SERVICE_ELIGIBILITY?.()||{})})}),result=await response.json();
+        let reorder=null;try{reorder=JSON.parse(sessionStorage.getItem('sst-treatment-reorder:'+variantId)||'null')}catch{}
+        let reorderOfOrderNumber;
+        if(reorder){const context=await fetch(API+'/v1/commerce/medicine-clinical-context',{credentials:'include',cache:'no-store'});if(context.ok&&(await context.json()).accountReference===reorder.accountReference)reorderOfOrderNumber=reorder.orderNumber;}
+        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,reorderOfOrderNumber,verificationToken:verification.token,...(window.SHIFT_SERVICE_ELIGIBILITY?.()||{})})}),result=await response.json();
+        if(response.status===401){const back=new URL(location.href);back.searchParams.set('variant',String(variantId));location.assign('/member-login?returnTo='+encodeURIComponent(back.pathname+back.search));return;}
         if(!response.ok||!result.checkoutUrl)throw Error(result.message||result.error||'Checkout could not be opened');
         location.assign(result.checkoutUrl);
       }catch(error){$('stockMessage').textContent=error.message;button.disabled=false}

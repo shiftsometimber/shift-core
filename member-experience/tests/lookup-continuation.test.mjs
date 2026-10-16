@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
+import {originalQuestionnaireAssessmentHtml} from '../../release/questionnaire-handover-source-20261016.mjs';
 const {searchGpPractices,memberDetailsLookupRoute}=await import(process.env.LOOKUP_TEST_MODULE||'../member-details-lookups.mjs');
 import {gpFormRuntime} from '../gp-form.mjs';
 const gp={Name:'Fictional Practice',OrgId:'A12345',Status:'Active',PrimaryRoleId:'RO177',PostCode:'SK10 1AA'};
@@ -39,7 +40,7 @@ test('both assessment additions preserve the immutable original fields, content 
  ];
  const script='<script defer src="/assets/member-experience/gp-form.mjs"></script>\n';
  for(const path of ['../../frontend/member/treatment-assessment.html','../../frontend/medicine-front-door/treatment-assessment.html']){
-  const html=readFileSync(new URL(path,import.meta.url),'utf8');assert.equal(html.split(script).length,2);
+  const html=originalQuestionnaireAssessmentHtml(new URL(path,import.meta.url));assert.equal(html.split(script).length,2);
   let original=html.replace(script,'');
   for(const addition of eligibilityAdditions){assert.equal(original.split(addition).length,2,'Expected exactly one reviewed service-criteria addition: '+path);original=original.replace(addition,'');}
   const blob=createHash('sha1').update('blob '+Buffer.byteLength(original)+'\0').update(original).digest('hex');
