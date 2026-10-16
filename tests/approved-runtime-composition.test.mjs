@@ -1,3 +1,4 @@
+import './food-diary-london-date-stack-20261015.test.mjs';
 import './ci-execution-stack-20261014.test.mjs';
 import './release-machinery-repair-composition.test.mjs';
 import './immutable-git-facts-20261014.test.mjs';

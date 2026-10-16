@@ -87,7 +87,7 @@ function fresh(at,now){const age=time(now)-time(at);assert(age>=0&&age<=300000,'
 // log and archive hashes plus selected original-file hashes. Never build it from
 // an untrusted saved recovery receipt. Metadata and current provider observations
 // must be freshly authenticated by the caller; this module performs no I/O.
-export function verifyOwnedRollback({policy,failed,prior,current,now}){
+function verifyOwnedRollbackHistory({policy,failed,prior}){
  positive(policy?.repositoryId);
  const failedLogs=metadata(failed,policy.failed,'failure',policy.repositoryId);
  const priorLogs=metadata(prior,policy.prior,'success',policy.repositoryId);
@@ -126,6 +126,10 @@ export function verifyOwnedRollback({policy,failed,prior,current,now}){
  assert(time(rollback.at)>=time(attempted.at)&&time(rollback.at)<=time(failedVerification.rollbackChecks.finishedAt));
  const before=stockSnapshot(json(failed.stockBefore,policy.failed.stockBefore,'Original stock snapshot'),policy.failed,failed.job);
  assert(time(before.checkedAt)<time(attempted.at),'Original stock snapshot must precede owned deployment');
+ return {failedLogs,priorLogs,predecessor,candidate,restored,before};
+}
+export function verifyOwnedRollback({policy,failed,prior,current,now}){
+ const {predecessor,restored,before}=verifyOwnedRollbackHistory({policy,failed,prior});
  fresh(current?.observedAt,now);assert.deepEqual(providerIdentity(current?.deployment),restored,'Runtime moved after the owned rollback');
  const s=current.stock;fresh(s?.checkedAt,now);
  assert.equal(s?.kind,'independent-original-protected-stock-comparison-after-owned-rollback');
@@ -142,6 +146,63 @@ export function verifyOwnedRollback({policy,failed,prior,current,now}){
   publicToolChecksVerified:true,protectedStockIdentical:true,dataRestored:false,
   evidence:Object.freeze({failedArtifact:policy.failed.artifact.sha256,priorArtifact:policy.prior.artifact.sha256,failedLog:policy.failed.logs.sha256,priorLog:policy.prior.logs.sha256})});
 }
+export function verifyOwnedRollbackChain({policy,previousFailed,prior,failed,current,now}){
+ const originalPolicy=policy;
+ const history=verifyOwnedRollbackHistory({policy:originalPolicy,failed:previousFailed,prior});
+ const pin=originalPolicy.followingFailed;
+ assert(pin,'One exact source-controlled following failed release is required');
+ assert.notEqual(pin.run,originalPolicy.failed.run,'Following and previous failed runs must remain distinct');
+ policy={...originalPolicy,failed:pin};
+ const failedLogs=metadata(failed,pin,'failure',policy.repositoryId);
+ assert(time(previousFailed.job.completed_at)<time(failed.job.started_at),'Following failed job must follow the authenticated previous rollback');
+ const attempted=unique(failedLogs,'owned_runtime_deployment'),failedVerification=unique(failedLogs,'guarded_release_verification');
+ source(attempted,pin);source(failedVerification,pin);
+ const predecessor=history.predecessor,captured=history.restored,candidate=identity(attempted);
+ assert.notEqual(candidate.deploymentId,captured.deploymentId);
+ assert.notEqual(candidate.versionId,captured.versionId);
+ assert.equal(attempted.dataRestored,false);
+ assert.equal(attempted.previousDeploymentId,captured.deploymentId,'Following release did not capture the exact authenticated prior owned rollback deployment');
+ assert.equal(attempted.previousVersionId,captured.versionId,'Following release did not capture the exact authenticated prior owned rollback version');
+ assert(time(attempted.at)>=time(failed.job.started_at)&&time(attempted.at)<=time(failed.job.completed_at));
+ assert.equal(failedVerification.workflowStatus,'failure');assert.equal(failedVerification.releaseVerified,false);assert.equal(failedVerification.status,'failed');
+ assert.equal(failedVerification.deployedVersion,candidate.versionId);
+ publicChecks(failedVerification.deployChecks,pin,'deploy',candidate,candidate,failed.job);
+ assert.deepEqual(failedVerification.deployChecks,unique(failedLogs,'public_tool_release_check','deploy'));
+ const restored=identity(failedVerification.rollbackChecks?.deployed);
+ assert.equal(restored.versionId,captured.versionId,'Following rollback did not restore the original verified runtime');
+ assert.notEqual(restored.deploymentId,captured.deploymentId);assert.notEqual(restored.deploymentId,candidate.deploymentId);
+ publicChecks(failedVerification.rollbackChecks,pin,'rollback',restored,captured,failed.job);
+ assert.equal(failedVerification.rollbackChecks.expected.checkSource,pin.source);
+ assert.equal(failedVerification.rollbackChecks.expected.percentage,100);
+ assert.deepEqual(failedVerification.rollbackChecks,unique(failedLogs,'public_tool_release_check','rollback'));
+ step(failed.job,'Capture current Worker deployment for rollback');
+ step(failed.job,'Deploy current main to production');
+ step(failed.job,'Restore the captured runtime if a post-deployment gate failed');
+ step(failed.job,'Verify nine public tool pages after owned rollback');
+ const rollback=json(failed.rollback,pin.rollback,'Original following rollback receipt');
+ assert.equal(rollback.restoredVersion,captured.versionId);assert.equal(rollback.deployment,restored.deploymentId);assert.equal(rollback.dataRestored,false);
+ assert(time(rollback.at)>=time(attempted.at)&&time(rollback.at)<=time(failedVerification.rollbackChecks.finishedAt));
+ const before=stockSnapshot(json(failed.stockBefore,pin.stockBefore,'Original following stock snapshot'),pin,failed.job);
+ assert(time(before.checkedAt)<time(attempted.at));
+ assert.deepEqual(before.tables,history.before.tables,'Protected stock differs across authenticated rollback chain');
+ assert.equal(before.configurationSha256,history.before.configurationSha256,'Protected configuration differs across authenticated rollback chain');
+ fresh(current?.observedAt,now);assert.deepEqual(providerIdentity(current?.deployment),restored,'Runtime moved after the owned rollback');
+ const s=current.stock;fresh(s?.checkedAt,now);
+ assert.equal(s?.kind,'independent-original-protected-stock-comparison-after-owned-rollback');
+ assert.equal(s.run,policy.failed.run);assert.equal(s.attempt,policy.failed.attempt);
+ assert.equal(s.failedCandidate,policy.failed.source);assert.equal(s.servingSource,policy.prior.source);
+ assert.equal(s.servingDeployment,restored.deploymentId);
+ assert.deepEqual(s.servingVersions,[{version_id:restored.versionId,percentage:100}]);
+ assert.equal(s.beforeAt,before.checkedAt);assert.deepEqual(s.tables,before.tables);assert.equal(s.configurationSha256,before.configurationSha256);
+ assert.equal(s.identical,true);assert.equal(s.customerRecordsRead,false);assert.equal(s.productionWrites,0);assert.equal(s.originalFailedReleaseRemainsFailed,true);
+ assert(time(s.checkedAt)>=time(failed.job.completed_at),'Stock comparison must follow terminal rollback');
+ return Object.freeze({kind:'verified_owned_runtime_rollback',checkedAt:now,source:policy.prior.source,version:restored.versionId,deployment:restored.deploymentId,
+  predecessorDeployment:predecessor.deploymentId,predecessorRun:policy.prior.run,predecessorAttempt:policy.prior.attempt,
+  failedRun:policy.failed.run,failedAttempt:policy.failed.attempt,failedSource:policy.failed.source,failedReleaseVerified:false,
+  publicToolChecksVerified:true,protectedStockIdentical:true,dataRestored:false,
+  evidence:Object.freeze({failedArtifact:policy.failed.artifact.sha256,priorArtifact:policy.prior.artifact.sha256,failedLog:policy.failed.logs.sha256,priorLog:policy.prior.logs.sha256,precedingOwnedRollback:Object.freeze({deployment:captured.deploymentId,version:captured.versionId,failedRun:originalPolicy.failed.run,failedAttempt:originalPolicy.failed.attempt,failedSource:originalPolicy.failed.source,failedArtifact:originalPolicy.failed.artifact.sha256,failedLog:originalPolicy.failed.logs.sha256})})});
+}
+
 
 // Call immediately before adoption with a fresh provider read. Matching version
 // alone is insufficient: a later same-version deployment is a different owner.

@@ -1,3 +1,4 @@
+import {foodDiaryLondonDateOriginalProductionWorkflow} from '../release/food-diary-london-date-scope-20261015.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -33,7 +34,7 @@ test('home bootstrap embedding preserves authoritative privacy code and exact re
  test('production output matches exact approved compact transform',async()=>{const {replaceFreeStrip}=await import('../preview/home-banner/free-design.mjs');const {banner:b,css:c}=await import('../preview/home-banner/four-step.mjs');assert.equal(addHomeBanner(raw),replaceFreeStrip(raw.replace('</head>',c+'</head>').replace(anchor,b+anchor)));});
 
 test('production CSS gate accepts the approved PWA release and rejects stale or unrelated CSS',async()=>{
- const workflow=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
+ const workflow=foodDiaryLondonDateOriginalProductionWorkflow(readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8'));
  const step=workflow.split('      - name: Require verified homepage speed candidate and current CSS bytes')[1].split('      - name: Install exact Wrangler toolchain')[0];
  const body=step.split("<<'JS'\n")[1].split('\n          JS')[0].replace(/^\s*import .*;\n/gm,'');
  const run=new (Object.getPrototypeOf(async function(){}).constructor)('assert','createHash','RETA_STYLES','HOME_BLOCKING_STYLES','pwaStyles','fetch',body);
