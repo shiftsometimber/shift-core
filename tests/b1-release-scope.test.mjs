@@ -1,4 +1,3 @@
-import {foodDiaryLondonDateOriginalProductionWorkflow} from '../release/food-diary-london-date-scope-20261015.mjs';
 import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,WATCH_SOURCE_LINK_SOURCE,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,WATCH_HSTS_PUBLIC_WORDING_SOURCE,validatePublicWording} from '../release/public-wording-scope.mjs';
 import test from 'node:test';
@@ -7,7 +6,7 @@ import {TREATMENT_GUIDANCE_PREVIEW,TREATMENT_GUIDANCE_PATHS,ADULT_INTAKE_SOURCE,
 import {readFileSync} from 'node:fs';
 import {validateScope,assertPreserved,RELEASE_PATHS,APPROVED_ORDER_FILES,validateNiceTimeout,NICE_TIMEOUT_PATHS} from '../scripts/b1-release-scope.mjs';
 const manifest=JSON.parse(readFileSync(new URL('../release/b1-runtime-only.json',import.meta.url)));
-const workflow=foodDiaryLondonDateOriginalProductionWorkflow(readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8'));
+const workflow=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
 const steps=workflow.split(/\n      - /);
 test('exact preview application plus only reviewed release plumbing is accepted',()=>{assert.deepEqual(manifest.approvedApplicationPaths,APPROVED_ORDER_FILES);assert.equal(validateScope(manifest,[...RELEASE_PATHS]).runtimeOnly,true)});
 test('explicitly pinned launch application, stock, workflow and configuration drift fails closed',()=>{

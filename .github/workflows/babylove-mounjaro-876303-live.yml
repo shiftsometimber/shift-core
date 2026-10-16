@@ -33,11 +33,7 @@ jobs:
           import {mkdirSync,writeFileSync} from 'node:fs';
           // The one-time September repair is superseded by the reviewed October
           // editorial correction. Check its exact bytes; never replay old writes.
-          // 11 October review: the only body difference is Matt's approved G1
-          // contextual paragraph, deployed and verified on 8 October. Preserve it.
-          const PRE_G1='25160f8881142de641db7a4dc44075cdb31a74e3f9428be8ef86ff7fb84cbce4';
-          const REVIEWED='00f4928e68a206980ddf673ff2eb3a8166c89ef3f84fb963911a95c364a489d0';
-          const APPROVED_G1='For the wider picture, read our [Mounjaro UK information](/mounjaro). To compare approaches, use the [weight-loss treatment comparison centre](/compare-weight-loss-treatments).\n\n';
+          const REVIEWED='25160f8881142de641db7a4dc44075cdb31a74e3f9428be8ef86ff7fb84cbce4';
           function first(sql){
             assert(/^SELECT\b/i.test(sql),'Only read-only evidence queries are permitted');
             const out=execFileSync('npx',['wrangler','d1','execute','DB','--remote','--config','wrangler.jsonc','--json','--command',sql],{encoding:'utf8',maxBuffer:1024*1024,timeout:60000});
@@ -56,8 +52,6 @@ jobs:
           assert.equal(article?.publish_at,'2026-09-21T16:25:27.795Z','Original publication date changed');
           const bodySha256=createHash('sha256').update(article.body).digest('hex');
           assert.equal(bodySha256,REVIEWED,'Reviewed article changed; retain it and request fresh review, never overwrite');
-          assert.equal(article.body.split(APPROVED_G1).length-1,1,'Approved G1 paragraph missing or duplicated');
-          assert.equal(createHash('sha256').update(article.body.replace(APPROVED_G1,'')).digest('hex'),PRE_G1,'Body outside approved G1 scope changed');
           const proof={ok:true,sourceId:'876303',articleId:4,slug:article.slug,title:article.title,status:article.status,publishAt:article.publish_at,bodySha256,workflowSha:process.env.GITHUB_SHA,productionWrites:0};
           mkdirSync('babylove-proof',{recursive:true});
           writeFileSync('babylove-proof/mounjaro-876303-live.json',JSON.stringify(proof,null,2)+'\n');

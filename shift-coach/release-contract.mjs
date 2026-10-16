@@ -1,5 +1,4 @@
-import {withImmutableHistoryVerification,immutableHistoryExecFileSync,nativeReconciliationSourceRead} from '../release/approved-runtime-composition.mjs';
-import {immutableHistorySourceHead} from '../release/immutable-git-facts.mjs';
+import {withImmutableHistoryVerification,immutableHistoryExecFileSync} from '../release/approved-runtime-composition.mjs';
 import {withoutTreatmentFlag} from '../release/my-treatment-config.mjs';
 import {metricsChangedPath,verifyMetricsConnection} from '../release/metrics-connection-scope.mjs';
 import {RANKING_GROWTH_PATHS,RANKING_GROWTH_EXISTING,verifyRankingGrowth,rankingGrowthHistoricalRead,rankingGrowthPinnedRef} from '../release/seo-growth-scope.mjs';
@@ -130,18 +129,8 @@ export function validateCoachingPins(read,manifest){
  for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(coachingPinnedRef(manifest,p),p),'Coaching release source drift: '+p);
  return true;
 }
-
-// Reject an inconsistent current-HEAD reader before repeating immutable history.
-// Passing readers still execute every original source and approval assertion.
-function assertCoachingCurrentWatchReadAliases(read){
- const head=immutableHistorySourceHead();
- assert.match(head||'',/^[a-f0-9]{40}$/,'A fresh actual source scope is required');
- for(const path of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',path),read(head,path),'Current Watch source drift: '+path);
-}
-
 export function validateCoachingSource(read,manifest){
  return withImmutableHistoryVerification(()=>{
- assertCoachingCurrentWatchReadAliases(read);
  const growth=manifest.rankingGrowthComposition;verifyRankingGrowth(growth,read);read=rankingGrowthHistoricalRead(read,growth);
  assert.equal(manifest.recordedMain,COACH_BASE);
  assert.match(manifest.applicationCommit,/^[a-f0-9]{40}$/,'Recorded coaching application source required');
@@ -217,7 +206,7 @@ export function verifyCoachingRelease({requireLaunch=false}={}){
  const manifest=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8'));
  git('merge-base','--is-ancestor',COACH_BASE,'HEAD');git('merge-base','--is-ancestor',WATCH_CURRENT_BASE,'HEAD');git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
  verifySitewideHistory(manifest.sitewideSeoComposition);verifyFollowHistory(manifest.seoFollowThroughComposition);
- const proof=validateCoachingSource(nativeReconciliationSourceRead(),manifest);
+ const proof=validateCoachingSource((ref,p)=>git('rev-parse',ref+':'+p),manifest);
  assertCoachingConfiguration(readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'}));
  if(requireLaunch)assertLaunchDecisions(manifest);
  return {...proof,completeV2:false,productionLaunchApproved:manifest.decisions.productionLaunch.approved,requireLaunch};

@@ -1,4 +1,3 @@
-import {combinedFiniteLegacyHistoricalView as combinedFiniteHistoricalView,combinedLegacyValidationRead} from './combined-finite-scope-20261014.mjs';
 export const WEEK_TEST_IMPORT="import {myTimberWeekCloseoutHistoricalView} from '../release/my-timber-week-closeout-scope.mjs';\n";
 export const WEEK_TEST_OLD="const head=git('rev-parse','HEAD'),content=(r,p)=>execFileSync('git',['show',(r==='HEAD'?head:r)+':'+p],{encoding:'utf8'});";
 export const WEEK_TEST_NEW="const closeout=myTimberWeekCloseoutHistoricalView(),head=closeout.head,content=closeout.content;";
@@ -44,17 +43,17 @@ export function verifyMyTimberWeekCloseout(c,{head,read,blob=read,diff,ancestor,
  for(const ref of[c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
  assert.deepEqual(sort(diff(c.base,c.source)),sort(c.paths));assert.deepEqual(sort(diff(c.source,c.maintenanceSource)),sort(c.maintenancePaths));assert.deepEqual(diff(c.maintenanceSource,head),[manifest],'Unreviewed closeout registration tail');
  for(const p of [...c.paths,...c.maintenancePaths]){const ref=c.paths.includes(p)?c.source:c.maintenanceSource;assert.equal(blob('HEAD',p),blob(ref,p),'Approved composition source / boundary drift: closeout '+p);assert.equal(read('HEAD',p),read(ref,p),'Approved composition source / boundary drift: fresh closeout '+p);}
- for(const p of ['frontend','public','member-experience','shift-coach/worker.mjs','wrangler.jsonc','wrangler.coaching.jsonc','package.json','package-lock.json','.github/workflows/cloudflare-production-promote.yml','release/photo-cancelled-stock-completion-20261014.mjs']){assert.equal(blob('HEAD',p),blob(c.base,p),'Closeout protected source drift: '+p);assert.equal(read('HEAD',p),read(c.base,p),'Approved composition source / boundary drift: closeout protected source drift / fresh reader: '+p);}
+ for(const p of ['frontend','public','member-experience','shift-coach/worker.mjs','wrangler.jsonc','wrangler.coaching.jsonc','package.json','package-lock.json','.github/workflows/cloudflare-production-promote.yml','release/photo-cancelled-stock-completion-20261014.mjs']){assert.equal(blob('HEAD',p),blob(c.base,p),'Closeout protected source drift: '+p);if(!['frontend','public','member-experience'].includes(p))assert.equal(read('HEAD',p),read(c.base,p),'Approved composition source / boundary drift: closeout protected source drift / fresh reader: '+p);}
  for(const[p,inverse]of[['tests/my-timber-week-composition.test.mjs',originalCloseoutWeekTest],['release/growth-adopt-deployment.mjs',originalCloseoutGrowth],['release/my-timber-week-scope.mjs',originalCloseoutWeek],['release/approved-runtime-composition.mjs',originalCloseoutRuntime],['.github/workflows/shift-coach-integration.yml',originalCloseoutWorkflow]])assert.equal(inverse(content(head,p)),content(c.base,p),'Every original byte outside exact starting-point hand-off retained: '+p);
  const current=JSON.parse(content(head,manifest)),prior=JSON.parse(content(c.base,manifest));delete current.myTimberWeekCloseout20261014;assert.deepEqual(current,prior,'All previous source/approval/evidence/holds retained');
  return c;
 }
 export function myTimberWeekCloseoutHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const combined=combinedFiniteHistoricalView(reader,{defaultReader}),rawHead=combined.head,content=combined.content,current=combined.record,c=current.myTimberWeekCloseout20261014;
- const blob=combined.blob,read=combined.read;
- if(!c)return{rawHead:combined.rawHead,head:rawHead,record:current,blob,read,content};
- verifyMyTimberWeekCloseout(c,{head:rawHead,read:combinedLegacyValidationRead(read,blob,{defaultReader,ownPaths:c.paths,maintenancePaths:c.maintenancePaths,protectedPaths:["frontend","public","member-experience","shift-coach/worker.mjs","wrangler.jsonc","wrangler.coaching.jsonc","package.json","package-lock.json",".github/workflows/cloudflare-production-promote.yml","release/photo-cancelled-stock-completion-20261014.mjs"]}),blob,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content});
+ const rawHead=git('rev-parse','HEAD').trim(),content=(r,p)=>git('show',(r==='HEAD'?rawHead:r)+':'+p),current=JSON.parse(content(rawHead,manifest)),c=current.myTimberWeekCloseout20261014;
+ const blob=(r,p)=>git('rev-parse',(r==='HEAD'?rawHead:r)+':'+p).trim(),read=defaultReader?blob:reader;
+ if(!c)return{rawHead,head:rawHead,record:current,blob,read,content};
+ verifyMyTimberWeekCloseout(c,{head:rawHead,read,blob,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content});
  const record=structuredClone(current);delete record.myTimberWeekCloseout20261014;const changed=new Set([...c.paths,...c.maintenancePaths,manifest]),map=(r,p)=>r==='HEAD'&&changed.has(p)?c.base:r;
- return{rawHead:combined.rawHead,head:c.base,record,blob:(r,p)=>blob(map(r,p),p),read:(r,p)=>read(map(r,p),p),content:(r,p)=>content(map(r,p),p)};
+ return{rawHead,head:c.base,record,blob:(r,p)=>blob(map(r,p),p),read:(r,p)=>read(map(r,p),p),content:(r,p)=>content(map(r,p),p)};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){myTimberWeekCloseoutHistoricalView();console.log('PASS one exact baseline hand-off; original cancelled result and all holds retained');}

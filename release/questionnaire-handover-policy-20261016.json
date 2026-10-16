@@ -1,0 +1,40 @@
+{
+  "acceptedBase": {
+    "repository": "shiftsometimber/shift-core",
+    "source": "55b73025f5b6d2302fab42bce73a222653404186",
+    "tree": "550bec05b5dbf98bb31eed006b2158f73b4ee79f",
+    "run": 38974318146,
+    "gpOnProviderVerified": true
+  },
+  "predecessors": {
+    "core": {
+      "script": "shift-core",
+      "config": "wrangler.jsonc",
+      "source": "55b73025f5b6d2302fab42bce73a222653404186",
+      "run": 38974318146,
+      "deployment": "dcf7f63d-4d8b-4b9d-b18e-776d2ac400ed",
+      "version": "2a2f4483-1a43-4e9a-802e-4bdc118059be",
+      "gpEnabled": true
+    }
+  },
+  "payloadBlobs": {
+    "docs/PHARMACY-MY-TIMBER-INTEGRATION-V1.md": "fa4826f3a64f5367e32b15a39b6caa8d6cc3dc02",
+    "frontend/medicine-front-door/medicine-front-door.js": "7927852c7082adaaf2a9834715a7c83f776aafc4",
+    "frontend/medicine-front-door/treatment-assessment.html": "2841ab8ec264c8eb017f450eee78115e607457a0",
+    "frontend/medicine-front-door/treatment-assessment.js": "37928d07b2d543a7815c87809ab83b7ddb42c4a3",
+    "frontend/member/clinical-intake-v1.css": "1ae39e8313a540ff8908029f32bd2c97369d212c",
+    "frontend/member/member-treatment-journey-v1.js": "76d2a79a21ff0d8d7ac47a5ac8c8bec53be6e4cd",
+    "frontend/member/treatment-assessment.html": "2841ab8ec264c8eb017f450eee78115e607457a0",
+    "frontend/member/treatment-assessment.js": "37928d07b2d543a7815c87809ab83b7ddb42c4a3",
+    "medicine-commerce-v1.js": "48ee05749fb3f8fd704f53c7a0b16eaed7652f16",
+    "pharmacy-handover-v1.mjs": "18b977d1bf2cc6e25328baff14859e85b5731447",
+    "tests/checkout-recovery.test.mjs": "e06fe5fd47694270ae87a0f8890c022223844fa4",
+    "tests/medicine-commerce-v1.test.mjs": "d45360a84c3327e190e0bf1a731db1677d8f298b",
+    "tests/medicine-intake-browser.mjs": "03f023ba3cf5af9e126f5c064bedfc8fbc8d1410",
+    "tests/medicine-intake-continuity.test.mjs": "e2ff1f637ad6dc4e508525f32641a1845a556a43",
+    "tests/medicine-intake-sqlite.test.mjs": "49206885d2056161488664ee7aac681268fcfce2",
+    "tests/medicine-purchase-e2e.test.mjs": "a047b54a21799bca4826a94fc92189373f2c1237",
+    "tests/pharmacy-handover-v1.test.mjs": "732db1db24a87b09b26a12806a6f29cc7dd18e15"
+  },
+  "authority": "Matt 16 October 2026: routine nonclinical engineering corrections, checks, integration and deployment authorised; existing clinical, sales, privacy, stock, homepage, R4 and communication controls retained. Provisional generic pharmacy contract remains disabled; no genuine partner acceptance claimed."
+}

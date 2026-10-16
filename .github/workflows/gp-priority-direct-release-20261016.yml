@@ -1,0 +1,80 @@
+name: GP Priority Direct Runtime Release
+on:
+  push:
+    branches: [release/gp-priority-direct-20261016]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PLAYWRIGHT_BROWSERS_PATH: /tmp/shift-gp-priority-browsers
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --ignore-scripts
+      - name: Verify exact native GP source and original backend contracts
+        run: node --test --test-concurrency=1 --test-reporter=tap tests/gp-member-code-direct-source-20261016.test.mjs gp-directory/search.test.mjs gp-directory/member-record.test.mjs gp-directory/hq-member-gp.test.mjs tests/gp-directory-live-contract-20261015.test.mjs tests/gp-priority-direct-owned-release-20261016.test.mjs
+      - name: Install the isolated browser verification dependency
+        run: |
+          npm install --no-save --package-lock=false --ignore-scripts playwright@1.58.2
+          npx playwright install --with-deps chromium
+      - name: Verify original saved-profile and HQ GP browser contracts
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync,writeFileSync,mkdirSync,existsSync,unlinkSync} from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          import {createHash} from 'node:crypto';
+          const out='gp-direct-runtime-release';mkdirSync(out,{recursive:true});
+          const receipt='gp-directory/saved-profile-browser-receipt.json',before=readFileSync(receipt),copies=[],proof=[];
+          const pairs=[["require('/Users/shiftsometimberltd/SST/tools/apple-review-smoke/node_modules/playwright')","require('playwright')"],["executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'","executablePath:chromium.executablePath()"]];
+          const sha=x=>createHash('sha256').update(x).digest('hex');
+          try{
+            for(const [name,temp] of [['hq-member-gp-browser.mjs','.gp-direct-hq-fixture.mjs'],['saved-profile-browser.mjs','.gp-direct-saved-fixture.mjs']]){
+              const file='gp-directory/'+name,copy='gp-directory/'+temp;assert(!existsSync(copy));
+              const original=readFileSync(file,'utf8');let adapted=original;
+              for(const [a,b]of pairs){assert.equal(adapted.split(a).length,2);assert(!adapted.includes(b));adapted=adapted.replace(a,b);}
+              let inverse=adapted;for(const [a,b]of [...pairs].reverse()){assert.equal(inverse.split(b).length,2);inverse=inverse.replace(b,a);}assert.equal(inverse,original,'Every original browser assertion must remain byte-exact');
+              writeFileSync(copy,adapted);copies.push(copy);const row={file,originalSha256:sha(original),adapterSha256:sha(adapted),wholeInverse:true,changes:'Only Playwright transport and executable locations',status:'running'};proof.push(row);
+              try{execFileSync(process.execPath,[copy],{stdio:'inherit',timeout:180000});row.status='passed';}finally{if(name==='saved-profile-browser.mjs')writeFileSync(out+'/saved-profile-browser-current.json',readFileSync(receipt));}
+            }
+            writeFileSync(out+'/hq-member-gp-browser-current.json',readFileSync('/tmp/shift-hq-gp-browser-receipt-20261014.json'));
+          }finally{
+            writeFileSync(receipt,before);for(const copy of copies)unlinkSync(copy);
+            assert(readFileSync(receipt).equals(before));execFileSync('git',['diff','--exit-code','HEAD','--'],{stdio:'inherit'});
+            writeFileSync(out+'/browser-fixture-transport-proof.json',JSON.stringify({proof,trackedReceiptRestored:true,production:false,authenticatedServingAcceptance:false},null,2));
+          }
+          JS
+      - name: Verify both GP OFF uploads before directing any traffic
+        id: prepare
+        run: node release/gp-priority-direct-owned-release-20261016.mjs prepare
+      - name: Deploy only the exact prepared GP OFF versions
+        id: deploy
+        run: node release/gp-priority-direct-owned-release-20261016.mjs deploy
+      - name: Verify owned serving bundles, all bindings and protected stock
+        run: node release/gp-priority-direct-owned-release-20261016.mjs verify
+      - name: Restore only versions owned by this failed GP transaction
+        if: ${{ always() && (failure() || cancelled()) && steps.prepare.outcome == 'success' }}
+        run: node release/gp-priority-direct-owned-release-20261016.mjs rollback
+      - name: Retain exact source, upload, serving and rollback evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gp-direct-runtime-release-${{ github.run_id }}
+          path: gp-direct-runtime-release/
+          if-no-files-found: warn
+          retention-days: 90

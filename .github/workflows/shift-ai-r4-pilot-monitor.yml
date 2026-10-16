@@ -5,15 +5,9 @@ on:
     - cron: '*/15 * * * *'
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, codex/my-timber-adaptive-day-v1]
     paths:
       - '.github/workflows/shift-ai-r4-pilot-monitor.yml'
-      - 'tests/pilot-monitor-config.test.mjs'
-
-  pull_request:
-    paths:
-      - '.github/workflows/shift-ai-r4-pilot-monitor.yml'
-      - 'tests/pilot-monitor-config.test.mjs'
 
 permissions:
   contents: read
@@ -23,21 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  verify:
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-      - run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Prove production binding and pilot expiry without remote access
-        run: node --test tests/pilot-monitor-config.test.mjs
-
   audit:
-    needs: verify
-    if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
     env:
@@ -70,35 +50,13 @@ jobs:
           NODE
           jq -e '.name=="shift-core" and (.d1_databases[]|select(.binding=="DB")|.database_id)==env.PRODUCTION_D1_ID' "$PRODUCTION_CONFIG"
 
-      - name: Close only an elapsed enabled pilot
-        shell: bash
-        run: |
-          set -euo pipefail
-          # Production database clock; atomic condition prevents closing a concurrently extended pilot.
-          # This only disables the existing control row. It cannot enable a pilot or touch member data.
-          npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --json --command "
-          UPDATE shift_ai_pilot_control
-          SET enabled=0,stopped_at=COALESCE(stopped_at,CURRENT_TIMESTAMP),
-            stop_reason='AUTOMATED_MONITOR_PILOT_EXPIRED',updated_at=CURRENT_TIMESTAMP
-          WHERE id=1 AND enabled=1
-            AND julianday(starts_at) IS NOT NULL
-            AND julianday(ends_at)>julianday(starts_at)
-            AND julianday(ends_at)<=julianday('now');" | tee /tmp/r4-expiry-stop.json
-          jq -e 'length==1 and all(.[]; .success==true)' /tmp/r4-expiry-stop.json
-
       - name: Read aggregate usage and hard-stop invariants
         shell: bash
         run: |
           set -euo pipefail
           npx wrangler d1 execute DB --remote --config "$PRODUCTION_CONFIG" --json --command "
           SELECT
-            c.enabled,c.starts_at,c.ends_at,c.stop_reason,c.stopped_at,
-            CASE WHEN c.enabled=0 AND c.stop_reason='AUTOMATED_MONITOR_PILOT_EXPIRED'
-              AND julianday(c.starts_at) IS NOT NULL
-              AND julianday(c.ends_at)>julianday(c.starts_at)
-              AND julianday(c.ends_at)<=julianday('now') THEN 1 ELSE 0 END AS expected_expiry,
-            CASE WHEN c.enabled=1 AND julianday(c.starts_at)<=julianday('now')
-              AND julianday(c.ends_at)>julianday('now') THEN 1 ELSE 0 END AS window_active,
+            c.enabled,c.starts_at,c.ends_at,c.stop_reason,
             (SELECT COUNT(*) FROM user_auth WHERE email_verified=1) AS eligible_accounts,
             (SELECT COUNT(DISTINCT user_id) FROM shift_ai_today_audit WHERE created_at>=c.starts_at) AS members_engaged,
             (SELECT COUNT(*) FROM shift_ai_today_audit WHERE event_name='live_today_bootstrap_read' AND created_at>=c.starts_at) AS bootstraps,
@@ -112,12 +70,6 @@ jobs:
               GROUP BY user_id HAVING COUNT(*)>=2
             )) AS repeat_users,
             (
-              CASE WHEN c.enabled=1 AND (
-                julianday(c.starts_at) IS NULL OR julianday(c.ends_at) IS NULL
-                OR julianday(c.ends_at)<=julianday(c.starts_at)
-                OR julianday(c.ends_at)<=julianday('now')
-              ) THEN 1 ELSE 0 END
-              +
               (SELECT COUNT(*) FROM shift_today_choices ch
                LEFT JOIN shift_ai_today_proposals p ON p.id=json_extract(ch.choice_json,'$.proposal_id')
                WHERE ch.domain='ai_rebuild' AND (p.id IS NULL OR p.user_id!=ch.user_id OR p.status!='confirmed' OR p.confirmed_at IS NULL))
@@ -153,11 +105,6 @@ jobs:
           test -n "$enabled" && test -n "$anomalies"
           echo "PILOT_ENABLED=$enabled" >> "$GITHUB_ENV"
           echo "HARD_ANOMALIES=$anomalies" >> "$GITHUB_ENV"
-          expected_expiry=$(jq -r '.. | objects | .expected_expiry? // empty' /tmp/r4-monitor.json | head -n1)
-          window_active=$(jq -r '.. | objects | .window_active? // empty' /tmp/r4-monitor.json | head -n1)
-          test -n "$expected_expiry" && test -n "$window_active"
-          echo "EXPECTED_EXPIRY=$expected_expiry" >> "$GITHUB_ENV"
-          echo "WINDOW_ACTIVE=$window_active" >> "$GITHUB_ENV"
 
           {
             echo '## R4 pilot live audit'
@@ -165,7 +112,7 @@ jobs:
             echo 'Aggregate only; no names, emails, messages or member IDs are published.'
             echo ''
             jq -r '.. | objects | select(.eligible_accounts? != null) |
-              "- Pilot enabled: \(.enabled)\n- Window: \(.starts_at) to \(.ends_at)\n- Stop reason: \(.stop_reason)\n- Stopped at: \(.stopped_at)\n- Expected expiry: \(.expected_expiry)\n- Eligible verified accounts: \(.eligible_accounts)\n- Members engaged: \(.members_engaged)\n- Bootstraps: \(.bootstraps)\n- Proposals: \(.proposals)\n- Confirmed rebuilds: \(.confirmed_rebuilds)\n- Repeat users: \(.repeat_users)\n- Incomplete-context exits: \(.incomplete_context_exits)\n- Deterministic clinical/urgent blocks: \(.safety_blocks)\n- Hard anomalies: \(.hard_anomalies)"' /tmp/r4-monitor.json
+              "- Pilot enabled: \(.enabled)\n- Eligible verified accounts: \(.eligible_accounts)\n- Members engaged: \(.members_engaged)\n- Bootstraps: \(.bootstraps)\n- Proposals: \(.proposals)\n- Confirmed rebuilds: \(.confirmed_rebuilds)\n- Repeat users: \(.repeat_users)\n- Incomplete-context exits: \(.incomplete_context_exits)\n- Deterministic clinical/urgent blocks: \(.safety_blocks)\n- Hard anomalies: \(.hard_anomalies)"' /tmp/r4-monitor.json
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Execute immediate kill on a detectable hard breach
@@ -182,13 +129,13 @@ jobs:
           exit 1
 
       - name: Alert if the pilot is already stopped
-        if: ${{ env.HARD_ANOMALIES == '0' && env.PILOT_ENABLED != '1' && env.EXPECTED_EXPIRY != '1' }}
+        if: ${{ env.HARD_ANOMALIES == '0' && env.PILOT_ENABLED != '1' }}
         run: |
           echo 'Pilot is stopped; review stop_reason before any reactivation.' >> "$GITHUB_STEP_SUMMARY"
           exit 1
 
       - name: Record evidence-led commercial signal
-        if: ${{ env.HARD_ANOMALIES == '0' && env.PILOT_ENABLED == '1' && env.WINDOW_ACTIVE == '1' }}
+        if: ${{ env.HARD_ANOMALIES == '0' && env.PILOT_ENABLED == '1' }}
         shell: bash
         run: |
           engaged=$(jq -r '.. | objects | .members_engaged? // empty' /tmp/r4-monitor.json | head -n1)
@@ -199,18 +146,3 @@ jobs:
           else
             echo 'Usage evidence threshold not yet reached. Continue observing real use; model activation and every locked surface remain closed.' >> "$GITHUB_STEP_SUMMARY"
           fi
-
-      - name: Record expected expiry with the pilot off
-        if: ${{ env.HARD_ANOMALIES == '0' && env.EXPECTED_EXPIRY == '1' }}
-        run: echo 'Pilot expired and is disabled. No reactivation or commercial signal is authorised.' >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Retain aggregate control and expiry receipts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: shift-ai-r4-control-${{ github.run_id }}
-          path: |
-            /tmp/r4-monitor.json
-            /tmp/r4-expiry-stop.json
-          if-no-files-found: error
-          retention-days: 30

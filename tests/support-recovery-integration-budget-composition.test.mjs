@@ -1,4 +1,3 @@
-import {combinedPositiveHistoricalRead} from '../release/combined-finite-scope-20261014.mjs';
 import {myTimberHistoricalFile} from '../release/my-timber-progress-journey-scope.mjs';
 import {myTimberHistoricalRecord,myTimberHistoricalIntegrationWorkflow} from '../release/my-timber-progress-journey-scope.mjs';
 import test from 'node:test';
@@ -60,8 +59,7 @@ test('actual workflow changes only its execution budget and preserves every runt
  const before=read(r.base,r.paths[0]),after=myTimberHistoricalIntegrationWorkflow(read('HEAD',r.paths[0]));
  assert.equal((before.match(/timeout-minutes: 30/g)||[]).length,1);
  assert.equal(after,before.replace('timeout-minutes: 30','timeout-minutes: 60'));
- const positiveRead=combinedPositiveHistoricalRead(read);
- for(const path of ['.github/workflows/cloudflare-production-promote.yml','shift-coach/scope.mjs','release/fit-300-scope.mjs','shift-coach/full-page-proof.mjs','shift-coach/browser-proof.mjs','shift-coach/member-record-browser.mjs','shift-coach/public-trust-browser.mjs','tests/tablet-routine-browser.mjs','frontend/member/turnstile-auth-v1.js','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','worker.js'])assert.equal(positiveRead('HEAD',path),read(r.base,path));
+ for(const path of ['.github/workflows/cloudflare-production-promote.yml','shift-coach/scope.mjs','release/fit-300-scope.mjs','shift-coach/full-page-proof.mjs','shift-coach/browser-proof.mjs','shift-coach/member-record-browser.mjs','shift-coach/public-trust-browser.mjs','tests/tablet-routine-browser.mjs','frontend/member/turnstile-auth-v1.js','shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','worker.js'])assert.equal(read('HEAD',path),read(r.base,path));
 });
 test('actual budget composition preserves all prior receipts and historical verifier bodies',()=>{
  const current=myTimberHistoricalRecord(verifyReconciledRelease());assert.equal(current.supportRecoveryIntegrationBudget.source,r.source);

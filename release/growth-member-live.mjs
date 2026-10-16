@@ -1,4 +1,3 @@
-import {verifyFoodDiaryLive} from './food-diary-live-20261015.mjs';
 import {verifyLiveTools} from './app-member-live.mjs';
 // Runs only inside the existing authorised rendered-member commissioning workflow.
 // New labelled synthetic identity; normal public APIs; no real member inspection.
@@ -49,7 +48,6 @@ try{
  await page.screenshot({path:dir+'/continuity-return.png',fullPage:true});
  report.checks.push({continuityArrival:true,refreshRetainsProgress:true,existingStepShown:true});
  await verifyLiveTools(page,site,dir,report);
- page=await verifyFoodDiaryLive({page,site,api,email,dir,report,freshSession:async()=>{await call('/v1/auth/logout',{});await context.close();context=await browser.newContext({viewport:{width:390,height:844}});page=await context.newPage();await login();return page;}});
  report.status='pass';
 }catch(error){report.status='fail';report.error=String(error.message).replaceAll(email,'[synthetic]').replaceAll(password,'[redacted]');await page.screenshot({path:dir+'/failure.png',fullPage:true}).catch(()=>{});throw error}
 finally{await context.close();await browser.close();writeFileSync(dir+'/results.json',JSON.stringify(report,null,2))}

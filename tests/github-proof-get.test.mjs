@@ -6,7 +6,7 @@ test('closed sockets and broken writes retry the same authenticated read and ret
  for(const code of ['UND_ERR_SOCKET','EPIPE']){
  const calls=[],waits=[],proof={head_sha:'actual',conclusion:'failure'};
  const get=createGithubProofGet({token:'synthetic-token',wait:async ms=>waits.push(ms),fetcher:async(url,options)=>{calls.push({url,options});if(calls.length<3)throw socket(code);return {ok:true,json:async()=>proof};}});
- assert.deepEqual(await get('/actions/runs/123'),proof);assert.deepEqual(waits,[1000,2000]);
+ assert.equal(await get('/actions/runs/123'),proof);assert.deepEqual(waits,[1000,2000]);
  for(const {url,options} of calls){assert.equal(url,'https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/123');assert.equal(options.method,'GET');assert.equal(options.headers.Authorization,'Bearer synthetic-token');assert(options.signal instanceof AbortSignal);}
  assert.throws(()=>assert.equal(proof.conclusion,'success'));
  }

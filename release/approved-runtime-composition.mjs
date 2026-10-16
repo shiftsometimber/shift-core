@@ -1,7 +1,3 @@
-import {SEO_AUDIT_PATHS,SEO_AUDIT_MAINTENANCE} from './seo-audit-scope-20261016.mjs';
-import {FOOD_DIARY_LONDON_DATE_PATHS,FOOD_DIARY_LONDON_DATE_MAINTENANCE} from './food-diary-london-date-scope-20261015.mjs';
-import {CI_EXECUTION_PATHS,CI_EXECUTION_MAINTENANCE} from './ci-execution-scope-20261014.mjs';
-import {COMBINED_FINITE_BASE,COMBINED_FINITE_PATHS,COMBINED_FINITE_MAINTENANCE} from './combined-finite-scope-20261014.mjs';
 import {MY_TIMBER_WEEK_CLOSEOUT_BASE,MY_TIMBER_WEEK_CLOSEOUT_PATHS,MY_TIMBER_WEEK_CLOSEOUT_MAINTENANCE} from './my-timber-week-closeout-scope.mjs';
 import {MY_TIMBER_WEEK_BASE,MY_TIMBER_WEEK_PATHS,MY_TIMBER_WEEK_MAINTENANCE} from './my-timber-week-scope.mjs';
 import {PHOTO_ACCEPTANCE_BASE,PHOTO_ACCEPTANCE_PATHS,PHOTO_ACCEPTANCE_MAINTENANCE} from './photo-acceptance-maintenance-scope.mjs';
@@ -15,9 +11,7 @@ import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposit
 import {MY_TIMBER_PROGRESS_PATHS,MY_TIMBER_PROGRESS_MAINTENANCE,verifyMyTimberProgressJourney} from './my-timber-progress-journey-scope.mjs';
 import {withoutTreatmentFlag,withoutTreatmentSteps,TREATMENT_FLAG} from './my-treatment-config.mjs';
 import assert from 'node:assert/strict';
-import {withImmutableHistoryVerification,immutableHistorySourceHead,immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
-export {withImmutableHistoryVerification,immutableHistoryExecFileSync} from './immutable-git-facts.mjs';
-import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {existsSync,readFileSync} from 'node:fs';
 
 export const COMPOSITION_BASE='e9d8ca70c6cd969bbd02caee31deb1f8b12bb67f';
@@ -662,10 +656,40 @@ export function assertProductionProofBudget(before,current){
 let productionProofBefore;
 const verifiedImmutableStructures=new Set();
 
-const defaultReconciliationRead=(ref,path)=>git('rev-parse',ref+':'+path);
-// Expose only the exact existing native Git reader; wrappers retain foreign checks.
-export function nativeReconciliationSourceRead(){return defaultReconciliationRead;}
+// Synchronous test verification can reuse only actual immutable Git history.
+// Current HEAD and tracked working bytes are checked at both scope boundaries.
+// This never caches caller-supplied source readers or validation outcomes.
+let immutableHistoryScope=null;
+const immutableHistoryResults=new Map();
+export function withImmutableHistoryVerification(callback){
+ if(immutableHistoryScope)return callback();
+ const cwd=process.cwd(),head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
+ assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
+ immutableHistoryScope={cwd,head};
+ try{const value=callback();assert(!value||typeof value.then!=='function','Immutable history verification must be synchronous');return value;}
+ finally{
+  immutableHistoryScope=null;
+  assert.equal(process.cwd(),cwd,'Verification working directory changed');
+  assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),head,'Source HEAD changed during immutable history verification');
+  assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Working source changed during immutable history verification');
+ }
+}
+export function immutableHistoryExecFileSync(bin,args,options){
+ const scope=immutableHistoryScope;
+ if(!scope||bin!=='git'||!Array.isArray(args)||args.some(x=>typeof x!=='string')||options?.cwd&&options.cwd!==scope.cwd||options?.env||options?.shell)return execFileSync(bin,args,options);
+ const pinned=args.map(x=>x==='HEAD'?scope.head:x.startsWith('HEAD:')?scope.head+x.slice(4):x==='HEAD^{commit}'?scope.head+'^{commit}':x);
+ const commit=x=>/^[a-f0-9]{40}$/.test(x),blob=x=>/^[a-f0-9]{40}:[^\0]+$/.test(x);
+ const immutable=pinned.length===4&&pinned[0]==='merge-base'&&pinned[1]==='--is-ancestor'&&commit(pinned[2])&&commit(pinned[3])
+  ||pinned.length===4&&pinned[0]==='diff'&&['--name-only','--name-status'].includes(pinned[1])&&commit(pinned[2])&&commit(pinned[3])
+  ||pinned.length===2&&['show','rev-parse'].includes(pinned[0])&&blob(pinned[1])
+  ||pinned.length===3&&pinned[0]==='cat-file'&&pinned[1]==='-e'&&(/^[a-f0-9]{40}\^\{commit\}$/.test(pinned[2])||blob(pinned[2]));
+ if(!immutable)return execFileSync(bin,args,options);
+ const key=JSON.stringify([scope.cwd,scope.head,pinned,options||null]);
+ if(!immutableHistoryResults.has(key))immutableHistoryResults.set(key,execFileSync(bin,pinned,options));
+ const result=immutableHistoryResults.get(key);return Buffer.isBuffer(result)?Buffer.from(result):result;
+}
 
+const defaultReconciliationRead=(ref,path)=>git('rev-parse',ref+':'+path);
 const immutableCompositionBlobs=new Map();
 
 // Finite 9 October sponsor-biomarker supplement. Editorial authority is not clinical approval.
@@ -2269,20 +2293,8 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 }
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
- return withImmutableHistoryVerification(()=>verifyReconciledReleaseOriginal(read));
-}
-function verifyReconciledReleaseOriginal(read){
  const memberDefaultRead=read===defaultReconciliationRead;
- // Preserve the original fail-closed assertion and its error identity. The one
- // overlapping original Watch diagnostic must remain recognisable to its owner.
- let memberView;
- try{memberView=memberConsentHistoricalView(read,{defaultReader:memberDefaultRead});}
- catch(error){
-  const diagnostic='Approved composition source / boundary drift / sharing maintenance drift: .github/workflows/cloudflare-production-promote.yml';
-  if(!memberDefaultRead&&reconciliationRecord()?.combinedFinite20261014&&error?.code==='ERR_ASSERTION'&&error.message.startsWith(diagnostic))error.message='Late Watch source drift: '+error.message;
-  throw error;
- }
- const c=memberView.record;read=memberView.read;if(!c)return null;
+ const memberView=memberConsentHistoricalView(read,{defaultReader:memberDefaultRead}),c=memberView.record;read=memberView.read;if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
  assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
  assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);
@@ -2756,7 +2768,7 @@ function ensureReconciliation(){
  if(!reconciliationRecord())return false;
  // A synchronous historical test scope captures HEAD and rejects a move at
  // its end. Outside that scope, every public lookup still resolves HEAD afresh.
- const head=immutableHistorySourceHead()??git('rev-parse','HEAD');
+ const head=immutableHistoryScope?.head??git('rev-parse','HEAD');
  if(verifiedHead!==head){verifyReconciledRelease();verifiedHead=head;}
  return true;
 }
@@ -2785,14 +2797,6 @@ export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_B
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
- if(["babylove/corrected-public-rows.json","babylove/dynamic-public.mjs","babylove/seo-repairs-20261016.test.mjs","public-https-redirect.mjs","public-https-redirect.test.mjs","release/seo-audit-scope-20261016.mjs","tests/seo-audit-scope-20261016.test.mjs"].includes(path)){
-  let existed;try{execFileSync('git',['cat-file','-e','15b37fae028ff40ef926c09de83902fe7e8c8c8d:'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
-  if(status===(existed?'M':'A'))return true;
- }
- if(COMBINED_FINITE_ADDITIONAL_PATHS.includes(path)){
-  let existed;try{execFileSync('git',['cat-file','-e',COMBINED_FINITE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
-  assert.equal(status,existed?'M':'A','Unexpected exact combined finite status: '+status+' '+path);return true;
- }
  if(MY_TIMBER_WEEK_CLOSEOUT_ADDITIONAL_PATHS.includes(path)){
   let existed;try{execFileSync('git',['cat-file','-e',MY_TIMBER_WEEK_CLOSEOUT_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
   assert((existed?['A','M']:['A']).includes(status),'Unexpected exact My Timber closeout status: '+status+' '+path);return true;
@@ -3107,19 +3111,3 @@ for(const p of MY_TIMBER_WEEK_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
 
 export const MY_TIMBER_WEEK_CLOSEOUT_ADDITIONAL_PATHS=Object.freeze([...MY_TIMBER_WEEK_CLOSEOUT_PATHS,...MY_TIMBER_WEEK_CLOSEOUT_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of MY_TIMBER_WEEK_CLOSEOUT_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
-
-export const COMBINED_FINITE_ADDITIONAL_PATHS=Object.freeze([...COMBINED_FINITE_PATHS,...COMBINED_FINITE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
-for(const p of COMBINED_FINITE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
-import {RELEASE_MACHINERY_REPAIR_PATHS,RELEASE_MACHINERY_REPAIR_MAINTENANCE} from './release-machinery-repair-scope-20261014.mjs';
-
-// One exact authorised release-machinery repair; existing registrations remain unchanged.
-export const RELEASE_MACHINERY_REPAIR_ADDITIONAL_PATHS=Object.freeze([...RELEASE_MACHINERY_REPAIR_PATHS,...RELEASE_MACHINERY_REPAIR_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
-for(const p of RELEASE_MACHINERY_REPAIR_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
-
-// Exact CI-execution stack; all original machinery and prior registrations remain.
-for(const p of [...CI_EXECUTION_PATHS,...CI_EXECUTION_MAINTENANCE])RECONCILIATION_PATHS.add(p);
-
-// Exact observed Food calendar repair; all prior registrations remain.
-for(const p of [...FOOD_DIARY_LONDON_DATE_PATHS,...FOOD_DIARY_LONDON_DATE_MAINTENANCE])RECONCILIATION_PATHS.add(p);
-// Exact separately approved article SEO payload; every prior receipt remains.
-for(const p of [...SEO_AUDIT_PATHS,...SEO_AUDIT_MAINTENANCE])RECONCILIATION_PATHS.add(p);

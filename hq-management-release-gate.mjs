@@ -1,7 +1,6 @@
-import {combinedHqGateGit} from './release/combined-hq-preservation-20261014.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-const git=(...a)=>combinedHqGateGit(a,()=>execFileSync('git',a,{encoding:'utf8'}).trim());
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 export const BASE='e9d8ca70';
 export const SOURCE='38b0cc50eeeda7e713c2ce25ebf9c9543cdbb793';
 const payload=['HQ-MANAGEMENT-RELEASE.md','hq-ai-v2.js','hq-management-acceptance.mjs','hq-management-api.mjs','hq-management-browser-acceptance.mjs','worker.js'];
