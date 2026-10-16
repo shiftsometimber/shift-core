@@ -41,5 +41,30 @@
       "bytes": 1781196,
       "sha256": "59470ec004200b4beb19f00a0d94fbd506bb236fe9f622675c4f6e3606658911"
     }
+  },
+  "followingFailed": {
+    "run": 38903438663,
+    "job": 116981150506,
+    "attempt": 1,
+    "source": "18c01034f132d54aafdb9d71c12700893f87412f",
+    "artifact": {
+      "id": 12049392340,
+      "run": 38903438663,
+      "source": "18c01034f132d54aafdb9d71c12700893f87412f",
+      "bytes": 6465383,
+      "sha256": "11255d948a93388cf7693536f988491cbac7f8eeee583a04b0c2446a485c3d15"
+    },
+    "logs": {
+      "bytes": 831730,
+      "sha256": "3b3105a38ba90880a1e0ef97de479b14e5cf815aa00da4487b05577a8291b568"
+    },
+    "rollback": {
+      "bytes": 248,
+      "sha256": "b0e452d94a9af242bfbf0f07cd7a074aaa39de2b4314b657d91e3afc97cc7842"
+    },
+    "stockBefore": {
+      "bytes": 696,
+      "sha256": "08243ff71b94bd8898c7f007f412d171e5fed317134ad1b2bcfcef9d553a7c18"
+    }
   }
 }
