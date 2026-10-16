@@ -15,16 +15,21 @@ The app uses the same service and member credentials, but has its OWN cookie
 session: a browser login does not automatically sign you into the native app.
 
 The exact approved icon is fetched from the existing owned PNG asset; its hash
-and original dimensions are recorded. No replacement logo is drawn. The only
-web presentation adaptation removes redundant installation guidance in the app
-and honestly identifies the NOT-YET-CONNECTED native reminder feature. It does
-not change Today, Grub, Fit or member functions. The existing PWA stays available.
+and original dimensions are recorded. No replacement logo is drawn. The native-only
+presentation adaptation removes redundant PWA installation/browser-push controls,
+anchors the member header and navigation, and removes duplicate public website
+chrome on member screens. It does not change Today, Grub, Fit or member functions.
+The existing PWA stays available and its assets are unchanged.
 
 **This is a preview foundation, not full feature parity or a store release.**
 Native reminders are not wired to APNs/FCM. Store identities, signing, verified
 links and physical-device authenticated acceptance remain open. See
 `RELEASE-GATES.md`. Release configurations fail deliberately until those gates
 are reviewed. Nothing here submits to Apple/Google or deploys Cloudflare.
+
+## Native member layout
+
+The native-only presentation bundle pins the existing My Timber header and bottom navigation, measures their actual heights to reserve scrolling space, and removes duplicate public website header/footer landmarks on complete member screens. The existing More menu stays usable below the header. Signed-out and embedded tool pages retain their own layout. No website or PWA asset is changed. iOS disables WebView edge bounce so the app bars do not drift during overscroll.
 
 ## Important data boundary
 

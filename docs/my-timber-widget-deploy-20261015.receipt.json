@@ -1,0 +1,75 @@
+{
+  "recordedAt": "2026-10-15T21:37:23.321350+00:00",
+  "authority": "Matt15October2026 22:16:36BST Deploy",
+  "sourceCommit": "fbcc7b2f561e22d7dca548c250fc5f3c2a42871c",
+  "sourceTree": "fdced65b83c23c69daff06461e199b69ddcea884",
+  "widgetOriginal": "53d2970393c76fec1516f82048e67c063b574717",
+  "nativeLayoutOwner": "81ea3b2e79f4a805f2d39a889fe7cca1678ec93a",
+  "upload": {
+    "started": "2026-10-15T21:31:30.930659+00:00",
+    "ended": "2026-10-15T21:33:56.342671+00:00",
+    "exit": 0,
+    "build": 7,
+    "version": "1.0.0",
+    "publicReviewReplacement": false,
+    "currentSubmission3Withdrawn": false,
+    "testGroupsChanged": false,
+    "messagesSent": false,
+    "ipaSha256": "1e4d043297f782c0ce0208acfc83910dc70ceaf4f5054d7111ac01e14729b6cb"
+  },
+  "uploadLogSha256": "259f97cd334611ab1b1b386219ba7715de1e6d2b542fa6b2ebf51be2d3a92e24",
+  "export": {
+    "at": "2026-10-15T21:31:14.940018+00:00",
+    "ipa": "/Users/shiftsometimberltd/SST/builds/MyTimber-7-widget-layout-export/MyTimber.ipa",
+    "bytes": 681888,
+    "sha256": "1e4d043297f782c0ce0208acfc83910dc70ceaf4f5054d7111ac01e14729b6cb",
+    "build": 7,
+    "version": "1.0.0",
+    "app": "uk.co.shiftsometimber.mytimber",
+    "extension": "uk.co.shiftsometimber.mytimber.widget",
+    "zipIntegrity": true,
+    "deepStrictSignature": true,
+    "sceneManifest": true,
+    "healthUsageText": true,
+    "uploaded": false
+  },
+  "signatures": [
+    {
+      "bundle": "uk.co.shiftsometimber.mytimber",
+      "version": "1.0.0",
+      "build": "7",
+      "signatureExit": 0,
+      "binarySHA256": "cf2657fedab33d2afd021c88d8a10c04a2bf24729d0d74d9b8c43ba45a77bfc5"
+    },
+    {
+      "bundle": "uk.co.shiftsometimber.mytimber.widget",
+      "version": "1.0.0",
+      "build": "7",
+      "signatureExit": 0,
+      "binarySHA256": "ff10c2e088f8a13c1bc857cdbcdff80e332a3c8baaf3a83883138b00c0bcd35a"
+    }
+  ],
+  "acceptance": {
+    "sourceChecks": 23,
+    "browserCases": 56,
+    "swiftOriginalPolicy": 34,
+    "validWidgetRoutes": 3,
+    "rejectedWidgetRoutes": 17,
+    "archiveExit": 0,
+    "exportExit": 0,
+    "zipIntegrity": true,
+    "deepStrictSignature": true
+  },
+  "lastPlatformStatus": "Apple accepted build7 and reports uploaded package processing at21:33:56UTC",
+  "testFlightReady": null,
+  "testFlightReadinessVerified": false,
+  "consoleReadback": "Safari redirect/login authResult=FAILED; no sign-in attempt or credential access",
+  "physicalState": "Paired iPhone tunnel unavailable/DDI services false at21:29:41UTC; no build7 install attempted. Native owner6 install4016 remains original failure, not this build7 result.",
+  "publicAppReviewReplaced": false,
+  "externalTestGroupsEdited": false,
+  "messagesSent": false,
+  "websiteReleaseStarted": false,
+  "savedIpaLibraryFileId": "libfile_e888e9c1e1e48191b27be9c8f972dcbb",
+  "savedIpaBytes": 681888,
+  "consoleReadbackFailure": "New Safari service tab redirected to https://appstoreconnect.apple.com/login?...&authResult=FAILED; existing browser reference correction then verified no authenticated TestFlight tab. No credential entry, account switch or upload retry."
+}

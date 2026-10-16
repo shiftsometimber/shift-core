@@ -172,9 +172,19 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
             }
         });
         // Never restore/replay form history from a Bundle, or copy Safari/Chrome cookies.
-        web.loadUrl(getIntent().getBooleanExtra("treatmentReminder",false)?"https://shiftsometimber.co.uk/member/treatment":NavigationPolicy.START);
+        String widgetStart = WidgetRoute.destination(getIntent().getStringExtra(TimberWidget.ROUTE));
+        web.loadUrl(widgetStart != null ? widgetStart : (getIntent().getBooleanExtra("treatmentReminder",false)?"https://shiftsometimber.co.uk/member/treatment":NavigationPolicy.START));
         if (Build.VERSION.SDK_INT >= 33) getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
             android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, () -> {if(web.canGoBack())web.goBack();else finish();});
+    }
+    @Override protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        String destination = WidgetRoute.destination(intent.getStringExtra(TimberWidget.ROUTE));
+        if (destination == null || web == null) return;
+        new AlertDialog.Builder(this).setTitle("Open My Timber shortcut?")
+            .setMessage("Unsaved entries on this page may be lost. No form or payment will be resent automatically.")
+            .setPositiveButton("Open", (d,w) -> { setIntent(intent); web.loadUrl(destination); })
+            .setNegativeButton("Stay here", (d,w) -> {}).show();
     }
     private void openOutside(String url) {
         if(NavigationPolicy.classify(url)!=NavigationPolicy.Decision.EXTERNAL) {

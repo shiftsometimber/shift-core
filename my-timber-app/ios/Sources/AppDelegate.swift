@@ -2,25 +2,29 @@ import UIKit
 import UserNotifications
 
 @main final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    var window: UIWindow?
-    private var privacyCover: UIView?
-    func application(_ application:UIApplication,didFinishLaunchingWithOptions launchOptions:[UIApplication.LaunchOptionsKey:Any]?) -> Bool {
-        UNUserNotificationCenter.current().delegate=self
-        let w=UIWindow(frame:UIScreen.main.bounds)
-        w.rootViewController=MyTimberViewController()
-        w.makeKeyAndVisible();window=w
+    var pendingTreatmentNavigation = false
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
-    func userNotificationCenter(_ center:UNUserNotificationCenter,willPresent notification:UNNotification,withCompletionHandler completionHandler:@escaping(UNNotificationPresentationOptions)->Void){completionHandler([.banner,.sound])}
-    func userNotificationCenter(_ center:UNUserNotificationCenter,didReceive response:UNNotificationResponse,withCompletionHandler completionHandler:@escaping()->Void){
-        if response.notification.request.identifier.hasPrefix("my-timber-treatment-"){(window?.rootViewController as? MyTimberViewController)?.openTreatment()};completionHandler()
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound])
     }
-    func applicationWillResignActive(_ application:UIApplication) {
-        guard let window=window else{return}
-        let cover=UIView(frame:window.bounds)
-        cover.autoresizingMask=[.flexibleWidth,.flexibleHeight]
-        cover.backgroundColor=UIColor(red:5/255,green:5/255,blue:5/255,alpha:1)
-        window.addSubview(cover);privacyCover=cover
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.notification.request.identifier.hasPrefix("my-timber-treatment-") {
+            DispatchQueue.main.async {
+                let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+                let scene = scenes.first { $0.activationState == .foregroundActive } ?? scenes.first
+                if let controller = (scene?.delegate as? SceneDelegate)?.window?.rootViewController as? MyTimberViewController {
+                    controller.openTreatment()
+                } else {
+                    self.pendingTreatmentNavigation = true
+                }
+            }
+        }
+        completionHandler()
     }
-    func applicationDidBecomeActive(_ application:UIApplication) {privacyCover?.removeFromSuperview();privacyCover=nil}
 }

@@ -2,6 +2,7 @@ import UIKit
 import WebKit
 
 final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDelegate {
+    var initialDestination:URL=NavigationPolicy.start
     private var web:WKWebView!
     private let errorBox=UIStackView()
     private var timer:Timer?
@@ -33,6 +34,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         treatmentBridge.attach(web)
         healthBridge.attach(web)
         web.isOpaque=false;web.backgroundColor=view.backgroundColor
+        web.scrollView.bounces=false // Keep fixed app bars anchored during edge drags.
         web.navigationDelegate=self;web.uiDelegate=self;web.allowsBackForwardNavigationGestures=true
         web.translatesAutoresizingMaskIntoConstraints=false
         errorBox.axis = .vertical;errorBox.spacing=12;errorBox.isHidden=true
@@ -54,10 +56,23 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
             startup.topAnchor.constraint(equalTo:view.topAnchor),
             startup.bottomAnchor.constraint(equalTo:view.bottomAnchor)
         ])
-        loadToday()
+        web.load(URLRequest(url:initialDestination,cachePolicy:.reloadIgnoringLocalCacheData,timeoutInterval:30))
         startup.playAndRemove()
     }
     func openTreatment(){web.load(URLRequest(url:URL(string:"https://shiftsometimber.co.uk/member/treatment")!))}
+    func openWidgetDestination(_ destination:URL){
+        guard [NavigationPolicy.start.absoluteString,
+               "https://shiftsometimber.co.uk/member/dashboard#visualise",
+               "https://shiftsometimber.co.uk/member/grub"].contains(destination.absoluteString) else{return}
+        guard isViewLoaded,web != nil else{initialDestination=destination;return}
+        guard presentedViewController == nil else{return}
+        let alert=UIAlertController(title:"Open My Timber shortcut?",message:"Unsaved entries on this page may be lost. No form or payment will be resent automatically.",preferredStyle:.alert)
+        alert.addAction(UIAlertAction(title:"Stay here",style:.cancel))
+        alert.addAction(UIAlertAction(title:"Open",style:.default){[weak self] _ in
+            self?.web.load(URLRequest(url:destination,cachePolicy:.reloadIgnoringLocalCacheData,timeoutInterval:30))
+        })
+        present(alert,animated:true)
+    }
     private func loadToday(){
         web.load(URLRequest(url:NavigationPolicy.start,cachePolicy:.reloadIgnoringLocalCacheData,timeoutInterval:30))
     }

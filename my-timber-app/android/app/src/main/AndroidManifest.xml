@@ -8,6 +8,10 @@
   <application android:label="My Timber" android:icon="@drawable/my_timber_icon"
       android:theme="@style/MyTimberTheme" android:usesCleartextTraffic="false"
       android:allowBackup="false" android:fullBackupContent="false">
+    <receiver android:name=".TimberWidget" android:exported="false">
+      <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+      <meta-data android:name="android.appwidget.provider" android:resource="@xml/timber_widget_info" />
+    </receiver>
     <activity android:name=".PermissionsRationaleActivity" android:exported="true">
       <intent-filter><action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" /></intent-filter>
     </activity>

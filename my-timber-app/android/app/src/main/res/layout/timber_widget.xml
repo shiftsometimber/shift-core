@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="12dp" android:background="#050505">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="MY TIMBER" android:textSize="16sp" android:textStyle="bold" android:textColor="#E7E3DA" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+        <Button android:id="@+id/widget_today" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" android:minHeight="48dp" android:text="Today" android:contentDescription="Open Today in My Timber" />
+        <Button android:id="@+id/widget_progress" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" android:minHeight="48dp" android:text="Progress" android:contentDescription="Open Progress in My Timber" />
+        <Button android:id="@+id/widget_grub" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" android:minHeight="48dp" android:text="Grub" android:contentDescription="Open Grub in My Timber" />
+    </LinearLayout>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Your records stay inside the app." android:textColor="#E7E3DA" android:textSize="12sp" />
+</LinearLayout>

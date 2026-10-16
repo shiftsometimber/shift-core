@@ -1,0 +1,68 @@
+{
+  "recordedAt": "2026-10-15T20:00:58.124005+00:00",
+  "sourceBase": "3bbda4236e8daea3189e114ca06b81d987593e31",
+  "originalWidgetSource": "543a56108d5e5c45bf56a6e1226b696be027a8d2",
+  "checks": {
+    "at": "2026-10-15T19:59:58.257867+00:00",
+    "sourceTests": {
+      "pass": 23,
+      "fail": 0,
+      "skip": 0
+    },
+    "compiledSwiftOriginalPolicyCases": 34,
+    "compiledSwiftValidWidgetRoutes": 3,
+    "compiledSwiftInvalidWidgetRoutes": 17,
+    "androidXMLParsed": 4,
+    "androidCompile": false,
+    "deviceAcceptance": false,
+    "storeChanges": 0
+  },
+  "build": {
+    "sourceBase": "3bbda4236e8daea3189e114ca06b81d987593e31",
+    "originalWidgets": "543a56108d5e5c45bf56a6e1226b696be027a8d2",
+    "started": "2026-10-15T19:59:12.967088+00:00",
+    "ended": "2026-10-15T19:59:36.968078+00:00",
+    "command": [
+      "xcodebuild",
+      "-project",
+      "/Users/shiftsometimberltd/SST/my-timber-widget-ios27-candidate-20261015/my-timber-app/ios/MyTimber.xcodeproj",
+      "-scheme",
+      "MyTimber",
+      "-configuration",
+      "Debug",
+      "-sdk",
+      "iphonesimulator",
+      "-destination",
+      "generic/platform=iOS Simulator",
+      "-derivedDataPath",
+      "/tmp/my-timber-widget-ios27-proof-20261015/DerivedData",
+      "CODE_SIGNING_ALLOWED=NO",
+      "build"
+    ],
+    "exit": 0,
+    "unsignedSimulator": true,
+    "physicalDevice": false,
+    "storeUploaded": false,
+    "buildLogSha256": "67c8a249d17e216db8e7fcf6e8a1abedb97c4c1be6cdd34f0e1981b53dff780f"
+  },
+  "appAndExtensionEmbedded": true,
+  "appDelegateAndHealthTreatmentBytesUnchanged": true,
+  "deviceInstall": false,
+  "storeUpload": false,
+  "branchUpdated": false,
+  "productionChanged": false,
+  "simulatorRuntimeAvailable": false,
+  "androidToolchain": "java_home -V reports no Java Runtime; adb/SDK absent",
+  "failedAttempts": [
+    {
+      "stage": "literal original patch dry-run",
+      "result": "MainActivity reminder anchor differs; rejected before application",
+      "resolution": "preserved actual reminder fallback and bounded widget routing"
+    },
+    {
+      "stage": "scene test before source application",
+      "result": "17 pass,1 fail; scene URL handling absent",
+      "resolution": "implemented scene cold/warm callbacks; final23 pass"
+    }
+  ]
+}
