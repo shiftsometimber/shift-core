@@ -7,6 +7,7 @@ import {medicineCommerceRoutes} from '../medicine-commerce-v1.js';
 function assessment(overrides = {}) {
   const form = new FormData();
   const values = {
+    patientFirstName:'Synthetic',patientLastName:'Member',patientPhone:'01610000000',patientAddress1:'1 Test Street',patientTown:'Test town',patientPostcode:'AA1 1AA',
     variantId:'102',dateOfBirth:'1981-08-03',heightCm:'180',weightKg:'100',
     weightRelatedCondition:'no',conditions:'None',medicines:'None',insulinUse:'no',
     previousTreatment:'no',gpName:'Dr Test',gpPractice:'Synthetic Practice',

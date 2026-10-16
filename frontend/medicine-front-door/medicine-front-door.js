@@ -46,7 +46,11 @@ async function loadCatalogue(){
       }
       button.disabled=true;
       try{
-        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,verificationToken:verification.token,...(window.SHIFT_SERVICE_ELIGIBILITY?.()||{})})}),result=await response.json();
+        let reorder=null;try{reorder=JSON.parse(sessionStorage.getItem('sst-treatment-reorder:'+variantId)||'null')}catch{}
+        let reorderOfOrderNumber;
+        if(reorder){const context=await fetch(API+'/v1/commerce/medicine-clinical-context',{credentials:'include',cache:'no-store'});if(context.ok&&(await context.json()).accountReference===reorder.accountReference)reorderOfOrderNumber=reorder.orderNumber;}
+        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,reorderOfOrderNumber,verificationToken:verification.token,...(window.SHIFT_SERVICE_ELIGIBILITY?.()||{})})}),result=await response.json();
+        if(response.status===401){const back=new URL(location.href);back.searchParams.set('variant',String(variantId));location.assign('/member-login?returnTo='+encodeURIComponent(back.pathname+back.search));return;}
         if(!response.ok||!result.checkoutUrl)throw Error(result.message||result.error||'Checkout could not be opened');
         location.assign(result.checkoutUrl);
       }catch(error){$('stockMessage').textContent=error.message;button.disabled=false}

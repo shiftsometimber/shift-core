@@ -79,7 +79,7 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
       assert.equal(init.body.get('insulinUse'),'no');
       assert.equal(init.body.get('journeyStage'),'prepay_verification');
       for(const field of ['photoId','bodyFront','bodySide'])assert.ok(init.body.get(field) instanceof File,field);
-      return Response.json({reference:'PHA-E2E-0001',status:'verified',verified:true});
+      return Response.json({reference:'PHA-E2E-0001',patientReference:'PAT-E2E-42',status:'verified',verified:true});
     }
     if(url==='https://api.stripe.com/v1/checkout/sessions'){
       seen.stripe=true;
@@ -110,7 +110,7 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.equal(seen.stripe,false);
 
     const clinical=new FormData();
-    for(const [key,value] of Object.entries({variantId:'11',insulinUse:'no',weightRelatedCondition:'no',dateOfBirth:'1981-08-03',heightCm:'173',weightKg:'92.4',conditions:'none declared',medicines:'none declared',previousTreatment:'yes',previousMedicine:'Mounjaro',previousDose:'2.5 mg',lastDoseDate:'2026-09-01',gpName:'Dr Test',gpPractice:'Test Practice',gpAddress:'1 Test Street',gpPostcode:'SK10 1AA',gpPhone:'01610000000',nhsNumber:'9999999999'}))clinical.set(key,value);
+    for(const [key,value] of Object.entries({patientFirstName:'Test',patientLastName:'Member',patientPhone:'01610000000',patientAddress1:'1 Test Street',patientTown:'Test town',patientPostcode:'AA1 1AA',variantId:'11',insulinUse:'no',weightRelatedCondition:'no',dateOfBirth:'1981-08-03',heightCm:'173',weightKg:'92.4',conditions:'none declared',medicines:'none declared',previousTreatment:'yes',previousMedicine:'Mounjaro',previousDose:'2.5 mg',lastDoseDate:'2026-09-01',gpName:'Dr Test',gpPractice:'Test Practice',gpAddress:'1 Test Street',gpPostcode:'SK10 1AA',gpPhone:'01610000000',nhsNumber:'9999999999'}))clinical.set(key,value);
     for(const key of ['gpContactConsent','imageConsent','answersConfirmed'])clinical.set(key,'on');
     for(const key of ['photoId','bodyFront','bodySide'])clinical.set(key,new File([new Uint8Array([0xff,0xd8,0xff,0xd9])],`${key}.jpg`,{type:'image/jpeg'}));
     const intakeResponse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:clinical}),env,{}),intake=await intakeResponse.json();
@@ -235,4 +235,133 @@ test('invalid or underage intake cannot forward images or obtain prepayment veri
     assert.equal(DB.database.prepare('SELECT count(*) n FROM medicine_prepay_verifications').get().n,0);
     assert.equal(DB.database.prepare('SELECT reserved FROM medicine_inventory WHERE variant_id=11').get().reserved,0);
   }finally{globalThis.fetch=outbound;DB.close()}
+});
+
+function completeIntake(overrides={}){
+  const form=new FormData();
+  for(const[key,value]of Object.entries({submissionId:crypto.randomUUID(),variantId:'11',patientFirstName:'Test',patientLastName:'Member',patientPhone:'01610000000',patientAddress1:'1 Test Street',patientAddress2:'',patientTown:'Test town',patientPostcode:'SK10 1AA',dateOfBirth:'1981-08-03',heightCm:'173',weightKg:'92.4',weightRelatedCondition:'no',insulinUse:'no',conditions:'none declared',medicines:'none declared',previousTreatment:'no',gpName:'Dr Test',gpPractice:'Test Practice',gpAddress:'1 Test Street',gpPostcode:'SK10 1AA',gpContactConsent:'on',answersConfirmed:'on',imageConsent:'on',...overrides}))if(value!==undefined)form.set(key,value);
+  for(const name of ['photoId','bodyFront','bodySide'])form.set(name,new File([new Uint8Array([0xff,0xd8,0xff,0xd9])],name+'.jpg',{type:'image/jpeg'}));
+  return form;
+}
+async function withPharmacy(run,handler=()=>Response.json({reference:'PHA-COMPLETE',patientReference:'PAT-42',status:'submitted'})){
+  const DB=await setup(),original=globalThis.fetch,calls=[];
+  const env={DB,PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_CLINICAL_RESUME_URL:'https://pharmacy.example.test/resume',PHARMACY_PORTAL_ORIGIN:'https://portal.example.test',PHARMACY_INTEGRATION_SECRET:'pharmacy-e2e-secret'};
+  globalThis.fetch=async(url,init)=>{calls.push({url:String(url),init});return handler(url,init,calls.length)};
+  const submit=form=>medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:form}),env,{});
+  try{await run({DB,env,calls,submit})}finally{globalThis.fetch=original;DB.close()}
+}
+
+test('handover explicitly maps patient contact, authoritative treatment, full answers, consent and attachment receipts',async()=>{
+  await withPharmacy(async({DB,calls,submit})=>{
+    const long='Full medical history '.repeat(45),response=await submit(completeIntake({conditions:long}));
+    assert.equal(response.status,202);
+    const {init}=calls[0],sent=init.body;
+    assert.equal(init.redirect,'error');assert.ok(init.signal);
+    assert.equal(sent.get('patientEmail'),'member@example.test');
+    for(const field of ['patientFirstName','patientLastName','patientPhone','patientAddress1','patientTown','patientPostcode','gpName','gpPractice','gpAddress','gpPostcode'])assert.ok(sent.get(field),field);
+    assert.equal(sent.get('medicineName'),'Mounjaro');assert.equal(sent.get('strengthLabel'),'2.5 mg');
+    assert.equal(sent.get('conditions'),long.trim());assert.equal(sent.get('gpContactConsent'),'true');
+    assert.match(sent.get('consentVersion'),/^medicine-clinical/);assert.ok(Number.isFinite(Date.parse(sent.get('consentRecordedAt'))));
+    assert.equal(init.headers['Idempotency-Key'],sent.get('clientReference'));
+    const evidence=JSON.parse(sent.get('evidenceReceipts'));
+    for(const key of ['photoId','bodyFront','bodySide']){assert.equal(evidence[key].bytes,4);assert.equal(evidence[key].sha256,sha(new Uint8Array([0xff,0xd8,0xff,0xd9])));}
+    const intake=await DB.prepare('SELECT * FROM medicine_clinical_intakes').first();
+    assert.equal(intake.provider_patient_reference,'PAT-42');
+    assert.deepEqual(JSON.parse(intake.evidence_receipts_json),evidence);
+    assert.equal(JSON.stringify(intake).includes(long),false);
+  });
+});
+
+test('same submission and concurrent duplicate have one provider delivery and one assessment',async()=>{
+  let release;const barrier=new Promise(resolve=>release=resolve);
+  await withPharmacy(async({DB,calls,submit})=>{
+    const id=crypto.randomUUID(),first=submit(completeIntake({submissionId:id}));
+    while(!calls.length)await new Promise(r=>setImmediate(r));
+    const duplicate=await submit(completeIntake({submissionId:id}));assert.equal(duplicate.status,202);
+    release();const a=await(await first).json(),b=await(await submit(completeIntake({submissionId:id}))).json();
+    assert.equal(a.intakeReference,b.intakeReference);assert.equal(calls.length,1);
+    assert.equal((await DB.prepare('SELECT COUNT(*) n FROM medicine_clinical_intakes').first()).n,1);
+    const changed=await submit(completeIntake({submissionId:id,conditions:'new answer'}));assert.equal(changed.status,409);assert.equal(calls.length,1);
+  },async()=>{await barrier;return Response.json({reference:'PHA-ONE',patientReference:'PAT-42',status:'submitted'})});
+});
+
+test('lost pharmacy response is recoverable by correlation callback without another submission',async()=>{
+  await withPharmacy(async({DB,env,calls,submit})=>{
+    const id=crypto.randomUUID(),first=await submit(completeIntake({submissionId:id})),result=await first.json();
+    assert.equal(first.status,503);assert.equal(result.status,'delivery_unconfirmed');
+    assert.equal((await submit(completeIntake({submissionId:id}))).status,202);assert.equal(calls.length,1);
+    const callback={clientReference:result.intakeReference,partnerReference:'PHA-RECOVERED',patientReference:'PAT-42',status:'verified'};
+    const recovered=await medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/clinical-intake-status',callback),env,{});assert.equal(recovered.status,200);
+    const again=await medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/clinical-intake-status',callback),env,{});assert.equal((await again.json()).duplicate,true);
+    const status=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake-status?reference='+result.intakeReference),env,{}),current=await status.json();
+    assert.equal(current.verified,true);assert.equal(current.prescribingApproved,false);assert.ok(current.verificationToken);
+    const stale=await medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/clinical-intake-status',{...callback,status:'submitted'}),env,{});assert.equal(stale.status,409);
+    const row=await DB.prepare('SELECT consent_version,evidence_receipts_json FROM medicine_clinical_intakes').first();assert.match(row.consent_version,/medicine-clinical/);assert.equal(Object.keys(JSON.parse(row.evidence_receipts_json)).length,3);
+  },()=>{throw Error('simulated lost response; private details must not escape')});
+});
+
+test('provider cannot open payment with only our internal member ID or contradictory verification',async()=>{
+  for(const reply of [{reference:'PHA-NO-PATIENT',verified:true},{reference:'PHA-CONTRADICTION',patientReference:'PAT-42',verified:true,status:'declined'},{reference:'X'.repeat(161),status:'submitted'}]){
+    await withPharmacy(async({DB,submit})=>{
+      const response=await submit(completeIntake());assert.equal(response.status,503);
+      assert.equal((await DB.prepare('SELECT COUNT(*) n FROM medicine_prepay_verifications').first()).n,0);
+      assert.equal(JSON.stringify(await response.json()).includes('simulated'),false);
+    },()=>Response.json(reply));
+  }
+});
+
+test('secure clarification resumes the same owned provider assessment and accepts only a short-lived allowed origin',async()=>{
+  await withPharmacy(async({DB,env,submit})=>{
+    const intake=await(await submit(completeIntake())).json();
+    await DB.prepare("UPDATE medicine_clinical_intakes SET status='more_information_required'").run();
+    const open=()=>medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake-resume',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({intakeReference:intake.intakeReference})}),env,{});
+    let response=await open();assert.equal(response.status,200);assert.equal((await response.json()).resumeUrl,'https://portal.example.test/assessment?session=opaque');
+    await DB.prepare('UPDATE medicine_clinical_intakes SET user_id=99').run();response=await open();assert.equal(response.status,404);
+  },(url,init)=>String(url).endsWith('/resume')?Response.json({reference:'PHA-COMPLETE',patientReference:'PAT-42',resumeUrl:'https://portal.example.test/assessment?session=opaque',expiresAt:new Date(Date.now()+60000).toISOString()}):Response.json({reference:'PHA-COMPLETE',patientReference:'PAT-42',status:'submitted'}));
+  for(const resumeUrl of ['https://evil.example.test/questions','http://portal.example.test/questions','https://user:password@portal.example.test/questions']){
+    await withPharmacy(async({env,submit})=>{
+      const a=await(await submit(completeIntake())).json();
+      const r=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake-resume',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({intakeReference:a.intakeReference})}),env,{});assert.equal(r.status,503);assert.equal(JSON.stringify(await r.json()).includes('evil'),false);
+    },url=>String(url).endsWith('/resume')?Response.json({reference:'PHA-COMPLETE',patientReference:'PAT-42',resumeUrl,expiresAt:new Date(Date.now()+60000).toISOString()}):Response.json({reference:'PHA-COMPLETE',patientReference:'PAT-42',status:'submitted'}));
+  }
+});
+
+test('missing contact, contradictory enum, bad origin and stock cannot send an assessment',async()=>{
+  await withPharmacy(async({DB,env,calls,submit})=>{
+    for(const fields of [{patientPhone:''},{patientAddress1:''},{patientLastName:''},{weightRelatedCondition:'maybe'}])assert.equal((await submit(completeIntake(fields))).status,400);
+    const evil=await medicineCommerceRoutes(new Request('https://api.shiftsometimber.co.uk/v1/commerce/medicine-clinical-intake',{method:'POST',headers:{Origin:'https://evil.example.test',Cookie:'sst_session=e2e-member-session'},body:completeIntake()}),env,{});assert.equal(evil.status,403);
+    await DB.prepare('UPDATE medicine_inventory SET stock_on_hand=0 WHERE variant_id=11').run();assert.equal((await submit(completeIntake())).status,409);assert.equal(calls.length,0);
+  });
+});
+
+test('refresh uses the same assessment; session expiry and another account expose no references or answers',async()=>{
+  await withPharmacy(async({DB,env,submit})=>{
+    const intake=await(await submit(completeIntake())).json();
+    const get=()=>medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake-status?variant=11'),env,{});
+    assert.equal((await(await get()).json()).intakeReference,intake.intakeReference);
+    await DB.prepare("UPDATE user_sessions SET expires_at='2000-01-01T00:00:00Z'").run();
+    let response=await get();assert.equal(response.status,401);assert.equal(JSON.stringify(await response.json()).includes(intake.intakeReference),false);
+    await DB.prepare("UPDATE user_sessions SET expires_at='2099-01-01T00:00:00Z',user_id=43").run();
+    await DB.prepare("INSERT INTO users VALUES(43,'other@example.test','Other','Member')").run();
+    await DB.prepare('INSERT INTO user_auth VALUES(43,1)').run();
+    response=await get();assert.equal(response.status,404);
+  });
+});
+
+test('duplicate clinical decision callback produces no extra audit or notification',async()=>{
+  await withPharmacy(async({DB,env})=>{
+    // Establish schema through an authenticated read, with no clinical/order writes.
+    await medicineCommerceRoutes(memberRequest('/v1/treatment/orders'),env,{});
+    await DB.prepare("INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,total_pence,status,clinical_status) VALUES('SST-DUP',42,'member@example.test',1,11,'Mounjaro','2.5 mg',16900,16900,'paid','assessment_pending')").run();
+    const invoke=()=>medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/treatment-status',{orderNumber:'SST-DUP',status:'more_information_required'}),env,{});
+    assert.equal((await invoke()).status,200);assert.equal((await(await invoke()).json()).duplicate,true);
+    assert.equal((await DB.prepare("SELECT COUNT(*) n FROM audit_log WHERE action='medicine.clinical_status'").first()).n,1);
+  });
+});
+
+test('unknown and duplicated answers cannot be silently dropped',async()=>{
+  await withPharmacy(async({calls,submit})=>{
+    const unknown=completeIntake();unknown.set('allergies','A future field must be mapped before use');assert.equal((await submit(unknown)).status,400);
+    const duplicate=completeIntake();duplicate.append('medicines','contradictory second answer');assert.equal((await submit(duplicate)).status,400);assert.equal(calls.length,0);
+  });
 });
