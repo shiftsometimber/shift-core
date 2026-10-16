@@ -4,6 +4,7 @@ on:
     branches: [codex/seo-approved-ranking-20261006]
   pull_request:
     paths:
+      - 'release/approved-runtime-composition*'
       - 'public-seo-approved*'
       - 'prescriber-questions.mjs'
       - 'release/approved-ranking-scope.mjs'

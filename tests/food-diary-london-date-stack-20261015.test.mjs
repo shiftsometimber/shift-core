@@ -16,6 +16,14 @@ const record=JSON.parse(g('show',foodHead+':'+ledger)),c=record[key],allowance=r
 const ciBase='761f0c79b97075313b59effe71db418111fed983',repairBase='685ede249cd20c4801d0a25227fed16d46860618';
 const runtime='member-experience/journey-portability.mjs',runtimeTest='member-experience/tests/food-diary-london-date-20261015.test.mjs',ciWitness='release/ci-execution-stack-original-20261015.mjs';
 const blob=(ref,path)=>g('rev-parse',ref+':'+path).trim(),content=(ref,path)=>g('show',ref+':'+path);
+function productionBeforeSourceSchedule(bytes){
+ const [[before,after]]=FOOD_DIARY_LONDON_DATE_POLICY.inverses['.github/workflows/cloudflare-production-promote.yml'];
+ assert.equal(bytes,after,'Exact current bounded production workflow required');return before;
+}
+function foodBeforeSourceSchedule(bytes){
+ for(const [before,after]of[...FOOD_DIARY_LONDON_DATE_POLICY.sourceScheduleFood176Inverse].reverse()){assert(after&&bytes.split(after).length===2,'One exact current Food inverse required');bytes=bytes.replace(after,()=>before);}
+ assert.equal(execFileSync('git',['hash-object','--stdin'],{input:bytes,encoding:'utf8'}).trim(),'132dfdd45019f7d7d8bc373bfdfe8d88e71db993','All original176 test bytes required');return bytes;
+}
 const nativeDiff=(a,b)=>g('diff','--no-renames','--name-only',a,b).trim().split('\n').filter(Boolean),nativeAncestor=(a,b)=>g('merge-base','--is-ancestor',a,b);
 const combinedOptions={head,read:blob,blob,content,diff:nativeDiff,ancestor:nativeAncestor};
 const sourceFailure=/source drift|Unauthentic|Supplied|ledger drift|content drift|boundary|Unreviewed|independently admitted/i;
@@ -52,7 +60,7 @@ function programmeBeforeToolchainOverlap(path,bytes){
 test('the exact original21 CI witness production60 and configurations survive the runtime repair',()=>{
  assert.equal(blob(foodHead,ciWitness),'b5aee29bfa2e7e4fa01de2585df074eb3ee40907');assert.equal(content(foodHead,ciWitness),content(c.base,'tests/ci-execution-stack-20261014.test.mjs'));assert.equal(blob(foodHead,'tests/ci-execution-stack-20261014.test.mjs'),'cec36f99782ed977a23827bfa67d400876948d25');
  const production='.github/workflows/cloudflare-production-promote.yml';assert.match(content(foodHead,production),/^    timeout-minutes: 60$/m);
- for(const path of[production,'.github/workflows/production-completion-proof.yml','.github/workflows/approved-ranking-proof.yml','wrangler.jsonc','wrangler.coaching.jsonc','package.json','package-lock.json','worker-entry-v6.js','worker.js','frontend','public','my-timber-app','shift-coach/worker.mjs','member-state-fast-v1.js','member-experience/health-routes.mjs']){if(FOOD_DIARY_LONDON_DATE_POLICY.ciExecutionWorkflowPaths.includes(path)){const restored=executionOriginalCiWorkflow(path,content(foodHead,path));assert.equal(restored,content(c.base,path),'Only the exact authorised CI orchestration may change protected workflow bytes: '+path);assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored,encoding:'utf8'}).trim(),blob(c.base,path),'The exact inverse must restore the original protected workflow Git blob: '+path);}else assert.equal(blob(foodHead,path),blob(c.base,path),'Protected source changed: '+path);}
+ for(const path of[production,'.github/workflows/production-completion-proof.yml','.github/workflows/approved-ranking-proof.yml','wrangler.jsonc','wrangler.coaching.jsonc','package.json','package-lock.json','worker-entry-v6.js','worker.js','frontend','public','my-timber-app','shift-coach/worker.mjs','member-state-fast-v1.js','member-experience/health-routes.mjs']){if(path===production){const restored=productionBeforeSourceSchedule(content(foodHead,path));assert.equal(restored,content(c.base,path),'Every original production workflow byte remains required');assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored,encoding:'utf8'}).trim(),blob(c.base,path));}else if(FOOD_DIARY_LONDON_DATE_POLICY.ciExecutionWorkflowPaths.includes(path)){const restored=executionOriginalCiWorkflow(path,content(foodHead,path));assert.equal(restored,content(c.base,path),'Only the exact authorised CI orchestration may change protected workflow bytes: '+path);assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored,encoding:'utf8'}).trim(),blob(c.base,path),'The exact inverse must restore the original protected workflow Git blob: '+path);}else assert.equal(blob(foodHead,path),blob(c.base,path),'Protected source changed: '+path);}
  assert.equal(c.ciProgrammeConcurrency,true,'The finite Food receipt must explicitly own Programme source-gate concurrency');
  const programme='.github/workflows/programme-day-preview.yml',pairs=FOOD_DIARY_LONDON_DATE_POLICY.inverses[programme];assert.equal(pairs.length,4,'Only the original Programme aggregate, exact bounded two-slot successor, named wall-clock allowance and one exact setup scheduling inverse are authorised');assert.deepEqual(pairs.at(-1),FOOD_DIARY_LONDON_DATE_POLICY.ciProgrammeToolchainPool20261015.workflowPair);
  const original=content(c.base,programme),current=content(foodHead,programme);assert.equal(executionOriginalCiWorkflow(programme,current),original,'Programme named timeout120 allowance, read-only permission, install, browser and every byte outside the exact source-gate and cap replacements remain exact');assert.equal(execFileSync('git',['hash-object','--stdin'],{input:executionOriginalCiWorkflow(programme,current),encoding:'utf8'}).trim(),blob(c.base,programme),'The exact Programme inverse restores its original Git blob');
@@ -705,7 +713,7 @@ test('actual byte-pinned Food route with explicit local auth stubs and real SQLi
    assert.equal(executionOriginalCiWorkflow(path,current),content(c.base,path),'Complete strict inverses still restore the exact original CI workflow');
    for(const changed of[current.replace('    timeout-minutes: '+after+'\n','    timeout-minutes: '+(after+1)+'\n'),current+'\n# unapproved workflow change\n',current.replace('node ','node --trace-warnings '),current.replace('runs-on:','runs-on-unapproved:')])assert.throws(()=>restoreWallClockOnly(path,restoreIntegrationSchedulingOnly(path,programmeBeforeToolchainOverlap(path,changed)),previous),/exact|unchanged/,'Cap admission must reject any additional byte change');
   }
-  const production='.github/workflows/cloudflare-production-promote.yml';assert.equal(content(foodHead,production),content(prior.head,production));assert.match(content(foodHead,production),/^    timeout-minutes: 60$/m);
+  const production='.github/workflows/cloudflare-production-promote.yml';assert.equal(productionBeforeSourceSchedule(content(foodHead,production)),content(prior.head,production));assert.match(content(foodHead,production),/^    timeout-minutes: 60$/m);
   const restored38=policy.ciWallClockFood38SourceInverse.reduceRight((bytes,[before,after,kind])=>{assert(after&&bytes.split(after).length===2,'One exact Food38 restoration fragment is required');if(kind==='suffix')assert(bytes.endsWith(after));return bytes.replace(after,before);},content(foodHead,prior.foodTestPath));
   assert.equal(restored38,content(prior.head,prior.foodTestPath),'Every prior Food38 test byte is restored');assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored38,encoding:'utf8'}).trim(),prior.foodTestBlob);
  });
@@ -1156,7 +1164,7 @@ import './fresh-food-source-clean-20261015.test.mjs';
   const before=directPriorSource.match(directPolicyLine),after=restored.match(directPolicyLine);assert(before&&after);
   assert.equal(restored.replace(after[0],before[0]),directPriorSource,'The complete original scope restores byte for byte');
   const currentTests=content(foodHead,directTestPath),priorTests=content(directPrior.head,directTestPath);
-  assert(currentTests.startsWith(priorTests),'Every original94 byte remains an exact prefix');
+  assert(foodBeforeSourceSchedule(currentTests).startsWith(priorTests),'Every original94 byte remains an exact prefix');
   assert.equal(directInverse(currentTests,directPolicy.directFoodNativeCleanExtensionFood94Inverse),priorTests);
   for(const[name,expected]of Object.entries(directPolicy.directFoodNativeCleanExtensionOriginalTestBlobs))assert.equal(execFileSync('git',['hash-object','--stdin'],{input:directInverse(currentTests,directPolicy[name]),encoding:'utf8'}).trim(),expected,name+' remains an exact complete inverse');
   assert.deepEqual(c.nativeFreshFoodSourceGuard20261015,directPrior.record.nativeFreshFoodSourceGuard20261015,'The earlier historical-only revision remains an exact historical witness');
@@ -1212,7 +1220,7 @@ import './fresh-food-source-clean-20261015.test.mjs';
   assert.equal(undo(source,policy.repairCleanStatusEquivalenceSourceInverse),oldSource);
   assert.equal(undo(source,policy.inverses[repairPath]),content(c.base,repairPath),'All historical Repair assertions restore to the exact original source');
   const currentScope=content(foodHead,scopePath),oldScope=content(prior.head,scopePath),restored=undo(currentScope,policy.repairCleanStatusEquivalenceScopeInverse),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,oldPolicy=oldScope.match(pattern),newPolicy=restored.match(pattern);assert(oldPolicy&&newPolicy);assert.equal(restored.replace(newPolicy[0],oldPolicy[0]),oldScope);
-  const currentTests=content(foodHead,testsPath),oldTests=content(prior.head,testsPath);assert(currentTests.startsWith(oldTests));assert.equal(undo(currentTests,policy.repairCleanStatusEquivalenceFood97Inverse),oldTests);
+  const currentTests=content(foodHead,testsPath),oldTests=content(prior.head,testsPath);assert(foodBeforeSourceSchedule(currentTests).startsWith(oldTests));assert.equal(undo(currentTests,policy.repairCleanStatusEquivalenceFood97Inverse),oldTests);
   for(const[name,expected]of Object.entries(policy.repairCleanStatusEquivalenceOriginalTestBlobs))assert.equal(execFileSync('git',['hash-object','--stdin'],{input:undo(currentTests,policy[name]),encoding:'utf8'}).trim(),expected);
   assert.equal(c.repairCleanStatusEquivalence20261015.selectedOwnerComponentBlob,'798957c4015038aafb9f79bd19d32ed01492e5ac');assert.equal(c.repairCleanStatusEquivalence20261015.nativeAcceptanceOrTimingFitClaimed,false);
  });
@@ -1351,7 +1359,7 @@ test('legacy non-CI factory still invokes the unchanged public verifier',()=>{
   const restored=structuredClone(actual);restored[key]=prior.record;assert.deepEqual(restored,JSON.parse(content(prior.head,ledger)),'All114 previous ledger rows and approvals remain exact');
   const restore=(value,inverses)=>{for(const[a,b]of[...inverses].reverse()){assert(b&&value.split(b).length===2);value=value.replace(b,a);}return value;};
   const current=content(head,nativeBindingPath);assert.equal(execFileSync('git',['hash-object','--stdin'],{input:current,encoding:'utf8'}).trim(),'419fb813270a7137371761c6891f82f989859f6d');assert.equal(restore(current,p.combinedCanonicalNativeOriginalSourceInverse),content(prior.head,nativeBindingPath));
-  const tests='tests/food-diary-london-date-stack-20261015.test.mjs',currentTests=content(head,tests),priorTests=content(prior.head,tests);assert(currentTests.startsWith(priorTests));assert.equal(restore(currentTests,p.combinedCanonicalNativeOriginalFood102Inverse),priorTests);
+  const tests='tests/food-diary-london-date-stack-20261015.test.mjs',currentTests=content(head,tests),priorTests=content(prior.head,tests);assert(foodBeforeSourceSchedule(currentTests).startsWith(priorTests));assert.equal(restore(currentTests,p.combinedCanonicalNativeOriginalFood102Inverse),priorTests);
   const scope='release/food-diary-london-date-scope-20261015.mjs',scopePrior=content(prior.head,scope),scopeRestored=restore(content(head,scope),p.combinedCanonicalNativeOriginalScopeInverse),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,from=scopeRestored.match(pattern),to=scopePrior.match(pattern);assert(from&&to);assert.equal(scopeRestored.replace(from[0],to[0]),scopePrior);
   assert.equal(p.record.combinedCanonicalNativeOriginal20261015.wholeNewHeadNativeOrHostedOrProductionAccepted,false);
 
@@ -1365,3 +1373,150 @@ test('legacy non-CI factory still invokes the unchanged public verifier',()=>{
   assert.equal(g('rev-parse','HEAD').trim(),head);assert.equal(g('diff','--name-only','HEAD','--').trim(),'');assert.equal(g('diff','--cached','--name-only','--').trim(),'');
  });
 }
+
+// Additive current-HEAD reader coherence; every preceding117 test byte remains.
+{
+ const aliasP=FOOD_DIARY_LONDON_DATE_POLICY,aliasPrior=aliasP.currentWatchReadHeadAliasesPrior,aliasPath='shift-coach/release-contract.mjs';
+ const aliasCurrent=content(head,aliasPath),aliasBefore=content(aliasPrior.head,aliasPath);
+ const aliasRestore=(value,pairs)=>{for(const[a,b]of[...pairs].reverse()){assert(b&&value.split(b).length===2);value=value.replace(b,a);}return value;};
+ const aliasStart=aliasCurrent.indexOf('function assertCoachingCurrentWatchReadAliases(read){'),aliasEnd=aliasCurrent.indexOf('\n}\n',aliasStart);assert(aliasStart>=0&&aliasEnd>aliasStart);
+ const aliasHelper=aliasCurrent.slice(aliasStart,aliasEnd+3),aliasModelHead='a'.repeat(40),aliasPaths=new Set(['medicines-watch/data.mjs','medicines-watch/monitor.mjs']);
+ const aliasMake=(getHead=()=>aliasModelHead,paths=aliasPaths)=>new Function('assert','immutableHistorySourceHead','WATCH_CURRENT_PATHS',aliasHelper+'\nreturn assertCoachingCurrentWatchReadAliases;')(assert,getHead,paths);
+ test('Watch reader coherence: every prior117 byte and all115 prior ledger records restore exactly',()=>{
+  const actual=JSON.parse(content(head,ledger)),restored=structuredClone(actual);restored[key]=aliasPrior.record;
+  assert.deepEqual(restored,JSON.parse(content(aliasPrior.head,ledger)),'All114 other rows and the complete prior Food receipt are exact');
+  assert.equal(blob(aliasPrior.head,ledger),aliasPrior.ledgerBlob);assert.equal(blob(aliasPrior.head,'release/food-diary-london-date-scope-20261015.mjs'),aliasPrior.scopeBlob);
+  const path='tests/food-diary-london-date-stack-20261015.test.mjs',before=content(aliasPrior.head,path),after=content(head,path);
+  assert.equal(blob(aliasPrior.head,path),aliasPrior.foodTestsBlob);assert(foodBeforeSourceSchedule(after).startsWith(before));assert.equal(aliasRestore(after,aliasP.currentWatchReadHeadAliasesFood117Inverse),before);
+ });
+ test('Watch reader coherence: all original contract body bytes restore after the five literal changes',()=>{
+  assert.equal(blob(aliasPrior.head,aliasPath),'d6e24cab7c07725274fdf1f2a53dd34328bd866a');assert.equal(blob(head,aliasPath),'f7e8178f164b601796dd0242d5ff8aa274b65dcb');
+  assert.equal(aliasRestore(aliasCurrent,aliasP.currentWatchReadHeadAliasesSourceInverse),aliasBefore);
+  assert.equal(blob(head,'shift-coach/release.test.mjs'),aliasPrior.watchTestsBlob);
+  assert.equal(aliasP.record.currentWatchReadHeadAliases20261016.gateReplacedOrRemoved,false);
+ });
+ test('Watch reader coherence: model rejects every inconsistent current path without a history verdict',()=>{
+  for(const path of aliasPaths){let calls=0;const read=(ref,p)=>{calls++;return ref==='HEAD'&&p===path?'changed':p;};assert.throws(()=>aliasMake()(read),/Current Watch source drift/);assert(calls>0);}
+ });
+ test('Watch reader coherence: the same callback is always invoked again after a prior coherent result',()=>{
+  let changed=false,calls=0;const read=(ref,p)=>{calls++;return changed&&ref==='HEAD'?'changed':p;},run=aliasMake();
+  run(read);const before=calls;changed=true;assert.throws(()=>run(read),/Current Watch source drift/);assert(calls>before);
+ });
+ test('Watch reader coherence: invalid or absent captured heads cannot query a reader',()=>{
+  for(const value of [null,'HEAD','x'.repeat(40),'a'.repeat(39)]){let calls=0;assert.throws(()=>aliasMake(()=>value)(()=>{calls++;return '';}),/fresh actual source scope/);assert.equal(calls,0);}
+ });
+ test('Watch reader coherence: a foreign callback retains the identical thrown error',()=>{
+  const expected=Error('Synthetic unchanged callback exception');assert.throws(()=>aliasMake()(()=>{throw expected;}),error=>error===expected);
+ });
+ test('Watch reader coherence: both current aliases are independently requested for each existing path',()=>{
+  const calls=[];aliasMake()((ref,path)=>{calls.push([ref,path]);return path;});assert.equal(calls.length,aliasPaths.size*2);
+  for(let i=0;i<calls.length;i+=2){assert.equal(calls[i][0],'HEAD');assert.equal(calls[i+1][0],aliasModelHead);assert.equal(calls[i][1],calls[i+1][1]);}
+ });
+ test('Watch reader coherence: coherent opaque callbacks receive no source or approval verdict',()=>{
+  const values=new Map();let called=0;const run=aliasMake();run((ref,path)=>{called++;return values.get(path)||'same opaque fixture';});assert.equal(called,aliasPaths.size*2);
+  const invocation=' assertCoachingCurrentWatchReadAliases(read);\n';assert.equal(aliasCurrent.split(invocation).length,2);
+  assert(aliasCurrent.includes(invocation+" const growth=manifest.rankingGrowthComposition;verifyRankingGrowth(growth,read);read=rankingGrowthHistoricalRead(read,growth);"),'Every successful early check continues into the exact original verifier');
+ });
+ test('Watch reader coherence: real native current aliases use the actual untouched Git source',async()=>{
+  const {WATCH_CURRENT_PATHS}=await import('../shift-coach/release-contract.mjs');
+  const {withImmutableHistoryVerification,immutableHistorySourceHead,immutableHistoryExecFileSync}=await import('../release/immutable-git-facts.mjs');
+  let count=0;withImmutableHistoryVerification(()=>{assert.equal(immutableHistorySourceHead(),head);aliasMake(immutableHistorySourceHead,WATCH_CURRENT_PATHS)((ref,path)=>{count++;return immutableHistoryExecFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8',maxBuffer:64e6}).trim();});});
+  assert.equal(count,WATCH_CURRENT_PATHS.size*2);assert.equal(g('rev-parse','HEAD').trim(),head);
+ });
+ test('Watch reader coherence: every workflow, original kernel and current source receipt stays pinned',()=>{
+  for(const[path,expected]of[
+   ['.github/workflows/cloudflare-production-promote.yml','cd8c81a8d8c29def3c25b93112a4c56456b5cbfc'],
+   ['.github/workflows/programme-day-preview.yml','54827864ebfed96670c67809030e6ad772731b73'],
+   ['.github/workflows/production-completion-proof.yml','5ba96a875e92d33a0e54f8bc3284332c12817916'],
+   ['.github/workflows/approved-ranking-proof.yml','065a46fe92aac5cd1f6cfb8d51aa5f5f97a5f9ad'],
+   ['.github/workflows/shift-coach-integration.yml','331ea3150aa623bbbd3c704c07fd17952008d0d8'],
+   ['release/immutable-git-facts.mjs','b1ec660c2fb899be3c4c31370598e9d5751551a3'],
+   ['shift-coach/release.test.mjs','cfbcd2cbf80d1f500a4dce89e2f43f9d309c9f88']
+  ])assert.equal(path==='.github/workflows/cloudflare-production-promote.yml'?execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(content(head,path)),encoding:'utf8'}).trim():blob(head,path),expected,path);
+  assert.equal(aliasP.record.authority,FOOD_DIARY_LONDON_DATE_POLICY.record.authority);
+  const restored=aliasRestore(content(head,'release/food-diary-london-date-scope-20261015.mjs'),aliasP.currentWatchReadHeadAliasesScopeInverse),prior=content(aliasPrior.head,'release/food-diary-london-date-scope-20261015.mjs'),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,a=restored.match(pattern),b=prior.match(pattern);assert(a&&b);assert.equal(restored.replace(a[0],b[0]),prior);
+ });
+ test('Watch reader coherence: native factory preserves only the exact existing private reader identity',async()=>{
+  const {nativeReconciliationSourceRead}=await import('../release/approved-runtime-composition.mjs');
+  const first=nativeReconciliationSourceRead();assert.equal(typeof first,'function');assert.equal(first,nativeReconciliationSourceRead());assert.notEqual(first.bind(null),first);assert.notEqual((...args)=>first(...args),first);
+  const p='release/approved-runtime-composition.mjs';assert.equal(aliasRestore(content(head,p),aliasP.currentWatchReadHeadAliasesCompositionInverse),content(aliasPrior.head,p));
+ });
+ test('Watch reader coherence: exact native factory values match the original internal Git reader',async()=>{
+  const {nativeReconciliationSourceRead}=await import('../release/approved-runtime-composition.mjs');const read=nativeReconciliationSourceRead();
+  for(const path of ['medicines-watch/data.mjs','medicines-watch/monitor.mjs','shift-coach/release-contract.mjs',ledger])for(const ref of ['HEAD',head,aliasPrior.head])assert.equal(read(ref,path),g('rev-parse',ref+':'+path).trim());
+  assert(aliasCurrent.includes(' const proof=validateCoachingSource(nativeReconciliationSourceRead(),manifest);'));
+ });
+ test('Watch reader coherence: exact native factory retains unknown-reference and missing-path rejection',async()=>{
+  const {nativeReconciliationSourceRead}=await import('../release/approved-runtime-composition.mjs');const read=nativeReconciliationSourceRead();
+  for(const[ref,path]of[['0'.repeat(40),'medicines-watch/data.mjs'],[head,'missing-unknown-source.mjs']]){let before,after;try{g('rev-parse',ref+':'+path);}catch(error){before=error.status;}try{read(ref,path);}catch(error){after=error.status;}assert.equal(typeof before,'number');assert.equal(after,before);}
+ });
+
+}
+
+// Fresh native head observations preserve the original guard on every fallback.
+import './fresh-food-source-head-20261016.test.mjs';
+{
+ const freshP=FOOD_DIARY_LONDON_DATE_POLICY,freshSource=content(head,'release/food-diary-london-date-scope-20261015.mjs');
+ const start=freshSource.indexOf('\nfunction assertFreshFoodNativeHead(rawHead,original){')+1,end=freshSource.indexOf('\n}\n',start);assert(start>0&&end>start);
+ const literal=freshSource.slice(start,end+3),model=(hint)=>new Function('assert','freshFoodSourceHead',literal+'\nreturn assertFreshFoodNativeHead;')(assert,hint),raw='a'.repeat(40);
+ const restore=(s,pairs)=>{for(const[a,b]of[...pairs].reverse()){assert(b&&s.split(b).length===2);s=s.replace(b,a);}return s;};
+ test('fresh source head: each positive observation is fresh and a changed current head rejects',()=>{
+  let calls=0,changed=false,fallbacks=0;const run=model(()=>{calls++;return changed?'b'.repeat(40):raw;}),fallback=()=>{fallbacks++;};
+  run(raw,fallback);run(raw,fallback);assert.equal(calls,2);assert.equal(fallbacks,0);changed=true;assert.throws(()=>run(raw,fallback),/Raw HEAD changed during projection/);assert.equal(calls,3);assert.equal(fallbacks,0);
+ });
+ test('fresh source head: null retains the original guard result and identical thrown error',()=>{
+  const run=model(()=>null),sentinel=Error('Same original guard exception');let calls=0;
+  assert.equal(run(raw,()=>{calls++;return'original result';}),'original result');assert.throws(()=>run(raw,()=>{calls++;throw sentinel;}),error=>error===sentinel);assert.equal(calls,2);
+ });
+ test('fresh source head: every callback exit receives another actual observation',()=>{
+  let value=raw,observations=0,callbacks=0;const run=model(()=>{observations++;return value;}),fallback=()=>{throw Error('No fallback expected');};
+  run(raw,fallback);try{callbacks++;value='b'.repeat(40);}finally{assert.throws(()=>run(raw,fallback),/Raw HEAD changed during projection/);}assert.equal(callbacks,1);assert.equal(observations,2);
+ });
+ test('fresh source head: the complete older clean helper and kernel remain literal',()=>{
+  const path='release/fresh-food-source-clean-20261015.mjs',newPath='release/fresh-food-source-head-20261016.mjs';
+  assert.equal(blob(head,path),'0d744888e51457ba28755ea3bdfa356a595249f4');assert.equal(blob(head,'release/immutable-git-facts.mjs'),'b1ec660c2fb899be3c4c31370598e9d5751551a3');
+  assert.equal(restore(content(head,newPath),freshP.freshFoodNativeHeadGuardHelperInverse),content(head,path));
+  assert(freshSource.includes('assertCurrent:privateW?assertCurrent:()=>assertFreshFoodNativeHead(rawHead,assertCurrent),authentic:'));
+  assert(freshSource.includes('if(head===null)return original();'));
+ });
+ test('shared source triggers: every original workflow byte restores except its one dependency line',()=>{
+  for(const path of freshP.sharedSourceTriggerDependencyPaths){
+   const now=content(head,path),pairs=freshP.sharedSourceTriggerDependencyInverses[path],before=content(freshP.record.freshFoodNativeHeadGuard20261016.sourceBase,path);
+   assert.equal(pairs.length,1);assert.equal(restore(now,pairs),before);assert.equal(blob(freshP.record.freshFoodNativeHeadGuard20261016.sourceBase,path),freshP.sharedSourceTriggerDependencyPreviousBlobs[path]);
+   assert(now.includes("  pull_request:\n    paths:\n      - 'release/approved-runtime-composition*'\n"));assert.equal(now.split('\n').length,before.split('\n').length+1);
+  }
+  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(content(head,'.github/workflows/cloudflare-production-promote.yml')),encoding:'utf8'}).trim(),'cd8c81a8d8c29def3c25b93112a4c56456b5cbfc');
+ });
+ test('fresh source head: every original130 assertion and earlier source inverse remains complete',()=>{
+  const path='tests/food-diary-london-date-stack-20261015.test.mjs',restored=restore(content(head,path),freshP.freshFoodNativeHeadGuardFood130Inverse);
+  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored,encoding:'utf8'}).trim(),'f9e34701815039a8fc8fd0538ca264b4d3841cbb');
+  const prior=content(freshP.currentWatchReadHeadAliasesPrior.head,path);assert(restored.startsWith(prior));assert.equal(freshP.record.freshFoodNativeHeadGuard20261016.callbackOrVerdictCache,false);
+ });
+}
+
+// Remove only the later, exact shared-source trigger before the older cap-only witness.
+{
+ const originalProgrammeToolchainWitness=programmeBeforeToolchainOverlap;
+ programmeBeforeToolchainOverlap=(path,bytes)=>{
+  const pairs=FOOD_DIARY_LONDON_DATE_POLICY.sharedSourceTriggerDependencyInverses[path];
+  if(pairs)for(const[before,after]of[...pairs].reverse()){
+   assert(after&&bytes.split(after).length===2,'One exact approved shared-source trigger required');bytes=bytes.replace(after,before);
+  }
+  return originalProgrammeToolchainWitness(path,bytes);
+ };
+ test('historical cap witness retains every original assertion after only the exact later trigger inverse',()=>{
+  const p=FOOD_DIARY_LONDON_DATE_POLICY;
+  for(const path of p.sharedSourceTriggerDependencyPaths){
+   const current=content(foodHead,path),previous=content(p.record.freshFoodNativeHeadGuard20261016.sourceBase,path),[[before,after]]=p.sharedSourceTriggerDependencyInverses[path];
+   assert.equal(programmeBeforeToolchainOverlap(path,current),previous);
+   for(const changed of[current.replace(after,before),current.replace(after,after+after),current.replace('release/approved-runtime-composition*','release/unapproved*')])assert.throws(()=>programmeBeforeToolchainOverlap(path,changed),/exact approved/);
+   for(const changed of[current+'\n# unapproved\n',current.replace('contents: read','contents: write')])assert.notEqual(programmeBeforeToolchainOverlap(path,changed),previous,'Every other byte survives for the original strict comparison');
+  }
+  const restored=p.historicalSharedTriggerCapFull175Inverse.reduceRight((s,[a,b])=>{assert(b&&s.split(b).length===2);return s.replace(b,a);},content(foodHead,'tests/food-diary-london-date-stack-20261015.test.mjs'));
+  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored,encoding:'utf8'}).trim(),'00b457daca140c49a139d6f72c38912aaa5d0021');
+ });
+}
+
+// Run current scheduling controls alongside all original Food source assertions.
+import './bounded-source-scheduling-20261016.test.mjs';
+import './verified-source-evidence-20261016.test.mjs';
