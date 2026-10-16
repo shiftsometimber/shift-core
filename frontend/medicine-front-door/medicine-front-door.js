@@ -20,6 +20,8 @@ async function loadCatalogue(){
     $('serviceInsulinLabel').hidden=!injection;
     window.SHIFT_SERVICE_ELIGIBILITY=()=>({insulinUse:$('serviceInsulin').value,eligibility:{heightCm:Number($('serviceHeight').value),weightKg:Number($('serviceWeight').value),weightRelatedCondition:$('serviceCondition').value}});
     select.innerHTML=product.variants.map(v=>`<option value="${v.id}" data-price="${v.pricePence}" data-status="${v.status}">${v.strengthLabel} · ${money(v.pricePence)} · ${v.status==='available'?'In stock':'Out of stock'}</option>`).join('')||'<option>No current variants</option>';
+    const requestedVariant=Number(new URLSearchParams(location.search).get('variant'));
+    if(product.variants.some(v=>Number(v.id)===requestedVariant))select.value=String(requestedVariant);
     select.disabled=!product.variants.length;
     const sync=()=>{
       const o=select.selectedOptions[0],available=o?.dataset.status==='available';
@@ -38,7 +40,8 @@ async function loadCatalogue(){
       const variantId=Number(select.value);
       let verification=null;try{verification=JSON.parse(sessionStorage.getItem(`sst-medicine-verification:${variantId}`)||'null')}catch{}
       if(!verification?.token||Date.parse(verification.expiresAt)<=Date.now()){
-        location.assign(`/treatment-assessment?variant=${encodeURIComponent(variantId)}&returnTo=${encodeURIComponent(location.pathname+location.search)}`);
+        const target=new URL(location.href);target.searchParams.set('variant',String(variantId));
+        location.assign(`/treatment-assessment?variant=${encodeURIComponent(variantId)}&returnTo=${encodeURIComponent(target.pathname+target.search+target.hash)}`);
         return;
       }
       button.disabled=true;

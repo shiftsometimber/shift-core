@@ -7,12 +7,16 @@ const status=document.querySelector('#status');
 const previous=document.querySelector('#previousTreatment');
 const previousDetails=document.querySelector('#previousDetails');
 document.querySelector('#variantId').value=Number.isInteger(variantId)&&variantId>0?String(variantId):'';
-previous.onchange=()=>{const yes=previous.value==='yes';previousDetails.hidden=!yes;for(const input of previousDetails.querySelectorAll('input'))input.required=yes};
+previous.onchange=()=>{const yes=previous.value==='yes';previousDetails.hidden=!yes;for(const input of previousDetails.querySelectorAll('input')){input.required=yes;input.disabled=!yes}};
+previous.onchange();
 function finish(result){
   sessionStorage.setItem(`sst-medicine-verification:${variantId}`,JSON.stringify({token:result.verificationToken,expiresAt:result.expiresAt}));
-  const target=returnTo.startsWith('/')&&!returnTo.startsWith('//')?returnTo:'/treatment-order';
+  let target;
+  try{target=new URL(returnTo,location.origin);if(target.origin!==location.origin)throw Error('external return')}catch{target=new URL('/treatment-order',location.origin)}
+  target.searchParams.set('variant',String(variantId));
+  target.searchParams.set('verified','1');
   status.textContent='Verified. Returning you to secure payment…';
-  setTimeout(()=>location.assign(target+(target.includes('?')?'&':'?')+'verified=1'),700);
+  setTimeout(()=>location.assign(target.pathname+target.search+target.hash),700);
 }
 async function waitFor(reference){
   for(let attempt=0;attempt<40;attempt++){

@@ -241,6 +241,34 @@ export function adultServiceEligibility(dateOfBirth, referenceTime = new Date())
   if (age < 18) return {error:'adult_service_required',status:422,message:'SHIFT’s treatment assessment service is for adults aged 18 or over. Speak to your GP about appropriate support.'};
   return null;
 }
+const CLINICAL_INTAKE_FIELDS = [
+  "dateOfBirth","heightCm","weightKg","weightRelatedCondition","conditions","medicines",
+  "previousTreatment","previousMedicine","previousDose","lastDoseDate",
+  "gpName","gpPractice","gpAddress","gpPostcode","gpPhone","nhsNumber",
+];
+function validatedIntakeAnswers(form) {
+  const fields = {};
+  const previousTreatment = String(form.get("previousTreatment") ?? "").trim();
+  for (const key of CLINICAL_INTAKE_FIELDS) {
+    if (previousTreatment === "no" && ["previousMedicine","previousDose","lastDoseDate"].includes(key)) { fields[key] = ""; continue; }
+    const value = String(form.get(key) ?? "").trim();
+    if (value.length > 1000) return {error:"clinical_answer_too_long",message:"An answer exceeds the 1,000-character limit. No information has been sent. Do not omit relevant information to make it fit; the pharmacy team needs the full details.",field:key};
+    fields[key] = value;
+  }
+  const required = ["dateOfBirth","heightCm","weightKg","weightRelatedCondition","conditions","medicines","gpName","gpPractice","gpAddress","gpPostcode"];
+  if (required.some(key => !fields[key])) return {error:"incomplete_clinical_form",message:"Complete every required clinical and GP field."};
+  if (!["yes","no"].includes(previousTreatment)) return {error:"previous_treatment_answer_required",message:"Confirm whether you have used weight-loss medicine before."};
+  if (previousTreatment === "yes") {
+    if (["previousMedicine","previousDose","lastDoseDate"].some(key => !fields[key])) return {error:"previous_treatment_details_required",message:"Enter the previous medicine, dose and last dose date."};
+    const value = fields.lastDoseDate, date = new Date(value + "T00:00:00Z");
+    const parts = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/London",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
+    const part = type => parts.find(p => p.type === type).value;
+    const today = `${part('year')}-${part('month')}-${part('day')}`;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || !Number.isFinite(date.getTime()) || date.toISOString().slice(0,10) !== value || value.slice(0,4) === "0000" || value > today)
+      return {error:"last_dose_date_invalid",message:"Enter a real last dose date that is not in the future."};
+  }
+  return {fields};
+}
 async function clinicalIntake(request, env) {
   const user = await member(request, env);
   if (!user) return json({ok:false,error:"account_required"},401,cors(request));
@@ -258,8 +286,8 @@ async function clinicalIntake(request, env) {
   if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock. No clinical evidence has been sent."},409,cors(request));
   const ageEligibility = adultServiceEligibility(form.get('dateOfBirth'));
   if (ageEligibility) return json({ok:false,error:ageEligibility.error,message:ageEligibility.message},ageEligibility.status,cors(request));
-  const required = ["dateOfBirth","heightCm","weightKg","weightRelatedCondition","conditions","medicines","gpName","gpPractice","gpAddress","gpPostcode"];
-  if (required.some((key) => !formText(form,key))) return json({ok:false,error:"incomplete_clinical_form",message:"Complete every required clinical and GP field."},400,cors(request));
+  const answers = validatedIntakeAnswers(form);
+  if (answers.error) return json({ok:false,...answers},400,cors(request));
   const gpConsent = form.get("gpContactConsent") === "on";
   const accuracyConsent = form.get("answersConfirmed") === "on";
   const imageConsent = form.get("imageConsent") === "on";
@@ -271,7 +299,7 @@ async function clinicalIntake(request, env) {
   const partnerForm = new FormData();
   partnerForm.set("memberReference",String(user.id)); partnerForm.set("variantId",String(variantId)); partnerForm.set("journeyStage","prepay_verification");
   if (item.form === 'injection') partnerForm.set('insulinUse','no');
-  for (const key of ["dateOfBirth","heightCm","weightKg","weightRelatedCondition","conditions","medicines","previousTreatment","previousMedicine","previousDose","lastDoseDate","gpName","gpPractice","gpAddress","gpPostcode","gpPhone","nhsNumber"]) partnerForm.set(key,formText(form,key));
+  for (const [key,value] of Object.entries(answers.fields)) partnerForm.set(key,value);
   partnerForm.set("gpContactConsent","true"); partnerForm.set("answersConfirmed","true"); partnerForm.set("imageConsent","true"); partnerForm.set("consentVersion",CLINICAL_CONSENT_VERSION);
   for (const [key,file] of Object.entries(files)) partnerForm.set(key,file,file.name);
   const partnerResponse = await fetch(String(env.PHARMACY_CLINICAL_INTAKE_URL),{method:"POST",headers:{authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`},body:partnerForm});
