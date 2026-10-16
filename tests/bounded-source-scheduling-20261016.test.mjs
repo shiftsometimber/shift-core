@@ -1,3 +1,4 @@
+import {seoAuditOriginalSource} from '../release/seo-audit-scope-20261016.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,existsSync,rmSync} from 'node:fs';
@@ -74,7 +75,7 @@ test('the privacy command extractor preserves all31 literal original commands an
 });
 
 function programmeBeforeRetainedImageEvidence(source){const block="Retain original Programme day browser evidence\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: programme-day-live-${{ github.sha }}\n          path: programme-day-proof/\n          if-no-files-found: warn\n          retention-days: 30\n      - name: ",anchor="      - name: Verify approved Programme day and catalogue artwork live\n        run: PROGRAMME_DAY_LIVE=true PLAYWRIGHT_MODULE=\"$RUNNER_TEMP/heading-tools/node_modules/playwright\" node scripts/verify-programme-day.cjs\n      - name: ";if(!source.includes(block))return source;assert.equal(source.split(block).length,2,'Only one exact original Programme evidence artifact is admitted');const index=source.indexOf(block);assert(source.slice(0,index).endsWith(anchor),'Programme evidence must follow the exact unchanged original live image command');return source.replace(block,'');}
-const currentSource=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
+const currentSource=path=>{const bytes=readFileSync(new URL('../'+path,import.meta.url),'utf8');return path==='.github/workflows/cloudflare-production-promote.yml'?seoAuditOriginalSource(path,bytes):bytes;};
 const policy=()=>JSON.parse(currentSource('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\{[^\n]+\});\nconst manifest=/m)[1]);
 const blobHash=s=>createHash('sha1').update('blob '+Buffer.byteLength(s)+'\0').update(s).digest('hex');
 test('exact original source manifest rejects altered commands, source receipts, caps, permissions and unknown versions',()=>{
@@ -99,7 +100,7 @@ test('all33 production source blocks and required local preparations preserve th
 test('privacy security and compile barriers and every original176 Food test byte remain independently pinned',()=>{
  const p=policy(),path='.github/workflows/online-privacy-recovery-proof.yml',[[before,after]]=p.inverses[path];assert.equal(currentSource(path),after);assert.equal(blobHash(before),'5fbbcd992c09d262109fe2c14d8f9bad2f9e727f');
  const end=before.indexOf('      - run: node gate1-release-security-privacy-gate.mjs\n');assert(end>0&&after.endsWith(before.slice(end)));assert.match(after,/^    timeout-minutes: 60$/m);assert(after.indexOf('node release/bounded-source-checks-20261016.mjs privacy')<after.indexOf('node gate1-release-security-privacy-gate.mjs'));
- let original=currentSource('tests/food-diary-london-date-stack-20261015.test.mjs');for(const[a,b]of[...p.sourceScheduleFood176Inverse].reverse()){assert(b&&original.split(b).length===2);original=original.replace(b,a);}assert.equal(blobHash(original),'132dfdd45019f7d7d8bc373bfdfe8d88e71db993');
+ let original=seoAuditOriginalSource('tests/food-diary-london-date-stack-20261015.test.mjs',currentSource('tests/food-diary-london-date-stack-20261015.test.mjs'));for(const[a,b]of[...p.sourceScheduleFood176Inverse].reverse()){assert(b&&original.split(b).length===2);original=original.replace(b,a);}assert.equal(blobHash(original),'132dfdd45019f7d7d8bc373bfdfe8d88e71db993');
  for(const protectedPath of ['release/immutable-git-facts.mjs','wrangler.jsonc','wrangler.coaching.jsonc','worker-entry-v6.js','shift-coach/worker.mjs'])assert(p.protectedPaths.includes(protectedPath));
  assert.deepEqual(p.boundedSourceScheduleWorkflowPaths,['.github/workflows/cloudflare-production-promote.yml',path]);assert.equal(p.record.boundedSourceScheduling20261016.suppliedReaderOrVerdictCache,false);
 });
@@ -131,7 +132,7 @@ test('literal production layout view requires the exact complete admitted raw wo
 test('all three original literal-test assertion bodies restore exactly after only strict production-read adapters',()=>{
  const scope=readFileSync(new URL('../release/food-diary-london-date-scope-20261015.mjs',import.meta.url),'utf8');
  const policy=JSON.parse(scope.match(/^const policy=(\{[^\n]+\});\nconst manifest=/m)[1]);
- let main=readFileSync(new URL('../tests/food-diary-london-date-stack-20261015.test.mjs',import.meta.url),'utf8');for(const [before,after,kind]of [...policy.literalWatchTestWitnessInverse].reverse()){assert(after&&main.split(after).length===2);if(kind==='suffix')assert(main.endsWith(after));main=main.replace(after,()=>before);}assert.equal(main,execFileSync('git',['show','6fe03c05bdcaad7b83d20fc5bd17e60f341db8e0:tests/food-diary-london-date-stack-20261015.test.mjs'],{encoding:'utf8'}));
+ let main=seoAuditOriginalSource('tests/food-diary-london-date-stack-20261015.test.mjs',readFileSync(new URL('../tests/food-diary-london-date-stack-20261015.test.mjs',import.meta.url),'utf8'));for(const [before,after,kind]of [...policy.literalWatchTestWitnessInverse].reverse()){assert(after&&main.split(after).length===2);if(kind==='suffix')assert(main.endsWith(after));main=main.replace(after,()=>before);}assert.equal(main,execFileSync('git',['show','6fe03c05bdcaad7b83d20fc5bd17e60f341db8e0:tests/food-diary-london-date-stack-20261015.test.mjs'],{encoding:'utf8'}));
  for(const path of ['shift-coach/release.test.mjs','tests/b1-release-scope.test.mjs','tests/home-route-banner.test.mjs']){let current=readFileSync(new URL('../'+path,import.meta.url),'utf8');for(const [before,after,kind]of [...policy.inverses[path]].reverse()){assert(after&&current.split(after).length===2);if(kind==='prefix')assert(current.startsWith(after));current=current.replace(after,()=>before);}assert.equal(current,execFileSync('git',['show','6fe03c05bdcaad7b83d20fc5bd17e60f341db8e0:'+path],{encoding:'utf8'}));}
 });
 

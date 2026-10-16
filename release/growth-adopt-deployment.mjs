@@ -1,3 +1,4 @@
+import {verifyCurrentOwnedRollbackReleaseWindow} from './owned-rollback-release-window-20261016.mjs';
 import {OWNED_ROLLBACK_DEPLOYMENT,verifyCurrentOwnedRollback,ownedRollbackStartingPoint,assertSameOwnedRollbackReceipt} from './verified-owned-rollback-current.mjs';
 import {createGithubProofReader} from './github-proof-get.mjs';
 import {tmpdir} from 'node:os';
@@ -25,7 +26,7 @@ let point;
 if(active.id===OWNED_ROLLBACK_DEPLOYMENT){
  assert(baselineRecord.verifiedOwnedRollbackProof,'Exact owned rollback recovery receipt required');
  ownedRollbackStartingPoint(baselineRecord.verifiedOwnedRollbackProof,active);
- const refreshedProof=await verifyCurrentOwnedRollback({proof:historicalProof,wrangler});
+ const refreshedProof=await verifyCurrentOwnedRollbackReleaseWindow({proof:historicalProof,wrangler,stage:'adoption'});
  assertSameOwnedRollbackReceipt(baselineRecord.verifiedOwnedRollbackProof,refreshedProof);
  point=ownedRollbackStartingPoint(refreshedProof,active);
 }else if(active.id===PHOTO_CANCELLED.deployment){

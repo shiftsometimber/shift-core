@@ -1,3 +1,4 @@
+import {verifyCurrentOwnedRollbackReleaseWindow} from '../release/owned-rollback-release-window-20261016.mjs';
 import {OWNED_ROLLBACK_DEPLOYMENT,verifyCurrentOwnedRollback,readLegacyRecoveryProof} from '../release/verified-owned-rollback-current.mjs';
 import {createGithubProofReader} from '../release/github-proof-get.mjs';
 import {tmpdir} from 'node:os';
@@ -35,7 +36,7 @@ const versionObservation={kind:'runtime_recovery_version_observation',id:version
 console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
 let verifiedOwnedRollbackProof,restoredMaleObesityRuntimeProof,decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof,restoredLaterRuntimeProof,restoredToolRuntimeProof,restoredPassportRuntimeProof,restoredContinuityRuntimeProof;
 if(before.id===OWNED_ROLLBACK_DEPLOYMENT){
- verifiedOwnedRollbackProof=await verifyCurrentOwnedRollback({proof:historicalProof,wrangler});decision='retain';
+ verifiedOwnedRollbackProof=await verifyCurrentOwnedRollbackReleaseWindow({proof:historicalProof,wrangler,stage:'recovery'});decision='retain';
 }else if(before.id===PHOTO_CANCELLED.deployment){
  const getLogs=historicalProof.logs;
  const getArtifact=getHistoricalArtifact;

@@ -1,3 +1,4 @@
+import {seoAuditHistoricalView,seoAuditOriginalSource} from './seo-audit-scope-20261016.mjs';
 import assert from 'node:assert/strict';
 import {existsSync} from 'node:fs';
 import {makeFreshCleanHint} from './fresh-food-source-clean-20261015.mjs';
@@ -70,7 +71,11 @@ function verifyFoodDiaryLondonDateRepairOriginal(c,{head=foodNativeFacts.current
  return c;
  }finally{clean();assert.equal(currentHead(),actual,'Food-calendar source drift: Raw HEAD changed during proof');}});
 }
-export function verifyFoodDiaryLondonDateRepair(c,options={}){return verifyFoodDiaryLondonDateRepairOriginal(c,options);}
+export function verifyFoodDiaryLondonDateRepair(c,options={}){
+ const seo=seoAuditHistoricalView();if(!seo)return verifyFoodDiaryLondonDateRepairOriginal(c,options);
+ assert.equal(options.head??seo.rawHead,seo.rawHead,'SEO source drift: Actual raw Food head required');
+ return verifyFoodDiaryLondonDateRepairOriginal(c,{head:seo.head,read:options.read==null?seo.blob:seo.projectRead(options.read),readContent:options.readContent==null?seo.content:seo.projectContent(options.readContent),readDiff:options.readDiff==null?seo.diff:seo.projectDiff(options.readDiff),isAncestor:options.isAncestor==null?seo.ancestor:seo.projectAncestor(options.isAncestor)},seo);
+}
 function foodDiaryLondonDateHistoricalViewOriginal(reader=null,{defaultReader=reader===null}={},privateW=null){
  const facts=privateW??foodNativeReadFacts,rawHead=privateW?privateW.head:facts.currentHead(),record=privateW?privateW.record:JSON.parse(facts.content(rawHead,manifest)),c=record[key],sourceReader=reader===null?facts.blob:reader;assert.equal(typeof sourceReader,'function');
  const assertCurrent=()=>{if(privateW)privateW.assertCurrent();else{facts.clean();assert.equal(facts.currentHead(),rawHead,'Food-calendar source drift: Raw HEAD changed during projection');}};
@@ -82,7 +87,14 @@ function foodDiaryLondonDateHistoricalViewOriginal(reader=null,{defaultReader=re
  const nativeSource=privateW===null&&sourceReader===foodNativeFacts.blob;
  admittedViews.add(view);view.read=nativeSource?(r,p)=>useView(view,()=>view.blob(r,p)):foodDiaryLondonDateAuthenticatedRead(sourceReader,view);assertCurrent();Object.freeze(view);for(const kind of['read','blob','content','diff','ancestor'])admittedReaders.set(view[kind],Object.freeze({kind,view,...(kind==='read'?{nativeSource}:{})}));return view;
 }
-export function foodDiaryLondonDateHistoricalView(reader=null,options={}){return foodDiaryLondonDateHistoricalViewOriginal(reader,options);}
+export function foodDiaryLondonDateHistoricalView(reader=null,options={}){
+ const seo=seoAuditHistoricalView(reader);if(!seo)return foodDiaryLondonDateHistoricalViewOriginal(reader,options);
+ const inner=foodDiaryLondonDateHistoricalViewOriginal(reader===null?null:seo.read,{defaultReader:false},seo),ref=r=>r===seo.rawHead?'HEAD':r;
+ const view={...inner,rawHead:seo.rawHead,affected:p=>seo.affected(p)||inner.affected(p),assertCurrent:seo.assertCurrent,currentContent:seo.currentContent,authentic:seo.nativeAuthentic,nativeAuthentic:seo.nativeAuthentic,nativeContentAuthentic:seo.nativeContentAuthentic,blob:(r,p)=>inner.blob(ref(r),p),content:(r,p)=>inner.content(ref(r),p),diff:(a,b)=>inner.diff(ref(a),ref(b)),ancestor:(a,b)=>inner.ancestor(ref(a),ref(b))};
+ admittedViews.add(view);view.read=reader===null?(r,p)=>useView(view,()=>view.blob(r,p)):(r,p)=>inner.read(ref(r),p);Object.freeze(view);
+ for(const kind of ['read','blob','content','diff','ancestor'])admittedReaders.set(view[kind],Object.freeze({kind,view,...(kind==='read'?{nativeSource:reader===null}:{})}));
+ seo.assertCurrent();return view;
+}
 const admittedViews=new WeakSet(),admittedReaders=new WeakMap();
 export function foodDiaryLondonDateReaderProvenance(reader){const proof=admittedReaders.get(reader);if(!proof)return null;proof.view.assertCurrent();return proof;}
 function useView(view,run){assert(admittedViews.has(view),'Food-calendar source drift: Independently admitted private view required');view.assertCurrent();try{return run()}finally{view.assertCurrent();}}
@@ -102,7 +114,7 @@ export function foodDiaryLondonDateOriginalCiWorkflow(path,bytes){assert(policy.
 export function foodDiaryLondonDateOriginalProductionWorkflow(bytes){
  const path='.github/workflows/cloudflare-production-promote.yml';
  assert.equal(typeof bytes,'string','Literal production workflow bytes required');
- const restored=inverse(path,bytes,policy.inverses[path]);
+ const restored=inverse(path,seoAuditOriginalSource(path,bytes),policy.inverses[path]);
  assert.equal(restored,foodNativeFacts.content(policy.record.base,path),'Only the exact admitted production source scheduling may change');
  return restored;
 }

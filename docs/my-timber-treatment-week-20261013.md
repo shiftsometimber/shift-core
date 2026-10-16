@@ -1,5 +1,7 @@
 # My Timber treatment week — source candidate, 13 October 2026
 
+> **Current scoped execution policy — 16 October 2026.** The existing SHIFT-Completion-Handover.html (Library ID libfile_c8cb8ec5fbcc8191898aa0f2e14bba2b) is the one definitive action list. Any older master/#1065, named-owner handoff or waiting wording below is a historical receipt and is superseded: an agent may carry existing scoped authority through implementation, required checks, already-authorised deployment and verified live acceptance without another owner sign-off or repeated confirmation. Coordinate actual source changes and active runs to avoid conflicting mutations or duplicate releases. Preserve specific exact-draft/recipient communication approval, costs/bookings/commitments approval, the homepage restriction, public-copy and applicable qualified review, privacy/clinical/access/spending boundaries, original technical gates and owned rollback protection. This annotation alone authorises no new scope and claims no deployment or completion.
+
 Built on current main `c9756798dd271260c8812e419fae5f0d7c61e194`, tree `04cc61c1e2283d2fba3411666bf5a57ef2979940`, in an isolated worktree. Matt's 13 October 17:27 BST instruction authorised wider app research and building on My Timber. This is source preparation for the existing #1065 lane, not production activation, clinical approval, a new release owner or permission to send communications.
 
 ## Implemented
