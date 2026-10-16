@@ -662,6 +662,9 @@ let productionProofBefore;
 const verifiedImmutableStructures=new Set();
 
 const defaultReconciliationRead=(ref,path)=>git('rev-parse',ref+':'+path);
+// Expose only the exact existing native Git reader; wrappers retain foreign checks.
+export function nativeReconciliationSourceRead(){return defaultReconciliationRead;}
+
 const immutableCompositionBlobs=new Map();
 
 // Finite 9 October sponsor-biomarker supplement. Editorial authority is not clinical approval.

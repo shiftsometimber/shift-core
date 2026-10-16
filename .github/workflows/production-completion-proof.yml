@@ -4,6 +4,7 @@ on:
     branches: [codex/seo-production-completion-20261006]
   pull_request:
     paths:
+      - 'release/approved-runtime-composition*'
       - 'release/production-completion-scope.mjs'
       - 'shift-coach/cancelled-release-recovery*'
       - 'shift-coach/recover-cancelled-release.mjs'
