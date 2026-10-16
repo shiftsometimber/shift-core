@@ -40,6 +40,12 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Prepare existing isolated compiled asset runtime
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npm install --prefix "$RUNNER_TEMP/treatment-proof-runtime" --no-audit --no-fund wrangler@4.146.0
+          echo "TREATMENT_MINIFLARE=$RUNNER_TEMP/treatment-proof-runtime/node_modules/miniflare" >> "$GITHUB_ENV"
       - name: Acquire growth-loop commissioning identity
         id: oidc_growth
         shell: bash

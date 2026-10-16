@@ -1,3 +1,4 @@
+import {verifiedSourceScopeAtPointUseSync,preserveOriginalScopeReceipt} from '../release/verified-source-evidence-20261016.mjs';
 import {withImmutableHistoryVerification,immutableHistoryExecFileSync} from '../release/approved-runtime-composition.mjs';
 import {reconciliationGitArgs,reconciliationHistoricalRead,reconciliationPath,RECONCILIATION_PATHS,verifyReconciledRelease,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from '../release/approved-runtime-composition.mjs';
 import {METRICS_PATHS,verifyMetricsConnection} from '../release/metrics-connection-scope.mjs';
@@ -146,6 +147,7 @@ function verifyHeadingRepair(){
  for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',reconciliationGitArgs(['show','HEAD:'+path]),{encoding:'utf8'}));else assert.equal(followHistoricalRead(reconciliationHistoricalRead((ref,p)=>git('rev-parse',ref+':'+p)),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition)('HEAD',path),git('rev-parse',(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
 }
 export function verifyScope(){
+ const verifiedOriginal=verifiedSourceScopeAtPointUseSync();if(verifiedOriginal)return preserveOriginalScopeReceipt(verifiedOriginal);
  return withImmutableHistoryVerification(()=>{
  const reconciliation=verifyReconciledRelease();
  const metricsConnection=verifyMetricsConnection();
