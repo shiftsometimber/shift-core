@@ -13,7 +13,7 @@
   ],
   "helper": {
     "path": "release/gp-directory-live-h55-qa-20261016.mjs",
-    "sha256": "4a49ac683aeaec92dc333004faf1373712e7e69e99ec604f4a1c5d960cafe164",
+    "sha256": "d47efd6045c3867f6fb20b30e8193dd3d04b040d0335d9e9492eae6050d8dbb2",
     "originalSha256": "d0b9b3f8b84ec70edee049750cfc2e6caf8afafc1a3b0ac0a59165b6d06b1a60",
     "wholeInverse": [
       [
@@ -28,7 +28,7 @@
       ],
       [
         "const sha=v=>",
-        "import {chooseNecessaryCookies} from '../../runtime/rendered-member-acceptance-support.mjs';\n\nexport function isPreventedGpBackground(url,method,{site,api}){\n const u=new URL(url);if(method!=='POST')return false;\n return u.pathname==='/v1/my-timber-pwa/status'&&[site,api].includes(u.origin)||u.pathname==='/cdn-cgi/rum'&&[site,'https://cloudflareinsights.com'].includes(u.origin);\n}\nexport async function openNormalGpDisclosures(page){\n await chooseNecessaryCookies(page);const started=Date.now(),remaining=()=>{assert(Date.now()-started<30000,'Original Settings opening budget exceeded');return Math.max(1,30000-(Date.now()-started));};\n const form=page.locator('#memberDetailsForm[data-gp-directory-v2=\"true\"]');await form.waitFor({state:'attached',timeout:remaining()});\n await page.waitForFunction(()=>document.querySelector('#memberDetailsForm')?.closest('main')?.getClientRects().length>0,null,{timeout:remaining()});\n for(const selector of ['#memberDetailsForm','#memberEmail','#memberGpSelectionMode']){\n  const field=page.locator(selector);\n  for(let attempt=0;attempt<8;attempt++){\n   const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;\n   let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click({timeout:remaining()});opened=true;break;}}\n   assert(opened,'Original GP control must have a normal visible disclosure summary: '+selector);\n  }\n }\n}\n\nconst sha=v=>",
+        "import {chooseNecessaryCookies} from '../../runtime/rendered-member-acceptance-support.mjs';\n\nexport function isPreventedGpBackground(url,method,{site,api}){\n const u=new URL(url);if(method==='DELETE')return u.pathname==='/v1/acquisition-attribution'&&[site,api].includes(u.origin);if(method!=='POST')return false;\n return u.pathname==='/v1/my-timber-pwa/status'&&[site,api].includes(u.origin)||u.pathname==='/cdn-cgi/rum'&&[site,'https://cloudflareinsights.com'].includes(u.origin);\n}\nexport async function openNormalGpDisclosures(page){\n await chooseNecessaryCookies(page);const started=Date.now(),remaining=()=>{assert(Date.now()-started<30000,'Original Settings opening budget exceeded');return Math.max(1,30000-(Date.now()-started));};\n const form=page.locator('#memberDetailsForm[data-gp-directory-v2=\"true\"]');await form.waitFor({state:'attached',timeout:remaining()});\n await page.waitForFunction(()=>document.querySelector('#memberDetailsForm')?.closest('main')?.getClientRects().length>0,null,{timeout:remaining()});\n for(const selector of ['#memberDetailsForm','#memberEmail','#memberGpSelectionMode']){\n  const field=page.locator(selector);\n  for(let attempt=0;attempt<8;attempt++){\n   const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;\n   let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click({timeout:remaining()});opened=true;break;}}\n   assert(opened,'Original GP control must have a normal visible disclosure summary: '+selector);\n  }\n }\n}\nexport async function readGpOverflowGeometry(page){\n return page.evaluate(()=>{\n  const rect=e=>{const r=e.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};\n  const box=e=>{const c=getComputedStyle(e);return{tag:e.tagName,id:e.id,class:typeof e.className==='string'?e.className:'',rect:rect(e),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,css:{width:c.width,minWidth:c.minWidth,maxWidth:c.maxWidth,fontFamily:c.fontFamily,fontSize:c.fontSize,gridTemplateColumns:c.gridTemplateColumns,flexWrap:c.flexWrap,boxSizing:c.boxSizing,overflowX:c.overflowX,position:c.position,transform:c.transform,padding:c.padding,margin:c.margin,whiteSpace:c.whiteSpace,overflowWrap:c.overflowWrap}};};\n  return{at:new Date().toISOString(),viewport:{innerWidth,innerHeight,devicePixelRatio,visualViewport:window.visualViewport?{width:visualViewport.width,height:visualViewport.height,scale:visualViewport.scale}:null},userAgent:navigator.userAgent,fontsStatus:document.fonts?.status,platform:navigator.platform,root:box(document.documentElement),body:box(document.body),overflowing:[...document.querySelectorAll('body *')].filter(e=>{if(!e.getClientRects().length)return false;const r=e.getBoundingClientRect();return r.right>innerWidth+1||e.scrollWidth>e.clientWidth+1;}).map(e=>({...box(e),ancestors:[e.parentElement,e.parentElement?.parentElement].filter(Boolean).map(box)})).sort((a,b)=>b.rect.right-a.rect.right).slice(0,100)};\n });\n}\n\nconst sha=v=>",
         1
       ],
       [
@@ -53,12 +53,17 @@
       ],
       [
         "const req=route.request(),u=new URL(req.url()),method=req.method();\n   try{",
-        "const req=route.request(),u=new URL(req.url()),method=req.method();\n   if(isPreventedGpBackground(req.url(),method,{site,api})){preventedBackground.push({origin:u.origin,path:u.pathname,method,disposition:'aborted_before_network',authority:'Unrelated analytics/PWA writes remain held'});await route.abort('blockedbyclient');return;}\n   try{",
+        "const req=route.request(),u=new URL(req.url()),method=req.method();\n   if(isPreventedGpBackground(req.url(),method,{site,api})){preventedBackground.push({origin:u.origin,path:u.pathname,method,disposition:'aborted_before_network',authority:'Unrelated analytics/PWA and cookie-attribution cleanup writes remain held'});await route.abort('blockedbyclient');return;}\n   try{",
         1
       ],
       [
         "await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});",
         "await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});\n  await openNormalGpDisclosures(page);",
+        1
+      ],
+      [
+        "   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));",
+        "   try{assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}catch(error){try{const geometry=await readGpOverflowGeometry(page);(row.layoutDiagnostics??=[]).push({width,...geometry});}catch(diagnosticError){row.overflowGeometryError=String(diagnosticError.message);}const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;}",
         1
       ],
       [

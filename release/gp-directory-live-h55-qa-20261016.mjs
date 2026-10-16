@@ -10,7 +10,7 @@ import {assertGpHolder,assertGpSave,assertGpRequest,assertDirectoryResult,gpView
 import {chooseNecessaryCookies} from '../../runtime/rendered-member-acceptance-support.mjs';
 
 export function isPreventedGpBackground(url,method,{site,api}){
- const u=new URL(url);if(method!=='POST')return false;
+ const u=new URL(url);if(method==='DELETE')return u.pathname==='/v1/acquisition-attribution'&&[site,api].includes(u.origin);if(method!=='POST')return false;
  return u.pathname==='/v1/my-timber-pwa/status'&&[site,api].includes(u.origin)||u.pathname==='/cdn-cgi/rum'&&[site,'https://cloudflareinsights.com'].includes(u.origin);
 }
 export async function openNormalGpDisclosures(page){
@@ -25,6 +25,13 @@ export async function openNormalGpDisclosures(page){
    assert(opened,'Original GP control must have a normal visible disclosure summary: '+selector);
   }
  }
+}
+export async function readGpOverflowGeometry(page){
+ return page.evaluate(()=>{
+  const rect=e=>{const r=e.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
+  const box=e=>{const c=getComputedStyle(e);return{tag:e.tagName,id:e.id,class:typeof e.className==='string'?e.className:'',rect:rect(e),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,css:{width:c.width,minWidth:c.minWidth,maxWidth:c.maxWidth,fontFamily:c.fontFamily,fontSize:c.fontSize,gridTemplateColumns:c.gridTemplateColumns,flexWrap:c.flexWrap,boxSizing:c.boxSizing,overflowX:c.overflowX,position:c.position,transform:c.transform,padding:c.padding,margin:c.margin,whiteSpace:c.whiteSpace,overflowWrap:c.overflowWrap}};};
+  return{at:new Date().toISOString(),viewport:{innerWidth,innerHeight,devicePixelRatio,visualViewport:window.visualViewport?{width:visualViewport.width,height:visualViewport.height,scale:visualViewport.scale}:null},userAgent:navigator.userAgent,fontsStatus:document.fonts?.status,platform:navigator.platform,root:box(document.documentElement),body:box(document.body),overflowing:[...document.querySelectorAll('body *')].filter(e=>{if(!e.getClientRects().length)return false;const r=e.getBoundingClientRect();return r.right>innerWidth+1||e.scrollWidth>e.clientWidth+1;}).map(e=>({...box(e),ancestors:[e.parentElement,e.parentElement?.parentElement].filter(Boolean).map(box)})).sort((a,b)=>b.rect.right-a.rect.right).slice(0,100)};
+ });
 }
 
 const sha=v=>createHash('sha256').update(v).digest('hex');
@@ -66,7 +73,7 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
  async function install(){
   guardContext=page.context();guardPage=page;guardPage.on('pageerror',onPageError);handler=async route=>{
    const req=route.request(),u=new URL(req.url()),method=req.method();
-   if(isPreventedGpBackground(req.url(),method,{site,api})){preventedBackground.push({origin:u.origin,path:u.pathname,method,disposition:'aborted_before_network',authority:'Unrelated analytics/PWA writes remain held'});await route.abort('blockedbyclient');return;}
+   if(isPreventedGpBackground(req.url(),method,{site,api})){preventedBackground.push({origin:u.origin,path:u.pathname,method,disposition:'aborted_before_network',authority:'Unrelated analytics/PWA and cookie-attribution cleanup writes remain held'});await route.abort('blockedbyclient');return;}
    try{
     assert(!HELD.test(u.pathname),'Held email/support/commitment path');
     if(!['GET','HEAD','OPTIONS'].includes(method)){
@@ -131,7 +138,7 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
    const selected=onlyGp((await page.locator('#memberDetailsForm').evaluate(form=>Object.fromEntries(new FormData(form)))));
    assert.deepEqual((await profile()).details,before.details,'Selection alone must not save the account');
    await save({retry:width===390});await open();for(const [key,id]of Object.entries({gpPractice:'memberGpPractice',gpPostcode:'memberGpPostcode',gpCode:'memberGpCode',gpAddress:'memberGpAddress',gpSelectionMode:'memberGpSelectionMode'}))assert.equal(await page.locator('#'+id).inputValue(),selected[key]);
-   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   try{assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}catch(error){try{const geometry=await readGpOverflowGeometry(page);(row.layoutDiagnostics??=[]).push({width,...geometry});}catch(diagnosticError){row.overflowGeometryError=String(diagnosticError.message);}const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;}
    await page.screenshot({path:join(dir,'gp-member-'+width+'.png'),fullPage:true});
    row.checks.push({width,normalSignedInUi:true,searchAndExplicitSelection:true,noAutomaticSave:true,fullAddressSaved:true,reopenRetained:true,noHorizontalOverflow:true,...(width===390?{declaredSimulatedSearchAndSaveInterruption:true,sameOperationRetry:true}:{})});
   }

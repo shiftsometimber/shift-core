@@ -2,12 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {resolve} from 'node:path';
-import {isPreventedGpBackground,openNormalGpDisclosures} from '../release/gp-directory-live-h55-qa-20261016.mjs';
+import {isPreventedGpBackground,openNormalGpDisclosures,readGpOverflowGeometry} from '../release/gp-directory-live-h55-qa-20261016.mjs';
 import {assertQaIdentity,QA_BRANCH,QA_WORKFLOW,TARGET_RUNTIME_SOURCE} from '../release/gp-h55-live-qa-20261016.mjs';
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';
-test('only exact unrelated PWA/RUM POSTs are denied before the original GP guard',()=>{
+test('only exact unrelated PWA/RUM POSTs and attribution DELETE are denied before the original GP guard',()=>{
  for(const url of[site+'/v1/my-timber-pwa/status',api+'/v1/my-timber-pwa/status',site+'/cdn-cgi/rum','https://cloudflareinsights.com/cdn-cgi/rum'])assert.equal(isPreventedGpBackground(url,'POST',{site,api}),true);
- for(const [url,method]of[[site+'/v1/my-timber-pwa/status','PATCH'],[site+'/v1/my-timber-pwa/status/','POST'],[site+'/v1/my-timber-pwa/status-extra','POST'],['https://foreign.invalid/v1/my-timber-pwa/status','POST'],['https://foreign.invalid/cdn-cgi/rum','POST'],[site+'/v1/member/details','PATCH'],[site+'/v1/member/details/gp-search','GET'],[site+'/v1/consents','POST'],[site+'/cdn-cgi/rum','GET']])assert.equal(isPreventedGpBackground(url,method,{site,api}),false,'Original guard retains '+method+' '+url);
+ for(const url of[site+'/v1/acquisition-attribution',api+'/v1/acquisition-attribution'])assert.equal(isPreventedGpBackground(url,'DELETE',{site,api}),true);
+ for(const [url,method]of[[site+'/v1/acquisition-attribution/','DELETE'],[site+'/v1/acquisition-attribution','POST'],[site+'/v1/acquisition-attribution','GET'],['https://foreign.invalid/v1/acquisition-attribution','DELETE'],[site+'/v1/member/details','DELETE'],[site+'/v1/my-timber-pwa/status','PATCH'],[site+'/v1/my-timber-pwa/status/','POST'],[site+'/v1/my-timber-pwa/status-extra','POST'],['https://foreign.invalid/v1/my-timber-pwa/status','POST'],['https://foreign.invalid/cdn-cgi/rum','POST'],[site+'/v1/member/details','PATCH'],[site+'/v1/member/details/gp-search','GET'],[site+'/v1/consents','POST'],[site+'/cdn-cgi/rum','GET']])assert.equal(isPreventedGpBackground(url,method,{site,api}),false,'Original guard retains '+method+' '+url);
 });
 test('real verifier identity cannot be relabelled as runtime H or another workflow',()=>{
  const q='a'.repeat(40),run={id:12,run_attempt:2,head_sha:q,head_branch:QA_BRANCH,path:QA_WORKFLOW,event:'push',head_repository:{full_name:'shiftsometimber/shift-core'}};
@@ -27,4 +28,9 @@ test('old hidden wait fails; normal summaries open actual outer and inner shape,
   assert.deepEqual(await page.evaluate(()=>summaryClicks),['Personal & delivery details','Your GP details']);
   assert.equal(await page.locator('#memberGpPractice').isVisible(),!noGp,'The opener never force-unhides conditional GP inputs');await page.close();
  }}finally{await browser.close();}
+});
+
+test('geometry observes overflow without leaking fictional private text or changing layout',async()=>{
+ const{chromium}=createRequire(resolve(process.cwd(),'package.json'))(process.env.QA_PLAYWRIGHT_MODULE||'playwright');const browser=await chromium.launch({headless:true});
+ try{const page=await browser.newPage({viewport:{width:390,height:900}});await page.setContent('<html><body><main style="width:500px"><input value="PRIVATE_MARKER_123"><div id="fixtureOverflow">PRIVATE_MARKER_456</div></main></body></html>');const before=await page.content();const geometry=await readGpOverflowGeometry(page);assert(geometry.root.scrollWidth>geometry.viewport.innerWidth+1);assert(geometry.overflowing.some(e=>e.tag==='MAIN'));assert(!JSON.stringify(geometry).includes('PRIVATE_MARKER'));assert.equal(await page.content(),before);await page.close();}finally{await browser.close();}
 });
