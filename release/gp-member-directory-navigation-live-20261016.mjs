@@ -50,7 +50,7 @@ function assertSource(){
  assert.equal(git('status','--porcelain','--untracked-files=no'),'');git('merge-base','--is-ancestor',RUNTIME_SOURCE,'HEAD');
  const allowed=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-directory-live-20261015.mjs','release/gp-member-directory-navigation-live-20261016.mjs','tests/gp-member-directory-navigation-live-20261016.test.mjs','tests/gp-member-directory-navigation-browser-20261016.mjs'];
  assert.deepEqual(git('diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',RUNTIME_SOURCE,'HEAD').split('\n').sort(),allowed.sort(),'Only admitted acceptance-harness paths may differ from the serving source');
- assert.equal(hash(readFileSync('release/gp-directory-live-20261015.mjs')),'fe7a34f1d3947a3981d4fda51267f3fb014e9e7fb154b8b19e610a599191872f','Exact reviewed navigation and non-egress changes required');
+ assert.equal(hash(readFileSync('release/gp-directory-live-20261015.mjs')),'520e108f016c2c9db4dd943843b0173bba985acaa48eadfdd8cb05236314d216','Exact reviewed navigation and non-egress changes required');
  return source;
 }
 async function api(path){
@@ -93,7 +93,7 @@ export async function verifyNavigation(){
   let context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
   await commissioningLogin(page,{site,api:apiOrigin,oidc,email:first.email,password:first.password});
   const initial=await context.request.get(site+'/v1/member/details',{headers:{Origin:site,'Cache-Control':'no-cache'}});assert.equal(initial.status(),200);assert.equal((await initial.json()).gpDirectoryV2,true);
-  page=await verifyGpDirectoryLive({page,site,api:apiOrigin,email:first.email,dir:directory,report,freshSession:async()=>{
+  page=await verifyGpDirectoryLive({page,site,api:apiOrigin,email:first.email,dir:directory,report,assessmentGate:'verify_closed_partner',freshSession:async()=>{
    await context.request.post(apiOrigin+'/v1/auth/logout',{headers:{Origin:site,'Content-Type':'application/json'},data:{}});
    await context.close();context=await browser.newContext({viewport:{width:390,height:844}});page=await context.newPage();
    await commissioningLogin(page,{site,api:apiOrigin,oidc,email:first.email,password:first.password});return page;
@@ -110,9 +110,10 @@ export async function verifyNavigation(){
   report.checks.push({requirement:'Actual second fictional holder isolation',...isolation});
   report.servingAfter=await assertCurrentQuestionnaireGp(runtime,run,RUNTIME_SOURCE);
   assert.equal(git('rev-parse','HEAD'),source);assert.equal(git('status','--porcelain','--untracked-files=no'),'');
-  report.status='pass';report.featureAcceptance=true;
+   assert.equal(firstFlow.assessmentReuse.status,'blocked');assert.equal(firstFlow.assessmentReuse.liveGateVerifiedClosed,true);assert.equal(firstFlow.assessmentReuse.originalAcceptanceRetained,true);
+   report.status='pass';report.memberDirectoryAcceptance=true;report.featureAcceptance=false;report.assessmentReuseAcceptance=firstFlow.assessmentReuse;report.originalFullFeatureAcceptanceStillOpen=true;
  }catch(error){report.status='failed';report.error=String(error?.message||error);for(const fixture of [first,second])report.error=report.error.replaceAll(fixture.email,'[synthetic]').replaceAll(fixture.password,'[redacted]');throw error;}
  finally{writeFileSync(join(directory,'gp-member-directory-report.json'),JSON.stringify(report,null,2)+'\n');await browser.close();}
- console.log('PASS actual GP lookup, selection, save/reopen and two-fictional-holder isolation; genuine signed-in HQ holder acceptance remains separate');
+ console.log('PASS actual GP directory lookup, selection, save/reopen, recovery and two-fictional-holder isolation. Original live clinical GP reuse and genuine HQ holder acceptance remain open; no whole-feature pass claimed.');
 }
 if(process.argv[1]&&pathToFileURL(resolve(process.argv[1])).href===import.meta.url)await verifyNavigation();

@@ -41,8 +41,14 @@ export async function openGpMemberSettingsPanel(page){
  if(await gp.getAttribute('open')===null)await gpSummary.click();assert.notEqual(await gp.getAttribute('open'),null,'Normal GP navigation must open the panel');
 }
 
-export async function verifyGpDirectoryLive({page,site,api,email,dir,report,freshSession}){
- const source=process.env.GITHUB_SHA;assertGpHolder({site,api,email,source,report});assert.equal(typeof freshSession,'function');
+export function assertClosedAssessmentContext(value){
+ assert.equal(value?.ok,true,'Actual authenticated clinical context required');
+ assert.equal(value.assessmentAvailable,false,'The partner gate must actually be closed; never hide an available assessment failure');
+ return value;
+}
+
+export async function verifyGpDirectoryLive({page,site,api,email,dir,report,freshSession,assessmentGate='require_open'}){
+ const source=process.env.GITHUB_SHA;assertGpHolder({site,api,email,source,report});assert.equal(typeof freshSession,'function');assert(['require_open','verify_closed_partner'].includes(assessmentGate),'Unknown assessment acceptance mode rejected');
  const row={requirement:'GP directory member flow',source,at:new Date().toISOString(),synthetic:true,realCustomerWrites:0,notificationsSent:0,urls:[site+'/member/settings'],checks:[],status:'running'};
  report.checks.push(row);
  let holderId=null,baseline=null,guardContext=null,guardPage=null,handler=null,interruptSave=false,interruptSearch=false,lastSave=null;
@@ -132,12 +138,37 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
   await page.locator('#memberDetailsForm').getByRole('button',{name:'Enter GP details manually',exact:true}).click();
   const markerText='Fictional release GP '+randomUUID();await page.locator('#memberGpPractice').fill(markerText);await page.locator('#memberGpAddress').fill('Fictional release acceptance only; no GP notification or registration.');await page.locator('#memberGpPostcode').fill('SK10 1AA');
   assert.equal(await page.locator('#memberGpSelectionMode').inputValue(),'manual');assert.equal(await page.locator('#memberGpCode').inputValue(),'');const finalProfile=await save();
+   if(assessmentGate==='require_open'){
   const assessment=await page.context().newPage();assessment.on('pageerror',onPageError);try{
    await assessment.goto(site+'/treatment-assessment',{waitUntil:'domcontentloaded'});
    const load=assessment.getByRole('button',{name:'Use GP details saved in My Timber',exact:true}),use=assessment.getByRole('button',{name:'Use these GP details',exact:true});await load.waitFor({timeout:30000});
    const unchanged=await assessment.locator('[name="gpPractice"]').inputValue();await load.click();await use.waitFor({timeout:15000});assert.equal(await assessment.locator('[name="gpPractice"]').inputValue(),unchanged);assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);
    await use.click();assert.equal(await assessment.locator('[name="gpPractice"]').inputValue(),markerText);assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);row.checks.push({savedAssessmentDetailsLoadedOnlyOnRequest:true,separateGpSharingConsentUnchecked:true,assessmentNeverSubmitted:true});
   }finally{await assessment.close();}
+   }else{
+    // A closed clinical service is a real dependency, never a passing reuse test.
+    // Keep the original open-service assertions above for their original gate.
+    const contextResponse=await page.context().request.get(api+'/v1/commerce/medicine-clinical-context',{headers:{Origin:site,'Cache-Control':'no-cache'}});
+    assert.equal(contextResponse.status(),200);assert.match(contextResponse.headers()['cache-control']||'',/no-store/);assertClosedAssessmentContext(await contextResponse.json());
+    const assessment=await page.context().newPage(),requests=[];
+    assessment.on('pageerror',onPageError);assessment.on('request',request=>requests.push({path:new URL(request.url()).pathname,method:request.method()}));
+    try{
+     for(const width of [390,1440]){
+      await assessment.setViewportSize({width,height:900});await assessment.goto(site+'/treatment-assessment',{waitUntil:'domcontentloaded'});
+      await assessment.waitForFunction(()=>document.querySelector('#status')?.textContent==='Assessment is not open for this selection. No information has been sent and no payment has been taken.',null,{timeout:30000});
+      assert.equal(await assessment.locator('#assessment').getAttribute('hidden'),'');
+      assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name="gpPractice"]').inputValue(),'');
+      assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);assert.equal(await assessment.locator('[name="imageConsent"]').isChecked(),false);
+      assert.equal(await assessment.getByRole('button',{name:'Use GP details saved in My Timber',exact:true}).isVisible(),false);
+      assert(await assessment.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+      await assessment.screenshot({path:join(dir,'gp-closed-assessment-'+width+'.png'),fullPage:true});
+     }
+     assert.equal(requests.some(r=>r.path==='/v1/member/details'||r.path==='/v1/member/details/gp-search'),false,'A closed assessment must not read saved GP details automatically');
+     assert.deepEqual(requests.filter(r=>!['GET','HEAD','OPTIONS'].includes(r.method)&&!['/cdn-cgi/rum','/v1/my-timber-pwa/status'].includes(r.path)),[],'No assessment submission, sharing or other write allowed');
+     assert.deepEqual((await profile()).details,finalProfile.details);
+     row.assessmentReuse={status:'blocked',reason:'Actual pharmacy clinical context assessmentAvailable=false; original open-service GP reuse assertions remain required',liveGateVerifiedClosed:true,consentsUnchecked:true,savedGpAutomaticallyRead:false,assessmentSubmitted:false,originalAcceptanceRetained:true};
+    }finally{await assessment.close();}
+   }
   await uninstall();page=await freshSession();await self();await install();await open();assert.deepEqual((await profile()).details,finalProfile.details);assert.equal(await page.locator('#memberGpPractice').inputValue(),markerText);row.checks.push({manualSaved:true,noGpSavedAndReopened:true,freshNormalSignIn:true});
   const anonymous=await page.context().browser().newContext();try{for(const path of ['/v1/member/details','/v1/member/details/gp-search?q=London']){const r=await anonymous.request.get(site+path);assert.equal(r.status(),401);assert.match(r.headers()['cache-control']||'',/no-store/);assert(!(await r.text()).includes(markerText));}}finally{await anonymous.close();}
   row.assetsAfter=await assets(control);assert.deepEqual(row.assetsAfter,row.assetsBefore);assert.deepEqual(blocked,[]);assert.deepEqual(pageErrors,[]);
