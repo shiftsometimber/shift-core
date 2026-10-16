@@ -5694,5 +5694,46 @@
       }
     },
     "maintenanceSource": "6313d46e7f24b4fe68e0f5ee3af299ddb96811ee"
+  },
+  "seoAuditRepair20261016": {
+    "proof": "EXACT_APPROVED_ARTICLE_SEO_REPAIR_20261016",
+    "base": "18c01034f132d54aafdb9d71c12700893f87412f",
+    "payload": "50e6d435a262b8e9cb2dd455404f3ef1594ffa6d",
+    "paths": [
+      "babylove/corrected-public-rows.json",
+      "babylove/dynamic-public.mjs",
+      "babylove/seo-repairs-20261016.test.mjs",
+      "public-https-redirect.mjs",
+      "public-https-redirect.test.mjs",
+      "worker-entry-v6.js"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "release/food-diary-london-date-scope-20261015.mjs",
+      "release/seo-audit-scope-20261016.mjs",
+      "tests/approved-runtime-composition.test.mjs",
+      "tests/bounded-source-scheduling-20261016.test.mjs",
+      "tests/food-diary-london-date-stack-20261015.test.mjs",
+      "tests/seo-audit-scope-20261016.test.mjs"
+    ],
+    "approval": {
+      "version": "SEO-FIX-20261016-v2",
+      "copySha256": "c266df422dfd64753de1a737a2c242c216d31ccaee5e451615677c1100d99235",
+      "at": "2026-10-16T11:19:31+01:00",
+      "instruction": "Approved"
+    },
+    "sourceRepair": {
+      "base": "18c01034f132d54aafdb9d71c12700893f87412f",
+      "fixturePaths": [
+        "tests/food-diary-london-date-stack-20261015.test.mjs",
+        "tests/bounded-source-scheduling-20261016.test.mjs"
+      ],
+      "adapterScope": ".github/workflows/cloudflare-production-promote.yml",
+      "originalAssertionsRemoved": 0,
+      "sourceCheckLimitsRaised": false,
+      "historicalAssertionInputsRestored": true,
+      "workflowFixturesAlreadyOnCurrentMain": true
+    },
+    "maintenanceSource": "ccac1d41b27ef848059ff6b2ca3d55a5633dee01"
   }
 }

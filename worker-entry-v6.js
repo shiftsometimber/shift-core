@@ -1,3 +1,4 @@
+import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {withSharedFooter} from './shared-footer.mjs';
 import {foodSupplementGuideRoute,withFoodGuideDiscovery} from './food-supplement-guide/production.mjs';
 import {withGrowthPublicCopy} from './growth-member-public.mjs';
@@ -1186,6 +1187,7 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
 export default {
   ...worker,
   fetch: async function publicFetch(request, env, ctx) {
+    const httpsRedirect=publicHttpsRedirect(request);if(httpsRedirect)return httpsRedirect;
     if (new URL(request.url).pathname === '/sitemap-articles.xml') {
       const source = new URL(request.url); source.pathname = '/sitemap.xml'; source.search = '';
       return articleSitemapResponse(request, () => publicFetch(new Request(source, {method:'GET'}), env, ctx));
