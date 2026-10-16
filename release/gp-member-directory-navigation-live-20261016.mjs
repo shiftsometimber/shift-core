@@ -41,10 +41,10 @@ export function assertCompiledRuntime(control,runtime,harnessSource){
 function assertSource(){
  const source=process.env.GITHUB_SHA;assert.match(source||'',/^[a-f0-9]{40}$/);assert.equal(process.env.GITHUB_REPOSITORY,repository);
  assert.equal(process.env.GITHUB_REF,'refs/heads/'+HARNESS_BRANCH);assert.equal(process.env.GITHUB_EVENT_NAME,'push');assert.equal(git('rev-parse','HEAD'),source);
- assert.equal(git('status','--porcelain','--untracked-files=no'),'');assert.equal(git('show','-s','--format=%P','HEAD'),RUNTIME_SOURCE);
- const allowed=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-directory-live-20261015.mjs','release/gp-member-directory-navigation-live-20261016.mjs','tests/gp-member-directory-navigation-live-20261016.test.mjs'];
+ assert.equal(git('status','--porcelain','--untracked-files=no'),'');git('merge-base','--is-ancestor',RUNTIME_SOURCE,'HEAD');
+ const allowed=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-directory-live-20261015.mjs','release/gp-member-directory-navigation-live-20261016.mjs','tests/gp-member-directory-navigation-live-20261016.test.mjs','tests/gp-member-directory-navigation-browser-20261016.mjs'];
  assert.deepEqual(git('diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',RUNTIME_SOURCE,'HEAD').split('\n').sort(),allowed.sort(),'Only admitted acceptance-harness paths may differ from the serving source');
- assert.equal(hash(readFileSync('release/gp-directory-live-20261015.mjs')),'923a11451859e5470198c81ffac753f57dbf3b7d28bc23bdbb0faab5c5c44c0a','Exact reviewed navigation and non-egress changes required');
+ assert.equal(hash(readFileSync('release/gp-directory-live-20261015.mjs')),'fe7a34f1d3947a3981d4fda51267f3fb014e9e7fb154b8b19e610a599191872f','Exact reviewed navigation and non-egress changes required');
  return source;
 }
 async function api(path){

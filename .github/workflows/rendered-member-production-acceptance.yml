@@ -303,6 +303,8 @@ jobs:
           npx playwright install --with-deps chromium
           npm install --prefix "$RUNNER_TEMP/gp-workerd-4146" --ignore-scripts --package-lock=false wrangler@4.146.0
           echo "TREATMENT_MINIFLARE=$RUNNER_TEMP/gp-workerd-4146/node_modules/miniflare" >> "$GITHUB_ENV"
+      - name: Verify nested normal account navigation at both required widths
+        run: node tests/gp-member-directory-navigation-browser-20261016.mjs
       - name: Acquire the original allowed-workflow commissioning identity
         id: gp_oidc
         shell: bash

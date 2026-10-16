@@ -32,6 +32,15 @@ async function compiledGpAssets(source){
  return {source:control.source,bundleSha256:control.bundleSha256,assets};
 }
 
+export async function openGpMemberSettingsPanel(page){
+ const account=page.locator('details:has(#memberDetailsForm)');assert.equal(await account.count(),1,'One normal member-details disclosure required');
+ const accountSummary=account.locator(':scope > summary');assert.equal((await accountSummary.innerText()).trim(),'Personal & delivery details','Exact normal account disclosure heading required');
+ if(await account.getAttribute('open')===null)await accountSummary.click();assert.notEqual(await account.getAttribute('open'),null,'Normal account navigation must open the panel');
+ const gp=page.locator('#memberDetailsForm details:has(#memberGpPractice)');assert.equal(await gp.count(),1,'One nested GP disclosure required');
+ const gpSummary=gp.locator(':scope > summary');assert.equal((await gpSummary.innerText()).trim(),'GP practice (optional)','Exact normal GP disclosure heading required');
+ if(await gp.getAttribute('open')===null)await gpSummary.click();assert.notEqual(await gp.getAttribute('open'),null,'Normal GP navigation must open the panel');
+}
+
 export async function verifyGpDirectoryLive({page,site,api,email,dir,report,freshSession}){
  const source=process.env.GITHUB_SHA;assertGpHolder({site,api,email,source,report});assert.equal(typeof freshSession,'function');
  const row={requirement:'GP directory member flow',source,at:new Date().toISOString(),synthetic:true,realCustomerWrites:0,notificationsSent:0,urls:[site+'/member/settings'],checks:[],status:'running'};
@@ -66,10 +75,7 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
  async function uninstall(){if(guardContext&&handler)await guardContext.unroute('**/*',handler);if(guardPage)guardPage.off('pageerror',onPageError);guardContext=null;guardPage=null;handler=null;}
  async function open(){
   await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});
-  const disclosure=page.locator('details:has(#memberDetailsForm)');assert.equal(await disclosure.count(),1,'One normal member-details disclosure required');
-  assert.equal((await disclosure.locator('summary').innerText()).trim(),'Personal & delivery details');
-  if(await disclosure.getAttribute('open')===null)await disclosure.locator('summary').click();
-  assert.notEqual(await disclosure.getAttribute('open'),null,'Normal member-details navigation must open the panel');
+  await openGpMemberSettingsPanel(page);
   await page.locator('#memberDetailsForm[data-gp-directory-v2="true"]').waitFor({state:'visible',timeout:30000});
   await page.waitForFunction(()=>document.querySelector('#memberDetailsFields')?.disabled===false,{},{timeout:30000});
   assert.equal(await page.locator('#memberEmail').inputValue(),email);await self();
