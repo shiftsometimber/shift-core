@@ -8,7 +8,8 @@ export default {async fetch(request,env,ctx){
    const headers=new Headers(response.headers);if(request.headers.get('Origin')==='https://hq.shiftsometimber.co.uk'){headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');headers.set('Access-Control-Allow-Credentials','true');headers.set('Vary','Origin');}
    return new Response(response.body,{status:response.status,headers});
  }
- const management=['/v1/hq/management/report' ,'/v1/hq/management/export','/v1/hq/management/gp-directory'].includes(path);
+ const memberGp=/^\/v1\/hq\/management\/people\/[1-9]\d*\/gp-details$/.test(path);
+ const management=memberGp||['/v1/hq/management/report' ,'/v1/hq/management/export','/v1/hq/management/gp-directory'].includes(path);
  const staff=path.match(/^\/v1\/hq\/management\/users\/(\d+)$/);
  if(staff&&['PATCH','OPTIONS'].includes(request.method)){url.pathname='/v1/hq/users/'+staff[1];return hq.fetch(new Request(url,request),env,ctx);}
  if(!management)return new Response('Not found',{status:404});

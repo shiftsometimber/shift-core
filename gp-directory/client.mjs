@@ -49,6 +49,42 @@ function mount(config){
  });
  manual.addEventListener('click',()=>{invalidate();clearReference();help.textContent='Enter your surgery name, full address and postcode below.';practice.focus();changed();});
  const status=form.querySelector(config.mode||'#__none__');if(status)status.addEventListener('change',()=>{invalidate();if(status.value==='no_gp'){for(const el of [practice,postcode,address,form.querySelector(config.code)])if(el)el.value='';selected.textContent='No GP recorded. A prescriber must review any implications for treatment.';}else clearReference();changed();});
+ // Saved profile details are read only after an explicit member request.
+ if(config.form==='form#assessment'){
+  const savedButton=document.createElement('button');savedButton.type='button';savedButton.textContent='Use GP details saved in My Timber';
+  const savedSummary=document.createElement('p');savedSummary.setAttribute('role','status');savedSummary.setAttribute('aria-live','polite');
+  const applySaved=document.createElement('button');applySaved.type='button';applySaved.textContent='Use these GP details';applySaved.hidden=true;
+  host.append(savedButton,savedSummary,applySaved);
+  for(const el of [savedButton,applySaved])el.style.cssText='width:100%;max-width:100%;box-sizing:border-box;min-height:44px;margin:8px 0';
+  let saved=null,savedRequest=null,savedSerial=0;
+  function clearSaved(){++savedSerial;savedRequest?.abort();savedRequest=null;saved=null;applySaved.hidden=true;savedButton.disabled=false;savedSummary.textContent='';}
+  for(const el of [practice,postcode,address])if(el)el.addEventListener('input',clearSaved);
+  select.addEventListener('change',clearSaved);manual.addEventListener('click',clearSaved);
+  savedButton.addEventListener('click',async()=>{
+   clearSaved();const current=savedSerial,active=new AbortController();savedRequest=active;savedButton.disabled=true;
+   const timeout=setTimeout(()=>active.abort(),7000);savedSummary.textContent='Loading your saved GP details…';
+   try{
+    const response=await fetch('/v1/member/details',{credentials:'include',cache:'no-store',signal:active.signal});
+    const body=await response.json();if(current!==savedSerial)return;
+    if(!response.ok||body.ok!==true)throw Error(response.status===401?'Sign in to My Timber to use saved details, or enter your GP manually.':'Saved GP details could not load. Your form is unchanged; manual entry still works.');
+    const d=body.details;
+    if(!d||d.gpSelectionMode==='no_gp'||typeof d.gpPractice!=='string'||!d.gpPractice.trim())throw Error('No GP practice is saved in your profile. Search or enter your current GP manually.');
+    const max={gpPractice:160,gpPostcode:12,gpAddress:500};saved={};
+    for(const [key,limit]of Object.entries(max)){
+     const value=d[key]??'';if(typeof value!=='string'||value.length>limit||/[\u0000-\u001f\u007f]/.test(value))throw Error('Saved GP details could not be used. Enter them manually.');
+     saved[key]=value.trim();
+    }
+    savedSummary.textContent=[saved.gpPractice,saved.gpAddress,saved.gpPostcode].filter(Boolean).join(', ')+'. Check these are still your registered GP details before using them.';
+    applySaved.hidden=false;
+   }catch(error){if(current===savedSerial)savedSummary.textContent=error.name==='AbortError'?'Saved details timed out. Your form is unchanged; manual entry still works.':error.message;}
+   finally{clearTimeout(timeout);if(current===savedSerial){savedButton.disabled=false;savedRequest=null;}}
+  });
+  applySaved.addEventListener('click',()=>{
+   if(!saved)return;const d=saved;invalidate();clearReference();practice.value=d.gpPractice;postcode.value=d.gpPostcode;if(address)address.value=d.gpAddress;
+   clearSaved();help.textContent='Saved GP details filled. Check them and make your separate GP-sharing choice before submitting.';changed();
+  });
+  window.addEventListener('pagehide',clearSaved);
+ }
  window.addEventListener('pagehide',invalidate);invalidate();
 }
 mount({form:'form#assessment',practice:'[name="gpPractice"]',postcode:'[name="gpPostcode"]',address:'[name="gpAddress"]',host:'#assessmentGpLookup',selectId:'assessmentGpSelect',helpId:'assessmentGpHelp',choiceId:'assessmentGpChoice'});
