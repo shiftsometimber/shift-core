@@ -102,3 +102,7 @@ JSON string and was correctly rejected without a draft or retry. Both inference
 requests now use the existing model's documented JSON response mode; the parser
 accepts its structured-object response as well as valid JSON text. Malformed
 responses still fail closed. Two regression cases cover those provider formats.
+The real provider also emitted malformed JSON under its generic object mode;
+the candidate now requests complete author and reviewer JSON schemas. No output
+repair, fallback, token increase or validator relaxation is used. The observed
+fabricated calorie-calculator example is expressly excluded by the author brief.
