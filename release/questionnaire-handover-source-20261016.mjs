@@ -22,6 +22,7 @@ export const PATHS=Object.freeze([
  'tests/medicine-intake-sqlite.test.mjs','tests/medicine-purchase-e2e.test.mjs',
  'tests/pharmacy-handover-v1.test.mjs',
 ]);
+export const GP_PRIVACY_PATHS=Object.freeze(['member-experience/member-details-lookups.mjs','member-experience/tests/gp-lookup-private-denial.test.mjs']);
 export const MAINTENANCE=Object.freeze([
  '.github/workflows/questionnaire-handover-release-20261016.yml',
  'release/questionnaire-handover-source-20261016.mjs',
@@ -34,16 +35,17 @@ const policyPath='release/questionnaire-handover-policy-20261016.json';
 const sha=s=>assert.match(s||'',/^[a-f0-9]{40}$/,'Exact Git object required');
 export function assertQuestionnaireRecord(record,policy){
  assert(record&&policy);assert.equal(record.proof,'EXACT_NONCLINICAL_QUESTIONNAIRE_HANDOVER_20261016');
- assert.deepEqual(Object.keys(record).sort(),['proof','preparedBase','preparedFix','payloadSource','payloadTree','base','baseTree','maintenanceSource','paths','maintenancePaths','partnerApprovedQuestionnaire','partnerTestPassed','homepageChanged','treatmentSalesActivated','clinicalRulesAdded','predictiveModelsActivated','r4Activated','stockChanged','configurationChanged','communicationsSent','sourceGuardsRelaxed'].sort(),'Unknown source approval field');
+ assert.deepEqual(Object.keys(record).sort(),['proof','preparedBase','preparedFix','payloadSource','payloadTree','base','baseTree','maintenanceSource','paths','maintenancePaths','partnerApprovedQuestionnaire','partnerTestPassed','homepageChanged','treatmentSalesActivated','clinicalRulesAdded','predictiveModelsActivated','r4Activated','stockChanged','configurationChanged','communicationsSent','sourceGuardsRelaxed','gpPrivateDenialsCorrected'].sort(),'Unknown source approval field');
  assert.equal(record.preparedBase,PREPARED_BASE);assert.equal(record.preparedFix,PREPARED_FIX);
  assert.equal(record.payloadSource,PAYLOAD);assert.equal(record.payloadTree,PAYLOAD_TREE);
  assert.deepEqual(record.paths,PATHS);assert.deepEqual(record.maintenancePaths,MAINTENANCE);
  assert.equal(record.base,policy.acceptedBase.source);assert.equal(record.baseTree,policy.acceptedBase.tree);
  for(const value of [record.base,record.baseTree,record.maintenanceSource])sha(value);
- assert.equal(record.partnerApprovedQuestionnaire,false);assert.equal(record.partnerTestPassed,false);
+ assert.equal(record.partnerApprovedQuestionnaire,false);assert.equal(record.partnerTestPassed,false);assert.equal(record.gpPrivateDenialsCorrected,true);
  for(const flag of ['homepageChanged','treatmentSalesActivated','clinicalRulesAdded','predictiveModelsActivated','r4Activated','stockChanged','configurationChanged','communicationsSent','sourceGuardsRelaxed'])assert.equal(record[flag],false,flag);
  assert.deepEqual(sorted(Object.keys(policy.payloadBlobs)),sorted(PATHS));
  for(const value of Object.values(policy.payloadBlobs))sha(value);
+ assert.deepEqual(sorted(Object.keys(policy.gpPrivacyBlobs)),sorted(GP_PRIVACY_PATHS));for(const value of Object.values(policy.gpPrivacyBlobs))sha(value);
  assert.equal(policy.acceptedBase.repository,'shiftsometimber/shift-core');
  assert.equal(policy.acceptedBase.run,38974318146);
  assert.equal(policy.acceptedBase.source,'55b73025f5b6d2302fab42bce73a222653404186');
@@ -148,20 +150,25 @@ export function verifyQuestionnaireSource(){
  for(const [a,b]of [[PREPARED_BASE,PREPARED_FIX],[PREPARED_FIX,PAYLOAD],[PAYLOAD,head],[base,head],[record.maintenanceSource,head]])g('merge-base','--is-ancestor',a,b);
  const paths=(a,b)=>g('diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',a,b,'--').split('\n').filter(Boolean);
  assert.deepEqual(sorted(paths(PREPARED_BASE,PAYLOAD)),sorted(PATHS),'Original questionnaire payload changed');
- assert.deepEqual(sorted(paths(base,head)),sorted([...PATHS,...MAINTENANCE,ledger]),'Unrelated release change');
+ assert.deepEqual(sorted(paths(base,head)),sorted([...PATHS,...GP_PRIVACY_PATHS,...MAINTENANCE,ledger]),'Unrelated release change');
  assert.deepEqual(paths(record.maintenanceSource,head),[ledger],'Unreviewed changes after maintenance');
  for(const path of PATHS){
   assert.equal(g('rev-parse',PAYLOAD+':'+path),policy.payloadBlobs[path]);
   assert.equal(g('rev-parse',head+':'+path),policy.payloadBlobs[path],'Questionnaire payload changed '+path);
   const a=g('ls-tree',PREPARED_BASE,'--',path),b=g('ls-tree',base,'--',path);assert.equal(a,b,'Accepted-base predecessor differs '+path);
  }
- for(const path of [...PATHS,...MAINTENANCE]){
+ for(const path of [...PATHS,...GP_PRIVACY_PATHS,...MAINTENANCE]){
   const row=g('ls-tree',head,'--',path);assert.match(row,/^100644 blob [a-f0-9]{40}\t/,'Only regular exact files permitted');
   assert.equal(g('rev-parse',head+':'+path),g('rev-parse',record.maintenanceSource+':'+path),'Frozen maintenance changed '+path);
  }
+ for(const path of GP_PRIVACY_PATHS)assert.equal(g('rev-parse',head+':'+path),policy.gpPrivacyBlobs[path],'Exact GP authentication privacy correction required '+path);
+ const privacyPath=GP_PRIVACY_PATHS[0],privacySource=text(head,privacyPath),privacyInsertion="// Authentication failures must retain this private endpoint's cache/privacy policy.\nfunction privateAuthResponse(response){\n const next=new Headers(response.headers);for(const [key,value]of Object.entries(headers))next.set(key,value);\n return new Response(response.body,{status:response.status,statusText:response.statusText,headers:next});\n}\n";
+ assert.equal(privacySource.split(privacyInsertion).length-1,1,'One private-response helper required');
+ const privateReturn='if(auth.response)return privateAuthResponse(auth.response);';assert.equal(privacySource.split(privateReturn).length-1,2,'Both original authentication returns must remain');
+ assert.equal(privacySource.replace(privacyInsertion,'').split(privateReturn).join('if(auth.response)return auth.response;'),text(base,privacyPath),'The complete GP lookup source must restore exactly; authentication, limits, lookup and all other behaviour stay unchanged');
  delete current.questionnaireHandover20261016;
  assert.deepEqual(current,JSON.parse(text(base,ledger)),'Every existing GP/Core ledger row must remain exact');
  for(const path of ['wrangler.jsonc','wrangler.coaching.jsonc','wrangler.hq-management.jsonc','worker-entry-v6.js','shift-coach/worker.mjs','hq-management-entry.mjs','package.json','package-lock.json'])assert.equal(g('rev-parse',head+':'+path),g('rev-parse',base+':'+path),'Protected accepted source changed '+path);
- regular(head,[...PATHS,...MAINTENANCE],{working:true});
+ regular(head,[...PATHS,...GP_PRIVACY_PATHS,...MAINTENANCE],{working:true});
  clean();return {source:head,tree:g('rev-parse',head+'^{tree}'),record,policy};
 }

@@ -31,6 +31,8 @@ jobs:
         run: |
           npm run check
           node --test tests/pharmacy-handover-v1.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-intake-continuity.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/checkout-recovery.test.mjs tests/shop-recovery.test.mjs tests/promise-accuracy.test.mjs tests/commerce-recovery-health.test.mjs tests/medicine-stripe-retry-v1.test.mjs tests/medicine-intake-sqlite.test.mjs tests/questionnaire-handover-release-20261016.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs
+      - name: Preserve GP, account isolation and original anonymous denial assertions
+        run: node --test member-experience/tests/member-details.test.mjs member-experience/tests/manual-address.test.mjs member-experience/tests/lookup-continuation.test.mjs member-experience/tests/release-anonymous.test.mjs member-experience/tests/gp-lookup-private-denial.test.mjs gp-directory/*.test.mjs
       - name: Install isolated browser dependencies without changing compiler or lockfile
         run: |
           npm install --no-save --package-lock=false --ignore-scripts playwright@1.58.2

@@ -36,5 +36,9 @@
     "tests/medicine-purchase-e2e.test.mjs": "a047b54a21799bca4826a94fc92189373f2c1237",
     "tests/pharmacy-handover-v1.test.mjs": "732db1db24a87b09b26a12806a6f29cc7dd18e15"
   },
-  "authority": "Matt 16 October 2026: routine nonclinical engineering corrections, checks, integration and deployment authorised; existing clinical, sales, privacy, stock, homepage, R4 and communication controls retained. Provisional generic pharmacy contract remains disabled; no genuine partner acceptance claimed."
+  "authority": "Matt 16 October 2026: routine nonclinical engineering corrections, checks, integration and deployment authorised; existing clinical, sales, privacy, stock, homepage, R4 and communication controls retained. Provisional generic pharmacy contract remains disabled; no genuine partner acceptance claimed.",
+  "gpPrivacyBlobs": {
+    "member-experience/member-details-lookups.mjs": "bd60abf5c4e295ee89d569a7934d846db87e2e5f",
+    "member-experience/tests/gp-lookup-private-denial.test.mjs": "b6b048fe307eba4b43cc2d4f483a1791b5e981b4"
+  }
 }
