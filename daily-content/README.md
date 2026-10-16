@@ -89,3 +89,10 @@ Local validation: `node --test daily-content/engine.test.mjs` uses native SQLite
 with real SQL transactions and synthetic page/model adapters. It proves local
 flow, duplicate prevention, quarantine, failure, URL and budget-route boundaries;
 it is not production, actual Workers AI output or clinical acceptance.
+
+16 October real-model verification, using an ephemeral database and the existing
+capped gateway, held the first response because its body omitted visible source
+links despite listing sources in claim metadata. The validator stayed unchanged.
+The author prompt now explicitly requires Markdown body links for every supplied
+source and a visible Sources section. This is a corrected candidate, not an
+automatic retry of the held production day; no production attempt occurred.
