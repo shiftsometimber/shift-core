@@ -1,6 +1,7 @@
 # Daily internal website content — prepared 15 October 2026
 
-Status: implemented and locally tested; not merged, deployed or activated.
+Status: implemented and locally tested; runtime deployment authorised on
+16 October 2026. Not merged, deployed or activated.
 
 The existing 15-minute Worker cron runs `runKnowledgeFlywheel`. Its original
 publication-to-knowledge refresh remains intact. The additive job makes at most
@@ -47,9 +48,17 @@ DAILY_CONTENT_BUDGET_VERIFIED=true
 ```
 
 The receipt flag is an operational interlock, not independent evidence of the
-gateway's configuration. Current local Cloudflare access failed with API
-authentication code 10000 on 15 October; no credential was requested or read.
-No inference or production database write was attempted by this preparation.
+gateway's configuration. Normal authenticated Cloudflare CLI access recovered
+on 16 October. A read-only primary D1 schema check confirmed the existing article
+and knowledge tables; it performed zero writes. The separate original gateway
+reader needs its existing CI credential; credentials were not read or extracted.
+
+The isolated feature branch now has a finite read-only preflight: the original
+knowledge-ingestion proof, daily draft tests, the actual configured Worker dry
+build, and the original gateway settings reader with exact 10/minute assertions.
+It makes no inference request, provider change, publication or deployment. This
+does not admit this feature into the #1065 composition or replace its native,
+hosted and production gates. The active release-repair candidate stays separate.
 
 Required live acceptance: exact deployed source; one real private draft with
 primary-source reads, independent review and hash bound to its target; overlap

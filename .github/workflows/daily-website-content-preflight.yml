@@ -1,0 +1,46 @@
+name: Daily website content read-only preflight
+on:
+  push:
+    branches: [codex/daily-website-content-20261015]
+    paths:
+      - 'daily-content/**'
+      - 'scheduled-knowledge-v1.js'
+      - '.github/workflows/daily-website-content-preflight.yml'
+permissions:
+  contents: read
+concurrency:
+  group: shift-daily-website-content-preflight
+  cancel-in-progress: false
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Daily draft safety and original knowledge ingestion
+        run: |
+          node --test daily-content/engine.test.mjs
+          node knowledge-flywheel-staging.mjs
+      - name: Compile existing Worker without uploading or activating
+        run: npx wrangler deploy --config wrangler.jsonc --dry-run --outdir "$RUNNER_TEMP/daily-content-compiled"
+      - name: Read existing gateway budgets and privacy without inference
+        env:
+          CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+        run: |
+          node preview/ai-context/gateway-settings.mjs "$RUNNER_TEMP/daily-content-budget"
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {readFileSync} from 'node:fs';
+          const report=JSON.parse(readFileSync(process.env.RUNNER_TEMP+'/daily-content-budget/gateway-settings.json','utf8'));
+          assert.equal(report.rateLimit.limit,10,'Preserve existing shared 10 requests/minute');
+          assert.equal(report.rateLimit.interval,60,'Preserve existing 60-second interval');
+          assert.equal(report.rateLimit.technique,'sliding','Preserve the rolling rate limit');
+          console.log('DAILY_CONTENT_PREFLIGHT '+JSON.stringify({source:process.env.GITHUB_SHA,at:report.at,localFlow:true,originalIngestion:true,compiled:true,gatewayVerified:true,inferenceRequests:0,providerWrites:0,deployed:false,activated:false,published:false}));
+          NODE

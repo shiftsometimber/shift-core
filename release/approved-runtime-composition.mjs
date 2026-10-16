@@ -1,3 +1,5 @@
+import {FOOD_DIARY_LONDON_DATE_PATHS,FOOD_DIARY_LONDON_DATE_MAINTENANCE} from './food-diary-london-date-scope-20261015.mjs';
+import {CI_EXECUTION_PATHS,CI_EXECUTION_MAINTENANCE} from './ci-execution-scope-20261014.mjs';
 import {COMBINED_FINITE_BASE,COMBINED_FINITE_PATHS,COMBINED_FINITE_MAINTENANCE} from './combined-finite-scope-20261014.mjs';
 import {MY_TIMBER_WEEK_CLOSEOUT_BASE,MY_TIMBER_WEEK_CLOSEOUT_PATHS,MY_TIMBER_WEEK_CLOSEOUT_MAINTENANCE} from './my-timber-week-closeout-scope.mjs';
 import {MY_TIMBER_WEEK_BASE,MY_TIMBER_WEEK_PATHS,MY_TIMBER_WEEK_MAINTENANCE} from './my-timber-week-scope.mjs';
@@ -12,7 +14,9 @@ import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposit
 import {MY_TIMBER_PROGRESS_PATHS,MY_TIMBER_PROGRESS_MAINTENANCE,verifyMyTimberProgressJourney} from './my-timber-progress-journey-scope.mjs';
 import {withoutTreatmentFlag,withoutTreatmentSteps,TREATMENT_FLAG} from './my-treatment-config.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {withImmutableHistoryVerification,immutableHistorySourceHead,immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
+export {withImmutableHistoryVerification,immutableHistoryExecFileSync} from './immutable-git-facts.mjs';
+import {createHash} from 'node:crypto';
 import {existsSync,readFileSync} from 'node:fs';
 
 export const COMPOSITION_BASE='e9d8ca70c6cd969bbd02caee31deb1f8b12bb67f';
@@ -656,39 +660,6 @@ export function assertProductionProofBudget(before,current){
 }
 let productionProofBefore;
 const verifiedImmutableStructures=new Set();
-
-// Synchronous test verification can reuse only actual immutable Git history.
-// Current HEAD and tracked working bytes are checked at both scope boundaries.
-// This never caches caller-supplied source readers or validation outcomes.
-let immutableHistoryScope=null;
-const immutableHistoryResults=new Map();
-export function withImmutableHistoryVerification(callback){
- if(immutableHistoryScope)return callback();
- const cwd=process.cwd(),head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
- assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
- immutableHistoryScope={cwd,head};
- try{const value=callback();assert(!value||typeof value.then!=='function','Immutable history verification must be synchronous');return value;}
- finally{
-  immutableHistoryScope=null;
-  assert.equal(process.cwd(),cwd,'Verification working directory changed');
-  assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),head,'Source HEAD changed during immutable history verification');
-  assert.equal(execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim(),'','Working source changed during immutable history verification');
- }
-}
-export function immutableHistoryExecFileSync(bin,args,options){
- const scope=immutableHistoryScope;
- if(!scope||bin!=='git'||!Array.isArray(args)||args.some(x=>typeof x!=='string')||options?.cwd&&options.cwd!==scope.cwd||options?.env||options?.shell)return execFileSync(bin,args,options);
- const pinned=args.map(x=>x==='HEAD'?scope.head:x.startsWith('HEAD:')?scope.head+x.slice(4):x==='HEAD^{commit}'?scope.head+'^{commit}':x);
- const commit=x=>/^[a-f0-9]{40}$/.test(x),blob=x=>/^[a-f0-9]{40}:[^\0]+$/.test(x);
- const immutable=pinned.length===4&&pinned[0]==='merge-base'&&pinned[1]==='--is-ancestor'&&commit(pinned[2])&&commit(pinned[3])
-  ||pinned.length===4&&pinned[0]==='diff'&&['--name-only','--name-status'].includes(pinned[1])&&commit(pinned[2])&&commit(pinned[3])
-  ||pinned.length===2&&['show','rev-parse'].includes(pinned[0])&&blob(pinned[1])
-  ||pinned.length===3&&pinned[0]==='cat-file'&&pinned[1]==='-e'&&(/^[a-f0-9]{40}\^\{commit\}$/.test(pinned[2])||blob(pinned[2]));
- if(!immutable)return execFileSync(bin,args,options);
- const key=JSON.stringify([scope.cwd,scope.head,pinned,options||null]);
- if(!immutableHistoryResults.has(key))immutableHistoryResults.set(key,execFileSync(bin,pinned,options));
- const result=immutableHistoryResults.get(key);return Buffer.isBuffer(result)?Buffer.from(result):result;
-}
 
 const defaultReconciliationRead=(ref,path)=>git('rev-parse',ref+':'+path);
 const immutableCompositionBlobs=new Map();
@@ -2294,6 +2265,9 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 }
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
+ return withImmutableHistoryVerification(()=>verifyReconciledReleaseOriginal(read));
+}
+function verifyReconciledReleaseOriginal(read){
  const memberDefaultRead=read===defaultReconciliationRead;
  // Preserve the original fail-closed assertion and its error identity. The one
  // overlapping original Watch diagnostic must remain recognisable to its owner.
@@ -2778,7 +2752,7 @@ function ensureReconciliation(){
  if(!reconciliationRecord())return false;
  // A synchronous historical test scope captures HEAD and rejects a move at
  // its end. Outside that scope, every public lookup still resolves HEAD afresh.
- const head=immutableHistoryScope?.head??git('rev-parse','HEAD');
+ const head=immutableHistorySourceHead()??git('rev-parse','HEAD');
  if(verifiedHead!==head){verifyReconciledRelease();verifiedHead=head;}
  return true;
 }
@@ -3128,3 +3102,14 @@ for(const p of MY_TIMBER_WEEK_CLOSEOUT_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add
 
 export const COMBINED_FINITE_ADDITIONAL_PATHS=Object.freeze([...COMBINED_FINITE_PATHS,...COMBINED_FINITE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of COMBINED_FINITE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+import {RELEASE_MACHINERY_REPAIR_PATHS,RELEASE_MACHINERY_REPAIR_MAINTENANCE} from './release-machinery-repair-scope-20261014.mjs';
+
+// One exact authorised release-machinery repair; existing registrations remain unchanged.
+export const RELEASE_MACHINERY_REPAIR_ADDITIONAL_PATHS=Object.freeze([...RELEASE_MACHINERY_REPAIR_PATHS,...RELEASE_MACHINERY_REPAIR_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
+for(const p of RELEASE_MACHINERY_REPAIR_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+
+// Exact CI-execution stack; all original machinery and prior registrations remain.
+for(const p of [...CI_EXECUTION_PATHS,...CI_EXECUTION_MAINTENANCE])RECONCILIATION_PATHS.add(p);
+
+// Exact observed Food calendar repair; all prior registrations remain.
+for(const p of [...FOOD_DIARY_LONDON_DATE_PATHS,...FOOD_DIARY_LONDON_DATE_MAINTENANCE])RECONCILIATION_PATHS.add(p);
