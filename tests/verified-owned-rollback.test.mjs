@@ -120,3 +120,6 @@ test('starting-point check rejects another deployment serving the same verified 
  const f=fixture(),r=verifyOwnedRollback(f);f.current.deployment.id=id(6);
  assert.throws(()=>assertOwnedRollbackStartingPoint(r,f.current.deployment),/starting point moved/);
 });
+
+// Preserve every original rollback assertion and exercise the authenticated later rollback chain.
+import './verified-owned-rollback-chain.test.mjs';

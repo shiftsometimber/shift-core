@@ -1,4 +1,4 @@
-import {verifyCiExecutionAllowance} from './ci-execution-scope-20261014.mjs';
+import {verifyCiExecutionAllowance,ciExecutionNativeReaderProvenance} from './ci-execution-scope-20261014.mjs';
 import {releaseMachineryRepairHistoricalView,releaseMachineryRepairAuthenticatedRead,releaseMachineryRepairLegacyRead,releaseMachineryRepairLegacyContent,releaseMachineryRepairAuthenticatedContent} from './release-machinery-repair-scope-20261014.mjs';
 import {ensureCombinedOriginalGpSource} from './combined-original-gp-object-20261014.mjs';
 export const COMBINED_FINITE_BASE="5eba55df9065887562e94eb2ff35cb88bffc941b";
@@ -74,7 +74,7 @@ export function verifyCombinedFiniteOriginal(c,{head,read,blob=read,content,diff
 }
 export function verifyCombinedFinite(c,options){
  const repair=releaseMachineryRepairHistoricalView();
- if(options.head!==repair.rawHead||repair.head===repair.rawHead)return verifyCombinedFiniteOriginal(c,options);
+ if(options.head!==repair.rawHead||repair.head===repair.rawHead){try{return verifyCombinedFiniteOriginal(c,options);}catch(error){if(options.head!==repair.rawHead){try{if(error instanceof Error)error.message='Combined source drift for supplied head: '+error.message;}catch{}}throw error;}}
  const {head,read,blob=read,content,diff,ancestor}=options;
  if(repair.ciExecutionContext){
   const ci=repair.ciExecutionContext,allowance=JSON.parse(rawContent(head,manifest)).ciExecutionAllowance20261014;
@@ -111,7 +111,13 @@ export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader==
  const blob=(ref,path)=>repair.blob(ref==='HEAD'?rawHead:ref,path),rawRead=repair.read,current=repair.record,c=current.combinedFinite20261014;
  const normal=(ref,path)=>exactCombinedDirectoryDisplay(rawRead(ref,path),repair.affected(path)&&(ref==='HEAD'||ref===repair.rawHead)?repair.head:ref,path);
  if(!c)return{rawHead,head:rawHead,record:current,content,blob,read:normal};
- verifyCombinedFinite(c,{head:rawHead,read:rawRead,blob,content,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)});
+ if(repair.ciExecutionContext){
+  const ci=repair.ciExecutionContext,proof=reader===null?ciExecutionNativeReaderProvenance(ci.read):null;
+  // Only this fresh factory's canonical native CI context can supply immutable
+  // facts to its full Original verifier. The returned/public reader is unchanged.
+  const originalRead=reader===null&&proof?.kind==='read'&&proof.view===ci?blob:rawRead;
+  ci.assertCurrent();try{verifyCombinedFiniteOriginal(c,{head:rawHead,read:originalRead,blob,content,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)});}finally{ci.assertCurrent();}
+ }else verifyCombinedFinite(c,{head:rawHead,read:rawRead,blob,content,diff:(a,b)=>git('diff','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)});
  const changed=new Set([...c.paths,...c.maintenancePaths,manifest]);
  const affected=path=>changed.has(path)||[...changed].some(p=>p.startsWith(path+'/'));
  const map=(ref,path)=>ref==='HEAD'&&affected(path)?c.base:ref;
