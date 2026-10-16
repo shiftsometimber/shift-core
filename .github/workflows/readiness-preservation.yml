@@ -2,6 +2,7 @@ name: Readiness repair and preservation
 on:
   pull_request:
     paths:
+      - 'release/approved-runtime-composition*'
       - 'member-experience/**'
       - 'app-layout-live.mjs'
       - 'member-inline-tools.mjs'
