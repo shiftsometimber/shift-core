@@ -5,6 +5,7 @@ on:
     paths:
       - 'daily-content/**'
       - 'scheduled-knowledge-v1.js'
+      - 'wrangler.jsonc'
       - '.github/workflows/daily-website-content-preflight.yml'
 permissions:
   contents: read

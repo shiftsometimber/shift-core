@@ -53,7 +53,16 @@ on 16 October. A read-only primary D1 schema check confirmed the existing articl
 and knowledge tables; it performed zero writes. The separate original gateway
 reader needs its existing CI credential; credentials were not read or extracted.
 
-The isolated feature branch now has a finite read-only preflight: the original
+The 16 October preflight passed at 07:23:22 UTC on commit 9de862f: all 13 draft
+tests, the original knowledge-ingestion proof, actual configured Worker dry
+build, and authenticated gateway proof. The existing shared gateway had its
+$2 rolling-day limit, 10 requests per 60 seconds (sliding), authentication on,
+logging/export off and retries off. No inference or provider write occurred.
+The three enablement variables are now staged in this branch's Wrangler config;
+they only take effect after source admission and the guarded production release.
+Its original fresh gateway budget check must pass before deployment.
+
+The isolated feature branch has a finite read-only preflight: the original
 knowledge-ingestion proof, daily draft tests, the actual configured Worker dry
 build, and the original gateway settings reader with exact 10/minute assertions.
 It makes no inference request, provider change, publication or deployment. This

@@ -532,6 +532,9 @@
   },
   "triggers": { "crons": ["*/15 * * * *"] },
   "vars": {
+    "DAILY_WEBSITE_CONTENT_ENABLED": "true",
+    "DAILY_CONTENT_GATEWAY": "shift-ai",
+    "DAILY_CONTENT_BUDGET_VERIFIED": "true",
     "MY_TIMBER_PWA_ENABLED": "true",
     "MEMBER_GP_LOOKUP_ENABLED": "true",
     "BABYLOVE_WEBHOOK_TOKEN_SHA256": "ab300f37dbd07d803773ecd6a8bd8f8225d60fbfa67e897af124fa809f34f088",
