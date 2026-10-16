@@ -1,3 +1,4 @@
+import {SEO_AUDIT_PATHS,SEO_AUDIT_MAINTENANCE} from './seo-audit-scope-20261016.mjs';
 import {FOOD_DIARY_LONDON_DATE_PATHS,FOOD_DIARY_LONDON_DATE_MAINTENANCE} from './food-diary-london-date-scope-20261015.mjs';
 import {CI_EXECUTION_PATHS,CI_EXECUTION_MAINTENANCE} from './ci-execution-scope-20261014.mjs';
 import {COMBINED_FINITE_BASE,COMBINED_FINITE_PATHS,COMBINED_FINITE_MAINTENANCE} from './combined-finite-scope-20261014.mjs';
@@ -2784,6 +2785,10 @@ export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_B
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
+ if(["babylove/corrected-public-rows.json","babylove/dynamic-public.mjs","babylove/seo-repairs-20261016.test.mjs","public-https-redirect.mjs","public-https-redirect.test.mjs","release/seo-audit-scope-20261016.mjs","tests/seo-audit-scope-20261016.test.mjs"].includes(path)){
+  let existed;try{execFileSync('git',['cat-file','-e','fe726ac1fc5465dbe5f1e1e59346a3f6120094ae:'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  if(status===(existed?'M':'A'))return true;
+ }
  if(COMBINED_FINITE_ADDITIONAL_PATHS.includes(path)){
   let existed;try{execFileSync('git',['cat-file','-e',COMBINED_FINITE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
   assert.equal(status,existed?'M':'A','Unexpected exact combined finite status: '+status+' '+path);return true;
@@ -3116,3 +3121,5 @@ for(const p of [...CI_EXECUTION_PATHS,...CI_EXECUTION_MAINTENANCE])RECONCILIATIO
 
 // Exact observed Food calendar repair; all prior registrations remain.
 for(const p of [...FOOD_DIARY_LONDON_DATE_PATHS,...FOOD_DIARY_LONDON_DATE_MAINTENANCE])RECONCILIATION_PATHS.add(p);
+// Exact separately approved article SEO payload; every prior receipt remains.
+for(const p of [...SEO_AUDIT_PATHS,...SEO_AUDIT_MAINTENANCE])RECONCILIATION_PATHS.add(p);
