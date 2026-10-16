@@ -97,7 +97,7 @@ export async function runDailyContentDraft(env, {now=Date.now(), fetcher=fetch} 
     if(!selected)return finish('no_publishable_change','no_readable_current_primary_evidence');
     const {url,currentText,sources}=selected;
     await DB.prepare(`UPDATE knowledge_daily_content_runs SET target_url=?,evidence_json=? WHERE day_key=? AND token=? AND status='running'`).bind(url,JSON.stringify(sources),day,token).run();
-    const model=async (system,input,max_tokens) => parse((await env.AI.run(env.SHIFT_AI_MODEL,{messages:[{role:'system',content:system},{role:'user',content:JSON.stringify(input)}],temperature:0.1,max_tokens},{gateway:{id:'shift-ai',skipCache:true,collectLog:false}}))?.response);
+    const model=async (system,input,max_tokens) => parse((await env.AI.run(env.SHIFT_AI_MODEL,{messages:[{role:'system',content:system},{role:'user',content:JSON.stringify(input)}],temperature:0.1,max_tokens,response_format:{type:'json_object'}},{gateway:{id:'shift-ai',skipCache:true,collectLog:false}}))?.response);
     // Exactly two bounded model requests at most; no retries or direct fallback.
     const draft=await model(AUTHOR,selected,4000), reasons=validateDraft(draft,selected);
     if(reasons.length)return finish('held',reasons.join(','));

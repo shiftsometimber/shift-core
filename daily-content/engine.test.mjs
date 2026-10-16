@@ -12,7 +12,7 @@ const paragraph='For this worked example, choose the busy evening you already kn
 const draft=()=>({target_url:TARGET,title:'Meal prep for busy men: make two awkward meals easier',summary:'A practical worked example for planning food around a busy week.',body:'## Pick the actual problem\n\n'+Array.from({length:8},(_,i)=>`### Worked example ${i+1}\n\n${paragraph}`).join('\n\n')+`\n\n## Source\n\n[Food storage guidance](${PRIMARY})`,new_value:['A worked example for the two evenings that usually get difficult.','A short check of whether the idea actually saved time.'],claims:[{claim:'Follow the storage instructions supplied with your food.',source_urls:[PRIMARY]}],qualified_review_required:false});
 const pass=()=>({decision:'PASS',claims_supported:true,useful_change:true,original_copy:true,sources_visible:true,no_treatment_advice:true,no_invented_review:true,issues:[]});
 
-function fixture({response=draft(),review=pass(),fetchMode='good',modelError=false}={}){
+function fixture({response=draft(),review=pass(),fetchMode='good',modelError=false,objectResponses=false}={}){
  const sqlite=new DatabaseSync(':memory:');
  sqlite.exec(`CREATE TABLE ai_knowledge_documents(id INTEGER PRIMARY KEY,title TEXT,source_uri TEXT,category TEXT,status TEXT,updated_at TEXT);
  CREATE TABLE knowledge_articles(id INTEGER PRIMARY KEY,title TEXT,slug TEXT UNIQUE,category TEXT,author TEXT,status TEXT,summary TEXT,body TEXT,seo_title TEXT,publish_at TEXT);
@@ -21,7 +21,7 @@ function fixture({response=draft(),review=pass(),fetchMode='good',modelError=fal
  const calls=[],reads=[];
  const wrap=(sql,args=[])=>({bind(...values){return wrap(sql,values)},async run(){const r=sqlite.prepare(sql).run(...args);return{meta:{changes:Number(r.changes),last_row_id:Number(r.lastInsertRowid)}}},async all(){return{results:sqlite.prepare(sql).all(...args)}},async first(){return sqlite.prepare(sql).get(...args)||null}});
  const DB={prepare:sql=>wrap(sql),async batch(stmts){sqlite.exec('BEGIN');try{const out=[];for(const s of stmts)out.push(await s.run());sqlite.exec('COMMIT');return out}catch(e){sqlite.exec('ROLLBACK');throw e}}};
- const env={DB,AI:{async run(...args){calls.push(args);if(modelError)throw Error('gateway budget refused');return{response:JSON.stringify(calls.length===1?response:review)}}},SHIFT_AI_MODEL:'@cf/meta/llama-3.3-70b-instruct-fp8-fast',DAILY_WEBSITE_CONTENT_ENABLED:'true',DAILY_CONTENT_GATEWAY:'shift-ai',DAILY_CONTENT_BUDGET_VERIFIED:'true'};
+ const env={DB,AI:{async run(...args){calls.push(args);if(modelError)throw Error('gateway budget refused');const value=calls.length===1?response:review;return{response:objectResponses?value:JSON.stringify(value)}}},SHIFT_AI_MODEL:'@cf/meta/llama-3.3-70b-instruct-fp8-fast',DAILY_WEBSITE_CONTENT_ENABLED:'true',DAILY_CONTENT_GATEWAY:'shift-ai',DAILY_CONTENT_BUDGET_VERIFIED:'true'};
  const fetcher=async(url,options)=>{reads.push({url,options});if(fetchMode==='refused')return new Response('Forbidden',{status:403});if(url===TARGET)return new Response(`<html><head><link rel="canonical" href="${TARGET}"></head><main><h1>Meal prep</h1>${currentText}<a href="${fetchMode==='unapproved'?'https://www.nice.org.uk/guidance/ng246':PRIMARY}">Source</a></main></html>`,{headers:{'content-type':'text/html'}});return new Response(`<title>Primary fixture</title><main>${sourceText}</main>`,{headers:{'content-type':'text/html'}})};
  return{env,DB,sqlite,calls,reads,fetcher};
 }
@@ -38,6 +38,26 @@ test('default off makes no database, network or model calls',async()=>{
  assert.equal((await runDailyContentDraft(f.env,{now:NOW,fetcher:f.fetcher})).status,'disabled');
  assert.equal(f.calls.length+f.reads.length,0);
  assert.equal(f.sqlite.prepare("SELECT count(*) n FROM sqlite_master WHERE name='knowledge_daily_content_runs'").get().n,0);
+});
+
+test('provider structured objects retain the complete private draft and review flow',async()=>{
+ const f=fixture({objectResponses:true});
+ const result=await runDailyContentDraft(f.env,{now:NOW,fetcher:f.fetcher});
+ assert.equal(result.status,'draft_ready');
+ assert.equal(f.calls.length,2);
+ const saved=f.sqlite.prepare('SELECT status,body,publish_at FROM knowledge_articles WHERE id=?').get(result.articleId);
+ assert.equal(saved.status,'draft');assert.equal(saved.publish_at,null);
+ assert.ok(saved.body.includes(PRIMARY));
+});
+
+test('malformed provider JSON never saves, repairs or automatically retries a draft',async()=>{
+ const f=fixture();
+ f.env.AI.run=async(...args)=>{f.calls.push(args);return{response:'{"body":"\ninvalid JSON string"}'}};
+ const result=await runDailyContentDraft(f.env,{now:NOW,fetcher:f.fetcher});
+ assert.equal(result.status,'failed');assert.equal(f.calls.length,1);
+ assert.equal(f.sqlite.prepare("SELECT count(*) n FROM knowledge_articles WHERE status='draft'").get().n,0);
+ assert.equal((await runDailyContentDraft(f.env,{now:NOW,fetcher:f.fetcher})).status,'already_attempted');
+ assert.equal(f.calls.length,1);
 });
 
 test('unverified budget and wrong gateway cannot start generation',async()=>{
