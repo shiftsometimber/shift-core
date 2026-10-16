@@ -76,6 +76,7 @@ async function fixture(channel){
  // Bootstrap medicine schema through a harmless catalogue read, then fixture consent.
  await medicineCommerceRoutes(memberRequest('/v1/catalogue/medicines'),env,{});
  await DB.prepare('INSERT INTO medicine_prepay_verifications(token_hash,user_id,variant_id,partner_reference,expires_at) VALUES(?,42,11,?,?)').bind(sha('fictional-verification'),'fixture-partner','2099-01-01T00:00:00Z').run();
+ await DB.prepare("INSERT INTO medicine_clinical_intakes(user_id,variant_id,public_reference,partner_reference,status,gp_contact_consent,consent_version,evidence_manifest_json,provider_patient_reference) VALUES(42,11,'SCI-00000000-0000-4000-8000-000000000042','fixture-partner','verified',1,'synthetic-existing-consent','{}','fixture-patient')").run();
  const input=channel==='medicine'?{variantId:11,verificationToken:'fictional-verification',insulinUse:'no',eligibility:{heightCm:180,weightKg:100,weightRelatedCondition:'no'}}:{size:'L',quantity:1};
  const route=channel==='medicine'?medicineCommerceRoutes:commerceStripeRoutes;
  const path=channel==='medicine'?'/v1/commerce/medicine-checkout':'/v1/commerce/checkout';

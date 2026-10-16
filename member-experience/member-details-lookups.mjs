@@ -3,6 +3,11 @@ import {searchDirectory} from '../gp-directory/search.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 const headers={'Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','Vary':'Cookie','X-Robots-Tag':'noindex, nofollow'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
+// Authentication failures must retain this private endpoint's cache/privacy policy.
+function privateAuthResponse(response){
+ const next=new Headers(response.headers);for(const [key,value]of Object.entries(headers))next.set(key,value);
+ return new Response(response.body,{status:response.status,statusText:response.statusText,headers:next});
+}
 const GP_BASE='https://directory.spineservices.nhs.uk/ORD/2-0-0/organisations';
 // Per-isolate backpressure, a bounded in-memory public-directory cache, and UI
 // debounce keep this small lookup from becoming a public unbounded proxy.
@@ -36,13 +41,13 @@ export async function memberDetailsLookupRoute(request,env){
  if(path==='/v1/member/details/address-search'){
   if(request.method!=='POST')return json({error:'method_not_allowed'},405);
   if(request.headers.get('Origin')!==u.origin||request.headers.get('Sec-Fetch-Site')==='cross-site')return json({error:'origin_not_allowed'},403);
-  let auth;try{auth=await authenticateMember(request,env);}catch{return json({error:'account_unavailable'},503);}if(auth.response)return auth.response;
+  let auth;try{auth=await authenticateMember(request,env);}catch{return json({error:'account_unavailable'},503);}if(auth.response)return privateAuthResponse(auth.response);
   return json({error:'address_lookup_removed',message:'Enter your address manually and save your details.'},410);
  }
  if(path!=='/v1/member/details/gp-search')return null;
  if(request.method!=='GET')return json({error:'method_not_allowed'},405);
  if(request.headers.get('Sec-Fetch-Site')==='cross-site'||(request.headers.get('Origin')&&request.headers.get('Origin')!==u.origin))return json({error:'origin_not_allowed'},403);
- let auth;try{auth=await authenticateMember(request,env);}catch{return json({error:'account_unavailable'},503);}if(auth.response)return auth.response;
+ let auth;try{auth=await authenticateMember(request,env);}catch{return json({error:'account_unavailable'},503);}if(auth.response)return privateAuthResponse(auth.response);
  if(rateLimited(auth.userId))return json({error:'slow_down',message:'Please wait a moment before searching again. Manual entry is always available.'},429);
  const query=String(u.searchParams.get('q')||'').trim();if(query.length<3||query.length>80||/[\u0000-\u001f]/.test(query))return json({error:'invalid_search',message:'Enter at least three characters of your GP practice name.'},400);
  if(env.MEMBER_GP_LOOKUP_ENABLED!=='true')return json({error:'gp_lookup_unavailable',message:'GP suggestions are unavailable here. Enter your practice manually.'},503);

@@ -270,6 +270,9 @@ jobs:
           retention-days: 30
 
   gp-h55-live-qa:
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
     if: github.event_name == 'push' && github.ref == 'refs/heads/verification/gp-direct-h55-live-20261016'
     runs-on: ubuntu-latest
     timeout-minutes: 35
@@ -285,13 +288,13 @@ jobs:
           fetch-depth: 0
       - uses: actions/checkout@v4
         with:
-          ref: 55b73025f5b6d2302fab42bce73a222653404186
+          ref: e9491c2686105afc465d1c94e37e5cef63240e11
           path: runtime
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: 'runtime/.nvmrc'
-      - name: Wait for the actual same-source owned GP ON release
+      - name: Read actual accepted Q Core and unchanged H HQ release receipts
         env:
           GH_TOKEN: ${{ github.token }}
         working-directory: runtime
@@ -329,7 +332,7 @@ jobs:
       - name: Preserve source after the bounded GP-only member proof
         working-directory: runtime
         run: |
-          test "$(git rev-parse HEAD)" = "55b73025f5b6d2302fab42bce73a222653404186"
+          test "$(git rev-parse HEAD)" = "e9491c2686105afc465d1c94e37e5cef63240e11"
           test -z "$(git status --porcelain --untracked-files=no)"
       - name: Retain actual member directory activation evidence
         if: always()
