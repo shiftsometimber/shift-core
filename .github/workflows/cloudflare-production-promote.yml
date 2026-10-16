@@ -255,31 +255,24 @@ jobs:
       - name: Fail closed when deploy credential is absent
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
-      - name: Require recorded coaching launch decisions before production work
-        run: node shift-coach/release-contract.mjs --require-launch
-      - name: Require exact approved growth preview and release verification
-        run: node release/growth-preflight.mjs
-      - name: Require the exact successful heading preview before production work
-        run: |
-          node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
-          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36341844316',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
-          assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'90b1e29db85591b84dec642c3304641bc9545529');
-          JS
-      - name: Require verified homepage speed candidate and current CSS bytes
-        run: |
-          node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
-          import {createHash} from 'node:crypto';
-          import {RETA_STYLES} from './reta-styles-data.mjs';
-          import {HOME_BLOCKING_STYLES} from './home-blocking-styles.mjs';
-          import {styles as pwaStyles} from './my-timber-pwa/presentation.mjs';
-          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36469397727',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'44c895d732cf801c4cff90564244fa5ee8997523');
-          const sha=x=>createHash('sha256').update(x).digest('hex');
-          for(const [path,css] of Object.entries({...RETA_STYLES,...HOME_BLOCKING_STYLES,'/assets/my-timber-pwa.css':pwaStyles})){const r=await fetch('https://shiftsometimber.co.uk'+path);assert(r.ok);assert.equal(sha(await r.text()),sha(css),'CSS changed since preview: '+path)}
-          JS
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Prepare original local source fixtures before parallel readers
+        run: |
+          node member-experience/prepare-life-back.mjs
+          git diff --exit-code -- member-experience/life-back-assets.mjs
+          node grub-expansion-review-pack.mjs
+          node babylove/prepare-public-bundle.mjs
+          git diff --exit-code -- babylove/editorial/public-bundle.mjs
+      - name: Verify every original production source command with two execution slots
+        id: scope
+        run: node release/bounded-source-checks-20261016.mjs production
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-bounded-source-${{ github.sha }}
+          path: ${{ runner.temp }}/ci-source-proof/production-bounded/
+          retention-days: 30
       - name: Recover only the evidenced cancelled runtime to the last verified release
         run: node shift-coach/recover-cancelled-release.mjs
       - name: Prepare and launch verification browsers before deployment
@@ -294,87 +287,6 @@ jobs:
       - name: Adopt the exact already-completed growth deployment
         id: growth_deployed
         run: node release/growth-adopt-deployment.mjs
-      - name: Verify B1 release scope before any production mutation
-        id: scope
-        run: |
-          node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/tablet-routine.test.mjs tests/my-health-plan-v2.test.mjs
-          node --test tests/home-route-banner.test.mjs tests/app-layout-live.test.mjs preview/app-layout/presentation.test.mjs tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs
-          node scripts/b1-release-scope.mjs
-      - name: Verify article retry, publication and notification contracts
-        run: node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs
-      - name: Verify acquisition consent and same-account activation join
-        run: node --test acquisition-activation/*.test.mjs activation-measurement/*.test.mjs
-      - name: Verify five source-specific articles without changing unrelated pages
-        run: node --test tests/five-article-evidence.test.mjs tests/editorial-resources-v1.test.mjs
-      - name: Verify My Treatment schema preservation and release boundaries
-        run: node --test tests/my-treatment-release.test.mjs
-      - name: Verify member experience and Grub account integration
-        run: |
-          node --test tests/member-checkin-preflight.test.mjs
-          node member-experience/prepare-life-back.mjs
-          git diff --exit-code -- member-experience/life-back-assets.mjs
-          node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs
-          node gate4-one-shift-brain-gate.mjs
-      - name: Verify Passport consent, migration and preservation before promotion
-        run: node --test health-passport/*.test.mjs
-      - name: Verify catalogue authority, additive publication guards and timing
-        run: |
-          node grub-expansion-review-pack.mjs
-          node scripts/verify-grub-closeout-reviews.mjs
-          node --test tests/grub-expansion*.test.mjs tests/grub-owner-publication-build.test.mjs tests/grub-protected-revisions.test.mjs
-          node --test tests/catalogue-publication*.test.mjs tests/fit-expansion*.test.mjs tests/fit-v3-closeout.test.mjs
-      - name: Verify reminder delivery and proactive acknowledgement before promotion
-        run: node --test tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs
-      - name: Verify approved PWA, device consent and exact presentation preservation
-        run: node --test my-timber-pwa/*.test.mjs
-      - name: Prove Daily Shift is a fluid one-thumb front door
-        run: node daily-shift-frontdoor-gate.mjs
-      - name: Prove My Timber has reached the 75 percent all-green bar
-        run: node my-timber-75-green-gate.mjs
-      - name: Prove the My Timber production candidate is complete
-        run: node my-timber-final-source-gate.mjs
-      - name: Prove signed-in members can reach the site and The Lounge
-        run: node my-timber-navigation-gate.mjs
-      - name: Verify security-check timeouts and retry before promotion
-        run: node --test tests/turnstile-client-timeout.test.mjs tests/turnstile-auth-v1.test.mjs
-      - name: Prove persistent member login remains secure
-        run: node g5-012-login-fastpath-gate.mjs
-      - name: Prove Ask Timber handles every explicit request part
-        run: node --test ask-timber-multi-intent-gate.mjs tests/ask-timber-public.test.mjs
-      - name: Block SEO deployment regressions
-        run: node --test tests/seo-release-integrity.test.mjs tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs
-      - name: Prove Health rendering, canonical uniqueness and public endpoint security
-        run: node --test tests/testosterone-public.test.mjs tests/public-audit-repair.test.mjs tests/continuity-interest-v1.test.mjs tests/public-navigation-policy.test.mjs tests/public-continuity.test.mjs
-      - name: Prove My Journey end to end before promotion
-        run: |
-          node --test tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs
-          node my-journey-integration-gate.mjs
-      - name: Prove medicine front door, commercial safety and full purchase lifecycle
-        run: node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/checkout-recovery.test.mjs tests/shop-recovery.test.mjs tests/promise-accuracy.test.mjs tests/commerce-recovery-health.test.mjs tests/medicine-stripe-retry-v1.test.mjs
-      - name: Verify Medicines Watch evidence, monitor and public isolation
-        run: node --test medicines-watch/*.test.mjs
-      - name: Verify Radar retrieval, publication edition, dates and correction races
-        run: node --test tests/radar-source-*.test.mjs tests/radar-published-ticker-v1.test.mjs tests/public-ticker-preservation.test.mjs tests/public-ticker-motion.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs
-      - name: Verify owner-authorised automatic news and human-decision preservation
-        run: node --test tests/radar-live-email-v1.test.mjs tests/radar-auto-news*.test.mjs tests/newsroom-publication*.test.mjs
-      - name: Verify newsroom publication ordering and combined controls
-        run: node --test tests/radar-newsroom-*.test.mjs
-      - name: Verify BabyLoveGrowth intake and exact approved public article
-        run: |
-          node babylove/prepare-public-bundle.mjs
-          git diff --exit-code -- babylove/editorial/public-bundle.mjs
-          node --test babylove/*.test.mjs
-      - name: Verify HQ article schema and retained editorial approvals
-        run: |
-          node --test tests/knowledge-editorial-*.test.mjs
-          node --test tests/newsroom-publication*.test.mjs
-          node --test tests/evidence-desk-hq-read.test.mjs
-          node g3-006-hq-editorial-cors-gate.mjs
-          node g3-006-knowledge-editorial-staging.mjs
-      - name: Verify exact current main before production mutations
-        run: node scripts/catalogue-publication-client.mjs --verify-main
-      - name: Verify discovery privacy, crisis and reporting regressions
-        run: node --test tests/discovery-repairs.test.mjs
       - name: Apply pharmacy-readiness database additions
         if: steps.scope.outputs.runtime_only != 'true'
         shell: bash
