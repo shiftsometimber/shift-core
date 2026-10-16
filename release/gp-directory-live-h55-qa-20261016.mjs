@@ -28,10 +28,25 @@ export async function openNormalGpDisclosures(page){
 }
 export async function readGpOverflowGeometry(page){
  return page.evaluate(()=>{
+  const assertionScrollWidth=document.documentElement.scrollWidth,assertionInnerWidth=innerWidth;
+  const assertion={scrollWidth:assertionScrollWidth,innerWidth:assertionInnerWidth,noHorizontalOverflow:assertionScrollWidth<=assertionInnerWidth+1};
   const rect=e=>{const r=e.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
   const box=e=>{const c=getComputedStyle(e);return{tag:e.tagName,id:e.id,class:typeof e.className==='string'?e.className:'',rect:rect(e),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,css:{width:c.width,minWidth:c.minWidth,maxWidth:c.maxWidth,fontFamily:c.fontFamily,fontSize:c.fontSize,gridTemplateColumns:c.gridTemplateColumns,flexWrap:c.flexWrap,boxSizing:c.boxSizing,overflowX:c.overflowX,position:c.position,transform:c.transform,padding:c.padding,margin:c.margin,whiteSpace:c.whiteSpace,overflowWrap:c.overflowWrap}};};
-  return{at:new Date().toISOString(),viewport:{innerWidth,innerHeight,devicePixelRatio,visualViewport:window.visualViewport?{width:visualViewport.width,height:visualViewport.height,scale:visualViewport.scale}:null},userAgent:navigator.userAgent,fontsStatus:document.fonts?.status,platform:navigator.platform,root:box(document.documentElement),body:box(document.body),overflowing:[...document.querySelectorAll('body *')].filter(e=>{if(!e.getClientRects().length)return false;const r=e.getBoundingClientRect();return r.right>innerWidth+1||e.scrollWidth>e.clientWidth+1;}).map(e=>({...box(e),ancestors:[e.parentElement,e.parentElement?.parentElement].filter(Boolean).map(box)})).sort((a,b)=>b.rect.right-a.rect.right).slice(0,100)};
+  return{assertion,stylesheets:[...document.querySelectorAll('link[rel=stylesheet]')].map(e=>{const u=new URL(e.href,location.href);return{origin:u.origin,path:u.pathname,loaded:!!e.sheet,disabled:e.disabled};}),at:new Date().toISOString(),viewport:{innerWidth,innerHeight,devicePixelRatio,visualViewport:window.visualViewport?{width:visualViewport.width,height:visualViewport.height,scale:visualViewport.scale}:null},userAgent:navigator.userAgent,fontsStatus:document.fonts?.status,platform:navigator.platform,root:box(document.documentElement),body:box(document.body),overflowing:[...document.querySelectorAll('body *')].filter(e=>{if(!e.getClientRects().length)return false;const r=e.getBoundingClientRect();return r.right>innerWidth+1||e.scrollWidth>e.clientWidth+1;}).map(e=>({...box(e),ancestors:[e.parentElement,e.parentElement?.parentElement].filter(Boolean).map(box)})).sort((a,b)=>b.rect.right-a.rect.right).slice(0,100)};
  });
+}
+
+export async function assertGpNoOverflow(page,{row,width,dir}){
+ // First check occurs immediately, as before. Later frames add coverage; no
+ // failing frame is waited away, no tolerance is widened and no layout changes.
+ for(let frame=0;frame<10;frame++){
+  const geometry=await readGpOverflowGeometry(page);
+  try{assert(geometry.assertion.noHorizontalOverflow);}catch(error){
+   (row.layoutDiagnostics??=[]).push({width,frame,...geometry});
+   const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;
+  }
+  if(frame<9)await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));
+ }
 }
 
 const sha=v=>createHash('sha256').update(v).digest('hex');
@@ -138,7 +153,7 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
    const selected=onlyGp((await page.locator('#memberDetailsForm').evaluate(form=>Object.fromEntries(new FormData(form)))));
    assert.deepEqual((await profile()).details,before.details,'Selection alone must not save the account');
    await save({retry:width===390});await open();for(const [key,id]of Object.entries({gpPractice:'memberGpPractice',gpPostcode:'memberGpPostcode',gpCode:'memberGpCode',gpAddress:'memberGpAddress',gpSelectionMode:'memberGpSelectionMode'}))assert.equal(await page.locator('#'+id).inputValue(),selected[key]);
-   try{assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}catch(error){try{const geometry=await readGpOverflowGeometry(page);(row.layoutDiagnostics??=[]).push({width,...geometry});}catch(diagnosticError){row.overflowGeometryError=String(diagnosticError.message);}const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;}
+   await assertGpNoOverflow(page,{row,width,dir});
    await page.screenshot({path:join(dir,'gp-member-'+width+'.png'),fullPage:true});
    row.checks.push({width,normalSignedInUi:true,searchAndExplicitSelection:true,noAutomaticSave:true,fullAddressSaved:true,reopenRetained:true,noHorizontalOverflow:true,...(width===390?{declaredSimulatedSearchAndSaveInterruption:true,sameOperationRetry:true}:{})});
   }

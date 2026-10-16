@@ -13,7 +13,7 @@
   ],
   "helper": {
     "path": "release/gp-directory-live-h55-qa-20261016.mjs",
-    "sha256": "d47efd6045c3867f6fb20b30e8193dd3d04b040d0335d9e9492eae6050d8dbb2",
+    "sha256": "478be3d65eb2b8db8f70f58c69ce2a19c28b24fcc53aa17b73a83867200123c4",
     "originalSha256": "d0b9b3f8b84ec70edee049750cfc2e6caf8afafc1a3b0ac0a59165b6d06b1a60",
     "wholeInverse": [
       [
@@ -69,6 +69,26 @@
       [
         "row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;",
         "row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;row.preventedBackgroundWrites=preventedBackground;",
+        1
+      ],
+      [
+        "export async function readGpOverflowGeometry(page){\n return page.evaluate(()=>{\n",
+        "export async function readGpOverflowGeometry(page){\n return page.evaluate(()=>{\n  const assertionScrollWidth=document.documentElement.scrollWidth,assertionInnerWidth=innerWidth;\n  const assertion={scrollWidth:assertionScrollWidth,innerWidth:assertionInnerWidth,noHorizontalOverflow:assertionScrollWidth<=assertionInnerWidth+1};\n",
+        1
+      ],
+      [
+        "  return{at:new Date().toISOString(),viewport:",
+        "  return{assertion,stylesheets:[...document.querySelectorAll('link[rel=stylesheet]')].map(e=>{const u=new URL(e.href,location.href);return{origin:u.origin,path:u.pathname,loaded:!!e.sheet,disabled:e.disabled};}),at:new Date().toISOString(),viewport:",
+        1
+      ],
+      [
+        "\nconst sha=v=>",
+        "\nexport async function assertGpNoOverflow(page,{row,width,dir}){\n // First check occurs immediately, as before. Later frames add coverage; no\n // failing frame is waited away, no tolerance is widened and no layout changes.\n for(let frame=0;frame<10;frame++){\n  const geometry=await readGpOverflowGeometry(page);\n  try{assert(geometry.assertion.noHorizontalOverflow);}catch(error){\n   (row.layoutDiagnostics??=[]).push({width,frame,...geometry});\n   const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;\n  }\n  if(frame<9)await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));\n }\n}\n\nconst sha=v=>",
+        1
+      ],
+      [
+        "   try{assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}catch(error){try{const geometry=await readGpOverflowGeometry(page);(row.layoutDiagnostics??=[]).push({width,...geometry});}catch(diagnosticError){row.overflowGeometryError=String(diagnosticError.message);}const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;}\n",
+        "   await assertGpNoOverflow(page,{row,width,dir});\n",
         1
       ]
     ]
@@ -427,5 +447,14 @@
     "currentCoreAndHqReceiptsMustRemainSeparate": true,
     "primaryRuntimeTimestampsRewritten": false,
     "originalFiveMinuteOwnershipAndTwentyMinuteWaitRetained": true
+  },
+  "diagnosticCorrection": {
+    "originalFailureRun": 38982442652,
+    "runtimeSourceUnchanged": true,
+    "originalPredicate": "document.documentElement.scrollWidth<=innerWidth+1",
+    "capture": "Predicate and full geometry in same page evaluation; first check remains immediate",
+    "additionalCoverage": "Nine subsequent animation frames; every frame must pass, no ignored failures",
+    "originalTimeoutsAndTolerancesUnchanged": true,
+    "productLayoutChanged": false
   }
 }
