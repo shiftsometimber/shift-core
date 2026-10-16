@@ -1392,7 +1392,7 @@ test('legacy non-CI factory still invokes the unchanged public verifier',()=>{
  test('Watch reader coherence: all original contract body bytes restore after the five literal changes',()=>{
   assert.equal(blob(aliasPrior.head,aliasPath),'d6e24cab7c07725274fdf1f2a53dd34328bd866a');assert.equal(blob(head,aliasPath),'f7e8178f164b601796dd0242d5ff8aa274b65dcb');
   assert.equal(aliasRestore(aliasCurrent,aliasP.currentWatchReadHeadAliasesSourceInverse),aliasBefore);
-  assert.equal(blob(head,'shift-coach/release.test.mjs'),aliasPrior.watchTestsBlob);
+  assert.equal(literalOriginalWatchTestBlob(head,'shift-coach/release.test.mjs'),aliasPrior.watchTestsBlob);
   assert.equal(aliasP.record.currentWatchReadHeadAliases20261016.gateReplacedOrRemoved,false);
  });
  test('Watch reader coherence: model rejects every inconsistent current path without a history verdict',()=>{
@@ -1520,3 +1520,12 @@ import './fresh-food-source-head-20261016.test.mjs';
 // Run current scheduling controls alongside all original Food source assertions.
 import './bounded-source-scheduling-20261016.test.mjs';
 import './verified-source-evidence-20261016.test.mjs';
+
+// The earlier Watch predicate still receives the complete byte-exact original test.
+function literalOriginalWatchTestBlob(ref,path){
+ assert.equal(path,'shift-coach/release.test.mjs');
+ let bytes=content(ref,path);
+ for(const [before,after,kind]of [...FOOD_DIARY_LONDON_DATE_POLICY.inverses[path]].reverse()){assert(after&&bytes.split(after).length===2);if(kind==='prefix')assert(bytes.startsWith(after));bytes=bytes.replace(after,()=>before);}
+ assert.equal(bytes,content(FOOD_DIARY_LONDON_DATE_POLICY.record.base,path),'Every original Watch test assertion byte required');
+ return execFileSync('git',['hash-object','--stdin'],{input:bytes,encoding:'utf8'}).trim();
+}

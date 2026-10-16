@@ -116,3 +116,20 @@ test('original workflow coordination reads the actual executable stdin manifest,
  for(const changed of [input.slice(0,-1),input.replace('node my-journey-integration-gate.mjs','node unapproved-gate.mjs'),input+'\n# unexecuted\n'])assert.throws(()=>validateExecutableScheduleInput(changed,reference,original),/Executable workflow input/);
  const paired=input.replace('node my-journey-integration-gate.mjs','node unapproved-gate.mjs');assert.throws(()=>validateExecutableScheduleInput(paired,paired,original),/Exact original source scheduling manifest/);
 });
+
+import {foodDiaryLondonDateOriginalProductionWorkflow} from '../release/food-diary-london-date-scope-20261015.mjs';
+
+test('literal production layout view requires the exact complete admitted raw workflow and rejects extra or altered source',()=>{
+ const current=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
+ const original=execFileSync('git',['show','ce456749488bafcbc2a8e7e6a4eb726cb12f0fd8:.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
+ assert.equal(foodDiaryLondonDateOriginalProductionWorkflow(current),original);
+ for(const changed of [current+'\n# unapproved source\n',current.replace('maximumConcurrent\": 2','maximumConcurrent\": 3'),current.replace('timeout-minutes: 60','timeout-minutes: 61'),current.replace('actions: read','actions: write')]){assert.notEqual(changed,current);assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(changed));}
+ assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(Buffer.from(current)));
+});
+
+test('all three original literal-test assertion bodies restore exactly after only strict production-read adapters',()=>{
+ const scope=readFileSync(new URL('../release/food-diary-london-date-scope-20261015.mjs',import.meta.url),'utf8');
+ const policy=JSON.parse(scope.match(/^const policy=(\{[^\n]+\});\nconst manifest=/m)[1]);
+ let main=readFileSync(new URL('../tests/food-diary-london-date-stack-20261015.test.mjs',import.meta.url),'utf8');for(const [before,after,kind]of [...policy.literalWatchTestWitnessInverse].reverse()){assert(after&&main.split(after).length===2);if(kind==='suffix')assert(main.endsWith(after));main=main.replace(after,()=>before);}assert.equal(main,execFileSync('git',['show','6fe03c05bdcaad7b83d20fc5bd17e60f341db8e0:tests/food-diary-london-date-stack-20261015.test.mjs'],{encoding:'utf8'}));
+ for(const path of ['shift-coach/release.test.mjs','tests/b1-release-scope.test.mjs','tests/home-route-banner.test.mjs']){let current=readFileSync(new URL('../'+path,import.meta.url),'utf8');for(const [before,after,kind]of [...policy.inverses[path]].reverse()){assert(after&&current.split(after).length===2);if(kind==='prefix')assert(current.startsWith(after));current=current.replace(after,()=>before);}assert.equal(current,execFileSync('git',['show','6fe03c05bdcaad7b83d20fc5bd17e60f341db8e0:'+path],{encoding:'utf8'}));}
+});
