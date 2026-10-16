@@ -12,7 +12,7 @@
       "config": "wrangler.jsonc",
       "source": "55b73025f5b6d2302fab42bce73a222653404186",
       "run": 38974318146,
-      "deployment": "dcf7f63d-4d8b-4b9d-b18e-776d2ac400ed",
+      "deployment": "90b33c4c-452e-4cfc-a867-a16d758d553d",
       "version": "2a2f4483-1a43-4e9a-802e-4bdc118059be",
       "gpEnabled": true
     }
@@ -40,5 +40,14 @@
   "gpPrivacyBlobs": {
     "member-experience/member-details-lookups.mjs": "bd60abf5c4e295ee89d569a7934d846db87e2e5f",
     "member-experience/tests/gp-lookup-private-denial.test.mjs": "b6b048fe307eba4b43cc2d4f483a1791b5e981b4"
+  },
+  "providerRecovery": {
+    "source": "596a9653add8240012708079218bf4c6a32a2e9d",
+    "run": 38979892792,
+    "artifact": 12080571990,
+    "rollbackDeployment": "90b33c4c-452e-4cfc-a867-a16d758d553d",
+    "restoredAcceptedVersion": "2a2f4483-1a43-4e9a-802e-4bdc118059be",
+    "originalFailure": "Raw HTML source was compared with the complete composed serving response; exact uploaded-bundle diagnosis reproduces actual failed hash b854a3fa2a698ab0e1b7fcc0a134c3d5b2e8d14d28c1de56ce7a9be31068600e",
+    "originalAssertionsRetained": "Strict byte/hash equality now uses the exact complete compiled response; no bytes ignored, no error broadened, no configuration/data restore"
   }
 }

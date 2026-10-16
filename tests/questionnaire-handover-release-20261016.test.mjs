@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {assertQuestionnaireRecord,PATHS,MAINTENANCE,PREPARED_BASE,PREPARED_FIX,PAYLOAD,PAYLOAD_TREE} from '../release/questionnaire-handover-source-20261016.mjs';
-import {assertProvider,assertPrepared,assertOwned,assertStock,assertLane,latestDeployment,settleOwnedCleanup,LANE} from '../release/questionnaire-handover-owned-release-20261016.mjs';
+import {assertProvider,assertPrepared,assertOwned,assertStock,assertLane,latestDeployment,settleOwnedCleanup,LANE,assertAssessmentAsset} from '../release/questionnaire-handover-owned-release-20261016.mjs';
 const policy=JSON.parse(readFileSync(new URL('../release/questionnaire-handover-policy-20261016.json',import.meta.url)));
 const id='11111111-1111-4111-8111-111111111111',next='22222222-2222-4222-8222-222222222222';
 function record(){return {proof:'EXACT_NONCLINICAL_QUESTIONNAIRE_HANDOVER_20261016',preparedBase:PREPARED_BASE,preparedFix:PREPARED_FIX,payloadSource:PAYLOAD,payloadTree:PAYLOAD_TREE,base:policy.acceptedBase.source,baseTree:policy.acceptedBase.tree,maintenanceSource:'1'.repeat(40),paths:[...PATHS],maintenancePaths:[...MAINTENANCE],partnerApprovedQuestionnaire:false,partnerTestPassed:false,gpPrivateDenialsCorrected:true,...Object.fromEntries(['homepageChanged','treatmentSalesActivated','clinicalRulesAdded','predictiveModelsActivated','r4Activated','stockChanged','configurationChanged','communicationsSent','sourceGuardsRelaxed'].map(x=>[x,false]))};}
@@ -45,3 +46,5 @@ test('cleanup records every failed owned restoration and continues across indepe
  const seen=[];const out=await settleOwnedCleanup(['a','b'],async key=>{seen.push(key);if(key==='a')throw Error('synthetic refusal');return {key,action:'restore'}});assert.deepEqual(seen,['a','b']);assert.equal(out[0].action,'refused_or_failed');assert.equal(out[1].action,'restore');
 });
 test('split or absent deployment inventories fail closed',()=>{assert.throws(()=>latestDeployment([]));assert.throws(()=>latestDeployment([{...snapshot().deployment,created_on:new Date().toISOString(),versions:[{version_id:id,percentage:50},{version_id:next,percentage:50}]}]));});
+
+test('live assessment comparison retains every composed byte and private headers; no substring or ignored-difference pass',()=>{const body=Buffer.from('<html>complete composed response</html>'),expected={status:200,contentType:'text/html',sha256:createHash('sha256').update(body).digest('hex'),bytes:body.length},actual={status:200,contentType:'text/html',body,cacheControl:'no-store',robots:'noindex'};assertAssessmentAsset('/treatment-assessment',actual,expected);for(const change of [{body:Buffer.from('<html>changed composed response!</html>')},{status:302},{cacheControl:'public, max-age=300'},{robots:''},{contentType:'text/plain'}])assert.throws(()=>assertAssessmentAsset('/treatment-assessment',{...actual,...change},expected));assert.throws(()=>assertAssessmentAsset('/unregistered-asset',actual,expected));});

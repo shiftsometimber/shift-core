@@ -37,6 +37,8 @@ jobs:
         run: |
           npm install --no-save --package-lock=false --ignore-scripts playwright@1.58.2
           npx playwright install --with-deps chromium webkit
+          npm install --prefix "$RUNNER_TEMP/questionnaire-workerd-4146" --ignore-scripts --package-lock=false wrangler@4.146.0
+          echo "QUESTIONNAIRE_MINIFLARE=$RUNNER_TEMP/questionnaire-workerd-4146/node_modules/miniflare" >> "$GITHUB_ENV"
       - name: Verify mobile and desktop assessment, return, refresh, clarification and denial behaviour
         env:
           INTAKE_BROWSER_EVIDENCE: questionnaire-runtime-release/browser

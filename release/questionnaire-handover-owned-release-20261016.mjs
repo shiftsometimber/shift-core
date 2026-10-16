@@ -3,6 +3,8 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
+import {createRequire} from 'node:module';
+import {dirname,resolve} from 'node:path';
 import {verifyQuestionnaireSource} from './questionnaire-handover-source-20261016.mjs';
 
 export const LANE=Object.freeze({branch:'fix/questionnaire-handover-20261016',workflow:'.github/workflows/questionnaire-handover-release-20261016.yml',main:'3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef',repository:'shiftsometimber/shift-core'});
@@ -50,6 +52,15 @@ export function assertLane(run,{sha,runId,attempt,branch=LANE.branch}={}){
  assert.equal(run.head_branch,branch);assert.equal(run.event,'push');assert.equal(run.path,LANE.workflow);assert.equal(run.repository.full_name,LANE.repository);
 }
 
+export const ASSESSMENT_ASSETS=Object.freeze([['/treatment-assessment','text/html','treatment-assessment.html'],['/treatment-assessment.js','javascript','treatment-assessment.js'],['/clinical-intake-v1.css','text/css','clinical-intake-v1.css']]);
+export function assertAssessmentAsset(path,actual,expected){
+ const spec=ASSESSMENT_ASSETS.find(([p])=>p===path);assert(spec,'Only exact assessment assets are eligible');
+ assert.equal(expected.status,200);assert.equal(actual.status,expected.status);assert(actual.contentType.includes(spec[1]));assert(expected.contentType.includes(spec[1]));
+ assert.equal(sha(actual.body),expected.sha256,'Actual served assessment asset differs from the exact compiled Worker response: '+path);assert.equal(actual.body.length,expected.bytes);
+ if(path==='/treatment-assessment'){assert.match(actual.cacheControl||'',/no-store/);assert.match(actual.robots||'',/noindex/);}
+ return {path,status:actual.status,sha256:sha(actual.body),bytes:actual.body.length,exactCompiledResponse:true};
+}
+
 // Explicit branch/run authority; this script never impersonates a main workflow.
 export async function execute(phase){
  const env=process.env,source=env.GITHUB_SHA,run=env.GITHUB_RUN_ID,attempt=env.GITHUB_RUN_ATTEMPT;
@@ -92,6 +103,17 @@ export async function execute(phase){
   const part=parts.get(entry);assert(part&&typeof part.arrayBuffer==='function');const bytes=Buffer.from(await part.arrayBuffer());assert.equal((await latest()).id,id,'Latest upload moved while reading compiled bytes');
   return {module:entry,bytes:bytes.length,sha256:sha(bytes),at:new Date().toISOString(),attribution:'Owned latest upload before and after exact content read'};
  }
+ async function compiledAssessmentAssets(spec,version,bundle){
+  const scriptPath=resolve(out+'/bundle-core/'+bundle.module);assert.equal(sha(readFileSync(scriptPath)),bundle.sha256,'Control must execute the exact uploaded whole bundle');
+  const require=createRequire(resolve('node_modules/wrangler/package.json')),{Miniflare,convertV4MiniflareOptions}=require(env.QUESTIONNAIRE_MINIFLARE||'miniflare');
+  const publicBindings=Object.fromEntries(version.resources.bindings.filter(b=>b.type==='plain_text').map(b=>[b.name,b.text]));
+  const assetReads=[],outbound=[];
+  const options={modules:true,modulesRoot:dirname(scriptPath),scriptPath,compatibilityDate:version.resources.script_runtime.compatibility_date,compatibilityFlags:version.resources.script_runtime.compatibility_flags,d1Databases:['DB'],bindings:publicBindings,serviceBindings:{MEMBER_ASSETS:request=>{const path=new URL(request.url).pathname,asset=ASSESSMENT_ASSETS.find(([, ,file])=>'/'+file===path);assert(asset,'Unlisted static asset read in compiled control');assert.equal(request.method,'GET');assetReads.push(path);return new Response(readFileSync('frontend/member/'+asset[2]),{headers:{'Content-Type':asset[1]==='javascript'?'application/javascript':asset[1]}});}},outboundService:request=>{outbound.push({method:request.method,origin:new URL(request.url).origin,path:new URL(request.url).pathname});return new Response('External requests prohibited in exact compiled assessment control',{status:503});}};
+  const mf=new Miniflare(typeof convertV4MiniflareOptions==='function'?convertV4MiniflareOptions(options):options),assets={};
+  try{for(const [path,,file]of ASSESSMENT_ASSETS){const r=await mf.dispatchFetch('https://shiftsometimber.co.uk'+path),body=Buffer.from(await r.arrayBuffer());assert.equal(r.status,200);const item={status:r.status,contentType:r.headers.get('content-type')||'',sha256:sha(body),bytes:body.length};assertAssessmentAsset(path,{status:r.status,contentType:item.contentType,body,cacheControl:r.headers.get('cache-control'),robots:r.headers.get('x-robots-tag')},item);if(path!=='/treatment-assessment')assert.equal(sha(body),sha(readFileSync('frontend/member/'+file)),'Raw script and stylesheet must also remain byte-exact');writeFileSync(out+'/expected-'+file,body);assets[path]=item;}}finally{await mf.dispose();}
+  assert.deepEqual(outbound,[],'No provider/network responses may enter the compiled expected output');assert.deepEqual(assetReads.sort(),ASSESSMENT_ASSETS.map(([, ,file])=>'/'+file).sort());
+  return {source,tree:git('rev-parse','HEAD^{tree}'),bundleSha256:bundle.sha256,assets,assetReads,outbound,scope:'Complete exact uploaded Worker response, isolated workerd/local qualified assets; no API mocks or production resources'};
+ }
  if(phase==='prepare'){
   await sourceGuard();
   for(const spec of Object.values(PREDECESSORS)){const r=await gh('/actions/runs/'+spec.run);assert.equal(r.head_sha,spec.source);assert.equal(r.status,'completed');assert.equal(r.conclusion,'success');}
@@ -105,7 +127,8 @@ export async function execute(phase){
    const version=await api(spec.script,'/versions/'+id),bundle=await uploadedBundle(spec,id);
    const bytes=readFileSync(dir+'/'+bundle.module),local={bytes:bytes.length,sha256:sha(bytes)};const prepared={version,bundle,local};assertPrepared(prepared,before);
    assertProvider({deployment:{id:spec.deployment,versions:[{version_id:id,percentage:100}]},version},{deployment:spec.deployment,version:id,gpEnabled:spec.gpEnabled},{hq:false});
-   j.workers[key].prepared={versionId:id,versionNumber:version.number,script:version.resources.script,script_runtime:version.resources.script_runtime,bundle,local,bindingsSha256:digest(version.resources.bindings.slice().sort((a,b)=>a.name.localeCompare(b.name)))};save('journal',j);
+   const assetControl=await compiledAssessmentAssets(spec,version,bundle);
+   j.workers[key].prepared={versionId:id,versionNumber:version.number,script:version.resources.script,script_runtime:version.resources.script_runtime,bundle,local,assetControl,bindingsSha256:digest(version.resources.bindings.slice().sort((a,b)=>a.name.localeCompare(b.name)))};save('journal',j);
    assertProvider(await current(spec),spec,{hq:false});
   }
   assertStock(j.stock,snapshotStock());j.preparedAt=new Date().toISOString();save('journal',j);save('prepared',{source,run,attempt,status:'uploaded_verified_not_deployed',trafficWrites:0,dataWrites:0});
@@ -129,7 +152,7 @@ export async function execute(phase){
    result.workers[key]={source,run:Number(run),attempt:Number(attempt),deploymentId:owned.deploymentId,versionId:owned.versionId,percentage:100,bundleSha256:bundle.sha256,bundleBytes:bundle.bytes,allBindingsSha256:binding.bindingsSha256,otherBindingsSha256:digest(s.version.resources.bindings.filter(b=>b.name!=='MEMBER_GP_DIRECTORY_V2_ENABLED').sort((a,b)=>a.name.localeCompare(b.name))),gpEnabled:spec.gpEnabled===true};
   }
   const checks=[];for(const path of ['/v1/commerce/medicine-clinical-context','/v1/commerce/medicine-clinical-intake-status?variant=102','/v1/treatment/orders']){const r=await fetch('https://api.shiftsometimber.co.uk'+path,{headers:{Origin:'https://shiftsometimber.co.uk'},redirect:'manual',signal:AbortSignal.timeout(30000)});assert.equal(r.status,401,'Unauthenticated private assessment routes must require authentication');checks.push({path:path.split('?')[0],status:r.status});await r.body?.cancel();}
-  for(const [path,type,file]of [['/treatment-assessment','text/html','frontend/member/treatment-assessment.html'],['/treatment-assessment.js','javascript','frontend/member/treatment-assessment.js'],['/clinical-intake-v1.css','text/css','frontend/member/clinical-intake-v1.css']]){const r=await fetch('https://shiftsometimber.co.uk'+path,{redirect:'manual',signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);assert(r.headers.get('content-type')?.includes(type));const bytes=Buffer.from(await r.arrayBuffer()),expected=readFileSync(file);assert.equal(sha(bytes),sha(expected),'Actual served assessment asset differs from the qualified source: '+path);assert.equal(bytes.length,expected.length);if(path==='/treatment-assessment'){assert(r.headers.get('cache-control')?.includes('no-store'));assert(r.headers.get('x-robots-tag')?.includes('noindex'));}checks.push({path,status:r.status,sha256:sha(bytes),bytes:bytes.length,exactSource:file});}
+  for(const [path,,file]of ASSESSMENT_ASSETS){const r=await fetch('https://shiftsometimber.co.uk'+path,{redirect:'manual',signal:AbortSignal.timeout(30000)}),body=Buffer.from(await r.arrayBuffer());writeFileSync(out+'/actual-'+file,body);const control=j.workers.core.prepared.assetControl;assert.equal(control.source,source);assert.equal(control.bundleSha256,j.workers.core.prepared.local.sha256);checks.push(assertAssessmentAsset(path,{status:r.status,contentType:r.headers.get('content-type')||'',body,cacheControl:r.headers.get('cache-control'),robots:r.headers.get('x-robots-tag')},control.assets[path]));}
   for(const origin of ['https://shiftsometimber.co.uk','https://api.shiftsometimber.co.uk'])for(const path of ['/v1/member/details','/v1/member/details/gp-search?q=London']){const r=await fetch(origin+path,{headers:{'Cache-Control':'no-cache'},redirect:'manual',signal:AbortSignal.timeout(30000)});assert.equal(r.status,401);assert.match(r.headers.get('cache-control')||'',/no-store/);assert.match(r.headers.get('vary')||'',/Cookie/i);assert.equal(r.headers.get('x-content-type-options'),'nosniff');const body=await r.json();assert.equal(body.error,'authentication_required');checks.push({origin,path:path.split('?')[0],status:401,privateDenialVerified:true});}
   assertStock(j.stock,snapshotStock());for(const [key,spec]of Object.entries(PREDECESSORS))assertOwned((await current(spec)).deployment,j.owned[key],source,run,attempt);
   const mainAfter=(await gh('/git/ref/heads/main')).object.sha;assert.equal(mainAfter,LANE.main);result.ownership.mainAfter=mainAfter;
