@@ -50,7 +50,7 @@ function assertSource(){
  assert.equal(git('status','--porcelain','--untracked-files=no'),'');git('merge-base','--is-ancestor',RUNTIME_SOURCE,'HEAD');
  const allowed=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-directory-live-20261015.mjs','release/gp-member-directory-navigation-live-20261016.mjs','tests/gp-member-directory-navigation-live-20261016.test.mjs','tests/gp-member-directory-navigation-browser-20261016.mjs'];
  assert.deepEqual(git('diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',RUNTIME_SOURCE,'HEAD').split('\n').sort(),allowed.sort(),'Only admitted acceptance-harness paths may differ from the serving source');
- assert.equal(hash(readFileSync('release/gp-directory-live-20261015.mjs')),'520e108f016c2c9db4dd943843b0173bba985acaa48eadfdd8cb05236314d216','Exact reviewed navigation and non-egress changes required');
+ assert.equal(hash(readFileSync('release/gp-directory-live-20261015.mjs')),'31cafafc053aeac8c21b5c7d4a9100e068775dc9acc923eded4e9e9112d5ee2d','Exact reviewed navigation and non-egress changes required');
  return source;
 }
 async function api(path){

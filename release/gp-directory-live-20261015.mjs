@@ -150,11 +150,15 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
     // Keep the original open-service assertions above for their original gate.
     const contextResponse=await page.context().request.get(api+'/v1/commerce/medicine-clinical-context',{headers:{Origin:site,'Cache-Control':'no-cache'}});
     assert.equal(contextResponse.status(),200);assert.match(contextResponse.headers()['cache-control']||'',/no-store/);assertClosedAssessmentContext(await contextResponse.json());
+    const catalogueResponse=await page.context().request.get(api+'/v1/catalogue/medicines',{headers:{Origin:site,'Cache-Control':'no-cache'}});assert.equal(catalogueResponse.status(),200);
+    const catalogue=await catalogueResponse.json(),selected=(catalogue.products||[]).flatMap(product=>product.variants||[]).find(variant=>Number.isSafeInteger(Number(variant.id))&&Number(variant.id)>0);
+    assert(selected,'An actual catalogue selection is required for the normal assessment URL; never invent a variant or open stock');
+    const assessmentUrl=site+'/treatment-assessment?'+new URLSearchParams({variant:String(selected.id)});
     const assessment=await page.context().newPage(),requests=[];
     assessment.on('pageerror',onPageError);assessment.on('request',request=>requests.push({path:new URL(request.url()).pathname,method:request.method()}));
     try{
      for(const width of [390,1440]){
-      await assessment.setViewportSize({width,height:900});await assessment.goto(site+'/treatment-assessment',{waitUntil:'domcontentloaded'});
+      await assessment.setViewportSize({width,height:900});await assessment.goto(assessmentUrl,{waitUntil:'domcontentloaded'});
       await assessment.waitForFunction(()=>document.querySelector('#status')?.textContent==='Assessment is not open for this selection. No information has been sent and no payment has been taken.',null,{timeout:30000});
       assert.equal(await assessment.locator('#assessment').getAttribute('hidden'),'');
       assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name="gpPractice"]').inputValue(),'');
@@ -166,7 +170,7 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
      assert.equal(requests.some(r=>r.path==='/v1/member/details'||r.path==='/v1/member/details/gp-search'),false,'A closed assessment must not read saved GP details automatically');
      assert.deepEqual(requests.filter(r=>!['GET','HEAD','OPTIONS'].includes(r.method)&&!['/cdn-cgi/rum','/v1/my-timber-pwa/status'].includes(r.path)),[],'No assessment submission, sharing or other write allowed');
      assert.deepEqual((await profile()).details,finalProfile.details);
-     row.assessmentReuse={status:'blocked',reason:'Actual pharmacy clinical context assessmentAvailable=false; original open-service GP reuse assertions remain required',liveGateVerifiedClosed:true,consentsUnchecked:true,savedGpAutomaticallyRead:false,assessmentSubmitted:false,originalAcceptanceRetained:true};
+     row.assessmentReuse={status:'blocked',reason:'Actual pharmacy clinical context assessmentAvailable=false; original open-service GP reuse assertions remain required',liveGateVerifiedClosed:true,actualCatalogueVariant:Number(selected.id),stockOrContractActivated:false,consentsUnchecked:true,savedGpAutomaticallyRead:false,assessmentSubmitted:false,originalAcceptanceRetained:true};
     }finally{await assessment.close();}
    }
   await uninstall();page=await freshSession();await self();await install();await open();assert.deepEqual((await profile()).details,finalProfile.details);assert.equal(await page.locator('#memberGpPractice').inputValue(),markerText);row.checks.push({manualSaved:true,noGpSavedAndReopened:true,freshNormalSignIn:true});
