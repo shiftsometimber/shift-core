@@ -23,7 +23,9 @@
   <form id="assessment" class="clinical-form" enctype="multipart/form-data" hidden>
     <input name="variantId" id="variantId" type="hidden">
     <fieldset><legend>Your contact details</legend>
-      <p>Check your saved details. Your verified account email is used for contact. Changes here apply to this assessment.</p>
+      <p>Use your saved contact details or enter your current details. Your verified account email is used for contact. Changes here apply to this assessment.</p>
+      <button id="useContactDetails" type="button">Use contact details saved in My Timber</button>
+      <p id="savedContactStatus" role="status" aria-live="polite"></p>
       <label>First name<input name="patientFirstName" autocomplete="given-name" maxlength="100" required></label>
       <label>Last name<input name="patientLastName" autocomplete="family-name" maxlength="100" required></label>
       <label>Account email<input id="patientEmail" type="email" autocomplete="email" readonly></label>
