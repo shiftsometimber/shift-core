@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {resolve} from 'node:path';
+import {isPreventedGpBackground,openNormalGpDisclosures} from '../release/gp-directory-live-h55-qa-20261016.mjs';
+import {assertQaIdentity,QA_BRANCH,QA_WORKFLOW,TARGET_RUNTIME_SOURCE} from '../release/gp-h55-live-qa-20261016.mjs';
+const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';
+test('only exact unrelated PWA/RUM POSTs are denied before the original GP guard',()=>{
+ for(const url of[site+'/v1/my-timber-pwa/status',api+'/v1/my-timber-pwa/status',site+'/cdn-cgi/rum','https://cloudflareinsights.com/cdn-cgi/rum'])assert.equal(isPreventedGpBackground(url,'POST',{site,api}),true);
+ for(const [url,method]of[[site+'/v1/my-timber-pwa/status','PATCH'],[site+'/v1/my-timber-pwa/status/','POST'],[site+'/v1/my-timber-pwa/status-extra','POST'],['https://foreign.invalid/v1/my-timber-pwa/status','POST'],['https://foreign.invalid/cdn-cgi/rum','POST'],[site+'/v1/member/details','PATCH'],[site+'/v1/member/details/gp-search','GET'],[site+'/v1/consents','POST'],[site+'/cdn-cgi/rum','GET']])assert.equal(isPreventedGpBackground(url,method,{site,api}),false,'Original guard retains '+method+' '+url);
+});
+test('real verifier identity cannot be relabelled as runtime H or another workflow',()=>{
+ const q='a'.repeat(40),run={id:12,run_attempt:2,head_sha:q,head_branch:QA_BRANCH,path:QA_WORKFLOW,event:'push',head_repository:{full_name:'shiftsometimber/shift-core'}};
+ assert.equal(assertQaIdentity(run,{source:q,runId:'12',attempt:'2'}),run);
+ for(const change of[{head_sha:TARGET_RUNTIME_SOURCE},{head_branch:'main'},{path:'other.yml'},{event:'workflow_dispatch'},{id:13},{run_attempt:1}])assert.throws(()=>assertQaIdentity({...run,...change},{source:q,runId:'12',attempt:'2'}));
+});
+test('old hidden wait fails; normal summaries open actual outer and inner shape, including no-GP reopen',async()=>{
+ const require=createRequire(resolve(process.cwd(),'package.json'));
+ const{chromium}=require(process.env.QA_PLAYWRIGHT_MODULE||'playwright');const browser=await chromium.launch({headless:true});
+ try{for(const noGp of[false,true]){
+  const page=await browser.newPage({viewport:{width:390,height:900}});
+  await page.setContent('<!doctype html><html><body><main hidden><details class="app-screen-details app-account-details"><summary>Personal &amp; delivery details</summary><section id="memberDetailsPanel"><form id="memberDetailsForm" data-gp-directory-v2="true"><input id="memberEmail" value="fictional@example.invalid"><details class="app-refine-detail"><summary>Your GP details</summary><div class="md-section"><input id="memberGpPractice" '+(noGp?'hidden':'')+'><input id="memberGpPostcode" '+(noGp?'hidden':'')+'><input id="memberGpAddress" '+(noGp?'hidden':'')+'><select id="memberGpSelectionMode"><option value="manual">Enter manually</option><option value="no_gp" '+(noGp?'selected':'')+'>I do not have a GP</option></select></div></details></form></section></details></main><script>window.summaryClicks=[];document.addEventListener("click",e=>{if(e.target.tagName==="SUMMARY")summaryClicks.push(e.target.textContent)});</script></body></html>');
+  await assert.rejects(page.locator('#memberDetailsForm[data-gp-directory-v2="true"]').waitFor({state:'visible',timeout:150}));
+  await page.evaluate(()=>setTimeout(()=>document.querySelector('main').hidden=false,80));
+  await openNormalGpDisclosures(page);await page.locator('#memberDetailsForm[data-gp-directory-v2="true"]').waitFor({state:'visible',timeout:1000});
+  assert.equal(await page.locator('#memberGpSelectionMode').inputValue(),noGp?'no_gp':'manual');
+  assert.deepEqual(await page.evaluate(()=>summaryClicks),['Personal & delivery details','Your GP details']);
+  assert.equal(await page.locator('#memberGpPractice').isVisible(),!noGp,'The opener never force-unhides conditional GP inputs');await page.close();
+ }}finally{await browser.close();}
+});

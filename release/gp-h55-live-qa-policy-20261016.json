@@ -1,0 +1,177 @@
+{
+  "schema": "shift-gp-h55-ui-verifier-policy/v1",
+  "runtimeSource": "55b73025f5b6d2302fab42bce73a222653404186",
+  "runtimeTree": "550bec05b5dbf98bb31eed006b2158f73b4ee79f",
+  "branch": "verification/gp-direct-h55-live-20261016",
+  "workflow": ".github/workflows/rendered-member-production-acceptance.yml",
+  "paths": [
+    ".github/workflows/rendered-member-production-acceptance.yml",
+    "release/gp-h55-live-qa-20261016.mjs",
+    "release/gp-directory-live-h55-qa-20261016.mjs",
+    "release/gp-h55-live-qa-policy-20261016.json",
+    "tests/gp-h55-live-qa-20261016.test.mjs"
+  ],
+  "helper": {
+    "path": "release/gp-directory-live-h55-qa-20261016.mjs",
+    "sha256": "4a49ac683aeaec92dc333004faf1373712e7e69e99ec604f4a1c5d960cafe164",
+    "originalSha256": "d0b9b3f8b84ec70edee049750cfc2e6caf8afafc1a3b0ac0a59165b6d06b1a60",
+    "wholeInverse": [
+      [
+        "from './my-treatment-compiled-control.mjs'",
+        "from '../../runtime/release/my-treatment-compiled-control.mjs'",
+        1
+      ],
+      [
+        "from './gp-directory-live-contract-20261015.mjs'",
+        "from '../../runtime/release/gp-directory-live-contract-20261015.mjs'",
+        1
+      ],
+      [
+        "const sha=v=>",
+        "import {chooseNecessaryCookies} from '../../runtime/rendered-member-acceptance-support.mjs';\n\nexport function isPreventedGpBackground(url,method,{site,api}){\n const u=new URL(url);if(method!=='POST')return false;\n return u.pathname==='/v1/my-timber-pwa/status'&&[site,api].includes(u.origin)||u.pathname==='/cdn-cgi/rum'&&[site,'https://cloudflareinsights.com'].includes(u.origin);\n}\nexport async function openNormalGpDisclosures(page){\n await chooseNecessaryCookies(page);const started=Date.now(),remaining=()=>{assert(Date.now()-started<30000,'Original Settings opening budget exceeded');return Math.max(1,30000-(Date.now()-started));};\n const form=page.locator('#memberDetailsForm[data-gp-directory-v2=\"true\"]');await form.waitFor({state:'attached',timeout:remaining()});\n await page.waitForFunction(()=>document.querySelector('#memberDetailsForm')?.closest('main')?.getClientRects().length>0,null,{timeout:remaining()});\n for(const selector of ['#memberDetailsForm','#memberEmail','#memberGpSelectionMode']){\n  const field=page.locator(selector);\n  for(let attempt=0;attempt<8;attempt++){\n   const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;\n   let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click({timeout:remaining()});opened=true;break;}}\n   assert(opened,'Original GP control must have a normal visible disclosure summary: '+selector);\n  }\n }\n}\n\nconst sha=v=>",
+        1
+      ],
+      [
+        "dir,report,freshSession})",
+        "dir,report,freshSession,runtimeSource})",
+        1
+      ],
+      [
+        "page,site,api,email}){\n const source=process.env.GITHUB_SHA;",
+        "page,site,api,email,runtimeSource}){\n const source=process.env.GITHUB_SHA;",
+        1
+      ],
+      [
+        "const source=process.env.GITHUB_SHA;",
+        "const source=runtimeSource===undefined?process.env.GITHUB_SHA:runtimeSource;",
+        2
+      ],
+      [
+        "const blocked=[],pageErrors=[];",
+        "const blocked=[],pageErrors=[],preventedBackground=[];",
+        1
+      ],
+      [
+        "const req=route.request(),u=new URL(req.url()),method=req.method();\n   try{",
+        "const req=route.request(),u=new URL(req.url()),method=req.method();\n   if(isPreventedGpBackground(req.url(),method,{site,api})){preventedBackground.push({origin:u.origin,path:u.pathname,method,disposition:'aborted_before_network',authority:'Unrelated analytics/PWA writes remain held'});await route.abort('blockedbyclient');return;}\n   try{",
+        1
+      ],
+      [
+        "await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});",
+        "await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});\n  await openNormalGpDisclosures(page);",
+        1
+      ],
+      [
+        "row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;",
+        "row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;row.preventedBackgroundWrites=preventedBackground;",
+        1
+      ]
+    ]
+  },
+  "runner": {
+    "path": "release/gp-h55-live-qa-20261016.mjs",
+    "sha256": "b5c3607835fb5e8bb204834ec95a8e3bf14541032dfe04bb557ed21b2b5fc810",
+    "originalSha256": "496bc6458786ae3a7161b95b58c0e9e319700f18dac062b8b32d883d41f9a4da",
+    "wholeInverse": [
+      [
+        "mkdirSync,readFileSync,writeFileSync,readdirSync",
+        "mkdirSync,readFileSync,writeFileSync,readdirSync,realpathSync",
+        1
+      ],
+      [
+        "{join,resolve}",
+        "{join,resolve,dirname}",
+        1
+      ],
+      [
+        "import {pathToFileURL}",
+        "import {createRequire} from 'node:module';\nimport {pathToFileURL}",
+        1
+      ],
+      [
+        "{pathToFileURL}",
+        "{pathToFileURL,fileURLToPath}",
+        1
+      ],
+      [
+        "from './gp-priority-direct-owned-release-20261016.mjs'",
+        "from '../../runtime/release/gp-priority-direct-owned-release-20261016.mjs'",
+        1
+      ],
+      [
+        "function actualSource(){\n assert.equal(process.env.GITHUB_REPOSITORY,repository);\n assert.equal(process.env.GITHUB_REF,'refs/heads/'+GP_ON_BRANCH);\n const source=process.env.GITHUB_SHA;sha40(source);assert.equal(git('rev-parse','HEAD'),source);\n return source;\n}\n",
+        "export const QA_BRANCH='verification/gp-direct-h55-live-20261016';\nexport const QA_WORKFLOW='.github/workflows/rendered-member-production-acceptance.yml';\nexport const TARGET_RUNTIME_SOURCE='55b73025f5b6d2302fab42bce73a222653404186';\nexport const TARGET_RUNTIME_TREE='550bec05b5dbf98bb31eed006b2158f73b4ee79f';\nconst verifierRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');\nconst native=(dir,...args)=>execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',dir,...args],{encoding:'utf8',env:{...process.env,GIT_NO_LAZY_FETCH:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0'},maxBuffer:64e6}).trim();\nexport function assertQaIdentity(run,{source,runId,attempt}){\n sha40(source);assert.equal(run.head_sha,source);assert.equal(run.head_branch,QA_BRANCH);assert.equal(run.path,QA_WORKFLOW);assert.equal(run.event,'push');assert.equal(run.head_repository.full_name,repository);\n assert.equal(String(run.id),String(runId));assert.equal(String(run.run_attempt),String(attempt));assert(Number.isSafeInteger(run.id)&&run.id>0);assert(Number.isSafeInteger(run.run_attempt)&&run.run_attempt>0);return run;\n}\nfunction actualVerifier(){\n assert.equal(process.env.GITHUB_REPOSITORY,repository);assert.equal(process.env.GITHUB_REF,'refs/heads/'+QA_BRANCH);assert.equal(process.env.GITHUB_EVENT_NAME,'push');\n const source=process.env.GITHUB_SHA;sha40(source);assert.equal(native(verifierRoot,'rev-parse','HEAD'),source);\n assert.equal(native(verifierRoot,'status','--porcelain','--untracked-files=no'),'');\n const manifest=JSON.parse(readFileSync(resolve(verifierRoot,'release/gp-h55-live-qa-policy-20261016.json'),'utf8'));\n assert.equal(manifest.runtimeSource,TARGET_RUNTIME_SOURCE);assert.equal(manifest.runtimeTree,TARGET_RUNTIME_TREE);assert.equal(manifest.schema,'shift-gp-h55-ui-verifier-policy/v1');\n const expected=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-h55-live-qa-20261016.mjs','release/gp-directory-live-h55-qa-20261016.mjs','release/gp-h55-live-qa-policy-20261016.json','tests/gp-h55-live-qa-20261016.test.mjs'];\n assert.deepEqual([...manifest.paths].sort(),expected.sort());assert.deepEqual(native(verifierRoot,'diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',TARGET_RUNTIME_SOURCE,source,'--').split('\\n').filter(Boolean).sort(),expected.sort(),'Only the finite QA verifier files may differ from H55');\n for(const path of expected){const bytes=readFileSync(resolve(verifierRoot,path)),nativeBytes=execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',verifierRoot,'show',source+':'+path],{maxBuffer:64e6});assert.equal(hash(bytes),hash(nativeBytes));}\n return{source,tree:native(verifierRoot,'rev-parse','HEAD^{tree}'),branch:QA_BRANCH,workflow:QA_WORKFLOW,run:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,overlaySha256:manifest.helper.sha256};\n}\nfunction actualSource(){\n actualVerifier();assert.equal(realpathSync(process.cwd()),realpathSync(resolve(verifierRoot,'../runtime')),'Use the independently checked-out H55 runtime directory');\n const source=native(process.cwd(),'rev-parse','HEAD');assert.equal(source,TARGET_RUNTIME_SOURCE);assert.equal(native(process.cwd(),'rev-parse','HEAD^{tree}'),TARGET_RUNTIME_TREE);\n assert.equal(native(process.cwd(),'status','--porcelain','--untracked-files=no'),'');\n for(const row of native(process.cwd(),'ls-files','-v','-z').split('\\0').filter(Boolean))assert(row.startsWith('H '),'Hidden tracked H55 runtime refused');\n return source;\n}\n",
+        1
+      ],
+      [
+        " assert.equal(receipt.main,LANE.main,",
+        " const startedAt=new Date().toISOString(),checkStarted=Date.now();actualSource();assertQaIdentity(await readGithub('/actions/runs/'+process.env.GITHUB_RUN_ID),{source:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT});\n assert.equal((await readGithub('/git/ref/heads/'+QA_BRANCH)).object.sha,process.env.GITHUB_SHA,'QA verifier branch moved');\n assert.equal(receipt.main,LANE.main,",
+        1
+      ],
+      [
+        " return{at:new Date().toISOString(),source,main:receipt.main,workers:actual};",
+        " const proof={startedAt,at:new Date().toISOString(),source,main:receipt.main,workers:actual,verifier:actualVerifier()};const elapsed=Date.now()-checkStarted;assert(elapsed>=0&&elapsed<=300000,'Actual owned provider/source proof must be current within five minutes from first read');return proof;",
+        1
+      ],
+      [
+        "const finished=Date.parse(current.updated_at);assert(Number.isFinite(finished)&&finished<=Date.now()&&Date.now()-finished<=900000,'Fresh actual ON terminal within 15 minutes required before fixture creation');",
+        "const finished=Date.parse(current.updated_at);assert(Number.isFinite(finished)&&finished<=Date.now(),'Retain the true historical H terminal; fresh current ownership is separately required before each fixture');",
+        1
+      ],
+      [
+        "import('../rendered-member-acceptance-support.mjs')",
+        "import('../../runtime/rendered-member-acceptance-support.mjs')",
+        1
+      ],
+      [
+        "const{chromium}=await import('playwright');",
+        "const{chromium}=createRequire(resolve(process.cwd(),'package.json'))('playwright');",
+        1
+      ],
+      [
+        "import('./gp-directory-live-20261015.mjs')",
+        "import('./gp-directory-live-h55-qa-20261016.mjs')",
+        1
+      ],
+      [
+        "schema:'shift-gp-member-directory-live/v1'",
+        "schema:'shift-gp-h55-member-qa-live/v1',runtimeSource:source,verifier:actualVerifier(),historicalRuntimeTerminalAt:current.updated_at,currentOwnershipRequired:true",
+        1
+      ],
+      [
+        "email:first.email,dir:directory,report,freshSession:",
+        "email:first.email,dir:directory,report,runtimeSource:source,freshSession:",
+        1
+      ],
+      [
+        "email:second.email});\n  assert.equal(isolation.status",
+        "email:second.email,runtimeSource:source});\n  assert.equal(isolation.status",
+        1
+      ],
+      [
+        "join(directory,'gp-member-directory-report.json')",
+        "join(directory,'gp-h55-member-qa-report.json')",
+        1
+      ]
+    ]
+  },
+  "workflowInverse": [
+    [
+      "    branches: [verification/member-design-20261002, release/gp-priority-direct-20261016, release/gp-priority-direct-activation-20261016]",
+      "    branches: [verification/member-design-20261002, release/gp-priority-direct-20261016, release/gp-priority-direct-activation-20261016, verification/gp-direct-h55-live-20261016]"
+    ],
+    [
+      "    if: github.ref != 'refs/heads/release/gp-priority-direct-20261016' && github.ref != 'refs/heads/release/gp-priority-direct-activation-20261016' && (github.event_name",
+      "    if: github.ref != 'refs/heads/release/gp-priority-direct-20261016' && github.ref != 'refs/heads/release/gp-priority-direct-activation-20261016' && github.ref != 'refs/heads/verification/gp-direct-h55-live-20261016' && (github.event_name"
+    ],
+    [
+      "",
+      "\n  gp-h55-live-qa:\n    if: github.event_name == 'push' && github.ref == 'refs/heads/verification/gp-direct-h55-live-20261016'\n    runs-on: ubuntu-latest\n    timeout-minutes: 35\n    permissions:\n      contents: read\n      actions: read\n      id-token: write\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          ref: ${{ github.sha }}\n          path: verifier\n          fetch-depth: 0\n      - uses: actions/checkout@v4\n        with:\n          ref: 55b73025f5b6d2302fab42bce73a222653404186\n          path: runtime\n          fetch-depth: 0\n      - uses: actions/setup-node@v4\n        with:\n          node-version-file: 'runtime/.nvmrc'\n      - name: Wait for the actual same-source owned GP ON release\n        env:\n          GH_TOKEN: ${{ github.token }}\n        working-directory: runtime\n        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --wait-on\n      - name: Install the unchanged production compiler and isolated browser runtime\n        shell: bash\n        working-directory: runtime\n        run: |\n          npm ci --ignore-scripts\n          npm install --no-save --ignore-scripts --package-lock=false playwright@1.58.2\n          node -e \"require('node:assert/strict').equal(require('./node_modules/wrangler/package.json').version,'4.112.0')\"\n          npx playwright install --with-deps chromium\n          npm install --prefix \"$RUNNER_TEMP/gp-workerd-4146\" --ignore-scripts --package-lock=false wrangler@4.146.0\n          echo \"TREATMENT_MINIFLARE=$RUNNER_TEMP/gp-workerd-4146/node_modules/miniflare\" >> \"$GITHUB_ENV\"\n      - name: Verify the exact Q disclosure and identity regressions before fixtures\n        working-directory: runtime\n        run: node --test --test-concurrency=1 ../verifier/tests/gp-h55-live-qa-20261016.test.mjs\n      - name: Acquire the original allowed-workflow commissioning identity\n        id: gp_oidc\n        shell: bash\n        working-directory: runtime\n        run: |\n          raw=$(curl -fsSL -H \"Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN\" \"${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning\")\n          token=$(printf '%s' \"$raw\" | node -e \"let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))\")\n          echo \"::add-mask::$token\"\n          echo \"token=$token\" >> \"$GITHUB_OUTPUT\"\n      - name: Verify actual GP lookup, save/reopen and two-holder isolation\n        env:\n          GH_TOKEN: ${{ github.token }}\n          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6\n          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          SHIFT_COMMISSIONING_OIDC: ${{ steps.gp_oidc.outputs.token }}\n        working-directory: runtime\n        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --verify-on\n      - name: Preserve source after the bounded GP-only member proof\n        working-directory: runtime\n        run: |\n          test \"$(git rev-parse HEAD)\" = \"55b73025f5b6d2302fab42bce73a222653404186\"\n          test -z \"$(git status --porcelain --untracked-files=no)\"\n      - name: Retain actual member directory activation evidence\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: gp-h55-member-qa-live-${{ github.run_id }}\n          path: runtime/growth-member-live-evidence/\n          if-no-files-found: warn\n          retention-days: 30\n",
+      "suffix"
+    ]
+  ],
+  "productionRuntimeChanged": false,
+  "providerWrites": 0,
+  "fakeGithubSha": false,
+  "actualMemberProof": false
+}
