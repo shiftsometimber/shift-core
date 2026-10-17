@@ -1,0 +1,14 @@
+✔ the original mounting function and every style byte remain unchanged (17.572333ms)
+✔ the emitted browser module is exactly the original uncompiled mounting function (15.735625ms)
+✔ compiled standalone browser module mounts and disposes with {"keepNames":true,"minify":false} (19.197542ms)
+✔ compiled standalone browser module mounts and disposes with {"keepNames":true,"minify":true} (5.371834ms)
+✔ compiled standalone browser module mounts and disposes with {"keepNames":false,"minify":false} (5.7965ms)
+✔ compiled standalone browser module mounts and disposes with {"keepNames":false,"minify":true} (4.937208ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 125.261458

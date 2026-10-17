@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-17T15:56:52.316776+00:00",
+  "stage": "module-ready",
+  "source": "b1e316c6331752d1c5e382f5c2649259a9a48f80",
+  "setupReadinessOnly": true,
+  "fullNativeQualification": false,
+  "command": [
+    "/usr/local/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^__MODULE_SETUP_ONLY_NO_TEST_MATCH__$",
+    "tests/food-diary-london-date-stack-20261015.test.mjs",
+    "tests/seo-audit-scope-20261016.test.mjs"
+  ],
+  "capSeconds": 60,
+  "seconds": 16.597910208000002,
+  "exit": 0,
+  "timedOut": false,
+  "counts": {
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "ownedGroupEmpty": true,
+  "trackedSourceClean": true,
+  "packageLockSHA256": "60483f79fc3ab52bf5f1c92945b494e747193145e64c52cbfc4daed2b6ab1eda",
+  "logSHA256": "c769b00445351113adce6720159ce67e5d3f06b291fed4794843dceaa3eeeb41",
+  "modelCalls": 0,
+  "providerWrites": 0
+}

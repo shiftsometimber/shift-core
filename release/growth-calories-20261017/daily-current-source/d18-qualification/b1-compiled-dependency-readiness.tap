@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: the original mounting function and every style byte remain unchanged
+ok 1 - the original mounting function and every style byte remain unchanged
+  ---
+  duration_ms: 18.090042
+  type: 'test'
+  ...
+# Subtest: the emitted browser module is exactly the original uncompiled mounting function
+ok 2 - the emitted browser module is exactly the original uncompiled mounting function
+  ---
+  duration_ms: 14.517
+  type: 'test'
+  ...
+# Subtest: compiled standalone browser module mounts and disposes with {"keepNames":true,"minify":false}
+ok 3 - compiled standalone browser module mounts and disposes with {"keepNames":true,"minify":false}
+  ---
+  duration_ms: 60.754833
+  type: 'test'
+  ...
+# Subtest: compiled standalone browser module mounts and disposes with {"keepNames":true,"minify":true}
+ok 4 - compiled standalone browser module mounts and disposes with {"keepNames":true,"minify":true}
+  ---
+  duration_ms: 5.247667
+  type: 'test'
+  ...
+# Subtest: compiled standalone browser module mounts and disposes with {"keepNames":false,"minify":false}
+ok 5 - compiled standalone browser module mounts and disposes with {"keepNames":false,"minify":false}
+  ---
+  duration_ms: 4.931708
+  type: 'test'
+  ...
+# Subtest: compiled standalone browser module mounts and disposes with {"keepNames":false,"minify":true}
+ok 6 - compiled standalone browser module mounts and disposes with {"keepNames":false,"minify":true}
+  ---
+  duration_ms: 7.325041
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 200.71675

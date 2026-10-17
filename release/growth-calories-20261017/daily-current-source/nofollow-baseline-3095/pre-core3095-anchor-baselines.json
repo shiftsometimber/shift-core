@@ -1,0 +1,90 @@
+{
+  "startedAt": "2026-10-17T15:40:16.236727+00:00",
+  "purpose": "Fresh read-only pre-Core baselines; reuses first captured HTML rather than repeating its GET",
+  "syntheticVerification": true,
+  "javascriptExecuted": false,
+  "customerOutcome": false,
+  "cases": [
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-constipation",
+      "recordedAt": "2026-10-17T15:40:16.240525+00:00",
+      "reusedAlreadyCapturedCurrentHTML": true,
+      "transportStatusRetained": null,
+      "note": "First request status/headers were not saved by the failed checker; body reused without inventing them",
+      "canonical": "https://shiftsometimber.co.uk/articles/glp-1-constipation",
+      "anchor": "Fibre is the other pillar",
+      "destination": "https://nutrilike.es/probioticos-para-colon-irritable-cuales-funcionan-y-como-elegir-el-adecuado",
+      "rel": "noopener noreferrer",
+      "mainUnchangedSinceOriginalBaseline": true,
+      "datesUnchangedSinceOriginalBaseline": true,
+      "dates": [
+        {
+          "datePublished": "2026-10-09T05:30:53.637Z",
+          "dateModified": "2026-10-16T10:22:37.000Z"
+        }
+      ],
+      "headers": null,
+      "HTMLSHA256": "2bcaaa7bcee350f74699e0f698fb2b69813ea774eae36bfc3e8910fff64fc9c3",
+      "mainSHA256": "4430b2d3ba8c80966fe28fab25fe469dc2c9a8c41cd0208044773f4ea13ea285"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-and-alcohol",
+      "recordedAt": "2026-10-17T15:40:16.829822+00:00",
+      "reusedAlreadyCapturedCurrentHTML": false,
+      "transportStatusRetained": 200,
+      "note": "Actual fresh GET metadata retained",
+      "canonical": "https://shiftsometimber.co.uk/articles/glp-1-and-alcohol",
+      "anchor": "Recover 365's guide to alcohol and liver recovery",
+      "destination": "https://getrecover365.com/blogs/blog/what-alcohol-really-does-to-your-liver-and-how-to-help-it-recover",
+      "rel": "noopener noreferrer",
+      "mainUnchangedSinceOriginalBaseline": true,
+      "datesUnchangedSinceOriginalBaseline": true,
+      "dates": [
+        {
+          "datePublished": "2026-10-07T05:30:38.641Z",
+          "dateModified": "2026-10-07T16:34:24.336Z"
+        }
+      ],
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 15:40:16 GMT",
+        "Cache-Control": "no-store",
+        "CF-Cache-Status": null,
+        "Age": null,
+        "ETag": null,
+        "CF-Ray": "a4c06699edce5f1b-LHR"
+      },
+      "HTMLSHA256": "06d012847bfc50e0af2863e3c21c3aaf39ea97c20d76d4591343603e74ce7eaf",
+      "mainSHA256": "d38c7d638224cb5f8f680b7dc851826c6e5bba63db9cad83833b14ad7a20c496"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-plateau",
+      "recordedAt": "2026-10-17T15:40:17.471185+00:00",
+      "reusedAlreadyCapturedCurrentHTML": false,
+      "transportStatusRetained": 200,
+      "note": "Actual fresh GET metadata retained",
+      "canonical": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-plateau",
+      "anchor": "clinical review of tirzepatide versus semaglutide",
+      "destination": "https://vivoclinic.org/blog/tirzepatide-vs-semaglutide",
+      "rel": "noopener noreferrer",
+      "mainUnchangedSinceOriginalBaseline": true,
+      "datesUnchangedSinceOriginalBaseline": true,
+      "dates": [
+        {
+          "datePublished": "2026-10-10T04:31:17.075Z",
+          "dateModified": "2026-10-16T10:22:37.000Z"
+        }
+      ],
+      "headers": {
+        "Date": "Sat, 17 Oct 2026 15:40:17 GMT",
+        "Cache-Control": "no-store",
+        "CF-Cache-Status": null,
+        "Age": null,
+        "ETag": null,
+        "CF-Ray": "a4c0669e1c795d00-LHR"
+      },
+      "HTMLSHA256": "d2fbd8ce1584ca311d7b5f4051221460b21b80f9136d7c8ff95da02921a97865",
+      "mainSHA256": "656cbd3f590f766fa2aa613a17bdc52979a20d83c65bd14b28b0cc9e1e5c30ad"
+    }
+  ],
+  "completedAt": "2026-10-17T15:40:17.471609+00:00"
+}

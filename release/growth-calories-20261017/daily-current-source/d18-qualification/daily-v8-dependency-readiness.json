@@ -1,0 +1,9 @@
+{
+  "startedAt": "2026-10-17T16:03:40.847903+00:00",
+  "completedAt": "2026-10-17T16:03:43.626731+00:00",
+  "installExit": 0,
+  "compiledReadinessExit": 0,
+  "packageLockSHA256": "60483f79fc3ab52bf5f1c92945b494e747193145e64c52cbfc4daed2b6ab1eda",
+  "runtimeGeneration": false,
+  "deployment": false
+}

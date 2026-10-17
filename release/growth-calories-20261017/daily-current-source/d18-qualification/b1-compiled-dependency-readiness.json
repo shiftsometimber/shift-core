@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-17T15:56:35.676823+00:00",
+  "stage": "compiled-dependency",
+  "source": "b1e316c6331752d1c5e382f5c2649259a9a48f80",
+  "setupReadinessOnly": true,
+  "fullNativeQualification": false,
+  "command": [
+    "/usr/local/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/treatment-week-compiled-module-20261017.test.mjs"
+  ],
+  "capSeconds": 90,
+  "seconds": 0.42216708300000005,
+  "exit": 0,
+  "timedOut": false,
+  "counts": {
+    "tests": 6,
+    "pass": 6,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "ownedGroupEmpty": true,
+  "trackedSourceClean": true,
+  "packageLockSHA256": "60483f79fc3ab52bf5f1c92945b494e747193145e64c52cbfc4daed2b6ab1eda",
+  "logSHA256": "3ac9d236e11456e34fde484be26f010b61e08b02c5d00c2787ea61683f5d1309",
+  "modelCalls": 0,
+  "providerWrites": 0
+}

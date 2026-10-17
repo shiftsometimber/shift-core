@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-17T15:40:16.165541+00:00",
+  "status": "FAILED_CHECKER_ASSUMPTION_REPAIRED_NOT_LIVE_ACCEPTANCE",
+  "failedStage": "First URL baseline article-container comparison",
+  "originalVerifierSHA256": "4a4d6113f8f8eb4fea80dc02cd7911b11b9979bcafd471c880fd0f5e58b41694",
+  "actualTemplate": "Exactly one main#main-content.sst-dynamic-article; zero article elements on all three historical baselines and current first page",
+  "firstCurrentHTMLRetained": true,
+  "remainingTwoFetchedByFailedAttempt": false,
+  "liveSuccessfulWatermarkAdvanced": false,
+  "siteOrArticleContentChanged": false,
+  "note": "Failure was in the checker; no website write. Original checker preserved; new checker uses actual full published main and requires nonempty real dates."
+}

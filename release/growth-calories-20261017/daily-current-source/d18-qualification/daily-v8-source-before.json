@@ -1,0 +1,23 @@
+{
+  "head": "d18b1b0efd582b0f96f2f1336a8f4f0853856441",
+  "tree": "057d117e1a80a99066e8ff2456ae81510dfdafaf",
+  "status": "",
+  "installedToolingSHA256": {
+    "package-lock.json": "60483f79fc3ab52bf5f1c92945b494e747193145e64c52cbfc4daed2b6ab1eda",
+    "node_modules/esbuild/package.json": "d55d1d19fcc5b6079e4a71dd4111340c79c682bc36835ac7058a0c364c7db58a",
+    "node_modules/esbuild/lib/main.js": "8331fe1d8b3a07381f33cc425fcfaa94776e263113653f80ec3ba433e9657e73",
+    "node_modules/wrangler/package.json": "b1d4c0bcb7d8fc711f43246410c3ca7037086a43102052b0815bdd0ecfd8a700",
+    "node_modules/@esbuild/darwin-arm64/bin/esbuild": "e2dc9a52440a2a34f09434a2f4843cb1e30f84e40dcf238976ec61ef8cd7f36a"
+  },
+  "untrackedSourceOutsideInstalledTooling": [],
+  "geometry": {
+    "HEAD": "74a2a58ffe26b21a21f3874ed4c2d9ca69ba14e3e89c8b4870374790cfea0bae",
+    "index": "1071afde28f468830861179946cad829a80e768cb4879b478580be67124ac363",
+    "config": "8152490440a31e8191ac353476ad252a955b114c51552d5bf510eac28b2b72a3",
+    "packed-refs": "6110899c7adc374885f9552bddfb76fa28a7f7ca3c05fb8b74471a457e1e57c8",
+    "FETCH_HEAD": "3ecfce0172bcefd7bbe02c3ffa97b1f34b2e9c35fc647057f7538bc9dd39b8d3",
+    "objects/info/alternates": null,
+    "commondir": null
+  },
+  "refs": ""
+}

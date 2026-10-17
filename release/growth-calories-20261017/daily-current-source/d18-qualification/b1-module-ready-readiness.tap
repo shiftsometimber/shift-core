@@ -1,0 +1,24 @@
+TAP version 13
+1..0
+# Subtest: tests/food-diary-london-date-stack-20261015.test.mjs
+ok 1 - tests/food-diary-london-date-stack-20261015.test.mjs
+  ---
+  duration_ms: 16509.198
+  type: 'test'
+  ...
+1..0
+# Subtest: tests/seo-audit-scope-20261016.test.mjs
+ok 2 - tests/seo-audit-scope-20261016.test.mjs
+  ---
+  duration_ms: 214.633084
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16513.691583
