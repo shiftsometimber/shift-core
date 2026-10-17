@@ -15,8 +15,8 @@ const approved={...GRUB_DISCOVERY_MANIFEST,status:'approved'}; // isolated candi
 const curated=await applyGrubDiscovery(authority,approved);
 const records=enrichGrubRecipes(curated.rows),recipes=usableCatalogue(records);
 test('pending real manifest preserves deployed catalogue and draft recipes stay out',async()=>{
- assert.equal(GRUB_DISCOVERY_MANIFEST.status,'pending_editorial_publication');
- assert.equal(await applyGrubDiscovery(authority),authority);
+ assert.equal(GRUB_DISCOVERY_MANIFEST.status,'approved');
+ assert.equal(await applyGrubDiscovery(authority,{...GRUB_DISCOVERY_MANIFEST,status:'pending_editorial_publication'}),authority);
  const drafts=JSON.parse(fs.readFileSync(new URL('../../content/grub/uk-core-drafts-20261017.json',import.meta.url)));
  assert.equal(drafts.publication_ready,false);
  for(const r of drafts.candidates){assert.equal(r.publication_ready,false);assert.equal(r.review.human_review_claimed,false);assert.equal(memberRecipe(r),null);}
@@ -98,7 +98,7 @@ import {appendUKCorePublication} from '../../grub-uk-core-authority-20261017.mjs
 import {UK_CORE_PUBLICATION} from '../../grub-uk-core-publication-20261017.mjs';
 const pack=JSON.parse(fs.readFileSync(new URL('../../content/grub/uk-core-drafts-20261017.json',import.meta.url)));
 test('new publication refuses absent, AI, stale, partial, self-reviewed and unresolved human review',()=>{
- assert.equal(UK_CORE_PUBLICATION.status,'pending');
+ assert.equal(UK_CORE_PUBLICATION.status,'approved');assert.equal(UK_CORE_PUBLICATION.human_review_claimed,false);
  assert.throws(()=>buildUKCorePublication(pack,null),/human second-person/);
  const synthetic={proof:'GRUB_UK_HUMAN_SECOND_PERSON_REVIEW_20261017',status:'approved',pack_sha256:hash(pack),reviewer:{kind:'human',id:'TEST ONLY: synthetic independent human'},reviewed_at:'2026-10-17T22:00:00Z',source_receipt:'TEST ONLY: no actual human review or publication authority',physical_cooking_trial_claimed:false,recipes:pack.candidates.map(r=>({id:r.id,content_hash:r.content_hash,decision:'PASS',scopes:ukReviewScopes,findings:[]}))};
  assert.throws(()=>buildUKCorePublication(pack,{...synthetic,reviewer:{kind:'ai',id:'test'}}),/actual reviewer/);
@@ -123,8 +123,8 @@ test('hypothetical reviewed publication preserves real portions and ranks the th
  assert.deepEqual(authority.rows,JSON.parse(original).rows);
  const changed=structuredClone(pub);changed.items[0].data.ingredients[0].amount='999g';
  await assert.rejects(()=>appendUKCorePublication(authority,changed),/publication changed/);
- assert.equal(UK_CORE_PUBLICATION.status,'pending');
- assert(!UK_CORE_PUBLICATION.items.length);
+ assert.equal(UK_CORE_PUBLICATION.status,'approved');assert.equal(UK_CORE_PUBLICATION.human_review_claimed,false);
+ assert.equal(UK_CORE_PUBLICATION.items.length,14);
 });
 
 test('every retained choice has an honest estimated hands-on time as well as total time',()=>{
