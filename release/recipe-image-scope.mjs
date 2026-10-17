@@ -11,7 +11,7 @@ export const RECIPE_IMAGE_PATHS=new Set([...payloads.flatMap(p=>git('diff','--na
 export function validateRecipeImages(){
  return withImmutableHistoryVerification(()=>{
  const frame=currentRuntimePreservationHistoricalView(),current=JSON.parse(frame.currentContent(frame.rawHead,'release/approved-runtime-composition.json')).currentRuntimePreservation20261016;
- const acceptedGrubPaths=new Set(current?.acceptedGrubPreservation20261017?.paths||[]);
+ const acceptedGrubPaths=new Set([...(current?.acceptedGrubPreservation20261017?.paths||[]),...(current?.acceptedGrubPreservation20261017?.recipeImageCompatibility20261017?[current.acceptedGrubPreservation20261017.recipeImageCompatibility20261017.path]:[])]);
  const git=(...args)=>{frame.assertCurrentHead();try{
   if(args.length===2&&args[0]==='rev-parse'&&args[1].startsWith('HEAD:')&&acceptedGrubPaths.has(args[1].slice(5)))return frame.read('HEAD',args[1].slice(5));
   return recipeImageNativeGit(...args);
