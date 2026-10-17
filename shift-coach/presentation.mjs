@@ -22,7 +22,7 @@ body[data-shift-coach-session] #previewAuth{display:none!important}
 #shiftCoach fieldset{border:0;padding:0;margin:12px 0}#shiftCoach label{display:block;margin:8px 0}#shiftCoach :focus-visible{outline:3px solid #707762;outline-offset:3px}
 body[data-app-tool]:not([data-app-tool="today"]) #shiftCoach{display:none!important}
 #panel-today[data-shift-coach-enabled] .mtm-next{display:none!important}
-@media(max-width:500px){#shiftCoach{padding:18px}#shiftCoach .coach-buttons>*{width:100%}}
+@media(max-width:500px){#shiftCoach{padding:18px}#shiftCoach .coach-buttons>*{width:100%}#shiftCoach .coach-kicker{margin:0 0 8px}#shiftCoach [data-coach-followup-choice]{font-size:14px;line-height:20px;margin:4px 0}#shiftCoach [data-coach-primary-choices]{flex-wrap:nowrap}#shiftCoach [data-coach-primary-choices]>*{flex:1 1 0;min-width:0;width:auto}}
 `;
 const markup='<section id="shiftCoach" aria-label="Shift AI coaching" hidden><p class="coach-kicker">SHIFT AI · ONE THING FOR TODAY</p><div data-coach-content></div><p data-coach-status role="status" aria-live="polite"></p></section>';
 export function coachingAsset(request){if(!['GET','HEAD'].includes(request.method)||new URL(request.url).pathname!==assetPath)return null;return new Response(request.method==='HEAD'?null:client,{headers:{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});}
@@ -49,7 +49,7 @@ export async function withCoaching(request,response,seed=null){
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie, Accept-Encoding');
  // Start the same existing stylesheets with the document headers, before the
  // browser reaches parser-blocking scripts. No scripts or tracking are moved.
- const preloads=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1]).filter(href=>/^\/[A-Za-z0-9/_.,=?&%+-]+$/.test(href)).slice(0,8).map(href=>'<'+href+'>; rel=preload; as=style');
+ const preloads=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1]).filter(href=>/^\/[A-Za-z0-9/_.,=?&%+-]+$/.test(href)).filter((href,index,all)=>all.indexOf(href)===index).map(href=>'<'+href+'>; rel=preload; as=style');
  if(preloads.length)headers.set('Link',[headers.get('Link'),...preloads].filter(Boolean).join(', '));
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
  // Compress the private dashboard at its source so the prepared action does
