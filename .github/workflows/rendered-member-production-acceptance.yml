@@ -2,7 +2,7 @@ name: Rendered Member Production Acceptance
 
 on:
   push:
-    branches: [verification/member-design-20261002, release/gp-priority-direct-20261016, release/gp-priority-direct-activation-20261016]
+    branches: [verification/member-design-20261002, release/gp-priority-direct-20261016, release/gp-priority-direct-activation-20261016, release/factual-recorded-week-direct-20261016]
   workflow_run:
     workflows: ['Cloudflare Production Promote']
     types: [completed]
@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   rendered-member-production-acceptance:
-    if: github.ref != 'refs/heads/release/gp-priority-direct-20261016' && github.ref != 'refs/heads/release/gp-priority-direct-activation-20261016' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    if: github.ref != 'refs/heads/release/gp-priority-direct-20261016' && github.ref != 'refs/heads/release/gp-priority-direct-activation-20261016' && github.ref != 'refs/heads/release/factual-recorded-week-direct-20261016' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -265,6 +265,62 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: gp-member-directory-live-${{ github.run_id }}
+          path: growth-member-live-evidence/
+          if-no-files-found: warn
+          retention-days: 30
+
+  factual-recorded-week-members:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/release/factual-recorded-week-direct-20261016'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Wait for the actual same-source owned factual W release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node release/recorded-week-member-live-20261016.mjs --wait-week
+      - name: Install the unchanged production compiler and isolated browser runtime
+        shell: bash
+        run: |
+          npm ci --ignore-scripts
+          npm install --no-save --ignore-scripts --package-lock=false playwright@1.58.2
+          node -e "require('node:assert/strict').equal(require('./node_modules/wrangler/package.json').version,'4.112.0')"
+          npx playwright install --with-deps chromium
+          npm install --prefix "$RUNNER_TEMP/gp-workerd-4146" --ignore-scripts --package-lock=false wrangler@4.146.0
+          echo "TREATMENT_MINIFLARE=$RUNNER_TEMP/gp-workerd-4146/node_modules/miniflare" >> "$GITHUB_ENV"
+      - name: Acquire the original allowed-workflow commissioning identity
+        id: gp_oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Verify original factual week, private notes, consent and two-holder isolation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.gp_oidc.outputs.token }}
+        run: node release/recorded-week-member-live-20261016.mjs --verify-week
+      - name: Preserve source after the bounded factual W member proof
+        run: |
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Retain actual factual week member evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recorded-week-member-live-${{ github.run_id }}
           path: growth-member-live-evidence/
           if-no-files-found: warn
           retention-days: 30
