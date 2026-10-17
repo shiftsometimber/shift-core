@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-17T12:11:19.613892+00:00",
+  "head": "b16a82c71f34d4024e5b1c5d95cd2f351da27e27",
+  "tree": "23157f4cf8187de3b9a324364957e0cb067fb368",
+  "command": [
+    "/usr/local/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/coding-completion-scope-20261016.test.mjs",
+    "member-experience/tests/weight-import-mapping-ui.test.mjs"
+  ],
+  "capSeconds": 180,
+  "seconds": 51.411194249999994,
+  "exit": 0,
+  "timedOut": false,
+  "counts": {
+    "tests": 38,
+    "pass": 38,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "sourceUnchanged": true,
+  "logSHA256": "9fda1bfaf220e8d380a763a73a775c65c222da1f91ff3e2c297669ba04ab379a",
+  "deployment": false,
+  "modelCalls": 0,
+  "passed": true
+}

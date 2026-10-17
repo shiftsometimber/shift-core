@@ -1,0 +1,279 @@
+{
+  "asOf": "2026-10-17T12:33:23.576090+00:00",
+  "status": "PARTIAL",
+  "published": {
+    "target": "https://shiftsometimber.co.uk/articles/calories-explained-men",
+    "pagesDeployment": "16098ebd-ffdf-4e0e-a95a-f5388927bbef",
+    "approvedMarkdownSHA256": "5512253a3998628aac6e889b33bfd66259f1426de8ac30db2b49895dd10fed44"
+  },
+  "privateEngine": {
+    "head": "b16a82c71f34d4024e5b1c5d95cd2f351da27e27",
+    "tree": "23157f4cf8187de3b9a324364957e0cb067fb368",
+    "pr": 1365,
+    "merged": false,
+    "deployed": false,
+    "activated": false,
+    "nativeQualification": {
+      "endedAt": "2026-10-17T12:32:11.100786+00:00",
+      "head": "b16a82c71f34d4024e5b1c5d95cd2f351da27e27",
+      "tree": "23157f4cf8187de3b9a324364957e0cb067fb368",
+      "command": [
+        "/usr/local/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/food-diary-london-date-stack-20261015.test.mjs",
+        "tests/seo-audit-scope-20261016.test.mjs"
+      ],
+      "exit": 1,
+      "timedOut": true,
+      "seconds": 1200.027146291,
+      "capSeconds": 1200,
+      "counts": {
+        "tests": null,
+        "pass": null,
+        "fail": null,
+        "cancelled": null,
+        "skipped": null,
+        "todo": null
+      },
+      "allOriginal509NamedCasesRetained": false,
+      "sourceUnchanged": true,
+      "gitGeometryUnchanged": true,
+      "logSHA256": "41e8e42f5d4c2d53a62c0e7906ba5943b9860a90cebc6f9e36a94f88b365e6ac",
+      "deployment": false,
+      "inferenceCalls": 0,
+      "ownedGroupEmpty": true,
+      "passed": false
+    },
+    "hosted": [
+      {
+        "id": 39031632455,
+        "name": "Programme day preview",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 39031632419,
+        "name": "Exact production completion proof",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 39031632372,
+        "name": "Exact approved ranking proof",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 39031632416,
+        "name": "BabyLoveGrowth Webhook Gate",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 39031632405,
+        "name": "HQ Controls Production Closeout",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 39031632395,
+        "name": "Fit Premium Public Serving Gate",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 39031632402,
+        "name": "Shift Knowledge Flywheel Gate",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 39031632453,
+        "name": "Shift Me Source, Privacy and Production Gate",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 39031632363,
+        "name": "Shift AI Academy Gate",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 39031632424,
+        "name": "Shift Master Integration Gate",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 39031632566,
+        "name": "Shift Whole-Estate Route Sweep",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 39031632421,
+        "name": "Tablet wording release composition proof",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "inferenceCallsThisExecution": 0
+  },
+  "productionRelease": {
+    "run": 39028656578,
+    "head": "fac3ce1d9eb1906a8741bc44c87fd05786a1539e",
+    "sourceBarrierPassed": true,
+    "sourceFinishedAt": "2026-10-17T12:19:44.335Z",
+    "sourceArtifact": 12100448894,
+    "runtimeArtifact": 12100882209,
+    "conclusion": "cancelled",
+    "stage": "browser preparation; deployment skipped",
+    "jobStarted": "2026-10-17T11:26:02Z",
+    "jobCompleted": "2026-10-17T12:26:25Z",
+    "jobTimeoutMinutes": 60,
+    "cancellationCause": "Observed at 60-minute boundary; annotation endpoint unavailable through this connector, do not assert an unseen cancellation reason",
+    "deployChecksComplete": false
+  },
+  "measurement": {
+    "gsc": {
+      "siteUrl": "sc-domain:shiftsometimber.co.uk",
+      "brand": {
+        "configured": true,
+        "keywordCount": 3,
+        "skippedKeywords": []
+      },
+      "contentGroups": [
+        {
+          "id": "90bee1e7-caf7-4573-8831-a7dcd10c477f",
+          "name": "Core commercial hubs",
+          "filterable": true
+        },
+        {
+          "id": "020cd236-05c4-4111-8e73-d4f477c0cb0d",
+          "name": "Mental health",
+          "filterable": true
+        },
+        {
+          "id": "80d64227-ba0f-4753-8fc0-f16e4295bd6b",
+          "name": "Newsroom",
+          "filterable": true
+        },
+        {
+          "id": "c34b60e0-4704-43e7-9622-bbdc6719f4df",
+          "name": "Original research",
+          "filterable": true
+        },
+        {
+          "id": "9f6fbd26-b904-4975-be41-f7ece6081312",
+          "name": "SHIFT Health",
+          "filterable": true
+        },
+        {
+          "id": "97e6dc09-3c93-484c-b648-f679f8c36d01",
+          "name": "Treatment comparisons",
+          "filterable": true
+        }
+      ],
+      "topicClusters": [
+        {
+          "id": "c72e4f69-e7e6-4e9f-a194-6df566c6c807",
+          "name": "Future medicines UK",
+          "filterable": true
+        },
+        {
+          "id": "ca27923d-4ac7-488d-982c-e9980668a66b",
+          "name": "Help me lose weight",
+          "filterable": true
+        },
+        {
+          "id": "1cdfe5e0-e2cb-4d7b-83fc-5872688ac5af",
+          "name": "Male obesity — campaign language, attribution unproved",
+          "filterable": true
+        },
+        {
+          "id": "5cbba3a7-2880-4be5-b07d-c44d057c4da5",
+          "name": "Male obesity — ordinary questions",
+          "filterable": true
+        },
+        {
+          "id": "9eeca60a-2cdc-4cf4-a7ce-7604d39e08d6",
+          "name": "Medicine comparisons",
+          "filterable": true
+        },
+        {
+          "id": "b06a7d2a-eef0-4172-b6a7-8cbdff0cf2da",
+          "name": "Men’s mental health",
+          "filterable": true
+        },
+        {
+          "id": "06c74e17-8f26-4cb9-be0c-fec90be421ae",
+          "name": "Men's waist and weight",
+          "filterable": true
+        },
+        {
+          "id": "e3851bd6-3a87-4bf0-b186-c97c25b05570",
+          "name": "Mounjaro",
+          "filterable": true
+        },
+        {
+          "id": "8b97feb3-14d5-43aa-a912-b4c7698e3ad2",
+          "name": "NHS weight management",
+          "filterable": true
+        },
+        {
+          "id": "5d7a1a15-3d6e-462f-92d5-ff6173a0b9d0",
+          "name": "Retatrutide UK - evidence and availability",
+          "filterable": true
+        },
+        {
+          "id": "9434e771-a422-4558-a68e-6ed1ec588cbc",
+          "name": "Wegovy",
+          "filterable": true
+        }
+      ]
+    },
+    "ga4": {
+      "siteUrl": "sc-domain:shiftsometimber.co.uk",
+      "propertyId": "properties/549150735",
+      "dataSource": "ga4-admin-api",
+      "count": 0,
+      "definitions": [],
+      "dimensionNames": [],
+      "metricNames": [],
+      "note": "This GA4 property registers no custom definitions. Event parameters only become queryable once they are registered in GA4 Admin > Custom definitions, and registration is not retroactive: data is collected from that moment on."
+    },
+    "scope": "Read-only configuration/Admin access only; no performance data, no metric source watermark advanced",
+    "pageCTRUsable": false,
+    "outcomeClaimsAllowed": false
+  },
+  "gateway": {
+    "at": "2026-10-17T11:46:40.445Z",
+    "id": "shift-ai",
+    "authentication": true,
+    "collectLogs": false,
+    "logpush": false,
+    "hasOtel": false,
+    "retryMaxAttempts": null,
+    "billing": "postpaid",
+    "rateLimit": {
+      "limit": 10,
+      "interval": 60,
+      "technique": "sliding"
+    },
+    "spendEnabled": true,
+    "rules": [
+      {
+        "limit": 2,
+        "window": 86400,
+        "technique": "sliding",
+        "enabled": true,
+        "limitType": "cost",
+        "scoped": false
+      }
+    ]
+  },
+  "externalCommunicationsSent": 0,
+  "unapprovedPublication": 0
+}

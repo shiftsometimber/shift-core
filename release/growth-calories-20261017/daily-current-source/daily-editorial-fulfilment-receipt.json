@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-17T12:24:11.878Z",
+  "day": "2026-10-17",
+  "engineHead": "b16a82c71f34d4024e5b1c5d95cd2f351da27e27",
+  "ddlSHA256": "6b4f6d4d8c6fdf7a7271ecf442e7cdeb0cbc47fc60e686a5c97f14506dbf40c9",
+  "before": [],
+  "evidence": {
+    "sourceKind": "approved_editorial_revision",
+    "runtimeGenerated": false,
+    "modelCalls": 0,
+    "target": "https://shiftsometimber.co.uk/articles/calories-explained-men",
+    "approvedMarkdownSHA256": "5512253a3998628aac6e889b33bfd66259f1426de8ac30db2b49895dd10fed44",
+    "publishedVerifiedAt": "2026-10-17T11:26:11.329Z",
+    "knowledgeVerifiedAt": "2026-10-17T11:30:40.158Z",
+    "pagesDeployment": "16098ebd-ffdf-4e0e-a95a-f5388927bbef",
+    "publicationReceipt": "https://github.com/shiftsometimber/shift-core/tree/ac8e92cd9bd6d54a20191ab69d43326470c9f27c/release/growth-calories-20261017",
+    "registeredAt": "2026-10-17T12:24:11.878Z"
+  },
+  "tableCreated": true,
+  "rowInserted": true,
+  "modelCalls": 0,
+  "publicWrites": 0,
+  "mode": "RECORDED_EDITORIAL_FULFILMENT_NOT_RUNTIME",
+  "after": [
+    {
+      "day_key": "2026-10-17",
+      "status": "fulfilled_editorially",
+      "target_url": "https://shiftsometimber.co.uk/articles/calories-explained-men",
+      "article_id": null,
+      "draft_sha256": "5512253a3998628aac6e889b33bfd66259f1426de8ac30db2b49895dd10fed44",
+      "reason": "{\"sourceKind\":\"approved_editorial_revision\",\"runtimeGenerated\":false,\"reason\":\"Genuine completed daily substantive revision; prevent a second daily piece\",\"registeredAt\":\"2026-10-17T12:24:11.878Z\"}",
+      "created_at": "2026-10-17T11:26:11.329Z",
+      "completed_at": "2026-10-17T11:30:40.158Z"
+    }
+  ]
+}

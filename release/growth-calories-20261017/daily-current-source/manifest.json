@@ -1,0 +1,24 @@
+{
+  "retainedAt": "2026-10-17T12:33:44.547759+00:00",
+  "files": {
+    "b1-runtime-release-39028656578.zip": "31cd479b0bce7bd4900cbd0aa228e70325bff90d66f2d563f2e18da1c5675f43",
+    "core-serving-after-cancel-20261017.json": "bfbbb6d19121db22f09302d62df0356c2904a19421206127d7c7fd209b3eafdc",
+    "daily-current-final.json": "4221ba8c663b7d59c31668d390b5c5f348edc4ed2d40b3e982646df775dc4a4e",
+    "daily-editorial-fulfilment-receipt.json": "3dc9474326f04b2121b4ba641bd4c7e9a673465df32a33b7f72df95d142e47e7",
+    "daily-v3-original-native-result.json": "73d82f910e53f5d372cc1c424a4da2a46f473a98da0c06e79bdb6c06ec01d7f1",
+    "daily-v3-original-native.tap": "68065886564661f9f8f7db43481dfb44495e66ab9b342eacdd94a924c71b5ddc",
+    "daily-v4-branch-publication.json": "7898c341e4476bfe5cc683c820491355d58b50b27c36cbb8966b27f2d9f4d6f8",
+    "daily-v4-focused-result.json": "1fff44ffcf829b5554282eb6e5740a2ebdacd4ca72a4da9184a6068c4c2158a6",
+    "daily-v4-focused.tap": "9fda1bfaf220e8d380a763a73a775c65c222da1f91ff3e2c297669ba04ab379a",
+    "daily-v4-original-native-claim.json": "67428463756c8cac7eb71eaf0812641a090dead2c9c414d3d025e824084b7131",
+    "daily-v4-original-native-result.json": "86170e57f3d46e66d6f420dd2588c9479df9366901c5a59fabd3ef5a1dbab508",
+    "daily-v4-original-native-running.json": "a77926d0b936e066e0514366a628a2b42c2962a65a90842d2d1b7997ccdaa0ad",
+    "daily-v4-original-native.tap": "41e8e42f5d4c2d53a62c0e7906ba5943b9860a90cebc6f9e36a94f88b365e6ac",
+    "native-graph-preparation.json": "3c34a8038b02df8e0480de284c25599bcc85ee64d1fc5ac432c42426182b505e",
+    "production-bounded-source-fac3ce1d.zip": "a3a9c16b7c06383065fd6cafc853d24ad04c40e8c538d7fe8c93e3585ec20133",
+    "record-editorial-fulfilment.cjs": "9d555fe8124d8759dbee79216affa5e2338bca5bab7ab55547597227ec3031d8"
+  },
+  "runtimeAccepted": false,
+  "privateDraftRuntimeGenerated": false,
+  "publishedCalorieCopyAccepted": true
+}
