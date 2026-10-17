@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-17T18:32:14.080036+00:00",
+  "run": 39049531102,
+  "job": 117445104688,
+  "sourceHead": "4e34ef53e8ec0a1b4ec50371be94465e066f60dd",
+  "conclusion": "cancelled",
+  "terminalLogLastError": "2026-10-17T18:28:34.5134795Z The operation was canceled.",
+  "cause": "Not established; do not infer from cancellation alone",
+  "logBytes": 753538,
+  "logSHA256": "cb40cc18438778269ccd3e113f3356f2fdfd5118cb925ff762ef7010457d5290",
+  "archiveBytes": 129701,
+  "archiveSHA256": "f17975e54e4b9f0634733da886cfd9d214c9f03ebae894d3096ae981e6ca0d01",
+  "originalUTF8LogPreserved": true,
+  "currentSource": "07b8d194d21e5727610828a9c28220edb2cc72b1",
+  "prior4eNative1200FailureUnchanged": true,
+  "noSourceSuccessClaim": true,
+  "noMorePending4eJob": true
+}
