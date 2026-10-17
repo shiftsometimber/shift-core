@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {DB,server} from './grub-ease-fixture.mjs';
 import {loadGrubCatalogue} from '../grub-routes.mjs';
 import {emptyGrub,usableCatalogue,applyGrubOperation} from '../grub-workspace.mjs';
-import {everydayMeal,recommendationFor} from '../grub-intelligence.mjs';
+import {everydayMeal,everydayCookedMeal,recommendationFor} from '../grub-intelligence.mjs';
 
 test('published catalogue leads with cold everyday food and retains real quantities and methods',async()=>{
  try{
@@ -33,6 +33,7 @@ test('published catalogue leads with cold everyday food and retains real quantit
   assert.equal(recommendationFor(state,recipes,{dietaryReviewRequired:true}).recipe,null);
   const limited=recommendationFor(state,recipes,{maxMinutes:5}).recipe;
   assert(limited===null||limited.minutes<=5);
+  const willing=emptyGrub();willing.options.effort='cook';assert(everydayCookedMeal(recommendationFor(willing,recipes).recipe));
   const saved=emptyGrub();saved.recommendation={recipeId:'industrial-dinner-chicken-traybake'};
   assert.equal(recommendationFor(saved,recipes).recipe.id,'industrial-dinner-chicken-traybake');
  }finally{await new Promise(resolve=>server.close(resolve))}

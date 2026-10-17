@@ -33,7 +33,7 @@ try{
   assert.equal(await page.locator('#grubRecommendation .grub-pick-primary button').count(),2);
   assert.equal(await page.locator('.grub-pick-options').evaluate(n=>n.open),false);
   assert.equal(await page.locator('.grub-pick-adjust button:visible').count(),0);
-  assert.equal(await page.locator('.grub-pick-feedback button:visible').count(),0);
+  assert.equal(await page.locator('.grub-favourite-feedback button:visible').count(),0);
   row.checks.push('One suitable meal, two main actions; advanced controls available but collapsed');
   const before=await api(ctx),id=before.recommendation.recipe.id;
   await page.locator('[data-food-next]').click();
