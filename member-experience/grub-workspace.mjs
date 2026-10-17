@@ -1,6 +1,6 @@
 import {ingredientOptions} from './grub-ingredients.mjs';
 import {memberRecipe,filterRecipe} from './grub-search.mjs';
-import {recommendationFor,adjustRecommendation,nutritionForWeek} from './grub-intelligence.mjs';
+import {recommendationFor,adjustRecommendation,nextRecommendation,nutritionForWeek} from './grub-intelligence.mjs';
 
 export const emptyGrub=()=>({revision:0,saved:[],week:[],shopping:[],options:{days:7,style:'protein',servings:1,exclude:''},operations:[]});
 export class GrubError extends Error{constructor(message,status=400){super(message);this.status=status}}
@@ -72,6 +72,18 @@ export function applyGrubOperation(current,input,recipes,context={}){
  if(a==='choose-today'){
   const r=recipeById(recipes,input.recipeId);if(!/^\d{4}-\d{2}-\d{2}$/.test(context.date||''))fail('Today is unavailable. Reload and try again.');
   next.today={date:context.date,recipeId:r.id,name:r.name,minutes:r.minutes,kcal:r.kcal,protein_g:r.protein_g,chosenAt:context.at};
+ }else if(a==='choose-and-shop'){
+  const pick=recommendationFor(next,recipes,context),r=pick.recipe;
+  if(!r||r.id!==input.recipeId)fail('This suggestion changed. Reload before choosing it.');
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(context.date||''))fail('Today is unavailable. Reload and try again.');
+  if(!integer(input.servings,1,8))fail('Choose 1–8 people eating.');
+  next.today={date:context.date,recipeId:r.id,name:r.name,minutes:r.minutes,kcal:r.kcal,protein_g:r.protein_g,servings:input.servings,shopping:true,chosenAt:context.at};
+  next.options={...next.options,servings:input.servings};
+ }else if(a==='recommendation-next'){
+  const before=recommendationFor(next,recipes,context).recipe;
+  if(!before||before.id!==input.recipeId)fail('This suggestion changed. Reload before swapping it.');
+  try{next.recommendation=nextRecommendation(next,recipes,context)}catch(e){fail(e.message)}
+  next.learning={yay:[],nay:[],...next.learning,recent:[...(next.learning?.recent||[]),before.id].slice(-180)};
  }else if(a==='save'){
   recipeById(recipes,input.recipeId);if(typeof input.saved!=='boolean')fail('Choose save or remove.');
   next.saved=next.saved.filter(x=>x!==input.recipeId);if(input.saved){if(next.saved.length>=100)fail('You have 100 saved recipes. Remove one before saving another.');next.saved.push(input.recipeId)}
@@ -104,10 +116,16 @@ export function applyGrubOperation(current,input,recipes,context={}){
   if(!next.shopping.some(x=>x.key===input.key))fail('This item has changed. Reload the list.');next.shopping=next.shopping.filter(x=>x.key!==input.key);
  }else if(a==='clear-week'){next.week=[];}
  else fail('Unknown food action.');
- if(['plan','add','remove-meal','swap','clear-week'].includes(a))next.shopping=shoppingForWeek(next.week,recipes,next.shopping);
+ if(['plan','add','remove-meal','swap','clear-week','choose-and-shop'].includes(a)||(a==='choose-today'&&current?.today?.shopping)){
+  const meals=[...next.week],today=next.today;
+  // A meal already present in the plan needs one ingredient allowance, not two.
+  if(today?.shopping&&recipes.some(r=>r.id===today.recipeId)&&!meals.some(m=>m.recipeId===today.recipeId&&m.servings===today.servings))
+   meals.push({recipeId:today.recipeId,servings:today.servings});
+  next.shopping=shoppingForWeek(meals,recipes,next.shopping);
+ }
  next.revision++;next.operations=[...next.operations,input.operationId].slice(-30);return next;
 }
 export function workspaceView(state,recipes,context={}){
  const lookup=new Map(recipes.map(r=>[r.id,r]));
- return {ingredientOptions:ingredientOptions(recipes),today:state.today||null,revision:state.revision,saved:state.saved,week:state.week,shopping:state.shopping,options:state.options,recipes:[...new Set([...state.saved,...state.week.map(x=>x.recipeId),state.today?.recipeId])].map(id=>lookup.get(id)).filter(Boolean),unavailable:state.saved.filter(id=>!lookup.has(id)),recommendation:recommendationFor(state,recipes,context),nutritionContext:nutritionForWeek(state,recipes)};
+ return {currentDate:context.date||null,ingredientOptions:ingredientOptions(recipes),today:state.today||null,revision:state.revision,saved:state.saved,week:state.week,shopping:state.shopping,options:state.options,recipes:[...new Set([...state.saved,...state.week.map(x=>x.recipeId),state.today?.recipeId])].map(id=>lookup.get(id)).filter(Boolean),unavailable:state.saved.filter(id=>!lookup.has(id)),recommendation:recommendationFor(state,recipes,context),nutritionContext:nutritionForWeek(state,recipes)};
 }

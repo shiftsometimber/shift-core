@@ -64,6 +64,18 @@ export function adjustRecommendation(state,mode,recipes,context={}){
  if(!pool.length)return {...state.recommendation,recipeId:base.id,baseId:base.id,message:'No '+({lighter:'lower-calorie',protein:'higher-protein',fuller:'higher-fibre',quicker:'quicker',budget:'different budget'}[mode])+' reviewed alternative fits your saved choices. Your meal is unchanged.'};
  return {recipeId:pool[0].id,baseId:base.id,mode,message:mode==='budget'?'A catalogue budget choice. Retailer prices vary; no cash saving is promised.':mode==='fuller'?'Chosen for more fibre. Protein and energy can change too; compare the figures below.':''};
 }
+// A different suggestion is not a permanent dislike. Keep explicit Nay feedback separate.
+export function nextRecommendation(state,recipes,context={}){
+ const current=recommendationFor(state,recipes,context);
+ if(!current.recipe)throw Error(current.message);
+ const base=current.recipe,content=r=>JSON.stringify([r.ingredients,r.method]);
+ let pool=recipes.filter(r=>mainMeal(r)&&eligible(r,state,context)&&r.id!==base.id&&content(r)!==content(base));
+ if(!pool.length)return {recipeId:base.id,baseId:base.id,mode:'planned',message:'No different reviewed meal fits your saved choices. Your meal is unchanged.'};
+ const recent=new Set([...(state.learning?.recent||[]),base.id]);
+ const fresh=pool.filter(r=>!recent.has(r.id));if(fresh.length)pool=fresh;
+ pool.sort((a,b)=>score(b,state,context)-score(a,state,context)||(a.minutes??Infinity)-(b.minutes??Infinity)||a.id.localeCompare(b.id));
+ return {recipeId:pool[0].id,baseId:base.id,mode:'planned',message:''};
+}
 export function nutritionForWeek(state,recipes){
  const lookup=new Map(recipes.map(r=>[r.id,r])),days=[];
  for(const day of [...new Set(state.week.map(x=>x.day))]){
