@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {lstatSync,readFileSync,writeFileSync} from 'node:fs';
+import {lstatSync,readFileSync,writeFileSync,renameSync} from 'node:fs';
 import {assertOwned,assertProvider} from './questionnaire-handover-owned-release-20261016.mjs';
 import {currentReleaseContext} from './owned-rollback-release-window-20261016.mjs';
 
@@ -204,10 +204,30 @@ export function assertAcceptedGrubOriginalArchive(metadata,archive){
  const entries=rollbackExtract(archive,['runtime-receipt.json','owned-core.json','journal.json']);assert(entries['runtime-receipt.json'].equals(readAcceptedGrubCurrentWitness()),'Actual original Grub receipt bytes must match the immutable witness');
  const receipt=assertAcceptedGrubCurrentReceipt(entries['runtime-receipt.json']),owned=JSON.parse(entries['owned-core.json']),journal=JSON.parse(entries['journal.json']);assert.equal(owned.kind,'owned_runtime_deployment');assert.equal(owned.source,pin.source);assert.equal(owned.run,String(pin.run));assert.equal(owned.attempt,String(pin.attempt));assert.equal(owned.deploymentId,pin.deployment);assert.equal(owned.versionId,pin.version);assert.equal(owned.previousDeploymentId,'c07e1183-7fa8-4c48-8d64-e1cc0dae0d5b');assert.equal(owned.previousVersionId,PRESERVED_CURRENT_RUNTIME.version);assert.equal(owned.dataRestored,false);
  assert.equal(journal.schema,'shift-grub-everyday-owned-release/v1');assert.equal(journal.source,pin.source);assert.equal(journal.tree,pin.tree);assert.equal(journal.run,String(pin.run));assert.equal(journal.attempt,String(pin.attempt));assert.equal(journal.branch,pin.branch);assert.equal(journal.workflow,pin.workflow);assert.equal(journal.trafficWrites,1);assert.equal(journal.dataWrites,0);assert.deepEqual(journal.owned.core,owned);assert.deepEqual(Object.keys(journal.stock.tables).sort(),[...tables].sort());assert.equal(journal.stock.configurationSha256['wrangler.jsonc'],'198e3929312d2ed15af8acca3cb64a69c79bfd0af7a551ae115fa3bab22f749f');
- return {receipt,owned,originalArchiveSHA256:a.sha256,originalReceiptSHA256:pin.receiptSHA256,originalReceiptHasTimestamp:false,authenticatedMemberAcceptance:false,clinicalContractActivated:false};
+ return {receipt,owned,originalArchiveSHA256:a.sha256,originalReceiptSHA256:pin.receiptSHA256,originalReceiptHasTimestamp:false,originalHqConfigurationSHA256:journal.stock.configurationSha256['wrangler.hq-management.jsonc'],authenticatedMemberAcceptance:false,clinicalContractActivated:false};
+}
+// G.digest used by the original Grub producer and acceptedRuntimeMetadataDigest
+// both recursively sort object keys, retain array order, JSON.stringify and SHA256.
+export function assertAcceptedGrubRetainedHq(snapshot,receipt,configuration,configurationSHA256){
+ assertAcceptedGrubCurrentReceipt(Buffer.from(JSON.stringify(receipt,null,2)+'\n'));
+ const hq=receipt.retainedHq;assert.match(configurationSHA256||'',/^[a-f0-9]{64}$/);assert(Buffer.isBuffer(configuration));assert.equal(sha(configuration),configurationSHA256,'Exact original accepted HQ configuration required');
+ assertProvider(snapshot,{deployment:hq.deploymentId,version:hq.versionId,gpEnabled:true},{hq:true});
+ assert.equal(acceptedRuntimeMetadataDigest(snapshot.deployment),hq.deploymentSnapshotSha256,'Exact retained HQ deployment metadata required');
+ assert.equal(acceptedRuntimeMetadataDigest(snapshot.version),hq.versionSnapshotSha256,'Every immutable retained HQ version field must remain exact');
+ assert.equal(bindingsHash(snapshot.version),hq.allBindingsSha256,'Every retained HQ binding must remain exact');
+ return {kind:'retained_original_grub_hq_runtime',source:hq.source,run:hq.run,attempt:hq.attempt,deploymentId:hq.deploymentId,versionId:hq.versionId,percentage:100,allBindingsSha256:hq.allBindingsSha256,versionMetadataSHA256:hq.versionSnapshotSha256,deploymentMetadataSHA256:hq.deploymentSnapshotSha256,configurationSHA256,gpEnabled:true,partnersEnabled:true,genuineHqHolderAcceptance:false,clinicalContractActivated:false,featureAcceptance:false,providerWrites:0};
+}
+export function assertSameAcceptedGrubRetainedHq(before,after,receipt,configuration,configurationSHA256){
+ const proof=assertAcceptedGrubRetainedHq(before,receipt,configuration,configurationSHA256);assertAcceptedGrubRetainedHq(after,receipt,configuration,configurationSHA256);assert.deepEqual(after,before,'Retained HQ moved during current Grub release window');return proof;
 }
 export async function verifyCurrentAcceptedGrubRuntimeWindow(args){
  assert(['recovery','adoption'].includes(args.stage));assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(process.env.GITHUB_REF,'refs/heads/main');assert.equal(process.env.GITHUB_JOB,'promote');assert.equal(process.env.GITHUB_REPOSITORY,'shiftsometimber/shift-core');
- const [metadata,archive]=await Promise.all([args.proof.get('/actions/artifacts/'+ACCEPTED_GRUB_RUNTIME.artifact.id),args.proof.artifact(ACCEPTED_GRUB_RUNTIME.artifact)]);assertAcceptedGrubOriginalArchive(metadata,archive);
- return grubCurrentProof.verifyCurrentAcceptedRuntimeWindow(args);
+ const [metadata,archive]=await Promise.all([args.proof.get('/actions/artifacts/'+ACCEPTED_GRUB_RUNTIME.artifact.id),args.proof.artifact(ACCEPTED_GRUB_RUNTIME.artifact)]),original=assertAcceptedGrubOriginalArchive(metadata,archive);
+ const git=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:4194304}),head=git('rev-parse','HEAD').trim(),path='wrangler.hq-management.jsonc';assert.equal(head,process.env.GITHUB_SHA);assert.equal(git('status','--porcelain=v1','--untracked-files=no').trim(),'');const configurations=Object.fromEntries(['wrangler.jsonc','wrangler.coaching.jsonc',path].map(p=>{const bytes=regular(p,1048576);assert(bytes.equals(Buffer.from(git('show','HEAD:'+p))));return[p,bytes];})),configuration=configurations[path],beforeBytes=regular('b1-runtime-release/before.json',16384);
+ const hqWrangler=(...a)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...a,'--config',path],{encoding:'utf8',maxBuffer:4194304});
+ const snapshot=()=>{const deployment=latest(JSON.parse(hqWrangler('deployments','list','--json')));assert.equal(deployment.id,original.receipt.retainedHq.deploymentId,'Reject unknown HQ ownership before reading a retained version');return {deployment,version:JSON.parse(hqWrangler('versions','view',original.receipt.retainedHq.versionId,'--json'))};};
+ const before=snapshot();assertAcceptedGrubRetainedHq(before,original.receipt,configuration,original.originalHqConfigurationSHA256);
+ const result=await grubCurrentProof.verifyCurrentAcceptedRuntimeWindow(args),after=snapshot(),retainedHq=assertSameAcceptedGrubRetainedHq(before,after,original.receipt,configuration,original.originalHqConfigurationSHA256);
+ const core=latest(JSON.parse(args.wrangler('deployments','list','--json')));assert.equal(acceptedRuntimeMetadataDigest(core),ACCEPTED_GRUB_RUNTIME.deploymentMetadataSHA256,'Actual Core moved before retained HQ completion');assert.equal((await args.proof.get('/git/refs/heads/main')).object?.sha,head);assert.equal(git('rev-parse','HEAD').trim(),head);assert.equal(git('status','--porcelain=v1','--untracked-files=no').trim(),'');assert.equal(git('diff','--cached','--name-only','--').trim(),'');for(const[p,bytes]of Object.entries(configurations))assert(regular(p,1048576).equals(bytes));assert(regular('b1-runtime-release/before.json',16384).equals(beforeBytes));
+ const output='b1-runtime-release/accepted-current-window-'+args.stage+'.json';assert(regular(output,16384).equals(Buffer.from(JSON.stringify(result,null,2)+'\n')),'Original current window proof bytes changed before HQ completion');const accepted={...result,retainedHq},temporary=output+'.grub-hq-complete.tmp';writeFileSync(temporary,JSON.stringify(accepted,null,2)+'\n',{mode:0o600,flag:'wx'});renameSync(temporary,output);return accepted;
 }
