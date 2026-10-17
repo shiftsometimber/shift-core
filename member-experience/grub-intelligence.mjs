@@ -17,13 +17,14 @@ const round=n=>Math.round(n*10)/10;
 // These published meals use ready-to-eat fillings and cold assembly. A short
 // advertised time alone is insufficient: some catalogue wraps still need a pan.
 const everydayIds=['chicken-wholemeal-wrap','tuna-wholemeal-wrap','bean-wholemeal-wrap','chicken-pitta','tuna-pitta','bean-pitta'].map(id=>'industrial-lunch-'+id);
+everydayIds.unshift('everyday-chicken-salad','everyday-ham-sandwich','everyday-tuna-sandwich','everyday-chicken-salad-sandwich','everyday-ham-salad');
 export function everydayMeal(r){
  return everydayIds.includes(r.id)&&r.meal_type==='lunch'&&r.minutes>0&&r.minutes<=10&&r.cook_minutes===0
-  &&r.ingredients?.length===5&&r.method?.length>0
+  &&r.ingredients?.length>=2&&r.ingredients.length<=5&&r.method?.length>0
   &&!r.method.some(step=>/hot pan|\bwarm\b|\btoast\b|\bfry\b|\bboil\b|\bbake\b/i.test(step));
 }
 const everydayOrder=r=>{const i=everydayIds.indexOf(r.id);return i<0?Infinity:i};
-const everydayCookedIds=['industrial-dinner-chicken-traybake','industrial-lunch-tuna-jacket-potato','industrial-lunch-bean-jacket-potato','industrial-lunch-chicken-jacket-potato','industrial-lunch-salmon-toastie'];
+const everydayCookedIds=['everyday-beans-on-toast','everyday-scrambled-eggs-on-toast','industrial-dinner-chicken-traybake','industrial-lunch-tuna-jacket-potato','industrial-lunch-bean-jacket-potato','industrial-lunch-chicken-jacket-potato','industrial-lunch-salmon-toastie'];
 export function everydayCookedMeal(r){return everydayCookedIds.includes(r.id)&&r.ingredients?.length<=5&&r.method?.length>=2&&r.minutes>0&&r.minutes<=90&&r.cook_minutes>0}
 
 
@@ -54,7 +55,7 @@ function score(r,state,context){
  return ((state.learning?.yay||[]).includes(r.id)||state.saved?.includes(r.id)?100:0)
   +(!(state.learning?.recent||[]).includes(r.id)?40:0)
   +(preference&&filterRecipe(r,preference)?20:0)+(context.fitCompleted&&r.protein_g>=25?10:0)
-  +(everydayMeal(r)?60:0)+(state.options?.effort==='cook'&&everydayCookedMeal(r)?90:0)+(r.id==='industrial-dinner-chicken-traybake'?5:0);
+  +(everydayMeal(r)?60:0)+(state.options?.effort==='cook'&&everydayCookedMeal(r)?(r.id.startsWith('everyday-')?120:90):0)+(r.id==='industrial-dinner-chicken-traybake'?5:0);
 }
 export function recommendationFor(state,recipes,context={}){
  const pool=recipes.filter(r=>mainMeal(r)&&eligible(r,state,context));
@@ -64,7 +65,7 @@ export function recommendationFor(state,recipes,context={}){
  const base=pool.find(r=>r.id===state.recommendation?.baseId)||recipe;
  const selected=state.recommendation?.mode||'planned';
  const reasons=[];
- if(everydayMeal(recipe))reasons.push('Five ingredients, ready-to-eat filling and no cooking.');
+ if(everydayMeal(recipe))reasons.push(recipe.ingredients.length+' ingredients, ready-to-eat filling and no cooking.');
  if(state.saved?.includes(recipe.id)||(state.learning?.yay||[]).includes(recipe.id))reasons.push('You previously saved or liked this recipe.');
  if(state.options?.exclude||context.exclusions)reasons.push('Its listed ingredients avoid your saved exclusions.');
  if(state.options?.style==='vegetarian')reasons.push('It matches your vegetarian meal setting.');
@@ -101,7 +102,7 @@ export function nextRecommendation(state,recipes,context={}){
  const practical=pool.filter(r=>everydayMeal(r)||(state.options?.effort==='cook'&&everydayCookedMeal(r)));if(practical.length)pool=practical;
  const recent=new Set([...(state.learning?.recent||[]),base.id]);
  const fresh=pool.filter(r=>!recent.has(r.id));if(fresh.length)pool=fresh;
- const protein=r=>r.id.match(/^industrial-(?:lunch|dinner)-(chicken|tuna|bean)-/)?.[1];
+ const protein=r=>r.id.match(/^(?:industrial-(?:lunch|dinner)|everyday)-(chicken|tuna|bean|ham)/)?.[1];
  const different=pool.filter(r=>protein(r)&&protein(r)!==protein(base));if(protein(base)&&different.length)pool=different;
  pool.sort((a,b)=>score(b,state,context)-score(a,state,context)||everydayOrder(a)-everydayOrder(b)||(a.minutes??Infinity)-(b.minutes??Infinity)||a.id.localeCompare(b.id));
  return {recipeId:pool[0].id,baseId:base.id,mode:'planned',message:''};

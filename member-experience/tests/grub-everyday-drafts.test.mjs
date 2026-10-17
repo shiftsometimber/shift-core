@@ -5,6 +5,7 @@ import {memberRecipe} from '../grub-search.mjs';
 import {buildEverydayMealDrafts} from '../../content/grub/everyday-meals-draft-20261017.mjs';
 process.env.COFID_INDEX='tests/fixtures/grub-cofid-2021-governed-subset.json';
 const {APPROVED,grams}=await import('../../industrial-grub-systemic-v3.mjs');
+const recipeMappings={...APPROVED,eggs:APPROVED['large eggs']};
 const foods=new Map(JSON.parse(readFileSync(process.env.COFID_INDEX,'utf8')).foods.map(r=>[String(r.code),r]));
 test('seven plain draft meals bind every amount to retained CoFID evidence without inheriting publication approval',()=>{
  const drafts=buildEverydayMealDrafts({foods,mappings:APPROVED,retainedGrams:grams});
@@ -17,7 +18,7 @@ test('seven plain draft meals bind every amount to retained CoFID evidence witho
   assert(r.data.ingredients.length<=5);assert.equal(r.data.ingredients.length,r.data.ingredient_evidence.length);
   assert(r.data.method.length>=2);assert(r.data.total_minutes<=10);assert.equal(r.data.servings,1);
   for(const key of ['kcal','protein_g','carbohydrate_g','fat_g','fibre_g']){
-   const calculated=r.data.ingredients.reduce((sum,i)=>sum+Number(foods.get(String(APPROVED[i.item].code))[key])*grams(i.amount,i.item)/100,0);
+   const calculated=r.data.ingredients.reduce((sum,i)=>sum+Number(foods.get(String(recipeMappings[i.item].code))[key])*grams(i.amount,i.item)/100,0);
    assert(Math.abs(calculated-r.data.nutrition[key])<=0.051,r.title+' '+key);
   }
  }

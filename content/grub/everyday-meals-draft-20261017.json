@@ -45,14 +45,16 @@
         "equipment": [
           "plate",
           "knife",
-          "fork"
+          "fork",
+          "chopping-board",
+          "kitchen-scales"
         ],
         "food_safety": [
           "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
           "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
         ],
         "storage": {
-          "chilled": "Cover and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date. Keep chilled until eating."
+          "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating. If using home-cooked chicken, it must have been cooled and refrigerated within 2 hours of cooking and used within 48 hours of original cooking; assembling this meal does not restart that clock."
         },
         "prep_minutes": 5,
         "cook_minutes": 0,
@@ -65,7 +67,8 @@
           "carbohydrate_g": 4.5,
           "fat_g": 7,
           "fibre_g": 1.7,
-          "methodology": "CoFID 2021 ingredient-level weighted calculation; exact decimal accumulation; not an editorial approval"
+          "methodology": "CoFID 2021 ingredient-level weighted estimate; decimal arithmetic with household portion and volume assumptions; not an editorial approval",
+          "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
         },
         "ingredient_evidence": [
           {
@@ -76,7 +79,8 @@
             "cofid_name": "Chicken, breast, grilled without skin, meat only",
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
-            "mapping_basis": "grilled skinless chicken breast meat-only is the appropriate cooked source"
+            "mapping_basis": "grilled skinless chicken breast meat-only is the appropriate cooked source",
+            "calculation_grams": 120
           },
           {
             "item": "salad leaves",
@@ -87,7 +91,8 @@
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
             "mapping_basis": "raw lettuce is a suitable macro proxy for a generic mixed salad-leaf portion",
-            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros"
+            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros",
+            "calculation_grams": 60
           },
           {
             "item": "tomato",
@@ -97,7 +102,8 @@
             "cofid_name": "Tomatoes, standard, raw",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 80
           },
           {
             "item": "light mayonnaise",
@@ -107,7 +113,8 @@
             "cofid_name": "Mayonnaise, reduced fat",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 15
           }
         ],
         "food_format": "salad",
@@ -119,12 +126,15 @@
       "review": {
         "status": "pending",
         "author": "Codex",
+        "author_ids": [
+          "/root"
+        ],
         "human_review_claimed": false,
         "independent_review_claimed": false
       },
       "publication_ready": false,
       "required_review": "Independent ingredient identity, nutrition, preparation, allergens, storage and realistic portion/time review, followed by an exact immutable publication authority. No prior catalogue PASS or owner-publication instruction is inherited.",
-      "content_hash": "aa5d3b20cc9b100129f6a13f6563a4741b6ee9f55e6abc65c01b9e614701d13c"
+      "content_hash": "ba5c500cff2e7cc1ad21515a664bd9a736fa31a52eca78d405a461d1bd0be47c"
     },
     {
       "id": "everyday-chicken-salad-sandwich",
@@ -164,14 +174,16 @@
         "equipment": [
           "plate",
           "knife",
-          "fork"
+          "fork",
+          "chopping-board",
+          "kitchen-scales"
         ],
         "food_safety": [
           "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
           "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
         ],
         "storage": {
-          "chilled": "Cover and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date. Keep chilled until eating."
+          "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating. If using home-cooked chicken, it must have been cooled and refrigerated within 2 hours of cooking and used within 48 hours of original cooking; assembling this meal does not restart that clock."
         },
         "prep_minutes": 5,
         "cook_minutes": 0,
@@ -184,7 +196,8 @@
           "carbohydrate_g": 35.1,
           "fat_g": 8.4,
           "fibre_g": 5.9,
-          "methodology": "CoFID 2021 ingredient-level weighted calculation; exact decimal accumulation; not an editorial approval"
+          "methodology": "CoFID 2021 ingredient-level weighted estimate; decimal arithmetic with household portion and volume assumptions; not an editorial approval",
+          "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
         },
         "ingredient_evidence": [
           {
@@ -195,7 +208,8 @@
             "cofid_name": "Chicken, breast, grilled without skin, meat only",
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
-            "mapping_basis": "grilled skinless chicken breast meat-only is the appropriate cooked source"
+            "mapping_basis": "grilled skinless chicken breast meat-only is the appropriate cooked source",
+            "calculation_grams": 100
           },
           {
             "item": "wholemeal bread",
@@ -205,7 +219,8 @@
             "cofid_name": "Bread, wholemeal, average",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 80
           },
           {
             "item": "salad leaves",
@@ -216,7 +231,8 @@
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
             "mapping_basis": "raw lettuce is a suitable macro proxy for a generic mixed salad-leaf portion",
-            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros"
+            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros",
+            "calculation_grams": 20
           },
           {
             "item": "light mayonnaise",
@@ -226,7 +242,8 @@
             "cofid_name": "Mayonnaise, reduced fat",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 15
           }
         ],
         "food_format": "sandwich",
@@ -238,12 +255,15 @@
       "review": {
         "status": "pending",
         "author": "Codex",
+        "author_ids": [
+          "/root"
+        ],
         "human_review_claimed": false,
         "independent_review_claimed": false
       },
       "publication_ready": false,
       "required_review": "Independent ingredient identity, nutrition, preparation, allergens, storage and realistic portion/time review, followed by an exact immutable publication authority. No prior catalogue PASS or owner-publication instruction is inherited.",
-      "content_hash": "a982edc89312d6909432821a14adbd19ed7d26654286205e5cf5e5ada91e8869"
+      "content_hash": "5a9a625233e85966980c8319378dd781c360a961e10173ff9501fc9513904885"
     },
     {
       "id": "everyday-ham-sandwich",
@@ -283,14 +303,16 @@
         "equipment": [
           "plate",
           "knife",
-          "fork"
+          "fork",
+          "chopping-board",
+          "kitchen-scales"
         ],
         "food_safety": [
           "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
           "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
         ],
         "storage": {
-          "chilled": "Cover and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date. Keep chilled until eating."
+          "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating."
         },
         "prep_minutes": 5,
         "cook_minutes": 0,
@@ -303,7 +325,8 @@
           "carbohydrate_g": 35.7,
           "fat_g": 8.2,
           "fibre_g": 6,
-          "methodology": "CoFID 2021 ingredient-level weighted calculation; exact decimal accumulation; not an editorial approval"
+          "methodology": "CoFID 2021 ingredient-level weighted estimate; decimal arithmetic with household portion and volume assumptions; not an editorial approval",
+          "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
         },
         "ingredient_evidence": [
           {
@@ -315,7 +338,8 @@
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "medium",
             "mapping_basis": "generic ham is the closest CoFID source",
-            "mapping_limitation": "retail fat and salt vary"
+            "mapping_limitation": "retail fat and salt vary",
+            "calculation_grams": 60
           },
           {
             "item": "wholemeal bread",
@@ -325,7 +349,8 @@
             "cofid_name": "Bread, wholemeal, average",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 80
           },
           {
             "item": "salad leaves",
@@ -336,7 +361,8 @@
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
             "mapping_basis": "raw lettuce is a suitable macro proxy for a generic mixed salad-leaf portion",
-            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros"
+            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros",
+            "calculation_grams": 20
           },
           {
             "item": "light mayonnaise",
@@ -346,7 +372,8 @@
             "cofid_name": "Mayonnaise, reduced fat",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 15
           }
         ],
         "food_format": "sandwich",
@@ -358,12 +385,15 @@
       "review": {
         "status": "pending",
         "author": "Codex",
+        "author_ids": [
+          "/root"
+        ],
         "human_review_claimed": false,
         "independent_review_claimed": false
       },
       "publication_ready": false,
       "required_review": "Independent ingredient identity, nutrition, preparation, allergens, storage and realistic portion/time review, followed by an exact immutable publication authority. No prior catalogue PASS or owner-publication instruction is inherited.",
-      "content_hash": "863a10384a9bf89b06e79830474111d82af7bf1a0cbac066623bd4754a1ed180"
+      "content_hash": "508267d6999f4d89b5342f2cb612e3a6df600230d04a1ad30aaf135e325fe4c6"
     },
     {
       "id": "everyday-tuna-sandwich",
@@ -404,14 +434,18 @@
         "equipment": [
           "plate",
           "knife",
-          "fork"
+          "fork",
+          "chopping-board",
+          "kitchen-scales",
+          "bowl",
+          "can-opener-if-needed"
         ],
         "food_safety": [
           "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
           "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
         ],
         "storage": {
-          "chilled": "Cover and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date. Keep chilled until eating."
+          "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating."
         },
         "prep_minutes": 5,
         "cook_minutes": 0,
@@ -424,7 +458,8 @@
           "carbohydrate_g": 35.1,
           "fat_g": 7.2,
           "fibre_g": 5.9,
-          "methodology": "CoFID 2021 ingredient-level weighted calculation; exact decimal accumulation; not an editorial approval"
+          "methodology": "CoFID 2021 ingredient-level weighted estimate; decimal arithmetic with household portion and volume assumptions; not an editorial approval",
+          "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
         },
         "ingredient_evidence": [
           {
@@ -436,7 +471,8 @@
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
             "mapping_basis": "drained canned tuna in brine is the closest macro analogue",
-            "mapping_limitation": "sodium differs; sodium is outside the current five-nutrient calculation"
+            "mapping_limitation": "sodium differs; sodium is outside the current five-nutrient calculation",
+            "calculation_grams": 100
           },
           {
             "item": "wholemeal bread",
@@ -446,7 +482,8 @@
             "cofid_name": "Bread, wholemeal, average",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 80
           },
           {
             "item": "salad leaves",
@@ -457,7 +494,8 @@
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
             "mapping_basis": "raw lettuce is a suitable macro proxy for a generic mixed salad-leaf portion",
-            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros"
+            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros",
+            "calculation_grams": 20
           },
           {
             "item": "light mayonnaise",
@@ -467,7 +505,8 @@
             "cofid_name": "Mayonnaise, reduced fat",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 15
           }
         ],
         "food_format": "sandwich",
@@ -479,12 +518,15 @@
       "review": {
         "status": "pending",
         "author": "Codex",
+        "author_ids": [
+          "/root"
+        ],
         "human_review_claimed": false,
         "independent_review_claimed": false
       },
       "publication_ready": false,
       "required_review": "Independent ingredient identity, nutrition, preparation, allergens, storage and realistic portion/time review, followed by an exact immutable publication authority. No prior catalogue PASS or owner-publication instruction is inherited.",
-      "content_hash": "121747bf4cb3277fade7cbe6a150261ecf6fdfde1c2838404c6cb6bf84d6b465"
+      "content_hash": "56f351212c1b7fb843d24573305346198e74b95c664a34c0c450b35590a0c536"
     },
     {
       "id": "everyday-ham-salad",
@@ -528,14 +570,16 @@
         "equipment": [
           "plate",
           "knife",
-          "fork"
+          "fork",
+          "chopping-board",
+          "kitchen-scales"
         ],
         "food_safety": [
           "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
           "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
         ],
         "storage": {
-          "chilled": "Cover and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date. Keep chilled until eating."
+          "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating."
         },
         "prep_minutes": 5,
         "cook_minutes": 0,
@@ -548,7 +592,8 @@
           "carbohydrate_g": 22.1,
           "fat_g": 8,
           "fibre_g": 4.6,
-          "methodology": "CoFID 2021 ingredient-level weighted calculation; exact decimal accumulation; not an editorial approval"
+          "methodology": "CoFID 2021 ingredient-level weighted estimate; decimal arithmetic with household portion and volume assumptions; not an editorial approval",
+          "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
         },
         "ingredient_evidence": [
           {
@@ -560,7 +605,8 @@
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "medium",
             "mapping_basis": "generic ham is the closest CoFID source",
-            "mapping_limitation": "retail fat and salt vary"
+            "mapping_limitation": "retail fat and salt vary",
+            "calculation_grams": 80
           },
           {
             "item": "salad leaves",
@@ -571,7 +617,8 @@
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
             "mapping_basis": "raw lettuce is a suitable macro proxy for a generic mixed salad-leaf portion",
-            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros"
+            "mapping_limitation": "leaf mix changes micronutrients more than the calculated macros",
+            "calculation_grams": 60
           },
           {
             "item": "tomato",
@@ -581,7 +628,8 @@
             "cofid_name": "Tomatoes, standard, raw",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 80
           },
           {
             "item": "wholemeal bread",
@@ -591,7 +639,8 @@
             "cofid_name": "Bread, wholemeal, average",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 40
           },
           {
             "item": "light mayonnaise",
@@ -601,7 +650,8 @@
             "cofid_name": "Mayonnaise, reduced fat",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 15
           }
         ],
         "food_format": "salad",
@@ -613,12 +663,15 @@
       "review": {
         "status": "pending",
         "author": "Codex",
+        "author_ids": [
+          "/root"
+        ],
         "human_review_claimed": false,
         "independent_review_claimed": false
       },
       "publication_ready": false,
       "required_review": "Independent ingredient identity, nutrition, preparation, allergens, storage and realistic portion/time review, followed by an exact immutable publication authority. No prior catalogue PASS or owner-publication instruction is inherited.",
-      "content_hash": "9ddea132159ee30a5fe03eb4aac20c9c1abdfa62e4edda0d53b50106fab649c7"
+      "content_hash": "a2c8a8166c6d027766c10b07216d5239dae1ef91f44c4eaf12fe1ff559facd98"
     },
     {
       "id": "everyday-beans-on-toast",
@@ -669,7 +722,8 @@
           "carbohydrate_g": 63.6,
           "fat_g": 3,
           "fibre_g": 15.4,
-          "methodology": "CoFID 2021 ingredient-level weighted calculation; exact decimal accumulation; not an editorial approval"
+          "methodology": "CoFID 2021 ingredient-level weighted estimate; decimal arithmetic with household portion and volume assumptions; not an editorial approval",
+          "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
         },
         "ingredient_evidence": [
           {
@@ -680,7 +734,8 @@
             "cofid_name": "Baked beans, canned in tomato sauce",
             "mapping_state": "approved_canonical_proxy",
             "mapping_confidence": "high",
-            "mapping_basis": "baked beans are the direct canonical source"
+            "mapping_basis": "baked beans are the direct canonical source",
+            "calculation_grams": 200
           },
           {
             "item": "wholemeal bread",
@@ -690,7 +745,8 @@
             "cofid_name": "Bread, wholemeal, average",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 80
           }
         ],
         "food_format": "on-toast",
@@ -702,12 +758,15 @@
       "review": {
         "status": "pending",
         "author": "Codex",
+        "author_ids": [
+          "/root"
+        ],
         "human_review_claimed": false,
         "independent_review_claimed": false
       },
       "publication_ready": false,
       "required_review": "Independent ingredient identity, nutrition, preparation, allergens, storage and realistic portion/time review, followed by an exact immutable publication authority. No prior catalogue PASS or owner-publication instruction is inherited.",
-      "content_hash": "a751d28fab11e1d1e0446959c6adfa3e2c467f50128bb2165c95a487920a9f58"
+      "content_hash": "fcb3e32ec04273c6211dd332f42b26015e1dbca7ba05174ae56556ce70b276c4"
     },
     {
       "id": "everyday-scrambled-eggs-on-toast",
@@ -719,8 +778,8 @@
         "servings": 1,
         "ingredients": [
           {
-            "item": "large eggs",
-            "amount": "100g"
+            "item": "eggs",
+            "amount": "100g (about 2 medium eggs, without shells)"
           },
           {
             "item": "wholemeal bread",
@@ -736,7 +795,7 @@
           }
         ],
         "method": [
-          "Crack the eggs into a bowl and weigh 100g without shells, about two eggs; the edible gram weight governs. Beat in the measured milk. Wash hands and utensils after handling raw eggs.",
+          "Crack two medium eggs into a bowl and beat in the measured milk. Nutrition assumes about 100g of edible egg without shells; actual egg sizes vary. Wash hands and utensils after handling raw eggs.",
           "Heat the measured oil in a non-stick pan over a low to medium heat. Add the eggs and stir gently until fully set throughout. Meanwhile toast two slices of bread weighing 80g in total.",
           "Spoon the cooked eggs onto the toast and eat immediately. The total time is an estimate; fully set eggs govern doneness."
         ],
@@ -751,6 +810,9 @@
           "non-stick-pan",
           "bowl",
           "fork",
+          "pan-safe-spatula",
+          "measuring-jug",
+          "measuring-spoon",
           "kitchen-scales"
         ],
         "food_safety": [
@@ -771,18 +833,21 @@
           "carbohydrate_g": 35,
           "fat_g": 14.3,
           "fibre_g": 5.6,
-          "methodology": "CoFID 2021 ingredient-level weighted calculation; exact decimal accumulation; not an editorial approval"
+          "methodology": "CoFID 2021 ingredient-level weighted estimate; decimal arithmetic with household portion and volume assumptions; not an editorial approval",
+          "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
         },
         "ingredient_evidence": [
           {
-            "item": "large eggs",
-            "amount": "100g",
+            "item": "eggs",
+            "amount": "100g (about 2 medium eggs, without shells)",
             "grams": 100,
             "cofid_code": "12-937",
             "cofid_name": "Eggs, chicken, whole, raw",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "CoFID whole raw chicken egg; two medium eggs are an estimated 100g edible portion, actual egg sizes vary.",
+            "calculation_grams": 100,
+            "quantity_basis": "Estimated 100g edible weight for two medium eggs; not a claim of exact egg size."
           },
           {
             "item": "wholemeal bread",
@@ -792,7 +857,8 @@
             "cofid_name": "Bread, wholemeal, average",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 80
           },
           {
             "item": "semi-skimmed milk",
@@ -802,7 +868,9 @@
             "cofid_name": "Milk, semi-skimmed, pasteurised, average",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 30,
+            "quantity_basis": "Kitchen volume approximation: 1g/ml; brand and measuring variation apply."
           },
           {
             "item": "olive oil",
@@ -812,7 +880,9 @@
             "cofid_name": "Oil, olive",
             "mapping_state": "exact",
             "mapping_confidence": "high",
-            "mapping_basis": "direct canonical CoFID identity"
+            "mapping_basis": "direct canonical CoFID identity",
+            "calculation_grams": 2.7600000000000002,
+            "quantity_basis": "Kitchen volume estimate: 0.92g/ml; 3ml is approximately 2.76g (2.8g rounded)."
           }
         ],
         "food_format": "on-toast",
@@ -824,12 +894,15 @@
       "review": {
         "status": "pending",
         "author": "Codex",
+        "author_ids": [
+          "/root"
+        ],
         "human_review_claimed": false,
         "independent_review_claimed": false
       },
       "publication_ready": false,
       "required_review": "Independent ingredient identity, nutrition, preparation, allergens, storage and realistic portion/time review, followed by an exact immutable publication authority. No prior catalogue PASS or owner-publication instruction is inherited.",
-      "content_hash": "428e6282de095fd31ef187d4006a5f15fe9e6276a5496b458639d77c8d71486f"
+      "content_hash": "43304828f41ba857eb2a76fc2afbe9516fb4993757370d94aeca0fbabe3d7bdc"
     }
   ]
 }
