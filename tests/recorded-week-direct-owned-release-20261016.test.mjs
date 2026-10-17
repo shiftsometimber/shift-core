@@ -37,3 +37,21 @@ for(const [label,mutate]of [['HQ relabelled as current Core',b=>b.workers.hq.sou
 test('both genuine completed owner runs are independently required in the split coding mode',()=>{const b=codeBaseline();for(const role of baselineRunRoles(b)){const e=b[role],r={id:Number(e.id),run_attempt:Number(e.attempt),head_sha:e.source,head_branch:e.branch,path:e.workflow,name:e.name,event:'push',status:'completed',conclusion:'success',repository:{full_name:LANE.repository}};assertCompletedBaselineRun(r,b,role);for(const [key,value]of [['head_sha',role==='release'?h:b.source],['id',999],['run_attempt',4],['head_branch','main'],['path',LANE.workflow],['name','Wrong workflow'],['event','workflow_dispatch'],['status','in_progress'],['conclusion','failure']])assert.throws(()=>assertCompletedBaselineRun({...r,[key]:value},b,role));}assert.throws(()=>assertCompletedBaselineRun({},b,'member'));});
 
 test('runtime receipt keeps the explicit open GP assessment boundary separate from factual W acceptance',()=>{assert.deepEqual(baselineGpStatus(codeBaseline()),{gpFeatureAcceptance:false,gpAssessmentReuse:{status:'blocked_contract_inactive'}});assert.deepEqual(baselineGpStatus(baseline()),{});});
+
+import {createRecordedWeekGithubGet} from '../release/recorded-week-direct-owned-release-20261016.mjs';
+test('retained GitHub socket failure retries only the same authenticated proof GET inside the original deadline',async()=>{
+ const calls=[],waits=[],deadlines=[],proof={head_sha:'real-response',conclusion:'failure'},controller=new AbortController();
+ const get=createRecordedWeekGithubGet({token:'synthetic-token',deadline:ms=>{deadlines.push(ms);return controller.signal;},wait:async(ms,value,options)=>{waits.push(ms);assert.equal(options.signal,controller.signal);},fetcher:async(url,options)=>{calls.push({url,options});if(calls.length===1)throw Object.assign(new TypeError('fetch failed'),{cause:{code:'UND_ERR_SOCKET'}});return {ok:true,json:async()=>proof};}});
+ assert.equal(await get('/actions/runs/38980756381/attempts/1'),proof);assert.deepEqual(deadlines,[30000]);assert.deepEqual(waits,[1000]);assert.equal(calls.length,2);
+ for(const row of calls){assert.equal(row.url,'https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38980756381/attempts/1');assert.equal(row.options.method,'GET');assert.equal(row.options.headers.Authorization,'Bearer synthetic-token');assert.equal(row.options.signal.aborted,false);}
+});
+test('retained GitHub HTTP errors and malformed evidence never receive transport retry or an invented success',async()=>{
+ for(const kind of ['http','json']){let calls=0;const error=new SyntaxError('original malformed proof'),get=createRecordedWeekGithubGet({token:'synthetic-token',wait:async()=>assert.fail('no retry allowed'),fetcher:async()=>{calls++;return kind==='http'?{ok:false,status:401}:{ok:true,json:async()=>{throw error;}};}});
+  if(kind==='http')await assert.rejects(get('/actions/runs/1'),/GitHub verification 401/);else await assert.rejects(get('/actions/runs/1'),e=>e===error);assert.equal(calls,1);
+ }
+});
+test('retained GitHub retry does not extend its original shared thirty-second deadline',async()=>{
+ const controller=new AbortController(),expired=new Error('original request deadline'),deadlines=[];let calls=0;
+ const get=createRecordedWeekGithubGet({token:'synthetic-token',deadline:ms=>{deadlines.push(ms);return controller.signal;},wait:async()=>{controller.abort(expired);},fetcher:async()=>{calls++;throw Object.assign(new TypeError('fetch failed'),{cause:{code:'UND_ERR_SOCKET'}});}});
+ await assert.rejects(get('/actions/runs/1'),e=>e===expired);assert.deepEqual(deadlines,[30000]);assert.equal(calls,1);
+});

@@ -1,3 +1,5 @@
+import {createGithubProofGet} from './github-proof-get.mjs';
+import {setTimeout as githubProofDelay} from 'node:timers/promises';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
@@ -6,6 +8,17 @@ import {pathToFileURL} from 'node:url';
 import {digest,latestDeployment,assertPrepared,assertOwned,assertStock,settleOwnedCleanup} from './gp-priority-direct-owned-release-20261016.mjs';
 import {assertActivated} from './gp-priority-direct-activation-owned-20261016.mjs';
 
+// Retry only this repository's immutable GET evidence, inside the original
+// single 30-second request deadline. Provider writes are never retried here.
+export function createRecordedWeekGithubGet({fetcher=fetch,token,wait=githubProofDelay,deadline=ms=>AbortSignal.timeout(ms)}={}){
+ return path=>{
+  const budget=deadline(30000);
+  const get=createGithubProofGet({token,
+   fetcher:(url,options)=>{budget.throwIfAborted();return fetcher(url,{...options,signal:AbortSignal.any([options.signal,budget])});},
+   wait:ms=>{budget.throwIfAborted();return wait(ms,undefined,{signal:budget});}});
+  return get(path);
+ };
+}
 export const LANE=Object.freeze({branch:'release/factual-recorded-week-direct-20261016',workflow:'.github/workflows/factual-recorded-week-direct-release-20261016.yml',repository:'shiftsometimber/shift-core'});
 export const WEEK_FLAG='MY_TIMBER_WEEK_VIEW_ENABLED';
 export const SPLIT_CODE_ACCEPTANCE='qualified_core_code_with_retained_gp_hq';
@@ -94,7 +107,7 @@ export async function execute(phase){
  const cli=(config,args,timeout=180000)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config',config],{encoding:'utf8',maxBuffer:64e6,timeout});
  assert.equal(JSON.parse(readFileSync('node_modules/wrangler/package.json','utf8')).version,'4.112.0','Retain the original production compiler');
  const headers={Authorization:'Bearer '+env.CLOUDFLARE_API_TOKEN};assert(env.CLOUDFLARE_API_TOKEN);assert.match(env.CLOUDFLARE_ACCOUNT_ID||'',/^[a-f0-9]{32}$/);assert(env.GITHUB_TOKEN);
- async function gh(path){const r=await fetch('https://api.github.com/repos/'+LANE.repository+path,{headers:{Authorization:'Bearer '+env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'GitHub guard unavailable: '+r.status);return r.json();}
+ const gh=createRecordedWeekGithubGet({token:env.GITHUB_TOKEN});
  async function api(script,path,{method='GET',body}={}){
   if(method!=='GET')assertCoreWrite(script,path,method);
   const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/'+script+path,{method,headers:{...headers,...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(30000)});
