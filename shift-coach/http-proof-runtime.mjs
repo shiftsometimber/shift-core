@@ -11,4 +11,9 @@ export const WorkerResponse=new Proxy(NativeResponse,{
 });
 NativeResponse.prototype.clone=function clone(){const copy=Reflect.apply(originalClone,this,[]);if(modes.has(this))record(copy,'automatic');return copy};
 globalThis.Response=WorkerResponse;
+// Node fetch returns its native Response rather than using the global constructor.
+// Record only responses returned by the captured native fetch; arbitrary native
+// responses and their clones remain rejected by responseBodyMode.
+const originalFetch=globalThis.fetch;
+globalThis.fetch=async function fetch(...args){const response=await Reflect.apply(originalFetch,this,args);if(!(response instanceof NativeResponse))throw TypeError('Native fetch returned a non-Response');return record(response,'automatic')};
 export function responseBodyMode(response){if(!(response instanceof NativeResponse)||!modes.has(response))throw TypeError('Untracked Worker response; encoding proof rejected');return modes.get(response)}

@@ -18,7 +18,7 @@ import {withPublicFontDelivery} from './public-font-delivery.mjs';
 export * from '../worker-entry-v6.js';
 import {supportTeamRoutes,withSupportTeamLink} from './support-team.mjs';
 import {coachingRoutes} from './routes.mjs';
-import {coachingAsset,withCoaching} from './presentation.mjs';
+import {coachingAsset,withCoaching,compressPrivateCoachingResponse} from './presentation.mjs';
 import {runCoachingNight} from './night-job.mjs';
 import {withFitActiveEdit} from './fit-active-edit.mjs';
 // Every original handler, binding, cron and public response passes through.
@@ -42,7 +42,7 @@ const composedWorker = {
    url.pathname='/v1/shift-coach';url.search='';
    try{const initial=await coachingRoutes(new Request(url,{method:'GET',headers:request.headers}),env);if(initial?.ok)seed=await initial.json();}catch{/* Client keeps its normal retry path; no unchecked snapshot is used. */}
   }
-  const publicResponse=await withContextSeo(await withDiscoverySeo(await withApprovedSeo(await withTechnicalSeo(await withSeoFollowThrough(await withProgrammeSeo(await withCatalogueBenefits(request,await withCoaching(request,await withFitActiveEdit(request,response),seed)),request),request),request),request),request),request);
+  const publicResponse=await withContextSeo(await withDiscoverySeo(await withApprovedSeo(await withTechnicalSeo(await withSeoFollowThrough(await withProgrammeSeo(await withCatalogueBenefits(request,await withCoaching(request,await withFitActiveEdit(request,response),seed,{deferCompression:true})),request),request),request),request),request),request);
   return withPublicToolDelivery(await (url.pathname.replace(/\/+$/,'')==='/articles/oral-semaglutide-for-weight-loss'?withPublicSeoCloseout(publicResponse,request):publicResponse),request);
  },
  async scheduled(controller,env,ctx){
@@ -52,4 +52,5 @@ const composedWorker = {
  }
 };
 
-export default withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)));
+const protectedWorker=withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)));
+export default {...protectedWorker,async fetch(request,env,ctx){return compressPrivateCoachingResponse(request,await protectedWorker.fetch(request,env,ctx));}};

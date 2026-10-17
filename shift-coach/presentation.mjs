@@ -27,7 +27,7 @@ body[data-app-tool]:not([data-app-tool="today"]) #shiftCoach{display:none!import
 `;
 const markup='<section id="shiftCoach" aria-label="Shift AI coaching" hidden><p class="coach-kicker">SHIFT AI · ONE THING FOR TODAY</p><div data-coach-content></div><p data-coach-status role="status" aria-live="polite"></p></section>';
 export function coachingAsset(request){if(!['GET','HEAD'].includes(request.method)||new URL(request.url).pathname!==assetPath)return null;return new Response(request.method==='HEAD'?null:client,{headers:{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});}
-export async function withCoaching(request,response,seed=null){
+export async function withCoaching(request,response,seed=null,{deferCompression=false}={}){
  if(request.method!=='GET'||!/^\/member\/dashboard(?:\.html)?$/.test(new URL(request.url).pathname)||response.status!==200||!response.headers.get('Content-Type')?.includes('text/html'))return response;
  const html=await response.clone().text();
  if(html.includes('id="shiftCoach"')||!/<(?:section|div)\b[^>]*id="todayActions"/.test(html))return response;
@@ -53,9 +53,16 @@ export async function withCoaching(request,response,seed=null){
  const preloads=(changed.includes('data-coach-stylesheet-loader')?[]:[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1])).filter(href=>/^\/[A-Za-z0-9/_.,=?&%+-]+$/.test(href)).filter((href,index,all)=>all.indexOf(href)===index).map(href=>'<'+href+'>; rel=preload; as=style');
  if(preloads.length)headers.set('Link',[headers.get('Link'),...preloads].filter(Boolean).join(', '));
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
- // Declare compression explicitly to the Worker runtime so the prepared action does
- // not depend on an assumed CDN setting. Keep the body unencoded through response wrappers.
+ const changedResponse=new Response(changed,{status:response.status,statusText:response.statusText,headers});
+ return deferCompression?changedResponse:compressPrivateCoachingResponse(request,changedResponse);
+}
+// Apply manual gzip after response wrappers, preserving the actual encoded bytes.
+// Direct withCoaching callers retain their original manual-compression contract.
+export function compressPrivateCoachingResponse(request,response){
+ if(request.method!=='GET'||!/^\/member\/dashboard(?:\.html)?$/.test(new URL(request.url).pathname)||response.status!==200||!response.headers.get('Content-Type')?.includes('text/html')||!response.headers.get('Cache-Control')?.includes('private')||response.headers.has('Content-Encoding'))return response;
  const gzip=(request.cf?.clientAcceptEncoding??request.headers.get('Accept-Encoding')??'').split(',').some(value=>{const m=value.trim().match(/^gzip(?:\s*;\s*q=(0(?:\.\d+)?|1(?:\.0+)?))?$/i);return m&&Number(m[1]??1)>0;});
- if(gzip){headers.set('Content-Encoding','gzip');headers.set('Vary','Cookie, Accept-Encoding');return new Response(changed,{status:response.status,headers,encodeBody:'automatic'});}
- return new Response(changed,{status:response.status,headers});
+ if(!gzip)return response;
+ const headers=new Headers(response.headers);headers.set('Content-Encoding','gzip');headers.set('Vary','Cookie, Accept-Encoding');headers.delete('Content-Length');
+ const body=response.body?.pipeThrough(new CompressionStream('gzip'))??null;
+ return new Response(body,{status:response.status,statusText:response.statusText,headers,encodeBody:'manual'});
 }
