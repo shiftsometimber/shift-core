@@ -40,6 +40,12 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Prepare existing isolated compiled asset runtime
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npm install --prefix "$RUNNER_TEMP/treatment-proof-runtime" --no-audit --no-fund wrangler@4.146.0
+          echo "TREATMENT_MINIFLARE=$RUNNER_TEMP/treatment-proof-runtime/node_modules/miniflare" >> "$GITHUB_ENV"
       - name: Acquire growth-loop commissioning identity
         id: oidc_growth
         shell: bash
@@ -344,13 +350,13 @@ jobs:
           fetch-depth: 0
       - uses: actions/checkout@v4
         with:
-          ref: b6f9c0c36d4303e5d384fb2d62b58968b998aa64
+          ref: 7fb7252f82fe07e88b134efa8931c2554e5b2677
           path: runtime
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: 'runtime/.nvmrc'
-      - name: Read actual deployed W Core and unchanged H HQ receipt and journal
+      - name: Validate separate exact accepted main runtime and full original inverses
         env:
           GH_TOKEN: ${{ github.token }}
         working-directory: runtime
@@ -377,7 +383,7 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Diagnose original factual W UI and retain all original live acceptance assertions
+      - name: Verify all original factual W UI, private notes, consent and two-holder isolation on owned main
         env:
           GH_TOKEN: ${{ github.token }}
           CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
@@ -388,9 +394,9 @@ jobs:
       - name: Preserve exact independently checked-out W runtime
         working-directory: runtime
         run: |
-          test "$(git rev-parse HEAD)" = "b6f9c0c36d4303e5d384fb2d62b58968b998aa64"
+          test "$(git rev-parse HEAD)" = "7fb7252f82fe07e88b134efa8931c2554e5b2677"
           test -z "$(git status --porcelain --untracked-files=no)"
-      - name: Retain original factual W member evidence and private diagnostics
+      - name: Retain original same-serving factual W acceptance evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:

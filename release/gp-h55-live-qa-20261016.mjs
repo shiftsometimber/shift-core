@@ -5,7 +5,7 @@ import {join,resolve,dirname} from 'node:path';
 import {createRequire} from 'node:module';
 import {randomUUID,createHash} from 'node:crypto';
 import {pathToFileURL,fileURLToPath} from 'node:url';
-import {LANE,PREDECESSORS,latestDeployment,assertOwned,digest} from '../../runtime/release/gp-priority-direct-owned-release-20261016.mjs';
+import {LANE,PREDECESSORS,latestDeployment,assertOwned,digest} from '../../runtime/release/questionnaire-handover-owned-release-20261016.mjs';
 
 export const W_BRANCH='release/factual-recorded-week-direct-20261016';
 export const W_WORKFLOW='.github/workflows/factual-recorded-week-direct-release-20261016.yml';
@@ -17,30 +17,31 @@ const sha40=value=>assert.match(value||'',/^[a-f0-9]{40}$/);
 const sha64=value=>assert.match(value||'',/^[a-f0-9]{64}$/);
 const uuid=value=>assert.match(value||'',/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i);
 
-// Existing bounded verifier slot now targets the genuinely deployed W runtime.
-// The verifier and runtime remain independent complete native Git checkouts.
+// Existing independent verifier slot. No runtime source is changed or relabelled.
+import {assertProvider} from '../../runtime/release/questionnaire-handover-owned-release-20261016.mjs';
+import {verifiedOwnedRuntime} from '../../runtime/shift-coach/cancelled-release-recovery.mjs';
+import {readRecordedWeekCurrentWitness,PRESERVED_CURRENT_RUNTIME} from '../../runtime/release/accepted-current-runtime-starting-point-20261017.mjs';
 export const QA_BRANCH='verification/gp-direct-h55-live-20261016';
 export const QA_WORKFLOW='.github/workflows/rendered-member-production-acceptance.yml';
-export const TARGET_RUNTIME_SOURCE='b6f9c0c36d4303e5d384fb2d62b58968b998aa64';
-export const TARGET_RUNTIME_TREE='00781ce728ca816ddab27022c7bcf8f9e1f13b13';
+export const TARGET_RUNTIME_SOURCE='7fb7252f82fe07e88b134efa8931c2554e5b2677';
+export const TARGET_RUNTIME_TREE='24d04982a93d60e207fa8b7dc976a5f956541bfe';
+export const QUALIFIED_CANDIDATE='7fb7252f82fe07e88b134efa8931c2554e5b2677';
 const verifierRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const POLICY='release/gp-h55-live-qa-policy-20261016.json';
 const QA_PATHS=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-h55-live-qa-20261016.mjs','release/gp-directory-live-h55-qa-20261016.mjs','release/gp-h55-live-qa-policy-20261016.json','tests/gp-h55-live-qa-20261016.test.mjs'];
-const native=(dir,...args)=>execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',dir,...args],{encoding:'utf8',env:{...process.env,GIT_NO_LAZY_FETCH:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0'},maxBuffer:64e6}).trim();
+const native=(dir,...args)=>execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',dir,...args],{encoding:'utf8',maxBuffer:64e6,env:{...process.env,GIT_NO_LAZY_FETCH:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0'}}).trim();
 export function inverseLiteral(value,edits){
  for(const[before,after,count]of[...edits].reverse()){
   if(count==='suffix'){assert(value.endsWith(after));value=value.slice(0,-after.length);}
-  else{assert.equal(value.split(after).length-1,count,'Complete exact inverse required');value=value.split(after).join(before);}
+  else{assert.equal(value.split(after).length-1,count);value=value.split(after).join(before);}
  }return value;
 }
 export function assertQaFileInverses(){
  const policy=JSON.parse(readFileSync(resolve(verifierRoot,POLICY),'utf8'));
- assert.equal(policy.runtimeSource,TARGET_RUNTIME_SOURCE);assert.equal(policy.runtimeTree,TARGET_RUNTIME_TREE);
- assert.equal(policy.schema,'shift-factual-week-independent-verifier/v1');
+ assert.equal(policy.schema,'shift-main-owned-factual-week-independent-verifier/v1');assert.equal(policy.runtimeSource,TARGET_RUNTIME_SOURCE);assert.equal(policy.runtimeTree,TARGET_RUNTIME_TREE);
  for(const[name,path]of[['runner','release/recorded-week-member-live-20261016.mjs'],['helper','release/recorded-week-live-20261014.mjs']]){
   const row=policy[name],body=readFileSync(resolve(verifierRoot,row.path),'utf8');assert.equal(hash(body),row.sha256);
-  const original=inverseLiteral(body,row.wholeInverse);assert.equal(hash(original),row.originalSha256);
-  assert.equal(original,readFileSync(resolve(verifierRoot,'../runtime',path),'utf8'),'Every original W assertion and control retained');
+  const restored=inverseLiteral(body,row.wholeInverse);assert.equal(hash(restored),row.originalSha256);assert.equal(restored,readFileSync(resolve(verifierRoot,'../runtime',path),'utf8'),'Every original factual W assertion/control retained');
  }
  assert.equal(inverseLiteral(readFileSync(resolve(verifierRoot,QA_WORKFLOW),'utf8'),policy.workflowInverse),readFileSync(resolve(verifierRoot,'../runtime',QA_WORKFLOW),'utf8'));
  return{originalAssertionsAndCommandsRetained:true,providerWrites:0};
@@ -49,27 +50,53 @@ export function assertQaIdentity(run,{source,runId,attempt}){
  sha40(source);assert.equal(run.head_sha,source);assert.equal(run.head_branch,QA_BRANCH);assert.equal(run.path,QA_WORKFLOW);assert.equal(run.event,'push');assert.equal(run.head_repository.full_name,repository);
  assert.equal(String(run.id),String(runId));assert.equal(String(run.run_attempt),String(attempt));assert(Number.isSafeInteger(run.id)&&run.id>0);assert(Number.isSafeInteger(run.run_attempt)&&run.run_attempt>0);return run;
 }
-export function assertFreshWindow(at,now=Date.now()){
- const finished=Date.parse(at);assert(Number.isFinite(finished)&&finished<=now&&now-finished<=900000,'Original fifteen-minute freshness limit retained for actual current ownership');return finished;
-}
+export function assertFreshWindow(at,now=Date.now()){const n=Date.parse(at);assert(Number.isFinite(n)&&n<=now&&now-n<=900000,'Original15-minute freshness deadline retained');return n;}
 function actualVerifier(){
  assert.equal(process.env.GITHUB_REPOSITORY,repository);assert.equal(process.env.GITHUB_REF,'refs/heads/'+QA_BRANCH);assert.equal(process.env.GITHUB_EVENT_NAME,'push');
- const source=process.env.GITHUB_SHA;sha40(source);assert.equal(native(verifierRoot,'rev-parse','HEAD'),source);assert.equal(native(verifierRoot,'status','--porcelain','--untracked-files=no'),'');
- assertQaFileInverses();const policy=JSON.parse(readFileSync(resolve(verifierRoot,POLICY),'utf8'));
- assert.deepEqual([...policy.paths].sort(),QA_PATHS.slice().sort());
- assert.deepEqual(native(verifierRoot,'diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',TARGET_RUNTIME_SOURCE,source,'--').split('\n').filter(Boolean).sort(),QA_PATHS.slice().sort());
- for(const path of QA_PATHS){const bytes=readFileSync(resolve(verifierRoot,path)),stored=execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',verifierRoot,'show',source+':'+path],{maxBuffer:64e6});assert.equal(hash(bytes),hash(stored));}
- assert.equal(resolve(process.cwd()),resolve(verifierRoot,'../runtime'));
- assert.equal(native(process.cwd(),'rev-parse','HEAD'),TARGET_RUNTIME_SOURCE);assert.equal(native(process.cwd(),'rev-parse','HEAD^{tree}'),TARGET_RUNTIME_TREE);assert.equal(native(process.cwd(),'status','--porcelain','--untracked-files=no'),'');
+ const source=process.env.GITHUB_SHA;sha40(source);assert.equal(native(verifierRoot,'rev-parse','HEAD'),source);assert.equal(native(verifierRoot,'status','--porcelain','--untracked-files=no'),'');assertQaFileInverses();
+ const policy=JSON.parse(readFileSync(resolve(verifierRoot,POLICY),'utf8'));assert.equal(policy.activationReady,true,'Preparation cannot create live fixtures before exact accepted main is pinned');
+ assert.deepEqual(policy.paths.slice().sort(),QA_PATHS.slice().sort());assert.deepEqual(native(verifierRoot,'diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',TARGET_RUNTIME_SOURCE,source,'--').split('\n').filter(Boolean).sort(),QA_PATHS.slice().sort());
+ for(const p of QA_PATHS){const stored=execFileSync('/usr/bin/git',['--no-replace-objects','-C',verifierRoot,'show',source+':'+p],{maxBuffer:64e6});assert.equal(hash(stored),hash(readFileSync(resolve(verifierRoot,p))));}
+ assert.equal(resolve(process.cwd()),resolve(verifierRoot,'../runtime'));assert.equal(native(process.cwd(),'rev-parse','HEAD'),TARGET_RUNTIME_SOURCE);assert.equal(native(process.cwd(),'rev-parse','HEAD^{tree}'),TARGET_RUNTIME_TREE);assert.equal(native(process.cwd(),'status','--porcelain','--untracked-files=no'),'');
+ native(process.cwd(),'merge-base','--is-ancestor',QUALIFIED_CANDIDATE,TARGET_RUNTIME_SOURCE);
  for(const row of native(process.cwd(),'ls-files','-v','-z').split('\0').filter(Boolean))assert(row.startsWith('H '));
- return{source,tree:native(verifierRoot,'rev-parse','HEAD^{tree}'),run:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,runtimeSource:TARGET_RUNTIME_SOURCE};
+ return{source,tree:native(verifierRoot,'rev-parse','HEAD^{tree}'),runtimeSource:TARGET_RUNTIME_SOURCE,run:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT};
+}
+export function assertMainOwnership(active,run,job,receipt,source){
+ assert.equal(run.head_sha,source);assert.equal(run.run_attempt,Number(receipt.attempt||run.run_attempt));assert.equal(verifiedOwnedRuntime(active,run,job,receipt),true,'Original normal-main ownership validator must pass');return receipt;
+}
+async function currentProvider(script){
+ const account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;assert.match(account||'',/^[a-f0-9]{32}$/);assert(token);
+ const request=async path=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+'/workers/scripts/'+script+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);const b=await r.json();assert.equal(b.success,true);return b.result;};
+ const deployment=latestDeployment((await request('/deployments')).deployments),version=await request('/versions/'+deployment.versions[0].version_id);
+ return{deployment,version,request};
+}
+async function currentMainRuntime({withBundle=false}={}){
+ const started=Date.now();actualVerifier();assertQaIdentity(await api('/actions/runs/'+process.env.GITHUB_RUN_ID),{source:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT});
+ assert.equal((await api('/git/ref/heads/'+QA_BRANCH)).object.sha,process.env.GITHUB_SHA);assert.equal((await api('/git/ref/heads/main')).object.sha,TARGET_RUNTIME_SOURCE);
+ const pr=await api('/pulls/1363');assert.equal(pr.merged,true);assert.equal(pr.head.sha,QUALIFIED_CANDIDATE);assert.equal(pr.merge_commit_sha,TARGET_RUNTIME_SOURCE);
+ const candidates=(await api('/actions/workflows/cloudflare-production-promote.yml/runs?branch=main&event=push&per_page=20')).workflow_runs.filter(r=>r.head_sha===TARGET_RUNTIME_SOURCE&&r.status==='completed'&&r.conclusion==='success');
+ assert(candidates.length,'Original normal-main production checks must all have completed successfully');const run=candidates.sort((a,b)=>b.id-a.id)[0];
+ const jobs=(await api('/actions/runs/'+run.id+'/jobs')).jobs.filter(j=>j.name==='promote'&&j.status==='completed'&&j.conclusion==='success');assert.equal(jobs.length,1);const job=jobs[0];
+ const token=process.env.GH_TOKEN||process.env.GITHUB_TOKEN;const response=await fetch('https://api.github.com/repos/'+repository+'/actions/jobs/'+job.id+'/logs',{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json'},signal:AbortSignal.timeout(30000)});assert.equal(response.status,200);const logs=await response.text();
+ const receipts=logs.split('\n').flatMap(line=>{const n=line.indexOf('{"kind":"owned_runtime_deployment"');if(n<0)return[];try{return[JSON.parse(line.slice(n))]}catch{return[]}});
+ const core=await currentProvider('shift-core'),hq=await currentProvider('shift-hq-management'),matches=receipts.filter(r=>verifiedOwnedRuntime(core.deployment,run,job,r));assert.equal(matches.length,1);assertMainOwnership(core.deployment,run,job,matches[0],TARGET_RUNTIME_SOURCE);
+ const witnessBytes=readRecordedWeekCurrentWitness();assert.equal(hash(witnessBytes),PRESERVED_CURRENT_RUNTIME.receiptSHA256);const witness=JSON.parse(witnessBytes),retained=witness.workers.hq;
+ const cp=assertProvider(core,{deployment:matches[0].deploymentId,version:matches[0].versionId,gpEnabled:true}),hp=assertProvider(hq,{deployment:retained.deploymentId,version:retained.versionId,gpEnabled:true},{hq:true});
+ assert.equal(cp.bindingsSha256,witness.workers.core.allBindingsSha256,'All genuinely serving W configuration remains exact');assert.equal(hp.bindingsSha256,retained.allBindingsSha256);assertOwned(hq.deployment,retained,retained.source,retained.run,retained.attempt);
+ assert.equal(core.version.resources.bindings.find(b=>b.name==='MY_TIMBER_WEEK_VIEW_ENABLED')?.text,'true');const publicMetadata={source:TARGET_RUNTIME_SOURCE,run:run.id,attempt:run.run_attempt,deploymentId:core.deployment.id,versionId:core.version.id,percentage:100,allBindingsSha256:cp.bindingsSha256};
+ if(withBundle){
+  const latest=async()=>[...(await core.request('/versions?per_page=20')).items].sort((a,b)=>Date.parse(b.metadata.created_on)-Date.parse(a.metadata.created_on))[0];
+  assert.equal((await latest()).id,core.version.id,'Original content ownership control: latest upload must be active version');
+  const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-core/content/v2',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);assert(r.headers.get('content-type')?.startsWith('multipart/form-data'));
+  const entry=r.headers.get('cf-entrypoint');assert(entry&&!entry.includes('/')&&!entry.includes('..'));const parts=await r.formData();assert.equal([...parts].filter(([,p])=>typeof p!=='string').length,1);const part=parts.get(entry);assert(part&&typeof part.arrayBuffer==='function');const bytes=Buffer.from(await part.arrayBuffer());assert.equal((await latest()).id,core.version.id);
+  publicMetadata.bundleSha256=hash(bytes);publicMetadata.bundleBytes=bytes.length;
+ }
+ assert.equal((await api('/git/ref/heads/main')).object.sha,TARGET_RUNTIME_SOURCE);assert(Date.now()-started<=300000,'Original five-minute current ownership window retained');
+ return{at:new Date().toISOString(),source:TARGET_RUNTIME_SOURCE,tree:TARGET_RUNTIME_TREE,main:TARGET_RUNTIME_SOURCE,workers:{core:publicMetadata,hq:retained},run,job:job.id,receipt:matches[0],originalPromoteLogSha256:hash(logs),originalW:{source:witness.source,run:witness.run,receiptSHA256:hash(witnessBytes)},verifier:actualVerifier()};
 }
 
-function actualSource(){
- actualVerifier();
- execFileSync(process.execPath,['--input-type=module','-e',"import {readFileSync} from 'node:fs';import {verifyRecordedWeekDirect} from './release/recorded-week-direct-scope-20261016.mjs';verifyRecordedWeekDirect(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).myTimberRecordedWeekActivation20261014);"],{encoding:'utf8',maxBuffer:1e6});
- return TARGET_RUNTIME_SOURCE;
-}
+function actualSource(){actualVerifier();return TARGET_RUNTIME_SOURCE;}
 export function assertOwnedWeekRun(run,source,{terminal=true}={}){
  sha40(source);assert.equal(run.head_sha,source);assert.equal(run.head_branch,W_BRANCH);
  assert.equal(run.path,W_WORKFLOW);assert.equal(run.name,'Factual Recorded Week Direct Runtime Release');
@@ -134,59 +161,18 @@ async function providerDeployments(script){
 }
 export function isPreventedWeekBackground(url,method,{site,api}){
  const u=new URL(url);if(method==='DELETE')return u.pathname==='/v1/acquisition-attribution'&&[site,api].includes(u.origin);if(method!=='POST')return false;
- return u.pathname==='/v1/my-timber-pwa/status'&&[site,api].includes(u.origin)||u.pathname==='/cdn-cgi/rum'&&[site,'https://cloudflareinsights.com'].includes(u.origin);
+ return u.pathname==='/v1/events'&&[site,api].includes(u.origin)||u.pathname==='/v1/my-timber-pwa/status'&&[site,api].includes(u.origin)||u.pathname==='/cdn-cgi/rum'&&[site,'https://cloudflareinsights.com'].includes(u.origin);
 }
-export async function assertCurrentOwnedWeek(receipt,run,source,baseline,{readProvider=providerDeployments,readGithub=api}={}){
- const started=Date.now(),verifier=actualVerifier();
- assert.equal(source,TARGET_RUNTIME_SOURCE);assert.equal(receipt.source,source);assert.equal(receipt.tree,TARGET_RUNTIME_TREE);
- assertQaIdentity(await readGithub('/actions/runs/'+process.env.GITHUB_RUN_ID),{source:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT});
- assert.equal((await readGithub('/git/ref/heads/'+QA_BRANCH)).object.sha,process.env.GITHUB_SHA,'Actual verifier moved');
- const terminal=assertOwnedWeekRun(await readGithub('/actions/runs/'+run.id),source);assert.equal(terminal.id,38990992637);assert.equal(terminal.run_attempt,run.run_attempt);
- assert.equal(receipt.main,LANE.main);assert.equal(receipt.main,baseline.coordinatingMainAtAcceptance);
- assert.equal((await readGithub('/git/ref/heads/main')).object.sha,receipt.main,'Current main moved before W member proof');
- assert.equal((await readGithub('/git/ref/heads/'+W_BRANCH)).object.sha,source,'Owned W branch moved before member proof');
- const actual={};
- for(const name of ['core','hq']){
-  const active=latestDeployment(await readProvider(PREDECESSORS[name].script));
-  const expected=receipt.workers[name],ownerSource=name==='core'?source:baseline.workers.hq.source,ownerRun=name==='core'?run.id:baseline.workers.hq.run,ownerAttempt=name==='core'?run.run_attempt:baseline.workers.hq.attempt;
-  assertOwned(active,expected,ownerSource,ownerRun,ownerAttempt);
-  actual[name]={source:ownerSource,run:canonicalId(ownerRun),attempt:canonicalId(ownerAttempt),deploymentId:active.id,versionId:active.versions[0].version_id,percentage:active.versions[0].percentage};
- }
- assert(Date.now()-started<=300000,'Fresh current provider/source evidence must complete inside five minutes');return{at:new Date().toISOString(),source,main:receipt.main,workers:actual,verifier};
+export async function assertCurrentOwnedWeek(receipt,run,source,baseline){
+ assert.equal(source,TARGET_RUNTIME_SOURCE);const actual=await currentMainRuntime();
+ for(const name of ['core','hq'])for(const key of ['source','run','attempt','deploymentId','versionId','percentage','allBindingsSha256'])assert.equal(String(actual.workers[name][key]),String(receipt.workers[name][key]),'Actual owned current '+name+' '+key+' changed');
+ assert.equal(actual.run.id,run.id);assertFreshWindow(actual.at);return actual;
 }
 function jsonFiles(root){return readdirSync(root,{withFileTypes:true}).flatMap(row=>row.isDirectory()?jsonFiles(join(root,row.name)):row.isFile()&&row.name.endsWith('.json')?[join(root,row.name)]:[]);}
-async function waitForWeek(){
- const source=actualSource(),tree=git('rev-parse','HEAD^{tree}'),started=Date.now();mkdirSync(directory,{recursive:true});
- let run;
- while(Date.now()-started<1200000){
-  const result=await api('/actions/workflows/'+W_WORKFLOW.split('/').at(-1)+'/runs?branch='+encodeURIComponent(W_BRANCH)+'&event=push&per_page=20');
-  const matches=result.workflow_runs.filter(row=>row.head_sha===source).sort((a,b)=>b.id-a.id);
-  if(matches.length){run=assertOwnedWeekRun(matches[0],source,{terminal:false});if(run.status==='completed'){assertOwnedWeekRun(run,source);break;}}
-  await new Promise(resolve=>setTimeout(resolve,10000));
- }
- assert(run?.status==='completed'&&run.conclusion==='success','Actual same-source W release did not succeed inside finite 20-minute wait');
- const artifacts=(await api('/actions/runs/'+run.id+'/artifacts')).artifacts.filter(row=>row.name==='recorded-week-direct-runtime-release-'+run.id&&!row.expired);
- assert.equal(artifacts.length,1,'One actual owned W artifact required');assert(artifacts[0].size_in_bytes>0);
- const artifactDirectory=join(directory,'owned-week-artifact');mkdirSync(artifactDirectory,{recursive:true});
- execFileSync('gh',['run','download',String(run.id),'--repo',repository,'--name',artifacts[0].name,'--dir',artifactDirectory],{encoding:'utf8',stdio:['ignore','pipe','pipe']});
- const receipts=jsonFiles(artifactDirectory).map(path=>({path,bytes:readFileSync(path,'utf8')})).map(row=>({...row,value:JSON.parse(row.bytes)})).filter(row=>row.value.schema==='shift-recorded-week-direct-runtime-receipt/v1');
- assert.equal(receipts.length,1,'One actual runtime receipt in owned artifact required');
- const journals=jsonFiles(artifactDirectory).map(path=>({path,bytes:readFileSync(path,'utf8')})).map(row=>({...row,value:JSON.parse(row.bytes)})).filter(row=>row.value.schema==='shift-recorded-week-direct-owned-release/v1');assert.equal(journals.length,1,'One genuine source-owned W journal required');assertOwnedWeekReceipt(receipts[0].value,run,source,tree,readBaseline(),journals[0].value);
- run=assertOwnedWeekRun(await api('/actions/runs/'+run.id),source);
- assert.equal(String(receipts[0].value.attempt),String(run.run_attempt),'Owned release attempt moved during artifact read');
- writeFileSync(join(directory,'owned-week-run.json'),JSON.stringify(run,null,2)+'\n');
- writeFileSync(join(directory,'owned-week-proof.json'),JSON.stringify({source,tree,run:run.id,attempt:run.run_attempt,artifact:artifacts[0].id,receiptPath:receipts[0].path,receiptSHA256:hash(receipts[0].bytes),journalPath:journals[0].path,journalSHA256:hash(journals[0].bytes)},null,2)+'\n');
- console.log('PASS actual same-source owned factual W release and artifact; authenticated member proof has not run yet');
-}
+async function waitForWeek(){mkdirSync(directory,{recursive:true});actualSource();console.log('PASS separate exact native runtime and original inverse controls; no fixture or provider write');}
 async function verifyWeek(){
  const source=actualSource(),tree=git('rev-parse','HEAD^{tree}'),baseline=readBaseline();
- const proof=JSON.parse(readFileSync(join(directory,'owned-week-proof.json'),'utf8'));
- const run=JSON.parse(readFileSync(join(directory,'owned-week-run.json'),'utf8'));
- const bytes=readFileSync(proof.receiptPath,'utf8');assert.equal(hash(bytes),proof.receiptSHA256);assert.equal(proof.receiptSHA256,'3261fbd1a27a504746ff64f2003b8ff4922d23351c16ecd4c1f7a2d769067290','Exact genuine deployed W receipt required');
- const journalBytes=readFileSync(proof.journalPath,'utf8');assert.equal(hash(journalBytes),proof.journalSHA256);
- const runtime=assertOwnedWeekReceipt(JSON.parse(bytes),run,source,tree,baseline,JSON.parse(journalBytes));
- const current=assertOwnedWeekRun(await api('/actions/runs/'+run.id),source);assert.equal(current.run_attempt,run.run_attempt);
- assert(Number.isFinite(Date.parse(current.updated_at))&&Date.parse(current.updated_at)<=Date.now(),'Preserve actual original terminal time');const freshOwnership=await assertCurrentOwnedWeek(runtime,run,source,baseline);const finished=assertFreshWindow(freshOwnership.at);
+ const runtime=await currentMainRuntime({withBundle:true}),run=runtime.run;const finished=assertFreshWindow(runtime.at);
  const oidc=process.env.SHIFT_COMMISSIONING_OIDC;assert(oidc,'Existing allowed-workflow commissioning identity required');
  const{chromium}=createRequire(resolve(process.cwd(),'package.json'))('playwright');
  const{commissioningLogin,chooseOptionalHealthTracking}=await import('../../runtime/rendered-member-acceptance-support.mjs');
@@ -198,7 +184,7 @@ async function verifyWeek(){
  const first={email:'shiftsometimber+structured-growth-'+randomUUID()+'@gmail.com',password:'SST-W-'+randomUUID()+'-Aa1!'};
  const second={email:'shiftsometimber+structured-progressstory-'+Date.now()+'-desktop@gmail.com',password:'SST-W-'+randomUUID()+'-Aa1!'};
  for(const fixture of [first,second]){console.log('::add-mask::'+fixture.email);console.log('::add-mask::'+fixture.password);}
- const report={verifier:actualVerifier(),schema:'shift-recorded-week-member-live/v1',at:new Date().toISOString(),source,commit:source,tree,run:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,ownedReleaseRun:run.id,ownedReleaseAttempt:run.run_attempt,retainedHqSource:baseline.workers.hq.source,...(baseline.acceptanceMode==='qualified_core_code_with_retained_gp_hq'?{gpFeatureAcceptance:false,gpAssessmentReuse:{status:'blocked_contract_inactive'}}:{}),synthetic:true,realCustomerRecordsRead:false,checks:[],status:'running',featureAcceptance:false,notificationsSent:0,realCustomerWrites:0,commissioningIdentity:'github_actions_oidc',genuineHqHolderAcceptance:false,preventedBackgroundWrites:[],compiledBeforeFixture:{source:compiled.source,bundleSha256:compiled.bundleSha256,productionResources:0}};
+ const report={verifier:actualVerifier(),originalW:runtime.originalW,currentMainOwnership:runtime,schema:'shift-recorded-week-member-live/v1',at:new Date().toISOString(),source,commit:source,tree,run:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,ownedReleaseRun:run.id,ownedReleaseAttempt:run.run_attempt,retainedHqSource:baseline.workers.hq.source,...(baseline.acceptanceMode==='qualified_core_code_with_retained_gp_hq'?{gpFeatureAcceptance:false,gpAssessmentReuse:{status:'blocked_contract_inactive'}}:{}),synthetic:true,realCustomerRecordsRead:false,checks:[],status:'running',featureAcceptance:false,notificationsSent:0,realCustomerWrites:0,commissioningIdentity:'github_actions_oidc',genuineHqHolderAcceptance:false,preventedBackgroundWrites:[],compiledBeforeFixture:{source:compiled.source,bundleSha256:compiled.bundleSha256,productionResources:0}};
  async function preparePage(page){await page.route('**/*',async route=>{const request=route.request();if(isPreventedWeekBackground(request.url(),request.method(),{site,api:apiOrigin})){const url=new URL(request.url());report.preventedBackgroundWrites.push({origin:url.origin,path:url.pathname,method:request.method(),disposition:'aborted_before_network',authority:'Unrelated analytics/PWA and cookie-attribution cleanup writes remain held'});await route.abort('blockedbyclient');return;}await route.fallback();});}
  async function create(fixture){
   const serving=await assertCurrentOwnedWeek(runtime,run,source,baseline);

@@ -1,3 +1,4 @@
+import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json' with {type:'json'};
@@ -5,7 +6,6 @@ import {industry,industrySources} from './industry.mjs';
 import {registrySources} from './credibility.mjs';
 import {medicines,sources} from './data.mjs';
 import {projectSourceHealth} from './monitor.mjs';
-import {programmeSummaryQueue} from './evidence-desk.mjs';
 
 const expected={
  'bivamelagon-rhythm-20250709':{url:'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon',checkUrl:'https://ir.rhythmtx.com/node/12446/pdf',fingerprint:'9f0faf3cb0d4f6b24e93601eee0a6090ef2f604e8e22b3cc9315dd3e67343805'},
@@ -30,7 +30,7 @@ test('reviewed fingerprints are the immutable exact bytes of both complete offic
 });
 
 test('source-route repair preserves catalogue, claims, queues and unresolved ZP6590 boundaries',()=>{
- assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);assert.equal(registrySources.length,139);assert.equal(programmeSummaryQueue([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,69);
+ assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);assert.equal(registrySources.length,139);assert.equal(programmeSummaryQueueAtReceipt([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,69);
  assert.deepEqual(receipt.monitoring,{sourceCountBefore:204,sourceCountAfter:204,configuredSourceReviewQueueBefore:0,configuredSourceReviewQueueAfter:0,priorCompletedReviews:39,completedReviewsAfter:40,programmeSummaryFactualReviewNeeded:69,thresholdsChanged:false,successesSeeded:false,expected:receipt.monitoring.expected});
  assert.equal(receipt.preserved.zp6590VerificationPending,true);assert.equal(receipt.preserved.zp6590CheckDelayed,true);assert.equal(receipt.preserved.monitoringFinished,false);
  for(const id of ['bivamelagon','rm718']){const item=industry.find(entry=>entry.id===id);assert.equal(item.reviewedAt,'2026-10-06T13:43:02Z');assert.equal(item.clinicalApproval,null);assert.match(item.ukAuthorisation,/do(?:es)? not establish UK marketing authorisation/i);}

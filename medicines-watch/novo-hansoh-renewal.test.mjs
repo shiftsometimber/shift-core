@@ -1,10 +1,11 @@
+import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-12-authorised-novo-hansoh-renewal.json' with {type:'json'};
 import {registrySources} from './credibility.mjs';
 import {industry,industrySources} from './industry.mjs';
 import {sources} from './data.mjs';
-import {manualEvidence,programmeSummaryQueue} from './evidence-desk.mjs';
+import {manualEvidence} from './evidence-desk.mjs';
 import {projectSourceHealth} from './monitor.mjs';
 
 const observation=(source,time)=>({id:source.id,source_url:source.url,check_url:source.checkUrl,last_attempt_at:new Date(time).toISOString(),last_success_at:new Date(time).toISOString(),attempt_status:'succeeded',last_http_status:200,last_fingerprint:source.reviewedFingerprint,last_withdrawn:0});
@@ -39,7 +40,7 @@ test('programme reviews and counters remain separate and exact at the review ins
  const sourcesAtReview=sources.filter(source=>!['registry-nct07808073','registry-nct07866066'].includes(source.id));
  const previousDates=new Map([['ribupatide-oral','2026-10-05T02:34:35Z'],['kai4729','2026-10-05T02:34:35Z'],['gzc8072','2026-10-05T03:47:54Z'],['asc30-oral','2026-10-05T04:34:32Z'],['maritide','2026-10-06T23:40:00Z']]);
  const entries=[...industryAtReview.map(entry=>previousDates.has(entry.id)?{...entry,reviewedAt:previousDates.get(entry.id)}:entry),...Array.from({length:6},(_,index)=>({id:`detailed-${index}`,name:`Detailed ${index}`,reviewedAt:'2026-09-01T00:00:00Z',additionalEvidence:[]}))];
- assert.equal(programmeSummaryQueue(entries,Date.parse(receipt.reviewedAt)).length,receipt.counts.programmeSummaryQueueAfterReview);
+ assert.equal(programmeSummaryQueueAtReceipt(entries,Date.parse(receipt.reviewedAt)).length,receipt.counts.programmeSummaryQueueAfterReview);
  assert.equal(industryAtReview.length,receipt.counts.widerProgrammes);assert.equal(sourcesAtReview.length,receipt.counts.configuredSources);
  assert.equal(manualEvidence(industryAtReview,sourcesAtReview).length,98);assert.equal(receipt.counts.manualEvidenceAfter,102);
  assert.deepEqual(receipt.preserved,{zp6590VerificationPending:true,zp6590CheckDelayed:true,externalCommunicationsSent:false,customerDataChanged:false,memberTreatmentChanged:false,checkoutChanged:false,homepageChanged:false,sharedNavigationChanged:false,calculatorChanged:false,analyticsChanged:false,consentChanged:false});

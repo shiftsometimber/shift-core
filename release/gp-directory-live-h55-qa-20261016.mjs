@@ -70,7 +70,7 @@ export function assertRecordedWeekFacts(week,seed){
 }
 
 export async function verifyRecordedWeekLive({page,site,api,email,dir,report,freshSession}){
- const source='b6f9c0c36d4303e5d384fb2d62b58968b998aa64';
+ const source='7fb7252f82fe07e88b134efa8931c2554e5b2677';
  assertRecordedWeekHolder({site,api,email,source,report});
  assert.equal(typeof freshSession,'function','Reuse the original authorised fresh-session flow');
  const row={requirement:'factual recorded treatment weeks',at:new Date().toISOString(),source,synthetic:true,realCustomerWrites:0,urls:[site+'/member/dashboard#visualise',site+ROOT+'/week?sources=treatment'],checks:[],status:'running'};
@@ -94,13 +94,6 @@ export async function verifyRecordedWeekLive({page,site,api,email,dir,report,fre
   return r.json();
  }
  async function installGuard(){
-  const diagnostic={source,events:[],pageErrors:[]};row.mountDiagnostic=diagnostic;
-  page.on('pageerror',error=>diagnostic.pageErrors.push(String(error.message)));
-  page.on('response',async response=>{const path=new URL(response.url()).pathname;
-   if(!['/member-progress-v1.js',ROOT+'/insights','/assets/member-experience/treatment-week.mjs','/assets/member-experience/treatment-week.css'].includes(path))return;
-   const record={path,status:response.status(),headers:Object.fromEntries(Object.entries(response.headers()).filter(([name])=>['content-type','content-security-policy','x-content-type-options','cross-origin-resource-policy','cross-origin-embedder-policy'].includes(name)))};diagnostic.events.push(record);
-   try{const bytes=await response.body();if(path===ROOT+'/insights'){const body=JSON.parse(bytes.toString());record.weekViewAvailable=body.weekViewAvailable;record.patternStatus=body.patterns?.status;record.error=body.error;record.observationCount=body.patterns?.observations?.length;record.contextDayCount=body.patterns?.contextDays?.length;}else{record.bytes=bytes.length;record.sha256=sha(bytes);}}catch{record.bodyUnavailable=true;}
-  });
   routeContext=page.context();routeHandler=async route=>{
    const req=route.request(),url=new URL(req.url()),method=req.method();
    try{
@@ -134,17 +127,7 @@ export async function verifyRecordedWeekLive({page,site,api,email,dir,report,fre
   await patterns.getByLabel('Jabs and symptoms',{exact:true}).check();
   for(const label of ['Food notes and protein snapshots','Exercises marked done','Steps and sleep readings'])await patterns.getByLabel(label,{exact:true}).uncheck();
   await patterns.getByRole('button',{name:'Show context',exact:true}).click();
-  const week=page.locator('.shift-treatment-week');try{await week.locator('summary').first().click();await week.getByLabel('Choose a recorded week').waitFor({timeout:30000});}catch(error){
-   // Verified fictional holder only. Keep original assertions and timeout; retain
-   // private structural diagnostics before the unchanged owned-record cleanup.
-   const width=page.viewportSize()?.width||0;
-   const state=await page.evaluate(()=>({path:location.pathname,hidden:document.hidden,readyState:document.readyState,weekCount:document.querySelectorAll('.shift-treatment-week').length,patterns:[...document.querySelectorAll('.shift-pattern-panel')].map(x=>({connected:x.isConnected,visible:x.getClientRects().length>0,text:x.innerText})),scripts:[...document.scripts].map(x=>new URL(x.src||location.href).pathname)})).catch(()=>({unavailable:true}));
-   state.moduleImport=await page.evaluate(async()=>{try{const module=await import('/assets/member-experience/treatment-week.mjs');return{ok:true,exports:Object.keys(module)}}catch(error){return{ok:false,name:error.name,message:error.message}}}).catch(error=>({evaluationUnavailable:true,name:error.name}));
-   writeFileSync(join(dir,'week-mount-diagnostic-'+width+'.json'),JSON.stringify({source,state},null,2)+'\n');
-   await page.screenshot({path:join(dir,'week-mount-diagnostic-'+width+'.png'),fullPage:true}).catch(()=>{});
-   writeFileSync(join(dir,'week-mount-diagnostic-'+width+'.html'),await page.content().catch(()=>'<p>Unavailable</p>'));
-   throw error;
-  }
+  const week=page.locator('.shift-treatment-week');await week.locator('summary').first().click();await week.getByLabel('Choose a recorded week').waitFor({timeout:30000});
   assert.equal(await week.locator('svg path').count(),0);assert.doesNotMatch(await week.innerText(),/awaiting qualified model|Estimated medication curve/);
   return week;
  }
@@ -218,7 +201,7 @@ export function assertRecordedWeekIsolationMarker(marker,{source,holderId}){
 // No registration, password, cookie, second-account handoff or GP activation.
 export async function verifyRecordedWeekIsolationFromExistingHolder({page,site,api,email}){
  assert.equal(site,SITE);assert.equal(api,API);assert.match(email,/^shiftsometimber\+structured-progressstory-\d+-desktop@gmail\.com$/i);
- const source='b6f9c0c36d4303e5d384fb2d62b58968b998aa64';assert.match(source||'',/^[a-f0-9]{40}$/);
+ const source='7fb7252f82fe07e88b134efa8931c2554e5b2677';assert.match(source||'',/^[a-f0-9]{40}$/);
  const markerRaw=readFileSync('growth-member-live-evidence/recorded-week-isolation-marker.json','utf8'),marker=JSON.parse(markerRaw),growth=JSON.parse(readFileSync('growth-member-live-evidence/results.json','utf8'));
  assert.equal(growth.commit,source);assert.equal(growth.status,'pass');assert.equal(growth.synthetic,true);assert.equal(growth.realCustomerRecordsRead,false);
  assert(growth.checks.some(row=>row.requirement==='factual recorded treatment weeks'&&row.source===source&&row.status==='pass'&&row.markerMetadataSha256===sha(markerRaw)),'Bind the first holder to its actual successful same-source live report');

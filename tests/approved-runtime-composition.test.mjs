@@ -1,3 +1,8 @@
+import './seo-audit-scope-20261016.test.mjs';
+import './food-diary-london-date-stack-20261015.test.mjs';
+import './ci-execution-stack-20261014.test.mjs';
+import './release-machinery-repair-composition.test.mjs';
+import './immutable-git-facts-20261014.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {verifyComposedRuntime,COMPOSITION_BASE,COMPOSITION_SOURCE,COMPOSITION_PATHS} from '../release/approved-runtime-composition.mjs';
@@ -81,6 +86,29 @@ test('scoped immutable history rejects real working-source and HEAD changes',()=
   }),/Source HEAD changed/);
  }finally{process.chdir(previous);rmSync(dir,{recursive:true,force:true});}
 });
+
+
+function stagedHistoryFixture(run){
+ const previous=process.cwd(),dir=mkdtempSync(join(tmpdir(),'shift-history-staged-proof-'));
+ try{
+  process.chdir(dir);directGit('git',['init','-q']);directGit('git',['config','user.name','Synthetic verifier']);directGit('git',['config','user.email','verifier@example.invalid']);writeFileSync('tracked.txt','original\n');directGit('git',['add','tracked.txt']);directGit('git',['commit','-qm','Synthetic fixture']);run();
+ }finally{process.chdir(previous);rmSync(dir,{recursive:true,force:true});}
+}
+test('scoped immutable history rejects staged source before starting verification',()=>stagedHistoryFixture(()=>{
+ writeFileSync('tracked.txt','staged change\n');directGit('git',['add','tracked.txt']);
+ assert.equal(directGit('git',['diff','--name-only'],{encoding:'utf8'}),'','Fixture must have no unstaged difference');
+ let invoked=false;
+ assert.throws(()=>withImmutableHistoryVerification(()=>{invoked=true;}),/requires clean tracked source/);
+ assert.equal(invoked,false,'A staged source change must reject before cached proof is used');
+}));
+test('scoped immutable history rejects staged source changed while checking cached history',()=>stagedHistoryFixture(()=>{
+ assert.throws(()=>withImmutableHistoryVerification(()=>{
+  const original=immutableHistoryExecFileSync('git',['show','HEAD:tracked.txt'],{encoding:'utf8'});
+  writeFileSync('tracked.txt','staged change\n');directGit('git',['add','tracked.txt']);
+  assert.equal(directGit('git',['diff','--name-only'],{encoding:'utf8'}),'','Fixture must have no unstaged difference');
+  assert.equal(immutableHistoryExecFileSync('git',['show','HEAD:tracked.txt'],{encoding:'utf8'}),original,'Immutable HEAD content may be cached but cannot excuse altered staged source');
+ }),/Working source changed/);
+}));
 
 import {verifyWatchRegistryWaveProof,WATCH_REGISTRY_WAVE_PROOF_SOURCE} from '../release/watch-registry-wave-scope.mjs';
 test('standalone Watch preflight validates raw current composition before its exact historical entry comparison',async()=>{
@@ -186,10 +214,11 @@ test('late-inserted oral canonical repair is finite and preserves medical and cu
 });
 
 
-const logoutRawCache=new Map();
+import {createImmutableFixtureRead} from './immutable-reference-fixture-20261014.mjs';
+const logoutRawRead=createImmutableFixtureRead(directGit);
 function rawDriftReader(path){return(ref,p)=>{
  if(ref==='HEAD'&&p===path)return 'changed';
- const key=ref+':'+p;if(!logoutRawCache.has(key))logoutRawCache.set(key,directGit('git',['show',key],{encoding:'utf8'}));return logoutRawCache.get(key);
+ return logoutRawRead(ref,p);
 };}
 
 import {verifyReloadAttemptExtension,RELOAD_ATTEMPT_BASE,RELOAD_ATTEMPT_PATHS} from '../release/approved-runtime-composition.mjs';

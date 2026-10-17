@@ -1,9 +1,10 @@
+import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-12-authorised-ly4329090-discovery.json' with {type:'json'};
 import {medicines,sources} from './data.mjs';
 import {industry} from './industry.mjs';
-import {manualEvidence,programmeSummaryQueue} from './evidence-desk.mjs';
+import {manualEvidence} from './evidence-desk.mjs';
 import {projectSourceHealth} from './monitor.mjs';
 
 test('LY4329090 discovery adds one bounded early Lilly programme from the complete registry record',()=>{
@@ -27,7 +28,7 @@ test('LY4329090 discovery adds one bounded early Lilly programme from the comple
 test('LY4329090 addition preserves exact counters, separate queues and medical boundaries',()=>{
  assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);
  assert.equal(manualEvidence([...medicines,...industry],sources).length,102);
- assert.equal(programmeSummaryQueue([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,71);
+ assert.equal(programmeSummaryQueueAtReceipt([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,71);
  assert.deepEqual(receipt.counts,{priorCompletedReviews:37,completedReviewsAfter:38,detailedProgrammes:6,widerProgrammesBefore:112,widerProgrammesAfter:113,totalProgrammesBefore:118,totalProgrammesAfter:119,configuredSourcesBefore:202,configuredSourcesAfter:203,manualEvidenceBefore:102,manualEvidenceAfter:102,configuredSourceReviewQueueAfter:0,programmeSummaryFactualReviewNeededAfter:68});
  assert.equal(receipt.discoveryPass.incomplete,true);assert.match(receipt.discoveryPass.boundary,/monitoring is not finished/);
  for(const flag of ['monitorLogicChanged','existingMonitorBaselinesChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','externalCommunicationsSent','customerDataChanged','memberTreatmentChanged','checkoutChanged','homepageChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged'])assert.equal(receipt.preserved[flag],false);

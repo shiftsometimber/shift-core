@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-16T17:10:35.211446+00:00",
+  "kind": "INDEPENDENT_PUBLIC_STOCK_AND_CONFIG_AFTER_CANCELLED_CORE_READ_ONLY",
+  "run": 38928866205,
+  "source": "3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef",
+  "beforeAt": "2026-10-16T16:54:48.850Z",
+  "tables": {
+    "medicine_products": {
+      "rows": 7,
+      "sha256": "c8bd883da93a22686a8ef600f1b1d2c60b7a1e6726ac360d5c94f34f2a740031"
+    },
+    "medicine_variants": {
+      "rows": 39,
+      "sha256": "8b3faf0e3bbb1cf756a6fd20b549bb1c1a58b1b2493a96a46282f2666ea565f8"
+    },
+    "medicine_inventory": {
+      "rows": 38,
+      "sha256": "651986206bb0e9b1b833aa9da2eb031864946cda98a5e1a9e71f880d2eef49bb"
+    }
+  },
+  "configurationSha256": "a030adf52fc1f5ee82f327aad59b9552dc598ff3471792f3a3d7242e7217d387",
+  "identical": true,
+  "customerRecordsRead": false,
+  "productionWrites": 0,
+  "originalWorkflowStockStep90": "skipped",
+  "notFullRuntimeAcceptance": true
+}
