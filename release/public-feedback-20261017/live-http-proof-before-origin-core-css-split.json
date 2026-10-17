@@ -1,0 +1,3697 @@
+{
+  "at": "2026-10-17T22:52:47.598Z",
+  "build": "public-feedback-20261017-b7d5bf35aac0",
+  "deploymentId": "d3aafa94-8a22-4671-af09-89f5ef1a2b4c",
+  "sourceCommit": "07012dbbdedd68fc4f296ab10eb463346d72143d",
+  "pages": [
+    {
+      "url": "https://shiftsometimber.co.uk/",
+      "status": 200,
+      "sha256": "68e05f96c9f23222aad2471f3f399ca4787ee84d70202cd98148e6a906f634d6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/affiliate-disclosure",
+      "status": 200,
+      "sha256": "b328f6019736b1e2afb7f7f9b6dd7728f3d3562e535a2469c86093d1ccfd0b60",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/air-fryer-meals-men",
+      "status": 200,
+      "sha256": "25a8fe4c32c41ab76d4b2994d224259ac5b980f24a68d6387f4260d0cb800bd6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/alcohol-and-weight-men",
+      "status": 200,
+      "sha256": "776785e5ff12326d0fd984a5b4ad483ee996d7f2e50dd5479b737f5b7e5f1bb1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/asking-for-help-men",
+      "status": 200,
+      "sha256": "e7b3b8877ca5abcfb30c63f5d7a49367f318e83ceed6879466b01b113d0fb933",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/beginner-walking-plan-men",
+      "status": 200,
+      "sha256": "b866dd3f5e071fd0f897a223734ea1c80e39b9a9864888030389e4443f4f72e9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/calories-explained-men",
+      "status": 200,
+      "sha256": "47e932962a218d884c38a4de686735fe2dd176c68129b5850dfa927ce84f641b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/cholesterol-men",
+      "status": 200,
+      "sha256": "686d3601a1e57f5862deaaaba945d23389dc8076fe500718db2bb8c47125142e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/bmi-men",
+      "status": 200,
+      "sha256": "5e7329bd32ebb5796cfe727483826ea12ab1df74c0c5f7f74f7209577e487bf6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/dad-bod-nobody-talks-about",
+      "status": 200,
+      "sha256": "c7dcdf16ee88f1ca2dd0039a11efb0af5659f79cfb92b5401e0950e42804c4a6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/advertise-with-us",
+      "status": 200,
+      "sha256": "1574a6b05e4f0c1d5cc9f45b40a09a910c08f4f18e29eaa6d3c6643406c5a5a6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/eating-out-weight-management-men",
+      "status": 200,
+      "sha256": "c164dfe8009b6bbd4d68ef75d7b6c18e4eb831381fc684955886461058aabb2c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/exercise-on-glp1",
+      "status": 200,
+      "sha256": "47d925acace437a5c78e5f6ec6a3717e78f26947f3214929715f216c23c3d9d4",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/football-fitness-after-40",
+      "status": 200,
+      "sha256": "bb9bc27a0bbf8dc2ab26cce69d29dd749c58f8d54be7ccef730fc0a28f6ee2a3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/confidence-and-weight-men",
+      "status": 200,
+      "sha256": "91275806ced2d182a33369499fe318847dffa9a969ebd154e9434ee7192a019b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/health-isnt-about-six-packs",
+      "status": 200,
+      "sha256": "427771a5414f22e82abe4379ba4e361c197a687609998746e64a7753d9e35913",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/healthy-habits-that-last-men",
+      "status": 200,
+      "sha256": "7bdebab66381cdc062e6baefc9bbb7b6d24eb1d4e0943711769ff43059365af8",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/about",
+      "status": 200,
+      "sha256": "e87b43c4a802dec50520ee710cee0b59742cc796224cd947cc5e47fac16d5cce",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp1-myths",
+      "status": 200,
+      "sha256": "109c3dc8fe7b4da769cbe043b420f259f1f153f4887ab19bd0c5c07ae650374b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/healthy-bbq-men",
+      "status": 200,
+      "sha256": "b07e386728feb4aa74d9f75687c95d74955507294cde3e35e80aab56cfe973bc",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/heart-health-men",
+      "status": 200,
+      "sha256": "694a7ed9ec277f8577cd704b6fb4d683947c7ea30f68cd0cfead08ef1fcee06d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+      "status": 200,
+      "sha256": "bc8fa45cc79980f313a0f6fe19863cdb97e3af3af38cea998e18001c89e0258b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/men-weight-loss-after-40",
+      "status": 200,
+      "sha256": "ca43164473175990875457bffe71782f12a64ba8c8ff2b2bd55c426cdffbcc43",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/healthy-takeaways-men",
+      "status": 200,
+      "sha256": "b5482e3cf1453c5c36fe8721d272938b92fe42d1864d048d5739d91ab1a287a3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/home-strength-men",
+      "status": 200,
+      "sha256": "51add17ee74b8bbe446c2b72ace5ebdb2b7bb02061aa2dbda08c119cc88a8c13",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/helping-ordinary-blokes-feel-like-themselves-again",
+      "status": 200,
+      "sha256": "e7a1546cb7777ab8c082afc8778632557360bc542ad890d91391c1c66da0de60",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/protein-for-men-weight-management",
+      "status": 200,
+      "sha256": "4238cb058fec6e734455caccb19166310df318083d850f989b7fec95f2809f7b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/mens-mental-health-and-weight",
+      "status": 200,
+      "sha256": "605a05c650c9b80f16fda811007c974ede30b3c909eb514579a9e353d1f71cf0",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/motivation-vs-routine-men",
+      "status": 200,
+      "sha256": "f0496588aaca5a66bff57e24219fb5aba2c3feecc38220fc16790e9c5591bf60",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/prediabetes-men",
+      "status": 200,
+      "sha256": "e0cedad7cc6930d66ce4b2892ab37bdbbc179fc060f96231e44004e1f589e31a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/stress-and-weight-men",
+      "status": 200,
+      "sha256": "0eae904ece22e6c3bda8dd96b8d8a57c883438605bdaf4699b3d1edb79a9306f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/waist-size-men",
+      "status": 200,
+      "sha256": "60c9a3d20381c4b916b98853f96c31f83e19f1ce53afaf66570c7c77e4a09f75",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/why-blokes-put-everyone-else-first",
+      "status": 200,
+      "sha256": "7df6f41192de72c43649b86e594c885a6a988edfb1bed9d49baa66f8e8166d2b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/sleep-and-weight-men",
+      "status": 200,
+      "sha256": "8eeeb1e1de805657361cb5c89449cbd6284983418da80c2dcec62292d5fa5d81",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-and-blood-pressure-men",
+      "status": 200,
+      "sha256": "ef4119197c6e7c1b788d8473e1200b782ba3e89f5def22d552055a164ec26c5d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/walking-for-weight-management-men",
+      "status": 200,
+      "sha256": "ca470efd64bfae5032facad2968a9936ca4a24a042c2eaf663b400b136a59429",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/authors/shift-some-timber-editorial-team",
+      "status": 200,
+      "sha256": "37cf969234e6bb70189f4adc6a16ada5b2235f6110031bd5ff9f867329ce48bb",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/ask-timber",
+      "status": 200,
+      "sha256": "0941be8eda5a86a1a638b7f3de2b34955ba92de0a8e9e56ac29ff3d276becd80",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/clinical-governance",
+      "status": 200,
+      "sha256": "45b8d483c824b9413901ed6ffee168de33b096c384a710907da4df041d045a05",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/why-we-built-shift-some-timber",
+      "status": 200,
+      "sha256": "437bbafe8f3aba4851db55f5e030be77ca5e9b1bc9a51c91659ed6b02d1dc9dd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/commercial-principles",
+      "status": 200,
+      "sha256": "5318b1a4945ef71b3a902696ccb77a4f3e3a3f54308ce480dede2b69b1db2a95",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/before-you-decide",
+      "status": 200,
+      "sha256": "253d1fc646c0d6804716683c0e262e9b07541b04ada6a44e9d6d0e30e56a4670",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparison-centre",
+      "status": 200,
+      "sha256": "169ed526522e75976de97bcb230e9a047ddfc001cf579feb07a458b23b5aa0da",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/community",
+      "status": 200,
+      "sha256": "cd3f83bdd154999eab8d922baf4eec216fd723f8353be2711b3d94e355de2c22",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-latvia-bariatric-surgery",
+      "status": 200,
+      "sha256": "fbe0f987753b18ba5188033efe03bac9f5b05ae2227c0831b5f23fda66fd365d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-czechia-bariatric-surgery",
+      "status": 200,
+      "sha256": "f828ea3ff93f37a1b2e0369acd0aeaa18b1e5fa5f8a1eef2b69759f5343acd71",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/overseas-surgery-complications",
+      "status": 200,
+      "sha256": "1e94ad9763f82338bac7f2c1d66c1f8aa3b3bcaba0f9e601b00871d8f654f9f0",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-overseas-aftercare",
+      "status": 200,
+      "sha256": "20101d5a4fa6dee95ffd97c18d262750575691eeb3be2e5afed5da200d5ab49c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-turkey-bariatric-surgery",
+      "status": 200,
+      "sha256": "e2492f49f77455337befc65443c141aafab4ebb24c3ae84881364b32b429ad2c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-poland-bariatric-surgery",
+      "status": 200,
+      "sha256": "99d6bb7cfe98569146d8a0ca723a3a6fd71f033ddd25539a44c88c57b89709cb",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/verify-overseas-bariatric-clinic",
+      "status": 200,
+      "sha256": "b47f8d2d5660613bbf3398baa1f4a3adbd7df3202435b3f0032906e721be04a2",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/lifestyle-vs-surgery",
+      "status": 200,
+      "sha256": "f5856c9e9b48b34dbb561242e3d9a3a8fe0479b3a11c3829e9bcd68c0ed0f6bf",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/medication-plus-lifestyle",
+      "status": 200,
+      "sha256": "3e9b14982369746e453f3cddc1f157df2ae4e4211574c33845326793fd55faae",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/cardio-vs-strength",
+      "status": 200,
+      "sha256": "0a61e9db4ddcb6e2fa235468fc8b828fcdbb21ced6ff182c39ed101442651e2c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/headline-price-vs-true-cost",
+      "status": 200,
+      "sha256": "1166ba921e512a335c533d45468c8252b6cefa0e1821dfdb69beda0a09f6ad34",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/lifestyle-vs-medication",
+      "status": 200,
+      "sha256": "c6c54025fed0f4e9757253da4af725ea90d1c683e2bbf5251bf2bc8ceedeb907",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/structured-vs-diy",
+      "status": 200,
+      "sha256": "bf6d4faea3c35fcfa57f34af0420b0fc7404ff074440033e9197ca7a1fc0e134",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/surgery-plus-lifestyle",
+      "status": 200,
+      "sha256": "0613c8b0eee88991adabd42484d877674e67d2527d0a347dfcdcd4b58a49c56f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-saxenda",
+      "status": 200,
+      "sha256": "fde2cff073034e6f25060341edb4597afc4fdbef417c29ca6e1b93ffef1acdbb",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/walking-vs-structured-exercise",
+      "status": 200,
+      "sha256": "6c1d29c6b47860455a9a8d74eea39d4f7259101275082b27a0a96811398255c7",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-orlistat",
+      "status": 200,
+      "sha256": "1b72fc035b3f6fffa492341f280bc64de389fadfc0b5cbbec14a2ee6ffad9435",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-wegovy-tablets",
+      "status": 200,
+      "sha256": "6eb775e9ae9b52dd17ca0964de88c1f4d3843018d0a13dec257dea9e4e482ec7",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/saxenda-vs-orlistat",
+      "status": 200,
+      "sha256": "21719aadfb8d1ecd24a5f72184b41809e67825d417b79e9efd5621e70c368a00",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/ozempic-vs-wegovy",
+      "status": 200,
+      "sha256": "3ef1db296a0bd0638f0fcfbde5b33bddfa34034f93b4bb306045fd6751c139e6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-orlistat",
+      "status": 200,
+      "sha256": "b1e50ab2b37665ce2e894c02882e561b321a3256832b17313b0e11733c1beac3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-injection-vs-tablets",
+      "status": 200,
+      "sha256": "9732b29337dd03c09c0fb446e5dece42b1d9a36fa9d7b703f59eac0fd6503f53",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-aftercare",
+      "status": 200,
+      "sha256": "5bb663f05b444f1eeee2c574163d2ce5215d357d9987285a6f20a016500b78d9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-medication",
+      "status": 200,
+      "sha256": "f1fd1ad569243278be88e93750725f4beb2b6951f89c1eb811eebdbeb1e7dab4",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/gp-vs-specialist-weight-management",
+      "status": 200,
+      "sha256": "00ace571ad8badcb8d565a924bba41ffec676e3b694d2385754e08531d7dcf1f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-saxenda",
+      "status": 200,
+      "sha256": "0a35379e31144a7160afa578095a4da4a0ba407a6567d051b70fbbcd8b6a3a98",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-lithuania-bariatric-surgery",
+      "status": 200,
+      "sha256": "d798c6e2f8d0c46520a929fb1dcef9f30318368997af3b19b2fecbca6b5ac8a0",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/nice-eligible-but-no-access",
+      "status": 200,
+      "sha256": "8fb29178c5878b4e2cd3acc7266d0e16b04a4b89b26e2eb2c326bc51573e3f0a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-surgery",
+      "status": 200,
+      "sha256": "8240138a9db59582cc0d35b64b511547bb2b37f5cdba05175296a8f94b5cbf33",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/wait-vs-pay-private",
+      "status": 200,
+      "sha256": "e685db80773191c8bc40b3290a1ec0bafeda6bde7af95e5ad1543d17c39983b2",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-esg",
+      "status": 200,
+      "sha256": "4fe72f0beb941a39c34b5b2f6971dd0c45bfa049dd5045112a1180fefc9b5e17",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/online-pharmacy-vs-clinic",
+      "status": 200,
+      "sha256": "91b829d07434ead6d0264260bdc5fe2b3f849fe749159b17ddd560c015378667",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/gastric-band-vs-bypass",
+      "status": 200,
+      "sha256": "0e0679a02e86fccd59a0721c933479f6775a12654913e07afb1664dbc79365ed",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-sleeve",
+      "status": 200,
+      "sha256": "cac00d5b5345300ab319bcf1a4d271b43bbea147eeae7b32d5842cc66d3d2b72",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+      "status": 200,
+      "sha256": "e2406f5b68504d73ec3e9fa3205e74f15c353f38e8c96ef59b51e1d9782db111",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/esg-vs-gastric-sleeve",
+      "status": 200,
+      "sha256": "64e6082041572d590c5a73a0fde75dfe80c1f0c0de2e09e199b1f75ead9027ce",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/mounjaro-vs-gastric-sleeve",
+      "status": 200,
+      "sha256": "593d100be0214e95a0853e38804cc0a46f6ae2a530bd61cd027b102ec6dd75ae",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-mini-bypass",
+      "status": 200,
+      "sha256": "1dbe448a659f21167a7f8d43c867be9fe6e2cbc8719b0c69f557ca2815acc0cc",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-gastric-bypass",
+      "status": 200,
+      "sha256": "253813a5e3ee41d8cecad593a96ddcb5531a382e1c470b864c339537a91e25da",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/esg-vs-wegovy-tablets",
+      "status": 200,
+      "sha256": "583154276f26913c65adc65f179a9794257019e2b49abdb69e9af6641c51d680",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/lifestyle-vs-mounjaro",
+      "status": 200,
+      "sha256": "3c9780a62e1a5de9ac1edf1ed13370d512b8a03f0bda4f0c38cc29614d570b70",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/nhs-medication-vs-private-surgery",
+      "status": 200,
+      "sha256": "9f639f47aef000a80df0254b9caf7e527382adc0c03514f3d9f33d4119f06d14",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/uk-surgery-vs-turkey",
+      "status": 200,
+      "sha256": "dc25fc8beba2763316240906744fba22c8e499dbfb613047c91f10f0c62cd80c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/wegovy-vs-gastric-bypass",
+      "status": 200,
+      "sha256": "c71d4465345d0b26457b39a650f93b9b57e7255c1358c10d52cc3c36e606f17d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/contact",
+      "status": 200,
+      "sha256": "993516a2f05c7e48974bc1791653f136cadb7d2eca9d3060a4e40f56e9a36f35",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/orlistat-vs-lifestyle",
+      "status": 200,
+      "sha256": "d406879ee9a409086bb41825ee0f8455715e920fdf93f8f6ed1d8c401b52b4b7",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/private-medication-vs-nhs-surgery",
+      "status": 200,
+      "sha256": "1942eca1adf839fb5bf69f5cda857b15036b8b75306163eb84a2f69496c50606",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-centre-methodology",
+      "status": 200,
+      "sha256": "d6bf9d9790e912bf6ed44501ffd11fcc14715f624732846da00d35799a4f10bd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/cookies",
+      "status": 200,
+      "sha256": "13787622a12875c8c0f85b382216597a7caa057568c066b2a0fd2f54ba12db80",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-centre",
+      "status": 200,
+      "sha256": "983df64b0aa1d37c92277ea0ff43a4dcb424f63c438cf09bb4d361484d20c79c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/corporate-wellbeing",
+      "status": 200,
+      "sha256": "4af159598bc7e79f2738eba74d44e932600b581accb9fbc8566d8f38bd2857ca",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-readiness",
+      "status": 200,
+      "sha256": "034161e810dced9002f57c0020fba62dd2144a5427592b3cbd8513cca5ab0069",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-readiness-methodology",
+      "status": 200,
+      "sha256": "63db0e57615ea9557737e297e9d6227dfe781eb9a0a4ef26ee6b8400fd843046",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads-resources",
+      "status": 200,
+      "sha256": "3a27713c190fb0a6f98d0569d8e77e879983fb3e6445fdea67f6ba032c3fd77b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/editorial-standards",
+      "status": 200,
+      "sha256": "57ea91b72b5494f01e8b9a5f037506d23d37e11526ae0bb02982935410569e93",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-trees-explained",
+      "status": 200,
+      "sha256": "6818d3ddf8119ef2064763939340d2346bcdae306ad46ed06b119bfe348b377e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq",
+      "status": 200,
+      "sha256": "376c82219a1475147b7040ca339b9144f7aeadd93c63876cbf0ca1bf9c6e2604",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/are-carbs-bad",
+      "status": 200,
+      "sha256": "5e28ecd678549347c5d8dfd711169a075f2002df54b8b921c149d36fc17ec3af",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/gastric-band-vs-sleeve",
+      "status": 200,
+      "sha256": "c185303610a778fbb06125b1b269fefc3d60e3938c22b15b089a652b3d8a2905",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/family-discussion-guide",
+      "status": 200,
+      "sha256": "9303192d72b3802b52e88ff5a500e49ee04325f9699a8dffe8f4133f5e2566a9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/bbq-and-weight-loss",
+      "status": 200,
+      "sha256": "193f4d2676656a1c035f075cc0cf655e61926dcd958012101aaa2470ba0d8787",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/expert-contributors",
+      "status": 200,
+      "sha256": "0c163f9ce4316783c052f1db7ee0635b3b4cb2fc8ad851fc8ef35f252773939b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/explore-knowledge",
+      "status": 200,
+      "sha256": "11cfbc4e2ce9397390eac4b877d59e528082cf3ed492d447e54a5c9db411a5f9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-men-take-wegovy",
+      "status": 200,
+      "sha256": "acf48a90a15a76d3a1bc07dfa51207af0bfe29e2d47bf6fa0a13ea08e7c91981",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/daily-weight-fluctuation",
+      "status": 200,
+      "sha256": "566872ea9f1128c6d75b30aedff12ce4b794623665b8cbf8e55e5aee1a453a83",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-walking-help-weight-loss",
+      "status": 200,
+      "sha256": "393f587f76cbd7a7627f71a433f9acd16d71afa2abaaa69610c7f51819a2292f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-stress-cause-weight-gain",
+      "status": 200,
+      "sha256": "43c6da9b1e6838e44facbbb8c6554dc0df59ea4a358f0edf6775eb72c1d629c8",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-men-take-mounjaro",
+      "status": 200,
+      "sha256": "d64301dc4061694a552df48ac9500332910ada1b690304117ccef692513ff33b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/does-alcohol-cause-belly-fat",
+      "status": 200,
+      "sha256": "773f3b29f312201f4f7ad13253598a52f0f428a07cd5e89e8c4dbe661f9d0dbf",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-women-use-tools",
+      "status": 200,
+      "sha256": "b1248f912e61939c4222d9a66aeb67d13803faa7b63155990143e8c757c61a53",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/does-sleep-affect-weight",
+      "status": 200,
+      "sha256": "2a3cac37fed4d3ee33a19d47447299e02a4a28fbf5d0fc96167b9a82fc72960a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/does-belly-fat-increase-risk",
+      "status": 200,
+      "sha256": "c921c25350c85f7157bd6e5179451e49a203a8d93d32847e5bc8fcbf7070c853",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/how-often-weigh",
+      "status": 200,
+      "sha256": "4b5efbbbbc9d12e8ab2ebd04ff0945a729e9d0603804d7948ba53064349ddb60",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/does-sst-prescribe",
+      "status": 200,
+      "sha256": "7bbec6c2f3570193aa33d372ddff008e70aa3a99ef41e8e5267012c1a12ff5a2",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/how-quickly-should-men-lose-weight",
+      "status": 200,
+      "sha256": "bbebb085739afad1100bdf36719d5a77fc3974bc921ca7408f6faaf7dab29c82",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-20-percent-realistic",
+      "status": 200,
+      "sha256": "324fbeed0d9b681ec20b65de7e83dcb51d9e2bfaf3da1a22d3537e0174ffc325",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-fat-bad",
+      "status": 200,
+      "sha256": "0ca273dfa4861e1e44453c275f19513e9fcd5dcb56ce9b0cb25f87cc2e5c733b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/how-much-protein-men",
+      "status": 200,
+      "sha256": "1b030f03275507def384301e77c376a782240d45b66e5e8bc833697c43cf7a87",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-glp1-only-for-women",
+      "status": 200,
+      "sha256": "91849a7992de9ffdbf19a3fc6cc831aeb2cd82e6c53d00ba84d4af5715160bf0",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-health-mot-medical",
+      "status": 200,
+      "sha256": "56287e60719de11fa303995f235a76e0aac546b3da941a03709b2288da6d2401",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-sst-gp-replacement",
+      "status": 200,
+      "sha256": "b26439df5012e8c622016044ff23109852376cfefd52fea833ed492d765d4c8f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-health-mot-saved",
+      "status": 200,
+      "sha256": "1385d9769b79c70c17dae49412f7f99f659883139cba889190ddf25409dd8019",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/need-breakfast-weight-loss",
+      "status": 200,
+      "sha256": "8ba9501c66bc55e4eee402b2f456f765b2e55869af086ba914e1c1d5916eb4e9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/need-gym-to-lose-weight",
+      "status": 200,
+      "sha256": "eb3d895d41efd44c46d5a50dec22008fd0aa55b09376bb341a60e11580288fb2",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/mounjaro-vs-ozempic",
+      "status": 200,
+      "sha256": "3cb300653efb749ff40438cc11ebfb425b548a7758d342abb44536fba7effeb6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/wegovy-vs-ozempic",
+      "status": 200,
+      "sha256": "59b0b9d6fc3c560eb849873e8a49161d1742eb7bb66f8b923a08fa7b0ffe66e0",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/weight-loss-diabetes-risk",
+      "status": 200,
+      "sha256": "dec0f2b23a5a9148e3950c1d8cc41292d52b4554b5935baa09686b4c7e1183db",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/takeaways-and-weight-loss",
+      "status": 200,
+      "sha256": "c39a81a1056d379c0fd2b4b47a3245ebdce9d85102f14563b52dc72b276595aa",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/weight-loss-lower-bp",
+      "status": 200,
+      "sha256": "09311d5f6c274b6b1122afed99382d13af97af0c275e28b63d778905e9afaae1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/what-is-20-percent-club",
+      "status": 200,
+      "sha256": "6fc6471e7d19da3819df971db21329dd5e7a1b948af60f9415e6f0fc9b1b0ea1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/weight-loss-cholesterol",
+      "status": 200,
+      "sha256": "6b7a1f740e03e2e6a2147c7c18a81714c402b27eff5861ec595dc723a7ec8009",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/future-medicines-comparison",
+      "status": 200,
+      "sha256": "b1994089afe1c1808a701e41b628cdaacf6d5dac4edf6251641f155b28275cd9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/glp1-knowledge-centre",
+      "status": 200,
+      "sha256": "71a102716593a003536530e1635044504d495383f48dd1c81e93bfabd590e4b6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/what-is-founding-shifter",
+      "status": 200,
+      "sha256": "a1d943f26bbfc1dc69bb122db1f63529c94780121f36474ddefbec10492b0533",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides",
+      "status": 200,
+      "sha256": "6b8591bea4c559c3c754bdb51e46e3e528161227af035f8e731ef2b86a0baf82",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/bariatric-surgery-costs-uk-europe",
+      "status": 200,
+      "sha256": "084661dd80610924cdaee204fe3e2be53c893c525127a2f7b0760ad8143fcbda",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/amycretin-uk-guide",
+      "status": 200,
+      "sha256": "6161732e74c45a93c6624df45ceb8989c100288c33fbb605ba1ea8ee67b53b0e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/bariatric-surgery-europe-costs-guide",
+      "status": 200,
+      "sha256": "463258df0bc06a5bafae052a613bee697eb6d6574abcfa0f53f2cb55b2a94dba",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/endoscopic-sleeve-gastroplasty-esg-uk-guide",
+      "status": 200,
+      "sha256": "56dfe6bafab1a21a08d2bb22c35a11ee5a5033aea4b9c47611538115a4b74e7d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/cagrisema-uk-guide",
+      "status": 200,
+      "sha256": "fe1501886b030c4cba34bf0497c732c9df4a0011cf3e9206063fe73f3504430c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/blood-pressure-guide",
+      "status": 200,
+      "sha256": "e41441803f0f913219f7fa8eb12545194f82100684a99decd109290a1e28fa4f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/gastric-band-uk-guide",
+      "status": 200,
+      "sha256": "63741d26bb081b5b5759acd1a8acdb0422adc1373237e0c4996a23c8a6324675",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/exercise-walking-strength-mobility",
+      "status": 200,
+      "sha256": "7b66d494e5db35fd1407c56a207cef5f94f1964082eecbb4118dbb21993c3584",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/gastric-bypass-roux-en-y-uk-guide",
+      "status": 200,
+      "sha256": "8abbef18d5ee85b9cf31ab3703fb8477ce1da073bde2b683785c748b7bbab5cd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/gastric-sleeve-uk-guide",
+      "status": 200,
+      "sha256": "4c09db7857c21b53d7eceed27738189e7ca35aeba44b31b96841875f52a812fb",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+      "status": 200,
+      "sha256": "a4c9e3e7b7e344d80e53a117f84fecaf8c2fb7fca5fcdc96252cbd48c5ec6aaf",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nhs-weight-loss-medication-pathways",
+      "status": 200,
+      "sha256": "a3162006b44a1d564fca6332aa7a627652bc10e1d010efd98f9dba240c5df88c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nhs-bariatric-surgery-pathways",
+      "status": 200,
+      "sha256": "46abece702567a8d66d1d35b77aa779e11466965b0d740b366db3b8c24e803ff",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nhs-weight-management-uk-guide",
+      "status": 200,
+      "sha256": "29a1800400365655a5a9c0219556c94a65003496b7eb6e3307bb5341e50bc6b6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mini-gastric-bypass-oagb-uk-guide",
+      "status": 200,
+      "sha256": "f4c0bd10d8b45137661655e27a499e10244053e61958fccb83d22cff72a80a1f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nutrition-guide",
+      "status": 200,
+      "sha256": "8d8d37091bebecbad71a317851f212d4ffc06652f139f40319bca0259b47f87e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nutrition-protein-calories-meal-planning",
+      "status": 200,
+      "sha256": "97c954e3b67ba2fbeaed50a17d58a629cbce884a62f5fcbf6743ccf43c4fbd13",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide",
+      "status": 200,
+      "sha256": "9c34566a1af3070666ba5d1a8571e8d46838a83a37a88a8724299c166b69ecbf",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/walking-guide",
+      "status": 200,
+      "sha256": "b7bd8731b98d74d795ff8fcd264706be7843aa7732b35acffc8a7ffa9b40e0c1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-costs-guide",
+      "status": 200,
+      "sha256": "ccdb5bd635f45cc5a9e45c41b43b3f6e0089a29a1b6692515680bc210d4708e2",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-guide",
+      "status": 200,
+      "sha256": "cd50be56c893e983f2237bf631eb490d165021c63538c1a3593f4386ca6578af",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/sleep-stress-mindset-emotional-eating-maintenance",
+      "status": 200,
+      "sha256": "53b46b4fb9f5c4a1d68c42b72c0c6c8a96492477bab3b57ecc2958d11a67cd42",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/how-are-you-feeling",
+      "status": 200,
+      "sha256": "c64b45983727c749dd17b24f94579a9fc340ef3a89a16481a3c1f552fa4e6eae",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/health-mot-methodology",
+      "status": 200,
+      "sha256": "cdc03cb2814a6b27221e92b8bd6ca4c54d1a407dfcf986e4a6eb4f14f8119ade",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/maritide-uk-guide",
+      "status": 200,
+      "sha256": "f8daa430f8946652bcdceaa798d3bba2bc7c1d0d18ee3b61114aeae39ae6f499",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/knowledge",
+      "status": 200,
+      "sha256": "dfb2295272c147564870d2806e7001d866317161e43547899ba8bb1e936a099c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/how-we-review-products",
+      "status": 200,
+      "sha256": "4b6f03d9738b0f28ebfeacdca6b955f170a5e6d41bf5cd3b4e871777605437c5",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/lifestyle-vs-treatment",
+      "status": 200,
+      "sha256": "6050bedaadfdc82e4585dc2fefe1ba39760ab0acf81b72c44f139653cb5acda4",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/lifestyle-treatment-methodology",
+      "status": 200,
+      "sha256": "428a384dfff159e91fb022e0b6e9882b131d459e7524515be34cac8a04781e6d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/gastric-balloon-uk-guide",
+      "status": 200,
+      "sha256": "0432579da9e2f2c9d2d330f64bc39b797836fafa556f1fb1f8be36a10f0c00f1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medical-disclaimer",
+      "status": 200,
+      "sha256": "12fe293b57155a559bf26ad9bb55632d9bd22904c6c01d52fc86c58c88ae6c51",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/media-centre",
+      "status": 200,
+      "sha256": "5b0f95cd48f5f921da66a5a21143bc3274e1c5c64b64b6c399d9acd1bd77d3fd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/my-weight-loss-roadmap",
+      "status": 200,
+      "sha256": "4bc8b69c945b1e1be20b20b7dbac3783b117045639b03cd27425fd5e3bb05967",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medication-comparison-methodology",
+      "status": 200,
+      "sha256": "030e8685e85721ea90e64864637a446cfb9a29034f465c926ed2387c5bf10514",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/nhs-private-methodology",
+      "status": 200,
+      "sha256": "3a40e3afdedfbe2d81a89dac15caf232878a1585b0d77d4df82f763efd726f8b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/nhs-vs-private",
+      "status": 200,
+      "sha256": "b3302b45c355d8373f0995ef52efac2a1568df220932453e38d1046971d4b7bd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/ozempic-definitive-uk-guide",
+      "status": 200,
+      "sha256": "1cf50af1da7afb233de91a2a59ce811898097dcc8c309d1fb384cb22c1ed2d8b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/press-centre",
+      "status": 200,
+      "sha256": "43027c439b1021491a7c9ab315e130834b6a7dafb085f23268461880d6565c2f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/orlistat-definitive-uk-guide",
+      "status": 200,
+      "sha256": "4dff8b6f3d484510bd65f8d8ee280232683ddd0e01f8dcee38fb3cb6419c888b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/partner-with-us",
+      "status": 200,
+      "sha256": "d44edb16e3360508f2d6e3645134fd5b5cba50862f5898836d3029ba032e0ee9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/privacy",
+      "status": 200,
+      "sha256": "e7557e42413a5fd189efbe3bf1bbbc77997f6a8f399f67b82382406843aad862",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/progress-centre-methodology",
+      "status": 200,
+      "sha256": "83a3588c44b596f1a566adfb0f646e5d365b59ec89d7148be6f3952d84460a75",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/product-reviews",
+      "status": 200,
+      "sha256": "11b1a581c39d9166fa5382fd5e77669d1e402838029b8cad6d91301e520b3dd8",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/research/uk-mens-weight-health-statistics",
+      "status": 200,
+      "sha256": "dcf87ae615c399ebb0ff9be55a0459f7c7cf041cdf45c3adfc2861f67675f0e7",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/start-here",
+      "status": 200,
+      "sha256": "633182feeb92c5fc415fbec2d2c89513531937daef26ad14104b60266efbb2bc",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/roadmap-methodology",
+      "status": 200,
+      "sha256": "82f577f80f493f41e35abe021ca164673a58449ea819d7e585fa1caf4d600a23",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/saxenda-definitive-uk-guide",
+      "status": 200,
+      "sha256": "9f465b9b1883cd4d572b53dd0845fccb9c67f7dd6ce9093315abe0d7cb8ad14a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-promise",
+      "status": 200,
+      "sha256": "7f426b86ad13a09e7884875371c854e609abe38a3a981e23f27ccc6dfea5c8da",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/surgery-comparison-methodology",
+      "status": 200,
+      "sha256": "38ed9fd4ddaab19d16453aa696b1d05f90fa8ecada4bca98d4869ea9231777f0",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/terms",
+      "status": 200,
+      "sha256": "57fb83b319c99b0f116dea0afe2310ae148e3872261f9b8297fd08984f7a2665",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/surgery-comparison-centre",
+      "status": 200,
+      "sha256": "6d1f26d0ad65430b22a281432a9604f49935ce8343695fe58fff9036de193752",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools",
+      "status": 200,
+      "sha256": "c3f002da1fc6ba945e4913a8bc4a7a965c1c8277e317ce70db0e444cf23c490f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/bmi",
+      "status": 200,
+      "sha256": "454bc490d11ae2e6f728febcab5326fa7f33e38b8c023c5c3b63f9e985914d1a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/calories",
+      "status": 200,
+      "sha256": "e3f3101f7a82e4045ae9dbf22d385f130b53a9fb4524483c04e5756903412ae3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/alcohol",
+      "status": 200,
+      "sha256": "adb13bea7719f163fe3effeebb8d935fea687fbf28df651422fb24f688bc98a2",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/protein",
+      "status": 200,
+      "sha256": "b28dda146f40f319404c7374be6653de96e96336e048b12ad415d56669b34586",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/healthy-weight",
+      "status": 200,
+      "sha256": "924f397ad19c3fdaea797512de277189ebd788354420a19665304e896e7c3715",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/sleep",
+      "status": 200,
+      "sha256": "7f5ab69fe8eb967951be9fe4f95fd7c21f3db2dfbe9f0d5909c1480b2d47691b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/walking",
+      "status": 200,
+      "sha256": "75297bf34754e9c8124a12293394196879599d3bae746882ffd2c50e081f52ab",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/waist-height",
+      "status": 200,
+      "sha256": "1d82f9ca78e38885b66c0f8e01281dc3e19d4d63b9985abf0a6d6e1c64ef6e4c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/water",
+      "status": 200,
+      "sha256": "e1b12bfa18c1ac7a1d82598fd528e7cc95f3c3ac928c429d3ed54c342f614985",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-centre",
+      "status": 200,
+      "sha256": "d367c1b31a320827b2d387a3766d933f6a03c723c1e1b70f49fa677c634f2ec9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-finder-methodology",
+      "status": 200,
+      "sha256": "b830422a4ad8a9cdcfe22772d97009af0f512b23220fd426dc3bc564f606b38e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-finder",
+      "status": 200,
+      "sha256": "1a01f51ea7c3a4fb7cfbad12914b1172921cbf301ef94621161c99c393ddc336",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/lifestyle",
+      "status": 200,
+      "sha256": "cc037dbf1bfcdc99af743c5d7b3d529e48fdab310ee8c2467f6651e4ada8e89d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/emerging",
+      "status": 200,
+      "sha256": "b93f0fb23892dfaed5855ed66e09a1fc21b3fd4611b4e5bf2b7323121a5bcc0f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/medication",
+      "status": 200,
+      "sha256": "62799d64b7588cf7bd1557dec5c44de7346dcab2133f864fa15022553ef44bfc",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/privacy-centre",
+      "status": 200,
+      "sha256": "d389c8b3f4698261914b7775a75385392e0540b992e7b5de4d0b5d39de1e6ec4",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/nhs",
+      "status": 200,
+      "sha256": "e2d3eae2626c338b36815ad4ba4b934e385aac6dab3e953ff40cc8f190558357",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/surgery",
+      "status": 200,
+      "sha256": "4de511bc05687d41333a3c79de6b1af93631097184f0417a652a3fe0ae8e28b8",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/trusted-partners",
+      "status": 200,
+      "sha256": "4e7c4df4ff3778195b202146744d1491c5af33e189ad447e0a67372fffed8bfb",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/uk-europe-methodology",
+      "status": 200,
+      "sha256": "75fd0489d101a06c238d562eebabaa8e92c4ad470466963dad88cd28b079d524",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/uk-vs-europe-treatment",
+      "status": 200,
+      "sha256": "2beb66c00c5459b32315f2b054028d6713de6886c2f6c3ba7cff03b25d482055",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "status": 200,
+      "sha256": "b8ae87e841d8043cb685ae18bf4afd2abc3301026a3ac294da97e5cd1da4b9fb",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/universal-comparison-methodology",
+      "status": 200,
+      "sha256": "e0c18b243a8574cb5d73877c468961d8d7c7cf26c799ac9d581a15240b9bddb8",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/not-feeling-yourself",
+      "status": 200,
+      "sha256": "f7b7de6cf836fbe81112eeb0b8e76189b57bee88d8f38f93888b72e3053c6599",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/work-with-us",
+      "status": 200,
+      "sha256": "0d29f64e3a1e041b4d6b5c800ca2dce2c89e1d8c859a640889c1ebf77547ae65",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/feeling-low",
+      "status": 200,
+      "sha256": "913e633e2694963fb56eb8714a01d9e0587ff441b7433bca43d3be331879bfaa",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/steps",
+      "status": 200,
+      "sha256": "81466df0959b546eb84b546726e572f7aa4b3d971a8f5da924a5da45bacaab4b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/anxiety-overthinking",
+      "status": 200,
+      "sha256": "370aa98550f41b5695153aba6b3705ad03eedc4766aa6c8053e2e08cdb6e1850",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/stress-overwhelm",
+      "status": 200,
+      "sha256": "bef090791600a7fed8d7693c914ae2a3bbff37e355d48e3cc5351ea200ecfc8f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/anger-irritability",
+      "status": 200,
+      "sha256": "53554cfafcea2caa9748c08e9f7143b439f248c92515de60e4cfc21a87e69346",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/numb-disconnected",
+      "status": 200,
+      "sha256": "d7a0f44aea043b2a758ef37f2dafd4a267419e6c0c246d062dc88940225716e9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/loneliness-isolation",
+      "status": 200,
+      "sha256": "9f4b4de5fc11645a4f02f474f9a166ad1ebcaa560851d357cb0b59df9cf26786",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/confidence-self-worth",
+      "status": 200,
+      "sha256": "e4fce73297b0e7967ded62eb519c863206f727a21aa9a366bfb7e4f906f4e945",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/sleep-mental-health",
+      "status": 200,
+      "sha256": "bd8d6bee09c5c6481b34fa38b3701ccb6fb237309a2b85b8e3f19ac3615eacdd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/mental-health-and-weight",
+      "status": 200,
+      "sha256": "2c8ffb4063093c77b6893bd591822614273f21e041c74885fd34884227651145",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/myths-men-mental-health",
+      "status": 200,
+      "sha256": "5977f0cefdc93ca0557b79ed7db50703251f95ecf243f7318698c15500451255",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/when-to-get-help",
+      "status": 200,
+      "sha256": "b4dee19291db33ce396db69d297dfa44720268ac4e92af2a6a0b5690e373d49b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/work-stress-burnout",
+      "status": 200,
+      "sha256": "d2dabed8a1f37fb94ebabdcd5bede88c94c996c0d6ff69110d745d374a4a600e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/money-worries",
+      "status": 200,
+      "sha256": "1794ba708d4e3f2795120df395486222c8d196ae83c37d753827ab361556b612",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/relationship-problems",
+      "status": 200,
+      "sha256": "42f648033a095dcc560fc120e580baf992454c938db75313f2badb6a5b990cdc",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/talking-about-it",
+      "status": 200,
+      "sha256": "897e7cad2c5b5e511b154c07591ec37d4b70feb27f4f7c136e110a540c0cd7ba",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/separation-divorce",
+      "status": 200,
+      "sha256": "97d8945eb3c11011449590a19de68b49fd0ad611f283d2d97b8c7131d9930794",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/parenting-pressure",
+      "status": 200,
+      "sha256": "3ef3fddd82f41f0a0bd2306499a5cd125fca7dd6c22693813065518a1a218750",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/bereavement-grief",
+      "status": 200,
+      "sha256": "7631a2c51187777e5d36e8c9d3b6bb5897ef8fe8600e08a42283eb39fc92ab0f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/dads-mental-health",
+      "status": 200,
+      "sha256": "50759e015f7bf13e118e710eb5d4494d19775a7981b3830021c4f36bc4132c21",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/redundancy-job-loss",
+      "status": 200,
+      "sha256": "d7298429ccf06a25cc7270298debb36e099f7e9bf034afdec789c7d982ebf1d8",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/caring-for-someone",
+      "status": 200,
+      "sha256": "e3a4414e5931cebeb0ecebb042f2b3f551f0475ea08376a304688c1ffad7d0a4",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/gambling-mental-health",
+      "status": 200,
+      "sha256": "2135cac6d47253baeba01a99df996ffd1dcd7b8b92245cb2a2f16210597285ed",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/alcohol-and-mental-health",
+      "status": 200,
+      "sha256": "af9b0668c7443c9ce819fbf788f51773f7c0856077567e1941b2f14436210938",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/sex-intimacy-confidence",
+      "status": 200,
+      "sha256": "823e4d40b271c43c0004e5fab584abafd32d1c563a1e4a08ec29ef8c03646f91",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/weight-loss-identity",
+      "status": 200,
+      "sha256": "4e9fe27a1be7eba0a4b830638abb0f65e221e001fe32a13e5f8dfc62b63b003c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/chronic-illness-pain",
+      "status": 200,
+      "sha256": "3981fcb86b7e4ad2b663cd97bcebebbb77d023d5c59682a0fcaee05db2ebd7b1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/social-media-comparison",
+      "status": 200,
+      "sha256": "ecf8a3f53ece45fcdf15c168e91f4b88e9efbc9dced93d27c0ae3dc8d619ce45",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/friendships-men",
+      "status": 200,
+      "sha256": "7f5e90445bf68923b53996ae4cc1a15ce5fac4a282f2e36241c332fb21f5b873",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/retirement-purpose",
+      "status": 200,
+      "sha256": "2567e2c601e5900ff52f70e8e631c3937ccdb803c0db7e6e6c9b7b3b337b6bad",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/life-gets-bloody-hard",
+      "status": 200,
+      "sha256": "62b66284dfa2ced47baef291d176357b0fd050cb6c05074a95b84c7f76550bf8",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/get-through-a-bad-day",
+      "status": 200,
+      "sha256": "447bb3f98fc48c8bc3cd9e325de50e5d0cc180101dff89a7ea947e56910c9981",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/tiny-goals",
+      "status": 200,
+      "sha256": "4555c6f7d7c02e2aa0544009c23a3e6be3cb0b6651ef988a12d7fbe5df659bfe",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/routine-when-struggling",
+      "status": 200,
+      "sha256": "adacc54f6b9490d6979723b13de832595c0803eb382cbeec1c2546b152ce9a7f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/overthinking-tools",
+      "status": 200,
+      "sha256": "a2c0d45a1815c9f2096fc876cb9e73674e7b1e5de42d37dfa910eb054fd66980",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/grounding",
+      "status": 200,
+      "sha256": "e9f112689240e813d691d820d970db63e3d649c799b4af2d6efb03a0a896c869",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/breathing-for-stress",
+      "status": 200,
+      "sha256": "f7a698a652b34bc0ef478edca965149132cab1f83a3ff6971eda60f906ceceb8",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/movement-for-mood",
+      "status": 200,
+      "sha256": "27bd0cc88244d83968fe50d345a455f70c1bf5511f180192c034d0d2d530467d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/get-outside",
+      "status": 200,
+      "sha256": "cddc3bd51267900309dcc03368ece7af9a175e2eab87e74384de6b3e1468191c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/reconnect-with-people",
+      "status": 200,
+      "sha256": "7b800ef82b3399238531ba50f893b7ef77ecf49b5525bc80f07f4ba7132fa257",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/talking-to-partner",
+      "status": 200,
+      "sha256": "24ab09bced0d02b6062294ce6a32130137c75400ab9123c82975a9b3b26f0cfe",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/talking-to-a-mate",
+      "status": 200,
+      "sha256": "e4e651fd898212fcf08c1e88f15d126d258543c5cff7d88281ff0ab4a00524ab",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/sleep-reset",
+      "status": 200,
+      "sha256": "e946ae21865f5c591bf2ca39c2fa1f4edf4756202f4385568a0e80f07bff5088",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/phone-social-media-reset",
+      "status": 200,
+      "sha256": "5eb6a7b653b4c1eb914c32851c0c9413dd0ae5f1cfd5fdf3e5aa606121b192f3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/work-stress-reset",
+      "status": 200,
+      "sha256": "fedfaee7bd709e3a863d04f2feb0eb5ad914d901be463ef2690a10921ee33e88",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/alcohol-coping-check",
+      "status": 200,
+      "sha256": "4844107e9a8843e376e62855b07d5fe8e3d6eeee76985ea35d482937ccf1ebc5",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/bad-week-reset",
+      "status": 200,
+      "sha256": "7bde06b9b323d5b2077254251e513a0458c115393c8470ac2bf5712b835aad17",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/build-a-support-circle",
+      "status": 200,
+      "sha256": "53d43e2460f647e7a81197eeb1a9db78e7f446ad7947da72b7dd0ac42033a6f9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/self-care-that-isnt-bubble-baths",
+      "status": 200,
+      "sha256": "89c3647a62237a12d4fcf9b05941d6a13764e85a9d7351940b8c74fb34a77b0c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/help-yourself-without-doing-it-alone",
+      "status": 200,
+      "sha256": "2ab27bc47cb5417fe0ebef7d1177d9b632e03cd1801c3980b46981389f37ce12",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/personal-mental-health-plan",
+      "status": 200,
+      "sha256": "82c2b1bf1e407fcf3b6087aae4c1e11fe7e1b1f966971d2de9a1dfaee421a468",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/getting-professional-help",
+      "status": 200,
+      "sha256": "1574805aebd1214292859ef21e0280f4989f28243eaf2bdbdd2ac4bc63b0f130",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/gp-mental-health-appointment",
+      "status": 200,
+      "sha256": "51370b4a398ef7a1c297f038783b7096e0f89e0e01a4ac4235248d5ac7e72cb4",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/things-you-can-do-yourself",
+      "status": 200,
+      "sha256": "65dfb376c29c798bfc400a3196438e46bf41e16ef57cb5a5e3418f68c12ffab9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/what-will-gp-ask",
+      "status": 200,
+      "sha256": "a3a5db03e129a7cf59c29977cb65c4763fd153f6553635288c5c036742c91b9d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/nhs-talking-therapies",
+      "status": 200,
+      "sha256": "9d418ae7e675821e13284c9c62b25c5e6106e5446b92c9c9ab7eb52fb75027df",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/counselling-explained",
+      "status": 200,
+      "sha256": "ff003dfdec3c1b30d95b7860c7ebc8e664f3f072849deacf0b7c205f14535c79",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/cbt-explained",
+      "status": 200,
+      "sha256": "80db58e04890d3d547313438d2ac9ef44822ae94776066266f5a4d30b0e9d93b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/types-of-talking-therapy",
+      "status": 200,
+      "sha256": "c226672029b02d84a16d30a70847545e3dd89ed340c6d6b0d97647af56ab6c39",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/first-therapy-session",
+      "status": 200,
+      "sha256": "a875196bda078b64d0cf539f1c527e283536accd40688325c0ee56774b2797b6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/therapy-confidentiality",
+      "status": 200,
+      "sha256": "c00a9e5713785195b225f19581425734901dfa3f2ddba820a7be4bbd9b0d5591",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/antidepressants-explained",
+      "status": 200,
+      "sha256": "7d1d546ed12e8e0d41c9f203b436fc51aa7de5a043a00e69be09f34b59e2fd0b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/starting-antidepressants",
+      "status": 200,
+      "sha256": "9ce4bdff2ec53291cadf28b2c69f0e3dae4309b19aa43e974ebbfbc62e603297",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/antidepressant-side-effects",
+      "status": 200,
+      "sha256": "633578231a2c912aae88ffa94e1c3fd5c91cde4cffa3472c66b6a3df3b7288ac",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/stopping-antidepressants",
+      "status": 200,
+      "sha256": "27eb47f67fb39167c2c1f413986167baaeac7f2ba04beca54dfa07bf6d927b6f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/therapy-waiting-lists",
+      "status": 200,
+      "sha256": "a9e2123ed3eff3ec79119f84a39e2448a426fd0ee247b8377f5c47eaa6a19375",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/journalling-without-cringe",
+      "status": 200,
+      "sha256": "9953ee722b22f5bb11bc6a0b3d6209c05a46d7d0c234e21415615394f1cbd44e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/private-therapy",
+      "status": 200,
+      "sha256": "92adff4fb8deae7d03566d939a5a12c266dacf6d7480d452b14a245c95884de3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/choosing-a-therapist",
+      "status": 200,
+      "sha256": "b9f90bfe6640a97c63e2be2fcf48e98c8780bc20b1fa7364cfd96a408bed1a54",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/medication-and-weight",
+      "status": 200,
+      "sha256": "83377b9e30bccc1ab8716a1876a7d8802c11968614459bb3bc6e4f8e1e6b6c6a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/sick-note-mental-health",
+      "status": 200,
+      "sha256": "284757185b672d362d211589814a845fc5662655890df22ceebd97af28d47716",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/when-treatment-isnt-working",
+      "status": 200,
+      "sha256": "2b55e9a65061d48db729250b27f40a7ffdb372d04a60b5a9a6bb333fd1edee89",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/mental-health-medication-myths",
+      "status": 200,
+      "sha256": "c8a288b621baebc87b6b93999e63fa8fc431d690c6c8dabda181d8683ad77c3b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/self-refer-talking-therapy",
+      "status": 200,
+      "sha256": "824918bbd50365797beb8ae8cb414aa62a918abf37e20b139a7d073ea7da3c5b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/prepare-for-therapy",
+      "status": 200,
+      "sha256": "62ddae826f322e03a8c03ab75cf941a80c45ec2f0125f4237ceb7ab68a99a8ec",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/occupational-health-mental-health",
+      "status": 200,
+      "sha256": "0b65bcd00106fe547b2118d891c9eb949927a933c939ef7928ef25e557439985",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/helping-a-mate",
+      "status": 200,
+      "sha256": "ac56e81735d4e8bef2e9f2b3d31b3ba9b735e9ec7779a5657a314a2ae7aa87fa",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/signs-a-mate-is-struggling",
+      "status": 200,
+      "sha256": "cba440b6f0ca5e2daecb273b6bad8f829249470914832b699704856ec91cdd0b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/how-to-ask-are-you-okay",
+      "status": 200,
+      "sha256": "135f85161f954c5f079aed571c58a3296ea9c0e3f94be101ddf0fd35d45260fd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/what-to-say-to-someone-struggling",
+      "status": 200,
+      "sha256": "5ac6b854a30e0340a2f1097f2b37694bf80860b1cd4b40b787a50ae76515e1c1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/what-not-to-say",
+      "status": 200,
+      "sha256": "13221ec384ea17791b6e017738576104984b940f04c81903c9e888c399db8136",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/ask-about-suicide",
+      "status": 200,
+      "sha256": "2d175d7fe9608bdef5fa7adbd6c68c91e04ce0949c8dc30e3b212377851a9c84",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/someone-is-suicidal",
+      "status": 200,
+      "sha256": "80a6716c30d886c4e54f454a499d7196e349a15716b2f89b7fc047285521e27f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/urgent-mental-health-help",
+      "status": 200,
+      "sha256": "b66a7582b07df38a895e17796660352e02d0a5c2869695ae7964adf426800965",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/mental-health-crisis-plan",
+      "status": 200,
+      "sha256": "8cdd6768ed7c69370fd66e7c0c7034289bc194c9d3ff0359fd206ed17ed3cc42",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/help-someone-book-gp",
+      "status": 200,
+      "sha256": "46086c5687a1314902ec2976880587df0efd48c5b1c3f9d701897dd33f95b7f3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-partner-mental-health",
+      "status": 200,
+      "sha256": "c77fd4e3367e1bf1f29218893ce082e410f3fc5395bb1c57fab7a96d97bf612b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-a-dad",
+      "status": 200,
+      "sha256": "02e77f7923115675a4029ccb75240c58f00e146b8a43789ecf355d45cfe3f68c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-someone-after-loss",
+      "status": 200,
+      "sha256": "a05f2f1d65f729f4c0d66eae72f2061554086d0e0b8646c8b1ce8c112be22a5d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/suicide-warning-signs",
+      "status": 200,
+      "sha256": "fa2dbeee5bb26d726750c639569e5c191fa416c2ae67fbc5c7e80b7b94936f24",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-someone-with-depression",
+      "status": 200,
+      "sha256": "29f1dbd22ea64c16f209c98236dbff517f47dfdc5ce142ac6ebdfee23f52fc6b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-someone-with-anxiety",
+      "status": 200,
+      "sha256": "83fba4adee21acefbe22c58bd8083c4aa5f84f404fd58fed1d5b8fab34f7ca2e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/look-after-yourself-when-supporting",
+      "status": 200,
+      "sha256": "3488fe64cd752604c663f552529ad6de76194030965218bdac0d42e9bea6a6de",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/helping-someone-online",
+      "status": 200,
+      "sha256": "f4868b4e061ee90f2f6b3bf276ea9ef7f86c03ff877a43e4626f92535cff338a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/after-a-mental-health-crisis",
+      "status": 200,
+      "sha256": "11b8fa5c101c627d6cf1fa4a23d58109ee1883baf3fdcba7e206c85329066871",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/worried-about-colleague",
+      "status": 200,
+      "sha256": "d4099690645ed3049f341702376479cd6097e550f37674210f4314b2b5ba8205",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help",
+      "status": 200,
+      "sha256": "80a521f5b56e5b53da223df9b2c901768728cc6f6fd6abd974fe57a329a541fe",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/someone-says-theyd-be-better-off-dead",
+      "status": 200,
+      "sha256": "33db58e8630cbcac0b00d103dfc50da18d53d8321815f5c283687c4717d158d1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/worried-about-family-member",
+      "status": 200,
+      "sha256": "d23c4132d4a45dcb04a6cde3a5acb1c4313edfeb656657191a1e0383e2104f71",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/helping-someone",
+      "status": 200,
+      "sha256": "45538bdd48a49af8558afbca6ed500c5210922480be44799d9bed5f45bdf699b",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-treatment-at-home",
+      "status": 200,
+      "sha256": "bb08bce21893db16b9d16d1c6969242f97d505373df93a79946d1d957640d85a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health",
+      "status": 200,
+      "sha256": "d59711320af777ae2a5cb26254479961a086674ebfc296d0d907645c0c6f61b7",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/authors/matt-obrien",
+      "status": 200,
+      "sha256": "f7f31ecf6caf4f9476e4fe63a1b3aba77b8a8909e3862abbbf89686ac25f05ef",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mounjaro",
+      "status": 200,
+      "sha256": "34c328d2a7438ab18b21f141cae5d681283beda36ee934324e05b04277e71775",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/mate-says-hes-depressed",
+      "status": 200,
+      "sha256": "297b2fa18ad736237442604a017b35244b34d74273f6cbd21a5e193a98c9f9ad",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/weight-loss-injections-for-men",
+      "status": 200,
+      "sha256": "cd0d524b73cd2d9395d8170f3abc99f5f6811db91d1426a0c6d1c281bb64f7a4",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/weight-loss-tablets-for-men",
+      "status": 200,
+      "sha256": "4ce668dba8caab94745eac9039113aef04e368a490d4d4db88c36dbc9448b2a0",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/foundayo",
+      "status": 200,
+      "sha256": "04ec8b2838043ed0a16ea2cf45e793d4dee434d9b019bca2c8b9861eaf034d0c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/wegovy",
+      "status": 200,
+      "sha256": "a43c70555549e9f9cb5f18841e624e384580039bf7f692c49cad11fb38281e8e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+      "status": 200,
+      "sha256": "e798cd48e9d209f250ebdcb22e5d8c1a16ab90ac2245a2a83046d1234e3e8f2d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-weight-management",
+      "status": 200,
+      "sha256": "3c6785bc28c1de984849fcd80635d207a9e1e253d2979548ace79e9cd5c08149",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/testosterone-weight-men",
+      "status": 200,
+      "sha256": "0b75dc98b1b2d5281f4e0b1ebae20d63a0143ce0442b8e1e0a5525b12a386a27",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/knee-pain-weight-men",
+      "status": 200,
+      "sha256": "6a67e8443ca2587f05954b0c0b8a407f895a2469d0747286d052f5db291e2879",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+      "status": 200,
+      "sha256": "28aadc9bf2093bada0c27962fbc40e64f01ced08520e8415bfa3a2116b81147a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/men-belly-fat",
+      "status": 200,
+      "sha256": "c2908b45a409c400c888780e9614bde7c7cc4994274194e9e179a0aa4cd5dca5",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/sleep-apnoea-weight-men",
+      "status": 200,
+      "sha256": "9ded992db9b582aab8f7bc53a063de0d3b08c385e0df4e40f3a44772bb367956",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/return-to-sport-after-weight-loss",
+      "status": 200,
+      "sha256": "0e22f25d59abd01bee0d54d78c8385506abb65c15ab91991f6fa26ac11c8d7a7",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/alcohol-on-glp1",
+      "status": 200,
+      "sha256": "b73cba2166f2764a80ace989a1664da733a302ad89c4c063a6ffe94ff18d332c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/dpia-summary",
+      "status": 200,
+      "sha256": "298b9f3e12880e2fa4d0caddcb26ac52c4a1980b526b7b26fbe4c821479583f7",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/muscle-on-glp1",
+      "status": 200,
+      "sha256": "82a5e5b9e8f166f78e85f011989fbf277e6788de9a68b3ddec336c0660efa149",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/travelling-with-weight-loss-medication",
+      "status": 200,
+      "sha256": "a06c34d4f3fa8b2a43fa7c94205a46e2b8013b16c536353b523ed73de47a24ee",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp1-side-effects",
+      "status": 200,
+      "sha256": "3746cae37e73a5de190c16315ba050878133e040f47f591295628068a291ce98",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-loss-plateau-men",
+      "status": 200,
+      "sha256": "a5afe0c3833fb0f0b9074c2f1498918a246fbb228e3fe911120fa9a93425aae1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/data-governance",
+      "status": 200,
+      "sha256": "81e429da87259c7dbab965b26486313f75be2dfe23c72fa3bd1836828690fd50",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help",
+      "status": 200,
+      "sha256": "e4c7bb7ac0cdc75ad226bb82ab7b20c2dd5ea38365f46ce28d708642af227529",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/stopping-glp1",
+      "status": 200,
+      "sha256": "09ecc8bf7d6b7f0301fe959d90d3ae1d9f3289311334f4043583e6222450fdea",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/complaints",
+      "status": 200,
+      "sha256": "2eab295ce74c1e0eae8716acaa27967aea40583ad72cef22dc3e65d3fe8b088f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/programme",
+      "status": 200,
+      "sha256": "23db8bf0efcc25ddfaa0110cef5293593e74ae0cd8fa0e052d25f1ffaa963723",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health",
+      "status": 200,
+      "sha256": "9587b6a496e990b4ba5168a958cfc08a2dcd36535e28d7435be978778f21f6ac",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/health-mot",
+      "status": 200,
+      "sha256": "0638d55a6ba7c271cb8392b597fea3577527cfcc5f57b4dd06496322f2f6b43c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/testosterone-energy",
+      "status": 200,
+      "sha256": "0c2d1df1edef4b7fb59f340cc8b1b9cd1b6aa56421350cafaf04b7985876afc1",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+      "status": 200,
+      "sha256": "77d305503b95eca568c5d2f45d2a2d9a26437198d486310c23c6bbbf9cbce033",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/shift-measure",
+      "status": 200,
+      "sha256": "6b64867699f885ecd84ff24619b9c140ba671e95be8f18a68599f17f41aac486",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/resistance-bands",
+      "status": 200,
+      "sha256": "8567c4a28c8fa4b25eb03c2795e1b420db070112455e64bdf7b52d82c7fc648e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/erectile-dysfunction",
+      "status": 200,
+      "sha256": "2ff03958107d1001405114365b84e2d028c1ba012b2254783ee48184072f38e9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/hair-loss",
+      "status": 200,
+      "sha256": "8cf104a1909a127d0d935ffc9ce8981dcd718a88649edf3672136eb45f9d6798",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/stop-smoking",
+      "status": 200,
+      "sha256": "0399b60a2dc5936d50b4d974d47c8a9efcc70f93a2ebfef54b017dfffe2a0e65",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/sleep-apnoea",
+      "status": 200,
+      "sha256": "18926bf34ae196bb0a70398425ec1ba1cee7ae93891f76edfb30ba7f7b38db08",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-newsroom",
+      "status": 200,
+      "sha256": "0dfb61e10888d07b561b3992f1d7c6d82864534d4f18e263ac3d7080ba18ade0",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-transform-prostate-screening-black-men",
+      "status": 200,
+      "sha256": "b3f8575431fb5ea00d0363d53e341882abff137a82fbfb1e03458181c83a2551",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/life-back",
+      "status": 200,
+      "sha256": "68a165bbfa47039a257b1ecd9943882ddee1e223436285075c64d3b3b5a2a060",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1",
+      "status": 200,
+      "sha256": "a6fbd5854c4f94459868abfaf8e0f41478fbc94f5c61233b1a65c1dcf43d1cd2",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/digital-scales",
+      "status": 200,
+      "sha256": "5fd484998377e48c0a2a346a4cdeb44ef0707556a4981e35d0a7e7ca597db19e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-less-processed-food-ucl-weight-loss-trial",
+      "status": 200,
+      "sha256": "2f778b9d6a099a87ee645fe132c9fa081f64b50d1d67418f80f499a3c51f645f",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/clinic-gone-quiet",
+      "status": 200,
+      "sha256": "9a1cdc887ebeb9bfa96802e7c9480e1c926f0be4b93ab870ab970a94aaa64f47",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/provider-switch",
+      "status": 200,
+      "sha256": "456d9ca665c7018fff73f04d7cbe30dd5a0cc83c6b02c1cc71e3589dae8e9f52",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/husband-help",
+      "status": 200,
+      "sha256": "4a960006f814e6927e31a96347b0662c466f926a721e3709f0e180df5da96fbd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/my-timber-for-providers",
+      "status": 200,
+      "sha256": "def3c6c8ab0aaeae6539adbf7e7f89617bb0ac08375492f35e9a3554c5436a43",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/weight-loss-support-for-men",
+      "status": 200,
+      "sha256": "c79cf9121a47ddfa567e3d175e76990f3ed14352e4ec173e35f6d5ec2d8c8490",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-cost-uk",
+      "status": 200,
+      "sha256": "cdb3f43a4814609f04b7d2e6767ec65aff2c7024d907f6a4b6d3fc599b214a40",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/metabolic-health-markers",
+      "status": 200,
+      "sha256": "8f8a529ab2a83a387863e49cd603bd30a7456a535c7deaaa58f96a04624e7ddd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-loss-blood-tests",
+      "status": 200,
+      "sha256": "2162023f71bae01ad1adcd27795063fb993096db0882eda6b0cccbfb8a22810a",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/mens-weight-loss-diet",
+      "status": 200,
+      "sha256": "94ff6c3bd83f8be9b2fd8b2daf1f6624d25689d90ed1be390d3f18057e64438c",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/high-protein-breakfasts-men",
+      "status": 200,
+      "sha256": "ae07d8219b97336216a3f6189c98f7f022c81181448d077cb8be4c1dd7bc7eea",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/body-composition-tracking",
+      "status": 200,
+      "sha256": "47e0409a385960bbefc7d12a5f7da7c9894eab3376607daa05443cc366e1adc4",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/ozempic-weight-loss-plateau",
+      "status": 200,
+      "sha256": "119205ffff68d17fa6eb06c2dc7b01225a21a1a41567264f38f900c4a5619916",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-reduce-antidepressant-review-support",
+      "status": 200,
+      "sha256": "ded7a72f861069fd0cede4d3d8149916dd18427dac9b22471402a9956b6d5103",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-game-of-stones-men-weight-loss-followup",
+      "status": 200,
+      "sha256": "2f6a45f9ed4880310e5fff4c5891ff4b27864391647e7694cc29d9ab0c81f195",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-eligibility-uk",
+      "status": 200,
+      "sha256": "0b84ffd1e8e614afcb3b1117a22cad8e36be2d0b59e09da5186b279822681dc6",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-plateau",
+      "status": 200,
+      "sha256": "d2fbd8ce1584ca311d7b5f4051221460b21b80f9136d7c8ff95da02921a97865",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-and-alcohol",
+      "status": 200,
+      "sha256": "06d012847bfc50e0af2863e3c21c3aaf39ea97c20d76d4591343603e74ce7eaf",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-dosage-guide",
+      "status": 200,
+      "sha256": "5394452e5452a5f1375530dab7f66538df14294db4beb1dcd10b301e17ed1152",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-constipation",
+      "status": 200,
+      "sha256": "2bcaaa7bcee350f74699e0f698fb2b69813ea774eae36bfc3e8910fff64fc9c3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-uk",
+      "status": 200,
+      "sha256": "96552b114391a80f5523aa304200ec9da9cce7c608d70f76e7fd7b8a26615944",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/semaglutide-and-antidepressants",
+      "status": 200,
+      "sha256": "a43f40649013a6371c47dfb8c358516d0205d9aa0db2aef097da7ecab1a42626",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-coaching",
+      "status": 200,
+      "sha256": "d38a4fc0c665dc21111b9c2c1285fd8496fbcb5121a2ddb5d69138781edf5e3d",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/evidence-based-weight-loss",
+      "status": 200,
+      "sha256": "00afad1270b8a05a885ab49a6b37c5f9ff1445c363ac84149002d27d31a46f60",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-nausea",
+      "status": 200,
+      "sha256": "c10b4fec0e2db52541d3753c408a953b2bfc125ca140ae1a9325ca248a2b0ce9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/life-after-ozempic",
+      "status": 200,
+      "sha256": "540b227100cee61794b5635feda98130b5524d8241dd57549a35c7251d422ab9",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-for-men",
+      "status": 200,
+      "sha256": "7e707f6dd40673809f836cbc1c97386de7fad2ef07ce734869ef9220a4820e5e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/semaglutide-results-timeline",
+      "status": 200,
+      "sha256": "66df221a3ea30f9f34c998a378e884b981dfbabbbfa3df4b0fd8b8fc17c72d0e",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+      "status": 200,
+      "sha256": "790bc2e98249ac736606a73c641ce92be9c44d4a6b6e7f57ea35104f78ebe0fa",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-binge-eating",
+      "status": 200,
+      "sha256": "89d3671951d733a977de8bc92f8ab630e495e549001faa48fa6f5f96269439a2",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-and-exercise",
+      "status": 200,
+      "sha256": "a52ebc1ec9df3a6ca27bda66cc51495237ecefbbd0543fc47bb4b711c74d6680",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+      "status": 200,
+      "sha256": "fda9999e715b959bcfa0ad73c25571a6b6221bf82987135390e83f96f1360dc3",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-muscle-loss",
+      "status": 200,
+      "sha256": "a9ffa81a9fdf9df9cc9bb8c269fb1851421f98a41bfddcdf3275eb4094d62cc5",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+      "status": 200,
+      "sha256": "321c3ae12e7fd3af1191239f5b0a0e4a5ccf379cebce29a4a9de4d45071a3231",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-not-working",
+      "status": 200,
+      "sha256": "0638b029f97973ec1fb9b592ec3283407bcd2bfebd9a4475e77317e811e60e87",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk",
+      "status": 200,
+      "sha256": "c6bdc2cc70af61160ca18b95e61bfbf452bca69c84fe984e94c6aa12884cbd71",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/oral-semaglutide-for-weight-loss",
+      "status": 200,
+      "sha256": "7145cad47e2adb3e847189d943ca3aa8ee30d36a709b889ce10b142157979059",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/missed-wegovy-dose",
+      "status": 200,
+      "sha256": "76c895d10052631fddbdfd1bf06e02406459f9e6536cd0669fbd2ffb65d26586",
+      "oldAskName": false,
+      "publicBuildInRawHtml": false,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/male-obesity",
+      "status": 200,
+      "sha256": "28c1b2e944b49d968ddeba3344c80851bc3b720f307a31dad4b18143bd1f37fd",
+      "oldAskName": false,
+      "publicBuildInRawHtml": true,
+      "hasSharedAsset": true,
+      "releaseHeaders": {}
+    }
+  ],
+  "errors": [],
+  "controls": [
+    {
+      "path": "/index.html",
+      "status": 200,
+      "sha256": "58ac3910f7875c643026221b1bbb3262df8d4b4dbc80621313880a5bd1027940",
+      "cache": "public, max-age=0, must-revalidate",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/start-here.html",
+      "status": 200,
+      "sha256": "b260bb23b0ec1129081769a6f31f42f85786a06c465537acaa9a088b040f6f56",
+      "cache": "public, max-age=0, must-revalidate",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/programme.html",
+      "status": 200,
+      "sha256": "0f6d8a82668664c59c636aeb5ddaa9bdfd8b8b9fb7692f72b015bd4d9ca9711f",
+      "cache": "public, max-age=0, must-revalidate",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/articles/calories-explained-men.html",
+      "status": 200,
+      "sha256": "590edb458cb00f5d676151e17840cf39f9c3ba6fcb4545b01dab48a43e147b97",
+      "cache": "public, max-age=0, must-revalidate",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/tools/bmi.html",
+      "status": 200,
+      "sha256": "aaca5509b2d480683c91ca4212e30ef3cf33c585971b1cfaa990589e8980d058",
+      "cache": "public, max-age=0, must-revalidate",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/assets/my-timber-pwa.css",
+      "status": 404,
+      "sha256": "8ac6d475f6bec35c08e0875bd2b03cb80560589e070da2cb1ce1e9c4c0735440",
+      "cache": "no-store",
+      "contentType": "text/html; charset=utf-8"
+    }
+  ],
+  "assets": [
+    {
+      "path": "/app.js",
+      "status": 200,
+      "sha256": "eb7ebc99126f9a29676542310a6312a5cb545c23a3b5eefef8cc36c3301608cf",
+      "matchesSource": true
+    },
+    {
+      "path": "/assets/public-feedback-v1.css",
+      "status": 200,
+      "sha256": "db1c9c661a33f348ba6fc9474e8292deece52f71a7b6d63256c608a26c01f3c5",
+      "matchesSource": true
+    },
+    {
+      "path": "/assets/public-feedback-v1.js",
+      "status": 200,
+      "sha256": "fa5aa41444e39fac0fcd5a4d46ea84fce4de59f0db76fd1cc867eb184c0e8088",
+      "matchesSource": true
+    },
+    {
+      "path": "/assets/start-here-support-v1.js",
+      "status": 200,
+      "sha256": "14f27aa2233e45b4e810d44ee45ab6e11f1432c977d537b2434626221cd362b9",
+      "matchesSource": true
+    },
+    {
+      "path": "/assets/v42.js",
+      "status": 200,
+      "sha256": "c8b3f030b2ae2bd8c40d70f0e2463a90c8da01bafc017d567c870375f2766e66",
+      "originSHA256": "ea44e5e25d5f722549b1db99a348df9ccbbf23d38cb5c12db9db52782bd4825d",
+      "coreNavigationTransform": true,
+      "matchesSource": true
+    },
+    {
+      "path": "/service-worker-v3a.js",
+      "status": 200,
+      "sha256": "887123cffd18400bf3f3bee24614a2b84829d017aeac96c31172f55be852bc3a",
+      "matchesSource": true
+    },
+    {
+      "path": "/service-worker.js",
+      "status": 200,
+      "sha256": "df93fdeee6f7573ad3637b3292946c4f87272f130a1e66cea0b65e9c941c420c",
+      "matchesSource": true
+    },
+    {
+      "path": "/public-release.json",
+      "status": 200,
+      "sha256": "4ae8381c0c7f1a39276620dd3654bdc0f5f8c440e59a2037d01ca5293df3c081",
+      "matchesSource": true
+    }
+  ],
+  "reusedCompletedCrawl": {
+    "at": "2026-10-17T22:51:03.955Z",
+    "pages": 398,
+    "build": "public-feedback-20261017-b7d5bf35aac0"
+  },
+  "failure": {
+    "message": "/assets/my-timber-pwa.css\n\n404 !== 200\n",
+    "stack": "AssertionError [ERR_ASSERTION]: /assets/my-timber-pwa.css\n\n404 !== 200\n\n    at /Users/shiftsometimberltd/SST/public-feedback-20261017/resume-live-http.cjs:9:586\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+  },
+  "pass": false
+}

@@ -1,0 +1,9 @@
+{
+  "wholeOriginPrefixSHA256": "ea44e5e25d5f722549b1db99a348df9ccbbf23d38cb5c12db9db52782bd4825d",
+  "coreNavigationSuffixSHA256": "7b40731d5607496ece98d01b5b4ebcd18506efcd7a3d3824da5705465f761958",
+  "servedSHA256": "c8b3f030b2ae2bd8c40d70f0e2463a90c8da01bafc017d567c870375f2766e66",
+  "originBytes": 2223,
+  "coreSuffixBytes": 2764,
+  "review": "Core appends existing Newsroom/tools navigation restoration, legacy Ask Timber label canonicalisation and its older mobile utility CSS. New compact utility selectors win by specificity; actual live browser checks pass. No fetch or storage write in this suffix.",
+  "pass": true
+}

@@ -1,0 +1,22 @@
+{
+  "id": "d3aafa94-8a22-4671-af09-89f5ef1a2b4c",
+  "url": "https://d3aafa94.projectshift.pages.dev",
+  "environment": "production",
+  "created_on": "2026-10-17T22:49:53.136341Z",
+  "latest_stage": {
+    "name": "queued",
+    "started_on": null,
+    "ended_on": null,
+    "status": "idle"
+  },
+  "deployment_trigger": {
+    "type": "ad_hoc",
+    "metadata": {
+      "branch": "main",
+      "commit_hash": "07012dbbdedd68fc4f296ab10eb463346d72143d",
+      "commit_message": "Approved public feedback corrections; build public-feedback-20261017-b7d5bf35aac0",
+      "commit_dirty": false
+    }
+  },
+  "uses_functions": null
+}

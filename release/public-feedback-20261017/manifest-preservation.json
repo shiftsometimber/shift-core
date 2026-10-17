@@ -1,0 +1,1876 @@
+{
+  "at": "2026-10-17T22:49:40.292Z",
+  "build": "public-feedback-20261017-b7d5bf35aac0",
+  "sourceCommit": "07012dbbdedd68fc4f296ab10eb463346d72143d",
+  "baseDeployment": "16098ebd-ffdf-4e0e-a95a-f5388927bbef",
+  "baseFiles": 876,
+  "files": 880,
+  "changed": [
+    {
+      "path": "/404.html",
+      "assetHash": "5b2ea12c5af12ea3988be364ae5db0f0"
+    },
+    {
+      "path": "/about.html",
+      "assetHash": "0daa9126332a9767f680807fcdbb0fac"
+    },
+    {
+      "path": "/advertise-with-us.html",
+      "assetHash": "f5997d52ff6ff545ead42d5a1c86bee9"
+    },
+    {
+      "path": "/affiliate-disclosure.html",
+      "assetHash": "59798fd65823c1b66bdc7c9f287f169e"
+    },
+    {
+      "path": "/app.js",
+      "assetHash": "aadc079dc3a937efd9dca8a6d3d0865f"
+    },
+    {
+      "path": "/articles/air-fryer-meals-men.html",
+      "assetHash": "ab6fa28ae9a2e88c9ff4c120ece0d66d"
+    },
+    {
+      "path": "/articles/alcohol-and-weight-men.html",
+      "assetHash": "880b847511bf753df880a2c26f2b3f8c"
+    },
+    {
+      "path": "/articles/alcohol-on-glp1.html",
+      "assetHash": "6cc46af9bc4532796d41674d08d4b576"
+    },
+    {
+      "path": "/articles/asking-for-help-men.html",
+      "assetHash": "c9e864f15dc1cf749d18a2068dd4db54"
+    },
+    {
+      "path": "/articles/beginner-walking-plan-men.html",
+      "assetHash": "dbec32c8bced1d57c82caf344f38955f"
+    },
+    {
+      "path": "/articles/bmi-men.html",
+      "assetHash": "144e34ff6ef82ccbbd0a833d8aa58870"
+    },
+    {
+      "path": "/articles/calories-explained-men.html",
+      "assetHash": "99d13504a057ac4d16b500a6a1eb0629"
+    },
+    {
+      "path": "/articles/cholesterol-men.html",
+      "assetHash": "fa1e954ab097dc5b0b4c974fbafa9de1"
+    },
+    {
+      "path": "/articles/confidence-and-weight-men.html",
+      "assetHash": "db940ba718995c400be73a1e2fce6897"
+    },
+    {
+      "path": "/articles/dad-bod-nobody-talks-about.html",
+      "assetHash": "eb8a83c62ee837b3b03fe9a3d7856f6e"
+    },
+    {
+      "path": "/articles/eating-out-weight-management-men.html",
+      "assetHash": "5cbd76d1c42541af6ec7acbe3c64b35a"
+    },
+    {
+      "path": "/articles/exercise-on-glp1.html",
+      "assetHash": "69ac18b9c56f1d239642ae9e03650068"
+    },
+    {
+      "path": "/articles/football-fitness-after-40.html",
+      "assetHash": "44ce4f04a7f258534d7089ee5da35b73"
+    },
+    {
+      "path": "/articles/glp1-myths.html",
+      "assetHash": "848d8ab5484bce4488102895d2945724"
+    },
+    {
+      "path": "/articles/glp1-side-effects.html",
+      "assetHash": "958dfb9c4077298e162250492edf4547"
+    },
+    {
+      "path": "/articles/health-isnt-about-six-packs.html",
+      "assetHash": "4558980c07f99eb76e22ba8e7d1a61b8"
+    },
+    {
+      "path": "/articles/healthy-bbq-men.html",
+      "assetHash": "125123732dfea907aee93542da7f32fa"
+    },
+    {
+      "path": "/articles/healthy-habits-that-last-men.html",
+      "assetHash": "1d7e506369d69bc9bb441ddecdebb13b"
+    },
+    {
+      "path": "/articles/healthy-takeaways-men.html",
+      "assetHash": "e4381a7ebf98155719cc4805e20c36f1"
+    },
+    {
+      "path": "/articles/heart-health-men.html",
+      "assetHash": "f939ce2055a7f8890550c36045129305"
+    },
+    {
+      "path": "/articles/helping-ordinary-blokes-feel-like-themselves-again.html",
+      "assetHash": "6d24ab5808124d7a46471122d1bb22f8"
+    },
+    {
+      "path": "/articles/home-strength-men.html",
+      "assetHash": "2050081ad4b2802a1d0fbf6830c8a40c"
+    },
+    {
+      "path": "/articles/knee-pain-weight-men.html",
+      "assetHash": "c1198066fc87ece613a605709159e3c0"
+    },
+    {
+      "path": "/articles/meal-prep-busy-men.html",
+      "assetHash": "e58fdcd76d55c1df978295ea3e2dea36"
+    },
+    {
+      "path": "/articles/men-belly-fat.html",
+      "assetHash": "1b665336e69d0a410253d8f878145dac"
+    },
+    {
+      "path": "/articles/men-weight-loss-after-40.html",
+      "assetHash": "bdde85b85d20609c85d39db317b71b67"
+    },
+    {
+      "path": "/articles/mens-mental-health-and-weight.html",
+      "assetHash": "ba888bc6bca58a178990cdae4d113b9d"
+    },
+    {
+      "path": "/articles/motivation-vs-routine-men.html",
+      "assetHash": "fd59a71baf25a715aa6b38f8d7a12032"
+    },
+    {
+      "path": "/articles/mounjaro-vs-wegovy.html",
+      "assetHash": "44e36d6c9e51e2ba90d9b6123ad861f7"
+    },
+    {
+      "path": "/articles/muscle-on-glp1.html",
+      "assetHash": "111fd05c7642d6a97c0288a536567afd"
+    },
+    {
+      "path": "/articles/oral-weight-loss-medications.html",
+      "assetHash": "1ee14e9edad823118385284fb6e5ea54"
+    },
+    {
+      "path": "/articles/prediabetes-men.html",
+      "assetHash": "0eab60e67d74531232b16974a54d35e0"
+    },
+    {
+      "path": "/articles/protein-for-men-weight-management.html",
+      "assetHash": "332083fe0f47317943b3d5d590f909c1"
+    },
+    {
+      "path": "/articles/return-to-sport-after-weight-loss.html",
+      "assetHash": "d49fdbaf1c1e8c3ab9688fefdc1066c7"
+    },
+    {
+      "path": "/articles/sleep-and-weight-men.html",
+      "assetHash": "0678bd511d377690e9fc683b16390875"
+    },
+    {
+      "path": "/articles/sleep-apnoea-weight-men.html",
+      "assetHash": "587501203f203362a4e59a8e588aa825"
+    },
+    {
+      "path": "/articles/stopping-glp1.html",
+      "assetHash": "abc3ade30b66a99c11f017a2587c935a"
+    },
+    {
+      "path": "/articles/stress-and-weight-men.html",
+      "assetHash": "e209db82c9d94ccc5c2f0139de445937"
+    },
+    {
+      "path": "/articles/testosterone-weight-men.html",
+      "assetHash": "93b495450f901cfa39c033b3f8666032"
+    },
+    {
+      "path": "/articles/travelling-with-weight-loss-medication.html",
+      "assetHash": "199e24e2dc04985a2e911dd3dd4c9fc0"
+    },
+    {
+      "path": "/articles/waist-size-men.html",
+      "assetHash": "60eefad52e1b6c384bc5960d8aa7adab"
+    },
+    {
+      "path": "/articles/walking-for-weight-management-men.html",
+      "assetHash": "fbd6616facabc6433108818d98264281"
+    },
+    {
+      "path": "/articles/weight-and-blood-pressure-men.html",
+      "assetHash": "e7eca36b943f949a2e6b99615058ad86"
+    },
+    {
+      "path": "/articles/weight-loss-after-40-men.html",
+      "assetHash": "14f09d66e9b52d77b880b352a6c5239e"
+    },
+    {
+      "path": "/articles/weight-loss-plateau-men.html",
+      "assetHash": "05cd0e47acf36755cc6646a39da3214a"
+    },
+    {
+      "path": "/articles/what-is-wegovy.html",
+      "assetHash": "8fdf31eb66880d8058c09885918ce293"
+    },
+    {
+      "path": "/articles/why-blokes-put-everyone-else-first.html",
+      "assetHash": "7e184a9e1a406352205191bb8e1e179d"
+    },
+    {
+      "path": "/articles/why-we-built-shift-some-timber.html",
+      "assetHash": "28a72fa5f7645b75f079c543b40b5059"
+    },
+    {
+      "path": "/ask-timber.html",
+      "assetHash": "abdfc851e51dc140f8e99449cc7525d3"
+    },
+    {
+      "path": "/assets/public-feedback-v1.css",
+      "assetHash": "3aecb76ff2328f76d1047c73a70cb630"
+    },
+    {
+      "path": "/assets/public-feedback-v1.js",
+      "assetHash": "674a25342991ffbbd292cc0df07ca457"
+    },
+    {
+      "path": "/assets/start-here-support-v1.js",
+      "assetHash": "64cf2f0f8aa4ec894d008c9a97d9bfec"
+    },
+    {
+      "path": "/assets/v42.js",
+      "assetHash": "86d66b016ef51d59f27215cbdbaa0aa5"
+    },
+    {
+      "path": "/authors/matt-obrien.html",
+      "assetHash": "cfb615aad770445c5b320b64d305f3ac"
+    },
+    {
+      "path": "/authors/shift-some-timber-editorial-team.html",
+      "assetHash": "e63aee063e6dc03284979c647c5b2476"
+    },
+    {
+      "path": "/before-you-decide.html",
+      "assetHash": "051be799cdccd77c09ac3127fa6e4836"
+    },
+    {
+      "path": "/clinical-governance.html",
+      "assetHash": "a7a9e92a4ace57279901dc0c1b3cae9a"
+    },
+    {
+      "path": "/clinician-dashboard-v3d.html",
+      "assetHash": "7c898f0cf255478e33a8c16dab4f882c"
+    },
+    {
+      "path": "/commercial-principles.html",
+      "assetHash": "6dfc858720039ab4c11bb123e3fdbbc5"
+    },
+    {
+      "path": "/community.html",
+      "assetHash": "f8e02e239662ee53ca54205fb9810c15"
+    },
+    {
+      "path": "/compare-weight-loss-treatments.html",
+      "assetHash": "6f399aa8c4c4b50ae5854cf968f442fd"
+    },
+    {
+      "path": "/comparison-centre.html",
+      "assetHash": "e87619db1c9834093bcbfea7f9cda95a"
+    },
+    {
+      "path": "/comparisons/europe/headline-price-vs-true-cost.html",
+      "assetHash": "2b84d79dd0923dbfc8704eddad32659a"
+    },
+    {
+      "path": "/comparisons/europe/overseas-surgery-complications.html",
+      "assetHash": "a32f596c5b34d0d6d34a907a35fe345a"
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-czechia-bariatric-surgery.html",
+      "assetHash": "122642d451aab6686a672f408baa9843"
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-latvia-bariatric-surgery.html",
+      "assetHash": "2611a58f79e1f6f4cff2df911042c90e"
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-lithuania-bariatric-surgery.html",
+      "assetHash": "9b00c3a5de875c7ba7b50eb96b90d686"
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-overseas-aftercare.html",
+      "assetHash": "30f67ab935527927eeae9fa48547e52b"
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-poland-bariatric-surgery.html",
+      "assetHash": "333c70e8a63947e9dca0941c986d30d5"
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-turkey-bariatric-surgery.html",
+      "assetHash": "998f8a8cf2f10c711b8a05603d2f8fa2"
+    },
+    {
+      "path": "/comparisons/europe/verify-overseas-bariatric-clinic.html",
+      "assetHash": "c3b97fa083ea077c77cbc4c427f82a6f"
+    },
+    {
+      "path": "/comparisons/lifestyle/cardio-vs-strength.html",
+      "assetHash": "c075427ed692578d1aa0f1768faf0c70"
+    },
+    {
+      "path": "/comparisons/lifestyle/lifestyle-vs-medication.html",
+      "assetHash": "66c2a0fcec74ff7fc3cfb99d6c87b1d2"
+    },
+    {
+      "path": "/comparisons/lifestyle/lifestyle-vs-surgery.html",
+      "assetHash": "c4e57f40aa4fbac6160b8b7ecfd6681f"
+    },
+    {
+      "path": "/comparisons/lifestyle/medication-plus-lifestyle.html",
+      "assetHash": "d8da8a2f0defe8643aa265cd38f7f06d"
+    },
+    {
+      "path": "/comparisons/lifestyle/structured-vs-diy.html",
+      "assetHash": "27f2c63f447dd52e2b5f289b0d2e6eee"
+    },
+    {
+      "path": "/comparisons/lifestyle/surgery-plus-lifestyle.html",
+      "assetHash": "27a6431e8d1c260620c19bbee1ba681c"
+    },
+    {
+      "path": "/comparisons/lifestyle/walking-vs-structured-exercise.html",
+      "assetHash": "be579f77056e260b1130fa5b18bf1117"
+    },
+    {
+      "path": "/comparisons/medications/mounjaro-vs-orlistat.html",
+      "assetHash": "330cf8307d982ade764b028a60ed89a0"
+    },
+    {
+      "path": "/comparisons/medications/mounjaro-vs-saxenda.html",
+      "assetHash": "273fe79236702f9666ed769b56a53b7e"
+    },
+    {
+      "path": "/comparisons/medications/mounjaro-vs-wegovy-tablets.html",
+      "assetHash": "653070174649fa885049992bbbc1fb31"
+    },
+    {
+      "path": "/comparisons/medications/mounjaro-vs-wegovy.html",
+      "assetHash": "5a1bebe858d306290d2cf1e2436b2440"
+    },
+    {
+      "path": "/comparisons/medications/ozempic-vs-wegovy.html",
+      "assetHash": "f611e4df1a8d1aeae42e12cd7976df3f"
+    },
+    {
+      "path": "/comparisons/medications/saxenda-vs-orlistat.html",
+      "assetHash": "42a0755b48415a860a3c556eaf5d1cb1"
+    },
+    {
+      "path": "/comparisons/medications/wegovy-injection-vs-tablets.html",
+      "assetHash": "c7c98089448c668a36a2220b81e85ece"
+    },
+    {
+      "path": "/comparisons/medications/wegovy-vs-orlistat.html",
+      "assetHash": "d347ee90b62405edbb575edd1f5eb685"
+    },
+    {
+      "path": "/comparisons/medications/wegovy-vs-saxenda.html",
+      "assetHash": "78b4164f1f6aff1c4fc89a22d156e9bf"
+    },
+    {
+      "path": "/comparisons/mounjaro-vs-wegovy.html",
+      "assetHash": "7f4b2ca81f8d3e0a1d60a27617b6580a"
+    },
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management.html",
+      "assetHash": "650001792f536c6a09e611bc76366f24"
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare.html",
+      "assetHash": "40568067200977bdd08d2cc4e6459b28"
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication.html",
+      "assetHash": "686a97d8e3e155da7d8270d2ad95e7b6"
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery.html",
+      "assetHash": "c5d0e7da3579a90ddefc6b27d3369148"
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access.html",
+      "assetHash": "ed534ada891a4d31678533f84ebc0ed3"
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic.html",
+      "assetHash": "0a8913823169d1c30ba1df761c799753"
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private.html",
+      "assetHash": "98c3ac30e660f1ddfe40f2377f7ea0d1"
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg.html",
+      "assetHash": "c73ea1fffe2a149f92a16936e385af39"
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve.html",
+      "assetHash": "5c82a083425a60e4f10bcec0f139c01d"
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve.html",
+      "assetHash": "c941a09561cad72b563968732d6e7a64"
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass.html",
+      "assetHash": "deaaa4d31736434033272d277acd7b2d"
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-sleeve.html",
+      "assetHash": "347029b24df0d3fa2a7cc096cbcbcd2d"
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass.html",
+      "assetHash": "ba585fdb87f74843e6b9413d1fc9a6dc"
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass.html",
+      "assetHash": "aec4ba10fd56dde3024f3a4f38e913cd"
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass.html",
+      "assetHash": "1943be3829a8e57af390340b4521be01"
+    },
+    {
+      "path": "/comparisons/universal/esg-vs-wegovy-tablets.html",
+      "assetHash": "b05dd24bdb13c16085fd1dfbab88d752"
+    },
+    {
+      "path": "/comparisons/universal/lifestyle-vs-mounjaro.html",
+      "assetHash": "d3a4d2ed0c5b340c10626a1c3b212218"
+    },
+    {
+      "path": "/comparisons/universal/mounjaro-vs-gastric-sleeve.html",
+      "assetHash": "ae82da14aa4ac8496f57c408aac3aec5"
+    },
+    {
+      "path": "/comparisons/universal/nhs-medication-vs-private-surgery.html",
+      "assetHash": "d8984ae64e1fd8dedb10d824e6b23e2a"
+    },
+    {
+      "path": "/comparisons/universal/orlistat-vs-lifestyle.html",
+      "assetHash": "3c49c947dbccbd0f410b2bb1f4e96511"
+    },
+    {
+      "path": "/comparisons/universal/private-medication-vs-nhs-surgery.html",
+      "assetHash": "fce79395346e0cb561ad80b8042d7d1c"
+    },
+    {
+      "path": "/comparisons/universal/uk-surgery-vs-turkey.html",
+      "assetHash": "a1fcfd507e1720603cb8230ea5f87086"
+    },
+    {
+      "path": "/comparisons/universal/wegovy-vs-gastric-bypass.html",
+      "assetHash": "f16196bdc57199fb9365ff1daf342b0e"
+    },
+    {
+      "path": "/complaints.html",
+      "assetHash": "df54ce6456d68863f48809f9be35d6c5"
+    },
+    {
+      "path": "/contact-received.html",
+      "assetHash": "d01fb74cfd463bbfe37a3c0fccc089aa"
+    },
+    {
+      "path": "/contact.html",
+      "assetHash": "3abd9999c60a276be8841e62ab8f1b49"
+    },
+    {
+      "path": "/cookies.html",
+      "assetHash": "8ca60b8ad49825381af2391ac74c2991"
+    },
+    {
+      "path": "/corporate-wellbeing.html",
+      "assetHash": "14cf8fd8490c2bc36fc38c33ccc5828d"
+    },
+    {
+      "path": "/data-governance.html",
+      "assetHash": "49f42657c754ab40eeaa4a8990d4da03"
+    },
+    {
+      "path": "/decision-centre-methodology.html",
+      "assetHash": "bc2c635541dfcfb2eee2851cd14ef3dd"
+    },
+    {
+      "path": "/decision-centre.html",
+      "assetHash": "3ba49d4eb500fd3e8d31c73ceecc1f6d"
+    },
+    {
+      "path": "/decision-readiness-methodology.html",
+      "assetHash": "c2fa3551650dfcf9ed66a0b937dd68ba"
+    },
+    {
+      "path": "/decision-readiness.html",
+      "assetHash": "80d96bb6e94891c220b6553dcefeb581"
+    },
+    {
+      "path": "/decision-trees-explained.html",
+      "assetHash": "5819f54409e58acbd7116e843b466c6a"
+    },
+    {
+      "path": "/downloads-resources.html",
+      "assetHash": "bd25334f0096a70b20a55177916532be"
+    },
+    {
+      "path": "/downloads/bariatric-surgery-checklist.html",
+      "assetHash": "8c683e3abf7c8f595c5a801e9b209e3c"
+    },
+    {
+      "path": "/downloads/gp-appointment-checklist.html",
+      "assetHash": "dcfc5d867cc8ad145379bdd187ac3354"
+    },
+    {
+      "path": "/downloads/maintenance-plan-template.html",
+      "assetHash": "dc1f99c6806ddb9dd2b3e47d1f1b9866"
+    },
+    {
+      "path": "/downloads/overseas-surgery-checklist.html",
+      "assetHash": "1ec8fa67f5ceca3e1ca5befe2cf1f5c3"
+    },
+    {
+      "path": "/downloads/private-provider-checklist.html",
+      "assetHash": "9d2c731a5da530f3fe19e2e5290f7d68"
+    },
+    {
+      "path": "/downloads/weight-loss-medication-questions.html",
+      "assetHash": "05203580de16f305c60bc3f04c07e1bd"
+    },
+    {
+      "path": "/dpia-summary.html",
+      "assetHash": "f8323ae10f74118c0506f7240f1c105d"
+    },
+    {
+      "path": "/editorial-standards.html",
+      "assetHash": "7712dd75cdfbcb227381810ef281ea85"
+    },
+    {
+      "path": "/email-framework.html",
+      "assetHash": "11c23f5da4071891e04b2099351ae0af"
+    },
+    {
+      "path": "/email-templates/comparison-shared.html",
+      "assetHash": "6348db036cfaebd91805b6193e3adc9b"
+    },
+    {
+      "path": "/email-templates/contact-received.html",
+      "assetHash": "989cf997cfc6fdaecf9b45d69bc321dd"
+    },
+    {
+      "path": "/email-templates/email-verification.html",
+      "assetHash": "bef5c0b4dbc3e5065e60bc648af0416f"
+    },
+    {
+      "path": "/email-templates/health-mot-complete.html",
+      "assetHash": "496320cd5cdfd8eda01542fa0c1952e9"
+    },
+    {
+      "path": "/email-templates/maintenance-transition.html",
+      "assetHash": "6d3f88094b563bd5c20ea37d711fb38f"
+    },
+    {
+      "path": "/email-templates/membership-invitation.html",
+      "assetHash": "1d2b30fc4cc2a92ff77b5a4df6d65aaf"
+    },
+    {
+      "path": "/email-templates/monthly-research-roundup.html",
+      "assetHash": "f1146089899f750c287449ba6ee1571b"
+    },
+    {
+      "path": "/email-templates/password-reset.html",
+      "assetHash": "0d1b71787347b1ed746131fb15903499"
+    },
+    {
+      "path": "/email-templates/programme-launch.html",
+      "assetHash": "df0c9e8ec5757c0897598740a373cb2f"
+    },
+    {
+      "path": "/email-templates/support-acknowledgement.html",
+      "assetHash": "03fccac83a35a0137efc1e3ed0b1cac8"
+    },
+    {
+      "path": "/email-templates/treatment-finder-complete.html",
+      "assetHash": "671a11bf3a5e68b0d5c6bd4a80a06722"
+    },
+    {
+      "path": "/email-templates/waiting-list-welcome.html",
+      "assetHash": "e5ca32fa03ee12f71ab1f94c1c56ad28"
+    },
+    {
+      "path": "/expert-contributors.html",
+      "assetHash": "90257b06c046685c8bcbf0c4bf03771f"
+    },
+    {
+      "path": "/explore-knowledge.html",
+      "assetHash": "cb59691bbb820b19e2affd451bbfdf01"
+    },
+    {
+      "path": "/family-discussion-guide.html",
+      "assetHash": "a17c31196885529fb24e28e93c53dce6"
+    },
+    {
+      "path": "/faq.html",
+      "assetHash": "7625bef7e866b9629171a26ddb6aa25f"
+    },
+    {
+      "path": "/faq/alcohol-on-glp1.html",
+      "assetHash": "4adac03ff6e9f454a6facf7141555662"
+    },
+    {
+      "path": "/faq/are-carbs-bad.html",
+      "assetHash": "95c9249f717c0e4b4ff2ec26d0c187b5"
+    },
+    {
+      "path": "/faq/bbq-and-weight-loss.html",
+      "assetHash": "08e8b928023dcadc61fd7e8bb43cace8"
+    },
+    {
+      "path": "/faq/can-men-take-mounjaro.html",
+      "assetHash": "7d3bc996b607986473e3ea4742f5ae03"
+    },
+    {
+      "path": "/faq/can-men-take-wegovy.html",
+      "assetHash": "02f1c70af160e4b74784fb9682c5fa15"
+    },
+    {
+      "path": "/faq/can-stress-cause-weight-gain.html",
+      "assetHash": "bedcc6084f69d422e01fa1c29d786db8"
+    },
+    {
+      "path": "/faq/can-walking-help-weight-loss.html",
+      "assetHash": "04e4cc2a06e48fd663ca6b8b45f434fc"
+    },
+    {
+      "path": "/faq/can-women-use-tools.html",
+      "assetHash": "fa13d4f2921c3110be8ec28cc0009cb3"
+    },
+    {
+      "path": "/faq/daily-weight-fluctuation.html",
+      "assetHash": "37b6d93821b3a4483740004c2094a725"
+    },
+    {
+      "path": "/faq/does-alcohol-cause-belly-fat.html",
+      "assetHash": "e26049fc07b5f2f17327a92da7ce9b5b"
+    },
+    {
+      "path": "/faq/does-belly-fat-increase-risk.html",
+      "assetHash": "69bfd450674b0c2aa6c39ee6e000e477"
+    },
+    {
+      "path": "/faq/does-sleep-affect-weight.html",
+      "assetHash": "5c001d91f917b7d3a6adec94ad58436f"
+    },
+    {
+      "path": "/faq/does-sst-prescribe.html",
+      "assetHash": "703d69dda4615300ab9343000dd2b613"
+    },
+    {
+      "path": "/faq/exercise-on-glp1.html",
+      "assetHash": "d4a9fec9f865bc97012469bafc997d31"
+    },
+    {
+      "path": "/faq/glp1-muscle-loss.html",
+      "assetHash": "d34ad97d03502f54cb0665f8d8ffec5d"
+    },
+    {
+      "path": "/faq/healthy-waist-height-ratio.html",
+      "assetHash": "fcbe658858a470fc7d10a06ff7b2c084"
+    },
+    {
+      "path": "/faq/how-much-protein-men.html",
+      "assetHash": "d5475fdb6498a4a908bd29580f23895b"
+    },
+    {
+      "path": "/faq/how-often-weigh.html",
+      "assetHash": "93ba71c7d7ae3386da2ff168a4a76b93"
+    },
+    {
+      "path": "/faq/how-quickly-should-men-lose-weight.html",
+      "assetHash": "42e54e0f70f3365eda4bf68f6f10803a"
+    },
+    {
+      "path": "/faq/is-20-percent-realistic.html",
+      "assetHash": "56f2d61749e1a2098ef96349b71cd582"
+    },
+    {
+      "path": "/faq/is-bmi-accurate-for-men.html",
+      "assetHash": "ad58ec75beb4200c506b0ec835aa9e5c"
+    },
+    {
+      "path": "/faq/is-fat-bad.html",
+      "assetHash": "2f1873693a9aa75cc76249bf7cb978f8"
+    },
+    {
+      "path": "/faq/is-glp1-only-for-women.html",
+      "assetHash": "7bf7ab0f62f46696d674b511849d7d1d"
+    },
+    {
+      "path": "/faq/is-health-mot-medical.html",
+      "assetHash": "392314af9cb9ebf53e058324a17e56d5"
+    },
+    {
+      "path": "/faq/is-health-mot-saved.html",
+      "assetHash": "b381d43b5d2d9856b612851b50c778f2"
+    },
+    {
+      "path": "/faq/is-sst-gp-replacement.html",
+      "assetHash": "b18370187347287da9c0f5f0088ef73e"
+    },
+    {
+      "path": "/faq/mounjaro-vs-ozempic.html",
+      "assetHash": "4b305b436e2d762886e98ccb83935425"
+    },
+    {
+      "path": "/faq/need-breakfast-weight-loss.html",
+      "assetHash": "31d22e3440d6ab193e090cbe6fc41aa4"
+    },
+    {
+      "path": "/faq/need-gym-to-lose-weight.html",
+      "assetHash": "e2900216d27917f67a062c5b8e13e26f"
+    },
+    {
+      "path": "/faq/should-men-count-calories.html",
+      "assetHash": "ed9d930db2ea532c5a270d2f8e248c69"
+    },
+    {
+      "path": "/faq/takeaways-and-weight-loss.html",
+      "assetHash": "ade2e25b948b522b6b70b509aee923f1"
+    },
+    {
+      "path": "/faq/wegovy-vs-ozempic.html",
+      "assetHash": "939bce6274559fc8579bb4bc26118c8c"
+    },
+    {
+      "path": "/faq/weight-knee-pain.html",
+      "assetHash": "6b8247d4d663e7f5f45bfa322efd73d5"
+    },
+    {
+      "path": "/faq/weight-loss-cholesterol.html",
+      "assetHash": "1d2a231109580b09a0aca64013038ef7"
+    },
+    {
+      "path": "/faq/weight-loss-diabetes-risk.html",
+      "assetHash": "0fb828a80d841f195002bfd0295fedb3"
+    },
+    {
+      "path": "/faq/weight-loss-lower-bp.html",
+      "assetHash": "5e0030733945c13668bab9a350fb4f55"
+    },
+    {
+      "path": "/faq/weight-sleep-apnoea.html",
+      "assetHash": "367a830b12df3c015f3a0f2101ac1f1d"
+    },
+    {
+      "path": "/faq/weight-testosterone.html",
+      "assetHash": "0fa6e39f6e56c6080cf0c01bbd922879"
+    },
+    {
+      "path": "/faq/what-happens-stopping-glp1.html",
+      "assetHash": "764a3a8cd4172b6b262ab125a1b3468e"
+    },
+    {
+      "path": "/faq/what-is-20-percent-club.html",
+      "assetHash": "9665aa647af13d46d78b46dab5c6e6f3"
+    },
+    {
+      "path": "/faq/what-is-founding-shifter.html",
+      "assetHash": "a59dc338388521dbacce6f4fcda39e57"
+    },
+    {
+      "path": "/faq/what-is-tap-room.html",
+      "assetHash": "819297bec753582c53f2a2ae507f424e"
+    },
+    {
+      "path": "/faq/what-is-timber-mill.html",
+      "assetHash": "f2b935431d689d385ede8a65a39ab031"
+    },
+    {
+      "path": "/faq/what-is-weight-loss-plateau.html",
+      "assetHash": "9338734ce3e55987c025ddb0e0b21128"
+    },
+    {
+      "path": "/faq/why-do-men-get-belly-fat.html",
+      "assetHash": "bd02356e611429f9f0f024890d6da3c1"
+    },
+    {
+      "path": "/foundayo.html",
+      "assetHash": "142f584752a8d2c88f621ee8efcb89ed"
+    },
+    {
+      "path": "/founding-members.html",
+      "assetHash": "33e35574bfae921e3e78b9cd5fde70a8"
+    },
+    {
+      "path": "/future-medicines-comparison.html",
+      "assetHash": "04d4dd9f0d4c752a243096bb558ddf4e"
+    },
+    {
+      "path": "/glp1-knowledge-centre.html",
+      "assetHash": "d70c3283310a1a0a69c3c7e7994c853c"
+    },
+    {
+      "path": "/good-to-talk.html",
+      "assetHash": "be1f9a11328568fe77d87ed060f965fd"
+    },
+    {
+      "path": "/guides.html",
+      "assetHash": "da61aea94ec0235bbee4d3bbe81570e0"
+    },
+    {
+      "path": "/guides/amycretin-uk-guide.html",
+      "assetHash": "9d8993161d0765e2b8df1258768e71ed"
+    },
+    {
+      "path": "/guides/bariatric-surgery-costs-uk-europe.html",
+      "assetHash": "37cb5a1b1c5bb23ffdb90c3316b76775"
+    },
+    {
+      "path": "/guides/bariatric-surgery-europe-costs-guide.html",
+      "assetHash": "65b26846246d34dc1f539d8e69f8da90"
+    },
+    {
+      "path": "/guides/blood-pressure-guide.html",
+      "assetHash": "452c03bb55131b0fdbcc32b0eb735c08"
+    },
+    {
+      "path": "/guides/cagrisema-uk-guide.html",
+      "assetHash": "f62b48b650627ccc960c7f97260c8069"
+    },
+    {
+      "path": "/guides/endoscopic-sleeve-gastroplasty-esg-uk-guide.html",
+      "assetHash": "eb07b5a7c3827e29e93e81fe1f9fec80"
+    },
+    {
+      "path": "/guides/exercise-walking-strength-mobility.html",
+      "assetHash": "844572a438362367a033d72fa2cb44a7"
+    },
+    {
+      "path": "/guides/gastric-balloon-uk-guide.html",
+      "assetHash": "ad41d0b6d70ef30befc517bfe88b477a"
+    },
+    {
+      "path": "/guides/gastric-band-uk-guide.html",
+      "assetHash": "09005b367a6f9420c828dc8946f99e6b"
+    },
+    {
+      "path": "/guides/gastric-bypass-roux-en-y-uk-guide.html",
+      "assetHash": "e2e73d2dcd263d095abc91f43ecccc8f"
+    },
+    {
+      "path": "/guides/gastric-sleeve-uk-guide.html",
+      "assetHash": "eb005404248c7b59ffd1a194b4a348f7"
+    },
+    {
+      "path": "/guides/glp1-guide.html",
+      "assetHash": "e8ab8c69242f9655b5a3dff8c5e5a861"
+    },
+    {
+      "path": "/guides/glp1-ultimate-uk-guide.html",
+      "assetHash": "88385e7809bf7ea43ed6bc5d32309091"
+    },
+    {
+      "path": "/guides/maritide-uk-guide.html",
+      "assetHash": "65371e263e259d6fc6eb725e54d55dff"
+    },
+    {
+      "path": "/guides/mens-health-mot-guide.html",
+      "assetHash": "35108db3e2ef0a68a5a2ef26b0029b5b"
+    },
+    {
+      "path": "/guides/mens-weight-management-guide.html",
+      "assetHash": "9458f209b6786d31303b818f4ea77ef4"
+    },
+    {
+      "path": "/guides/mini-gastric-bypass-oagb-uk-guide.html",
+      "assetHash": "bc84ad7ab1693c22600e9b2aed891f76"
+    },
+    {
+      "path": "/guides/nhs-bariatric-surgery-pathways.html",
+      "assetHash": "ddba9163dbbf48bb2e9a8d0a5f3ab04f"
+    },
+    {
+      "path": "/guides/nhs-weight-loss-medication-pathways.html",
+      "assetHash": "bd448b34793e5629cb728b50d841db8b"
+    },
+    {
+      "path": "/guides/nhs-weight-management-uk-guide.html",
+      "assetHash": "2ba3eaa36ac92f2d6944003b5ece7e57"
+    },
+    {
+      "path": "/guides/nutrition-guide.html",
+      "assetHash": "006f558f8abd90569cf9877adedeeced"
+    },
+    {
+      "path": "/guides/nutrition-protein-calories-meal-planning.html",
+      "assetHash": "19c307ad15dfe79818151fd4ab5f72ae"
+    },
+    {
+      "path": "/guides/orforglipron-uk-guide.html",
+      "assetHash": "b40e0b82f88e07c8bff0fd74cfc99e88"
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide.html",
+      "assetHash": "a8255701a7c6066b07fee9c90d38018a"
+    },
+    {
+      "path": "/guides/sleep-stress-mindset-emotional-eating-maintenance.html",
+      "assetHash": "f2808e574151fd3e0043d79024f80913"
+    },
+    {
+      "path": "/guides/walking-guide.html",
+      "assetHash": "23635d1fd2a467e63f11aa306e06f492"
+    },
+    {
+      "path": "/guides/weight-loss-surgery-uk-costs-guide.html",
+      "assetHash": "2567dae34149e47f970dfe4729d49829"
+    },
+    {
+      "path": "/guides/weight-loss-surgery-uk-guide.html",
+      "assetHash": "31643badb06d7eaaa585cc96023e5da6"
+    },
+    {
+      "path": "/health-mot-methodology.html",
+      "assetHash": "e47bc312060d6f9b743bc856258d560f"
+    },
+    {
+      "path": "/health-mot.html",
+      "assetHash": "3de908294c45811317b959fee8ce98ce"
+    },
+    {
+      "path": "/help.html",
+      "assetHash": "60f3ce77e6d5620b9362022ef3778225"
+    },
+    {
+      "path": "/how-are-you-feeling.html",
+      "assetHash": "d9ab2bb3edd0c23e46489a5076c4d215"
+    },
+    {
+      "path": "/how-we-review-products.html",
+      "assetHash": "bbe00c7c975a517a82886ea3ce743efe"
+    },
+    {
+      "path": "/index.html",
+      "assetHash": "cf44a73c5bb62789508572d51fa238af"
+    },
+    {
+      "path": "/knowledge.html",
+      "assetHash": "b7074bb3a3dcf50141e031237f4b6abf"
+    },
+    {
+      "path": "/legal-clinical-launch-gate-v30h.html",
+      "assetHash": "a3689496b49312db8cd7c353e7f91210"
+    },
+    {
+      "path": "/lifestyle-treatment-methodology.html",
+      "assetHash": "0e08d13f368dc9afd82ede47b8c1b42c"
+    },
+    {
+      "path": "/lifestyle-vs-treatment.html",
+      "assetHash": "9c9343b7698c4cd265909510fa78d5a6"
+    },
+    {
+      "path": "/lounge.html",
+      "assetHash": "3a13a03485e93282cd538cb39b0b331b"
+    },
+    {
+      "path": "/media-centre.html",
+      "assetHash": "de5cfb367ad8c390966e373683958be0"
+    },
+    {
+      "path": "/medical-disclaimer.html",
+      "assetHash": "c4b0485744f9ccb968fe1eb5b940ed51"
+    },
+    {
+      "path": "/medication-comparison-centre.html",
+      "assetHash": "88fe9a891ba472949d5a35a9f0da287e"
+    },
+    {
+      "path": "/medication-comparison-methodology.html",
+      "assetHash": "5ebd87edf1311e84fb714a2b35d469a4"
+    },
+    {
+      "path": "/medicine-news.html",
+      "assetHash": "090b8cb5df7e58b86a39915bf647d095"
+    },
+    {
+      "path": "/member-dashboard-v3d.html",
+      "assetHash": "3b55f3a16785993a3645a6d3a9564455"
+    },
+    {
+      "path": "/member-journey.html",
+      "assetHash": "0a3d66dd67c607595b4b443cfe650ab7"
+    },
+    {
+      "path": "/member-login.html",
+      "assetHash": "3a3f1062e751bb6a41401e5409afc0fb"
+    },
+    {
+      "path": "/member/achievements.html",
+      "assetHash": "c9ce3eceef297d52beacdbff9e4c1356"
+    },
+    {
+      "path": "/member/ask-timber.html",
+      "assetHash": "4e90ff8c82d704c6f5cb243f08dd4f7d"
+    },
+    {
+      "path": "/member/check-in.html",
+      "assetHash": "fb63a3e05568895ed0a38182c0eeee10"
+    },
+    {
+      "path": "/member/conundrum.html",
+      "assetHash": "489a68abe3a6e68f736ae9870926fbd4"
+    },
+    {
+      "path": "/member/dashboard.html",
+      "assetHash": "35f250f2e926c4a1fde32d26ab4494dd"
+    },
+    {
+      "path": "/member/fit.html",
+      "assetHash": "157914d0605035191e176821cc44029a"
+    },
+    {
+      "path": "/member/grub.html",
+      "assetHash": "19418413f287e4738ef3b11b383924cd"
+    },
+    {
+      "path": "/member/health-mot.html",
+      "assetHash": "999666d07262bbb800d7c77c6e37eb79"
+    },
+    {
+      "path": "/member/hydration.html",
+      "assetHash": "2c87ce8d60d6e638f8b473f5ef09d5d6"
+    },
+    {
+      "path": "/member/journey.html",
+      "assetHash": "ee31222e32f42e817636cf43710ac4be"
+    },
+    {
+      "path": "/member/life-changed-preview.html",
+      "assetHash": "53b33ec4e0bad8575696085b5eda63cf"
+    },
+    {
+      "path": "/member/my-target.html",
+      "assetHash": "59a422ab7614f810bd822f9b7ec2ebb0"
+    },
+    {
+      "path": "/member/my-why.html",
+      "assetHash": "2d78e4ac4b1634692adcf35da88e5074"
+    },
+    {
+      "path": "/member/plans.html",
+      "assetHash": "54dbe73bec73ca1b957fa204a041a64a"
+    },
+    {
+      "path": "/member/progress.html",
+      "assetHash": "cffe49d9418faa492755fa75edefdc99"
+    },
+    {
+      "path": "/member/saved.html",
+      "assetHash": "cd8ce53a7e3daa92a63a53cc85d3927f"
+    },
+    {
+      "path": "/member/search-insights.html",
+      "assetHash": "baeb553b70bceafc20fd10d3d8808d45"
+    },
+    {
+      "path": "/member/settings.html",
+      "assetHash": "3d9b43eb6183873c43c7b85b7eae73d0"
+    },
+    {
+      "path": "/member/tap-room.html",
+      "assetHash": "440273312d2777cdc23e4d4621c57250"
+    },
+    {
+      "path": "/member/timber-circle.html",
+      "assetHash": "c99c657963aca650998f621e6a70787c"
+    },
+    {
+      "path": "/member/today.html",
+      "assetHash": "cd8c27a1068d1f5ae478178710a0df51"
+    },
+    {
+      "path": "/member/visualise.html",
+      "assetHash": "bfa7e4187553d62ee92be610d686eaeb"
+    },
+    {
+      "path": "/mens-mental-health.html",
+      "assetHash": "125a11d2adf024e887e3373c6264e4de"
+    },
+    {
+      "path": "/mens-weight-management.html",
+      "assetHash": "a7ccd54af5bda44848b24c01b8ff8c87"
+    },
+    {
+      "path": "/mental-health/after-a-mental-health-crisis.html",
+      "assetHash": "08d8332f86863f40b581d5753fa9df3f"
+    },
+    {
+      "path": "/mental-health/alcohol-and-mental-health.html",
+      "assetHash": "345be71b88fd50a599588808a5c50e70"
+    },
+    {
+      "path": "/mental-health/alcohol-coping-check.html",
+      "assetHash": "83ce93b6bccc8250f349cdfc64d6b993"
+    },
+    {
+      "path": "/mental-health/anger-irritability.html",
+      "assetHash": "152ff26108e2e2d65700c5df258c248b"
+    },
+    {
+      "path": "/mental-health/antidepressant-side-effects.html",
+      "assetHash": "9038ad7ea7b7ae301d2cf64ca86eeb62"
+    },
+    {
+      "path": "/mental-health/antidepressants-explained.html",
+      "assetHash": "35aabcae1d87f8087e9c6343e3119740"
+    },
+    {
+      "path": "/mental-health/anxiety-overthinking.html",
+      "assetHash": "ce5430177bddf0883c131e32ba4e7d8f"
+    },
+    {
+      "path": "/mental-health/ask-about-suicide.html",
+      "assetHash": "31bef2151e61e6aa6bfd168302cf39fa"
+    },
+    {
+      "path": "/mental-health/bad-week-reset.html",
+      "assetHash": "76b3d3c94774738e6e26cfb336be0bee"
+    },
+    {
+      "path": "/mental-health/bereavement-grief.html",
+      "assetHash": "3f215ea0eb99e70f46c4881315df0834"
+    },
+    {
+      "path": "/mental-health/breathing-for-stress.html",
+      "assetHash": "351bfd6449f929451986b158cfd1848a"
+    },
+    {
+      "path": "/mental-health/build-a-support-circle.html",
+      "assetHash": "c496d80fc4e83fa8937cd1dddfa7a244"
+    },
+    {
+      "path": "/mental-health/caring-for-someone.html",
+      "assetHash": "e8f18de5f7c8751d4ef824e76f590349"
+    },
+    {
+      "path": "/mental-health/cbt-explained.html",
+      "assetHash": "d1ca1bfea43fd803f3a3d8d16fd4c7f2"
+    },
+    {
+      "path": "/mental-health/choosing-a-therapist.html",
+      "assetHash": "4ddffaeb796b8ec4e00525b6e3a2dfe5"
+    },
+    {
+      "path": "/mental-health/chronic-illness-pain.html",
+      "assetHash": "138da1cb7c30f2c181f50fe402524246"
+    },
+    {
+      "path": "/mental-health/confidence-self-worth.html",
+      "assetHash": "e7bf77454b91f7d7db32f708819dbae2"
+    },
+    {
+      "path": "/mental-health/counselling-explained.html",
+      "assetHash": "c6825cfc1f1305691935c74978148b39"
+    },
+    {
+      "path": "/mental-health/dads-mental-health.html",
+      "assetHash": "995b4ecf847ec19991b44fbae659b7a8"
+    },
+    {
+      "path": "/mental-health/feeling-low.html",
+      "assetHash": "628e64b2bc72f1e272535811c8c82e3e"
+    },
+    {
+      "path": "/mental-health/first-therapy-session.html",
+      "assetHash": "fb3bf6db2fd09bd682083b325e3466cc"
+    },
+    {
+      "path": "/mental-health/friendships-men.html",
+      "assetHash": "c682c0f12cb5f108ede463e58764fcd3"
+    },
+    {
+      "path": "/mental-health/gambling-mental-health.html",
+      "assetHash": "f7aaf2ad70ebeab003d884d03080bd98"
+    },
+    {
+      "path": "/mental-health/get-outside.html",
+      "assetHash": "e72c923bbfd848bed4f945bca4fcec91"
+    },
+    {
+      "path": "/mental-health/get-through-a-bad-day.html",
+      "assetHash": "675de0c106b6685c578b8bb14d3bf4ac"
+    },
+    {
+      "path": "/mental-health/getting-professional-help.html",
+      "assetHash": "6860195f57cf931d41bdba540492f123"
+    },
+    {
+      "path": "/mental-health/gp-mental-health-appointment.html",
+      "assetHash": "e8c33a0c76aafd10479364dc9e2e8bfc"
+    },
+    {
+      "path": "/mental-health/grounding.html",
+      "assetHash": "5d8fa2c86fdb26387e61d6e943e28cda"
+    },
+    {
+      "path": "/mental-health/help-someone-book-gp.html",
+      "assetHash": "ce697c3b18e2ee19b6060cf89a7c59e1"
+    },
+    {
+      "path": "/mental-health/help-yourself-without-doing-it-alone.html",
+      "assetHash": "99a6c4c598bb44150f695f2c83757019"
+    },
+    {
+      "path": "/mental-health/helping-a-mate.html",
+      "assetHash": "b79760c8a072c398bd066591449b6842"
+    },
+    {
+      "path": "/mental-health/helping-someone-online.html",
+      "assetHash": "69c6a6fd1c504331f9b9547c4813a29f"
+    },
+    {
+      "path": "/mental-health/helping-someone.html",
+      "assetHash": "66900106a158624db26c70df855fdb12"
+    },
+    {
+      "path": "/mental-health/how-to-ask-are-you-okay.html",
+      "assetHash": "a0955b6d888489506f223c5e0e4d48b0"
+    },
+    {
+      "path": "/mental-health/journalling-without-cringe.html",
+      "assetHash": "e3cee4b9705e07d010279be6532167e3"
+    },
+    {
+      "path": "/mental-health/life-gets-bloody-hard.html",
+      "assetHash": "e0becaeebdaa2e86ad205c24bb1401fb"
+    },
+    {
+      "path": "/mental-health/loneliness-isolation.html",
+      "assetHash": "2b1f3fbdb8180e7979ca55482fc0e1e2"
+    },
+    {
+      "path": "/mental-health/look-after-yourself-when-supporting.html",
+      "assetHash": "b886f57ffbc017bd1ddf7c31b149923d"
+    },
+    {
+      "path": "/mental-health/mate-says-hes-depressed.html",
+      "assetHash": "4688f231490d237a4ba8d49eab7e12af"
+    },
+    {
+      "path": "/mental-health/medication-and-weight.html",
+      "assetHash": "c659b76123f27d2cc0256962cb615d8d"
+    },
+    {
+      "path": "/mental-health/mental-health-and-weight.html",
+      "assetHash": "f1cb020eb67dcd21518ce906507b487c"
+    },
+    {
+      "path": "/mental-health/mental-health-crisis-plan.html",
+      "assetHash": "29c340b87c63ade50838cf1bbba12e16"
+    },
+    {
+      "path": "/mental-health/mental-health-medication-myths.html",
+      "assetHash": "063059b4ebafd815fee6f8a2e131699c"
+    },
+    {
+      "path": "/mental-health/money-worries.html",
+      "assetHash": "341b2c6c8677a409d298076035a37e2f"
+    },
+    {
+      "path": "/mental-health/movement-for-mood.html",
+      "assetHash": "9b26bb00e421296e1712cfa3a0b27da6"
+    },
+    {
+      "path": "/mental-health/myths-men-mental-health.html",
+      "assetHash": "abae5773c2f4628f4c166b4f0c964bae"
+    },
+    {
+      "path": "/mental-health/nhs-talking-therapies.html",
+      "assetHash": "11a8659f7cf44696b9bf8919663acf8f"
+    },
+    {
+      "path": "/mental-health/not-feeling-yourself.html",
+      "assetHash": "a72629baf7fc16604129223f950114b2"
+    },
+    {
+      "path": "/mental-health/numb-disconnected.html",
+      "assetHash": "7e3d6bc1da60e7f1f10e13d198a22580"
+    },
+    {
+      "path": "/mental-health/occupational-health-mental-health.html",
+      "assetHash": "744b49ac2f00c224885274588e5a00a6"
+    },
+    {
+      "path": "/mental-health/overthinking-tools.html",
+      "assetHash": "5e4e8c2712d6c7798f08d58856e35f8e"
+    },
+    {
+      "path": "/mental-health/parenting-pressure.html",
+      "assetHash": "4487da3204d5bdbcfb277ecfaf4715bc"
+    },
+    {
+      "path": "/mental-health/personal-mental-health-plan.html",
+      "assetHash": "f2e0814df9d9ca829f981f841c021159"
+    },
+    {
+      "path": "/mental-health/phone-social-media-reset.html",
+      "assetHash": "d517669f6b706b98f49410b3ded4f672"
+    },
+    {
+      "path": "/mental-health/prepare-for-therapy.html",
+      "assetHash": "f7fbbbcfdfbc32a23f388fb44060e373"
+    },
+    {
+      "path": "/mental-health/private-therapy.html",
+      "assetHash": "ec1ad9870169ff7961f13800f25c44a1"
+    },
+    {
+      "path": "/mental-health/reconnect-with-people.html",
+      "assetHash": "e9dbc89a949dcc9aa3c5f5d650563976"
+    },
+    {
+      "path": "/mental-health/redundancy-job-loss.html",
+      "assetHash": "c1795c90e8262e872cbe9d3764d968ac"
+    },
+    {
+      "path": "/mental-health/relationship-problems.html",
+      "assetHash": "ba61120384805f5aae4a45bd0c741d82"
+    },
+    {
+      "path": "/mental-health/retirement-purpose.html",
+      "assetHash": "6a16a3146490f047791e5f3c4a70cddc"
+    },
+    {
+      "path": "/mental-health/routine-when-struggling.html",
+      "assetHash": "78879ecfc4bd9287c89df92cbb7d951f"
+    },
+    {
+      "path": "/mental-health/self-care-that-isnt-bubble-baths.html",
+      "assetHash": "2db892c986668c752a374e7e410de606"
+    },
+    {
+      "path": "/mental-health/self-refer-talking-therapy.html",
+      "assetHash": "31d33485ae4c25625f7646cc0e64675b"
+    },
+    {
+      "path": "/mental-health/separation-divorce.html",
+      "assetHash": "09b5919c128c79baeab0b0c0b2d2dc35"
+    },
+    {
+      "path": "/mental-health/sex-intimacy-confidence.html",
+      "assetHash": "e83107b30c4d462b8ddc085d001b2e33"
+    },
+    {
+      "path": "/mental-health/sick-note-mental-health.html",
+      "assetHash": "a7ab75f3b4d10f04d6623755503eec41"
+    },
+    {
+      "path": "/mental-health/signs-a-mate-is-struggling.html",
+      "assetHash": "75df39700bd628590d8f24ad0787ded9"
+    },
+    {
+      "path": "/mental-health/sleep-mental-health.html",
+      "assetHash": "b4752a022147610ec3d862e492777d99"
+    },
+    {
+      "path": "/mental-health/sleep-reset.html",
+      "assetHash": "3141435142d202693c7f17fc5edd6a16"
+    },
+    {
+      "path": "/mental-health/social-media-comparison.html",
+      "assetHash": "c6798f2548155d513e077d1e34325cae"
+    },
+    {
+      "path": "/mental-health/someone-is-suicidal.html",
+      "assetHash": "c9ce064008ce49945cc9c27071801742"
+    },
+    {
+      "path": "/mental-health/someone-says-theyd-be-better-off-dead.html",
+      "assetHash": "719275930dd572eda32a821cdd20c7ab"
+    },
+    {
+      "path": "/mental-health/starting-antidepressants.html",
+      "assetHash": "bbe0f16ea9b4b48edacc82a4e0f9767c"
+    },
+    {
+      "path": "/mental-health/stopping-antidepressants.html",
+      "assetHash": "50e4dec1cc84c74b79ad9d568a6dad84"
+    },
+    {
+      "path": "/mental-health/stress-overwhelm.html",
+      "assetHash": "29d620f55764d1d8c16e0d7aa138a3e7"
+    },
+    {
+      "path": "/mental-health/suicide-warning-signs.html",
+      "assetHash": "5bdcfa5fbad75935849185f2339e13d6"
+    },
+    {
+      "path": "/mental-health/supporting-a-dad.html",
+      "assetHash": "0600a50a7d9be4edd04e6f8dec2984a4"
+    },
+    {
+      "path": "/mental-health/supporting-partner-mental-health.html",
+      "assetHash": "0fc8dc846e22862fab0734f7849ab20a"
+    },
+    {
+      "path": "/mental-health/supporting-someone-after-loss.html",
+      "assetHash": "d656315dfba92bf69c67b617f9857b1a"
+    },
+    {
+      "path": "/mental-health/supporting-someone-with-anxiety.html",
+      "assetHash": "e8543bf306f7c10acf0745d84acc33af"
+    },
+    {
+      "path": "/mental-health/supporting-someone-with-depression.html",
+      "assetHash": "7dfc57fde90cab43afa289072a5cfd15"
+    },
+    {
+      "path": "/mental-health/supporting-treatment-at-home.html",
+      "assetHash": "14e267204c26cbc30f8c8b178060b4a2"
+    },
+    {
+      "path": "/mental-health/talking-about-it.html",
+      "assetHash": "dae8f1bc37f970aedf3ae8a8e2c5656f"
+    },
+    {
+      "path": "/mental-health/talking-to-a-mate.html",
+      "assetHash": "c4d60e76aadddf460c5ceb8ce0cf7750"
+    },
+    {
+      "path": "/mental-health/talking-to-partner.html",
+      "assetHash": "dbd50815e883cf286fba72dd2e285e8c"
+    },
+    {
+      "path": "/mental-health/therapy-confidentiality.html",
+      "assetHash": "e47465516f7c94daf98b000d3606ce68"
+    },
+    {
+      "path": "/mental-health/therapy-waiting-lists.html",
+      "assetHash": "3c8240bca910c649bb07cd0881379228"
+    },
+    {
+      "path": "/mental-health/things-you-can-do-yourself.html",
+      "assetHash": "000343218528031288bd3b6635f93edb"
+    },
+    {
+      "path": "/mental-health/tiny-goals.html",
+      "assetHash": "4b35875e550b5b5c3a900e7f5605f177"
+    },
+    {
+      "path": "/mental-health/types-of-talking-therapy.html",
+      "assetHash": "12c9dd37c87ebf8f406c4a813367d4ff"
+    },
+    {
+      "path": "/mental-health/urgent-mental-health-help.html",
+      "assetHash": "4a90f80188df2982af48e97db6009201"
+    },
+    {
+      "path": "/mental-health/weight-loss-identity.html",
+      "assetHash": "34c11dbdf1ccd1430e94169f1c859e49"
+    },
+    {
+      "path": "/mental-health/what-not-to-say.html",
+      "assetHash": "039507d410be0d219e6c31dc1ee37bdf"
+    },
+    {
+      "path": "/mental-health/what-to-say-to-someone-struggling.html",
+      "assetHash": "570d0956353c24c40cff3dd2139e2581"
+    },
+    {
+      "path": "/mental-health/what-will-gp-ask.html",
+      "assetHash": "8c7c1eb8adb99c56efb196f7d647a875"
+    },
+    {
+      "path": "/mental-health/when-someone-refuses-help.html",
+      "assetHash": "31de0193a515f884d62344ae5f3c459b"
+    },
+    {
+      "path": "/mental-health/when-to-get-help.html",
+      "assetHash": "dccd21cb2f0388a56f9e8acac241d098"
+    },
+    {
+      "path": "/mental-health/when-treatment-isnt-working.html",
+      "assetHash": "7e4e79fe59f8f5abac5fb1aa1cb138db"
+    },
+    {
+      "path": "/mental-health/work-stress-burnout.html",
+      "assetHash": "741dee12507ce531daeddefac7e84669"
+    },
+    {
+      "path": "/mental-health/work-stress-reset.html",
+      "assetHash": "bee655cac22ccb16797792893e4f8139"
+    },
+    {
+      "path": "/mental-health/worried-about-colleague.html",
+      "assetHash": "679a2f62a32b94b4be11e7150d018a5b"
+    },
+    {
+      "path": "/mental-health/worried-about-family-member.html",
+      "assetHash": "44093623d73f62c3e48539694050d507"
+    },
+    {
+      "path": "/mounjaro.html",
+      "assetHash": "9501207bcc2c71c7b28667ce5b8936e3"
+    },
+    {
+      "path": "/my-weight-loss-roadmap.html",
+      "assetHash": "58f0aaacc7a45127e27e09081f938e36"
+    },
+    {
+      "path": "/nhs-private-methodology.html",
+      "assetHash": "711ddeb65b855777cc28eca0ac357c44"
+    },
+    {
+      "path": "/nhs-vs-private.html",
+      "assetHash": "2b610da57657b699af90261093a631d3"
+    },
+    {
+      "path": "/offline.html",
+      "assetHash": "e2eb3ce9d2a3558b1754b1676ae550f5"
+    },
+    {
+      "path": "/order-success.html",
+      "assetHash": "1783c51b7d9209e5a12dc5b4a1adc0c6"
+    },
+    {
+      "path": "/orlistat-definitive-uk-guide.html",
+      "assetHash": "4e2b8e5cd6684c365c6ccb30a0d88454"
+    },
+    {
+      "path": "/ozempic-definitive-uk-guide.html",
+      "assetHash": "ca48038dd926c1e3321e6131d85c6aab"
+    },
+    {
+      "path": "/partner-with-us.html",
+      "assetHash": "574b6484d4cd0154a183c1819d15e868"
+    },
+    {
+      "path": "/press-centre.html",
+      "assetHash": "a5d16fc10be92f2a855c19261d9dce4c"
+    },
+    {
+      "path": "/pricing-membership.html",
+      "assetHash": "81b54d73e60173c22fff9af6dfcc4f02"
+    },
+    {
+      "path": "/privacy-centre.html",
+      "assetHash": "0398eb169e5545bba4cfe78db55f1485"
+    },
+    {
+      "path": "/privacy.html",
+      "assetHash": "77524ca3933395368aeee57bc97d690b"
+    },
+    {
+      "path": "/product-reviews.html",
+      "assetHash": "f9d4708d7b2bf17db41c3b3b49f39376"
+    },
+    {
+      "path": "/programme-benefits.html",
+      "assetHash": "caa19cabfeabec525f6663ce1979af71"
+    },
+    {
+      "path": "/programme.html",
+      "assetHash": "e8d3b693c0f4bf0d0ff8a6ee169003b3"
+    },
+    {
+      "path": "/progress-centre-methodology.html",
+      "assetHash": "636d6e77c5a0f7d8848a6771f0942339"
+    },
+    {
+      "path": "/research/uk-mens-weight-health-statistics.html",
+      "assetHash": "f863f2c6bbe09aea34ac374f14ddc694"
+    },
+    {
+      "path": "/reset-password.html",
+      "assetHash": "cf42f0aa1f245c4f0e9585c165790931"
+    },
+    {
+      "path": "/roadmap-methodology.html",
+      "assetHash": "6c8e5f0b3d5108b1e9b2aea926a8f45e"
+    },
+    {
+      "path": "/saxenda-definitive-uk-guide.html",
+      "assetHash": "82a128d3ee68e48ef877c70f72bac311"
+    },
+    {
+      "path": "/search.html",
+      "assetHash": "3b50cd140a65590350a6cecb3173bddf"
+    },
+    {
+      "path": "/service-worker-v3a.js",
+      "assetHash": "f95c86b4d3bc0b03143be9243e841d6b"
+    },
+    {
+      "path": "/service-worker.js",
+      "assetHash": "bcec06022d59f2e37c37e609331d1835"
+    },
+    {
+      "path": "/shift-for-work.html",
+      "assetHash": "ebbfab4d70eb0ec8b112c7fea4587a55"
+    },
+    {
+      "path": "/shift-health-product-v2.html",
+      "assetHash": "43aeabfcda35c196270a6d893ea8f3b6"
+    },
+    {
+      "path": "/shift-health-product.html",
+      "assetHash": "925573a95d9f71cbef7215b5bd4ca799"
+    },
+    {
+      "path": "/shift-health.html",
+      "assetHash": "8d9478db30328edea0ddf5ecb1b7c1da"
+    },
+    {
+      "path": "/shift-me.html",
+      "assetHash": "d52f193a81acdb551faa6ed778ae6e78"
+    },
+    {
+      "path": "/shift-promise.html",
+      "assetHash": "108ede69d23e9382e3e1eecb3d77abe7"
+    },
+    {
+      "path": "/shift-sport-team.html",
+      "assetHash": "a87d85633ba211942802a2f1f3fa7262"
+    },
+    {
+      "path": "/shop.html",
+      "assetHash": "9ccf3fe190a984bf87b1a2ef1e4a1c0f"
+    },
+    {
+      "path": "/social-distribution-v30e.html",
+      "assetHash": "29d5e7c2576b66604573a55db515c815"
+    },
+    {
+      "path": "/start-here.html",
+      "assetHash": "29113339a4d8db8f084f9198575e9613"
+    },
+    {
+      "path": "/support-dashboard-v3d.html",
+      "assetHash": "936fbe9ff043ade8d74d683830d34278"
+    },
+    {
+      "path": "/surgery-comparison-centre.html",
+      "assetHash": "863f1d33c28e7e2fe4691b37f349e2a4"
+    },
+    {
+      "path": "/surgery-comparison-methodology.html",
+      "assetHash": "18e2d35d02fdf77842c788774218ab5c"
+    },
+    {
+      "path": "/tap-room.html",
+      "assetHash": "edec91cb35ee2181638a0d8faa1f6a71"
+    },
+    {
+      "path": "/terms.html",
+      "assetHash": "b0614ff324946e4390467c425c6b9335"
+    },
+    {
+      "path": "/timber-mill-bottle.html",
+      "assetHash": "c58c0ee1e8fe1956af3e2d20495f6de3"
+    },
+    {
+      "path": "/timber-mill-cap.html",
+      "assetHash": "f6326c82c4396ab220db3ac1073ee21e"
+    },
+    {
+      "path": "/timber-mill-earned-tee.html",
+      "assetHash": "583d7399daf8f63e9d20328a98a9499e"
+    },
+    {
+      "path": "/timber-mill-essential-tee.html",
+      "assetHash": "2f9742644aafa9259a04459d5b7b3c6d"
+    },
+    {
+      "path": "/timber-mill-guts-gone-hoodie.html",
+      "assetHash": "50616abda58008b4304d8a7d33b5b499"
+    },
+    {
+      "path": "/timber-mill-guts-gone-tee.html",
+      "assetHash": "d331a517862aa05dd70a9f474faf5eb0"
+    },
+    {
+      "path": "/timber-mill-gym-bag.html",
+      "assetHash": "9b229559a8bad14be2fd960a4d531d8b"
+    },
+    {
+      "path": "/timber-mill-hoodie.html",
+      "assetHash": "59e0afbd9e388caaf3b2b527ab0140bb"
+    },
+    {
+      "path": "/timber-mill-joggers.html",
+      "assetHash": "0869706cf6bd1640cd75af3c2e52d8ed"
+    },
+    {
+      "path": "/timber-mill-olive-tee.html",
+      "assetHash": "9ba59d76bde472236ebbc7247c47be5f"
+    },
+    {
+      "path": "/timber-mill-polo.html",
+      "assetHash": "408a580f9ac2e40ff4f2e9b7bebe89ed"
+    },
+    {
+      "path": "/timber-mill-quarter-zip.html",
+      "assetHash": "915d073e6e71806b61e04f6720ffcec8"
+    },
+    {
+      "path": "/timber-mill-shorts.html",
+      "assetHash": "666734828efa2a2d726f898206f4f1a6"
+    },
+    {
+      "path": "/timber-mill-socks.html",
+      "assetHash": "9363e1c116b7eec25eff6641228d5f20"
+    },
+    {
+      "path": "/timber-mill.html",
+      "assetHash": "995d787ca5244b0bc7e0b55cc49acfb6"
+    },
+    {
+      "path": "/tools.html",
+      "assetHash": "35696524013daf32f1cd958634aafc9e"
+    },
+    {
+      "path": "/tools/alcohol.html",
+      "assetHash": "51bfdd4f7f69bcc46b61734bf7a1cf63"
+    },
+    {
+      "path": "/tools/bmi.html",
+      "assetHash": "cc12b143eb5184ba2a52e0b02cf470e1"
+    },
+    {
+      "path": "/tools/calories.html",
+      "assetHash": "3bea802af34eddef1b9d07f2a0c43384"
+    },
+    {
+      "path": "/tools/healthy-weight.html",
+      "assetHash": "cc973cdd04bb8ef841d7b59a12170f0d"
+    },
+    {
+      "path": "/tools/protein.html",
+      "assetHash": "768e6c073de5d81d6e6aca43b3dd829d"
+    },
+    {
+      "path": "/tools/sleep.html",
+      "assetHash": "a5d560cf81086b8ff9b96ed62d4ea0f5"
+    },
+    {
+      "path": "/tools/steps.html",
+      "assetHash": "858ad79ed76882d8caf5ece17fec213f"
+    },
+    {
+      "path": "/tools/waist-height.html",
+      "assetHash": "247e8d85110de647c8d35f584f4286c1"
+    },
+    {
+      "path": "/tools/walking.html",
+      "assetHash": "79119db138c734fb52d5375fd4207bb6"
+    },
+    {
+      "path": "/tools/water.html",
+      "assetHash": "889ac0077a835ae3f58b8cc2c56ea312"
+    },
+    {
+      "path": "/treatment-access.html",
+      "assetHash": "38b283011d0458f6b290b44591103bff"
+    },
+    {
+      "path": "/treatment-assessment.html",
+      "assetHash": "f4b8a537da3fed90e5e17eb55af0f951"
+    },
+    {
+      "path": "/treatment-centre.html",
+      "assetHash": "2fb558747a46bfc60bd88c6ecf1c6efc"
+    },
+    {
+      "path": "/treatment-finder-methodology.html",
+      "assetHash": "a1b3f22e78853674365d9402a5c1f67d"
+    },
+    {
+      "path": "/treatment-finder.html",
+      "assetHash": "c91c5ac6e8a1685009a6b8995f8f40ca"
+    },
+    {
+      "path": "/treatment-order.html",
+      "assetHash": "8c07cb8746e39a17aa09cb4233f70c72"
+    },
+    {
+      "path": "/treatment-terms.html",
+      "assetHash": "bb48ce1855f67c649b2514fb189a198e"
+    },
+    {
+      "path": "/treatments/compare.html",
+      "assetHash": "7688f9008c8ddbeeb6128917b859a7b6"
+    },
+    {
+      "path": "/treatments/emerging.html",
+      "assetHash": "718e63c222abac603b1f1c133bd45233"
+    },
+    {
+      "path": "/treatments/lifestyle.html",
+      "assetHash": "e41df53be1ff04f5c4928d8f8c4ed9e6"
+    },
+    {
+      "path": "/treatments/medication.html",
+      "assetHash": "5931848ca644cbf631f229209d3b7e33"
+    },
+    {
+      "path": "/treatments/nhs.html",
+      "assetHash": "4f37804a1d3b1a5580ae7948b81d5a58"
+    },
+    {
+      "path": "/treatments/surgery.html",
+      "assetHash": "77d4f3d0e52764cda98742fb68503d02"
+    },
+    {
+      "path": "/trusted-partners.html",
+      "assetHash": "2a4db56a47481c8b1dbb5bf71ffe76ae"
+    },
+    {
+      "path": "/uk-europe-methodology.html",
+      "assetHash": "3d38ee4fe1cf91ad56492d6ca79ea0c1"
+    },
+    {
+      "path": "/uk-vs-europe-treatment.html",
+      "assetHash": "1ef2f9bb460979269b41768c98388225"
+    },
+    {
+      "path": "/universal-comparison-methodology.html",
+      "assetHash": "5bdad04ea87fe05d2253589e74d12f25"
+    },
+    {
+      "path": "/waiting-list-journey.html",
+      "assetHash": "5532f70895cb7b18b523301e5d429909"
+    },
+    {
+      "path": "/wegovy-definitive-uk-guide.html",
+      "assetHash": "75ed77b2ddf9533c9aa0e70af4a3ed7a"
+    },
+    {
+      "path": "/wegovy.html",
+      "assetHash": "5814f10a2c2f7852c4bb3cb50f82be4c"
+    },
+    {
+      "path": "/weight-loss-injections-for-men.html",
+      "assetHash": "a9fe543c7f02c1b673478ccb6ad476fa"
+    },
+    {
+      "path": "/weight-loss-tablets-for-men.html",
+      "assetHash": "792d99fb6ea9f59a657380c3875ace33"
+    },
+    {
+      "path": "/work-with-us.html",
+      "assetHash": "9b8422a328ea32e9cb3aa135fad7230b"
+    },
+    {
+      "path": "/public-release.json",
+      "assetHash": "d7849486d9e931a23fc4aa651785ac21"
+    }
+  ],
+  "unchanged": 414,
+  "headersSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e"
+}

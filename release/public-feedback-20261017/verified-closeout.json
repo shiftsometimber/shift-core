@@ -1,0 +1,30 @@
+{
+  "verifiedAt": "2026-10-17T22:55:25.821059+00:00",
+  "publicUrl": "https://shiftsometimber.co.uk",
+  "deploymentId": "d3aafa94-8a22-4671-af09-89f5ef1a2b4c",
+  "build": "public-feedback-20261017-b7d5bf35aac0",
+  "sourceCommit": "07012dbbdedd68fc4f296ab10eb463346d72143d",
+  "providerStage": "success",
+  "rawHtmlPagesChecked": 398,
+  "oldAskNameMatches": 0,
+  "liveBrowserChecks": 22,
+  "browserPageErrors": [],
+  "rawHtmlBuildPages": 369,
+  "runtimeSharedShellBuildPages": 29,
+  "budgetCases": 5,
+  "browserWidths": [
+    320,
+    390,
+    1024,
+    1440
+  ],
+  "unrelatedAssetHashesRetained": 414,
+  "cacheRulesRetained": true,
+  "coreWorkerWrites": 0,
+  "customerRecordWrites": 0,
+  "signedInServiceAcceptanceClaimed": false,
+  "physicalIpadOrSafariAcceptanceClaimed": false,
+  "qualifiedMedicinesAdvertisingReviewClaimed": false,
+  "remainingReview": "Qualified medicines-advertising assessment of SHIFT presentation and partner responsibilities remains outstanding. Delivered quiz does not name or recommend medicines; explicit treatment requests remain available.",
+  "deferred": "Charset/member descriptions remain for the relevant member-template release. GP, factual diary and food-guide work remain with their existing release scopes."
+}
