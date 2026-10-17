@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-17T14:42:35.432294+00:00",
+  "controller": 86937,
+  "source": "48cd8ea2718de9fef295b9a4e3d654eca17e79cf",
+  "reason": "Native detached clone has no refs; git show-ref exit1 is a valid empty inventory, not source failure. Controller snapshot now handles only this exact case. Source/test commands/caps unchanged; no test process had started.",
+  "status": "CONTROLLER_PREFLIGHT_STOP_BEFORE_ANY_TEST",
+  "recordedAt": "2026-10-17T14:42:51.604500+00:00"
+}

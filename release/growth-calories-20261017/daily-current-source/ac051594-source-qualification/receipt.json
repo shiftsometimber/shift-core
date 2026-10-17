@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-17T14:51:29.369865+00:00",
+  "currentPRHead": "ac05159419ac4a4244215d968715d5160bf7bdf9",
+  "nativeQualification": "FAILED_ORIGINAL_1200_SECOND_BOUND",
+  "successfulWatermarkAdvanced": false,
+  "sourceUnchanged": true,
+  "ownedGroupEmpty": true,
+  "privateNextRevision": "48cd8ea2718de9fef295b9a4e3d654eca17e79cf",
+  "privateNextNativeStatus": "RUNNING_NOT_ACCEPTED",
+  "runtimePayloadChanged": false,
+  "deployed": false,
+  "activated": false,
+  "modelCalls": 0,
+  "files": {
+    "daily-v5-focused-result.json": "7781a652c7ba83693a234094d179d1698562fb50e7d350042ebd448094496c87",
+    "daily-v5-focused.tap": "d35b8a4c5842d73307dddd68c43fe81f37d687aa368423fa5d8f4d6e48a055d5",
+    "daily-v5-native-result.json": "a14d34734a7ad985a0605f40dec2513b7368388eeb7eee72247ef1dbc7caf7f8",
+    "daily-v5-native.tap": "8f3402b96760d3f260b8542afefbd7480916a29e73e287ef47de690ce821a9f8",
+    "daily-v5-qualification-claim.json": "2b70944a047de37fb15372b3d376c4ee15d44fc24defd3cb94fdc2803dc664b6",
+    "daily-v5-branch-publication.json": "5ca7cd917bd81574390725d20f8268014753cf0ef4e6c6c55d789a72d54ba75b",
+    "qualify-daily-v5.py": "b9724ffca95fa7df7de62c2d20aa6768626ab8ea9ac53d059f596bd33bbf4e29",
+    "daily-v6-controller-preflight-no-refs.json": "8a8abbc75b1bd00101bd740a9b8328b37f6eea0f5ced29248b259d5484dee3dd",
+    "daily-v6-focused-result.json": "f6655f360f7b1240af01569179f0b6c9eab2ae0a147dbf4298327b58f2a6508e",
+    "daily-v6-focused.tap": "5fbd4e449870561b85574f614fb659b19f903a80e83b3d553d3fe9fbed840c5f",
+    "daily-v6-qualification-claim.json": "380e5fc01db4e70580fb4ea66accaec74f90932580fd43edf845843b221346e9"
+  }
+}

@@ -1,0 +1,248 @@
+TAP version 13
+# Subtest: the browser uses exact immutable reviewed CSV parser bytes, isolated from other Progress helpers
+ok 1 - the browser uses exact immutable reviewed CSV parser bytes, isolated from other Progress helpers
+  ---
+  duration_ms: 0.535209
+  type: 'test'
+  ...
+# Subtest: CSV UI changes only the existing optional weight-import component
+ok 2 - CSV UI changes only the existing optional weight-import component
+  ---
+  duration_ms: 30.660583
+  type: 'test'
+  ...
+# Subtest: mapping must be explicit, shows converted dates and kilograms, and uses only the established confirmed import boundary
+ok 3 - mapping must be explicit, shows converted dates and kilograms, and uses only the established confirmed import boundary
+  ---
+  duration_ms: 0.706916
+  type: 'test'
+  ...
+# Subtest: no native widget, build, tester, production config or model source is changed by the CSV interface
+ok 4 - no native widget, build, tester, production config or model source is changed by the CSV interface
+  ---
+  duration_ms: 4734.956541
+  type: 'test'
+  ...
+# Subtest: London day follows midnight and both daylight-saving transitions
+ok 5 - London day follows midnight and both daylight-saving transitions
+  ---
+  duration_ms: 47.595875
+  type: 'test'
+  ...
+# Subtest: default off makes no database, network or model calls
+ok 6 - default off makes no database, network or model calls
+  ---
+  duration_ms: 5.365583
+  type: 'test'
+  ...
+# Subtest: provider structured objects retain the complete private draft and review flow
+ok 7 - provider structured objects retain the complete private draft and review flow
+  ---
+  duration_ms: 43.58075
+  type: 'test'
+  ...
+# Subtest: malformed provider JSON never saves, repairs or automatically retries a draft
+ok 8 - malformed provider JSON never saves, repairs or automatically retries a draft
+  ---
+  duration_ms: 1.394708
+  type: 'test'
+  ...
+# Subtest: unverified budget and wrong gateway cannot start generation
+ok 9 - unverified budget and wrong gateway cannot start generation
+  ---
+  duration_ms: 0.685541
+  type: 'test'
+  ...
+# Subtest: source permissions and exact canonical URLs cannot be widened by input
+ok 10 - source permissions and exact canonical URLs cannot be widened by input
+  ---
+  duration_ms: 0.138833
+  type: 'test'
+  ...
+# Subtest: real SQLite flow saves one private HQ draft with evidence and no public overwrite
+ok 11 - real SQLite flow saves one private HQ draft with evidence and no public overwrite
+  ---
+  duration_ms: 1.994583
+  type: 'test'
+  ...
+# Subtest: overlapping cron invocations and repeat calls cannot create duplicates or spend twice
+ok 12 - overlapping cron invocations and repeat calls cannot create duplicates or spend twice
+  ---
+  duration_ms: 9.245208
+  type: 'test'
+  ...
+# Subtest: a refused or unpermitted source yields an honest no-change receipt without inference
+ok 13 - a refused or unpermitted source yields an honest no-change receipt without inference
+  ---
+  duration_ms: 1.2055
+  type: 'test'
+  ...
+# Subtest: unsupported citations, changed canonical, missing sources and dose advice hold before review
+ok 14 - unsupported citations, changed canonical, missing sources and dose advice hold before review
+  ---
+  duration_ms: 6.894375
+  type: 'test'
+  ...
+# Subtest: independent reviewer holds partial and uncertain decisions
+ok 15 - independent reviewer holds partial and uncertain decisions
+  ---
+  duration_ms: 5.37425
+  type: 'test'
+  ...
+# Subtest: budget refusal is terminal for that day with no retry or direct provider fallback
+ok 16 - budget refusal is terminal for that day with no retry or direct provider fallback
+  ---
+  duration_ms: 0.79325
+  type: 'test'
+  ...
+# Subtest: draft collision rolls back atomically and preserves the original private copy
+ok 17 - draft collision rolls back atomically and preserves the original private copy
+  ---
+  duration_ms: 1.059958
+  type: 'test'
+  ...
+# Subtest: unchanged text cannot be labelled a useful daily refresh
+ok 18 - unchanged text cannot be labelled a useful daily refresh
+  ---
+  duration_ms: 0.728083
+  type: 'test'
+  ...
+# Cloning into '/var/folders/3c/51t04mg562x471053v1fq7t40000gn/T/coding-completion-head-move-lbtHBF'...
+# done.
+# Cloning into '/var/folders/3c/51t04mg562x471053v1fq7t40000gn/T/coding-construction-expiry-e7wnwh'...
+# done.
+# Subtest: material drafted target is not automatically rewritten again the following day
+ok 19 - material drafted target is not automatically rewritten again the following day
+  ---
+  duration_ms: 1.474583
+  type: 'test'
+  ...
+# Subtest: coding completion native admission binds exact six-path daily-only payload and scoped private daily authority
+ok 20 - coding completion native admission binds exact six-path daily-only payload and scoped private daily authority
+  ---
+  duration_ms: 1917.994625
+  type: 'test'
+  ...
+# Subtest: coding completion registration preserves every whole prior ledger record
+ok 21 - coding completion registration preserves every whole prior ledger record
+  ---
+  duration_ms: 29.395625
+  type: 'test'
+  ...
+# Subtest: coding completion reader cannot forge any current payload, maintenance or ledger blob at either current alias
+ok 22 - coding completion reader cannot forge any current payload, maintenance or ledger blob at either current alias
+  ---
+  duration_ms: 11188.2905
+  type: 'test'
+  ...
+# Subtest: coding completion reader cannot forge current source or ledger bytes at both aliases
+ok 23 - coding completion reader cannot forge current source or ledger bytes at both aliases
+  ---
+  duration_ms: 3374.490042
+  type: 'test'
+  ...
+# Subtest: coding completion native source cannot be waived by a fake diff callback
+ok 24 - coding completion native source cannot be waived by a fake diff callback
+  ---
+  duration_ms: 580.028834
+  type: 'test'
+  ...
+# Subtest: coding completion native ancestry cannot be waived by supplied false ancestry
+ok 25 - coding completion native ancestry cannot be waived by supplied false ancestry
+  ---
+  duration_ms: 578.289083
+  type: 'test'
+  ...
+# Subtest: coding completion admission requires the actual raw current native HEAD
+ok 26 - coding completion admission requires the actual raw current native HEAD
+  ---
+  duration_ms: 61.108084
+  type: 'test'
+  ...
+# Subtest: coding completion payload, donor, source-base status and private-only authority are exact
+ok 27 - coding completion payload, donor, source-base status and private-only authority are exact
+  ---
+  duration_ms: 2035.37975
+  type: 'test'
+  ...
+# Subtest: coding completion maintenance cannot use the ledger head as its source proof
+ok 28 - coding completion maintenance cannot use the ledger head as its source proof
+  ---
+  duration_ms: 616.332041
+  type: 'test'
+  ...
+# Subtest: coding completion historical view is independently admitted and retains native current identity
+ok 29 - coding completion historical view is independently admitted and retains native current identity
+  ---
+  duration_ms: 1378.190459
+  type: 'test'
+  ...
+# Subtest: coding completion projection rejects paired current file and directory forgeries
+ok 30 - coding completion projection rejects paired current file and directory forgeries
+  ---
+  duration_ms: 2922.625916
+  type: 'test'
+  ...
+# Subtest: coding completion projection rejects forged diff and ancestry before supplying historical facts
+ok 31 - coding completion projection rejects forged diff and ancestry before supplying historical facts
+  ---
+  duration_ms: 930.244
+  type: 'test'
+  ...
+# Subtest: coding completion inverse restores every changed old source byte, including EOF maintenance
+ok 32 - coding completion inverse restores every changed old source byte, including EOF maintenance
+  ---
+  duration_ms: 2573.451625
+  type: 'test'
+  ...
+# Subtest: coding completion ledger fixture restoration preserves original approval and refuses source forgery
+ok 33 - coding completion ledger fixture restoration preserves original approval and refuses source forgery
+  ---
+  duration_ms: 1139.693208
+  type: 'test'
+  ...
+# Subtest: coding completion runtime still has only existing cron, exact gateway interlocks and no unrelated config changes
+ok 34 - coding completion runtime still has only existing cron, exact gateway interlocks and no unrelated config changes
+  ---
+  duration_ms: 40.967708
+  type: 'test'
+  ...
+# Subtest: coding completion retains actual supplied-reader calls through the inner native batching predicates
+ok 35 - coding completion retains actual supplied-reader calls through the inner native batching predicates
+  ---
+  duration_ms: 22022.934875
+  type: 'test'
+  ...
+# Subtest: coding completion admitted view rejects a real HEAD move in an isolated native clone
+ok 36 - coding completion admitted view rejects a real HEAD move in an isolated native clone
+  ---
+  duration_ms: 11192.321042
+  type: 'test'
+  ...
+# Subtest: coding completion private expected facts never replace actual warm supplied callbacks
+ok 37 - coding completion private expected facts never replace actual warm supplied callbacks
+  ---
+  duration_ms: 1207.492792
+  type: 'test'
+  ...
+# Subtest: coding completion keeps native arbitrary-reference and directory fallback after warming
+ok 38 - coding completion keeps native arbitrary-reference and directory fallback after warming
+  ---
+  duration_ms: 1101.475833
+  type: 'test'
+  ...
+# Subtest: coding construction proof expires before a returned current-runtime reader is used
+ok 39 - coding construction proof expires before a returned current-runtime reader is used
+  ---
+  duration_ms: 12835.810083
+  type: 'test'
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 78036.128916
