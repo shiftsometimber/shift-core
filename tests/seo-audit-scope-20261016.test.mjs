@@ -51,3 +51,5 @@ import './owned-rollback-release-window-20261016.test.mjs';
 await import('../tests/accepted-recorded-week-runtime-20261017.test.mjs');
 
 import './accepted-current-hq-retention-20261017.test.mjs';
+
+import './combined-hq-preservation-20261014.test.mjs';
