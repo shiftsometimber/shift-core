@@ -50,6 +50,7 @@ html body[data-member-chrome="v1"][data-member-page="life-back"] .hero{padding-t
 /* Keep member utilities in document flow, clear of check-in choices. */
 html body[data-member-chrome="v1"] #memberUtilities{display:flex;flex-wrap:wrap;gap:12px;max-width:1132px;margin:24px auto;padding:16px 24px;box-sizing:border-box;border-top:1px solid #707762}
 html body[data-member-chrome="v1"] #memberUtilities :is(#sstCookieSettings,#askTimberLaunch){position:static!important;inset:auto!important;transform:none!important;margin:0!important;min-height:44px;max-width:100%!important;z-index:auto!important}
+html body[data-member-chrome="v1"] #memberUtilities #askTimberLaunch{position:relative!important}
 html body[data-member-chrome="v1"][data-app-panel="1"] #memberUtilities{display:none!important}
 html body[data-member-chrome="v1"] :is(#previewStatus,#memberSessionStatus,[role="status"]):empty{display:none!important}
 html body[data-member-chrome="v1"] nav.sst-member-tabs:has(.member-nav-more[open]){flex-wrap:wrap}
