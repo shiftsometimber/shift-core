@@ -1,0 +1,10 @@
+{
+  "baseDeployment": "a2349561-6daa-404d-9185-aa2e8ef5b0be",
+  "oldHash": "e3b8e77cb0fb4975e876d9344a1651ec",
+  "newHash": "32deccd3d0db447179f71cc93b8af4ea",
+  "changed": [
+    "/articles/calories-explained-men.html"
+  ],
+  "retainedHashes": 875,
+  "headersSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e"
+}

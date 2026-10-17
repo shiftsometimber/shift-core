@@ -1,0 +1,16 @@
+{
+  "prepared_at": "2026-10-17T11:24:46.358796+00:00",
+  "approval": "Matt: Deploy - our website is informational; exact copy previously shown in this chat",
+  "target": "https://shiftsometimber.co.uk/articles/calories-explained-men",
+  "approved_markdown_sha256": "5512253a3998628aac6e889b33bfd66259f1426de8ac30db2b49895dd10fed44",
+  "origin_before_sha256": "25912a3094d0dd3640dc12d30b6c7658154eb58ec6978953ad76927df6e6a845",
+  "origin_after_sha256": "fd0b05774528cc2a1d6704606e1f7d3884e908639900c9c2202e0fe1211e157a",
+  "original_publication_date": "2026-05-19",
+  "date_modified": "2026-10-17",
+  "independent_clinical_review_claimed": false,
+  "canonical_preserved": true,
+  "author_preserved": "Shift Some Timber organisation",
+  "base_pages_deployment": "a2349561-6daa-404d-9185-aa2e8ef5b0be",
+  "expected_manifest_files": 876,
+  "changes": "Article copy, associated hidden contents links, introduction and actual editorial modification date. Existing outer shell and author note preserved. Exact existing _headers retained."
+}
