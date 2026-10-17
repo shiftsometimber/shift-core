@@ -2,7 +2,7 @@ name: Rendered Member Production Acceptance
 
 on:
   push:
-    branches: [verification/member-design-20261002, release/gp-priority-direct-20261016, release/gp-priority-direct-activation-20261016, verification/gp-direct-h55-live-20261016]
+    branches: [verification/member-design-20261002, release/gp-priority-direct-20261016, release/gp-priority-direct-activation-20261016, release/factual-recorded-week-direct-20261016, verification/gp-direct-h55-live-20261016]
   workflow_run:
     workflows: ['Cloudflare Production Promote']
     types: [completed]
@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   rendered-member-production-acceptance:
-    if: github.ref != 'refs/heads/release/gp-priority-direct-20261016' && github.ref != 'refs/heads/release/gp-priority-direct-activation-20261016' && github.ref != 'refs/heads/verification/gp-direct-h55-live-20261016' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    if: github.ref != 'refs/heads/release/gp-priority-direct-20261016' && github.ref != 'refs/heads/release/gp-priority-direct-activation-20261016' && github.ref != 'refs/heads/verification/gp-direct-h55-live-20261016' && github.ref != 'refs/heads/release/factual-recorded-week-direct-20261016' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -269,6 +269,62 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
+  factual-recorded-week-members:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/release/factual-recorded-week-direct-20261016'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Wait for the actual same-source owned factual W release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node release/recorded-week-member-live-20261016.mjs --wait-week
+      - name: Install the unchanged production compiler and isolated browser runtime
+        shell: bash
+        run: |
+          npm ci --ignore-scripts
+          npm install --no-save --ignore-scripts --package-lock=false playwright@1.58.2
+          node -e "require('node:assert/strict').equal(require('./node_modules/wrangler/package.json').version,'4.112.0')"
+          npx playwright install --with-deps chromium
+          npm install --prefix "$RUNNER_TEMP/gp-workerd-4146" --ignore-scripts --package-lock=false wrangler@4.146.0
+          echo "TREATMENT_MINIFLARE=$RUNNER_TEMP/gp-workerd-4146/node_modules/miniflare" >> "$GITHUB_ENV"
+      - name: Acquire the original allowed-workflow commissioning identity
+        id: gp_oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Verify original factual week, private notes, consent and two-holder isolation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.gp_oidc.outputs.token }}
+        run: node release/recorded-week-member-live-20261016.mjs --verify-week
+      - name: Preserve source after the bounded factual W member proof
+        run: |
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Retain actual factual week member evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recorded-week-member-live-${{ github.run_id }}
+          path: growth-member-live-evidence/
+          if-no-files-found: warn
+          retention-days: 30
+
   gp-h55-live-qa:
     concurrency:
       group: cloudflare-production-promote
@@ -288,17 +344,17 @@ jobs:
           fetch-depth: 0
       - uses: actions/checkout@v4
         with:
-          ref: e9491c2686105afc465d1c94e37e5cef63240e11
+          ref: b6f9c0c36d4303e5d384fb2d62b58968b998aa64
           path: runtime
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: 'runtime/.nvmrc'
-      - name: Read actual accepted Q Core and unchanged H HQ release receipts
+      - name: Read actual deployed W Core and unchanged H HQ receipt and journal
         env:
           GH_TOKEN: ${{ github.token }}
         working-directory: runtime
-        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --wait-on
+        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --wait-week
       - name: Install the unchanged production compiler and isolated browser runtime
         shell: bash
         working-directory: runtime
@@ -309,7 +365,7 @@ jobs:
           npx playwright install --with-deps chromium
           npm install --prefix "$RUNNER_TEMP/gp-workerd-4146" --ignore-scripts --package-lock=false wrangler@4.146.0
           echo "TREATMENT_MINIFLARE=$RUNNER_TEMP/gp-workerd-4146/node_modules/miniflare" >> "$GITHUB_ENV"
-      - name: Verify the exact Q disclosure and identity regressions before fixtures
+      - name: Verify exact W inverse, identity and freshness controls before fixtures
         working-directory: runtime
         run: node --test --test-concurrency=1 ../verifier/tests/gp-h55-live-qa-20261016.test.mjs
       - name: Acquire the original allowed-workflow commissioning identity
@@ -321,20 +377,20 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Verify actual GP lookup, save/reopen and two-holder isolation
+      - name: Diagnose original factual W UI and retain all original live acceptance assertions
         env:
           GH_TOKEN: ${{ github.token }}
           CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           SHIFT_COMMISSIONING_OIDC: ${{ steps.gp_oidc.outputs.token }}
         working-directory: runtime
-        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --verify-on
-      - name: Preserve source after the bounded GP-only member proof
+        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --verify-week
+      - name: Preserve exact independently checked-out W runtime
         working-directory: runtime
         run: |
-          test "$(git rev-parse HEAD)" = "e9491c2686105afc465d1c94e37e5cef63240e11"
+          test "$(git rev-parse HEAD)" = "b6f9c0c36d4303e5d384fb2d62b58968b998aa64"
           test -z "$(git status --porcelain --untracked-files=no)"
-      - name: Retain actual member directory activation evidence
+      - name: Retain original factual W member evidence and private diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:

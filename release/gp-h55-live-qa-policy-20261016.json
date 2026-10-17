@@ -1,9 +1,8 @@
 {
-  "schema": "shift-gp-h55-ui-verifier-policy/v1",
-  "runtimeSource": "e9491c2686105afc465d1c94e37e5cef63240e11",
-  "runtimeTree": "c3db6341f2b6c20dcda0eede3eb5fa3dc91a8611",
-  "branch": "verification/gp-direct-h55-live-20261016",
-  "workflow": ".github/workflows/rendered-member-production-acceptance.yml",
+  "schema": "shift-factual-week-independent-verifier/v1",
+  "runtimeSource": "b6f9c0c36d4303e5d384fb2d62b58968b998aa64",
+  "runtimeTree": "00781ce728ca816ddab27022c7bcf8f9e1f13b13",
+  "previousVerifier": "cfef5211a2e82dd759a771dccd73439e97c42f3b",
   "paths": [
     ".github/workflows/rendered-member-production-acceptance.yml",
     "release/gp-h55-live-qa-20261016.mjs",
@@ -11,141 +10,19 @@
     "release/gp-h55-live-qa-policy-20261016.json",
     "tests/gp-h55-live-qa-20261016.test.mjs"
   ],
-  "helper": {
-    "path": "release/gp-directory-live-h55-qa-20261016.mjs",
-    "sha256": "5ee27259046a11e0fc710fd15351669fe95cc705c14f926aea67fb0fee2c10ae",
-    "originalSha256": "d0b9b3f8b84ec70edee049750cfc2e6caf8afafc1a3b0ac0a59165b6d06b1a60",
-    "wholeInverse": [
-      [
-        "from './my-treatment-compiled-control.mjs'",
-        "from '../../runtime/release/my-treatment-compiled-control.mjs'",
-        1
-      ],
-      [
-        "from './gp-directory-live-contract-20261015.mjs'",
-        "from '../../runtime/release/gp-directory-live-contract-20261015.mjs'",
-        1
-      ],
-      [
-        "const sha=v=>",
-        "import {chooseNecessaryCookies} from '../../runtime/rendered-member-acceptance-support.mjs';\n\nexport function isPreventedGpBackground(url,method,{site,api}){\n const u=new URL(url);if(method==='DELETE')return u.pathname==='/v1/acquisition-attribution'&&[site,api].includes(u.origin);if(method!=='POST')return false;\n return u.pathname==='/v1/my-timber-pwa/status'&&[site,api].includes(u.origin)||u.pathname==='/cdn-cgi/rum'&&[site,'https://cloudflareinsights.com'].includes(u.origin);\n}\nexport async function openNormalGpDisclosures(page){\n await chooseNecessaryCookies(page);const started=Date.now(),remaining=()=>{assert(Date.now()-started<30000,'Original Settings opening budget exceeded');return Math.max(1,30000-(Date.now()-started));};\n const form=page.locator('#memberDetailsForm[data-gp-directory-v2=\"true\"]');await form.waitFor({state:'attached',timeout:remaining()});\n await page.waitForFunction(()=>document.querySelector('#memberDetailsForm')?.closest('main')?.getClientRects().length>0,null,{timeout:remaining()});\n for(const selector of ['#memberDetailsForm','#memberEmail','#memberGpSelectionMode']){\n  const field=page.locator(selector);\n  for(let attempt=0;attempt<8;attempt++){\n   const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;\n   let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click({timeout:remaining()});opened=true;break;}}\n   assert(opened,'Original GP control must have a normal visible disclosure summary: '+selector);\n  }\n }\n}\nexport async function readGpOverflowGeometry(page){\n return page.evaluate(()=>{\n  const rect=e=>{const r=e.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};\n  const box=e=>{const c=getComputedStyle(e);return{tag:e.tagName,id:e.id,class:typeof e.className==='string'?e.className:'',rect:rect(e),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,css:{width:c.width,minWidth:c.minWidth,maxWidth:c.maxWidth,fontFamily:c.fontFamily,fontSize:c.fontSize,gridTemplateColumns:c.gridTemplateColumns,flexWrap:c.flexWrap,boxSizing:c.boxSizing,overflowX:c.overflowX,position:c.position,transform:c.transform,padding:c.padding,margin:c.margin,whiteSpace:c.whiteSpace,overflowWrap:c.overflowWrap}};};\n  return{at:new Date().toISOString(),viewport:{innerWidth,innerHeight,devicePixelRatio,visualViewport:window.visualViewport?{width:visualViewport.width,height:visualViewport.height,scale:visualViewport.scale}:null},userAgent:navigator.userAgent,fontsStatus:document.fonts?.status,platform:navigator.platform,root:box(document.documentElement),body:box(document.body),overflowing:[...document.querySelectorAll('body *')].filter(e=>{if(!e.getClientRects().length)return false;const r=e.getBoundingClientRect();return r.right>innerWidth+1||e.scrollWidth>e.clientWidth+1;}).map(e=>({...box(e),ancestors:[e.parentElement,e.parentElement?.parentElement].filter(Boolean).map(box)})).sort((a,b)=>b.rect.right-a.rect.right).slice(0,100)};\n });\n}\n\nconst sha=v=>",
-        1
-      ],
-      [
-        "dir,report,freshSession})",
-        "dir,report,freshSession,runtimeSource})",
-        1
-      ],
-      [
-        "page,site,api,email}){\n const source=process.env.GITHUB_SHA;",
-        "page,site,api,email,runtimeSource}){\n const source=process.env.GITHUB_SHA;",
-        1
-      ],
-      [
-        "const source=process.env.GITHUB_SHA;",
-        "const source=runtimeSource===undefined?process.env.GITHUB_SHA:runtimeSource;",
-        2
-      ],
-      [
-        "const blocked=[],pageErrors=[];",
-        "const blocked=[],pageErrors=[],preventedBackground=[];",
-        1
-      ],
-      [
-        "const req=route.request(),u=new URL(req.url()),method=req.method();\n   try{",
-        "const req=route.request(),u=new URL(req.url()),method=req.method();\n   if(isPreventedGpBackground(req.url(),method,{site,api})){preventedBackground.push({origin:u.origin,path:u.pathname,method,disposition:'aborted_before_network',authority:'Unrelated analytics/PWA and cookie-attribution cleanup writes remain held'});await route.abort('blockedbyclient');return;}\n   try{",
-        1
-      ],
-      [
-        "await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});",
-        "await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});\n  await openNormalGpDisclosures(page);",
-        1
-      ],
-      [
-        "   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));",
-        "   try{assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}catch(error){try{const geometry=await readGpOverflowGeometry(page);(row.layoutDiagnostics??=[]).push({width,...geometry});}catch(diagnosticError){row.overflowGeometryError=String(diagnosticError.message);}const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;}",
-        1
-      ],
-      [
-        "row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;",
-        "row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;row.preventedBackgroundWrites=preventedBackground;",
-        1
-      ],
-      [
-        "export async function readGpOverflowGeometry(page){\n return page.evaluate(()=>{\n",
-        "export async function readGpOverflowGeometry(page){\n return page.evaluate(()=>{\n  const assertionScrollWidth=document.documentElement.scrollWidth,assertionInnerWidth=innerWidth;\n  const assertion={scrollWidth:assertionScrollWidth,innerWidth:assertionInnerWidth,noHorizontalOverflow:assertionScrollWidth<=assertionInnerWidth+1};\n",
-        1
-      ],
-      [
-        "  return{at:new Date().toISOString(),viewport:",
-        "  return{assertion,stylesheets:[...document.querySelectorAll('link[rel=stylesheet]')].map(e=>{const u=new URL(e.href,location.href);return{origin:u.origin,path:u.pathname,loaded:!!e.sheet,disabled:e.disabled};}),at:new Date().toISOString(),viewport:",
-        1
-      ],
-      [
-        "\nconst sha=v=>",
-        "\nexport async function assertGpNoOverflow(page,{row,width,dir}){\n // First check occurs immediately, as before. Later frames add coverage; no\n // failing frame is waited away, no tolerance is widened and no layout changes.\n for(let frame=0;frame<10;frame++){\n  const geometry=await readGpOverflowGeometry(page);\n  try{assert(geometry.assertion.noHorizontalOverflow);}catch(error){\n   (row.layoutDiagnostics??=[]).push({width,frame,...geometry});\n   const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;\n  }\n  if(frame<9)await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));\n }\n}\n\nconst sha=v=>",
-        1
-      ],
-      [
-        "   try{assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}catch(error){try{const geometry=await readGpOverflowGeometry(page);(row.layoutDiagnostics??=[]).push({width,...geometry});}catch(diagnosticError){row.overflowGeometryError=String(diagnosticError.message);}const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;}\n",
-        "   await assertGpNoOverflow(page,{row,width,dir});\n",
-        1
-      ],
-      [
-        "\nconst sha=v=>",
-        "\nexport function clinicalGpReuseState({status,assessmentAvailable,expectedInactive}){\n assert.equal(status,200,'Actual owned-account clinical context must authenticate successfully');assert.equal(typeof assessmentAvailable,'boolean');assert.equal(typeof expectedInactive,'boolean');\n if(expectedInactive){assert.equal(assessmentAvailable,false,'The retained clinical activation boundary must remain OFF');return'blocked_by_retained_clinical_activation';}\n assert.equal(assessmentAvailable,true,'Unexpected clinical unavailability remains a technical failure');return'run_original_positive_assertions';\n}\n\nconst sha=v=>",
-        1
-      ],
-      [
-        "dir,report,freshSession,runtimeSource})",
-        "dir,report,freshSession,runtimeSource,clinicalConnectionExpectedInactive=false,assessmentVariantId=null})",
-        1
-      ],
-      [
-        "  const assessment=await page.context().newPage();assessment.on('pageerror',onPageError);try{\n   await assessment.goto(site+'/treatment-assessment',{waitUntil:'domcontentloaded'});",
-        "  const clinicalRow={requirement:'Original positive GP reuse in clinical assessment',status:'running',source,originalPositiveAssertionsExecuted:false,intakeSubmitted:false,paymentAttempted:false};report.checks.push(clinicalRow);\n  const assessment=await page.context().newPage();assessment.on('pageerror',onPageError);try{\n   const contextResponse=await assessment.request.get(api+'/v1/commerce/medicine-clinical-context',{headers:{Origin:site,'Cache-Control':'no-cache'}}),context=await contextResponse.json();\n   const state=clinicalGpReuseState({status:contextResponse.status(),assessmentAvailable:context.assessmentAvailable,expectedInactive:clinicalConnectionExpectedInactive});\n   clinicalRow.observed={authenticatedContextStatus:contextResponse.status(),assessmentAvailable:context.assessmentAvailable,expectedClinicalConnectionInactive:clinicalConnectionExpectedInactive};\n   if(state==='run_original_positive_assertions')assert(Number.isSafeInteger(assessmentVariantId)&&assessmentVariantId>0,'An actual approved selected treatment variant is required; no stock or treatment-selection bypass');\n   await assessment.goto(site+'/treatment-assessment'+(assessmentVariantId?'?variant='+encodeURIComponent(assessmentVariantId):''),{waitUntil:'domcontentloaded'});\n   if(state==='blocked_by_retained_clinical_activation'){\n    await assessment.locator('#status').filter({hasText:'Assessment is not open for this selection.'}).waitFor({timeout:30000});assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name=\"gpContactConsent\"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);\n    clinicalRow.status='blocked';clinicalRow.requiredInput='Chosen prescriber approved questionnaire/API/identity/evidence/consent workflow, applicable clinical activation approval and an actually available permitted selected variant. Keep stock and sales controls intact.';clinicalRow.closedGateVerified=true;\n   }else{\n",
-        1
-      ],
-      [
-        "  }finally{await assessment.close();}",
-        "   clinicalRow.originalPositiveAssertionsExecuted=true;clinicalRow.status='pass';\n   }\n  }finally{await assessment.close();}",
-        1
-      ],
-      [
-        "row.status='pass';return page;",
-        "row.scope='GP settings, persistence, denial and marker proof; clinical assessment positive case is separately reported';row.status='pass';return page;",
-        1
-      ],
-      [
-        "    await assessment.locator('#status').filter({hasText:'Assessment is not open for this selection.'}).waitFor({timeout:30000});assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name=\"gpContactConsent\"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);",
-        "    assert.equal(typeof context.emailVerified,'boolean');const accountMessage=context.emailVerified?'Signed in to My Timber. Check your saved contact details before submitting.':'Your account email must be verified before submission. No email has been requested by this page.';await assessment.locator('#accountStatus').filter({hasText:accountMessage}).waitFor({timeout:30000});assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name=\"gpContactConsent\"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);",
-        1
-      ]
-    ]
-  },
   "runner": {
     "path": "release/gp-h55-live-qa-20261016.mjs",
-    "sha256": "42fc63a868a728dfd19bf8abf695756c36a6227640d8680e6993af2efc7dfecf",
-    "originalSha256": "496bc6458786ae3a7161b95b58c0e9e319700f18dac062b8b32d883d41f9a4da",
+    "sha256": "8acc167e48d27b6a8e24737c8645d0a16570158bd9a22ef4fdca04ea0dd5891a",
+    "originalSha256": "bbf22e9dae25d22f59fe860c3fcd641a3c6eccbec48acecc5c62f0395ea7f6b7",
     "wholeInverse": [
       [
-        "mkdirSync,readFileSync,writeFileSync,readdirSync",
-        "mkdirSync,readFileSync,writeFileSync,readdirSync,realpathSync",
+        "import {join,resolve} from 'node:path';",
+        "import {join,resolve,dirname} from 'node:path';\nimport {createRequire} from 'node:module';",
         1
       ],
       [
-        "{join,resolve}",
-        "{join,resolve,dirname}",
-        1
-      ],
-      [
-        "import {pathToFileURL}",
-        "import {createRequire} from 'node:module';\nimport {pathToFileURL}",
-        1
-      ],
-      [
-        "{pathToFileURL}",
-        "{pathToFileURL,fileURLToPath}",
+        "import {pathToFileURL} from 'node:url';",
+        "import {pathToFileURL,fileURLToPath} from 'node:url';",
         1
       ],
       [
@@ -154,28 +31,33 @@
         1
       ],
       [
-        "function actualSource(){\n assert.equal(process.env.GITHUB_REPOSITORY,repository);\n assert.equal(process.env.GITHUB_REF,'refs/heads/'+GP_ON_BRANCH);\n const source=process.env.GITHUB_SHA;sha40(source);assert.equal(git('rev-parse','HEAD'),source);\n return source;\n}\n",
-        "export const QA_BRANCH='verification/gp-direct-h55-live-20261016';\nexport const QA_WORKFLOW='.github/workflows/rendered-member-production-acceptance.yml';\nexport const TARGET_RUNTIME_SOURCE='55b73025f5b6d2302fab42bce73a222653404186';\nexport const TARGET_RUNTIME_TREE='550bec05b5dbf98bb31eed006b2158f73b4ee79f';\nconst verifierRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');\nconst native=(dir,...args)=>execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',dir,...args],{encoding:'utf8',env:{...process.env,GIT_NO_LAZY_FETCH:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0'},maxBuffer:64e6}).trim();\nexport function assertQaIdentity(run,{source,runId,attempt}){\n sha40(source);assert.equal(run.head_sha,source);assert.equal(run.head_branch,QA_BRANCH);assert.equal(run.path,QA_WORKFLOW);assert.equal(run.event,'push');assert.equal(run.head_repository.full_name,repository);\n assert.equal(String(run.id),String(runId));assert.equal(String(run.run_attempt),String(attempt));assert(Number.isSafeInteger(run.id)&&run.id>0);assert(Number.isSafeInteger(run.run_attempt)&&run.run_attempt>0);return run;\n}\nfunction actualVerifier(){\n assert.equal(process.env.GITHUB_REPOSITORY,repository);assert.equal(process.env.GITHUB_REF,'refs/heads/'+QA_BRANCH);assert.equal(process.env.GITHUB_EVENT_NAME,'push');\n const source=process.env.GITHUB_SHA;sha40(source);assert.equal(native(verifierRoot,'rev-parse','HEAD'),source);\n assert.equal(native(verifierRoot,'status','--porcelain','--untracked-files=no'),'');\n const manifest=JSON.parse(readFileSync(resolve(verifierRoot,'release/gp-h55-live-qa-policy-20261016.json'),'utf8'));\n assert.equal(manifest.runtimeSource,TARGET_RUNTIME_SOURCE);assert.equal(manifest.runtimeTree,TARGET_RUNTIME_TREE);assert.equal(manifest.schema,'shift-gp-h55-ui-verifier-policy/v1');\n const expected=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-h55-live-qa-20261016.mjs','release/gp-directory-live-h55-qa-20261016.mjs','release/gp-h55-live-qa-policy-20261016.json','tests/gp-h55-live-qa-20261016.test.mjs'];\n assert.deepEqual([...manifest.paths].sort(),expected.sort());assert.deepEqual(native(verifierRoot,'diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',TARGET_RUNTIME_SOURCE,source,'--').split('\\n').filter(Boolean).sort(),expected.sort(),'Only the finite QA verifier files may differ from H55');\n for(const path of expected){const bytes=readFileSync(resolve(verifierRoot,path)),nativeBytes=execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',verifierRoot,'show',source+':'+path],{maxBuffer:64e6});assert.equal(hash(bytes),hash(nativeBytes));}\n return{source,tree:native(verifierRoot,'rev-parse','HEAD^{tree}'),branch:QA_BRANCH,workflow:QA_WORKFLOW,run:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,overlaySha256:manifest.helper.sha256};\n}\nfunction actualSource(){\n actualVerifier();assert.equal(realpathSync(process.cwd()),realpathSync(resolve(verifierRoot,'../runtime')),'Use the independently checked-out H55 runtime directory');\n const source=native(process.cwd(),'rev-parse','HEAD');assert.equal(source,TARGET_RUNTIME_SOURCE);assert.equal(native(process.cwd(),'rev-parse','HEAD^{tree}'),TARGET_RUNTIME_TREE);\n assert.equal(native(process.cwd(),'status','--porcelain','--untracked-files=no'),'');\n for(const row of native(process.cwd(),'ls-files','-v','-z').split('\\0').filter(Boolean))assert(row.startsWith('H '),'Hidden tracked H55 runtime refused');\n return source;\n}\n",
+        "function actualSource(){",
+        "\n// Existing bounded verifier slot now targets the genuinely deployed W runtime.\n// The verifier and runtime remain independent complete native Git checkouts.\nexport const QA_BRANCH='verification/gp-direct-h55-live-20261016';\nexport const QA_WORKFLOW='.github/workflows/rendered-member-production-acceptance.yml';\nexport const TARGET_RUNTIME_SOURCE='b6f9c0c36d4303e5d384fb2d62b58968b998aa64';\nexport const TARGET_RUNTIME_TREE='00781ce728ca816ddab27022c7bcf8f9e1f13b13';\nconst verifierRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');\nconst POLICY='release/gp-h55-live-qa-policy-20261016.json';\nconst QA_PATHS=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-h55-live-qa-20261016.mjs','release/gp-directory-live-h55-qa-20261016.mjs','release/gp-h55-live-qa-policy-20261016.json','tests/gp-h55-live-qa-20261016.test.mjs'];\nconst native=(dir,...args)=>execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',dir,...args],{encoding:'utf8',env:{...process.env,GIT_NO_LAZY_FETCH:'1',GIT_OPTIONAL_LOCKS:'0',GIT_TERMINAL_PROMPT:'0'},maxBuffer:64e6}).trim();\nexport function inverseLiteral(value,edits){\n for(const[before,after,count]of[...edits].reverse()){\n  if(count==='suffix'){assert(value.endsWith(after));value=value.slice(0,-after.length);}\n  else{assert.equal(value.split(after).length-1,count,'Complete exact inverse required');value=value.split(after).join(before);}\n }return value;\n}\nexport function assertQaFileInverses(){\n const policy=JSON.parse(readFileSync(resolve(verifierRoot,POLICY),'utf8'));\n assert.equal(policy.runtimeSource,TARGET_RUNTIME_SOURCE);assert.equal(policy.runtimeTree,TARGET_RUNTIME_TREE);\n assert.equal(policy.schema,'shift-factual-week-independent-verifier/v1');\n for(const[name,path]of[['runner','release/recorded-week-member-live-20261016.mjs'],['helper','release/recorded-week-live-20261014.mjs']]){\n  const row=policy[name],body=readFileSync(resolve(verifierRoot,row.path),'utf8');assert.equal(hash(body),row.sha256);\n  const original=inverseLiteral(body,row.wholeInverse);assert.equal(hash(original),row.originalSha256);\n  assert.equal(original,readFileSync(resolve(verifierRoot,'../runtime',path),'utf8'),'Every original W assertion and control retained');\n }\n assert.equal(inverseLiteral(readFileSync(resolve(verifierRoot,QA_WORKFLOW),'utf8'),policy.workflowInverse),readFileSync(resolve(verifierRoot,'../runtime',QA_WORKFLOW),'utf8'));\n return{originalAssertionsAndCommandsRetained:true,providerWrites:0};\n}\nexport function assertQaIdentity(run,{source,runId,attempt}){\n sha40(source);assert.equal(run.head_sha,source);assert.equal(run.head_branch,QA_BRANCH);assert.equal(run.path,QA_WORKFLOW);assert.equal(run.event,'push');assert.equal(run.head_repository.full_name,repository);\n assert.equal(String(run.id),String(runId));assert.equal(String(run.run_attempt),String(attempt));assert(Number.isSafeInteger(run.id)&&run.id>0);assert(Number.isSafeInteger(run.run_attempt)&&run.run_attempt>0);return run;\n}\nexport function assertFreshWindow(at,now=Date.now()){\n const finished=Date.parse(at);assert(Number.isFinite(finished)&&finished<=now&&now-finished<=900000,'Original fifteen-minute freshness limit retained for actual current ownership');return finished;\n}\nfunction actualVerifier(){\n assert.equal(process.env.GITHUB_REPOSITORY,repository);assert.equal(process.env.GITHUB_REF,'refs/heads/'+QA_BRANCH);assert.equal(process.env.GITHUB_EVENT_NAME,'push');\n const source=process.env.GITHUB_SHA;sha40(source);assert.equal(native(verifierRoot,'rev-parse','HEAD'),source);assert.equal(native(verifierRoot,'status','--porcelain','--untracked-files=no'),'');\n assertQaFileInverses();const policy=JSON.parse(readFileSync(resolve(verifierRoot,POLICY),'utf8'));\n assert.deepEqual([...policy.paths].sort(),QA_PATHS.slice().sort());\n assert.deepEqual(native(verifierRoot,'diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',TARGET_RUNTIME_SOURCE,source,'--').split('\\n').filter(Boolean).sort(),QA_PATHS.slice().sort());\n for(const path of QA_PATHS){const bytes=readFileSync(resolve(verifierRoot,path)),stored=execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',verifierRoot,'show',source+':'+path],{maxBuffer:64e6});assert.equal(hash(bytes),hash(stored));}\n assert.equal(resolve(process.cwd()),resolve(verifierRoot,'../runtime'));\n assert.equal(native(process.cwd(),'rev-parse','HEAD'),TARGET_RUNTIME_SOURCE);assert.equal(native(process.cwd(),'rev-parse','HEAD^{tree}'),TARGET_RUNTIME_TREE);assert.equal(native(process.cwd(),'status','--porcelain','--untracked-files=no'),'');\n for(const row of native(process.cwd(),'ls-files','-v','-z').split('\\0').filter(Boolean))assert(row.startsWith('H '));\n return{source,tree:native(verifierRoot,'rev-parse','HEAD^{tree}'),run:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,runtimeSource:TARGET_RUNTIME_SOURCE};\n}\n\nfunction actualSource(){",
         1
       ],
       [
-        " assert.equal(receipt.main,LANE.main,",
-        " const startedAt=new Date().toISOString(),checkStarted=Date.now();actualSource();assertQaIdentity(await readGithub('/actions/runs/'+process.env.GITHUB_RUN_ID),{source:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT});\n assert.equal((await readGithub('/git/ref/heads/'+QA_BRANCH)).object.sha,process.env.GITHUB_SHA,'QA verifier branch moved');\n assert.equal(receipt.main,LANE.main,",
+        "function actualSource(){\n assert.equal(process.env.GITHUB_REPOSITORY,repository);\n assert.equal(process.env.GITHUB_REF,'refs/heads/'+W_BRANCH);\n const source=process.env.GITHUB_SHA;sha40(source);assert.equal(git('rev-parse','HEAD'),source);\n return source;\n}",
+        "function actualSource(){\n actualVerifier();\n execFileSync(process.execPath,['--input-type=module','-e',\"import {readFileSync} from 'node:fs';import {verifyRecordedWeekDirect} from './release/recorded-week-direct-scope-20261016.mjs';verifyRecordedWeekDirect(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).myTimberRecordedWeekActivation20261014);\"],{encoding:'utf8',maxBuffer:1e6});\n return TARGET_RUNTIME_SOURCE;\n}",
         1
       ],
       [
-        " return{at:new Date().toISOString(),source,main:receipt.main,workers:actual};",
-        " const proof={startedAt,at:new Date().toISOString(),source,main:receipt.main,workers:actual,verifier:actualVerifier()};const elapsed=Date.now()-checkStarted;assert(elapsed>=0&&elapsed<=300000,'Actual owned provider/source proof must be current within five minutes from first read');return proof;",
+        "export async function assertCurrentOwnedWeek(receipt,run,source,baseline,{readProvider=providerDeployments,readGithub=api}={}){\n",
+        "export async function assertCurrentOwnedWeek(receipt,run,source,baseline,{readProvider=providerDeployments,readGithub=api}={}){\n const started=Date.now(),verifier=actualVerifier();\n assert.equal(source,TARGET_RUNTIME_SOURCE);assert.equal(receipt.source,source);assert.equal(receipt.tree,TARGET_RUNTIME_TREE);\n assertQaIdentity(await readGithub('/actions/runs/'+process.env.GITHUB_RUN_ID),{source:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT});\n assert.equal((await readGithub('/git/ref/heads/'+QA_BRANCH)).object.sha,process.env.GITHUB_SHA,'Actual verifier moved');\n const terminal=assertOwnedWeekRun(await readGithub('/actions/runs/'+run.id),source);assert.equal(terminal.id,38990992637);assert.equal(terminal.run_attempt,run.run_attempt);\n",
         1
       ],
       [
-        "const finished=Date.parse(current.updated_at);assert(Number.isFinite(finished)&&finished<=Date.now()&&Date.now()-finished<=900000,'Fresh actual ON terminal within 15 minutes required before fixture creation');",
-        "const finished=Date.parse(current.updated_at);assert(Number.isFinite(finished)&&finished<=Date.now(),'Retain the true historical H terminal; fresh current ownership is separately required before each fixture');",
+        "return{at:new Date().toISOString(),source,main:receipt.main,workers:actual};",
+        "assert(Date.now()-started<=300000,'Fresh current provider/source evidence must complete inside five minutes');return{at:new Date().toISOString(),source,main:receipt.main,workers:actual,verifier};",
         1
       ],
       [
-        "import('../rendered-member-acceptance-support.mjs')",
-        "import('../../runtime/rendered-member-acceptance-support.mjs')",
+        "const bytes=readFileSync(proof.receiptPath,'utf8');assert.equal(hash(bytes),proof.receiptSHA256);",
+        "const bytes=readFileSync(proof.receiptPath,'utf8');assert.equal(hash(bytes),proof.receiptSHA256);assert.equal(proof.receiptSHA256,'3261fbd1a27a504746ff64f2003b8ff4922d23351c16ecd4c1f7a2d769067290','Exact genuine deployed W receipt required');",
+        1
+      ],
+      [
+        "const finished=Date.parse(current.updated_at);assert(Number.isFinite(finished)&&finished<=Date.now()&&Date.now()-finished<=900000,'Fresh actual W terminal within 15 minutes required before fixture creation');",
+        "assert(Number.isFinite(Date.parse(current.updated_at))&&Date.parse(current.updated_at)<=Date.now(),'Preserve actual original terminal time');const freshOwnership=await assertCurrentOwnedWeek(runtime,run,source,baseline);const finished=assertFreshWindow(freshOwnership.at);",
         1
       ],
       [
@@ -184,331 +66,79 @@
         1
       ],
       [
-        "import('./gp-directory-live-20261015.mjs')",
-        "import('./gp-directory-live-h55-qa-20261016.mjs')",
+        "await import('../rendered-member-acceptance-support.mjs')",
+        "await import('../../runtime/rendered-member-acceptance-support.mjs')",
         1
       ],
       [
-        "schema:'shift-gp-member-directory-live/v1'",
-        "schema:'shift-gp-h55-member-qa-live/v1',runtimeSource:source,verifier:actualVerifier(),historicalRuntimeTerminalAt:current.updated_at,currentOwnershipRequired:true",
+        "await import('./recorded-week-live-20261014.mjs')",
+        "await import('./gp-directory-live-h55-qa-20261016.mjs')",
         1
       ],
       [
-        "email:first.email,dir:directory,report,freshSession:",
-        "email:first.email,dir:directory,report,runtimeSource:source,freshSession:",
+        "await import('./my-treatment-compiled-control.mjs')",
+        "await import('../../runtime/release/my-treatment-compiled-control.mjs')",
         1
       ],
       [
-        "email:second.email});\n  assert.equal(isolation.status",
-        "email:second.email,runtimeSource:source});\n  assert.equal(isolation.status",
+        "const report={schema:'shift-recorded-week-member-live/v1',",
+        "const report={verifier:actualVerifier(),schema:'shift-recorded-week-member-live/v1',",
+        1
+      ]
+    ]
+  },
+  "helper": {
+    "path": "release/gp-directory-live-h55-qa-20261016.mjs",
+    "sha256": "4d162c0299d300683826ff664a43499ba7ccd8cd73d7f30a789ab075002174ef",
+    "originalSha256": "5c034f6a4719c97ccb008e859ee1e02e8ebf927a398e4f12c3f224e22f571666",
+    "wholeInverse": [
+      [
+        "from '../rendered-member-acceptance-support.mjs'",
+        "from '../../runtime/rendered-member-acceptance-support.mjs'",
         1
       ],
       [
-        "join(directory,'gp-member-directory-report.json')",
-        "join(directory,'gp-h55-member-qa-report.json')",
+        "from './my-treatment-compiled-control.mjs'",
+        "from '../../runtime/release/my-treatment-compiled-control.mjs'",
         1
       ],
       [
-        "export const TARGET_RUNTIME_SOURCE='55b73025f5b6d2302fab42bce73a222653404186';",
-        "export const TARGET_RUNTIME_SOURCE='e9491c2686105afc465d1c94e37e5cef63240e11';",
+        "const source=process.env.GITHUB_SHA;",
+        "const source='b6f9c0c36d4303e5d384fb2d62b58968b998aa64';",
+        2
+      ],
+      [
+        "const week=page.locator('.shift-treatment-week');await week.locator('summary').first().click();await week.getByLabel('Choose a recorded week').waitFor({timeout:30000});",
+        "const week=page.locator('.shift-treatment-week');try{await week.locator('summary').first().click();await week.getByLabel('Choose a recorded week').waitFor({timeout:30000});}catch(error){\n   // Verified fictional holder only. Keep original assertions and timeout; retain\n   // private structural diagnostics before the unchanged owned-record cleanup.\n   const width=page.viewportSize()?.width||0;\n   const state=await page.evaluate(()=>({path:location.pathname,hidden:document.hidden,readyState:document.readyState,weekCount:document.querySelectorAll('.shift-treatment-week').length,patterns:[...document.querySelectorAll('.shift-pattern-panel')].map(x=>({connected:x.isConnected,visible:x.getClientRects().length>0,text:x.innerText})),scripts:[...document.scripts].map(x=>new URL(x.src||location.href).pathname)})).catch(()=>({unavailable:true}));\n   writeFileSync(join(dir,'week-mount-diagnostic-'+width+'.json'),JSON.stringify({source,state},null,2)+'\\n');\n   await page.screenshot({path:join(dir,'week-mount-diagnostic-'+width+'.png'),fullPage:true}).catch(()=>{});\n   writeFileSync(join(dir,'week-mount-diagnostic-'+width+'.html'),await page.content().catch(()=>'<p>Unavailable</p>'));\n   throw error;\n  }",
         1
       ],
       [
-        "export const TARGET_RUNTIME_TREE='550bec05b5dbf98bb31eed006b2158f73b4ee79f';",
-        "export const TARGET_RUNTIME_TREE='c3db6341f2b6c20dcda0eede3eb5fa3dc91a8611';",
-        1
-      ],
-      [
-        "const verifierRoot=",
-        "export const GP_ACTIVATION_SOURCE='55b73025f5b6d2302fab42bce73a222653404186';\nexport const GP_ACTIVATION_TREE='550bec05b5dbf98bb31eed006b2158f73b4ee79f';\nexport const CURRENT_CORE_BRANCH='fix/questionnaire-handover-20261016';\nexport const CURRENT_CORE_WORKFLOW='.github/workflows/questionnaire-handover-release-20261016.yml';\nexport const CURRENT_CORE_RUN=38980756381,ACTIVATION_RUN=38974318146;\nexport function assertCurrentCoreRun(run,{terminal=true}={}){\n assert.equal(run.head_sha,TARGET_RUNTIME_SOURCE);assert.equal(run.head_branch,CURRENT_CORE_BRANCH);assert.equal(run.path,CURRENT_CORE_WORKFLOW);assert.equal(run.name,'Questionnaire Handover Nonclinical Release');\n assert.equal(run.event,'push');assert.equal(run.head_repository?.full_name,repository);assert.equal(run.id,CURRENT_CORE_RUN);assert.equal(run.html_url,'https://github.com/'+repository+'/actions/runs/'+run.id);assert(Number.isSafeInteger(run.run_attempt)&&run.run_attempt>0);\n if(terminal){assert.equal(run.status,'completed');assert.equal(run.conclusion,'success');}return run;\n}\nexport function assertCompositeReceipts({code,codeRun,activation,activationRun}){\n assertCurrentCoreRun(codeRun);assertOwnedOnReceipt(activation,activationRun,GP_ACTIVATION_SOURCE,GP_ACTIVATION_TREE);\n assert.equal(code.schema,'shift-questionnaire-runtime-receipt/v1');assert.equal(code.source,TARGET_RUNTIME_SOURCE);assert.equal(code.tree,TARGET_RUNTIME_TREE);assert.equal(code.branch,CURRENT_CORE_BRANCH);assert.equal(code.workflow,CURRENT_CORE_WORKFLOW);assert.equal(code.releaseBranch,CURRENT_CORE_BRANCH);assert.equal(code.releaseWorkflow,CURRENT_CORE_WORKFLOW);assert.equal(code.releaseRun,codeRun.id);\n assert.equal(String(code.run),String(codeRun.id));assert.equal(String(code.attempt),String(codeRun.run_attempt));assert.equal(code.main,activation.main);assert.equal(code.ownership.mainBefore,code.main);assert.equal(code.ownership.mainAfter,code.main);\n assert.equal(code.status,'code_only_verified');assert.equal(code.gpEnabled,true);assert.equal(code.partnerContractActivated,false);assert.equal(code.partnerTestPassed,false);assert.equal(code.featureAcceptance,false);assert.equal(code.dataWrites,0);assert.equal(code.externalMessages,0);assert.deepEqual(Object.keys(code.workers),['core']);\n const core=code.workers.core;assert.equal(core.source,TARGET_RUNTIME_SOURCE);assert.equal(core.run,codeRun.id);assert.equal(core.attempt,codeRun.run_attempt);uuid(core.deploymentId);uuid(core.versionId);assert.equal(core.percentage,100);assert.equal(core.gpEnabled,true);assert.equal(core.bundleSha256,'19092d5b673c5fb8201ebda993d0ae373a206eee57fd334598a36a58f33730f3');assert.equal(core.bundleBytes,14775946);assert.equal(core.allBindingsSha256,activation.workers.core.allBindingsSha256);assert.equal(core.otherBindingsSha256,activation.workers.core.otherBindingsSha256);\n const privateChecks=code.anonymousBoundary.filter(row=>row.privateDenialVerified);assert.equal(privateChecks.length,4);assert.deepEqual(privateChecks.map(r=>[r.origin,r.path,r.status]).sort(),['https://shiftsometimber.co.uk','https://api.shiftsometimber.co.uk'].flatMap(origin=>['/v1/member/details','/v1/member/details/gp-search'].map(path=>[origin,path,401])).sort());\n assert.equal(code.anonymousBoundary.filter(r=>r.exactCompiledResponse===true&&r.status===200).length,3);\n return{schema:'shift-gp-current-composite/v1',source:TARGET_RUNTIME_SOURCE,tree:TARGET_RUNTIME_TREE,main:code.main,workers:{core,hq:activation.workers.hq},code,codeRun,activation,activationRun};\n}\nfunction inverseLiteral(value,edits){\n for(const [before,after,count=1]of [...edits].reverse()){\n  if(count==='suffix'){assert(value.endsWith(after),'Exact original QA workflow suffix required');value=value.slice(0,-after.length);}\n  else{assert.equal(value.split(after).length-1,count,'Every bounded inverse must be unique and complete');value=value.split(after).join(before);}\n }return value;\n}\nexport function assertQaFileInverses(){\n const policy=JSON.parse(readFileSync(resolve(verifierRoot,'release/gp-h55-live-qa-policy-20261016.json'),'utf8'));\n for(const name of ['helper','runner']){const row=policy[name],body=readFileSync(resolve(verifierRoot,row.path),'utf8');assert.equal(hash(body),row.sha256,'Frozen QA '+name+' hash changed');const original=inverseLiteral(body,row.wholeInverse);assert.equal(hash(original),row.originalSha256,'Every original '+name+' assertion and control must remain');const path=name==='helper'?'release/gp-directory-live-20261015.mjs':'release/gp-member-directory-activation-live-20261016.mjs';assert.equal(original,readFileSync(resolve(verifierRoot,'../runtime',path),'utf8'),'Original runtime QA donor differs');}\n const restored=inverseLiteral(readFileSync(resolve(verifierRoot,QA_WORKFLOW),'utf8'),policy.workflowInverse);assert.equal(restored,readFileSync(resolve(verifierRoot,'../runtime',QA_WORKFLOW),'utf8'),'Every original workflow command and authority remains exact');return{originalAssertionsAndCommandsRetained:true,providerWrites:0};\n}\nconst verifierRoot=",
-        1
-      ],
-      [
-        " const manifest=JSON.parse(readFileSync(resolve(verifierRoot,'release/gp-h55-live-qa-policy-20261016.json'),'utf8'));",
-        " assertQaFileInverses();\n const manifest=JSON.parse(readFileSync(resolve(verifierRoot,'release/gp-h55-live-qa-policy-20261016.json'),'utf8'));",
-        1
-      ],
-      [
-        " assert.equal(native(process.cwd(),'status','--porcelain','--untracked-files=no'),'');\n for(const row",
-        " assert.equal(native(process.cwd(),'status','--porcelain','--untracked-files=no'),'');\n const admitted=JSON.parse(execFileSync(process.execPath,['--input-type=module','-e',\"import {verifyQuestionnaireSource} from './release/questionnaire-handover-source-20261016.mjs'; console.log(JSON.stringify(verifyQuestionnaireSource()))\"],{encoding:'utf8',maxBuffer:1e6}));assert.equal(admitted.source,source);assert.equal(admitted.tree,TARGET_RUNTIME_TREE);\n for(const row",
-        1
-      ],
-      [
-        " assert.equal((await readGithub('/git/ref/heads/'+GP_ON_BRANCH)).object.sha,source,'Owned GP branch moved before member proof');",
-        " assertCompositeReceipts(receipt);assert.equal(run.id,receipt.codeRun.id);\n assert.equal((await readGithub('/git/ref/heads/'+GP_ON_BRANCH)).object.sha,GP_ACTIVATION_SOURCE,'Historical GP activation branch moved');\n assert.equal((await readGithub('/git/ref/heads/'+CURRENT_CORE_BRANCH)).object.sha,source,'Actual Core release branch moved');\n const currentCore=assertCurrentCoreRun(await readGithub('/actions/runs/'+receipt.codeRun.id));assert.equal(currentCore.run_attempt,receipt.codeRun.run_attempt);const currentActivation=assertOwnedOnRun(await readGithub('/actions/runs/'+receipt.activationRun.id),GP_ACTIVATION_SOURCE);assert.equal(currentActivation.run_attempt,receipt.activationRun.run_attempt);",
-        1
-      ],
-      [
-        "  assertOwned(active,receipt.workers[name],source,run.id,run.run_attempt);",
-        "  const row=receipt.workers[name];assertOwned(active,row,row.source,row.run,row.attempt);",
-        1
-      ],
-      [
-        "async function waitForOn(){\n const source=actualSource(),tree=git('rev-parse','HEAD^{tree}'),started=Date.now();mkdirSync(directory,{recursive:true});\n let run;\n while(Date.now()-started<1200000){\n  const result=await api('/actions/workflows/'+GP_ON_WORKFLOW.split('/').at(-1)+'/runs?branch='+encodeURIComponent(GP_ON_BRANCH)+'&event=push&per_page=20');\n  const matches=result.workflow_runs.filter(row=>row.head_sha===source).sort((a,b)=>b.id-a.id);\n  if(matches.length){run=assertOwnedOnRun(matches[0],source,{terminal:false});if(run.status==='completed'){assertOwnedOnRun(run,source);break;}}\n  await new Promise(resolve=>setTimeout(resolve,10000));\n }\n assert(run?.status==='completed'&&run.conclusion==='success','Actual same-source ON release did not succeed inside finite 20-minute wait');\n const artifacts=(await api('/actions/runs/'+run.id+'/artifacts')).artifacts.filter(row=>row.name==='gp-direct-directory-activation-'+run.id&&!row.expired);\n assert.equal(artifacts.length,1,'One actual owned ON artifact required');assert(artifacts[0].size_in_bytes>0);\n const artifactDirectory=join(directory,'owned-on-artifact');mkdirSync(artifactDirectory,{recursive:true});\n execFileSync('gh',['run','download',String(run.id),'--repo',repository,'--name',artifacts[0].name,'--dir',artifactDirectory],{encoding:'utf8',stdio:['ignore','pipe','pipe']});\n const receipts=jsonFiles(artifactDirectory).map(path=>({path,bytes:readFileSync(path,'utf8')})).map(row=>({...row,value:JSON.parse(row.bytes)})).filter(row=>row.value.schema==='shift-gp-direct-activation-receipt/v1');\n assert.equal(receipts.length,1,'One actual runtime receipt in owned artifact required');\n assertOwnedOnReceipt(receipts[0].value,run,source,tree);\n run=assertOwnedOnRun(await api('/actions/runs/'+run.id),source);\n assert.equal(String(receipts[0].value.attempt),String(run.run_attempt),'Owned release attempt moved during artifact read');\n writeFileSync(join(directory,'owned-on-run.json'),JSON.stringify(run,null,2)+'\\n');\n writeFileSync(join(directory,'owned-on-proof.json'),JSON.stringify({source,tree,run:run.id,attempt:run.run_attempt,artifact:artifacts[0].id,receiptPath:receipts[0].path,receiptSHA256:hash(receipts[0].bytes)},null,2)+'\\n');\n console.log('PASS actual same-source owned GP ON release and artifact; authenticated member proof has not run yet');\n}\n",
-        "async function waitForOn(){\n const source=actualSource(),started=Date.now();mkdirSync(directory,{recursive:true});\n let codeRun;\n while(Date.now()-started<1200000){codeRun=assertCurrentCoreRun(await api('/actions/runs/'+CURRENT_CORE_RUN),{terminal:false});if(codeRun.status==='completed'){assertCurrentCoreRun(codeRun);break;}await new Promise(resolve=>setTimeout(resolve,10000));}\n assert(codeRun?.status==='completed'&&codeRun.conclusion==='success','Actual current Core release did not succeed inside the original finite20-minute wait');\n const activationRun=assertOwnedOnRun(await api('/actions/runs/'+ACTIVATION_RUN),GP_ACTIVATION_SOURCE);\n async function receipt(run,name,schema){\n  const artifacts=(await api('/actions/runs/'+run.id+'/artifacts')).artifacts.filter(row=>row.name===name&&!row.expired);assert.equal(artifacts.length,1);assert(artifacts[0].size_in_bytes>0);assert.match(artifacts[0].digest||'',/^sha256:[a-f0-9]{64}$/);\n  const target=join(directory,'owned-'+run.id);mkdirSync(target,{recursive:true});execFileSync('gh',['run','download',String(run.id),'--repo',repository,'--name',name,'--dir',target],{encoding:'utf8',stdio:['ignore','pipe','pipe']});\n  const rows=jsonFiles(target).map(path=>({path,bytes:readFileSync(path,'utf8')})).map(row=>({...row,value:JSON.parse(row.bytes)})).filter(row=>row.value.schema===schema);assert.equal(rows.length,1);return{path:rows[0].path,sha256:hash(rows[0].bytes),artifact:artifacts[0].id,artifactDigest:artifacts[0].digest,value:rows[0].value};\n }\n const code=await receipt(codeRun,'questionnaire-runtime-release-'+codeRun.id,'shift-questionnaire-runtime-receipt/v1'),activation=await receipt(activationRun,'gp-direct-directory-activation-'+activationRun.id,'shift-gp-direct-activation-receipt/v1');\n assertCompositeReceipts({code:code.value,codeRun,activation:activation.value,activationRun});\n assert.equal(assertCurrentCoreRun(await api('/actions/runs/'+codeRun.id)).run_attempt,codeRun.run_attempt);assert.equal(assertOwnedOnRun(await api('/actions/runs/'+activationRun.id),GP_ACTIVATION_SOURCE).run_attempt,activationRun.run_attempt);\n writeFileSync(join(directory,'owned-on-run.json'),JSON.stringify(codeRun,null,2)+'\\n');writeFileSync(join(directory,'owned-activation-run.json'),JSON.stringify(activationRun,null,2)+'\\n');\n delete code.value;delete activation.value;writeFileSync(join(directory,'owned-on-proof.json'),JSON.stringify({source,tree:TARGET_RUNTIME_TREE,code,activation},null,2)+'\\n');\n console.log('PASS actual accepted Q Core and unchanged H HQ receipts; original timestamps preserved; authenticated member proof has not run');\n}\n",
-        1
-      ],
-      [
-        " const bytes=readFileSync(proof.receiptPath,'utf8');assert.equal(hash(bytes),proof.receiptSHA256);\n const runtime=assertOwnedOnReceipt(JSON.parse(bytes),run,source,tree);\n const current=assertOwnedOnRun(await api('/actions/runs/'+run.id),source);assert.equal(current.run_attempt,run.run_attempt);\n const finished=Date.parse(current.updated_at);assert(Number.isFinite(finished)&&finished<=Date.now(),'Retain the true historical H terminal; fresh current ownership is separately required before each fixture');\n",
-        " const activationRun=JSON.parse(readFileSync(join(directory,'owned-activation-run.json'),'utf8'));\n const codeBytes=readFileSync(proof.code.path,'utf8'),activationBytes=readFileSync(proof.activation.path,'utf8');assert.equal(hash(codeBytes),proof.code.sha256);assert.equal(hash(activationBytes),proof.activation.sha256);\n const runtime=assertCompositeReceipts({code:JSON.parse(codeBytes),codeRun:run,activation:JSON.parse(activationBytes),activationRun});\n const current=assertCurrentCoreRun(await api('/actions/runs/'+run.id));assert.equal(current.run_attempt,run.run_attempt);assert.equal(assertOwnedOnRun(await api('/actions/runs/'+activationRun.id),GP_ACTIVATION_SOURCE).run_attempt,activationRun.run_attempt);\n const finished=Date.parse(current.updated_at);assert(Number.isFinite(finished)&&finished<=Date.now(),'Retain the true historical terminal; fresh current ownership remains separately required before each fixture');\n",
-        1
-      ],
-      [
-        "ownedReleaseRun:run.id,ownedReleaseAttempt:run.run_attempt,synthetic:true",
-        "ownedReleaseRun:run.id,ownedReleaseAttempt:run.run_attempt,unchangedHqActivationRun:activationRun.id,coreSource:source,hqSource:GP_ACTIVATION_SOURCE,synthetic:true",
-        1
-      ],
-      [
-        "email:first.email,dir:directory,report,runtimeSource:source,freshSession:",
-        "email:first.email,dir:directory,report,runtimeSource:source,clinicalConnectionExpectedInactive:runtime.code.partnerContractActivated===false,freshSession:",
-        1
-      ],
-      [
-        "  report.status='pass';report.featureAcceptance=true;",
-        "  report.gpSettingsAndIsolationAcceptance=true;\n  const clinical=report.checks.find(row=>row.requirement==='Original positive GP reuse in clinical assessment');assert(clinical,'Original clinical GP reuse case must remain explicitly accounted for');report.clinicalAssessmentReuseAcceptance=clinical.status==='pass';\n  if(clinical.status==='blocked'){report.status='blocked_by_clinical_activation';report.featureAcceptance=false;const error=new Error('Live GP settings and two-holder isolation passed. Original positive clinical assessment GP reuse remains BLOCKED by retained clinical activation/selection controls; no clinical, stock, sales or original assertion bypass.');error.clinicalGate=true;throw error;}\n  assert.equal(clinical.status,'pass');assert.equal(clinical.originalPositiveAssertionsExecuted,true);report.status='pass';report.featureAcceptance=true;",
-        1
-      ],
-      [
-        "}catch(error){report.status='failed';report.error=",
-        "}catch(error){report.status=error.clinicalGate?'blocked_by_clinical_activation':'failed';report.error=",
+        "async function installGuard(){\n",
+        "async function installGuard(){\n  const diagnostic={source,events:[],pageErrors:[]};row.mountDiagnostic=diagnostic;\n  page.on('pageerror',error=>diagnostic.pageErrors.push(String(error.message)));\n  page.on('response',async response=>{const path=new URL(response.url()).pathname;\n   if(!['/member-progress-v1.js',ROOT+'/insights','/assets/member-experience/treatment-week.mjs','/assets/member-experience/treatment-week.css'].includes(path))return;\n   const record={path,status:response.status()};diagnostic.events.push(record);\n   try{const bytes=await response.body();if(path===ROOT+'/insights'){const body=JSON.parse(bytes.toString());record.weekViewAvailable=body.weekViewAvailable;record.patternStatus=body.patterns?.status;record.error=body.error;record.observationCount=body.patterns?.observations?.length;record.contextDayCount=body.patterns?.contextDays?.length;}else{record.bytes=bytes.length;record.sha256=sha(bytes);}}catch{record.bodyUnavailable=true;}\n  });\n",
         1
       ]
     ]
   },
   "workflowInverse": [
     [
-      "    branches: [verification/member-design-20261002, release/gp-priority-direct-20261016, release/gp-priority-direct-activation-20261016]",
-      "    branches: [verification/member-design-20261002, release/gp-priority-direct-20261016, release/gp-priority-direct-activation-20261016, verification/gp-direct-h55-live-20261016]"
+      "github.ref != 'refs/heads/release/factual-recorded-week-direct-20261016' && (",
+      "github.ref != 'refs/heads/verification/gp-direct-h55-live-20261016' && github.ref != 'refs/heads/release/factual-recorded-week-direct-20261016' && (",
+      1
     ],
     [
-      "    if: github.ref != 'refs/heads/release/gp-priority-direct-20261016' && github.ref != 'refs/heads/release/gp-priority-direct-activation-20261016' && (github.event_name",
-      "    if: github.ref != 'refs/heads/release/gp-priority-direct-20261016' && github.ref != 'refs/heads/release/gp-priority-direct-activation-20261016' && github.ref != 'refs/heads/verification/gp-direct-h55-live-20261016' && (github.event_name"
+      "release/factual-recorded-week-direct-20261016]",
+      "release/factual-recorded-week-direct-20261016, verification/gp-direct-h55-live-20261016]",
+      1
     ],
     [
       "",
-      "\n  gp-h55-live-qa:\n    if: github.event_name == 'push' && github.ref == 'refs/heads/verification/gp-direct-h55-live-20261016'\n    runs-on: ubuntu-latest\n    timeout-minutes: 35\n    permissions:\n      contents: read\n      actions: read\n      id-token: write\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          ref: ${{ github.sha }}\n          path: verifier\n          fetch-depth: 0\n      - uses: actions/checkout@v4\n        with:\n          ref: 55b73025f5b6d2302fab42bce73a222653404186\n          path: runtime\n          fetch-depth: 0\n      - uses: actions/setup-node@v4\n        with:\n          node-version-file: 'runtime/.nvmrc'\n      - name: Wait for the actual same-source owned GP ON release\n        env:\n          GH_TOKEN: ${{ github.token }}\n        working-directory: runtime\n        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --wait-on\n      - name: Install the unchanged production compiler and isolated browser runtime\n        shell: bash\n        working-directory: runtime\n        run: |\n          npm ci --ignore-scripts\n          npm install --no-save --ignore-scripts --package-lock=false playwright@1.58.2\n          node -e \"require('node:assert/strict').equal(require('./node_modules/wrangler/package.json').version,'4.112.0')\"\n          npx playwright install --with-deps chromium\n          npm install --prefix \"$RUNNER_TEMP/gp-workerd-4146\" --ignore-scripts --package-lock=false wrangler@4.146.0\n          echo \"TREATMENT_MINIFLARE=$RUNNER_TEMP/gp-workerd-4146/node_modules/miniflare\" >> \"$GITHUB_ENV\"\n      - name: Verify the exact Q disclosure and identity regressions before fixtures\n        working-directory: runtime\n        run: node --test --test-concurrency=1 ../verifier/tests/gp-h55-live-qa-20261016.test.mjs\n      - name: Acquire the original allowed-workflow commissioning identity\n        id: gp_oidc\n        shell: bash\n        working-directory: runtime\n        run: |\n          raw=$(curl -fsSL -H \"Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN\" \"${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning\")\n          token=$(printf '%s' \"$raw\" | node -e \"let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))\")\n          echo \"::add-mask::$token\"\n          echo \"token=$token\" >> \"$GITHUB_OUTPUT\"\n      - name: Verify actual GP lookup, save/reopen and two-holder isolation\n        env:\n          GH_TOKEN: ${{ github.token }}\n          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6\n          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          SHIFT_COMMISSIONING_OIDC: ${{ steps.gp_oidc.outputs.token }}\n        working-directory: runtime\n        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --verify-on\n      - name: Preserve source after the bounded GP-only member proof\n        working-directory: runtime\n        run: |\n          test \"$(git rev-parse HEAD)\" = \"55b73025f5b6d2302fab42bce73a222653404186\"\n          test -z \"$(git status --porcelain --untracked-files=no)\"\n      - name: Retain actual member directory activation evidence\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: gp-h55-member-qa-live-${{ github.run_id }}\n          path: runtime/growth-member-live-evidence/\n          if-no-files-found: warn\n          retention-days: 30\n",
+      "\n  gp-h55-live-qa:\n    concurrency:\n      group: cloudflare-production-promote\n      cancel-in-progress: false\n    if: github.event_name == 'push' && github.ref == 'refs/heads/verification/gp-direct-h55-live-20261016'\n    runs-on: ubuntu-latest\n    timeout-minutes: 35\n    permissions:\n      contents: read\n      actions: read\n      id-token: write\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          ref: ${{ github.sha }}\n          path: verifier\n          fetch-depth: 0\n      - uses: actions/checkout@v4\n        with:\n          ref: b6f9c0c36d4303e5d384fb2d62b58968b998aa64\n          path: runtime\n          fetch-depth: 0\n      - uses: actions/setup-node@v4\n        with:\n          node-version-file: 'runtime/.nvmrc'\n      - name: Read actual deployed W Core and unchanged H HQ receipt and journal\n        env:\n          GH_TOKEN: ${{ github.token }}\n        working-directory: runtime\n        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --wait-week\n      - name: Install the unchanged production compiler and isolated browser runtime\n        shell: bash\n        working-directory: runtime\n        run: |\n          npm ci --ignore-scripts\n          npm install --no-save --ignore-scripts --package-lock=false playwright@1.58.2\n          node -e \"require('node:assert/strict').equal(require('./node_modules/wrangler/package.json').version,'4.112.0')\"\n          npx playwright install --with-deps chromium\n          npm install --prefix \"$RUNNER_TEMP/gp-workerd-4146\" --ignore-scripts --package-lock=false wrangler@4.146.0\n          echo \"TREATMENT_MINIFLARE=$RUNNER_TEMP/gp-workerd-4146/node_modules/miniflare\" >> \"$GITHUB_ENV\"\n      - name: Verify exact W inverse, identity and freshness controls before fixtures\n        working-directory: runtime\n        run: node --test --test-concurrency=1 ../verifier/tests/gp-h55-live-qa-20261016.test.mjs\n      - name: Acquire the original allowed-workflow commissioning identity\n        id: gp_oidc\n        shell: bash\n        working-directory: runtime\n        run: |\n          raw=$(curl -fsSL -H \"Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN\" \"${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning\")\n          token=$(printf '%s' \"$raw\" | node -e \"let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))\")\n          echo \"::add-mask::$token\"\n          echo \"token=$token\" >> \"$GITHUB_OUTPUT\"\n      - name: Diagnose original factual W UI and retain all original live acceptance assertions\n        env:\n          GH_TOKEN: ${{ github.token }}\n          CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6\n          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          SHIFT_COMMISSIONING_OIDC: ${{ steps.gp_oidc.outputs.token }}\n        working-directory: runtime\n        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --verify-week\n      - name: Preserve exact independently checked-out W runtime\n        working-directory: runtime\n        run: |\n          test \"$(git rev-parse HEAD)\" = \"b6f9c0c36d4303e5d384fb2d62b58968b998aa64\"\n          test -z \"$(git status --porcelain --untracked-files=no)\"\n      - name: Retain original factual W member evidence and private diagnostics\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: gp-h55-member-qa-live-${{ github.run_id }}\n          path: runtime/growth-member-live-evidence/\n          if-no-files-found: warn\n          retention-days: 30\n",
       "suffix"
-    ],
-    [
-      "55b73025f5b6d2302fab42bce73a222653404186",
-      "e9491c2686105afc465d1c94e37e5cef63240e11",
-      2
-    ],
-    [
-      "  gp-h55-live-qa:\n",
-      "  gp-h55-live-qa:\n    concurrency:\n      group: cloudflare-production-promote\n      cancel-in-progress: false\n",
-      1
-    ],
-    [
-      "      - name: Wait for the actual same-source owned GP ON release\n        env:\n          GH_TOKEN: ${{ github.token }}\n        working-directory: runtime",
-      "      - name: Read actual accepted Q Core and unchanged H HQ release receipts\n        env:\n          GH_TOKEN: ${{ github.token }}\n        working-directory: runtime",
-      1
     ]
   ],
-  "productionRuntimeChanged": false,
-  "providerWrites": 0,
-  "fakeGithubSha": false,
-  "actualMemberProof": false,
-  "receiptContractFixtures": {
-    "code": {
-      "schema": "shift-questionnaire-runtime-receipt/v1",
-      "source": "e9491c2686105afc465d1c94e37e5cef63240e11",
-      "tree": "c3db6341f2b6c20dcda0eede3eb5fa3dc91a8611",
-      "run": "38980756381",
-      "attempt": "1",
-      "branch": "fix/questionnaire-handover-20261016",
-      "workflow": ".github/workflows/questionnaire-handover-release-20261016.yml",
-      "main": "3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef",
-      "releaseBranch": "fix/questionnaire-handover-20261016",
-      "releaseWorkflow": ".github/workflows/questionnaire-handover-release-20261016.yml",
-      "releaseRun": 38980756381,
-      "ownership": {
-        "mainBefore": "3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef",
-        "mainAfter": "3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef"
-      },
-      "at": "2026-10-16T23:21:52.218Z",
-      "gpEnabled": true,
-      "partnerContractActivated": false,
-      "workers": {
-        "core": {
-          "source": "e9491c2686105afc465d1c94e37e5cef63240e11",
-          "run": 38980756381,
-          "attempt": 1,
-          "deploymentId": "9eaeeda9-59c1-419c-b58d-2aea1493e95f",
-          "versionId": "0b9a4674-de58-49db-aefa-57ede95178a4",
-          "percentage": 100,
-          "bundleSha256": "19092d5b673c5fb8201ebda993d0ae373a206eee57fd334598a36a58f33730f3",
-          "bundleBytes": 14775946,
-          "allBindingsSha256": "7bdb4b151b1f11fb23d9cdea06c0436c3b7f3246585c1212a8a75f9c6379c401",
-          "otherBindingsSha256": "f167ad0c4b62b5616bdc272e5c9af441c7d2193c915ab4b9ff099c8d126f4857",
-          "gpEnabled": true
-        }
-      },
-      "dataWrites": 0,
-      "externalMessages": 0,
-      "featureAcceptance": false,
-      "anonymousBoundary": [
-        {
-          "path": "/v1/commerce/medicine-clinical-context",
-          "status": 401
-        },
-        {
-          "path": "/v1/commerce/medicine-clinical-intake-status",
-          "status": 401
-        },
-        {
-          "path": "/v1/treatment/orders",
-          "status": 401
-        },
-        {
-          "path": "/treatment-assessment",
-          "status": 200,
-          "sha256": "b854a3fa2a698ab0e1b7fcc0a134c3d5b2e8d14d28c1de56ce7a9be31068600e",
-          "bytes": 25932,
-          "exactCompiledResponse": true
-        },
-        {
-          "path": "/treatment-assessment.js",
-          "status": 200,
-          "sha256": "0b00212dc8b6bd32fedbc0e09c4b719d52e57336ee7a4eb023688ddda00f2ccd",
-          "bytes": 12849,
-          "exactCompiledResponse": true
-        },
-        {
-          "path": "/clinical-intake-v1.css",
-          "status": 200,
-          "sha256": "d28d49e53d11d644f75a8a374eff67819d473a41ef4eb0ee44f2b58242ea1f59",
-          "bytes": 2837,
-          "exactCompiledResponse": true
-        },
-        {
-          "origin": "https://shiftsometimber.co.uk",
-          "path": "/v1/member/details",
-          "status": 401,
-          "privateDenialVerified": true
-        },
-        {
-          "origin": "https://shiftsometimber.co.uk",
-          "path": "/v1/member/details/gp-search",
-          "status": 401,
-          "privateDenialVerified": true
-        },
-        {
-          "origin": "https://api.shiftsometimber.co.uk",
-          "path": "/v1/member/details",
-          "status": 401,
-          "privateDenialVerified": true
-        },
-        {
-          "origin": "https://api.shiftsometimber.co.uk",
-          "path": "/v1/member/details/gp-search",
-          "status": 401,
-          "privateDenialVerified": true
-        }
-      ],
-      "status": "code_only_verified",
-      "authenticatedMemberAndHqAcceptance": "Separate original fictional-holder proof; not claimed by anonymous checks",
-      "partnerTestPassed": false
-    },
-    "activation": {
-      "schema": "shift-gp-direct-activation-receipt/v1",
-      "source": "55b73025f5b6d2302fab42bce73a222653404186",
-      "tree": "550bec05b5dbf98bb31eed006b2158f73b4ee79f",
-      "run": "38974318146",
-      "attempt": "1",
-      "branch": "release/gp-priority-direct-activation-20261016",
-      "workflow": ".github/workflows/gp-priority-direct-activation-20261016.yml",
-      "main": "3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef",
-      "releaseBranch": "release/gp-priority-direct-activation-20261016",
-      "releaseWorkflow": ".github/workflows/gp-priority-direct-activation-20261016.yml",
-      "releaseRun": 38974318146,
-      "ownership": {
-        "mainBefore": "3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef",
-        "mainAfter": "3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef"
-      },
-      "at": "2026-10-16T22:41:15.740Z",
-      "gpEnabled": true,
-      "workers": {
-        "core": {
-          "source": "55b73025f5b6d2302fab42bce73a222653404186",
-          "run": 38974318146,
-          "attempt": 1,
-          "deploymentId": "dcf7f63d-4d8b-4b9d-b18e-776d2ac400ed",
-          "versionId": "2a2f4483-1a43-4e9a-802e-4bdc118059be",
-          "percentage": 100,
-          "bundleSha256": "ae87bf8b39b394e4514529bcfb2a61e945c4fc588cea459fb8fcd0385f0b76a0",
-          "bundleBytes": 14752486,
-          "allBindingsSha256": "7bdb4b151b1f11fb23d9cdea06c0436c3b7f3246585c1212a8a75f9c6379c401",
-          "otherBindingsSha256": "f167ad0c4b62b5616bdc272e5c9af441c7d2193c915ab4b9ff099c8d126f4857",
-          "gpEnabled": true
-        },
-        "hq": {
-          "source": "55b73025f5b6d2302fab42bce73a222653404186",
-          "run": 38974318146,
-          "attempt": 1,
-          "deploymentId": "f75c3309-afc7-49ca-aac2-7964bc5b7e42",
-          "versionId": "6eae4c43-fbc3-455e-a426-9bb7de344705",
-          "percentage": 100,
-          "bundleSha256": "bfadbda83e5b8dcb944b92cea15a13320b7a139c7be9afab98833ba04534e5e7",
-          "bundleBytes": 1838527,
-          "allBindingsSha256": "3b6704c920ad27ad9b9a16d1af27e9f382db7e9daa2fbc46e93d801492fb2f74",
-          "otherBindingsSha256": "e1479acdea3dac4d1faddb2ec5b99239f2ada00c70ba56fd497d99c687e3e261",
-          "gpEnabled": true,
-          "partnersEnabled": true
-        }
-      },
-      "dataWrites": 0,
-      "externalMessages": 0,
-      "featureAcceptance": false,
-      "directory": {
-        "version": "672021e21d318162d9aa550f",
-        "complete": 1,
-        "checkedAt": "2026-10-16T22:41:26.382Z",
-        "productionWrites": 0
-      },
-      "anonymousBoundary": [
-        {
-          "path": "/v1/member/details/gp-search?q=London",
-          "status": 401
-        },
-        {
-          "path": "/v1/hq/management/gp-directory",
-          "status": 401
-        },
-        {
-          "path": "/v1/hq/management/people/1/gp-details",
-          "status": 401
-        }
-      ],
-      "status": "directory_activated_provider_verified",
-      "authenticatedMemberAndHqAcceptance": "separate original GP ON fictional-holder gate; not claimed here"
-    }
-  },
-  "currentProviderProvenance": {
-    "coreSource": "e9491c2686105afc465d1c94e37e5cef63240e11",
-    "coreRun": 38980756381,
-    "hqSource": "55b73025f5b6d2302fab42bce73a222653404186",
-    "hqRun": 38974318146,
-    "currentCoreAndHqReceiptsMustRemainSeparate": true,
-    "primaryRuntimeTimestampsRewritten": false,
-    "originalFiveMinuteOwnershipAndTwentyMinuteWaitRetained": true
-  },
-  "diagnosticCorrection": {
-    "originalFailureRun": 38982442652,
-    "runtimeSourceUnchanged": true,
-    "originalPredicate": "document.documentElement.scrollWidth<=innerWidth+1",
-    "capture": "Predicate and full geometry in same page evaluation; first check remains immediate",
-    "additionalCoverage": "Nine subsequent animation frames; every frame must pass, no ignored failures",
-    "originalTimeoutsAndTolerancesUnchanged": true,
-    "productLayoutChanged": false
-  },
-  "clinicalCaseSeparation": {
-    "reason": "The accepted nonclinical runtime deliberately keeps the pharmacy connection disabled. The positive clinical assessment test is not executable without activation and valid selected available variant.",
-    "independentAssertionsContinued": true,
-    "blockedCaseCountsAsPass": false,
-    "overallFeatureAcceptanceWhenBlocked": false,
-    "jobWillFailWhenOriginalClinicalCaseIsBlocked": true,
-    "originalClinicalPositiveAssertionsPreserved": true,
-    "noStockOrClinicalBypass": true
-  }
+  "originalReleaseRun": 38990992637,
+  "originalMemberFailureRun": 38990992649,
+  "originalTimeoutMs": 30000,
+  "freshnessMs": 900000,
+  "providerWrites": 0
 }
