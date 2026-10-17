@@ -1,3 +1,4 @@
+import {earlyDashboardStyles} from './critical-style-order.mjs';
 import {inlineBootstrap} from '../cream-navigation.mjs';
 import {tabletMarkup,tabletStyles,tabletClient} from '../member-experience/tablet-routine-client.mjs';
 import {client} from './ui.mjs';
@@ -42,7 +43,9 @@ export async function withCoaching(request,response,seed=null){
  const bootstrapTag='<script src="/analytics-bootstrap-v1.js"></script>';
  const head=prepared.match(/<head\b[^>]*>[\s\S]*?<\/head>/i)?.[0];
  if(seed&&head?.includes(bootstrapTag)&&prepared.split(bootstrapTag).length===2&&!prepared.includes('data-shift-inline-bootstrap'))prepared=prepared.replace(bootstrapTag,inlineBootstrap);
- const changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+tabletStyles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>'+tabletMarkup+'<script data-tablet-routine-client>'+tabletClient.replace(/<\/script/gi,'<\\/script')+'</script>');
+ let changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+tabletStyles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>'+tabletMarkup+'<script data-tablet-routine-client>'+tabletClient.replace(/<\/script/gi,'<\\/script')+'</script>');
+ // Only the fresh, session/consent-checked dashboard uses the exact style-order repair.
+ if(seed)changed=earlyDashboardStyles(changed);
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie, Accept-Encoding');
  // Start the same existing stylesheets with the document headers, before the
  // browser reaches parser-blocking scripts. No scripts or tracking are moved.

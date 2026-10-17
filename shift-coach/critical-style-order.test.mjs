@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {earlyDashboardStyles} from './critical-style-order.mjs';
+const openings=['<style id="sst-drawer-mark-20261002">','<style id="sst-header-mark-20261001">','<style id="sst-cream-header-preview">','<style data-app-preview-style>','<style data-approved-member-design>','<style data-shared-footer-base>','<style id="sst-footer-c-style">'];
+const styles=openings.map((tag,i)=>tag+'/* original '+i+' */ .same{color:var(--original-'+i+')}</style>');
+const script='<script>const untouched="<style id=\\\"lookalike\\\">ignored</style>";</script>';
+const document=extra=>'<html><head><style>.same{color:initial}</style></head><body>'+script+'<main>Preserved content and controls</main>'+styles.join('')+(extra||'')+'</body></html>';
+test('all seven exact current styles become available in the head with their original bytes and cascade order',()=>{const input=document(),output=earlyDashboardStyles(input);assert.notEqual(output,input);assert(output.includes(script));assert(output.includes('<main>Preserved content and controls</main>'));assert.equal(output.slice(output.indexOf('<body>')).includes('<style id="sst-'),false);let prior=-1;for(const style of styles){const index=output.indexOf(style);assert(index>prior&&index<output.indexOf('</head>'));assert.equal(output.split(style).length,2);prior=index}});
+test('script and comment style lookalikes remain byte exact',()=>{const input=document('<!-- <style>not a style element</style> -->'),output=earlyDashboardStyles(input);assert.notEqual(output,input);assert(output.includes(script));assert(output.includes('<!-- <style>not a style element</style> -->'))});
+test('unknown style versions retain the original loading path',()=>{const input=document().replace('sst-header-mark-20261001','sst-header-mark-20991231');assert.equal(earlyDashboardStyles(input),input)});
+test('a duplicate style retains the original loading path',()=>{const input=document(styles[0]);assert.equal(earlyDashboardStyles(input),input)});
+test('a body stylesheet dependency retains its original cascade position',()=>{const input=document('<link rel="stylesheet" href="/existing.css">');assert.equal(earlyDashboardStyles(input),input)});
+test('an incomplete style or script is not rewritten',()=>{for(const extra of ['<style>unfinished','<script>unfinished']){const input=document(extra);assert.equal(earlyDashboardStyles(input),input)}});
+test('documents with absent or reordered known styles are not rewritten',()=>{for(const input of [document().replace(styles[2],''),document().replace(styles[0]+styles[1],styles[1]+styles[0])])assert.equal(earlyDashboardStyles(input),input)});
+test('unrelated public or ambiguous documents are unchanged',()=>{for(const input of ['<html><head></head><body><p>Public</p></body></html>',document().replace('</head>',''),document().replace('</body>','')])assert.equal(earlyDashboardStyles(input),input)});
