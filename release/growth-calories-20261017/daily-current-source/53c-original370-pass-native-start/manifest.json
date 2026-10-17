@@ -1,0 +1,62 @@
+[
+  {
+    "file": "native07b8-observed-authorised-cancellation-20261017.json",
+    "bytes": 1358,
+    "SHA256": "a11fc007aad651cfca2e5a31060ce3e9475b4633cb733bd7a65bc6d692714268"
+  },
+  {
+    "file": "native07b8-second-observed-authorised-cancellation-20261017.json",
+    "bytes": 1729,
+    "SHA256": "c685e5c49d2d5916cc3369bedf04bc5473c64b8c0634f3a8b5d2418576e46f55"
+  },
+  {
+    "file": "daily-v10-attached-native-result.json",
+    "bytes": 905,
+    "SHA256": "13a9bf63d7e67b4c9fa694309b44417f5b95632f5d7c74fd0d4f1647ea435e19"
+  },
+  {
+    "file": "daily-v10-attached-native.tap",
+    "bytes": 21830,
+    "SHA256": "c0f1743f9da0ee71af7379033eac5a2793719ca344b4e412502da153535138c2"
+  },
+  {
+    "file": "qualify-config-compat-owned.py",
+    "bytes": 14241,
+    "SHA256": "04ef8435d940bc676eee0331336eb2cc4b727f8b947f69dbe1fc8305fd84ea15"
+  },
+  {
+    "file": "independent-original-case-coverage-20261017.json",
+    "bytes": 1336,
+    "SHA256": "de4ff3bf712363a269e1ba1f86f5cf86d87e74cbdd0230ede338f2e5c2787def"
+  },
+  {
+    "file": "full547-case-coverage-proof.json",
+    "bytes": 1664,
+    "SHA256": "5687c2e33905f2005dee94fa2892d91f080837facfa5bfabd4ef56f34e930008"
+  },
+  {
+    "file": "original370-result.json",
+    "bytes": 1755,
+    "SHA256": "4d2a843e581bc37d5b2432734dcdeb2958f734da28b8a26da9f3eff76bb1f95e"
+  },
+  {
+    "file": "original370-complete-result.json",
+    "bytes": 5480,
+    "SHA256": "a947117e3c225c909a08c6af7240b709877edba26c4f090f651a93696cfff9e3"
+  },
+  {
+    "file": "original370.tap",
+    "bytes": 374,
+    "SHA256": "04cd672fb7ea736c2b4ca2b42844750cf14a8f6e4cca5a92a0856ea24e1d7221"
+  },
+  {
+    "file": "native-qualification-claim.json",
+    "bytes": 588,
+    "SHA256": "12ffc97971a63699b104281395adc3aefab2c2def84e74adf4b2ec2ea9e263c2"
+  },
+  {
+    "file": "native-source-before.json",
+    "bytes": 4833,
+    "SHA256": "f19d38b237d392ca29fbabff52620d79f70e85d79a67096ff5c6ae0143faa8dd"
+  }
+]
