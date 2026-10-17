@@ -97,3 +97,11 @@ test('Programme fixture cannot hide an unauthorised working workflow edit',()=>w
  try{writeFileSync(path,Buffer.concat([before,Buffer.from(String.fromCharCode(10)+'# unauthorised workflow'+String.fromCharCode(10))]));assert.throws(()=>seoAuditOriginalSource(path,raw),/source|tracked|working/i);}finally{writeFileSync(path,before);}
  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:seoAuditOriginalSource(path,raw),encoding:'utf8'}).trim(),'54827864ebfed96670c67809030e6ad772731b73');
 `));
+
+// Matching aliases are not authority: the original verifier must still reject forged bytes.
+import{verifyCombinedFinite as verifyBoundedFiniteReaderPerformance}from'../release/combined-finite-scope-20261014.mjs';
+test('matching forged current aliases still reach and fail the original finite source authenticator',()=>{
+ const finite=record.combinedFinite20261014,path='release/combined-finite-scope-20261014.mjs';
+ const forged=(ref,p)=>p===path&&(ref==='HEAD'||ref===head)?'matching-forged-source':blob(ref,p);
+ assert.throws(()=>verifyBoundedFiniteReaderPerformance(finite,{head,read:forged,blob,content,diff,ancestor}),/source drift/);
+});
