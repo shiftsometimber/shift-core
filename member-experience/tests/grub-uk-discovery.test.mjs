@@ -114,7 +114,7 @@ test('hypothetical reviewed publication preserves real portions and ranks the th
  const synthetic={proof:'GRUB_UK_HUMAN_SECOND_PERSON_REVIEW_20261017',status:'approved',pack_sha256:hash(pack),reviewer:{kind:'human',id:'TEST ONLY: synthetic independent human'},reviewed_at:'2026-10-17T22:00:00Z',source_receipt:'TEST ONLY: no actual human review or publication authority',physical_cooking_trial_claimed:false,recipes:pack.candidates.map(r=>({id:r.id,content_hash:r.content_hash,decision:'PASS',scopes:ukReviewScopes,findings:[]}))};
  const pub=buildUKCorePublication(pack,synthetic);
  const extended=await appendUKCorePublication(authority,pub);
- const future={...approved,rows:[...approved.rows,...pub.items.map((r,index)=>({id:r.id,eligible:true,tier:'core',rank:index,content_sha256:hash({title:r.title,data:r.data,review:r.review})}))]};
+ const future={...approved,rows:[...approved.rows.filter(r=>!pub.items.some(x=>x.id===r.id)),...pub.items.map((r,index)=>({id:r.id,eligible:true,tier:'core',rank:index,content_sha256:hash({title:r.title,data:r.data,review:r.review})}))]};
  const result=await applyGrubDiscovery(extended,future);
  const found=searchGrubRecipes({query:'pizza'},enrichGrubRecipes(result.rows));
  assert.deepEqual(found.top.slice(0,3).map(r=>r.name),['Margherita pizza with side salad','Pepperoni pizza with side salad','Ham and pineapple pizza with side salad']);
