@@ -354,7 +354,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         working-directory: runtime
-        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --wait-week
+        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --wait-on
       - name: Install the unchanged production compiler and isolated browser runtime
         shell: bash
         working-directory: runtime
@@ -377,14 +377,14 @@ jobs:
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Diagnose original factual W UI and retain all original live acceptance assertions
+      - name: Diagnose current W GP with original full GP flow and failure-only layout evidence
         env:
           GH_TOKEN: ${{ github.token }}
           CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           SHIFT_COMMISSIONING_OIDC: ${{ steps.gp_oidc.outputs.token }}
         working-directory: runtime
-        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --verify-week
+        run: node ../verifier/release/gp-h55-live-qa-20261016.mjs --verify-on
       - name: Preserve exact independently checked-out W runtime
         working-directory: runtime
         run: |
