@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-17T17:54:15.543109+00:00",
+  "source": {
+    "head": "fa6adea3ed9f4a6a619d25651c1ed75329ee47ab",
+    "tree": "c8d65257543bf5f044edd499c59e0fa2d1652359"
+  },
+  "allOriginalCommands": 33,
+  "allPassed": true,
+  "maxConcurrent": 2,
+  "sourcePoolFinishedAt": "2026-10-17T17:36:10.704Z",
+  "sourceProofArtifact": 12108981971,
+  "artifactBytes": 305669,
+  "artifactSHA256": "7abab49a0b8dc5ec594f0d0fadc25dc8aa355b0dc63156b262b62f89c08ecf10",
+  "run": 39050642627,
+  "job": 117448452622,
+  "runConclusion": "cancelled",
+  "cancelledStage": "Adopt the exact already-completed growth deployment",
+  "adoptionStartedAt": "2026-10-17T17:36:50.245Z",
+  "originalJobLimitMinutes": 60,
+  "deploymentStep38": "SKIPPED",
+  "ownedRollbackStep91": "SKIPPED",
+  "releaseVerified": false,
+  "deployedVersion": null,
+  "currentSharedRepairSource": "526b0b2e47bb768d910ba329a3f10bd110199412",
+  "currentSharedRepairPR": 1370,
+  "repairQualification": "RUNNING_NOT_ACCEPTED",
+  "proofReuseAdmissionScope": "same currently running job only; this historical source artifact is not new-run admission",
+  "engineSource": "4e34ef53e8ec0a1b4ec50371be94465e066f60dd",
+  "engineFullNativePassed": false,
+  "terminalLog": {
+    "archive": "original-terminal-log.zip",
+    "archiveSHA256": "177b2f9d717a2cdf87d0151e338e0725e70548ab7a7a1a7f91afbe69aa5a3e83",
+    "member": "production39050642627-original-terminal.log",
+    "originalBytes": 308068,
+    "originalSHA256": "c49eb228c5a1c54eb54ef008120d4802cd5f0fe70c1e94646ca317171b98e109",
+    "originalBytesPreserved": true
+  }
+}

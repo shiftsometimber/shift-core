@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-17T17:24:07.365Z",
+  "readOnly": true,
+  "id": "d1b5350d-54fa-40c8-871d-7568efde1345",
+  "versions": [
+    {
+      "version_id": "6e8d9241-288d-4933-a521-9f3071ee0c19",
+      "percentage": 100
+    }
+  ],
+  "annotations": {
+    "workers/message": "Factual recorded week b6f9c0c36d4303e5d384fb2d62b58968b998aa64 run 38990992637 attempt 1",
+    "workers/triggered_by": "deployment"
+  }
+}
