@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-17T11:34:33.909Z",
+  "passed": true,
+  "source": "actual live page",
+  "javascriptDisabled": true,
+  "analyticsExecuted": false,
+  "cases": [
+    {
+      "width": 390,
+      "title": "Calories explained without the nonsense",
+      "overflow": 0,
+      "table": "What the label or packet says\tEnergy\nPer 100g\t160 kcal\nWhole packet: 350g\t560 kcal\nHalf the packet: 175g\t280 kcal",
+      "columns": 2,
+      "foodSource": true,
+      "review": "Editorial review\n\nReading copy and listed sources checked 17 October 2026. Independent clinical review is not claimed. General information does not replace individual advice."
+    },
+    {
+      "width": 1440,
+      "title": "Calories explained without the nonsense",
+      "overflow": 0,
+      "table": "What the label or packet says\tEnergy\nPer 100g\t160 kcal\nWhole packet: 350g\t560 kcal\nHalf the packet: 175g\t280 kcal",
+      "columns": 2,
+      "foodSource": true,
+      "review": "Editorial review\n\nReading copy and listed sources checked 17 October 2026. Independent clinical review is not claimed. General information does not replace individual advice."
+    }
+  ]
+}
