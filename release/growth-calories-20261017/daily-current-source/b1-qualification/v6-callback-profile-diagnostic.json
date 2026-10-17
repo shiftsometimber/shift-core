@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-17T15:07:16.458521+00:00",
+  "diagnosticOnly": true,
+  "releaseQualification": false,
+  "command": [
+    "/usr/local/bin/node",
+    "--require",
+    "/Users/shiftsometimberltd/SST/organic-deploy-20261017/profile-native-git-calls.cjs",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^coding completion retains actual supplied-reader calls through the inner native batching predicates$",
+    "tests/coding-completion-scope-20261016.test.mjs"
+  ],
+  "capSeconds": 90,
+  "seconds": 17.030322124999998,
+  "exit": 0,
+  "timedOut": false,
+  "source": "48cd8ea2718de9fef295b9a4e3d654eca17e79cf",
+  "providerCalls": 0,
+  "sourceWrites": 0
+}

@@ -1,0 +1,32 @@
+{
+  "receiptSavedAt": "2026-10-17T15:25:49.477395+00:00",
+  "successfulCallsDuringThisActiveTurn": true,
+  "providerResponseTimestampExposed": false,
+  "observedWindowStartAfter": "2026-10-17T15:16:07.830Z",
+  "siteUrl": "sc-domain:shiftsometimber.co.uk",
+  "gscConfigurationRead": {
+    "success": true,
+    "brandConfigured": true,
+    "brandKeywordCount": 3,
+    "dataFetched": "configuration_only"
+  },
+  "ga4AdminRead": {
+    "success": true,
+    "propertyId": "properties/549150735",
+    "dataSource": "ga4-admin-api",
+    "customDefinitionCount": 0,
+    "dataFetched": "registered_definition_metadata_only"
+  },
+  "performanceExports": 0,
+  "measurementWindowsRefreshed": false,
+  "measurementSuccessfulWatermarksAdvanced": false,
+  "configurationWrites": 0,
+  "pageCTRUsable": false,
+  "outcomeClaimsAllowed": false,
+  "dateBasesRetained": {
+    "GSC": "America/Los_Angeles",
+    "GA4": "Etc/GMT"
+  },
+  "dateBasisMetadataRefetched": false,
+  "crossSystemConversionDerived": false
+}

@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-17T15:25:49.477395+00:00",
+  "source": "b1e316c6331752d1c5e382f5c2649259a9a48f80",
+  "tree": "8cee01ef459735dea4f9fdaabd55655098eff4a5",
+  "normalFastForwardVerified": true,
+  "focused40": "PASS",
+  "fullNative": "RUNNING_NOT_ACCEPTED",
+  "previous48FullNative": "FAILED_BOUNDED_WITH_CONTROLLER_ERROR",
+  "successfulSourceWatermarkAdvanced": false,
+  "CoreNormalPromotion": 39043445084,
+  "CoreJob": 117427420766,
+  "CoreStatus": "RUNNING_ORIGINAL_33_SOURCE_BARRIER",
+  "deployedByThisPrivateBranch": false,
+  "activated": false,
+  "modelCalls": 0,
+  "files": {
+    "daily-v6-native-failure-observation.json": "13d75d8cbc65a1b2bfe9f7096cd1fcc402f33e9a4c04a2e28ce027e7f4a62cc2",
+    "daily-v6-native.tap": "34f97cc57a0f31ef4440cadc8cc66161c54acfb42d7560e8f11b5f96e930c8d1",
+    "v6-callback-profile-diagnostic.json": "36383506ba8e5b6b7e269e347feffa6d3efa08497b6fc411c7875b58f4738b75",
+    "v6-callback-profile-diagnostic.tap": "eb869ad41faa24879ae15cc6e7a82fb36abd8eff50c2065171d907432416bdde",
+    "v6-native-profile-95649.json": "5b4136b0bc9f5c71513f6376ce8f95a227842fe211511449f5b62264777d58bf",
+    "profile-native-git-calls.cjs": "8002bc7c24722960aa3e7f4ee0587b8489c8d98b4f19d2392ee07aa46c55ab42",
+    "daily-v7-focused-result.json": "18083e8d61abfa6f5cf62cf82ba6a909e64befd4cd5da07877475dd32d4889b4",
+    "daily-v7-focused.tap": "5391dd60cf7e801b0c993e324045d0dd0b266b6dd49f62c6ebeafc60e2a78b52",
+    "daily-v7-source-before.json": "c21396e76c0dbcd89dd603cfc026e988bb63eff4e378d9fdd808ec0f2b2dc89f",
+    "daily-v7-qualification-claim.json": "d6bfb7e3cdbe316922c3849852ea19f5f0e3fd7e78ff93767f3e2e67adafad3d",
+    "daily-v7-branch-publication.json": "856038345f2bc7c7194d3b776ecd0135ab05160e70562bb1e8c846e7c4e19b1d",
+    "qualify-daily-v7.py": "def37e4eb56d6feefdd7587b9d20a790e93f16ff8cb54c9e2e664f7027217493",
+    "access-check-current-turn-20261017.json": "467da14c1bd7deff3ae82ffd7675c9bf21da554de7f96112aadb3332007bd75b",
+    "core-serving-before-3095.json": "a14c2bdaf0b2c2e5c8b587c31a194861724a1c380f9515ff3645080c2fb67c17"
+  }
+}

@@ -1,0 +1,673 @@
+{
+  "diagnosticOnly": true,
+  "releaseQualification": false,
+  "pid": 95649,
+  "seconds": 16.885847917,
+  "rows": [
+    {
+      "verb": "git rev-parse",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:19)\n    at read (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:80:41)\n    at obtain (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:105:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:107:29",
+      "count": 105,
+      "milliseconds": 1737.0723800000003,
+      "failures": 0
+    },
+    {
+      "verb": "git cat-file",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:172:23)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:153)",
+      "count": 103,
+      "milliseconds": 1591.6607120000006,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:19)\n    at read (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:80:41)\n    at obtain (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:105:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:108:10",
+      "count": 105,
+      "milliseconds": 1590.8555780000002,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:19)\n    at read (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:80:41)\n    at obtain (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:105:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:107:44",
+      "count": 105,
+      "milliseconds": 1547.3914630000006,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:19)\n    at read (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:80:41)\n    at obtain (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:105:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:107:68",
+      "count": 105,
+      "milliseconds": 1529.5116159999998,
+      "failures": 0
+    },
+    {
+      "verb": "git show",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:64)\n    at readContent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:81:55)\n    at obtain (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:105:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:107:68",
+      "count": 92,
+      "milliseconds": 1418.2993799999997,
+      "failures": 0
+    },
+    {
+      "verb": "git show",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:64)\n    at readContent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:81:55)\n    at obtain (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:105:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:107:29",
+      "count": 92,
+      "milliseconds": 1383.9151710000003,
+      "failures": 0
+    },
+    {
+      "verb": "git show",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:64)\n    at readContent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:81:55)\n    at obtain (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:105:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:108:10",
+      "count": 93,
+      "milliseconds": 1377.9194139999997,
+      "failures": 0
+    },
+    {
+      "verb": "git show",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:64)\n    at readContent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:81:55)\n    at obtain (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:105:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:107:44",
+      "count": 92,
+      "milliseconds": 1298.4284990000003,
+      "failures": 0
+    },
+    {
+      "verb": "git merge-base",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at ancestor (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:301)\n    at Object.ancestor (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:121:55)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:154:70",
+      "count": 19,
+      "milliseconds": 301.85912600000006,
+      "failures": 0
+    },
+    {
+      "verb": "git diff",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at diff (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:205)\n    at Object.diff (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:121:15)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:154:29",
+      "count": 11,
+      "milliseconds": 183.66187599999998,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-tree",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/seo-native-immutable-facts-20261016.mjs:8:30)\n    at readSeoNativeImmutableFacts (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/seo-native-immutable-facts-20261016.mjs:32:32)\n    at currentPreservationNativeFacts (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:28:14)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:159:19",
+      "count": 4,
+      "milliseconds": 123.77904099999999,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-tree",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:139:19)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:153)",
+      "count": 3,
+      "milliseconds": 75.351375,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:25:24)\n    at gitPath (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:28:23)\n    at captureImmutableContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:29:99)\n    at nativeFactContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:211:10)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:16)",
+      "count": 6,
+      "milliseconds": 71.610624,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:30:11)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:41:16)\n    at Object.clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:156:57\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:149:199",
+      "count": 2,
+      "milliseconds": 60.175916,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-tree",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:139:19)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:86)",
+      "count": 3,
+      "milliseconds": 58.494084,
+      "failures": 0
+    },
+    {
+      "verb": "git cat-file",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:138:18)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:86)",
+      "count": 3,
+      "milliseconds": 51.103291999999996,
+      "failures": 0
+    },
+    {
+      "verb": "git merge-base",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at ancestor (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:301)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:41:25\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 3,
+      "milliseconds": 49.275791999999996,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:149:24)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:86)",
+      "count": 3,
+      "milliseconds": 47.993,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:253:44)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:17:22)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:65:116\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)\n    at verifyCurrentRuntimePreservationBeforeCoding (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:61:17)",
+      "count": 3,
+      "milliseconds": 46.737625,
+      "failures": 0
+    },
+    {
+      "verb": "git diff",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at diff (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:205)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:41:50\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 3,
+      "milliseconds": 45.642126000000005,
+      "failures": 0
+    },
+    {
+      "verb": "git cat-file",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:138:18)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:153)",
+      "count": 3,
+      "milliseconds": 42.522292,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:149:24)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:153)",
+      "count": 3,
+      "milliseconds": 42.239167,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-tree",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/seo-native-immutable-facts-20261016.mjs:8:30)\n    at readSeoNativeImmutableFacts (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/seo-native-immutable-facts-20261016.mjs:32:32)\n    at currentPreservationNativeFacts (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:30:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:159:19",
+      "count": 1,
+      "milliseconds": 31.319584,
+      "failures": 0
+    },
+    {
+      "verb": "git cat-file",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/seo-native-immutable-facts-20261016.mjs:8:30)\n    at readSeoNativeImmutableFacts (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/seo-native-immutable-facts-20261016.mjs:36:53)\n    at currentPreservationNativeFacts (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:28:14)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:159:19",
+      "count": 1,
+      "milliseconds": 29.171791,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:30:11)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:41:16)\n    at Object.assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at assertCodingCompletionView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:126:158)\n    at preservationBeforeCodingFrame (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:144:2)",
+      "count": 1,
+      "milliseconds": 28.63525,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:30:11)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:41:16)\n    at Object.assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:189:26)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:41",
+      "count": 1,
+      "milliseconds": 28.348584,
+      "failures": 0
+    },
+    {
+      "verb": "git cat-file",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:172:23)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:17:22)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:18:167)",
+      "count": 2,
+      "milliseconds": 26.711542,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-tree",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at modes (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:50:21)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:77:3\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 1,
+      "milliseconds": 25.008958,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:30:11)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:41:16)\n    at Object.assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at assertCodingCompletionView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:126:158)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:179:2)",
+      "count": 1,
+      "milliseconds": 24.73625,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:30:11)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:41:16)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:171:10)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 1,
+      "milliseconds": 24.310208,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:30:11)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:54:61)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)",
+      "count": 1,
+      "milliseconds": 24.050791,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:30:11)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:41:16)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:77:85\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 1,
+      "milliseconds": 23.961625,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:30:11)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:54:61)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 1,
+      "milliseconds": 23.664708,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-tree",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at modes (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:50:21)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:58:3\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 1,
+      "milliseconds": 23.657667,
+      "failures": 0
+    },
+    {
+      "verb": "git --no-optional-locks",
+      "stack": "    at status (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:30:11)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:54:61)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 23.488791,
+      "failures": 0
+    },
+    {
+      "verb": "git var",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:46:78)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 2,
+      "milliseconds": 22.557125,
+      "failures": 0
+    },
+    {
+      "verb": "git var",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:16:23)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:46:78)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 2,
+      "milliseconds": 22.316542,
+      "failures": 0
+    },
+    {
+      "verb": "git var",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:25:24)\n    at captureImmutableContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:30:85)\n    at nativeFactContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:211:10)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:16)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)",
+      "count": 2,
+      "milliseconds": 22.234708,
+      "failures": 0
+    },
+    {
+      "verb": "git diff",
+      "stack": "    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:67:15)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 22.216917,
+      "failures": 0
+    },
+    {
+      "verb": "git diff",
+      "stack": "    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:78:16)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 21.180166,
+      "failures": 0
+    },
+    {
+      "verb": "git var",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:46:78)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)",
+      "count": 2,
+      "milliseconds": 20.904542,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-files",
+      "stack": "    at assertGitTrackedSourceVisible (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:56:14)\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:76:3)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 20.33125,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-tree",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:139:19)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:17:22)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:18:167)",
+      "count": 1,
+      "milliseconds": 19.660292,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-files",
+      "stack": "    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:56:16)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:41",
+      "count": 1,
+      "milliseconds": 18.723792,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-files",
+      "stack": "    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:56:16)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 18.531417,
+      "failures": 0
+    },
+    {
+      "verb": "git diff",
+      "stack": "    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:68:15)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 17.724333,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-files",
+      "stack": "    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:56:16)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 17.6475,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-tree",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:139:19)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:17:22)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:18:93)",
+      "count": 1,
+      "milliseconds": 17.441125,
+      "failures": 0
+    },
+    {
+      "verb": "git diff",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at diff (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:205)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:39:131\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 1,
+      "milliseconds": 17.409791,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:16:23)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:44:7)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 17.29625,
+      "failures": 0
+    },
+    {
+      "verb": "git diff",
+      "stack": "    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:79:16)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 15.8265,
+      "failures": 0
+    },
+    {
+      "verb": "git diff",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at diff (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:205)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:47:25\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 1,
+      "milliseconds": 15.796291,
+      "failures": 0
+    },
+    {
+      "verb": "git for-each-ref",
+      "stack": "    at replacementState (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:85:25)\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:80:20)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 15.494125,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-files",
+      "stack": "    at assertGitTrackedSourceVisible (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:56:14)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:14:2)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:77:85\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:29:9)",
+      "count": 1,
+      "milliseconds": 15.287959,
+      "failures": 0
+    },
+    {
+      "verb": "git for-each-ref",
+      "stack": "    at replacementState (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:85:25)\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:69:26)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 15.283375,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:44:7)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 1,
+      "milliseconds": 15.080041,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-files",
+      "stack": "    at assertGitTrackedSourceVisible (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:56:14)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:14:2)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 14.994125,
+      "failures": 0
+    },
+    {
+      "verb": "git merge-base",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at ancestor (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:301)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:39:37\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 1,
+      "milliseconds": 14.810708,
+      "failures": 0
+    },
+    {
+      "verb": "git merge-base",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at ancestor (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:301)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:39:71\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:63:255)",
+      "count": 1,
+      "milliseconds": 14.513,
+      "failures": 0
+    },
+    {
+      "verb": "git show",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:64)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:10:100",
+      "count": 1,
+      "milliseconds": 14.495375,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at g (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:17)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:9:77",
+      "count": 1,
+      "milliseconds": 14.463041,
+      "failures": 0
+    },
+    {
+      "verb": "git cat-file",
+      "stack": "    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:252:220)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/seo-native-immutable-facts-20261016.mjs:8:30)\n    at readSeoNativeImmutableFacts (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/seo-native-immutable-facts-20261016.mjs:36:53)\n    at currentPreservationNativeFacts (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:30:16)\n    at file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:159:19",
+      "count": 1,
+      "milliseconds": 14.186458,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:149:24)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:17:22)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:18:93)",
+      "count": 1,
+      "milliseconds": 14.039125,
+      "failures": 0
+    },
+    {
+      "verb": "git config",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:47:17)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 1,
+      "milliseconds": 13.995208,
+      "failures": 0
+    },
+    {
+      "verb": "git ls-files",
+      "stack": "    at assertGitTrackedSourceVisible (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:56:14)\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:66:2)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 13.875791,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:149:24)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:17:22)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:18:167)",
+      "count": 1,
+      "milliseconds": 13.737833,
+      "failures": 0
+    },
+    {
+      "verb": "git cat-file",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:138:18)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:17:22)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:18:167)",
+      "count": 1,
+      "milliseconds": 13.649791,
+      "failures": 0
+    },
+    {
+      "verb": "git for-each-ref",
+      "stack": "    at replacementState (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:85:25)\n    at nativeFactContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:216:29)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:16)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:153)",
+      "count": 1,
+      "milliseconds": 13.491375,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at repositoryContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:91:14)\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:70:19)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 13.248042,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at nativeFactContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:214:27)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:16)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:153)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:87:41)",
+      "count": 1,
+      "milliseconds": 13.115167,
+      "failures": 0
+    },
+    {
+      "verb": "git for-each-ref",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:16:23)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:58:7)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 13.062,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:65:31)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 12.490917,
+      "failures": 0
+    },
+    {
+      "verb": "git config",
+      "stack": "    at repositoryContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:93:17)\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:70:19)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 12.366666,
+      "failures": 1
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:25:24)\n    at captureImmutableContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:26:6)\n    at nativeFactContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:211:10)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:16)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)",
+      "count": 1,
+      "milliseconds": 12.333833,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:25:24)\n    at gitPath (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:28:23)\n    at captureImmutableContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:45:55)\n    at nativeFactContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:211:10)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:16)",
+      "count": 1,
+      "milliseconds": 12.223042,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:16:23)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:44:111)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 12.066,
+      "failures": 0
+    },
+    {
+      "verb": "git symbolic-ref",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:25:24)\n    at captureImmutableContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:42:26)\n    at nativeFactContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:211:10)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:16)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)",
+      "count": 1,
+      "milliseconds": 12.058375,
+      "failures": 1
+    },
+    {
+      "verb": "git config",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:16:23)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:47:17)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 11.914666,
+      "failures": 0
+    },
+    {
+      "verb": "git for-each-ref",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:58:7)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 1,
+      "milliseconds": 11.594417,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:16:23)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:59:7)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 11.56975,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:44:111)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)",
+      "count": 1,
+      "milliseconds": 11.549333,
+      "failures": 0
+    },
+    {
+      "verb": "git for-each-ref",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:58:7)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)",
+      "count": 1,
+      "milliseconds": 11.49025,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:44:56)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 1,
+      "milliseconds": 11.467208,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:77:16)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 11.358875,
+      "failures": 0
+    },
+    {
+      "verb": "git config",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:47:17)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)",
+      "count": 1,
+      "milliseconds": 11.341959,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:59:7)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 1,
+      "milliseconds": 11.317458,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:59:7)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)",
+      "count": 1,
+      "milliseconds": 11.283917,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at repositoryContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:98:18)\n    at withImmutableHistoryVerification (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:70:19)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:170:13)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)\n    at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/tests/coding-completion-scope-20261016.test.mjs:79:2)",
+      "count": 1,
+      "milliseconds": 11.283625,
+      "failures": 0
+    },
+    {
+      "verb": "git config",
+      "stack": "    at captureImmutableContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:31:16)\n    at nativeFactContext (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:211:10)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:16)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:10:44)\n    at content (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:11:153)",
+      "count": 1,
+      "milliseconds": 11.223916,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:44:111)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:20:21)\n    at withCodingConstructionProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:169:29)\n    at verifyCurrentRuntimePreservation (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:174:9)",
+      "count": 1,
+      "milliseconds": 11.22,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:16:23)\n    at freshCleanHeadHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-head-20261016.mjs:44:56)\n    at assertCurrent (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:90:15)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:124:2)\n    at verifyCurrentRuntimePreservationInCodingProof (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:177:14)",
+      "count": 1,
+      "milliseconds": 11.156833,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:44:7)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)",
+      "count": 1,
+      "milliseconds": 11.105083,
+      "failures": 0
+    },
+    {
+      "verb": "git rev-parse",
+      "stack": "    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:16:23)\n    at freshCleanHint (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/fresh-food-source-clean-20261015.mjs:44:56)\n    at clean (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:15:5)\n    at verifyCodingCompletion (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:28:2)\n    at codingCompletionHistoricalView (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/coding-completion-scope-20261016.mjs:88:2)",
+      "count": 1,
+      "milliseconds": 10.794792,
+      "failures": 0
+    },
+    {
+      "verb": "git cat-file",
+      "stack": "    at immutableFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:138:18)\n    at nativeLiteralFact (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:236:13)\n    at immutableHistoryExecFileSync (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/immutable-git-facts.mjs:254:49)\n    at git (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:17:22)\n    at blob (file:///Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-073-v6-private/release/current-runtime-preservation-20261016.mjs:18:93)",
+      "count": 1,
+      "milliseconds": 10.738375,
+      "failures": 0
+    }
+  ]
+}

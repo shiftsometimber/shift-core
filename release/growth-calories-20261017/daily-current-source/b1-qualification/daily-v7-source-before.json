@@ -1,0 +1,15 @@
+{
+  "head": "b1e316c6331752d1c5e382f5c2649259a9a48f80",
+  "tree": "8cee01ef459735dea4f9fdaabd55655098eff4a5",
+  "status": "",
+  "geometry": {
+    "HEAD": "bdb6537a271aafadd5381a8d07d84e71cc1aad1bceb9b49a649415c7bf875aad",
+    "index": "ea211b20e72cc4506c4275c7a4edf917fa982d9c896bdbe50512a069719f99f3",
+    "config": "d77a500cd13fe0bdab04fbb78facba9f1fb0fc80093eb401d316a60631bbb993",
+    "packed-refs": "6110899c7adc374885f9552bddfb76fa28a7f7ca3c05fb8b74471a457e1e57c8",
+    "FETCH_HEAD": "29dd628c876db707db0947d8bf0e416b81162902996927a20408940041fc53f8",
+    "objects/info/alternates": null,
+    "commondir": null
+  },
+  "refs": ""
+}

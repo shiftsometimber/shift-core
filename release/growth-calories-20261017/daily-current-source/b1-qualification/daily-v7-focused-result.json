@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-17T15:12:55.905646+00:00",
+  "startedAt": "2026-10-17T15:11:43.731617+00:00",
+  "stage": "focused",
+  "head": "b1e316c6331752d1c5e382f5c2649259a9a48f80",
+  "tree": "8cee01ef459735dea4f9fdaabd55655098eff4a5",
+  "command": [
+    "/usr/local/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/coding-completion-scope-20261016.test.mjs",
+    "member-experience/tests/weight-import-mapping-ui.test.mjs"
+  ],
+  "capSeconds": 180,
+  "seconds": 72.073291042,
+  "exit": 0,
+  "timedOut": false,
+  "counts": {
+    "tests": 40,
+    "pass": 40,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "sourceUnchanged": true,
+  "ownedGroupEmpty": true,
+  "cleanupMethod": "signal-probe",
+  "signals": [],
+  "baseline510NamesPreserved": null,
+  "logSHA256": "5391dd60cf7e801b0c993e324045d0dd0b266b6dd49f62c6ebeafc60e2a78b52",
+  "passed": true,
+  "deployment": false,
+  "modelCalls": 0
+}
