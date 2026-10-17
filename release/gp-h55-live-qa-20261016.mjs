@@ -163,6 +163,8 @@ async function verifyOn(){
  const oidc=process.env.SHIFT_COMMISSIONING_OIDC;assert(oidc,'Existing allowed-workflow commissioning identity required');
  const{chromium}=createRequire(resolve(process.cwd(),'package.json'))('playwright');const{commissioningLogin}=await import('../../runtime/rendered-member-acceptance-support.mjs');const{verifyGpDirectoryLive,verifyGpIsolationFromExistingHolder}=await import('./gp-directory-live-h55-qa-20261016.mjs');
  assert.equal(typeof chromium.launch,'function');assert.equal(typeof commissioningLogin,'function');assert.equal(typeof verifyGpDirectoryLive,'function');assert.equal(typeof verifyGpIsolationFromExistingHolder,'function');
+ const{compiledTreatmentAssets}=await import('../../runtime/release/my-treatment-compiled-control.mjs');
+ const compiled=await compiledTreatmentAssets();assert.equal(compiled.source,source);assert.equal(compiled.bundleSha256,runtime.workers.core.bundleSha256,'Actual W CI whole bundle must match the configured local compiler before any fixture');
  const site='https://shiftsometimber.co.uk',apiOrigin='https://api.shiftsometimber.co.uk';
  const first={email:'shiftsometimber+structured-growth-'+randomUUID()+'@gmail.com',password:'SST-GP-'+randomUUID()+'-Aa1!'};
  const second={email:'shiftsometimber+structured-progressstory-'+Date.now()+'-desktop@gmail.com',password:'SST-GP-'+randomUUID()+'-Aa1!'};

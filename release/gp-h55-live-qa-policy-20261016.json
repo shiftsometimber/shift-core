@@ -130,7 +130,7 @@
   },
   "runner": {
     "path": "release/gp-h55-live-qa-20261016.mjs",
-    "sha256": "8716aeb88fd1942508147d5e7f7dc9fc754cc1e291f5027a31f2915a466bc67f",
+    "sha256": "e743cea794616f85f312e6d43cd3db0388af72de66f7208c2e620f3a1ce998be",
     "originalSha256": "496bc6458786ae3a7161b95b58c0e9e319700f18dac062b8b32d883d41f9a4da",
     "wholeInverse": [
       [
@@ -336,6 +336,11 @@
       [
         "if(mode==='--wait-on')await waitForOn();",
         "if(mode==='--wait-on')await waitForWeek();",
+        1
+      ],
+      [
+        " const site='https://shiftsometimber.co.uk',apiOrigin='https://api.shiftsometimber.co.uk';",
+        " const{compiledTreatmentAssets}=await import('../../runtime/release/my-treatment-compiled-control.mjs');\n const compiled=await compiledTreatmentAssets();assert.equal(compiled.source,source);assert.equal(compiled.bundleSha256,runtime.workers.core.bundleSha256,'Actual W CI whole bundle must match the configured local compiler before any fixture');\n const site='https://shiftsometimber.co.uk',apiOrigin='https://api.shiftsometimber.co.uk';",
         1
       ]
     ]
