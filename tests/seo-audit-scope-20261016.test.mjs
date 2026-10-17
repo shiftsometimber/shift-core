@@ -1,3 +1,5 @@
+import './accepted-current-runtime-starting-point-20261017.test.mjs';
+import './current-runtime-preservation-20261016.test.mjs';
 import test from 'node:test';
 import {withImmutableHistoryVerification} from '../release/immutable-git-facts.mjs';
 import assert from 'node:assert/strict';
@@ -45,3 +47,12 @@ import './runtime-cancel-rollback-20261016.test.mjs';
 
 // Keep the completed rollback separate from this run's protected stock window.
 import './owned-rollback-release-window-20261016.test.mjs';
+
+await import('../tests/accepted-recorded-week-runtime-20261017.test.mjs');
+
+import './accepted-current-hq-retention-20261017.test.mjs';
+
+import './combined-hq-preservation-20261014.test.mjs';
+
+import './recorded-week-browser-repair-20261017.test.mjs';
+import './treatment-week-compiled-module-20261017.test.mjs';

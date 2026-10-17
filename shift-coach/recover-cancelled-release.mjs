@@ -1,3 +1,8 @@
+import {ACCEPTED_GRUB_UK_RUNTIME,verifyCurrentAcceptedGrubUkRuntimeWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
+import {ACCEPTED_GRUB_RUNTIME,verifyCurrentAcceptedGrubRuntimeWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
+import {RECORDED_WEEK_OWNED_ROLLBACK,verifyCurrentRecordedWeekOwnedRollbackWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
+import {verifiedSourceScopeAtPointUse} from '../release/verified-source-evidence-20261016.mjs';
+import {PRESERVED_CURRENT_RUNTIME as ACCEPTED_CURRENT_RUNTIME,verifyCurrentRecordedWeekRuntimeWindow as verifyCurrentAcceptedRuntimeWindow,assertRecordedWeekPreservedRuntimeLineage as assertPreservedRuntimeLineage} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
 import {verifyCurrentOwnedRollbackReleaseWindow} from '../release/owned-rollback-release-window-20261016.mjs';
 import {OWNED_ROLLBACK_DEPLOYMENT,verifyCurrentOwnedRollback,readLegacyRecoveryProof} from '../release/verified-owned-rollback-current.mjs';
 import {createGithubProofReader} from '../release/github-proof-get.mjs';
@@ -15,7 +20,9 @@ import {SITEWIDE_VERSION,verifySitewideRuntime} from '../release/sitewide-seo-sc
 import {ROOT_SHARE_ROLLBACK,verifyRootShareRollback} from '../release/root-share-preview-rollback.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
 import {restoredWaistReadingStripRuntime,restoredMaleObesityHubV2TransportRuntime,restoredMaleObesityHubV2Runtime,restoredMaleObesitySupportRuntime,restoredMaleObesityRuntime,verifyMaleObesityRollback,restoredContinuityRuntime,verifyContinuityRollback,restoredPassportRuntime,verifyPassportRollback,restoredToolRuntime,verifyToolRollback,restoredLaterRuntime,verifyRestoredLaterRuntime,tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime,technicalRecovery,verifyTechnicalCancelledRuntime,unattributedRuntimeRecovery,verifyUnattributedRuntime,laterUnattributedRuntimeRecovery,verifyLaterUnattributedRuntime,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
-assert.equal(process.env.GITHUB_REF,'refs/heads/main');verifyCoachingRelease({requireLaunch:true});
+assert.equal(process.env.GITHUB_REF,'refs/heads/main');
+const completedOriginalSource=await verifiedSourceScopeAtPointUse();
+if(!completedOriginalSource)verifyCoachingRelease({requireLaunch:true});
 // Archive pins come only from the accepted exact rollback/source modules above.
 // Metadata stays fresh. Only hash-verified immutable archive bytes may be reused.
 const historicalProof=createGithubProofReader({cacheDirectory:join(process.env.RUNNER_TEMP||tmpdir(),'shift-core-github-proof-v1')});
@@ -34,8 +41,49 @@ const activeVersion=before.versions?.[0]?.version_id;
 const version=JSON.parse(wrangler('versions','view',activeVersion,'--json'));
 const versionObservation={kind:'runtime_recovery_version_observation',id:version.id,createdOn:version.metadata?.created_on,source:version.metadata?.source,triggeredBy:version.annotations?.['workers/triggered_by']||null,tag:version.annotations?.['workers/tag']||null,message:version.annotations?.['workers/message']||null};
 console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
+async function findVerifiedOwnedPromotion(){
+ let ownedProof;
+ const runs=ownedProof?[]:await recentSuccessfulPromotions(get,before);
+ for(const run of runs){
+  if(ownedProof)break;
+  const jobs=await get('/actions/runs/'+run.id+'/jobs');
+  for(const job of (jobs.jobs||[]).filter(j=>j.name==='promote'&&j.conclusion==='success')){
+   const logs=await historicalProof.logs(job.id);
+   for(const line of logs.split('\n')){
+    const start=line.indexOf('{"kind":"owned_runtime_deployment"');if(start<0)continue;
+    let receipt;try{receipt=JSON.parse(line.slice(start))}catch{continue}
+    if(verifiedOwnedRuntime(before,run,job,receipt)){ownedProof={run:run.id,source:run.head_sha,version:receipt.versionId};break;}
+   }
+  }
+ }
+ return ownedProof;
+}
+const preserveCurrentRuntime=Boolean(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).currentRuntimePreservation20261016);
+let acceptedCurrentServingProof;
+let acceptedGrubServingProof;
+let acceptedGrubUkServingProof;
+let recordedWeekOwnedRollbackProof;
 let verifiedOwnedRollbackProof,restoredMaleObesityRuntimeProof,decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof,restoredLaterRuntimeProof,restoredToolRuntimeProof,restoredPassportRuntimeProof,restoredContinuityRuntimeProof;
-if(before.id===OWNED_ROLLBACK_DEPLOYMENT){
+if(preserveCurrentRuntime){
+ if(before.id===ACCEPTED_GRUB_UK_RUNTIME.deployment){
+  acceptedGrubUkServingProof=await verifyCurrentAcceptedGrubUkRuntimeWindow({proof:historicalProof,wrangler,stage:'recovery'});
+  ownedProof={run:acceptedGrubUkServingProof.run,source:acceptedGrubUkServingProof.source,version:acceptedGrubUkServingProof.version};
+ }else if(before.id===ACCEPTED_GRUB_RUNTIME.deployment){
+  acceptedGrubServingProof=await verifyCurrentAcceptedGrubRuntimeWindow({proof:historicalProof,wrangler,stage:'recovery'});
+  ownedProof={run:acceptedGrubServingProof.run,source:acceptedGrubServingProof.source,version:acceptedGrubServingProof.version};
+ }else if(before.id===RECORDED_WEEK_OWNED_ROLLBACK.deployment.id){
+  recordedWeekOwnedRollbackProof=await verifyCurrentRecordedWeekOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'recovery'});
+  ownedProof={run:recordedWeekOwnedRollbackProof.predecessorRun,source:recordedWeekOwnedRollbackProof.source,version:recordedWeekOwnedRollbackProof.version};
+ }else if(before.id===ACCEPTED_CURRENT_RUNTIME.deployment){
+  acceptedCurrentServingProof=await verifyCurrentAcceptedRuntimeWindow({proof:historicalProof,wrangler,stage:'recovery'});
+  ownedProof={run:acceptedCurrentServingProof.run,source:acceptedCurrentServingProof.source,version:acceptedCurrentServingProof.version};
+ }else{
+  ownedProof=await findVerifiedOwnedPromotion();
+  assert(ownedProof,'Unknown runtime has no exact successful owned-deployment proof; stop without rollback');
+  assertPreservedRuntimeLineage(ownedProof);
+ }
+ const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during accepted-current baseline verification');decision='retain';
+}else if(before.id===OWNED_ROLLBACK_DEPLOYMENT){
  verifiedOwnedRollbackProof=await verifyCurrentOwnedRollbackReleaseWindow({proof:historicalProof,wrangler,stage:'recovery'});decision='retain';
 }else if(before.id===PHOTO_CANCELLED.deployment){
  const getLogs=historicalProof.logs;
@@ -153,19 +201,7 @@ else{
   const job=(jobs.jobs||[]).find(j=>j.name==='release'&&j.conclusion==='success');
   if(verifiedArticleRuntime(before,run,job))ownedProof={run:run.id,source:run.head_sha,version:articleRuntime.version};
  }
- const runs=ownedProof?[]:await recentSuccessfulPromotions(get,before);
- for(const run of runs){
-  if(ownedProof)break;
-  const jobs=await get('/actions/runs/'+run.id+'/jobs');
-  for(const job of (jobs.jobs||[]).filter(j=>j.name==='promote'&&j.conclusion==='success')){
-   const logs=await historicalProof.logs(job.id);
-   for(const line of logs.split('\n')){
-    const start=line.indexOf('{"kind":"owned_runtime_deployment"');if(start<0)continue;
-    let receipt;try{receipt=JSON.parse(line.slice(start))}catch{continue}
-    if(verifiedOwnedRuntime(before,run,job,receipt)){ownedProof={run:run.id,source:run.head_sha,version:receipt.versionId};break;}
-   }
-  }
- }
+ ownedProof=ownedProof||await findVerifiedOwnedPromotion();
  assert(ownedProof,'Unknown runtime has no exact successful owned-deployment proof; stop without rollback');
  decision='retain';
 }
@@ -185,6 +221,6 @@ if(decision==='restore'){
  assert.equal(recoveryDecision(active(),failed,verified),'retain','Recovery did not restore the verified runtime');
  }
 }
-mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:verifiedOwnedRollbackProof?verifiedOwnedRollbackProof.failedRun:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.run:restoredContinuityRuntimeProof?restoredContinuityRuntime.run:restoredPassportRuntimeProof?restoredPassportRuntime.run:restoredToolRuntimeProof?restoredToolRuntime.run:restoredLaterRuntimeProof?restoredLaterRuntime.run:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.run:unattributedProof?unattributedRuntimeRecovery.run:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:verifiedOwnedRollbackProof?verifiedOwnedRollbackProof.version:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.version:restoredContinuityRuntimeProof?restoredContinuityRuntimeProof.version:restoredPassportRuntimeProof?restoredPassportRuntimeProof.version:restoredToolRuntimeProof?restoredToolRuntimeProof.version:restoredLaterRuntimeProof?restoredLaterRuntimeProof.verifiedVersion:ownerCapturedProof?ownerCapturedProof.version:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedVersion:unattributedProof?unattributedRuntimeRecovery.verifiedVersion:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:verifiedOwnedRollbackProof?verifiedOwnedRollbackProof.predecessorRun:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.verifiedRun:restoredContinuityRuntimeProof?restoredContinuityRuntimeProof.verifiedRun:restoredPassportRuntimeProof?restoredPassportRuntimeProof.verifiedRun:restoredToolRuntimeProof?restoredToolRuntimeProof.verifiedRun:restoredLaterRuntimeProof?restoredLaterRuntimeProof.verifiedRun:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedRun:unattributedProof?unattributedRuntimeRecovery.verifiedRun:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(restoredMaleObesityRuntimeProof?{restoredMaleObesityRuntimeProof}:{}),...(ownerCapturedProof?{ownerCapturedProof}:{}),...(restoredLaterRuntimeProof?{restoredLaterRuntimeProof}:{}),...(restoredToolRuntimeProof?{restoredToolRuntimeProof}:{}),...(restoredPassportRuntimeProof?{restoredPassportRuntimeProof}:{}),...(restoredContinuityRuntimeProof?{restoredContinuityRuntimeProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),...(unattributedProof?{unattributedRuntimeRecovery:unattributedProof}:{}),...(laterUnattributedProof?{laterUnattributedRuntimeRecovery:laterUnattributedProof}:{}),...(verifiedOwnedRollbackProof?{verifiedOwnedRollbackProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
+mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:acceptedGrubUkServingProof?acceptedGrubUkServingProof.run:acceptedGrubServingProof?acceptedGrubServingProof.run:recordedWeekOwnedRollbackProof?recordedWeekOwnedRollbackProof.predecessorRun:acceptedCurrentServingProof?acceptedCurrentServingProof.run:verifiedOwnedRollbackProof?verifiedOwnedRollbackProof.failedRun:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.run:restoredContinuityRuntimeProof?restoredContinuityRuntime.run:restoredPassportRuntimeProof?restoredPassportRuntime.run:restoredToolRuntimeProof?restoredToolRuntime.run:restoredLaterRuntimeProof?restoredLaterRuntime.run:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.run:unattributedProof?unattributedRuntimeRecovery.run:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:verifiedOwnedRollbackProof?verifiedOwnedRollbackProof.version:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.version:restoredContinuityRuntimeProof?restoredContinuityRuntimeProof.version:restoredPassportRuntimeProof?restoredPassportRuntimeProof.version:restoredToolRuntimeProof?restoredToolRuntimeProof.version:restoredLaterRuntimeProof?restoredLaterRuntimeProof.verifiedVersion:ownerCapturedProof?ownerCapturedProof.version:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedVersion:unattributedProof?unattributedRuntimeRecovery.verifiedVersion:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:verifiedOwnedRollbackProof?verifiedOwnedRollbackProof.predecessorRun:restoredMaleObesityRuntimeProof?restoredMaleObesityRuntimeProof.verifiedRun:restoredContinuityRuntimeProof?restoredContinuityRuntimeProof.verifiedRun:restoredPassportRuntimeProof?restoredPassportRuntimeProof.verifiedRun:restoredToolRuntimeProof?restoredToolRuntimeProof.verifiedRun:restoredLaterRuntimeProof?restoredLaterRuntimeProof.verifiedRun:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedRun:unattributedProof?unattributedRuntimeRecovery.verifiedRun:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(acceptedGrubUkServingProof?{acceptedGrubUkServingProof}:{}),...(acceptedGrubServingProof?{acceptedGrubServingProof}:{}),...(recordedWeekOwnedRollbackProof?{recordedWeekOwnedRollbackProof}:{}),...(acceptedCurrentServingProof?{acceptedCurrentServingProof}:{}),...(restoredMaleObesityRuntimeProof?{restoredMaleObesityRuntimeProof}:{}),...(ownerCapturedProof?{ownerCapturedProof}:{}),...(restoredLaterRuntimeProof?{restoredLaterRuntimeProof}:{}),...(restoredToolRuntimeProof?{restoredToolRuntimeProof}:{}),...(restoredPassportRuntimeProof?{restoredPassportRuntimeProof}:{}),...(restoredContinuityRuntimeProof?{restoredContinuityRuntimeProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),...(unattributedProof?{unattributedRuntimeRecovery:unattributedProof}:{}),...(laterUnattributedProof?{laterUnattributedRuntimeRecovery:laterUnattributedProof}:{}),...(verifiedOwnedRollbackProof?{verifiedOwnedRollbackProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
 console.log('PASS exact cancelled-release recovery: '+decision+' verified runtime; no data rollback');
 

@@ -1,3 +1,6 @@
+import {currentRuntimePreservationHistoricalView as watchFixtureFrame,currentRuntimePreservationAuthenticatedContent as watchFixtureContent} from '../release/current-runtime-preservation-20261016.mjs';
+import {withImmutableHistoryVerification as withWatchFixtureHistory} from '../release/immutable-git-facts.mjs';
+import {createHash as watchFixtureHash} from 'node:crypto';
 import {seoAuditOriginalSource,SEO_AUDIT_MAINTENANCE} from '../release/seo-audit-scope-20261016.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -1380,12 +1383,41 @@ test('legacy non-CI factory still invokes the unchanged public verifier',()=>{
 
 // Additive current-HEAD reader coherence; every preceding117 test byte remains.
 {
+ // This legacy fixture examines the original Watch-only change. The native
+ // frame first authenticates current bytes, all registered inverses and source
+ // boundaries. Only the contract input is then restored; actual HEAD and every
+ // real current Watch-reader assertion below remain untouched.
+ const aliasFixture=withWatchFixtureHistory(()=>watchFixtureFrame());
+ assert.equal(aliasFixture.rawHead,head,'Actual current source identity must remain separate from historical fixture bytes');
+ const aliasFixtureContract='shift-coach/release-contract.mjs';
+ const aliasFixtureNativeContent=(ref,path)=>g('show',ref+':'+path);
+ const aliasFixtureOriginalContent=watchFixtureContent(aliasFixtureNativeContent,aliasFixture);
+ const aliasFixtureCurrent=(ref,path)=>(ref==='HEAD'||ref===head)&&path===aliasFixtureContract;
+ const blob=(ref,path)=>aliasFixtureCurrent(ref,path)?aliasFixture.read(ref,path):g('rev-parse',ref+':'+path).trim();
+ const content=(ref,path)=>aliasFixtureCurrent(ref,path)?aliasFixtureOriginalContent(ref,path):aliasFixtureNativeContent(ref,path);
  const aliasP=FOOD_DIARY_LONDON_DATE_POLICY,aliasPrior=aliasP.currentWatchReadHeadAliasesPrior,aliasPath='shift-coach/release-contract.mjs';
  const aliasCurrent=content(head,aliasPath),aliasBefore=content(aliasPrior.head,aliasPath);
  const aliasRestore=(value,pairs)=>{for(const[a,b]of[...pairs].reverse()){assert(b&&value.split(b).length===2);value=value.replace(b,a);}return value;};
  const aliasStart=aliasCurrent.indexOf('function assertCoachingCurrentWatchReadAliases(read){'),aliasEnd=aliasCurrent.indexOf('\n}\n',aliasStart);assert(aliasStart>=0&&aliasEnd>aliasStart);
  const aliasHelper=aliasCurrent.slice(aliasStart,aliasEnd+3),aliasModelHead='a'.repeat(40),aliasPaths=new Set(['medicines-watch/data.mjs','medicines-watch/monitor.mjs']);
  const aliasMake=(getHead=()=>aliasModelHead,paths=aliasPaths)=>new Function('assert','immutableHistorySourceHead','WATCH_CURRENT_PATHS',aliasHelper+'\nreturn assertCoachingCurrentWatchReadAliases;')(assert,getHead,paths);
+ test('Watch compatibility frame: actual registered preflight and exact original fixture are both required',()=>{
+  const path=aliasFixtureContract,record=JSON.parse(g('show',head+':'+ledger)).currentRuntimePreservation20261016,early=record.coachingSourceEarlyRejection20261017;
+  const actual=g('show',head+':'+path),actualBlob=g('rev-parse',head+':'+path).trim(),historical=content(head,path),historicalBlob=blob(head,path);
+  assert.equal(aliasFixture.rawHead,head);assert.equal(g('rev-parse','HEAD').trim(),head);
+  assert.equal(actualBlob,early.afterBlob,'The real current contract must retain the exact registered preflight');
+  assert.equal(watchFixtureHash('sha256').update(actual).digest('hex'),early.afterSHA256);
+  assert.equal(aliasFixture.currentContent(head,path),actual,'The actual current bytes remain independently visible');
+  assert.notEqual(actualBlob,historicalBlob,'Historical fixture input must never be presented as the actual current blob');
+  assert.equal(historicalBlob,early.beforeBlob);assert.equal(watchFixtureHash('sha256').update(historical).digest('hex'),early.beforeSHA256);
+  assert.equal(historical,g('show',early.basisSource+':'+path),'Every original contract byte is restored, not rebaselined');
+  assert.equal(historicalBlob,'f7e8178f164b601796dd0242d5ff8aa274b65dcb');
+  const invocation=' assertCoachingCurrentWatchReadAliases(read);\n',full=" const growth=manifest.rankingGrowthComposition;verifyRankingGrowth(growth,read);read=rankingGrowthHistoricalRead(read,growth);";
+  assert.equal(actual.split(invocation).length,2);
+  assert(actual.includes(invocation+' rejectInconsistentCoachingHistoricalRead(read,manifest);\n'+full),'Actual successful preflight must still continue into the unchanged full verifier');
+  assert(historical.includes(invocation+full),'The original legacy continuation assertion remains exact');
+  assert.equal(early.originalLateAssertionsRetained,true);aliasFixture.assertCurrent();
+ });
  test('Watch reader coherence: every prior117 byte and all115 prior ledger records restore exactly',()=>{
   const actual=JSON.parse(seoOriginalContent(head,ledger)),restored=structuredClone(actual);restored[key]=aliasPrior.record;
   assert.deepEqual(restored,JSON.parse(content(aliasPrior.head,ledger)),'All114 other rows and the complete prior Food receipt are exact');

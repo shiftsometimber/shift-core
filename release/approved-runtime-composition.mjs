@@ -1,3 +1,4 @@
+import {CURRENT_RUNTIME_PRESERVATION_PATHS,CURRENT_RUNTIME_PRESERVATION_MAINTENANCE} from './current-runtime-preservation-20261016.mjs';
 import {SEO_AUDIT_PATHS,SEO_AUDIT_MAINTENANCE} from './seo-audit-scope-20261016.mjs';
 import {FOOD_DIARY_LONDON_DATE_PATHS,FOOD_DIARY_LONDON_DATE_MAINTENANCE} from './food-diary-london-date-scope-20261015.mjs';
 import {CI_EXECUTION_PATHS,CI_EXECUTION_MAINTENANCE} from './ci-execution-scope-20261014.mjs';
@@ -3123,3 +3124,6 @@ for(const p of [...CI_EXECUTION_PATHS,...CI_EXECUTION_MAINTENANCE])RECONCILIATIO
 for(const p of [...FOOD_DIARY_LONDON_DATE_PATHS,...FOOD_DIARY_LONDON_DATE_MAINTENANCE])RECONCILIATION_PATHS.add(p);
 // Exact separately approved article SEO payload; every prior receipt remains.
 for(const p of [...SEO_AUDIT_PATHS,...SEO_AUDIT_MAINTENANCE])RECONCILIATION_PATHS.add(p);
+
+// Exact preservation of delivered GP and questionnaire source; original Core proofs remain required.
+for(const p of [...CURRENT_RUNTIME_PRESERVATION_PATHS,...CURRENT_RUNTIME_PRESERVATION_MAINTENANCE])RECONCILIATION_PATHS.add(p);
