@@ -33,19 +33,52 @@ export async function readGpOverflowGeometry(page){
   const rect=e=>{const r=e.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
   const box=e=>{const c=getComputedStyle(e);return{tag:e.tagName,id:e.id,class:typeof e.className==='string'?e.className:'',rect:rect(e),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,css:{width:c.width,minWidth:c.minWidth,maxWidth:c.maxWidth,fontFamily:c.fontFamily,fontSize:c.fontSize,gridTemplateColumns:c.gridTemplateColumns,flexWrap:c.flexWrap,boxSizing:c.boxSizing,overflowX:c.overflowX,position:c.position,transform:c.transform,padding:c.padding,margin:c.margin,whiteSpace:c.whiteSpace,overflowWrap:c.overflowWrap}};};
   const failure=assertion.noHorizontalOverflow?null:(()=>{
-   const properties=['display','position','width','minWidth','maxWidth','height','left','right','top','bottom','inset','margin','padding','transform','overflowX','overflowY','whiteSpace','contain','contentVisibility','clip','clipPath','boxSizing'];
+   const properties=['display','position','width','minWidth','maxWidth','height','left','right','top','bottom','inset','margin','padding','transform','translate','scale','zoom','overflowX','overflowY','whiteSpace','contain','contentVisibility','clip','clipPath','boxSizing'];
    const layout=c=>Object.fromEntries(properties.map(k=>[k,/(?:url\s*\(|https?:\/\/)/i.test(c[k]||'')?'[reference]':c[k]]));
    const suspects=[document.documentElement,document.head,document.body,...document.head.children,...document.querySelectorAll('body *')].filter((e,i,a)=>e&&a.indexOf(e)===i).filter(e=>e===document.documentElement||e===document.head||e===document.body||e.parentElement===document.head||e.getClientRects().length&&(()=>{const r=e.getBoundingClientRect();return r.right>innerWidth+1||e.scrollWidth>e.clientWidth+1;})()).slice(0,100);
+   const allDomElements=[...document.querySelectorAll('*')],allDomWideBoxes=[],allDomGeneratedPseudos=[],allDomSubjects=[];
+   for(const[e,index]of allDomElements.map((e,index)=>[e,index])){
+    const r=rect(e),c=getComputedStyle(e),visible=e.getClientRects().length>0;
+    if(visible&&(e.clientWidth>assertionInnerWidth+1||e.offsetWidth>assertionInnerWidth+1||r.width>assertionInnerWidth+1||r.left< -1||r.right>assertionInnerWidth+1)){allDomSubjects.push(e);allDomWideBoxes.push({tag:e.tagName,index,rect:r,clientWidth:e.clientWidth,offsetWidth:e.offsetWidth,scrollWidth:e.scrollWidth,layout:layout(c)});}
+    for(const pseudo of['::before','::after']){const p=getComputedStyle(e,pseudo);if(p.content==='none'||p.content==='normal')continue;allDomSubjects.push(e);allDomGeneratedPseudos.push({tag:e.tagName,index,pseudo,ownerRect:r,ownerClientWidth:e.clientWidth,ownerOffsetWidth:e.offsetWidth,layout:layout(p)});}
+   }
+   const additionalSubjects=[...new Set(allDomSubjects)],allDomMatchedLayoutRules=[];
    const rules=[],privateSelectors=[];
-   const visit=(list,path)=>{for(const rule of list){if(rule.cssRules){try{visit(rule.cssRules,path);}catch{}}if(!rule.selectorText||!rule.style)continue;for(const e of suspects){let matches=false;try{matches=rule.selectorText.split(',').some(s=>e.matches(s.trim().replace(/::?(before|after)\b/g,'')));}catch{}if(matches){privateSelectors.push(rule.selectorText);rules.push({path,selectorIndex:privateSelectors.length-1,layout:layout(rule.style)});break;}}}};
+   const visit=(list,path)=>{for(const rule of list){if(rule.cssRules){try{visit(rule.cssRules,path);}catch{}}if(!rule.selectorText||!rule.style)continue;for(const e of suspects){let matches=false;try{matches=rule.selectorText.split(',').some(s=>e.matches(s.trim().replace(/::?(before|after)\b/g,'')));}catch{}if(matches){privateSelectors.push(rule.selectorText);rules.push({path,selectorIndex:privateSelectors.length-1,layout:layout(rule.style)});break;}}for(const e of additionalSubjects){let matches=false;try{matches=rule.selectorText.split(',').some(s=>e.matches(s.trim().replace(/::?(before|after)\b/g,'')));}catch{}if(matches){privateSelectors.push(rule.selectorText);allDomMatchedLayoutRules.push({path,selectorIndex:privateSelectors.length-1,layout:layout(rule.style)});break;}}}};
    for(const sheet of document.styleSheets){let path='inline';if(sheet.href){try{const u=new URL(sheet.href);path=u.origin==='https://shiftsometimber.co.uk'&&/^\/assets\/[A-Za-z0-9_./-]+$/.test(u.pathname)?u.origin+u.pathname:'unlisted-sheet';}catch{path='unavailable';}}try{visit(sheet.cssRules,path);}catch{rules.push({path,cssRulesReadable:false});}}
-   return{boxes:suspects.map((e,index)=>({tag:e.tagName,index,rect:rect(e),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,layout:layout(getComputedStyle(e)),pseudo:['::before','::after'].map(pseudo=>{const c=getComputedStyle(e,pseudo);return{pseudo,generated:c.content!=='none'&&c.content!=='normal',layout:layout(c)};})})),matchedLayoutRules:rules,privateHashInputs:{selectors:privateSelectors,html:(document.doctype?new XMLSerializer().serializeToString(document.doctype):'')+document.documentElement.outerHTML,inlineStyles:[...document.querySelectorAll('style')].map(e=>e.textContent)}};
+   return{allDomElementCount:allDomElements.length,allDomWideBoxes,allDomGeneratedPseudos,allDomMatchedLayoutRules,boxes:suspects.map((e,index)=>({tag:e.tagName,index,rect:rect(e),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,layout:layout(getComputedStyle(e)),pseudo:['::before','::after'].map(pseudo=>{const c=getComputedStyle(e,pseudo);return{pseudo,generated:c.content!=='none'&&c.content!=='normal',layout:layout(c)};})})),matchedLayoutRules:rules,privateHashInputs:{selectors:privateSelectors,html:(document.doctype?new XMLSerializer().serializeToString(document.doctype):'')+document.documentElement.outerHTML,inlineStyles:[...document.querySelectorAll('style')].map(e=>e.textContent)}};
   })();
   return{...(failure?{failureOnly:failure}:{}),assertion,stylesheets:[...document.querySelectorAll('link[rel=stylesheet]')].map(e=>{const u=new URL(e.href,location.href);return{origin:u.origin,path:u.pathname,loaded:!!e.sheet,disabled:e.disabled};}),at:new Date().toISOString(),viewport:{innerWidth,innerHeight,devicePixelRatio,visualViewport:window.visualViewport?{width:visualViewport.width,height:visualViewport.height,scale:visualViewport.scale}:null},userAgent:navigator.userAgent,fontsStatus:document.fonts?.status,platform:navigator.platform,root:box(document.documentElement),body:box(document.body),overflowing:[...document.querySelectorAll('body *')].filter(e=>{if(!e.getClientRects().length)return false;const r=e.getBoundingClientRect();return r.right>innerWidth+1||e.scrollWidth>e.clientWidth+1;}).map(e=>({...box(e),ancestors:[e.parentElement,e.parentElement?.parentElement].filter(Boolean).map(box)})).sort((a,b)=>b.rect.right-a.rect.right).slice(0,100)};
  });
- if(evidence.failureOnly){const privateInputs=evidence.failureOnly.privateHashInputs;delete evidence.failureOnly.privateHashInputs;const hashed=body=>({sha256:createHash('sha256').update(body).digest('hex'),bytes:Buffer.byteLength(body)});evidence.failureOnly.documentHtml=hashed(privateInputs.html);evidence.failureOnly.inlineStyles=privateInputs.inlineStyles.map(hashed);for(const rule of evidence.failureOnly.matchedLayoutRules)if(Number.isInteger(rule.selectorIndex)){rule.selectorSha256=hashed(privateInputs.selectors[rule.selectorIndex]).sha256;delete rule.selectorIndex;}}
+ if(evidence.failureOnly){const privateInputs=evidence.failureOnly.privateHashInputs;delete evidence.failureOnly.privateHashInputs;const hashed=body=>({sha256:createHash('sha256').update(body).digest('hex'),bytes:Buffer.byteLength(body)});evidence.failureOnly.documentHtml=hashed(privateInputs.html);evidence.failureOnly.inlineStyles=privateInputs.inlineStyles.map(hashed);for(const rule of [...evidence.failureOnly.matchedLayoutRules,...evidence.failureOnly.allDomMatchedLayoutRules])if(Number.isInteger(rule.selectorIndex)){rule.selectorSha256=hashed(privateInputs.selectors[rule.selectorIndex]).sha256;delete rule.selectorIndex;}}
  return evidence;
 }
+export async function readGpFailureCdpGeometry(page){
+ const session=await page.context().newCDPSession(page);
+ try{
+  const viewport=await page.evaluate(()=>({innerWidth,innerHeight}));
+  const properties=['display','position','width','min-width','max-width','transform','translate','scale','zoom','overflow-x','overflow-y'];
+  const snapshot=await session.send('DOMSnapshot.captureSnapshot',{computedStyles:properties,includeDOMRects:true,includePaintOrder:true});
+  const tag=value=>/^(?:#text|#document|#document-fragment|[A-Za-z][A-Za-z0-9:-]{0,80})$/.test(value||'')?value:'[node]';
+  const layout=values=>Object.fromEntries(properties.map((key,index)=>{const value=snapshot.strings[values?.[index]]||'';return[key,/(?:url\s*\(|https?:\/\/)/i.test(value)?'[reference]':value];}));
+  const rect=value=>Array.isArray(value)&&value.length===4&&value.every(Number.isFinite)?value:null;
+  const outliers=[];
+  for(const[documentIndex,document]of snapshot.documents.entries()){
+   const nodes=document.nodes,boxes=document.layout;
+   const rare=(data,index)=>{const at=data?.index?.indexOf(index)??-1;return at<0?null:snapshot.strings[data.value[at]];};
+   for(let layoutIndex=0;layoutIndex<boxes.nodeIndex.length;layoutIndex++){
+    const nodeIndex=boxes.nodeIndex[layoutIndex],bounds=rect(boxes.bounds[layoutIndex]),offsetRect=rect(boxes.offsetRects?.[layoutIndex]),clientRect=rect(boxes.clientRects?.[layoutIndex]),scrollRect=rect(boxes.scrollRects?.[layoutIndex]);
+    if(![bounds,offsetRect,clientRect,scrollRect].some(r=>r&&(r[0]< -1||r[0]+r[2]>viewport.innerWidth+1||r[2]>viewport.innerWidth+1)))continue;
+    const ancestors=[];let parent=nodes.parentIndex[nodeIndex];
+    for(let depth=0;depth<8&&Number.isInteger(parent)&&parent>=0;depth++){const shadow=rare(nodes.shadowRootType,parent);ancestors.push({nodeIndex:parent,tag:tag(snapshot.strings[nodes.nodeName[parent]]),...(shadow&&['open','closed','user-agent'].includes(shadow)?{shadowRootType:shadow}:{})});parent=nodes.parentIndex[parent];}
+    const pseudo=rare(nodes.pseudoType,nodeIndex),shadow=rare(nodes.shadowRootType,nodeIndex);
+    outliers.push({documentIndex,nodeIndex,tag:tag(snapshot.strings[nodes.nodeName[nodeIndex]]),nodeType:nodes.nodeType[nodeIndex],bounds,offsetRect,clientRect,scrollRect,layout:layout(boxes.styles[layoutIndex]),ancestors,...(pseudo&&['before','after','marker','backdrop','first-line','first-letter'].includes(pseudo)?{pseudoType:pseudo}:{}),...(shadow&&['open','closed','user-agent'].includes(shadow)?{shadowRootType:shadow}:{})});
+   }
+  }
+  return{at:new Date().toISOString(),timing:'After the original atomic assertion and original failure screenshot',viewport,documentCount:snapshot.documents.length,layoutNodeCount:snapshot.documents.reduce((sum,document)=>sum+document.layout.nodeIndex.length,0),outliers};
+ }finally{await session.detach().catch(()=>{});}
+}
+
 
 
 export function captureGpLoadedStylesheets(page){
@@ -66,7 +99,7 @@ export async function assertGpNoOverflow(page,{row,width,dir,stylesheetEvidence}
   const geometry=await readGpOverflowGeometry(page);
   try{assert(geometry.assertion.noHorizontalOverflow);}catch(error){
    (row.layoutDiagnostics??=[]).push({width,frame,...geometry});
-   const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}if(stylesheetEvidence){try{row.loadedStylesheetBytes=await stylesheetEvidence.snapshot();}catch{row.loadedStylesheetEvidenceUnavailable=true;}}throw error;
+   const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}if(stylesheetEvidence){try{row.loadedStylesheetBytes=await stylesheetEvidence.snapshot();}catch{row.loadedStylesheetEvidenceUnavailable=true;}}try{geometry.failureOnly.cdpLayout=await readGpFailureCdpGeometry(page);}catch{geometry.failureOnly.cdpLayoutUnavailable=true;}throw error;
   }
   if(frame<9)await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));
  }
