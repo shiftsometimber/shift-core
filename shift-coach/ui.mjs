@@ -48,7 +48,7 @@ export const client=String.raw`(()=>{
   const practical='<details><summary>What fits my day</summary><form data-coach-constraints>'+practicalFields(m.constraints)+'<p>These explicit choices shape the next step. Saving a change replaces the current plan.</p><button type="submit">Save what fits</button></form></details>';
   const journey=data.journey?'<div data-coach-journey><h3>'+esc(data.journey.title)+'</h3><p>'+esc(data.journey.text)+'</p><p>'+esc(data.journey.reported)+' actions reported; '+esc(data.journey.helpful)+' marked helpful. Unreported days stay unknown.</p></div>':'';
   const support=supportPanel(true);
-  content.innerHTML=journey+card+capture+changes+guidance+routines+challengeForm+treatment+practical+support+paused+memory+settings+review+audit+help()+'<p><a href="/member/ask-timber">Ask Shift AI a question</a></p>';bind();performance.mark('shift-coach-ready');
+  content.innerHTML=card+journey+capture+changes+guidance+routines+challengeForm+treatment+practical+support+paused+memory+settings+review+audit+help()+'<p><a href="/member/ask-timber">Ask Shift AI a question</a></p>';bind();performance.mark('shift-coach-ready');
   if(data.followup){const id=data.followup.id,revision=data.revision;followupObserver=new IntersectionObserver(entries=>{if(!entries.some(e=>e.isIntersecting)||document.hidden||pending)return;followupObserver.disconnect();api('POST',{kind:'followup-seen',id,revision,operationId:crypto.randomUUID()}).then(r=>{if(data.revision===revision)data.revision=r.revision;}).catch(()=>{content.querySelector('details')?.removeAttribute('open');});});followupObserver.observe(host);}
  }
  function bind(){

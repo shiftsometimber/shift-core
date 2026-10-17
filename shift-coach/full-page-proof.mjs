@@ -1,3 +1,4 @@
+import {installActionReadiness} from './action-visibility.mjs';
 import {summariseNavigations,assertNavigationBudget,navigationProtocol} from './navigation-benchmark.mjs';
 import {execFileSync} from 'node:child_process';
 import {startCoaching,addCoachingWeek} from './browser-journey-support.mjs';
@@ -16,7 +17,7 @@ const server=createServer(async(req,res)=>{try{let url=new URL(req.url,'https://
 const require=createRequire(import.meta.url);const {chromium}=process.env.PLAYWRIGHT_MODULE?require(process.env.PLAYWRIGHT_MODULE):await import('playwright');
 const browser=await chromium.launch({headless:true,...(process.env.COACHING_CHROMIUM?{executablePath:process.env.COACHING_CHROMIUM}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
-await context.addInitScript(()=>{const tick=()=>{const button=document.querySelector('#shiftCoach [data-coach-action=accept]');if(button&&performance.getEntriesByName('shift-coach-ready').length&&button.checkVisibility({checkVisibilityCSS:true})){window.__shiftCoachVisibleReady=performance.now();return;}requestAnimationFrame(tick);};requestAnimationFrame(tick);});
+await context.addInitScript(installActionReadiness);
 await context.addCookies([{name:'sst_session',value:'fixture-token-1',url:origin,httpOnly:true}]);
 await context.route('**/*',async route=>{if(new URL(route.request().url()).origin===origin)return route.continue();await route.fulfill({status:404,body:'External network disabled in synthetic proof'});});
 const page=await context.newPage(),errors=[],fixtureResponses=[],checks=[];
@@ -30,6 +31,7 @@ try{
  await page.waitForFunction(()=>document.querySelector('#todayActions > .mtm-hero')?.nextElementSibling?.id==='shiftCoach');checks.push('prepared card follows the preserved Today heading');
  await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:out+'/full-today-mobile.png',fullPage:false});
  assert.equal(await page.locator('#sst-footer-c').count(),1);assert.equal(await page.locator('#appBottomNav').count(),1);assert.equal(await page.locator('#todayActions').count(),1);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks.push('one existing footer and navigation; no horizontal overflow');
+ assert(await page.evaluate(()=>window.__shiftCoachActionOnScreen()),'Both coaching choices must be fully on-screen and uncovered without scrolling');checks.push('accept and decline are enabled, within the viewport and unobscured by the fixed navigation');
  const first=await page.locator('#shiftCoach h2').first().textContent();await page.getByRole('button',{name:'That works — accept'}).click();await page.getByText('Tell Shift AI how it went',{exact:true}).click();await page.getByRole('button',{name:"Done, didn't help",exact:true}).click();await page.locator('[data-coach-action="accept"]').waitFor();assert.notEqual(await page.locator('#shiftCoach h2').first().textContent(),first);checks.push('actual My Timber feedback changes the approach');snapshot('adapted');
  await page.getByText('What SHIFT knows about me',{exact:true}).click();const f=page.locator('[data-coach-fact="week"]');await f.locator('input').fill('Mornings are free now');await f.getByRole('button',{name:'Save correction'}).click();await page.getByText('Saved.',{exact:true}).waitFor();await page.reload();await page.locator('[data-coach-action="accept"]').waitFor();assert.match(await page.locator('.coach-reason').textContent(),/Mornings are free now/);checks.push('corrected memory persists through full dashboard reload');snapshot('corrected');
  for(const [width,view] of [[390,'web'],[1280,'app'],[1280,'web']]){await page.setViewportSize({width,height:900});await page.goto(origin+'/member/dashboard?view='+view+'#today');await page.locator('[data-coach-action="accept"]').waitFor();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.equal(await page.locator('#shiftCoach').count(),1);await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:out+'/full-today-'+view+'-'+width+'.png',fullPage:false});}checks.push('mobile and desktop app/web layouts retain one card');
@@ -39,7 +41,7 @@ try{
  const createTimingContext=async()=>{
   const c=await browser.newContext({viewport:navigationProtocol.viewport,isMobile:true,hasTouch:true,serviceWorkers:'block'});
   await c.addCookies([{name:'sst_session',value:'fixture-token-1',url:origin,httpOnly:true}]);
-  await c.addInitScript(()=>{const tick=()=>{const button=document.querySelector('#shiftCoach [data-coach-action=accept]');if(button&&!button.disabled&&performance.getEntriesByName('shift-coach-ready').length&&button.checkVisibility({checkVisibilityCSS:true})){window.__shiftCoachVisibleReady=performance.now();return;}requestAnimationFrame(tick)};requestAnimationFrame(tick)});
+  await c.addInitScript(installActionReadiness);
   await c.route('**/*',async route=>{if(new URL(route.request().url()).origin===origin)return route.continue();return route.fulfill({status:404,body:'External network disabled in synthetic proof'})});
   return c;
  };
@@ -48,7 +50,7 @@ try{
   await session.send('Emulation.setCPUThrottlingRate',{rate:4});await session.send('Network.enable');await session.send('Network.setCacheDisabled',{cacheDisabled});await session.send('Network.emulateNetworkConditions',{offline:false,latency:150,downloadThroughput:1600000/8,uploadThroughput:750000/8});
   await p.goto('about:blank');await p.goto(origin+'/member/dashboard?view=app#today',{waitUntil:'commit'});
   try{await p.waitForFunction(()=>Number.isFinite(window.__shiftCoachVisibleReady),{},{timeout:30000});
-   const sample=await p.evaluate(()=>{const button=document.querySelector('#shiftCoach [data-coach-action=accept]');return{ready:window.__shiftCoachVisibleReady,origin:performance.timeOrigin,enabled:!!button&&!button.disabled,visible:!!button&&button.checkVisibility({checkVisibilityCSS:true}),bound:performance.getEntriesByName('shift-coach-ready').length>0,resources:performance.getEntriesByType('resource').filter(x=>['script','link'].includes(x.initiatorType)).map(x=>({name:new URL(x.name).pathname,end:x.responseEnd,bytes:x.transferSize})),navigation:performance.getEntriesByType('navigation')[0]?.toJSON()}});
+   const sample=await p.evaluate(()=>{const button=document.querySelector('#shiftCoach [data-coach-action=accept]');return{ready:window.__shiftCoachVisibleReady,origin:performance.timeOrigin,enabled:!!button&&!button.disabled,visible:window.__shiftCoachActionOnScreen(),actionGeometry:window.__shiftCoachActionGeometry(),bound:performance.getEntriesByName('shift-coach-ready').length>0,resources:performance.getEntriesByType('resource').filter(x=>['script','link'].includes(x.initiatorType)).map(x=>({name:new URL(x.name).pathname,end:x.responseEnd,bytes:x.transferSize})),navigation:performance.getEntriesByType('navigation')[0]?.toJSON()}});
    allSamples.push({phase,index,...sample});(phase==='cold'?cold:repeat).push(sample);writeFileSync(out+'/navigation-samples.json',JSON.stringify({source,protocol:navigationProtocol,samples:allSamples},null,2));console.log(JSON.stringify({phase,sample:index,ready:sample.ready}));
   }catch(error){allSamples.push({phase,index,error:String(error)});writeFileSync(out+'/navigation-samples.json',JSON.stringify({source,protocol:navigationProtocol,samples:allSamples},null,2));throw error;}finally{await session.detach();}
  };
