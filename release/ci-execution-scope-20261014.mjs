@@ -1,3 +1,4 @@
+import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
 import {verifyFoodDiaryLondonDateRepair,foodDiaryLondonDateHistoricalView,foodDiaryLondonDateAuthenticatedRead,foodDiaryLondonDateAuthenticatedContent,foodDiaryLondonDateAuthenticatedDiff,foodDiaryLondonDateAuthenticatedAncestor,foodDiaryLondonDateReaderProvenance} from './food-diary-london-date-scope-20261015.mjs';
 import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
 import assert from 'node:assert/strict';
@@ -59,6 +60,9 @@ export function ciExecutionAuthenticatedAncestor(reader,view){return(a,b)=>{if(c
 // Food admission precedes the unchanged original CI proof. Supplied callbacks
 // must observe both newly changed Food paths before any older projection.
 export function verifyCiExecutionAllowance(c,options={}){
+ return withClosedCurrentSourceProof(()=>verifyCiExecutionAllowanceCurrentProof(c,options));
+}
+function verifyCiExecutionAllowanceCurrentProof(c,options={}){
  const food=foodDiaryLondonDateHistoricalView();
  if(food.head===food.rawHead)return verifyCiExecutionAllowanceOriginal(c,options);
  assert.equal(options.head??food.rawHead,food.rawHead,'Food-calendar source drift: Actual raw Food HEAD required');

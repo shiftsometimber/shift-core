@@ -56,7 +56,7 @@ function seoAuditOriginalSourceOriginal(path,bytes,privateWeek=null){
 // authenticated before the unchanged original SEO proof sees its literal base.
 const seoNativeWeekFacts=Object.freeze({head,blob,content,diff,ancestor,clean});
 function seoRecordedWeekFrame(week){return Object.freeze({
- head:()=>{week.assertCurrent();return week.head;},blob:week.blob,content:week.content,
+ head:()=>{week.assertCurrentHead();return week.head;},blob:week.blob,content:week.content,
  diff:week.diff,ancestor:week.ancestor,clean:week.assertCurrent});}
 export function verifySeoAuditRepair(c,options={}){
  const week=currentRuntimePreservationHistoricalView();

@@ -1,3 +1,4 @@
+import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
 import {verifyCiExecutionAllowance,ciExecutionNativeReaderProvenance} from './ci-execution-scope-20261014.mjs';
 import {releaseMachineryRepairHistoricalView,releaseMachineryRepairAuthenticatedRead,releaseMachineryRepairLegacyRead,releaseMachineryRepairLegacyContent,releaseMachineryRepairAuthenticatedContent} from './release-machinery-repair-scope-20261014.mjs';
 import {ensureCombinedOriginalGpSource} from './combined-original-gp-object-20261014.mjs';
@@ -75,6 +76,9 @@ export function verifyCombinedFiniteOriginal(c,{head,read,blob=read,content,diff
  return c;
 }
 export function verifyCombinedFinite(c,options){
+ return withClosedCurrentSourceProof(()=>verifyCombinedFiniteCurrentProof(c,options));
+}
+function verifyCombinedFiniteCurrentProof(c,options){
  const repair=releaseMachineryRepairHistoricalView();
  if(options.head!==repair.rawHead||repair.head===repair.rawHead){try{return verifyCombinedFiniteOriginal(c,options);}catch(error){if(options.head!==repair.rawHead){try{if(error instanceof Error)error.message='Combined source drift for supplied head: '+error.message;}catch{}}throw error;}}
  const {head,read,blob=read,content,diff,ancestor}=options;

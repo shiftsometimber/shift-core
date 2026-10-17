@@ -26,3 +26,37 @@ test('native mode facts retain real Git modes and reject executable or symbolic 
   execFileSync(process.execPath,['--input-type=module','-e',script],{cwd:directory,stdio:'pipe',timeout:30000});
  }finally{rmSync(directory,{recursive:true,force:true});}
 });
+
+function withOwnedPreservationClone(script){
+ const directory=mkdtempSync(join(tmpdir(),'current-proof-scope-'));
+ try{
+  g('clone','--no-hardlinks','--quiet','--no-checkout',process.cwd(),directory);execFileSync('git',['checkout','--detach','--quiet',head],{cwd:directory,stdio:'pipe'});
+  const header="import assert from 'node:assert/strict';import{execFileSync}from'node:child_process';import{readFileSync,writeFileSync}from'node:fs';import{pathToFileURL}from'node:url';const module=path=>import(pathToFileURL(process.cwd()+'/'+path));const g=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6,stdio:'pipe'}).trim(),head=g('rev-parse','HEAD'),record=JSON.parse(g('show',head+':release/approved-runtime-composition.json'));const{withImmutableHistoryVerification}=await module('release/immutable-git-facts.mjs');const{currentRuntimePreservationHistoricalView,currentRuntimePreservationAuthenticatedRead}=await module('release/current-runtime-preservation-20261016.mjs');";
+  execFileSync(process.execPath,['--input-type=module','-e',header+script],{cwd:directory,stdio:'pipe',maxBuffer:64e6,timeout:180000});
+ }finally{rmSync(directory,{recursive:true,force:true});}
+}
+test('outside a closed proof an admitted source reader still rejects changed working bytes',()=>withOwnedPreservationClone(`
+ const view=currentRuntimePreservationHistoricalView(),path='worker-entry-v6.js',before=readFileSync(path);
+ try{writeFileSync(path,Buffer.concat([before,Buffer.from(String.fromCharCode(10)+'// owned negative fixture'+String.fromCharCode(10))]));assert.throws(()=>view.read('HEAD',path),/source|tracked|working/i);}finally{writeFileSync(path,before);}
+ assert.equal(view.read('HEAD',path),g('rev-parse',view.head+':'+path));
+`));
+test('a public source admission rejects a callback that changes working bytes inside a warmed proof',()=>withOwnedPreservationClone(`
+ const{verifyFoodDiaryLondonDateRepair}=await module('release/food-diary-london-date-scope-20261015.mjs');const c=record.foodDiaryLondonDateRepair20261015,path=c.paths[0],before=readFileSync(path);let visits=0;
+ withImmutableHistoryVerification(()=>{
+  const read=(ref,p)=>{const value=g('rev-parse',ref+':'+p);if(!visits&&p===path&&(ref==='HEAD'||ref===head)){visits++;writeFileSync(path,Buffer.concat([before,Buffer.from(String.fromCharCode(10)+'// owned callback drift'+String.fromCharCode(10))]));}return value;};
+  try{assert.throws(()=>verifyFoodDiaryLondonDateRepair(c,{head,read}),/source|tracked|working/i);}finally{writeFileSync(path,before);}
+  assert.equal(visits,1);assert(verifyFoodDiaryLondonDateRepair(c,{head}));
+ });
+`));
+test('closed projection reads retain context fences and every supplied callback despite a native flag',()=>withOwnedPreservationClone(`
+ withImmutableHistoryVerification(()=>{
+  const view=currentRuntimePreservationHistoricalView(),path='wrangler.jsonc',visits=[];
+  const read=currentRuntimePreservationAuthenticatedRead((ref,p)=>{visits.push(ref);return g('rev-parse',ref+':'+p);},view,{defaultReader:true});
+  assert.equal(read('HEAD',path),g('rev-parse',view.head+':'+path));assert.deepEqual(visits,['HEAD',head,view.head]);
+  assert.throws(()=>currentRuntimePreservationAuthenticatedRead(()=> 'a'.repeat(40),view,{defaultReader:true})('HEAD',path),/source drift/);
+  const prior=process.env.SHIFT_CURRENT_PROOF_NEGATIVE_CONTEXT;
+  try{process.env.SHIFT_CURRENT_PROOF_NEGATIVE_CONTEXT='owned-negative-fixture';assert.throws(()=>view.read('HEAD',path),/execution environment changed/);}finally{if(prior===undefined)delete process.env.SHIFT_CURRENT_PROOF_NEGATIVE_CONTEXT;else process.env.SHIFT_CURRENT_PROOF_NEGATIVE_CONTEXT=prior;}
+  try{g('update-ref','HEAD',record.currentRuntimePreservation20261016.base);assert.throws(()=>view.read('HEAD',path),/HEAD|head|source drift/);}finally{g('update-ref','HEAD',head);}
+  assert.equal(view.read('HEAD',path),g('rev-parse',view.head+':'+path));
+ });
+`));
