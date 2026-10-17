@@ -32,7 +32,7 @@ export function memberRecipe(row,items=[]){
  const matched=ingredients.filter(i=>items.some(x=>containsIngredient(x,i.item))).map(i=>i.item);
  const missing=ingredients.filter(i=>!matched.includes(i.item)).map(i=>i.item);
  const prep=present(d.prep_minutes)?Number(d.prep_minutes):null,cook=present(d.cook_minutes)?Number(d.cook_minutes):null;
- const reviewedTotal=(d.provenance?.grub_expansion_acceptance?.accepted===true||d.provenance?.grub_protected_revision?.accepted===true||d.provenance?.uk_core_publication?.accepted===true)&&present(d.total_minutes)?Number(d.total_minutes):null;
+ const reviewedTotal=(d.provenance?.grub_expansion_acceptance?.accepted===true||d.provenance?.grub_protected_revision?.accepted===true||d.provenance?.uk_core_publication?.accepted===true||d.provenance?.uk_full_correction?.accepted===true)&&present(d.total_minutes)?Number(d.total_minutes):null;
  const minutes=reviewedTotal!==null?reviewedTotal:present(d.timeMinutes)?Number(d.timeMinutes):prep!==null&&cook!==null?prep+cook:null;
  return {id:row.id,name:row.title,image:row.discovery?.hideImage?null:imageForRecipe(row),discovery:row.discovery,meal_type:d.meal_type,servings:Number(d.servings)||1,minutes,prep_minutes:prep,cook_minutes:cook,hands_on_minutes:row.discovery?.hands_on_minutes??d.hands_on_minutes??null,timing_is_estimate:true,protein_g:present(n.protein_g)?Number(n.protein_g):null,kcal:present(n.kcal)?Number(n.kcal):null,nutrition:n,ingredients,method,allergens:d.allergens||[],allergen_note:d.allergen_note||'',nutrition_limitations:d.nutrition_limitations||[],food_safety:d.food_safety||[],storage:d.storage||{},equipment:d.equipment||[],matched,missing,pantry:missing.filter(x=>pantry.has(normalise(x))),source:'published_catalogue',taxonomy:d.taxonomy||{},food_format:d.food_format||'',tags:d.tags||[]};
 }
@@ -42,7 +42,7 @@ export function filterRecipe(r,filter){
   case 'high protein':return r.protein_g!==null&&r.protein_g>=25;
   case 'family':return r.taxonomy.family_size==='scalable';
   case 'budget':return ['budget','budget-friendly'].includes(r.taxonomy.budget);
-  case 'vegetarian':return r.ingredients.every(i=>!animal.test(i.item))&&!r.allergens.some(x=>/fish|crustacean|mollusc/i.test(x))&&!/fish|crustacean|mollusc/i.test(r.allergen_note||'');
+  case 'vegetarian':return r.ingredients.every(i=>!animal.test(i.item))&&!r.allergens.some(x=>/fish|crustacean|mollusc/i.test(x))&&!/fish|crustacean|mollusc|suitability.*not established/i.test(r.allergen_note||'');
   default:return !filter;
  }
 }
@@ -71,6 +71,6 @@ export function searchGrubRecipes(input,records){
  const seen=new Set(),first=[],rest=[];
  for(const r of candidates){const key=[r.food_format||r.name,r.taxonomy.main_protein||''].join(':');(seen.has(key)?rest:first).push(r);seen.add(key)}
  const ordered=queryParts.length?candidates:[...first,...rest].sort((a,b)=>discoveryTier(a)-discoveryTier(b));
- const total=candidates.length,top=ordered.slice(0,12).map(({score,missingCore,matchedCore,queryMatches,taxonomy,tags,food_format,...r})=>r);
- return {top,total,source:'published_catalogue',catalogue_size:usable.length,mode,filter,message:top.length?(mode==='fridge'?'Closest matches first. Missing ingredients include oil and seasonings; nothing is assumed.':`${total} recipes match. Showing ${top.length}.`):'No recipe matches this search. Try one ingredient or clear the filter.'};
+ const total=candidates.length,offset=Math.max(0,Math.min(total,Number.isSafeInteger(input?.offset)?input.offset:0)),top=ordered.slice(offset,offset+12).map(({score,missingCore,matchedCore,queryMatches,taxonomy,tags,food_format,...r})=>r);
+ return {top,total,offset,page_size:12,has_more:offset+top.length<total,source:'published_catalogue',catalogue_size:usable.length,mode,filter,message:top.length?(mode==='fridge'?'Closest matches first. Missing ingredients include oil and seasonings; nothing is assumed.':`${total} recipes match. Showing ${offset+1}–${offset+top.length}.`):'No recipe matches this search. Try one ingredient or clear the filter.'};
 }
