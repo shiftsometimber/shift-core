@@ -453,5 +453,13 @@
     "id": 12079785516,
     "bytes": 9696703,
     "sha256": "ad96133ccb31b0d6d838297dec18fee5c8e84ef6d8b61524621cc5343005ecf4"
+  },
+  "currentCompiledHqCandidate": {
+    "observedSource": "1f7f89b414ff26b88efc348c7a8d26205c571adf",
+    "proof": "Native original HQ dry build; no provider upload or traffic write",
+    "bytes": 1844004,
+    "sha256": "c79dae03e7e75562abe2f9299b201177e749dbfad30c9c1d8258a4cbb182074b",
+    "servingBundleUnchanged": true,
+    "currentCandidateDeployed": false
   }
 }

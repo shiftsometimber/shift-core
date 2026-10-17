@@ -8,6 +8,9 @@ import {currentRuntimePreservationHistoricalView} from './current-runtime-preser
 import {createGithubProofReader} from './github-proof-get.mjs';
 
 export const RETAINED_ACCEPTED_HQ_KIND='retained_accepted_hq_runtime';
+// This accepted Core composition includes a separate, previously authorised medicines review renewal.
+// It is compiled and pinned, but is not promoted to HQ by a zero-write retention.
+export const FROZEN_CURRENT_HQ_BUILD=Object.freeze({bytes:1844004,sha256:'c79dae03e7e75562abe2f9299b201177e749dbfad30c9c1d8258a4cbb182074b'});
 const repository='shiftsometimber/shift-core',repositoryId=1328867509,workflow='.github/workflows/hq-management-release.yml';
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 export {canonicalHqEvidence,hqEvidenceDigest};
@@ -23,9 +26,9 @@ export function assertAcceptedHqSnapshot({deployment,version,bundle,settings},ca
  const {hq,settingsSha256}=acceptedHqSpec(bytes);assert(Buffer.isBuffer(bundle));assert(candidate&&typeof candidate==='object');assert.match(candidate.source||'',/^[a-f0-9]{40}$/);
  assertProvider({deployment,version},{deployment:hq.deploymentId,version:hq.versionId,gpEnabled:true},{hq:true});assertOwned(deployment,hq,hq.source,hq.run,hq.attempt);
  assert.equal(hqEvidenceDigest(version.resources.bindings.slice().sort((a,b)=>a.name.localeCompare(b.name))),hq.allBindingsSha256,'Every actual accepted HQ binding must remain exact');
- assert.equal(bundle.length,hq.bundleBytes,'Accepted HQ bundle length changed');assert.equal(sha(bundle),hq.bundleSha256,'Accepted HQ bundle bytes changed');assert.equal(candidate.bytes,bundle.length);assert.equal(candidate.sha256,sha(bundle),'Current compiled HQ code differs from accepted serving code');
+ assert.equal(bundle.length,hq.bundleBytes,'Accepted HQ bundle length changed');assert.equal(sha(bundle),hq.bundleSha256,'Accepted HQ bundle bytes changed');assert.equal(candidate.bytes,FROZEN_CURRENT_HQ_BUILD.bytes,'Frozen current HQ compilation size changed');assert.equal(candidate.sha256,FROZEN_CURRENT_HQ_BUILD.sha256,'Frozen current HQ compilation bytes changed');
  assert.equal(hqEvidenceDigest(settings),settingsSha256,'Actual accepted HQ settings changed');assert.equal(settings.observability?.redact_query_string,true,'Original query-string privacy control must remain on');
- return {kind:RETAINED_ACCEPTED_HQ_KIND,runtimeSource:hq.source,runtimeRun:hq.run,runtimeAttempt:hq.attempt,deploymentId:deployment.id,versionId:version.id,bundleSha256:sha(bundle),bundleBytes:bundle.length,allBindingsSha256:hq.allBindingsSha256,privacySettingsSha256:settingsSha256,gpEnabled:true,partnersEnabled:true,clinicalContractActivated:false,genuineHqHolderAcceptance:false,featureAcceptance:false,providerWrites:0,trafficWrites:0,dataWrites:0,externalMessages:0};
+ return {kind:RETAINED_ACCEPTED_HQ_KIND,runtimeSource:hq.source,runtimeRun:hq.run,runtimeAttempt:hq.attempt,deploymentId:deployment.id,versionId:version.id,bundleSha256:sha(bundle),bundleBytes:bundle.length,allBindingsSha256:hq.allBindingsSha256,privacySettingsSha256:settingsSha256,currentHqCandidateDeployed:false,gpEnabled:true,partnersEnabled:true,clinicalContractActivated:false,genuineHqHolderAcceptance:false,featureAcceptance:false,providerWrites:0,trafficWrites:0,dataWrites:0,externalMessages:0};
 }
 export function assertOriginalHqAcceptance(run,job,bytes=readRecordedWeekCurrentWitness()){
  const {hq}=acceptedHqSpec(bytes);assert.equal(run.id,hq.run);assert.equal(run.run_attempt,hq.attempt);assert.equal(run.head_sha,hq.source);assert.equal(run.head_branch,'release/gp-priority-direct-activation-20261016');assert.equal(run.path,'.github/workflows/gp-priority-direct-activation-20261016.yml');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'success');

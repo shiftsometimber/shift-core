@@ -62,13 +62,13 @@ test('closed projection reads retain context fences and every supplied callback 
 `));
 
 test('the original CSV gate cannot hide unauthorised current configuration or model working bytes',()=>withOwnedPreservationClone(`
- const run=()=>execFileSync(process.execPath,['--test','--test-reporter=tap','member-experience/tests/weight-import-mapping-ui.test.mjs'],{cwd:process.cwd(),stdio:'pipe',timeout:180000,maxBuffer:64e6});
+ const run=()=>execFileSync(process.execPath,['--test','--test-reporter=tap','member-experience/tests/weight-import-mapping-ui.test.mjs'],{cwd:process.cwd(),env:{...process.env,NODE_TEST_CONTEXT:undefined},stdio:'pipe',timeout:180000,maxBuffer:64e6});
  for(const path of ['wrangler.jsonc','shift-coach/worker.mjs']){
   const before=readFileSync(path);
   try{writeFileSync(path,Buffer.concat([before,Buffer.from(String.fromCharCode(10)+'// owned CSV boundary negative'+String.fromCharCode(10))]));assert.throws(run,error=>error.status===1&&/source drift|clean tracked source|Working source changed/i.test(String(error.stdout)+String(error.stderr)));}
   finally{writeFileSync(path,before);}
  }
- run();
+ const output=String(run());assert.match(output,/^# tests 4$/m);assert.match(output,/^# pass 4$/m);assert.match(output,/^# fail 0$/m);
 `));
 test('the historical HQ comparator still rejects a changed current GP API before projection',()=>withOwnedPreservationClone(`
  const{proveCombinedHqCurrent}=await module('release/combined-hq-preservation-20261014.mjs');const path='hq-management-api.mjs',before=readFileSync(path);
