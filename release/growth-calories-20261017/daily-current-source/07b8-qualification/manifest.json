@@ -1,0 +1,57 @@
+[
+  {
+    "file": "daily-v10-focused-result.json",
+    "bytes": 962,
+    "SHA256": "8fa8eab6dc117adc23483ddc085cc147d4c0dd6fc3072ee50492318e90b73fa5"
+  },
+  {
+    "file": "daily-v10-focused.tap",
+    "bytes": 9948,
+    "SHA256": "97994d17458b77f7f95cc48338bf2c13390a0ee30e573a58f6da93d3ce4b0e0f"
+  },
+  {
+    "file": "daily-v10-source-before.json",
+    "bytes": 1260,
+    "SHA256": "53643332fa099a2ecaf36c96c1771ee9fcbf0051a79e83e58c3efce97b6131bc"
+  },
+  {
+    "file": "daily-v10-qualification-claim.json",
+    "bytes": 949,
+    "SHA256": "b4facf43a6b697b030257d842f0dadeac4423e11c476c1a696e6b9c6478ecb61"
+  },
+  {
+    "file": "daily-v10-focused-started-history.json",
+    "bytes": 406,
+    "SHA256": "fab5eb2bfdbdf1b835c9b9f3be67881ed6878224e0bdf55b91834640b2febd7c"
+  },
+  {
+    "file": "daily-v10-qualification-running.json",
+    "bytes": 319,
+    "SHA256": "0c474745b8b41e6789c3cdc33a88336c71302f84494ad37102d8f8f9e4bc489a"
+  },
+  {
+    "file": "daily-v10-focused-controller.log",
+    "bytes": 944,
+    "SHA256": "214efaf9db173aac129ad5e8c92dbfe4bfd8c60ff3bfd218d79fd79777c78eeb"
+  },
+  {
+    "file": "daily-v10-branch-publication.json",
+    "bytes": 506,
+    "SHA256": "85fde188ce9a490397d4b8b4c89d7b8861f959de3a83d0d6e275f1489e3b1673"
+  },
+  {
+    "file": "qualify-daily-v10-focused.py",
+    "bytes": 7308,
+    "SHA256": "4eedd5cb9ed6d2dac73fd51765f2173dd3c4020c153b0f230d1bb363a9891124"
+  },
+  {
+    "file": "qualify-daily-v10-focused-original-overbroad-wait.py",
+    "bytes": 6800,
+    "SHA256": "2c3bb5755d76abe2d3a1a1949a1b25e3ce4154799b7281b74e19945f7061ef00"
+  },
+  {
+    "file": "qualify-daily-v10-native.py",
+    "bytes": 7489,
+    "SHA256": "e9d7a2075309b3d4364f9e81a4afc3db6cf7c8c9e981a2dc96da16815c803e06"
+  }
+]
