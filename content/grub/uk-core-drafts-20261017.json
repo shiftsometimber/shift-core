@@ -1402,7 +1402,8 @@
             "item": "baking potatoes, skin on",
             "amount": "600g",
             "calculation_grams": 600,
-            "food_code": "13-489"
+            "food_code": "13-489",
+            "basis": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value."
           },
           {
             "item": "baked beans",
@@ -1450,7 +1451,8 @@
           "chopping board",
           "bowl",
           "spoon",
-          "saucepan or microwave-safe bowl if heating beans",
+          "saucepan or microwave-safe bowl",
+          "grater",
           "kitchen scales"
         ],
         "storage": {
@@ -1485,6 +1487,7 @@
             "amount": "600g",
             "calculation_grams": 600,
             "food_code": "13-489",
+            "basis": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value.",
             "source_food_name": "Potatoes, old, raw, flesh only",
             "source": "CoFID 2021, 1.3 Proximates",
             "per_reference": {
@@ -1496,7 +1499,7 @@
               "saturates_g": "0.03"
             },
             "reference_grams": "100",
-            "limitations": "Generic source estimate; brands and edible weights vary."
+            "limitations": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value."
           },
           {
             "item": "baked beans",
@@ -1588,7 +1591,7 @@
         "Resolve missing nutrient values/source identity limitations before publication",
         "Exact immutable publication binding; existing owner batches are not inherited"
       ],
-      "content_hash": "8dc84d7c933330beba951375513805e666a364aa31a06024ca57835b4a2644f8"
+      "content_hash": "f0df1d954e63282a62d8b7b6045cb6ec935a0eef8b1f716af2b700703c50511d"
     },
     {
       "id": "uk-core-jacket-tuna-mayo",
@@ -1603,13 +1606,15 @@
             "item": "baking potatoes, skin on",
             "amount": "600g",
             "calculation_grams": 600,
-            "food_code": "13-489"
+            "food_code": "13-489",
+            "basis": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value."
           },
           {
             "item": "tuna in spring water, drained",
             "amount": "200g",
             "calculation_grams": 200,
-            "food_code": "16-416"
+            "food_code": "16-416",
+            "basis": "Declared proxy: CoFID canned tuna in brine, drained, applied to tuna in spring water, drained. Product composition varies; this is not a product-specific calculation."
           },
           {
             "item": "light mayonnaise",
@@ -1653,7 +1658,7 @@
           "chopping board",
           "bowl",
           "spoon",
-          "saucepan or microwave-safe bowl if heating beans",
+          "can opener if needed",
           "kitchen scales"
         ],
         "storage": {
@@ -1688,6 +1693,7 @@
             "amount": "600g",
             "calculation_grams": 600,
             "food_code": "13-489",
+            "basis": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value.",
             "source_food_name": "Potatoes, old, raw, flesh only",
             "source": "CoFID 2021, 1.3 Proximates",
             "per_reference": {
@@ -1699,13 +1705,14 @@
               "saturates_g": "0.03"
             },
             "reference_grams": "100",
-            "limitations": "Generic source estimate; brands and edible weights vary."
+            "limitations": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value."
           },
           {
             "item": "tuna in spring water, drained",
             "amount": "200g",
             "calculation_grams": 200,
             "food_code": "16-416",
+            "basis": "Declared proxy: CoFID canned tuna in brine, drained, applied to tuna in spring water, drained. Product composition varies; this is not a product-specific calculation.",
             "source_food_name": "Tuna, canned in brine, drained",
             "source": "CoFID 2021, 1.3 Proximates",
             "per_reference": {
@@ -1717,7 +1724,7 @@
               "saturates_g": "0.30"
             },
             "reference_grams": "100",
-            "limitations": "Generic source estimate; brands and edible weights vary."
+            "limitations": "Declared proxy: CoFID canned tuna in brine, drained, applied to tuna in spring water, drained. Product composition varies; this is not a product-specific calculation."
           },
           {
             "item": "light mayonnaise",
@@ -1791,7 +1798,7 @@
         "Resolve missing nutrient values/source identity limitations before publication",
         "Exact immutable publication binding; existing owner batches are not inherited"
       ],
-      "content_hash": "7bf9e6f0caf7d18a17f9aff2ef7404fb978c542b988f82ba6800df2e14039169"
+      "content_hash": "a633b13d8d4fced90535c2243619a6e6b7272c4d17d35fb5feea1a5894a6fccc"
     },
     {
       "id": "uk-core-tomato-lentil-pasta",
@@ -1859,6 +1866,7 @@
           "large non-stick frying pan",
           "colander",
           "spoon",
+          "heatproof mug",
           "two bowls",
           "kitchen scales"
         ],
@@ -2016,7 +2024,7 @@
         "Resolve missing nutrient values/source identity limitations before publication",
         "Exact immutable publication binding; existing owner batches are not inherited"
       ],
-      "content_hash": "c7835b386c9891ec565893054028e626fe447f77042eee301c73f4d6d4fae5b4"
+      "content_hash": "2ab58c2a97ac7e4370a324df223b8b9c1b00cc5ae19e777fbda24d617aa7b42a"
     },
     {
       "id": "uk-core-chickpea-spinach-curry",
