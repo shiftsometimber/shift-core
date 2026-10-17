@@ -156,6 +156,80 @@ export function verifiedSourceScopeAtPointUseSync(){
  const result=JSON.parse(execFileSync(process.execPath,[fileURLToPath(import.meta.url),'--owned-source-proof'],{encoding:'utf8',maxBuffer:4*1024*1024,timeout:120000,stdio:['ignore','pipe','pipe']}));
  assert.deepEqual(sourceAuthority(),before,'Source changed while authenticating its original proof');assert.equal(result.releaseCommit,before.head);assert.equal(result.tree,before.tree);return result;
 }
+
+const RECOVERY_STEP='Recover only the evidenced cancelled runtime to the last verified release';
+const COACHING_TASK='production-step-004';
+const COACHING_BODY='node shift-coach/release-contract.mjs --require-launch\n';
+const COACHING_FILES=['.stdout.log','.stderr.log','.log','.outputs'].map(suffix=>COACHING_TASK+suffix);
+
+// This validates the original CLI return, never a newly reconstructed result.
+// Authority is established separately by the unchanged V2 validator below.
+export function validateCompletedRecoveryCoachingOutput({files,statusBytes,manifestBytes,coachingManifestBytes}){
+ assert.equal(blobId(manifestBytes),MANIFEST_BLOB,'Exact original source command manifest required');
+ const task=JSON.parse(manifestBytes).tasks.find(task=>task.id===COACHING_TASK);
+ assert.equal(task?.body,COACHING_BODY,'The original require-launch command is mandatory');
+ const result=JSON.parse(statusBytes).results.find(result=>result.id===COACHING_TASK);
+ assert(result&&result.status==='passed'&&result.exitCode===0&&result.signal===null&&integer(result.pid)&&result.startedAt&&result.finishedAt,'Actual completed launch verification required');
+ for(const name of COACHING_FILES){assert.equal(typeof files[name],'string','Complete original coaching output required');const suffix=name.slice(COACHING_TASK.length+1);assert.equal(digest(files[name]),result[suffix+'Sha256'],'Original coaching '+suffix+' bytes changed');}
+ const stdout=files[COACHING_TASK+'.stdout.log'];
+ assert.equal(files[COACHING_TASK+'.stderr.log'],'','Original launch verification must have no stderr');
+ assert.equal(files[COACHING_TASK+'.outputs'],'','Original launch verification has no workflow outputs');
+ assert.equal(files[COACHING_TASK+'.log'],stdout,'Original complete combined and stdout bytes must agree');
+ const report=JSON.parse(stdout),manifest=JSON.parse(coachingManifestBytes);
+ assert.equal(stdout,JSON.stringify(report)+'\n','The complete original coaching CLI JSON is required');
+ assert.deepEqual(Object.keys(report).sort(),['applicationCommit','completeV2','paths','productionLaunchApproved','recordedMain','requireLaunch']);
+ assert.equal(manifest.recordedMain,'afa730029198f39b60f6ea82d6469e5681d93575');
+ assert.equal(report.recordedMain,manifest.recordedMain);assert.equal(report.applicationCommit,manifest.applicationCommit);
+ assert(Array.isArray(manifest.pinnedPaths)&&manifest.pinnedPaths.length>0);assert.equal(report.paths,manifest.pinnedPaths.length);
+ assert.equal(manifest.completeV2,false);assert.equal(report.completeV2,false);
+ assert.equal(manifest.decisions.productionLaunch.approved,true);assert.equal(report.productionLaunchApproved,true);assert.equal(report.requireLaunch,true,'The original check must include launch decisions');
+ return report;
+}
+
+export function decodeRecoveryCoachingEvidenceArchive(bytes,expectedDigest){
+ const files=decodeEvidenceArchive(bytes,expectedDigest);
+ // The complete archive's provider digest, CRCs, paths, bounds and entry types
+ // have already been authenticated by the original decoder. Read only the four
+ // fixed original command outputs; no caller-selected file or extracted path.
+ const code=String.raw`import sys,io,zipfile,json
+with zipfile.ZipFile(io.BytesIO(sys.stdin.buffer.read())) as z:
+ names=['production-step-004.stdout.log','production-step-004.stderr.log','production-step-004.log','production-step-004.outputs']
+ assert all(n in z.namelist() for n in names)
+ print(json.dumps({n:z.read(n).decode('utf-8') for n in names}))
+`;
+ return {...files,...JSON.parse(execFileSync('python3',['-c',code],{input:bytes,maxBuffer:16*1024*1024,timeout:30000,stdio:['pipe','pipe','pipe']}).toString('utf8'))};
+}
+
+export function validateRecoveryCoachingEvidence({files,manifestBytes,coachingManifestBytes,provider,context,authority}){
+ validateScopeEvidence({evidenceBytes:files['scope-evidence.json'],statusBytes:files['status.json'],commandsBytes:files['commands.json'],manifestBytes,provider,context,authority});
+ const job=provider.jobs.find(job=>job.name==='promote'&&job.run_id===context.runId&&job.run_attempt===context.attempt&&job.head_sha===context.head);
+ const recovery=job.steps.filter(step=>step.name===RECOVERY_STEP);assert.equal(recovery.length,1,'The original recovery step is required');
+ assert.equal(recovery[0].status,'in_progress','Recovery proof may only be consumed at the actual running recovery step');assert.equal(recovery[0].conclusion,null);
+ return validateCompletedRecoveryCoachingOutput({files,statusBytes:files['status.json'],manifestBytes,coachingManifestBytes});
+}
+
+// Only recovery consumes this proof. The original source commands, V2 scope
+// consumer, and verifyCoachingRelease implementation continue to run unchanged.
+// Invalid hosted evidence throws before any fresh runtime/provider operation.
+export async function verifiedRecoveryCoachingAtPointUse(){
+ const context=productionContext();if(!context)return null;
+ assert.notEqual(process.env.SHIFT_ORIGINAL_SOURCE_SCOPE,'1','Original source mode cannot authorise recovery proof reuse');
+ const token=process.env.GITHUB_TOKEN;assert(token,'Existing read-only Actions credential required for recovery source proof validation');
+ const before=sourceAuthority();assert.equal(before.head,context.head,'Current recovery source must be the owned workflow revision');
+ const [run,jobResponse,artifactResponse]=await Promise.all([github('/actions/runs/'+context.runId,token),github('/actions/runs/'+context.runId+'/jobs?filter=latest&per_page=100',token),github('/actions/runs/'+context.runId+'/artifacts?name='+encodeURIComponent('production-bounded-source-'+context.head),token)]);
+ const artifacts=artifactResponse.artifacts.filter(artifact=>artifact.name==='production-bounded-source-'+context.head&&!artifact.expired);assert.equal(artifacts.length,1,'One sealed current-job source artifact required');const artifact=artifacts[0];
+ assert(integer(artifact.id)&&integer(artifact.size_in_bytes)&&artifact.size_in_bytes<=16*1024*1024,'Bounded authentic source artifact required');assert.match(artifact.digest??'',/^sha256:[a-f0-9]{64}$/);
+ const cacheDir=join(process.env.RUNNER_TEMP||process.cwd(),'ci-source-proof','sealed-source-cache');mkdirSync(cacheDir,{recursive:true});const cachePath=join(cacheDir,String(artifact.id)+'-'+artifact.digest.slice(7)+'.zip');
+ let bytes=existsSync(cachePath)?readFileSync(cachePath):null;
+ if(bytes)assert.equal('sha256:'+digest(bytes),artifact.digest,'Local copy of provider-sealed artifact changed');
+ else{bytes=await github('/actions/artifacts/'+artifact.id+'/zip',token,true);assert.equal('sha256:'+digest(bytes),artifact.digest,'Provider artifact changed');try{writeFileSync(cachePath,bytes,{flag:'wx'});}catch(error){if(error.code!=='EEXIST')throw error;assert.equal('sha256:'+digest(readFileSync(cachePath)),artifact.digest,'Concurrent provider artifact copy changed');}}
+ const files=decodeRecoveryCoachingEvidenceArchive(bytes,artifact.digest),manifestBytes=readFileSync(new URL('./production-source-schedule-20261016.json',import.meta.url),'utf8'),coachingManifestBytes=readFileSync(new URL('../shift-coach/release-manifest.json',import.meta.url),'utf8');
+ const report=validateRecoveryCoachingEvidence({files,manifestBytes,coachingManifestBytes,provider:{run,jobs:jobResponse.jobs,artifact},context,authority:before});
+ assert.deepEqual(sourceAuthority(),before,'Source changed during recovery proof authentication');
+ mkdirSync('b1-runtime-release',{recursive:true});assert(lstatSync('b1-runtime-release').isDirectory()&&!lstatSync('b1-runtime-release').isSymbolicLink(),'Ordinary source evidence directory required');
+ writeFileSync('b1-runtime-release/recovery-coaching-source-proof-'+Date.now()+'.json',JSON.stringify({kind:'CURRENT_JOB_ORIGINAL_LAUNCH_SOURCE_PROOF_REVALIDATED',context,source:before.head,tree:before.tree,artifact:artifact.id,digest:artifact.digest,bodySha256:digest(COACHING_BODY),stdoutSha256:digest(files[COACHING_TASK+'.stdout.log']),coachingManifestSha256:digest(coachingManifestBytes),requireLaunch:report.requireLaunch,checkedAt:new Date().toISOString(),stockOrRuntimeChecksReused:false},null,2)+'\n',{flag:'wx'});
+ return report;
+}
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
  if(process.argv[2]!=='--owned-source-proof')throw Error('Only the fixed owned-source proof operation is available');
  verifiedSourceScopeAtPointUse().then(report=>{assert(report,'Owned production proof required');process.stdout.write(JSON.stringify(report)+'\n');}).catch(error=>{console.error(typeof error.code==='string'?error.code:'SOURCE_PROOF_REJECTED');process.exitCode=1;});

@@ -117,3 +117,77 @@ test('replacing executable bytes at the same path with the same reported version
  const compile=hide=>{const file=join(f.root,'git-forwarder.c');writeFileSync(file,'#include <unistd.h>\n#include <string.h>\nint main(int argc,char **argv){ int first=1; if(argc>1 && strcmp(argv[1],\"--no-optional-locks\")==0) first=2; if('+hide+' && argc>first && strcmp(argv[first],\"diff\")==0) return 0; argv[0]='+JSON.stringify(f.real)+'; execv(argv[0],argv); return 127;}\n');execFileSync('cc',['-x','c',file,'-o',f.wrapper],{stdio:'pipe'});execFileSync(f.wrapper,['--version'],{stdio:'pipe'});};
  compile(0);process.env.PATH=f.bin+':'+f.path;const before=sourceAuthority();assert.equal(before.execution.git.path,realpathSync(f.wrapper));compile(1);writeFileSync(join(f.repo,'source.txt'),'unapproved edit\n');assert.notEqual(f.g('diff','--name-only','HEAD','--').toString().trim(),'');assert.equal(execFileSync(f.wrapper,['--version'],{encoding:'utf8'}).trim(),before.gitVersion);const after=sourceAuthority();assert.equal(after.execution.git.path,before.execution.git.path);assert.equal(after.execution.selectors.PATH,before.execution.selectors.PATH);assert.equal(after.gitVersion,before.gitVersion);assert.notEqual(after.execution.git.sha256,before.execution.git.sha256);executionMismatchRejects(before,after);assert.match(before.execution.node.sha256,/^[a-f0-9]{64}$/);
 }));
+
+// Synthetic authority fixtures below are unit evidence, not a hosted run.
+// The retained real N archive is checked separately as output/hash evidence;
+// its terminal provider job must never be accepted as current authority.
+import {validateCompletedRecoveryCoachingOutput,decodeRecoveryCoachingEvidenceArchive,validateRecoveryCoachingEvidence,verifiedRecoveryCoachingAtPointUse} from '../release/verified-source-evidence-20261016.mjs';
+function recoveryFixture(){
+ const f=fixture(),coaching={recordedMain:'afa730029198f39b60f6ea82d6469e5681d93575',applicationCommit:'5d492c7741264ade3247e55c8770bf59da929985',pinnedPaths:['fixture-source'],completeV2:false,decisions:{productionLaunch:{approved:true}}};
+ f.coachingManifestBytes=JSON.stringify(coaching);
+ f.coachingReport={recordedMain:coaching.recordedMain,applicationCommit:coaching.applicationCommit,paths:1,completeV2:false,productionLaunchApproved:true,requireLaunch:true};
+ const stdout=JSON.stringify(f.coachingReport)+'\n';
+ f.files={'production-step-004.stdout.log':stdout,'production-step-004.stderr.log':'','production-step-004.log':stdout,'production-step-004.outputs':''};
+ const result=f.status.results.find(result=>result.id==='production-step-004');
+ for(const suffix of ['stdout.log','stderr.log','log','outputs'])result[suffix+'Sha256']=digest(f.files['production-step-004.'+suffix]);
+ f.provider.jobs[0].steps.push({name:'Recover only the evidenced cancelled runtime to the last verified release',status:'in_progress',conclusion:null});
+ sealRecoveryFixture(f);return f;
+}
+function sealRecoveryFixture(f){
+ f.statusBytes=JSON.stringify(f.status,null,2)+'\n';f.evidence.statusSha256=digest(f.statusBytes);f.evidenceBytes=JSON.stringify(f.evidence,null,2)+'\n';
+ Object.assign(f.files,{'scope-evidence.json':f.evidenceBytes,'status.json':f.statusBytes,'commands.json':f.commandsBytes});
+}
+const validateRecovery=f=>validateRecoveryCoachingEvidence(f);
+test('recovery-only synthetic authority accepts the complete original require-launch return after unchanged V2 validation',()=>{
+ const f=recoveryFixture(),bytes=zip(f.files),files=decodeRecoveryCoachingEvidenceArchive(bytes,'sha256:'+digest(bytes));
+ assert.deepEqual(validateRecovery({...f,files}),f.coachingReport);
+ assert.deepEqual(validateCompletedRecoveryCoachingOutput({...f,files}),f.coachingReport);
+});
+test('recovery proof rejects every terminal or wrong run attempt source actor workflow artifact and mutable source authority',()=>{
+ const changes=[f=>f.provider.jobs[0].status='completed',f=>f.provider.run.id++,f=>f.provider.run.run_attempt++,f=>f.provider.run.head_sha='f'.repeat(40),f=>f.provider.run.actor.id++,f=>f.provider.run.path='.github/workflows/other.yml',f=>f.provider.artifact.workflow_run.id++,f=>f.provider.artifact.workflow_run.head_sha='f'.repeat(40),f=>f.provider.artifact.expired=true,f=>f.authority={...f.authority,tree:'f'.repeat(40)},f=>f.authority={...f.authority,execution:{changed:true}},f=>f.evidence.context.attempt++];
+ for(const mutate of changes){const f=recoveryFixture();mutate(f);sealRecoveryFixture(f);assert.throws(()=>validateRecovery(f));}
+});
+test('only the original currently running recovery step may consume the launch proof',()=>{
+ for(const state of ['queued','completed',undefined]){const f=recoveryFixture();f.provider.jobs[0].steps.at(-1).status=state;assert.throws(()=>validateRecovery(f));}
+ for(const conclusion of ['success','failure','cancelled','skipped']){const f=recoveryFixture();f.provider.jobs[0].steps.at(-1).conclusion=conclusion;assert.throws(()=>validateRecovery(f));}
+ for(const change of [f=>f.provider.jobs[0].steps.pop(),f=>f.provider.jobs[0].steps.push(structuredClone(f.provider.jobs[0].steps.at(-1))),f=>f.provider.jobs[0].steps.at(-1).name='Other recovery']){const f=recoveryFixture();change(f);assert.throws(()=>validateRecovery(f));}
+});
+test('unfinished launch source commands and unsealed whole-pool receipts fail closed',()=>{
+ const changes=[f=>f.status.results.find(result=>result.id==='production-step-004').status='running',f=>f.status.results.find(result=>result.id==='production-step-004').exitCode=9,f=>f.status.results.find(result=>result.id==='production-step-004').signal='SIGTERM',f=>f.status.results.find(result=>result.id==='production-step-004').finishedAt=null,f=>f.status.active=1,f=>f.status.finishedAt=null,f=>f.provider.jobs[0].steps[1].conclusion='failure',f=>f.files['scope-evidence.json']='{}'];
+ for(const mutate of changes){const f=recoveryFixture();mutate(f);if(f.files['scope-evidence.json']!=='{}')sealRecoveryFixture(f);assert.throws(()=>validateRecovery(f));}
+});
+test('missing changed truncated or extra launch stdout stderr combined bytes and workflow outputs reject',()=>{
+ for(const suffix of ['stdout.log','stderr.log','log','outputs']){const f=recoveryFixture();f.files['production-step-004.'+suffix]+='altered';assert.throws(()=>validateRecovery(f));}
+ const f=recoveryFixture();delete f.files['production-step-004.stdout.log'];assert.throws(()=>validateRecovery(f));
+});
+test('even recomputed output checksums cannot omit launch semantics or alter complete native manifest comparison',()=>{
+ const changes=[r=>r.requireLaunch=false,r=>r.productionLaunchApproved=false,r=>r.completeV2=true,r=>r.paths++,r=>r.applicationCommit='f'.repeat(40),r=>r.recordedMain='f'.repeat(40),r=>delete r.requireLaunch,r=>r.extra='unexpected'];
+ for(const mutate of changes){const f=recoveryFixture();mutate(f.coachingReport);const stdout=JSON.stringify(f.coachingReport)+'\n';for(const suffix of ['stdout.log','log']){f.files['production-step-004.'+suffix]=stdout;f.status.results.find(result=>result.id==='production-step-004')[suffix+'Sha256']=digest(stdout);}sealRecoveryFixture(f);assert.throws(()=>validateRecovery(f));}
+ for(const mutate of [m=>m.decisions.productionLaunch.approved=false,m=>m.pinnedPaths.push('changed'),m=>m.applicationCommit='f'.repeat(40)]){const f=recoveryFixture(),m=JSON.parse(f.coachingManifestBytes);mutate(m);f.coachingManifestBytes=JSON.stringify(m);assert.throws(()=>validateRecovery(f));}
+});
+test('paired source output and receipt forgery cannot pass the original sealed artifact digest',()=>{
+ const f=recoveryFixture(),original=zip(f.files),trusted='sha256:'+digest(original);f.files['production-step-004.stdout.log']='{}\n';f.status.results.find(result=>result.id==='production-step-004')['stdout.logSha256']=digest('{}\n');sealRecoveryFixture(f);
+ assert.throws(()=>decodeRecoveryCoachingEvidenceArchive(zip(f.files),trusted),/artifact bytes changed/);
+ const without={...f.files};delete without['production-step-004.outputs'];const bytes=zip(without);assert.throws(()=>decodeRecoveryCoachingEvidenceArchive(bytes,'sha256:'+digest(bytes)));
+});
+test('recovery consumer cannot use original-source mode to bypass hosted proof, and nonproduction keeps full verification',async()=>{
+ const keys=['GITHUB_ACTIONS','GITHUB_WORKFLOW','GITHUB_JOB','GITHUB_REPOSITORY','GITHUB_REF','GITHUB_EVENT_NAME','GITHUB_ACTOR_ID','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','SHIFT_ORIGINAL_SOURCE_SCOPE'],before=Object.fromEntries(keys.map(k=>[k,process.env[k]]));
+ try{delete process.env.GITHUB_ACTIONS;assert.equal(await verifiedRecoveryCoachingAtPointUse(),null);
+ Object.assign(process.env,{GITHUB_ACTIONS:'true',GITHUB_WORKFLOW:'Cloudflare Production Promote',GITHUB_JOB:'promote',GITHUB_REPOSITORY:'shiftsometimber/shift-core',GITHUB_REF:'refs/heads/main',GITHUB_EVENT_NAME:'push',GITHUB_ACTOR_ID:'315011648',GITHUB_RUN_ID:'123',GITHUB_RUN_ATTEMPT:'1',GITHUB_SHA:'a'.repeat(40),SHIFT_ORIGINAL_SOURCE_SCOPE:'1'});
+ await assert.rejects(verifiedRecoveryCoachingAtPointUse(),/Original source mode cannot authorise/);
+ }finally{for(const k of keys)if(before[k]===undefined)delete process.env[k];else process.env[k]=before[k];}
+});
+test('only the recovery call site changes; all later provider stock runtime rollback operations and browser limits remain original',()=>{
+ const current=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8'),recovery=current('shift-coach/recover-cancelled-release.mjs');
+ assert(recovery.includes("if(!await verifiedRecoveryCoachingAtPointUse())verifyCoachingRelease({requireLaunch:true});"));
+ assert.equal((recovery.match(/verifiedRecoveryCoachingAtPointUse\(\)/g)||[]).length,1);
+ const original=p=>execFileSync('git',['show','fac3ce1d9eb1906a8741bc44c87fd05786a1539e:'+p],{encoding:'utf8'});
+ const restored=recovery.replace("import {verifiedRecoveryCoachingAtPointUse} from '../release/verified-source-evidence-20261016.mjs';\n",'').replace('if(!await verifiedRecoveryCoachingAtPointUse())verifyCoachingRelease({requireLaunch:true});','verifyCoachingRelease({requireLaunch:true});');
+ assert.equal(restored,original('shift-coach/recover-cancelled-release.mjs'));
+ const helper=current('release/verified-source-evidence-20261016.mjs'),start=helper.indexOf("\nconst RECOVERY_STEP='"),end=helper.indexOf('if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){',start);
+ assert(start>0&&end>start);assert.equal(helper.slice(0,start)+helper.slice(end),original('release/verified-source-evidence-20261016.mjs'));
+ assert(current('shift-coach/release-contract.mjs').includes("if(requireLaunch)assertLaunchDecisions(manifest);"));
+ assert(current('release/bounded-source-checks-20261016.mjs').includes("env:{...process.env,SHIFT_ORIGINAL_SOURCE_SCOPE:'1'}"));
+ assert.equal(execFileSync('git',['hash-object','release/production-source-schedule-20261016.json'],{encoding:'utf8'}).trim(),'b6819b27acd769c4d46a53e1b7cd73374c6911c5');
+ const workflow=current('.github/workflows/cloudflare-production-promote.yml');assert(workflow.includes('    timeout-minutes: 60'));assert(workflow.includes('playwright@1.63.0 lighthouse@12.8.2'));
+});

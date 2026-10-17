@@ -1,3 +1,4 @@
+import {verifiedRecoveryCoachingAtPointUse} from '../release/verified-source-evidence-20261016.mjs';
 import {PRESERVED_CURRENT_RUNTIME as ACCEPTED_CURRENT_RUNTIME,verifyCurrentRecordedWeekRuntimeWindow as verifyCurrentAcceptedRuntimeWindow,assertRecordedWeekPreservedRuntimeLineage as assertPreservedRuntimeLineage} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
 import {verifyCurrentOwnedRollbackReleaseWindow} from '../release/owned-rollback-release-window-20261016.mjs';
 import {OWNED_ROLLBACK_DEPLOYMENT,verifyCurrentOwnedRollback,readLegacyRecoveryProof} from '../release/verified-owned-rollback-current.mjs';
@@ -16,7 +17,7 @@ import {SITEWIDE_VERSION,verifySitewideRuntime} from '../release/sitewide-seo-sc
 import {ROOT_SHARE_ROLLBACK,verifyRootShareRollback} from '../release/root-share-preview-rollback.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
 import {restoredWaistReadingStripRuntime,restoredMaleObesityHubV2TransportRuntime,restoredMaleObesityHubV2Runtime,restoredMaleObesitySupportRuntime,restoredMaleObesityRuntime,verifyMaleObesityRollback,restoredContinuityRuntime,verifyContinuityRollback,restoredPassportRuntime,verifyPassportRollback,restoredToolRuntime,verifyToolRollback,restoredLaterRuntime,verifyRestoredLaterRuntime,tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime,technicalRecovery,verifyTechnicalCancelledRuntime,unattributedRuntimeRecovery,verifyUnattributedRuntime,laterUnattributedRuntimeRecovery,verifyLaterUnattributedRuntime,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
-assert.equal(process.env.GITHUB_REF,'refs/heads/main');verifyCoachingRelease({requireLaunch:true});
+assert.equal(process.env.GITHUB_REF,'refs/heads/main');if(!await verifiedRecoveryCoachingAtPointUse())verifyCoachingRelease({requireLaunch:true});
 // Archive pins come only from the accepted exact rollback/source modules above.
 // Metadata stays fresh. Only hash-verified immutable archive bytes may be reused.
 const historicalProof=createGithubProofReader({cacheDirectory:join(process.env.RUNNER_TEMP||tmpdir(),'shift-core-github-proof-v1')});
