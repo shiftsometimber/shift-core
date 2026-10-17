@@ -1,0 +1,73 @@
+{
+  "atUtc": "2026-10-17T20:02:48.958860+00:00",
+  "kind": "ACTUAL_POST_OWNED_ROLLBACK_JS_FREE_ACCEPTANCE_CHECK",
+  "deploymentAcceptance": false,
+  "technicalQAOnlyNotCustomerOutcome": true,
+  "providerBeforeReceipt": "core-bd55-after-owned-rollback.json",
+  "rows": [
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-constipation",
+      "httpStatus": 200,
+      "finalURL": "https://shiftsometimber.co.uk/articles/glp-1-constipation",
+      "uniqueExactDestination": true,
+      "actualText": "Fibre is the other pillar",
+      "approvedAnchorTextMatches": true,
+      "actualRel": "noopener noreferrer",
+      "nofollowPresent": false,
+      "canonicalMatches": true,
+      "articleDates": [
+        {
+          "type": "Article",
+          "datePublished": "2026-10-09T05:30:53.637Z",
+          "dateModified": "2026-10-16T10:22:37.000Z"
+        }
+      ],
+      "articleDatesMatchBefore": true,
+      "wholeMainBytesMatchOriginalBefore": true,
+      "HTMLSHA256": "2bcaaa7bcee350f74699e0f698fb2b69813ea774eae36bfc3e8910fff64fc9c3"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-and-alcohol",
+      "httpStatus": 200,
+      "finalURL": "https://shiftsometimber.co.uk/articles/glp-1-and-alcohol",
+      "uniqueExactDestination": true,
+      "actualText": "Recover 365's guide to alcohol and liver recovery",
+      "approvedAnchorTextMatches": true,
+      "actualRel": "noopener noreferrer",
+      "nofollowPresent": false,
+      "canonicalMatches": true,
+      "articleDates": [
+        {
+          "type": "Article",
+          "datePublished": "2026-10-07T05:30:38.641Z",
+          "dateModified": "2026-10-07T16:34:24.336Z"
+        }
+      ],
+      "articleDatesMatchBefore": true,
+      "wholeMainBytesMatchOriginalBefore": true,
+      "HTMLSHA256": "06d012847bfc50e0af2863e3c21c3aaf39ea97c20d76d4591343603e74ce7eaf"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-plateau",
+      "httpStatus": 200,
+      "finalURL": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-plateau",
+      "uniqueExactDestination": true,
+      "actualText": "clinical review of tirzepatide versus semaglutide",
+      "approvedAnchorTextMatches": true,
+      "actualRel": "noopener noreferrer",
+      "nofollowPresent": false,
+      "canonicalMatches": true,
+      "articleDates": [
+        {
+          "type": "Article",
+          "datePublished": "2026-10-10T04:31:17.075Z",
+          "dateModified": "2026-10-16T10:22:37.000Z"
+        }
+      ],
+      "articleDatesMatchBefore": true,
+      "wholeMainBytesMatchOriginalBefore": true,
+      "HTMLSHA256": "d2fbd8ce1584ca311d7b5f4051221460b21b80f9136d7c8ff95da02921a97865"
+    }
+  ],
+  "allThreeNofollowLive": false
+}

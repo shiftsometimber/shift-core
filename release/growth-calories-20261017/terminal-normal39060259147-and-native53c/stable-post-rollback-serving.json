@@ -1,0 +1,13 @@
+{
+  "beforeAt": "2026-10-17T19:58:46.656Z",
+  "afterAt": "2026-10-17T20:03:14.133Z",
+  "deployment": "6aa2add8-e03f-4eba-9e2b-5e0ea0935beb",
+  "version": "6e8d9241-288d-4933-a521-9f3071ee0c19",
+  "percentage": 100,
+  "annotation": "Owned release failed post-deployment checks; restore captured runtime and preserve current data",
+  "readOnly": true,
+  "rawReceiptSHA256": {
+    "core-bd55-after-owned-rollback.json": "052d64c07d54c689d7c80a113a296f9e57bc2ff6892272dd85b07e12796aeeef",
+    "core-bd55-post-three-page-readback.json": "04534e9c8f60a493c6675c1aa3c66568adbae14254d02f13348bca4ec4cfc07e"
+  }
+}
