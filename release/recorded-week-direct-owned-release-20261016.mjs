@@ -14,7 +14,7 @@ export function createRecordedWeekGithubGet({fetcher=fetch,token,wait=githubProo
  return path=>{
   const budget=deadline(30000);
   const get=createGithubProofGet({token,
-   fetcher:(url,options)=>{budget.throwIfAborted();return fetcher(url,{...options,signal:AbortSignal.any([options.signal,budget])});},
+   fetcher:(url,options)=>{budget.throwIfAborted();return fetcher(url,{...options,headers:{...options.headers,Connection:'close'},signal:AbortSignal.any([options.signal,budget])});},
    wait:ms=>{budget.throwIfAborted();return wait(ms,undefined,{signal:budget});}});
   return get(path);
  };

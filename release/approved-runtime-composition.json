@@ -3829,7 +3829,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -3937,7 +3937,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4010,7 +4010,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4085,7 +4085,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4158,7 +4158,7 @@
             "integrationIssue": 1065,
             "releaseApproval": {
               "owner": "Matt",
-              "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+              "instruction": "Sorry this needs deploying - it’s a huge fault !",
               "recordedAt": "2026-10-13T17:17:57Z",
               "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
               "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4755,154 +4755,5 @@
     "communicationsSent": false,
     "sourceGuardsRelaxed": false,
     "gpPrivateDenialsCorrected": true
-  },
-  "myTimberRecordedWeekActivation20261014": {
-    "proof": "EXACT_RECORDED_WEEK_DIRECT_ACCEPTED_BASE_20261016",
-    "originalProof": "EXACT_RECORDED_WEEK_FACTUAL_ACTIVATION_20261014",
-    "base": "e9491c2686105afc465d1c94e37e5cef63240e11",
-    "baseTree": "c3db6341f2b6c20dcda0eede3eb5fa3dc91a8611",
-    "source": "ba906f245501a3bcb92dd2f41c7dd008afa3ae6d",
-    "sourceTree": "392297c0114588548242f29e2b45cb0079f42fa3",
-    "paths": [
-      "member-experience/treatment-week-route.mjs",
-      "member-experience/treatment-week-client.mjs",
-      "wrangler.jsonc",
-      "wrangler.coaching.jsonc",
-      "member-experience/tests/treatment-week-route.test.mjs",
-      "docs/my-timber-recorded-week-activation-20261014.json"
-    ],
-    "maintenancePaths": [
-      "release/recorded-week-direct-scope-20261016.mjs",
-      "tests/recorded-week-direct-source-20261016.test.mjs",
-      "release/recorded-week-live-20261014.mjs",
-      "tests/recorded-week-live-20261014.test.mjs",
-      "docs/my-timber-progress-journey-20261012.md",
-      "docs/my-timber-treatment-week-20261013.md",
-      "release/recorded-week-direct-baseline-20261016.json",
-      ".github/workflows/factual-recorded-week-direct-release-20261016.yml",
-      "release/recorded-week-direct-owned-release-20261016.mjs",
-      "tests/recorded-week-direct-owned-release-20261016.test.mjs",
-      ".github/workflows/rendered-member-production-acceptance.yml",
-      "release/recorded-week-member-live-20261016.mjs"
-    ],
-    "scope": "recorded_facts_only",
-    "weekEnabled": true,
-    "externalReviewRequired": false,
-    "authority": {
-      "schema": "my-timber-recorded-week-activation/v1",
-      "owner": "Matt",
-      "instruction": "Action this. We don\u2019t want an review",
-      "recordedAt": "2026-10-14T19:20:45.941Z",
-      "base": "685ede249cd20c4801d0a25227fed16d46860618",
-      "scope": "Activate factual recorded treatment weeks, selected owned context, private notes and factual exports",
-      "externalReviewRequiredForThisScope": false,
-      "flag": {
-        "name": "MY_TIMBER_WEEK_VIEW_ENABLED",
-        "value": "true",
-        "config": "wrangler.jsonc",
-        "mirroredConfig": "wrangler.coaching.jsonc"
-      },
-      "clinicalModelEnabled": false,
-      "medicationLevelEstimateIncluded": false,
-      "symptomPredictionIncluded": false,
-      "clinicalApprovalClaimed": false,
-      "prescribingChanged": false,
-      "customerRecordsUsedForTests": false,
-      "emailAuthority": false,
-      "paidModelEnabled": false,
-      "stockChanged": false,
-      "homepageChanged": false,
-      "ordinaryDeviceEvidenceNotInferred": true,
-      "previousClinicalModelDraftRetained": true
-    },
-    "acceptedBaseline": {
-      "schema": "direct-coding-completed-baseline-documents/v1",
-      "acceptanceMode": "qualified_core_code_with_retained_gp_hq",
-      "source": "e9491c2686105afc465d1c94e37e5cef63240e11",
-      "tree": "c3db6341f2b6c20dcda0eede3eb5fa3dc91a8611",
-      "release": {
-        "id": "38980756381",
-        "attempt": "1",
-        "workflow": ".github/workflows/questionnaire-handover-release-20261016.yml",
-        "branch": "fix/questionnaire-handover-20261016",
-        "source": "e9491c2686105afc465d1c94e37e5cef63240e11",
-        "tree": "c3db6341f2b6c20dcda0eede3eb5fa3dc91a8611",
-        "name": "Questionnaire Handover Nonclinical Release"
-      },
-      "retainedHqRelease": {
-        "id": "38974318146",
-        "attempt": "1",
-        "workflow": ".github/workflows/gp-priority-direct-activation-20261016.yml",
-        "branch": "release/gp-priority-direct-activation-20261016",
-        "source": "55b73025f5b6d2302fab42bce73a222653404186",
-        "tree": "550bec05b5dbf98bb31eed006b2158f73b4ee79f",
-        "name": "GP Priority Direct Directory Activation"
-      },
-      "workers": {
-        "core": {
-          "source": "e9491c2686105afc465d1c94e37e5cef63240e11",
-          "run": 38980756381,
-          "attempt": 1,
-          "deploymentId": "9eaeeda9-59c1-419c-b58d-2aea1493e95f",
-          "versionId": "0b9a4674-de58-49db-aefa-57ede95178a4",
-          "percentage": 100,
-          "bundleSha256": "19092d5b673c5fb8201ebda993d0ae373a206eee57fd334598a36a58f33730f3",
-          "bundleBytes": 14775946,
-          "allBindingsSha256": "7bdb4b151b1f11fb23d9cdea06c0436c3b7f3246585c1212a8a75f9c6379c401",
-          "otherBindingsSha256": "f167ad0c4b62b5616bdc272e5c9af441c7d2193c915ab4b9ff099c8d126f4857",
-          "gpEnabled": true
-        },
-        "hq": {
-          "source": "55b73025f5b6d2302fab42bce73a222653404186",
-          "run": 38974318146,
-          "attempt": 1,
-          "deploymentId": "f75c3309-afc7-49ca-aac2-7964bc5b7e42",
-          "versionId": "6eae4c43-fbc3-455e-a426-9bb7de344705",
-          "percentage": 100,
-          "bundleSha256": "bfadbda83e5b8dcb944b92cea15a13320b7a139c7be9afab98833ba04534e5e7",
-          "bundleBytes": 1838527,
-          "allBindingsSha256": "3b6704c920ad27ad9b9a16d1af27e9f382db7e9daa2fbc46e93d801492fb2f74",
-          "otherBindingsSha256": "e1479acdea3dac4d1faddb2ec5b99239f2ada00c70ba56fd497d99c687e3e261",
-          "gpEnabled": true,
-          "partnersEnabled": true
-        }
-      },
-      "runtimeReceiptSHA256": "1d6709af36c73abe86d800cd392c5ae38538a533d9a54256027a0ffb7303744e",
-      "retainedHqRuntimeReceiptSHA256": "91e0283e8a59f67f715b1c902e8c0bf6ceb0e66e80cc45b960b6841df46ae32c",
-      "releaseArchive": {
-        "id": "12080573216",
-        "name": "questionnaire-runtime-release-38980756381",
-        "archiveSHA256": "55d230a531bb7b73d0b1f46957ddfe3a31ee828249123fe35cbec798d606062e"
-      },
-      "retainedHqArchive": {
-        "id": "12079785516",
-        "name": "gp-direct-directory-activation-38974318146",
-        "archiveSHA256": "ad96133ccb31b0d6d838297dec18fee5c8e84ef6d8b61524621cc5343005ecf4"
-      },
-      "coordinatingMainAtAcceptance": "3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef",
-      "gpFeatureAcceptance": false,
-      "gpAssessmentReuse": {
-        "status": "blocked_contract_inactive"
-      },
-      "authenticatedMemberAcceptance": false,
-      "originalHqHolderAcceptanceStillOpen": true,
-      "currentProviderCheckRequiredBeforeDeployment": true
-    },
-    "providerPacketSha256": "bdfb95c0e9f0ac4ca4278c4a26b901f75c3a72ed361d49d515e0860d4f9256d3",
-    "memberPacketSha256": "975bb6d02d48abd14a502b0e95aa4fe52189384b889d8c1ee8d82b48461ad2a4",
-    "sourceQualification": "IMPLEMENTED_SOURCE; CURRENT_DIRECT_SOURCE_AND_REAL_RELEASE_MEMBER_GATES_REQUIRED",
-    "clinicalModelEnabled": false,
-    "medicationLevelsIncluded": false,
-    "symptomPredictionIncluded": false,
-    "clinicalApprovalClaimed": false,
-    "homepageChanged": false,
-    "stockChanged": false,
-    "emailAuthority": false,
-    "paidModelEnabled": false,
-    "genericAdoptionAllowed": false,
-    "rollbackAuthorityBroadened": false,
-    "originalAssertionsRemoved": false,
-    "timeoutsChanged": false,
-    "maintenanceSource": "ba52f29594594a5bae6e020b86f493586cd66651"
   }
 }
