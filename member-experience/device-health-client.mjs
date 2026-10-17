@@ -9,7 +9,9 @@ export const deviceHealthRuntime=String.raw`(()=>{
  function button(text,fn){const b=el('button',text);b.type='button';b.className='btn btn-ghost';b.disabled=busy;b.onclick=async()=>{if(busy)return;busy=true;b.disabled=true;try{await fn();}catch(e){msg.textContent=e.message;}finally{busy=false;host.querySelectorAll('button').forEach(n=>n.disabled=false);}};return b;}
  const msg=el('p');msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');
  function render(){
-  host.replaceChildren(el('h2','Your device health readings'),el('p','Bring heart rate, blood pressure and weight into My Timber when you choose. This is your record, not clinical monitoring. Readings are not used for prescribing, advertising or employer reports.'));
+  host.replaceChildren(el('h2','Connected health'),el('p','Bring heart rate, blood pressure and weight into My Timber when you choose. This is your record, not clinical monitoring. Readings are not used for prescribing, advertising or employer reports.'));
+  const connections=el('div');connections.className='device-connection-summary';
+  for(const p of ['apple_health','health_connect']){const box=el('div'),enabled=!!state.permissions[p],records=state.readings.filter(r=>r.platform===p);box.append(el('strong',label(p)),el('span',enabled?(state.trackingEnabled?'Import connection enabled':'Paused · health tracking is off'):'Import connection off'));if(records.length){const latest=records.reduce((a,b)=>String(a.importedAt||a.at)>String(b.importedAt||b.at)?a:b);box.append(el('span',records.length+' saved readings'));if(latest.importedAt)box.append(el('span','Last import: '+new Date(latest.importedAt).toLocaleString('en-GB')));box.append(el('span','Latest saved reading: '+new Date(latest.at).toLocaleString('en-GB')))}else box.append(el('span','No readings saved from this source'));connections.append(box)}host.append(connections,el('p','Phone permissions are checked when you preview. An enabled My Timber import connection does not confirm that your phone has allowed every reading type.'));
   const native=window.SST_NATIVE_HEALTH;
   if(native){
    const p=native.platform,box=el('label'),check=el('input');check.type='checkbox';box.append(check,document.createTextNode(' I consent to SHIFT saving the heart-rate, blood-pressure and weight readings I select from '+label(p)+' in my private My Timber account.'));host.append(box);
@@ -36,6 +38,6 @@ export const deviceHealthRuntime=String.raw`(()=>{
   }
   host.append(el('p','Download your readings using Export my data in the privacy controls. Erasing health-tracking history also removes imported readings.'),msg);
  }
- async function boot(){try{const fresh=await api();if(state&&fresh.accountId!==state.accountId)preview=null;state=fresh;render();}catch(e){host.replaceChildren(el('p',e.message));}}
+ async function boot(){try{const fresh=await api();if(state&&fresh.accountId!==state.accountId)preview=null;state=fresh;render();}catch(e){const retry=el('button','Retry loading connections');retry.type='button';retry.onclick=boot;host.replaceChildren(el('h2','Connected health'),el('p',e.message),retry);}}
  window.addEventListener('sst-native-health-ready',()=>{if(state)render();});window.addEventListener('pageshow',boot);boot();
 })();`;

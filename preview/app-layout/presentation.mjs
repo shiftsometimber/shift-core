@@ -40,7 +40,7 @@ html body[data-app-layout="preview"]:is(#app-preview-scope,[data-app-layout]) .a
 `+screenStyles+tabStyles+refinementStyles+todayStyles+focusStyles;
 export const appClient=todayClient+focusClient+screenClient+String.raw`(()=>{
  function current(){document.querySelectorAll('#appBottomNav a').forEach(a=>{const u=new URL(a.href),match=u.pathname.replace('/staging/member-connected/','/member/')===location.pathname.replace('/staging/member-connected/','/member/')&&(u.hash?u.hash===(location.hash||'#today'):true);if(match){if(a.getAttribute('aria-current')!=='page')a.setAttribute('aria-current','page')}else a.removeAttribute('aria-current')})}
- document.addEventListener('click',e=>{const more=e.target.closest?.('#appMore');if(!more)return;const open=document.body.dataset.appMore!=='open';document.body.dataset.appMore=open?'open':'closed';more.setAttribute('aria-expanded',String(open));if(open){const nav=document.querySelector('.sst-member-tabs');nav?.scrollIntoView({block:'start'});nav?.querySelector('a')?.focus()}},true);
+ document.addEventListener('click',e=>{const more=e.target.closest?.('#appMore');if(!more||document.getElementById('memberMoreDialog'))return;const open=document.body.dataset.appMore!=='open';document.body.dataset.appMore=open?'open':'closed';more.setAttribute('aria-expanded',String(open));if(open){const nav=document.querySelector('.sst-member-tabs');nav?.scrollIntoView({block:'start'});nav?.querySelector('a')?.focus()}},true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.dataset.appMore==='open'){document.body.dataset.appMore='closed';const more=document.getElementById('appMore');more?.setAttribute('aria-expanded','false');more?.focus()}});
  
  function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text)n.textContent=text;return n}
@@ -56,4 +56,3 @@ export function appPresentation(html,path,embedded=false){
  const nav='<nav id="appBottomNav" aria-label="App navigation"><a href="/member/dashboard#today">Today</a><a href="/member/dashboard#visualise">Progress</a><a href="/member/life-back">Life Back</a><button id="appMore" type="button" aria-expanded="false">More</button></nav>';
  return html.replace(/<body([^>]*)>/,(_,a)=>'<body'+a+' data-app-layout="preview"'+(embedded?' data-app-panel="1"':'')+'>'+bar).replace('</body>','<style data-app-preview-style>'+appStyles+'</style>'+nav+'<script defer src="/__app-layout.mjs"></script></body>');
 }
-
