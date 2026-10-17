@@ -1,3 +1,4 @@
+import {RECORDED_WEEK_OWNED_ROLLBACK,verifyCurrentRecordedWeekOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {verifiedSourceScopeAtPointUse} from './verified-source-evidence-20261016.mjs';
 import {PRESERVED_CURRENT_RUNTIME as ACCEPTED_CURRENT_RUNTIME,PRESERVED_CURRENT_RUNTIME_KIND as ACCEPTED_CURRENT_RUNTIME_KIND,verifyCurrentRecordedWeekRuntimeWindow as verifyCurrentAcceptedRuntimeWindow,assertSameRecordedWeekCurrentWindow as assertSameAcceptedCurrentWindow,recordedWeekCurrentStartingPoint as acceptedCurrentStartingPoint,assertRecordedWeekPreservedRuntimeLineage as assertPreservedRuntimeLineage} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {verifyCurrentOwnedRollbackReleaseWindow} from './owned-rollback-release-window-20261016.mjs';
@@ -26,7 +27,13 @@ const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 const baselineRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
 let point;
-if(active.id===ACCEPTED_CURRENT_RUNTIME.deployment){
+if(active.id===RECORDED_WEEK_OWNED_ROLLBACK.deployment.id){
+ assert(baselineRecord.recordedWeekOwnedRollbackProof,'Exact cancelled39060259147 owned rollback recovery receipt required');
+ ownedRollbackStartingPoint(baselineRecord.recordedWeekOwnedRollbackProof,active);
+ const refreshedProof=await verifyCurrentRecordedWeekOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameOwnedRollbackReceipt(baselineRecord.recordedWeekOwnedRollbackProof,refreshedProof);
+ point=ownedRollbackStartingPoint(refreshedProof,active);
+}else if(active.id===ACCEPTED_CURRENT_RUNTIME.deployment){
  assert(baselineRecord.acceptedCurrentServingProof,'Exact accepted GP/questionnaire recovery receipt required');
  acceptedCurrentStartingPoint(baselineRecord.acceptedCurrentServingProof,active);
  const refreshedProof=await verifyCurrentAcceptedRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
