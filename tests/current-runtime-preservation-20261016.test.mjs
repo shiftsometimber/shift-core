@@ -76,3 +76,24 @@ test('the historical HQ comparator still rejects a changed current GP API before
  finally{writeFileSync(path,before);}
  const proof=proveCombinedHqCurrent();assert.equal(proof.head,head);assert.equal(proof.currentRuntimePreserved,true);assert.notEqual(proof.historicalHead,head);
 `));
+
+// Programme setup repair must retain the literal original Watch workflow hash.
+import{SEO_AUDIT_MAINTENANCE,seoAuditOriginalSource}from'../release/seo-audit-scope-20261016.mjs';
+const programmeFixturePath='.github/workflows/programme-day-preview.yml',programmeOriginalBlob='54827864ebfed96670c67809030e6ad772731b73';
+test('Programme fixture projects only after actual current bytes authenticate and retains original Watch hash',()=>{
+ const raw=content(head,programmeFixturePath),historical=seoAuditOriginalSource(programmeFixturePath,raw);
+ assert.notEqual(blob(head,programmeFixturePath),programmeOriginalBlob);assert.equal(historical,content(c.base,programmeFixturePath));
+ assert.equal(execFileSync('git',['hash-object','--stdin'],{input:historical,encoding:'utf8'}).trim(),programmeOriginalBlob);
+ assert(raw.includes('npm ci --ignore-scripts --no-audit --no-fund'));assert(!historical.includes('Install the locked dependencies required by the original source tests'));
+});
+test('Programme fixture adds only the one bounded current-runtime path to the exported fixture set',()=>{
+ const original=content(c.base,'release/seo-audit-scope-20261016.mjs').match(/^const policy=(\{[^\n]+\});$/m);assert(original);
+ assert.deepEqual([...SEO_AUDIT_MAINTENANCE].sort(),[...JSON.parse(original[1]).maintenancePaths,programmeFixturePath].sort());
+});
+test('Programme fixture refuses changed supplied current workflow bytes',()=>assert.throws(()=>seoAuditOriginalSource(programmeFixturePath,content(head,programmeFixturePath)+'\nforeign'),/Exact current SEO fixture/));
+test('Programme fixture does not admit an unknown historical source path',()=>assert.throws(()=>seoAuditOriginalSource('package-lock.json',content(head,'package-lock.json')),/Unknown SEO historical fixture/));
+test('Programme fixture cannot hide an unauthorised working workflow edit',()=>withOwnedPreservationClone(`
+ const{seoAuditOriginalSource}=await module('release/seo-audit-scope-20261016.mjs'),path='.github/workflows/programme-day-preview.yml',before=readFileSync(path),raw=g('show',head+':'+path);
+ try{writeFileSync(path,Buffer.concat([before,Buffer.from(String.fromCharCode(10)+'# unauthorised workflow'+String.fromCharCode(10))]));assert.throws(()=>seoAuditOriginalSource(path,raw),/source|tracked|working/i);}finally{writeFileSync(path,before);}
+ assert.equal(execFileSync('git',['hash-object','--stdin'],{input:seoAuditOriginalSource(path,raw),encoding:'utf8'}).trim(),'54827864ebfed96670c67809030e6ad772731b73');
+`));
