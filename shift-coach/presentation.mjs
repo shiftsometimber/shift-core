@@ -1,3 +1,4 @@
+import {deferCurrentDashboardStyles} from './deferred-dashboard-styles.mjs';
 import {earlyDashboardStyles} from './critical-style-order.mjs';
 import {inlineBootstrap} from '../cream-navigation.mjs';
 import {tabletMarkup,tabletStyles,tabletClient} from '../member-experience/tablet-routine-client.mjs';
@@ -45,11 +46,11 @@ export async function withCoaching(request,response,seed=null){
  if(seed&&head?.includes(bootstrapTag)&&prepared.split(bootstrapTag).length===2&&!prepared.includes('data-shift-inline-bootstrap'))prepared=prepared.replace(bootstrapTag,inlineBootstrap);
  let changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+tabletStyles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>'+tabletMarkup+'<script data-tablet-routine-client>'+tabletClient.replace(/<\/script/gi,'<\\/script')+'</script>');
  // Only the fresh, session/consent-checked dashboard uses the exact style-order repair.
- if(seed)changed=earlyDashboardStyles(changed);
+ if(seed)changed=deferCurrentDashboardStyles(earlyDashboardStyles(changed));
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie, Accept-Encoding');
  // Start the same existing stylesheets with the document headers, before the
  // browser reaches parser-blocking scripts. No scripts or tracking are moved.
- const preloads=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1]).filter(href=>/^\/[A-Za-z0-9/_.,=?&%+-]+$/.test(href)).filter((href,index,all)=>all.indexOf(href)===index).map(href=>'<'+href+'>; rel=preload; as=style');
+ const preloads=(changed.includes('data-coach-stylesheet-loader')?[]:[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1])).filter(href=>/^\/[A-Za-z0-9/_.,=?&%+-]+$/.test(href)).filter((href,index,all)=>all.indexOf(href)===index).map(href=>'<'+href+'>; rel=preload; as=style');
  if(preloads.length)headers.set('Link',[headers.get('Link'),...preloads].filter(Boolean).join(', '));
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
  // Compress the private dashboard at its source so the prepared action does
