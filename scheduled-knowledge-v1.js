@@ -1,9 +1,19 @@
 import {refreshPublicKnowledge} from './member-experience/ai-site-knowledge.mjs';
 import {syncApprovedKnowledgeDocuments} from './knowledge-publication-v1.js';
+import {runDailyContentDraft} from './daily-content/engine.mjs';
 
 const safe=(v,d={})=>{try{return typeof v==='string'?JSON.parse(v):v??d}catch{return d}};
 
 export async function runKnowledgeFlywheel(env,{limit=1000}={}){
+  // Drafting and existing ingestion settle independently. No extra cron or queue.
+  const [knowledge,daily]=await Promise.allSettled([
+    runPublishedKnowledgeFlywheel(env,{limit}),runDailyContentDraft(env)
+  ]);
+  if(knowledge.status==='rejected')throw knowledge.reason;
+  return{...knowledge.value,dailyContent:daily.status==='fulfilled'?daily.value:{status:'failed',reason:'daily_content_creation_failed'}};
+}
+
+async function runPublishedKnowledgeFlywheel(env,{limit=1000}={}){
   const publicSite=env.SHIFT_AI_PRACTICAL_CONTEXT==='true'?await refreshPublicKnowledge(env):{disabled:true};
   const sync=await syncApprovedKnowledgeDocuments(env,{limit});
   if(!sync?.ok)return{ok:false,synced:Number(sync?.synced||0),withdrawn:0,reason:sync?.reason||'knowledge_sync_failed'};
