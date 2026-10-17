@@ -116,7 +116,7 @@ export const appExperienceClient=String.raw`(()=>{
   for(const selector of ['#sstTodayContext','#sstTreatmentJourney','#sstFiveLoops','#myHealthPlanV2','#wholeManNextShift']){const n=$(selector);if(n&&!support.contains(n))support.append(n)}
  }
  function fit(){
-  const builder=$('.sf-builder');if(builder){builder.dataset.experienceReady='true';const detail=builder.closest('details');if(detail&&!detail.dataset.memberExperienceSetup){detail.dataset.memberExperienceSetup='true';detail.open=true}}
+  const builder=$('.sf-builder');if(builder){builder.dataset.experienceReady='true';const detail=builder.closest('details');if(detail&&!detail.dataset.memberExperienceSetup)detail.dataset.memberExperienceSetup='true'}
   all('#fitOutput .sf-session').forEach(session=>{
    const cards=[...session.querySelectorAll('.sf-exercise')];if(!cards.length)return;
    const done=cards.filter(c=>c.dataset.completion==='done').length,skipped=cards.filter(c=>c.dataset.completion==='skipped').length,first=cards.find(c=>!['done','skipped'].includes(c.dataset.completion));
