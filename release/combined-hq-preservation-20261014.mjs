@@ -1,5 +1,8 @@
+import {RETAINED_ACCEPTED_HQ_KIND,prepareAcceptedHqRetention,verifyAcceptedHqRetention} from './accepted-current-hq-retention-20261017.mjs';
+import {currentRuntimePreservationHistoricalView} from './current-runtime-preservation-20261016.mjs';
+import {withImmutableHistoryVerification} from './immutable-git-facts.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {combinedFiniteHistoricalView,verifyCombinedHqSource} from './combined-finite-scope-20261014.mjs';
@@ -25,8 +28,8 @@ export function originalCombinedHqMaintenance(path,text){
  if(path==='hq-management-public-preservation.mjs')return once(once(text,HQ_PUBLIC_IMPORT),HQ_PUBLIC_POST);
  return text;
 }
-export function proveCombinedHqCurrent(){
- const view=combinedFiniteHistoricalView(),head=view.rawHead,current=JSON.parse(content(head,'release/approved-runtime-composition.json')),c=current.combinedFinite20261014;
+function proveCombinedHqCurrentOriginal(currentWeek=null){
+ const view=combinedFiniteHistoricalView(),head=currentWeek?.head??view.rawHead,current=JSON.parse(content(head,'release/approved-runtime-composition.json')),c=current.combinedFinite20261014;
  assert(c,'Exact current combined release required');
  verifyCombinedHqSource({head:c.source,content,blob:(ref,path)=>git('rev-parse',ref+':'+path)});
  const proof=JSON.parse(content(head,'release/combined-hq-partner-preservation-20261014.json'));
@@ -45,7 +48,7 @@ export function proveCombinedHqCurrent(){
  assert.equal(content(head,'wrangler.hq-management.jsonc'),content(c.base,'wrangler.hq-management.jsonc'),'Accepted HQ configuration must be preserved byte-for-byte; keep-vars retains provider flags');
  for(const key of ['invitationEnabled','externalLoginEnabled','sharingEnabled','gpActivated','schemaApplied'])assert.equal(proof[key],false,'HQ held boundary: '+key);
  assert.equal(git('diff','--name-only'),'','Tracked working HQ source changed');
- assert.equal(git('rev-parse','HEAD'),head,'HQ source HEAD moved during proof');
+ assert.equal(currentWeek?currentWeek.head:git('rev-parse','HEAD'),head,'HQ source HEAD moved during proof');
  return {head,proof};
 }
 const PUBLIC_SCOPE=['wrangler.jsonc','package.json','package-lock.json','frontend','public','assets','shift-coach','worker-entry-v6.js'];
@@ -88,7 +91,8 @@ async function readBundle(accountId,token,version,fetchImpl){
 async function versionRead(accountId,token,id,fetchImpl){const result=await(await providerRead(accountId,token,'/versions/'+id,fetchImpl)).json();assert.equal(result.success,true);return result.result;}
 async function activeRead(accountId,token,fetchImpl){const result=await(await providerRead(accountId,token,'/deployments',fetchImpl)).json();assert.equal(result.success,true);const list=result.result.deployments;assert(Array.isArray(list)&&list.length);return list.toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];}
 export async function assertCombinedHqStartingPoint(before,{accountId,token,fetchImpl=fetch}={}){
- proveCombinedHqCurrent();const version=await versionRead(accountId,token,HQ_START.version,fetchImpl),bundle=await readBundle(accountId,token,HQ_START.version,fetchImpl);
+ const source=proveCombinedHqCurrent();if(source.currentRuntimePreserved)return prepareAcceptedHqRetention(before,{accountId,token,fetchImpl});
+ const version=await versionRead(accountId,token,HQ_START.version,fetchImpl),bundle=await readBundle(accountId,token,HQ_START.version,fetchImpl);
  const receipt=assertHqProviderSnapshot({deployment:before,version,bundle});
  assertHqProviderSnapshot({deployment:await activeRead(accountId,token,fetchImpl),version,bundle});
  writeFileSync('b1-runtime-release/combined-hq-starting-point.json',JSON.stringify({at:new Date().toISOString(),...receipt,deployment:before.id,productionWrites:0},null,2));return receipt;
@@ -105,8 +109,10 @@ export function annotateCombinedHqOwnedReceipt(){
 export async function verifyCombinedHqLiveBoundaries({accountId,token,fetchImpl=fetch}={}){
  const source=proveCombinedHqCurrent(),owned=JSON.parse(readFileSync('b1-runtime-release/owned-hq-deployment.json')),candidate=owned.combinedHqCandidate;
  assert.equal(candidate.source,source.head,'Owned HQ candidate source mismatch');
- const active=await activeRead(accountId,token,fetchImpl),version=await versionRead(accountId,token,owned.versionId,fetchImpl),bundle=await readBundle(accountId,token,owned.versionId,fetchImpl);
- const expected={deployment:owned.deploymentId,version:owned.versionId,sha256:candidate.sha256,bytes:candidate.bytes};assertHqProviderSnapshot({deployment:active,version,bundle},expected);
+ const retained=source.currentRuntimePreserved;let active,version,bundle;
+ if(retained){assert.equal(owned.kind,RETAINED_ACCEPTED_HQ_KIND);const observed=await verifyAcceptedHqRetention(owned,{accountId,token,fetchImpl,stage:'before'});({deployment:active,version,bundle}=observed.provider);}
+ else{active=await activeRead(accountId,token,fetchImpl);version=await versionRead(accountId,token,owned.versionId,fetchImpl);bundle=await readBundle(accountId,token,owned.versionId,fetchImpl);}
+ const expected={deployment:owned.deploymentId,version:owned.versionId,sha256:candidate.sha256,bytes:candidate.bytes};if(!retained)assertHqProviderSnapshot({deployment:active,version,bundle},expected);
  const checks=[];
  for(const path of ['/v1/hq/management/partners','/v1/hq/management/partner-handovers','/v1/hq/management/gp-directory']){
   const r=await fetchImpl('https://api.shiftsometimber.co.uk'+path,{method:'GET',headers:{Origin:'https://hq.shiftsometimber.co.uk'},signal:AbortSignal.timeout(30000)});
@@ -116,7 +122,24 @@ export async function verifyCombinedHqLiveBoundaries({accountId,token,fetchImpl=
   const r=await fetchImpl('https://api.shiftsometimber.co.uk/v1/hq/management/partners',{method:'OPTIONS',headers:{Origin:origin,'Access-Control-Request-Method':'GET'},signal:AbortSignal.timeout(30000)});
   if(origin==='https://hq.shiftsometimber.co.uk'){assert([200,204].includes(r.status));assert.equal(r.headers.get('access-control-allow-origin'),origin);}else assert.equal(r.headers.get('access-control-allow-origin'),null,'Foreign-origin partner CORS accepted');checks.push({path:'/v1/hq/management/partners',method:'OPTIONS',origin,status:r.status});
  }
- assertHqProviderSnapshot({deployment:await activeRead(accountId,token,fetchImpl),version,bundle},expected);
- const receipt={at:new Date().toISOString(),source:source.head,deployment:active.id,version:version.id,bundleSha256:sha(bundle),bundleBytes:bundle.length,checks,partnerSourcePreserved:true,partnerAccessEnabled:false,sharingEnabled:false,invitationEnabled:false,gpEnabled:false,authenticatedRoleAcceptance:'separate; original local role/audit assertions retained',externalMessages:0,productionDataWrites:0};
- writeFileSync('b1-runtime-release/combined-hq-live-boundaries.json',JSON.stringify(receipt,null,2));console.log('PASS same-serving HQ source, partner anonymous/CORS denials, unchanged invitation/sharing source and GP-off binding; no live mutations');return receipt;
+ if(retained)await verifyAcceptedHqRetention(owned,{accountId,token,fetchImpl,stage:'after'});else assertHqProviderSnapshot({deployment:await activeRead(accountId,token,fetchImpl),version,bundle},expected);
+ const receipt={at:new Date().toISOString(),source:source.head,deployment:active.id,version:version.id,bundleSha256:sha(bundle),bundleBytes:bundle.length,checks,partnerSourcePreserved:true,partnerAccessEnabled:false,sharingEnabled:false,invitationEnabled:false,gpEnabled:retained,runtimeSource:retained?owned.source:source.head,providerWrites:0,authenticatedRoleAcceptance:'separate; original local role/audit assertions retained',externalMessages:0,productionDataWrites:0};
+ writeFileSync('b1-runtime-release/combined-hq-live-boundaries.json',JSON.stringify(receipt,null,2));console.log(retained?'PASS exact retained accepted GP-on HQ, original anonymous/CORS boundaries, protected bindings/privacy and zero provider writes':'PASS same-serving HQ source, partner anonymous/CORS denials, unchanged invitation/sharing source and GP-off binding; no live mutations');return receipt;
+}
+
+// The old combined HQ contract still runs on its exact authenticated source.
+// Current GP/W bytes and flags are separately bound before any projection.
+export function proveCombinedHqCurrent(){
+ return withImmutableHistoryVerification(()=>{
+  const current=currentRuntimePreservationHistoricalView();
+  try{const original=proveCombinedHqCurrentOriginal(current);return {...original,head:current.rawHead,historicalHead:original.head,currentRuntimePreserved:current.rawHead!==current.head};}
+  finally{current.assertCurrent();}
+ });
+}
+
+export async function settleRetainedCombinedHqRollback(receipt,options){
+ const source=proveCombinedHqCurrent();
+ if(!source.currentRuntimePreserved){assert.notEqual(receipt.kind,RETAINED_ACCEPTED_HQ_KIND);return false;}
+ assert.equal(receipt.kind,RETAINED_ACCEPTED_HQ_KIND,'A preserved current HQ cannot fall through to legacy rollback');
+ await verifyAcceptedHqRetention(receipt,{...options,stage:'rollback'});return true;
 }
