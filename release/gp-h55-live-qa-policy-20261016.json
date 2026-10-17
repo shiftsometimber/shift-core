@@ -89,7 +89,7 @@
   },
   "helper": {
     "path": "release/gp-directory-live-h55-qa-20261016.mjs",
-    "sha256": "4d162c0299d300683826ff664a43499ba7ccd8cd73d7f30a789ab075002174ef",
+    "sha256": "b703c7179f0c31b473cdeac13566a85a70482a985659f62663b2250d124cdfa6",
     "originalSha256": "5c034f6a4719c97ccb008e859ee1e02e8ebf927a398e4f12c3f224e22f571666",
     "wholeInverse": [
       [
@@ -115,6 +115,16 @@
       [
         "async function installGuard(){\n",
         "async function installGuard(){\n  const diagnostic={source,events:[],pageErrors:[]};row.mountDiagnostic=diagnostic;\n  page.on('pageerror',error=>diagnostic.pageErrors.push(String(error.message)));\n  page.on('response',async response=>{const path=new URL(response.url()).pathname;\n   if(!['/member-progress-v1.js',ROOT+'/insights','/assets/member-experience/treatment-week.mjs','/assets/member-experience/treatment-week.css'].includes(path))return;\n   const record={path,status:response.status()};diagnostic.events.push(record);\n   try{const bytes=await response.body();if(path===ROOT+'/insights'){const body=JSON.parse(bytes.toString());record.weekViewAvailable=body.weekViewAvailable;record.patternStatus=body.patterns?.status;record.error=body.error;record.observationCount=body.patterns?.observations?.length;record.contextDayCount=body.patterns?.contextDays?.length;}else{record.bytes=bytes.length;record.sha256=sha(bytes);}}catch{record.bodyUnavailable=true;}\n  });\n",
+        1
+      ],
+      [
+        "const record={path,status:response.status()};diagnostic.events.push(record);",
+        "const record={path,status:response.status(),headers:Object.fromEntries(Object.entries(response.headers()).filter(([name])=>['content-type','content-security-policy','x-content-type-options','cross-origin-resource-policy','cross-origin-embedder-policy'].includes(name)))};diagnostic.events.push(record);",
+        1
+      ],
+      [
+        "writeFileSync(join(dir,'week-mount-diagnostic-'+width+'.json'),JSON.stringify({source,state},null,2)+'\\n');",
+        "state.moduleImport=await page.evaluate(async()=>{try{const module=await import('/assets/member-experience/treatment-week.mjs');return{ok:true,exports:Object.keys(module)}}catch(error){return{ok:false,name:error.name,message:error.message}}}).catch(error=>({evaluationUnavailable:true,name:error.name}));\n   writeFileSync(join(dir,'week-mount-diagnostic-'+width+'.json'),JSON.stringify({source,state},null,2)+'\\n');",
         1
       ]
     ]

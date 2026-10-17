@@ -98,7 +98,7 @@ export async function verifyRecordedWeekLive({page,site,api,email,dir,report,fre
   page.on('pageerror',error=>diagnostic.pageErrors.push(String(error.message)));
   page.on('response',async response=>{const path=new URL(response.url()).pathname;
    if(!['/member-progress-v1.js',ROOT+'/insights','/assets/member-experience/treatment-week.mjs','/assets/member-experience/treatment-week.css'].includes(path))return;
-   const record={path,status:response.status()};diagnostic.events.push(record);
+   const record={path,status:response.status(),headers:Object.fromEntries(Object.entries(response.headers()).filter(([name])=>['content-type','content-security-policy','x-content-type-options','cross-origin-resource-policy','cross-origin-embedder-policy'].includes(name)))};diagnostic.events.push(record);
    try{const bytes=await response.body();if(path===ROOT+'/insights'){const body=JSON.parse(bytes.toString());record.weekViewAvailable=body.weekViewAvailable;record.patternStatus=body.patterns?.status;record.error=body.error;record.observationCount=body.patterns?.observations?.length;record.contextDayCount=body.patterns?.contextDays?.length;}else{record.bytes=bytes.length;record.sha256=sha(bytes);}}catch{record.bodyUnavailable=true;}
   });
   routeContext=page.context();routeHandler=async route=>{
@@ -139,6 +139,7 @@ export async function verifyRecordedWeekLive({page,site,api,email,dir,report,fre
    // private structural diagnostics before the unchanged owned-record cleanup.
    const width=page.viewportSize()?.width||0;
    const state=await page.evaluate(()=>({path:location.pathname,hidden:document.hidden,readyState:document.readyState,weekCount:document.querySelectorAll('.shift-treatment-week').length,patterns:[...document.querySelectorAll('.shift-pattern-panel')].map(x=>({connected:x.isConnected,visible:x.getClientRects().length>0,text:x.innerText})),scripts:[...document.scripts].map(x=>new URL(x.src||location.href).pathname)})).catch(()=>({unavailable:true}));
+   state.moduleImport=await page.evaluate(async()=>{try{const module=await import('/assets/member-experience/treatment-week.mjs');return{ok:true,exports:Object.keys(module)}}catch(error){return{ok:false,name:error.name,message:error.message}}}).catch(error=>({evaluationUnavailable:true,name:error.name}));
    writeFileSync(join(dir,'week-mount-diagnostic-'+width+'.json'),JSON.stringify({source,state},null,2)+'\n');
    await page.screenshot({path:join(dir,'week-mount-diagnostic-'+width+'.png'),fullPage:true}).catch(()=>{});
    writeFileSync(join(dir,'week-mount-diagnostic-'+width+'.html'),await page.content().catch(()=>'<p>Unavailable</p>'));
