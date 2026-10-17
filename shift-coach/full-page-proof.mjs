@@ -25,7 +25,8 @@ page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.statu
 const snapshot=name=>writeFileSync(out+'/full-'+name+'-store.json',JSON.stringify(DB.sqlite.prepare('SELECT user_id,preferences FROM member_state ORDER BY user_id').all(),null,2));
 try{
  await page.goto(origin+'/member/dashboard?view=app#today');await page.locator('[data-coach-setup]').waitFor({timeout:30000});
- if(await page.locator('[data-consent="necessary"]').isVisible())await page.locator('[data-consent="necessary"]').click();
+ await page.locator('[data-consent="necessary"]').waitFor({state:'visible',timeout:30000});await page.locator('[data-consent="necessary"]').click();
+ const necessaryConsent=await page.evaluate(()=>localStorage.getItem('sstConsentV3'));const consentChoice=JSON.parse(necessaryConsent);assert.equal(consentChoice.necessary,true);for(const choice of ['analytics','marketing','acquisition'])assert.equal(consentChoice[choice],false);
  snapshot('before');
  await startCoaching(page,'Enjoy time with the family');await addCoachingWeek(page,'Three late shifts and no free evenings');
  await page.waitForFunction(()=>document.querySelector('#todayActions > .mtm-hero')?.nextElementSibling?.id==='shiftCoach');checks.push('prepared card follows the preserved Today heading');
@@ -41,6 +42,8 @@ try{
  const createTimingContext=async()=>{
   const c=await browser.newContext({viewport:navigationProtocol.viewport,isMobile:true,hasTouch:true,serviceWorkers:'block'});
   await c.addCookies([{name:'sst_session',value:'fixture-token-1',url:origin,httpOnly:true}]);
+  // Carry only the necessary-only choice actually made above; no resources or personal storage are warmed.
+  await c.addInitScript(({origin,consent})=>{if(location.origin===origin)localStorage.setItem('sstConsentV3',consent)},{origin,consent:necessaryConsent});
   await c.addInitScript(installActionReadiness);
   await c.route('**/*',async route=>{if(new URL(route.request().url()).origin===origin)return route.continue();return route.fulfill({status:404,body:'External network disabled in synthetic proof'})});
   return c;
