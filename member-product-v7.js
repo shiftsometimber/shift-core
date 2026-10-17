@@ -7,6 +7,7 @@ import {ensureStructuredLaunchSeed} from './structured-launch-seed-v1.js';
 import {assessMemberOutput} from './member-quality-v1.js';
 import {exercisePurpose} from './fit-exercise-purpose-v1.mjs';
 import {loadGovernedGrubCatalogue,reviewedRecipeMinutes} from './grub-expansion-authority-v1.mjs';
+import {discoverable} from './member-experience/grub-discovery.mjs';
 import {loadGovernedFitCatalogue,ownerFitExerciseAllowed,ownerFitDoseFields,ownerFitRestrictionContext,fitRemainingMinutes,ownerFitWithinTime} from './fit-expansion-authority-v1.mjs';
 
 const OWNED=new Set(['/v1/grub/plan','/v1/grub/replace','/v1/fit/plan','/v1/fit/replace']);
@@ -56,7 +57,7 @@ export async function memberProductV7Routes(request,env,ctx){
 async function structuredGrubPlan(request,env,userId,body,payload,nays,grubCatalogue){
   const {allPublished,authority}=grubCatalogue;
   if(authority.incomplete)return incompleteFinalV1(request,'grub',authority);
-  const published=authority.rows.filter(credibleRecipe),prefs=preferenceText(body),likes=preferenceLikes(body),recent=await recentGrubIds(env.DB,userId),hardBlocked=new Set(nays),blocked=new Set([...nays,...recent]);let structuredServed=0,nearestServed=0;
+  const published=authority.rows.filter(r=>discoverable(r)&&credibleRecipe(r)),prefs=preferenceText(body),likes=preferenceLikes(body),recent=await recentGrubIds(env.DB,userId),hardBlocked=new Set(nays),blocked=new Set([...nays,...recent]);let structuredServed=0,nearestServed=0;
   const globallyUsed=new Set(),familyCounts=new Map();
   for(const day of payload.plan?.days||[]){
     const used=new Set((day.meals||[]).map(x=>x.id));
@@ -94,7 +95,7 @@ async function structuredGrubPlan(request,env,userId,body,payload,nays,grubCatal
 async function structuredGrubReplace(request,env,body,payload,nays,grubCatalogue){
   const {allPublished,authority}=grubCatalogue;
   if(authority.incomplete)return incompleteFinalV1(request,'grub',authority);
-  const published=authority.rows,type=String(body.type||payload?.meal?.type||''),prefs=preferenceText(body),exclude=new Set([...(body.exclude||[]).map(String),...nays]);
+  const published=authority.rows.filter(discoverable),type=String(body.type||payload?.meal?.type||''),prefs=preferenceText(body),exclude=new Set([...(body.exclude||[]).map(String),...nays]);
   const options=published.filter(x=>x.data?.meal_type===type&&!exclude.has(x.id)&&recipeAllowed(x,prefs));
   if(!options.length)return json(payload,200,request);
   const meal=toRecipe(options[Math.floor(Math.random()*options.length)]);

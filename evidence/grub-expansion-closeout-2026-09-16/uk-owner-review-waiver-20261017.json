@@ -1,0 +1,74 @@
+{
+  "proof": "GRUB_UK_OWNER_REVIEW_WAIVER_20261017",
+  "status": "authorised",
+  "owner": {
+    "id": "Matt O’Brien",
+    "kind": "human",
+    "role": "owner"
+  },
+  "authorised_at": "2026-10-17T23:31:23+01:00",
+  "question": "Do you want to waive that review requirement and deploy the corrected catalogue, keeping nutrition and timings labelled as estimates and making no kitchen-tested claim?",
+  "answer": "Yea",
+  "pack_sha256": "f12fd840b0a5071b5988869b4c3fabdf26d9bdd4ab6c4bbc08c04a5bbebe2b38",
+  "discovery_manifest_sha256": "6e776f8541fb8f67d92e0e532f7f16ae6bfa1b7b5b3bbd8e5e3e95e81d95147d",
+  "human_editorial_review_claimed": false,
+  "physical_cooking_trial_claimed": false,
+  "candidates": [
+    {
+      "id": "uk-core-margherita-pizza",
+      "content_hash": "630711e924015ab3b90eebc9345cb4c525e535b9b5969b210be5e0d5b4520fbb"
+    },
+    {
+      "id": "uk-core-pepperoni-pizza",
+      "content_hash": "9b8dab5c09e35e2cd4e6ddd1e97ad30afad8fad76363468bba8fac4a325a124f"
+    },
+    {
+      "id": "uk-core-ham-pineapple-pizza",
+      "content_hash": "c7f03d7e9d438a7903c2598eba93f8e2e3400bf1444255cb0e31545f44c7f3bc"
+    },
+    {
+      "id": "uk-core-mushroom-pizza",
+      "content_hash": "e271f6f52f29bc241844cc22ace67fb29035d41acb01927a1878b444676a6bc3"
+    },
+    {
+      "id": "uk-core-egg-mayonnaise-sandwich",
+      "content_hash": "e2c545399d54d82dcda9c5e1925806add49332bc89f13111f04dbb39e2a6064e"
+    },
+    {
+      "id": "uk-core-cheese-tomato-sandwich",
+      "content_hash": "bfa000b9e7857b5dd8fd82f2646c857e6f6b850e12bcb72509ab06cfcfac998e"
+    },
+    {
+      "id": "uk-core-jacket-beans-cheese",
+      "content_hash": "f0df1d954e63282a62d8b7b6045cb6ec935a0eef8b1f716af2b700703c50511d"
+    },
+    {
+      "id": "uk-core-jacket-tuna-mayo",
+      "content_hash": "a633b13d8d4fced90535c2243619a6e6b7272c4d17d35fb5feea1a5894a6fccc"
+    },
+    {
+      "id": "uk-core-tomato-lentil-pasta",
+      "content_hash": "2ab58c2a97ac7e4370a324df223b8b9c1b00cc5ae19e777fbda24d617aa7b42a"
+    },
+    {
+      "id": "uk-core-chickpea-spinach-curry",
+      "content_hash": "dd22d36d9372b1bd45d6c89269de3e33452bfd42e81cb1f10d872affbdbd9600"
+    },
+    {
+      "id": "uk-core-chicken-vegetable-noodles",
+      "content_hash": "33b4e2db0e38c7c2c622e540b0de9a175927920ef1340c097ba5c2642aea6da2"
+    },
+    {
+      "id": "uk-core-vegetable-omelette",
+      "content_hash": "b3d205d91e2014008300073ab5f9ad335311c833f450d665fd1904899566e3e7"
+    },
+    {
+      "id": "uk-core-apple-yoghurt",
+      "content_hash": "b6c4e0cec350c8c8e9788e33b3d46fbea7d033d5dc5707c2b8c759e49ac34779"
+    },
+    {
+      "id": "uk-core-apple-peanut-butter",
+      "content_hash": "6311c69f4ba869ab91060ea6b71ea1a5640e129b0acf0c8116ddd98ab9f8762d"
+    }
+  ]
+}

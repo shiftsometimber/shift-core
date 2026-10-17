@@ -1,4 +1,5 @@
 import {filterRecipe} from './grub-search.mjs';
+import {discoverable,discoveryRank,discoveryTier} from './grub-discovery.mjs';
 
 export const grubModes=['lighter','fuller','protein','quicker','budget'];
 export const grubEfforts=['no-cook','five','cook'];
@@ -31,7 +32,7 @@ export function everydayCookedMeal(r){return everydayCookedIds.includes(r.id)&&r
 export function recipeExcluded(r,text=''){
  return String(text).split(',').map(x=>x.trim().toLowerCase()).filter(Boolean).some(x=>{
   const terms=x==='fish'?['fish','salmon','tuna','cod','haddock','anchovy','mackerel','sardine']:x==='nuts'?['nut','almond','cashew','pecan','pistachio']:[x];
-  return terms.some(t=>r.ingredients.some(i=>i.item.toLowerCase().includes(t))||r.allergens.some(a=>a.toLowerCase().includes(t)));
+  return terms.some(t=>r.ingredients.some(i=>i.item.toLowerCase().includes(t))||r.allergens.some(a=>a.toLowerCase().includes(t))||String(r.allergen_note||'').toLowerCase().includes(t));
  });
 }
 export function grubMemberContext(prefs={},today=new Date().toISOString().slice(0,10)){
@@ -40,15 +41,15 @@ export function grubMemberContext(prefs={},today=new Date().toISOString().slice(
   dietaryReviewRequired:Array.isArray(food.dietaryRequirements)&&food.dietaryRequirements.length>0,
   fitCompleted:Object.values(prefs.fitJourney?.entries||{}).some(x=>x.recordedOn===today&&x.status==='done')};
 }
-function eligible(r,state,context){
- return effortAllows(r,state.options?.effort)&&!context.dietaryReviewRequired&&!recipeExcluded(r,[state.options?.exclude,context.exclusions].filter(Boolean).join(','))
+function eligible(r,state,context,allowSavedOnly=false){
+ return (allowSavedOnly||discoverable(r))&&effortAllows(r,state.options?.effort)&&!context.dietaryReviewRequired&&!recipeExcluded(r,[state.options?.exclude,context.exclusions].filter(Boolean).join(','))
   &&!(state.learning?.nay||[]).includes(r.id)
   &&(state.options?.style!=='vegetarian'||filterRecipe(r,'vegetarian'))
   &&(!context.maxMinutes||number(r.minutes)&&r.minutes<=context.maxMinutes);
 }
 export function repeatMeals(state,recipes,context={}){
  const ids=[...new Set([...(state.learning?.yay||[]).slice().reverse(),...(state.saved||[]).slice().reverse()])];
- return ids.map(id=>recipes.find(r=>r.id===id)).filter(r=>r&&mainMeal(r)&&eligible(r,state,context)).slice(0,4);
+ return ids.map(id=>recipes.find(r=>r.id===id)).filter(r=>r&&mainMeal(r)&&eligible(r,state,context,true)).slice(0,4);
 }
 function score(r,state,context){
  const preference={protein:'high protein',budget:'budget',fast:'fast',vegetarian:'vegetarian'}[state.options?.style];
@@ -60,7 +61,7 @@ function score(r,state,context){
 export function recommendationFor(state,recipes,context={}){
  const pool=recipes.filter(r=>mainMeal(r)&&eligible(r,state,context));
  const stored=pool.find(r=>r.id===state.recommendation?.recipeId);
- const recipe=stored||[...pool].sort((a,b)=>score(b,state,context)-score(a,state,context)||everydayOrder(a)-everydayOrder(b)||a.id.localeCompare(b.id))[0];
+ const recipe=stored||[...pool].sort((a,b)=>score(b,state,context)-score(a,state,context)||discoveryTier(a)-discoveryTier(b)||discoveryRank(a)-discoveryRank(b)||everydayOrder(a)-everydayOrder(b)||a.id.localeCompare(b.id))[0];
  if(!recipe)return {recipe:null,message:context.dietaryReviewRequired?'Your saved dietary requirements need checking before we suggest a meal. Use your agreed food plan and check recipes and labels.':state.options?.effort==='five'?'No reviewed meal fits 5 minutes and your saved choices right now. Try No cooking or Happy to cook. Your saved meals stay as they are.':state.options?.effort==='no-cook'?'No reviewed meal fits No cooking and your saved choices right now. Try Happy to cook. Your saved meals stay as they are.':'No reviewed meal matches your saved choices right now. Your recipe library and saved plan are still available in My Timber.'};
  const base=pool.find(r=>r.id===state.recommendation?.baseId)||recipe;
  const selected=state.recommendation?.mode||'planned';

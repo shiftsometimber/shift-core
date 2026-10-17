@@ -1,0 +1,20 @@
+✔ pending real manifest preserves deployed catalogue and draft recipes stay out (0.814125ms)
+✔ every current identity remains; discovery does not alter one recipe byte or source authority (1.26675ms)
+✔ retained row content drift hides new suggestions and keeps saved access (3.921125ms)
+✔ all discovery and fridge results exclude withdrawn variants; normal lunches and cooked dinners are findable (5.646833ms)
+✔ withdrawing current stored suggestion replaces it but never changes the saved state (0.693417ms)
+✔ saved, week, Today and manual shopping survive refresh, swaps, repeat and account isolation (7.596ms)
+✔ no-cook and five-minute choices use actual times and methods; overnight oats never claim five-minute readiness (0.533167ms)
+✔ plans in each style contain no withdrawn recipes and preserve source state on an impossible request (1.350083ms)
+✔ pizza prototype data are actual classics, not renamed legacy recipes (0.514709ms)
+✔ new publication refuses absent, AI, stale, partial, self-reviewed and unresolved human review (3.096541ms)
+✔ hypothetical reviewed publication preserves real portions and ranks the three familiar pizzas first in isolated logic only (15.166541ms)
+✔ every retained choice has an honest estimated hands-on time as well as total time (0.125042ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 274.913959
