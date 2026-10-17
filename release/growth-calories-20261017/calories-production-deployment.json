@@ -1,0 +1,74 @@
+{
+  "id": "16098ebd-ffdf-4e0e-a95a-f5388927bbef",
+  "short_id": "16098ebd",
+  "project_id": "6bb70feb-5d59-4413-8264-5d64670b1e38",
+  "project_name": "projectshift",
+  "environment": "production",
+  "url": "https://16098ebd.projectshift.pages.dev",
+  "created_on": "2026-10-17T11:25:43.230759Z",
+  "modified_on": "2026-10-17T11:25:43.230759Z",
+  "latest_stage": {
+    "name": "queued",
+    "started_on": null,
+    "ended_on": null,
+    "status": "idle"
+  },
+  "deployment_trigger": {
+    "type": "ad_hoc",
+    "metadata": {
+      "branch": "main",
+      "commit_hash": "b1a6d07d97f57d4c9144fdef82da46064610fdf3",
+      "commit_message": "Publish Matt-approved calories article; preserve all other assets and cache rules",
+      "commit_dirty": false
+    }
+  },
+  "stages": [
+    {
+      "name": "queued",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "initialize",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "clone_repo",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "build",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    }
+  ],
+  "build_config": {
+    "build_command": null,
+    "destination_dir": null,
+    "build_caching": null,
+    "root_dir": null,
+    "web_analytics_tag": null,
+    "web_analytics_token": null
+  },
+  "env_vars": {},
+  "compatibility_date": "2026-08-07",
+  "compatibility_flags": [],
+  "build_image_major_version": 3,
+  "usage_model": null,
+  "aliases": null,
+  "is_skipped": false,
+  "production_branch": "main",
+  "uses_functions": null
+}
