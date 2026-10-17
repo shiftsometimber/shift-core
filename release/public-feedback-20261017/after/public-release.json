@@ -1,0 +1,8 @@
+{
+  "build": "public-feedback-20261017-b7d5bf35aac0",
+  "scope": "Public-site origin and shared utility assets; separate Core runtime unchanged",
+  "source": "https://github.com/shiftsometimber/shift-core/tree/proof/public-feedback-20261017/release/public-feedback-20261017",
+  "baseDeployment": "16098ebd-ffdf-4e0e-a95a-f5388927bbef",
+  "namedMedicineQuizResults": false,
+  "qualifiedMedicinesAdvertisingReviewClaimed": false
+}

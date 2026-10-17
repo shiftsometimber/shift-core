@@ -1,0 +1,2813 @@
+{
+  "build": "public-feedback-20261017-b7d5bf35aac0",
+  "preparedAt": "2026-10-17T22:45:23.504641+00:00",
+  "baseDeployment": "16098ebd-ffdf-4e0e-a95a-f5388927bbef",
+  "changes": [
+    {
+      "path": "/404.html",
+      "beforeSHA256": "f647eff91bf1ce4ea2205ec3946efa49522912cfcc40435d6a145142646556d3",
+      "afterSHA256": "8ac6d475f6bec35c08e0875bd2b03cb80560589e070da2cb1ce1e9c4c0735440",
+      "bytes": 6762
+    },
+    {
+      "path": "/about.html",
+      "beforeSHA256": "acb8de53f5c35b120a3f4e71803cd94cc933ffd67855e2b702a890b55d07a7cd",
+      "afterSHA256": "2ce442f50307195f67e561faf382e4d24b913e66135134bd9dd530e1917379e1",
+      "bytes": 19300
+    },
+    {
+      "path": "/advertise-with-us.html",
+      "beforeSHA256": "8e0bf04f809715b3cb93f59fe1772f2e417d3f5da6bd4f677261bf0f979c5596",
+      "afterSHA256": "1217434ae794839341eb33f39707e820a05308edc31f569c4b4e3bac2143c86d",
+      "bytes": 11234
+    },
+    {
+      "path": "/affiliate-disclosure.html",
+      "beforeSHA256": "7f19329c202d326ff9f97189f4581537e6f1251131aa4b63a8da46c136122049",
+      "afterSHA256": "5021ad8fe1e171f5df1a630435907fa2250e1d39b40960b74f510b1a940b60ce",
+      "bytes": 10140
+    },
+    {
+      "path": "/app.js",
+      "beforeSHA256": "4e0d9a81ea8da1867ba6b840b3fb25494bd68758075cb31356e9ff3241b07c6b",
+      "afterSHA256": "eb7ebc99126f9a29676542310a6312a5cb545c23a3b5eefef8cc36c3301608cf",
+      "bytes": 104119
+    },
+    {
+      "path": "/articles/air-fryer-meals-men.html",
+      "beforeSHA256": "e54aa2f756504caf4e584977dc6d21b500f5f65dfba84b0836d8eaec420b92be",
+      "afterSHA256": "84098d08a3818494846a5dfc87735c199a03235aafe10e6ec71f4983e2054578",
+      "bytes": 18414
+    },
+    {
+      "path": "/articles/alcohol-and-weight-men.html",
+      "beforeSHA256": "43d51e0988b53c4717bb61b750cfa4d179def88b6e71e468ee6555bf917a7b52",
+      "afterSHA256": "18a8a9373e36e3d6daed39ba4d322b71e6482bd1612736d3af08de0d409ca625",
+      "bytes": 18456
+    },
+    {
+      "path": "/articles/alcohol-on-glp1.html",
+      "beforeSHA256": "cbbd1b7afda16ba8e20b3172fbbe2a53025acea8744d7fd200d25799013f11c7",
+      "afterSHA256": "25e37b2f8ef615726a0bfb04f2c46033739f6dc250e7f9857080ed6d48e271c8",
+      "bytes": 16560
+    },
+    {
+      "path": "/articles/asking-for-help-men.html",
+      "beforeSHA256": "d945e29cd5591b15c1766f846859b3fc1f8b23be2efc017fc40863e4fe57fa24",
+      "afterSHA256": "bb548255c2c1e8de0df3c8c12ca99a3b8710957a4470861c6aa16a1eb8623eeb",
+      "bytes": 17925
+    },
+    {
+      "path": "/articles/beginner-walking-plan-men.html",
+      "beforeSHA256": "dcfb8e99d263dbf8fb5300814ab93631415fac5e450ade8fa90d7f11cda117bb",
+      "afterSHA256": "338851623fda2984ebe9b7acce77ee3ee25dc1a71e4ad1dabfb7263ea6466e53",
+      "bytes": 19296
+    },
+    {
+      "path": "/articles/bmi-men.html",
+      "beforeSHA256": "9e3be9db70e1c12e3ee579ed044eec05d99c96327bd88b1c54d9f87b5a320389",
+      "afterSHA256": "328466fe6a791ed0013f05efebbe04698f2bde2129a979425eb960d23cf921fd",
+      "bytes": 17861
+    },
+    {
+      "path": "/articles/calories-explained-men.html",
+      "beforeSHA256": "fd0b05774528cc2a1d6704606e1f7d3884e908639900c9c2202e0fe1211e157a",
+      "afterSHA256": "590edb458cb00f5d676151e17840cf39f9c3ba6fcb4545b01dab48a43e147b97",
+      "bytes": 20245
+    },
+    {
+      "path": "/articles/cholesterol-men.html",
+      "beforeSHA256": "e11b96c99da63ad92fcb1709ec8dc9bbe5d938db6c6e501efbd9149e94b89d8d",
+      "afterSHA256": "ac51a408a8edee6d8d252e40128aec9a0aee2f236e0a2fc36042eac3a1555c78",
+      "bytes": 17996
+    },
+    {
+      "path": "/articles/confidence-and-weight-men.html",
+      "beforeSHA256": "f63a5eae53017ab0879e77c4dad6aa3be64ad067d0d5fa18276c49c81a9dea50",
+      "afterSHA256": "a0010d1f5cc79f592c8ca064777c282b5f72c2dc46f10281aaf1d081b32127a2",
+      "bytes": 18039
+    },
+    {
+      "path": "/articles/dad-bod-nobody-talks-about.html",
+      "beforeSHA256": "342215e8c3324d7aa266d4857277077bfb258f00881b6633012b85295e181e25",
+      "afterSHA256": "68fbf6e4afa25ed611dfa35649b1583e7827fa82247269b6efcbd8bb5460f945",
+      "bytes": 17989
+    },
+    {
+      "path": "/articles/eating-out-weight-management-men.html",
+      "beforeSHA256": "282e90fa881f3fd0d9367c472fb75ca6ae93257cb973930133db7b6a06960a18",
+      "afterSHA256": "ae104741a2bc2d79d080b18e910332947c04ca78c37d31a6300ed63e06cd7c05",
+      "bytes": 16594
+    },
+    {
+      "path": "/articles/exercise-on-glp1.html",
+      "beforeSHA256": "dd6c1439afb187b3ef0290224f68a13b224c49a505df547385e10675c9d4806d",
+      "afterSHA256": "c06de1884fe18ac16c16add310453bb4db3badb06334d4acb016cfcec1f2ab27",
+      "bytes": 16640
+    },
+    {
+      "path": "/articles/football-fitness-after-40.html",
+      "beforeSHA256": "a16a8e71bd2e6c85a65e75410bd3e7c557db2369087a7e83717fe0183e433aac",
+      "afterSHA256": "6057c93a8a63fa44538fe906f46ac7c196a3d51eb6b5246244ad9becddeaedbb",
+      "bytes": 17823
+    },
+    {
+      "path": "/articles/glp1-myths.html",
+      "beforeSHA256": "c33f2b98fc937ec2f51e5c0a37c2d7cfbe09f750bd20ea2f23a7711d59b8096a",
+      "afterSHA256": "53c8f721441dcfc6b003c8ffba3832ade2a192d8197009a63ca8650fa711f726",
+      "bytes": 18444
+    },
+    {
+      "path": "/articles/glp1-side-effects.html",
+      "beforeSHA256": "b4429db69d260559d6c472d361f0ff9c2db6ab18baeb75c661a4f49a5974783f",
+      "afterSHA256": "042935b2b24248b4ead054797baff6c85cb9bc8cd520dfc1780e6cb525c9db49",
+      "bytes": 19676
+    },
+    {
+      "path": "/articles/health-isnt-about-six-packs.html",
+      "beforeSHA256": "feccd7bf1c5ddc4ec58fc6d3bb1b315a40534bb4ba975587df604726e773e36a",
+      "afterSHA256": "85560b73626cd4db5d417efcb0c779b17e3e10ad4d89eae4cf4ca5d1350accba",
+      "bytes": 17804
+    },
+    {
+      "path": "/articles/healthy-bbq-men.html",
+      "beforeSHA256": "7d28c2ef5830a2e7dd7b42781103d723d4a4db010b46f082b8a58d0de00965f4",
+      "afterSHA256": "97a9e4dbe617ba492e45ace1c548faec333fe9221ec825d43b77de246a5499e0",
+      "bytes": 17734
+    },
+    {
+      "path": "/articles/healthy-habits-that-last-men.html",
+      "beforeSHA256": "22703d8ad8570799c01bb89d19854d1091b2255366745643439f3286ed40fb42",
+      "afterSHA256": "b3b5ea6475fe7ce119f131d0ae7b8f2b4e19762ab7897c57c9cd0f0e614483cc",
+      "bytes": 18752
+    },
+    {
+      "path": "/articles/healthy-takeaways-men.html",
+      "beforeSHA256": "3fe60f8ec826c9be13850f46977e05ac16e67e36e60b0fb7d41e6fb33132ddee",
+      "afterSHA256": "bca219adbdaec9ae3f0e8c939a31a5c84eaab21e092fb6dadeb8f9d36b7f80ca",
+      "bytes": 18210
+    },
+    {
+      "path": "/articles/heart-health-men.html",
+      "beforeSHA256": "2f4ef4dbeed2e3d1fc1adb92527fe64449d1d2491071a861dbf8d272f0c7efa1",
+      "afterSHA256": "4abbe7d32b5ae662c834273eb8caaae7c07dcb84efbfd582a136e104e94d2259",
+      "bytes": 18119
+    },
+    {
+      "path": "/articles/helping-ordinary-blokes-feel-like-themselves-again.html",
+      "beforeSHA256": "4f6ff54dc00410810ebd1204b540473dc55ca64e1b00038fb1785684e8b0175d",
+      "afterSHA256": "7d46deb27d7cd8b46b7ffa1a4ea25edf5043526f4ca8f7ded94c411e42aded1f",
+      "bytes": 17990
+    },
+    {
+      "path": "/articles/home-strength-men.html",
+      "beforeSHA256": "35d8e66c356d9a33915f9f59b49c33dbe8ce4969773b25ee0c95d6caee19759f",
+      "afterSHA256": "69c75aad8ab58735d756bc2a70ab40a01089096317f15edaae00b73fe5f6eb2b",
+      "bytes": 18547
+    },
+    {
+      "path": "/articles/knee-pain-weight-men.html",
+      "beforeSHA256": "8a5afe278a0a94055e76d295f9906fe9c09a3c7d99d264087ac43869c543def1",
+      "afterSHA256": "76ca9f217e8411d55dbe26d80cd73c4c02cab3cddb081b5314f47afc58b161d9",
+      "bytes": 16731
+    },
+    {
+      "path": "/articles/meal-prep-busy-men.html",
+      "beforeSHA256": "e56cea713cb14040215821a3df9690789b274626542214c87b83b1267e372a1e",
+      "afterSHA256": "08d308ff00f8c78ac37db8724254dc4fc700c966bd1067d112615365f3d1680a",
+      "bytes": 17804
+    },
+    {
+      "path": "/articles/men-belly-fat.html",
+      "beforeSHA256": "d2c3022f57962a0f4be3a0872f66adfb46fa10cf3979184b8d1a66df1d8bf290",
+      "afterSHA256": "f3a0cc441427f99d1dfa9c07de2af39aec4011cb98b6217474217a6e98862ff5",
+      "bytes": 16773
+    },
+    {
+      "path": "/articles/men-weight-loss-after-40.html",
+      "beforeSHA256": "2dcf9ba6a6fd1f6412d8125bd6a952efbad70ae8ae4a3cfabc337b4929186d06",
+      "afterSHA256": "36fa0d330bc104339710481458ab0a8f0af7fd9c1bf368fe2b36cf06fe63d73f",
+      "bytes": 19073
+    },
+    {
+      "path": "/articles/mens-mental-health-and-weight.html",
+      "beforeSHA256": "d1f870b383e99fdf59898e06b6bb9db736efba2ae50d1ee11e311140b58197bb",
+      "afterSHA256": "2bab12f0b059714c338676e4ccdad47b92a4f4233a9d2f05535f178b64fcb7a1",
+      "bytes": 16821
+    },
+    {
+      "path": "/articles/motivation-vs-routine-men.html",
+      "beforeSHA256": "67003602673e49585513ae7d507e3ca71a55bd6d5b88d7f1cb10d71808b44eeb",
+      "afterSHA256": "1cb8a71f0fd726d443baf81c2c08f66ca0aab37cf0529263bf847b9e6c886e01",
+      "bytes": 17889
+    },
+    {
+      "path": "/articles/mounjaro-vs-wegovy.html",
+      "beforeSHA256": "24853bfbd3cc2145d0c0795a1e09507e6542f9c15e98b269ce23ae38e76842a9",
+      "afterSHA256": "4babb1c97ca203691ab43253db92ba7403a2d30fef8f64532165e5674a8f6afb",
+      "bytes": 21368
+    },
+    {
+      "path": "/articles/muscle-on-glp1.html",
+      "beforeSHA256": "39d81636f0f178f8b4d32bbaa499471985b24574170b4115646c966320321b87",
+      "afterSHA256": "9d04a3b5265c6ee89ca66bce6083cd773843fb72d98a1334343fcf7047a73300",
+      "bytes": 16594
+    },
+    {
+      "path": "/articles/oral-weight-loss-medications.html",
+      "beforeSHA256": "0ed6ac8455682889948f4bca9f56430c212971597cc366cc5176a216fd4a7a1e",
+      "afterSHA256": "bf39580056b3f3cb688b498d30ee183ac3b2c68bc8113ec46b94d8855273996f",
+      "bytes": 6857
+    },
+    {
+      "path": "/articles/prediabetes-men.html",
+      "beforeSHA256": "2faeea4e560037281d220f5af7f8f650ccb8a2dd4e205cc7b84d8e696a2c498d",
+      "afterSHA256": "90637f1a9648a902706b0561afb1fa908b81586845f056aac3179241d4d73c23",
+      "bytes": 18202
+    },
+    {
+      "path": "/articles/protein-for-men-weight-management.html",
+      "beforeSHA256": "1aa45196fb7d6e6cd0e029c30f4703b9f6f324e02fb3f5c146034ae18f25927b",
+      "afterSHA256": "103f893052eb6ca9fb105387a0f07d5f19401d73c4fad05fadd43440fb6f79d0",
+      "bytes": 17015
+    },
+    {
+      "path": "/articles/return-to-sport-after-weight-loss.html",
+      "beforeSHA256": "5ef53a7b8b8426b80a47aee3af1d3e0f3921af92215de0c91365faab7b9423b7",
+      "afterSHA256": "5930aa1fc5d225485ce263d7d64b97c2ac08080db543bf8cc780343f108353a3",
+      "bytes": 16816
+    },
+    {
+      "path": "/articles/sleep-and-weight-men.html",
+      "beforeSHA256": "c9639c2c9ec39badba8a68a27b127fa754de462b1a6ccf370b9f4a657cf98fa7",
+      "afterSHA256": "2210acfc741cf6063595f8a6e7bf29732e35b3e6641b2f5891ac979fdfb7ae57",
+      "bytes": 19929
+    },
+    {
+      "path": "/articles/sleep-apnoea-weight-men.html",
+      "beforeSHA256": "63f14a2ad7dad2330f5936e51cfc1b4acd5291b211af3bfa23e0f0b08fce0145",
+      "afterSHA256": "c12971d8218a53ed2e2f91307df8d61f034a42c1bd59861caa0fdb48e1861e44",
+      "bytes": 16598
+    },
+    {
+      "path": "/articles/stopping-glp1.html",
+      "beforeSHA256": "20c8e1badb36f8aba51d88e6a1ac36805ac63866c6bf543b7c1a6ab2cce1ac19",
+      "afterSHA256": "873a45ada929e7e172e427eae4f457aacca687b14ed043e558679d6b4e46157b",
+      "bytes": 19462
+    },
+    {
+      "path": "/articles/stress-and-weight-men.html",
+      "beforeSHA256": "1830322e1b8f77bf89931858590ba74bc3aacbe9249fd84a06ac78245b7bb7a3",
+      "afterSHA256": "c33141083aa586b6c394e3ff788b5c4f2b1647b920b2121295ae8104c7a90a19",
+      "bytes": 19779
+    },
+    {
+      "path": "/articles/testosterone-weight-men.html",
+      "beforeSHA256": "d8d7167fe18ff5ecd449923c85c425d8149e87b2aa69c2dfd1bc18d007fb4399",
+      "afterSHA256": "8f57dd3611957c5faff93e8ce4a4f7c968c2b531a49486946d63fd20c1bf795f",
+      "bytes": 16692
+    },
+    {
+      "path": "/articles/travelling-with-weight-loss-medication.html",
+      "beforeSHA256": "51a1cae030779342cc98977d40d5fc40c3bf0cadad5208be80e7cbf8b0b74b7d",
+      "afterSHA256": "9e13d06623978d4ebca76aa66edc4818b6200a397fffc229d19c78ed590c45fe",
+      "bytes": 17014
+    },
+    {
+      "path": "/articles/waist-size-men.html",
+      "beforeSHA256": "d780573d5bb435285603ef6d03b738b9496dc090fd6d72907ac3c7da1e23f4dc",
+      "afterSHA256": "077158d57c73c020c899328410daf1bc1143af1a13b3da2f7897bf01ab23856c",
+      "bytes": 16954
+    },
+    {
+      "path": "/articles/walking-for-weight-management-men.html",
+      "beforeSHA256": "3e31e50f50e8052d24c71c54dfa880d73259b0f1360ff604e86621bc6a1d57cc",
+      "afterSHA256": "02b8c7f96a251b468d1096f7578ff9a48bca94856fa2ef2d7781849ead05cc95",
+      "bytes": 20117
+    },
+    {
+      "path": "/articles/weight-and-blood-pressure-men.html",
+      "beforeSHA256": "b397783e33e57a82c45ac67ba99f1cae2e3a1005cee694bd4b9bf3ad07922501",
+      "afterSHA256": "a140e89288a63353df90187008416a96e68253835d75c50cd13cce8026b728d7",
+      "bytes": 18280
+    },
+    {
+      "path": "/articles/weight-loss-after-40-men.html",
+      "beforeSHA256": "ab947e08adaec2be07b6d4ba4618ee6105b7ef555ce1ef544c08292cf62a6537",
+      "afterSHA256": "2a9279f31dce817ca345d02ae62ddbf22ebbd421adc6543f7e54329d4d967352",
+      "bytes": 18367
+    },
+    {
+      "path": "/articles/weight-loss-plateau-men.html",
+      "beforeSHA256": "0f6728b8d737dd36d674ace6fcaf1bafdc8f80902d6d16808b728a30d909b93a",
+      "afterSHA256": "24ca03318852ddbd8bd95233537ac16d295468b12a9ffa46a2a5615beeb6ad0f",
+      "bytes": 17337
+    },
+    {
+      "path": "/articles/what-is-wegovy.html",
+      "beforeSHA256": "e0af9f38ecf32a38884513466768bf05f28cf4e3b6a54069877cf9604363aee2",
+      "afterSHA256": "089e1a6039f5116c6ee595b8b6949312b9b2837e4cbf95343f0b852662e5256d",
+      "bytes": 21155
+    },
+    {
+      "path": "/articles/why-blokes-put-everyone-else-first.html",
+      "beforeSHA256": "98236e133766cc177c07d75516f94f67b911b1f77ee657da48cd718ed1985707",
+      "afterSHA256": "6b95deffadd84a3c2771b59042887b770c3821e599c407c5bf198cc3bcc7cbd3",
+      "bytes": 17799
+    },
+    {
+      "path": "/articles/why-we-built-shift-some-timber.html",
+      "beforeSHA256": "82ebe5900cfb8c0281f8b4ce73c3923e6425ea0f857d864445b9060fcc6a8bc3",
+      "afterSHA256": "9153d40485282f34eab7e42c20ecfeb403f3fe08e94c55dc1341385a23012a74",
+      "bytes": 17976
+    },
+    {
+      "path": "/ask-timber.html",
+      "beforeSHA256": "986afce95eae589e93431d3ee1b4d269045e6a4a2af4a2170556d30575a1c6a7",
+      "afterSHA256": "9d732c3908ba0d9864dc13502bfb7f49796f91b9731baa4779db1c91c6e40269",
+      "bytes": 11371
+    },
+    {
+      "path": "/assets/public-feedback-v1.css",
+      "beforeSHA256": null,
+      "afterSHA256": "db1c9c661a33f348ba6fc9474e8292deece52f71a7b6d63256c608a26c01f3c5",
+      "bytes": 2497
+    },
+    {
+      "path": "/assets/public-feedback-v1.js",
+      "beforeSHA256": null,
+      "afterSHA256": "fa5aa41444e39fac0fcd5a4d46ea84fce4de59f0db76fd1cc867eb184c0e8088",
+      "bytes": 3201
+    },
+    {
+      "path": "/assets/start-here-support-v1.js",
+      "beforeSHA256": null,
+      "afterSHA256": "14f27aa2233e45b4e810d44ee45ab6e11f1432c977d537b2434626221cd362b9",
+      "bytes": 6337
+    },
+    {
+      "path": "/assets/v42.js",
+      "beforeSHA256": "fd876ba21ae7c64c5ec6ac8b3d78324f50f4fa742e11fac710eab87471433aa0",
+      "afterSHA256": "ea44e5e25d5f722549b1db99a348df9ccbbf23d38cb5c12db9db52782bd4825d",
+      "bytes": 2223
+    },
+    {
+      "path": "/authors/matt-obrien.html",
+      "beforeSHA256": "80e0d706146a3bff300752119f8b823a2549c90d1ab6be28ae782d19cb541fb0",
+      "afterSHA256": "eb2717ddd4fa510956874d90287fe115014d884385c64fdcf9dd65ea243cc6a7",
+      "bytes": 11812
+    },
+    {
+      "path": "/authors/shift-some-timber-editorial-team.html",
+      "beforeSHA256": "ef91ef99f866e2a166453cc5e5b87288b018795307b6ac409d809e390c48453a",
+      "afterSHA256": "7c77b4bde829526e15cf2cbe2587fc95fc591108c7dad2746765ad4f66ff1d81",
+      "bytes": 11014
+    },
+    {
+      "path": "/before-you-decide.html",
+      "beforeSHA256": "45cbea5c559f4e1c8e8a7aab3fb0ca9a527cca881e6974aa5d8dc0b233aab78c",
+      "afterSHA256": "ae3d0fbc056c267efb1b0935cef77a4d64b9e257c22e919cc5ba5881ca61c09f",
+      "bytes": 10519
+    },
+    {
+      "path": "/clinical-governance.html",
+      "beforeSHA256": "6a72c38cb910b9b61a1b61745a557a8cd25cb15d976ab4d3204d86dfc63e224c",
+      "afterSHA256": "642a5f1068fc8f43bafbe47e4e00ee532f25a0543fba33189024f1d308604f98",
+      "bytes": 11296
+    },
+    {
+      "path": "/clinician-dashboard-v3d.html",
+      "beforeSHA256": "a31ea0383c6846b3481764060dcd3648ed77c0d14c43c144dcfff7bc91e11dcd",
+      "afterSHA256": "c280b2b1ed23d5b4004a34369e609f282cb038272d69bd66588ab34eba35b9cb",
+      "bytes": 6930
+    },
+    {
+      "path": "/commercial-principles.html",
+      "beforeSHA256": "90b95ba7cbd76d79f79019912442661dc947e00fdc8f67ed50090514749ad65e",
+      "afterSHA256": "4edd8e06fbffb62acd3f62f2bac3cbd14adbbb839b3f41a5cf5ac2b12b66b08c",
+      "bytes": 9599
+    },
+    {
+      "path": "/community.html",
+      "beforeSHA256": "aae64beae94bea086d2d451fa6d9600e86ecc181233928955e2cd44cf1acae3a",
+      "afterSHA256": "f8b74b4afc65272676d74363a6eb7f60a3cda33db83b5394bfb6b2a14bf0d3c7",
+      "bytes": 10472
+    },
+    {
+      "path": "/compare-weight-loss-treatments.html",
+      "beforeSHA256": "3b95e6c2b403165d36ea8db136844fe8e067365bfd7514ef14b9d115f48e9d7a",
+      "afterSHA256": "a9fe88d281db3db2ae2d4437d9444ab7efd91e0d5b03204d64631c648fb7820a",
+      "bytes": 19735
+    },
+    {
+      "path": "/comparison-centre.html",
+      "beforeSHA256": "2bf82e378c6da0e564201369d9f1aea12e43c3a97b5d12935eb1f1783f36e67c",
+      "afterSHA256": "9df108c9c3eabb1e19c7a80f2aa2bb312a04ad70c385188bc64aeea4fa262fdf",
+      "bytes": 21369
+    },
+    {
+      "path": "/comparisons/europe/headline-price-vs-true-cost.html",
+      "beforeSHA256": "d126e9740dc7ae2ccfad8d77ce0fc4a4fda8f27a156a3206c0f1dd6759dc0036",
+      "afterSHA256": "f34adf7daca90b1abab57e802028ac04f649f615b3dcfb663ccdb769db78e565",
+      "bytes": 13489
+    },
+    {
+      "path": "/comparisons/europe/overseas-surgery-complications.html",
+      "beforeSHA256": "0812acf840e5c4d88e71ae7fe166eb12bb28a87c9a6348f3538ba91fbe6b1b62",
+      "afterSHA256": "c9080e4fcf19808cfd2263fe280dddf9691b60c358eed1954610234f36e1535a",
+      "bytes": 13446
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-czechia-bariatric-surgery.html",
+      "beforeSHA256": "6f2d92ac60acdae3d10424b9165a7f3652ea6977843cdcbb39819d62af8d5196",
+      "afterSHA256": "d2bf01af8b0c8b1e5c357b2b696e7027a8759532c02e8e417cdcd8b1491b9c94",
+      "bytes": 14639
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-latvia-bariatric-surgery.html",
+      "beforeSHA256": "f7f602e736b20423f9eb374564ac9c25301ec782b8e9f0d0f7fae93d75157cd4",
+      "afterSHA256": "70ffc9155036fe6071d5447da7d113c7ce27e3518cf68d3e399ce7e7c33b2f7c",
+      "bytes": 14598
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-lithuania-bariatric-surgery.html",
+      "beforeSHA256": "fb7c402ed42aaf8a38ffa32c57a9393a556cd49637c5d4b480c70b635f28613c",
+      "afterSHA256": "754edafb455cc1d4879e418605e759b2215a194ce7a3efaf220e04656e2bcf6a",
+      "bytes": 14632
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-overseas-aftercare.html",
+      "beforeSHA256": "db6be4e2bf1ed0050b0740d430a4d085f726be893114f2a02922dbe0d0055fce",
+      "afterSHA256": "ae287b6a7b94af1a3625facc8eb4605a84a72cd1d5b6b0fea45ada5839893c9d",
+      "bytes": 13197
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-poland-bariatric-surgery.html",
+      "beforeSHA256": "42cc0450c79157569e0978822fa604611b2f07a8f025de08d6b52d83fc8fbe61",
+      "afterSHA256": "81b3a33536377fe7eb0f18acbb22025b1dcbc45122d1aee7ce8f6ddc0db4981d",
+      "bytes": 14582
+    },
+    {
+      "path": "/comparisons/europe/uk-vs-turkey-bariatric-surgery.html",
+      "beforeSHA256": "e066ff264f3bc53b467bac86621940dbb43128a0584481f0c2375d8e00e1b050",
+      "afterSHA256": "6d895e0ce1a56bde80c4dfbfe999fa1e500bc51e00fa0a24d30d67685ab910f9",
+      "bytes": 14821
+    },
+    {
+      "path": "/comparisons/europe/verify-overseas-bariatric-clinic.html",
+      "beforeSHA256": "e225ed60ea80d5fae265073e5e753fab34e40b1f21bb31def7ace91c86a47ac7",
+      "afterSHA256": "900f025c7d19a92c2ffb92bf269aadc4c17205a8e33b4bcf0978b7c48763ba1b",
+      "bytes": 13398
+    },
+    {
+      "path": "/comparisons/lifestyle/cardio-vs-strength.html",
+      "beforeSHA256": "f36fa35f8338da1c0b03a83d675926c9fe1101d18875ffa5ba88f6c9fe543e55",
+      "afterSHA256": "313867399a7fe8322d2096e38a9ffcfc19990436e4da91d1456a747c3412d283",
+      "bytes": 14406
+    },
+    {
+      "path": "/comparisons/lifestyle/lifestyle-vs-medication.html",
+      "beforeSHA256": "6d4d66db48e7825b913025f2880512cf915cfe94faecaafca47c44b402a7d5f9",
+      "afterSHA256": "23b88fb1fcf27627e7d3ca0983ab2404bd645a0266d3b383bbc2c345787da9a0",
+      "bytes": 15125
+    },
+    {
+      "path": "/comparisons/lifestyle/lifestyle-vs-surgery.html",
+      "beforeSHA256": "19991688af9f3619b741d8f79af83800309c50f662f9fe080fbae552566f710d",
+      "afterSHA256": "515f01a86bcd3ffa209c2282a028df8a29eb8804a8561335607f505e31e9c190",
+      "bytes": 15061
+    },
+    {
+      "path": "/comparisons/lifestyle/medication-plus-lifestyle.html",
+      "beforeSHA256": "670b1ff208cf8e82064df8fa3a4233b4c57a31e2e8b40a14ec3423d8d2304796",
+      "afterSHA256": "2c637191f2caff0d4d62d94ae97db5d56ced1ea7b936a685c3d9a66556417538",
+      "bytes": 12877
+    },
+    {
+      "path": "/comparisons/lifestyle/structured-vs-diy.html",
+      "beforeSHA256": "d13b7bbd01515a12671f000dd4e43076619e576d20cd9f72fced3754fa2eaeb8",
+      "afterSHA256": "533e6dac1f3c525dc31462d1e5a06beba12f30590f261d93457e529364b0800c",
+      "bytes": 14306
+    },
+    {
+      "path": "/comparisons/lifestyle/surgery-plus-lifestyle.html",
+      "beforeSHA256": "d9ce7092056e6377e522bd42c9592ccb41125e6c7062de4c46f19b54f8703e2e",
+      "afterSHA256": "1e2dc8aad74dcf45cbf8cd3311aad35bd86c0e34edad1bac9612d83408dcbb3a",
+      "bytes": 12759
+    },
+    {
+      "path": "/comparisons/lifestyle/walking-vs-structured-exercise.html",
+      "beforeSHA256": "eb1e4e080c530bc6f7fc5c67f1fb85a34f682d4c5effea281e67d718e4b003a7",
+      "afterSHA256": "45910705eb13afc5fc0d970e50a64d067fecf2cb1c088bf63049af90656855dd",
+      "bytes": 15214
+    },
+    {
+      "path": "/comparisons/medications/mounjaro-vs-orlistat.html",
+      "beforeSHA256": "7d7f2856e1adf23b1a82e41e0614af90876e336e545000fc5b6ee15d92cd57fd",
+      "afterSHA256": "cfd4bb5035943c70fe239375494f8d07b0351c7512682a642346e77e0e775516",
+      "bytes": 18334
+    },
+    {
+      "path": "/comparisons/medications/mounjaro-vs-saxenda.html",
+      "beforeSHA256": "880afb2ba318b961e9b7c49343574d50855a4042d542399916bbbce1f6020063",
+      "afterSHA256": "589efec08da1b47eeecee1f9527d492eb518fe3e291dc9bd156b5086e3d4ac87",
+      "bytes": 18299
+    },
+    {
+      "path": "/comparisons/medications/mounjaro-vs-wegovy-tablets.html",
+      "beforeSHA256": "bd97963a9177b68ad13dd52af16c56975567dd290803e8ec995dca773fba2fd9",
+      "afterSHA256": "ef9382503d0af140951d0bbc18e4ea5d16d35cf8e25866e5c4ff697f1fe7e7ce",
+      "bytes": 18298
+    },
+    {
+      "path": "/comparisons/medications/mounjaro-vs-wegovy.html",
+      "beforeSHA256": "19ffed967246abf14d573d8e753d57478273988cdbe1f1a4b1ca51670c3e4852",
+      "afterSHA256": "3833a44b180f29bdfee5910616127612273624255a9f89c3aa8f8cc13c5b582a",
+      "bytes": 18190
+    },
+    {
+      "path": "/comparisons/medications/ozempic-vs-wegovy.html",
+      "beforeSHA256": "cb84505fb0944a94ec73ebcc4b955925de7aa812a8aa2b193460b0c3b6949483",
+      "afterSHA256": "a709611a90189f1958174ad0becc5d7bb098f0ba32fa08d436f2a871e815b0b9",
+      "bytes": 18061
+    },
+    {
+      "path": "/comparisons/medications/saxenda-vs-orlistat.html",
+      "beforeSHA256": "a92021f41e7b019e2c7460a3798f5e348add285fdcddbfb071114f331c63e7f7",
+      "afterSHA256": "a6c321073f5ef9d7688e5efff680593db9e5da760a5fbdda8b5f1e809c97d87d",
+      "bytes": 17465
+    },
+    {
+      "path": "/comparisons/medications/wegovy-injection-vs-tablets.html",
+      "beforeSHA256": "23f4e39d8c362041b8a7749ea22b1258cb83fd9b3431cd5f5df38e72789b0f7e",
+      "afterSHA256": "bcb6452e8ffbdffa5742a1d036f25b043b2e7d3b000503690d8f66a7812b2a57",
+      "bytes": 17935
+    },
+    {
+      "path": "/comparisons/medications/wegovy-vs-orlistat.html",
+      "beforeSHA256": "bfd14d1b8386bfc2a06c89af2e0f6485a7078eddae9eb79cb8418a8504b3d468",
+      "afterSHA256": "f2dd9ab6030ffcb917c106ae688b33c936addef87e8601a46e4d65e957787a85",
+      "bytes": 17794
+    },
+    {
+      "path": "/comparisons/medications/wegovy-vs-saxenda.html",
+      "beforeSHA256": "ea6b6f62412def3a826e1501591428c44398e044ee7ca3d63e2562fdd41a522a",
+      "afterSHA256": "f2f756b875c4c0f1bf5ab1b4edd691cb2849816ab21161d77e772f502249fd17",
+      "bytes": 17723
+    },
+    {
+      "path": "/comparisons/mounjaro-vs-wegovy.html",
+      "beforeSHA256": "2912c1ca76cac1c852a1f74b914c935adda13409789f95981a69e20cdf10e3f4",
+      "afterSHA256": "5c741fc2bad552ae30f9f60f1cc9af25f15f2f3f0134418b02de1860065e40a0",
+      "bytes": 6191
+    },
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management.html",
+      "beforeSHA256": "0ed134e13f258d1fe69e5ffcc80411eb513eb4f07a3c05b35f696c8bf3322ba2",
+      "afterSHA256": "f3d75f825b879a5b3283eddd74e62e88a751a21bb90806b09bfba9c220310171",
+      "bytes": 12765
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare.html",
+      "beforeSHA256": "5e4b0fe2d5c274b094bb4ee1490d88371d65465cbeea136c4ccd17554468c5b5",
+      "afterSHA256": "c3290c45a929ee035928dace82ff50fb1749e325c43ba66138137ff7a7de3698",
+      "bytes": 12689
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication.html",
+      "beforeSHA256": "84d2574413879d956ac7220967879922825fb1e983f2d212335310ad30f761f7",
+      "afterSHA256": "a58925556f61b3511b2c78c973c68876d99d7c99ae067a7f84f88b0898dfbdc6",
+      "bytes": 12997
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery.html",
+      "beforeSHA256": "19b9f9b7386e4339a000160210a0dd688106153952c8e1df38b40e179aaa7feb",
+      "afterSHA256": "f0a520ca901ffcbd0660809a308bd85e384644cc0098f19985c597cf69438f84",
+      "bytes": 12642
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access.html",
+      "beforeSHA256": "5c9ec404c93c31b499e5958f3b33efea75c35fd5387221b67b20f593850e233b",
+      "afterSHA256": "8b3fb9512c9402cb6d3addcfd619fa2777baa36349e13c5f708c7cc86efa3f80",
+      "bytes": 12927
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic.html",
+      "beforeSHA256": "8bbc3284bcb98ec7c1b71e461bc7c690ba950a01dc632f6d4a54fd6b48b03d07",
+      "afterSHA256": "f87304d83f4f0051320e16c43b7bd8d0dbfdb31bec69e06045c05a9476ca608a",
+      "bytes": 12804
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private.html",
+      "beforeSHA256": "763c63c81b6e97c0de329475f077063bf8dc2728c8ad8e1a600e6ab6450ffb20",
+      "afterSHA256": "a8b88aae034953bde40be6d833c5ec26c278956f5e4a6928bad1c80bad3ab87e",
+      "bytes": 12801
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg.html",
+      "beforeSHA256": "d91ba6590aa5375b29064ffd253299331623e75dd02676a5be53807d5d5b6d0d",
+      "afterSHA256": "c8239f2cff174a6d8f0564c5439bf61925fcbfcd87a21afc6737dfc358d77f0e",
+      "bytes": 17757
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve.html",
+      "beforeSHA256": "6b6442b7a9aac49a037cfd0be9791502b374a5a71186974714de65b3525654dd",
+      "afterSHA256": "7c2634ffe621e9e225d761a393795140535c5ba0141698c1000d70f43674878e",
+      "bytes": 17597
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve.html",
+      "beforeSHA256": "c22bce21ab76337509695c9c98dd7cfd2ae026aee7ba34e38019e2dc09e79403",
+      "afterSHA256": "2301b3c5bede490ab12213b28a69ed190628c569077c37ab2e43906eb22e54d4",
+      "bytes": 17656
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass.html",
+      "beforeSHA256": "f15b9a0893ae4bc5509105d3efceb0712f6b4dcb988ed382b230e069fc1f753e",
+      "afterSHA256": "aefa11e8ad94ca9eb99bf135e55f0d1d76bc95d8314cb95e0dc5f35357951985",
+      "bytes": 17667
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-sleeve.html",
+      "beforeSHA256": "6cd603cf12fc11af01a02400c8fd0ba75044487876627339af8c344e6257972e",
+      "afterSHA256": "a8dc5182957f491ab7ee51ffb26e8e20be2aca3f0cb416976900d7d283aebed7",
+      "bytes": 17466
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass.html",
+      "beforeSHA256": "4869a2ad4aef835d0478a432db3947e335bd5fa006fe532b497d8295c044d6f4",
+      "afterSHA256": "3ab951579b0585fd444b04b27bc36c13b9d0775b80ae3849e595f2dc71e41162",
+      "bytes": 17766
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass.html",
+      "beforeSHA256": "5448fb779f854274d0a2acdefa79996e52eba9f30759d148a0ddd8614dd74150",
+      "afterSHA256": "9996673e09e586551dfd1a9a649d5e1bec212acd10cdcd267bba7a8ef56acc7d",
+      "bytes": 17846
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass.html",
+      "beforeSHA256": "7823df5c3cbf5e7c11e8a80954ae8dde0f833e19da1e38bece6194a260b0b5c9",
+      "afterSHA256": "ed85ff7fee013586d3a5f142ad08f8054e94aa7699af85216cbc54f1b8ecde2a",
+      "bytes": 17511
+    },
+    {
+      "path": "/comparisons/universal/esg-vs-wegovy-tablets.html",
+      "beforeSHA256": "4e3e7f2a0187b2a1c63eb32b1a36ace585f20332d0c17dbba255b8ae10c1f955",
+      "afterSHA256": "963a983bda106e3347f9dcefeeee848afda3af8ad35ad993dc26411bc3368d19",
+      "bytes": 15521
+    },
+    {
+      "path": "/comparisons/universal/lifestyle-vs-mounjaro.html",
+      "beforeSHA256": "cbd2db4cf41f5a65b4d29b3d74c8c9128cda4b23451d53f8c80b3cce68143ab0",
+      "afterSHA256": "ed9ffdaf6c00639e830e909782845cc681e23c110fd5e772ec1987267e209a71",
+      "bytes": 15076
+    },
+    {
+      "path": "/comparisons/universal/mounjaro-vs-gastric-sleeve.html",
+      "beforeSHA256": "62fbb915111c4c950a91dabde1678840c14ee4d980e2749e9745917e7e1b8037",
+      "afterSHA256": "0d335feb3ca310b48f678232692f03798c9af816283f729c0a91eef3fa5fe7b1",
+      "bytes": 15235
+    },
+    {
+      "path": "/comparisons/universal/nhs-medication-vs-private-surgery.html",
+      "beforeSHA256": "be64f7e219459939e6ef492aacdafeda6b2cb0a38f2bb9fbc937c486481d0b8f",
+      "afterSHA256": "a830351206386e84867d7fd103c3ec63dfdb8bfeb806b4e5274ac9d8e673c524",
+      "bytes": 14310
+    },
+    {
+      "path": "/comparisons/universal/orlistat-vs-lifestyle.html",
+      "beforeSHA256": "09adbbb5f0dcd52d1c5a37e6d4f7d5d0d542722aa6618fee0e1a0acdb2c39593",
+      "afterSHA256": "9006c299a60939680cd94c30b85320802998cb549b8e8e56702527b1680ebc12",
+      "bytes": 15143
+    },
+    {
+      "path": "/comparisons/universal/private-medication-vs-nhs-surgery.html",
+      "beforeSHA256": "c028bb9e75ed141cd782fa9c9d1dd9745ebff7b20b663c0e81a6335b77271c12",
+      "afterSHA256": "969b8d401e9553995dcaed37a5fd83e7ff2cedc42ead0e7f80726e5fef42aa64",
+      "bytes": 14331
+    },
+    {
+      "path": "/comparisons/universal/uk-surgery-vs-turkey.html",
+      "beforeSHA256": "b99725e8c9102fdd009e96fe65ccaaa14ca594330b2d15ec73b6ac8853d4268f",
+      "afterSHA256": "735659862734fb2189790bb3ed3d1576c2d0304b9d9fc820291212434ff08950",
+      "bytes": 14144
+    },
+    {
+      "path": "/comparisons/universal/wegovy-vs-gastric-bypass.html",
+      "beforeSHA256": "f010792015fd1499f08cdb8669ec2bcc7f9b7f6fdde0685ad11b13eabb892b66",
+      "afterSHA256": "9d82648f0735e09ece7b8b20c425903398859c84cd6b0087cb1c4979d2cf0830",
+      "bytes": 15454
+    },
+    {
+      "path": "/complaints.html",
+      "beforeSHA256": "e1dcf08f83e138b339ed7f2f41713f6f34a2a9b48cfba07df349266d62d74157",
+      "afterSHA256": "f7d5f9ab34b5ea4eae8e20913292bbf548e5850f14ead463ed4b9d6920515985",
+      "bytes": 10255
+    },
+    {
+      "path": "/contact-received.html",
+      "beforeSHA256": "298758412dd776266f82daac3136e274f6b8bc4d36929a910ae1dbd11ff18d6a",
+      "afterSHA256": "17d1a397c048381d66385c92435b6ace762e5021979dc7fda13b43413f98f833",
+      "bytes": 7433
+    },
+    {
+      "path": "/contact.html",
+      "beforeSHA256": "88e74caee5fc291721e23af47313b83b7cbf13afa3eab9ff0d521e9e935bad91",
+      "afterSHA256": "2815db2eeef840e6865104930f0a520b2259b4f8630287daf634394f2e8a2ff3",
+      "bytes": 10766
+    },
+    {
+      "path": "/cookies.html",
+      "beforeSHA256": "80a44a623330adc170374cd06d143cfb5839ff69f8ef6cb0e5799ff1647f4908",
+      "afterSHA256": "e6e0ec2bd7865128fc7844613e56c501237f000b59305d5063bc3fa50dc3c896",
+      "bytes": 10059
+    },
+    {
+      "path": "/corporate-wellbeing.html",
+      "beforeSHA256": "1918e6d4b7bd429147c88747796d1ec21e94045c468b35d5a4ee8ade2317e4f1",
+      "afterSHA256": "2ce6de518dcbfc95dec724d109db66ff2b7b1fdd75b1d5ff99ff3e4547e84952",
+      "bytes": 10765
+    },
+    {
+      "path": "/data-governance.html",
+      "beforeSHA256": "121e2339ba92c1fa5ed957c22e351f257387826013fcc9df7224c609b83d25d6",
+      "afterSHA256": "3e013f370ecd09374101b469ee6481ed1f0a34b182959fed9290acc16dcf40a6",
+      "bytes": 10045
+    },
+    {
+      "path": "/decision-centre-methodology.html",
+      "beforeSHA256": "c40d0dd0c2295ad3c7f3246888b33f4c0c5452bb25f834830fc907ea0390b1f4",
+      "afterSHA256": "f7dd1a93d0534f88006c22b90228a3e6b3c70115f76c6b0f1e292cd227b64fc5",
+      "bytes": 13827
+    },
+    {
+      "path": "/decision-centre.html",
+      "beforeSHA256": "03c50e60d7bc7f67085987a4b640c19dafd4dd18a5b774d541cd3530ebb0b74e",
+      "afterSHA256": "8e42a7aa4c4eed5cd21307c7d20013858e6143aec162faf2b23cf6b1547eea38",
+      "bytes": 18659
+    },
+    {
+      "path": "/decision-readiness-methodology.html",
+      "beforeSHA256": "962c0b0574585e51cbbac2bfc6d6a0895df946b143b37d4f65cf9ea8f8e14305",
+      "afterSHA256": "7ed2840c24a78b355bdbb1ffad24d43b4475799d89d1703b8604680733d6fc0d",
+      "bytes": 12081
+    },
+    {
+      "path": "/decision-readiness.html",
+      "beforeSHA256": "0ef28335a0809971d4c905c913f9848f37ca990c1bfa5b12371682315fcb3845",
+      "afterSHA256": "41baa340a70a221abed8e7009cf041ab1797f0948d11a6eefb2ac48bc8493f92",
+      "bytes": 14359
+    },
+    {
+      "path": "/decision-trees-explained.html",
+      "beforeSHA256": "91d4e83d5bbbfb60577cd574cc9ac8f36acf52ecaff2688390dda2118d8b7063",
+      "afterSHA256": "170fc6b9625cf6e4cdd97dff2586ff23d949c876f47ee1a93717cb3f3d8e6693",
+      "bytes": 11537
+    },
+    {
+      "path": "/downloads-resources.html",
+      "beforeSHA256": "0bd78097b3eb0b56c396629929ab0439bddecdd93de0d593b57669f517b354f8",
+      "afterSHA256": "eadf4b9181e370d76fbe7664c26a23e2361a8f2cdf163b0cb71e441fbf12d223",
+      "bytes": 10620
+    },
+    {
+      "path": "/downloads/bariatric-surgery-checklist.html",
+      "beforeSHA256": "1ee7a1a0d7f4821099703a1e0dd3ffab1739aee25aa653b3ee4516c93a968874",
+      "afterSHA256": "077055e0de80134549e5557898c7e2a8524d23228fd69021545be59807542575",
+      "bytes": 8337
+    },
+    {
+      "path": "/downloads/gp-appointment-checklist.html",
+      "beforeSHA256": "c00fa4792abe479c81b9d3851bf8fa3bf7e78802677dbee2d3640aced0cd6c16",
+      "afterSHA256": "42ce53ac56723fe8c5fd58d32740c3938825b8db87330f073ae50e639900e686",
+      "bytes": 8163
+    },
+    {
+      "path": "/downloads/maintenance-plan-template.html",
+      "beforeSHA256": "6c0d59a107b0ea1345d57ce42b581f0aac78e1f7ec2e813f76566c65d22a5099",
+      "afterSHA256": "954c3e0451b10f773481ba97aebcd4df9b0041ec2f7cc64ab9172c0ad2082728",
+      "bytes": 8720
+    },
+    {
+      "path": "/downloads/overseas-surgery-checklist.html",
+      "beforeSHA256": "05b1b6ee8b38a20ad3268e5dbb1159ea65a8407e8e200e5f81c495f706f8c70f",
+      "afterSHA256": "37e1d9b283b90b186ee099d527afb6c883f3372c287e0d360173ca8df8b67d30",
+      "bytes": 8413
+    },
+    {
+      "path": "/downloads/private-provider-checklist.html",
+      "beforeSHA256": "b24b5ab617226c300a1d08aa8323212bfbd810fbbf488de51594f4204e5d73f5",
+      "afterSHA256": "3c908541b781d9007d1ca785ef5f6e3a7a00098eb09fbb1b7933a4acb7178af7",
+      "bytes": 8293
+    },
+    {
+      "path": "/downloads/weight-loss-medication-questions.html",
+      "beforeSHA256": "80a9a96fecdc7e904b05aec05bc563340314fcf2eae097f869cc19d08d141204",
+      "afterSHA256": "92d4dbf17ead7ab48013a374379dbd2a76407caf57a04b69110e57be7a77e747",
+      "bytes": 8440
+    },
+    {
+      "path": "/dpia-summary.html",
+      "beforeSHA256": "209d8f6025cdee12691fb4eb3db1bb7e00a1aefb07d620372a22dd3e129aea6f",
+      "afterSHA256": "6b84e654edd76580532a29ac26e41cd580fc1a1edd61e6ec6082010d7abc7056",
+      "bytes": 9849
+    },
+    {
+      "path": "/editorial-standards.html",
+      "beforeSHA256": "545463a281efb6cf8b7b515d3e96d71fb62a462ed7fc1a6fc60eee75bda3c811",
+      "afterSHA256": "b9004b4264d8ce68d2f0a91e35444b0dddb015dd9e86523b6c9c107cee6540c9",
+      "bytes": 10963
+    },
+    {
+      "path": "/email-framework.html",
+      "beforeSHA256": "832be73e4dc85cd19e339fd71975c16bd480ee525dd35792f4bfe189bc18151f",
+      "afterSHA256": "4a3f1cb69ee2f9f658a6c588b24002e2e745a959939002d34f5b2f0677835146",
+      "bytes": 9873
+    },
+    {
+      "path": "/email-templates/comparison-shared.html",
+      "beforeSHA256": "f83fe41d8756631d6b0c5bbe9f8dc2b303f738b79aac04523371208951ca50aa",
+      "afterSHA256": "997074bffa02b96a5a22347d3124b1789b2eaf051571ca3e90e637285f7dc043",
+      "bytes": 2908
+    },
+    {
+      "path": "/email-templates/contact-received.html",
+      "beforeSHA256": "6360524f1f4e816586144869857f34282ce6951b656c460ef78078bc22e69c43",
+      "afterSHA256": "3029f012658a19c8103315bc54595b5de80e31d90825eac7f91f1c51ddf79d56",
+      "bytes": 2964
+    },
+    {
+      "path": "/email-templates/email-verification.html",
+      "beforeSHA256": "e1e43713c6cc56bc5cd7c8a821140e48b2ec368228f02b73433c986417560cfb",
+      "afterSHA256": "cde5dae9219258ef6517309243dd048d29cb05380d6989b5e9351f5ee9011a0a",
+      "bytes": 2883
+    },
+    {
+      "path": "/email-templates/health-mot-complete.html",
+      "beforeSHA256": "82bdc4dda9ab9e0079d21a2fecead6750ea667294b31ec856895c96fb86ab0f0",
+      "afterSHA256": "cd3b79fd1ab898452592b2ee16a1e68186cdad6df21b959def3c2adb3915630f",
+      "bytes": 2883
+    },
+    {
+      "path": "/email-templates/maintenance-transition.html",
+      "beforeSHA256": "495e2c102e37d38f5f98928f11701a6edcedfd2feae9fd2e0a004f16031e1f30",
+      "afterSHA256": "d76e6f8172aff0f505cb9adb2880527436e15e5c8c369bb2218f74b05c6bc304",
+      "bytes": 3007
+    },
+    {
+      "path": "/email-templates/membership-invitation.html",
+      "beforeSHA256": "89445d4794284f363d43634532aeee8c50fe530f66d24eb2a2423c485ed449c4",
+      "afterSHA256": "3c3404dc822f23889280c69e9fe100729277a51553209dfe3b49d8d6b7209fd8",
+      "bytes": 2929
+    },
+    {
+      "path": "/email-templates/monthly-research-roundup.html",
+      "beforeSHA256": "8475d8ccddccfa0f4f4653e09f4abb959cfe4901bb296a1e369342060b62c452",
+      "afterSHA256": "3c158202832c7206d8fec2b3c12b34f305674f1789a8034074a6c78e353af561",
+      "bytes": 2982
+    },
+    {
+      "path": "/email-templates/password-reset.html",
+      "beforeSHA256": "1d67d4f4dfb8081927da0f16381b9c7f3afdba671551de7efbf61558b7adb60b",
+      "afterSHA256": "bf96504a66b2c631df87a85f7bb50290ec306682ef261434b1aae5862a4f00b7",
+      "bytes": 2890
+    },
+    {
+      "path": "/email-templates/programme-launch.html",
+      "beforeSHA256": "4059e8aa6a111cde7d988af7c1029778ff0ccd788585946c0016505674885692",
+      "afterSHA256": "7e1ee6ed29b23eeba28de758e4eabc09809cbc9c5fa23ebb211d132e3159dd0b",
+      "bytes": 3041
+    },
+    {
+      "path": "/email-templates/support-acknowledgement.html",
+      "beforeSHA256": "ff68d25f199a3a59b94404b8c7623e9743ef47ce6564b81903a31905c790cdc7",
+      "afterSHA256": "09fea0e402641b1d63507a4151e2bfc7e8f376d904505f44352cd46ce092fdde",
+      "bytes": 2914
+    },
+    {
+      "path": "/email-templates/treatment-finder-complete.html",
+      "beforeSHA256": "7f9b98753e337e8fb7d823eec644d0ae58441789b9274f120df8b1553a3fa28b",
+      "afterSHA256": "e657beab06b48ba16e91bd0428d46b87f429a50414d2f3dc883e207b5fa86b33",
+      "bytes": 2933
+    },
+    {
+      "path": "/email-templates/waiting-list-welcome.html",
+      "beforeSHA256": "a8da6b33384238d6f63372262c1a7ba1e2fb24d7aff6759b0d747528f8c0660c",
+      "afterSHA256": "5bb7b8be2bdccfca124af47ff33717badd2878839e582e1affa02f0e13b1771a",
+      "bytes": 3225
+    },
+    {
+      "path": "/expert-contributors.html",
+      "beforeSHA256": "ceefe7be6c3a6d897767fa29b255bbe6610d4870338ae0c74cbbfe1ac943a6a6",
+      "afterSHA256": "0d5d991e2c7767fa59a9f60191d41675aaab84d5415fdcb2ec2b4b7232817d5f",
+      "bytes": 10956
+    },
+    {
+      "path": "/explore-knowledge.html",
+      "beforeSHA256": "6d229ef3dd4c1ca227be149b6a6d3c575b426adcd2bec7dcc380c2909f2d615c",
+      "afterSHA256": "fc59d9c2438919643e4a55c2bee16404edff3ee09bfefc993ecf3294de8e2f02",
+      "bytes": 88104
+    },
+    {
+      "path": "/family-discussion-guide.html",
+      "beforeSHA256": "cfe3dfe98c8c8f9425e228486ea69fc0622f4b370285a6541b721e5f91438ee6",
+      "afterSHA256": "7e91944f4531877ec79104efd40083061228fd5c6b9d050137e6d9f2b0d2c1b6",
+      "bytes": 11216
+    },
+    {
+      "path": "/faq.html",
+      "beforeSHA256": "795665aa7b2eff3eb320c27e9f384c5394dcb8bdb823ba085f55b78634509ea4",
+      "afterSHA256": "7005b45084d44c401f447404de56745bc1dcba57232aafdbf169c7eca062dbcb",
+      "bytes": 33831
+    },
+    {
+      "path": "/faq/alcohol-on-glp1.html",
+      "beforeSHA256": "e7660b2684963b01048a0063aaa8e9ed323a5311046be70b3a590b836a91a5a4",
+      "afterSHA256": "12376cf11ae40feebafab39d3b9f4e01550cd0eb40f57ff7ffa5fd3fd962707e",
+      "bytes": 18288
+    },
+    {
+      "path": "/faq/are-carbs-bad.html",
+      "beforeSHA256": "6cb994d65036696d2779fddb022eb5ceee81c332ac46a5a48d54fc4ac16527c2",
+      "afterSHA256": "8528baeefaac049c999ffd3ba9d3ff07087bac43aff0e85b1f343c63f58a8d2a",
+      "bytes": 13974
+    },
+    {
+      "path": "/faq/bbq-and-weight-loss.html",
+      "beforeSHA256": "7693ed89bf38c5eb6650cc00bdd785734f3e6a90e416ecd4142021891867c88c",
+      "afterSHA256": "01a24f306ff305a8cef67b872d2150e26a85c2d6dcfc184aafe552c14f8c559b",
+      "bytes": 14078
+    },
+    {
+      "path": "/faq/can-men-take-mounjaro.html",
+      "beforeSHA256": "6b01b7bd54082a8a1f8ad8191a4b71ad543d004b5b46755c05e0ee96a5116583",
+      "afterSHA256": "036eeca5be4d2e24f9a322c565616df7c9034d228b1b2f2f0c4ccc31a32e45f1",
+      "bytes": 15325
+    },
+    {
+      "path": "/faq/can-men-take-wegovy.html",
+      "beforeSHA256": "99c0b24605bf8e347e3953eb4e2c1024c6ae8b98041203f2b31d450d1f1b2d6c",
+      "afterSHA256": "214561ccc4f61a6f7729f81087d5e98ee3e3eac8fbbc997b362e7109c096809e",
+      "bytes": 15412
+    },
+    {
+      "path": "/faq/can-stress-cause-weight-gain.html",
+      "beforeSHA256": "7ad06beff3394af646b250181abf5f38f8dd7a23ee4cd1686c72d806bf554804",
+      "afterSHA256": "f04fa570d2a41e4b22e7cea2c34ae526d378fb6602011b5d6fe316ad1e0cd5e9",
+      "bytes": 15213
+    },
+    {
+      "path": "/faq/can-walking-help-weight-loss.html",
+      "beforeSHA256": "cad8f072c509955e7d66f08cdd1c6ef87b2e6ffaa016054c34d6f2405c4df440",
+      "afterSHA256": "3118f722719a231e7335be4bf5684d67e705813f7de6daccb614c97d8582d1a1",
+      "bytes": 15235
+    },
+    {
+      "path": "/faq/can-women-use-tools.html",
+      "beforeSHA256": "61240fd1459c351c07f224eb0047946eae0f357ee65f6e927765654c8835a083",
+      "afterSHA256": "1266116748fadf96fa4b78089aa7e8726b1f3d2d872d031cb778a8d5dae55379",
+      "bytes": 14013
+    },
+    {
+      "path": "/faq/daily-weight-fluctuation.html",
+      "beforeSHA256": "2c6a589d2938d47df2e896eeb2789fc8a77916fea265c69f79ab2ecb872bfa86",
+      "afterSHA256": "6a7594c49cf46ee70537be939fd3f51ac49175a7d98c4a39071d55f0649b4955",
+      "bytes": 13982
+    },
+    {
+      "path": "/faq/does-alcohol-cause-belly-fat.html",
+      "beforeSHA256": "e78d76342fac35f9e0bec4467e7c0974306eb2788a80df7977cee962d8d6b1e0",
+      "afterSHA256": "b826bdf0ece84e3c86e4d8920ae05eaaf3bdfeada1c729affca2fe746b6f71b2",
+      "bytes": 13864
+    },
+    {
+      "path": "/faq/does-belly-fat-increase-risk.html",
+      "beforeSHA256": "24736cf24b6393cbaf19fbe04a09d0509533221c4d41874ae2e454b6fb07280c",
+      "afterSHA256": "a0a6c5fb0197bd2c2a774c00b25e35151ce8d2af4f77a5425c15be72f9d99c5b",
+      "bytes": 13925
+    },
+    {
+      "path": "/faq/does-sleep-affect-weight.html",
+      "beforeSHA256": "16f0282a6ae509bc0be99181388a29b9e45bf9c79aef7e3078a06f0bfed67981",
+      "afterSHA256": "630b86a8ad23b284bb6e7d9759b5f763c12153a3954a0f33711b19037cfa3e65",
+      "bytes": 15118
+    },
+    {
+      "path": "/faq/does-sst-prescribe.html",
+      "beforeSHA256": "d0e4702ca18f7db7110d6472f2a88d38821f40266a9dc35f90a89c2df8904828",
+      "afterSHA256": "19de13c36d177862d888815385f038b5ee8ec5af042e2e0bdae80dfe976a0dbf",
+      "bytes": 14128
+    },
+    {
+      "path": "/faq/exercise-on-glp1.html",
+      "beforeSHA256": "f57c93bebefd70cf0043c29369c6630b030d853195ca5de29d7242a69dd55557",
+      "afterSHA256": "4bac49cbe16c7c12bd9de1721fcfd7c16ba1767d23fff4fbd216324039ee44b4",
+      "bytes": 18292
+    },
+    {
+      "path": "/faq/glp1-muscle-loss.html",
+      "beforeSHA256": "252ebaccd2f7467cf705818e3b4434266c2634eb14aedb3d38b57f2fd5f19cf2",
+      "afterSHA256": "93d7bbcdcd03289a30d2c2438fc2607e36ad769b1ac6a7fe6979f1a39aa6f4fd",
+      "bytes": 17999
+    },
+    {
+      "path": "/faq/healthy-waist-height-ratio.html",
+      "beforeSHA256": "758c445e5f3ab2f76a40b04e3e6d22d78d187982b4eda80f5f6e669fce8bdb15",
+      "afterSHA256": "75c0f8b51f1277087d64ea586397c052c98c679547027b94b1964d94bcde50d7",
+      "bytes": 17231
+    },
+    {
+      "path": "/faq/how-much-protein-men.html",
+      "beforeSHA256": "fad7c6a33ae268d830fc1167c9b9c055450cae1f339fe2b7b8c1e41575adc2c0",
+      "afterSHA256": "c36245a3ca62eb73d14de5b4bb7e4c7d2bfbc51feff7d756727c8cd4bd9915bd",
+      "bytes": 15106
+    },
+    {
+      "path": "/faq/how-often-weigh.html",
+      "beforeSHA256": "66539babbd4b0f46072e0c3664a6065d964d3f5f6c1aac40785913b59a40c9ff",
+      "afterSHA256": "8cdcbcdeabc78acaa4036bb150370f9cfdf345007cd6317e2b3b1d74db50d02a",
+      "bytes": 14184
+    },
+    {
+      "path": "/faq/how-quickly-should-men-lose-weight.html",
+      "beforeSHA256": "1856fafdb21455488575e063478e64f17bd0056a119ff2c14271b354206c2c26",
+      "afterSHA256": "1852e2c672d99dc6e7b885b3259888e1ccbff73a513d38607cb458d9165ae406",
+      "bytes": 14221
+    },
+    {
+      "path": "/faq/is-20-percent-realistic.html",
+      "beforeSHA256": "f2f1b3834e2a7beb10ecbd4c8fe4201f56eb56fba32e8749000cceebc9f0ee42",
+      "afterSHA256": "924905d422ec6d7017c88feec1cb14a51c6ecaef290c10696e72ad023dbab40b",
+      "bytes": 14041
+    },
+    {
+      "path": "/faq/is-bmi-accurate-for-men.html",
+      "beforeSHA256": "826e6625bfe6853d7f09a9a8005de887b04d0e3c4d7138c55aeeeb26a672c98c",
+      "afterSHA256": "dac98bd52819d2f94afcee594eaa735d87cb8e5982f02a5aef8f79d873dd44a8",
+      "bytes": 17216
+    },
+    {
+      "path": "/faq/is-fat-bad.html",
+      "beforeSHA256": "0bf454546e087cc4af5468f6d21b02570f78655d139ae50f216cb655e237c217",
+      "afterSHA256": "f9ff5bed93f7879531c3e195a47d99a91d1cba8002d9cce28416c8b1a5d6cd4a",
+      "bytes": 13602
+    },
+    {
+      "path": "/faq/is-glp1-only-for-women.html",
+      "beforeSHA256": "755120d94732e82116e5268476a116bd3d5edd57b04b551b2e792ff7da4a8918",
+      "afterSHA256": "3f6684fda97eb25884b7559b1b198d3723658ee3c33571888f055b44cf80afb5",
+      "bytes": 14848
+    },
+    {
+      "path": "/faq/is-health-mot-medical.html",
+      "beforeSHA256": "3787bad51c6c56d0be8505c0c43db407fe5fce332d1c07e727105449675e3df2",
+      "afterSHA256": "d622c7a048470639cc090eb5c1376d66041d16c1490334f299a5873a7bd6254e",
+      "bytes": 15497
+    },
+    {
+      "path": "/faq/is-health-mot-saved.html",
+      "beforeSHA256": "d2eb1422cef65e7293e5e6cc405eb21ec0e24cf873865cd41f584a90993f1fc6",
+      "afterSHA256": "46e17623c2f9a648d1c2c8a10ab4c6c5c9b0437d308dbdd2af1c9b124db440e3",
+      "bytes": 15452
+    },
+    {
+      "path": "/faq/is-sst-gp-replacement.html",
+      "beforeSHA256": "50556a0e22a4a4e45f8128583ca386936e8ec3e58bf8ad57dc4a43531d0e71be",
+      "afterSHA256": "a75ca3a2f8b3fd50fccb2025cc10db1a5df52874a0ee350db1058bd78e2fab8a",
+      "bytes": 13864
+    },
+    {
+      "path": "/faq/mounjaro-vs-ozempic.html",
+      "beforeSHA256": "ffe57119e42588e8d463fc40ef28c7a72710fdb07e6a160c9d1264744ad892bc",
+      "afterSHA256": "ae5ff7c4309554982e5b54146a83156640714f3cb8df9dd6a2091a894350d0a0",
+      "bytes": 15315
+    },
+    {
+      "path": "/faq/need-breakfast-weight-loss.html",
+      "beforeSHA256": "1148d3d9ae34f4d0e0275a95ca2a161017f8ab64d54835becf173b5903c16514",
+      "afterSHA256": "9f5b88534329bf44edec0342372bb08ed01b7f920076ea86a33d7c4d5e44f6d5",
+      "bytes": 14603
+    },
+    {
+      "path": "/faq/need-gym-to-lose-weight.html",
+      "beforeSHA256": "c7e6f9fb4658d3fcf35ceeab0da5579172f11d9c42ff0d8e8036e6c57126a42a",
+      "afterSHA256": "76696fdb52eb2d7ee02dec17ba9249aee2f6b6fd2098b2c2017af755665235b7",
+      "bytes": 13736
+    },
+    {
+      "path": "/faq/should-men-count-calories.html",
+      "beforeSHA256": "ebd0c3ac4654b3d9d7af9b23cea2677997d7ca5cf53139a091438e61e307dc19",
+      "afterSHA256": "f6c7a11667f730c55f1fde3d1a04c96f75dc8607f29b735412117c23275ad05d",
+      "bytes": 16509
+    },
+    {
+      "path": "/faq/takeaways-and-weight-loss.html",
+      "beforeSHA256": "4c6545f99dc3c15abcb0e5a1340522cb4f51219de3f3b1ba022aa5607ddced4b",
+      "afterSHA256": "5a777bc0a06c6c61d21b037e6c24c01e6bbe89cdaf8cd1ab748b6bf5307d33c6",
+      "bytes": 13947
+    },
+    {
+      "path": "/faq/wegovy-vs-ozempic.html",
+      "beforeSHA256": "c0f02bcf3c35358315a9425f1ad4bef9b6b459a380e723fe84cf7b2951bf95f4",
+      "afterSHA256": "f4b1b6a7df825e8288ff6ab4a19d5cd338da0f66c830f942893ce3d85a07d507",
+      "bytes": 15585
+    },
+    {
+      "path": "/faq/weight-knee-pain.html",
+      "beforeSHA256": "0af30f0bad37f95e635b5a32036f37f0ea5e15d317fc763473ac70ca02e586f8",
+      "afterSHA256": "dbe0c5fdadbc5a400a901fc76540ddfb2fb1087edbb3b48002e320cdd6b3c896",
+      "bytes": 17184
+    },
+    {
+      "path": "/faq/weight-loss-cholesterol.html",
+      "beforeSHA256": "5c8aba26898f46cc83fc942ecb6eb3a4f078e83cea57dea92ca53f37db47be75",
+      "afterSHA256": "4628882df62c151ff7730867e4801735cc4cb94053e0469c5e131ffa020a56c2",
+      "bytes": 13911
+    },
+    {
+      "path": "/faq/weight-loss-diabetes-risk.html",
+      "beforeSHA256": "9f64b2c3b9005c58fbd47e6bb3f662de571616081c481bb1a07866c66f8145bb",
+      "afterSHA256": "52b5e494b52b83a08c392d53ba0bddbe125c8af272ee6025d0007146c122844c",
+      "bytes": 14051
+    },
+    {
+      "path": "/faq/weight-loss-lower-bp.html",
+      "beforeSHA256": "ada4d33ee4ff8252758a74adbc95e88b19da46094311be9fed166c549b0fda04",
+      "afterSHA256": "582b2a15819b5b6ae4404e4c261dd67d39f417e0892fb31f60c67bc3be7d11c0",
+      "bytes": 14065
+    },
+    {
+      "path": "/faq/weight-sleep-apnoea.html",
+      "beforeSHA256": "32102b6062975c90fe3e78d3428796d8b8f5d7926cc16ceff83333891ff2c5b6",
+      "afterSHA256": "02db9fa8f9dd275814e3efc25dfe414df1c91ea2e6d2b48cc7fdcb38a61b7229",
+      "bytes": 18265
+    },
+    {
+      "path": "/faq/weight-testosterone.html",
+      "beforeSHA256": "530090f95c4bbde01a1684de8d338944b7a47ad15a266b685e3e5ae0f774e5cb",
+      "afterSHA256": "5ecb68257404e91b13ab4d52dab308a5d1673779859fbcbdbd955b99639f4cd6",
+      "bytes": 17365
+    },
+    {
+      "path": "/faq/what-happens-stopping-glp1.html",
+      "beforeSHA256": "4ce125eaddf4f5c5f15c774fc1007d9e3d09d5bfdbaf358ff7592ff7ef92e95c",
+      "afterSHA256": "58540c66fe4d1a1e2f2167d8220612d3082cba2f1811f3c43a45c517c5456012",
+      "bytes": 17998
+    },
+    {
+      "path": "/faq/what-is-20-percent-club.html",
+      "beforeSHA256": "b80b3a1e00ef8457f627ac421bdd999e9df5570f7002bea79e19ba2c5b532bbe",
+      "afterSHA256": "18152ce49d44ae3da25e14378e51db895886739d77fe21ea25d29a737eb30dd1",
+      "bytes": 13844
+    },
+    {
+      "path": "/faq/what-is-founding-shifter.html",
+      "beforeSHA256": "ee83ee2795452a10af532b077de3a457883de8724aae93922f6fabb70df77ce9",
+      "afterSHA256": "bf1df4a09bbc56b058db1c1082131506a8872f55af4c09aaf4af8a51f3403264",
+      "bytes": 13954
+    },
+    {
+      "path": "/faq/what-is-tap-room.html",
+      "beforeSHA256": "88344226d3a336bef502e71a130aba0835a84776d257b68f46f23ea7dbec002c",
+      "afterSHA256": "c7ce2f363865d8b1e42bc32da890538073106305b69dddfbe3cb2f66c2c6d363",
+      "bytes": 1270
+    },
+    {
+      "path": "/faq/what-is-timber-mill.html",
+      "beforeSHA256": "e663b70586072f4307bad346e6e2305f3ed0188df13087d1de9768324e2f6658",
+      "afterSHA256": "8f68da17495e93ebeafb8614287480b6b127d7547e0c409c2e0f1c7efdfee0b7",
+      "bytes": 13662
+    },
+    {
+      "path": "/faq/what-is-weight-loss-plateau.html",
+      "beforeSHA256": "ad8db94650c62ebebed9f5a4aaa2c5a6c683cdb0fb924c94e8c17e79dbdf497b",
+      "afterSHA256": "48cd4d9bc23a34963119c988e89f90aa44b561068d1b30290fb9441a6020fc71",
+      "bytes": 17078
+    },
+    {
+      "path": "/faq/why-do-men-get-belly-fat.html",
+      "beforeSHA256": "82d4df4e0f62cd39d03437c57615bffb9198dbef2378d4f972c1fb66e46d5068",
+      "afterSHA256": "cbffe03f25be45022df9f93f3254ccc4e5bd3042f9000363821dd9ff090c40b1",
+      "bytes": 17070
+    },
+    {
+      "path": "/foundayo.html",
+      "beforeSHA256": "68bf2ee7691075d9cad4c252826c81d999924dd6b00ab0e0882011d34ef7ec58",
+      "afterSHA256": "24e8bef90868d696dccb691c69f265e0ebe13b28532485012cd98eabcc5438c5",
+      "bytes": 18811
+    },
+    {
+      "path": "/founding-members.html",
+      "beforeSHA256": "d306e2861aea8fc60dfd8fe7e68701d3dad0ab3d46f147453569b99d8b4684ea",
+      "afterSHA256": "67f6c859f1a961f8b20b73666b8ba5fd90e376bf87c307529dfc2ea0d4a7323a",
+      "bytes": 11880
+    },
+    {
+      "path": "/future-medicines-comparison.html",
+      "beforeSHA256": "f7aebe159b2f5920edc7530140a7fce0c2d49d4dcdd22cc17c126d72b90de340",
+      "afterSHA256": "6bb6d500bbb7e54ad6a927001752bd0908ff15bb804ec119cb420508c88081ee",
+      "bytes": 27568
+    },
+    {
+      "path": "/glp1-knowledge-centre.html",
+      "beforeSHA256": "2c82dbd26ad14c4efb8fc37213f8ddad8917be69a4b53c52a7ef8c94fb964b87",
+      "afterSHA256": "1676ad15e37e8ca0ba9ef48b56cec173ea0ab0ed173d10a6eed25054e35a3665",
+      "bytes": 17450
+    },
+    {
+      "path": "/good-to-talk.html",
+      "beforeSHA256": "7834f0d94270e837fc2a06be62d56c1c02ea6711304b01b47e59e07daed4e694",
+      "afterSHA256": "3afc6f2564484ab761e3c70d1fea012c3b0b87ab7c520902f67fd6c799fe0400",
+      "bytes": 10223
+    },
+    {
+      "path": "/guides.html",
+      "beforeSHA256": "fea75fe5160233b9bbd063a783baf636b5eff3f9e43a227a08030ffb9a819a34",
+      "afterSHA256": "bb4eb9ecafff08752e97088300e95c44241707ad28981513492864a9aad34558",
+      "bytes": 14400
+    },
+    {
+      "path": "/guides/amycretin-uk-guide.html",
+      "beforeSHA256": "a9e6ce6f544097f745f8d4340b8ac8cdec50f8420fad3cafd18a1aa152a9f38c",
+      "afterSHA256": "906a7c7ee251a1fbc67500761e1d9ea201a52ecf1184f5b1bba78783ca41735c",
+      "bytes": 25362
+    },
+    {
+      "path": "/guides/bariatric-surgery-costs-uk-europe.html",
+      "beforeSHA256": "39c0c8cf82dcd0f9f6561434e489bf5e24b4cd3fa6f5b86ebdd3994b3709fc7e",
+      "afterSHA256": "6ba2663ef10960839cdbe00e50b4f2928fc0a0df18650a5074c52f070be25334",
+      "bytes": 16341
+    },
+    {
+      "path": "/guides/bariatric-surgery-europe-costs-guide.html",
+      "beforeSHA256": "8c3ff37d29b12bc2a48f572cfaa122a398dd4a51b604d1d841a9829dc902a0cb",
+      "afterSHA256": "d88b8ea4b43c12facffc6b9cb6e5bff81096ca43f51a8277c927febe9610153d",
+      "bytes": 19309
+    },
+    {
+      "path": "/guides/blood-pressure-guide.html",
+      "beforeSHA256": "788b4fc053d6abd5754692f9f4e30487c28d1454c5fc85dc48c837e4b877e1b1",
+      "afterSHA256": "986fecd81620a27eb9ec8aaff429b35d570dd69af2b256fb516a2b2b8deda687",
+      "bytes": 17691
+    },
+    {
+      "path": "/guides/cagrisema-uk-guide.html",
+      "beforeSHA256": "70e7ec2da4cccb5e61da5ca069ffacc4b6afa735528e5670229ff54922c8206e",
+      "afterSHA256": "4ad95e23959615e15b2c8551ec7ded0325832aa56dbee255cd6d039a4d6b5523",
+      "bytes": 40990
+    },
+    {
+      "path": "/guides/endoscopic-sleeve-gastroplasty-esg-uk-guide.html",
+      "beforeSHA256": "7ebac87288a0240621b1b43d3c26f33467065bb22ccde8f063b170e0ea137c5e",
+      "afterSHA256": "d6798457e4483e636a5122be4090dce24006a8cf61ded7f1facfdbe22a6e3ed1",
+      "bytes": 27201
+    },
+    {
+      "path": "/guides/exercise-walking-strength-mobility.html",
+      "beforeSHA256": "1c4ebf5e2df681015f50b34474337dfd69f282654770b5b068ba0c1e9e3291c3",
+      "afterSHA256": "59a83fd668e0f41c6a79a0a0cc41b6204aae1d5c54e178d572e4c1daae137f44",
+      "bytes": 40105
+    },
+    {
+      "path": "/guides/gastric-balloon-uk-guide.html",
+      "beforeSHA256": "5ef55b3bfc706613f447e1abf4076e719c2cc62e2364ec2ef4b18daab0872d16",
+      "afterSHA256": "25733a99f3e4644343ea20fb4a83794b3f76ebc3b2b11aefa30f19c7288e751c",
+      "bytes": 26109
+    },
+    {
+      "path": "/guides/gastric-band-uk-guide.html",
+      "beforeSHA256": "968f210850e51656fb873e29d64782cd0d60cbfee0185d4692da0065931a3a67",
+      "afterSHA256": "92ab8fae7c897363d96a1fa9c465cbd5732a969a08bbe8847f26bc36d591bded",
+      "bytes": 26501
+    },
+    {
+      "path": "/guides/gastric-bypass-roux-en-y-uk-guide.html",
+      "beforeSHA256": "5d91874f950a1914f29bd52609ee17b76bd7758e0320dad9d3493e30f05fbd86",
+      "afterSHA256": "e91cff102c66ad6ca5ee9cb7ad0cb1ef89690a17e6f8fdd109b56c388c312dba",
+      "bytes": 33471
+    },
+    {
+      "path": "/guides/gastric-sleeve-uk-guide.html",
+      "beforeSHA256": "f7e729daf77e78194b503a49ae046f485a6dbd34506d378ec4e232c4b6d598a7",
+      "afterSHA256": "12bf845316f050b6fd7966acdc98703a84b7126348cfd51d1f03441e77316ad0",
+      "bytes": 37355
+    },
+    {
+      "path": "/guides/glp1-guide.html",
+      "beforeSHA256": "e58cdc7c869dea761e546974b2ecf8e63c080d3c0cb95ca1b466fbdf23e9560e",
+      "afterSHA256": "62ad206a889dadd3c7ad1f4f4bfad4ab4d86cc7d7cf6ca82e431511454982a85",
+      "bytes": 17638
+    },
+    {
+      "path": "/guides/glp1-ultimate-uk-guide.html",
+      "beforeSHA256": "bc315c11dd13a23e5c298391ae328cf5109b07b0b6b530be2395395f62fd1288",
+      "afterSHA256": "44b24dfb34c71bd74846360a1f05c082c9c3c12a7ea52fd6e2ad098029c27608",
+      "bytes": 25880
+    },
+    {
+      "path": "/guides/maritide-uk-guide.html",
+      "beforeSHA256": "b0c79e693eec6111b7571f17471c0ffba24a403c08607d222771ac2d99142b7a",
+      "afterSHA256": "44b535284cb8eeb49a262533f9a430d8a997204a718182e86122114a23f286c5",
+      "bytes": 24614
+    },
+    {
+      "path": "/guides/mens-health-mot-guide.html",
+      "beforeSHA256": "78adc31c0af096c805b43bdbbcc30875d070457784969e9c42b834bdd4b50035",
+      "afterSHA256": "dfe978d4a58d9f8a22c6db85777b7ce16b59493a493336cc04ec599a6e27b435",
+      "bytes": 18035
+    },
+    {
+      "path": "/guides/mens-weight-management-guide.html",
+      "beforeSHA256": "0bbf251d930c3db70840f824be16a90e8220501d370326f8e6855638c5ba846d",
+      "afterSHA256": "b574105d51871fed3d803578674948e472575061d81a3863215a93f2cb37afad",
+      "bytes": 18263
+    },
+    {
+      "path": "/guides/mini-gastric-bypass-oagb-uk-guide.html",
+      "beforeSHA256": "2113a198773123d513d519ac14b377f304c6a452b5a92323d1258cc474ffa7d1",
+      "afterSHA256": "3b8bb7e3f3c25717076dc39236982717aeeea6f2e3209c71a2b92af02e390d01",
+      "bytes": 29605
+    },
+    {
+      "path": "/guides/nhs-bariatric-surgery-pathways.html",
+      "beforeSHA256": "066d3be0504ce81cce4c45649098250ccf52096d4c745f04eebe813cd0ca10ac",
+      "afterSHA256": "b612735e3e1f19ce2fb3bb53795b2dc72fa742b1b4bba93b94f82429df1cddf9",
+      "bytes": 38583
+    },
+    {
+      "path": "/guides/nhs-weight-loss-medication-pathways.html",
+      "beforeSHA256": "2b54b5e8029599edf75aa520924680b975398da0456507f9779a1ac9534b2f0c",
+      "afterSHA256": "d024bcfffa27e1579ea58d3b974f0aeb4100776a4882653cffb0ff00758ff09a",
+      "bytes": 43964
+    },
+    {
+      "path": "/guides/nhs-weight-management-uk-guide.html",
+      "beforeSHA256": "5974c1547f6ef0e311f6b06b3d559cd40b8a0ac0f0ce1f063bb77f59d701ba43",
+      "afterSHA256": "eff83bc048c1d7c021de275308ef2ec99a99408c810e87e628037695ee892d4e",
+      "bytes": 45659
+    },
+    {
+      "path": "/guides/nutrition-guide.html",
+      "beforeSHA256": "7eb9a0f16a612dcbe54636f6a5a070decfe444f52640d5c0a3eb6734d9596a30",
+      "afterSHA256": "78be7f3ddcada95cfeaebd22629d04279c4cb5d396b59430545315bf744d1d3f",
+      "bytes": 18755
+    },
+    {
+      "path": "/guides/nutrition-protein-calories-meal-planning.html",
+      "beforeSHA256": "dece53a5a38c5334f3f4b08da4afe371bf0ad60ca4f536743121bda035e1a331",
+      "afterSHA256": "906e1a5bf0b3a11482109bc32a1a96427a477a97b190a5ce27a52c3e3b1a9986",
+      "bytes": 45625
+    },
+    {
+      "path": "/guides/orforglipron-uk-guide.html",
+      "beforeSHA256": "61b4708c941173438e1331c2261c80dc93bcd31756604544f185df8517bcef77",
+      "afterSHA256": "db44dd6a121c3b951ec65c457d9e324d3fed0890b7acec01e4472bb24d653e1e",
+      "bytes": 26536
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide.html",
+      "beforeSHA256": "e969ed63698f6ca6a6aec3dbce37acc8f3bba546b7cdd4ce220941d5ba4cb628",
+      "afterSHA256": "fe0fcad2a6da8d4ced2ccd3be2aea794e0cea8e596205ea968f0008f55bb4115",
+      "bytes": 36493
+    },
+    {
+      "path": "/guides/sleep-stress-mindset-emotional-eating-maintenance.html",
+      "beforeSHA256": "ad3cfbbc61e82b4bcc7fa076a46f069b50fea0fbe409a0814ad4cbfeca30895c",
+      "afterSHA256": "23735f109c7815a81ef53c951d77ca59f0c220ba7484fd1ef88f981c60eeaf19",
+      "bytes": 43921
+    },
+    {
+      "path": "/guides/walking-guide.html",
+      "beforeSHA256": "fe9945534c57b1a2e3086e2df75b975c2cf44631811e717b333fdbcbc01b9525",
+      "afterSHA256": "47c42ae61262cb9d0ff414ccc2e74185fc5d3dca52d08afc8a5d2f45054e8cda",
+      "bytes": 18753
+    },
+    {
+      "path": "/guides/weight-loss-surgery-uk-costs-guide.html",
+      "beforeSHA256": "0b4468b9fa3735f52028ecef7a3e45415caa993d9647955177174358126c0482",
+      "afterSHA256": "1859fdd3f789bc6a1f9eefa2cf4f38791bc51f93161a8250a6454864e6bfa451",
+      "bytes": 17564
+    },
+    {
+      "path": "/guides/weight-loss-surgery-uk-guide.html",
+      "beforeSHA256": "e42b7a1afd14d471391b00b53a393857e122e4eeea785bd4c7c54d90ed522dc3",
+      "afterSHA256": "ee8804736c2f42e323702be5a9f042753fc8f8bfdec295d370c643293450dcd2",
+      "bytes": 30535
+    },
+    {
+      "path": "/health-mot-methodology.html",
+      "beforeSHA256": "1c5f4869d908862cf19077e7f68c6e2e11e389d57f7695d0d339396163bb7674",
+      "afterSHA256": "abdb2af8dd8211e28ee1fc46e006914822f7b9dc16d0b27a8c2ab6f50174aae3",
+      "bytes": 14513
+    },
+    {
+      "path": "/health-mot.html",
+      "beforeSHA256": "5a97c2b864468e7a6aa122f67d89097f277d3e1f1b66a9b57344b5185054c8c6",
+      "afterSHA256": "f200e5afd7fb28590edc9925adb7590bdb296e55fe1bf1cb145ac853c51fc852",
+      "bytes": 39239
+    },
+    {
+      "path": "/help.html",
+      "beforeSHA256": "8cdf2e140a5d2bad515626144cc6c309cbfb9ef43a2d48d8209ec6bd28ab1334",
+      "afterSHA256": "347becc3f7f345db6c9d48dd806a8b4283b016a75e953d75c75ad9b9cf4e1783",
+      "bytes": 11450
+    },
+    {
+      "path": "/how-are-you-feeling.html",
+      "beforeSHA256": "5992c62d970fc42e530d77acb462048c6a3ee8077e137d689df34b9f23284b33",
+      "afterSHA256": "24641711c9da335436c1beaedcf6eafc63ff660268c6bfc4d023c00dc7f38299",
+      "bytes": 13636
+    },
+    {
+      "path": "/how-we-review-products.html",
+      "beforeSHA256": "ceae1ef2993c41b01f7074be98e7583677e393a7cc0cf429cf5db97bc70490bc",
+      "afterSHA256": "68991748b9eca94eb3bc822c5347be9a30e645c01f50a88911b1db81860a87fa",
+      "bytes": 10372
+    },
+    {
+      "path": "/index.html",
+      "beforeSHA256": "a9b0d24223e4970add90b941339f42daf556fd0e4d30d454f2f8d05d58b82b6a",
+      "afterSHA256": "58ac3910f7875c643026221b1bbb3262df8d4b4dbc80621313880a5bd1027940",
+      "bytes": 12794
+    },
+    {
+      "path": "/knowledge.html",
+      "beforeSHA256": "a1055333c594144c0323949cda53e733523eb5bbb1903714b6d247babc0e1d21",
+      "afterSHA256": "8acaea9c61f1df825d858b0bb3980c62c5491ce0413dcc1fc447d7dab73e38a8",
+      "bytes": 28292
+    },
+    {
+      "path": "/legal-clinical-launch-gate-v30h.html",
+      "beforeSHA256": "429559fb7c823a375d55ec30155249bb64e162b762b7c5b10fc5a025033c24c3",
+      "afterSHA256": "c8795f844c367b55142e45bcbf42b8f63c809f23694d7959de0d9faa3223bccb",
+      "bytes": 11775
+    },
+    {
+      "path": "/lifestyle-treatment-methodology.html",
+      "beforeSHA256": "5379f4a4a95a0d03b9c465b48cc5836800ca1eca44114ad9ad3f81dc5c4f1878",
+      "afterSHA256": "b0420572cc3b2ffe923b3bf3a05939d255135c1fc151eb9be30aebd5aff7e892",
+      "bytes": 12345
+    },
+    {
+      "path": "/lifestyle-vs-treatment.html",
+      "beforeSHA256": "b5355ef9ab495471df9c4234936cc8c38f305e92cc6c4397fcff04c674702281",
+      "afterSHA256": "ef677ef35a3c786fefe2f3490df7ee1533252ca68296713496431cba73132154",
+      "bytes": 18006
+    },
+    {
+      "path": "/lounge.html",
+      "beforeSHA256": "b1811b4354cc303d99d1517e7ae5a6902ec06d326f4bac15939e111f8880603e",
+      "afterSHA256": "59913243878fadbd6c32e34c083e24ca330dba311df0e192b9d01b851b56dc6a",
+      "bytes": 10120
+    },
+    {
+      "path": "/media-centre.html",
+      "beforeSHA256": "6459e29fabecd9e9ec6ebc67fd7aa0234929f04057fe46dd77cb28e43bec3b1b",
+      "afterSHA256": "c0c9210eafcd8d463343b015091be3ae6394fcc8f341e6b0141cb0480931d33e",
+      "bytes": 9129
+    },
+    {
+      "path": "/medical-disclaimer.html",
+      "beforeSHA256": "5566c68ab56a98de7364a4562c6a3d8c12a69de7094dddd711c1472ee37347dd",
+      "afterSHA256": "8df3beeb16a9a900d97399715a3ba71ab9c58424b0b0075c5be7eaf71b54e890",
+      "bytes": 9696
+    },
+    {
+      "path": "/medication-comparison-centre.html",
+      "beforeSHA256": "8338061e422e6ed454298028554f4139df0722ca018bac66b3818a16ed8716ba",
+      "afterSHA256": "1687f41758acd012a7f8fcc4d949c9510465e93be8067e48f55468fec1db78d0",
+      "bytes": 19340
+    },
+    {
+      "path": "/medication-comparison-methodology.html",
+      "beforeSHA256": "79460cb42782b6e8a78fd3fee5c92ad9e1058536af27d4d4ad616311b1f2a9dc",
+      "afterSHA256": "2eab7e7df9fbf3519ef3972d539f9537f7354ac09e458fb5555d0704a6b96e27",
+      "bytes": 13122
+    },
+    {
+      "path": "/medicine-news.html",
+      "beforeSHA256": "b57455d3b5710b801e861d173f7bf2eb1676a0dd96476cd7c70b396d12cbe1c9",
+      "afterSHA256": "42547e15c74715c28e56d11167d3601befd0456008236a24c907f65cb0ecf2fe",
+      "bytes": 9102
+    },
+    {
+      "path": "/member-dashboard-v3d.html",
+      "beforeSHA256": "ab9fbb711e298ebcc1078f14a25f9ffa670dec82399b42d2da4e69201950aba6",
+      "afterSHA256": "29686839969ef13af9d8a746287ae59af8729c181f5ec303b78b3ea1e90077e7",
+      "bytes": 6956
+    },
+    {
+      "path": "/member-journey.html",
+      "beforeSHA256": "cabc1653572abe203f215be0df4a3c626754bce33faf1abde120c600dc385b5e",
+      "afterSHA256": "49a602dd34fe893ff208b4d547a890d6644986861af7d7dbe9ee8cee55c1f9d7",
+      "bytes": 10176
+    },
+    {
+      "path": "/member-login.html",
+      "beforeSHA256": "325c3c9919f89111ba11fb527a968783a2de3c8906a575001fb2a96f32cf7739",
+      "afterSHA256": "e9d07ea209b498edc84832c75afe0d697631c7d9e4d11958559746c01f1519d7",
+      "bytes": 17883
+    },
+    {
+      "path": "/member/achievements.html",
+      "beforeSHA256": "7400bce2b8502458114996e739271475c2aad200b67b3b7eee247712d9107082",
+      "afterSHA256": "62e42a77b2f1b5f428113dfd5f39e076c6674c44971b721a3c126ff511632db6",
+      "bytes": 11356
+    },
+    {
+      "path": "/member/ask-timber.html",
+      "beforeSHA256": "7defa4ced238977f6ca75cfd3f2afd821b72eaa28b81f124a601906b9d1b9d80",
+      "afterSHA256": "9ab3d2b3921a60448fc62de20d05fc4d3c74a2a0082c8ad304a28e937ea77c22",
+      "bytes": 8514
+    },
+    {
+      "path": "/member/check-in.html",
+      "beforeSHA256": "3b723a54654e593b5b8521afbcc8160224b6675e0d1d1ec03c2c49d53f2e56e4",
+      "afterSHA256": "5c552c6b25b2c907309b8a8575258e50b1fde6c1cc15c027876233012c62561e",
+      "bytes": 12219
+    },
+    {
+      "path": "/member/conundrum.html",
+      "beforeSHA256": "c8b72db1c0f8ba7fda1901c62c70afffa33aa6c403593173f0f89ea13dc5bdc4",
+      "afterSHA256": "9b514425ba1f2e00cc6791eed9c7313a0287a6c8f50b6929e28cdef488b53350",
+      "bytes": 6544
+    },
+    {
+      "path": "/member/dashboard.html",
+      "beforeSHA256": "800ca075ac766caf0867692a23c56071b9c07330a8feed1b30438ded11bcefeb",
+      "afterSHA256": "e4b58fac06d0cd286b1f70aec32db2353b852377924543254f270453fdef6f08",
+      "bytes": 16955
+    },
+    {
+      "path": "/member/fit.html",
+      "beforeSHA256": "5ec62e14eb130dd9c621135ca7ae88b45be623062617f4ec49dc3a2fbe80c405",
+      "afterSHA256": "6cbe0b0a3a15b360ecca03650c251ac4087b8d69d87214c61535b352aa8bacdb",
+      "bytes": 11114
+    },
+    {
+      "path": "/member/grub.html",
+      "beforeSHA256": "49cc848e5c67af2a5bad2e69be0642d3ff9e703bcfe27cd2dce25223265d58fa",
+      "afterSHA256": "a9f39fed78ada5d355a0737d1005cce62682aa1f717a87b05a2ab32dbbaed273",
+      "bytes": 10431
+    },
+    {
+      "path": "/member/health-mot.html",
+      "beforeSHA256": "582df49b196d4ea3694eb80dbba55bc12900f1d0863d91132fc5444ed935f8e7",
+      "afterSHA256": "d4d5b40528bb0e86734b3660977dc0930c09b5522eb07eefb89d830e853e0fcb",
+      "bytes": 17007
+    },
+    {
+      "path": "/member/hydration.html",
+      "beforeSHA256": "e595bf177dc84f5bf5c3d448358dee5779e6ce6a3ebc424708c97c41ee3d5723",
+      "afterSHA256": "478a8d8dd802548cea73f973bb76f5e205ea27eafd86827d13e78a559b8fd620",
+      "bytes": 6532
+    },
+    {
+      "path": "/member/journey.html",
+      "beforeSHA256": "ed95569303555f9976d50fc8751728cecf71dfd739c01d0b7cd25ee5fbed150f",
+      "afterSHA256": "f5dd393abfe7a83e6cd9ee882150a232871cf36ca6b5e366f0ebaba63cbc0563",
+      "bytes": 10586
+    },
+    {
+      "path": "/member/life-changed-preview.html",
+      "beforeSHA256": "e0f1c52ca2bf521ee17a1764fc61a53627849b0f0e77be7c0a850bccd89e8c01",
+      "afterSHA256": "8aa4a140a4c2b19f66e1fde6c7a9c0576cb77462d6a25647731e39c03793454a",
+      "bytes": 10056
+    },
+    {
+      "path": "/member/my-target.html",
+      "beforeSHA256": "02de2cef065c214ee66a5c7ea95d1941f93df97df895cd00604f7179e3530776",
+      "afterSHA256": "5ab019754c08c97e3eb96d8cf76147d61b930c2446755be9f917d1c5ec446bd6",
+      "bytes": 8158
+    },
+    {
+      "path": "/member/my-why.html",
+      "beforeSHA256": "595ddcf67142085249c5afb09867430d1777dcf5fe007fae8927e03203874a35",
+      "afterSHA256": "4c84ee35dcca4cdd8ab0e95f45e02e497e14cf30231491459df65a12d782dbe2",
+      "bytes": 10820
+    },
+    {
+      "path": "/member/plans.html",
+      "beforeSHA256": "a507821a5bb14f2a62608d38d77df2f48de5529cf007c12ec849372714f76fe7",
+      "afterSHA256": "7ac66d382bc58d1b718e87ee889a4a5b6755e8cbc3fdbdd47858323976fdcb74",
+      "bytes": 6531
+    },
+    {
+      "path": "/member/progress.html",
+      "beforeSHA256": "983ef4fd15ff41e5f5e8f7402045572a6f136ce02667e6b9b914a44d2ed3d5ff",
+      "afterSHA256": "a69321fb1429c7bb3b8654839143c752bc6a3c18cf3dedef26cafacb5f57b573",
+      "bytes": 14085
+    },
+    {
+      "path": "/member/saved.html",
+      "beforeSHA256": "f5365cbeb8375c69d90e2a934e6f286902c2ecbd5bbf1dbf2e480cfdc0e96d1a",
+      "afterSHA256": "af9572486886b65298fa7d0fb4af4d4b15946900bac4a6f78db6a079b9c4f519",
+      "bytes": 12164
+    },
+    {
+      "path": "/member/search-insights.html",
+      "beforeSHA256": "0a23bbb682800e2beb2be4d4684ba0565e9fa65cc1dba19f6ac7f37bb50b86b9",
+      "afterSHA256": "b6b8667de1f17732e19f43444609915e9edf62041232751842443d1271de7e7c",
+      "bytes": 10902
+    },
+    {
+      "path": "/member/settings.html",
+      "beforeSHA256": "e6a1ef2081c7c1193a50aba185807c26762dcdfbcb367edbd0ea7563e4c03e62",
+      "afterSHA256": "add46d3638f8e3c1e74549a2492853ed5bb44121f295742e51064a55e47fab3b",
+      "bytes": 11341
+    },
+    {
+      "path": "/member/tap-room.html",
+      "beforeSHA256": "5eeb8ddaf9a8577bf4a6f4d8680f431b346a0db091f12da4c44a587b79e56df3",
+      "afterSHA256": "2e9ecab7ef9cb1a4d1e9ce29dac2f77fb92e619d431f98dd23df01860e49b4ae",
+      "bytes": 5432
+    },
+    {
+      "path": "/member/timber-circle.html",
+      "beforeSHA256": "3f6ef8b5905c9619a7bebc14ca813f4d5f86f616da2f1562607ec85157ef3adf",
+      "afterSHA256": "1ad7345aee98a537841c46b37dade71ee1da2c2ae557d95e11db709324bc757d",
+      "bytes": 10284
+    },
+    {
+      "path": "/member/today.html",
+      "beforeSHA256": "0ba7d01adc31af329c8dd6c0d5a2af995fc71082b654bc54c5da2c25745552dd",
+      "afterSHA256": "451c3068e11cdb8f1d0fb5547802b04ee04e1480211c01e818b37d14168314ef",
+      "bytes": 6516
+    },
+    {
+      "path": "/member/visualise.html",
+      "beforeSHA256": "c6306a6c6502d1b8c6f4283be6a08259adbcf5ba0a5168866275c1177a7b39bc",
+      "afterSHA256": "389f6d1cbb6612f7ff16e7b039cab3babaca9999eee1a33a653f177843ead19f",
+      "bytes": 6550
+    },
+    {
+      "path": "/mens-mental-health.html",
+      "beforeSHA256": "6c58fdce805bfc6d8833a346bc9ad269dcae85e14a4167127b5a86d34a93548c",
+      "afterSHA256": "ec085c3898f50c7508d29c273a920a5062734e76696eb69a5c82b25871d472af",
+      "bytes": 19532
+    },
+    {
+      "path": "/mens-weight-management.html",
+      "beforeSHA256": "3211e2109508f8e2d8f281dc4aeaa9dcf74fc3d28d9e62a8cf9fd31e9b26d8e3",
+      "afterSHA256": "e73125c15a2566fd220f0057f07029fd297d1e2b98615d732eb1e5b570209582",
+      "bytes": 18252
+    },
+    {
+      "path": "/mental-health/after-a-mental-health-crisis.html",
+      "beforeSHA256": "fbc29828ae641a013c9c76416a54d801de9b8ae75ac8b2c2c3e9586005914a78",
+      "afterSHA256": "0c5b238f8f7f321be66abc154c047037dc7169d7d19211b64353ca5160fc71b4",
+      "bytes": 12609
+    },
+    {
+      "path": "/mental-health/alcohol-and-mental-health.html",
+      "beforeSHA256": "17358ba856c9d73c8d88f90483e4d4518822ac92c0686ebc0b5e0ef6489b028e",
+      "afterSHA256": "688835761729e1ab2e44ba96079bcdc58726fb4d62eca5dcacb7c53e183d7164",
+      "bytes": 12708
+    },
+    {
+      "path": "/mental-health/alcohol-coping-check.html",
+      "beforeSHA256": "2cd49b7d6b9731e23f3e6bafbbaab5f19127b522acf99e4ffd41ae0395923270",
+      "afterSHA256": "4da49b2ce7ebc2cd9f0ac76b05c346acac838075f50129863d5b51a42fb0a550",
+      "bytes": 12567
+    },
+    {
+      "path": "/mental-health/anger-irritability.html",
+      "beforeSHA256": "4aff436f8abfb5f5b718e014f78a9c311ef82829f81012dfd5039ccb42f52866",
+      "afterSHA256": "611f7d5da6589eba327b85baabf5dc65c5b79a5dbe7df04096b78d6db22334c0",
+      "bytes": 12804
+    },
+    {
+      "path": "/mental-health/antidepressant-side-effects.html",
+      "beforeSHA256": "d1b2ccf9da917eafe26892023d92a6afee7859ab97116caba2af5252188ef1a8",
+      "afterSHA256": "6da2f15ca56b66be9e1aa359d79bc64fcbfb0cf6d50e6b9978e8861df607a4af",
+      "bytes": 12642
+    },
+    {
+      "path": "/mental-health/antidepressants-explained.html",
+      "beforeSHA256": "c39a23753a5ccef7ae9d189ef36bfbc0433293a4ad2190a1c6215a84509bd2e8",
+      "afterSHA256": "938a1b924a263c8eabad8c66b2bae7f7332af634093f8013bb0cbfa2d2252801",
+      "bytes": 12505
+    },
+    {
+      "path": "/mental-health/anxiety-overthinking.html",
+      "beforeSHA256": "ae41f4efa18959f93a113c7de78703406f33f527436f26be488c427e9f3c8deb",
+      "afterSHA256": "571ef4fc70c6d8c361fdfc0ae092de211ac51c63e1c3832f887ef8449e460ee7",
+      "bytes": 12853
+    },
+    {
+      "path": "/mental-health/ask-about-suicide.html",
+      "beforeSHA256": "df55d88304c93ced2c6c224781cb53a09d2a26c32653c80a107241e715dbeb45",
+      "afterSHA256": "9ec26c590c6c3dc90b51b9d0cf03a9fdbc0c499d6914fb3bb9bd7361b1cd5a59",
+      "bytes": 12525
+    },
+    {
+      "path": "/mental-health/bad-week-reset.html",
+      "beforeSHA256": "55f70a91a004c9279efcefa1e7570c15dceafacbda670c345658236d30d3b827",
+      "afterSHA256": "c735fedb5930690fe0fca2f7b1aa76129acfab122ab7ea3f1fdb3eb8e42eb78d",
+      "bytes": 12515
+    },
+    {
+      "path": "/mental-health/bereavement-grief.html",
+      "beforeSHA256": "ba5823372048b12326f1098caaf6323f8cb2d460992aa289464c860da2bc0ffa",
+      "afterSHA256": "c0b2fff1a6d8c8a60fc10bc5f0e692a5387a756414e0253542f5dbbb3f1cf6b4",
+      "bytes": 12509
+    },
+    {
+      "path": "/mental-health/breathing-for-stress.html",
+      "beforeSHA256": "d2f22042d395b8fad69ef9608189474b00cfcc78d5784945ee02ba24e42c83d7",
+      "afterSHA256": "692d197de9e0848596b589d6e98aa212ab527ead395cbd043baa6899b4d0b300",
+      "bytes": 12739
+    },
+    {
+      "path": "/mental-health/build-a-support-circle.html",
+      "beforeSHA256": "7940c92b6b519d73bbc3839e9c94374e8d433f427b335933d9935fdca6458a63",
+      "afterSHA256": "86a64754867fb1c33a4edf77aef94623a5b5a3d44022600b200f6a1b6701d7da",
+      "bytes": 12555
+    },
+    {
+      "path": "/mental-health/caring-for-someone.html",
+      "beforeSHA256": "f1549661b8a2f00546d8222de1eee8526ac56b2411652a2176a8eb661f1046b5",
+      "afterSHA256": "78a257beea1e9d776e7f37e5edf05e38fc63b8cb4ffceeba21c531be027c2562",
+      "bytes": 12495
+    },
+    {
+      "path": "/mental-health/cbt-explained.html",
+      "beforeSHA256": "559042d69628ed2bcea9dd9074b44f76c59e5cf1906612e9562f4a6669cd4ca9",
+      "afterSHA256": "e141e86fbd338b7262658b67505b4a0a80d098f7eafc5969133e7c9e1cd6e7fb",
+      "bytes": 12586
+    },
+    {
+      "path": "/mental-health/choosing-a-therapist.html",
+      "beforeSHA256": "6f0f486d9286e80fe05f65f77d16c0d115b59718431b0e5705086a5fe66e03ab",
+      "afterSHA256": "5bbee2d703dc482facb4062a48b8a14335173cc6b3ad33f0822e6838ac783107",
+      "bytes": 12489
+    },
+    {
+      "path": "/mental-health/chronic-illness-pain.html",
+      "beforeSHA256": "d16c52e907127c799c253b87a74a8167642a7358c7c0de63de00130f22c02d31",
+      "afterSHA256": "0c494936ed3ffc310b4ea36a7dc1c9b28546c6aa39a45918e399cf39619f2a5a",
+      "bytes": 12490
+    },
+    {
+      "path": "/mental-health/confidence-self-worth.html",
+      "beforeSHA256": "6b272d4cb8607c4397b33cdb09b1fd03780ee14b685050d8b9540cb44b28ccd9",
+      "afterSHA256": "ab5a490689eb98a842b8a8a4cb318810080935a83620805ba046291eb44f482c",
+      "bytes": 12882
+    },
+    {
+      "path": "/mental-health/counselling-explained.html",
+      "beforeSHA256": "497c7230436cc6c8bb6af00037e71232b2ef96de6cedd77d97a5c406ad6bd0e8",
+      "afterSHA256": "62d768fed46f59f04bfa5edbe5b345a368d8fb5337520a7b46bfb934f7b87696",
+      "bytes": 12673
+    },
+    {
+      "path": "/mental-health/dads-mental-health.html",
+      "beforeSHA256": "95292dca558b4e832750bf17750e5bf5d07a0b49c0d34d42baae1eed674915dd",
+      "afterSHA256": "a811b41cfd1baf77028c06a8286fb2f4e5bda697f35124cfb46397929055be59",
+      "bytes": 12536
+    },
+    {
+      "path": "/mental-health/feeling-low.html",
+      "beforeSHA256": "0eef16315b6813683aeaed1ce8f66608ac8a0a176f3ca6a961f393577f68c38f",
+      "afterSHA256": "f8ce0467ed240994ee8b635c353fd154da512443fbdc4e6d87b847dfec836f43",
+      "bytes": 13024
+    },
+    {
+      "path": "/mental-health/first-therapy-session.html",
+      "beforeSHA256": "4bcf439b6b67d62bbbcd73f1229ab727ca93b883e0f9cab7473b951296b4aa0a",
+      "afterSHA256": "90cc275631287d15551317ce47e0abc9fdaddf6d16a301e30d02a18b0e6ef73c",
+      "bytes": 12420
+    },
+    {
+      "path": "/mental-health/friendships-men.html",
+      "beforeSHA256": "23e39021679daefa324906bc06b206238b34dc645b1b921840d7d72e853488b4",
+      "afterSHA256": "4076e4288f496c282fdc8612233bfc5b7abf2f553d77683c46258ef5b9356a89",
+      "bytes": 12508
+    },
+    {
+      "path": "/mental-health/gambling-mental-health.html",
+      "beforeSHA256": "68b6d5768a881ac534741bb65f092f1b150b7f4d1bf99d86d77170aeb601e086",
+      "afterSHA256": "d19a9008a8f7200fc8f12b8f70d289b0e2174ffc86bb87395dcc41218d82f8c0",
+      "bytes": 12637
+    },
+    {
+      "path": "/mental-health/get-outside.html",
+      "beforeSHA256": "97ce5552c1f57b11a8644e5bd345a8aa39ccbe9f6b6cac58ecd4a447880f4d62",
+      "afterSHA256": "04a9a29cb894aa6844a8f3c4e80c0330118edfff8c1700d17afa3beaaea0bcd1",
+      "bytes": 12426
+    },
+    {
+      "path": "/mental-health/get-through-a-bad-day.html",
+      "beforeSHA256": "1bc678e9470380dfc1321144603bcdfe8efa89e7ef4bea09aff8739c7575c921",
+      "afterSHA256": "dd9a5bb4a35765ac210862948261e2d0c872a664bb36166d25fda3b7fe1986c2",
+      "bytes": 12489
+    },
+    {
+      "path": "/mental-health/getting-professional-help.html",
+      "beforeSHA256": "5103a3c10264ebcb92c03939d670fcf7840a759354bed6a73a74598ad8bf23ea",
+      "afterSHA256": "491f0e83d67d6228ca3b542241bd41812bb3390ff3bda58c8baa59ff00384d9e",
+      "bytes": 12458
+    },
+    {
+      "path": "/mental-health/gp-mental-health-appointment.html",
+      "beforeSHA256": "df1dc0d19dd4bbf992e92a64582c61e3c105950b102ba538a518c5a63568fca3",
+      "afterSHA256": "83ff12d06e88cd49571999032f92b3ed78652e1b7f4e05b7a7c10b7b7a69f786",
+      "bytes": 12531
+    },
+    {
+      "path": "/mental-health/grounding.html",
+      "beforeSHA256": "10e96a8896d5d9360da18ad3aa1da402263aaf34bd2a3fa86fdd3940da472d6d",
+      "afterSHA256": "ec3a4ce2837b071d46109499773c367e84dca15e8df06fdd8346a39add3231dc",
+      "bytes": 12614
+    },
+    {
+      "path": "/mental-health/help-someone-book-gp.html",
+      "beforeSHA256": "9adfb25d1aa2f82b4ef5a968d302eb57add2af67127e1f72f35c27a072f8f2a5",
+      "afterSHA256": "b9fb36596160b3879986b612a8b35cc3863b01a6a8112f84f81c09204da50d52",
+      "bytes": 12528
+    },
+    {
+      "path": "/mental-health/help-yourself-without-doing-it-alone.html",
+      "beforeSHA256": "7b73ff326b1aee7f3a3d0f04dcd63301b1e59217bb98b768f7dd3263ac7fb801",
+      "afterSHA256": "edee50bc324871e3997143cceb9ef039c451a15c7984844e30e183dec2452c5d",
+      "bytes": 12628
+    },
+    {
+      "path": "/mental-health/helping-a-mate.html",
+      "beforeSHA256": "b51dadd7a90d659f4c76c6ed38dc9a55a323beee08d907a3b8eb7ce38c6abdbc",
+      "afterSHA256": "fe81ef9cd75108f45e059f5618014091154d7f56dc9755878bed7b02db07ce6a",
+      "bytes": 12480
+    },
+    {
+      "path": "/mental-health/helping-someone-online.html",
+      "beforeSHA256": "7fa9899b9bbf12dac35fef8abbbff368834f2ce263f96e7d206e679f281e7a21",
+      "afterSHA256": "3022e9a71a9e8c305186fe0edc8b508c97167b28055d183cdb222d4eeccb2dbe",
+      "bytes": 12596
+    },
+    {
+      "path": "/mental-health/helping-someone.html",
+      "beforeSHA256": "9c051aeceb7c56cff5a7950f390e0368927e64bd6d1372cf33fd25d36627eca9",
+      "afterSHA256": "3bda5324309f2a6ae5092e9cdc2561f5d345257ae8451b6f3b2b9768e41262dc",
+      "bytes": 17018
+    },
+    {
+      "path": "/mental-health/how-to-ask-are-you-okay.html",
+      "beforeSHA256": "f870ea1ba6ae1973975e9f18b42f3008e810a1df2f78e01937683138685da2c7",
+      "afterSHA256": "1855b3a240d24014c1c8b6aebaadac6157e947d10bba15f6f033b03f64732db3",
+      "bytes": 12556
+    },
+    {
+      "path": "/mental-health/journalling-without-cringe.html",
+      "beforeSHA256": "2f91ca31f3a1f627922ff34f7d89b26c562ac5989135e786c448d98dbe63a71e",
+      "afterSHA256": "495b61cd3c86e8341c63b8d5c81bfad97741a35f9f5ad0108b9a7e06828e2ca7",
+      "bytes": 12599
+    },
+    {
+      "path": "/mental-health/life-gets-bloody-hard.html",
+      "beforeSHA256": "643a1ae9b120cfc23912337d487e728477d7376e0c74e1d940d00b78f3c9fddc",
+      "afterSHA256": "a452cb75bcceef393c5791ccd52596ac4660384a73c68c96e11070170782ab49",
+      "bytes": 15740
+    },
+    {
+      "path": "/mental-health/loneliness-isolation.html",
+      "beforeSHA256": "7c63dbdf9e237217c9c35be2388204a73c2850456faf50baad3691107e97b388",
+      "afterSHA256": "60e0fac6953ad2fa2df3f9de4dd2ea7ca2e7a9a258a463233249c60818a8a3b4",
+      "bytes": 12591
+    },
+    {
+      "path": "/mental-health/look-after-yourself-when-supporting.html",
+      "beforeSHA256": "8a1dee721c818e161c14950d77136380ee7172954dcd27b8dafbbc619076a6fa",
+      "afterSHA256": "619c941b86bc9db70c95bd3b5b8fcd76b88130bfba4b0681519dc22c221a71bf",
+      "bytes": 12494
+    },
+    {
+      "path": "/mental-health/mate-says-hes-depressed.html",
+      "beforeSHA256": "45127eed8ddd04fc17bb2c8c1874e370dfb05f212126237d3a55c9332833770b",
+      "afterSHA256": "1875dd00968ba37f9281d52e533593cd6252f461ff44caf9ce21a043201cf77c",
+      "bytes": 12589
+    },
+    {
+      "path": "/mental-health/medication-and-weight.html",
+      "beforeSHA256": "28f46ca34fd5200ec396f47f50483fd92f75276750dbe4b20a24dc1efc152a0e",
+      "afterSHA256": "1741e11968d7fb99ff61e899e581533aa154ccebf779bfa419b3015f21f6c420",
+      "bytes": 12433
+    },
+    {
+      "path": "/mental-health/mental-health-and-weight.html",
+      "beforeSHA256": "9a62982f941bed6b0e7e4fd21fbcaa156185c06c08d7e15c90d3356ffcdf70b1",
+      "afterSHA256": "84d39e03ce8fd5fe65eab495d04d8daf406c5af1d3685140860d1a5db32b8d56",
+      "bytes": 12850
+    },
+    {
+      "path": "/mental-health/mental-health-crisis-plan.html",
+      "beforeSHA256": "9d8c05c50d01d0872f71d5ecdbce655ed74cbe315638de20ae67a12bf80ad430",
+      "afterSHA256": "26e4c1b67668db6725ce5daf54dcfe7ec5bf96f7a458512e043edf9682462e23",
+      "bytes": 12581
+    },
+    {
+      "path": "/mental-health/mental-health-medication-myths.html",
+      "beforeSHA256": "b152174e05a04af5a68503b1bd44c854078760c05ce3ac72d6f11a0b8212a601",
+      "afterSHA256": "ccb265a46d29fd9bd6ca973050b8139e2b80b4f9d8631759a42d9e29be970974",
+      "bytes": 12479
+    },
+    {
+      "path": "/mental-health/money-worries.html",
+      "beforeSHA256": "f714ce558f787dba940fe91e04a10f81a9448cfba6a38f1268947b4482a73b87",
+      "afterSHA256": "3075ba1ebf1cf464acdab5f78b7c35f5238a7144fa5d9eb420ffb84242f69dbe",
+      "bytes": 12870
+    },
+    {
+      "path": "/mental-health/movement-for-mood.html",
+      "beforeSHA256": "4b43be83aeda777e061eec48350cdbd9d82e36e314d1055e06973284df029b85",
+      "afterSHA256": "99efe748b2bd95786096b12bcc697487552a404d4273b1deb6796328f9c108f1",
+      "bytes": 12503
+    },
+    {
+      "path": "/mental-health/myths-men-mental-health.html",
+      "beforeSHA256": "edba18e04b5c2049961271a904e41b470adffb4d543107e1da104fc692b22784",
+      "afterSHA256": "21362e3215e05934538318c28262312cf198598c5993d51c6e86ec49ec5c31ae",
+      "bytes": 12843
+    },
+    {
+      "path": "/mental-health/nhs-talking-therapies.html",
+      "beforeSHA256": "e9cae0f6abffeae34c54b5dc30c2920e9ffcd64febed01465b92f3ba756df9a3",
+      "afterSHA256": "cb98ba73a5cc5b590ed5359868bf93cd48c81ea1c6e5c942f3850f11cb0385e5",
+      "bytes": 12763
+    },
+    {
+      "path": "/mental-health/not-feeling-yourself.html",
+      "beforeSHA256": "a2b2349e88102abb792f1fb911c985218c1ca858c132dd9b364eeac9161a2dee",
+      "afterSHA256": "293dec097d71568a759949b43ab5981244875b98034a734750a9fbba4a808824",
+      "bytes": 13008
+    },
+    {
+      "path": "/mental-health/numb-disconnected.html",
+      "beforeSHA256": "1eac3362afb2794beb4d5fce0a7ebd9e422ebc09893a33495967cdd26b78b21d",
+      "afterSHA256": "4cd40885a04f23e811748e87e4e9ecb6eeb2ea32378bb36fb363257d47f7a8d8",
+      "bytes": 12588
+    },
+    {
+      "path": "/mental-health/occupational-health-mental-health.html",
+      "beforeSHA256": "ae9cb33076c13b1e118c102dfaa07440333035d9e41180464bc0314bef2c001f",
+      "afterSHA256": "a13d728f8b6b22445f45c1edae2e87a193b0e3ff6a1a7a71d62509003bcc3aa1",
+      "bytes": 12375
+    },
+    {
+      "path": "/mental-health/overthinking-tools.html",
+      "beforeSHA256": "0ddaba682ea9c8f98ed27c1f416dc72605ccd0c146e158caa485d47c46e8c197",
+      "afterSHA256": "057f6aef23c6e67b7eebe50d6706593071e05273562d1c447b72fcff8c1392d9",
+      "bytes": 12616
+    },
+    {
+      "path": "/mental-health/parenting-pressure.html",
+      "beforeSHA256": "1ece68f50526e9273c662252ace60828d3b4642cf389a05c8f29660eff7c8b4a",
+      "afterSHA256": "91cdc881f2ce985f2335212d37ad9544e076a1331d8815295639f9ac815e0d6d",
+      "bytes": 12526
+    },
+    {
+      "path": "/mental-health/personal-mental-health-plan.html",
+      "beforeSHA256": "857a5d6f3b6662d4e983074d6747e4ea7b36c6bf89655c8d38653e9f49325250",
+      "afterSHA256": "d1ffd7bd9b173dc72e7001b3acd7fabbc152ccde1afd68409be1f638f7e71a78",
+      "bytes": 12547
+    },
+    {
+      "path": "/mental-health/phone-social-media-reset.html",
+      "beforeSHA256": "9c7d0005c96d23b023b7ff6f01b7e4334a87d61be25ca9563acfedc645d142e2",
+      "afterSHA256": "374583ebb0a5130abb6168ef3e3f120b54efde8b6fabefb415af45decc7dea1b",
+      "bytes": 12524
+    },
+    {
+      "path": "/mental-health/prepare-for-therapy.html",
+      "beforeSHA256": "c540c3d090578a3b70eb34d5f9a6f44d200556a09bc843343b4cd91a9a9af05a",
+      "afterSHA256": "a996f50d3af3d064cb73ae3950a4645743e25f5a3dc6884cca523331ce80acec",
+      "bytes": 12505
+    },
+    {
+      "path": "/mental-health/private-therapy.html",
+      "beforeSHA256": "cb1d8e8f0d63dcae82565e3f492b982b12f87a08a33673bf0a4ba550a16dc7f4",
+      "afterSHA256": "1aa22a45e8dc6244ab6e708c44b6698fe7af2a3cc3d0a2d3d9941cbf7cb11dc3",
+      "bytes": 12427
+    },
+    {
+      "path": "/mental-health/reconnect-with-people.html",
+      "beforeSHA256": "a67e2d9edbc04ad78ab45a84bfff69c2ca95e4a4d14240f2a6bb708b9978b16f",
+      "afterSHA256": "31fd4234f811c0d7318c5e61fa335e653e676c9414326b03cbc3c426884dccfd",
+      "bytes": 12469
+    },
+    {
+      "path": "/mental-health/redundancy-job-loss.html",
+      "beforeSHA256": "678c42e27ba972445ba76a615f07dea49e6c8525e3e1d86c11023991aca09829",
+      "afterSHA256": "b10fa703f4526a3a5d00bd054bd2df44008a1bdd38398634caa9a15b3087b6d9",
+      "bytes": 12601
+    },
+    {
+      "path": "/mental-health/relationship-problems.html",
+      "beforeSHA256": "7375cd9bdf95df038e1e2951d746b6c65f75d48ace93538a63416801f67380a5",
+      "afterSHA256": "bce7e02d7bb3b78f52dc66ed47665cc1235b974bb58d03940b449ed05f756941",
+      "bytes": 12700
+    },
+    {
+      "path": "/mental-health/retirement-purpose.html",
+      "beforeSHA256": "d0135e85dde013827bb9c6f99cfdff1439e89fa124f6a67169321d46e4c06ae0",
+      "afterSHA256": "20391fb5ba70ea23f7ba7f2d441319859c8b8c0486512f962cdb0219e88f7e38",
+      "bytes": 12561
+    },
+    {
+      "path": "/mental-health/routine-when-struggling.html",
+      "beforeSHA256": "7c73ad047c020334dce52bd6bc3de146f1ac54c76f2fe4b724ed41f8b80d3d2a",
+      "afterSHA256": "d54fc804ce3abc58e2d8ae7964abe982786f8aea0981d53dc19e52798fd4a373",
+      "bytes": 12486
+    },
+    {
+      "path": "/mental-health/self-care-that-isnt-bubble-baths.html",
+      "beforeSHA256": "fc5d8746559a557208c23a5190dee185ba783292c962193ccfc3768975b31dd1",
+      "afterSHA256": "ae2ca52e3614b7cc524322c94a5714329156a0f59ad363031cff114640fb8fe2",
+      "bytes": 12483
+    },
+    {
+      "path": "/mental-health/self-refer-talking-therapy.html",
+      "beforeSHA256": "98b2176a418888bee0d430036807efb3f971e4eab80f53265b7acd54e599b4c3",
+      "afterSHA256": "5e96bc0d1321ce2a6bda6b0289f0f8b0cbfe74f1f0acd285129c64425115dcf1",
+      "bytes": 12515
+    },
+    {
+      "path": "/mental-health/separation-divorce.html",
+      "beforeSHA256": "b9e54d986b86d65f53b7b771a72a53f7e9a8f347463692be3fb3ea2b4325a78f",
+      "afterSHA256": "4b43222a65a352ffe00c04482d16f90cb1035683f2c7944b1d0d8e6ad2970b1f",
+      "bytes": 12580
+    },
+    {
+      "path": "/mental-health/sex-intimacy-confidence.html",
+      "beforeSHA256": "e3c7197c5a1016baa026613876a3e563f7d5f7a456d5752216e47ce7d19e52fb",
+      "afterSHA256": "01dfd74b0f639b02511efe7055df7bbc7a161934371582a698ed0fe987b3850f",
+      "bytes": 12724
+    },
+    {
+      "path": "/mental-health/sick-note-mental-health.html",
+      "beforeSHA256": "e3031ef4120bd4140003f52355d6aecc380a1ae7d751ad8f13bfde8b8816bdab",
+      "afterSHA256": "97538b4e544c5c183170759c817f278da0424777f2c5e55f6d4ca3a30e806dc3",
+      "bytes": 12457
+    },
+    {
+      "path": "/mental-health/signs-a-mate-is-struggling.html",
+      "beforeSHA256": "08e1258ffd306b8498fb73d1ae4f84e8ef8d7092887399e939f552741416dc96",
+      "afterSHA256": "e76da90f3247122987aee4b87a3bf491f9b4146abb310402d04a34c18499ebf6",
+      "bytes": 12660
+    },
+    {
+      "path": "/mental-health/sleep-mental-health.html",
+      "beforeSHA256": "cd87f5b2376f26588b388f246fb3ee60556d59504ccd1a1a7535ce3c0cec79c2",
+      "afterSHA256": "be969b02a7ea73587349c7b36c77ae3450cfc3e1e2ba817b56cd30ae45514f66",
+      "bytes": 12691
+    },
+    {
+      "path": "/mental-health/sleep-reset.html",
+      "beforeSHA256": "c7139ef00b82396b48ba750b8f401fa6e8927e19a98085abfc1ea54efe3cb803",
+      "afterSHA256": "72c34b37144111bd59d94f9175482c357a08824c2c572c707d9759933d7446c6",
+      "bytes": 12499
+    },
+    {
+      "path": "/mental-health/social-media-comparison.html",
+      "beforeSHA256": "b679340e18e9a096f7328e244235915847f98e62111c5a1f749195e3200dae5f",
+      "afterSHA256": "8df03c5268d3353f9c80f51b51753b38591b648b5da4a1a9011314806ad7ccf1",
+      "bytes": 12563
+    },
+    {
+      "path": "/mental-health/someone-is-suicidal.html",
+      "beforeSHA256": "8b25119fbc53ad638a299d7bdc9ce2eaf0111123e440d37e05e321e4d8ae05f6",
+      "afterSHA256": "b2bdc4f6878a66825ac626869714fa27e622c918dfd4901828af25da83612ec4",
+      "bytes": 12513
+    },
+    {
+      "path": "/mental-health/someone-says-theyd-be-better-off-dead.html",
+      "beforeSHA256": "d8221a3655f10e04224a93b878c23431becc72daa320a8237c0c1a57f78cb03f",
+      "afterSHA256": "dff4c3dd2023851392ddc2b6d290a55c6f41f5aab23d2ead2123bbd425299010",
+      "bytes": 12537
+    },
+    {
+      "path": "/mental-health/starting-antidepressants.html",
+      "beforeSHA256": "f5feeecdd005788b5e3020e2cbe992d4ce5687df1bf5acaecd156bd1a07793ca",
+      "afterSHA256": "4bedbc45344199b5a0e16eb3c6e9a5d2601e8f1882569929f643121466678b8a",
+      "bytes": 12651
+    },
+    {
+      "path": "/mental-health/stopping-antidepressants.html",
+      "beforeSHA256": "85a24f1844c72f79e2fafc39b386b4a2b48f795af82922ae4b2320c735aa9e0f",
+      "afterSHA256": "6740e9cedbfa432c109169d325bbbd6f0948137ae21255ffb6787f06f57584b1",
+      "bytes": 12460
+    },
+    {
+      "path": "/mental-health/stress-overwhelm.html",
+      "beforeSHA256": "eef0f1c763628923f956c5036ce32e5e6be87ce1cd6d19f64d5944cfe57c22a7",
+      "afterSHA256": "a61ff6fe472c22ddef5dfc03f6ada93f0b3dc41b86f3b35673f52a33b8741249",
+      "bytes": 12902
+    },
+    {
+      "path": "/mental-health/suicide-warning-signs.html",
+      "beforeSHA256": "2d730a8e7a24d34eacbf942304d56af05768c7ea426175aae195979cdf90abfa",
+      "afterSHA256": "9c5d2193ca287bd6dd25e9717c8cb8274400662bcf1449a42cb9cf13d0bf7382",
+      "bytes": 12640
+    },
+    {
+      "path": "/mental-health/supporting-a-dad.html",
+      "beforeSHA256": "64dd3d824060a26b89efcfea01114fa3293afc64e6c3fb07e0d975084dc48f0a",
+      "afterSHA256": "7980e769b64a2f7f428d9e7753b5023fb8996cc42083953cdb2590246281f3e3",
+      "bytes": 12441
+    },
+    {
+      "path": "/mental-health/supporting-partner-mental-health.html",
+      "beforeSHA256": "bd0880fea640f5a505a20e89b2343d2be304d5b20c4b96f4834d76d5f6dad186",
+      "afterSHA256": "a8564a0379c5872d0412ac266e9f5e1d446a20d4947ae40fb1ae0820ea828c96",
+      "bytes": 12531
+    },
+    {
+      "path": "/mental-health/supporting-someone-after-loss.html",
+      "beforeSHA256": "c3bd8cdc96105075f0bde00ee0a69363a845d1573a53d009811ded978eb339ef",
+      "afterSHA256": "1d3bf72881334e54537470c8c76e2454a2633da60452d2c32f99b853e111f395",
+      "bytes": 12509
+    },
+    {
+      "path": "/mental-health/supporting-someone-with-anxiety.html",
+      "beforeSHA256": "eacc2ef8eca52e564557e8683d505ff1eb91177b057fd2df8c251b9728401566",
+      "afterSHA256": "fd366b3e216f59f7dbf4bc56d17aa9cfb60786e55bf3153798f7f0bd2b4f2dfb",
+      "bytes": 12455
+    },
+    {
+      "path": "/mental-health/supporting-someone-with-depression.html",
+      "beforeSHA256": "eccf905c8f95f373c332b8f5db8a07e5940d12d467a6497ede71705adee2db52",
+      "afterSHA256": "9291786bcb1fae5b7489049ad27d91d7f4dace13244fb4e2838c654695ba2364",
+      "bytes": 12469
+    },
+    {
+      "path": "/mental-health/supporting-treatment-at-home.html",
+      "beforeSHA256": "79f20da50d297083898bb1e47a996af0bb5ce2e0ff3d85b2abffbf3988358e34",
+      "afterSHA256": "9a9eca165ccb2b8a875e096ddfdc92463b9a96a49c3b594eecf15832d7d288ea",
+      "bytes": 12583
+    },
+    {
+      "path": "/mental-health/talking-about-it.html",
+      "beforeSHA256": "0e9b64f56eabf3b9221595594dc87fc6053bb9b538087839498bc16245a462c4",
+      "afterSHA256": "f0dae44488172ce09ec18d6f1cc91da572ac3371205735ccb0d5471cbe4f350b",
+      "bytes": 12765
+    },
+    {
+      "path": "/mental-health/talking-to-a-mate.html",
+      "beforeSHA256": "eeb17ef921282c99bcbf158a212525674de286118d1ffa88d03db1ed0798828c",
+      "afterSHA256": "bd19fa3d6aa92a17e8a324c5d3e1ee2a31940e8e77fb815619b293ae53764511",
+      "bytes": 12343
+    },
+    {
+      "path": "/mental-health/talking-to-partner.html",
+      "beforeSHA256": "b33516fbd0522fcf64e62e08e15be8fc2410e9220e66d43c6faf58e5b7a5fda2",
+      "afterSHA256": "59c25ad92c7fa4ec43d23dc8ff97a3873068f5163ceaa398763b7eece54a7922",
+      "bytes": 12390
+    },
+    {
+      "path": "/mental-health/therapy-confidentiality.html",
+      "beforeSHA256": "51be655a715e88a012e705f38af0e1a64ae4600d8c061cd9cfba50eb7c0f42b2",
+      "afterSHA256": "f8c08afe3233fc5ea32aea027c36b6155eda58c9d3fbb15e7545228dd681ac53",
+      "bytes": 12434
+    },
+    {
+      "path": "/mental-health/therapy-waiting-lists.html",
+      "beforeSHA256": "f68ea84b1853d4c33a4653104aacde23c1838b765337ce6b72d412ddd8aa6d48",
+      "afterSHA256": "e47575c6140ce10a555c000071034f3aecba643994664ff4a5e73c77d59d0df7",
+      "bytes": 12389
+    },
+    {
+      "path": "/mental-health/things-you-can-do-yourself.html",
+      "beforeSHA256": "a46ff5f5ebdf79de96cd40f8920f85594e9a829015ee10d3b59873d3bacb507a",
+      "afterSHA256": "ad81c911a725a209c5262cb7fbb23334c8b90ce16cb0d3457f6f03b3c619e860",
+      "bytes": 16201
+    },
+    {
+      "path": "/mental-health/tiny-goals.html",
+      "beforeSHA256": "3b7b42af5fba792cb1f36fdf863e9bf0a01801fa9ecc62edcd8c331d7f703a30",
+      "afterSHA256": "b1604efb3fabb43e1e791f5ac613338b3a95d54868f250e15ff2803a876820f2",
+      "bytes": 12489
+    },
+    {
+      "path": "/mental-health/types-of-talking-therapy.html",
+      "beforeSHA256": "89e453e163af15b01bca93d20987cdd323c9b802519b18d2545555b4e4d74831",
+      "afterSHA256": "e920c0aa02d5ee5eb32c70573d80c34d6595126f66690cae8f33b7c5448e11cf",
+      "bytes": 12561
+    },
+    {
+      "path": "/mental-health/urgent-mental-health-help.html",
+      "beforeSHA256": "e88a107c2c869d5d620874710ddbd0e52e951e6195565e0b662df75932b3278a",
+      "afterSHA256": "657637ba9754b32db72e4611294928928aa1199e64d4a650b77abd6c52d549ea",
+      "bytes": 13091
+    },
+    {
+      "path": "/mental-health/weight-loss-identity.html",
+      "beforeSHA256": "ecc3b9cf6220bb5f07e263aa7dda72d21cdb3b667d6fc50ba02093af29a59479",
+      "afterSHA256": "fa34a78261f1fe25cbe0b1551f9bd8204dad476a09376f3ad0ca8919bcb1ece2",
+      "bytes": 12674
+    },
+    {
+      "path": "/mental-health/what-not-to-say.html",
+      "beforeSHA256": "a6c65bb95d5183c55d82fc058c0b20d48b4866267586a5c229d1462c17c18229",
+      "afterSHA256": "bb5d1382e019cc86129039c6fa4fcad74444e204ff4e5caac7ebb16c08c27d75",
+      "bytes": 12491
+    },
+    {
+      "path": "/mental-health/what-to-say-to-someone-struggling.html",
+      "beforeSHA256": "8344c2224dbc21fcc8ce83e45ef6f81b7078da6585135b02f42e8f6e17cf4702",
+      "afterSHA256": "9adabe94d0f2bc573b1afe6869d48595764107a287c17620aec917f98a0ff276",
+      "bytes": 12574
+    },
+    {
+      "path": "/mental-health/what-will-gp-ask.html",
+      "beforeSHA256": "18f624f5227e230bb81cc12e6e6ba11aa62f32acf6cfc09208d9ce61c76f38e9",
+      "afterSHA256": "373bd9c6296d275425dfeba8cdb5959ac848dbe724479c07e1a677b5e67a7d41",
+      "bytes": 12441
+    },
+    {
+      "path": "/mental-health/when-someone-refuses-help.html",
+      "beforeSHA256": "d82185894a55a9f68032fa663d66ebcf0ecbc1c5f36d1ec079ec2ffe51daf7de",
+      "afterSHA256": "48ddd2a7aa5b6286fcc9bba985ad8cf7161c79833265e557b131694bd8a9e123",
+      "bytes": 12648
+    },
+    {
+      "path": "/mental-health/when-to-get-help.html",
+      "beforeSHA256": "439253ce3e38a008e31f86207328f978fbb71788183151c6391845a8c88b9cb9",
+      "afterSHA256": "d4eeded35498dcab6e3f9bcbc83fc45f6547195573d36431c931443d3a032fee",
+      "bytes": 12701
+    },
+    {
+      "path": "/mental-health/when-treatment-isnt-working.html",
+      "beforeSHA256": "5c5a43adb3b585caadbc66b59d8c3fa08058265e60976d2dd656ff771aa6c4b2",
+      "afterSHA256": "da12473efc6aaa779f2de2777281a4fb3f206399a846dce14ca525f60a476187",
+      "bytes": 12628
+    },
+    {
+      "path": "/mental-health/work-stress-burnout.html",
+      "beforeSHA256": "687ed4ecced2819f9602b0c6b7ec6466638b9d541ca53c7d008d0f033997fdc3",
+      "afterSHA256": "ff95a7dc3f33781987fe3e55bdc6b24503256b86e88d9fa1ad5af2986d71f5f0",
+      "bytes": 12942
+    },
+    {
+      "path": "/mental-health/work-stress-reset.html",
+      "beforeSHA256": "a6f33159734382df604406adc828695c5eaf40117c3091b0c8fe84bd755dfa86",
+      "afterSHA256": "5d38a132fc8cd37e1f97d909ded51bed2292bbb3130b6becc9ee0c5c1ae39f7f",
+      "bytes": 12632
+    },
+    {
+      "path": "/mental-health/worried-about-colleague.html",
+      "beforeSHA256": "af600c5e498b565178a813ef5eef3d2ea0b630203942344a398ccefaf45744aa",
+      "afterSHA256": "5d776d9a0899e4d677d53fe694c4f0d7ed48e79d8a1dd7db1944cf2fb59ff02c",
+      "bytes": 12536
+    },
+    {
+      "path": "/mental-health/worried-about-family-member.html",
+      "beforeSHA256": "c84f3d9076b59dff4dafc951fbe7004c01d1d7276cfb500f725f0bd84552a9d7",
+      "afterSHA256": "b0d4f3a0e8d7afabf861ec3b23de48fe2fd301ddd78769578cacf6d939d9b0fc",
+      "bytes": 12610
+    },
+    {
+      "path": "/mounjaro.html",
+      "beforeSHA256": "8a2b52ad1fd74746a77b0fa06024cea4208339d23f5ff09a1315d5fc33a3a60a",
+      "afterSHA256": "c9227757857433ae7e142d84ed620b0682ac3f88ce9d6370798f1de0a934abc0",
+      "bytes": 20754
+    },
+    {
+      "path": "/my-weight-loss-roadmap.html",
+      "beforeSHA256": "3a008cd5b2353ab0f9edcff04a5851a006cbb5777308841a89e67c69993502dc",
+      "afterSHA256": "29a9f242695ff73844e484bfe2dc1fa52682a42e4f9f093a6866fc7ca65ea620",
+      "bytes": 15439
+    },
+    {
+      "path": "/nhs-private-methodology.html",
+      "beforeSHA256": "64250590fe0a2c27a6de5058e1794f705c0dda92132cbff24af9da6266b8be60",
+      "afterSHA256": "f0f50a2e789cb82d6e05285349c40a8321fe417746ced6ffa3311bef48a67b68",
+      "bytes": 12617
+    },
+    {
+      "path": "/nhs-vs-private.html",
+      "beforeSHA256": "7991bfebac83f2c77d5f90affcb451368991f38ac01ff47b15881b7b0046dbfd",
+      "afterSHA256": "0abfa1eec7ac1b146ec1278f779d573b917a215450b689d3e877614731f5820a",
+      "bytes": 21365
+    },
+    {
+      "path": "/offline.html",
+      "beforeSHA256": "829bbb2658f9507e112254ee181cddcfb0d1d6f2033516d3f09c3b26ac18122f",
+      "afterSHA256": "db1405abdeb57368d63ba38ae83d4d2f5c0e468a860104ef036b634c5c47ca6e",
+      "bytes": 6746
+    },
+    {
+      "path": "/order-success.html",
+      "beforeSHA256": "77aea6cde61beb00930ffdafbc113dde8de4efecbda1a8843bc9d710347e4d20",
+      "afterSHA256": "bbd35a928ab071779cfbd9eaa00203c8fd71d1bb7bbd7023d3e606a3c0913d7b",
+      "bytes": 3327
+    },
+    {
+      "path": "/orlistat-definitive-uk-guide.html",
+      "beforeSHA256": "26ea7014f44b6ef1ecc025d67b1b637b1ff08cfd7e7c8e958e846368c43827a5",
+      "afterSHA256": "2449a9bf9f9f13673240eb3d7c35bc16c6731b2a140e9eb1934412d9ce259e33",
+      "bytes": 13889
+    },
+    {
+      "path": "/ozempic-definitive-uk-guide.html",
+      "beforeSHA256": "1e38887a2359e1f7de48333ca526ee4b831e6d58310a7ac9b5e99eb93059c0e1",
+      "afterSHA256": "6bbb18681a21e55eb07babe20c220eb15e43111b3b1e60e28a62fc6b2e9f7f20",
+      "bytes": 13349
+    },
+    {
+      "path": "/partner-with-us.html",
+      "beforeSHA256": "9f7ca906a2ae5511ab5ff37d63a5542fdecb282b022d9e50a185b37cdd8c5a54",
+      "afterSHA256": "d83f2d8b065de3d1cbd962e71cf98a5e8e9cc2d427d60d61ad7d2edf782c859d",
+      "bytes": 11488
+    },
+    {
+      "path": "/press-centre.html",
+      "beforeSHA256": "a8cd7d33a52c114773259225f1f0006ba247aa0f7234b79c76cf098356daf41f",
+      "afterSHA256": "412f2e56b67d3e6900f81d9bda2b010d0591adb7fb72a68b08ea7140c1fc1d13",
+      "bytes": 10199
+    },
+    {
+      "path": "/pricing-membership.html",
+      "beforeSHA256": "73c86cf175847d5af24f0e74db8d31c97f6efd8c7b4c908d99feae426bf4f961",
+      "afterSHA256": "ee4ca5a5d3f4fe9c75aad22b8344c47881c5ff199c795b99456cce2e1558c072",
+      "bytes": 9553
+    },
+    {
+      "path": "/privacy-centre.html",
+      "beforeSHA256": "a2d667de992be5a7783f3a368528338b26e436448c236b33c305e9ac7c84d352",
+      "afterSHA256": "c70e3ebf83a472e47ae108c2a07980b68ffa25bc5069c090ac1dd3783de30234",
+      "bytes": 9702
+    },
+    {
+      "path": "/privacy.html",
+      "beforeSHA256": "f4208b715c4e0c7eb2fc46e5024ab9f5b1528e310ab3d09d1cbbe12d387ecb45",
+      "afterSHA256": "f9fb1279fc76e00d3fe100168ad77e105fea7fe561f6bb795fbb0540ed697c45",
+      "bytes": 15123
+    },
+    {
+      "path": "/product-reviews.html",
+      "beforeSHA256": "0276afebc0bed83708436e36eeb7113cb3b4150d5f671da2f97650f7b7ea3e76",
+      "afterSHA256": "1037a542c1d9a7c885d5dda2c37a348ae96dd2e5a4b166bc2e40a902d645363d",
+      "bytes": 11490
+    },
+    {
+      "path": "/programme-benefits.html",
+      "beforeSHA256": "b9c962f8afbaf1b73bb3186d9489dec211c017ee0a149ab40ccaed659a26118e",
+      "afterSHA256": "439919c92e8d308814a2cec93acd9d73b4d9c42e6fd15f19191c9067ebd2f386",
+      "bytes": 11947
+    },
+    {
+      "path": "/programme.html",
+      "beforeSHA256": "f8ac53aafda9e39337151ab697c35c47e62b3965eae0a831c4d2914df8763933",
+      "afterSHA256": "0f6d8a82668664c59c636aeb5ddaa9bdfd8b8b9fb7692f72b015bd4d9ca9711f",
+      "bytes": 11122
+    },
+    {
+      "path": "/progress-centre-methodology.html",
+      "beforeSHA256": "e7e58d7e4a080cb896dd66cd2940fc21a87b2dc4b6cd1e8e16e193d0594dd588",
+      "afterSHA256": "68dbf271652b58e312bcea997a13bd241a3c915913abd10747c919bfe8dea96c",
+      "bytes": 12914
+    },
+    {
+      "path": "/research/uk-mens-weight-health-statistics.html",
+      "beforeSHA256": "f5d390aa4bf3d0f197b0721ab2149c2ab29f4971fd5b6cade3bb0310d7e35214",
+      "afterSHA256": "ebffe910593aabeb1b88b30f29b8e70a12f0818abb2c26f107b38fcd70fb1184",
+      "bytes": 14478
+    },
+    {
+      "path": "/reset-password.html",
+      "beforeSHA256": "c886a25291b476bfbf2253205c1da2d22b14189a61d4c28d4f6136d258cebf70",
+      "afterSHA256": "2c5a7d199da3550d93f64fab560dbaa2fb81743ee55d4aa41ec92fba8a5243da",
+      "bytes": 7983
+    },
+    {
+      "path": "/roadmap-methodology.html",
+      "beforeSHA256": "88750bd476550435951b2a05b18875723eac37eeb2da122bb7c372800b10cd52",
+      "afterSHA256": "c13c041c4b65d5f3a33e62d4c586fdba4e08ac5f2d2592071a432a69ea6799bd",
+      "bytes": 11503
+    },
+    {
+      "path": "/saxenda-definitive-uk-guide.html",
+      "beforeSHA256": "4afbbaf642b6d903023275019396978030388227c348f32ecb24642bc4d12c32",
+      "afterSHA256": "539e4b932c67263e6d9659f21e1be03b6358053b0fae7c5348ea20d42e9f2618",
+      "bytes": 13130
+    },
+    {
+      "path": "/search.html",
+      "beforeSHA256": "f42bf2994c3fbb6cbe76e3ab03e714b2a4f95b518d32fb9d256a234e8891aa69",
+      "afterSHA256": "44f9c0b6a383dd29c77a0e103ba7931cc1e2ac13b09165b4cb29362e3e06af70",
+      "bytes": 8501
+    },
+    {
+      "path": "/service-worker-v3a.js",
+      "beforeSHA256": "247c1075158ad398441f614566418eea06b109c9f360d720386f5d7921701bb3",
+      "afterSHA256": "887123cffd18400bf3f3bee24614a2b84829d017aeac96c31172f55be852bc3a",
+      "bytes": 1216
+    },
+    {
+      "path": "/service-worker.js",
+      "beforeSHA256": "5d9e0e59bcb04d3c59538a245d2b2d1c989b400905e99f74ea1ba3e4461616d3",
+      "afterSHA256": "df93fdeee6f7573ad3637b3292946c4f87272f130a1e66cea0b65e9c941c420c",
+      "bytes": 728
+    },
+    {
+      "path": "/shift-for-work.html",
+      "beforeSHA256": "32d6e8bfd5e9a261311e97820f97ef62bf48c04a3404400504fdb0fd7dd2dabb",
+      "afterSHA256": "99783a8f337b30be3b106923d62be0e951a4cc56104bf8727908fd0c98b4cc76",
+      "bytes": 21939
+    },
+    {
+      "path": "/shift-health-product-v2.html",
+      "beforeSHA256": "4de6d9db0eefdcdb653fc4eeb4232b8ebf08809cb26c477910e4426b46d111ff",
+      "afterSHA256": "f16bea5c5dd16712ecd8f6489c70a016d947961ba053aa47e7d03ce081c43240",
+      "bytes": 16611
+    },
+    {
+      "path": "/shift-health-product.html",
+      "beforeSHA256": "d7fd266e1366ff1e1965c4425e510337927bcd21d75098d328da2e36421fd966",
+      "afterSHA256": "3a5a79b14f1817d2c6ca5582f4ab745474a4850d75143c9bc634dbcaf8825e79",
+      "bytes": 16615
+    },
+    {
+      "path": "/shift-health.html",
+      "beforeSHA256": "f2f87a03b35d9553716ac7cb04be82ece21dbdee41bd4108444cfd11df988fa4",
+      "afterSHA256": "574aa7edad1c21727bab38bc6a27a8643ad870295bcf2feec105d5525022f611",
+      "bytes": 14539
+    },
+    {
+      "path": "/shift-me.html",
+      "beforeSHA256": "9143ce2f1512053d4d433354c4b561d4d88566ce06a6a6d591b4281f2026e7c7",
+      "afterSHA256": "b1c7d4b97d43e0f16f399ac241b3d275e4db46d45d5e745bf0c69ef4af59ad45",
+      "bytes": 8810
+    },
+    {
+      "path": "/shift-promise.html",
+      "beforeSHA256": "54ddc4fde5538550f5617b1b3a98508b5d3b5fd92f99a7c2f1a665ebd43642b9",
+      "afterSHA256": "8b164655575e0cb3cc40ce3141537f76aa84e7a37edc2fc52a968ed91bf09ee8",
+      "bytes": 9561
+    },
+    {
+      "path": "/shift-sport-team.html",
+      "beforeSHA256": "b812d14cb63d7c3fe297b36e214e943f5a260034be7ae166ab687d38d0b40378",
+      "afterSHA256": "fc8aeac5b55d6e043084dc3fee7e258d37f965336a98e116216660b87f40f3fc",
+      "bytes": 6614
+    },
+    {
+      "path": "/shop.html",
+      "beforeSHA256": "7796fd01cef3657238734aab2ce70847916ea83033dc213bcec7e139b2a5d88e",
+      "afterSHA256": "7fe4395f97262ab20927899aaae5269bbf56fd61125ae5a70e7dac3470a9e1dd",
+      "bytes": 8900
+    },
+    {
+      "path": "/social-distribution-v30e.html",
+      "beforeSHA256": "01fbe10196e8ca17ef6bedceb289dcfe2c3b912366e38766ecc94f23f6e9468f",
+      "afterSHA256": "17af0d6ffadc0123abab1a7f4c3b3fe1059289df12b09739308e7a3c3919e237",
+      "bytes": 6824
+    },
+    {
+      "path": "/start-here.html",
+      "beforeSHA256": "062a735314767ba976a71d8ab79c14b5c1b93990f4a3c05c1bff15ba37c0db34",
+      "afterSHA256": "b260bb23b0ec1129081769a6f31f42f85786a06c465537acaa9a088b040f6f56",
+      "bytes": 27069
+    },
+    {
+      "path": "/support-dashboard-v3d.html",
+      "beforeSHA256": "8762ea9e0e15921c672a971fbf5648e296c73ed06f27ce4798feb970ec7bddd6",
+      "afterSHA256": "065746282309271e56583e05e123b368b8034a2cfa206357658b5e7b64bf2d95",
+      "bytes": 6879
+    },
+    {
+      "path": "/surgery-comparison-centre.html",
+      "beforeSHA256": "b97dbf6c9b7860a4107456d08507eb4f8fc21b54ef5e6d9bae8ae9012dde4e80",
+      "afterSHA256": "6efb6484f58cc9cd26a9041888437ae3c5098e9aed1a3eada465220befe62ef7",
+      "bytes": 19908
+    },
+    {
+      "path": "/surgery-comparison-methodology.html",
+      "beforeSHA256": "6fdbffb83e8600429cc2f09fd3323a2fa38dc05b3f3ada96cd027e7193a217e7",
+      "afterSHA256": "6f8ec99bcc16f8b3b1eae6e75b0410fd2dde0380931eb0fef518986c5ccf756d",
+      "bytes": 12697
+    },
+    {
+      "path": "/tap-room.html",
+      "beforeSHA256": "3767be27b3583a4129a80f60df666caf1d4c00576520ef76226f1c51593ce195",
+      "afterSHA256": "0236a5fd4622136d5da06690aef235a3330250e98d952ddc430abb57f1f782a2",
+      "bytes": 1325
+    },
+    {
+      "path": "/terms.html",
+      "beforeSHA256": "469eb6463bf234fd3002badccae6def9f4cd505a4c1191d2c2486a94104ca10a",
+      "afterSHA256": "5b15191e7a6d85cef48fc553961c9cf7ef80ac9bf17bdb15487cc2c2b1d052d7",
+      "bytes": 11034
+    },
+    {
+      "path": "/timber-mill-bottle.html",
+      "beforeSHA256": "84febf9403dacffb6e20f154222ba108ba6314943418bc9c812890114af7e583",
+      "afterSHA256": "eca2cb4f99e814798445e730d18f30240e88b2f4af64882db889c11d5c1cb7b7",
+      "bytes": 9363
+    },
+    {
+      "path": "/timber-mill-cap.html",
+      "beforeSHA256": "49b1b1ce21855b27bcf964d81af4821292385818e2dd6b40a2ab567721b6bc82",
+      "afterSHA256": "9dca9024d5434f6c508e8cbd87cff1b041b88846405226998e9784ff72fd05ad",
+      "bytes": 9345
+    },
+    {
+      "path": "/timber-mill-earned-tee.html",
+      "beforeSHA256": "e03056e172d614c8c47936f1ad152762e83b44513ca20983b1344e32bac7393b",
+      "afterSHA256": "0b10902a634c81339249efe68824fd5cccd7ceb4b8cb8c92c1191cb5ed74408f",
+      "bytes": 9394
+    },
+    {
+      "path": "/timber-mill-essential-tee.html",
+      "beforeSHA256": "7465300623b6edd0338f1aa561f38cf0879a4eb514b899c67ae8b2e388dc3192",
+      "afterSHA256": "1b55db1095cd28c4c777ba339d4726ac41a97146d48b76477e9ce1b56b1a61ae",
+      "bytes": 9392
+    },
+    {
+      "path": "/timber-mill-guts-gone-hoodie.html",
+      "beforeSHA256": "0a38b4ce8704ff6c111be3c551f77b3430cc62d1105337cb687b10e9ba5657b7",
+      "afterSHA256": "8018143c5895a5c9333fa0ce5bdcccc92a91a22df2c1de5e94ccb5b2afb7864a",
+      "bytes": 9403
+    },
+    {
+      "path": "/timber-mill-guts-gone-tee.html",
+      "beforeSHA256": "dfc2b0e727b89d9a6563e1c63a917eaa6805d9ec142b5b77ccd0d781106a575a",
+      "afterSHA256": "02c45dd67c519ae51c0de9da884d158336463136b526ee411f7bcbf2d46e2c76",
+      "bytes": 9385
+    },
+    {
+      "path": "/timber-mill-gym-bag.html",
+      "beforeSHA256": "884dc290ce629bbd22d719781c210cdfbfb6866b57797d0cddd37ae04cbdc351",
+      "afterSHA256": "65d6b55ab289f650217002ea33fa4b7b40f9b8745f974e5b7d70a0ad9c380724",
+      "bytes": 9369
+    },
+    {
+      "path": "/timber-mill-hoodie.html",
+      "beforeSHA256": "3bf557bcb3d82f791780a19f551f750cbad051a0afa079ac4a9261b4b357f318",
+      "afterSHA256": "fe10f761f15def46fe64ba99f130c04b5144ad813e963f70e32d333e707d9d4e",
+      "bytes": 9380
+    },
+    {
+      "path": "/timber-mill-joggers.html",
+      "beforeSHA256": "45e7c370397fa72954bf88808f2c2df0daec30fdedd2e7f110057cffe8ccd2f2",
+      "afterSHA256": "1c7c88d78b639d9800df3f84ba35ec07d83c7cd947dda6bcbc6f00c35ab7032f",
+      "bytes": 9325
+    },
+    {
+      "path": "/timber-mill-olive-tee.html",
+      "beforeSHA256": "0623050ee010f37106b79bde72cfbd7c2647f57816bc3cb50eb1cc43459e359a",
+      "afterSHA256": "033605b0d56a998697d2d8e90736e59b5fb2131f3ac6b3b367fcc94ec43e2322",
+      "bytes": 9307
+    },
+    {
+      "path": "/timber-mill-polo.html",
+      "beforeSHA256": "cc4f3c06189a6f967ac8e873401caa1055402281a7d55c5136b58ec000941812",
+      "afterSHA256": "8cf2d291dcda56da1cd40cba1934d78d0ba1d1fc2ab2542cafe4a1ff8e09dbd3",
+      "bytes": 9313
+    },
+    {
+      "path": "/timber-mill-quarter-zip.html",
+      "beforeSHA256": "015c898f01754cfb99492ab1183a1b005106a115dc4f9794c5b0c85acf12e8fd",
+      "afterSHA256": "4c99814806dcbd4f5acae06ca4192e93f13526bd59595a89a477f0118b944f68",
+      "bytes": 9319
+    },
+    {
+      "path": "/timber-mill-shorts.html",
+      "beforeSHA256": "a36f7b7dc7a9c5fe4cb165048558a6b9609afd8a29d554fa6cd6809760ef4c04",
+      "afterSHA256": "7b615c31d855f285a7565766080bcbacaefbc35490b9654b15754a27a5f94883",
+      "bytes": 9316
+    },
+    {
+      "path": "/timber-mill-socks.html",
+      "beforeSHA256": "670b4fe5062b05fe9eeffa2cb787657a43ee051fe4a43caadeb7b8531a2520f6",
+      "afterSHA256": "24571a5a3c5cc6582834019026f6be680c571a93c3fb8ed16135a35400af7365",
+      "bytes": 9311
+    },
+    {
+      "path": "/timber-mill.html",
+      "beforeSHA256": "1a891ec826c6763a11d217bdb7aa06654c68ef56fe322dc14306530ad090c43b",
+      "afterSHA256": "14717e9190dd6a366a716ac00043bb142b2279d0850b10aade2fa745f0b5b696",
+      "bytes": 10269
+    },
+    {
+      "path": "/tools.html",
+      "beforeSHA256": "3654c6fc89bcb3a127c744d65bfdf849a6c7385f6893bd51dc987d86d9925b52",
+      "afterSHA256": "10f7b851acb19ce253b4aead7adf2332b78fef529df06d7603e440a5a973b0f0",
+      "bytes": 16023
+    },
+    {
+      "path": "/tools/alcohol.html",
+      "beforeSHA256": "202bd057ca8cb3a6eae0ef97320f9dd75742ecbf93d11af8dcb0249424e3c5ae",
+      "afterSHA256": "5a026f48bfb99402c601a3b23ce68d466bfd8f9d6b05878ed7eaa47a13e30080",
+      "bytes": 20612
+    },
+    {
+      "path": "/tools/bmi.html",
+      "beforeSHA256": "3adcc238db7e3ff8663615f03f22c4c7230dbbb77916502afd081570e07f98d1",
+      "afterSHA256": "aaca5509b2d480683c91ca4212e30ef3cf33c585971b1cfaa990589e8980d058",
+      "bytes": 33346
+    },
+    {
+      "path": "/tools/calories.html",
+      "beforeSHA256": "a18423ac5f08ac43871d3d8ca3f9fc9a736107405d595ac5e4b634f88e5bedf5",
+      "afterSHA256": "ead58cb2066d1f79807b4f7ea26e17123d778658ccf3453f14e7942b480465c2",
+      "bytes": 34883
+    },
+    {
+      "path": "/tools/healthy-weight.html",
+      "beforeSHA256": "11fdec81290c714d709d24828a119ef779753222b270fb45c17038d71382b98e",
+      "afterSHA256": "24915a96311a760aecbc8224a0b7dd2bf24f08c0a4ff6a30419062633fc0caa4",
+      "bytes": 20517
+    },
+    {
+      "path": "/tools/protein.html",
+      "beforeSHA256": "1418991fa17d1f1d674eee6dfe782e6dac96abe428fee67623bdfe43b98d22be",
+      "afterSHA256": "8292f2ca7fed65afdc629a113b9eed28a2df7a2664631625426d1283a5c19a21",
+      "bytes": 30575
+    },
+    {
+      "path": "/tools/sleep.html",
+      "beforeSHA256": "e04b45d40c4d1665b05c9b206f2b32d5437549fd12fb959d07ada33174e4ba38",
+      "afterSHA256": "7b3bb9e98c6ba4322554ffe27b81b37b94a57e81121b7e886ea1404996a57495",
+      "bytes": 21406
+    },
+    {
+      "path": "/tools/steps.html",
+      "beforeSHA256": "952bce370b0112036c9306f4cf43352754725b779625b2f883ba7cd35853743e",
+      "afterSHA256": "73f60bdb84e6c7f60f3f8a14d08ef31eb5f144886a6fc36c0769965a8c5099b4",
+      "bytes": 19992
+    },
+    {
+      "path": "/tools/waist-height.html",
+      "beforeSHA256": "416d85967deab2e0977e9ca4224508c08abae80f06130a5f4711800114ca9178",
+      "afterSHA256": "f4fef5c9852c204d79f679c1dbee21dca55a928478b665b191e60439c9bae8fc",
+      "bytes": 31096
+    },
+    {
+      "path": "/tools/walking.html",
+      "beforeSHA256": "756da3bb5d6e36ca80bf65b3684c69fc5371cf7b5344d797d0c64d0bba3080ac",
+      "afterSHA256": "35b59887a834cd65649522c487d97b292c7082d67b2500abe1f3a703ed46343b",
+      "bytes": 29768
+    },
+    {
+      "path": "/tools/water.html",
+      "beforeSHA256": "ff588dfd4d6255643be08c8829b562b73d030118682bbdd3bb4bc5213bc4649e",
+      "afterSHA256": "8533f7db3f81a5f4a63feec084c01b59ad0560f45e1a036973c85988bedfb594",
+      "bytes": 27555
+    },
+    {
+      "path": "/treatment-access.html",
+      "beforeSHA256": "9bd167975f7b7c5e59f9ddb99a7de7c2a105be301801ec85fb9e429e36d7470e",
+      "afterSHA256": "04df1dbc416df175d32e4db27232e2bc249f499402d3d50d3ba03f0613982e46",
+      "bytes": 10332
+    },
+    {
+      "path": "/treatment-assessment.html",
+      "beforeSHA256": "52c062b347a8abda6d5e47365c441939c217527c5b30cec479732c8acfd156af",
+      "afterSHA256": "cafb9f0b2df8837695f2761eb87470a4733f0a025d616d77168570e08ebf37cb",
+      "bytes": 5573
+    },
+    {
+      "path": "/treatment-centre.html",
+      "beforeSHA256": "a66b09be4a0cc4156f7ca9d4b367aa03dca1d50e8983561e74ba907a1faad669",
+      "afterSHA256": "36c92944d4fdf73ff3a9d4b55dc56671eb501bfe4cb0340050f8df916e5dfede",
+      "bytes": 27176
+    },
+    {
+      "path": "/treatment-finder-methodology.html",
+      "beforeSHA256": "de83ce937d9c5cd671b2b11ef6ea8e296d16bc3dda3f321edfbd61130f3bfde8",
+      "afterSHA256": "0767988576076676de2f1c7a6db55a7f1c577e2e2e6e66ba433c1aca4d266a67",
+      "bytes": 12991
+    },
+    {
+      "path": "/treatment-finder.html",
+      "beforeSHA256": "a4517e01b3674b1e3fb817743501355124d024810ae723e3b475835efe13e28d",
+      "afterSHA256": "fa0fda37e58c865cf65edcdb1a197bd1cb4153e415cff5930c6de4cf2d7a8b7f",
+      "bytes": 31710
+    },
+    {
+      "path": "/treatment-order.html",
+      "beforeSHA256": "67ada9fe0187b9e4108feb529b46653877f85a65ba63b7c24a8108ee4c63b86e",
+      "afterSHA256": "e0284c4df272cd274eac54d2a0af08587ceea59c48b2af1aa3f70a7b5c699de2",
+      "bytes": 29131
+    },
+    {
+      "path": "/treatment-terms.html",
+      "beforeSHA256": "faa25a9954381ffbb174d22cbf072361c74c68d3fcc9b1cd8799e3fbb9ee2054",
+      "afterSHA256": "f49a94b3968971f460f31101c8557351a0ed545600c351272c89fa26719e03b7",
+      "bytes": 2935
+    },
+    {
+      "path": "/treatments/compare.html",
+      "beforeSHA256": "e68b84f9c57e5219f403af7f71ba7fc87e0197bc931c42ad1e9cc7742e0d5986",
+      "afterSHA256": "2c6e0045ab074644a8c9466a449d631a6cb68a501efa8ef0366af8532ace2a92",
+      "bytes": 11437
+    },
+    {
+      "path": "/treatments/emerging.html",
+      "beforeSHA256": "0ca7ab82d72017494f019ba478007ddc553500106bf51ae29c259725335f8bd4",
+      "afterSHA256": "896f523ef37ada703deeed9fa9ac1f9b377ebc7c108e39fd7d99610de1c38575",
+      "bytes": 14376
+    },
+    {
+      "path": "/treatments/lifestyle.html",
+      "beforeSHA256": "778c953fd55175b8ef96b14a98b4ce5af2062ee84f07e66f0a7ec8be40ac0059",
+      "afterSHA256": "d0b69c084d5febb5fe3dbda2fdead5747d0123b91d59daf264b64eca9dcd1b78",
+      "bytes": 14079
+    },
+    {
+      "path": "/treatments/medication.html",
+      "beforeSHA256": "c589e8d1c08272034012e9da6ab6c1e764faa040a1da00d5fb7f0e58b6fd5def",
+      "afterSHA256": "80fd590be6414d044cde9b517bee2caf5db1669096b49ba666af37b92d57a8a0",
+      "bytes": 12079
+    },
+    {
+      "path": "/treatments/nhs.html",
+      "beforeSHA256": "1c99520db81ce372e7cc50bbb1e4b6ccec698e9b61e684b41d484f759a533e63",
+      "afterSHA256": "df7764cc3f4c0a1006e7335500711883f5d127e8e1220a3071c188c9c873e7b5",
+      "bytes": 13334
+    },
+    {
+      "path": "/treatments/surgery.html",
+      "beforeSHA256": "d5a9b8a1a0aef1e04e5fadad85a329a18d8649d3a396c03ac56ef54dd0d69e0f",
+      "afterSHA256": "258e8c49d2bc1b1d0e134b529db607bb399fbd8456ba1a9f6d89190c518399d7",
+      "bytes": 15058
+    },
+    {
+      "path": "/trusted-partners.html",
+      "beforeSHA256": "7eb4dc1b98936a57966b9de31f5b80760495b3581117a684c8536183b2be41a8",
+      "afterSHA256": "0b49aae0358260448bc61d0c115869df5e3a4dea66e8aad936080088cf0d067d",
+      "bytes": 10349
+    },
+    {
+      "path": "/uk-europe-methodology.html",
+      "beforeSHA256": "1235ac66f9b2a6391c14eeae5f5c9f559839fdc7e4e45d956584721ee2e3c51d",
+      "afterSHA256": "406066dcdb0440eba9868b46be8cfaafade1bbf0ce6ef5c3d8f9b356cb22b66a",
+      "bytes": 11048
+    },
+    {
+      "path": "/uk-vs-europe-treatment.html",
+      "beforeSHA256": "cdb4eeafb0eadb6add86017e42a31809b9a280dd7b8ca2b60fab93fa3ef16d10",
+      "afterSHA256": "9194b0961fee478b115bcc3e88e95b3cdbf2afbd15aad02ffc96d7c901f840d6",
+      "bytes": 27340
+    },
+    {
+      "path": "/universal-comparison-methodology.html",
+      "beforeSHA256": "ecfd1a93fcc39d510e20e3f25d81358b3d017ccf6c509c6460beaaae2d6bc22e",
+      "afterSHA256": "fddf9dd3d7a36bc5f2222bb4b6a8b8a8a40f3882263252e4e064852742cba6b7",
+      "bytes": 12427
+    },
+    {
+      "path": "/waiting-list-journey.html",
+      "beforeSHA256": "7c38f83256eed76d017b4b5596c12fda64d88654f0132e65ff7ed19db4baf4f4",
+      "afterSHA256": "0981177ce18d926130aaef48fca236543f34bad0a3ed911cccdbaa0815fc9bc5",
+      "bytes": 9765
+    },
+    {
+      "path": "/wegovy-definitive-uk-guide.html",
+      "beforeSHA256": "307f1091aa04772fbfad8f5b8545c0d16af1f1f5aed67a79da11bdd36991183f",
+      "afterSHA256": "7a09710649348d87abbaba88a3129fd7a4104edb52ebef999ea992530e778ece",
+      "bytes": 12745
+    },
+    {
+      "path": "/wegovy.html",
+      "beforeSHA256": "5b00ee33b77c86a0eb932fb3a052f6f8b88fc87bfd889bf9049a5100b1477229",
+      "afterSHA256": "6f80c03bddd3f2dc0269a63fefdb1af16a10fffa205426562254d13254377558",
+      "bytes": 20891
+    },
+    {
+      "path": "/weight-loss-injections-for-men.html",
+      "beforeSHA256": "e4e97f525f20d09b0358ccaa0103f88fbcc21ca13c877e40dac77823976ce608",
+      "afterSHA256": "c4bb41aab43f0c6cdfc9ce38ee988e62a3f34e21a357d1226de104a4a2280c6c",
+      "bytes": 17894
+    },
+    {
+      "path": "/weight-loss-tablets-for-men.html",
+      "beforeSHA256": "195629ddf543f68d9a49db574a86c4bf58a450b472aabf0455aaa1da01715bf9",
+      "afterSHA256": "a779c5e66d02990b6705b0fd1c49487b53345982df1595440407609b13167ea2",
+      "bytes": 18656
+    },
+    {
+      "path": "/work-with-us.html",
+      "beforeSHA256": "749ff7c77ba865e657c8ee0cf4c352070b280c0a807d40088cf5f38ea9c8024b",
+      "afterSHA256": "3d334d77437f3bf02b0d2b4efa7b1382135c4151da07cfcc1479a2caace71bd9",
+      "bytes": 12583
+    },
+    {
+      "path": "/public-release.json",
+      "beforeSHA256": null,
+      "afterSHA256": "4ae8381c0c7f1a39276620dd3654bdc0f5f8c440e59a2037d01ca5293df3c081",
+      "bytes": 429
+    }
+  ],
+  "htmlFiles": 458,
+  "namedMedicineQuizResults": false,
+  "prescriptionMedicineRanking": false,
+  "legacyQuizAssetRetainedForItsExistingStrictPrivacyAdapter": true,
+  "homepageApproval": "Matt: Proceed, 17 October 2026, following exact proposed homepage wording",
+  "qualifiedAdvertisingReviewClaimed": false,
+  "reviewGate": "Named medicine matching must not be re-enabled before qualified medicines-advertising review; assess before first clinical partner goes live.",
+  "unrelatedOriginAssetsPreserved": true,
+  "coreChanges": 0,
+  "customerDataWrites": 0
+}

@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-17T22:35:58.186414+00:00",
+  "project": "projectshift",
+  "canonical": {
+    "id": "16098ebd-ffdf-4e0e-a95a-f5388927bbef",
+    "url": "https://16098ebd.projectshift.pages.dev",
+    "environment": "production",
+    "created_on": "2026-10-17T11:25:43.230759Z",
+    "latest_stage": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-10-17T11:25:44.553942Z",
+      "status": "success"
+    },
+    "deployment_trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "b1a6d07d97f57d4c9144fdef82da46064610fdf3",
+        "commit_message": "Publish Matt-approved calories article; preserve all other assets and cache rules",
+        "commit_dirty": false
+      }
+    }
+  },
+  "source": null,
+  "production_branch": "main"
+}

@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-17T22:49:07.637962+00:00",
+  "build": "public-feedback-20261017-b7d5bf35aac0",
+  "changedScriptSyntax": [
+    "/app.js",
+    "/assets/public-feedback-v1.js",
+    "/assets/start-here-support-v1.js",
+    "/assets/v42.js",
+    "/service-worker-v3a.js",
+    "/service-worker.js"
+  ],
+  "rawHtmlNamesAndBuildPass": 458,
+  "manifestsChecked": 2,
+  "oldQuizPrivacySourceUnchanged": true,
+  "newQuizNoAnswerOrRecommendationStorageWrites": true,
+  "existingKnowledgeHandoffWritePreserved": true,
+  "headersSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e",
+  "pass": true
+}

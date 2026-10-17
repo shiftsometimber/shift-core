@@ -1,0 +1,461 @@
+{
+  "at": "2026-10-17T22:46:36.229Z",
+  "build": "public-feedback-20261017-b7d5bf35aac0",
+  "mode": "staged-live-response",
+  "checks": [
+    {
+      "budgetBand": "nhs",
+      "correctBudget": true,
+      "neutralRouteOrder": true,
+      "noNamedMedicineResults": true,
+      "noRedirect": true,
+      "noMedicineRecommendationCache": true,
+      "reusedFromBuild": "public-feedback-20261017-a30822e49806",
+      "unchangedQuizBytes": true
+    },
+    {
+      "budgetBand": "under100",
+      "correctBudget": true,
+      "neutralRouteOrder": true,
+      "noNamedMedicineResults": true,
+      "noRedirect": true,
+      "noMedicineRecommendationCache": true,
+      "reusedFromBuild": "public-feedback-20261017-a30822e49806",
+      "unchangedQuizBytes": true
+    },
+    {
+      "budgetBand": "band150",
+      "correctBudget": true,
+      "neutralRouteOrder": true,
+      "noNamedMedicineResults": true,
+      "noRedirect": true,
+      "noMedicineRecommendationCache": true,
+      "reusedFromBuild": "public-feedback-20261017-a30822e49806",
+      "unchangedQuizBytes": true
+    },
+    {
+      "budgetBand": "band200",
+      "correctBudget": true,
+      "neutralRouteOrder": true,
+      "noNamedMedicineResults": true,
+      "noRedirect": true,
+      "noMedicineRecommendationCache": true,
+      "reusedFromBuild": "public-feedback-20261017-a30822e49806",
+      "unchangedQuizBytes": true
+    },
+    {
+      "budgetBand": "over200",
+      "correctBudget": true,
+      "neutralRouteOrder": true,
+      "noNamedMedicineResults": true,
+      "noRedirect": true,
+      "noMedicineRecommendationCache": true,
+      "reusedFromBuild": "public-feedback-20261017-a30822e49806",
+      "unchangedQuizBytes": true
+    },
+    {
+      "route": "/",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "publicUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "publicUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true,
+      "reusedCompletedGeometry": true
+    },
+    {
+      "route": "/programme",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "publicUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "publicUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true,
+      "reusedCompletedGeometry": true
+    },
+    {
+      "route": "/member/grub",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "memberUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "memberUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/member/fit",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "memberUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "memberUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "publicUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "publicUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/programme",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "publicUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "publicUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/member/grub",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "memberUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "memberUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/member/fit",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "memberUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "memberUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "publicUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "publicUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/programme",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "publicUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "relative",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "publicUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/member/grub",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "memberUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "memberUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/member/fit",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "controls": [
+        {
+          "id": "sstCookieSettings",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Cookie choices",
+          "host": "memberUtilities"
+        },
+        {
+          "id": "askTimberLaunch",
+          "w": 44,
+          "h": 44,
+          "position": "static",
+          "hasIcon": true,
+          "label": "Ask Timber",
+          "host": "memberUtilities"
+        }
+      ],
+      "noFixedOverlay": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "desktopPreserved": true
+    },
+    {
+      "route": "/programme",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "desktopPreserved": true
+    },
+    {
+      "route": "/member/grub",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "desktopPreserved": true
+    },
+    {
+      "route": "/member/fit",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "desktopPreserved": true
+    },
+    {
+      "cookieReopens": true,
+      "askTimberOpens": true
+    }
+  ],
+  "screenshots": [
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-member-grub-320-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-member-fit-320-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/home-390-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-programme-390-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-member-grub-390-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-member-fit-390-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/home-1024-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-programme-1024-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-member-grub-1024-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-member-fit-1024-controls.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/home-1440.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-programme-1440.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-member-grub-1440.png",
+    "/Users/shiftsometimberltd/SST/public-feedback-20261017/screenshots/-member-fit-1440.png"
+  ],
+  "errors": [],
+  "productionAcceptance": false
+}
