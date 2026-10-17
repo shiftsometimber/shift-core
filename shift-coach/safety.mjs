@@ -5,6 +5,9 @@ const medical=/\b(dos(?:e|age|ing)|mg|diagnos\w*|side[ -]?effects?|symptoms?|pan
 // these examples cannot establish severity or guarantee detection of illness.
 const ordinaryIllness=/\b(?:(?:keep|keeps|kept|constantly|repeatedly|still)\s+(?:being|getting|feeling)\s+sick|(?:being|feeling)\s+sick\s+(?:again|all day|every day)|(?:can't|cannot|can not|unable to)\s+(?:keep\s+(?:(?:any|even|my)\s+)?(?:water|fluids?|liquids?|drinks?|food)\s+down|keep\s+down\s+(?:(?:any|even|my)\s+)?(?:water|fluids?|liquids?|drinks?|food))|(?:throwing|bringing)\s+up|(?:can't|cannot|struggling to|hard to)\s+(?:breathe|breath)|feel(?:ing)?\s+(?:dizzy|lightheaded)|(?:my\s+)?(?:knee|stomach|tummy|belly|chest)\s+(?:hurts|is hurting|aches|pain))\b/i;
 const crisis=/\b(suicid\w*|kill myself|end my life|hurt myself|self[ -]?harm|can't go on|cannot go on|better off dead)\b/i;
+// Finite warning examples suppress everyday coaching; they do not classify
+// urgency, diagnose a condition or replace the existing help routes.
+const warning=/\b(?:overdos(?:e[ds]?|ing)|(?:cannot|can't|can not|unable to)\s+keep\s+(?:(?:myself|me)\s+)?safe|(?:do not|don't)\s+want\s+to\s+be\s+here|(?:struggling|gasping)\s+for\s+breath|(?:difficulty|trouble)\s+breathing|(?:my\s+)?(?:tongue|throat)\s+(?:(?:is|feels?)\s+)?(?:swelling|swollen|closing)|swollen\s+(?:tongue|throat))\b/i;
 const eating=/\b(purg\w*|make myself sick|making myself sick|barely eaten|not eaten for|haven't eaten for|starv\w*)\b/i;
 const minor=/\b(?:i(?:'m| am)\s+(?:[0-9]|1[0-7])\s*(?:years? old|yo)?|under\s*18)\b/i;
 export const helpPanel=Object.freeze({title:'Get the right help',text:'My Timber and Shift AI help with everyday food, movement, routines and difficult weeks, during treatment and after it ends. Treatment decisions belong to your prescriber. For symptoms, side effects or changes to medication, use the contact number or patient portal on your prescription or treatment confirmation. If you cannot find the prescriber for treatment arranged through SHIFT, contact the SHIFT team using the link below to ask for the correct contact details. SHIFT support is not a clinical service or an urgent help route. Nobody is monitoring this chat, and saving a message does not send it to a clinician.',links:[{label:'Ask SHIFT for your prescriber contact details',url:'https://shiftsometimber.co.uk/contact'},{label:'Find or contact a GP',url:'https://www.nhs.uk/nhs-services/gps/'},{label:'NHS 111 — England',url:'https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/'},{label:'Urgent mental-health help — England',url:'https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/'},{label:'Emergency help',url:'https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/'},{label:'Scotland: NHS 24',url:'https://www.nhs24.scot/'},{label:'Wales: NHS 111 Wales',url:'https://111.wales.nhs.uk/'},{label:'Northern Ireland: health services',url:'https://www.nidirect.gov.uk/articles/health-service-useful-numbers'}]});
@@ -12,6 +15,18 @@ export function boundary(message){
  if(typeof message!=='string'||message.length>2000)throw Object.assign(Error('invalid_message'),{status:400});
  message=message.normalize('NFKC').replace(/[\u2018\u2019\u02bc]/g,"'").replace(/[\u2010-\u2015]/g,'-').replace(/\s+/g,' ');
  if(minor.test(message))return{kind:'adult_service',coaching:false,text:'My Timber coaching is for adults. Please speak with a parent, guardian or a healthcare professional.',help:helpPanel};
- if(crisis.test(message)||eating.test(message)||medical.test(message)||ordinaryIllness.test(message))return{kind:'support',coaching:false,help:helpPanel};
+ if(warning.test(message)||crisis.test(message)||eating.test(message)||medical.test(message)||ordinaryIllness.test(message))return{kind:'support',coaching:false,help:helpPanel};
+ return{kind:'coaching',coaching:true};
+}
+
+// All confirmed saved context shares the same finite boundary, including legacy
+// keys. Inferred entries do not become confirmed facts through this check.
+export function personalContextBoundary(state){
+ const values=[...(state?.facts||[]).filter(f=>f.confirmed).map(f=>f.value),...(state?.workingRoutines||[]).filter(r=>r.confirmed).map(r=>r.text)];
+ if(state?.constraints&&state.constraints.confirmed!==false)values.push(...Object.values(state.constraints.value||{}));
+ for(const value of values){
+  if(typeof value!=='string'||value.length>2000)return{kind:'support',coaching:false,help:helpPanel};
+  const result=boundary(value);if(!result.coaching)return result;
+ }
  return{kind:'coaching',coaching:true};
 }

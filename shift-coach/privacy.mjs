@@ -7,6 +7,7 @@ export function deleteItem(state,id){
  const routines=(state.workingRoutines||[]).filter(r=>removed.some(o=>o.id===r.outcomeId)||r.fit?.weekId===id||r.fit?.challengeId===id);
  cancelAffected(state,routines.map(r=>r.id));state.workingRoutines=(state.workingRoutines||[]).filter(r=>!routines.includes(r));
  state.outcomes=state.outcomes.filter(o=>!o.dataUsed.includes(id)&&!o.dataUsed.some(x=>routines.some(r=>r.id===x)));
- state.audit=state.audit.map(a=>({...a,dataUsed:a.dataUsed.filter(x=>x!==id)}));
+ const removedIds=new Set([id,...routines.map(r=>r.id)]);
+ state.audit=state.audit.map(a=>({...a,dataUsed:a.dataUsed.filter(x=>!removedIds.has(x))}));
  state.nightRuns=[];return {dataUsed:[]};
 }

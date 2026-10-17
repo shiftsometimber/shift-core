@@ -1,5 +1,5 @@
 import {plansView} from './planning.mjs';
-import {uid,cancelAffected,fact} from './store.mjs';import {stages,challengeLabels,library} from './voice.mjs';import {boundary} from './safety.mjs';
+import {uid,cancelAffected,fact} from './store.mjs';import {stages,challengeLabels,library} from './voice.mjs';import {boundary,personalContextBoundary} from './safety.mjs';
 const requiredKeys=['goal'];
 const keys=[...requiredKeys,'week','focus','challenge'];
 
@@ -23,5 +23,5 @@ export function setup(state,input,now=Date.now()){
  if(input.stage!==undefined){if(!stages.includes(input.stage))throw Object.assign(Error('invalid_setup'),{status:400});state.stage=input.stage}
  return{dataUsed:state.facts.filter(f=>f.confirmed).map(f=>f.id)};
 }
-export function memoryView(state){return{workingRoutines:state.workingRoutines||[],constraints:state.constraints?.value||{time:'flexible',budget:'regular',kitchen:'cook'},pendingBlocker:state.pendingBlocker||null,blocker:state.blocker||null,facts:state.facts,derivedPlans:plansView(state),preparedActions:state.actions.filter(a=>['prepared','accepted'].includes(a.status)),settings:state.settings,permissions:state.permissions,mode:state.mode,stage:state.stage,components:state.components,rejections:state.rejected,outcomes:state.outcomes.map(o=>({...o,title:o.title||'Earlier '+(library.find(a=>a.type===o.type)?.focus||'coaching')+' step'})),readings:state.readings,doses:state.doses,reviews:state.reviews,calendar:state.calendar,pendingWant:state.pendingWant,pausedTypes:state.pausedTypes,pauseRequests:state.pauseRequests||[]};}
+export function memoryView(state){const safe=personalContextBoundary(state).coaching;return{workingRoutines:state.workingRoutines||[],constraints:state.constraints?.value||{time:'flexible',budget:'regular',kitchen:'cook'},pendingBlocker:state.pendingBlocker||null,blocker:state.blocker||null,facts:state.facts,derivedPlans:safe?plansView(state):[],preparedActions:safe?state.actions.filter(a=>['prepared','accepted'].includes(a.status)):[],settings:state.settings,permissions:state.permissions,mode:state.mode,stage:state.stage,components:state.components,rejections:state.rejected,outcomes:state.outcomes.map(o=>({...o,title:o.title||'Earlier '+(library.find(a=>a.type===o.type)?.focus||'coaching')+' step'})),readings:state.readings,doses:state.doses,reviews:state.reviews,calendar:state.calendar,pendingWant:state.pendingWant,pausedTypes:state.pausedTypes,pauseRequests:state.pauseRequests||[]};}
 export const chosenGoal=s=>fact(s,'goal');

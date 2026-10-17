@@ -5,6 +5,8 @@ export const assetPath='/assets/shift-coach.mjs';
 export const styles=String.raw`
 #shiftCoach{box-sizing:border-box;margin:0 0 22px;padding:24px;border:1px solid #707762;border-radius:16px;background:#e7e3da;color:#050505;font:inherit;line-height:1.5;scroll-margin-top:110px}
 body[data-shift-coach-session] #previewMember{display:block!important}
+/* Only the fresh server-authenticated snapshot avoids the redundant pending hide. */
+html body[data-shift-coach-session][data-member-session="pending"] main{display:block!important}
 body[data-shift-coach-session] #previewAuth{display:none!important}
 #shiftCoach[hidden]{display:none!important}#shiftCoach *{box-sizing:border-box}
 #shiftCoach :is(h2,h3,p,small,label,summary,li,strong,a){color:#050505!important;-webkit-text-fill-color:#050505!important}
