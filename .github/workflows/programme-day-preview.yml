@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+      - name: Install the locked dependencies required by the original source tests
+        run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Run all original source gates and wait for every result
         env:
           GITHUB_TOKEN: ${{ github.token }}

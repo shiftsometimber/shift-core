@@ -6760,7 +6760,8 @@
       "member-experience/treatment-week-client.mjs",
       "release/recorded-week-browser-repair-20261017.mjs",
       "tests/recorded-week-browser-repair-20261017.test.mjs",
-      "tests/treatment-week-compiled-module-20261017.test.mjs"
+      "tests/treatment-week-compiled-module-20261017.test.mjs",
+      ".github/workflows/programme-day-preview.yml"
     ],
     "integrationIssue": 1065,
     "authority": "Existing A001 release repair; exact actual deployed GP/questionnaire and recorded-week code preserved with original failed browser evidence; no whole-feature acceptance inferred",
@@ -6788,6 +6789,15 @@
       "configurationChanged": false,
       "clinicalChanged": false,
       "scope": "Exact browser serializer only; separate member-verifier import dependency unresolved"
+    },
+    "programmeLockedCompilerDependency20261017": {
+      "originalFailedRun": 39006499651,
+      "path": ".github/workflows/programme-day-preview.yml",
+      "install": "npm ci --ignore-scripts --no-audit --no-fund",
+      "originalCommandsAndAssertionsRetained": true,
+      "packageLockChanged": false,
+      "runtimeChanged": false,
+      "timeoutsChanged": false
     },
     "maintenanceSource": "43f86bb3478b2dcc02777ad84c65966d04bb2c0e"
   }
