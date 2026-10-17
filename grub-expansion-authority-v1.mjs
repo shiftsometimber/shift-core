@@ -1,4 +1,5 @@
-// Shared by both Grub serving surfaces. This module never creates recipes.
+// Shared by both Grub serving surfaces. Verifies legacy database rows before appending the exact independently reviewed seven-row source publication.
+import {appendEverydayPublication} from './grub-everyday-authority-v1.mjs';
 import {GRUB_EXPANSION_SERVING_AUTHORITY} from './grub-expansion-serving-manifest-v1.mjs';
 const nutrients = ['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'];
 const sha256 = async text => [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))].map(byte => byte.toString(16).padStart(2,'0')).join('');
@@ -71,7 +72,8 @@ export async function loadGovernedGrubCatalogue(DB,manifest = GRUB_EXPANSION_SER
     if (results.length < 500) break;
     after = results.at(-1).id;
   }
-  return {allPublished,authority:await selectGovernedGrubRows(allPublished,manifest)};
+  const authority=await selectGovernedGrubRows(allPublished,manifest);
+  return {allPublished,authority:manifest===GRUB_EXPANSION_SERVING_AUTHORITY?await appendEverydayPublication(authority,allPublished):authority};
 }
 
 export function reviewedRecipeMinutes(data) {
