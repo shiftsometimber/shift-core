@@ -3829,7 +3829,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -3937,7 +3937,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4010,7 +4010,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4085,7 +4085,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4158,7 +4158,7 @@
             "integrationIssue": 1065,
             "releaseApproval": {
               "owner": "Matt",
-              "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+              "instruction": "Sorry this needs deploying - it’s a huge fault !",
               "recordedAt": "2026-10-13T17:17:57Z",
               "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
               "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -6544,7 +6544,7 @@
     "authority": {
       "schema": "my-timber-recorded-week-activation/v1",
       "owner": "Matt",
-      "instruction": "Action this. We don\u2019t want an review",
+      "instruction": "Action this. We don’t want an review",
       "recordedAt": "2026-10-14T19:20:45.941Z",
       "base": "685ede249cd20c4801d0a25227fed16d46860618",
       "scope": "Activate factual recorded treatment weeks, selected owned context, private notes and factual exports",
@@ -6935,6 +6935,35 @@
       "timeoutsChanged": false,
       "runtimeProductPrivacyStockConfigurationChanged": false
     },
-    "maintenanceSource": "12dc68246f54670cd563c3e860950fc5d1965ce7"
+    "growthAdoptionSameJobSourceProof20261017": {
+      "kind": "EXACT_GROWTH_ADOPTION_SAME_RUNNING_JOB_SOURCE_PROOF_REUSE_20261017",
+      "basisSource": "fa6adea3ed9f4a6a619d25651c1ed75329ee47ab",
+      "failedRun": 39050642627,
+      "failedJob": 117448452622,
+      "failure": "original 60 minute job cap exceeded during adoption after original33 source PASS",
+      "failureLogSHA256": "c49eb228c5a1c54eb54ef008120d4802cd5f0fe70c1e94646ca317171b98e109",
+      "path": "release/growth-adopt-deployment.mjs",
+      "beforeSHA256": "1f30084039eaac212fc421098ee774240965e3892d37ac4b5124228cf4ad9842",
+      "afterSHA256": "9b898bd24f5cee27edaa825251fafce6a67872cc7b8f5296da1de19d887c1eb7",
+      "addedImport": "import {verifiedSourceScopeAtPointUse} from './verified-source-evidence-20261016.mjs';\n",
+      "originalCall": "validateGrowthSource();",
+      "correctedCall": "const completedOriginalSource=await verifiedSourceScopeAtPointUse();\nif(!completedOriginalSource)validateGrowthSource();",
+      "validatorPath": "release/verified-source-evidence-20261016.mjs",
+      "validatorSHA256": "d33d917f20b4978a05698811e8fd13f88d89eae45124c8761c72196d7e8894ca",
+      "validatorWholeFileUnchanged": true,
+      "sourcePhaseFallbackStillExecutesOriginalCall": true,
+      "onlySameCurrentlyRunningJobSourceAttemptActorAuthority": true,
+      "all33ActualOriginalCommandsAndSealedArtifactRequired": true,
+      "crossRunReuse": false,
+      "providerOwnershipStockAndServingChecksReused": false,
+      "providerCallBodiesUnchanged": true,
+      "originalProductionTimeoutMinutes": 60,
+      "originalNativeCapSeconds": 1200,
+      "originalMaximumSourceSlots": 2,
+      "sourceAssertionsRemoved": false,
+      "approvalResultsCached": false,
+      "runtimeProductConfigurationAndClinicalChanged": false
+    },
+    "maintenanceSource": "bd8f483a0d207e717a764d63237cbc50db4d7dcd"
   }
 }
