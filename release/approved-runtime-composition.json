@@ -6885,5 +6885,186 @@
       "failureTask": "production-step-012"
     },
     "maintenanceSource": "99cc1e855badfdc1911aed8fba0ba3d8263dc362"
+  },
+  "codingCompletion20261016": {
+    "proof": "EXACT_CODING_COMPLETION_RUNTIME_20261016",
+    "base": "fac3ce1d9eb1906a8741bc44c87fd05786a1539e",
+    "payload": "0f12c282a50cc616222f53eff5706444e36d569c",
+    "paths": [
+      ".github/workflows/daily-website-content-preflight.yml",
+      "daily-content/README.md",
+      "daily-content/engine.mjs",
+      "daily-content/engine.test.mjs",
+      "scheduled-knowledge-v1.js",
+      "wrangler.jsonc"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "release/coding-completion-scope-20261016.mjs",
+      "release/current-runtime-preservation-20261016.mjs",
+      "scheduled-knowledge-v1.js",
+      "tests/coding-completion-scope-20261016.test.mjs",
+      "tests/seo-audit-scope-20261016.test.mjs"
+    ],
+    "sourceBaseProductionAccepted": false,
+    "sourceBaseOriginalSourceQualified": false,
+    "originalBaseSourceQualification": "PENDING_ACTUAL_MAIN_PRODUCTION_ACCEPTANCE",
+    "qualificationContext": "private_native_source_chain_only",
+    "actualMainAccepted": false,
+    "actualServingVerified": false,
+    "actualDeploymentPerformed": false,
+    "nativeDonors": [
+      {
+        "source": "35dab989f0a6a6cb76ce4e1eabe4567c02de6ace",
+        "base": "19400eb773aa39cc3caddbda752b9cd80309943e",
+        "paths": [
+          ".github/workflows/daily-website-content-preflight.yml",
+          "daily-content/README.md",
+          "daily-content/engine.mjs",
+          "daily-content/engine.test.mjs",
+          "scheduled-knowledge-v1.js",
+          "wrangler.jsonc"
+        ],
+        "exactPaths": [
+          ".github/workflows/daily-website-content-preflight.yml",
+          "daily-content/README.md",
+          "daily-content/engine.mjs",
+          "daily-content/engine.test.mjs",
+          "scheduled-knowledge-v1.js"
+        ]
+      }
+    ],
+    "authority": {
+      "instruction": "Deploy all nine coding packages",
+      "approvalLabel": "Matt,16October2026,18:17BST;existing scoped approvals retained",
+      "scope": "Approved six-path private daily drafting engine only; unrelated Stress/Fit/G2 preparation remains retained and untouched",
+      "publicationApproved": false,
+      "publicationApprovalScope": "No new daily or article public-copy publication approval; exact existing donor runtime and UI approvals retained",
+      "clinicalActivationApproved": false,
+      "newSpendApproved": false
+    },
+    "features": {
+      "daily": {
+        "donor": "35dab989f0a6a6cb76ce4e1eabe4567c02de6ace",
+        "paths": [
+          ".github/workflows/daily-website-content-preflight.yml",
+          "daily-content/README.md",
+          "daily-content/engine.mjs",
+          "daily-content/engine.test.mjs",
+          "scheduled-knowledge-v1.js",
+          "wrangler.jsonc"
+        ],
+        "exactDonorBlobs": {
+          ".github/workflows/daily-website-content-preflight.yml": "45bed216ad8ea8a4b04aec2ca92b32195c0ed50e",
+          "daily-content/README.md": "2d1f1c55da965c5bc363253e413d4b5e660c9771",
+          "daily-content/engine.mjs": "79c98f29454f05d6aa88bd58a0f7deb2eeede6e2",
+          "daily-content/engine.test.mjs": "c80123e5c63655dd6d3271629b357a6e69f90aab",
+          "scheduled-knowledge-v1.js": "64ddd8869d3c71bee192a86929987e7fcfe4dbcc",
+          "wrangler.jsonc": "b27734dd9a1c63031f777f759504adfe0b1899b7"
+        },
+        "exactCurrentDonorPaths": [
+          ".github/workflows/daily-website-content-preflight.yml",
+          "daily-content/README.md",
+          "daily-content/engine.mjs",
+          "daily-content/engine.test.mjs",
+          "scheduled-knowledge-v1.js"
+        ],
+        "currentConfigurationRetarget": {
+          "authorisedVariables": {
+            "DAILY_WEBSITE_CONTENT_ENABLED": "true",
+            "DAILY_CONTENT_GATEWAY": "shift-ai",
+            "DAILY_CONTENT_BUDGET_VERIFIED": "true"
+          },
+          "originalDonorBeforeBlob": "48adc3e7d61e4b97c52ac4cbe1751d15117a26cd",
+          "originalDonorAfterBlob": "b27734dd9a1c63031f777f759504adfe0b1899b7",
+          "currentBeforeBlob": "cfd2c761eeb5d33f1cdbcdaa68dfbc3283e61304",
+          "currentAfterBlob": "cffd1cf36f981e71b1a18849fd4122ebf932083a",
+          "currentBeforeSha256": "198e3929312d2ed15af8acca3cb64a69c79bfd0af7a551ae115fa3bab22f749f",
+          "currentAfterSha256": "6f3c00d81949668c081a9a714ef90f48354c23792161314102b0937c71b82881",
+          "originalDonorDeltaExactlyThreeVars": true,
+          "currentDeltaExactlySameThreeVars": true,
+          "allOtherCurrentConfigurationBytesUnchanged": true,
+          "wholeCurrentConfigurationInverseExact": true,
+          "wOrGpFlagStateChosenOrChanged": false,
+          "activationReceiptRequiredByTransformer": false
+        },
+        "priorPrivateProof": "622f96c148c3b82a6e8afd098bb817230df48a89",
+        "priorPrivateProofBaseIsProductionAccepted": false,
+        "privateOnly": true
+      }
+    },
+    "controls": {
+      "creationAttemptsPerLondonDay": 1,
+      "modelCallsPerAttempt": 2,
+      "retryCalls": 0,
+      "gateway": "shift-ai",
+      "sharedRollingDayDollars": 2,
+      "rateLimitPerMinute": 10,
+      "loggingExportEnabled": false,
+      "publicWrites": false,
+      "publicWritesControlScope": "Private daily drafting engine only",
+      "memberDataReads": false,
+      "newCron": false,
+      "newQueue": false,
+      "originalKnowledgeIngestionPreserved": true,
+      "exactPublicCopyApprovalRequired": true,
+      "applicableQualifiedReviewRequired": true,
+      "freshGatewayProofBeforeActivationRequired": true,
+      "originalSourceLimitsRaised": false,
+      "originalAssertionsRemoved": 0,
+      "predictiveModelActivated": false,
+      "gpContractChanged": false,
+      "factualWeekContractChanged": false
+    },
+    "releaseConfiguration": {
+      "authorisedExistingVars": {
+        "DAILY_WEBSITE_CONTENT_ENABLED": "true",
+        "DAILY_CONTENT_GATEWAY": "shift-ai",
+        "DAILY_CONTENT_BUDGET_VERIFIED": "true"
+      },
+      "onlyExactThreeVarDelta": true,
+      "wholeFileInverseToActualBaseRequired": true,
+      "allOtherBindingsAndConfigurationUnchanged": true,
+      "acceptedCsvGuardQueryAndFinalAssertionRetained": true,
+      "acceptedWAllowsZeroAdditionalCsvEdit": true,
+      "currentConfigurationWholeInverseRequired": true,
+      "protectedConfigurationSha256": "198e3929312d2ed15af8acca3cb64a69c79bfd0af7a551ae115fa3bab22f749f",
+      "configuredSourceSha256": "6f3c00d81949668c081a9a714ef90f48354c23792161314102b0937c71b82881",
+      "freshActualGatewayBudgetAuthLoggingRetriesProofBeforeActivation": true
+    },
+    "sourceMaintenance": {
+      "selectedTop": {
+        "kind": "preservation",
+        "path": "release/current-runtime-preservation-20261016.mjs",
+        "key": "currentRuntimePreservation20261016",
+        "omit_seo_adapter": true,
+        "preserve_w_csv_test_byte_exact": true,
+        "requires_independently_admitted_expected_source_blob": true
+      },
+      "originalWAndGpSeoModuleUnchanged": true,
+      "originalWComparisonTestUnchanged": true,
+      "topSourceTransformerSha256": "8c9bbd416db9e562c7cf67337d371a87130c8e292b3313403ed4ae338e434b0e",
+      "originalDailySixDonorBlobsReceiptPreserved": true,
+      "exactFiveOtherDailyPayloadBlobsPreserved": true,
+      "dailyConfigurationTransformerSha256": "8a6e30b3a0488404b92fc426052ac9aa9af16480b8973d5617e2267fcd143f73",
+      "currentConfigurationChangedOnlyByExactThreeApprovedVars": true,
+      "eofNormalisation": "One donor-only final newline removed only in maintenance",
+      "singleOuterSourceFrame": true,
+      "aggregateHistoricalFacts": "Existing immutable kernel only; no new per-view aggregate fact map",
+      "nativeObjectsDissociated": true,
+      "nativeAlternatesAbsent": true,
+      "recoveredNativeFixtureTreesPreserved": {
+        "fd2782d745295ee9fd80a28ed7eae642aedc566d": "4663a5fd968343c29e70322d148e7dc8d598f094",
+        "f3acbfdc2f0fbe8c14d5940dee9136377f257cc8": "f5e4d55cba045b4017bdaa7991f74c80227f0f9d",
+        "5e2a6bbe7714fe098eebfa22bc7acbe9e3d2d5c2": "fadd610c5cf52dc62a2202f5db2abae50d05b9d5"
+      },
+      "originalKernelFallbackAndContextGuardsUnchanged": true,
+      "noSuppliedCallbackVerdictOrViewCache": true,
+      "arbitraryReferenceAndDirectoryNativeFallbackRetained": true,
+      "allExistingSourceAndPriorLedgerRecordsRetained": true,
+      "productionSourceCommandsUnchanged": true,
+      "sourceBaseIsNotProductionAcceptance": true
+    },
+    "maintenanceSource": "d1aa7c910223dfeeb6a701cde4a3ccfd81e269c6"
   }
 }
