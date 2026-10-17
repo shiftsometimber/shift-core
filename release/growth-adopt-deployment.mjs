@@ -1,3 +1,4 @@
+import {ACCEPTED_GRUB_RUNTIME,ACCEPTED_GRUB_RUNTIME_KIND,verifyCurrentAcceptedGrubRuntimeWindow,assertSameAcceptedGrubCurrentWindow,acceptedGrubCurrentStartingPoint} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {RECORDED_WEEK_OWNED_ROLLBACK,verifyCurrentRecordedWeekOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {verifiedSourceScopeAtPointUse} from './verified-source-evidence-20261016.mjs';
 import {PRESERVED_CURRENT_RUNTIME as ACCEPTED_CURRENT_RUNTIME,PRESERVED_CURRENT_RUNTIME_KIND as ACCEPTED_CURRENT_RUNTIME_KIND,verifyCurrentRecordedWeekRuntimeWindow as verifyCurrentAcceptedRuntimeWindow,assertSameRecordedWeekCurrentWindow as assertSameAcceptedCurrentWindow,recordedWeekCurrentStartingPoint as acceptedCurrentStartingPoint,assertRecordedWeekPreservedRuntimeLineage as assertPreservedRuntimeLineage} from './accepted-current-runtime-starting-point-20261017.mjs';
@@ -27,7 +28,13 @@ const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 const baselineRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
 let point;
-if(active.id===RECORDED_WEEK_OWNED_ROLLBACK.deployment.id){
+if(active.id===ACCEPTED_GRUB_RUNTIME.deployment){
+ assert(baselineRecord.acceptedGrubServingProof,'Exact accepted Grub recovery receipt required');
+ acceptedGrubCurrentStartingPoint(baselineRecord.acceptedGrubServingProof,active);
+ const refreshedProof=await verifyCurrentAcceptedGrubRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameAcceptedGrubCurrentWindow(baselineRecord.acceptedGrubServingProof,refreshedProof);
+ point=acceptedGrubCurrentStartingPoint(refreshedProof,active);
+}else if(active.id===RECORDED_WEEK_OWNED_ROLLBACK.deployment.id){
  assert(baselineRecord.recordedWeekOwnedRollbackProof,'Exact cancelled39060259147 owned rollback recovery receipt required');
  ownedRollbackStartingPoint(baselineRecord.recordedWeekOwnedRollbackProof,active);
  const refreshedProof=await verifyCurrentRecordedWeekOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
@@ -58,7 +65,9 @@ if(active.id===RECORDED_WEEK_OWNED_ROLLBACK.deployment.id){
 if(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).currentRuntimePreservation20261016&&point.kind!==ACCEPTED_CURRENT_RUNTIME_KIND)assertPreservedRuntimeLineage(point);
 const BASE=point.source,VERSION=point.version;
 let receipt={id:null};
-if(point.kind===ACCEPTED_CURRENT_RUNTIME_KIND){
+if(point.kind===ACCEPTED_GRUB_RUNTIME_KIND){
+ receipt={id:ACCEPTED_GRUB_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_GRUB_RUNTIME_KIND,originalReleaseStatus:ACCEPTED_GRUB_RUNTIME.status,featureAcceptance:false,clinicalContractActivated:false};
+}else if(point.kind===ACCEPTED_CURRENT_RUNTIME_KIND){
  receipt={id:ACCEPTED_CURRENT_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_CURRENT_RUNTIME_KIND,originalReleaseStatus:ACCEPTED_CURRENT_RUNTIME.status,featureAcceptance:false,clinicalContractActivated:false};
 }else if(point.kind==='verified_owned_runtime_rollback'){
  assert.equal(point.failedReleaseVerified,false);receipt={id:point.predecessorRun,conclusion:'success',failedRun:point.failedRun,failedReleaseVerified:false,evidenceKind:point.kind};
