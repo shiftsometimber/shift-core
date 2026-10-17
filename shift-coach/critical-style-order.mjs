@@ -20,7 +20,7 @@ export function earlyDashboardStyles(html){
  const pattern=/<style\b[^>]*>[\s\S]*?<\/style\s*>|<link\b[^>]*\brel\s*=\s*["']?stylesheet\b[^>]*>/gi,matches=[...protectedBody.matchAll(pattern)];
  const rest=protectedBody.replace(pattern,text=>' '.repeat(text.length));
  if(/<\/?style\b/i.test(rest))return html;
- const expected=[...openings.slice(0,3),...stylesheetLinks,...openings.slice(3)];
+ const expected=[...stylesheetLinks,...openings];
  if(matches.length!==expected.length||matches.some((m,i)=>m[0].slice(0,m[0].indexOf('>')+1)!==expected[i]))return html;
  const styles=matches.map(m=>body.slice(m.index,m.index+m[0].length));
  let remaining=body;

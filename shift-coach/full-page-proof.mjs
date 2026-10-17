@@ -27,6 +27,7 @@ try{
  await page.goto(origin+'/member/dashboard?view=app#today');await page.locator('[data-coach-setup]').waitFor({timeout:30000});
  await page.locator('[data-consent="necessary"]').waitFor({state:'visible',timeout:30000});await page.locator('[data-consent="necessary"]').click();
  const necessaryConsent=await page.evaluate(()=>localStorage.getItem('sstConsentV3'));const consentChoice=JSON.parse(necessaryConsent);assert.equal(consentChoice.necessary,true);for(const choice of ['analytics','marketing','acquisition'])assert.equal(consentChoice[choice],false);
+ assert.equal(await page.locator('head>style[data-app-preview-style]').count(),1);assert.equal(await page.locator('head>style[data-approved-member-design]').count(),1);assert.equal(await page.locator('head>link[href="/assets/member-experience/day-guide.css"]').count(),1);assert.equal(await page.locator('body style[data-approved-member-design]').count(),0);checks.push('actual current dashboard CSS sequence loads in the head before the controls');
  snapshot('before');
  await startCoaching(page,'Enjoy time with the family');await addCoachingWeek(page,'Three late shifts and no free evenings');
  await page.waitForFunction(()=>document.querySelector('#todayActions > .mtm-hero')?.nextElementSibling?.id==='shiftCoach');checks.push('prepared card follows the preserved Today heading');
