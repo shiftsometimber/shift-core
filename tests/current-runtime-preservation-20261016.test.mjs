@@ -112,3 +112,28 @@ test('the exact member utility correction rejects another baseline, another CSS 
  assert.deepEqual(assertCurrentMemberUtilityContainment(after,before),{path,beforeBlob:'c4dd4d3edd814d2c3495c3037653d38a5fcb2887',afterBlob:'5172fafa13720679c272451b6584b827fedaa8dd'});
  for(const[a,b]of[[after+'\n',before],[after,before+'\n'],[before,before],[after.replace(rule,rule+'html{overflow-x:hidden}\n'),before],[after.replace('position:relative!important','position:static!important'),before],[after+'/* unreviewed */',before+'/* unreviewed */']])assert.throws(()=>assertCurrentMemberUtilityContainment(a,b));
 });
+
+// Original release39018265115 compatibility: strict fixed guard, unchanged original assertions.
+import{readFileSync as readRollbackActual}from'node:fs';
+import{createHash as rollbackHash}from'node:crypto';
+test('actual rollback condition preserves all original ownership outcomes and the original Member Details assertion',()=>{
+ const originalMain='5e640279d2a0db1bd578e67269456a1575c5476f',originalTree='b36237f7ffc91a11e8aa35ea99d2d6f7bd443b89',workflowPath='.github/workflows/cloudflare-production-promote.yml',runtimeTestPath='tests/runtime-cancel-rollback-20261016.test.mjs';
+ const originalBlob='c1b526ff1c8cd0b663dcc3f349713cf6d625cb3c',originalRuntimeBlob='e8dd118a67dab19363b3d3cb1574759dcec93c13';
+ const objectHash=(kind,bytes)=>rollbackHash('sha1').update(Buffer.concat([Buffer.from(kind+' '+bytes.length+'\0'),bytes])).digest('hex');
+ const native=(...args)=>execFileSync('git',['--no-replace-objects',...args],{maxBuffer:64e6});
+ const commit=native('cat-file','commit',originalMain);assert.equal(objectHash('commit',commit),originalMain);assert.match(commit.toString(),new RegExp('^tree '+originalTree+'$','m'));
+ assert.deepEqual(commit.toString().split('\n').filter(line=>line.startsWith('parent ')).map(line=>line.slice(7)),['3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef','98d584e167fc0785ee791891d763e504286ee603']);
+ assert.equal(native('rev-parse',originalMain+':'+workflowPath).toString().trim(),originalBlob);assert.equal(native('rev-parse',originalMain+':'+runtimeTestPath).toString().trim(),originalRuntimeBlob);
+ const oldBytes=native('cat-file','blob',originalBlob),oldTest=native('cat-file','blob',originalRuntimeBlob);assert.equal(objectHash('blob',oldBytes),originalBlob);assert.equal(objectHash('blob',oldTest),originalRuntimeBlob);
+ const original=oldBytes.toString(),actual=readRollbackActual(new URL('../'+workflowPath,import.meta.url),'utf8'),oldCondition="always() && (failure() || cancelled()) && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))",newCondition="always() && ((failure() && steps.runtime_deploy.outcome == 'success') || (cancelled() && steps.runtime_deploy.outcome == 'success') || ((failure() || cancelled()) && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))";
+ const extract=s=>{const m=[...s.matchAll(/^        id: runtime_rollback\r?\n        if: \$\{\{ (.*?) \}\}\r?\n        run: (.*?)\r?$/gm)];assert.equal(m.length,1);assert.equal(m[0][2],'node release/member-details-rollback.mjs');return m[0][1];};
+ assert.equal(extract(original),oldCondition);assert.equal(extract(actual),newCondition);
+ const oldExpression='$'+'{{ '+oldCondition+' }}',newExpression='$'+'{{ '+newCondition+' }}';assert.equal(actual.split(newExpression).length,2);assert.equal(actual.replace(newExpression,oldExpression),original);
+ assert.match(actual,/failure\(\) && steps.runtime_deploy.outcome == 'success'/);
+ assert.equal(objectHash('blob',readRollbackActual(new URL('../tests/member-details-release.test.mjs',import.meta.url))),'0bf900a0f19943ac1e317545fda26a682d7a6bb5');
+ const oldDeclaration='const expectedCondition='+JSON.stringify(oldCondition)+';',newDeclaration='const expectedCondition='+JSON.stringify(newCondition)+';';assert.equal(oldTest.toString().split(oldDeclaration).length,2);
+ assert.equal(readRollbackActual(new URL('../'+runtimeTestPath,import.meta.url),'utf8'),oldTest.toString().replace(oldDeclaration,newDeclaration));
+ const oldEval=new Function('always','failure','cancelled','steps','return ('+oldCondition+');'),newEval=new Function('always','failure','cancelled','steps','return ('+newCondition+');');let count=0;
+ for(let bits=0;bits<64;bits++){const[a,f,k,d,g,s]=[0,1,2,3,4,5].map(bit=>Boolean(bits&(1<<bit)));const steps={runtime_deploy:{outcome:d?'success':'skipped'},growth_deployed:{outputs:{already_deployed:g?'true':'false'}},growth_live_started:{outcome:s?'success':'skipped'}};let oa=0,na=0;const before=oldEval(()=>{oa++;return a},()=>f,()=>k,steps),after=newEval(()=>{na++;return a},()=>f,()=>k,steps);assert.equal(after,before,'Authenticated original guard differs at assignment '+bits);assert.equal(oa,1);assert.equal(na,1);count++;}
+ assert.equal(count,64);
+});
