@@ -105,3 +105,10 @@ test('matching forged current aliases still reach and fail the original finite s
  const forged=(ref,p)=>p===path&&(ref==='HEAD'||ref===head)?'matching-forged-source':blob(ref,p);
  assert.throws(()=>verifyBoundedFiniteReaderPerformance(finite,{head,read:forged,blob,content,diff,ancestor}),/source drift/);
 });
+
+import {assertCurrentMemberUtilityContainment} from '../release/current-runtime-preservation-20261016.mjs';
+test('the exact member utility correction rejects another baseline, another CSS rule, hidden overflow or any additional source change',()=>{
+ const path='member-experience/chrome.mjs',after=content(head,path),before=content(c.base,path),rule=c.memberUtilityContainmentRepair20261017.rule;
+ assert.deepEqual(assertCurrentMemberUtilityContainment(after,before),{path,beforeBlob:'c4dd4d3edd814d2c3495c3037653d38a5fcb2887',afterBlob:'5172fafa13720679c272451b6584b827fedaa8dd'});
+ for(const[a,b]of[[after+'\n',before],[after,before+'\n'],[before,before],[after.replace(rule,rule+'html{overflow-x:hidden}\n'),before],[after.replace('position:relative!important','position:static!important'),before],[after+'/* unreviewed */',before+'/* unreviewed */']])assert.throws(()=>assertCurrentMemberUtilityContainment(a,b));
+});
