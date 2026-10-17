@@ -1,3 +1,4 @@
+import {assertAcceptedGrubWindowFreshAtClose,ACCEPTED_GRUB_RUNTIME_KIND} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -28,3 +29,9 @@ for(const [name,change] of [
 test('HQ must stay exact across the complete current Core proof window',()=>{
  const s=input(),after=structuredClone(s.snapshot);after.version.annotations['workers/message']='Changed during window';assert.throws(()=>assertSameAcceptedGrubRetainedHq(s.snapshot,after,receipt,s.configuration,s.configurationSHA256));
 });
+
+for(const[age,accepted]of[[0,true],[299999,true],[300000,true],[-1,false],[300001,false],[3600000,false]])test('closing original stock proof freshness at '+age+'ms',()=>{
+ const proof={kind:ACCEPTED_GRUB_RUNTIME_KIND,checkedAt:'2026-10-17T21:40:00.000Z'},original=structuredClone(proof),now=new Date(Date.parse(proof.checkedAt)+age).toISOString();
+ if(accepted)assert.equal(assertAcceptedGrubWindowFreshAtClose(proof,now),proof);else assert.throws(()=>assertAcceptedGrubWindowFreshAtClose(proof,now));assert.deepEqual(proof,original,'The actual original stock proof and timestamp must never be refreshed or rewritten');
+});
+test('closing proof rejects invalid or foreign source-window identity',()=>{assert.throws(()=>assertAcceptedGrubWindowFreshAtClose({kind:'foreign',checkedAt:'2026-10-17T21:40:00Z'},'2026-10-17T21:40:01Z'));assert.throws(()=>assertAcceptedGrubWindowFreshAtClose({kind:ACCEPTED_GRUB_RUNTIME_KIND,checkedAt:'invalid'},'2026-10-17T21:40:01Z'));});
