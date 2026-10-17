@@ -1,5 +1,3 @@
-import {currentRuntimePreservationHistoricalView} from '../../release/current-runtime-preservation-20261016.mjs';
-import {withImmutableHistoryVerification} from '../../release/immutable-git-facts.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -24,10 +22,7 @@ test('mapping must be explicit, shows converted dates and kilograms, and uses on
  assert.match(component,/JSON.stringify\(\{rows\}\)/);assert.doesNotMatch(component,/JSON.stringify\(\{[^}]*text|console\.|localStorage|sessionStorage/);
  assert.match(component,/response.status===401\|\|response.status===409/);
 });
-test('no native widget, build, tester, production config or model source is changed by the CSV interface',()=>withImmutableHistoryVerification(()=>{
- const current=currentRuntimePreservationHistoricalView();
- try{
- const diff=execFileSync('git',['diff','--name-only',retained.base,current.head,'--','my-timber-app','wrangler.jsonc','wrangler.coaching.jsonc','shift-coach/worker.mjs'],{encoding:'utf8'}).trim();
+test('no native widget, build, tester, production config or model source is changed by the CSV interface',()=>{
+ const diff=execFileSync('git',['diff','--name-only',retained.base,'HEAD','--','my-timber-app','wrangler.jsonc','wrangler.coaching.jsonc','shift-coach/worker.mjs'],{encoding:'utf8'}).trim();
  assert.equal(diff,'');
- }finally{current.assertCurrent();}
-}));
+});

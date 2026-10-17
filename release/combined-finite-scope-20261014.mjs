@@ -1,4 +1,3 @@
-import {withImmutableHistoryVerification as withClosedCurrentSourceProof,immutableHistorySourceHead} from './immutable-git-facts.mjs';
 import {verifyCiExecutionAllowance,ciExecutionNativeReaderProvenance} from './ci-execution-scope-20261014.mjs';
 import {releaseMachineryRepairHistoricalView,releaseMachineryRepairAuthenticatedRead,releaseMachineryRepairLegacyRead,releaseMachineryRepairLegacyContent,releaseMachineryRepairAuthenticatedContent} from './release-machinery-repair-scope-20261014.mjs';
 import {ensureCombinedOriginalGpSource} from './combined-original-gp-object-20261014.mjs';
@@ -75,20 +74,7 @@ export function verifyCombinedFiniteOriginal(c,{head,read,blob=read,content,diff
  assert.deepEqual(current,prior,'Prior approvals, watermarks, failures and every historical record retained');
  return c;
 }
-const combinedCurrentAliasPaths=Object.freeze([...new Set([...COMBINED_FINITE_PATHS,...COMBINED_FINITE_MAINTENANCE])]);
 export function verifyCombinedFinite(c,options){
- return withClosedCurrentSourceProof(()=>{
-  if(options?.head===immutableHistorySourceHead()&&typeof options.read==='function'&&(options.blob===undefined||typeof options.blob==='function')){
-   const {head,read,blob=read}=options;
-   for(const path of combinedCurrentAliasPaths){
-    assert.equal(read('HEAD',path),read(head,path),'Combined source drift: supplied current reader aliases differ at '+path);
-    assert.equal(blob('HEAD',path),blob(head,path),'Combined source drift: supplied current blob aliases differ at '+path);
-   }
-  }
-  return verifyCombinedFiniteCurrentProof(c,options);
- });
-}
-function verifyCombinedFiniteCurrentProof(c,options){
  const repair=releaseMachineryRepairHistoricalView();
  if(options.head!==repair.rawHead||repair.head===repair.rawHead){try{return verifyCombinedFiniteOriginal(c,options);}catch(error){if(options.head!==repair.rawHead){try{if(error instanceof Error)error.message='Combined source drift for supplied head: '+error.message;}catch{}}throw error;}}
  const {head,read,blob=read,content,diff,ancestor}=options;

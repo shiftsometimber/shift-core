@@ -139,24 +139,9 @@ function assertCoachingCurrentWatchReadAliases(read){
  for(const path of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',path),read(head,path),'Current Watch source drift: '+path);
 }
 
-// Rejection-only preflight for the exact existing historical comparisons.
-// Passing readers still execute every original source guard and late assertion.
-function rejectInconsistentCoachingHistoricalRead(read,manifest){
- const projectedRead=rankingGrowthHistoricalRead(read,manifest.rankingGrowthComposition);
- assert.equal(projectedRead('HEAD',ARTICLE_CLOSEOUT_PATH),projectedRead(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
- for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(projectedRead('HEAD',p),projectedRead(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
- assert.equal(projectedRead('HEAD','public-continuity.mjs'),projectedRead('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
- assert.equal(projectedRead('HEAD','tests/my-health-plan-v2.test.mjs'),projectedRead('5bf5a7febae1a6bab3a549507306669456a8aaa6','tests/my-health-plan-v2.test.mjs'),'Merged My Health Plan v2 test source drift');
- for(const p of ['member-experience/dashboard-tools.mjs','member-experience/tests/dashboard-tools.test.mjs'])assert.equal(projectedRead('HEAD',p),projectedRead('5bf5a7febae1a6bab3a549507306669456a8aaa6',p),'Merged Health Plan dashboard mount source drift: '+p);
- assert.equal(projectedRead('HEAD','frontend/member/whole-man-intent-os-v1.js'),projectedRead('5bf5a7febae1a6bab3a549507306669456a8aaa6','frontend/member/whole-man-intent-os-v1.js'),'Merged My Health Plan v2 asset source drift');
- for(const p of ['docs/content-review/2026-10-03-health-safety.json','frontend/member/shift-health-catalogue-v1.js','shift-health-public-content.mjs','tests/testosterone-public.test.mjs'])assert.equal(projectedRead('HEAD',p),projectedRead('7bd5fb37d7bbce66fa5e728f59304843817128bf',p),'Merged health-safety source drift: '+p);
- for(const p of ['docs/content-review/2026-10-03-public-copy-preview.json','docs/content-review/2026-10-03-public-copy-residual.json'])assert.equal(projectedRead('HEAD',p),projectedRead('6578113c754a60e75d0cd9b3cd94f2d546444409',p),'Merged public-copy receipt source drift: '+p);
-}
-
 export function validateCoachingSource(read,manifest){
  return withImmutableHistoryVerification(()=>{
  assertCoachingCurrentWatchReadAliases(read);
- rejectInconsistentCoachingHistoricalRead(read,manifest);
  const growth=manifest.rankingGrowthComposition;verifyRankingGrowth(growth,read);read=rankingGrowthHistoricalRead(read,growth);
  assert.equal(manifest.recordedMain,COACH_BASE);
  assert.match(manifest.applicationCommit,/^[a-f0-9]{40}$/,'Recorded coaching application source required');

@@ -1,5 +1,4 @@
-import {assertCombinedHqStartingPoint,captureCombinedHqCandidate,annotateCombinedHqOwnedReceipt,settleRetainedCombinedHqRollback} from './release/combined-hq-preservation-20261014.mjs';
-import {RETAINED_ACCEPTED_HQ_KIND} from './release/accepted-current-hq-retention-20261017.mjs';
+import {assertCombinedHqStartingPoint,captureCombinedHqCandidate,annotateCombinedHqOwnedReceipt} from './release/combined-hq-preservation-20261014.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
@@ -10,7 +9,6 @@ const latest=list=>list.toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.cr
 mkdirSync('b1-runtime-release',{recursive:true});
 if(process.argv.includes('--rollback')){
  const receipt=JSON.parse(readFileSync('b1-runtime-release/owned-hq-deployment.json'));
- if(await settleRetainedCombinedHqRollback(receipt,{accountId:process.env.CLOUDFLARE_ACCOUNT_ID,token:process.env.CLOUDFLARE_API_TOKEN})){console.log('PASS retained HQ was never changed; no runtime restore or provider write');process.exit(0);}
  const active=latest(JSON.parse(cli('deployments','list','--json')));assert.equal(active.versions[0].version_id,receipt.versionId,'Another HQ deployment moved; do not roll it back');
  if(receipt.before?.versions?.[0]?.version_id)cli('rollback',receipt.before.versions[0].version_id,'--message','Restore owned HQ endpoint release after verification failure');
  else cli('delete','--force');
@@ -18,9 +16,8 @@ if(process.argv.includes('--rollback')){
 }else{
  let before=null;try{before=latest(JSON.parse(cli('deployments','list','--json')))||null}catch(e){const message=String(e.stdout||'')+String(e.stderr||'');assert(message.includes('10007'),'Cannot capture HQ rollback baseline');}
  await captureCombinedHqCandidate(()=>cli('deploy','--dry-run','--outdir','b1-runtime-release/hq-candidate-build'));
- const starting=await assertCombinedHqStartingPoint(before,{accountId:process.env.CLOUDFLARE_ACCOUNT_ID,token:process.env.CLOUDFLARE_API_TOKEN});
+ await assertCombinedHqStartingPoint(before,{accountId:process.env.CLOUDFLARE_ACCOUNT_ID,token:process.env.CLOUDFLARE_API_TOKEN});
  writeFileSync('b1-runtime-release/hq-deployment-before.json',JSON.stringify(before,null,2));
- if(starting?.kind===RETAINED_ACCEPTED_HQ_KIND){writeFileSync('b1-runtime-release/owned-hq-deployment.json',JSON.stringify(starting,null,2)+'\n',{mode:0o600,flag:'wx'});console.log('PASS exact existing accepted HQ retained; zero provider or data writes');process.exit(0);}
  const output=cli('deploy','--keep-vars');writeFileSync('b1-runtime-release/hq-deploy.log',output);
  const ids=[...output.matchAll(/Current Version ID:\s*([a-f0-9-]{36})/g)];assert.equal(ids.length,1);
  const versionId=ids[0][1],active=latest(JSON.parse(cli('deployments','list','--json')));assert.equal(active.versions.length,1);assert.equal(active.versions[0].version_id,versionId);

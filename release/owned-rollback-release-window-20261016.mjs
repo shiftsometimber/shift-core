@@ -46,7 +46,7 @@ export function verifyOwnedTimeoutHistoricalClosure({policy,timeoutPolicy,previo
  return{receipt,historicalStock:stock,provider:recovery.after,stockBytesSha256:sha(historicalStockBytes)};
 }
 
-export function currentReleaseContext(context,before,now){
+function currentReleaseContext(context,before,now){
  const {head,main,run,job,runId,attempt,event,manualConfirm,configurationSha256}=context;
  assert(Number.isSafeInteger(context.repositoryId)&&context.repositoryId>0);
  assert.match(head,/^[a-f0-9]{40}$/);assert.equal(main,head,'Current main must own the release window');

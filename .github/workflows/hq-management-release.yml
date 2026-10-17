@@ -24,15 +24,11 @@ jobs:
       - run: node --test tests/hq-commerce-content-v1.test.mjs tests/hq-catalogue-v1.test.mjs
       - run: npx wrangler deploy --config wrangler.hq-management.jsonc --dry-run --outdir /tmp/hq-build
   deploy:
-    permissions:
-      contents: read
-      actions: read
     needs: verify
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      GH_TOKEN: ${{ github.token }}
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
