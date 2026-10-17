@@ -19,7 +19,7 @@ export function planOptions(input){
 }
 const excluded=(r,text)=>text.split(',').map(x=>x.trim().toLowerCase()).filter(Boolean).some(x=>{
  const terms=x==='fish'?['fish','salmon','tuna','cod','haddock','anchovy','mackerel','sardine']:x==='nuts'?['nut','almond','cashew','pecan','pistachio']: [x];
- return terms.some(t=>r.ingredients.some(i=>i.item.toLowerCase().includes(t))||r.allergens.some(a=>a.toLowerCase().includes(t)));
+ return terms.some(t=>r.ingredients.some(i=>i.item.toLowerCase().includes(t))||r.allergens.some(a=>a.toLowerCase().includes(t))||String(r.allergen_note||'').toLowerCase().includes(t));
 });
 function candidates(recipes,options,slot){
  const curated=recipes.some(r=>r.discovery);

@@ -32,7 +32,7 @@ export function everydayCookedMeal(r){return everydayCookedIds.includes(r.id)&&r
 export function recipeExcluded(r,text=''){
  return String(text).split(',').map(x=>x.trim().toLowerCase()).filter(Boolean).some(x=>{
   const terms=x==='fish'?['fish','salmon','tuna','cod','haddock','anchovy','mackerel','sardine']:x==='nuts'?['nut','almond','cashew','pecan','pistachio']:[x];
-  return terms.some(t=>r.ingredients.some(i=>i.item.toLowerCase().includes(t))||r.allergens.some(a=>a.toLowerCase().includes(t)));
+  return terms.some(t=>r.ingredients.some(i=>i.item.toLowerCase().includes(t))||r.allergens.some(a=>a.toLowerCase().includes(t))||String(r.allergen_note||'').toLowerCase().includes(t));
  });
 }
 export function grubMemberContext(prefs={},today=new Date().toISOString().slice(0,10)){

@@ -12,7 +12,7 @@ test('published catalogue leads with cold everyday food and retains real quantit
   assert.equal(simple.length,11);
   let state=emptyGrub();
   const first=recommendationFor(state,recipes).recipe;
-  assert.equal(first.id,'everyday-chicken-salad');
+  assert.equal(first.id,'everyday-chicken-salad-sandwich'); // UK discovery leads with the retained complete sandwich.
   assert(first.ingredients.some(i=>i.item==='cooked chicken breast'));
   assert.equal(first.ingredients.length,4);
   assert(first.method.some(s=>s.includes('already-cooked')));
