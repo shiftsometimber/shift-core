@@ -1,0 +1,55 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {emptyGrub,applyGrubOperation,workspaceView} from '../grub-workspace.mjs';
+import {effortAllows,noCookingMeal,recommendationFor,repeatMeals} from '../grub-intelligence.mjs';
+const meal=(id,minutes,cook,method)=>({id,name:id,meal_type:'lunch',servings:1,minutes,cook_minutes:cook,kcal:400,protein_g:30,nutrition:{fibre_g:4},ingredients:[{item:id,amount:'100g'}],allergens:[],method});
+const recipes=[meal('cold-chicken',5,0,['Use already-cooked chicken.','Assemble and eat.']),meal('cold-tuna',10,0,['Use canned tuna.','Assemble and eat.']),meal('hot-beans',5,3,['Heat canned beans.','Toast the bread.']),meal('dish-30',30,25,['Heat the pan.','Cook thoroughly.'])];
+const ctx={date:'2026-10-17',at:'2026-10-17T18:20:00Z'};
+let sequence=0;
+const op=(s,a,pool=recipes,context=ctx)=>applyGrubOperation(s,{revision:s.revision,operationId:'effort-repeat-operation-'+(++sequence),...a},pool,context);
+test('effort filters real total time and required cooking, never a quick/no-cook tag alone',()=>{
+ assert(noCookingMeal(recipes[0]));assert(!noCookingMeal({...recipes[0],method:['Warm the filling in a pan.']}));
+ assert(!effortAllows({...recipes[0],minutes:null},'five'));assert(!effortAllows({...recipes[0],minutes:0},'five'));
+ assert(effortAllows(recipes[2],'five'));assert(!effortAllows(recipes[1],'five'));assert(!effortAllows(recipes[2],'no-cook'));
+ let s=emptyGrub();s.today={date:ctx.date,recipeId:'dish-30'};s.week=[{day:2,slot:'lunch',recipeId:'cold-tuna',servings:1}];s.shopping=[{key:'manual',source:'manual',text:'Milk',done:true}];
+ const prior=structuredClone(s);
+ s=op(s,{action:'set-effort',effort:'no-cook'});
+ assert.equal(s.options.effort,'no-cook');assert.deepEqual(s.today,prior.today);assert.deepEqual(s.week,prior.week);assert.deepEqual(s.shopping,prior.shopping);
+ assert(noCookingMeal(recommendationFor(s,recipes).recipe));
+ s=JSON.parse(JSON.stringify(s));assert.equal(workspaceView(s,recipes,ctx).options.effort,'no-cook');
+ s=op(s,{action:'set-effort',effort:'five'});assert(recommendationFor(s,recipes).recipe.minutes<=5);
+ s=op(s,{action:'set-effort',effort:'cook'});s.recommendation={recipeId:'dish-30'};assert.equal(recommendationFor(s,recipes).recipe.id,'dish-30');
+ assert.throws(()=>op(s,{action:'set-effort',effort:'ignore-safety'}),/effort options/);
+});
+test('favourites come only from explicit likes or saved meals and obey current constraints',()=>{
+ const s=emptyGrub();s.today={recipeId:'dish-30'};assert.deepEqual(repeatMeals(s,recipes),[]);
+ s.saved=['cold-tuna'];s.learning={yay:['cold-chicken'],nay:[],recent:[]};
+ assert.deepEqual(repeatMeals(s,recipes).map(r=>r.id),['cold-chicken','cold-tuna']);
+ s.options.effort='five';assert.deepEqual(repeatMeals(s,recipes).map(r=>r.id),['cold-chicken']);
+ s.options.exclude='chicken';assert.deepEqual(repeatMeals(s,recipes),[]);
+ assert.deepEqual(repeatMeals({...s,options:{}},recipes,{dietaryReviewRequired:true}),[]);
+});
+test('one repeat atomically confirms Today and scaled shopping, retains week/manual items and is idempotent',()=>{
+ let s=emptyGrub();s.saved=['cold-tuna'];
+ s=op(s,{action:'add',recipeId:'dish-30',day:3,slot:'lunch',servings:1});
+ s=op(s,{action:'shopping-add',text:'Coffee'});const week=structuredClone(s.week);
+ const input={action:'repeat-and-shop',recipeId:'cold-tuna',servings:2,revision:s.revision,operationId:'repeat-one-exact-operation'};
+ const next=applyGrubOperation(s,input,recipes,ctx);
+ assert.equal(next.today.recipeId,'cold-tuna');assert.equal(next.today.servings,2);assert.equal(next.options.servings,2);
+ assert(next.shopping.some(x=>x.text==='200 g cold-tuna'));assert(next.shopping.some(x=>x.text==='Coffee'));assert.deepEqual(next.week,week);
+ assert.equal(recommendationFor(next,recipes).recipe.id,'cold-tuna');
+ assert.deepEqual(applyGrubOperation(next,input,recipes,ctx),next);
+ const restricted=structuredClone(s);restricted.options.effort='five';
+ assert.throws(()=>op(restricted,{action:'repeat-and-shop',recipeId:'cold-tuna',servings:2}),/no longer available/);
+ assert.throws(()=>op(s,{action:'repeat-and-shop',recipeId:'dish-30',servings:2}),/no longer available/);
+ assert.throws(()=>op(s,{action:'repeat-and-shop',recipeId:'cold-tuna',servings:9}),/1–8/);
+});
+test('weekly planning keeps the remembered effort preference; impossible effort has an honest empty state',()=>{
+ const s=emptyGrub();s.options.effort='five';
+ const none=recommendationFor(s,[recipes[3]],ctx);assert.equal(none.recipe,null);
+ assert.deepEqual(workspaceView(s,[recipes[3]],ctx).repeats,[]);
+ const pool=[...recipes,{...recipes[0],id:'breakfast',meal_type:'breakfast'},{...recipes[3],id:'dinner',meal_type:'dinner'}];
+ const planned=op(s,{action:'plan',options:{days:3,style:'protein',servings:1,exclude:''}},pool);
+ assert.equal(planned.options.effort,'five');assert.equal(planned.week.length,9);
+ assert(recommendationFor(planned,pool,ctx).recipe.minutes<=5);
+});
