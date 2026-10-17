@@ -36,8 +36,8 @@ test('published catalogue leads with cold everyday food and retains real quantit
   const willing=emptyGrub();willing.options.effort='cook';assert(everydayCookedMeal(recommendationFor(willing,recipes).recipe));
   const saved=emptyGrub();saved.recommendation={recipeId:'industrial-dinner-chicken-traybake'};
   const snapshot=JSON.stringify(saved);
-  assert.notEqual(recommendationFor(saved,recipes).recipe.id,'industrial-dinner-chicken-traybake');
+  assert.equal(recommendationFor(saved,recipes).recipe.id,'industrial-dinner-chicken-traybake');
   assert(recipes.some(r=>r.id==='industrial-dinner-chicken-traybake'));
-  assert.equal(JSON.stringify(saved),snapshot); // Withdrawn suggestion is replaced; saved identity and state survive.
+  assert.equal(JSON.stringify(saved),snapshot); // Corrected stored suggestion remains available; saved identity and state survive.
  }finally{await new Promise(resolve=>server.close(resolve))}
 });
