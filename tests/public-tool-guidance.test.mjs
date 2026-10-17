@@ -16,7 +16,22 @@ test('delivery adapter serves guidance only for public successful HTML GETs and 
 });
 test('workflow automatically checks deployment and successful owned rollback without weakening existing rollback condition',()=>{
  const workflow=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
- assert(workflow.includes("if: ${{ failure() && steps.runtime_deploy.outcome == 'success' || (failure() && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success') }}"));
+ const conditions=[...workflow.matchAll(/^        id: runtime_rollback\r?\n        if: \$\{\{ (.*?) \}\}\r?\n        run: (.*?)\r?$/gm)];
+ assert.equal(conditions.length,1,'Exactly one owned runtime rollback step required');
+ assert.equal(conditions[0][2],'node release/member-details-rollback.mjs');
+ const condition=conditions[0][1];
+ assert.equal(condition,"always() && ((failure() && steps.runtime_deploy.outcome == 'success') || (cancelled() && steps.runtime_deploy.outcome == 'success') || ((failure() || cancelled()) && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))");
+ const actual=new Function('always','failure','cancelled','steps','return ('+condition+');');
+ let outcomes=0,originalFailureOutcomes=0;
+ for(let bits=0;bits<64;bits++){
+  const [always,failed,cancelled,deployed,growth,started]=[0,1,2,3,4,5].map(bit=>Boolean(bits&(1<<bit)));
+  const steps={runtime_deploy:{outcome:deployed?'success':'skipped'},growth_deployed:{outputs:{already_deployed:growth?'true':'false'}},growth_live_started:{outcome:started?'success':'skipped'}};
+  const result=actual(()=>always,()=>failed,()=>cancelled,steps);
+  assert.equal(result,always&&(failed||cancelled)&&(deployed||(growth&&started)),'Owned failure/cancellation outcome '+bits);
+  if(always&&!cancelled){assert.equal(result,(failed&&deployed)||(failed&&growth&&started),'Original failure-only outcome '+bits);originalFailureOutcomes++;}
+  outcomes++;
+ }
+ assert.equal(outcomes,64);assert.equal(originalFailureOutcomes,16);
  assert(workflow.includes("if: ${{ always() && steps.runtime_rollback.outcome == 'success' }}"));
  const deploy=workflow.indexOf('node release/tool-schema-gate.mjs deploy'),rollback=workflow.indexOf('node release/member-details-rollback.mjs'),check=workflow.indexOf('node release/tool-schema-gate.mjs rollback'),report=workflow.lastIndexOf('node release/tool-schema-gate.mjs report');assert(deploy>0&&rollback>deploy&&check>rollback&&report>check);
  assert(!/continue-on-error: true/.test(workflow.slice(deploy-150,deploy+100)));assert(workflow.slice(report).includes('${{ job.status }}'));
