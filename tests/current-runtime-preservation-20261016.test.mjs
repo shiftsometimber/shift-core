@@ -137,3 +137,12 @@ test('actual rollback condition preserves all original ownership outcomes and th
  for(let bits=0;bits<64;bits++){const[a,f,k,d,g,s]=[0,1,2,3,4,5].map(bit=>Boolean(bits&(1<<bit)));const steps={runtime_deploy:{outcome:d?'success':'skipped'},growth_deployed:{outputs:{already_deployed:g?'true':'false'}},growth_live_started:{outcome:s?'success':'skipped'}};let oa=0,na=0;const before=oldEval(()=>{oa++;return a},()=>f,()=>k,steps),after=newEval(()=>{na++;return a},()=>f,()=>k,steps);assert.equal(after,before,'Authenticated original guard differs at assignment '+bits);assert.equal(oa,1);assert.equal(na,1);count++;}
  assert.equal(count,64);
 });
+
+import {assertCurrentRecoverySourceProof} from '../release/current-runtime-preservation-20261016.mjs';
+test('the recovery source reuse preserves original fallback and provider checks and rejects unapproved bypass or source changes',()=>{
+ const b=c.recoverySameJobSourceProof20261017,actual=content(head,b.path),prior=content(b.basisSource,b.path);
+ assert.equal(assertCurrentRecoverySourceProof(actual,prior).beforeBlob,blob(b.basisSource,b.path));
+ assert.equal(b.crossRunReuse,false);assert.equal(b.providerOwnershipStockAndServingChecksReused,false);assert.equal(b.originalProductionTimeoutMinutes,60);
+ const providerChange=actual.replace("wrangler('deployments','list','--json')","wrangler('versions','list','--json')");assert.notEqual(providerChange,actual);
+ for(const[a,p]of[[actual+'\n# unreviewed\n',prior],[actual.replace('if(!completedOriginalSource)','if(false)'),prior],[providerChange,prior],[actual,prior+'\n# changed baseline\n'],[prior,prior]])assert.throws(()=>assertCurrentRecoverySourceProof(a,p));
+});
