@@ -5,12 +5,13 @@ import {existsSync,lstatSync,readFileSync,realpathSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash,Hash} from 'node:crypto';
 import {types as utilTypes} from 'node:util';
+import {inflateSync} from 'node:zlib';
 
 // Foreign readers cannot replace the primitives which authenticate them.
 // Use the privately captured equality function for the identity guard itself.
 const nativeEquality=assert.equal;
 const nativeStatPrototype=Object.getPrototypeOf(lstatSync(process.cwd()));
-const nativeBuiltins=Object.freeze({assert,equal:assert.equal,deepEqual:assert.deepEqual,match:assert.match,execFileSync,spawnSync,existsSync,lstatSync,readFileSync,realpathSync,resolve,createHash,Hash,hashPrototype:Hash.prototype,hashUpdate:Hash.prototype.update,hashDigest:Hash.prototype.digest,utilTypes,isProxy:utilTypes.isProxy,statIsFile:nativeStatPrototype.isFile,statIsDirectory:nativeStatPrototype.isDirectory,statIsSymbolicLink:nativeStatPrototype.isSymbolicLink,process,cwd:process.cwd,Object,objectPrototype:Object.prototype,getPrototypeOf:Object.getPrototypeOf,getOwnPropertyDescriptor:Object.getOwnPropertyDescriptor,ownKeys:Reflect.ownKeys,reflect:Reflect,hasOwn:Object.hasOwn,keys:Object.keys,entries:Object.entries,Array,arrayPrototype:Array.prototype,isArray:Array.isArray,ArrayBuffer,isView:ArrayBuffer.isView,Buffer,from:Buffer.from});
+const nativeBuiltins=Object.freeze({inflateSync,assert,equal:assert.equal,deepEqual:assert.deepEqual,match:assert.match,execFileSync,spawnSync,existsSync,lstatSync,readFileSync,realpathSync,resolve,createHash,Hash,hashPrototype:Hash.prototype,hashUpdate:Hash.prototype.update,hashDigest:Hash.prototype.digest,utilTypes,isProxy:utilTypes.isProxy,statIsFile:nativeStatPrototype.isFile,statIsDirectory:nativeStatPrototype.isDirectory,statIsSymbolicLink:nativeStatPrototype.isSymbolicLink,process,cwd:process.cwd,Object,objectPrototype:Object.prototype,getPrototypeOf:Object.getPrototypeOf,getOwnPropertyDescriptor:Object.getOwnPropertyDescriptor,ownKeys:Reflect.ownKeys,reflect:Reflect,hasOwn:Object.hasOwn,keys:Object.keys,entries:Object.entries,Array,arrayPrototype:Array.prototype,isArray:Array.isArray,ArrayBuffer,isView:ArrayBuffer.isView,Buffer,from:Buffer.from});
 const nativeSameValue=Object.is,nativeGetDescriptor=Object.getOwnPropertyDescriptor,nativeGetPrototype=Object.getPrototypeOf,nativeOwnKeys=Reflect.ownKeys,nativeHasOwn=Object.hasOwn;
 const nativeSlotOwners=[];
 function watchNativeSlots(owner,selected=null){
@@ -38,7 +39,7 @@ function verifyNativeSlots(){
 }
 function builtinContext(){
  verifyNativeSlots();
- nativeEquality(assert===nativeBuiltins.assert&&assert.equal===nativeBuiltins.equal&&assert.deepEqual===nativeBuiltins.deepEqual&&assert.match===nativeBuiltins.match&&execFileSync===nativeBuiltins.execFileSync&&spawnSync===nativeBuiltins.spawnSync&&existsSync===nativeBuiltins.existsSync&&lstatSync===nativeBuiltins.lstatSync&&readFileSync===nativeBuiltins.readFileSync&&realpathSync===nativeBuiltins.realpathSync&&resolve===nativeBuiltins.resolve&&createHash===nativeBuiltins.createHash&&Hash===nativeBuiltins.Hash&&Hash.prototype===nativeBuiltins.hashPrototype&&Hash.prototype.update===nativeBuiltins.hashUpdate&&Hash.prototype.digest===nativeBuiltins.hashDigest&&utilTypes===nativeBuiltins.utilTypes&&utilTypes.isProxy===nativeBuiltins.isProxy&&nativeStatPrototype.isFile===nativeBuiltins.statIsFile&&nativeStatPrototype.isDirectory===nativeBuiltins.statIsDirectory&&nativeStatPrototype.isSymbolicLink===nativeBuiltins.statIsSymbolicLink&&process===nativeBuiltins.process&&process.cwd===nativeBuiltins.cwd&&Object===nativeBuiltins.Object&&Object.prototype===nativeBuiltins.objectPrototype&&Object.getPrototypeOf===nativeBuiltins.getPrototypeOf&&Object.getOwnPropertyDescriptor===nativeBuiltins.getOwnPropertyDescriptor&&Reflect===nativeBuiltins.reflect&&Reflect.ownKeys===nativeBuiltins.ownKeys&&Object.hasOwn===nativeBuiltins.hasOwn&&Object.keys===nativeBuiltins.keys&&Object.entries===nativeBuiltins.entries&&Array===nativeBuiltins.Array&&Array.prototype===nativeBuiltins.arrayPrototype&&Array.isArray===nativeBuiltins.isArray&&ArrayBuffer===nativeBuiltins.ArrayBuffer&&ArrayBuffer.isView===nativeBuiltins.isView&&Buffer===nativeBuiltins.Buffer&&Buffer.from===nativeBuiltins.from,true,'Recorded-week source drift: native builtin substitution refused');
+ nativeEquality(inflateSync===nativeBuiltins.inflateSync&&assert===nativeBuiltins.assert&&assert.equal===nativeBuiltins.equal&&assert.deepEqual===nativeBuiltins.deepEqual&&assert.match===nativeBuiltins.match&&execFileSync===nativeBuiltins.execFileSync&&spawnSync===nativeBuiltins.spawnSync&&existsSync===nativeBuiltins.existsSync&&lstatSync===nativeBuiltins.lstatSync&&readFileSync===nativeBuiltins.readFileSync&&realpathSync===nativeBuiltins.realpathSync&&resolve===nativeBuiltins.resolve&&createHash===nativeBuiltins.createHash&&Hash===nativeBuiltins.Hash&&Hash.prototype===nativeBuiltins.hashPrototype&&Hash.prototype.update===nativeBuiltins.hashUpdate&&Hash.prototype.digest===nativeBuiltins.hashDigest&&utilTypes===nativeBuiltins.utilTypes&&utilTypes.isProxy===nativeBuiltins.isProxy&&nativeStatPrototype.isFile===nativeBuiltins.statIsFile&&nativeStatPrototype.isDirectory===nativeBuiltins.statIsDirectory&&nativeStatPrototype.isSymbolicLink===nativeBuiltins.statIsSymbolicLink&&process===nativeBuiltins.process&&process.cwd===nativeBuiltins.cwd&&Object===nativeBuiltins.Object&&Object.prototype===nativeBuiltins.objectPrototype&&Object.getPrototypeOf===nativeBuiltins.getPrototypeOf&&Object.getOwnPropertyDescriptor===nativeBuiltins.getOwnPropertyDescriptor&&Reflect===nativeBuiltins.reflect&&Reflect.ownKeys===nativeBuiltins.ownKeys&&Object.hasOwn===nativeBuiltins.hasOwn&&Object.keys===nativeBuiltins.keys&&Object.entries===nativeBuiltins.entries&&Array===nativeBuiltins.Array&&Array.prototype===nativeBuiltins.arrayPrototype&&Array.isArray===nativeBuiltins.isArray&&ArrayBuffer===nativeBuiltins.ArrayBuffer&&ArrayBuffer.isView===nativeBuiltins.isView&&Buffer===nativeBuiltins.Buffer&&Buffer.from===nativeBuiltins.from,true,'Recorded-week source drift: native builtin substitution refused');
 }
 function dataOnlyRecord(value,depth=0){
  nativeEquality(depth<100,true,'Recorded-week source drift: finite data-only registration required');
@@ -236,8 +237,21 @@ function nativeObjectBatch(id,type,gitBytes){
  return decodeNativeObjectBatch(output,id,type);
 }
 
+// A packed Git object may coexist with a newly written loose shadow. Native
+// batch lookup can prefer its packed metadata; authenticate any physical loose
+// representation independently before accepting the unchanged batch result.
+// This is deliberately uncached at every existing fresh native-object read.
+function authenticateLooseRepresentation(id,type){
+ const file=resolve(root,'.git','objects',id.slice(0,2),id.slice(2));if(!existsSync(file))return;
+ const stat=lstatSync(file);batchAssert(stat.isFile()&&!stat.isSymbolicLink()&&stat.size>0&&stat.size<=maximumBatchBytes,'Recorded-week source drift: native object framing changed: invalid loose representation');
+ const bytes=inflateSync(readFileSync(file),{maxOutputLength:maximumBatchBytes}),separator=bytes.indexOf(0);
+ batchAssert(separator>0&&separator<128,'Recorded-week source drift: native object framing changed: loose header');const header=bytes.subarray(0,separator);batchAssert(header.every(byte=>byte<128),'Recorded-week source drift: native object framing changed: loose ASCII header');
+ const match=/^(blob|tree|commit|tag) (0|[1-9][0-9]*)$/.exec(header.toString('ascii'));batchAssert(match&&match[1]===type,'Recorded-week source drift: native object framing changed: loose type');const size=Number(match[2]);batchAssert(Number.isSafeInteger(size)&&size>=0&&size<=maximumObjectBytes&&bytes.length-separator-1===size,'Recorded-week source drift: native object framing changed: loose size');
+ batchAssert.equal(batchCreateHash('sha1').update(bytes).digest('hex'),id,'Recorded-week source drift: native object framing changed');
+}
+
 function nativeObject(oid,type){
- sha40(oid);
+ sha40(oid);authenticateLooseRepresentation(oid,type);
  return nativeObjectBatch(oid,type,(args,{input})=>{
   rawContext();
   return execFileSync('/usr/bin/git',['--no-replace-objects',...args],{cwd:root,env:nativeEnvironment(),encoding:null,input,maxBuffer:maximumBatchBytes});
