@@ -1,0 +1,18 @@
+{
+  "completedAt": "2026-10-17T11:30:40.158Z",
+  "status": "published_source_ingestion_verified",
+  "url": "https://shiftsometimber.co.uk/articles/calories-explained-men",
+  "existingAcceptedSource": "b6f9c0c36d4303e5d384fb2d62b58968b998aa64",
+  "existingIngestionModuleBlob": "2358d63c5c697ad0cbad0f3ad24866cd1f6666a9",
+  "documentId": 8,
+  "chunks": 3,
+  "updatedAt": "2026-10-17 11:30:39",
+  "contentSHA256": "a139304e8bde0086970f87204e3746d14fcecef8c34326c8c2133b2221856175",
+  "sameExistingKnowledgePath": true,
+  "exactApprovedPublishedArticleChecked": true,
+  "refreshPerformed": true,
+  "noUnapprovedDraftIngestion": true,
+  "noMemberDataRead": true,
+  "noInference": true,
+  "noModelWeightsTrainingClaim": true
+}
