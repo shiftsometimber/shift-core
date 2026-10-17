@@ -12,7 +12,7 @@ export async function applyGrubDiscovery(authority,manifest=GRUB_DISCOVERY_MANIF
  const rows=await Promise.all(authority.rows.map(async r=>{
   const binding=bindings.get(r.id);
   const exact=binding?.eligible===true&&await digest({title:r.title,data:r.data,review:r.review})===binding.content_sha256;
-  return {...r,discovery:{eligible:exact,tier:exact?binding.tier:'saved-only',rank:exact?binding.rank:10000,decision:binding?.decision||'withdraw',reason:binding?.reason||'This saved recipe is no longer offered in new suggestions.',hideImage:true}};
+  return {...r,discovery:{eligible:exact,tier:exact?binding.tier:'saved-only',rank:exact?binding.rank:10000,decision:binding?.decision||'withdraw',reason:binding?.reason||'This saved recipe is no longer offered in new suggestions.',hands_on_minutes:exact?binding.hands_on_minutes:null,timing_is_estimate:true,hideImage:true}};
  }));
  return {...authority,rows,discoveryApplied:true};
 }

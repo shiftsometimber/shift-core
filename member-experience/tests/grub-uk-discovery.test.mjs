@@ -126,3 +126,13 @@ test('hypothetical reviewed publication preserves real portions and ranks the th
  assert.equal(UK_CORE_PUBLICATION.status,'pending');
  assert(!UK_CORE_PUBLICATION.items.length);
 });
+
+test('every retained choice has an honest estimated hands-on time as well as total time',()=>{
+ for(const r of recipes.filter(discoverable)){
+  assert(Number.isFinite(r.hands_on_minutes)&&r.hands_on_minutes>0,r.id);
+  assert(r.hands_on_minutes<=r.minutes,r.id);
+  assert.equal(r.timing_is_estimate,true);
+ }
+ const oats=recipes.find(r=>r.id==='industrial-breakfast-overnight-oats-apple-cinnamon-0');
+ assert.equal(oats.hands_on_minutes,10);assert.equal(oats.minutes,370);
+});

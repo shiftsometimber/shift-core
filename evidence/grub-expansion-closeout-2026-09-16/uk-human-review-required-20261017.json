@@ -131,5 +131,11 @@
       "scopes": [],
       "findings": []
     }
+  ],
+  "discovery_manifest_sha256": "6e776f8541fb8f67d92e0e532f7f16ae6bfa1b7b5b3bbd8e5e3e95e81d95147d",
+  "discovery_review_scopes": [],
+  "required_discovery_review_scopes": [
+    "discovery_decisions",
+    "timing_estimates"
   ]
 }
