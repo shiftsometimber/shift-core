@@ -1,0 +1,162 @@
+{
+  "at": "2026-10-17T21:48:48.927197+00:00",
+  "base": "a32be98c67fe0ddb857017650fab02f996bc98e0",
+  "branch": "fix/grub-uk-catalogue-20261017",
+  "state": "IMPLEMENTED_AND_QUALIFIED_LOCALLY; UNPUBLISHED; NOT_DEPLOYED",
+  "code_sha256": {
+    "member-experience/grub-intelligence.mjs": "cd4ae5c1d4d6d1df87086b129b4ec7e9ba078d946e5f4e4dad305477a09418c8",
+    "member-experience/grub-client.mjs": "d6add8aacaaa5bc5608c079819edf948b3c668bd53ee1ecf71c6a38d3dd3db4c",
+    "member-experience/grub-discovery-manifest-20261017.mjs": "19fb47adbea7f7b769a7518073e41e331f32ff87606c5506cbe4a28c5ab20b4a",
+    "member-experience/grub-discovery.mjs": "a901edbaf89d59caab8b71bb6c56b2278640cad861d12a5f5ebf2e25448a7d86",
+    "member-experience/grub-search.mjs": "0e25ba9993254d07733e8bf2cdcbfbf204d4e4685d08c36393d99a9a0237ea3d",
+    "member-experience/grub-workspace.mjs": "22bc9c5f76d3aacabed2c3cc90fdb9d518a30a5fdd4eddf21989c9cdb629db88",
+    "grub-expansion-authority-v1.mjs": "2b3d7b88db7c0a8843ab199cef63c7e7c85e85bcbf55ceb1cbe1dcb2e7d136ae",
+    "member-product-v7.js": "38fdaeb4953453f7cca682ba7c527d43673ba8fda9eddab89836966be3715142",
+    "grub-uk-core-publication-gate-20261017.mjs": "2372cf6805099000e14bd35111c191119a145ac076d757ac1351f0d6e0a906c6",
+    "grub-uk-core-publication-20261017.mjs": "9ea80683c3b70e2004268d0fb93d7cd2b6ea6f2341b10a8688a4e689918bbf27",
+    "grub-uk-core-authority-20261017.mjs": "bc76af67361ac9b240cbae2c13fc98f05ae01b9b5435c3b3ee4d4a901e1b34ef"
+  },
+  "functional": {
+    "tests": 72,
+    "pass": 72,
+    "fail": 0,
+    "skipped": 0,
+    "tap_sha256": "7da9a56f904ceb3bd28d05b1d816b15dcaaf9ff524e224808e308c09fdb34be3",
+    "after_evidence_only_adjustment": {
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "tap_sha256": "02ee7646a930d7c6189f32262188b5f253710a6c4ff603d53e5f93f58cdda434"
+    }
+  },
+  "browser": {
+    "browser-curated": {
+      "sha256": "c1590e1fbd022793e92479e5423b3d0f92aca3479cc977c4e918b0a2c14b906f",
+      "pass": true,
+      "checks": 22,
+      "physicalDevice": false,
+      "productionWrites": 0
+    },
+    "browser-curated-effort": {
+      "sha256": "cf4bf11c2264d91c8d1ffecfa2315effb4785b7251dafa4b74d281ece2600530",
+      "pass": null,
+      "checks": 12,
+      "physicalDevice": false,
+      "productionWrites": 0,
+      "observed_terminal_exit_code": 0,
+      "terminal_stdout_sha256": "10a65b8c522bc76ed0139028f068f3faefa5ac1f4bf13342093e82e3151d0f73"
+    },
+    "browser-uk-stable-layout": {
+      "sha256": "1c8f914cc5956538a9a23ae8264b49e35cb21d0d4fd6f99c5c88ac26b411a285",
+      "pass": true,
+      "checks": 12,
+      "physicalDevice": false,
+      "productionWrites": 0
+    }
+  },
+  "review_document": {
+    "filename": "Grub-UK-Recipe-Review-20261017.html",
+    "sha256": "d6f7338b02a63702a95cd9bff90bd5d2d25eeb692b7b0cf93405bce93e162cb5",
+    "new_drafts": 14,
+    "existing_recipes": 32,
+    "layout": {
+      "pass": true,
+      "layouts": [
+        {
+          "viewport": 390,
+          "root": 390,
+          "articles": 46
+        },
+        {
+          "viewport": 1440,
+          "root": 1440,
+          "articles": 46
+        }
+      ]
+    }
+  },
+  "live_read_only": {
+    "at": "2026-10-17T21:47:33.262Z",
+    "productionWrites": 0,
+    "checks": [
+      {
+        "path": "/assets/member-experience/grub.mjs",
+        "status": 200,
+        "bytes": 31181,
+        "sha256": "23e7ac48af815c3b77d9ba19752992b68648511c7a647fd3b077cc2b8dc250e4",
+        "previousAcceptedGrubScriptMatched": true,
+        "cacheControl": "no-store, must-revalidate"
+      },
+      {
+        "path": "/member/grub?view=app",
+        "status": 200,
+        "bytes": 165555,
+        "sha256": "1c464f072ee6d3a08e06c24692c8d19c16de68d69ef142f6004b4650315a33c0",
+        "previousAcceptedGrubScriptMatched": null,
+        "cacheControl": "no-store"
+      },
+      {
+        "path": "/v1/grub/workspace",
+        "status": 401,
+        "bytes": 46,
+        "sha256": "12408277d2940c16896276b3803e2f24165d71369579342736777419c3181660",
+        "previousAcceptedGrubScriptMatched": null,
+        "cacheControl": "no-store"
+      }
+    ]
+  },
+  "fresh_public_db": {
+    "results": [
+      {
+        "rows": 2684,
+        "max_updated_at": "2026-09-16T18:50:04Z"
+      }
+    ],
+    "success": true,
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "WEUR",
+      "served_by_colo": "AMS",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 68.7998
+      },
+      "duration": 68.7998,
+      "changes": 0,
+      "last_row_id": 2704,
+      "changed_db": false,
+      "size_after": 309960704,
+      "rows_read": 2684,
+      "rows_written": 0,
+      "total_attempts": 1
+    }
+  },
+  "food_publication": {
+    "real_independent_human_review": "MISSING",
+    "physical_cooking_trial": "NOT_PERFORMED",
+    "signed_in_production_journey": "NOT_PERFORMED",
+    "new_recipe_publication": "HELD",
+    "discovery_manifest": "PENDING"
+  },
+  "restrictions": {
+    "homepageChanges": 0,
+    "costs": 0,
+    "externalMessages": 0,
+    "memberDataWrites": 0,
+    "databaseWrites": 0,
+    "productionDeployments": 0,
+    "otherCoreSourceChanged": false
+  },
+  "failed_attempts_retained": [
+    "uk-regression.tap: esbuild dependency missing in new isolated checkout, resolved by existing qualified dependency link",
+    "uk-discovery-gated.tap: negative error-message assertion corrected; gate retained",
+    "browser-uk-discovery.log and browser-uk-diagnostic*: immediate layout assertion during transition; stable final viewport assertion retained with 5-second deadline and existing reduced-motion browser setting; final pass",
+    "Review document first layout overflow: long source links; fixed wrapping, 390/1440 verification pass"
+  ],
+  "outside_original_serving_authority": {
+    "id": "lighter-beef-cottage-pie",
+    "decision": "withdraw from new discovery",
+    "ingredients_and_method_read": true,
+    "finding": "Recognisable cottage pie is outside the original governed serving authority; this correction does not invent publication acceptance for it. Preserve its stored reference and source bytes."
+  }
+}

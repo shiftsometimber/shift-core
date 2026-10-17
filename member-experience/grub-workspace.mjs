@@ -1,4 +1,5 @@
 import {ingredientOptions} from './grub-ingredients.mjs';
+import {discoverable} from './grub-discovery.mjs';
 import {memberRecipe,filterRecipe} from './grub-search.mjs';
 import {recommendationFor,adjustRecommendation,nextRecommendation,nutritionForWeek,grubEfforts,repeatMeals} from './grub-intelligence.mjs';
 
@@ -20,7 +21,14 @@ const excluded=(r,text)=>text.split(',').map(x=>x.trim().toLowerCase()).filter(B
  const terms=x==='fish'?['fish','salmon','tuna','cod','haddock','anchovy','mackerel','sardine']:x==='nuts'?['nut','almond','cashew','pecan','pistachio']: [x];
  return terms.some(t=>r.ingredients.some(i=>i.item.toLowerCase().includes(t))||r.allergens.some(a=>a.toLowerCase().includes(t)));
 });
-function candidates(recipes,options,slot){return recipes.filter(r=>(r.meal_type===slot||(slot==='dinner'&&options.style==='fast'&&r.meal_type==='lunch'))&&filterRecipe(r,styles[options.style])&&!excluded(r,options.exclude))}
+function candidates(recipes,options,slot){
+ const curated=recipes.some(r=>r.discovery);
+ // In the corrected menu, protein/budget are preferences, not nutritional
+ // adequacy or retailer-price guarantees. Time and vegetarian choices remain hard.
+ const preference=curated&&['protein','budget'].includes(options.style);
+ return recipes.filter(r=>discoverable(r)&&(r.meal_type===slot||(slot==='dinner'&&options.style==='fast'&&r.meal_type==='lunch'))&&(preference||filterRecipe(r,styles[options.style]))&&!excluded(r,options.exclude))
+  .sort((a,b)=>Number(filterRecipe(b,styles[options.style]))-Number(filterRecipe(a,styles[options.style])));
+}
 function choose(pool,used,seed){const fresh=pool.filter(r=>!used.has(r.id));const list=fresh.length?fresh:pool;return list[seed%list.length]}
 export function mealFamily(recipe){
  const format=String(recipe.food_format||'').toLowerCase(),name=String(recipe.name||'').toLowerCase();
@@ -39,7 +47,7 @@ function chooseVaried(pool,used,counts,seed){
 }
 export function buildWeek(recipes,input,seed=0,learning={}){
  const options=planOptions(input),used=new Set(learning.recent||[]),week=[],families={breakfast:new Map(),main:new Map()};
- recipes=recipes.filter(r=>!(learning.nay||[]).includes(r.id));
+ recipes=recipes.filter(r=>discoverable(r)&&!(learning.nay||[]).includes(r.id));
  for(let day=1;day<=options.days;day++)for(const slot of slots){
   const pool=candidates(recipes,options,slot);if(!pool.length)fail('No '+slot+' recipes meet all these choices. Change the style or ingredients to leave out. Your saved week has not changed.');
   const counts=families[slot==='breakfast'?'breakfast':'main'],r=chooseVaried(pool,used,counts,seed+day*7+slots.indexOf(slot));used.add(r.id);counts.set(mealFamily(r),(counts.get(mealFamily(r))||0)+1);week.push({key:day+':'+slot,day,slot,recipeId:r.id,servings:options.servings});

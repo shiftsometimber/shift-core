@@ -1,0 +1,135 @@
+{
+  "proof": "GRUB_UK_HUMAN_SECOND_PERSON_REVIEW_20261017",
+  "status": "pending",
+  "pack_sha256": "ea1063d2100dad36adab3621601a10e66924f1b3ec22003681e383d464c95b3a",
+  "reviewer": null,
+  "reviewed_at": null,
+  "source_receipt": null,
+  "physical_cooking_trial_claimed": false,
+  "required_scopes": [
+    "title",
+    "ingredients",
+    "method",
+    "equipment",
+    "allergens",
+    "nutrition",
+    "storage",
+    "food_safety",
+    "serving_metadata",
+    "member_humanness"
+  ],
+  "recipes": [
+    {
+      "id": "uk-core-margherita-pizza",
+      "title": "Margherita pizza with side salad",
+      "content_hash": "630711e924015ab3b90eebc9345cb4c525e535b9b5969b210be5e0d5b4520fbb",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-pepperoni-pizza",
+      "title": "Pepperoni pizza with side salad",
+      "content_hash": "9b8dab5c09e35e2cd4e6ddd1e97ad30afad8fad76363468bba8fac4a325a124f",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-ham-pineapple-pizza",
+      "title": "Ham and pineapple pizza with side salad",
+      "content_hash": "c7f03d7e9d438a7903c2598eba93f8e2e3400bf1444255cb0e31545f44c7f3bc",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-mushroom-pizza",
+      "title": "Mushroom pizza with side salad",
+      "content_hash": "e271f6f52f29bc241844cc22ace67fb29035d41acb01927a1878b444676a6bc3",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-egg-mayonnaise-sandwich",
+      "title": "Egg mayonnaise sandwich",
+      "content_hash": "e2c545399d54d82dcda9c5e1925806add49332bc89f13111f04dbb39e2a6064e",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-cheese-tomato-sandwich",
+      "title": "Cheese and tomato sandwich",
+      "content_hash": "bfa000b9e7857b5dd8fd82f2646c857e6f6b850e12bcb72509ab06cfcfac998e",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-jacket-beans-cheese",
+      "title": "Jacket potato with beans and cheese",
+      "content_hash": "8dc84d7c933330beba951375513805e666a364aa31a06024ca57835b4a2644f8",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-jacket-tuna-mayo",
+      "title": "Jacket potato with tuna mayonnaise",
+      "content_hash": "7bf9e6f0caf7d18a17f9aff2ef7404fb978c542b988f82ba6800df2e14039169",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-tomato-lentil-pasta",
+      "title": "Tomato and lentil pasta",
+      "content_hash": "c7835b386c9891ec565893054028e626fe447f77042eee301c73f4d6d4fae5b4",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-chickpea-spinach-curry",
+      "title": "Chickpea and spinach curry with rice",
+      "content_hash": "dd22d36d9372b1bd45d6c89269de3e33452bfd42e81cb1f10d872affbdbd9600",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-chicken-vegetable-noodles",
+      "title": "Chicken and vegetable noodles",
+      "content_hash": "33b4e2db0e38c7c2c622e540b0de9a175927920ef1340c097ba5c2642aea6da2",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-vegetable-omelette",
+      "title": "Vegetable omelette with toast",
+      "content_hash": "b3d205d91e2014008300073ab5f9ad335311c833f450d665fd1904899566e3e7",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-apple-yoghurt",
+      "title": "Apple and yoghurt",
+      "content_hash": "b6c4e0cec350c8c8e9788e33b3d46fbea7d033d5dc5707c2b8c759e49ac34779",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    },
+    {
+      "id": "uk-core-apple-peanut-butter",
+      "title": "Apple with peanut butter",
+      "content_hash": "6311c69f4ba869ab91060ea6b71ea1a5640e129b0acf0c8116ddd98ab9f8762d",
+      "decision": "PENDING",
+      "scopes": [],
+      "findings": []
+    }
+  ]
+}
