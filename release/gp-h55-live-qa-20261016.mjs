@@ -179,7 +179,7 @@ async function verifyOn(){
   let context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
   await commissioningLogin(page,{site,api:apiOrigin,oidc,email:first.email,password:first.password});
   const initial=await context.request.get(site+'/v1/member/details',{headers:{Origin:site,'Cache-Control':'no-cache'}});assert.equal(initial.status(),200);assert.equal((await initial.json()).gpDirectoryV2,true);
-  page=await verifyGpDirectoryLive({page,site,api:apiOrigin,email:first.email,dir:directory,report,runtimeSource:source,freshSession:async()=>{
+  page=await verifyGpDirectoryLive({page,site,api:apiOrigin,email:first.email,dir:directory,report,runtimeSource:source,clinicalConnectionExpectedInactive:runtime.code.partnerContractActivated===false,freshSession:async()=>{
    await context.request.post(apiOrigin+'/v1/auth/logout',{headers:{Origin:site,'Content-Type':'application/json'},data:{}});
    await context.close();context=await browser.newContext({viewport:{width:390,height:844}});page=await context.newPage();
    await commissioningLogin(page,{site,api:apiOrigin,oidc,email:first.email,password:first.password});return page;
@@ -196,8 +196,11 @@ async function verifyOn(){
   report.checks.push({requirement:'Actual second fictional holder isolation',...isolation});
   report.servingAfter=await assertCurrentOwnedOn(runtime,run,source);
   assert.equal(git('rev-parse','HEAD'),source);assert.equal(git('status','--porcelain','--untracked-files=no'),'');
-  report.status='pass';report.featureAcceptance=true;
- }catch(error){report.status='failed';report.error=String(error?.message||error);for(const fixture of [first,second])report.error=report.error.replaceAll(fixture.email,'[synthetic]').replaceAll(fixture.password,'[redacted]');throw error;}
+  report.gpSettingsAndIsolationAcceptance=true;
+  const clinical=report.checks.find(row=>row.requirement==='Original positive GP reuse in clinical assessment');assert(clinical,'Original clinical GP reuse case must remain explicitly accounted for');report.clinicalAssessmentReuseAcceptance=clinical.status==='pass';
+  if(clinical.status==='blocked'){report.status='blocked_by_clinical_activation';report.featureAcceptance=false;const error=new Error('Live GP settings and two-holder isolation passed. Original positive clinical assessment GP reuse remains BLOCKED by retained clinical activation/selection controls; no clinical, stock, sales or original assertion bypass.');error.clinicalGate=true;throw error;}
+  assert.equal(clinical.status,'pass');assert.equal(clinical.originalPositiveAssertionsExecuted,true);report.status='pass';report.featureAcceptance=true;
+ }catch(error){report.status=error.clinicalGate?'blocked_by_clinical_activation':'failed';report.error=String(error?.message||error);for(const fixture of [first,second])report.error=report.error.replaceAll(fixture.email,'[synthetic]').replaceAll(fixture.password,'[redacted]');throw error;}
  finally{writeFileSync(join(directory,'gp-h55-member-qa-report.json'),JSON.stringify(report,null,2)+'\n');await browser.close();}
  console.log('PASS actual GP lookup, selection, save/reopen and two-fictional-holder isolation; genuine signed-in HQ holder acceptance remains separate');
 }

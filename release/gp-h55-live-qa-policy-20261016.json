@@ -13,7 +13,7 @@
   ],
   "helper": {
     "path": "release/gp-directory-live-h55-qa-20261016.mjs",
-    "sha256": "478be3d65eb2b8db8f70f58c69ce2a19c28b24fcc53aa17b73a83867200123c4",
+    "sha256": "5ee27259046a11e0fc710fd15351669fe95cc705c14f926aea67fb0fee2c10ae",
     "originalSha256": "d0b9b3f8b84ec70edee049750cfc2e6caf8afafc1a3b0ac0a59165b6d06b1a60",
     "wholeInverse": [
       [
@@ -90,12 +90,42 @@
         "   try{assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}catch(error){try{const geometry=await readGpOverflowGeometry(page);(row.layoutDiagnostics??=[]).push({width,...geometry});}catch(diagnosticError){row.overflowGeometryError=String(diagnosticError.message);}const path=join(dir,'gp-overflow-failure-'+width+'.png');try{await page.screenshot({path,fullPage:true});row.overflowFailureScreenshot=path;}catch(screenshotError){row.overflowScreenshotError=String(screenshotError.message);}throw error;}\n",
         "   await assertGpNoOverflow(page,{row,width,dir});\n",
         1
+      ],
+      [
+        "\nconst sha=v=>",
+        "\nexport function clinicalGpReuseState({status,assessmentAvailable,expectedInactive}){\n assert.equal(status,200,'Actual owned-account clinical context must authenticate successfully');assert.equal(typeof assessmentAvailable,'boolean');assert.equal(typeof expectedInactive,'boolean');\n if(expectedInactive){assert.equal(assessmentAvailable,false,'The retained clinical activation boundary must remain OFF');return'blocked_by_retained_clinical_activation';}\n assert.equal(assessmentAvailable,true,'Unexpected clinical unavailability remains a technical failure');return'run_original_positive_assertions';\n}\n\nconst sha=v=>",
+        1
+      ],
+      [
+        "dir,report,freshSession,runtimeSource})",
+        "dir,report,freshSession,runtimeSource,clinicalConnectionExpectedInactive=false,assessmentVariantId=null})",
+        1
+      ],
+      [
+        "  const assessment=await page.context().newPage();assessment.on('pageerror',onPageError);try{\n   await assessment.goto(site+'/treatment-assessment',{waitUntil:'domcontentloaded'});",
+        "  const clinicalRow={requirement:'Original positive GP reuse in clinical assessment',status:'running',source,originalPositiveAssertionsExecuted:false,intakeSubmitted:false,paymentAttempted:false};report.checks.push(clinicalRow);\n  const assessment=await page.context().newPage();assessment.on('pageerror',onPageError);try{\n   const contextResponse=await assessment.request.get(api+'/v1/commerce/medicine-clinical-context',{headers:{Origin:site,'Cache-Control':'no-cache'}}),context=await contextResponse.json();\n   const state=clinicalGpReuseState({status:contextResponse.status(),assessmentAvailable:context.assessmentAvailable,expectedInactive:clinicalConnectionExpectedInactive});\n   clinicalRow.observed={authenticatedContextStatus:contextResponse.status(),assessmentAvailable:context.assessmentAvailable,expectedClinicalConnectionInactive:clinicalConnectionExpectedInactive};\n   if(state==='run_original_positive_assertions')assert(Number.isSafeInteger(assessmentVariantId)&&assessmentVariantId>0,'An actual approved selected treatment variant is required; no stock or treatment-selection bypass');\n   await assessment.goto(site+'/treatment-assessment'+(assessmentVariantId?'?variant='+encodeURIComponent(assessmentVariantId):''),{waitUntil:'domcontentloaded'});\n   if(state==='blocked_by_retained_clinical_activation'){\n    await assessment.locator('#status').filter({hasText:'Assessment is not open for this selection.'}).waitFor({timeout:30000});assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name=\"gpContactConsent\"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);\n    clinicalRow.status='blocked';clinicalRow.requiredInput='Chosen prescriber approved questionnaire/API/identity/evidence/consent workflow, applicable clinical activation approval and an actually available permitted selected variant. Keep stock and sales controls intact.';clinicalRow.closedGateVerified=true;\n   }else{\n",
+        1
+      ],
+      [
+        "  }finally{await assessment.close();}",
+        "   clinicalRow.originalPositiveAssertionsExecuted=true;clinicalRow.status='pass';\n   }\n  }finally{await assessment.close();}",
+        1
+      ],
+      [
+        "row.status='pass';return page;",
+        "row.scope='GP settings, persistence, denial and marker proof; clinical assessment positive case is separately reported';row.status='pass';return page;",
+        1
+      ],
+      [
+        "    await assessment.locator('#status').filter({hasText:'Assessment is not open for this selection.'}).waitFor({timeout:30000});assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name=\"gpContactConsent\"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);",
+        "    assert.equal(typeof context.emailVerified,'boolean');const accountMessage=context.emailVerified?'Signed in to My Timber. Check your saved contact details before submitting.':'Your account email must be verified before submission. No email has been requested by this page.';await assessment.locator('#accountStatus').filter({hasText:accountMessage}).waitFor({timeout:30000});assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name=\"gpContactConsent\"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);",
+        1
       ]
     ]
   },
   "runner": {
     "path": "release/gp-h55-live-qa-20261016.mjs",
-    "sha256": "555c28eeaf89081f2c86cbfbe855f6f5f782e430c9d550ed762994dcf8362a36",
+    "sha256": "42fc63a868a728dfd19bf8abf695756c36a6227640d8680e6993af2efc7dfecf",
     "originalSha256": "496bc6458786ae3a7161b95b58c0e9e319700f18dac062b8b32d883d41f9a4da",
     "wholeInverse": [
       [
@@ -226,6 +256,21 @@
       [
         "ownedReleaseRun:run.id,ownedReleaseAttempt:run.run_attempt,synthetic:true",
         "ownedReleaseRun:run.id,ownedReleaseAttempt:run.run_attempt,unchangedHqActivationRun:activationRun.id,coreSource:source,hqSource:GP_ACTIVATION_SOURCE,synthetic:true",
+        1
+      ],
+      [
+        "email:first.email,dir:directory,report,runtimeSource:source,freshSession:",
+        "email:first.email,dir:directory,report,runtimeSource:source,clinicalConnectionExpectedInactive:runtime.code.partnerContractActivated===false,freshSession:",
+        1
+      ],
+      [
+        "  report.status='pass';report.featureAcceptance=true;",
+        "  report.gpSettingsAndIsolationAcceptance=true;\n  const clinical=report.checks.find(row=>row.requirement==='Original positive GP reuse in clinical assessment');assert(clinical,'Original clinical GP reuse case must remain explicitly accounted for');report.clinicalAssessmentReuseAcceptance=clinical.status==='pass';\n  if(clinical.status==='blocked'){report.status='blocked_by_clinical_activation';report.featureAcceptance=false;const error=new Error('Live GP settings and two-holder isolation passed. Original positive clinical assessment GP reuse remains BLOCKED by retained clinical activation/selection controls; no clinical, stock, sales or original assertion bypass.');error.clinicalGate=true;throw error;}\n  assert.equal(clinical.status,'pass');assert.equal(clinical.originalPositiveAssertionsExecuted,true);report.status='pass';report.featureAcceptance=true;",
+        1
+      ],
+      [
+        "}catch(error){report.status='failed';report.error=",
+        "}catch(error){report.status=error.clinicalGate?'blocked_by_clinical_activation':'failed';report.error=",
         1
       ]
     ]
@@ -456,5 +501,14 @@
     "additionalCoverage": "Nine subsequent animation frames; every frame must pass, no ignored failures",
     "originalTimeoutsAndTolerancesUnchanged": true,
     "productLayoutChanged": false
+  },
+  "clinicalCaseSeparation": {
+    "reason": "The accepted nonclinical runtime deliberately keeps the pharmacy connection disabled. The positive clinical assessment test is not executable without activation and valid selected available variant.",
+    "independentAssertionsContinued": true,
+    "blockedCaseCountsAsPass": false,
+    "overallFeatureAcceptanceWhenBlocked": false,
+    "jobWillFailWhenOriginalClinicalCaseIsBlocked": true,
+    "originalClinicalPositiveAssertionsPreserved": true,
+    "noStockOrClinicalBypass": true
   }
 }

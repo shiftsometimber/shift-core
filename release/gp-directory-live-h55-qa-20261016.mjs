@@ -49,6 +49,12 @@ export async function assertGpNoOverflow(page,{row,width,dir}){
  }
 }
 
+export function clinicalGpReuseState({status,assessmentAvailable,expectedInactive}){
+ assert.equal(status,200,'Actual owned-account clinical context must authenticate successfully');assert.equal(typeof assessmentAvailable,'boolean');assert.equal(typeof expectedInactive,'boolean');
+ if(expectedInactive){assert.equal(assessmentAvailable,false,'The retained clinical activation boundary must remain OFF');return'blocked_by_retained_clinical_activation';}
+ assert.equal(assessmentAvailable,true,'Unexpected clinical unavailability remains a technical failure');return'run_original_positive_assertions';
+}
+
 const sha=v=>createHash('sha256').update(v).digest('hex');
 const ASSETS=['/assets/member-experience/member-details.mjs','/assets/member-experience/member-details.css','/assets/member-experience/gp-form.mjs'];
 const HELD=/\/(?:contact|support|send|email|mail|invite|checkout|payment|order|verification|verify|forgot|recovery|reset)(?:[/?-]|$)/i;
@@ -74,7 +80,7 @@ async function compiledGpAssets(source){
  return {source:control.source,bundleSha256:control.bundleSha256,assets};
 }
 
-export async function verifyGpDirectoryLive({page,site,api,email,dir,report,freshSession,runtimeSource}){
+export async function verifyGpDirectoryLive({page,site,api,email,dir,report,freshSession,runtimeSource,clinicalConnectionExpectedInactive=false,assessmentVariantId=null}){
  const source=runtimeSource===undefined?process.env.GITHUB_SHA:runtimeSource;assertGpHolder({site,api,email,source,report});assert.equal(typeof freshSession,'function');
  const row={requirement:'GP directory member flow',source,at:new Date().toISOString(),synthetic:true,realCustomerWrites:0,notificationsSent:0,urls:[site+'/member/settings'],checks:[],status:'running'};
  report.checks.push(row);
@@ -161,17 +167,29 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
   await page.locator('#memberDetailsForm').getByRole('button',{name:'Enter GP details manually',exact:true}).click();
   const markerText='Fictional release GP '+randomUUID();await page.locator('#memberGpPractice').fill(markerText);await page.locator('#memberGpAddress').fill('Fictional release acceptance only; no GP notification or registration.');await page.locator('#memberGpPostcode').fill('SK10 1AA');
   assert.equal(await page.locator('#memberGpSelectionMode').inputValue(),'manual');assert.equal(await page.locator('#memberGpCode').inputValue(),'');const finalProfile=await save();
+  const clinicalRow={requirement:'Original positive GP reuse in clinical assessment',status:'running',source,originalPositiveAssertionsExecuted:false,intakeSubmitted:false,paymentAttempted:false};report.checks.push(clinicalRow);
   const assessment=await page.context().newPage();assessment.on('pageerror',onPageError);try{
-   await assessment.goto(site+'/treatment-assessment',{waitUntil:'domcontentloaded'});
+   const contextResponse=await assessment.request.get(api+'/v1/commerce/medicine-clinical-context',{headers:{Origin:site,'Cache-Control':'no-cache'}}),context=await contextResponse.json();
+   const state=clinicalGpReuseState({status:contextResponse.status(),assessmentAvailable:context.assessmentAvailable,expectedInactive:clinicalConnectionExpectedInactive});
+   clinicalRow.observed={authenticatedContextStatus:contextResponse.status(),assessmentAvailable:context.assessmentAvailable,expectedClinicalConnectionInactive:clinicalConnectionExpectedInactive};
+   if(state==='run_original_positive_assertions')assert(Number.isSafeInteger(assessmentVariantId)&&assessmentVariantId>0,'An actual approved selected treatment variant is required; no stock or treatment-selection bypass');
+   await assessment.goto(site+'/treatment-assessment'+(assessmentVariantId?'?variant='+encodeURIComponent(assessmentVariantId):''),{waitUntil:'domcontentloaded'});
+   if(state==='blocked_by_retained_clinical_activation'){
+    assert.equal(typeof context.emailVerified,'boolean');const accountMessage=context.emailVerified?'Signed in to My Timber. Check your saved contact details before submitting.':'Your account email must be verified before submission. No email has been requested by this page.';await assessment.locator('#accountStatus').filter({hasText:accountMessage}).waitFor({timeout:30000});assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);
+    clinicalRow.status='blocked';clinicalRow.requiredInput='Chosen prescriber approved questionnaire/API/identity/evidence/consent workflow, applicable clinical activation approval and an actually available permitted selected variant. Keep stock and sales controls intact.';clinicalRow.closedGateVerified=true;
+   }else{
+
    const load=assessment.getByRole('button',{name:'Use GP details saved in My Timber',exact:true}),use=assessment.getByRole('button',{name:'Use these GP details',exact:true});await load.waitFor({timeout:30000});
    const unchanged=await assessment.locator('[name="gpPractice"]').inputValue();await load.click();await use.waitFor({timeout:15000});assert.equal(await assessment.locator('[name="gpPractice"]').inputValue(),unchanged);assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);
    await use.click();assert.equal(await assessment.locator('[name="gpPractice"]').inputValue(),markerText);assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);row.checks.push({savedAssessmentDetailsLoadedOnlyOnRequest:true,separateGpSharingConsentUnchecked:true,assessmentNeverSubmitted:true});
+   clinicalRow.originalPositiveAssertionsExecuted=true;clinicalRow.status='pass';
+   }
   }finally{await assessment.close();}
   await uninstall();page=await freshSession();await self();await install();await open();assert.deepEqual((await profile()).details,finalProfile.details);assert.equal(await page.locator('#memberGpPractice').inputValue(),markerText);row.checks.push({manualSaved:true,noGpSavedAndReopened:true,freshNormalSignIn:true});
   const anonymous=await page.context().browser().newContext();try{for(const path of ['/v1/member/details','/v1/member/details/gp-search?q=London']){const r=await anonymous.request.get(site+path);assert.equal(r.status(),401);assert.match(r.headers()['cache-control']||'',/no-store/);assert(!(await r.text()).includes(markerText));}}finally{await anonymous.close();}
   row.assetsAfter=await assets(control);assert.deepEqual(row.assetsAfter,row.assetsBefore);assert.deepEqual(blocked,[]);assert.deepEqual(pageErrors,[]);
   const marker={schema:'gp-existing-holder-isolation/v1',source,synthetic:true,holderId,gpHashes:Object.fromEntries(GP_FIELDS.map(k=>[k,sha(String(finalProfile.details[k]??''))])),at:new Date().toISOString()};
-  const raw=JSON.stringify(marker,null,2)+'\n';writeFileSync(join(dir,'gp-isolation-marker.json'),raw);row.markerMetadataSha256=sha(raw);row.twoAccountIsolation='Requires the next existing desktop holder receipt';row.hqSignedInAcceptance=false;row.ordinarySignupAcceptance=false;row.servingIdentity='The release owner separately binds terminal production deployment; assets match this exact checked-out source before and after';row.status='pass';return page;
+  const raw=JSON.stringify(marker,null,2)+'\n';writeFileSync(join(dir,'gp-isolation-marker.json'),raw);row.markerMetadataSha256=sha(raw);row.twoAccountIsolation='Requires the next existing desktop holder receipt';row.hqSignedInAcceptance=false;row.ordinarySignupAcceptance=false;row.servingIdentity='The release owner separately binds terminal production deployment; assets match this exact checked-out source before and after';row.scope='GP settings, persistence, denial and marker proof; clinical assessment positive case is separately reported';row.status='pass';return page;
  }catch(error){row.status='fail';row.error=String(error.message).replaceAll(email,'[synthetic]');throw error;}
  finally{await uninstall();row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;row.preventedBackgroundWrites=preventedBackground;}
 }
