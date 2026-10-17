@@ -1,4 +1,5 @@
 import {RECORDED_WEEK_BROWSER_REPAIR_PATHS,assertRecordedWeekBrowserRepair} from './recorded-week-browser-repair-20261017.mjs';
+import {codingCompletionHistoricalView,assertCodingCompletionView} from './coding-completion-scope-20261016.mjs';
 import assert from 'node:assert/strict';
 import {createHash as memberUtilitySourceHash} from 'node:crypto';
 import {existsSync} from 'node:fs';
@@ -45,13 +46,15 @@ export function assertCurrentMemberUtilityContainment(after,before){
  assert.equal(after.replace(c.rule,''),before,'Whole original member chrome must restore byte for byte');
  return Object.freeze({path:c.path,beforeBlob:c.beforeBlob,afterBlob:c.afterBlob});
 }
-export function verifyCurrentRuntimePreservation(c,{head=currentHead(),read=blob,readContent=content,readDiff=diff,isAncestor=ancestor}={}){
+function verifyCurrentRuntimePreservationBeforeCoding(c,{head=currentHead(),read=blob,readContent=content,readDiff=diff,isAncestor=ancestor}={},privateCoding=null){
+ const {currentHead,blob,content,diff,ancestor,mode,clean}=privateCoding??preservationBeforeCodingNativeFacts;
+
  clean();return withImmutableHistoryVerification(()=>{
  const actual=currentHead();try{
   assert.equal(head,actual,'Current-runtime preservation source drift: Actual raw HEAD is required');
   assert(c&&typeof c==='object');const {maintenanceSource,...record}=c;assert.deepEqual(record,policy.record,'Only the exact preserved delivered runtime is authorised');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
   for(const [ref,tree]of[[c.base,c.baseTree],[c.source,c.sourceTree],[c.runtimeSource,c.runtimeTree]])assert.equal(git('rev-parse',ref+'^{tree}').trim(),tree,'Literal immutable tree required');
-  const facts=currentPreservationNativeFacts(c,head),verifiedBlob=facts.blob,verifiedContent=facts.content;
+  const facts=privateCoding?privateCoding.nativeFacts(c,head):currentPreservationNativeFacts(c,head),verifiedBlob=facts.blob,verifiedContent=facts.content;
   if(read===blob)read=verifiedBlob;if(readContent===content)readContent=verifiedContent;
   for(const ref of[c.base,c.source,c.maintenanceSource,c.runtimeSource,c.gpActivationSource,policy.record.memberUtilityContainmentRepair20261017.source]){ancestor(ref,head);assert.notEqual(isAncestor(ref,head),false,'Current-runtime preservation source drift: Supplied preservation ancestry changed');}
   for(const[a,b,expected]of[[c.base,c.source,c.paths],[c.source,c.maintenanceSource,c.maintenancePaths],[c.maintenanceSource,head,[manifest]]]){
@@ -79,7 +82,9 @@ export function verifyCurrentRuntimePreservation(c,{head=currentHead(),read=blob
  }finally{clean();assert.equal(currentHead(),actual,'Current-runtime preservation source drift: Raw HEAD changed during proof');}
  });
 }
-export function currentRuntimePreservationHistoricalView(reader=null,{defaultReader=reader===null}={}){
+function currentRuntimePreservationHistoricalViewBeforeCoding(reader=null,{defaultReader=reader===null}={},privateCoding=null){
+ const {currentHead,blob,content,diff,ancestor,mode,clean}=privateCoding??preservationBeforeCodingNativeFacts;
+
  const rawHead=currentHead(),record=JSON.parse(content(rawHead,manifest)),c=record[key],sourceReader=reader===null?blob:reader;assert.equal(typeof sourceReader,'function');
  const assertCurrent=()=>{clean();assert.equal(currentHead(),rawHead,'Current-runtime preservation source drift: Raw HEAD changed during projection');};
  // The enclosing synchronous proof retains its entry/exit working-tree checks.
@@ -87,10 +92,11 @@ export function currentRuntimePreservationHistoricalView(reader=null,{defaultRea
  // This additional projection layer need not scan the same working tree again
  // around each immutable lookup, but must retain fresh HEAD/cwd/environment.
  const assertCurrentHead=()=>{
+  if(privateCoding)return privateCoding.assertCurrentHead();
   if(immutableHistorySourceHead()!==rawHead)return assertCurrent();
   return withImmutableHistoryVerification(()=>assert.equal(currentHead(),rawHead,'Current-runtime preservation source drift: Raw HEAD changed during projection'));
  };
- if(c)verifyCurrentRuntimePreservation(c,{head:rawHead});const paths=new Set(c?[...c.paths,...c.maintenancePaths,manifest]:[]),affected=p=>paths.has(p)||[...paths].some(q=>q.startsWith(p+'/'));
+ if(c)verifyCurrentRuntimePreservationBeforeCoding(c,{head:rawHead,read:blob,readContent:content,readDiff:diff,isAncestor:ancestor},privateCoding);const paths=new Set(c?[...c.paths,...c.maintenancePaths,manifest]:[]),affected=p=>paths.has(p)||[...paths].some(q=>q.startsWith(p+'/'));
  const prior=c?JSON.parse(content(c.base,manifest)):structuredClone(record);const projected=c?c.base:rawHead;
  const view={rawHead,head:projected,record:prior,affected,assertCurrent,assertCurrentHead,authentic:(v,r,p,h=rawHead)=>authentic(v,r,p,h),nativeAuthentic:(v,r,p)=>authentic(v,r,p,r==='HEAD'?rawHead:r),nativeContentAuthentic:(v,r,p)=>authenticContent(v,r,p,r==='HEAD'?rawHead:r),currentContent:content,
   blob:(r,p)=>blob(r==='HEAD'||r===rawHead?projected:r,p),content:(r,p)=>content(r==='HEAD'||r===rawHead?projected:r,p),
@@ -119,4 +125,66 @@ export function withoutCurrentRuntimePreservationFlag(config){
  if(!config.includes('"MEMBER_GP_DIRECTORY_V2_ENABLED": "true"'))return config;
  const view=currentRuntimePreservationHistoricalView();if(view.head===view.rawHead)return config;
  assert.equal(config,content(view.rawHead,'wrangler.jsonc'),'Only the exact accepted current configuration may enter a historical comparison');return content(view.head,'wrangler.jsonc');
+}
+
+// One authenticated outer coding frame. Every previous assertion and policy
+// restores exactly; supplied readers still authenticate actual current source.
+const preservationBeforeCodingNativeFacts=Object.freeze({currentHead,blob,content,diff,ancestor,mode,clean});
+function preservationBeforeCodingFrame(outer){
+ assertCodingCompletionView(outer);
+ const assertCurrentHead=()=>{
+  if(immutableHistorySourceHead()!==outer.rawHead)return assertCodingCompletionView(outer);
+  return withImmutableHistoryVerification(()=>assert.equal(preservationBeforeCodingNativeFacts.currentHead(),outer.rawHead,'Actual raw HEAD changed during native coding projection'));
+ };
+ const run=f=>{const closed=immutableHistorySourceHead()===outer.rawHead;if(!closed)assertCodingCompletionView(outer);try{return withImmutableHistoryVerification(()=>{assertCurrentHead();try{return f();}finally{assertCurrentHead();}});}finally{if(!closed)assertCodingCompletionView(outer);}},ref=r=>r==='HEAD'||r===outer.rawHead?outer.head:r;
+ return Object.freeze({
+  assertCurrentHead,
+  currentHead:()=>run(()=>outer.head),
+  blob:(r,p)=>run(()=>outer.blob(r,p)),content:(r,p)=>run(()=>outer.content(r,p)),
+  diff:(a,b)=>run(()=>outer.diff(a,b)),ancestor:(a,b)=>run(()=>outer.ancestor(a,b)),
+  mode:(r,p)=>run(()=>preservationBeforeCodingNativeFacts.mode(ref(r),p)),
+  clean:()=>run(()=>preservationBeforeCodingNativeFacts.clean()),
+  nativeFacts:(record,head)=>run(()=>{
+   assert.equal(head,outer.head,'Exact projected source required for native facts');
+   const captured=currentPreservationNativeFacts(record,head),ref=r=>r==='HEAD'?outer.head:r;
+   return Object.freeze({
+    blob:(r,p)=>run(()=>captured.blob(ref(r),p)),
+    content:(r,p)=>run(()=>captured.content(ref(r),p)),
+    mode:(r,p)=>run(()=>captured.mode(ref(r),p))
+   });
+  })
+ });
+}
+export function verifyCurrentRuntimePreservation(c,options={}){
+ const outer=codingCompletionHistoricalView();
+ if(!outer)return verifyCurrentRuntimePreservationBeforeCoding(c,options);
+ assertCodingCompletionView(outer);assert.deepEqual(c,outer.record[key],'Exact current-runtime predecessor record required');
+ assert.equal(options.head===undefined?outer.rawHead:options.head,outer.rawHead,'Actual raw HEAD required');
+ for(const name of['read','readContent','readDiff','isAncestor'])if(options[name]!==undefined)assert.equal(typeof options[name],'function','Supplied callback must remain a function');
+ const frame=preservationBeforeCodingFrame(outer);
+ try{return verifyCurrentRuntimePreservationBeforeCoding(c,{
+  head:outer.head,
+  read:options.read===undefined?frame.blob:outer.projectRead(options.read),
+  readContent:options.readContent===undefined?frame.content:outer.projectContent(options.readContent),
+  readDiff:options.readDiff===undefined?frame.diff:outer.projectDiff(options.readDiff),
+  isAncestor:options.isAncestor===undefined?frame.ancestor:outer.projectAncestor(options.isAncestor)
+ },frame);}finally{outer.assertCurrent();}
+}
+export function currentRuntimePreservationHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ if(reader!==null)assert.equal(typeof reader,'function','Supplied current-runtime reader must remain a function');
+ const outer=codingCompletionHistoricalView(reader);
+ if(!outer)return currentRuntimePreservationHistoricalViewBeforeCoding(reader,{defaultReader});
+ assertCodingCompletionView(outer);assert(outer.record[key],'Exact current-runtime predecessor record required');
+ const frame=preservationBeforeCodingFrame(outer),inner=currentRuntimePreservationHistoricalViewBeforeCoding(reader===null?null:outer.projectRead(reader),{defaultReader},frame),ref=r=>r===outer.rawHead?'HEAD':r;
+ const assertCurrent=()=>{assertCodingCompletionView(outer);inner.assertCurrent();assertCodingCompletionView(outer);},assertCurrentHead=()=>{frame.assertCurrentHead();inner.assertCurrentHead();frame.assertCurrentHead();},run=f=>{const closed=immutableHistorySourceHead()===outer.rawHead;if(!closed)assertCodingCompletionView(outer);try{return withImmutableHistoryVerification(()=>{assertCurrentHead();try{return f();}finally{assertCurrentHead();}});}finally{if(!closed)assertCodingCompletionView(outer);}};
+ const view={...inner,rawHead:outer.rawHead,affected:p=>outer.affected(p)||inner.affected(p),assertCurrent,assertCurrentHead,
+  authentic:(v,r,p,h=outer.rawHead)=>run(()=>authentic(v,r,p,h)),
+  nativeAuthentic:(v,r,p)=>run(()=>authentic(v,r,p,r==='HEAD'?outer.rawHead:r)),
+  nativeContentAuthentic:(v,r,p)=>run(()=>authenticContent(v,r,p,r==='HEAD'?outer.rawHead:r)),
+  read:(r,p)=>run(()=>inner.read(ref(r),p)),blob:(r,p)=>run(()=>inner.blob(ref(r),p)),content:(r,p)=>run(()=>inner.content(ref(r),p)),
+  diff:(a,b)=>run(()=>inner.diff(ref(a),ref(b))),ancestor:(a,b)=>run(()=>inner.ancestor(ref(a),ref(b))),
+  currentContent:(r,p)=>run(()=>outer.currentContent(r,p)),codingCompletionContext:outer};
+ admittedViews.add(view);Object.freeze(view);
+ for(const kind of['read','blob','content','diff','ancestor'])admittedReaders.set(view[kind],Object.freeze({kind,view,...(kind==='read'?{nativeSource:reader===null&&outer.nativeSource===true&&currentRuntimePreservationReaderProvenance(inner.read)?.nativeSource===true}:{})}));
+ view.assertCurrent();return view;
 }
