@@ -6766,7 +6766,8 @@
       "tests/runtime-cancel-rollback-20261016.test.mjs",
       "tests/seo-audit-scope-20261016.test.mjs",
       "tests/treatment-week-compiled-module-20261017.test.mjs",
-      "tests/public-tool-guidance.test.mjs"
+      "tests/public-tool-guidance.test.mjs",
+      "shift-coach/release-contract.mjs"
     ],
     "integrationIssue": 1065,
     "authority": "Existing A001 release repair; exact actual deployed GP/questionnaire and recorded-week code preserved with original failed browser evidence; no whole-feature acceptance inferred",
@@ -6964,6 +6965,33 @@
       "approvalResultsCached": false,
       "runtimeProductConfigurationAndClinicalChanged": false
     },
-    "maintenanceSource": "bd8f483a0d207e717a764d63237cbc50db4d7dcd"
+    "maintenanceSource": "93949e31d17630b498628f92cd668b2cd1a0eba2",
+    "coachingSourceEarlyRejection20261017": {
+      "kind": "EXACT_COACHING_SOURCE_REJECTION_ONLY_PREFLIGHT_20261017",
+      "basisSource": "bd55c23dbef505967a417b55e1be37a11033c4b5",
+      "basisTree": "d591c5f3a8d3675db71b1bc9012a36f8488ab5fd",
+      "path": "shift-coach/release-contract.mjs",
+      "beforeBlob": "f7e8178f164b601796dd0242d5ff8aa274b65dcb",
+      "afterBlob": "56ac1aa0964e639b0451ab5e3c2c1fa6737d1d38",
+      "beforeSHA256": "47eaf8fc02ac13f4a41a6a0741df22d680db72cec55fa96969f0c89681a50239",
+      "afterSHA256": "b45ebffb35e98a24cfe1aecf98bcfb14a9768e953f6dcad2a8ea8e87d48eed01",
+      "helperSHA256": "d3bb2be273a58fbcdbc2c8a029be15f822fc2ed813e57455aa3f053575926c08",
+      "callSHA256": "e9fb7b6916b4a29d94482f38d7a32dd5a316490d0955d043c506c2d09a3c8627",
+      "earlyHistoricalComparisons": 20,
+      "maximumAddedFreshCallbackReads": 40,
+      "originalLateAssertionsRetained": true,
+      "originalErrorStringsRetained": true,
+      "originalTestBodiesChanged": false,
+      "historicalProjectionChanged": false,
+      "successfulEarlyReturn": false,
+      "callerOutputsOrVerdictsCached": false,
+      "sourceAuthorityChanged": false,
+      "crossRunProofReuse": false,
+      "originalProductionTimeoutMinutes": 60,
+      "originalNativeCapSeconds": 1200,
+      "maximumSourceSlots": 2,
+      "workflowRuntimeConfigurationClinicalStockAndPublicContentChanged": false,
+      "wholeOriginalContractInverseRequired": true
+    }
   }
 }
