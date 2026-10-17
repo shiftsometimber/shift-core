@@ -5,7 +5,7 @@ import {buildUKOwnerWaivedPublication} from '../../grub-uk-owner-waiver-20261017
 import {UK_CORE_PUBLICATION as publication} from '../../grub-uk-core-publication-20261017.mjs';
 import {appendUKCorePublication} from '../../grub-uk-core-authority-20261017.mjs';
 import {applyGrubDiscovery} from '../grub-discovery.mjs';
-import {enrichGrubRecipes,searchGrubRecipes,memberRecipe} from '../grub-search.mjs';
+import {enrichGrubRecipes,searchGrubRecipes,memberRecipe,filterRecipe} from '../grub-search.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p));
 const pack=read('content/grub/uk-core-drafts-20261017.json'),waiver=read('evidence/grub-expansion-closeout-2026-09-16/uk-owner-review-waiver-20261017.json');
 test('exact owner waiver never masquerades as independent human or kitchen review',()=>{
@@ -22,6 +22,7 @@ test('actual owner-authorised publication gives four ordered UK pizzas and prese
  assert.deepEqual(found.top.map(x=>x.name),['Margherita pizza with side salad','Pepperoni pizza with side salad','Ham and pineapple pizza with side salad','Mushroom pizza with side salad']);
  for(const r of found.top){assert.equal(r.servings,2);assert.equal(r.minutes,25);assert.equal(r.image,null);assert.equal(r.timing_is_estimate,true);}
  assert.equal(recipes.filter(r=>r.discovery.eligible).length,46);
+ const curry=memberRecipe(recipes.find(r=>r.id==='uk-core-chickpea-spinach-curry'));assert.match(curry.allergen_note,/peanuts/);assert.equal(filterRecipe(curry,'vegetarian'),false);
  const changed=structuredClone(publication);changed.items[0].review.human_review_claimed=true;await assert.rejects(()=>appendUKCorePublication(authority,changed));
  assert.equal(memberRecipe(pack.candidates[0]),null);
 });
