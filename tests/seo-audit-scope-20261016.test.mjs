@@ -53,3 +53,6 @@ await import('../tests/accepted-recorded-week-runtime-20261017.test.mjs');
 import './accepted-current-hq-retention-20261017.test.mjs';
 
 import './combined-hq-preservation-20261014.test.mjs';
+
+import './recorded-week-browser-repair-20261017.test.mjs';
+import './treatment-week-compiled-module-20261017.test.mjs';
