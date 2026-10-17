@@ -43,12 +43,12 @@ export function verifyCurrentRuntimePreservation(c,{head=currentHead(),read=blob
   for(const [ref,tree]of[[c.base,c.baseTree],[c.source,c.sourceTree],[c.runtimeSource,c.runtimeTree]])assert.equal(git('rev-parse',ref+'^{tree}').trim(),tree,'Literal immutable tree required');
   const facts=currentPreservationNativeFacts(c,head),verifiedBlob=facts.blob,verifiedContent=facts.content;
   if(read===blob)read=verifiedBlob;if(readContent===content)readContent=verifiedContent;
-  for(const ref of[c.base,c.source,c.maintenanceSource,c.runtimeSource,c.gpActivationSource]){ancestor(ref,head);assert.notEqual(isAncestor(ref,head),false,'Supplied preservation ancestry changed');}
+  for(const ref of[c.base,c.source,c.maintenanceSource,c.runtimeSource,c.gpActivationSource]){ancestor(ref,head);assert.notEqual(isAncestor(ref,head),false,'Current-runtime preservation source drift: Supplied preservation ancestry changed');}
   for(const[a,b,expected]of[[c.base,c.source,c.paths],[c.source,c.maintenanceSource,c.maintenancePaths],[c.maintenanceSource,head,[manifest]]]){
-   ancestor(a,b);assert.notEqual(isAncestor(a,b),false,'Supplied preservation ancestry changed');const native=diff(a,b);assert.deepEqual(sorted(native),sorted(expected),'Exact current-runtime preservation boundary required');assert.deepEqual(sorted(readDiff(a,b)),sorted(native),'Supplied preservation diff changed');
+   ancestor(a,b);assert.notEqual(isAncestor(a,b),false,'Current-runtime preservation source drift: Supplied preservation ancestry changed');const native=diff(a,b);assert.deepEqual(sorted(native),sorted(expected),'Exact current-runtime preservation boundary required');assert.deepEqual(sorted(readDiff(a,b)),sorted(native),'Current-runtime preservation source drift: Supplied preservation diff changed');
   }
   assert.deepEqual(sorted(diff(c.base,head)),sorted([...new Set([...c.paths,...c.maintenancePaths,manifest])]),'Every unrelated Core source path must remain exact');
-  for(const ref of['HEAD',head])assert.deepEqual(sorted(readDiff(c.base,ref)),sorted(diff(c.base,head)),'Supplied current preservation boundary changed');
+  for(const ref of['HEAD',head])assert.deepEqual(sorted(readDiff(c.base,ref)),sorted(diff(c.base,head)),'Current-runtime preservation source drift: Supplied current preservation boundary changed');
   for(const p of[...new Set([...c.paths,...c.maintenancePaths])].filter(p=>p!==manifest)){
    const ref=c.maintenancePaths.includes(p)?maintenanceSource:c.source;assert.equal(verifiedBlob(head,p),verifiedBlob(ref,p),'Actual preservation source drift: '+p);assert.equal(facts.mode(head,p),'100644','Actual source file mode changed');
    for(const r of['HEAD',head]){assert.equal(read(r,p),verifiedBlob(head,p),'Fresh supplied preservation source drift: '+p);assert.equal(readContent(r,p),verifiedContent(head,p),'Fresh supplied preservation content drift: '+p);}
@@ -59,8 +59,8 @@ export function verifyCurrentRuntimePreservation(c,{head=currentHead(),read=blob
   const original=JSON.parse(verifiedContent(c.base,manifest)),accepted=JSON.parse(verifiedContent(c.runtimeSource,manifest)),payload=JSON.parse(verifiedContent(c.source,manifest)),current=JSON.parse(verifiedContent(head,manifest));
   assert.deepEqual(current[key],c);delete current[key];assert.deepEqual(current,payload,'Every preserved source, approval and receipt must remain exact');
   for(const name of policy.deliveredRecordKeys){assert.deepEqual(payload[name],accepted[name],'Original delivered record changed: '+name);delete payload[name];}assert.deepEqual(payload,original,'Every original Core approval and failure record must remain exact');
-  for(const r of['HEAD',head]){assert.equal(read(r,manifest),verifiedBlob(head,manifest),'Supplied preservation ledger blob changed');assert.equal(readContent(r,manifest),verifiedContent(head,manifest),'Supplied preservation ledger changed');}
-  assert.equal(readContent(c.base,manifest),verifiedContent(c.base,manifest),'Supplied original Core ledger changed');
+  for(const r of['HEAD',head]){assert.equal(read(r,manifest),verifiedBlob(head,manifest),'Current-runtime preservation source drift: Supplied preservation ledger blob changed');assert.equal(readContent(r,manifest),verifiedContent(head,manifest),'Current-runtime preservation source drift: Supplied preservation ledger changed');}
+  assert.equal(readContent(c.base,manifest),verifiedContent(c.base,manifest),'Current-runtime preservation source drift: Supplied original Core ledger changed');
   for(const p of['wrangler.jsonc','wrangler.coaching.jsonc','wrangler.hq-management.jsonc'])assert.equal(verifiedContent(head,p),verifiedContent(c.runtimeSource,p),'Actual accepted GP configuration must remain byte exact');
   assert.equal(verifiedContent(head,'wrangler.jsonc'),verifiedContent(head,'wrangler.coaching.jsonc'));
   for(const p of['package.json','package-lock.json','.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','public-https-redirect.mjs','public-response-policy.mjs','shift-coach/worker.mjs']){assert.equal(verifiedBlob(head,p),verifiedBlob(c.base,p),'Protected Core repair/runtime boundary changed: '+p);for(const r of['HEAD',head])assert.equal(read(r,p),verifiedBlob(head,p),'Current-runtime preservation source drift: Supplied protected Core source changed: '+p);}
