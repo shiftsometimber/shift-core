@@ -9,6 +9,7 @@ const openings=[
  '<style data-shared-footer-base>',
  '<style id="sst-footer-c-style">'
 ];
+const stylesheetLinks=["<link rel=\"stylesheet\" href=\"/assets/member-experience/v1.css\">", "<link rel=\"stylesheet\" href=\"/member-plans-premium-v1.css?v=1\">", "<link rel=\"stylesheet\" href=\"/assets/member-experience/tools.css\">", "<link rel=\"stylesheet\" href=\"/assets/member-experience/home.css\">", "<link rel=\"stylesheet\" href=\"/assets/member-experience/checkin-followup.css\">", "<link rel=\"stylesheet\" href=\"/assets/member-experience/day-guide.css\">", "<link rel=\"stylesheet\" href=\"/assets/member-experience/chrome.css?v=member-chrome-20260917-v1\">"];
 export function earlyDashboardStyles(html){
  const head=html.indexOf('</head>'),bodyMatch=/<body\b[^>]*>/.exec(html),end=html.lastIndexOf('</body>');
  if(head<0||!bodyMatch||head>bodyMatch.index||end<bodyMatch.index)return html;
@@ -16,10 +17,11 @@ export function earlyDashboardStyles(html){
  // Script and comment lookalikes are never parsed as real style elements.
  const protectedBody=body.replace(/<!--[\s\S]*?-->|<script\b[^>]*>[\s\S]*?<\/script\s*>/gi,text=>' '.repeat(text.length));
  if(/<script\b|<!--/i.test(protectedBody))return html;
- const pattern=/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi,matches=[...protectedBody.matchAll(pattern)];
+ const pattern=/<style\b[^>]*>[\s\S]*?<\/style\s*>|<link\b[^>]*\brel\s*=\s*["']?stylesheet\b[^>]*>/gi,matches=[...protectedBody.matchAll(pattern)];
  const rest=protectedBody.replace(pattern,text=>' '.repeat(text.length));
- if(/<\/?style\b/i.test(rest)||/<link\b[^>]*\brel\s*=\s*["']?stylesheet\b/i.test(rest))return html;
- if(matches.length!==openings.length||matches.some((m,i)=>m[0].slice(0,m[0].indexOf('>')+1)!==openings[i]))return html;
+ if(/<\/?style\b/i.test(rest))return html;
+ const expected=[...openings.slice(0,3),...stylesheetLinks,...openings.slice(3)];
+ if(matches.length!==expected.length||matches.some((m,i)=>m[0].slice(0,m[0].indexOf('>')+1)!==expected[i]))return html;
  const styles=matches.map(m=>body.slice(m.index,m.index+m[0].length));
  let remaining=body;
  for(const m of [...matches].reverse())remaining=remaining.slice(0,m.index)+remaining.slice(m.index+m[0].length);
