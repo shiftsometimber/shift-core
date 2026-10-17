@@ -1,0 +1,72 @@
+{
+  "schema": "shift-grub-everyday-captured-baseline/v1",
+  "source": "b6f9c0c36d4303e5d384fb2d62b58968b998aa64",
+  "tree": "00781ce728ca816ddab27022c7bcf8f9e1f13b13",
+  "coordinatingMain": "bd55c23dbef505967a417b55e1be37a11033c4b5",
+  "capturedAt": "2026-10-17T20:21:32.126Z",
+  "providerCapture": "Wrangler4.112.0 deployments list --json and versions view actual-serving-id --json; read-only authorised Mac session",
+  "acceptedRuntimeReceipt": {
+    "source": "bd55c23dbef505967a417b55e1be37a11033c4b5",
+    "path": "release/receipts/accepted-recorded-week-38990992637.json",
+    "sha256": "3261fbd1a27a504746ff64f2003b8ff4922d23351c16ecd4c1f7a2d769067290",
+    "originalCoreDeploymentId": "d1b5350d-54fa-40c8-871d-7568efde1345"
+  },
+  "producers": [
+    {
+      "id": "38990992637",
+      "attempt": "1",
+      "source": "b6f9c0c36d4303e5d384fb2d62b58968b998aa64",
+      "branch": "release/factual-recorded-week-direct-20261016",
+      "workflow": ".github/workflows/factual-recorded-week-direct-release-20261016.yml"
+    },
+    {
+      "id": "38974318146",
+      "attempt": "1",
+      "source": "55b73025f5b6d2302fab42bce73a222653404186",
+      "branch": "release/gp-priority-direct-activation-20261016",
+      "workflow": ".github/workflows/gp-priority-direct-activation-20261016.yml"
+    }
+  ],
+  "restoration": {
+    "id": "39060259147",
+    "attempt": "1",
+    "source": "bd55c23dbef505967a417b55e1be37a11033c4b5",
+    "conclusion": "cancelled"
+  },
+  "workers": {
+    "core": {
+      "source": "b6f9c0c36d4303e5d384fb2d62b58968b998aa64",
+      "run": 38990992637,
+      "attempt": 1,
+      "deploymentId": "6aa2add8-e03f-4eba-9e2b-5e0ea0935beb",
+      "versionId": "6e8d9241-288d-4933-a521-9f3071ee0c19",
+      "percentage": 100,
+      "bundleSha256": "11e8861e2208971a9c9829806c6800bc0df75c6d4aa3a23956ba6179b3327e8a",
+      "bundleBytes": 14776067,
+      "allBindingsSha256": "574ec3ce9996d4aa12611a204d124f001031df09e15ae7996d32a8ac2e0e544c",
+      "versionSnapshotSha256": "5c2eeaebb700e95a48ac2bfd6ce30ab20750250bf5fe3ab7bd4e626b99bfe50c",
+      "deploymentSnapshotSha256": "970a85115618dbf5f61154b4855804ad931f1928d881ce66deb16b37cf8df15a",
+      "gpEnabled": true,
+      "weekEnabled": true
+    },
+    "hq": {
+      "source": "55b73025f5b6d2302fab42bce73a222653404186",
+      "run": 38974318146,
+      "attempt": 1,
+      "deploymentId": "f75c3309-afc7-49ca-aac2-7964bc5b7e42",
+      "versionId": "6eae4c43-fbc3-455e-a426-9bb7de344705",
+      "percentage": 100,
+      "bundleSha256": "bfadbda83e5b8dcb944b92cea15a13320b7a139c7be9afab98833ba04534e5e7",
+      "bundleBytes": 1838527,
+      "allBindingsSha256": "3b6704c920ad27ad9b9a16d1af27e9f382db7e9daa2fbc46e93d801492fb2f74",
+      "versionSnapshotSha256": "1acbb5b4788bde834c944ce0b3118d4b3948ac09dd8cd5d6829d4ee56509d9c2",
+      "deploymentSnapshotSha256": "44e4cc8125f428f668348b3a21a4c3c34df7c47486b68d698ee636996e42735d",
+      "gpEnabled": true,
+      "partnersEnabled": true,
+      "retained": true
+    }
+  },
+  "gpFeatureAcceptance": false,
+  "clinicalContractActivated": false,
+  "currentProviderCheckRequiredBeforeDeployment": true
+}
