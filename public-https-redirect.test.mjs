@@ -15,3 +15,18 @@ test('actual public entry dispatches HTTPS redirect before guide, sitemap or dat
  assert.match(outer,/^fetch: async function publicFetch\(request, env, ctx\) \{\s*const httpsRedirect=publicHttpsRedirect\(request\);if\(httpsRedirect\)return httpsRedirect;/);
  assert(source.includes("import {publicHttpsRedirect} from './public-https-redirect.mjs';"));
 });
+
+// The deployed entrypoint wraps the guide outside worker-entry-v6. Exercise
+// that actual outer policy wrapper so a guide 503 cannot pre-empt redirect.
+import {withPublicResponsePolicyWorker} from './public-response-policy.mjs';
+test('outer public response worker redirects before any wrapped guide or binding access',async()=>{
+ let calls=0;const scheduled=()=>{},worker=withPublicResponsePolicyWorker({scheduled,fetch:async()=>{calls++;return new Response('guide fallback',{status:503});}});
+ assert.equal(worker.scheduled,scheduled);
+ for(const host of ['shiftsometimber.co.uk','www.shiftsometimber.co.uk'])for(const method of ['GET','HEAD'])for(const path of ['/male-obesity?source=seo&x=1','/articles/glp-1-dosage-guide?source=seo&x=1']){
+  const response=await worker.fetch(new Request('http://'+host+path,{method}),new Proxy({},{get(){throw Error('No binding may be read before HTTPS redirect');}}),{});
+  assert.equal(response.status,301);assert.equal(response.headers.get('location'),'https://'+host+path);
+ }
+ assert.equal(calls,0);
+ for(const request of [new Request('https://shiftsometimber.co.uk/male-obesity'),new Request('http://api.shiftsometimber.co.uk/v1/auth/login'),new Request('http://shiftsometimber.co.uk/male-obesity',{method:'POST'})])assert.equal((await worker.fetch(request,{},{})).status,503);
+ assert.equal(calls,3);
+});

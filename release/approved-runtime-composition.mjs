@@ -1,3 +1,4 @@
+import {CURRENT_RUNTIME_PRESERVATION_PATHS,CURRENT_RUNTIME_PRESERVATION_MAINTENANCE} from './current-runtime-preservation-20261016.mjs';
 import {SEO_AUDIT_PATHS,SEO_AUDIT_MAINTENANCE} from './seo-audit-scope-20261016.mjs';
 import {FOOD_DIARY_LONDON_DATE_PATHS,FOOD_DIARY_LONDON_DATE_MAINTENANCE} from './food-diary-london-date-scope-20261015.mjs';
 import {CI_EXECUTION_PATHS,CI_EXECUTION_MAINTENANCE} from './ci-execution-scope-20261014.mjs';
@@ -2786,7 +2787,7 @@ export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&
 export function reconciliationChangedPath(status,path){
  if(!reconciliationPath(path))return false;
  if(["babylove/corrected-public-rows.json","babylove/dynamic-public.mjs","babylove/seo-repairs-20261016.test.mjs","public-https-redirect.mjs","public-https-redirect.test.mjs","release/seo-audit-scope-20261016.mjs","tests/seo-audit-scope-20261016.test.mjs"].includes(path)){
-  let existed;try{execFileSync('git',['cat-file','-e','15b37fae028ff40ef926c09de83902fe7e8c8c8d:'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  let existed;try{execFileSync('git',['cat-file','-e','fe726ac1fc5465dbe5f1e1e59346a3f6120094ae:'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
   if(status===(existed?'M':'A'))return true;
  }
  if(COMBINED_FINITE_ADDITIONAL_PATHS.includes(path)){
@@ -3123,3 +3124,6 @@ for(const p of [...CI_EXECUTION_PATHS,...CI_EXECUTION_MAINTENANCE])RECONCILIATIO
 for(const p of [...FOOD_DIARY_LONDON_DATE_PATHS,...FOOD_DIARY_LONDON_DATE_MAINTENANCE])RECONCILIATION_PATHS.add(p);
 // Exact separately approved article SEO payload; every prior receipt remains.
 for(const p of [...SEO_AUDIT_PATHS,...SEO_AUDIT_MAINTENANCE])RECONCILIATION_PATHS.add(p);
+
+// Exact preservation of delivered GP and questionnaire source; original Core proofs remain required.
+for(const p of [...CURRENT_RUNTIME_PRESERVATION_PATHS,...CURRENT_RUNTIME_PRESERVATION_MAINTENANCE])RECONCILIATION_PATHS.add(p);

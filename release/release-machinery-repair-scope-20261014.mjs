@@ -1,4 +1,7 @@
+import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
+import {currentRuntimePreservationHistoricalView,verifyCurrentRuntimePreservation} from './current-runtime-preservation-20261016.mjs';
 import {ciExecutionNativeReaderProvenance,verifyCiExecutionAllowance,ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
+import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync as repairNativeExecFileSync} from 'node:child_process';
 import {assertGitTrackedSourceVisible,nativeGitSourceDifference,immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
@@ -15,7 +18,8 @@ export const RELEASE_MACHINERY_REPAIR_POLICY=Object.freeze({record:RELEASE_MACHI
 const manifest=RELEASE_MACHINERY_REPAIR_MANIFEST,key=RELEASE_MACHINERY_REPAIR_KEY,sorted=a=>[...a].sort();
 const nativeCiReadSources=new WeakMap();
 function git(...args){return execFileSync('git',args,{encoding:'utf8',maxBuffer:64e6});}
-const rawBlob=(r,p)=>git('rev-parse',r+':'+p).trim(),rawContent=(r,p)=>git('show',r+':'+p),rawDiff=nativeGitSourceDifference,rawAncestor=(a,b)=>git('merge-base','--is-ancestor',a,b),currentHead=()=>git('rev-parse','HEAD').trim();
+const nativeFactRef=r=>r==='HEAD'?(freshDetachedSourceHead()??r):r;
+const rawBlob=(r,p)=>git('rev-parse',nativeFactRef(r)+':'+p).trim(),rawContent=(r,p)=>git('show',nativeFactRef(r)+':'+p),rawDiff=nativeGitSourceDifference,rawAncestor=(a,b)=>git('merge-base','--is-ancestor',a,b),currentHead=()=>freshDetachedSourceHead()??git('rev-parse','HEAD').trim();
 // A hint may replace only two clean-success diff probes. Visibility and the
 // original lazy working/staged assertions remain at every original call site.
 const repairStatusExec=repairNativeExecFileSync;
@@ -151,10 +155,15 @@ export function releaseMachineryRepairLegacyContent(reader,view=releaseMachinery
 // The sole later layer is the independently admitted CI execution. Its literal
 // base and full source are checked before an original machinery assertion runs.
 export function verifyReleaseMachineryRepair(c,options={}){
+ return withClosedCurrentSourceProof(()=>verifyReleaseMachineryRepairCurrentProof(c,options));
+}
+function verifyReleaseMachineryRepairCurrentProof(c,options={}){
+ const week=currentRuntimePreservationHistoricalView();
+ if(week.head!==week.rawHead){assert.equal(options.head??week.rawHead,week.rawHead,'Release machinery source drift: Actual raw week HEAD required');const current=JSON.parse(rawContent(week.rawHead,manifest)).currentRuntimePreservation20261016;verifyCurrentRuntimePreservation(current,{head:options.head??week.rawHead,read:options.read??rawBlob,readContent:options.readContent??rawContent,readDiff:options.readDiff??rawDiff,isAncestor:options.isAncestor??rawAncestor});}
  const ci=ciExecutionHistoricalView();
  if(ci.head===ci.rawHead)return verifyReleaseMachineryRepairOriginal(c,options);
  assert.equal(options.head??ci.rawHead,ci.rawHead,'Release machinery source drift: Actual raw ci HEAD required');
- if(ci.foodDiaryLondonDateContext)verifyCiExecutionAllowance(JSON.parse(rawContent(ci.rawHead,manifest)).ciExecutionAllowance20261014,{head:ci.rawHead,read:options.read??rawBlob,readContent:options.readContent??rawContent,readDiff:options.readDiff??rawDiff,isAncestor:options.isAncestor??rawAncestor});
+ if(ci.foodDiaryLondonDateContext)verifyCiExecutionAllowance(JSON.parse(rawContent(ci.rawHead,manifest)).ciExecutionAllowance20261014,{head:ci.rawHead,read:options.read??undefined,readContent:options.readContent??undefined,readDiff:options.readDiff??undefined,isAncestor:options.isAncestor??undefined});
  return verifyReleaseMachineryRepairOriginal(c,{head:ci.head,
   read:ciExecutionAuthenticatedRead(options.read==null||options.read===rawBlob?null:options.read,ci),
   readContent:ciExecutionAuthenticatedContent(options.readContent==null||options.readContent===rawContent?null:options.readContent,ci),

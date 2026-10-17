@@ -74,14 +74,28 @@ for(const [name,asset] of Object.entries(lifeBackAssets)){
  const actual=Buffer.from(await r.arrayBuffer()),expected=readFileSync('frontend/member'+path);assert.deepEqual(actual,expected,path+' must match source exactly');
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true,authority:r.headers.get('x-shift-frontend-authority')});
 }
-for(const asset of grubImages){
+// Retain every original image request and HTTP/MIME/hash assertion. Four
+// read-only workers match the existing live-news read concurrency. Stop new
+// reads on the first error, settle active reads, then fail before acceptance.
+const pendingGrubImages=[...grubImages];let grubImageFailure=null,grubImagesVerified=0;
+await Promise.all(Array.from({length:4},async()=>{
+ while(pendingGrubImages.length&&!grubImageFailure){
+  const asset=pendingGrubImages.shift();
+  try{
  const r=await fetch(origin+asset.src,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,asset.src);
  assert.match(r.headers.get('content-type')||'',/image\/webp/);
  const sha256=createHash('sha256').update(Buffer.from(await r.arrayBuffer())).digest('hex');
  assert.equal(sha256,asset.sha256,asset.src+' must match the approved image');
  evidence.assets.push({path:asset.src,status:r.status,sha256,matchesSource:true});
-}
+
+   grubImagesVerified++;
+  }catch(error){grubImageFailure??=error;}
+ }
+}));
+if(grubImageFailure)throw grubImageFailure;
+assert.equal(grubImagesVerified,grubImages.length,'Every original Grub image must be verified');
+
 for(const path of ['/v1/check-ins','/v1/fit/activity','/v1/grub/workspace','/v1/life-back']){
  const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000),redirect:'manual'});
  assert.equal(r.status,401,path+' must reject an unauthenticated request');

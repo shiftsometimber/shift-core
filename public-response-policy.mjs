@@ -1,3 +1,4 @@
+import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {PUBLIC_HEADERS} from './babylove/response-policy.mjs';
 
 const ORIGIN='https://shiftsometimber.co.uk';
@@ -22,6 +23,7 @@ export function withPublicResponsePolicy(response,request){
 
 export function withPublicResponsePolicyWorker(worker){
  return {...worker,async fetch(request,env,ctx){
+  const redirect=publicHttpsRedirect(request);if(redirect)return redirect;
   return withPublicResponsePolicy(await worker.fetch(request,env,ctx),request);
  }};
 }

@@ -1,4 +1,6 @@
+import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
 import {verifyFoodDiaryLondonDateRepair,foodDiaryLondonDateHistoricalView,foodDiaryLondonDateAuthenticatedRead,foodDiaryLondonDateAuthenticatedContent,foodDiaryLondonDateAuthenticatedDiff,foodDiaryLondonDateAuthenticatedAncestor,foodDiaryLondonDateReaderProvenance} from './food-diary-london-date-scope-20261015.mjs';
+import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
 import assert from 'node:assert/strict';
 import {existsSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -11,7 +13,7 @@ export const CI_EXECUTION_PATHS=Object.freeze(policy.record.paths);
 export const CI_EXECUTION_MAINTENANCE=Object.freeze(policy.record.maintenancePaths);
 export const CI_EXECUTION_POLICY=Object.freeze(policy);
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64e6});
-const currentHead=()=>git('rev-parse','HEAD').trim(),blob=(r,p)=>git('rev-parse',(r==='HEAD'?currentHead():r)+':'+p).trim(),content=(r,p)=>git('show',(r==='HEAD'?currentHead():r)+':'+p),diff=(a,b)=>git('diff','--no-renames','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor=(a,b)=>git('merge-base','--is-ancestor',a,b);
+const currentHead=()=>freshDetachedSourceHead()??git('rev-parse','HEAD').trim(),blob=(r,p)=>git('rev-parse',(r==='HEAD'?currentHead():r)+':'+p).trim(),content=(r,p)=>git('show',(r==='HEAD'?currentHead():r)+':'+p),diff=(a,b)=>git('diff','--no-renames','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor=(a,b)=>git('merge-base','--is-ancestor',a,b);
 function clean(){assertGitTrackedSourceVisible('CI execution');assert.equal(git('for-each-ref','--format=%(refname)',process.env.GIT_REPLACE_REF_BASE??'refs/replace').trim(),'','CI-execution source drift: Replacement history is forbidden');assert.equal(existsSync(resolve(git('rev-parse','--git-path','info/grafts').trim())),false,'CI-execution source drift: Grafted history is forbidden');assert(!process.env.GIT_GRAFT_FILE,'CI-execution source drift: Graft override is forbidden');assert.equal(git('diff','--no-renames','--name-only','HEAD','--').trim(),'','CI-execution source drift: Tracked source changed');assert.equal(git('diff','--no-renames','--cached','--name-only','--').trim(),'','CI-execution source drift: Staged source changed');}
 function mode(r,p){return git('ls-tree',r,'--',p).trim().split(/\s+/)[0];}
 function inverse(p,s,pairs){for(const[before,after,kind]of[...pairs].reverse()){assert(after&&s.split(after).length===2,'One exact CI execution inverse required: '+p);if(kind==='prefix')assert(s.startsWith(after),'Exact CI prefix required: '+p);if(kind==='suffix')assert(s.endsWith(after),'Exact CI suffix required: '+p);s=s.replace(after,before);}return s;}
@@ -58,11 +60,14 @@ export function ciExecutionAuthenticatedAncestor(reader,view){return(a,b)=>{if(c
 // Food admission precedes the unchanged original CI proof. Supplied callbacks
 // must observe both newly changed Food paths before any older projection.
 export function verifyCiExecutionAllowance(c,options={}){
+ return withClosedCurrentSourceProof(()=>verifyCiExecutionAllowanceCurrentProof(c,options));
+}
+function verifyCiExecutionAllowanceCurrentProof(c,options={}){
  const food=foodDiaryLondonDateHistoricalView();
  if(food.head===food.rawHead)return verifyCiExecutionAllowanceOriginal(c,options);
  assert.equal(options.head??food.rawHead,food.rawHead,'Food-calendar source drift: Actual raw Food HEAD required');
- verifyFoodDiaryLondonDateRepair(JSON.parse(content(food.rawHead,manifest)).foodDiaryLondonDateRepair20261015,{head:food.rawHead,read:options.read??blob,readContent:options.readContent??content,readDiff:options.readDiff??diff,isAncestor:options.isAncestor??ancestor});
- return verifyCiExecutionAllowanceOriginal(c,{head:food.head,read:foodDiaryLondonDateAuthenticatedRead(options.read??blob,food),readContent:foodDiaryLondonDateAuthenticatedContent(options.readContent??content,food),readDiff:foodDiaryLondonDateAuthenticatedDiff(options.readDiff??diff,food),isAncestor:foodDiaryLondonDateAuthenticatedAncestor(options.isAncestor??ancestor,food)},food);
+ verifyFoodDiaryLondonDateRepair(JSON.parse(content(food.rawHead,manifest)).foodDiaryLondonDateRepair20261015,{head:food.rawHead,read:options.read??undefined,readContent:options.readContent??undefined,readDiff:options.readDiff??undefined,isAncestor:options.isAncestor??undefined});
+ return verifyCiExecutionAllowanceOriginal(c,{head:food.head,read:((reader)=>reader==null?food.blob:foodDiaryLondonDateAuthenticatedRead(reader,food))(options.read),readContent:((reader)=>reader==null?food.content:foodDiaryLondonDateAuthenticatedContent(reader,food))(options.readContent),readDiff:((reader)=>reader==null?food.diff:foodDiaryLondonDateAuthenticatedDiff(reader,food))(options.readDiff),isAncestor:((reader)=>reader==null?food.ancestor:foodDiaryLondonDateAuthenticatedAncestor(reader,food))(options.isAncestor)},food);
 }
 export function ciExecutionHistoricalView(reader=null,{defaultReader=reader===null}={}){
  const food=foodDiaryLondonDateHistoricalView(reader===blob?null:reader,{defaultReader});

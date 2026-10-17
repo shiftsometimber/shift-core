@@ -1,7 +1,8 @@
 import {seoAuditOriginalSource,SEO_AUDIT_MAINTENANCE} from '../release/seo-audit-scope-20261016.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {execFileSync,spawnSync} from 'node:child_process';
+import {spawnSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from '../release/immutable-git-facts.mjs';
 import {mkdirSync,mkdtempSync,readFileSync,readdirSync,rmSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -1488,7 +1489,7 @@ import './fresh-food-source-head-20261016.test.mjs';
    assert.equal(pairs.length,1);assert.equal(restore(now,pairs),before);assert.equal(blob(freshP.record.freshFoodNativeHeadGuard20261016.sourceBase,path),freshP.sharedSourceTriggerDependencyPreviousBlobs[path]);
    assert(now.includes("  pull_request:\n    paths:\n      - 'release/approved-runtime-composition*'\n"));assert.equal(now.split('\n').length,before.split('\n').length+1);
   }
-  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(content(head,'.github/workflows/cloudflare-production-promote.yml')),encoding:'utf8'}).trim(),'cd8c81a8d8c29def3c25b93112a4c56456b5cbfc');
+  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(seoOriginalContent(head,'.github/workflows/cloudflare-production-promote.yml')),encoding:'utf8'}).trim(),'cd8c81a8d8c29def3c25b93112a4c56456b5cbfc');
  });
  test('fresh source head: every original130 assertion and earlier source inverse remains complete',()=>{
   const path='tests/food-diary-london-date-stack-20261015.test.mjs',restored=restore(seoOriginalContent(head,path),freshP.freshFoodNativeHeadGuardFood130Inverse);

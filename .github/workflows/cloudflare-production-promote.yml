@@ -632,6 +632,9 @@ jobs:
           name: production-bounded-source-${{ github.sha }}
           path: ${{ runner.temp }}/ci-source-proof/production-bounded/
           retention-days: 30
+      - name: Capture protected catalogue and stock without customer records
+        id: protected_stock_before
+        run: node scripts/b1-release-scope.mjs --snapshot before
       - name: Recover only the evidenced cancelled runtime to the last verified release
         run: node shift-coach/recover-cancelled-release.mjs
       - name: Prepare and launch verification browsers before deployment
@@ -753,9 +756,6 @@ jobs:
       - name: Prepare additive daily check-in feedback store
         if: steps.scope.outputs.runtime_only != 'true'
         run: npx wrangler d1 execute DB --remote --config wrangler.jsonc --file member-experience/checkin-followup.sql
-      - name: Capture protected catalogue and stock without customer records
-        id: protected_stock_before
-        run: node scripts/b1-release-scope.mjs --snapshot before
       - name: Prepare only the explicitly approved Member Details contact table
         run: node release/member-details-schema.mjs
       - name: Prepare the exact additive signup-alert delivery store
@@ -1048,7 +1048,7 @@ jobs:
         run: node scripts/b1-release-scope.mjs --snapshot after
       - name: Restore the captured runtime if a post-deployment gate failed
         id: runtime_rollback
-        if: ${{ failure() && steps.runtime_deploy.outcome == 'success' || (failure() && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success') }}
+        if: ${{ always() && (failure() || cancelled()) && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success')) }}
         run: node release/member-details-rollback.mjs
       - name: Verify protected catalogue and stock after owned rollback
         if: ${{ always() && steps.runtime_rollback.outcome == 'success' && steps.protected_stock_before.outcome == 'success' }}
