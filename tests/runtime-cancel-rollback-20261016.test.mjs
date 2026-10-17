@@ -19,7 +19,7 @@ const guardUrl=root?pathToFileURL(resolve(root,'release/runtime-rollback-guard.m
  :new URL('../release/runtime-rollback-guard.mjs',import.meta.url);
 const workflow=readFileSync(workflowUrl,'utf8');
 const {runtimeRollbackDecision}=await import(guardUrl.href);
-const expectedCondition="always() && (failure() || cancelled()) && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))";
+const expectedCondition="always() && ((failure() && steps.runtime_deploy.outcome == 'success') || (cancelled() && steps.runtime_deploy.outcome == 'success') || ((failure() || cancelled()) && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))";
 const matches=[...workflow.matchAll(/^        id: runtime_rollback\r?\n        if: \$\{\{ (.*?) \}\}\r?\n        run: (.*?)\r?$/gm)];
 assert.equal(matches.length,1,'The production workflow must have exactly one runtime_rollback step');
 const [,condition,command]=matches[0];
