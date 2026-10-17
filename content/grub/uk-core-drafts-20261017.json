@@ -1,0 +1,2951 @@
+{
+  "proof": "GRUB_UK_CORE_AUTHORING_DRAFT_20261017",
+  "source": "a32be98c67fe0ddb857017650fab02f996bc98e0",
+  "publication_ready": false,
+  "independent_review": false,
+  "human_review": false,
+  "physical_cooking_trials": false,
+  "sources": [
+    "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+    "https://www.gov.uk/government/publications/cooking-your-food/cooking-your-food",
+    "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely",
+    "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid"
+  ],
+  "workbook_sha256": "436e9445ef2adb2a75f3d7edd51302de3adad25385f9795fc94ba58bd030e97d",
+  "candidates": [
+    {
+      "id": "uk-core-margherita-pizza",
+      "title": "Margherita pizza with side salad",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "dinner",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "ready-made pizza base",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "sainsbury-base"
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531"
+          },
+          {
+            "item": "fresh mozzarella, drained",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "12-360"
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520"
+          },
+          {
+            "item": "cucumber",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-523"
+          },
+          {
+            "item": "tomato",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-517"
+          },
+          {
+            "item": "fresh basil",
+            "amount": "2g",
+            "calculation_grams": 2,
+            "food_code": "tesco-basil"
+          }
+        ],
+        "method": [
+          "Preheat the oven to the temperature on the ready-made base packet; prepare the toppings while it heats. Use one 150g ready-made base, not raw dough. Allow longer if your base requires longer cooking.",
+          "Mix the tomato purée with 30ml water and spread thinly over the base. Pat the drained mozzarella dry, tear it into small pieces and space them over the sauce.",
+          "Keep the fresh basil aside and scatter it over the cooked pizza immediately before serving.",
+          "Cook for the full time on the base packet, until the base is crisp, the cheese has melted and the centre is piping hot. The reference base takes 7–9 minutes at 200°C/180°C fan; follow your own packet. Do not put a glass board in the oven.",
+          "Wash and dry the lettuce, cucumber and tomato; chop and divide between two plates. Cut the pizza in half and serve half with each salad. All toppings, cheese and salad are included in the two portions. Eat immediately; the reference base instructs not to reheat once cooled."
+        ],
+        "allergens": [
+          "wheat/gluten",
+          "milk"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "oven",
+          "oven shelf or tray as packet directs",
+          "chopping board",
+          "knife",
+          "bowl",
+          "spoon",
+          "oven gloves",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 10,
+        "cook_minutes": 10,
+        "total_minutes": 25,
+        "hands_on_minutes": 12,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "pizza",
+        "editorial_note": "Recognisable pizza. Portion includes vegetables; pepperoni and ham options are occasional processed-meat choices, not everyday default recommendations. A cold or optional frozen substitution requires its own safe preparation and recalculation.",
+        "leftovers_note": "Use the remaining mozzarella, tomato purée, salad and toppings in another meal within their labels; freeze unused bases only if their packet permits.",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 359.8,
+          "protein_g": 15.5,
+          "carbohydrate_g": 42.7,
+          "fat_g": 13.9,
+          "fibre_g": 3.8,
+          "saturates_g": null,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {
+            "saturates_g": [
+              "cucumber"
+            ]
+          },
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "ready-made pizza base",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "sainsbury-base",
+            "source_food_name": "Sainsbury's Pizza Bases x2 300g, half a base",
+            "source": "https://www.sainsburys.co.uk/groceries/product/sainsburys-pizza-bases-x2-300g",
+            "per_reference": {
+              "kcal": "227",
+              "protein_g": "6.0",
+              "carbohydrate_g": "37.9",
+              "fat_g": "5.3",
+              "fibre_g": "1.5",
+              "saturates_g": "0.8"
+            },
+            "reference_grams": "75",
+            "limitations": "Uses per half-base consumed label for half the corresponding base as sold. Label-rounded household estimate, not the per100g cooked value. Other bases require recalculation; may contain milk."
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531",
+            "source_food_name": "Tomato puree",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "67",
+              "protein_g": "4.4",
+              "carbohydrate_g": "12.9",
+              "fat_g": "0.2",
+              "fibre_g": "4.7",
+              "saturates_g": "0.04"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "fresh mozzarella, drained",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "12-360",
+            "source_food_name": "Cheese, Mozzarella, fresh",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "257",
+              "protein_g": "18.6",
+              "carbohydrate_g": "Tr",
+              "fat_g": "20.3",
+              "fibre_g": "0.0",
+              "saturates_g": "13.75"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520",
+            "source_food_name": "Lettuce, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "11",
+              "protein_g": "1.2",
+              "carbohydrate_g": "1.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.5",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "cucumber",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-523",
+            "source_food_name": "Cucumber, raw, flesh and skin",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "1.0",
+              "carbohydrate_g": "1.2",
+              "fat_g": "0.6",
+              "fibre_g": "0.7",
+              "saturates_g": "N"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-517",
+            "source_food_name": "Tomatoes, standard, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "0.5",
+              "carbohydrate_g": "3.0",
+              "fat_g": "0.1",
+              "fibre_g": "1.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "fresh basil",
+            "amount": "2g",
+            "calculation_grams": 2,
+            "food_code": "tesco-basil",
+            "source_food_name": "Tesco Basil 15g, fresh",
+            "source": "https://www.tesco.com/shop/en-GB/products/302225353",
+            "per_reference": {
+              "kcal": "40",
+              "protein_g": "2.5",
+              "carbohydrate_g": "4.3",
+              "fat_g": "0.6",
+              "fibre_g": "3.9",
+              "saturates_g": "0.1"
+            },
+            "reference_grams": "100",
+            "limitations": "Reference fresh-basil label; not an availability claim. Other products vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "630711e924015ab3b90eebc9345cb4c525e535b9b5969b210be5e0d5b4520fbb"
+    },
+    {
+      "id": "uk-core-pepperoni-pizza",
+      "title": "Pepperoni pizza with side salad",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "dinner",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "ready-made pizza base",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "sainsbury-base"
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531"
+          },
+          {
+            "item": "fresh mozzarella, drained",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "12-360"
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520"
+          },
+          {
+            "item": "cucumber",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-523"
+          },
+          {
+            "item": "tomato",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-517"
+          },
+          {
+            "item": "pepperoni slices",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "tesco-pepperoni"
+          }
+        ],
+        "method": [
+          "Preheat the oven to the temperature on the ready-made base packet; prepare the toppings while it heats. Use one 150g ready-made base, not raw dough. Allow longer if your base requires longer cooking.",
+          "Mix the tomato purée with 30ml water and spread thinly over the base. Pat the drained mozzarella dry, tear it into small pieces and space them over the sauce.",
+          "Spread the pepperoni evenly over the cheese in a single layer; do not pile it in the centre.",
+          "Cook for the full time on the base packet, until the base is crisp, the cheese has melted and the centre is piping hot. The reference base takes 7–9 minutes at 200°C/180°C fan; follow your own packet. Do not put a glass board in the oven.",
+          "Wash and dry the lettuce, cucumber and tomato; chop and divide between two plates. Cut the pizza in half and serve half with each salad. All toppings, cheese and salad are included in the two portions. Eat immediately; the reference base instructs not to reheat once cooled."
+        ],
+        "allergens": [
+          "wheat/gluten",
+          "milk"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "oven",
+          "oven shelf or tray as packet directs",
+          "chopping board",
+          "knife",
+          "bowl",
+          "spoon",
+          "oven gloves",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 10,
+        "cook_minutes": 10,
+        "total_minutes": 25,
+        "hands_on_minutes": 12,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "pizza",
+        "editorial_note": "Recognisable pizza. Portion includes vegetables; pepperoni and ham options are occasional processed-meat choices, not everyday default recommendations. A cold or optional frozen substitution requires its own safe preparation and recalculation.",
+        "leftovers_note": "Use the remaining mozzarella, tomato purée, salad and toppings in another meal within their labels; freeze unused bases only if their packet permits.",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 436.6,
+          "protein_g": 19,
+          "carbohydrate_g": 42.9,
+          "fat_g": 20.8,
+          "fibre_g": 3.8,
+          "saturates_g": null,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {
+            "saturates_g": [
+              "cucumber"
+            ]
+          },
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "ready-made pizza base",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "sainsbury-base",
+            "source_food_name": "Sainsbury's Pizza Bases x2 300g, half a base",
+            "source": "https://www.sainsburys.co.uk/groceries/product/sainsburys-pizza-bases-x2-300g",
+            "per_reference": {
+              "kcal": "227",
+              "protein_g": "6.0",
+              "carbohydrate_g": "37.9",
+              "fat_g": "5.3",
+              "fibre_g": "1.5",
+              "saturates_g": "0.8"
+            },
+            "reference_grams": "75",
+            "limitations": "Uses per half-base consumed label for half the corresponding base as sold. Label-rounded household estimate, not the per100g cooked value. Other bases require recalculation; may contain milk."
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531",
+            "source_food_name": "Tomato puree",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "67",
+              "protein_g": "4.4",
+              "carbohydrate_g": "12.9",
+              "fat_g": "0.2",
+              "fibre_g": "4.7",
+              "saturates_g": "0.04"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "fresh mozzarella, drained",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "12-360",
+            "source_food_name": "Cheese, Mozzarella, fresh",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "257",
+              "protein_g": "18.6",
+              "carbohydrate_g": "Tr",
+              "fat_g": "20.3",
+              "fibre_g": "0.0",
+              "saturates_g": "13.75"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520",
+            "source_food_name": "Lettuce, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "11",
+              "protein_g": "1.2",
+              "carbohydrate_g": "1.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.5",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "cucumber",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-523",
+            "source_food_name": "Cucumber, raw, flesh and skin",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "1.0",
+              "carbohydrate_g": "1.2",
+              "fat_g": "0.6",
+              "fibre_g": "0.7",
+              "saturates_g": "N"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-517",
+            "source_food_name": "Tomatoes, standard, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "0.5",
+              "carbohydrate_g": "3.0",
+              "fat_g": "0.1",
+              "fibre_g": "1.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "pepperoni slices",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "tesco-pepperoni",
+            "source_food_name": "Tesco Pepperoni Slices 130g",
+            "source": "https://www.tesco.com/shop/en-GB/products/266510588",
+            "per_reference": {
+              "kcal": "386",
+              "protein_g": "17.6",
+              "carbohydrate_g": "1.3",
+              "fat_g": "34.5",
+              "fibre_g": "0",
+              "saturates_g": "13.3"
+            },
+            "reference_grams": "100",
+            "limitations": "Reference label only; listed as out of stock at retrieval. Other pepperoni brands differ. No availability or supplier recommendation."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "9b8dab5c09e35e2cd4e6ddd1e97ad30afad8fad76363468bba8fac4a325a124f"
+    },
+    {
+      "id": "uk-core-ham-pineapple-pizza",
+      "title": "Ham and pineapple pizza with side salad",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "dinner",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "ready-made pizza base",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "sainsbury-base"
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531"
+          },
+          {
+            "item": "fresh mozzarella, drained",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "12-360"
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520"
+          },
+          {
+            "item": "cucumber",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-523"
+          },
+          {
+            "item": "tomato",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-517"
+          },
+          {
+            "item": "ready-to-eat ham",
+            "amount": "60g",
+            "calculation_grams": 60,
+            "food_code": "19-496"
+          },
+          {
+            "item": "fresh pineapple, edible flesh",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "14-376"
+          }
+        ],
+        "method": [
+          "Preheat the oven to the temperature on the ready-made base packet; prepare the toppings while it heats. Use one 150g ready-made base, not raw dough. Allow longer if your base requires longer cooking.",
+          "Mix the tomato purée with 30ml water and spread thinly over the base. Pat the drained mozzarella dry, tear it into small pieces and space them over the sauce.",
+          "Cut the ham into small pieces and the pineapple into small chunks. Pat the pineapple dry with kitchen paper and spread both evenly over the cheese.",
+          "Cook for the full time on the base packet, until the base is crisp, the cheese has melted and the centre is piping hot. The reference base takes 7–9 minutes at 200°C/180°C fan; follow your own packet. Do not put a glass board in the oven.",
+          "Wash and dry the lettuce, cucumber and tomato; chop and divide between two plates. Cut the pizza in half and serve half with each salad. All toppings, cheese and salad are included in the two portions. Eat immediately; the reference base instructs not to reheat once cooled."
+        ],
+        "allergens": [
+          "wheat/gluten",
+          "milk"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "oven",
+          "oven shelf or tray as packet directs",
+          "chopping board",
+          "knife",
+          "bowl",
+          "spoon",
+          "oven gloves",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 10,
+        "cook_minutes": 10,
+        "total_minutes": 25,
+        "hands_on_minutes": 12,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "pizza",
+        "editorial_note": "Recognisable pizza. Portion includes vegetables; pepperoni and ham options are occasional processed-meat choices, not everyday default recommendations. A cold or optional frozen substitution requires its own safe preparation and recalculation.",
+        "leftovers_note": "Use the remaining mozzarella, tomato purée, salad and toppings in another meal within their labels; freeze unused bases only if their packet permits.",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 409.5,
+          "protein_g": 21.2,
+          "carbohydrate_g": 47.5,
+          "fat_g": 14.9,
+          "fibre_g": 4.3,
+          "saturates_g": null,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {
+            "saturates_g": [
+              "cucumber"
+            ]
+          },
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "ready-made pizza base",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "sainsbury-base",
+            "source_food_name": "Sainsbury's Pizza Bases x2 300g, half a base",
+            "source": "https://www.sainsburys.co.uk/groceries/product/sainsburys-pizza-bases-x2-300g",
+            "per_reference": {
+              "kcal": "227",
+              "protein_g": "6.0",
+              "carbohydrate_g": "37.9",
+              "fat_g": "5.3",
+              "fibre_g": "1.5",
+              "saturates_g": "0.8"
+            },
+            "reference_grams": "75",
+            "limitations": "Uses per half-base consumed label for half the corresponding base as sold. Label-rounded household estimate, not the per100g cooked value. Other bases require recalculation; may contain milk."
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531",
+            "source_food_name": "Tomato puree",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "67",
+              "protein_g": "4.4",
+              "carbohydrate_g": "12.9",
+              "fat_g": "0.2",
+              "fibre_g": "4.7",
+              "saturates_g": "0.04"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "fresh mozzarella, drained",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "12-360",
+            "source_food_name": "Cheese, Mozzarella, fresh",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "257",
+              "protein_g": "18.6",
+              "carbohydrate_g": "Tr",
+              "fat_g": "20.3",
+              "fibre_g": "0.0",
+              "saturates_g": "13.75"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520",
+            "source_food_name": "Lettuce, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "11",
+              "protein_g": "1.2",
+              "carbohydrate_g": "1.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.5",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "cucumber",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-523",
+            "source_food_name": "Cucumber, raw, flesh and skin",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "1.0",
+              "carbohydrate_g": "1.2",
+              "fat_g": "0.6",
+              "fibre_g": "0.7",
+              "saturates_g": "N"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-517",
+            "source_food_name": "Tomatoes, standard, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "0.5",
+              "carbohydrate_g": "3.0",
+              "fat_g": "0.1",
+              "fibre_g": "1.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "ready-to-eat ham",
+            "amount": "60g",
+            "calculation_grams": 60,
+            "food_code": "19-496",
+            "source_food_name": "Ham",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "107",
+              "protein_g": "18.4",
+              "carbohydrate_g": "1.0",
+              "fat_g": "3.3",
+              "fibre_g": "0.1",
+              "saturates_g": "1.10"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "fresh pineapple, edible flesh",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "14-376",
+            "source_food_name": "Pineapple, flesh only, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "45",
+              "protein_g": "0.5",
+              "carbohydrate_g": "11.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.2",
+              "saturates_g": "Tr"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "c7f03d7e9d438a7903c2598eba93f8e2e3400bf1444255cb0e31545f44c7f3bc"
+    },
+    {
+      "id": "uk-core-mushroom-pizza",
+      "title": "Mushroom pizza with side salad",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "dinner",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "ready-made pizza base",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "sainsbury-base"
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531"
+          },
+          {
+            "item": "fresh mozzarella, drained",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "12-360"
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520"
+          },
+          {
+            "item": "cucumber",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-523"
+          },
+          {
+            "item": "tomato",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-517"
+          },
+          {
+            "item": "mushrooms",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-505"
+          }
+        ],
+        "method": [
+          "Preheat the oven to the temperature on the ready-made base packet; prepare the toppings while it heats. Use one 150g ready-made base, not raw dough. Allow longer if your base requires longer cooking.",
+          "Mix the tomato purée with 30ml water and spread thinly over the base. Pat the drained mozzarella dry, tear it into small pieces and space them over the sauce.",
+          "Wipe or wash and dry the mushrooms, slice them very thinly and spread in a single layer over the cheese so they cook without soaking the base.",
+          "Cook for the full time on the base packet, until the base is crisp, the cheese has melted and the centre is piping hot. The reference base takes 7–9 minutes at 200°C/180°C fan; follow your own packet. Do not put a glass board in the oven.",
+          "Wash and dry the lettuce, cucumber and tomato; chop and divide between two plates. Cut the pizza in half and serve half with each salad. All toppings, cheese and salad are included in the two portions. Eat immediately; the reference base instructs not to reheat once cooled."
+        ],
+        "allergens": [
+          "wheat/gluten",
+          "milk"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "oven",
+          "oven shelf or tray as packet directs",
+          "chopping board",
+          "knife",
+          "bowl",
+          "spoon",
+          "oven gloves",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 10,
+        "cook_minutes": 10,
+        "total_minutes": 25,
+        "hands_on_minutes": 12,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "pizza",
+        "editorial_note": "Recognisable pizza. Portion includes vegetables; pepperoni and ham options are occasional processed-meat choices, not everyday default recommendations. A cold or optional frozen substitution requires its own safe preparation and recalculation.",
+        "leftovers_note": "Use the remaining mozzarella, tomato purée, salad and toppings in another meal within their labels; freeze unused bases only if their packet permits.",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 362.9,
+          "protein_g": 16,
+          "carbohydrate_g": 42.8,
+          "fat_g": 14,
+          "fibre_g": 4.2,
+          "saturates_g": null,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {
+            "saturates_g": [
+              "cucumber"
+            ]
+          },
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "ready-made pizza base",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "sainsbury-base",
+            "source_food_name": "Sainsbury's Pizza Bases x2 300g, half a base",
+            "source": "https://www.sainsburys.co.uk/groceries/product/sainsburys-pizza-bases-x2-300g",
+            "per_reference": {
+              "kcal": "227",
+              "protein_g": "6.0",
+              "carbohydrate_g": "37.9",
+              "fat_g": "5.3",
+              "fibre_g": "1.5",
+              "saturates_g": "0.8"
+            },
+            "reference_grams": "75",
+            "limitations": "Uses per half-base consumed label for half the corresponding base as sold. Label-rounded household estimate, not the per100g cooked value. Other bases require recalculation; may contain milk."
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531",
+            "source_food_name": "Tomato puree",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "67",
+              "protein_g": "4.4",
+              "carbohydrate_g": "12.9",
+              "fat_g": "0.2",
+              "fibre_g": "4.7",
+              "saturates_g": "0.04"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "fresh mozzarella, drained",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "12-360",
+            "source_food_name": "Cheese, Mozzarella, fresh",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "257",
+              "protein_g": "18.6",
+              "carbohydrate_g": "Tr",
+              "fat_g": "20.3",
+              "fibre_g": "0.0",
+              "saturates_g": "13.75"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520",
+            "source_food_name": "Lettuce, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "11",
+              "protein_g": "1.2",
+              "carbohydrate_g": "1.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.5",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "cucumber",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-523",
+            "source_food_name": "Cucumber, raw, flesh and skin",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "1.0",
+              "carbohydrate_g": "1.2",
+              "fat_g": "0.6",
+              "fibre_g": "0.7",
+              "saturates_g": "N"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-517",
+            "source_food_name": "Tomatoes, standard, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "0.5",
+              "carbohydrate_g": "3.0",
+              "fat_g": "0.1",
+              "fibre_g": "1.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "mushrooms",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-505",
+            "source_food_name": "Mushrooms, white, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "7",
+              "protein_g": "1.0",
+              "carbohydrate_g": "0.3",
+              "fat_g": "0.2",
+              "fibre_g": "0.7",
+              "saturates_g": "0.04"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "e271f6f52f29bc241844cc22ace67fb29035d41acb01927a1878b444676a6bc3"
+    },
+    {
+      "id": "uk-core-egg-mayonnaise-sandwich",
+      "title": "Egg mayonnaise sandwich",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "lunch",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "wholemeal bread",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "11-981"
+          },
+          {
+            "item": "ready-boiled eggs, peeled",
+            "amount": "200g",
+            "calculation_grams": 200,
+            "food_code": "12-940"
+          },
+          {
+            "item": "light mayonnaise",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "17-679"
+          },
+          {
+            "item": "lettuce",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "13-520"
+          }
+        ],
+        "method": [
+          "Use four chilled, ready-boiled medium eggs, about 200g after peeling. The 5-minute timing assumes they are already cooked; raw eggs require separate boiling and safe cooling. Use four slices of bread weighing 160g in total.",
+          "Chop the eggs and mix with the mayonnaise. Wash and dry the lettuce. Divide the filling and lettuce between two sandwiches; serve any filling that will not fit alongside. Keep chilled."
+        ],
+        "allergens": [
+          "egg",
+          "wheat/gluten",
+          "mustard"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "knife",
+          "chopping board",
+          "bowl",
+          "fork",
+          "two plates",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of preparation or any earlier use-by/after-opening deadline. Keep chilled until eating."
+        },
+        "prep_minutes": 5,
+        "cook_minutes": 0,
+        "total_minutes": 5,
+        "hands_on_minutes": 5,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "sandwich",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 362,
+          "protein_g": 22,
+          "carbohydrate_g": 35.1,
+          "fat_g": 15.8,
+          "fibre_g": 5.9,
+          "saturates_g": 3.4,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "wholemeal bread",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "11-981",
+            "source_food_name": "Bread, wholemeal, average",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "217",
+              "protein_g": "9.4",
+              "carbohydrate_g": "42.0",
+              "fat_g": "2.5",
+              "fibre_g": "7.0",
+              "saturates_g": "0.46"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "ready-boiled eggs, peeled",
+            "amount": "200g",
+            "calculation_grams": 200,
+            "food_code": "12-940",
+            "source_food_name": "Eggs, chicken, whole, boiled",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "143",
+              "protein_g": "14.1",
+              "carbohydrate_g": "Tr",
+              "fat_g": "9.6",
+              "fibre_g": "0.0",
+              "saturates_g": "2.70"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "light mayonnaise",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "17-679",
+            "source_food_name": "Mayonnaise, reduced fat",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "288",
+              "protein_g": "1.0",
+              "carbohydrate_g": "8.2",
+              "fat_g": "28.1",
+              "fibre_g": "0.0",
+              "saturates_g": "2.12"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "lettuce",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "13-520",
+            "source_food_name": "Lettuce, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "11",
+              "protein_g": "1.2",
+              "carbohydrate_g": "1.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.5",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "e2c545399d54d82dcda9c5e1925806add49332bc89f13111f04dbb39e2a6064e"
+    },
+    {
+      "id": "uk-core-cheese-tomato-sandwich",
+      "title": "Cheese and tomato sandwich",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "lunch",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "wholemeal bread",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "11-981"
+          },
+          {
+            "item": "reduced-fat Cheddar",
+            "amount": "60g",
+            "calculation_grams": 60,
+            "food_code": "12-548"
+          },
+          {
+            "item": "tomato",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-517"
+          },
+          {
+            "item": "lettuce",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "13-520"
+          }
+        ],
+        "method": [
+          "Use four bread slices weighing 160g in total. Wash and dry the tomato and lettuce. Slice the tomato and thinly slice or grate the Cheddar.",
+          "Divide the cheese, tomato and lettuce between two sandwiches. Put the lettuce against the bread to help keep it dry. Eat now or wrap and chill; avoid packing warm ingredients."
+        ],
+        "allergens": [
+          "wheat/gluten",
+          "milk"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "knife",
+          "chopping board",
+          "grater if needed",
+          "two plates",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of preparation or any earlier use-by/after-opening deadline. Keep chilled until eating."
+        },
+        "prep_minutes": 5,
+        "cook_minutes": 0,
+        "total_minutes": 5,
+        "hands_on_minutes": 5,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "sandwich",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 281.2,
+          "protein_g": 16.5,
+          "carbohydrate_g": 36.5,
+          "fat_g": 8.7,
+          "fibre_g": 6.7,
+          "saturates_g": 4.5,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "wholemeal bread",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "11-981",
+            "source_food_name": "Bread, wholemeal, average",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "217",
+              "protein_g": "9.4",
+              "carbohydrate_g": "42.0",
+              "fat_g": "2.5",
+              "fibre_g": "7.0",
+              "saturates_g": "0.46"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "reduced-fat Cheddar",
+            "amount": "60g",
+            "calculation_grams": 60,
+            "food_code": "12-548",
+            "source_food_name": "Cheese, Cheddar type, '30% less fat'",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "314",
+              "protein_g": "27.9",
+              "carbohydrate_g": "0.8",
+              "fat_g": "22.1",
+              "fibre_g": "0.0",
+              "saturates_g": "13.80"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-517",
+            "source_food_name": "Tomatoes, standard, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "0.5",
+              "carbohydrate_g": "3.0",
+              "fat_g": "0.1",
+              "fibre_g": "1.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "lettuce",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "13-520",
+            "source_food_name": "Lettuce, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "11",
+              "protein_g": "1.2",
+              "carbohydrate_g": "1.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.5",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "bfa000b9e7857b5dd8fd82f2646c857e6f6b850e12bcb72509ab06cfcfac998e"
+    },
+    {
+      "id": "uk-core-jacket-beans-cheese",
+      "title": "Jacket potato with beans and cheese",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "lunch",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "baking potatoes, skin on",
+            "amount": "600g",
+            "calculation_grams": 600,
+            "food_code": "13-489",
+            "basis": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value."
+          },
+          {
+            "item": "baked beans",
+            "amount": "400g",
+            "calculation_grams": 400,
+            "food_code": "13-532"
+          },
+          {
+            "item": "reduced-fat Cheddar",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "12-548"
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520"
+          },
+          {
+            "item": "tomato",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-517"
+          }
+        ],
+        "method": [
+          "Use two potatoes about 300g each. Scrub and prick them all over. Put on a microwave-safe plate and follow your appliance guide; at 800W allow about 12–16 minutes for two, turning halfway, then continue in 1-minute bursts until completely soft. Stand for 2 minutes. Appliances and potato size vary; the centre must be tender.",
+          "Heat the baked beans in a small saucepan or microwave-safe bowl following their packet, stirring until steaming hot throughout. Grate the Cheddar.",
+          "Wash and dry the lettuce and tomato and divide between two plates. Split and fluff each potato, add half the topping to each and serve the salad alongside. Eat immediately. For an oven-only option, allow 60–90 minutes plus preheating; this is a separate longer choice."
+        ],
+        "allergens": [
+          "milk"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "microwave",
+          "microwave-safe plate",
+          "fork",
+          "oven gloves",
+          "knife",
+          "chopping board",
+          "bowl",
+          "spoon",
+          "saucepan or microwave-safe bowl",
+          "grater",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 5,
+        "cook_minutes": 18,
+        "total_minutes": 25,
+        "hands_on_minutes": 10,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "jacket-potato",
+        "nutrition_limitations": [
+          "Potato source is peeled raw flesh; skin-on portions have different fibre. Actual brand/edible weight and cooking loss vary."
+        ],
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 487.5,
+          "protein_g": 22.3,
+          "carbohydrate_g": 92.1,
+          "fat_g": 5.9,
+          "fibre_g": 17.4,
+          "saturates_g": 3.1,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "baking potatoes, skin on",
+            "amount": "600g",
+            "calculation_grams": 600,
+            "food_code": "13-489",
+            "basis": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value.",
+            "source_food_name": "Potatoes, old, raw, flesh only",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "82",
+              "protein_g": "1.9",
+              "carbohydrate_g": "19.6",
+              "fat_g": "0.1",
+              "fibre_g": "2.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value."
+          },
+          {
+            "item": "baked beans",
+            "amount": "400g",
+            "calculation_grams": 400,
+            "food_code": "13-532",
+            "source_food_name": "Baked beans, canned in tomato sauce",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "81",
+              "protein_g": "5.0",
+              "carbohydrate_g": "15.0",
+              "fat_g": "0.5",
+              "fibre_g": "4.9",
+              "saturates_g": "0.09"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "reduced-fat Cheddar",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "12-548",
+            "source_food_name": "Cheese, Cheddar type, '30% less fat'",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "314",
+              "protein_g": "27.9",
+              "carbohydrate_g": "0.8",
+              "fat_g": "22.1",
+              "fibre_g": "0.0",
+              "saturates_g": "13.80"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520",
+            "source_food_name": "Lettuce, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "11",
+              "protein_g": "1.2",
+              "carbohydrate_g": "1.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.5",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-517",
+            "source_food_name": "Tomatoes, standard, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "0.5",
+              "carbohydrate_g": "3.0",
+              "fat_g": "0.1",
+              "fibre_g": "1.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "f0df1d954e63282a62d8b7b6045cb6ec935a0eef8b1f716af2b700703c50511d"
+    },
+    {
+      "id": "uk-core-jacket-tuna-mayo",
+      "title": "Jacket potato with tuna mayonnaise",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "lunch",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "baking potatoes, skin on",
+            "amount": "600g",
+            "calculation_grams": 600,
+            "food_code": "13-489",
+            "basis": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value."
+          },
+          {
+            "item": "tuna in spring water, drained",
+            "amount": "200g",
+            "calculation_grams": 200,
+            "food_code": "16-416",
+            "basis": "Declared proxy: CoFID canned tuna in brine, drained, applied to tuna in spring water, drained. Product composition varies; this is not a product-specific calculation."
+          },
+          {
+            "item": "light mayonnaise",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "17-679"
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520"
+          },
+          {
+            "item": "tomato",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-517"
+          }
+        ],
+        "method": [
+          "Use two potatoes about 300g each. Scrub and prick them all over. Put on a microwave-safe plate and follow your appliance guide; at 800W allow about 12–16 minutes for two, turning halfway, then continue in 1-minute bursts until completely soft. Stand for 2 minutes. Appliances and potato size vary; the centre must be tender.",
+          "Drain and weigh the tinned tuna, flake it and mix with the mayonnaise. Keep chilled until the potatoes are ready.",
+          "Wash and dry the lettuce and tomato and divide between two plates. Split and fluff each potato, add half the topping to each and serve the salad alongside. Eat immediately. For an oven-only option, allow 60–90 minutes plus preheating; this is a separate longer choice."
+        ],
+        "allergens": [
+          "fish",
+          "egg",
+          "mustard"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "microwave",
+          "microwave-safe plate",
+          "fork",
+          "oven gloves",
+          "knife",
+          "chopping board",
+          "bowl",
+          "spoon",
+          "can opener if needed",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 5,
+        "cook_minutes": 18,
+        "total_minutes": 25,
+        "hands_on_minutes": 10,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "jacket-potato",
+        "nutrition_limitations": [
+          "Potato source is peeled raw flesh; skin-on portions have different fibre. Actual brand/edible weight and cooking loss vary."
+        ],
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 414.9,
+          "protein_g": 31.8,
+          "carbohydrate_g": 63.1,
+          "fat_g": 5.6,
+          "fibre_g": 7.6,
+          "saturates_g": 0.7,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "baking potatoes, skin on",
+            "amount": "600g",
+            "calculation_grams": 600,
+            "food_code": "13-489",
+            "basis": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value.",
+            "source_food_name": "Potatoes, old, raw, flesh only",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "82",
+              "protein_g": "1.9",
+              "carbohydrate_g": "19.6",
+              "fat_g": "0.1",
+              "fibre_g": "2.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Declared proxy: CoFID raw peeled potato flesh applied to the skin-on raw weight. Skin, edible yield and cooking losses differ; fibre is not an exact skin-on value."
+          },
+          {
+            "item": "tuna in spring water, drained",
+            "amount": "200g",
+            "calculation_grams": 200,
+            "food_code": "16-416",
+            "basis": "Declared proxy: CoFID canned tuna in brine, drained, applied to tuna in spring water, drained. Product composition varies; this is not a product-specific calculation.",
+            "source_food_name": "Tuna, canned in brine, drained",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "109",
+              "protein_g": "24.9",
+              "carbohydrate_g": "0.0",
+              "fat_g": "1.0",
+              "fibre_g": "0.0",
+              "saturates_g": "0.30"
+            },
+            "reference_grams": "100",
+            "limitations": "Declared proxy: CoFID canned tuna in brine, drained, applied to tuna in spring water, drained. Product composition varies; this is not a product-specific calculation."
+          },
+          {
+            "item": "light mayonnaise",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "17-679",
+            "source_food_name": "Mayonnaise, reduced fat",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "288",
+              "protein_g": "1.0",
+              "carbohydrate_g": "8.2",
+              "fat_g": "28.1",
+              "fibre_g": "0.0",
+              "saturates_g": "2.12"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "lettuce",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-520",
+            "source_food_name": "Lettuce, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "11",
+              "protein_g": "1.2",
+              "carbohydrate_g": "1.4",
+              "fat_g": "0.1",
+              "fibre_g": "1.5",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-517",
+            "source_food_name": "Tomatoes, standard, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "0.5",
+              "carbohydrate_g": "3.0",
+              "fat_g": "0.1",
+              "fibre_g": "1.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "a633b13d8d4fced90535c2243619a6e6b7272c4d17d35fb5feea1a5894a6fccc"
+    },
+    {
+      "id": "uk-core-tomato-lentil-pasta",
+      "title": "Tomato and lentil pasta",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "dinner",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "wholewheat pasta, dry",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "11-718"
+          },
+          {
+            "item": "ready-cooked green lentils, drained",
+            "amount": "240g",
+            "calculation_grams": 240,
+            "food_code": "13-661"
+          },
+          {
+            "item": "tinned chopped tomatoes",
+            "amount": "400g",
+            "calculation_grams": 400,
+            "food_code": "13-530"
+          },
+          {
+            "item": "spinach",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-521"
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531"
+          },
+          {
+            "item": "olive oil",
+            "amount": "5ml",
+            "calculation_grams": 4.6,
+            "food_code": "17-038",
+            "basis": "0.92g/ml household volume estimate"
+          }
+        ],
+        "method": [
+          "Bring a saucepan of water to the boil. Cook the pasta for its packet time until tender; reserve a mug of cooking water before draining.",
+          "Put the measured oil, chopped tomatoes and tomato purée in a large non-stick frying pan. Stir and simmer for 8–10 minutes, until the sauce thickens slightly.",
+          "Add the drained, ready-cooked lentils. Simmer for 3–5 minutes until steaming hot. Wash the spinach, add it in handfuls and stir until fully wilted. Use canned or pouched cooked lentils; dry lentils cannot be substituted directly.",
+          "Toss in the drained pasta. Add a little reserved pasta water if needed so the sauce coats it. Divide evenly between two bowls and serve."
+        ],
+        "allergens": [
+          "wheat/gluten"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "hob",
+          "saucepan",
+          "large non-stick frying pan",
+          "colander",
+          "spoon",
+          "heatproof mug",
+          "two bowls",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Cool in shallow portions and refrigerate within 2 hours at 0–5°C. Eat within 48 hours of original cooking or freeze promptly. Follow any earlier ingredient deadline.",
+          "freezer": "Freeze cooled portions promptly in suitable labelled containers. Defrost completely in the fridge before reheating.",
+          "reheat": "Reheat once until steaming hot throughout. Stir where possible, check the centre and eat immediately."
+        },
+        "prep_minutes": 5,
+        "cook_minutes": 15,
+        "total_minutes": 20,
+        "hands_on_minutes": 15,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "pasta",
+        "substitutions": "Swap spinach for frozen spinach only after cooking it fully according to the packet. Recalculate nutrition and check the lentil and pasta labels for substitutions.",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 433.9,
+          "protein_g": 23,
+          "carbohydrate_g": 78.3,
+          "fat_g": 5.5,
+          "fibre_g": 20.5,
+          "saturates_g": 0.8,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "wholewheat pasta, dry",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "11-718",
+            "source_food_name": "Pasta, wholewheat, spaghetti, dried, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "329",
+              "protein_g": "12.6",
+              "carbohydrate_g": "68.3",
+              "fat_g": "2.5",
+              "fibre_g": "11.7",
+              "saturates_g": "0.40"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "ready-cooked green lentils, drained",
+            "amount": "240g",
+            "calculation_grams": 240,
+            "food_code": "13-661",
+            "source_food_name": "Lentils, green and brown, whole, dried, boiled in unsalted water",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "92",
+              "protein_g": "7.8",
+              "carbohydrate_g": "14.5",
+              "fat_g": "0.7",
+              "fibre_g": "7.4",
+              "saturates_g": "0.1"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tinned chopped tomatoes",
+            "amount": "400g",
+            "calculation_grams": 400,
+            "food_code": "13-530",
+            "source_food_name": "Tomatoes, canned, whole contents",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "19",
+              "protein_g": "1.1",
+              "carbohydrate_g": "3.8",
+              "fat_g": "0.1",
+              "fibre_g": "0.8",
+              "saturates_g": "0.01"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "spinach",
+            "amount": "100g",
+            "calculation_grams": 100,
+            "food_code": "13-521",
+            "source_food_name": "Spinach, baby, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "16",
+              "protein_g": "2.6",
+              "carbohydrate_g": "0.2",
+              "fat_g": "0.6",
+              "fibre_g": "1.0",
+              "saturates_g": "0.08"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato purée",
+            "amount": "30g",
+            "calculation_grams": 30,
+            "food_code": "13-531",
+            "source_food_name": "Tomato puree",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "67",
+              "protein_g": "4.4",
+              "carbohydrate_g": "12.9",
+              "fat_g": "0.2",
+              "fibre_g": "4.7",
+              "saturates_g": "0.04"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "olive oil",
+            "amount": "5ml",
+            "calculation_grams": 4.6,
+            "food_code": "17-038",
+            "basis": "0.92g/ml household volume estimate",
+            "source_food_name": "Oil, olive",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "899",
+              "protein_g": "Tr",
+              "carbohydrate_g": "0.0",
+              "fat_g": "99.9",
+              "fibre_g": "0.0",
+              "saturates_g": "14.30"
+            },
+            "reference_grams": "100",
+            "limitations": "0.92g/ml household volume estimate"
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "2ab58c2a97ac7e4370a324df223b8b9c1b00cc5ae19e777fbda24d617aa7b42a"
+    },
+    {
+      "id": "uk-core-chickpea-spinach-curry",
+      "title": "Chickpea and spinach curry with rice",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "dinner",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "chickpeas, canned, drained",
+            "amount": "240g",
+            "calculation_grams": 240,
+            "food_code": "13-670"
+          },
+          {
+            "item": "tinned chopped tomatoes",
+            "amount": "400g",
+            "calculation_grams": 400,
+            "food_code": "13-530"
+          },
+          {
+            "item": "spinach",
+            "amount": "120g",
+            "calculation_grams": 120,
+            "food_code": "13-521"
+          },
+          {
+            "item": "medium curry paste",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "17-720"
+          },
+          {
+            "item": "basmati rice, dry",
+            "amount": "120g",
+            "calculation_grams": 120,
+            "food_code": "11-857"
+          },
+          {
+            "item": "olive oil",
+            "amount": "5ml",
+            "calculation_grams": 4.6,
+            "food_code": "17-038"
+          }
+        ],
+        "method": [
+          "Start the measured dry rice in a saucepan, following the water quantity and cooking time on its packet. Keep it covered briefly while finishing the curry and serve immediately.",
+          "Heat the oil gently in a non-stick pan. Stir in the curry paste for the time on its label; add the chopped tomatoes, bring to a simmer and cook for 5 minutes. Stir and lower the heat if it catches.",
+          "Add drained and rinsed canned chickpeas and simmer for another 5 minutes, until steaming hot. Wash the spinach and stir it in until fully wilted. If the paste label requires longer cooking, allow the extra time.",
+          "Divide the freshly cooked rice and curry between two bowls. This method uses ready-cooked chickpeas, not dry ones."
+        ],
+        "allergens": [
+          "mustard (may be in curry paste; check the exact jar)"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "hob",
+          "two saucepans, one with lid",
+          "spoon",
+          "sieve or colander",
+          "two bowls",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Cool any leftover rice quickly, ideally within 1 hour. Refrigerate at 0–5°C and use within 24 hours of cooking. Do not leave rice in a pan at room temperature.",
+          "reheat": "Reheat once until steaming hot throughout and eat immediately; stir to distribute heat."
+        },
+        "prep_minutes": 5,
+        "cook_minutes": 15,
+        "total_minutes": 20,
+        "hands_on_minutes": 15,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "curry",
+        "allergen_note": "Curry paste may contain mustard, nuts, peanuts, milk, fish or other allergens. The exact jar label governs; the recipe is not an allergy-safe selector.",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 484.3,
+          "protein_g": 19.6,
+          "carbohydrate_g": 82.2,
+          "fat_g": 11,
+          "fibre_g": 12.7,
+          "saturates_g": null,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {
+            "saturates_g": [
+              "medium curry paste"
+            ]
+          },
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "chickpeas, canned, drained",
+            "amount": "240g",
+            "calculation_grams": 240,
+            "food_code": "13-670",
+            "source_food_name": "Beans, chick peas, canned, re-heated, drained",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "129",
+              "protein_g": "8.4",
+              "carbohydrate_g": "18.3",
+              "fat_g": "3",
+              "fibre_g": "7.1",
+              "saturates_g": "0.28999999999999998"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tinned chopped tomatoes",
+            "amount": "400g",
+            "calculation_grams": 400,
+            "food_code": "13-530",
+            "source_food_name": "Tomatoes, canned, whole contents",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "19",
+              "protein_g": "1.1",
+              "carbohydrate_g": "3.8",
+              "fat_g": "0.1",
+              "fibre_g": "0.8",
+              "saturates_g": "0.01"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "spinach",
+            "amount": "120g",
+            "calculation_grams": 120,
+            "food_code": "13-521",
+            "source_food_name": "Spinach, baby, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "16",
+              "protein_g": "2.6",
+              "carbohydrate_g": "0.2",
+              "fat_g": "0.6",
+              "fibre_g": "1.0",
+              "saturates_g": "0.08"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "medium curry paste",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "17-720",
+            "source_food_name": "Curry paste",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "253",
+              "protein_g": "4.7",
+              "carbohydrate_g": "11.3",
+              "fat_g": "21.3",
+              "fibre_g": "6.8",
+              "saturates_g": "N"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "basmati rice, dry",
+            "amount": "120g",
+            "calculation_grams": 120,
+            "food_code": "11-857",
+            "source_food_name": "Rice, white, basmati, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "351",
+              "protein_g": "8.1",
+              "carbohydrate_g": "83.7",
+              "fat_g": "0.5",
+              "fibre_g": "1.1",
+              "saturates_g": "0.14"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "olive oil",
+            "amount": "5ml",
+            "calculation_grams": 4.6,
+            "food_code": "17-038",
+            "source_food_name": "Oil, olive",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "899",
+              "protein_g": "Tr",
+              "carbohydrate_g": "0.0",
+              "fat_g": "99.9",
+              "fibre_g": "0.0",
+              "saturates_g": "14.30"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "dd22d36d9372b1bd45d6c89269de3e33452bfd42e81cb1f10d872affbdbd9600"
+    },
+    {
+      "id": "uk-core-chicken-vegetable-noodles",
+      "title": "Chicken and vegetable noodles",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "dinner",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "raw skinless chicken breast",
+            "amount": "300g",
+            "calculation_grams": 300,
+            "food_code": "18-488",
+            "basis": "CoFID raw chicken meat average is a declared proxy for raw skinless breast. Exact fat and energy vary with the cut and pack."
+          },
+          {
+            "item": "ready-cooked egg noodles",
+            "amount": "300g",
+            "calculation_grams": 300,
+            "food_code": "tesco-cooked-noodles"
+          },
+          {
+            "item": "red pepper",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-524"
+          },
+          {
+            "item": "broccoli",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-502"
+          },
+          {
+            "item": "soy sauce",
+            "amount": "20g",
+            "calculation_grams": 20,
+            "food_code": "17-721",
+            "basis": "CoFID generic soy sauce; exact brand salt and allergens vary. No reduced-salt claim."
+          },
+          {
+            "item": "olive oil",
+            "amount": "10ml",
+            "calculation_grams": 9.2,
+            "food_code": "17-038"
+          }
+        ],
+        "method": [
+          "Wash and slice the pepper and cut the broccoli into small florets. On a separate board, cut the raw chicken into strips about 1cm thick; wash hands, knife and board after raw chicken.",
+          "Heat the measured oil in a large non-stick pan over medium-high heat. Cook the chicken for about 7–10 minutes, turning, until cooked through; check 75°C for 30 seconds with a clean thermometer. Cook in batches if crowded and allow extra time. Transfer to a clean plate.",
+          "Put the pepper and broccoli in the same pan with 60ml water. Cover and cook for 4–6 minutes until tender with some bite. Meanwhile microwave the full 300g pack of ready-cooked noodles exactly as its packet directs, including standing time. The reference pack takes 2 minutes 30 seconds at 800W plus 1 minute standing. Do not use 300g dry noodles.",
+          "Add the hot noodles, measured soy sauce and cooked chicken with its juices to the vegetables. Toss for 1–2 minutes until the whole dish is steaming hot. Divide between two bowls and eat immediately; the reference noodle pack says not to reheat once cooled."
+        ],
+        "allergens": [
+          "egg",
+          "wheat/gluten",
+          "soya"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "hob",
+          "large non-stick pan with lid",
+          "microwave",
+          "microwave-safe plate",
+          "knife",
+          "separate chopping boards",
+          "spatula",
+          "clean plate",
+          "food thermometer",
+          "two bowls",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 8,
+        "cook_minutes": 12,
+        "total_minutes": 25,
+        "hands_on_minutes": 23,
+        "timing_is_estimate": true,
+        "timing_note": "25-minute estimate for two. Pre-cooked noodles reduce washing-up. Chicken batches or slow preparation take longer; no 5-minute claim.",
+        "image": null,
+        "food_format": "stir-fry",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 439.8,
+          "protein_g": 43.8,
+          "carbohydrate_g": 41.8,
+          "fat_g": 10.2,
+          "fibre_g": 8.7,
+          "saturates_g": 1.9,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "raw skinless chicken breast",
+            "amount": "300g",
+            "calculation_grams": 300,
+            "food_code": "18-488",
+            "basis": "CoFID raw chicken meat average is a declared proxy for raw skinless breast. Exact fat and energy vary with the cut and pack.",
+            "source_food_name": "Chicken, meat, average, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "108",
+              "protein_g": "22.3",
+              "carbohydrate_g": "0.0",
+              "fat_g": "2.1",
+              "fibre_g": "0.0",
+              "saturates_g": "0.60"
+            },
+            "reference_grams": "100",
+            "limitations": "CoFID raw chicken meat average is a declared proxy for raw skinless breast. Exact fat and energy vary with the cut and pack."
+          },
+          {
+            "item": "ready-cooked egg noodles",
+            "amount": "300g",
+            "calculation_grams": 300,
+            "food_code": "tesco-cooked-noodles",
+            "source_food_name": "Tesco Egg Noodles 300g, cooked, when microwaved as directed",
+            "source": "https://www.tesco.com/shop/en-GB/products/290981391",
+            "per_reference": {
+              "kcal": "123",
+              "protein_g": "4.0",
+              "carbohydrate_g": "22.7",
+              "fat_g": "1.2",
+              "fibre_g": "2.5",
+              "saturates_g": "0.1"
+            },
+            "reference_grams": "100",
+            "limitations": "Cooked egg noodles with oil already included in the product. Use the full 300g pack and microwave as directed. This is not a dry-noodle value; all recipe frying oil is separately included."
+          },
+          {
+            "item": "red pepper",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-524",
+            "source_food_name": "Pepper, capsicum, red, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "21",
+              "protein_g": "0.8",
+              "carbohydrate_g": "4.3",
+              "fat_g": "0.2",
+              "fibre_g": "2.2",
+              "saturates_g": "0.05"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "broccoli",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-502",
+            "source_food_name": "Broccoli, green, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "34",
+              "protein_g": "4.3",
+              "carbohydrate_g": "3.2",
+              "fat_g": "0.6",
+              "fibre_g": "4.0",
+              "saturates_g": "0.15"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "soy sauce",
+            "amount": "20g",
+            "calculation_grams": 20,
+            "food_code": "17-721",
+            "basis": "CoFID generic soy sauce; exact brand salt and allergens vary. No reduced-salt claim.",
+            "source_food_name": "Soy sauce, light and dark varieties",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "79",
+              "protein_g": "3.0",
+              "carbohydrate_g": "17.9",
+              "fat_g": "Tr",
+              "fibre_g": "Tr",
+              "saturates_g": "0.00"
+            },
+            "reference_grams": "100",
+            "limitations": "CoFID generic soy sauce; exact brand salt and allergens vary. No reduced-salt claim."
+          },
+          {
+            "item": "olive oil",
+            "amount": "10ml",
+            "calculation_grams": 9.2,
+            "food_code": "17-038",
+            "source_food_name": "Oil, olive",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "899",
+              "protein_g": "Tr",
+              "carbohydrate_g": "0.0",
+              "fat_g": "99.9",
+              "fibre_g": "0.0",
+              "saturates_g": "14.30"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "33b4e2db0e38c7c2c622e540b0de9a175927920ef1340c097ba5c2642aea6da2"
+    },
+    {
+      "id": "uk-core-vegetable-omelette",
+      "title": "Vegetable omelette with toast",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "dinner",
+        "servings": 2,
+        "ingredients": [
+          {
+            "item": "eggs, without shells",
+            "amount": "200g",
+            "calculation_grams": 200,
+            "food_code": "12-937"
+          },
+          {
+            "item": "mushrooms",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-505"
+          },
+          {
+            "item": "tomato",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-517"
+          },
+          {
+            "item": "reduced-fat Cheddar",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "12-548"
+          },
+          {
+            "item": "wholemeal bread",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "11-981"
+          },
+          {
+            "item": "olive oil",
+            "amount": "10ml",
+            "calculation_grams": 9.2,
+            "food_code": "17-038"
+          }
+        ],
+        "method": [
+          "Use four medium eggs, approximately 200g edible weight, and two slices of bread weighing 80g in total. Wash and slice the mushrooms and tomatoes; grate the cheese. Beat the eggs in a bowl and wash hands after raw eggs.",
+          "Heat half the oil in a large non-stick frying pan over medium heat. Cook the mushrooms for 4–5 minutes until softened and their released moisture has evaporated.",
+          "Add the remaining oil, then the eggs and tomatoes. Move the set edges gently towards the middle so liquid egg runs into the gaps. Lower the heat, sprinkle over the cheese and cover for 3–5 minutes until the egg is fully set throughout, with no liquid egg remaining.",
+          "Meanwhile toast the bread. Divide the fully cooked omelette into two and serve with a slice of toast each. If your pan is small, cook two omelettes and allow extra time."
+        ],
+        "allergens": [
+          "egg",
+          "milk",
+          "wheat/gluten"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "hob",
+          "large non-stick frying pan with lid",
+          "bowl",
+          "fork",
+          "spatula",
+          "knife",
+          "chopping board",
+          "grater",
+          "toaster",
+          "two plates",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 5,
+        "cook_minutes": 12,
+        "total_minutes": 20,
+        "hands_on_minutes": 17,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "omelette",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 338.8,
+          "protein_g": 23.1,
+          "carbohydrate_g": 19.6,
+          "fat_g": 19.3,
+          "fibre_g": 4.2,
+          "saturates_g": 6.2,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "eggs, without shells",
+            "amount": "200g",
+            "calculation_grams": 200,
+            "food_code": "12-937",
+            "source_food_name": "Eggs, chicken, whole, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "131",
+              "protein_g": "12.6",
+              "carbohydrate_g": "Tr",
+              "fat_g": "9.0",
+              "fibre_g": "0.0",
+              "saturates_g": "2.52"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "mushrooms",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-505",
+            "source_food_name": "Mushrooms, white, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "7",
+              "protein_g": "1.0",
+              "carbohydrate_g": "0.3",
+              "fat_g": "0.2",
+              "fibre_g": "0.7",
+              "saturates_g": "0.04"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "tomato",
+            "amount": "160g",
+            "calculation_grams": 160,
+            "food_code": "13-517",
+            "source_food_name": "Tomatoes, standard, raw",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "14",
+              "protein_g": "0.5",
+              "carbohydrate_g": "3.0",
+              "fat_g": "0.1",
+              "fibre_g": "1.0",
+              "saturates_g": "0.03"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "reduced-fat Cheddar",
+            "amount": "40g",
+            "calculation_grams": 40,
+            "food_code": "12-548",
+            "source_food_name": "Cheese, Cheddar type, '30% less fat'",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "314",
+              "protein_g": "27.9",
+              "carbohydrate_g": "0.8",
+              "fat_g": "22.1",
+              "fibre_g": "0.0",
+              "saturates_g": "13.80"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "wholemeal bread",
+            "amount": "80g",
+            "calculation_grams": 80,
+            "food_code": "11-981",
+            "source_food_name": "Bread, wholemeal, average",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "217",
+              "protein_g": "9.4",
+              "carbohydrate_g": "42.0",
+              "fat_g": "2.5",
+              "fibre_g": "7.0",
+              "saturates_g": "0.46"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "olive oil",
+            "amount": "10ml",
+            "calculation_grams": 9.2,
+            "food_code": "17-038",
+            "source_food_name": "Oil, olive",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "899",
+              "protein_g": "Tr",
+              "carbohydrate_g": "0.0",
+              "fat_g": "99.9",
+              "fibre_g": "0.0",
+              "saturates_g": "14.30"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "b3d205d91e2014008300073ab5f9ad335311c833f450d665fd1904899566e3e7"
+    },
+    {
+      "id": "uk-core-apple-yoghurt",
+      "title": "Apple and yoghurt",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "snack",
+        "servings": 1,
+        "ingredients": [
+          {
+            "item": "apple, edible flesh and skin",
+            "amount": "120g",
+            "calculation_grams": 120,
+            "food_code": "14-319"
+          },
+          {
+            "item": "plain virtually fat-free yoghurt",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "12-533"
+          }
+        ],
+        "method": [
+          "Wash and core a small apple, then slice; 120g is an edible-portion estimate, not a requirement to weigh each slice.",
+          "Serve the apple with the chilled yoghurt. Check the yoghurt label for allergens and eat now or keep chilled as described below."
+        ],
+        "allergens": [
+          "milk"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "knife",
+          "chopping board",
+          "bowl",
+          "spoon",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of preparation or any earlier use-by/after-opening deadline. Keep chilled until eating."
+        },
+        "prep_minutes": 3,
+        "cook_minutes": 0,
+        "total_minutes": 3,
+        "hands_on_minutes": 3,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "fruit-and-yoghurt",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 142.2,
+          "protein_g": 8.8,
+          "carbohydrate_g": 26.2,
+          "fat_g": 0.9,
+          "fibre_g": 1.4,
+          "saturates_g": 0.3,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "apple, edible flesh and skin",
+            "amount": "120g",
+            "calculation_grams": 120,
+            "food_code": "14-319",
+            "source_food_name": "Apples, eating, raw, flesh and skin",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "51",
+              "protein_g": "0.6",
+              "carbohydrate_g": "11.6",
+              "fat_g": "0.5",
+              "fibre_g": "1.2",
+              "saturates_g": "0.12"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "plain virtually fat-free yoghurt",
+            "amount": "150g",
+            "calculation_grams": 150,
+            "food_code": "12-533",
+            "source_food_name": "Yogurt, virtually fat free/diet, plain",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "54",
+              "protein_g": "5.4",
+              "carbohydrate_g": "8.2",
+              "fat_g": "0.2",
+              "fibre_g": "0.0",
+              "saturates_g": "0.10"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "b6c4e0cec350c8c8e9788e33b3d46fbea7d033d5dc5707c2b8c759e49ac34779"
+    },
+    {
+      "id": "uk-core-apple-peanut-butter",
+      "title": "Apple with peanut butter",
+      "version": 1,
+      "status": "draft",
+      "data": {
+        "meal_type": "snack",
+        "servings": 1,
+        "ingredients": [
+          {
+            "item": "apple, edible flesh and skin",
+            "amount": "120g",
+            "calculation_grams": 120,
+            "food_code": "14-319"
+          },
+          {
+            "item": "peanut butter",
+            "amount": "15g",
+            "calculation_grams": 15,
+            "food_code": "14-892"
+          }
+        ],
+        "method": [
+          "Wash and core a small apple, then slice. The stated apple weight excludes the core.",
+          "Put a measured 15g spoonful of peanut butter on a plate for dipping. Eat now; do not give this as a nut-free option."
+        ],
+        "allergens": [
+          "peanuts"
+        ],
+        "food_safety": [
+          "Check all ingredient labels for allergens and use-by dates. Substitutions change nutrition and allergens; these recipes do not guarantee allergy suitability.",
+          "Wash hands, utensils and surfaces; wash fresh produce unless labelled ready washed. Keep ready-to-eat food separate from raw meat."
+        ],
+        "equipment": [
+          "knife",
+          "chopping board",
+          "plate",
+          "spoon",
+          "kitchen scales"
+        ],
+        "storage": {
+          "chilled": "Eat immediately. These instructions do not cover storing or reheating the finished meal."
+        },
+        "prep_minutes": 3,
+        "cook_minutes": 0,
+        "total_minutes": 3,
+        "hands_on_minutes": 3,
+        "timing_is_estimate": true,
+        "timing_note": "Author estimates; no physical cooking or timing trial. Packet instructions and doneness govern.",
+        "image": null,
+        "food_format": "fruit-and-nuts",
+        "nutrition": {
+          "status": "calculated_draft",
+          "kcal": 152.3,
+          "protein_g": 4.1,
+          "carbohydrate_g": 15.9,
+          "fat_g": 8.4,
+          "fibre_g": 2.4,
+          "saturates_g": 2.1,
+          "methodology": "Ingredient-by-ingredient CoFID 2021 or explicitly named UK product-label calculation. Per serving; unrounded decimal inputs, final values rounded to 0.1. Traces treated as zero; N/blank retained as unknown, never zero-filled.",
+          "unknown_nutrients": {},
+          "precision_note": "Estimates. Products, portion weights and cooking losses vary. Product proxy and missing-value limitations are in ingredient evidence."
+        },
+        "ingredient_evidence": [
+          {
+            "item": "apple, edible flesh and skin",
+            "amount": "120g",
+            "calculation_grams": 120,
+            "food_code": "14-319",
+            "source_food_name": "Apples, eating, raw, flesh and skin",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "51",
+              "protein_g": "0.6",
+              "carbohydrate_g": "11.6",
+              "fat_g": "0.5",
+              "fibre_g": "1.2",
+              "saturates_g": "0.12"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          },
+          {
+            "item": "peanut butter",
+            "amount": "15g",
+            "calculation_grams": 15,
+            "food_code": "14-892",
+            "source_food_name": "Peanut butter, smooth",
+            "source": "CoFID 2021, 1.3 Proximates",
+            "per_reference": {
+              "kcal": "607",
+              "protein_g": "22.8",
+              "carbohydrate_g": "13.1",
+              "fat_g": "51.8",
+              "fibre_g": "6.6",
+              "saturates_g": "12.78"
+            },
+            "reference_grams": "100",
+            "limitations": "Generic source estimate; brands and edible weights vary."
+          }
+        ]
+      },
+      "review": {
+        "status": "pending",
+        "author_ids": [
+          "/root"
+        ],
+        "independent_review_claimed": false,
+        "human_review_claimed": false,
+        "physical_kitchen_trial_claimed": false
+      },
+      "publication_ready": false,
+      "required_review": [
+        "Independent editorial review of this exact content",
+        "Human second-person review under docs/SHIFT-MEMBER-HUMANNESS-STANDARD.md",
+        "Resolve missing nutrient values/source identity limitations before publication",
+        "Exact immutable publication binding; existing owner batches are not inherited"
+      ],
+      "content_hash": "6311c69f4ba869ab91060ea6b71ea1a5640e129b0acf0c8116ddd98ab9f8762d"
+    }
+  ]
+}

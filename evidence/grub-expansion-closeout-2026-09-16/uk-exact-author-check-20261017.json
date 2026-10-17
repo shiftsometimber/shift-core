@@ -1,0 +1,481 @@
+{
+  "proof": "GRUB_UK_EXACT_AI_AUTHOR_CHECK_20261017",
+  "checked_at": "2026-10-17T22:08:58.266465+00:00",
+  "reviewer": {
+    "id": "/root",
+    "kind": "AI",
+    "independent_human": false
+  },
+  "base_source": "54237686b154eac6446772252ce40986010cfc46",
+  "publication": "held",
+  "physical_cooking_trial": false,
+  "workbook_sha256": "436e9445ef2adb2a75f3d7edd51302de3adad25385f9795fc94ba58bd030e97d",
+  "cofid_values_checked": 186,
+  "recipe_nutrient_totals_checked": 84,
+  "product_labels": "Named label fixtures retained from prior source review; no new product availability claim.",
+  "fixed": [
+    "Beans jacket: add grater; remove conditional equipment wording.",
+    "Tuna jacket: remove bean-heating equipment; add can opener if needed.",
+    "Both jackets: make peeled-potato proxy explicit in ingredient evidence and rendered review.",
+    "Tuna jacket: explicitly declare brine-to-spring-water nutrition proxy.",
+    "Lentil pasta: include heatproof mug used by method."
+  ],
+  "recipes": [
+    {
+      "id": "uk-core-margherita-pizza",
+      "title": "Margherita pizza with side salad",
+      "prior_content_hash": "630711e924015ab3b90eebc9345cb4c525e535b9b5969b210be5e0d5b4520fbb",
+      "content_hash": "630711e924015ab3b90eebc9345cb4c525e535b9b5969b210be5e0d5b4520fbb",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 359.8,
+        "protein_g": 15.5,
+        "carbohydrate_g": 42.7,
+        "fat_g": 13.9,
+        "fibre_g": 3.8,
+        "saturates_g": null
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-pepperoni-pizza",
+      "title": "Pepperoni pizza with side salad",
+      "prior_content_hash": "9b8dab5c09e35e2cd4e6ddd1e97ad30afad8fad76363468bba8fac4a325a124f",
+      "content_hash": "9b8dab5c09e35e2cd4e6ddd1e97ad30afad8fad76363468bba8fac4a325a124f",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 436.6,
+        "protein_g": 19.0,
+        "carbohydrate_g": 42.9,
+        "fat_g": 20.8,
+        "fibre_g": 3.8,
+        "saturates_g": null
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-ham-pineapple-pizza",
+      "title": "Ham and pineapple pizza with side salad",
+      "prior_content_hash": "c7f03d7e9d438a7903c2598eba93f8e2e3400bf1444255cb0e31545f44c7f3bc",
+      "content_hash": "c7f03d7e9d438a7903c2598eba93f8e2e3400bf1444255cb0e31545f44c7f3bc",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 409.5,
+        "protein_g": 21.2,
+        "carbohydrate_g": 47.5,
+        "fat_g": 14.9,
+        "fibre_g": 4.3,
+        "saturates_g": null
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-mushroom-pizza",
+      "title": "Mushroom pizza with side salad",
+      "prior_content_hash": "e271f6f52f29bc241844cc22ace67fb29035d41acb01927a1878b444676a6bc3",
+      "content_hash": "e271f6f52f29bc241844cc22ace67fb29035d41acb01927a1878b444676a6bc3",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 362.9,
+        "protein_g": 16.0,
+        "carbohydrate_g": 42.8,
+        "fat_g": 14.0,
+        "fibre_g": 4.2,
+        "saturates_g": null
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-egg-mayonnaise-sandwich",
+      "title": "Egg mayonnaise sandwich",
+      "prior_content_hash": "e2c545399d54d82dcda9c5e1925806add49332bc89f13111f04dbb39e2a6064e",
+      "content_hash": "e2c545399d54d82dcda9c5e1925806add49332bc89f13111f04dbb39e2a6064e",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 362.0,
+        "protein_g": 22.0,
+        "carbohydrate_g": 35.1,
+        "fat_g": 15.8,
+        "fibre_g": 5.9,
+        "saturates_g": 3.4
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-cheese-tomato-sandwich",
+      "title": "Cheese and tomato sandwich",
+      "prior_content_hash": "bfa000b9e7857b5dd8fd82f2646c857e6f6b850e12bcb72509ab06cfcfac998e",
+      "content_hash": "bfa000b9e7857b5dd8fd82f2646c857e6f6b850e12bcb72509ab06cfcfac998e",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 281.2,
+        "protein_g": 16.5,
+        "carbohydrate_g": 36.5,
+        "fat_g": 8.7,
+        "fibre_g": 6.7,
+        "saturates_g": 4.5
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-jacket-beans-cheese",
+      "title": "Jacket potato with beans and cheese",
+      "prior_content_hash": "8dc84d7c933330beba951375513805e666a364aa31a06024ca57835b4a2644f8",
+      "content_hash": "f0df1d954e63282a62d8b7b6045cb6ec935a0eef8b1f716af2b700703c50511d",
+      "content_changed": true,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 487.5,
+        "protein_g": 22.3,
+        "carbohydrate_g": 92.1,
+        "fat_g": 5.9,
+        "fibre_g": 17.4,
+        "saturates_g": 3.1
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-jacket-tuna-mayo",
+      "title": "Jacket potato with tuna mayonnaise",
+      "prior_content_hash": "7bf9e6f0caf7d18a17f9aff2ef7404fb978c542b988f82ba6800df2e14039169",
+      "content_hash": "a633b13d8d4fced90535c2243619a6e6b7272c4d17d35fb5feea1a5894a6fccc",
+      "content_changed": true,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 414.9,
+        "protein_g": 31.8,
+        "carbohydrate_g": 63.1,
+        "fat_g": 5.6,
+        "fibre_g": 7.6,
+        "saturates_g": 0.7
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-tomato-lentil-pasta",
+      "title": "Tomato and lentil pasta",
+      "prior_content_hash": "c7835b386c9891ec565893054028e626fe447f77042eee301c73f4d6d4fae5b4",
+      "content_hash": "2ab58c2a97ac7e4370a324df223b8b9c1b00cc5ae19e777fbda24d617aa7b42a",
+      "content_changed": true,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 433.9,
+        "protein_g": 23.0,
+        "carbohydrate_g": 78.3,
+        "fat_g": 5.5,
+        "fibre_g": 20.5,
+        "saturates_g": 0.8
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-chickpea-spinach-curry",
+      "title": "Chickpea and spinach curry with rice",
+      "prior_content_hash": "dd22d36d9372b1bd45d6c89269de3e33452bfd42e81cb1f10d872affbdbd9600",
+      "content_hash": "dd22d36d9372b1bd45d6c89269de3e33452bfd42e81cb1f10d872affbdbd9600",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 484.3,
+        "protein_g": 19.6,
+        "carbohydrate_g": 82.2,
+        "fat_g": 11.0,
+        "fibre_g": 12.7,
+        "saturates_g": null
+      },
+      "human_review": "pending",
+      "practical_review_findings": [
+        "Exact curry-paste label remains unspecified. Reviewer must assess allergens, vegetarian suitability and packet time; do not infer allergy suitability from the mustard-only headline."
+      ]
+    },
+    {
+      "id": "uk-core-chicken-vegetable-noodles",
+      "title": "Chicken and vegetable noodles",
+      "prior_content_hash": "33b4e2db0e38c7c2c622e540b0de9a175927920ef1340c097ba5c2642aea6da2",
+      "content_hash": "33b4e2db0e38c7c2c622e540b0de9a175927920ef1340c097ba5c2642aea6da2",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 439.8,
+        "protein_g": 43.8,
+        "carbohydrate_g": 41.8,
+        "fat_g": 10.2,
+        "fibre_g": 8.7,
+        "saturates_g": 1.9
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-vegetable-omelette",
+      "title": "Vegetable omelette with toast",
+      "prior_content_hash": "b3d205d91e2014008300073ab5f9ad335311c833f450d665fd1904899566e3e7",
+      "content_hash": "b3d205d91e2014008300073ab5f9ad335311c833f450d665fd1904899566e3e7",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 338.8,
+        "protein_g": 23.1,
+        "carbohydrate_g": 19.6,
+        "fat_g": 19.3,
+        "fibre_g": 4.2,
+        "saturates_g": 6.2
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-apple-yoghurt",
+      "title": "Apple and yoghurt",
+      "prior_content_hash": "b6c4e0cec350c8c8e9788e33b3d46fbea7d033d5dc5707c2b8c759e49ac34779",
+      "content_hash": "b6c4e0cec350c8c8e9788e33b3d46fbea7d033d5dc5707c2b8c759e49ac34779",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 142.2,
+        "protein_g": 8.8,
+        "carbohydrate_g": 26.2,
+        "fat_g": 0.9,
+        "fibre_g": 1.4,
+        "saturates_g": 0.3
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    },
+    {
+      "id": "uk-core-apple-peanut-butter",
+      "title": "Apple with peanut butter",
+      "prior_content_hash": "6311c69f4ba869ab91060ea6b71ea1a5640e129b0acf0c8116ddd98ab9f8762d",
+      "content_hash": "6311c69f4ba869ab91060ea6b71ea1a5640e129b0acf0c8116ddd98ab9f8762d",
+      "content_changed": false,
+      "arithmetic": "PASS",
+      "estimated_per_serving": {
+        "kcal": 152.3,
+        "protein_g": 4.1,
+        "carbohydrate_g": 15.9,
+        "fat_g": 8.4,
+        "fibre_g": 2.4,
+        "saturates_g": 2.1
+      },
+      "human_review": "pending",
+      "practical_review_findings": []
+    }
+  ],
+  "existing_recipes": [
+    {
+      "id": "industrial-breakfast-egg-toast-apple-cinnamon-0",
+      "title": "Egg Spinach Wholemeal Toast",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-egg-toast-banana-cocoa-1",
+      "title": "Egg Mushrooms Wholemeal Toast",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-protein-oats-apple-cinnamon-0",
+      "title": "Apple Cinnamon Protein Oats",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-protein-oats-banana-cocoa-1",
+      "title": "Banana Cocoa Protein Oats",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-protein-oats-berry-vanilla-2",
+      "title": "Berry Cinnamon Protein Oats",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-yoghurt-pot-apple-cinnamon-0",
+      "title": "Apple Cinnamon Yoghurt Crunch Pot",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-yoghurt-pot-banana-cocoa-1",
+      "title": "Banana Cocoa Yoghurt Crunch Pot",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-yoghurt-pot-berry-vanilla-2",
+      "title": "Berry Cinnamon Yoghurt Crunch Pot",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-dinner-chicken-pasta-bake",
+      "title": "Chicken Pasta Bake",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-dinner-salmon-pasta-bake",
+      "title": "Salmon Pasta Bake",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-dinner-chicken-curry",
+      "title": "Chicken Curry",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-dinner-lentil-curry",
+      "title": "Lentil Curry",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-dinner-chicken-stir-fry",
+      "title": "Chicken Stir Fry",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-dinner-tofu-stir-fry",
+      "title": "Tofu Stir Fry",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-overnight-oats-apple-cinnamon-0",
+      "title": "Apple Cinnamon Overnight Oats",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-breakfast-overnight-oats-banana-cocoa-1",
+      "title": "Banana Cocoa Overnight Oats",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-chicken-pasta-pot",
+      "title": "Chicken Pasta Pot",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-tuna-pasta-pot",
+      "title": "Tuna Pasta Pot",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-chickpea-grain-salad",
+      "title": "Chickpea Grain Salad",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-bean-pitta",
+      "title": "Bean Pitta",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-chicken-wholemeal-wrap",
+      "title": "Chicken Wholemeal Wrap",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-tuna-pitta",
+      "title": "Tuna Pitta",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-tuna-wholemeal-wrap",
+      "title": "Tuna Wholemeal Wrap",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-bean-jacket-potato",
+      "title": "Bean Jacket Potato",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "industrial-lunch-tuna-jacket-potato",
+      "title": "Tuna Jacket Potato",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "everyday-chicken-salad",
+      "title": "Chicken salad",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "everyday-chicken-salad-sandwich",
+      "title": "Chicken salad sandwich",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "everyday-ham-sandwich",
+      "title": "Ham sandwich",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "everyday-tuna-sandwich",
+      "title": "Tuna sandwich",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "everyday-ham-salad",
+      "title": "Ham salad",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "everyday-beans-on-toast",
+      "title": "Beans on toast",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    },
+    {
+      "id": "everyday-scrambled-eggs-on-toast",
+      "title": "Scrambled eggs on toast",
+      "content_changed": false,
+      "human_acceptance_claimed": false
+    }
+  ],
+  "existing_review_attention": [
+    "Egg toast recipes: two large eggs is not reliably 100g edible weight.",
+    "Hot oats equipment omits spoon and fruit-preparation equipment.",
+    "Generic reheating copy on cold yoghurt and wrap dishes needs human editorial assessment.",
+    "Ready-cooked chicken retention recipes must respect the original cooking/use-by clock.",
+    "Longer recipes remain optional choices; hands-on figures are estimates, not trials."
+  ],
+  "human_dependency": "Actual second-person identity, date, exact new hashes, all ten recipe scopes and exact discovery/timing review. Deployment permission already held; no kitchen-trial claim."
+}

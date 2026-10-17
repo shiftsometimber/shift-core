@@ -1,0 +1,94 @@
+{
+  "schema": "shift-grub-everyday-runtime-receipt/v1",
+  "source": "a32be98c67fe0ddb857017650fab02f996bc98e0",
+  "tree": "9f349cf436abdb2d958265934d7893514b74315c",
+  "run": "39067612602",
+  "attempt": "1",
+  "branch": "release/grub-everyday-direct-20261017",
+  "workflow": ".github/workflows/grub-everyday-release-20261017.yml",
+  "coordinatingMain": "bd55c23dbef505967a417b55e1be37a11033c4b5",
+  "scope": "Everyday Grub only; retained serving Core and HQ",
+  "core": {
+    "deploymentId": "810573f6-e6bb-4716-a0ae-3b37845349ce",
+    "versionId": "561af44a-0917-4a9c-996c-956ee658e260",
+    "bundleSha256": "0851163fc9053372acbe730990a805e61615fa42297fe7d23f1537ee978de8a0",
+    "bundleBytes": 14873005,
+    "allBindingsSha256": "574ec3ce9996d4aa12611a204d124f001031df09e15ae7996d32a8ac2e0e544c"
+  },
+  "retainedHq": {
+    "source": "55b73025f5b6d2302fab42bce73a222653404186",
+    "run": 38974318146,
+    "attempt": 1,
+    "deploymentId": "f75c3309-afc7-49ca-aac2-7964bc5b7e42",
+    "versionId": "6eae4c43-fbc3-455e-a426-9bb7de344705",
+    "percentage": 100,
+    "bundleSha256": "bfadbda83e5b8dcb944b92cea15a13320b7a139c7be9afab98833ba04534e5e7",
+    "bundleBytes": 1838527,
+    "allBindingsSha256": "3b6704c920ad27ad9b9a16d1af27e9f382db7e9daa2fbc46e93d801492fb2f74",
+    "versionSnapshotSha256": "1acbb5b4788bde834c944ce0b3118d4b3948ac09dd8cd5d6829d4ee56509d9c2",
+    "deploymentSnapshotSha256": "44e4cc8125f428f668348b3a21a4c3c34df7c47486b68d698ee636996e42735d",
+    "gpEnabled": true,
+    "partnersEnabled": true,
+    "retained": true
+  },
+  "live": {
+    "checks": [
+      {
+        "path": "/assets/member-experience/grub.mjs",
+        "status": 200,
+        "sha256": "23e7ac48af815c3b77d9ba19752992b68648511c7a647fd3b077cc2b8dc250e4",
+        "bytes": 31181,
+        "wholeSourceMatched": true,
+        "expectedPipeline": "memberExperienceRoutes → withStartupStability → withBookVoice",
+        "bookVoice": "20261002"
+      },
+      {
+        "origin": "https://shiftsometimber.co.uk",
+        "path": "/v1/grub/workspace",
+        "status": 401,
+        "privateDenialVerified": true
+      },
+      {
+        "origin": "https://shiftsometimber.co.uk",
+        "path": "/v1/member/details",
+        "status": 401,
+        "privateDenialVerified": true
+      },
+      {
+        "origin": "https://shiftsometimber.co.uk",
+        "path": "/v1/member/details/gp-search",
+        "status": 401,
+        "privateDenialVerified": true
+      },
+      {
+        "origin": "https://api.shiftsometimber.co.uk",
+        "path": "/v1/grub/workspace",
+        "status": 401,
+        "privateDenialVerified": true
+      },
+      {
+        "origin": "https://api.shiftsometimber.co.uk",
+        "path": "/v1/member/details",
+        "status": 401,
+        "privateDenialVerified": true
+      },
+      {
+        "origin": "https://api.shiftsometimber.co.uk",
+        "path": "/v1/member/details/gp-search",
+        "status": 401,
+        "privateDenialVerified": true
+      }
+    ],
+    "dataWrites": 0,
+    "externalMessages": 0,
+    "authenticatedMemberAcceptance": false,
+    "physicalDeviceAcceptance": false
+  },
+  "stockVerified": true,
+  "configurationUnchanged": true,
+  "clinicalAndGpChanged": false,
+  "homepageChanged": false,
+  "dataWrites": 0,
+  "externalMessages": 0,
+  "physicalDeviceAcceptance": false
+}

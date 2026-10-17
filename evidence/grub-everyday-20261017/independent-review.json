@@ -1,0 +1,308 @@
+{
+  "proof": "EVERYDAY_GRUB_INDEPENDENT_AI_REVIEW_V1",
+  "outcome": "PASS",
+  "status": "completed",
+  "reviewer": {
+    "kind": "ai",
+    "id": "/root/recipe_review",
+    "role": "Independent Codex review agent"
+  },
+  "reviewed_at": "2026-10-17T20:19:36.415Z",
+  "author_ids": [
+    "/root"
+  ],
+  "publication_authority": false,
+  "human_review_claimed": false,
+  "clinical_review_claimed": false,
+  "physical_kitchen_trial_claimed": false,
+  "input_file": "/Users/shiftsometimberltd/SST/grub-ease-20261017/core/content/grub/everyday-meals-draft-20261017.json",
+  "input_file_sha256": "1e6d527c6613beaa1d210822dfd4498dfaa4f05f7f33815fba99e94e78fe9982",
+  "authoring_module_sha256": "165966ee25e1c8cc5ab5fa608fa5a1b674f4310ca3bd706b5a912155362842d1",
+  "candidate_digest": "657d038a600d86585ec232505ec6a3ad039d1773f8388d4024bf85722f9355f0",
+  "reviewed_count": 7,
+  "scopes": [
+    "title",
+    "ingredients",
+    "method",
+    "equipment",
+    "allergens",
+    "nutrition",
+    "storage",
+    "food_safety",
+    "serving_metadata",
+    "member_humanness"
+  ],
+  "prior_review": {
+    "file": "/Users/shiftsometimberltd/SST/grub-ease-20261017/independent-everyday-review/review-initial.json",
+    "sha256": "c5f132c135e831aace0ae5ef2a12fbb7309a796abc3ec22ead918c72bbcd2b91",
+    "original_fix_findings_retained": true
+  },
+  "source_evidence": {
+    "official_cofid_workbook_url": "https://assets.publishing.service.gov.uk/media/60538b91e90e07527df82ae4/McCance_Widdowsons_Composition_of_Foods_Integrated_Dataset_2021..xlsx",
+    "workbook_sha256": "436e9445ef2adb2a75f3d7edd51302de3adad25385f9795fc94ba58bd030e97d",
+    "extract_file": "/Users/shiftsometimberltd/SST/grub-ease-20261017/independent-everyday-review/official-source-extract.json",
+    "safety_urls": [
+      "https://www.gov.uk/government/publications/cooking-your-food/cooking-your-food",
+      "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely"
+    ],
+    "checked_at": "2026-10-17T20:19:36.415Z"
+  },
+  "review_notes": {
+    "title_and_portions": "Seven normal recognisable home lunches. Edible ingredient quantities are plausible, with overlarge sandwich filling served alongside. Chicken and ham salads are light meals; no universal energy-adequacy or clinical personalised claim is made.",
+    "nutrition": "All eleven food-code nutrient identities were independently checked against the official2021 workbook. Recomputed every recipe from official per100g food values and unrounded calculation_grams, rounding final values to1decimal. Traces treatedas0 for eggcarbohydrate/oilprotein; salt/micronutrients outside five-nutrient scope. Mixed leaves, generic ham and canned brine-tuna are macro proxies with declared limitations.",
+    "household_assumptions": "Two medium eggs estimate100g edible portion, explicitly variable. Milk30ml approximates30g rather than official specificgravity1.03; difference is within declared household estimate. Oil3ml assumes0.92g/ml, with2.76g unrounded input and2.8g displayed. Recipe nutrition is explicitly estimated; no exact real-life nutrition claim.",
+    "method_and_safety": "No raw chicken shortcut. Cold chicken is ready cooked and original safe-cooling/48h leftover clock is preserved. All cold meals0–5°C, within24h assembly or earlier useby/afteropening deadline. Product label/allergen checks remain. Beans follow packet/stirring/steaming-hot cues; scrambled eggs fullyset throughout and eatenimmediately.",
+    "allergens": "Breadwheat/gluten, mayonnaiseegg/mustard, tunafish and egg/milk are listed as applicable. Brandlabels govern other allergens andcrosscontact; no allergy suitability guarantee.",
+    "equipment_and_timing": "Core apparatus/measurement needs are listed. Cold assembly5min, beans8min, eggs10min are plausible estimates with packet/appliance/doneness governing; no physical kitchen timingtrial claimed.",
+    "member_humanness": "Ordinary chicken/ham/tuna saladsandsandwiches, beansontoast, scrambledeggs. Short dish-specific assembly/cooking, no unnecessary flavoursorwarmingham. Eggcount usedinpractice withoutmandatoryweighing ofpartialshellless egg.",
+    "independence": "Reviewer /root/recipe_review is a distinct AI agent from author /root. This is an actual independent AI review, not human editorial or clinical acceptance. Owner publication authority must be separately and honestly bound."
+  },
+  "decisions": [
+    {
+      "id": "everyday-chicken-salad",
+      "content_hash": "ba5c500cff2e7cc1ad21515a664bd9a736fa31a52eca78d405a461d1bd0be47c",
+      "decision": "PASS",
+      "reviewer": {
+        "kind": "ai",
+        "id": "/root/recipe_review",
+        "role": "Independent Codex review agent"
+      },
+      "author_ids": [
+        "/root"
+      ],
+      "reviewed_at": "2026-10-17T20:19:36.415Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata",
+        "member_humanness"
+      ],
+      "findings": [],
+      "nutrition_recomputed": {
+        "kcal": 238.6,
+        "protein_g": 39.7,
+        "carbohydrate_g": 4.5,
+        "fat_g": 7,
+        "fibre_g": 1.7
+      }
+    },
+    {
+      "id": "everyday-chicken-salad-sandwich",
+      "content_hash": "5a9a625233e85966980c8319378dd781c360a961e10173ff9501fc9513904885",
+      "decision": "PASS",
+      "reviewer": {
+        "kind": "ai",
+        "id": "/root/recipe_review",
+        "role": "Independent Codex review agent"
+      },
+      "author_ids": [
+        "/root"
+      ],
+      "reviewed_at": "2026-10-17T20:19:36.415Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata",
+        "member_humanness"
+      ],
+      "findings": [],
+      "nutrition_recomputed": {
+        "kcal": 367,
+        "protein_g": 39.9,
+        "carbohydrate_g": 35.1,
+        "fat_g": 8.4,
+        "fibre_g": 5.9
+      }
+    },
+    {
+      "id": "everyday-ham-sandwich",
+      "content_hash": "508267d6999f4d89b5342f2cb612e3a6df600230d04a1ad30aaf135e325fe4c6",
+      "decision": "PASS",
+      "reviewer": {
+        "kind": "ai",
+        "id": "/root/recipe_review",
+        "role": "Independent Codex review agent"
+      },
+      "author_ids": [
+        "/root"
+      ],
+      "reviewed_at": "2026-10-17T20:19:36.415Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata",
+        "member_humanness"
+      ],
+      "findings": [],
+      "nutrition_recomputed": {
+        "kcal": 283.2,
+        "protein_g": 19,
+        "carbohydrate_g": 35.7,
+        "fat_g": 8.2,
+        "fibre_g": 6
+      }
+    },
+    {
+      "id": "everyday-tuna-sandwich",
+      "content_hash": "56f351212c1b7fb843d24573305346198e74b95c664a34c0c450b35590a0c536",
+      "decision": "PASS",
+      "reviewer": {
+        "kind": "ai",
+        "id": "/root/recipe_review",
+        "role": "Independent Codex review agent"
+      },
+      "author_ids": [
+        "/root"
+      ],
+      "reviewed_at": "2026-10-17T20:19:36.415Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata",
+        "member_humanness"
+      ],
+      "findings": [],
+      "nutrition_recomputed": {
+        "kcal": 328,
+        "protein_g": 32.8,
+        "carbohydrate_g": 35.1,
+        "fat_g": 7.2,
+        "fibre_g": 5.9
+      }
+    },
+    {
+      "id": "everyday-ham-salad",
+      "content_hash": "a2c8a8166c6d027766c10b07216d5239dae1ef91f44c4eaf12fe1ff559facd98",
+      "decision": "PASS",
+      "reviewer": {
+        "kind": "ai",
+        "id": "/root/recipe_review",
+        "role": "Independent Codex review agent"
+      },
+      "author_ids": [
+        "/root"
+      ],
+      "reviewed_at": "2026-10-17T20:19:36.415Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata",
+        "member_humanness"
+      ],
+      "findings": [],
+      "nutrition_recomputed": {
+        "kcal": 233.4,
+        "protein_g": 19.8,
+        "carbohydrate_g": 22.1,
+        "fat_g": 8,
+        "fibre_g": 4.6
+      }
+    },
+    {
+      "id": "everyday-beans-on-toast",
+      "content_hash": "fcb3e32ec04273c6211dd332f42b26015e1dbca7ba05174ae56556ce70b276c4",
+      "decision": "PASS",
+      "reviewer": {
+        "kind": "ai",
+        "id": "/root/recipe_review",
+        "role": "Independent Codex review agent"
+      },
+      "author_ids": [
+        "/root"
+      ],
+      "reviewed_at": "2026-10-17T20:19:36.415Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata",
+        "member_humanness"
+      ],
+      "findings": [],
+      "nutrition_recomputed": {
+        "kcal": 335.6,
+        "protein_g": 17.5,
+        "carbohydrate_g": 63.6,
+        "fat_g": 3,
+        "fibre_g": 15.4
+      }
+    },
+    {
+      "id": "everyday-scrambled-eggs-on-toast",
+      "content_hash": "43304828f41ba857eb2a76fc2afbe9516fb4993757370d94aeca0fbabe3d7bdc",
+      "decision": "PASS",
+      "reviewer": {
+        "kind": "ai",
+        "id": "/root/recipe_review",
+        "role": "Independent Codex review agent"
+      },
+      "author_ids": [
+        "/root"
+      ],
+      "reviewed_at": "2026-10-17T20:19:36.415Z",
+      "scopes": [
+        "title",
+        "ingredients",
+        "method",
+        "equipment",
+        "allergens",
+        "nutrition",
+        "storage",
+        "food_safety",
+        "serving_metadata",
+        "member_humanness"
+      ],
+      "findings": [],
+      "nutrition_recomputed": {
+        "kcal": 343.2,
+        "protein_g": 21.2,
+        "carbohydrate_g": 35,
+        "fat_g": 14.3,
+        "fibre_g": 5.6
+      }
+    }
+  ],
+  "publication_path": {
+    "review_authorises_publication": false,
+    "prior_owner_instruction_reused": false,
+    "current_user_instruction": "Deploy all",
+    "instruction_is_publication_authority": "To be recorded by root as current owner authority, bound to these exact seven candidate hashes and this independent review. No claim owner performed human editorial review.",
+    "bounded_path": "Root proposes immutable source-bound seven structured recipe rows added in the shared governed loader only after the full existing database catalogue authority succeeds. Both Grub serving surfaces reuse that loader. This is a legitimate new additive path if new proof, data/review hashes and current instruction are checked fail-closed; preserve all old protected, expansion and revision counts/hashes and old publication records. No old database endpoint or instruction is repurposed.",
+    "initial_db_option_not_requirement": "The prior report described insert-only guarded database publication as an option. Source-bound governed addition can satisfy the same exact-content authority without writing production database rows."
+  }
+}
