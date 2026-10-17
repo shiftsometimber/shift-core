@@ -1,0 +1,617 @@
+TAP version 13
+# [admission-fixture] started active=0
+# [admission-fixture] command-started production-step-004 active=1
+# Subtest: unchanged ordinary detached source returns a fresh positive hint repeatedly
+ok 1 - unchanged ordinary detached source returns a fresh positive hint repeatedly
+  ---
+  duration_ms: 555.989333
+  type: 'test'
+  ...
+# Subtest: warm hint rejects unstaged tracked write
+ok 2 - warm hint rejects unstaged tracked write
+  ---
+  duration_ms: 295.539917
+  type: 'test'
+  ...
+# Subtest: warm hint rejects staged tracked write
+ok 3 - warm hint rejects staged tracked write
+  ---
+  duration_ms: 255.431
+  type: 'test'
+  ...
+# Subtest: warm hint rejects staged new file
+ok 4 - warm hint rejects staged new file
+  ---
+  duration_ms: 263.663958
+  type: 'test'
+  ...
+# Subtest: warm hint rejects tracked deletion
+ok 5 - warm hint rejects tracked deletion
+  ---
+  duration_ms: 314.890875
+  type: 'test'
+  ...
+# Subtest: warm hint rejects staged deletion
+ok 6 - warm hint rejects staged deletion
+  ---
+  duration_ms: 295.621667
+  type: 'test'
+  ...
+# Subtest: warm hint rejects assume unchanged flag
+ok 7 - warm hint rejects assume unchanged flag
+  ---
+  duration_ms: 312.7485
+  type: 'test'
+  ...
+# Subtest: warm hint rejects skip worktree flag
+ok 8 - warm hint rejects skip worktree flag
+  ---
+  duration_ms: 279.3485
+  type: 'test'
+  ...
+# Subtest: warm hint rejects new replacement directory
+ok 9 - warm hint rejects new replacement directory
+  ---
+  duration_ms: 235.015958
+  type: 'test'
+  ...
+# Subtest: warm hint rejects new graft file
+ok 10 - warm hint rejects new graft file
+  ---
+  duration_ms: 469.601333
+  type: 'test'
+  ...
+# Subtest: warm hint rejects new dangling graft link
+ok 11 - warm hint rejects new dangling graft link
+  ---
+  duration_ms: 278.351
+  type: 'test'
+  ...
+# Subtest: warm hint rejects new common directory file
+ok 12 - warm hint rejects new common directory file
+  ---
+  duration_ms: 274.5535
+  type: 'test'
+  ...
+# Subtest: warm hint rejects new dangling common directory link
+ok 13 - warm hint rejects new dangling common directory link
+  ---
+  duration_ms: 265.823958
+  type: 'test'
+  ...
+# Subtest: warm hint rejects local config change
+ok 14 - warm hint rejects local config change
+  ---
+  duration_ms: 262.436708
+  type: 'test'
+  ...
+# Subtest: warm hint rejects config include change
+ok 15 - warm hint rejects config include change
+  ---
+  duration_ms: 277.8655
+  type: 'test'
+  ...
+# Subtest: warm hint rejects new empty commit
+ok 16 - warm hint rejects new empty commit
+  ---
+  duration_ms: 270.9475
+  type: 'test'
+  ...
+# Subtest: warm hint rejects switch to symbolic HEAD
+ok 17 - warm hint rejects switch to symbolic HEAD
+  ---
+  duration_ms: 278.968083
+  type: 'test'
+  ...
+# Subtest: warm hint rejects packed refs change
+ok 18 - warm hint rejects packed refs change
+  ---
+  duration_ms: 224.178958
+  type: 'test'
+  ...
+# Subtest: warm hint rejects index removed
+ok 19 - warm hint rejects index removed
+  ---
+  duration_ms: 231.592167
+  type: 'test'
+  ...
+# Subtest: warm hint rejects split index selected
+ok 20 - warm hint rejects split index selected
+  ---
+  duration_ms: 237.895208
+  type: 'test'
+  ...
+# Subtest: warm hint rejects same bytes from replaced index inode
+ok 21 - warm hint rejects same bytes from replaced index inode
+  ---
+  duration_ms: 221.3325
+  type: 'test'
+  ...
+# Subtest: defined GIT_DIR including empty values takes original native fallback
+ok 22 - defined GIT_DIR including empty values takes original native fallback
+  ---
+  duration_ms: 239.885
+  type: 'test'
+  ...
+# Subtest: defined GIT_WORK_TREE including empty values takes original native fallback
+ok 23 - defined GIT_WORK_TREE including empty values takes original native fallback
+  ---
+  duration_ms: 267.013875
+  type: 'test'
+  ...
+# Subtest: defined GIT_INDEX_FILE including empty values takes original native fallback
+ok 24 - defined GIT_INDEX_FILE including empty values takes original native fallback
+  ---
+  duration_ms: 253.443458
+  type: 'test'
+  ...
+# Subtest: defined GIT_REPLACE_REF_BASE including empty values takes original native fallback
+ok 25 - defined GIT_REPLACE_REF_BASE including empty values takes original native fallback
+  ---
+  duration_ms: 230.148917
+  type: 'test'
+  ...
+# Subtest: defined GIT_CONFIG_COUNT including empty values takes original native fallback
+ok 26 - defined GIT_CONFIG_COUNT including empty values takes original native fallback
+  ---
+  duration_ms: 229.443084
+  type: 'test'
+  ...
+# Subtest: defined GIT_GRAFT_FILE including empty values takes original native fallback
+ok 27 - defined GIT_GRAFT_FILE including empty values takes original native fallback
+  ---
+  duration_ms: 291.900625
+  type: 'test'
+  ...
+# Subtest: defined GIT_NO_REPLACE_OBJECTS including empty values takes original native fallback
+ok 28 - defined GIT_NO_REPLACE_OBJECTS including empty values takes original native fallback
+  ---
+  duration_ms: 298.260917
+  type: 'test'
+  ...
+# Subtest: non Git environment change invalidates a warm hint
+ok 29 - non Git environment change invalidates a warm hint
+  ---
+  duration_ms: 244.802917
+  type: 'test'
+  ...
+# Subtest: nested directory and symbolic head use original native fallback
+ok 30 - nested directory and symbolic head use original native fallback
+  ---
+  duration_ms: 269.013375
+  type: 'test'
+  ...
+# Subtest: restored tracked bytes are revalidated by new native status
+ok 31 - restored tracked bytes are revalidated by new native status
+  ---
+  duration_ms: 289.256917
+  type: 'test'
+  ...
+# Subtest: gitfile and bare layouts always use original native fallback
+ok 32 - gitfile and bare layouts always use original native fallback
+  ---
+  duration_ms: 200.426791
+  type: 'test'
+  ...
+# Subtest: a hint from another directory cannot credit current source
+ok 33 - a hint from another directory cannot credit current source
+  ---
+  duration_ms: 382.614041
+  type: 'test'
+  ...
+# Subtest: cold capture rejects preexisting hidden flags and included configuration
+ok 34 - cold capture rejects preexisting hidden flags and included configuration
+  ---
+  duration_ms: 356.328125
+  type: 'test'
+  ...
+# Subtest: substituted execFileSync takes unchanged native fallback
+ok 35 - substituted execFileSync takes unchanged native fallback
+  ---
+  duration_ms: 272.738333
+  type: 'test'
+  ...
+# Subtest: substituted readFileSync takes unchanged native fallback
+ok 36 - substituted readFileSync takes unchanged native fallback
+  ---
+  duration_ms: 271.938542
+  type: 'test'
+  ...
+# Subtest: substituted lstatSync takes unchanged native fallback
+ok 37 - substituted lstatSync takes unchanged native fallback
+  ---
+  duration_ms: 292.772375
+  type: 'test'
+  ...
+# Subtest: substituted realpathSync takes unchanged native fallback
+ok 38 - substituted realpathSync takes unchanged native fallback
+  ---
+  duration_ms: 297.09175
+  type: 'test'
+  ...
+# Subtest: substituted current-directory function takes unchanged native fallback
+ok 39 - substituted current-directory function takes unchanged native fallback
+  ---
+  duration_ms: 268.139
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: unchanged ordinary detached source returns a fresh positive hint repeatedly
+ok 40 - fresh HEAD: unchanged ordinary detached source returns a fresh positive hint repeatedly
+  ---
+  duration_ms: 648.892417
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects unstaged tracked write
+ok 41 - fresh HEAD: warm hint rejects unstaged tracked write
+  ---
+  duration_ms: 359.095333
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects staged tracked write
+ok 42 - fresh HEAD: warm hint rejects staged tracked write
+  ---
+  duration_ms: 268.65025
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects staged new file
+ok 43 - fresh HEAD: warm hint rejects staged new file
+  ---
+  duration_ms: 253.806083
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects tracked deletion
+ok 44 - fresh HEAD: warm hint rejects tracked deletion
+  ---
+  duration_ms: 255.333125
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects staged deletion
+ok 45 - fresh HEAD: warm hint rejects staged deletion
+  ---
+  duration_ms: 289.665125
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects assume unchanged flag
+ok 46 - fresh HEAD: warm hint rejects assume unchanged flag
+  ---
+  duration_ms: 332.752708
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects skip worktree flag
+ok 47 - fresh HEAD: warm hint rejects skip worktree flag
+  ---
+  duration_ms: 359.924625
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects new replacement directory
+ok 48 - fresh HEAD: warm hint rejects new replacement directory
+  ---
+  duration_ms: 274.041583
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects new graft file
+ok 49 - fresh HEAD: warm hint rejects new graft file
+  ---
+  duration_ms: 281.336416
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects new dangling graft link
+ok 50 - fresh HEAD: warm hint rejects new dangling graft link
+  ---
+  duration_ms: 330.788208
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects new common directory file
+ok 51 - fresh HEAD: warm hint rejects new common directory file
+  ---
+  duration_ms: 266.792791
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects new dangling common directory link
+ok 52 - fresh HEAD: warm hint rejects new dangling common directory link
+  ---
+  duration_ms: 297.734834
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects local config change
+ok 53 - fresh HEAD: warm hint rejects local config change
+  ---
+  duration_ms: 316.294625
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects config include change
+ok 54 - fresh HEAD: warm hint rejects config include change
+  ---
+  duration_ms: 306.051666
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects new empty commit
+ok 55 - fresh HEAD: warm hint rejects new empty commit
+  ---
+  duration_ms: 334.956291
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects switch to symbolic HEAD
+ok 56 - fresh HEAD: warm hint rejects switch to symbolic HEAD
+  ---
+  duration_ms: 317.250584
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects packed refs change
+ok 57 - fresh HEAD: warm hint rejects packed refs change
+  ---
+  duration_ms: 271.562041
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects index removed
+ok 58 - fresh HEAD: warm hint rejects index removed
+  ---
+  duration_ms: 261.604625
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects split index selected
+ok 59 - fresh HEAD: warm hint rejects split index selected
+  ---
+  duration_ms: 272.885125
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: warm hint rejects same bytes from replaced index inode
+ok 60 - fresh HEAD: warm hint rejects same bytes from replaced index inode
+  ---
+  duration_ms: 244.6945
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: defined GIT_DIR including empty values takes original native fallback
+ok 61 - fresh HEAD: defined GIT_DIR including empty values takes original native fallback
+  ---
+  duration_ms: 361.494625
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: defined GIT_WORK_TREE including empty values takes original native fallback
+ok 62 - fresh HEAD: defined GIT_WORK_TREE including empty values takes original native fallback
+  ---
+  duration_ms: 307.7715
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: defined GIT_INDEX_FILE including empty values takes original native fallback
+ok 63 - fresh HEAD: defined GIT_INDEX_FILE including empty values takes original native fallback
+  ---
+  duration_ms: 368.744125
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: defined GIT_REPLACE_REF_BASE including empty values takes original native fallback
+ok 64 - fresh HEAD: defined GIT_REPLACE_REF_BASE including empty values takes original native fallback
+  ---
+  duration_ms: 304.113292
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: defined GIT_CONFIG_COUNT including empty values takes original native fallback
+ok 65 - fresh HEAD: defined GIT_CONFIG_COUNT including empty values takes original native fallback
+  ---
+  duration_ms: 273.480834
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: defined GIT_GRAFT_FILE including empty values takes original native fallback
+ok 66 - fresh HEAD: defined GIT_GRAFT_FILE including empty values takes original native fallback
+  ---
+  duration_ms: 304.550041
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: defined GIT_NO_REPLACE_OBJECTS including empty values takes original native fallback
+ok 67 - fresh HEAD: defined GIT_NO_REPLACE_OBJECTS including empty values takes original native fallback
+  ---
+  duration_ms: 237.717875
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: non Git environment change invalidates a warm hint
+ok 68 - fresh HEAD: non Git environment change invalidates a warm hint
+  ---
+  duration_ms: 301.632167
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: nested directory and symbolic head use original native fallback
+ok 69 - fresh HEAD: nested directory and symbolic head use original native fallback
+  ---
+  duration_ms: 252.348584
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: restored tracked bytes are revalidated by new native status
+ok 70 - fresh HEAD: restored tracked bytes are revalidated by new native status
+  ---
+  duration_ms: 423.704583
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: gitfile and bare layouts always use original native fallback
+ok 71 - fresh HEAD: gitfile and bare layouts always use original native fallback
+  ---
+  duration_ms: 164.29375
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: a hint from another directory cannot credit current source
+ok 72 - fresh HEAD: a hint from another directory cannot credit current source
+  ---
+  duration_ms: 420.467958
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: cold capture rejects preexisting hidden flags and included configuration
+ok 73 - fresh HEAD: cold capture rejects preexisting hidden flags and included configuration
+  ---
+  duration_ms: 313.5885
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: substituted execFileSync takes unchanged native fallback
+ok 74 - fresh HEAD: substituted execFileSync takes unchanged native fallback
+  ---
+  duration_ms: 277.626583
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: substituted readFileSync takes unchanged native fallback
+ok 75 - fresh HEAD: substituted readFileSync takes unchanged native fallback
+  ---
+  duration_ms: 256.055833
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: substituted lstatSync takes unchanged native fallback
+ok 76 - fresh HEAD: substituted lstatSync takes unchanged native fallback
+  ---
+  duration_ms: 307.844333
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: substituted realpathSync takes unchanged native fallback
+ok 77 - fresh HEAD: substituted realpathSync takes unchanged native fallback
+  ---
+  duration_ms: 452.363958
+  type: 'test'
+  ...
+# Subtest: fresh HEAD: substituted current-directory function takes unchanged native fallback
+ok 78 - fresh HEAD: substituted current-directory function takes unchanged native fallback
+  ---
+  duration_ms: 292.554542
+  type: 'test'
+  ...
+# Subtest: raw detached HEAD reads actual changed bytes on every call without an old head verdict
+ok 79 - raw detached HEAD reads actual changed bytes on every call without an old head verdict
+  ---
+  duration_ms: 193.039292
+  type: 'test'
+  ...
+# Subtest: a raw detached HEAD read cannot grant clean source credit for dirty staged or hidden bytes
+ok 80 - a raw detached HEAD read cannot grant clean source credit for dirty staged or hidden bytes
+  ---
+  duration_ms: 466.797833
+  type: 'test'
+  ...
+# Subtest: raw detached HEAD uses the original Git fallback for selectors symbolic nested and worktree layouts
+ok 81 - raw detached HEAD uses the original Git fallback for selectors symbolic nested and worktree layouts
+  ---
+  duration_ms: 140.087125
+  type: 'test'
+  ...
+# Subtest: raw detached HEAD rejects malformed linked and ambiguous history files
+ok 82 - raw detached HEAD rejects malformed linked and ambiguous history files
+  ---
+  duration_ms: 114.644292
+  type: 'test'
+  ...
+# Subtest: raw detached HEAD does not bypass replaced read or current-directory builtins
+ok 83 - raw detached HEAD does not bypass replaced read or current-directory builtins
+  ---
+  duration_ms: 118.117625
+  type: 'test'
+  ...
+# [admission-fixture] command-finished production-step-004 active=0
+# [admission-fixture] command-started production-step-012 active=1
+# [admission-fixture] command-started production-step-005 active=2
+# [admission-fixture] command-finished production-step-005 active=1
+# [admission-fixture] command-finished production-step-012 active=0
+# [admission-fixture] finished active=0
+# [admission-fixture] started active=0
+# [admission-fixture] command-started launch active=1
+# [admission-fixture] command-started independent active=2
+# Subtest: the launch command finishes successfully before any dependent growth or source command starts
+ok 84 - the launch command finishes successfully before any dependent growth or source command starts
+  ---
+  duration_ms: 201.466542
+  type: 'test'
+  ...
+# [admission-fixture] command-finished independent active=1
+# [admission-fixture] command-finished launch active=0
+# [admission-fixture] command-blocked growth active=0
+# [admission-fixture] finished active=0
+# [fixture-success] started active=0
+# [fixture-success] command-started one active=1
+# [fixture-success] command-started two active=2
+# Subtest: a failed launch blocks its dependants and still completes independent checks without false successful exits
+ok 85 - a failed launch blocks its dependants and still completes independent checks without false successful exits
+  ---
+  duration_ms: 71.538167
+  type: 'test'
+  ...
+# Subtest: unknown duplicate self and cyclic prerequisites reject before a child can execute
+ok 86 - unknown duplicate self and cyclic prerequisites reject before a child can execute
+  ---
+  duration_ms: 1.082958
+  type: 'test'
+  ...
+# [fixture-success] command-finished one active=1
+# [fixture-success] command-started three active=2
+# [fixture-success] command-finished two active=1
+# [fixture-success] command-started four active=2
+# [fixture-success] command-finished three active=1
+# [fixture-success] command-finished four active=0
+# [fixture-success] finished active=0
+# [fixture-failure] started active=0
+# [fixture-failure] command-started one active=1
+# [fixture-failure] command-started two active=2
+# Subtest: bounded source pool runs every original command once, never exceeds two groups and waits for all actual zero exits
+ok 87 - bounded source pool runs every original command once, never exceeds two groups and waits for all actual zero exits
+  ---
+  duration_ms: 356.947708
+  type: 'test'
+  ...
+# [fixture-failure] command-finished one active=1
+# [fixture-failure] command-started three active=2
+# [fixture-failure] command-finished two active=1
+# [fixture-failure] command-started four active=2
+# [fixture-failure] command-finished three active=1
+# [fixture-failure] command-finished four active=0
+# [fixture-failure] finished active=0
+# [fixture-failure] started active=0
+# [fixture-failure] command-started one active=1
+# [fixture-failure] command-started two active=2
+# [fixture-failure] command-finished one active=1
+# [fixture-failure] command-started three active=2
+# [fixture-failure] command-finished two active=1
+# [fixture-failure] command-started four active=2
+# [fixture-failure] command-finished three active=1
+# [fixture-failure] command-finished four active=0
+# [fixture-failure] finished active=0
+# [fixture-summary] started active=0
+# [fixture-summary] command-started false-summary active=1
+# Subtest: early or queued command failures remain failures and all independent commands still execute
+ok 88 - early or queued command failures remain failures and all independent commands still execute
+  ---
+  duration_ms: 781.644667
+  type: 'test'
+  ...
+# [fixture-summary] command-finished false-summary active=0
+# [fixture-summary] finished active=0
+# [fixture-source] started active=0
+# [fixture-source] command-started changed-source active=1
+# Subtest: printed passing test summaries cannot substitute for an actual successful child exit
+ok 89 - printed passing test summaries cannot substitute for an actual successful child exit
+  ---
+  duration_ms: 251.104875
+  type: 'test'
+  ...
+# [fixture-source] command-finished changed-source active=0
+# [fixture-source] finished active=0
+# [fixture-source] started active=0
+# [fixture-source] command-started changed-source active=1
+# [fixture-source] command-finished changed-source active=0
+# [fixture-source] finished active=0
+# [fixture-output] started active=0
+# [fixture-output] command-started foreign-output active=1
+# Subtest: fresh tracked-source drift or a changed HEAD rejects after otherwise successful commands
+ok 90 - fresh tracked-source drift or a changed HEAD rejects after otherwise successful commands
+  ---
+  duration_ms: 482.092667
+  type: 'test'
+  ...
+# Subtest: assume-unchanged and skip-worktree cannot conceal source before a command starts
+ok 91 - assume-unchanged and skip-worktree cannot conceal source before a command starts
+  ---
+  duration_ms: 282.008375
+  type: 'test'
+  ...
+# [fixture-output] command-finished foreign-output active=0
+# [fixture-output] finished active=0
+# Subtest: unexpected workflow outputs fail closed and cannot become B1 scope outputs
+ok 92 - unexpected workflow outputs fail closed and cannot become B1 scope outputs
+  ---
+  duration_ms: 225.772083
+  type: 'test'
+  ...
+# fatal: Not a valid commit name ffffffffffffffffffffffffffffffffffffffff
+# Interrupted while running: tests/food-diary-london-date-stack-20261015.test.mjs at /Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-core7b4-v8-private/tests/food-diary-london-date-stack-20261015.test.mjs:1:1
+# Interrupted while running: tests/seo-audit-scope-20261016.test.mjs at /Users/shiftsometimberltd/SST/organic-deploy-20261017/daily-only-core7b4-v8-private/tests/seo-audit-scope-20261016.test.mjs:1:1

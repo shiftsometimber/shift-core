@@ -1,0 +1,3 @@
+# Current strict-batch source qualification
+
+17 October 2026. Existing PR1365 normally advanced to4e34; six runtime payloads remain unchanged. Restored original per-proof strict native batch, retaining v7 actual raw-HEAD/callback authentication and original assertions/caps. Focused40PASS16:27:45UTC; full Native is pending after the actual shared Core finite10 job93453 to avoid overlapping heavy runs. No automatic retry, active TAP snapshot, deployment, activation or runtime generation. Prior d18 remains terminal failed1200seconds despite corrected dependency setup, with full original failure receipts added beside its existing focused evidence.

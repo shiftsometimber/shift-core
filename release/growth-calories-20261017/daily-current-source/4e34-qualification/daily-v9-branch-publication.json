@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-17T16:28:03.312076+00:00",
+  "oldHead": "d18b1b0efd582b0f96f2f1336a8f4f0853856441",
+  "head": "4e34ef53e8ec0a1b4ec50371be94465e066f60dd",
+  "tree": "4d37537549f551d8798705993999c7ad97ecf35e",
+  "actualMain": "3095b53ed7830af0f87fa0ba6e42be7c1d680308",
+  "normalFastForward": true,
+  "privateSourceUnchanged": true,
+  "focused40Pass": true,
+  "fullNative": "PENDING_RESOURCE_COORDINATION_WITH_EXISTING_CORE_FINITE10",
+  "deployment": false,
+  "activation": false
+}
