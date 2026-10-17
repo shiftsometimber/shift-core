@@ -1,3 +1,4 @@
+import './current-runtime-preservation-20261016.test.mjs';
 import test from 'node:test';
 import {withImmutableHistoryVerification} from '../release/immutable-git-facts.mjs';
 import assert from 'node:assert/strict';

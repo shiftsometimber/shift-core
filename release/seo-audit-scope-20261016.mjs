@@ -1,3 +1,4 @@
+import {currentRuntimePreservationHistoricalView,currentRuntimePreservationAuthenticatedRead,currentRuntimePreservationAuthenticatedContent,currentRuntimePreservationAuthenticatedDiff,currentRuntimePreservationAuthenticatedAncestor} from './current-runtime-preservation-20261016.mjs';
 import {readSeoNativeImmutableFacts} from './seo-native-immutable-facts-20261016.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -13,14 +14,15 @@ const head=()=>freshDetachedSourceHead()??git('rev-parse','HEAD').trim(),blob=(r
 const freshSeoSourceClean=makeFreshCleanHint(),freshSeoSourceHead=makeFreshCleanHeadHint();
 function clean(){if(freshSeoSourceClean())return;assertGitTrackedSourceVisible('SEO approved v2');assert.equal(git('diff','--no-renames','--name-only','HEAD','--').trim(),'','SEO source drift: tracked working source changed');assert.equal(git('diff','--no-renames','--cached','--name-only','--').trim(),'','SEO source drift: index source changed');}
 function inverse(path,value){for(const [old,added] of [...policy.inverses[path]].reverse()){assert(added&&value.split(added).length===2,'SEO source drift: exact inverse required '+path);value=value.replace(added,()=>old);}return value;}
-export function verifySeoAuditRepair(c,{rawHead=head(),read=blob,readContent=content,readDiff=diff,isAncestor=ancestor}={}){
+function verifySeoAuditRepairOriginal(c,{rawHead=head(),read=blob,readContent=content,readDiff=diff,isAncestor=ancestor}={},privateWeek=null){
+ const {head,blob,content,diff,ancestor,clean}=privateWeek??seoNativeWeekFacts;
  clean();assert.equal(rawHead,head(),'SEO source drift: actual HEAD required');
  return withImmutableHistoryVerification(()=>{
  assert.equal(rawHead,head(),'SEO source drift: actual HEAD required');const {maintenanceSource,...fixed}=c;assert.deepEqual(fixed,policy.record,'SEO source drift: only exact approved v2 registration permitted');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
  for(const [a,b,paths] of [[policy.base,policy.payload,policy.paths],[policy.payload,maintenanceSource,policy.maintenancePaths],[maintenanceSource,rawHead,[ledger]]]){const nativeAncestry=ancestor(a,b),nativeDiff=diff(a,b);assert.notEqual(isAncestor===ancestor?nativeAncestry:isAncestor(a,b),false);assert.deepEqual(sort(nativeDiff),sort(paths),'SEO source drift: exact boundary required');assert.deepEqual(sort(readDiff===diff?nativeDiff:readDiff(a,b)),sort(paths),'SEO source drift: supplied boundary changed');}
  assert.deepEqual(sort(diff(policy.base,rawHead)),sort([...policy.paths,...policy.maintenancePaths,ledger]));
  const sourcePaths=[...policy.paths,...policy.maintenancePaths];
- const nativeFacts=readSeoNativeImmutableFacts({head:rawHead,base:policy.base,payload:policy.payload,maintenanceSource,paths:policy.paths,maintenancePaths:policy.maintenancePaths,inversePaths:Object.keys(policy.inverses),ledger});
+ const nativeFacts=privateWeek??readSeoNativeImmutableFacts({head:rawHead,base:policy.base,payload:policy.payload,maintenanceSource,paths:policy.paths,maintenancePaths:policy.maintenancePaths,inversePaths:Object.keys(policy.inverses),ledger});
  const modeSnapshot=()=>{const modes=new Map();for(const row of git('ls-tree','-z',rawHead,'--',...sourcePaths).split('\0').filter(Boolean)){const m=/^([0-7]{6}) blob ([a-f0-9]{40})\t(.+)$/.exec(row);assert(m,'SEO source drift: exact native file mode row required');assert(!modes.has(m[3]),'SEO source drift: duplicate native mode path');modes.set(m[3],m[1]);}assert.deepEqual(sort([...modes.keys()]),sort(sourcePaths),'SEO source drift: every native mode path required');return modes;};
  const sourceModes=modeSnapshot();
  for(const p of sourcePaths){const source=policy.paths.includes(p)?policy.payload:maintenanceSource;assert.equal(nativeFacts.blob(rawHead,p),nativeFacts.blob(source,p),'SEO source drift: immutable file changed '+p);assert.equal(sourceModes.get(p),'100644');for(const r of ['HEAD',rawHead]){assert.equal(read===blob?nativeFacts.blob(r,p):read(r,p),nativeFacts.blob(rawHead,p),'SEO source drift: supplied source changed '+p);assert.equal(readContent===content?nativeFacts.content(r,p):readContent(r,p),nativeFacts.content(rawHead,p),'SEO source drift: supplied content changed '+p);}}
@@ -32,9 +34,10 @@ export function verifySeoAuditRepair(c,{rawHead=head(),read=blob,readContent=con
  });
 }
 function authentic(value,r,p,h=head(),kind='read'){const ref=r==='HEAD'?h:r;if(kind==='read'&&value===blob(ref,p))return true;const actual=content(ref,p),prefix='tree '+ref+':'+p+'\n';return value===actual||(actual.startsWith(prefix)&&value===actual.replace(prefix,'tree '+r+':'+p+'\n'));}
-export function seoAuditHistoricalView(reader=null){
- const rawHead=head(),record=JSON.parse(content(rawHead,ledger)),c=record[key];if(!c)return null;verifySeoAuditRepair(c,{rawHead});const prior=JSON.parse(content(policy.base,ledger));
- const assertCurrent=()=>{const fresh=freshSeoSourceHead();if(fresh!==null){assert.equal(fresh,rawHead,'SEO source drift: HEAD moved');return;}assert.equal(head(),rawHead,'SEO source drift: HEAD moved');clean();};
+function seoAuditHistoricalViewOriginal(reader=null,privateWeek=null){
+ const {head,blob,content,diff,ancestor,clean}=privateWeek??seoNativeWeekFacts;
+ const rawHead=head(),record=JSON.parse(content(rawHead,ledger)),c=record[key];if(!c)return null;verifySeoAuditRepairOriginal(c,{rawHead,read:blob,readContent:content,readDiff:diff,isAncestor:ancestor},privateWeek);const prior=JSON.parse(content(policy.base,ledger));
+ const assertCurrent=()=>{if(privateWeek){privateWeek.clean();assert.equal(privateWeek.head(),rawHead,'SEO source drift: HEAD moved');return;}const fresh=freshSeoSourceHead();if(fresh!==null){assert.equal(fresh,rawHead,'SEO source drift: HEAD moved');return;}assert.equal(head(),rawHead,'SEO source drift: HEAD moved');clean();};
  const current=r=>r==='HEAD'||r===rawHead,frame=r=>current(r)?policy.base:r;
  function project(kind,source){return(r,p)=>{assertCurrent();const native=kind==='content'?content:blob;const obtain=(ref)=>{if(!source)return native(ref,p);const value=source(ref,p);assert(authentic(value,ref,p,rawHead,kind),'SEO source drift: Unauthentic supplied '+kind+' '+ref+':'+p);return value;};if(current(r)){if(source){obtain('HEAD');obtain(rawHead);}return obtain(policy.base);}return obtain(r);};}
  const projectDiff=source=>(a,b)=>{assertCurrent();if(source){for(const [x,y] of current(b)?[[a,'HEAD'],[a,rawHead],[frame(a),policy.base]]:[[a,b]])assert.deepEqual(sort(source(x,y)),sort(diff(x,y)),'SEO source drift: supplied diff changed');}return diff(frame(a),frame(b));};
@@ -43,7 +46,50 @@ export function seoAuditHistoricalView(reader=null){
  assertCurrent();return Object.freeze(view);
 }
 
-export function seoAuditOriginalSource(path,bytes){
+function seoAuditOriginalSourceOriginal(path,bytes,privateWeek=null){
+ const {head,content}=privateWeek??seoNativeWeekFacts;
  if(path===ledger){assert.equal(bytes,content(head(),ledger),'Exact current ledger fixture required');const actual=JSON.parse(bytes),current=actual[key],{maintenanceSource,...fixed}=current??{};assert.deepEqual(fixed,policy.record,'Exact SEO fixture record required');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);delete actual[key];assert.deepEqual(actual,JSON.parse(content(policy.base,ledger)),'Every prior fixture record must remain exact');return JSON.stringify(actual,null,2)+'\n';}
  assert(Object.hasOwn(policy.inverses,path),'Unknown SEO historical fixture path');const restored=inverse(path,bytes);assert.equal(restored,content(policy.base,path),'Whole pre-SEO fixture source required');return restored;
+}
+
+// Only this module creates the private factual-week frame. The current week is
+// authenticated before the unchanged original SEO proof sees its literal base.
+const seoNativeWeekFacts=Object.freeze({head,blob,content,diff,ancestor,clean});
+function seoRecordedWeekFrame(week){return Object.freeze({
+ head:()=>{week.assertCurrent();return week.head;},blob:week.blob,content:week.content,
+ diff:week.diff,ancestor:week.ancestor,clean:week.assertCurrent});}
+export function verifySeoAuditRepair(c,options={}){
+ const week=currentRuntimePreservationHistoricalView();
+ if(week.head===week.rawHead)return verifySeoAuditRepairOriginal(c,options);
+ assert.equal(options.rawHead??week.rawHead,week.rawHead,'Current-runtime preservation source drift: Actual raw week HEAD required');
+ return verifySeoAuditRepairOriginal(c,{rawHead:week.head,
+  read:options.read===undefined?week.blob:currentRuntimePreservationAuthenticatedRead(options.read,week),
+  readContent:options.readContent===undefined?week.content:currentRuntimePreservationAuthenticatedContent(options.readContent,week),
+  readDiff:options.readDiff===undefined?week.diff:currentRuntimePreservationAuthenticatedDiff(options.readDiff,week),
+  isAncestor:options.isAncestor===undefined?week.ancestor:currentRuntimePreservationAuthenticatedAncestor(options.isAncestor,week)},seoRecordedWeekFrame(week));
+}
+export function seoAuditHistoricalView(reader=null){
+ const week=currentRuntimePreservationHistoricalView(reader);
+ if(week.head===week.rawHead)return seoAuditHistoricalViewOriginal(reader);
+ const supplied=reader===null?null:currentRuntimePreservationAuthenticatedRead(reader,week);
+ const inner=seoAuditHistoricalViewOriginal(supplied,seoRecordedWeekFrame(week));
+ assert(inner,'Current-runtime preservation source drift: Exact underlying SEO registration required');
+ const ref=r=>r===week.rawHead?'HEAD':r;
+ const unary=(fn)=>(r,p)=>fn(ref(r),p),binary=(fn)=>(a,b)=>fn(ref(a),ref(b));
+ const view={...inner,rawHead:week.rawHead,affected:p=>week.affected(p)||inner.affected(p),
+  assertCurrent:week.assertCurrent,currentContent:week.currentContent,
+  nativeAuthentic:week.nativeAuthentic,nativeContentAuthentic:week.nativeContentAuthentic,
+  nativeSource:reader===null,currentRuntimeContext:week,
+  read:unary(inner.read),blob:unary(inner.blob),content:unary(inner.content),diff:binary(inner.diff),ancestor:binary(inner.ancestor),
+  projectRead:source=>unary(inner.projectRead(currentRuntimePreservationAuthenticatedRead(source,week))),
+  projectContent:source=>unary(inner.projectContent(currentRuntimePreservationAuthenticatedContent(source,week))),
+  projectDiff:source=>binary(inner.projectDiff(currentRuntimePreservationAuthenticatedDiff(source,week))),
+  projectAncestor:source=>binary(inner.projectAncestor(currentRuntimePreservationAuthenticatedAncestor(source,week)))};
+ week.assertCurrent();return Object.freeze(view);
+}
+export function seoAuditOriginalSource(path,bytes){
+ const week=currentRuntimePreservationHistoricalView();
+ if(week.head===week.rawHead)return seoAuditOriginalSourceOriginal(path,bytes);
+ assert.equal(bytes,week.currentContent(week.rawHead,path),'Current-runtime preservation source drift: Exact current SEO fixture required');
+ return seoAuditOriginalSourceOriginal(path,week.content('HEAD',path),seoRecordedWeekFrame(week));
 }
