@@ -95,6 +95,7 @@ export async function coachingRoutes(request,env){
      const entry=(s.pauseRequests||[]).find(x=>x.id===input.id&&x.status==='queued');
      if(!entry||typeof input.yes!=='boolean')throw Object.assign(Error('pause_choice_unavailable'),{status:409});
      entry.status=input.yes?'restored':'declined';
+     for(const touch of s.touches)if(touch.id===entry.id&&touch.kind==='pause-keep')touch.answered=true;
      if(input.yes){s.pausedTypes=s.pausedTypes.filter(x=>x!==entry.type);s.touches=s.touches.map(x=>x.type===entry.type?{...x,answered:true}:x);}
      result={dataUsed:[],outcome:entry.status};break;
     }
