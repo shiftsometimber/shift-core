@@ -22,7 +22,10 @@ function drawRecommendation(){
  const article=card(scaledRecommendation(r,recommendationServings)).replace(/<div class="grub-actions">[\s\S]*?<\/div>/,'').replace('<details class="grub-recipe-detail">',primary+options+'<details class="grub-recipe-detail">');
  host.innerHTML='<p class="eyebrow">YOUR NEXT MEAL</p>'+article+(pick.message?'<p class="grub-pick-change" role="status">'+esc(pick.message)+'</p>':'');
  const articleNode=host.querySelector('article'),image=articleNode?.querySelector('.grub-food-image'),primaryNode=articleNode?.querySelector('.grub-pick-primary');
- if(image&&primaryNode)image.before(articleNode.querySelector('.grub-meta'),primaryNode,articleNode.querySelector('.grub-pick-save-note'));
+ const detail=articleNode?.querySelector('.grub-recipe-detail');
+ if(image&&detail)detail.append(image);
+ const ingredients=document.createElement('p');ingredients.className='grub-pick-ingredients';ingredients.textContent=r.ingredients.map(i=>i.item).join(' · ');
+ primaryNode?.before(ingredients);
  const inline=document.createElement('p');inline.className='grub-pick-status';inline.dataset.grubStatus='true';inline.setAttribute('role','status');inline.setAttribute('aria-live','polite');primaryNode?.after(inline);
  $('#grubPickServings').onchange=e=>{recommendationServings=Number(e.target.value);drawRecommendation();lock()};
 }
@@ -57,6 +60,7 @@ html body.sst-member-experience #grubRecommendation [data-food-next]{background:
 .sst-member-experience #grubRecommendation .grub-pick-save-note{font-size:14px;line-height:1.5}
 .sst-member-experience #grubRecommendation .grub-food-image img{max-height:240px;object-fit:contain}
 .sst-member-experience #grubRecommendation :is(button,a,summary,select):focus-visible{outline:3px solid #050505;outline-offset:4px}
+.sst-member-experience #grubRecommendation .grub-pick-ingredients{line-height:1.6;margin:14px 0}
 .sst-member-experience #grubRecommendation .grub-pick-status:empty{display:none}
 .sst-member-experience #grubRecommendation .grub-pick-status[data-error="true"]{border-left:4px solid #9c492d;padding:10px}
 /* Legacy member button rules use important cream text. Set the complete colour
