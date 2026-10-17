@@ -1,0 +1,8 @@
+{
+  "archive": "original-preparation-source-and-logs.zip",
+  "sha256": "09fe5dcab9b3f1cb4167aabc5310e27a7b9e39d6a3dc1361b2d8dad1a538c472",
+  "originalMembersSHA256": {
+    "build-daily-current-runtime-private-source.py": "de62de2209f5d42fb62f8c1e229994cae40b834119418a39dce7b5f3ff385193"
+  },
+  "allOriginalBytesPreserved": true
+}

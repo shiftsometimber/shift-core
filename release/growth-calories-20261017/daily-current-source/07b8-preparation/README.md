@@ -1,0 +1,7 @@
+# Private07b8 correction is prepared, not qualified
+
+Current shared Core526 adoption repair is preserved byte for byte. All six runtime blobs and pinned dependencies match prior approved payloads. Only the new adapter wrapper stops calling the same delegated head guard three consecutive times: inner.assertCurrentHead already delegates to the exact outer frame, so its original check and every read entry/exit boundary remain. Caller authentication, source freshness, modes, strict decoder, complete inverses, command bodies and caps are retained; no callback, verdict or view cache. Performance success is not claimed.
+
+Private head07b8d194d21e5727610828a9c28220edb2cc72b1/tree100ea846b4f626ea267664d634a78eb8673b6596. The incremental bundle requires existing526 and4e objects and was actually verified. Existing draftPR1365 still has failed4e; no engine-branch publication, merge, deployment or activation. Focused40 cap180 is prepared but cannot start before actual Core526 Native510PASS and cleanup; full original Native546 cap1200 remains required after shared finite10 finishes. This is real compute coordination, not an owner permission wait. No new schedule, publisher, queue, piece, model request or public content change.
+
+Exact original preparation helpers/logs with existing whitespace are retained byte for byte in original-preparation-source-and-logs.zip; the accompanying manifest binds each original hash.
