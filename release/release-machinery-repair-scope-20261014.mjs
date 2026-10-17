@@ -1,5 +1,3 @@
-import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
-import {currentRuntimePreservationHistoricalView,verifyCurrentRuntimePreservation} from './current-runtime-preservation-20261016.mjs';
 import {ciExecutionNativeReaderProvenance,verifyCiExecutionAllowance,ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
 import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
 import assert from 'node:assert/strict';
@@ -155,11 +153,6 @@ export function releaseMachineryRepairLegacyContent(reader,view=releaseMachinery
 // The sole later layer is the independently admitted CI execution. Its literal
 // base and full source are checked before an original machinery assertion runs.
 export function verifyReleaseMachineryRepair(c,options={}){
- return withClosedCurrentSourceProof(()=>verifyReleaseMachineryRepairCurrentProof(c,options));
-}
-function verifyReleaseMachineryRepairCurrentProof(c,options={}){
- const week=currentRuntimePreservationHistoricalView();
- if(week.head!==week.rawHead){assert.equal(options.head??week.rawHead,week.rawHead,'Release machinery source drift: Actual raw week HEAD required');const current=JSON.parse(rawContent(week.rawHead,manifest)).currentRuntimePreservation20261016;verifyCurrentRuntimePreservation(current,{head:options.head??week.rawHead,read:options.read??rawBlob,readContent:options.readContent??rawContent,readDiff:options.readDiff??rawDiff,isAncestor:options.isAncestor??rawAncestor});}
  const ci=ciExecutionHistoricalView();
  if(ci.head===ci.rawHead)return verifyReleaseMachineryRepairOriginal(c,options);
  assert.equal(options.head??ci.rawHead,ci.rawHead,'Release machinery source drift: Actual raw ci HEAD required');

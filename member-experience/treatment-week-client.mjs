@@ -15,6 +15,7 @@ export function mountTreatmentWeek(host,options={}){
  const deny=code=>{clear();root.open=false;options.onPrivateDenied?.(code);status.textContent=code===401?'Please sign in again before viewing your records.':'Optional tracking is off or paused. Review your tracking choice first.'};
  function download(value,name){const url=URL.createObjectURL(new Blob([value],{type:'text/plain;charset=utf-8'})),a=doc.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
  function drawCurve(parent){
+  if(week.curve?.status==='not_included')return;
   const curve=week.curve,allowed=curve?.status==='reviewed_estimate'||curve?.status==='review_example'&&week.fictionalPreview===true;
   if(!allowed){text('p',curve?.message||'Medication estimates are not available for this view.',parent);return}
   if(!Array.isArray(curve.points)||curve.points.length<2||curve.points.some(p=>!Number.isFinite(p.value)||p.value<0||p.value>100||!Number.isFinite(Date.parse(p.at)))){text('p','The estimate could not be displayed.',parent);return}

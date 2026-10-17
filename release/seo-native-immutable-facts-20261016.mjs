@@ -21,21 +21,18 @@ export function decodeSeoBlobBatch(output,expected){
 }
 // Only immutable object facts are batched, scoped to one verification call.
 // HEAD, source visibility, supplied readers and every verdict remain fresh.
-export function readSeoNativeImmutableFacts({head,base,payload,maintenanceSource,paths,maintenancePaths,inversePaths,ledger,includeModes=false}){
- assert.equal(typeof includeModes,'boolean');
+export function readSeoNativeImmutableFacts({head,base,payload,maintenanceSource,paths,maintenancePaths,inversePaths,ledger}){
  for(const id of [head,base,payload,maintenanceSource])assert(oid.test(id),'Exact immutable source reference required');
  const sourcePaths=[...paths,...maintenancePaths];assert.equal(new Set(sourcePaths).size,sourcePaths.length);for(const p of [...sourcePaths,...inversePaths,ledger])path(p);
  const requests=new Map();function add(ref,list){const set=requests.get(ref)??new Set();for(const p of list)set.add(p);requests.set(ref,set);}
  add(head,[...sourcePaths,ledger]);add(maintenanceSource,maintenancePaths);add(payload,paths);add(base,[...inversePaths,ledger]);
- const maps=new Map(),modeMaps=new Map(),ids=new Set();
+ const maps=new Map(),ids=new Set();
  for(const[ref,set]of requests){
-  const requested=[...set],raw=git(['ls-tree','-z',ref,'--',...requested]),rows=decode(raw).split('\0');assert.equal(rows.pop(),'','Native mode list must terminate exactly');const map=new Map(),modes=new Map();
-  for(const row of rows){const match=/^([0-7]{6}) blob ([a-f0-9]{40})\t(.+)$/.exec(row);assert(match,'Exact native immutable mode row required');assert.equal(match[1],'100644','Only original regular source files may be batched');assert(set.has(match[3])&&!map.has(match[3]),'Unknown or duplicate native immutable path');map.set(match[3],match[2]);modes.set(match[3],match[1]);ids.add(match[2]);}
-  assert.deepEqual([...map.keys()].sort(),requested.sort(),'Every requested native immutable source path required');maps.set(ref,map);modeMaps.set(ref,modes);
+  const requested=[...set],raw=git(['ls-tree','-z',ref,'--',...requested]),rows=decode(raw).split('\0');assert.equal(rows.pop(),'','Native mode list must terminate exactly');const map=new Map();
+  for(const row of rows){const match=/^([0-7]{6}) blob ([a-f0-9]{40})\t(.+)$/.exec(row);assert(match,'Exact native immutable mode row required');assert.equal(match[1],'100644','Only original regular source files may be batched');assert(set.has(match[3])&&!map.has(match[3]),'Unknown or duplicate native immutable path');map.set(match[3],match[2]);ids.add(match[2]);}
+  assert.deepEqual([...map.keys()].sort(),requested.sort(),'Every requested native immutable source path required');maps.set(ref,map);
  }
  const expected=[...ids],objects=decodeSeoBlobBatch(git(['cat-file','--batch'],{input:Buffer.from(expected.join('\n')+'\n')}),expected);
  function object(ref,p){if(ref==='HEAD'){assert.equal(actualHead(),head,'SEO source drift: actual HEAD moved during native fact lookup');ref=head;}assert(maps.has(ref),'Unreviewed immutable fact reference');const id=maps.get(ref).get(p);assert(id,'Unreviewed immutable fact path');return id;}
- const facts={blob:(ref,p)=>object(ref,p),content:(ref,p)=>decode(objects.get(object(ref,p)))};
- if(includeModes)facts.mode=(ref,p)=>{object(ref,p);return modeMaps.get(ref==='HEAD'?head:ref).get(p);};
- return Object.freeze(facts);
+ return Object.freeze({blob:(ref,p)=>object(ref,p),content:(ref,p)=>decode(objects.get(object(ref,p)))});
 }

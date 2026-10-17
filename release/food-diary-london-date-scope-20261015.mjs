@@ -1,4 +1,3 @@
-import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
 import {seoAuditHistoricalView,seoAuditOriginalSource} from './seo-audit-scope-20261016.mjs';
 import assert from 'node:assert/strict';
 import {existsSync} from 'node:fs';
@@ -73,9 +72,6 @@ function verifyFoodDiaryLondonDateRepairOriginal(c,{head=foodNativeFacts.current
  }finally{clean();assert.equal(currentHead(),actual,'Food-calendar source drift: Raw HEAD changed during proof');}});
 }
 export function verifyFoodDiaryLondonDateRepair(c,options={}){
- return withClosedCurrentSourceProof(()=>verifyFoodDiaryLondonDateRepairCurrentProof(c,options));
-}
-function verifyFoodDiaryLondonDateRepairCurrentProof(c,options={}){
  const seo=seoAuditHistoricalView();if(!seo)return verifyFoodDiaryLondonDateRepairOriginal(c,options);
  assert.equal(options.head??seo.rawHead,seo.rawHead,'SEO source drift: Actual raw Food head required');
  return verifyFoodDiaryLondonDateRepairOriginal(c,{head:seo.head,read:options.read==null?seo.blob:seo.projectRead(options.read),readContent:options.readContent==null?seo.content:seo.projectContent(options.readContent),readDiff:options.readDiff==null?seo.diff:seo.projectDiff(options.readDiff),isAncestor:options.isAncestor==null?seo.ancestor:seo.projectAncestor(options.isAncestor)},seo);

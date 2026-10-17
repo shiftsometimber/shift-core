@@ -1,4 +1,3 @@
-import {ACCEPTED_CURRENT_RUNTIME,ACCEPTED_CURRENT_RUNTIME_KIND,verifyCurrentAcceptedRuntimeWindow,assertSameAcceptedCurrentWindow,acceptedCurrentStartingPoint,assertPreservedRuntimeLineage} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {verifyCurrentOwnedRollbackReleaseWindow} from './owned-rollback-release-window-20261016.mjs';
 import {OWNED_ROLLBACK_DEPLOYMENT,verifyCurrentOwnedRollback,ownedRollbackStartingPoint,assertSameOwnedRollbackReceipt} from './verified-owned-rollback-current.mjs';
 import {createGithubProofReader} from './github-proof-get.mjs';
@@ -24,13 +23,7 @@ const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 const baselineRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
 let point;
-if(active.id===ACCEPTED_CURRENT_RUNTIME.deployment){
- assert(baselineRecord.acceptedCurrentServingProof,'Exact accepted GP/questionnaire recovery receipt required');
- acceptedCurrentStartingPoint(baselineRecord.acceptedCurrentServingProof,active);
- const refreshedProof=await verifyCurrentAcceptedRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
- assertSameAcceptedCurrentWindow(baselineRecord.acceptedCurrentServingProof,refreshedProof);
- point=acceptedCurrentStartingPoint(refreshedProof,active);
-}else if(active.id===OWNED_ROLLBACK_DEPLOYMENT){
+if(active.id===OWNED_ROLLBACK_DEPLOYMENT){
  assert(baselineRecord.verifiedOwnedRollbackProof,'Exact owned rollback recovery receipt required');
  ownedRollbackStartingPoint(baselineRecord.verifiedOwnedRollbackProof,active);
  const refreshedProof=await verifyCurrentOwnedRollbackReleaseWindow({proof:historicalProof,wrangler,stage:'adoption'});
@@ -46,12 +39,9 @@ if(active.id===ACCEPTED_CURRENT_RUNTIME.deployment){
  point=await exactPhotoStartingPoint(baselineRecord,active,JSON.parse(wrangler('versions','view',PHOTO_CANCELLED.version,'--json')),get,getLogs,getArtifact,inventory,freshSnapshot);
  mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/photo-baseline-starting-point.json',JSON.stringify(point,null,2));
 }else point=verifiedStartingPoint(baselineRecord,active);
-if(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).currentRuntimePreservation20261016&&point.kind!==ACCEPTED_CURRENT_RUNTIME_KIND)assertPreservedRuntimeLineage(point);
 const BASE=point.source,VERSION=point.version;
 let receipt={id:null};
-if(point.kind===ACCEPTED_CURRENT_RUNTIME_KIND){
- receipt={id:ACCEPTED_CURRENT_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_CURRENT_RUNTIME_KIND,originalReleaseStatus:'code_only_verified',featureAcceptance:false,clinicalContractActivated:false};
-}else if(point.kind==='verified_owned_runtime_rollback'){
+if(point.kind==='verified_owned_runtime_rollback'){
  assert.equal(point.failedReleaseVerified,false);receipt={id:point.predecessorRun,conclusion:'success',failedRun:point.failedRun,failedReleaseVerified:false,evidenceKind:point.kind};
 }else if(point.kind===PHOTO_STARTING_KIND){
  assert.equal(point.source,PHOTO_CANCELLED.source);assert.equal(point.version,PHOTO_CANCELLED.version);assert.equal(point.run,PHOTO_CANCELLED.run);assert.equal(point.originalRunAccepted,false);assert.equal(point.reconstruction.originalRunAccepted,false);assert.equal(point.reconstruction.baselineStockCompleted,true);
