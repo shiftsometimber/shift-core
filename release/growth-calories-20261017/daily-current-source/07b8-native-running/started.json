@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-17T18:56:31.090898+00:00",
+  "stage": "native",
+  "controller": 29920,
+  "pid": 29932,
+  "pgid": 29932,
+  "head": "07b8d194d21e5727610828a9c28220edb2cc72b1",
+  "capSeconds": 1200,
+  "command": [
+    "/usr/local/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/food-diary-london-date-stack-20261015.test.mjs",
+    "tests/seo-audit-scope-20261016.test.mjs"
+  ]
+}

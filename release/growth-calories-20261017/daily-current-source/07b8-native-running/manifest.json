@@ -1,0 +1,42 @@
+[
+  {
+    "file": "daily-v10-native-qualification-claim.json",
+    "bytes": 618,
+    "SHA256": "e0567a7277a89d10361afe1cd7b798d5c8e53ccd60f21b66a84a3e2af693cdb5"
+  },
+  {
+    "file": "daily-v10-qualification-running.json",
+    "bytes": 393,
+    "SHA256": "27e05ea02868193ab093d3e6d604d4ad11547db48b3a1ffca239edefbf1fec5a"
+  },
+  {
+    "file": "daily-v10-native-source-before.json",
+    "bytes": 1260,
+    "SHA256": "53643332fa099a2ecaf36c96c1771ee9fcbf0051a79e83e58c3efce97b6131bc"
+  },
+  {
+    "file": "qualify-daily-v10-native.py",
+    "bytes": 8338,
+    "SHA256": "45e169cbf9f4990f41f3b22d8b9e2f8d86c8aee267b14104ceb0cee8fb7a6eac"
+  },
+  {
+    "file": "daily-v10-current-core-baseline-binding.json",
+    "bytes": 410,
+    "SHA256": "617dbed845035d15aca727a54f926167bf8b579658d4954e5e53c7a49a36eb2d"
+  },
+  {
+    "file": "actual-core-native510-result.json",
+    "bytes": 4480,
+    "SHA256": "d363ec728fa7610ad3eabc691b911dd5c13dde5d9c765c744a934265f1131d57"
+  },
+  {
+    "file": "actual-core-native510.tap",
+    "bytes": 114275,
+    "SHA256": "98816009c76239c7d78454edbaa0f181f914d1bc170dc20aed88579239d76188"
+  },
+  {
+    "file": "actual-core-finite10-result.json",
+    "bytes": 4422,
+    "SHA256": "4cded1274667ea1dbce6ec0481fd4c32347a565faa248e78ad7a9d52a59408ab"
+  }
+]
