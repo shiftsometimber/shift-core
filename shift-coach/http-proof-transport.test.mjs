@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {gzipSync,gunzipSync} from 'node:zlib';
+import worker from './worker.mjs';
+import {proofHTTPBody,knownAutomaticGzipBodies} from './http-proof-transport.mjs';
+const path='/assets/member-shell-v6.css?v=canonical-20260909';
+const source=async()=>{const r=await worker.fetch(new Request('https://shiftsometimber.co.uk'+path,{headers:{'Accept-Encoding':'gzip'}}),{},{waitUntil(){}});assert.equal(r.status,200);return {body:Buffer.from(await r.arrayBuffer()),headers:Object.fromEntries(r.headers)}};
+test('the actual current automatic Worker payload is encoded once for real HTTP transport',async()=>{const x=await source(),r=proofHTTPBody({path,...x});assert.equal(r.evidence.mode,'verified-worker-automatic-gzip');assert.deepEqual(gunzipSync(r.body),x.body);assert.equal(Number(r.headers['content-length']),r.body.length);assert.equal(r.evidence.decodedSha256,knownAutomaticGzipBodies[path].sha256)});
+test('an altered automatic payload is rejected',async()=>{const x=await source();assert.throws(()=>proofHTTPBody({path,...x,body:Buffer.concat([x.body,Buffer.from(' ')])}),/Unknown or altered/)});
+test('an unknown version cannot reuse the known body fingerprint',async()=>{const x=await source();assert.throws(()=>proofHTTPBody({path:path.replace('canonical-20260909','unknown'),...x}),/Unknown or altered/)});
+test('changed content type cannot reuse the automatic-body receipt',async()=>{const x=await source();assert.throws(()=>proofHTTPBody({path,...x,headers:{...x.headers,'content-type':'text/html'}}),/Unknown or altered/)});
+test('a valid manual gzip body remains byte exact',()=>{const body=gzipSync(Buffer.from('<html>Current complete document</html>')),r=proofHTTPBody({path:'/member/dashboard',body,headers:{'content-type':'text/html','content-encoding':'gzip'}});assert.equal(r.evidence.mode,'manual-gzip');assert.deepEqual(r.body,body);assert.equal(r.evidence.decodedBytes,38)});
+test('corrupt already-compressed data is rejected rather than relabelled',()=>{const body=gzipSync(Buffer.from('Original'));body[body.length-1]^=255;assert.throws(()=>proofHTTPBody({path:'/member/dashboard',body,headers:{'content-type':'text/html','content-encoding':'gzip'}}))});
+test('unsupported transport encodings reject',()=>{assert.throws(()=>proofHTTPBody({path,body:Buffer.from('source'),headers:{'content-type':'text/css','content-encoding':'br'}}),/Unexpected/)});
+test('normal unencoded text uses the original declared gzip transport',()=>{const body=Buffer.from('{"ok":true}'),r=proofHTTPBody({path:'/v1/me',body,headers:{'content-type':'application/json'}});assert.deepEqual(gunzipSync(r.body),body);assert.equal(r.headers['content-encoding'],'gzip')});
+test('identity mode keeps original unencoded body bytes',()=>{const body=Buffer.from('original'),r=proofHTTPBody({path:'/asset.txt',body,headers:{'content-type':'text/plain'},transport:'identity',acceptEncoding:'identity'});assert.deepEqual(r.body,body);assert.equal(r.headers['content-encoding'],undefined)});
