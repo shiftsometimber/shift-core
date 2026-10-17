@@ -80,6 +80,7 @@ export function currentRuntimePreservationAuthenticatedAncestor(reader,view){ret
 export function currentRuntimePreservationLegacyRead(reader,view){return(r,p)=>{if((r==='HEAD'||r===view.rawHead)&&view.affected(p)){const a=reader('HEAD',p),b=reader(view.rawHead,p);if(a!==b&&!(view.authentic(a,'HEAD',p)&&view.authentic(b,view.rawHead,p)))return r==='HEAD'?a:b;return reader(view.head,p);}return reader(r,p);};}
 // Historical configuration comparison only; production files remain exact GP ON.
 export function withoutCurrentRuntimePreservationFlag(config){
+ if(!config.includes('"MEMBER_GP_DIRECTORY_V2_ENABLED": "true"'))return config;
  const view=currentRuntimePreservationHistoricalView();if(view.head===view.rawHead)return config;
  assert.equal(config,content(view.rawHead,'wrangler.jsonc'),'Only the exact accepted current configuration may enter a historical comparison');return content(view.head,'wrangler.jsonc');
 }
