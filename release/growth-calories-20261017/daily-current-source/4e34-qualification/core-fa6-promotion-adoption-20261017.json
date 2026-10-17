@@ -1,0 +1,17 @@
+{
+  "qualifiedHead": "7b4bce05329c008b214816c8f742a986f11b055a",
+  "actualMain": "fa6adea3ed9f4a6a619d25651c1ed75329ee47ab",
+  "qualifiedAndMainTree": "c8d65257543bf5f044edd499c59e0fa2d1652359",
+  "allCoreHostedChecks": "SUCCESS",
+  "actualProductionRun": 39050642627,
+  "mergedByThisWorker": false,
+  "duplicateMergeOrDispatch": false,
+  "servingAccepted": false,
+  "allCoreChecksObservedAt": "2026-10-17T16:43:26Z",
+  "receiptCreatedAt": "2026-10-17T16:44:17.591582+00:00",
+  "exactMainReadTimestampNotExposed": true,
+  "actualPromoteJob": 117448452622,
+  "selectCurrentJob": 117448341372,
+  "sourceSelection": "SUCCESS",
+  "actualPromoteStatus": "QUEUED"
+}

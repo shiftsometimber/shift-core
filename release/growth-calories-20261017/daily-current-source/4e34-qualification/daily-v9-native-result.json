@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-17T16:55:56.388812+00:00",
+  "startedAt": "2026-10-17T16:35:56.145276+00:00",
+  "stage": "native",
+  "head": "4e34ef53e8ec0a1b4ec50371be94465e066f60dd",
+  "tree": "4d37537549f551d8798705993999c7ad97ecf35e",
+  "command": [
+    "/usr/local/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/food-diary-london-date-stack-20261015.test.mjs",
+    "tests/seo-audit-scope-20261016.test.mjs"
+  ],
+  "capSeconds": 1200,
+  "seconds": 1200.030569708,
+  "exit": 1,
+  "timedOut": true,
+  "counts": {},
+  "sourceUnchanged": true,
+  "ownedGroupEmpty": true,
+  "cleanupMethod": "signal-probe",
+  "signals": [
+    "TERM"
+  ],
+  "baseline510NamesPreserved": false,
+  "logSHA256": "3d0a06a2a0961c2d2a6b23c876006df5bc655698144334b436be2a97e18a27b7",
+  "passed": false,
+  "deployment": false,
+  "modelCalls": 0
+}

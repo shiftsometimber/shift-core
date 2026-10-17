@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-17T16:56:39.612706+00:00",
+  "purpose": "Bounded ownership inventory after repeated Native timeout; no signalling or source changes",
+  "loadAverage": "{ 18.50 18.73 22.42 }",
+  "ownedSourceProcesses": [],
+  "otherNodeGitProcessCount": 2,
+  "sourceMutations": 0,
+  "signals": 0
+}
