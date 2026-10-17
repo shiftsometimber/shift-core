@@ -12,7 +12,7 @@ import {mode as changeMode,circumstances} from './continue.mjs';
 import {deleteItem} from './privacy.mjs';
 import {prepareNight} from './night-job.mjs';
 import {helpPanel,personalContextBoundary} from './safety.mjs';
-import {pendingFollowup,acknowledgeFollowup} from './followup-view.mjs';
+import {pendingFollowup,acknowledgeFollowup,pendingPausePrompt,acknowledgePausePrompt} from './followup-view.mjs';
 import {acceptPlan} from './planning.mjs';
 import {stages,library,focusLabels,focusChoices,treatmentSupport,challengeLabels} from './voice.mjs';
 const headers={'Cache-Control':'no-store, private','Vary':'Cookie','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow'};
@@ -42,7 +42,7 @@ export async function coachingRoutes(request,env){
  try{
   const {revision,state}=await load(env.DB,auth.userId),consent=await activeConsent(env.DB,auth.userId);
   const allowed=usable(state,consent);
-  if(request.method==='GET')return json({revision,enabled:allowed,consent:Number(consent?.granted)===1,action:allowed?readToday(state):starter,memory:allowed?memoryView(state):null,choices:allowed?focusChoices(state):[],treatment:allowed?treatmentSupport(state.mode):null,challenges:challengeLabels,journey:allowed?journeyView(state):null,blockers:allowed?blockerOptions:{},support:await supportView(env.DB,auth.userId),supportRequired:allowed&&!personalContextBoundary(state).coaching,review:allowed?reviewView(state):null,audit:allowed?state.audit:[],followup:allowed?pendingFollowup(state,Date.now(),env.SHIFT_COACH_OFF==='true'):null,help:helpPanel,background:env.SHIFT_COACH_OFF!=='true',modelCalls:0});
+  if(request.method==='GET')return json({revision,enabled:allowed,consent:Number(consent?.granted)===1,action:allowed?readToday(state):starter,memory:allowed?memoryView(state):null,choices:allowed?focusChoices(state):[],treatment:allowed?treatmentSupport(state.mode):null,challenges:challengeLabels,journey:allowed?journeyView(state):null,blockers:allowed?blockerOptions:{},support:await supportView(env.DB,auth.userId),supportRequired:allowed&&!personalContextBoundary(state).coaching,review:allowed?reviewView(state):null,audit:allowed?state.audit:[],followup:allowed?pendingFollowup(state,Date.now(),env.SHIFT_COACH_OFF==='true'):null,pausePrompt:allowed?pendingPausePrompt(state,Date.now(),env.SHIFT_COACH_OFF==='true'):null,help:helpPanel,background:env.SHIFT_COACH_OFF!=='true',modelCalls:0});
   if(request.method==='DELETE'){
    await env.DB.prepare("UPDATE member_state SET preferences=json_set(json_remove(preferences,?),'$.lifeBack.progress.revision',COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)+1),updated_at=? WHERE user_id=?").bind(statePath,new Date().toISOString(),auth.userId).run();
    return json({ok:true,deleted:true});
@@ -90,6 +90,7 @@ export async function coachingRoutes(request,env){
     case 'wanted':result=wanted(s,input.yes,at);break;
     case 'followup-seen':result=acknowledgeFollowup(s,input.id,at,env.SHIFT_COACH_OFF==='true');break;
     case 'settings':result=setSettings(s,input.settings||{});break;
+    case 'pause-seen':result=acknowledgePausePrompt(s,input.id,at,env.SHIFT_COACH_OFF==='true');break;
     case 'pause-choice':{
      const entry=(s.pauseRequests||[]).find(x=>x.id===input.id&&x.status==='queued');
      if(!entry||typeof input.yes!=='boolean')throw Object.assign(Error('pause_choice_unavailable'),{status:409});

@@ -1,3 +1,4 @@
+import {personalContextBoundary} from './safety.mjs';
 import {canExecute} from './permissions.mjs';
 import {inQuietHours,localClock} from './clock.mjs';
 export function pendingFollowup(state,now=Date.now(),off=false){
@@ -14,4 +15,20 @@ export function acknowledgeFollowup(state,id,now=Date.now(),off=false){
  const q=state.queue.find(q=>q.id===id);q.status='shown';q.shownAt=now;
  state.touches.push({id:q.id,actionId:q.actionId,type:'followup',kind:'followup',at:now,day:localClock(now,state.settings.timezone).date,answered:false});
  return {dataUsed:q.dataUsed,outcome:'shown',reason:'consented_due_followup'};
+}
+
+// The existing keep prompt is itself a consented in-app touch, not a new allowance.
+export function pendingPausePrompt(state,now=Date.now(),off=false){
+ if(off||!state.settings.proactive||!state.settings.followup||!personalContextBoundary(state).coaching||inQuietHours(state,now))return null;
+ const day=localClock(now,state.settings.timezone).date;
+ if(state.touches.some(t=>t.day===day)||state.touches.filter(t=>t.at>now-7*86400000).length>=3)return null;
+ const prompt=(state.pauseRequests||[]).find(p=>p.type==='followup'&&p.status==='queued'&&!p.shown&&state.pausedTypes.includes(p.type));
+ return prompt?{id:prompt.id,type:prompt.type}:null;
+}
+export function acknowledgePausePrompt(state,id,now=Date.now(),off=false){
+ const current=pendingPausePrompt(state,now,off);
+ if(!current||current.id!==id)throw Object.assign(Error('pause_prompt_no_longer_available'),{status:409});
+ const prompt=state.pauseRequests.find(p=>p.id===id);prompt.shown=true;prompt.shownAt=now;
+ state.touches.push({id:prompt.id,type:prompt.type,kind:'pause-keep',at:now,day:localClock(now,state.settings.timezone).date,answered:false});
+ return {dataUsed:[],outcome:'shown',reason:'consented_pause_keep_prompt'};
 }
