@@ -63,7 +63,7 @@ export function verifyCurrentRuntimePreservation(c,{head=currentHead(),read=blob
   assert.equal(readContent(c.base,manifest),verifiedContent(c.base,manifest),'Supplied original Core ledger changed');
   for(const p of['wrangler.jsonc','wrangler.coaching.jsonc','wrangler.hq-management.jsonc'])assert.equal(verifiedContent(head,p),verifiedContent(c.runtimeSource,p),'Actual accepted GP configuration must remain byte exact');
   assert.equal(verifiedContent(head,'wrangler.jsonc'),verifiedContent(head,'wrangler.coaching.jsonc'));
-  for(const p of['package.json','package-lock.json','.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','public-https-redirect.mjs','public-response-policy.mjs','shift-coach/worker.mjs']){assert.equal(verifiedBlob(head,p),verifiedBlob(c.base,p),'Protected Core repair/runtime boundary changed: '+p);for(const r of['HEAD',head])assert.equal(read(r,p),verifiedBlob(head,p),'Supplied protected Core source changed: '+p);}
+  for(const p of['package.json','package-lock.json','.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','public-https-redirect.mjs','public-response-policy.mjs','shift-coach/worker.mjs']){assert.equal(verifiedBlob(head,p),verifiedBlob(c.base,p),'Protected Core repair/runtime boundary changed: '+p);for(const r of['HEAD',head])assert.equal(read(r,p),verifiedBlob(head,p),'Current-runtime preservation source drift: Supplied protected Core source changed: '+p);}
   return c;
  }finally{clean();assert.equal(currentHead(),actual,'Current-runtime preservation source drift: Raw HEAD changed during proof');}
  });
