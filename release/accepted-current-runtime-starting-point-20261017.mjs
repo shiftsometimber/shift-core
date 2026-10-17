@@ -115,7 +115,7 @@ function rollbackArtifact(metadata,bytes,pin){
  assert.equal(metadata.id,pin.id);assert.equal(metadata.size_in_bytes,pin.bytes);assert.equal(metadata.digest,'sha256:'+pin.sha256);assert.equal(metadata.expired,false);assert.equal(metadata.workflow_run.id,rollbackPin.run);assert.equal(metadata.workflow_run.head_sha,rollbackPin.source);assert.equal(metadata.workflow_run.head_branch,'main');assert.equal(metadata.workflow_run.repository_id,1328867509);assert.equal(metadata.workflow_run.head_repository_id,1328867509);assert(time(metadata.created_at)>=time(rollbackPin.startedAt)&&time(metadata.created_at)<=time(rollbackPin.completedAt));rollbackBytes(bytes,pin,'Authenticated original rollback archive');
 }
 function rollbackUnique(logs,kind,stage){
- const rows=[];for(const line of logs.toString('utf8').split('\n')){const i=line.indexOf('{"kind":"'+kind+'"');if(i<0)continue;const value=JSON.parse(line.slice(i));if(stage===undefined||value.stage===stage)rows.push(value);}
+ const rows=[];for(const line of logs.toString('utf8').split('\n')){const i=line.indexOf('{"kind":');if(i<0)continue;let value;try{value=JSON.parse(line.slice(i));}catch{assert(!line.slice(i).startsWith('{"kind":"'+kind+'"'),'Malformed required '+kind+' receipt');continue;}if(value.kind===kind&&(stage===undefined||value.stage===stage))rows.push(value);}
  assert(rows.length>0,'Missing original '+kind+' log receipt');for(const value of rows)assert.deepEqual(value,rows[0],'Conflicting original '+kind+' receipts');return rows[0];
 }
 function rollbackPublicChecks(value,stage,deployment,expected){
