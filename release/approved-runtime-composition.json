@@ -6765,7 +6765,8 @@
       "tests/recorded-week-browser-repair-20261017.test.mjs",
       "tests/runtime-cancel-rollback-20261016.test.mjs",
       "tests/seo-audit-scope-20261016.test.mjs",
-      "tests/treatment-week-compiled-module-20261017.test.mjs"
+      "tests/treatment-week-compiled-module-20261017.test.mjs",
+      "tests/public-tool-guidance.test.mjs"
     ],
     "integrationIssue": 1065,
     "authority": "Existing A001 release repair; exact actual deployed GP/questionnaire and recorded-week code preserved with original failed browser evidence; no whole-feature acceptance inferred",
@@ -6917,6 +6918,23 @@
       "approvalResultsCached": false,
       "runtimeProductConfigurationAndClinicalChanged": false
     },
-    "maintenanceSource": "aa0435d779d102a88fef1dcc857944d45ba60b63"
+    "publicToolRollbackAssertionCompatibility20261017": {
+      "kind": "EXACT_PUBLIC_TOOL_ROLLBACK_ASSERTION_COMPATIBILITY_20261017",
+      "failedRun": 39043445084,
+      "failedJob": 117427420766,
+      "path": "tests/public-tool-guidance.test.mjs",
+      "basisSource": "3095b53ed7830af0f87fa0ba6e42be7c1d680308",
+      "testSource": "e650995db6ed6297b4d4c85e02ac62e0ed04390d",
+      "beforeSHA256": "8c17ef41635a0a9013f601b2505b82a72941223e52a4b8781337f5365623ed6e",
+      "afterSHA256": "c95d25cd0b2fd4f09c6bd6c6a37cbc2d9cfcf3e77489fb30f012a7794dde5470",
+      "productionWorkflowUnchanged": true,
+      "wholeOriginalTestFileInverseRequired": true,
+      "originalFailureCasesPreserved": true,
+      "cancellationAndOwnershipCases": 64,
+      "requiredCommandsChanged": false,
+      "timeoutsChanged": false,
+      "runtimeProductPrivacyStockConfigurationChanged": false
+    },
+    "maintenanceSource": "12dc68246f54670cd563c3e860950fc5d1965ce7"
   }
 }
