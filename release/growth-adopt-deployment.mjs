@@ -1,3 +1,4 @@
+import {verifiedSourceScopeAtPointUse} from './verified-source-evidence-20261016.mjs';
 import {PRESERVED_CURRENT_RUNTIME as ACCEPTED_CURRENT_RUNTIME,PRESERVED_CURRENT_RUNTIME_KIND as ACCEPTED_CURRENT_RUNTIME_KIND,verifyCurrentRecordedWeekRuntimeWindow as verifyCurrentAcceptedRuntimeWindow,assertSameRecordedWeekCurrentWindow as assertSameAcceptedCurrentWindow,recordedWeekCurrentStartingPoint as acceptedCurrentStartingPoint,assertRecordedWeekPreservedRuntimeLineage as assertPreservedRuntimeLineage} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {verifyCurrentOwnedRollbackReleaseWindow} from './owned-rollback-release-window-20261016.mjs';
 import {OWNED_ROLLBACK_DEPLOYMENT,verifyCurrentOwnedRollback,ownedRollbackStartingPoint,assertSameOwnedRollbackReceipt} from './verified-owned-rollback-current.mjs';
@@ -18,7 +19,8 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
 import {validateGrowthSource} from './growth-scope.mjs';
-validateGrowthSource();
+const completedOriginalSource=await verifiedSourceScopeAtPointUse();
+if(!completedOriginalSource)validateGrowthSource();
 const historicalProof=createGithubProofReader({cacheDirectory:join(process.env.RUNNER_TEMP||tmpdir(),'shift-core-github-proof-v1')});
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
