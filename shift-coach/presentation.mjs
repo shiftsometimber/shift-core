@@ -53,9 +53,9 @@ export async function withCoaching(request,response,seed=null){
  const preloads=(changed.includes('data-coach-stylesheet-loader')?[]:[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1])).filter(href=>/^\/[A-Za-z0-9/_.,=?&%+-]+$/.test(href)).filter((href,index,all)=>all.indexOf(href)===index).map(href=>'<'+href+'>; rel=preload; as=style');
  if(preloads.length)headers.set('Link',[headers.get('Link'),...preloads].filter(Boolean).join(', '));
  for(const h of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(h);
- // Compress the private dashboard at its source so the prepared action does
- // not depend on an assumed CDN compression setting. Never gzip twice.
+ // Declare compression explicitly to the Worker runtime so the prepared action does
+ // not depend on an assumed CDN setting. Keep the body unencoded through response wrappers.
  const gzip=(request.cf?.clientAcceptEncoding??request.headers.get('Accept-Encoding')??'').split(',').some(value=>{const m=value.trim().match(/^gzip(?:\s*;\s*q=(0(?:\.\d+)?|1(?:\.0+)?))?$/i);return m&&Number(m[1]??1)>0;});
- if(gzip){headers.set('Content-Encoding','gzip');headers.set('Vary','Cookie, Accept-Encoding');return new Response(new Response(changed).body.pipeThrough(new CompressionStream('gzip')),{status:response.status,headers,encodeBody:'manual'});}
+ if(gzip){headers.set('Content-Encoding','gzip');headers.set('Vary','Cookie, Accept-Encoding');return new Response(changed,{status:response.status,headers,encodeBody:'automatic'});}
  return new Response(changed,{status:response.status,headers});
 }
