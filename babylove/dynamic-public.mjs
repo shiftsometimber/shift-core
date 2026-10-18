@@ -1,3 +1,4 @@
+import {publicArticlePublication,editorialDiscovery} from '../daily-content/publication.mjs';
 import {publicHeader,publicDrawer,publicFooter} from '../public-shell-contract.mjs';
 import {withArticleResponsePolicy} from './response-policy.mjs';
 
@@ -54,7 +55,7 @@ export function renderMarkdown(markdown,title='',slug=''){
 }
 export async function dynamicBabyLovePublication(env,slug){
  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||!env.DB)return null;
- try{return await env.DB.prepare(`SELECT a.id,a.title,a.slug,a.category,a.author,a.status,a.summary,a.body,a.seo_title,a.publish_at,a.updated_at,b.source_id FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.slug=? AND a.status='published' AND a.publish_at IS NOT NULL`).bind(slug).first()}catch{return null}
+ const row=await publicArticlePublication(env,slug);return row?.editorialBlocked?null:row;
 }
 export function representativeImage(row){
  // Use an image already in the published copy, never a fabricated article image.
@@ -111,13 +112,14 @@ export async function dynamicBabyLovePublicRoute(request,env){
  const loaded=performance.now();
  if(u.hostname!=='shiftsometimber.co.uk'||u.pathname.endsWith('/'))return Response.redirect('https://shiftsometimber.co.uk/articles/'+row.slug,301);
  const body=request.method==='HEAD'?null:articleHTML(row);
- return withArticleResponsePolicy(new Response(body,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store, must-revalidate','X-Content-Type-Options':'nosniff','X-Shift-Article-Source':'babylovegrowth','Server-Timing':'article_db;dur='+(loaded-started).toFixed(1)+', article_render;dur='+(performance.now()-loaded).toFixed(1)}}));
+ return withArticleResponsePolicy(new Response(body,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store, must-revalidate','X-Content-Type-Options':'nosniff','X-Shift-Article-Source':row.editorial?'shift-editorial':'babylovegrowth','Server-Timing':'article_db;dur='+(loaded-started).toFixed(1)+', article_render;dur='+(performance.now()-loaded).toFixed(1)}}));
 }
 export async function withDynamicBabyLoveDiscovery(response,request,env){
  const u=new URL(request.url),path=u.pathname.replace(/\.html$/,'').replace(/\/$/,'');if(!HOSTS.has(u.hostname)||request.method!=='GET'||!response.ok||!['/explore-knowledge','/sitemap.xml'].includes(path)||!env.DB)return response;
- let rows=[];try{({results:rows=[]}=await env.DB.prepare(`SELECT a.title,a.slug,a.summary,a.publish_at,a.updated_at FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.status='published' AND a.publish_at IS NOT NULL AND a.slug NOT IN ('wegovy-cost-uk','oral-semaglutide-for-weight-loss') ORDER BY a.publish_at DESC LIMIT 100`).all())}catch{return response}
+ let rows=[];try{({results:rows=[]}=await env.DB.prepare(`SELECT a.title,a.slug,a.summary,a.publish_at,a.updated_at FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.status='published' AND a.publish_at IS NOT NULL AND julianday(a.publish_at)<=julianday('now') AND a.slug NOT IN ('wegovy-cost-uk','oral-semaglutide-for-weight-loss') ORDER BY a.publish_at DESC LIMIT 100`).all())}catch{rows=[]}
+ const own=await editorialDiscovery(env);const map=new Map(rows.map(r=>[r.slug,r]));for(const row of own)map.set(row.slug,row);rows=[...map.values()];
  if(!rows.length)return response;let text=await response.text();
- if(path==='/sitemap.xml'){for(const row of rows){const loc='https://shiftsometimber.co.uk/articles/'+row.slug;if(!text.includes('<loc>'+loc+'</loc>'))text=text.replace('</urlset>','<url><loc>'+loc+'</loc><lastmod>'+String(articleModifiedDate(row)).slice(0,10)+'</lastmod></url></urlset>')}}
- else{const marker=/<div\b(?=[^>]*\bid=["']knowledgeResults["'])[^>]*>/;if(marker.test(text)){const cards=rows.filter(r=>!text.includes('data-babylove-dynamic="'+r.slug+'"')).map(r=>'<article class="knowledge-card" data-babylove-dynamic="'+esc(r.slug)+'"><h3><a href="/articles/'+esc(r.slug)+'">'+esc(r.title)+'</a></h3><p>'+esc(r.summary||'SHIFT knowledge article.')+'</p></article>').join('');text=text.replace(marker,m=>m+cards)}}
+ if(path==='/sitemap.xml'){for(const row of rows){const loc='https://shiftsometimber.co.uk/articles/'+row.slug;if(row.editorial&&text.includes('<loc>'+loc+'</loc>')){const escaped=loc.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');text=text.replace(new RegExp('<url>\\s*<loc>'+escaped+'<\\/loc>[\\s\\S]*?<\\/url>'),'<url><loc>'+loc+'</loc><lastmod>'+String(articleModifiedDate(row)).slice(0,10)+'</lastmod></url>');}else if(!text.includes('<loc>'+loc+'</loc>'))text=text.replace('</urlset>','<url><loc>'+loc+'</loc><lastmod>'+String(articleModifiedDate(row)).slice(0,10)+'</lastmod></url></urlset>')}}
+ else{const marker=/<div\b(?=[^>]*\bid=["']knowledgeResults["'])[^>]*>/;if(marker.test(text)){const cards=rows.filter(r=>!text.includes('data-babylove-dynamic="'+r.slug+'"')&&(!r.editorial||!text.includes('href="/articles/'+r.slug+'"'))).map(r=>'<article class="knowledge-card" data-babylove-dynamic="'+esc(r.slug)+'"><h3><a href="/articles/'+esc(r.slug)+'">'+esc(r.title)+'</a></h3><p>'+esc(r.summary||'SHIFT knowledge article.')+'</p></article>').join('');text=text.replace(marker,m=>m+cards)}}
  const headers=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(k);headers.set('Cache-Control','no-store, must-revalidate');return new Response(text,{status:response.status,headers});
 }
