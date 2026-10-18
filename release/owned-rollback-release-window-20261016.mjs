@@ -67,7 +67,7 @@ export function currentReleaseContext(context,before,now){
  const stockCompleted=job.steps.find(s=>s.name===stockStep).completed_at;
  const completedSecondEnd=time(stockCompleted)+(/:\d{2}Z$/.test(stockCompleted)?999:0);
  assert(time(job.started_at)>=time(run.run_started_at));assert(time(before.checkedAt)>=time(job.started_at));assert(time(before.checkedAt)>=time(job.steps.find(s=>s.name===stockStep).started_at));assert(time(before.checkedAt)<=completedSecondEnd);
- assert(time(before.checkedAt)<=time(now));assert(time(now)-time(job.started_at)<=3600000,'Original 60 minute production window exceeded');
+ assert(time(before.checkedAt)<=time(now));const approved=approvedCurrentProductionWindows.get(context);if(approved)assert.deepEqual(currentProductionWindowIdentity(context),approved,'The native approved current release identity changed');const minutes=approved?90:60;assert(time(now)-time(job.started_at)<=minutes*60000,approved?'Approved 90 minute production window exceeded':'Original 60 minute production window exceeded');
 }
 function freeze(value){if(value&&typeof value==='object'){for(const item of Object.values(value))freeze(item);Object.freeze(value);}return value;}
 
@@ -123,4 +123,19 @@ export async function verifyCurrentOwnedRollbackReleaseWindow({proof,wrangler,st
  const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert.deepEqual(active,current.deployment,'Runtime moved during release-window admission');
  writeFileSync('b1-runtime-release/owned-stock-window-'+stage+'.json',JSON.stringify({kind:'EXACT_HISTORICAL_ROLLBACK_AND_CURRENT_RELEASE_STOCK_WINDOW',historicalCheckedAt:history.historicalStockBytes&&JSON.parse(history.historicalStockBytes).at,current,receipt,customerRecordsRead:false,productionWrites:0},null,2),{flag:'wx',mode:0o600});
  return receipt;
+}
+
+// Matt's exact outer90 approval applies to this native workflow only. A caller
+// field or a historical fixture cannot acquire this binding.
+const approvedCurrentProductionWindows=new WeakMap();
+const currentProductionWindowIdentity=c=>({head:c.head,main:c.main,run:c.runId,attempt:c.attempt,job:c.job.id,startedAt:c.job.started_at});
+export function bindApprovedCurrentProductionWindow(context){
+ const git=(...args)=>execFileSync('git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:4194304});
+ const head=git('rev-parse','HEAD').trim();assert.equal(context.head,head);assert.equal(context.main,head);
+ assert.equal(git('status','--porcelain=v1','--untracked-files=no').trim(),'','A clean exact native release source is required');
+ const workflowBytes=git('show',head+':'+workflow);
+ assert.equal(sha(workflowBytes),'27295c3a6f40e2cc83692f3d968108315eeb34422b8e8dc78b905691e245a48e','Only the exact approved outer90 workflow may bind this window');
+ const approval=JSON.parse(git('show',head+':release/approved-runtime-composition.json')).currentRuntimePreservation20261016.acceptedUkGrubPreservation20261017.approvedCurrentHomeAndOuterWindow20261018;
+ assert.equal(sha(JSON.stringify(approval)),'6fb15051be8446af564998ce8f1fe50530dcf7e7aac65ab9d6ce87e47de314ce','The exact original Matt approval must remain unchanged');
+ approvedCurrentProductionWindows.set(context,Object.freeze(currentProductionWindowIdentity(context)));return context;
 }
