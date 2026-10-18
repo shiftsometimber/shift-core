@@ -5,23 +5,27 @@
     {
       "file": "upper-arm-blood-collection.json",
       "slug": "upper-arm-blood-collection",
-      "words": 811,
-      "sha256": "e7745068cf4519b9937307495fc61334992f81f6d2c891429ff1080196a7dbc4",
-      "new_page": true
+      "words": 813,
+      "sha256": "dc93cbdf766ae2f83abbe1428c4b02b26f041dd087cb9bda0f1773dbeb6400d0",
+      "new_page": true,
+      "original_reviewed_markdown_sha256": "e7745068cf4519b9937307495fc61334992f81f6d2c891429ff1080196a7dbc4"
     },
     {
       "file": "understanding-blood-test-results.json",
       "slug": "understanding-blood-test-results",
-      "words": 846,
-      "sha256": "8e2d4605f9bdb96138f42bf08f62b72cbbf30a0676c99b78c4621851fcffd1c8",
-      "new_page": true
+      "words": 847,
+      "sha256": "75bce92d4e66948d4c112c69535d909a02e14363b240d9b8d3dbe6da3a1d61f3",
+      "new_page": true,
+      "original_reviewed_markdown_sha256": "8e2d4605f9bdb96138f42bf08f62b72cbbf30a0676c99b78c4621851fcffd1c8"
     },
     {
       "file": "weight-loss-blood-tests-refresh.json",
       "slug": "weight-loss-blood-tests",
-      "words": 789,
-      "sha256": "d52ca3a4fac3b0ee3cf16fa078c40bd58db487425f286a9ce3cedfa4b5228258",
-      "new_page": false
+      "words": 774,
+      "sha256": "831762eb640bbb1672f794892408bb6581d78582b0830b1ca973b4bc872c5fb0",
+      "new_page": false,
+      "original_reviewed_markdown_sha256": "d52ca3a4fac3b0ee3cf16fa078c40bd58db487425f286a9ce3cedfa4b5228258"
     }
-  ]
+  ],
+  "review_version": "publication-copy-v1-20261018"
 }

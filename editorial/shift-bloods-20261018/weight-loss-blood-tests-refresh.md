@@ -58,4 +58,4 @@ Keep the complete report and ask who explains it, who arranges any follow-up and
 
 Testing is one possible part of looking after your health. Food, activity, sleep, mental health, medicines and existing conditions still deserve attention. You can take practical steps and ask for help without treating a commercial blood panel as an entry requirement.
 
-*Replacement draft prepared by SHIFT Team, 18 October 2026, for the existing `/articles/weight-loss-blood-tests` page. Preserve its original publication timestamp when publishing; record the actual update date. General information for UK adult readers; NICE recommendations cited concern adults in England’s guidance context. Independent clinical review is not claimed.*
+*General information for UK adult readers; NICE recommendations cited concern adults in England’s guidance context. Independent clinical review is not claimed.*

@@ -56,4 +56,4 @@ Our aim is straightforward: give you a clear view of what testing involves, incl
 
 **SHIFT Bloods is coming soon. Ordering is closed.** [Explore the panels and collection overview](/shift-health/blood-tests).
 
-*Draft prepared by SHIFT Team, 18 October 2026. General information for UK adult readers. Sources checked on that date; independent clinical review is not claimed. The cited study was published on 29 May 2024 and concerns a specific device and research setting.*
+*General information for UK adult readers. Sources checked 18 October 2026; independent clinical review is not claimed. The cited study was published on 29 May 2024 and concerns a specific device and research setting.*

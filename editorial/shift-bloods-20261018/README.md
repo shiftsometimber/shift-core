@@ -52,3 +52,7 @@ Do not add links to unpublished URLs. Do not change the homepage, Start Here or 
 ## Publication acceptance
 
 Fetch the current existing article before replacing its body; stop on intervening changes. Render candidates through the existing article shell, check small and large screens, all internal/external links, canonical/title/description, author/dates, visible trial status, and absence of order forms. Verify actual public pages, article index and sitemap after release, then retain receipts. Do not label drafts as published.
+
+## Publication copy v1 — exact review preparation
+
+The three article bodies retain all substantive prose and links from the18October drafts. Only footer preparation/publishing instructions are removed, with the existing general-information, source-date, UK-context and clinical-review limitations retained. The complete self-contained review includes title, search title, summary, body and exact Markdown hashes. Original draft hashes are retained in the manifest. Publication is still unapproved; neither this source preparation nor the review copy authorises publication. Existing article identity/original date and current-source/owned rollback/public-verification controls remain required.

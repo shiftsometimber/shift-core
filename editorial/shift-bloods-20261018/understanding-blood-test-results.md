@@ -61,4 +61,4 @@ If you feel unwell, seek appropriate medical advice based on your symptoms rathe
 
 The report should help you have a clearer conversation about your health. You deserve an explanation you can understand and a next step you can actually follow.
 
-*Draft prepared by SHIFT Team, 18 October 2026. General information for UK adult readers; NHS online-record guidance cited here relates to the NHS England service. Sources checked on that date. Independent clinical review is not claimed.*
+*General information for UK adult readers; NHS online-record guidance cited here relates to the NHS England service. Sources checked 18 October 2026. Independent clinical review is not claimed.*
