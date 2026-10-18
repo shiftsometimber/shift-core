@@ -78,3 +78,17 @@ test('fresh native navigation checks reject changed execution environment',()=>n
  const check=nativeNavigationFreshSourceChecker(head),key='SHIFT_NAVIGATION_NATIVE_FIXTURE',before=process.env[key];
  try{process.env[key]='changed';assert.throws(check);}finally{if(before===undefined)delete process.env[key];else process.env[key]=before;}
 }));
+
+test('a supplied navigation reader cannot hide changed working source inside a closed proof',async()=>{
+ const {mkdtempSync,rmSync}=await import('node:fs');
+ const {tmpdir}=await import('node:os');const {join}=await import('node:path');
+ const {execFileSync,spawnSync}=await import('node:child_process');
+ const directory=mkdtempSync(join(tmpdir(),'navigation-live-callback-'));
+ try{
+  execFileSync('git',['clone','--no-hardlinks','--no-checkout',process.cwd(),directory],{stdio:'pipe'});
+  execFileSync('git',['checkout','--detach','HEAD'],{cwd:directory,stdio:'pipe'});
+  const script="import assert from 'node:assert/strict';import {readFileSync,writeFileSync,appendFileSync} from 'node:fs';import {execFileSync} from 'node:child_process';import {withImmutableHistoryVerification} from './release/immutable-git-facts.mjs';import {actualNavigationOuterFrame} from './release/recorded-week-navigation-outer-frame-20261018.mjs';withImmutableHistoryVerification(()=>{const frame=actualNavigationOuterFrame();assert(frame);const p='scheduled-knowledge-v1.js',before=readFileSync(p);try{assert.throws(()=>frame.projectRead((r,path)=>{appendFileSync(p,'\\n// transient supplied-reader working change\\n');return execFileSync('git',['rev-parse',(r==='HEAD'?frame.rawHead:r)+':'+path],{encoding:'utf8'}).trim();})('HEAD','wrangler.jsonc'),/working|source drift|clean|tracked/i);}finally{writeFileSync(p,before);}assert.equal(execFileSync('git',['diff','--no-renames','--name-only','HEAD','--'],{encoding:'utf8'}).trim(),'');});console.log('transient-callback-drift-rejected');";
+  const result=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:directory,encoding:'utf8',timeout:45000,maxBuffer:64e6});
+  assert.equal(result.status,0,result.stderr||String(result.error));assert.match(result.stdout,/transient-callback-drift-rejected/);
+ }finally{rmSync(directory,{recursive:true,force:true});}
+});

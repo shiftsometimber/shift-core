@@ -37,6 +37,28 @@ function clean(expected){
  for(const row of git('ls-files','-v','-z').toString('utf8').split('\0').filter(Boolean))assert(row.startsWith('H '),'Hidden/sparse/assume-unchanged source is forbidden');
  const h=head();assert(oid.test(h));if(expected)assert.equal(h,expected,'Actual navigation HEAD moved');return h;
 }
+// This set deduplicates stat-cache preparation only. Every source guard below
+// still executes; no caller output, source admission or approval is cached.
+const preparedNavigationIndexStats=new Set();
+function prepareNativeNavigationIndexStats(){
+ const root=process.cwd(),index=resolve(root,'.git/index'),lock=resolve(root,'.git/index.lock');
+ const entry=lstatSync(index);assert(entry.isFile()&&!entry.isSymbolicLink(),'Ordinary native index required before stat-cache refresh');
+ assert(!existsSync(lock),'An actual source-index writer is active');
+ const rawHead=clean(),identity=()=>JSON.stringify([root,rawHead,sha(readFileSync(index))]);
+ const beforeIdentity=identity();if(preparedNavigationIndexStats.has(beforeIdentity))return;
+ const staged=git('ls-files','--stage','-z'),visible=git('ls-files','-v','-z');
+ // Fresh checkouts can put files and index in the same timestamp second.
+ // A bounded one-second boundary avoids endlessly rehashing an unchanged tree.
+ const wait=Math.floor(lstatSync(index).mtimeMs/1000)*1000+1001-Date.now();
+ if(wait>0&&wait<=1100)Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,wait);
+ git('update-index','--refresh');
+ assert.equal(head(),rawHead,'Actual HEAD moved during stat-cache preparation');
+ assert(git('ls-files','--stage','-z').equals(staged),'Logical staged source changed during stat-cache preparation');
+ assert(git('ls-files','-v','-z').equals(visible),'Source visibility changed during stat-cache preparation');
+ clean(rawHead);
+ preparedNavigationIndexStats.add(identity());
+}
+
 // Recheck current source inputs at every use. No approval, reader or verdict is cached.
 function sourceFileState(filename){
  const s=lstatSync(filename,{throwIfNoEntry:false});if(!s)return null;
@@ -189,6 +211,7 @@ function navigationEditorialProofFacts(outer){
  });
 }
 export function actualNavigationOuterFrame(){
+ prepareNativeNavigationIndexStats();
  const outer=websiteEditorialCompletionHistoricalView();if(!outer)return actualNavigationOuterFrameBeforeEditorial();
  assertWebsiteEditorialCompletionView(outer);const inner=actualNavigationOuterFrameBeforeEditorial(outer);assert(inner,'The admitted predecessor must retain its navigation frame');
  const ref=r=>r==='HEAD'||r===outer.rawHead?'HEAD':r,unary=fn=>(r,p)=>fn(ref(r),p),binary=fn=>(a,b)=>fn(ref(a),ref(b));
