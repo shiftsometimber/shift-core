@@ -239,7 +239,7 @@ jobs:
     needs: select-current
     if: ${{ needs.select-current.outputs.current == 'true' && (github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -833,12 +833,12 @@ jobs:
           node release/home-banner-live.cjs
           export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.executablePath())")
           node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';import {writeFileSync,readFileSync} from 'node:fs';import {HOME_BASE_MAIN,HOME_RECOVERY_CSS} from './home-critical-styles.mjs';import {HOME_V42_CSS} from './home-v42-critical.mjs';import {RETA_STYLES} from './reta-styles-data.mjs';import {HOME_BLOCKING_STYLES} from './home-blocking-styles.mjs';
+          import assert from 'node:assert/strict';import {writeFileSync,readFileSync} from 'node:fs';import {HOME_BASE_MAIN,HOME_RECOVERY_CSS} from './home-critical-styles.mjs';import {HOME_V42_CSS} from './home-v42-critical.mjs';import {CURRENT_HOME_MAIN} from './home-current-main-private-20261018.mjs';import {RETA_STYLES} from './reta-styles-data.mjs';import {HOME_BLOCKING_STYLES} from './home-blocking-styles.mjs';
           const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const html=await r.text();const p=await fetch('https://shift-home-speed-preview.matobrien.workers.dev/');assert(p.ok);const preview=await p.text();const paths=s=>[...s.matchAll(/data-home-inline-css="([^"]+)"/g)].map(m=>m[1]);assert(paths(preview).includes('/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'));assert.deepEqual(paths(html),paths(preview),'Live stylesheet list differs from tested preview');
           const main=s=>{const rows=[...s.matchAll(/<main\b[\s\S]*?<\/main>/g)];assert.equal(rows.length,1,'Exactly one protected homepage main required');return rows[0][0];};
           const captured=readFileSync('b1-runtime-release/root-share-preview/before-0.bin','utf8');assert.equal(main(html),main(captured),'Current approved homepage main changed during release');
           assert(preview.includes(HOME_RECOVERY_CSS),'Guarded CSS not present in original preview');assert(preview.includes(HOME_V42_CSS),'Guarded v42 CSS not present in original preview');
-          if(main(html)===HOME_BASE_MAIN){assert(html.includes(HOME_RECOVERY_CSS),'Guarded CSS not present live');assert(html.includes(HOME_V42_CSS),'Guarded v42 CSS not present live');}
+          if(main(html)===HOME_BASE_MAIN||main(html)===CURRENT_HOME_MAIN){assert(html.includes(HOME_RECOVERY_CSS),'Guarded CSS not present live');assert(html.includes(HOME_V42_CSS),'Guarded v42 CSS not present live');}
           else{const styles=[...html.matchAll(/<style\b([^>]*)>([\s\S]*?)<\/style>/g)];for(const[path,css]of [['/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2',RETA_STYLES['/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2']],['/assets/v42h.css?v=42p6',HOME_BLOCKING_STYLES['/assets/v42h.css?v=42p6']]]){const rows=styles.filter(row=>row[1].includes('data-home-inline-css="'+path+'"'));assert.equal(rows.length,1,'Exactly one original full stylesheet required: '+path);assert.equal(rows[0][2],css.replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;')),'Exact original full CSS not present live: '+path);}}
           writeFileSync('home-speed-live/home.html',html);writeFileSync('home-speed-live/style-list.json',JSON.stringify(paths(html)));
           JS

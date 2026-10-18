@@ -1,3 +1,6 @@
+import {ACCEPTED_GRUB_RANKING_RUNTIME,ACCEPTED_GRUB_RANKING_RUNTIME_KIND,ACCEPTED_GRUB_FULL_RUNTIME_KIND,verifyCurrentAcceptedGrubRankingRuntimeWindow,acceptedGrubRankingCurrentStartingPoint,assertSameAcceptedGrubRankingCurrentWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
+import {ACCEPTED_GRUB_FULL_RUNTIME,verifyCurrentAcceptedGrubFullRuntimeWindow,acceptedGrubFullCurrentStartingPoint,assertSameAcceptedGrubFullCurrentWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
+import {UK_GRUB_SPEED_OWNED_ROLLBACK,verifyCurrentUkGrubSpeedOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {UK_GRUB_OWNED_ROLLBACK,verifyCurrentUkGrubOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_UK_RUNTIME,ACCEPTED_GRUB_UK_RUNTIME_KIND,verifyCurrentAcceptedGrubUkRuntimeWindow,assertSameAcceptedGrubUkCurrentWindow,acceptedGrubUkCurrentStartingPoint} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_RUNTIME,ACCEPTED_GRUB_RUNTIME_KIND,verifyCurrentAcceptedGrubRuntimeWindow,assertSameAcceptedGrubCurrentWindow,acceptedGrubCurrentStartingPoint} from './accepted-current-runtime-starting-point-20261017.mjs';
@@ -30,12 +33,30 @@ const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 const baselineRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
 let point;
-if(active.id===UK_GRUB_OWNED_ROLLBACK.deployment.id){
+if(active.id===UK_GRUB_SPEED_OWNED_ROLLBACK.deployment.id){
+ assert(baselineRecord.ukGrubSpeedOwnedRollbackProof,'Exact failed39083891773 owned UK rollback recovery receipt required');
+ ownedRollbackStartingPoint(baselineRecord.ukGrubSpeedOwnedRollbackProof,active);
+ const refreshedProof=await verifyCurrentUkGrubSpeedOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameOwnedRollbackReceipt(baselineRecord.ukGrubSpeedOwnedRollbackProof,refreshedProof);
+ point=ownedRollbackStartingPoint(refreshedProof,active);
+}else if(active.id===UK_GRUB_OWNED_ROLLBACK.deployment.id){
  assert(baselineRecord.ukGrubOwnedRollbackProof,'Exact failed39079375654 owned UK rollback recovery receipt required');
  ownedRollbackStartingPoint(baselineRecord.ukGrubOwnedRollbackProof,active);
  const refreshedProof=await verifyCurrentUkGrubOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
  assertSameOwnedRollbackReceipt(baselineRecord.ukGrubOwnedRollbackProof,refreshedProof);
  point=ownedRollbackStartingPoint(refreshedProof,active);
+}else if(active.id===ACCEPTED_GRUB_RANKING_RUNTIME.deployment){
+ assert(baselineRecord.acceptedGrubRankingServingProof,'Exact accepted ranking recovery receipt required');
+ acceptedGrubRankingCurrentStartingPoint(baselineRecord.acceptedGrubRankingServingProof,active);
+ const refreshedProof=await verifyCurrentAcceptedGrubRankingRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameAcceptedGrubRankingCurrentWindow(baselineRecord.acceptedGrubRankingServingProof,refreshedProof);
+ point=acceptedGrubRankingCurrentStartingPoint(refreshedProof,active);
+}else if(active.id===ACCEPTED_GRUB_FULL_RUNTIME.deployment){
+ assert(baselineRecord.acceptedGrubFullServingProof,'Exact accepted UK Grub recovery receipt required');
+ acceptedGrubFullCurrentStartingPoint(baselineRecord.acceptedGrubFullServingProof,active);
+ const refreshedProof=await verifyCurrentAcceptedGrubFullRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameAcceptedGrubFullCurrentWindow(baselineRecord.acceptedGrubFullServingProof,refreshedProof);
+ point=acceptedGrubFullCurrentStartingPoint(refreshedProof,active);
 }else if(active.id===ACCEPTED_GRUB_UK_RUNTIME.deployment){
  assert(baselineRecord.acceptedGrubUkServingProof,'Exact accepted UK Grub recovery receipt required');
  acceptedGrubUkCurrentStartingPoint(baselineRecord.acceptedGrubUkServingProof,active);
@@ -79,7 +100,11 @@ if(active.id===UK_GRUB_OWNED_ROLLBACK.deployment.id){
 if(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).currentRuntimePreservation20261016&&point.kind!==ACCEPTED_CURRENT_RUNTIME_KIND)assertPreservedRuntimeLineage(point);
 const BASE=point.source,VERSION=point.version;
 let receipt={id:null};
-if(point.kind===ACCEPTED_GRUB_UK_RUNTIME_KIND){
+if(point.kind===ACCEPTED_GRUB_RANKING_RUNTIME_KIND){
+ receipt={id:ACCEPTED_GRUB_RANKING_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_GRUB_RANKING_RUNTIME_KIND,originalReleaseStatus:ACCEPTED_GRUB_RANKING_RUNTIME.status,featureAcceptance:false,clinicalContractActivated:false};
+}else if(point.kind===ACCEPTED_GRUB_FULL_RUNTIME_KIND){
+ receipt={id:ACCEPTED_GRUB_FULL_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_GRUB_FULL_RUNTIME_KIND,originalReleaseStatus:ACCEPTED_GRUB_FULL_RUNTIME.status,featureAcceptance:false,clinicalContractActivated:false};
+}else if(point.kind===ACCEPTED_GRUB_UK_RUNTIME_KIND){
  receipt={id:ACCEPTED_GRUB_UK_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_GRUB_UK_RUNTIME_KIND,originalReleaseStatus:ACCEPTED_GRUB_UK_RUNTIME.status,featureAcceptance:false,clinicalContractActivated:false};
 }else if(point.kind===ACCEPTED_GRUB_RUNTIME_KIND){
  receipt={id:ACCEPTED_GRUB_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_GRUB_RUNTIME_KIND,originalReleaseStatus:ACCEPTED_GRUB_RUNTIME.status,featureAcceptance:false,clinicalContractActivated:false};

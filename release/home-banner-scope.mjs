@@ -1,3 +1,4 @@
+import {currentRuntimePreservationHistoricalView} from './current-runtime-preservation-20261016.mjs';
 import {coachingHistoricalRef,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 // Extend the historical exact-source gates only for Matt's approved homepage insertion.
 import assert from 'node:assert/strict';
@@ -11,6 +12,10 @@ export const FOOTER_RUN=36723365840;
 export const HOME_BANNER_PATHS=new Set(['frontend/member/fit-v3-images/sst-header-brand-mark-20261001.png','home-compact-footer.mjs','.github/workflows/home-compact-proof.yml','release/home-compact-proof.cjs','preview/home-banner/free-design.mjs','preview/home-banner/cream-footer.mjs','home-route-banner-legacy.mjs','cream-navigation.mjs','preview/home-banner/four-step.mjs','preview/home-banner/cream-header.mjs','preview/home-banner/verify-spacing.cjs','.github/workflows/cloudflare-production-promote.yml','release/home-banner-live.cjs','home-route-banner.mjs','home-route-font.mjs','public-startup-stability.mjs','release/member-details-preservation.mjs','release/home-banner-scope.mjs','tests/home-route-banner.test.mjs','.github/workflows/home-banner-preview.yml','preview/home-banner/banner.mjs','preview/home-banner/assets/barlow-condensed-700.ttf','preview/home-banner/assets/OFL.txt','preview/home-banner/build.mjs','preview/home-banner/worker.mjs','preview/home-banner/wrangler.jsonc','preview/home-banner/verify.cjs']);
 const read=(ref,p)=>execFileSync('git',['show',ref+':'+p],{encoding:'utf8'});
 export function originalHomeSpeedSource(path,source){
+ if(path==='home-speed-repair.mjs'){
+  const view=currentRuntimePreservationHistoricalView();
+  if(view.head!==view.rawHead){const actual=view.currentContent(view.rawHead,path),original=view.content('HEAD',path);assert(source===actual||source===original,'Only exact independently authenticated current or original home speed bytes may enter the historical comparison');if(source===actual)source=original;}
+ }
  if(path==='release/member-details-preservation.mjs')source=source.replace("import {removeCatalogueBenefits} from '../catalogue-benefits.mjs';\n",'').replace(" // Reverse the exact already-live catalogue copy before the older banner.\n // The banner's strict signatures and the full-page comparison still reject drift.\n",'').replace("removeCatalogueBenefits(body.toString('utf8'),path)","body.toString('utf8')");
  if(path==='release/member-details-preservation.mjs')source=source.replace("import {restoreHomeFont} from '../shift-coach/public-font-delivery.mjs';\n",'').replace("removeCreamNavigation(restoreHomeFont(path,body.toString('utf8')))","removeCreamNavigation(body.toString('utf8'))");
  if(path==='public-startup-stability.mjs')source=source.replace("import {withBookVoice} from './book-voice.mjs';\n",'').replace('return withBookVoice(request,response);','return response;').replace('return withBookVoice(request,new Response(after,{status:response.status,statusText:response.statusText,headers}));','return new Response(after,{status:response.status,statusText:response.statusText,headers});');

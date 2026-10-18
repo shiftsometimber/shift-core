@@ -13,13 +13,13 @@ test('current UK bytes authenticate before the seven finite historical compariso
  withAcceptedUkGrubPreservation(record,head,view=>{
   const overlap=['grub-expansion-authority-v1.mjs','member-experience/grub-intelligence.mjs','member-experience/grub-workspace.mjs','member-experience/tests/grub-everyday.test.mjs'];
   for(const path of overlap){
-   assert.equal(blob(head,path),blob(leaf.acceptedSource,path));
+   const accepted=leaf.acceptedFullUkGrubPreservation20261018?.paths.includes(path)?leaf.acceptedFullUkGrubPreservation20261018.acceptedSource:leaf.acceptedSource;assert.equal(blob(head,path),blob(accepted,path));
    assert.notEqual(blob(head,path),blob(leaf.basisSource,path));
    assert.equal(view.historicalBlob('HEAD',path),blob(leaf.basisSource,path));
    assert.equal(view.historicalContent(head,path),content(leaf.basisSource,path));
   }
   for(const path of Object.keys(leaf.modules))assert.equal(view.historicalContent(head,path),content(leaf.basisSource,path));
-  const path='member-product-v7.js';assert.equal(view.historicalBlob(head,path),blob(head,path),'Other UK paths retain native current identity');
+  const path='member-product-v7.js',historicalRef=leaf.historicalProjectionPaths.includes(path)?leaf.basisSource:head;assert.equal(view.historicalBlob(head,path),blob(historicalRef,path),'Only independently authenticated exact overlap paths use the declared historical frame');
   assert.equal(view.historicalContent(leaf.acceptedSource,overlap[0]),content(leaf.acceptedSource,overlap[0]),'Historical references pass through unchanged');
   escaped=view.historicalBlob;
  });
