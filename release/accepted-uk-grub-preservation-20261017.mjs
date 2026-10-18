@@ -1,3 +1,4 @@
+import {websiteEditorialCompletionHistoricalView,assertWebsiteEditorialCompletionView} from './website-editorial-scope-20261018.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {immutableHistoryExecFileSync as execFileSync,withImmutableHistoryVerification,assertGitTrackedSourceVisible} from './immutable-git-facts.mjs';
@@ -41,7 +42,8 @@ export function withoutAcceptedUkGrubMaintenance(record,path,value){
  const restored=reverse(value,pin.inversePairs);assert.equal(sha(restored),pin.beforeSHA256,'Whole original a3 maintenance bytes must restore');return restored;
 }
 
-export function withAcceptedUkGrubPreservation(c,head,compare){
+function withAcceptedUkGrubPreservationBeforeEditorial(c,head,compare,editorialFrame=null){
+ const {git,currentHead,clean,difference,entries}=editorialFrame??ukBeforeEditorialNative;
  assert.equal(typeof compare,'function');clean();
  return withImmutableHistoryVerification(()=>{
   const fresh=()=>assert.equal(currentHead(),head,'Current-runtime preservation source drift: Raw HEAD changed during UK proof');fresh();
@@ -79,7 +81,7 @@ export function withAcceptedUkGrubPreservation(c,head,compare){
    const before=entries(basis),oldOverlap=leaf.paths.filter(path=>before.has(path));
    assert.deepEqual(sorted(oldOverlap.filter(path=>c.acceptedGrubPreservation20261017.paths.includes(path))),['grub-expansion-authority-v1.mjs','member-experience/grub-intelligence.mjs','member-experience/grub-workspace.mjs','member-experience/tests/grub-everyday.test.mjs']);
    const maintenance=[...Object.keys(leaf.modules),...Object.keys(leaf.newFiles),self];
-   const native=readSeoNativeImmutableFacts({head,base:basis,payload:ukPayload,maintenanceSource:c.maintenanceSource,paths:leaf.paths,maintenancePaths:maintenance,inversePaths:[...oldOverlap,...Object.keys(leaf.modules),self],ledger,includeModes:true});
+   const native=(editorialFrame?editorialFrame.nativeFacts:readSeoNativeImmutableFacts)({head,base:basis,payload:ukPayload,maintenanceSource:c.maintenanceSource,paths:leaf.paths,maintenancePaths:maintenance,inversePaths:[...oldOverlap,...Object.keys(leaf.modules),self],ledger,includeModes:true});
    const producer=readSeoNativeImmutableFacts({head:accepted,base:accepted,payload:accepted,maintenanceSource:accepted,paths:leaf.paths,maintenancePaths:[],inversePaths:[],ledger});
    const requested=new Map([[head,new Set([...leaf.paths,...maintenance,ledger])],[ukPayload,new Set(leaf.paths)],[c.maintenanceSource,new Set(maintenance)],[basis,new Set([...oldOverlap,...Object.keys(leaf.modules),self,ledger])]]);
    const verifiedBlob=(ref,path)=>{const r=ref==='HEAD'?head:ref;if((ref==='HEAD'||ref===head)&&fullProjection.has(path))return git('rev-parse',ukPayload+':'+path).trim();if(r===accepted&&(leaf.paths.includes(path)||path===ledger))return producer.blob(r,path);if(requested.get(r)?.has(path))return native.blob(ref,path);return git('rev-parse',r+':'+path).trim();};
@@ -127,4 +129,34 @@ export function withAcceptedUkGrubPreservation(c,head,compare){
    try{return compare(Object.freeze({recordKey:leaf.recordKey,priorRecord:prior,historicalBlob:lookup('blob'),historicalContent:lookup('content')}));}finally{active=false;}
   }finally{fresh();clean();}
  });
+}
+
+// The website editorial extension is admitted independently before the earlier
+// UK preservation proof sees its exact historical source. Every original UK
+// assertion executes; the current tree is checked at this boundary and each use.
+const ukBeforeEditorialNative=Object.freeze({git,currentHead,clean,difference,entries});
+export function withAcceptedUkGrubPreservation(c,head,compare){
+ const outer=websiteEditorialCompletionHistoricalView();
+ if(!outer)return withAcceptedUkGrubPreservationBeforeEditorial(c,head,compare);
+ assert.equal(head,outer.rawHead,'Actual raw HEAD required for website editorial UK proof');
+ assertWebsiteEditorialCompletionView(outer);
+ const ref=r=>r==='HEAD'||r===outer.rawHead?outer.head:r;
+ const arg=value=>{
+  if(value==='HEAD'||value===outer.rawHead)return outer.head;
+  if(typeof value==='string')for(const r of ['HEAD',outer.rawHead])if(value.startsWith(r+':')||value.startsWith(r+'^{'))return outer.head+value.slice(r.length);
+  return value;
+ };
+ const run=f=>{outer.assertCurrentHead();try{return f();}finally{outer.assertCurrentHead();}};
+ const frame=Object.freeze({
+  git:(...args)=>run(()=>ukBeforeEditorialNative.git(...args.map(arg))),
+  currentHead:()=>run(()=>ukBeforeEditorialNative.currentHead()),
+  clean:()=>run(()=>ukBeforeEditorialNative.clean()),
+  difference:(a,b)=>run(()=>ukBeforeEditorialNative.difference(ref(a),ref(b))),
+  entries:r=>run(()=>ukBeforeEditorialNative.entries(ref(r))),
+  nativeFacts:options=>run(()=>{
+   const native=readSeoNativeImmutableFacts({...options,head:ref(options.head)});
+   return Object.freeze({blob:(r,p)=>run(()=>native.blob(ref(r),p)),content:(r,p)=>run(()=>native.content(ref(r),p)),mode:(r,p)=>run(()=>native.mode(ref(r),p))});
+  })
+ });
+ try{return withImmutableHistoryVerification(()=>withAcceptedUkGrubPreservationBeforeEditorial(c,head,compare,frame));}finally{outer.assertCurrent();}
 }
