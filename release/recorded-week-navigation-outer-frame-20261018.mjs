@@ -1,3 +1,4 @@
+import {websiteEditorialCompletionHistoricalView,assertWebsiteEditorialCompletionView} from './website-editorial-scope-20261018.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,lstatSync,realpathSync,existsSync} from 'node:fs';
@@ -70,7 +71,8 @@ function receipt(){
  const ownedLines=decoded.logs.toString('utf8').split('\n').flatMap(line=>{const i=line.indexOf('{"kind":"owned_runtime_deployment"');if(i<0)return[];try{return[JSON.parse(line.slice(i))]}catch{return[]}});
  assert.equal(ownedLines.filter(x=>JSON.stringify(x)===JSON.stringify(owned)).length,1);assert.equal(verifiedOwnedRuntime(active,run,job,owned),true);return owned;
 }
-function prove(rawHead){
+function prove(rawHead,editorialOuter=null){
+ const {clean:proofClean,readFileSync:proofRead}=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean,readFileSync};
  const record=JSON.parse(content(rawHead,LEDGER)),c=record[KEY];if(!c)return null;
  const{maintenanceSource,...fixed}=data(c);assert.deepEqual(fixed,policy.record);assert.equal(c.base,BASE);assert.equal(c.payload,PAYLOAD);assert.deepEqual(c.paths,fixedPaths);
  assert.deepEqual(c.maintenancePaths,fixedMaintenance);assert.equal(sha(Buffer.from(JSON.stringify(policy.maintenanceEntries))),MAINTENANCE_DECLARATION_SHA256,'Only the exact original guard hooks are admitted');
@@ -79,22 +81,23 @@ function prove(rawHead){
  assert.deepEqual(sorted(diff(c.base,rawHead)),sorted([...new Set([...c.paths,...c.maintenancePaths,LEDGER])]),'Every unrelated source path must remain exact');
  for(const p of c.paths){
   assert.equal(mode(rawHead,p),'100644');assert.equal(object(rawHead,p),object(c.payload,p));const value=bytes(rawHead,p),restored=assertExactNavigationPayload(p,value);
-  assert(readFileSync(resolve(process.cwd(),p)).equals(value),'Fresh navigation working bytes changed');
+  assert(proofRead(resolve(process.cwd(),p)).equals(value),'Fresh navigation working bytes changed');
   if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(bytes(c.base,p)),'Whole original navigation source must restore');
  }
  for(const p of c.maintenancePaths){
-  assert.equal(mode(rawHead,p),'100644');assert.equal(object(rawHead,p),object(maintenanceSource,p));const value=bytes(rawHead,p);assert(readFileSync(resolve(process.cwd(),p)).equals(value),'Fresh maintenance working bytes changed');
+  assert.equal(mode(rawHead,p),'100644');assert.equal(object(rawHead,p),object(maintenanceSource,p));const value=bytes(rawHead,p);assert(proofRead(resolve(process.cwd(),p)).equals(value),'Fresh maintenance working bytes changed');
   const entry=policy.maintenanceEntries.find(x=>x.path===p);assert(entry);const restored=inverse(p,value,entry);
   if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(bytes(c.base,p)),'Every original Core assertion must restore byte for byte: '+p);
  }
  delete record[KEY];assert.deepEqual(record,JSON.parse(content(c.base,LEDGER)),'Every prior approval, failure, receipt and record must remain exact');
  for(const p of ['wrangler.jsonc','wrangler.coaching.jsonc','wrangler.hq-management.jsonc','package.json','package-lock.json','.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','shift-coach/worker.mjs','member-experience/treatment-week-client.mjs','my-timber-app','public'])assert.equal(object(rawHead,p),object(c.base,p),'Protected navigation boundary changed: '+p);
- clean(rawHead);return c;
+ proofClean(rawHead);return c;
 }
-export function actualNavigationOuterFrame(){
- const rawHead=clean(),env=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),cwd=process.cwd(),c=prove(rawHead);if(!c)return null;
+function actualNavigationOuterFrameBeforeEditorial(editorialOuter=null){
+ const {clean}=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean:navigationNativeCleanBeforeEditorial};
+ const rawHead=clean(),env=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),cwd=process.cwd(),c=prove(rawHead,editorialOuter);if(!c)return null;
  const assertCurrent=()=>{assert.equal(process.cwd(),cwd);assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env);clean(rawHead);};
- const finish=()=>{assertCurrent();assert.deepEqual(prove(rawHead),c);};
+ const finish=()=>{assertCurrent();assert.deepEqual(prove(rawHead,editorialOuter),c);};
  const map=r=>r==='HEAD'||r===rawHead?c.base:r,current=r=>r==='HEAD'||r===rawHead||r===c.base;
  const native=(kind,r,p)=>kind==='read'?object(r==='HEAD'?rawHead:r,p):content(r==='HEAD'?rawHead:r,p);
  const auth=(value,r,p,kind='read')=>{const ref=r==='HEAD'?rawHead:r,expected=native(kind,r,p);if(value===expected||kind==='read'&&value===native('content',r,p))return true;const prefix='tree '+ref+':'+p+'\n',shown=kind==='content'?expected:native('content',r,p);return shown.startsWith(prefix)&&value===shown.replace(prefix,'tree '+r+':'+p+'\n');};
@@ -108,3 +111,37 @@ export const ACTUAL_NAVIGATION_PATHS=Object.freeze(policy.record.paths);
 export const ACTUAL_NAVIGATION_MAINTENANCE=Object.freeze(policy.record.maintenancePaths);
 export function assertNavigationOuterChainContext(repair){const navigation=actualNavigationOuterFrame();if(!navigation)return;try{assert.equal(repair.rawHead,navigation.rawHead);assert(repair.ciExecutionContext);assert.equal(repair.ciExecutionContext.rawHead,navigation.rawHead);}finally{navigation.finish();}}
 export function actualNavigationChangedPath(status,p){const navigation=actualNavigationOuterFrame();assert(navigation);try{assert([...ACTUAL_NAVIGATION_PATHS,...ACTUAL_NAVIGATION_MAINTENANCE].includes(p));const row=text('ls-tree',navigation.head,'--',path(p));if(row)assert(/^100644 blob [a-f0-9]{40}\t/.test(row));assert.equal(status,row?'M':'A');return true;}finally{navigation.finish();}}
+
+const navigationNativeCleanBeforeEditorial=clean;
+
+function navigationEditorialProofFacts(outer){
+ assertWebsiteEditorialCompletionView(outer);
+ return Object.freeze({
+  clean:(expected)=>{assertWebsiteEditorialCompletionView(outer);clean(outer.rawHead);if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
+  readFileSync:filename=>{
+   outer.assertCurrent();const full=resolve(filename),prefix=process.cwd()+'/';assert(full.startsWith(prefix),'Only native tracked navigation files may be projected');
+   const p=full.slice(prefix.length);assert([...fixedPaths,...fixedMaintenance].includes(p),'Exact navigation source path required');
+   const actual=readFileSync(full);assert(actual.equals(bytes(outer.rawHead,p)),'Actual current navigation working source changed');
+   return bytes(outer.head,p);
+  }
+ });
+}
+export function actualNavigationOuterFrame(){
+ const outer=websiteEditorialCompletionHistoricalView();if(!outer)return actualNavigationOuterFrameBeforeEditorial();
+ assertWebsiteEditorialCompletionView(outer);const inner=actualNavigationOuterFrameBeforeEditorial(outer);assert(inner,'The admitted predecessor must retain its navigation frame');
+ const ref=r=>r==='HEAD'||r===outer.rawHead?'HEAD':r,unary=fn=>(r,p)=>fn(ref(r),p),binary=fn=>(a,b)=>fn(ref(a),ref(b));
+ const authentic=(v,r,p)=>outer.nativeAuthentic(v,r,p)||outer.nativeContentAuthentic(v,r,p);
+ const frame={...inner,rawHead:outer.rawHead,
+  assertCurrent:()=>{outer.assertCurrent();inner.assertCurrent();},
+  assertCurrentHead:()=>{outer.assertCurrentHead();inner.assertCurrentHead();},
+  finish:()=>{inner.finish();outer.assertCurrent();},
+  affected:p=>outer.affected(p)||inner.affected(p),
+  currentContent:outer.currentContent,authentic,nativeAuthentic:authentic,nativeContentAuthentic:outer.nativeContentAuthentic,
+  read:unary(inner.read),blob:unary(inner.blob),content:unary(inner.content),diff:binary(inner.diff),ancestor:binary(inner.ancestor),
+  projectRead:r=>unary(inner.projectRead(outer.projectRead(r))),
+  projectContent:r=>unary(inner.projectContent(outer.projectContent(r))),
+  projectDiff:r=>binary(inner.projectDiff(outer.projectDiff(r))),
+  projectAncestor:r=>binary(inner.projectAncestor(outer.projectAncestor(r)))
+ };
+ frames.add(frame);frame.assertCurrent();return Object.freeze(frame);
+}
