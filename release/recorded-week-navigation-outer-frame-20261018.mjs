@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {readFileSync,lstatSync,realpathSync,existsSync} from 'node:fs';
-import {resolve} from 'node:path';
+import {readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,existsSync} from 'node:fs';
+import {resolve,isAbsolute,dirname} from 'node:path';
+import {homedir} from 'node:os';
 import {createHash} from 'node:crypto';
 import {decodeSeoBlobBatch} from './seo-native-immutable-facts-20261016.mjs';
 import {verifiedOwnedRuntime} from '../shift-coach/cancelled-release-recovery.mjs';
@@ -12,7 +13,7 @@ const BASE='0e4a765e7a360d705e2424264e0bcfcc1d6652be',PAYLOAD='0d0a1c80a6e461dd6
 const fixedPaths=Object.freeze(['frontend/member/member-progress-v1.js','member-experience/staging/verify-treatment-week-navigation.mjs']);
 const fixedMaintenance=Object.freeze(['release/accepted-uk-grub-preservation-20261017.mjs','release/approved-runtime-composition.mjs','release/combined-finite-scope-20261014.mjs','release/current-runtime-preservation-20261016.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','release/recorded-week-navigation-outer-policy-20261018.json','tests/recorded-week-navigation-preservation-20261018.test.mjs','member-experience/tests/weight-import-mapping-ui.test.mjs']);
 const MAINTENANCE_DECLARATION_SHA256='eb6089f8cfef0f631e1c910a5e5e4e0da88babd83e6ad72d2a7a0c9374dbab42';
-const native=[execFileSync,readFileSync,lstatSync,realpathSync,createHash,process.cwd];
+const native=[execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd];
 const frames=new WeakSet(),oid=/^[a-f0-9]{40}$/,sorted=a=>[...a].sort(),sha=b=>createHash('sha256').update(b).digest('hex');
 const git=(...args)=>execFileSync('/usr/bin/git',['--no-replace-objects',...args],{maxBuffer:64e6});
 const text=(...args)=>git(...args).toString('utf8').trimEnd();
@@ -26,7 +27,7 @@ function data(v,seen=new Set()){
  seen.delete(v);return out;
 }
 function clean(expected){
- assert.deepEqual([execFileSync,readFileSync,lstatSync,realpathSync,createHash,process.cwd],native,'Native navigation source functions changed');
+ assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd],native,'Native navigation source functions changed');
  assert(!Object.keys(process.env).some(k=>/^GIT_/.test(k)&&k!=='GIT_PAGER'),'Git source selectors are forbidden');
  const root=process.cwd(),dir=resolve(root,'.git');assert.equal(realpathSync(root),root);assert.equal(realpathSync(dir),dir);assert(lstatSync(dir).isDirectory()&&!lstatSync(dir).isSymbolicLink());
  for(const p of ['commondir','gitdir','info/grafts','objects/info/alternates','shallow'])assert(!existsSync(resolve(dir,p)),'Ordinary complete native source required: '+p);
@@ -35,6 +36,65 @@ function clean(expected){
  for(const row of git('ls-files','-v','-z').toString('utf8').split('\0').filter(Boolean))assert(row.startsWith('H '),'Hidden/sparse/assume-unchanged source is forbidden');
  const h=head();assert(oid.test(h));if(expected)assert.equal(h,expected,'Actual navigation HEAD moved');return h;
 }
+// Recheck current source inputs at every use. No approval, reader or verdict is cached.
+function sourceFileState(filename){
+ const s=lstatSync(filename,{throwIfNoEntry:false});if(!s)return null;
+ assert(s.isFile()||s.isSymbolicLink(),'Ordinary native source metadata required');
+ const value=readFileSync(filename);assert(value.length<=32e6,'Bounded native source metadata required');
+ return[s.mode,s.isSymbolicLink()?readlinkSync(filename):null,realpathSync(filename),sha(value)];
+}
+function sourceReplacementState(filename,budget={left:1024}){
+ const s=lstatSync(filename,{throwIfNoEntry:false});if(!s)return null;
+ assert(!s.isSymbolicLink(),'Native replacement metadata cannot be redirected');
+ if(!s.isDirectory())return sourceFileState(filename);
+ return readdirSync(filename).sort().map(name=>{assert(--budget.left>=0);return[name,sourceReplacementState(resolve(filename,name),budget)];});
+}
+function freshSourceContext(){
+ const files=new Set(),add=filename=>{assert(filename&&!filename.includes('\n')&&!filename.includes('\0'));files.add(resolve(filename));};
+ const root=process.cwd(),dir=resolve(root,'.git');
+ for(const p of ['HEAD','index','config','config.worktree','packed-refs'])add(resolve(dir,p));
+ for(const variable of ['GIT_CONFIG_SYSTEM','GIT_CONFIG_GLOBAL'])for(const p of text('var',variable).split('\n'))if(p){assert(isAbsolute(p));add(p);}
+ const fields=git('config','--null','--show-origin','--includes','--list').toString('utf8').split('\0');assert.equal(fields.pop(),'');assert.equal(fields.length%2,0);
+ for(let i=0;i<fields.length;i+=2){
+  const origin=fields[i],entry=fields[i+1],nl=entry.indexOf('\n'),key=(nl<0?entry:entry.slice(0,nl)).toLowerCase(),value=nl<0?'':entry.slice(nl+1),file=origin.startsWith('file:')?resolve(origin.slice(5)):null;
+  if(file)add(file);
+  if(/^include(?:if\..*)?\.path$/.test(key)){
+   assert(file&&value&&!value.includes('%('));let filename=value;
+   if(filename.startsWith('~/'))filename=resolve(homedir(),filename.slice(2));else{assert(!filename.startsWith('~'));if(!isAbsolute(filename))filename=resolve(dirname(file),filename);}add(filename);
+  }
+ }
+ let ref='HEAD';for(let i=0;i<8;i++){
+  const filename=resolve(dir,ref),s=lstatSync(filename,{throwIfNoEntry:false});if(!s)break;
+  add(filename);const value=readFileSync(filename,'utf8').trim();if(!value.startsWith('ref: '))break;
+  ref=value.slice(5);assert(/^refs\/[A-Za-z0-9_./-]+$/.test(ref)&&!ref.split('/').some(p=>!p||p==='.'||p==='..'));add(resolve(dir,ref));assert(i<7);
+ }
+ const snapshot=()=>{
+  assert.equal(process.cwd(),root,'Navigation source working directory moved');
+  assert.equal(realpathSync(root),root);assert.equal(realpathSync(dir),dir);
+  const s=lstatSync(dir);assert(s.isDirectory()&&!s.isSymbolicLink());
+  for(const p of ['commondir','gitdir','info/grafts','objects/info/alternates','shallow'])assert(!existsSync(resolve(dir,p)),'Ordinary complete native source required: '+p);
+  return JSON.stringify([s.dev,s.ino,[...files].sort().map(p=>[p,sourceFileState(p)]),sourceReplacementState(resolve(dir,'refs/replace'))]);
+ };
+ return{snapshot,entry:snapshot()};
+}
+export function nativeNavigationFreshSourceChecker(expected){
+ clean(expected);
+ const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
+ let context;try{context=freshSourceContext();}catch{context=null;}
+ return()=>{
+  assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd],native,'Native navigation source functions changed');
+  assert.equal(process.cwd(),cwd,'Navigation source working directory moved');
+  assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),environment,'Navigation source execution environment changed');
+  if(!context){clean(expected);return;}
+  // Exact current HEAD/ref/index/config/replacement bytes retain all entry
+  // topology, staged-source and index-visibility assertions. Working source
+  // still receives a fresh native Git diff before and after caller reads.
+  assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed');
+  assert.equal(text('diff','--no-renames','--name-only','HEAD','--'),'','Fresh navigation working source changed');
+  assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed during current-source check');
+ };
+}
+
 function object(ref,p){assert(oid.test(ref));path(p);const id=text('rev-parse',ref+':'+p);assert(oid.test(id));return id;}
 function bytes(ref,p){
  const id=object(ref,p),kind=text('cat-file','-t',id);
@@ -93,7 +153,8 @@ function prove(rawHead){
 }
 export function actualNavigationOuterFrame(){
  const rawHead=clean(),env=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),cwd=process.cwd(),c=prove(rawHead);if(!c)return null;
- const assertCurrent=()=>{assert.equal(process.cwd(),cwd);assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env);clean(rawHead);};
+ const freshCurrent=nativeNavigationFreshSourceChecker(rawHead);
+ const assertCurrent=()=>{assert.equal(process.cwd(),cwd);assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env);freshCurrent();};
  const finish=()=>{assertCurrent();assert.deepEqual(prove(rawHead),c);};
  const map=r=>r==='HEAD'||r===rawHead?c.base:r,current=r=>r==='HEAD'||r===rawHead||r===c.base;
  const native=(kind,r,p)=>kind==='read'?object(r==='HEAD'?rawHead:r,p):content(r==='HEAD'?rawHead:r,p);
