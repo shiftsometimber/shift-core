@@ -1,0 +1,214 @@
+{
+  "verifiedAt": "2026-10-18T15:14:49.946Z",
+  "status": "HTTP_PUBLIC_AND_ORIGIN_VERIFIED",
+  "url": "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+  "deployment": "a23ddd55-5cba-4759-8193-3b1ae573e918",
+  "source": "246eb5201c95e7c7ba1c78f645898d1258eb679c",
+  "publicationSHA256": "41a25f7c88237489bacb32b26eb28d8227614288d2c88d22139221a3bd27a2cd",
+  "publicHTMLSHA256": "f7738a0e528b2b993d7c49a1af7a66040d20f8f7fd5b36d4beab031de5fdd97a",
+  "approvedMainSHA256": "0251f5752ccc36e1d39c189058154c1aafb0fd7023f79df11e1e1556e6fc5dce",
+  "exactPublicArticleBody": true,
+  "titleCanonicalIndexabilityAuthorDatesSourcesImagesLinks": true,
+  "originalPublicationDate": "2026-03-23",
+  "actualModifiedDate": "2026-10-18",
+  "manifestCount": 895,
+  "retainedAssetHashes": 894,
+  "changedPaths": [
+    "/articles/meal-prep-busy-men.html"
+  ],
+  "unrelatedControlCount": 13,
+  "controls": {
+    "/index.html": {
+      "status": 200,
+      "sha256": "6b56ddb932d8e370be2bf2bdf9f7e1efe3ba9320b1b31634d4cb5b75fd2a4c8e",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/start-here.html": {
+      "status": 200,
+      "sha256": "14dad2fe7d566c7e80114d0c2a8ab53b10629918629ff8b3628dddfcb866edca",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/knowledge.html": {
+      "status": 200,
+      "sha256": "0318dcca549b344370de332b77306cec4fa229ec7ad452c6f5e144c4343a2830",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/sitemap.xml": {
+      "status": 200,
+      "sha256": "7d35f527e237c7259eb48400d2b7d319df7243d9845f9b87490af651de66a7ea",
+      "headers": {
+        "content-type": "application/xml; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/shift-health.html": {
+      "status": 200,
+      "sha256": "84a78995c704cf9afed4a5238f5b9515e091cebe7b1e993f94e2e8f3595d9a47",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/shift-recovery-v6.css": {
+      "status": 200,
+      "sha256": "3edc9ac6a663ef3bd16bd7bc13215275dd8c86c46f2f550d3aac4cf0c500d632",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/shift-calculator-flow-v1.css": {
+      "status": 200,
+      "sha256": "9dac5b39085267d066f9f8a5212010696514b115558106d3866e193f9deb0f59",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/ask-timber-drawer-v2.css": {
+      "status": 200,
+      "sha256": "776b4381973eb9605e8b72f3fed61428c361b13702f35e35a02426376ec37142",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/seo-wave2-v15.css": {
+      "status": 200,
+      "sha256": "e97720b39d98dd38864b4df6698e487b8fa85ac2efcb49ede162f89b34eafb8f",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/v136-desolation-recovery.css": {
+      "status": 200,
+      "sha256": "28a814a60931993d1aab212058f889e11fc638608561c1dd091a76f78af43585",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/v137-estate-closeout.css": {
+      "status": 200,
+      "sha256": "a0e9927ac92becaf57f2c787985c78c5d4acea3b3b54c4a1c78b5f479358346f",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/header-navigation-v2.css": {
+      "status": 200,
+      "sha256": "fede0fcbc334af6c4183765006c2fde71909ed5e3bd0db365f77a8e21e2fefc4",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/shift-service-bridge-v1.css": {
+      "status": 200,
+      "sha256": "8c7b60f77137d5d5694a3338b84e3492fff09ed06e1b86c246d6ea51ee9c57e9",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    }
+  },
+  "sitemapContainsURL": true,
+  "knowledgeContainsURL": true,
+  "headBodyless": true,
+  "browserAcceptance": false,
+  "indexedByGoogle": "not established",
+  "ingestion": "not performed",
+  "analyticsExecuted": false,
+  "coreWorkerWrites": 0,
+  "customerRecordsRead": 0,
+  "customerRecordWrites": 0
+}

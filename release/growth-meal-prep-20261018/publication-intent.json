@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-18T15:13:55.431Z",
+  "base": "c3b6583f-c1b9-483a-9804-74647cc3336b",
+  "source": "246eb5201c95e7c7ba1c78f645898d1258eb679c",
+  "approvedBy": "Matt18October16:07:52BST",
+  "version": "DAILY-WEB-20261015-MEAL-PREP-APPLICATION-v2",
+  "changedPaths": [
+    "/articles/meal-prep-busy-men.html"
+  ],
+  "phaseBefore": {
+    "at": "2026-10-18T15:13:50.307Z",
+    "receipts": [
+      {
+        "run": 39136689472,
+        "job": 117702596187,
+        "currentStep": 7,
+        "publicCapturePending": true
+      }
+    ]
+  },
+  "phaseAtUse": {
+    "at": "2026-10-18T15:13:54.432Z",
+    "receipts": [
+      {
+        "run": 39136689472,
+        "job": 117702596187,
+        "currentStep": 7,
+        "publicCapturePending": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "completedAt": "2026-10-18T15:16:14.574729+00:00",
+  "status": "PUBLISHED_AND_LIVE_VERIFIED",
+  "version": "DAILY-WEB-20261015-MEAL-PREP-APPLICATION-v2",
+  "url": "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+  "deployment": "a23ddd55-5cba-4759-8193-3b1ae573e918",
+  "sourceCommit": "246eb5201c95e7c7ba1c78f645898d1258eb679c",
+  "approvalAt": "2026-10-18T16:07:52+01:00",
+  "approvedPackages": 8,
+  "publishedToday": 1,
+  "remainingExactApprovedBuffer": 7,
+  "sourceMainSHA256": "0251f5752ccc36e1d39c189058154c1aafb0fd7023f79df11e1e1556e6fc5dce",
+  "servedSourceSHA256": "41a25f7c88237489bacb32b26eb28d8227614288d2c88d22139221a3bd27a2cd",
+  "publicHTMLSHA256": "f7738a0e528b2b993d7c49a1af7a66040d20f8f7fd5b36d4beab031de5fdd97a",
+  "originalPublication": "2026-03-23",
+  "actualModifiedDate": "2026-10-18",
+  "retainedAssets": 894,
+  "unchangedControls": 13,
+  "viewports": [
+    380,
+    1440
+  ],
+  "analyticsExecuted": false,
+  "modelCalls": 0,
+  "customerRecordsRead": 0,
+  "customerRecordWrites": 0,
+  "coreWorkerWrites": 0,
+  "googleIndexed": "not established",
+  "knowledgeIngested": "not performed",
+  "states": {
+    "copyApproved": true,
+    "published": true,
+    "httpVerified": true,
+    "browserVerified": true,
+    "independentClinicalReview": false
+  },
+  "failureHistory": [
+    {
+      "operation": "Local shared clone from partial source checkout",
+      "result": "Failed before any source commit or provider mutation; promisor object8b14e3c unavailable in local upload-pack",
+      "correction": "Fresh filtered clone from actual GitHub source branch; normal7bf checkout, five-path source commit246eb520, expected-unoccupied-ref push and remote readback succeeded"
+    }
+  ],
+  "limits": "Viewport emulation and JS-disabled public-page rendering. No physical device/Safari or signed-in Grub acceptance inferred. Seven future approved versions retain due dates and source/owner/safety guards."
+}

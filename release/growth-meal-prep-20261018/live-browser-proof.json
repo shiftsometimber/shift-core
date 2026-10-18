@@ -1,0 +1,142 @@
+{
+  "verifiedAt": "2026-10-18T15:15:28.284Z",
+  "pass": true,
+  "url": "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+  "browser": "153.0.8010.12",
+  "javascriptDisabled": true,
+  "analyticsExecuted": false,
+  "actualPublicPage": true,
+  "cases": [
+    {
+      "width": 380,
+      "status": 200,
+      "title": "Meal prep for busy men: a two-meal plan for a busy week",
+      "overflow": 0,
+      "headings": [
+        {
+          "text": "Choose two real moments",
+          "id": "choose-two-real-moments"
+        },
+        {
+          "text": "Shop from your kitchen first",
+          "id": "shop-from-your-kitchen-first"
+        },
+        {
+          "text": "Give each meal a different job",
+          "id": "give-each-meal-a-different-job"
+        },
+        {
+          "text": "Put storage into the plan",
+          "id": "put-storage-into-the-plan"
+        },
+        {
+          "text": "Cooling, storage and reheating",
+          "id": ""
+        },
+        {
+          "text": "Keep one easy alternative",
+          "id": "keep-one-easy-alternative"
+        },
+        {
+          "text": "Check what actually helped",
+          "id": "check-what-actually-helped"
+        },
+        {
+          "text": "Sources",
+          "id": "sources"
+        },
+        {
+          "text": "Your next step",
+          "id": "next-step"
+        }
+      ],
+      "links": [
+        {
+          "label": "NHS: The Eatwell Guide",
+          "href": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        },
+        {
+          "label": "Food Standards Agency: chilling, freezing and defrosting",
+          "href": "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely"
+        },
+        {
+          "label": "Food Standards Agency: safe storage and reheating",
+          "href": "https://www.gov.uk/government/publications/home-food-fact-checker"
+        },
+        {
+          "label": "Build a shopping list in Grub →",
+          "href": "/member/grub"
+        }
+      ],
+      "outOfBounds": [],
+      "review": "Editorial provenance\n\nEarlier editorial source check recorded: 2 October 2026. Meal-planning copy and source notes prepared: 15 October 2026. The listed sources have not been newly reviewed for this revision. Independent clinical review is not claimed. General information does not replace individual advice.",
+      "articleTextSHA256": "6f8dc84f5405e9c7b46a164b515af2f17c824c79987c78d59c59f51b7b0fc370"
+    },
+    {
+      "width": 1440,
+      "status": 200,
+      "title": "Meal prep for busy men: a two-meal plan for a busy week",
+      "overflow": 0,
+      "headings": [
+        {
+          "text": "Choose two real moments",
+          "id": "choose-two-real-moments"
+        },
+        {
+          "text": "Shop from your kitchen first",
+          "id": "shop-from-your-kitchen-first"
+        },
+        {
+          "text": "Give each meal a different job",
+          "id": "give-each-meal-a-different-job"
+        },
+        {
+          "text": "Put storage into the plan",
+          "id": "put-storage-into-the-plan"
+        },
+        {
+          "text": "Cooling, storage and reheating",
+          "id": ""
+        },
+        {
+          "text": "Keep one easy alternative",
+          "id": "keep-one-easy-alternative"
+        },
+        {
+          "text": "Check what actually helped",
+          "id": "check-what-actually-helped"
+        },
+        {
+          "text": "Sources",
+          "id": "sources"
+        },
+        {
+          "text": "Your next step",
+          "id": "next-step"
+        }
+      ],
+      "links": [
+        {
+          "label": "NHS: The Eatwell Guide",
+          "href": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        },
+        {
+          "label": "Food Standards Agency: chilling, freezing and defrosting",
+          "href": "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely"
+        },
+        {
+          "label": "Food Standards Agency: safe storage and reheating",
+          "href": "https://www.gov.uk/government/publications/home-food-fact-checker"
+        },
+        {
+          "label": "Build a shopping list in Grub →",
+          "href": "/member/grub"
+        }
+      ],
+      "outOfBounds": [],
+      "review": "Editorial provenance\n\nEarlier editorial source check recorded: 2 October 2026. Meal-planning copy and source notes prepared: 15 October 2026. The listed sources have not been newly reviewed for this revision. Independent clinical review is not claimed. General information does not replace individual advice.",
+      "articleTextSHA256": "6f8dc84f5405e9c7b46a164b515af2f17c824c79987c78d59c59f51b7b0fc370"
+    }
+  ],
+  "limits": "Chromium viewport emulation, not physical iPhone/Safari or signed-in Grub acceptance"
+}

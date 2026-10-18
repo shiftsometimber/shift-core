@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-18T15:15:49.379Z",
+  "id": "a23ddd55-5cba-4759-8193-3b1ae573e918",
+  "created_on": "2026-10-18T15:13:56.894102Z",
+  "stages": [
+    {
+      "name": "queued",
+      "started_on": "2026-10-18T15:13:56.894102Z",
+      "ended_on": null,
+      "status": "active"
+    },
+    {
+      "name": "initialize",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "clone_repo",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "build",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-10-18T15:13:58.260236Z",
+      "status": "success"
+    }
+  ],
+  "latest_stage": {
+    "name": "deploy",
+    "started_on": null,
+    "ended_on": "2026-10-18T15:13:58.260236Z",
+    "status": "success"
+  },
+  "canonical": "a23ddd55-5cba-4759-8193-3b1ae573e918",
+  "source": "246eb5201c95e7c7ba1c78f645898d1258eb679c"
+}
