@@ -30,7 +30,7 @@ test('production fixture adapter preserves original assertions and rejects chang
  const baseRecord=JSON.parse(content(c.base,manifest));
  const original=content(baseRecord.foodDiaryLondonDateRepair20261015.base,path);
  assert.equal(foodDiaryLondonDateOriginalProductionWorkflow(source),original);
- for(const [from,to] of [['node release/member-runtime-deploy.mjs','node release/unreviewed-deploy.mjs'],['timeout-minutes: 60','timeout-minutes: 120'],['contents: read','contents: write']]){assert(source.includes(from));assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(source.replace(from,to)));}
+ for(const [from,to] of [['node release/member-runtime-deploy.mjs','node release/unreviewed-deploy.mjs'],['timeout-minutes: 90','timeout-minutes: 120'],['contents: read','contents: write']]){assert(source.includes(from));assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(source.replace(from,to)));}
  assert.throws(()=>foodDiaryLondonDateOriginalCiWorkflow('.github/workflows/unreviewed.yml',source));
 });
 

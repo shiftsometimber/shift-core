@@ -1,3 +1,4 @@
+import {GRUB_RANKING_CSS_OWNED_ROLLBACK,verifyCurrentGrubRankingCssOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_RANKING_RUNTIME,ACCEPTED_GRUB_RANKING_RUNTIME_KIND,ACCEPTED_GRUB_FULL_RUNTIME_KIND,verifyCurrentAcceptedGrubRankingRuntimeWindow,acceptedGrubRankingCurrentStartingPoint,assertSameAcceptedGrubRankingCurrentWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_FULL_RUNTIME,verifyCurrentAcceptedGrubFullRuntimeWindow,acceptedGrubFullCurrentStartingPoint,assertSameAcceptedGrubFullCurrentWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {UK_GRUB_SPEED_OWNED_ROLLBACK,verifyCurrentUkGrubSpeedOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
@@ -33,7 +34,13 @@ const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 const baselineRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
 let point;
-if(active.id===UK_GRUB_SPEED_OWNED_ROLLBACK.deployment.id){
+if(active.id===GRUB_RANKING_CSS_OWNED_ROLLBACK.deployment.id){
+ assert(baselineRecord.grubRankingCssOwnedRollbackProof,'Exact failed39114788801 owned ranking restoration receipt required');
+ ownedRollbackStartingPoint(baselineRecord.grubRankingCssOwnedRollbackProof,active);
+ const refreshedProof=await verifyCurrentGrubRankingCssOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameOwnedRollbackReceipt(baselineRecord.grubRankingCssOwnedRollbackProof,refreshedProof);
+ point=ownedRollbackStartingPoint(refreshedProof,active);
+}else if(active.id===UK_GRUB_SPEED_OWNED_ROLLBACK.deployment.id){
  assert(baselineRecord.ukGrubSpeedOwnedRollbackProof,'Exact failed39083891773 owned UK rollback recovery receipt required');
  ownedRollbackStartingPoint(baselineRecord.ukGrubSpeedOwnedRollbackProof,active);
  const refreshedProof=await verifyCurrentUkGrubSpeedOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});

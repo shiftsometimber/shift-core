@@ -28,3 +28,22 @@ test('final known homepage receives the tested subset even after earlier full CS
  const changed=ready.replace('data-home-inline-css="/assets/v42h.css?v=42p6">','data-home-inline-css="/assets/v42h.css?v=42p6">.unknown{}');
  assert(!repairHomeSpeed(changed,'/',{final:true}).includes(HOME_V42_CSS));
 });
+
+// Actual failure39114788801: current main settles after the early CSS stage.
+import {withSharedFooter as deliverFinalHomeCss,applySharedFooter as originalFooterHtml} from '../shared-footer.mjs';
+import {CURRENT_HOME_MAIN as finalApprovedMain} from '../home-current-main-private-20261018.mjs';
+import {HOME_RECOVERY_CSS as finalRecoveryCss} from '../home-critical-styles.mjs';
+import {RETA_STYLES as finalRetaStyles} from '../reta-styles-data.mjs';
+test('final current homepage delivers the unchanged approved CSS after late main rendering and preserves every other byte',async()=>{
+ const specs=[['/assets/v42h.css?v=42p6',HOME_BLOCKING_STYLES['/assets/v42h.css?v=42p6'],HOME_V42_CSS],['/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2',finalRetaStyles['/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'],finalRecoveryCss]];
+ const full='<html><head>'+specs.map(([path,css])=>'<style data-home-inline-css="'+path+'">'+css.replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;'))+'</style>').join('')+'</head><body>'+finalApprovedMain+'<script>const originalHomeHandler=true;</script></body></html>';
+ const request=new Request('https://example.test/'),response=s=>new Response(s,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Unrelated':'retained'}});
+ const baseline=originalFooterHtml(full);assert(!baseline.includes(finalRecoveryCss));assert(!baseline.includes(HOME_V42_CSS));
+ let expected=baseline;
+ for(const[path,,css]of specs){const rows=[...expected.matchAll(/<style\b([^>]*)>([\s\S]*?)<\/style>/g)].filter(row=>row[1].includes('data-home-inline-css="'+path+'"'));assert.equal(rows.length,1);expected=expected.replace(rows[0][0],rows[0][0].replace(rows[0][2],css));}
+ const output=await deliverFinalHomeCss(request,response(full));assert.equal(output.headers.get('X-Unrelated'),'retained');const html=await output.text();assert.equal(html,expected);assert(html.includes(finalRecoveryCss));assert(html.includes(HOME_V42_CSS));assert.equal(html.match(/<main\b[\s\S]*?<\/main>/)[0],finalApprovedMain);assert.equal(await(await deliverFinalHomeCss(request,response(html))).text(),html);
+ for(const altered of [full.replace('Helping ordinary','Unapproved change'),full.replace('data-home-inline-css="/assets/v42h.css?v=42p6">','data-home-inline-css="/assets/v42h.css?v=42p6">.unknown{}'),full.replace('</head>',specs.map(([path,css])=>'<style data-home-inline-css="'+path+'">'+css+'</style>').join('')+'</head>')]){const value=await(await deliverFinalHomeCss(request,response(altered))).text();assert(!value.includes(finalRecoveryCss));assert(!value.includes(HOME_V42_CSS));}
+ for(const path of ['/about','/contact','/member/dashboard'])assert.equal(await(await deliverFinalHomeCss(new Request('https://example.test'+path),response(full))).text(),originalFooterHtml(full));
+ for(const method of ['HEAD','POST']){const input=response(full);assert.equal(await deliverFinalHomeCss(new Request('https://example.test/',{method}),input),input);}
+ const notFound=new Response(full,{status:404,headers:{'Content-Type':'text/html'}});assert.equal(await(await deliverFinalHomeCss(request,notFound)).text(),originalFooterHtml(full));
+});
