@@ -105,7 +105,7 @@ export function withAcceptedUkGrubPreservation(c,head,compare){
     // callback output or source verdict is cached across calls.
     assert.equal(verifiedBlob('HEAD',path),verifiedBlob(head,path));assert.equal(verifiedContent('HEAD',path),verifiedContent(head,path));
     return kind==='blob'?verifiedBlob(basis,path):verifiedContent(basis,path);
-   }return kind==='blob'?verifiedBlob(ref,path):verifiedContent(ref,path);}finally{fresh();}};
+   }if((ref==='HEAD'||ref===head)&&fullProjection.has(path))return kind==='blob'?git('rev-parse',head+':'+path).trim():git('show',head+':'+path);return kind==='blob'?verifiedBlob(ref,path):verifiedContent(ref,path);}finally{fresh();}};
    try{return compare(Object.freeze({recordKey:leaf.recordKey,priorRecord:prior,historicalBlob:lookup('blob'),historicalContent:lookup('content')}));}finally{active=false;}
   }finally{fresh();clean();}
  });
