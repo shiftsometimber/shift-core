@@ -16,7 +16,7 @@ const sourceText='This synthetic evidence fixture advises following ingredient s
 function html(url,title='Existing public planning page',content=paragraph.repeat(3)){
  return '<!doctype html><html><head><title>'+title+'</title><link rel="canonical" href="'+url+'"><script type="application/ld+json">{"datePublished":"2026-03-23","dateModified":"2026-10-01"}</script></head><body><main><h1>'+title+'</h1><p>'+content+'</p><a href="'+PRIMARY+'">Primary source</a></main></body></html>';
 }
-async function fixture({oldCms=false,unsupported=false,failedVerification=false,sourceChanges=false,sendFails=false,reviewHold=false,truncateBody=false,recentlyUpdated=false}={}){
+async function fixture({oldCms=false,unsupported=false,failedVerification=false,sourceChanges=false,sendFails=false,reviewHold=false,truncateBody=false,recentlyUpdated=false,providerFails=false}={}){
  const sqlite=new DatabaseSync(':memory:');
  sqlite.exec(`CREATE TABLE knowledge_articles(id INTEGER PRIMARY KEY,title TEXT,slug TEXT UNIQUE,category TEXT,author TEXT,status TEXT,summary TEXT,body TEXT,seo_title TEXT,publish_at TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP,updated_at TEXT);
  CREATE TABLE babylove_receipts(slug TEXT PRIMARY KEY,source_id TEXT);
@@ -29,7 +29,7 @@ async function fixture({oldCms=false,unsupported=false,failedVerification=false,
  const intent=await digest(QUESTION);
  await DB.prepare(`INSERT INTO knowledge_editorial_briefs(intent_key,question,audience,cluster,target_url,brief_json,priority,created_at,updated_at) VALUES(?,?,?,?,?,?,100,?,?)`).bind(intent,QUESTION,brief.audience,brief.cluster,TARGET,JSON.stringify(brief),new Date(BEFORE).toISOString(),new Date(BEFORE).toISOString()).run();
  let calls=0,sends=0,primaryReads=0;
- const env={DB,AI:{async run(){calls++;const draft=makeDraft();if(unsupported)draft.claims[0].source_urls=['https://example.com/unread'];return {response:calls%2?draft:reviewHold?{...pass(),decision:'HOLD',issues:['Unsupported clinical interpretation']}:pass(),usage:{input_tokens:100,output_tokens:100}};}},SHIFT_AI_MODEL:'existing-test-model',EMAIL:{async send(){sends++;if(sendFails)throw Error('uncertain_send');return {id:'provider-test-'+sends};}},DAILY_EDITORIAL_NOTIFY_ENABLED:'true',DAILY_EDITORIAL_NOTIFY_TEMPLATE:'verified-link-v1'};
+ const env={DB,AI:{async run(){calls++;if(providerFails)throw Error('shared gateway budget exhausted');const draft=makeDraft();if(unsupported)draft.claims[0].source_urls=['https://example.com/unread'];return {response:calls%2?draft:reviewHold?{...pass(),decision:'HOLD',issues:['Unsupported clinical interpretation']}:pass(),usage:{input_tokens:100,output_tokens:100}};}},SHIFT_AI_MODEL:'existing-test-model',EMAIL:{async send(){sends++;if(sendFails)throw Error('uncertain_send');return {id:'provider-test-'+sends};}},DAILY_EDITORIAL_NOTIFY_ENABLED:'true',DAILY_EDITORIAL_NOTIFY_TEMPLATE:'verified-link-v1'};
  const fetcher=async url=>{
   if(url===PRIMARY){primaryReads++;return new Response(html(url,'Primary source',sourceText+(sourceChanges&&primaryReads>1?' changed':'')),{headers:{'Content-Type':'text/html'}});}
   if(url===ORIGIN+'/sitemap.xml')return new Response('<urlset><url><loc>'+TARGET+'</loc></url><url><loc>'+ORIGIN+'/guides/lunch-planning</loc></url></urlset>',{headers:{'Content-Type':'application/xml'}});
@@ -94,4 +94,14 @@ test('missed slots persist as failures once rather than appearing as successful 
 
 test('recent substantive canonical updates are preserved rather than automatically rewritten again',async()=>{
  const f=await fixture({recentlyUpdated:true});const result=await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:BEFORE});assert.equal(result.status,'held');assert.match(result.reason,/preserve_completed_work/);assert.equal(f.calls(),0);f.sqlite.close();
+});
+
+test('gateway refusal preserves ready-publication authority, pauses generation for the day and retries only three days',async()=>{
+ const f=await fixture({providerFails:true});
+ for(let day=0;day<3;day++){
+  const now=BEFORE+day*86400000;await refreshEditorialCorpus(f.env,{fetcher:f.fetcher,now});
+  const result=await generateEditorialArticle(f.env,{fetcher:f.fetcher,now});assert.equal(result.status,day<2?'provider_blocked':'held',JSON.stringify(result));
+  assert.equal((await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:now+60000})).status,'provider_blocked');assert.equal(f.calls(),day+1);
+ }
+ assert.equal((await f.DB.prepare('SELECT state FROM knowledge_editorial_briefs').first()).state,'held');assert.equal((await f.DB.prepare('SELECT count(*) n FROM knowledge_articles').first()).n,0);f.sqlite.close();
 });

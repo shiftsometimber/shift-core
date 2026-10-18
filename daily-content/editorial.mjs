@@ -39,7 +39,7 @@ async function modelRequest(env,job,system,input,schema,max_tokens){
  const serialized=JSON.stringify(input);if(serialized.length+system.length+JSON.stringify(schema).length>50000)throw Error('complete_evidence_exceeds_model_context_budget');
  const changed=await env.DB.prepare(`UPDATE knowledge_editorial_jobs SET model_calls=model_calls+1 WHERE job_key=? AND token=? AND state='running' AND model_calls<2`).bind(job.key,job.token).run();
  if(Number(changed.meta?.changes||0)!==1)throw Error('job_model_limit');
- const result=await env.AI.run(env.SHIFT_AI_MODEL,{messages:[{role:'system',content:system},{role:'user',content:serialized}],temperature:0.1,max_tokens,response_format:{type:'json_schema',json_schema:schema}},{gateway:{id:'shift-ai',skipCache:true,collectLog:false}});
+ let result;try{result=await env.AI.run(env.SHIFT_AI_MODEL,{messages:[{role:'system',content:system},{role:'user',content:serialized}],temperature:0.1,max_tokens,response_format:{type:'json_schema',json_schema:schema}},{gateway:{id:'shift-ai',skipCache:true,collectLog:false}});}catch(e){job.usage.push({model:env.SHIFT_AI_MODEL,usage:null,cost:null,costAvailable:false,result:'provider_error_execution_unconfirmed'});const failure=Error('provider_request_failed:'+String(e.message).slice(0,400));failure.editorialProviderFailure=true;throw failure;}
  job.usage.push({model:env.SHIFT_AI_MODEL,usage:result?.usage||null,cost:result?.cost??null,costAvailable:result?.cost!=null});
  return parse(result?.response);
 }
@@ -56,6 +56,7 @@ async function nextReleaseDay(DB,today,start=0){
 }
 export async function generateEditorialArticle(env,{fetcher=fetch,now=Date.now()}={}){
  const DB=env.DB,stamp=new Date(now).toISOString(),today=londonParts(now).day;
+ const blocked=await DB.prepare(`SELECT job_key FROM knowledge_editorial_jobs WHERE state='provider_blocked' AND job_key LIKE ? LIMIT 1`).bind(today+':%').first();if(blocked)return {status:'provider_blocked',reason:'one_failed_provider_job_per_London_day; ready_publication_continues'};
  const buffer=await DB.prepare(`SELECT count(*) n FROM knowledge_editorial_releases WHERE state='ready' AND due_at>=?`).bind(stamp).first();if(Number(buffer?.n||0)>=7)return {status:'buffer_full'};
  const candidates=(await DB.prepare(`SELECT * FROM knowledge_editorial_briefs WHERE state='planned' ORDER BY priority DESC,created_at LIMIT 12`).all()).results||[];
  for(const row of candidates){
@@ -106,10 +107,12 @@ export async function generateEditorialArticle(env,{fetcher=fetch,now=Date.now()
    }
    return {status:'ready',day,slug,hash,modelCalls:job.usage.length,usage:job.usage};
   }catch(e){
-   const reason=String(e.message).slice(0,1000);await finishJob(DB,job,'held',reason,stamp);
-   await DB.prepare(`UPDATE knowledge_editorial_briefs SET state='held',updated_at=? WHERE intent_key=? AND state='generating'`).bind(stamp,row.intent_key).run();
+   const reason=String(e.message).slice(0,1000),provider=e.editorialProviderFailure===true;await finishJob(DB,job,provider?'provider_blocked':'held',reason,stamp);
+   const attempts=provider?await DB.prepare(`SELECT count(*) n FROM knowledge_editorial_jobs WHERE job_key LIKE ? AND state='provider_blocked'`).bind('%:'+row.intent_key).first():null;
+   const retryEligible=provider&&Number(attempts?.n||0)<3;
+   await DB.prepare(`UPDATE knowledge_editorial_briefs SET state=?,updated_at=? WHERE intent_key=? AND state='generating'`).bind(retryEligible?'planned':'held',stamp,row.intent_key).run();
    await DB.prepare(`UPDATE knowledge_editorial_releases SET state='held',reason=?,updated_at=? WHERE token=? AND state IN ('preparing','ready')`).bind(reason,stamp,token).run();
-   return {status:'held',question:row.question,reason,modelCalls:job.usage.length};
+   return {status:retryEligible?'provider_blocked':'held',question:row.question,reason,modelCalls:job.usage.length,retryEligible};
   }
  }
  return {status:'no_eligible_brief'};
