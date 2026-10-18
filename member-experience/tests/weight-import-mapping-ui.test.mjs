@@ -1,3 +1,4 @@
+import {actualNavigationOuterFrame,assertExactNavigationPayload} from '../../release/recorded-week-navigation-outer-frame-20261018.mjs';
 import {currentRuntimePreservationHistoricalView} from '../../release/current-runtime-preservation-20261016.mjs';
 import {withImmutableHistoryVerification} from '../../release/immutable-git-facts.mjs';
 import test from 'node:test';
@@ -10,11 +11,17 @@ test('the browser uses exact immutable reviewed CSV parser bytes, isolated from 
  const embedded='  const explicitWeightMapping=(()=>{\n'+module.replaceAll('export function ','function ')+'\nreturn {readWeightTable,previewMappedWeights};\n})();\n';
  assert.equal(ui.split(embedded).length,2);
 });
-test('CSV UI changes only the existing optional weight-import component',()=>{
- const start=ui.indexOf('  const explicitWeightMapping=(()=>{'),end=ui.indexOf('\n  }',ui.indexOf('  function mountWeightImport(host){',start))+4;
- const restored=ui.slice(0,start)+retained.originalFunction+ui.slice(end);
+test('CSV UI changes only the existing optional weight-import component',()=>withImmutableHistoryVerification(()=>{
+ const navigation=actualNavigationOuterFrame();
+ try{
+ // Authenticate and invert only the exact separately approved navigation bytes.
+ // The original CSV inverse and strict whole-file equality remain required.
+ const progress=navigation?assertExactNavigationPayload(retained.path,Buffer.from(ui),'100644').toString('utf8'):ui;
+ const start=progress.indexOf('  const explicitWeightMapping=(()=>{'),end=progress.indexOf('\n  }',progress.indexOf('  function mountWeightImport(host){',start))+4;
+ const restored=progress.slice(0,start)+retained.originalFunction+progress.slice(end);
  assert.equal(restored,execFileSync('git',['show',retained.base+':'+retained.path],{encoding:'utf8'}));
-});
+ }finally{navigation?.finish();}
+}));
 test('mapping must be explicit, shows converted dates and kilograms, and uses only the established confirmed import boundary',()=>{
  for(const name of ['dateColumn','weightColumn','dateFormat','unit'])assert.match(ui,new RegExp('data-map="'+name+'" required><option value="">'));
  assert.match(ui,/Converted readings to import/);assert.match(ui,/Date \(YYYY-MM-DD\)/);assert.match(ui,/Weight \(kg\)/);

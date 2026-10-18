@@ -10,8 +10,8 @@ const policy=JSON.parse(readFileSync(new URL('./recorded-week-navigation-outer-p
 const LEDGER='release/approved-runtime-composition.json',KEY='recordedWeekNavigation20261018';
 const BASE='0e4a765e7a360d705e2424264e0bcfcc1d6652be',PAYLOAD='0d0a1c80a6e461dd641b7a95d3c46e8758d0ebeb';
 const fixedPaths=Object.freeze(['frontend/member/member-progress-v1.js','member-experience/staging/verify-treatment-week-navigation.mjs']);
-const fixedMaintenance=Object.freeze(['release/accepted-uk-grub-preservation-20261017.mjs','release/approved-runtime-composition.mjs','release/combined-finite-scope-20261014.mjs','release/current-runtime-preservation-20261016.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','release/recorded-week-navigation-outer-policy-20261018.json','tests/recorded-week-navigation-preservation-20261018.test.mjs']);
-const MAINTENANCE_DECLARATION_SHA256='13b4b8eed75951b93bb64f627ff788be40c97ef76ba590493c63f868eafe0d08';
+const fixedMaintenance=Object.freeze(['release/accepted-uk-grub-preservation-20261017.mjs','release/approved-runtime-composition.mjs','release/combined-finite-scope-20261014.mjs','release/current-runtime-preservation-20261016.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','release/recorded-week-navigation-outer-policy-20261018.json','tests/recorded-week-navigation-preservation-20261018.test.mjs','member-experience/tests/weight-import-mapping-ui.test.mjs']);
+const MAINTENANCE_DECLARATION_SHA256='eb6089f8cfef0f631e1c910a5e5e4e0da88babd83e6ad72d2a7a0c9374dbab42';
 const native=[execFileSync,readFileSync,lstatSync,realpathSync,createHash,process.cwd];
 const frames=new WeakSet(),oid=/^[a-f0-9]{40}$/,sorted=a=>[...a].sort(),sha=b=>createHash('sha256').update(b).digest('hex');
 const git=(...args)=>execFileSync('/usr/bin/git',['--no-replace-objects',...args],{maxBuffer:64e6});
