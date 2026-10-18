@@ -1,0 +1,8 @@
+{
+  "build": "price-period-20261018-1314bdafe846",
+  "scope": "Correct treatment-price supply periods; retain approved public feedback release",
+  "source": "https://github.com/shiftsometimber/shift-core/tree/proof/public-feedback-20261017/release/public-feedback-20261017/price-period-20261018",
+  "baseDeployment": "d3aafa94-8a22-4671-af09-89f5ef1a2b4c",
+  "namedMedicineQuizResults": false,
+  "qualifiedMedicinesAdvertisingReviewClaimed": false
+}

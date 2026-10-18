@@ -1,0 +1,11 @@
+{
+  "pass": true,
+  "build": "price-period-20261018-1314bdafe846",
+  "changedFiles": 466,
+  "priceSourcePaths": 4,
+  "metadataOnlyOtherPages": true,
+  "stockAndOrderingClosed": true,
+  "coreSourceChanged": false,
+  "allBeforeAfterHashesVerified": true,
+  "checksReused": "Previous public feedback 398-page and 22-case acceptance; unchanged functional bytes outside the price source."
+}

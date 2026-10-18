@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-18T01:25:38.481Z",
+  "mode": "staged-live-response",
+  "build": "price-period-20261018-1314bdafe846",
+  "checks": [],
+  "pageErrors": [],
+  "writesSubmitted": 0,
+  "pass": false,
+  "failure": "locator.innerText: Error: strict mode violation: locator('.op-lead') resolved to 2 elements:\n    1) <p class=\"op-lead\">Read the benefits, risks and limitations before c…</p> aka getByText('Read the benefits, risks and')\n    2) <p class=\"op-lead\">Identity, measurements and medicine history must …</p> aka getByText('Identity, measurements and')\n\nCall log:\n\u001b[2m  - waiting for locator('.op-lead')\u001b[22m\n\n    at /Users/shiftsometimberltd/SST/public-feedback-20261017/price-period-20261018/verify-price-period.cjs:34:45"
+}
