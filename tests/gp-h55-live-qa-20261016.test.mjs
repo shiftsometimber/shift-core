@@ -76,3 +76,11 @@ test('failure CDP geometry retains closed-shadow SVG and anonymous layout while 
   assert.equal(original.assertion.noHorizontalOverflow,false);assert(original.assertion.scrollWidth>original.assertion.innerWidth+1);await context.close();
  }finally{await browser.close();}
 });
+
+test('week-mount failure observations retain only allowed status flags and never record bodies or private values',async()=>{
+ const{recordedWeekMountObservation}=await import('../release/gp-directory-live-h55-qa-20261016.mjs');
+ const privateValue='FICTIONAL_PRIVATE_DIAGNOSTIC_SENTINEL',body={weekViewAvailable:true,patterns:{status:'available',observations:[{text:privateValue}],contextDays:[{note:privateValue}]},email:privateValue,note:privateValue,token:privateValue};
+ assert.deepEqual(recordedWeekMountObservation({status:200,body}),{kind:'insights',httpStatus:200,weekViewAvailable:true,patternsStatus:'available',observationsArray:true,contextDaysArray:true});
+ const invalid=recordedWeekMountObservation({status:privateValue,body:{weekViewAvailable:privateValue,patterns:{status:privateValue},privateValue}});
+ assert.deepEqual(invalid,{kind:'insights',httpStatus:null,weekViewAvailable:false,patternsStatus:'other',observationsArray:false,contextDaysArray:false});assert(!JSON.stringify(invalid).includes(privateValue));
+});

@@ -156,6 +156,19 @@ export async function verifyRecordedWeekLive({page,site,api,email,dir,report,fre
  report.checks.push(row);
  let holderId=null,ownedTreatmentId=null,routeHandler=null,routeContext=null,compiled=null,interruptNextNote=false;
  const blocked=[],failures=[],savedNotes=[];
+ const mountObservedPage=page,mountObservations=[];
+ const retainMountObservation=row=>{if(mountObservations.length<20)mountObservations.push(row);};
+ const observeMountResponse=async response=>{try{
+  const u=new URL(response.url());if(![site,api].includes(u.origin))return;
+  if(u.pathname===ROOT+'/insights')retainMountObservation(recordedWeekMountObservation({status:response.status(),body:await response.json()}));
+  else if(u.pathname==='/assets/member-experience/treatment-week.mjs'){
+   const bytes=await response.body(),mime=(response.headers()['content-type']||'').split(';')[0];
+   retainMountObservation({kind:'week_module',httpStatus:response.status(),mime:['text/javascript','application/javascript','text/html'].includes(mime)?mime:'other',bytes:bytes.length,sha256:sha(bytes)});
+  }
+ }catch{retainMountObservation({kind:'observation_unavailable'});}};
+ const observeMountError=error=>{const message=String(error?.message||'');retainMountObservation({kind:'page_error',name:['Error','TypeError','SyntaxError','ReferenceError','EvalError','SecurityError'].includes(error?.name)?error.name:'other',classification:/content.security.policy|refused.*script|unsafe.eval/i.test(message)?'csp':/import|module/i.test(message)?'module':'other',messageSha256:sha(message)});};
+ const observeMountConsole=message=>{try{const text=message.text();if(message.type()==='error'&&/content.security.policy|refused.*(?:script|evaluate)|unsafe.eval/i.test(text))retainMountObservation({kind:'console_csp',messageSha256:sha(text)});}catch{}};
+ mountObservedPage.on('response',observeMountResponse);mountObservedPage.on('pageerror',observeMountError);mountObservedPage.on('console',observeMountConsole);
  async function identity(){
   for(const origin of [site,api]){
    const r=await page.context().request.get(origin+'/v1/me',{headers:{Origin:site,'Cache-Control':'no-cache'}}),b=await r.json();
@@ -263,8 +276,11 @@ export async function verifyRecordedWeekLive({page,site,api,email,dir,report,fre
   const marker={schema:'recorded-week-existing-holder-isolation/v1',source,synthetic:true,holderId,treatmentId:ownedTreatmentId,noteHashes:savedNotes.map(sha),at:new Date().toISOString()};
   const markerBody=JSON.stringify(marker,null,2)+'\n';writeFileSync(join(dir,'recorded-week-isolation-marker.json'),markerBody);row.markerMetadataSha256=sha(markerBody);
   row.twoAccountIsolation='First-holder markers prepared; the next existing G2-011 holder must prove isolation separately';row.sameServing='Exact week JS/CSS match this source before and after; terminal deployment identity is recorded separately by the release owner';row.status='pass';return page;
- }catch(error){row.status='fail';row.error=String(error.message).replaceAll(email,'[synthetic]');try{const geometry=await readGpOverflowGeometry(page);row.retainedFailureGeometry=geometry;row.retainedFailureGeometryTiming='Observation after original diary assertion failed; not original atomic failure geometry';}catch{row.retainedFailureGeometryUnavailable=true;}throw error;}
- finally{await removeGuard();row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;}
+ }catch(error){row.status='fail';row.error=String(error.message).replaceAll(email,'[synthetic]');try{const geometry=await readGpOverflowGeometry(page);row.retainedFailureGeometry=geometry;row.retainedFailureGeometryTiming='Observation after original diary assertion failed; not original atomic failure geometry';}catch{row.retainedFailureGeometryUnavailable=true;}
+  row.mountFailureObservations=mountObservations;
+  try{row.mountFailureState=await readRecordedWeekMountFailureState(page);}catch{row.mountFailureStateUnavailable=true;}
+  throw error;}
+ finally{mountObservedPage.off('response',observeMountResponse);mountObservedPage.off('pageerror',observeMountError);mountObservedPage.off('console',observeMountConsole);await removeGuard();row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;}
 }
 
 export function assertRecordedWeekIsolationMarker(marker,{source,holderId}){
@@ -292,4 +308,16 @@ export async function verifyRecordedWeekIsolationFromExistingHolder({page,site,a
  assert.equal(denied.status(),404);assert.match(denied.headers()['cache-control']||'',/no-store/);assert.deepEqual(await denied.json(),{error:'treatment_not_found'});
  const after=await read();for(const key of ['cycles','questionNotes','observations','curve','context'])assert.deepEqual(after[key],before[key],'Foreign-owner denial must not change the existing holder\'s private week state');
  return{source,synthetic:true,holderA:marker.holderId,holderB:holderId,actualDistinctAccounts:true,firstHolderMarkersAbsent:true,actualForeignTreatmentNoteDenied:404,noStore:true,secondHolderStateUnchanged:true,urls:[site+ROOT+'/week?sources=treatment',site+ROOT+'/week-note'],ordinaryAccountAcceptance:false,hqAcceptance:false};
+}
+
+export function recordedWeekMountObservation({status,body}={}){
+ const allowed=['available','not_enabled','tracking_off','paused'];
+ return{kind:'insights',httpStatus:Number.isInteger(status)&&status>=100&&status<=599?status:null,weekViewAvailable:body?.weekViewAvailable===true,patternsStatus:allowed.includes(body?.patterns?.status)?body.patterns.status:'other',observationsArray:Array.isArray(body?.patterns?.observations),contextDaysArray:Array.isArray(body?.patterns?.contextDays)};
+}
+export async function readRecordedWeekMountFailureState(page){
+ return page.evaluate(()=>{
+  const panel=document.querySelector('.shift-pattern-panel'),result=panel?.querySelector('[data-pattern-result]'),value=result?.textContent||'';
+  const known=[['checking','Checking your saved records'],['module_load_failed','The optional week view could not load'],['tracking_off','Optional health tracking is off or paused'],['not_available','This optional pattern view is not available yet'],['records_unavailable','The records could not be checked'],['signed_out','Please sign in again'],['insufficient_records','There are not enough comparable recorded days']];
+  return{documentHidden:document.hidden,patternPanels:document.querySelectorAll('.shift-pattern-panel').length,panelConnected:!!panel?.isConnected,sourceCheckboxes:panel?.querySelectorAll('input[type=checkbox]').length||0,showContextButtons:panel?.querySelectorAll('[data-pattern-show]').length||0,patternResultExists:!!result,weekNodes:document.querySelectorAll('.shift-treatment-week').length,weekSummaries:document.querySelectorAll('.shift-treatment-week summary').length,progressChartControls:panel?.querySelectorAll('[data-chart-metric]').length||0,knownResult:known.find(([,text])=>value.includes(text))?.[0]||'other_or_empty'};
+ });
 }
