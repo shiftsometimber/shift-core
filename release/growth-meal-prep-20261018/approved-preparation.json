@@ -1,0 +1,253 @@
+{
+  "preparedAt": "2026-10-18T15:11:45.962Z",
+  "approval": {
+    "by": "Matt",
+    "at": "2026-10-18T16:07:52+01:00",
+    "instruction": "Approved",
+    "version": "DAILY-WEB-20261015-MEAL-PREP-APPLICATION-v2",
+    "programmeLibraryVersion": 5
+  },
+  "baseDeployment": "c3b6583f-c1b9-483a-9804-74647cc3336b",
+  "baseSource": "7bf1b71f607a6713a6bd362a4fb7ff03244a950b",
+  "manifestCount": 895,
+  "retainedHashes": 894,
+  "changedPaths": [
+    "/articles/meal-prep-busy-men.html"
+  ],
+  "originalManifestHash": "bdc72f5b883a399544232236dd026406",
+  "newManifestHash": "4accbb40f085ee782fd88f1eb25ce108",
+  "frozenSourceSHA256": "d155c776481e819a17ec547e529ff321faa2435d4b61df62daf247ff1b4a30cc",
+  "publicationSHA256": "41a25f7c88237489bacb32b26eb28d8227614288d2c88d22139221a3bd27a2cd",
+  "mainSHA256": "0251f5752ccc36e1d39c189058154c1aafb0fd7023f79df11e1e1556e6fc5dce",
+  "dateModifiedOnlyExtraDelta": true,
+  "genuinePublicationDate": "2026-03-23",
+  "actualModifiedDate": "2026-10-18",
+  "headersSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e",
+  "controls": {
+    "/index.html": {
+      "url": "https://c3b6583f.projectshift.pages.dev/index.html",
+      "status": 200,
+      "sha256": "6b56ddb932d8e370be2bf2bdf9f7e1efe3ba9320b1b31634d4cb5b75fd2a4c8e",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/start-here.html": {
+      "url": "https://c3b6583f.projectshift.pages.dev/start-here.html",
+      "status": 200,
+      "sha256": "14dad2fe7d566c7e80114d0c2a8ab53b10629918629ff8b3628dddfcb866edca",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/knowledge.html": {
+      "url": "https://c3b6583f.projectshift.pages.dev/knowledge.html",
+      "status": 200,
+      "sha256": "0318dcca549b344370de332b77306cec4fa229ec7ad452c6f5e144c4343a2830",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/sitemap.xml": {
+      "url": "https://c3b6583f.projectshift.pages.dev/sitemap.xml",
+      "status": 200,
+      "sha256": "7d35f527e237c7259eb48400d2b7d319df7243d9845f9b87490af651de66a7ea",
+      "headers": {
+        "content-type": "application/xml; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/shift-health.html": {
+      "url": "https://c3b6583f.projectshift.pages.dev/shift-health.html",
+      "status": 200,
+      "sha256": "84a78995c704cf9afed4a5238f5b9515e091cebe7b1e993f94e2e8f3595d9a47",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/shift-recovery-v6.css": {
+      "url": "https://c3b6583f.projectshift.pages.dev/assets/shift-recovery-v6.css",
+      "status": 200,
+      "sha256": "3edc9ac6a663ef3bd16bd7bc13215275dd8c86c46f2f550d3aac4cf0c500d632",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/shift-calculator-flow-v1.css": {
+      "url": "https://c3b6583f.projectshift.pages.dev/assets/shift-calculator-flow-v1.css",
+      "status": 200,
+      "sha256": "9dac5b39085267d066f9f8a5212010696514b115558106d3866e193f9deb0f59",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/ask-timber-drawer-v2.css": {
+      "url": "https://c3b6583f.projectshift.pages.dev/assets/ask-timber-drawer-v2.css",
+      "status": 200,
+      "sha256": "776b4381973eb9605e8b72f3fed61428c361b13702f35e35a02426376ec37142",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/seo-wave2-v15.css": {
+      "url": "https://c3b6583f.projectshift.pages.dev/seo-wave2-v15.css",
+      "status": 200,
+      "sha256": "e97720b39d98dd38864b4df6698e487b8fa85ac2efcb49ede162f89b34eafb8f",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/v136-desolation-recovery.css": {
+      "url": "https://c3b6583f.projectshift.pages.dev/assets/v136-desolation-recovery.css",
+      "status": 200,
+      "sha256": "28a814a60931993d1aab212058f889e11fc638608561c1dd091a76f78af43585",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/v137-estate-closeout.css": {
+      "url": "https://c3b6583f.projectshift.pages.dev/assets/v137-estate-closeout.css",
+      "status": 200,
+      "sha256": "a0e9927ac92becaf57f2c787985c78c5d4acea3b3b54c4a1c78b5f479358346f",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/header-navigation-v2.css": {
+      "url": "https://c3b6583f.projectshift.pages.dev/assets/header-navigation-v2.css",
+      "status": 200,
+      "sha256": "fede0fcbc334af6c4183765006c2fde71909ed5e3bd0db365f77a8e21e2fefc4",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/assets/shift-service-bridge-v1.css": {
+      "url": "https://c3b6583f.projectshift.pages.dev/assets/shift-service-bridge-v1.css",
+      "status": 200,
+      "sha256": "8c7b60f77137d5d5694a3338b84e3492fff09ed06e1b86c246d6ea51ee9c57e9",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    }
+  },
+  "publicBefore": {
+    "url": "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+    "status": 200,
+    "sha256": "6a495532c39901f2cefc65a832ad5bff4f6c28b1a7236b1827b73e6550796539",
+    "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-store",
+      "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+      "x-frame-options": "SAMEORIGIN"
+    }
+  },
+  "originBefore": {
+    "url": "https://c3b6583f.projectshift.pages.dev/articles/meal-prep-busy-men.html",
+    "status": 200,
+    "sha256": "b46118bb23ef5c820f06e0e87a9a62b0d5051e01f5ffd22b658a197c23f87a97",
+    "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "public, max-age=0, must-revalidate",
+      "content-security-policy": null,
+      "strict-transport-security": null,
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": null,
+      "x-frame-options": null
+    }
+  }
+}
