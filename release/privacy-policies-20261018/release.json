@@ -23,10 +23,11 @@
       "route": "/privacy-centre",
       "heading": "Your information. Clear choices.",
       "beforeSHA256": "533510eba641ba4c40a5ebed8162ccd78a065544799db6f23374675102c2b50c",
-      "afterSHA256": "e1b4180b64fb7418d3633c41fa1d92dc44de49499e44a126e5229f1d6970a5c4",
+      "afterSHA256": "dc9e08d440c4f9bcb5b575c4d8e8b708b03733dce9d4fe432b81c9e815ffc710",
       "approvedBodySha256": "9bb6216fddfa183ed61543736a33d8f64959a0650011149eeccb52ccf8cf00b8",
-      "bytes": 11989,
-      "outerPreserved": true
+      "bytes": 12249,
+      "outerPreserved": true,
+      "existingPrivacyNavigationPreserved": true
     },
     {
       "path": "/data-governance.html",
@@ -90,15 +91,6 @@
       "footerLinks": true
     },
     {
-      "route": "/privacy-centre",
-      "width": 380,
-      "exactApprovedText": true,
-      "oneH1": true,
-      "noHorizontalPageOverflow": true,
-      "keyboardLinks": true,
-      "footerLinks": true
-    },
-    {
       "route": "/data-governance",
       "width": 380,
       "exactApprovedText": true,
@@ -153,15 +145,6 @@
       "footerLinks": true
     },
     {
-      "route": "/privacy-centre",
-      "width": 1440,
-      "exactApprovedText": true,
-      "oneH1": true,
-      "noHorizontalPageOverflow": true,
-      "keyboardLinks": true,
-      "footerLinks": true
-    },
-    {
       "route": "/data-governance",
       "width": 1440,
       "exactApprovedText": true,
@@ -205,6 +188,25 @@
       "noHorizontalPageOverflow": true,
       "keyboardLinks": true,
       "footerLinks": true
+    },
+    {
+      "route": "/privacy-centre",
+      "width": 380,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/privacy-centre",
+      "width": 1440,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
     }
-  ]
+  ],
+  "existingPrivacyCentreNavigationPreserved": true
 }
