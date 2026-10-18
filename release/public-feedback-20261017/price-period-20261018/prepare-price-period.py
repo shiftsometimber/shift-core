@@ -69,6 +69,8 @@ for p in (root/'after').rglob('*'):
    value=files.get(k,p.read_text())
    if old in value:files[k]=value.replace(old,build)
 for k in list(files):files[k]=files[k].replace(old,build)
+for asset,version in [('treatment-medication-catalogue-v1.js','copy-20260911'),('treatment-order-prototype-v1.js','verify-before-pay-20260911b'),('medicine-front-door-integrated-v1.js','detail-restored-20260911')]:
+ files['treatment-order.html']=replace(files['treatment-order.html'],'/'+asset+'?v='+version,'/'+asset+'?v='+build)
 release=json.loads(files['public-release.json'])
 release['scope']='Correct treatment-price supply periods; retain approved public feedback release'
 release['baseDeployment']='d3aafa94-8a22-4671-af09-89f5ef1a2b4c'

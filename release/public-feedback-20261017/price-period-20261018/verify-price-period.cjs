@@ -10,6 +10,7 @@ const report={at:new Date().toISOString(),mode:live?'live':'staged-live-response
   if(p==='/treatment-order'){
    const response=await route.fetch();let body=await response.text();
    for(const [a,z]of [['review the monthly price','review the price and supply period'],['MONTHLY PRICE','TREATMENT PRICE'],['Pay month by month.','Pay per treatment order.'],['This month’s order','This treatment order'],['One month · four weekly doses','4 weeks · four weekly doses'],['public-feedback-20261017-b7d5bf35aac0',prepared.build]])body=body.split(a).join(z);
+   for(const [asset,version]of [['treatment-medication-catalogue-v1.js','copy-20260911'],['treatment-order-prototype-v1.js','verify-before-pay-20260911b'],['medicine-front-door-integrated-v1.js','detail-restored-20260911']])body=body.replace('/'+asset+'?v='+version,'/'+asset+'?v='+prepared.build);
    await route.fulfill({response,body,headers:{...response.headers(),'content-length':String(Buffer.byteLength(body))}});return;
   }
   if(fs.existsSync(file)&&fs.statSync(file).isFile()){
@@ -22,6 +23,7 @@ const report={at:new Date().toISOString(),mode:live?'live':'staged-live-response
  await p.goto('https://shiftsometimber.co.uk/treatment-order?medicine=mounjaro&view=spec',{waitUntil:'domcontentloaded'});
  const consent=p.getByRole('button',{name:'Necessary only',exact:true});if(await consent.count())await consent.click();
  await p.locator('[data-price-checked]').filter({hasText:'HQ price checked'}).waitFor();
+ for(const asset of ['treatment-medication-catalogue-v1.js','treatment-order-prototype-v1.js','medicine-front-door-integrated-v1.js'])assert.ok((await p.locator('script[src*="'+asset+'"]').getAttribute('src')).includes(prepared.build),'versioned treatment script '+asset);
  for(const width of [320,1440]){
   await p.setViewportSize({width,height:1000});
   for(const [key,name,heading]of [['mounjaro','Mounjaro','PRICE PER 4 WEEKS'],['wegovy-injection','Wegovy injection','PRICE PER 4 WEEKS'],['wegovy-tablets','Wegovy tablet','PACK PRICE'],['foundayo','Foundayo','PACK PRICE'],['orlistat','Orlistat','PACK PRICE']]){
