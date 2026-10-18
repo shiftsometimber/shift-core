@@ -17,7 +17,9 @@ test('recovery is checked before browser setup and is never a generic unknown-ru
  const s=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
  assert(s.indexOf('run: node shift-coach/recover-cancelled-release.mjs')<s.indexOf('name: Prepare and launch verification browsers'));
  if(reconciliationRecord())verifyReconciledRelease();
- assert(s.includes('    timeout-minutes: '+(reconciliationRecord()?60:25)));assert(s.includes('run: node release/member-details-rollback.mjs'));
+ const current=JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).currentRuntimePreservation20261016,approved=current?.acceptedUkGrubPreservation20261017?.approvedCurrentHomeAndOuterWindow20261018;
+ const outerWindow=approved?.approvedPatchSHA256==='0b53f54566a093bc5396e7959034b4c5847dcff59f3189f08eea5d093db4b27c'?90:(reconciliationRecord()?60:25);
+ assert(s.includes('    timeout-minutes: '+outerWindow));assert(s.includes('run: node release/member-details-rollback.mjs'));
  const r=readFileSync('shift-coach/recover-cancelled-release.mjs','utf8');
  assert(r.includes('Runtime moved before exact SEO recovery'));assert(r.includes('Unknown runtime has no exact successful owned-deployment proof; stop without rollback'));
 });
