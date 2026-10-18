@@ -1,0 +1,9 @@
+{
+  "script": "shift-bloods-public",
+  "id": "shift-bloods-public",
+  "deployment_id": "dabc567bdaea45cf92ce412d9f99a039",
+  "url": "https://shift-bloods-public.matobrien.workers.dev",
+  "origin": "https://88265868.projectshift.pages.dev",
+  "sourceCommit": "7bf1b71f607a6713a6bd362a4fb7ff03244a950b",
+  "routesChanged": false
+}

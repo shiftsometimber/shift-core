@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-18T13:31:28.050Z",
+  "zone": "66ec3268950adcfc837b7b8b2f8356ed",
+  "script": "shift-bloods-public",
+  "patterns": [
+    "shiftsometimber.co.uk/shift-health/blood-tests*",
+    "shiftsometimber.co.uk/shift-health",
+    "shiftsometimber.co.uk/shift-health/",
+    "shiftsometimber.co.uk/shift-health.html",
+    "www.shiftsometimber.co.uk/shift-health/blood-tests*",
+    "www.shiftsometimber.co.uk/shift-health",
+    "www.shiftsometimber.co.uk/shift-health/",
+    "www.shiftsometimber.co.uk/shift-health.html"
+  ]
+}

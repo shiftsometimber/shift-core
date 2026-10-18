@@ -1,0 +1,21 @@
+{
+  "id": "8a023426-da2b-4a25-a5db-3bb80a7ae6bc",
+  "url": "https://8a023426.projectshift.pages.dev",
+  "environment": "production",
+  "created_on": "2026-10-18T13:30:24.296691Z",
+  "latest_stage": {
+    "name": "deploy",
+    "started_on": null,
+    "ended_on": "2026-10-18T13:30:26.562999Z",
+    "status": "success"
+  },
+  "deployment_trigger": {
+    "type": "ad_hoc",
+    "metadata": {
+      "branch": "main",
+      "commit_hash": "7bf1b71f607a6713a6bd362a4fb7ff03244a950b",
+      "commit_message": "SHIFT Bloods coming-soon information pages",
+      "commit_dirty": false
+    }
+  }
+}

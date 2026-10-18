@@ -1,0 +1,112 @@
+{
+  "pass": true,
+  "at": "2026-10-18T13:30:02.988Z",
+  "sourceCommit": "7bf1b71f607a6713a6bd362a4fb7ff03244a950b",
+  "preview": "https://88265868.projectshift.pages.dev",
+  "checks": [
+    {
+      "path": "/shift-health/blood-tests.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/baseline.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/baseline/your-test.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/advanced.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/advanced/your-test.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/complete.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/complete/your-test.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/my-timber-example.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/about.html",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/bloods.css",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/css; charset=utf-8"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/bloods.js",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/upper-arm-collection.svg",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "image/svg+xml"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/upper-arm-overview-poster.png",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "image/png"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/upper-arm-overview.mp4",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "video/mp4"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/upper-arm-overview.vtt",
+      "status": 200,
+      "hashMatches": true,
+      "mime": "text/vtt; charset=utf-8"
+    }
+  ],
+  "browser": {
+    "mobile380AndDesktop1440Inspected": true,
+    "noHorizontalOverflow": true,
+    "switcherMouseAndKeyboard": true,
+    "advancedSelectionRetainedAfterReload": true,
+    "upperArmSelectionAndCostDescription": true,
+    "expandableOverview": true,
+    "nativeVideoActuallyPlayed": true,
+    "videoDurationSeconds": 20,
+    "healthCTAGreen": "rgb(112, 119, 98)",
+    "healthCTAOpensHub": true
+  },
+  "ordersEnabled": false,
+  "patientForms": false
+}

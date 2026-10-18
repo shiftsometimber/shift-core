@@ -1,0 +1,27 @@
+{
+  "prepared_at": "2026-10-18",
+  "publication_authorized": false,
+  "articles": [
+    {
+      "file": "upper-arm-blood-collection.json",
+      "slug": "upper-arm-blood-collection",
+      "words": 811,
+      "sha256": "e7745068cf4519b9937307495fc61334992f81f6d2c891429ff1080196a7dbc4",
+      "new_page": true
+    },
+    {
+      "file": "understanding-blood-test-results.json",
+      "slug": "understanding-blood-test-results",
+      "words": 846,
+      "sha256": "8e2d4605f9bdb96138f42bf08f62b72cbbf30a0676c99b78c4621851fcffd1c8",
+      "new_page": true
+    },
+    {
+      "file": "weight-loss-blood-tests-refresh.json",
+      "slug": "weight-loss-blood-tests",
+      "words": 789,
+      "sha256": "d52ca3a4fac3b0ee3cf16fa078c40bd58db487425f286a9ce3cedfa4b5228258",
+      "new_page": false
+    }
+  ]
+}

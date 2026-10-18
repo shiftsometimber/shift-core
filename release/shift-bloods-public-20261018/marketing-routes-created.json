@@ -1,0 +1,45 @@
+{
+  "zone": "66ec3268950adcfc837b7b8b2f8356ed",
+  "created": [
+    {
+      "id": "82818aaefb0a45119384f78fae697636",
+      "pattern": "shiftsometimber.co.uk/shift-health/blood-tests*",
+      "script": "shift-bloods-public"
+    },
+    {
+      "id": "cc0457e6c7504e7eb18baa996160ad3b",
+      "pattern": "shiftsometimber.co.uk/shift-health",
+      "script": "shift-bloods-public"
+    },
+    {
+      "id": "718946e96ee949c481fe4460c0369977",
+      "pattern": "shiftsometimber.co.uk/shift-health/",
+      "script": "shift-bloods-public"
+    },
+    {
+      "id": "a1d4349174114866b7f5126d097b827b",
+      "pattern": "shiftsometimber.co.uk/shift-health.html",
+      "script": "shift-bloods-public"
+    },
+    {
+      "id": "ae0ff2eba49a4d9b9fa3ae93f723577f",
+      "pattern": "www.shiftsometimber.co.uk/shift-health/blood-tests*",
+      "script": "shift-bloods-public"
+    },
+    {
+      "id": "e0e7b04eaa1747378dd1c3e585e5d08d",
+      "pattern": "www.shiftsometimber.co.uk/shift-health",
+      "script": "shift-bloods-public"
+    },
+    {
+      "id": "5162e61989064431a163342dc4947bbf",
+      "pattern": "www.shiftsometimber.co.uk/shift-health/",
+      "script": "shift-bloods-public"
+    },
+    {
+      "id": "ce93a1c31d4e4631b2012bbaf73f0525",
+      "pattern": "www.shiftsometimber.co.uk/shift-health.html",
+      "script": "shift-bloods-public"
+    }
+  ]
+}

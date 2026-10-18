@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-18T13:30:23.016Z",
+  "mode": "production",
+  "sourceCommit": "7bf1b71f607a6713a6bd362a4fb7ff03244a950b",
+  "expectedPreviousDeployment": "528339cd-3a04-4ff7-9167-92024a3e7f56",
+  "manifestSHA256": "1602d18f2dbef5c9b9ad745ce4b27339e65ae1166a1c74a2e17fb9269255cb26",
+  "newAssets": 15,
+  "retainedAssets": 880,
+  "homepagePreserved": true,
+  "policiesPreserved": true,
+  "patientDataForms": false,
+  "ordersEnabled": false
+}
