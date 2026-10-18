@@ -1,0 +1,133 @@
+{
+  "at": "2026-10-18T01:33:34.603Z",
+  "mode": "live",
+  "build": "price-period-20261018-1314bdafe846",
+  "checks": [
+    {
+      "width": 320,
+      "medicine": "mounjaro",
+      "heading": "PRICE PER 4 WEEKS",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 320,
+      "medicine": "wegovy-injection",
+      "heading": "PRICE PER 4 WEEKS",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 320,
+      "medicine": "wegovy-tablets",
+      "heading": "PACK PRICE",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 320,
+      "medicine": "foundayo",
+      "heading": "PACK PRICE",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 320,
+      "medicine": "orlistat",
+      "heading": "PACK PRICE",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 1440,
+      "medicine": "mounjaro",
+      "heading": "PRICE PER 4 WEEKS",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 1440,
+      "medicine": "wegovy-injection",
+      "heading": "PRICE PER 4 WEEKS",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 1440,
+      "medicine": "wegovy-tablets",
+      "heading": "PACK PRICE",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 1440,
+      "medicine": "foundayo",
+      "heading": "PACK PRICE",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "width": 1440,
+      "medicine": "orlistat",
+      "heading": "PACK PRICE",
+      "exactHQPrice": true,
+      "periodReceipt": true,
+      "neutralAssessment": true,
+      "switchUrl": true,
+      "priceFitsViewport": true
+    },
+    {
+      "orlistatPack": "42",
+      "correctPackPeriod": true
+    },
+    {
+      "orlistatPack": "84",
+      "correctPackPeriod": true
+    },
+    {
+      "orlistatPack": "168",
+      "correctPackPeriod": true
+    },
+    {
+      "unpricedDose": "wegovy-injection-7.2",
+      "noInventedPrice": true
+    },
+    {
+      "historyBackAndReload": true
+    },
+    {
+      "catalogueFailure": true,
+      "noPriceOrTimestampInvented": true
+    }
+  ],
+  "pageErrors": [],
+  "writesSubmitted": 0,
+  "pass": true
+}

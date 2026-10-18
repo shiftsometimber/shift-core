@@ -1,0 +1,22 @@
+{
+  "id": "78408b0f-bf85-463d-9458-603f3da01c17",
+  "url": "https://78408b0f.projectshift.pages.dev",
+  "environment": "production",
+  "created_on": "2026-10-18T01:33:07.256068Z",
+  "latest_stage": {
+    "name": "deploy",
+    "started_on": null,
+    "ended_on": "2026-10-18T01:33:08.806553Z",
+    "status": "success"
+  },
+  "deployment_trigger": {
+    "type": "ad_hoc",
+    "metadata": {
+      "branch": "main",
+      "commit_hash": "9a3ab6adff90eec0a2d55ab99d90b8e37eb88752",
+      "commit_message": "Approved treatment price supply-period correction; build price-period-20261018-1314bdafe846",
+      "commit_dirty": false
+    }
+  },
+  "uses_functions": false
+}

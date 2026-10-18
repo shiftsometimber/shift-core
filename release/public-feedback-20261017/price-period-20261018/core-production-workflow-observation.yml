@@ -1,0 +1,1081 @@
+name: Cloudflare Production Promote
+# Catalogue publication uses a validated snapshot and exact post-import comparison.
+# Act2B unified public authority production promotion
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "release/approved-runtime-composition.mjs"
+      - "release/approved-runtime-composition.json"
+      - "public-tool-guidance.mjs"
+      - "public-tool-delivery.mjs"
+      - "release/tool-schema-*"
+      - "scripts/verify-tool-*.cjs"
+      - "tests/tool-schema-gate.test.mjs"
+      - "tests/public-tool-guidance.test.mjs"
+      - "scripts/verify-tool-guidance-build.cjs"
+      - "tests/tool-guidance-build.test.cjs"
+      - "tests/tool-guidance-build-composition.test.mjs"
+      - "home-route-banner.mjs"
+      - ".github/workflows/cloudflare-production-promote.yml"
+      - "babylove/**"
+      - "scripts/verify-article-quality.mjs"
+      - "scripts/measure-public-latency.mjs"
+      - "editorial/five-articles/**"
+      - "editorial-resources-v1.js"
+      - "tests/five-article-evidence.test.mjs"
+      - "tests/editorial-resources-v1.test.mjs"
+      - "shift-coach/**"
+      - "wrangler.coaching.jsonc"
+      - "wrangler.jsonc"
+      - "worker-entry-v6.js"
+      - "scripts/b1-release-scope.mjs"
+      - "growth-member-public.mjs"
+      - "app-layout-live.mjs"
+      - "member-inline-tools.mjs"
+      - "preview/app-layout/**"
+      - "release/app-*"
+      - "release/growth-*"
+      - "home-speed-repair.mjs"
+      - "home-critical-styles.mjs"
+      - "home-blocking-styles.mjs"
+      - "home-v42-critical.mjs"
+      - "public-startup-stability.mjs"
+      - "release/seo794-preservation.mjs"
+      - "tests/b1-release-scope.test.mjs"
+      - "acquisition-activation/**"
+      - "activation-measurement/**"
+      - "health-passport/**"
+      - "shift-health-public.mjs"
+      - "testosterone-public-content.mjs"
+      - "testosterone-hub-order.mjs"
+      - "tests/testosterone-public.test.mjs"
+      - "public-navigation-policy.mjs"
+      - "public-shell-contract.mjs"
+      - "tests/public-shell-contract.test.mjs"
+      - "public-ticker-preservation.mjs"
+      - "tests/public-ticker-*.test.mjs"
+      - "radar-live-email-v1.js"
+      - "radar-scheduled-scan-v1.js"
+      - "tests/radar-live-email-v1.test.mjs"
+      - "radar-auto-news-v1.js"
+      - "radar-integration-v1.js"
+      - "radar-editorial-trust-v1.js"
+      - "tests/radar-auto-news*.test.mjs"
+      - "radar-news-pages-v1.js"
+      - "radar-newsroom-sort-v1.js"
+      - "radar-newsroom-filters-v1.js"
+      - "tests/radar-newsroom-*.test.mjs"
+      - "scripts/verify-newsroom-order-live.mjs"
+      - "public-continuity*.mjs"
+      - "tests/public-continuity.test.mjs"
+      - "scripts/verify-public-continuity-live.mjs"
+      - "scripts/verify-public-audit-live.mjs"
+      - "public-seo-closeout.mjs"
+      - "scripts/verify-seo-closeout-live.mjs"
+      - "medicines-watch/**"
+      - "knowledge-editorial-v1.js"
+      - "evidence-desk-hq-read-v1.js"
+      - "evidence-desk-v1.js"
+      - "tests/evidence-desk-hq-read.test.mjs"
+      - "scripts/verify-evidence-inbox-connection.mjs"
+      - "tests/knowledge-editorial-*.test.mjs"
+      - "worker.js"
+      - "ask-timber-v1.js"
+      - "ask-timber-multi-intent-gate.mjs"
+      - "commerce-stripe-v1.js"
+      - "medicine-commerce-v1.js"
+      - "hq-catalogue-v1.js"
+      - "frontend/medicine-front-door/**"
+      - "tests/medicine-commerce-v1.test.mjs"
+      - "tests/medicine-front-door-v1.test.mjs"
+      - "tests/medicine-purchase-e2e.test.mjs"
+      - "hq-commerce-content-v1.js"
+      - "migrations/**"
+      - "shift-me-3d-proof-v1.js"
+      - "public/shift-me-3d/**"
+      - "frontend/member/**"
+      - "member-experience/**"
+      - "grub-expansion-*.mjs"
+      - "catalogue-publication-*.mjs"
+      - "catalogue-publication-*.js"
+      - "fit-expansion-*.mjs"
+      - "fit-publication-contract-v1.mjs"
+      - "scripts/catalogue-publication-*.mjs"
+      - "tests/catalogue-publication*.test.mjs"
+      - "newsroom-publication-*.mjs"
+      - "newsroom-publication-*.js"
+      - "scripts/newsroom-publication-client.mjs"
+      - "tests/newsroom-publication*.test.mjs"
+      - "tests/grub-expansion*.test.mjs"
+      - "fit-reminders-v1.js"
+      - "my-timber-pwa/**"
+      - "scheduled-intelligence.js"
+      - "tests/scheduled-intelligence-delivery.test.mjs"
+      - "tests/fit-reminders-delivery.test.mjs"
+      - "daily-reminder-copy-v1.js"
+      - "fit-reminders-source-gate.mjs"
+      - "frontend/member/member-fit.html"
+      - "frontend/member/member-grub.html"
+      - "frontend/member/my-timber-v11.css"
+      - "frontend/member/member-fit-programme-v1.js"
+      - "frontend/member/member-fit-programme-v1.css"
+      - "frontend/member/member-grub-programme-v1.js"
+      - "frontend/member/member-grub-programme-v1.css"
+      - "member-daily-v3.js"
+      - "shift-fit-uk-programme-gate.mjs"
+      - "frontend/member/shift-push-sw-v1.js"
+      - "package.json"
+      - "package-lock.json"
+      - "structured-content-v1.js"
+      - "member-product-v7.js"
+      - "member-product-v8.js"
+      - "daily-shift-frontdoor-gate.mjs"
+      - "my-timber-75-green-gate.mjs"
+      - "my-timber-final-source-gate.mjs"
+      - "my-timber-final-production.mjs"
+      - ".github/workflows/my-timber-final-production.yml"
+      - "member-quality-v1.js"
+      - "commissioning-identity-v1.js"
+      - "commissioning-ops-v1.js"
+      - "shift-me-v1.js"
+      - "frontend/member/shift-me-api-v1.js"
+      - "frontend/member/member-shift-me-premium-v1.js"
+      - "frontend/member/member-shift-me-premium-v1.css"
+      - "frontend/member/member-product-v33d.js"
+      - "frontend/member/api-adapter-v33d.js"
+      - "frontend/member/member-shell-v33g.js"
+      - "frontend/member/member-progress-v1.js"
+      - "frontend/member/member-p0-v1.css"
+      - "frontend/member/member-today-premium-v1.js"
+      - "frontend/member/member-my-timber-problem-v1.js"
+      - "frontend/member/my-timber-preview.html"
+      - "my-timber-navigation-gate.mjs"
+      - "member-login-fastpath-v1.js"
+      - "member-register-fastpath-v2.js"
+      - "member-state-fast-v1.js"
+      - "auth-email-verification-v1.js"
+      - "g5-012-login-fastpath-gate.mjs"
+      - "frontend/member/member-today-premium-v1.css"
+      - "frontend/member/member-today-final-v1.css"
+      - "frontend/member/member-life-back-v1.js"
+      - "frontend/member/member-life-back-v1.css"
+      - "frontend/member/member-my-journey-v1.js"
+      - "frontend/member/member-my-journey-v1.css"
+      - "frontend/member/member-my-journey-checkin-v1.js"
+      - "frontend/member/member-my-journey-checkin-v1.css"
+      - "frontend/member/member-treatment-journey-v1.js"
+      - "my-journey-v1.js"
+      - "my-journey-checkin-v1.js"
+      - "my-journey-observation-v1.js"
+      - "my-journey-integration-gate.mjs"
+      - "tests/my-journey-*.test.mjs"
+      - "frontend/member/member-medicines-watch-v1.js"
+      - "frontend/member/member-medicines-watch-v1.css"
+      - "frontend/member/member-sport-v1.js"
+      - "frontend/member/member-sport-v1.css"
+      - "radar-public-v1.js"
+      - "radar-published-ticker-v1.js"
+      - "radar-freshness-v2.js"
+      - "scripts/radar-discovery-collector.mjs"
+      - ".github/workflows/radar-discovery-collector.yml"
+      - "radar-medicine-seed-v1.js"
+      - "radar-integration-v1.js"
+      - "radar-authoritative-scan-v1.js"
+      - "radar-source-*.js"
+      - "tests/radar-source-*.test.mjs"
+      - "radar-scheduled-scan-v1.js"
+      - "sport-clubhouse-v1.js"
+      - "personal-platform-v1.js"
+      - "fit-canonical-guidance-v1.mjs"
+      - "final-v1-production-serving.mjs"
+      - "final-v1-worker-publication-payload.mjs"
+      - "finish-line-gate.mjs"
+      - "reconcile-final-v1-gate2-board.mjs"
+      - "reconcile-final-v1-recovery-pointers.mjs"
+      - ".github/workflows/final-v1-production-publication.yml"
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type PROMOTE_CURRENT_MAIN to deploy current main to production"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+  id-token: write
+
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+
+jobs:
+  select-current:
+    runs-on: ubuntu-latest
+    outputs:
+      current: ${{ steps.current.outputs.current }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: current
+        name: Classify stale queued release without weakening deploy guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          latest="$(git rev-parse origin/main)"
+          if [ "$latest" = "$GITHUB_SHA" ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+            echo "Release candidate is current main: $GITHUB_SHA"
+          else
+            echo "current=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Release $GITHUB_SHA was superseded by $latest before promotion; skipping this stale queued run."
+          fi
+
+  promote:
+    needs: select-current
+    if: ${{ needs.select-current.outputs.current == 'true' && (github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Fail closed when deploy credential is absent
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo 'CLOUDFLARE_API_TOKEN secret is not configured'; exit 1; }
+      - name: Install exact Wrangler toolchain
+        run: npm install --no-audit --no-fund
+      - name: Prepare original local source fixtures before parallel readers
+        run: |
+          node member-experience/prepare-life-back.mjs
+          git diff --exit-code -- member-experience/life-back-assets.mjs
+          node grub-expansion-review-pack.mjs
+          node babylove/prepare-public-bundle.mjs
+          git diff --exit-code -- babylove/editorial/public-bundle.mjs
+      - name: Verify every original production source command with two execution slots
+        id: scope
+        run: |
+          node release/bounded-source-checks-20261016.mjs production <<'SHIFT_PRODUCTION_SOURCE_COMMANDS'
+          {
+            "kind": "ORIGINAL_PRODUCTION_SOURCE_COMMANDS_TWO_SLOTS_20261016",
+            "originalHead": "ce456749488bafcbc2a8e7e6a4eb726cb12f0fd8",
+            "originalWorkflowBlob": "cd8c81a8d8c29def3c25b93112a4c56456b5cbfc",
+            "originalPrivacyWorkflowBlob": "5fbbcd992c09d262109fe2c14d8f9bad2f9e727f",
+            "maximumConcurrent": 2,
+            "productionTimeoutMinutes": 60,
+            "privacyTimeoutMinutes": 60,
+            "originalProductionUnitCommands": [
+              "node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/tablet-routine.test.mjs tests/my-health-plan-v2.test.mjs",
+              "node --test tests/home-route-banner.test.mjs tests/app-layout-live.test.mjs preview/app-layout/presentation.test.mjs tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs",
+              "node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs",
+              "node --test acquisition-activation/*.test.mjs activation-measurement/*.test.mjs",
+              "node --test tests/five-article-evidence.test.mjs tests/editorial-resources-v1.test.mjs",
+              "node --test tests/my-treatment-release.test.mjs",
+              "node --test tests/member-checkin-preflight.test.mjs",
+              "node --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs",
+              "node --test health-passport/*.test.mjs",
+              "node --test tests/grub-expansion*.test.mjs tests/grub-owner-publication-build.test.mjs tests/grub-protected-revisions.test.mjs",
+              "node --test tests/catalogue-publication*.test.mjs tests/fit-expansion*.test.mjs tests/fit-v3-closeout.test.mjs",
+              "node --test tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs",
+              "node --test my-timber-pwa/*.test.mjs",
+              "node --test tests/turnstile-client-timeout.test.mjs tests/turnstile-auth-v1.test.mjs",
+              "node --test ask-timber-multi-intent-gate.mjs tests/ask-timber-public.test.mjs",
+              "node --test tests/seo-release-integrity.test.mjs tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs",
+              "node --test tests/testosterone-public.test.mjs tests/public-audit-repair.test.mjs tests/continuity-interest-v1.test.mjs tests/public-navigation-policy.test.mjs tests/public-continuity.test.mjs",
+              "node --test tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs",
+              "node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/checkout-recovery.test.mjs tests/shop-recovery.test.mjs tests/promise-accuracy.test.mjs tests/commerce-recovery-health.test.mjs tests/medicine-stripe-retry-v1.test.mjs",
+              "node --test medicines-watch/*.test.mjs",
+              "node --test tests/radar-source-*.test.mjs tests/radar-published-ticker-v1.test.mjs tests/public-ticker-preservation.test.mjs tests/public-ticker-motion.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs",
+              "node --test tests/radar-live-email-v1.test.mjs tests/radar-auto-news*.test.mjs tests/newsroom-publication*.test.mjs",
+              "node --test tests/radar-newsroom-*.test.mjs",
+              "node --test babylove/*.test.mjs",
+              "node --test tests/knowledge-editorial-*.test.mjs",
+              "node --test tests/newsroom-publication*.test.mjs",
+              "node --test tests/evidence-desk-hq-read.test.mjs",
+              "node --test tests/discovery-repairs.test.mjs",
+              "node --test tests/catalogue-publication-d1-import.test.mjs tests/nutrition-mytimber.test.mjs member-experience/tests/grub-current-adjustment.test.mjs member-experience/tests/grub-week-variety.test.mjs",
+              "node --test scripts/verify-tool-page-schema.test.cjs tests/tool-schema-gate.test.mjs tests/runtime-rollback-guard.test.mjs tests/public-tool-guidance.test.mjs tests/tool-guidance-build.test.cjs",
+              "node --test tests/my-treatment-compiled-control.test.mjs tests/my-treatment-rollback-runtime.test.mjs"
+            ],
+            "originalPrivacyCommand": "node --test tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs tests/discovery-repairs.test.mjs shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/b1-release-scope.test.mjs tests/member-details-release.test.mjs",
+            "preparations": [
+              {
+                "originalStep": 17,
+                "body": "node member-experience/prepare-life-back.mjs\ngit diff --exit-code -- member-experience/life-back-assets.mjs\n"
+              },
+              {
+                "originalStep": 19,
+                "body": "node grub-expansion-review-pack.mjs\n"
+              },
+              {
+                "originalStep": 37,
+                "body": "node babylove/prepare-public-bundle.mjs\ngit diff --exit-code -- babylove/editorial/public-bundle.mjs\n"
+              }
+            ],
+            "tasks": [
+              {
+                "id": "production-step-012",
+                "originalStep": 12,
+                "name": "Verify B1 release scope before any production mutation",
+                "body": "node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/tablet-routine.test.mjs tests/my-health-plan-v2.test.mjs\nnode --test tests/home-route-banner.test.mjs tests/app-layout-live.test.mjs preview/app-layout/presentation.test.mjs tests/home-speed-green.test.mjs tests/shift-ai-edge-proof.test.mjs tests/growth-release.test.mjs tests/seo794-preservation.test.mjs tests/b1-release-scope.test.mjs tests/shift-ai-release.test.mjs tests/b1-reliability.test.mjs tests/b1-reset-page.test.mjs tests/member-details-release.test.mjs\nnode scripts/b1-release-scope.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-005",
+                "originalStep": 5,
+                "name": "Require exact approved growth preview and release verification",
+                "body": "node release/growth-preflight.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-004",
+                "originalStep": 4,
+                "name": "Require recorded coaching launch decisions before production work",
+                "body": "node shift-coach/release-contract.mjs --require-launch\n",
+                "requires": []
+              },
+              {
+                "id": "production-step-014",
+                "originalStep": 14,
+                "name": "Verify acquisition consent and same-account activation join",
+                "body": "node --test acquisition-activation/*.test.mjs activation-measurement/*.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-006",
+                "originalStep": 6,
+                "name": "Require the exact successful heading preview before production work",
+                "body": "node --input-type=module <<'JS'\nimport assert from 'node:assert/strict';\nconst r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36341844316',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});\nassert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'90b1e29db85591b84dec642c3304641bc9545529');\nJS\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-007",
+                "originalStep": 7,
+                "name": "Require verified homepage speed candidate and current CSS bytes",
+                "body": "node --input-type=module <<'JS'\nimport assert from 'node:assert/strict';\nimport {createHash} from 'node:crypto';\nimport {RETA_STYLES} from './reta-styles-data.mjs';\nimport {HOME_BLOCKING_STYLES} from './home-blocking-styles.mjs';\nimport {styles as pwaStyles} from './my-timber-pwa/presentation.mjs';\nconst r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/36469397727',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const run=await r.json();assert.equal(run.conclusion,'success');assert.equal(run.head_sha,'44c895d732cf801c4cff90564244fa5ee8997523');\nconst sha=x=>createHash('sha256').update(x).digest('hex');\nfor(const [path,css] of Object.entries({...RETA_STYLES,...HOME_BLOCKING_STYLES,'/assets/my-timber-pwa.css':pwaStyles})){const r=await fetch('https://shiftsometimber.co.uk'+path);assert(r.ok);assert.equal(sha(await r.text()),sha(css),'CSS changed since preview: '+path)}\nJS\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-013",
+                "originalStep": 13,
+                "name": "Verify article retry, publication and notification contracts",
+                "body": "node --test babylove/*.test.mjs tests/knowledge-editorial-*.test.mjs tests/radar-newsroom-performance.test.mjs tests/member-signup-alert.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-015",
+                "originalStep": 15,
+                "name": "Verify five source-specific articles without changing unrelated pages",
+                "body": "node --test tests/five-article-evidence.test.mjs tests/editorial-resources-v1.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-016",
+                "originalStep": 16,
+                "name": "Verify My Treatment schema preservation and release boundaries",
+                "body": "node --test tests/my-treatment-release.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-017",
+                "originalStep": 17,
+                "name": "Verify member experience and Grub account integration",
+                "body": "node --test tests/member-checkin-preflight.test.mjs\nnode --test member-experience/tests/*.test.mjs tests/ai-connected*.test.mjs\nnode gate4-one-shift-brain-gate.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-018",
+                "originalStep": 18,
+                "name": "Verify Passport consent, migration and preservation before promotion",
+                "body": "node --test health-passport/*.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-019",
+                "originalStep": 19,
+                "name": "Verify catalogue authority, additive publication guards and timing",
+                "body": "node scripts/verify-grub-closeout-reviews.mjs\nnode --test tests/grub-expansion*.test.mjs tests/grub-owner-publication-build.test.mjs tests/grub-protected-revisions.test.mjs\nnode --test tests/catalogue-publication*.test.mjs tests/fit-expansion*.test.mjs tests/fit-v3-closeout.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-020",
+                "originalStep": 20,
+                "name": "Verify reminder delivery and proactive acknowledgement before promotion",
+                "body": "node --test tests/scheduled-intelligence-delivery.test.mjs tests/fit-reminders-delivery.test.mjs tests/pilot-monitor*.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-021",
+                "originalStep": 21,
+                "name": "Verify approved PWA, device consent and exact presentation preservation",
+                "body": "node --test my-timber-pwa/*.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-022",
+                "originalStep": 22,
+                "name": "Prove Daily Shift is a fluid one-thumb front door",
+                "body": "node daily-shift-frontdoor-gate.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-023",
+                "originalStep": 23,
+                "name": "Prove My Timber has reached the 75 percent all-green bar",
+                "body": "node my-timber-75-green-gate.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-024",
+                "originalStep": 24,
+                "name": "Prove the My Timber production candidate is complete",
+                "body": "node my-timber-final-source-gate.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-025",
+                "originalStep": 25,
+                "name": "Prove signed-in members can reach the site and The Lounge",
+                "body": "node my-timber-navigation-gate.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-026",
+                "originalStep": 26,
+                "name": "Verify security-check timeouts and retry before promotion",
+                "body": "node --test tests/turnstile-client-timeout.test.mjs tests/turnstile-auth-v1.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-027",
+                "originalStep": 27,
+                "name": "Prove persistent member login remains secure",
+                "body": "node g5-012-login-fastpath-gate.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-028",
+                "originalStep": 28,
+                "name": "Prove Ask Timber handles every explicit request part",
+                "body": "node --test ask-timber-multi-intent-gate.mjs tests/ask-timber-public.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-029",
+                "originalStep": 29,
+                "name": "Block SEO deployment regressions",
+                "body": "node --test tests/seo-release-integrity.test.mjs tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-030",
+                "originalStep": 30,
+                "name": "Prove Health rendering, canonical uniqueness and public endpoint security",
+                "body": "node --test tests/testosterone-public.test.mjs tests/public-audit-repair.test.mjs tests/continuity-interest-v1.test.mjs tests/public-navigation-policy.test.mjs tests/public-continuity.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-031",
+                "originalStep": 31,
+                "name": "Prove My Journey end to end before promotion",
+                "body": "node --test tests/my-journey-v1.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs\nnode my-journey-integration-gate.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-032",
+                "originalStep": 32,
+                "name": "Prove medicine front door, commercial safety and full purchase lifecycle",
+                "body": "node --test tests/medicine-commerce-v1.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/checkout-recovery.test.mjs tests/shop-recovery.test.mjs tests/promise-accuracy.test.mjs tests/commerce-recovery-health.test.mjs tests/medicine-stripe-retry-v1.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-033",
+                "originalStep": 33,
+                "name": "Verify Medicines Watch evidence, monitor and public isolation",
+                "body": "node --test medicines-watch/*.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-034",
+                "originalStep": 34,
+                "name": "Verify Radar retrieval, publication edition, dates and correction races",
+                "body": "node --test tests/radar-source-*.test.mjs tests/radar-published-ticker-v1.test.mjs tests/public-ticker-preservation.test.mjs tests/public-ticker-motion.test.mjs tests/radar-discovery-pipeline.test.mjs tests/radar-freshness-v2.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-035",
+                "originalStep": 35,
+                "name": "Verify owner-authorised automatic news and human-decision preservation",
+                "body": "node --test tests/radar-live-email-v1.test.mjs tests/radar-auto-news*.test.mjs tests/newsroom-publication*.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-036",
+                "originalStep": 36,
+                "name": "Verify newsroom publication ordering and combined controls",
+                "body": "node --test tests/radar-newsroom-*.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-037",
+                "originalStep": 37,
+                "name": "Verify BabyLoveGrowth intake and exact approved public article",
+                "body": "node --test babylove/*.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-038",
+                "originalStep": 38,
+                "name": "Verify HQ article schema and retained editorial approvals",
+                "body": "node --test tests/knowledge-editorial-*.test.mjs\nnode --test tests/newsroom-publication*.test.mjs\nnode --test tests/evidence-desk-hq-read.test.mjs\nnode g3-006-hq-editorial-cors-gate.mjs\nnode g3-006-knowledge-editorial-staging.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-039",
+                "originalStep": 39,
+                "name": "Verify exact current main before production mutations",
+                "body": "node scripts/catalogue-publication-client.mjs --verify-main\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              },
+              {
+                "id": "production-step-040",
+                "originalStep": 40,
+                "name": "Verify discovery privacy, crisis and reporting regressions",
+                "body": "node --test tests/discovery-repairs.test.mjs\n",
+                "requires": [
+                  "production-step-004"
+                ]
+              }
+            ],
+            "preserved": "All original source commands and actual zero exits; exactly two global child groups; source and output ownership checks; no provider work until the complete barrier. Original runtime recovery, current-main checks, approvals, compiled proof prerequisites, deployment, stock, privacy, clinical and rollback controls remain literal.",
+            "launchAdmission": "Every other original source command waits for the original launch command actual successful exit. Failed prerequisites block only their dependants; no blocked command can become a successful source receipt."
+          }
+          SHIFT_PRODUCTION_SOURCE_COMMANDS
+      - name: Retain completed source proofs before runtime operations
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-bounded-source-${{ github.sha }}
+          path: ${{ runner.temp }}/ci-source-proof/production-bounded/
+          retention-days: 30
+      - name: Capture protected catalogue and stock without customer records
+        id: protected_stock_before
+        run: node scripts/b1-release-scope.mjs --snapshot before
+      - name: Recover only the evidenced cancelled runtime to the last verified release
+        run: node shift-coach/recover-cancelled-release.mjs
+      - name: Prepare and launch verification browsers before deployment
+        timeout-minutes: 3
+        run: |
+          npm install --prefix "$RUNNER_TEMP/heading-tools" --no-audit --no-fund playwright@1.63.0 lighthouse@12.8.2
+          "$RUNNER_TEMP/heading-tools/node_modules/.bin/playwright" install chromium
+          if ! node -e "require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.launch().then(async b=>{await b.close()}).catch(e=>{console.error(e);process.exit(1)})"; then
+            "$RUNNER_TEMP/heading-tools/node_modules/.bin/playwright" install-deps chromium
+            node -e "require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.launch().then(async b=>{await b.close()}).catch(e=>{console.error(e);process.exit(1)})"
+          fi
+      - name: Adopt the exact already-completed growth deployment
+        id: growth_deployed
+        run: node release/growth-adopt-deployment.mjs
+      - name: Apply pharmacy-readiness database additions
+        if: steps.scope.outputs.runtime_only != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          run_d1_file() {
+            local file="$1" out code attempt
+            for attempt in 1 2 3; do
+              set +e
+              out=$(npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$file" 2>&1)
+              code=$?
+              set -e
+              printf '%s\n' "$out"
+              if [ "$code" -eq 0 ]; then return 0; fi
+              if printf '%s' "$out" | grep -q 'Not currently importing anything' && [ "$attempt" -lt 3 ]; then
+                echo "Transient D1 import-state response for $file; retrying (${attempt}/3)..."
+                sleep 5
+                continue
+              fi
+              return "$code"
+            done
+          }
+          run_d1_file migrations/017_medicine_clinical_intake.sql
+          column_json=$(npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "PRAGMA table_info(medicine_variants)")
+          if ! printf '%s' "$column_json" | grep -q 'target_margin_bps'; then
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --command "ALTER TABLE medicine_variants ADD COLUMN target_margin_bps INTEGER NOT NULL DEFAULT 6000"
+          fi
+          run_d1_file migrations/018_foundayo_launch_ready.sql
+          run_d1_file migrations/019_foundayo_option_stock_lock.sql
+          run_d1_file migrations/020_radar_duplicate_cleanup.sql
+          run_d1_file medicines-watch/migration.sql
+      - name: Initialise Medicines Watch source observations
+        if: steps.scope.outputs.runtime_only != 'true'
+        run: |
+          node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
+          node release/watch-observation-seed.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
+      - name: Initialise reviewed Medicines Watch expansion observations
+        if: steps.scope.outputs.runtime_only == 'true'
+        run: |
+          node scripts/b1-release-scope.mjs
+          node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-expansion-observations.sql"
+          node release/watch-observation-seed.mjs "$RUNNER_TEMP/medicines-watch-expansion-observations.sql"
+      - name: Publish only the exact previously authorised Grub recipe expansion
+        if: steps.scope.outputs.grub_publication == 'true'
+        run: |
+          node --test tests/catalogue-publication-d1-import.test.mjs tests/nutrition-mytimber.test.mjs member-experience/tests/grub-current-adjustment.test.mjs member-experience/tests/grub-week-variety.test.mjs
+          node scripts/catalogue-publication-client.mjs --verify-main
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,content_type,title,version,status,data_json,review_json,created_at,updated_at FROM structured_content WHERE content_type IN ('recipe','exercise') ORDER BY id" > "$RUNNER_TEMP/grub-before.json"
+          node scripts/catalogue-exact-d1-import.mjs --grub-sql "$RUNNER_TEMP/grub-before.json" > "$RUNNER_TEMP/grub-approved.sql"
+          node scripts/catalogue-publication-client.mjs --verify-main
+          if [ -s "$RUNNER_TEMP/grub-approved.sql" ]; then
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/grub-approved.sql"
+          fi
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,content_type,title,version,status,data_json,review_json,created_at,updated_at FROM structured_content WHERE content_type IN ('recipe','exercise') ORDER BY id" > "$RUNNER_TEMP/grub-after.json"
+          CATALOGUE_PUBLICATION_REPORT=b1-runtime-release/grub-publication.json node scripts/catalogue-exact-d1-import.mjs --grub-verify "$RUNNER_TEMP/grub-before.json" "$RUNNER_TEMP/grub-after.json"
+      - name: Verify existing production food catalogue without account writes
+        if: ${{ hashFiles('member-experience/verify-production-catalogue.mjs') != '' }}
+        run: |
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,title,version,data_json,review_json,updated_at FROM structured_content WHERE content_type='recipe' AND status='published' ORDER BY id" > "$RUNNER_TEMP/food-catalogue.json"
+          node member-experience/verify-production-catalogue.mjs "$RUNNER_TEMP/food-catalogue.json"
+      - name: Verify the isolated Evidence Inbox connection without writes
+        run: |
+          npx wrangler d1 list --json > "$RUNNER_TEMP/evidence-inbox-databases.json"
+          node scripts/verify-evidence-inbox-connection.mjs --sql > "$RUNNER_TEMP/evidence-inbox-read.sql"
+          npx wrangler d1 execute EVIDENCE_DESK_READ_DB --remote --config wrangler.jsonc --json --command "$(cat "$RUNNER_TEMP/evidence-inbox-read.sql")" > "$RUNNER_TEMP/evidence-inbox-read.json"
+          node scripts/verify-evidence-inbox-connection.mjs "$RUNNER_TEMP/evidence-inbox-databases.json" "$RUNNER_TEMP/evidence-inbox-read.json"
+      - name: Verify retained SHIFT interpretations throughout the archive
+        run: node scripts/verify-shift-take-archive.mjs
+      - name: Verify AI Gateway budgets before production deployment
+        run: node preview/ai-context/gateway-settings.mjs b1-runtime-release
+      - name: Capture AI frontend and aggregate knowledge foundation before release
+        run: node release/shift-ai-live.mjs before
+      - name: Prove public tool checks and guarded rollback in isolation
+        run: |
+          node --test scripts/verify-tool-page-schema.test.cjs tests/tool-schema-gate.test.mjs tests/runtime-rollback-guard.test.mjs tests/public-tool-guidance.test.mjs tests/tool-guidance-build.test.cjs
+          node scripts/verify-tool-guidance-build.cjs "$RUNNER_TEMP/tool-guidance-build"
+          cp "$RUNNER_TEMP/tool-guidance-build/build-proof.json" b1-runtime-release/tool-guidance-build-proof.json
+          TOOL_GUIDANCE_FIXTURE_DIR="$RUNNER_TEMP/tool-guidance-build/pages" PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-tool-guidance-browser.cjs b1-runtime-release/tool-guidance-built
+      - name: Capture current Worker deployment for rollback
+        run: |
+          if [ "${{ steps.growth_deployed.outputs.already_deployed }}" != true ]; then
+            npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+          else
+            test -s deployment-before.json
+          fi
+      - name: Seed recent discovery snapshots without publishing or sending notifications
+        if: steps.scope.outputs.runtime_only != 'true'
+        run: node scripts/radar-discovery-collector.mjs --store
+      - name: Capture current public pages before this member release
+        run: |
+          if [ "${{ steps.growth_deployed.outputs.already_deployed }}" = true ]; then
+            cp release/growth-public-baseline.json public-before.json
+          else
+            node member-experience/public-preservation.mjs public-before.json
+          fi
+      - name: Retain rollback deployment record
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-deployment-before-${{ github.run_id }}
+          path: deployment-before.json
+      - name: Prepare exact additive Passport schema and rollback
+        env:
+          PASSPORT_SCHEMA_READ_ONLY: ${{ steps.scope.outputs.runtime_only }}
+        run: node health-passport/production-release.mjs
+      - name: Prepare additive daily check-in feedback store
+        if: steps.scope.outputs.runtime_only != 'true'
+        run: npx wrangler d1 execute DB --remote --config wrangler.jsonc --file member-experience/checkin-followup.sql
+      - name: Prepare only the explicitly approved Member Details contact table
+        run: node release/member-details-schema.mjs
+      - name: Prepare the exact additive signup-alert delivery store
+        run: node release/member-signup-alert-schema.mjs
+      - name: Prepare exact additive My Treatment stores
+        run: node release/my-treatment-schema.mjs
+      - name: Recheck public index at point of use
+        id: public_index_freshness
+        run: node release/public-index-preflight.mjs decision
+      - name: Index existing public SHIFT pages for AI without publishing website content
+        if: steps.public_index_freshness.outputs.existing_index != 'true'
+        run: |
+          node scripts/b1-release-scope.mjs
+          node scripts/catalogue-publication-client.mjs --verify-main
+          node preview/ai-context/site-index.mjs
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file evidence/shift-ai-site-index/index.sql
+          cp evidence/shift-ai-site-index/index.json b1-runtime-release/shift-ai-public-index.json
+          sha256sum evidence/shift-ai-site-index/index.sql > b1-runtime-release/shift-ai-public-index.sha256
+      - name: Require current public evidence throughout release verification
+        run: node release/public-index-preflight.mjs require
+      - name: Require exact approved homepage sharing repair and retain baseline
+        run: |
+          node release/root-share-preview-scope.mjs --require-release-authority
+          node release/root-share-preview-live.mjs before
+      - name: Require exact member repair publication and production approval
+        run: node release/member-consent-repair-scope.mjs --require-release-authority
+      - name: Verify compiled My Treatment responses before runtime deployment
+        env:
+          RUN_TREATMENT_COMPILED_PROOF: 'true'
+          WRANGLER_SEND_METRICS: 'false'
+          TREATMENT_MINIFLARE: ${{ runner.temp }}/treatment-proof-runtime/node_modules/miniflare
+        run: |
+          npm install --prefix "$RUNNER_TEMP/treatment-proof-runtime" --no-audit --no-fund wrangler@4.146.0
+          node --test tests/my-treatment-compiled-control.test.mjs tests/my-treatment-rollback-runtime.test.mjs
+          echo "TREATMENT_MINIFLARE=$RUNNER_TEMP/treatment-proof-runtime/node_modules/miniflare" >> "$GITHUB_ENV"
+      - name: Deploy current main to production
+        id: runtime_deploy
+        if: steps.growth_deployed.outputs.already_deployed != 'true'
+        run: |
+          node scripts/b1-release-scope.mjs
+          node scripts/catalogue-publication-client.mjs --verify-main
+          node release/member-runtime-deploy.mjs
+      - name: Begin verification of the deployed runtime
+        id: growth_live_started
+        run: test -s deployment-before.json
+      - name: Restore the exact approved version after the evidenced harness-only rollback
+        if: steps.growth_deployed.outputs.restore_needed == 'true'
+        run: node release/growth-adopt-deployment.mjs restore
+      - name: Wait briefly for route propagation
+        run: sleep 10
+      - name: Verify nine public tool pages against the owned deployment
+        id: public_tool_deploy_check
+        run: node release/tool-schema-gate.mjs deploy
+      - name: Verify calculator journeys and specific tool guidance live
+        run: |
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-tool-calculators-browser.cjs b1-runtime-release/tool-calculators
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-tool-guidance-browser.cjs b1-runtime-release/tool-guidance
+      - name: Verify rendered knowledge headings and direct About link live
+        timeout-minutes: 2
+        run: PREVIEW_URL=https://shiftsometimber.co.uk PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-knowledge-headings.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: knowledge-heading-live-${{ github.sha }}
+          path: heading-proof/
+      - name: Verify corrected homepage sharing image and exact page preservation live
+        run: node release/root-share-preview-live.mjs after
+      - name: Verify exact live app assets and website isolation
+        run: node release/app-live-http.mjs
+      - name: Verify approved growth copy live on desktop and phone viewport
+        run: node release/growth-public-live.cjs
+      - name: Measure and retain live homepage mobile speed
+        run: |
+          mkdir -p home-speed-live
+          node release/home-banner-live.cjs
+          export CHROME_PATH=$(node -e "console.log(require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright').chromium.executablePath())")
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {writeFileSync,readFileSync} from 'node:fs';import {HOME_BASE_MAIN,HOME_RECOVERY_CSS} from './home-critical-styles.mjs';import {HOME_V42_CSS} from './home-v42-critical.mjs';import {RETA_STYLES} from './reta-styles-data.mjs';import {HOME_BLOCKING_STYLES} from './home-blocking-styles.mjs';
+          const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const html=await r.text();const p=await fetch('https://shift-home-speed-preview.matobrien.workers.dev/');assert(p.ok);const preview=await p.text();const paths=s=>[...s.matchAll(/data-home-inline-css="([^"]+)"/g)].map(m=>m[1]);assert(paths(preview).includes('/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2'));assert.deepEqual(paths(html),paths(preview),'Live stylesheet list differs from tested preview');
+          const main=s=>{const rows=[...s.matchAll(/<main\b[\s\S]*?<\/main>/g)];assert.equal(rows.length,1,'Exactly one protected homepage main required');return rows[0][0];};
+          const captured=readFileSync('b1-runtime-release/root-share-preview/before-0.bin','utf8');assert.equal(main(html),main(captured),'Current approved homepage main changed during release');
+          assert(preview.includes(HOME_RECOVERY_CSS),'Guarded CSS not present in original preview');assert(preview.includes(HOME_V42_CSS),'Guarded v42 CSS not present in original preview');
+          if(main(html)===HOME_BASE_MAIN){assert(html.includes(HOME_RECOVERY_CSS),'Guarded CSS not present live');assert(html.includes(HOME_V42_CSS),'Guarded v42 CSS not present live');}
+          else{const styles=[...html.matchAll(/<style\b([^>]*)>([\s\S]*?)<\/style>/g)];for(const[path,css]of [['/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2',RETA_STYLES['/assets/shift-recovery-v6.css?v=cos-live-recovery-20260909-r2']],['/assets/v42h.css?v=42p6',HOME_BLOCKING_STYLES['/assets/v42h.css?v=42p6']]]){const rows=styles.filter(row=>row[1].includes('data-home-inline-css="'+path+'"'));assert.equal(rows.length,1,'Exactly one original full stylesheet required: '+path);assert.equal(rows[0][2],css.replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;')),'Exact original full CSS not present live: '+path);}}
+          writeFileSync('home-speed-live/home.html',html);writeFileSync('home-speed-live/style-list.json',JSON.stringify(paths(html)));
+          JS
+          for n in 1 2 3; do
+            node "$RUNNER_TEMP/heading-tools/node_modules/lighthouse/cli/index.js" https://shiftsometimber.co.uk/ --only-categories=performance --output=json --output-path="home-speed-live/home-$n.json" '--chrome-flags=--headless --no-sandbox' --quiet
+          done
+          python3 - <<'PY'
+          import pathlib,json,statistics
+          rows=[]
+          for n in [1,2,3]:
+            d=json.loads(pathlib.Path(f'home-speed-live/home-{n}.json').read_text());assert not d.get('runtimeError');a=d['audits'];rows.append({'lcp':a['largest-contentful-paint']['numericValue'],'cls':a['cumulative-layout-shift']['numericValue'],'tbt':a['total-blocking-time']['numericValue'],'score':d['categories']['performance']['score']*100})
+          out={'runs':rows,'median':{k:statistics.median(x[k] for x in rows) for k in rows[0]},'targetMs':2500,'tolerancePercent':20,'limitMs':3000};out['targetMet']=out['median']['lcp']<=out['targetMs'];out['timingStatus']='target_met' if out['targetMet'] else 'within_tolerance' if out['median']['lcp']<=out['limitMs'] else 'failed';print(json.dumps(out));pathlib.Path('home-speed-live/summary.json').write_text(json.dumps(out,indent=2))
+          assert out['median']['lcp']<=out['limitMs'], 'Homepage mobile median LCP exceeds 3.0s owner-authorised 20% tolerance (2.5s target)'
+          assert out['median']['cls']<=0.1, 'Homepage CLS exceeds release budget'
+          assert out['median']['tbt']<=200, 'Homepage TBT exceeds mobile lab release budget'
+          PY
+          find home-speed-live -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > home-speed-live/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: home-speed-live-${{ github.sha }}
+          path: home-speed-live/
+          retention-days: 90
+      - name: Verify live AI knowledge, response timing and exact reviewed chat assets
+        run: node release/shift-ai-live.mjs after
+      - name: Verify exact Member Details and frontend repair delivery
+        run: node release/member-details-live.mjs
+      - name: Publish the exact owner-approved illustrated Wegovy guide
+        if: steps.scope.outputs.runtime_only != 'true'
+        run: node babylove/publish-approved-article.mjs
+      - name: Publish the reconciled oral semaglutide guide
+        if: steps.scope.outputs.runtime_only != 'true'
+        run: node babylove/publish-oral.mjs
+      - name: Verify the reconciled oral semaglutide guide
+        run: |
+          mkdir -p babylove-proof
+          node babylove/verify-oral-live.mjs
+      - name: Verify the Wegovy guide, three images, author, Knowledge listing and sitemap
+        run: node babylove/verify-publication-live.mjs
+      - name: Verify five revised articles, metadata, downloads and sitemap on live traffic
+        run: node editorial/five-articles/proof.mjs --live
+      - name: Retain five-article live proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: five-article-live-${{ github.run_id }}
+          path: five-article-live/
+          if-no-files-found: warn
+      - name: Prove activated Passport delivery and private routes
+        run: node health-passport/production-live.mjs
+      - name: Verify live My Treatment delivery and private APIs
+        run: node release/my-treatment-live.mjs
+      - name: Retain Passport migration and live evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: passport-release-${{ github.run_id }}
+          path: passport-release/
+          if-no-files-found: warn
+      - name: Publish only the fixed owner-authorised catalogue when approved
+        if: steps.scope.outputs.runtime_only != 'true'
+        env:
+          CATALOGUE_PUBLICATION_REPORT: catalogue-publication-result.json
+        run: |
+          test "$GITHUB_EVENT_NAME" = push
+          test "$GITHUB_ACTOR_ID" = 315011648
+          node scripts/catalogue-publication-client.mjs --verify-main
+          catalogue_sql=$(node scripts/catalogue-publication-snapshot.mjs --sql)
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$catalogue_sql" > "$RUNNER_TEMP/catalogue-before.json"
+          node scripts/catalogue-exact-d1-import.mjs --sql "$RUNNER_TEMP/catalogue-before.json" > "$RUNNER_TEMP/catalogue-publication.sql"
+          if [ -s "$RUNNER_TEMP/catalogue-publication.sql" ]; then
+            node scripts/catalogue-publication-client.mjs --verify-main
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/catalogue-publication.sql"
+          else
+            echo 'Exact approved catalogue already present; skipping D1 import and verifying a fresh snapshot.'
+          fi
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "$catalogue_sql" > "$RUNNER_TEMP/catalogue-after.json"
+          node scripts/catalogue-exact-d1-import.mjs --verify "$RUNNER_TEMP/catalogue-before.json" "$RUNNER_TEMP/catalogue-after.json"
+      - name: Publish the exact owner-authorised newsroom batch when approved
+        if: steps.scope.outputs.runtime_only != 'true'
+        run: node scripts/newsroom-publication-client.mjs
+      - name: Prove existing public content and login asset are preserved outside exact approved additions
+        run: node member-experience/public-preservation.mjs public-after.json public-before.json
+      - name: Prove public Life Back, food-noise guidance and their linked journeys
+        run: node scripts/verify-public-continuity-live.mjs
+      - name: Verify approved Programme day and catalogue artwork live
+        run: PROGRAMME_DAY_LIVE=true PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-programme-day.cjs
+      - name: Retain original Programme day browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: programme-day-live-${{ github.sha }}
+          path: programme-day-proof/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Prove newsroom publication order on live traffic
+        run: node scripts/verify-newsroom-order-live.mjs
+      - name: Verify SHIFT take labels and original dates on every live news article
+        run: node scripts/verify-shift-take-live.mjs
+      - name: Prove exact member scripts and authentication on live traffic
+        run: node member-experience/verify-production-member.mjs
+      - name: Verify exact PWA assets, full-account entry and device privacy on live traffic
+        run: node my-timber-pwa/verify-live.mjs
+      - name: Prove Medicines Watch and its source checks on live traffic
+        run: node medicines-watch/verify-live.mjs
+      - name: Verify live access sources without granting clinical review for Orders display
+        env:
+          WATCH_ACCESS_ORDERS_DISPLAY_ONLY: ${{ steps.scope.outputs.runtime_only }}
+        run: node scripts/verify-watch-access-closeout.mjs
+      - name: Verify the six reviewed SEO pages and their linked destinations live
+        run: node scripts/verify-six-topic-seo.mjs --live
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: six-topic-seo-live-${{ github.sha }}
+          path: six-topic-seo-proof/
+          retention-days: 30
+      - name: Prove the complete SEO closeout on live traffic
+        run: node scripts/verify-seo-closeout-live.mjs
+      - name: Prove repaired templates, sharing cards, direct links and real FAQ destinations
+        run: node scripts/verify-seo-template.mjs --live
+      - name: Prove automatic article metadata and the shared security policy
+        run: node scripts/verify-article-quality.mjs
+      - name: Record independent public HTTP latency after promotion
+        run: node scripts/measure-public-latency.mjs
+      - name: Retain public preservation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: member-public-preservation-${{ github.run_id }}
+          path: |
+            babylove-proof/
+            babylove-publication-proof.json
+            babylove-live-proof.json
+            public-*.json
+            member-live-proof.json
+            medicines-watch-live-proof.json
+            watch-access-closeout.json
+            catalogue-publication-result.json
+            newsroom-publication-proof.json
+            newsroom-order-proof.json
+            seo-closeout-live-proof.json
+            seo-template-live-proof/
+            article-quality-proof/
+      - name: Prove deployed public audit repairs
+        run: node scripts/verify-public-audit-live.mjs
+      - name: Prove discovery repair source and anonymous boundaries on live traffic
+        run: node scripts/verify-discovery-repairs-live.mjs
+      - name: Retain discovery repair live proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: discovery-repairs-live-${{ github.run_id }}
+          path: discovery-repairs-live.json
+          if-no-files-found: warn
+      - name: Prove deployed Progress client matches current Git authority
+        run: node g2-012-production-proof.mjs
+      - name: Record Radar metadata repair and remaining source failures without writes
+        run: node scripts/radar-feed-diagnostics.mjs
+      - name: Retain Radar diagnosis after deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: radar-feed-after-${{ github.run_id }}
+          path: radar-feed-diagnostics.json
+      - name: Prove newer restricted routes are on live traffic
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in /v1/shift-me/render /v1/commissioning/product-events '/v1/commerce/discounts/validate?code=NEWSHIFT25&product=mounjaro&subtotalPence=16900' /v1/site-content; do
+            code=$(curl -sS -o /tmp/resp -w '%{http_code}' "https://api.shiftsometimber.co.uk${path}" || true)
+            echo "$path -> HTTP $code"
+            cat /tmp/resp || true
+            echo
+            if [ "$code" = "404" ]; then
+              echo "Route still missing after explicit deploy: $path"
+              exit 1
+            fi
+          done
+          code=$(curl -sS -X POST -H 'content-type: application/json' -d '{}' -o /tmp/resp -w '%{http_code}' 'https://api.shiftsometimber.co.uk/v1/commissioning/final-v1-publication' || true)
+          echo "/v1/commissioning/final-v1-publication [POST] -> HTTP $code"
+          cat /tmp/resp || true
+          echo
+          if [ "$code" = "404" ]; then
+            echo 'POST-only final publication route still missing after explicit deploy'
+            exit 1
+          fi
+          echo 'Explicit production promotion reached the newer route graph.'
+      - name: Prove Shift Me premium static assets are actually published
+        shell: bash
+        run: |
+          set -euo pipefail
+          js_type=$(curl -sSI 'https://shiftsometimber.co.uk/member-shift-me-premium-v1.js?v=1' | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type"{print tolower($2);exit}')
+          css_type=$(curl -sSI 'https://shiftsometimber.co.uk/member-shift-me-premium-v1.css?v=1' | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type"{print tolower($2);exit}')
+          echo "Shift Me JS content-type: $js_type"
+          echo "Shift Me CSS content-type: $css_type"
+          [[ "$js_type" == *javascript* ]] || { echo 'Shift Me JS is not published with JavaScript MIME'; exit 1; }
+          [[ "$css_type" == text/css* ]] || { echo 'Shift Me CSS is not published with CSS MIME'; exit 1; }
+          echo 'Shift Me premium static assets are published with correct MIME types.'
+      - name: Prove SHIFT Health editorial imagery is actually published
+        shell: bash
+        run: |
+          set -euo pipefail
+          for image in health-mot testosterone-energy blood-pressure-monitor digital-scales resistance-bands shift-measure erectile-dysfunction hair-loss stop-smoking sleep-apnoea; do
+            code=$(curl -sS -o /tmp/shift-health-image -w '%{http_code}' "https://shiftsometimber.co.uk/assets/shift-health/${image}.webp")
+            type=$(file --brief --mime-type /tmp/shift-health-image)
+            echo "${image}.webp -> HTTP ${code}; ${type}"
+            [ "$code" = "200" ] || exit 1
+            [ "$type" = "image/webp" ] || exit 1
+          done
+          echo 'All SHIFT Health editorial images are published as WebP assets.'
+
+      - name: Verify B1 protected catalogue and stock remain identical
+        run: node scripts/b1-release-scope.mjs --snapshot after
+      - name: Restore the captured runtime if a post-deployment gate failed
+        id: runtime_rollback
+        if: ${{ always() && ((failure() && steps.runtime_deploy.outcome == 'success') || (cancelled() && steps.runtime_deploy.outcome == 'success') || ((failure() || cancelled()) && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success')) }}
+        run: node release/member-details-rollback.mjs
+      - name: Verify protected catalogue and stock after owned rollback
+        if: ${{ always() && steps.runtime_rollback.outcome == 'success' && steps.protected_stock_before.outcome == 'success' }}
+        run: node scripts/b1-release-scope.mjs --snapshot after
+      - name: Verify nine public tool pages after owned rollback
+        if: ${{ always() && steps.runtime_rollback.outcome == 'success' }}
+        run: node release/tool-schema-gate.mjs rollback
+      - name: Verify query-string log redaction after deployment or rollback
+        if: always()
+        run: node release/query-log-redaction.mjs
+      - name: Record public tool verification status before retaining evidence
+        if: always()
+        run: node release/tool-schema-gate.mjs report --workflow-status "${{ job.status }}" --receipt-only
+      - name: Retain B1 runtime-only release evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b1-runtime-release-${{ github.run_id }}
+          path: b1-runtime-release/
+          if-no-files-found: error
+
+      - name: Report final public tool release status
+        if: always()
+        run: node release/tool-schema-gate.mjs report --workflow-status "${{ job.status }}"

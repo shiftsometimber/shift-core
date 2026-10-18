@@ -1,0 +1,22 @@
+{
+  "verifiedAt": "2026-10-18T01:34:24.142435+00:00",
+  "status": "DEPLOYED_AND_LIVE_VERIFIED",
+  "deployment": "78408b0f-bf85-463d-9458-603f3da01c17",
+  "build": "price-period-20261018-1314bdafe846",
+  "sourceCommit": "9a3ab6adff90eec0a2d55ab99d90b8e37eb88752",
+  "liveBrowserChecks": 16,
+  "liveHttpChecks": 10,
+  "pageErrors": [],
+  "unchangedAssets": 414,
+  "headersPreserved": true,
+  "coreWorkerWrites": 0,
+  "customerRecordWrites": 0,
+  "orderingRemainsClosed": true,
+  "medicineSwitchingPreserved": true,
+  "weeklySupplyPeriod": "4 weeks / four weekly doses",
+  "otherSupplyPeriods": "Orlistat selected capsule pack; tablet quantity and duration remain explicitly subject to confirmation before ordering.",
+  "priceSource": "Existing HQ public medicine catalogue; retrieval time displayed.",
+  "retiredWait": "Blanket active-Core delay retired after inspecting actual workflow. Pages publication occurred during original source step7, before public-baseline capture step25. Capture remained pending at01:34UTC after successful publication and live verification. No Core workflow or safeguards changed.",
+  "reviewOutstanding": "Qualified medicines-advertising and partner-responsibility review remains separate; no compliance sign-off claimed.",
+  "deferredScope": "Existing GP/diary/Grub and member charset/description releases unchanged; no physical iPad/Safari or 400% zoom acceptance claimed."
+}

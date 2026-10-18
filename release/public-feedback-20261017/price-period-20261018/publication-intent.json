@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-18T01:33:06.008Z",
+  "sourceCommit": "9a3ab6adff90eec0a2d55ab99d90b8e37eb88752",
+  "build": "price-period-20261018-1314bdafe846",
+  "expectedPreviousDeployment": "d3aafa94-8a22-4671-af09-89f5ef1a2b4c",
+  "manifestSHA256": "e542c0876cb3eec5830bfb8204fb4cad16a4881a08f68487c78d9340f5197fd4"
+}

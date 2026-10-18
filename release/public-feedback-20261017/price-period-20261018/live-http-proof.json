@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-18T01:33:38.122Z",
+  "build": "price-period-20261018-1314bdafe846",
+  "checks": [
+    {
+      "asset": "treatment-medication-catalogue-v1.js",
+      "status": 200,
+      "sha256": "10ad9f932c0fd8c841008c4aaf8db016b407872f1d1c7f81f94b9cfba9f8c621",
+      "exactTransformedSource": true
+    },
+    {
+      "asset": "treatment-order-prototype-v1.js",
+      "status": 200,
+      "sha256": "26c0958c0e230eabf9e0f0e59344234304759e186b45ca841c42655a3e3202cd",
+      "exactTransformedSource": true
+    },
+    {
+      "asset": "medicine-front-door-integrated-v1.js",
+      "status": 200,
+      "sha256": "9105a6c99f7cdb74971674ad3af99bc89ddab5dc0560e494bbf5cfa757213ced",
+      "exactTransformedSource": true
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "buildInRawHtml": true,
+      "noOldAskName": true
+    },
+    {
+      "route": "/start-here",
+      "status": 200,
+      "buildInRawHtml": true,
+      "noOldAskName": true
+    },
+    {
+      "route": "/programme",
+      "status": 200,
+      "buildInRawHtml": true,
+      "noOldAskName": true
+    },
+    {
+      "route": "/treatment-order?medicine=mounjaro&view=spec",
+      "status": 200,
+      "buildInRawHtml": true,
+      "noOldAskName": true
+    },
+    {
+      "route": "/member/grub",
+      "status": 200,
+      "buildInRawHtml": true,
+      "noOldAskName": true
+    },
+    {
+      "route": "/member/fit",
+      "status": 200,
+      "buildInRawHtml": true,
+      "noOldAskName": true
+    },
+    {
+      "releaseMetadata": true,
+      "sha256": "0b90f53f08fab4453bae5d1d39df042203c25f80b473082fec6f761d266f5897"
+    }
+  ],
+  "accountOrDatabaseWrites": 0,
+  "pass": true
+}
