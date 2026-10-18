@@ -9,6 +9,8 @@ const ignored=new Set(['a','and','with','the','for','of','some','please','meal',
 const pantry=new Set(['salt','black pepper','water','olive oil','cooking oil']);
 const animal=/\b(chicken|beef|pork|lamb|turkey|bacon|ham|sausage|salmon|tuna|prawn|cod|haddock|fish|anchovy|gelatine|gelatin)\b/i;
 const present=v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v));
+// Broad browsing starts with everyday meals; specific dish searches retain their relevance and classic ordering.
+const genericMealOrder=recipe=>/\bpizza\b/i.test([recipe.food_format,recipe.name].join(' '))?1:0;
 export function enrichGrubRecipes(recipes){
  authored??=new Map(buildIndustrialCatalogue().recipes.map(r=>[r.id,r]));
  return recipes.map(r=>{
@@ -52,6 +54,7 @@ export function searchGrubRecipes(input,records){
  const query=String(input?.query||'').trim().slice(0,300);
  const requestedMeal=query.toLowerCase().match(/\b(breakfast|lunch|dinner|snack)s?\b/)?.[1]||null;
  const queryParts=query.split(/[,;\n]+/).map(x=>words(x).filter(w=>!ignored.has(w))).filter(x=>x.length);
+ const broadDiscovery=mode==='discover'&&!queryParts.length;
  const usable=records.map(r=>memberRecipe(r,mode==='fridge'?items:[])).filter(r=>r&&discoverable(r));
  if(mode==='fridge'&&!items.length)return {top:[],source:'published_catalogue',catalogue_size:usable.length,message:'Add at least one ingredient first.'};
  if(filter&&!['fast','high protein','family','budget','vegetarian'].includes(filter))return {top:[],source:'published_catalogue',catalogue_size:usable.length,message:'Choose one of the available recipe filters.'};
@@ -65,12 +68,12 @@ export function searchGrubRecipes(input,records){
   const relevance=queryMatches*100+queryParts.filter(part=>part.every(w=>title.includes(w))).length*20;
   return {...r,score:mode==='fridge'?matchedCore.length*20-missingCore.length*5:relevance,missingCore,matchedCore,queryMatches};
  }).filter(r=>mode==='fridge'?r.matchedCore.length>0:!queryParts.length||r.queryMatches>0);
- candidates.sort((a,b)=>b.score-a.score||discoveryTier(a)-discoveryTier(b)||discoveryRank(a)-discoveryRank(b)||(a.minutes??999)-(b.minutes??999)||a.name.localeCompare(b.name));
+ candidates.sort((a,b)=>b.score-a.score||(broadDiscovery?genericMealOrder(a)-genericMealOrder(b):0)||discoveryTier(a)-discoveryTier(b)||discoveryRank(a)-discoveryRank(b)||(a.minutes??999)-(b.minutes??999)||a.name.localeCompare(b.name));
  // Prefer different meal formats before filling the result with seasoning
  // variants of the same toastie. Exact recipe content remains untouched.
  const seen=new Set(),first=[],rest=[];
  for(const r of candidates){const key=[r.food_format||r.name,r.taxonomy.main_protein||''].join(':');(seen.has(key)?rest:first).push(r);seen.add(key)}
- const ordered=queryParts.length?candidates:[...first,...rest].sort((a,b)=>discoveryTier(a)-discoveryTier(b));
+ const ordered=queryParts.length?candidates:[...first,...rest].sort((a,b)=>(broadDiscovery?genericMealOrder(a)-genericMealOrder(b):0)||discoveryTier(a)-discoveryTier(b));
  const total=candidates.length,offset=Math.max(0,Math.min(total,Number.isSafeInteger(input?.offset)?input.offset:0)),top=ordered.slice(offset,offset+12).map(({score,missingCore,matchedCore,queryMatches,taxonomy,tags,food_format,...r})=>r);
  return {top,total,offset,page_size:12,has_more:offset+top.length<total,source:'published_catalogue',catalogue_size:usable.length,mode,filter,message:top.length?(mode==='fridge'?'Closest matches first. Missing ingredients include oil and seasonings; nothing is assumed.':`${total} recipes match. Showing ${offset+1}–${offset+top.length}.`):'No recipe matches this search. Try one ingredient or clear the filter.'};
 }

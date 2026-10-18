@@ -6,6 +6,15 @@ import{UK_FULL_PUBLICATION}from'../../grub-uk-full-publication-20261018.mjs';
 import{applyFullUKCorrections}from'../../grub-uk-full-authority-20261018.mjs';
 import{GRUB_DISCOVERY_MANIFEST}from'../grub-discovery-manifest-20261017.mjs';
 const pack=JSON.parse(fs.readFileSync('content/grub/uk-full-corrections-20261018.json')),sha=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+test('broad discovery leads with everyday meals while specific pizza searches retain the classics',async()=>{
+ const records=await loadGrubCatalogue(DB);
+ for(const input of [{},{query:'dinner'},{query:'family dinner'},{filter:'family'},{filter:'fast'}]){
+  const found=searchGrubRecipes(input,records);assert.equal(found.top.length,12);
+  assert(found.top.every(r=>!/\bpizza\b/i.test(r.name)),JSON.stringify(input));
+ }
+ assert.deepEqual(searchGrubRecipes({query:'family dinner'},records).top.slice(0,4).map(r=>r.name),['Tomato and lentil pasta','Chickpea and spinach curry with rice','Chicken and vegetable noodles','Vegetable omelette with toast']);
+ assert.deepEqual(searchGrubRecipes({query:'pizza'},records).top.slice(0,4).map(r=>r.name),['Margherita pizza with side salad','Pepperoni pizza with side salad','Ham and pineapple pizza with side salad','Mushroom pizza with side salad']);
+});
 test('actual original publication tools feed a full corrected catalogue; every page is reachable once',async()=>{
  try{
  const records=await loadGrubCatalogue(DB);assert.equal(records.length,2692);
