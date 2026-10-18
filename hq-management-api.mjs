@@ -1,3 +1,4 @@
+import {TEST_ACCOUNT_SQL} from './activation-measurement/scorecard.mjs';
 import {hqMemberGpRoute} from './gp-directory/hq-member-gp.mjs';
 import {gpDirectoryHqRoute} from './gp-directory/hq.mjs';
 import {continuityScorecard} from './continuity-measurement/scorecard.mjs';
@@ -21,8 +22,8 @@ export async function managementReport(DB,{permissions=[],start,end,kind='manage
   try{const row=await DB.prepare(sql).bind(...bind).first();metrics.push(metric(key,label,Number(row?.value||0),required.join(', '),scope,unit))}catch{unavailable(key,label,'Source query failed.');}
  }
  if(['management','members','growth'].includes(kind)){
-  await read('registrations','New registrations','crm_read',['users'],"SELECT COUNT(*) value FROM users u WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND lower(u.email) NOT LIKE '%@example.invalid' AND lower(u.email) NOT LIKE '%@example.test'"+(tables.has('hq_users')?" AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(h.email)=lower(u.email))":''),[period.since,period.until]);
-  limitations.push('Registration count excludes HQ email matches and example.invalid/example.test addresses; other unlabelled test identities may remain.');
+  await read('registrations','New registrations','crm_read',['users','audit_log'],"SELECT COUNT(*) value FROM users u WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND NOT "+TEST_ACCOUNT_SQL+" AND lower(u.email) NOT LIKE 'shiftsometimber+%@gmail.com' AND lower(u.email) NOT IN ('appletest@shiftsometimber.co.uk','google-review@shiftsometimber.co.uk')"+(tables.has('hq_users')?" AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(h.email)=lower(u.email))":''),[period.since,period.until]);
+  limitations.push('Registration count excludes HQ email matches, audit-marked commissioning identities, example.invalid/example.test addresses, internal shiftsometimber+ Gmail test aliases and the retained Apple/Google reviewer accounts. Other unlabelled test identities may remain.');
  }
  if(['management','sales'].includes(kind)){
   const condition=" FROM orders o JOIN commerce_order_details d ON d.order_id=o.id WHERE d.stripe_checkout_session_id LIKE 'cs_live_%' AND o.currency='GBP' AND julianday(o.created_at)>=julianday(?) AND julianday(o.created_at)<julianday(?)";
