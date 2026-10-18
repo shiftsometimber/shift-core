@@ -29,7 +29,6 @@ import {myTimberRedirect,publicTickerAsset,withPublicTicker} from './public-navi
 import {continuityPublicRoute,withPublicContinuity} from './public-continuity.mjs';
 import {publicHealthResponse} from './public-health-v1.js';
 import {renderShiftHealthDocument,healthSlugs} from './shift-health-public.mjs';
-import {isPublicBloodsRequest,INDEXABLE_BLOODS_PATHS} from './shift-bloods-public.mjs';
 import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
 import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
 import { withNewsroomReading } from './radar-newsroom-discovery-v1.js';
@@ -502,7 +501,6 @@ const PRIORITY_PUBLIC_PATHS = [
   "/treatment-centre/medicines-watch",
   "/shift-newsroom",
   "/shift-health",
-  ...INDEXABLE_BLOODS_PATHS,
   ...Object.keys(SHIFT_HEALTH_SEO).map((slug) => `/shift-health/${slug}`),
 ];
 async function publicSitemapWithReviewedMentalHealth(request, env) {
@@ -665,9 +663,6 @@ const worker = {
         new URL("/member/dashboard#journey", request.url),
         301,
       );
-    if (isPublicBloodsRequest(request)) {
-      return withNewsroomReading(await publicPagesAsset(request,path.replace(/\/$/,'')),request);
-    }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/shift-health" || path === "/shift-health.html")
