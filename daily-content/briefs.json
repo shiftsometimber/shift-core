@@ -1,0 +1,615 @@
+[
+  {
+    "question": "Meal prep for busy men: a two-meal plan for a busy week",
+    "audience": "Food preparation friction",
+    "cluster": "Nutrition",
+    "target_url": "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+    "source_urls": [
+      "https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/",
+      "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely"
+    ],
+    "priority": 30,
+    "outline": [
+      "Choose two moments",
+      "shop the kitchen",
+      "different meal jobs",
+      "storage and review"
+    ],
+    "original_value": "Two awkward-meal worksheet plus a safe backup, not a seven-day tub challenge",
+    "commercial_context": "Ready free support; no paid food service established",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Blood tests and weight management: what they can—and cannot—tell you",
+    "audience": "Considering tests",
+    "cluster": "Bloods",
+    "target_url": "https://shiftsometimber.co.uk/articles/weight-loss-blood-tests",
+    "source_urls": [
+      "https://www.nhs.uk/tests-and-treatments/blood-tests/",
+      "https://www.nhs.uk/symptoms/tiredness-and-fatigue/",
+      "https://www.nhs.uk/conditions/high-cholesterol/getting-tested/"
+    ],
+    "priority": 29,
+    "outline": [
+      "Answer what blood tests can and cannot establish; distinguish testing from a clinical assessment using the supplied NHS sources",
+      "Supply an actual appointment-preparation sheet: symptom or question, when it began, relevant changes, medicines or supplements, what has already been checked, and the question the reader wants answered",
+      "Provide one explicitly fictional completed appointment note for persistent tiredness, without inventing a diagnosis or promising a test will reveal the cause",
+      "Give the reader specific questions to ask before paying: which clinical question, test suitability and preparation, who interprets, who contacts them, escalation and total included cost; do not claim SHIFT arrangements or prices",
+      "Explain a practical follow-up conversation if results are normal but symptoms continue; retain appropriate GP assessment and limitations"
+    ],
+    "original_value": "A usable appointment-preparation sheet, a completed fictional tiredness note and a pre-purchase question checklist. Add these completed tools beyond any existing general blood-test explanation.",
+    "commercial_context": "SHIFT Bloods education; purchase CTA remains held until service acceptance",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "What to eat on Mounjaro when your appetite is low",
+    "audience": "Already prescribed treatment",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/mounjaro-low-appetite-meals",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 28,
+    "outline": [
+      "Record actual intake",
+      "practical obstacle",
+      "ordinary meals",
+      "leaflet red flags and review"
+    ],
+    "original_value": "Concrete intake note and five ordinary meal combinations",
+    "commercial_context": "Retention/usefulness; no prescribing conversion claim",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Retatrutide trial results: how to compare the headlines fairly",
+    "audience": "Researching emerging treatments",
+    "cluster": "Reta",
+    "target_url": "https://shiftsometimber.co.uk/articles/retatrutide-trial-results-how-to-compare",
+    "source_urls": [
+      "https://www.lilly.com/news/stories/what-to-know-about-retatrutide",
+      "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
+      "https://clinicaltrials.gov/api/v2/studies/NCT05929066"
+    ],
+    "priority": 27,
+    "outline": [
+      "Source type",
+      "comparison worksheet",
+      "population and analysis",
+      "what cannot be concluded"
+    ],
+    "original_value": "Six-question evidence comparison and explicitly fictional worked example",
+    "commercial_context": "Authority and citations; no Reta revenue or purchase funnel",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "What can I pack for lunch when there is no microwave at work?",
+    "audience": "UK men choosing an ordinary work lunch; general food planning, not a personal diet prescription",
+    "cluster": "Nutrition",
+    "target_url": "https://shiftsometimber.co.uk/articles/healthy-packed-lunches-no-microwave",
+    "source_urls": [
+      "https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/",
+      "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely",
+      "https://www.gov.uk/government/publications/food-safety-in-a-heatwave-advice-for-consumers/food-safety-in-a-heatwave-advice-for-consumers"
+    ],
+    "priority": 26,
+    "outline": [
+      "Answer the no-microwave question directly and check fridge or cold-storage access first",
+      "Give five complete illustrative cold lunches with named ordinary supermarket ingredients, not broad food categories",
+      "Explain how the examples combine food groups using the supplied NHS guidance, without claiming that a lunch causes weight loss",
+      "Name two of the example lunches as Day 1 and Day 2, then supply the actual shared shopping list for those two named lunches, showing the reused ingredients",
+      "Explain relevant storage and transport guidance from the supplied sources, preserving context: a preparation-time maximum is not a guarantee for lunch left unrefrigerated; distinguish hot-weather guidance where used",
+      "End with a simple facilities-first choice the reader can make today"
+    ],
+    "original_value": "A facilities-first choice sheet, five named complete cold-lunch examples and an actual shared shopping list for two lunches. Deliver those items in the article, not advice to create them. No calorie targets, nutritional calculations or tested-recipe claims.",
+    "commercial_context": "Free Grub use; no supplement or meal upsell",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "A beginner walking plan for men: make the first week fit your life",
+    "audience": "Beginning activity",
+    "cluster": "Exercise",
+    "target_url": "https://shiftsometimber.co.uk/articles/beginner-walking-plan-men",
+    "source_urls": [
+      "https://www.nhs.uk/live-well/exercise/walking-for-health/",
+      "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/",
+      "https://www.nhs.uk/symptoms/shortness-of-breath/"
+    ],
+    "priority": 25,
+    "outline": [
+      "Answer briefly: choose a manageable route and a realistic opportunity, using general NHS guidance rather than a prescribed target",
+      "Supply an actual reusable route-planning sheet with named fields: opportunity, route, turning-back option, facilities or weather alternative, and company preference",
+      "Show one completed clearly fictional planning-sheet example for a shift worker; describe logistics and an adaptable choice, not a promised health outcome or exercise prescription",
+      "Supply actual after-walk review questions and a worked decision example showing repeat, change the route or ask for advice; include a smaller logistical alternative if the plan did not fit",
+      "Preserve the existing guide’s appropriate suitability and concerning-symptom cautions using the supplied NHS sources; keep clinical decisions with a qualified professional"
+    ],
+    "original_value": "A copyable route-planning and after-walk review sheet, plus a completed fictional shift-worker example. The existing canonical already explains gradual walking; repeating its first-fortnight advice is insufficient.",
+    "commercial_context": "Free Fit discovery; clinical suitability independent",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Weight and mental health: you do not have to lose weight before asking for help",
+    "audience": "Looking for mental-health help",
+    "cluster": "Mind",
+    "target_url": "https://shiftsometimber.co.uk/articles/mens-mental-health-and-weight",
+    "source_urls": [
+      "https://www.nhs.uk/mental-health/conditions/depression-in-adults/overview/",
+      "https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/"
+    ],
+    "priority": 24,
+    "outline": [
+      "Describe ordinary day",
+      "separate concerns",
+      "ask for support",
+      "urgent route"
+    ],
+    "original_value": "Conversation opening and separate questions for mood and weight",
+    "commercial_context": "No paid CTA or acquisition gate",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Wegovy side effects: duration, uncertainty and when to get help",
+    "audience": "Seeking treatment-safety information",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/13803/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 23,
+    "outline": [
+      "Common versus urgent symptoms",
+      "onset and variability",
+      "exact formulation",
+      "care-team questions"
+    ],
+    "original_value": "Answer duration without promising a universal timeline",
+    "commercial_context": "Appropriate care first; no product CTA",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Weight loss after 40: choose a first week you can repeat",
+    "audience": "Weight-management beginner over 40",
+    "cluster": "Obesity",
+    "target_url": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+    "source_urls": [
+      "https://www.nice.org.uk/guidance/ng246",
+      "https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/tips-to-help-you-lose-weight/"
+    ],
+    "priority": 22,
+    "outline": [
+      "Choose a real constraint",
+      "meal and movement options",
+      "first-week review",
+      "when to ask for help"
+    ],
+    "original_value": "Original first-week worksheet around family, shifts and health needs",
+    "commercial_context": "Appropriate Start Here route; no instant medicine eligibility",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Finger-prick or venous blood sample: questions before choosing a test",
+    "audience": "Comparing test options",
+    "cluster": "Bloods",
+    "target_url": "https://shiftsometimber.co.uk/articles/finger-prick-vs-venous-blood-tests",
+    "source_urls": [
+      "https://www.nhs.uk/tests-and-treatments/blood-tests/",
+      "https://www.nhs.uk/symptoms/tiredness-and-fatigue/",
+      "https://www.nhs.uk/conditions/high-cholesterol/getting-tested/"
+    ],
+    "priority": 21,
+    "outline": [
+      "What method is requested",
+      "which markers fit",
+      "sample problems",
+      "collection responsibility and total cost"
+    ],
+    "original_value": "Collection comparison by suitability, logistics and failure handling",
+    "commercial_context": "SHIFT Bloods comparison only when offer verified; no more-expensive-is-better claim",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Not losing weight on Mounjaro: prepare for a useful treatment review",
+    "audience": "Treatment review",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-plateau",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 20,
+    "outline": [
+      "Actual trend",
+      "treatment and symptoms",
+      "what intake/activity changed",
+      "questions for prescribing service"
+    ],
+    "original_value": "Five-line review note instead of escalation instructions",
+    "commercial_context": "Continuity and support; no self-adjustment",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "My husband is always tired: a conversation before buying tests",
+    "audience": "Partner looking for help",
+    "cluster": "Partner",
+    "target_url": "https://shiftsometimber.co.uk/articles/husband-always-tired",
+    "source_urls": [
+      "https://www.nice.org.uk/guidance/ng246/chapter/General-principles-of-care",
+      "https://www.nhs.uk/mental-health/conditions/depression-in-adults/overview/"
+    ],
+    "priority": 19,
+    "outline": [
+      "Ask about the change",
+      "listen and consent",
+      "practical appointment support",
+      "persistent symptoms and GP route"
+    ],
+    "original_value": "Partner conversation before buying a tiredness panel",
+    "commercial_context": "Appropriate assessment; no diagnostic panel sale",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Food noise after stopping treatment: make the support plan specific",
+    "audience": "After treatment",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 18,
+    "outline": [
+      "What changed after stopping",
+      "what evidence does not predict",
+      "food routine",
+      "ongoing support questions"
+    ],
+    "original_value": "Return-routine worksheet and prescriber conversation",
+    "commercial_context": "Retention and appropriate support; no unagreed paid programme",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Retatrutide and muscle: what body-composition results cannot tell you",
+    "audience": "Researching Reta and muscle",
+    "cluster": "Reta",
+    "target_url": "https://shiftsometimber.co.uk/articles/retatrutide-muscle-evidence",
+    "source_urls": [
+      "https://www.lilly.com/news/stories/what-to-know-about-retatrutide",
+      "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
+      "https://clinicaltrials.gov/api/v2/studies/NCT05929066"
+    ],
+    "priority": 17,
+    "outline": [
+      "What trial measured",
+      "lean mass and muscle",
+      "strength/function",
+      "uncertainty and review questions"
+    ],
+    "original_value": "Measurement glossary and function-versus-scan worksheet",
+    "commercial_context": "Informational only; qualified evidence review required before claims",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "What happens after a blood-test result: who explains the next step?",
+    "audience": "Comparing a testing service",
+    "cluster": "Bloods",
+    "target_url": "https://shiftsometimber.co.uk/articles/blood-test-results-follow-up",
+    "source_urls": [
+      "https://www.nhs.uk/tests-and-treatments/blood-tests/",
+      "https://www.nhs.uk/symptoms/tiredness-and-fatigue/",
+      "https://www.nhs.uk/conditions/high-cholesterol/getting-tested/"
+    ],
+    "priority": 16,
+    "outline": [
+      "Who reviews",
+      "how results arrive",
+      "abnormal/urgent routes",
+      "repeats, complaints and price inclusions"
+    ],
+    "original_value": "Pre-purchase responsibility checklist",
+    "commercial_context": "Offer conversion only after named accountable pathway verified",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Weight-loss treatment and strength: useful questions beyond the scales",
+    "audience": "Using weight-loss treatment",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/glp-1-muscle-loss",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 15,
+    "outline": [
+      "What lean mass includes",
+      "what studies show",
+      "food/strength questions",
+      "when support needed"
+    ],
+    "original_value": "Separate scan measures from everyday capacity",
+    "commercial_context": "Member usefulness; no protein product claim",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "How to ask for help when you cannot explain what feels wrong",
+    "audience": "Man unsure how to seek help",
+    "cluster": "Mind",
+    "target_url": "https://shiftsometimber.co.uk/articles/how-to-ask-for-help-men",
+    "source_urls": [
+      "https://www.nhs.uk/mental-health/conditions/depression-in-adults/overview/",
+      "https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/"
+    ],
+    "priority": 14,
+    "outline": [
+      "Describe change",
+      "choose trusted person",
+      "explain wanted help",
+      "professional/urgent routes"
+    ],
+    "original_value": "Appointment opening with an achievable practical step",
+    "commercial_context": "Independent free Good to Talk",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Wegovy not working: bring useful information to your review",
+    "audience": "Already using Wegovy",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/wegovy-not-working",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/13803/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 13,
+    "outline": [
+      "Exact formulation",
+      "treatment history",
+      "symptoms and adherence questions",
+      "prescriber review"
+    ],
+    "original_value": "Structured review note tailored to existing Wegovy care",
+    "commercial_context": "Appropriate review; no purchase switching push",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Weight-loss plateaus: review the longer pattern before changing everything",
+    "audience": "Lifestyle plateau",
+    "cluster": "Obesity",
+    "target_url": "https://shiftsometimber.co.uk/articles/weight-loss-plateau-men",
+    "source_urls": [
+      "https://www.nice.org.uk/guidance/ng246",
+      "https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/tips-to-help-you-lose-weight/"
+    ],
+    "priority": 12,
+    "outline": [
+      "What period are we observing",
+      "measurement consistency",
+      "real-life constraints",
+      "choose one review action"
+    ],
+    "original_value": "Worked trend example clearly labelled illustrative",
+    "commercial_context": "Free practical step; medicine separate",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Supporting a partner on weight-loss treatment without managing his medicine",
+    "audience": "Partner of someone on treatment",
+    "cluster": "Partner",
+    "target_url": "https://shiftsometimber.co.uk/articles/support-partner-weight-loss-treatment",
+    "source_urls": [
+      "https://www.nice.org.uk/guidance/ng246/chapter/General-principles-of-care",
+      "https://www.nhs.uk/mental-health/conditions/depression-in-adults/overview/"
+    ],
+    "priority": 11,
+    "outline": [
+      "Ask what support wanted",
+      "food/logistics",
+      "prescriber responsibilities",
+      "respect records and consent"
+    ],
+    "original_value": "Support-choice table and clear medicine/data boundaries",
+    "commercial_context": "Useful partner entry into free information; no third-party consent assumptions",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Constipation during GLP-1 treatment: prepare the right questions",
+    "audience": "Treatment-related constipation",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/glp-1-constipation",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 10,
+    "outline": [
+      "What changed",
+      "fluid/food questions",
+      "medicine suitability belongs to pharmacist",
+      "when to seek care"
+    ],
+    "original_value": "Symptom-and-medicine note, with escalation verified from current sources",
+    "commercial_context": "Care route first; no laxative affiliate links",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "What does a normal blood test mean when symptoms continue?",
+    "audience": "Continuing symptoms after tests",
+    "cluster": "Bloods",
+    "target_url": "https://shiftsometimber.co.uk/articles/normal-blood-tests-still-tired",
+    "source_urls": [
+      "https://www.nhs.uk/tests-and-treatments/blood-tests/",
+      "https://www.nhs.uk/symptoms/tiredness-and-fatigue/",
+      "https://www.nhs.uk/conditions/high-cholesterol/getting-tested/"
+    ],
+    "priority": 9,
+    "outline": [
+      "What was tested",
+      "why context matters",
+      "what remains unexplained",
+      "how to ask for follow-up"
+    ],
+    "original_value": "A normal report does not end the symptom conversation",
+    "commercial_context": "Earn trust; no automatic broader-panel upsell",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Missed a Wegovy injection: use the leaflet for your exact product",
+    "audience": "Missed injection",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/missed-wegovy-dose",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/13803/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 8,
+    "outline": [
+      "Confirm product",
+      "read current missed-dose rule",
+      "longer gaps",
+      "ask pharmacist/prescriber"
+    ],
+    "original_value": "Exact formulation and leaflet boundary explained plainly",
+    "commercial_context": "Safety only; qualified exact-leaflet review",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Starting strength exercise at home: make the first session manageable",
+    "audience": "Beginner strength",
+    "cluster": "Exercise",
+    "target_url": "https://shiftsometimber.co.uk/articles/strength-training-home-men",
+    "source_urls": [
+      "https://www.nhs.uk/live-well/exercise/walking-for-health/",
+      "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/"
+    ],
+    "priority": 7,
+    "outline": [
+      "Current ability",
+      "simple environment",
+      "gradual suitable activity",
+      "review and ask for help"
+    ],
+    "original_value": "First-session arrangement worksheet rather than a universal workout prescription",
+    "commercial_context": "Free Fit where verified; no guaranteed weight-loss claim",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Stopping weight-loss treatment: plan support with your prescriber",
+    "audience": "Considering or experiencing treatment end",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/stopping-glp1",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 6,
+    "outline": [
+      "Why treatment ending",
+      "who advises",
+      "follow-up plan",
+      "food and movement routines"
+    ],
+    "original_value": "Maintenance-conversation sheet, with stopping separate from support",
+    "commercial_context": "Future appropriate paid support only with verified benefit and terms",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Waist measurement versus trouser size: why the label cannot answer it",
+    "audience": "Understanding waist size",
+    "cluster": "Obesity",
+    "target_url": "https://shiftsometimber.co.uk/articles/waist-size-men-health",
+    "source_urls": [
+      "https://www.nice.org.uk/guidance/ng246",
+      "https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/tips-to-help-you-lose-weight/"
+    ],
+    "priority": 5,
+    "outline": [
+      "Measure body not jeans",
+      "same units",
+      "ratio example",
+      "interpret with limitations"
+    ],
+    "original_value": "Measurement walkthrough with units and limitations",
+    "commercial_context": "Public /male-obesity and existing waist tool",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Male loneliness: one realistic way to reconnect this week",
+    "audience": "Lonely man",
+    "cluster": "Mind",
+    "target_url": "https://shiftsometimber.co.uk/articles/male-loneliness-help",
+    "source_urls": [
+      "https://www.nhs.uk/mental-health/conditions/depression-in-adults/overview/",
+      "https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/"
+    ],
+    "priority": 4,
+    "outline": [
+      "Choose contact",
+      "draft invitation for reader use",
+      "practical option",
+      "professional support where needed"
+    ],
+    "original_value": "One low-pressure contact plan and barriers",
+    "commercial_context": "Free guidance; no paid community promised",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "Retatrutide and diabetes: why the study population changes the headline",
+    "audience": "Reta research reader",
+    "cluster": "Reta",
+    "target_url": "https://shiftsometimber.co.uk/articles/retatrutide-diabetes-trial-results",
+    "source_urls": [
+      "https://www.lilly.com/news/stories/what-to-know-about-retatrutide",
+      "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
+      "https://clinicaltrials.gov/api/v2/studies/NCT05929079"
+    ],
+    "priority": 3,
+    "outline": [
+      "Study eligibility",
+      "glycaemic versus weight endpoints",
+      "follow-up and estimand",
+      "uncertainty"
+    ],
+    "original_value": "Population/outcome comparison sheet for actual diabetes studies",
+    "commercial_context": "No treatment offer or personal prediction",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "What if my partner does not want help with his weight?",
+    "audience": "Concerned partner facing refusal",
+    "cluster": "Partner",
+    "target_url": "https://shiftsometimber.co.uk/articles/partner-does-not-want-weight-help",
+    "source_urls": [
+      "https://www.nice.org.uk/guidance/ng246/chapter/General-principles-of-care",
+      "https://www.nhs.uk/mental-health/conditions/depression-in-adults/overview/"
+    ],
+    "priority": 2,
+    "outline": [
+      "Ask and accept no",
+      "explain your own concern",
+      "offer practical help",
+      "when symptoms need care"
+    ],
+    "original_value": "Boundaries and consent script without persuasion tactics",
+    "commercial_context": "Trust and useful free route; no coercive lead capture",
+    "demand_basis": "editorial_hypothesis"
+  },
+  {
+    "question": "GLP-1 and exercise: adapt movement around intake and symptoms",
+    "audience": "Using GLP treatment and wanting activity",
+    "cluster": "GLP",
+    "target_url": "https://shiftsometimber.co.uk/articles/glp-1-and-exercise",
+    "source_urls": [
+      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
+    ],
+    "priority": 1,
+    "outline": [
+      "Start from reality",
+      "strength context",
+      "symptom adjustments",
+      "suitability and care questions"
+    ],
+    "original_value": "Movement review tied to intake, symptoms and current capacity",
+    "commercial_context": "Free movement support; no exercise prescription",
+    "demand_basis": "editorial_hypothesis"
+  }
+]
