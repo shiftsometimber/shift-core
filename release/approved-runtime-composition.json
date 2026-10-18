@@ -17,7 +17,9 @@
     "release/recorded-week-navigation-outer-frame-20261018.mjs",
     "release/recorded-week-navigation-outer-policy-20261018.json",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs",
-    "member-experience/tests/weight-import-mapping-ui.test.mjs"
+    "member-experience/tests/weight-import-mapping-ui.test.mjs",
+    "public-https-redirect.mjs",
+    "public-https-redirect.test.mjs"
   ],
   "scope": "Factual Progress navigation readiness only; original97 live acceptance remains required",
   "clinicalChanged": false,
@@ -31,6 +33,6 @@
   "rollbackAuthorityBroadened": false,
   "genericAdoptionAllowed": false,
   "liveAcceptanceClaimed": false,
-  "maintenanceSource": "371ac1dd42102ebaaf6f6720a6a3284efeac411a"
+  "maintenanceSource": "f37ed4244cd49aadae1bf1ce98bb6199c5912d13"
 }
 }
