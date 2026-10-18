@@ -17,11 +17,11 @@ test('changed payload bytes, a stale preimage and executable modes are rejected'
  assert.throws(()=>assertExactNavigationPayload(p,value,'100755'));
 });
 test('callers cannot forge an admitted native source frame',()=>assert.throws(()=>assertActualNavigationFrame({assertCurrent(){}})));
-test('all three original native guard bodies restore exactly beneath their hooks',()=>{
+test('all four original native guard bodies restore exactly beneath their hooks',()=>{
  for(const e of policy.maintenanceEntries.filter(x=>x.kind==='maintenance')){
   let value=git('show','HEAD:'+e.path);
   for(const h of [...e.hunks].reverse()){const a=Buffer.from(h.after,'base64'),b=Buffer.from(h.before,'base64'),i=value.indexOf(a);assert(i>=0&&value.indexOf(a,i+1)<0);value=Buffer.concat([value.subarray(0,i),b,value.subarray(i+a.length)]);}
   assert(value.equals(git('show',policy.record.base+':'+e.path)),e.path);
  }
- assert.equal(ACTUAL_NAVIGATION_MAINTENANCE.length,6);
+ assert.equal(ACTUAL_NAVIGATION_MAINTENANCE.length,7);
 });

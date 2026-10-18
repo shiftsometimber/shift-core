@@ -1,3 +1,4 @@
+import {assertActualNavigationFrame} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {immutableHistoryExecFileSync as execFileSync,withImmutableHistoryVerification,assertGitTrackedSourceVisible} from './immutable-git-facts.mjs';
@@ -41,10 +42,11 @@ export function withoutAcceptedUkGrubMaintenance(record,path,value){
  const restored=reverse(value,pin.inversePairs);assert.equal(sha(restored),pin.beforeSHA256,'Whole original a3 maintenance bytes must restore');return restored;
 }
 
-export function withAcceptedUkGrubPreservation(c,head,compare){
+export function withAcceptedUkGrubPreservation(c,head,compare,navigation=null){
+ if(navigation){assertActualNavigationFrame(navigation);assert.equal(navigation.head,head);navigation.assertCurrent();}
  assert.equal(typeof compare,'function');clean();
  return withImmutableHistoryVerification(()=>{
-  const fresh=()=>assert.equal(currentHead(),head,'Current-runtime preservation source drift: Raw HEAD changed during UK proof');fresh();
+  const fresh=()=>{if(navigation){assertActualNavigationFrame(navigation);assert.equal(currentHead(),navigation.rawHead,'Current-runtime preservation source drift: Actual outer HEAD changed during UK proof');assert.equal(head,navigation.head,'Current-runtime preservation source drift: Accepted UK predecessor changed');}else assert.equal(currentHead(),head,'Current-runtime preservation source drift: Raw HEAD changed during UK proof');};fresh();
   try{
    assert.deepEqual(JSON.parse(git('show',head+':'+ledger))[key],c,'Actual current UK preservation ledger required');
    const leaf=c.acceptedUkGrubPreservation20261017;assert(leaf);assert.equal(leaf.kind,'EXACT_ACTUAL_ACCEPTED_UK_GRUB_PRESERVATION');
