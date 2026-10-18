@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-18T06:50:27.958153+00:00",
+  "scope": "Broad discovery ranking only; food bodies and member state unchanged",
+  "recipe_content_changed": false,
+  "baseline_observation": "Live family dinner query led with Margherita on accepted0a source",
+  "expected_broad_dinner_first": [
+    "Tomato and lentil pasta",
+    "Chickpea and spinach curry with rice",
+    "Chicken and vegetable noodles",
+    "Vegetable omelette with toast"
+  ],
+  "explicit_pizza_classics_unchanged": true,
+  "functional": {
+    "pass": 79,
+    "fail": 0,
+    "sha256": "791dac0cb88d84b638163a3b76bd8ebbf0c45337b1242aaa98b8dfb9f2ba008d"
+  },
+  "browser": {
+    "pass": 16,
+    "viewports": [
+      390,
+      1440
+    ],
+    "sha256": "d2039307f6968466506cc4d31c83b4e2e7a0fbe054b4a030355d9f9e15b20dc9",
+    "physical_device": false,
+    "production_account": false
+  },
+  "review_kind": "AI implementation and original actual-Worker regression/browser checks; no human food review or cooking claim"
+}

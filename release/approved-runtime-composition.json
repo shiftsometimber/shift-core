@@ -3829,7 +3829,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -3937,7 +3937,7 @@
     "integrationIssue": 1065,
     "releaseApproval": {
       "owner": "Matt",
-      "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+      "instruction": "Sorry this needs deploying - it’s a huge fault !",
       "recordedAt": "2026-10-13T17:17:57Z",
       "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
       "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4010,7 +4010,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4085,7 +4085,7 @@
         "integrationIssue": 1065,
         "releaseApproval": {
           "owner": "Matt",
-          "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+          "instruction": "Sorry this needs deploying - it’s a huge fault !",
           "recordedAt": "2026-10-13T17:17:57Z",
           "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
           "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -4158,7 +4158,7 @@
             "integrationIssue": 1065,
             "releaseApproval": {
               "owner": "Matt",
-              "instruction": "Sorry this needs deploying - it\u2019s a huge fault !",
+              "instruction": "Sorry this needs deploying - it’s a huge fault !",
               "recordedAt": "2026-10-13T17:17:57Z",
               "scope": "Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065",
               "source": "da67872e84109577d5c6e6eff5cb9a85206c537f",
@@ -6544,7 +6544,7 @@
     "authority": {
       "schema": "my-timber-recorded-week-activation/v1",
       "owner": "Matt",
-      "instruction": "Action this. We don\u2019t want an review",
+      "instruction": "Action this. We don’t want an review",
       "recordedAt": "2026-10-14T19:20:45.941Z",
       "base": "685ede249cd20c4801d0a25227fed16d46860618",
       "scope": "Activate factual recorded treatment weeks, selected owned context, private notes and factual exports",
@@ -6657,8 +6657,7 @@
     "originalAssertionsRemoved": false,
     "timeoutsChanged": false,
     "maintenanceSource": "5c84cf6f5308dfa544289b566577247413cb7f38"
-  }
-,
+  },
   "grubEverydayDirect20261017": {
     "proof": "EXACT_EVERYDAY_GRUB_ON_CAPTURED_SERVING_BASE_20261017",
     "base": "b6f9c0c36d4303e5d384fb2d62b58968b998aa64",
@@ -7553,5 +7552,243 @@
     },
     "humanReviewWaived": true,
     "maintenanceSource": "9e0548cf11e41453c04cd2c81f52db298bc780ff"
+  },
+  "grubRanking20261018": {
+    "proof": "EXACT_GRUB_BROAD_SEARCH_RANKING_20261018",
+    "base": "0a11149ac773223b95e149d5ef975a9880cd677d",
+    "baseTree": "122e06703560c7168e1f5a7b36f11fb2fe0af95a",
+    "source": "80321269ec445553baa8287676c39da747eb70a8",
+    "sourceTree": "4a13a13c661d26509cd8e142ccced4cec2258464",
+    "donor": "419fea59b5e7a84a8fdfdbaf4c3a8fb299bbc022",
+    "donorTree": "4a13a13c661d26509cd8e142ccced4cec2258464",
+    "paths": [
+      "evidence/grub-expansion-closeout-2026-09-16/uk-broad-ranking-qualification-20261018.json",
+      "member-experience/grub-search.mjs",
+      "member-experience/tests/grub-uk-discovery-browser.mjs",
+      "member-experience/tests/grub-uk-full.test.mjs"
+    ],
+    "productionPaths": [
+      "member-experience/grub-search.mjs"
+    ],
+    "maintenancePaths": [
+      "release/grub-ranking-source-20261018.mjs",
+      "release/grub-ranking-baseline-20261018.json",
+      "release/grub-ranking-owned-release-20261018.mjs",
+      "release/grub-ranking-live-20261018.mjs",
+      "tests/grub-ranking-source-20261018.test.mjs",
+      "tests/grub-ranking-owned-release-20261018.test.mjs",
+      ".github/workflows/grub-ranking-release-20261018.yml"
+    ],
+    "scope": "grub_broad_search_ranking_only",
+    "authority": {
+      "owner": "Matt O’Brien",
+      "instruction": "Deploy all; retain bounded Grub corrections and serving verification",
+      "recordedAt": "2026-10-18T07:11:42+01:00",
+      "rankingConcern": "Surely pizza doesn’t lead the search ?!!!",
+      "rankingConcernAt": "2026-10-18T07:40:54+01:00",
+      "scope": "Prioritise everyday meals for broad discovery; preserve specific pizza ordering, full catalogue, actual recipe content, member state and unrelated accepted serving source"
+    },
+    "acceptedBaseline": {
+      "schema": "shift-grub-ranking-captured-baseline/v1",
+      "source": "0a11149ac773223b95e149d5ef975a9880cd677d",
+      "tree": "122e06703560c7168e1f5a7b36f11fb2fe0af95a",
+      "coordinatingMain": "f894c340461c0806b030c422c8ccd49cb679bea5",
+      "capturedAt": "2026-10-18T06:48:08.744Z",
+      "providerCapture": "Fresh exact current successful full Grub deployment; whole bundle and immutable metadata verified",
+      "acceptedRuntimeReceipt": {
+        "source": "bd55c23dbef505967a417b55e1be37a11033c4b5",
+        "path": "release/receipts/accepted-recorded-week-38990992637.json",
+        "sha256": "3261fbd1a27a504746ff64f2003b8ff4922d23351c16ecd4c1f7a2d769067290",
+        "originalCoreDeploymentId": "d1b5350d-54fa-40c8-871d-7568efde1345"
+      },
+      "producers": [
+        {
+          "id": "38990992637",
+          "attempt": "1",
+          "source": "b6f9c0c36d4303e5d384fb2d62b58968b998aa64",
+          "branch": "release/factual-recorded-week-direct-20261016",
+          "workflow": ".github/workflows/factual-recorded-week-direct-release-20261016.yml"
+        },
+        {
+          "id": "38974318146",
+          "attempt": "1",
+          "source": "55b73025f5b6d2302fab42bce73a222653404186",
+          "branch": "release/gp-priority-direct-activation-20261016",
+          "workflow": ".github/workflows/gp-priority-direct-activation-20261016.yml"
+        },
+        {
+          "id": "39067612602",
+          "attempt": "1",
+          "source": "a32be98c67fe0ddb857017650fab02f996bc98e0",
+          "branch": "release/grub-everyday-direct-20261017",
+          "workflow": ".github/workflows/grub-everyday-release-20261017.yml"
+        },
+        {
+          "id": "39075907078",
+          "attempt": "1",
+          "source": "c058780e1df1ac59968e08ac1959877ab80fd034",
+          "branch": "release/grub-uk-catalogue-20261017",
+          "workflow": ".github/workflows/grub-uk-release-20261017.yml"
+        },
+        {
+          "id": "39103393045",
+          "attempt": "1",
+          "source": "0a11149ac773223b95e149d5ef975a9880cd677d",
+          "branch": "release/grub-uk-full-restored-20261018",
+          "workflow": ".github/workflows/grub-uk-full-release-20261018.yml"
+        }
+      ],
+      "restoration": {
+        "id": "39083891773",
+        "attempt": "1",
+        "source": "f894c340461c0806b030c422c8ccd49cb679bea5",
+        "conclusion": "cancelled"
+      },
+      "workers": {
+        "core": {
+          "source": "0a11149ac773223b95e149d5ef975a9880cd677d",
+          "run": "39103393045",
+          "attempt": 1,
+          "deploymentId": "f91d20f1-cddd-4b21-b7fe-deb2183d2851",
+          "versionId": "8666954c-556a-4c40-873b-c325b0f516ef",
+          "percentage": 100,
+          "bundleSha256": "55219b907f04cf1f87961362f294f2c049a01eaa8e418bb40de3d8a60744da42",
+          "bundleBytes": 32139212,
+          "allBindingsSha256": "574ec3ce9996d4aa12611a204d124f001031df09e15ae7996d32a8ac2e0e544c",
+          "versionSnapshotSha256": "a96d3ca7fb45353f0550dcdf103d46183be2cd4c5e51c66b46f79c33e1c7345a",
+          "deploymentSnapshotSha256": "d14e32c44d2a1f201bfb353054ad470dac289f8d064bdbb2c60b9a9cca87a89a",
+          "gpEnabled": true,
+          "weekEnabled": true,
+          "acceptedProducerDeploymentId": "f91d20f1-cddd-4b21-b7fe-deb2183d2851"
+        },
+        "hq": {
+          "source": "55b73025f5b6d2302fab42bce73a222653404186",
+          "run": "38974318146",
+          "attempt": 1,
+          "deploymentId": "f75c3309-afc7-49ca-aac2-7964bc5b7e42",
+          "versionId": "6eae4c43-fbc3-455e-a426-9bb7de344705",
+          "percentage": 100,
+          "bundleSha256": "bfadbda83e5b8dcb944b92cea15a13320b7a139c7be9afab98833ba04534e5e7",
+          "bundleBytes": 1838527,
+          "allBindingsSha256": "3b6704c920ad27ad9b9a16d1af27e9f382db7e9daa2fbc46e93d801492fb2f74",
+          "versionSnapshotSha256": "1acbb5b4788bde834c944ce0b3118d4b3948ac09dd8cd5d6829d4ee56509d9c2",
+          "deploymentSnapshotSha256": "44e4cc8125f428f668348b3a21a4c3c34df7c47486b68d698ee636996e42735d",
+          "gpEnabled": true,
+          "partnersEnabled": true,
+          "retained": true,
+          "acceptedProducerDeploymentId": "f75c3309-afc7-49ca-aac2-7964bc5b7e42"
+        }
+      },
+      "gpFeatureAcceptance": false,
+      "clinicalContractActivated": false,
+      "currentProviderCheckRequiredBeforeDeployment": true,
+      "previousGrubAttempt": {
+        "id": "39066947470",
+        "attempt": "1",
+        "source": "efde4522516e25802ab0a031cd2aba38f9f7a15a",
+        "conclusion": "failure",
+        "artifact": {
+          "id": 12112944180,
+          "name": "grub-everyday-runtime-release-39066947470",
+          "sha256": "21eee0e8ca28742bba13d0047cb59841f3a39ec0143216ee19fe723567b63b6b",
+          "bytes": 9977687
+        },
+        "failure": "Live proof expected the raw Grub runtime instead of the existing owner-approved public book-voice transformation; all source, functional, browser, upload and deployment checks passed; owned rollback succeeded",
+        "predecessorCore": {
+          "source": "b6f9c0c36d4303e5d384fb2d62b58968b998aa64",
+          "run": 38990992637,
+          "attempt": 1,
+          "deploymentId": "6aa2add8-e03f-4eba-9e2b-5e0ea0935beb",
+          "versionId": "6e8d9241-288d-4933-a521-9f3071ee0c19",
+          "percentage": 100,
+          "bundleSha256": "11e8861e2208971a9c9829806c6800bc0df75c6d4aa3a23956ba6179b3327e8a",
+          "bundleBytes": 14776067,
+          "allBindingsSha256": "574ec3ce9996d4aa12611a204d124f001031df09e15ae7996d32a8ac2e0e544c",
+          "versionSnapshotSha256": "5c2eeaebb700e95a48ac2bfd6ce30ab20750250bf5fe3ab7bd4e626b99bfe50c",
+          "deploymentSnapshotSha256": "970a85115618dbf5f61154b4855804ad931f1928d881ce66deb16b37cf8df15a",
+          "gpEnabled": true,
+          "weekEnabled": true
+        },
+        "ownedReceipt": {
+          "kind": "owned_runtime_deployment",
+          "source": "efde4522516e25802ab0a031cd2aba38f9f7a15a",
+          "run": "39066947470",
+          "attempt": "1",
+          "deploymentId": "974115b9-bf2b-4a67-b57c-a04096ecbe85",
+          "versionId": "0b1d0358-14f2-4920-a79c-34c9f25990b2",
+          "previousDeploymentId": "6aa2add8-e03f-4eba-9e2b-5e0ea0935beb",
+          "previousVersionId": "6e8d9241-288d-4933-a521-9f3071ee0c19",
+          "at": "2026-10-17T20:33:41.085Z",
+          "dataRestored": false
+        },
+        "ownedReceiptSha256": "4ff847ac3cbaa9163b764bf418c3e562ffe32f647c97143ce5556b059ffe5814",
+        "rollbackReceipt": {
+          "source": "efde4522516e25802ab0a031cd2aba38f9f7a15a",
+          "run": "39066947470",
+          "attempt": "1",
+          "restored": [
+            {
+              "key": "core",
+              "action": "restored",
+              "deploymentId": "c07e1183-7fa8-4c48-8d64-e1cc0dae0d5b",
+              "versionId": "6e8d9241-288d-4933-a521-9f3071ee0c19",
+              "dataRestored": false
+            }
+          ],
+          "errors": [],
+          "dataRestored": false
+        },
+        "rollbackReceiptSha256": "a665ad4c21a55486a078a215c46041db8d08c10b597a6d1682e13e947d21380e"
+      },
+      "acceptedGrubReceipt": {
+        "source": "0a11149ac773223b95e149d5ef975a9880cd677d",
+        "run": "39103393045",
+        "sha256": "c818654ff86f14d99891984a58529665eaaa1266a0889072d49baef5ac524483",
+        "artifactId": 12127541968,
+        "artifactSha256": "75345b8c40c4a5692515e9b032f1e3979714a3682d44c1fc67a8e66afb0ad359"
+      },
+      "previousRestoration": {
+        "id": "39060259147",
+        "attempt": "1",
+        "source": "bd55c23dbef505967a417b55e1be37a11033c4b5",
+        "conclusion": "cancelled"
+      },
+      "previousAcceptedGrubReceipt": {
+        "source": "c058780e1df1ac59968e08ac1959877ab80fd034",
+        "run": "39075907078",
+        "sha256": "0bfcc2293dd400f5655d759bd9651d38073650762192024b6021a742f86e195f"
+      }
+    },
+    "configurationChanged": false,
+    "clinicalChanged": false,
+    "gpChanged": false,
+    "homepageChanged": false,
+    "stockChanged": false,
+    "dataWrites": false,
+    "externalMessages": false,
+    "originalAssertionsRemoved": false,
+    "timeoutsChanged": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "authenticatedLiveAcceptanceStillRequired": true,
+    "legacyCatalogueAuthorityChanged": false,
+    "legacyCatalogueDatabaseWrites": false,
+    "independentReviewPath": "evidence/grub-expansion-closeout-2026-09-16/uk-broad-ranking-qualification-20261018.json",
+    "publicPresentation": {
+      "pipeline": [
+        "memberExperienceRoutes",
+        "withStartupStability",
+        "withBookVoice"
+      ],
+      "approvalSource": "83da3fcac344281147e9dab147aa7018e90b8158",
+      "approvalPath": "preview/voice/edits.json",
+      "currentEditorialPath": "editorial/book-voice/edits.json",
+      "originalAdapterChanged": false,
+      "actualBodyNormalised": false,
+      "wholeServedBodyEqualityRequired": true
+    },
+    "humanReviewWaived": true,
+    "recipeBodiesChanged": false,
+    "maintenanceSource": "3f6dc7bc06ee42654452aff780966705791e3b30"
   }
 }
