@@ -5,7 +5,7 @@ import {join,resolve,dirname} from 'node:path';
 import {randomUUID,createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {pathToFileURL,fileURLToPath} from 'node:url';
-import {LANE,PREDECESSORS,latestDeployment,assertOwned,digest} from '../../runtime/release/gp-priority-direct-owned-release-20261016.mjs';
+import {LANE,PREDECESSORS,latestDeployment,assertOwned,digest} from '../../runtime/release/questionnaire-handover-owned-release-20261016.mjs';
 
 export const GP_ON_BRANCH='release/gp-priority-direct-activation-20261016';
 export const GP_ON_WORKFLOW='.github/workflows/gp-priority-direct-activation-20261016.yml';
@@ -18,9 +18,9 @@ const sha64=value=>assert.match(value||'',/^[a-f0-9]{64}$/);
 const uuid=value=>assert.match(value||'',/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i);
 export const QA_BRANCH='verification/gp-direct-h55-live-20261016';
 export const QA_WORKFLOW='.github/workflows/rendered-member-production-acceptance.yml';
-export const TARGET_RUNTIME_SOURCE='b6f9c0c36d4303e5d384fb2d62b58968b998aa64';
+export const TARGET_RUNTIME_SOURCE='0e4a765e7a360d705e2424264e0bcfcc1d6652be';
 const HISTORICAL_Q_SOURCE='e9491c2686105afc465d1c94e37e5cef63240e11',HISTORICAL_Q_TREE='c3db6341f2b6c20dcda0eede3eb5fa3dc91a8611';
-export const TARGET_RUNTIME_TREE='00781ce728ca816ddab27022c7bcf8f9e1f13b13';
+export const TARGET_RUNTIME_TREE='1ea393678bcc4caed8e6ae08984ad1212a3dce49';
 export const GP_ACTIVATION_SOURCE='55b73025f5b6d2302fab42bce73a222653404186';
 export const GP_ACTIVATION_TREE='550bec05b5dbf98bb31eed006b2158f73b4ee79f';
 export const CURRENT_CORE_BRANCH='fix/questionnaire-handover-20261016';
@@ -49,7 +49,7 @@ export function inverseLiteral(value,edits){
 }
 export function assertQaFileInverses(){
  const policy=JSON.parse(readFileSync(resolve(verifierRoot,'release/gp-h55-live-qa-policy-20261016.json'),'utf8'));
- for(const name of ['helper','runner']){const row=policy[name],body=readFileSync(resolve(verifierRoot,row.path),'utf8');assert.equal(hash(body),row.sha256,'Frozen QA '+name+' hash changed');const original=inverseLiteral(body,row.wholeInverse);assert.equal(hash(original),row.originalSha256,'Every original '+name+' assertion and control must remain');const path=name==='helper'?'release/gp-directory-live-20261015.mjs':'release/gp-member-directory-activation-live-20261016.mjs';assert.equal(original,readFileSync(resolve(verifierRoot,'../runtime',path),'utf8'),'Original runtime QA donor differs');}
+ for(const name of ['helper','runner']){const row=policy[name],body=readFileSync(resolve(verifierRoot,row.path),'utf8');assert.equal(hash(body),row.sha256,'Frozen QA '+name+' hash changed');const original=inverseLiteral(body,row.wholeInverse);assert.equal(hash(original),row.originalSha256,'Every original '+name+' assertion and control must remain');const path=name==='helper'?'release/gp-directory-live-20261015.mjs':'release/gp-member-directory-activation-live-20261016.mjs';assert.equal(original,originalGpDonor(path),'Original native B6 QA donor differs');}
  const restored=inverseLiteral(readFileSync(resolve(verifierRoot,QA_WORKFLOW),'utf8'),policy.workflowInverse);assert.equal(restored,readFileSync(resolve(verifierRoot,'../runtime',QA_WORKFLOW),'utf8'),'Every original workflow command and authority remains exact');return{originalAssertionsAndCommandsRetained:true,providerWrites:0};
 }
 const verifierRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
@@ -64,17 +64,97 @@ function actualVerifier(){
  assert.equal(native(verifierRoot,'status','--porcelain','--untracked-files=no'),'');
  assertQaFileInverses();
  const manifest=JSON.parse(readFileSync(resolve(verifierRoot,'release/gp-h55-live-qa-policy-20261016.json'),'utf8'));
- assert.equal(manifest.runtimeSource,TARGET_RUNTIME_SOURCE);assert.equal(manifest.runtimeTree,TARGET_RUNTIME_TREE);assert.equal(manifest.schema,'shift-gp-h55-ui-verifier-policy/v1');
+ assert.equal(manifest.runtimeSource,TARGET_RUNTIME_SOURCE);assert.equal(manifest.runtimeTree,TARGET_RUNTIME_TREE);assert.equal(manifest.schema,'shift-gp-h55-ui-verifier-policy/v1');assertAcceptedUtilityMode(manifest);assertAcceptedUtilityRuntime();
  const expected=['.github/workflows/rendered-member-production-acceptance.yml','release/gp-h55-live-qa-20261016.mjs','release/gp-directory-live-h55-qa-20261016.mjs','release/gp-h55-live-qa-policy-20261016.json','tests/gp-h55-live-qa-20261016.test.mjs'];
  assert.deepEqual([...manifest.paths].sort(),expected.sort());assert.deepEqual(native(verifierRoot,'diff','--no-ext-diff','--no-textconv','--no-renames','--name-only',TARGET_RUNTIME_SOURCE,source,'--').split('\n').filter(Boolean).sort(),expected.sort(),'Only the finite QA verifier files may differ from H55');
  for(const path of expected){const bytes=readFileSync(resolve(verifierRoot,path)),nativeBytes=execFileSync('/usr/bin/git',['--no-replace-objects','--no-optional-locks','-C',verifierRoot,'show',source+':'+path],{maxBuffer:64e6});assert.equal(hash(bytes),hash(nativeBytes));}
  return{source,tree:native(verifierRoot,'rev-parse','HEAD^{tree}'),branch:QA_BRANCH,workflow:QA_WORKFLOW,run:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,overlaySha256:manifest.helper.sha256};
 }
+
+import {assertProvider} from '../../runtime/release/questionnaire-handover-owned-release-20261016.mjs';
+import {verifiedOwnedRuntime} from '../../runtime/shift-coach/cancelled-release-recovery.mjs';
+import {readRecordedWeekCurrentWitness,PRESERVED_CURRENT_RUNTIME} from '../../runtime/release/accepted-current-runtime-starting-point-20261017.mjs';
+
+export const QUALIFIED_CANDIDATE='b138e845ce63542d8d1847400b67ccd0eba23877';
+export const ACCEPTED_UTILITY_PR=1380;
+export const ACCEPTED_UTILITY_CORE_BASE='5e640279d2a0db1bd578e67269456a1575c5476f';
+
+function modePolicy(){return JSON.parse(readFileSync(resolve(verifierRoot,'release/gp-h55-live-qa-policy-20261016.json'),'utf8'));}
+export function assertAcceptedUtilityMode(policy,{source=TARGET_RUNTIME_SOURCE,tree=TARGET_RUNTIME_TREE,qualified=QUALIFIED_CANDIDATE,pr=ACCEPTED_UTILITY_PR,coreBase=ACCEPTED_UTILITY_CORE_BASE}={}){
+ assert.equal(policy.activationReady,true,'Prepared GP mode cannot create fixtures before actual accepted utility runtime exists');assert.equal(policy.mode,'gp-settings-on-accepted-utility');assert.equal(policy.runtimeSource,source);assert.equal(policy.runtimeTree,tree);assert.equal(policy.qualifiedCandidate,qualified);assert.equal(policy.acceptedUtilityPr,pr);assert.equal(policy.acceptedUtilityCoreBase,coreBase);return policy;
+}
+
+export function assertAcceptedUtilityRuntime(){
+ assertAcceptedUtilityMode(modePolicy());
+ const root=resolve(verifierRoot,'../runtime'),path='member-experience/chrome.mjs';
+ const patch='19cd0cd57021dc10a9e155eec5e84b2a9a31ed57',base='98d584e167fc0785ee791891d763e504286ee603';
+ assert.equal(native(root,'rev-parse','HEAD'),TARGET_RUNTIME_SOURCE);
+ assert.equal(native(root,'rev-parse','HEAD^{tree}'),TARGET_RUNTIME_TREE);
+ assert.equal(native(root,'status','--porcelain','--untracked-files=no'),'');
+ assert.equal(native(root,'rev-parse',patch+'^'),base);
+ assert.equal(native(root,'rev-parse',patch+'^{tree}'),'dc364d21319e1e3127125ff5c503e366c3a7c76f');
+ assert.deepEqual(native(root,'diff','--no-renames','--name-only',base,patch).split('\n'),[path]);
+ assert.equal(native(root,'rev-parse',ACCEPTED_UTILITY_CORE_BASE+'^{tree}'),'b36237f7ffc91a11e8aa35ea99d2d6f7bd443b89');
+ native(root,'merge-base','--is-ancestor',base,ACCEPTED_UTILITY_CORE_BASE);
+ native(root,'merge-base','--is-ancestor',ACCEPTED_UTILITY_CORE_BASE,TARGET_RUNTIME_SOURCE);
+ const read=ref=>execFileSync('/usr/bin/git',['--no-replace-objects','-C',root,'show',ref+':'+path],{encoding:'utf8'});
+ const before=read(base),corrected=read(patch),actual=read(TARGET_RUNTIME_SOURCE);
+ assert.equal(hash(before),'842e80408c00464c3cec28d1d800c1abe575ecb49808d8ee2d558831875b27df');
+ assert.equal(hash(corrected),'d6563886e01c36decf747596e54cb04b0e93e398642b3cd04ccb0ad83962b2af');
+ const rule='html body[data-member-chrome="v1"] #memberUtilities #askTimberLaunch{position:relative!important}\n';
+ assert.equal(corrected.split(rule).length,2);assert.equal(corrected.replace(rule,''),before);
+ assert.equal(actual,corrected,'Whole exact independently qualified member utility correction required');
+ assert.equal(readFileSync(resolve(root,path),'utf8'),actual,'No working-tree CSS substitution');
+ return {source:TARGET_RUNTIME_SOURCE,tree:TARGET_RUNTIME_TREE,patch,wholeFileInverse:true};
+}
+
+export function originalGpNativeContract(){
+ const row=modePolicy().originalGpContract;assert.equal(row.source,'b6f9c0c36d4303e5d384fb2d62b58968b998aa64');assert.equal(row.path,'release/gp-directory-live-contract-20261015.mjs');
+ const root=resolve(verifierRoot,'../runtime');assert.equal(native(root,'rev-parse',row.source+':'+row.path),row.blob);const body=execFileSync('/usr/bin/git',['--no-replace-objects','-C',root,'show',row.source+':'+row.path]);assert.equal(hash(body),row.sha256,'Whole unchanged native original GP contract required');assert.equal(createHash('sha1').update('blob '+body.length+'\0').update(body).digest('hex'),row.blob);return body.toString('base64');
+}
+function originalGpDonor(path){
+ const policy=modePolicy(),row=policy.originalGpDonors[path];assert(row&&row.source==='b6f9c0c36d4303e5d384fb2d62b58968b998aa64');const root=resolve(verifierRoot,'../runtime');const body=execFileSync('/usr/bin/git',['--no-replace-objects','-C',root,'show',row.source+':'+path]);assert.equal(hash(body),row.sha256);assert.equal(createHash('sha1').update('blob '+body.length+'\0').update(body).digest('hex'),row.blob);return body.toString('utf8');
+}
+function readNormalMainGpBaseline(){const bytes=readRecordedWeekCurrentWitness();assert.equal(hash(bytes),PRESERVED_CURRENT_RUNTIME.receiptSHA256);const original=JSON.parse(bytes);assert.equal(original.gpAssessmentReuse.status,'blocked_contract_inactive');return original;}
+export function assertMainOwnership(active,run,job,receipt,source){
+ assert.equal(run.head_sha,source);assert.equal(run.run_attempt,Number(receipt.attempt||run.run_attempt));assert.equal(verifiedOwnedRuntime(active,run,job,receipt),true,'Original normal-main ownership validator must pass');return receipt;
+}
+async function currentProvider(script){
+ const account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;assert.match(account||'',/^[a-f0-9]{32}$/);assert(token);
+ const request=async path=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+'/workers/scripts/'+script+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);const b=await r.json();assert.equal(b.success,true);return b.result;};
+ const deployment=latestDeployment((await request('/deployments')).deployments),version=await request('/versions/'+deployment.versions[0].version_id);
+ return{deployment,version,request};
+}
+async function currentMainRuntime({withBundle=false}={}){
+ const started=Date.now();actualVerifier();assertQaIdentity(await api('/actions/runs/'+process.env.GITHUB_RUN_ID),{source:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT});
+ assert.equal((await api('/git/ref/heads/'+QA_BRANCH)).object.sha,process.env.GITHUB_SHA);assert.equal((await api('/git/ref/heads/main')).object.sha,TARGET_RUNTIME_SOURCE);
+ const pr=await api('/pulls/'+ACCEPTED_UTILITY_PR);assert.equal(pr.merged,true);assert.equal(pr.head.sha,QUALIFIED_CANDIDATE);assert.equal(pr.merge_commit_sha,TARGET_RUNTIME_SOURCE);
+ const candidates=(await api('/actions/workflows/cloudflare-production-promote.yml/runs?branch=main&event=push&per_page=20')).workflow_runs.filter(r=>r.head_sha===TARGET_RUNTIME_SOURCE&&r.status==='completed'&&r.conclusion==='success');
+ assert(candidates.length,'Original normal-main production checks must all have completed successfully');const run=candidates.sort((a,b)=>b.id-a.id)[0];
+ const jobs=(await api('/actions/runs/'+run.id+'/jobs')).jobs.filter(j=>j.name==='promote'&&j.status==='completed'&&j.conclusion==='success');assert.equal(jobs.length,1);const job=jobs[0];
+ const token=process.env.GH_TOKEN||process.env.GITHUB_TOKEN;const response=await fetch('https://api.github.com/repos/'+repository+'/actions/jobs/'+job.id+'/logs',{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json'},signal:AbortSignal.timeout(30000)});assert.equal(response.status,200);const logs=await response.text();
+ const receipts=logs.split('\n').flatMap(line=>{const n=line.indexOf('{"kind":"owned_runtime_deployment"');if(n<0)return[];try{return[JSON.parse(line.slice(n))]}catch{return[]}});
+ const core=await currentProvider('shift-core'),hq=await currentProvider('shift-hq-management'),matches=receipts.filter(r=>verifiedOwnedRuntime(core.deployment,run,job,r));assert.equal(matches.length,1);assertMainOwnership(core.deployment,run,job,matches[0],TARGET_RUNTIME_SOURCE);
+ const witnessBytes=readRecordedWeekCurrentWitness();assert.equal(hash(witnessBytes),PRESERVED_CURRENT_RUNTIME.receiptSHA256);const witness=JSON.parse(witnessBytes),retained=witness.workers.hq;
+ const cp=assertProvider(core,{deployment:matches[0].deploymentId,version:matches[0].versionId,gpEnabled:true}),hp=assertProvider(hq,{deployment:retained.deploymentId,version:retained.versionId,gpEnabled:true},{hq:true});
+ assert.equal(cp.bindingsSha256,witness.workers.core.allBindingsSha256,'All genuinely serving W configuration remains exact');assert.equal(hp.bindingsSha256,retained.allBindingsSha256);assertOwned(hq.deployment,retained,retained.source,retained.run,retained.attempt);
+ assert.equal(core.version.resources.bindings.find(b=>b.name==='MY_TIMBER_WEEK_VIEW_ENABLED')?.text,'true');const publicMetadata={source:TARGET_RUNTIME_SOURCE,run:run.id,attempt:run.run_attempt,deploymentId:core.deployment.id,versionId:core.version.id,percentage:100,allBindingsSha256:cp.bindingsSha256};
+ if(withBundle){
+  const latest=async()=>[...(await core.request('/versions?per_page=20')).items].sort((a,b)=>Date.parse(b.metadata.created_on)-Date.parse(a.metadata.created_on))[0];
+  assert.equal((await latest()).id,core.version.id,'Original content ownership control: latest upload must be active version');
+  const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-core/content/v2',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);assert(r.headers.get('content-type')?.startsWith('multipart/form-data'));
+  const entry=r.headers.get('cf-entrypoint');assert(entry&&!entry.includes('/')&&!entry.includes('..'));const parts=await r.formData();assert.equal([...parts].filter(([,p])=>typeof p!=='string').length,1);const part=parts.get(entry);assert(part&&typeof part.arrayBuffer==='function');const bytes=Buffer.from(await part.arrayBuffer());assert.equal((await latest()).id,core.version.id);
+  publicMetadata.bundleSha256=hash(bytes);publicMetadata.bundleBytes=bytes.length;
+ }
+ assert.equal((await api('/git/ref/heads/main')).object.sha,TARGET_RUNTIME_SOURCE);assert(Date.now()-started<=300000,'Original five-minute current ownership window retained');
+ return{at:new Date().toISOString(),source:TARGET_RUNTIME_SOURCE,tree:TARGET_RUNTIME_TREE,main:TARGET_RUNTIME_SOURCE,workers:{core:publicMetadata,hq:retained},run,job:job.id,receipt:matches[0],originalPromoteLogSha256:hash(logs),originalW:{source:witness.source,run:witness.run,receiptSHA256:hash(witnessBytes)},verifier:actualVerifier()};
+}
+
 function actualSource(){
  actualVerifier();assert.equal(realpathSync(process.cwd()),realpathSync(resolve(verifierRoot,'../runtime')),'Use the independently checked-out H55 runtime directory');
  const source=native(process.cwd(),'rev-parse','HEAD');assert.equal(source,TARGET_RUNTIME_SOURCE);assert.equal(native(process.cwd(),'rev-parse','HEAD^{tree}'),TARGET_RUNTIME_TREE);
  assert.equal(native(process.cwd(),'status','--porcelain','--untracked-files=no'),'');
- execFileSync(process.execPath,['--input-type=module','-e',"import {readFileSync} from 'node:fs';import {verifyRecordedWeekDirect} from './release/recorded-week-direct-scope-20261016.mjs';verifyRecordedWeekDirect(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).myTimberRecordedWeekActivation20261014);"],{encoding:'utf8',maxBuffer:1e6});
+ assertAcceptedUtilityRuntime();
  for(const row of native(process.cwd(),'ls-files','-v','-z').split('\0').filter(Boolean))assert(row.startsWith('H '),'Hidden tracked H55 runtime refused');
  return source;
 }
@@ -151,14 +231,8 @@ async function waitForOn(){
  console.log('PASS actual accepted Q Core and unchanged H HQ receipts; original timestamps preserved; authenticated member proof has not run');
 }
 async function verifyOn(){
- const source=actualSource(),tree=git('rev-parse','HEAD^{tree}'),baseline=readBaseline();
- const proof=JSON.parse(readFileSync(join(directory,'owned-week-proof.json'),'utf8'));
- const run=JSON.parse(readFileSync(join(directory,'owned-week-run.json'),'utf8'));
- const bytes=readFileSync(proof.receiptPath,'utf8');assert.equal(hash(bytes),proof.receiptSHA256);assert.equal(proof.receiptSHA256,'3261fbd1a27a504746ff64f2003b8ff4922d23351c16ecd4c1f7a2d769067290','Exact genuine deployed W receipt required');
- const journalBytes=readFileSync(proof.journalPath,'utf8');assert.equal(hash(journalBytes),proof.journalSHA256);
- const runtime=assertOwnedWeekReceipt(JSON.parse(bytes),run,source,tree,baseline,JSON.parse(journalBytes));
- const current=assertOwnedWeekRun(await api('/actions/runs/'+run.id),source);assert.equal(current.run_attempt,run.run_attempt);
- assert(Number.isFinite(Date.parse(current.updated_at))&&Date.parse(current.updated_at)<=Date.now(),'Preserve actual original terminal time');const freshOwnership=await assertCurrentOwnedWeek(runtime,run,source,baseline);const finished=assertFreshWindow(freshOwnership.at);
+ const source=actualSource(),tree=git('rev-parse','HEAD^{tree}'),baseline=readNormalMainGpBaseline();
+ const runtime={...await currentMainRuntime({withBundle:true}),gpAssessmentReuse:baseline.gpAssessmentReuse},run=runtime.run,current=run;const finished=assertFreshWindow(runtime.at);
  const activationRun=assertOwnedOnRun(await api('/actions/runs/'+baseline.workers.hq.run),GP_ACTIVATION_SOURCE);assert.equal(activationRun.run_attempt,baseline.workers.hq.attempt);
  const oidc=process.env.SHIFT_COMMISSIONING_OIDC;assert(oidc,'Existing allowed-workflow commissioning identity required');
  const{chromium}=createRequire(resolve(process.cwd(),'package.json'))('playwright');const{commissioningLogin}=await import('../../runtime/rendered-member-acceptance-support.mjs');const{verifyGpDirectoryLive,verifyGpIsolationFromExistingHolder}=await import('./gp-directory-live-h55-qa-20261016.mjs');
@@ -195,6 +269,11 @@ async function verifyOn(){
   await create(second);
   const other=await browser.newContext({viewport:{width:1440,height:1000}}),otherPage=await other.newPage();
   await commissioningLogin(otherPage,{site,api:apiOrigin,oidc,email:second.email,password:second.password});
+  await otherPage.setViewportSize({width:390,height:900});
+   const mobileIsolation=await verifyGpIsolationFromExistingHolder({page:otherPage,site,api:apiOrigin,email:second.email,runtimeSource:source});
+   assert.equal(mobileIsolation.status,'pass');assert.equal(mobileIsolation.source,source);assert.equal(mobileIsolation.actualDistinctAccounts,true);assert.equal(mobileIsolation.ownGpUnchanged,true);assert.equal(mobileIsolation.firstHolderMarkerAbsent,true);assert.equal(mobileIsolation.hqSignedInAcceptance,false);
+   report.checks.push({requirement:'Actual second fictional holder isolation at mobile width',width:390,...mobileIsolation});
+   await otherPage.setViewportSize({width:1440,height:900});
   const isolation=await verifyGpIsolationFromExistingHolder({page:otherPage,site,api:apiOrigin,email:second.email,runtimeSource:source});
   assert.equal(isolation.status,'pass');assert.equal(isolation.source,source);assert.equal(isolation.actualDistinctAccounts,true);assert.equal(isolation.ownGpUnchanged,true);assert.equal(isolation.firstHolderMarkerAbsent,true);assert.equal(isolation.hqSignedInAcceptance,false);
   report.checks.push({requirement:'Actual second fictional holder isolation',...isolation});
@@ -265,48 +344,13 @@ export function assertOwnedWeekReceipt(receipt,run,source,tree,baseline,journal)
  for(const row of [core,hq]){uuid(row.deploymentId);uuid(row.versionId);assert.equal(row.percentage,100);sha64(row.bundleSha256);sha64(row.allBindingsSha256);sha64(row.otherBindingsSha256);assert(Number.isSafeInteger(row.bundleBytes)&&row.bundleBytes>0);}
  return receipt;
 }
-export async function assertCurrentOwnedWeek(receipt,run,source,baseline,{readProvider=providerDeployments,readGithub=api}={}){
- const started=Date.now(),verifier=actualVerifier();
- assert.equal(source,TARGET_RUNTIME_SOURCE);assert.equal(receipt.source,source);assert.equal(receipt.tree,TARGET_RUNTIME_TREE);
- assertQaIdentity(await readGithub('/actions/runs/'+process.env.GITHUB_RUN_ID),{source:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT});
- assert.equal((await readGithub('/git/ref/heads/'+QA_BRANCH)).object.sha,process.env.GITHUB_SHA,'Actual verifier moved');
- const terminal=assertOwnedWeekRun(await readGithub('/actions/runs/'+run.id),source);assert.equal(terminal.id,38990992637);assert.equal(terminal.run_attempt,run.run_attempt);
- const activation=assertOwnedOnRun(await readGithub('/actions/runs/'+baseline.workers.hq.run),GP_ACTIVATION_SOURCE);assert.equal(activation.run_attempt,baseline.workers.hq.attempt);assert.equal((await readGithub('/git/ref/heads/'+GP_ON_BRANCH)).object.sha,GP_ACTIVATION_SOURCE,'Historical H activation branch must remain exact');
- assert.equal(receipt.main,LANE.main);assert.equal(receipt.main,baseline.coordinatingMainAtAcceptance);
- assert.equal((await readGithub('/git/ref/heads/main')).object.sha,receipt.main,'Current main moved before W member proof');
- assert.equal((await readGithub('/git/ref/heads/'+W_BRANCH)).object.sha,source,'Owned W branch moved before member proof');
- const actual={};
- for(const name of ['core','hq']){
-  const active=latestDeployment(await readProvider(PREDECESSORS[name].script));
-  const expected=receipt.workers[name],ownerSource=name==='core'?source:baseline.workers.hq.source,ownerRun=name==='core'?run.id:baseline.workers.hq.run,ownerAttempt=name==='core'?run.run_attempt:baseline.workers.hq.attempt;
-  assertOwned(active,expected,ownerSource,ownerRun,ownerAttempt);
-  actual[name]={source:ownerSource,run:canonicalId(ownerRun),attempt:canonicalId(ownerAttempt),deploymentId:active.id,versionId:active.versions[0].version_id,percentage:active.versions[0].percentage};
- }
- assert(Date.now()-started<=300000,'Fresh current provider/source evidence must complete inside five minutes');return{at:new Date().toISOString(),source,main:receipt.main,workers:actual,verifier};
+export async function assertCurrentOwnedWeek(receipt,run,source,baseline){
+ assert.equal(source,TARGET_RUNTIME_SOURCE);const actual=await currentMainRuntime();
+ for(const name of ['core','hq'])for(const key of ['source','run','attempt','deploymentId','versionId','percentage','allBindingsSha256'])assert.equal(String(actual.workers[name][key]),String(receipt.workers[name][key]),'Actual owned current '+name+' '+key+' changed');
+ const activation=assertOwnedOnRun(await api('/actions/runs/'+baseline.workers.hq.run),GP_ACTIVATION_SOURCE);assert.equal(activation.run_attempt,baseline.workers.hq.attempt);assert.equal((await api('/git/ref/heads/'+GP_ON_BRANCH)).object.sha,GP_ACTIVATION_SOURCE,'Historical H activation branch must remain exact');
+ assert.equal(actual.run.id,run.id);assertFreshWindow(actual.at);return actual;
 }
-async function waitForWeek(){
- const source=actualSource(),tree=git('rev-parse','HEAD^{tree}'),started=Date.now();mkdirSync(directory,{recursive:true});
- let run;
- while(Date.now()-started<1200000){
-  const result=await api('/actions/workflows/'+W_WORKFLOW.split('/').at(-1)+'/runs?branch='+encodeURIComponent(W_BRANCH)+'&event=push&per_page=20');
-  const matches=result.workflow_runs.filter(row=>row.head_sha===source).sort((a,b)=>b.id-a.id);
-  if(matches.length){run=assertOwnedWeekRun(matches[0],source,{terminal:false});if(run.status==='completed'){assertOwnedWeekRun(run,source);break;}}
-  await new Promise(resolve=>setTimeout(resolve,10000));
- }
- assert(run?.status==='completed'&&run.conclusion==='success','Actual same-source W release did not succeed inside finite 20-minute wait');
- const artifacts=(await api('/actions/runs/'+run.id+'/artifacts')).artifacts.filter(row=>row.name==='recorded-week-direct-runtime-release-'+run.id&&!row.expired);
- assert.equal(artifacts.length,1,'One actual owned W artifact required');assert(artifacts[0].size_in_bytes>0);
- const artifactDirectory=join(directory,'owned-week-artifact');mkdirSync(artifactDirectory,{recursive:true});
- execFileSync('gh',['run','download',String(run.id),'--repo',repository,'--name',artifacts[0].name,'--dir',artifactDirectory],{encoding:'utf8',stdio:['ignore','pipe','pipe']});
- const receipts=jsonFiles(artifactDirectory).map(path=>({path,bytes:readFileSync(path,'utf8')})).map(row=>({...row,value:JSON.parse(row.bytes)})).filter(row=>row.value.schema==='shift-recorded-week-direct-runtime-receipt/v1');
- assert.equal(receipts.length,1,'One actual runtime receipt in owned artifact required');
- const journals=jsonFiles(artifactDirectory).map(path=>({path,bytes:readFileSync(path,'utf8')})).map(row=>({...row,value:JSON.parse(row.bytes)})).filter(row=>row.value.schema==='shift-recorded-week-direct-owned-release/v1');assert.equal(journals.length,1,'One genuine source-owned W journal required');assertOwnedWeekReceipt(receipts[0].value,run,source,tree,readBaseline(),journals[0].value);
- run=assertOwnedWeekRun(await api('/actions/runs/'+run.id),source);
- assert.equal(String(receipts[0].value.attempt),String(run.run_attempt),'Owned release attempt moved during artifact read');
- writeFileSync(join(directory,'owned-week-run.json'),JSON.stringify(run,null,2)+'\n');
- writeFileSync(join(directory,'owned-week-proof.json'),JSON.stringify({source,tree,run:run.id,attempt:run.run_attempt,artifact:artifacts[0].id,receiptPath:receipts[0].path,receiptSHA256:hash(receipts[0].bytes),journalPath:journals[0].path,journalSHA256:hash(journals[0].bytes)},null,2)+'\n');
- console.log('PASS actual same-source owned factual W release and artifact; authenticated member proof has not run yet');
-}
+async function waitForWeek(){mkdirSync(directory,{recursive:true});actualSource();console.log('PASS separate actual accepted utility runtime native admission, current-main identity and complete original GP inverses; no fixture/provider write');}
 
 if(process.argv[1]&&pathToFileURL(resolve(process.argv[1])).href===import.meta.url){
  const mode=process.argv[2];

@@ -4,6 +4,7 @@ on:
     branches: [codex/seo-production-completion-20261006]
   pull_request:
     paths:
+      - 'release/approved-runtime-composition*'
       - 'release/production-completion-scope.mjs'
       - 'shift-coach/cancelled-release-recovery*'
       - 'shift-coach/recover-cancelled-release.mjs'
@@ -14,7 +15,7 @@ permissions:
 jobs:
   proof:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,6 +24,79 @@ jobs:
         with:
           node-version: '24'
       - run: node --check shift-coach/recover-cancelled-release.mjs
-      - run: node --test shift-coach/cancelled-release-recovery.test.mjs tests/production-completion-release.test.mjs
-      - run: node shift-coach/release-contract.mjs --require-launch
-      - run: node scripts/b1-release-scope.mjs --check
+      - name: Verify every original source command with two execution slots
+        run: |
+          node --input-type=module <<'SHIFT_CI_POOL'
+          import {spawn,execFileSync} from 'node:child_process';
+          import {mkdirSync,writeFileSync,appendFileSync,renameSync} from 'node:fs';
+          import {join} from 'node:path';
+          import {tmpdir} from 'node:os';
+          import {createHash} from 'node:crypto';
+          const tasks=Object.freeze([{"id":"release-contract","body":"node shift-coach/release-contract.mjs --require-launch"},{"id":"source-tests","body":"node --test shift-coach/cancelled-release-recovery.test.mjs tests/production-completion-release.test.mjs"},{"id":"b1-source","body":"node scripts/b1-release-scope.mjs --check"}]);
+          const poolId="completion";
+          const proofDir=join(process.env.RUNNER_TEMP||tmpdir(),'ci-source-proof',poolId);
+          const programmeGrowthToken=poolId==='programme'?process.env.GITHUB_TOKEN:undefined;if(poolId==='programme')delete process.env.GITHUB_TOKEN;
+          const maxConcurrent=2;
+          mkdirSync(proofDir,{recursive:true});
+          if(tasks.length===0||new Set(tasks.map(t=>t.id)).size!==tasks.length||tasks.some(t=>!/^[-a-z0-9]+$/.test(t.id)||typeof t.body!=='string'||!t.body))throw Error('Finite original command manifest required');
+          const now=()=>new Date().toISOString(),events=[],children=new Map();
+          const results=tasks.map(task=>({id:task.id,bodySha256:createHash('sha256').update(task.body).digest('hex'),status:'queued',pid:null,startedAt:null,finishedAt:null,exitCode:null,signal:null}));
+          let active=0,nextIndex=0,cancelled=null,phase='hydrating',finishedAt=null;
+          let evidenceFailed=false,sourceAfter=null,sourceUnchanged=false;const evidenceErrors=[];
+          function evidenceError(operation,error){evidenceFailed=true;process.exitCode=1;evidenceErrors.push({at:now(),operation,code:typeof error.code==='string'?error.code:'EVIDENCE_ERROR'});}
+          function evidence(operation,run){try{return run();}catch(error){evidenceError(operation,error);return undefined;}}
+          process.stdout.on('error',error=>evidenceError('live-stdout',error));process.stderr.on('error',error=>evidenceError('live-stderr',error));
+          const sourceBefore={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),tree:execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim()};
+          const state=()=>({poolId,maxConcurrent,phase,active,cancelled,finishedAt,evidenceFailed,evidenceErrors,sourceBefore,sourceAfter,sourceUnchanged,results,events});
+          function save(){evidence('status-json',()=>{const temporary=join(proofDir,'status.json.tmp');writeFileSync(temporary,JSON.stringify(state(),null,2)+'\n');renameSync(temporary,join(proofDir,'status.json'));});evidence('status-tsv',()=>writeFileSync(join(proofDir,'status.tsv'),poolId==='programme'?results.map(r=>r.id+'\t'+(r.status==='passed'?0:r.exitCode??1)).join('\n')+'\n':'id\tstatus\texitCode\tsignal\tstartedAt\tfinishedAt\n'+results.map(r=>[r.id,r.status,r.exitCode??'',r.signal??'',r.startedAt??'',r.finishedAt??''].join('\t')).join('\n')+'\n'));}
+          function record(event,details={}){events.push({at:now(),event,active,...details});save();evidence('live-progress',()=>process.stdout.write('['+poolId+'] '+event+(details.id?' '+details.id:'')+' active='+active+'\n'));}
+          writeFileSync(join(proofDir,'commands.json'),JSON.stringify({poolId,maxConcurrent,tasks},null,2)+'\n');
+          writeFileSync(join(proofDir,'source.json'),JSON.stringify(sourceBefore,null,2)+'\n');
+          if(poolId==='programme')writeFileSync(join(proofDir,'head.txt'),sourceBefore.head+'\n');
+          for(const task of tasks)for(const suffix of['.log','.stdout.log','.stderr.log'])writeFileSync(join(proofDir,task.id+suffix),'');
+          save();
+          function stop(signal){if(cancelled)return;cancelled=signal;process.exitCode=1;record('pool-cancelled',{signal});for(const child of children.values())if(child.pid){try{process.kill(-child.pid,'SIGTERM');}catch(error){if(error.code!=='ESRCH')record('signal-delivery-failed',{code:error.code??'UNKNOWN'});}}}
+          process.on('SIGTERM',()=>stop('SIGTERM'));process.on('SIGINT',()=>stop('SIGINT'));
+          let hydrationFailed=false;
+          try{
+           record('reviewed-history-start');const {ensureReviewedHistory}=await import('./shift-coach/release-contract.mjs');ensureReviewedHistory();record('reviewed-history-done');
+           record('original-gp-history-start');const {ensureCombinedOriginalGpSource}=await import('./release/combined-original-gp-object-20261014.mjs');ensureCombinedOriginalGpSource();record('original-gp-history-done');
+          }catch(error){hydrationFailed=true;phase='hydration-failed';finishedAt=now();for(const result of results){result.status='not-started';result.finishedAt=finishedAt;}record('hydration-failed',{code:typeof error.code==='string'?error.code:'ASSERTION_OR_TRANSPORT'});process.exitCode=1;}
+          if(!hydrationFailed){
+           phase='running';
+           await new Promise(resolve=>{
+            function pump(){
+             if(cancelled){for(;nextIndex<tasks.length;nextIndex++){const result=results[nextIndex];result.status='cancelled-before-start';result.finishedAt=now();}save();}
+             while(!cancelled&&active<maxConcurrent&&nextIndex<tasks.length)start(nextIndex++);
+             if(active===0&&(nextIndex===tasks.length||cancelled))resolve();
+            }
+            function start(index){
+             const task=tasks[index],result=results[index],env={...process.env};
+             // Only the literal original Programme growth command retains its existing
+             // token grant. Hydration and every other child run without that token.
+             if(poolId==='programme'&&task.id==='growth-preflight'&&task.tokenRole==='programme-growth'&&programmeGrowthToken!==undefined)env.GITHUB_TOKEN=programmeGrowthToken;
+             result.status='running';result.startedAt=now();active++;
+             let child,settled=false;
+             function finish(code,signal,errorCode=null){if(settled)return;settled=true;children.delete(task.id);active--;result.exitCode=code;result.signal=signal;result.finishedAt=now();result.status=errorCode?'spawn-failed':signal?'signalled':code===0?'passed':'failed';if(errorCode)result.errorCode=errorCode;record('command-finished',{id:task.id,status:result.status,exitCode:code,signal});pump();}
+             try{
+              child=spawn('bash',['--noprofile','--norc','-e','-o','pipefail','-c',task.body],{env,stdio:['ignore','pipe','pipe'],detached:true});children.set(task.id,child);result.pid=child.pid??null;record('command-started',{id:task.id,pid:result.pid});
+              const collect=(stream,chunk)=>{evidence(task.id+'-combined-log',()=>appendFileSync(join(proofDir,task.id+'.log'),chunk));evidence(task.id+'-'+stream+'-log',()=>appendFileSync(join(proofDir,task.id+'.'+stream+'.log'),chunk));evidence(task.id+'-live-progress',()=>{process.stdout.write('['+task.id+':'+stream+'] ');process.stdout.write(chunk);});};
+              child.on('error',error=>finish(null,null,typeof error.code==='string'?error.code:'SPAWN_ERROR'));
+              child.on('close',(code,signal)=>finish(code,signal));
+              child.stdout?.on('data',chunk=>collect('stdout',chunk));child.stderr?.on('data',chunk=>collect('stderr',chunk));
+              child.stdout?.on('error',error=>evidenceError(task.id+'-stdout-read',error));child.stderr?.on('error',error=>evidenceError(task.id+'-stderr-read',error));
+             }catch(error){finish(null,null,typeof error.code==='string'?error.code:'SPAWN_ERROR');}
+            }
+            pump();
+           });
+          }
+          try{sourceAfter={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),tree:execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim()};sourceUnchanged=sourceAfter.head===sourceBefore.head&&sourceAfter.tree===sourceBefore.tree;}catch(error){evidenceError('final-source-binding',error);}
+          evidence('final-source-json',()=>writeFileSync(join(proofDir,'source-final.json'),JSON.stringify({before:sourceBefore,after:sourceAfter,unchanged:sourceUnchanged},null,2)+'\n'));
+          if(!hydrationFailed)phase='finished';finishedAt=now();let failed=hydrationFailed||Boolean(cancelled)||evidenceFailed||!sourceUnchanged||results.some(result=>result.status!=='passed');record('pool-finished',{failed});if(evidenceFailed&&!failed){failed=true;events[events.length-1].failed=true;save();}process.exitCode=failed?1:0;
+          SHIFT_CI_POOL
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: completion-source-proof-${{ github.sha }}
+          path: ${{ runner.temp }}/ci-source-proof/completion/
+          retention-days: 30

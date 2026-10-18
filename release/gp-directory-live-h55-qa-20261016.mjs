@@ -5,7 +5,8 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 import {createRequire} from 'node:module';
 import {compiledTreatmentAssets} from '../../runtime/release/my-treatment-compiled-control.mjs';
-import {assertGpHolder,assertGpSave,assertGpRequest,assertDirectoryResult,gpView,GP_FIELDS,GP_SITE,GP_API} from '../../runtime/release/gp-directory-live-contract-20261015.mjs';
+import {originalGpNativeContract} from './gp-h55-live-qa-20261016.mjs';
+const {assertGpHolder,assertGpSave,assertGpRequest,assertDirectoryResult,gpView,GP_FIELDS,GP_SITE,GP_API}=await import('data:text/javascript;base64,'+originalGpNativeContract());
 
 import {chooseNecessaryCookies} from '../../runtime/rendered-member-acceptance-support.mjs';
 
@@ -214,11 +215,25 @@ export async function verifyGpDirectoryLive({page,site,api,email,dir,report,fres
    assert.match(await page.locator('#memberGpDirectorySelected').innerText(),/Registration and the clinical notification destination have not been verified/);
    const selected=onlyGp((await page.locator('#memberDetailsForm').evaluate(form=>Object.fromEntries(new FormData(form)))));
    assert.deepEqual((await profile()).details,before.details,'Selection alone must not save the account');
-   await save({retry:width===390});await open();for(const [key,id]of Object.entries({gpPractice:'memberGpPractice',gpPostcode:'memberGpPostcode',gpCode:'memberGpCode',gpAddress:'memberGpAddress',gpSelectionMode:'memberGpSelectionMode'}))assert.equal(await page.locator('#'+id).inputValue(),selected[key]);
+   await save({retry:true});await open();for(const [key,id]of Object.entries({gpPractice:'memberGpPractice',gpPostcode:'memberGpPostcode',gpCode:'memberGpCode',gpAddress:'memberGpAddress',gpSelectionMode:'memberGpSelectionMode'}))assert.equal(await page.locator('#'+id).inputValue(),selected[key]);
    await assertGpNoOverflow(page,{row,width,dir,stylesheetEvidence});
    await page.screenshot({path:join(dir,'gp-member-'+width+'.png'),fullPage:true});
-   row.checks.push({width,normalSignedInUi:true,searchAndExplicitSelection:true,noAutomaticSave:true,fullAddressSaved:true,reopenRetained:true,noHorizontalOverflow:true,...(width===390?{declaredSimulatedSearchAndSaveInterruption:true,sameOperationRetry:true}:{})});
+   row.checks.push({width,normalSignedInUi:true,declaredSimulatedSaveInterruption:true,sameOperationRetry:true,searchAndExplicitSelection:true,noAutomaticSave:true,fullAddressSaved:true,reopenRetained:true,noHorizontalOverflow:true,...(width===390?{declaredSimulatedSearchAndSaveInterruption:true,sameOperationRetry:true}:{})});
   }
+  const selectedDirectoryBeforeFreshLogin=await profile();
+  assert.equal(selectedDirectoryBeforeFreshLogin.details.gpSelectionMode,'directory');
+  await uninstall();page=await freshSession();await self();await install();
+  const selectedDirectoryFreshStylesheets=captureGpLoadedStylesheets(page);
+  try{
+   for(const width of [390,1440]){
+    await page.setViewportSize({width,height:900});await open();
+    assert.deepEqual((await profile()).details,selectedDirectoryBeforeFreshLogin.details,'The selected surgery and every other member detail must survive an actual fresh normal sign-in');
+    for(const [key,id]of Object.entries({gpPractice:'memberGpPractice',gpPostcode:'memberGpPostcode',gpCode:'memberGpCode',gpAddress:'memberGpAddress',gpSelectionMode:'memberGpSelectionMode'}))assert.equal(await page.locator('#'+id).inputValue(),selectedDirectoryBeforeFreshLogin.details[key]);
+    await assertGpNoOverflow(page,{row,width,dir,stylesheetEvidence:selectedDirectoryFreshStylesheets});
+    await page.screenshot({path:join(dir,'gp-selected-surgery-fresh-login-'+width+'.png'),fullPage:true});
+    row.checks.push({width,selectedSurgeryRetainedAfterFreshNormalSignIn:true,fullCorrectGpFieldsRetained:true,noHorizontalOverflow:true});
+   }
+  }finally{selectedDirectoryFreshStylesheets.dispose();}
   await page.locator('#memberGpSelectionMode').selectOption('no_gp');for(const id of ['memberGpPractice','memberGpPostcode','memberGpAddress','memberGpCode'])assert.equal(await page.locator('#'+id).inputValue(),'');await save();await open();assert.equal(await page.locator('#memberGpSelectionMode').inputValue(),'no_gp');
   await page.locator('#memberDetailsForm').getByRole('button',{name:'Enter GP details manually',exact:true}).click();
   const markerText='Fictional release GP '+randomUUID();await page.locator('#memberGpPractice').fill(markerText);await page.locator('#memberGpAddress').fill('Fictional release acceptance only; no GP notification or registration.');await page.locator('#memberGpPostcode').fill('SK10 1AA');

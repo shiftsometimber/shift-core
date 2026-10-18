@@ -65,7 +65,9 @@ test('publication audiences must be exact scalars even when an array includes an
   }
 });
 
-test('publication rejects expired, stale, future, reversed, missing or nonnumeric time claims',async()=>{
+test('publication rejects expired, stale, future, reversed, missing or nonnumeric time claims',async context=>{
+  // Keep the original strict +/-61-second boundaries fixed while RSA signing and verification await.
+  context.mock.timers.enable({apis:['Date'],now:Date.now()});
   const base=claims(),now=Math.floor(Date.now()/1000);
   for(const override of [{exp:now-1},{iat:now-601},{iat:now+61},{nbf:now+61},{exp:now+601},{iat:base.exp+1},{nbf:base.exp+1},{iat:null},{exp:null},{nbf:null},{iat:'not-a-number'},{exp:'not-a-number'},{nbf:'not-a-number'},{iat:String(base.iat)},{exp:String(base.exp)},{nbf:String(base.nbf)},{iat:undefined},{exp:undefined},{nbf:undefined}]){
     assert.equal((await verifyCataloguePublicationOidc(await token({...base,...override}))).ok,false,JSON.stringify(override));

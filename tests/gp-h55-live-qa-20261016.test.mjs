@@ -129,3 +129,5 @@ test('failure CDP geometry retains closed-shadow SVG and anonymous layout while 
   assert.equal(original.assertion.noHorizontalOverflow,false);assert(original.assertion.scrollWidth>original.assertion.innerWidth+1);await context.close();
  }finally{await browser.close();}
 });
+
+test('accepted utility GP mode rejects missing activation or mismatched source, tree, qualified head, PR and Core base',async()=>{const{assertAcceptedUtilityMode}=await import('../release/gp-h55-live-qa-20261016.mjs');const{readFileSync}=await import('node:fs');const policy=JSON.parse(readFileSync(new URL('../release/gp-h55-live-qa-policy-20261016.json',import.meta.url)));assert.equal(assertAcceptedUtilityMode(policy),policy);for(const change of[{activationReady:false},{mode:'recorded-week'},{runtimeSource:'a'.repeat(40)},{runtimeTree:'b'.repeat(40)},{qualifiedCandidate:'c'.repeat(40)},{acceptedUtilityPr:0},{acceptedUtilityCoreBase:'d'.repeat(40)}])assert.throws(()=>assertAcceptedUtilityMode({...policy,...change}));});

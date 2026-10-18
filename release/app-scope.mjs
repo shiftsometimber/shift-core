@@ -1,3 +1,4 @@
+import {compactLiteralExcludes} from './combined-finite-scope-20261014.mjs';
 import {reconciliationGitArgs,reconciliationHistoricalRead,reconciliationPath,RECONCILIATION_PATHS,verifyReconciledRelease,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from './approved-runtime-composition.mjs';
 import {METRICS_PATHS,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import {rankingGrowthHistoricalRef} from './seo-growth-scope.mjs';
@@ -12,7 +13,9 @@ import {validateHomeBanner} from './home-banner-scope.mjs';
 import {MEMBER_FOCUS_APPROVED,MEMBER_FOCUS_PATHS,validateMemberFocus} from './member-focus-scope.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {execFileSync} from 'node:child_process';
+import {withImmutableHistoryVerification,immutableHistorySourceHead,immutableHistoryExecFileSync} from './immutable-git-facts.mjs';
+// Only these native source readers freeze HEAD inside the checked synchronous scope.
+const execFileSync=(bin,args,options)=>{const head=immutableHistorySourceHead();return immutableHistoryExecFileSync(bin,head&&bin==='git'?args.map(value=>value==='HEAD'?head:value.startsWith('HEAD:')?head+value.slice(4):value):args,options);};
 import {createHash} from 'node:crypto';
 export const PWA_DISMISS_APPROVED='fbbc8e592549f48280e32009edcbb73d1dd42669';
 export const PWA_DISMISS_PATHS=['my-timber-pwa/ui.mjs','my-timber-pwa/presentation.mjs','my-timber-pwa/pwa.test.mjs','my-timber-pwa/preservation.mjs','my-timber-pwa/preservation.test.mjs','preview/pwa-dismiss/verify.cjs','.github/workflows/pwa-dismiss-preview.yml'];
@@ -41,13 +44,14 @@ export function originalMemberWorkerPresentation(source){
 }
 for(const p of [...METRICS_PATHS,...RECONCILIATION_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED])APP_PATHS.add(p);
 export function validateAppSource(){
+ return withImmutableHistoryVerification(()=>{
  verifyReconciledRelease();
  verifyMetricsConnection();
  validateFit300();
  validateRecipeImages();
  verifyCoachingRelease();
  validateDeviceHealthSource();
- const git=(...args)=>execFileSync('git',reconciliationGitArgs(args),{encoding:'utf8'}).trim();
+ const git=(...args)=>execFileSync('git',compactLiteralExcludes(reconciliationGitArgs(args)),{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',APP_BASE,'HEAD');
  validateFooterSource();
  validateMemberDesignSource();
@@ -62,4 +66,5 @@ export function validateAppSource(){
  assert.equal(execFileSync('git',['show','HEAD:my-timber-pwa/service-worker.mjs'],{encoding:'utf8'}).replace(" const panel=['/member/fit','/member/grub','/member/life-back'].includes(u.pathname)&&u.searchParams.get('app_panel')==='1'&&['app','web'].includes(u.searchParams.get('view'))&&u.searchParams.size===2;\n if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||(u.search&&!panel))return;"," if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||u.search)return;"),execFileSync('git',['show',FOOTER_CANDIDATE+':my-timber-pwa/service-worker.mjs'],{encoding:'utf8'}),'Service worker differs beyond exact authenticated inline panel fetch');
  assert.equal(git('diff',APP_BASE,'HEAD','--','member-experience','my-timber-pwa','migrations',':(exclude)my-timber-pwa/verify-live.mjs',':(exclude)member-experience/orders.mjs',':(exclude)member-experience/tablet-routine.mjs',':(exclude)member-experience/tablet-routine-client.mjs',':(exclude)member-experience/ai-site-knowledge.mjs',':(exclude)member-experience/ai-stream.mjs',':(exclude)member-experience/tests/lookup-continuation.test.mjs',':(exclude)member-experience/tests/continuity-measurement.test.mjs',':(exclude)member-experience/public-preservation.mjs',':(exclude)member-experience/verify-production-member.mjs',':(exclude)member-experience/dashboard-tools.mjs',':(exclude)member-experience/tests/dashboard-tools.test.mjs',...[...RECONCILIATION_PATHS].filter(reconciliationPath).map(p=>':(exclude)'+p),...[...DEVICE_HEALTH_PATHS].map(p=>':(exclude)'+p),...[...FOOTER_RUNTIME_PATHS].map(p=>':(exclude)'+p),...PWA_DISMISS_PATHS.map(p=>':(exclude)'+p),...MEMBER_FOCUS_PATHS.map(p=>':(exclude)'+p),...[...RECIPE_IMAGE_PATHS].map(p=>':(exclude)'+p)),'','Protected runtime, data and PWA source changed');
  assert.equal(withoutCoachEntrypoint(readFileSync('wrangler.jsonc','utf8')),execFileSync('git',['show',APP_BASE+':wrangler.jsonc'],{encoding:'utf8'}),'Protected configuration changed outside the separately pinned coaching entrypoint');
+ });
 }

@@ -40,6 +40,12 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Prepare existing isolated compiled asset runtime
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npm install --prefix "$RUNNER_TEMP/treatment-proof-runtime" --no-audit --no-fund wrangler@4.146.0
+          echo "TREATMENT_MINIFLARE=$RUNNER_TEMP/treatment-proof-runtime/node_modules/miniflare" >> "$GITHUB_ENV"
       - name: Acquire growth-loop commissioning identity
         id: oidc_growth
         shell: bash
@@ -344,7 +350,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/checkout@v4
         with:
-          ref: b6f9c0c36d4303e5d384fb2d62b58968b998aa64
+          ref: 0e4a765e7a360d705e2424264e0bcfcc1d6652be
           path: runtime
           fetch-depth: 0
       - uses: actions/setup-node@v4
@@ -388,7 +394,7 @@ jobs:
       - name: Preserve exact independently checked-out W runtime
         working-directory: runtime
         run: |
-          test "$(git rev-parse HEAD)" = "b6f9c0c36d4303e5d384fb2d62b58968b998aa64"
+          test "$(git rev-parse HEAD)" = "0e4a765e7a360d705e2424264e0bcfcc1d6652be"
           test -z "$(git status --porcelain --untracked-files=no)"
       - name: Retain original factual W member evidence and private diagnostics
         if: always()

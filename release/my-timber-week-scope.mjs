@@ -1,3 +1,4 @@
+import {combinedLegacyValidationRead} from './combined-finite-scope-20261014.mjs';
 import {myTimberWeekCloseoutHistoricalView,closeoutRuntimeIfPresent,closeoutWorkflowIfPresent} from './my-timber-week-closeout-scope.mjs';
 export const WEEK_SCOPE_IMPORT="import {withImmutableHistoryVerification,immutableHistoryExecFileSync} from '../release/approved-runtime-composition.mjs';\n";
 export const WEEK_SCOPE_ALIAS="const execFileSync=(...args)=>immutableHistoryExecFileSync(...args);\n";
@@ -130,7 +131,7 @@ export function myTimberWeekHistoricalView(reader=null,{defaultReader=reader===n
  const overlay=myTimberWeekCloseoutHistoricalView(reader,{defaultReader}),rawHead=overlay.head,current=overlay.record;
  const blob=overlay.blob,read=overlay.read,content=overlay.content,c=current.myTimberWeekCode;
  if(!c)return{rawHead:overlay.rawHead,head:rawHead,record:current,read,blob,content};
- verifyMyTimberWeekSource(c,{head:rawHead,read,blob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content});
+ verifyMyTimberWeekSource(c,{head:rawHead,read:combinedLegacyValidationRead(read,blob,{defaultReader,ownPaths:c.paths,maintenancePaths:c.maintenancePaths,protectedPaths:["wrangler.jsonc","wrangler.coaching.jsonc","package.json","package-lock.json",".github/workflows/cloudflare-production-promote.yml","member-experience/treatment-patterns.mjs","member-experience/staging/verify-treatment-detail.mjs","share-preview/metadata.mjs","share-preview/asset.mjs","shift-coach/worker.mjs"]}),blob,diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content});
  const record=structuredClone(current);delete record.myTimberWeekCode;
  const changed=new Set([...c.paths,...c.maintenancePaths,manifest]),map=(r,p)=>r==='HEAD'&&changed.has(p)?c.base:r;
  return{rawHead:overlay.rawHead,head:c.base,record,read:(r,p)=>read(map(r,p),p),blob:(r,p)=>blob(map(r,p),p),content:(r,p)=>content(map(r,p),p)};

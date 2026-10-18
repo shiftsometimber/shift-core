@@ -1,4 +1,6 @@
+import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {withSharedFooter} from './shared-footer.mjs';
+import {foodSupplementGuideRoute,withFoodGuideDiscovery} from './food-supplement-guide/production.mjs';
 import {withGrowthPublicCopy} from './growth-member-public.mjs';
 import {treatmentRoutes} from './member-experience/treatment-routes.mjs';
 import {treatmentNotificationRoutes,runTreatmentReminders} from './member-experience/treatment-reminders.mjs';
@@ -1185,10 +1187,16 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
 export default {
   ...worker,
   fetch: async function publicFetch(request, env, ctx) {
+    const httpsRedirect=publicHttpsRedirect(request);if(httpsRedirect)return httpsRedirect;
     if (new URL(request.url).pathname === '/sitemap-articles.xml') {
       const source = new URL(request.url); source.pathname = '/sitemap.xml'; source.search = '';
       return articleSitemapResponse(request, () => publicFetch(new Request(source, {method:'GET'}), env, ctx));
     }
+    const guide=await foodSupplementGuideRoute(request,()=>{
+      const u=new URL(request.url);u.pathname='/programme';u.search='';
+      return worker.fetch(new Request(u,{method:'GET',headers:request.headers}),env,ctx);
+    });
+    if(guide)return withSharedFooter(request,await withPublicShellContract(request,guide));
     const appStorePublic=accountDeletionPublicRoute(request); if(appStorePublic)return withSharedFooter(request,appStorePublic);
     if(env.MY_TIMBER_PWA_ENABLED==='true'){
       const pwa=pwaAssets(request)||await pwaReminderRoutes(request,env);
@@ -1199,7 +1207,7 @@ export default {
       return worker.fetch(new Request(url, {method:'GET',headers:request.headers}), env, ctx);
     });
     const response = await withPublicSeoCloseout(await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx))))),request);
-    const final=await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
+    const final=await withFoodGuideDiscovery(request,await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env)));
     return withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)))),request);
   },
 };

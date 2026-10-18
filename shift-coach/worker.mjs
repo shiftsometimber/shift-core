@@ -1,3 +1,4 @@
+import {repairHomeSpeed} from '../home-speed-repair.mjs';
 import {withPublicResponsePolicyWorker} from '../public-response-policy.mjs';
 import {withRootShareWorker} from '../share-preview/metadata.mjs';
 import {withMaleObesity} from '../obesity-awareness/production.mjs';
@@ -52,4 +53,13 @@ const composedWorker = {
  }
 };
 
-export default withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)));
+const publicWorker=withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)));
+// Evaluate the already-approved CSS against the settled outer document.
+export default {...publicWorker,async fetch(request,...args){
+ const response=await publicWorker.fetch(request,...args);
+ if(request.method!=='GET'||new URL(request.url).pathname!=='/'||response.status!==200||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
+ const before=await response.text(),after=repairHomeSpeed(before,'/',{final:true});
+ if(after===before)return new Response(before,response);
+ const headers=new Headers(response.headers);for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
+ return new Response(after,{status:response.status,statusText:response.statusText,headers});
+}};

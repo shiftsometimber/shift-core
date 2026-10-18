@@ -10,38 +10,151 @@ permissions:
 jobs:
   integration:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
         with: {node-version: 24}
       - run: npm ci --no-audit --no-fund
-      - name: Verify exact My Timber baseline starting-point hand-off
-        run: node --test tests/my-timber-week-closeout-composition.test.mjs tests/photo-baseline-starting-point-20261014.test.mjs
-      - name: Verify approved My Timber week code and retained clinical activation hold
-        run: node --test tests/my-timber-week-composition.test.mjs member-experience/tests/treatment-week.test.mjs member-experience/tests/treatment-week-route.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/photo-cancelled-stock-completion-20261014.test.mjs
-      - name: Verify exact retained photo acceptance maintenance
-        run: node --test tests/photo-acceptance-maintenance-composition.test.mjs tests/rendered-member-acceptance-support.test.mjs
-      - name: Verify exact approved root sharing preservation and restoration
-        run: node --test tests/root-share-public-preservation.test.mjs tests/root-share-preservation-rollback.test.mjs tests/root-share-completion-composition.test.mjs
-      - name: Verify bounded London private-photo date correction
-        run: node --test tests/photo-calendar.test.mjs tests/photo-calendar-composition.test.mjs
-      - name: Verify exact approved homepage sharing repair
-        run: node --test tests/root-share-preview.test.mjs tests/root-share-preview-composition.test.mjs tests/root-share-preview-rollback.test.mjs tests/root-share-preview-transport.test.mjs tests/root-share-transport-rollback.test.mjs tests/root-share-stream.test.mjs tests/root-share-speed-rollback.test.mjs
-      - name: Verify bounded member consent source and request-evidence privacy
-        run: node --test tests/member-consent-repair-composition.test.mjs tests/photo-tracking-choice.test.mjs tests/request-evidence-privacy.test.mjs
-      - name: Verify exact approved finite growth and retained obesity assertions
-        run: node --test tests/finite-growth-composition.test.mjs tests/growth-finite-response-policy.test.mjs tests/public-seo-technical.test.mjs
+      - name: Verify every original Integration group with two global execution slots
+        run: |
+          node --input-type=module <<'SHIFT_CI_GLOBAL_POOL'
+          import {spawn,execFileSync} from 'node:child_process';
+          import {mkdirSync,writeFileSync,appendFileSync,renameSync} from 'node:fs';
+          import {join} from 'node:path';
+          import {tmpdir} from 'node:os';
+          import {createHash} from 'node:crypto';
+          const roleSpecs=Object.freeze([{"poolId":"integration-source","tasks":[{"id":"finite-source","body":"node --test tests/combined-finite-composition-20261014.test.mjs tests/combined-dashboard-bootstrap-20261014.test.mjs tests/immutable-reference-fixture-20261014.test.mjs tests/combined-legacy-projection-20261014.test.mjs tests/combined-legacy-boundary-comparators-20261014.test.mjs tests/combined-hq-preservation-20261014.test.mjs tests/combined-organic-legacy-contract-20261014.test.mjs tests/combined-organic-admission-negative-20261014.test.mjs tests/combined-original-gp-object-20261014.test.mjs member-experience/tests/weight-import-mapping*.test.mjs gp-directory/*.test.mjs tests/mens-journey-20261012.test.mjs tests/food-supplement-guide.test.mjs food-supplement-guide/*.test.mjs food-supplement-guide/*.test.cjs tests/pilot-monitor-config.test.mjs medicines-watch/*.test.mjs"},{"id":"baseline-handoff","body":"node --test tests/my-timber-week-closeout-composition.test.mjs tests/photo-baseline-starting-point-20261014.test.mjs"},{"id":"week-source","body":"node --test tests/my-timber-week-composition.test.mjs member-experience/tests/treatment-week.test.mjs member-experience/tests/treatment-week-route.test.mjs tests/rendered-member-acceptance-support.test.mjs tests/photo-cancelled-stock-completion-20261014.test.mjs"},{"id":"photo-maintenance","body":"node --test tests/photo-acceptance-maintenance-composition.test.mjs tests/rendered-member-acceptance-support.test.mjs"},{"id":"root-preservation","body":"node --test tests/root-share-public-preservation.test.mjs tests/root-share-preservation-rollback.test.mjs tests/root-share-completion-composition.test.mjs"},{"id":"photo-calendar","body":"node --test tests/photo-calendar.test.mjs tests/photo-calendar-composition.test.mjs"},{"id":"root-sharing","body":"node --test tests/root-share-preview.test.mjs tests/root-share-preview-composition.test.mjs tests/root-share-preview-rollback.test.mjs tests/root-share-preview-transport.test.mjs tests/root-share-transport-rollback.test.mjs tests/root-share-stream.test.mjs tests/root-share-speed-rollback.test.mjs"},{"id":"member-consent","body":"node --test tests/member-consent-repair-composition.test.mjs tests/photo-tracking-choice.test.mjs tests/request-evidence-privacy.test.mjs"},{"id":"finite-growth","body":"node --test tests/finite-growth-composition.test.mjs tests/growth-finite-response-policy.test.mjs tests/public-seo-technical.test.mjs"}]},{"poolId":"integration-unit","tasks":[{"id":"integration-tests","body":"node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/tablet-routine.test.mjs tests/my-health-plan-v2.test.mjs tests/member-record-reliability.test.mjs tests/transactional-mail-reliability.test.mjs tests/auth-mail-delivery-reliability.test.mjs tests/member-signup-alert.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs tests/commerce-stripe-v1.test.mjs"},{"id":"release-sources","body":"node --input-type=module -e \"import {validateGrowthSource} from './release/growth-scope.mjs'; validateGrowthSource()\"\nnode scripts/b1-release-scope.mjs"},{"id":"member-tests","body":"node --test member-experience/tests/*.test.mjs tests/member-auth-regression.test.mjs tests/my-journey-v1.test.mjs tests/promise-accuracy.test.mjs tests/app-layout-live.test.mjs tests/shared-footer.test.mjs"}]}]);
+          const schedule=Object.freeze(["integration-tests","release-sources","finite-source","root-sharing","root-preservation","member-consent","finite-growth","photo-calendar","week-source","photo-maintenance","baseline-handoff","member-tests"]);
+          const poolId='integration-global';
+          const maxConcurrent=2;
+          const programmeGrowthToken=poolId==='programme'?process.env.GITHUB_TOKEN:undefined;
+          if(poolId==='programme')delete process.env.GITHUB_TOKEN;
+          const baseDir=join(process.env.RUNNER_TEMP||tmpdir(),'ci-source-proof'),proofDir=join(baseDir,poolId);
+          const now=()=>new Date().toISOString(),events=[],children=new Map(),evidenceErrors=[];
+          let active=0,nextIndex=0,cancelled=null,phase='initialising',finishedAt=null,evidenceFailed=false,hydrationFailure=null;
+          const roles=roleSpecs.map(spec=>({...spec,proofDir:join(baseDir,spec.poolId),phase:'hydrating',active:0,cancelled:null,finishedAt:null,finalized:false,hydrationPassed:false,hydrationFailed:false,evidenceFailed:false,evidenceErrors:[],sourceBefore:null,sourceAfter:null,sourceUnchanged:false,events:[],results:spec.tasks.map(task=>({id:task.id,bodySha256:createHash('sha256').update(task.body).digest('hex'),status:'queued',pid:null,startedAt:null,finishedAt:null,exitCode:null,signal:null}))}));
+          const taskById=new Map();
+          for(const role of roles)for(let index=0;index<role.tasks.length;index++){
+           const task=role.tasks[index];
+           if(!/^[-a-z0-9]+$/.test(task.id)||typeof task.body!=='string'||!task.body||taskById.has(task.id))throw Error('One exact finite original command declaration required');
+           taskById.set(task.id,{role,task,result:role.results[index]});
+          }
+          if(roles.length!==2||roles[0].poolId!=='integration-source'||roles[1].poolId!=='integration-unit'||roles[0].tasks.length!==9||roles[1].tasks.length!==3||schedule.length!==12||new Set(schedule).size!==12||schedule.some(id=>!taskById.has(id)))throw Error('All twelve exact original Integration commands must be scheduled once');
+          function evidenceError(role,operation,error){
+           evidenceFailed=true;process.exitCode=1;
+           const entry={at:now(),operation,code:typeof error?.code==='string'?error.code:'EVIDENCE_ERROR'};
+           evidenceErrors.push({...entry,...(role?{poolId:role.poolId}:{})});
+           if(role){role.evidenceFailed=true;role.evidenceErrors.push(entry);}
+          }
+          function evidence(role,operation,run){try{return run();}catch(error){evidenceError(role,operation,error);return undefined;}}
+          process.stdout.on('error',error=>evidenceError(null,'live-stdout',error));process.stderr.on('error',error=>evidenceError(null,'live-stderr',error));
+          const roleState=role=>({poolId:role.poolId,maxConcurrent,phase:role.phase,active:role.active,cancelled:role.cancelled,finishedAt:role.finishedAt,evidenceFailed:role.evidenceFailed,evidenceErrors:role.evidenceErrors,sourceBefore:role.sourceBefore,sourceAfter:role.sourceAfter,sourceUnchanged:role.sourceUnchanged,results:role.results,events:role.events,globalPoolId:poolId,globalMaxConcurrent:maxConcurrent,hydrationPassed:role.hydrationPassed,hydrationFailed:role.hydrationFailed});
+          const state=()=>({poolId,maxConcurrent,phase,active,cancelled,finishedAt,evidenceFailed,evidenceErrors,hydrationFailure,schedule,roles:roles.map(roleState),results:schedule.map(id=>({poolId:taskById.get(id).role.poolId,...taskById.get(id).result})),events});
+          function saveRole(role){
+           evidence(role,'status-json',()=>{const temporary=join(role.proofDir,'status.json.tmp');writeFileSync(temporary,JSON.stringify(roleState(role),null,2)+'\n');renameSync(temporary,join(role.proofDir,'status.json'));});
+           evidence(role,'status-tsv',()=>writeFileSync(join(role.proofDir,'status.tsv'),'id\tstatus\texitCode\tsignal\tstartedAt\tfinishedAt\n'+role.results.map(r=>[r.id,r.status,r.exitCode??'',r.signal??'',r.startedAt??'',r.finishedAt??''].join('\t')).join('\n')+'\n'));
+          }
+          function save(){
+           for(const role of roles)saveRole(role);
+           evidence(null,'global-status-json',()=>{const temporary=join(proofDir,'status.json.tmp');writeFileSync(temporary,JSON.stringify(state(),null,2)+'\n');renameSync(temporary,join(proofDir,'status.json'));});
+          }
+          function record(role,event,details={}){
+           const at=now();if(role)role.events.push({at,event,active:role.active,...details});
+           events.push({at,event,active,...(role?{poolId:role.poolId}:{}),...details});save();
+           evidence(role,'live-progress',()=>process.stdout.write('['+(role?.poolId||poolId)+'] '+event+(details.id?' '+details.id:'')+' active='+(role?.active??active)+' globalActive='+active+'\n'));
+          }
+          const sourceIdentity=()=>({head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),tree:execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim()});
+          evidence(null,'global-proof-directory',()=>mkdirSync(proofDir,{recursive:true}));
+          for(const role of roles){
+           evidence(role,'proof-directory',()=>mkdirSync(role.proofDir,{recursive:true}));
+           evidence(role,'commands-json',()=>writeFileSync(join(role.proofDir,'commands.json'),JSON.stringify({poolId:role.poolId,maxConcurrent,tasks:role.tasks},null,2)+'\n'));
+           for(const task of role.tasks)for(const suffix of['.log','.stdout.log','.stderr.log'])evidence(role,task.id+'-initial-log'+suffix,()=>writeFileSync(join(role.proofDir,task.id+suffix),''));
+          }
+          evidence(null,'global-commands-json',()=>writeFileSync(join(proofDir,'commands.json'),JSON.stringify({poolId,maxConcurrent,schedule,roles:roleSpecs},null,2)+'\n'));
+          save();
+          function markQueued(status){for(const role of roles)for(const result of role.results)if(result.status==='queued'){result.status=status;result.finishedAt=now();}}
+          function stop(signal){
+           if(cancelled)return;cancelled=signal;process.exitCode=1;
+           for(const role of roles)if(!role.finalized){role.cancelled=signal;record(role,'pool-cancelled',{signal});}
+           markQueued('cancelled-before-start');record(null,'global-pool-cancelled',{signal});
+           for(const child of children.values())if(child.pid){try{process.kill(-child.pid,'SIGTERM');}catch(error){if(error.code!=='ESRCH')record(null,'signal-delivery-failed',{code:error.code??'UNKNOWN'});}}
+          }
+          process.on('SIGTERM',()=>stop('SIGTERM'));process.on('SIGINT',()=>stop('SIGINT'));
+          function finalizeRole(role,terminalPhase='finished'){
+           if(role.finalized)return;
+           role.sourceAfter=evidence(role,'final-source-binding',sourceIdentity)??null;
+           role.sourceUnchanged=Boolean(role.sourceBefore&&role.sourceAfter&&role.sourceAfter.head===role.sourceBefore.head&&role.sourceAfter.tree===role.sourceBefore.tree);
+           evidence(role,'final-source-json',()=>writeFileSync(join(role.proofDir,'source-final.json'),JSON.stringify({before:role.sourceBefore,after:role.sourceAfter,unchanged:role.sourceUnchanged},null,2)+'\n'));
+           role.phase=terminalPhase;role.finishedAt=now();role.finalized=true;
+           let failed=Boolean(role.cancelled)||role.evidenceFailed||!role.hydrationPassed||!role.sourceUnchanged||role.results.some(result=>result.status!=='passed');
+           record(role,'pool-finished',{failed});
+           if(role.evidenceFailed&&!failed){failed=true;role.events[role.events.length-1].failed=true;events[events.length-1].failed=true;save();}
+          }
+          // Both retained role hydrations complete serially before any command starts.
+          // Child environments, tokens and test-context variables are inherited unchanged.
+          if(!evidenceFailed){
+           phase='hydrating';
+           for(const role of roles){
+            if(cancelled)break;
+            try{
+             record(role,'reviewed-history-start');const {ensureReviewedHistory}=await import('./shift-coach/release-contract.mjs');if(cancelled)break;ensureReviewedHistory();record(role,'reviewed-history-done');
+             record(role,'original-gp-history-start');const {ensureCombinedOriginalGpSource}=await import('./release/combined-original-gp-object-20261014.mjs');if(cancelled)break;ensureCombinedOriginalGpSource();record(role,'original-gp-history-done');
+             role.hydrationPassed=true;record(role,'hydration-done');
+            }catch(error){role.hydrationFailed=true;hydrationFailure={poolId:role.poolId,code:typeof error.code==='string'?error.code:'ASSERTION_OR_TRANSPORT'};record(role,'hydration-failed',{code:hydrationFailure.code});process.exitCode=1;break;}
+           }
+          }
+          const hydrationPassed=roles.every(role=>role.hydrationPassed);
+          if(hydrationPassed&&!cancelled&&!evidenceFailed){
+           for(const role of roles){
+            role.sourceBefore=evidence(role,'initial-source-binding',sourceIdentity)??null;
+            evidence(role,'initial-source-json',()=>writeFileSync(join(role.proofDir,'source.json'),JSON.stringify(role.sourceBefore,null,2)+'\n'));
+           }
+           save();
+          }
+          if(hydrationPassed&&!cancelled&&!evidenceFailed){
+           phase='running';for(const role of roles)role.phase='running';record(null,'global-queue-started');
+           await new Promise(resolve=>{
+            function pump(){
+             if(cancelled)markQueued('cancelled-before-start');
+             while(!cancelled&&active<maxConcurrent&&nextIndex<schedule.length)start(taskById.get(schedule[nextIndex++]));
+             if(active===0&&(nextIndex===schedule.length||cancelled))resolve();
+            }
+            function start({role,task,result}){
+             const env={...process.env};result.status='running';result.startedAt=now();active++;role.active++;
+             if(poolId==='programme'&&task.id==='growth-preflight'&&task.tokenRole==='programme-growth'&&programmeGrowthToken!==undefined)env.GITHUB_TOKEN=programmeGrowthToken;
+             let child,settled=false;
+             function finish(code,signal,errorCode=null){
+              if(settled)return;settled=true;children.delete(task.id);active--;role.active--;result.exitCode=code;result.signal=signal;result.finishedAt=now();result.status=errorCode?'spawn-failed':signal?'signalled':code===0?'passed':'failed';if(errorCode)result.errorCode=errorCode;
+              record(role,'command-finished',{id:task.id,status:result.status,exitCode:code,signal});
+              if(role.results.every(row=>row.status!=='queued'&&row.status!=='running'))finalizeRole(role);
+              pump();
+             }
+             try{
+              child=spawn('bash',['--noprofile','--norc','-e','-o','pipefail','-c',task.body],{env,stdio:['ignore','pipe','pipe'],detached:true});children.set(task.id,child);result.pid=child.pid??null;record(role,'command-started',{id:task.id,pid:result.pid});
+              const collect=(stream,chunk)=>{evidence(role,task.id+'-combined-log',()=>appendFileSync(join(role.proofDir,task.id+'.log'),chunk));evidence(role,task.id+'-'+stream+'-log',()=>appendFileSync(join(role.proofDir,task.id+'.'+stream+'.log'),chunk));evidence(role,task.id+'-live-progress',()=>{process.stdout.write('['+task.id+':'+stream+'] ');process.stdout.write(chunk);});};
+              child.on('error',error=>finish(null,null,typeof error.code==='string'?error.code:'SPAWN_ERROR'));child.on('close',(code,signal)=>finish(code,signal));
+              child.stdout?.on('data',chunk=>collect('stdout',chunk));child.stderr?.on('data',chunk=>collect('stderr',chunk));
+              child.stdout?.on('error',error=>evidenceError(role,task.id+'-stdout-read',error));child.stderr?.on('error',error=>evidenceError(role,task.id+'-stderr-read',error));
+             }catch(error){finish(null,null,typeof error.code==='string'?error.code:'SPAWN_ERROR');}
+            }
+            pump();
+           });
+          }else{
+           markQueued(cancelled?'cancelled-before-start':'not-started');
+           phase=cancelled?'cancelled-before-run':hydrationFailure?'hydration-failed':'initialisation-or-evidence-failed';
+          }
+          for(const role of roles)if(!role.finalized)finalizeRole(role,role.hydrationFailed?'hydration-failed':!hydrationPassed?'blocked-before-run':'finished');
+          if(phase==='running')phase='finished';finishedAt=now();
+          let failed=Boolean(cancelled)||!hydrationPassed||evidenceFailed||roles.some(role=>!role.sourceUnchanged||role.evidenceFailed||role.results.some(result=>result.status!=='passed'));
+          record(null,'global-pool-finished',{failed});
+          if(evidenceFailed&&!failed){failed=true;events[events.length-1].failed=true;save();}
+          process.exitCode=failed?1:0;
+          SHIFT_CI_GLOBAL_POOL
       - run: node shift-coach/scope.mjs
         env:
           SHIFT_COACH_SOURCE: ${{ github.event.pull_request.head.sha || github.sha }}
-      - run: node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/tablet-routine.test.mjs tests/my-health-plan-v2.test.mjs tests/member-record-reliability.test.mjs tests/transactional-mail-reliability.test.mjs tests/auth-mail-delivery-reliability.test.mjs tests/member-signup-alert.test.mjs tests/my-journey-checkin-v1.test.mjs tests/my-journey-observation-v1.test.mjs tests/commerce-stripe-v1.test.mjs
-      - name: Verify exact original and coaching release sources
-        run: |
-          node --input-type=module -e "import {validateGrowthSource} from './release/growth-scope.mjs'; validateGrowthSource()"
-          node scripts/b1-release-scope.mjs
-      - run: node --test member-experience/tests/*.test.mjs tests/member-auth-regression.test.mjs tests/my-journey-v1.test.mjs tests/promise-accuracy.test.mjs tests/app-layout-live.test.mjs tests/shared-footer.test.mjs
       - run: npx wrangler deploy --dry-run --config wrangler.coaching.jsonc --outdir "$RUNNER_TEMP/coaching-bundle"
       - run: npm install --prefix "$RUNNER_TEMP/coaching-workerd" --no-audit --no-fund wrangler@4.146.0
       - name: Verify exact compiled My Treatment assets and completed rollback chain
@@ -86,4 +199,5 @@ jobs:
           path: |
             ${{ runner.temp }}/coaching-proof/
             ${{ runner.temp }}/coaching-phantom-proof/
+            ${{ runner.temp }}/ci-source-proof/
           retention-days: 30
