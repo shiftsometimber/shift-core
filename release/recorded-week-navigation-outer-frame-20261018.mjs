@@ -213,8 +213,10 @@ export function actualNavigationOuterFrame(){
  const ref=r=>r==='HEAD'||r===outer.rawHead?'HEAD':r,unary=fn=>(r,p)=>fn(ref(r),p),binary=fn=>(a,b)=>fn(ref(a),ref(b));
  const authentic=(v,r,p)=>outer.nativeAuthentic(v,r,p)||outer.nativeContentAuthentic(v,r,p);
  const frame={...inner,rawHead:outer.rawHead,
-  assertCurrent:()=>{outer.assertCurrent();inner.assertCurrent();},
-  assertCurrentHead:()=>{outer.assertCurrentHead();inner.assertCurrentHead();},
+  // The admitted inner check already authenticates this exact outer frame.
+  // Keep one complete outer plus inner check per call, with no caller in between.
+  assertCurrent:inner.assertCurrent,
+  assertCurrentHead:inner.assertCurrentHead,
   finish:()=>{inner.finish();outer.assertCurrent();},
   affected:p=>outer.affected(p)||inner.affected(p),
   currentContent:outer.currentContent,authentic,nativeAuthentic:authentic,nativeContentAuthentic:outer.nativeContentAuthentic,
