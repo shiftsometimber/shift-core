@@ -97,7 +97,7 @@ export function withAcceptedUkGrubPreservation(c,head,compare){
    assert.deepEqual(sorted(difference(basis,head)),sorted(changed),'Every unrelated a3 source path must remain exact');
    const now=entries(head);assert.equal(treeOf(now),git('rev-parse',head+'^{tree}').trim(),'Complete actual native source tree required');
    for(const path of changed){if(before.has(path))now.set(path,before.get(path));else now.delete(path);}assert.equal(treeOf(now),basisTree,'The whole combined source must reverse exactly to qualified a3');
-   const projected=new Set([...oldOverlap.filter(path=>c.acceptedGrubPreservation20261017.paths.includes(path)),...Object.keys(leaf.modules)]);let active=true;
+   const projected=new Set([...oldOverlap.filter(path=>c.acceptedGrubPreservation20261017.paths.includes(path)),...full.paths.filter(path=>c.acceptedGrubPreservation20261017.paths.includes(path)),...Object.keys(leaf.modules)]);let active=true;
    assert.deepEqual(sorted(projected),leaf.historicalProjectionPaths,'Only the four original Grub overlaps and three provider modules may project');
    const lookup=kind=>(ref,path)=>{assert(active,'UK historical comparison has finished');fresh();try{if((ref==='HEAD'||ref===head)&&projected.has(path)){
     // Current values have been authenticated above in this same fresh proof.
