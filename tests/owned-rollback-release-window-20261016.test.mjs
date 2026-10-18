@@ -116,3 +116,23 @@ test('unchanged actual three-SELECT comparator rejects stock drift and a moving 
  const options={configuration,now:()=>Date.parse('2026-10-15T09:02:00Z')};assert(captureOwnedRollbackCurrent(wrangler,before,options));assert.equal(seen.filter(a=>a[0]==='d1').length,3);
  alter=true;assert.throws(()=>captureOwnedRollbackCurrent(wrangler,before,options));alter=false;move=true;providerCalls=0;assert.throws(()=>captureOwnedRollbackCurrent(wrangler,before,options));
 });
+
+
+test('exact native approved workflow binds only the current ninety-minute production window',async()=>{
+ const {execFileSync}=await import('node:child_process');
+ const {currentReleaseContext,bindApprovedCurrentProductionWindow}=await import('../release/owned-rollback-release-window-20261016.mjs');
+ const f=fixture(),head=execFileSync('git',['--no-replace-objects','rev-parse','HEAD'],{encoding:'utf8'}).trim();
+ f.context.head=f.context.main=f.context.run.head_sha=f.context.job.head_sha=head;
+ const before=JSON.parse(f.beforeBytes);before.release=head;
+ assert.throws(()=>currentReleaseContext(f.context,before,'2026-10-15T10:00:02Z'),/Original 60 minute/);
+ bindApprovedCurrentProductionWindow(f.context);
+ assert.doesNotThrow(()=>currentReleaseContext(f.context,before,'2026-10-15T10:30:01.000Z'));
+ assert.throws(()=>currentReleaseContext(f.context,before,'2026-10-15T10:30:01.001Z'),/Approved 90 minute/);
+ f.context.job.id++;assert.throws(()=>currentReleaseContext(f.context,before,'2026-10-15T10:00:02Z'),/identity changed/);
+});
+test('caller-supplied ninety-minute fields cannot widen the historical window',async()=>{
+ const {currentReleaseContext,bindApprovedCurrentProductionWindow}=await import('../release/owned-rollback-release-window-20261016.mjs');
+ const f=fixture(),before=JSON.parse(f.beforeBytes);f.context.approvedProductionWindowMinutes=90;f.context.outerProductionWindowMinutes=90;
+ assert.throws(()=>currentReleaseContext(f.context,before,'2026-10-15T10:00:02Z'),/Original 60 minute/);
+ assert.throws(()=>bindApprovedCurrentProductionWindow(f.context));
+});
