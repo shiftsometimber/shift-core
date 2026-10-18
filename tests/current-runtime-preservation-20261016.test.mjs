@@ -113,6 +113,18 @@ test('the exact member utility correction rejects another baseline, another CSS 
  for(const[a,b]of[[after+'\n',before],[after,before+'\n'],[before,before],[after.replace(rule,rule+'html{overflow-x:hidden}\n'),before],[after.replace('position:relative!important','position:static!important'),before],[after+'/* unreviewed */',before+'/* unreviewed */']])assert.throws(()=>assertCurrentMemberUtilityContainment(a,b));
 });
 
+import {withoutAcceptedUkGrubMaintenance} from '../release/accepted-uk-grub-preservation-20261017.mjs';
+function rollbackOriginalWorkflowFixture(raw){
+ const path='.github/workflows/cloudflare-production-promote.yml',frame=currentRuntimePreservationHistoricalView();
+ assert.equal(frame.rawHead,head,'The rollback fixture must authenticate actual current native source');
+ assert.equal(raw,frame.currentContent(head,path),'Only exact actual current workflow bytes may enter the historical rollback fixture');
+ const restored=withoutAcceptedUkGrubMaintenance(c,path,raw);
+ assert.notEqual(restored,raw,'The exact registered CSS maintenance inverse is required');
+ assert.equal(restored,content(c.acceptedUkGrubPreservation20261017.basisSource,path),'Every prior qualified rollback workflow byte must restore');
+ assert.equal(raw,frame.currentContent(head,path),'Actual current source must remain unchanged after projection');
+ return restored;
+}
+
 // Original release39018265115 compatibility: strict fixed guard, unchanged original assertions.
 import{readFileSync as readRollbackActual}from'node:fs';
 import{createHash as rollbackHash}from'node:crypto';
@@ -125,7 +137,7 @@ test('actual rollback condition preserves all original ownership outcomes and th
  assert.deepEqual(commit.toString().split('\n').filter(line=>line.startsWith('parent ')).map(line=>line.slice(7)),['3ab4dc5f8f47e44108f3f6d5503ffbac90b6adef','98d584e167fc0785ee791891d763e504286ee603']);
  assert.equal(native('rev-parse',originalMain+':'+workflowPath).toString().trim(),originalBlob);assert.equal(native('rev-parse',originalMain+':'+runtimeTestPath).toString().trim(),originalRuntimeBlob);
  const oldBytes=native('cat-file','blob',originalBlob),oldTest=native('cat-file','blob',originalRuntimeBlob);assert.equal(objectHash('blob',oldBytes),originalBlob);assert.equal(objectHash('blob',oldTest),originalRuntimeBlob);
- const original=oldBytes.toString(),actual=readRollbackActual(new URL('../'+workflowPath,import.meta.url),'utf8'),oldCondition="always() && (failure() || cancelled()) && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))",newCondition="always() && ((failure() && steps.runtime_deploy.outcome == 'success') || (cancelled() && steps.runtime_deploy.outcome == 'success') || ((failure() || cancelled()) && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))";
+ const original=oldBytes.toString(),actual=rollbackOriginalWorkflowFixture(readRollbackActual(new URL('../'+workflowPath,import.meta.url),'utf8')),oldCondition="always() && (failure() || cancelled()) && (steps.runtime_deploy.outcome == 'success' || (steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))",newCondition="always() && ((failure() && steps.runtime_deploy.outcome == 'success') || (cancelled() && steps.runtime_deploy.outcome == 'success') || ((failure() || cancelled()) && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success'))";
  const extract=s=>{const m=[...s.matchAll(/^        id: runtime_rollback\r?\n        if: \$\{\{ (.*?) \}\}\r?\n        run: (.*?)\r?$/gm)];assert.equal(m.length,1);assert.equal(m[0][2],'node release/member-details-rollback.mjs');return m[0][1];};
  assert.equal(extract(original),oldCondition);assert.equal(extract(actual),newCondition);
  const oldExpression='$'+'{{ '+oldCondition+' }}',newExpression='$'+'{{ '+newCondition+' }}';assert.equal(actual.split(newExpression).length,2);assert.equal(actual.replace(newExpression,oldExpression),original);
@@ -145,4 +157,12 @@ test('the recovery source reuse preserves original fallback and provider checks 
  assert.equal(b.crossRunReuse,false);assert.equal(b.providerOwnershipStockAndServingChecksReused,false);assert.equal(b.originalProductionTimeoutMinutes,60);
  const providerChange=actual.replace("wrangler('deployments','list','--json')","wrangler('versions','list','--json')");assert.notEqual(providerChange,actual);
  for(const[a,p]of[[actual+'\n# unreviewed\n',prior],[actual.replace('if(!completedOriginalSource)','if(false)'),prior],[providerChange,prior],[actual,prior+'\n# changed baseline\n'],[prior,prior]])assert.throws(()=>assertCurrentRecoverySourceProof(a,p));
+});
+
+test('the rollback comparison authenticates the complete current CSS maintenance before restoring its exact original fixture',()=>{
+ const path='.github/workflows/cloudflare-production-promote.yml',raw=readRollbackActual(new URL('../'+path,import.meta.url),'utf8'),restored=rollbackOriginalWorkflowFixture(raw),bytes=Buffer.from(restored);
+ assert.equal(rollbackHash('sha1').update(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes])).digest('hex'),'28244649cb616bb511d76b1dd8e9bccdc97be0f9');
+ for(const changed of [raw+'\n# unregistered change\n',raw.replace('node release/member-details-rollback.mjs','node release/unknown-rollback.mjs'),raw.replace('Guarded CSS not present in original preview','Changed original preview assertion')]){
+  assert.notEqual(changed,raw);assert.throws(()=>rollbackOriginalWorkflowFixture(changed));
+ }
 });
