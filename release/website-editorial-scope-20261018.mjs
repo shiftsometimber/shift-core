@@ -74,6 +74,17 @@ export function verifyWebsiteEditorialCompletion(c,{rawHead=head(),read=blob,rea
   for(const p of Object.keys(policy.inverses))assert.equal(inverse(p,expectedContent(rawHead,p)),expectedContent(policy.base,p),'Website-editorial-completion source drift: whole prior source must restore '+p);
   const previous=JSON.parse(expectedContent(policy.base,ledger)),current=JSON.parse(expectedContent(rawHead,ledger));
   assert.deepEqual(current[key],c);delete current[key];assert.deepEqual(current,previous,'Website-editorial-completion source drift: every prior approval and receipt must remain exact');
+  // This unchanged retained guard is a protected native source boundary too.
+  // Supplied readers must authenticate it at both current aliases; a caller
+  // cannot hide a forged boundary merely because it is outside the new payload.
+  for(const p of ['release/current-runtime-preservation-20261016.mjs']){
+   const currentBlob=expectedBlob(rawHead,p),currentContent=expectedContent(rawHead,p);
+   assert.equal(currentBlob,expectedBlob(policy.base,p),'Website-editorial-completion source drift: retained protected source changed '+p);
+   for(const r of ['HEAD',rawHead]){
+    assert.equal(read(r,p),currentBlob,'Website-editorial-completion source drift: supplied protected source changed '+p);
+    assert.equal(readContent(r,p),currentContent,'Website-editorial-completion source drift: supplied protected content changed '+p);
+   }
+  }
   for(const r of ['HEAD',rawHead]){
    assert.equal(read(r,ledger),expectedBlob(rawHead,ledger),'Website-editorial-completion source drift: supplied ledger blob changed');
    assert.equal(readContent(r,ledger),expectedContent(rawHead,ledger),'Website-editorial-completion source drift: supplied ledger changed');
