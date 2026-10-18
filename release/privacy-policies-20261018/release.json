@@ -1,0 +1,210 @@
+{
+  "release": "privacy-policies-20261018-v1",
+  "scope": "Seven approved current-service policy page texts; no partner launch, consent or account runtime change",
+  "approved_review_sha256": "7192538a70e1e830f8c95c9220a60e054098420fa2abbb7dbc37f59507c3a176",
+  "approval": "Owner instruction: publish, 18 October 2026 13:40 BST",
+  "base_deployment": "78408b0f-bf85-463d-9458-603f3da01c17",
+  "base_source_commit": "9a3ab6adff90eec0a2d55ab99d90b8e37eb88752",
+  "preserved_asset_count": 873,
+  "headers_sha256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e",
+  "pages": [
+    {
+      "path": "/privacy.html",
+      "route": "/privacy",
+      "heading": "Your health data deserves grown-up handling.",
+      "beforeSHA256": "5f2ab7d0984f9c54a7f43389f77e1a7ad61fd4ed5bd1fc77203ca2ad451f2045",
+      "afterSHA256": "05a389e085010abf63fbeb1f7fa2ea2c40d5eee3e3bc31d0a9172705a8c49a90",
+      "approvedBodySha256": "20cea40f4e0884d932310f8ef89d42fcfcfd6b4c7e5043f871e52476680970a7",
+      "bytes": 25304,
+      "outerPreserved": true
+    },
+    {
+      "path": "/privacy-centre.html",
+      "route": "/privacy-centre",
+      "heading": "Your information. Clear choices.",
+      "beforeSHA256": "533510eba641ba4c40a5ebed8162ccd78a065544799db6f23374675102c2b50c",
+      "afterSHA256": "e1b4180b64fb7418d3633c41fa1d92dc44de49499e44a126e5229f1d6970a5c4",
+      "approvedBodySha256": "9bb6216fddfa183ed61543736a33d8f64959a0650011149eeccb52ccf8cf00b8",
+      "bytes": 11989,
+      "outerPreserved": true
+    },
+    {
+      "path": "/data-governance.html",
+      "route": "/data-governance",
+      "heading": "The rules behind the service.",
+      "beforeSHA256": "5ef40d1677b6631d4c445ca6ef7502b42d228e13fee5c6954ed3772f6445c663",
+      "afterSHA256": "1b93ec142f21d64f27899d163a80840f8125703d97bab81273787e120b7a2f8e",
+      "approvedBodySha256": "19afdba7bff8ac936cb1a5b26d779878f8abc1d9222ee2658a7a3c4f2170eae7",
+      "bytes": 11989,
+      "outerPreserved": true
+    },
+    {
+      "path": "/dpia-summary.html",
+      "route": "/dpia-summary",
+      "heading": "How we assess privacy risks.",
+      "beforeSHA256": "bc25c78000e7021354f1667a0c2eae8464dad2a8e5fd2c564cf6e9a7dec6d6cc",
+      "afterSHA256": "60a958c8a8431c205c035231feb75702975b04422aa38c2acd3d77a14bfd7e74",
+      "approvedBodySha256": "a48afb307223de23f7ff9bb463b4e4c7341c429b67ccb5c3d9315aeadb40141e",
+      "bytes": 10917,
+      "outerPreserved": true
+    },
+    {
+      "path": "/cookies.html",
+      "route": "/cookies",
+      "heading": "Your cookie choices.",
+      "beforeSHA256": "5a1d9a200017adb09443a2020d5f17b7e52d4dd5190c10e4dee81eeb2a138584",
+      "afterSHA256": "416e118a79b0934c2f823b8d2758dfce0cf521970a6244bab7b453806387df25",
+      "approvedBodySha256": "163ae0c97bd271358388af2d06ecd5fae20e0f6a1ed771591e6ca5dc3e18ee16",
+      "bytes": 12044,
+      "outerPreserved": true
+    },
+    {
+      "path": "/terms.html",
+      "route": "/terms",
+      "heading": "Website Terms",
+      "beforeSHA256": "89e0904de89b8cd8e7d43b2342b192409557e0612f5005f95770f25e3410b1c2",
+      "afterSHA256": "50eb75cce485330d6807021a0bffe78f65bbd16f522aaca7f1c9e51a2f8eb00d",
+      "approvedBodySha256": "037b1b6e40ae9e42a19bf340771029d13d984ca07d94b1b8a25699a2574a8b8f",
+      "bytes": 13269,
+      "outerPreserved": true
+    },
+    {
+      "path": "/complaints.html",
+      "route": "/complaints",
+      "heading": "Tell us what has gone wrong.",
+      "beforeSHA256": "96e8b339c574734c6ac0444de365e008f5c58546cc0125b85f4a7f5f8f829840",
+      "afterSHA256": "10e2f564ead23643aa1319957a1ad8e7518532d8a43ea811f5d9a57e8cbc19c1",
+      "approvedBodySha256": "a1b0f35fcc8b07b65cf9c2e89843b24337a55353dc269a62a8220da8a8fe221b",
+      "bytes": 13018,
+      "outerPreserved": true
+    }
+  ],
+  "preview_checks": [
+    {
+      "route": "/privacy",
+      "width": 380,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/privacy-centre",
+      "width": 380,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/data-governance",
+      "width": 380,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/dpia-summary",
+      "width": 380,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/cookies",
+      "width": 380,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/terms",
+      "width": 380,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/complaints",
+      "width": 380,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/privacy",
+      "width": 1440,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/privacy-centre",
+      "width": 1440,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/data-governance",
+      "width": 1440,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/dpia-summary",
+      "width": 1440,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/cookies",
+      "width": 1440,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/terms",
+      "width": 1440,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    },
+    {
+      "route": "/complaints",
+      "width": 1440,
+      "exactApprovedText": true,
+      "oneH1": true,
+      "noHorizontalPageOverflow": true,
+      "keyboardLinks": true,
+      "footerLinks": true
+    }
+  ]
+}
