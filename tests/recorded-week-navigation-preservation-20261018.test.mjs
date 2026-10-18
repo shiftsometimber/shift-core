@@ -23,5 +23,5 @@ test('all original native guard and CSV bodies restore exactly beneath their hoo
   for(const h of [...e.hunks].reverse()){const a=Buffer.from(h.after,'base64'),b=Buffer.from(h.before,'base64'),i=value.indexOf(a);assert(i>=0&&value.indexOf(a,i+1)<0);value=Buffer.concat([value.subarray(0,i),b,value.subarray(i+a.length)]);}
   assert(value.equals(git('show',policy.record.base+':'+e.path)),e.path);
  }
- assert.equal(ACTUAL_NAVIGATION_MAINTENANCE.length,8);
+ assert.equal(ACTUAL_NAVIGATION_MAINTENANCE.length,10);
 });
