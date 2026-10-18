@@ -17,7 +17,9 @@ export function reportWorker(fetchImpl=null){
     for(const name of ['Cookie','Authorization'])if(request.headers.has(name))authHeaders.set(name,request.headers.get(name));
     authHeaders.set('Origin',origin);
     const authFetch=fetchImpl||((url,options)=>env.CORE.fetch(new Request(url,options)));
-    return authFetch('https://api.shiftsometimber.co.uk/v1/hq/me',{method:'GET',headers:authHeaders,redirect:'error'});
+    const auth=await authFetch('https://api.shiftsometimber.co.uk/v1/hq/me',{method:'GET',headers:authHeaders,redirect:'manual'});
+    if(auth.status>=300&&auth.status<400)return Response.json({ok:false,error:'hq_auth_unavailable'},{status:503});
+    return auth;
    });
    if(!response)return new Response('Not found',{status:404,headers});
    const combined=new Headers(response.headers);for(const [key,value] of Object.entries(headers))combined.set(key,value);

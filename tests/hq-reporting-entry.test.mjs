@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {reportWorker} from '../hq-reporting-entry.mjs';
 const base='https://api.shiftsometimber.co.uk',origin='https://hq.shiftsometimber.co.uk',path='/v1/hq/management/report?kind=growth&start=2026-10-08&end=2026-10-18';
 test('delegates real session validation to fixed existing auth endpoint and forwards no unrelated headers',async()=>{
- let called=0;const worker=reportWorker(async(url,options)=>{called++;assert.equal(url,base+'/v1/hq/me');assert.equal(options.method,'GET');assert.equal(options.redirect,'error');assert.equal(options.headers.get('Cookie'),'sst_hq_session=fixture');assert.equal(options.headers.get('X-Admin-Key'),null);return Response.json({ok:false,error:'hq_session_expired'},{status:401});});
+ let called=0;const worker=reportWorker(async(url,options)=>{called++;assert.equal(url,base+'/v1/hq/me');assert.equal(options.method,'GET');assert.equal(options.redirect,'manual');assert.equal(options.headers.get('Cookie'),'sst_hq_session=fixture');assert.equal(options.headers.get('X-Admin-Key'),null);return Response.json({ok:false,error:'hq_session_expired'},{status:401});});
  const response=await worker.fetch(new Request(base+path,{headers:{Cookie:'sst_hq_session=fixture',Origin:origin,'X-Admin-Key':'not-forwarded'}}),{DB:{prepare(){throw Error('No query before auth')}}},{});
  assert.equal(response.status,401);assert.equal(called,1);assert.equal(response.headers.get('Access-Control-Allow-Origin'),origin);assert.equal(response.headers.get('Cache-Control'),'no-store');
 });
