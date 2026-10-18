@@ -1,3 +1,4 @@
+import {assertNavigationOuterChainContext} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import {withImmutableHistoryVerification as withClosedCurrentSourceProof,immutableHistorySourceHead} from './immutable-git-facts.mjs';
 import {verifyCiExecutionAllowance,ciExecutionNativeReaderProvenance} from './ci-execution-scope-20261014.mjs';
 import {releaseMachineryRepairHistoricalView,releaseMachineryRepairAuthenticatedRead,releaseMachineryRepairLegacyRead,releaseMachineryRepairLegacyContent,releaseMachineryRepairAuthenticatedContent} from './release-machinery-repair-scope-20261014.mjs';
@@ -123,6 +124,7 @@ function verifyCombinedFiniteCurrentProof(c,options){
 }
 export function combinedFiniteHistoricalView(reader=null,{defaultReader=reader===null}={}){
  const repair=releaseMachineryRepairHistoricalView(reader,{defaultReader});
+ assertNavigationOuterChainContext(repair);
  const rawHead=repair.head,content=(ref,path)=>repair.content(ref==='HEAD'?rawHead:ref,path);
  const blob=(ref,path)=>repair.blob(ref==='HEAD'?rawHead:ref,path),rawRead=repair.read,current=repair.record,c=current.combinedFinite20261014;
  const normal=(ref,path)=>exactCombinedDirectoryDisplay(rawRead(ref,path),repair.affected(path)&&(ref==='HEAD'||ref===repair.rawHead)?repair.head:ref,path);

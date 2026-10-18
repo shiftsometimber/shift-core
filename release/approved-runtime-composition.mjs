@@ -1,3 +1,4 @@
+import {ACTUAL_NAVIGATION_PATHS,ACTUAL_NAVIGATION_MAINTENANCE,actualNavigationChangedPath} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import {CURRENT_RUNTIME_PRESERVATION_PATHS,CURRENT_RUNTIME_PRESERVATION_MAINTENANCE} from './current-runtime-preservation-20261016.mjs';
 import {SEO_AUDIT_PATHS,SEO_AUDIT_MAINTENANCE} from './seo-audit-scope-20261016.mjs';
 import {FOOD_DIARY_LONDON_DATE_PATHS,FOOD_DIARY_LONDON_DATE_MAINTENANCE} from './food-diary-london-date-scope-20261015.mjs';
@@ -2785,6 +2786,7 @@ export function reconciliationGitArgs(args){
 export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_BASE:git('rev-parse','HEAD');}
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
+ if(ACTUAL_NAVIGATION_ADDITIONAL_PATHS.includes(path))return actualNavigationChangedPath(status,path);
  if(!reconciliationPath(path))return false;
  if(["babylove/corrected-public-rows.json","babylove/dynamic-public.mjs","babylove/seo-repairs-20261016.test.mjs","public-https-redirect.mjs","public-https-redirect.test.mjs","release/seo-audit-scope-20261016.mjs","tests/seo-audit-scope-20261016.test.mjs"].includes(path)){
   let existed;try{execFileSync('git',['cat-file','-e','fe726ac1fc5465dbe5f1e1e59346a3f6120094ae:'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
@@ -3127,3 +3129,6 @@ for(const p of [...SEO_AUDIT_PATHS,...SEO_AUDIT_MAINTENANCE])RECONCILIATION_PATH
 
 // Exact preservation of delivered GP and questionnaire source; original Core proofs remain required.
 for(const p of [...CURRENT_RUNTIME_PRESERVATION_PATHS,...CURRENT_RUNTIME_PRESERVATION_MAINTENANCE])RECONCILIATION_PATHS.add(p);
+
+export const ACTUAL_NAVIGATION_ADDITIONAL_PATHS=Object.freeze([...ACTUAL_NAVIGATION_PATHS,...ACTUAL_NAVIGATION_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
+for(const p of ACTUAL_NAVIGATION_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
