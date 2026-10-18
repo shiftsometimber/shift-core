@@ -5,7 +5,7 @@ import {readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,existsSync}
 import {resolve,isAbsolute,dirname} from 'node:path';
 import {homedir} from 'node:os';
 import {createHash} from 'node:crypto';
-import {decodeSeoBlobBatch} from './seo-native-immutable-facts-20261016.mjs';
+import {decodeSeoBlobBatch,readSeoNativeImmutableFacts} from './seo-native-immutable-facts-20261016.mjs';
 import {verifiedOwnedRuntime} from '../shift-coach/cancelled-release-recovery.mjs';
 
 const policy=JSON.parse(readFileSync(new URL('./recorded-week-navigation-outer-policy-20261018.json',import.meta.url),'utf8'));
@@ -136,20 +136,26 @@ function prove(rawHead,editorialOuter=null){
  const record=JSON.parse(content(rawHead,LEDGER)),c=record[KEY];if(!c)return null;
  const{maintenanceSource,...fixed}=data(c);assert.deepEqual(fixed,policy.record);assert.equal(c.base,BASE);assert.equal(c.payload,PAYLOAD);assert.deepEqual(c.paths,fixedPaths);
  assert.deepEqual(c.maintenancePaths,fixedMaintenance);assert.equal(sha(Buffer.from(JSON.stringify(policy.maintenanceEntries))),MAINTENANCE_DECLARATION_SHA256,'Only the exact original guard hooks are admitted');
+ // Batch only literal immutable file objects for this one proof. Every mode,
+ // blob identity, whole inverse and fresh working-file check below still runs.
+ const inversePaths=[...policy.payloadEntries,...policy.maintenanceEntries].filter(e=>!['add','maintenance-add'].includes(e.kind)).map(e=>e.path);
+ const immutable=readSeoNativeImmutableFacts({head:rawHead,base:c.base,payload:c.payload,maintenanceSource,paths:c.paths,maintenancePaths:c.maintenancePaths,inversePaths,ledger:LEDGER,includeModes:true});
+ const proofBytes=(ref,p)=>Buffer.from(immutable.content(ref,p),'utf8');
+
  for(const r of[c.base,c.payload,maintenanceSource]){assert(oid.test(r));ancestor(r,rawHead);}assert.equal(text('rev-parse',c.base+'^{tree}'),c.baseTree);assert.equal(text('rev-parse',c.payload+'^{tree}'),c.payloadTree);receipt();
  for(const[a,b,paths]of[[c.base,c.payload,c.paths],[c.payload,maintenanceSource,c.maintenancePaths],[maintenanceSource,rawHead,[LEDGER]]]){ancestor(a,b);assert.deepEqual(sorted(diff(a,b)),sorted(paths),'Exact two-path navigation/maintenance/ledger boundary required');}
  assert.deepEqual(sorted(diff(c.base,rawHead)),sorted([...new Set([...c.paths,...c.maintenancePaths,LEDGER])]),'Every unrelated source path must remain exact');
  for(const p of c.paths){
-  assert.equal(mode(rawHead,p),'100644');assert.equal(object(rawHead,p),object(c.payload,p));const value=bytes(rawHead,p),restored=assertExactNavigationPayload(p,value);
+  assert.equal(immutable.mode(rawHead,p),'100644');assert.equal(immutable.blob(rawHead,p),immutable.blob(c.payload,p));const value=proofBytes(rawHead,p),restored=assertExactNavigationPayload(p,value);
   assert(proofRead(resolve(process.cwd(),p)).equals(value),'Fresh navigation working bytes changed');
-  if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(bytes(c.base,p)),'Whole original navigation source must restore');
+  if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(proofBytes(c.base,p)),'Whole original navigation source must restore');
  }
  for(const p of c.maintenancePaths){
-  assert.equal(mode(rawHead,p),'100644');assert.equal(object(rawHead,p),object(maintenanceSource,p));const value=bytes(rawHead,p);assert(proofRead(resolve(process.cwd(),p)).equals(value),'Fresh maintenance working bytes changed');
+  assert.equal(immutable.mode(rawHead,p),'100644');assert.equal(immutable.blob(rawHead,p),immutable.blob(maintenanceSource,p));const value=proofBytes(rawHead,p);assert(proofRead(resolve(process.cwd(),p)).equals(value),'Fresh maintenance working bytes changed');
   const entry=policy.maintenanceEntries.find(x=>x.path===p);assert(entry);const restored=inverse(p,value,entry);
-  if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(bytes(c.base,p)),'Every original Core assertion must restore byte for byte: '+p);
+  if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(proofBytes(c.base,p)),'Every original Core assertion must restore byte for byte: '+p);
  }
- delete record[KEY];assert.deepEqual(record,JSON.parse(content(c.base,LEDGER)),'Every prior approval, failure, receipt and record must remain exact');
+ delete record[KEY];assert.deepEqual(record,JSON.parse(immutable.content(c.base,LEDGER)),'Every prior approval, failure, receipt and record must remain exact');
  for(const p of ['wrangler.jsonc','wrangler.coaching.jsonc','wrangler.hq-management.jsonc','package.json','package-lock.json','.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','shift-coach/worker.mjs','member-experience/treatment-week-client.mjs','my-timber-app','public'])assert.equal(object(rawHead,p),object(c.base,p),'Protected navigation boundary changed: '+p);
  proofClean(rawHead);return c;
 }
