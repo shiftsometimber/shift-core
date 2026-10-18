@@ -1,0 +1,36 @@
+{
+  "scope": "Full existing UK recipe correction, source qualification; deployment pending",
+  "at": "2026-10-17T23:25:11.654925+00:00",
+  "base": "c058780e1df1ac59968e08ac1959877ab80fd034",
+  "corrected_identities": 2671,
+  "total_references": 2692,
+  "discoverable": 2542,
+  "portion_equivalent_descendants_not_counted": 150,
+  "unique_searchable_titles": 2542,
+  "owner_instruction": {
+    "id": "Matt O’Brien",
+    "kind": "human",
+    "role": "owner",
+    "instruction": "Get on with it please - 56 is not acceptable at all ….. we even advertise thousands - it’s a USP, they just need to be UK consumer relevant ……",
+    "recorded_at": "2026-10-18T00:00:45+01:00",
+    "scope": "Continue authorised Grub correction and deployment, preserve thousands of UK-relevant choices and existing member features. Not an assertion of independent human review."
+  },
+  "human_review_claimed": false,
+  "physical_cooking_trial_claimed": false,
+  "checks": {
+    "functional_regression": {
+      "pass": 60,
+      "log_sha256": "a52a3365ca494c03bf62e471eaf0012b1693278d072dd52653ae53b0013df98b"
+    },
+    "full_catalogue_nutrition_identity_paging_and_uk": {
+      "pass": 18,
+      "log_sha256": "5080f3ab901f59e521a8584780417cbe9adc3a21b821d7a92b8b28e638769855"
+    },
+    "browser_uk": {
+      "pass": 14,
+      "report_sha256": "0f37427679da17fdb93fa2dd80c87f223dcf2b29f19f7f0948e0348c10f1ee7b"
+    }
+  },
+  "public_source_recipe_snapshot_sha256": "6454cae7c29b8b268216b157cc055a595a1d48b2c044aea5238eab94bca93cf2",
+  "account_or_database_writes": 0
+}
