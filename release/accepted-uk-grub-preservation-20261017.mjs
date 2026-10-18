@@ -16,7 +16,7 @@ const cleanHint=makeFreshCleanHint();
 function clean(){if(cleanHint())return;assertGitTrackedSourceVisible('UK Grub preservation');assert.equal(git('diff','--no-renames','--name-only','HEAD','--').trim(),'');assert.equal(git('diff','--no-renames','--cached','--name-only','--').trim(),'');}
 const difference=(a,b)=>git('diff','--no-renames','--name-only',a,b).trim().split('\n').filter(Boolean);
 const policyOf=source=>{const match=/^const policy=(.*);$/m.exec(source);assert(match,'One exact immutable preservation policy required');return JSON.parse(match[1]);};
-const reverse=(value,pairs)=>{for(const[before,after,kind]of[...pairs].reverse()){assert(after&&value.split(after).length===2,'One exact UK maintenance inverse required');if(kind==='prefix')assert(value.startsWith(after));if(kind==='suffix')assert(value.endsWith(after));value=value.replace(after,before);}return value;};
+const reverse=(value,pairs)=>{for(const[before,after,kind]of[...pairs].reverse()){assert(after&&value.split(after).length===2,'One exact UK maintenance inverse required');if(kind==='prefix')assert(value.startsWith(after));if(kind==='suffix')assert(value.endsWith(after));value=value.replace(after,()=>before);}return value;};
 
 // Reconstruct both native trees without writing an object, changing a ref or
 // replacing any Git fact. The complete path boundary is checked separately.
