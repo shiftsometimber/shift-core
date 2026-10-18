@@ -1,3 +1,4 @@
+import {GRUB_RANKING_FINAL_CSS_OWNED_ROLLBACK,verifyCurrentGrubRankingFinalCssOwnedRollbackWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
 import {GRUB_RANKING_CSS_OWNED_ROLLBACK,verifyCurrentGrubRankingCssOwnedRollbackWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_RANKING_RUNTIME,verifyCurrentAcceptedGrubRankingRuntimeWindow,acceptedGrubRankingCurrentStartingPoint,assertSameAcceptedGrubRankingCurrentWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_FULL_RUNTIME,verifyCurrentAcceptedGrubFullRuntimeWindow,acceptedGrubFullCurrentStartingPoint,assertSameAcceptedGrubFullCurrentWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
@@ -75,7 +76,10 @@ let ukGrubSpeedOwnedRollbackProof;
 let ukGrubOwnedRollbackProof;
 let verifiedOwnedRollbackProof,restoredMaleObesityRuntimeProof,decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof,restoredLaterRuntimeProof,restoredToolRuntimeProof,restoredPassportRuntimeProof,restoredContinuityRuntimeProof;
 if(preserveCurrentRuntime){
- if(before.id===GRUB_RANKING_CSS_OWNED_ROLLBACK.deployment.id){
+ if(before.id===GRUB_RANKING_FINAL_CSS_OWNED_ROLLBACK.deployment.id){
+  grubRankingCssOwnedRollbackProof=await verifyCurrentGrubRankingFinalCssOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'recovery'});
+  ownedProof={run:grubRankingCssOwnedRollbackProof.predecessorRun,source:grubRankingCssOwnedRollbackProof.source,version:grubRankingCssOwnedRollbackProof.version};
+ }else if(before.id===GRUB_RANKING_CSS_OWNED_ROLLBACK.deployment.id){
   grubRankingCssOwnedRollbackProof=await verifyCurrentGrubRankingCssOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'recovery'});
   ownedProof={run:grubRankingCssOwnedRollbackProof.predecessorRun,source:grubRankingCssOwnedRollbackProof.source,version:grubRankingCssOwnedRollbackProof.version};
  }else if(before.id===UK_GRUB_SPEED_OWNED_ROLLBACK.deployment.id){
