@@ -532,6 +532,13 @@
   },
   "triggers": { "crons": ["*/15 * * * *"] },
   "vars": {
+    "DAILY_WEBSITE_CONTENT_ENABLED": "false",
+    "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH": "false",
+    "DAILY_CONTENT_GATEWAY": "shift-ai",
+    "DAILY_CONTENT_BUDGET_VERIFIED": "false",
+    "DAILY_EDITORIAL_NOTIFY_ENABLED": "false",
+    "DAILY_EDITORIAL_NOTIFY_TEMPLATE": "verified-link-v1",
+
     "MY_TIMBER_PWA_ENABLED": "true",
     "MEMBER_GP_LOOKUP_ENABLED": "true",
     "MEMBER_GP_DIRECTORY_V2_ENABLED": "true",
