@@ -1,43 +1,31 @@
-// Uses only the two already authorised, normally signed-in commissioning holders.
+// Existing growth commissioning holder only. No identity creation or mail path.
 import assert from 'node:assert/strict';
 import {randomUUID,createHash} from 'node:crypto';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 import {createRequire} from 'node:module';
+import {memberReady,memberReload,withdrawOptionalHealthTracking,chooseOptionalHealthTracking} from '../../runtime/rendered-member-acceptance-support.mjs';
 import {compiledTreatmentAssets} from '../../runtime/release/my-treatment-compiled-control.mjs';
-function originalGpNativeContract(){
- const require=createRequire(import.meta.url),{execFileSync}=require('node:child_process'),{resolve}=require('node:path'),{fileURLToPath}=require('node:url');
- const policy=JSON.parse(readFileSync(new URL('./gp-h55-live-qa-policy-20261016.json',import.meta.url),'utf8')),row=policy.originalGpContract;
- assert.equal(row.source,'b6f9c0c36d4303e5d384fb2d62b58968b998aa64');assert.equal(row.path,'release/gp-directory-live-contract-20261015.mjs');
- const root=resolve(dirname(fileURLToPath(import.meta.url)),'../../runtime');
- const native=(...args)=>execFileSync('/usr/bin/git',['--no-replace-objects','-C',root,...args]);
- assert.equal(native('rev-parse',row.source+':'+row.path).toString().trim(),row.blob);
- const body=native('show',row.source+':'+row.path);
- assert.equal(createHash('sha256').update(body).digest('hex'),row.sha256,'Whole unchanged native original GP contract required');
- assert.equal(createHash('sha1').update('blob '+body.length+'\0').update(body).digest('hex'),row.blob);
- return body.toString('base64');
-}
-const {assertGpHolder,assertGpSave,assertGpRequest,assertDirectoryResult,gpView,GP_FIELDS,GP_SITE,GP_API}=await import('data:text/javascript;base64,'+originalGpNativeContract());
 
-import {chooseNecessaryCookies} from '../../runtime/rendered-member-acceptance-support.mjs';
+const SITE='https://shiftsometimber.co.uk',API='https://api.shiftsometimber.co.uk';
+const ROOT='/v1/member/treatment',DAY=86400000;
+const SYNTHETIC=/^shiftsometimber\+structured-growth-[a-f0-9-]{36}@gmail\.com$/i;
+const HELD=/\/(?:contact|support|send|email|mail|invite|checkout|payment|order|recruit|verification|verify|forgot|recovery|reset)(?:[/?-]|$)/i;
+const sha=value=>createHash('sha256').update(value).digest('hex');
+const ASSETS=['/assets/member-experience/treatment-week.mjs','/assets/member-experience/treatment-week.css'];
 
-export function isPreventedGpBackground(url,method,{site,api}){
- const u=new URL(url);if(method==='DELETE')return u.pathname==='/v1/acquisition-attribution'&&[site,api].includes(u.origin);if(method!=='POST')return false;
- return u.pathname==='/v1/my-timber-pwa/status'&&[site,api].includes(u.origin)||u.pathname==='/cdn-cgi/rum'&&[site,'https://cloudflareinsights.com'].includes(u.origin);
+async function compiledWeekAssets(source){
+ // Reuse the original production-configured compilation, then ask its isolated
+ // Worker for the two extra assets. Source-function strings are not controls.
+ const compiled=await compiledTreatmentAssets();assert.equal(compiled.source,source);
+ const scriptPath=join(compiled.directory,'worker.js'),require=createRequire(join(process.cwd(),'node_modules/wrangler/package.json'));
+ const{Miniflare,convertV4MiniflareOptions}=require(process.env.TREATMENT_MINIFLARE||'miniflare');
+ const options={modules:true,modulesRoot:dirname(scriptPath),scriptPath,compatibilityDate:'2026-08-09',compatibilityFlags:['nodejs_compat'],d1Databases:['DB'],bindings:{MEMBER_EXPERIENCE_V1_ENABLED:'true',MY_TREATMENT_ENABLED:'true',MY_TIMBER_WEEK_VIEW_ENABLED:'true'},outboundService:()=>new Response('External requests disabled in compiled asset control',{status:503})};
+ const mf=new Miniflare(typeof convertV4MiniflareOptions==='function'?convertV4MiniflareOptions(options):options),assets={};
+ try{for(const path of ASSETS){const r=await mf.dispatchFetch(SITE+path);assert.equal(r.status,200);assets[path]=await r.text();assert(assets[path].length);}}finally{await mf.dispose();}
+ return{source:compiled.source,bundleSha256:compiled.bundleSha256,assets};
 }
-export async function openNormalGpDisclosures(page){
- await chooseNecessaryCookies(page);const started=Date.now(),remaining=()=>{assert(Date.now()-started<30000,'Original Settings opening budget exceeded');return Math.max(1,30000-(Date.now()-started));};
- const form=page.locator('#memberDetailsForm[data-gp-directory-v2="true"]');await form.waitFor({state:'attached',timeout:remaining()});
- await page.waitForFunction(()=>document.querySelector('#memberDetailsForm')?.closest('main')?.getClientRects().length>0,null,{timeout:remaining()});
- for(const selector of ['#memberDetailsForm','#memberEmail','#memberGpSelectionMode']){
-  const field=page.locator(selector);
-  for(let attempt=0;attempt<8;attempt++){
-   const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;
-   let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click({timeout:remaining()});opened=true;break;}}
-   assert(opened,'Original GP control must have a normal visible disclosure summary: '+selector);
-  }
- }
-}
+
 export async function readGpOverflowGeometry(page){
  const evidence=await page.evaluate(()=>{
   const assertionScrollWidth=document.documentElement.scrollWidth,assertionInnerWidth=innerWidth;
@@ -117,174 +105,191 @@ export async function assertGpNoOverflow(page,{row,width,dir,stylesheetEvidence}
  }
 }
 
-export function clinicalGpReuseState({status,assessmentAvailable,expectedInactive}){
- assert.equal(status,200,'Actual owned-account clinical context must authenticate successfully');assert.equal(typeof assessmentAvailable,'boolean');assert.equal(typeof expectedInactive,'boolean');
- if(expectedInactive){assert.equal(assessmentAvailable,false,'The retained clinical activation boundary must remain OFF');return'blocked_by_retained_clinical_activation';}
- assert.equal(assessmentAvailable,true,'Unexpected clinical unavailability remains a technical failure');return'run_original_positive_assertions';
+export function assertRecordedWeekHolder({site,api,email,source,report}){
+ assert.equal(site,SITE);assert.equal(api,API);
+ assert(SYNTHETIC.test(String(email||'')),'Existing labelled growth holder required');
+ assert.match(source||'',/^[a-f0-9]{40}$/,'Literal checked-out production source required');
+ assert.equal(report.synthetic,true);assert.equal(report.realCustomerRecordsRead,false);
 }
-
-const sha=v=>createHash('sha256').update(v).digest('hex');
-const ASSETS=['/assets/member-experience/member-details.mjs','/assets/member-experience/member-details.css','/assets/member-experience/gp-form.mjs'];
-const HELD=/\/(?:contact|support|send|email|mail|invite|checkout|payment|order|verification|verify|forgot|recovery|reset)(?:[/?-]|$)/i;
-const onlyGp=d=>gpView(d),withoutGp=d=>Object.fromEntries(Object.entries(d).filter(([k])=>!GP_FIELDS.includes(k)));
-const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-
-async function identity(page,{site,api,email,holderId=null}){
- let id=holderId;
- for(const origin of [site,api]){
-  const r=await page.context().request.get(origin+'/v1/me',{headers:{Origin:site,'Cache-Control':'no-cache'}}),b=await r.json();
-  assert.equal(r.status(),200);assert.equal(String(b?.user?.email||'').toLowerCase(),email.toLowerCase(),'Use the actual existing synthetic holder only');
-  const actual=String(b.user.id);assert.match(actual,/^[1-9]\d*$/);if(id===null)id=actual;else assert.equal(actual,id,'Actual account identity must remain stable at both origins');
+export function assertRecordedWeekRequest({url,method,body,ownedTreatmentId,allowForeignDenial=false}){
+ const target=new URL(url);assert([SITE,API].includes(target.origin),'Only existing member origins permitted');
+ assert(!HELD.test(target.pathname),'Email, support and commitment paths are held');
+ if(method==='GET'){assert([ROOT,ROOT+'/week',ROOT+'/insights','/v1/me','/v1/consents','/assets/member-experience/treatment-week.mjs','/assets/member-experience/treatment-week.css'].includes(target.pathname),'Unscoped recorded-week read');return;}
+ assert.equal(method,'POST','Only explicit scoped synthetic writes permitted');
+ assert([ROOT+'/records',ROOT+'/events',ROOT+'/week-note'].includes(target.pathname),'Unscoped recorded-week write');
+ assert(body&&typeof body==='object'&&!Array.isArray(body),'Explicit synthetic body required');
+ if(target.pathname.endsWith('/records')){
+  assert.deepEqual(Object.keys(body).sort(),['medicine','nextAt','prescriptionDetails','supply']);
+  assert.equal(body.medicine,'Mounjaro');assert.equal(body.supply,0);assert.equal(body.nextAt,null);
+  assert.match(body.prescriptionDetails,/^Fictional release acceptance only; no treatment or prescription\./);
+ }else{
+  assert(ownedTreatmentId,'Confirmed synthetic owned treatment required');
+  assert(body.treatmentId===ownedTreatmentId||allowForeignDenial&&/^unowned-release-denial-[a-f0-9-]{36}$/.test(body.treatmentId),'Unowned treatment write is forbidden');
+  if(target.pathname.endsWith('/events')){
+   assert(['dose_taken','checkin'].includes(body.kind),'No treatment, schedule or stock changes');
+   assert.match(body.note,/^Fictional release acceptance/);
+  }else assert.match(body.note,/^Fictional private release note /);
  }
- return id;
 }
-async function compiledGpAssets(source){
- const control=await compiledTreatmentAssets();assert.equal(control.source,source);
- const scriptPath=join(control.directory,'worker.js'),require=createRequire(join(process.cwd(),'node_modules/wrangler/package.json'));
- const {Miniflare,convertV4MiniflareOptions}=require(process.env.TREATMENT_MINIFLARE||'miniflare');
- const options={modules:true,modulesRoot:dirname(scriptPath),scriptPath,compatibilityDate:'2026-08-09',compatibilityFlags:['nodejs_compat'],d1Databases:['DB'],bindings:{MEMBER_EXPERIENCE_V1_ENABLED:'true',MY_TREATMENT_ENABLED:'true',MY_TIMBER_WEEK_VIEW_ENABLED:'true',MEMBER_GP_DIRECTORY_V2_ENABLED:'true',MEMBER_GP_LOOKUP_ENABLED:'true'},outboundService:()=>new Response('Outbound requests disabled in compiled control',{status:503})};
- const mf=new Miniflare(typeof convertV4MiniflareOptions==='function'?convertV4MiniflareOptions(options):options),assets={};
- try{for(const path of ASSETS){const r=await mf.dispatchFetch(GP_SITE+path);assert.equal(r.status,200);assets[path]=await r.text();assert(assets[path].length);}}finally{await mf.dispose();}
- return {source:control.source,bundleSha256:control.bundleSha256,assets};
+export function assertRecordedWeekFacts(week,seed){
+ assert.equal(week?.contract,'member-recorded-week/v1');
+ assert.deepEqual(week.curve,{status:'not_included',scope:'recorded_facts_only'});
+ assert.deepEqual(week.context.sources,['treatment']);
+ for(const key of ['food','progress','exercises'])assert.deepEqual(week.context[key],[],'Unselected context must stay unread');
+ assert.equal(week.cycles.length,5);assert(week.cycles.every(c=>c.treatmentId===seed.treatmentId));
+ assert.deepEqual(week.cycles.map(c=>c.id).sort(),seed.doseIds.slice().sort());
+ const older=week.cycles.find(c=>c.id===seed.unknownDose);assert.equal(older.strengthMg,null);assert.equal(older.recordedStrength,null);
+ const current=week.cycles.find(c=>c.id===seed.currentDose);assert.equal(current.state,'incomplete');
+ assert.equal(current.days.length,7);assert.equal(current.days[6].state,'not_observed');
+ const repeated=week.observations.find(o=>o.type==='Nausea');
+ assert(repeated,'Three completed recorded weeks must produce factual repeated timing');
+ assert.equal(repeated.day,3);assert.equal(repeated.evidence.matchedCycles,3);assert.equal(repeated.evidence.completedCycles,3);
+ assert.match(repeated.limitation,/not symptom risk or proof of cause/);
+ assert(week.limitations.some(v=>v.includes('No diagnosis, symptom forecast or treatment advice.')));
 }
 
-export async function verifyGpDirectoryLive({page,site,api,email,dir,report,freshSession,runtimeSource,clinicalConnectionExpectedInactive=false,assessmentVariantId=null}){
- const source=runtimeSource===undefined?process.env.GITHUB_SHA:runtimeSource;assertGpHolder({site,api,email,source,report});assert.equal(typeof freshSession,'function');
- const row={requirement:'GP directory member flow',source,at:new Date().toISOString(),synthetic:true,realCustomerWrites:0,notificationsSent:0,urls:[site+'/member/settings'],checks:[],status:'running'};
+export async function verifyRecordedWeekLive({page,site,api,email,dir,report,freshSession}){
+ const source='0e4a765e7a360d705e2424264e0bcfcc1d6652be';
+ assertRecordedWeekHolder({site,api,email,source,report});
+ assert.equal(typeof freshSession,'function','Reuse the original authorised fresh-session flow');
+ const row={requirement:'factual recorded treatment weeks',at:new Date().toISOString(),source,synthetic:true,realCustomerWrites:0,urls:[site+'/member/dashboard#visualise',site+ROOT+'/week?sources=treatment'],checks:[],status:'running'};
  report.checks.push(row);
- let holderId=null,baseline=null,guardContext=null,guardPage=null,handler=null,interruptSave=false,interruptSearch=false,lastSave=null;
- const blocked=[],pageErrors=[],preventedBackground=[],stylesheetEvidence=captureGpLoadedStylesheets(page);
- const onPageError=e=>pageErrors.push(e.message);
- async function self(){holderId=await identity(page,{site,api,email,holderId});}
- async function read(path){await self();assertGpRequest({url:site+path,method:'GET'});const r=await page.context().request.get(site+path,{headers:{Origin:site,'Cache-Control':'no-cache'}});assert.equal(r.status(),200,path);assert.match(r.headers()['cache-control']||'',/no-store/);return r.json();}
- async function profile(){const value=await read('/v1/member/details');assert.equal(value.ok,true);return value;}
- async function assets(control){const out=[];for(const path of ASSETS){const r=await page.context().request.get(site+path,{headers:{'Cache-Control':'no-cache'},maxRedirects:0});assert.equal(r.status(),200);const text=await r.text();assert.equal(text,control.assets[path],'Exact compiled GP source is served: '+path);out.push({url:site+path,sha256:sha(text)});}return out;}
- async function install(){
-  guardContext=page.context();guardPage=page;guardPage.on('pageerror',onPageError);handler=async route=>{
-   const req=route.request(),u=new URL(req.url()),method=req.method();
-   if(isPreventedGpBackground(req.url(),method,{site,api})){preventedBackground.push({origin:u.origin,path:u.pathname,method,disposition:'aborted_before_network',authority:'Unrelated analytics/PWA and cookie-attribution cleanup writes remain held'});await route.abort('blockedbyclient');return;}
-   try{
-    assert(!HELD.test(u.pathname),'Held email/support/commitment path');
-    if(!['GET','HEAD','OPTIONS'].includes(method)){
-     await self();assertGpRequest({url:req.url(),method,body:req.postDataJSON(),baseline:baseline.details});
-     if(interruptSave){interruptSave=false;await route.abort('failed');return;}
-    }
-    if(interruptSearch&&u.pathname==='/v1/member/details/gp-search'){interruptSearch=false;await route.abort('failed');return;}
-    await route.continue();
-   }catch(error){blocked.push({path:u.pathname,method,error:error.message});await route.abort('blockedbyclient');}
-  };
-  await guardContext.route('**/*',handler);
- } 
- async function uninstall(){if(guardContext&&handler)await guardContext.unroute('**/*',handler);if(guardPage)guardPage.off('pageerror',onPageError);guardContext=null;guardPage=null;handler=null;}
- async function open(){
-  await page.goto(site+'/member/settings',{waitUntil:'domcontentloaded'});
-  await openNormalGpDisclosures(page);
-  await page.locator('#memberDetailsForm[data-gp-directory-v2="true"]').waitFor({state:'visible',timeout:30000});
-  await page.waitForFunction(()=>document.querySelector('#memberDetailsFields')?.disabled===false,{},{timeout:30000});
-  assert.equal(await page.locator('#memberEmail').inputValue(),email);await self();
+ let holderId=null,ownedTreatmentId=null,routeHandler=null,routeContext=null,compiled=null,interruptNextNote=false;
+ const blocked=[],failures=[],savedNotes=[];
+ async function identity(){
+  for(const origin of [site,api]){
+   const r=await page.context().request.get(origin+'/v1/me',{headers:{Origin:site,'Cache-Control':'no-cache'}}),b=await r.json();
+   assert.equal(r.status(),200);assert.equal(String(b?.user?.email||'').toLowerCase(),email.toLowerCase(),'Never access another member');
+   const id=String(b.user.id);assert(id&&id!=='undefined');if(holderId!==null)assert.equal(id,holderId,'Synthetic holder changed');else holderId=id;
+  }
  }
- async function save({retry=false}={}){
-  const observations=[],listener=req=>{if(new URL(req.url()).pathname==='/v1/member/details'&&req.method()==='PATCH')observations.push(req.postDataJSON());};
-  page.on('request',listener);
-  try{
-   if(retry)interruptSave=true;
-   await page.locator('#memberDetailsSave').click();
-   if(retry){await page.getByRole('button',{name:'Retry save',exact:true}).waitFor({timeout:30000});assert.equal(observations.length,1);const retained=observations[0];assertGpSave(retained,baseline.details);await page.getByRole('button',{name:'Retry save',exact:true}).click();}
-   await page.waitForFunction(()=>document.querySelector('#memberDetailsStatus')?.textContent==='Member details saved.',null,{timeout:30000});
-   assert.equal(observations.length,retry?2:1);if(retry)assert.deepEqual(observations[1],observations[0],'Normal UI must retry the same operation and retained details');
-   lastSave=observations.at(-1);assertGpSave(lastSave,baseline.details);
-   const value=await profile();assert.deepEqual(withoutGp(value.details),withoutGp(baseline.details),'GP edits must preserve all other member details');assert.deepEqual(onlyGp(value.details),onlyGp(lastSave.details));
-   return value;
-  }finally{interruptSave=false;page.off('request',listener);}
+ async function request(path,body,{expect=200,allowForeignDenial=false}={}){
+  const method=body?'POST':'GET',url=site+path;
+  assertRecordedWeekRequest({url,method,body,ownedTreatmentId,allowForeignDenial});
+  await identity();
+  const r=await page.context().request.fetch(url,{method,headers:{Origin:site,'Cache-Control':'no-cache'},...(body?{data:body}:{})});
+  assert.equal(r.status(),expect,path+' must return '+expect);
+  assert.match(r.headers()['cache-control']||'',/no-store/,'Private results must not be stored');
+  return r.json();
+ }
+ async function installGuard(){
+  routeContext=page.context();routeHandler=async route=>{
+   const req=route.request(),url=new URL(req.url()),method=req.method();
+   try{
+    assert(!HELD.test(url.pathname),'Held email/support/commitment route');
+    if(!['GET','HEAD','OPTIONS'].includes(method)){
+     assert([site,api].includes(url.origin),'No external messages');
+     const body=req.postDataJSON();
+     if(url.pathname==='/v1/consents'){
+      assert.equal(method,'POST');assert.equal(body.type,'my_shift_health_tracking');assert.equal(typeof body.granted,'boolean');
+     }else assertRecordedWeekRequest({url:req.url(),method,body,ownedTreatmentId});
+     await identity();
+    }
+    if(interruptNextNote&&url.pathname===ROOT+'/week-note'&&method==='POST'){interruptNextNote=false;await route.abort('failed');return;}
+    await route.continue();
+   }catch(error){blocked.push({path:url.pathname,method});failures.push(error.message);await route.abort('blockedbyclient');}
+  };
+  await routeContext.route('**/*',routeHandler);
+ }
+ async function removeGuard(){if(routeContext&&routeHandler)await routeContext.unroute('**/*',routeHandler);routeContext=null;routeHandler=null;}
+ async function servedAssets(){
+  const results=[];
+  for(const path of ASSETS){
+   assertRecordedWeekRequest({url:site+path,method:'GET'});
+   const r=await page.context().request.get(site+path,{headers:{'Cache-Control':'no-cache'},maxRedirects:0});
+   assert.equal(r.status(),200,'Exact compiled source asset is served');const body=await r.text();assert.equal(body,compiled.assets[path],'Live asset differs from compiled checked-out source');results.push({url:site+path,sha256:sha(body)});
+  }return results;
+ }
+ async function openWeek({reload=false}={}){
+  if(reload)await memberReload(page,{site,panel:'visualise'});else await memberReady(page,{site,panel:'visualise'});
+  const patterns=page.locator('.shift-pattern-panel');await patterns.waitFor({state:'visible',timeout:30000});
+  await patterns.getByLabel('Jabs and symptoms',{exact:true}).check();
+  for(const label of ['Food notes and protein snapshots','Exercises marked done','Steps and sleep readings'])await patterns.getByLabel(label,{exact:true}).uncheck();
+  await patterns.getByRole('button',{name:'Show context',exact:true}).click();
+  const week=page.locator('.shift-treatment-week');await week.locator('summary').first().click();await week.getByLabel('Choose a recorded week').waitFor({timeout:30000});
+  assert.equal(await week.locator('svg path').count(),0);assert.doesNotMatch(await week.innerText(),/awaiting qualified model|Estimated medication curve/);
+  return week;
  }
  try{
-  await self();baseline=await profile();const control=await compiledGpAssets(source);row.compiledControl={source,bundleSha256:control.bundleSha256,productionResources:0};row.assetsBefore=await assets(control);
-  if(baseline.gpDirectoryV2!==true){assert.equal(baseline.gpDirectoryV2,false);row.flagsOff=true;row.status='code_only_verified';row.featureAcceptance=false;row.assetsAfter=await assets(control);assert.deepEqual(row.assetsAfter,row.assetsBefore);return page;}
-  assert.equal(baseline.gpLookupConfigured,true);
-  for(const key of GP_FIELDS.filter(k=>k!=='gpSelectionMode'))assert.equal(baseline.details[key]??'','','The fresh existing QA holder must have no GP details to overwrite');
-  await install();
-  const byNation={};
-  for(const [nation,q]of [['England','London'],['Wales','Cardiff'],['Scotland','Edinburgh'],['Northern Ireland','Belfast']]){
-   await pause(700);const result=await read('/v1/member/details/gp-search?'+new URLSearchParams({q}));assertDirectoryResult(result,{nation});byNation[nation]=result.practices.find(p=>p.nation===nation);
-   row.checks.push({nation,actualMatchingResults:true,directoryVersion:result.directoryVersion});
+  compiled=await compiledWeekAssets(source);row.compiledControl={source:compiled.source,bundleSha256:compiled.bundleSha256,productionResources:0};
+  await identity();await installGuard();row.assetsBefore=await servedAssets();
+  const empty=await request(ROOT);assert.deepEqual(empty.treatments,[],'Existing growth holder must have no treatment record to overwrite');assert.deepEqual(empty.events,[]);
+  const consent=await request('/v1/consents');const latest=consent.consents.filter(v=>v.consent_type==='my_shift_health_tracking').sort((a,b)=>Number(b.id)-Number(a.id))[0];assert.equal(Number(latest?.granted),1,'Retain original explicitly authorised synthetic tracking choice');
+  const record=await request(ROOT+'/records',{medicine:'Mounjaro',prescriptionDetails:'Fictional release acceptance only; no treatment or prescription. '+randomUUID(),supply:0,nextAt:null},{expect:201});ownedTreatmentId=record.id;
+  const at=Date.now(),iso=t=>new Date(t).toISOString(),seed={treatmentId:record.id,doseIds:[]};
+  for(const days of [42,28,21,14,2]){
+   const id=randomUUID(),when=at-days*DAY;seed.doseIds.push(id);if(days===42)seed.unknownDose=id;if(days===2)seed.currentDose=id;
+   await request(ROOT+'/events',{treatmentId:record.id,kind:'dose_taken',occurredAt:iso(when),note:'Fictional release acceptance: recorded dose only',operationId:id,...(days===42?{}:{doseStrength:'7.5 mg'})},{expect:201});
+   if([28,21,14].includes(days))await request(ROOT+'/events',{treatmentId:record.id,kind:'checkin',occurredAt:iso(when+2*DAY+7200000),note:'Fictional release acceptance: recorded check-in',operationId:randomUUID(),checkin:{sideEffects:'Fictional nausea; release QA only',symptomType:'Nausea',symptomSeverity:5,symptomStartedAt:iso(when+2*DAY+3600000),appetite:'Low',energy:'Low'}},{expect:201});
   }
-  await pause(700);const nearest=await read('/v1/member/details/gp-search?'+new URLSearchParams({q:'London',near:byNation.England.postcode}));assertDirectoryResult(nearest,{nation:'England'});assert.equal(nearest.order,'nearest_matching_practices','Actual recognised GB postcode must exercise the nearest option');
-  await pause(700);const ni=await read('/v1/member/details/gp-search?'+new URLSearchParams({q:'Belfast',near:'BT1 1AA'}));assertDirectoryResult(ni,{nation:'Northern Ireland',nearNorthernIreland:true});row.checks.push({nearestMatching:true,niDistanceExplicitlyUnknown:true});
+  assertRecordedWeekFacts((await request(ROOT+'/week?sources=treatment')).week,seed);
   for(const width of [390,1440]){
-   await page.setViewportSize({width,height:900});await open();const before=await profile();
-   if(width===390){
-    interruptSearch=true;await page.locator('#memberGpPractice').fill('London');
-    await page.waitForFunction(()=>{const t=document.querySelector('#memberGpDirectoryHelp')?.textContent||'';return t&&!/Finding|Type three|Choose your/.test(t);},null,{timeout:15000});
-    assert.equal(await page.locator('#memberGpPractice').inputValue(),'London','Declared interrupted lookup preserves the member input');
-   }
-   await page.locator('#memberDetailsForm').getByRole('button',{name:'Enter GP details manually',exact:true}).click();
-   await page.locator('#memberGpPractice').fill('Edinburgh');
-   await page.locator('#memberGpDirectorySelect option[value="0"]').waitFor({state:'attached',timeout:15000});
-   const noAutoSave=await profile();assert.deepEqual(noAutoSave.details,before.details);assert.equal(noAutoSave.revision,before.revision);
-   await page.locator('#memberGpDirectorySelect').selectOption('0');
-   assert.equal(await page.locator('#memberGpSelectionMode').inputValue(),'directory');assert(await page.locator('#memberGpCode').inputValue());assert(await page.locator('#memberGpAddress').inputValue());
-   assert.match(await page.locator('#memberGpDirectorySelected').innerText(),/Registration and the clinical notification destination have not been verified/);
-   const selected=onlyGp((await page.locator('#memberDetailsForm').evaluate(form=>Object.fromEntries(new FormData(form)))));
-   assert.deepEqual((await profile()).details,before.details,'Selection alone must not save the account');
-   await save({retry:true});await open();for(const [key,id]of Object.entries({gpPractice:'memberGpPractice',gpPostcode:'memberGpPostcode',gpCode:'memberGpCode',gpAddress:'memberGpAddress',gpSelectionMode:'memberGpSelectionMode'}))assert.equal(await page.locator('#'+id).inputValue(),selected[key]);
-   await assertGpNoOverflow(page,{row,width,dir,stylesheetEvidence});
-   await page.screenshot({path:join(dir,'gp-member-'+width+'.png'),fullPage:true});
-   row.checks.push({width,normalSignedInUi:true,declaredSimulatedSaveInterruption:true,sameOperationRetry:true,searchAndExplicitSelection:true,noAutomaticSave:true,fullAddressSaved:true,reopenRetained:true,noHorizontalOverflow:true,...(width===390?{declaredSimulatedSearchAndSaveInterruption:true,sameOperationRetry:true}:{})});
+   await page.setViewportSize({width,height:900});let week=await openWeek();
+   assert.match(await week.innerText(),/day 3 after 3 of 3/);assert.equal(await week.locator('.shift-week-days article').count(),7);assert.equal(await week.locator('.shift-week-days article:visible').count(),1);
+   await week.getByLabel('Choose a recorded week').selectOption(seed.unknownDose);assert.match(await week.innerText(),/Strength not recorded/);
+   await week.getByRole('tab',{name:'Day 7',exact:true}).click();await week.getByRole('tab',{name:'Day 7',exact:true}).press('Home');await week.getByRole('tab',{name:'Day 1',exact:true}).press('ArrowRight');assert.equal(await week.getByRole('tab',{name:'Day 2',exact:true}).getAttribute('aria-selected'),'true');
+   await week.getByLabel('Choose a recorded week').selectOption(seed.currentDose);
+   const note='Fictional private release note '+width+' '+randomUUID();savedNotes.push(note);await week.getByLabel('A question or note for your prescriber').fill(note);
+   let savedOperation=null;const operations=[],observe=req=>{if(new URL(req.url()).pathname===ROOT+'/week-note'){savedOperation=req.postDataJSON();operations.push(savedOperation);}};page.on('request',observe);
+   try{
+    interruptNextNote=true;await week.getByRole('button',{name:'Save my note',exact:true}).click();
+    await page.waitForFunction(()=>{const root=document.querySelector('.shift-treatment-week');return !!root?.querySelector('[data-week-status]')?.textContent&&!root.querySelector('form button')?.disabled;},null,{timeout:30000});
+    assert.equal(await week.getByLabel('A question or note for your prescriber').inputValue(),note,'Client retains input after the declared simulated request interruption');
+    await week.getByRole('button',{name:'Save my note',exact:true}).click();await week.getByText('Your private note is saved.',{exact:true}).waitFor({timeout:30000});assert.equal(operations.length,2);assert.deepEqual(operations[0],operations[1],'The ordinary client retries the same operation');
+   }finally{interruptNextNote=false;page.off('request',observe);}
+   assert(savedOperation,'Observe the ordinary client save');const replay=await request(ROOT+'/week-note',savedOperation);assert.equal(replay.replayed,true,'Same original operation retries idempotently');
+   const readback=(await request(ROOT+'/week?sources=treatment')).week;assertRecordedWeekFacts(readback,seed);assert.equal(readback.questionNotes.filter(n=>n.text===note).length,1,'One private note only');
+   week=await openWeek({reload:true});await week.getByLabel('Choose a recorded week').selectOption(seed.currentDose);assert.match(await week.innerText(),new RegExp(note));
+   const[download]=await Promise.all([page.waitForEvent('download'),week.getByRole('button',{name:'Download this recorded week (text)',exact:true}).click()]);const exported=readFileSync(await download.path(),'utf8');assert(exported.includes(note));assert.match(exported,/No information sent automatically\./);assert.doesNotMatch(exported,/exposure|medication estimate/i);
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow');await page.screenshot({path:join(dir,'recorded-week-'+width+'.png'),fullPage:true});
+   row.checks.push({width,sevenDays:true,keyboard:true,unknownStrengthPreserved:true,factualRepeatedTiming:true,declaredSimulatedRequestInterruption:true,clientRetainedInputAndRetriedSameOperation:true,privateNoteSavedOnce:true,reloadRetained:true,factualLocalTextDownload:true});
   }
-  const selectedDirectoryBeforeFreshLogin=await profile();
-  assert.equal(selectedDirectoryBeforeFreshLogin.details.gpSelectionMode,'directory');
-  await uninstall();page=await freshSession();await self();await install();
-  const selectedDirectoryFreshStylesheets=captureGpLoadedStylesheets(page);
-  try{
-   for(const width of [390,1440]){
-    await page.setViewportSize({width,height:900});await open();
-    assert.deepEqual((await profile()).details,selectedDirectoryBeforeFreshLogin.details,'The selected surgery and every other member detail must survive an actual fresh normal sign-in');
-    for(const [key,id]of Object.entries({gpPractice:'memberGpPractice',gpPostcode:'memberGpPostcode',gpCode:'memberGpCode',gpAddress:'memberGpAddress',gpSelectionMode:'memberGpSelectionMode'}))assert.equal(await page.locator('#'+id).inputValue(),selectedDirectoryBeforeFreshLogin.details[key]);
-    await assertGpNoOverflow(page,{row,width,dir,stylesheetEvidence:selectedDirectoryFreshStylesheets});
-    await page.screenshot({path:join(dir,'gp-selected-surgery-fresh-login-'+width+'.png'),fullPage:true});
-    row.checks.push({width,selectedSurgeryRetainedAfterFreshNormalSignIn:true,fullCorrectGpFieldsRetained:true,noHorizontalOverflow:true});
-   }
-  }finally{selectedDirectoryFreshStylesheets.dispose();}
-  await page.locator('#memberGpSelectionMode').selectOption('no_gp');for(const id of ['memberGpPractice','memberGpPostcode','memberGpAddress','memberGpCode'])assert.equal(await page.locator('#'+id).inputValue(),'');await save();await open();assert.equal(await page.locator('#memberGpSelectionMode').inputValue(),'no_gp');
-  await page.locator('#memberDetailsForm').getByRole('button',{name:'Enter GP details manually',exact:true}).click();
-  const markerText='Fictional release GP '+randomUUID();await page.locator('#memberGpPractice').fill(markerText);await page.locator('#memberGpAddress').fill('Fictional release acceptance only; no GP notification or registration.');await page.locator('#memberGpPostcode').fill('SK10 1AA');
-  assert.equal(await page.locator('#memberGpSelectionMode').inputValue(),'manual');assert.equal(await page.locator('#memberGpCode').inputValue(),'');const finalProfile=await save();
-  const clinicalRow={requirement:'Original positive GP reuse in clinical assessment',status:'running',source,originalPositiveAssertionsExecuted:false,intakeSubmitted:false,paymentAttempted:false};report.checks.push(clinicalRow);
-  const assessment=await page.context().newPage();assessment.on('pageerror',onPageError);try{
-   const contextResponse=await assessment.request.get(api+'/v1/commerce/medicine-clinical-context',{headers:{Origin:site,'Cache-Control':'no-cache'}}),context=await contextResponse.json();
-   const state=clinicalGpReuseState({status:contextResponse.status(),assessmentAvailable:context.assessmentAvailable,expectedInactive:clinicalConnectionExpectedInactive});
-   clinicalRow.observed={authenticatedContextStatus:contextResponse.status(),assessmentAvailable:context.assessmentAvailable,expectedClinicalConnectionInactive:clinicalConnectionExpectedInactive};
-   if(state==='run_original_positive_assertions')assert(Number.isSafeInteger(assessmentVariantId)&&assessmentVariantId>0,'An actual approved selected treatment variant is required; no stock or treatment-selection bypass');
-   await assessment.goto(site+'/treatment-assessment'+(assessmentVariantId?'?variant='+encodeURIComponent(assessmentVariantId):''),{waitUntil:'domcontentloaded'});
-   if(state==='blocked_by_retained_clinical_activation'){
-    assert.equal(typeof context.emailVerified,'boolean');const accountMessage=context.emailVerified?'Signed in to My Timber. Check your saved contact details before submitting.':'Your account email must be verified before submission. No email has been requested by this page.';await assessment.locator('#accountStatus').filter({hasText:accountMessage}).waitFor({timeout:30000});assert.equal(await assessment.locator('#assessment').isVisible(),false);assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);
-    clinicalRow.status='blocked';clinicalRow.requiredInput='Chosen prescriber approved questionnaire/API/identity/evidence/consent workflow, applicable clinical activation approval and an actually available permitted selected variant. Keep stock and sales controls intact.';clinicalRow.closedGateVerified=true;
-   }else{
-
-   const load=assessment.getByRole('button',{name:'Use GP details saved in My Timber',exact:true}),use=assessment.getByRole('button',{name:'Use these GP details',exact:true});await load.waitFor({timeout:30000});
-   const unchanged=await assessment.locator('[name="gpPractice"]').inputValue();await load.click();await use.waitFor({timeout:15000});assert.equal(await assessment.locator('[name="gpPractice"]').inputValue(),unchanged);assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);
-   await use.click();assert.equal(await assessment.locator('[name="gpPractice"]').inputValue(),markerText);assert.equal(await assessment.locator('[name="gpContactConsent"]').isChecked(),false);assert.deepEqual((await profile()).details,finalProfile.details);row.checks.push({savedAssessmentDetailsLoadedOnlyOnRequest:true,separateGpSharingConsentUnchecked:true,assessmentNeverSubmitted:true});
-   clinicalRow.originalPositiveAssertionsExecuted=true;clinicalRow.status='pass';
-   }
-  }finally{await assessment.close();}
-  await uninstall();page=await freshSession();await self();await install();await open();assert.deepEqual((await profile()).details,finalProfile.details);assert.equal(await page.locator('#memberGpPractice').inputValue(),markerText);row.checks.push({manualSaved:true,noGpSavedAndReopened:true,freshNormalSignIn:true});
-  const anonymous=await page.context().browser().newContext();try{for(const path of ['/v1/member/details','/v1/member/details/gp-search?q=London']){const r=await anonymous.request.get(site+path);assert.equal(r.status(),401);assert.match(r.headers()['cache-control']||'',/no-store/);assert(!(await r.text()).includes(markerText));}}finally{await anonymous.close();}
-  row.assetsAfter=await assets(control);assert.deepEqual(row.assetsAfter,row.assetsBefore);assert.deepEqual(blocked,[]);assert.deepEqual(pageErrors,[]);
-  const marker={schema:'gp-existing-holder-isolation/v1',source,synthetic:true,holderId,gpHashes:Object.fromEntries(GP_FIELDS.map(k=>[k,sha(String(finalProfile.details[k]??''))])),at:new Date().toISOString()};
-  const raw=JSON.stringify(marker,null,2)+'\n';writeFileSync(join(dir,'gp-isolation-marker.json'),raw);row.markerMetadataSha256=sha(raw);row.twoAccountIsolation='Requires the next existing desktop holder receipt';row.hqSignedInAcceptance=false;row.ordinarySignupAcceptance=false;row.servingIdentity='The release owner separately binds terminal production deployment; assets match this exact checked-out source before and after';row.scope='GP settings, persistence, denial and marker proof; clinical assessment positive case is separately reported';row.status='pass';return page;
- }catch(error){row.status='fail';row.error=String(error.message).replaceAll(email,'[synthetic]');throw error;}
- finally{stylesheetEvidence.dispose();await uninstall();row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;row.preventedBackgroundWrites=preventedBackground;}
+  const foreign=await request(ROOT+'/week-note',{treatmentId:'unowned-release-denial-'+randomUUID(),note:'Fictional private release note ownership denial',operationId:randomUUID(),occurredAt:iso(Date.now())},{expect:404,allowForeignDenial:true});assert.equal(foreign.error,'treatment_not_found');
+  const anonymous=await page.context().browser().newContext();try{const denied=await anonymous.request.get(api+ROOT+'/week?sources=treatment');assert.equal(denied.status(),401);assert.match(denied.headers()['cache-control']||'',/no-store/);assert.deepEqual(await denied.json(),{error:'authentication_required'});}finally{await anonymous.close();}
+  const beforeWithdrawal=(await request(ROOT+'/week?sources=treatment')).week.questionNotes.length;
+  await withdrawOptionalHealthTracking(page,{site});const denied=await request(ROOT+'/week?sources=treatment',undefined,{expect:409});assert.equal(denied.error,'tracking_off');
+  await memberReady(page,{site,panel:'visualise'});await page.locator('#shiftProgressStory[aria-busy="false"]').waitFor({timeout:30000});
+  const patterns=page.locator('.shift-pattern-panel');
+  if(await patterns.count()&&await patterns.isVisible()){
+   await patterns.getByLabel('Jabs and symptoms',{exact:true}).check();await patterns.getByRole('button',{name:'Show context',exact:true}).click();await patterns.getByText('Optional health tracking is off or paused. Review your tracking choice first.',{exact:true}).waitFor();row.withdrawnUi='existing pattern controls show explicit denial';
+  }else{
+   assert.match(await page.locator('#panel-visualise').innerText(),/optional (?:health )?tracking is off|tracking is off or paused|review your tracking choice/i,'Absent controls require an explicit tracking-off explanation');row.withdrawnUi='explicit tracking-off notice';
+  }
+  assert.equal(await page.locator('.shift-treatment-week').count(),0);for(const note of savedNotes)assert(!(await page.locator('#panel-visualise').innerText()).includes(note),'Withdrawn private notes must not remain rendered');
+  await chooseOptionalHealthTracking(page,{site});assert.equal((await request(ROOT+'/week?sources=treatment')).week.questionNotes.length,beforeWithdrawal);
+  await removeGuard();page=await freshSession();await identity();await installGuard();const returnedUi=await openWeek(),returnedWeek=(await request(ROOT+'/week?sources=treatment')).week;assertRecordedWeekFacts(returnedWeek,seed);assert.equal(returnedWeek.questionNotes.length,beforeWithdrawal);for(const note of savedNotes){assert.equal(returnedWeek.questionNotes.filter(n=>n.text===note).length,1);assert((await returnedUi.innerText()).includes(note),'Private note survives fresh browser sign-in');}
+  row.assetsAfter=await servedAssets();assert.deepEqual(row.assetsAfter,row.assetsBefore,'Exact live assets changed during acceptance');assert.deepEqual(blocked,[]);assert.deepEqual(failures,[]);
+  row.checks.push({anonymousDenied:true,unknownTreatmentDenied:true,consentWithdrawalDenied:true,privateUiCleared:true,consentRestoredThroughUi:true,freshBrowserSignIn:true});
+  const marker={schema:'recorded-week-existing-holder-isolation/v1',source,synthetic:true,holderId,treatmentId:ownedTreatmentId,noteHashes:savedNotes.map(sha),at:new Date().toISOString()};
+  const markerBody=JSON.stringify(marker,null,2)+'\n';writeFileSync(join(dir,'recorded-week-isolation-marker.json'),markerBody);row.markerMetadataSha256=sha(markerBody);
+  row.twoAccountIsolation='First-holder markers prepared; the next existing G2-011 holder must prove isolation separately';row.sameServing='Exact week JS/CSS match this source before and after; terminal deployment identity is recorded separately by the release owner';row.status='pass';return page;
+ }catch(error){row.status='fail';row.error=String(error.message).replaceAll(email,'[synthetic]');try{const geometry=await readGpOverflowGeometry(page);row.retainedFailureGeometry=geometry;row.retainedFailureGeometryTiming='Observation after original diary assertion failed; not original atomic failure geometry';}catch{row.retainedFailureGeometryUnavailable=true;}throw error;}
+ finally{await removeGuard();row.finishedAt=new Date().toISOString();row.blockedRequests=blocked;}
 }
 
-export async function verifyGpIsolationFromExistingHolder({page,site,api,email,runtimeSource}){
- const source=runtimeSource===undefined?process.env.GITHUB_SHA:runtimeSource;assertGpHolder({site,api,email,source,second:true});
- const growth=JSON.parse(readFileSync('growth-member-live-evidence/results.json','utf8'));assert.equal(growth.commit,source);assert.equal(growth.status,'pass');assert.equal(growth.synthetic,true);assert.equal(growth.realCustomerRecordsRead,false);
- const first=growth.checks.find(r=>r.requirement==='GP directory member flow'&&r.source===source);assert(first);
- if(first.status==='code_only_verified'){assert.equal(first.flagsOff,true);return{source,status:'not_enabled',featureAcceptance:false};}
- assert.equal(first.status,'pass');const raw=readFileSync('growth-member-live-evidence/gp-isolation-marker.json','utf8'),marker=JSON.parse(raw);assert.equal(sha(raw),first.markerMetadataSha256);assert.equal(marker.schema,'gp-existing-holder-isolation/v1');assert.equal(marker.source,source);assert.equal(marker.synthetic,true);assert.match(marker.holderId,/^[1-9]\d*$/);assert.deepEqual(Object.keys(marker.gpHashes).sort(),[...GP_FIELDS].sort());
- const holderId=await identity(page,{site,api,email});assert.notEqual(holderId,marker.holderId);
- const read=async()=>{await identity(page,{site,api,email,holderId});const r=await page.context().request.get(site+'/v1/member/details',{headers:{Origin:site,'Cache-Control':'no-cache'}});assert.equal(r.status(),200);assert.match(r.headers()['cache-control']||'',/no-store/);const b=await r.json();assert.equal(b.ok,true);assert.equal(b.details.email,email);assert.notEqual(sha(String(b.details.gpPractice??'')),marker.gpHashes.gpPractice,'Other holder\'s unique synthetic GP marker must remain private');return b;};
- const before=await read();await identity(page,{site,api,email,holderId});const denied=await page.context().request.get(api+'/v1/hq/management/people/'+marker.holderId+'/gp-details',{headers:{Origin:'https://hq.shiftsometimber.co.uk','Cache-Control':'no-cache'}});assert([401,403].includes(denied.status()),'A member session must not grant an HQ view of another member');assert.match(denied.headers()['cache-control']||'',/no-store/);assert(!(await denied.text()).includes('Fictional release GP'));
- const after=await read();assert.deepEqual(after.details,before.details);assert.equal(after.revision,before.revision);
- return {source,synthetic:true,actualDistinctAccounts:true,ownGpUnchanged:true,firstHolderMarkerAbsent:true,memberSessionCannotReadHqGp:denied.status(),noStore:true,hqSignedInAcceptance:false,ordinarySignupAcceptance:false,status:'pass'};
+export function assertRecordedWeekIsolationMarker(marker,{source,holderId}){
+ assert.equal(marker.schema,'recorded-week-existing-holder-isolation/v1');assert.equal(marker.source,source);assert.equal(marker.synthetic,true);
+ assert.match(String(marker.holderId),/^(?:\d{1,20}|[a-f0-9-]{36})$/i);assert.notEqual(String(marker.holderId),String(holderId),'Two different actual existing holders required');
+ assert.match(marker.treatmentId,/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i);
+ assert.equal(marker.noteHashes.length,2);for(const hash of marker.noteHashes)assert.match(hash,/^[a-f0-9]{64}$/);
+ assert.equal(new Set(marker.noteHashes).size,2);
+ assert.deepEqual(Object.keys(marker).sort(),['at','holderId','noteHashes','schema','source','synthetic','treatmentId']);
+}
+
+// Called after the existing G2-011 account's normal login and original seed.
+// No registration, password, cookie, second-account handoff or GP activation.
+export async function verifyRecordedWeekIsolationFromExistingHolder({page,site,api,email}){
+ assert.equal(site,SITE);assert.equal(api,API);assert.match(email,/^shiftsometimber\+structured-progressstory-\d+-desktop@gmail\.com$/i);
+ const source='0e4a765e7a360d705e2424264e0bcfcc1d6652be';assert.match(source||'',/^[a-f0-9]{40}$/);
+ const markerRaw=readFileSync('growth-member-live-evidence/recorded-week-isolation-marker.json','utf8'),marker=JSON.parse(markerRaw),growth=JSON.parse(readFileSync('growth-member-live-evidence/results.json','utf8'));
+ assert.equal(growth.commit,source);assert.equal(growth.status,'pass');assert.equal(growth.synthetic,true);assert.equal(growth.realCustomerRecordsRead,false);
+ assert(growth.checks.some(row=>row.requirement==='factual recorded treatment weeks'&&row.source===source&&row.status==='pass'&&row.markerMetadataSha256===sha(markerRaw)),'Bind the first holder to its actual successful same-source live report');
+ let holderId=null;
+ const identity=async()=>{for(const origin of [site,api]){const r=await page.context().request.get(origin+'/v1/me',{headers:{Origin:site,'Cache-Control':'no-cache'}}),body=await r.json();assert.equal(r.status(),200);assert.equal(String(body?.user?.email||'').toLowerCase(),email.toLowerCase());const id=String(body.user.id);assert(id&&id!=='undefined');if(holderId!==null)assert.equal(id,holderId);else holderId=id;assertRecordedWeekIsolationMarker(marker,{source,holderId});}};
+ const read=async()=>{await identity();const r=await page.context().request.get(site+ROOT+'/week?sources=treatment',{headers:{Origin:site,'Cache-Control':'no-cache'}});assert.equal(r.status(),200);assert.match(r.headers()['cache-control']||'',/no-store/);const body=await r.json();assert.equal(body.week?.contract,'member-recorded-week/v1');assert.deepEqual(body.week.context.sources,['treatment']);assert(body.week.cycles.every(c=>c.treatmentId!==marker.treatmentId));assert(body.week.questionNotes.every(n=>!marker.noteHashes.includes(sha(n.text))));return body.week;};
+ const before=await read();await identity();
+ const denied=await page.context().request.post(site+ROOT+'/week-note',{headers:{Origin:site,'Content-Type':'application/json'},data:{treatmentId:marker.treatmentId,note:'Fictional private release note cross-account denial '+randomUUID(),operationId:randomUUID(),occurredAt:new Date().toISOString()}});
+ assert.equal(denied.status(),404);assert.match(denied.headers()['cache-control']||'',/no-store/);assert.deepEqual(await denied.json(),{error:'treatment_not_found'});
+ const after=await read();for(const key of ['cycles','questionNotes','observations','curve','context'])assert.deepEqual(after[key],before[key],'Foreign-owner denial must not change the existing holder\'s private week state');
+ return{source,synthetic:true,holderA:marker.holderId,holderB:holderId,actualDistinctAccounts:true,firstHolderMarkersAbsent:true,actualForeignTreatmentNoteDenied:404,noStore:true,secondHolderStateUnchanged:true,urls:[site+ROOT+'/week?sources=treatment',site+ROOT+'/week-note'],ordinaryAccountAcceptance:false,hqAcceptance:false};
 }
