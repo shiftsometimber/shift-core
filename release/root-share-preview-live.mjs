@@ -1,3 +1,5 @@
+import {repairHomeSpeed} from '../home-speed-repair.mjs';
+import {CURRENT_HOME_MAIN} from '../home-current-main-private-20261018.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
@@ -20,7 +22,7 @@ export function jpegDimensions(bytes){
 }
 export function verifyRootPreservation(before,after){
  const baseline=new TextDecoder().decode(before),live=new TextDecoder().decode(after);
- assert.equal(live,replaceRootShareImage(baseline),'Only the two approved homepage image URLs may differ');assert.equal(live.split(APPROVED_SHARE_URL).length,3);assert.equal(live.split(LEGACY_SHARE_URL).length,1);return true;
+ const roots=[...baseline.matchAll(/<main\b[\s\S]*?<\/main>/g)],approved=roots.length===1&&roots[0][0]===CURRENT_HOME_MAIN?repairHomeSpeed(baseline,'/',{final:true}):baseline;assert.equal(live,replaceRootShareImage(approved),'Only the two approved homepage image URLs and exact separately approved critical CSS may differ');assert.equal(live.split(APPROVED_SHARE_URL).length,3);assert.equal(live.split(LEGACY_SHARE_URL).length,1);return true;
 }
 export function verifyRootHeadPreservation(before,head){
  assert.equal(before?.path,'/','Actual pre-release homepage HEAD baseline required');assert.equal(head.path,'/');assert.equal(head.body.length,0,'Homepage HEAD must remain bodyless');assert.deepEqual(head.headers,before.headers,'Homepage HEAD policy must match its own pre-release HEAD baseline');return true;
@@ -39,6 +41,6 @@ if(process.argv[1]?.endsWith('root-share-preview-live.mjs')){
   const image=await get(SHARE_PREVIEW_PATH);assert.equal(image.sha256,SHARE_PREVIEW_SHA256);assert.deepEqual(image.body,sharePreviewBytes());assert.deepEqual(jpegDimensions(image.body),{width:1200,height:630});assert.equal(image.headers['content-type'],'image/jpeg');writeFileSync(dir+'/served-share-preview.jpg',image.body);delete image.body;
   const head=await get(SHARE_PREVIEW_PATH,{method:'HEAD'});assert.equal(head.body.length,0);assert.equal(head.headers['content-type'],'image/jpeg');
   const homeHead=await get('/',{method:'HEAD'});verifyRootHeadPreservation(before.rootHead,homeHead);
-  writeFileSync(dir+'/after.json',JSON.stringify({proof:'ROOT_SHARE_EXACT_LIVE_PRESERVATION_20261013',checkedAt:new Date().toISOString(),releaseSource:source,results,image,crawlerRootMatches:true,rootOnlyTwoImageURLsChanged:true,headImageAndRoot:true,existingWhatsAppCardsRefreshGuaranteed:false,emailTestsRun:false,externalMessagesSent:false},null,2));console.log('PASS new1200x630 JPEG/hash, crawler root metadata, GET/HEAD and exact two-link inverse; all6 unrelated routes/assets and security/cache policy unchanged');
+  writeFileSync(dir+'/after.json',JSON.stringify({proof:'ROOT_SHARE_EXACT_LIVE_PRESERVATION_20261013',checkedAt:new Date().toISOString(),releaseSource:source,results,image,crawlerRootMatches:true,rootOnlyTwoImageURLsChanged:new TextDecoder().decode(readFileSync(dir+'/after-0.bin'))===replaceRootShareImage(new TextDecoder().decode(readFileSync(dir+'/before-0.bin'))),separatelyApprovedCriticalCssDelta:new TextDecoder().decode(readFileSync(dir+'/after-0.bin'))!==replaceRootShareImage(new TextDecoder().decode(readFileSync(dir+'/before-0.bin'))),headImageAndRoot:true,existingWhatsAppCardsRefreshGuaranteed:false,emailTestsRun:false,externalMessagesSent:false},null,2));console.log('PASS new1200x630 JPEG/hash, crawler root metadata, GET/HEAD and exact sharing URLs plus separately approved critical CSS; all6 unrelated routes/assets and security/cache policy unchanged');
  }
 }
