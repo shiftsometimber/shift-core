@@ -5,8 +5,7 @@ import {readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,existsSync}
 import {resolve,isAbsolute,dirname} from 'node:path';
 import {homedir} from 'node:os';
 import {createHash} from 'node:crypto';
-import {decodeSeoBlobBatch,readSeoNativeImmutableFacts} from './seo-native-immutable-facts-20261016.mjs';
-import {immutableHistorySourceHead} from './immutable-git-facts.mjs';
+import {decodeSeoBlobBatch} from './seo-native-immutable-facts-20261016.mjs';
 import {verifiedOwnedRuntime} from '../shift-coach/cancelled-release-recovery.mjs';
 
 const policy=JSON.parse(readFileSync(new URL('./recorded-week-navigation-outer-policy-20261018.json',import.meta.url),'utf8'));
@@ -38,6 +37,28 @@ function clean(expected){
  for(const row of git('ls-files','-v','-z').toString('utf8').split('\0').filter(Boolean))assert(row.startsWith('H '),'Hidden/sparse/assume-unchanged source is forbidden');
  const h=head();assert(oid.test(h));if(expected)assert.equal(h,expected,'Actual navigation HEAD moved');return h;
 }
+// This set deduplicates stat-cache preparation only. Every source guard below
+// still executes; no caller output, source admission or approval is cached.
+const preparedNavigationIndexStats=new Set();
+function prepareNativeNavigationIndexStats(){
+ const root=process.cwd(),index=resolve(root,'.git/index'),lock=resolve(root,'.git/index.lock');
+ const entry=lstatSync(index);assert(entry.isFile()&&!entry.isSymbolicLink(),'Ordinary native index required before stat-cache refresh');
+ assert(!existsSync(lock),'An actual source-index writer is active');
+ const rawHead=clean(),identity=()=>JSON.stringify([root,rawHead,sha(readFileSync(index))]);
+ const beforeIdentity=identity();if(preparedNavigationIndexStats.has(beforeIdentity))return;
+ const staged=git('ls-files','--stage','-z'),visible=git('ls-files','-v','-z');
+ // Fresh checkouts can put files and index in the same timestamp second.
+ // A bounded one-second boundary avoids endlessly rehashing an unchanged tree.
+ const wait=Math.floor(lstatSync(index).mtimeMs/1000)*1000+1001-Date.now();
+ if(wait>0&&wait<=1100)Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,wait);
+ git('update-index','--refresh');
+ assert.equal(head(),rawHead,'Actual HEAD moved during stat-cache preparation');
+ assert(git('ls-files','--stage','-z').equals(staged),'Logical staged source changed during stat-cache preparation');
+ assert(git('ls-files','-v','-z').equals(visible),'Source visibility changed during stat-cache preparation');
+ clean(rawHead);
+ preparedNavigationIndexStats.add(identity());
+}
+
 // Recheck current source inputs at every use. No approval, reader or verdict is cached.
 function sourceFileState(filename){
  const s=lstatSync(filename,{throwIfNoEntry:false});if(!s)return null;
@@ -83,26 +104,18 @@ export function nativeNavigationFreshSourceChecker(expected){
  clean(expected);
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
  let context;try{context=freshSourceContext();}catch{context=null;}
- const metadata=()=>{
+ return()=>{
   assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd],native,'Native navigation source functions changed');
   assert.equal(process.cwd(),cwd,'Navigation source working directory moved');
   assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),environment,'Navigation source execution environment changed');
-  if(!context){clean(expected);return false;}
+  if(!context){clean(expected);return;}
+  // Exact current HEAD/ref/index/config/replacement bytes retain all entry
+  // topology, staged-source and index-visibility assertions. Working source
+  // still receives a fresh native Git diff before and after caller reads.
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed');
-  return true;
- };
- const current=()=>{
-  if(!metadata())return;
   assert.equal(text('diff','--no-renames','--name-only','HEAD','--'),'','Fresh navigation working source changed');
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed during current-source check');
  };
- // Only a real enclosing synchronous proof supplies fresh working entry/exit.
- // This hint expires with that proof; callers and explicit checks stay full.
- current.assertCurrentHead=()=>{
-  if(immutableHistorySourceHead()!==expected)return current();
-  metadata();
- };
- return Object.freeze(current);
 }
 
 function object(ref,p){assert(oid.test(ref));path(p);const id=text('rev-parse',ref+':'+p);assert(oid.test(id));return id;}
@@ -145,44 +158,35 @@ function prove(rawHead,editorialOuter=null){
  const record=JSON.parse(content(rawHead,LEDGER)),c=record[KEY];if(!c)return null;
  const{maintenanceSource,...fixed}=data(c);assert.deepEqual(fixed,policy.record);assert.equal(c.base,BASE);assert.equal(c.payload,PAYLOAD);assert.deepEqual(c.paths,fixedPaths);
  assert.deepEqual(c.maintenancePaths,fixedMaintenance);assert.equal(sha(Buffer.from(JSON.stringify(policy.maintenanceEntries))),MAINTENANCE_DECLARATION_SHA256,'Only the exact original guard hooks are admitted');
- // Batch only literal immutable file objects for this one proof. Every mode,
- // blob identity, whole inverse and fresh working-file check below still runs.
- const inversePaths=[...policy.payloadEntries,...policy.maintenanceEntries].filter(e=>!['add','maintenance-add'].includes(e.kind)).map(e=>e.path);
- const immutable=readSeoNativeImmutableFacts({head:rawHead,base:c.base,payload:c.payload,maintenanceSource,paths:c.paths,maintenancePaths:c.maintenancePaths,inversePaths,ledger:LEDGER,includeModes:true});
- const proofBytes=(ref,p)=>Buffer.from(immutable.content(ref,p),'utf8');
-
  for(const r of[c.base,c.payload,maintenanceSource]){assert(oid.test(r));ancestor(r,rawHead);}assert.equal(text('rev-parse',c.base+'^{tree}'),c.baseTree);assert.equal(text('rev-parse',c.payload+'^{tree}'),c.payloadTree);receipt();
  for(const[a,b,paths]of[[c.base,c.payload,c.paths],[c.payload,maintenanceSource,c.maintenancePaths],[maintenanceSource,rawHead,[LEDGER]]]){ancestor(a,b);assert.deepEqual(sorted(diff(a,b)),sorted(paths),'Exact two-path navigation/maintenance/ledger boundary required');}
  assert.deepEqual(sorted(diff(c.base,rawHead)),sorted([...new Set([...c.paths,...c.maintenancePaths,LEDGER])]),'Every unrelated source path must remain exact');
  for(const p of c.paths){
-  assert.equal(immutable.mode(rawHead,p),'100644');assert.equal(immutable.blob(rawHead,p),immutable.blob(c.payload,p));const value=proofBytes(rawHead,p),restored=assertExactNavigationPayload(p,value);
+  assert.equal(mode(rawHead,p),'100644');assert.equal(object(rawHead,p),object(c.payload,p));const value=bytes(rawHead,p),restored=assertExactNavigationPayload(p,value);
   assert(proofRead(resolve(process.cwd(),p)).equals(value),'Fresh navigation working bytes changed');
-  if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(proofBytes(c.base,p)),'Whole original navigation source must restore');
+  if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(bytes(c.base,p)),'Whole original navigation source must restore');
  }
  for(const p of c.maintenancePaths){
-  assert.equal(immutable.mode(rawHead,p),'100644');assert.equal(immutable.blob(rawHead,p),immutable.blob(maintenanceSource,p));const value=proofBytes(rawHead,p);assert(proofRead(resolve(process.cwd(),p)).equals(value),'Fresh maintenance working bytes changed');
+  assert.equal(mode(rawHead,p),'100644');assert.equal(object(rawHead,p),object(maintenanceSource,p));const value=bytes(rawHead,p);assert(proofRead(resolve(process.cwd(),p)).equals(value),'Fresh maintenance working bytes changed');
   const entry=policy.maintenanceEntries.find(x=>x.path===p);assert(entry);const restored=inverse(p,value,entry);
-  if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(proofBytes(c.base,p)),'Every original Core assertion must restore byte for byte: '+p);
+  if(restored===null)assert.equal(text('ls-tree',c.base,'--',p),'');else assert(restored.equals(bytes(c.base,p)),'Every original Core assertion must restore byte for byte: '+p);
  }
- delete record[KEY];assert.deepEqual(record,JSON.parse(immutable.content(c.base,LEDGER)),'Every prior approval, failure, receipt and record must remain exact');
+ delete record[KEY];assert.deepEqual(record,JSON.parse(content(c.base,LEDGER)),'Every prior approval, failure, receipt and record must remain exact');
  for(const p of ['wrangler.jsonc','wrangler.coaching.jsonc','wrangler.hq-management.jsonc','package.json','package-lock.json','.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','shift-coach/worker.mjs','member-experience/treatment-week-client.mjs','my-timber-app','public'])assert.equal(object(rawHead,p),object(c.base,p),'Protected navigation boundary changed: '+p);
  proofClean(rawHead);return c;
 }
 function actualNavigationOuterFrameBeforeEditorial(editorialOuter=null){
- const nativeFacts=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean:navigationNativeCleanBeforeEditorial};
- const {clean}=nativeFacts;
+ const {clean}=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean:navigationNativeCleanBeforeEditorial};
  const rawHead=clean(),env=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),cwd=process.cwd(),c=prove(rawHead,editorialOuter);if(!c)return null;
  const freshCurrent=editorialOuter?clean:nativeNavigationFreshSourceChecker(rawHead);
- const freshHead=editorialOuter?nativeFacts.cleanHead:freshCurrent.assertCurrentHead;
  const assertCurrent=()=>{assert.equal(process.cwd(),cwd);assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env);freshCurrent(rawHead);};
- const assertCurrentHead=()=>{assert.equal(process.cwd(),cwd);assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env);freshHead(rawHead);};
  const finish=()=>{assertCurrent();assert.deepEqual(prove(rawHead,editorialOuter),c);};
  const map=r=>r==='HEAD'||r===rawHead?c.base:r,current=r=>r==='HEAD'||r===rawHead||r===c.base;
  const native=(kind,r,p)=>kind==='read'?object(r==='HEAD'?rawHead:r,p):content(r==='HEAD'?rawHead:r,p);
  const auth=(value,r,p,kind='read')=>{const ref=r==='HEAD'?rawHead:r,expected=native(kind,r,p);if(value===expected||kind==='read'&&value===native('content',r,p))return true;const prefix='tree '+ref+':'+p+'\n',shown=kind==='content'?expected:native('content',r,p);return shown.startsWith(prefix)&&value===shown.replace(prefix,'tree '+r+':'+p+'\n');};
- function projected(kind,source){return(r,p)=>{const guard=source?assertCurrent:assertCurrentHead;guard();try{if(source){const obtain=ref=>{const v=source(ref,p);assert(auth(v,ref,p,kind),'Supplied navigation source changed');return v;};if(current(r)){obtain('HEAD');obtain(rawHead);return obtain(c.base);}return obtain(r);}return kind==='read'?object(map(r),p):content(map(r),p);}finally{guard();}};}
- function binary(kind,source){return(a,b)=>{const guard=source?assertCurrent:assertCurrentHead;guard();try{const obtain=(x,y)=>{const v=kind==='diff'?diff(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y):ancestor(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y);if(source){const supplied=data(source(x,y));if(kind==='diff')assert.deepEqual(sorted(supplied),sorted(v));else assert.notEqual(supplied,false);}return v;};if(source&&current(b)){obtain(a,'HEAD');obtain(a,rawHead);}return obtain(map(a),map(b));}finally{guard();}};}
- const frame={rawHead,head:c.base,record:JSON.parse(content(c.base,LEDGER)),assertCurrent,assertCurrentHead,finish,affected:p=>[...c.paths,...c.maintenancePaths,LEDGER].some(q=>q===p||q.startsWith(p+'/')),currentContent:(r,p)=>content(r==='HEAD'?rawHead:r,p),nativeAuthentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),nativeContentAuthentic:(v,r,p)=>auth(v,r,p,'content'),authentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),read:projected('read',null),blob:projected('read',null),content:projected('content',null),diff:binary('diff',null),ancestor:binary('ancestor',null),projectRead:r=>projected('read',r),projectContent:r=>projected('content',r),projectDiff:r=>binary('diff',r),projectAncestor:r=>binary('ancestor',r)};
+ function projected(kind,source){return(r,p)=>{assertCurrent();try{if(source){const obtain=ref=>{const v=source(ref,p);assert(auth(v,ref,p,kind),'Supplied navigation source changed');return v;};if(current(r)){obtain('HEAD');obtain(rawHead);return obtain(c.base);}return obtain(r);}return kind==='read'?object(map(r),p):content(map(r),p);}finally{assertCurrent();}};}
+ function binary(kind,source){return(a,b)=>{assertCurrent();try{const obtain=(x,y)=>{const v=kind==='diff'?diff(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y):ancestor(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y);if(source){const supplied=data(source(x,y));if(kind==='diff')assert.deepEqual(sorted(supplied),sorted(v));else assert.notEqual(supplied,false);}return v;};if(source&&current(b)){obtain(a,'HEAD');obtain(a,rawHead);}return obtain(map(a),map(b));}finally{assertCurrent();}};}
+ const frame={rawHead,head:c.base,record:JSON.parse(content(c.base,LEDGER)),assertCurrent,assertCurrentHead:assertCurrent,finish,affected:p=>[...c.paths,...c.maintenancePaths,LEDGER].some(q=>q===p||q.startsWith(p+'/')),currentContent:(r,p)=>content(r==='HEAD'?rawHead:r,p),nativeAuthentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),nativeContentAuthentic:(v,r,p)=>auth(v,r,p,'content'),authentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),read:projected('read',null),blob:projected('read',null),content:projected('content',null),diff:binary('diff',null),ancestor:binary('ancestor',null),projectRead:r=>projected('read',r),projectContent:r=>projected('content',r),projectDiff:r=>binary('diff',r),projectAncestor:r=>binary('ancestor',r)};
  frames.add(frame);assertCurrent();return Object.freeze(frame);
 }
 export function assertActualNavigationFrame(frame){assert(frames.has(frame));frame.assertCurrent();return frame;}
@@ -197,7 +201,6 @@ function navigationEditorialProofFacts(outer){
  assertWebsiteEditorialCompletionView(outer);
  const nativeCurrent=nativeNavigationFreshSourceChecker(outer.rawHead);
  return Object.freeze({
-  cleanHead:(expected)=>{outer.assertCurrentHead();nativeCurrent.assertCurrentHead();if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
   clean:(expected)=>{assertWebsiteEditorialCompletionView(outer);nativeCurrent();if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
   readFileSync:filename=>{
    outer.assertCurrent();const full=resolve(filename),prefix=process.cwd()+'/';assert(full.startsWith(prefix),'Only native tracked navigation files may be projected');
@@ -208,15 +211,14 @@ function navigationEditorialProofFacts(outer){
  });
 }
 export function actualNavigationOuterFrame(){
+ prepareNativeNavigationIndexStats();
  const outer=websiteEditorialCompletionHistoricalView();if(!outer)return actualNavigationOuterFrameBeforeEditorial();
  assertWebsiteEditorialCompletionView(outer);const inner=actualNavigationOuterFrameBeforeEditorial(outer);assert(inner,'The admitted predecessor must retain its navigation frame');
  const ref=r=>r==='HEAD'||r===outer.rawHead?'HEAD':r,unary=fn=>(r,p)=>fn(ref(r),p),binary=fn=>(a,b)=>fn(ref(a),ref(b));
  const authentic=(v,r,p)=>outer.nativeAuthentic(v,r,p)||outer.nativeContentAuthentic(v,r,p);
  const frame={...inner,rawHead:outer.rawHead,
-  // The admitted inner check already authenticates this exact outer frame.
-  // Keep one complete outer plus inner check per call, with no caller in between.
-  assertCurrent:inner.assertCurrent,
-  assertCurrentHead:inner.assertCurrentHead,
+  assertCurrent:()=>{outer.assertCurrent();inner.assertCurrent();},
+  assertCurrentHead:()=>{outer.assertCurrentHead();inner.assertCurrentHead();},
   finish:()=>{inner.finish();outer.assertCurrent();},
   affected:p=>outer.affected(p)||inner.affected(p),
   currentContent:outer.currentContent,authentic,nativeAuthentic:authentic,nativeContentAuthentic:outer.nativeContentAuthentic,
