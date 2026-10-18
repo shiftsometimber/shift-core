@@ -12,7 +12,7 @@ export const FOOTER_RUN=36723365840;
 export const HOME_BANNER_PATHS=new Set(['frontend/member/fit-v3-images/sst-header-brand-mark-20261001.png','home-compact-footer.mjs','.github/workflows/home-compact-proof.yml','release/home-compact-proof.cjs','preview/home-banner/free-design.mjs','preview/home-banner/cream-footer.mjs','home-route-banner-legacy.mjs','cream-navigation.mjs','preview/home-banner/four-step.mjs','preview/home-banner/cream-header.mjs','preview/home-banner/verify-spacing.cjs','.github/workflows/cloudflare-production-promote.yml','release/home-banner-live.cjs','home-route-banner.mjs','home-route-font.mjs','public-startup-stability.mjs','release/member-details-preservation.mjs','release/home-banner-scope.mjs','tests/home-route-banner.test.mjs','.github/workflows/home-banner-preview.yml','preview/home-banner/banner.mjs','preview/home-banner/assets/barlow-condensed-700.ttf','preview/home-banner/assets/OFL.txt','preview/home-banner/build.mjs','preview/home-banner/worker.mjs','preview/home-banner/wrangler.jsonc','preview/home-banner/verify.cjs']);
 const read=(ref,p)=>execFileSync('git',['show',ref+':'+p],{encoding:'utf8'});
 export function originalHomeSpeedSource(path,source){
- if(path==='home-speed-repair.mjs'){
+ if(path==='home-speed-repair.mjs'||path==='tests/home-speed-green.test.mjs'){
   const view=currentRuntimePreservationHistoricalView();
   if(view.head!==view.rawHead){const actual=view.currentContent(view.rawHead,path),original=view.content('HEAD',path);assert(source===actual||source===original,'Only exact independently authenticated current or original home speed bytes may enter the historical comparison');if(source===actual)source=original;}
  }
