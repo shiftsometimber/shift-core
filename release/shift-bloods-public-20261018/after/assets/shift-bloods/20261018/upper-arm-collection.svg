@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 210" fill="none">
+  <title>Illustration of an upper-arm collection device</title>
+  <path d="M28 12C46 5 64 8 80 18c25 15 39 38 43 68l13 88c2 13-5 23-17 26-12 3-23-5-26-18L74 104" fill="#e7e3da" fill-opacity=".1" stroke="#b2bba0" stroke-width="2" stroke-linecap="round"/>
+  <path d="M28 12c-11 17-15 33-14 52l47 17c7-19 15-36 29-54C70 11 49 5 28 12Z" fill="#707762" stroke="#b2bba0" stroke-width="2"/>
+  <path d="m18 64 43 17" stroke="#e7e3da" stroke-opacity=".4" stroke-width="2"/>
+  <rect x="92" y="115" width="13" height="36" rx="6.5" fill="#e7e3da" fill-opacity=".5" stroke="#e7e3da" stroke-width="2"/>
+  <circle cx="98" cy="99" r="25" fill="#e7e3da"/>
+  <circle cx="98" cy="99" r="17" fill="#707762"/>
+  <path d="M98 89c-3 5-7 9-7 13a7 7 0 0 0 14 0c0-4-4-8-7-13Z" stroke="#e7e3da" stroke-width="1.7"/>
+</svg>
