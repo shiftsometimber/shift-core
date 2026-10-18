@@ -6,6 +6,7 @@ import {resolve,isAbsolute,dirname} from 'node:path';
 import {homedir} from 'node:os';
 import {createHash} from 'node:crypto';
 import {decodeSeoBlobBatch,readSeoNativeImmutableFacts} from './seo-native-immutable-facts-20261016.mjs';
+import {immutableHistorySourceHead} from './immutable-git-facts.mjs';
 import {verifiedOwnedRuntime} from '../shift-coach/cancelled-release-recovery.mjs';
 
 const policy=JSON.parse(readFileSync(new URL('./recorded-week-navigation-outer-policy-20261018.json',import.meta.url),'utf8'));
@@ -82,18 +83,26 @@ export function nativeNavigationFreshSourceChecker(expected){
  clean(expected);
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
  let context;try{context=freshSourceContext();}catch{context=null;}
- return()=>{
+ const metadata=()=>{
   assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd],native,'Native navigation source functions changed');
   assert.equal(process.cwd(),cwd,'Navigation source working directory moved');
   assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),environment,'Navigation source execution environment changed');
-  if(!context){clean(expected);return;}
-  // Exact current HEAD/ref/index/config/replacement bytes retain all entry
-  // topology, staged-source and index-visibility assertions. Working source
-  // still receives a fresh native Git diff before and after caller reads.
+  if(!context){clean(expected);return false;}
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed');
+  return true;
+ };
+ const current=()=>{
+  if(!metadata())return;
   assert.equal(text('diff','--no-renames','--name-only','HEAD','--'),'','Fresh navigation working source changed');
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed during current-source check');
  };
+ // Only a real enclosing synchronous proof supplies fresh working entry/exit.
+ // This hint expires with that proof; callers and explicit checks stay full.
+ current.assertCurrentHead=()=>{
+  if(immutableHistorySourceHead()!==expected)return current();
+  metadata();
+ };
+ return Object.freeze(current);
 }
 
 function object(ref,p){assert(oid.test(ref));path(p);const id=text('rev-parse',ref+':'+p);assert(oid.test(id));return id;}
@@ -160,17 +169,20 @@ function prove(rawHead,editorialOuter=null){
  proofClean(rawHead);return c;
 }
 function actualNavigationOuterFrameBeforeEditorial(editorialOuter=null){
- const {clean}=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean:navigationNativeCleanBeforeEditorial};
+ const nativeFacts=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean:navigationNativeCleanBeforeEditorial};
+ const {clean}=nativeFacts;
  const rawHead=clean(),env=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),cwd=process.cwd(),c=prove(rawHead,editorialOuter);if(!c)return null;
  const freshCurrent=editorialOuter?clean:nativeNavigationFreshSourceChecker(rawHead);
+ const freshHead=editorialOuter?nativeFacts.cleanHead:freshCurrent.assertCurrentHead;
  const assertCurrent=()=>{assert.equal(process.cwd(),cwd);assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env);freshCurrent(rawHead);};
+ const assertCurrentHead=()=>{assert.equal(process.cwd(),cwd);assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env);freshHead(rawHead);};
  const finish=()=>{assertCurrent();assert.deepEqual(prove(rawHead,editorialOuter),c);};
  const map=r=>r==='HEAD'||r===rawHead?c.base:r,current=r=>r==='HEAD'||r===rawHead||r===c.base;
  const native=(kind,r,p)=>kind==='read'?object(r==='HEAD'?rawHead:r,p):content(r==='HEAD'?rawHead:r,p);
  const auth=(value,r,p,kind='read')=>{const ref=r==='HEAD'?rawHead:r,expected=native(kind,r,p);if(value===expected||kind==='read'&&value===native('content',r,p))return true;const prefix='tree '+ref+':'+p+'\n',shown=kind==='content'?expected:native('content',r,p);return shown.startsWith(prefix)&&value===shown.replace(prefix,'tree '+r+':'+p+'\n');};
- function projected(kind,source){return(r,p)=>{assertCurrent();try{if(source){const obtain=ref=>{const v=source(ref,p);assert(auth(v,ref,p,kind),'Supplied navigation source changed');return v;};if(current(r)){obtain('HEAD');obtain(rawHead);return obtain(c.base);}return obtain(r);}return kind==='read'?object(map(r),p):content(map(r),p);}finally{assertCurrent();}};}
- function binary(kind,source){return(a,b)=>{assertCurrent();try{const obtain=(x,y)=>{const v=kind==='diff'?diff(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y):ancestor(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y);if(source){const supplied=data(source(x,y));if(kind==='diff')assert.deepEqual(sorted(supplied),sorted(v));else assert.notEqual(supplied,false);}return v;};if(source&&current(b)){obtain(a,'HEAD');obtain(a,rawHead);}return obtain(map(a),map(b));}finally{assertCurrent();}};}
- const frame={rawHead,head:c.base,record:JSON.parse(content(c.base,LEDGER)),assertCurrent,assertCurrentHead:assertCurrent,finish,affected:p=>[...c.paths,...c.maintenancePaths,LEDGER].some(q=>q===p||q.startsWith(p+'/')),currentContent:(r,p)=>content(r==='HEAD'?rawHead:r,p),nativeAuthentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),nativeContentAuthentic:(v,r,p)=>auth(v,r,p,'content'),authentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),read:projected('read',null),blob:projected('read',null),content:projected('content',null),diff:binary('diff',null),ancestor:binary('ancestor',null),projectRead:r=>projected('read',r),projectContent:r=>projected('content',r),projectDiff:r=>binary('diff',r),projectAncestor:r=>binary('ancestor',r)};
+ function projected(kind,source){return(r,p)=>{const guard=source?assertCurrent:assertCurrentHead;guard();try{if(source){const obtain=ref=>{const v=source(ref,p);assert(auth(v,ref,p,kind),'Supplied navigation source changed');return v;};if(current(r)){obtain('HEAD');obtain(rawHead);return obtain(c.base);}return obtain(r);}return kind==='read'?object(map(r),p):content(map(r),p);}finally{guard();}};}
+ function binary(kind,source){return(a,b)=>{const guard=source?assertCurrent:assertCurrentHead;guard();try{const obtain=(x,y)=>{const v=kind==='diff'?diff(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y):ancestor(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y);if(source){const supplied=data(source(x,y));if(kind==='diff')assert.deepEqual(sorted(supplied),sorted(v));else assert.notEqual(supplied,false);}return v;};if(source&&current(b)){obtain(a,'HEAD');obtain(a,rawHead);}return obtain(map(a),map(b));}finally{guard();}};}
+ const frame={rawHead,head:c.base,record:JSON.parse(content(c.base,LEDGER)),assertCurrent,assertCurrentHead,finish,affected:p=>[...c.paths,...c.maintenancePaths,LEDGER].some(q=>q===p||q.startsWith(p+'/')),currentContent:(r,p)=>content(r==='HEAD'?rawHead:r,p),nativeAuthentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),nativeContentAuthentic:(v,r,p)=>auth(v,r,p,'content'),authentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),read:projected('read',null),blob:projected('read',null),content:projected('content',null),diff:binary('diff',null),ancestor:binary('ancestor',null),projectRead:r=>projected('read',r),projectContent:r=>projected('content',r),projectDiff:r=>binary('diff',r),projectAncestor:r=>binary('ancestor',r)};
  frames.add(frame);assertCurrent();return Object.freeze(frame);
 }
 export function assertActualNavigationFrame(frame){assert(frames.has(frame));frame.assertCurrent();return frame;}
@@ -185,6 +197,7 @@ function navigationEditorialProofFacts(outer){
  assertWebsiteEditorialCompletionView(outer);
  const nativeCurrent=nativeNavigationFreshSourceChecker(outer.rawHead);
  return Object.freeze({
+  cleanHead:(expected)=>{outer.assertCurrentHead();nativeCurrent.assertCurrentHead();if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
   clean:(expected)=>{assertWebsiteEditorialCompletionView(outer);nativeCurrent();if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
   readFileSync:filename=>{
    outer.assertCurrent();const full=resolve(filename),prefix=process.cwd()+'/';assert(full.startsWith(prefix),'Only native tracked navigation files may be projected');
