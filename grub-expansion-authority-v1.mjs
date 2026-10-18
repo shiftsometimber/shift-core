@@ -1,6 +1,7 @@
 // Shared by both Grub serving surfaces. Verifies legacy database rows before appending the exact independently reviewed seven-row source publication.
 import {appendEverydayPublication} from './grub-everyday-authority-v1.mjs';
 import {applyGrubDiscovery} from './member-experience/grub-discovery.mjs';
+import {applyFullUKCorrections} from './grub-uk-full-authority-20261018.mjs';
 import {appendUKCorePublication} from './grub-uk-core-authority-20261017.mjs';
 import {GRUB_EXPANSION_SERVING_AUTHORITY} from './grub-expansion-serving-manifest-v1.mjs';
 const nutrients = ['kcal','protein_g','carbohydrate_g','fat_g','fibre_g'];
@@ -75,10 +76,10 @@ export async function loadGovernedGrubCatalogue(DB,manifest = GRUB_EXPANSION_SER
     after = results.at(-1).id;
   }
   const authority=await selectGovernedGrubRows(allPublished,manifest);
-  return {allPublished,authority:manifest===GRUB_EXPANSION_SERVING_AUTHORITY?await applyGrubDiscovery(await appendUKCorePublication(await appendEverydayPublication(authority,allPublished))):authority};
+  return {allPublished,authority:manifest===GRUB_EXPANSION_SERVING_AUTHORITY?await applyGrubDiscovery(await applyFullUKCorrections(await appendUKCorePublication(await appendEverydayPublication(authority,allPublished)))):authority};
 }
 
 export function reviewedRecipeMinutes(data) {
-  if ((data?.provenance?.grub_expansion_acceptance?.accepted === true || data?.provenance?.grub_protected_revision?.accepted === true || data?.provenance?.uk_core_publication?.accepted === true) && Number.isFinite(data.total_minutes) && data.total_minutes >= 0) return data.total_minutes;
+  if ((data?.provenance?.grub_expansion_acceptance?.accepted === true || data?.provenance?.grub_protected_revision?.accepted === true || data?.provenance?.uk_core_publication?.accepted === true || data?.provenance?.uk_full_correction?.accepted === true) && Number.isFinite(data.total_minutes) && data.total_minutes >= 0) return data.total_minutes;
   return Number(data?.prep_minutes || 0) + Number(data?.cook_minutes || 0);
 }

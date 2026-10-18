@@ -1,3 +1,4 @@
+import {ACCEPTED_GRUB_FULL_RUNTIME,verifyCurrentAcceptedGrubFullRuntimeWindow,acceptedGrubFullCurrentStartingPoint,assertSameAcceptedGrubFullCurrentWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {UK_GRUB_SPEED_OWNED_ROLLBACK,verifyCurrentUkGrubSpeedOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {UK_GRUB_OWNED_ROLLBACK,verifyCurrentUkGrubOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_UK_RUNTIME,ACCEPTED_GRUB_UK_RUNTIME_KIND,verifyCurrentAcceptedGrubUkRuntimeWindow,assertSameAcceptedGrubUkCurrentWindow,acceptedGrubUkCurrentStartingPoint} from './accepted-current-runtime-starting-point-20261017.mjs';
@@ -43,6 +44,12 @@ if(active.id===UK_GRUB_SPEED_OWNED_ROLLBACK.deployment.id){
  const refreshedProof=await verifyCurrentUkGrubOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
  assertSameOwnedRollbackReceipt(baselineRecord.ukGrubOwnedRollbackProof,refreshedProof);
  point=ownedRollbackStartingPoint(refreshedProof,active);
+}else if(active.id===ACCEPTED_GRUB_FULL_RUNTIME.deployment){
+ assert(baselineRecord.acceptedGrubFullServingProof,'Exact accepted UK Grub recovery receipt required');
+ acceptedGrubFullCurrentStartingPoint(baselineRecord.acceptedGrubFullServingProof,active);
+ const refreshedProof=await verifyCurrentAcceptedGrubFullRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameAcceptedGrubFullCurrentWindow(baselineRecord.acceptedGrubFullServingProof,refreshedProof);
+ point=acceptedGrubFullCurrentStartingPoint(refreshedProof,active);
 }else if(active.id===ACCEPTED_GRUB_UK_RUNTIME.deployment){
  assert(baselineRecord.acceptedGrubUkServingProof,'Exact accepted UK Grub recovery receipt required');
  acceptedGrubUkCurrentStartingPoint(baselineRecord.acceptedGrubUkServingProof,active);

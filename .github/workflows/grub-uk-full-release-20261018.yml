@@ -1,0 +1,67 @@
+name: Full UK Grub Catalogue Bounded Runtime Release
+on:
+  push:
+    branches: [release/grub-uk-full-restored-20261018]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Reproduce the unchanged production compiler environment
+        run: |
+          npm ci --ignore-scripts
+          node -e "require('node:assert/strict').equal(require('./node_modules/wrangler/package.json').version,'4.112.0')"
+      - name: Retain the original immutable book-voice approval fixture used by its unchanged test
+        run: git fetch --no-tags origin 83da3fcac344281147e9dab147aa7018e90b8158
+      - name: Prove exact finite Grub source and unchanged owned-release/privacy/stock guards
+        run: node --test --test-concurrency=1 --test-reporter=tap tests/grub-uk-full-source-20261018.test.mjs tests/grub-uk-full-owned-release-20261018.test.mjs
+      - name: Prove actual Grub state, preferences, repetitions, shopping, catalogue and exclusions
+        run: |
+          node --test --test-concurrency=1 --test-reporter=tap member-experience/tests/grub-ease.test.mjs member-experience/tests/grub-effort-repeat.test.mjs member-experience/tests/grub-everyday.test.mjs member-experience/tests/grub-workspace.test.mjs member-experience/tests/grub-intelligence.test.mjs member-experience/tests/grub-current-adjustment.test.mjs member-experience/tests/grub-renderer-bundle.test.mjs member-experience/tests/grub-week-variety.test.mjs member-experience/tests/grub-search.test.mjs member-experience/tests/grub-everyday-publication.test.mjs member-experience/tests/grub-everyday-drafts.test.mjs tests/grub-expansion-publication.test.mjs tests/catalogue-publication-built-release.test.mjs tests/book-voice.test.mjs member-experience/tests/grub-uk-discovery.test.mjs member-experience/tests/grub-uk-waiver.test.mjs member-experience/tests/grub-uk-full.test.mjs
+      - name: Install the exact qualified browser verifier without changing source package files
+        run: |
+          npm install --prefix /tmp/grub-browser --no-save --ignore-scripts --no-audit --no-fund playwright@1.63.0
+          ln -s /tmp/grub-browser/node_modules/playwright node_modules/playwright
+          /tmp/grub-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Verify real Grub browser controls, failure/retry, remembered effort, repeats and account isolation
+        run: |
+          GRUB_EASE_OUT=grub-uk-full-runtime-release/browser-ease node member-experience/tests/grub-ease-browser.mjs
+          GRUB_EASE_OUT=grub-uk-full-runtime-release/browser-effort node member-experience/tests/grub-effort-repeat-browser.mjs
+      - name: Verify actual UK discovery and recipe detail browser
+        run: GRUB_EASE_OUT=grub-uk-full-runtime-release/browser-uk node member-experience/tests/grub-uk-discovery-browser.mjs
+      - name: Verify exact Core upload and retained actual restored Core/HQ before traffic
+        id: prepare
+        run: node release/grub-uk-full-owned-release-20261018.mjs prepare
+      - name: Deploy only the exact prepared everyday Grub Core version
+        id: deploy
+        run: node release/grub-uk-full-owned-release-20261018.mjs deploy
+      - name: Verify actual serving Grub script, privacy, owned Core, retained HQ and protected stock
+        run: node release/grub-uk-full-owned-release-20261018.mjs verify
+      - name: Restore only exact failed Grub ownership to the actual captured predecessor
+        if: ${{ always() && (failure() || cancelled()) && steps.prepare.outcome == 'success' }}
+        run: node release/grub-uk-full-owned-release-20261018.mjs rollback
+      - name: Retain actual provider, browser, serving and owned rollback evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grub-uk-full-runtime-release-${{ github.run_id }}
+          path: grub-uk-full-runtime-release/
+          if-no-files-found: warn
+          retention-days: 90

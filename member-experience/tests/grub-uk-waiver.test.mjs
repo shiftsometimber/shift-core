@@ -17,11 +17,12 @@ test('exact owner waiver never masquerades as independent human or kitchen revie
 test('actual owner-authorised publication gives four ordered UK pizzas and preserves all old identities',async()=>{
  const authority=read('member-experience/tests/fixtures/uk-grub-public-witnesses-20261017.json').authority;
  const before=JSON.stringify(authority),extended=await appendUKCorePublication(authority);
- const curated=await applyGrubDiscovery(extended);assert.equal(JSON.stringify(authority),before);assert.equal(extended.rows.length,authority.rows.length+14);
+ const {applyFullUKCorrections}=await import('../../grub-uk-full-authority-20261018.mjs');const corrected=await applyFullUKCorrections(extended);
+ const curated=await applyGrubDiscovery(corrected);assert.equal(JSON.stringify(authority),before);assert.equal(extended.rows.length,authority.rows.length+14);
  const recipes=enrichGrubRecipes(curated.rows),found=searchGrubRecipes({query:'pizza'},recipes);
- assert.deepEqual(found.top.map(x=>x.name),['Margherita pizza with side salad','Pepperoni pizza with side salad','Ham and pineapple pizza with side salad','Mushroom pizza with side salad']);
- for(const r of found.top){assert.equal(r.servings,2);assert.equal(r.minutes,25);assert.equal(r.image,null);assert.equal(r.timing_is_estimate,true);}
- assert.equal(recipes.filter(r=>r.discovery.eligible).length,46);
+ assert.deepEqual(found.top.slice(0,4).map(x=>x.name),['Margherita pizza with side salad','Pepperoni pizza with side salad','Ham and pineapple pizza with side salad','Mushroom pizza with side salad']);
+ for(const r of found.top.slice(0,4)){assert.equal(r.servings,2);assert.equal(r.minutes,25);assert.equal(r.image,null);assert.equal(r.timing_is_estimate,true);}
+ assert.equal(recipes.filter(r=>r.discovery.eligible).length,47);
  const curry=memberRecipe(recipes.find(r=>r.id==='uk-core-chickpea-spinach-curry'));assert.match(curry.allergen_note,/peanuts/);assert.equal(filterRecipe(curry,'vegetarian'),false);
  const changed=structuredClone(publication);changed.items[0].review.human_review_claimed=true;await assert.rejects(()=>appendUKCorePublication(authority,changed));
  assert.equal(memberRecipe(pack.candidates[0]),null);
