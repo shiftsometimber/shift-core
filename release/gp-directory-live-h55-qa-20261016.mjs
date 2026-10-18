@@ -5,7 +5,18 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 import {createRequire} from 'node:module';
 import {compiledTreatmentAssets} from '../../runtime/release/my-treatment-compiled-control.mjs';
-import {originalGpNativeContract} from './gp-h55-live-qa-20261016.mjs';
+function originalGpNativeContract(){
+ const require=createRequire(import.meta.url),{execFileSync}=require('node:child_process'),{resolve}=require('node:path'),{fileURLToPath}=require('node:url');
+ const policy=JSON.parse(readFileSync(new URL('./gp-h55-live-qa-policy-20261016.json',import.meta.url),'utf8')),row=policy.originalGpContract;
+ assert.equal(row.source,'b6f9c0c36d4303e5d384fb2d62b58968b998aa64');assert.equal(row.path,'release/gp-directory-live-contract-20261015.mjs');
+ const root=resolve(dirname(fileURLToPath(import.meta.url)),'../../runtime');
+ const native=(...args)=>execFileSync('/usr/bin/git',['--no-replace-objects','-C',root,...args]);
+ assert.equal(native('rev-parse',row.source+':'+row.path).toString().trim(),row.blob);
+ const body=native('show',row.source+':'+row.path);
+ assert.equal(createHash('sha256').update(body).digest('hex'),row.sha256,'Whole unchanged native original GP contract required');
+ assert.equal(createHash('sha1').update('blob '+body.length+'\0').update(body).digest('hex'),row.blob);
+ return body.toString('base64');
+}
 const {assertGpHolder,assertGpSave,assertGpRequest,assertDirectoryResult,gpView,GP_FIELDS,GP_SITE,GP_API}=await import('data:text/javascript;base64,'+originalGpNativeContract());
 
 import {chooseNecessaryCookies} from '../../runtime/rendered-member-acceptance-support.mjs';
