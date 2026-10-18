@@ -1,3 +1,4 @@
+import {UK_GRUB_OWNED_ROLLBACK,verifyCurrentUkGrubOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_UK_RUNTIME,ACCEPTED_GRUB_UK_RUNTIME_KIND,verifyCurrentAcceptedGrubUkRuntimeWindow,assertSameAcceptedGrubUkCurrentWindow,acceptedGrubUkCurrentStartingPoint} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_RUNTIME,ACCEPTED_GRUB_RUNTIME_KIND,verifyCurrentAcceptedGrubRuntimeWindow,assertSameAcceptedGrubCurrentWindow,acceptedGrubCurrentStartingPoint} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {RECORDED_WEEK_OWNED_ROLLBACK,verifyCurrentRecordedWeekOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
@@ -29,7 +30,13 @@ const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 const baselineRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
 let point;
-if(active.id===ACCEPTED_GRUB_UK_RUNTIME.deployment){
+if(active.id===UK_GRUB_OWNED_ROLLBACK.deployment.id){
+ assert(baselineRecord.ukGrubOwnedRollbackProof,'Exact failed39079375654 owned UK rollback recovery receipt required');
+ ownedRollbackStartingPoint(baselineRecord.ukGrubOwnedRollbackProof,active);
+ const refreshedProof=await verifyCurrentUkGrubOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameOwnedRollbackReceipt(baselineRecord.ukGrubOwnedRollbackProof,refreshedProof);
+ point=ownedRollbackStartingPoint(refreshedProof,active);
+}else if(active.id===ACCEPTED_GRUB_UK_RUNTIME.deployment){
  assert(baselineRecord.acceptedGrubUkServingProof,'Exact accepted UK Grub recovery receipt required');
  acceptedGrubUkCurrentStartingPoint(baselineRecord.acceptedGrubUkServingProof,active);
  const refreshedProof=await verifyCurrentAcceptedGrubUkRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
