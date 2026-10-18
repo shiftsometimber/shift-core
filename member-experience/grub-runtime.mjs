@@ -3,7 +3,7 @@ import {recipeSource} from './grub-client.mjs';
 import {grubIntelligenceClient} from './grub-intelligence-client.mjs';
 export const grubRuntime=String.raw`(()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let workspace=null,busy=false,activeFilter='',sequence=0,ingredients=[],pending=null;
+let workspace=null,busy=false,activeFilter='',sequence=0,pageOffset=0,ingredients=[],pending=null;
 const known=new Map(),notice=$('#grubAccountStatus');if(!notice)return;
 const remember=list=>(list||[]).forEach(r=>known.set(r.id,r));
 async function api(path,body){const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),20000);try{
@@ -21,7 +21,7 @@ function card(r,entry){
  if(entry)html=html.replace('<small>', '<small>Day '+entry.day+' · '+esc(entry.slot)+' · '+entry.servings+' serving'+(entry.servings===1?'':'s')+' · ').replace('</article>','<p>Recipe quantities above serve '+r.servings+'. The shopping list is scaled to your '+entry.servings+' serving'+(entry.servings===1?'':'s')+'.</p><div class="grub-actions"><button data-food-write data-food-swap="'+esc(entry.key)+'">Swap this meal</button><button data-food-write data-food-remove="'+esc(entry.key)+'">Remove meal</button></div></article>');
  return html;
 }
-function renderResults(host,result){remember(result.top);host.innerHTML='<p class="grub-result-message" role="status">'+esc(result.message)+'</p>'+(result.top?.length?result.top.map(r=>card(r)).join(''):'<div class="grub-empty">Try one ingredient or clear the filter.</div>');lock()}
+function renderResults(host,result){remember(result.top);host.innerHTML='<p class="grub-result-message" role="status">'+esc(result.message)+'</p>'+(result.top?.length?result.top.map(r=>card(r)).join(''):'<div class="grub-empty">Try one ingredient or clear the filter.</div>')+(host.id==='grubDiscoverResults'&&result.total>12?'<nav aria-label="Recipe pages" style="grid-column:1/-1;display:flex;gap:12px;flex-wrap:wrap"><button data-food-page="'+Math.max(0,(result.offset||0)-12)+'" '+(result.offset?'':'disabled')+'>Previous recipes</button><span>Page '+(Math.floor((result.offset||0)/12)+1)+' of '+Math.ceil(result.total/12)+'</span><button data-food-page="'+((result.offset||0)+12)+'" '+(result.has_more?'':'disabled')+'>Next recipes</button></nav>':'');lock()}
 function showToday(){if(location.hash!=='#today')return;open('discover');const r=known.get(workspace?.today?.recipeId);if(r){$('#grubDiscoverResults').innerHTML='<h2>Chosen for '+esc(workspace.today.date)+'</h2>'+card(r);$('#grubDiscoverResults').scrollIntoView({block:'start'});lock()}}
 window.addEventListener('hashchange',()=>{open(location.hash.slice(1));showToday()});
 function draw(){
@@ -48,10 +48,11 @@ async function mutate(action,success){
  finally{busy=false;lock();if(focusData&&!focus.isConnected){const target=$$('[data-food-write]').find(b=>b.getClientRects().length&&Object.entries(focusData).every(([k,v])=>b.dataset[k]===v))||(action.action==='set-effort'?$('#grubRecommendation .grub-effort-picker>summary'):action.action==='recommendation-next'?$('#grubRecommendation [data-food-next]'):['choose-and-shop','repeat-and-shop'].includes(action.action)?$('#grubRecommendation .grub-pick-shopping'):null)||$$('[data-grub-tab]').find(b=>b.getAttribute('aria-selected')==='true');target?.focus({preventScroll:true});target?.scrollIntoView({behavior:'instant',block:'nearest'})}}
 }
 $('#grubReload').onclick=load;
-async function discover(){const n=++sequence;$('#grubDiscoverResults').textContent='Finding recipes…';try{const r=await api('search',{mode:'discover',query:$('#grubSearch').value.trim(),filter:activeFilter});if(n===sequence)renderResults($('#grubDiscoverResults'),r)}catch(e){if(n===sequence)$('#grubDiscoverResults').textContent=e.message}}
+async function discover(){const n=++sequence;$('#grubDiscoverResults').textContent='Finding recipes…';try{const r=await api('search',{mode:'discover',query:$('#grubSearch').value.trim(),filter:activeFilter,offset:pageOffset});if(n===sequence)renderResults($('#grubDiscoverResults'),r)}catch(e){if(n===sequence)$('#grubDiscoverResults').textContent=e.message}}
+$('#grubDiscoverResults').addEventListener('click',e=>{const b=e.target.closest('[data-food-page]');if(!b||b.disabled)return;pageOffset=Number(b.dataset.foodPage);discover();$('#grubDiscoverResults').scrollIntoView({block:'start'})});
 $('#grubSearchGo').onclick=discover;$('#grubSearch').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();discover()}};
-$('#grubSearch').addEventListener('input',()=>{activeFilter='';++sequence;$$('[data-filter]').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false')})});
-$$('[data-filter]').forEach(b=>b.onclick=()=>{activeFilter=activeFilter===b.dataset.filter?'':b.dataset.filter;$$('[data-filter]').forEach(x=>{const on=x.dataset.filter===activeFilter;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});discover()});
+$('#grubSearch').addEventListener('input',()=>{activeFilter='';pageOffset=0;++sequence;$$('[data-filter]').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false')})});
+$$('[data-filter]').forEach(b=>b.onclick=()=>{pageOffset=0;activeFilter=activeFilter===b.dataset.filter?'':b.dataset.filter;$$('[data-filter]').forEach(x=>{const on=x.dataset.filter===activeFilter;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});discover()});
 function drawChips(){$('#sgIngredientChips').innerHTML=ingredients.map((x,i)=>'<button data-remove="'+i+'">'+esc(x)+' ×</button>').join('')}
 `+ingredientClient+String.raw`
 $('#sgIngredientChips').onclick=e=>{const b=e.target.closest('[data-remove]');if(b){ingredients.splice(+b.dataset.remove,1);drawChips()}};
