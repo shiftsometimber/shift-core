@@ -31,12 +31,13 @@
     ],
     "priority": 29,
     "outline": [
-      "Question before panel",
-      "fatigue",
-      "preparation",
-      "interpretation and follow-up"
+      "Answer what blood tests can and cannot establish; distinguish testing from a clinical assessment using the supplied NHS sources",
+      "Supply an actual appointment-preparation sheet: symptom or question, when it began, relevant changes, medicines or supplements, what has already been checked, and the question the reader wants answered",
+      "Provide one explicitly fictional completed appointment note for persistent tiredness, without inventing a diagnosis or promising a test will reveal the cause",
+      "Give the reader specific questions to ask before paying: which clinical question, test suitability and preparation, who interprets, who contacts them, escalation and total included cost; do not claim SHIFT arrangements or prices",
+      "Explain a practical follow-up conversation if results are normal but symptoms continue; retain appropriate GP assessment and limitations"
     ],
-    "original_value": "Question-led testing worksheet and corrected fasting language",
+    "original_value": "A usable appointment-preparation sheet, a completed fictional tiredness note and a pre-purchase question checklist. Add these completed tools beyond any existing general blood-test explanation.",
     "commercial_context": "SHIFT Bloods education; purchase CTA remains held until service acceptance",
     "demand_basis": "editorial_hypothesis"
   },
@@ -68,7 +69,7 @@
     "source_urls": [
       "https://www.lilly.com/news/stories/what-to-know-about-retatrutide",
       "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
-      "https://clinicaltrials.gov/"
+      "https://clinicaltrials.gov/api/v2/studies/NCT05929066"
     ],
     "priority": 27,
     "outline": [
@@ -82,22 +83,25 @@
     "demand_basis": "editorial_hypothesis"
   },
   {
-    "question": "Packed lunches for weight management when there is no microwave",
-    "audience": "Practical nutrition help",
+    "question": "What can I pack for lunch when there is no microwave at work?",
+    "audience": "UK men choosing an ordinary work lunch; general food planning, not a personal diet prescription",
     "cluster": "Nutrition",
     "target_url": "https://shiftsometimber.co.uk/articles/healthy-packed-lunches-no-microwave",
     "source_urls": [
       "https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/",
-      "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely"
+      "https://www.gov.uk/government/publications/how-to-chill-freeze-and-defrost-food-safely/how-to-chill-freeze-and-defrost-food-safely",
+      "https://www.gov.uk/government/publications/food-safety-in-a-heatwave-advice-for-consumers/food-safety-in-a-heatwave-advice-for-consumers"
     ],
     "priority": 26,
     "outline": [
-      "Storage access",
-      "five combinations",
-      "whole meal",
-      "buy for two lunches and review"
+      "Answer the no-microwave question directly and check fridge or cold-storage access first",
+      "Give five complete illustrative cold lunches with named ordinary supermarket ingredients, not broad food categories",
+      "Explain how the examples combine food groups using the supplied NHS guidance, without claiming that a lunch causes weight loss",
+      "Name two of the example lunches as Day 1 and Day 2, then supply the actual shared shopping list for those two named lunches, showing the reused ingredients",
+      "Explain relevant storage and transport guidance from the supplied sources, preserving context: a preparation-time maximum is not a guarantee for lunch left unrefrigerated; distinguish hot-weather guidance where used",
+      "End with a simple facilities-first choice the reader can make today"
     ],
-    "original_value": "Facilities-first lunch choices and a two-day shopping exercise",
+    "original_value": "A facilities-first choice sheet, five named complete cold-lunch examples and an actual shared shopping list for two lunches. Deliver those items in the article, not advice to create them. No calorie targets, nutritional calculations or tested-recipe claims.",
     "commercial_context": "Free Grub use; no supplement or meal upsell",
     "demand_basis": "editorial_hypothesis"
   },
@@ -108,16 +112,18 @@
     "target_url": "https://shiftsometimber.co.uk/articles/beginner-walking-plan-men",
     "source_urls": [
       "https://www.nhs.uk/live-well/exercise/walking-for-health/",
-      "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/"
+      "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/",
+      "https://www.nhs.uk/symptoms/shortness-of-breath/"
     ],
     "priority": 25,
     "outline": [
-      "Route before target",
-      "first week",
-      "effort and recovery",
-      "review and next step"
+      "Answer briefly: choose a manageable route and a realistic opportunity, using general NHS guidance rather than a prescribed target",
+      "Supply an actual reusable route-planning sheet with named fields: opportunity, route, turning-back option, facilities or weather alternative, and company preference",
+      "Show one completed clearly fictional planning-sheet example for a shift worker; describe logistics and an adaptable choice, not a promised health outcome or exercise prescription",
+      "Supply actual after-walk review questions and a worked decision example showing repeat, change the route or ask for advice; include a smaller logistical alternative if the plan did not fit",
+      "Preserve the existing guide’s appropriate suitability and concerning-symptom cautions using the supplied NHS sources; keep clinical decisions with a qualified professional"
     ],
-    "original_value": "Route selection, flexible first-week table and bad-weather fallback",
+    "original_value": "A copyable route-planning and after-walk review sheet, plus a completed fictional shift-worker example. The existing canonical already explains gradual walking; repeating its first-fortnight advice is insufficient.",
     "commercial_context": "Free Fit discovery; clinical suitability independent",
     "demand_basis": "editorial_hypothesis"
   },
@@ -147,7 +153,7 @@
     "cluster": "GLP",
     "target_url": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
     "source_urls": [
-      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.medicines.org.uk/emc/product/13803/pil",
       "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
     ],
     "priority": 23,
@@ -270,7 +276,7 @@
     "source_urls": [
       "https://www.lilly.com/news/stories/what-to-know-about-retatrutide",
       "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
-      "https://clinicaltrials.gov/"
+      "https://clinicaltrials.gov/api/v2/studies/NCT05929066"
     ],
     "priority": 17,
     "outline": [
@@ -350,7 +356,7 @@
     "cluster": "GLP",
     "target_url": "https://shiftsometimber.co.uk/articles/wegovy-not-working",
     "source_urls": [
-      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.medicines.org.uk/emc/product/13803/pil",
       "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
     ],
     "priority": 13,
@@ -451,7 +457,7 @@
     "cluster": "GLP",
     "target_url": "https://shiftsometimber.co.uk/articles/missed-wegovy-dose",
     "source_urls": [
-      "https://www.medicines.org.uk/emc/product/15482/pil",
+      "https://www.medicines.org.uk/emc/product/13803/pil",
       "https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery"
     ],
     "priority": 8,
@@ -553,7 +559,7 @@
     "source_urls": [
       "https://www.lilly.com/news/stories/what-to-know-about-retatrutide",
       "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
-      "https://clinicaltrials.gov/"
+      "https://clinicaltrials.gov/api/v2/studies/NCT05929079"
     ],
     "priority": 3,
     "outline": [
