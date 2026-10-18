@@ -26,7 +26,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Daily draft safety and original knowledge ingestion
         run: |
-          node --test daily-content/engine.test.mjs daily-content/editorial.test.mjs babylove/dynamic-public.test.mjs babylove/article-sitemap.test.mjs tests/ai-site-knowledge.test.mjs
+          node --test daily-content/engine.test.mjs daily-content/editorial.test.mjs tests/ai-site-knowledge.test.mjs babylove/*.test.mjs
           node knowledge-flywheel-staging.mjs
       - name: Compile existing Worker without uploading or activating
         run: npx wrangler deploy --config wrangler.jsonc --dry-run --outdir "$RUNNER_TEMP/daily-content-compiled"

@@ -1,4 +1,4 @@
-import {editorialPublication,editorialDiscovery} from '../daily-content/publication.mjs';
+import {publicArticlePublication,editorialDiscovery} from '../daily-content/publication.mjs';
 import {publicHeader,publicDrawer,publicFooter} from '../public-shell-contract.mjs';
 import {withArticleResponsePolicy} from './response-policy.mjs';
 
@@ -55,8 +55,7 @@ export function renderMarkdown(markdown,title='',slug=''){
 }
 export async function dynamicBabyLovePublication(env,slug){
  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||!env.DB)return null;
- const editorial=await editorialPublication(env,slug);if(editorial?.editorialBlocked)return null;if(editorial)return editorial;
- try{return await env.DB.prepare(`SELECT a.id,a.title,a.slug,a.category,a.author,a.status,a.summary,a.body,a.seo_title,a.publish_at,a.updated_at,b.source_id FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.slug=? AND a.status='published' AND a.publish_at IS NOT NULL AND julianday(a.publish_at)<=julianday('now')`).bind(slug).first()}catch{return null}
+ const row=await publicArticlePublication(env,slug);return row?.editorialBlocked?null:row;
 }
 export function representativeImage(row){
  // Use an image already in the published copy, never a fabricated article image.

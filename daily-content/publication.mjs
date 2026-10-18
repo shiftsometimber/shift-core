@@ -25,13 +25,32 @@ export async function ensureEditorialSchema(DB){
  `CREATE INDEX IF NOT EXISTS idx_editorial_release_state ON knowledge_editorial_releases(state,due_at)`];
  for(const q of sql)await DB.prepare(q).run();
 }
+async function acceptedEditorialRow(a,now){
+ if(!a||a.policy!==POLICY)return null;
+ if(!['published','verified'].includes(a.editorial_state)){const old=JSON.parse(a.previous_json||'null');return old&&frozenArticle(a)===frozenArticle(old)?null:{editorialBlocked:true};}
+ if(Date.parse(a.editorial_due_at)>now||await digest(frozenArticle(a))!==a.final_sha256)return {editorialBlocked:true};
+ return {...a,source_id:'shift-editorial',editorial:true};
+}
 export async function editorialPublication(env,slug,{now=Date.now()}={}){
  if(!env.DB||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))return null;
  try{
  const a=await env.DB.prepare(`SELECT a.*,r.final_sha256,r.policy,r.due_at editorial_due_at,r.published_at editorial_published_at,r.state editorial_state,r.previous_json FROM knowledge_articles a JOIN knowledge_editorial_releases r ON r.article_id=a.id AND r.slug=a.slug WHERE a.slug=? AND a.status='published' AND r.policy=? AND a.publish_at IS NOT NULL`).bind(slug,POLICY).first();
- if(!a||a.policy!==POLICY)return null;if(!['published','verified'].includes(a.editorial_state)){const old=JSON.parse(a.previous_json||'null');return old&&frozenArticle(a)===frozenArticle(old)?null:{editorialBlocked:true};}if(Date.parse(a.editorial_due_at)>now||await digest(frozenArticle(a))!==a.final_sha256)return {editorialBlocked:true};
- return {...a,source_id:'shift-editorial',editorial:true};
+ return acceptedEditorialRow(a,now);
  }catch{return null;}
+}
+export async function publicArticlePublication(env,slug,{now=Date.now()}={}){
+ if(!env.DB||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))return null;
+ try{
+  // One fresh database snapshot: an editorial lookup must not consume a second
+  // publication read or allow a vendor receipt to bypass an owned failed check.
+  const a=await env.DB.prepare(`SELECT a.*,b.source_id,r.final_sha256,r.policy,r.due_at editorial_due_at,r.published_at editorial_published_at,r.state editorial_state,r.previous_json FROM knowledge_articles a LEFT JOIN babylove_receipts b ON b.slug=a.slug LEFT JOIN knowledge_editorial_releases r ON r.article_id=a.id AND r.slug=a.slug WHERE a.slug=? AND a.status='published' AND a.publish_at IS NOT NULL AND julianday(a.publish_at)<=julianday('now') AND (b.slug IS NOT NULL OR r.token IS NOT NULL)`).bind(slug).first();
+  if(!a)return null;if(a.policy){if(a.policy!==POLICY)return {editorialBlocked:true};const accepted=await acceptedEditorialRow(a,now);return accepted||{...a,editorial:false};}return a;
+ }catch(e){
+  // The journal does not exist before initial activation. A generated article
+  // must never be served through this schema-compatibility path.
+  if(!/no such table: (?:main\.)?knowledge_editorial_releases/i.test(String(e.message)))return null;
+  try{return await env.DB.prepare(`SELECT a.*,b.source_id FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.slug=? AND a.status='published' AND a.author IS NOT 'SHIFT Editorial' AND a.publish_at IS NOT NULL AND julianday(a.publish_at)<=julianday('now')`).bind(slug).first();}catch{return null;}
+ }
 }
 export async function editorialDiscovery(env,{now=Date.now()}={}){
  try{const rows=(await env.DB.prepare(`SELECT slug FROM knowledge_editorial_releases WHERE policy=? AND state IN ('published','verified') AND julianday(due_at)<=julianday(?) ORDER BY due_at DESC LIMIT 100`).bind(POLICY,new Date(now).toISOString()).all()).results||[];

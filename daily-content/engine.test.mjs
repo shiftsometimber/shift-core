@@ -129,4 +129,3 @@ test('unchanged text cannot be labelled a useful daily refresh',()=>{
 test('material drafted target is not automatically rewritten again the following day',async()=>{
  const f=fixture();assert.equal((await runDailyContentDraft(f.env,{now:NOW,fetcher:f.fetcher})).status,'draft_ready');assert.equal((await runDailyContentDraft(f.env,{now:NOW+86400000,fetcher:f.fetcher})).status,'no_publishable_change');assert.equal(f.calls.length,2);
 });
-

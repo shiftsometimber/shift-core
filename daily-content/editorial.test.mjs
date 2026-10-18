@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {ensureEditorialSchema,editorialPublication,digest,frozenArticle,londonRelease,POLICY} from './publication.mjs';
+import {ensureEditorialSchema,editorialPublication,publicArticlePublication,digest,frozenArticle,londonRelease,POLICY} from './publication.mjs';
 import {generateEditorialArticle,publishDueEditorial,notifyEditorial,validateEditorialDraft} from './editorial.mjs';
 import {publicEditorialUrl,primaryEvidenceUrl,refreshEditorialCorpus} from './corpus.mjs';
 import {articleHTML,dynamicBabyLovePublication} from '../babylove/dynamic-public.mjs';
@@ -56,7 +56,7 @@ test('real SQL generation and due-time publication remain distinct; overlap and 
  assert.equal(await editorialPublication(f.env,'packed-lunch-example',{now:BEFORE}),null);
  assert.equal((await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE-1})).status,'not_due');
  const both=await Promise.all([publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE}),publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE})]);assert(both.some(x=>x.status==='verified'),JSON.stringify(both));
- const live=await editorialPublication(f.env,'packed-lunch-example',{now:DUE});assert.equal(live.author,'SHIFT Editorial');assert.equal(live.publish_at,'2026-03-23');assert.equal(f.sends(),1);
+ const live=await editorialPublication(f.env,'packed-lunch-example',{now:DUE});assert.equal((await publicArticlePublication(f.env,'packed-lunch-example',{now:DUE})).editorial,true);assert.equal(live.author,'SHIFT Editorial');assert.equal(live.publish_at,'2026-03-23');assert.equal(f.sends(),1);
  await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE+60000});assert.equal(f.sends(),1);assert.equal((await f.DB.prepare(`SELECT count(*) n FROM knowledge_articles`).first()).n,1);f.sqlite.close();
 });
 test('unsupported claims hold before review/publication and never become trusted published knowledge',async()=>{
