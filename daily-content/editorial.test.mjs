@@ -14,9 +14,9 @@ const makeDraft=()=>({question:QUESTION,title:'A packed lunch plan for a changin
 const pass=()=>({decision:'PASS',claims_supported:true,distinct_intent:true,useful_original_answer:true,safe_general_information:true,sources_visible:true,honest_authorship:true,medicine_advertising_safe:true,internal_links_appropriate:true,issues:[]});
 const sourceText='This synthetic evidence fixture advises following ingredient storage instructions. It does not establish medical outcomes. '.repeat(7);
 function html(url,title='Existing public planning page',content=paragraph.repeat(3)){
- return '<!doctype html><html><head><title>'+title+'</title><link rel="canonical" href="'+url+'"><script type="application/ld+json">{"datePublished":"2026-03-23","dateModified":"2026-10-19"}</script></head><body><main><h1>'+title+'</h1><p>'+content+'</p><a href="'+PRIMARY+'">Primary source</a></main></body></html>';
+ return '<!doctype html><html><head><title>'+title+'</title><link rel="canonical" href="'+url+'"><script type="application/ld+json">{"datePublished":"2026-03-23","dateModified":"2026-10-01"}</script></head><body><main><h1>'+title+'</h1><p>'+content+'</p><a href="'+PRIMARY+'">Primary source</a></main></body></html>';
 }
-async function fixture({oldCms=false,unsupported=false,failedVerification=false,sourceChanges=false,sendFails=false,reviewHold=false,truncateBody=false}={}){
+async function fixture({oldCms=false,unsupported=false,failedVerification=false,sourceChanges=false,sendFails=false,reviewHold=false,truncateBody=false,recentlyUpdated=false}={}){
  const sqlite=new DatabaseSync(':memory:');
  sqlite.exec(`CREATE TABLE knowledge_articles(id INTEGER PRIMARY KEY,title TEXT,slug TEXT UNIQUE,category TEXT,author TEXT,status TEXT,summary TEXT,body TEXT,seo_title TEXT,publish_at TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP,updated_at TEXT);
  CREATE TABLE babylove_receipts(slug TEXT PRIMARY KEY,source_id TEXT);
@@ -35,7 +35,7 @@ async function fixture({oldCms=false,unsupported=false,failedVerification=false,
   if(url===ORIGIN+'/sitemap.xml')return new Response('<urlset><url><loc>'+TARGET+'</loc></url><url><loc>'+ORIGIN+'/guides/lunch-planning</loc></url></urlset>',{headers:{'Content-Type':'application/xml'}});
   if(url===ORIGIN+'/explore-knowledge')return new Response('<a href="/articles/packed-lunch-example">Article</a>',{headers:{'Content-Type':'text/html'}});
   if(url===ORIGIN+'/treatment-centre/medicines-watch')return new Response(html(url,'Medicines Watch'),{headers:{'Content-Type':'text/html'}});
-  if(url===TARGET){const a=await editorialPublication(env,'packed-lunch-example',{now:DUE});if(a&&!a.editorialBlocked)return new Response(failedVerification?'<html>broken public page</html>':truncateBody?articleHTML(a).replace(/<h2 id="sources">[\s\S]*?<\/main>/,'</main>'):articleHTML(a),{headers:{'Content-Type':'text/html','X-Shift-Article-Source':'shift-editorial'}});return new Response(html(url),{headers:{'Content-Type':'text/html'}});}
+  if(url===TARGET){const a=await editorialPublication(env,'packed-lunch-example',{now:DUE});if(a&&!a.editorialBlocked)return new Response(failedVerification?'<html>broken public page</html>':truncateBody?articleHTML(a).replace(/<h2 id="sources">[\s\S]*?<\/main>/,'</main>'):articleHTML(a),{headers:{'Content-Type':'text/html','X-Shift-Article-Source':'shift-editorial'}});return new Response(recentlyUpdated?html(url).replace('2026-10-01','2026-10-20'):html(url),{headers:{'Content-Type':'text/html'}});}
   if(url===ORIGIN+'/guides/lunch-planning')return new Response(html(url,'Planning meals around working days'),{headers:{'Content-Type':'text/html'}});
   return new Response('Missing',{status:404});
  };
@@ -90,4 +90,8 @@ test('expired precommit claims recover with bounded attempts and no second model
 });
 test('missed slots persist as failures once rather than appearing as successful publications',async()=>{
  const f=await fixture();for(let i=0;i<2;i++)assert.equal((await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE})).status,'missed_slot');assert.equal((await f.DB.prepare("SELECT count(*) n FROM knowledge_editorial_events WHERE event_type='missed_slot'").first()).n,1);assert.equal((await f.DB.prepare('SELECT count(*) n FROM knowledge_articles').first()).n,0);assert.equal(f.sends(),0);f.sqlite.close();
+});
+
+test('recent substantive canonical updates are preserved rather than automatically rewritten again',async()=>{
+ const f=await fixture({recentlyUpdated:true});const result=await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:BEFORE});assert.equal(result.status,'held');assert.match(result.reason,/preserve_completed_work/);assert.equal(f.calls(),0);f.sqlite.close();
 });

@@ -19,7 +19,7 @@ export async function readablePage(fetcher,url,{primary=false}={}){
    return {url:current,title:j.protocolSection.identificationModule.briefTitle,content:JSON.stringify(j),html:raw,sourceDate:j.protocolSection.statusModule?.lastUpdatePostDateStruct?.date||null,links:[]};
   }
   if(!type.includes('text/html'))throw Error('source_content_type');
-  const main=raw.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1];
+  const main=raw.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]||(primary?raw.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1]:null);
   const title=plainText(raw.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
   const content=plainText(main||'');if(!title||!main||content.length<150||/captcha|access denied|just a moment/i.test(title))throw Error('source_unreadable');
   const canonical=raw.match(/<link\b(?=[^>]*rel=["']canonical["'])[^>]*href=["']([^"']+)/i)?.[1]||null;
@@ -59,7 +59,9 @@ export async function refreshEditorialCorpus(env,{fetcher=fetch,now=Date.now(),l
    await env.DB.prepare(`INSERT INTO knowledge_editorial_page_meta(source_uri,canonical,audience,subject,source_links_json,review_dates_json,publication_date,content_sha256,checked_at,state,reason) VALUES(?,?,'Public readers; narrower audience not declared',?,?,?,?,?,?,'published_site',NULL) ON CONFLICT(source_uri) DO UPDATE SET canonical=excluded.canonical,subject=excluded.subject,source_links_json=excluded.source_links_json,review_dates_json=excluded.review_dates_json,publication_date=excluded.publication_date,content_sha256=excluded.content_sha256,checked_at=excluded.checked_at,state=excluded.state,reason=NULL`).bind(url,url,page.title,JSON.stringify(page.links.filter(primaryEvidenceUrl)),JSON.stringify(page.reviewDates),page.publicationDate,await digest(page.content),stamp).run();refreshed++;
   }catch(e){failed++;await env.DB.prepare(`UPDATE ai_knowledge_documents SET status='editorial_source_failed' WHERE category='shift_public_site' AND source_uri=?`).bind(url).run();await env.DB.prepare(`INSERT INTO knowledge_editorial_page_meta(source_uri,canonical,source_links_json,review_dates_json,content_sha256,checked_at,state,reason) VALUES(?,?,'[]','[]','',?,'failed',?) ON CONFLICT(source_uri) DO UPDATE SET state='failed',reason=excluded.reason,checked_at=excluded.checked_at`).bind(url,url,stamp,String(e.message).slice(0,160)).run();}
  }
- return {discovered:urls.length,refreshed,failed,complete:failed===0&&known.length>=urls.length};
+ const latest=(await env.DB.prepare(`SELECT source_uri,state FROM knowledge_editorial_page_meta`).all()).results||[];
+ const checked=new Set(latest.map(r=>r.source_uri)),available=new Set(latest.filter(r=>r.state==='published_site').map(r=>r.source_uri));
+ return {discovered:urls.length,refreshed,failed,inventoryChecked:urls.every(u=>checked.has(u)),available:urls.filter(u=>available.has(u)).length,complete:urls.every(u=>available.has(u))};
 }
 export async function retrieveEditorialContext(DB,question,limit=8,now=Date.now()){
  const terms=[...new Set(question.toLowerCase().split(/[^a-z0-9]+/).filter(w=>w.length>3))].slice(0,8);

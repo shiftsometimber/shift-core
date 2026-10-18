@@ -61,7 +61,7 @@ export async function verifyEditorialRelease(env,r,{fetcher=fetch,now=Date.now()
  const hub=await fetcher(ORIGIN+'/explore-knowledge',{redirect:'error',signal:AbortSignal.timeout(12000)});
  checks.hub=hub.ok&&(await hub.text()).includes('/articles/'+a.slug);
  if(!Object.values(checks).every(Boolean))throw Error('live_verification_failed:'+Object.entries(checks).filter(([,v])=>!v).map(([k])=>k).join(','));
- const stamp=new Date(now).toISOString(),proof={at:stamp,url,checks,htmlSha256:await digest(html),finalSha256:r.final_sha256,physicalDeviceVerified:false,googleIndexed:false};
+ const stamp=new Date().toISOString(),proof={at:stamp,url,checks,htmlSha256:await digest(html),finalSha256:r.final_sha256,physicalDeviceVerified:false,googleIndexed:false};
  await env.DB.prepare(`UPDATE knowledge_editorial_releases SET state='verified',verified_at=?,verification_json=?,updated_at=? WHERE release_day=? AND token=? AND final_sha256=? AND state='published'`).bind(stamp,JSON.stringify(proof),stamp,r.release_day,r.token,r.final_sha256).run();
  return {a,proof,html};
 }

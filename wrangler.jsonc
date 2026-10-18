@@ -532,10 +532,10 @@
   },
   "triggers": { "crons": ["*/15 * * * *"] },
   "vars": {
-    "DAILY_WEBSITE_CONTENT_ENABLED": "false",
-    "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH": "false",
+    "DAILY_WEBSITE_CONTENT_ENABLED": "true",
+    "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH": "true",
     "DAILY_CONTENT_GATEWAY": "shift-ai",
-    "DAILY_CONTENT_BUDGET_VERIFIED": "false",
+    "DAILY_CONTENT_BUDGET_VERIFIED": "true",
     "DAILY_EDITORIAL_NOTIFY_ENABLED": "false",
     "DAILY_EDITORIAL_NOTIFY_TEMPLATE": "verified-link-v1",
 

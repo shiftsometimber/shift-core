@@ -36,9 +36,10 @@ async function seedBriefs(DB,stamp){
  for(const b of seeds){const key=await digest(b.question.toLowerCase().trim());await DB.prepare(`INSERT OR IGNORE INTO knowledge_editorial_briefs(intent_key,question,audience,cluster,target_url,brief_json,priority,demand_basis,state,created_at,updated_at) VALUES(?,?,?,?,?,?,?,'editorial_hypothesis','planned',?,?)`).bind(key,b.question,b.audience,b.cluster,b.target_url,JSON.stringify(b),b.priority||0,stamp,stamp).run();}
 }
 async function modelRequest(env,job,system,input,schema,max_tokens){
+ const serialized=JSON.stringify(input);if(serialized.length+system.length+JSON.stringify(schema).length>50000)throw Error('complete_evidence_exceeds_model_context_budget');
  const changed=await env.DB.prepare(`UPDATE knowledge_editorial_jobs SET model_calls=model_calls+1 WHERE job_key=? AND token=? AND state='running' AND model_calls<2`).bind(job.key,job.token).run();
  if(Number(changed.meta?.changes||0)!==1)throw Error('job_model_limit');
- const result=await env.AI.run(env.SHIFT_AI_MODEL,{messages:[{role:'system',content:system},{role:'user',content:JSON.stringify(input)}],temperature:0.1,max_tokens,response_format:{type:'json_schema',json_schema:schema}},{gateway:{id:'shift-ai',skipCache:true,collectLog:false}});
+ const result=await env.AI.run(env.SHIFT_AI_MODEL,{messages:[{role:'system',content:system},{role:'user',content:serialized}],temperature:0.1,max_tokens,response_format:{type:'json_schema',json_schema:schema}},{gateway:{id:'shift-ai',skipCache:true,collectLog:false}});
  job.usage.push({model:env.SHIFT_AI_MODEL,usage:result?.usage||null,cost:result?.cost??null,costAvailable:result?.cost!=null});
  return parse(result?.response);
 }
@@ -67,7 +68,9 @@ export async function generateEditorialArticle(env,{fetcher=fetch,now=Date.now()
   try{
    if(!publicEditorialUrl(b.target_url)||!/^https:\/\/shiftsometimber.co.uk\/articles\/[a-z0-9-]+$/.test(b.target_url))throw Error('invalid_canonical_destination');
    const context=await retrieveEditorialContext(DB,b.question,10,now);if(context.length<2)throw Error('insufficient_current_site_context');
-   const corpus=(await DB.prepare(`SELECT source_uri,subject,source_links_json FROM knowledge_editorial_page_meta WHERE state='published_site'`).all()).results||[];
+   const corpus=(await DB.prepare(`SELECT source_uri,subject,source_links_json,review_dates_json FROM knowledge_editorial_page_meta WHERE state='published_site'`).all()).results||[];
+   const owner=corpus.find(p=>p.source_uri===b.target_url);
+   if(owner&&JSON.parse(owner.review_dates_json||'[]').some(d=>Number.isFinite(Date.parse(d))&&Date.parse(d)>now-2*86400000))throw Error('canonical_recently_updated_preserve_completed_work');
    const conflicting=corpus.filter(p=>p.source_uri!==b.target_url&&similarity(p.subject,b.question)>0.8);if(conflicting.length)throw Error('possible_existing_intent_owner');
    const sourceUrls=[...new Set([...(b.source_urls||[]),...corpus.filter(p=>context.some(c=>c.source_uri===p.source_uri)).flatMap(p=>JSON.parse(p.source_links_json))].map(primaryEvidenceUrl).filter(Boolean))].slice(0,3);
    const sources=[];for(const url of sourceUrls){const page=await readablePage(fetcher,url,{primary:true});if(page.content.length>30000)throw Error('primary_evidence_over_budget');sources.push({url:page.url,content:page.content,title:page.title,source_date:page.sourceDate,retrieved_at:stamp,sha256:await digest(page.content)});}
@@ -162,9 +165,10 @@ export async function publishDueEditorial(env,{fetcher=fetch,now=Date.now(),allo
    if(!a||await digest(frozenArticle(payload))!==r.final_sha256||(old?frozenArticle(a)!==frozenArticle(old)||a.status!==old.status:a.status!=='draft'||await digest(frozenArticle(a))!==r.final_sha256))throw Error('frozen_version_changed');
    for(const evidence of JSON.parse(r.evidence_json||'[]')){const fresh=await readablePage(fetcher,evidence.url,{primary:true});if(await digest(fresh.content)!==evidence.sha256)throw Error('primary_source_changed_since_review');}
    const lock=await DB.prepare(`UPDATE knowledge_editorial_releases SET state='publishing',attempts=attempts+1,updated_at=? WHERE token=? AND state='ready' AND attempts<2`).bind(stamp,r.token).run();if(Number(lock.meta?.changes||0)!==1)return {status:'already_claimed'};
+   const commitStamp=new Date().toISOString();
    await DB.batch([
-    DB.prepare(`UPDATE knowledge_articles SET title=?,category=?,author=?,summary=?,body=?,seo_title=?,publish_at=?,status='published',updated_at=? WHERE id=? AND ${CAS} AND EXISTS(SELECT 1 FROM knowledge_editorial_releases WHERE token=? AND state='publishing')`).bind(payload.title,payload.category,payload.author,payload.summary,payload.body,payload.seo_title,payload.publish_at,stamp,r.article_id,...casValues(a),r.token),
-    DB.prepare(`UPDATE knowledge_editorial_releases SET state='published',published_at=?,updated_at=? WHERE token=? AND state='publishing' AND EXISTS(SELECT 1 FROM knowledge_articles WHERE id=? AND status='published' AND title IS ? AND category IS ? AND author IS ? AND summary IS ? AND body IS ? AND seo_title IS ? AND publish_at IS ? AND updated_at=?)`).bind(stamp,stamp,r.token,r.article_id,payload.title,payload.category,payload.author,payload.summary,payload.body,payload.seo_title,payload.publish_at,stamp)
+    DB.prepare(`UPDATE knowledge_articles SET title=?,category=?,author=?,summary=?,body=?,seo_title=?,publish_at=?,status='published',updated_at=? WHERE id=? AND ${CAS} AND EXISTS(SELECT 1 FROM knowledge_editorial_releases WHERE token=? AND state='publishing')`).bind(payload.title,payload.category,payload.author,payload.summary,payload.body,payload.seo_title,payload.publish_at,commitStamp,r.article_id,...casValues(a),r.token),
+    DB.prepare(`UPDATE knowledge_editorial_releases SET state='published',published_at=?,updated_at=? WHERE token=? AND state='publishing' AND EXISTS(SELECT 1 FROM knowledge_articles WHERE id=? AND status='published' AND title IS ? AND category IS ? AND author IS ? AND summary IS ? AND body IS ? AND seo_title IS ? AND publish_at IS ? AND updated_at=?)`).bind(commitStamp,commitStamp,r.token,r.article_id,payload.title,payload.category,payload.author,payload.summary,payload.body,payload.seo_title,payload.publish_at,commitStamp)
    ]);
    r=await DB.prepare(`SELECT * FROM knowledge_editorial_releases WHERE token=?`).bind(r.token).first();if(r.state!=='published')throw Error('concurrent_cms_change_before_commit');
   }catch(e){const reason=String(e.message).slice(0,1000);await holdRelease(DB,r,reason,stamp);const next=await fallback(reason);return {...next,reason};}
@@ -202,7 +206,7 @@ export async function runWebsiteEditorialCycle(env,{fetcher=fetch,now=Date.now()
  // Release first: generation/crawl latency must never gate a ready14:00 article.
  const publication=await publishDueEditorial(env,{fetcher,now});
  let corpus;try{corpus=await refreshEditorialCorpus(env,{fetcher,now});}catch(e){corpus={status:'failed',reason:e.message};}
- const generation=await generateEditorialArticle(env,{fetcher,now});
+ const generation=corpus.inventoryChecked?await generateEditorialArticle(env,{fetcher,now}):{status:'waiting_for_initial_public_inventory',reason:'existing_intent_owners_must_be_indexed_before_generation'};
  const counts=await env.DB.prepare(`SELECT state,count(*) n FROM knowledge_editorial_briefs GROUP BY state`).all();
- return {status:'completed',policy:POLICY,publication,corpus,generation,briefCounts:counts.results||[],completionClaim:false};
+ return {status:'completed',policy:POLICY,publication,corpus,generation,briefCounts:counts.results||[],readyBufferRequired:7,upcomingBriefsRequired:30,completionClaim:false};
 }
