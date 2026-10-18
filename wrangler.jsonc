@@ -4,7 +4,7 @@
   "name": "shift-core",
   "main": "shift-coach/worker.mjs",
   "compatibility_date": "2026-08-09",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
 
   "workers_dev": true,
   "preview_urls": false,
@@ -532,6 +532,15 @@
   },
   "triggers": { "crons": ["*/15 * * * *"] },
   "vars": {
+    "DAILY_WEBSITE_CONTENT_ENABLED": "true",
+    "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH": "true",
+    "DAILY_EDITORIAL_MODEL": "@cf/openai/gpt-oss-120b",
+    "DAILY_EDITORIAL_SUPPORT_MODEL": "@cf/zai-org/glm-5.3",
+    "DAILY_CONTENT_GATEWAY": "shift-ai",
+    "DAILY_CONTENT_BUDGET_VERIFIED": "true",
+    "DAILY_EDITORIAL_NOTIFY_ENABLED": "true",
+    "DAILY_EDITORIAL_NOTIFY_TEMPLATE": "verified-link-v1",
+
     "MY_TIMBER_PWA_ENABLED": "true",
     "MEMBER_GP_LOOKUP_ENABLED": "true",
     "MEMBER_GP_DIRECTORY_V2_ENABLED": "true",

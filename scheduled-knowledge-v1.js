@@ -1,10 +1,12 @@
+import {runDailyContentDraft} from './daily-content/engine.mjs';
 import {refreshPublicKnowledge} from './member-experience/ai-site-knowledge.mjs';
 import {syncApprovedKnowledgeDocuments} from './knowledge-publication-v1.js';
 
 const safe=(v,d={})=>{try{return typeof v==='string'?JSON.parse(v):v??d}catch{return d}};
 
 export async function runKnowledgeFlywheel(env,{limit=1000}={}){
-  const publicSite=env.SHIFT_AI_PRACTICAL_CONTEXT==='true'?await refreshPublicKnowledge(env):{disabled:true};
+  let editorial;try{editorial=await runDailyContentDraft(env);}catch(e){editorial={status:'failed',reason:String(e.message).slice(0,200)};}
+  const publicSite=env.DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH==='true'?editorial.corpus:(env.SHIFT_AI_PRACTICAL_CONTEXT==='true'?await refreshPublicKnowledge(env):{disabled:true});
   const sync=await syncApprovedKnowledgeDocuments(env,{limit});
   if(!sync?.ok)return{ok:false,synced:Number(sync?.synced||0),withdrawn:0,reason:sync?.reason||'knowledge_sync_failed'};
 
@@ -27,5 +29,5 @@ export async function runKnowledgeFlywheel(env,{limit=1000}={}){
     await env.DB.prepare(`UPDATE shift_knowledge_nodes SET status='withdrawn',data_json=?,updated_at=CURRENT_TIMESTAMP WHERE id=?`).bind(JSON.stringify(data),node.id).run();
     withdrawn++;
   }
-  return{ok:true,synced:Number(sync.synced||0),withdrawn,publicSite};
+  return{ok:true,synced:Number(sync.synced||0),withdrawn,publicSite,editorial};
 }
