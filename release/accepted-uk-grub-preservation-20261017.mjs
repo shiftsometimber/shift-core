@@ -1,3 +1,4 @@
+import {assertActualNavigationFrame} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {immutableHistoryExecFileSync as execFileSync,withImmutableHistoryVerification,assertGitTrackedSourceVisible} from './immutable-git-facts.mjs';
@@ -41,10 +42,11 @@ export function withoutAcceptedUkGrubMaintenance(record,path,value){
  const restored=reverse(value,pin.inversePairs);assert.equal(sha(restored),pin.beforeSHA256,'Whole original a3 maintenance bytes must restore');return restored;
 }
 
-export function withAcceptedUkGrubPreservation(c,head,compare){
+export function withAcceptedUkGrubPreservation(c,head,compare,navigation=null){
+ if(navigation){assertActualNavigationFrame(navigation);assert.equal(navigation.head,head);navigation.assertCurrent();}
  assert.equal(typeof compare,'function');clean();
  return withImmutableHistoryVerification(()=>{
-  const fresh=()=>assert.equal(currentHead(),head,'Current-runtime preservation source drift: Raw HEAD changed during UK proof');fresh();
+  const fresh=()=>{if(navigation){assertActualNavigationFrame(navigation);assert.equal(currentHead(),navigation.rawHead,'Current-runtime preservation source drift: Actual outer HEAD changed during UK proof');assert.equal(head,navigation.head,'Current-runtime preservation source drift: Accepted UK predecessor changed');}else assert.equal(currentHead(),head,'Current-runtime preservation source drift: Raw HEAD changed during UK proof');};fresh();
   try{
    assert.deepEqual(JSON.parse(git('show',head+':'+ledger))[key],c,'Actual current UK preservation ledger required');
    const leaf=c.acceptedUkGrubPreservation20261017;assert(leaf);assert.equal(leaf.kind,'EXACT_ACTUAL_ACCEPTED_UK_GRUB_PRESERVATION');
@@ -79,7 +81,8 @@ export function withAcceptedUkGrubPreservation(c,head,compare){
    const before=entries(basis),oldOverlap=leaf.paths.filter(path=>before.has(path));
    assert.deepEqual(sorted(oldOverlap.filter(path=>c.acceptedGrubPreservation20261017.paths.includes(path))),['grub-expansion-authority-v1.mjs','member-experience/grub-intelligence.mjs','member-experience/grub-workspace.mjs','member-experience/tests/grub-everyday.test.mjs']);
    const maintenance=[...Object.keys(leaf.modules),...Object.keys(leaf.newFiles),self];
-   const native=readSeoNativeImmutableFacts({head,base:basis,payload:ukPayload,maintenanceSource:c.maintenanceSource,paths:leaf.paths,maintenancePaths:maintenance,inversePaths:[...oldOverlap,...Object.keys(leaf.modules),self],ledger,includeModes:true});
+   const nativeSource=readSeoNativeImmutableFacts({head,base:basis,payload:ukPayload,maintenanceSource:c.maintenanceSource,paths:leaf.paths,maintenancePaths:maintenance,inversePaths:[...oldOverlap,...Object.keys(leaf.modules),self],ledger,includeModes:true});
+   const native=navigation?Object.freeze({blob:(r,p)=>nativeSource.blob(r==='HEAD'?head:r,p),content:(r,p)=>nativeSource.content(r==='HEAD'?head:r,p)}):nativeSource;
    const producer=readSeoNativeImmutableFacts({head:accepted,base:accepted,payload:accepted,maintenanceSource:accepted,paths:leaf.paths,maintenancePaths:[],inversePaths:[],ledger});
    const requested=new Map([[head,new Set([...leaf.paths,...maintenance,ledger])],[ukPayload,new Set(leaf.paths)],[c.maintenanceSource,new Set(maintenance)],[basis,new Set([...oldOverlap,...Object.keys(leaf.modules),self,ledger])]]);
    const verifiedBlob=(ref,path)=>{const r=ref==='HEAD'?head:ref;if((ref==='HEAD'||ref===head)&&fullProjection.has(path))return git('rev-parse',ukPayload+':'+path).trim();if(r===accepted&&(leaf.paths.includes(path)||path===ledger))return producer.blob(r,path);if(requested.get(r)?.has(path))return native.blob(ref,path);return git('rev-parse',r+':'+path).trim();};

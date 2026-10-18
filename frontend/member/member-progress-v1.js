@@ -144,7 +144,7 @@ function weightProjection(series, now=Date.now()) {
     };
   }
 
-  let chartData=null,chartMetric='',chartPeriod='all',renderVersion=0,showForecast=false;
+  let chartData=null,chartMetric='',chartPeriod='all',renderVersion=0,showForecast=false,scheduledRender=null;
   function drawChart(host){
     const chart=host.querySelector?.('.shift-progress-chart');if(!chart||!chartData)return;
     const metrics=chartData.metrics.filter(m=>Array.isArray(m.series)&&m.series.length);
@@ -366,6 +366,13 @@ return {readWeightTable,previewMappedWeights};
     }finally{if(version===renderVersion)host.setAttribute('aria-busy','false')}
   }
 
-  function boot(){render();const clear=()=>{++renderVersion;++patternVersion;chartData=null;patternData=null;showForecast=false;const host=document.getElementById('shiftProgressStory');clearPrivatePhotos();if(host)host.innerHTML='';};window.addEventListener('pagehide',clear);document.addEventListener('visibilitychange',()=>{if(document.hidden)clear();else if(location.hash==='#visualise')render();});window.addEventListener('hashchange',()=>{if(location.hash==='#visualise')render()});document.addEventListener('click',e=>{if(e.target.closest('.mp-tab[data-panel="visualise"]'))setTimeout(render,120);if(e.target.closest('#saveOriginal,[data-photo-delete]'))setTimeout(render,1800)});}
+  function queueRender(delay=0){
+    clearTimeout(scheduledRender);scheduledRender=null;
+    const host=ensureHost();if(!host||!window.SST_API?.getProgressSummary||document.hidden)return;
+    ++renderVersion;++patternVersion;patternData=null;host.setAttribute('aria-busy','true');
+    host.querySelectorAll('.shift-pattern-panel input,.shift-pattern-panel button').forEach(control=>{control.disabled=true;});
+    scheduledRender=setTimeout(()=>{scheduledRender=null;render();},delay);
+  }
+  function boot(){queueRender();const clear=()=>{clearTimeout(scheduledRender);scheduledRender=null;++renderVersion;++patternVersion;chartData=null;patternData=null;showForecast=false;const host=document.getElementById('shiftProgressStory');clearPrivatePhotos();if(host)host.innerHTML='';};window.addEventListener('pagehide',clear);document.addEventListener('visibilitychange',()=>{if(document.hidden)clear();else if(location.hash==='#visualise')queueRender();});window.addEventListener('hashchange',()=>{if(location.hash==='#visualise')queueRender()});document.addEventListener('click',e=>{if(e.target.closest('.mp-tab[data-panel="visualise"]'))queueRender(120);if(e.target.closest('#saveOriginal,[data-photo-delete]'))setTimeout(render,1800)});}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(boot,0),{once:true});else setTimeout(boot,0);
 })();

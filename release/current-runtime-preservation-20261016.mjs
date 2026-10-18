@@ -1,3 +1,4 @@
+import {actualNavigationOuterFrame,assertActualNavigationFrame} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import {withAcceptedUkGrubPreservation,withoutAcceptedUkGrubMaintenance} from './accepted-uk-grub-preservation-20261017.mjs';
 import {RECORDED_WEEK_BROWSER_REPAIR_PATHS,assertRecordedWeekBrowserRepair} from './recorded-week-browser-repair-20261017.mjs';
 import assert from 'node:assert/strict';
@@ -101,7 +102,8 @@ export function assertCurrentRecoverySourceProof(after,before){
  assert.equal(after.replace(c.addedImport,'').replace(c.correctedCall,c.originalCall),before,'Every original provider, ownership, stock and rollback byte must restore');
  return Object.freeze({beforeBlob:c.beforeBlob,afterBlob:c.afterBlob});
 }
-export function verifyCurrentRuntimePreservation(c,{head=currentHead(),read=blob,readContent=content,readDiff=diff,isAncestor=ancestor}={}){
+function verifyCurrentRuntimePreservationOriginal(c,{head=currentHead(),read=blob,readContent=content,readDiff=diff,isAncestor=ancestor}={},privateNavigation=null){
+ const {currentHead,blob,content,diff,ancestor,clean,currentPreservationNativeFacts}=privateNavigation??preservationNativeNavigationFacts;
  clean();return withImmutableHistoryVerification(()=>{
  const actual=currentHead();try{
   assert.equal(head,actual,'Current-runtime preservation source drift: Actual raw HEAD is required');
@@ -125,7 +127,7 @@ export function verifyCurrentRuntimePreservation(c,{head=currentHead(),read=blob
   ancestor(c.recoverySameJobSourceProof20261017.basisSource,head);assertCurrentRecoverySourceProof(verifiedContent(head,c.recoverySameJobSourceProof20261017.path),verifiedContent(c.recoverySameJobSourceProof20261017.basisSource,c.recoverySameJobSourceProof20261017.path));assert.equal(memberUtilitySourceHash('sha256').update(verifiedContent(head,c.recoverySameJobSourceProof20261017.validatorPath)).digest('hex'),c.recoverySameJobSourceProof20261017.validatorSHA256,'Existing same-job source validator must remain exact');
   for(const p of Object.keys(policy.inverses))assert.equal(inverse(p,verifiedContent(head,p)),verifiedContent(c.base,p),'Every original Core assertion must restore byte for byte: '+p);
   const early=c.coachingSourceEarlyRejection20261017;ancestor(early.basisSource,head);assert.equal(git('rev-parse',early.basisSource+'^{tree}').trim(),early.basisTree,'Exact reject-only preflight basis required');assert.equal(verifiedBlob(early.basisSource,early.path),early.beforeBlob);assert.equal(verifiedBlob(head,early.path),early.afterBlob,'Exact reject-only coaching source required');assert.equal(memberUtilitySourceHash('sha256').update(verifiedContent(early.basisSource,early.path)).digest('hex'),early.beforeSHA256);assert.equal(memberUtilitySourceHash('sha256').update(verifiedContent(head,early.path)).digest('hex'),early.afterSHA256,'Exact reject-only coaching bytes required');
-  const grubLeaf=withAcceptedUkGrubPreservation(c,head,view=>assertAcceptedGrubPreservation(view.priorRecord,head,view.historicalBlob,view.historicalContent));
+  const grubLeaf=withAcceptedUkGrubPreservation(c,head,view=>assertAcceptedGrubPreservation(view.priorRecord,head,view.historicalBlob,view.historicalContent),privateNavigation?.navigationFrame??null);
   const rollbackOriginalHead=grubLeaf.basisSource;
   const rollbackLeaf=c.recordedWeekOwnedRollback20261017;ancestor(rollbackLeaf.basisSource,head);assert.equal(git('rev-parse',rollbackLeaf.basisSource+'^{tree}').trim(),rollbackLeaf.basisTree,'Exact owned rollback basis required');
   for(const[p,pin]of Object.entries(rollbackLeaf.paths)){assert.equal(verifiedBlob(rollbackLeaf.basisSource,p),pin.beforeBlob);assert.equal(verifiedBlob(rollbackOriginalHead,p),pin.afterBlob,'Exact owned rollback source required: '+p);assert.equal(memberUtilitySourceHash('sha256').update(verifiedContent(rollbackOriginalHead,p)).digest('hex'),pin.afterSHA256);assert.equal(withoutRecordedWeekOwnedRollbackMaintenance(p,verifiedContent(rollbackOriginalHead,p)),verifiedContent(rollbackLeaf.basisSource,p),'Whole prior owned rollback source must remain exact: '+p);}
@@ -145,7 +147,8 @@ export function verifyCurrentRuntimePreservation(c,{head=currentHead(),read=blob
  }finally{clean();assert.equal(currentHead(),actual,'Current-runtime preservation source drift: Raw HEAD changed during proof');}
  });
 }
-export function currentRuntimePreservationHistoricalView(reader=null,{defaultReader=reader===null}={}){
+function currentRuntimePreservationHistoricalViewOriginal(reader=null,{defaultReader=reader===null}={},privateNavigation=null){
+ const {currentHead,blob,content,diff,ancestor,clean}=privateNavigation??preservationNativeNavigationFacts;
  const rawHead=currentHead(),record=JSON.parse(content(rawHead,manifest)),c=record[key],sourceReader=reader===null?blob:reader;assert.equal(typeof sourceReader,'function');
  const assertCurrent=()=>{clean();assert.equal(currentHead(),rawHead,'Current-runtime preservation source drift: Raw HEAD changed during projection');};
  // The enclosing synchronous proof retains its entry/exit working-tree checks.
@@ -156,7 +159,7 @@ export function currentRuntimePreservationHistoricalView(reader=null,{defaultRea
   if(immutableHistorySourceHead()!==rawHead)return assertCurrent();
   return withImmutableHistoryVerification(()=>assert.equal(currentHead(),rawHead,'Current-runtime preservation source drift: Raw HEAD changed during projection'));
  };
- if(c)verifyCurrentRuntimePreservation(c,{head:rawHead});const paths=new Set(c?[...c.paths,...c.maintenancePaths,manifest]:[]),affected=p=>paths.has(p)||[...paths].some(q=>q.startsWith(p+'/'));
+ if(c)verifyCurrentRuntimePreservationOriginal(c,{head:rawHead,read:blob,readContent:content,readDiff:diff,isAncestor:ancestor},privateNavigation);const paths=new Set(c?[...c.paths,...c.maintenancePaths,manifest]:[]),affected=p=>paths.has(p)||[...paths].some(q=>q.startsWith(p+'/'));
  const prior=c?JSON.parse(content(c.base,manifest)):structuredClone(record);const projected=c?c.base:rawHead;
  const view={rawHead,head:projected,record:prior,affected,assertCurrent,assertCurrentHead,authentic:(v,r,p,h=rawHead)=>authentic(v,r,p,h),nativeAuthentic:(v,r,p)=>authentic(v,r,p,r==='HEAD'?rawHead:r),nativeContentAuthentic:(v,r,p)=>authenticContent(v,r,p,r==='HEAD'?rawHead:r),currentContent:content,
   blob:(r,p)=>blob(r==='HEAD'||r===rawHead?projected:r,p),content:(r,p)=>content(r==='HEAD'||r===rawHead?projected:r,p),
@@ -185,4 +188,37 @@ export function withoutCurrentRuntimePreservationFlag(config){
  if(!config.includes('"MEMBER_GP_DIRECTORY_V2_ENABLED": "true"'))return config;
  const view=currentRuntimePreservationHistoricalView();if(view.head===view.rawHead)return config;
  assert.equal(config,content(view.rawHead,'wrangler.jsonc'),'Only the exact accepted current configuration may enter a historical comparison');return content(view.head,'wrangler.jsonc');
+}
+
+// A later UI layer is authenticated in native Git before these original Core
+// functions receive its genuine accepted predecessor. No HEAD/env rewriting.
+const preservationNativeNavigationFacts=Object.freeze({currentHead,blob,content,diff,ancestor,clean,currentPreservationNativeFacts});
+function preservationNavigationFacts(ui){
+ assertActualNavigationFrame(ui);
+ const originalFacts=(c,h)=>{assert.equal(h,ui.head);ui.assertCurrent();const f=currentPreservationNativeFacts(c,h),ref=r=>r==='HEAD'?ui.head:r;return Object.freeze({blob:(r,p)=>f.blob(ref(r),p),content:(r,p)=>f.content(ref(r),p),mode:(r,p)=>f.mode(ref(r),p)});};
+ return Object.freeze({navigationFrame:ui,currentHead:()=>{ui.assertCurrent();return ui.head;},blob:ui.blob,content:ui.content,diff:ui.diff,ancestor:ui.ancestor,clean:ui.assertCurrent,currentPreservationNativeFacts:originalFacts});
+}
+export function verifyCurrentRuntimePreservation(c,options={}){
+ const ui=actualNavigationOuterFrame();if(!ui)return verifyCurrentRuntimePreservationOriginal(c,options);
+ try{
+  assert.equal(options.head??ui.rawHead,ui.rawHead,'Actual raw UI HEAD required before preserved Core verification');
+  return verifyCurrentRuntimePreservationOriginal(c,{head:ui.head,
+   read:options.read===undefined?ui.blob:ui.projectRead(options.read),
+   readContent:options.readContent===undefined?ui.content:ui.projectContent(options.readContent),
+   readDiff:options.readDiff===undefined?ui.diff:ui.projectDiff(options.readDiff),
+   isAncestor:options.isAncestor===undefined?ui.ancestor:ui.projectAncestor(options.isAncestor)},preservationNavigationFacts(ui));
+ }finally{ui.finish();}
+}
+export function currentRuntimePreservationHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ const ui=actualNavigationOuterFrame();if(!ui)return currentRuntimePreservationHistoricalViewOriginal(reader,{defaultReader});
+ try{
+  const inner=currentRuntimePreservationHistoricalViewOriginal(reader===null?null:ui.projectRead(reader),{defaultReader:reader===null},preservationNavigationFacts(ui));
+  const ref=r=>r===ui.rawHead?'HEAD':r,unary=fn=>(r,p)=>fn(ref(r),p),binary=fn=>(a,b)=>fn(ref(a),ref(b));
+  const view={...inner,rawHead:ui.rawHead,affected:p=>ui.affected(p)||inner.affected(p),assertCurrent:ui.assertCurrent,assertCurrentHead:ui.assertCurrentHead,
+   currentContent:ui.currentContent,authentic:ui.authentic,nativeAuthentic:ui.nativeAuthentic,nativeContentAuthentic:ui.nativeContentAuthentic,navigationActualContext:ui,
+   read:unary(inner.read),blob:unary(inner.blob),content:unary(inner.content),diff:binary(inner.diff),ancestor:binary(inner.ancestor)};
+  admittedViews.add(view);Object.freeze(view);
+  for(const kind of ['read','blob','content','diff','ancestor'])admittedReaders.set(view[kind],Object.freeze({kind,view,...(kind==='read'?{nativeSource:reader===null}:{})}));
+  return view;
+ }finally{ui.finish();}
 }
