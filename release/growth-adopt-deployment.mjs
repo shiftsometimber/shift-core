@@ -1,3 +1,4 @@
+import {ACCEPTED_GRUB_RANKING_RUNTIME,verifyCurrentAcceptedGrubRankingRuntimeWindow,acceptedGrubRankingCurrentStartingPoint,assertSameAcceptedGrubRankingCurrentWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_FULL_RUNTIME,verifyCurrentAcceptedGrubFullRuntimeWindow,acceptedGrubFullCurrentStartingPoint,assertSameAcceptedGrubFullCurrentWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {UK_GRUB_SPEED_OWNED_ROLLBACK,verifyCurrentUkGrubSpeedOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {UK_GRUB_OWNED_ROLLBACK,verifyCurrentUkGrubOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
@@ -44,6 +45,12 @@ if(active.id===UK_GRUB_SPEED_OWNED_ROLLBACK.deployment.id){
  const refreshedProof=await verifyCurrentUkGrubOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
  assertSameOwnedRollbackReceipt(baselineRecord.ukGrubOwnedRollbackProof,refreshedProof);
  point=ownedRollbackStartingPoint(refreshedProof,active);
+}else if(active.id===ACCEPTED_GRUB_RANKING_RUNTIME.deployment){
+ assert(baselineRecord.acceptedGrubRankingServingProof,'Exact accepted ranking recovery receipt required');
+ acceptedGrubRankingCurrentStartingPoint(baselineRecord.acceptedGrubRankingServingProof,active);
+ const refreshedProof=await verifyCurrentAcceptedGrubRankingRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameAcceptedGrubRankingCurrentWindow(baselineRecord.acceptedGrubRankingServingProof,refreshedProof);
+ point=acceptedGrubRankingCurrentStartingPoint(refreshedProof,active);
 }else if(active.id===ACCEPTED_GRUB_FULL_RUNTIME.deployment){
  assert(baselineRecord.acceptedGrubFullServingProof,'Exact accepted UK Grub recovery receipt required');
  acceptedGrubFullCurrentStartingPoint(baselineRecord.acceptedGrubFullServingProof,active);
