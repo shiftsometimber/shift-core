@@ -6,11 +6,11 @@
   "preview_urls": false,
   "routes": [
     {
-      "pattern": "api.shiftsometimber.co.uk/v1/hq/management/report",
+      "pattern": "api.shiftsometimber.co.uk/v1/hq/management/report*",
       "zone_name": "shiftsometimber.co.uk"
     },
     {
-      "pattern": "api.shiftsometimber.co.uk/v1/hq/management/export",
+      "pattern": "api.shiftsometimber.co.uk/v1/hq/management/export*",
       "zone_name": "shiftsometimber.co.uk"
     }
   ],

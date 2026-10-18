@@ -7,7 +7,7 @@ test('delegates real session validation to fixed existing auth endpoint and forw
 });
 test('other HQ, GP, partner, staff, login and public paths are not served',async()=>{
  const worker=reportWorker(()=>{throw Error('No auth permitted')});
- for(const path of ['/v1/hq/me','/v1/hq/auth/login','/v1/hq/management/partners','/v1/hq/management/gp-directory','/v1/hq/management/users/1','/'])assert.equal((await worker.fetch(new Request(base+path),{},{})).status,404);
+ for(const path of ['/v1/hq/me','/v1/hq/auth/login','/v1/hq/management/partners','/v1/hq/management/gp-directory','/v1/hq/management/users/1','/v1/hq/management/reports','/v1/hq/management/report-extra','/v1/hq/management/export-private','/'])assert.equal((await worker.fetch(new Request(base+path),{},{})).status,404);
 });
 test('preflight permits only existing HQ origin',async()=>{
  const worker=reportWorker(()=>{throw Error('No auth for preflight')});
