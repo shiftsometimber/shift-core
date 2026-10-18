@@ -1,5 +1,6 @@
 import './accepted-current-runtime-starting-point-20261017.test.mjs';
 import './current-runtime-preservation-20261016.test.mjs';
+import './website-editorial-scope-20261018.test.mjs';
 import test from 'node:test';
 import {withImmutableHistoryVerification} from '../release/immutable-git-facts.mjs';
 import assert from 'node:assert/strict';
