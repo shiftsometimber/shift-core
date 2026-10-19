@@ -154,6 +154,32 @@ function ensureOriginalNavigationHqObjects(){
  assert.equal(object(original.originalSource,'hq-management-entry.mjs'),original.originalEntryBlob,'Exact original HQ entry blob required');
 }
 
+// Availability only for the exact retained original photo terminal evidence.
+// The unchanged photo/root/member verifiers still perform every original check.
+function ensureOriginalNavigationPhotoEvidenceObjects(){
+ const original={source:'2477783ae8dac9c055a620958d1112611296b57a',tree:'cfa7f0c86192e921a215b00a01cacfa79b579c71',blobs:{'g2-013-progress-picture-rendered-production.mjs':'8051ff5034726726197b82dca7a4c7addcac2d87','rendered-member-acceptance-support.mjs':'6ba6f6f336a8658b40b5a1c0e16e43e1e3bbc12d','tests/rendered-member-acceptance-support.test.mjs':'4dd2eca6cdbc3977c56d0f2f8be8b776bc1b9f1f'}};
+ const required=new Map([[original.source,'commit'],[original.tree,'tree'],...Object.values(original.blobs).map(id=>[id,'blob'])]);
+ for(const id of required.keys())assert(oid.test(id),'Exact original photo evidence object required');
+ const available=()=>{
+  const input=[...required.keys()].join('\n')+'\n';
+  const output=execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects','cat-file','--batch-check'],{input,maxBuffer:64e6});
+  const rows=output.toString('ascii').split('\n');assert.equal(rows.pop(),'');assert.equal(rows.length,required.size);let complete=true,i=0;
+  for(const[id,kind]of required){const row=rows[i++];if(row===id+' missing'){complete=false;continue;}const m=/^([a-f0-9]{40}) (commit|tree|blob) (0|[1-9][0-9]*)$/.exec(row);assert(m,'Exact native original photo evidence object metadata required');assert.equal(m[1],id);assert.equal(m[2],kind);assert(Number.isSafeInteger(Number(m[3])));}
+  return complete;
+ };
+ if(!available()){
+  const rawHead=clean(),context=freshSourceContext(),dir=resolve(process.cwd(),'.git');
+  const refs=()=>JSON.stringify(sourceReplacementState(resolve(dir,'refs'))),fetchHead=()=>JSON.stringify(sourceFileState(resolve(dir,'FETCH_HEAD')));
+  const beforeRefs=refs(),beforeFetchHead=fetchHead(),origin=text('remote','get-url','origin');
+  assert(['https://github.com/shiftsometimber/shift-core','https://github.com/shiftsometimber/shift-core.git','git@github.com:shiftsometimber/shift-core.git'].includes(origin),'Only the established shift-core origin can supply exact original photo evidence objects');
+  git('fetch','--no-tags','--no-write-fetch-head','origin',original.source);
+  assert.equal(context.snapshot(),context.entry,'Original photo evidence transport changed native source metadata');assert.equal(refs(),beforeRefs,'Original photo evidence transport changed refs');assert.equal(fetchHead(),beforeFetchHead,'Original photo evidence transport changed FETCH_HEAD');clean(rawHead);assert.equal(context.snapshot(),context.entry,'Original photo evidence transport changed source context');
+ }
+ assert(available(),'Exact original photo evidence objects must be present after transport');
+ assert.equal(text('rev-parse',original.source+'^{tree}'),original.tree,'Exact original photo evidence tree required');
+ for(const[p,id]of Object.entries(original.blobs))assert.equal(object(original.source,p),id,'Exact original photo evidence path/blob required: '+p);
+}
+
 export function nativeNavigationFreshSourceChecker(expected){
  clean(expected);
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
@@ -274,6 +300,7 @@ function navigationEditorialProofFacts(outer){
 export function actualNavigationOuterFrame(){
  prepareNativeNavigationIndexStats();
  ensureOriginalNavigationHqObjects();
+ ensureOriginalNavigationPhotoEvidenceObjects();
  const outer=websiteEditorialCompletionHistoricalView();if(!outer)return actualNavigationOuterFrameBeforeEditorial();
  assertWebsiteEditorialCompletionView(outer);const inner=actualNavigationOuterFrameBeforeEditorial(outer);assert(inner,'The admitted predecessor must retain its navigation frame');
  const ref=r=>r==='HEAD'||r===outer.rawHead?'HEAD':r,unary=fn=>(r,p)=>fn(ref(r),p),binary=fn=>(a,b)=>fn(ref(a),ref(b));
