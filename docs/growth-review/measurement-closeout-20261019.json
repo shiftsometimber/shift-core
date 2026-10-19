@@ -261,5 +261,32 @@
     "privateHealthExcluded": true,
     "communicationsSent": false,
     "analyticsConfigurationChanged": false
+  },
+  "followThrough": {
+    "checkedAt": "2026-10-19T20:52:31.641Z",
+    "owner": "Organic Growth measurement executor",
+    "completedPreviously": "Four-page metadata deployed/verified; campaign Realtime and processed collection verified; CrUX unavailable classification recorded.",
+    "hq": {
+      "canonicalEntry": "https://hq.shiftsometimber.co.uk/",
+      "entryVerified": true,
+      "visibleState": "Not signed in; normal named-account Email/Password form",
+      "aggregateRoute": "/v1/hq/journey?days=90",
+      "credentialRequest": "Not created",
+      "signedIn": false,
+      "blockedAction": "Secure normal HQ sign-in solely for the existing aggregate activation report",
+      "blocker": "Automatic approval review denied the sign-in because a broad HQ session exposes member, support, medicines and operational areas while established authority was limited to the aggregate report.",
+      "smallestRequirement": "Matt's explicit approval of normal HQ sign-in for the sole purpose of reading the aggregate activation report, or Matt supplies that aggregate export.",
+      "noPrivateMemberDataInspected": true,
+      "noAlternateAuthenticationOrCredentialExtractionAttempted": true
+    },
+    "google": {
+      "exactDraftApprovalPreserved": true,
+      "destination": "https://support.google.com/webmasters/community",
+      "recipient": "Google Search Central Help Community",
+      "subject": "24 UK Web property clicks but zero page clicks in native Search Console and the Search Analytics API",
+      "routeVerified": true,
+      "posted": false,
+      "remainingRequirement": "Explicitly lift the retained communications hold for posting this already-approved enquiry. Content approval is not reopened. Normal human-verification handoff remains."
+    }
   }
 }
