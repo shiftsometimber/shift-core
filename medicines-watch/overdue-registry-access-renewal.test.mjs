@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-10-overdue-registry-access-renewal.json' with {type:'json'};
 import {registrySources,supportSources} from './credibility.mjs';
+import correction from './reviews/2026-10-18-approved-zenagamtide-switch.json' with {type:'json'};
 
 test('renewal advances exactly the reviewed registry and UK support sources',()=>{
  assert.equal(receipt.registrySources.length,63);
@@ -11,8 +12,17 @@ test('renewal advances exactly the reviewed registry and UK support sources',()=
  for(const review of [...receipt.registrySources,...receipt.supportSources]){
   const source=[...registrySources,...supportSources].find(s=>s.id===review.id);
   assert.ok(source,review.id);
-  assert.equal(source.reviewedAt,receipt.reviewedAt);
-  assert.equal(source.reviewedFingerprint,review.reviewedFingerprint);
+  const laterCorrection=source.id===correction.source.id;
+  if(laterCorrection){
+   assert.equal(correction.source.id,'registry-nct07855133');
+   assert.deepEqual(source,correction.source);
+   assert.equal(correction.beforeSource.reviewedAt,receipt.reviewedAt);
+   assert.equal(correction.beforeSource.reviewedFingerprint,review.reviewedFingerprint);
+   assert.equal(correction.clinicalApproval,null);
+   assert.equal(correction.wholeProgrammeReviewRenewed,false);
+  }
+  assert.equal(source.reviewedAt,laterCorrection?correction.reviewedAt:receipt.reviewedAt);
+  assert.equal(source.reviewedFingerprint,laterCorrection?correction.source.reviewedFingerprint:review.reviewedFingerprint);
   assert.equal(review.claimsUnchanged,true);
   assert.equal(review.withdrawn,false);
   assert.equal(review.httpStatus,200);

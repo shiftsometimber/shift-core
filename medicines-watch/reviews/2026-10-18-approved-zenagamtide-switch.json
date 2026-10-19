@@ -348,5 +348,62 @@
     },
     "hasResults": false
   },
-  "productionWrites": 0
+  "productionWrites": 0,
+  "beforeSource": {
+    "id": "registry-nct07855133",
+    "nctId": "NCT07855133",
+    "title": "ClinicalTrials.gov NCT07855133",
+    "url": "https://clinicaltrials.gov/study/NCT07855133",
+    "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07855133",
+    "format": "ctgov-lifecycle",
+    "requiredTerms": [
+      "NCT07855133"
+    ],
+    "reviewedAt": "2026-10-10T19:54:56Z",
+    "sourcePublishedAt": "2026-10-02",
+    "sourceUpdatedAt": "2026-10-02",
+    "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+    "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+    "lifecycle": {
+      "nctId": "NCT07855133",
+      "title": "A Research Study Investigating How Adults With Overweight or Obesity, With or Without Type 2 Diabetes, Tolerate Switching to a New Treatment (Zenagamtide) From Their Current Semaglutide Medication",
+      "sponsor": "Novo Nordisk A/S",
+      "status": "NOT_YET_RECRUITING",
+      "whyStopped": null,
+      "phases": [
+        "PHASE1"
+      ],
+      "enrollment": {
+        "count": 60,
+        "type": "ESTIMATED"
+      },
+      "start": {
+        "date": "2026-09-30",
+        "type": "ESTIMATED"
+      },
+      "primaryCompletion": {
+        "date": "2028-09-06",
+        "type": "ESTIMATED"
+      },
+      "completion": {
+        "date": "2028-09-06",
+        "type": "ESTIMATED"
+      },
+      "firstPosted": {
+        "date": "2026-10-02",
+        "type": "ACTUAL"
+      },
+      "lastUpdated": {
+        "date": "2026-10-02",
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "resultsFirstPosted": null,
+      "resultsLastUpdated": null
+    },
+    "entryIds": [
+      "zenagamtide"
+    ],
+    "reviewedFingerprint": "a0ba893321830e068560fd1fde5d7033e691fa2d23c46058b07b967b48ee1079"
+  }
 }
