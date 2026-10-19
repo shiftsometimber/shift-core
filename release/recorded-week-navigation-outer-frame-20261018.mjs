@@ -16,7 +16,7 @@ const fixedMaintenance=Object.freeze(['release/accepted-uk-grub-preservation-202
 const MAINTENANCE_DECLARATION_SHA256='be5c1409d39f6feee5809087be94e7ba94a2217d6c4b4f765d62571b484ee58b';
 const native=[execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd];
 const frames=new WeakSet(),oid=/^[a-f0-9]{40}$/,sorted=a=>[...a].sort(),sha=b=>createHash('sha256').update(b).digest('hex');
-const git=(...args)=>execFileSync('/usr/bin/git',['--no-replace-objects',...args],{maxBuffer:64e6});
+const git=(...args)=>execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects',...args],{maxBuffer:64e6});
 const text=(...args)=>git(...args).toString('utf8').trimEnd();
 const head=()=>text('rev-parse','HEAD');
 const path=p=>{assert(typeof p==='string'&&/^[A-Za-z0-9_.\/-]+$/.test(p)&&!p.startsWith('/')&&!p.split('/').some(s=>!s||s==='.'||s==='..'),'Exact recorded-week navigation path required');return p;};
@@ -40,10 +40,23 @@ function clean(expected){
 // This set deduplicates stat-cache preparation only. Every source guard below
 // still executes; no caller output, source admission or approval is cached.
 const preparedNavigationIndexStats=new Set();
+function waitForNativeIndexWriter(lock,deadline){
+ const clock=()=>process.hrtime.bigint(),pause=new Int32Array(new SharedArrayBuffer(4));
+ while(existsSync(lock)&&clock()<deadline)Atomics.wait(pause,0,0,20);
+ assert(!existsSync(lock),'An actual source-index writer is active');
+}
 function prepareNativeNavigationIndexStats(){
  const root=process.cwd(),index=resolve(root,'.git/index'),lock=resolve(root,'.git/index.lock');
  const entry=lstatSync(index);assert(entry.isFile()&&!entry.isSymbolicLink(),'Ordinary native index required before stat-cache refresh');
- assert(!existsSync(lock),'An actual source-index writer is active');
+ if(existsSync(lock)){
+  // A parallel native reader may be refreshing stat bytes. Admit nothing while
+  // its lock exists, and compare the actual logical source again after it ends.
+  const lockedHead=head(),lockedStage=git('ls-files','--stage','-z'),lockedVisible=git('ls-files','-v','-z');
+  waitForNativeIndexWriter(lock,process.hrtime.bigint()+1100000000n);
+  assert.equal(head(),lockedHead,'Actual HEAD moved while waiting for the index writer');
+  assert(git('ls-files','--stage','-z').equals(lockedStage),'Logical staged source changed while waiting for the index writer');
+  assert(git('ls-files','-v','-z').equals(lockedVisible),'Source visibility changed while waiting for the index writer');
+ }
  const rawHead=clean(),identity=()=>JSON.stringify([root,rawHead,sha(readFileSync(index))]);
  const beforeIdentity=identity();if(preparedNavigationIndexStats.has(beforeIdentity))return;
  const staged=git('ls-files','--stage','-z'),visible=git('ls-files','-v','-z');
@@ -51,7 +64,19 @@ function prepareNativeNavigationIndexStats(){
  // A bounded one-second boundary avoids endlessly rehashing an unchanged tree.
  const wait=Math.floor(lstatSync(index).mtimeMs/1000)*1000+1001-Date.now();
  if(wait>0&&wait<=1100)Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,wait);
- git('update-index','--refresh');
+ const deadline=process.hrtime.bigint()+1100000000n;
+ for(;;){
+  try{git('update-index','--refresh');break;}
+  catch(error){
+   const stderr=String(error.stderr??'');
+   if(!/Unable to create[^\n]*index\.lock[^\n]*File exists/.test(stderr)||process.hrtime.bigint()>=deadline)throw error;
+   waitForNativeIndexWriter(lock,deadline);
+   assert.equal(head(),rawHead,'Actual HEAD moved during a competing stat refresh');
+   assert(git('ls-files','--stage','-z').equals(staged),'Logical staged source changed during a competing stat refresh');
+   assert(git('ls-files','-v','-z').equals(visible),'Source visibility changed during a competing stat refresh');
+   clean(rawHead);
+  }
+ }
  assert.equal(head(),rawHead,'Actual HEAD moved during stat-cache preparation');
  assert(git('ls-files','--stage','-z').equals(staged),'Logical staged source changed during stat-cache preparation');
  assert(git('ls-files','-v','-z').equals(visible),'Source visibility changed during stat-cache preparation');
