@@ -20,7 +20,8 @@ self.addEventListener('notificationclick',event=>{
 self.addEventListener('fetch',event=>{
  const u=new URL(event.request.url);
  const panel=['/member/fit','/member/grub','/member/life-back'].includes(u.pathname)&&u.searchParams.get('app_panel')==='1'&&['app','web'].includes(u.searchParams.get('view'))&&u.searchParams.size===2;
- if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\/member\//.test(u.pathname)||(u.search&&!panel))return;
+ const journey=u.pathname==='/member/dashboard'&&u.searchParams.size===1&&['journey','week','log','felt'].includes(u.searchParams.get('journeyView'));
+ if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\/member\//.test(u.pathname)||(u.search&&!panel&&!journey))return;
  event.respondWith(fetch(event.request).catch(()=>new Response(${JSON.stringify(offlinePage)},{status:503,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}})));
 });
 `;

@@ -13,7 +13,22 @@ rule('#todayBrand','position:sticky;top:0;z-index:44;min-height:64px;padding-top
 nativeScope+' #todayBrand[data-member-design-header]{position:fixed!important;inset:0 0 auto!important;z-index:1000!important;width:100%!important;transform:none!important}\n'+
 nativeScope+' #appBottomNav{position:fixed!important;inset:auto 0 0!important;z-index:1000!important;width:100%!important;transform:none!important}\n'+
 rule('#todayBrand .member-design-mark','width:34px;height:34px')+
-rule('.member-section-name','display:block;font-size:12px;line-height:1.3;letter-spacing:.02em;color:#e7e3da;-webkit-text-fill-color:#e7e3da;font-weight:400;margin-top:4px')+
+rule('.member-section-name','display:none')+
+rule('#todayBrand','background:#e7e3da;color:#050505')+
+rule('#todayBrand>a','color:#050505;-webkit-text-fill-color:#050505')+
+rule('#memberJourneyTabs','display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;max-width:760px;margin:0 auto 22px;border-bottom:1px solid #ccc9bf')+
+rule('#memberJourneyTabs button','font:inherit;font-size:15px;min-height:48px;background:transparent;color:#54594d;border:0;border-radius:0;padding:12px 8px')+
+rule('#memberJourneyTabs button[aria-selected="true"]','border-bottom:3px solid #707762;color:#050505;font-weight:700')+
+rule('#memberJourneyTabs[hidden]','display:none')+
+rule('.member-journey-entry','padding:18px 0;border-bottom:1px solid #ccc9bf;margin-bottom:20px')+
+rule('.member-journey-entry h2','font:500 28px/1.2 Georgia,serif;margin:0 0 14px')+
+rule('.member-journey-entry table','width:100%;table-layout:fixed;border-collapse:collapse')+
+rule('.member-journey-entry th|.member-journey-entry td','font-size:14px;padding:8px 6px;text-align:left;overflow-wrap:anywhere;border-bottom:1px solid #ccc9bf')+
+rule('.member-journey-entry a','display:inline-flex;align-items:center;min-height:46px;margin:6px 8px 6px 0;padding:10px 14px;background:#e7e3da;border:1px solid #ccc9bf;border-radius:10px;color:#050505')+
+rule('.shift-chart-custom-dates input','width:100%;min-width:0;box-sizing:border-box;min-height:46px;font:inherit;background:#f7f5ef;color:#050505;border:1px solid #a7a99f;padding:10px;border-radius:8px')+
+rule('.shift-chart-custom-dates button','width:100%;min-height:46px;font:inherit;margin:12px 0;background:#e7e3da;color:#050505;border:1px solid #a7a99f;border-radius:8px;padding:10px')+
+scope+'[data-member-journey-view] #panel-visualise>.member-progress-map{display:none!important}\n'+
+scope+'[data-member-journey-view="felt"] #shiftProgressStory>:not(.shift-pattern-panel),'+scope+'[data-member-journey-view="week"] #shiftProgressStory>:not(.shift-pattern-panel){display:none!important}\n'+
 rule('#appBottomNav','z-index:60;box-shadow:0 -6px 24px #05050512')+
 rule('#appBottomNav [aria-current="page"]|#appBottomNav button[aria-expanded="true"]','background:#e7e3da;color:#050505;-webkit-text-fill-color:#050505')+
 rule('.app-today-shortcuts|nav.sst-member-tabs|#sst-footer-c|footer|.app-footer-details|#memberUtilities|#myTimberApp|#pwaInstallBanner','display:none')+
@@ -92,7 +107,28 @@ export const appExperienceClient=String.raw`(()=>{
  const node=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n};
  const text=(n,v)=>{if(n&&n.textContent!==v)n.textContent=v};
  const link=(label,href)=>{const a=node('a','',label);a.href=href;const tool=/^\/member\/(grub|fit|life-back)(?:[?#]|$)/.exec(href);if(tool)a.dataset.appOpen=tool[1];return a};
- let queued=false,more,returnFocus;
+ let queued=false,more,returnFocus,weekLoadVersion=0;
+ async function recordedWeek(host){
+  const version=++weekLoadVersion,status=node('p','','Loading your recorded week…');status.setAttribute('role','status');host.append(status);
+  const valid=()=>version===weekLoadVersion&&host.isConnected&&!document.hidden&&document.body.dataset.memberJourneyView==='week';
+  try{
+   if(!window.SST_HEALTH_CONSENT?.status||!await window.SST_HEALTH_CONSENT.status())throw Error('Review optional health tracking in Settings before viewing your recorded week.');
+   if(!valid())return;if(!window.SST_API?.getMe||!window.SST_API?.getProgressSummary)throw Error('Your records are still loading. Reopen My week to try again.');
+   const before=await window.SST_API.getMe(),owner=before.user?.id??before.id;if(owner===undefined)throw Error('Please sign in again to view your private records.');
+   if(!valid())return;const result=await window.SST_API.getProgressSummary();if(!valid())return;const after=await window.SST_API.getMe();if(!valid())return;
+   if(String(after.user?.id??after.id)!==String(owner))throw Error('Your account changed. Reopen My week before viewing records.');
+   const data=result.progress||result,to=new Date().toLocaleDateString('en-CA',{timeZone:'Europe/London'}),from=new Date(Date.parse(to+'T12:00:00Z')-6*86400000).toISOString().slice(0,10),table=node('table'),head=node('thead'),tr=node('tr');
+   for(const label of ['Measure','First recorded','Latest recorded'])tr.append(node('th','',label));head.append(tr);table.append(head);const rows=node('tbody');let count=0;const days=new Set();
+   const value=(metric,n)=>metric.key==='weight'&&data.units==='stone_lb'?Math.floor(Math.round(n/.45359237)/14)+' st '+Math.round(n/.45359237)%14+' lb':Number(n.toFixed(1))+' '+(metric.unit||'');
+   for(const metric of data.metrics||[]){if(!['weight','waist','systolic','diastolic'].includes(metric.key))continue;
+    const entries=(metric.series||[]).filter(r=>/^\d{4}-\d{2}-\d{2}$/.test(r.on||'')&&r.on>=from&&r.on<=to&&typeof r.value==='number'&&Number.isFinite(r.value)).sort((a,b)=>a.on.localeCompare(b.on));if(!entries.length)continue;
+    entries.forEach(r=>days.add(r.on));count++;const row=node('tr');for(const text of [metric.label,value(metric,entries[0].value),value(metric,entries.at(-1).value)])row.append(node('td','',text));rows.append(row);
+   }
+   status.textContent=from+' to '+to+' · '+days.size+' of 7 days with measurements. Other days are unrecorded.';
+   if(count){table.append(rows);host.append(table);}else host.append(node('p','','No measurements recorded in this week. Earlier records remain available in Journey.'));
+   if(data.historyMayBeLimited)host.append(node('p','','The available-history limit was reached; some records may be omitted.'));
+  }catch(error){if(valid())status.textContent=error.status===401?'Please sign in again to view your private records.':error.message||'Your week could not load. Saved records have not changed.';}
+ }
  function mountMore(){
   if(document.body.dataset.appPanel==='1'||$('#memberMoreDialog'))return;
   more=node('dialog');more.id='memberMoreDialog';more.setAttribute('aria-labelledby','memberMoreTitle');
@@ -131,8 +167,35 @@ export const appExperienceClient=String.raw`(()=>{
    const start=session.querySelector('[data-sf-start]');if(start&&!start.disabled&&!session.classList.contains('active'))text(start,done+skipped?'Resume session →':'Start session →');
   });
  }
+ function journey(){
+  if(document.hidden||document.body.dataset.memberPage!=='dashboard'||!$('#previewMember.is-ready'))return;
+  const panels=$('#panel-journey'),progress=$('#panel-visualise');if(!panels||!progress)return;
+  for(const a of all('#appBottomNav a'))if(a.textContent.trim()==='Journey'&&new URL(a.href).hash==='#journey')a.setAttribute('href','/member/dashboard#visualise');
+  const url=new URL(location.href),active=['#journey','#visualise'].includes(url.hash);
+  let nav=$('#memberJourneyTabs');
+  if(!nav){
+   nav=node('nav');nav.id='memberJourneyTabs';nav.setAttribute('role','tablist');nav.setAttribute('aria-label','Your Journey');
+   for(const [key,label]of [['journey','Journey'],['week','My week'],['log','Log a reading'],['felt','How I felt']]){
+    const button=node('button','',label);button.type='button';button.dataset.journeyView=key;button.setAttribute('role','tab');button.setAttribute('aria-controls',key==='log'?'panel-journey':'panel-visualise');
+    button.onclick=()=>{const next=new URL(location.href);next.searchParams.set('journeyView',key);const panel=key==='log'?'journey':'visualise';$('.mp-tab[data-panel="'+panel+'"]')?.click();next.hash=panel;history.pushState(null,'',next.pathname+next.search+next.hash);journey();};nav.append(button);
+   }
+   panels.parentElement.insertBefore(nav,panels);
+  }
+  nav.hidden=!active;if(!active){delete document.body.dataset.memberJourneyView;return;}
+  const requested=url.searchParams.get('journeyView'),key=url.hash==='#journey'?'log':['journey','week','felt'].includes(requested)?requested:'journey';
+  if(document.body.dataset.memberJourneyView!==key)document.body.dataset.memberJourneyView=key;
+  nav.querySelectorAll('button').forEach(b=>{const selected=b.dataset.journeyView===key;if(b.getAttribute('aria-selected')!==String(selected))b.setAttribute('aria-selected',String(selected));});
+  let entry=$('#memberJourneyEntry');if(!entry){entry=node('section','member-journey-entry');entry.id='memberJourneyEntry';progress.prepend(entry);}
+  if(entry.dataset.view!==key){entry.dataset.view=key;entry.replaceChildren();
+   if(key==='felt'){entry.append(node('h2','','How I felt'),node('p','','Review symptoms and medication taken across the dates you choose.'),link('Log how I felt','/member/treatment?entry=symptoms'),link('Choose dates & see entries','/member/treatment?view=timeline'));}
+   if(key==='week'){entry.append(node('h2','','My week'),node('p','','Review your saved check-ins and treatment weeks. Missing days remain unknown.'),link('Weekly check-in','/member/dashboard#journey'),link('Symptoms & medication timeline','/member/treatment?view=timeline'));recordedWeek(entry);}
+  }
+  let medication=$('#memberMedicationTaken');if(!medication){medication=node('section','member-journey-entry');medication.id='memberMedicationTaken';medication.append(node('h2','','Medication taken'),link('Record a jab','/member/treatment?entry=dose'),link('Record an oral tablet','/member/treatment?entry=tablet'),node('p','','Use your saved treatment record. Record only medication you actually took.'));panels.prepend(medication);}
+  // Canonical readers/forms retain all writes. The weekly read uses fresh account
+  // checks on both sides and never persists health information in browser storage.
+ }
  function refresh(){
-  mountMore();today();fit();
+  mountMore();today();fit();journey();
   all('a').filter(a=>/^Skip to (main )?content$/i.test(a.textContent.trim())).forEach((a,i)=>{if(!a.classList.contains('member-skip-link'))a.classList.add('member-skip-link');if(i>0&&!a.hidden)a.hidden=true});
   const guide=$('aside[aria-label="Food guide"]');if(guide&&!guide.closest('.member-food-guide')){const detail=node('details','member-food-guide');detail.append(node('summary','','Food guide & practical swaps'));$('main')?.append(detail);detail.append(guide)}
 
@@ -169,4 +232,5 @@ export const appExperienceClient=String.raw`(()=>{
  function boot(){refresh();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-completion','data-app-tool','class']})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
  document.addEventListener('sst:today-rendered',schedule);addEventListener('hashchange',schedule);addEventListener('popstate',schedule);
+ const clearWeek=()=>{++weekLoadVersion;const entry=$('#memberJourneyEntry');if(entry?.dataset.view==='week'){entry.replaceChildren();delete entry.dataset.view;}};addEventListener('pagehide',clearWeek);document.addEventListener('visibilitychange',()=>{if(document.hidden)clearWeek();else schedule();});
 })();`;

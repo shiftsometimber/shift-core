@@ -41,3 +41,17 @@ test('a treatment-only weight creates a real first point; missing weights do not
  const result=async(weight)=>progressSummary({MY_TREATMENT_ENABLED:'true',DB:{prepare:q=>({bind:()=>({all:async()=>({results:q.includes('member_treatment_events')?[{occurred_at:'2026-10-12T07:00:00Z',created_at:'2026-10-12T07:00:00Z',weight_kg:weight}]:[]}),first:async()=>({preferences:'{}'})})})}},17);
  const p=await result(93.2);assert.equal(p.state,'ready');assert.equal(p.metrics[0].delta,null);assert.equal(p.metrics[0].series.length,1);assert.equal((await result(null)).state,'empty');
 });
+
+test('custom dates keep both boundary days and exclude readings outside the chosen window',()=>{
+ const rows=metric('weight',[{on:'2025-01-01',value:99},{on:'2026-10-01',value:95},{on:'2026-10-10',value:94},{on:'2026-10-12',value:93}]);
+ const html=context.chartMarkup(rows,'kg',{from:'2026-10-01',to:'2026-10-10'},now,320);
+ assert.equal((html.match(/data-point=/g)||[]).length,2);assert.match(html,/94\.0 kg/);assert.doesNotMatch(html,/data-on="2025-01-01"|data-on="2026-10-12"/);
+});
+test('custom historical and single-day windows retain actual readings without fabricating a line',()=>{
+ const html=context.chartMarkup(metric('weight',[{on:'2025-01-01',value:99},{on:'2026-10-12',value:93}]),'kg',{from:'2025-01-01',to:'2025-01-01'},now,320);
+ assert.match(html,/99\.0 kg/);assert.match(html,/One reading/);assert.doesNotMatch(html,/polyline|NaN|Infinity|data-on="2026-10-12"/);
+});
+test('invalid calendar and reversed custom windows are rejected before plotting',()=>{
+ const rows=metric('weight',[]);
+ for(const dates of [{from:'2026-02-30',to:'2026-03-01'},{from:'2026-10-12',to:'2026-10-01'}])assert.throws(()=>context.chartMarkup(rows,'kg',dates,now),/Choose a To date/);
+});
