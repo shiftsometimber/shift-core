@@ -1,0 +1,138 @@
+{
+  "at": "2026-10-19T06:48:40.884Z",
+  "base": "e9b1ee64-29ec-45d0-a469-f461324eebdc",
+  "files": {
+    "/sitemap.xml": {
+      "file": "discovery-sitemap.xml",
+      "hash": "4311e24e854a7568a6128fe73ab56e83",
+      "sha256": "2f21793ee3c4c1ffd19c990f3b560e8cbd3d7978cdf7675ef4e76aadf15290df"
+    },
+    "/explore-knowledge.html": {
+      "file": "discovery-explore-knowledge.html",
+      "hash": "bbc0526761db1a8736851f030b3feba9",
+      "sha256": "9571cf31b24977946162bd38026436d9d0f35ae06f15dd7fb361eabfec82b0b8"
+    },
+    "/shift-health/blood-tests.html": {
+      "file": "discovery-shift-health-blood-tests.html",
+      "hash": "56d442477010073c07368734d6caebc8",
+      "sha256": "c8d5e13b7cb08e2f6fd8f051b99c067c7fbf15c53cd2d0b1e85fc68ec0e3d891"
+    },
+    "/shift-health/blood-tests/baseline.html": {
+      "file": "discovery-shift-health-blood-tests-baseline.html",
+      "hash": "f50e65421a66eee305d0c987ce9e9a09",
+      "sha256": "632f2d91e11bb56dcd8aac923bb90fc5b11289b2596feb415589358e245d52bd"
+    },
+    "/shift-health/blood-tests/advanced.html": {
+      "file": "discovery-shift-health-blood-tests-advanced.html",
+      "hash": "fe8ac4a37e720fe9c4d1e6e404437da0",
+      "sha256": "3cf4654784242db2d8b38a3faebc2a5a5476807b01a6d379496ac31f1b80d47a"
+    },
+    "/shift-health/blood-tests/complete.html": {
+      "file": "discovery-shift-health-blood-tests-complete.html",
+      "hash": "267ce0a61b81b991cf60ceff6e508a9c",
+      "sha256": "7b3089a070c8717ed6f73ed46b4e08dfd7c97f21731e590734aef86c492f7dc2"
+    }
+  },
+  "before": {
+    "/sitemap.xml": {
+      "url": "https://e9b1ee64.projectshift.pages.dev/sitemap.xml",
+      "status": 200,
+      "sha256": "7d35f527e237c7259eb48400d2b7d319df7243d9845f9b87490af651de66a7ea",
+      "headers": {
+        "content-type": "application/xml; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      },
+      "assetHash": "73b81d7d6ca8a390c252da8ce15a2b92"
+    },
+    "/explore-knowledge.html": {
+      "url": "https://e9b1ee64.projectshift.pages.dev/explore-knowledge",
+      "status": 200,
+      "sha256": "7532fa0c718dc8795caaa1cb02c443708c37ab6f8c88f14d46b07b8341d81988",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      },
+      "assetHash": "10a0b5ea4b758be0e4dc6e7f8398cee7"
+    },
+    "/shift-health/blood-tests.html": {
+      "url": "https://e9b1ee64.projectshift.pages.dev/shift-health/blood-tests",
+      "status": 200,
+      "sha256": "4a9f8e91a9e4e4637fc60b3f1340b3fc8438aedd213fdceb16536f0c30c44276",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      },
+      "assetHash": "0f941058d820734717d4be23b1b9b103"
+    },
+    "/shift-health/blood-tests/baseline.html": {
+      "url": "https://e9b1ee64.projectshift.pages.dev/shift-health/blood-tests/baseline",
+      "status": 200,
+      "sha256": "03020aa1629de39edf50174644cdf958d12d051ca9db52cfd4cfcf40709384bd",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      },
+      "assetHash": "ab15db3e5b67b4af3d048e0f627a3dfd"
+    },
+    "/shift-health/blood-tests/advanced.html": {
+      "url": "https://e9b1ee64.projectshift.pages.dev/shift-health/blood-tests/advanced",
+      "status": 200,
+      "sha256": "8c95001ab998180fbbff4c32c915ce562bd24a9f5381f2eb3bb241e24709b627",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      },
+      "assetHash": "184175c8d63eca5786ca3124e26c2bae"
+    },
+    "/shift-health/blood-tests/complete.html": {
+      "url": "https://e9b1ee64.projectshift.pages.dev/shift-health/blood-tests/complete",
+      "status": 200,
+      "sha256": "df3acfc37f3abda74693b4b92f1abf84e8f4c937132dd690f6b82501028039d0",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      },
+      "assetHash": "a42f5e075572d53a0f32931f6da51c25"
+    }
+  },
+  "newArticlesAlreadyPublic": true,
+  "allUnrelatedAssetsRetained": true,
+  "homepageUntouched": true,
+  "securityHeadersSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e"
+}

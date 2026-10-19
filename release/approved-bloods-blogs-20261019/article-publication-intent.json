@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-19T06:47:18.998Z",
+  "base": "a23ddd55-5cba-4759-8193-3b1ae573e918",
+  "source": "00935ac525325865d9f33c858805f027d3056e36",
+  "approval": {
+    "by": "Matt",
+    "instruction": "Approved",
+    "messageAt": "2026-10-19T06:30:35Z",
+    "reviewVersion": 1,
+    "reviewSHA256": "5a6f91e8db54054d770f1d51a5423aa2c8de05b71a85bc9812de42ab6adc7ec5",
+    "completeMarkdownHashes": [
+      "831762eb640bbb1672f794892408bb6581d78582b0830b1ca973b4bc872c5fb0",
+      "dc93cbdf766ae2f83abbe1428c4b02b26f041dd087cb9bda0f1773dbeb6400d0",
+      "75bce92d4e66948d4c112c69535d909a02e14363b240d9b8d3dbe6da3a1d61f3"
+    ]
+  },
+  "changedPaths": [
+    "/articles/understanding-blood-test-results.html",
+    "/articles/upper-arm-blood-collection.html"
+  ],
+  "phaseBefore": {
+    "at": "2026-10-19T06:47:14.250Z",
+    "receipts": []
+  },
+  "phaseAtUse": {
+    "at": "2026-10-19T06:47:17.940Z",
+    "receipts": []
+  }
+}
