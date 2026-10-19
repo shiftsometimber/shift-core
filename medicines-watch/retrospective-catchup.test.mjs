@@ -9,7 +9,7 @@ import {registryLifecycle} from './registry-lifecycle.mjs';
 import {fingerprintSource} from './monitor.mjs';
 import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
-test('current catalogue is the exact retained before-image plus five bounded corrections and CBL-514',()=>{
+test('current catalogue is the exact retained before-image plus eight bounded corrections and CBL-514',()=>{
  assert.equal(industry.length+medicines.length,120);assert.equal(sources.length,206);
  assert.equal(hash(industryBeforeRetrospective(industry)),review.baseline.industrySha256);
  assert.equal(hash(sourcesBeforeRetrospective(sources)),review.baseline.sourcesSha256);
@@ -49,4 +49,10 @@ test('historical inverses reject altered new records rather than hiding unrelate
  assert.throws(()=>industryBeforeRetrospective(bad),/before-image drift/);
  const changed=structuredClone(sources);changed.find(x=>x.nctId==='NCT07140939').lifecycle.status='COMPLETED';
  assert.throws(()=>sourcesBeforeRetrospective(changed),/inverse source drift/);
+});
+
+test('original-paper corrections bind five complete abstracts without whole-programme renewal',()=>{
+ assert.equal(review.originalResearchAbstractReviews.length,5);
+ assert.deepEqual(new Set(review.originalResearchAbstractReviews.map(x=>x.programme)),new Set(['kai7535','petrelintide','ubt251']));
+ for(const x of review.originalResearchAbstractReviews){assert.equal(createHash('sha256').update(x.paper.abstractText).digest('hex'),x.abstractSha256);assert.equal(x.sourcePublicationDate,x.paper.firstPublicationDate);assert.match(x.reviewScope,/abstract only/);const entry=industry.find(e=>e.id===x.programme);assert.ok(entry.additionalEvidence.some(e=>e.url==='https://doi.org/'+x.paper.doi));}
 });

@@ -411,6 +411,324 @@
           }
         ]
       }
+    },
+    {
+      "id": "kai7535",
+      "before": {
+        "id": "kai7535",
+        "name": "Safiglipron / KAI-7535 / HRS-7535",
+        "group": "research",
+        "stage": "Global Phase II ongoing; separate China Phase III results and recruiting hypertension Phase III",
+        "summary": "As reported by the cited source: Kailera's oral programme and Hengrui's Chinese programme have different development stages. A separate Chinese sponsor-submitted Phase 3 record, NCT07528027, studies HRS-7535 for blood-pressure control in people with hypertension and overweight or obesity. It is recruiting after an actual 29 May 2026 start with 648 estimated participants.",
+        "sourceIds": [
+          "kailera-q2-2026"
+        ],
+        "reviewedAt": "2026-10-03T11:29:25Z",
+        "clinicalApproval": null,
+        "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+        "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+        "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+        "limitations": "Keep sponsor, geography and study distinct. The hypertension study has no posted results. Recruitment and an actual start do not establish blood-pressure benefit, a new authorised indication, UK access or supply.",
+        "additionalEvidence": [
+          {
+            "title": "kailera-easd-20261001",
+            "url": "https://www.globenewswire.com/news-release/2026/10/01/3372706/0/en/kailera-therapeutics-presents-new-clinical-data-at-easd-2026-annual-meeting.html",
+            "sourcePublishedAt": "2026-10-01T10:45:00Z",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-01T19:14:54Z",
+            "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. "
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07528027: HRS-7535 in hypertension with overweight or obesity",
+            "url": "https://clinicaltrials.gov/study/NCT07528027",
+            "sourcePublishedAt": "2026-04-14",
+            "sourceUpdatedAt": "2026-09-24",
+            "reviewedAt": "2026-10-03T11:29:25Z",
+            "checkScope": "Complete sponsor-submitted API record read for specialist Phase 3 design, recruiting status, actual start, estimated enrolment and absence of posted results; not automatically content-monitored."
+          }
+        ]
+      },
+      "after": {
+        "id": "kai7535",
+        "name": "Safiglipron / KAI-7535 / HRS-7535",
+        "group": "research",
+        "stage": "Global Phase II ongoing; separate China Phase III results and recruiting hypertension Phase III",
+        "summary": "As reported by the cited source: Kailera's oral programme and Hengrui's Chinese programme have different development stages. A separate Chinese sponsor-submitted Phase 3 record, NCT07528027, studies HRS-7535 for blood-pressure control in people with hypertension and overweight or obesity. It is recruiting after an actual 29 May 2026 start with 648 estimated participants. Original Chinese trial papers were published on 29 September (OUTSTAND-1, Phase 3, early type 2 diabetes), 5 October (OUTSTAND-2, Phase 3, comparison with dapagliflozin) and 14 October 2026 (Phase 2, add-on to metformin plus an SGLT2 inhibitor). These are separate populations and regimens; the papers do not change the global KAI-7535 development stage.",
+        "sourceIds": [
+          "kailera-q2-2026"
+        ],
+        "reviewedAt": "2026-10-03T11:29:25Z",
+        "clinicalApproval": null,
+        "ukAuthorisation": "Not established for this weight-management programme by the reviewed evidence; requires separate MHRA/product-information verification.",
+        "nhsEngland": "Not established by these research sources; no routine access claim proposed.",
+        "supply": "UK retail availability and stock unverified. Research development does not establish supply.",
+        "limitations": "Keep sponsor, geography and study distinct. The hypertension study has no posted results. Recruitment and an actual start do not establish blood-pressure benefit, a new authorised indication, UK access or supply. This catch-up checked the original indexed abstracts, not full papers or supplements. Chinese diabetes findings do not establish efficacy for every weight-management population, UK authorisation, NHS access or supply.",
+        "additionalEvidence": [
+          {
+            "title": "kailera-easd-20261001",
+            "url": "https://www.globenewswire.com/news-release/2026/10/01/3372706/0/en/kailera-therapeutics-presents-new-clinical-data-at-easd-2026-annual-meeting.html",
+            "sourcePublishedAt": "2026-10-01T10:45:00Z",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-01T19:14:54Z",
+            "checkScope": "Primary evidence read for this factual update; not automatically content-monitored. "
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07528027: HRS-7535 in hypertension with overweight or obesity",
+            "url": "https://clinicaltrials.gov/study/NCT07528027",
+            "sourcePublishedAt": "2026-04-14",
+            "sourceUpdatedAt": "2026-09-24",
+            "reviewedAt": "2026-10-03T11:29:25Z",
+            "checkScope": "Complete sponsor-submitted API record read for specialist Phase 3 design, recruiting status, actual start, estimated enrolment and absence of posted results; not automatically content-monitored."
+          },
+          {
+            "title": "Oral small-molecule GLP-1 receptor agonist safiglipron in early type 2 diabetes: a randomized, double-blind, placebo-controlled trial.",
+            "url": "https://doi.org/10.1038/s41591-026-04651-9",
+            "sourcePublishedAt": "2026-09-29",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+            "checkScope": "Original indexed research abstract checked for the bounded factual update; full paper and supplements not independently reviewed. Not automatically content-monitored; no clinical approval or whole-programme review renewal."
+          },
+          {
+            "title": "Oral small-molecule GLP-1RA safiglipron versus dapagliflozin in type 2 diabetes: a randomized, double-blind, active-comparator-controlled phase 3 trial.",
+            "url": "https://doi.org/10.1038/s41591-026-04713-y",
+            "sourcePublishedAt": "2026-10-05",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+            "checkScope": "Original indexed research abstract checked for the bounded factual update; full paper and supplements not independently reviewed. Not automatically content-monitored; no clinical approval or whole-programme review renewal."
+          },
+          {
+            "title": "Efficacy and safety of HRS-7535, a novel oral small-molecule glucagon-like peptide-1 receptor agonist, in participants with type 2 diabetes mellitus inadequately controlled by metformin and sodium-glucose co-transporter 2 inhibitors: a multicentre, randomised, double-blind, placebo-controlled, parallel-group Phase II trial.",
+            "url": "https://doi.org/10.1007/s00125-026-06892-2",
+            "sourcePublishedAt": "2026-10-14",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+            "checkScope": "Original indexed research abstract checked for the bounded factual update; full paper and supplements not independently reviewed. Not automatically content-monitored; no clinical approval or whole-programme review renewal."
+          }
+        ]
+      },
+      "scope": "Bounded original-paper publication/provenance correction; programme reviewedAt, regulatory/access/supply and clinical fields retained."
+    },
+    {
+      "id": "petrelintide",
+      "before": {
+        "id": "petrelintide",
+        "name": "Petrelintide",
+        "group": "research",
+        "stage": "Phase 3 ZUPREME recruiting; Phase 2 diabetes topline reported",
+        "summary": "Zealand announced ZUPREME-2 diabetes Phase 2 topline results on 7 October 2026, reporting 7.4–9.2% mean weight reduction at week 28 using the efficacy estimand versus 2.0% with placebo. These are sponsor-reported findings pending full results. The completed NCT06926842 registry has no posted results and records 221 actual participants, whereas the sponsor reports 220. ZUPREME-3, ZUPREME-4 and ZUPREME-5 are now recruiting. ZUPREME-3 and -5 record actual 30 September starts; ZUPREME-4 retains an estimated 30 September start. The populations are respectively without type 2 diabetes, with type 2 diabetes, and with established cardiovascular disease.",
+        "sourceIds": [
+          "petrelintide-zealand"
+        ],
+        "reviewedAt": "2026-10-08T14:55:23Z",
+        "clinicalApproval": null,
+        "ukAuthorisation": "The cited research evidence does not establish UK marketing authorisation for this programme.",
+        "nhsEngland": "No NHS access is established by these research sources.",
+        "supply": "Trial development is not evidence of lawful UK retail supply or pharmacy stock.",
+        "limitations": "The Phase 2 announcement is topline sponsor evidence, not a full independent outcome review, comparative ranking or prescribing guide. The 221/220 enrolment discrepancy remains unresolved. Phase 3 enrolment and completion remain estimated and none of the three records has posted results. ZUPREME-5 studies weight management in people with cardiovascular disease; that population does not demonstrate cardiovascular-event prevention. The sponsor says the first Phase 3 participants have begun treatment, but this is not assigned as an actual start to ZUPREME-4 while its record retains an estimate. The petrelintide–enicepatide combination remains separate research; planned initiation is not completed dosing evidence. Specialist-indication research does not establish UK authorisation, NICE/NHS access or actual supply.",
+        "additionalEvidence": [
+          {
+            "title": "ClinicalTrials.gov NCT06926842: completed ZUPREME-2 diabetes Phase 2 study",
+            "url": "https://clinicaltrials.gov/study/NCT06926842",
+            "sourcePublishedAt": "2025-04-15",
+            "sourceUpdatedAt": "2026-09-09",
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Automatic lifecycle monitoring only; no assessment of clinical outcomes."
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07843472: ZUPREME-5 with established cardiovascular disease",
+            "url": "https://clinicaltrials.gov/study/NCT07843472",
+            "sourcePublishedAt": "2026-09-28",
+            "sourceUpdatedAt": "2026-10-07",
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07843485: ZUPREME-4 with type 2 diabetes",
+            "url": "https://clinicaltrials.gov/study/NCT07843485",
+            "sourcePublishedAt": "2026-09-28",
+            "sourceUpdatedAt": "2026-10-07",
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07843498: ZUPREME-3 without type 2 diabetes",
+            "url": "https://clinicaltrials.gov/study/NCT07843498",
+            "sourcePublishedAt": "2026-09-28",
+            "sourceUpdatedAt": "2026-10-07",
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+          },
+          {
+            "title": "Zealand: 7 October 2026 ZUPREME-2 topline announcement",
+            "url": "https://www.globenewswire.com/news-release/2026/10/07/3376750/0/en/zealand-pharma-announces-positive-phase-2-zupreme-2-topline-results-for-amylin-analog-petrelintide-in-people-with-overweight-or-obesity-and-type-2-diabetes.html",
+            "sourcePublishedAt": "2026-10-07",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Complete original sponsor announcement read; topline findings only. Outside automatic content monitoring; no verified monitor fingerprint."
+          }
+        ]
+      },
+      "after": {
+        "id": "petrelintide",
+        "name": "Petrelintide",
+        "group": "research",
+        "stage": "Phase 3 ZUPREME recruiting; Phase 2 diabetes topline reported",
+        "summary": "Zealand announced ZUPREME-2 diabetes Phase 2 topline results on 7 October 2026, reporting 7.4–9.2% mean weight reduction at week 28 using the efficacy estimand versus 2.0% with placebo. These are sponsor-reported findings pending full results. The completed NCT06926842 registry has no posted results and records 221 actual participants, whereas the sponsor reports 220. ZUPREME-3, ZUPREME-4 and ZUPREME-5 are now recruiting. ZUPREME-3 and -5 record actual 30 September starts; ZUPREME-4 retains an estimated 30 September start. The populations are respectively without type 2 diabetes, with type 2 diabetes, and with established cardiovascular disease. Separately, the original ZUPREME-1 Phase 2 paper in adults without type 2 diabetes was published on 29 September 2026; it is distinct from the 7 October ZUPREME-2 diabetes topline announcement.",
+        "sourceIds": [
+          "petrelintide-zealand"
+        ],
+        "reviewedAt": "2026-10-08T14:55:23Z",
+        "clinicalApproval": null,
+        "ukAuthorisation": "The cited research evidence does not establish UK marketing authorisation for this programme.",
+        "nhsEngland": "No NHS access is established by these research sources.",
+        "supply": "Trial development is not evidence of lawful UK retail supply or pharmacy stock.",
+        "limitations": "The Phase 2 announcement is topline sponsor evidence, not a full independent outcome review, comparative ranking or prescribing guide. The 221/220 enrolment discrepancy remains unresolved. Phase 3 enrolment and completion remain estimated and none of the three records has posted results. ZUPREME-5 studies weight management in people with cardiovascular disease; that population does not demonstrate cardiovascular-event prevention. The sponsor says the first Phase 3 participants have begun treatment, but this is not assigned as an actual start to ZUPREME-4 while its record retains an estimate. The petrelintide–enicepatide combination remains separate research; planned initiation is not completed dosing evidence. Specialist-indication research does not establish UK authorisation, NICE/NHS access or actual supply. The ZUPREME-1 original indexed abstract was checked in this catch-up, with full paper/supplement review incomplete; the separate ZUPREME-2 results remain attributed to their sponsor. No cross-trial ranking is supported.",
+        "additionalEvidence": [
+          {
+            "title": "ClinicalTrials.gov NCT06926842: completed ZUPREME-2 diabetes Phase 2 study",
+            "url": "https://clinicaltrials.gov/study/NCT06926842",
+            "sourcePublishedAt": "2025-04-15",
+            "sourceUpdatedAt": "2026-09-09",
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Automatic lifecycle monitoring only; no assessment of clinical outcomes."
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07843472: ZUPREME-5 with established cardiovascular disease",
+            "url": "https://clinicaltrials.gov/study/NCT07843472",
+            "sourcePublishedAt": "2026-09-28",
+            "sourceUpdatedAt": "2026-10-07",
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07843485: ZUPREME-4 with type 2 diabetes",
+            "url": "https://clinicaltrials.gov/study/NCT07843485",
+            "sourcePublishedAt": "2026-09-28",
+            "sourceUpdatedAt": "2026-10-07",
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07843498: ZUPREME-3 without type 2 diabetes",
+            "url": "https://clinicaltrials.gov/study/NCT07843498",
+            "sourcePublishedAt": "2026-09-28",
+            "sourceUpdatedAt": "2026-10-07",
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+          },
+          {
+            "title": "Zealand: 7 October 2026 ZUPREME-2 topline announcement",
+            "url": "https://www.globenewswire.com/news-release/2026/10/07/3376750/0/en/zealand-pharma-announces-positive-phase-2-zupreme-2-topline-results-for-amylin-analog-petrelintide-in-people-with-overweight-or-obesity-and-type-2-diabetes.html",
+            "sourcePublishedAt": "2026-10-07",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-08T14:55:23Z",
+            "checkScope": "Complete original sponsor announcement read; topline findings only. Outside automatic content monitoring; no verified monitor fingerprint."
+          },
+          {
+            "title": "Petrelintide, a human amylin analogue for the treatment of obesity (ZUPREME 1): a randomised, double-blind, placebo-controlled, phase 2 trial.",
+            "url": "https://doi.org/10.1016/s2213-8587(26)00213-5",
+            "sourcePublishedAt": "2026-09-29",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+            "checkScope": "Original indexed research abstract checked for the bounded factual update; full paper and supplements not independently reviewed. Not automatically content-monitored; no clinical approval or whole-programme review renewal."
+          }
+        ]
+      },
+      "scope": "Bounded original-paper publication/provenance correction; programme reviewedAt, regulatory/access/supply and clinical fields retained."
+    },
+    {
+      "id": "ubt251",
+      "before": {
+        "id": "ubt251",
+        "name": "UBT251 / NN9559",
+        "developer": "United Biotechnology / Novo Nordisk",
+        "group": "research",
+        "stage": "Chinese Phase 2 results; global Phase 1b/2a ongoing",
+        "summary": "Novo Nordisk and United Biotechnology sponsor-reported evidence describes once-weekly injectable UBT251 as a GLP-1/GIP/glucagon triple agonist. A Chinese Phase 2 obesity study reported up to 19.7% mean weight loss after 24 weeks; Novo's later pipeline presentation records a separate global Phase 1b/2a obesity study as ongoing.",
+        "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for UBT251 or this formulation.",
+        "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+        "supply": "Clinical development, licensing rights or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+        "limitations": "The numerical findings are sponsor-reported and do not support cross-trial comparisons. Novo's September 2026 expectation to initiate weight-management Phase 3 in mid-2027 is a plan, not a completed event, result or regulatory decision.",
+        "sourceIds": [],
+        "reviewedAt": "2026-10-02T03:28:00Z",
+        "clinicalApproval": null,
+        "additionalEvidence": [
+          {
+            "title": "Novo Nordisk and United Biotechnology: UBT251 Chinese Phase 2 topline results",
+            "url": "https://www.novonordisk.com/content/nncorp/global/en/news-and-media/news-and-ir-materials/news-details.html?id=916503",
+            "sourcePublishedAt": "2026-02-24",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-02T03:28:00Z",
+            "checkScope": "Original sponsor announcement read for formulation, mechanism, Chinese Phase 2 design, 24-week sponsor-reported result, partnership responsibilities and the separate global Phase 1b/2a plan; not automatically content-monitored."
+          },
+          {
+            "title": "Novo Nordisk Capital Markets Day 2026 obesity presentation",
+            "url": "https://www.novonordisk.com/content/dam/nncorp/global/en/investors/pdfs/capital-markets-day/2026/obesity-presentation-cmd-2026.pdf",
+            "sourcePublishedAt": "2026-09-21",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-02T03:28:00Z",
+            "checkScope": "Original sponsor pipeline presentation read for the ongoing global Phase 1b/2a obesity study, Chinese Phase 2 context and planned mid-2027 Phase 3 timing; forward-looking dates remain plans; not automatically content-monitored."
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07177469",
+            "url": "https://clinicaltrials.gov/study/NCT07177469",
+            "sourcePublishedAt": null,
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-02T03:28:00Z",
+            "checkScope": "Sponsor-submitted registry linked for the Chinese Phase 2 obesity study and weekly injection design; sponsor results remain attributed and the registry link does not establish UK authorisation, NHS access or supply; not automatically content-monitored."
+          }
+        ]
+      },
+      "after": {
+        "id": "ubt251",
+        "name": "UBT251 / NN9559",
+        "developer": "United Biotechnology / Novo Nordisk",
+        "group": "research",
+        "stage": "Chinese Phase 2 results; global Phase 1b/2a ongoing",
+        "summary": "Novo Nordisk and United Biotechnology sponsor-reported evidence describes once-weekly injectable UBT251 as a GLP-1/GIP/glucagon triple agonist. A Chinese Phase 2 obesity study reported up to 19.7% mean weight loss after 24 weeks; Novo's later pipeline presentation records a separate global Phase 1b/2a obesity study as ongoing. The original Chinese Phase 2 paper was published on 7 October 2026; its indexed abstract describes 205 adults without type 2 diabetes and weekly treatment over 24 weeks. This is an additional published research source for the earlier sponsor-reported result, not a newly announced effect on 19 October.",
+        "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for UBT251 or this formulation.",
+        "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+        "supply": "Clinical development, licensing rights or a registry listing does not establish lawful UK retail supply or pharmacy stock.",
+        "limitations": "The numerical findings are sponsor-reported and do not support cross-trial comparisons. Novo's September 2026 expectation to initiate weight-management Phase 3 in mid-2027 is a plan, not a completed event, result or regulatory decision. Only the original indexed abstract was independently available in this catch-up; full paper and supplements were not reviewed. Publication does not establish Phase 3 success, long-term benefit or UK access.",
+        "sourceIds": [],
+        "reviewedAt": "2026-10-02T03:28:00Z",
+        "clinicalApproval": null,
+        "additionalEvidence": [
+          {
+            "title": "Novo Nordisk and United Biotechnology: UBT251 Chinese Phase 2 topline results",
+            "url": "https://www.novonordisk.com/content/nncorp/global/en/news-and-media/news-and-ir-materials/news-details.html?id=916503",
+            "sourcePublishedAt": "2026-02-24",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-02T03:28:00Z",
+            "checkScope": "Original sponsor announcement read for formulation, mechanism, Chinese Phase 2 design, 24-week sponsor-reported result, partnership responsibilities and the separate global Phase 1b/2a plan; not automatically content-monitored."
+          },
+          {
+            "title": "Novo Nordisk Capital Markets Day 2026 obesity presentation",
+            "url": "https://www.novonordisk.com/content/dam/nncorp/global/en/investors/pdfs/capital-markets-day/2026/obesity-presentation-cmd-2026.pdf",
+            "sourcePublishedAt": "2026-09-21",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-02T03:28:00Z",
+            "checkScope": "Original sponsor pipeline presentation read for the ongoing global Phase 1b/2a obesity study, Chinese Phase 2 context and planned mid-2027 Phase 3 timing; forward-looking dates remain plans; not automatically content-monitored."
+          },
+          {
+            "title": "ClinicalTrials.gov NCT07177469",
+            "url": "https://clinicaltrials.gov/study/NCT07177469",
+            "sourcePublishedAt": null,
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-02T03:28:00Z",
+            "checkScope": "Sponsor-submitted registry linked for the Chinese Phase 2 obesity study and weekly injection design; sponsor results remain attributed and the registry link does not establish UK authorisation, NHS access or supply; not automatically content-monitored."
+          },
+          {
+            "title": "UBT251, a novel triple GLP-1, GIP, and glucagon receptor agonist, in adults with overweight or obesity: A multicenter, randomized phase 2 trial.",
+            "url": "https://doi.org/10.1016/j.cmet.2026.09.021",
+            "sourcePublishedAt": "2026-10-07",
+            "sourceUpdatedAt": null,
+            "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+            "checkScope": "Original indexed research abstract checked for the bounded factual update; full paper and supplements not independently reviewed. Not automatically content-monitored; no clinical approval or whole-programme review renewal."
+          }
+        ]
+      },
+      "scope": "Bounded original-paper publication/provenance correction; programme reviewedAt, regulatory/access/supply and clinical fields retained."
     }
   ],
   "cbl514Candidate": {
@@ -26672,5 +26990,1868 @@
     "industrySha256": "28d51ab09822928d3ea5e421afa3a369897e5c0ec3090823064cb827f9f6627c",
     "sourcesSha256": "47f6639aac1b9069b44d2ef73930e1acbf6f423e550cfe8ae83ffad84f09396f",
     "source": "9140c8beeb18757fb6006ba37f07c98024f68583"
-  }
+  },
+  "originalResearchAbstractReviews": [
+    {
+      "programme": "kai7535",
+      "pmid": "42811187",
+      "sourcePublicationDate": "2026-09-29",
+      "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+      "reviewScope": "Complete indexed original abstract only. Full paper/supplement not independently available; no whole-programme renewal, outcome synthesis or clinical sign-off.",
+      "abstractSha256": "99dea80cd5ffea345d8379a27cc758432b4b8169f00fa1790e5892fee27797f4",
+      "paper": {
+        "id": "42811187",
+        "source": "MED",
+        "pmid": "42811187",
+        "doi": "10.1038/s41591-026-04651-9",
+        "title": "Oral small-molecule GLP-1 receptor agonist safiglipron in early type 2 diabetes: a randomized, double-blind, placebo-controlled trial.",
+        "authorString": "Yu M, Peng L, Jiang C, Zhang X, Li Q, Zhang L, Su X, Zeng Z, Yan S, Wang J, Huang D, Wang S, Liu N, Xu Y, Tang G, Dong F, Ma Y, Ye Z, Xiao X, OUTSTAND-1 Investigator Group.",
+        "authorList": {
+          "author": [
+            {
+              "fullName": "Yu M",
+              "lastName": "Yu",
+              "firstName": "Miao",
+              "initials": "M",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Peking Union Medical College Hospital, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Peng L",
+              "lastName": "Peng",
+              "firstName": "Liang",
+              "initials": "L",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-5407-3737"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd., Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Jiang C",
+              "lastName": "Jiang",
+              "firstName": "Chengyan",
+              "initials": "C",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The First People's Hospital of Zunyi, Zunyi, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhang X",
+              "lastName": "Zhang",
+              "firstName": "Xianghua",
+              "initials": "X",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of General Medicine, Yueyang Central Hospital, Yueyang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Li Q",
+              "lastName": "Li",
+              "firstName": "Qifu",
+              "initials": "Q",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-7249-6445"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The First Affiliated Hospital of Chongqing Medical University, Chongqing, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhang L",
+              "lastName": "Zhang",
+              "firstName": "Lihui",
+              "initials": "L",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Second Hospital of Hebei Medical University, Shijiazhuang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Su X",
+              "lastName": "Su",
+              "firstName": "Xiuhai",
+              "initials": "X",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Endocrinology Diabetes Ward 1, Cangzhou Hospital of Integrated TCM-WM Hebei, Cangzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zeng Z",
+              "lastName": "Zeng",
+              "firstName": "Zhaoyang",
+              "initials": "Z",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Yichang Central People's Hospital, Yichang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Yan S",
+              "lastName": "Yan",
+              "firstName": "Shuang",
+              "initials": "S",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Fourth Hospital Affiliated to Harbin Medical University, Harbin, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Wang J",
+              "lastName": "Wang",
+              "firstName": "Jinyang",
+              "initials": "J",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Gansu Provincial Hospital, Lanzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Huang D",
+              "lastName": "Huang",
+              "firstName": "Debin",
+              "initials": "D",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Third Hospital of Changsha, Changsha, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Wang S",
+              "lastName": "Wang",
+              "firstName": "Sihong",
+              "initials": "S",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Xuancheng People's Hospital, Xuancheng, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Liu N",
+              "lastName": "Liu",
+              "firstName": "Na",
+              "initials": "N",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Liuzhou People's Hospital, Liuzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Xu Y",
+              "lastName": "Xu",
+              "firstName": "Yimei",
+              "initials": "Y",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd., Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Tang G",
+              "lastName": "Tang",
+              "firstName": "Guo",
+              "initials": "G",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-5411-1441"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd., Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Dong F",
+              "lastName": "Dong",
+              "firstName": "Fangli",
+              "initials": "F",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd., Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Ma Y",
+              "lastName": "Ma",
+              "firstName": "Yanlin",
+              "initials": "Y",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd., Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Ye Z",
+              "lastName": "Ye",
+              "firstName": "Zi",
+              "initials": "Z",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0001-7740-1238"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd., Shanghai, China. zi.ye@hengrui.com."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Xiao X",
+              "lastName": "Xiao",
+              "firstName": "Xinhua",
+              "initials": "X",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-5441-7766"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Peking Union Medical College Hospital, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing, China. xiaoxh2014@vip.163.com."
+                  }
+                ]
+              }
+            },
+            {
+              "collectiveName": "OUTSTAND-1 Investigator Group"
+            }
+          ]
+        },
+        "investigatorList": {
+          "investigator": [
+            {
+              "fullName": "Jiang C",
+              "lastName": "Jiang",
+              "firstName": "Chengyan",
+              "initials": "C"
+            },
+            {
+              "fullName": "Zhang X",
+              "lastName": "Zhang",
+              "firstName": "Xianghua",
+              "initials": "X"
+            },
+            {
+              "fullName": "Li Q",
+              "lastName": "Li",
+              "firstName": "Qifu",
+              "initials": "Q"
+            },
+            {
+              "fullName": "Zhang L",
+              "lastName": "Zhang",
+              "firstName": "Lihui",
+              "initials": "L"
+            },
+            {
+              "fullName": "Su X",
+              "lastName": "Su",
+              "firstName": "Xiuhai",
+              "initials": "X"
+            },
+            {
+              "fullName": "Zeng Z",
+              "lastName": "Zeng",
+              "firstName": "Zhaoyang",
+              "initials": "Z"
+            },
+            {
+              "fullName": "Yan S",
+              "lastName": "Yan",
+              "firstName": "Shuang",
+              "initials": "S"
+            },
+            {
+              "fullName": "Wang J",
+              "lastName": "Wang",
+              "firstName": "Jinyang",
+              "initials": "J"
+            },
+            {
+              "fullName": "Huang D",
+              "lastName": "Huang",
+              "firstName": "Debin",
+              "initials": "D"
+            },
+            {
+              "fullName": "Wang S",
+              "lastName": "Wang",
+              "firstName": "Sihong",
+              "initials": "S"
+            },
+            {
+              "fullName": "Liu N",
+              "lastName": "Liu",
+              "firstName": "Na",
+              "initials": "N"
+            },
+            {
+              "fullName": "Xiao X",
+              "lastName": "Xiao",
+              "firstName": "Xinhua",
+              "initials": "X"
+            }
+          ]
+        },
+        "authorIdList": {
+          "authorId": [
+            {
+              "type": "ORCID",
+              "value": "0000-0001-5411-1441"
+            },
+            {
+              "type": "ORCID",
+              "value": "0000-0001-5441-7766"
+            },
+            {
+              "type": "ORCID",
+              "value": "0000-0001-7249-6445"
+            },
+            {
+              "type": "ORCID",
+              "value": "0000-0002-5407-3737"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0001-7740-1238"
+            }
+          ]
+        },
+        "journalInfo": {
+          "journalIssueId": 4252655,
+          "dateOfPublication": "2026 Sep",
+          "monthOfPublication": 9,
+          "yearOfPublication": 2026,
+          "journal": {
+            "medlineAbbreviation": "Nat Med",
+            "title": "Nature medicine",
+            "essn": "1546-170X",
+            "issn": "1078-8956",
+            "isoabbreviation": "Nat Med",
+            "nlmid": "9502015"
+          },
+          "printPublicationDate": "2026-09-01"
+        },
+        "pubYear": "2026",
+        "abstractText": "Safiglipron is an oral small-molecule glucagon-like peptide-1 (GLP-1) receptor agonist administered without fasting or dietary restrictions. We evaluated its efficacy and safety in OUTSTAND-1, a phase 3, multicenter, randomized, double-blind, placebo-controlled trial at 46 sites in China. We randomized 284 adults with type 2 diabetes managed with diet and exercise alone (mean baseline HbA1c 7.95%, median diabetes duration 1.6 years, 33.1% women) to once-daily safiglipron 30 mg (n = 70), 60 mg (n = 70), 90 mg (n = 72) or placebo (n = 72) for 32 weeks, followed by a 20-week active-treatment extension. For the primary endpoint, placebo-adjusted treatment differences in HbA1c change from baseline to week 32 were -1.22% (95% CI, -1.53 to -0.91), -1.20% (95% CI, -1.52 to -0.89) and -1.45% (95% CI, -1.75 to -1.14) for 30 mg, 60 mg and 90 mg, respectively (all P < 0.0001; treatment policy estimand). Secondary outcomes showed HbA1c < 7.0% in 71.4-77.8% versus 25.0%, HbA1c ≤ 6.5% in 58.6-68.1% versus 16.7% and placebo-adjusted fasting plasma glucose differences of -1.58, -1.68 and -2.08 mmol l<sup>-</sup><sup>1</sup>, respectively (all P < 0.0001). Body weight differences were modest (-0.65%, -2.23% and -3.56% versus placebo). Other secondary outcomes generally favored safiglipron for HbA1c < 5.7% attainment, postprandial glycemia, homeostatic model assessment of β cell function (HOMA-β), homeostatic model assessment of insulin resistance (HOMA-IR), disposition index and waist circumference, with less rescue therapy use. Insulin and C-peptide responses varied by dose, and changes in treatment satisfaction were limited. Gastrointestinal adverse events were most common and mostly mild or moderate. Adverse events led to treatment discontinuation in 1.4%, 2.9%, 6.9% and 0% of participants receiving safiglipron 30 mg, 60 mg, 90 mg and placebo, respectively. These findings support once-daily oral safiglipron as an effective treatment option for type 2 diabetes. ClinicalTrials.gov identifier: NCT06672172 .",
+        "affiliation": "Department of Endocrinology, Peking Union Medical College Hospital, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing, China.",
+        "publicationStatus": "aheadofprint",
+        "language": "eng",
+        "pubModel": "Print-Electronic",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "subsetList": {
+          "subset": [
+            {
+              "code": "IM",
+              "name": "Index Medicus"
+            }
+          ]
+        },
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1038/s41591-026-04651-9"
+            }
+          ]
+        },
+        "isOpenAccess": "N",
+        "inEPMC": "N",
+        "inPMC": "N",
+        "citedByCount": 0,
+        "hasReferences": "Y",
+        "hasTextMinedTerms": "N",
+        "hasDbCrossReferences": "N",
+        "hasPDF": "N",
+        "hasBook": "N",
+        "hasSuppl": "N",
+        "hasLabsLinks": "N",
+        "hasData": "N",
+        "authMan": "N",
+        "epmcAuthMan": "N",
+        "nihAuthMan": "N",
+        "hasTMAccessionNumbers": "N",
+        "dateOfCreation": "2026-09-29",
+        "dateOfRevision": "2026-09-29",
+        "electronicPublicationDate": "2026-09-29",
+        "firstPublicationDate": "2026-09-29",
+        "firstIndexDate": "2026-09-30",
+        "hasEvaluations": "N"
+      }
+    },
+    {
+      "programme": "kai7535",
+      "pmid": "42834229",
+      "sourcePublicationDate": "2026-10-05",
+      "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+      "reviewScope": "Complete indexed original abstract only. Full paper/supplement not independently available; no whole-programme renewal, outcome synthesis or clinical sign-off.",
+      "abstractSha256": "ecfad8b35cd7b2640102f990f1eef5470bf088f816ec5f700bc4cc8ea71dc175",
+      "paper": {
+        "id": "42834229",
+        "source": "MED",
+        "pmid": "42834229",
+        "doi": "10.1038/s41591-026-04713-y",
+        "title": "Oral small-molecule GLP-1RA safiglipron versus dapagliflozin in type 2 diabetes: a randomized, double-blind, active-comparator-controlled phase 3 trial.",
+        "authorString": "Guo L, Yu D, Xu Y, Tang G, Peng L, Meng C, Zhao M, Hu W, Huang D, Zeng C, Yu L, Wu G, Zhang L, Gao Y, Zhong T, Ye Z, OUTSTAND-2 Investigator Group.",
+        "authorList": {
+          "author": [
+            {
+              "fullName": "Guo L",
+              "lastName": "Guo",
+              "firstName": "Lixin",
+              "initials": "L",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-6863-1798"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Beijing Hospital; National Center of Gerontology, National Clinical Research Center for Gerontology, The Key Laboratory of Geriatrics of NHC, Institute of Geriatric Medicine, Chinese Academy of Medical Sciences, Beijing, China. glx1218@163.com."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Yu D",
+              "lastName": "Yu",
+              "firstName": "Dongni",
+              "initials": "D",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Beijing Hospital; National Center of Gerontology, National Clinical Research Center for Gerontology, The Key Laboratory of Geriatrics of NHC, Institute of Geriatric Medicine, Chinese Academy of Medical Sciences, Beijing, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Xu Y",
+              "lastName": "Xu",
+              "firstName": "Yimei",
+              "initials": "Y",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Tang G",
+              "lastName": "Tang",
+              "firstName": "Guo",
+              "initials": "G",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-5411-1441"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Peng L",
+              "lastName": "Peng",
+              "firstName": "Liang",
+              "initials": "L",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-5407-3737"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Meng C",
+              "lastName": "Meng",
+              "firstName": "Chao",
+              "initials": "C",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of General Medicine, Central Hospital Affiliated to Shandong First Medical University, Jinan, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhao M",
+              "lastName": "Zhao",
+              "firstName": "Meng",
+              "initials": "M",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Affiliated Hospital of Xuzhou Medical University, Xuzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Hu W",
+              "lastName": "Hu",
+              "firstName": "Wen",
+              "initials": "W",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology and Metabolism, Huai'an Hospital Affiliated to Xuzhou Medical University, Huai'an, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Huang D",
+              "lastName": "Huang",
+              "firstName": "Debin",
+              "initials": "D",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Endocrine and Metabolic Diseases Department, The Third Hospital of Changsha, Changsha, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zeng C",
+              "lastName": "Zeng",
+              "firstName": "Chaoyang",
+              "initials": "C",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Yichang Central People's Hospital, Yichang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Yu L",
+              "lastName": "Yu",
+              "firstName": "Lei",
+              "initials": "L",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The First Affiliated Hospital of Bengbu Medical College, Bengbu, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Wu G",
+              "lastName": "Wu",
+              "firstName": "Guangxiu",
+              "initials": "G",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Chongqing University Affiliated Fuling Hospital, Chongqing, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhang L",
+              "lastName": "Zhang",
+              "firstName": "Lihui",
+              "initials": "L",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Second Hospital of Hebei Medical University, Shijiazhuang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Gao Y",
+              "lastName": "Gao",
+              "firstName": "Yuan",
+              "initials": "Y",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Jingjiang People's Hospital, Jingjiang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhong T",
+              "lastName": "Zhong",
+              "firstName": "Tingyan",
+              "initials": "T",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Ye Z",
+              "lastName": "Ye",
+              "firstName": "Zi",
+              "initials": "Z",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0001-7740-1238"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research and Development, Jiangsu Hengrui Pharmaceuticals, Shanghai, China. zi.ye@hengrui.com."
+                  }
+                ]
+              }
+            },
+            {
+              "collectiveName": "OUTSTAND-2 Investigator Group"
+            }
+          ]
+        },
+        "investigatorList": {
+          "investigator": [
+            {
+              "fullName": "Guo L",
+              "lastName": "Guo",
+              "firstName": "Lixin",
+              "initials": "L"
+            },
+            {
+              "fullName": "Zhao M",
+              "lastName": "Zhao",
+              "firstName": "Meng",
+              "initials": "M"
+            },
+            {
+              "fullName": "Hu W",
+              "lastName": "Hu",
+              "firstName": "Wen",
+              "initials": "W"
+            },
+            {
+              "fullName": "Huang D",
+              "lastName": "Huang",
+              "firstName": "Debin",
+              "initials": "D"
+            },
+            {
+              "fullName": "Zeng C",
+              "lastName": "Zeng",
+              "firstName": "Chaoyang",
+              "initials": "C"
+            },
+            {
+              "fullName": "Yu L",
+              "lastName": "Yu",
+              "firstName": "Lei",
+              "initials": "L"
+            },
+            {
+              "fullName": "Wu G",
+              "lastName": "Wu",
+              "firstName": "Guangxiu",
+              "initials": "G"
+            },
+            {
+              "fullName": "Zhang L",
+              "lastName": "Zhang",
+              "firstName": "Lihui",
+              "initials": "L"
+            },
+            {
+              "fullName": "Gao Y",
+              "lastName": "Gao",
+              "firstName": "Yuan",
+              "initials": "Y"
+            }
+          ]
+        },
+        "authorIdList": {
+          "authorId": [
+            {
+              "type": "ORCID",
+              "value": "0000-0001-5411-1441"
+            },
+            {
+              "type": "ORCID",
+              "value": "0000-0001-6863-1798"
+            },
+            {
+              "type": "ORCID",
+              "value": "0000-0002-5407-3737"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0001-7740-1238"
+            }
+          ]
+        },
+        "journalInfo": {
+          "journalIssueId": 4276342,
+          "dateOfPublication": "2026 Oct",
+          "monthOfPublication": 10,
+          "yearOfPublication": 2026,
+          "journal": {
+            "medlineAbbreviation": "Nat Med",
+            "title": "Nature medicine",
+            "essn": "1546-170X",
+            "issn": "1078-8956",
+            "isoabbreviation": "Nat Med",
+            "nlmid": "9502015"
+          },
+          "printPublicationDate": "2026-10-01"
+        },
+        "pubYear": "2026",
+        "abstractText": "Safiglipron is an oral small-molecule glucagon-like peptide-1 (GLP-1) receptor agonist administered without fasting or dietary restrictions. We evaluated its efficacy and safety versus dapagliflozin in OUTSTAND-2, a phase 3, multicenter, randomized, double-blind, double-dummy, active-comparator-controlled trial conducted at 98 sites in China. We randomized 810 adults (mean hemoglobin A1C (HbA1c) 8.60%, median diabetes duration 5.0 years, 35.7% women) to safiglipron 30 mg (n = 202), safiglipron 60 mg (n = 203), safiglipron 90 mg (n = 203) or dapagliflozin 10 mg (n = 202) for 32 weeks, followed by a 20-week active-treatment extension. For the primary endpoint, treatment differences versus dapagliflozin in change from baseline in HbA1c at week 32 under the primary non-inferiority estimand were -0.30% (95% confidence interval (CI): -0.51 to -0.09), -0.22% (-0.44 to -0.01) and -0.40% (-0.62 to -0.19) for safiglipron 30 mg, 60 mg and 90 mg, respectively, establishing non-inferiority for all three doses (all P < 0.0001; non-inferiority margin 0.4%). Under the treatment policy estimand, 90 mg met the prespecified statistical criterion for superiority (difference -0.25%; 95% CI: -0.45 to -0.05; one-sided P = 0.0067), whereas 60 mg did not (P = 0.0789), after which fixed-sequence testing stopped. HbA1c target attainment rates with safiglipron versus dapagliflozin were 54.9-63.5% versus 36.5% for HbA1c <7.0% and 38.9-48.6% versus 16.1% for HbA1c ≤6.5%. Mean body weight changes were -2.35%, -3.55%, -4.17% and -3.60% for safiglipron 30 mg, safiglipron 60 mg, safiglipron 90 mg and dapagliflozin, respectively. Fasting plasma glucose, seven-point self-monitored blood glucose profiles, waist circumference, HOMA-β, HOMA-IR and changes in treatment satisfaction showed varying degrees of improvement from baseline with both safiglipron and dapagliflozin. Rescue therapy was used by 0.5-1.5% versus 0% of participants, respectively. Gastrointestinal adverse events were more frequent with safiglipron and mostly mild or moderate; adverse events led to treatment discontinuation in 4.0%, 4.0%, 3.9% and 1.5% of participants, respectively. Safiglipron provides an effective oral treatment option for adults with type 2 diabetes inadequately controlled with metformin. ClinicalTrials.gov identifier: NCT06589765 .",
+        "affiliation": "Department of Endocrinology, Beijing Hospital; National Center of Gerontology, National Clinical Research Center for Gerontology, The Key Laboratory of Geriatrics of NHC, Institute of Geriatric Medicine, Chinese Academy of Medical Sciences, Beijing, China. glx1218@163.com.",
+        "publicationStatus": "aheadofprint",
+        "language": "eng",
+        "pubModel": "Print-Electronic",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "subsetList": {
+          "subset": [
+            {
+              "code": "IM",
+              "name": "Index Medicus"
+            }
+          ]
+        },
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1038/s41591-026-04713-y"
+            }
+          ]
+        },
+        "isOpenAccess": "N",
+        "inEPMC": "N",
+        "inPMC": "N",
+        "citedByCount": 0,
+        "hasReferences": "Y",
+        "hasTextMinedTerms": "Y",
+        "hasDbCrossReferences": "N",
+        "hasPDF": "N",
+        "hasBook": "N",
+        "hasSuppl": "N",
+        "hasLabsLinks": "N",
+        "hasData": "N",
+        "authMan": "N",
+        "epmcAuthMan": "N",
+        "nihAuthMan": "N",
+        "hasTMAccessionNumbers": "N",
+        "dateOfCreation": "2026-10-05",
+        "dateOfRevision": "2026-10-05",
+        "electronicPublicationDate": "2026-10-05",
+        "firstPublicationDate": "2026-10-05",
+        "firstIndexDate": "2026-10-16",
+        "hasEvaluations": "N"
+      }
+    },
+    {
+      "programme": "kai7535",
+      "pmid": "42875600",
+      "sourcePublicationDate": "2026-10-14",
+      "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+      "reviewScope": "Complete indexed original abstract only. Full paper/supplement not independently available; no whole-programme renewal, outcome synthesis or clinical sign-off.",
+      "abstractSha256": "5af44781dedbcad083085337f126a543c00c114cb05b8b4fe6ac247121216aff",
+      "paper": {
+        "id": "42875600",
+        "source": "MED",
+        "pmid": "42875600",
+        "doi": "10.1007/s00125-026-06892-2",
+        "title": "Efficacy and safety of HRS-7535, a novel oral small-molecule glucagon-like peptide-1 receptor agonist, in participants with type 2 diabetes mellitus inadequately controlled by metformin and sodium-glucose co-transporter 2 inhibitors: a multicentre, randomised, double-blind, placebo-controlled, parallel-group Phase II trial.",
+        "authorString": "Xu M, Song W, Lv F, Fu Y, Yang L, Bin X, Zhang X, Ye Z, Zhang D, Lin X, Dai W, Shu C, Yan L.",
+        "authorList": {
+          "author": [
+            {
+              "fullName": "Xu M",
+              "lastName": "Xu",
+              "firstName": "Mingtong",
+              "initials": "M",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-4647-3079"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Sun Yat-sen Memorial Hospital, Guangzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Song W",
+              "lastName": "Song",
+              "firstName": "Weihong",
+              "initials": "W",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-1536-884X"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Chenzhou No. 1 People's Hospital, Chenzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Lv F",
+              "lastName": "Lv",
+              "firstName": "Fang",
+              "initials": "F",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-1155-2682"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Hefei First People's Hospital, Hefei, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Fu Y",
+              "lastName": "Fu",
+              "firstName": "Yanqin",
+              "initials": "Y",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0007-1179-823X"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Second Affiliated Hospital of Zhengzhou University, Zhengzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Yang L",
+              "lastName": "Yang",
+              "firstName": "Liu",
+              "initials": "L",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0008-7594-626X"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Jingjiang People's Hospital Affiliated to Yangzhou University, Jingjiang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Bin X",
+              "lastName": "Bin",
+              "firstName": "Xiaochang",
+              "initials": "X",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0003-7810-853X"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Nanxishan Hospital of Guangxi Zhuang Autonomous Region (Guangxi Second People's Hospital), Guilin, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhang X",
+              "lastName": "Zhang",
+              "firstName": "Xiting",
+              "initials": "X",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0001-6719-6859"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, General Hospital of Pingxiang Mining Group Co., Pingxiang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Ye Z",
+              "lastName": "Ye",
+              "firstName": "Zi",
+              "initials": "Z",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0001-7740-1238"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research & Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhang D",
+              "lastName": "Zhang",
+              "firstName": "Danli",
+              "initials": "D",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0008-1203-7560"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research & Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Lin X",
+              "lastName": "Lin",
+              "firstName": "Xiang",
+              "initials": "X",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0002-5516-3598"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research & Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Dai W",
+              "lastName": "Dai",
+              "firstName": "Wei",
+              "initials": "W",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0005-4591-8207"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research & Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Shu C",
+              "lastName": "Shu",
+              "firstName": "Chang",
+              "initials": "C",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0009-0003-7694-5991"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Clinical Research & Development, Jiangsu Hengrui Pharmaceuticals Co. Ltd, Shanghai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Yan L",
+              "lastName": "Yan",
+              "firstName": "Li",
+              "initials": "L",
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-2218-8644"
+              },
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Sun Yat-sen Memorial Hospital, Guangzhou, China. yanli@mail.sysu.edu.cn."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authorIdList": {
+          "authorId": [
+            {
+              "type": "ORCID",
+              "value": "0000-0002-1155-2682"
+            },
+            {
+              "type": "ORCID",
+              "value": "0000-0002-1536-884X"
+            },
+            {
+              "type": "ORCID",
+              "value": "0000-0002-2218-8644"
+            },
+            {
+              "type": "ORCID",
+              "value": "0000-0002-4647-3079"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0001-6719-6859"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0001-7740-1238"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0002-5516-3598"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0003-7694-5991"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0003-7810-853X"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0005-4591-8207"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0007-1179-823X"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0008-1203-7560"
+            },
+            {
+              "type": "ORCID",
+              "value": "0009-0008-7594-626X"
+            }
+          ]
+        },
+        "journalInfo": {
+          "journalIssueId": 4275640,
+          "dateOfPublication": "2026 Oct",
+          "monthOfPublication": 10,
+          "yearOfPublication": 2026,
+          "journal": {
+            "medlineAbbreviation": "Diabetologia",
+            "title": "Diabetologia",
+            "essn": "1432-0428",
+            "issn": "0012-186X",
+            "nlmid": "0006777",
+            "isoabbreviation": "Diabetologia"
+          },
+          "printPublicationDate": "2026-10-01"
+        },
+        "pubYear": "2026",
+        "abstractText": "<h4>Aims/hypothesis</h4>This study aimed to evaluate the efficacy and safety of HRS-7535, an oral small-molecule glucagon-like peptide-1 receptor agonist (GLP-1RA), in Chinese participants with type 2 diabetes mellitus inadequately managed by metformin and sodium-glucose co-transporter 2 inhibitors (SGLT2i).<h4>Methods</h4>This multicentre, randomised, double-blind, placebo-controlled, Phase II study included participants aged 18-75 years with type 2 diabetes, HbA<sub>1c</sub> 58-97 mmol/mol (7.5-11.0%) and BMI 20.0-35.0 kg/m<sup>2</sup> and on stable-dose metformin and sodium-glucose co-transporter 2 (SGLT2) inhibitor therapy for ≥8 weeks prior to screening. Participants were assigned in a 1:1:1 ratio to receive HRS-7535 30 mg, HRS-7535 60 mg or visually matching placebo tablets once daily using a stratified block randomisation method, with treatment assignments concealed until study completion. The primary endpoint was the change in HbA<sub>1c</sub> from baseline to week 16. Secondary efficacy outcomes included the proportions of participants achieving HbA<sub>1c</sub> targets of <53 mmol/mol (7.0%) and ≤48 mmol/mol (6.5%), and changes from baseline in fasting body weight to week 16.<h4>Results</h4>A total of 155 participants with a mean baseline HbA<sub>1c</sub> of 69 mmol/mol (8.5%) were randomly assigned to HRS-7535 30 mg (n=51), HRS-7535 60 mg (n=53) or placebo (n=51). At week 16, the least‑squares mean differences in HbA<sub>1c</sub> from baseline for the HRS-7535 30 mg, HRS-7535 60 mg and placebo groups were -16 mmol/mol (95% CI -19, -14) (-1.5% [95% CI -1.7, -1.3]), -20 mmol/mol (95% CI -22, -17) (-1.8% [95% CI -2.0, -1.6]) and -4 mmol/mol (95% CI -7, -2) (-0.4% [95% CI -0.6, -0.2]), respectively (p<0.0001 for both HRS-7535 doses vs placebo). The proportions of participants achieving HbA<sub>1c</sub> <53 mmol/mol (7.0%) were 51.0% in the HRS‑7535 30 mg group, 66.0% in the HRS‑7535 60 mg group, and 9.8% in the placebo group; the corresponding proportions for HbA<sub>1c</sub> ≤48 mmol/mol (6.5%) were 35.3%, 37.7% and 3.9%, respectively. Body weight loss was -2.4% in the HRS-7535 60 mg group vs -0.7% in the placebo group. Most treatment-emergent adverse events (TEAEs) were mild to moderate, and gastrointestinal adverse events were the most common. No severe hypoglycaemia was reported. The only TEAE that led to treatment discontinuation occurred in the placebo group.<h4>Conclusions/interpretation</h4>Treatment with HRS-7535 resulted in significant improvements in glycaemic management in participants with type 2 diabetes, and the drug exhibited a favourable safety profile. To address a significant clinical data void, this research focused on the addition of HRS‑7535 to the background regimen of metformin and SGLT2i for glycaemic management in participants with type 2 diabetes. Trial registration ClinicalTrials.gov NCT06393348. Funding This study was funded by Jiangsu Hengrui Pharmaceuticals.",
+        "affiliation": "Department of Endocrinology, Sun Yat-sen Memorial Hospital, Guangzhou, China.",
+        "publicationStatus": "aheadofprint",
+        "language": "eng",
+        "pubModel": "Print-Electronic",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "keywordList": {
+          "keyword": [
+            "Type 2 diabetes",
+            "Therapeutic Goals",
+            "Glucagon‑like Peptide‑1 Therapies",
+            "Hrs‑7535"
+          ]
+        },
+        "subsetList": {
+          "subset": [
+            {
+              "code": "IM",
+              "name": "Index Medicus"
+            }
+          ]
+        },
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1007/s00125-026-06892-2"
+            }
+          ]
+        },
+        "isOpenAccess": "N",
+        "inEPMC": "N",
+        "inPMC": "N",
+        "citedByCount": 0,
+        "hasReferences": "Y",
+        "hasTextMinedTerms": "N",
+        "hasDbCrossReferences": "N",
+        "hasPDF": "N",
+        "hasBook": "N",
+        "hasSuppl": "N",
+        "hasLabsLinks": "N",
+        "hasData": "N",
+        "authMan": "N",
+        "epmcAuthMan": "N",
+        "nihAuthMan": "N",
+        "hasTMAccessionNumbers": "N",
+        "dateOfCreation": "2026-10-14",
+        "dateOfRevision": "2026-10-14",
+        "electronicPublicationDate": "2026-10-14",
+        "firstPublicationDate": "2026-10-14",
+        "firstIndexDate": "2026-10-19",
+        "hasEvaluations": "N"
+      }
+    },
+    {
+      "programme": "petrelintide",
+      "pmid": "42810355",
+      "sourcePublicationDate": "2026-09-29",
+      "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+      "reviewScope": "Complete indexed original abstract only. Full paper/supplement not independently available; no whole-programme renewal, outcome synthesis or clinical sign-off.",
+      "abstractSha256": "2524d1984b9591f91510737c59b7943f054e384924f82814edfeb97da555431d",
+      "paper": {
+        "id": "42810355",
+        "source": "MED",
+        "pmid": "42810355",
+        "doi": "10.1016/s2213-8587(26)00213-5",
+        "title": "Petrelintide, a human amylin analogue for the treatment of obesity (ZUPREME 1): a randomised, double-blind, placebo-controlled, phase 2 trial.",
+        "authorString": "Garvey WT, Ard J, Connery L, Frias JP, le Roux CW, Pietiläinen KH, Dinesen M, Hagen BF, Larsen L, Hesse D, Kendall DM.",
+        "authorList": {
+          "author": [
+            {
+              "fullName": "Garvey WT",
+              "lastName": "Garvey",
+              "firstName": "W Timothy",
+              "initials": "WT",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "University of Alabama at Birmingham, Birmingham, AL, USA. Electronic address: garveyt@uab.edu."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Ard J",
+              "lastName": "Ard",
+              "firstName": "Jamy",
+              "initials": "J",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Wake Forest University School of Medicine, Winston-Salem, NC, USA."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Connery L",
+              "lastName": "Connery",
+              "firstName": "Lisa",
+              "initials": "L",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Alliance for Multispecialty Research, Norman, OK, USA."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Frias JP",
+              "lastName": "Frias",
+              "firstName": "Juan Pablo",
+              "initials": "JP",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Los Angeles Institute for Metabolic Research, Los Angeles, CA, USA."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "le Roux CW",
+              "lastName": "le Roux",
+              "firstName": "Carel W",
+              "initials": "CW",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Diabetes Complications Research Centre, University College Dublin, Dublin, Ireland; Diabetes Research Centre, Ulster University, Belfast, UK."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Pietiläinen KH",
+              "lastName": "Pietiläinen",
+              "firstName": "Kirsi H",
+              "initials": "KH",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Obesity Research Unit, Faculty of Medicine, University of Helsinki, Helsinki, Finland; Healthy Weight Hub, Abdominal Center, Helsinki University Hospital and University of Helsinki, Helsinki, Finland."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Dinesen M",
+              "lastName": "Dinesen",
+              "firstName": "Maj",
+              "initials": "M",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Zealand Pharma, Søborg, Denmark."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Hagen BF",
+              "lastName": "Hagen",
+              "firstName": "Berith F",
+              "initials": "BF",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Zealand Pharma, Søborg, Denmark."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Larsen L",
+              "lastName": "Larsen",
+              "firstName": "Louise",
+              "initials": "L",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Zealand Pharma, Søborg, Denmark."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Hesse D",
+              "lastName": "Hesse",
+              "firstName": "Dan",
+              "initials": "D",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Zealand Pharma, Søborg, Denmark."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Kendall DM",
+              "lastName": "Kendall",
+              "firstName": "David M",
+              "initials": "DM",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Zealand Pharma, Søborg, Denmark."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "journalInfo": {
+          "journalIssueId": 4252320,
+          "dateOfPublication": "2026 Sep",
+          "monthOfPublication": 9,
+          "yearOfPublication": 2026,
+          "journal": {
+            "medlineAbbreviation": "Lancet Diabetes Endocrinol",
+            "title": "The lancet. Diabetes & endocrinology",
+            "essn": "2213-8595",
+            "issn": "2213-8587",
+            "isoabbreviation": "Lancet Diabetes Endocrinol",
+            "nlmid": "101618821"
+          },
+          "printPublicationDate": "2026-09-01"
+        },
+        "pubYear": "2026",
+        "pageInfo": "S2213-8587(26)00213-5",
+        "abstractText": "<h4>Background</h4>Petrelintide is a novel, long-acting amylin analogue being developed for long-term treatment of obesity, leveraging a mechanism of action distinct from incretin-based treatments. This phase 2 trial aimed to evaluate the efficacy and safety of once-weekly petrelintide versus placebo in people with obesity.<h4>Methods</h4>This multicentre, randomised, double-blind, placebo-controlled trial involved 32 sites (public hospitals and private clinics) in Poland, Romania, and the USA. Adults aged at least 18 years without type 2 diabetes, with a BMI of at least 30 kg/m<sup>2</sup> or with a BMI of at least 27 kg/m<sup>2</sup> with hypertension or dyslipidaemia, or both, were randomly assigned (5:1) to self-administered subcutaneous injections of once-weekly maintenance doses of petrelintide (1·0-9·0 mg) or placebo for 42 weeks including dose escalation. Randomisation was done via a central interactive response technology system and was stratified by MRI participation. Participants, trial staff, and the study funder were masked to treatment assignment but not to different maintenance doses; masking was maintained by use of identical vials for petrelintide and placebo. The primary endpoint was percentage change in bodyweight from baseline after 28 weeks. Analyses included all randomly assigned participants who received at least one dose. Missing data were assumed to be missing at random. The trial is registered with ClinicalTrials.gov (NCT06662539) and the Clinical Trials Information System (2024-512549-18) and was completed on Mar 7, 2026.<h4>Findings</h4>From Dec 9, 2024, to Feb 25, 2025, we screened 714 participants, of whom 493 were randomly assigned and 485 received at least one dose of petrelintide or placebo. 79 participants received at least one dose of treatment with petrelintide 1·0 mg, 81 with petrelintide 2·5 mg, 83 with petrelintide 5·0 mg, 79 with petrelintide 7·0 mg, 82 with petrelintide 9·0 mg, and 81 with placebo. 255 (53%) participants were female, 230 (47%) were male, mean age was 47 (SD 12) years, mean bodyweight 107·1 kg (20·3), mean BMI 36·7 kg/m<sup>2</sup> (5·5), and 419 (86%) were White. Mean percentage change in bodyweight from baseline after 28 weeks (efficacy estimand) was -7·9% (95% CI -9·0 to -6·7) with petrelintide 1·0 mg, -7·9% (-9·0 to -6·7) with petrelintide 2·5 mg, -9·8% (-10·9 to -8·6) with petrelintide 5·0 mg, -9·3% (-10·5 to -8·2) with petrelintide 7·0 mg, and -9·4% (-10·5 to -8·3) with petrelintide 9·0 mg versus -1·7% (-2·8 to -0·5) with placebo. Estimated treatment differences versus placebo were -6·2% (-7·9 to -4·5) with petrelintide 1·0 mg, -6·2% (-7·8 to -4·5) with petrelintide 2·5 mg, -8·1% (-9·7 to -6·5) with petrelintide 5·0 mg, -7·7% (-9·3 to -6·0) with petrelintide 7·0 mg, and -7·7% (-9·4 to -6·1) with petrelintide 9·0 mg. Bodyweight continued to decline to week 42, with reductions of up to -10·7% with petrelintide. The most common adverse event with petrelintide was nausea (79 [20%] of 404 participants vs five [6%] participants with placebo). Vomiting was infrequent with petrelintide (12 [3%] participants vs five [6%] with placebo); active treatment and placebo had similarly low rates for diarrhoea (30 [7%] participants vs six [7%] with placebo) and constipation (28 [7%] vs three [4%] with placebo). No deaths were reported.<h4>Interpretation</h4>Petrelintide achieved clinically meaningful weight reduction and had similar gastrointestinal tolerability to that of placebo apart from predominantly mild nausea during dose escalation, supporting further evaluation as a long-term obesity therapy.<h4>Funding</h4>Zealand Pharma.",
+        "affiliation": "University of Alabama at Birmingham, Birmingham, AL, USA. Electronic address: garveyt@uab.edu.",
+        "publicationStatus": "aheadofprint",
+        "language": "eng",
+        "pubModel": "Print-Electronic",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "subsetList": {
+          "subset": [
+            {
+              "code": "IM",
+              "name": "Index Medicus"
+            }
+          ]
+        },
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1016/S2213-8587(26)00213-5"
+            }
+          ]
+        },
+        "isOpenAccess": "N",
+        "inEPMC": "N",
+        "inPMC": "N",
+        "citedByCount": 0,
+        "hasReferences": "N",
+        "hasTextMinedTerms": "N",
+        "hasDbCrossReferences": "N",
+        "hasPDF": "N",
+        "hasBook": "N",
+        "hasSuppl": "N",
+        "hasLabsLinks": "N",
+        "hasData": "N",
+        "authMan": "N",
+        "epmcAuthMan": "N",
+        "nihAuthMan": "N",
+        "hasTMAccessionNumbers": "N",
+        "dateOfCreation": "2026-09-29",
+        "dateOfRevision": "2026-09-29",
+        "electronicPublicationDate": "2026-09-29",
+        "firstPublicationDate": "2026-09-29",
+        "firstIndexDate": "2026-09-30",
+        "hasEvaluations": "N"
+      }
+    },
+    {
+      "programme": "ubt251",
+      "pmid": "42843337",
+      "sourcePublicationDate": "2026-10-07",
+      "reviewedAt": "2026-10-19T20:20:54.700691+00:00",
+      "reviewScope": "Complete indexed original abstract only. Full paper/supplement not independently available; no whole-programme renewal, outcome synthesis or clinical sign-off.",
+      "abstractSha256": "b572752b7e2538b6d72deaf4b72d18914886c7b978280796056f7a13c81c82c7",
+      "paper": {
+        "id": "42843337",
+        "source": "MED",
+        "pmid": "42843337",
+        "doi": "10.1016/j.cmet.2026.09.021",
+        "title": "UBT251, a novel triple GLP-1, GIP, and glucagon receptor agonist, in adults with overweight or obesity: A multicenter, randomized phase 2 trial.",
+        "authorString": "Zhou Z, Cheng Z, Jin P, Yang G, Wang H, Shi B, Dong Q, Shi X, Shi X, Shu H, Sun W, Huang C, Zhao S, Mao L, Wang W, Xiong P, Chen X, Tian J, Zhang H, Su T, Huang L, Simony SB, Holst-Hansen T, Yan H.",
+        "authorList": {
+          "author": [
+            {
+              "fullName": "Zhou Z",
+              "lastName": "Zhou",
+              "firstName": "Zhiguang",
+              "initials": "Z",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Second Xiangya Hospital of Central South University, Changsha, China. Electronic address: zhouzg@hotmail.com."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Cheng Z",
+              "lastName": "Cheng",
+              "firstName": "Zhifeng",
+              "initials": "Z",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Fourth Affiliated Hospital of Harbin Medical University, Harbin, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Jin P",
+              "lastName": "Jin",
+              "firstName": "Ping",
+              "initials": "P",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Third Xiangya Hospital of Central South University, Changsha, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Yang G",
+              "lastName": "Yang",
+              "firstName": "Guoping",
+              "initials": "G",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Phase I Clinical Trial Research Center, The Third Xiangya Hospital of Central South University, Changsha, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Wang H",
+              "lastName": "Wang",
+              "firstName": "Haifang",
+              "initials": "H",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Handan First Hospital, Handan, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Shi B",
+              "lastName": "Shi",
+              "firstName": "Bimin",
+              "initials": "B",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The First Affiliated Hospital of Soochow University, Suzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Dong Q",
+              "lastName": "Dong",
+              "firstName": "Qijuan",
+              "initials": "Q",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Zhengzhou People's Hospital, Zhengzhou, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Shi X",
+              "lastName": "Shi",
+              "firstName": "Xiaoxia",
+              "initials": "X",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The First Affiliated Hospital of Nanyang Medical College, Nanyang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Shi X",
+              "lastName": "Shi",
+              "firstName": "Xiaoguang",
+              "initials": "X",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Shengjing Hospital of China Medical University, Shenyang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Shu H",
+              "lastName": "Shu",
+              "firstName": "Hongyan",
+              "initials": "H",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Zibo Municipal Hospital, Zibo, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Sun W",
+              "lastName": "Sun",
+              "firstName": "Wenli",
+              "initials": "W",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Yueyang People's Hospital, Yueyang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Huang C",
+              "lastName": "Huang",
+              "firstName": "Chongbing",
+              "initials": "C",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Xuancheng People's Hospital, Xuancheng, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhao S",
+              "lastName": "Zhao",
+              "firstName": "Shuping",
+              "initials": "S",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Tonghua Central Hospital, Tonghua, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Mao L",
+              "lastName": "Mao",
+              "firstName": "Li",
+              "initials": "L",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The First People's Hospital of Huai'an, Huai'an, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Wang W",
+              "lastName": "Wang",
+              "firstName": "Wei",
+              "initials": "W",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The First Affiliated Hospital of University of Science and Technology of China (Anhui Provincial Hospital), Hefei, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Xiong P",
+              "lastName": "Xiong",
+              "firstName": "Ping",
+              "initials": "P",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Affiliated Hospital of Chengdu University, Chengdu, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Chen X",
+              "lastName": "Chen",
+              "firstName": "Xiaowen",
+              "initials": "X",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, Huangshi Central Hospital, Huangshi, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Tian J",
+              "lastName": "Tian",
+              "firstName": "Junhang",
+              "initials": "J",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Endocrinology, The Third People's Hospital of Luoyang, Luoyang, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Zhang H",
+              "lastName": "Zhang",
+              "firstName": "Haiyan",
+              "initials": "H",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Zhuhai United Laboratories Co., Ltd, Zhuhai, China; The United Bio-Technology (Hengqin) Co., Ltd, Zhuhai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Su T",
+              "lastName": "Su",
+              "firstName": "Tao",
+              "initials": "T",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Zhuhai United Laboratories Co., Ltd, Zhuhai, China; The United Bio-Technology (Hengqin) Co., Ltd, Zhuhai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Huang L",
+              "lastName": "Huang",
+              "firstName": "Liang",
+              "initials": "L",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "The United Bio-Technology (Hengqin) Co., Ltd, Zhuhai, China."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Simony SB",
+              "lastName": "Simony",
+              "firstName": "Sofie Bay",
+              "initials": "SB",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Novo Nordisk, Søborg, Denmark."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Holst-Hansen T",
+              "lastName": "Holst-Hansen",
+              "firstName": "Thomas",
+              "initials": "T",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Novo Nordisk, Søborg, Denmark."
+                  }
+                ]
+              }
+            },
+            {
+              "fullName": "Yan H",
+              "lastName": "Yan",
+              "firstName": "Huiru",
+              "initials": "H",
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Zhuhai United Laboratories Co., Ltd, Zhuhai, China; The United Bio-Technology (Hengqin) Co., Ltd, Zhuhai, China. Electronic address: yanhuiru@tul.com.cn."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "journalInfo": {
+          "journalIssueId": 4276981,
+          "dateOfPublication": "2026 Oct",
+          "monthOfPublication": 10,
+          "yearOfPublication": 2026,
+          "journal": {
+            "medlineAbbreviation": "Cell Metab",
+            "title": "Cell metabolism",
+            "essn": "1932-7420",
+            "issn": "1550-4131",
+            "isoabbreviation": "Cell Metab",
+            "nlmid": "101233170"
+          },
+          "printPublicationDate": "2026-10-01"
+        },
+        "pubYear": "2026",
+        "pageInfo": "S1550-4131(26)00434-1",
+        "abstractText": "UBT251 is a novel triple agonist targeting glucagon-like peptide-1, glucose-dependent insulinotropic polypeptide, and glucagon receptors. In this multicenter, randomized, double-blind, placebo-controlled phase 2 trial, 205 adults with overweight or obesity (59.0% women; aged 18-61 years; without type 2 diabetes) received once-weekly UBT251 at 2 mg, 4 mg (initial dose 0.5 mg or 1 mg), or 6 mg, or placebo for 24 weeks. For the primary efficacy endpoint, least-squares mean percentage changes in body weight at week 24 were -19.7% to -13.6% with UBT251 vs. -2.0% with placebo; placebo-adjusted differences were -17.7% (95% confidence interval [CI], -20.8% to -14.6%) to -11.5% (95% CI, -14.1% to -9.0%; all p < 0.001). UBT251 improved waist circumference, body mass index, blood pressure, lipid profiles, and glycemic parameters. The most frequent adverse events were mild-to-moderate gastrointestinal symptoms. UBT251 produced weight reduction with cardiometabolic improvements and an acceptable safety profile, supporting phase 3 evaluation. This study was registered at China Drug Trials Registry (CTR20250288) and ClinicalTrials.gov (NCT07177469).",
+        "affiliation": "Department of Endocrinology, The Second Xiangya Hospital of Central South University, Changsha, China. Electronic address: zhouzg@hotmail.com.",
+        "publicationStatus": "aheadofprint",
+        "language": "eng",
+        "pubModel": "Print-Electronic",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "keywordList": {
+          "keyword": [
+            "Obesity",
+            "Overweight",
+            "Body Weight Reduction",
+            "Ubt251",
+            "Triple Receptor Agonist"
+          ]
+        },
+        "subsetList": {
+          "subset": [
+            {
+              "code": "IM",
+              "name": "Index Medicus"
+            }
+          ]
+        },
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1016/j.cmet.2026.09.021"
+            }
+          ]
+        },
+        "isOpenAccess": "N",
+        "inEPMC": "N",
+        "inPMC": "N",
+        "citedByCount": 0,
+        "hasReferences": "N",
+        "hasTextMinedTerms": "Y",
+        "hasDbCrossReferences": "N",
+        "hasPDF": "N",
+        "hasBook": "N",
+        "hasSuppl": "N",
+        "hasLabsLinks": "N",
+        "hasData": "N",
+        "authMan": "N",
+        "epmcAuthMan": "N",
+        "nihAuthMan": "N",
+        "hasTMAccessionNumbers": "N",
+        "dateOfCreation": "2026-10-07",
+        "dateOfRevision": "2026-10-07",
+        "electronicPublicationDate": "2026-10-07",
+        "firstPublicationDate": "2026-10-07",
+        "firstIndexDate": "2026-10-16",
+        "hasEvaluations": "N"
+      }
+    }
+  ]
 }
