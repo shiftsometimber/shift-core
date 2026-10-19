@@ -1,0 +1,1631 @@
+{
+  "checkedAt": "2026-10-19T21:30:00Z",
+  "owner": "Organic Growth technical SEO executor",
+  "sitemap": {
+    "urls": [
+      "https://shiftsometimber.co.uk/",
+      "https://shiftsometimber.co.uk/about",
+      "https://shiftsometimber.co.uk/advertise-with-us",
+      "https://shiftsometimber.co.uk/affiliate-disclosure",
+      "https://shiftsometimber.co.uk/articles/air-fryer-meals-men",
+      "https://shiftsometimber.co.uk/articles/alcohol-and-weight-men",
+      "https://shiftsometimber.co.uk/articles/asking-for-help-men",
+      "https://shiftsometimber.co.uk/articles/beginner-walking-plan-men",
+      "https://shiftsometimber.co.uk/articles/bmi-men",
+      "https://shiftsometimber.co.uk/articles/calories-explained-men",
+      "https://shiftsometimber.co.uk/articles/cholesterol-men",
+      "https://shiftsometimber.co.uk/articles/confidence-and-weight-men",
+      "https://shiftsometimber.co.uk/articles/dad-bod-nobody-talks-about",
+      "https://shiftsometimber.co.uk/articles/eating-out-weight-management-men",
+      "https://shiftsometimber.co.uk/articles/exercise-on-glp1",
+      "https://shiftsometimber.co.uk/articles/football-fitness-after-40",
+      "https://shiftsometimber.co.uk/articles/glp1-myths",
+      "https://shiftsometimber.co.uk/articles/health-isnt-about-six-packs",
+      "https://shiftsometimber.co.uk/articles/healthy-bbq-men",
+      "https://shiftsometimber.co.uk/articles/healthy-habits-that-last-men",
+      "https://shiftsometimber.co.uk/articles/healthy-takeaways-men",
+      "https://shiftsometimber.co.uk/articles/heart-health-men",
+      "https://shiftsometimber.co.uk/articles/helping-ordinary-blokes-feel-like-themselves-again",
+      "https://shiftsometimber.co.uk/articles/home-strength-men",
+      "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+      "https://shiftsometimber.co.uk/articles/men-weight-loss-after-40",
+      "https://shiftsometimber.co.uk/articles/mens-mental-health-and-weight",
+      "https://shiftsometimber.co.uk/articles/motivation-vs-routine-men",
+      "https://shiftsometimber.co.uk/articles/prediabetes-men",
+      "https://shiftsometimber.co.uk/articles/protein-for-men-weight-management",
+      "https://shiftsometimber.co.uk/articles/sleep-and-weight-men",
+      "https://shiftsometimber.co.uk/articles/stress-and-weight-men",
+      "https://shiftsometimber.co.uk/articles/waist-size-men",
+      "https://shiftsometimber.co.uk/articles/walking-for-weight-management-men",
+      "https://shiftsometimber.co.uk/articles/weight-and-blood-pressure-men",
+      "https://shiftsometimber.co.uk/articles/why-blokes-put-everyone-else-first",
+      "https://shiftsometimber.co.uk/articles/why-we-built-shift-some-timber",
+      "https://shiftsometimber.co.uk/ask-timber",
+      "https://shiftsometimber.co.uk/authors/shift-some-timber-editorial-team",
+      "https://shiftsometimber.co.uk/before-you-decide",
+      "https://shiftsometimber.co.uk/clinical-governance",
+      "https://shiftsometimber.co.uk/commercial-principles",
+      "https://shiftsometimber.co.uk/community",
+      "https://shiftsometimber.co.uk/comparison-centre",
+      "https://shiftsometimber.co.uk/comparisons/europe/headline-price-vs-true-cost",
+      "https://shiftsometimber.co.uk/comparisons/europe/overseas-surgery-complications",
+      "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-czechia-bariatric-surgery",
+      "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-latvia-bariatric-surgery",
+      "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-lithuania-bariatric-surgery",
+      "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-overseas-aftercare",
+      "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-poland-bariatric-surgery",
+      "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-turkey-bariatric-surgery",
+      "https://shiftsometimber.co.uk/comparisons/europe/verify-overseas-bariatric-clinic",
+      "https://shiftsometimber.co.uk/comparisons/lifestyle/cardio-vs-strength",
+      "https://shiftsometimber.co.uk/comparisons/lifestyle/lifestyle-vs-medication",
+      "https://shiftsometimber.co.uk/comparisons/lifestyle/lifestyle-vs-surgery",
+      "https://shiftsometimber.co.uk/comparisons/lifestyle/medication-plus-lifestyle",
+      "https://shiftsometimber.co.uk/comparisons/lifestyle/structured-vs-diy",
+      "https://shiftsometimber.co.uk/comparisons/lifestyle/surgery-plus-lifestyle",
+      "https://shiftsometimber.co.uk/comparisons/lifestyle/walking-vs-structured-exercise",
+      "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-orlistat",
+      "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-saxenda",
+      "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-wegovy-tablets",
+      "https://shiftsometimber.co.uk/comparisons/medications/ozempic-vs-wegovy",
+      "https://shiftsometimber.co.uk/comparisons/medications/saxenda-vs-orlistat",
+      "https://shiftsometimber.co.uk/comparisons/medications/wegovy-injection-vs-tablets",
+      "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-orlistat",
+      "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-saxenda",
+      "https://shiftsometimber.co.uk/comparisons/nhs-private/gp-vs-specialist-weight-management",
+      "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-aftercare",
+      "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-medication",
+      "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-surgery",
+      "https://shiftsometimber.co.uk/comparisons/nhs-private/nice-eligible-but-no-access",
+      "https://shiftsometimber.co.uk/comparisons/nhs-private/online-pharmacy-vs-clinic",
+      "https://shiftsometimber.co.uk/comparisons/nhs-private/wait-vs-pay-private",
+      "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-esg",
+      "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-sleeve",
+      "https://shiftsometimber.co.uk/comparisons/surgery/esg-vs-gastric-sleeve",
+      "https://shiftsometimber.co.uk/comparisons/surgery/gastric-band-vs-bypass",
+      "https://shiftsometimber.co.uk/comparisons/surgery/gastric-band-vs-sleeve",
+      "https://shiftsometimber.co.uk/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+      "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-gastric-bypass",
+      "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-mini-bypass",
+      "https://shiftsometimber.co.uk/comparisons/universal/esg-vs-wegovy-tablets",
+      "https://shiftsometimber.co.uk/comparisons/universal/lifestyle-vs-mounjaro",
+      "https://shiftsometimber.co.uk/comparisons/universal/mounjaro-vs-gastric-sleeve",
+      "https://shiftsometimber.co.uk/comparisons/universal/nhs-medication-vs-private-surgery",
+      "https://shiftsometimber.co.uk/comparisons/universal/orlistat-vs-lifestyle",
+      "https://shiftsometimber.co.uk/comparisons/universal/private-medication-vs-nhs-surgery",
+      "https://shiftsometimber.co.uk/comparisons/universal/uk-surgery-vs-turkey",
+      "https://shiftsometimber.co.uk/comparisons/universal/wegovy-vs-gastric-bypass",
+      "https://shiftsometimber.co.uk/contact",
+      "https://shiftsometimber.co.uk/cookies",
+      "https://shiftsometimber.co.uk/corporate-wellbeing",
+      "https://shiftsometimber.co.uk/decision-centre-methodology",
+      "https://shiftsometimber.co.uk/decision-centre",
+      "https://shiftsometimber.co.uk/decision-readiness-methodology",
+      "https://shiftsometimber.co.uk/decision-readiness",
+      "https://shiftsometimber.co.uk/decision-trees-explained",
+      "https://shiftsometimber.co.uk/downloads-resources",
+      "https://shiftsometimber.co.uk/editorial-standards",
+      "https://shiftsometimber.co.uk/expert-contributors",
+      "https://shiftsometimber.co.uk/explore-knowledge",
+      "https://shiftsometimber.co.uk/family-discussion-guide",
+      "https://shiftsometimber.co.uk/faq",
+      "https://shiftsometimber.co.uk/faq/are-carbs-bad",
+      "https://shiftsometimber.co.uk/faq/bbq-and-weight-loss",
+      "https://shiftsometimber.co.uk/faq/can-men-take-mounjaro",
+      "https://shiftsometimber.co.uk/faq/can-men-take-wegovy",
+      "https://shiftsometimber.co.uk/faq/can-stress-cause-weight-gain",
+      "https://shiftsometimber.co.uk/faq/can-walking-help-weight-loss",
+      "https://shiftsometimber.co.uk/faq/can-women-use-tools",
+      "https://shiftsometimber.co.uk/faq/daily-weight-fluctuation",
+      "https://shiftsometimber.co.uk/faq/does-alcohol-cause-belly-fat",
+      "https://shiftsometimber.co.uk/faq/does-belly-fat-increase-risk",
+      "https://shiftsometimber.co.uk/faq/does-sleep-affect-weight",
+      "https://shiftsometimber.co.uk/faq/does-sst-prescribe",
+      "https://shiftsometimber.co.uk/faq/how-much-protein-men",
+      "https://shiftsometimber.co.uk/faq/how-often-weigh",
+      "https://shiftsometimber.co.uk/faq/how-quickly-should-men-lose-weight",
+      "https://shiftsometimber.co.uk/faq/is-20-percent-realistic",
+      "https://shiftsometimber.co.uk/faq/is-fat-bad",
+      "https://shiftsometimber.co.uk/faq/is-glp1-only-for-women",
+      "https://shiftsometimber.co.uk/faq/is-health-mot-medical",
+      "https://shiftsometimber.co.uk/faq/is-health-mot-saved",
+      "https://shiftsometimber.co.uk/faq/is-sst-gp-replacement",
+      "https://shiftsometimber.co.uk/faq/mounjaro-vs-ozempic",
+      "https://shiftsometimber.co.uk/faq/need-breakfast-weight-loss",
+      "https://shiftsometimber.co.uk/faq/need-gym-to-lose-weight",
+      "https://shiftsometimber.co.uk/faq/takeaways-and-weight-loss",
+      "https://shiftsometimber.co.uk/faq/wegovy-vs-ozempic",
+      "https://shiftsometimber.co.uk/faq/weight-loss-cholesterol",
+      "https://shiftsometimber.co.uk/faq/weight-loss-diabetes-risk",
+      "https://shiftsometimber.co.uk/faq/weight-loss-lower-bp",
+      "https://shiftsometimber.co.uk/faq/what-is-20-percent-club",
+      "https://shiftsometimber.co.uk/faq/what-is-founding-shifter",
+      "https://shiftsometimber.co.uk/future-medicines-comparison",
+      "https://shiftsometimber.co.uk/glp1-knowledge-centre",
+      "https://shiftsometimber.co.uk/guides",
+      "https://shiftsometimber.co.uk/guides/amycretin-uk-guide",
+      "https://shiftsometimber.co.uk/guides/bariatric-surgery-costs-uk-europe",
+      "https://shiftsometimber.co.uk/guides/bariatric-surgery-europe-costs-guide",
+      "https://shiftsometimber.co.uk/guides/blood-pressure-guide",
+      "https://shiftsometimber.co.uk/guides/cagrisema-uk-guide",
+      "https://shiftsometimber.co.uk/guides/endoscopic-sleeve-gastroplasty-esg-uk-guide",
+      "https://shiftsometimber.co.uk/guides/exercise-walking-strength-mobility",
+      "https://shiftsometimber.co.uk/guides/gastric-balloon-uk-guide",
+      "https://shiftsometimber.co.uk/guides/gastric-band-uk-guide",
+      "https://shiftsometimber.co.uk/guides/gastric-bypass-roux-en-y-uk-guide",
+      "https://shiftsometimber.co.uk/guides/gastric-sleeve-uk-guide",
+      "https://shiftsometimber.co.uk/guides/maritide-uk-guide",
+      "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+      "https://shiftsometimber.co.uk/guides/mini-gastric-bypass-oagb-uk-guide",
+      "https://shiftsometimber.co.uk/guides/nhs-bariatric-surgery-pathways",
+      "https://shiftsometimber.co.uk/guides/nhs-weight-loss-medication-pathways",
+      "https://shiftsometimber.co.uk/guides/nhs-weight-management-uk-guide",
+      "https://shiftsometimber.co.uk/guides/nutrition-guide",
+      "https://shiftsometimber.co.uk/guides/nutrition-protein-calories-meal-planning",
+      "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide",
+      "https://shiftsometimber.co.uk/guides/sleep-stress-mindset-emotional-eating-maintenance",
+      "https://shiftsometimber.co.uk/guides/walking-guide",
+      "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-costs-guide",
+      "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-guide",
+      "https://shiftsometimber.co.uk/health-mot-methodology",
+      "https://shiftsometimber.co.uk/how-are-you-feeling",
+      "https://shiftsometimber.co.uk/how-we-review-products",
+      "https://shiftsometimber.co.uk/knowledge",
+      "https://shiftsometimber.co.uk/lifestyle-treatment-methodology",
+      "https://shiftsometimber.co.uk/lifestyle-vs-treatment",
+      "https://shiftsometimber.co.uk/media-centre",
+      "https://shiftsometimber.co.uk/medical-disclaimer",
+      "https://shiftsometimber.co.uk/medication-comparison-methodology",
+      "https://shiftsometimber.co.uk/my-weight-loss-roadmap",
+      "https://shiftsometimber.co.uk/nhs-private-methodology",
+      "https://shiftsometimber.co.uk/nhs-vs-private",
+      "https://shiftsometimber.co.uk/orlistat-definitive-uk-guide",
+      "https://shiftsometimber.co.uk/ozempic-definitive-uk-guide",
+      "https://shiftsometimber.co.uk/partner-with-us",
+      "https://shiftsometimber.co.uk/press-centre",
+      "https://shiftsometimber.co.uk/privacy-centre",
+      "https://shiftsometimber.co.uk/privacy",
+      "https://shiftsometimber.co.uk/product-reviews",
+      "https://shiftsometimber.co.uk/progress-centre-methodology",
+      "https://shiftsometimber.co.uk/research/uk-mens-weight-health-statistics",
+      "https://shiftsometimber.co.uk/roadmap-methodology",
+      "https://shiftsometimber.co.uk/saxenda-definitive-uk-guide",
+      "https://shiftsometimber.co.uk/shift-promise",
+      "https://shiftsometimber.co.uk/start-here",
+      "https://shiftsometimber.co.uk/surgery-comparison-centre",
+      "https://shiftsometimber.co.uk/surgery-comparison-methodology",
+      "https://shiftsometimber.co.uk/terms",
+      "https://shiftsometimber.co.uk/tools",
+      "https://shiftsometimber.co.uk/tools/alcohol",
+      "https://shiftsometimber.co.uk/tools/bmi",
+      "https://shiftsometimber.co.uk/tools/calories",
+      "https://shiftsometimber.co.uk/tools/healthy-weight",
+      "https://shiftsometimber.co.uk/tools/protein",
+      "https://shiftsometimber.co.uk/tools/sleep",
+      "https://shiftsometimber.co.uk/tools/steps",
+      "https://shiftsometimber.co.uk/tools/waist-height",
+      "https://shiftsometimber.co.uk/tools/walking",
+      "https://shiftsometimber.co.uk/tools/water",
+      "https://shiftsometimber.co.uk/treatment-centre",
+      "https://shiftsometimber.co.uk/treatment-finder-methodology",
+      "https://shiftsometimber.co.uk/treatment-finder",
+      "https://shiftsometimber.co.uk/treatments/emerging",
+      "https://shiftsometimber.co.uk/treatments/lifestyle",
+      "https://shiftsometimber.co.uk/treatments/medication",
+      "https://shiftsometimber.co.uk/treatments/nhs",
+      "https://shiftsometimber.co.uk/treatments/surgery",
+      "https://shiftsometimber.co.uk/trusted-partners",
+      "https://shiftsometimber.co.uk/uk-europe-methodology",
+      "https://shiftsometimber.co.uk/uk-vs-europe-treatment",
+      "https://shiftsometimber.co.uk/universal-comparison-methodology",
+      "https://shiftsometimber.co.uk/waiting-list-journey",
+      "https://shiftsometimber.co.uk/work-with-us",
+      "https://shiftsometimber.co.uk/mental-health/not-feeling-yourself",
+      "https://shiftsometimber.co.uk/mental-health/feeling-low",
+      "https://shiftsometimber.co.uk/mental-health/anxiety-overthinking",
+      "https://shiftsometimber.co.uk/mental-health/stress-overwhelm",
+      "https://shiftsometimber.co.uk/mental-health/anger-irritability",
+      "https://shiftsometimber.co.uk/mental-health/numb-disconnected",
+      "https://shiftsometimber.co.uk/mental-health/loneliness-isolation",
+      "https://shiftsometimber.co.uk/mental-health/confidence-self-worth",
+      "https://shiftsometimber.co.uk/mental-health/sleep-mental-health",
+      "https://shiftsometimber.co.uk/mental-health/mental-health-and-weight",
+      "https://shiftsometimber.co.uk/mental-health/talking-about-it",
+      "https://shiftsometimber.co.uk/mental-health/myths-men-mental-health",
+      "https://shiftsometimber.co.uk/mental-health/when-to-get-help",
+      "https://shiftsometimber.co.uk/mental-health/work-stress-burnout",
+      "https://shiftsometimber.co.uk/mental-health/money-worries",
+      "https://shiftsometimber.co.uk/mental-health/relationship-problems",
+      "https://shiftsometimber.co.uk/mental-health/separation-divorce",
+      "https://shiftsometimber.co.uk/mental-health/dads-mental-health",
+      "https://shiftsometimber.co.uk/mental-health/parenting-pressure",
+      "https://shiftsometimber.co.uk/mental-health/bereavement-grief",
+      "https://shiftsometimber.co.uk/mental-health/redundancy-job-loss",
+      "https://shiftsometimber.co.uk/mental-health/caring-for-someone",
+      "https://shiftsometimber.co.uk/mental-health/alcohol-and-mental-health",
+      "https://shiftsometimber.co.uk/mental-health/gambling-mental-health",
+      "https://shiftsometimber.co.uk/mental-health/sex-intimacy-confidence",
+      "https://shiftsometimber.co.uk/mental-health/chronic-illness-pain",
+      "https://shiftsometimber.co.uk/mental-health/weight-loss-identity",
+      "https://shiftsometimber.co.uk/mental-health/social-media-comparison",
+      "https://shiftsometimber.co.uk/mental-health/retirement-purpose",
+      "https://shiftsometimber.co.uk/mental-health/friendships-men",
+      "https://shiftsometimber.co.uk/mental-health/life-gets-bloody-hard",
+      "https://shiftsometimber.co.uk/mental-health/get-through-a-bad-day",
+      "https://shiftsometimber.co.uk/mental-health/tiny-goals",
+      "https://shiftsometimber.co.uk/mental-health/routine-when-struggling",
+      "https://shiftsometimber.co.uk/mental-health/overthinking-tools",
+      "https://shiftsometimber.co.uk/mental-health/grounding",
+      "https://shiftsometimber.co.uk/mental-health/breathing-for-stress",
+      "https://shiftsometimber.co.uk/mental-health/journalling-without-cringe",
+      "https://shiftsometimber.co.uk/mental-health/get-outside",
+      "https://shiftsometimber.co.uk/mental-health/movement-for-mood",
+      "https://shiftsometimber.co.uk/mental-health/reconnect-with-people",
+      "https://shiftsometimber.co.uk/mental-health/talking-to-partner",
+      "https://shiftsometimber.co.uk/mental-health/talking-to-a-mate",
+      "https://shiftsometimber.co.uk/mental-health/sleep-reset",
+      "https://shiftsometimber.co.uk/mental-health/alcohol-coping-check",
+      "https://shiftsometimber.co.uk/mental-health/phone-social-media-reset",
+      "https://shiftsometimber.co.uk/mental-health/work-stress-reset",
+      "https://shiftsometimber.co.uk/mental-health/self-care-that-isnt-bubble-baths",
+      "https://shiftsometimber.co.uk/mental-health/build-a-support-circle",
+      "https://shiftsometimber.co.uk/mental-health/bad-week-reset",
+      "https://shiftsometimber.co.uk/mental-health/personal-mental-health-plan",
+      "https://shiftsometimber.co.uk/mental-health/help-yourself-without-doing-it-alone",
+      "https://shiftsometimber.co.uk/mental-health/things-you-can-do-yourself",
+      "https://shiftsometimber.co.uk/mental-health/getting-professional-help",
+      "https://shiftsometimber.co.uk/mental-health/gp-mental-health-appointment",
+      "https://shiftsometimber.co.uk/mental-health/what-will-gp-ask",
+      "https://shiftsometimber.co.uk/mental-health/nhs-talking-therapies",
+      "https://shiftsometimber.co.uk/mental-health/self-refer-talking-therapy",
+      "https://shiftsometimber.co.uk/mental-health/cbt-explained",
+      "https://shiftsometimber.co.uk/mental-health/counselling-explained",
+      "https://shiftsometimber.co.uk/mental-health/types-of-talking-therapy",
+      "https://shiftsometimber.co.uk/mental-health/first-therapy-session",
+      "https://shiftsometimber.co.uk/mental-health/therapy-confidentiality",
+      "https://shiftsometimber.co.uk/mental-health/antidepressants-explained",
+      "https://shiftsometimber.co.uk/mental-health/starting-antidepressants",
+      "https://shiftsometimber.co.uk/mental-health/antidepressant-side-effects",
+      "https://shiftsometimber.co.uk/mental-health/stopping-antidepressants",
+      "https://shiftsometimber.co.uk/mental-health/medication-and-weight",
+      "https://shiftsometimber.co.uk/mental-health/therapy-waiting-lists",
+      "https://shiftsometimber.co.uk/mental-health/private-therapy",
+      "https://shiftsometimber.co.uk/mental-health/choosing-a-therapist",
+      "https://shiftsometimber.co.uk/mental-health/occupational-health-mental-health",
+      "https://shiftsometimber.co.uk/mental-health/sick-note-mental-health",
+      "https://shiftsometimber.co.uk/mental-health/when-treatment-isnt-working",
+      "https://shiftsometimber.co.uk/mental-health/mental-health-medication-myths",
+      "https://shiftsometimber.co.uk/mental-health/prepare-for-therapy",
+      "https://shiftsometimber.co.uk/mental-health/supporting-treatment-at-home",
+      "https://shiftsometimber.co.uk/mental-health/helping-a-mate",
+      "https://shiftsometimber.co.uk/mental-health/signs-a-mate-is-struggling",
+      "https://shiftsometimber.co.uk/mental-health/how-to-ask-are-you-okay",
+      "https://shiftsometimber.co.uk/mental-health/what-to-say-to-someone-struggling",
+      "https://shiftsometimber.co.uk/mental-health/what-not-to-say",
+      "https://shiftsometimber.co.uk/mental-health/mate-says-hes-depressed",
+      "https://shiftsometimber.co.uk/mental-health/ask-about-suicide",
+      "https://shiftsometimber.co.uk/mental-health/someone-is-suicidal",
+      "https://shiftsometimber.co.uk/mental-health/suicide-warning-signs",
+      "https://shiftsometimber.co.uk/mental-health/urgent-mental-health-help",
+      "https://shiftsometimber.co.uk/mental-health/mental-health-crisis-plan",
+      "https://shiftsometimber.co.uk/mental-health/help-someone-book-gp",
+      "https://shiftsometimber.co.uk/mental-health/supporting-partner-mental-health",
+      "https://shiftsometimber.co.uk/mental-health/supporting-a-dad",
+      "https://shiftsometimber.co.uk/mental-health/supporting-someone-after-loss",
+      "https://shiftsometimber.co.uk/mental-health/supporting-someone-with-anxiety",
+      "https://shiftsometimber.co.uk/mental-health/supporting-someone-with-depression",
+      "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help",
+      "https://shiftsometimber.co.uk/mental-health/look-after-yourself-when-supporting",
+      "https://shiftsometimber.co.uk/mental-health/after-a-mental-health-crisis",
+      "https://shiftsometimber.co.uk/mental-health/helping-someone-online",
+      "https://shiftsometimber.co.uk/mental-health/worried-about-colleague",
+      "https://shiftsometimber.co.uk/mental-health/worried-about-family-member",
+      "https://shiftsometimber.co.uk/mental-health/someone-says-theyd-be-better-off-dead",
+      "https://shiftsometimber.co.uk/mental-health/helping-someone",
+      "https://shiftsometimber.co.uk/mens-mental-health",
+      "https://shiftsometimber.co.uk/authors/matt-obrien",
+      "https://shiftsometimber.co.uk/mounjaro",
+      "https://shiftsometimber.co.uk/wegovy",
+      "https://shiftsometimber.co.uk/foundayo",
+      "https://shiftsometimber.co.uk/weight-loss-tablets-for-men",
+      "https://shiftsometimber.co.uk/weight-loss-injections-for-men",
+      "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+      "https://shiftsometimber.co.uk/mens-weight-management",
+      "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+      "https://shiftsometimber.co.uk/articles/men-belly-fat",
+      "https://shiftsometimber.co.uk/articles/knee-pain-weight-men",
+      "https://shiftsometimber.co.uk/articles/sleep-apnoea-weight-men",
+      "https://shiftsometimber.co.uk/articles/testosterone-weight-men",
+      "https://shiftsometimber.co.uk/articles/return-to-sport-after-weight-loss",
+      "https://shiftsometimber.co.uk/articles/alcohol-on-glp1",
+      "https://shiftsometimber.co.uk/articles/muscle-on-glp1",
+      "https://shiftsometimber.co.uk/articles/stopping-glp1",
+      "https://shiftsometimber.co.uk/articles/glp1-side-effects",
+      "https://shiftsometimber.co.uk/articles/travelling-with-weight-loss-medication",
+      "https://shiftsometimber.co.uk/articles/weight-loss-plateau-men",
+      "https://shiftsometimber.co.uk/dpia-summary",
+      "https://shiftsometimber.co.uk/data-governance",
+      "https://shiftsometimber.co.uk/help",
+      "https://shiftsometimber.co.uk/complaints",
+      "https://shiftsometimber.co.uk/programme",
+      "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline",
+      "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced",
+      "https://shiftsometimber.co.uk/shift-health/blood-tests/complete",
+      "https://shiftsometimber.co.uk/articles/upper-arm-blood-collection",
+      "https://shiftsometimber.co.uk/articles/understanding-blood-test-results",
+      "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+      "https://shiftsometimber.co.uk/shift-newsroom",
+      "https://shiftsometimber.co.uk/shift-health",
+      "https://shiftsometimber.co.uk/shift-health/health-mot",
+      "https://shiftsometimber.co.uk/shift-health/testosterone-energy",
+      "https://shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+      "https://shiftsometimber.co.uk/shift-health/digital-scales",
+      "https://shiftsometimber.co.uk/shift-health/resistance-bands",
+      "https://shiftsometimber.co.uk/shift-health/shift-measure",
+      "https://shiftsometimber.co.uk/shift-health/erectile-dysfunction",
+      "https://shiftsometimber.co.uk/shift-health/hair-loss",
+      "https://shiftsometimber.co.uk/shift-health/stop-smoking",
+      "https://shiftsometimber.co.uk/shift-health/sleep-apnoea",
+      "https://shiftsometimber.co.uk/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up",
+      "https://shiftsometimber.co.uk/medicine-news/foundayo-european-recommendation-october-2026",
+      "https://shiftsometimber.co.uk/medicine-news/cbl-514-supreme-01-phase-3-catch-up",
+      "https://shiftsometimber.co.uk/medicine-news/mhra-fake-weight-loss-pens-birmingham-october-2026",
+      "https://shiftsometimber.co.uk/medicine-news/antidepressant-safety-information-mhra-october-2026",
+      "https://shiftsometimber.co.uk/medicine-news/onswik-weekly-insulin-uk-approval-october-2026",
+      "https://shiftsometimber.co.uk/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up",
+      "https://shiftsometimber.co.uk/medicine-news/uk-archive-transform-prostate-screening-black-men",
+      "https://shiftsometimber.co.uk/medicine-news/uk-archive-reduce-antidepressant-review-support",
+      "https://shiftsometimber.co.uk/medicine-news/uk-archive-game-of-stones-men-weight-loss-followup",
+      "https://shiftsometimber.co.uk/medicine-news/uk-archive-less-processed-food-ucl-weight-loss-trial",
+      "https://shiftsometimber.co.uk/life-back",
+      "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1",
+      "https://shiftsometimber.co.uk/clinic-gone-quiet",
+      "https://shiftsometimber.co.uk/provider-switch",
+      "https://shiftsometimber.co.uk/husband-help",
+      "https://shiftsometimber.co.uk/my-timber-for-providers",
+      "https://shiftsometimber.co.uk/weight-loss-support-for-men",
+      "https://shiftsometimber.co.uk/articles/wegovy-cost-uk",
+      "https://shiftsometimber.co.uk/articles/weight-loss-medication-eligibility-uk",
+      "https://shiftsometimber.co.uk/articles/mens-fat-loss-workouts",
+      "https://shiftsometimber.co.uk/articles/metabolic-health-markers",
+      "https://shiftsometimber.co.uk/articles/weight-loss-blood-tests",
+      "https://shiftsometimber.co.uk/articles/mens-weight-loss-diet",
+      "https://shiftsometimber.co.uk/articles/high-protein-breakfasts-men",
+      "https://shiftsometimber.co.uk/articles/body-composition-tracking",
+      "https://shiftsometimber.co.uk/articles/ozempic-weight-loss-plateau",
+      "https://shiftsometimber.co.uk/articles/wegovy-eligibility-uk",
+      "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-plateau",
+      "https://shiftsometimber.co.uk/articles/glp-1-constipation",
+      "https://shiftsometimber.co.uk/articles/glp-1-dosage-guide",
+      "https://shiftsometimber.co.uk/articles/glp-1-and-alcohol",
+      "https://shiftsometimber.co.uk/articles/glp-1-nausea",
+      "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-uk",
+      "https://shiftsometimber.co.uk/articles/semaglutide-and-antidepressants",
+      "https://shiftsometimber.co.uk/articles/evidence-based-weight-loss",
+      "https://shiftsometimber.co.uk/articles/glp-1-coaching",
+      "https://shiftsometimber.co.uk/articles/life-after-ozempic",
+      "https://shiftsometimber.co.uk/articles/glp-1-for-men",
+      "https://shiftsometimber.co.uk/articles/semaglutide-results-timeline",
+      "https://shiftsometimber.co.uk/articles/glp-1-binge-eating",
+      "https://shiftsometimber.co.uk/articles/wegovy-not-working",
+      "https://shiftsometimber.co.uk/articles/glp-1-and-exercise",
+      "https://shiftsometimber.co.uk/articles/glp-1-muscle-loss",
+      "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+      "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+      "https://shiftsometimber.co.uk/articles/missed-wegovy-dose",
+      "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk",
+      "https://shiftsometimber.co.uk/articles/oral-semaglutide-for-weight-loss",
+      "https://shiftsometimber.co.uk/male-obesity"
+    ],
+    "count": 413,
+    "browserAndRetainedSetMatched": true,
+    "fnv1a32": 33800386
+  },
+  "tracker": {
+    "id": "453d7058-86d9-4efd-98f1-6b9aaa6340fd",
+    "added": [
+      "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline",
+      "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced",
+      "https://shiftsometimber.co.uk/shift-health/blood-tests/complete",
+      "https://shiftsometimber.co.uk/articles/upper-arm-blood-collection",
+      "https://shiftsometimber.co.uk/articles/understanding-blood-test-results",
+      "https://shiftsometimber.co.uk/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up",
+      "https://shiftsometimber.co.uk/medicine-news/foundayo-european-recommendation-october-2026",
+      "https://shiftsometimber.co.uk/medicine-news/cbl-514-supreme-01-phase-3-catch-up",
+      "https://shiftsometimber.co.uk/medicine-news/mhra-fake-weight-loss-pens-birmingham-october-2026",
+      "https://shiftsometimber.co.uk/medicine-news/antidepressant-safety-information-mhra-october-2026",
+      "https://shiftsometimber.co.uk/medicine-news/onswik-weekly-insulin-uk-approval-october-2026",
+      "https://shiftsometimber.co.uk/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up",
+      "https://shiftsometimber.co.uk/articles/weight-loss-medication-eligibility-uk",
+      "https://shiftsometimber.co.uk/articles/mens-fat-loss-workouts",
+      "https://shiftsometimber.co.uk/articles/metabolic-health-markers",
+      "https://shiftsometimber.co.uk/articles/weight-loss-blood-tests",
+      "https://shiftsometimber.co.uk/articles/mens-weight-loss-diet",
+      "https://shiftsometimber.co.uk/articles/high-protein-breakfasts-men",
+      "https://shiftsometimber.co.uk/articles/body-composition-tracking",
+      "https://shiftsometimber.co.uk/articles/ozempic-weight-loss-plateau"
+    ],
+    "trackedAfter": 582,
+    "missingAfter": 0,
+    "historyPreserved": true,
+    "newInspectionState": "pending"
+  },
+  "renderedLinkExtraction": {
+    "sitemapPages": 413,
+    "successful": 411,
+    "hrefsObserved": 33118,
+    "clientBlocked": [
+      "/help",
+      "/complaints"
+    ],
+    "samePageMissingAnchors": {
+      "path": "/treatment-centre/medicines-watch",
+      "anchors": [
+        "industry-mounjaro",
+        "industry-wegovy-injection",
+        "industry-wegovy-tablet",
+        "industry-orlistat",
+        "industry-foundayo",
+        "industry-retatrutide"
+      ]
+    },
+    "externalDestinationsNotValidated": 710,
+    "privateAndQueriedRoutesExcluded": true
+  },
+  "additionalDestinations": [
+    {
+      "url": "https://shiftsometimber.co.uk/shop",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/shop",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/isotretinoin-prescribing-safeguards-january-2026",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/isotretinoin-prescribing-safeguards-january-2026",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/mesalazine-intracranial-hypertension-mhra-warning",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/mesalazine-intracranial-hypertension-mhra-warning",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/asthma-reliever-overuse-mhra-reminder",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/asthma-reliever-overuse-mhra-reminder",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/domperidone-phaeochromocytoma-mhra-warning-2026",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/domperidone-phaeochromocytoma-mhra-warning-2026",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/rsv-vaccines-small-gbs-risk-mhra-context",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/rsv-vaccines-small-gbs-risk-mhra-context",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-for-work",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/shift-for-work",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/dual-gip-glp-1-receptor-agonist-clinical-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/dual-gip-glp-1-receptor-agonist-clinical-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cagrilintide-research-study",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/cagrilintide-research-study",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cagrilintide-trial-excess-body-weight",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/cagrilintide-trial-excess-body-weight",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cagrisema-type-2-diabetes-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/cagrisema-type-2-diabetes-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/global-obesity-study-ly900038",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/global-obesity-study-ly900038",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/dual-transporter-targeted-oral-semaglutide-nanomicelles",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/dual-transporter-targeted-oral-semaglutide-nanomicelles",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/acquired-hypothalamic-obesity-treatment-lifestyle-interventions",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/acquired-hypothalamic-obesity-treatment-lifestyle-interventions",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cagrilintide-and-semaglutide-clinical-trial-update",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/cagrilintide-and-semaglutide-clinical-trial-update",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/geographical-disparities-pediatric-obesity",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/geographical-disparities-pediatric-obesity",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-based-therapies-safety-risks",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-based-therapies-safety-risks",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/digital-behavioral-infrastructure-glucagon-like-peptide-1-pharmacotherapy",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/digital-behavioral-infrastructure-glucagon-like-peptide-1-pharmacotherapy",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/at673-semaglutide-clinical-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/at673-semaglutide-clinical-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/bariatric-surgery-vs-semaglutide-and-tirzepatide",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/bariatric-surgery-vs-semaglutide-and-tirzepatide",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cagrilintide-bone-metabolism",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/cagrilintide-bone-metabolism",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/bi-456906-semaglutide-trial-obesity",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/bi-456906-semaglutide-trial-obesity",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cagrisema-semaglutide-obesity-weight-loss",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/cagrisema-semaglutide-obesity-weight-loss",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cagrisema-weight-loss-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/cagrisema-weight-loss-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/enobosarm-weight-loss-study",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/enobosarm-weight-loss-study",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/bolt-pharmacy-ads-banned-asa",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/bolt-pharmacy-ads-banned-asa",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-nutritional-paradox",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-nutritional-paradox",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-agonists-mash-fibrosis",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-agonists-mash-fibrosis",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/diet-glp1-biology-metabolic-health-aging",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/diet-glp1-biology-metabolic-health-aging",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/bromocriptine-postpartum-blood-pressure-mhra",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/bromocriptine-postpartum-blood-pressure-mhra",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/falsified-mounjaro-kwikpen-15mg-pre-filled-pens",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/falsified-mounjaro-kwikpen-15mg-pre-filled-pens",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-analogs-research-update",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-analogs-research-update",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-and-intraductal-papillary-mucinous-neoplasms",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-and-intraductal-papillary-mucinous-neoplasms",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-dual-glp-1-gip-receptor-agonists-strengthened-warnings",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-dual-glp-1-gip-receptor-agonists-strengthened-warnings",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-and-melanocortin-4-receptor-agonists-research-update",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-and-melanocortin-4-receptor-agonists-research-update",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp1-receptor-agonists-lung-cancer-side-effects",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp1-receptor-agonists-lung-cancer-side-effects",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-gastroesophageal-reflux-disease",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-gastroesophageal-reflux-disease",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-agonists-preoperative-weight-loss-total-joint-arthroplasty",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-agonists-preoperative-weight-loss-total-joint-arthroplasty",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-eye-condition",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-eye-condition",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-adolescent-obesity",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-adolescent-obesity",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1r-clinical-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1r-clinical-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-lean-mass-reduction",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-lean-mass-reduction",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-vagal-activity",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-vagal-activity",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-dermatologic-comorbidities",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-dermatologic-comorbidities",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-rotator-cuff-repair",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-rotator-cuff-repair",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonist-injections-side-effects",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonist-injections-side-effects",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-for-obstructive-sleep-apnea",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-for-obstructive-sleep-apnea",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-weight-loss",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-weight-loss",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp1-anaesthesia-uk-study-what-members-need-to-know",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp1-anaesthesia-uk-study-what-members-need-to-know",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/high-potency-incretin-therapy-risks",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/high-potency-incretin-therapy-risks",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-in-dermatology",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-in-dermatology",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-therapy-pregnancy-research-update",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-therapy-pregnancy-research-update",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/grabs-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/grabs-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-knee-replacement-infection-risk",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-knee-replacement-infection-risk",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-osteoarthritis-inflammatory-arthritis",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-osteoarthritis-inflammatory-arthritis",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-type-2-diabetes-outcomes",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glp-1-receptor-agonists-type-2-diabetes-outcomes",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-research",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-research",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/ibi3042-clinical-trial-update",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/ibi3042-clinical-trial-update",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/orforglipron-clinical-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/orforglipron-clinical-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/pediatric-obesity-trial-ly900040",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/pediatric-obesity-trial-ly900040",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/hmb-vitamin-d-muscle-preservation-semaglutide",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/hmb-vitamin-d-muscle-preservation-semaglutide",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/obesity-medicine-association-clinical-practice-statement",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/obesity-medicine-association-clinical-practice-statement",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/mhra-reminder-glp-1-receptor-agonists",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/mhra-reminder-glp-1-receptor-agonists",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/mhra-warns-of-potential-risk-of-pulmonary-aspiration-with-glp-1-and-dual-gip-glp-1-receptor-agon",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/mhra-warns-of-potential-risk-of-pulmonary-aspiration-with-glp-1-and-dual-gip-glp-1-receptor-agon",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/incretin-therapies-hfpef-clinical-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/incretin-therapies-hfpef-clinical-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/obesity-management-new-research",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/obesity-management-new-research",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/orforglipron-ly3502970-trial-adolescent-obesity",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/orforglipron-ly3502970-trial-adolescent-obesity",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/pharmacotherapies-for-adolescent-obesity",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/pharmacotherapies-for-adolescent-obesity",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/nnc0174-1213-trial-update",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/nnc0174-1213-trial-update",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/oral-semaglutide-weight-loss-research-study",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/oral-semaglutide-weight-loss-research-study",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/orforglipron-weight-loss-maintenance",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/orforglipron-weight-loss-maintenance",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/pharmacy-first-expansion-england-autumn-2026",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/pharmacy-first-expansion-england-autumn-2026",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/isotretinoin-october-2025-survey-later-guidance",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/isotretinoin-october-2025-survey-later-guidance",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/obesity-driven-heart-failure-research",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/obesity-driven-heart-failure-research",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/obesity-glp-1-era-research",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/obesity-glp-1-era-research",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/infantile-obesity-therapeutic-strategies",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/infantile-obesity-therapeutic-strategies",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/ixchiq-2025-pause-superseded-2026-review",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/ixchiq-2025-pause-superseded-2026-review",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/ixchiq-uk-restrictions-safety-review-2026",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/ixchiq-uk-restrictions-safety-review-2026",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/metabolic-osteoarthritis-gut-joint-axis",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/metabolic-osteoarthritis-gut-joint-axis",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/obesity-medication-research-update",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/obesity-medication-research-update",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/obesity-treatment-research",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/obesity-treatment-research",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/oral-semaglutide-type-2-diabetes-diet-body-composition",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/oral-semaglutide-type-2-diabetes-diet-body-composition",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/ribupatide-clinical-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/ribupatide-clinical-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-alcohol-use-disorder-metabolic-bariatric-surgery",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-alcohol-use-disorder-metabolic-bariatric-surgery",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-trial-sleeve-gastrectomy-youth",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-trial-sleeve-gastrectomy-youth",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/resmetirom-semaglutide-mash-fibrosis-review",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/resmetirom-semaglutide-mash-fibrosis-review",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-naion-risk",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-naion-risk",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-dosage-and-neuropsychiatric-events",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-dosage-and-neuropsychiatric-events",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-metformin-pcos-weight-loss-fertility",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-metformin-pcos-weight-loss-fertility",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-reproductive-systems-study",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-reproductive-systems-study",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/rybelsus-semaglutide-tablets-formulation-change",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/rybelsus-semaglutide-tablets-formulation-change",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-discontinuation-type-1-diabetes",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-discontinuation-type-1-diabetes",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-polycystic-ovary-syndrome",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-polycystic-ovary-syndrome",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-prurigo-nodularis",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-prurigo-nodularis",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-research-females-may-be-resistant-to-muscle-loss",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-research-females-may-be-resistant-to-muscle-loss",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-suicidality",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-suicidality",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/ro7204239-tirzepatide-obesity-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/ro7204239-tirzepatide-obesity-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-papillary-thyroid-carcinoma",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-papillary-thyroid-carcinoma",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-diabetic-eye-disease-study",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-diabetic-eye-disease-study",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-nash-research-study",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-nash-research-study",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/shemed-ltd-advert-banned",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/shemed-ltd-advert-banned",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-ageing",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-ageing",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-bioavailability-research",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-bioavailability-research",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-weight-loss-inflammation",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-weight-loss-inflammation",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/retatrutide-fakes-research-is-not-a-treatment-offer",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/retatrutide-fakes-research-is-not-a-treatment-offer",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-analytical-methods-review",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-analytical-methods-review",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/semaglutide-tirzepatide-weight-regain-study",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/semaglutide-tirzepatide-weight-regain-study",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-endometrial-hyperplasia-cancer-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-endometrial-hyperplasia-cancer-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-obesity-endometrial-cancer-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-obesity-endometrial-cancer-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-and-levonorgestrel-iud-therapy-for-ein-and-early-stage-endometrial-cancer",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-and-levonorgestrel-iud-therapy-for-ein-and-early-stage-endometrial-cancer",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-atrial-fibrillation",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-atrial-fibrillation",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-blood-pressure-checks-england-access",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-blood-pressure-checks-england-access",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-ai-chatbots-mental-health-uk-survey",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-ai-chatbots-mental-health-uk-survey",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/trevogrumab-garetosmab-semaglutide-obesity-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/trevogrumab-garetosmab-semaglutide-obesity-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/trial-investigates-nutritional-supplements",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/trial-investigates-nutritional-supplements",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-burnout-report-2026-workplace-mental-health",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-burnout-report-2026-workplace-mental-health",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-england-first-mens-health-strategy",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-england-first-mens-health-strategy",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-adult-adhd-taskforce-final-report",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-adult-adhd-taskforce-final-report",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/the-evira-study-obesity-treatment",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/the-evira-study-obesity-treatment",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-binge-eating-disorder-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-binge-eating-disorder-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-england-community-mental-health-expansion-2026",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-england-community-mental-health-expansion-2026",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/sleeve-gastrectomy-vs-tirzepatide-ckd-survival",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/sleeve-gastrectomy-vs-tirzepatide-ckd-survival",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-and-sglt2-inhibitors-for-heart-failure-and-obesity",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-and-sglt2-inhibitors-for-heart-failure-and-obesity",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/ubt251-injection-phase-1a-1b-trials",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/ubt251-injection-phase-1a-1b-trials",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-bowel-screening-fifties-england",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-bowel-screening-fifties-england",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-prader-willi-syndrome",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-prader-willi-syndrome",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-anxiety-talking-therapies-self-referral",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-anxiety-talking-therapies-self-referral",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-confluent-and-reticulated-papillomatosis",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-confluent-and-reticulated-papillomatosis",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-semaglutide-class-2-obesity",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-semaglutide-class-2-obesity",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-unilateral-graves-disease",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-unilateral-graves-disease",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-research-update",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-research-update",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-weight-loss-mechanism",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/tirzepatide-weight-loss-mechanism",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-northern-ireland-obesity-service-first-phase",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-northern-ireland-obesity-service-first-phase",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-northern-ireland-health-survey-weight-mental-health",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-northern-ireland-health-survey-weight-mental-health",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-samh-nook-aberdeen-glasgow-mental-health",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-samh-nook-aberdeen-glasgow-mental-health",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-england-mental-health-survey-2023-2024",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-england-mental-health-survey-2023-2024",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-nice-support-after-weight-loss-treatment",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-nice-support-after-weight-loss-treatment",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-men-talking-therapies-london",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-men-talking-therapies-london",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-mental-health-progress-2025",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-mental-health-progress-2025",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-mat-standards-mental-health-support",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-mat-standards-mental-health-support",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-foundayo-orforglipron-mhra-approval",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-foundayo-orforglipron-mhra-approval",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-gp-walk-in-centres-data",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-gp-walk-in-centres-data",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-globalminds-mental-health-research-invitations",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-globalminds-mental-health-research-invitations",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-glp1-use-britain-men-survey",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-glp1-use-britain-men-survey",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-prevention-weight-health-framework",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-prevention-weight-health-framework",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-severe-mental-illness-weight-support-gap",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-severe-mental-illness-weight-support-gap",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-nhs-diabetes-remission-programme-explained",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-nhs-diabetes-remission-programme-explained",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-nhs-mounjaro-access-england-2026",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-nhs-mounjaro-access-england-2026",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-lung-cancer-screening-mobile-scans-england",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-lung-cancer-screening-mobile-scans-england",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scottish-health-survey-weight-wellbeing-2024",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scottish-health-survey-weight-wellbeing-2024",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-heartflow-nhs-coronary-scan-evidence",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-heartflow-nhs-coronary-scan-evidence",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-prostate-progress-research-invitation",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-prostate-progress-research-invitation",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-healthier-you-diabetes-prevention-million",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-healthier-you-diabetes-prevention-million",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-pharmacy-cholesterol-pilot-england",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-pharmacy-cholesterol-pilot-england",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-young-people-mental-health-transitions",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-young-people-mental-health-transitions",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-paxd-pramipexole-depression-uk-trial",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-paxd-pramipexole-depression-uk-trial",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-prostate-sabr-radiotherapy-england",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-prostate-sabr-radiotherapy-england",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads/overseas-surgery-checklist",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/downloads/overseas-surgery-checklist",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads/weight-loss-medication-questions",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/downloads/weight-loss-medication-questions",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/zovaglutide-trial-obesity-treatment",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/zovaglutide-trial-obesity-treatment",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-wales-mental-health-strategy-2025-2035",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-wales-mental-health-strategy-2025-2035",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-tower-hamlets-24-hour-mental-health-centre",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-tower-hamlets-24-hour-mental-health-centre",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-suicide-prevention-training-person-centred-care",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-suicide-prevention-training-person-centred-care",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-wales-gambling-treatment-helpline",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-wales-gambling-treatment-helpline",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/weight-loss-and-bone-health-in-people-with-obesity-and-type-1-diabetes",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/weight-loss-and-bone-health-in-people-with-obesity-and-type-1-diabetes",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/what-is-timber-mill",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/faq/what-is-timber-mill",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-young-adults-mental-health-work-report",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-young-adults-mental-health-work-report",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads/bariatric-surgery-checklist",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/downloads/bariatric-surgery-checklist",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads/gp-appointment-checklist",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/downloads/gp-appointment-checklist",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads/maintenance-plan-template",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/downloads/maintenance-plan-template",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads/private-provider-checklist",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/downloads/private-provider-checklist",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/virtual-glp-1-programme-weight-loss",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/virtual-glp-1-programme-weight-loss",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-stamina-prostate-exercise-support",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medicine-news/uk-archive-stamina-prostate-exercise-support",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/food-guide",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/guides/food-guide",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medication-comparison-centre",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/medication-comparison-centre",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "status": 404,
+      "finalUrl": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/accessibility",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/accessibility",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/shift-bloods/20261018/upper-arm-overview.mp4",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/assets/shift-bloods/20261018/upper-arm-overview.mp4",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads/prescriber-questions-20261006.pdf",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/downloads/prescriber-questions-20261006.pdf",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/refunds",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/refunds",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/research/uk-mens-weight-health-statistics/chart.svg",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/research/uk-mens-weight-health-statistics/chart.svg",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/research/uk-mens-weight-health-statistics/data.csv",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/research/uk-mens-weight-health-statistics/data.csv",
+      "noindex": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced/your-test",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced/your-test",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline/your-test",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline/your-test",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/complete/your-test",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/shift-health/blood-tests/complete/your-test",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/my-timber-example",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/shift-health/blood-tests/my-timber-example",
+      "noindex": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/terms-of-sale",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/terms-of-sale",
+      "noindex": false
+    }
+  ],
+  "newsRepair": {
+    "pr": 1387,
+    "merge": "4aa701ed2bc5e088203c2ed7601e9547b883ae8d",
+    "status": "merged_not_deployed",
+    "additionalOlderNewsVerifiedNoindex": 164,
+    "sharedReleaseOwner": "Existing Core release owner; PR1386 qualification path",
+    "noDuplicateRuntimeDeployment": true
+  },
+  "nativeSourceEvidence": {
+    "source": "ba02a21d99cfee3fb49a89a61798932873309ff4",
+    "editorialTests": 37,
+    "controls": 22,
+    "originalNegativeCases": 9,
+    "launchContract": {
+      "pass": true,
+      "seconds": 2220.203,
+      "at": "2026-10-19T21:29:16.047562+00:00"
+    },
+    "hosted": {
+      "completion": "cancelled_at_original_90_minute_limit",
+      "ranking": "cancelled_at_original_90_minute_limit",
+      "programme": "running_last_checked"
+    },
+    "fullQualificationClaimed": false
+  },
+  "restrictions": {
+    "pageCTRUsable": false,
+    "medicalClaimsChanged": false,
+    "homepageChanged": false,
+    "communicationsSent": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "owner": "Organic Growth technical SEO executor",
+  "authorisation": "Matt: Finish this and fix; bounded public broken-link repair",
+  "path": "/future-medicines-comparison",
+  "key": "/future-medicines-comparison.html",
+  "from": "/guides/mounjaro-ultimate-uk-guide",
+  "to": "/mounjaro",
+  "offset": 22359,
+  "old": "\"url\": \"/guides/mounjaro-ultimate-uk-guide\"",
+  "new": "\"url\": \"/mounjaro\"",
+  "beforeSHA256": "e71d853346504c163971a3a296eb18afca28303606ac3f0eb373adc12054f0a0",
+  "candidateSHA256": "fa45ec071f7263750de12e12edcb6c1234928875be98912925bcec0e4108b9f0",
+  "baseDeployment": "b04c0b2e-c2a4-4d8f-8b78-69acaacb7c32",
+  "clinicalCopyChanged": false,
+  "homepageChanged": false,
+  "analyticsChanged": false
+}
