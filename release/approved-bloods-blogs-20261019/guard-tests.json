@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "cases": [
+    "fresh apply",
+    "replay excluded",
+    "exact rollback",
+    "stale body excluded",
+    "stale title excluded",
+    "stale updated_at excluded",
+    "changed source receipt excluded",
+    "rollback preserves later edit",
+    "identity dates author status and receipt preserved"
+  ]
+}
