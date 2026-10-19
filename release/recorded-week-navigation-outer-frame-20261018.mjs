@@ -200,13 +200,28 @@ export function nativeNavigationFreshSourceChecker(expected){
 }
 
 function object(ref,p){assert(oid.test(ref));path(p);const id=immutableNavigationFact('git',['rev-parse',ref+':'+p],{maxBuffer:64e6}).toString('utf8').trimEnd();assert(oid.test(id));return id;}
+// Cache only original native blob-batch bytes. Current object provenance and
+// native content are freshly authenticated on every use; no source check,
+// supplied callback, admission result, tree presentation or verdict is cached.
+const nativeNavigationBlobBatches=new Map();let nativeNavigationBlobBatchBytes=0;
 function bytes(ref,p){
  assert(oid.test(ref));path(p);
- const batch=execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects','cat-file','--batch'],{input:ref+':'+p+'\n',maxBuffer:64e6});
+ const expected=object(ref,p),authenticated=immutableNavigationFact('git',['show',ref+':'+p],{maxBuffer:64e6});
+ const retained=nativeNavigationBlobBatches.get(expected);
+ const batch=retained?Buffer.from(retained):execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects','cat-file','--batch'],{input:ref+':'+p+'\n',maxBuffer:64e6});
  const lf=batch.indexOf(10);assert(lf>0,'Native navigation content batch header required');
  const row=/^([a-f0-9]{40}) (blob|tree) ([0-9]+)$/.exec(batch.subarray(0,lf).toString('ascii'));assert(row,'Exact native navigation blob or tree required');
+ assert.equal(row[1],expected,'Fresh authenticated native navigation object required');
  const [,id,kind,length]=row,size=Number(length);assert(Number.isSafeInteger(size)&&size>=0);assert.equal(batch.length,lf+size+2);assert.equal(batch[batch.length-1],10);
- if(kind==='blob')return decodeSeoBlobBatch(batch,[id]).get(id);
+ if(kind==='blob'){
+  const value=decodeSeoBlobBatch(batch,[id]).get(id);
+  assert(value.equals(authenticated),'Fresh authenticated immutable navigation bytes changed');
+  if(!retained&&batch.length<=32e6){
+   while(nativeNavigationBlobBatchBytes+batch.length>32e6){const oldest=nativeNavigationBlobBatches.keys().next().value;nativeNavigationBlobBatchBytes-=nativeNavigationBlobBatches.get(oldest).length;nativeNavigationBlobBatches.delete(oldest);}
+   nativeNavigationBlobBatches.set(id,Buffer.from(batch));nativeNavigationBlobBatchBytes+=batch.length;
+  }
+  return value;
+ }
  const value=batch.subarray(lf+1,lf+1+size);assert.equal(createHash('sha1').update('tree '+size+'\0').update(value).digest('hex'),id);return git('show',ref+':'+p);
 }
 const content=(r,p)=>bytes(r,p).toString('utf8');
