@@ -248,10 +248,10 @@ export function actualNavigationOuterFrame(){
   affected:p=>outer.affected(p)||inner.affected(p),
   currentContent:outer.currentContent,authentic,nativeAuthentic:authentic,nativeContentAuthentic:outer.nativeContentAuthentic,
   read:unary(inner.read),blob:unary(inner.blob),content:unary(inner.content),diff:binary(inner.diff),ancestor:binary(inner.ancestor),
-  projectRead:r=>unary(inner.projectRead(outer.projectRead(r))),
-  projectContent:r=>unary(inner.projectContent(outer.projectContent(r))),
-  projectDiff:r=>binary(inner.projectDiff(outer.projectDiff(r))),
-  projectAncestor:r=>binary(inner.projectAncestor(outer.projectAncestor(r)))
+  projectRead:r=>{assert.equal(typeof r,'function','Supplied navigation source read callback required');return unary(inner.projectRead(outer.projectRead(r)));},
+  projectContent:r=>{assert.equal(typeof r,'function','Supplied navigation source content callback required');return unary(inner.projectContent(outer.projectContent(r)));},
+  projectDiff:r=>{assert.equal(typeof r,'function','Supplied navigation source diff callback required');return binary(inner.projectDiff(outer.projectDiff(r)));},
+  projectAncestor:r=>{assert.equal(typeof r,'function','Supplied navigation source ancestor callback required');return binary(inner.projectAncestor(outer.projectAncestor(r)));}
  };
  frames.add(frame);frame.assertCurrent();return Object.freeze(frame);
 }
