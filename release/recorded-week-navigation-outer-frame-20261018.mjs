@@ -66,7 +66,7 @@ function prepareNativeNavigationIndexStats(){
  if(wait>0&&wait<=1100)Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,wait);
  const deadline=process.hrtime.bigint()+1100000000n;
  for(;;){
-  try{git('update-index','--force-write-index','--refresh');break;}
+  try{git('update-index','--refresh');break;}
   catch(error){
    const stderr=String(error.stderr??'');
    if(!/Unable to create[^\n]*index\.lock[^\n]*File exists/.test(stderr)||process.hrtime.bigint()>=deadline)throw error;
@@ -138,7 +138,7 @@ export function nativeNavigationFreshSourceChecker(expected){
   // topology, staged-source and index-visibility assertions. Working source
   // still receives a fresh native Git diff before and after caller reads.
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed');
-  assert.equal(text('diff','--no-renames','--name-only','HEAD','--'),'','Fresh navigation working source changed');
+  assert.equal(git('diff-files','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','--').length,0,'Fresh navigation working source changed');
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed during current-source check');
  };
 }
