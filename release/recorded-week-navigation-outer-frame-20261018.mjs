@@ -200,25 +200,45 @@ export function nativeNavigationFreshSourceChecker(expected){
 }
 
 function object(ref,p){assert(oid.test(ref));path(p);const id=immutableNavigationFact('git',['rev-parse',ref+':'+p],{maxBuffer:64e6}).toString('utf8').trimEnd();assert(oid.test(id));return id;}
-// Cache only original native blob-batch bytes. Current object provenance and
-// native content are freshly authenticated on every use; no source check,
-// supplied callback, admission result, tree presentation or verdict is cached.
+// Reuse only actual native blob batches whose current object-storage
+// provenance is unchanged. No working-source check, callback or verdict is cached.
 const nativeNavigationBlobBatches=new Map();let nativeNavigationBlobBatchBytes=0;
+function navigationBlobStorageState(id){
+ try{
+  assert(oid.test(id));const root=resolve(process.cwd(),'.git/objects');
+  const stamp=s=>[s.dev,s.ino,s.mode,s.size,s.mtimeNs,s.ctimeNs].map(String);
+  const directory=lstatSync(root,{bigint:true,throwIfNoEntry:false});
+  if(!directory||!directory.isDirectory()||directory.isSymbolicLink()||realpathSync(root)!==root)return null;
+  if(lstatSync(resolve(root,'info/alternates'),{throwIfNoEntry:false}))return null;
+  const packRoot=resolve(root,'pack'),packDirectory=lstatSync(packRoot,{bigint:true,throwIfNoEntry:false}),packs=[];
+  if(packDirectory){
+   if(!packDirectory.isDirectory()||packDirectory.isSymbolicLink())return null;
+   const names=readdirSync(packRoot).sort();if(names.length>1024)return null;
+   for(const name of names){const s=lstatSync(resolve(packRoot,name),{bigint:true});if(!s.isFile()||s.isSymbolicLink())return null;packs.push([name,stamp(s)]);}
+  }
+  const prefix=resolve(root,id.slice(0,2)),prefixStat=lstatSync(prefix,{bigint:true,throwIfNoEntry:false});
+  if(prefixStat&&(!prefixStat.isDirectory()||prefixStat.isSymbolicLink()))return null;
+  const file=resolve(prefix,id.slice(2)),s=lstatSync(file,{bigint:true,throwIfNoEntry:false});let loose='absent';
+  if(s){if(!s.isFile()||s.isSymbolicLink()||s.size>64000000n)return null;const raw=readFileSync(file);if(raw.length>64e6)return null;loose=[stamp(s),sha(raw)];}
+  return JSON.stringify([root,stamp(directory),packDirectory?stamp(packDirectory):'absent',packs,prefixStat?stamp(prefixStat):'absent',loose]);
+ }catch{return null;}
+}
 function bytes(ref,p){
  assert(oid.test(ref));path(p);
- const expected=object(ref,p),authenticated=immutableNavigationFact('git',['show',ref+':'+p],{maxBuffer:64e6});
- const retained=nativeNavigationBlobBatches.get(expected);
- const batch=retained?Buffer.from(retained):execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects','cat-file','--batch'],{input:ref+':'+p+'\n',maxBuffer:64e6});
+ const expected=object(ref,p),provenance=navigationBlobStorageState(expected),retained=provenance===null?null:nativeNavigationBlobBatches.get(expected);
+ const reusable=retained&&retained.provenance===provenance;
+ const batch=reusable?Buffer.from(retained.bytes):execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects','cat-file','--batch'],{input:ref+':'+p+'\n',maxBuffer:64e6});
  const lf=batch.indexOf(10);assert(lf>0,'Native navigation content batch header required');
  const row=/^([a-f0-9]{40}) (blob|tree) ([0-9]+)$/.exec(batch.subarray(0,lf).toString('ascii'));assert(row,'Exact native navigation blob or tree required');
  assert.equal(row[1],expected,'Fresh authenticated native navigation object required');
  const [,id,kind,length]=row,size=Number(length);assert(Number.isSafeInteger(size)&&size>=0);assert.equal(batch.length,lf+size+2);assert.equal(batch[batch.length-1],10);
  if(kind==='blob'){
-  const value=decodeSeoBlobBatch(batch,[id]).get(id);
-  assert(value.equals(authenticated),'Fresh authenticated immutable navigation bytes changed');
-  if(!retained&&batch.length<=32e6){
-   while(nativeNavigationBlobBatchBytes+batch.length>32e6){const oldest=nativeNavigationBlobBatches.keys().next().value;nativeNavigationBlobBatchBytes-=nativeNavigationBlobBatches.get(oldest).length;nativeNavigationBlobBatches.delete(oldest);}
-   nativeNavigationBlobBatches.set(id,Buffer.from(batch));nativeNavigationBlobBatchBytes+=batch.length;
+  const value=decodeSeoBlobBatch(batch,[id]).get(id),after=navigationBlobStorageState(id);
+  if(reusable)assert.equal(after,provenance,'Native navigation object storage changed during immutable batch use');
+  if(provenance!==null&&after===provenance&&batch.length<=32e6){
+   const previous=nativeNavigationBlobBatches.get(id);if(previous){nativeNavigationBlobBatchBytes-=previous.bytes.length;nativeNavigationBlobBatches.delete(id);}
+   while(nativeNavigationBlobBatchBytes+batch.length>32e6){const oldest=nativeNavigationBlobBatches.keys().next().value;nativeNavigationBlobBatchBytes-=nativeNavigationBlobBatches.get(oldest).bytes.length;nativeNavigationBlobBatches.delete(oldest);}
+   nativeNavigationBlobBatches.set(id,{bytes:Buffer.from(batch),provenance});nativeNavigationBlobBatchBytes+=batch.length;
   }
   return value;
  }
