@@ -1,7 +1,7 @@
 name: Daily website content read-only preflight
 on:
   push:
-    branches: [codex/daily-website-content-20261015, codex/website-editorial-completion-20261018]
+    branches: [codex/daily-website-content-20261015, codex/website-editorial-completion-20261018, fix/recorded-week-native-source-check-20261018]
     paths:
       - 'daily-content/**'
       - 'scheduled-knowledge-v1.js'
