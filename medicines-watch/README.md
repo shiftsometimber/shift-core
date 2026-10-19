@@ -2,7 +2,7 @@
 
 ## 19 October retrospective candidate — not deployed
 
-The candidate contains 6 detailed references plus 114 concise industry summaries: 120 medicines/programmes, with 206 configured source documents. It corrects five existing programme entries, rereviews 16 exact registry lifecycles and adds CBL-514 with two monitored trial records. Whole-programme review dates are retained for the five corrections; posting results does not constitute an outcome review. Historical receipt tests retain their original before-images and assertions. No production monitor successes are seeded. Publication and original source/composition/live gates remain outstanding.
+The candidate contains 6 detailed references plus 114 concise industry summaries: 120 medicines/programmes, with 206 configured source documents. It corrects nine existing programme entries, rereviews 16 exact registry lifecycles and adds CBL-514 with two monitored trial records. Bounded evidence includes five original-paper abstracts, Viking sponsor/registry reconciliation, four original registry histories, CBL-514 human/animal conference distinctions and the 8 October setmelanotide final draft. Whole-programme review dates are retained for the nine corrections; posting results does not constitute an outcome review. Historical receipt tests retain their original before-images and assertions. No production monitor successes are seeded. Publication and original source/composition/live gates remain outstanding.
 
 ## 12 October evening — implemented candidate, not published
 

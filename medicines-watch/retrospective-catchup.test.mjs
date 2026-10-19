@@ -9,7 +9,7 @@ import {registryLifecycle} from './registry-lifecycle.mjs';
 import {fingerprintSource} from './monitor.mjs';
 import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
-test('current catalogue is the exact retained before-image plus eight bounded corrections and CBL-514',()=>{
+test('current catalogue is the exact retained before-image plus nine bounded corrections and CBL-514',()=>{
  assert.equal(industry.length+medicines.length,120);assert.equal(sources.length,206);
  assert.equal(hash(industryBeforeRetrospective(industry)),review.baseline.industrySha256);
  assert.equal(hash(sourcesBeforeRetrospective(sources)),review.baseline.sourcesSha256);
@@ -56,3 +56,9 @@ test('original-paper corrections bind five complete abstracts without whole-prog
  assert.deepEqual(new Set(review.originalResearchAbstractReviews.map(x=>x.programme)),new Set(['kai7535','petrelintide','ubt251']));
  for(const x of review.originalResearchAbstractReviews){assert.equal(createHash('sha256').update(x.paper.abstractText).digest('hex'),x.abstractSha256);assert.equal(x.sourcePublicationDate,x.paper.firstPublicationDate);assert.match(x.reviewScope,/abstract only/);const entry=industry.find(e=>e.id===x.programme);assert.ok(entry.additionalEvidence.some(e=>e.url==='https://doi.org/'+x.paper.doi));}
 });
+
+test('Viking sponsor initiation and maintenance correction cannot overwrite later registry status',()=>{
+ const v=industry.find(x=>x.id==='vk2735');assert.match(v.summary,/14 October 2026/);assert.match(v.summary,/still say not yet recruiting/);assert.match(v.limitations,/corrects its 6 October reference to weekly oral maintenance dosing/);for(const id of ['NCT07868835','NCT07868939'])assert.equal(registrySources.find(x=>x.nctId===id).lifecycle.status,'NOT_YET_RECRUITING');
+});
+
+test('setmelanotide draft does not replace current final NHS criteria or renew the programme',()=>{const p=industry.find(x=>x.id==='setmelanotide');assert.match(p.summary,/still in development/);assert.match(p.nhsEngland,/6–17/);assert.match(p.limitations,/90 days after final publication if adopted/);assert.equal(p.reviewedAt,review.changes.find(x=>x.id===p.id).before.reviewedAt);});
