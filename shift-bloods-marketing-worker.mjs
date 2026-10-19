@@ -1,4 +1,4 @@
-import {isPublicBloodsRequest,addBloodsEntry,BLOODS_ENTRY_STYLE} from './shift-bloods-public.mjs';
+import {isPublicBloodsRequest,addBloodsEntry,BLOODS_ENTRY_STYLE,INDEXABLE_BLOODS_PATHS} from './shift-bloods-public.mjs';
 const HEALTH_PATHS=new Set(['/shift-health','/shift-health/','/shift-health.html']);
 const APPROVED_PAGES_ORIGINS=new Set(['https://projectshift.pages.dev','https://88265868.projectshift.pages.dev']);
 export async function marketingResponse(request,env={},fetcher=fetch){
@@ -15,6 +15,9 @@ export async function marketingResponse(request,env={},fetcher=fetch){
  headers.set('X-Shift-Bloods-Public','coming-soon-20261018');
  if(!response.ok)return new Response(request.method==='HEAD'?null:response.body,{status:response.status,headers});
  let html=await response.text();
+ if(!health&&INDEXABLE_BLOODS_PATHS.includes(url.pathname.replace(/\/$/,''))&&!/<meta\b[^>]*(?:name|property)\s*=\s*["']twitter:card["']/i.test(html)){
+  html=html.replace(/<\/head>/i,'<meta name="twitter:card" content="summary_large_image">\n</head>');
+ }
  if(health&&!html.includes('id="health-bloods-heading"')){
   if(!html.includes('<section class="wrap intro"'))return new Response(request.method==='HEAD'?null:html,{status:response.status,headers});
   html=addBloodsEntry(html).replace('</head>','<style data-shift-bloods-entry>'+BLOODS_ENTRY_STYLE+'</style></head>');
