@@ -2279,7 +2279,7 @@ function verifyReconciledReleaseOriginal(read){
  // Preserve the original fail-closed assertion and its error identity. The one
  // overlapping original Watch diagnostic must remain recognisable to its owner.
  let memberView;
- try{memberView=memberConsentHistoricalView(read,{defaultReader:memberDefaultRead});}
+ try{memberView=memberConsentHistoricalView(memberDefaultRead?null:read,{defaultReader:memberDefaultRead});}
  catch(error){
   const diagnostic='Approved composition source / boundary drift / sharing maintenance drift: .github/workflows/cloudflare-production-promote.yml';
   if(!memberDefaultRead&&reconciliationRecord()?.combinedFinite20261014&&error?.code==='ERR_ASSERTION'&&error.message.startsWith(diagnostic))error.message='Late Watch source drift: '+error.message;
