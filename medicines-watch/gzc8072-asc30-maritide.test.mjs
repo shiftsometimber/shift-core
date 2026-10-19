@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -8,6 +9,10 @@ import {medicines,sources} from './data.mjs';
 import {projectSourceHealth} from './monitor.mjs';
 
 const observation=(source,time)=>({id:source.id,source_url:source.url,check_url:source.checkUrl,last_attempt_at:new Date(time).toISOString(),last_success_at:new Date(time).toISOString(),attempt_status:'succeeded',last_http_status:200,last_fingerprint:source.reviewedFingerprint,last_withdrawn:0});
+
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
+const retrospectiveCurrent_registrySources=registrySources;
 
 test('five actually due sources renew only after unchanged complete-source review',()=>{
  assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');assert.equal(receipt.clinicalApproval,null);assert.equal(receipt.industryComplete,false);
@@ -36,6 +41,11 @@ test('MARITIME-T2D-3 is bounded registered specialist research, not a comparativ
 });
 
 test('release counts and separate queues stay honest',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);assert.equal(registrySources.length,139);
  assert.deepEqual(receipt.counts,{priorCompletedReviews:38,completedReviewsAfter:39,programmes:119,configuredSourcesBefore:203,configuredSourcesAfter:204,manualEvidence:102,configuredSourceReviewQueueBefore:5,configuredSourceReviewQueueAfter:0,programmeSummaryFactualReviewNeededBefore:70,programmeSummaryFactualReviewNeededAfter:68});
  assert.equal(programmeSummaryQueueAtReceipt([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,68);

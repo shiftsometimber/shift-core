@@ -1,5 +1,9 @@
 # Treatments: Medicines & Peptides Watch
 
+## 19 October retrospective candidate — not deployed
+
+The candidate contains 6 detailed references plus 114 concise industry summaries: 120 medicines/programmes, with 206 configured source documents. It corrects five existing programme entries, rereviews 16 exact registry lifecycles and adds CBL-514 with two monitored trial records. Whole-programme review dates are retained for the five corrections; posting results does not constitute an outcome review. Historical receipt tests retain their original before-images and assertions. No production monitor successes are seeded. Publication and original source/composition/live gates remain outstanding.
+
 ## 12 October evening — implemented candidate, not published
 
 The bounded successor `reviews/2026-10-12-authorised-te8105-asc36-renewal.json` renews only the unchanged TE-8105 registry source and the independently fully reread TE-8105 and oral ASC36 programme summaries. Their clinical wording remains byte-equivalent after review dates are excluded. TE-8105 remains not yet recruiting with estimated dates and no posted results; ASC36 remains sponsor-reported US oral Phase I research with animal findings separate from human outcomes.

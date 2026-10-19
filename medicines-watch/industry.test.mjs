@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
@@ -74,6 +75,10 @@ import gs4571TirzepatideMenopause from './reviews/2026-10-06-authorised-gs4571-t
 import registryLifecycleFollowup from './reviews/2026-10-07-authorised-registry-lifecycle-followup.json' with {type:'json'};
 import enicepatideEmugrobartRegistry from './reviews/2026-10-07-authorised-enicepatide-emugrobart-registry.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
+const retrospectiveCurrent_registrySources=registrySources;
+
 test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
  assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(semaglutideSpecialistSarcopeniaWave.clinicalApproval,null);
@@ -443,6 +448,11 @@ test('authoritative README catalogue totals match exported entries',()=>{
  assert.match(readme,new RegExp(`${medicines.length+industry.length} medicines/programmes, with ${sources.length} configured source documents`));
 });
 test('amylin follow-up corrects actual research stage while retaining dated discrepancies',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  const abbv=industry.find(e=>e.id==='abbv295');
  assert.match(abbv.stage,/Phase 2 recruiting/);
  assert.match(abbv.summary,/actual 4 August 2026 start/);
@@ -480,8 +490,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,113);assert.equal(sources.length,204);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,119);
+ assert.equal(medicines.length,6);assert.equal(industry.length,114);assert.equal(sources.length,206);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,120);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -1006,6 +1016,11 @@ test('specialist registry follow-up separates active research, planned studies a
 });
 
 test('switching studies remain planned research and do not inflate programme counts',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(switchingStudies.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(switchingStudies.clinicalApproval,null);
  assert.equal(switchingStudies.industryComplete,false);
@@ -1495,6 +1510,11 @@ test('GUB-UCN2 and MBL949 preserve research, discontinuation and access boundari
 });
 
 test('Viking, Rhythm and changed registry evidence stays formulation and indication specific',()=>{
+ // Preserve this dated review receipt against its exact before-image.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(vikingRhythmRegistryReview.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(vikingRhythmRegistryReview.clinicalApproval,null);
  assert.equal(vikingRhythmRegistryReview.industryComplete,false);
@@ -1559,6 +1579,11 @@ test('GS-4571 and the tirzepatide menopause pilot remain bounded research eviden
 });
 
 test('registry follow-up adds exact lifecycles without duplicating programmes or implying results',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(registryLifecycleFollowup.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(registryLifecycleFollowup.clinicalApproval,null);
  assert.equal(registryLifecycleFollowup.industryComplete,false);
@@ -1603,6 +1628,11 @@ test('registry follow-up adds exact lifecycles without duplicating programmes or
 });
 
 test('ENITH Phase 3 and specialist emugrobart lifecycles preserve results and discontinuation boundaries',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(enicepatideEmugrobartRegistry.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(enicepatideEmugrobartRegistry.clinicalApproval,null);
  assert.equal(enicepatideEmugrobartRegistry.industryComplete,false);
@@ -1639,6 +1669,11 @@ test('ENITH Phase 3 and specialist emugrobart lifecycles preserve results and di
 
 
 test('8 October update retains typed ZUPREME starts, sponsor uncertainty and overdue boundaries',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  const e=industry.find(e=>e.id==='petrelintide');
  assert.match(e.stage,/Phase 3 ZUPREME recruiting/);
  assert.doesNotMatch(e.summary,/not yet recruiting|list no study locations/);
@@ -1703,6 +1738,11 @@ test('TOGETHER psoriatic-disease research preserves lifecycle, evidence and enro
 
 
 test('TOGETHER biomarker follow-up does not renew registry evidence or change UK access',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  const item=industry.find(e=>e.id==='ixekizumab-tirzepatide-psoriatic-disease');
  assert.match(item.summary,/9 October 2026/);assert.match(item.summary,/circulating proteins and blood gene expression/);
  assert.match(item.limitations,/not a new trial or independently established clinical benefit/);
@@ -1712,6 +1752,11 @@ test('TOGETHER biomarker follow-up does not renew registry evidence or change UK
 });
 
 test('Mwyngil and Palatin additions remain bounded preclinical evidence',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(mwyngilPalatinPreclinical.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(mwyngilPalatinPreclinical.clinicalApproval,null);
  assert.equal(mwyngilPalatinPreclinical.industryComplete,false);
@@ -1731,6 +1776,11 @@ test('Mwyngil and Palatin additions remain bounded preclinical evidence',()=>{
 });
 
 test('Ascletis oral portfolio additions remain preclinical and preserve missed filing uncertainty',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(ascletisOralPortfolio.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(ascletisOralPortfolio.clinicalApproval,null);assert.equal(ascletisOralPortfolio.industryComplete,false);
  assert.equal(ascletisOralPortfolio.entries.length,4);assert.equal(ascletisOralPortfolio.automatedMonitorChanges,false);
@@ -1746,6 +1796,11 @@ test('Ascletis oral portfolio additions remain preclinical and preserve missed f
 });
 
 test('new oral VK2735 and zenagamtide records stay registered research, not completed starts',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(vk2735ZenagamtideRegistry.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(vk2735ZenagamtideRegistry.clinicalApproval,null);
  assert.equal(vk2735ZenagamtideRegistry.industryComplete,false);

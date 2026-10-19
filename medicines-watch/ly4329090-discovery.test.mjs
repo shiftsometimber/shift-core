@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -6,6 +7,9 @@ import {medicines,sources} from './data.mjs';
 import {industry} from './industry.mjs';
 import {manualEvidence} from './evidence-desk.mjs';
 import {projectSourceHealth} from './monitor.mjs';
+
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
 
 test('LY4329090 discovery adds one bounded early Lilly programme from the complete registry record',()=>{
  assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');
@@ -26,6 +30,10 @@ test('LY4329090 discovery adds one bounded early Lilly programme from the comple
 });
 
 test('LY4329090 addition preserves exact counters, separate queues and medical boundaries',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+
  assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);
  assert.equal(manualEvidence([...medicines,...industry],sources).length,102);
  assert.equal(programmeSummaryQueueAtReceipt([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,71);

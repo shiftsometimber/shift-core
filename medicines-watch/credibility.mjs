@@ -1,3 +1,4 @@
+import {retrospectiveSources} from './retrospective-catchup.mjs';
 import teAscRenewal from './reviews/2026-10-12-authorised-te8105-asc36-renewal.json' with {type:'json'};
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
@@ -42,7 +43,7 @@ import gs4571TirzepatideMenopause from './reviews/2026-10-06-authorised-gs4571-t
 import registryLifecycleFollowup from './reviews/2026-10-07-authorised-registry-lifecycle-followup.json' with {type:'json'};
 import enicepatideEmugrobartRegistry from './reviews/2026-10-07-authorised-enicepatide-emugrobart-registry.json' with {type:'json'};
 const baseRegistrySources=[...receipt.registrySources,...evidenceDesk.registrySources,...srsd384Publication.registrySources,...rgt075Publication.registrySources,...vct220Publication.registrySources,...azelapragDiscontinuation.registrySources,...taldefgrobepRv8451.registrySources,...foundayoAttainMaintain.registrySources,...internationalMaintenanceWave.registrySources,...novoSpecialistWave.registrySources,...petrelintideZupreme.registrySources,...ribupatideSpecialistWave.registrySources,...gzc8072Publication.registrySources,...asc30AuroraCorrection.registrySources,...te8105Phase2b.registrySources,...semaglutideSpecialistSarcopeniaWave.registrySources,...survodutideSynchronizeJp.registrySources,...coreTrialLifecycle.registrySources,...gubUcn2Mbl949.registrySources];
-export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryReview.registrySources.filter(r=>!baseRegistrySources.some(s=>s.id===r.id)),...zenagamtideAmbience.registrySources,...gs4571TirzepatideMenopause.registrySources,...registryLifecycleFollowup.registrySources,...enicepatideEmugrobartRegistry.registrySources,...vk2735ZenagamtideRegistry.registrySources]
+const registrySourcesBeforeRetrospective=[...baseRegistrySources,...vikingRhythmRegistryReview.registrySources.filter(r=>!baseRegistrySources.some(s=>s.id===r.id)),...zenagamtideAmbience.registrySources,...gs4571TirzepatideMenopause.registrySources,...registryLifecycleFollowup.registrySources,...enicepatideEmugrobartRegistry.registrySources,...vk2735ZenagamtideRegistry.registrySources]
  .map(s=>nct05713799Correction.registrySources.find(r=>r.id===s.id)||s)
  .map(s=>vikingRhythmRegistryReview.registrySources.find(r=>r.id===s.id)||s)
  .map(s=>zupremeLifecycleUpdate.registrySources.find(r=>r.id===s.id)||s)
@@ -79,6 +80,7 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
   const renewed=teAscRenewal.sourceRenewals.find(r=>r.id===s.id);
   return renewed?{...s,reviewedAt:renewed.reviewedAt,reviewedFingerprint:renewed.reviewedFingerprint}:s;
  });
+export const registrySources=retrospectiveSources(registrySourcesBeforeRetrospective);
 export const supportSources=receipt.supportSources.map(s=>{
  const renewal=overdueRegistryAccessRenewal.supportSources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
