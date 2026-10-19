@@ -1618,7 +1618,7 @@
     "hosted": {
       "completion": "cancelled_at_original_90_minute_limit",
       "ranking": "cancelled_at_original_90_minute_limit",
-      "programme": "running_last_checked"
+      "programme": "completed_cancelled_confirmed_2026-10-19T21:46:03Z"
     },
     "fullQualificationClaimed": false
   },
@@ -1627,5 +1627,17 @@
     "medicalClaimsChanged": false,
     "homepageChanged": false,
     "communicationsSent": false
+  },
+  "postPublication": {
+    "source": "1639732818668e6d7a14c2b5a26b9b96220b1c31",
+    "production": "c4565aec-878c-463a-9fe3-8aa3b599ab24",
+    "httpVerifiedAt": "2026-10-19T21:42:20.217Z",
+    "browserLinkFollowed": "https://shiftsometimber.co.uk/mounjaro",
+    "destinationH1": "Mounjaro for men: the full UK picture",
+    "obsoleteLinksRemainingOnSource": 0,
+    "sourceAndTargetHTTP": 200,
+    "sourceAndTargetSelfCanonical": true,
+    "sourceAndTargetIndexable": true,
+    "newsControlStillNoindex": true
   }
 }
