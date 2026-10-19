@@ -30,7 +30,7 @@ async function shell(request){
  return fetch(new Request(url,{method:"GET",headers}));
 }
 function responseFrom(base,body,status=200){
- const headers=new Headers(base.headers);headers.delete("Content-Length");headers.delete("ETag");headers.delete("Last-Modified");headers.set("Content-Type","text/html; charset=utf-8");headers.set("Cache-Control","public, max-age=60, stale-while-revalidate=300");headers.set("X-Shift-Newsroom-Renderer","radar-ssr-v1");
+ const headers=new Headers(base.headers);if(status>=200&&status<300)headers.set('X-Robots-Tag','index, follow');headers.delete("Content-Length");headers.delete("ETag");headers.delete("Last-Modified");headers.set("Content-Type","text/html; charset=utf-8");headers.set("Cache-Control","public, max-age=60, stale-while-revalidate=300");headers.set("X-Shift-Newsroom-Renderer","radar-ssr-v1");
  return withArticleResponsePolicy(new Response(body,{status,headers}));
 }
 function replaceMain(html,main){return html.replace(/<main\b[\s\S]*?<\/main>/i,main)}
@@ -63,7 +63,15 @@ function detailMain(row){
  const sourcesHtml='<section><h2>Sources and evidence</h2><ul class="radar-source-list">'+sources.map(x=>'<li><a href="'+esc(x.url||x.source_url||"#")+'" rel="noopener noreferrer">'+esc(x.authority||x.title||"Primary source")+'</a>'+sourceDateLabel(x)+'</li>').join("")+'</ul></section>';
  return '<main id="main-content"><article class="radar-article"><p class="eyebrow">SHIFT Newsroom · '+esc(newsRegion({region:row.region},{title:row.headline}))+'</p><h1>'+esc(content.headline||row.headline)+'</h1><p class="standfirst">'+esc(content.standfirst||content.what_changed||"")+'</p>'+articleTrust({...content,seo:{...content.seo,datePublished:publishedAt(row)}},row)+markdown(articleBody)+meaningHtml+factsHtml+(content.safety?'<aside class="radar-safety"><strong>Safety context</strong><p>'+esc(content.safety)+'</p></aside>':"")+sourcesHtml+publisherAttributionHtml(row)+'<p><a href="/shift-newsroom">← Back to SHIFT Newsroom</a></p></article></main>';
 }
+// The source shell is the retired /medicine-news landing page and may
+// legitimately carry noindex. Only successful public newsroom renderings
+// replace that shell directive; missing stories retain the error policy.
+export function publicNewsIndexability(html){
+ return html.replace(/<meta\b(?=[^>]*\bname\s*=\s*["'](?:robots|googlebot|bingbot)["'])[^>]*>/gi,'')
+  .replace(/<head>/i,'<head><meta name="robots" content="index,follow">');
+}
 function detailHead(html,row,request){
+ html=publicNewsIndexability(html);
  const content=parse(row.content_package_json,{}),seo=content.seo||{},title=String(seo.title||content.headline||row.headline).slice(0,70),description=String(seo.description||content.standfirst||content.what_changed||"").slice(0,160),canonical=new URL(request.url);canonical.search="";canonical.hash="";
  const organization={"@type":"Organization","@id":"https://shiftsometimber.co.uk/#organization",name:"Shift Some Timber",url:"https://shiftsometimber.co.uk/",logo:{"@type":"ImageObject",url:"https://shiftsometimber.co.uk/assets/shift-wordmark.png"}};
  const image=String(seo.image||"/assets/og-default.jpg"),absoluteImage=image.startsWith("http")?image:"https://shiftsometimber.co.uk/"+image.replace(/^\//,""),schema={"@context":"https://schema.org","@type":"Article",headline:title,description,image:[absoluteImage],datePublished:publishedAt(row),dateModified:seo.dateModified||row.updated_at||publishedAt(row),author:{...organization,name:seo.author||"SHIFT Newsroom"},publisher:organization,mainEntityOfPage:canonical.href};
@@ -72,6 +80,7 @@ function detailHead(html,row,request){
  return html.replace(/<head>/i,"<head>"+tags);
 }
 export function newsroomHead(html){
+ html=publicNewsIndexability(html);
  const title='SHIFT Newsroom | UK Health, NHS & Medicine News', description='UK health news, NHS access and medicine updates from SHIFT, with clear sources and practical context. Plus international research explained for UK readers.', canonical='https://shiftsometimber.co.uk/shift-newsroom';
  html=html.replace(/<title>[\s\S]*?<\/title>/i,'').replace(/<meta\s+name=["']description["'][^>]*>/gi,'').replace(/<link\s+rel=["']canonical["'][^>]*>/gi,'').replace(/<meta\s+(?:property|name)=["'](?:og:|twitter:)[^>]*>/gi,'').replace(/<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'');
  const schema={'@context':'https://schema.org','@type':'CollectionPage',name:title,description,url:canonical,publisher:{'@type':'Organization','@id':'https://shiftsometimber.co.uk/#organization',name:'Shift Some Timber',url:'https://shiftsometimber.co.uk/',logo:{'@type':'ImageObject',url:'https://shiftsometimber.co.uk/assets/shift-wordmark.png'}}};
