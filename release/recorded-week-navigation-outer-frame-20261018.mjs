@@ -33,7 +33,7 @@ function clean(expected){
  const root=process.cwd(),dir=resolve(root,'.git');assert.equal(realpathSync(root),root);assert.equal(realpathSync(dir),dir);assert(lstatSync(dir).isDirectory()&&!lstatSync(dir).isSymbolicLink());
  for(const p of ['commondir','gitdir','info/grafts','objects/info/alternates','shallow'])assert(!existsSync(resolve(dir,p)),'Ordinary complete native source required: '+p);
  assert.equal(text('rev-parse','--show-toplevel'),root);assert.equal(text('rev-parse','--git-common-dir'),'.git');assert.equal(text('for-each-ref','--format=%(refname)','refs/replace'),'');
- assert.equal(text('diff','--no-renames','--name-only','HEAD','--'),'');assert.equal(text('diff','--no-renames','--cached','--name-only','--'),'');
+ assert.equal(text('diff','--no-renames','--name-only','HEAD','--'),'','Native navigation working source changed');assert.equal(text('diff','--no-renames','--cached','--name-only','--'),'','Native navigation staged source changed');
  for(const row of git('ls-files','-v','-z').toString('utf8').split('\0').filter(Boolean))assert(row.startsWith('H '),'Hidden/sparse/assume-unchanged source is forbidden');
  const h=head();assert(oid.test(h));if(expected)assert.equal(h,expected,'Actual navigation HEAD moved');return h;
 }
@@ -66,7 +66,7 @@ function prepareNativeNavigationIndexStats(){
  if(wait>0&&wait<=1100)Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,wait);
  const deadline=process.hrtime.bigint()+1100000000n;
  for(;;){
-  try{git('update-index','--refresh');break;}
+  try{git('update-index','--force-write-index','--refresh');break;}
   catch(error){
    const stderr=String(error.stderr??'');
    if(!/Unable to create[^\n]*index\.lock[^\n]*File exists/.test(stderr)||process.hrtime.bigint()>=deadline)throw error;
@@ -204,14 +204,14 @@ function actualNavigationOuterFrameBeforeEditorial(editorialOuter=null){
  const {clean}=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean:navigationNativeCleanBeforeEditorial};
  const rawHead=clean(),env=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),cwd=process.cwd(),c=prove(rawHead,editorialOuter);if(!c)return null;
  const freshCurrent=editorialOuter?clean:nativeNavigationFreshSourceChecker(rawHead);
- const assertCurrent=()=>{assert.equal(process.cwd(),cwd);assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env);freshCurrent(rawHead);};
+ const assertCurrent=()=>{assert.equal(process.cwd(),cwd,'Navigation source working directory moved');assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),env,'Navigation source execution environment changed');freshCurrent(rawHead);};
  const finish=()=>{assertCurrent();assert.deepEqual(prove(rawHead,editorialOuter),c);};
  const map=r=>r==='HEAD'||r===rawHead?c.base:r,current=r=>r==='HEAD'||r===rawHead||r===c.base;
  const native=(kind,r,p)=>kind==='read'?object(r==='HEAD'?rawHead:r,p):content(r==='HEAD'?rawHead:r,p);
  const auth=(value,r,p,kind='read')=>{const ref=r==='HEAD'?rawHead:r,expected=native(kind,r,p);if(value===expected||kind==='read'&&value===native('content',r,p))return true;const prefix='tree '+ref+':'+p+'\n',shown=kind==='content'?expected:native('content',r,p);return shown.startsWith(prefix)&&value===shown.replace(prefix,'tree '+r+':'+p+'\n');};
  function projected(kind,source){return(r,p)=>{assertCurrent();try{if(source){const obtain=ref=>{const v=source(ref,p);assert(auth(v,ref,p,kind),'Supplied navigation source changed');return v;};if(current(r)){obtain('HEAD');obtain(rawHead);return obtain(c.base);}return obtain(r);}return kind==='read'?object(map(r),p):content(map(r),p);}finally{assertCurrent();}};}
  function binary(kind,source){return(a,b)=>{assertCurrent();try{const obtain=(x,y)=>{const v=kind==='diff'?diff(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y):ancestor(x==='HEAD'?rawHead:x,y==='HEAD'?rawHead:y);if(source){const supplied=data(source(x,y));if(kind==='diff')assert.deepEqual(sorted(supplied),sorted(v));else assert.notEqual(supplied,false);}return v;};if(source&&current(b)){obtain(a,'HEAD');obtain(a,rawHead);}return obtain(map(a),map(b));}finally{assertCurrent();}};}
- const frame={rawHead,head:c.base,record:JSON.parse(content(c.base,LEDGER)),assertCurrent,assertCurrentHead:assertCurrent,finish,affected:p=>[...c.paths,...c.maintenancePaths,LEDGER].some(q=>q===p||q.startsWith(p+'/')),currentContent:(r,p)=>content(r==='HEAD'?rawHead:r,p),nativeAuthentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),nativeContentAuthentic:(v,r,p)=>auth(v,r,p,'content'),authentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),read:projected('read',null),blob:projected('read',null),content:projected('content',null),diff:binary('diff',null),ancestor:binary('ancestor',null),projectRead:r=>projected('read',r),projectContent:r=>projected('content',r),projectDiff:r=>binary('diff',r),projectAncestor:r=>binary('ancestor',r)};
+ const frame={rawHead,head:c.base,record:JSON.parse(content(c.base,LEDGER)),assertCurrent,assertCurrentHead:assertCurrent,finish,affected:p=>[...c.paths,...c.maintenancePaths,LEDGER].some(q=>q===p||q.startsWith(p+'/')),currentContent:(r,p)=>content(r==='HEAD'?rawHead:r,p),nativeAuthentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),nativeContentAuthentic:(v,r,p)=>auth(v,r,p,'content'),authentic:(v,r,p)=>auth(v,r,p,'read')||auth(v,r,p,'content'),read:projected('read',null),blob:projected('read',null),content:projected('content',null),diff:binary('diff',null),ancestor:binary('ancestor',null),projectRead:r=>{assert.equal(typeof r,'function','Supplied navigation source read callback required');return projected('read',r);},projectContent:r=>{assert.equal(typeof r,'function','Supplied navigation source content callback required');return projected('content',r);},projectDiff:r=>{assert.equal(typeof r,'function','Supplied navigation source diff callback required');return binary('diff',r);},projectAncestor:r=>{assert.equal(typeof r,'function','Supplied navigation source ancestor callback required');return binary('ancestor',r);}};
  frames.add(frame);assertCurrent();return Object.freeze(frame);
 }
 export function assertActualNavigationFrame(frame){assert(frames.has(frame));frame.assertCurrent();return frame;}
