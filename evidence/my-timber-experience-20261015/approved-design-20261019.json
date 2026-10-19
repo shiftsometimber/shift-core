@@ -1,0 +1,57 @@
+{
+  "schema": "shift-approved-member-design-proof/v1",
+  "sourceParent": "a90b7e256984128d9ef03728d1516d13c849e860",
+  "sourceFiles": {
+    "member-experience/app-experience.mjs": "10e9ce1b7a2155a1998e4b65568a6ee81ce0daa070f20ece81c15f26d3cac5b5",
+    "member-experience/grub-runtime.mjs": "6306b54c00513b8c38b3c492c8d7aa3f1133772445fa24edb523846270b6c72a",
+    "shift-coach/member-approved-design-proof.cjs": "b10af0e3bcc3803800fd0a543a0b40af4b7d434a77e8f44e576cabb3b239f1d9"
+  },
+  "browser": {
+    "at": "2026-10-19T22:40:44.192Z",
+    "passed": true,
+    "checks": [
+      "Today: original logo, approved primary action, one navigation, keyboard focus and truthful empty records",
+      "Actual check-in saves through the original account route",
+      "Grub: varied results, filter/sort, inline recipe, real save/meal choice, two servings, actual shopping list, keyboard tabs and refresh restoration",
+      "Fit: actual builder, focused exercise, saved Done/Skip/Swap, accurate progress, rest, pause/resume and refresh",
+      "Selected meal appears on Today; Journey selected state and Back work",
+      "320px: Today/Grub/Fit do not overflow",
+      "390px: Today/Grub/Fit do not overflow",
+      "1440px: Today/Grub/Fit do not overflow",
+      "200% zoom reflows and check-in remains keyboard reachable",
+      "Second isolated account cannot see the selected meal, saved recipes or shopping week"
+    ],
+    "errors": [],
+    "productionWrites": 0,
+    "physicalDevice": false
+  },
+  "targetedRegressions": {
+    "passed": 58,
+    "failed": 0,
+    "skipped": 0,
+    "tapSHA256": "f2c678e5bd5524725734814bae8bc4da545c77cc30e1573ee345da9191d477e7"
+  },
+  "scope": "Approved Today, Grub and Fit visual/interaction design; existing account readers/writers and safeguards retained",
+  "fit": "Today is one session. Existing unsupported three-session selector hidden in this interface; saved plans and history retained.",
+  "priorFailureEvidence": [
+    "approved-design-browser-original-tab-order-failure.json",
+    "approved-design-original-back-navigation-failure.json",
+    "approved-design-three-session-selector-failure.json",
+    "approved-design-prepaint-assertion-failure.json"
+  ],
+  "priorFailureDirectory": "/Users/shiftsometimberltd/SST/my-timber-experience-20261015/work/member-experience-resume-20261015/approved-tracker-20261019",
+  "release": {
+    "lane": 1065,
+    "sourceAdmission": false,
+    "deployed": false,
+    "liveVerified": false,
+    "nativeBinaryChanged": false,
+    "installedBuildsTested": [],
+    "physicalAppleHealthPassed": false,
+    "physicalHealthConnectPassed": false,
+    "externalCommunicationsSent": false,
+    "publicHomepageChanged": false,
+    "clinicalConsentCommercialSettingsChanged": false
+  },
+  "remaining": "Existing shared release original checks, exact finite source integration, normal guarded production and live acceptance; physical iPhone/Android acceptance remains outstanding."
+}
