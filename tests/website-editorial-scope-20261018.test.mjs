@@ -64,7 +64,7 @@ test('website editorial completion ledger fixture restoration preserves original
 });
 test('website editorial completion runtime still has only existing cron, exact gateway interlocks and no unrelated config changes',()=>{
  const before=content(c.base,'wrangler.jsonc'),after=content(head,'wrangler.jsonc');
- const additions="    \"DAILY_WEBSITE_CONTENT_ENABLED\": \"true\",\n    \"DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH\": \"true\",\n    \"DAILY_EDITORIAL_MODEL\": \"@cf/openai/gpt-oss-120b\",\n    \"DAILY_EDITORIAL_SUPPORT_MODEL\": \"@cf/zai-org/glm-5.3\",\n    \"DAILY_CONTENT_GATEWAY\": \"shift-ai\",\n    \"DAILY_CONTENT_BUDGET_VERIFIED\": \"true\",\n    \"DAILY_EDITORIAL_NOTIFY_ENABLED\": \"true\",\n    \"DAILY_EDITORIAL_NOTIFY_TEMPLATE\": \"verified-link-v1\",\n\n";
+ const additions="    \"DAILY_WEBSITE_CONTENT_ENABLED\": \"true\",\n    \"DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH\": \"true\",\n    \"DAILY_EDITORIAL_MODEL\": \"@cf/openai/gpt-oss-120b\",\n    \"DAILY_EDITORIAL_SUPPORT_MODEL\": \"@cf/zai-org/glm-5.3\",\n    \"DAILY_CONTENT_GATEWAY\": \"shift-ai\",\n    \"DAILY_CONTENT_BUDGET_VERIFIED\": \"true\",\n    \"DAILY_EDITORIAL_NOTIFY_ENABLED\": \"false\",\n    \"DAILY_EDITORIAL_NOTIFY_TEMPLATE\": \"verified-link-v1\",\n\n";
  assert.equal(after.replace(additions,'').replace("\"compatibility_flags\": [\"nodejs_compat\", \"global_fetch_strictly_public\"]","\"compatibility_flags\": [\"nodejs_compat\"]"),before);assert.equal(after.split('global_fetch_strictly_public').length,2);assert.equal(after.split(additions).length,2);
  assert.match(after,/"triggers": \{ "crons": \["\*\/15 \* \* \* \*"\] \}/);
 });
