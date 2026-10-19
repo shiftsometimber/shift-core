@@ -125,6 +125,35 @@ function freshSourceContext(){
  };
  return{snapshot,entry:snapshot()};
 }
+// Availability only for the exact retained original HQ history. The unchanged
+// finite/HQ verifiers still own every source, ancestry, blob and approval check.
+function ensureOriginalNavigationHqObjects(){
+ const original=JSON.parse(content(head(),'release/combined-hq-partner-preservation-20261014.json'));
+ assert.equal(original.originalSource,'f3acbfdc2f0fbe8c14d5940dee9136377f257cc8');
+ assert.equal(original.originalTree,'f5e4d55cba045b4017bdaa7991f74c80227f0f9d');
+ const required=new Map([[original.originalSource,'commit'],[original.originalTree,'tree'],...Object.values(original.partnerBlobs).map(id=>[id,'blob']),[original.originalEntryBlob,'blob']]);
+ for(const id of required.keys())assert(oid.test(id),'Exact original HQ object required');
+ const available=()=>{
+  const input=[...required.keys()].join('\n')+'\n';
+  const output=execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects','cat-file','--batch-check'],{input,maxBuffer:64e6});
+  const rows=output.toString('ascii').split('\n');assert.equal(rows.pop(),'');assert.equal(rows.length,required.size);let complete=true,i=0;
+  for(const[id,kind]of required){const row=rows[i++];if(row===id+' missing'){complete=false;continue;}const m=/^([a-f0-9]{40}) (commit|tree|blob) (0|[1-9][0-9]*)$/.exec(row);assert(m,'Exact native original HQ object metadata required');assert.equal(m[1],id);assert.equal(m[2],kind);assert(Number.isSafeInteger(Number(m[3])));}
+  return complete;
+ };
+ if(!available()){
+  const rawHead=clean(),context=freshSourceContext(),dir=resolve(process.cwd(),'.git');
+  const refs=()=>JSON.stringify(sourceReplacementState(resolve(dir,'refs'))),fetchHead=()=>JSON.stringify(sourceFileState(resolve(dir,'FETCH_HEAD')));
+  const beforeRefs=refs(),beforeFetchHead=fetchHead(),origin=text('remote','get-url','origin');
+  assert(['https://github.com/shiftsometimber/shift-core','https://github.com/shiftsometimber/shift-core.git','git@github.com:shiftsometimber/shift-core.git'].includes(origin),'Only the established shift-core origin can supply exact original HQ objects');
+  git('fetch','--no-tags','--no-write-fetch-head','origin',original.originalSource);
+  assert.equal(context.snapshot(),context.entry,'Original HQ object transport changed native source metadata');assert.equal(refs(),beforeRefs,'Original HQ object transport changed refs');assert.equal(fetchHead(),beforeFetchHead,'Original HQ object transport changed FETCH_HEAD');clean(rawHead);assert.equal(context.snapshot(),context.entry,'Original HQ object transport changed source context');
+ }
+ assert(available(),'Exact original HQ objects must be present after transport');
+ assert.equal(text('rev-parse',original.originalSource+'^{tree}'),original.originalTree,'Exact original HQ tree required');
+ for(const[p,id]of Object.entries(original.partnerBlobs))assert.equal(object(original.originalSource,p),id,'Exact original HQ path/blob required: '+p);
+ assert.equal(object(original.originalSource,'hq-management-entry.mjs'),original.originalEntryBlob,'Exact original HQ entry blob required');
+}
+
 export function nativeNavigationFreshSourceChecker(expected){
  clean(expected);
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
@@ -244,6 +273,7 @@ function navigationEditorialProofFacts(outer){
 }
 export function actualNavigationOuterFrame(){
  prepareNativeNavigationIndexStats();
+ ensureOriginalNavigationHqObjects();
  const outer=websiteEditorialCompletionHistoricalView();if(!outer)return actualNavigationOuterFrameBeforeEditorial();
  assertWebsiteEditorialCompletionView(outer);const inner=actualNavigationOuterFrameBeforeEditorial(outer);assert(inner,'The admitted predecessor must retain its navigation frame');
  const ref=r=>r==='HEAD'||r===outer.rawHead?'HEAD':r,unary=fn=>(r,p)=>fn(ref(r),p),binary=fn=>(a,b)=>fn(ref(a),ref(b));
