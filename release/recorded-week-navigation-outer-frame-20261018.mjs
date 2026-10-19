@@ -1,9 +1,10 @@
 import {websiteEditorialCompletionHistoricalView,assertWebsiteEditorialCompletionView} from './website-editorial-scope-20261018.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,existsSync} from 'node:fs';
+import {readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,existsSync,mkdtempSync,chmodSync,writeFileSync} from 'node:fs';
 import {resolve,isAbsolute,dirname} from 'node:path';
-import {homedir} from 'node:os';
+import {homedir,tmpdir} from 'node:os';
+import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
 import {decodeSeoBlobBatch} from './seo-native-immutable-facts-20261016.mjs';
 import {immutableHistoryExecFileSync as immutableNavigationFact} from './immutable-git-facts.mjs';
@@ -15,7 +16,7 @@ const BASE='0e4a765e7a360d705e2424264e0bcfcc1d6652be',PAYLOAD='0d0a1c80a6e461dd6
 const fixedPaths=Object.freeze(['frontend/member/member-progress-v1.js','member-experience/staging/verify-treatment-week-navigation.mjs']);
 const fixedMaintenance=Object.freeze(['release/accepted-uk-grub-preservation-20261017.mjs','release/approved-runtime-composition.mjs','release/combined-finite-scope-20261014.mjs','release/current-runtime-preservation-20261016.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','release/recorded-week-navigation-outer-policy-20261018.json','tests/recorded-week-navigation-preservation-20261018.test.mjs','member-experience/tests/weight-import-mapping-ui.test.mjs','public-https-redirect.mjs','public-https-redirect.test.mjs']);
 const MAINTENANCE_DECLARATION_SHA256='be5c1409d39f6feee5809087be94e7ba94a2217d6c4b4f765d62571b484ee58b';
-const native=[execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd];
+const native=[execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire];
 const frames=new WeakSet(),oid=/^[a-f0-9]{40}$/,sorted=a=>[...a].sort(),sha=b=>createHash('sha256').update(b).digest('hex');
 const git=(...args)=>execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects',...args],{maxBuffer:64e6});
 const text=(...args)=>git(...args).toString('utf8').trimEnd();
@@ -29,7 +30,7 @@ function data(v,seen=new Set()){
  seen.delete(v);return out;
 }
 function clean(expected){
- assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd],native,'Native navigation source functions changed');
+ assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire],native,'Native navigation source functions changed');
  assert(!Object.keys(process.env).some(k=>/^GIT_/.test(k)&&k!=='GIT_PAGER'),'Git source selectors are forbidden');
  const root=process.cwd(),dir=resolve(root,'.git');assert.equal(realpathSync(root),root);assert.equal(realpathSync(dir),dir);assert(lstatSync(dir).isDirectory()&&!lstatSync(dir).isSymbolicLink());
  for(const p of ['commondir','gitdir','info/grafts','objects/info/alternates','shallow'])assert(!existsSync(resolve(dir,p)),'Ordinary complete native source required: '+p);
@@ -181,20 +182,86 @@ function ensureOriginalNavigationPhotoEvidenceObjects(){
  for(const[p,id]of Object.entries(original.blobs))assert.equal(object(original.source,p),id,'Exact original photo evidence path/blob required: '+p);
 }
 
+
+// Cache immutable native code and index facts only. Every invocation performs
+// fresh native lstat calls for ALL indexed paths and every parent directory.
+// Any unsupported, racy, changed or untrusted state runs the original Git diff.
+const navigationTrackedStatNativeSource="#include <sys/stat.h>\n#include <stdint.h>\n#include <stddef.h>\n#include <thread>\n#include <vector>\n#include <atomic>\nextern \"C\" {\ntypedef struct napi_env__* napi_env;\ntypedef struct napi_value__* napi_value;\ntypedef struct napi_callback_info__* napi_callback_info;\ntypedef napi_value (*napi_callback)(napi_env,napi_callback_info);\nint napi_get_cb_info(napi_env,napi_callback_info,size_t*,napi_value*,napi_value*,void**);\nint napi_get_buffer_info(napi_env,napi_value,void**,size_t*);\nint napi_create_int32(napi_env,int32_t,napi_value*);\nint napi_create_function(napi_env,const char*,size_t,napi_callback,void*,napi_value*);\nint napi_set_named_property(napi_env,napi_value,const char*,napi_value);\n}\nstatic uint32_t u32(const unsigned char* p){return uint32_t(p[0])|(uint32_t(p[1])<<8)|(uint32_t(p[2])<<16)|(uint32_t(p[3])<<24);}\nstatic int scan(const unsigned char* b,size_t n){\n if(n<12||u32(b)!=0x3156414e)return 2;\n uint32_t count=u32(b+4),indexSec=u32(b+8);if(!count||count>100000||!indexSec)return 2;\n size_t pos=12;std::vector<const unsigned char*> rows;\n for(uint32_t i=0;i<count;i++){\n  if(n-pos<45)return 2;\n  const unsigned char* r=b+pos;uint32_t plen=u32(r+40);\n  if(!plen||plen>32768||n-pos<45+size_t(plen)||r[44+plen]!=0)return 2;\n  rows.push_back(r);\n  pos+=45+size_t(plen);\n }\n if(pos!=n)return 2;\n std::atomic<int> failed{0};std::vector<std::thread> workers;\n try{for(size_t t=0;t<8;t++)workers.emplace_back([&,t](){for(size_t i=t;i<rows.size();i+=8){const unsigned char* r=rows[i];uint32_t plen=u32(r+40);\n  const char* p=reinterpret_cast<const char*>(r+44);\n  for(uint32_t k=0;k<plen;k++)if(p[k]==0){failed.store(2);return;}\n  struct stat s;if(lstat(p,&s)!=0){failed.store(1);return;}\n  uint32_t mode=u32(r),type=mode&0170000;\n  if(type==0040000){if(!S_ISDIR(s.st_mode)){failed.store(1);return;}continue;}\n  if(type!=0100000&&type!=0120000){failed.store(2);return;}\n  if(uint32_t(s.st_mode&S_IFMT)!=type){failed.store(1);return;}\n  if(type==0100000&&uint32_t(s.st_mode&0777)!=(mode&0777)){failed.store(1);return;}\n#ifdef __APPLE__\n  int64_t cs=s.st_ctimespec.tv_sec,cn=s.st_ctimespec.tv_nsec,ms=s.st_mtimespec.tv_sec,mn=s.st_mtimespec.tv_nsec;\n#else\n  int64_t cs=s.st_ctim.tv_sec,cn=s.st_ctim.tv_nsec,ms=s.st_mtim.tv_sec,mn=s.st_mtim.tv_nsec;\n#endif\n  if(cs<0||ms<0||cs>=indexSec||ms>=indexSec||s.st_size<0||uint64_t(s.st_size)>UINT32_MAX){failed.store(1);return;}\n  if(uint32_t(s.st_dev)!=u32(r+4)||uint32_t(s.st_ino)!=u32(r+8)||uint32_t(s.st_uid)!=u32(r+12)||uint32_t(s.st_gid)!=u32(r+16)||uint32_t(s.st_size)!=u32(r+20)||uint32_t(cs)!=u32(r+24)||uint32_t(cn)!=u32(r+28)||uint32_t(ms)!=u32(r+32)||uint32_t(mn)!=u32(r+36)){failed.store(1);return;}\n\n }});}catch(...){failed.store(2);}\n for(auto& t:workers)t.join();return failed.load();\n}\nstatic napi_value check(napi_env env,napi_callback_info info){\n size_t argc=1;napi_value arg[1],out;void* bytes=nullptr;size_t len=0;int result=2;\n if(napi_get_cb_info(env,info,&argc,arg,nullptr,nullptr)==0&&argc==1&&napi_get_buffer_info(env,arg[0],&bytes,&len)==0&&len<=64000000){try{result=scan(static_cast<const unsigned char*>(bytes),len);}catch(...){result=2;}}\n napi_create_int32(env,result,&out);return out;\n}\nextern \"C\" uint32_t node_api_module_get_api_version_v1(void){return 8;}\nextern \"C\" napi_value napi_register_module_v1(napi_env env,napi_value exports){\n napi_value fn;if(napi_create_function(env,\"check\",5,check,nullptr,&fn)!=0)return nullptr;\n if(napi_set_named_property(env,exports,\"check\",fn)!=0)return nullptr;return exports;\n}\n";
+let navigationTrackedStatAddon;
+function navigationTrackedStatKernel(){
+ if(navigationTrackedStatAddon!==undefined)return navigationTrackedStatAddon;
+ navigationTrackedStatAddon=null;
+ try{
+  if(!['darwin','linux'].includes(process.platform))return null;
+  const compiler=process.platform==='darwin'?'/usr/bin/clang++':'/usr/bin/c++';
+  if(!existsSync(compiler))return null;
+  const directory=realpathSync(mkdtempSync(resolve(tmpdir(),'shift-native-tracked-stats-')));
+  chmodSync(directory,0o700);
+  const source=resolve(directory,'native.cc'),binary=resolve(directory,'native.node');
+  writeFileSync(source,navigationTrackedStatNativeSource,{mode:0o400,flag:'wx'});
+  const flags=['-std=c++17','-O2','-shared','-fPIC'];
+  if(process.platform==='darwin')flags.push('-undefined','dynamic_lookup');else flags.push('-pthread');
+  execFileSync(compiler,[...flags,source,'-o',binary],{timeout:30000,maxBuffer:1e6,stdio:'pipe'});
+  chmodSync(binary,0o400);
+  const s=lstatSync(binary,{bigint:true});assert(s.isFile()&&!s.isSymbolicLink()&&realpathSync(binary)===binary&&s.size>0n&&s.size<1000000n);
+  const expected=sha(readFileSync(binary)),nativeModule=createRequire(import.meta.url)(binary);
+  assert.equal(typeof nativeModule.check,'function');Object.freeze(nativeModule);
+  const nativeCheck=nativeModule.check;
+  const intact=()=>{const d=lstatSync(directory),b=lstatSync(binary,{bigint:true});return d.isDirectory()&&!d.isSymbolicLink()&&realpathSync(directory)===directory&&b.isFile()&&!b.isSymbolicLink()&&realpathSync(binary)===binary&&b.dev===s.dev&&b.ino===s.ino&&b.mode===s.mode&&b.size===s.size&&b.ctimeNs===s.ctimeNs&&b.mtimeNs===s.mtimeNs&&sha(readFileSync(binary))===expected;};
+  navigationTrackedStatAddon=Object.freeze({check:nativeCheck,intact});
+ }catch{navigationTrackedStatAddon=null;}
+ return navigationTrackedStatAddon;
+}
+function makeNativeNavigationFreshTrackedStats(){
+ try{
+  const kernel=navigationTrackedStatKernel();if(!kernel||!kernel.intact())return null;
+  const root=process.cwd(),index=resolve(root,'.git/index'),before=readFileSync(index),indexState=lstatSync(index,{bigint:true});
+  assert(indexState.isFile()&&!indexState.isSymbolicLink()&&before.length<=32e6);
+  const raw=git('ls-files','--stage','--debug','-z');assert(raw.length<=32e6);
+  const records=[],seen=new Set(),directories=new Set([root]);let at=0;
+  const row=(mode,filename,fields=[])=>{
+   const name=Buffer.from(filename);assert(name.length>0&&name.length<=32768);
+   const r=Buffer.alloc(45+name.length),numbers=[mode,...fields];while(numbers.length<10)numbers.push(0);numbers.push(name.length);
+   numbers.forEach((n,i)=>{assert(Number.isSafeInteger(n)&&n>=0&&n<=0xffffffff);r.writeUInt32LE(n,i*4);});name.copy(r,44);records.push(r);
+  };
+  while(at<raw.length){
+   const end=raw.indexOf(0,at);assert(end>at);
+   const encoded=raw.subarray(at,end),h=/^([0-7]{6}) ([a-f0-9]{40}) 0\t([\s\S]+)$/.exec(encoded.toString('utf8'));assert(h&&Buffer.from(h[0]).equals(encoded));
+   const p=h[3];assert(!isAbsolute(p)&&!p.split('/').some(s=>!s||s==='.'||s==='..')&&!p.includes('\\')&&!seen.has(p));seen.add(p);assert(seen.size<=100000);
+   const m=/^  ctime: (\d+):(\d+)\n  mtime: (\d+):(\d+)\n  dev: (\d+)\tino: (\d+)\n  uid: (\d+)\tgid: (\d+)\n  size: (\d+)\tflags: ([0-9a-f]+)\n/.exec(raw.subarray(end+1,end+301).toString('utf8'));assert(m&&m[10]==='0');
+   const mode=parseInt(h[1],8);assert([0o100644,0o100755,0o120000].includes(mode));
+   const full=resolve(root,p);assert(full.startsWith(root+'/'));
+   row(mode,full,[Number(m[5]),Number(m[6]),Number(m[7]),Number(m[8]),Number(m[9]),Number(m[1]),Number(m[2]),Number(m[3]),Number(m[4])]);
+   let d=dirname(full);while(d!==root){assert(d.startsWith(root+'/'));directories.add(d);d=dirname(d);}
+   at=end+1+Buffer.byteLength(m[0]);
+  }
+  assert(seen.size>0&&seen.size<=100000&&directories.size<=100000);
+  for(const d of directories)row(0o040000,d);
+  const header=Buffer.alloc(12);header.writeUInt32LE(0x3156414e);header.writeUInt32LE(records.length,4);
+  const seconds=Number(indexState.mtimeNs/1000000000n);assert(Number.isSafeInteger(seconds)&&seconds>0&&seconds<=0xffffffff);header.writeUInt32LE(seconds,8);
+  const facts=Buffer.concat([header,...records]);assert(facts.length<=32e6);
+  const sameIndex=()=>{const s=lstatSync(index,{bigint:true});return s.isFile()&&!s.isSymbolicLink()&&s.dev===indexState.dev&&s.ino===indexState.ino&&s.mode===indexState.mode&&s.size===indexState.size&&s.ctimeNs===indexState.ctimeNs&&s.mtimeNs===indexState.mtimeNs&&readFileSync(index).equals(before);};
+  assert(sameIndex());
+  return()=>{try{return process.cwd()===root&&sameIndex()&&kernel.intact()&&kernel.check(facts)===0&&sameIndex()&&kernel.intact();}catch{return false;}};
+ }catch{return null;}
+}
+
 export function nativeNavigationFreshSourceChecker(expected){
  clean(expected);
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
  let context;try{context=freshSourceContext();}catch{context=null;}
+ const freshTrackedStats=context?makeNativeNavigationFreshTrackedStats():null;
  return()=>{
-  assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd],native,'Native navigation source functions changed');
+  assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire],native,'Native navigation source functions changed');
   assert.equal(process.cwd(),cwd,'Navigation source working directory moved');
   assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),environment,'Navigation source execution environment changed');
   if(!context){clean(expected);return;}
   // Exact current HEAD/ref/index/config/replacement bytes retain all entry
   // topology, staged-source and index-visibility assertions. Working source
-  // still receives a fresh native Git diff before and after caller reads.
+  // receives a fresh native scan of every indexed path and parent before and
+  // after caller reads; any uncertainty retains the exact original Git diff.
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed');
-  assert.equal(git('diff-files','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','--').length,0,'Fresh navigation working source changed');
+  assert.equal(freshTrackedStats?.()===true?0:git('diff-files','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','--').length,0,'Fresh navigation working source changed');
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed during current-source check');
  };
 }
