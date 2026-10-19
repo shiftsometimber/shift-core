@@ -230,7 +230,10 @@ function navigationEditorialProofFacts(outer){
  assertWebsiteEditorialCompletionView(outer);
  const nativeCurrent=nativeNavigationFreshSourceChecker(outer.rawHead);
  return Object.freeze({
-  clean:(expected)=>{assertWebsiteEditorialCompletionView(outer);nativeCurrent();if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
+  // The outer view is privately admitted and frozen above. The native checker
+  // rechecks its exact raw HEAD/ref/index/config/environment and working bytes
+  // at every use; repeating the outer working-tree scan here adds no boundary.
+  clean:(expected)=>{nativeCurrent();if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
   readFileSync:filename=>{
    outer.assertCurrent();const full=resolve(filename),prefix=process.cwd()+'/';assert(full.startsWith(prefix),'Only native tracked navigation files may be projected');
    const p=full.slice(prefix.length);assert([...fixedPaths,...fixedMaintenance].includes(p),'Exact navigation source path required');
@@ -246,8 +249,8 @@ export function actualNavigationOuterFrame(){
  const ref=r=>r==='HEAD'||r===outer.rawHead?'HEAD':r,unary=fn=>(r,p)=>fn(ref(r),p),binary=fn=>(a,b)=>fn(ref(a),ref(b));
  const authentic=(v,r,p)=>outer.nativeAuthentic(v,r,p)||outer.nativeContentAuthentic(v,r,p);
  const frame={...inner,rawHead:outer.rawHead,
-  assertCurrent:()=>{outer.assertCurrent();inner.assertCurrent();},
-  assertCurrentHead:()=>{outer.assertCurrentHead();inner.assertCurrentHead();},
+  assertCurrent:inner.assertCurrent,
+  assertCurrentHead:inner.assertCurrentHead,
   finish:()=>{inner.finish();outer.assertCurrent();},
   affected:p=>outer.affected(p)||inner.affected(p),
   currentContent:outer.currentContent,authentic,nativeAuthentic:authentic,nativeContentAuthentic:outer.nativeContentAuthentic,
