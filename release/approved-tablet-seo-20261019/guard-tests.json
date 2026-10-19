@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-19T19:28:17.700Z",
+  "ok": true,
+  "exactScope": true,
+  "rejectedCases": [
+    "unexpected retained asset change",
+    "header mutation",
+    "candidate checksum mismatch"
+  ]
+}

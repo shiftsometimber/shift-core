@@ -1,0 +1,47 @@
+{
+  "preparedAt": "2026-10-19T19:20:09.024002+00:00",
+  "status": "PRIVATE_COPY_PREPARED_NOT_APPROVED_NOT_DEPLOYED",
+  "scope": "Three existing tablet authority pages; factual update and contextual internal links only",
+  "pages": [
+    {
+      "path": "/foundayo",
+      "currentHtmlSha256": "5824581e6326879eedeffb4742b11919f05e7d960448afcc7bc994312197304b",
+      "candidateHtmlSha256": "3e6fbf1782a938f8f4c7f42d1d907c56c945e2bdb47d043758c89376c639c778",
+      "insertionHtml": "<section aria-labelledby=\"foundayo-regulatory-update-20261019\"><h2 id=\"foundayo-regulatory-update-20261019\">Foundayo UK approval and availability: latest position</h2><p>Foundayo (orforglipron) was authorised in the UK on 10 August 2026. On 15 October 2026, the European Medicines Agency’s committee recommended EU authorisation; its opinion was published on 16 October. This is a separate European regulatory step. It does not confirm NHS funding, stock at a particular pharmacy or supply through SHIFT.</p><p>SHIFT supply is not confirmed. For the practical differences, <a href=\"/compare-weight-loss-treatments#wegovy-pill-vs-foundayo\">compare Foundayo and Wegovy tablets</a>, read our <a href=\"/weight-loss-tablets-for-men\">guide to weight-loss tablets for men</a>, or use the <a href=\"/articles/oral-semaglutide-for-weight-loss#tablet-first-month\">tablet first-month plan</a>.</p><p>Sources: <a href=\"https://www.gov.uk/government/news/uk-first-in-europe-to-authorise-orforglipron-for-weight-management-and-type-2-diabetes\" rel=\"noopener noreferrer\">MHRA, 10 August 2026</a>; <a href=\"https://www.ema.europa.eu/en/medicines/human/EPAR/foundayo\" rel=\"noopener noreferrer\">EMA opinion adopted 15 October and published 16 October 2026</a>. Regulatory status checked 19 October 2026; this does not renew the review dates of other sections.</p></section>",
+      "patch": "/Users/shiftsometimberltd/SST/tablet-seo-review-20261019/foundayo.patch",
+      "checks": {
+        "currentResponse200": true,
+        "exactOneInsertion": true,
+        "otherBytesPreserved": true,
+        "titleDescriptionCanonicalH1SchemaPreserved": true
+      }
+    },
+    {
+      "path": "/wegovy",
+      "currentHtmlSha256": "6d5bfbf64189e87ddd5330c7fadb44d5d62751fddd1441ad2b6fad4dc7e526e4",
+      "candidateHtmlSha256": "01eac795e55197b9b67b4b10d1c1ec40cd0748b15f2643b21da50fd4c618567e",
+      "insertionHtml": "<p>Taking the tablet? Read our <a href=\"/articles/oral-semaglutide-for-weight-loss\">oral semaglutide guide</a> for the OASIS 4 evidence, fasting routine and first-month plan, then <a href=\"/compare-weight-loss-treatments#wegovy-pill-vs-foundayo\">compare it with Foundayo</a>.</p>",
+      "patch": "/Users/shiftsometimberltd/SST/tablet-seo-review-20261019/wegovy.patch",
+      "checks": {
+        "currentResponse200": true,
+        "exactOneInsertion": true,
+        "otherBytesPreserved": true,
+        "titleDescriptionCanonicalH1SchemaPreserved": true
+      }
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "currentHtmlSha256": "fe7ad7771f6bb2938e3c0c7c6527ea97579cbbc14435a28474eed24bbc4b63bd",
+      "candidateHtmlSha256": "496b7be364da248c9c065e0ae5598a434f2f8245edf680abea49d56d983f9141",
+      "insertionHtml": "<p>Want to understand the Wegovy pill results? Our <a href=\"/articles/oral-semaglutide-for-weight-loss\">oral semaglutide guide</a> explains the trial average and practical first-month routine. For the other daily GLP-1 tablet, read the <a href=\"/foundayo\">Foundayo UK guide</a>. Different trials do not establish which treatment will work best for you.</p>",
+      "patch": "/Users/shiftsometimberltd/SST/tablet-seo-review-20261019/weight-loss-tablets-for-men.patch",
+      "checks": {
+        "currentResponse200": true,
+        "exactOneInsertion": true,
+        "otherBytesPreserved": true,
+        "titleDescriptionCanonicalH1SchemaPreserved": true
+      }
+    }
+  ],
+  "forbiddenActionsPerformed": []
+}

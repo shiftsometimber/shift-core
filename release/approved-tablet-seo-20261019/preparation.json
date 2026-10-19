@@ -1,0 +1,135 @@
+{
+  "at": "2026-10-19T19:24:49.334Z",
+  "base": "b1024397-ab30-4069-aa04-be839134ae19",
+  "baseUrl": "https://b1024397.projectshift.pages.dev",
+  "approval": {
+    "at": "2026-10-19T20:22:34+01:00",
+    "instruction": "Deploy all",
+    "scope": "The exact three public additions shown immediately before this instruction"
+  },
+  "changes": [
+    {
+      "path": "/foundayo",
+      "key": "/foundayo.html",
+      "file": "candidate-foundayo.html",
+      "hash": "f6fa804fdab7b5593cd55fba4ac637d8",
+      "sha256": "ee8f71312a8d15e8c4b991262e1b644f3df0eaa9803a04702d7a1941063009a3",
+      "beforeSha256": "9100c4f0c813932a6e4eecbfeaa12efd7df6515a59b81c002e86bb88d8f92497",
+      "insertionHtml": "<section aria-labelledby=\"foundayo-regulatory-update-20261019\"><h2 id=\"foundayo-regulatory-update-20261019\">Foundayo UK approval and availability: latest position</h2><p>Foundayo (orforglipron) was authorised in the UK on 10 August 2026. On 15 October 2026, the European Medicines Agency’s committee recommended EU authorisation; its opinion was published on 16 October. This is a separate European regulatory step. It does not confirm NHS funding, stock at a particular pharmacy or supply through SHIFT.</p><p>SHIFT supply is not confirmed. For the practical differences, <a href=\"/compare-weight-loss-treatments#wegovy-pill-vs-foundayo\">compare Foundayo and Wegovy tablets</a>, read our <a href=\"/weight-loss-tablets-for-men\">guide to weight-loss tablets for men</a>, or use the <a href=\"/articles/oral-semaglutide-for-weight-loss#tablet-first-month\">tablet first-month plan</a>.</p><p>Sources: <a href=\"https://www.gov.uk/government/news/uk-first-in-europe-to-authorise-orforglipron-for-weight-management-and-type-2-diabetes\" rel=\"noopener noreferrer\">MHRA, 10 August 2026</a>; <a href=\"https://www.ema.europa.eu/en/medicines/human/EPAR/foundayo\" rel=\"noopener noreferrer\">EMA opinion adopted 15 October and published 16 October 2026</a>. Regulatory status checked 19 October 2026; this does not renew the review dates of other sections.</p></section>"
+    },
+    {
+      "path": "/wegovy",
+      "key": "/wegovy.html",
+      "file": "candidate-wegovy.html",
+      "hash": "533ac88472358129a905227c062ad3ee",
+      "sha256": "5afd19aca9a4e1103c13fedff1610954ed21aec72b743b666880d66cc73e198a",
+      "beforeSha256": "b2325d31efe56a25089bed5fe0f5f9738889fdcdcac8c95c7e3693c635142a5b",
+      "insertionHtml": "<p>Taking the tablet? Read our <a href=\"/articles/oral-semaglutide-for-weight-loss\">oral semaglutide guide</a> for the OASIS 4 evidence, fasting routine and first-month plan, then <a href=\"/compare-weight-loss-treatments#wegovy-pill-vs-foundayo\">compare it with Foundayo</a>.</p>"
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "key": "/weight-loss-tablets-for-men.html",
+      "file": "candidate-weight-loss-tablets-for-men.html",
+      "hash": "3dc4db2df8d5d3dd56937b984cd3cc55",
+      "sha256": "79e9ac4e61c65213f77043a7be6eff61556dddddcab86205a631ecdee8c51f95",
+      "beforeSha256": "9524a34e502f7276cd5240e1338035cdaef0fbe1625738ea030da3b31157ff4a",
+      "insertionHtml": "<p>Want to understand the Wegovy pill results? Our <a href=\"/articles/oral-semaglutide-for-weight-loss\">oral semaglutide guide</a> explains the trial average and practical first-month routine. For the other daily GLP-1 tablet, read the <a href=\"/foundayo\">Foundayo UK guide</a>. Different trials do not establish which treatment will work best for you.</p>"
+    }
+  ],
+  "headersSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e",
+  "assetCount": 897,
+  "retainedAssets": 894,
+  "controls": {
+    "/": {
+      "url": "https://shiftsometimber.co.uk/",
+      "status": 200,
+      "sha256": "b42cf70b2319ad34bc7e615b1a351be780a1acf7f7d5d8d9dc65d3f09efb203e",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      },
+      "head": "3720f5b5c8773636e3d5aaaff57a514db71c91ac077010fabc524ad4ecdf0dc3",
+      "main": "d3bef76bffe72c2905fac7a119371b760521104c6c493c3f3ecf21e5dc858cca"
+    },
+    "/start-here": {
+      "url": "https://shiftsometimber.co.uk/start-here",
+      "status": 200,
+      "sha256": "ccf399e1547fde482483d07089e6074a629b0c153b3da6c8ff7accb50ab9a564",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      },
+      "head": "2b34bd8e84de924ff9b59cfc53e636523a1c2474f2adfb68c1a1a26f8d9d3740",
+      "main": "d74a7a4ee528f841011edc368bcadd0dc182de858e04a9a5cc92896aa0d5f4d9"
+    },
+    "/sitemap.xml": {
+      "url": "https://shiftsometimber.co.uk/sitemap.xml",
+      "status": 200,
+      "sha256": "5a45f7851e48f15aaa03a4ae2051da1f012063bbce515d72a186eadc0806c39c",
+      "headers": {
+        "content-type": "application/xml; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      },
+      "head": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "main": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/articles/oral-semaglutide-for-weight-loss": {
+      "url": "https://shiftsometimber.co.uk/articles/oral-semaglutide-for-weight-loss",
+      "status": 200,
+      "sha256": "7145cad47e2adb3e847189d943ca3aa8ee30d36a709b889ce10b142157979059",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      },
+      "head": "1594a81381ab66c2e0627995c2d19a956b338cbd2a93c0dd9c3ec63614ea8f9d",
+      "main": "2db47643d5cc4e86e41dbe4b90fd23cbb990ff3ee471f1d884cab2a19d914652"
+    },
+    "/shift-health/blood-tests": {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "status": 200,
+      "sha256": "c8d5e13b7cb08e2f6fd8f051b99c067c7fbf15c53cd2d0b1e85fc68ec0e3d891",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      },
+      "head": "8e042e5650465019145006acf3b1472aa3ac0a610305e5613ed9a731cdb68ae4",
+      "main": "53ccee0ff6e25b2d33a61f786733a7b3a4f1b9c3c061f1080e209ffbfd6514c5"
+    }
+  },
+  "phaseProof": {
+    "at": "2026-10-19T19:24:48.280Z",
+    "receipts": []
+  },
+  "allOtherBytesPreserved": true,
+  "originalMetadataAndSchemaPreserved": true
+}
