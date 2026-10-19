@@ -145,9 +145,13 @@ export function nativeNavigationFreshSourceChecker(expected){
 
 function object(ref,p){assert(oid.test(ref));path(p);const id=text('rev-parse',ref+':'+p);assert(oid.test(id));return id;}
 function bytes(ref,p){
- const id=object(ref,p),kind=text('cat-file','-t',id);
- if(kind==='blob'){const batch=execFileSync('/usr/bin/git',['--no-replace-objects','cat-file','--batch'],{input:id+'\n',maxBuffer:64e6});return decodeSeoBlobBatch(batch,[id]).get(id);}
- assert.equal(kind,'tree');const b=git('cat-file','tree',id);assert.equal(createHash('sha1').update('tree '+b.length+'\0').update(b).digest('hex'),id);return git('show',ref+':'+p);
+ assert(oid.test(ref));path(p);
+ const batch=execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects','cat-file','--batch'],{input:ref+':'+p+'\n',maxBuffer:64e6});
+ const lf=batch.indexOf(10);assert(lf>0,'Native navigation content batch header required');
+ const row=/^([a-f0-9]{40}) (blob|tree) ([0-9]+)$/.exec(batch.subarray(0,lf).toString('ascii'));assert(row,'Exact native navigation blob or tree required');
+ const [,id,kind,length]=row,size=Number(length);assert(Number.isSafeInteger(size)&&size>=0);assert.equal(batch.length,lf+size+2);assert.equal(batch[batch.length-1],10);
+ if(kind==='blob')return decodeSeoBlobBatch(batch,[id]).get(id);
+ const value=batch.subarray(lf+1,lf+1+size);assert.equal(createHash('sha1').update('tree '+size+'\0').update(value).digest('hex'),id);return git('show',ref+':'+p);
 }
 const content=(r,p)=>bytes(r,p).toString('utf8');
 const diff=(a,b)=>text('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
