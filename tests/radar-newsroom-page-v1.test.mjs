@@ -72,3 +72,25 @@ test('every newsroom Organization record carries the shared logo',async()=>{
   }
  }finally{globalThis.fetch=original}
 });
+
+test('public newsroom and published articles replace the retired shell noindex for GET and HEAD; missing articles retain it',async()=>{
+ const original=globalThis.fetch;
+ const noindexShell=shell.replace('<head>','<head><meta name="robots" content="noindex,follow"><meta content="noindex" name="googlebot">');
+ globalThis.fetch=async()=>new Response(noindexShell,{headers:{'X-Robots-Tag':'noindex'}});
+ try{
+  const env={DB:{prepare:()=>({all:async()=>({results:[row(7,'UK','Reviewed public safety story')]})})}};
+  for(const path of ['/shift-newsroom','/medicine-news/article-7']){
+   const response=await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk'+path),env);
+   const html=await response.text();assert.equal(response.status,200);
+   assert.equal(response.headers.get('X-Robots-Tag'),'index, follow');
+   assert.match(html,/<meta name="robots" content="index,follow">/);
+   assert.doesNotMatch(html,/<meta[^>]+noindex/i);
+   assert.equal((html.match(/<meta name="robots"/g)||[]).length,1);
+   const head=await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk'+path,{method:'HEAD'}),env);
+   assert.equal(head.headers.get('X-Robots-Tag'),'index, follow');assert.equal(await head.text(),'');
+  }
+  const missing=await radarNewsPageRoutes(new Request('https://shiftsometimber.co.uk/medicine-news/missing'),env);
+  assert.equal(missing.status,404);assert.equal(missing.headers.get('X-Robots-Tag'),'noindex');
+  assert.match(await missing.text(),/<meta name="robots" content="noindex,follow">/);
+ }finally{globalThis.fetch=original}
+});
