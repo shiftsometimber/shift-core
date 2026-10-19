@@ -12,13 +12,16 @@ rule('main','background:#f5f2eb;color:#050505;max-width:1040px;padding:24px 20px
 rule('#todayBrand','position:sticky;top:0;z-index:44;min-height:64px;padding-top:max(8px,env(safe-area-inset-top));padding-bottom:8px;box-sizing:border-box')+
 nativeScope+' #todayBrand[data-member-design-header]{position:fixed!important;inset:0 0 auto!important;z-index:1000!important;width:100%!important;transform:none!important}\n'+
 nativeScope+' #appBottomNav{position:fixed!important;inset:auto 0 0!important;z-index:1000!important;width:100%!important;transform:none!important}\n'+
-rule('#todayBrand .member-design-mark','width:34px;height:34px')+
+rule('#todayBrand .member-design-mark','width:34px;height:34px;border-radius:50%')+
+rule('.mp-panel','border:0;padding:0;background:transparent')+
+rule('.shift-progress-chart','border:0;padding:14px 0;background:transparent')+
+rule('.shift-progress-score','display:none')+
 rule('.member-section-name','display:none')+
 rule('#todayBrand','background:#e7e3da;color:#050505')+
 rule('#todayBrand>a','color:#050505;-webkit-text-fill-color:#050505')+
 rule('#memberJourneyTabs','display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;max-width:760px;margin:0 auto 22px;border-bottom:1px solid #ccc9bf')+
-rule('#memberJourneyTabs button','font:inherit;font-size:15px;min-height:48px;background:transparent;color:#54594d;border:0;border-radius:0;padding:12px 8px')+
-rule('#memberJourneyTabs button[aria-selected="true"]','border-bottom:3px solid #707762;color:#050505;font-weight:700')+
+rule('#memberJourneyTabs button','font:inherit;font-size:15px;min-height:48px;background:transparent;color:#54594d;-webkit-text-fill-color:#54594d;opacity:1;border:0;border-radius:0;padding:12px 8px')+
+rule('#memberJourneyTabs button[aria-selected="true"]','border-bottom:3px solid #707762;color:#050505;-webkit-text-fill-color:#050505;font-weight:700')+
 rule('#memberJourneyTabs[hidden]','display:none')+
 rule('.member-journey-entry','padding:18px 0;border-bottom:1px solid #ccc9bf;margin-bottom:20px')+
 rule('.member-journey-entry h2','font:500 28px/1.2 Georgia,serif;margin:0 0 14px')+
@@ -26,9 +29,14 @@ rule('.member-journey-entry table','width:100%;table-layout:fixed;border-collaps
 rule('.member-journey-entry th|.member-journey-entry td','font-size:14px;padding:8px 6px;text-align:left;overflow-wrap:anywhere;border-bottom:1px solid #ccc9bf')+
 rule('.member-journey-entry a','display:inline-flex;align-items:center;min-height:46px;margin:6px 8px 6px 0;padding:10px 14px;background:#e7e3da;border:1px solid #ccc9bf;border-radius:10px;color:#050505')+
 rule('.shift-chart-custom-dates input','width:100%;min-width:0;box-sizing:border-box;min-height:46px;font:inherit;background:#f7f5ef;color:#050505;border:1px solid #a7a99f;padding:10px;border-radius:8px')+
-rule('.shift-chart-custom-dates button','width:100%;min-height:46px;font:inherit;margin:12px 0;background:#e7e3da;color:#050505;border:1px solid #a7a99f;border-radius:8px;padding:10px')+
+rule('.shift-chart-custom-dates button','width:100%;min-height:46px;font:inherit;margin:12px 0;background:#e7e3da;color:#050505;-webkit-text-fill-color:#050505;border:1px solid #a7a99f;border-radius:8px;padding:10px')+
+rule('.shift-pattern-sources label','display:flex;align-items:center;gap:10px;min-height:44px')+
+rule('.shift-pattern-sources input[type="checkbox"]','width:22px;height:22px;min-height:22px;flex:none;margin:0')+
+rule('#memberJourneyPhotos','border-top:1px solid #ccc9bf;padding:16px 0;margin-top:20px')+
+rule('#memberJourneyPhotos>summary','min-height:44px;padding:10px 0;font-weight:700')+
 scope+'[data-member-journey-view] #panel-visualise>.member-progress-map{display:none!important}\n'+
 scope+'[data-member-journey-view="felt"] #shiftProgressStory>:not(.shift-pattern-panel),'+scope+'[data-member-journey-view="week"] #shiftProgressStory>:not(.shift-pattern-panel){display:none!important}\n'+
+scope+'[data-member-journey-view="felt"] #memberJourneyPhotos,'+scope+'[data-member-journey-view="week"] #memberJourneyPhotos{display:none!important}\n'+
 rule('#appBottomNav','z-index:60;box-shadow:0 -6px 24px #05050512')+
 rule('#appBottomNav [aria-current="page"]|#appBottomNav button[aria-expanded="true"]','background:#e7e3da;color:#050505;-webkit-text-fill-color:#050505')+
 rule('.app-today-shortcuts|nav.sst-member-tabs|#sst-footer-c|footer|.app-footer-details|#memberUtilities|#myTimberApp|#pwaInstallBanner','display:none')+
@@ -177,15 +185,19 @@ export const appExperienceClient=String.raw`(()=>{
    nav=node('nav');nav.id='memberJourneyTabs';nav.setAttribute('role','tablist');nav.setAttribute('aria-label','Your Journey');
    for(const [key,label]of [['journey','Journey'],['week','My week'],['log','Log a reading'],['felt','How I felt']]){
     const button=node('button','',label);button.type='button';button.dataset.journeyView=key;button.setAttribute('role','tab');button.setAttribute('aria-controls',key==='log'?'panel-journey':'panel-visualise');
-    button.onclick=()=>{const next=new URL(location.href);next.searchParams.set('journeyView',key);const panel=key==='log'?'journey':'visualise';$('.mp-tab[data-panel="'+panel+'"]')?.click();next.hash=panel;history.pushState(null,'',next.pathname+next.search+next.hash);journey();};nav.append(button);
+    button.onclick=()=>{const oldURL=location.href,next=new URL(location.href);next.searchParams.set('journeyView',key);const panel=key==='log'?'journey':'visualise';$('.mp-tab[data-panel="'+panel+'"]')?.click();next.hash=panel;history.pushState(null,'',next.pathname+next.search+next.hash);dispatchEvent(new HashChangeEvent('hashchange',{oldURL,newURL:location.href}));journey();};nav.append(button);
    }
    panels.parentElement.insertBefore(nav,panels);
   }
   nav.hidden=!active;if(!active){delete document.body.dataset.memberJourneyView;return;}
   const requested=url.searchParams.get('journeyView'),key=url.hash==='#journey'?'log':['journey','week','felt'].includes(requested)?requested:'journey';
+  const selectedPanel=key==='log'?panels:progress;all('.mp-panel').forEach(panel=>{const selected=panel===selectedPanel;if(panel.classList.contains('active')!==selected)panel.classList.toggle('active',selected);if(panel.hidden===selected)panel.hidden=!selected;});
   if(document.body.dataset.memberJourneyView!==key)document.body.dataset.memberJourneyView=key;
   nav.querySelectorAll('button').forEach(b=>{const selected=b.dataset.journeyView===key;if(b.getAttribute('aria-selected')!==String(selected))b.setAttribute('aria-selected',String(selected));});
   let entry=$('#memberJourneyEntry');if(!entry){entry=node('section','member-journey-entry');entry.id='memberJourneyEntry';progress.prepend(entry);}
+  let photos=$('#memberJourneyPhotos');if(!photos){photos=node('details');photos.id='memberJourneyPhotos';photos.append(node('summary','','Progress photos & other records'));progress.append(photos);}
+  for(const child of [...progress.children])if(![entry,photos,$('#shiftProgressStory')].includes(child)&&child.tagName!=='STYLE'){if(child.classList.contains('member-progress-map')){child.hidden=true;continue;}photos.append(child);}
+  if(progress.firstElementChild!==entry)progress.prepend(entry);
   if(entry.dataset.view!==key){entry.dataset.view=key;entry.replaceChildren();
    if(key==='felt'){entry.append(node('h2','','How I felt'),node('p','','Review symptoms and medication taken across the dates you choose.'),link('Log how I felt','/member/treatment?entry=symptoms'),link('Choose dates & see entries','/member/treatment?view=timeline'));}
    if(key==='week'){entry.append(node('h2','','My week'),node('p','','Review your saved check-ins and treatment weeks. Missing days remain unknown.'),link('Weekly check-in','/member/dashboard#journey'),link('Symptoms & medication timeline','/member/treatment?view=timeline'));recordedWeek(entry);}
