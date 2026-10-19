@@ -538,7 +538,7 @@
     "DAILY_EDITORIAL_SUPPORT_MODEL": "@cf/zai-org/glm-5.3",
     "DAILY_CONTENT_GATEWAY": "shift-ai",
     "DAILY_CONTENT_BUDGET_VERIFIED": "true",
-    "DAILY_EDITORIAL_NOTIFY_ENABLED": "true",
+    "DAILY_EDITORIAL_NOTIFY_ENABLED": "false",
     "DAILY_EDITORIAL_NOTIFY_TEMPLATE": "verified-link-v1",
 
     "MY_TIMBER_PWA_ENABLED": "true",
