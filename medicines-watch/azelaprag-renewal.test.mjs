@@ -1,10 +1,9 @@
-import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-11-authorised-azelaprag-renewal.json' with {type:'json'};
 import {medicines,sources as detailedSources} from './data.mjs';
 import {industry} from './industry.mjs';
-import {evidenceQueue} from './evidence-desk.mjs';
+import {evidenceQueue,programmeSummaryQueue} from './evidence-desk.mjs';
 import {projectSourceHealth} from './monitor.mjs';
 
 const allSources=detailedSources;
@@ -61,7 +60,7 @@ test('azelaprag renewal clears only its due work and preserves separate queues',
  const catalogueAtReview=[...medicines,...industry]
   .filter(entry=>!['aln2232','aln6222','taldefgrobep-alfa','rv8451','ly4329090'].includes(entry.id))
   .map(entry=>priorDates.has(entry.id)?{...entry,reviewedAt:priorDates.get(entry.id)}:entry);
- assert.equal(programmeSummaryQueueAtReceipt(catalogueAtReview,time).length,66);
+ assert.equal(programmeSummaryQueue(catalogueAtReview,time).length,66);
  assert.equal(receipt.preserved.zp6590VerificationPending,true);
  assert.equal(receipt.preserved.zp6590CheckDelayed,true);
  const obstacle=receipt.remainingObstacles.find(item=>item.id==='zealand-zp6590-pipeline');

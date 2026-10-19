@@ -1,21 +1,5 @@
 # Treatments: Medicines & Peptides Watch
 
-## 12 October evening — implemented candidate, not published
-
-The bounded successor `reviews/2026-10-12-authorised-te8105-asc36-renewal.json` renews only the unchanged TE-8105 registry source and the independently fully reread TE-8105 and oral ASC36 programme summaries. Their clinical wording remains byte-equivalent after review dates are excluded. TE-8105 remains not yet recruiting with estimated dates and no posted results; ASC36 remains sponsor-reported US oral Phase I research with animal findings separate from human outcomes.
-
-The candidate retains 119 programmes, 204 sources and 102 manual URLs. The separate summary queue moves from 71 to 69 at 16:39 UTC. This is the proposed 42nd completed review receipt, pending guarded composition, hosted gates, terminal release and live verification. Existing historical receipt tests retain their original assertions against a narrowly reconstructed pre-successor catalogue; monitor logic and previous receipts remain unchanged. No observation success is seeded. ZP6590 remains pending/delayed; Hengrui monitor timeouts remain recorded despite successful unchanged direct reads.
-
-CGX-926/ISRCTN33084994 remains a reviewed discovery candidate in the prepared evidence record, outside this narrow runtime renewal. No additional programme or human outcome is adopted here. The existing contact writer owns the active serial release lane; rebase and register this candidate only after that owner's terminal source/release receipt.
-
-## 12 October evening evidence — prepared, not published
-
-`reviews/2026-10-12-evening-te8105-asc36-cgx926-prepared.json` records a complete unchanged TE-8105 registry reread, complete TE-8105 and oral ASC36 programme-summary reviews, and the sponsor-linked ISRCTN33084994 discovery for CGX-926. The ISRCTN XML record defers its full drug, condition and outcome details; the candidate linkage comes from Congruence's patient page. Registry dates are untyped, target enrolment is not actual enrolment, and no human efficacy, UK marketing authorisation, NHS access or supply is established.
-
-This is a local factual payload behind the active contact source owner. No new receipt is imported into runtime, no review date or public counter advances, and no remote branch, composition registration, gate, merge or deployment is claimed. Existing 119 programmes, 204 sources, 102 manual URLs, 41 published reviews and ZP6590 pending/delayed remain unchanged. Two Hengrui origin pages retrieved successfully with unchanged fingerprints after monitor timeouts; those reads neither overwrite failed production observations nor renew source dates.
-
-After current source ownership is clear, reconcile this exact payload through #1065 with finite composition registration, all exact-head checks and terminal same-source live evidence. Preserve every earlier receipt and historical assertion. CGX-926 is a bounded research candidate; remaining manual paper leads and EB618 require their own complete review.
-
 ## 12 October ASC36 source renewal
 
 `reviews/2026-10-12-authorised-asc36-source-renewal.json` records a complete reread of Ascletis' unchanged oral ASC36 Phase I announcement after its configured-source review became due. The complete sponsor page remains 16,300 bytes with response SHA-256 `ef557f52838f4b3cc7d4747f5281454569f35ff4a59ebe81ff9e91ef5fb348e9`; its bounded claim-bearing text retains fingerprint `bb52bfb18d82adf8113eee808450543f5927d46dc5fda65e90d203c9564a4f39`. A fresh exact-name ClinicalTrials.gov API search still returned no public record. The source review date advances, but the programme wording and programme-summary review date do not.

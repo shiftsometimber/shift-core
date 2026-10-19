@@ -1,0 +1,52 @@
+name: GP Priority Direct Directory Activation
+on:
+  push:
+    branches: [release/gp-priority-direct-activation-20261016]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Reproduce the accepted GP OFF compiler dependency environment
+        run: |
+          npm ci --ignore-scripts
+          npm install --no-save --package-lock=false --ignore-scripts playwright@1.58.2
+      - name: Verify actual activation source, all original activation controls and owned provider guards
+        run: |
+          node --test --test-concurrency=1 --test-reporter=tap tests/gp-directory-activation-direct-20261016.test.mjs tests/fixtures/gp-directory-activation-original-20261015/gp-directory-activation-contract-20261015.test.mjs tests/fixtures/gp-directory-activation-original-20261015/gp-directory-activation-source-20261015.test.mjs tests/gp-priority-direct-activation-owned-20261016.test.mjs
+      - name: Verify both GP ON uploads and the unchanged accepted whole bundles before traffic
+        id: prepare
+        run: node release/gp-priority-direct-activation-owned-20261016.mjs prepare
+      - name: Activate only the exact prepared GP directory versions
+        id: deploy
+        run: node release/gp-priority-direct-activation-owned-20261016.mjs deploy
+      - name: Verify actual directory readiness, owned GP ON providers and all other controls
+        run: node release/gp-priority-direct-activation-owned-20261016.mjs verify
+      - name: Restore only versions owned by this failed activation
+        if: ${{ always() && (failure() || cancelled()) && steps.prepare.outcome == 'success' }}
+        run: node release/gp-priority-direct-activation-owned-20261016.mjs rollback
+      - name: Retain exact activation and owned rollback evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gp-direct-directory-activation-${{ github.run_id }}
+          path: gp-direct-directory-activation/
+          if-no-files-found: warn
+          retention-days: 90

@@ -1,10 +1,9 @@
-import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-11-authorised-alnylam-rnai-discovery.json' with {type:'json'};
 import {medicines,sources} from './data.mjs';
 import {industry,industrySources} from './industry.mjs';
-import {manualEvidence} from './evidence-desk.mjs';
+import {manualEvidence,programmeSummaryQueue} from './evidence-desk.mjs';
 
 test('Alnylam RNAi discovery adds two distinct bounded programmes',()=>{
  assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');
@@ -41,7 +40,7 @@ test('Alnylam evidence remains manual and preserves established queues and uncer
  const catalogueAtReview=[...medicines,...industry]
   .filter(entry=>!['taldefgrobep-alfa','rv8451','ly4329090'].includes(entry.id))
   .map(entry=>futureRenewalDates.has(entry.id)?{...entry,reviewedAt:futureRenewalDates.get(entry.id)}:entry);
- assert.equal(programmeSummaryQueueAtReceipt(catalogueAtReview,Date.parse(receipt.reviewedAt)).length,66);
+ assert.equal(programmeSummaryQueue(catalogueAtReview,Date.parse(receipt.reviewedAt)).length,66);
  assert.equal(receipt.preserved.completedFactualReviews,35);
  assert.equal(receipt.preserved.zp6590VerificationPending,true);assert.equal(receipt.preserved.zp6590CheckDelayed,true);
  for(const flag of ['configuredSourceMonitorLogicChanged','monitorBaselinesChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','externalCommunicationsSent','customerDataChanged','memberTreatmentChanged','checkoutChanged'])assert.equal(receipt.preserved[flag],false);

@@ -1,4 +1,3 @@
-import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
@@ -6,6 +5,7 @@ import {industry,industrySources} from './industry.mjs';
 import {registrySources} from './credibility.mjs';
 import {medicines,sources} from './data.mjs';
 import {projectSourceHealth} from './monitor.mjs';
+import {programmeSummaryQueue} from './evidence-desk.mjs';
 
 const observation=(source,time)=>({id:source.id,source_url:source.url,check_url:source.checkUrl,last_attempt_at:new Date(time).toISOString(),last_success_at:new Date(time).toISOString(),attempt_status:'succeeded',last_http_status:200,last_fingerprint:source.reviewedFingerprint,last_withdrawn:0});
 
@@ -38,7 +38,7 @@ test('MARITIME-T2D-3 is bounded registered specialist research, not a comparativ
 test('release counts and separate queues stay honest',()=>{
  assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);assert.equal(registrySources.length,139);
  assert.deepEqual(receipt.counts,{priorCompletedReviews:38,completedReviewsAfter:39,programmes:119,configuredSourcesBefore:203,configuredSourcesAfter:204,manualEvidence:102,configuredSourceReviewQueueBefore:5,configuredSourceReviewQueueAfter:0,programmeSummaryFactualReviewNeededBefore:70,programmeSummaryFactualReviewNeededAfter:68});
- assert.equal(programmeSummaryQueueAtReceipt([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,68);
+ assert.equal(programmeSummaryQueue([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,68);
  assert.deepEqual(receipt.configuredSourcePass.preservedDelayedSources,['zealand-zp6590-pipeline','bivamelagon-rhythm-20250709','rm718-rhythm-20260804']);
  assert.equal(receipt.preserved.zp6590VerificationPending,true);assert.equal(receipt.preserved.zp6590CheckDelayed,true);assert.equal(receipt.preserved.monitorLogicChanged,false);assert.equal(receipt.preserved.medicalClaimsChanged,false);
  assert.equal(receipt.discoveryPass.incomplete,true);assert.match(receipt.discoveryPass.boundary,/cannot prove industry completeness/);assert.match(receipt.discoveryPass.boundary,/Monitoring is not finished/);

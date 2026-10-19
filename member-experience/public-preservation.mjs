@@ -1,4 +1,3 @@
-import {stripFoodGuideDiscovery} from '../food-supplement-guide/production.mjs';
 import {preserveApprovedRootShare} from '../release/root-share-public-preservation.mjs';
 import {preserveContinuityUpgrade} from '../release/continuity-content-20261009.mjs';
 import {preserveSupportRecovery} from '../release/support-recovery-preservation.mjs';
@@ -64,8 +63,7 @@ for(const path of paths){
  assert.equal(r.status,200,path+' must return HTTP 200');
  const rawBody=Buffer.from(await r.arrayBuffer());
  const supportPreserved=preserveSupportRecovery(path,preserveApprovedRootShare(path,rawBody,{required:Boolean(before)}),{required:Boolean(before)});
- const foodPreserved=Buffer.from(stripFoodGuideDiscovery(supportPreserved.toString('utf8'),path));
- const body=preserveTabletWording(path,preservePillarChrome(path,preserveApprovedLinks(path,preserveOrganicLinks(path,preserveContinuityUpgrade(path,foodPreserved,{required:Boolean(before)}))),{required:Boolean(before)}));
+ const body=preserveTabletWording(path,preservePillarChrome(path,preserveApprovedLinks(path,preserveOrganicLinks(path,preserveContinuityUpgrade(path,supportPreserved,{required:Boolean(before)}))),{required:Boolean(before)}));
  const reviewedSource=restoreStoppingCitation(path,preserveFollowThrough(path,Buffer.from(preserveExactMetricsBootstrap(body.toString('utf8'))),{required:Boolean(before)}),{required:Boolean(before)});
  const footerPreserved=Buffer.from(applySharedFooter(restoreBookVoiceCopy(path,restoreTrustCentre(path,reviewedSource.toString('utf8'),{required:Boolean(before)}))));
  const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,footerPreserved,{required:Boolean(before)})),{required:Boolean(before)});

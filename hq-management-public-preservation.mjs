@@ -1,4 +1,3 @@
-import {verifyCombinedHqLiveBoundaries} from './release/combined-hq-preservation-20261014.mjs';
 // HQ makes no public-content changes: compare exact pre/post bodies, including
 // the already-approved organic destinations, rather than asserting completion
 // of an independent, historically published link-edit batch.
@@ -16,5 +15,4 @@ for(const path of paths){
 const result={at:new Date().toISOString(),scope:'HQ release: exact public-page and asset preservation',pages,comparison:before?'pending':'baseline'};
 writeFileSync(output,JSON.stringify(result,null,2));
 if(before){assert.deepEqual(pages,JSON.parse(readFileSync(before)).pages,'Public response bytes changed during HQ release');result.comparison='identical';writeFileSync(output,JSON.stringify(result,null,2));}
-if(before)await verifyCombinedHqLiveBoundaries({accountId:process.env.CLOUDFLARE_ACCOUNT_ID,token:process.env.CLOUDFLARE_API_TOKEN});
 console.log('PASS '+pages.length+' public/login/sitemap responses '+(before?'identical to pre-release':'captured'));

@@ -1,4 +1,3 @@
-import {combinedPositiveHistoricalRead} from '../release/combined-finite-scope-20261014.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -53,8 +52,7 @@ test('actual later-review repair keeps medical source, previous receipts and eve
  const current=verifyReconciledRelease();assert.equal(current.watchAlnylamLaterReviewTestRepair.source,r.source);
  const prior=JSON.parse(read(r.base,manifest)),retained=structuredClone(current);for(const key of Object.keys(retained))if(!(key in prior))delete retained[key];assert.deepEqual(retained,prior);
  for(const path of [...r.paths,...r.maintenancePaths])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
- const positiveRead=combinedPositiveHistoricalRead(read);
- for(const path of ['worker.js','medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/credibility.mjs','medicines-watch/monitor.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.equal(positiveRead('HEAD',path),read(r.base,path));
+ for(const path of ['worker.js','medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/credibility.mjs','medicines-watch/monitor.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.equal(read('HEAD',path),read(r.base,path));
  const before=read(r.base,'release/approved-runtime-composition.mjs'),after=read('HEAD','release/approved-runtime-composition.mjs');
  for(const match of before.matchAll(/export function (\w+)\(/g))if(match[1]!=='verifyReconciledRelease'){
   const body=t=>{const start=t.indexOf('export function '+match[1]+'(');return t.slice(start,t.indexOf('\n}\n',start)+3);};assert.equal(body(after),body(before));

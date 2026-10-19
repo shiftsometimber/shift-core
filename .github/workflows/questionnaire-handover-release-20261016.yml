@@ -1,0 +1,63 @@
+name: Questionnaire Handover Nonclinical Release
+on:
+  push:
+    branches: [fix/questionnaire-handover-20261016]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --ignore-scripts
+      - name: Verify exact accepted baseline, preserved questionnaire and bounded source
+        run: node --input-type=module -e "import {verifyQuestionnaireSource} from './release/questionnaire-handover-source-20261016.mjs'; console.log(JSON.stringify(verifyQuestionnaireSource().source))"
+      - name: Run original medicine command and extended real database, failure and privacy checks
+        run: |
+          npm run check
+          node --test tests/pharmacy-handover-v1.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-intake-continuity.test.mjs tests/medicine-front-door-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/checkout-recovery.test.mjs tests/shop-recovery.test.mjs tests/promise-accuracy.test.mjs tests/commerce-recovery-health.test.mjs tests/medicine-stripe-retry-v1.test.mjs tests/medicine-intake-sqlite.test.mjs tests/questionnaire-handover-release-20261016.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs
+      - name: Preserve GP, account isolation and original anonymous denial assertions
+        run: node --test member-experience/tests/member-details.test.mjs member-experience/tests/manual-address.test.mjs member-experience/tests/lookup-continuation.test.mjs member-experience/tests/release-anonymous.test.mjs member-experience/tests/gp-lookup-private-denial.test.mjs gp-directory/*.test.mjs
+      - name: Install isolated browser dependencies without changing compiler or lockfile
+        run: |
+          npm install --no-save --package-lock=false --ignore-scripts playwright@1.58.2
+          npx playwright install --with-deps chromium webkit
+          npm install --prefix "$RUNNER_TEMP/questionnaire-workerd-4146" --ignore-scripts --package-lock=false wrangler@4.146.0
+          echo "QUESTIONNAIRE_MINIFLARE=$RUNNER_TEMP/questionnaire-workerd-4146/node_modules/miniflare" >> "$GITHUB_ENV"
+      - name: Verify mobile and desktop assessment, return, refresh, clarification and denial behaviour
+        env:
+          INTAKE_BROWSER_EVIDENCE: questionnaire-runtime-release/browser
+        run: node tests/medicine-intake-browser.mjs
+      - name: Prepare and verify exact inactive-contract upload and protected predecessor
+        id: prepare
+        run: node release/questionnaire-handover-owned-release-20261016.mjs prepare
+      - name: Deploy only the verified exact source and unchanged provider configuration
+        run: node release/questionnaire-handover-owned-release-20261016.mjs deploy
+      - name: Verify actual serving bundle, public assessment assets, authentication, stock and bindings
+        run: node release/questionnaire-handover-owned-release-20261016.mjs verify
+      - name: Restore only the version owned by a failed questionnaire transaction
+        if: ${{ always() && (failure() || cancelled()) && steps.prepare.outcome == 'success' }}
+        run: node release/questionnaire-handover-owned-release-20261016.mjs rollback
+      - name: Retain source, synthetic and actual serving receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: questionnaire-runtime-release-${{ github.run_id }}
+          path: questionnaire-runtime-release/
+          if-no-files-found: warn
+          retention-days: 90
