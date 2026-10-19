@@ -6,6 +6,7 @@ import {resolve,isAbsolute,dirname} from 'node:path';
 import {homedir} from 'node:os';
 import {createHash} from 'node:crypto';
 import {decodeSeoBlobBatch} from './seo-native-immutable-facts-20261016.mjs';
+import {immutableHistoryExecFileSync as immutableNavigationFact} from './immutable-git-facts.mjs';
 import {verifiedOwnedRuntime} from '../shift-coach/cancelled-release-recovery.mjs';
 
 const policy=JSON.parse(readFileSync(new URL('./recorded-week-navigation-outer-policy-20261018.json',import.meta.url),'utf8'));
@@ -198,7 +199,7 @@ export function nativeNavigationFreshSourceChecker(expected){
  };
 }
 
-function object(ref,p){assert(oid.test(ref));path(p);const id=text('rev-parse',ref+':'+p);assert(oid.test(id));return id;}
+function object(ref,p){assert(oid.test(ref));path(p);const id=immutableNavigationFact('git',['rev-parse',ref+':'+p],{maxBuffer:64e6}).toString('utf8').trimEnd();assert(oid.test(id));return id;}
 function bytes(ref,p){
  assert(oid.test(ref));path(p);
  const batch=execFileSync('/usr/bin/git',['--no-optional-locks','--no-replace-objects','cat-file','--batch'],{input:ref+':'+p+'\n',maxBuffer:64e6});
