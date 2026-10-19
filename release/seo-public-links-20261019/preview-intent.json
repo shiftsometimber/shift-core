@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-19T21:40:42.329Z",
+  "source": "1639732818668e6d7a14c2b5a26b9b96220b1c31",
+  "base": "b04c0b2e-c2a4-4d8f-8b78-69acaacb7c32",
+  "changedPaths": [
+    "/future-medicines-comparison.html"
+  ],
+  "phaseBefore": {
+    "at": "2026-10-19T21:40:37.315Z",
+    "receipts": []
+  },
+  "phaseAtUse": {
+    "at": "2026-10-19T21:40:40.785Z",
+    "receipts": []
+  }
+}
