@@ -1,0 +1,213 @@
+{
+  "at": "2026-10-19T19:31:10.161Z",
+  "ok": true,
+  "source": "b082ad5446d44951b03bcd2f17c01c5db9f1361d",
+  "deployment": "b04c0b2e-c2a4-4d8f-8b78-69acaacb7c32",
+  "url": "https://b04c0b2e.projectshift.pages.dev",
+  "publicPages": [
+    {
+      "url": "https://shiftsometimber.co.uk/foundayo",
+      "status": 200,
+      "sha256": "e360bba565e74c7c595bcddcbb8b509afb7f9b82acf8be3551151364ad036dca",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/wegovy",
+      "status": 200,
+      "sha256": "01eac795e55197b9b67b4b10d1c1ec40cd0748b15f2643b21da50fd4c618567e",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/weight-loss-tablets-for-men",
+      "status": 200,
+      "sha256": "496b7be364da248c9c065e0ae5598a434f2f8245edf680abea49d56d983f9141",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    }
+  ],
+  "origin": [
+    {
+      "url": "https://b04c0b2e.projectshift.pages.dev/foundayo",
+      "status": 200,
+      "sha256": "ee8f71312a8d15e8c4b991262e1b644f3df0eaa9803a04702d7a1941063009a3",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://b04c0b2e.projectshift.pages.dev/wegovy",
+      "status": 200,
+      "sha256": "5afd19aca9a4e1103c13fedff1610954ed21aec72b743b666880d66cc73e198a",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://b04c0b2e.projectshift.pages.dev/weight-loss-tablets-for-men",
+      "status": 200,
+      "sha256": "79e9ac4e61c65213f77043a7be6eff61556dddddcab86205a631ecdee8c51f95",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    }
+  ],
+  "links": [
+    {
+      "path": "/compare-weight-loss-treatments",
+      "receipt": {
+        "url": "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+        "status": 200,
+        "sha256": "38c7f8e86faf39245998222aefecca0c31484b6c7ed6b8d23373211214543a22",
+        "headers": {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "no-store",
+          "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+          "strict-transport-security": "max-age=31536000; includeSubDomains",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+          "x-frame-options": "SAMEORIGIN"
+        }
+      }
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "receipt": {
+        "url": "https://shiftsometimber.co.uk/weight-loss-tablets-for-men",
+        "status": 200,
+        "sha256": "496b7be364da248c9c065e0ae5598a434f2f8245edf680abea49d56d983f9141",
+        "headers": {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "no-store",
+          "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+          "strict-transport-security": "max-age=31536000; includeSubDomains",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+          "x-frame-options": "SAMEORIGIN"
+        }
+      }
+    },
+    {
+      "path": "/articles/oral-semaglutide-for-weight-loss",
+      "receipt": {
+        "url": "https://shiftsometimber.co.uk/articles/oral-semaglutide-for-weight-loss",
+        "status": 200,
+        "sha256": "7145cad47e2adb3e847189d943ca3aa8ee30d36a709b889ce10b142157979059",
+        "headers": {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "no-store",
+          "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+          "strict-transport-security": "max-age=31536000; includeSubDomains",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+          "x-frame-options": "SAMEORIGIN"
+        }
+      }
+    },
+    {
+      "path": "/foundayo",
+      "receipt": {
+        "url": "https://shiftsometimber.co.uk/foundayo",
+        "status": 200,
+        "sha256": "e360bba565e74c7c595bcddcbb8b509afb7f9b82acf8be3551151364ad036dca",
+        "headers": {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "no-store",
+          "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+          "strict-transport-security": "max-age=31536000; includeSubDomains",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+          "x-frame-options": "SAMEORIGIN"
+        }
+      }
+    }
+  ],
+  "controls": [
+    {
+      "path": "/",
+      "identical": true,
+      "before": "b42cf70b2319ad34bc7e615b1a351be780a1acf7f7d5d8d9dc65d3f09efb203e",
+      "after": "b42cf70b2319ad34bc7e615b1a351be780a1acf7f7d5d8d9dc65d3f09efb203e"
+    },
+    {
+      "path": "/start-here",
+      "identical": true,
+      "before": "ccf399e1547fde482483d07089e6074a629b0c153b3da6c8ff7accb50ab9a564",
+      "after": "ccf399e1547fde482483d07089e6074a629b0c153b3da6c8ff7accb50ab9a564"
+    },
+    {
+      "path": "/sitemap.xml",
+      "identical": true,
+      "before": "5a45f7851e48f15aaa03a4ae2051da1f012063bbce515d72a186eadc0806c39c",
+      "after": "5a45f7851e48f15aaa03a4ae2051da1f012063bbce515d72a186eadc0806c39c"
+    },
+    {
+      "path": "/articles/oral-semaglutide-for-weight-loss",
+      "identical": true,
+      "before": "7145cad47e2adb3e847189d943ca3aa8ee30d36a709b889ce10b142157979059",
+      "after": "7145cad47e2adb3e847189d943ca3aa8ee30d36a709b889ce10b142157979059"
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "identical": true,
+      "before": "c8d5e13b7cb08e2f6fd8f051b99c067c7fbf15c53cd2d0b1e85fc68ec0e3d891",
+      "after": "c8d5e13b7cb08e2f6fd8f051b99c067c7fbf15c53cd2d0b1e85fc68ec0e3d891"
+    }
+  ],
+  "changedAssets": 3,
+  "retainedAssets": 894,
+  "manifestExact": true,
+  "originalHeadersSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e",
+  "canonicalOwned": true,
+  "previewWrapperAbsent": true
+}

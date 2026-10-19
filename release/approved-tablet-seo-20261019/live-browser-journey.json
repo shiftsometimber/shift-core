@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "method": "Cua public browser link clicks and visible destination text",
+  "checks": [
+    {
+      "from": "/wegovy#the-daily-wegovy-pill",
+      "link": "oral semaglutide guide",
+      "to": "/articles/oral-semaglutide-for-weight-loss",
+      "heading": "Oral semaglutide for weight loss in the UK: what 13.6% means",
+      "firstMonthSectionExists": true
+    },
+    {
+      "from": "/foundayo#what-changed-in-august-2026",
+      "link": "guide to weight-loss tablets for men",
+      "to": "/weight-loss-tablets-for-men",
+      "approvedParagraphVisible": true
+    },
+    {
+      "from": "/weight-loss-tablets-for-men",
+      "link": "Foundayo UK guide",
+      "to": "/foundayo",
+      "approvedSectionVisible": true
+    }
+  ],
+  "screenshot": "shift-tablet-seo-verified-20261019-1792438352120.jpg",
+  "noPrivateMemberJourney": true,
+  "source": "b082ad5446d44951b03bcd2f17c01c5db9f1361d",
+  "deployment": "b04c0b2e-c2a4-4d8f-8b78-69acaacb7c32"
+}

@@ -1,0 +1,74 @@
+{
+  "id": "b04c0b2e-c2a4-4d8f-8b78-69acaacb7c32",
+  "short_id": "b04c0b2e",
+  "project_id": "6bb70feb-5d59-4413-8264-5d64670b1e38",
+  "project_name": "projectshift",
+  "environment": "production",
+  "url": "https://b04c0b2e.projectshift.pages.dev",
+  "created_on": "2026-10-19T19:30:47.391318Z",
+  "modified_on": "2026-10-19T19:30:47.391318Z",
+  "latest_stage": {
+    "name": "queued",
+    "started_on": null,
+    "ended_on": null,
+    "status": "idle"
+  },
+  "deployment_trigger": {
+    "type": "ad_hoc",
+    "metadata": {
+      "branch": "main",
+      "commit_hash": "b082ad5446d44951b03bcd2f17c01c5db9f1361d",
+      "commit_message": "Publish Matt-approved three tablet SEO additions; retain all unrelated assets and headers",
+      "commit_dirty": false
+    }
+  },
+  "stages": [
+    {
+      "name": "queued",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "initialize",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "clone_repo",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "build",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    }
+  ],
+  "build_config": {
+    "build_command": null,
+    "destination_dir": null,
+    "build_caching": null,
+    "root_dir": null,
+    "web_analytics_tag": null,
+    "web_analytics_token": null
+  },
+  "env_vars": {},
+  "compatibility_date": "2026-08-07",
+  "compatibility_flags": [],
+  "build_image_major_version": 3,
+  "usage_model": null,
+  "aliases": null,
+  "is_skipped": false,
+  "production_branch": "main",
+  "uses_functions": null
+}

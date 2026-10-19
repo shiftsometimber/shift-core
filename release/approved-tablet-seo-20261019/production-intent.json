@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-19T19:30:45.909Z",
+  "stage": "production",
+  "base": "b1024397-ab30-4069-aa04-be839134ae19",
+  "source": "b082ad5446d44951b03bcd2f17c01c5db9f1361d",
+  "approval": {
+    "at": "2026-10-19T20:22:34+01:00",
+    "instruction": "Deploy all",
+    "scope": "The exact three public additions shown immediately before this instruction"
+  },
+  "changedPaths": [
+    "/foundayo.html",
+    "/wegovy.html",
+    "/weight-loss-tablets-for-men.html"
+  ],
+  "previewOnly": null,
+  "phaseBefore": {
+    "at": "2026-10-19T19:30:38.828Z",
+    "receipts": []
+  },
+  "phaseAtUse": {
+    "at": "2026-10-19T19:30:44.008Z",
+    "receipts": []
+  }
+}

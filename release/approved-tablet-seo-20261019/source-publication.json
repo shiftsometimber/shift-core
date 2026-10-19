@@ -1,0 +1,22 @@
+{
+  "head": "b082ad5446d44951b03bcd2f17c01c5db9f1361d",
+  "branch": "release/approved-tablet-seo-20261019",
+  "baseMain": "9140c8beeb18757fb6006ba37f07c98024f68583",
+  "remoteVerified": true,
+  "sourceFiles": [
+    "release/approved-tablet-seo-20261019/_headers",
+    "release/approved-tablet-seo-20261019/approved-manifest.json",
+    "release/approved-tablet-seo-20261019/base-deployment.json",
+    "release/approved-tablet-seo-20261019/candidate-foundayo.html",
+    "release/approved-tablet-seo-20261019/candidate-wegovy.html",
+    "release/approved-tablet-seo-20261019/candidate-weight-loss-tablets-for-men.html",
+    "release/approved-tablet-seo-20261019/guard-tests.json",
+    "release/approved-tablet-seo-20261019/origin-before-foundayo.html",
+    "release/approved-tablet-seo-20261019/origin-before-wegovy.html",
+    "release/approved-tablet-seo-20261019/origin-before-weight-loss-tablets-for-men.html",
+    "release/approved-tablet-seo-20261019/preparation.json",
+    "release/approved-tablet-seo-20261019/prepare.cjs",
+    "release/approved-tablet-seo-20261019/publish.cjs",
+    "release/approved-tablet-seo-20261019/tablet-seo-review.json"
+  ]
+}

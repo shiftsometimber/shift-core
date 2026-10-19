@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "source": "b082ad5446d44951b03bcd2f17c01c5db9f1361d",
+  "preview": "edcf3a2e-83c2-4ca8-b9dd-cc0ac76c3392",
+  "method": "Cua browser DOM and visual inspection; same-origin iframe responsive views, not physical devices",
+  "views": [
+    {
+      "path": "/foundayo",
+      "frameWidth": 390,
+      "contentWidth": 375,
+      "documentWidth": 375,
+      "approvedBlockFits": true,
+      "links": 5
+    },
+    {
+      "path": "/foundayo",
+      "frameWidth": 1440,
+      "contentWidth": 1425,
+      "documentWidth": 1425,
+      "approvedBlockFits": true,
+      "links": 5
+    },
+    {
+      "path": "/wegovy",
+      "frameWidth": 390,
+      "contentWidth": 375,
+      "documentWidth": 375,
+      "approvedBlockFits": true,
+      "links": 2
+    },
+    {
+      "path": "/wegovy",
+      "frameWidth": 1440,
+      "contentWidth": 1425,
+      "documentWidth": 1425,
+      "approvedBlockFits": true,
+      "links": 2
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "frameWidth": 390,
+      "contentWidth": 375,
+      "documentWidth": 375,
+      "approvedBlockFits": true,
+      "links": 2
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "frameWidth": 1440,
+      "contentWidth": 1425,
+      "documentWidth": 1425,
+      "approvedBlockFits": true,
+      "links": 2
+    }
+  ],
+  "approvedTextPresent": true,
+  "scope": "Exact three additions; source checksum and preview origin verification separately enforced"
+}

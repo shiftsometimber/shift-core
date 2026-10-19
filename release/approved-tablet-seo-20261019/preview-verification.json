@@ -1,0 +1,57 @@
+{
+  "at": "2026-10-19T19:29:10.146Z",
+  "ok": true,
+  "source": "b082ad5446d44951b03bcd2f17c01c5db9f1361d",
+  "deployment": "edcf3a2e-83c2-4ca8-b9dd-cc0ac76c3392",
+  "url": "https://edcf3a2e.projectshift.pages.dev",
+  "origin": [
+    {
+      "url": "https://edcf3a2e.projectshift.pages.dev/foundayo",
+      "status": 200,
+      "sha256": "ee8f71312a8d15e8c4b991262e1b644f3df0eaa9803a04702d7a1941063009a3",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://edcf3a2e.projectshift.pages.dev/wegovy",
+      "status": 200,
+      "sha256": "5afd19aca9a4e1103c13fedff1610954ed21aec72b743b666880d66cc73e198a",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://edcf3a2e.projectshift.pages.dev/weight-loss-tablets-for-men",
+      "status": 200,
+      "sha256": "79e9ac4e61c65213f77043a7be6eff61556dddddcab86205a631ecdee8c51f95",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    }
+  ],
+  "productionUnchanged": true,
+  "manifestExact": true,
+  "previewNoindex": true
+}
