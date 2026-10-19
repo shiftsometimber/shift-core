@@ -41,7 +41,7 @@ async function fixture({oldCms=false,unsupported=false,failedVerification=false,
   if(url===ORIGIN+'/guides/lunch-planning')return new Response(html(url,'Planning meals around working days'),{headers:{'Content-Type':'text/html'}});
   return new Response('Missing',{status:404});
  };
- if(oldCms){await DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at,updated_at) VALUES('Original title','packed-lunch-example','Nutrition','SHIFT Team','published','Original summary','Original body','Original SEO','2026-03-23','2026-10-01')`).run();await DB.prepare(`INSERT INTO babylove_receipts(slug,source_id) VALUES('packed-lunch-example','original-vendor')`).run();}
+ if(oldCms){await DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at,updated_at) VALUES('Original title','packed-lunch-example','Nutrition','SHIFT Team','published','Original summary','Original body','Original SEO','2026-03-23','2026-10-01')`).run();await DB.prepare(`INSERT INTO babylove_receipts(slug,source_id,created_at) VALUES('packed-lunch-example','original-vendor','2026-03-23T00:00:00.000Z')`).run();}
  await refreshEditorialCorpus(env,{fetcher,now:BEFORE,limit:12});
  return {env,DB,sqlite,fetcher,calls:()=>calls,sends:()=>sends,brief,setPublicNow:value=>{publicNow=value;}};
 }
