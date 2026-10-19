@@ -1,7 +1,8 @@
 {
-  "head": "00935ac525325865d9f33c858805f027d3056e36",
+  "head": "73ed578434f891ec0b6a56dc43cffe0a81adb832",
   "branch": "codex/approved-bloods-publication-v1-20261019",
   "remoteVerified": true,
-  "tree": "08a40d3f81fff739ae58de88f844802344f77615",
-  "reviewSource": "20696b1224a6dfcceb51af7ff0ed8e3628cfa746"
+  "tree": "be4e0336706aec05e192b8f75ad00243521425cb",
+  "reviewSource": "20696b1224a6dfcceb51af7ff0ed8e3628cfa746",
+  "priorHead": "00935ac525325865d9f33c858805f027d3056e36"
 }

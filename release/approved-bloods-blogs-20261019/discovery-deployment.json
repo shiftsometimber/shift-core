@@ -1,0 +1,74 @@
+{
+  "id": "b1024397-ab30-4069-aa04-be839134ae19",
+  "short_id": "b1024397",
+  "project_id": "6bb70feb-5d59-4413-8264-5d64670b1e38",
+  "project_name": "projectshift",
+  "environment": "production",
+  "url": "https://b1024397.projectshift.pages.dev",
+  "created_on": "2026-10-19T06:49:34.9516Z",
+  "modified_on": "2026-10-19T06:49:34.9516Z",
+  "latest_stage": {
+    "name": "queued",
+    "started_on": null,
+    "ended_on": null,
+    "status": "idle"
+  },
+  "deployment_trigger": {
+    "type": "ad_hoc",
+    "metadata": {
+      "branch": "main",
+      "commit_hash": "73ed578434f891ec0b6a56dc43cffe0a81adb832",
+      "commit_message": "Publish Matt-approved Bloods publication-copy v1 discovery; retain all unrelated assets and headers",
+      "commit_dirty": false
+    }
+  },
+  "stages": [
+    {
+      "name": "queued",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "initialize",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "clone_repo",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "build",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    }
+  ],
+  "build_config": {
+    "build_command": null,
+    "destination_dir": null,
+    "build_caching": null,
+    "root_dir": null,
+    "web_analytics_tag": null,
+    "web_analytics_token": null
+  },
+  "env_vars": {},
+  "compatibility_date": "2026-08-07",
+  "compatibility_flags": [],
+  "build_image_major_version": 3,
+  "usage_model": null,
+  "aliases": null,
+  "is_skipped": false,
+  "production_branch": "main",
+  "uses_functions": null
+}
