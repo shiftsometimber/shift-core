@@ -248,6 +248,7 @@ function makeNativeNavigationFreshTrackedStats(){
 
 export function nativeNavigationFreshSourceChecker(expected){
  clean(expected);
+ prepareNativeNavigationIndexStats();
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
  let context;try{context=freshSourceContext();}catch{context=null;}
  const freshTrackedStats=context?makeNativeNavigationFreshTrackedStats():null;
