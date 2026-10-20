@@ -1,0 +1,177 @@
+{
+  "pass": true,
+  "at": "2026-10-20T11:42:17.546Z",
+  "id": "dcc70592-8ae2-4ed7-bfc2-775c7e419532",
+  "url": "https://dcc70592.projectshift.pages.dev",
+  "source": "744b40a24f62d3dd7ef3c4141e4c66ae7a051ce7",
+  "checks": [
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/assets/v42.js",
+      "status": 200,
+      "sha256": "975317c65db501e6154c17684c65e63aa12457d4019fafb7286f380f7ea19b34",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/assessment-walkthrough",
+      "status": 200,
+      "sha256": "6b09a2c019a5e08ee74c4933bcadb5bfbe5c27c36ab86653d5b59d64ec44ff8d",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "no-referrer",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/medicine-preference",
+      "status": 200,
+      "sha256": "0bb76f29bebf75bfd5f165b1516607b7e5a88742f3f4d19177a8277c48dbc6cf",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "no-referrer",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/faq/what-is-tap-room",
+      "status": 200,
+      "sha256": "7cd1778a07427d8806d30509acdf34d1320febc6d8b84d84f4a043e6bdda83ed",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/order-success",
+      "status": 200,
+      "sha256": "561d8c5a5255ab46155491a8edb27430ec4458a7efcb0a253d75d89469dd9452",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/tap-room",
+      "status": 200,
+      "sha256": "55a2918e23441dd2a44e4a4d59bc3f53239d5053eb11aafb8f5f8f768e3ec623",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/treatment-assessment-terms",
+      "status": 200,
+      "sha256": "a8e5ed0c26dd0d85f302cc48dccbeef34f45b819cea093e5eacc485a188db8bd",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "no-referrer",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/treatment-assessment",
+      "status": 200,
+      "sha256": "2bb6adae5f5079e6ab14b5eeae086e8a7a8cfca58d329ebaffb03a7cc7610925",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/treatment-terms",
+      "status": 200,
+      "sha256": "3a8a7cd17643abf03066b8470a4b39583eb698702d36cb9612f37a43d29c5ce1",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://dcc70592.projectshift.pages.dev/assets/footer-social-links-v1.js",
+      "status": 200,
+      "sha256": "fe8c34a775d3ba4a102b5953539d4ffa827a6f492add287888b615a7d7e73d9a",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/footer-social-links-v1.js?v=20261020",
+      "status": 200,
+      "sha256": "fe8c34a775d3ba4a102b5953539d4ffa827a6f492add287888b615a7d7e73d9a",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    }
+  ],
+  "unrelatedAssetsPreserved": 813,
+  "manifestExact": true,
+  "headersSHA256": "a93e624293e678211efc7f7520fb57fdd2635a01972b76904df0373cb0734466"
+}

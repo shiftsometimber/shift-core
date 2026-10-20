@@ -1,0 +1,52 @@
+{
+  "at": "2026-10-20T11:43:17.153Z",
+  "status": "LIVE_VERIFIED",
+  "url": "https://shiftsometimber.co.uk",
+  "source": "744b40a24f62d3dd7ef3c4141e4c66ae7a051ce7",
+  "branch": "fix/footer-social-links-20261020",
+  "deployment": "dcc70592-8ae2-4ed7-bfc2-775c7e419532",
+  "predecessor": "a87d9d75-2a7d-43b0-8277-0dc9291705a1",
+  "preview": "8f2272a1-76e4-468e-908c-df0f7b72aa21",
+  "approvedHeading": "Follow SHIFT",
+  "links": [
+    [
+      "Instagram",
+      "https://www.instagram.com/shiftsometimber"
+    ],
+    [
+      "Facebook",
+      "https://www.facebook.com/ShiftSomeTimber"
+    ],
+    [
+      "X",
+      "https://x.com/ShiftSomeTimber"
+    ],
+    [
+      "YouTube",
+      "https://www.youtube.com/@ShiftSomeTimber"
+    ]
+  ],
+  "browserCases": 32,
+  "engines": [
+    "Chromium",
+    "WebKit"
+  ],
+  "widths": [
+    390,
+    1440
+  ],
+  "keyboardNavigation": true,
+  "footerInstances": 1,
+  "newPageErrors": 0,
+  "socialRequestsBeforeClick": 0,
+  "mainHomepageAssetUnchanged": true,
+  "unrelatedAssetsPreserved": 813,
+  "headersSHA256": "a93e624293e678211efc7f7520fb57fdd2635a01972b76904df0373cb0734466",
+  "customerPageAssetCoverage": 460,
+  "implementation": "Shared footer client loaded by existing v42; eight customer HTML pages without v42 load it directly",
+  "clinicalStockPaymentWrites": 0,
+  "coreWorkerWrites": 0,
+  "publicSocialPosts": 0,
+  "physicalDeviceTested": false,
+  "continuity": "Preserve this complete current manifest and the shared client/v42 loader in subsequent static releases."
+}
