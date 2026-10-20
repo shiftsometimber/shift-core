@@ -1,0 +1,6 @@
+{
+  "operation": "gh api job logs",
+  "error": "response contains terminal escape sequences; allow-escape-sequences required",
+  "displayedRawBytes": false,
+  "correction": "Write complete raw bytes to private files only; print hashes, not escape bytes"
+}

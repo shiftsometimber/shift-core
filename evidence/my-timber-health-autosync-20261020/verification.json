@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-10-20T21:12:23.176217+00:00",
+  "recordedAt": "2026-10-20T21:28:11.970290+00:00",
   "implemented": "Opt-in foreground automatic imports on opening/resuming; manual import retained",
   "backgroundSync": "NOT_IMPLEMENTED",
   "deployed": false,
@@ -9,17 +9,17 @@
   "sourceChecks": 45,
   "automaticBrowserMatrix": "PASS Chromium320/1440, WebKit390 with real isolated SQLite; native permission responses simulated",
   "manualBrowserMatrix": "PASS Chromium390/1440, WebKit390",
-  "androidCompile": "UNPERFORMED: no JDK/Gradle/SDK; original navigation compiler failed missing Java Runtime",
+  "androidCompile": "PASS debug APK and unsigned release bundle on original existing workflow39499826626; current48e7 source",
   "originalSubmission": "Existing iOS build7 and Android4 draft unchanged",
   "nativeSource": "7d53f526bc9d3faaa9004e745c530a99df56d212",
   "appSourceBase": "88f226bf60c2f6803a65bcdb481d61854fbc3cc0",
   "privateRecordsReadOrChanged": false,
   "remaining": [
-    "Current-source admission and sole-lane web deployment/live checks",
-    "Android native compilation",
-    "Exact new binary allocation/signing and distribution pack; preserve App Review7",
-    "Physical iPhone and Android permissions, accurate imports, resume, disconnect, account-isolation",
-    "Closed-app/background sync remains not implemented"
+    "Current shared Programme source-tests timeout repair and accepted normal-main pack before member source admission/deploy/live checks",
+    "Physical exact new native build acceptance on authorised isolated iPhone and Android",
+    "New native distribution pack and controlled distribution; preserve iOS7 review and Android4 draft",
+    "Closed-app/background syncing remains unimplemented",
+    "Master/owner writeback HTTP403 unresolved; do not retry unchanged or substitute direct writes"
   ],
   "failedAttemptPreserved": "browser-final.log missing saved-list attachment; fixed before final-browser receipt",
   "runtimeFiles": {
@@ -48,5 +48,47 @@
     },
     "PR1386": "open/draft/unmerged",
     "acceptedMainPackAvailable": false
-  }
+  },
+  "latestNativeQualification": {
+    "recordedAt": "2026-10-20T21:27:17.159114+00:00",
+    "run": 39499826626,
+    "source": "48e7ebc4525f27d1e360f460e2e71b93ed8739df",
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/39499826626",
+    "jobs": {
+      "android": {
+        "id": 118894198421,
+        "conclusion": "success",
+        "logBytes": 58251,
+        "logSHA256": "3d7e0f26d2414d6ca5c09d695419b2ff951f3373ea7b5acfa8f362360e43ef66"
+      },
+      "ios": {
+        "id": 118894199147,
+        "conclusion": "success",
+        "logBytes": 57220,
+        "logSHA256": "c53e4791f2e26b5b4cd2aca8a6b3e1c7f5502b65adcfe4516473436b30771bf1"
+      }
+    }
+  },
+  "iosHostedCompile": "PASS debug and Release simulator builds, original native-policy checks; job118894199147",
+  "signedIosCandidate": {
+    "startedAt": "2026-10-20T21:22:54.548828+00:00",
+    "finishedAt": "2026-10-20T21:23:09.545318+00:00",
+    "source": "48e7ebc4525f27d1e360f460e2e71b93ed8739df",
+    "build": 8,
+    "exit": 0,
+    "appReviewSubmissionChanged": false,
+    "profileOrCertificateCreationAllowed": false,
+    "installed": false,
+    "uploaded": false,
+    "app": "/Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/ios-device-candidate8/Build/Products/Release-iphoneos/MyTimber.app",
+    "bundle": "uk.co.shiftsometimber.mytimber",
+    "version": "8",
+    "codesignVerification": 0,
+    "binarySHA256": "9849696ee47d71735ab86dd62d1093a053a7df25712b42ea89d5b402f4798324",
+    "widgetBuild": "8",
+    "nativeHealthScriptSHA256": "b9bd3a7f31448836ec5827b602749acf4e4e78dfa99be780a8b16a5fb3b715ad"
+  },
+  "retiredBlockers": [
+    "Missing Mac Android toolchain no longer prevents candidate compilation: existing public standard hosted runners qualify exact source, with SDK licence auto-accept false, no retained artifacts or Gradle cache writes"
+  ]
 }

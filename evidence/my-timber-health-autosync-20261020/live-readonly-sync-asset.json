@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-20T21:27:19.420579+00:00",
+  "url": "https://shiftsometimber.co.uk/assets/member-experience/device-health-sync.mjs",
+  "status": 403,
+  "contentType": "text/plain; charset=UTF-8",
+  "bodySHA256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c",
+  "authenticated": false,
+  "healthDataReadOrWritten": false,
+  "availabilityConclusion": "UNVERIFIED: anonymous request denied HTTP403; this does not establish endpoint presence or absence"
+}

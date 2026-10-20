@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-20T21:27:17.159114+00:00",
+  "run": 39499826626,
+  "source": "48e7ebc4525f27d1e360f460e2e71b93ed8739df",
+  "url": "https://github.com/shiftsometimber/shift-core/actions/runs/39499826626",
+  "jobs": {
+    "android": {
+      "id": 118894198421,
+      "conclusion": "success",
+      "logBytes": 58251,
+      "logSHA256": "3d7e0f26d2414d6ca5c09d695419b2ff951f3373ea7b5acfa8f362360e43ef66"
+    },
+    "ios": {
+      "id": 118894199147,
+      "conclusion": "success",
+      "logBytes": 57220,
+      "logSHA256": "c53e4791f2e26b5b4cd2aca8a6b3e1c7f5502b65adcfe4516473436b30771bf1"
+    }
+  }
+}

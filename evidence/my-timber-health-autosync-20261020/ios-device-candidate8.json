@@ -1,0 +1,18 @@
+{
+  "startedAt": "2026-10-20T21:22:54.548828+00:00",
+  "finishedAt": "2026-10-20T21:23:09.545318+00:00",
+  "source": "48e7ebc4525f27d1e360f460e2e71b93ed8739df",
+  "build": 8,
+  "exit": 0,
+  "appReviewSubmissionChanged": false,
+  "profileOrCertificateCreationAllowed": false,
+  "installed": false,
+  "uploaded": false,
+  "app": "/Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/ios-device-candidate8/Build/Products/Release-iphoneos/MyTimber.app",
+  "bundle": "uk.co.shiftsometimber.mytimber",
+  "version": "8",
+  "codesignVerification": 0,
+  "binarySHA256": "9849696ee47d71735ab86dd62d1093a053a7df25712b42ea89d5b402f4798324",
+  "widgetBuild": "8",
+  "nativeHealthScriptSHA256": "b9bd3a7f31448836ec5827b602749acf4e4e78dfa99be780a8b16a5fb3b715ad"
+}
