@@ -37,3 +37,10 @@ The interactive execution environment disconnected after the Pages live browser 
 - Next release must start from this current core main plus the recorded current Pages source. Never redeploy the pre-header core or REC-032 Pages baseline as current.
 - Preserve the locked quiz-to-full-detail workspace and H1: “Based on your answers, this could perhaps work for you…”. Preserve medication switches, imagery, Choose → Verify → Pay → Review, pricing/clinical/stock controls and no homepage ticker.
 - Newsroom publication and UK scanner changes remain outside this header release. No articles, stock, payments or member records changed.
+
+
+## 20 October 2026 — single header logo correction
+
+Matt reported the overlapping/off-centre badge in the live cream header. The existing separate pseudo-element badge and clipped/filtered logo could leave a double ring and colour-filter spill. This finite release supplies one self-contained SVG using the byte-exact existing wordmark and approved owner-uploaded badge, disables the old overlay and normalises row alignment. No retyping or brand redesign. It changes the shared header stylesheet and adds one homepage stylesheet link because the Worker inlines a frozen copy of the old navigation styles. Homepage main content, header links and footer are byte-identical. No Worker release, customer/stock/payment mutation or external communication.
+
+Authoritative finite payload and path mapping: release/header-logo-fix-20261020/. The static transaction starts from the actual provider manifest, preserves every unrelated asset including the medicine walkthrough and inline budget update, and preserves the predecessor header rules. Preview and live Chromium/WebKit checks must pass before completion. A Pages publication does not claim to merge this branch into main or qualify the active Core release. Future static payloads must preserve these paths and homepage link; future Core/home-style updates must retain this fix.

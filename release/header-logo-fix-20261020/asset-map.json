@@ -1,0 +1,33 @@
+{
+  "baseDeployment": "4a0984cf-e820-480b-8dbd-1f8cced98bf8",
+  "files": [
+    {
+      "path": "/assets/header-logo-fix-20261020.css",
+      "file": "header-logo-fix-20261020.css",
+      "before": null,
+      "after": "c4421b12fd4cad99303a310886adc997",
+      "sha256": "61162e31e5f3d19e656cbf25258b0f09d933c912db5e40f2b7c372ec604684cc"
+    },
+    {
+      "path": "/index.html",
+      "file": "index.html",
+      "before": "50d1c63afe07d39c0effba5efe950880",
+      "after": "ea5ba261364089017b8b2ac654b2d2f2",
+      "sha256": "117e5a6dd2b294d6f592af246c719cfa9708509b3ce220512e3ee2d6abb66a4f"
+    },
+    {
+      "path": "/assets/header-navigation-v2.css",
+      "file": "header-navigation-v2.css",
+      "before": "c644efd8b0fcbafde934e10e6b779bb0",
+      "after": "366f87a14ba39d343ac5e01223f7e0c9",
+      "sha256": "720bb3ac38de0d0c382ea761c9d30d029032c8c04039830d87ca2cb84596aec8"
+    },
+    {
+      "path": "/assets/header-logo-20261020.svg",
+      "file": "header-logo-20261020.svg",
+      "before": null,
+      "after": "d9c016c78e45086f636b1f08ecfdd7fb",
+      "sha256": "9670d02dc592590ad9029c27fd7a6fd55a821f670e9dffb9c1e52a848a336d8a"
+    }
+  ]
+}

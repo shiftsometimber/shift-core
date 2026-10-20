@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-20T11:11:12.938Z",
+  "base": "4a0984cf-e820-480b-8dbd-1f8cced98bf8",
+  "changed": [
+    "/assets/header-logo-fix-20261020.css",
+    "/index.html",
+    "/assets/header-navigation-v2.css",
+    "/assets/header-logo-20261020.svg"
+  ],
+  "allOtherAssetsUnchanged": true,
+  "mainContentByteIdentical": true,
+  "headerLinksByteIdentical": true,
+  "footerByteIdentical": true,
+  "workerWrites": 0
+}
