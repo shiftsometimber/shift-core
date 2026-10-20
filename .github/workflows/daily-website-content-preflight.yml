@@ -7,6 +7,7 @@ on:
       - 'scheduled-knowledge-v1.js'
       - 'wrangler.jsonc'
       - 'release/recorded-week-navigation-outer-frame-20261018.mjs'
+      - 'release/immutable-git-facts.mjs'
       - '.github/workflows/daily-website-content-preflight.yml'
 permissions:
   contents: read
