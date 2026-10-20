@@ -6,7 +6,7 @@ import {testosteroneContent} from '../testosterone-public-content.mjs';
 import {pages} from '../shift-coach/public-trust-repair.mjs';
 
 test('publication rejects internal instructions and unfinished placeholders',()=>{
- for(const copy of ['TODO: agree fees','Internal note: call supplier','[Insert price]','Confirm with the partner before publishing.','The checkout must explain the assessment fee.','Provider arrangements must be confirmed before ordering opens.','Needs editorial approval.'])assert.deepEqual(customerCopyIssues(copy),['internal_working_copy'],copy);
+ for(const copy of ['Price being finalised','TODO: agree fees','Internal note: call supplier','[Insert price]','Confirm with the partner before publishing.','The checkout must explain the assessment fee.','Provider arrangements must be confirmed before ordering opens.','Needs editorial approval.'])assert.deepEqual(customerCopyIssues(copy),['internal_working_copy'],copy);
 });
 test('real customer questions, safety instructions and research uncertainty remain valid',()=>{
  for(const copy of ['What happens if treatment is declined?','Ask your prescriber about the benefits and risks.','Clinical approval is required before treatment.','No stock available today.','The study proposed a new explanation.','Follow the instructions supplied with your medicine.','Your consent must be confirmed before sharing health information.'])assert.deepEqual(customerCopyIssues(copy),[],copy);

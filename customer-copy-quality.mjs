@@ -1,5 +1,6 @@
 // Publication validation only: never strip customer questions or clinical text.
 const internalPatterns=[
+ /\b(?:price|pricing|amount)\s+(?:(?:is|are)\s+)?(?:still\s+)?being\s+finali[sz]ed\b/i,
  /\b(?:TODO|FIXME)\s*[:\u2013\u2014-]/i,
  /\b(?:internal|editorial|developer)\s+(?:note|reminder|question)\s*:/i,
  /\[(?:insert|placeholder|add source|confirm with|TBC)\b[^\]]*\]/i,
