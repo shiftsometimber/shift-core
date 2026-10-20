@@ -300,17 +300,20 @@ function bytes(ref,p){
  const row=/^([a-f0-9]{40}) (blob|tree) ([0-9]+)$/.exec(batch.subarray(0,lf).toString('ascii'));assert(row,'Exact native navigation blob or tree required');
  assert.equal(row[1],expected,'Fresh authenticated native navigation object required');
  const [,id,kind,length]=row,size=Number(length);assert(Number.isSafeInteger(size)&&size>=0);assert.equal(batch.length,lf+size+2);assert.equal(batch[batch.length-1],10);
- if(kind==='blob'){
-  const value=decodeSeoBlobBatch(batch,[id]).get(id),after=navigationBlobStorageState(id);
-  if(reusable)assert.equal(after,provenance,'Native navigation object storage changed during immutable batch use');
-  if(provenance!==null&&after===provenance&&batch.length<=32e6){
-   const previous=nativeNavigationBlobBatches.get(id);if(previous){nativeNavigationBlobBatchBytes-=previous.bytes.length;nativeNavigationBlobBatches.delete(id);}
-   while(nativeNavigationBlobBatchBytes+batch.length>32e6){const oldest=nativeNavigationBlobBatches.keys().next().value;nativeNavigationBlobBatchBytes-=nativeNavigationBlobBatches.get(oldest).bytes.length;nativeNavigationBlobBatches.delete(oldest);}
-   nativeNavigationBlobBatches.set(id,{bytes:Buffer.from(batch),provenance});nativeNavigationBlobBatchBytes+=batch.length;
-  }
-  return value;
+ const value=kind==='blob'?decodeSeoBlobBatch(batch,[id]).get(id):batch.subarray(lf+1,lf+1+size);
+ if(kind==='tree')assert.equal(createHash('sha1').update('tree '+size+'\0').update(value).digest('hex'),id);
+ const after=navigationBlobStorageState(id);
+ if(reusable)assert.equal(after,provenance,'Native navigation object storage changed during immutable batch use');
+ if(provenance!==null&&after===provenance&&batch.length<=32e6){
+  const previous=nativeNavigationBlobBatches.get(id);if(previous){nativeNavigationBlobBatchBytes-=previous.bytes.length;nativeNavigationBlobBatches.delete(id);}
+  while(nativeNavigationBlobBatchBytes+batch.length>32e6){const oldest=nativeNavigationBlobBatches.keys().next().value;nativeNavigationBlobBatchBytes-=nativeNavigationBlobBatches.get(oldest).bytes.length;nativeNavigationBlobBatches.delete(oldest);}
+  nativeNavigationBlobBatches.set(id,{bytes:Buffer.from(batch),provenance});nativeNavigationBlobBatchBytes+=batch.length;
  }
- const value=batch.subarray(lf+1,lf+1+size);assert.equal(createHash('sha1').update('tree '+size+'\0').update(value).digest('hex'),id);return git('show',ref+':'+p);
+ if(kind==='blob')return value;
+ // Authenticate and reuse only Git's exact immutable directory display, keyed
+ // by the full ref/path and freshly checked storage context. All source scans,
+ // native object hashes and supplied-reader fences above remain mandatory.
+ return immutableNavigationFact('git',['show',ref+':'+p],{maxBuffer:64e6});
 }
 const content=(r,p)=>bytes(r,p).toString('utf8');
 const diff=(a,b)=>text('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
