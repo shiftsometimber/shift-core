@@ -1,11 +1,13 @@
 name: Daily website content read-only preflight
 on:
   push:
-    branches: [codex/daily-website-content-20261015, codex/website-editorial-completion-20261018]
+    branches: [codex/daily-website-content-20261015, codex/website-editorial-completion-20261018, fix/recorded-week-native-source-check-20261018]
     paths:
       - 'daily-content/**'
       - 'scheduled-knowledge-v1.js'
       - 'wrangler.jsonc'
+      - 'release/recorded-week-navigation-outer-frame-20261018.mjs'
+      - 'release/immutable-git-facts.mjs'
       - '.github/workflows/daily-website-content-preflight.yml'
 permissions:
   contents: read

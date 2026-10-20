@@ -61,7 +61,9 @@ export function nativeGitSourceDifference(base,head){
 }
 export function withImmutableHistoryVerification(callback){
  if(immutableHistoryScope){assert.equal(process.cwd(),immutableHistoryScope.cwd,'Verification working directory changed');assert.equal(immutableEnvironmentSignature(),immutableHistoryScope.environment,'Verification execution environment changed');return callback();}
- immutableTrees.clear();immutableBlobBytes.clear();
+ // Scoped facts are reset; authenticated native facts retain every existing point-of-use storage/context/hash check.
+ for(const key of immutableTrees.keys())if(!key.startsWith('native-context-'))immutableTrees.delete(key);
+ for(const key of immutableBlobBytes.keys())if(!key.startsWith('native-context-'))immutableBlobBytes.delete(key);
  const cwd=process.cwd(),head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
  assertGitTrackedSourceVisible('entry');
  assert.equal(execFileSync('git',['diff','--name-only','HEAD','--'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
