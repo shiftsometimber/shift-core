@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-20T11:49:24.881Z",
+  "source": "31899561f3100de6e9ac38e4b161f20c760b618b",
+  "deployment": "50af8c64-0b62-4516-b819-f31c8717a140",
+  "url": "https://shiftsometimber.co.uk",
+  "predecessor": "dcc70592-8ae2-4ed7-bfc2-775c7e419532",
+  "manifestExact": true,
+  "assets": 827,
+  "updatedPublicHtml": 460,
+  "newIconAddresses": 4,
+  "iconBytesIdenticalToApprovedExistingS": true,
+  "sourceAssessment": "Existing PNG, ICO and touch-icon all already displayed the approved S; stale native Safari icon inferred from supplied screenshot, not directly verified.",
+  "liveStartHereResultCases": 4,
+  "engines": [
+    "Chromium",
+    "WebKit"
+  ],
+  "widths": [
+    390,
+    1440
+  ],
+  "clinicalRequests": 0,
+  "existingHeaderArtworkPreserved": true,
+  "pageMainHeaderFooterBytePreserved": true,
+  "copyCleanupAndSocialFooterPreserved": true,
+  "peerHeaderRestorationPreserved": true,
+  "nativeSafariTabCacheVerified": false
+}
