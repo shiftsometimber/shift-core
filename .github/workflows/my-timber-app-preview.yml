@@ -10,6 +10,11 @@ on:
       - 'my-timber-app/**'
       - '.github/workflows/my-timber-app-preview.yml'
   workflow_dispatch:
+    inputs:
+      compile_only:
+        description: 'Compile and verify without retained artifacts or Gradle caches'
+        type: boolean
+        default: false
 permissions:
   contents: read
 defaults:
@@ -41,10 +46,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.13'
+          cache-disabled: ${{ inputs.compile_only == true }}
       - name: Source and presentation checks
         run: |
           mkdir -p my-timber-app/evidence
           node --test my-timber-app/tests/source.test.mjs | tee my-timber-app/evidence/source-tests.txt
+          node --test my-timber-app/tests/*.test.mjs member-experience/tests/device-health*.test.mjs | tee my-timber-app/evidence/health-sync-tests.txt
           git rev-parse HEAD > my-timber-app/evidence/commit.txt
           java -version 2> my-timber-app/evidence/java-version.txt
           gradle --version > my-timber-app/evidence/gradle-version.txt
@@ -71,7 +78,7 @@ jobs:
           tail -n 25 ../evidence/android-release-build.txt
           sha256sum app/build/outputs/bundle/release/app-release.aab > ../evidence/android-release-aab.sha256
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: ${{ always() && inputs.compile_only != true }}
         with:
           name: my-timber-android-readiness-${{ github.sha }}
           path: |
@@ -98,6 +105,7 @@ jobs:
         run: |
           mkdir -p my-timber-app/evidence
           node --test my-timber-app/tests/source.test.mjs | tee my-timber-app/evidence/source-tests.txt
+          node --test my-timber-app/tests/*.test.mjs member-experience/tests/device-health*.test.mjs | tee my-timber-app/evidence/health-sync-tests.txt
           python3 my-timber-app/tests/run-policies.py | tee my-timber-app/evidence/native-policy-tests.txt
           git rev-parse HEAD > my-timber-app/evidence/commit.txt
           xcodebuild -version > my-timber-app/evidence/xcode-version.txt
@@ -133,7 +141,7 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent release-build/Build/Products/Release-iphonesimulator/MyTimber.app ../evidence/MyTimber-release-simulator.zip
           shasum -a 256 ../evidence/MyTimber-release-simulator.zip > ../evidence/ios-release-simulator.sha256
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: ${{ always() && inputs.compile_only != true }}
         with:
           name: my-timber-ios-readiness-${{ github.sha }}
           path: my-timber-app/evidence/
