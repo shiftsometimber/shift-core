@@ -1,0 +1,20 @@
+[
+  {
+    "path": "/start-here.html",
+    "hash": "89066bc31576b014e1ef76916a05f262",
+    "sha256": "7132e0ff942b0a6883e8975700c8c6b1f4b03542f059fe12d3581b305c8c28ee",
+    "file": "retained-start-here-candidate.html",
+    "contentType": "text/html; charset=utf-8",
+    "verifiedAgainstPeerCandidate": true,
+    "blake3KeyMatches": true
+  },
+  {
+    "path": "/assets/start-here-support-v1.js",
+    "hash": "f2efa7e8a092179896358b91ffdc95f5",
+    "sha256": "20834fde2bb9b017f64ed9badca2a782eb60af8f4c7b30f9692f2953aabbf63e",
+    "file": "retained-support-candidate.js",
+    "contentType": "application/javascript; charset=utf-8",
+    "verifiedAgainstPeerCandidate": true,
+    "blake3KeyMatches": true
+  }
+]
