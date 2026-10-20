@@ -1,3 +1,4 @@
+import {customerCopyIssues} from '../customer-copy-quality.mjs';
 import {POLICY,ORIGIN,digest,frozenArticle,londonParts,londonRelease,ensureEditorialSchema,verifyEditorialRelease} from './publication.mjs';
 import {publicEditorialUrl,primaryEvidenceUrl,readablePage,refreshEditorialCorpus,retrieveEditorialContext} from './corpus.mjs';
 import {storePublicPage,plainText} from '../member-experience/ai-site-knowledge.mjs';
@@ -98,6 +99,7 @@ export function validateEditorialDraft(d,{brief,sources,context}){
  if(!Array.isArray(d.claims)||!d.claims.length||d.claims.some(c=>typeof c.claim!=='string'||!Array.isArray(c.source_urls)||!c.source_urls.length||c.source_urls.some(u=>!supplied.has(u)||!links.includes(u))))issues.push('unsupported_or_invisible_claim');
  if(!/\n#{2,3} Sources\b/i.test(d.body||''))issues.push('source_section_missing');
  const rendered=[d.title,d.summary,d.body].join(' ');
+ issues.push(...customerCopyIssues(rendered));
  const emergency=/(?:severe|gasping|choking|cannot|unable|not able).{0,45}(?:breath|speak|words)|chest.{0,20}(?:tight|heavy)|pain.{0,25}(?:spread|radiat).{0,50}(?:arm|jaw|neck)/i;
  for(const sentence of String(d.body||'').split(/(?<=[.!?])\s+/))if(emergency.test(sentence)&&/\b111\b|(?:contact|see|speak|ask).{0,20}\bGP\b/i.test(sentence)&&!/\b999\b/.test(sentence))issues.push('emergency_symptoms_routed_to_non_emergency_help');
  if(/[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]/.test(rendered))issues.push('invisible_or_directional_padding');

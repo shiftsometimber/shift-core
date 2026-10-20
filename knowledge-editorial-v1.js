@@ -1,4 +1,5 @@
 import hq from './hq-ai-v2.js';
+import {customerCopyIssues} from './customer-copy-quality.mjs';
 
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const WRITE_ROLES=new Set(['owner','admin','marketing','content']);
@@ -85,6 +86,7 @@ export async function knowledgeEditorialRoutes(request,env,ctx){
   if(m==='POST'&&publishMatch){
     const row=await env.DB.prepare(`SELECT id,title,slug,category,author,status,summary,body,seo_title,publish_at FROM knowledge_articles WHERE id=?`).bind(Number(publishMatch[1])).first();
     if(!row)return withHqCors(json({ok:false,error:'article_not_found'},404),request,env);
+    if(customerCopyIssues([row.title,row.summary,row.body,row.seo_title]).length)return withHqCors(json({ok:false,error:'internal_working_copy'},409),request,env);
     const approval=await canPublishEditorialArticle(env.DB,row.slug);
     if(!approval.ok)return withHqCors(json({ok:false,error:'editorial_review_required',message:'Approve this article in Knowledge Hub before publishing it.'},409),request,env);
     const delegated=new Request(new URL('/v1/hq/articles',request.url),{method:'POST',headers:request.headers,body:JSON.stringify({title:row.title,slug:row.slug,category:row.category,author:row.author,status:'published',summary:row.summary,body:row.body,seoTitle:row.seo_title,publishAt:row.publish_at||new Date().toISOString()})});
@@ -96,6 +98,7 @@ export async function knowledgeEditorialRoutes(request,env,ctx){
     let b={};try{b=await request.clone().json()}catch{}
     const status=String(b.status||'draft').toLowerCase();
     if(['published','scheduled'].includes(status)){
+      if(customerCopyIssues([b.title,b.summary,b.body,b.seoTitle]).length)return withHqCors(json({ok:false,error:'internal_working_copy'},409),request,env);
       const approval=await canPublishEditorialArticle(env.DB,b.slug);
       if(!approval.ok)return withHqCors(json({ok:false,error:'editorial_review_required',message:'Approve this article in Knowledge Hub before publishing or scheduling it.'},409),request,env);
     }

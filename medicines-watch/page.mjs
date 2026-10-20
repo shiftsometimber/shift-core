@@ -16,7 +16,8 @@ function watchHeaders(initial = {}) {
  return headers;
 }
 const CANONICAL = 'https://shiftsometimber.co.uk' + WATCH_PATH;
-const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const customerValue = value => value==='Not established by these research sources; no routine access claim proposed.'?'These research sources do not establish routine NHS access in England.':value;
+const esc = value => String(customerValue(value) ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/London'}).format(new Date(value)) : 'Not yet recorded';
 const time = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Europe/London',timeZoneName:'short'}).format(new Date(value)) : 'Not yet recorded';
 const statusLabel = status => ({current:'Sources unchanged',verification_pending:'Verification pending',check_delayed:'Source check delayed',awaiting_review:'Update awaiting review'}[status] || 'Verification pending');

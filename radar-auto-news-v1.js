@@ -1,3 +1,4 @@
+import {customerCopyIssues} from './customer-copy-quality.mjs';
 import {permittedPublisherMode,originalNoticeEligibility,applyPublisherFormat,PUBLISHER_DESTINATIONS} from './radar-permitted-content-v1.js';
 import {sourceReusePolicy} from './radar-source-policy-v1.js';
 // Owner-authorised 17 September 2026: routine attributed news and SHIFT's take
@@ -21,6 +22,7 @@ export function autoNewsEligibility(row,pkg,patch={},now=Date.now()){
  if(!Array.isArray(pkg.known_facts)||!pkg.known_facts.length||pkg.known_facts.some(f=>!String(f.claim||'').trim()||!urls.has(f.source_url)))reasons.push('unsupported_citations');
  if(!String(pkg.shift_take||'').trim()||String(pkg.article_markdown||'').trim().length<100)reasons.push('incomplete_article');
  const rendered=[pkg.headline,pkg.standfirst,pkg.article_markdown,pkg.shift_take,...(Array.isArray(pkg.known_facts)?pkg.known_facts:[]).map(x=>x?.claim),pkg.safety].join(' ');
+ reasons.push(...customerCopyIssues(rendered));
  if(/\[(?:journal name|insert[^\]]*|placeholder[^\]]*|add source[^\]]*)\]|\{\{[^}]+\}\}/i.test(rendered))reasons.push('unfinished_placeholder');
  const preprint=evidence.some(x=>/preprint|^ppr$/i.test(String(x.evidence_type||x.publication_type||x.source_kind||''))||/^https:\/\/(?:www\.)?(?:medrxiv|biorxiv)\.org\//i.test(x.url||''));
  if(preprint&&!/\bpreprint\b/i.test([pkg.headline,pkg.standfirst,pkg.article_markdown].join(' ')))reasons.push('preprint_disclosure_missing');
