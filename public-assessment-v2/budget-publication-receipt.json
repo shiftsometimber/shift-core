@@ -1,0 +1,510 @@
+{
+  "scope": {
+    "changes": [
+      "/assets/start-here-support-v1.js",
+      "/start-here.html"
+    ],
+    "retainedAssets": 903,
+    "homepageAssetUnchanged": true,
+    "healthFinderWalkthroughAssetsUnchanged": true,
+    "clinicalAndPaymentActivation": false
+  },
+  "livePublication": {
+    "verifiedAt": "2026-10-20T11:07:10.595Z",
+    "deployment": "4a0984cf-e820-480b-8dbd-1f8cced98bf8",
+    "baseline": "41f28b38-04f2-4ff3-8c87-a749e63d857a",
+    "assets": [
+      {
+        "path": "/assets/start-here-support-v1.js",
+        "sha256": "bf0db860f0bc9847e23d83d18782c930a3d9a1d47d48e4f838f4bdf9b6c81a5d",
+        "exactCandidate": true
+      },
+      {
+        "path": "/start-here.html",
+        "sha256": "962828cf1d309569892cf4a2ead80ce616c0cea0ebe251e0f6f0f6d97d0df7f8",
+        "exactCandidate": true
+      }
+    ],
+    "liveScriptSha256": "bf0db860f0bc9847e23d83d18782c930a3d9a1d47d48e4f838f4bdf9b6c81a5d",
+    "homepageByteIdentical": true,
+    "unchangedAssets": 903,
+    "healthFinderWalkthroughPreserved": true,
+    "all29VariantsOOS": true
+  },
+  "previewBrowser": {
+    "origin": "https://c961f06f.projectshift.pages.dev",
+    "cases": [
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "nhs",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "under100",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "over200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "nhs",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "under100",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "band200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "over200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "nhs",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "under100",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "band200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "over200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "nhs",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "under100",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "band200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "over200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "NHS",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "webkit",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      }
+    ],
+    "newScriptErrors": [],
+    "inheritedErrors": [],
+    "clinicalOrPaymentRequests": 0
+  },
+  "liveBrowser": {
+    "origin": "https://shiftsometimber.co.uk",
+    "cases": [
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "nhs",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "under100",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "over200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "nhs",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "under100",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "band200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "over200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "nhs",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "under100",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "band200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "over200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "nhs",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "under100",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "band200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "over200",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "NHS",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 0
+      },
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      },
+      {
+        "engine": "webkit",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "Both",
+        "routeDirectlyBelowBudget": true,
+        "noExtraClick": true,
+        "priceRows": 6
+      }
+    ],
+    "newScriptErrors": [],
+    "inheritedErrors": [],
+    "clinicalOrPaymentRequests": 0
+  }
+}
