@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-20T11:36:04.510Z",
+  "base": "c4a30082-9e9a-441c-b719-fb22b76f201d",
+  "changes": [
+    "/assets/v42.js",
+    "/assessment-walkthrough.html",
+    "/medicine-preference.html",
+    "/faq/what-is-tap-room.html",
+    "/order-success.html",
+    "/tap-room.html",
+    "/treatment-assessment-terms.html",
+    "/treatment-assessment.html",
+    "/treatment-terms.html",
+    "/assets/footer-social-links-v1.js"
+  ],
+  "unchanged": 813,
+  "headersPreserved": true,
+  "footerApproval": "Matt: Agreed add it, 20 October 2026; Instagram/Facebook/X/YouTube only",
+  "customerDataWrites": 0,
+  "workerWrites": 0,
+  "existingFooterPreserved": true
+}

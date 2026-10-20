@@ -1,0 +1,81 @@
+[
+  {
+    "path": "/assets/v42.js",
+    "file": "assets/v42.js",
+    "before": "c0c805468e59d4a864d34995cf3be092",
+    "beforeSHA256": "8c699c6b3c7fed3e52bc4f85fac7636c6de7b1949b76fd3168faeea3a8e377d1",
+    "after": "aa9a4449085fcbb8ffcbac7145d587d7",
+    "sha256": "975317c65db501e6154c17684c65e63aa12457d4019fafb7286f380f7ea19b34"
+  },
+  {
+    "path": "/assessment-walkthrough.html",
+    "file": "assessment-walkthrough.html",
+    "before": "9393cf9dfb4f9536f6f0b688c0c85703",
+    "beforeSHA256": "85ded37233e1e44f24015528e31fc6323a2b3553db0fd99381be0726901e7d7a",
+    "after": "87174b685df5f338edf531ff027b9dc5",
+    "sha256": "6b09a2c019a5e08ee74c4933bcadb5bfbe5c27c36ab86653d5b59d64ec44ff8d"
+  },
+  {
+    "path": "/medicine-preference.html",
+    "file": "medicine-preference.html",
+    "before": "bc5eedb4970c10955b41282525b5170c",
+    "beforeSHA256": "b413aee151748a25fc3f5811131f5618c2f40dd51e4c0d88e9182b5333ea467f",
+    "after": "f608e0d8b0f074d4cf626a9a19e1413c",
+    "sha256": "0bb76f29bebf75bfd5f165b1516607b7e5a88742f3f4d19177a8277c48dbc6cf"
+  },
+  {
+    "path": "/faq/what-is-tap-room.html",
+    "file": "faq/what-is-tap-room.html",
+    "before": "ae89689b83440d839ee44dde549f403c",
+    "beforeSHA256": "2361d5d811dc7a521ea56bcff507098b1856401626d86abe9b6e3da454f66b60",
+    "after": "0098d4b56e4e621bba037de0f87d173b",
+    "sha256": "7cd1778a07427d8806d30509acdf34d1320febc6d8b84d84f4a043e6bdda83ed"
+  },
+  {
+    "path": "/order-success.html",
+    "file": "order-success.html",
+    "before": "6a76e31787d05dfbc1ab50a7b536147d",
+    "beforeSHA256": "16104cac1097985605d04ee915bc437da4cb87cf8652d7b481cd35144601ee26",
+    "after": "0b0d114966564485300a3599d4391c59",
+    "sha256": "561d8c5a5255ab46155491a8edb27430ec4458a7efcb0a253d75d89469dd9452"
+  },
+  {
+    "path": "/tap-room.html",
+    "file": "tap-room.html",
+    "before": "86a65601c04b3c9333e512fad3484b36",
+    "beforeSHA256": "bdd6153c0e51551b099f00df992399e99d27ff3f91999b66fc48486d0854896d",
+    "after": "e2bace908edca804a52476f8586ecbb1",
+    "sha256": "55a2918e23441dd2a44e4a4d59bc3f53239d5053eb11aafb8f5f8f768e3ec623"
+  },
+  {
+    "path": "/treatment-assessment-terms.html",
+    "file": "treatment-assessment-terms.html",
+    "before": "8e9c1c808d02d3dcda2f9f1743ee5aa1",
+    "beforeSHA256": "23bcb9b209df5b1dd3a981036538db0e91f2825de8b511201c04f5e9f5a1ceb8",
+    "after": "786ae8110341e42b68c1d4dd89456072",
+    "sha256": "a8e5ed0c26dd0d85f302cc48dccbeef34f45b819cea093e5eacc485a188db8bd"
+  },
+  {
+    "path": "/treatment-assessment.html",
+    "file": "treatment-assessment.html",
+    "before": "79b1718944374598f6bc9c87baedbfef",
+    "beforeSHA256": "c8883080aef88c63488136cad6e43f0c7ccd26a277f7e5427aa2dd2603717a2a",
+    "after": "221c4fc3e1944bee545bd5c77b2b413d",
+    "sha256": "2bb6adae5f5079e6ab14b5eeae086e8a7a8cfca58d329ebaffb03a7cc7610925"
+  },
+  {
+    "path": "/treatment-terms.html",
+    "file": "treatment-terms.html",
+    "before": "2c64234d3fbbc4e9bc9d2a3dd28a41d9",
+    "beforeSHA256": "5b961956dab2369b307dae7b1437b852b43b76be09e7023018450b1019f7c638",
+    "after": "9941387604b837bef52b6ca86b3f254d",
+    "sha256": "3a8a7cd17643abf03066b8470a4b39583eb698702d36cb9612f37a43d29c5ce1"
+  },
+  {
+    "path": "/assets/footer-social-links-v1.js",
+    "file": "assets/footer-social-links-v1.js",
+    "before": null,
+    "after": "3f7762d947e18c1c050d314edd7b9623",
+    "sha256": "fe8c34a775d3ba4a102b5953539d4ffa827a6f492add287888b615a7d7e73d9a"
+  }
+]

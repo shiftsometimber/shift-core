@@ -1,0 +1,30 @@
+{
+  "approvedBy": "Matt",
+  "approvedWording": "Follow SHIFT",
+  "approval": "Agreed add it",
+  "approvedOn": "2026-10-20",
+  "platforms": [
+    [
+      "Instagram",
+      "https://www.instagram.com/shiftsometimber"
+    ],
+    [
+      "Facebook",
+      "https://www.facebook.com/ShiftSomeTimber"
+    ],
+    [
+      "X",
+      "https://x.com/ShiftSomeTimber"
+    ],
+    [
+      "YouTube",
+      "https://www.youtube.com/@ShiftSomeTimber"
+    ]
+  ],
+  "scope": "Shared footer on customer-facing website pages",
+  "method": "One shared footer component, loaded by the existing v42 page client; eight pages without that client load it directly. No social platform is contacted until the visitor clicks.",
+  "baseDeployment": "c4a30082-9e9a-441c-b719-fb22b76f201d",
+  "otherPlatformsAdded": false,
+  "publicSocialPostsSent": 0,
+  "workerWrites": 0
+}
