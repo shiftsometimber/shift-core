@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {DatabaseSync} from 'node:sqlite';
 import {createHash} from 'node:crypto';
+import {QUESTIONS,QUESTIONNAIRE_VERSION} from '../assessment-v2/schema.mjs';
 import {medicineCommerceRoutes} from '../medicine-commerce-v1.js';
 
 // Executes the production queries and schema against an isolated real SQLite
@@ -41,12 +42,12 @@ function assessment(submissionId=crypto.randomUUID(),overrides={}) {
   for(const key of ['photoId','bodyFront','bodySide'])form.set(key,new File(['synthetic image'],key+'.jpg',{type:'image/jpeg'}));
   return form;
 }
-async function fixture(t,provider) {
+async function fixture(t,provider,extraEnv={}) {
   const {DB,sql}=database();t.after(()=>sql.close());
   const original=globalThis.fetch;const calls=[];
   globalThis.fetch=async(url,init)=>{assert.equal(new URL(url).origin,'https://pharmacy.example.test');calls.push({url,init});return provider(url,init)};
   t.after(()=>{globalThis.fetch=original});
-  const env={DB,PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_CLINICAL_RESUME_URL:'https://pharmacy.example.test/resume',PHARMACY_PORTAL_ORIGIN:'https://portal.example.test',PHARMACY_INTEGRATION_SECRET:'synthetic-only'};
+  const env={DB,PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_CLINICAL_RESUME_URL:'https://pharmacy.example.test/resume',PHARMACY_PORTAL_ORIGIN:'https://portal.example.test',PHARMACY_INTEGRATION_SECRET:'synthetic-only',...extraEnv};
   async function request(path,{method='GET',body,token='first',callback=false}={}){
     const headers=callback?{Authorization:'Bearer synthetic-only'}:{Cookie:'sst_session='+token,Origin:'https://shiftsometimber.co.uk'};
     if(body&&!(body instanceof FormData))headers['Content-Type']='application/json';
@@ -102,4 +103,33 @@ test('real SQL keeps secure clarification bound to the same case and account and
   assert.equal((await f.request(intake+'-resume',{method:'POST',body,token:'second'})).status,404);assert.equal(f.calls.length,1);
   const resume=await f.request(intake+'-resume',{method:'POST',body});assert.equal(resume.status,200);assert.equal(resume.body.resumeUrl,'https://portal.example.test/resume/opaque-token');assert.equal(JSON.parse(f.calls[1].init.body).clientReference,first.body.intakeReference);
   f.sql.prepare('UPDATE user_sessions SET expires_at=?').run('2000-01-01T00:00:00Z');assert.equal((await f.request(status+'?reference='+first.body.intakeReference)).status,401);
+});
+
+function expanded(path='Starting treatment'){
+ const answers=Object.fromEntries(QUESTIONS.map(q=>[q.id,q.options?(q.options.includes('No')?'No':q.options[0]):q.type==='date'?'2026-10-19':'Synthetic clinical detail']));
+ answers.requestPath=path;answers.forMyself='Yes';answers.inUK='Yes';
+ return {version:QUESTIONNAIRE_VERSION,answers,prescribingAcknowledged:true};
+}
+test('expanded case requires explicit provider version acceptance and never drops answers',async t=>{
+ const f=await fixture(t,()=>Response.json({reference:'expanded-case',patientReference:'expanded-patient',status:'submitted'}));
+ const result=await f.request(intake,{method:'POST',body:assessment(undefined,{expandedAssessment:JSON.stringify(expanded())})});
+ assert.equal(result.status,503);assert.equal(result.body.error,'assessment_contract_not_approved');assert.equal(f.calls.length,0);
+});
+test('expanded case sends full versioned answers once, holds prescribing approval and stores no answers',async t=>{
+ const f=await fixture(t,()=>Response.json({reference:'expanded-case',patientReference:'expanded-patient',status:'submitted'}),{PHARMACY_ASSESSMENT_VERSION:QUESTIONNAIRE_VERSION});
+ const payload=expanded('Switching provider or medicine'),id=crypto.randomUUID();payload.answers.pancreas='Not sure';payload.answers.pancreasDetails='Previous investigation — details to verify';
+ const form=()=>assessment(id,{expandedAssessment:JSON.stringify(payload)});
+ const first=await f.request(intake,{method:'POST',body:form()});assert.equal(first.status,202);assert.equal(first.body.prescribingApproved,false);
+ assert.equal((await f.request(intake,{method:'POST',body:form()})).body.intakeReference,first.body.intakeReference);assert.equal(f.calls.length,1);
+ const sent=f.calls[0].init.body;const received=JSON.parse(sent.get('expandedAssessment'));
+ assert.equal(received.answers.pancreasDetails,payload.answers.pancreasDetails);assert.equal(received.answers.doseHistory,payload.answers.doseHistory);assert.equal(received.answers.repeatChanges,undefined);
+ assert.equal(sent.get('questionnaireVersion'),QUESTIONNAIRE_VERSION);assert.equal(sent.get('selectionIsPreference'),'true');assert.equal(sent.get('prescribingApproval'),'pending');
+ const rows=JSON.stringify(f.sql.prepare('SELECT * FROM medicine_intake_attempts').all());assert(!rows.includes('Previous investigation'));assert(!rows.includes('Synthetic clinical detail'));
+ payload.answers.doseHistory='Different actual dose history';assert.equal((await f.request(intake,{method:'POST',body:form()})).status,409);assert.equal(f.calls.length,1);
+});
+test('accepted expanded contract cannot be bypassed with a legacy or incomplete form',async t=>{
+ const f=await fixture(t,()=>{throw Error('must not send')},{PHARMACY_ASSESSMENT_VERSION:QUESTIONNAIRE_VERSION});
+ assert.equal((await f.request(intake,{method:'POST',body:assessment()})).status,400);
+ const payload=expanded();delete payload.answers.medicineList;
+ const result=await f.request(intake,{method:'POST',body:assessment(undefined,{expandedAssessment:JSON.stringify(payload)})});assert.equal(result.status,400);assert.equal(result.body.field,'medicineList');assert.equal(f.calls.length,0);
 });

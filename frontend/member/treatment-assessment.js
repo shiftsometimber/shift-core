@@ -84,7 +84,7 @@ form.onsubmit=async event=>{
     const {response,result}=await call('/v1/commerce/medicine-clinical-intake',{method:'POST',body:data});
     if(result.intakeReference){showResult(result);if(!response.ok)return;}
     if(!response.ok){
-      if(result.field)form.elements.namedItem(result.field)?.focus();
+      if(result.field)(document.getElementById('clinical_'+result.field)||form.elements.namedItem(result.field))?.focus();
       throw Error(result.message||'The assessment could not be submitted. Your answers remain on this page.');
     }
     if(result.verified&&result.verificationToken)return;
@@ -120,9 +120,9 @@ async function initialise(){
       const catalogue=await catalogueResponse.value.json();
       for(const product of catalogue.products||[]){const variant=product.variants?.find(v=>Number(v.id)===variantId);if(variant)selected={...variant,medicineName:product.name};}
     }
-    node('selectionStatus').textContent=selected?selected.medicineName+' · '+selected.strengthLabel:'Choose an available treatment and dose before starting.';
+    node('selectionStatus').textContent=selected?'Your preference: '+selected.medicineName+' · '+selected.strengthLabel+' — subject to prescriber approval':'Choose an available treatment and dose before starting.';
     if(!selected||selected.status!=='available'||!result.assessmentAvailable){status.textContent='Assessment is not open for this selection. No information has been sent and no payment has been taken.';form.hidden=true;return;}
-    form.hidden=false;form.querySelector('button[type="submit"]').disabled=!result.emailVerified;previous.onchange();
+    form.hidden=false;form.querySelector('button[type="submit"]').disabled=!result.emailVerified;previous.onchange();window.SHIFT_EXPANDED_ASSESSMENT?.refresh();
   }catch(error){if(!stopped&&!error.staleView&&epoch===pageEpoch)status.textContent=error.message||'Your assessment could not load. Retry this page; nothing has been sent.';}
 }
 async function reuseContactDetails(){

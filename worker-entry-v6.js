@@ -187,6 +187,8 @@ const GIT_MEMBER_ASSETS = new Map([
   ["/tap-room-general.webp", "image/webp"],
   ["/member-my-journey-checkin-v1.js", "application/javascript; charset=utf-8"],
   ["/member-my-journey-checkin-v1.css", "text/css; charset=utf-8"],
+  ["/assessment-walkthrough.html", "text/html; charset=utf-8"],
+  ["/assessment-questions-v2.js", "application/javascript; charset=utf-8"],
   ["/treatment-assessment.html", "text/html; charset=utf-8"],
   ["/treatment-assessment.js", "application/javascript; charset=utf-8"],
   ["/clinical-intake-v1.css", "text/css; charset=utf-8"],
@@ -701,6 +703,10 @@ const worker = {
       legacyFaqRedirects[path]
     )
       return Response.redirect(new URL(legacyFaqRedirects[path], request.url), 301);
+    if ((request.method === "GET" || request.method === "HEAD") && ["/assessment-walkthrough","/assessment-walkthrough.html"].includes(path)) {
+      const response=await gitMemberAsset("/assessment-walkthrough.html",env);
+      return response?privatePageHeaders(response):new Response("Assessment walkthrough unavailable",{status:503,headers:{"Cache-Control":"no-store"}});
+    }
     if (
       (request.method === "GET" || request.method === "HEAD") &&
       (path === "/treatment-assessment" ||

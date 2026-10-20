@@ -8,6 +8,7 @@ const {chromium,webkit}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const out=process.env.INTAKE_BROWSER_EVIDENCE||'/tmp/shift-intake-browser';await mkdir(out,{recursive:true});
 const html=await readFile(new URL('../frontend/member/treatment-assessment.html',import.meta.url),'utf8');
 const js=await readFile(new URL('../frontend/member/treatment-assessment.js',import.meta.url),'utf8');
+const expanded=await readFile(new URL('../frontend/member/assessment-questions-v2.js',import.meta.url),'utf8');
 const css=await readFile(new URL('../frontend/member/clinical-intake-v1.css',import.meta.url),'utf8');
 const reference='SCI-00000000-0000-4000-8000-000000000042';
 const report={cases:[],limits:['Synthetic local routes and responses only','No real clinical, member, payment, email or provider requests','Desktop WebKit is not physical iPhone acceptance']};
@@ -29,6 +30,7 @@ for(const [engine,width]of [[chromium,380],[chromium,1440],[webkit,380]]){
   if(path==='/v1/commerce/medicine-clinical-intake-resume')return json({ok:true,resumeUrl:'https://portal.example.test/questions?session=opaque',expiresAt:new Date(Date.now()+60000).toISOString()});
   if(u.hostname==='portal.example.test')return route.fulfill({status:200,contentType:'text/html',body:'<h1>Secure pharmacy questions for the same assessment</h1>'});
   if(path==='/treatment-assessment')return route.fulfill({status:200,contentType:'text/html',body:html});
+  if(path==='/assessment-questions-v2.js')return route.fulfill({contentType:'application/javascript',body:expanded});
   if(path==='/treatment-assessment.js')return route.fulfill({status:200,contentType:'text/javascript',body:js});
   if(path==='/clinical-intake-v1.css')return route.fulfill({status:200,contentType:'text/css',body:css});
   if(path==='/assets/member-experience/gp-form.mjs')return route.fulfill({status:200,contentType:'text/javascript',body:gpFormRuntime});
@@ -55,6 +57,10 @@ for(const [engine,width]of [[chromium,380],[chromium,1440],[webkit,380]]){
  await page.locator('[name=previousMedicine]').fill('Stale medicine');await page.locator('#previousTreatment').selectOption('no');assert.equal(await page.locator('[name=previousDose]').isDisabled(),true);
  await page.locator('[name=gpName]').fill('Dr Synthetic');
  for(const name of ['photoId','bodyFront','bodySide'])await page.locator('[name='+name+']').setInputFiles({name:name+'.jpg',mimeType:'image/jpeg',buffer:Buffer.from([255,216,255,217])});
+ await page.evaluate(()=>{
+  for(const {id,type,options}of window.SHIFT_ASSESSMENT.QUESTIONS){const el=document.getElementById('clinical_'+id);el.value=options?(options.includes('No')?'No':options[0]):type==='date'?'2026-10-19':'Synthetic detail';}
+  document.getElementById('clinical_forMyself').value='Yes';document.getElementById('clinical_inUK').value='Yes';document.getElementById('prescribingAcknowledged').checked=true;window.SHIFT_EXPANDED_ASSESSMENT.refresh();
+ });
  for(const name of ['gpContactConsent','imageConsent','answersConfirmed'])await page.locator('[name='+name+']').check();
  const stored=await page.evaluate(()=>JSON.stringify(Object.entries(sessionStorage)));
  assert.equal(stored.includes('None declared'),false);assert.equal(stored.includes('01610000000'),false);

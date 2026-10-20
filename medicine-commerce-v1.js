@@ -1,3 +1,4 @@
+import {QUESTIONNAIRE_VERSION,validateAssessment} from './assessment-v2/schema.mjs';
 import {ensureCheckoutAttempts,acquireCheckoutAttempt,prepareCheckoutAttempt,requestCheckoutSession,checkoutProblem} from './checkout-attempt-v1.mjs';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
@@ -286,7 +287,7 @@ async function clinicalIntake(request, env) {
   await schema(env);
   let form;
   try { form = await request.formData(); } catch { return json({ok:false,error:"invalid_clinical_form"},400,cors(request)); }
-  const allowedFields=new Set([...CLINICAL_INTAKE_FIELDS,'variantId','insulinUse','gpContactConsent','answersConfirmed','imageConsent','photoId','bodyFront','bodySide','submissionId','patientFirstName','patientLastName','patientPhone','patientAddress1','patientAddress2','patientTown','patientPostcode']);
+  const allowedFields=new Set([...CLINICAL_INTAKE_FIELDS,'expandedAssessment','variantId','insulinUse','gpContactConsent','answersConfirmed','imageConsent','photoId','bodyFront','bodySide','submissionId','patientFirstName','patientLastName','patientPhone','patientAddress1','patientAddress2','patientTown','patientPostcode']);
   if([...form.keys()].some(key=>!allowedFields.has(key)||form.getAll(key).length!==1))return json({ok:false,error:'unexpected_or_duplicate_answer',message:'The assessment contains an unknown or repeated field. Nothing has been sent; reload the current form before submitting.'},400,cors(request));
   const variantId = Number(form.get("variantId"));
   const item = Number.isInteger(variantId) && variantId > 0 ? await env.DB.prepare(`SELECT v.id,m.form,m.name,v.strength_label,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first() : null;
@@ -296,6 +297,15 @@ async function clinicalIntake(request, env) {
   if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock. No clinical evidence has been sent."},409,cors(request));
   const ageEligibility = adultServiceEligibility(form.get('dateOfBirth'));
   if (ageEligibility) return json({ok:false,error:ageEligibility.error,message:ageEligibility.message},ageEligibility.status,cors(request));
+  let expandedAssessment;
+  if(form.has('expandedAssessment')||env.PHARMACY_ASSESSMENT_VERSION===QUESTIONNAIRE_VERSION){
+    if(env.PHARMACY_ASSESSMENT_VERSION!==QUESTIONNAIRE_VERSION)return json({ok:false,error:'assessment_contract_not_approved',message:'The expanded assessment is awaiting the clinical provider’s approval. No answers or images have been sent.'},503,cors(request));
+    const raw=String(form.get('expandedAssessment')||'');
+    if(new TextEncoder().encode(raw).length>131072)return json({ok:false,error:'assessment_too_large',message:'The full assessment needs a secure clinical-team review. No information has been sent; do not omit relevant answers.'},400,cors(request));
+    let input;try{input=JSON.parse(raw);}catch{return json({ok:false,error:'invalid_expanded_assessment'},400,cors(request));}
+    const checked=validateAssessment(input);if(checked.error)return json({ok:false,...checked},400,cors(request));
+    expandedAssessment=checked.value;
+  }
   const answers = validatedIntakeAnswers(form);
   if (answers.error) return json({ok:false,...answers},400,cors(request));
   const gpConsent = form.get("gpContactConsent") === "on";
@@ -320,7 +330,7 @@ async function clinicalIntake(request, env) {
   const missingContact=['patientFirstName','patientLastName','patientPhone','patientAddress1','patientTown','patientPostcode'].find(key=>!patient[key]);
   if(missingContact)return json({ok:false,error:'patient_details_required',field:missingContact,message:'Complete your name, phone and address so the pharmacy can identify and contact you.'},400,cors(request));
   if(!/^\+?[\d ()\-.]{6,50}$/.test(patient.patientPhone))return json({ok:false,error:'patient_phone_invalid',field:'patientPhone',message:'Check your phone number.'},400,cors(request));
-  const receipts=await evidenceReceipts(files),payloadHash=await digest(JSON.stringify({variantId,answers:answers.fields,patient,receipts,consentVersion:CLINICAL_CONSENT_VERSION}));
+  const receipts=await evidenceReceipts(files),payloadHash=await digest(JSON.stringify({variantId,answers:answers.fields,...(expandedAssessment?{expandedAssessment}:{}),patient,receipts,consentVersion:CLINICAL_CONSENT_VERSION}));
   const suppliedId=String(form.get('submissionId')??'');
   if(suppliedId&&!/^[a-f0-9-]{36}$/i.test(suppliedId))return json({ok:false,error:'invalid_submission_reference'},400,cors(request));
   const submissionHash=await digest(suppliedId||payloadHash),submittedAt=now(),publicReference=`SCI-${crypto.randomUUID()}`;
@@ -341,6 +351,7 @@ async function clinicalIntake(request, env) {
   for(const [key,value]of Object.entries(patient))partnerForm.set(key,value);
   if (item.form === 'injection') partnerForm.set('insulinUse','no');
   for (const [key,value] of Object.entries(answers.fields)) partnerForm.set(key,value);
+  if(expandedAssessment){partnerForm.set('expandedAssessment',JSON.stringify(expandedAssessment));partnerForm.set('questionnaireVersion',QUESTIONNAIRE_VERSION);partnerForm.set('selectionIsPreference','true');partnerForm.set('prescribingApproval','pending');}
   partnerForm.set("gpContactConsent","true"); partnerForm.set("answersConfirmed","true"); partnerForm.set("imageConsent","true"); partnerForm.set("consentVersion",CLINICAL_CONSENT_VERSION);
   partnerForm.set('consentRecordedAt',submittedAt);partnerForm.set('evidenceReceipts',JSON.stringify(receipts));
   for (const [key,file] of Object.entries(files)) partnerForm.set(key,file,key+({"image/jpeg":'.jpg',"image/png":'.png',"image/heic":'.heic',"image/heif":'.heif'}[file.type]||'.image'));
@@ -446,7 +457,7 @@ async function clinicalResume(request,env){
 
 async function clinicalContext(request,env){
   const user=await member(request,env);if(!user)return json({ok:false,error:'account_required'},401,cors(request));
-  return json({ok:true,accountReference:await sha256('clinical-account:'+user.id),emailVerified:Number(user.email_verified||0)===1,patientFirstName:user.first_name||'',patientLastName:user.last_name||'',patientEmail:user.email,assessmentAvailable:Boolean(env.PHARMACY_CLINICAL_INTAKE_URL&&env.PHARMACY_INTEGRATION_SECRET)},200,cors(request));
+  return json({ok:true,accountReference:await sha256('clinical-account:'+user.id),emailVerified:Number(user.email_verified||0)===1,patientFirstName:user.first_name||'',patientLastName:user.last_name||'',patientEmail:user.email,assessmentVersion:QUESTIONNAIRE_VERSION,assessmentAvailable:Boolean(env.PHARMACY_CLINICAL_INTAKE_URL&&env.PHARMACY_INTEGRATION_SECRET&&env.PHARMACY_ASSESSMENT_VERSION===QUESTIONNAIRE_VERSION)},200,cors(request));
 }
 
 async function prepayVerification(request, env) {
