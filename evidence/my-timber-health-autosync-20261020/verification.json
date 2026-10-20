@@ -6,7 +6,7 @@
   "sourceAdmission": false,
   "physicalDevicesTested": [],
   "iosSimulatorCompile": "PASS; native7-simulator-build.log",
-  "sourceChecks": 44,
+  "sourceChecks": 45,
   "automaticBrowserMatrix": "PASS Chromium320/1440, WebKit390 with real isolated SQLite; native permission responses simulated",
   "manualBrowserMatrix": "PASS Chromium390/1440, WebKit390",
   "androidCompile": "UNPERFORMED: no JDK/Gradle/SDK; original navigation compiler failed missing Java Runtime",
@@ -26,7 +26,7 @@
     "member-experience/device-health.mjs": "1212c3e7d8621e4ee40f4d448a1286a32e41a87dbf2182c4f3a34cd2d46f4570",
     "member-experience/device-health-client.mjs": "1f8631b85b96ef4573a961d46af98809919a041a4d8a4e0ac5a4453ef8b576b3",
     "member-experience/device-health-sync-client.mjs": "196be396b759e2b3fbca8969fa4c3dc79a42a18d6d45c1081ed9108d90aa83aa",
-    "member-experience/entry.mjs": "7abe4bb167edf7ff94637b6fa8b1aed36ded2930bb07dfaad02c379032df6ae4",
+    "member-experience/entry.mjs": "ee8cd88ecf06d2ac7ce30fcf4648be989866705460c5bfa01e4b8e6dc9d210de",
     "my-timber-app/shared/native-health.js": "b9bd3a7f31448836ec5827b602749acf4e4e78dfa99be780a8b16a5fb3b715ad",
     "my-timber-app/ios/Sources/HealthBridge.swift": "3864d9ec666edb209f958483337784835b1bff819d52c58d3a6b14179ddd01ab",
     "my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/HealthBridge.kt": "0f3c2921b333e2fd07498ad6e3c9b22883f420bd54749ec27696ce9aa34c38e8"

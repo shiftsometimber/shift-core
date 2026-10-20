@@ -26,6 +26,7 @@ import {withPasswordSettings,passwordSettingsRuntime} from './password-settings.
 import {withMemberDetails,memberDetailsRuntime,memberDetailsStyles} from './member-details.mjs';
 import {ordersHTML,ordersStyles,ordersRuntime} from './orders.mjs';
 
+const withHealthSyncHTML=html=>html.replace('</body>','<script defer src="/assets/member-experience/device-health-sync.mjs"></script></body>');
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
 const privateHeaders = {'Cache-Control':'no-store, must-revalidate','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff'};
@@ -35,13 +36,13 @@ export function memberExperienceRoutes(request, env) {
   if (!['GET','HEAD'].includes(request.method)) return null;
   if(env.MY_TREATMENT_ENABLED==='true'){
     const treatment={'/member/treatment':[treatmentHTML(false),'text/html'],'/member/treatment.html':[treatmentHTML(false),'text/html'],'/assets/member-experience/treatment.mjs':[treatmentRuntime,'text/javascript'],'/assets/member-experience/treatment.css':[treatmentStyles,'text/css'],'/treatment-sw.js':[treatmentServiceWorker,'text/javascript'],'/treatment-manifest.json':[JSON.stringify({name:'My Timber',short_name:'My Timber',start_url:'/member/treatment',scope:'/member/',display:'standalone',theme_color:'#050505',background_color:'#050505'}),'application/manifest+json']}[path];
-    if(treatment)return new Response(request.method==='HEAD'?null:treatment[0],{headers:{...privateHeaders,'Content-Type':treatment[1]+'; charset=utf-8',...(path==='/treatment-sw.js'?{'Service-Worker-Allowed':'/member/'}:{})}});
+    if(treatment)return new Response(request.method==='HEAD'?null:(path.startsWith('/member/')?withHealthSyncHTML(treatment[0]):treatment[0]),{headers:{...privateHeaders,'Content-Type':treatment[1]+'; charset=utf-8',...(path==='/treatment-sw.js'?{'Service-Worker-Allowed':'/member/'}:{})}});
   }
   if(path==='/assets/member-experience/treatment-week.mjs')return new Response(request.method==='HEAD'?null:treatmentWeekRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/treatment-week.css')return new Response(request.method==='HEAD'?null:treatmentWeekStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/device-health-sync.mjs')return new Response(request.method==='HEAD'?null:deviceHealthSyncRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/device-health.mjs')return new Response(request.method==='HEAD'?null:deviceHealthRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
-  if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:ordersHTML(env.WORK_V1_ENABLED==='true'),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
+  if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:withHealthSyncHTML(ordersHTML(env.WORK_V1_ENABLED==='true')),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
   if(path==='/assets/member-experience/orders.mjs')return new Response(request.method==='HEAD'?null:ordersRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/orders.css')return new Response(request.method==='HEAD'?null:ordersStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/session.mjs')return new Response(request.method==='HEAD'?null:sessionRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
@@ -66,7 +67,7 @@ export function memberExperienceRoutes(request, env) {
   if(path==='/member/life-back'||path==='/member/life-back.html'||path.startsWith('/assets/member-experience/life-back/')){
     const name=path.startsWith('/member/')?'index.html':path.slice('/assets/member-experience/life-back/'.length),a=lifeBackAssets[name];
     if(!a)return new Response('Not found',{status:404,headers:privateHeaders});
-    const body=a.base64?Uint8Array.from(atob(a.base64),c=>c.charCodeAt(0)):name==='index.html'?lifeBackChrome(a.body,env.WORK_V1_ENABLED==='true'):a.body;
+    const body=a.base64?Uint8Array.from(atob(a.base64),c=>c.charCodeAt(0)):name==='index.html'?withHealthSyncHTML(lifeBackChrome(a.body,env.WORK_V1_ENABLED==='true')):a.body;
     return new Response(request.method==='HEAD'?null:body,{headers:{...privateHeaders,'Content-Type':a.type}});
   }
   const asset = {'/assets/member-experience/food-diary.mjs':[foodDiaryRuntime,'text/javascript'],'/assets/member-experience/day-guide.mjs':[dayGuideRuntime,'text/javascript'],'/assets/member-experience/day-guide.css':[dayGuideStyles,'text/css'],'/assets/member-experience/chrome.css':[memberChromeStyles,'text/css'],'/assets/member-experience/chrome.mjs':[memberChromeClient,'text/javascript'],'/assets/member-experience/tools.mjs':[dashboardToolsRuntime,'text/javascript'],'/assets/member-experience/tools.css':[dashboardToolsStyles,'text/css'],'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];

@@ -71,3 +71,11 @@ test('the operating-system permission sheet may temporarily hide the page withou
 test('blocked device storage prevents enabling automatic imports',async()=>{
  const f=client();f.storage.setItem=()=>{throw Error('Storage unavailable')};await assert.rejects(f.c.connect(['weight']),/Storage unavailable/);assert.equal(f.reads,0);assert.equal(f.posts.length,0);
 });
+
+test('foreground coordinator is delivered on the independently rendered treatment, orders and Life Back pages',async()=>{
+ const {memberExperienceRoutes}=await import('../entry.mjs');
+ const env={MEMBER_EXPERIENCE_V1_ENABLED:'true',MY_TREATMENT_ENABLED:'true'};
+ for(const path of ['/member/treatment','/member/orders','/member/life-back']){
+  const r=memberExperienceRoutes(new Request('https://shiftsometimber.co.uk'+path),env);assert.equal(r.status,200);assert.match(await r.text(),/src="\/assets\/member-experience\/device-health-sync\.mjs"/);
+ }
+});
