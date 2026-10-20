@@ -8,6 +8,9 @@ on:
       - 'wrangler.jsonc'
       - 'release/recorded-week-navigation-outer-frame-20261018.mjs'
       - 'release/immutable-git-facts.mjs'
+      - 'release/website-editorial-scope-20261018.mjs'
+      - 'release/approved-runtime-composition.json'
+      - 'tests/production-completion-release.test.mjs'
       - '.github/workflows/daily-website-content-preflight.yml'
 permissions:
   contents: read
