@@ -1,3 +1,6 @@
+import {Buffer as sourceMetadataBuffer} from 'node:buffer';
+import {hash as sourceMetadataHash} from 'node:crypto';
+import {isSharedArrayBuffer as sourceMetadataSharedBacking} from 'node:util/types';
 import {websiteEditorialCompletionHistoricalView,assertWebsiteEditorialCompletionView} from './website-editorial-scope-20261018.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -86,12 +89,36 @@ function prepareNativeNavigationIndexStats(){
  preparedNavigationIndexStats.add(identity());
 }
 
+// A bounded SHA256 fact is reused only after a complete fresh byte read compares identically.
+const sourceMetadataApply=Reflect.apply,sourceMetadataCompare=sourceMetadataBuffer.compare,sourceMetadataArray=Uint8Array;
+const sourceMetadataPrototype=Object.getPrototypeOf(Uint8Array.prototype);
+const sourceMetadataLength=Object.getOwnPropertyDescriptor(sourceMetadataPrototype,'length').get;
+const sourceMetadataBacking=Object.getOwnPropertyDescriptor(sourceMetadataPrototype,'buffer').get;
+const sourceMetadataSet=Uint8Array.prototype.set,sourceMetadataNativeHash=sourceMetadataHash,sourceMetadataNativeShared=sourceMetadataSharedBacking;
+const sourceMetadataDigest=value=>sourceMetadataNativeHash('sha256',value,'hex');
+const sourceMetadataByteFacts=Object.create(null);
+let sourceMetadataRetainedBytes=0,sourceMetadataRetainedEntries=0;
+const sourceMetadataByteLimit=8*1024*1024,sourceMetadataEntryLimit=32;
+function sourceMetadataByteDigest(key,value){
+ const size=sourceMetadataApply(sourceMetadataLength,value,[]);
+ if(sourceMetadataNativeShared(sourceMetadataApply(sourceMetadataBacking,value,[])))return sourceMetadataDigest(value);
+ const prior=sourceMetadataByteFacts[key];
+ if(prior&&sourceMetadataCompare(value,prior.bytes)===0)return prior.sourceMetadataDigest;
+ const valueDigest=sourceMetadataDigest(value);
+ const nextBytes=sourceMetadataRetainedBytes-(prior?prior.size:0)+size;
+ if(size<=sourceMetadataByteLimit&&nextBytes<=sourceMetadataByteLimit&&(prior||sourceMetadataRetainedEntries<sourceMetadataEntryLimit)){
+  const bytes=new sourceMetadataArray(size);sourceMetadataApply(sourceMetadataSet,bytes,[value]);
+  sourceMetadataByteFacts[key]={bytes,size,sourceMetadataDigest:valueDigest};sourceMetadataRetainedBytes=nextBytes;if(!prior)sourceMetadataRetainedEntries++;
+ }
+ return valueDigest;
+}
+
 // Recheck current source inputs at every use. No approval, reader or verdict is cached.
 function sourceFileState(filename){
  const s=lstatSync(filename,{throwIfNoEntry:false});if(!s)return null;
  assert(s.isFile()||s.isSymbolicLink(),'Ordinary native source metadata required');
  const value=readFileSync(filename);assert(value.length<=32e6,'Bounded native source metadata required');
- return[s.mode,s.isSymbolicLink()?readlinkSync(filename):null,realpathSync(filename),sha(value)];
+ return[s.mode,s.isSymbolicLink()?readlinkSync(filename):null,realpathSync(filename),sourceMetadataByteDigest(filename,value)];
 }
 function sourceReplacementState(filename,budget={left:1024}){
  const s=lstatSync(filename,{throwIfNoEntry:false});if(!s)return null;
