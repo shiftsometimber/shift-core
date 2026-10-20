@@ -19,6 +19,7 @@ fs.mkdirSync(out,{recursive:true});
   return route.continue();
  });
  await p.goto(origin+routePath,{waitUntil:'domcontentloaded'});
+ const cookie=p.locator('button[data-consent="necessary"]');if(await cookie.count())await cookie.click();
  const nav=p.locator('#sst-footer-c nav[data-shift-footer-social]');await nav.waitFor({state:'attached'});await nav.scrollIntoViewIfNeeded();await nav.waitFor({state:'visible'});
  const data=await nav.evaluate(el=>({title:el.querySelector('strong').textContent,label:el.getAttribute('aria-label'),links:[...el.querySelectorAll('a')].map(a=>[a.textContent,a.getAttribute('href')]),inside:!!el.closest('#sst-footer-c .fc-legal-inner'),count:document.querySelectorAll('[data-shift-footer-social]').length,overflow:el.scrollWidth>el.clientWidth+1,bodyOverflow:document.documentElement.scrollWidth>innerWidth+1,rect:el.getBoundingClientRect().toJSON(),linksSize:[...el.querySelectorAll('a')].map(a=>({height:a.getBoundingClientRect().height,width:a.getBoundingClientRect().width})),colour:getComputedStyle(el.querySelector('a')).color,footerBackground:getComputedStyle(el.closest('.fc-legal')).backgroundColor}));
  assert.equal(data.title,'Follow SHIFT');assert.equal(data.label,'Follow SHIFT');assert.deepEqual(data.links,expected);assert(data.inside);assert.equal(data.count,1);assert(!data.overflow);assert(!data.bodyOverflow);assert(data.linksSize.every(x=>x.height>=44));
