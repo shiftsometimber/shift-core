@@ -1,0 +1,1058 @@
+{
+  "completedAt": "2026-10-20T12:15:56.629Z",
+  "publicUrl": "https://shiftsometimber.co.uk/start-here",
+  "verifiedAt": "2026-10-20T12:14:24.931Z",
+  "deployment": "8a4b2389-81f5-4765-8d00-4639ec46af9c",
+  "baseline": "68bfe654-0417-466c-ac82-090e13739b0d",
+  "preview": "b052013b-fb62-429b-97c6-b21fa3ef6a1c",
+  "assets": [
+    {
+      "path": "/assets/start-here-support-v1.js",
+      "sha256": "20834fde2bb9b017f64ed9badca2a782eb60af8f4c7b30f9692f2953aabbf63e",
+      "exactCandidate": true
+    },
+    {
+      "path": "/start-here.html",
+      "sha256": "7132e0ff942b0a6883e8975700c8c6b1f4b03542f059fe12d3581b305c8c28ee",
+      "exactCandidate": true
+    }
+  ],
+  "liveScriptSha256": "20834fde2bb9b017f64ed9badca2a782eb60af8f4c7b30f9692f2953aabbf63e",
+  "homepageByteIdentical": true,
+  "unchangedAssets": 825,
+  "healthFinderWalkthroughPreserved": true,
+  "latestHeaderAndPublicCopyAssetsPreserved": true,
+  "all29VariantsOOS": true,
+  "clinicalOrPaymentActivation": false,
+  "source": {
+    "branch": "feature/assessment-review-20261020",
+    "commit": "281212d84c186fbef25670bc51837c29e0fd52bd",
+    "tree": "f4eb03652c18e7e3bf5dd0d0009f591ad9cfa4a0",
+    "localEquivalent": "7e3e58f1",
+    "runtime": "public-assessment-v2/start-here-support.js",
+    "baseline": "68bfe654-0417-466c-ac82-090e13739b0d",
+    "initialLayoutSource": "bfa321bc61a207c8e793708044e86dbf9858f463",
+    "difference": "Selected segment paints its actual background so the live contrast guard can calculate the right ink; visible rounded switch design retained. All quiz, card, price and clinical/stock behaviour retained.",
+    "qa": "Preview includes exact captured main contrast guard. Selected text, actual WebKit text fill and icon each require >=4.5:1 against the real selected background, for all three filters.",
+    "runtimeCommit": "385f896c2c3425823aef1db05aab2cf95c6b8f16"
+  },
+  "scope": {
+    "changes": [
+      "/assets/start-here-support-v1.js",
+      "/start-here.html"
+    ],
+    "retainedAssets": 825,
+    "homepageAssetUnchanged": true,
+    "healthFinderWalkthroughAssetsUnchanged": true,
+    "latestHeaderAndPublicCopyAssetsPreserved": true,
+    "clinicalAndPaymentActivation": false
+  },
+  "manifestEntries": 827,
+  "manifestExact": true,
+  "previewBrowser": {
+    "origin": "https://b052013b.projectshift.pages.dev",
+    "mainContrastGuardSimulated": true,
+    "cases": [
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "nhs",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "under100",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "over200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 327.515625,
+          "asideHeight": 82.046875
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "nhs",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "under100",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "band200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "over200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 327.515625,
+          "asideHeight": 82.046875
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "nhs",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "under100",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "band200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "over200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 327.515625,
+          "asideHeight": 82.046875
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "nhs",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "under100",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "band200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "over200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 327.515625,
+          "asideHeight": 82.046875
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "NHS",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "preference": "Either",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 1180,
+          "summaryWidth": 1180,
+          "below": true,
+          "summaryHeight": 186.640625,
+          "asideHeight": 103.0625
+        }
+      },
+      {
+        "engine": "webkit",
+        "width": 390,
+        "preference": "Either",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      }
+    ],
+    "newScriptErrors": [],
+    "inheritedErrors": [],
+    "clinicalOrPaymentRequests": 0
+  },
+  "liveBrowser": {
+    "origin": "https://shiftsometimber.co.uk",
+    "mainContrastGuardSimulated": false,
+    "cases": [
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "nhs",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "under100",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "over200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 327.515625,
+          "asideHeight": 82.046875
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "nhs",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "under100",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "band200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Tablets",
+        "band": "over200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 327.515625,
+          "asideHeight": 82.046875
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "nhs",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "under100",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "band200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Either",
+        "band": "over200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 327.515625,
+          "asideHeight": 82.046875
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "nhs",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "under100",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "band200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "No medication",
+        "band": "over200",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 327.515625,
+          "asideHeight": 82.046875
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "preference": "Jabs",
+        "band": "band150",
+        "access": "NHS",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 0,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      },
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "preference": "Either",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 1180,
+          "summaryWidth": 1180,
+          "below": true,
+          "summaryHeight": 186.640625,
+          "asideHeight": 103.0625
+        }
+      },
+      {
+        "engine": "webkit",
+        "width": 390,
+        "preference": "Either",
+        "band": "band150",
+        "access": "Both",
+        "fullWidthBelowBudget": true,
+        "noExtraClick": true,
+        "switchVerified": true,
+        "medicineCards": 6,
+        "measured": {
+          "isSibling": true,
+          "panelWidth": 362,
+          "summaryWidth": 362,
+          "below": true,
+          "summaryHeight": 347.8125,
+          "asideHeight": 102.34375
+        }
+      }
+    ],
+    "newScriptErrors": [],
+    "inheritedErrors": [],
+    "clinicalOrPaymentRequests": 0
+  },
+  "visualReview": {
+    "preview": "b052013b-fb62-429b-97c6-b21fa3ef6a1c",
+    "desktop": "inspected",
+    "mobile": "inspected",
+    "accepted": true,
+    "checkedAt": "2026-10-20T12:12:16.278Z",
+    "reviewed": [
+      "preview-browser/chromium-1440-top.png",
+      "preview-browser/webkit-390-options.png"
+    ],
+    "findings": [
+      "Rounded Both / Tablets / Jabs switch restored above full-width equal cards.",
+      "Active segment paints its real light ash background, with dark label and icon; actual captured main contrast guard included and all 23 cases pass.",
+      "Compact budget, auto-visible potential route, all six pack-price ranges, OOS and prescriber decision retained."
+    ],
+    "unchangedLayoutEvidence": "../rebased/visual-review.json",
+    "limits": "Synthetic browser engines. Long element screenshot includes sticky header; separate viewport image inspected. No physical-device claim.",
+    "liveReviewed": [
+      "live-browser/chromium-1440-top.png",
+      "live-browser/webkit-390-options.png",
+      "live-visual-desktop/chromium-1440-options.png"
+    ],
+    "liveAccepted": true,
+    "liveNotes": "Actual main desktop/mobile switch and cards inspected. Existing privacy banner appeared late in first desktop capture; a separate ordinary Necessary only choice and full card capture was verified. No banner styling or privacy behaviour changed."
+  },
+  "earlierEvidence": {
+    "firstPreview": "d759002e-e9b6-4028-b605-d9867448bf9a",
+    "firstPreviewCases": 23,
+    "sourceOwnerReconciliation": {
+      "priorQualifiedPreview": "d759002e-e9b6-4028-b605-d9867448bf9a",
+      "priorBaseline": "dcc70592-8ae2-4ed7-bfc2-775c7e419532",
+      "newBaseline": "50af8c64-0b62-4516-b819-f31c8717a140",
+      "startHereBodyByteIdentical": true,
+      "supportScriptProviderKeyUnchanged": true,
+      "newHeadAndFaviconAddressesPreserved": true,
+      "exactCurrentHeaderSource": "/Users/shiftsometimberltd/SST/header-logo-fix-20261020/favicon/headers-candidate.txt",
+      "allCurrentAssetsRetained": true
+    },
+    "firstLayoutLive": {
+      "verifiedAt": "2026-10-20T11:53:41.572Z",
+      "deployment": "5cc035a6-19fa-4eb7-8be5-0a8400c74ea8",
+      "baseline": "50af8c64-0b62-4516-b819-f31c8717a140",
+      "preview": "2fc990ec-ce2d-4087-9e11-6b1b29834091",
+      "assets": [
+        {
+          "path": "/assets/start-here-support-v1.js",
+          "sha256": "dae9f6b66eab5deb082510b097e5ead78e005eaba27848353dd0528d741a088d",
+          "exactCandidate": true
+        },
+        {
+          "path": "/start-here.html",
+          "sha256": "940a4b3f78659f3644a97672dc2f1bd37e613537e74d8557531b70fe20a1940b",
+          "exactCandidate": true
+        }
+      ],
+      "liveScriptSha256": "dae9f6b66eab5deb082510b097e5ead78e005eaba27848353dd0528d741a088d",
+      "homepageByteIdentical": true,
+      "unchangedAssets": 825,
+      "healthFinderWalkthroughPreserved": true,
+      "latestHeaderAndPublicCopyAssetsPreserved": true,
+      "all29VariantsOOS": true,
+      "clinicalOrPaymentActivation": false
+    },
+    "firstLiveFunctionalCases": 23,
+    "initialColourCorrection": {
+      "verifiedAt": "2026-10-20T12:03:49.031Z",
+      "deployment": "68bfe654-0417-466c-ac82-090e13739b0d",
+      "baseline": "5cc035a6-19fa-4eb7-8be5-0a8400c74ea8",
+      "preview": "76c9fee2-e814-47ed-844c-5e06ccbe7d9a",
+      "assets": [
+        {
+          "path": "/assets/start-here-support-v1.js",
+          "sha256": "d24152699845367fc9d8be2e3d2986782f4b0413259b02edb7afec8d05a61558",
+          "exactCandidate": true
+        },
+        {
+          "path": "/start-here.html",
+          "sha256": "2c354c9ffdcf6a03a4c556db16a0644ffa7f200dff614d55e35861991235a87f",
+          "exactCandidate": true
+        }
+      ],
+      "liveScriptSha256": "d24152699845367fc9d8be2e3d2986782f4b0413259b02edb7afec8d05a61558",
+      "homepageByteIdentical": true,
+      "unchangedAssets": 825,
+      "healthFinderWalkthroughPreserved": true,
+      "latestHeaderAndPublicCopyAssetsPreserved": true,
+      "all29VariantsOOS": true,
+      "clinicalOrPaymentActivation": false
+    },
+    "colourFailures": [
+      "../contrast-r2/contrast-before.log",
+      "../contrast-r2/live-browser.log"
+    ],
+    "rootCause": "Main-only flat-background contrast guard cannot see pseudo-element indicator and writes cream inline ink/text-fill on transparent buttons. Current selected button paints its real background, preserving correct text and icon contrast.",
+    "testFailuresRetained": [
+      {
+        "file": "../contrast-r2/preview-browser-colour-literal-failure.log",
+        "reason": "Exact RGB rejected valid darker hover ink; replaced by actual contrast >=4.5:1. Light-on-ash still fails."
+      },
+      {
+        "file": "preview-browser-guard-init-failure.log",
+        "reason": "Initial QA injection ran before documentElement existed. Injection now waits for DOMContentLoaded and readiness; zero-error gate retained."
+      }
+    ],
+    "failedOwnerGuards": [
+      "../prepare-stale-owner-rejected.log",
+      "../publish.log"
+    ]
+  },
+  "limits": [
+    "Desktop/mobile browser engines; not a physical-device claim.",
+    "Long element screenshots include the existing sticky header and floating controls; viewport captures also inspected.",
+    "No clinical integration, prescription approval, stock opening, purchase/payment, Worker deployment or Core merge."
+  ]
+}
