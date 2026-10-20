@@ -1,0 +1,7 @@
+{
+  "source": "/Users/shiftsometimberltd/SST/assessment-v2-20261020-review/budget-inline-20261020/headers-candidate.txt",
+  "previousSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e",
+  "restoredSHA256": "a93e624293e678211efc7f7520fb57fdd2635a01972b76904df0373cb0734466",
+  "cause": "Later approved assessment header additions were omitted from first copy cleanup; restore exact latest header file retained by subsequent header-logo publisher.",
+  "manifestUnchanged": true
+}
