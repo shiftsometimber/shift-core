@@ -88,6 +88,24 @@
       "nativeKeyMatches": true,
       "type": "text/html; charset=utf-8",
       "origin": "https://41f28b38.projectshift.pages.dev"
+    },
+    {
+      "path": "/start-here.html",
+      "providerKey": "e85af50d41a4c4806303841fefed4c3a",
+      "sha256": "962828cf1d309569892cf4a2ead80ce616c0cea0ebe251e0f6f0f6d97d0df7f8",
+      "bytes": 27042,
+      "type": "text/html; charset=utf-8",
+      "origin": "https://4a0984cf.projectshift.pages.dev",
+      "nativeKeyMatches": true
+    },
+    {
+      "path": "/assets/start-here-support-v1.js",
+      "providerKey": "93976bbffaab5f0f86304be2be5aed28",
+      "sha256": "bf0db860f0bc9847e23d83d18782c930a3d9a1d47d48e4f838f4bdf9b6c81a5d",
+      "bytes": 10653,
+      "type": "application/javascript; charset=utf-8",
+      "origin": "https://4a0984cf.projectshift.pages.dev",
+      "nativeKeyMatches": true
     }
   ],
   "priorBase": "41f28b38-04f2-4ff3-8c87-a749e63d857a"
