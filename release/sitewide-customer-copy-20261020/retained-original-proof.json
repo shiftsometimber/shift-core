@@ -1,0 +1,93 @@
+{
+  "base": "41f28b38-04f2-4ff3-8c87-a749e63d857a",
+  "assets": [
+    {
+      "path": "/assessment-walkthrough.html",
+      "providerKey": "9393cf9dfb4f9536f6f0b688c0c85703",
+      "sha256": "85ded37233e1e44f24015528e31fc6323a2b3553db0fd99381be0726901e7d7a",
+      "bytes": 44820,
+      "blake3": "9393cf9dfb4f9536f6f0b688c0c85703",
+      "md5": "111219a7eda14f8fd8a3e48940d0b739",
+      "nativeKeyMatches": true,
+      "type": "text/html; charset=utf-8",
+      "origin": "https://41f28b38.projectshift.pages.dev"
+    },
+    {
+      "path": "/assets/treatment-walkthrough-v2/app.js",
+      "providerKey": "5371e67a3b3043e7c440629df537e020",
+      "sha256": "ba7f7f5e9ba7dfacc4cb6fac97bada6ce89c50b5345c6e3f562690aa9e9b8a23",
+      "bytes": 11718,
+      "blake3": "5371e67a3b3043e7c440629df537e020",
+      "md5": "89be371f18baba66c777aa13e58b821b",
+      "nativeKeyMatches": true,
+      "type": "application/javascript; charset=utf-8",
+      "origin": "https://41f28b38.projectshift.pages.dev"
+    },
+    {
+      "path": "/assets/treatment-walkthrough-v2/oral-formats.svg",
+      "providerKey": "a475721e8138de14c09f1ff1fb271fa4",
+      "sha256": "b9e3039d3b3fcd6e2b56ec34b766ed4e621d21ea26f028913305451a054d7df9",
+      "bytes": 630,
+      "blake3": "a475721e8138de14c09f1ff1fb271fa4",
+      "md5": "383ca97623fa526099e330690f343469",
+      "nativeKeyMatches": true,
+      "type": "image/svg+xml",
+      "origin": "https://41f28b38.projectshift.pages.dev"
+    },
+    {
+      "path": "/assets/treatment-walkthrough-v2/oral-options.js",
+      "providerKey": "5e0b4e25893ad8e34849674ac76122e6",
+      "sha256": "8f1fac7d8b9603a45b4544d82a4b9c9083f7be5efb18676ec96394d4a9b6e237",
+      "bytes": 7566,
+      "blake3": "5e0b4e25893ad8e34849674ac76122e6",
+      "md5": "727a4baa117ab0546904b550bdd3876c",
+      "nativeKeyMatches": true,
+      "type": "application/javascript; charset=utf-8",
+      "origin": "https://41f28b38.projectshift.pages.dev"
+    },
+    {
+      "path": "/assets/treatment-walkthrough-v2/styles.css",
+      "providerKey": "5f9b964a395fea5b247ad6bd99b1bca6",
+      "sha256": "2320e38ad4d659cc6e8ff3b9415ab8571ca1106cee68498ce8d57cf41cc34e9b",
+      "bytes": 13365,
+      "blake3": "5f9b964a395fea5b247ad6bd99b1bca6",
+      "md5": "c7742a58de113ade3fb6919e654b0a01",
+      "nativeKeyMatches": true,
+      "type": "text/css; charset=utf-8",
+      "origin": "https://41f28b38.projectshift.pages.dev"
+    },
+    {
+      "path": "/medicine-preference.html",
+      "providerKey": "bc5eedb4970c10955b41282525b5170c",
+      "sha256": "b413aee151748a25fc3f5811131f5618c2f40dd51e4c0d88e9182b5333ea467f",
+      "bytes": 11711,
+      "blake3": "bc5eedb4970c10955b41282525b5170c",
+      "md5": "e8a2b7f95ad6eff2546f032ee1db5180",
+      "nativeKeyMatches": true,
+      "type": "text/html; charset=utf-8",
+      "origin": "https://41f28b38.projectshift.pages.dev"
+    },
+    {
+      "path": "/treatment-assessment-terms.html",
+      "providerKey": "8e9c1c808d02d3dcda2f9f1743ee5aa1",
+      "sha256": "23bcb9b209df5b1dd3a981036538db0e91f2825de8b511201c04f5e9f5a1ceb8",
+      "bytes": 1954,
+      "blake3": "8e9c1c808d02d3dcda2f9f1743ee5aa1",
+      "md5": "a56cfc0f4a1dff0ff4a10877bc69956a",
+      "nativeKeyMatches": true,
+      "type": "text/html; charset=utf-8",
+      "origin": "https://41f28b38.projectshift.pages.dev"
+    },
+    {
+      "path": "/treatment-centre.html",
+      "providerKey": "d90b3bbd5b747a6bc8e6d1c21f0e003c",
+      "sha256": "7a71205ae3339f190c6a4f77d53758b3330cc1003831109897603416a088914d",
+      "bytes": 27918,
+      "blake3": "d90b3bbd5b747a6bc8e6d1c21f0e003c",
+      "md5": "3571f0fdc5bfe8e4809615b9c74df49b",
+      "nativeKeyMatches": true,
+      "type": "text/html; charset=utf-8",
+      "origin": "https://41f28b38.projectshift.pages.dev"
+    }
+  ]
+}
