@@ -2,11 +2,13 @@ import UIKit
 import WebKit
 
 final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDelegate {
+    var initialDestination:URL=NavigationPolicy.start
     private var web:WKWebView!
     private let errorBox=UIStackView()
     private var timer:Timer?
     private var failed=false
     private var healthBridge:HealthBridge!
+    private var treatmentBridge:TreatmentBridge!
     private let cream=UIColor(red:231/255,green:227/255,blue:218/255,alpha:1)
     override var preferredStatusBarStyle:UIStatusBarStyle{.lightContent}
     override func viewDidLoad(){
@@ -25,9 +27,14 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         if let url=Bundle.main.url(forResource:"native-health",withExtension:"js"),let source=try? String(contentsOf:url,encoding:.utf8){
             config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))
         }
+        treatmentBridge=TreatmentBridge(owner:self)
+        config.userContentController.add(treatmentBridge,name:"sstTreatment")
+        if let url=Bundle.main.url(forResource:"native-treatment",withExtension:"js"),let source=try? String(contentsOf:url,encoding:.utf8){config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))}
         web=WKWebView(frame:.zero,configuration:config)
+        treatmentBridge.attach(web)
         healthBridge.attach(web)
         web.isOpaque=false;web.backgroundColor=view.backgroundColor
+        web.scrollView.bounces=false // Keep fixed app bars anchored during edge drags.
         web.navigationDelegate=self;web.uiDelegate=self;web.allowsBackForwardNavigationGestures=true
         web.translatesAutoresizingMaskIntoConstraints=false
         errorBox.axis = .vertical;errorBox.spacing=12;errorBox.isHidden=true
@@ -49,9 +56,25 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
             startup.topAnchor.constraint(equalTo:view.topAnchor),
             startup.bottomAnchor.constraint(equalTo:view.bottomAnchor)
         ])
-        loadToday()
+        NotificationCenter.default.addObserver(self,selector:#selector(appActive),name:UIApplication.didBecomeActiveNotification,object:nil)
+        web.load(URLRequest(url:initialDestination,cachePolicy:.reloadIgnoringLocalCacheData,timeoutInterval:30))
         startup.playAndRemove()
     }
+    func openTreatment(){web.load(URLRequest(url:URL(string:"https://shiftsometimber.co.uk/member/treatment")!))}
+    func openWidgetDestination(_ destination:URL){
+        guard [NavigationPolicy.start.absoluteString,
+               "https://shiftsometimber.co.uk/member/dashboard#visualise",
+               "https://shiftsometimber.co.uk/member/grub"].contains(destination.absoluteString) else{return}
+        guard isViewLoaded,web != nil else{initialDestination=destination;return}
+        guard presentedViewController == nil else{return}
+        let alert=UIAlertController(title:"Open My Timber shortcut?",message:"Unsaved entries on this page may be lost. No form or payment will be resent automatically.",preferredStyle:.alert)
+        alert.addAction(UIAlertAction(title:"Stay here",style:.cancel))
+        alert.addAction(UIAlertAction(title:"Open",style:.default){[weak self] _ in
+            self?.web.load(URLRequest(url:destination,cachePolicy:.reloadIgnoringLocalCacheData,timeoutInterval:30))
+        })
+        present(alert,animated:true)
+    }
+    @objc private func appActive(){web?.evaluateJavaScript("window.dispatchEvent(new Event('sst-app-active'))",completionHandler:nil)}
     private func loadToday(){
         web.load(URLRequest(url:NavigationPolicy.start,cachePolicy:.reloadIgnoringLocalCacheData,timeoutInterval:30))
     }
@@ -94,7 +117,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     }
     func webView(_ webView:WKWebView,createWebViewWith configuration:WKWebViewConfiguration,for action:WKNavigationAction,windowFeatures:WKWindowFeatures)->WKWebView?{nil}
     func webView(_ webView:WKWebView,didStartProvisionalNavigation navigation:WKNavigation!){
-        healthBridge.cancel()
+        healthBridge.cancel();treatmentBridge.cancel()
         failed=false;errorBox.isHidden=true;timer?.invalidate()
         timer=Timer.scheduledTimer(withTimeInterval:30,repeats:false){[weak self] _ in
             self?.showFailure("A connection is needed. Nothing has been confirmed as saved by this app. Check your account before repeating any save or payment.")
@@ -119,5 +142,5 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         a.addAction(UIAlertAction(title:"Cancel",style:.cancel){_ in completionHandler(false)})
         a.addAction(UIAlertAction(title:"Continue",style:.default){_ in completionHandler(true)});present(a,animated:true)
     }
-    deinit{timer?.invalidate()}
+    deinit{NotificationCenter.default.removeObserver(self);timer?.invalidate()}
 }

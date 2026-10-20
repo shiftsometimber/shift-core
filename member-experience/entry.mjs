@@ -1,3 +1,4 @@
+import {deviceHealthSyncRuntime} from './device-health-sync-client.mjs';
 import {foodDiaryRuntime} from './food-diary-client.mjs';
 import {treatmentHTML,treatmentRuntime,treatmentStyles} from './treatment-page.mjs';
 import {treatmentWeekRuntime,treatmentWeekStyles} from './treatment-week-client.mjs';
@@ -38,6 +39,7 @@ export function memberExperienceRoutes(request, env) {
   }
   if(path==='/assets/member-experience/treatment-week.mjs')return new Response(request.method==='HEAD'?null:treatmentWeekRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/treatment-week.css')return new Response(request.method==='HEAD'?null:treatmentWeekStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
+  if(path==='/assets/member-experience/device-health-sync.mjs')return new Response(request.method==='HEAD'?null:deviceHealthSyncRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/device-health.mjs')return new Response(request.method==='HEAD'?null:deviceHealthRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:ordersHTML(env.WORK_V1_ENABLED==='true'),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
   if(path==='/assets/member-experience/orders.mjs')return new Response(request.method==='HEAD'?null:ordersRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
@@ -106,6 +108,7 @@ export async function memberExperienceEntry(request, env, response) {
   }
 
   if(name === 'dashboard')html=restoreDashboardTools(html);
+  html=html.replace('</body>','<script defer src="/assets/member-experience/device-health-sync.mjs"></script></body>');
   if(name==='settings')html=html.replace('</main>','<section id="deviceHealth" aria-label="Your device health readings"></section></main>').replace('</body>','<style>'+deviceHealthStyles+'</style><script defer src="/assets/member-experience/device-health.mjs"></script></body>');
   if(name === 'dashboard')html=html.replace(/\/member-my-timber-problem-v1\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-timber-problem-v1.js?v=member-walk-20260920').replace(/\/member-my-journey-v2\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-journey-v2.js?v=member-walk-20260920').replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');
   if(name === 'grub') html = upgradeGrubHTML(html).replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');

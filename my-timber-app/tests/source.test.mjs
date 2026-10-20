@@ -11,6 +11,7 @@ const ui=read('shared/native-presentation.js');
 const java=read('android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java');
 const swift=read('ios/Sources/MyTimberViewController.swift');
 const appDelegate=read('ios/Sources/AppDelegate.swift');
+const sceneDelegate=read('ios/Sources/SceneDelegate.swift');
 const accountDeletion=read('../member-experience/account-deletion.mjs');
 test('PWA contract retained; no store or native-push completion claim',()=>{
  assert.equal(contract.name,'My Timber');assert.equal(contract.startPath,'/member/dashboard#today');
@@ -43,7 +44,7 @@ test('Final store identities are prepared but submission remains explicitly disa
  assert.match(project,/Release:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber/);
  assert.match(project,/Debug:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber\.dev/);
  assert.match(project,/TARGETED_DEVICE_FAMILY: '1'/);
- assert.match(project,/CURRENT_PROJECT_VERSION: 3/);
+ assert.match(project,/CURRENT_PROJECT_VERSION: 7/);
  assert.match(project,/MARKETING_VERSION: 1\.0\.0/);
  assert.match(project,/CFBundleShortVersionString: \$\(MARKETING_VERSION\)/);
  assert.match(project,/CFBundleVersion: \$\(CURRENT_PROJECT_VERSION\)/);
@@ -91,9 +92,9 @@ test('Turnstile WebView challenge frames allow only required about URLs',()=>{
 
 
 test('Apple review privacy and account safety hooks remain present',()=>{
- assert.match(appDelegate,/applicationWillResignActive/);
- assert.match(appDelegate,/privacyCover/);
- assert.match(appDelegate,/window\.addSubview\(cover\)/);
+ assert.match(sceneDelegate,/sceneWillResignActive/);
+ assert.match(sceneDelegate,/privacyCover/);
+ assert.match(sceneDelegate,/window\.addSubview\(cover\)/);
  assert.match(accountDeletion,/Request account deletion/);
  assert.match(accountDeletion,/deleteAccount/);
 });

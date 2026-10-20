@@ -1,0 +1,11 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/my-timber-app/tests/health-autosync-browser.mjs:36:84 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.21.0

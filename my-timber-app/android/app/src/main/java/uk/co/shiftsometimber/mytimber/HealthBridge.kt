@@ -30,7 +30,7 @@ class HealthBridge(private val owner: ComponentActivity, private val web: WebVie
     private val launcher=owner.registerForActivityResult(PermissionController.createRequestPermissionResultContract()) { afterPermission?.invoke();afterPermission=null }
     private fun trusted()=web.url?.let { url ->
         val uri=android.net.Uri.parse(url)
-        uri.scheme=="https"&&uri.host=="shiftsometimber.co.uk"&&(uri.port==-1||uri.port==443)&&uri.userInfo==null&&uri.path in setOf("/member/settings","/member/settings.html","/member/settings/")
+        uri.scheme=="https"&&uri.host=="shiftsometimber.co.uk"&&(uri.port==-1||uri.port==443)&&uri.userInfo==null&&uri.path?.removeSuffix("/")?.removeSuffix(".html") in setOf("dashboard","settings","grub","fit","check-in","saved","plans","ask-timber","my-target","my-why","achievements","timber-circle","life-back","orders","treatment").map{"/member/"+it}
     } ?: false
     fun attach(){
         if(!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER))return
@@ -39,7 +39,13 @@ class HealthBridge(private val owner: ComponentActivity, private val web: WebVie
             val body=try{JSONObject(message.data ?: "")}catch(_:Exception){return@addWebMessageListener}
             val request=body.optString("requestId")
             val account=body.optDouble("accountId",0.0)
-            if(body.length()!=3||body.optString("action")!="read"||account<=0||account>=9007199254740992.0||account!=kotlin.math.floor(account)||runCatching{UUID.fromString(request)}.isFailure)return@addWebMessageListener
+            val action=body.optString("action")
+            val auto=action=="connect"||action=="sync"
+            val kinds=if(auto) (0 until (body.optJSONArray("kinds")?.length() ?: 0)).map{body.getJSONArray("kinds").optString(it)} else listOf("heart_rate","blood_pressure","weight")
+            if((!auto && (body.length()!=3||action!="read")) || (auto && (body.length()!=4||kinds.isEmpty()||kinds.size>3||kinds.toSet().size!=kinds.size||kinds.any{it !in setOf("weight","blood_pressure","heart_rate")})) ||
+                (action!="sync" && web.url?.let{android.net.Uri.parse(it).path?.removeSuffix("/")?.removeSuffix(".html")}!="/member/settings") ||
+                !owner.lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED) || account<=0||account>=9007199254740992.0||account!=kotlin.math.floor(account)||runCatching{UUID.fromString(request)}.isFailure)return@addWebMessageListener
+            val selectedPermissions=kinds.map{when(it){"weight"->HealthPermission.getReadPermission(WeightRecord::class);"blood_pressure"->HealthPermission.getReadPermission(BloodPressureRecord::class);else->HealthPermission.getReadPermission(HeartRateRecord::class)}}.toSet()
             val token=generation;busy=true
             val reply:(JSONObject)->Unit={result ->
                 if(token==generation&&trusted()){
@@ -57,17 +63,17 @@ class HealthBridge(private val owner: ComponentActivity, private val web: WebVie
                     val readings=mutableListOf<JSONObject>()
                     fun id(raw:String)=MessageDigest.getInstance("SHA-256").digest(raw.toByteArray()).joinToString(""){"%02x".format(it)}
                     fun row(raw:String,kind:String,at:Instant,source:String)=JSONObject().put("id",id(raw)).put("kind",kind).put("at",at.toString()).put("source",source.take(100).ifEmpty{"Health Connect"})
-                    if(HealthPermission.getReadPermission(HeartRateRecord::class) in granted){
+                    if("heart_rate" in kinds && HealthPermission.getReadPermission(HeartRateRecord::class) in granted){
                         val records=client.readRecords(ReadRecordsRequest(HeartRateRecord::class,range,ascendingOrder=false,pageSize=50)).records
                         records.flatMap { r -> r.samples.takeLast(50).map { s -> row(r.metadata.id+":"+s.time,"heart_rate",s.time,r.metadata.dataOrigin.packageName).put("heartRate",s.beatsPerMinute) } }
                             .sortedByDescending{it.getString("at")}.take(50).forEach{readings.add(it)}
                     }
-                    if(HealthPermission.getReadPermission(BloodPressureRecord::class) in granted){
+                    if("blood_pressure" in kinds && HealthPermission.getReadPermission(BloodPressureRecord::class) in granted){
                         client.readRecords(ReadRecordsRequest(BloodPressureRecord::class,range,ascendingOrder=false,pageSize=50)).records.forEach { r ->
                             readings.add(row(r.metadata.id,"blood_pressure",r.time,r.metadata.dataOrigin.packageName).put("systolic",r.systolic.inMillimetersOfMercury).put("diastolic",r.diastolic.inMillimetersOfMercury))
                         }
                     }
-                    if(HealthPermission.getReadPermission(WeightRecord::class) in granted){
+                    if("weight" in kinds && HealthPermission.getReadPermission(WeightRecord::class) in granted){
                         client.readRecords(ReadRecordsRequest(WeightRecord::class,range,ascendingOrder=false,pageSize=50)).records.forEach { r ->
                             readings.add(row(r.metadata.id,"weight",r.time,r.metadata.dataOrigin.packageName).put("weightKg",r.weight.inKilograms))
                         }
@@ -76,6 +82,21 @@ class HealthBridge(private val owner: ComponentActivity, private val web: WebVie
                     reply(JSONObject().put("platform","health_connect").put("readings",JSONArray(readings)))
                 }catch(_:Exception){reply(JSONObject().put("error","Health Connect readings could not be read. Nothing imported."))}
             }}
+            if(auto){
+                scope.launch{
+                    if(token!=generation)return@launch
+                    try{
+                        if(action=="sync"){
+                            if(client.permissionController.getGrantedPermissions().intersect(selectedPermissions).isEmpty())reply(JSONObject().put("error","Health Connect permissions are off. Review them in Connected health.")) else read()
+                        }else{
+                            val complete={if(token==generation)reply(JSONObject().put("readings",JSONArray()).put("platform","health_connect").put("permissionRequestCompleted",true))}
+                            if(client.permissionController.getGrantedPermissions().containsAll(selectedPermissions))complete()
+                            else{afterPermission=complete;launcher.launch(selectedPermissions)}
+                        }
+                    }catch(_:Exception){reply(JSONObject().put("error","Health Connect permissions could not be checked."))}
+                }
+                return@addWebMessageListener
+            }
             AlertDialog.Builder(owner).setTitle("Preview Health Connect readings?")
                 .setMessage("Read up to 50 heart-rate, 50 blood-pressure and 50 weight readings from the last 30 days. You will review them before choosing what to save. No data is written to Health Connect.")
                 .setNegativeButton("Cancel"){_,_->reply(JSONObject().put("error","Preview cancelled. Nothing imported."))}

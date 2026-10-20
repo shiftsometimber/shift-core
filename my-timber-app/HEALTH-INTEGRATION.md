@@ -1,3 +1,17 @@
+# Automatic imports candidate — 20 October 2026
+
+Matt authorised connect-once automatic imports. This candidate adds explicit per-type automatic-import consent, a device/account connection binding, and checks on opening or resuming approved member screens. Weight and blood pressure are selected by default; heart rate is optional. There is a Sync now action, separate completed-check/new-reading timestamps, disconnect, and the existing individual preview/import option. Old installed bridges and the browser/PWA cannot read automatically. No personal readings were used in development.
+
+This is **foreground automation only**. Closed-app/background delivery and continuous push are not implemented. The bounded readers still return up to the latest 50 readings per selected type from the last 30 days. The 500-copy limit remains; no history is silently deleted. Empty results mean no readable data, which on Apple does not distinguish denied access from an empty store. Platform read-only permissions and data-source provenance remain.
+
+Source reconciliation retains the actual native build7 checkpoint `7d53f526bc9d3faaa9004e745c530a99df56d212` (original build source `fbcc7b2f561e22d7dca548c250fc5f3c2a42871c`), its scene lifecycle, widgets, fixed app chrome, treatment/reminder/PDF bridges and current version declarations. The current App Review submission is untouched. A newly numbered, signed binary will be required before distribution; a simulator build does not make this feature available to installed users.
+
+Physical iPhone and Android permission grant/refusal/revocation, no-data, accurate imports, reconnect, resume, deduplication, disconnect and account-isolation remain required on the exact future builds. Android compilation needs the existing qualified toolchain or a host with JDK17+, Gradle and SDK36; these are absent from the current Mac. No SDK licence or new agreement was accepted.
+
+Historical implemented scope and original acceptance requirements follow unchanged below.
+
+---
+
 # My Timber health integration — build 3 candidate
 
 Matt authorised both bridges on 3 October 2026 and specified heart rate, blood pressure and weight. Build 2 remains the previously uploaded app; build 3 must pass exact native/device acceptance before replacing it. This document does not claim store availability or device acceptance.

@@ -13,13 +13,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - run: node --test member-experience/tests/device-health.test.mjs my-timber-app/tests/source.test.mjs my-timber-app/tests/health-bridge.test.mjs
+      - run: node --test member-experience/tests/device-health.test.mjs my-timber-app/tests/source.test.mjs my-timber-app/tests/health-bridge.test.mjs member-experience/tests/device-health-autosync.test.mjs my-timber-app/tests/health-autosync-bridge.test.mjs
       - run: npm install --prefix /tmp/shift-health-proof --no-package-lock playwright@1.55.1
       - run: /tmp/shift-health-proof/node_modules/.bin/playwright install --with-deps chromium webkit
       - run: node my-timber-app/tests/health-browser-proof.mjs
         env:
           NODE_PATH: /tmp/shift-health-proof/node_modules
           HEALTH_PROOF_OUT: /tmp/shift-health-browser-proof
+      - run: node my-timber-app/tests/health-autosync-browser.mjs
+        env:
+          NODE_PATH: /tmp/shift-health-proof/node_modules
+          HEALTH_PROOF_OUT: /tmp/shift-health-browser-proof/automatic
       - uses: actions/upload-artifact@v4
         if: always()
         with:

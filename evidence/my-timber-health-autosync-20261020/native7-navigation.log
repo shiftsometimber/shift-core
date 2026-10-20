@@ -1,0 +1,9 @@
+The operation couldn’t be completed. Unable to locate a Java Runtime.
+Please visit http://www.java.com for information on installing Java.
+
+Traceback (most recent call last):
+  File "/Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/my-timber-app/tests/run-policies.py", line 15, in <module>
+    subprocess.run(['javac','--release','17','-d',tmp,str(ROOT/'android/app/src/main/java/uk/co/shiftsometimber/mytimber/NavigationPolicy.java'),str(p/'PolicyCheck.java')],check=True)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 528, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['javac', '--release', '17', '-d', '/var/folders/3c/51t04mg562x471053v1fq7t40000gn/T/my-timber-policy-pwrgk3eh', '/Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/NavigationPolicy.java', '/var/folders/3c/51t04mg562x471053v1fq7t40000gn/T/my-timber-policy-pwrgk3eh/PolicyCheck.java']' returned non-zero exit status 1.

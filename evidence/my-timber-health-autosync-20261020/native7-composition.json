@@ -1,0 +1,16 @@
+{
+  "source": "7d53f526bc9d3faaa9004e745c530a99df56d212",
+  "iosBuild7Source": "fbcc7b2f561e22d7dca548c250fc5f3c2a42871c",
+  "tree": "59c9cef1d28955c81cd5923a0744389ef9ddd5da",
+  "inheritedNativePaths": 55,
+  "automaticSyncThreeWayPaths": [
+    "my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/HealthBridge.kt",
+    "my-timber-app/android/app/src/main/java/uk/co/shiftsometimber/mytimber/MainActivity.java",
+    "my-timber-app/ios/Sources/HealthBridge.swift",
+    "my-timber-app/ios/Sources/MyTimberViewController.swift",
+    "my-timber-app/ios/project.yml",
+    "my-timber-app/shared/native-health.js"
+  ],
+  "resolvedConflict": "MyTimberViewController keeps current widget destination load and adds resume observer; treatment bridge, scene/widget code and fixed bars preserved",
+  "storeOrReviewChanged": false
+}

@@ -26,21 +26,22 @@ for(const [engine,width] of matrix){
   await page.goto('https://shiftsometimber.co.uk/member/settings');
   await page.evaluate(rows=>window.SST_NATIVE_HEALTH={platform:'apple_health',request:async()=>({readings:rows})},readings);
   await page.addScriptTag({content:deviceHealthRuntime});
+  await page.getByText('Import individual readings',{exact:true}).click();
   await page.getByRole('button',{name:'Preview Apple Health readings'}).waitFor();
   await page.getByRole('button',{name:'Preview Apple Health readings'}).click();await page.getByRole('status').filter({hasText:'Tick the import consent'}).waitFor();
-  await page.locator('#deviceHealth>label input').check();await page.getByRole('button',{name:'Preview Apple Health readings'}).click();
+  await page.locator('#deviceHealth details>label input').check();await page.getByRole('button',{name:'Preview Apple Health readings'}).click();
   await page.getByRole('button',{name:'Save selected readings'}).waitFor();assert.equal((await (await deviceHealthRoutes(new Request('https://shiftsometimber.co.uk/v1/device-health',{headers:{Cookie:'sst_session=test-only-member-1'}}),f.env)).json()).readings.length,0);
   await page.screenshot({path:out+'/preview-'+engine.name()+'-'+width+'.png',fullPage:true});
   await page.getByRole('button',{name:'Save selected readings'}).click();await page.getByRole('status').filter({hasText:'Selected readings saved'}).waitFor();
   assert.equal(await page.locator('#deviceHealth li').count(),3);assert.equal(await page.locator('#deviceHealth li').filter({hasText:'93.2 kg'}).count(),1);
   // Reload reads the persisted shared account, without invoking a native read.
-  await page.reload();await page.addScriptTag({content:deviceHealthRuntime});await page.locator('#deviceHealth li').first().waitFor();assert.equal(await page.locator('#deviceHealth li').count(),3);
+  await page.reload();await page.addScriptTag({content:deviceHealthRuntime});await page.getByText('Saved readings (3)',{exact:true}).click();await page.locator('#deviceHealth li').first().waitFor();assert.equal(await page.locator('#deviceHealth li').count(),3);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   await page.getByRole('button',{name:'Disconnect Apple Health imports'}).click();await page.getByRole('status').filter({hasText:'Imports disconnected'}).waitFor();assert.equal(await page.locator('#deviceHealth li').count(),3);
   page.on('dialog',d=>d.accept());await page.getByRole('button',{name:'Delete imported Apple Health copies'}).click();await page.getByRole('status').filter({hasText:'Imported copies deleted'}).waitFor();assert.equal(await page.locator('#deviceHealth li').count(),0);
   // A response from the original preview cannot save under a later account.
   await page.evaluate(rows=>window.SST_NATIVE_HEALTH={platform:'apple_health',request:async()=>({readings:rows})},readings);await page.evaluate(()=>window.dispatchEvent(new Event('sst-native-health-ready')));
-  await page.locator('#deviceHealth>label input').check();await page.getByRole('button',{name:'Preview Apple Health readings'}).click();await page.getByRole('button',{name:'Save selected readings'}).waitFor();account=2;
+  await page.getByText('Import individual readings',{exact:true}).click();await page.locator('#deviceHealth details>label input').check();await page.getByRole('button',{name:'Preview Apple Health readings'}).click();await page.getByRole('button',{name:'Save selected readings'}).waitFor();account=2;
   await page.getByRole('button',{name:'Save selected readings'}).click();await page.getByRole('status').filter({hasText:'account changed'}).waitFor();assert.equal(JSON.parse(f.db.prepare('SELECT preferences FROM member_state WHERE user_id=2').get().preferences).deviceHealth,undefined);
   assert.deepEqual(errors,[]);results.push({engine:engine.name(),width,status:'PASS',nativeOSPermissionsTested:false});
  }finally{await context.close();await browser.close();f.close();}
