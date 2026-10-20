@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-20T11:28:26.411Z",
+  "source": "e5da486bd4040fb74301ac5da755278f32747ca4",
+  "deployment": "b0474810-14cd-41c3-a769-71e72bf16c13",
+  "predecessor": "f1d9c9f7-0e9c-4ed8-91f3-25be699b1d8a",
+  "url": "https://shiftsometimber.co.uk",
+  "manifestExact": true,
+  "existingAssetsPreserved": 905,
+  "homepageAssetUnchanged": true,
+  "ownerTransparentLogo": {
+    "input": "Transparent SHIFT SOME TIMBER logo(1).png",
+    "inputSHA256": "b31d2331e0cf4de14b1e7ef0e8699c5e9484d0911e45dbb6f298e227bfc4d831",
+    "outputSHA256": "57b14e2ded572e49f5376ffcbd6918558cb79db1cd979c2d3794df1cc6a5ac82",
+    "transparentBackground": true,
+    "filters": 0,
+    "exactOriginalImageBytes": true,
+    "method": "Supplied transparent PNG embedded unchanged; SVG viewBox omits only outer blank margins."
+  },
+  "liveBrowserCases": 8,
+  "engines": [
+    "Chromium",
+    "WebKit"
+  ],
+  "widths": [
+    390,
+    1440
+  ],
+  "devicePixelRatios": [
+    1,
+    2
+  ],
+  "logoColourFilter": "none",
+  "oldBadgeOverlay": "none",
+  "maxCentreDifference": 0.5,
+  "errors": [],
+  "physicalDeviceTested": false
+}
