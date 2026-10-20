@@ -2643,9 +2643,9 @@
   },
   {
     "path": "/order-success.html",
-    "before": "6a76e31787d05dfbc1ab50a7b536147d",
-    "after": "e3bf4c5f1bfd67c11f443d23aa0a6acc",
-    "sha256": "20d0d0d4fc2a1929366197f4f45f7cc6607a9cf7eb1cba621c283dbd90e3eb78",
+    "before": "0b0d114966564485300a3599d4391c59",
+    "after": "a4d74e1b9ad7c06569f590ddf729d355",
+    "sha256": "2d77e33f05a851d45c1a0c289fa59d10b20537979202893fd9fb80a2a2ae7edd",
     "iconReferences": 1
   },
   {

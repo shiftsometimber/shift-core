@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-20T11:44:29.906Z",
+  "previous": "a87d9d75-2a7d-43b0-8277-0dc9291705a1",
+  "current": "dcc70592-8ae2-4ed7-bfc2-775c7e419532",
+  "recoveredPeerHtml": [
+    "/order-success.html"
+  ],
+  "retainedPeerAssets": [
+    "/assessment-walkthrough.html",
+    "/assets/footer-social-links-v1.js",
+    "/assets/v42.js",
+    "/faq/what-is-tap-room.html",
+    "/medicine-preference.html",
+    "/tap-room.html",
+    "/treatment-assessment-terms.html",
+    "/treatment-assessment.html",
+    "/treatment-terms.html"
+  ],
+  "noPriorAttemptPublished": true
+}
