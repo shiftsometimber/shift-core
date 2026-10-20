@@ -1,0 +1,63 @@
+// Finite public Pages asset publication. Uses the existing project/manifest route;
+// never deploys a Worker, changes a binding, edits stock or opens payment.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url);
+const {hash}=require(process.env.ASSESSMENT_BLAKE3_MODULE);
+const out=path.resolve(process.env.ASSESSMENT_RELEASE_DIR);
+const source=path.join(out,'source');
+const project='/accounts/9e5386dcf455be34c582d93f8bfc79e6/pages/projects/projectshift';
+const token=fs.readFileSync(os.homedir()+'/Library/Preferences/.wrangler/config/default.toml','utf8').match(/oauth_token\s*=\s*"([^"]+)"/)?.[1];
+assert(token,'Existing Pages release session unavailable');
+const save=(name,value)=>fs.writeFileSync(path.join(out,name),typeof value==='string'?value:JSON.stringify(value,null,2)+'\n');
+const load=name=>JSON.parse(fs.readFileSync(path.join(out,name),'utf8'));
+const sha=value=>createHash('sha256').update(value).digest('hex');
+const assetHash=(body,name)=>hash(Buffer.from(body).toString('base64')+path.extname(name).slice(1)).toString('hex').slice(0,32);
+async function api(url,init={},auth=token){const r=await fetch('https://api.cloudflare.com/client/v4'+url,{...init,headers:{Authorization:'Bearer '+auth,...init.headers},signal:AbortSignal.timeout(30000)});const j=await r.json();assert(r.ok&&j.success,JSON.stringify({status:r.status,errors:j.errors}));return j.result;}
+async function get(url){const r=await fetch(url,{headers:{'User-Agent':'Mozilla/5.0','Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,url);return{body:Buffer.from(await r.arrayBuffer()),headers:Object.fromEntries(r.headers)};}
+const published=[['medicine-preference.html','/medicine-preference.html'],['assessment-walkthrough.html','/assessment-walkthrough.html'],['treatment-assessment-terms.html','/treatment-assessment-terms.html'],...['app.js','styles.css','oral-options.js','oral-formats.svg','generic-pen.png'].map(n=>['assets/'+n,'/assets/treatment-walkthrough-v2/'+n])];
+const entry='<section data-shift-assessment-entry="2026-10-20" style="margin:24px 0;padding:22px;border:2px solid #707762;border-radius:12px;background:#e7e3da;color:#050505"><h2 style="margin-top:0">Medicine preferences and assessment</h2><p>See the medicine formats, current catalogue prices and questions asked before a prescribing decision. A preference does not guarantee a prescription. All medicines are currently out of stock; orders and payments are closed.</p><p><a href="/medicine-preference" style="display:inline-block;padding:14px 18px;background:#050505;color:#e7e3da;border-radius:8px;font-weight:700">View medicine preferences and assessment</a></p><p><a href="/assessment-walkthrough">Explore the assessment with fictional examples</a></p></section>';
+const type=name=>name.endsWith('.html')?'text/html; charset=utf-8':name.endsWith('.js')?'application/javascript; charset=utf-8':name.endsWith('.css')?'text/css; charset=utf-8':name.endsWith('.svg')?'image/svg+xml':'image/png';
+function sourceGuard(){const m=JSON.parse(fs.readFileSync(path.join(source,'source-manifest.json'),'utf8'));for(const [n,d]of Object.entries(m)){const b=fs.readFileSync(path.join(source,n));assert.equal(b.length,d.bytes,n);assert.equal(sha(b),d.sha256,n);}return m;}
+function form(files,branch,message){const f=new FormData();f.set('manifest',JSON.stringify(files));f.set('branch',branch);f.set('commit_message',message);f.set('commit_dirty','false');f.set('_headers',new Blob([fs.readFileSync(path.join(out,'headers-candidate.txt'))],{type:'text/plain'}),'_headers');return f;}
+async function verifyHosted(d){const checks=[];for(const [n,url]of published){const{body}=await get(d.url+url);const expected=fs.readFileSync(path.join(source,n));assert.equal(sha(body),sha(expected),url);checks.push({path:url,sha256:sha(body),exactSource:true});}const tc=await get(d.url+'/treatment-centre.html');assert.equal(sha(tc.body),sha(fs.readFileSync(path.join(out,'treatment-centre-candidate.html'))));return checks;}
+async function prepare(){
+ assert(!fs.existsSync(path.join(out,'baseline.json')),'Existing transaction: resume it');sourceGuard();
+ const p=await api(project),d=p.canonical_deployment;assert.equal(d.environment,'production');assert.equal(d.uses_functions,false);
+ const{files}=await api(project+'/deployments/'+d.id+'/files');assert(Object.keys(files).length>800);assert(files['/treatment-centre.html']);
+ save('baseline.json',{productionBranch:p.production_branch,deployment:d});save('manifest-before.json',files);
+ const before=await get(d.url+'/treatment-centre.html');assert.equal(assetHash(before.body,'treatment-centre.html'),files['/treatment-centre.html']);
+ const html=before.body.toString();assert.equal((html.match(/<h1\b/gi)||[]).length,1);assert(!html.includes('data-shift-assessment-entry'));
+ const candidate=html.replace(/<\/h1>/i,'</h1>'+entry);assert.equal(candidate.replace(entry,''),html);save('treatment-centre-before.html',html);save('treatment-centre-candidate.html',candidate);
+ const homepage=await get('https://shiftsometimber.co.uk/');save('homepage-before.html',homepage.body.toString());
+ const catalogue=await get('https://api.shiftsometimber.co.uk/v1/catalogue/medicines');const live=JSON.parse(catalogue.body);const expected=JSON.parse(fs.readFileSync(path.join(source,'catalogue-proof.json')));
+ const norm=b=>b.products.map(p=>({name:p.name,status:p.status,variants:p.variants.map(v=>({strengthLabel:v.strengthLabel,pricePence:v.pricePence,status:v.status})).sort((a,b)=>a.strengthLabel.localeCompare(b.strengthLabel))})).sort((a,b)=>a.name.localeCompare(b.name));assert.deepEqual(norm(live),norm(expected));assert.equal(live.products.flatMap(p=>p.variants).length,29);assert(live.products.every(p=>p.status==='out_of_stock'&&p.variants.every(v=>v.status==='out_of_stock')));save('catalogue-live.json',live);
+ const next={...files},uploads=[];
+ for(const[n,url]of published){assert(!files[url],'Existing asset owner requires reconciliation: '+url);const b=fs.readFileSync(path.join(source,n)),key=assetHash(b,url);next[url]=key;uploads.push({key,value:b.toString('base64'),metadata:{contentType:type(n)},base64:true});}
+ const tcKey=assetHash(candidate,'treatment-centre.html');next['/treatment-centre.html']=tcKey;uploads.push({key:tcKey,value:Buffer.from(candidate).toString('base64'),metadata:{contentType:type('x.html')},base64:true});
+ const changes=Object.keys(next).filter(k=>next[k]!==files[k]).sort();assert.deepEqual(changes,[...published.map(([,url])=>url),'/treatment-centre.html'].sort());for(const k of Object.keys(files))if(k!=='/treatment-centre.html')assert.equal(next[k],files[k],k);assert.equal(next['/index.html'],files['/index.html']);
+ save('manifest-candidate.json',next);save('scope-proof.json',{checkedAt:new Date().toISOString(),changes,retainedExistingAssets:Object.keys(files).length-1,homepageAssetUnchanged:true,all29VariantsOOS:true,paymentsOpened:false,workerWrites:0});
+ const headersBefore=fs.readFileSync(path.join(out,'headers-before.txt'),'utf8');assert(headersBefore.includes('/assets/shift-service-bridge-v1.css'));const append=['/medicine-preference*','/assessment-walkthrough*','/treatment-assessment-terms*'].map(p=>p+'\n  Cache-Control: no-store\n  X-Robots-Tag: noindex, nofollow\n  Referrer-Policy: no-referrer\n').join('\n');save('headers-candidate.txt',headersBefore+'\n'+append+'\n/assets/treatment-walkthrough-v2/*\n  Cache-Control: public, max-age=300, must-revalidate\n');
+ assert.equal((await api(project)).canonical_deployment.id,d.id,'Public source moved: reconcile');const{jwt}=await api(project+'/upload-token');await api('/pages/assets/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(uploads)},jwt);
+ save('preview-intent.json',{at:new Date().toISOString(),baseline:d.id,branch:'assessment-walkthrough-review-20261020',changes});
+ const preview=await api(project+'/deployments',{method:'POST',body:form(next,'assessment-walkthrough-review-20261020','Medicine preference and assessment walkthrough; every variant OOS')});save('preview-deployment.json',preview);console.log(JSON.stringify({phase:'preview_created',id:preview.id,url:preview.url,changes:changes.length}));
+}
+async function inspect(){const d=load('preview-deployment.json');const current=await api(project+'/deployments/'+d.id);save('preview-current.json',current);console.log(JSON.stringify({id:d.id,url:d.url,stage:current.latest_stage}));}
+async function publish(){
+ assert(!fs.existsSync(path.join(out,'production-deployment.json')),'Production receipt already exists: verify it');assert(!fs.existsSync(path.join(out,'production-intent.json')),'An uncertain production attempt must be reconciled before replay');sourceGuard();
+ const base=load('baseline.json'),preview=load('preview-deployment.json'),p=await api(project);assert.equal(p.canonical_deployment.id,base.deployment.id,'Production moved: reconcile first');save('preview-asset-verification.json',await verifyHosted(preview));
+ const qa=load('preview-browser/receipt.json');assert.equal(qa.origin,preview.url);assert.equal(qa.cases.length,18);assert(qa.cases.every(c=>c.allOOS&&c.preferenceInHandover));assert.deepEqual(qa.errors,[]);assert.equal(qa.clinicalOrPaymentRequests,0);
+ assert.equal((await api(project)).canonical_deployment.id,base.deployment.id,'Production moved before publication');save('production-intent.json',{at:new Date().toISOString(),baseline:base.deployment.id,preview:preview.id,manifestSha256:sha(JSON.stringify(load('manifest-candidate.json')))});
+ const d=await api(project+'/deployments',{method:'POST',body:form(load('manifest-candidate.json'),p.production_branch,'Publish approved medicine preferences and full assessment walkthrough; orders closed')});save('production-deployment.json',d);console.log(JSON.stringify({phase:'production_created',id:d.id,url:d.url}));
+}
+async function verify(){
+ const d=load('production-deployment.json'),p=await api(project);assert.equal(p.canonical_deployment.id,d.id,'Another public release superseded this transaction');const actual=await api(project+'/deployments/'+d.id);save('production-current.json',actual);assert.equal(actual.latest_stage.status,'success');
+ const assets=await verifyHosted(d);const live=[];for(const url of ['/medicine-preference','/assessment-walkthrough','/treatment-assessment-terms']){const{body,headers}=await get('https://shiftsometimber.co.uk'+url);assert(body.toString().includes(url==='/medicine-preference'?'id="preview-assessment"':url==='/assessment-walkthrough'?'id="expandedAssessment"':'data-prescribing-terms'));if(url!=='/medicine-preference')assert(!body.toString().includes('Any separate assessment fee'));save('live-'+url.slice(1)+'.html',body.toString());live.push({path:url,status:200,sha256:sha(body),cache:headers['cache-control'],robots:headers['x-robots-tag']});}
+ const tc=await get('https://shiftsometimber.co.uk/treatment-centre');assert(tc.body.toString().includes(entry));save('live-treatment-centre.html',tc.body.toString());const home=await get('https://shiftsometimber.co.uk/');assert.equal(sha(home.body),sha(fs.readFileSync(path.join(out,'homepage-before.html'))),'Homepage bytes moved; reconcile ownership');
+ const actualFiles=(await api(project+'/deployments/'+d.id+'/files')).files;assert.deepEqual(actualFiles,load('manifest-candidate.json'));const receipt={verifiedAt:new Date().toISOString(),deployment:d.id,preview:load('preview-deployment.json').id,baseline:load('baseline.json').deployment.id,assets,live,entryFromTreatments:true,homepageByteIdentical:true,all29VariantsOOS:true,workerWrites:0,realClinicalIntegrationActivated:false};save('live-verification.json',receipt);console.log(JSON.stringify(receipt));
+}
+const phase=process.argv[2];await({prepare,inspect,publish,verify}[phase]||(()=>{throw Error('Choose prepare, inspect, publish or verify')}))();
