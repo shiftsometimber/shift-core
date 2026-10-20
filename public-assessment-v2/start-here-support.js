@@ -79,6 +79,7 @@ body.v6 #quickResult .sst-format-switch{--slot:0;position:relative;isolation:iso
 body.v6 #quickResult .sst-format-switch:before{content:'';position:absolute;z-index:-1;left:5px;top:5px;bottom:5px;width:calc((100% - 10px)/3);border-radius:999px;background:#a5ad95;box-shadow:0 2px 8px #0004;transform:translateX(calc(var(--slot)*100%));transition:transform .22s ease}
 body.v6 #quickResult .sst-format-switch button{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:44px;margin:0;padding:10px 9px;border:0;border-radius:999px;background:transparent;color:#c9cebe!important;font-size:14px!important;line-height:1!important;font-weight:800;cursor:pointer;box-shadow:none}
 body.v6 #quickResult .sst-format-switch button[aria-pressed=true]{color:#10120d!important}
+body.v6 #quickResult .sst-format-switch button>span,body.v6 #quickResult .sst-format-switch button>svg{color:inherit!important}
 body.v6 #quickResult .sst-format-switch button:hover{color:#fff!important}
 body.v6 #quickResult .sst-format-switch button[aria-pressed=true]:hover{color:#050505!important}
 body.v6 #quickResult .sst-format-switch svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 18px}

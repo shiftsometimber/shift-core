@@ -38,6 +38,7 @@ for(const[engine,width,matrix]of[[chromium,390,true],[chromium,1440,false],[webk
     await toggle.getByRole('button',{name:label,exact:true}).click();
     assert.equal(await panel.locator('[data-route-medicine]:visible').count(),count);
     assert.equal(await toggle.locator('[aria-pressed=true]').count(),1);
+    assert.equal(await toggle.locator('[aria-pressed=true] span').evaluate(el=>getComputedStyle(el).color),'rgb(16, 18, 13)','Selected switch label must retain dark, readable text on the light ash pill');
     if(format)assert((await panel.locator('[data-route-medicine]:visible').evaluateAll(nodes=>nodes.map(n=>n.dataset.medicineFormat))).every(f=>f===format));
    }
    await toggle.getByRole('button',{name:'Both',exact:true}).click();
