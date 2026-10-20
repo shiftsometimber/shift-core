@@ -18,8 +18,8 @@ test('unknown version, invalid dates, oversize and unacknowledged prescribing ar
  p.answers.medicineList='x'.repeat(4001);assert.equal(validateAssessment(p).error,'assessment_answer_too_long');p.answers.medicineList='None';
  p.prescribingAcknowledged=false;assert.equal(validateAssessment(p).error,'prescribing_acknowledgement_required');
 });
-test('terms preserve current closed service and rights, with no retrospective or automatic penalty',()=>{
+test('customer terms state current service facts without unfinished fee instructions',()=>{
  const html='<main><h1>Existing terms</h1><p>Existing statutory protections.</p></main>';
- for(const path of ['/terms','/terms-of-sale','/refunds']){const result=withPrescribingTerms(html,path);assert(result.includes('Existing statutory protections'));assert.match(result,/exact amount/);assert.match(result,/No charge may be introduced retrospectively/);assert.match(result,/ordering remains closed/);assert.match(result,/does not automatically result in a refund deduction/);assert.equal(withPrescribingTerms(result,path),result);}
- assert.equal(withPrescribingTerms(html,'/'),html);assert.match(preferenceRefundNotice,/before payment/);
+ for(const path of ['/terms','/terms-of-sale','/refunds']){const result=withPrescribingTerms(html,path);assert(result.includes('Existing statutory protections'));assert.match(result,/payments are currently closed/);assert.match(result,/statutory rights are unaffected/);assert.doesNotMatch(result,/fee.*(?:must|agreed before)|until the named providers|Before treatment ordering opens/);assert.equal(withPrescribingTerms(result,path),result);}
+ assert.equal(withPrescribingTerms(html,'/'),html);assert.match(preferenceRefundNotice,/prescriber/);assert.doesNotMatch(preferenceRefundNotice,/fee/);
 });

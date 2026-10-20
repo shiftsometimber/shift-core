@@ -9,6 +9,22 @@
  const intro=make('p','Prescription-only medicine. Your selection is a preference. The prescribing clinician must assess you and approve the medicine and dose. They may suggest an alternative, request more information or decide that treatment is unsuitable. Completing this form or making a payment does not guarantee a prescription.','prescribing-notice');host.append(intro);
  const progress=make('p','','assessment-progress');progress.setAttribute('aria-live','polite');host.append(progress);
  let step=0;
+ const demoMedicines={mounjaro:'Mounjaro injection',wegovy:'Wegovy injection','wegovy-tablet':'Wegovy tablets',foundayo:'Foundayo tablets',orlistat:'Orlistat capsules',liraglutide:'Liraglutide injection'};
+ let demoMedicine,demonstrationDose='';
+ function applyDemonstrationPreference(){
+  if(!demoMedicine)return;
+  const name=demoMedicines[demoMedicine.value];
+  controls.get('preference').input.value=name?'I have a preference to discuss':'I would like to discuss the options';
+  controls.get('preferenceDetails').input.value=name?name+(demonstrationDose?' · '+demonstrationDose:'')+' — preference for clinical review.':' ';
+ }
+ if(demo){
+  const label=make('label','Medicine preference to explore');demoMedicine=make('select');demoMedicine.id='demoMedicine';
+  const none=make('option','No preference — discuss the options');none.value='';demoMedicine.append(none);
+  for(const [id,name]of Object.entries(demoMedicines)){const option=make('option',name+' · out of stock');option.value=id;demoMedicine.append(option);}
+  const fragment=new URLSearchParams(location.hash.slice(1));if(Object.hasOwn(demoMedicines,fragment.get('medicine')))demoMedicine.value=fragment.get('medicine');
+  demonstrationDose=(fragment.get('dose')||'').slice(0,80);
+  demoMedicine.onchange=()=>{demonstrationDose='';applyDemonstrationPreference();refresh();};label.append(demoMedicine);host.append(label);
+ }
  if(demo){const label=make('label','Go to a section');const jump=make('select');SECTIONS.forEach((s,i)=>{const o=make('option',(i+1)+'. '+s.title);o.value=String(i);jump.append(o);});jump.id='sectionJump';jump.onchange=()=>{step=Number(jump.value);refresh();};label.append(jump);host.append(label);}
  SECTIONS.forEach((section,index)=>{
   const box=make('fieldset');box.append(make('legend',(index+1)+'. '+section.title));
@@ -75,10 +91,10 @@
   const samples=document.getElementById('demoSamples');
   for(const [name,path]of [['Starting','Starting treatment'],['Switching','Switching provider or medicine'],['Restarting','Restarting after a break'],['Repeat','Repeat treatment']]){
    const b=make('button','Show fictional '+name.toLowerCase()+' case');b.type='button';
-   b.onclick=()=>{form.reset();for(const {q,input}of controls.values())input.value=q.type==='select'?(q.options.includes('No')?'No':q.options[0]):q.type==='date'?'2026-10-19':'None reported in this fictional example.';controls.get('requestPath').input.value=path;controls.get('forMyself').input.value='Yes';controls.get('inUK').input.value='Yes';controls.get('goals').input.value='Fictional Alex Example would like support with weight management and energy.';controls.get('measurementMethod').input.value='Fictional home measurements. Independent clinician verification still required.';controls.get('medicineList').input.value='No medicines declared in this fictional case.';if(path!=='Starting treatment'){controls.get('previousProvider').input.value='Example Clinic — fictional provider';controls.get('doseHistory').input.value='Fictional history for demonstration. Prescriber must confirm medicine, exact dose, dates and any breaks from dispensing evidence.';}acknowledge.checked=true;step=0;refresh();document.getElementById('status').textContent='Fictional '+name.toLowerCase()+' case loaded. Edit answers to explore the follow-up questions.';};samples.append(b);
+   b.onclick=()=>{const chosen=demoMedicine.value;form.reset();demoMedicine.value=chosen;for(const {q,input}of controls.values())input.value=q.type==='select'?(q.options.includes('No')?'No':q.options[0]):q.type==='date'?'2026-10-19':'None reported in this fictional example.';controls.get('requestPath').input.value=path;controls.get('forMyself').input.value='Yes';controls.get('inUK').input.value='Yes';controls.get('goals').input.value='Fictional Alex Example would like support with weight management and energy.';controls.get('measurementMethod').input.value='Fictional home measurements. Independent clinician verification still required.';controls.get('medicineList').input.value='No medicines declared in this fictional case.';if(path!=='Starting treatment'){controls.get('previousProvider').input.value='Example Clinic — fictional provider';controls.get('doseHistory').input.value='Fictional history for demonstration. Prescriber must confirm medicine, exact dose, dates and any breaks from dispensing evidence.';}applyDemonstrationPreference();acknowledge.checked=true;step=0;refresh();document.getElementById('status').textContent='Fictional '+name.toLowerCase()+' case loaded. Edit answers to explore the follow-up questions.';};samples.append(b);
   }
   document.getElementById('demoReset').onclick=()=>{form.reset();step=0;refresh();document.getElementById('status').textContent='Demonstration reset. No information has been sent.';};
   form.noValidate=true;
  }
- window.SHIFT_EXPANDED_ASSESSMENT={payload,refresh,review,version:QUESTIONNAIRE_VERSION};refresh();
+ window.SHIFT_EXPANDED_ASSESSMENT={payload,refresh,review,version:QUESTIONNAIRE_VERSION};if(demo)applyDemonstrationPreference();refresh();
 })();

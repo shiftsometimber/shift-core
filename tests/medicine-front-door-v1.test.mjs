@@ -10,8 +10,8 @@ test('front door ships the five locked hero routes from one template',async()=>{
   const pages=await Promise.all(['product.html','mounjaro.html','wegovy-injection.html','wegovy-tablet.html','orlistat.html','foundayo.html'].map(x=>readFile(new URL(x,root),'utf8')));
   for(const page of pages){
     assert.match(page,/medicine-front-door\.js/);
-    assert.match(page,/THE BITS SALES PAGES HIDE/);
-    assert.match(page,/No card is charged here/);
+    assert.match(page,/SIDE EFFECTS AND CAUTIONS/);
+    assert.match(page,/Orders and payments are currently closed/);
   }
 });
 
@@ -27,8 +27,8 @@ test('Foundayo is launch-ready but cannot open the till without HQ supply',async
   const js=await readFile(new URL('medicine-front-door.js',root),'utf8');
   const page=await readFile(new URL('foundayo.html',root),'utf8');
   assert.match(js,/foundayo:\{match:'foundayo',type:'ONCE-DAILY TABLET · SUPPLY PENDING'/);
-  assert.match(js,/Formulary and partner supply not yet confirmed/);
-  assert.match(js,/ordering remains locked until partner supply is confirmed/);
+  assert.match(js,/No stock available today/);
+  assert.match(js,/Orders and payments are currently closed/);
   assert.match(page,/foundayo-editorial-status\.svg/);
   assert.doesNotMatch(page,/weekly-pen-guide\.svg/);
   assert.doesNotMatch(js,/if\(slug==='foundayo'\).*return/);

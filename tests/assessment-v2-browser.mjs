@@ -22,6 +22,12 @@ for(const [engine,width]of [[chromium,390],[chromium,1440],[webkit,390]]){
   assert.match(await page.locator('#clinicalSummary').textContent(),/Fictional Alex Example/);
   report.cases.push({engine:engine.name(),width,case:name+' case and complete pending handover',passed:true});
  }
+ for(const [key,name]of [['wegovy-tablet','Wegovy tablets'],['foundayo','Foundayo tablets'],['orlistat','Orlistat capsules']]){
+  await page.locator('#demoMedicine').selectOption(key);await page.getByRole('button',{name:'Review clinical answers'}).click();
+  assert.match(await page.locator('#clinicalSummary').textContent(),new RegExp(name));
+  assert.equal((await page.evaluate(()=>window.SHIFT_EXPANDED_ASSESSMENT.payload())).answers.preference,'I have a preference to discuss');
+  report.cases.push({engine:engine.name(),width,case:name+' preference reaches the pending prescriber summary',passed:true});
+ }
  await page.evaluate(()=>{document.getElementById('clinical_pancreas').value='Not sure';document.getElementById('clinical_pancreasDetails').value='<img src=x onerror=alert(1)>';document.getElementById('clinical_pregnancyPossible').value='Yes';document.getElementById('clinical_urgentSymptoms').value='Not sure';window.SHIFT_EXPANDED_ASSESSMENT.refresh();});
  let payload=await page.evaluate(()=>window.SHIFT_EXPANDED_ASSESSMENT.payload());assert.equal(payload.answers.pancreasDetails,'<img src=x onerror=alert(1)>');assert.equal(payload.answers.contraception,'None reported in this fictional example.');
  await page.getByRole('button',{name:'Review clinical answers'}).click();assert.equal(await page.locator('#clinicalSummary img').count(),0);
