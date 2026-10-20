@@ -5,9 +5,11 @@ const require=createRequire(import.meta.url),{chromium,webkit}=require(process.e
 const root=process.env.ASSESSMENT_RELEASE_DIR,origin=process.env.ASSESSMENT_BROWSER_ORIGIN,out=process.env.ASSESSMENT_BROWSER_EVIDENCE;
 await fs.mkdir(out,{recursive:true});
 const prices=JSON.parse(await fs.readFile(root+'/source/budget-price-snapshot.json','utf8'));
-const result={origin,cases:[],newScriptErrors:[],inheritedErrors:[],clinicalOrPaymentRequests:0};
+const result={origin,mainContrastGuardSimulated:!!process.env.LAYOUT_MAIN_CONTRAST_GUARD,cases:[],newScriptErrors:[],inheritedErrors:[],clinicalOrPaymentRequests:0};
 for(const[engine,width,matrix]of[[chromium,390,true],[chromium,1440,false],[webkit,390,false]]){
- const browser=await engine.launch({headless:true}),context=await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce'}),page=await context.newPage();
+ const browser=await engine.launch({headless:true}),context=await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce'});
+ if(process.env.LAYOUT_MAIN_CONTRAST_GUARD)await context.addInitScript({content:await fs.readFile(process.env.LAYOUT_MAIN_CONTRAST_GUARD,'utf8')});
+ const page=await context.newPage();
  page.on('pageerror',e=>{if(e.message.includes('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2 due to access control checks.'))result.inheritedErrors.push(e.message);else result.newScriptErrors.push(e.message);});
  page.on('request',r=>{if(/\/v1\/(?:commerce\/medicine-checkout|commerce\/medicine-clinical|pharmacy\/|clinical\/)/.test(r.url()))result.clinicalOrPaymentRequests++;});
  const choose=async selector=>{const b=page.locator(selector);if(await b.getAttribute('aria-pressed')!=='true')await b.click();};
@@ -38,8 +40,8 @@ for(const[engine,width,matrix]of[[chromium,390,true],[chromium,1440,false],[webk
     await toggle.getByRole('button',{name:label,exact:true}).click();
     assert.equal(await panel.locator('[data-route-medicine]:visible').count(),count);
     assert.equal(await toggle.locator('[aria-pressed=true]').count(),1);
-    const contrast=await toggle.evaluate(el=>{const lum=color=>{const rgb=color.match(/[\d.]+/g).slice(0,3).map(Number).map(x=>x/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;},bg=lum(getComputedStyle(el,'::before').backgroundColor),ratio=color=>{const fg=lum(color);return(Math.max(bg,fg)+.05)/(Math.min(bg,fg)+.05);},active=el.querySelector('[aria-pressed=true]');return{text:ratio(getComputedStyle(active.querySelector('span')).color),icon:ratio(getComputedStyle(active.querySelector('svg')).color)};});
-    assert(contrast.text>=4.5&&contrast.icon>=4.5,'Selected switch text and icon require 4.5:1 contrast: '+JSON.stringify(contrast));
+    const contrast=await toggle.evaluate(el=>{const lum=color=>{const rgb=color.match(/[\d.]+/g).slice(0,3).map(Number).map(x=>x/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;},active=el.querySelector('[aria-pressed=true]'),bg=lum(getComputedStyle(active).backgroundColor),ratio=color=>{const fg=lum(color);return(Math.max(bg,fg)+.05)/(Math.min(bg,fg)+.05);};return{text:ratio(getComputedStyle(active.querySelector('span')).color),paint:ratio(getComputedStyle(active.querySelector('span')).webkitTextFillColor),icon:ratio(getComputedStyle(active.querySelector('svg')).color)};});
+    assert(contrast.text>=4.5&&contrast.paint>=4.5&&contrast.icon>=4.5,'Selected switch text and icon require 4.5:1 contrast: '+JSON.stringify(contrast));
     if(format)assert((await panel.locator('[data-route-medicine]:visible').evaluateAll(nodes=>nodes.map(n=>n.dataset.medicineFormat))).every(f=>f===format));
    }
    await toggle.getByRole('button',{name:'Both',exact:true}).click();

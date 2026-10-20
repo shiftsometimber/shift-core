@@ -75,11 +75,10 @@ body.v6 #quickResult .sst-route-intro p{margin:8px 0!important;font-size:15px!im
 body.v6 #quickResult .sst-options-head{display:flex;align-items:center;justify-content:space-between;gap:22px;margin:26px 0 18px}
 body.v6 #quickResult .sst-options-head small{display:block;margin-bottom:5px;font-size:10px!important;font-weight:800;letter-spacing:.13em;color:#a5ad95!important}
 body.v6 #quickResult .sst-options-head h4{margin:0!important;font-size:clamp(23px,2.5vw,30px)!important;line-height:1.15!important;letter-spacing:-.035em;color:#e7e3da!important}
-body.v6 #quickResult .sst-format-switch{--slot:0;position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr);flex:0 0 358px;padding:5px;border:1px solid #707762;border-radius:999px;background:#11130f;box-shadow:inset 0 1px 5px #0008}
-body.v6 #quickResult .sst-format-switch:before{content:'';position:absolute;z-index:-1;left:5px;top:5px;bottom:5px;width:calc((100% - 10px)/3);border-radius:999px;background:#a5ad95;box-shadow:0 2px 8px #0004;transform:translateX(calc(var(--slot)*100%));transition:transform .22s ease}
-body.v6 #quickResult .sst-format-switch button{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:44px;margin:0;padding:10px 9px;border:0;border-radius:999px;background:transparent;color:#c9cebe!important;font-size:14px!important;line-height:1!important;font-weight:800;cursor:pointer;box-shadow:none}
-body.v6 #quickResult .sst-format-switch button[aria-pressed=true]{color:#10120d!important}
-body.v6 #quickResult .sst-format-switch button>span,body.v6 #quickResult .sst-format-switch button>svg{color:inherit!important}
+body.v6 #quickResult .sst-format-switch{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr);flex:0 0 358px;padding:5px;border:1px solid #707762;border-radius:999px;background:#11130f;box-shadow:inset 0 1px 5px #0008}
+body.v6 #quickResult .sst-format-switch button{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:44px;margin:0;padding:10px 9px;border:0;border-radius:999px;background:#11130f!important;color:#c9cebe!important;font-size:14px!important;line-height:1!important;font-weight:800;cursor:pointer;box-shadow:none}
+body.v6 #quickResult .sst-format-switch button[aria-pressed=true]{background:#a5ad95!important;color:#10120d!important;-webkit-text-fill-color:currentColor!important;box-shadow:inset 0 1px 0 #d4dbc2,0 2px 8px #0004}
+body.v6 #quickResult .sst-format-switch button>span,body.v6 #quickResult .sst-format-switch button>svg{color:inherit!important;-webkit-text-fill-color:currentColor!important}
 body.v6 #quickResult .sst-format-switch button:hover{color:#fff!important}
 body.v6 #quickResult .sst-format-switch button[aria-pressed=true]:hover{color:#050505!important}
 body.v6 #quickResult .sst-format-switch svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 18px}
@@ -104,7 +103,6 @@ body.v6 #quickResult .sst-route-support{margin:18px 0 0!important;font-size:14px
 body.v6 #quickResult .sst-route-support a{color:#e7e3da!important;text-underline-offset:4px;font-weight:800}
 @media(max-width:900px){body.v6 #quickResult .sst-options-head{align-items:start;flex-direction:column;gap:16px}body.v6 #quickResult .sst-format-switch{flex:0 0 auto;width:min(100%,420px)}body.v6 #quickResult .sst-options-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){body.v6 #quickResult .sh-summary-v72{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 12px}body.v6 #quickResult .sh-summary-v72>div{padding:9px 2px!important}body.v6 #quickResult .sh-summary-v72>div:nth-last-child(-n+2){border-bottom:0!important}body.v6 #quickResult .sh-summary-v72 strong{font-size:13px!important}body.v6 #quickResult .sst-potential-route{padding-top:23px}body.v6 #quickResult .sst-route-intro{margin-bottom:20px}body.v6 #quickResult .sst-format-switch{width:100%}body.v6 #quickResult .sst-options-grid{grid-template-columns:1fr;gap:14px}body.v6 #quickResult .sst-option-card{padding:18px}body.v6 #quickResult .sst-option-visual{height:155px}body.v6 #quickResult .sst-route-notes{padding:16px}body.v6 #quickResult .sst-options-head{margin-top:22px}}
-@media(prefers-reduced-motion:reduce){body.v6 #quickResult .sst-format-switch:before{transition:none}}
 `;
     document.head.append(style);
   }
@@ -144,7 +142,6 @@ body.v6 #quickResult .sst-route-support a{color:#e7e3da!important;text-underline
       const price=add('div','',card,'sst-option-price');add('strong',pounds(row.low)+'–'+pounds(row.high),price);add('span','per listed pack · varies by strength or quantity',price);
     }
     function setView(view){
-      toggle.style.setProperty('--slot',String(['both','tablet','jab'].indexOf(view)));
       for(const button of buttons)button.setAttribute('aria-pressed',String(button.dataset.formatFilter===view));
       for(const card of grid.children)card.hidden=view!=='both'&&card.dataset.medicineFormat!==view;
       status.textContent=view==='both'?'Showing all 6 options · all out of stock':view==='tablet'?'Showing 3 oral options · tablets and capsules · all out of stock':'Showing 3 injection options · all out of stock';
