@@ -1,0 +1,11 @@
+--- a/tests/food-diary-london-date-stack-20261015.test.mjs
++++ b/tests/food-diary-london-date-stack-20261015.test.mjs
+@@ -1312,7 +1312,7 @@
+   for(let n=0;n<pins;n++)assert.equal(options.read('HEAD','one'),oid('HEAD','one'));
+   if(exitDirty)state.dirty=true;
+  };
+- const context={assert,structuredClone,Set,WeakMap,nativeCiReaders:brands,releaseMachineryRepairHistoricalView:()=>repair,exactCombinedDirectoryDisplay:v=>v,manifest,verifyCombinedFiniteOriginal:verify,verifyCombinedFinite:(c,o)=>{stats.publicVerifierCalls++;verify(c,o);},git:(...args)=>args[0]==='rev-parse'?head:args[0]==='diff'?'':''};
++ const context={assert,structuredClone,Set,WeakMap,nativeCiReaders:brands,assertNavigationOuterChainContext:view=>{assert.equal(view,repair,'Exact synthetic repair context required');ci.assertCurrent();},releaseMachineryRepairHistoricalView:()=>repair,exactCombinedDirectoryDisplay:v=>v,manifest,verifyCombinedFiniteOriginal:verify,verifyCombinedFinite:(c,o)=>{stats.publicVerifierCalls++;verify(c,o);},git:(...args)=>args[0]==='rev-parse'?head:args[0]==='diff'?'':''};
+  const factory=runInNewContext(provenance+'\n'+factories[kind]+'\ncombinedFiniteHistoricalView',context);
+  const start=()=>factory(reader,{defaultReader});
+  return{start,state,stats,oid};

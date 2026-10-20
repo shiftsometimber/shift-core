@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-20T22:13:38.167043+00:00",
+  "noHealthReadsOrWrites": true,
+  "physicalAcceptance": "UNPERFORMED",
+  "appleOperationExit": 0,
+  "appleDeviceCount": 0,
+  "appleAvailableForIsolatedTesting": false,
+  "androidAdbAvailable": false
+}

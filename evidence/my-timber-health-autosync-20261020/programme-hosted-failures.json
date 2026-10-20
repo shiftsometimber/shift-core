@@ -1,0 +1,88 @@
+{
+  "source": "fb85370ca1728a580bb47f570d673a3a38e86450",
+  "run": 39438962813,
+  "job": 118683458120,
+  "failures": [
+    {
+      "name": "not ok 55 - actual rollback condition preserves all original ownership outcomes and the original Member Details assertion",
+      "error": "error: 'The exact registered CSS maintenance inverse is required'"
+    },
+    {
+      "name": "not ok 57 - the rollback comparison authenticates the complete current CSS maintenance before restoring its exact original fixture",
+      "error": "error: 'The exact registered CSS maintenance inverse is required'"
+    },
+    {
+      "name": "not ok 173 - exact native approved workflow binds only the current ninety-minute production window",
+      "error": "error: |-"
+    },
+    {
+      "name": "not ok 288 - literal production layout view requires the exact complete admitted raw workflow and rejects extra or altered source",
+      "error": "error: |-"
+    },
+    {
+      "name": "not ok 332 - canonical native CI repair origin preserves paired current guards and exact historical references",
+      "error": "error: |-"
+    },
+    {
+      "name": "not ok 528 - native admission rechecks index visibility inside a warmed immutable scope",
+      "error": "error: |-"
+    },
+    {
+      "name": "not ok 529 - production fixture adapter preserves original assertions and rejects changed deployment, budget or permissions",
+      "error": "error: |-"
+    },
+    {
+      "name": "not ok 605 - canonical private native Original reuses immutable facts; returned public read remains guarded",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 606 - unproven native context remains fully guarded: absent",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 607 - unproven native context remains fully guarded: wrong-view",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 608 - unproven native context remains fully guarded: wrong-kind",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 609 - non-null callback cannot take native Original shortcut: plain",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 610 - non-null callback cannot take native Original shortcut: default-reader-true",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 611 - non-null callback cannot take native Original shortcut: wrapped",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 612 - non-null callback cannot take native Original shortcut: bound",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 613 - non-null callback cannot take native Original shortcut: copied-properties",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 614 - forged non-null callback rejects during full Original admission even with defaultReader true",
+      "error": "error: |-"
+    },
+    {
+      "name": "not ok 615 - fresh dirty entry rejects before Original and exit source drift still rejects",
+      "error": "error: |-"
+    },
+    {
+      "name": "not ok 616 - fresh subsequent construction cannot reuse prior clean outcome",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    },
+    {
+      "name": "not ok 617 - legacy non-CI factory still invokes the unchanged public verifier",
+      "error": "error: 'assertNavigationOuterChainContext is not defined'"
+    }
+  ],
+  "wholeSuiteCompleted": false
+}

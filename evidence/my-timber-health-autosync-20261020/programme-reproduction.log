@@ -1,0 +1,226 @@
+✖ canonical private native Original reuses immutable facts; returned public read remains guarded (3.555291ms)
+✖ unproven native context remains fully guarded: absent (0.897166ms)
+✖ unproven native context remains fully guarded: wrong-view (0.582959ms)
+✖ unproven native context remains fully guarded: wrong-kind (1.051792ms)
+✖ non-null callback cannot take native Original shortcut: plain (0.826125ms)
+✖ non-null callback cannot take native Original shortcut: default-reader-true (0.602166ms)
+✖ non-null callback cannot take native Original shortcut: wrapped (0.559625ms)
+✖ non-null callback cannot take native Original shortcut: bound (0.562666ms)
+✖ non-null callback cannot take native Original shortcut: copied-properties (0.578334ms)
+✖ forged non-null callback rejects during full Original admission even with defaultReader true (0.812167ms)
+✖ fresh dirty entry rejects before Original and exit source drift still rejects (0.994709ms)
+✖ fresh subsequent construction cannot reuse prior clean outcome (0.599875ms)
+✖ legacy non-CI factory still invokes the unchanged public verifier (0.549167ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 0
+ℹ fail 13
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 81.518541
+
+✖ failing tests:
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:40:1
+✖ canonical private native Original reuses immutable facts; returned public read remains guarded (3.555291ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:43:35)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:54:57
+✖ unproven native context remains fully guarded: absent (0.897166ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:55:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:54:57
+✖ unproven native context remains fully guarded: wrong-view (0.582959ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:55:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:54:57
+✖ unproven native context remains fully guarded: wrong-kind (1.051792ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:55:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:57:90
+✖ non-null callback cannot take native Original shortcut: plain (0.826125ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:62:63)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:57:90
+✖ non-null callback cannot take native Original shortcut: default-reader-true (0.602166ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:62:63)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:57:90
+✖ non-null callback cannot take native Original shortcut: wrapped (0.559625ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:62:63)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:57:90
+✖ non-null callback cannot take native Original shortcut: bound (0.562666ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:62:63)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:57:90
+✖ non-null callback cannot take native Original shortcut: copied-properties (0.578334ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:62:63)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:66:1
+✖ forged non-null callback rejects during full Original admission even with defaultReader true (0.812167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /foreign source rejected/. Input:
+  
+  'ReferenceError: assertNavigationOuterChainContext is not defined'
+  
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:67:103)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ReferenceError: assertNavigationOuterChainContext is not defined
+        at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+        at start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:67:103)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12),
+    expected: /foreign source rejected/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:69:1
+✖ fresh dirty entry rejects before Original and exit source drift still rejects (0.994709ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /fresh source rejected/. Input:
+  
+  'ReferenceError: assertNavigationOuterChainContext is not defined'
+  
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:71:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ReferenceError: assertNavigationOuterChainContext is not defined
+        at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+        at start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:71:51)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19)
+        at Test.run (node:internal/test_runner/test:1467:12),
+    expected: /fresh source rejected/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:75:1
+✖ fresh subsequent construction cannot reuse prior clean outcome (0.599875ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:76:56)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at work/health-autosync/programme-fixture-repair/reproduction.test.mjs:78:1
+✖ legacy non-CI factory still invokes the unchanged public verifier (0.549167ms)
+  ReferenceError: assertNavigationOuterChainContext is not defined
+      at combinedFiniteHistoricalView (evalmachine.<anonymous>:4:2)
+      at Object.start (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:37:18)
+      at TestContext.<anonymous> (file:///Users/shiftsometimberltd/SST/my-timber-health-autosync-20261020/work/health-autosync/programme-fixture-repair/reproduction.test.mjs:79:74)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

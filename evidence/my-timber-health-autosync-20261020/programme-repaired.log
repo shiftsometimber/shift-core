@@ -1,0 +1,21 @@
+✔ canonical private native Original reuses immutable facts; returned public read remains guarded (2.587125ms)
+✔ unproven native context remains fully guarded: absent (0.7025ms)
+✔ unproven native context remains fully guarded: wrong-view (0.992209ms)
+✔ unproven native context remains fully guarded: wrong-kind (0.635875ms)
+✔ non-null callback cannot take native Original shortcut: plain (0.825417ms)
+✔ non-null callback cannot take native Original shortcut: default-reader-true (0.604ms)
+✔ non-null callback cannot take native Original shortcut: wrapped (0.619625ms)
+✔ non-null callback cannot take native Original shortcut: bound (0.684458ms)
+✔ non-null callback cannot take native Original shortcut: copied-properties (0.616417ms)
+✔ forged non-null callback rejects during full Original admission even with defaultReader true (0.571792ms)
+✔ fresh dirty entry rejects before Original and exit source drift still rejects (1.004458ms)
+✔ fresh subsequent construction cannot reuse prior clean outcome (0.546ms)
+✔ legacy non-CI factory still invokes the unchanged public verifier (0.509ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.455833
