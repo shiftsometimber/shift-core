@@ -1,0 +1,252 @@
+{
+  "changes": [
+    {
+      "path": "/articles/understanding-blood-test-results.html",
+      "beforeSHA256": "942b3899b7c461b2b68d99f8fb4b3a43a21881efe4c3113a29a9b864b90107e0",
+      "afterSHA256": "c62b2fbed663535f4b5fb28fee9532a06654de6bdb765aa0f0bbb865c468bdc8",
+      "edits": 1
+    },
+    {
+      "path": "/articles/upper-arm-blood-collection.html",
+      "beforeSHA256": "781b4023e88969fdec418eacd4b138c3f6fda9efc1b681e06f966eb8d3f08fb0",
+      "afterSHA256": "03099cc24d62362cea7838d47b8d1faa78e337fd5addedefba2c0867917c9a8c",
+      "edits": 3
+    },
+    {
+      "path": "/shift-health/blood-tests.html",
+      "beforeSHA256": "c8d5e13b7cb08e2f6fd8f051b99c067c7fbf15c53cd2d0b1e85fc68ec0e3d891",
+      "afterSHA256": "1f85c3c9a5d3d219ba036169fbff7f2635c891fa50a09a155917ea4fa10d9519",
+      "edits": 8
+    },
+    {
+      "path": "/shift-health/blood-tests/about.html",
+      "beforeSHA256": "91acf7b062a410855b5bba84efde1e738448983cdf5326e7c4a712ef5e07b1ba",
+      "afterSHA256": "73eb6f83bdffb8462bd1ba6be9eda6c677e556399a9e82c44ca91ed5b993f35b",
+      "edits": 6
+    },
+    {
+      "path": "/shift-health/blood-tests/baseline.html",
+      "beforeSHA256": "632f2d91e11bb56dcd8aac923bb90fc5b11289b2596feb415589358e245d52bd",
+      "afterSHA256": "4dbc7d4e6625b7fa8dfa8856cb71e7bf1388deff995c83dbb0957b8e26d81f69",
+      "edits": 2
+    },
+    {
+      "path": "/shift-health/blood-tests/baseline/your-test.html",
+      "beforeSHA256": "b9b850dc18a2a8b09dd460fb349bfbc2db8959047333f27742f673011caba337",
+      "afterSHA256": "82db9c64d860a8c14e3f433a2b37f2bb17f2b518f0447957e882b0716e15fd0e",
+      "edits": 4
+    },
+    {
+      "path": "/shift-health/blood-tests/advanced.html",
+      "beforeSHA256": "3cf4654784242db2d8b38a3faebc2a5a5476807b01a6d379496ac31f1b80d47a",
+      "afterSHA256": "dbae98b9192d462e8df59d26e635cd5a44e50240e80e00b9ae6cd6f9800aaf7a",
+      "edits": 2
+    },
+    {
+      "path": "/shift-health/blood-tests/advanced/your-test.html",
+      "beforeSHA256": "0eeba70320c327c8ee28e47981e61fc77a9251e5c24e51327449f98074cb9a3e",
+      "afterSHA256": "bfecb3982c9dc9ab65ee536a01df613d80b905bfa8a1f28e6655c5ee8c30c4b6",
+      "edits": 4
+    },
+    {
+      "path": "/shift-health/blood-tests/complete.html",
+      "beforeSHA256": "7b3089a070c8717ed6f73ed46b4e08dfd7c97f21731e590734aef86c492f7dc2",
+      "afterSHA256": "608e6ec45e094884643188da927297bbb4af71d4405395ad1e9d9d87bd09716c",
+      "edits": 4
+    },
+    {
+      "path": "/shift-health/blood-tests/complete/your-test.html",
+      "beforeSHA256": "bc5ac3aa74290bc41a338d3afaa9b85d1b4054edb4bdf38b911ef9117b4cf8fb",
+      "afterSHA256": "239438c921e7f294f471af8050451029eddd91f2d4af6b4cab6be2dab8015de8",
+      "edits": 4
+    },
+    {
+      "path": "/shift-health/blood-tests/my-timber-example.html",
+      "beforeSHA256": "257beb41d714219d0a3227eeb6799738145a6fc439f88a2a00df780bf3ebd2b4",
+      "afterSHA256": "0a017e468dced267617381edb75c7341cf83ec244df072b51da553bb85c99c1a",
+      "edits": 1
+    },
+    {
+      "path": "/shift-for-work.html",
+      "beforeSHA256": "3c9fa8c9a5a3a9f2afadca100302950992d3edaeff0114101b60caec5fe41e4d",
+      "afterSHA256": "6c3a15c98f563d60f5b4dc6521c750515112d570984c844b572e8465cf411361",
+      "edits": 2
+    },
+    {
+      "path": "/privacy-centre.html",
+      "beforeSHA256": "dc9e08d440c4f9bcb5b575c4d8e8b708b03733dce9d4fe432b81c9e815ffc710",
+      "afterSHA256": "ef02edc451ef486656b9481472a2c72f610702f4c19d4c358484596b68870935",
+      "edits": 2
+    },
+    {
+      "path": "/privacy.html",
+      "beforeSHA256": "05a389e085010abf63fbeb1f7fa2ea2c40d5eee3e3bc31d0a9172705a8c49a90",
+      "afterSHA256": "da15599d3b66dcbbdf3ea77c42238f8e49687ae3eea54b27a20b5a594aff161f",
+      "edits": 12
+    },
+    {
+      "path": "/terms.html",
+      "beforeSHA256": "50eb75cce485330d6807021a0bffe78f65bbd16f522aaca7f1c9e51a2f8eb00d",
+      "afterSHA256": "7e7c6619b4e5b16cda5f249bc4a9a56fe55aa69327a47d4b028bc20ec81e03dc",
+      "edits": 1
+    },
+    {
+      "path": "/data-governance.html",
+      "beforeSHA256": "1b93ec142f21d64f27899d163a80840f8125703d97bab81273787e120b7a2f8e",
+      "afterSHA256": "3282cdbc8ece54bb3e68b3253e4eb42e3ceeb17cff56d57b425c5eb086da6cbb",
+      "edits": 6
+    },
+    {
+      "path": "/clinical-governance.html",
+      "beforeSHA256": "1c64453984007c2fe6dddcdd7794d78200da106815665e826afd29c54d4da0c4",
+      "afterSHA256": "6635cbe22f937040078bb6791c43181fa47bd8e083df4ea5f5ed9adae70b2a99",
+      "edits": 1
+    },
+    {
+      "path": "/treatments/medication.html",
+      "beforeSHA256": "3797a6501618e1e44474b275ec9f0bbb550e2c84b6edfeb1d85c9477f4b37172",
+      "afterSHA256": "08b44c0539736ff4f1548554a0e988fb5dd87d0e492d1787e02282dab0b39f3c",
+      "edits": 1
+    },
+    {
+      "path": "/member-dashboard-v3d.html",
+      "beforeSHA256": "15be138143fa99d39726beee8c99c9cd1d5d73c01c9c6b09bd231abfce268a24",
+      "afterSHA256": "88b4a7e995fc7d6bd1aaa502029b3c7ed97d86070c3c00d74ffed8159a2837b0",
+      "edits": 1
+    },
+    {
+      "path": "/member/life-changed-preview.html",
+      "beforeSHA256": "39a024fed54e6e9953ac8baa791c4d7c2ce9f6277ba9529c19410ef2456a3399",
+      "afterSHA256": "6157e53822dce2eddc34cedc4740a9db4985e25adef90b6716ef007fc7dd1c61",
+      "edits": 2
+    },
+    {
+      "path": "/medicine-front-door-integrated-v1.js",
+      "beforeSHA256": "8de31f0b604f23a7e1de4a6b793a2c8ad30810e9deaf136832cd9e9386f294ae",
+      "afterSHA256": "2368f135458cd47af684abe87bb1980ecc6f0bbeff10e227f275af792f933b3b",
+      "edits": 1
+    },
+    {
+      "path": "/treatment-medication-catalogue-v1.js",
+      "beforeSHA256": "10ad9f932c0fd8c841008c4aaf8db016b407872f1d1c7f81f94b9cfba9f8c621",
+      "afterSHA256": "be53ddea40d3245d016fa46f8b6489bedf2c38863ea338d993d0598419b8b62e",
+      "edits": 1
+    },
+    {
+      "path": "/treatment-order-prototype-v1.js",
+      "beforeSHA256": "190a1ecc29589521dd3c45c932454ddb77894646a367fcda46fff219d8ee918f",
+      "afterSHA256": "76ce1557ac2c805ea4d9338113daddc4c62f55496e6dd5726a8042d22dd60b67",
+      "edits": 1
+    },
+    {
+      "path": "/search-index-v3a.json",
+      "beforeSHA256": "aeaf107fcb9394c0c20a4bbdda0abd3c8dccfd81b7fa31777d3af6566f36549e",
+      "afterSHA256": "ff4d6906cc60c4a64a58f3906aa903719129f7118b47d0b582950284c76094ab",
+      "edits": 256,
+      "removedEntries": 0
+    },
+    {
+      "path": "/assets/knowledge-index.json",
+      "beforeSHA256": "7cc559ad6226b0f8a1a90d1ca5114f1725f3d4a652c0c7c7a3402167940be7f2",
+      "afterSHA256": "ec94f5dcae515baffd70e643cfdcca97d2ef6966ac9a177360e4d999dbab0756",
+      "edits": 105,
+      "removedEntries": 0
+    },
+    {
+      "path": "/downloads/SHIFT-for-Work-Proposition.pdf",
+      "beforeSHA256": "07d0827939c9b83fd664b7c4fe1668525c5d180803d3dfc34265d6db919a9946",
+      "afterSHA256": "d970a9da528f25d4a57687bb72cef5cf0efcfd2e4b59e5313ef3b254b1b134d0",
+      "edits": 2
+    }
+  ],
+  "remove": [
+    "/.openai/hosting.json",
+    "/ASSET-PERFORMANCE-CLOSEOUT-V126.md",
+    "/CITATION-AUTHORITY-CLOSEOUT-V1.md",
+    "/DEPLOYMENT-FINGERPRINT.json",
+    "/FULL-ESTATE-ACCEPTANCE.json",
+    "/INCIDENT-RECOVERY-README.txt",
+    "/LIVE-PARITY-ACCEPTANCE.json",
+    "/MEDICINE-FRONT-DOOR-RELEASE.md",
+    "/PACKAGE-MANIFEST.txt",
+    "/SECURITY-CSP-CLOSEOUT.md",
+    "/STABILISATION-DEPLOYMENT-FINGERPRINT.json",
+    "/START-HERE-LIFE-BACK-OPERATING-SYSTEM-V90-COMMISSIONING-NOTES.md",
+    "/START-HERE-POSITIVE-TREATMENT-OUTLOOK-V81-COMMISSIONING-NOTES.md",
+    "/UPLOAD-THIS-ONE-ZIP.txt",
+    "/V134-SAFE-MERGE-MANIFEST.md",
+    "/V135-START-HERE-CONSOLIDATION-MANIFEST.md",
+    "/V136-CONSOLIDATED-RECOVERY-MANIFEST.md",
+    "/assets/member-data-schema.json",
+    "/build-product-assets.sh",
+    "/content-governance.json",
+    "/docs/DEPLOYMENT-ROLLBACK-CANARY.md",
+    "/docs/EXTERNAL-VERIFICATION-2026-08-29.md",
+    "/docs/GATE1-FRONTEND-INTEGRITY.md",
+    "/docs/GATE2-V33H-MEMBER-UX.md",
+    "/docs/INCIDENT-RUNBOOK.md",
+    "/docs/MONITORING-SLOS.md",
+    "/docs/RELEASE-QA-V1.26.md",
+    "/docs/RETENTION-HEALTH-ERASURE-VERIFICATION.md",
+    "/governance/DATA-MAP-v1.md",
+    "/governance/DPIA-v1.md",
+    "/governance/RETENTION-SCHEDULE-v1.md",
+    "/governance/phase3-wave2-claim-register.json",
+    "/governance/seo-audit-2026-08-27-remediation.txt",
+    "/governance/seo-completion-v16-manifest.json",
+    "/governance/seo-completion-v161-manifest.json",
+    "/governance/seo-v112-reconciliation.json",
+    "/governance/seo-v124-reconciliation.json",
+    "/governance/seo-v124-remediation.txt",
+    "/governance/v137-visual-commission-routes.json",
+    "/make-catalogue-video.sh",
+    "/package-lock.json",
+    "/package.json",
+    "/public-release.json",
+    "/record-shop-demo.cjs",
+    "/release-body-integrity.json",
+    "/release.json",
+    "/scripts/apply-v137-closeout.py",
+    "/scripts/csp_inventory.py",
+    "/scripts/normalise_social_metadata_v124.py",
+    "/scripts/public_legal_delta.py",
+    "/scripts/reconcile_indexing_v124.py",
+    "/scripts/release_fingerprint.py",
+    "/scripts/seo_remediate_v124.py",
+    "/scripts/sites-build.mjs",
+    "/scripts/test-front-door-redteam-v1.mjs",
+    "/scripts/test-medicine-front-door-v1.mjs",
+    "/scripts/test-operational-readiness.mjs",
+    "/scripts/test-release.mjs",
+    "/scripts/test-seo-release-integrity.mjs",
+    "/scripts/test-site-surgery-v1.mjs",
+    "/scripts/test-v136-recovery.mjs",
+    "/scripts/test-v137-estate-closeout.mjs",
+    "/scripts/test_analytics_privacy_v124.mjs",
+    "/scripts/test_consent_v124.mjs",
+    "/scripts/test_fit_launch_scope_v126.mjs",
+    "/scripts/test_member_route_ownership_v126.mjs",
+    "/scripts/test_platform_config_v126.mjs",
+    "/scripts/test_security_headers_v126.py",
+    "/scripts/verify_v124.py",
+    "/tools/apply_footer_legal_closeout.py",
+    "/tools/apply_fullsite_v35.py",
+    "/tools/apply_site_scope_v31.py",
+    "/tools/build_hubs_v31.py",
+    "/tools/build_reading_templates_v31.py",
+    "/tools/build_start_here_v33.py",
+    "/tools/fix_authority_shell_v35.py",
+    "/tools/qa_static_v35.py",
+    "/tools/test-ask-timber-canonical-today.cjs",
+    "/tools/test-ask-timber-multi-intent.cjs",
+    "/tools/test-journey-checkin-contract.cjs",
+    "/tools/test_footer_legal_closeout.py",
+    "/tools/qa_fullsite_v35.js",
+    "/legal-clinical-launch-gate-v30h.html",
+    "/email-templates/programme-launch.html",
+    "/support-dashboard-v3d.html",
+    "/clinician-dashboard-v3d.html"
+  ],
+  "base": "c4565aec-878c-463a-9fe3-8aa3b599ab24",
+  "branch": "review/sitewide-public-copy-20261020"
+}
