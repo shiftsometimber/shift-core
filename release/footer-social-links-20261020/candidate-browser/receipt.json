@@ -1,0 +1,1991 @@
+{
+  "pass": true,
+  "at": "2026-10-20T11:39:02.352Z",
+  "mode": "candidate",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 436.046875,
+        "width": 354,
+        "height": 89.390625,
+        "top": 436.046875,
+        "right": 372,
+        "bottom": 525.4375,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/start-here",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 435.8125,
+        "width": 354,
+        "height": 89.390625,
+        "top": 435.8125,
+        "right": 372,
+        "bottom": 525.203125,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/male-obesity",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 435.703125,
+        "width": 354,
+        "height": 89.390625,
+        "top": 435.703125,
+        "right": 372,
+        "bottom": 525.09375,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/member/dashboard",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 405.484375,
+        "width": 354,
+        "height": 89.390625,
+        "top": 405.484375,
+        "right": 372,
+        "bottom": 494.875,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.8125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/medicine-preference",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 512.421875,
+        "width": 354,
+        "height": 89.390625,
+        "top": 512.421875,
+        "right": 372,
+        "bottom": 601.8125,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/assessment-walkthrough",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 34,
+        "y": 501.9375,
+        "width": 322,
+        "height": 89.390625,
+        "top": 501.9375,
+        "right": 356,
+        "bottom": 591.328125,
+        "left": 34
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/treatment-assessment-terms",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 42,
+        "y": 429.390625,
+        "width": 306,
+        "height": 89.390625,
+        "top": 429.390625,
+        "right": 348,
+        "bottom": 518.78125,
+        "left": 42
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/contact",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 405.03125,
+        "width": 354,
+        "height": 89.390625,
+        "top": 405.03125,
+        "right": 372,
+        "bottom": 494.421875,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 695.71875,
+        "width": 1388,
+        "height": 59,
+        "top": 695.71875,
+        "right": 1414,
+        "bottom": 754.71875,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/start-here",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 695.25,
+        "width": 1388,
+        "height": 59,
+        "top": 695.25,
+        "right": 1414,
+        "bottom": 754.25,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/male-obesity",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 695.625,
+        "width": 1388,
+        "height": 59,
+        "top": 695.625,
+        "right": 1414,
+        "bottom": 754.625,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/member/dashboard",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 569.390625,
+        "width": 1388,
+        "height": 59,
+        "top": 569.390625,
+        "right": 1414,
+        "bottom": 628.390625,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.8125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/medicine-preference",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 695.703125,
+        "width": 1388,
+        "height": 59,
+        "top": 695.703125,
+        "right": 1414,
+        "bottom": 754.703125,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/assessment-walkthrough",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 66,
+        "y": 657.640625,
+        "width": 1308,
+        "height": 59,
+        "top": 657.640625,
+        "right": 1374,
+        "bottom": 716.640625,
+        "left": 66
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/treatment-assessment-terms",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 321,
+        "y": 655.125,
+        "width": 798,
+        "height": 59,
+        "top": 655.125,
+        "right": 1119,
+        "bottom": 714.125,
+        "left": 321
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/contact",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 657.609375,
+        "width": 1388,
+        "height": 59,
+        "top": 657.609375,
+        "right": 1414,
+        "bottom": 716.609375,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "path": "/",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 436.328125,
+        "width": 354,
+        "height": 89.390625,
+        "top": 436.328125,
+        "right": 372,
+        "bottom": 525.71875,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "path": "/start-here",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 435.734375,
+        "width": 354,
+        "height": 89.390625,
+        "top": 435.734375,
+        "right": 372,
+        "bottom": 525.125,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "path": "/male-obesity",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 436.40625,
+        "width": 354,
+        "height": 89.390625,
+        "top": 436.40625,
+        "right": 372,
+        "bottom": 525.796875,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "path": "/member/dashboard",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 405.484375,
+        "width": 354,
+        "height": 89.390625,
+        "top": 405.484375,
+        "right": 372,
+        "bottom": 494.875,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.8125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "path": "/medicine-preference",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 512.375,
+        "width": 354,
+        "height": 89.390625,
+        "top": 512.375,
+        "right": 372,
+        "bottom": 601.765625,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "path": "/assessment-walkthrough",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 34,
+        "y": 500.171875,
+        "width": 322,
+        "height": 89.390625,
+        "top": 500.171875,
+        "right": 356,
+        "bottom": 589.5625,
+        "left": 34
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "path": "/treatment-assessment-terms",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 42,
+        "y": 427.390625,
+        "width": 306,
+        "height": 89.390625,
+        "top": 427.390625,
+        "right": 348,
+        "bottom": 516.78125,
+        "left": 42
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "path": "/contact",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 18,
+        "y": 405.453125,
+        "width": 354,
+        "height": 89.390625,
+        "top": 405.453125,
+        "right": 372,
+        "bottom": 494.84375,
+        "left": 18
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "path": "/",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 695.75,
+        "width": 1388,
+        "height": 59,
+        "top": 695.75,
+        "right": 1414,
+        "bottom": 754.75,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "path": "/start-here",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 695.65625,
+        "width": 1388,
+        "height": 59,
+        "top": 695.65625,
+        "right": 1414,
+        "bottom": 754.65625,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "path": "/male-obesity",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 695.96875,
+        "width": 1388,
+        "height": 59,
+        "top": 695.96875,
+        "right": 1414,
+        "bottom": 754.96875,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "path": "/member/dashboard",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 719.171875,
+        "width": 1388,
+        "height": 59,
+        "top": 719.171875,
+        "right": 1414,
+        "bottom": 778.171875,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.8125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "path": "/medicine-preference",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 696.046875,
+        "width": 1388,
+        "height": 59,
+        "top": 696.046875,
+        "right": 1414,
+        "bottom": 755.046875,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "path": "/assessment-walkthrough",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 66,
+        "y": 656.875,
+        "width": 1308,
+        "height": 59,
+        "top": 656.875,
+        "right": 1374,
+        "bottom": 715.875,
+        "left": 66
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "path": "/treatment-assessment-terms",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 321,
+        "y": 654.125,
+        "width": 798,
+        "height": 59,
+        "top": 654.125,
+        "right": 1119,
+        "bottom": 713.125,
+        "left": 321
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 62.25
+        },
+        {
+          "height": 44,
+          "width": 61.484375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 55.015625
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "path": "/contact",
+      "title": "Follow SHIFT",
+      "label": "Follow SHIFT",
+      "links": [
+        [
+          "Instagram",
+          "https://www.instagram.com/shiftsometimber"
+        ],
+        [
+          "Facebook",
+          "https://www.facebook.com/ShiftSomeTimber"
+        ],
+        [
+          "X",
+          "https://x.com/ShiftSomeTimber"
+        ],
+        [
+          "YouTube",
+          "https://www.youtube.com/@ShiftSomeTimber"
+        ]
+      ],
+      "inside": true,
+      "count": 1,
+      "overflow": false,
+      "bodyOverflow": false,
+      "rect": {
+        "x": 26,
+        "y": 657.578125,
+        "width": 1388,
+        "height": 59,
+        "top": 657.578125,
+        "right": 1414,
+        "bottom": 716.578125,
+        "left": 26
+      },
+      "linksSize": [
+        {
+          "height": 44,
+          "width": 66.921875
+        },
+        {
+          "height": 44,
+          "width": 65.359375
+        },
+        {
+          "height": 44,
+          "width": 9.34375
+        },
+        {
+          "height": 44,
+          "width": 57.828125
+        }
+      ],
+      "colour": "rgb(5, 5, 5)",
+      "footerBackground": "rgb(112, 119, 98)",
+      "keyboard": true,
+      "errors": [],
+      "socialRequests": []
+    }
+  ]
+}
