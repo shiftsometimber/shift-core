@@ -1,0 +1,12 @@
+{
+  "base": "f1d9c9f7-0e9c-4ed8-91f3-25be699b1d8a",
+  "changed": [
+    "/assets/header-navigation-v2.css",
+    "/assets/header-logo-fix-20261020.css",
+    "/assets/header-logo-20261020-v2.svg"
+  ],
+  "homepageAssetUnchanged": true,
+  "allOtherAssetsUnchanged": true,
+  "exactTransparentUserLogo": true,
+  "filters": 0
+}
