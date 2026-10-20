@@ -1,0 +1,25 @@
+{
+  "version": "SHIFT-SEO-REVIEW-20261020-v1",
+  "sha256": "736e3275504b8b6b45e0cfd3c7bbd4f40664835c9ab6696d7d3b3e2f15df5f29",
+  "path": "/tools/weight-management-review",
+  "title": "Weight-management review: questions to take with you",
+  "description": "Build a free checklist for a weight-management conversation: getting started, progress, treatment concerns and follow-up. No account or health details needed.",
+  "contexts": {
+    "/articles/wegovy-side-effects-timeline": {
+      "heading": "Make a routine review easier",
+      "text": "For a non-urgent conversation, pick questions about symptoms and follow-up with the free review checklist. For symptoms needing urgent help, use the warning signs and healthcare routes above; do not wait for a routine review."
+    },
+    "/articles/nhs-weight-loss-drugs": {
+      "heading": "Take clear questions to the conversation",
+      "text": "Use the free review checklist to organise questions about available support and what happens next. It cannot confirm NHS eligibility, arrange a referral or promise access to a medicine."
+    },
+    "/articles/weight-loss-plateau-men": {
+      "heading": "Bring the pattern and the question",
+      "text": "Use the free review checklist to choose questions about readings, everyday routines and the next review. A checklist cannot identify why progress has slowed or make a treatment decision."
+    },
+    "/tools": {
+      "heading": "Turn a result into useful questions",
+      "text": "A number is a starting point. Use the free review checklist to prepare questions for your GP or treating service, without entering health details on this website."
+    }
+  }
+}
