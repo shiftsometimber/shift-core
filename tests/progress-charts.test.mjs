@@ -32,16 +32,6 @@ test('all measurement types have readable units and chart text is escaped',()=>{
  const m={...metric('weight',[{on:'2026-10-12',value:93.2}]),label:'<script>unsafe</script>'},html=context.chartMarkup(m,'kg','all',now);assert.match(html,/&lt;script&gt;/);assert.doesNotMatch(html,/<script>/);assert.match(html,/tabindex="0" role="button"/);
 });
 
-test('owned treatment weights join progress on read without copying records or returning notes',async()=>{
- const queries=[],binds=[],progress=[{recorded_on:'2026-10-10',created_at:'2026-10-10 07:00:00',weight_kg:93.2,steps:0}],treatment=[{occurred_at:'2026-10-12T07:00:00Z',created_at:'2026-10-12T07:00:01Z',weight_kg:93.2},{occurred_at:'2026-10-12T07:01:00Z',weight_kg:null},{occurred_at:'bad',weight_kg:93.2},{occurred_at:'2026-10-12T07:02:00Z',weight_kg:0}];
- const env={MY_TREATMENT_ENABLED:'true',DB:{prepare(q){queries.push(q);return{bind(id){binds.push(id);return{all:async()=>({results:q.includes('member_treatment_events')?treatment:progress}),first:async()=>({preferences:'{}'})}}}}}};
- const p=await progressSummary(env,17),weight=p.metrics.find(m=>m.key==='weight');assert.equal(weight.series.length,2);assert.equal(p.entries,2);assert.equal(p.metrics.find(m=>m.key==='steps').series[0].value,0);assert.deepEqual(binds,[17,17,17]);assert.equal(queries.length,3);assert(queries.every(q=>q.startsWith('SELECT')));assert(queries[1].includes('WHERE user_id=?'));assert(!queries[1].includes('SELECT *'));assert(!JSON.stringify(p).includes('body_json'));assert.equal(p.historyMayBeLimited,false);
-});
-test('a treatment-only weight creates a real first point; missing weights do not create progress',async()=>{
- const result=async(weight)=>progressSummary({MY_TREATMENT_ENABLED:'true',DB:{prepare:q=>({bind:()=>({all:async()=>({results:q.includes('member_treatment_events')?[{occurred_at:'2026-10-12T07:00:00Z',created_at:'2026-10-12T07:00:00Z',weight_kg:weight}]:[]}),first:async()=>({preferences:'{}'})})})}},17);
- const p=await result(93.2);assert.equal(p.state,'ready');assert.equal(p.metrics[0].delta,null);assert.equal(p.metrics[0].series.length,1);assert.equal((await result(null)).state,'empty');
-});
-
 test('custom dates keep both boundary days and exclude readings outside the chosen window',()=>{
  const rows=metric('weight',[{on:'2025-01-01',value:99},{on:'2026-10-01',value:95},{on:'2026-10-10',value:94},{on:'2026-10-12',value:93}]);
  const html=context.chartMarkup(rows,'kg',{from:'2026-10-01',to:'2026-10-10'},now,320);
@@ -54,4 +44,14 @@ test('custom historical and single-day windows retain actual readings without fa
 test('invalid calendar and reversed custom windows are rejected before plotting',()=>{
  const rows=metric('weight',[]);
  for(const dates of [{from:'2026-02-30',to:'2026-03-01'},{from:'2026-10-12',to:'2026-10-01'}])assert.throws(()=>context.chartMarkup(rows,'kg',dates,now),/Choose a To date/);
+});
+
+test('owned treatment weights join progress on read without copying records or returning notes',async()=>{
+ const queries=[],binds=[],progress=[{recorded_on:'2026-10-10',created_at:'2026-10-10 07:00:00',weight_kg:93.2,steps:0}],treatment=[{occurred_at:'2026-10-12T07:00:00Z',created_at:'2026-10-12T07:00:01Z',weight_kg:93.2},{occurred_at:'2026-10-12T07:01:00Z',weight_kg:null},{occurred_at:'bad',weight_kg:93.2},{occurred_at:'2026-10-12T07:02:00Z',weight_kg:0}];
+ const env={MY_TREATMENT_ENABLED:'true',DB:{prepare(q){queries.push(q);return{bind(id){binds.push(id);return{all:async()=>({results:q.includes('member_treatment_events')?treatment:progress}),first:async()=>({preferences:'{}'})}}}}}};
+ const p=await progressSummary(env,17),weight=p.metrics.find(m=>m.key==='weight');assert.equal(weight.series.length,2);assert.equal(p.entries,2);assert.equal(p.metrics.find(m=>m.key==='steps').series[0].value,0);assert.deepEqual(binds,[17,17,17]);assert.equal(queries.length,3);assert(queries.every(q=>q.startsWith('SELECT')));assert(queries[1].includes('WHERE user_id=?'));assert(!queries[1].includes('SELECT *'));assert(!JSON.stringify(p).includes('body_json'));assert.equal(p.historyMayBeLimited,false);
+});
+test('a treatment-only weight creates a real first point; missing weights do not create progress',async()=>{
+ const result=async(weight)=>progressSummary({MY_TREATMENT_ENABLED:'true',DB:{prepare:q=>({bind:()=>({all:async()=>({results:q.includes('member_treatment_events')?[{occurred_at:'2026-10-12T07:00:00Z',created_at:'2026-10-12T07:00:00Z',weight_kg:weight}]:[]}),first:async()=>({preferences:'{}'})})})}},17);
+ const p=await result(93.2);assert.equal(p.state,'ready');assert.equal(p.metrics[0].delta,null);assert.equal(p.metrics[0].series.length,1);assert.equal((await result(null)).state,'empty');
 });
