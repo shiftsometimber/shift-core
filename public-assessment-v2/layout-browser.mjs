@@ -38,7 +38,8 @@ for(const[engine,width,matrix]of[[chromium,390,true],[chromium,1440,false],[webk
     await toggle.getByRole('button',{name:label,exact:true}).click();
     assert.equal(await panel.locator('[data-route-medicine]:visible').count(),count);
     assert.equal(await toggle.locator('[aria-pressed=true]').count(),1);
-    assert.equal(await toggle.locator('[aria-pressed=true] span').evaluate(el=>getComputedStyle(el).color),'rgb(16, 18, 13)','Selected switch label must retain dark, readable text on the light ash pill');
+    const contrast=await toggle.evaluate(el=>{const lum=color=>{const rgb=color.match(/[\d.]+/g).slice(0,3).map(Number).map(x=>x/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;},bg=lum(getComputedStyle(el,'::before').backgroundColor),ratio=color=>{const fg=lum(color);return(Math.max(bg,fg)+.05)/(Math.min(bg,fg)+.05);},active=el.querySelector('[aria-pressed=true]');return{text:ratio(getComputedStyle(active.querySelector('span')).color),icon:ratio(getComputedStyle(active.querySelector('svg')).color)};});
+    assert(contrast.text>=4.5&&contrast.icon>=4.5,'Selected switch text and icon require 4.5:1 contrast: '+JSON.stringify(contrast));
     if(format)assert((await panel.locator('[data-route-medicine]:visible').evaluateAll(nodes=>nodes.map(n=>n.dataset.medicineFormat))).every(f=>f===format));
    }
    await toggle.getByRole('button',{name:'Both',exact:true}).click();
