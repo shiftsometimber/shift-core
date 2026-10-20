@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-20T13:06:38.020Z",
+  "base": "00049e90-b24d-412a-8943-e2744a234ec8",
+  "changedPaths": [
+    "/assets/st-logo.svg"
+  ],
+  "old": {
+    "url": "https://00049e90.projectshift.pages.dev/assets/st-logo.svg",
+    "status": 200,
+    "sha256": "5e73ceec700637af5b22e29e1031e59fb0f11dfeeb7fe4ca1ec79a721a95fa13",
+    "type": "image/svg+xml",
+    "cache": "public, max-age=0, must-revalidate"
+  },
+  "after": {
+    "url": "https://00049e90.projectshift.pages.dev/assets/favicon-shift-s-20261020.svg",
+    "status": 200,
+    "sha256": "99e2622f0d2b3aae821a608c8a573f2e31988e8116fded137945c9f6f7b10673",
+    "type": "image/svg+xml",
+    "cache": "public, max-age=0, must-revalidate"
+  },
+  "allOtherAssetsUnchanged": true,
+  "htmlAssetsChanged": 0,
+  "headerRulesUnchanged": true,
+  "pages": {
+    "/": {
+      "main": "d3bef76bffe72c2905fac7a119371b760521104c6c493c3f3ecf21e5dc858cca",
+      "header": "433a08144d968b5f661d1193f3c485e0bd2c6c5fa63e93936799440221dfd5fc",
+      "footer": "330d42ca1acf62c5746a615f67d1eb98b0de273c48ddf0ff3743c7a53f9a77c9"
+    },
+    "/start-here": {
+      "main": "d74a7a4ee528f841011edc368bcadd0dc182de858e04a9a5cc92896aa0d5f4d9",
+      "header": "8cf3fb5c69b2d55139e007121876ab8b27f5f8df38e304083c3534c165f6045c",
+      "footer": "628bcb3bc07895001da096e79d643ee2d5ac1f2a69d3407e03aa1401e3b273dc"
+    }
+  },
+  "nativeSafariTabVerified": false,
+  "reason": "Legacy SVG visibly matches obsolete ST design in user screenshot; all declared favicon aliases already show S. Retire that old address too. Native cache access denied; no claim this proves cache refresh."
+}
