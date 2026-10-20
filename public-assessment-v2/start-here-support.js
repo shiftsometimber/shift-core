@@ -61,38 +61,105 @@ function includes(k,needle){return (answers[k]||[]).some(v=>v.toLowerCase().incl
 
 const budgetPriceSnapshot=[{"name":"Mounjaro","format":"Weekly injection","oral":false,"low":16900,"high":31900},{"name":"Wegovy","format":"Weekly injection","oral":false,"low":9900,"high":19900},{"name":"Liraglutide","format":"Daily injection","oral":false,"low":19900,"high":32900},{"name":"Wegovy tablets","format":"Daily tablet","oral":true,"low":12900,"high":22900},{"name":"Foundayo","format":"Daily tablet","oral":true,"low":12900,"high":22900},{"name":"Orlistat","format":"Capsules taken with meals","oral":true,"low":5900,"high":12900}];
 function showPotentialRoute({band,preference,access}){
-  const money=document.querySelector('[data-result-money]');
+  const summary=document.querySelector('.sh-result-route-v72');
   document.querySelector('[data-budget-potential-route]')?.remove();
-  const section=document.createElement('section');section.dataset.budgetPotentialRoute='2026-10-20';section.setAttribute('aria-label','Your potential route');
-  section.style.cssText='margin-top:20px;padding-top:18px;border-top:1px solid #707762;overflow-wrap:anywhere';
-  const add=(tag,text,parent=section)=>{const el=document.createElement(tag);el.textContent=text;parent.append(el);return el;};
-  const heading=add('h4','Your potential route');heading.style.cssText='margin:0 0 12px;font-size:22px;line-height:1.2;color:inherit';
-  const noMedicine=preference==='No medication';
-  const freeFirst=band==='nhs'||access==='NHS';
-  if(noMedicine){
-    add('p','Start with free My Timber support: plan meals in Grub, find manageable movement in Fit, and use check-ins to review your progress. You do not need to buy medicine to use these tools.');
-    add('p','Your preference is support without medication. If you need more help, your GP or a local weight-management service can discuss non-medicine support with you.');
-  }else if(freeFirst){
-    add('p','Start with free My Timber support for meals, movement and check-ins, alongside a conversation with your GP or local weight-management service about NHS support.');
-    add('p','You can discuss your '+(preference==='Jabs'?'injection':preference==='Tablets'?'oral treatment':'treatment format')+' preference at that assessment. NHS eligibility, treatment choices and local availability are decided by the clinical service.');
-  }else{
-    const chosen=preference==='Jabs'?'your preference for an injection':preference==='Tablets'?'your preference for an oral treatment':'the choice between oral treatment and injections';
-    add('p','One potential route is a clinical assessment to discuss '+chosen+', alongside free My Timber support for meals, movement and progress.');
-    add('p',preference==='Jabs'?'If you would consider an oral option too, tablets or capsules can be discussed at the same assessment.':preference==='Tablets'?'If you would also consider an injection, that can be discussed at the same assessment.':'Daily tablets, meal-linked capsules and injections have different routines. Your preferences are part of the clinical discussion.');
-    const title=add('h5','Catalogue pack prices');title.style.cssText='font-size:16px;margin:18px 0 8px;color:inherit';
-    const list=add('dl','');list.dataset.budgetRoutePrices='';list.style.cssText='margin:0;display:grid;gap:10px';
-    const rows=[...budgetPriceSnapshot].sort((a,b)=>preference==='Tablets'?Number(b.oral)-Number(a.oral):Number(a.oral)-Number(b.oral));
-    const pounds=p=>'£'+(p/100).toFixed(0);
-    for(const row of rows){
-      const wrap=add('div','',list);wrap.dataset.routeMedicine=row.name;wrap.style.cssText='padding:10px 0;border-bottom:1px solid #707762';
-      const name=add('dt',row.name+' · '+row.format,wrap);name.style.cssText='font-weight:800;font-size:14px';
-      const price=add('dd',pounds(row.low)+'–'+pounds(row.high)+' per listed pack',wrap);price.style.cssText='margin:4px 0 0;font-size:14px';
-    }
-    add('p','Prices checked 20 October 2026. Pack quantities, supply periods and dose prices vary. These are pack prices, not calendar-month costs; the ongoing cost depends on the treatment and dose agreed with the prescriber.');
-    add('p','A prescribing clinician must assess whether any medicine is appropriate and agree the medicine and dose with you. Your answers here do not select or approve a medicine.');
-    const stock=add('p','No stock available today. Orders and payments are currently closed.');stock.style.fontWeight='800';
+  if(!document.getElementById('start-here-result-layout')){
+    const style=document.createElement('style');style.id='start-here-result-layout';
+    style.textContent=`
+body.v6 #quickResult .sh-result-route-v72{align-items:start;margin-bottom:0;padding-bottom:20px}
+body.v6 #quickResult .sh-result-route-v72 aside{align-self:start}
+body.v6 #quickResult .sst-potential-route{width:100%;margin:0 0 28px;padding:26px 0 0;border-top:1px solid #43483b;color:#e7e3da}
+body.v6 #quickResult .sst-route-intro{max-width:880px;margin-bottom:24px}
+body.v6 #quickResult .sst-route-intro h3{margin:0 0 10px!important;font-size:clamp(25px,3vw,34px)!important;line-height:1.12!important;letter-spacing:-.035em;color:#e7e3da!important}
+body.v6 #quickResult .sst-route-intro p{margin:8px 0!important;font-size:15px!important;line-height:1.55!important;color:#c5c5bb!important}
+body.v6 #quickResult .sst-options-head{display:flex;align-items:center;justify-content:space-between;gap:22px;margin:26px 0 18px}
+body.v6 #quickResult .sst-options-head small{display:block;margin-bottom:5px;font-size:10px!important;font-weight:800;letter-spacing:.13em;color:#a5ad95!important}
+body.v6 #quickResult .sst-options-head h4{margin:0!important;font-size:clamp(23px,2.5vw,30px)!important;line-height:1.15!important;letter-spacing:-.035em;color:#e7e3da!important}
+body.v6 #quickResult .sst-format-switch{--slot:0;position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr);flex:0 0 358px;padding:5px;border:1px solid #707762;border-radius:999px;background:#11130f;box-shadow:inset 0 1px 5px #0008}
+body.v6 #quickResult .sst-format-switch:before{content:'';position:absolute;z-index:-1;left:5px;top:5px;bottom:5px;width:calc((100% - 10px)/3);border-radius:999px;background:#a5ad95;box-shadow:0 2px 8px #0004;transform:translateX(calc(var(--slot)*100%));transition:transform .22s ease}
+body.v6 #quickResult .sst-format-switch button{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:44px;margin:0;padding:10px 9px;border:0;border-radius:999px;background:transparent;color:#c9cebe!important;font-size:14px!important;line-height:1!important;font-weight:800;cursor:pointer;box-shadow:none}
+body.v6 #quickResult .sst-format-switch button[aria-pressed=true]{color:#10120d!important}
+body.v6 #quickResult .sst-format-switch button:hover{color:#fff!important}
+body.v6 #quickResult .sst-format-switch button[aria-pressed=true]:hover{color:#050505!important}
+body.v6 #quickResult .sst-format-switch svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 18px}
+body.v6 #quickResult .sst-options-status{margin:0 0 14px!important;font-size:13px!important;line-height:1.4!important;color:#bfc5b2!important}
+body.v6 #quickResult .sst-options-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+body.v6 #quickResult .sst-option-card{min-width:0;display:flex;flex-direction:column;padding:18px;border:1px solid #4a503f;border-radius:18px;background:linear-gradient(145deg,#151812,#0d0f0b);box-shadow:0 12px 30px #0002}
+body.v6 #quickResult .sst-option-card[hidden]{display:none!important}
+body.v6 #quickResult .sst-option-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:22px}
+body.v6 #quickResult .sst-option-kind{font-size:10px!important;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#b5bea4!important}
+body.v6 #quickResult .sst-option-stock{flex:0 0 auto;padding:5px 7px;border:1px solid #5c624f;border-radius:999px;font-size:9px!important;font-weight:800;letter-spacing:.05em;color:#d5d7cc!important}
+body.v6 #quickResult .sst-option-visual{display:block;width:100%;height:140px;object-fit:cover;margin:14px 0 18px;border-radius:10px;background:#e7e3da}
+body.v6 #quickResult .sst-option-card h5{margin:0 0 7px!important;font-size:25px!important;line-height:1.1!important;letter-spacing:-.035em;color:#e7e3da!important}
+body.v6 #quickResult .sst-option-format{min-height:21px;margin:0 0 18px!important;font-size:14px!important;line-height:1.45!important;color:#bbc2ae!important}
+body.v6 #quickResult .sst-option-price{margin:auto 0 0;padding-top:15px;border-top:1px solid #3d4433}
+body.v6 #quickResult .sst-option-price strong{display:block;font-size:25px!important;line-height:1.1!important;font-weight:800;letter-spacing:-.03em;color:#e7e3da!important}
+body.v6 #quickResult .sst-option-price span{display:block;margin-top:5px;font-size:12px!important;color:#b6bca9!important}
+body.v6 #quickResult .sst-route-notes{margin-top:20px;padding:18px 20px;border:1px solid #414738;border-radius:14px;background:#10130e}
+body.v6 #quickResult .sst-route-notes p{margin:0 0 9px!important;font-size:13px!important;line-height:1.5!important;color:#c0c6b5!important}
+body.v6 #quickResult .sst-route-notes p:last-child{margin-bottom:0!important}
+body.v6 #quickResult .sst-route-notes strong{color:#e7e3da!important}
+body.v6 #quickResult .sst-route-support{margin:18px 0 0!important;font-size:14px!important;line-height:1.5!important;color:#bbc2ae!important}
+body.v6 #quickResult .sst-route-support a{color:#e7e3da!important;text-underline-offset:4px;font-weight:800}
+@media(max-width:900px){body.v6 #quickResult .sst-options-head{align-items:start;flex-direction:column;gap:16px}body.v6 #quickResult .sst-format-switch{flex:0 0 auto;width:min(100%,420px)}body.v6 #quickResult .sst-options-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){body.v6 #quickResult .sh-summary-v72{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 12px}body.v6 #quickResult .sh-summary-v72>div{padding:9px 2px!important}body.v6 #quickResult .sh-summary-v72>div:nth-last-child(-n+2){border-bottom:0!important}body.v6 #quickResult .sh-summary-v72 strong{font-size:13px!important}body.v6 #quickResult .sst-potential-route{padding-top:23px}body.v6 #quickResult .sst-route-intro{margin-bottom:20px}body.v6 #quickResult .sst-format-switch{width:100%}body.v6 #quickResult .sst-options-grid{grid-template-columns:1fr;gap:14px}body.v6 #quickResult .sst-option-card{padding:18px}body.v6 #quickResult .sst-option-visual{height:155px}body.v6 #quickResult .sst-route-notes{padding:16px}body.v6 #quickResult .sst-options-head{margin-top:22px}}
+@media(prefers-reduced-motion:reduce){body.v6 #quickResult .sst-format-switch:before{transition:none}}
+`;
+    document.head.append(style);
   }
-  money.after(section);
+  const section=document.createElement('section');section.dataset.budgetPotentialRoute='2026-10-20-switch';section.className='sst-potential-route';section.setAttribute('aria-labelledby','potential-route-title');
+  const add=(tag,text,parent=section,className)=>{const el=document.createElement(tag);if(text)el.textContent=text;if(className)el.className=className;parent.append(el);return el;};
+  const intro=add('div','',section,'sst-route-intro');
+  const heading=add('h3','Your potential route',intro);heading.id='potential-route-title';
+  const noMedicine=preference==='No medication',freeFirst=band==='nhs'||access==='NHS';
+  if(noMedicine){
+    add('p','Start with free My Timber support: plan meals in Grub, find manageable movement in Fit, and use check-ins to review your progress. You do not need to buy medicine to use these tools.',intro);
+    add('p','Your preference is support without medication. If you need more help, your GP or a local weight-management service can discuss non-medicine support with you.',intro);
+  }else if(freeFirst){
+    add('p','Start with free My Timber support for meals, movement and check-ins, alongside a conversation with your GP or local weight-management service about NHS support.',intro);
+    add('p','You can discuss your '+(preference==='Jabs'?'injection':preference==='Tablets'?'oral treatment':'treatment format')+' preference at that assessment. NHS eligibility, treatment choices and local availability are decided by the clinical service.',intro);
+  }else{
+    const chosen=preference==='Jabs'?'your preference for an injection':preference==='Tablets'?'your preference for tablets or capsules':'oral treatment and injection options';
+    add('p','A clinical assessment could help you explore '+chosen+', alongside free My Timber support for meals, movement and progress.',intro);
+    add('p',preference==='Jabs'?'If you would consider tablets or capsules too, you can compare the oral formats below.':preference==='Tablets'?'If you would consider a jab too, you can compare the injection formats below.':'Daily tablets, capsules taken with meals and injections involve different routines. You can explore both formats below.',intro);
+    const head=add('div','',section,'sst-options-head');
+    const titles=add('div','',head);add('small','TREATMENT FORMATS',titles);add('h4','Medicine information',titles);
+    const toggle=add('div','',head,'sst-format-switch');toggle.setAttribute('role','group');toggle.setAttribute('aria-label','Show medicine formats');
+    const icons={both:'<path d="M4 7h15l-4-4M20 17H5l4 4"/>',tablet:'<path d="M8 4a6 6 0 0 1 8 8l-4 4a6 6 0 0 1-8-8l4-4Z"/><path d="m6 6 8 8"/>',jab:'<path d="m5 16 9-9 4 4-9 9H5v-4ZM12 5l3-3 7 7-3 3M2 22l3-3M8 13l3 3"/>'};
+    const buttons=[];
+    for(const[value,text]of[['both','Both'],['tablet','Tablets'],['jab','Jabs']]){
+      const button=add('button','',toggle);button.type='button';button.dataset.formatFilter=value;button.setAttribute('aria-controls','potential-route-options');button.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24">'+icons[value]+'</svg><span>'+text+'</span>';buttons.push(button);
+    }
+    const status=add('p','',section,'sst-options-status');status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+    const grid=add('div','',section,'sst-options-grid');grid.id='potential-route-options';
+    const images={'Mounjaro':'mounjaro-pen-studio-v1.png','Wegovy':'wegovy-pen-studio-v1.png','Liraglutide':'liraglutide-pen-studio-v1.png','Wegovy tablets':'wegovy-tablets-studio-v1.png','Foundayo':'wegovy-tablets-studio-v1.png','Orlistat':'orlistat-capsules-studio-v1.png'};
+    const pounds=p=>'£'+(p/100).toFixed(0);
+    for(const row of budgetPriceSnapshot){
+      const card=add('article','',grid,'sst-option-card');card.dataset.routeMedicine=row.name;card.dataset.medicineFormat=row.oral?'tablet':'jab';
+      const meta=add('div','',card,'sst-option-meta');add('span',row.oral?(row.name==='Orlistat'?'Capsule':'Tablet'):'Injection',meta,'sst-option-kind');add('span','OUT OF STOCK',meta,'sst-option-stock');
+      const image=add('img','',card,'sst-option-visual');image.src='/assets/medicine/'+images[row.name];image.alt='';image.width=600;image.height=400;
+      add('h5',row.name==='Wegovy'?'Wegovy injection':row.name==='Foundayo'?'Foundayo tablets':row.name,card);
+      add('p',row.format,card,'sst-option-format');
+      const price=add('div','',card,'sst-option-price');add('strong',pounds(row.low)+'–'+pounds(row.high),price);add('span','per listed pack · varies by strength or quantity',price);
+    }
+    function setView(view){
+      toggle.style.setProperty('--slot',String(['both','tablet','jab'].indexOf(view)));
+      for(const button of buttons)button.setAttribute('aria-pressed',String(button.dataset.formatFilter===view));
+      for(const card of grid.children)card.hidden=view!=='both'&&card.dataset.medicineFormat!==view;
+      status.textContent=view==='both'?'Showing all 6 options · all out of stock':view==='tablet'?'Showing 3 oral options · tablets and capsules · all out of stock':'Showing 3 injection options · all out of stock';
+    }
+    buttons.forEach(button=>{button.onclick=()=>setView(button.dataset.formatFilter);button.onkeydown=event=>{
+      if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+      event.preventDefault();const i=buttons.indexOf(button),next=event.key==='Home'?0:event.key==='End'?2:(i+(event.key==='ArrowRight'?1:2))%3;buttons[next].focus();setView(buttons[next].dataset.formatFilter);
+    };});
+    setView(preference==='Tablets'?'tablet':preference==='Jabs'?'jab':'both');
+    const notes=add('div','',section,'sst-route-notes');
+    const clinical=add('p','',notes);add('strong','A prescription is a clinical decision. ',clinical);clinical.append('A prescribing clinician must assess whether any medicine is appropriate and agree the medicine and dose with you. Recording a preference does not guarantee a prescription.');
+    add('p','Prices checked 20 October 2026. Pack quantities, supply periods and dose prices vary. These are pack prices, not calendar-month costs; ongoing costs depend on the treatment and dose agreed with the prescriber.',notes);
+    add('p','Illustrations show medicine formats, not supplied packaging. No stock is available today. Orders and payments are currently closed.',notes);
+  }
+  const support=add('p','Free My Timber support is available whichever route you take. ',section,'sst-route-support');const link=add('a','Explore My Timber',support);link.href='/member/dashboard';
+  summary.after(section);
 }
 
 function render(){
@@ -113,8 +180,8 @@ function render(){
   $('[data-summary-access]').textContent=access;
   $('[data-result-budget]').textContent=budget.label+' per calendar month';
   $('[data-result-human]').textContent='Your answers are a starting point for understanding support. They do not select a medicine or establish clinical suitability.';
-  $('[data-result-title]').textContent='Useful routes to explore.';
-  $('[data-result-copy]').textContent='Your potential route is shown below your budget. It brings together your preferences, practical support and the role of clinical assessment.';
+  $('[data-result-title]').textContent='A starting point for your next step.';
+  $('[data-result-copy]').textContent='Explore practical support and treatment formats below. Your budget and preferences are part of the conversation with a prescriber.';
   $('[data-result-money]').textContent=band==='nhs'?'You have chosen the £0 / NHS budget. Free My Timber support is available.':'Your stated budget is '+budget.label+' per calendar month.';
   showPotentialRoute({band,preference,access});
   $('[data-next-step-title]').textContent='Understand your options. Know what support stays with you.';
