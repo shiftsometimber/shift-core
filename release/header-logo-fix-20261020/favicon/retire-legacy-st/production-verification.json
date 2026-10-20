@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-20T13:09:25.960Z",
+  "pass": true,
+  "id": "6d80eaa8-e25a-425f-8b33-6a6b5d97d20e",
+  "url": "https://6d80eaa8.projectshift.pages.dev",
+  "source": "304b0187670faf8a2ff54e3b5033ebe7516d60c0",
+  "changedPaths": [
+    "/assets/st-logo.svg"
+  ],
+  "allOtherAssetsUnchanged": true,
+  "htmlAssetsChanged": 0,
+  "headersUnchanged": true,
+  "checks": [
+    {
+      "url": "https://6d80eaa8.projectshift.pages.dev/assets/st-logo.svg",
+      "status": 200,
+      "sha256": "99e2622f0d2b3aae821a608c8a573f2e31988e8116fded137945c9f6f7b10673",
+      "type": "image/svg+xml",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/st-logo.svg",
+      "status": 200,
+      "sha256": "99e2622f0d2b3aae821a608c8a573f2e31988e8116fded137945c9f6f7b10673",
+      "type": "image/svg+xml",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/st-logo.svg",
+      "status": 200,
+      "sha256": "99e2622f0d2b3aae821a608c8a573f2e31988e8116fded137945c9f6f7b10673",
+      "type": "image/svg+xml",
+      "cache": "public, max-age=0, must-revalidate"
+    }
+  ],
+  "nativeSafariTabVerified": false
+}

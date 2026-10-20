@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-20T13:08:14.764Z",
+  "pass": true,
+  "id": "4ff5628e-d067-42ab-b6a1-72080376f285",
+  "url": "https://4ff5628e.projectshift.pages.dev",
+  "source": "304b0187670faf8a2ff54e3b5033ebe7516d60c0",
+  "changedPaths": [
+    "/assets/st-logo.svg"
+  ],
+  "allOtherAssetsUnchanged": true,
+  "htmlAssetsChanged": 0,
+  "headersUnchanged": true,
+  "checks": [
+    {
+      "url": "https://4ff5628e.projectshift.pages.dev/assets/st-logo.svg",
+      "status": 200,
+      "sha256": "99e2622f0d2b3aae821a608c8a573f2e31988e8116fded137945c9f6f7b10673",
+      "type": "image/svg+xml",
+      "cache": "public, max-age=0, must-revalidate"
+    }
+  ],
+  "nativeSafariTabVerified": false
+}
