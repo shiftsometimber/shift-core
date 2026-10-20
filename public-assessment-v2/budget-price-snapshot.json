@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Mounjaro",
+    "format": "Weekly injection",
+    "oral": false,
+    "low": 16900,
+    "high": 31900
+  },
+  {
+    "name": "Wegovy",
+    "format": "Weekly injection",
+    "oral": false,
+    "low": 9900,
+    "high": 19900
+  },
+  {
+    "name": "Liraglutide",
+    "format": "Daily injection",
+    "oral": false,
+    "low": 19900,
+    "high": 32900
+  },
+  {
+    "name": "Wegovy tablets",
+    "format": "Daily tablet",
+    "oral": true,
+    "low": 12900,
+    "high": 22900
+  },
+  {
+    "name": "Foundayo",
+    "format": "Daily tablet",
+    "oral": true,
+    "low": 12900,
+    "high": 22900
+  },
+  {
+    "name": "Orlistat",
+    "format": "Capsules taken with meals",
+    "oral": true,
+    "low": 5900,
+    "high": 12900
+  }
+]

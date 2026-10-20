@@ -60,4 +60,43 @@ async function verify(){
  const tc=await get('https://shiftsometimber.co.uk/treatment-centre');assert(tc.body.toString().includes(entry));save('live-treatment-centre.html',tc.body.toString());const home=await get('https://shiftsometimber.co.uk/');assert.equal(sha(home.body),sha(fs.readFileSync(path.join(out,'homepage-before.html'))),'Homepage bytes moved; reconcile ownership');
  const actualFiles=(await api(project+'/deployments/'+d.id+'/files')).files;assert.deepEqual(actualFiles,load('manifest-candidate.json'));const receipt={verifiedAt:new Date().toISOString(),deployment:d.id,preview:load('preview-deployment.json').id,baseline:load('baseline.json').deployment.id,assets,live,entryFromTreatments:true,homepageByteIdentical:true,all29VariantsOOS:true,workerWrites:0,realClinicalIntegrationActivated:false};save('live-verification.json',receipt);console.log(JSON.stringify(receipt));
 }
-const phase=process.argv[2];await({prepare,inspect,publish,verify}[phase]||(()=>{throw Error('Choose prepare, inspect, publish or verify')}))();
+const budgetPaths=['/assets/start-here-support-v1.js','/start-here.html'];
+async function budgetPrepare(){
+ assert(!fs.existsSync(path.join(out,'baseline.json')),'Resume the existing budget transaction');
+ const p=await api(project),d=p.canonical_deployment;assert.equal(d.environment,'production');assert.equal(d.uses_functions,false);
+ assert.equal(d.id,'41f28b38-04f2-4ff3-8c87-a749e63d857a','Reconcile a newer public release before editing');
+ const{files}=await api(project+'/deployments/'+d.id+'/files');save('baseline.json',{productionBranch:p.production_branch,deployment:d});save('manifest-before.json',files);
+ const js=await get(d.url+budgetPaths[0]),html=await get(d.url+budgetPaths[1]);
+ for(const[i,got]of[[0,js],[1,html]])assert.equal(assetHash(got.body,budgetPaths[i]),files[budgetPaths[i]],'Exact current asset required');
+ assert.equal(js.body.toString().trimEnd(),fs.readFileSync(path.join(source,'start-here-support.before.js'),'utf8').trimEnd(),'Budget code moved');
+ const script=fs.readFileSync(path.join(source,'start-here-support.js'),'utf8');assert(script.includes('money.after(section)'));assert(!script.includes('No treatment has been selected or described as affordable'));
+ const old='/assets/start-here-support-v1.js?v=price-period-20261018-1314bdafe846',next='/assets/start-here-support-v1.js?v=budget-inline-20261020';
+ assert.equal(html.body.toString().split(old).length-1,1);const page=html.body.toString().replace(old,next);assert.equal(page.replace(next,old),html.body.toString());
+ save('start-here-before.html',html.body.toString());save('start-here-candidate.html',page);save('support-before.js',js.body.toString());save('support-candidate.js',script);
+ const catalogue=JSON.parse((await get('https://api.shiftsometimber.co.uk/v1/catalogue/medicines')).body);const snapshot=JSON.parse(fs.readFileSync(path.join(source,'budget-price-snapshot.json')));
+ assert.equal(catalogue.products.flatMap(p=>p.variants).length,29);assert(catalogue.products.every(p=>p.status==='out_of_stock'&&p.variants.every(v=>v.status==='out_of_stock')));
+ for(const row of snapshot){const product=catalogue.products.find(p=>p.name===(row.name==='Wegovy'?'Wegovy injection':row.name));assert(product,row.name);assert.equal(row.low,Math.min(...product.variants.map(v=>v.pricePence)));assert.equal(row.high,Math.max(...product.variants.map(v=>v.pricePence)));}save('catalogue-live.json',catalogue);
+ const candidate={...files},uploads=[];for(const[url,body]of[[budgetPaths[0],script],[budgetPaths[1],page]]){const key=assetHash(body,url);candidate[url]=key;uploads.push({key,value:Buffer.from(body).toString('base64'),metadata:{contentType:type(url)},base64:true});}
+ assert.deepEqual(Object.keys(candidate).filter(k=>candidate[k]!==files[k]).sort(),[...budgetPaths].sort());for(const k of Object.keys(files))if(!budgetPaths.includes(k))assert.equal(candidate[k],files[k]);
+ save('manifest-candidate.json',candidate);save('scope-proof.json',{changes:budgetPaths,retainedAssets:Object.keys(files).length-2,homepageAssetUnchanged:true,healthFinderWalkthroughAssetsUnchanged:true,clinicalAndPaymentActivation:false});
+ save('homepage-before.html',(await get('https://shiftsometimber.co.uk/')).body.toString());
+ const preserved=fs.readFileSync(path.join(out,'headers-before.txt'),'utf8');save('headers-candidate.txt',preserved+'\n/assets/start-here-support-v1.js\n  Cache-Control: no-store\n\n/start-here\n  Cache-Control: no-store\n\n/start-here.html\n  Cache-Control: no-store\n');
+ assert.equal((await api(project)).canonical_deployment.id,d.id);const{jwt}=await api(project+'/upload-token');await api('/pages/assets/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(uploads)},jwt);
+ save('preview-intent.json',{at:new Date().toISOString(),baseline:d.id,paths:budgetPaths});const preview=await api(project+'/deployments',{method:'POST',body:form(candidate,'budget-inline-review-20261020','Show potential routes directly beneath Start Here budget; no additional questions')});save('preview-deployment.json',preview);console.log(JSON.stringify({phase:'budget_preview',id:preview.id,url:preview.url}));
+}
+async function budgetAssets(d){const checks=[];for(const[url,file]of[[budgetPaths[0],'support-candidate.js'],[budgetPaths[1],'start-here-candidate.html']]){const actual=await get(d.url+url);assert.equal(sha(actual.body),sha(fs.readFileSync(path.join(out,file))),url);checks.push({path:url,sha256:sha(actual.body),exactCandidate:true});}return checks;}
+async function budgetPublish(){
+ assert(!fs.existsSync(path.join(out,'production-intent.json')),'Reconcile an uncertain publication before replay');const base=load('baseline.json'),preview=load('preview-deployment.json'),p=await api(project);assert.equal(p.canonical_deployment.id,base.deployment.id);save('preview-assets.json',await budgetAssets(preview));
+ const qa=load('preview-browser/receipt.json');assert.equal(qa.origin,preview.url);assert.equal(qa.cases.length,23);assert.equal(qa.newScriptErrors.length,0);assert.equal(qa.clinicalOrPaymentRequests,0);assert(qa.cases.every(c=>c.routeDirectlyBelowBudget&&c.noExtraClick));
+ assert.equal((await api(project)).canonical_deployment.id,base.deployment.id);save('production-intent.json',{at:new Date().toISOString(),baseline:base.deployment.id,preview:preview.id});
+ const d=await api(project+'/deployments',{method:'POST',body:form(load('manifest-candidate.json'),p.production_branch,'Restore inline potential routes below Start Here budget; preserve all OOS controls')});save('production-deployment.json',d);console.log(JSON.stringify({phase:'budget_production',id:d.id,url:d.url}));
+}
+async function budgetVerify(){
+ const d=load('production-deployment.json');assert.equal((await api(project)).canonical_deployment.id,d.id);const current=await api(project+'/deployments/'+d.id);assert.equal(current.latest_stage.status,'success');const assets=await budgetAssets(d);
+ const actual=(await api(project+'/deployments/'+d.id+'/files')).files;assert.deepEqual(actual,load('manifest-candidate.json'));
+ const served=await get('https://shiftsometimber.co.uk/assets/start-here-support-v1.js?v=budget-inline-20261020');assert(served.body.toString().includes('money.after(section)'));assert(!served.body.toString().includes('No treatment has been selected or described as affordable'));
+ const page=await get('https://shiftsometimber.co.uk/start-here');assert(page.body.toString().includes('budget-inline-20261020'));
+ const homepage=await get('https://shiftsometimber.co.uk/');assert.equal(sha(homepage.body),sha(fs.readFileSync(path.join(out,'homepage-before.html'))));
+ const receipt={verifiedAt:new Date().toISOString(),deployment:d.id,baseline:load('baseline.json').deployment.id,assets,liveScriptSha256:sha(served.body),homepageByteIdentical:true,unchangedAssets:Object.keys(actual).length-2,healthFinderWalkthroughPreserved:true,all29VariantsOOS:true};save('live-verification.json',receipt);console.log(JSON.stringify(receipt));
+}
+const phase=process.argv[2];await({prepare,inspect,publish,verify,'budget-prepare':budgetPrepare,'budget-publish':budgetPublish,'budget-verify':budgetVerify}[phase]||(()=>{throw Error('Choose a finite assessment or budget release phase')}))();
