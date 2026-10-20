@@ -1,5 +1,5 @@
 {
-  "base": "f1d9c9f7-0e9c-4ed8-91f3-25be699b1d8a",
+  "base": "b0474810-14cd-41c3-a769-71e72bf16c13",
   "assets": [
     {
       "path": "/assessment-walkthrough.html",
@@ -109,11 +109,11 @@
     },
     {
       "path": "/assets/header-navigation-v2.css",
-      "providerKey": "366f87a14ba39d343ac5e01223f7e0c9",
-      "sha256": "720bb3ac38de0d0c382ea761c9d30d029032c8c04039830d87ca2cb84596aec8",
-      "bytes": 5610,
+      "providerKey": "5cd56e6ed433e3da5033c2ba372cfa8e",
+      "sha256": "74b8c12bc157dfab638bb1202a3358d12b6a47bd5932c5df5480a1c887a3ef6d",
+      "bytes": 5613,
       "type": "text/css; charset=utf-8",
-      "origin": "https://f1d9c9f7.projectshift.pages.dev",
+      "origin": "https://b0474810.projectshift.pages.dev",
       "nativeKeyMatches": true
     },
     {
@@ -136,13 +136,22 @@
     },
     {
       "path": "/assets/header-logo-fix-20261020.css",
-      "providerKey": "c4421b12fd4cad99303a310886adc997",
-      "sha256": "61162e31e5f3d19e656cbf25258b0f09d933c912db5e40f2b7c372ec604684cc",
-      "bytes": 807,
+      "providerKey": "b95f26a7128d23717dd6a075929e15f2",
+      "sha256": "542434a2193f25ecbf5e30911e19be3bf24f91ebeacbfa4723a6058a13ac9a88",
+      "bytes": 810,
       "type": "text/css; charset=utf-8",
-      "origin": "https://f1d9c9f7.projectshift.pages.dev",
+      "origin": "https://b0474810.projectshift.pages.dev",
+      "nativeKeyMatches": true
+    },
+    {
+      "path": "/assets/header-logo-20261020-v2.svg",
+      "providerKey": "f899f22072dfbad1179fd2087021c2c2",
+      "sha256": "57b14e2ded572e49f5376ffcbd6918558cb79db1cd979c2d3794df1cc6a5ac82",
+      "bytes": 432198,
+      "type": "image/svg+xml",
+      "origin": "https://b0474810.projectshift.pages.dev",
       "nativeKeyMatches": true
     }
   ],
-  "priorBase": "4a0984cf-e820-480b-8dbd-1f8cced98bf8"
+  "priorBase": "f1d9c9f7-0e9c-4ed8-91f3-25be699b1d8a"
 }
