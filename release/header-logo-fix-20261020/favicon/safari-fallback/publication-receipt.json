@@ -1,0 +1,247 @@
+{
+  "at": "2026-10-20T12:24:45.078Z",
+  "pass": true,
+  "id": "00049e90-b24d-412a-8943-e2744a234ec8",
+  "url": "https://shiftsometimber.co.uk",
+  "source": "c5511ea376a86f8dcedc3892b42824516b7dee52",
+  "manifestExact": true,
+  "existingAssetsUnchanged": true,
+  "htmlAssetsChanged": 0,
+  "checks": [
+    {
+      "url": "https://00049e90.projectshift.pages.dev/favicon.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex"
+      }
+    },
+    {
+      "url": "https://00049e90.projectshift.pages.dev/assets/favicon.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex"
+      }
+    },
+    {
+      "url": "https://00049e90.projectshift.pages.dev/assets/favicon-shift-s-20261020.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex"
+      }
+    },
+    {
+      "url": "https://00049e90.projectshift.pages.dev/apple-touch-icon.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex"
+      }
+    },
+    {
+      "url": "https://00049e90.projectshift.pages.dev/apple-touch-icon-precomposed.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex"
+      }
+    },
+    {
+      "url": "https://00049e90.projectshift.pages.dev/assets/favicon-shift-s-20261020.png",
+      "status": 200,
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex"
+      }
+    },
+    {
+      "url": "https://00049e90.projectshift.pages.dev/assets/apple-touch-shift-s-20261020.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": "noindex"
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/favicon.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/favicon.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/favicon-shift-s-20261020.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/apple-touch-icon.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/apple-touch-icon-precomposed.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/favicon-shift-s-20261020.png",
+      "status": 200,
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/apple-touch-shift-s-20261020.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/favicon.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/favicon.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/favicon-shift-s-20261020.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "image/x-icon",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/apple-touch-icon.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/apple-touch-icon-precomposed.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/favicon-shift-s-20261020.png",
+      "status": 200,
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/apple-touch-shift-s-20261020.png",
+      "status": 200,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "headers": {
+        "content-type": "image/png",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    }
+  ],
+  "nativeSafariTabVerified": false,
+  "predecessor": "8a4b2389-81f5-4765-8d00-4639ec46af9c",
+  "remaining": "Native Safari tab/cache state unverified; source and HTTP checks do not establish resolution",
+  "nativeAccessBlocked": true
+}
