@@ -9,62 +9,62 @@
     {
       "path": "/articles/upper-arm-blood-collection.html",
       "beforeSHA256": "781b4023e88969fdec418eacd4b138c3f6fda9efc1b681e06f966eb8d3f08fb0",
-      "afterSHA256": "03099cc24d62362cea7838d47b8d1faa78e337fd5addedefba2c0867917c9a8c",
-      "edits": 3
+      "afterSHA256": "62c9eed71781108e0941d2ca60f0172d54744132abf82d4f853c30cb0c8945e5",
+      "edits": 4
     },
     {
       "path": "/shift-health/blood-tests.html",
       "beforeSHA256": "c8d5e13b7cb08e2f6fd8f051b99c067c7fbf15c53cd2d0b1e85fc68ec0e3d891",
-      "afterSHA256": "1f85c3c9a5d3d219ba036169fbff7f2635c891fa50a09a155917ea4fa10d9519",
-      "edits": 8
+      "afterSHA256": "d873dccbd8a21fca076026bb8c8058fdf57accc6881e1a44292d48d02b1424c5",
+      "edits": 10
     },
     {
       "path": "/shift-health/blood-tests/about.html",
       "beforeSHA256": "91acf7b062a410855b5bba84efde1e738448983cdf5326e7c4a712ef5e07b1ba",
-      "afterSHA256": "73eb6f83bdffb8462bd1ba6be9eda6c677e556399a9e82c44ca91ed5b993f35b",
-      "edits": 6
+      "afterSHA256": "949f05ae6c1c1eb1c25925767e47d6d4cf7187150393fe024d0089de734f0c11",
+      "edits": 7
     },
     {
       "path": "/shift-health/blood-tests/baseline.html",
       "beforeSHA256": "632f2d91e11bb56dcd8aac923bb90fc5b11289b2596feb415589358e245d52bd",
-      "afterSHA256": "4dbc7d4e6625b7fa8dfa8856cb71e7bf1388deff995c83dbb0957b8e26d81f69",
-      "edits": 2
+      "afterSHA256": "cab3b6c4a7aa7809ce009c8a7530d0e186ab0575f9d33f9b5b25aa687589c118",
+      "edits": 4
     },
     {
       "path": "/shift-health/blood-tests/baseline/your-test.html",
       "beforeSHA256": "b9b850dc18a2a8b09dd460fb349bfbc2db8959047333f27742f673011caba337",
-      "afterSHA256": "82db9c64d860a8c14e3f433a2b37f2bb17f2b518f0447957e882b0716e15fd0e",
-      "edits": 4
+      "afterSHA256": "17a282847b69b377601d4349f3231c6d9447055f4d9564b84dd3ccfcb6ffd5f3",
+      "edits": 6
     },
     {
       "path": "/shift-health/blood-tests/advanced.html",
       "beforeSHA256": "3cf4654784242db2d8b38a3faebc2a5a5476807b01a6d379496ac31f1b80d47a",
-      "afterSHA256": "dbae98b9192d462e8df59d26e635cd5a44e50240e80e00b9ae6cd6f9800aaf7a",
-      "edits": 2
+      "afterSHA256": "d0c1cd7099bc9653ee222f2521d7bedab1c5425ca4fbf24e78b4a3042122f8c3",
+      "edits": 4
     },
     {
       "path": "/shift-health/blood-tests/advanced/your-test.html",
       "beforeSHA256": "0eeba70320c327c8ee28e47981e61fc77a9251e5c24e51327449f98074cb9a3e",
-      "afterSHA256": "bfecb3982c9dc9ab65ee536a01df613d80b905bfa8a1f28e6655c5ee8c30c4b6",
-      "edits": 4
+      "afterSHA256": "753cf50ecd640e5d79517c39b7f50ac837c7ff28f1a651dfe5a49382361d19d0",
+      "edits": 6
     },
     {
       "path": "/shift-health/blood-tests/complete.html",
       "beforeSHA256": "7b3089a070c8717ed6f73ed46b4e08dfd7c97f21731e590734aef86c492f7dc2",
-      "afterSHA256": "608e6ec45e094884643188da927297bbb4af71d4405395ad1e9d9d87bd09716c",
-      "edits": 4
+      "afterSHA256": "d92608419df1cf89b51a39ba0425af3a4573d3ba4567d9148df7d0f271939952",
+      "edits": 6
     },
     {
       "path": "/shift-health/blood-tests/complete/your-test.html",
       "beforeSHA256": "bc5ac3aa74290bc41a338d3afaa9b85d1b4054edb4bdf38b911ef9117b4cf8fb",
-      "afterSHA256": "239438c921e7f294f471af8050451029eddd91f2d4af6b4cab6be2dab8015de8",
-      "edits": 4
+      "afterSHA256": "9032cdcd12651453e01619ecc33d2d8b8bff4efd443540968cf5c82fbb859ee7",
+      "edits": 6
     },
     {
       "path": "/shift-health/blood-tests/my-timber-example.html",
       "beforeSHA256": "257beb41d714219d0a3227eeb6799738145a6fc439f88a2a00df780bf3ebd2b4",
-      "afterSHA256": "0a017e468dced267617381edb75c7341cf83ec244df072b51da553bb85c99c1a",
-      "edits": 1
+      "afterSHA256": "d5e33f1ab05ce0cbb77d54381be008908b6187e3bcc9c2266ea34f5362bdc45a",
+      "edits": 2
     },
     {
       "path": "/shift-for-work.html",
@@ -247,6 +247,6 @@
     "/support-dashboard-v3d.html",
     "/clinician-dashboard-v3d.html"
   ],
-  "base": "4a0984cf-e820-480b-8dbd-1f8cced98bf8",
+  "base": "f1d9c9f7-0e9c-4ed8-91f3-25be699b1d8a",
   "branch": "review/sitewide-public-copy-20261020"
 }
