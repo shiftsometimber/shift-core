@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-17T00:31:09.038677+00:00",
+  "base": "777d056222a47f54125a7be85966617bce67c930",
+  "demonstratedCause": "Initial getFitActivity may render the saved plan after a new build and session Start. Build now waits through the normal disabled button until the initial saved activity load has settled. This retains all initial activity before a new plan can replace its view.",
+  "originalFailure": "Chromium1440 original30000ms current-exercise visibility timeout after Start, with Start session still shown",
+  "runtimeHunks": [
+    [
+      "    loadJourney();",
+      "    button.disabled = true;\n    loadJourney().finally(() => { button.disabled = false; });"
+    ]
+  ],
+  "allOtherRuntimeCharactersExact": true,
+  "allOriginalBrowserAssertionsUnchanged": true,
+  "sourceQualificationPending": true,
+  "deployed": false
+}

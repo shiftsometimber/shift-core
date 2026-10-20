@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-15T19:15:33.642Z",
+  "baseline": "685ede249cd20c4801d0a25227fed16d46860618",
+  "passed": true,
+  "externalMutations": 0,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "sha256": "904c8a04dbf424cca69b5fcc3cf1b02b57db4b4dc5aa93897615821a80a98ca2",
+      "bytes": 204144,
+      "exactMatch": true
+    },
+    {
+      "path": "/programme",
+      "status": 200,
+      "sha256": "f92dd6389dc6579297218f1a5aedef19d007c4346bf0d3c03b2fbdc6fbee14ba",
+      "bytes": 50342,
+      "exactMatch": true
+    },
+    {
+      "path": "/start-here",
+      "status": 200,
+      "sha256": "73a57a020b6a0cb2f9cf4bf0746795e3136e1deea53be5a65fdc3007952e7554",
+      "bytes": 62272,
+      "exactMatch": true
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "sha256": "51e82b1e821859517bf3bb2ff6baa618acd25939f199b683a30299e43d33fb0f",
+      "bytes": 45214,
+      "exactMatch": true
+    }
+  ]
+}
