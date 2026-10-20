@@ -8,7 +8,7 @@ const prices=JSON.parse(await fs.readFile(root+'/source/budget-price-snapshot.js
 const result={origin,mainContrastGuardSimulated:!!process.env.LAYOUT_MAIN_CONTRAST_GUARD,cases:[],newScriptErrors:[],inheritedErrors:[],clinicalOrPaymentRequests:0};
 for(const[engine,width,matrix]of[[chromium,390,true],[chromium,1440,false],[webkit,390,false]]){
  const browser=await engine.launch({headless:true}),context=await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce'});
- if(process.env.LAYOUT_MAIN_CONTRAST_GUARD)await context.addInitScript({content:await fs.readFile(process.env.LAYOUT_MAIN_CONTRAST_GUARD,'utf8')});
+ if(process.env.LAYOUT_MAIN_CONTRAST_GUARD){const guard=await fs.readFile(process.env.LAYOUT_MAIN_CONTRAST_GUARD,'utf8');await context.addInitScript({content:"document.addEventListener('DOMContentLoaded',()=>{"+guard+";document.documentElement.dataset.layoutQaContrastReady='1';},{once:true});"});}
  const page=await context.newPage();
  page.on('pageerror',e=>{if(e.message.includes('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2 due to access control checks.'))result.inheritedErrors.push(e.message);else result.newScriptErrors.push(e.message);});
  page.on('request',r=>{if(/\/v1\/(?:commerce\/medicine-checkout|commerce\/medicine-clinical|pharmacy\/|clinical\/)/.test(r.url()))result.clinicalOrPaymentRequests++;});
@@ -62,7 +62,7 @@ for(const[engine,width,matrix]of[[chromium,390,true],[chromium,1440,false],[webk
   await fs.writeFile(out+'/partial.json',JSON.stringify(result,null,2));
  }
  async function run(pref,band,access){
-  await page.goto(origin+'/start-here',{waitUntil:'commit'});await page.locator('[data-multi="why"] button[aria-pressed="false"]').first().waitFor();
+  await page.goto(origin+'/start-here',{waitUntil:'commit'});await page.locator('[data-multi="why"] button[aria-pressed="false"]').first().waitFor();if(process.env.LAYOUT_MAIN_CONTRAST_GUARD)await page.waitForFunction(()=>document.documentElement.dataset.layoutQaContrastReady==='1');
   const necessary=page.getByRole('button',{name:'Necessary only',exact:true});if(await necessary.isVisible())await necessary.click();
   await page.locator('[data-multi="why"] button').first().click();await page.locator('[data-quick-next]').click();
   await choose('[data-one="med"] button:has(strong:text-is("'+pref+'"))');await choose('[data-one="access"] button:text-is("'+access+'")');await page.locator('[data-quick-next]').click();
