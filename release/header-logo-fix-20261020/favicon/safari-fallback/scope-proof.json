@@ -1,0 +1,14 @@
+{
+  "base": "8a4b2389-81f5-4765-8d00-4639ec46af9c",
+  "htmlAssetsChanged": 0,
+  "existingAssetsUnchanged": true,
+  "addedAliases": [
+    "/apple-touch-icon.png",
+    "/apple-touch-icon-precomposed.png"
+  ],
+  "approvedArtworkUnchanged": true,
+  "headersOnlyAppend": true,
+  "headersBeforeSHA256": "d1b85c3b7657e377ae0adc7959f5599dff21d5ce2a0bfc05389aad47c5c25f82",
+  "headersAfterSHA256": "747182707d6a1818d33fce8d9d3d2eb99f6036a4e7cc820c3d9ca2df9f97095f",
+  "iconSHA256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4"
+}

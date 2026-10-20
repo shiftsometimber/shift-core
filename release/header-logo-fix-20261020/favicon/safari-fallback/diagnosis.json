@@ -1,0 +1,93 @@
+{
+  "at": "2026-10-20T12:20:05.750Z",
+  "checks": [
+    {
+      "url": "https://shiftsometimber.co.uk/favicon.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "null",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/favicon.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "null",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/favicon-shift-s-20261020.ico",
+      "status": 200,
+      "sha256": "62dc06ab52521ffb1c82466e70fdc052f5aeabacb163d113fafdb032997523d1",
+      "headers": {
+        "content-type": "null",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/apple-touch-icon.png",
+      "status": 404,
+      "sha256": "ffebf5aa73cf5ce8db0009ba741f5a9ee0facb0f1303fea3eeeea12259ab3bab",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/apple-touch-icon-precomposed.png",
+      "status": 404,
+      "sha256": "ffebf5aa73cf5ce8db0009ba741f5a9ee0facb0f1303fea3eeeea12259ab3bab",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-robots-tag": null
+      }
+    }
+  ],
+  "pages": {
+    "/": {
+      "parts": {
+        "main": "d3bef76bffe72c2905fac7a119371b760521104c6c493c3f3ecf21e5dc858cca",
+        "header": "433a08144d968b5f661d1193f3c485e0bd2c6c5fa63e93936799440221dfd5fc",
+        "footer": "330d42ca1acf62c5746a615f67d1eb98b0de273c48ddf0ff3743c7a53f9a77c9"
+      },
+      "icons": [
+        "<link href=\"/assets/favicon-shift-s-20261020.png\" rel=\"icon\" sizes=\"32x32\" type=\"image/png\"/>",
+        "<link href=\"/assets/apple-touch-shift-s-20261020.png\" rel=\"apple-touch-icon\" sizes=\"180x180\"/>"
+      ]
+    },
+    "/start-here": {
+      "parts": {
+        "main": "d74a7a4ee528f841011edc368bcadd0dc182de858e04a9a5cc92896aa0d5f4d9",
+        "header": "8cf3fb5c69b2d55139e007121876ab8b27f5f8df38e304083c3534c165f6045c",
+        "footer": "628bcb3bc07895001da096e79d643ee2d5ac1f2a69d3407e03aa1401e3b273dc"
+      },
+      "icons": [
+        "<link href=\"/assets/favicon-shift-s-20261020.png\" rel=\"icon\" sizes=\"32x32\" type=\"image/png\"/>",
+        "<link href=\"/assets/apple-touch-shift-s-20261020.png\" rel=\"apple-touch-icon\" sizes=\"180x180\"/>"
+      ]
+    }
+  },
+  "observed": "Safari address field shows correct S, tab shows pale obsolete monogram",
+  "nativeSafariVersion": "27.2",
+  "nativeSafariTabVerified": false,
+  "accessLimits": {
+    "faviconCache": "macOS Operation not permitted",
+    "screenCapturePermission": false,
+    "appleEventsJavaScript": "disabled; unchanged"
+  },
+  "causality": "Invalid fallback MIME is confirmed; causal connection to stale Safari tab is unverified"
+}
