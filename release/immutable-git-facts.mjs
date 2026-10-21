@@ -61,7 +61,9 @@ export function nativeGitSourceDifference(base,head){
 }
 export function withImmutableHistoryVerification(callback){
  if(immutableHistoryScope){assert.equal(process.cwd(),immutableHistoryScope.cwd,'Verification working directory changed');assert.equal(immutableEnvironmentSignature(),immutableHistoryScope.environment,'Verification execution environment changed');return callback();}
- immutableTrees.clear();immutableBlobBytes.clear();
+ // Scoped facts are reset; authenticated native facts retain every existing point-of-use storage/context/hash check.
+ for(const key of immutableTrees.keys())if(!key.startsWith('native-context-'))immutableTrees.delete(key);
+ for(const key of immutableBlobBytes.keys())if(!key.startsWith('native-context-'))immutableBlobBytes.delete(key);
  const cwd=process.cwd(),head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
  assertGitTrackedSourceVisible('entry');
  assert.equal(execFileSync('git',['diff','--name-only','HEAD','--'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
@@ -118,6 +120,12 @@ function repositoryMarker(repository){
 export const immutableHistorySourceHead=()=>immutableHistoryScope?.head??null;
 
 const immutableTrees=new Map(),immutableBlobBytes=new Map();
+// Bound retained immutable data; eviction only discards an optimisation.
+// Every surviving fact keeps the original fresh context/storage/hash checks.
+function retainBoundedImmutableFact(cache,key,value,limit){
+ cache.delete(key);cache.set(key,value);
+ while(cache.size>limit)cache.delete(cache.keys().next().value);
+}
 function trustedFactOptions(options){
  if(options===undefined)return true;
  if(!options||Object.getPrototypeOf(options)!==Object.prototype)return false;
@@ -153,13 +161,14 @@ function immutableFact(scope,args,options){
    const provenance=new Map();for(const oid of oids){const value=looseObjectState(context,oid);if(value===null)return null;provenance.set(oid,value);}
    entries.provenance={base:context.useStorage,objects:provenance};
   }
-  immutableTrees.set(treeKey,entries);
+  retainBoundedImmutableFact(immutableTrees,treeKey,entries,8);
  }
  const tree=immutableTrees.get(treeKey),entry=tree.get(path);if(!entry)return null;
  if(context){
   const needed=[ref,tree.rootTree];let prefix='';for(const segment of path.split('/').slice(0,-1)){prefix=prefix?prefix+'/'+segment:segment;const parent=tree.get(prefix);if(parent?.type==='tree')needed.push(parent.oid);}
   const proof=tree.provenance;if(!proof||proof.base!==context.useStorage||needed.some(oid=>!proof.objects.has(oid)||looseObjectState(context,oid)!==proof.objects.get(oid))){immutableTrees.delete(treeKey);return null;}
  }
+ retainBoundedImmutableFact(immutableTrees,treeKey,tree,8);
  const limit=options?.maxBuffer??1024*1024;
  if(args[0]==='rev-parse'){
   const bytes=Buffer.from(entry.oid+'\n');return bytes.length>limit?null:{bytes,oid:entry.oid,type:entry.type};
@@ -172,10 +181,11 @@ function immutableFact(scope,args,options){
   let bytes;try{bytes=execFileSync('git',['cat-file','blob',entry.oid],{maxBuffer:limit,stdio:'pipe'});}catch{return null;}
   assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),entry.oid,'Native immutable blob bytes do not match their Git object ID');
   const storage=context?storageState(context,[entry.oid],context.useStorage):null;if(context&&(storage===null||storage!==before))return null;
-  immutableBlobBytes.set(blobKey,{bytes,storage});
+  retainBoundedImmutableFact(immutableBlobBytes,blobKey,{bytes,storage},64);
  }
  const bytes=immutableBlobBytes.get(blobKey).bytes;
  assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),entry.oid,'Cached immutable blob bytes do not match their Git object ID');
+ retainBoundedImmutableFact(immutableBlobBytes,blobKey,immutableBlobBytes.get(blobKey),64);
  return bytes.length>limit?null:{bytes,oid:entry.oid,type:entry.type};
 }
 // Shared native facts retain full point-of-use repository/environment identity.

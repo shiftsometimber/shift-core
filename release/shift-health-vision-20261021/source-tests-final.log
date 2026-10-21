@@ -1,0 +1,14 @@
+✔ guides are routed, independently canonical, linked and closed to booking (2.677375ms)
+✔ hub contains approved card and guide routes, no obsolete purchase placeholders (4.573916ms)
+✔ sitemap lists each new guide once across repeat reconciliation (0.426083ms)
+✔ approved public hub is indexable, sourced and unavailable to purchase (8.431ms)
+✔ testosterone card moves to first; exact previous grid is recoverable (0.288625ms)
+✔ nine Health pages preserve baseline outside reviewed availability and NHS safety corrections (3.957958ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 137.175084

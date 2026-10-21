@@ -1,0 +1,52 @@
+
+ ⛅️ wrangler 4.112.0
+────────────────────
+✨ Read 5711 files from the assets directory /Users/shiftsometimberltd/SST/shift-health-vision-20261021/frontend/member
+Total Upload: 32216.85 KiB / gzip: 5459.35 KiB
+Your Worker has access to the following bindings:
+Binding                                                                                   Resource                  
+env.SITE_CONTENT_STATE (SiteContentState)                                                 Durable Object            
+env.EMAIL (unrestricted)                                                                  Send Email                
+env.DB (shift-core-db)                                                                    D1 Database               
+env.EVIDENCE_DESK_READ_DB (shift-evidence-desk-r12-nonprod-db)                            D1 Database               
+env.AI                                                                                    AI                        
+env.MEMBER_ASSETS                                                                         Assets                    
+env.DAILY_WEBSITE_CONTENT_ENABLED ("true")                                                Environment Variable      
+env.DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH ("true")                                          Environment Variable      
+env.DAILY_EDITORIAL_MODEL ("@cf/openai/gpt-oss-120b")                                     Environment Variable      
+env.DAILY_EDITORIAL_SUPPORT_MODEL ("@cf/zai-org/glm-5.3")                                 Environment Variable      
+env.DAILY_CONTENT_GATEWAY ("shift-ai")                                                    Environment Variable      
+env.DAILY_CONTENT_BUDGET_VERIFIED ("true")                                                Environment Variable      
+env.DAILY_EDITORIAL_NOTIFY_ENABLED ("false")                                              Environment Variable      
+env.DAILY_EDITORIAL_NOTIFY_TEMPLATE ("verified-link-v1")                                  Environment Variable      
+env.MY_TIMBER_PWA_ENABLED ("true")                                                        Environment Variable      
+env.MEMBER_GP_LOOKUP_ENABLED ("true")                                                     Environment Variable      
+env.MEMBER_GP_DIRECTORY_V2_ENABLED ("true")                                               Environment Variable      
+env.BABYLOVE_WEBHOOK_TOKEN_SHA256 ("ab300f37dbd07d803773ecd6a8bd8f8225d60...")            Environment Variable      
+env.MY_TREATMENT_ENABLED ("true")                                                         Environment Variable      
+env.MY_TIMBER_WEEK_VIEW_ENABLED ("true")                                                  Environment Variable      
+env.MEMBER_EXPERIENCE_V1_ENABLED ("true")                                                 Environment Variable      
+env.HEALTH_PASSPORT_V1_ENABLED ("true")                                                   Environment Variable      
+env.AUTO_VERIFY_EMAIL ("false")                                                           Environment Variable      
+env.MEMBER_SIGNUP_ALERTS_ENABLED ("true")                                                 Environment Variable      
+env.ALLOWED_ORIGINS ("https://shiftsometimber.co.uk,https:/...")                          Environment Variable      
+env.SHIFT_AI_PRACTICAL_CONTEXT ("true")                                                   Environment Variable      
+env.SHIFT_AI_CONVERSATION_MEMORY ("true")                                                 Environment Variable      
+env.SHIFT_AI_MODEL ("@cf/meta/llama-3.3-70b-instruct-fp8-f...")                           Environment Variable      
+env.PUBLIC_SITE_URL ("https://shiftsometimber.co.uk")                                     Environment Variable      
+env.AUTH_EMAIL_FROM ("hello@shiftsometimber.co.uk")                                       Environment Variable      
+env.ADMIN_EMAIL_FROM ("hq@shiftsometimber.co.uk")                                         Environment Variable      
+env.ADMIN_NOTIFICATION_EMAIL ("hq@shiftsometimber.co.uk")                                 Environment Variable      
+env.ORDER_NOTIFICATION_EMAIL ("orders@shiftsometimber.co.uk")                             Environment Variable      
+env.RADAR_ALERT_TO ("hq@shiftsometimber.co.uk")                                           Environment Variable      
+env.RADAR_NOTIFICATION_MODE ("publication_only")                                          Environment Variable      
+env.RADAR_PUBLICATION_EMAIL_TO ("matt@shiftsometimber.co.uk")                             Environment Variable      
+env.RADAR_PUBLICATION_EMAIL_SINCE ("2026-09-17T10:32:14Z")                                Environment Variable      
+env.EVIDENCE_DESK_ALERT_TO ("hq@shiftsometimber.co.uk")                                   Environment Variable      
+env.EVIDENCE_DESK_READ_ENV ("non-production")                                             Environment Variable      
+env.TAP_ROOM_MODERATION_OWNER ("Matt O'Brien")                                            Environment Variable      
+env.TAP_ROOM_MODERATION_BACKUP ("Linda O'Brien")                                          Environment Variable      
+env.TAP_ROOM_P0_EMAIL ("hq@shiftsometimber.co.uk")                                        Environment Variable      
+env.STRIPE_MODE ("test")                                                                  Environment Variable      
+
+--dry-run: exiting now.

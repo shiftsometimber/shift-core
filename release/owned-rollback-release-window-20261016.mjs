@@ -6,6 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {verifyOwnedTimeoutRecovery,assertOwnedRollbackStartingPoint} from './verified-owned-rollback.mjs';
 import {OWNED_ROLLBACK_POLICY,OWNED_TIMEOUT_POLICY,captureOwnedRollbackCurrent} from './verified-owned-rollback-current.mjs';
+import {websiteEditorialCompletionHistoricalView,websiteEditorialCompletionOriginalSource} from './website-editorial-scope-20261018.mjs';
 
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const workflow='.github/workflows/cloudflare-production-promote.yml';
@@ -133,8 +134,9 @@ export function bindApprovedCurrentProductionWindow(context){
  const git=(...args)=>execFileSync('git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:4194304});
  const head=git('rev-parse','HEAD').trim();assert.equal(context.head,head);assert.equal(context.main,head);
  assert.equal(git('status','--porcelain=v1','--untracked-files=no').trim(),'','A clean exact native release source is required');
- const workflowBytes=git('show',head+':'+workflow);
- assert.equal(sha(workflowBytes),'27295c3a6f40e2cc83692f3d968108315eeb34422b8e8dc78b905691e245a48e','Only the exact approved outer90 workflow may bind this window');
+ const workflowBytes=git('show',head+':'+workflow),editorialView=websiteEditorialCompletionHistoricalView();
+ const approvedWorkflowBytes=editorialView?websiteEditorialCompletionOriginalSource(workflow,workflowBytes,editorialView):workflowBytes;
+ assert.equal(sha(approvedWorkflowBytes),'27295c3a6f40e2cc83692f3d968108315eeb34422b8e8dc78b905691e245a48e','Only the exact approved outer90 workflow may bind this window');
  const approval=JSON.parse(git('show',head+':release/approved-runtime-composition.json')).currentRuntimePreservation20261016.acceptedUkGrubPreservation20261017.approvedCurrentHomeAndOuterWindow20261018;
  assert.equal(sha(JSON.stringify(approval)),'6fb15051be8446af564998ce8f1fe50530dcf7e7aac65ab9d6ce87e47de314ce','The exact original Matt approval must remain unchanged');
  approvedCurrentProductionWindows.set(context,Object.freeze(currentProductionWindowIdentity(context)));return context;

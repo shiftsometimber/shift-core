@@ -1,3 +1,4 @@
+import {testosteroneGuides} from './testosterone-guides.mjs';
 import {repairSeoPresentation} from './public-seo-presentation.mjs';
 import {completePublicSharingImage,repairPublicSeoLinks} from './public-seo-closeout.mjs';
 // Accepted public shell captured from production on 17 September 2026.
@@ -386,7 +387,7 @@ export function reconcilePublicDocument(html,path){
  }
  return repairSeoPresentation(repairPublicSeoLinks(completePublicSharingImage(html,path)),path);
 }
-export function reconcileSitemap(xml){return xml.replace(/<url\b[^>]*>[\s\S]*?<\/url>/g,block=>sitemapExcludedPaths.some(path=>block.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'))?'':block);}
+export function reconcileSitemap(xml){for(const slug of Object.keys(testosteroneGuides)){const loc="https://shiftsometimber.co.uk/shift-health/"+slug;if(!xml.includes("<loc>"+loc+"</loc>"))xml=xml.replace("</urlset>","<url><loc>"+loc+"</loc></url></urlset>");}return xml.replace(/<url\b[^>]*>[\s\S]*?<\/url>/g,block=>sitemapExcludedPaths.some(path=>block.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc>'))?'':block);}
 export async function withPublicShellContract(request,response){
  if(request.method!=='GET'||!response.ok)return response;
  const path=normal(new URL(request.url).pathname),type=response.headers.get('Content-Type')||'';

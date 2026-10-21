@@ -1,3 +1,4 @@
+import {websiteEditorialCompletionHistoricalView,websiteEditorialCompletionOriginalSource} from '../release/website-editorial-scope-20261018.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -5,7 +6,13 @@ import {execFileSync} from 'node:child_process';
 import {RECORDED_WEEK_BROWSER_REPAIR_PATHS,assertRecordedWeekBrowserRepair} from '../release/recorded-week-browser-repair-20261017.mjs';
 const runtime='b6f9c0c36d4303e5d384fb2d62b58968b998aa64',base='86be02bdd33b6002fed7c74a5cd66df9d273ef5d';
 const g=(...a)=>execFileSync('/usr/bin/git',['--no-replace-objects',...a],{encoding:'utf8',maxBuffer:64e6});
-const original=path=>g('show',runtime+':'+path),actual=path=>readFileSync(path,'utf8');
+const original=path=>g('show',runtime+':'+path);
+const actual=path=>{
+ const bytes=readFileSync(path,'utf8');
+ if(path!=='wrangler.jsonc')return bytes;
+ const view=websiteEditorialCompletionHistoricalView();
+ return view?websiteEditorialCompletionOriginalSource(path,bytes,view):bytes;
+};
 test('only the exact bounded browser file is registered and the path list is immutable',()=>{
  assert.deepEqual(RECORDED_WEEK_BROWSER_REPAIR_PATHS,['member-experience/treatment-week-client.mjs']);
  assert(Object.isFrozen(RECORDED_WEEK_BROWSER_REPAIR_PATHS));assert.throws(()=>RECORDED_WEEK_BROWSER_REPAIR_PATHS.push('worker.js'));

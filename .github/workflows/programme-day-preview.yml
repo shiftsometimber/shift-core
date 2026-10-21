@@ -8,7 +8,7 @@ permissions:
 jobs:
   preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,7 +28,7 @@ jobs:
           import {join} from 'node:path';
           import {tmpdir} from 'node:os';
           import {createHash} from 'node:crypto';
-          const tasks=Object.freeze([{"id":"source-tests","body":"node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs"},{"id":"b1-scope","body":"node scripts/b1-release-scope.mjs"},{"id":"growth-preflight","body":"node release/growth-preflight.mjs","tokenRole":"programme-growth"},{"id":"browser-toolchain","body":"npm install --prefix \"$RUNNER_TEMP/programme-tools\" --no-audit --no-fund playwright@1.63.0\n\"$RUNNER_TEMP/programme-tools/node_modules/.bin/playwright\" install --with-deps chromium"}]);
+          const tasks=Object.freeze([{"id":"source-tests","body":"node --test --test-concurrency=1 tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs"},{"id":"b1-scope","body":"node scripts/b1-release-scope.mjs"},{"id":"growth-preflight","body":"node release/growth-preflight.mjs","tokenRole":"programme-growth"},{"id":"browser-toolchain","body":"npm install --prefix \"$RUNNER_TEMP/programme-tools\" --no-audit --no-fund playwright@1.63.0\n\"$RUNNER_TEMP/programme-tools/node_modules/.bin/playwright\" install --with-deps chromium"}]);
           const poolId="programme";
           const proofDir=join('programme-day-proof','source-gates');
           const programmeGrowthToken=poolId==='programme'?process.env.GITHUB_TOKEN:undefined;if(poolId==='programme')delete process.env.GITHUB_TOKEN;

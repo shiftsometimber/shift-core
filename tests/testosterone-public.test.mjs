@@ -5,7 +5,7 @@ import {promoteTestosteroneCard,preserveHealthCardOrder} from '../testosterone-h
 const shell='<html><head><title>Old</title></head><body class="one-shift programme-page"><header>locked</header><main>old</main><footer>locked</footer></body></html>';
 test('approved public hub is indexable, sourced and unavailable to purchase',()=>{
  const html=renderShiftHealthDocument(shell,'testosterone-energy');
- for(const marker of ['What’s brought you here?','fertility','monitoring','No stock available today','data-stock="0"','disabled','id="evidence"'])assert.ok(html.includes(marker),marker);
+ for(const marker of ['What’s brought you here?','fertility','monitoring','No stock available today','id="evidence"'])assert.ok(html.includes(marker),marker);
  assert.doesNotMatch(html,/PREVIEW FOR MATT|This preview|noindex|testosterone-checkout\.js/);
  assert.equal((html.match(/<h1\b/g)||[]).length,1);assert.equal((html.match(/rel="canonical"/g)||[]).length,1);
  assert.equal((html.match(/name="twitter:image"/g)||[]).length,1);

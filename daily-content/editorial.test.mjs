@@ -1,4 +1,5 @@
 import {test} from 'node:test';
+import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {ensureEditorialSchema,editorialPublication,publicArticlePublication,digest,frozenArticle,londonRelease,POLICY} from './publication.mjs';
@@ -40,7 +41,7 @@ async function fixture({oldCms=false,unsupported=false,failedVerification=false,
   if(url===ORIGIN+'/guides/lunch-planning')return new Response(html(url,'Planning meals around working days'),{headers:{'Content-Type':'text/html'}});
   return new Response('Missing',{status:404});
  };
- if(oldCms){await DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at,updated_at) VALUES('Original title','packed-lunch-example','Nutrition','SHIFT Team','published','Original summary','Original body','Original SEO','2026-03-23','2026-10-01')`).run();await DB.prepare(`INSERT INTO babylove_receipts(slug,source_id) VALUES('packed-lunch-example','original-vendor')`).run();}
+ if(oldCms){await DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at,updated_at) VALUES('Original title','packed-lunch-example','Nutrition','SHIFT Team','published','Original summary','Original body','Original SEO','2026-03-23','2026-10-01')`).run();await DB.prepare(`INSERT INTO babylove_receipts(slug,source_id,created_at) VALUES('packed-lunch-example','original-vendor','2026-03-23T00:00:00.000Z')`).run();}
  await refreshEditorialCorpus(env,{fetcher,now:BEFORE,limit:12});
  return {env,DB,sqlite,fetcher,calls:()=>calls,sends:()=>sends,brief,setPublicNow:value=>{publicNow=value;}};
 }
@@ -75,6 +76,33 @@ test('post-review edits fail closed instead of rendering through the vendor fall
 test('uncertain email outcome is recorded once and cannot cause an automatic resend',async()=>{
  const f=await fixture({sendFails:true});assert.equal((await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:BEFORE})).status,'ready');await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE});const r=await f.DB.prepare(`SELECT * FROM knowledge_editorial_releases`).first();assert.equal(r.notification_state,'failed');await notifyEditorial(f.env,r,{now:DUE+60000});assert.equal(f.sends(),1);f.sqlite.close();
 });
+
+test('disabled production email configuration preserves verified due-time publication and deduplication',async()=>{
+ const config=readFileSync(new URL('../wrangler.jsonc',import.meta.url),'utf8');
+ const flag=config.match(/"DAILY_EDITORIAL_NOTIFY_ENABLED": "(true|false)"/)?.[1];
+ assert.equal(flag,'false');
+ for(const name of ['DAILY_WEBSITE_CONTENT_ENABLED','DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH','DAILY_CONTENT_BUDGET_VERIFIED'])assert(config.includes('"'+name+'": "true"'));
+ const f=await fixture();try{
+  f.env.DAILY_EDITORIAL_NOTIFY_ENABLED=flag;
+  assert.equal((await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:BEFORE})).status,'ready');
+  assert.equal((await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE-1})).status,'not_due');
+  const results=await Promise.all([publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE}),publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE})]);
+  assert(results.some(r=>r.status==='verified'),JSON.stringify(results));
+  assert.equal((await publicArticlePublication(f.env,'packed-lunch-example',{now:DUE})).editorial,true);
+  const release=await f.DB.prepare('SELECT * FROM knowledge_editorial_releases').first();
+  assert.equal(release.state,'verified');assert.equal(release.notification_state,'pending');assert.equal(release.notification_receipt,null);
+  assert.equal((await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE+60000})).status,'already_verified');
+  assert.equal((await f.DB.prepare('SELECT count(*) n FROM knowledge_articles').first()).n,1);assert.equal(f.sends(),0);
+ }finally{f.sqlite.close();}
+});
+test('disabled production email configuration performs no notification claim or provider operation',async()=>{
+ const config=readFileSync(new URL('../wrangler.jsonc',import.meta.url),'utf8'),flag=config.match(/"DAILY_EDITORIAL_NOTIFY_ENABLED": "(true|false)"/)?.[1];assert.equal(flag,'false');
+ let claims=0,sends=0;
+ const env={DAILY_EDITORIAL_NOTIFY_ENABLED:flag,DAILY_EDITORIAL_NOTIFY_TEMPLATE:'verified-link-v1',DB:{prepare(){claims++;throw Error('Notification claim forbidden while disabled');}},EMAIL:{async send(){sends++;throw Error('Notification send forbidden while disabled');}}};
+ assert.deepEqual(await notifyEditorial(env,{state:'verified',release_day:'2026-10-20'}),{status:'notification_template_not_enabled'});
+ assert.equal(claims,0);assert.equal(sends,0);
+});
+
 test('frozen hash covers metadata, attribution and original publication date, not just body',async()=>{
  const a={title:'Example',slug:'example',category:'Nutrition',author:'SHIFT Editorial',summary:'Example summary',body:'Example body',seo_title:'Example SEO',publish_at:'2026-03-23'};
  for(const k of Object.keys(a))assert.notEqual(await digest(frozenArticle(a)),await digest(frozenArticle({...a,[k]:a[k]+' changed'})));
@@ -128,7 +156,9 @@ test('a PASS with invented primary evidence or an unreviewed safety duration rem
  const timed={...draft,body:draft.body.replace('## Sources','Keep chilled food out for a maximum of four hours.\n\n## Sources')};assert(reviewEvidenceIssues(pass(),timed,sources).some(s=>s.startsWith('material_quantity_not_reviewed:')));
 });
 test('two substantive releases can update one canonical while the prior verified version stays visible until the next slot',async()=>{
- const f=await fixture();assert.equal((await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:BEFORE})).status,'ready');assert.equal((await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE})).status,'verified');const first=await editorialPublication(f.env,'packed-lunch-example',{now:DUE});
+ const f=await fixture();assert.equal((await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:BEFORE})).status,'ready');assert.equal((await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE})).status,'verified');
+ const normalised=await f.DB.prepare(`UPDATE knowledge_articles SET updated_at=? WHERE slug='packed-lunch-example' AND status='published'`).bind(new Date(DUE).toISOString()).run();assert.equal(Number(normalised.meta?.changes||0),1);
+ const first=await editorialPublication(f.env,'packed-lunch-example',{now:DUE});
  const nextBefore=BEFORE+3*86400000,nextDue=DUE+3*86400000,question='How can I adapt this lunch plan after my working pattern changes?';await refreshEditorialCorpus(f.env,{fetcher:f.fetcher,now:nextBefore});
  const brief={...f.brief,question};await f.DB.prepare(`INSERT INTO knowledge_editorial_briefs(intent_key,question,audience,cluster,target_url,brief_json,priority,created_at,updated_at) VALUES(?,?,?,?,?,?,200,?,?)`).bind(await digest(question),question,brief.audience,brief.cluster,TARGET,JSON.stringify(brief),new Date(nextBefore).toISOString(),new Date(nextBefore).toISOString()).run();
  const a='Write the changed working pattern on a sheet beside the kitchen cupboard. Mark the place where preparation will become awkward and decide which practical detail you can adjust before the next working day begins.';

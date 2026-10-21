@@ -1,0 +1,29 @@
+{
+  "kind": "EXACT_TRT_INFORMATIONAL_EXTENSION_20261021",
+  "base": "a78f893a30d41e4542dfd53c08dcdb77f88090e4",
+  "payload": "77eb4af2334f747ab91a2958f3d59875e8e4e4f4",
+  "paths": [
+    "public-shell-contract.mjs",
+    "shift-health-public.mjs",
+    "testosterone-guides.mjs",
+    "testosterone-public-content.mjs",
+    "tests/public-audit-repair.test.mjs",
+    "tests/testosterone-guides.test.mjs",
+    "tests/testosterone-public.test.mjs"
+  ],
+  "maintenancePaths": [
+    "docs/testosterone-expansion-20261021.md",
+    "release/testosterone-scope-20261021.mjs",
+    "release/website-editorial-scope-20261018.mjs",
+    "tests/testosterone-release-scope.test.mjs"
+  ],
+  "authority": {
+    "scopeRegistrationApproved": true,
+    "publicationApproved": true,
+    "homepageApproved": false,
+    "clinicalActivationApproved": false,
+    "unrelatedChangesApproved": false
+  },
+  "productionVerified": false,
+  "maintenanceSource": "f5535dac3d5300220a8576d921060734ff6646b6"
+}

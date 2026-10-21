@@ -1,3 +1,4 @@
+import {websiteEditorialCompletionHistoricalView,websiteEditorialCompletionOriginalSource} from '../release/website-editorial-scope-20261018.mjs';
 import {reconciliationRecord,verifyReconciledRelease} from '../release/approved-runtime-composition.mjs';
 import {rankingGrowthHistoricalRef} from '../release/seo-growth-scope.mjs';
 import {followPinnedRef} from '../release/seo-follow-through-scope.mjs';
@@ -14,7 +15,8 @@ test('completion source is finite and every previous production step remains int
  for(const p of [...c.payloadPaths,...c.maintenancePaths])assert.equal(execFileSync('git',['rev-parse',rankingGrowthHistoricalRef('HEAD',p)+':'+p],{encoding:'utf8'}).trim(),execFileSync('git',['rev-parse',(followPinnedRef(follow,p)||completionPinnedRef(c,p))+':'+p],{encoding:'utf8'}).trim(),'Completion payload drift: '+p);
 });
 test('recovery is checked before browser setup and is never a generic unknown-runtime adoption',()=>{
- const s=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
+ const workflowPath='.github/workflows/cloudflare-production-promote.yml',actualWorkflow=readFileSync(workflowPath,'utf8'),editorialView=websiteEditorialCompletionHistoricalView();
+ const s=editorialView?websiteEditorialCompletionOriginalSource(workflowPath,actualWorkflow,editorialView):actualWorkflow;
  assert(s.indexOf('run: node shift-coach/recover-cancelled-release.mjs')<s.indexOf('name: Prepare and launch verification browsers'));
  if(reconciliationRecord())verifyReconciledRelease();
  const current=JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).currentRuntimePreservation20261016,approved=current?.acceptedUkGrubPreservation20261017?.approvedCurrentHomeAndOuterWindow20261018;

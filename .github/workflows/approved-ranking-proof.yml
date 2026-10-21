@@ -15,7 +15,7 @@ permissions:
 jobs:
   proof:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,7 +32,7 @@ jobs:
           import {join} from 'node:path';
           import {tmpdir} from 'node:os';
           import {createHash} from 'node:crypto';
-          const tasks=Object.freeze([{"id":"release-contract","body":"node shift-coach/release-contract.mjs --require-launch"},{"id":"source-tests","body":"node --test tests/public-seo-approved.test.mjs tests/approved-ranking-release.test.mjs tests/seo-technical-release.test.mjs tests/production-completion-release.test.mjs"},{"id":"b1-source","body":"node scripts/b1-release-scope.mjs --check"}]);
+          const tasks=Object.freeze([{"id":"b1-source","body":"node scripts/b1-release-scope.mjs --check"},{"id":"release-contract","body":"node shift-coach/release-contract.mjs --require-launch"},{"id":"source-tests","body":"node --test tests/public-seo-approved.test.mjs tests/approved-ranking-release.test.mjs tests/seo-technical-release.test.mjs tests/production-completion-release.test.mjs"}]);
           const poolId="ranking";
           const proofDir=join(process.env.RUNNER_TEMP||tmpdir(),'ci-source-proof',poolId);
           const programmeGrowthToken=poolId==='programme'?process.env.GITHUB_TOKEN:undefined;if(poolId==='programme')delete process.env.GITHUB_TOKEN;

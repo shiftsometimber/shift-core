@@ -1,0 +1,30 @@
+{
+  "kind": "EXACT_APPROVED_HEALTH_HUB_PRESENTATION_20261021",
+  "base": "cfac31c6dabafed3d48d9e18a9d0ad527e6ce8db",
+  "payload": "164ee30d70a7da6925f1eed3604252831295bf8e",
+  "paths": [
+    "release/shift-health-vision-20261021/STATUS.json",
+    "release/shift-health-vision-20261021/checks.json",
+    "release/shift-health-vision-20261021/health-vision-preservation.json",
+    "release/shift-health-vision-20261021/live-status-latest.json",
+    "release/shift-health-vision-20261021/production-bundle-final.log",
+    "release/shift-health-vision-20261021/source-tests-final.log",
+    "shift-health-public.mjs",
+    "shift-health-vision-content.mjs",
+    "tests/testosterone-guides.test.mjs"
+  ],
+  "maintenancePaths": [
+    "release/health-vision-scope-20261021.mjs",
+    "release/testosterone-scope-20261021.mjs",
+    "release/website-editorial-scope-20261018.mjs",
+    "tests/health-vision-scope-20261021.test.mjs"
+  ],
+  "authority": {
+    "publicationApproved": true,
+    "homepageApproved": false,
+    "clinicalActivationApproved": false,
+    "unrelatedChangesApproved": false
+  },
+  "productionVerified": false,
+  "maintenanceSource": "885080f2a812b2aef988494a161340d7f1877b3d"
+}
