@@ -1,0 +1,50 @@
+name: Timber Mill approved preview deployment
+on:
+  push:
+    branches: [preview/timber-mill-deploy-20261021]
+    paths:
+      - .github/workflows/timber-mill-preview-deploy-20261021.yml
+      - previews/timber-mill/deploy-ci.mjs
+      - previews/timber-mill/check-ci.cjs
+permissions:
+  contents: read
+concurrency:
+  group: timber-mill-preview-20261021
+  cancel-in-progress: false
+jobs:
+  deploy-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          sparse-checkout: previews/timber-mill
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Verify the approved source and all sixteen scoped tests
+        run: |
+          node previews/timber-mill/build.cjs
+          git diff --exit-code -- previews/timber-mill/content.mjs
+          node --test previews/timber-mill/test.mjs
+      - name: Install the established browser check toolchain
+        run: |
+          mkdir -p "$RUNNER_TEMP/timber-mill-browser"
+          npm install --prefix "$RUNNER_TEMP/timber-mill-browser" playwright@1.58.2 --no-audit --no-fund
+          "$RUNNER_TEMP/timber-mill-browser/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Upload only the existing Timber Mill preview worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/timber-mill/deploy-ci.mjs
+      - name: Verify actual hosted Chrome and WebKit at mobile and desktop widths
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/timber-mill-browser/node_modules/playwright
+        run: node previews/timber-mill/check-ci.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: timber-mill-preview-${{ github.sha }}
+          path: timber-mill-ci-evidence/
+          if-no-files-found: warn
+          retention-days: 30
