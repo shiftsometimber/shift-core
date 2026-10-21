@@ -1,0 +1,189 @@
+{
+  "pass": true,
+  "at": "2026-10-21T12:51:08.474Z",
+  "id": "348c45d9-17bf-4969-b72d-15e277b64ca2",
+  "checks": [
+    {
+      "url": "https://348c45d9.projectshift.pages.dev/member/dashboard",
+      "status": 200,
+      "sha256": "b1a702e1a588addb407955b20253816f77f4faffb1fcd2e2f48a4a6193a7ed42",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://348c45d9.projectshift.pages.dev/join-my-timber",
+      "status": 200,
+      "sha256": "98c36e545d52373e43e49a2dab59055a66cfc5147ebcbcd7007ea11bef8a0bc5",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://348c45d9.projectshift.pages.dev/assets/my-timber-onboarding-20261021.css",
+      "status": 200,
+      "sha256": "6229953f3bfe5091337750f5d9830f9acb879421767dcd19a330d02e0c454193",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://348c45d9.projectshift.pages.dev/assets/my-timber-onboarding-20261021.js",
+      "status": 200,
+      "sha256": "019ab4273b3d9de51498795959a4f71b929e15950c55004056697045361d9a08",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://348c45d9.projectshift.pages.dev/assets/my-timber-onboarding-model-20261021.mjs",
+      "status": 200,
+      "sha256": "44c5f40cd0ab0084a7a02b60d51adf8cbf5daf60f454e906da2c66a2abe28565",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://348c45d9.projectshift.pages.dev/assets/my-timber-onboarding-config-20261021.js",
+      "status": 200,
+      "sha256": "ea16f0f505fc715c036b85d3f29d195b6189f9d5423cac41713bb3e53c26fb0e",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/join-my-timber",
+      "status": 200,
+      "sha256": "ff95fe93bdad4311a6b6dee09d86cc02d212bf06e1fa63c33cba0b0b642b8f5a",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/member/dashboard",
+      "status": 200,
+      "sha256": "4e95ebf31e403fc252249ebb07610833a5a344ae592d7a45c87082a9e16192ca",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store, private",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "no-referrer",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/my-timber-onboarding-20261021.css",
+      "status": 200,
+      "sha256": "6229953f3bfe5091337750f5d9830f9acb879421767dcd19a330d02e0c454193",
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/my-timber-onboarding-20261021.js",
+      "status": 200,
+      "sha256": "019ab4273b3d9de51498795959a4f71b929e15950c55004056697045361d9a08",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/my-timber-onboarding-model-20261021.mjs",
+      "status": 200,
+      "sha256": "44c5f40cd0ab0084a7a02b60d51adf8cbf5daf60f454e906da2c66a2abe28565",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assets/my-timber-onboarding-config-20261021.js",
+      "status": 200,
+      "sha256": "ea16f0f505fc715c036b85d3f29d195b6189f9d5423cac41713bb3e53c26fb0e",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    }
+  ],
+  "manifestExact": true,
+  "source": "b54472012a9b5877f8c0ca613e8e2db4134ca148"
+}
