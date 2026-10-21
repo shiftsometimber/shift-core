@@ -32,5 +32,12 @@
     "No outbound communications, customer data edits, payments or Core Worker changes",
     "Do not claim real signup acceptance from isolated tests"
   ],
-  "next": "Complete authorised real-member signup/verification and save/readback acceptance through normal authentication; do not bypass CAPTCHA or send unseen test email."
+  "next": "Complete authorised real-member signup/verification and save/readback acceptance through normal authentication; do not bypass CAPTCHA or send unseen test email.",
+  "footerUpdate": {
+    "at": "2026-10-21T13:34:33.654Z",
+    "source": "a68cbe4c7b100100805e2e532e0aba6d6ce11141",
+    "production": "579f7b42-eadb-4036-835f-42dacba15761",
+    "state": "Full shared SST footer deployed and verified on signup page;33 links visible;small fallback hidden;news ticker hidden",
+    "verificationTiming": "Current frontend still requires email verification before authenticated setup. Matt requests finishing signup/setup before one final verification. No backend verification timing change deployed; needs secure pending-setup retention and normal verification, not authentication bypass."
+  }
 }
