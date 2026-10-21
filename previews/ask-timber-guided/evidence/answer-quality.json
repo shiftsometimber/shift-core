@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "at": "2026-10-21T19:37:47.527519+00:00",
+  "question": "What can I cook when I am short on time?",
+  "observed": "Public Core answer service returned asthma reliever-overuse evidence for a quick-meal question. Answer itself acknowledged the source did not cover quick meals.",
+  "responseFile": "ordinary-question.txt",
+  "scope": "Existing public answer/source retrieval; presentation forwards actual service answer without manufacture or suppression.",
+  "action": "Repair relevant-source retrieval and add this regression case before production publication. Do not treat successful UI tests as answer-quality acceptance.",
+  "designPreviewOnly": true,
+  "productionPublicationApproved": false
+}

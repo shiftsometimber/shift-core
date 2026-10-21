@@ -1,0 +1,42 @@
+event: meta
+data: {"confidence":"medium","journeyUsed":false,"sources":[{"id":1,"title":"Asthma alert links reliever overuse with poorer control","url":"https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines","authority":100,"reviewState":"verified","citation":"ShiftBrain:graph:radar:292","provenance":[{"type":"primary","ref":"https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines","verifiedAt":"2025-04-24T11:02:48.000Z","expiresAt":null,"meta":{}}],"limitations":null}],"limitations":"General information, not an individual assessment."}
+
+event: delta
+data: {"text":"When"}
+
+event: delta
+data: {"text":" you're short on time, consider cooking something simple like"}
+
+event: delta
+data: {"text":" an omelette or scrambled eggs, which can be ready"}
+
+event: delta
+data: {"text":" in about 10-15 minutes. This option is quick and"}
+
+event: delta
+data: {"text":" doesn't require a lot of preparation or ingredients"}
+
+event: delta
+data: {"text":". If you have some leftovers or pre-cooked ingredients, you can"}
+
+event: delta
+data: {"text":" also whip up a quick stir-fry or soup. Alternatively"}
+
+event: delta
+data: {"text":", you could try grilling some toast or making a sandwich"}
+
+event: delta
+data: {"text":", which can be a fast and easy solution. Unfortunately, there"}
+
+event: delta
+data: {"text":"'s no specific guidance on quick meals in the provided"}
+
+event: delta
+data: {"text":" sources, including which discusses"}
+
+event: delta
+data: {"text":" asthma treatment."}
+
+event: done
+data: {"ok":true,"requestId":"18e6cb9d-126f-4e7f-aade-def9a44b5436","mode":"grounded","confidence":"medium","journeyUsed":false,"sources":[{"id":1,"title":"Asthma alert links reliever overuse with poorer control","url":"https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines","authority":100,"reviewState":"verified","citation":"ShiftBrain:graph:radar:292","provenance":[{"type":"primary","ref":"https://www.gov.uk/drug-safety-update/short-acting-beta-2-agonists-saba-salbutamol-and-terbutaline-reminder-of-the-risks-from-overuse-in-asthma-and-to-be-aware-of-changes-in-the-saba-prescribing-guidelines","verifiedAt":"2025-04-24T11:02:48.000Z","expiresAt":null,"meta":{}}],"limitations":null}],"limitations":"General information, not an individual assessment.","answer":"When you're short on time, consider cooking something simple like an omelette or scrambled eggs, which can be ready in about 10-15 minutes. This option is quick and doesn't require a lot of preparation or ingredients. If you have some leftovers or pre-cooked ingredients, you can also whip up a quick stir-fry or soup. Alternatively, you could try grilling some toast or making a sandwich, which can be a fast and easy solution. Unfortunately, there's no specific guidance on quick meals in the provided sources, including which discusses asthma treatment.","keyPoints":[],"nextSteps":[],"followUps":[],"delivery":"streamed"}
+
