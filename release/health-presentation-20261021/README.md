@@ -1,0 +1,9 @@
+# Approved Health presentation delivery
+
+Matt approved the final SHIFT Health preview, lifted the website-work pause and explicitly requested a workaround to the pathological historical Core verifier on 21 October 2026. This finite presentation worker delegates to the existing shift-core service and changes only successful HTML GET/HEAD responses at /shift-health and /shift-health/. Its content module is byte-identical to approved main39c703ac. It passes through every other path, method and unsuccessful/non-HTML response. Existing security headers, metadata, header, ticker and footer remain supplied by Core. If Core already contains the approved marker, the response passes through unchanged.
+
+No databases, private member records, cron, commerce, prescription service, stock, homepage or Core deployment is changed. The normal Core release remains independent. This is an explicitly scoped page presentation release, not a claim that Core/TRT or its historical checks have completed.
+
+Run the four route/fallback/security tests. The deploy script enforces the exact five-file Git boundary, clean tracked source, immutable approved content, current active-release phase and route ownership. Preview upload has no website route. Only after Chrome/WebKit390/1440 pass against the real service binding can activate attach the two Health-prefix routes; subpaths still pass through unchanged. Receipts record original routes and exact created IDs. Rollback restores only these owned routes. A later Core delivery can provide the marker directly, making this worker a pass-through; retire the temporary routes after verifying that completion.
+
+Evidence: /Users/shiftsometimberltd/SST/programme-vision-20261021/shift-health-preview/route-release .
