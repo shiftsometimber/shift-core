@@ -1,0 +1,39 @@
+{
+  "pass": true,
+  "at": "2026-10-21T12:07:52.646Z",
+  "pages": 130,
+  "articles": 85,
+  "faqs": 45,
+  "unlinkedMyTimberMentions": 0,
+  "internalDestinations": 207,
+  "newDestinationChecks": 16,
+  "controls": [
+    {
+      "path": "/",
+      "unchanged": true
+    },
+    {
+      "path": "/start-here",
+      "unchanged": true
+    },
+    {
+      "path": "/medicine-preference",
+      "unchanged": true
+    },
+    {
+      "path": "/assessment-walkthrough",
+      "unchanged": true
+    },
+    {
+      "path": "/treatment-assessment-terms",
+      "unchanged": true
+    }
+  ],
+  "cmsChanges": 27,
+  "staticChanges": 4,
+  "popularityPeriod": {
+    "startDate": "2026-09-21",
+    "endDate": "2026-10-18"
+  },
+  "clinicalCopyHeld": "/articles/glp-1-nausea"
+}

@@ -13,3 +13,12 @@ Popularity is a dated GA4 page-view rank snapshot for 21 September–18 October 
 Future publication checks: validate each proposed internal target status, canonical destination and relevance; include a natural practical next step where relevant; do not count global navigation as contextual links. Never require a commercial CTA on urgent/sensitive advice. Existing words/short Related lines may be linked; prose revisions retain Matt's exact approval requirement. Use the same full-audit/destination-check scripts for subsequent inventories. This source record does not claim an automatic recurring guard was deployed.
 
 Release: existing projectshift Pages manifest transaction; retain every unrelated asset ID and exact prior headers, append no-store only for the hub/metadata. Byte-compare shared app.js outside the Knowledge Experience module. Original failures retained in task receipts (static-only QA fixture, hidden Browse everything control, FAQ aliases; URL canonicalisation on CMS verification). Final local browser cases pass mobile390/desktop1440. Hosted preview and live verification are required before completion.
+
+
+## Completed live verification — 21 October 2026
+
+Production deployment e0965fa2-becf-415e-abe1-a6ec24ec710e serves runtime source commit 3b2ca478d12cc073f4e562a91cfd3786564f2188. Seven changed assets verified; 826 retained assets unchanged. Final inventory covers 130 pages (85 articles, 45 FAQs), including 16 legacy manifest routes beyond the initial 114-page inventory. All 207 distinct internal destinations checked successfully; no page mentioning My Timber lacks a member destination link. This is page-level coverage, not an assertion that every repeated mention is linked.
+
+Live browser checks passed all 14 cases across 390px and 1440px widths: all six sort options, filtering, list view, 141 retained cards, no horizontal overflow and no browser errors. Five control routes, including the homepage, retain exact body hashes and security headers. 27 CMS rows and four static articles received scoped link updates. Popularity uses the verified GA4 snapshot for 21 September–18 October 2026; it is not an automatically refreshed ranking.
+
+Outstanding: prose correction on /articles/glp-1-nausea remains held for exact user approval; no clinical-service claim was rewritten under link-only authority. Runtime publication is complete. This subsequent commit adds verification evidence only and does not change deployed bytes.

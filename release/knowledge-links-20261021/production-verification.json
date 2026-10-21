@@ -1,0 +1,37 @@
+{
+  "pass": true,
+  "id": "e0965fa2-becf-415e-abe1-a6ec24ec710e",
+  "source": "3b2ca478d12cc073f4e562a91cfd3786564f2188",
+  "at": "2026-10-21T12:07:47.539Z",
+  "checks": [
+    {
+      "path": "/app.js",
+      "sha": "6caea84f379d855b280893cb40dcbb004ead383e5ff41c84e5ba87423ba0e370"
+    },
+    {
+      "path": "/explore-knowledge.html",
+      "sha": "10b98727f320c92b2412d76dff6ddfb33146076c96502ff206f21179ec596d8f"
+    },
+    {
+      "path": "/assets/knowledge-order-data-v1.json",
+      "sha": "b8d4d35c6aba8b04fec4f32ced9970786d36ee4bd146d5ac47af0d89bf104bc3"
+    },
+    {
+      "path": "/articles/glp1-myths.html",
+      "sha": "8dce07a29d62969d722eb321bccad9b49646c5cccb05b7e73b7240c4899afb4e"
+    },
+    {
+      "path": "/articles/understanding-blood-test-results.html",
+      "sha": "b4506af7ee7bc536f0020f92558e05fb8e4a085d46ca0b42d48d8324eae9433b"
+    },
+    {
+      "path": "/articles/first-health-check-men.html",
+      "sha": "19b251746185a69bde4a090e840c0e443808391291c700fae4b1fd5295bbab53"
+    },
+    {
+      "path": "/articles/upper-arm-blood-collection.html",
+      "sha": "0f867b00df8b885a3aa63ea678ceafa6b5029fb7f25bec95f5998e7583170d45"
+    }
+  ],
+  "unchangedAssets": 826
+}
