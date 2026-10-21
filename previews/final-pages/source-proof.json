@@ -1,0 +1,19 @@
+{
+  "sourceReferences": [
+    "E2EBAAC6-9E21-449A-837D-2A6CE6265DB3.jpeg",
+    "C4AEE5E2-91EF-4E36-8404-47C3DF6D59AC.jpeg",
+    "C6CBDA61-176F-4F23-B030-09CC109D9F41(1).jpeg"
+  ],
+  "preservedGoodToTalkLiveMainSha256": "18e36109b1301701cb374bf042a65b2bf062891df62f2839721a7f8a9b344145",
+  "preservedEmployerClientSha256": "586b3a8e6170594af7314102c6318f74881c9d6bd1ed6e9bdcbfac8cc6b93180",
+  "previousCompletedShop": "https://shiftsometimber.co.uk/shop",
+  "scope": [
+    "/shift-for-work",
+    "/mens-mental-health",
+    "/comparisons/surgery/gastric-band-vs-sleeve"
+  ],
+  "medicalSourcesChecked": "2026-10-21",
+  "clinicalDecisionSupportOnly": true,
+  "previewWritesDisabled": true,
+  "qaSendsNoMessages": true
+}
