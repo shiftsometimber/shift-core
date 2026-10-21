@@ -9,5 +9,5 @@ export default {async fetch(request,env){
  for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(k);
  headers.set('X-Shift-Treatments-Preview','20261021-fuller-v3');
  const response=new Response(upstream.body,{status:upstream.status,headers});
- return new HTMLRewriter().on('main',{element(e){e.setAttribute('id','main-content');e.setAttribute('class','tv');e.setAttribute('data-treatments-preview','20261021-fuller-v3');e.setInnerContent(main,{html:true})}}).on('body',{element(e){e.setAttribute('data-template','shift-treatments')}}).on('head',{element(e){e.append('<style data-treatments-preview-style>'+style+'</style>',{html:true})}}).transform(response);
+ return new HTMLRewriter().on('.product-status-v42h',{element(e){e.remove()}}).on('.cookie-banner-v3a',{element(e){e.remove()}}).on('#sstCookieSettings',{element(e){e.remove()}}).on('#askTimberLaunch',{element(e){e.remove()}}).on('main',{element(e){e.setAttribute('id','main-content');e.setAttribute('class','tv');e.setAttribute('data-treatments-preview','20261021-fuller-v3');e.setInnerContent(main,{html:true})}}).on('body',{element(e){e.setAttribute('data-template','shift-treatments')}}).on('head',{element(e){e.append('<style data-treatments-preview-style>'+style+'</style>',{html:true})}}).transform(response);
 }};
