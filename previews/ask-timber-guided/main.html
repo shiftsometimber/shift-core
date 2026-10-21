@@ -1,0 +1,30 @@
+<div class="atg-wrap">
+  <section class="atg-hero" aria-labelledby="atg-title">
+    <p class="atg-eyebrow">ASK TIMBER <span>YOUR NEXT STEP STARTS HERE</span></p>
+    <h1 id="atg-title">A straight answer.<br><span>A useful next step.</span></h1>
+    <p class="atg-lead">Real life. Real questions. A hand with whatever’s on your mind.</p>
+  </section>
+  <section class="atg-start" aria-labelledby="atg-start-title">
+    <div class="atg-section-head"><h2 id="atg-start-title">What could you use a hand with?</h2><span>Pick a topic, or ask it your way.</span></div>
+    <div class="atg-topics">
+      <button class="atg-topic" type="button" data-topic="food" aria-pressed="false" aria-controls="atg-suggestions"><span class="atg-icon">{{food}}</span><strong>Food that fits.</strong><span>Meals, protein &amp; busy days</span><span class="atg-card-arrow">{{arrow}}</span></button>
+      <button class="atg-topic" type="button" data-topic="movement" aria-pressed="false" aria-controls="atg-suggestions"><span class="atg-icon">{{movement}}</span><strong>Getting moving.</strong><span>A start that works for you</span><span class="atg-card-arrow">{{arrow}}</span></button>
+      <button class="atg-topic" type="button" data-topic="weight" aria-pressed="false" aria-controls="atg-suggestions"><span class="atg-icon">{{weight}}</span><strong>Weight &amp; treatment.</strong><span>Understand your options</span><span class="atg-card-arrow">{{arrow}}</span></button>
+      <button class="atg-topic" type="button" data-topic="wellbeing" aria-pressed="false" aria-controls="atg-suggestions"><span class="atg-icon">{{wellbeing}}</span><strong>Feeling more like me.</strong><span>Energy, sleep &amp; headspace</span><span class="atg-card-arrow">{{arrow}}</span></button>
+    </div>
+  </section>
+  <section class="atg-composer" aria-labelledby="atg-question-title">
+    <div class="atg-compose-heading"><div><p class="atg-eyebrow" id="atg-compose-eyebrow">ASK IT YOUR WAY</p><h2 id="atg-question-title">No perfect question needed.</h2></div><button type="button" class="atg-reset" id="atg-reset" hidden>All topics {{reset}}</button></div>
+    <div class="atg-suggestions" id="atg-suggestions" aria-label="Questions to get you started"></div>
+    <p class="atg-sr" id="atg-topic-status" role="status"></p>
+    <form id="timberForm">
+      <label for="timberQuestion" class="atg-sr">Your question for Timber</label>
+      <div class="atg-input-row"><textarea id="timberQuestion" maxlength="900" minlength="3" required rows="2" placeholder="Tell Timber what would help today…" aria-describedby="atg-input-hint timberCount"></textarea><button type="submit" id="timberSubmit"><span>Ask Timber</span>{{arrow}}</button></div>
+      <div class="atg-input-foot"><p id="atg-input-hint">Ask in your own words. Leave out names, contact details and anything you’d rather keep private.</p><span id="timberCount">0 / 900</span></div>
+    </form>
+  </section>
+  <section id="timberResponse" class="atg-response" aria-labelledby="atg-answer-title" tabindex="-1" hidden></section>
+  <div class="atg-how"><p><span class="atg-small-icon">{{sources}}</span><strong>Something to back it up.</strong><span>Sources alongside the answer.</span></p><p><span class="atg-small-icon">{{step}}</span><strong>Somewhere to go next.</strong><span>A useful route into SHIFT.</span></p><p><span class="atg-small-icon">{{human}}</span><strong>A person when you need one.</strong><a href="https://shiftsometimber.co.uk/contact">Talk to the SHIFT team {{arrow}}</a></p></div>
+  <p class="atg-boundary">Timber is automated information, not a clinician. Medicine choices, doses and personal medical advice belong with your prescriber or pharmacist.</p>
+  <div class="atg-bottom"><span>Looking for your tools and progress?</span><a href="https://shiftsometimber.co.uk/member/dashboard">Open free My Timber {{arrow}}</a></div>
+</div>
