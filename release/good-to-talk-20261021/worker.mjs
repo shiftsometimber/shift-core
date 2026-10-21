@@ -1,4 +1,4 @@
-import {main,style,client,images} from './content.mjs';
+import {main,style,client,images,tickerMarkup,tickerStyle,tickerScript} from './content.mjs';
 export {main,style,client};
 const pages=new Set(['/mens-mental-health','/mens-mental-health/','/mens-mental-health.html']);
 export default {async fetch(request,env){
@@ -10,5 +10,6 @@ export default {async fetch(request,env){
  const upstream=await env.CORE.fetch(target);
  if(!read||!pages.has(url.pathname)||!upstream.ok||!(upstream.headers.get('Content-Type')||'').includes('text/html'))return upstream;
  const headers=new Headers(upstream.headers);headers.set('Cache-Control','private, no-store');headers.set('X-Shift-GoodToTalk-Version','20261021-gtt-v1');for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
- return new HTMLRewriter().on('main',{element(e){e.setAttribute('id','main-content');e.setAttribute('class','gt');e.setAttribute('data-good-to-talk-version','20261021-gtt-v1');e.setInnerContent(main,{html:true})}}).on('body',{element(e){e.setAttribute('data-template','good-to-talk');e.append('<script src="/mens-mental-health/client.js" defer></script>',{html:true})}}).on('head',{element(e){e.append('<style data-good-to-talk-style>'+style+'</style>',{html:true})}}).on('.product-status-v42h',{element(e){e.remove()}}).transform(new Response(upstream.body,{status:upstream.status,headers}));
+ const source=await upstream.text(),needsTicker=!/id=["']shift-public-news["']/.test(source);
+ return new HTMLRewriter().on('main',{element(e){e.setAttribute('id','main-content');e.setAttribute('class','gt');e.setAttribute('data-good-to-talk-version','20261021-gtt-v1');e.setInnerContent(main,{html:true})}}).on('body',{element(e){e.setAttribute('data-template','good-to-talk');if(needsTicker&&!source.includes('/assets/public-news-ticker-v1.js'))e.append(tickerScript,{html:true});e.append('<script src="/mens-mental-health/client.js" defer></script>',{html:true})}}).on('head',{element(e){if(needsTicker)e.append('<style data-shift-public-news>'+tickerStyle+'</style>',{html:true});e.append('<style data-good-to-talk-style>'+style+'</style>',{html:true})}}).on('header.site-header',{element(e){if(needsTicker)e.after(tickerMarkup,{html:true})}}).on('.product-status-v42h',{element(e){e.remove()}}).transform(new Response(source,{status:upstream.status,headers}));
 }};
