@@ -48,7 +48,7 @@ html body main#main-content.fn .fp-reading li{margin:8px 0!important}
 html body main#main-content.fn .fp-reading a{text-decoration:underline!important;text-underline-offset:3px!important}
 /* SHIFT for Work: the supplied laptop, benefits and three-step composition. */
 html body main#main-content.fn .fw-hero{min-height:555px!important;background:#e7e3da!important;color:#050505!important}
-html body main#main-content.fn .fw-hero .fp-photo{object-position:center 47%!important}
+html body main#main-content.fn .fw-hero .fp-photo{object-position:center 25%!important}
 html body main#main-content.fn .fw-hero .fp-shade{background:linear-gradient(90deg,#e7e3da 0%,rgba(231,227,218,.98) 28%,rgba(231,227,218,.91) 40%,rgba(231,227,218,.15) 60%,transparent 75%)!important}
 html body main#main-content.fn .fw-hero h1{font-size:clamp(40px,4.15vw,57px)!important;max-width:650px!important}
 html body main#main-content.fn .fw-hero .fp-hero-copy{padding-block:75px!important}
@@ -147,7 +147,7 @@ html body main#main-content.fn .gt-topic-grid>a[hidden],html body main#main-cont
 html body main#main-content.fn .gt-noscript{padding:15px 22px!important}
 /* Surgery comparison: working disclosures rather than decorative links. */
 html body main#main-content.fn .fg-hero{min-height:390px!important}
-html body main#main-content.fn .fg-hero .fp-photo{object-position:center 41%!important}
+html body main#main-content.fn .fg-hero .fp-photo{object-position:center 25%!important}
 html body main#main-content.fn .fg-hero .fp-hero-copy{padding-block:50px!important}
 html body main#main-content.fn .fg-hero h1{font-size:clamp(43px,4.8vw,64px)!important}
 html body main#main-content.fn .fg-hero .fp-lead{max-width:540px!important}
