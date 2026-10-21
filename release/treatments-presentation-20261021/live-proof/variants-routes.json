@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "at": "2026-10-21T19:25:56.982Z",
+  "variants": [
+    {
+      "url": "shiftsometimber.co.uk/treatment-centre",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/treatment-centre"
+    },
+    {
+      "url": "shiftsometimber.co.uk/treatment-centre/",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/treatment-centre"
+    },
+    {
+      "url": "shiftsometimber.co.uk/treatment-centre?check=20261021",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/treatment-centre?check=20261021"
+    },
+    {
+      "url": "www.shiftsometimber.co.uk/treatment-centre",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/treatment-centre"
+    },
+    {
+      "url": "www.shiftsometimber.co.uk/treatment-centre/",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/treatment-centre"
+    },
+    {
+      "url": "www.shiftsometimber.co.uk/treatment-centre?check=20261021",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/treatment-centre?check=20261021"
+    }
+  ],
+  "allPriorRoutesUnchanged": true,
+  "healthUnchanged": true,
+  "medicinesWatchUnchanged": true,
+  "applied": [
+    {
+      "id": "45688c8ff8854d36ae69e5f9d8f191d7",
+      "pattern": "shiftsometimber.co.uk/treatment-centre",
+      "script": "shift-treatments-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "f7965916109742c29b1af23967c164c7",
+      "pattern": "shiftsometimber.co.uk/treatment-centre/",
+      "script": "shift-treatments-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "505a342270044725b581992bddb2792e",
+      "pattern": "www.shiftsometimber.co.uk/treatment-centre",
+      "script": "shift-treatments-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "99451c816e1c46a38090749adfe1576e",
+      "pattern": "www.shiftsometimber.co.uk/treatment-centre/",
+      "script": "shift-treatments-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "51aed08df428467bb2a0ce06b5b39a27",
+      "pattern": "shiftsometimber.co.uk/treatment-centre*",
+      "script": "shift-treatments-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "d6f9ab08c06644e98ba9d2d6f1810edc",
+      "pattern": "www.shiftsometimber.co.uk/treatment-centre*",
+      "script": "shift-treatments-presentation-20261021",
+      "request_limit_fail_open": false
+    }
+  ]
+}

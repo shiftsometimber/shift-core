@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-21T19:32:00Z",
+  "live": "https://shiftsometimber.co.uk/treatment-centre",
+  "source": "ff9dc923a51328cccd51fd9c9b2a137026a6f769",
+  "uploadedSource": "fa4628de5601b00d352678f9f2a7e7769154ae1e",
+  "workerBytesUnchanged": true,
+  "approvedPreviewSource": "edd9fbcf07a59afb3d31be355ccb4d247f5256fc",
+  "browserChecksPassed": true,
+  "variantsAndPriorRoutesPassed": true,
+  "rollback": "node release/treatments-presentation-20261021/deploy.cjs rollback from treatments-live-20261021",
+  "next": "Ask Timber preview"
+}

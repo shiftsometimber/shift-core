@@ -1,0 +1,26 @@
+[
+  {
+    "pattern": "shiftsometimber.co.uk/treatment-centre",
+    "before": null
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/treatment-centre/",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/treatment-centre",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/treatment-centre/",
+    "before": null
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/treatment-centre*",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/treatment-centre*",
+    "before": null
+  }
+]

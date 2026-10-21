@@ -1,0 +1,231 @@
+{
+  "passed": true,
+  "at": "2026-10-21T19:24:35.081Z",
+  "preview": "https://shiftsometimber.co.uk/treatment-centre",
+  "head": "fa4628de5601b00d352678f9f2a7e7769154ae1e",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "status": 200,
+      "h1": "Understand your options. Find your next step.",
+      "mainCount": 1,
+      "overflow": false,
+      "images": [
+        {
+          "alt": "A man looking across the hills",
+          "natural": 1536,
+          "width": 390,
+          "height": 260
+        },
+        {
+          "alt": "A man walking along a town pavement",
+          "natural": 1536,
+          "width": 350,
+          "height": 233.328125
+        },
+        {
+          "alt": "An open book in a reader’s hands",
+          "natural": 1500,
+          "width": 350,
+          "height": 233.328125
+        },
+        {
+          "alt": "A family enjoying a walk in the park",
+          "natural": 1536,
+          "width": 350,
+          "height": 233.328125
+        },
+        {
+          "alt": "A green seedling growing from soil",
+          "natural": 1536,
+          "width": 390,
+          "height": 210
+        }
+      ],
+      "headerImages": [
+        {
+          "loaded": true,
+          "width": 185
+        }
+      ],
+      "footerLinks": 40
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "status": 200,
+      "h1": "Understand your options. Find your next step.",
+      "mainCount": 1,
+      "overflow": false,
+      "images": [
+        {
+          "alt": "A man looking across the hills",
+          "natural": 1536,
+          "width": 1440,
+          "height": 497.28125
+        },
+        {
+          "alt": "A man walking along a town pavement",
+          "natural": 1536,
+          "width": 570,
+          "height": 334.984375
+        },
+        {
+          "alt": "An open book in a reader’s hands",
+          "natural": 1500,
+          "width": 570,
+          "height": 334.984375
+        },
+        {
+          "alt": "A family enjoying a walk in the park",
+          "natural": 1536,
+          "width": 754,
+          "height": 340
+        },
+        {
+          "alt": "A green seedling growing from soil",
+          "natural": 1536,
+          "width": 936,
+          "height": 310.90625
+        }
+      ],
+      "headerImages": [
+        {
+          "loaded": true,
+          "width": 230
+        }
+      ],
+      "footerLinks": 40
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "status": 200,
+      "h1": "Understand your options. Find your next step.",
+      "mainCount": 1,
+      "overflow": false,
+      "images": [
+        {
+          "alt": "A man looking across the hills",
+          "natural": 1536,
+          "width": 390,
+          "height": 260
+        },
+        {
+          "alt": "A man walking along a town pavement",
+          "natural": 1536,
+          "width": 350,
+          "height": 233.328125
+        },
+        {
+          "alt": "An open book in a reader’s hands",
+          "natural": 1500,
+          "width": 350,
+          "height": 233.328125
+        },
+        {
+          "alt": "A family enjoying a walk in the park",
+          "natural": 1536,
+          "width": 350,
+          "height": 233.328125
+        },
+        {
+          "alt": "A green seedling growing from soil",
+          "natural": 1536,
+          "width": 390,
+          "height": 210
+        }
+      ],
+      "headerImages": [
+        {
+          "loaded": true,
+          "width": 185
+        }
+      ],
+      "footerLinks": 40
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "status": 200,
+      "h1": "Understand your options. Find your next step.",
+      "mainCount": 1,
+      "overflow": false,
+      "images": [
+        {
+          "alt": "A man looking across the hills",
+          "natural": 1536,
+          "width": 1440,
+          "height": 497.28125
+        },
+        {
+          "alt": "A man walking along a town pavement",
+          "natural": 1536,
+          "width": 570,
+          "height": 334.984375
+        },
+        {
+          "alt": "An open book in a reader’s hands",
+          "natural": 1500,
+          "width": 570,
+          "height": 334.984375
+        },
+        {
+          "alt": "A family enjoying a walk in the park",
+          "natural": 1536,
+          "width": 754,
+          "height": 340
+        },
+        {
+          "alt": "A green seedling growing from soil",
+          "natural": 1536,
+          "width": 936,
+          "height": 310.90625
+        }
+      ],
+      "headerImages": [
+        {
+          "loaded": true,
+          "width": 230
+        }
+      ],
+      "footerLinks": 40
+    }
+  ],
+  "links": [
+    {
+      "url": "https://shiftsometimber.co.uk/start-here",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-weight-management",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/member/dashboard",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/surgery-comparison-centre",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/provider-switch",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/assessment-walkthrough",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+      "status": 200
+    }
+  ],
+  "productionTreatmentsApproved": true
+}
