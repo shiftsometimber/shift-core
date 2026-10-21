@@ -5,7 +5,8 @@ export const style=previewStyle.replace(previewOnly,'');
 export {main};
 export default {async fetch(request,env){
  const url=new URL(request.url);
- const upstream=await env.CORE.fetch(request);
+ const target=url.hostname.endsWith('.workers.dev')?new Request(new URL(url.pathname+url.search,'https://shiftsometimber.co.uk'),request):request;
+ const upstream=await env.CORE.fetch(target);
  if(!['GET','HEAD'].includes(request.method)||!['/treatment-centre','/treatment-centre/'].includes(url.pathname)||!upstream.ok||!(upstream.headers.get('Content-Type')||'').includes('text/html'))return upstream;
  const headers=new Headers(upstream.headers);headers.set('Cache-Control','private, no-store');
  for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(k);
