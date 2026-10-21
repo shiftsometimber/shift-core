@@ -1,0 +1,24 @@
+[
+  {
+    "name": "hero.webp",
+    "source": "exec-e8c82d3d-fbbf-4e3a-95b4-740efefff67d.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 162090,
+    "sha256": "3f3680247ffd587fe672dde7c2ecdd82a5b3cbb9da879b49fd60c3485390c2b5",
+    "method": "Built-in ImageGen; WebP encoding only"
+  },
+  {
+    "name": "lunch.webp",
+    "source": "exec-0cd0d9e6-054b-44d2-9671-3e1585e3cb3d.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 150340,
+    "sha256": "ec18ed4cc623220f0132bdad24551be2c2bb8e543a74f0a567757109620411ff",
+    "method": "Built-in ImageGen; WebP encoding only"
+  }
+]
