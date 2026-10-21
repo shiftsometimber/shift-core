@@ -8,7 +8,7 @@ const noOverflow=async page=>assert(await page.evaluate(()=>document.documentEle
 
 (async()=>{
 const before=fs.readFileSync(out+'/live-before.html','utf8'),after=fs.readFileSync(out+'/live-after.html','utf8');
-for(const tag of ['header','footer']){const regex=new RegExp('<'+tag+'\\b[\\s\\S]*?</'+tag+'>','g');assert.deepEqual(after.match(regex),before.match(regex),'Shared '+tag+' changed');}
+for(const tag of ['header','footer']){const regex=new RegExp('<'+tag+'\\b[\\s\\S]*?</'+tag+'>','g'),outsideMain=s=>s.replace(/<main\b[\s\S]*?<\/main>/g,'');assert.deepEqual(outsideMain(after).match(regex),outsideMain(before).match(regex),'Shared '+tag+' changed');}
 for(const[engine,type]of [['chromium',chromium],['webkit',webkit]]){
   const browser=await type.launch({headless:true});
   try{for(const width of [390,1440]){

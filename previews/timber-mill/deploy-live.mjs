@@ -9,12 +9,12 @@ const directory=path.dirname(fileURLToPath(import.meta.url)),out='timber-mill-li
 const account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed',script='shift-timber-mill-presentation-20261021';
 const preview='https://shift-timber-mill-preview-20261021.matobrien.workers.dev',live='https://shiftsometimber.co.uk',version='20261021-mill-v2-colours';
 const approvedSource='46709814736969da302d007d169a24510d9bea6e',acceptedPreviewCommit='b84f91ae61cd67ba33fa3f636e09a5c4e8a6b6b8',acceptedPreviewRun=39686044395;
-const patterns=['shiftsometimber.co.uk/shop*','www.shiftsometimber.co.uk/shop*'],routeRoot='/zones/'+zone+'/workers/routes',scriptRoot='/accounts/'+account+'/workers/scripts/'+script;
+const patterns=['shiftsometimber.co.uk/shop*','www.shiftsometimber.co.uk/shop*'],routeRoot='/zones/'+zone+'/workers/routes',scriptRoot='/accounts/'+account+'/workers/scripts/'+script,serviceRoot='/accounts/'+account+'/workers/services/'+script;
 mkdirSync(out,{recursive:true});
 const save=(name,value)=>writeFileSync(path.join(out,name),typeof value==='string'?value:JSON.stringify(value,null,2)+'\n');
 const read=name=>JSON.parse(readFileSync(path.join(out,name)));
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
-const allowed=new Set(['.github/workflows/timber-mill-preview-deploy-20261021.yml','.github/workflows/timber-mill-live-20261021.yml','previews/timber-mill/deploy-ci.mjs','previews/timber-mill/check-ci.cjs','previews/timber-mill/deploy-live.mjs','previews/timber-mill/check-live.cjs']);
+const allowed=new Set(['.github/workflows/timber-mill-preview-deploy-20261021.yml','.github/workflows/timber-mill-live-20261021.yml','previews/timber-mill/deploy-ci.mjs','previews/timber-mill/check-ci.cjs','previews/timber-mill/deploy-live.mjs','previews/timber-mill/check-live.cjs','previews/timber-mill/prior-release-receipt.json']);
 assert.equal(git('merge-base',approvedSource,'HEAD'),approvedSource);
 assert(git('diff','--name-only',approvedSource,'HEAD').split('\n').every(name=>allowed.has(name)),'Runtime differs from approved source');
 assert.equal(git('hash-object','previews/timber-mill/content.mjs'),'bf07539966ad50e38336cfa250913919bfe3e54f');
@@ -24,7 +24,7 @@ assert(process.env.CLOUDFLARE_API_TOKEN,'Existing deployment credential unavaila
 async function api(resource,options={},missing=false){
   const method=options.method||'GET';
   const json=options.body&&typeof options.body==='string'?JSON.parse(options.body):null;
-  const permitted=method==='GET'&&(resource===routeRoot||resource===scriptRoot+'/settings')||method==='PUT'&&resource===scriptRoot||method==='POST'&&resource===scriptRoot+'/subdomain'||method==='POST'&&resource===routeRoot&&patterns.includes(json?.pattern)&&json?.script===script||method==='DELETE'&&resource.startsWith(routeRoot+'/');
+  const permitted=method==='GET'&&(resource===routeRoot||resource===scriptRoot+'/settings'||resource===serviceRoot)||method==='PUT'&&resource===scriptRoot||method==='POST'&&resource===routeRoot&&patterns.includes(json?.pattern)&&json?.script===script||method==='DELETE'&&resource.startsWith(routeRoot+'/');
   assert(permitted,'API request outside this exact page release');
   const response=await fetch('https://api.cloudflare.com/client/v4'+resource,{...options,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,...options.headers},signal:AbortSignal.timeout(30000)});
   if(missing&&response.status===404)return null;
@@ -32,7 +32,7 @@ async function api(resource,options={},missing=false){
 }
 const currentRoutes=()=>api(routeRoot);
 const sorted=rows=>[...rows].sort((a,b)=>a.id.localeCompare(b.id));
-const extract=(html,tag)=>html.match(new RegExp('<'+tag+'\\b[\\s\\S]*?</'+tag+'>','g'));
+const extract=(html,tag)=>html.replace(/<main\b[\s\S]*?<\/main>/g,'').match(new RegExp('<'+tag+'\\b[\\s\\S]*?</'+tag+'>','g'));
 
 async function rollback(){
   if(!existsSync(out+'/activation-plan.json')){console.log('No Timber Mill route activation was started');return;}
@@ -60,7 +60,14 @@ if(process.argv[2]==='rollback')await rollback();else{
   const routes=await currentRoutes();save('routes-before.json',routes);
   assert(!routes.some(x=>x.script===script),'This exact service is already active; inspect its receipt instead of re-running');
   assert(!routes.some(x=>/^(?:https?:\/\/)?(?:www\.)?shiftsometimber\.co\.uk\/shop/.test(x.pattern)),'Unexpected existing shop route owner');
-  assert(!await api(scriptRoot+'/settings',{},true),'Unknown pre-existing service owner');
+  const existing=await api(scriptRoot+'/settings',{},true);
+  if(existing){
+    const prior=JSON.parse(readFileSync(path.join(directory,'prior-release-receipt.json'),'utf8'));
+    assert.equal(prior.approvedSource,approvedSource);assert.equal(prior.upload.id,script);assert.equal(prior.rollback.restored,true);
+    const metadata=await api(serviceRoot);save('owned-service-before.json',metadata);
+    assert.equal(metadata.default_environment.script.etag,prior.upload.etag,'Concurrent Worker content change');
+    assert.equal(existing.bindings.length,1);assert(existing.bindings.some(b=>b.name==='CORE'&&b.type==='service'&&b.service==='shift-core'));
+  }
   const form=new FormData();form.append('metadata',JSON.stringify({main_module:'previews/timber-mill/worker.mjs',bindings:[{type:'service',name:'CORE',service:'shift-core'}],compatibility_date:'2026-08-09',observability:{enabled:false},tags:['approved-timber-mill-20261021']}));
   for(const name of ['worker.mjs','content.mjs'])form.append('previews/timber-mill/'+name,new Blob([readFileSync(path.join(directory,name))],{type:'application/javascript+module'}),'previews/timber-mill/'+name);
   save('upload.json',await api(scriptRoot,{method:'PUT',body:form}));

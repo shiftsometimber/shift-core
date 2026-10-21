@@ -1,0 +1,46 @@
+{
+  "approvedSource": "46709814736969da302d007d169a24510d9bea6e",
+  "releaseCommit": "932ec9e23df38243310057cc70bf6538bf5731eb",
+  "run": 39686946640,
+  "artifact": 12387206069,
+  "artifactSHA256": "6cc4ebd057a5d126847eb47d47d18395d018011dc76dd83135bd9d6fa76eb65e",
+  "upload": {
+    "created_on": "2026-10-21T22:30:53.452154Z",
+    "modified_on": "2026-10-21T22:30:53.452154Z",
+    "id": "shift-timber-mill-presentation-20261021",
+    "tag": "1e566b1d5df9445fb0fd0a78fe891030",
+    "entry_point": "previews/timber-mill/worker.mjs",
+    "tags": [
+      "approved-timber-mill-20261021"
+    ],
+    "deployment_id": "83de6b7036584cf5bde086cb258c2e9d",
+    "tail_consumers": null,
+    "logpush": false,
+    "observability": {
+      "enabled": false,
+      "head_sampling_rate": null
+    },
+    "has_assets": false,
+    "has_modules": true,
+    "etag": "3a617899868df18440e7fdc7267603862ad36d3a4ea92b53cf188d3c6d4d1ee5",
+    "handlers": [
+      "fetch"
+    ],
+    "named_handlers": [
+      {
+        "name": "selectedContent",
+        "handlers": [
+          "class"
+        ]
+      }
+    ],
+    "last_deployed_from": "api",
+    "compatibility_date": "2026-08-09",
+    "usage_model": "standard",
+    "startup_time_ms": 2
+  },
+  "rollback": {
+    "at": "2026-10-21T22:30:58.860Z",
+    "restored": true
+  }
+}
