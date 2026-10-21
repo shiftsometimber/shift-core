@@ -84,3 +84,6 @@ body[data-template=shift-for-work] #shift-public-news{box-sizing:border-box!impo
 
 html body main#main-content.sw *::before,html body main#main-content.sw *::after{content:none!important;display:none!important}
 html body main#main-content.sw .sw-card-link{width:100%!important}
+
+html body main#main-content.sw .sw-card-link{height:auto!important}
+html body main#main-content.sw :is(.sw-free-grid,.sw-privacy-grid,.sw-enquiry-grid){grid-auto-rows:auto!important}
