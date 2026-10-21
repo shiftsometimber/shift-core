@@ -1,0 +1,13 @@
+{
+  "state": "deployed and live-verified",
+  "workerSource": "13411c00b4501720502fed9be303cb8e779dd657",
+  "routeSource": "8ff524ed35922d349e9cd54a3bfbd9b41055df22",
+  "approval": "Deploy both please - then onto next",
+  "url": "https://shiftsometimber.co.uk/mens-mental-health",
+  "tests": 9,
+  "browsers": "Chrome/WebKit desktop/mobile, four passes in staging and live",
+  "variants": 8,
+  "routes": 8,
+  "precedenceFix": "Existing protocol-specific route now points to presentation worker; prior owner saved for exact rollback",
+  "rollback": "node release/good-to-talk-20261021/deploy.cjs rollback"
+}

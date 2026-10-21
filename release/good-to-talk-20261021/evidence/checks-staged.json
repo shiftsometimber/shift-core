@@ -1,0 +1,174 @@
+{
+  "passed": true,
+  "head": "13411c00b4501720502fed9be303cb8e779dd657",
+  "at": "2026-10-21T21:26:41.144Z",
+  "url": "https://shift-good-to-talk-presentation-20261021.matobrien.workers.dev/mens-mental-health",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "passed": true,
+      "search": true,
+      "allGuides": true,
+      "keyboard": true,
+      "reviewedArticle": true,
+      "sources": true,
+      "urgentAccess": true,
+      "legacyFragments": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true,
+      "errors": []
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "passed": true,
+      "search": true,
+      "allGuides": true,
+      "keyboard": true,
+      "reviewedArticle": true,
+      "sources": true,
+      "urgentAccess": true,
+      "legacyFragments": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "passed": true,
+      "search": true,
+      "allGuides": true,
+      "keyboard": true,
+      "reviewedArticle": true,
+      "sources": true,
+      "urgentAccess": true,
+      "legacyFragments": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "passed": true,
+      "search": true,
+      "allGuides": true,
+      "keyboard": true,
+      "reviewedArticle": true,
+      "sources": true,
+      "urgentAccess": true,
+      "legacyFragments": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true,
+      "errors": []
+    }
+  ],
+  "links": [
+    {
+      "path": "/how-are-you-feeling",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/urgent-mental-health-help",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/things-you-can-do-yourself",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/anxiety-overthinking",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/helping-someone",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/feeling-low",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/stress-overwhelm",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/talking-about-it",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/sleep-mental-health",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/loneliness-isolation",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/confidence-self-worth",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/anger-irritability",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/life-gets-bloody-hard",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/numb-disconnected",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/bad-week-reset",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/not-feeling-yourself",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/getting-professional-help",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/when-to-get-help",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/when-someone-refuses-help",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/nhs-talking-therapies",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/myths-men-mental-health",
+      "status": 200
+    },
+    {
+      "path": "/authors/matt-obrien",
+      "status": 200
+    },
+    {
+      "path": "/mens-mental-health",
+      "status": 200
+    },
+    {
+      "path": "/mental-health/mental-health-and-weight",
+      "status": 200
+    }
+  ],
+  "sharedChromeUnchanged": {
+    "header": "433a08144d968b5f661d1193f3c485e0bd2c6c5fa63e93936799440221dfd5fc",
+    "footer": "628bcb3bc07895001da096e79d643ee2d5ac1f2a69d3407e03aa1401e3b273dc"
+  }
+}

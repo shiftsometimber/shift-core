@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "at": "2026-10-21T21:31:59.450Z",
+  "rows": [
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health",
+      "status": 200,
+      "version": "20261021-gtt-v1"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health/",
+      "status": 200,
+      "version": "20261021-gtt-v1"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health.html",
+      "status": 200,
+      "version": "20261021-gtt-v1"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health?review=20261021",
+      "status": 200,
+      "version": "20261021-gtt-v1"
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/mens-mental-health",
+      "status": 200,
+      "version": "20261021-gtt-v1"
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/mens-mental-health/",
+      "status": 200,
+      "version": "20261021-gtt-v1"
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/mens-mental-health.html",
+      "status": 200,
+      "version": "20261021-gtt-v1"
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/mens-mental-health?review=20261021",
+      "status": 200,
+      "version": "20261021-gtt-v1"
+    }
+  ]
+}

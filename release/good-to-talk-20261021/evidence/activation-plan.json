@@ -1,0 +1,39 @@
+[
+  {
+    "pattern": "shiftsometimber.co.uk/mens-mental-health",
+    "before": null
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/mens-mental-health/",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/mens-mental-health",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/mens-mental-health/",
+    "before": null
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/mens-mental-health*",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/mens-mental-health*",
+    "before": null
+  },
+  {
+    "pattern": "https://shiftsometimber.co.uk/mens-mental-health*",
+    "before": {
+      "id": "c76b41fceab0490fa63e6e738c0620a2",
+      "pattern": "https://shiftsometimber.co.uk/mens-mental-health*",
+      "script": "shift-public-answers",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://www.shiftsometimber.co.uk/mens-mental-health*",
+    "before": null
+  }
+]

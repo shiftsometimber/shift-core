@@ -1,0 +1,79 @@
+[
+  {
+    "route": {
+      "id": "5f868735e8fb4f2fbef4c3db17df9d79",
+      "pattern": "shiftsometimber.co.uk/mens-mental-health",
+      "script": "shift-good-to-talk-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "c5939fbc8ff54fb5966d972e92594ec5",
+      "pattern": "shiftsometimber.co.uk/mens-mental-health/",
+      "script": "shift-good-to-talk-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "b84885602aa940f2bd38acfed8b3a316",
+      "pattern": "www.shiftsometimber.co.uk/mens-mental-health",
+      "script": "shift-good-to-talk-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "3db9ec3ce6f246d2bfaec0025778fd91",
+      "pattern": "www.shiftsometimber.co.uk/mens-mental-health/",
+      "script": "shift-good-to-talk-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "fc22844903bd42a88d39a3ba2e910ef4",
+      "pattern": "shiftsometimber.co.uk/mens-mental-health*",
+      "script": "shift-good-to-talk-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "79cc7d691af44a9cb16c88fc58dc3f4d",
+      "pattern": "www.shiftsometimber.co.uk/mens-mental-health*",
+      "script": "shift-good-to-talk-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "c76b41fceab0490fa63e6e738c0620a2",
+      "pattern": "https://shiftsometimber.co.uk/mens-mental-health*",
+      "script": "shift-good-to-talk-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": {
+      "id": "c76b41fceab0490fa63e6e738c0620a2",
+      "pattern": "https://shiftsometimber.co.uk/mens-mental-health*",
+      "script": "shift-public-answers",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "route": {
+      "id": "38f9b2466a654fc5ba68347ca20c8bb2",
+      "pattern": "https://www.shiftsometimber.co.uk/mens-mental-health*",
+      "script": "shift-good-to-talk-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  }
+]
