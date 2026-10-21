@@ -2,17 +2,17 @@ const fs=require('fs'),path=require('path'),assert=require('assert/strict'),cp=r
 const c=require('/Users/shiftsometimberltd/SST/shift-bloods-blog-review-v1-20261018/release/approved-bloods-blogs-20261019/common.cjs'),r=__dirname;
 const save=(n,v)=>fs.writeFileSync(r+'/'+n,typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v,null,2)),load=n=>JSON.parse(fs.readFileSync(r+'/'+n));
 const GH='/Users/shiftsometimberltd/SST/shift-master-finish-20261013-7KGzrW/github-cli-private-20261013/gh_2.102.0_macOS_arm64/bin/gh';
-const api=(p,b)=>JSON.parse(cp.execFileSync(GH,['api','repos/shiftsometimber/shift-core'+p,...(b?['--method','POST','--input','-']:[])],{input:b?JSON.stringify(b):undefined,encoding:'utf8',timeout:30000}));
+const api=(p,b)=>JSON.parse(cp.execFileSync(GH,['api','repos/shiftsometimber/shift-core'+p+(b?'':(p.includes('?')?'&':'?')+'read='+Date.now()),...(b?['--method','POST','--input','-']:[])],{input:b?JSON.stringify(b):undefined,encoding:'utf8',timeout:30000}));
 async function prepare(){
 const p=await c.organicApi(c.pages),d=p.canonical_deployment;
 save('baseline.json',{id:d.id,url:d.url,productionBranch:p.production_branch});
 const files=(await c.organicApi(c.pages+'/deployments/'+d.id+'/files')).files;save('manifest-before.json',files);
 const old=(await c.get(d.url+'/member/dashboard.html')).bytes;assert.equal(c.asset(old,'html'),files['/member/dashboard.html']);save('before-dashboard.html',old);
 const needle='/member-register?returnTo=%2Fmember%2Fdashboard',replacement='/join-my-timber';
-const count=old.toString().split(needle).length-1;assert(count>=2);
+const count=old.toString().split(needle).length-1;assert(count>=2||old.toString().includes(replacement));
 const script='<script type="module" src="/assets/my-timber-onboarding-20261021.js"></script>';
-const next=old.toString().split(needle).join(replacement).replace('</body>',script+'</body>');
-assert.equal(next.replace(script,'').split(replacement).join(needle),old.toString(),'Exact dashboard inverse');
+const next=count?old.toString().split(needle).join(replacement).replace('</body>',script+'</body>'):old.toString();
+assert.equal(count?next.replace(script,'').split(replacement).join(needle):next,old.toString(),'Exact dashboard inverse');
 const previous='/Users/shiftsometimberltd/SST/my-timber-welcome-20261021';
 assert.equal(c.sha(fs.readFileSync(previous+'/_headers')),JSON.parse(fs.readFileSync(previous+'/scope-proof.json')).headersSHA256);
 fs.copyFileSync(previous+'/_headers',r+'/_headers');

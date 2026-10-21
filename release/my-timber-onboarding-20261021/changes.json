@@ -2,42 +2,42 @@
   {
     "path": "/member/dashboard.html",
     "file": "dashboard.html",
-    "before": "7dc35556c230b60531ed65ade2e37326",
+    "before": "ea39e42b9e07777c23f7c4bedcaac22a",
     "after": "ea39e42b9e07777c23f7c4bedcaac22a",
     "sha256": "b1a702e1a588addb407955b20253816f77f4faffb1fcd2e2f48a4a6193a7ed42"
   },
   {
     "path": "/join-my-timber.html",
     "file": "join.html",
-    "before": null,
-    "after": "057dd9d59590d1aa6e41a27c93ef4743",
-    "sha256": "9b079d8c807dd2ce7992ccca4d2cd2985cf79ffb45fc24be89f8294f61c0d4f2"
+    "before": "057dd9d59590d1aa6e41a27c93ef4743",
+    "after": "2cb36289bf82669f22370add58ccc410",
+    "sha256": "98c36e545d52373e43e49a2dab59055a66cfc5147ebcbcd7007ea11bef8a0bc5"
   },
   {
     "path": "/assets/my-timber-onboarding-20261021.css",
     "file": "join.css",
-    "before": null,
-    "after": "dbc136c93b70bd330e12fb2a578c0387",
-    "sha256": "0530f6e45380b970a1874cc12d33093cd1e168de02f695bcfecf2da53407fe7f"
+    "before": "dbc136c93b70bd330e12fb2a578c0387",
+    "after": "def65ecd39e25503244e5744c2a70bee",
+    "sha256": "6229953f3bfe5091337750f5d9830f9acb879421767dcd19a330d02e0c454193"
   },
   {
     "path": "/assets/my-timber-onboarding-20261021.js",
     "file": "join.js",
-    "before": null,
+    "before": "2630f1009eda1ae34c890335d20afe38",
     "after": "2630f1009eda1ae34c890335d20afe38",
     "sha256": "019ab4273b3d9de51498795959a4f71b929e15950c55004056697045361d9a08"
   },
   {
     "path": "/assets/my-timber-onboarding-model-20261021.mjs",
     "file": "model.mjs",
-    "before": null,
+    "before": "26f97e62e15dc86783df5126e3d6c650",
     "after": "26f97e62e15dc86783df5126e3d6c650",
     "sha256": "44c5f40cd0ab0084a7a02b60d51adf8cbf5daf60f454e906da2c66a2abe28565"
   },
   {
     "path": "/assets/my-timber-onboarding-config-20261021.js",
     "file": "config.js",
-    "before": null,
+    "before": "994f7b7ee4c6ae77c77f47f424d4ad1c",
     "after": "994f7b7ee4c6ae77c77f47f424d4ad1c",
     "sha256": "ea16f0f505fc715c036b85d3f29d195b6189f9d5423cac41713bb3e53c26fb0e"
   }
