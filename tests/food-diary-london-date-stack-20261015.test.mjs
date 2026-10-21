@@ -1476,7 +1476,7 @@ test('legacy non-CI factory still invokes the unchanged public verifier',()=>{
    ['.github/workflows/shift-coach-integration.yml','331ea3150aa623bbbd3c704c07fd17952008d0d8'],
    ['release/immutable-git-facts.mjs','b1ec660c2fb899be3c4c31370598e9d5751551a3'],
    ['shift-coach/release.test.mjs','cfbcd2cbf80d1f500a4dce89e2f43f9d309c9f88']
-  ])assert.equal(path==='.github/workflows/cloudflare-production-promote.yml'?execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(seoOriginalContent(head,path)),encoding:'utf8'}).trim():path==='shift-coach/release.test.mjs'?literalOriginalWatchTestBlob(head,path):editorialOriginalBlob(head,path),expected,path);
+  ])assert.equal(path==='.github/workflows/cloudflare-production-promote.yml'?execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(seoOriginalContent(head,path)),encoding:'utf8'}).trim():path==='.github/workflows/programme-day-preview.yml'?seoOriginalBlob(head,path):path==='shift-coach/release.test.mjs'?literalOriginalWatchTestBlob(head,path):editorialOriginalBlob(head,path),expected,path);
   assert.equal(aliasP.record.authority,FOOD_DIARY_LONDON_DATE_POLICY.record.authority);
   const restored=aliasRestore(editorialOriginalContent(head,'release/food-diary-london-date-scope-20261015.mjs'),aliasP.currentWatchReadHeadAliasesScopeInverse),prior=content(aliasPrior.head,'release/food-diary-london-date-scope-20261015.mjs'),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,a=restored.match(pattern),b=prior.match(pattern);assert(a&&b);assert.equal(restored.replace(a[0],b[0]),prior);
  });
