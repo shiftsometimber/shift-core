@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-21T12:43:52.942Z",
+  "base": "614699bb-b50f-4f7e-8e9c-dc7e48efc929",
+  "changes": [
+    "/member/dashboard.html",
+    "/join-my-timber.html",
+    "/assets/my-timber-onboarding-20261021.css",
+    "/assets/my-timber-onboarding-20261021.js",
+    "/assets/my-timber-onboarding-model-20261021.mjs",
+    "/assets/my-timber-onboarding-config-20261021.js"
+  ],
+  "allOtherAssetsUnchanged": true,
+  "dashboardInverse": true,
+  "homepageUnchanged": true,
+  "authCodeUnchanged": true,
+  "headersSHA256": "4f869badedb23a7a967ec5ad18308ddf6d0fa184ce9a5472d3a44aa1aa31a4de"
+}
