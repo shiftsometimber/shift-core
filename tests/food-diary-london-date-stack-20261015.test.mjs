@@ -2,6 +2,7 @@ import {currentRuntimePreservationHistoricalView as watchFixtureFrame,currentRun
 import {withImmutableHistoryVerification as withWatchFixtureHistory} from '../release/immutable-git-facts.mjs';
 import {createHash as watchFixtureHash} from 'node:crypto';
 import {seoAuditOriginalSource,SEO_AUDIT_MAINTENANCE} from '../release/seo-audit-scope-20261016.mjs';
+import {websiteEditorialCompletionHistoricalView,websiteEditorialCompletionOriginalSource,WEBSITE_EDITORIAL_COMPLETION_MAINTENANCE} from '../release/website-editorial-scope-20261018.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
@@ -35,6 +36,9 @@ const sourceFailure=/source drift|Unauthentic|Supplied|ledger drift|content drif
 
 const seoOriginalContent=(ref,path)=>ref===head&&(path===ledger||SEO_AUDIT_MAINTENANCE.includes(path))?seoAuditOriginalSource(path,content(ref,path)):content(ref,path);
 const seoOriginalBlob=(ref,path)=>ref===head&&(path===ledger||SEO_AUDIT_MAINTENANCE.includes(path))?execFileSync('git',['hash-object','--stdin'],{input:seoOriginalContent(ref,path),encoding:'utf8'}).trim():blob(ref,path);
+const websiteEditorialFixture=websiteEditorialCompletionHistoricalView();
+const editorialOriginalContent=(ref,path)=>ref===head&&(path===ledger||WEBSITE_EDITORIAL_COMPLETION_MAINTENANCE.includes(path))?websiteEditorialCompletionOriginalSource(path,content(ref,path),websiteEditorialFixture):seoOriginalContent(ref,path);
+const editorialOriginalBlob=(ref,path)=>ref===head&&(path===ledger||WEBSITE_EDITORIAL_COMPLETION_MAINTENANCE.includes(path))?execFileSync('git',['hash-object','--stdin'],{input:editorialOriginalContent(ref,path),encoding:'utf8'}).trim():seoOriginalBlob(ref,path);
 test('actual Food to CI-assertions to761 to685 stack preserves every original receipt',()=>{
  assert(c,'The separately registered food-calendar repair is required');assert.match(c.base,/^[a-f0-9]{40}$/);assert.equal(allowance.base,ciBase);assert.equal(repair.base,repairBase);
  const prior=JSON.parse(content(c.base,ledger)),remaining=structuredClone(record);delete remaining[key];
@@ -730,6 +734,8 @@ test('actual byte-pinned Food route with explicit local auth stubs and real SQLi
 
 // Bounded compatibility requirements; the complete prior Food39 file is retained by strict inverse.
 test('native warm guard status credit accepts only actual strict clean Buffer results',()=>{
+ const original=editorialOriginalContent(head,'tests/food-diary-london-date-stack-20261015.test.mjs'),start=original.indexOf('\nfunction nativeCiRepairCleanStatusResult(args,value){')+1,end=original.indexOf('\n}\n',start);assert(start>0&&end>start,'Exact authenticated historical clean-status helper required');
+ const nativeCiRepairCleanStatusResult=new Function(original.slice(start,end+3)+'\nreturn nativeCiRepairCleanStatusResult;')();
  const args=['--no-optional-locks','status','--porcelain=v2','-z','--branch','--untracked-files=no','--ignore-submodules=none'],oid='1'.repeat(40),header='# branch.oid '+oid+'\0# branch.head (detached)\0';
  assert.equal(nativeCiRepairCleanStatusResult(args,Buffer.from(header)),true);
  for(const value of[header,Buffer.from(header+'\n'),Buffer.from(header+'1 .M N... tracked\0'),Buffer.from(header.replace('(detached)','main')),Buffer.from(header.replace(oid,'0'.repeat(40))),Buffer.from(header.replace(oid,'f'.repeat(39))),Buffer.from(header.replace('branch.head','branch.upstream')),Buffer.from([255,...Buffer.from(header)])])assert.equal(nativeCiRepairCleanStatusResult(args,value),false,'An ambiguous or dirty result cannot replace either original diff requirement');
@@ -1362,14 +1368,14 @@ test('legacy non-CI factory still invokes the unchanged public verifier',()=>{
 });
 
  test('Combined native Original binding: exact prior102 whole-source restoration and all earlier records remain required',()=>{
-  const p=FOOD_DIARY_LONDON_DATE_POLICY,prior=p.combinedCanonicalNativeOriginalPrior,actual=JSON.parse(seoOriginalContent(head,ledger));
+  const p=FOOD_DIARY_LONDON_DATE_POLICY,prior=p.combinedCanonicalNativeOriginalPrior,actual=JSON.parse(editorialOriginalContent(head,ledger));
   assert.equal(prior.head,'2c7480821fa949dc32c74f6b18bb0d782d594d88');assert.equal(prior.combinedBlob,'6c38486beb296382f16c5694193b67ea5f9341ca');
   assert.equal(blob(prior.head,ledger),prior.ledgerBlob);assert.deepEqual(JSON.parse(content(prior.head,ledger))[key],prior.record);
   const restored=structuredClone(actual);restored[key]=prior.record;assert.deepEqual(restored,JSON.parse(content(prior.head,ledger)),'All114 previous ledger rows and approvals remain exact');
   const restore=(value,inverses)=>{for(const[a,b]of[...inverses].reverse()){assert(b&&value.split(b).length===2);value=value.replace(b,a);}return value;};
-  const current=seoOriginalContent(head,nativeBindingPath);assert.equal(execFileSync('git',['hash-object','--stdin'],{input:current,encoding:'utf8'}).trim(),'419fb813270a7137371761c6891f82f989859f6d');assert.equal(restore(current,p.combinedCanonicalNativeOriginalSourceInverse),content(prior.head,nativeBindingPath));
-  const tests='tests/food-diary-london-date-stack-20261015.test.mjs',currentTests=seoOriginalContent(head,tests),priorTests=content(prior.head,tests);assert(foodBeforeSourceSchedule(currentTests).startsWith(priorTests));assert.equal(restore(currentTests,p.combinedCanonicalNativeOriginalFood102Inverse),priorTests);
-  const scope='release/food-diary-london-date-scope-20261015.mjs',scopePrior=content(prior.head,scope),scopeRestored=restore(seoOriginalContent(head,scope),p.combinedCanonicalNativeOriginalScopeInverse),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,from=scopeRestored.match(pattern),to=scopePrior.match(pattern);assert(from&&to);assert.equal(scopeRestored.replace(from[0],to[0]),scopePrior);
+  const current=editorialOriginalContent(head,nativeBindingPath);assert.equal(execFileSync('git',['hash-object','--stdin'],{input:current,encoding:'utf8'}).trim(),'419fb813270a7137371761c6891f82f989859f6d');assert.equal(restore(current,p.combinedCanonicalNativeOriginalSourceInverse),content(prior.head,nativeBindingPath));
+  const tests='tests/food-diary-london-date-stack-20261015.test.mjs',currentTests=editorialOriginalContent(head,tests),priorTests=content(prior.head,tests);assert(foodBeforeSourceSchedule(currentTests).startsWith(priorTests));assert.equal(restore(currentTests,p.combinedCanonicalNativeOriginalFood102Inverse),priorTests);
+  const scope='release/food-diary-london-date-scope-20261015.mjs',scopePrior=content(prior.head,scope),scopeRestored=restore(editorialOriginalContent(head,scope),p.combinedCanonicalNativeOriginalScopeInverse),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,from=scopeRestored.match(pattern),to=scopePrior.match(pattern);assert(from&&to);assert.equal(scopeRestored.replace(from[0],to[0]),scopePrior);
   assert.equal(p.record.combinedCanonicalNativeOriginal20261015.wholeNewHeadNativeOrHostedOrProductionAccepted,false);
 
  });
@@ -1421,10 +1427,10 @@ test('legacy non-CI factory still invokes the unchanged public verifier',()=>{
   assert.equal(early.originalLateAssertionsRetained,true);aliasFixture.assertCurrent();
  });
  test('Watch reader coherence: every prior117 byte and all115 prior ledger records restore exactly',()=>{
-  const actual=JSON.parse(seoOriginalContent(head,ledger)),restored=structuredClone(actual);restored[key]=aliasPrior.record;
+  const actual=JSON.parse(editorialOriginalContent(head,ledger)),restored=structuredClone(actual);restored[key]=aliasPrior.record;
   assert.deepEqual(restored,JSON.parse(content(aliasPrior.head,ledger)),'All114 other rows and the complete prior Food receipt are exact');
   assert.equal(blob(aliasPrior.head,ledger),aliasPrior.ledgerBlob);assert.equal(blob(aliasPrior.head,'release/food-diary-london-date-scope-20261015.mjs'),aliasPrior.scopeBlob);
-  const path='tests/food-diary-london-date-stack-20261015.test.mjs',before=content(aliasPrior.head,path),after=seoOriginalContent(head,path);
+  const path='tests/food-diary-london-date-stack-20261015.test.mjs',before=content(aliasPrior.head,path),after=editorialOriginalContent(head,path);
   assert.equal(blob(aliasPrior.head,path),aliasPrior.foodTestsBlob);assert(foodBeforeSourceSchedule(after).startsWith(before));assert.equal(aliasRestore(after,aliasP.currentWatchReadHeadAliasesFood117Inverse),before);
  });
  test('Watch reader coherence: all original contract body bytes restore after the five literal changes',()=>{
@@ -1470,14 +1476,14 @@ test('legacy non-CI factory still invokes the unchanged public verifier',()=>{
    ['.github/workflows/shift-coach-integration.yml','331ea3150aa623bbbd3c704c07fd17952008d0d8'],
    ['release/immutable-git-facts.mjs','b1ec660c2fb899be3c4c31370598e9d5751551a3'],
    ['shift-coach/release.test.mjs','cfbcd2cbf80d1f500a4dce89e2f43f9d309c9f88']
-  ])assert.equal(path==='.github/workflows/cloudflare-production-promote.yml'?execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(seoOriginalContent(head,path)),encoding:'utf8'}).trim():path==='shift-coach/release.test.mjs'?literalOriginalWatchTestBlob(head,path):seoOriginalBlob(head,path),expected,path);
+  ])assert.equal(path==='.github/workflows/cloudflare-production-promote.yml'?execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(editorialOriginalContent(head,path)),encoding:'utf8'}).trim():path==='shift-coach/release.test.mjs'?literalOriginalWatchTestBlob(head,path):editorialOriginalBlob(head,path),expected,path);
   assert.equal(aliasP.record.authority,FOOD_DIARY_LONDON_DATE_POLICY.record.authority);
-  const restored=aliasRestore(seoOriginalContent(head,'release/food-diary-london-date-scope-20261015.mjs'),aliasP.currentWatchReadHeadAliasesScopeInverse),prior=content(aliasPrior.head,'release/food-diary-london-date-scope-20261015.mjs'),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,a=restored.match(pattern),b=prior.match(pattern);assert(a&&b);assert.equal(restored.replace(a[0],b[0]),prior);
+  const restored=aliasRestore(editorialOriginalContent(head,'release/food-diary-london-date-scope-20261015.mjs'),aliasP.currentWatchReadHeadAliasesScopeInverse),prior=content(aliasPrior.head,'release/food-diary-london-date-scope-20261015.mjs'),pattern=/^const policy=(\{[^\n]+\});\nconst manifest=/m,a=restored.match(pattern),b=prior.match(pattern);assert(a&&b);assert.equal(restored.replace(a[0],b[0]),prior);
  });
  test('Watch reader coherence: native factory preserves only the exact existing private reader identity',async()=>{
   const {nativeReconciliationSourceRead}=await import('../release/approved-runtime-composition.mjs');
   const first=nativeReconciliationSourceRead();assert.equal(typeof first,'function');assert.equal(first,nativeReconciliationSourceRead());assert.notEqual(first.bind(null),first);assert.notEqual((...args)=>first(...args),first);
-  const p='release/approved-runtime-composition.mjs';assert.equal(aliasRestore(seoOriginalContent(head,p),aliasP.currentWatchReadHeadAliasesCompositionInverse),content(aliasPrior.head,p));
+  const p='release/approved-runtime-composition.mjs';assert.equal(aliasRestore(editorialOriginalContent(head,p),aliasP.currentWatchReadHeadAliasesCompositionInverse),content(aliasPrior.head,p));
  });
  test('Watch reader coherence: exact native factory values match the original internal Git reader',async()=>{
   const {nativeReconciliationSourceRead}=await import('../release/approved-runtime-composition.mjs');const read=nativeReconciliationSourceRead();
@@ -1512,21 +1518,21 @@ import './fresh-food-source-head-20261016.test.mjs';
  });
  test('fresh source head: the complete older clean helper and kernel remain literal',()=>{
   const path='release/fresh-food-source-clean-20261015.mjs',newPath='release/fresh-food-source-head-20261016.mjs';
-  assert.equal(blob(head,path),'0d744888e51457ba28755ea3bdfa356a595249f4');assert.equal(blob(head,'release/immutable-git-facts.mjs'),'b1ec660c2fb899be3c4c31370598e9d5751551a3');
+  assert.equal(blob(head,path),'0d744888e51457ba28755ea3bdfa356a595249f4');assert.equal(editorialOriginalBlob(head,'release/immutable-git-facts.mjs'),'b1ec660c2fb899be3c4c31370598e9d5751551a3');
   assert.equal(restore(content(head,newPath),freshP.freshFoodNativeHeadGuardHelperInverse),content(head,path));
   assert(freshSource.includes('assertCurrent:privateW?assertCurrent:()=>assertFreshFoodNativeHead(rawHead,assertCurrent),authentic:'));
   assert(freshSource.includes('if(head===null)return original();'));
  });
  test('shared source triggers: every original workflow byte restores except its one dependency line',()=>{
   for(const path of freshP.sharedSourceTriggerDependencyPaths){
-   const now=content(head,path),pairs=freshP.sharedSourceTriggerDependencyInverses[path],before=content(freshP.record.freshFoodNativeHeadGuard20261016.sourceBase,path);
+   const now=editorialOriginalContent(head,path),pairs=freshP.sharedSourceTriggerDependencyInverses[path],before=content(freshP.record.freshFoodNativeHeadGuard20261016.sourceBase,path);
    assert.equal(pairs.length,1);assert.equal(restore(now,pairs),before);assert.equal(blob(freshP.record.freshFoodNativeHeadGuard20261016.sourceBase,path),freshP.sharedSourceTriggerDependencyPreviousBlobs[path]);
    assert(now.includes("  pull_request:\n    paths:\n      - 'release/approved-runtime-composition*'\n"));assert.equal(now.split('\n').length,before.split('\n').length+1);
   }
-  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(seoOriginalContent(head,'.github/workflows/cloudflare-production-promote.yml')),encoding:'utf8'}).trim(),'cd8c81a8d8c29def3c25b93112a4c56456b5cbfc');
+  assert.equal(execFileSync('git',['hash-object','--stdin'],{input:productionBeforeSourceSchedule(editorialOriginalContent(head,'.github/workflows/cloudflare-production-promote.yml')),encoding:'utf8'}).trim(),'cd8c81a8d8c29def3c25b93112a4c56456b5cbfc');
  });
  test('fresh source head: every original130 assertion and earlier source inverse remains complete',()=>{
-  const path='tests/food-diary-london-date-stack-20261015.test.mjs',restored=restore(seoOriginalContent(head,path),freshP.freshFoodNativeHeadGuardFood130Inverse);
+  const path='tests/food-diary-london-date-stack-20261015.test.mjs',restored=restore(editorialOriginalContent(head,path),freshP.freshFoodNativeHeadGuardFood130Inverse);
   assert.equal(execFileSync('git',['hash-object','--stdin'],{input:restored,encoding:'utf8'}).trim(),'f9e34701815039a8fc8fd0538ca264b4d3841cbb');
   const prior=content(freshP.currentWatchReadHeadAliasesPrior.head,path);assert(restored.startsWith(prior));assert.equal(freshP.record.freshFoodNativeHeadGuard20261016.callbackOrVerdictCache,false);
  });
