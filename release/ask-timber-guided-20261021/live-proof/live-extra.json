@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "at": "2026-10-21T19:50:42.749Z",
+  "variants": [
+    {
+      "host": "shiftsometimber.co.uk",
+      "path": "/ask-timber",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/ask-timber"
+    },
+    {
+      "host": "shiftsometimber.co.uk",
+      "path": "/ask-timber/",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/ask-timber"
+    },
+    {
+      "host": "shiftsometimber.co.uk",
+      "path": "/ask-timber?from=check",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/ask-timber?from=check"
+    },
+    {
+      "host": "www.shiftsometimber.co.uk",
+      "path": "/ask-timber",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/ask-timber"
+    },
+    {
+      "host": "www.shiftsometimber.co.uk",
+      "path": "/ask-timber/",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/ask-timber"
+    },
+    {
+      "host": "www.shiftsometimber.co.uk",
+      "path": "/ask-timber?from=check",
+      "status": 200,
+      "final": "https://shiftsometimber.co.uk/ask-timber?from=check"
+    }
+  ],
+  "healthAndTreatmentsPreserved": true,
+  "priorRoutesUnchanged": true,
+  "meal": {
+    "question": "What can I cook when I am short on time?",
+    "status": 200,
+    "data": {
+      "ok": true,
+      "requestId": "8b12082a-1963-409e-b0f6-cac9e5603e13",
+      "mode": "grounded",
+      "confidence": "low",
+      "journeyUsed": false,
+      "answer": "When you're short on time, consider cooking simple meals like scrambled eggs, toast with avocado, or a quick stir-fry with pre-cut vegetables and a protein source like beans or chicken. These meals can be prepared and cooked within 15-20 minutes. If you have even less time, look for pre-cooked or ready-to-eat options like soups or salads.",
+      "keyPoints": [],
+      "nextSteps": [],
+      "followUps": [],
+      "sources": [
+        {
+          "id": 1,
+          "title": "NHS: The Eatwell Guide",
+          "url": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+          "authority": 90,
+          "reviewState": "source_checked",
+          "citation": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+          "provenance": [
+            {
+              "type": "primary",
+              "ref": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+              "checkedAt": "2026-09-27",
+              "publisherReviewedAt": "2022-11-29"
+            }
+          ],
+          "limitations": "Public NHS source checked 27 September 2026; general education, not individual clinical advice."
+        }
+      ],
+      "limitations": "General guidance, no specific time-saving recipes provided."
+    }
+  }
+}

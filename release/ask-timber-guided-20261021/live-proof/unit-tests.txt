@@ -1,0 +1,35 @@
+ask_timber_answered {"requestId":"d787b50c-8df8-43ec-93f9-fa13314156a6","evidence":1,"confidence":"low"}
+ask_timber_safe_redirect {"requestId":"323990ff-0c2b-46d4-a967-827a0ce722ee","category":"medical_emergency"}
+✔ temporal constraints are not clinical evidence relevance (3.588666ms)
+✔ public DB boundary denies private reads, writes and mixed queries (0.818125ms)
+✔ bundled real handler keeps original question and relevant food evidence; no member context (35.944959ms)
+✔ urgent handling and injection clarification remain intact (3.291125ms)
+✔ approved presentation bytes are retained and production targets its public endpoint (0.766292ms)
+ask_timber_insufficient_evidence {"requestId":"9eff63d8-c28b-414a-8ae2-d583389bffe9"}
+ask_timber_safe_redirect {"requestId":"32e1d99f-9ce7-49bf-bfa6-d8380858f079","category":"medical_emergency"}
+ask_timber_generation_failed {"requestId":"1e3f5a1b-f617-4ea0-b64d-9f160efbd0b6","error":"synthetic failure"}
+ask_timber_insufficient_evidence {"requestId":"bdb4e74b-2164-4989-a00b-3b1d8384e5b6"}
+ask_timber_insufficient_evidence {"requestId":"118d3f14-4cd3-437d-b27b-780ba98a97a7"}
+ask_timber_insufficient_evidence {"requestId":"f1709a4c-d45c-4bcd-acee-bf476aa45411"}
+ask_timber_answered {"requestId":"925c7844-db7e-480b-a23a-663d00305c48","evidence":3,"confidence":"medium"}
+✔ reported public question traverses real adapter and route without private reads for absent or stale cookies (33.983458ms)
+✔ existing member callers retain private context and anonymous requests are still refused (5.074292ms)
+✔ unrelated authority, filler words, substring and metadata matches cannot become an answer (2.9335ms)
+✔ actual mental-health evidence remains retrievable when it is the question topic (0.2785ms)
+✔ public errors suppress internal messages, preserve input and support a successful retry (5.94425ms)
+✔ network failure keeps a useful message and retry works (1.063708ms)
+✔ general starter questions use a checked how-to source rather than news, without dropping specific clinical questions (6.85175ms)
+✔ forgotten password is a high-contrast action immediately after password on the authoritative shared sign-in shell (1.008709ms)
+✔ consecutive food questions render only the current service answer, even with a stale intent helper (1.519083ms)
+✔ intent diagnostics never add unreviewed food advice or claim missing coverage is complete (2.840042ms)
+✔ food after an unidentified injection asks which injection without assuming treatment or reusing history (1.557ms)
+✔ named Mounjaro food question supplies relevant primary evidence and anchors the current question (1.777292ms)
+✔ chat adapter renders escaped streamed text early and records only completed answer (12.00075ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 610.911208

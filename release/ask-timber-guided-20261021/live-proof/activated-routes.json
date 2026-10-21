@@ -1,0 +1,38 @@
+[
+  {
+    "id": "2cb70fc586ea44e6a6b947b422b0eb8c",
+    "pattern": "shiftsometimber.co.uk/ask-timber",
+    "script": "shift-ask-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "bd660c73f5054497a78b972d726c68a8",
+    "pattern": "shiftsometimber.co.uk/ask-timber/",
+    "script": "shift-ask-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "41123558959f458694d37756a995be97",
+    "pattern": "www.shiftsometimber.co.uk/ask-timber",
+    "script": "shift-ask-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "6cd350b3ee1146cdb7a258cce2f96059",
+    "pattern": "www.shiftsometimber.co.uk/ask-timber/",
+    "script": "shift-ask-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "93179391c0a74e20af801842b7b3f1d5",
+    "pattern": "shiftsometimber.co.uk/ask-timber*",
+    "script": "shift-ask-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "2344692650764979b2d0ad03ef30e19a",
+    "pattern": "www.shiftsometimber.co.uk/ask-timber*",
+    "script": "shift-ask-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  }
+]

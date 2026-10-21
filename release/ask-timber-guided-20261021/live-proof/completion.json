@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-21T19:51:42.653198+00:00",
+  "live": "https://shiftsometimber.co.uk/ask-timber",
+  "source": "1b62c3cc725d675951280729d02a144f05f7670d",
+  "approvedPresentation": "b3fd4b7c8a488f3f97734b0bad7a30b355a86e54",
+  "stagedAndLiveBrowsersPassed": true,
+  "liveMealRegressionPassed": true,
+  "productionRoutesAttached": 6,
+  "rollback": "From ask-timber-guided-live-20261021 run node release/ask-timber-guided-20261021/deploy.cjs rollback",
+  "scope": "Approved Ask Timber page and its new public-only /ask-timber/question service. Existing member AI and legacy /v1/ai/chat remain with Core. This is not proof of an estate-wide legacy API source repair."
+}

@@ -1,0 +1,178 @@
+{
+  "passed": true,
+  "at": "2026-10-21T19:49:02.695Z",
+  "head": "1b62c3cc725d675951280729d02a144f05f7670d",
+  "rows": [
+    {
+      "q": "What can I cook when I am short on time?",
+      "kind": "meal",
+      "status": 200,
+      "ms": 7867,
+      "data": {
+        "ok": true,
+        "requestId": "8f3ceaff-db75-4646-bb41-58f38e9564ef",
+        "mode": "grounded",
+        "confidence": "low",
+        "journeyUsed": false,
+        "answer": "When you're short on time, consider cooking simple meals like omelettes, stir-fries or soups, which can be prepared and cooked quickly. These meals can include a variety of ingredients like vegetables, beans, and lean proteins, and can be adapted to suit your tastes and dietary needs. For example, you could make a quick omelette with eggs, vegetables, and cheese, or a simple stir-fry with pre-cut vegetables and a pre-cooked protein source. If you have some ingredients already prepared, such as pre-chopped vegetables or cooked beans, you can save even more time.",
+        "keyPoints": [],
+        "nextSteps": [],
+        "followUps": [],
+        "sources": [
+          {
+            "id": 1,
+            "title": "NHS: The Eatwell Guide",
+            "url": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+            "authority": 90,
+            "reviewState": "source_checked",
+            "citation": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+            "provenance": [
+              {
+                "type": "primary",
+                "ref": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+                "checkedAt": "2026-09-27",
+                "publisherReviewedAt": "2022-11-29"
+              }
+            ],
+            "limitations": "Public NHS source checked 27 September 2026; general education, not individual clinical advice."
+          }
+        ],
+        "limitations": "This response is based on general guidance and may not be suitable for everyone, particularly those with specific dietary needs or restrictions."
+      }
+    },
+    {
+      "q": "How can I eat more protein?",
+      "kind": "protein",
+      "status": 200,
+      "ms": 5641,
+      "data": {
+        "ok": true,
+        "requestId": "b77414f5-64b5-4d8c-9973-e46ae5cb1c37",
+        "mode": "grounded",
+        "confidence": "medium",
+        "journeyUsed": false,
+        "answer": "To eat more protein, start by incorporating protein-rich foods into your meals. Try adding beans, lentils, or eggs to your breakfast, and include fish, meat, or dairy products in your lunches and dinners. If you're short on time, consider keeping a stash of nuts, seeds, or Greek yoghurt for a quick protein boost. As a fallback, look for wholegrain or higher-fibre starchy foods and a variety of fruit and vegetables to balance your diet. You can also try tracking your food intake to identify areas where you can increase your protein consumption.",
+        "keyPoints": [],
+        "nextSteps": [],
+        "followUps": [],
+        "sources": [
+          {
+            "id": 1,
+            "title": "NHS: The Eatwell Guide",
+            "url": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+            "authority": 90,
+            "reviewState": "source_checked",
+            "citation": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+            "provenance": [
+              {
+                "type": "primary",
+                "ref": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+                "checkedAt": "2026-09-27",
+                "publisherReviewedAt": "2022-11-29"
+              }
+            ],
+            "limitations": "Public NHS source checked 27 September 2026; general education, not individual clinical advice."
+          },
+          {
+            "id": 2,
+            "title": "Muscle loss on GLP-1 treatment",
+            "url": "https://shiftsometimber.co.uk/articles/muscle-on-glp1",
+            "authority": 75,
+            "reviewState": "verified",
+            "citation": "https://shiftsometimber.co.uk/articles/muscle-on-glp1",
+            "provenance": [
+              {
+                "ref": "https://shiftsometimber.co.uk/articles/muscle-on-glp1"
+              }
+            ],
+            "limitations": null
+          }
+        ],
+        "limitations": "General guidance, may not be suitable for individual needs or medical conditions."
+      }
+    },
+    {
+      "q": "Can I eat chocolate after Mounjaro?",
+      "kind": "medicine",
+      "status": 200,
+      "ms": 5007,
+      "data": {
+        "ok": true,
+        "requestId": "21002312-33d2-42fc-9ce7-e171d4914c78",
+        "mode": "grounded",
+        "confidence": "low",
+        "journeyUsed": false,
+        "answer": "There's no specific guidance on eating chocolate after Mounjaro [1]. General advice for managing nausea with tirzepatide includes eating bland, low-fat foods and stopping when full. Since chocolate can be high in fat, it may not be the best choice if you're experiencing nausea. However, this is general guidance and not a guarantee that it will suit you. If you're concerned about what to eat after taking Mounjaro, it's best to consult a healthcare professional for personalized advice.",
+        "keyPoints": [],
+        "nextSteps": [],
+        "followUps": [],
+        "sources": [
+          {
+            "id": 1,
+            "title": "Cambridge University Hospitals: food with tirzepatide (Mounjaro)",
+            "url": "https://www.cuh.nhs.uk/patient-information/your-obesity-treatment-tirzepatide-mounjaro/",
+            "authority": 90,
+            "reviewState": "verified",
+            "citation": "https://www.cuh.nhs.uk/patient-information/your-obesity-treatment-tirzepatide-mounjaro/",
+            "provenance": [
+              {
+                "ref": "https://www.cuh.nhs.uk/patient-information/your-obesity-treatment-tirzepatide-mounjaro/"
+              }
+            ],
+            "limitations": "Primary source checked 21 September 2026. General food guidance; not an individual assessment."
+          },
+          {
+            "id": 2,
+            "title": "NHS Mounjaro access in England: why the route still matters",
+            "url": "https://www.england.nhs.uk/long-read/interim-commissioning-guidance-nice-ta1026-tirzepatide/",
+            "authority": 100,
+            "reviewState": "verified",
+            "citation": "ShiftBrain:graph:radar:298",
+            "provenance": [
+              {
+                "type": "primary",
+                "ref": "https://www.england.nhs.uk/long-read/interim-commissioning-guidance-nice-ta1026-tirzepatide/",
+                "verifiedAt": "2026-04-02",
+                "expiresAt": null,
+                "meta": {}
+              },
+              {
+                "type": "primary",
+                "ref": "https://www.england.nhs.uk/ourwork/prevention/obesity/medicines-for-obesity/weight-management-injections/",
+                "verifiedAt": "2026-09-13T07:43:30.568Z",
+                "expiresAt": null,
+                "meta": {}
+              }
+            ],
+            "limitations": null
+          }
+        ],
+        "limitations": "General guidance only, no specific advice on chocolate"
+      }
+    },
+    {
+      "q": "I have severe chest pain and cannot breathe",
+      "kind": "urgent",
+      "status": 200,
+      "ms": 314,
+      "data": {
+        "ok": true,
+        "requestId": "12ab6ada-71e1-4071-b279-05111f6efb40",
+        "mode": "safety",
+        "category": "medical_emergency",
+        "confidence": "high",
+        "answer": "This could need urgent medical attention. Call 999 now if symptoms are severe, sudden, worsening, or someone is unconscious or struggling to breathe. Do not wait for an online reply.",
+        "keyPoints": [
+          "Ask Timber cannot safely assess an emergency."
+        ],
+        "nextSteps": [
+          "Call 999 now for immediate danger.",
+          "For urgent but non-life-threatening help, use NHS 111."
+        ],
+        "followUps": [],
+        "sources": [],
+        "limitations": "This response is emergency signposting, not a diagnosis."
+      }
+    }
+  ]
+}

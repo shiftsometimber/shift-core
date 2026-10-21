@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "at": "2026-10-21T19:49:12.343Z",
+  "url": "https://shift-ask-guided-presentation-20261021.matobrien.workers.dev/ask-timber",
+  "head": "1b62c3cc725d675951280729d02a144f05f7670d",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "publicQuestionsOnly": true,
+      "topicSelectionDoesNotSend": true
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "publicQuestionsOnly": true,
+      "topicSelectionDoesNotSend": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "publicQuestionsOnly": true,
+      "topicSelectionDoesNotSend": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "publicQuestionsOnly": true,
+      "topicSelectionDoesNotSend": true
+    }
+  ],
+  "liveAskTimberUnchanged": true,
+  "liveAcceptance": false
+}
