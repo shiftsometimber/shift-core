@@ -1,6 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import{execFileSync}from'node:child_process';
 import{verifyCurrentRuntimePreservation,currentRuntimePreservationHistoricalView,currentRuntimePreservationAuthenticatedRead,currentRuntimePreservationAuthenticatedContent,currentRuntimePreservationAuthenticatedDiff,currentRuntimePreservationAuthenticatedAncestor,currentRuntimePreservationReaderProvenance}from'../release/current-runtime-preservation-20261016.mjs';
 import{verifyReconciledRelease}from'../release/approved-runtime-composition.mjs';
+import{websiteEditorialCompletionHistoricalView,websiteEditorialCompletionOriginalSource}from'../release/website-editorial-scope-20261018.mjs';
 import{mkdtempSync,writeFileSync,chmodSync,symlinkSync,rmSync}from'node:fs';
 import{tmpdir}from'node:os';import{join}from'node:path';
 const g=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}),head=g('rev-parse','HEAD').trim(),manifest='release/approved-runtime-composition.json',record=JSON.parse(g('show',head+':'+manifest)),c=record.currentRuntimePreservation20261016;
@@ -115,11 +116,13 @@ test('the exact member utility correction rejects another baseline, another CSS 
 
 import {withoutAcceptedUkGrubMaintenance} from '../release/accepted-uk-grub-preservation-20261017.mjs';
 function rollbackOriginalWorkflowFixture(raw){
- const path='.github/workflows/cloudflare-production-promote.yml',frame=currentRuntimePreservationHistoricalView();
+ const path='.github/workflows/cloudflare-production-promote.yml',frame=currentRuntimePreservationHistoricalView(),editorialView=websiteEditorialCompletionHistoricalView();
  assert.equal(frame.rawHead,head,'The rollback fixture must authenticate actual current native source');
  assert.equal(raw,frame.currentContent(head,path),'Only exact actual current workflow bytes may enter the historical rollback fixture');
- const restored=withoutAcceptedUkGrubMaintenance(c,path,raw);
- assert.notEqual(restored,raw,'The exact registered CSS maintenance inverse is required');
+ const accepted=editorialView?websiteEditorialCompletionOriginalSource(path,raw,editorialView):raw;
+ assert.notEqual(accepted,raw,'The exact registered release-budget inverse is required');
+ const restored=withoutAcceptedUkGrubMaintenance(c,path,accepted);
+ assert.notEqual(restored,accepted,'The exact registered CSS maintenance inverse is required');
  assert.equal(restored,content(c.acceptedUkGrubPreservation20261017.basisSource,path),'Every prior qualified rollback workflow byte must restore');
  assert.equal(raw,frame.currentContent(head,path),'Actual current source must remain unchanged after projection');
  return restored;

@@ -125,7 +125,7 @@ test('literal production layout view requires the exact complete admitted raw wo
  const current=readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8');
  const original=execFileSync('git',['show','ce456749488bafcbc2a8e7e6a4eb726cb12f0fd8:.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
  assert.equal(foodDiaryLondonDateOriginalProductionWorkflow(current),original);
- for(const changed of [current+'\n# unapproved source\n',current.replace('maximumConcurrent\": 2','maximumConcurrent\": 3'),current.replace('timeout-minutes: 90','timeout-minutes: 91'),current.replace('actions: read','actions: write')]){assert.notEqual(changed,current);assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(changed));}
+ for(const changed of [current+'\n# unapproved source\n',current.replace('maximumConcurrent\": 2','maximumConcurrent\": 3'),current.replace('timeout-minutes: 360','timeout-minutes: 361'),current.replace('actions: read','actions: write')]){assert.notEqual(changed,current);assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(changed));}
  assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(Buffer.from(current)));
 });
 
