@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "head": "d68390e44dfbafe140d6b0228711304a4320b390",
+  "at": "2026-10-21T20:10:08.495Z",
+  "url": "https://shift-help-guided-preview-20261021.matobrien.workers.dev/help",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "searchAndFilters": true,
+      "accordionAndKeyboard": true,
+      "urgentRoute": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "searchAndFilters": true,
+      "accordionAndKeyboard": true,
+      "urgentRoute": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "searchAndFilters": true,
+      "accordionAndKeyboard": true,
+      "urgentRoute": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "searchAndFilters": true,
+      "accordionAndKeyboard": true,
+      "urgentRoute": true,
+      "noCommunications": true
+    }
+  ],
+  "links": [
+    {
+      "url": "https://shiftsometimber.co.uk/contact",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/member-login",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/contact?type=Website%20or%20technical%20help",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/member/dashboard",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/contact?type=My%20order",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-centre",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/start-here",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/programme",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/privacy",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/cookies",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/complaints",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/ask-timber",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health",
+      "status": 200
+    }
+  ],
+  "liveHelpUnchanged": true
+}
