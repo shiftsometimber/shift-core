@@ -1,0 +1,14 @@
+{
+  "tool": "Built-in ImageGen",
+  "reference": "exec-f3394f84-4d67-42e5-b94d-941178d19786.png",
+  "prompts": [
+    [
+      "mill-hero",
+      "Use case: photorealistic-natural. Extract and recreate a clean standalone landscape photograph matching the TOP RIGHT product still life in the reference Timber Mill website mock-up. Photograph only, remove ALL website typography, buttons, layout and graphic overlays. An ash-green men's cotton T-shirt neatly arranged on a warm cream stone studio surface, its collar and sleeves visible, a matte olive reusable bottle and a folded ash-green hoodie partly visible around it. A tiny tasteful embroidered S within a circle at the left chest. Tangible clothing, beautiful understated folds, realistic fabric texture, soft natural light and grounded premium editorial styling. The photograph should fill the whole frame, no black text panel. No invented product specifications, no price tags, no logos beyond the small S-in-circle chest embroidery. Wide 1536x1024 framing with the T-shirt clearly visible; no trees, no people, no rendered website UI."
+    ],
+    [
+      "mill-feature",
+      "Use case: photorealistic-natural. Extract and recreate a clean standalone landscape photograph matching the BOTTOM LEFT folded hoodie photograph in the reference Timber Mill website mock-up. Photograph only, remove ALL website typography, buttons, layout and graphic overlays. A folded ash-green pullover hoodie with visible hood, drawstrings and subtle small S-in-circle embroidered chest detail on a worn dark wooden bench. Close editorial framing of folds and stitching, soft warm natural light, tangible fabric texture. Show the hoodie and part of the bench across the whole image; no green text panel. No people, trees, text, price tags or website UI. 1536x1024 landscape."
+    ]
+  ]
+}

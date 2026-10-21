@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "heavyweight-tee",
+    "name": "Heavyweight Tee",
+    "category": "apparel"
+  },
+  {
+    "slug": "performance-tee",
+    "name": "Performance Tee",
+    "category": "apparel"
+  },
+  {
+    "slug": "classic-tee",
+    "name": "Classic Tee",
+    "category": "apparel"
+  },
+  {
+    "slug": "polo-shirt",
+    "name": "Performance Polo",
+    "category": "apparel"
+  },
+  {
+    "slug": "hoodie",
+    "name": "Shift Hoodie",
+    "category": "apparel"
+  },
+  {
+    "slug": "vest",
+    "name": "Training Vest",
+    "category": "apparel"
+  },
+  {
+    "slug": "quarter-zip",
+    "name": "Quarter Zip",
+    "category": "apparel"
+  },
+  {
+    "slug": "joggers",
+    "name": "Shift Joggers",
+    "category": "apparel"
+  },
+  {
+    "slug": "training-shorts",
+    "name": "Training Shorts",
+    "category": "apparel"
+  },
+  {
+    "slug": "statement-tee",
+    "name": "Guts Gone Tee",
+    "category": "apparel"
+  },
+  {
+    "slug": "statement-hoodie",
+    "name": "Guts Gone Statement Hoodie",
+    "category": "apparel"
+  },
+  {
+    "slug": "cap",
+    "name": "Shift Cap",
+    "category": "accessories"
+  },
+  {
+    "slug": "crew-socks",
+    "name": "Crew Socks",
+    "category": "accessories"
+  },
+  {
+    "slug": "gym-bag",
+    "name": "Gym Bag",
+    "category": "equipment"
+  },
+  {
+    "slug": "water-bottle",
+    "name": "Water Bottle",
+    "category": "equipment"
+  },
+  {
+    "slug": "shaker",
+    "name": "Shift Shaker",
+    "category": "equipment"
+  }
+]

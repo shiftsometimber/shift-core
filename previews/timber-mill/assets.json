@@ -1,0 +1,24 @@
+[
+  {
+    "name": "hero.webp",
+    "source": "exec-51179fe7-3163-409a-a40a-e524cafb8055.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 463622,
+    "sha256": "e68919f96a41eb846e6861c45aa8c90db6393e5760e8ba07a36e346b1c90b400",
+    "method": "Built-in ImageGen, WebP encoding only"
+  },
+  {
+    "name": "feature.webp",
+    "source": "exec-a1013519-a811-481d-8b76-ba240c17edb8.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 442840,
+    "sha256": "ec63226eca6d064c79b06c61990817519e673b8b7775752cf47f2632f9f16a76",
+    "method": "Built-in ImageGen, WebP encoding only"
+  }
+]

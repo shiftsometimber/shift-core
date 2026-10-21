@@ -1,0 +1,18 @@
+[
+ {"slug":"heavyweight-tee","name":"Heavyweight Tee","category":"clothing","description":"A quiet essential for everyday routines."},
+ {"slug":"hoodie","name":"Shift Hoodie","category":"clothing","description":"An everyday layer for the hours in between."},
+ {"slug":"quarter-zip","name":"Quarter Zip","category":"clothing","description":"A simple layer for a walk, a warm-up or the everyday."},
+ {"slug":"gym-bag","name":"Gym Bag","category":"equipment","description":"One place to keep your everyday kit."},
+ {"slug":"water-bottle","name":"Water Bottle","category":"equipment","description":"Keep water part of the routine."},
+ {"slug":"cap","name":"Shift Cap","category":"accessories","description":"A finishing touch for the everyday."},
+ {"slug":"performance-tee","name":"Performance Tee","category":"clothing","description":"For the days with a little more movement."},
+ {"slug":"classic-tee","name":"Classic Tee","category":"clothing","description":"Keep the everyday simple."},
+ {"slug":"polo-shirt","name":"Performance Polo","category":"clothing","description":"A familiar shape for your everyday kit."},
+ {"slug":"vest","name":"Training Vest","category":"clothing","description":"For the time you set aside to move."},
+ {"slug":"joggers","name":"Shift Joggers","category":"clothing","description":"For your own pace, at home or out and about."},
+ {"slug":"training-shorts","name":"Training Shorts","category":"clothing","description":"Part of your everyday movement kit."},
+ {"slug":"statement-tee","name":"Guts Gone Tee","category":"clothing","description":"A little more to say. The same SHIFT spirit."},
+ {"slug":"statement-hoodie","name":"Guts Gone Statement Hoodie","category":"clothing","description":"A statement layer from the Timber Mill range."},
+ {"slug":"crew-socks","name":"Crew Socks","category":"accessories","description":"An everyday essential, from the ground up."},
+ {"slug":"shaker","name":"Shift Shaker","category":"equipment","description":"Keep your routine together, wherever the day takes you."}
+]
