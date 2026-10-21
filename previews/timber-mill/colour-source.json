@@ -1,0 +1,182 @@
+{
+  "source": "https://shiftsometimber.co.uk/v1/commerce/catalogue",
+  "checkedAt": "2026-10-21T22:04:27.239044+00:00",
+  "products": [
+    {
+      "id": 21,
+      "name": "Heavyweight Tee",
+      "imageKey": "tee",
+      "featuredColour": "Black",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Performance Tee",
+      "imageKey": "tee",
+      "featuredColour": "Ash Green",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Classic Tee",
+      "imageKey": "tee",
+      "featuredColour": "Cream",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Shift Hoodie",
+      "imageKey": "hoodie",
+      "featuredColour": "Ash Green",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Quarter Zip",
+      "imageKey": "zip",
+      "featuredColour": "Black",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 220,
+      "name": "Training Vest",
+      "imageKey": "vest",
+      "featuredColour": "Cream",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Performance Polo",
+      "imageKey": "polo",
+      "featuredColour": "Cream",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Shift Joggers",
+      "imageKey": "joggers",
+      "featuredColour": "Ash Green",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Training Shorts",
+      "imageKey": "shorts",
+      "featuredColour": "Black",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Guts Gone Tee",
+      "imageKey": "statement",
+      "featuredColour": "Cream",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Shift Cap",
+      "imageKey": "cap",
+      "featuredColour": "Black",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Gym Bag",
+      "imageKey": "bag",
+      "featuredColour": "Ash Green",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 226,
+      "name": "Guts Gone Statement Hoodie",
+      "imageKey": "statement-hoodie",
+      "featuredColour": "Ash Green",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Water Bottle",
+      "imageKey": "bottle",
+      "featuredColour": "Cream",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 228,
+      "name": "Crew Socks",
+      "imageKey": "crew-socks",
+      "featuredColour": "Cream",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    },
+    {
+      "id": 231,
+      "name": "Shift Shaker",
+      "imageKey": "shaker",
+      "featuredColour": "Black",
+      "colours": [
+        "Black",
+        "Cream",
+        "Ash Green"
+      ]
+    }
+  ]
+}

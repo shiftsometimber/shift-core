@@ -1,0 +1,612 @@
+{
+  "checkedAt": "2026-10-21T22:10:12.491Z",
+  "version": "20261021-mill-v2-colours",
+  "contentBlob": "bf07539966ad50e38336cfa250913919bfe3e54f",
+  "unitTests": {
+    "command": "node --test previews/timber-mill/test.mjs",
+    "passed": 16,
+    "failed": 0
+  },
+  "publicPhotos": {
+    "checkedAt": "2026-10-21T22:04:43.038697+00:00",
+    "assets": [
+      {
+        "slug": "heavyweight-tee",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/heavyweight-tee/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 16174,
+        "sha256": "b733b0e7fcfc39622ebf0f5b6972cccae987ee417b5844edf98c7020417ce6b2"
+      },
+      {
+        "slug": "heavyweight-tee",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/heavyweight-tee/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 12630,
+        "sha256": "d3a76bfa0b3143bf5651beb907b155bdecbda557018ae52b12f5cb22142c52cb"
+      },
+      {
+        "slug": "heavyweight-tee",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/heavyweight-tee/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 13622,
+        "sha256": "7ae15ff487e0574acecd5574534145d8b5fa8ea57f4d9244cf5adfcea3a2d8ed"
+      },
+      {
+        "slug": "hoodie",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/hoodie/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 22414,
+        "sha256": "9bdede13a7ebdc6f6b0e2e54b79ff249f83c2984dfa5776ab8a3593da504ab10"
+      },
+      {
+        "slug": "hoodie",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/hoodie/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 22688,
+        "sha256": "a1a7e513c89b9ecf4aedad80e9c7954dd34205322c7654283b003285f8e62baf"
+      },
+      {
+        "slug": "hoodie",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/hoodie/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 13846,
+        "sha256": "552b59ee36ce1e24582a6413e1212ddcda01e15ab3526a9f6934b09cc19f5a9d"
+      },
+      {
+        "slug": "quarter-zip",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/quarter-zip/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 19278,
+        "sha256": "c2550c9f7cf9ef00c983ac4d72391748b46cd5b81314bbf5f69e791c96270a9b"
+      },
+      {
+        "slug": "quarter-zip",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/quarter-zip/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 17972,
+        "sha256": "54ac1e4e5291147e3c634cb5ac097617be340a974163522921fbe3426f61b0ae"
+      },
+      {
+        "slug": "quarter-zip",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/quarter-zip/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 13444,
+        "sha256": "c0e15d8c9213cd3971ff43ccc2cfdbd934a1241ad7b1808f86ad18f1558a9b04"
+      },
+      {
+        "slug": "gym-bag",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/gym-bag/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 21988,
+        "sha256": "b97d0d0a9ffc87f4c46dbfc7b5edb709be78de941f254773a2df59539c02f927"
+      },
+      {
+        "slug": "gym-bag",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/gym-bag/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 20744,
+        "sha256": "ff71e4af4a328098bbe8ed536295cbcd3191f184cc3f99dcf541691f808e3129"
+      },
+      {
+        "slug": "gym-bag",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/gym-bag/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 16954,
+        "sha256": "820d0c9932c4451b68b3706774eff3c9be8decda19ce1f9f229ef10a5d6db0dc"
+      },
+      {
+        "slug": "water-bottle",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/water-bottle/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 8362,
+        "sha256": "e663c5449259da60872e6f7c1ec7015865188856ee916ecc5288180b67de401b"
+      },
+      {
+        "slug": "water-bottle",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/water-bottle/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 7332,
+        "sha256": "66dc490201ac9e48f1e0b8960f7421215abca622b592acc0677d48030bb0539e"
+      },
+      {
+        "slug": "water-bottle",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/water-bottle/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 8898,
+        "sha256": "e105518de634a4dd64b9a7776aa01a21db3ac3b2562e0fefbdf0a40c15e185c2"
+      },
+      {
+        "slug": "cap",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/cap/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 27056,
+        "sha256": "5d1ce5f6515747484f19b0523d71bb36f55cb838b5f3119b65dc948f35680cc9"
+      },
+      {
+        "slug": "cap",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/cap/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 21148,
+        "sha256": "7b92ee9ff6f9f62805077de5c89acfd8ab8bb63335734fbd7725f6b78de7480a"
+      },
+      {
+        "slug": "cap",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/cap/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 17082,
+        "sha256": "19ee1e4938cc12c14ab9b7d19911eba737471ad9dc6962fb48dacfe2a6e126ea"
+      },
+      {
+        "slug": "performance-tee",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/performance-tee/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 14684,
+        "sha256": "fd72133118d9dd62f4cff68989c48dd859b9c92fe5558fc3a9c9b58e84c9a596"
+      },
+      {
+        "slug": "performance-tee",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/performance-tee/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 10584,
+        "sha256": "85e4d23d62222ed4104c5cb56d2cf830422263bde41cb53c14f7f41e2f0d5437"
+      },
+      {
+        "slug": "performance-tee",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/performance-tee/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 11468,
+        "sha256": "20344eafc00d5a15dc4eabb3348c88eb35a5bf298b1a155ebfcabef4f01dd603"
+      },
+      {
+        "slug": "classic-tee",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/classic-tee/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 17972,
+        "sha256": "6bcac63daa10bb1e85922d9ae235b9ddd27320b8b759c3d5117996e6d5880138"
+      },
+      {
+        "slug": "classic-tee",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/classic-tee/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 12608,
+        "sha256": "7773139d28b8fd75aa86211a32c0f33a5c2d6a1697a95e221fe0b715133f66f7"
+      },
+      {
+        "slug": "classic-tee",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/classic-tee/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 10122,
+        "sha256": "8e5e678ad8e82ace76af255300ee02c35657ff1ea6432536d3af4f8bbf77dcca"
+      },
+      {
+        "slug": "polo-shirt",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/polo-shirt/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 14536,
+        "sha256": "56bb68e4ef53b226a68ceebd4cd5aa69f75c2fd3fcb47aad24102bdd839efbc5"
+      },
+      {
+        "slug": "polo-shirt",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/polo-shirt/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 10566,
+        "sha256": "e5283335938f2fde7ba7133d1ff75142f4b8bf8c0e8cff6356c8252e0900b3f4"
+      },
+      {
+        "slug": "polo-shirt",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/polo-shirt/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 11096,
+        "sha256": "f74c26bea880b78e0fdffd0b90d10beec92f4b4fc9462a76d5f908286a7dd944"
+      },
+      {
+        "slug": "vest",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/vest/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 13562,
+        "sha256": "5713d16bb9df6953d217f3a04b6fbe7db07ca7643ada7ef48fa9f0a2199bf64f"
+      },
+      {
+        "slug": "vest",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/vest/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 10872,
+        "sha256": "c057775a996a9123799c9f903d6d19414c5e14ec47371ff738a99dd9b370aa77"
+      },
+      {
+        "slug": "vest",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/vest/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 9138,
+        "sha256": "5cbdd096c333b812a2f7bb460b007bde4509d38d700fa81f0aedc3c61af06fc9"
+      },
+      {
+        "slug": "joggers",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/joggers/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 19000,
+        "sha256": "77344a99ab0d069068c39b75396cd0ccfe878d12d327869810b454093a97c766"
+      },
+      {
+        "slug": "joggers",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/joggers/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 15358,
+        "sha256": "5fe728d0edfc831778d93b73f5a607c9c25623338aa863e639d48d910eda3bf8"
+      },
+      {
+        "slug": "joggers",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/joggers/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 12390,
+        "sha256": "e1dcb78143567850428d19c43d7bc8eaeeb7060080558d0191d5f729a33ee2b1"
+      },
+      {
+        "slug": "training-shorts",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/training-shorts/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 21448,
+        "sha256": "79df58c4dfafea10c9f4e3d1ffd37118a8799295299b62040eb888f7128bcca4"
+      },
+      {
+        "slug": "training-shorts",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/training-shorts/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 18096,
+        "sha256": "34ac905a1b3625230b97ac2c3fc28f31f0a6059b586ae416e3dfce6c1a90c72b"
+      },
+      {
+        "slug": "training-shorts",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/training-shorts/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 18222,
+        "sha256": "b3424b6c01793cf4718642b174687a6525e6e6455fdb38e1705ea1a4b452b790"
+      },
+      {
+        "slug": "statement-tee",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/statement-tee/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 18574,
+        "sha256": "e66b5096633b7cf1b8b7e4556faa3e875041535319008123681b28b83811ac26"
+      },
+      {
+        "slug": "statement-tee",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/statement-tee/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 14906,
+        "sha256": "fc6e3cbbe03aabfa73bf0ad60f1150e1c525c70c375ef0f2524b67e58286a1d4"
+      },
+      {
+        "slug": "statement-tee",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/statement-tee/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 16334,
+        "sha256": "aa1f7cd13aaf6dde2a6481b47013897d8d2d02b39a219de2888b398a90a00af6"
+      },
+      {
+        "slug": "statement-hoodie",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/statement-hoodie/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 21862,
+        "sha256": "0a792d036a3ab29393c6e4eb3336fc30958d4370fdee1ca35a39b8bb2e09cb6a"
+      },
+      {
+        "slug": "statement-hoodie",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/statement-hoodie/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 19156,
+        "sha256": "d4c479f1513878e4fa88e46d72cd0c5748cba0c2d4fd4d5d56e0b46b8dcee6c7"
+      },
+      {
+        "slug": "statement-hoodie",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/statement-hoodie/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 17968,
+        "sha256": "42bed93a20617db886fda7b28e39c021a58b75654cf305216fb6f55de6fda661"
+      },
+      {
+        "slug": "crew-socks",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/crew-socks/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 42900,
+        "sha256": "1fc8c97a0246c7bb5e07f9cfed4a0355b63758ec52894d32ff5724a774820927"
+      },
+      {
+        "slug": "crew-socks",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/crew-socks/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 18852,
+        "sha256": "d8e2bea1b71b7087c9d3a1f53b05fcc23d05915b5c52e0582554798768d9a4aa"
+      },
+      {
+        "slug": "crew-socks",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/crew-socks/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 21668,
+        "sha256": "ec0ed0641d5e234be26952612e70151fabb4cae75741c1c4d4b0cbf7087880e7"
+      },
+      {
+        "slug": "shaker",
+        "colour": "ash-green",
+        "url": "https://shiftsometimber.co.uk/assets/products/shaker/ash-green.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 10310,
+        "sha256": "5aec45e8fb79d928fbf46fbd6f11e0746d776c6cbc9892b9564a6c26e13e42de"
+      },
+      {
+        "slug": "shaker",
+        "colour": "cream",
+        "url": "https://shiftsometimber.co.uk/assets/products/shaker/cream.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 8914,
+        "sha256": "4b9ba93391aa8d8a1d4a21a36ac6f1bf73e5204059f1da78c3dafa506245fedb"
+      },
+      {
+        "slug": "shaker",
+        "colour": "black",
+        "url": "https://shiftsometimber.co.uk/assets/products/shaker/black.webp?v=timber4",
+        "status": 200,
+        "size": [
+          1254,
+          1254
+        ],
+        "bytes": 10528,
+        "sha256": "e33c1bbb9924ab15713a56936020e43e4e64ce2dca5d329a24ed9fe1b996e698"
+      }
+    ]
+  },
+  "browser": {
+    "environment": "Internal local reconstruction of the hosted preview HTML with its existing stylesheet files and the revised main content/client; global site scripts excluded.",
+    "engine": "Chromium",
+    "desktopWidth": 1348,
+    "mobileFrameWidth": 390,
+    "passed": [
+      "All 16 Cream controls update independently, with matching decoded photographs and item links",
+      "Black via Space keyboard activation",
+      "Selected Cream carries into item detail",
+      "Detail Black selection survives reload through the URL",
+      "Category filtering and browser Back retain selected colours",
+      "Mobile card uses one column without horizontal overflow",
+      "Mobile swatches measure 44 by 44 CSS pixels"
+    ],
+    "screenshot": "colour-controls.jpg"
+  },
+  "pending": [
+    "Upload v2 to the existing hosted preview when Desktop Commander Remote reconnects",
+    "Complete checks with the actual hosted page and existing global scripts in Chrome and WebKit at 390 and 1440"
+  ],
+  "productionChanged": false
+}
