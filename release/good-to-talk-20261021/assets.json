@@ -1,0 +1,22 @@
+[
+  {
+    "asset": "hero.webp",
+    "source": "exec-1ee3928f-950d-49d4-960e-818439ea1ed7.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 121996,
+    "sha256": "59db65d5a634900a43fb09c4dd4ad4e4dd50ceda0f0c83071dfcdf64d7e58b00"
+  },
+  {
+    "asset": "conversation.webp",
+    "source": "exec-7e4be85d-af6e-4448-ac45-77b403e1043d.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 134782,
+    "sha256": "8c24f0e9d21f2664f57e733afc2802f206bf8056bc7cfb64ee5d1942e46b3359"
+  }
+]

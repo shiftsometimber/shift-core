@@ -1,0 +1,11 @@
+{
+  "sourceUrl": "https://shiftsometimber.co.uk/mens-mental-health",
+  "sourceSha256": "fde6295af4f00d2b31748530e14078b7c7c63b16b880e37d924714b461ecec1c",
+  "readingSha256": "c712911a8b836989ad998e1076004421353341f76369127f6ef9bac23045508a",
+  "sourcesSha256": "6d1b23c26a16b7f14520040e3b25dcc85a001cf74fbe61ca7b0e7131dbd1197d",
+  "retainedArticleText": true,
+  "urgentAccess": "Prominent link to the existing UK urgent-support guide, replacing duplicated phone-number block",
+  "deduplicatedSources": true,
+  "removedEmptyReadingLead": true,
+  "removedInternalPeriodicReviewInstruction": true
+}
