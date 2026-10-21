@@ -36,10 +36,10 @@ for(const[engine,type]of [['chromium',chromium],['webkit',webkit]]){
     await page.locator('[data-tm-filter="equipment"]').click();assert.equal(await page.locator('[data-tm-product]:visible').count(),products.filter(p=>p.category==='equipment').length);
     await page.goBack();assert.equal(await first.locator('[data-tm-colour-name]').textContent(),'Cream');
     await noOverflow(page);await page.screenshot({path:out+'/'+engine+'-'+width+'-catalogue.png'});
-    await first.locator('.tm-item-link').click();assert.equal(new URL(page.url()).searchParams.get('colour'),'cream');
+    await Promise.all([page.waitForURL('**/shop?item=heavyweight-tee&colour=cream',{waitUntil:'load'}),first.locator('.tm-item-link').click()]);assert.equal(new URL(page.url()).searchParams.get('colour'),'cream');
     assert.equal(await page.locator('[data-tm-colour-name]').textContent(),'Cream');assert.equal(await page.locator('.tm-buying').getAttribute('open'),null);
-    await page.getByRole('button',{name:'Black',exact:true}).press('Enter');assert.equal(new URL(page.url()).searchParams.get('colour'),'black');
-    const reloadResponse=await page.reload({waitUntil:'networkidle'});
+    await page.getByRole('button',{name:'Black',exact:true}).press('Enter');assert.equal(new URL(page.url()).searchParams.get('colour'),'black');assert.equal(await page.getByRole('button',{name:'Black',exact:true}).getAttribute('aria-pressed'),'true');
+    const reloadResponse=await page.reload({waitUntil:'load'});
     const reloadState=await page.evaluate(()=>({url:location.href,ready:document.readyState,version:document.querySelector('[data-timber-mill-version]')?.dataset.timberMillVersion,tiles:document.querySelectorAll('[data-tm-product]').length,variants:[...document.querySelectorAll('[data-tm-variant]')].map(item=>({slug:item.dataset.tmVariant,label:item.querySelector('[data-tm-colour-name]')?.textContent,img:item.querySelector('img')?.getAttribute('src'),buttons:[...item.querySelectorAll('[data-tm-colour]')].map(b=>({colour:b.dataset.tmColour,pressed:b.getAttribute('aria-pressed')}))})),scripts:[...document.scripts].map(s=>s.src),controlled:!!navigator.serviceWorker?.controller}));
     fs.writeFileSync(out+'/'+engine+'-'+width+'-reload.json',JSON.stringify({responseURL:reloadResponse.url(),fromServiceWorker:reloadResponse.fromServiceWorker(),state:reloadState,errors,blocked},null,2));
     await page.screenshot({path:out+'/'+engine+'-'+width+'-reload.png'});
