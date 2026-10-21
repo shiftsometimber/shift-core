@@ -1,3 +1,9 @@
+html body main#main-content.sw *{box-sizing:border-box!important;font-family:Arial,Helvetica,sans-serif!important;-webkit-text-fill-color:currentColor!important;box-shadow:none!important}
+html body main#main-content.sw :where(section,div,article,aside,p,h1,h2,h3,ul,li,nav){margin:0!important;padding:0!important;max-width:none!important;border:0!important;background:transparent!important;text-transform:none!important}
+html body main#main-content.sw :where(p,h1,h2,h3,span,strong,small,a){color:inherit!important}
+html body main#main-content.sw a{padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;text-decoration:none!important}
+html body main#main-content.sw img{display:block!important;max-width:100%!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;filter:none!important;opacity:1!important}
+html body main#main-content.sw svg{display:inline-block!important;width:22px!important;height:22px!important;flex-shrink:0!important;padding:0!important;border:0!important;background:transparent!important;fill:none!important;stroke:currentColor!important;stroke-width:1.6!important;stroke-linecap:round!important;stroke-linejoin:round!important}
 html body main#main-content.sw{display:block!important;margin:0!important;padding:0!important;max-width:none!important;width:100%!important;background:#050505!important;color:#e7e3da!important;font-family:Arial,Helvetica,sans-serif!important;line-height:1.5!important}
 html body main#main-content.sw *{box-sizing:border-box!important;-webkit-text-fill-color:currentColor!important}
 html body main#main-content.sw :is(h1,h2,h3,p,ul,ol,figure){margin:0!important}
