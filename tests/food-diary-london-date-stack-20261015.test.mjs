@@ -257,15 +257,7 @@ test('the native CI shortcut is current-only and cannot be borrowed by wrappers 
 
 import {ciExecutionNativeReaderProvenance as nativeCiRepairProvenance} from '../release/ci-execution-scope-20261014.mjs';
 import {releaseMachineryRepairAuthenticatedRead as nativeCiRepairRead} from '../release/release-machinery-repair-scope-20261014.mjs';
-import nativeCiRepairChildProcess from 'node:child_process';
-import {syncBuiltinESMExports as nativeCiRepairSyncBuiltins} from 'node:module';
 
-function nativeCiRepairCleanStatusResult(args,value){
- const expected=['--no-optional-locks','status','--porcelain=v2','-z','--branch','--untracked-files=no','--ignore-submodules=none'];
- if(JSON.stringify(args)!==JSON.stringify(expected)||!Buffer.isBuffer(value))return false;
- const match=/^# branch\.oid ([a-f0-9]{40})\0# branch\.head \(detached\)\0$/.exec(value.toString('utf8'));
- return match!==null&&!/^0+$/.test(match[1])&&value.equals(Buffer.from(match[0]));
-}
 test('canonical native CI repair origin preserves paired current guards and exact historical references',()=>{
  assert.equal(c.nativeCiRepairProvenance,true,'The finite Food record must explicitly own native CI to repair identity routing');
  const ci=ciExecutionHistoricalView(),proof=nativeCiRepairProvenance(ci.read);
@@ -278,11 +270,21 @@ test('canonical native CI repair origin preserves paired current guards and exac
   assert.equal(repairView.read(c.base,path),blob(ciBase,path),'A historical Food base retains its existing CI projection rather than becoming a repair-current alias');
   for(const ref of[repairBase,c.source])assert.equal(repairView.read(ref,path),blob(ref,path),'Other literal historical refs retain exact native values');
  }
- const guardedPath='release',expected=blob(repairBase,guardedPath),calls=[],cleanStatuses=[],nativeExec=nativeCiRepairChildProcess.execFileSync;
- try{
-  nativeCiRepairChildProcess.execFileSync=function(bin,args,...rest){if(bin==='git')calls.push([...args]);const result=nativeExec.call(this,bin,args,...rest);if(bin==='git'&&nativeCiRepairCleanStatusResult(args,result))cleanStatuses.push([...args]);return result;};nativeCiRepairSyncBuiltins();
-  assert.equal(repairView.read('HEAD',guardedPath),expected);assert.equal(repairView.read('HEAD',guardedPath),expected);
- }finally{nativeCiRepairChildProcess.execFileSync=nativeExec;nativeCiRepairSyncBuiltins();}
+ const childSource=[
+  "import assert from 'node:assert/strict';",
+  "import childProcess from 'node:child_process';",
+  "import {syncBuiltinESMExports} from 'node:module';",
+  "const calls=[],cleanStatuses=[],nativeExec=childProcess.execFileSync;",
+  "function cleanStatus(args,value){const expected=['--no-optional-locks','status','--porcelain=v2','-z','--branch','--untracked-files=no','--ignore-submodules=none'];if(JSON.stringify(args)!==JSON.stringify(expected)||!Buffer.isBuffer(value))return false;const match=/^# branch\\.oid ([a-f0-9]{40})\\0# branch\\.head \\(detached\\)\\0$/.exec(value.toString('utf8'));return match!==null&&!/^0+$/.test(match[1])&&value.equals(Buffer.from(match[0]));}",
+  "childProcess.execFileSync=function(bin,args,...rest){if(bin==='git')calls.push([...args]);const result=nativeExec.call(this,bin,args,...rest);if(bin==='git'&&cleanStatus(args,result))cleanStatuses.push([...args]);return result;};syncBuiltinESMExports();",
+  "const {releaseMachineryRepairHistoricalView}=await import("+JSON.stringify(new URL('../release/release-machinery-repair-scope-20261014.mjs',import.meta.url).href)+");",
+  "const repairBase="+JSON.stringify(repairBase)+",guardedPath='release',repairView=releaseMachineryRepairHistoricalView(),expected=nativeExec('git',['rev-parse',repairBase+':'+guardedPath],{encoding:'utf8'}).trim();",
+  "calls.length=0;cleanStatuses.length=0;assert.equal(repairView.read('HEAD',guardedPath),expected);assert.equal(repairView.read('HEAD',guardedPath),expected);",
+  "process.stdout.write(JSON.stringify({calls,cleanStatuses}));"
+ ].join('\n');
+ const childEnv={...process.env};delete childEnv.NODE_TEST_CONTEXT;
+ const child=spawnSync(process.execPath,['--input-type=module','-e',childSource],{cwd:process.cwd(),env:childEnv,encoding:'utf8',maxBuffer:64e6});
+ assert.equal(child.status,0,child.stderr||child.stdout);const {calls,cleanStatuses}=JSON.parse(child.stdout);
  const count=expectedArgs=>calls.filter(args=>JSON.stringify(args)===JSON.stringify(expectedArgs)).length;
  assert(count(['ls-files','-v','-z'])>=4,'Each of two warmed canonical reads must retain native tracked-source visibility at entry and exit');
  assert(count(['diff','--no-renames','--name-only','HEAD','--'])+cleanStatuses.length>=4,'Each warmed canonical read must retain working-source entry and exit checks through exact legacy diffs or actual strict native clean-status results');
@@ -1312,7 +1314,7 @@ function make(kind,{reader=null,proof='canonical',defaultReader=reader===null,ci
   for(let n=0;n<pins;n++)assert.equal(options.read('HEAD','one'),oid('HEAD','one'));
   if(exitDirty)state.dirty=true;
  };
- const context={assert,structuredClone,Set,WeakMap,nativeCiReaders:brands,releaseMachineryRepairHistoricalView:()=>repair,exactCombinedDirectoryDisplay:v=>v,manifest,verifyCombinedFiniteOriginal:verify,verifyCombinedFinite:(c,o)=>{stats.publicVerifierCalls++;verify(c,o);},git:(...args)=>args[0]==='rev-parse'?head:args[0]==='diff'?'':''};
+ const context={assert,structuredClone,Set,WeakMap,nativeCiReaders:brands,assertNavigationOuterChainContext:view=>{assert.equal(view,repair,'Exact synthetic repair context required');ci.assertCurrent();},releaseMachineryRepairHistoricalView:()=>repair,exactCombinedDirectoryDisplay:v=>v,manifest,verifyCombinedFiniteOriginal:verify,verifyCombinedFinite:(c,o)=>{stats.publicVerifierCalls++;verify(c,o);},git:(...args)=>args[0]==='rev-parse'?head:args[0]==='diff'?'':''};
  const factory=runInNewContext(provenance+'\n'+factories[kind]+'\ncombinedFiniteHistoricalView',context);
  const start=()=>factory(reader,{defaultReader});
  return{start,state,stats,oid};

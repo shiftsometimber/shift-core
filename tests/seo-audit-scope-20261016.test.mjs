@@ -22,7 +22,7 @@ test('native admission rechecks index visibility inside a warmed immutable scope
  try{
   g('clone','--no-hardlinks','--quiet','--no-checkout',process.cwd(),directory);
   execFileSync('git',['checkout','--detach','--quiet',head],{cwd:directory});
-  execFileSync(process.execPath,['--input-type=module','-e',"import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {pathToFileURL} from 'node:url';const {withImmutableHistoryVerification}=await import(pathToFileURL(process.cwd()+'/release/immutable-git-facts.mjs'));const {verifySeoAuditRepair,SEO_AUDIT_PATHS}=await import(pathToFileURL(process.cwd()+'/release/seo-audit-scope-20261016.mjs'));const g=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}),head=g('rev-parse','HEAD').trim(),c=JSON.parse(g('show',head+':release/approved-runtime-composition.json')).seoAuditRepair20261016;withImmutableHistoryVerification(()=>{verifySeoAuditRepair(c);const path=SEO_AUDIT_PATHS[0];try{g('update-index','--skip-worktree','--',path);assert.throws(()=>verifySeoAuditRepair(c),/hidden assume-unchanged\\/skip-worktree index flags/);}finally{g('update-index','--no-skip-worktree','--',path);}assert.equal(verifySeoAuditRepair(c).payload,c.payload);});"],{cwd:directory,maxBuffer:64e6,stdio:'pipe'});
+  execFileSync(process.execPath,['--input-type=module','-e',"import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {pathToFileURL} from 'node:url';const {withImmutableHistoryVerification}=await import(pathToFileURL(process.cwd()+'/release/immutable-git-facts.mjs'));const {verifySeoAuditRepair,SEO_AUDIT_PATHS}=await import(pathToFileURL(process.cwd()+'/release/seo-audit-scope-20261016.mjs'));const g=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}),head=g('rev-parse','HEAD').trim(),c=JSON.parse(g('show',head+':release/approved-runtime-composition.json')).seoAuditRepair20261016;withImmutableHistoryVerification(()=>{verifySeoAuditRepair(c);const path=SEO_AUDIT_PATHS[0];try{g('update-index','--skip-worktree','--',path);assert.throws(()=>verifySeoAuditRepair(c),/Hidden\\/sparse\\/assume-unchanged source is forbidden/);}finally{g('update-index','--no-skip-worktree','--',path);}assert.equal(verifySeoAuditRepair(c).payload,c.payload);});"],{cwd:directory,maxBuffer:64e6,stdio:'pipe'});
  }finally{rmSync(directory,{recursive:true,force:true});}
 });
 
@@ -31,7 +31,7 @@ test('production fixture adapter preserves original assertions and rejects chang
  const baseRecord=JSON.parse(content(c.base,manifest));
  const original=content(baseRecord.foodDiaryLondonDateRepair20261015.base,path);
  assert.equal(foodDiaryLondonDateOriginalProductionWorkflow(source),original);
- for(const [from,to] of [['node release/member-runtime-deploy.mjs','node release/unreviewed-deploy.mjs'],['timeout-minutes: 90','timeout-minutes: 120'],['contents: read','contents: write']]){assert(source.includes(from));assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(source.replace(from,to)));}
+ for(const [from,to] of [['node release/member-runtime-deploy.mjs','node release/unreviewed-deploy.mjs'],['timeout-minutes: 360','timeout-minutes: 361'],['contents: read','contents: write']]){assert(source.includes(from));assert.throws(()=>foodDiaryLondonDateOriginalProductionWorkflow(source.replace(from,to)));}
  assert.throws(()=>foodDiaryLondonDateOriginalCiWorkflow('.github/workflows/unreviewed.yml',source));
 });
 
