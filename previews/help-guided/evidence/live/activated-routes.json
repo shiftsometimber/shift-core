@@ -1,0 +1,38 @@
+[
+  {
+    "id": "c3a2c808d059499db26853a6016ac722",
+    "pattern": "shiftsometimber.co.uk/help",
+    "script": "shift-help-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "7aab18c8f7104fb0a5e979e57cad1464",
+    "pattern": "shiftsometimber.co.uk/help/",
+    "script": "shift-help-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "32e2dd43f3cd41858bb443fc814e2775",
+    "pattern": "www.shiftsometimber.co.uk/help",
+    "script": "shift-help-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "4e00837cc99b49a295de3762b6bcf936",
+    "pattern": "www.shiftsometimber.co.uk/help/",
+    "script": "shift-help-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "d2bea3ec208f4d59b962a33cc780bed2",
+    "pattern": "shiftsometimber.co.uk/help*",
+    "script": "shift-help-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "e018627461f9452aaaf1b051d439384c",
+    "pattern": "www.shiftsometimber.co.uk/help*",
+    "script": "shift-help-guided-presentation-20261021",
+    "request_limit_fail_open": false
+  }
+]
