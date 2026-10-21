@@ -1,0 +1,11 @@
+const c=require('/Users/shiftsometimberltd/SST/shift-bloods-blog-review-v1-20261018/release/approved-bloods-blogs-20261019/common.cjs');
+const fs=c.fs,root=__dirname,save=(n,x)=>fs.writeFileSync(root+'/'+n,JSON.stringify(x,null,2));
+(async()=>{
+const project=await c.organicApi(c.pages),base=await c.organicApi(c.pages+'/deployments/'+project.canonical_deployment.id);save('current-base.json',base);
+const cms=(await c.query("SELECT * FROM knowledge_articles WHERE status='published' ORDER BY id")).rows;save('cms-before.json',cms);
+const sitemap=(await c.get('https://shiftsometimber.co.uk/sitemap.xml')).bytes.toString();fs.writeFileSync(root+'/sitemap.xml',sitemap);
+const hub=(await c.get('https://shiftsometimber.co.uk/explore-knowledge')).bytes.toString();fs.writeFileSync(root+'/hub-before.html',hub);
+const paths=[...new Set([...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(x=>new URL(x[1]).pathname).filter(x=>/^\/(articles|faq|faqs|blog|blogs)\//.test(x)).concat(cms.map(x=>'/articles/'+x.slug),[...hub.matchAll(/href="(\/(?:articles|faq|faqs|blog|blogs)\/[^"?#]+)"/g)].map(x=>x[1])))];
+let i=0,results=[];await Promise.all(Array.from({length:4},async()=>{while(i<paths.length){const path=paths[i++];try{const r=await c.get('https://shiftsometimber.co.uk'+path),h=r.bytes.toString();fs.writeFileSync(root+'/pages/'+encodeURIComponent(path)+'.html',h);const main=h.match(/<main\b[\s\S]*?<\/main>/i)?.[0]||'';const links=[...main.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)].map(x=>({href:x[1].replace(/&amp;/g,'&'),text:x[2].replace(/<[^>]+>/g,'')}));results.push({path,status:r.receipt.status,sha:r.receipt.sha256,title:h.match(/<title>(.*?)<\/title>/i)?.[1],date:h.match(/"datePublished"\s*:\s*"([^"]+)/)?.[1]||null,mentions:/My Timber/i.test(main),hasMemberLink:links.some(x=>/^(?:https:\/\/shiftsometimber.co.uk)?\/(?:my-timber|member(?:\/|$))/.test(x.href)),links});}catch(e){results.push({path,error:e.message});}}}));save('full-audit.json',results);
+console.log(JSON.stringify({base:base.id,count:results.length,cms:cms.length,errors:results.filter(x=>x.error),missing:results.filter(x=>x.mentions&&!x.hasMemberLink).map(x=>x.path)}));
+})().catch(e=>{console.error(e.stack);process.exitCode=1});

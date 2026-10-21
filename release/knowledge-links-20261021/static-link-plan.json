@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/articles/glp1-myths.html",
+    "wrapped": true,
+    "related": "/glp1-knowledge-centre",
+    "beforeSHA": "2276ebf8e6eff2684e424f7ef3431a8651d23b9803c9809f8084520b8409b992",
+    "afterSHA": "8dce07a29d62969d722eb321bccad9b49646c5cccb05b7e73b7240c4899afb4e"
+  },
+  {
+    "path": "/articles/understanding-blood-test-results.html",
+    "wrapped": true,
+    "related": "/shift-health/blood-tests",
+    "beforeSHA": "d5abfbeba2e31a1cfd40a95c1de8195fdbc6f776620b9e04fd85e497038126fd",
+    "afterSHA": "b4506af7ee7bc536f0020f92558e05fb8e4a085d46ca0b42d48d8324eae9433b"
+  },
+  {
+    "path": "/articles/first-health-check-men.html",
+    "wrapped": false,
+    "related": "/health-mot",
+    "beforeSHA": "c1557c4640d8cf12f63710d750b477632afdd45b72e97a277a2f254562aa9a91",
+    "afterSHA": "19b251746185a69bde4a090e840c0e443808391291c700fae4b1fd5295bbab53"
+  },
+  {
+    "path": "/articles/upper-arm-blood-collection.html",
+    "wrapped": false,
+    "related": "/articles/understanding-blood-test-results",
+    "beforeSHA": "19fd8557f59638fe940fa0f2ea129ef82376f7afcf8542b74a331d2bbe83a187",
+    "afterSHA": "0f867b00df8b885a3aa63ea678ceafa6b5029fb7f25bec95f5998e7583170d45"
+  }
+]
