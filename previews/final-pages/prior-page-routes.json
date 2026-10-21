@@ -1,0 +1,86 @@
+[
+  {
+    "id": "5f868735e8fb4f2fbef4c3db17df9d79",
+    "pattern": "shiftsometimber.co.uk/mens-mental-health",
+    "script": "shift-good-to-talk-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c5939fbc8ff54fb5966d972e92594ec5",
+    "pattern": "shiftsometimber.co.uk/mens-mental-health/",
+    "script": "shift-good-to-talk-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "b84885602aa940f2bd38acfed8b3a316",
+    "pattern": "www.shiftsometimber.co.uk/mens-mental-health",
+    "script": "shift-good-to-talk-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "3db9ec3ce6f246d2bfaec0025778fd91",
+    "pattern": "www.shiftsometimber.co.uk/mens-mental-health/",
+    "script": "shift-good-to-talk-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "fc22844903bd42a88d39a3ba2e910ef4",
+    "pattern": "shiftsometimber.co.uk/mens-mental-health*",
+    "script": "shift-good-to-talk-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "79cc7d691af44a9cb16c88fc58dc3f4d",
+    "pattern": "www.shiftsometimber.co.uk/mens-mental-health*",
+    "script": "shift-good-to-talk-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c76b41fceab0490fa63e6e738c0620a2",
+    "pattern": "https://shiftsometimber.co.uk/mens-mental-health*",
+    "script": "shift-good-to-talk-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "38f9b2466a654fc5ba68347ca20c8bb2",
+    "pattern": "https://www.shiftsometimber.co.uk/mens-mental-health*",
+    "script": "shift-good-to-talk-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "b2696b89914540c8a093d41f01317c4c",
+    "pattern": "www.shiftsometimber.co.uk/shift-for-work",
+    "script": "shift-shift-for-work-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c38f0e3b97ab4067b478a97f67f26aad",
+    "pattern": "www.shiftsometimber.co.uk/shift-for-work/",
+    "script": "shift-shift-for-work-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "450b57e5ed1a4222a7579323a1df2726",
+    "pattern": "shiftsometimber.co.uk/shift-for-work*",
+    "script": "shift-shift-for-work-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "529a537e070742f9ad2df39045dd7c78",
+    "pattern": "www.shiftsometimber.co.uk/shift-for-work*",
+    "script": "shift-shift-for-work-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "efb7b6a9e14e4cf79d7738616ad03374",
+    "pattern": "shiftsometimber.co.uk/shift-for-work",
+    "script": "shift-shift-for-work-presentation-20261021",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "4fab2261bcc449609cf42e777e00877e",
+    "pattern": "shiftsometimber.co.uk/shift-for-work/",
+    "script": "shift-shift-for-work-presentation-20261021",
+    "request_limit_fail_open": false
+  }
+]

@@ -1,0 +1,59 @@
+name: Publish the three accepted public-page designs
+on:
+  push:
+    branches: [release/final-pages-20261021]
+    paths: [previews/final-pages/deploy-live.mjs, previews/final-pages/preview-gate.json, .github/workflows/final-pages-live-20261021.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: final-pages-live-20261021
+  cancel-in-progress: false
+jobs:
+  publish-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/final-pages
+          fetch-depth: 12
+      - name: Trust this checkout inside the job container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Verify unchanged accepted page content
+        run: |
+          node previews/final-pages/build.cjs
+          git diff --exit-code -- previews/final-pages/content.mjs
+          node --test previews/final-pages/test.mjs
+      - name: Match the prebuilt browser client
+        run: npm install --prefix "$RUNNER_TEMP/final-pages-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Publish only the three accepted page versions
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node previews/final-pages/deploy-live.mjs release
+      - name: Verify all three actual live pages
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/final-pages-browser/node_modules/playwright
+          FINAL_PAGES_ORIGIN: https://shiftsometimber.co.uk
+          FINAL_PAGES_EVIDENCE: final-pages-live-evidence
+        run: node previews/final-pages/check-browser.cjs
+      - name: Restore this release's route owners if acceptance fails
+        if: ${{ failure() || cancelled() }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/final-pages/deploy-live.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-pages-live-${{ github.sha }}
+          path: final-pages-live-evidence/
+          retention-days: 90
