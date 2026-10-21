@@ -1,0 +1,26 @@
+[
+  {
+    "pattern": "shiftsometimber.co.uk/shift-for-work",
+    "before": null
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/shift-for-work/",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/shift-for-work",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/shift-for-work/",
+    "before": null
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/shift-for-work*",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/shift-for-work*",
+    "before": null
+  }
+]

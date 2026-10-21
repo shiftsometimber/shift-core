@@ -1,0 +1,14 @@
+{
+  "tool": "Built-in ImageGen",
+  "reference": "exec-19a79c16-509c-4f3e-bf68-fb448bccd9ee.png",
+  "assets": [
+    {
+      "name": "hero.webp",
+      "prompt": "Use case: photorealistic-natural. Create a standalone landscape website photograph matching the hero photograph in the reference mock-up, with ALL typography, buttons and UI removed. Three fuller-built ordinary men enjoying a relaxed tea break in a bright British workplace canteen beside a warehouse doorway: bald white man with grey beard wearing navy polo at left; South Asian man with short dark hair and beard wearing charcoal work shirt at centre; Black man with short hair and beard wearing olive overshirt at right. All have some extra weight around the middle, natural proportions, warm relaxed expressions, candid conversation with mugs. Frame their upper bodies and hands completely, no face cut off, no awkward hands. Warm natural window light, believable skin and clothing texture. Photograph only, no text, no logos, no graphic overlays. Match the reference's grounded premium editorial look. 1536 by 1024 landscape."
+    },
+    {
+      "name": "lunch.webp",
+      "prompt": "Use case: photorealistic-natural. Create a standalone landscape website photograph matching the second photograph in the reference mock-up, with ALL typography, buttons and UI removed. A fuller-built white British man aged around 45 with dark greying hair and short beard wearing navy zip hoodie, sitting in a naturally lit workplace break room and enjoying a packed lunch of salad from a reusable lunch box. A lunch bag, plain olive water bottle and apple on the table. Warm quiet expression looking down at his food, a colleague softly out of focus in the background. Some extra weight around his middle, natural ordinary body rather than muscular model. Frame upper body, hands and lunch together, believable hands and utensils. Premium candid editorial photography, warm daylight, realistic textures. No text, logos, graphics or UI. 1536 by 1024 landscape."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "route": {
+      "id": "efb7b6a9e14e4cf79d7738616ad03374",
+      "pattern": "shiftsometimber.co.uk/shift-for-work",
+      "script": "shift-shift-for-work-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "4fab2261bcc449609cf42e777e00877e",
+      "pattern": "shiftsometimber.co.uk/shift-for-work/",
+      "script": "shift-shift-for-work-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "b2696b89914540c8a093d41f01317c4c",
+      "pattern": "www.shiftsometimber.co.uk/shift-for-work",
+      "script": "shift-shift-for-work-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "c38f0e3b97ab4067b478a97f67f26aad",
+      "pattern": "www.shiftsometimber.co.uk/shift-for-work/",
+      "script": "shift-shift-for-work-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "450b57e5ed1a4222a7579323a1df2726",
+      "pattern": "shiftsometimber.co.uk/shift-for-work*",
+      "script": "shift-shift-for-work-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  },
+  {
+    "route": {
+      "id": "529a537e070742f9ad2df39045dd7c78",
+      "pattern": "www.shiftsometimber.co.uk/shift-for-work*",
+      "script": "shift-shift-for-work-presentation-20261021",
+      "request_limit_fail_open": false
+    },
+    "before": null
+  }
+]

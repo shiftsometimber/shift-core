@@ -1,0 +1,13 @@
+{
+  "state": "deployed and live-verified",
+  "source": "094f25e5d452878fe1154da9cacb034a8850532a",
+  "approval": "Deploy both please - then onto next",
+  "url": "https://shiftsometimber.co.uk/shift-for-work",
+  "tests": 12,
+  "browsers": "Chrome/WebKit desktop/mobile, four staging and four live passes",
+  "variants": 8,
+  "routes": 6,
+  "sharedHeaderFooterTicker": "byte-for-byte preserved",
+  "enquiryQA": "native validation, fake transport delivery-contract tests and preview-host no-send checks; no real emails or enquiries sent",
+  "rollback": "node release/shift-for-work-20261021/deploy.cjs rollback"
+}
