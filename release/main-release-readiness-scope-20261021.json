@@ -1,0 +1,61 @@
+{
+  "kind": "EXACT_CURRENT_MAIN_RELEASE_READINESS_REPAIR_20261021",
+  "base": "39c703ac068b800bbf4a92a9277e21bd3d7b89e6",
+  "payload": "e85fe30291663f37d800009a9199620d6e2f1cb6",
+  "paths": [
+    ".github/workflows/programme-day-preview.yml",
+    "release/app-scope.mjs",
+    "reta-styles-data.mjs",
+    "wrangler.coaching.jsonc"
+  ],
+  "maintenancePaths": [
+    "release/health-vision-scope-20261021.mjs",
+    "release/main-release-readiness-scope-20261021.mjs",
+    "tests/main-release-readiness-scope-20261021.test.mjs"
+  ],
+  "observedFailures": {
+    "production": {
+      "run": 39650793172,
+      "job": 119398602832,
+      "source": "39c703ac068b800bbf4a92a9277e21bd3d7b89e6",
+      "deploymentPerformed": false,
+      "failedBeforeMutation": true,
+      "failures": [
+        "unadmitted Health extension in app scope",
+        "stale wrangler.coaching.jsonc fixture",
+        "live header-navigation-v2.css bytes absent from current source"
+      ]
+    },
+    "programme": {
+      "run": 39626334852,
+      "job": 119312440952,
+      "reason": "maximum execution time 6h0m0s after 594 passing assertions and zero observed failures"
+    }
+  },
+  "repair": {
+    "appAdmission": "Health and this exact repair are admitted only after their independent immutable verifiers pass",
+    "coachingFixture": "wrangler.coaching.jsonc is byte-identical to unchanged wrangler.jsonc",
+    "publicCss": "header-navigation-v2 source is reconciled to the already-active live bytes",
+    "activeHeaderCssSha256": "74b8c12bc157dfab638bb1202a3358d12b6a47bd5932c5df5480a1c887a3ef6d",
+    "programmeSourceTestConcurrency": 2,
+    "workflowTaskConcurrency": 2,
+    "sourceTestFilesChanged": false,
+    "sourceTestSelectionChanged": false,
+    "sourceAssertionsRemoved": 0,
+    "memberRuntimeChanged": false,
+    "homepageBodyChanged": false,
+    "clinicalSafetyChanged": false,
+    "privacyOrConsentChanged": false,
+    "memberRecordsChanged": false,
+    "stockChanged": false,
+    "commercialSettingsChanged": false
+  },
+  "authority": {
+    "myTimberDeploymentApproved": true,
+    "publicHomepageChangeApproved": false,
+    "clinicalActivationApproved": false,
+    "unrelatedChangesApproved": false
+  },
+  "productionVerified": false,
+  "maintenanceSource": "39f5126daa15406b7f7456d57b58b31d84693d5a"
+}
