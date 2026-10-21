@@ -1,0 +1,49 @@
+name: Preview the three supplied page designs
+on:
+  push:
+    branches: [preview/final-pages-20261021]
+    paths: [previews/final-pages/**, .github/workflows/final-pages-preview-20261021.yml]
+permissions:
+  contents: read
+concurrency:
+  group: final-pages-preview-20261021
+  cancel-in-progress: false
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/final-pages
+      - name: Trust this checkout inside the job container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Verify page and enquiry contracts
+        run: |
+          node previews/final-pages/build.cjs
+          git diff --exit-code -- previews/final-pages/content.mjs
+          node --test previews/final-pages/test.mjs
+      - name: Match the prebuilt browser client
+        run: npm install --prefix "$RUNNER_TEMP/final-pages-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Upload a preview with zero production routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/final-pages/deploy-preview.mjs
+      - name: Check all three actual previews on mobile and desktop
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/final-pages-browser/node_modules/playwright
+        run: node previews/final-pages/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-pages-preview-${{ github.sha }}
+          path: final-pages-preview-evidence/
+          retention-days: 90

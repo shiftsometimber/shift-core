@@ -1,0 +1,1 @@
+function openHash(){const target=document.getElementById(location.hash.slice(1));if(!target)return;let node=target;while(node){if(node.tagName==='DETAILS')node.open=true;node=node.parentElement;}}addEventListener('hashchange',openHash);openHash();
