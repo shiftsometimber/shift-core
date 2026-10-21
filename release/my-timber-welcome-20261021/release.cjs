@@ -26,12 +26,12 @@ save('scope-proof.json',{at:new Date().toISOString(),base:d.id,changes:changes.m
 console.log(JSON.stringify(load('scope-proof.json')));
 }
 async function source(){
-assert(!fs.existsSync(r+'/source-publication.json'),'Reconcile source');
-const base=api('/git/ref/heads/main').object.sha,commit=api('/git/commits/'+base),branch='feature/my-timber-welcome-20261021';
+const previous=fs.existsSync(r+'/source-publication.json')?load('source-publication.json'):null;
+const branch='feature/my-timber-welcome-20261021',base=api('/git/ref/heads/'+(previous?branch:'main')).object.sha,commit=api('/git/commits/'+base);if(previous)assert.equal(base,previous.head);
 const entries=[];
 for(const x of load('changes.json')){const b=api('/git/blobs',{content:fs.readFileSync(r+'/after/'+x.file).toString('base64'),encoding:'base64'});entries.push({path:'release/my-timber-welcome-20261021/assets/'+x.file,mode:'100644',type:'blob',sha:b.sha});}
 for(const n of ['release.cjs','scope-proof.json','changes.json','_headers']){const b=api('/git/blobs',{content:fs.readFileSync(r+'/'+n).toString('base64'),encoding:'base64'});entries.push({path:'release/my-timber-welcome-20261021/'+n,mode:'100644',type:'blob',sha:b.sha});}
-const t=api('/git/trees',{base_tree:commit.tree.sha,tree:entries}),n=api('/git/commits',{message:'Add approved My Timber signed-out welcome page and app choices',tree:t.sha,parents:[base]});api('/git/refs',{ref:'refs/heads/'+branch,sha:n.sha});assert.equal(api('/git/ref/heads/'+branch).object.sha,n.sha);save('source-publication.json',{branch,head:n.sha,tree:t.sha,base});console.log(JSON.stringify(load('source-publication.json')));
+const t=api('/git/trees',{base_tree:commit.tree.sha,tree:entries}),n=api('/git/commits',{message:'Add approved My Timber signed-out welcome page and app choices',tree:t.sha,parents:[base]});if(previous){save('source-previous-'+previous.head+'.json',previous);JSON.parse(cp.execFileSync(GH,['api','repos/shiftsometimber/shift-core/git/refs/heads/'+branch,'--method','PATCH','--input','-'],{input:JSON.stringify({sha:n.sha,force:false}),encoding:'utf8'}));}else api('/git/refs',{ref:'refs/heads/'+branch,sha:n.sha});assert.equal(api('/git/ref/heads/'+branch).object.sha,n.sha);save('source-publication.json',{branch,head:n.sha,tree:t.sha,base});console.log(JSON.stringify(load('source-publication.json')));
 }
 function validate(){const before=load('manifest-before.json'),next=load('manifest-candidate.json'),changes=load('changes.json');assert.equal(changes.length,4);for(const[p,h]of Object.entries(before))if(p!=='/member/dashboard.html')assert.equal(next[p],h);for(const x of changes)assert.equal(c.sha(fs.readFileSync(r+'/after/'+x.file)),x.sha256);assert.equal(c.sha(fs.readFileSync(r+'/_headers')),load('scope-proof.json').headersSHA256);}
 async function publish(stage){
