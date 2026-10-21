@@ -1,0 +1,16 @@
+[
+  {
+    "path": "/provider-switch",
+    "status": 200,
+    "title": "Changing Weight-Loss Provider | SHIFT Continuity"
+  },
+  {
+    "path": "/shift-health/bloods",
+    "status": 404
+  },
+  {
+    "path": "/guides/nhs-weight-management-uk-guide",
+    "status": 200,
+    "title": "NHS Weight Management: Services, Medication and Surgery"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "pattern": "shiftsometimber.co.uk/start-here",
+    "before": null
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/start-here/",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/start-here",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/start-here/",
+    "before": null
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/start-here*",
+    "before": null
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/start-here*",
+    "before": null
+  }
+]

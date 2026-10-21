@@ -1,0 +1,53 @@
+{
+  "head": "35f543b144d015054462f43703e5ca1b05516b1d",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "goalBudgetAbsentOnArrival": true,
+      "weightQuiz": true,
+      "explainedRoutes": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "goalBudgetAbsentOnArrival": true,
+      "weightQuiz": true,
+      "explainedRoutes": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "goalBudgetAbsentOnArrival": true,
+      "weightQuiz": true,
+      "explainedRoutes": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "goalBudgetAbsentOnArrival": true,
+      "weightQuiz": true,
+      "explainedRoutes": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true
+    }
+  ]
+}

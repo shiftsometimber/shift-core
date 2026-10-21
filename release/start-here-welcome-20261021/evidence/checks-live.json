@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "head": "35f543b144d015054462f43703e5ca1b05516b1d",
+  "at": "2026-10-21T20:57:08.750Z",
+  "url": "https://shiftsometimber.co.uk/start-here",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "goalBudgetAbsentOnArrival": true,
+      "weightQuiz": true,
+      "explainedRoutes": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "goalBudgetAbsentOnArrival": true,
+      "weightQuiz": true,
+      "explainedRoutes": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "goalBudgetAbsentOnArrival": true,
+      "weightQuiz": true,
+      "explainedRoutes": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "goalBudgetAbsentOnArrival": true,
+      "weightQuiz": true,
+      "explainedRoutes": true,
+      "images": true,
+      "menu": true,
+      "noCommunications": true
+    }
+  ],
+  "links": [
+    {
+      "path": "/join-my-timber",
+      "status": 200
+    },
+    {
+      "path": "/provider-switch",
+      "status": 200
+    },
+    {
+      "path": "/shift-health",
+      "status": 200
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "status": 200
+    },
+    {
+      "path": "/treatment-centre",
+      "status": 200
+    },
+    {
+      "path": "/programme",
+      "status": 200
+    },
+    {
+      "path": "/guides/nhs-weight-management-uk-guide",
+      "status": 200
+    }
+  ],
+  "sharedChromeUnchanged": {
+    "header": "8cf3fb5c69b2d55139e007121876ab8b27f5f8df38e304083c3534c165f6045c",
+    "footer": "628bcb3bc07895001da096e79d643ee2d5ac1f2a69d3407e03aa1401e3b273dc"
+  }
+}
