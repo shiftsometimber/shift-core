@@ -5,7 +5,7 @@ export function presentHealth(html){
  const mains=[...html.matchAll(/<main\b[\s\S]*?<\/main>/gi)];
  if(mains.length!==1||!html.includes('</head>'))return html;
  const main='<main id="main-content" data-shift-health class="shv" data-health-vision="'+MARKER+'">'+healthVisionMain+'</main>';
- return html.replace(mains[0][0],()=>main).replace('</head>',()=>'<style data-health-presentation="'+MARKER+'">'+healthVisionStyle+'\n[data-shift-health]{--b:#050505;--c:#e7e3da;--g:#707762;--l:#a7af94;display:block;min-width:0}[data-shift-health] img{max-width:100%}</style></head>');
+ return html.replace(mains[0][0],()=>main).replace(/<body\b([^>]*)>/i,(_,attrs)=>'<body'+attrs.replace(/\sdata-template=(["'])[^"']*\1/i,'')+' data-template="shift-health">').replace('</head>',()=>'<style data-health-presentation="'+MARKER+'">'+healthVisionStyle+'\n[data-shift-health]{--b:#050505;--c:#e7e3da;--g:#707762;--l:#a7af94;display:block;min-width:0}[data-shift-health] img{max-width:100%}</style></head>');
 }
 export default {async fetch(request,env){
  const incoming=new URL(request.url);
