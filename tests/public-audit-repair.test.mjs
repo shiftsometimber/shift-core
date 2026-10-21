@@ -10,8 +10,8 @@ import worker from '../worker-entry-v6.js';
 import {legacyAuthorityRedirects,reconcilePublicDocument,reconcileSitemap} from '../public-shell-contract.mjs';
 
 const shell=`<!doctype html><html><head><title>Programme</title><link href="https://shiftsometimber.co.uk/programme" rel="canonical"/><meta content="old" name="description"><link rel="stylesheet" href="/assets/shift-recovery-v6.css"><link rel="stylesheet" href="/assets/header-navigation-v2.css"><script defer src="/consent-v4a.js"></script></head><body class="one-shift programme-page"><a class="skip-link" href="#main-content">Skip to main content</a><header><a href="/programme" aria-current="page">Programme</a><a href="/shift-health">SHIFT Health</a></header><nav id="site-drawer"><a href="/shift-health">SHIFT Health</a></nav><main id="main-content"><h1>Programme</h1></main><footer>Retained footer</footer></body></html>`;
-test('all eleven Health pages have complete server-visible content and retained canonical shell',()=>{
-  assert.equal(healthSlugs.length,10);
+test('all fifteen Health pages have complete server-visible content and retained canonical shell',()=>{
+  assert.equal(healthSlugs.length,14);
   for(const slug of ['',...healthSlugs]){
     const html=renderShiftHealthDocument(shell,slug),main=html.match(/<main\b[\s\S]*?<\/main>/)[0];
     const words=main.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;
