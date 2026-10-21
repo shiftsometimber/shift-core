@@ -1,0 +1,175 @@
+{
+  "passed": true,
+  "at": "2026-10-21T21:36:11.058Z",
+  "unrelatedRoutesPreserved": 170,
+  "ownedRoutes": 14,
+  "variants": [
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health.html",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health/",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health?review=20261021",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-for-work",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-for-work?review=20261021",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-for-work.html",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-for-work/",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/mens-mental-health",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/mens-mental-health?review=20261021",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/mens-mental-health.html",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/mens-mental-health/",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/shift-for-work",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/shift-for-work?review=20261021",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/shift-for-work/",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/shift-for-work.html",
+      "status": 200
+    }
+  ],
+  "assets": [
+    {
+      "slug": "mens-mental-health",
+      "name": "hero.webp",
+      "bytes": 121996,
+      "sha256": "59db65d5a634900a43fb09c4dd4ad4e4dd50ceda0f0c83071dfcdf64d7e58b00"
+    },
+    {
+      "slug": "mens-mental-health",
+      "name": "conversation.webp",
+      "bytes": 134782,
+      "sha256": "8c24f0e9d21f2664f57e733afc2802f206bf8056bc7cfb64ee5d1942e46b3359"
+    },
+    {
+      "slug": "shift-for-work",
+      "name": "hero.webp",
+      "bytes": 162090,
+      "sha256": "3f3680247ffd587fe672dde7c2ecdd82a5b3cbb9da879b49fd60c3485390c2b5"
+    },
+    {
+      "slug": "shift-for-work",
+      "name": "lunch.webp",
+      "bytes": 150340,
+      "sha256": "ec18ed4cc623220f0132bdad24551be2c2bb8e543a74f0a567757109620411ff"
+    }
+  ],
+  "previousPages": [
+    {
+      "path": "/start-here",
+      "status": 200,
+      "markers": {
+        "x-shift-accuracy-repair": "v1",
+        "x-shift-contrast-safety": "public-contrast-20260917-r2",
+        "x-shift-lounge-chrome": "v1",
+        "x-shift-public-shell": "public-shell-20260917-preview1",
+        "x-shift-shared-footer": "approved-c-20261001",
+        "x-shift-start-version": "20261021-welcome-v1",
+        "x-shift-startup-layout": "stable-v1",
+        "x-shift-ticker-policy": "public-news-20260917-r4"
+      }
+    },
+    {
+      "path": "/help",
+      "status": 200,
+      "markers": {
+        "x-shift-catalogue-benefits": "20261006",
+        "x-shift-contrast-safety": "public-contrast-20260917-r2",
+        "x-shift-growth-copy": "20260928",
+        "x-shift-help-version": "20261021-guided-v1",
+        "x-shift-lounge-chrome": "v1",
+        "x-shift-public-shell": "public-shell-20260917-preview1",
+        "x-shift-shared-footer": "approved-c-20261001",
+        "x-shift-startup-layout": "stable-v1",
+        "x-shift-ticker-policy": "public-news-20260917-r4",
+        "x-shift-trust-repair": "2026-10-03"
+      }
+    },
+    {
+      "path": "/shift-health",
+      "status": 200,
+      "markers": {
+        "x-shift-book-voice": "20261002",
+        "x-shift-contrast-safety": "public-contrast-20260917-r2",
+        "x-shift-frontend-authority": "pages:cos-live-recovery-20260909-r2",
+        "x-shift-health-authority": "server-rendered-git-v1",
+        "x-shift-health-presentation": "20261021",
+        "x-shift-newsroom-reading": "v1",
+        "x-shift-public-shell": "public-shell-20260917-preview1",
+        "x-shift-shared-footer": "approved-c-20261001",
+        "x-shift-startup-layout": "stable-v1",
+        "x-shift-ticker-policy": "public-news-20260917-r4"
+      }
+    },
+    {
+      "path": "/treatment-centre",
+      "status": 200,
+      "markers": {
+        "x-shift-accuracy-repair": "v1",
+        "x-shift-contrast-safety": "public-contrast-20260917-r2",
+        "x-shift-lounge-chrome": "v1",
+        "x-shift-organic-links": "2026-10-07",
+        "x-shift-public-shell": "public-shell-20260917-preview1",
+        "x-shift-shared-footer": "approved-c-20261001",
+        "x-shift-startup-layout": "stable-v1",
+        "x-shift-ticker-policy": "public-news-20260917-r4",
+        "x-shift-treatments-version": "20261021-fuller-v3",
+        "x-shift-trust-repair": "2026-10-03"
+      }
+    },
+    {
+      "path": "/ask-timber",
+      "status": 200,
+      "markers": {
+        "x-shift-ask-version": "20261021-guided-v1",
+        "x-shift-contrast-safety": "public-contrast-20260917-r2",
+        "x-shift-lounge-chrome": "v1",
+        "x-shift-public-shell": "public-shell-20260917-preview1",
+        "x-shift-shared-footer": "approved-c-20261001",
+        "x-shift-startup-layout": "stable-v1",
+        "x-shift-ticker-policy": "public-news-20260917-r4"
+      }
+    }
+  ]
+}
