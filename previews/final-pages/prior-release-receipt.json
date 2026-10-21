@@ -1,0 +1,51 @@
+{
+  "acceptedSource": "c44210b3b8334eb6d3a20e80ca6ae326f5015942",
+  "releaseCommit": "853965a06bc1576b0568fe81964350cd4e82ac66",
+  "upload": {
+    "created_on": "2026-10-21T23:12:46.151289Z",
+    "modified_on": "2026-10-21T23:12:46.151289Z",
+    "id": "shift-final-pages-presentation-20261021",
+    "tag": "59467c49642b448da8ad0dd55b6466fc",
+    "entry_point": "previews/final-pages/worker.mjs",
+    "tags": [
+      "approved-final-pages-20261021"
+    ],
+    "deployment_id": "4288161dbee04840bcc071ff278d2be5",
+    "tail_consumers": null,
+    "logpush": false,
+    "observability": {
+      "enabled": false,
+      "head_sampling_rate": null
+    },
+    "has_assets": false,
+    "has_modules": true,
+    "etag": "ff9869d27d5352090641f04cf3461304e4a10102c623c89f3544b8a8dd52ed1d",
+    "handlers": [
+      "fetch"
+    ],
+    "named_handlers": [
+      {
+        "name": "pages",
+        "handlers": [
+          "work",
+          "talk",
+          "gastric"
+        ]
+      },
+      {
+        "name": "findPage",
+        "handlers": [
+          "class"
+        ]
+      }
+    ],
+    "last_deployed_from": "api",
+    "compatibility_date": "2026-08-09",
+    "usage_model": "standard",
+    "startup_time_ms": 2
+  },
+  "rollback": {
+    "restored": true,
+    "at": "2026-10-21T23:13:21.729Z"
+  }
+}
