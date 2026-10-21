@@ -104,3 +104,5 @@ body[data-template=help-guided] #shift-public-news{overflow:hidden!important}
 html body main#main-content.hg a{padding:0!important;border:0!important;background:transparent!important;text-align:left!important}
 html body main#main-content.hg .hg-hero-contact{padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;width:auto!important;min-width:0!important;height:auto!important;max-width:none!important;justify-content:flex-start!important}
 html body main#main-content.hg *::before,html body main#main-content.hg *::after{content:none!important;display:none!important}
+
+body[data-template=help-guided] #shift-public-news{contain:layout paint!important;isolation:isolate!important;max-width:100%!important;position:relative!important}
