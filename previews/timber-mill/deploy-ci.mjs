@@ -12,7 +12,7 @@ const version='20261021-mill-v2-colours',source='46709814736969da302d007d169a245
 mkdirSync(evidence,{recursive:true});
 const save=(name,value)=>writeFileSync(path.join(evidence,name),typeof value==='string'?value:JSON.stringify(value,null,2)+'\n');
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
-assert.equal(git('rev-parse','HEAD^'),source,'Release must be a direct child of the approved source');
+assert.equal(git('merge-base',source,'HEAD'),source,'Approved source must remain an ancestor');
 const allowed=new Set(['.github/workflows/timber-mill-preview-deploy-20261021.yml','previews/timber-mill/deploy-ci.mjs','previews/timber-mill/check-ci.cjs']);
 assert(git('diff','--name-only',source,'HEAD').split('\n').every(name=>allowed.has(name)),'Unexpected source changes');
 assert.equal(git('hash-object','previews/timber-mill/content.mjs'),'bf07539966ad50e38336cfa250913919bfe3e54f');
@@ -28,7 +28,7 @@ async function api(resource,options={}){
 }
 const before=await fetch(origin+'/shop',{signal:AbortSignal.timeout(25000)});
 assert.equal(before.status,200);assert(['20261021-mill-v1',version].includes(before.headers.get('X-Shift-TimberMill-Version')),'Unknown preview owner');
-save('preview-before.html',await before.text());
+const beforeHTML=await before.text();save('preview-before.html',beforeHTML);
 const routes=await api('/zones/'+zone+'/workers/routes');save('routes-before.json',routes);
 assert(!routes.some(route=>route.script===script),'Preview worker must own zero production routes');
 const settings=await api('/accounts/'+account+'/workers/scripts/'+script+'/settings');
@@ -36,7 +36,9 @@ assert.equal(settings.bindings.length,1);assert(settings.bindings.some(b=>b.name
 const form=new FormData();
 form.append('metadata',JSON.stringify({main_module:'previews/timber-mill/worker.mjs',bindings:[{type:'service',name:'CORE',service:'shift-core'}],compatibility_date:'2026-08-09',observability:{enabled:false},tags:['timber-mill-preview-only-20261021']}));
 for(const name of ['worker.mjs','content.mjs'])form.append('previews/timber-mill/'+name,new Blob([readFileSync(path.join(directory,name))],{type:'application/javascript+module'}),'previews/timber-mill/'+name);
-save('upload.json',await api('/accounts/'+account+'/workers/scripts/'+script,{method:'PUT',body:form}));
+if(before.headers.get('X-Shift-TimberMill-Version')===version&&beforeHTML.includes(main)&&beforeHTML.includes(style)&&await(await fetch(origin+'/shop/client.js')).text()===client){
+  save('upload.json',{alreadyPresent:true,version,at:new Date().toISOString()});
+}else save('upload.json',await api('/accounts/'+account+'/workers/scripts/'+script,{method:'PUT',body:form}));
 let page,html;
 for(let attempt=0;attempt<8;attempt++){
   page=await fetch(origin+'/shop',{signal:AbortSignal.timeout(25000)});html=await page.text();

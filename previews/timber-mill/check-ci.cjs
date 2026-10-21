@@ -39,7 +39,11 @@ for(const[engine,type]of [['chromium',chromium],['webkit',webkit]]){
     await first.locator('.tm-item-link').click();assert.equal(new URL(page.url()).searchParams.get('colour'),'cream');
     assert.equal(await page.locator('[data-tm-colour-name]').textContent(),'Cream');assert.equal(await page.locator('.tm-buying').getAttribute('open'),null);
     await page.getByRole('button',{name:'Black',exact:true}).press('Enter');assert.equal(new URL(page.url()).searchParams.get('colour'),'black');
-    await page.reload({waitUntil:'networkidle'});assert.equal(await page.getByRole('button',{name:'Black',exact:true}).getAttribute('aria-pressed'),'true');await decoded(page.locator('[data-tm-image]'));await noOverflow(page);
+    const reloadResponse=await page.reload({waitUntil:'networkidle'});
+    const reloadState=await page.evaluate(()=>({url:location.href,ready:document.readyState,version:document.querySelector('[data-timber-mill-version]')?.dataset.timberMillVersion,tiles:document.querySelectorAll('[data-tm-product]').length,variants:[...document.querySelectorAll('[data-tm-variant]')].map(item=>({slug:item.dataset.tmVariant,label:item.querySelector('[data-tm-colour-name]')?.textContent,img:item.querySelector('img')?.getAttribute('src'),buttons:[...item.querySelectorAll('[data-tm-colour]')].map(b=>({colour:b.dataset.tmColour,pressed:b.getAttribute('aria-pressed')}))})),scripts:[...document.scripts].map(s=>s.src),controlled:!!navigator.serviceWorker?.controller}));
+    fs.writeFileSync(out+'/'+engine+'-'+width+'-reload.json',JSON.stringify({responseURL:reloadResponse.url(),fromServiceWorker:reloadResponse.fromServiceWorker(),state:reloadState,errors,blocked},null,2));
+    await page.screenshot({path:out+'/'+engine+'-'+width+'-reload.png'});
+    assert.equal(await page.getByRole('button',{name:'Black',exact:true}).getAttribute('aria-pressed'),'true');await decoded(page.locator('[data-tm-image]'));await noOverflow(page);
     await page.screenshot({path:out+'/'+engine+'-'+width+'-detail.png'});
     assert.deepEqual(errors,[]);assert.deepEqual(blocked.filter(r=>!/analytics|insights|beacon|consent|telemetry|pixel|rum/i.test(r.url)),[],'Unexpected attempted write');
     report.push({engine,width,productColourChecks:48,detailURLReload:true,keyboard:true,categoryBackRetention:true,imagesDecoded:true,swatchesAtLeast44px:true,noOverflow:true,stockHiddenBeforeBuying:true,noUnexpectedWrites:true,at:new Date().toISOString()});save();console.log(JSON.stringify(report.at(-1)));
