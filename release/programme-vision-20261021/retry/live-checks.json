@@ -1,0 +1,625 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "errors": [],
+      "overflow": 0,
+      "mainCount": 1,
+      "logo": true,
+      "logoContent": "normal",
+      "logoFilter": "none",
+      "images": [
+        {
+          "src": "/assets/programme-vision-20261021/15b168797d55cfb9.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/bb5e95af808ddf4b.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/183b93895c2b757d.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/26e24ec7e99703fc.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/911be631cc9b59e9.jpg",
+          "loaded": true
+        }
+      ],
+      "hero": "none",
+      "heroHeight": 444.828125,
+      "sequence": [
+        "pv-hero",
+        "pv-free",
+        "pv-weight",
+        "pv-steps",
+        "pv-week-section",
+        "pv-continuity",
+        "",
+        "continuity-links",
+        ""
+      ],
+      "footer": true,
+      "footerBackground": "rgb(5, 5, 5)",
+      "headings": [
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)"
+      ],
+      "ticker": 0,
+      "links": [
+        {
+          "text": "Explore weight-management help",
+          "href": "#weight-management"
+        },
+        {
+          "text": "Explore My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard"
+        },
+        {
+          "text": "Join My Timber free",
+          "href": "https://shiftsometimber.co.uk/join-my-timber"
+        },
+        {
+          "text": "Explore weight-management options",
+          "href": "https://shiftsometimber.co.uk/start-here?from=programme"
+        },
+        {
+          "text": "01 / FIND YOUR STARTNot sure where to begin?Tell us what you want to work on. Explore the routes worth understanding.Find my starting point",
+          "href": "https://shiftsometimber.co.uk/start-here?from=programme"
+        },
+        {
+          "text": "02 / UNDERSTAND TREATMENTExplore your options.Clear information on treatment, clinical assessment and what to consider.Explore treatment information",
+          "href": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "text": "03 / ALREADY ON TREATMENTKeep your support connected.Changing provider or reviewing your next step? Start with the switching guide.Read switching guidance",
+          "href": "https://shiftsometimber.co.uk/provider-switch"
+        },
+        {
+          "text": "Simple food.Find recipes and food ideas that work around your time and budget.Explore Grub",
+          "href": "https://shiftsometimber.co.uk/member/grub"
+        },
+        {
+          "text": "Movement that fits.Explore options for your ability, available time and equipment.Explore Fit",
+          "href": "https://shiftsometimber.co.uk/member/fit"
+        },
+        {
+          "text": "A little structure.Keep your priorities, check-ins and next useful step together.Open My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard#journey"
+        },
+        {
+          "text": "Explore Life Back",
+          "href": "/life-back"
+        },
+        {
+          "text": "Explore free My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard"
+        },
+        {
+          "text": "Thinking about stopping treatment",
+          "href": "https://shiftsometimber.co.uk/articles/stopping-glp1"
+        },
+        {
+          "text": "When the clinic goes quiet",
+          "href": "https://shiftsometimber.co.uk/clinic-gone-quiet"
+        },
+        {
+          "text": "Food noise after stopping",
+          "href": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1"
+        },
+        {
+          "text": "Practical weight-loss support",
+          "href": "https://shiftsometimber.co.uk/weight-loss-support-for-men"
+        },
+        {
+          "text": "Free My Timber support →",
+          "href": "/weight-loss-support-for-men"
+        },
+        {
+          "text": "When the clinic goes quiet →",
+          "href": "/clinic-gone-quiet"
+        },
+        {
+          "text": "Changing provider →",
+          "href": "/provider-switch"
+        },
+        {
+          "text": "Food noise →",
+          "href": "/articles/food-noise-after-stopping-glp1"
+        },
+        {
+          "text": "Life Back →",
+          "href": "/life-back"
+        },
+        {
+          "text": "Grub: over 2,500 recipes",
+          "href": "/member/grub"
+        },
+        {
+          "text": "Fit: over 2,500 exercise variations",
+          "href": "/member/fit"
+        },
+        {
+          "text": "Explore free My Timber →",
+          "href": "/member/dashboard"
+        }
+      ],
+      "extra": 0
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "errors": [],
+      "overflow": 0,
+      "mainCount": 1,
+      "logo": true,
+      "logoContent": "normal",
+      "logoFilter": "none",
+      "images": [
+        {
+          "src": "/assets/programme-vision-20261021/15b168797d55cfb9.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/bb5e95af808ddf4b.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/183b93895c2b757d.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/26e24ec7e99703fc.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/911be631cc9b59e9.jpg",
+          "loaded": true
+        }
+      ],
+      "hero": "url(\"https://shiftsometimber.co.uk/assets/programme-vision-20261021/15b168797d55cfb9.jpg\")",
+      "heroHeight": 560,
+      "sequence": [
+        "pv-hero",
+        "pv-free",
+        "pv-weight",
+        "pv-steps",
+        "pv-week-section",
+        "pv-continuity",
+        "",
+        "continuity-links",
+        ""
+      ],
+      "footer": true,
+      "footerBackground": "rgb(5, 5, 5)",
+      "headings": [
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)"
+      ],
+      "ticker": 0,
+      "links": [
+        {
+          "text": "Explore weight-management help",
+          "href": "#weight-management"
+        },
+        {
+          "text": "Explore My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard"
+        },
+        {
+          "text": "Join My Timber free",
+          "href": "https://shiftsometimber.co.uk/join-my-timber"
+        },
+        {
+          "text": "Explore weight-management options",
+          "href": "https://shiftsometimber.co.uk/start-here?from=programme"
+        },
+        {
+          "text": "01 / FIND YOUR STARTNot sure where to begin?Tell us what you want to work on. Explore the routes worth understanding.Find my starting point",
+          "href": "https://shiftsometimber.co.uk/start-here?from=programme"
+        },
+        {
+          "text": "02 / UNDERSTAND TREATMENTExplore your options.Clear information on treatment, clinical assessment and what to consider.Explore treatment information",
+          "href": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "text": "03 / ALREADY ON TREATMENTKeep your support connected.Changing provider or reviewing your next step? Start with the switching guide.Read switching guidance",
+          "href": "https://shiftsometimber.co.uk/provider-switch"
+        },
+        {
+          "text": "Simple food.Find recipes and food ideas that work around your time and budget.Explore Grub",
+          "href": "https://shiftsometimber.co.uk/member/grub"
+        },
+        {
+          "text": "Movement that fits.Explore options for your ability, available time and equipment.Explore Fit",
+          "href": "https://shiftsometimber.co.uk/member/fit"
+        },
+        {
+          "text": "A little structure.Keep your priorities, check-ins and next useful step together.Open My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard#journey"
+        },
+        {
+          "text": "Explore Life Back",
+          "href": "/life-back"
+        },
+        {
+          "text": "Explore free My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard"
+        },
+        {
+          "text": "Thinking about stopping treatment",
+          "href": "https://shiftsometimber.co.uk/articles/stopping-glp1"
+        },
+        {
+          "text": "When the clinic goes quiet",
+          "href": "https://shiftsometimber.co.uk/clinic-gone-quiet"
+        },
+        {
+          "text": "Food noise after stopping",
+          "href": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1"
+        },
+        {
+          "text": "Practical weight-loss support",
+          "href": "https://shiftsometimber.co.uk/weight-loss-support-for-men"
+        },
+        {
+          "text": "Free My Timber support →",
+          "href": "/weight-loss-support-for-men"
+        },
+        {
+          "text": "When the clinic goes quiet →",
+          "href": "/clinic-gone-quiet"
+        },
+        {
+          "text": "Changing provider →",
+          "href": "/provider-switch"
+        },
+        {
+          "text": "Food noise →",
+          "href": "/articles/food-noise-after-stopping-glp1"
+        },
+        {
+          "text": "Life Back →",
+          "href": "/life-back"
+        },
+        {
+          "text": "Grub: over 2,500 recipes",
+          "href": "/member/grub"
+        },
+        {
+          "text": "Fit: over 2,500 exercise variations",
+          "href": "/member/fit"
+        },
+        {
+          "text": "Explore free My Timber →",
+          "href": "/member/dashboard"
+        }
+      ],
+      "extra": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "errors": [],
+      "overflow": 0,
+      "mainCount": 1,
+      "logo": true,
+      "logoContent": "normal",
+      "logoFilter": "none",
+      "images": [
+        {
+          "src": "/assets/programme-vision-20261021/15b168797d55cfb9.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/bb5e95af808ddf4b.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/183b93895c2b757d.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/26e24ec7e99703fc.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/911be631cc9b59e9.jpg",
+          "loaded": true
+        }
+      ],
+      "hero": "none",
+      "heroHeight": 444.28125,
+      "sequence": [
+        "pv-hero",
+        "pv-free",
+        "pv-weight",
+        "pv-steps",
+        "pv-week-section",
+        "pv-continuity",
+        "",
+        "continuity-links",
+        ""
+      ],
+      "footer": true,
+      "footerBackground": "rgb(5, 5, 5)",
+      "headings": [
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)"
+      ],
+      "ticker": 0,
+      "links": [
+        {
+          "text": "Explore weight-management help",
+          "href": "#weight-management"
+        },
+        {
+          "text": "Explore My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard"
+        },
+        {
+          "text": "Join My Timber free",
+          "href": "https://shiftsometimber.co.uk/join-my-timber"
+        },
+        {
+          "text": "Explore weight-management options",
+          "href": "https://shiftsometimber.co.uk/start-here?from=programme"
+        },
+        {
+          "text": "01 / FIND YOUR STARTNot sure where to begin?Tell us what you want to work on. Explore the routes worth understanding.Find my starting point",
+          "href": "https://shiftsometimber.co.uk/start-here?from=programme"
+        },
+        {
+          "text": "02 / UNDERSTAND TREATMENTExplore your options.Clear information on treatment, clinical assessment and what to consider.Explore treatment information",
+          "href": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "text": "03 / ALREADY ON TREATMENTKeep your support connected.Changing provider or reviewing your next step? Start with the switching guide.Read switching guidance",
+          "href": "https://shiftsometimber.co.uk/provider-switch"
+        },
+        {
+          "text": "Simple food.Find recipes and food ideas that work around your time and budget.Explore Grub",
+          "href": "https://shiftsometimber.co.uk/member/grub"
+        },
+        {
+          "text": "Movement that fits.Explore options for your ability, available time and equipment.Explore Fit",
+          "href": "https://shiftsometimber.co.uk/member/fit"
+        },
+        {
+          "text": "A little structure.Keep your priorities, check-ins and next useful step together.Open My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard#journey"
+        },
+        {
+          "text": "Explore Life Back",
+          "href": "/life-back"
+        },
+        {
+          "text": "Explore free My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard"
+        },
+        {
+          "text": "Thinking about stopping treatment",
+          "href": "https://shiftsometimber.co.uk/articles/stopping-glp1"
+        },
+        {
+          "text": "When the clinic goes quiet",
+          "href": "https://shiftsometimber.co.uk/clinic-gone-quiet"
+        },
+        {
+          "text": "Food noise after stopping",
+          "href": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1"
+        },
+        {
+          "text": "Practical weight-loss support",
+          "href": "https://shiftsometimber.co.uk/weight-loss-support-for-men"
+        },
+        {
+          "text": "Free My Timber support →",
+          "href": "/weight-loss-support-for-men"
+        },
+        {
+          "text": "When the clinic goes quiet →",
+          "href": "/clinic-gone-quiet"
+        },
+        {
+          "text": "Changing provider →",
+          "href": "/provider-switch"
+        },
+        {
+          "text": "Food noise →",
+          "href": "/articles/food-noise-after-stopping-glp1"
+        },
+        {
+          "text": "Life Back →",
+          "href": "/life-back"
+        },
+        {
+          "text": "Grub: over 2,500 recipes",
+          "href": "/member/grub"
+        },
+        {
+          "text": "Fit: over 2,500 exercise variations",
+          "href": "/member/fit"
+        },
+        {
+          "text": "Explore free My Timber →",
+          "href": "/member/dashboard"
+        }
+      ],
+      "extra": 0
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "errors": [],
+      "overflow": 0,
+      "mainCount": 1,
+      "logo": true,
+      "logoContent": "normal",
+      "logoFilter": "none",
+      "images": [
+        {
+          "src": "/assets/programme-vision-20261021/15b168797d55cfb9.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/bb5e95af808ddf4b.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/183b93895c2b757d.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/26e24ec7e99703fc.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/assets/programme-vision-20261021/911be631cc9b59e9.jpg",
+          "loaded": true
+        }
+      ],
+      "hero": "url(\"https://shiftsometimber.co.uk/assets/programme-vision-20261021/15b168797d55cfb9.jpg\")",
+      "heroHeight": 560,
+      "sequence": [
+        "pv-hero",
+        "pv-free",
+        "pv-weight",
+        "pv-steps",
+        "pv-week-section",
+        "pv-continuity",
+        "",
+        "continuity-links",
+        ""
+      ],
+      "footer": true,
+      "footerBackground": "rgb(5, 5, 5)",
+      "headings": [
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)",
+        "rgb(139, 148, 123)"
+      ],
+      "ticker": 0,
+      "links": [
+        {
+          "text": "Explore weight-management help",
+          "href": "#weight-management"
+        },
+        {
+          "text": "Explore My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard"
+        },
+        {
+          "text": "Join My Timber free",
+          "href": "https://shiftsometimber.co.uk/join-my-timber"
+        },
+        {
+          "text": "Explore weight-management options",
+          "href": "https://shiftsometimber.co.uk/start-here?from=programme"
+        },
+        {
+          "text": "01 / FIND YOUR STARTNot sure where to begin?Tell us what you want to work on. Explore the routes worth understanding.Find my starting point",
+          "href": "https://shiftsometimber.co.uk/start-here?from=programme"
+        },
+        {
+          "text": "02 / UNDERSTAND TREATMENTExplore your options.Clear information on treatment, clinical assessment and what to consider.Explore treatment information",
+          "href": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "text": "03 / ALREADY ON TREATMENTKeep your support connected.Changing provider or reviewing your next step? Start with the switching guide.Read switching guidance",
+          "href": "https://shiftsometimber.co.uk/provider-switch"
+        },
+        {
+          "text": "Simple food.Find recipes and food ideas that work around your time and budget.Explore Grub",
+          "href": "https://shiftsometimber.co.uk/member/grub"
+        },
+        {
+          "text": "Movement that fits.Explore options for your ability, available time and equipment.Explore Fit",
+          "href": "https://shiftsometimber.co.uk/member/fit"
+        },
+        {
+          "text": "A little structure.Keep your priorities, check-ins and next useful step together.Open My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard#journey"
+        },
+        {
+          "text": "Explore Life Back",
+          "href": "/life-back"
+        },
+        {
+          "text": "Explore free My Timber",
+          "href": "https://shiftsometimber.co.uk/member/dashboard"
+        },
+        {
+          "text": "Thinking about stopping treatment",
+          "href": "https://shiftsometimber.co.uk/articles/stopping-glp1"
+        },
+        {
+          "text": "When the clinic goes quiet",
+          "href": "https://shiftsometimber.co.uk/clinic-gone-quiet"
+        },
+        {
+          "text": "Food noise after stopping",
+          "href": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1"
+        },
+        {
+          "text": "Practical weight-loss support",
+          "href": "https://shiftsometimber.co.uk/weight-loss-support-for-men"
+        },
+        {
+          "text": "Free My Timber support →",
+          "href": "/weight-loss-support-for-men"
+        },
+        {
+          "text": "When the clinic goes quiet →",
+          "href": "/clinic-gone-quiet"
+        },
+        {
+          "text": "Changing provider →",
+          "href": "/provider-switch"
+        },
+        {
+          "text": "Food noise →",
+          "href": "/articles/food-noise-after-stopping-glp1"
+        },
+        {
+          "text": "Life Back →",
+          "href": "/life-back"
+        },
+        {
+          "text": "Grub: over 2,500 recipes",
+          "href": "/member/grub"
+        },
+        {
+          "text": "Fit: over 2,500 exercise variations",
+          "href": "/member/fit"
+        },
+        {
+          "text": "Explore free My Timber →",
+          "href": "/member/dashboard"
+        }
+      ],
+      "extra": 0
+    }
+  ]
+}

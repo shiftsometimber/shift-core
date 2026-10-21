@@ -1,0 +1,15 @@
+{
+  "state": "deployed-and-publicly-verified",
+  "url": "https://shiftsometimber.co.uk/programme",
+  "deployment": "f48091b1-929b-440b-9a31-b9a6b5f166f8",
+  "browsers": [
+    "Chrome",
+    "WebKit"
+  ],
+  "widths": [
+    390,
+    1440
+  ],
+  "links": "13 public destinations returned HTTP 200",
+  "next": "SHIFT Health preview only; no approval to deploy that page yet"
+}

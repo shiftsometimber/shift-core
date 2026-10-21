@@ -1,0 +1,67 @@
+[
+  {
+    "url": "https://shiftsometimber.co.uk/member/dashboard",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/member/dashboard"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/join-my-timber",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/join-my-timber"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/start-here?from=programme",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/start-here?from=programme"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/treatment-centre",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/treatment-centre"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/provider-switch",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/provider-switch"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/member/grub",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/member/grub"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/member/fit",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/member/fit"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/member/dashboard#journey",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/member/dashboard"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/life-back",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/life-back"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/articles/stopping-glp1",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/articles/stopping-glp1"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/clinic-gone-quiet",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/clinic-gone-quiet"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1"
+  },
+  {
+    "url": "https://shiftsometimber.co.uk/weight-loss-support-for-men",
+    "status": 200,
+    "final": "https://shiftsometimber.co.uk/weight-loss-support-for-men"
+  }
+]
