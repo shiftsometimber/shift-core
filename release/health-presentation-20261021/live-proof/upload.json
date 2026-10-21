@@ -1,0 +1,35 @@
+{
+  "created_on": "2026-10-21T18:31:49.886793Z",
+  "modified_on": "2026-10-21T18:33:30.398579Z",
+  "id": "shift-health-presentation-20261021",
+  "tag": "9433e0941bf249c5975a1f1abe334528",
+  "entry_point": "shift-health-presentation-route.mjs",
+  "tags": [
+    "approved-health-presentation-20261021"
+  ],
+  "deployment_id": "f01503ac6ac2469aa2032030656a43a0",
+  "tail_consumers": null,
+  "logpush": false,
+  "observability": {
+    "enabled": false,
+    "head_sampling_rate": null
+  },
+  "has_assets": false,
+  "has_modules": true,
+  "etag": "bbe66b8a7f330f9c238668ba70525d3cf6481ceb6c8d15fada93a377e17fb8a3",
+  "handlers": [
+    "fetch"
+  ],
+  "named_handlers": [
+    {
+      "name": "presentHealth",
+      "handlers": [
+        "class"
+      ]
+    }
+  ],
+  "last_deployed_from": "wrangler",
+  "compatibility_date": "2026-08-09",
+  "usage_model": "standard",
+  "startup_time_ms": 2
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "pattern": "shiftsometimber.co.uk/shift-health*",
+    "before": {
+      "id": "0497079db5bd46ec809b6e6a37518ee9",
+      "pattern": "shiftsometimber.co.uk/shift-health*",
+      "script": "shift-core",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/shift-health*",
+    "before": {
+      "id": "a065f759ad064441a2f004a395199b6e",
+      "pattern": "www.shiftsometimber.co.uk/shift-health*",
+      "script": "shift-core",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/shift-health",
+    "before": {
+      "id": "cc0457e6c7504e7eb18baa996160ad3b",
+      "pattern": "shiftsometimber.co.uk/shift-health",
+      "script": "shift-bloods-public",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/shift-health",
+    "before": {
+      "id": "e0e7b04eaa1747378dd1c3e585e5d08d",
+      "pattern": "www.shiftsometimber.co.uk/shift-health",
+      "script": "shift-bloods-public",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/shift-health/",
+    "before": {
+      "id": "718946e96ee949c481fe4460c0369977",
+      "pattern": "shiftsometimber.co.uk/shift-health/",
+      "script": "shift-bloods-public",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/shift-health/",
+    "before": {
+      "id": "5162e61989064431a163342dc4947bbf",
+      "pattern": "www.shiftsometimber.co.uk/shift-health/",
+      "script": "shift-bloods-public",
+      "request_limit_fail_open": false
+    }
+  }
+]

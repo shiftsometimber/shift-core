@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "at": "2026-10-21T18:41:28.692Z",
+  "variants": [
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health?health-check=20261021",
+      "finalUrl": "https://shiftsometimber.co.uk/shift-health?health-check=20261021",
+      "status": 200,
+      "approvedDesign": true
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/shift-health",
+      "finalUrl": "https://shiftsometimber.co.uk/shift-health",
+      "status": 200,
+      "approvedDesign": true
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/",
+      "finalUrl": "https://shiftsometimber.co.uk/shift-health/",
+      "status": 200,
+      "approvedDesign": true
+    }
+  ]
+}

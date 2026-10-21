@@ -1,0 +1,200 @@
+{
+  "passed": true,
+  "at": "2026-10-21T18:38:44.074Z",
+  "head": "d5752db9b60edfaa1cb4fd35233b599045e6fd7a",
+  "url": "https://shiftsometimber.co.uk/shift-health",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "status": 200,
+      "heading": "What would you\nlike to sort?",
+      "marker": "20261021",
+      "overflow": false,
+      "mainCount": 1,
+      "images": [
+        {
+          "naturalWidth": 1400,
+          "width": 350,
+          "height": 233.328125
+        },
+        {
+          "naturalWidth": 1400,
+          "width": 350,
+          "height": 233.328125
+        }
+      ],
+      "weightBelowCards": true,
+      "headerImages": [
+        {
+          "width": 215,
+          "height": 42.0625,
+          "loaded": true,
+          "display": "block"
+        }
+      ],
+      "footer": true,
+      "template": "shift-health",
+      "links": [
+        "/shift-health/testosterone-energy",
+        "/shift-health/sleep-apnoea",
+        "/shift-health/blood-pressure-monitor",
+        "/mens-mental-health",
+        "/shift-health/erectile-dysfunction",
+        "/shift-health/hair-loss",
+        "/shift-health/blood-tests",
+        "/shift-health/testosterone-energy",
+        "/mens-weight-management",
+        "/start-here",
+        "/shift-health/health-mot",
+        "/shift-health/shift-measure",
+        "/shift-health/stop-smoking",
+        "/member/dashboard"
+      ]
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "status": 200,
+      "heading": "What would you\nlike to sort?",
+      "marker": "20261021",
+      "overflow": false,
+      "mainCount": 1,
+      "images": [
+        {
+          "naturalWidth": 1400,
+          "width": 271.4375,
+          "height": 373.25
+        },
+        {
+          "naturalWidth": 1400,
+          "width": 271.4375,
+          "height": 373.25
+        }
+      ],
+      "weightBelowCards": true,
+      "headerImages": [
+        {
+          "width": 230,
+          "height": 45,
+          "loaded": true,
+          "display": "block"
+        }
+      ],
+      "footer": true,
+      "template": "shift-health",
+      "links": [
+        "/shift-health/testosterone-energy",
+        "/shift-health/sleep-apnoea",
+        "/shift-health/blood-pressure-monitor",
+        "/mens-mental-health",
+        "/shift-health/erectile-dysfunction",
+        "/shift-health/hair-loss",
+        "/shift-health/blood-tests",
+        "/shift-health/testosterone-energy",
+        "/mens-weight-management",
+        "/start-here",
+        "/shift-health/health-mot",
+        "/shift-health/shift-measure",
+        "/shift-health/stop-smoking",
+        "/member/dashboard"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "status": 200,
+      "heading": "What would you\nlike to sort?",
+      "marker": "20261021",
+      "overflow": false,
+      "mainCount": 1,
+      "images": [
+        {
+          "naturalWidth": 1400,
+          "width": 350,
+          "height": 233.328125
+        },
+        {
+          "naturalWidth": 1400,
+          "width": 350,
+          "height": 233.328125
+        }
+      ],
+      "weightBelowCards": true,
+      "headerImages": [
+        {
+          "width": 215,
+          "height": 42.0625,
+          "loaded": true,
+          "display": "block"
+        }
+      ],
+      "footer": true,
+      "template": "shift-health",
+      "links": [
+        "/shift-health/testosterone-energy",
+        "/shift-health/sleep-apnoea",
+        "/shift-health/blood-pressure-monitor",
+        "/mens-mental-health",
+        "/shift-health/erectile-dysfunction",
+        "/shift-health/hair-loss",
+        "/shift-health/blood-tests",
+        "/shift-health/testosterone-energy",
+        "/mens-weight-management",
+        "/start-here",
+        "/shift-health/health-mot",
+        "/shift-health/shift-measure",
+        "/shift-health/stop-smoking",
+        "/member/dashboard"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "status": 200,
+      "heading": "What would you\nlike to sort?",
+      "marker": "20261021",
+      "overflow": false,
+      "mainCount": 1,
+      "images": [
+        {
+          "naturalWidth": 1400,
+          "width": 271.4375,
+          "height": 373.25
+        },
+        {
+          "naturalWidth": 1400,
+          "width": 271.4375,
+          "height": 373.25
+        }
+      ],
+      "weightBelowCards": true,
+      "headerImages": [
+        {
+          "width": 230,
+          "height": 45,
+          "loaded": true,
+          "display": "block"
+        }
+      ],
+      "footer": true,
+      "template": "shift-health",
+      "links": [
+        "/shift-health/testosterone-energy",
+        "/shift-health/sleep-apnoea",
+        "/shift-health/blood-pressure-monitor",
+        "/mens-mental-health",
+        "/shift-health/erectile-dysfunction",
+        "/shift-health/hair-loss",
+        "/shift-health/blood-tests",
+        "/shift-health/testosterone-energy",
+        "/mens-weight-management",
+        "/start-here",
+        "/shift-health/health-mot",
+        "/shift-health/shift-measure",
+        "/shift-health/stop-smoking",
+        "/member/dashboard"
+      ]
+    }
+  ]
+}

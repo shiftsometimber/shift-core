@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-21T18:42:03.011475+00:00",
+  "status": "SHIFT Health approved hub presentation deployed and live-verified",
+  "url": "https://shiftsometimber.co.uk/shift-health",
+  "source": "d5752db9b60edfaa1cb4fd35233b599045e6fd7a",
+  "uploadedWorkerSource": "49325c2408c46581f90b50e18381a9184f83fbbe",
+  "workerBytesUnchanged": true,
+  "delivery": "Bounded presentation Worker delegates existing Core; six owned Health routes; blood-test pages preserve older Bloods service",
+  "checks": {
+    "chromeWebkit3901440": 4,
+    "contentDestinations200": 13,
+    "canonicalWwwQuerySlashVariants": [
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health?health-check=20261021",
+        "finalUrl": "https://shiftsometimber.co.uk/shift-health?health-check=20261021",
+        "status": 200,
+        "approvedDesign": true
+      },
+      {
+        "url": "https://www.shiftsometimber.co.uk/shift-health",
+        "finalUrl": "https://shiftsometimber.co.uk/shift-health",
+        "status": 200,
+        "approvedDesign": true
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/",
+        "finalUrl": "https://shiftsometimber.co.uk/shift-health/",
+        "status": 200,
+        "approvedDesign": true
+      }
+    ]
+  },
+  "fiveHourLocalVerifier": "Stopped after diagnostics retained; excessive historical/source rechecks remain an engineering issue, not claimed repaired",
+  "coreTrtRelease": "Normal production run39650793172 is separate and not claimed complete",
+  "next": "Present existing Treatments-Preview.html for approval; no Treatments deployment approval inferred"
+}

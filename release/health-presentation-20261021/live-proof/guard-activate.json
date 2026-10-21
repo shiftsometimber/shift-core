@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-21T18:38:11.752Z",
+  "head": "d5752db9b60edfaa1cb4fd35233b599045e6fd7a",
+  "approvedHealthSha": "f04f866210e40e46b44b6e7709b146d6526581b6d1734282c46f74f7ae818401",
+  "routeWorkerSha": "c0afe5f428e4f3fc6b205419dec3547eeb382bc4fa6cf8d4338a5a7e2dbc7bab",
+  "phase": {
+    "at": "2026-10-21T18:38:12.901Z",
+    "receipts": [
+      {
+        "run": 39650793172,
+        "job": 119398602832,
+        "step": 7
+      }
+    ]
+  }
+}
