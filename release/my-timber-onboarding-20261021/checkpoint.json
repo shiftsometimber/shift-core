@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-21",
+  "timezone": "Europe/London",
+  "scope": "Matt approved Join free -> account -> short personal setup -> dashboard",
+  "state": "Deployed; signed-out entry verified; authenticated end-to-end acceptance remains open",
+  "source": "b54472012a9b5877f8c0ca613e8e2db4134ca148",
+  "production": "348c45d9-17bf-4969-b72d-15e277b64ca2",
+  "url": "https://shiftsometimber.co.uk/join-my-timber",
+  "implemented": [
+    "Uses existing guarded registration adapter and Turnstile; no authentication bypass",
+    "Goals, barrier, optional consented health baseline and treatment context, first step",
+    "Existing Journey API fills only absent baseline measurements and reads back before completion",
+    "Member-state API saves preferences/myWhy and reads back before redirect",
+    "Dashboard first-step card or setup invitation; hidden on sign-out",
+    "Homepage and all other Pages assets preserved"
+  ],
+  "verification": [
+    "Six model tests pass: consent/validation/preservation/write failure/retry/account change",
+    "All six static payload assets immutable and main assets byte verified; manifest unchanged outside scope",
+    "Actual live Join free clicked into new page",
+    "Actual signed-out session resolved; create button enabled; no console app errors observed",
+    "Live news ticker and duplicate footer hidden; no desktop overflow"
+  ],
+  "open": [
+    "No actual new account, verification email or authenticated save was performed",
+    "No physical mobile-device acceptance",
+    "Existing full-preferences API uses last accepted write semantics; dedicated transactional onboarding API would be needed for robust concurrent edits across tabs",
+    "Partial form answers are not persisted until final save; verified account can return to setup via login returnTo"
+  ],
+  "restrictions": [
+    "Homepage locked",
+    "No outbound communications, customer data edits, payments or Core Worker changes",
+    "Do not claim real signup acceptance from isolated tests"
+  ],
+  "next": "Complete authorised real-member signup/verification and save/readback acceptance through normal authentication; do not bypass CAPTCHA or send unseen test email."
+}
