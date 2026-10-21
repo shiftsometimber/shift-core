@@ -11,6 +11,8 @@ import {MEMBER_DESIGN_PATHS,MEMBER_LAYOUT_PATHS,validateMemberDesignSource} from
 import {FOOTER_CANDIDATE,FOOTER_PATHS,FOOTER_RUNTIME_PATHS,historicalFooterRef,validateFooterSource} from './footer-scope.mjs';
 import {validateHomeBanner} from './home-banner-scope.mjs';
 import {MEMBER_FOCUS_APPROVED,MEMBER_FOCUS_PATHS,validateMemberFocus} from './member-focus-scope.mjs';
+import {HEALTH_PATHS,HEALTH_MAINTENANCE,HEALTH_RECEIPT,verifyHealthVisionExtension} from './health-vision-scope-20261021.mjs';
+import {MAIN_RELEASE_BASE,MAIN_RELEASE_PATHS,MAIN_RELEASE_MAINTENANCE,MAIN_RELEASE_RECEIPT} from './main-release-readiness-scope-20261021.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {withImmutableHistoryVerification,immutableHistorySourceHead,immutableHistoryExecFileSync} from './immutable-git-facts.mjs';
@@ -38,13 +40,15 @@ APP_PATHS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-07-authorised-registry-lifecycle-followup.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-07-authorised-enicepatide-emugrobart-registry.json');
-export const originalAppHashRef=p=>rankingGrowthHistoricalRef('HEAD',p,undefined,false)!=='HEAD'?rankingGrowthHistoricalRef('HEAD',p,undefined,false):['release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs','tests/watch-ownership-release.test.mjs'].includes(p)?'HEAD':p==='my-timber-pwa/presentation.mjs'?PWA_DISMISS_APPROVED:historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef(ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:'HEAD',p),p),p);
+for(const p of [...HEALTH_PATHS,...HEALTH_MAINTENANCE,HEALTH_RECEIPT,...MAIN_RELEASE_PATHS,...MAIN_RELEASE_MAINTENANCE,MAIN_RELEASE_RECEIPT])APP_PATHS.add(p);
+export const originalAppHashRef=p=>rankingGrowthHistoricalRef('HEAD',p,undefined,false)!=='HEAD'?rankingGrowthHistoricalRef('HEAD',p,undefined,false):p==='release/app-scope.mjs'?MAIN_RELEASE_BASE:['release/watch-registry-wave-scope.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs','tests/watch-ownership-release.test.mjs'].includes(p)?'HEAD':p==='my-timber-pwa/presentation.mjs'?PWA_DISMISS_APPROVED:historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef(ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:'HEAD',p),p),p);
 export function originalMemberWorkerPresentation(source){
  return source.replace("\nexport function memberWorkerHtml(html){\n return html.replace(/(<script\\b[^>]*\\bsrc=[\"'])(\\/(?:app\\.js|register-sw-v3a\\.js)(?:\\?[^\"']*)?)([\"'][^>]*>)/gi,(_,before,src,after)=>before+src+(/[?&](?:amp;)?member_worker=1(?:&|$)/.test(src)?'':(src.includes('?')?'&amp;':'?')+'member_worker=1')+after);\n}\nexport async function memberWorkerAsset(request,response){\n const u=new URL(request.url);\n if(request.method!=='GET'||u.searchParams.get('member_worker')!=='1'||!['/app.js','/register-sw-v3a.js'].includes(u.pathname))return null;\n if(!response.ok||!/(?:javascript|ecmascript)/i.test(response.headers.get('Content-Type')||''))return response;\n const before=await response.text(),legacy=u.pathname==='/app.js'?\"navigator.serviceWorker.register('/service-worker.js')\":\"navigator.serviceWorker.register('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2',{updateViaCache:'none'})\",shared=\"navigator.serviceWorker.register('/shift-push-sw-v1.js',{scope:'/',updateViaCache:'none'})\";\n const h=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])h.delete(k);h.set('Cache-Control','no-store');\n if(before.split(legacy).length!==2)return new Response('Member worker registration source changed; please retry later.',{status:503,headers:h});\n return new Response(before.replace(legacy,shared),{status:response.status,statusText:response.statusText,headers:h});\n}\n",'').replace("\n const memberAsset=await memberWorkerAsset(request,response);if(memberAsset)return memberAsset;",'').replace("\n if(/^\\/member\\//.test(path))html=memberWorkerHtml(html);",'');
 }
 for(const p of [...METRICS_PATHS,...RECONCILIATION_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED])APP_PATHS.add(p);
 export function validateAppSource(){
  return withImmutableHistoryVerification(()=>{
+ verifyHealthVisionExtension();
  verifyReconciledRelease();
  verifyMetricsConnection();
  validateFit300();
