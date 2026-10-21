@@ -156,7 +156,9 @@ test('a PASS with invented primary evidence or an unreviewed safety duration rem
  const timed={...draft,body:draft.body.replace('## Sources','Keep chilled food out for a maximum of four hours.\n\n## Sources')};assert(reviewEvidenceIssues(pass(),timed,sources).some(s=>s.startsWith('material_quantity_not_reviewed:')));
 });
 test('two substantive releases can update one canonical while the prior verified version stays visible until the next slot',async()=>{
- const f=await fixture();assert.equal((await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:BEFORE})).status,'ready');assert.equal((await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE})).status,'verified');const first=await editorialPublication(f.env,'packed-lunch-example',{now:DUE});
+ const f=await fixture();assert.equal((await generateEditorialArticle(f.env,{fetcher:f.fetcher,now:BEFORE})).status,'ready');assert.equal((await publishDueEditorial(f.env,{fetcher:f.fetcher,now:DUE})).status,'verified');
+ const normalised=await f.DB.prepare(`UPDATE knowledge_articles SET updated_at=? WHERE slug='packed-lunch-example' AND status='published'`).bind(new Date(DUE).toISOString()).run();assert.equal(Number(normalised.meta?.changes||0),1);
+ const first=await editorialPublication(f.env,'packed-lunch-example',{now:DUE});
  const nextBefore=BEFORE+3*86400000,nextDue=DUE+3*86400000,question='How can I adapt this lunch plan after my working pattern changes?';await refreshEditorialCorpus(f.env,{fetcher:f.fetcher,now:nextBefore});
  const brief={...f.brief,question};await f.DB.prepare(`INSERT INTO knowledge_editorial_briefs(intent_key,question,audience,cluster,target_url,brief_json,priority,created_at,updated_at) VALUES(?,?,?,?,?,?,200,?,?)`).bind(await digest(question),question,brief.audience,brief.cluster,TARGET,JSON.stringify(brief),new Date(nextBefore).toISOString(),new Date(nextBefore).toISOString()).run();
  const a='Write the changed working pattern on a sheet beside the kitchen cupboard. Mark the place where preparation will become awkward and decide which practical detail you can adjust before the next working day begins.';
