@@ -4,7 +4,7 @@
     "file": "programme.html",
     "ext": "html",
     "type": "text/html; charset=utf-8",
-    "bytes": 264615
+    "bytes": 44653
   },
   {
     "path": "/assets/programme-vision-20261021/6dbf170b9d02cbbc.jpg",
@@ -19,13 +19,6 @@
     "ext": "jpg",
     "type": "image/jpeg",
     "bytes": 172652
-  },
-  {
-    "path": "/assets/programme-vision-20261021/9a56d0a8507e211d.png",
-    "file": "9a56d0a8507e211d.png",
-    "ext": "png",
-    "type": "image/png",
-    "bytes": 46830
   },
   {
     "path": "/assets/programme-vision-20261021/bb5e95af808ddf4b.jpg",
@@ -54,5 +47,12 @@
     "ext": "jpg",
     "type": "image/jpeg",
     "bytes": 200022
+  },
+  {
+    "path": "/assets/programme-vision-20261021/9a56d0a8507e211d.png",
+    "file": "9a56d0a8507e211d.png",
+    "ext": "png",
+    "type": "image/png",
+    "bytes": 46830
   }
 ]
