@@ -19,7 +19,7 @@ test('guides are routed, independently canonical, linked and closed to booking',
 });
 test('hub contains approved card and guide routes, no obsolete purchase placeholders',()=>{
  const health=renderShiftHealthDocument(shell);
- assert.match(health,/>Testosterone &amp; TRT<\/h2>/);assert.match(health,/>Explore testosterone &amp; TRT<\/a>/);
+ assert.match(health,/>Testosterone:<br>start with understanding<\/h2>/);assert.match(health,/href="\/shift-health\/testosterone-energy">Explore testosterone<svg/);assert.match(health,/Need specific help<br>with weight loss\?/);
  const hub=renderShiftHealthDocument(shell,'testosterone-energy');
  for(const slug of Object.keys(testosteroneGuides))assert.ok(hub.includes('href="/shift-health/'+slug+'"'));
  assert.doesNotMatch(hub,/To be confirmed|arrangements must be confirmed|Order home test|<form\b/);

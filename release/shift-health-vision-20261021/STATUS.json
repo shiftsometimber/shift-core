@@ -1,0 +1,9 @@
+{
+  "status": "implemented-and-preview-verified-not-deployed",
+  "approval": "Matt approved hub imagery, then weight-management panel, then Go on 21 October 2026",
+  "base": "cfac31c6",
+  "scope": "SHIFT Health hub only; product and TRT guide output preserved",
+  "checks": "Chrome and WebKit 390/1440; 6 relevant source tests; 14 non-hub route outputs identical",
+  "blocker": "PR1386 existing sole Core owner release remains open. This finite hub delta needs normal source admission after the already-prepared TRT extension; no competing promotion or gate changes.",
+  "next": "Treatments working preview awaiting Matt review"
+}
