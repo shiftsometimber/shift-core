@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path'),assert=require('assert/strict'),{exe
 const c=require('/Users/shiftsometimberltd/SST/shift-bloods-blog-review-v1-20261018/release/approved-bloods-blogs-20261019/common.cjs');
 const root=path.resolve(__dirname,'../..'),evidence='/Users/shiftsometimberltd/SST/programme-vision-20261021/shift-health-preview/route-release';fs.mkdirSync(evidence,{recursive:true});process.chdir(root);
 const account='/accounts/9e5386dcf455be34c582d93f8bfc79e6',zone='/zones/66ec3268950adcfc837b7b8b2f8356ed',script='shift-health-presentation-20261021';
-const patterns=['shiftsometimber.co.uk/shift-health*','www.shiftsometimber.co.uk/shift-health*'];
+const patterns=['shiftsometimber.co.uk/shift-health*','www.shiftsometimber.co.uk/shift-health*','shiftsometimber.co.uk/shift-health','www.shiftsometimber.co.uk/shift-health','shiftsometimber.co.uk/shift-health/','www.shiftsometimber.co.uk/shift-health/'];
 const save=(name,data)=>fs.writeFileSync(path.join(evidence,name+'.json'),JSON.stringify(data,null,2));
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
@@ -19,9 +19,9 @@ if(mode==='preview'||mode==='refresh-preview'){
 }else if(mode==='activate'){
  const proof=JSON.parse(fs.readFileSync(path.join(evidence,'browser-preview.json')));assert.equal(proof.passed,true);assert.equal(proof.head,checked.head);
  const before=JSON.parse(fs.readFileSync(path.join(evidence,'routes-before.json'))),current=await c.organicApi(zone+'/workers/routes');
- for(const pattern of patterns){const old=before.filter(x=>x.pattern===pattern),now=current.filter(x=>x.pattern===pattern);assert.deepEqual(now,old,'Concurrent route change: '+pattern);assert(old.length<=1);if(old.length)assert.equal(old[0].script,'shift-core','An unrelated route owner must be preserved');}
- save('activation-plan',patterns.map(pattern=>({pattern,before:current.find(x=>x.pattern===pattern)||null})));
- const applied=[];for(const pattern of patterns){const old=current.find(x=>x.pattern===pattern);const row=await c.organicApi(zone+'/workers/routes'+(old?'/'+old.id:''),{method:old?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern,script})});applied.push(row);save('activated-routes',applied);}
+ const priorApplied=fs.existsSync(path.join(evidence,'activated-routes.json'))?JSON.parse(fs.readFileSync(path.join(evidence,'activated-routes.json'))):[];for(const pattern of patterns){const old=before.filter(x=>x.pattern===pattern),now=current.filter(x=>x.pattern===pattern),owned=priorApplied.find(x=>x.pattern===pattern);if(owned){assert.equal(now.length,1);assert.equal(now[0].id,owned.id);assert.equal(now[0].script,script);}else assert.deepEqual(now,old,'Concurrent route change: '+pattern);assert(old.length<=1);if(old.length)assert.equal(old[0].script,pattern.endsWith('*')?'shift-core':'shift-bloods-public','An unrelated route owner must be preserved');}
+ save('activation-plan',patterns.map(pattern=>({pattern,before:before.find(x=>x.pattern===pattern)||null})));
+ const applied=[...priorApplied];for(const pattern of patterns){if(priorApplied.some(x=>x.pattern===pattern))continue;const old=current.find(x=>x.pattern===pattern);const row=await c.organicApi(zone+'/workers/routes'+(old?'/'+old.id:''),{method:old?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern,script})});applied.push(row);save('activated-routes',applied);}
  console.log(JSON.stringify({activated:applied,head:checked.head}));
 }else{
  const applied=JSON.parse(fs.readFileSync(path.join(evidence,'activated-routes.json'))),plans=JSON.parse(fs.readFileSync(path.join(evidence,'activation-plan.json'))),current=await c.organicApi(zone+'/workers/routes');
