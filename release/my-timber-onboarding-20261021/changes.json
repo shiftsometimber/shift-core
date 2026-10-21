@@ -9,16 +9,16 @@
   {
     "path": "/join-my-timber.html",
     "file": "join.html",
-    "before": "057dd9d59590d1aa6e41a27c93ef4743",
-    "after": "2cb36289bf82669f22370add58ccc410",
-    "sha256": "98c36e545d52373e43e49a2dab59055a66cfc5147ebcbcd7007ea11bef8a0bc5"
+    "before": "2cb36289bf82669f22370add58ccc410",
+    "after": "95e14c1d0305c18c752d85e6156ab11f",
+    "sha256": "7124fee87a8948fff77922cb7b731453c19cacd6c2528e5e7bfd03b7de48b0b6"
   },
   {
     "path": "/assets/my-timber-onboarding-20261021.css",
     "file": "join.css",
-    "before": "dbc136c93b70bd330e12fb2a578c0387",
-    "after": "def65ecd39e25503244e5744c2a70bee",
-    "sha256": "6229953f3bfe5091337750f5d9830f9acb879421767dcd19a330d02e0c454193"
+    "before": "def65ecd39e25503244e5744c2a70bee",
+    "after": "acaed396f36d5b3c732c259aef054f17",
+    "sha256": "2ca47c8609d2f02128c0204decb9970deb41d20ce035b76274131a01c308fa23"
   },
   {
     "path": "/assets/my-timber-onboarding-20261021.js",
