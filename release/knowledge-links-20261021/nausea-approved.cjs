@@ -1,0 +1,21 @@
+const c=require('/Users/shiftsometimberltd/SST/shift-bloods-blog-review-v1-20261018/release/approved-bloods-blogs-20261019/common.cjs');
+const root=__dirname;
+const old="If nausea or other side effects are making a GLP-1 harder to stick with than you expected, that's exactly the kind of thing a structured programme is built to handle. Rather than leaving you to Google symptoms at 2am, we pair clinical assessment and regulated prescribing with ongoing check-ins through My Timber, so changes in how you're feeling get picked up and acted on rather than left to worsen.";
+const replacement='My Timber provides practical support with everyday routines and personal progress records. It does not monitor symptoms or provide clinical assessment, prescribing or medicine reviews. For treatment concerns, use your prescribing service’s contact route.';
+(async()=>{
+ const before=JSON.parse(c.fs.readFileSync(root+'/nausea-approved-before.json'));
+ const current=(await c.query('SELECT * FROM knowledge_articles WHERE id=?',[before.id])).rows[0];
+ c.assert.deepEqual(current,before);
+ c.assert.equal(before.body.split(old).length,2);
+ const body=before.body.replace(old,replacement),updated_at=new Date().toISOString();
+ const phase=await c.phase();const predicate=c.predicate(before);
+ c.fs.writeFileSync(root+'/nausea-approved-intent.json',JSON.stringify({before,body,updated_at,phase,approval:'User approved the exact replacement in this conversation'},null,2));
+ const q=await c.query('UPDATE knowledge_articles SET body=?,updated_at=? WHERE '+predicate.sql,[body,updated_at,...predicate.params]);
+ c.assert.equal(q.meta.reduce((n,x)=>n+Number(x.changes||0),0),1);
+ const after=(await c.query('SELECT * FROM knowledge_articles WHERE id=?',[before.id])).rows[0];
+ c.assert.deepEqual(after,{...before,body,updated_at});
+ const live=await c.get('https://shiftsometimber.co.uk/articles/glp-1-nausea');
+ const html=live.bytes.toString(); c.assert(html.includes(replacement));c.assert(!html.includes(old));c.assert(html.includes('href="/member/dashboard"'));
+ c.fs.writeFileSync(root+'/nausea-approved-verification.json',JSON.stringify({pass:true,at:new Date().toISOString(),url:live.receipt.url,replacement,liveSHA:live.receipt.sha256,metadataUnchanged:true,otherCopyUnchanged:true,memberLinkPreserved:true},null,2));
+ console.log('PASS: approved exact replacement live; original metadata, all other copy and member link preserved.');
+})().catch(e=>{console.error(e.stack);process.exitCode=1});

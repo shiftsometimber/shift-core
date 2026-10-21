@@ -22,3 +22,8 @@ Production deployment e0965fa2-becf-415e-abe1-a6ec24ec710e serves runtime source
 Live browser checks passed all 14 cases across 390px and 1440px widths: all six sort options, filtering, list view, 141 retained cards, no horizontal overflow and no browser errors. Five control routes, including the homepage, retain exact body hashes and security headers. 27 CMS rows and four static articles received scoped link updates. Popularity uses the verified GA4 snapshot for 21 September–18 October 2026; it is not an automatically refreshed ranking.
 
 Outstanding: prose correction on /articles/glp-1-nausea remains held for exact user approval; no clinical-service claim was rewritten under link-only authority. Runtime publication is complete. This subsequent commit adds verification evidence only and does not change deployed bytes.
+
+
+## Approved wording correction completed — 21 October 2026
+
+Matt approved the exact My Timber boundary paragraph shown in the conversation. Applied only that paragraph to glp-1-nausea using full-row compare-and-swap. Verified the exact replacement on the live article, removal of the former paragraph, preserved member link and unchanged metadata and remaining copy. The previously held paragraph correction is now complete; this is not a clinical review of the remainder of the article. See nausea-approved-verification.json.
