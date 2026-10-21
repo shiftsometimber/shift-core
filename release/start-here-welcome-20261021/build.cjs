@@ -1,0 +1,2 @@
+const fs=require('fs'),path=require('path');
+(async()=>{const root=__dirname,old=await import('./content.mjs');const out=['main','style','client'].map((k,i)=>'export const '+k+'='+JSON.stringify(fs.readFileSync(path.join(root,['main.html','style.css','client.js'][i]),'utf8'))+';\n').join('')+'export const images='+JSON.stringify(old.images)+';\n';fs.writeFileSync(path.join(root,'content.mjs'),out);})();

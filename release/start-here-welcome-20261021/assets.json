@@ -1,0 +1,52 @@
+[
+  {
+    "asset": "hero.webp",
+    "source": "exec-6769a3eb-988b-45d3-a6b9-e549ce553550.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 115650,
+    "sha256": "e053a741981d861a565979cae604cb240a9998e57bb1d61870fdb19a7d89514a"
+  },
+  {
+    "asset": "weight.webp",
+    "source": "exec-62571633-1252-486a-af84-39b12665e2e0.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 137414,
+    "sha256": "9997ac3c30296c071c487f98ca288a797489a34d5bc1d599067e1b1936ee9e1e"
+  },
+  {
+    "asset": "health.webp",
+    "source": "exec-152e0916-0b9a-42ac-bf57-4a1fb56cf764.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "bytes": 142772,
+    "sha256": "798ac4c3589ed3be9cfc88fb779296aa8a6afe0d3157ecb6a105fe1a79de2566"
+  },
+  {
+    "asset": "support.webp",
+    "source": "exec-0c000f71-a01b-4f60-b3d8-aee6090998a6.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 122746,
+    "sha256": "3f9fddc6d1dd64d4ad15d7706906b8b2bd705bee9196be5d48f02e3abfff7d5d"
+  },
+  {
+    "asset": "blood.webp",
+    "source": "exec-40160230-6fdc-4aff-977c-829820957662.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "bytes": 81716,
+    "sha256": "cb3bb0869cc63da7f32d9944ebfd73ef4342d28d3ad8bf78af6410c047141c21"
+  }
+]
