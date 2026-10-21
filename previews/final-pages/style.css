@@ -140,6 +140,7 @@ html body main#main-content.fn .gt-reading :is(strong,span){color:inherit!import
 html body main#main-content.fn .gt-reading .gtt-grid a :is(strong,span){display:block!important}
 html body main#main-content.fn .gt-reading .gtt-next h2{grid-column:1/-1!important}
 html body main#main-content.fn .gt-byline{font-size:13px!important}
+html body main#main-content.fn .gt-topic-grid>a[hidden],html body main#main-content.fn #gt-clear[hidden],html body main#main-content.fn #gt-all-topics[hidden],html body main#main-content.fn #gt-empty[hidden]{display:none!important}
 html body main#main-content.fn .gt-noscript{padding:15px 22px!important}
 /* Surgery comparison: working disclosures rather than decorative links. */
 html body main#main-content.fn .fg-hero{min-height:390px!important}
