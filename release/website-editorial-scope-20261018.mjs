@@ -1,3 +1,4 @@
+import {HEALTH_PATHS,HEALTH_MAINTENANCE,HEALTH_RECEIPT} from './health-vision-scope-20261021.mjs';
 import {verifyTestosteroneExtension,TRT_BASE,TRT_PATHS,TRT_MAINTENANCE,TRT_RECEIPT} from './testosterone-scope-20261021.mjs';
 import assert from 'node:assert/strict';
 import {makeFreshCleanHint} from './fresh-food-source-clean-20261015.mjs';
@@ -173,7 +174,7 @@ export function websiteEditorialCompletionHistoricalView(reader=null){
   return ancestor(frame(a),frame(b));
  };
  const view={rawHead,head:policy.base,record:prior,assertCurrent,assertCurrentHead,nativeSource:reader===null,
-  affected:p=>[...policy.paths,...policy.maintenancePaths,...TRT_PATHS,...TRT_MAINTENANCE,TRT_RECEIPT,ledger].some(q=>p===q||q.startsWith(p+'/')),
+  affected:p=>[...policy.paths,...policy.maintenancePaths,...TRT_PATHS,...TRT_MAINTENANCE,TRT_RECEIPT,...HEALTH_PATHS,...HEALTH_MAINTENANCE,HEALTH_RECEIPT,ledger].some(q=>p===q||q.startsWith(p+'/')),
   read:project('read',reader),blob:(r,p)=>blob(frame(r),p),content:(r,p)=>content(frame(r),p),
   diff:(a,b)=>diff(frame(a),frame(b)),ancestor:(a,b)=>ancestor(frame(a),frame(b)),currentContent:content,
   nativeAuthentic:(v,r,p,h=rawHead)=>authentic(v,r,p,h),nativeContentAuthentic:(v,r,p,h=rawHead)=>authentic(v,r,p,h,'content'),
