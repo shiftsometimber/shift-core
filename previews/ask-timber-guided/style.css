@@ -86,3 +86,5 @@ html body main#main-content.atg .atg-card-arrow{display:block!important;width:21
 html body main#main-content.atg .atg-card-arrow svg{width:21px!important;height:21px!important;max-width:21px!important;display:block!important;padding:0!important}
 html body main#main-content.atg .atg-icon svg{width:30px!important;height:30px!important}
 html body main#main-content.atg #timberSubmit :is(span,svg){color:#fff!important}
+
+html body main#main-content.atg .atg-card-arrow::before,html body main#main-content.atg .atg-card-arrow::after{content:none!important;display:none!important}
