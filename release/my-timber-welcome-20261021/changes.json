@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/member/dashboard.html",
+    "file": "dashboard.html",
+    "before": "4da7f1462b4c14017d0e22b0cc6e2a4f",
+    "after": "088ba04541064300ee2add4979e3612e",
+    "sha256": "1ebe8093891c7db1f3226f8ae576c3e99e2c9313a90ba6185be32f544b517e00"
+  },
+  {
+    "path": "/assets/my-timber-welcome-20261021.css",
+    "file": "welcome.css",
+    "before": null,
+    "after": "182d701d7161d5731d04aaac790c66bb",
+    "sha256": "5396c3a7a0ee74da6bdc4ab65288d490f27f17829a06e64fda9c491b2d9b33c2"
+  },
+  {
+    "path": "/assets/my-timber-welcome-20261021.js",
+    "file": "welcome.js",
+    "before": null,
+    "after": "569d46117c66a6fff0e43f6cf05243fc",
+    "sha256": "b2f620799335b07f723276560670b18cb2dd955c545ab0df8af811d69378b9f1"
+  },
+  {
+    "path": "/assets/my-timber-welcome-anton.ttf",
+    "file": "anton.ttf",
+    "before": null,
+    "after": "c25c0d0d6c6cfc949ef8fe8f8405d353",
+    "sha256": "fd9301f2837c99df2be07cc7f0be66e9470f5354d8fcf1606027c67fcd637a53"
+  }
+]

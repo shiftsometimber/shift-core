@@ -1,0 +1,96 @@
+@font-face{font-family:MTWelcomeAnton;src:url('/assets/my-timber-welcome-anton.ttf') format('truetype');font-display:swap}
+#mtWelcome{display:none;background:#e7e3da;color:#050505;font:16px/1.5 Arial,sans-serif;isolation:isolate;width:100%;margin:0;padding:0}
+html body[data-member-session="signed-out"] #mtWelcome,html body:not([data-member-session]):not(.member-ready) #mtWelcome{display:block!important}
+html body:has(#mtWelcome)[data-member-session="signed-out"],html body:has(#mtWelcome):not([data-member-session]):not(.member-ready){background:#e7e3da!important;padding:0!important;margin:0!important}
+html body:has(#mtWelcome)[data-member-session="signed-out"]>:is(header,aside,nav,main,footer,#memberSessionStatus,#myTimberApp,#memberUtilities,#appBottomNav,.drawer-backdrop,.sst-member-tabs),html body:has(#mtWelcome):not([data-member-session]):not(.member-ready)>:is(header,aside,nav,main,footer,#myTimberApp){display:none!important}
+#mtWelcome *,#mtWelcome *:before,#mtWelcome *:after{box-sizing:border-box}
+#mtWelcome [hidden]{display:none!important}
+#mtWelcome :is(h1,h2,h3,p,figure){margin:0;padding:0;color:inherit}
+#mtWelcome :is(h1,h2,h3){font-family:MTWelcomeAnton,Impact,'Arial Narrow',sans-serif;font-weight:400;letter-spacing:.005em;text-transform:none}
+#mtWelcome a{color:inherit;text-decoration:none}
+#mtWelcome :is(a,button,summary):focus-visible{outline:3px solid #34552b;outline-offset:5px}
+#mtWelcome button{font:inherit;cursor:pointer}
+#mtWelcome .mtw-header{max-width:1240px;margin:auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid #c6c4b9}
+#mtWelcome .mtw-header img{width:235px;height:auto;display:block;filter:none}
+#mtWelcome .mtw-header nav{display:flex;gap:25px;font-size:13px}
+#mtWelcome .mtw-header nav a{padding:12px 0}
+#mtWelcome .mtw-header nav a[aria-current]{border-bottom:3px solid #707762;font-weight:700}
+#mtWelcome .mtw-mobile-login{display:none}
+#mtWelcome .mtw-hero{max-width:1160px;margin:auto;padding:64px 40px 48px;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:64px}
+#mtWelcome .mtw-kicker{font:700 12px/1.5 Arial,sans-serif;letter-spacing:.14em;color:#505944;margin-bottom:16px}
+#mtWelcome h1{font-size:clamp(64px,7.1vw,98px);line-height:1.04;letter-spacing:-.015em;margin-bottom:22px}
+#mtWelcome h1 span{color:#626b54}
+#mtWelcome .mtw-lead{font-size:20px;line-height:1.5;max-width:470px;margin-bottom:24px}
+#mtWelcome .mtw-join{background:#050505;color:#fff;display:flex;align-items:center;justify-content:center;gap:30px;border-radius:999px;padding:15px 26px;width:max-content;max-width:100%;min-height:52px;font-size:16px;font-weight:700}
+#mtWelcome .mtw-join:hover{background:#353c2b}
+#mtWelcome .mtw-login{display:block;text-decoration:underline;text-underline-offset:4px;width:max-content;padding:13px 5px;font-size:15px}
+#mtWelcome .mtw-inclusive{margin-top:22px;font-size:15px;line-height:1.6}
+#mtWelcome .mtw-preview{justify-self:center}
+#mtWelcome .mtw-phone{background:#f4f1e9;border:8px solid #141414;border-radius:42px;width:288px;padding:22px 17px 12px;box-shadow:0 16px 28px #05050524,inset 0 0 0 2px #7b7b76;position:relative}
+#mtWelcome .mtw-speaker{width:68px;height:7px;border-radius:8px;background:#141414;margin:-9px auto 20px}
+#mtWelcome .mtw-phone-brand{font-family:MTWelcomeAnton,sans-serif;font-size:16px;border-bottom:1px solid #d7d3c8;padding-bottom:12px}
+#mtWelcome .mtw-phone-brand span{display:block;font:8px Arial;letter-spacing:.12em;margin-top:3px;color:#626b54}
+#mtWelcome .mtw-phone h2{font-size:30px;margin:18px 0 12px}
+#mtWelcome .mtw-days{display:flex;justify-content:space-between;font-size:9px}
+#mtWelcome .mtw-days span{text-align:center}
+#mtWelcome .mtw-days b{display:block;border-radius:50%;font-size:12px;width:20px;height:20px;line-height:20px;background:#707762;color:white;margin-top:7px}
+#mtWelcome .mtw-days .empty{background:transparent;color:#626b54;font-size:21px;font-weight:400}
+#mtWelcome .mtw-mood{border-top:1px solid #ccc8be;margin-top:22px;padding-top:17px}
+#mtWelcome .mtw-mood h3{font:700 13px Arial}
+#mtWelcome .mtw-mood>div{display:flex;justify-content:space-between;margin:14px 0 22px}
+#mtWelcome .mtw-mood span{text-align:center;font-size:9px}
+#mtWelcome .mtw-mood b{display:block;font:30px/45px Arial;width:45px;height:45px;border-radius:50%;background:#d3dbc6;margin:auto auto 6px}
+#mtWelcome .mtw-mood span:nth-child(2) b{background:#e0dbd1}
+#mtWelcome .mtw-mood span:nth-child(3) b{background:#e3cec5}
+#mtWelcome .mtw-meal{background:#707762;color:#fff;border-radius:12px;padding:18px}
+#mtWelcome .mtw-meal-tag{font-size:9px;letter-spacing:.12em}
+#mtWelcome .mtw-meal h3{font-size:27px;line-height:1.2;margin:10px 0 16px}
+#mtWelcome .mtw-meal>span:last-child{font-size:11px;display:flex;justify-content:space-between}
+#mtWelcome .mtw-phone-nav{display:flex;justify-content:space-between;font-size:9px;padding:18px 0 3px}
+#mtWelcome .mtw-phone-nav span:first-child{font-weight:bold;text-decoration:underline;text-underline-offset:4px}
+#mtWelcome figcaption{font-size:11px;text-align:center;margin-top:15px;color:#505348}
+#mtWelcome .mtw-benefits{background:#707762;color:#fff;padding:28px 32px 36px}
+#mtWelcome .mtw-benefits h2{text-align:center;font-size:28px;margin-bottom:27px}
+#mtWelcome .mtw-benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1080px;margin:auto}
+#mtWelcome .mtw-benefit-grid>div{display:flex;gap:16px;align-items:center;padding:4px 24px;border-right:1px solid #b1b7a7}
+#mtWelcome .mtw-benefit-grid>div:last-child{border:0}
+#mtWelcome .mtw-icon{width:48px;height:48px;border-radius:50%;background:#e7e3da;color:#050505;display:grid;place-items:center;font:bold 31px Arial;flex:none}
+#mtWelcome .mtw-benefit-grid h3{font-size:18px;line-height:1.3}
+#mtWelcome .mtw-benefit-grid p{font-size:13px;line-height:1.4;margin-top:4px}
+#mtWelcome .mtw-apps{padding:48px 32px 38px;max-width:1120px;margin:auto;text-align:center}
+#mtWelcome .mtw-apps h2,#mtWelcome .mtw-life h2{font-size:36px;line-height:1.2}
+#mtWelcome .mtw-apps>p:not(.mtw-kicker){margin-top:12px}
+#mtWelcome .mtw-app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+#mtWelcome .mtw-app-card{display:flex;align-items:center;gap:16px;text-align:left;background:#050505;color:#fff;border:1px solid #050505;border-radius:14px;padding:18px 22px;width:100%;min-height:110px}
+#mtWelcome .mtw-app-card:hover:not(.mtw-soon){background:#353c2b}
+#mtWelcome .mtw-app-card span:last-child{display:grid;gap:3px}
+#mtWelcome .mtw-app-card small{font-size:10px;letter-spacing:.12em}
+#mtWelcome .mtw-app-card strong{font-size:20px;font-weight:700}
+#mtWelcome .mtw-app-card em{font-size:12px;font-style:normal}
+#mtWelcome .mtw-store-icon{font-size:35px;flex:none}
+#mtWelcome .mtw-soon{background:transparent;color:#505348;border-color:#9fa18f}
+#mtWelcome .mtw-browser-note{font-size:13px;color:#505348}
+#mtWelcome #mtwInstallHelp{text-align:left;background:#f8f6f0;border:1px solid #707762;border-radius:12px;padding:24px;margin-top:20px}
+#mtWelcome #mtwInstallHelp h3{font-size:23px}
+#mtWelcome #mtwInstallHelp p{margin:10px 0}
+#mtWelcome #mtwInstallNow{border:0;border-radius:8px;padding:12px;background:#050505;color:white}
+#mtWelcome .mtw-life{padding:32px 32px 20px;max-width:1120px;margin:auto;text-align:center}
+#mtWelcome .mtw-life>p{margin:15px 0 24px}
+#mtWelcome .mtw-faqs{display:grid;grid-template-columns:1fr 1fr;text-align:left;border-top:1px solid #bfc0b1}
+#mtWelcome .mtw-faqs details{padding:0 22px 0 0;border-bottom:1px solid #bfc0b1}
+#mtWelcome .mtw-faqs details:nth-child(even){padding-left:22px;padding-right:0}
+#mtWelcome summary{list-style:none;cursor:pointer;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:15px}
+#mtWelcome summary:after{content:'+';font-size:23px}
+#mtWelcome details[open] summary:after{content:'−'}
+#mtWelcome summary::-webkit-details-marker{display:none}
+#mtWelcome .mtw-faqs p{font-size:14px;padding:0 5px 20px;line-height:1.7}
+#mtWelcome .mtw-faqs p a{text-decoration:underline}
+#mtWelcome .mtw-close{text-align:center;padding:28px 24px 44px}
+#mtWelcome .mtw-close p{font-family:MTWelcomeAnton,sans-serif;font-size:18px;margin-bottom:18px}
+#mtWelcome .mtw-close .mtw-join{margin:auto}
+#mtWelcome .mtw-footer{border-top:1px solid #bfc0b1;max-width:1120px;margin:auto;padding:20px 32px;display:flex;justify-content:space-between;gap:20px;font-size:12px}
+#mtWelcome .mtw-footer nav{display:flex;gap:18px;flex-wrap:wrap}
+#mtWelcome .mtw-footer a{text-decoration:underline}
+#mtWelcome #mtwCookies{border:0;background:transparent;color:inherit;font:inherit;padding:0;text-decoration:underline}
+@media(max-width:800px){#mtWelcome .mtw-header{padding:18px 22px}#mtWelcome .mtw-header img{width:190px}#mtWelcome .mtw-header nav{display:none}#mtWelcome .mtw-mobile-login{display:block;text-decoration:underline;padding:10px 0}#mtWelcome .mtw-hero{gap:26px;padding:40px 24px}#mtWelcome h1{font-size:64px}#mtWelcome .mtw-lead{font-size:17px}#mtWelcome .mtw-phone{width:250px}#mtWelcome .mtw-benefit-grid>div{padding:4px 10px;gap:10px}#mtWelcome .mtw-icon{width:38px;height:38px}#mtWelcome .mtw-app-card{padding:18px 14px;gap:10px}#mtWelcome .mtw-app-card strong{font-size:17px}}
+@media(max-width:600px){#mtWelcome .mtw-hero{grid-template-columns:1fr;padding:30px 24px 34px;gap:30px}#mtWelcome h1{font-size:64px;margin-bottom:18px}#mtWelcome .mtw-kicker{font-size:10px;letter-spacing:.12em}#mtWelcome .mtw-lead{font-size:17px;margin-bottom:20px}#mtWelcome .mtw-join{width:100%;font-size:15px;gap:20px}#mtWelcome .mtw-login{margin:auto;font-size:14px}#mtWelcome .mtw-inclusive{margin-top:15px;font-size:14px}#mtWelcome .mtw-preview{display:none}#mtWelcome .mtw-benefits{padding:24px 16px}#mtWelcome .mtw-benefits h2{font-size:23px;margin-bottom:22px}#mtWelcome .mtw-benefit-grid{grid-template-columns:1fr 1fr;gap:22px 0}#mtWelcome .mtw-benefit-grid>div{padding:0 12px;gap:12px;border:0}#mtWelcome .mtw-benefit-grid>div:nth-child(odd){border-right:1px solid #b1b7a7}#mtWelcome .mtw-benefit-grid p{font-size:12px}#mtWelcome .mtw-apps{padding:34px 24px 20px}#mtWelcome .mtw-apps h2,#mtWelcome .mtw-life h2{font-size:29px}#mtWelcome .mtw-apps>p{font-size:14px}#mtWelcome .mtw-app-grid{grid-template-columns:1fr;gap:12px;margin-top:22px}#mtWelcome .mtw-app-card{padding:15px 22px;min-height:92px}#mtWelcome .mtw-app-card strong{font-size:20px}#mtWelcome .mtw-life{padding:30px 24px 18px}#mtWelcome .mtw-life>p{font-size:14px}#mtWelcome .mtw-faqs{grid-template-columns:1fr}#mtWelcome .mtw-faqs details,#mtWelcome .mtw-faqs details:nth-child(even){padding:0}#mtWelcome .mtw-footer{padding:20px 24px;flex-direction:column;gap:12px}}

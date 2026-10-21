@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-21T12:10:48.418Z",
+  "base": "e0965fa2-becf-415e-abe1-a6ec24ec710e",
+  "changes": [
+    "/member/dashboard.html",
+    "/assets/my-timber-welcome-20261021.css",
+    "/assets/my-timber-welcome-20261021.js",
+    "/assets/my-timber-welcome-anton.ttf"
+  ],
+  "allOtherAssetsUnchanged": true,
+  "dashboardInverse": true,
+  "homepageUnchanged": true,
+  "authCodeUnchanged": true,
+  "headersSHA256": "4f869badedb23a7a967ec5ad18308ddf6d0fa184ce9a5472d3a44aa1aa31a4de"
+}
