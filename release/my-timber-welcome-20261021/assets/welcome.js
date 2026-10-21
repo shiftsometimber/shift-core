@@ -1,4 +1,4 @@
-(()=>{'use strict';const root=document.getElementById('mtWelcome');if(!root)return;
+(()=>{'use strict';if(/^\/member-register(?:\.html)?\/?$/.test(location.pathname)){document.querySelector('[data-auth-mode="register"]')?.click();}const root=document.getElementById('mtWelcome');if(!root)return;
 const login=root.querySelectorAll('a[href^="/member-login?"]'),join=root.querySelectorAll('a[href^="/member-register?"]');
 const p=new URLSearchParams(location.search),requested=p.get('returnTo')||p.get('next');
 const dest=requested&&/^\/(?!\/)/.test(requested)&&!/^\/member-(login|register)/.test(requested)?requested:location.pathname+location.search+location.hash;

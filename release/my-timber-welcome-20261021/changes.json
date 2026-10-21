@@ -2,28 +2,35 @@
   {
     "path": "/member/dashboard.html",
     "file": "dashboard.html",
-    "before": "4da7f1462b4c14017d0e22b0cc6e2a4f",
-    "after": "088ba04541064300ee2add4979e3612e",
-    "sha256": "1ebe8093891c7db1f3226f8ae576c3e99e2c9313a90ba6185be32f544b517e00"
+    "before": "088ba04541064300ee2add4979e3612e",
+    "after": "7dc35556c230b60531ed65ade2e37326",
+    "sha256": "17ae15f632ea35977c4a7565c62bbe7fa63fa355b46e489acf2c162e99ba785e"
+  },
+  {
+    "path": "/member-login.html",
+    "file": "login.html",
+    "before": "353cdf1fce957ced91a655357e69baa4",
+    "after": "81970a6c2f206000af09a120cc44e066",
+    "sha256": "daea18b112376df9ebc8384cab7e0133352a199970f2cbb1ac321f1400e1ed4e"
   },
   {
     "path": "/assets/my-timber-welcome-20261021.css",
     "file": "welcome.css",
-    "before": null,
-    "after": "49e6cdc680634b556b0106917a924883",
-    "sha256": "5e8d1fcff1a9427376c78e49d95ef97502d55466b94e14805a0f8c75f8009aca"
+    "before": "49e6cdc680634b556b0106917a924883",
+    "after": "48be8d2c2a6e02960a320473a3c80ea2",
+    "sha256": "51a707bac9cdb544b6edc92be5c03c55d14b49e71dd77e0f54641501be37005a"
   },
   {
     "path": "/assets/my-timber-welcome-20261021.js",
     "file": "welcome.js",
-    "before": null,
-    "after": "569d46117c66a6fff0e43f6cf05243fc",
-    "sha256": "b2f620799335b07f723276560670b18cb2dd955c545ab0df8af811d69378b9f1"
+    "before": "569d46117c66a6fff0e43f6cf05243fc",
+    "after": "55e5abf385060d44d0d2684d6af40054",
+    "sha256": "aa32fbb0280192a7f7f744fb816b24635a0f467c19e18af3e3927f96ca92541c"
   },
   {
     "path": "/assets/my-timber-welcome-anton.ttf",
     "file": "anton.ttf",
-    "before": null,
+    "before": "c25c0d0d6c6cfc949ef8fe8f8405d353",
     "after": "c25c0d0d6c6cfc949ef8fe8f8405d353",
     "sha256": "fd9301f2837c99df2be07cc7f0be66e9470f5354d8fcf1606027c67fcd637a53"
   }

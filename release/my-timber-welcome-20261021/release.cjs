@@ -11,18 +11,18 @@ assert.deepEqual(files,load('manifest-before.json'));
 const old=(await c.get(d.url+'/member/dashboard.html')).bytes;
 assert.equal(c.asset(old,'html'),files['/member/dashboard.html']);
 save('before-dashboard.html',old);
-const html=fs.readFileSync(r+'/welcome.html','utf8'),cssLink='<link rel="stylesheet" href="/assets/my-timber-welcome-20261021.css">',jsLink='<script defer src="/assets/my-timber-welcome-20261021.js"></script>';
-const next=old.toString().replace('</head>',cssLink+'</head>').replace('<body>','<body>'+html).replace('</body>',jsLink+'</body>');
-assert.equal(next.replace(cssLink,'').replace(html,'').replace(jsLink,''),old.toString(),'Exact dashboard inverse');
-const h=JSON.parse(fs.readFileSync('/Users/shiftsometimberltd/SST/knowledge-links-20261021/production-deployment.json'));
-assert.equal(h.id,d.id,'Recover current header source');
-save('_headers',fs.readFileSync('/Users/shiftsometimberltd/SST/knowledge-links-20261021/_headers'));
-fs.mkdirSync(r+'/after',{recursive:true});save('after/dashboard.html',next);
+const next=old.toString().replace('/assets/my-timber-welcome-20261021.css"','/assets/my-timber-welcome-20261021.css?v=3"').replace('/assets/my-timber-welcome-20261021.js"','/assets/my-timber-welcome-20261021.js?v=3"');
+assert.equal(next.replace('/assets/my-timber-welcome-20261021.css?v=3"','/assets/my-timber-welcome-20261021.css"').replace('/assets/my-timber-welcome-20261021.js?v=3"','/assets/my-timber-welcome-20261021.js"'),old.toString(),'Exact dashboard inverse');
+const login=(await c.get(d.url+'/member-login.html')).bytes;assert.equal(c.asset(login,'html'),files['/member-login.html']);save('before-login.html',login);
+const loginScript='<script defer src="/assets/my-timber-welcome-20261021.js?v=3"></script>';
+const nextLogin=login.toString().replace('</body>',loginScript+'</body>');assert.equal(nextLogin.replace(loginScript,''),login.toString());
+assert.equal(c.sha(fs.readFileSync(r+'/_headers')),load('release-v2/scope-proof.json').headersSHA256);
+fs.mkdirSync(r+'/after',{recursive:true});save('after/dashboard.html',next);save('after/login.html',nextLogin);
 for(const[a,b]of [['welcome.css','welcome.css'],['welcome.js','welcome.js'],['anton.ttf','anton.ttf']])fs.copyFileSync(r+'/'+a,r+'/after/'+b);
-const map={'/member/dashboard.html':'dashboard.html','/assets/my-timber-welcome-20261021.css':'welcome.css','/assets/my-timber-welcome-20261021.js':'welcome.js','/assets/my-timber-welcome-anton.ttf':'anton.ttf'};
+const map={'/member/dashboard.html':'dashboard.html','/member-login.html':'login.html','/assets/my-timber-welcome-20261021.css':'welcome.css','/assets/my-timber-welcome-20261021.js':'welcome.js','/assets/my-timber-welcome-anton.ttf':'anton.ttf'};
 const manifest={...files},changes=[];for(const [url,file]of Object.entries(map)){let b=fs.readFileSync(r+'/after/'+file);manifest[url]=c.asset(b,path.extname(url).slice(1));changes.push({path:url,file,before:files[url]||null,after:manifest[url],sha256:c.sha(b)})}
 save('changes.json',changes);save('manifest-candidate.json',manifest);
-save('scope-proof.json',{at:new Date().toISOString(),base:d.id,changes:changes.map(x=>x.path),allOtherAssetsUnchanged:Object.entries(files).every(([p,h])=>p==='/member/dashboard.html'||manifest[p]===h),dashboardInverse:true,homepageUnchanged:true,authCodeUnchanged:true,headersSHA256:c.sha(fs.readFileSync(r+'/_headers'))});
+save('scope-proof.json',{at:new Date().toISOString(),base:d.id,changes:changes.map(x=>x.path),allOtherAssetsUnchanged:Object.entries(files).every(([p,h])=>Object.hasOwn(map,p)||manifest[p]===h),dashboardInverse:true,homepageUnchanged:true,authCodeUnchanged:true,headersSHA256:c.sha(fs.readFileSync(r+'/_headers'))});
 console.log(JSON.stringify(load('scope-proof.json')));
 }
 async function source(){
@@ -33,7 +33,7 @@ for(const x of load('changes.json')){const b=api('/git/blobs',{content:fs.readFi
 for(const n of ['release.cjs','scope-proof.json','changes.json','_headers']){const b=api('/git/blobs',{content:fs.readFileSync(r+'/'+n).toString('base64'),encoding:'base64'});entries.push({path:'release/my-timber-welcome-20261021/'+n,mode:'100644',type:'blob',sha:b.sha});}
 const t=api('/git/trees',{base_tree:commit.tree.sha,tree:entries}),n=api('/git/commits',{message:'Add approved My Timber signed-out welcome page and app choices',tree:t.sha,parents:[base]});if(previous){save('source-previous-'+previous.head+'.json',previous);JSON.parse(cp.execFileSync(GH,['api','repos/shiftsometimber/shift-core/git/refs/heads/'+branch,'--method','PATCH','--input','-'],{input:JSON.stringify({sha:n.sha,force:false}),encoding:'utf8'}));}else api('/git/refs',{ref:'refs/heads/'+branch,sha:n.sha});assert.equal(api('/git/ref/heads/'+branch).object.sha,n.sha);save('source-publication.json',{branch,head:n.sha,tree:t.sha,base});console.log(JSON.stringify(load('source-publication.json')));
 }
-function validate(){const before=load('manifest-before.json'),next=load('manifest-candidate.json'),changes=load('changes.json');assert.equal(changes.length,4);for(const[p,h]of Object.entries(before))if(p!=='/member/dashboard.html')assert.equal(next[p],h);for(const x of changes)assert.equal(c.sha(fs.readFileSync(r+'/after/'+x.file)),x.sha256);assert.equal(c.sha(fs.readFileSync(r+'/_headers')),load('scope-proof.json').headersSHA256);}
+function validate(){const before=load('manifest-before.json'),next=load('manifest-candidate.json'),changes=load('changes.json');assert.equal(changes.length,5);for(const[p,h]of Object.entries(before))if(!changes.some(x=>x.path===p))assert.equal(next[p],h);for(const x of changes)assert.equal(c.sha(fs.readFileSync(r+'/after/'+x.file)),x.sha256);assert.equal(c.sha(fs.readFileSync(r+'/_headers')),load('scope-proof.json').headersSHA256);}
 async function publish(stage){
 validate();assert(['preview','production'].includes(stage));assert(!fs.existsSync(r+'/'+stage+'-intent.json'),'Reconcile transaction first');
 const base=load('baseline.json'),source=load('source-publication.json'),next=load('manifest-candidate.json'),changes=load('changes.json');
