@@ -22,12 +22,13 @@ function state(){
     const verified=verifyMainReleaseReadinessExtension();
     assert.equal(verified.actual,actual,'Current-main historical projection requires the verified release head');
     const changed=git('diff','--no-renames','--name-only',MAIN_RELEASE_BASE,actual).split('\n').filter(Boolean);
-    cached=Object.freeze({actual,changed:new Set(changed)});
+    const projectable=changed.filter(path=>exists(MAIN_RELEASE_BASE,path));
+    cached=Object.freeze({actual,changed:new Set(changed),projectable:Object.freeze(projectable)});
   }
   assert.equal(git('rev-parse','HEAD'),cached.actual,'Current-main historical projection source HEAD moved');
   return cached;
 }
-function affected(path,s){return s.changed.has(path)||[...s.changed].some(item=>item.startsWith(path+'/'));}
+function affected(path,s){return s.projectable.includes(path)||s.projectable.some(item=>item.startsWith(path+'/'));}
 function authentic(value,ref,path,s){
   const resolved=ref==='HEAD'?s.actual:ref;
   if(value===blob(resolved,path)||value===content(resolved,path))return true;
@@ -40,7 +41,7 @@ export function mainReleaseHistoricalReader(reader=null,{defaultReader=reader===
   assert.equal(typeof source,'function','Current-main historical projection requires a reader');
   return(ref,path)=>{
     const current=ref==='HEAD'||ref===s.actual;
-    if(current&&affected(path,s)&&exists(MAIN_RELEASE_BASE,path)){
+    if(current&&affected(path,s)){
       if(!defaultReader){
         assert(authentic(source('HEAD',path),'HEAD',path,s),'Current-main historical reader drift at HEAD: '+path);
         assert(authentic(source(s.actual,path),s.actual,path,s),'Current-main historical reader drift at raw HEAD: '+path);
@@ -53,7 +54,12 @@ export function mainReleaseHistoricalReader(reader=null,{defaultReader=reader===
 
 export function mainReleaseHistoricalAffected(path){
   const s=state();
-  return affected(path,s)&&exists(MAIN_RELEASE_BASE,path);
+  return affected(path,s);
+}
+
+export function mainReleaseHistoricalProjection(){
+  const s=state();
+  return Object.freeze({actual:s.actual,base:MAIN_RELEASE_BASE,paths:s.projectable,affected:path=>affected(path,s)});
 }
 
 export function mainReleaseHistoricalContent(reader=null,{defaultReader=reader===null}={}){
@@ -61,7 +67,7 @@ export function mainReleaseHistoricalContent(reader=null,{defaultReader=reader==
   assert.equal(typeof source,'function','Current-main historical projection requires a content reader');
   return(ref,path)=>{
     const current=ref==='HEAD'||ref===s.actual;
-    if(current&&affected(path,s)&&exists(MAIN_RELEASE_BASE,path)){
+    if(current&&affected(path,s)){
       if(!defaultReader){
         assert.equal(source('HEAD',path),content(s.actual,path),'Current-main historical content drift at HEAD: '+path);
         assert.equal(source(s.actual,path),content(s.actual,path),'Current-main historical content drift at raw HEAD: '+path);
@@ -75,6 +81,6 @@ export function mainReleaseHistoricalContent(reader=null,{defaultReader=reader==
 export function mainReleaseHistoricalFile(path,bytes){
   const s=state();
   assert.equal(bytes,content(s.actual,path),'Current-main historical fixture requires exact current bytes: '+path);
-  return affected(path,s)&&exists(MAIN_RELEASE_BASE,path)?content(MAIN_RELEASE_BASE,path):bytes;
+  return affected(path,s)?content(MAIN_RELEASE_BASE,path):bytes;
 }
 
