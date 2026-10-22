@@ -12,7 +12,7 @@ import {FOOTER_CANDIDATE,FOOTER_PATHS,FOOTER_RUNTIME_PATHS,historicalFooterRef,v
 import {validateHomeBanner} from './home-banner-scope.mjs';
 import {MEMBER_FOCUS_APPROVED,MEMBER_FOCUS_PATHS,validateMemberFocus} from './member-focus-scope.mjs';
 import {HEALTH_PATHS,HEALTH_MAINTENANCE,HEALTH_RECEIPT,verifyHealthVisionExtension} from './health-vision-scope-20261021.mjs';
-import {MAIN_RELEASE_BASE,MAIN_RELEASE_PATHS,MAIN_RELEASE_MAINTENANCE,MAIN_RELEASE_RECEIPT} from './main-release-readiness-scope-20261021.mjs';
+import {MAIN_RELEASE_BASE,MAIN_RELEASE_PATHS,MAIN_RELEASE_MAINTENANCE,MAIN_RELEASE_RECEIPT,verifyMainReleaseReadinessExtension} from './main-release-readiness-scope-20261021.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {withImmutableHistoryVerification,immutableHistorySourceHead,immutableHistoryExecFileSync} from './immutable-git-facts.mjs';
@@ -48,6 +48,7 @@ export function originalMemberWorkerPresentation(source){
 for(const p of [...METRICS_PATHS,...RECONCILIATION_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED])APP_PATHS.add(p);
 export function validateAppSource(){
  return withImmutableHistoryVerification(()=>{
+ verifyMainReleaseReadinessExtension();
  verifyHealthVisionExtension();
  verifyReconciledRelease();
  verifyMetricsConnection();
