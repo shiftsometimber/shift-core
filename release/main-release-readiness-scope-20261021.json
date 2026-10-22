@@ -226,6 +226,52 @@
     },
     "productionVerified": false,
     "maintenanceSource": "863931a36192f55fc810eb6337264053bbfd4b78"
+  },
+  "wholeEstateFollowup": {
+    "kind": "EXACT_WHOLE_ESTATE_ROUTE_CAPACITY_REPAIR_20261022",
+    "base": "3ae2b6c0f664ca205c9607ce80617ba6f14999f0",
+    "payload": "a86b95330c15e0894434743a545d539895c57799",
+    "paths": [
+      ".github/workflows/whole-estate-route-sweep.yml"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "hostedRun": 39777869531,
+      "initialJob": 119821319114,
+      "retryJob": 119832435344,
+      "retryChecked": 1000,
+      "retryHtmlPages": 705,
+      "retryFailures": 0,
+      "retryTruncated": true,
+      "previousLimit": 1000
+    },
+    "repair": {
+      "wholeEstateSweepMax": 2500,
+      "requiredDiscoveryExhaustionRetained": true,
+      "routeFailureRejectionRetained": true,
+      "blankPageRejectionRetained": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "4cba86d5f22e57fc9f3470dfe9d2e28821999e5d"
   }
 }
 
