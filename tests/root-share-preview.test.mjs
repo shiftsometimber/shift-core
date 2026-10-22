@@ -40,6 +40,9 @@ test('new image route is versioned and exact; legacy artwork and every unrelated
 });
 test('the prepared Worker hook is exactly additive; every original handler/cron/route remains byte-identical',()=>{
  const current=readFileSync(new URL('../shift-coach/worker.mjs',import.meta.url),'utf8');
- const inverse=current.replace("import {withRootShareWorker} from '../share-preview/metadata.mjs';\n",'').replace('withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)))','withPublicResponsePolicyWorker(withMaleObesity(composedWorker))');
+ const importHook="import {withRootShareWorker} from '../share-preview/metadata.mjs';\n",wrapperHook='withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)))';
+ assert.equal(current.split(importHook).length,2);assert.equal(current.split(wrapperHook).length,2);
+ const prepared=execFileSync('git',['show','da67872e84109577d5c6e6eff5cb9a85206c537f:shift-coach/worker.mjs'],{encoding:'utf8'});
+ const inverse=prepared.replace(importHook,'').replace(wrapperHook,'withPublicResponsePolicyWorker(withMaleObesity(composedWorker))');
  assert.equal(inverse,execFileSync('git',['show','7a74a7d4:shift-coach/worker.mjs'],{encoding:'utf8'}));
 });
