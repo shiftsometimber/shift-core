@@ -3,7 +3,7 @@ import {API,ADMIN,blogRoutes,blogPublication,blogDiscovery,runBlogQueue} from '.
 import {dynamicBabyLovePublicRoute} from '../babylove/dynamic-public.mjs';
 import {parseCatalogue} from './knowledge-v20261022/live-catalogue.mjs';
 import {mainFor} from './knowledge-v20261022/page.mjs';
-import {approvedRefreshRoute,refreshCatalogue,refreshSitemap} from './approved-refreshes/refreshes.mjs';
+import {approvedRefreshRoute,refreshCatalogue,refreshSitemap,hasRefreshPrefix,upstreamFor} from './approved-refreshes/refreshes.mjs';
 import {approvedImage} from './approved-refreshes/assets.mjs';
 const ROOT='https://shiftsometimber.co.uk';
 const PUBLIC=new Set(['shiftsometimber.co.uk','www.shiftsometimber.co.uk']);
@@ -43,7 +43,7 @@ export async function handleRequest(request,env,ctx,options={}){
  }
  if(!PUBLIC.has(u.hostname))return json('outside_blog_service',404);
  const approvedAsset=env.APPROVED_REFRESHES_ENABLED==='true'?approvedImage(p,request.method):null;if(approvedAsset)return approvedAsset;
- const approvedPage=env.APPROVED_REFRESHES_ENABLED==='true'?await approvedRefreshRoute(request,env):null;if(approvedPage)return approvedPage;
+ const approvedPage=env.APPROVED_REFRESHES_ENABLED==='true'?await approvedRefreshRoute(request,env):hasRefreshPrefix(p)?await upstreamFor(p,env).fetch(request):null;if(approvedPage)return approvedPage;
  if(p.startsWith('/uploads/blog/'))return await blogRoutes(request,env,ctx,options)||json('not_found',404);
  if(!['GET','HEAD'].includes(request.method))return json('read_only_public_blog',405);
  const article=p.match(/^\/articles\/([a-z0-9]+(?:-[a-z0-9]+)*)(?:\/image)?\/?$/);

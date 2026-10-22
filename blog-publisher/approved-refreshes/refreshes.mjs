@@ -12,6 +12,7 @@ export const BACKLINKS=Object.freeze({
  '/shift-health/testosterone-energy':[['Testosterone and weight: which comes first?','/articles/testosterone-weight-men']]
 });
 export const cleanPath=p=>p.replace(/\.html$/,'').replace(/\/$/,'')||'/';
+export const hasRefreshPrefix=p=>[...byPath.keys(),...Object.keys(BACKLINKS)].some(prefix=>cleanPath(p).startsWith(prefix));
 export const ownsRefreshPath=p=>byPath.has(cleanPath(p))||Object.hasOwn(BACKLINKS,cleanPath(p));
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=s=>new Date(s+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/London'});
@@ -98,11 +99,16 @@ export function refreshCatalogue(rows){
 }
 export function upstreamFor(path,env){
  const p=cleanPath(path);
- return p==='/male-obesity'?env.OBESITY:p==='/shift-health'||p==='/shift-health/testosterone-energy'?env.HEALTH:env.CORE;
+ return p.startsWith('/male-obesity')?env.OBESITY:p.startsWith('/shift-health')?env.HEALTH:env.CORE;
 }
 export async function approvedRefreshRoute(request,env){
  const u=new URL(request.url),path=cleanPath(u.pathname);
- if(!ownsRefreshPath(path))return null;
+ if(!ownsRefreshPath(path)){
+  // A trailing route wildcard also catches query strings. Preserve the previous
+  // upstream's complete behaviour for every sibling path that is not in the pack.
+  if(hasRefreshPrefix(path))return upstreamFor(path,env).fetch(request);
+  return null;
+ }
  const upstream=upstreamFor(path,env);if(!upstream?.fetch)throw Error('refresh_upstream_unavailable');
  if(!['GET','HEAD'].includes(request.method))return upstream.fetch(request);
  const response=await upstream.fetch(request);

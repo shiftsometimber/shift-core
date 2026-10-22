@@ -39,6 +39,7 @@ for(const path of Object.keys(BACKLINKS)){
  for(const [,url]of BACKLINKS[path])if(!text.includes('href="'+url+'"'))throw Error(path+': backlink missing');
  checks.push({path,HTTP:200,backlinks:true});
 }
+for(const p of REFRESHES){const {response}=await get(p.path+'?utm_source=refresh-check');if(response.headers.get('X-Shift-Approved-Refresh')!=='20261022')throw Error('Tracking URL lost refresh: '+p.path);checks.push({path:p.path+'?utm_source=refresh-check',HTTP:200,refreshApplied:true})}
 const {text:sitemap}=await get('/sitemap.xml');
 for(const p of REFRESHES)if(!sitemap.includes('<loc>https://shiftsometimber.co.uk'+p.path+'</loc><lastmod>2026-10-22</lastmod>'))throw Error('Sitemap lastmod missing: '+p.path);
 checks.push({path:'/sitemap.xml',HTTP:200,allRefreshLastmods:true});

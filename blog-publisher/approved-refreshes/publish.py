@@ -14,7 +14,7 @@ def api(path,body=None,method=None):
 workerPath='/accounts/'+account+'/workers/scripts/'
 routesPath='/zones/'+zone+'/workers/routes'
 assert json.loads((d/'hosted-stage.json').read_text())['pass']
-tests=(d/'tests.log').read_text();assert 'tests 99' in tests and 'fail 0' in tests
+tests=(d/'tests.log').read_text();assert 'tests 101' in tests and 'fail 0' in tests
 beforeFile=d/'production-before.json'
 if not beforeFile.exists():
  baseline={'capturedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'routes':api(routesPath),'workers':{name:api(workerPath+name+'/deployments')['deployments'][0] for name in ['shift-blog-publisher','shift-core','shift-obesity-presentation-20261022','shift-health-presentation-20261021','shift-knowledge-presentation-20261022']}}
@@ -24,12 +24,13 @@ else:baseline=json.loads(beforeFile.read_text())
 r=subprocess.run(['/usr/local/bin/node',str(root/'node_modules/wrangler/bin/wrangler.js'),'deploy','--config',str(root/'blog-publisher/wrangler.jsonc')],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
 (d/'production-deploy.log').write_text(r.stdout);print('DEPLOY',r.returncode,r.stdout[-600:],flush=True);assert r.returncode==0
 paths=['/male-obesity','/guides/mens-health-mot-guide','/articles/testosterone-weight-men','/guides/blood-pressure-guide','/articles/men-belly-fat','/shift-health','/articles/weight-loss-blood-tests','/shift-health/testosterone-energy']
-log=[]
+log=json.loads((d/'route-changes.json').read_text()) if (d/'route-changes.json').exists() else []
+current=api(routesPath)
 for host in ['shiftsometimber.co.uk','www.shiftsometimber.co.uk']:
  for path in paths:
-  for suffix in ['', '/', '.html']:
+  for suffix in ['', '/', '.html', '*']:
    pattern=host+path+suffix
-   current=api(routesPath);route=next((x for x in current if x['pattern']==pattern),None)
+   route=next((x for x in current if x['pattern']==pattern),None)
    previous=next((x for x in baseline['routes'] if x['pattern']==pattern),None)
    expected=previous.get('script') if previous else None
    assert (route.get('script') if route else None) in [expected,'shift-blog-publisher'],'Route ownership changed: '+pattern
@@ -39,6 +40,7 @@ for host in ['shiftsometimber.co.uk','www.shiftsometimber.co.uk']:
    log.append({'pattern':pattern,'previous':previous,'applied':result})
    (d/'route-changes.json').write_text(json.dumps(log,indent=2)+'\n')
    print('LIVE ROUTE',pattern,flush=True)
+   current=api(routesPath)
 # All original Worker deployments remain independently owned and unchanged.
 for name,old in baseline['workers'].items():
  if name!='shift-blog-publisher':assert api(workerPath+name+'/deployments')['deployments'][0]['id']==old['id'],'Upstream release changed during activation; reverify'

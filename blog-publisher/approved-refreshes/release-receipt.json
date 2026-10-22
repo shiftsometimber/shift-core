@@ -1,9 +1,9 @@
 {
   "release": {
-    "publishedAt": "2026-10-22T16:42:45.546633+00:00",
+    "publishedAt": "2026-10-22T16:50:50.476211+00:00",
     "ownerInstruction": "Apply the three supplied refresh packs; preserve original publish dates and set 22 October 2026 as modified date.",
     "worker": {
-      "id": "02355e0a-96e5-4d93-9a93-3345bfb82445",
+      "id": "2ad9e935-d8cc-457b-8a74-867b862fa6be",
       "source": "wrangler",
       "strategy": "percentage",
       "author_email": "matobrien@hotmail.co.uk",
@@ -12,13 +12,13 @@
       },
       "versions": [
         {
-          "version_id": "fb46501a-c770-4100-addb-e6f734349a09",
+          "version_id": "1bef18bc-9b0f-457a-9ac3-6f0133b143e8",
           "percentage": 100
         }
       ],
-      "created_on": "2026-10-22T16:40:34.752259Z"
+      "created_on": "2026-10-22T16:50:36.781593Z"
     },
-    "routesChanged": 48,
+    "routesChanged": 64,
     "originalWorkersUnchanged": true,
     "CMSWrites": false,
     "keyScopeChanged": false,
@@ -46,7 +46,7 @@
     ]
   },
   "liveAcceptance": {
-    "checkedAt": "2026-10-22T16:42:26.540Z",
+    "checkedAt": "2026-10-22T16:50:56.243Z",
     "staging": false,
     "pass": true,
     "checks": [
@@ -113,6 +113,21 @@
         "backlinks": true
       },
       {
+        "path": "/male-obesity?utm_source=refresh-check",
+        "HTTP": 200,
+        "refreshApplied": true
+      },
+      {
+        "path": "/guides/mens-health-mot-guide?utm_source=refresh-check",
+        "HTTP": 200,
+        "refreshApplied": true
+      },
+      {
+        "path": "/articles/testosterone-weight-men?utm_source=refresh-check",
+        "HTTP": 200,
+        "refreshApplied": true
+      },
+      {
         "path": "/sitemap.xml",
         "HTTP": 200,
         "allRefreshLastmods": true
@@ -124,7 +139,7 @@
       }
     ]
   },
-  "automatedTests": 99,
+  "automatedTests": 101,
   "failedTests": 0,
   "browserVerified": [
     "/male-obesity",
@@ -142,5 +157,8 @@
     ]
   },
   "CMSMigrated": false,
-  "futureStaticRevisions": "Still require source-controlled owner approval; contributor API scope remains unchanged."
+  "futureStaticRevisions": "Still require source-controlled owner approval; contributor API scope remains unchanged.",
+  "trackingURLsVerified": true,
+  "unmodifiedSiblingRoutesPreserved": true,
+  "flagOffRestoresUpstreamContent": true
 }

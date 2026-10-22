@@ -17,7 +17,6 @@ account='/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-blog-p
 live=api(account+'/deployments')['deployments'][0]
 release=json.loads((d/'release.json').read_text())
 assert live['versions']==release['worker']['versions'],'A later publisher release exists; reconcile first'
-api(account+'/deployments',{'strategy':'percentage','versions':baseline['workers']['shift-blog-publisher']['versions']},'POST')
 routeBase='/zones/66ec3268950adcfc837b7b8b2f8356ed/workers/routes'
 for change in reversed(changes):
  current=next((r for r in api(routeBase) if r['pattern']==change['pattern']),None)
@@ -25,4 +24,5 @@ for change in reversed(changes):
  old=change['previous']
  if old:api(routeBase+'/'+current['id'],{'pattern':old['pattern'],'script':old.get('script')},'PUT')
  else:api(routeBase+'/'+current['id'],method='DELETE')
+api(account+'/deployments',{'strategy':'percentage','versions':baseline['workers']['shift-blog-publisher']['versions']},'POST')
 print('Restored the previous publisher and exact pre-refresh route ownership.')

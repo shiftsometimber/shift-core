@@ -65,3 +65,13 @@ test('owner media preview has executable controls and only loads first-party med
  assert.ok(script.includes("media.controls=true"));
  assert.ok(script.includes("url.origin!=='https://shiftsometimber.co.uk'"));
 });
+
+test('disabling approved refreshes restores original public content across the scoped routes',async()=>{
+ for(const path of ['/male-obesity?utm_source=test','/guides/mens-health-mot-guide','/shift-health/blood-tests']){
+  let received;const original=new Response('Original upstream content',{headers:{'X-Original':'yes'}});
+  const upstream={fetch:async request=>{received=request;return original}};
+  const env={APPROVED_REFRESHES_ENABLED:'false',CORE:upstream,OBESITY:upstream,HEALTH:upstream};
+  const request=new Request('https://shiftsometimber.co.uk'+path);
+  assert.equal(await handleRequest(request,env,{}),original);assert.equal(received,request);
+ }
+});

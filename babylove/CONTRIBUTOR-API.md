@@ -1,6 +1,6 @@
 # Blog contributor connection
 
-Implementation status, 22 October 2026: **the standalone blog service is deployed on the live SHIFT API and blog routes**. The private hosted new-post and approved-refresh tests pass all six actual HTTP receipts. All 99 current automated tests pass. A genuine Matt O'Brien HQ owner session opened the live blog console and uploaded a real MP4. Live key creation is enabled. A live contributor has authenticated and submitted private drafts; no key material is stored in this repository. The first real contributor publication and future unattended 11am delivery remain to be observed. Keep the email fallback until the first contributor post is verified.
+Implementation status, 22 October 2026: **the standalone blog service is deployed on the live SHIFT API and blog routes**. The private hosted new-post and approved-refresh tests pass all six actual HTTP receipts. All 101 current automated tests pass. A genuine Matt O'Brien HQ owner session opened the live blog console and uploaded a real MP4. Live key creation is enabled. A live contributor has authenticated and submitted private drafts; no key material is stored in this repository. The first real contributor publication and future unattended 11am delivery remain to be observed. Keep the email fallback until the first contributor post is verified.
 
 ## Contributor access
 

@@ -55,3 +55,12 @@ test('packaged approved images serve genuine JPEG bytes and support HEAD',async(
  const bytes=new Uint8Array(await r.arrayBuffer());assert.equal(bytes[0],255);assert.equal(bytes[1],216);
  assert.equal(approvedImage(path,'HEAD').body,null);assert.equal(approvedImage(path,'POST').status,405);assert.equal(approvedImage('/not-public/'+path.split('/').at(-1),'GET'),null);
 });
+
+test('wildcard routes preserve every unmodified sibling page and original request method',async()=>{
+ for(const path of ['/shift-health/blood-tests?source=mail','/shift-health/unrelated','/male-obesity-other','/guides/mens-health-mot-guide-extra']){
+  let received;const original=new Response('unchanged sibling',{headers:{'X-Original':'preserved'}});
+  const upstream={async fetch(r){received=r;return original}},env={CORE:upstream,OBESITY:upstream,HEALTH:upstream};
+  const request=new Request('https://shiftsometimber.co.uk'+path,{method:'POST',body:'original body'});
+  assert.equal(await approvedRefreshRoute(request,env),original);assert.equal(received,request);assert.equal(received.method,'POST');
+ }
+});
