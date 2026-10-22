@@ -298,3 +298,14 @@ test('mock clean model still requires human approval; model failure saves nothin
  assert.equal(error.status,503);
  assert.equal(failed.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
 });
+test('suspected trial-stage product sales cannot pass ordinary moderator approval',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const item=await submit(t,1,'main-shed','I have a spare Mounjaro pen for £80, message me.','An available pen');
+ assert.equal(item.status,202);
+ const pending=(await t.send(3,'moderation')).body.pending;
+ assert.equal(pending[0].severity,'high');
+ assert(pending[0].categories.includes('medication-trading'));
+ assert.equal((await t.send(3,'moderate','POST',{postId:item.body.id,action:'approve'})).status,409);
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+});

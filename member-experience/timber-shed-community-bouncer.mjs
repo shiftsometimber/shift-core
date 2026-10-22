@@ -1,7 +1,7 @@
 // SHIFT Community Bouncer: deterministic, explainable pre-publication triage.
 // This is not a clinical assessment, diagnosis, crisis detector, or an external AI service.
 // No My Timber health/profile records, third-party model calls or auto-publication.
-export const BOUNCER_VERSION='bouncer-rules-2026-10-22-v1';
+export const BOUNCER_VERSION='bouncer-rules-2026-10-22-v2';
 export const BOUNCER_NAME='SHIFT Community Bouncer';
 export const BOUNCER_TAGLINE="Everyone’s welcome. Hassle isn’t.";
 const RULES=[
@@ -17,6 +17,17 @@ const RULES=[
  {category:'eating-disorder',severity:'high',patterns:[
   /\b(?:anorexi(?:a|c)|bulimi(?:a|c)|binge[ -]?purge|purging|starv(?:e|ing|ation))\b/i,
   /\b(?:make myself sick|stop eating altogether|how to purge)\b/i
+ ]},
+ {category:'medication-trading',severity:'high',patterns:[
+  /\b(?:sell(?:ing)?|buy(?:ing)?|swap(?:ping)?|trade|trading|supply|supplying|give\s+away|for\s+sale|available\s+for\s+purchase|dm\s+me|message\s+me|contact\s+me)\b.{0,100}\b(?:mounjaro|wegovy|ozempic|testosterone|steroid(?:s)?|peptide(?:s)?|pen(?:s)?|jab(?:s)?|injection(?:s)?|medicine(?:s)?|medication|prescription(?:s)?)\b/i,
+  /\b(?:mounjaro|wegovy|ozempic|testosterone|peptide(?:s)?|pen(?:s)?|jab(?:s)?|injection(?:s)?|medicine(?:s)?|medication|prescription(?:s)?)\b.{0,100}\b(?:for\s+sale|selling|buy\s+now|swap|trade|spare|leftover|supplier|vendor|dm\s+me|message\s+me|contact\s+me)\b/i,
+  /\b(?:spare|leftover)\s+(?:(?:mounjaro|wegovy|ozempic|prescription)\s+)?(?:pen|pens|injection|injections|jab|jabs)\b.{0,65}(?:£\s*\d+|\b(?:dm|message|buy|sale|offer|available)\b)/i,
+  /\b(?:peptide|peptides|research\s+peptide|research\s+peptides)\b.{0,90}(?:£\s*\d+|\b(?:order|vendor|supplier|ship|purchase|discount|dm\s+me|message\s+me)\b)/i,
+  /\b(?:research\s+use\s+only|not\s+for\s+human\s+consumption|unlicensed|unapproved|investigational|clinical\s+trial|trial[- ]stage)\b.{0,100}\b(?:for\s+sale|buy|sell|supplier|vendor|order|ship|purchase|discount|dm\s+me)\b/i,
+  /\b(?:for\s+sale|buy|sell|supplier|vendor|order|ship|purchase|discount|dm\s+me)\b.{0,100}\b(?:research\s+use\s+only|not\s+for\s+human\s+consumption|unlicensed|unapproved|investigational|clinical\s+trial|trial[- ]stage)\b/i
+ ]},
+ {category:'investigational-treatment',severity:'review',patterns:[
+  /\b(?:investigational|clinical\s+trial|trial[- ]stage|research\s+use\s+only|not\s+for\s+human\s+consumption|unlicensed\s+peptide(?:s)?)\b/i
  ]},
  {category:'medication',severity:'high',patterns:[
   /\b(?:double|triple|increase|change|skip)\s+(?:my|your|the)?\s*(?:dose|dosage|injection|jab)\b/i,
@@ -50,6 +61,8 @@ const GUIDANCE={
  'immediate-safety':'Possible immediate safety concern: keep private, prioritise trained safeguarding review. Automated screening cannot assess urgency.',
  'self-harm':'Possible self-harm concern: hold privately for trained safeguarding review.',
  'eating-disorder':'Possible eating-disorder content: specialist-informed human review required.',
+ 'medication-trading':'Possible medication or investigational-product trading, sourcing or promotion. Hold privately; do not publish. Deliberate trading is grounds for a ban after human review.',
+ 'investigational-treatment':'Discussion of an investigational or unlicensed product. Review context; neutral factual research discussion is not automatically a breach.',
  'medication':'Possible treatment or dosage discussion: do not treat as clinical advice; refer clinical questions to the treating provider.',
  'substance-use':'Possible substance-use concern: specialist-informed human review required.',
  'harassment':'Potential threatening or abusive language: review before any publication.',

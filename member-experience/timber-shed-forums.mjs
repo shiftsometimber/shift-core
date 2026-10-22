@@ -10,7 +10,7 @@ export const timberShedForumRooms=Object.freeze([
 export const timberShedForumRules=Object.freeze([
  'Only your own words, deliberately submitted for community review, could ever be published.',
  'My Timber measurements, treatment records, check-ins, mood and contact details are never used to prefill posts.',
- 'No dose advice, medicine trading, unsafe weight-loss challenges, personal attacks or pressure to disclose private information.',
+ 'No selling, supplying, swapping, sourcing, advertising or facilitating any medicines, investigational treatments, trial-stage drugs, research-use peptides or unapproved injections; no dose advice, unsafe weight-loss challenges, personal attacks or pressure to disclose private information.',
  'Report and moderation processes, trained adult cover, crisis escalation and age controls are required before real discussions open.',
  'No private messaging, member directory, public profiles or direct member contact at launch.'
 ]);

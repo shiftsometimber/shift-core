@@ -62,3 +62,31 @@ test('input is bounded and never read from health records or third parties',()=>
  const src=readFileSync(new URL('../member-experience/timber-shed-community-bouncer.mjs',import.meta.url),'utf8');
  assert.doesNotMatch(src,/fetch\(|XMLHttpRequest|member_state|health_records|clinical_records|api\.openai|api\.anthropic/);
 });
+test('medication and trial-stage peptide trading is a high-risk moderation hold',()=>{
+ const examples=[
+  'I have a spare Mounjaro pen for £80, message me.',
+  'Selling research use only peptides, DM me for prices.',
+  'Can someone supply Wegovy injections to me?',
+  'Unlicensed investigational peptides for sale, contact me.',
+  'Clinical trial medicine supplier, order now.',
+  'I have a leftover prescription pen for £50.'
+ ];
+ for(const body of examples){
+  const r=screenForumText({title:'Community discussion',body});
+  assert.equal(r.severity,'high',body);
+  assert(r.categories.includes('medication-trading'),body);
+  assert.equal(r.mayAutoPublish,false);
+  assert(r.requiresHumanApproval);
+ }
+});
+test('neutral discussion of medical research is reviewable, not presumed trading',()=>{
+ for(const body of [
+  'I read about a clinical trial in the news and want to understand the published findings.',
+  'What does investigational treatment mean in a research paper?'
+ ]){
+  const r=screenForumText({title:'Research question',body});
+  assert.equal(r.severity,'review',body);
+  assert(r.categories.includes('investigational-treatment'));
+  assert(!r.categories.includes('medication-trading'));
+ }
+});
