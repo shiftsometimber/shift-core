@@ -1,0 +1,14 @@
+{
+  "commit": "4aaaf6632f28750f542633b094f1e4ec69cd6844",
+  "run": 39740505366,
+  "artifact": 12408818767,
+  "artifactSha256": "5ca267d8be3edfa673a08fbc44a8a0b9ed357698c702ff7b7bd4afb0a6b1f840",
+  "design": "20261022-newsroom-preview-v2-refined",
+  "approval": "Matt: Mega, go live - then go to next now !, 22 October 2026",
+  "blobs": {
+    "previews/newsroom-presentation/page.mjs": "04924d23c20da44dcc812879432ba7f5bd0c68b7",
+    "previews/newsroom-presentation/style.mjs": "bb04627007834ca044dc41c555193253b190cc71",
+    "previews/newsroom-presentation/client.mjs": "c9fd5bf92efe5980fa0104a61c3f463ee865a4c4",
+    "radar-newsroom-sort-v1.js": "a12d9b19b67434023ab0e7e6ecd1f959a298ec0c"
+  }
+}
