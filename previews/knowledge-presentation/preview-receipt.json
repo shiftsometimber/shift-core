@@ -1,0 +1,18 @@
+{
+  "status": "verified-preview-only",
+  "url": "https://shift-knowledge-presentation-preview-20261022.matobrien.workers.dev/explore-knowledge",
+  "commit": "b521c8fccab105a074090cb7115d140052211267",
+  "run": 39765381309,
+  "job": 119779413996,
+  "artifact": 12420181361,
+  "digest": "89a461c7cea7c8a3a71e177ff4eed9a23b15de8e954dc727a1066db794a0d11e",
+  "checks": [
+    "Chromium and WebKit at390/1440",
+    "search filters pagination empty state",
+    "images and overflow",
+    "native noJS search",
+    "shared header and footer",
+    "zero production routes"
+  ],
+  "productionDependency": "Replace captured preview catalogue with authoritative publishing integration before live release; preserve all resource destinations."
+}
