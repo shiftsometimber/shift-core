@@ -1,0 +1,42 @@
+{
+  "kind": "protected_hosted_acceptance",
+  "actualHTTP": true,
+  "actualD1": true,
+  "actualR2": true,
+  "syntheticOwner": true,
+  "controlledClock": true,
+  "genuineHQOwnerSessionVerified": false,
+  "unattendedScheduleVerified": false,
+  "productionPublication": false,
+  "checks": {
+    "privateStagingGate": true,
+    "genuineHostedImageAndMP4UploadReadback": true,
+    "actualGatewayD1PublicationAndSixHostedHTTPReceipts": true,
+    "siteSchemaMattAuthorAndPrivatePage": true,
+    "relatedLineUsesActualPublicDestinationWithoutIndividualApproval": true,
+    "rewriteHeldAndContributorCannotApprove": true,
+    "hostedApprovedRefreshPreservesOriginalDate": true,
+    "unsafeCopyHeld": true,
+    "realVideoByteRange": true,
+    "realUploadRetryDeduplicated": true,
+    "hostedOwnerConsoleHasUploadControl": true,
+    "hostedRollbackIsPrivateOwnerReviewedRevision": true,
+    "hostedCrossKeyReceiptAndMediaIsolation": true,
+    "hostedKeyRevocationStopsReadAndUpload": true,
+    "hashMatchedImageAndVideoDecode": true
+  },
+  "articlePath": "/articles/blog-stage-1e8f0a78a8f94e2e9a7d7f4ffee3d13e",
+  "stageBase": "https://shift-article-quality-preview.matobrien.workers.dev",
+  "realModel": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  "pass": true,
+  "completedAt": "2026-10-21T12:11:32.083219+00:00",
+  "browserPlaybackVerified": false,
+  "sourceSHA256": {
+    "babylove/contributor-service.mjs": "2f06241c2a66a73053fea574a84ed0b8441dd85634992ed8fc88a81cd0de2296",
+    "babylove/contributor-media.mjs": "77d8134e014ee72fc11331f799f9b3aaf3bbad444eba112229d471344d6743d1",
+    "babylove/dynamic-public.mjs": "c0fe8c9e21a4c754130cfdc031f6c43dd1b9f9a4b0357be892bd59873beeed59",
+    "preview/article-quality/blog-staging.mjs": "4f721ab65fd770b3814e81bcf2aeadadc08e37cdf20893e7dcef47ce18c789d1"
+  },
+  "hostedVersion": "0ee75555-f613-4e0f-9838-7cde634396e9",
+  "localClockDSTBoundaryTests": "Separate source/HTTP fixture evidence; future unattended delivery is not verified."
+}

@@ -1,3 +1,4 @@
+import {blogRoutes} from './contributor-service.mjs';
 // https://www.babylovegrowth.ai/docs/integrations/webhook
 // Draft intake only: no publication, arbitrary URL fetches or article overwrites.
 export const PATH='/v1/integrations/babylovegrowth';
@@ -44,6 +45,7 @@ async function notifyArrival(env,article){
 }
 
 export async function babyLoveRoutes(request,env){
+  const blog=await blogRoutes(request,env,{});if(blog)return blog;
   if(new URL(request.url).pathname.replace(/\/+$/,'')!==PATH)return null;
   if(request.method!=='POST')return reply({success:false,error:'method_not_allowed'},405);
   const secret=env.BABYLOVE_WEBHOOK_TOKEN;
