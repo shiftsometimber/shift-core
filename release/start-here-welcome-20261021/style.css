@@ -501,3 +501,6 @@ html body main#main-content.sw #sw-questions .q-sr-only{position:absolute!import
 html body main#main-content.sw #sw-questions #weight-loss-questions{scroll-margin-top:120px!important}
 html body main#main-content.sw #sw-questions [hidden]{display:none!important}
 @media(max-width:760px){html body main#main-content.sw #sw-questions{width:calc(100% - 32px)!important;padding:22px 0 30px!important}}
+
+/* Suppress inherited callout decorations on the approved answer tiles. */
+html body main#main-content.sw #sw-questions .q-choices::before,html body main#main-content.sw #sw-questions .q-choices::after,html body main#main-content.sw #sw-questions .q-choice::before,html body main#main-content.sw #sw-questions .q-choice::after{content:none!important;display:none!important}
