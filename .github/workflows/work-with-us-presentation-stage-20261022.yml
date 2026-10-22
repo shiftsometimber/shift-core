@@ -1,0 +1,58 @@
+name: Qualify Work with us release without public activation
+on:
+  push:
+    branches: [prepare/work-with-us-presentation-20261022]
+    paths: [previews/work-with-us-presentation/**, .github/workflows/work-with-us-presentation-live-20261022.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work-with-us-presentation-stage-20261022
+  cancel-in-progress: true
+jobs:
+  publish-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+      WORK_EVIDENCE_DIR: work-with-us-presentation-live-evidence
+      WORK_RELEASE: 20261022-work-with-us-live-v1
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/work-with-us-presentation
+          fetch-depth: 4
+      - name: Trust this checkout inside the job container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Capture the current published index once
+        run: node --input-type=module -e "import{writeFileSync}from'node:fs';const r=await fetch('https://shiftsometimber.co.uk/work-with-us',{signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Could not read Work with us');writeFileSync('previews/work-with-us-presentation/source-fixture.html',await r.text())"
+      - name: Verify approved source and production boundaries
+        run: |
+          node previews/work-with-us-presentation/build.cjs
+          git diff --exit-code -- previews/work-with-us-presentation/style.mjs
+          node --check previews/work-with-us-presentation/production-worker.mjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/work-with-us-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage approved Work with us without changing public routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node previews/work-with-us-presentation/deploy-live.mjs stage
+      - name: Check hosted release before public activation
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/work-with-us-browser/node_modules/playwright
+          WORK_ORIGIN: https://shift-work-with-us-presentation-20261022.matobrien.workers.dev
+          WORK_CHECK_LINKS: '0'
+        run: node previews/work-with-us-presentation/check-live.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: work-with-us-presentation-staged-${{ github.sha }}
+          path: work-with-us-presentation-live-evidence/
+          retention-days: 90

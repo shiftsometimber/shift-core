@@ -1,0 +1,9 @@
+{
+  "design": "20261022-work-with-us-preview-v1",
+  "commit": "0a678abe406aa1a1bb19de14353a73584a2b1524",
+  "run": 39769790378,
+  "blobs": {
+    "previews/work-with-us-presentation/page.mjs": "f5fdadf4721b2e9a42821051eb2e0527aac5f7bd",
+    "previews/work-with-us-presentation/style.mjs": "eb670239e16b269e24e16c721b8e1262daf199b6"
+  }
+}
