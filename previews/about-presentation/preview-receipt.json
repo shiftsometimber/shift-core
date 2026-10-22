@@ -1,0 +1,131 @@
+{
+  "origin": "https://shift-about-presentation-preview-20261022.matobrien.workers.dev",
+  "url": "https://shift-about-presentation-preview-20261022.matobrien.workers.dev/about",
+  "menuPreview": "https://shift-about-presentation-preview-20261022.matobrien.workers.dev/member/dashboard",
+  "version": "20261022-about-preview-v4",
+  "commit": "4b05123832d1155c2b7115bb00a738289c8c783c",
+  "productionRoutesOwned": 0,
+  "allPriorRoutesPreserved": 194,
+  "chaptersPreserved": 7,
+  "sharedHeaderAndFooterPreserved": true,
+  "at": "2026-10-22T08:17:35.105Z",
+  "state": "preview-deployed-and-verified-awaiting-review",
+  "approval": "Preview preparation authorised; no production approval for About or My Timber Menu.",
+  "run": 39746566122,
+  "job": 119716368725,
+  "artifact": 12411940670,
+  "artifactSha256": "ec12e31fbf81880b1d2613f441a9d7deb6b493b4bd9ce5890677b49ceb031078",
+  "artifactDownloadedAndDigestVerified": true,
+  "accepted": {
+    "url": "https://shift-about-presentation-preview-20261022.matobrien.workers.dev/about",
+    "menuUrl": "https://shift-about-presentation-preview-20261022.matobrien.workers.dev/member/dashboard",
+    "browserPasses": [
+      {
+        "browser": "chromium",
+        "width": 390,
+        "geometry": {
+          "width": 390,
+          "scroll": 390,
+          "mainLeft": 20,
+          "tickerLeft": 20
+        },
+        "storyChapters": 7,
+        "chapterLinks": true,
+        "completeStory": true,
+        "menuLinks": 15,
+        "retainedLogin": true,
+        "keyboardOpen": true,
+        "escapeAndFocusReturn": true,
+        "outsideClose": true,
+        "noOverflow": true,
+        "noWrites": true,
+        "errors": []
+      },
+      {
+        "browser": "chromium",
+        "width": 1440,
+        "geometry": {
+          "width": 1440,
+          "scroll": 1440,
+          "mainLeft": 80,
+          "tickerLeft": 80
+        },
+        "storyChapters": 7,
+        "chapterLinks": true,
+        "completeStory": true,
+        "menuLinks": 15,
+        "retainedLogin": true,
+        "keyboardOpen": true,
+        "escapeAndFocusReturn": true,
+        "outsideClose": true,
+        "noOverflow": true,
+        "noWrites": true,
+        "errors": []
+      },
+      {
+        "browser": "webkit",
+        "width": 390,
+        "geometry": {
+          "width": 390,
+          "scroll": 390,
+          "mainLeft": 20,
+          "tickerLeft": 20
+        },
+        "storyChapters": 7,
+        "chapterLinks": true,
+        "completeStory": true,
+        "menuLinks": 15,
+        "retainedLogin": true,
+        "keyboardOpen": true,
+        "escapeAndFocusReturn": true,
+        "outsideClose": true,
+        "noOverflow": true,
+        "noWrites": true,
+        "errors": []
+      },
+      {
+        "browser": "webkit",
+        "width": 1440,
+        "geometry": {
+          "width": 1440,
+          "scroll": 1440,
+          "mainLeft": 80,
+          "tickerLeft": 80
+        },
+        "storyChapters": 7,
+        "chapterLinks": true,
+        "completeStory": true,
+        "menuLinks": 15,
+        "retainedLogin": true,
+        "keyboardOpen": true,
+        "escapeAndFocusReturn": true,
+        "outsideClose": true,
+        "noOverflow": true,
+        "noWrites": true,
+        "errors": []
+      }
+    ],
+    "noJavaScriptStoryPassed": true,
+    "productionChanges": false,
+    "at": "2026-10-22T08:17:56.272Z"
+  },
+  "runtimeBlobs": {
+    "page.mjs": "09be9bec5c7aec3f0998b6072390edd40c1dc9f9",
+    "style.mjs": "abfbfe4bfc68f860310b98cc70d34c10f1801ed9",
+    "menu-client.mjs": "63effabbf1dfb826ec8037af1b75642448581756",
+    "worker.mjs": "0339904f089fe7d6d216ddc81bebba9495fc5ab7",
+    "ticker.mjs": "9923bf75e6b5bb31d35cbfe7c8ece8e17d98da4b"
+  },
+  "scope": "About presentation and Menu addition only. The complete published first-person story, seven chapters, links and clinical qualifications are preserved.",
+  "menuScope": "Fifteen existing public site destinations. Native details/summary, monochrome SVG, Enter, Escape with focus return and outside-click closing; existing login/account controls retained. Client mounts in .mtw-header and header[data-member-design-header].",
+  "previewAuthBoundary": "The isolated welcome intentionally returns a local 401 for GET /v1/me so existing public welcome logic renders signed-out. It never reads private account data or forwards visitor cookies. This preview-only response must never be introduced into production.",
+  "signedInLimit": "Hosted acceptance covers the public signed-out welcome. No actual signed-in member session or private feature acceptance is claimed.",
+  "futureIntegration": "Inspect and preserve the currently served /assets/my-timber-welcome-20261021.js, then consider appending the accepted Menu client through a scoped asset route. Do not take over the existing Core-owned /member/dashboard route, proxy private data or change authentication. Stage and verify the exact production integration after Matt approves this preview.",
+  "newsroomLiveIsSeparate": {
+    "commit": "0435b8445ec7239a3ab897bee0dae7bd9f94aa64",
+    "proofCommit": "f80598c43f5aaf77be08e3ffe222ceb4d0330e1b",
+    "run": 39744870354,
+    "version": "20261022-newsroom-live-v1"
+  },
+  "restrictions": "About and Menu own zero public routes. Master and separately paused Core/TRT, Medicines Watch and broader reconciliation/performance work remain paused."
+}
