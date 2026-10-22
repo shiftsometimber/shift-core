@@ -1,0 +1,13 @@
+{
+  "commit": "1d8b9fbba1cfa40ecb3746a8f27e64b82b2ab7cb",
+  "run": 39735617545,
+  "artifact": 12406932385,
+  "design": "20261022-options-preview-v3-inline-switch",
+  "approval": "Matt reviewed the inline provider guidance, said Spot on, then explicitly instructed Go live on 22 October 2026.",
+  "blobs": {
+    "page.mjs": "53a9f36aaa6af28991b56a2a5c2a1215a76b1a81",
+    "style.mjs": "25ff8db2ca416ac7113292676a165eeea364f00a",
+    "client.mjs": "fa563c91f8dcd5911d52177bdb5fcb7ec170007c",
+    "worker.mjs": "4b10af9f84ee58fa9efe5f5bde09a4edc927f290"
+  }
+}
