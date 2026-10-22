@@ -1,0 +1,9 @@
+{
+  "design": "20261022-knowledge-preview-v1",
+  "commit": "b521c8fccab105a074090cb7115d140052211267",
+  "run": 39765381309,
+  "blobs": {
+    "previews/knowledge-presentation/page.mjs": "975578e3a831f567204d495edbafaf851641f9ef",
+    "previews/knowledge-presentation/style.mjs": "44cdd25d99b53db57cbeaead11c2526312590d5f"
+  }
+}
