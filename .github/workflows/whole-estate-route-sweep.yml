@@ -13,7 +13,7 @@ jobs:
           node-version-file: '.nvmrc'
       - name: Whole-estate production routes, links and blank-page sweep
         env:
-          SHIFT_SWEEP_MAX: '2500'
+          SHIFT_SWEEP_MAX: '20000'
         run: node gate1-whole-estate-production-sweep.mjs
       - name: Pre-merge member failure-envelope source contract
         if: github.event_name == 'pull_request'
