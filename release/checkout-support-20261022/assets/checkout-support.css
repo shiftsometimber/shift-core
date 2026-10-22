@@ -6,3 +6,4 @@ html body.v6 #shift-checkout-support#shift-checkout-support #cs-title{outline:no
 html.cs-screen-open body.v6 .op-wrap[hidden]{display:none!important}
 
 html body.v6 #shift-checkout-support#shift-checkout-support .cs-cards{height:auto!important;padding:0!important;border:0!important;background:transparent!important;overflow:visible!important;align-items:start!important}html body.v6 #shift-checkout-support#shift-checkout-support .cs-card{height:auto!important;min-height:0!important;align-self:start!important}html body.v6 #shift-checkout-support#shift-checkout-support .cs-copy,html body.v6 #shift-checkout-support#shift-checkout-support .cs-action{min-height:0!important}
+html body.v6 #shift-checkout-support#shift-checkout-support#shift-checkout-support [hidden]{display:none!important}
