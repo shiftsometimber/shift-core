@@ -1,0 +1,7 @@
+# About and My Timber Menu previews — 22 October 2026
+
+Preview-only follow-on to Matt's approved Newsroom publication. The published first-person story is read fresh through Core and its seven chapters, links, qualifications and personal account are preserved. The presentation adds a clear editorial opening, a note from Matt, a chapter index and a useful final entry into Start Here/free My Timber. It creates no founder likeness, personal facts, medical claims or results promises.
+
+The same isolated worker offers the public My Timber welcome for reviewing the requested header Menu. The added client mounts a native, keyboard-accessible site Menu in the welcome header and compact member-design header, retaining existing login and account controls. It uses the fifteen existing site destinations, monochrome SVGs, native disclosure semantics, Escape/focus return and outside-click closing. It does not change accounts, health data, authentication, consent, services or clinical journeys. Signed-in header integration needs its own exact production acceptance; the hosted preview checks the signed-out welcome.
+
+The preview worker owns zero production routes, refuses writes, does not forward private API requests and does not forward visitor cookies to Core. Header/full footer are unchanged for About. Publication of either new version requires Matt's review and explicit approval. Master/Core/TRT/Medicines Watch/broader reconciliation work stays paused.

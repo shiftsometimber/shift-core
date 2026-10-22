@@ -1,0 +1,14 @@
+import{version,mainFor}from'./page.mjs';import style from'./style.mjs';import menu from'./menu-client.mjs';
+export const assetPath='/_sst-preview/my-timber-menu.js';
+export default{async fetch(request,env){const url=new URL(request.url);if(!['GET','HEAD'].includes(request.method))return new Response('Read-only design preview.',{status:405,headers:{Allow:'GET, HEAD'}});if(!url.hostname.endsWith('.workers.dev'))return new Response('Preview host required.',{status:404});
+ if(url.pathname===assetPath)return new Response(request.method==='HEAD'?null:menu,{headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
+ if(url.pathname==='/my-timber')return Response.redirect(url.origin+'/member/dashboard',302);
+ const about=['/about','/about/','/about.html'].includes(url.pathname),welcome=url.pathname==='/member/dashboard';
+ if(!about&&!welcome){if(url.pathname.startsWith('/v1/')||/sw\.js$|service.worker|register-sw/.test(url.pathname))return new Response('Unavailable in the design preview.',{status:403});if(!url.pathname.includes('..')&&/\.(?:css|js|mjs|woff2?|webp|png|jpe?g|svg|ico)$/.test(url.pathname))return env.CORE.fetch(new Request('https://shiftsometimber.co.uk'+url.pathname+url.search,{method:request.method}));return Response.redirect('https://shiftsometimber.co.uk'+url.pathname+url.search,302);}
+ const upstream=await env.CORE.fetch(new Request('https://shiftsometimber.co.uk'+(about?'/about':'/member/dashboard'),{headers:{Accept:'text/html'}}));if(!upstream.ok)return new Response('The published page could not be loaded.',{status:502});const html=await upstream.text();let content;if(about){try{content=mainFor(html);}catch{return new Response('The published story structure could not be read.',{status:502});}}
+ const headers=new Headers(upstream.headers);for(const key of['Content-Length','Content-Encoding','ETag','Last-Modified','Set-Cookie'])headers.delete(key);headers.set('Cache-Control','private, no-store');headers.set('X-Robots-Tag','noindex, nofollow');headers.set('X-Shift-About-Preview',version);
+ let rewriter=new HTMLRewriter().on('meta[name="robots"]',{element(e){e.setAttribute('content','noindex,nofollow');}});
+ if(about)rewriter=rewriter.on('main',{element(e){e.setAttribute('class','ab');e.setAttribute('id','main-content');e.setAttribute('data-about-presentation',version);e.setInnerContent(content,{html:true});}}).on('head',{element(e){e.append('<style data-about-style>'+style+'</style>',{html:true});}});
+ else rewriter=rewriter.on('body',{element(e){e.setAttribute('data-my-timber-menu-preview','20261022-menu-preview-v1');e.append('<script defer src="'+assetPath+'"></script>',{html:true});}}).on('script',{element(e){if(/register-sw|my-timber-pwa/.test(e.getAttribute('src')||''))e.remove();}});
+ return rewriter.transform(new Response(request.method==='HEAD'?null:html,{status:200,headers}));
+}};

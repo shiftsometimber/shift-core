@@ -1,0 +1,1 @@
+const fs=require('node:fs'),path=require('node:path');for(const[name,extension]of[['style','.css'],['menu-client','.js']])fs.writeFileSync(path.join(__dirname,name+'.mjs'),'export default '+JSON.stringify(fs.readFileSync(path.join(__dirname,name+extension),'utf8'))+';\n');

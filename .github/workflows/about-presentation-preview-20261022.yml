@@ -1,0 +1,51 @@
+name: Preview About and My Timber header Menu
+on:
+  push:
+    branches: [preview/about-presentation-20261022]
+    paths: [previews/about-presentation/**, .github/workflows/about-presentation-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: about-presentation-preview-20261022
+  cancel-in-progress: false
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/about-presentation
+      - name: Trust this checkout inside the job container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Capture the current public story once
+        run: node --input-type=module -e "import{writeFileSync}from'node:fs';const r=await fetch('https://shiftsometimber.co.uk/about',{signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Could not read About');writeFileSync('previews/about-presentation/source-fixture.html',await r.text())"
+      - name: Build and verify story and preview boundaries
+        run: |
+          node previews/about-presentation/build.cjs
+          git diff --exit-code -- previews/about-presentation/style.mjs previews/about-presentation/menu-client.mjs
+          node --test previews/about-presentation/test.mjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/about-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage an isolated preview only
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/about-presentation/deploy-preview.mjs
+      - name: Check the actual hosted pages on mobile and desktop
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/about-browser/node_modules/playwright
+        run: node previews/about-presentation/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: about-and-menu-preview-${{ github.sha }}
+          path: about-presentation-preview-evidence/
+          retention-days: 90
