@@ -1,0 +1,9 @@
+{
+  "design": "20261022-feeling-presentation-v1",
+  "commit": "6a974091cdb33cd75c61978bdf8b349bbc7f0d3a",
+  "run": 39780764566,
+  "blobs": {
+    "previews/feeling-presentation/worker.mjs": "397cd4dc7cabc1e90789e4c6f444be43a61aad52",
+    "previews/feeling-presentation/style.mjs": "d31075faaa9fb5141a88f7404b3c544260068ca6"
+  }
+}
