@@ -1,0 +1,51 @@
+name: Preview Calculators and Tools presentation
+on:
+  push:
+    branches: [preview/tools-presentation-20261022]
+    paths: [previews/tools-presentation/**, .github/workflows/tools-presentation-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: tools-presentation-preview-20261022
+  cancel-in-progress: true
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/tools-presentation
+      - name: Trust this checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Build scoped style and check source
+        run: |
+          node previews/tools-presentation/build.cjs
+          git diff --exit-code -- previews/tools-presentation/style.mjs
+          node --check previews/tools-presentation/worker.mjs
+          node --check previews/tools-presentation/deploy-preview.mjs
+          node --check previews/tools-presentation/check-browser.cjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/tools-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage hub preview with existing content preserved
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/tools-presentation/deploy-preview.mjs
+      - name: Check desktop, mobile, WebKit, links, reading order and keyboard
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/tools-browser/node_modules/playwright
+        run: node previews/tools-presentation/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tools-preview-${{ github.sha }}
+          path: tools-presentation-preview-evidence/
+          retention-days: 90
