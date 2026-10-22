@@ -12,7 +12,7 @@ html body main#main-content.wwp a{color:inherit!important;text-decoration:none!i
 html body main#main-content.wwp a:focus-visible{outline:3px solid #9eae82!important;outline-offset:5px!important}
 html body main#main-content.wwp .ww-button{font:700 16px/1.45 Arial,sans-serif!important;padding:15px 23px!important;margin:0!important;border:1px solid var(--ww-ash)!important;border-radius:6px!important;min-height:52px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;white-space:normal!important;max-width:100%!important;box-shadow:none!important;transition:background .15s,transform .15s!important}
 html body main#main-content.wwp .ww-button:hover{transform:translateY(-2px)!important}
-html body main#main-content.wwp .ww-button--green{background:var(--ww-ash)!important;color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content.wwp .ww-button--green{background:var(--ww-light)!important;color:#050505!important;-webkit-text-fill-color:#050505!important}
 html body main#main-content.wwp .ww-button--cream{background:var(--ww-cream)!important;color:var(--ww-ink)!important;-webkit-text-fill-color:var(--ww-ink)!important}
 html body main#main-content.wwp .ww-button--outline{background:transparent!important;color:inherit!important;-webkit-text-fill-color:currentColor!important}
 html body main#main-content.wwp .ww-hero{padding:58px 0 60px!important}
