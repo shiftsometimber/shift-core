@@ -10,9 +10,17 @@ if(!Number.isInteger(MAX_PAGES)||MAX_PAGES<2)throw new Error('SHIFT_SWEEP_MAX mu
 if(!Number.isInteger(CONCURRENCY)||CONCURRENCY<1||CONCURRENCY>32)throw new Error('SHIFT_SWEEP_CONCURRENCY must be an integer from 1 to 32');
 if(!Number.isInteger(REQUEST_TIMEOUT_MS)||REQUEST_TIMEOUT_MS<100||REQUEST_TIMEOUT_MS>120000)throw new Error('SHIFT_SWEEP_TIMEOUT_MS must be an integer from 100 to 120000');
 
+function decodeHtmlUrl(raw){
+  return String(raw)
+    .replace(/&(?:amp|#0*38|#x0*26);/gi,'&')
+    .replace(/&(?:quot|#0*34|#x0*22);/gi,'"')
+    .replace(/&(?:apos|#0*39|#x0*27);/gi,"'")
+    .replace(/&(?:lt|#0*60|#x0*3c);/gi,'<')
+    .replace(/&(?:gt|#0*62|#x0*3e);/gi,'>');
+}
 function normalise(raw,base){
   if(!raw||/^(?:mailto:|tel:|sms:|javascript:|data:|blob:|#)/i.test(raw))return null;
-  try{const u=new URL(raw,base);u.hash='';if(!/^https?:$/.test(u.protocol))return null;if(u.pathname.startsWith('/cdn-cgi/l/email-protection'))return null;return u}catch{return null}
+  try{const u=new URL(decodeHtmlUrl(raw),base);u.hash='';if(!/^https?:$/.test(u.protocol))return null;if(u.pathname.startsWith('/cdn-cgi/l/email-protection'))return null;return u}catch{return null}
 }
 function extract(html,base){
   const scan=String(html||'')

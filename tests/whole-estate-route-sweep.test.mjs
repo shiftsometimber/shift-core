@@ -35,3 +35,21 @@ test('whole-estate sweep fails closed when a route exceeds the bounded request t
   });
 });
 
+test('whole-estate sweep decodes HTML URL entities once and does not amplify query links',async()=>{
+  const requested=[];
+  await fixture((request,response)=>{
+    requested.push(request.url);
+    const href=request.url.startsWith('/explore')?request.url.replaceAll('&','&amp;'):'/explore?topic=food&amp;limit=12';
+    response.writeHead(200,{'content-type':'text/html'});
+    response.end(page('Complete route content with a stable query link. <a href="'+href+'">Explore food</a>'));
+  },async base=>{
+    const {stdout}=await run(process.execPath,['gate1-whole-estate-production-sweep.mjs'],{cwd:process.cwd(),env:{...process.env,SHIFT_SITE_BASE:base,SHIFT_SWEEP_MAX:'10',SHIFT_SWEEP_CONCURRENCY:'2',SHIFT_SWEEP_TIMEOUT_MS:'2000'},maxBuffer:4e6});
+    const result=report(stdout);
+    assert.equal(result.truncated,false);
+    assert.equal(result.failures.length,0);
+    assert.equal(requested.filter(url=>url.startsWith('/explore')).length,1);
+    assert(requested.includes('/explore?topic=food&limit=12'));
+    assert(!requested.some(url=>url.includes('amp%3B')||url.includes('amp;')));
+  });
+});
+
