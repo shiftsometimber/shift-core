@@ -46,3 +46,7 @@ Version 3 is the current review version: https://shift-life-presentation-preview
 Artifact `12436834461`, `life-preview-247bf6706940739ac9c9885faa0d1dee25ec47cf`, SHA-256 `e6d0d531693bd9c5c749a722f0bb80133c227b8e424ad70f80f188dc70e7113e`, downloaded and digest verified. Desktop/mobile composite visually reviewed. `SHIFT-Life-Back-Preview-v3-2026-10-22.png` replaced the same Library image identity `libfile_ea467e80fea4819192881e678ff13ca9`, now version 2. Independent browser confirms v3 and all three containers left=94px, right=1254px, width=1160px in its current desktop viewport. No account links followed.
 
 **Awaiting approval of version 3 before publication. Versions 1 and 2 are superseded.** Use only current v3 blobs and successful source/run pinned in preview-gate.json. Preserve original source, public route ownership, staged/public browser qualification, privacy and the paused/excluded scopes already recorded. No Life Back visual version from this chat has been published.
+
+## Approved release — 22 October 2026 (BST)
+
+Matt reviewed the flush v3 preview, replied “Magic”, then explicitly instructed “And live”. This approves publication of exact v3 worker/style only. Deploy via isolated Life Back worker and six exact routes, qualify staged and actual public Chromium/WebKit mobile/desktop, preserve all prior routes and all original source/account/care limits. No member pages, updates, communications or other paused/excluded work authorised.
