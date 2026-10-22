@@ -9,6 +9,8 @@ export const MAIN_RELEASE_ORIGINAL_RECEIPT='aec895cc2543f83f8dd7af0111850745605b
 export const MAIN_RELEASE_FOLLOWUP_PAYLOAD='35eb63b29bb2e617775aa900ffaa657ad6a9b384';
 export const MAIN_RELEASE_TIMEOUT_BASE='fc0baf8d2e41c577590531cb0fc9d178a6297b63';
 export const MAIN_RELEASE_TIMEOUT_PAYLOAD='0f9a1a299b65b4cc661b178b15b244a0265fef5c';
+export const MAIN_RELEASE_ROUTE_BASE='3ae2b6c0f664ca205c9607ce80617ba6f14999f0';
+export const MAIN_RELEASE_ROUTE_PAYLOAD='a86b95330c15e0894434743a545d539895c57799';
 export const MAIN_RELEASE_RECEIPT='release/main-release-readiness-scope-20261021.json';
 export const MAIN_LIVE_HEADER_CSS_SHA256='74b8c12bc157dfab638bb1202a3358d12b6a47bd5932c5df5480a1c887a3ef6d';
 
@@ -18,9 +20,11 @@ const FOLLOWUP_PATHS=Object.freeze(['.github/workflows/programme-day-preview.yml
 const FOLLOWUP_MAINTENANCE=Object.freeze(['release/main-release-readiness-scope-20261021.mjs','tests/main-release-readiness-scope-20261021.test.mjs']);
 const TIMEOUT_PATHS=Object.freeze(['.github/workflows/organic-followthrough-proof.yml','release/root-share-preview-scope.mjs','release/photo-calendar-scope.mjs']);
 const TIMEOUT_MAINTENANCE=Object.freeze(['release/main-release-readiness-scope-20261021.mjs','tests/main-release-readiness-scope-20261021.test.mjs']);
+const ROUTE_PATHS=Object.freeze(['.github/workflows/whole-estate-route-sweep.yml']);
+const ROUTE_MAINTENANCE=Object.freeze(['release/main-release-readiness-scope-20261021.mjs','tests/main-release-readiness-scope-20261021.test.mjs']);
 const PROGRAMME_TRIGGER_PATHS=Object.freeze(['release/app-preflight.mjs','release/root-share-preview-scope.mjs','tests/bounded-source-scheduling-20261016.test.mjs','tests/combined-legacy-projection-20261014.test.mjs','tests/combined-organic-admission-negative-20261014.test.mjs','tests/food-diary-london-date-stack-20261015.test.mjs','tests/recorded-week-browser-repair-20261017.test.mjs','tests/root-share-preview.test.mjs','tests/website-editorial-scope-20261018.test.mjs']);
-export const MAIN_RELEASE_PATHS=Object.freeze([...new Set([...ORIGINAL_PATHS,...FOLLOWUP_PATHS,...TIMEOUT_PATHS])]);
-export const MAIN_RELEASE_MAINTENANCE=Object.freeze([...new Set([...ORIGINAL_MAINTENANCE,...FOLLOWUP_MAINTENANCE,...TIMEOUT_MAINTENANCE])]);
+export const MAIN_RELEASE_PATHS=Object.freeze([...new Set([...ORIGINAL_PATHS,...FOLLOWUP_PATHS,...TIMEOUT_PATHS,...ROUTE_PATHS])]);
+export const MAIN_RELEASE_MAINTENANCE=Object.freeze([...new Set([...ORIGINAL_MAINTENANCE,...FOLLOWUP_MAINTENANCE,...TIMEOUT_MAINTENANCE,...ROUTE_MAINTENANCE])]);
 
 const originalExpected={"kind":"EXACT_CURRENT_MAIN_RELEASE_READINESS_REPAIR_20261021","base":"39c703ac068b800bbf4a92a9277e21bd3d7b89e6","payload":"e85fe30291663f37d800009a9199620d6e2f1cb6","paths":[".github/workflows/programme-day-preview.yml","release/app-scope.mjs","reta-styles-data.mjs","wrangler.coaching.jsonc"],"maintenancePaths":["release/health-vision-scope-20261021.mjs","release/main-release-readiness-scope-20261021.mjs","tests/main-release-readiness-scope-20261021.test.mjs"],"observedFailures":{"production":{"run":39650793172,"job":119398602832,"source":"39c703ac068b800bbf4a92a9277e21bd3d7b89e6","deploymentPerformed":false,"failedBeforeMutation":true,"failures":["unadmitted Health extension in app scope","stale wrangler.coaching.jsonc fixture","live header-navigation-v2.css bytes absent from current source"]},"programme":{"run":39626334852,"job":119312440952,"reason":"maximum execution time 6h0m0s after 594 passing assertions and zero observed failures"}},"repair":{"appAdmission":"Health and this exact repair are admitted only after their independent immutable verifiers pass","coachingFixture":"wrangler.coaching.jsonc is byte-identical to unchanged wrangler.jsonc","publicCss":"header-navigation-v2 source is reconciled to the already-active live bytes","activeHeaderCssSha256":"74b8c12bc157dfab638bb1202a3358d12b6a47bd5932c5df5480a1c887a3ef6d","programmeSourceTestConcurrency":2,"workflowTaskConcurrency":2,"sourceTestFilesChanged":false,"sourceTestSelectionChanged":false,"sourceAssertionsRemoved":0,"memberRuntimeChanged":false,"homepageBodyChanged":false,"clinicalSafetyChanged":false,"privacyOrConsentChanged":false,"memberRecordsChanged":false,"stockChanged":false,"commercialSettingsChanged":false},"authority":{"myTimberDeploymentApproved":true,"publicHomepageChangeApproved":false,"clinicalActivationApproved":false,"unrelatedChangesApproved":false},"productionVerified":false};
 const followupExpected={
@@ -38,6 +42,12 @@ const timeoutExpected={
  kind:'EXACT_PUBLIC_ALIAS_RUNTIME_CAP_REPAIR_20261022',base:MAIN_RELEASE_TIMEOUT_BASE,payload:MAIN_RELEASE_TIMEOUT_PAYLOAD,paths:[...TIMEOUT_PATHS],maintenancePaths:[...TIMEOUT_MAINTENANCE],
  evidence:{hostedRun:39733153504,hostedConclusion:'cancelled',priorHostedCapMinutes:30,localExactWorkloadExceededSeconds:3600,observedAssertionFailuresAtBoundary:0,activeTest:'acquisition-activation/metrics-release.test.mjs'},
  repair:{publicAliasWorkflowTimeoutMinutes:120,publicAliasTestConcurrency:2,defaultRootShareHistoricalReaderProjected:true,photoCalendarRootInverseComposed:true,sourceTestSelectionChanged:false,sourceAssertionsRemoved:0,memberRuntimeChanged:false,homepageBodyChanged:false,clinicalSafetyChanged:false,privacyOrConsentChanged:false,memberRecordsChanged:false,stockChanged:false,commercialSettingsChanged:false},
+ authority:{myTimberDeploymentApproved:true,publicHomepageChangeApproved:false,clinicalActivationApproved:false,unrelatedChangesApproved:false},productionVerified:false
+};
+const routeExpected={
+ kind:'EXACT_WHOLE_ESTATE_ROUTE_CAPACITY_REPAIR_20261022',base:MAIN_RELEASE_ROUTE_BASE,payload:MAIN_RELEASE_ROUTE_PAYLOAD,paths:[...ROUTE_PATHS],maintenancePaths:[...ROUTE_MAINTENANCE],
+ evidence:{hostedRun:39777869531,initialJob:119821319114,retryJob:119832435344,retryChecked:1000,retryHtmlPages:705,retryFailures:0,retryTruncated:true,previousLimit:1000},
+ repair:{wholeEstateSweepMax:2500,requiredDiscoveryExhaustionRetained:true,routeFailureRejectionRetained:true,blankPageRejectionRetained:true,sourceTestSelectionChanged:false,sourceAssertionsRemoved:0,productionRuntimeChanged:false,memberExperienceChanged:false,homepageBodyChanged:false,clinicalSafetyChanged:false,privacyOrConsentChanged:false,memberRecordsChanged:false,stockChanged:false,commercialSettingsChanged:false},
  authority:{myTimberDeploymentApproved:true,publicHomepageChangeApproved:false,clinicalActivationApproved:false,unrelatedChangesApproved:false},productionVerified:false
 };
 
@@ -59,7 +69,7 @@ export function verifyMainReleaseReadinessExtension(){
  for(const row of git('ls-files','-v','-z').split('\0').filter(Boolean))assert(row.startsWith('H '),'Release-readiness hidden source forbidden');
 
  const finalReceipt=JSON.parse(content(actual,MAIN_RELEASE_RECEIPT));
- const {maintenanceSource:originalMaintenanceSource,followup,timeoutFollowup,...originalRecord}=finalReceipt;
+ const {maintenanceSource:originalMaintenanceSource,followup,timeoutFollowup,wholeEstateFollowup,...originalRecord}=finalReceipt;
  assert.deepEqual(originalRecord,originalExpected,'Original current-main repair authority changed');
  assert.match(originalMaintenanceSource,/^[a-f0-9]{40}$/);
  assert.deepEqual(JSON.parse(content(MAIN_RELEASE_ORIGINAL_RECEIPT,MAIN_RELEASE_RECEIPT)),{...originalExpected,maintenanceSource:originalMaintenanceSource},'Original immutable repair receipt changed');
@@ -69,11 +79,14 @@ export function verifyMainReleaseReadinessExtension(){
  const {maintenanceSource:timeoutMaintenanceSource,...timeoutRecord}=timeoutFollowup||{};
  assert.deepEqual(timeoutRecord,timeoutExpected,'Only the exact evidenced Public Alias runtime repair is authorised');
  assert.match(timeoutMaintenanceSource,/^[a-f0-9]{40}$/);
+ const {maintenanceSource:routeMaintenanceSource,...routeRecord}=wholeEstateFollowup||{};
+ assert.deepEqual(routeRecord,routeExpected,'Only the exact evidenced whole-estate capacity repair is authorised');
+ assert.match(routeMaintenanceSource,/^[a-f0-9]{40}$/);
 
- for(const [a,b,list] of [[MAIN_RELEASE_BASE,MAIN_RELEASE_PAYLOAD,ORIGINAL_PATHS],[MAIN_RELEASE_PAYLOAD,originalMaintenanceSource,ORIGINAL_MAINTENANCE],[originalMaintenanceSource,MAIN_RELEASE_ORIGINAL_RECEIPT,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_ORIGINAL_RECEIPT,MAIN_RELEASE_FOLLOWUP_PAYLOAD,FOLLOWUP_PATHS],[MAIN_RELEASE_FOLLOWUP_PAYLOAD,followupMaintenanceSource,FOLLOWUP_MAINTENANCE],[followupMaintenanceSource,MAIN_RELEASE_TIMEOUT_BASE,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_TIMEOUT_BASE,MAIN_RELEASE_TIMEOUT_PAYLOAD,TIMEOUT_PATHS],[MAIN_RELEASE_TIMEOUT_PAYLOAD,timeoutMaintenanceSource,TIMEOUT_MAINTENANCE],[timeoutMaintenanceSource,actual,[MAIN_RELEASE_RECEIPT]]]){
+ for(const [a,b,list] of [[MAIN_RELEASE_BASE,MAIN_RELEASE_PAYLOAD,ORIGINAL_PATHS],[MAIN_RELEASE_PAYLOAD,originalMaintenanceSource,ORIGINAL_MAINTENANCE],[originalMaintenanceSource,MAIN_RELEASE_ORIGINAL_RECEIPT,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_ORIGINAL_RECEIPT,MAIN_RELEASE_FOLLOWUP_PAYLOAD,FOLLOWUP_PATHS],[MAIN_RELEASE_FOLLOWUP_PAYLOAD,followupMaintenanceSource,FOLLOWUP_MAINTENANCE],[followupMaintenanceSource,MAIN_RELEASE_TIMEOUT_BASE,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_TIMEOUT_BASE,MAIN_RELEASE_TIMEOUT_PAYLOAD,TIMEOUT_PATHS],[MAIN_RELEASE_TIMEOUT_PAYLOAD,timeoutMaintenanceSource,TIMEOUT_MAINTENANCE],[timeoutMaintenanceSource,MAIN_RELEASE_ROUTE_BASE,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_ROUTE_BASE,MAIN_RELEASE_ROUTE_PAYLOAD,ROUTE_PATHS],[MAIN_RELEASE_ROUTE_PAYLOAD,routeMaintenanceSource,ROUTE_MAINTENANCE],[routeMaintenanceSource,actual,[MAIN_RELEASE_RECEIPT]]]){
   git('merge-base','--is-ancestor',a,b);assert.deepEqual(sorted(changed(a,b)),sorted(list),'Exact release-readiness increment required');
  }
- const netPaths=[...new Set([...ORIGINAL_PATHS,...ORIGINAL_MAINTENANCE,...FOLLOWUP_PATHS,...FOLLOWUP_MAINTENANCE,...TIMEOUT_PATHS,...TIMEOUT_MAINTENANCE,MAIN_RELEASE_RECEIPT])];
+ const netPaths=[...new Set([...ORIGINAL_PATHS,...ORIGINAL_MAINTENANCE,...FOLLOWUP_PATHS,...FOLLOWUP_MAINTENANCE,...TIMEOUT_PATHS,...TIMEOUT_MAINTENANCE,...ROUTE_PATHS,...ROUTE_MAINTENANCE,MAIN_RELEASE_RECEIPT])];
  assert.deepEqual(sorted(changed(MAIN_RELEASE_BASE,actual)),sorted(netPaths),'Unrelated release-readiness change rejected');
 
  for(const path of ORIGINAL_PATHS.filter(path=>path!=='.github/workflows/programme-day-preview.yml')){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',MAIN_RELEASE_PAYLOAD+':'+path),'Pinned original repair bytes changed: '+path);regularAt(actual,path);}
@@ -82,7 +95,9 @@ export function verifyMainReleaseReadinessExtension(){
  for(const path of FOLLOWUP_PATHS.filter(path=>!TIMEOUT_PATHS.includes(path))){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',MAIN_RELEASE_FOLLOWUP_PAYLOAD+':'+path),'Pinned terminal-gate repair bytes changed: '+path);regularAt(actual,path);}
  for(const path of FOLLOWUP_MAINTENANCE.filter(path=>!TIMEOUT_MAINTENANCE.includes(path))){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',followupMaintenanceSource+':'+path),'Pinned follow-up maintenance bytes changed: '+path);regularAt(actual,path);}
  for(const path of TIMEOUT_PATHS){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',MAIN_RELEASE_TIMEOUT_PAYLOAD+':'+path),'Pinned Public Alias runtime repair bytes changed: '+path);regularAt(actual,path);}
- for(const path of TIMEOUT_MAINTENANCE){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',timeoutMaintenanceSource+':'+path),'Pinned Public Alias maintenance bytes changed: '+path);regularAt(actual,path);}
+ for(const path of TIMEOUT_MAINTENANCE.filter(path=>!ROUTE_MAINTENANCE.includes(path))){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',timeoutMaintenanceSource+':'+path),'Pinned Public Alias maintenance bytes changed: '+path);regularAt(actual,path);}
+ for(const path of ROUTE_PATHS){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',MAIN_RELEASE_ROUTE_PAYLOAD+':'+path),'Pinned whole-estate capacity bytes changed: '+path);regularAt(actual,path);}
+ for(const path of ROUTE_MAINTENANCE){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',routeMaintenanceSource+':'+path),'Pinned whole-estate maintenance bytes changed: '+path);regularAt(actual,path);}
  regularAt(actual,MAIN_RELEASE_RECEIPT);
 
  assert.equal(git('rev-parse',actual+':release/approved-runtime-composition.json'),git('rev-parse',MAIN_RELEASE_BASE+':release/approved-runtime-composition.json'),'Previous approval ledger changed');
@@ -121,7 +136,14 @@ export function verifyMainReleaseReadinessExtension(){
  const rootShare=content(MAIN_RELEASE_TIMEOUT_PAYLOAD,'release/root-share-preview-scope.mjs');assert.equal(occurrences(rootShare,"if(defaultReader){const actual=git('rev-parse','HEAD');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes"),1,'Default root-share historical reads must enter the current-main projection exactly once');assert(rootShare.includes("assert.equal(timeoutFollowup.kind,'EXACT_PUBLIC_ALIAS_RUNTIME_CAP_REPAIR_20261022')")&&rootShare.includes("assert.equal(timeoutFollowup.base,'fc0baf8d2e41c577590531cb0fc9d178a6297b63')"),'The Public Alias repair must remain inside the exact current-main projection');
  const photoCalendar=content(MAIN_RELEASE_TIMEOUT_PAYLOAD,'release/photo-calendar-scope.mjs');assert.equal(occurrences(photoCalendar,'function originalCurrentMainRootShare(bytes){'),1,'The older photo-calendar inverse must compose the current-main root-share projection exactly once');assert.equal(occurrences(photoCalendar,' bytes=originalCurrentMainRootShare(bytes);'),1,'The current-main projection must be removed before the original photo-calendar inverse');
 
+ const routeBefore=content(MAIN_RELEASE_ROUTE_BASE,'.github/workflows/whole-estate-route-sweep.yml'),routeAfter=content(MAIN_RELEASE_ROUTE_PAYLOAD,'.github/workflows/whole-estate-route-sweep.yml');
+ const routeStep="      - name: Whole-estate production routes, links and blank-page sweep\n        run: node gate1-whole-estate-production-sweep.mjs";
+ const expandedRouteStep="      - name: Whole-estate production routes, links and blank-page sweep\n        env:\n          SHIFT_SWEEP_MAX: '2500'\n        run: node gate1-whole-estate-production-sweep.mjs";
+ assert.equal(occurrences(routeBefore,routeStep),1,'One original whole-estate sweep step required');
+ assert.equal(routeAfter,routeBefore.replace(routeStep,expandedRouteStep),'Only the whole-estate discovery ceiling may increase; all route and blank-page checks remain exact');
+ assert.equal(content(actual,'gate1-whole-estate-production-sweep.mjs'),content(MAIN_RELEASE_ROUTE_BASE,'gate1-whole-estate-production-sweep.mjs'),'Whole-estate rejection logic changed');
+
  assert.equal(readFileSync(MAIN_RELEASE_RECEIPT,'utf8').trimEnd(),content(actual,MAIN_RELEASE_RECEIPT).trimEnd(),'Working release-readiness receipt changed');
  assert.equal(git('rev-parse','HEAD'),actual,'Release-readiness HEAD moved');
- return Object.freeze({actual,predecessor:MAIN_RELEASE_BASE,payload:MAIN_RELEASE_PAYLOAD,followupPayload:MAIN_RELEASE_FOLLOWUP_PAYLOAD,timeoutPayload:MAIN_RELEASE_TIMEOUT_PAYLOAD,productionVerified:false});
+ return Object.freeze({actual,predecessor:MAIN_RELEASE_BASE,payload:MAIN_RELEASE_PAYLOAD,followupPayload:MAIN_RELEASE_FOLLOWUP_PAYLOAD,timeoutPayload:MAIN_RELEASE_TIMEOUT_PAYLOAD,routePayload:MAIN_RELEASE_ROUTE_PAYLOAD,productionVerified:false});
 }
