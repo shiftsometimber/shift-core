@@ -1,0 +1,15 @@
+{
+  "design": "20261022-life-presentation-v1",
+  "commit": "5be164768f495d4d1b836fa8c456fa6571634ebb",
+  "run": 39804005088,
+  "job": 119912224369,
+  "artifact": {
+    "id": 12437661217,
+    "name": "life-preview-5be164768f495d4d1b836fa8c456fa6571634ebb",
+    "digest": "sha256:9b059498b7b6c5049d51f9e85707e65000e7dfefab4a77a7ec783b0528d68ba1"
+  },
+  "blobs": {
+    "previews/life-presentation/worker.mjs": "b4d7028276e65f73b6ad879384bcd523e19a6cdf",
+    "previews/life-presentation/style.mjs": "b826bae7b539d32e07594929f9abeb6a9cc6f068"
+  }
+}
