@@ -705,6 +705,63 @@
     },
     "productionVerified": false,
     "maintenanceSource": "2badc697f21b901cd86cf805d1f2726f3efacab6"
+  },
+  "currentMainReconciliationFollowup": {
+    "kind": "EXACT_CURRENT_MAIN_RECONCILIATION_20261022",
+    "base": "8c78928accc388444515263df21fcdef1f17e51d",
+    "upstreamMain": "ed65a6d09df7b157f05f9654e8f584b32b6c4337",
+    "payload": "375fab1bea0e63eee85b31e26831f074c88358f5",
+    "paths": [
+      ".github/workflows/cloudflare-production-promote.yml",
+      "release/health-vision-scope-20261021.mjs",
+      "tests/health-vision-scope-20261021.test.mjs",
+      "tests/shared-footer.test.mjs",
+      "tests/timber-shed-public-teaser.test.mjs",
+      "timber-shed-public-teaser.mjs",
+      "worker-entry-v6.js"
+    ],
+    "compositionPayload": "f6e9788f20bc9a0d0d146d4699f19bec1956f09d",
+    "compositionPaths": [
+      "release/app-scope.mjs",
+      "release/root-share-preview-scope.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "mainCommits": [
+        "fb96b1e50176a00c045b5a862ef4af0d899896ed",
+        "06759144950025fee1b5e261abd629220777f583",
+        "2f6e10b8e0ca4919e53769703ad3224d10d66cfc",
+        "ed65a6d09df7b157f05f9654e8f584b32b6c4337"
+      ],
+      "productionReleaseCommit": "2f6e10b8e0ca4919e53769703ad3224d10d66cfc"
+    },
+    "repair": {
+      "exactTwoParentMerge": true,
+      "upstreamFilesByteIdentical": true,
+      "healthGuardRetained": true,
+      "mainReleaseVerifierCalledSeparately": true,
+      "rootHistoricalProjectionComposed": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "memberRuntimeChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "121dccb4c6c4a9b09584939a5f8add8f78621d43"
   }
 }
 
