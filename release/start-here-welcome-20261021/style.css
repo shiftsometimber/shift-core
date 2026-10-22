@@ -127,64 +127,67 @@ html body main#main-content.sw .sw-summary{grid-template-columns:repeat(5,minmax
 
 /* Approved compact treatment selector, scoped to Start Here results. */
 html body main#main-content.sw #sw-result{padding-top:28px!important;padding-bottom:36px!important}
-html body main#main-content.sw .sw-result-heading h1{font-size:clamp(31px,3.6vw,44px)!important;line-height:1.08!important;letter-spacing:-.04em!important;margin:0 0 10px!important}
+html body main#main-content.sw #sw-result .sw-result-heading h1{font-size:clamp(31px,3.6vw,44px)!important;line-height:1.08!important;letter-spacing:-.04em!important;margin:0 0 10px!important}
 html body main#main-content.sw #sw-result-lead{font-size:16px!important;line-height:1.5!important;color:#d0d2c9!important;margin:0 0 20px!important}
-html body main#main-content.sw .sw-answers-bar{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;border:1px solid #535e44!important;border-radius:7px!important;background:#10130d!important;padding:8px 14px!important;min-height:45px!important;margin-bottom:17px!important}
+html body main#main-content.sw #sw-result .sw-answers-bar{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;border:1px solid #535e44!important;border-radius:7px!important;background:#10130d!important;padding:8px 14px!important;min-height:45px!important;margin-bottom:17px!important}
 html body main#main-content.sw #sw-answer-summary{font-size:13px!important;line-height:1.5!important}
 html body main#main-content.sw #sw-edit{font-size:12px!important;min-height:30px!important;padding:5px 0!important;text-decoration:underline!important;white-space:nowrap!important}
-html body main#main-content.sw .sw-visually-hidden{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
+html body main#main-content.sw #sw-result .sw-visually-hidden{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
 html body main#main-content.sw #sw-medicines{margin:0!important;padding:0!important;border:0!important}
-html body main#main-content.sw .sw-filterbar{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin:0 0 16px!important}
-html body main#main-content.sw .sw-filterbar>div{display:flex!important;gap:8px!important}
+html body main#main-content.sw #sw-result .sw-filterbar{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin:0 0 16px!important}
+html body main#main-content.sw #sw-result .sw-filterbar>div{display:flex!important;gap:8px!important}
 html body main#main-content.sw [data-medicine-filter]{min-height:38px!important;min-width:86px!important;padding:8px 20px!important;border:1px solid #707762!important;background:transparent!important;color:#e7e3da!important;border-radius:40px!important;font-size:12px!important;cursor:pointer!important}
 html body main#main-content.sw [data-medicine-filter][aria-pressed=true]{background:#b7c2a3!important;border-color:#b7c2a3!important;color:#080b05!important;font-weight:700!important}
 html body main#main-content.sw #sw-option-count{font-size:12px!important;color:#b4bca9!important}
 html body main#main-content.sw #sw-catalogue-status,html body main#main-content.sw #sw-result-alert{font-size:13px!important;line-height:1.6!important;margin:12px 0!important;color:#c7d0ba!important}
-html body main#main-content.sw .sw-medicine-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;align-items:start!important}
-html body main#main-content.sw .sw-medicine-card{display:block!important;background:#e7e3da!important;color:#10120d!important;border:1px solid #e7e3da!important;border-radius:11px!important;padding:16px!important;min-width:0!important;scroll-margin-top:100px!important}
-html body main#main-content.sw .sw-medicine-card :where(h3,h4,p,a,strong,span,label,summary){color:inherit!important}
-html body main#main-content.sw .sw-medicine-card h3{font-size:24px!important;letter-spacing:-.035em!important;line-height:1.08!important;font-weight:800!important;margin:0 0 6px!important}
-html body main#main-content.sw .sw-medicine-card .sw-medicine-format{font-size:13px!important;line-height:1.4!important;color:#3c4235!important;margin:0 0 11px!important}
-html body main#main-content.sw .sw-medicine-card .sw-medicine-price{font-size:19px!important;line-height:1.3!important;font-weight:800!important;margin:0 0 5px!important}
-html body main#main-content.sw .sw-medicine-price span{font-size:12px!important;font-weight:400!important}
-html body main#main-content.sw .sw-medicine-card .sw-medicine-stock{font-size:11px!important;line-height:1.45!important;color:#4c5146!important;margin:0 0 13px!important}
-html body main#main-content.sw .sw-product-art{position:relative!important;aspect-ratio:300/62!important;overflow:hidden!important;border-radius:7px!important;background:#ded9cd!important;margin:0 0 13px!important;isolation:isolate!important}
-html body main#main-content.sw .sw-product-art img{position:absolute!important;max-width:none!important;width:512%!important;height:auto!important;left:calc(var(--art-x) * -1%)!important;top:calc(var(--art-y) * -1%)!important;mix-blend-mode:multiply!important;pointer-events:none!important}
-html body main#main-content.sw .sw-dose-toggle,html body main#main-content.sw .sw-order-unavailable{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:43px!important;padding:10px 16px!important;background:#050505!important;color:#e7e3da!important;border:1px solid #050505!important;border-radius:6px!important;font-size:13px!important;font-weight:700!important;line-height:1.35!important;cursor:pointer!important}
-html body main#main-content.sw .sw-dose-toggle:hover{background:#29331f!important}
-html body main#main-content.sw .sw-order-unavailable:disabled{cursor:default!important;background:#aaa99f!important;border-color:#aaa99f!important;color:#373930!important}
-html body main#main-content.sw .sw-dose-panel{margin-top:15px!important;border-top:1px solid #b2b8a8!important;padding-top:15px!important}
-html body main#main-content.sw .sw-dose-panel label{display:block!important;font-size:12px!important;font-weight:700!important;margin-bottom:6px!important}
-html body main#main-content.sw .sw-dose-panel select{background:#f4f1e9!important;color:#10120d!important;border:1px solid #8d9582!important;border-radius:5px!important;min-height:42px!important;width:100%!important;max-width:100%!important;padding:8px!important;font-size:13px!important;margin-bottom:10px!important}
-html body main#main-content.sw .sw-dose-panel select:disabled{opacity:1!important;color:#333a2c!important;background:#d9dece!important}
-html body main#main-content.sw .sw-dose-panel .sw-dose-hint{margin:8px 0 12px!important;font-size:11px!important;line-height:1.5!important;color:#4b5241!important}
-html body main#main-content.sw .sw-selected-price{display:flex!important;align-items:baseline!important;justify-content:space-between!important;gap:8px!important;padding:10px 0 13px!important;border-top:1px solid #c7cbbb!important;font-size:12px!important}
-html body main#main-content.sw .sw-selected-price strong{font-size:23px!important;letter-spacing:-.03em!important}
-html body main#main-content.sw .sw-selected-price span{font-size:11px!important}
-html body main#main-content.sw .sw-dose-status{font-size:12px!important;font-weight:700!important;margin:0 0 10px!important}
-html body main#main-content.sw .sw-medicine-card .sw-medicine-eligibility{font-size:12px!important;line-height:1.5!important;margin:0 0 10px!important;padding:10px!important;border:1px solid #adb69f!important;border-radius:5px!important}
-html body main#main-content.sw .sw-treatment-info{margin-top:8px!important;border:0!important}
-html body main#main-content.sw .sw-treatment-info summary{font-size:12px!important;list-style:none!important;text-align:center!important;text-decoration:underline!important;cursor:pointer!important;padding:8px 0!important;line-height:1.4!important;min-height:32px!important}
-html body main#main-content.sw .sw-treatment-info summary::-webkit-details-marker{display:none!important}
-html body main#main-content.sw .sw-treatment-info summary:after{content:' +'!important}
-html body main#main-content.sw .sw-treatment-info[open] summary:after{content:' −'!important}
-html body main#main-content.sw .sw-treatment-info>div{font-size:12px!important;line-height:1.6!important;margin-top:10px!important;padding-top:10px!important;border-top:1px solid #b9beb0!important}
-html body main#main-content.sw .sw-treatment-info p{margin:0 0 10px!important;font-size:12px!important;line-height:1.6!important}
-html body main#main-content.sw .sw-treatment-info h4{font-size:13px!important;margin:12px 0 5px!important}
-html body main#main-content.sw .sw-treatment-info a{display:block!important;min-height:36px!important;padding:8px 0!important;text-decoration:underline!important}
-html body main#main-content.sw .sw-card-note{font-size:12px!important;color:#c3c9ba!important;line-height:1.6!important;margin:16px 0 19px!important}
-html body main#main-content.sw .sw-result-explanations{border-top:1px solid #707762!important}
-html body main#main-content.sw .sw-result-explanations>.sw-inline-details{margin:0!important;border:0!important;border-bottom:1px solid #49523c!important;border-radius:0!important;background:transparent!important}
-html body main#main-content.sw .sw-result-explanations>.sw-inline-details>summary{padding:17px 0!important;font-size:14px!important;line-height:1.5!important}
-html body main#main-content.sw .sw-result-explanations>.sw-inline-details>div{padding:0 0 19px!important;font-size:14px!important;line-height:1.65!important;max-width:900px!important}
-html body main#main-content.sw .sw-result-explanations p{margin:0 0 12px!important}
-html body main#main-content.sw .sw-result-explanations .sw-result-route{padding:0!important;border:0!important;margin:0!important}
-html body main#main-content.sw .sw-result-explanations h2{font-size:20px!important;margin:16px 0 10px!important}
-html body main#main-content.sw .sw-result-free{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;padding:25px 0!important;background:transparent!important;color:#e7e3da!important;border-radius:0!important;margin:0!important}
-html body main#main-content.sw .sw-result-free h2{font-size:15px!important;margin-bottom:6px!important}
-html body main#main-content.sw .sw-result-free p{font-size:13px!important;line-height:1.5!important;color:#b8bdb0!important;margin:0!important}
-html body main#main-content.sw .sw-result-free a{font-size:13px!important}
-@media(max-width:800px){html body main#main-content.sw .sw-medicine-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important}html body main#main-content.sw .sw-medicine-card{padding:13px!important}html body main#main-content.sw .sw-medicine-card h3{font-size:22px!important}}
-@media(max-width:520px){html body main#main-content.sw .sw-medicine-grid{grid-template-columns:1fr!important;gap:14px!important}html body main#main-content.sw .sw-medicine-card{padding:15px!important}html body main#main-content.sw .sw-medicine-card h3{font-size:25px!important}html body main#main-content.sw #sw-answer-summary{font-size:11px!important}html body main#main-content.sw .sw-answers-bar{gap:10px!important;padding:8px 12px!important}html body main#main-content.sw #sw-edit{font-size:11px!important}html body main#main-content.sw [data-medicine-filter]{font-size:12px!important;min-width:76px!important;padding:8px 16px!important}html body main#main-content.sw #sw-option-count{display:none!important}html body main#main-content.sw .sw-dose-panel select{font-size:16px!important}html body main#main-content.sw .sw-result-free{align-items:start!important}html body main#main-content.sw .sw-result-free a{max-width:135px!important;text-align:right!important}html body main#main-content.sw .sw-result-explanations>.sw-inline-details>summary{font-size:13px!important}}
+html body main#main-content.sw #sw-result .sw-medicine-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;align-items:start!important}
+html body main#main-content.sw #sw-result .sw-medicine-card{display:block!important;background:#e7e3da!important;color:#10120d!important;border:1px solid #e7e3da!important;border-radius:11px!important;padding:16px!important;min-width:0!important;scroll-margin-top:100px!important}
+html body main#main-content.sw #sw-result .sw-medicine-card :where(h3,h4,p,a,strong,span,label,summary){color:inherit!important}
+html body main#main-content.sw #sw-result .sw-medicine-card h3{font-size:24px!important;letter-spacing:-.035em!important;line-height:1.08!important;font-weight:800!important;margin:0 0 6px!important}
+html body main#main-content.sw #sw-result .sw-medicine-card .sw-medicine-format{font-size:13px!important;line-height:1.4!important;color:#3c4235!important;margin:0 0 11px!important}
+html body main#main-content.sw #sw-result .sw-medicine-card .sw-medicine-price{font-size:19px!important;line-height:1.3!important;font-weight:800!important;margin:0 0 5px!important}
+html body main#main-content.sw #sw-result .sw-medicine-price span{font-size:12px!important;font-weight:400!important}
+html body main#main-content.sw #sw-result .sw-medicine-card .sw-medicine-stock{font-size:11px!important;line-height:1.45!important;color:#4c5146!important;margin:0 0 13px!important}
+html body main#main-content.sw #sw-result .sw-product-art{position:relative!important;aspect-ratio:300/62!important;overflow:hidden!important;border-radius:7px!important;background:#ded9cd!important;margin:0 0 13px!important;isolation:isolate!important}
+html body main#main-content.sw #sw-result .sw-product-art img{position:absolute!important;max-width:none!important;width:512%!important;height:auto!important;left:calc(var(--art-x) * -1%)!important;top:calc(var(--art-y) * -1%)!important;mix-blend-mode:multiply!important;pointer-events:none!important}
+html body main#main-content.sw #sw-result .sw-dose-toggle,html body main#main-content.sw #sw-result .sw-order-unavailable{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:43px!important;padding:10px 16px!important;background:#050505!important;color:#e7e3da!important;border:1px solid #050505!important;border-radius:6px!important;font-size:13px!important;font-weight:700!important;line-height:1.35!important;cursor:pointer!important}
+html body main#main-content.sw #sw-result .sw-dose-toggle:hover{background:#29331f!important}
+html body main#main-content.sw #sw-result .sw-order-unavailable:disabled{cursor:default!important;background:#aaa99f!important;border-color:#aaa99f!important;color:#373930!important}
+html body main#main-content.sw #sw-result .sw-dose-panel{margin-top:15px!important;border-top:1px solid #b2b8a8!important;padding-top:15px!important}
+html body main#main-content.sw #sw-result .sw-dose-panel label{display:block!important;font-size:12px!important;font-weight:700!important;margin-bottom:6px!important}
+html body main#main-content.sw #sw-result .sw-dose-panel select{background:#f4f1e9!important;color:#10120d!important;border:1px solid #8d9582!important;border-radius:5px!important;min-height:42px!important;width:100%!important;max-width:100%!important;padding:8px!important;font-size:13px!important;margin-bottom:10px!important}
+html body main#main-content.sw #sw-result .sw-dose-panel select:disabled{opacity:1!important;color:#333a2c!important;background:#d9dece!important}
+html body main#main-content.sw #sw-result .sw-dose-panel .sw-dose-hint{margin:8px 0 12px!important;font-size:11px!important;line-height:1.5!important;color:#4b5241!important}
+html body main#main-content.sw #sw-result .sw-selected-price{display:flex!important;align-items:baseline!important;justify-content:space-between!important;gap:8px!important;padding:10px 0 13px!important;border-top:1px solid #c7cbbb!important;font-size:12px!important}
+html body main#main-content.sw #sw-result .sw-selected-price strong{font-size:23px!important;letter-spacing:-.03em!important}
+html body main#main-content.sw #sw-result .sw-selected-price span{font-size:11px!important}
+html body main#main-content.sw #sw-result .sw-dose-status{font-size:12px!important;font-weight:700!important;margin:0 0 10px!important}
+html body main#main-content.sw #sw-result .sw-medicine-card .sw-medicine-eligibility{font-size:12px!important;line-height:1.5!important;margin:0 0 10px!important;padding:10px!important;border:1px solid #adb69f!important;border-radius:5px!important}
+html body main#main-content.sw #sw-result .sw-treatment-info{margin-top:8px!important;border:0!important}
+html body main#main-content.sw #sw-result .sw-treatment-info summary{font-size:12px!important;list-style:none!important;text-align:center!important;text-decoration:underline!important;cursor:pointer!important;padding:8px 0!important;line-height:1.4!important;min-height:32px!important}
+html body main#main-content.sw #sw-result .sw-treatment-info summary::-webkit-details-marker{display:none!important}
+html body main#main-content.sw #sw-result .sw-treatment-info summary:after{content:' +'!important}
+html body main#main-content.sw #sw-result .sw-treatment-info[open] summary:after{content:' −'!important}
+html body main#main-content.sw #sw-result .sw-treatment-info>div{font-size:12px!important;line-height:1.6!important;margin-top:10px!important;padding-top:10px!important;border-top:1px solid #b9beb0!important}
+html body main#main-content.sw #sw-result .sw-treatment-info p{margin:0 0 10px!important;font-size:12px!important;line-height:1.6!important}
+html body main#main-content.sw #sw-result .sw-treatment-info h4{font-size:13px!important;margin:12px 0 5px!important}
+html body main#main-content.sw #sw-result .sw-treatment-info a{display:block!important;min-height:36px!important;padding:8px 0!important;text-decoration:underline!important}
+html body main#main-content.sw #sw-result .sw-card-note{font-size:12px!important;color:#c3c9ba!important;line-height:1.6!important;margin:16px 0 19px!important}
+html body main#main-content.sw #sw-result .sw-result-explanations{border-top:1px solid #707762!important}
+html body main#main-content.sw #sw-result .sw-result-explanations>.sw-inline-details{margin:0!important;border:0!important;border-bottom:1px solid #49523c!important;border-radius:0!important;background:transparent!important}
+html body main#main-content.sw #sw-result .sw-result-explanations>.sw-inline-details>summary{padding:17px 0!important;font-size:14px!important;line-height:1.5!important}
+html body main#main-content.sw #sw-result .sw-result-explanations>.sw-inline-details>div{padding:0 0 19px!important;font-size:14px!important;line-height:1.65!important;max-width:900px!important}
+html body main#main-content.sw #sw-result .sw-result-explanations p{margin:0 0 12px!important}
+html body main#main-content.sw #sw-result .sw-result-explanations .sw-result-route{padding:0!important;border:0!important;margin:0!important}
+html body main#main-content.sw #sw-result .sw-result-explanations h2{font-size:20px!important;margin:16px 0 10px!important}
+html body main#main-content.sw #sw-result .sw-result-free{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;padding:25px 0!important;background:transparent!important;color:#e7e3da!important;border-radius:0!important;margin:0!important}
+html body main#main-content.sw #sw-result .sw-result-free h2{font-size:15px!important;margin-bottom:6px!important}
+html body main#main-content.sw #sw-result .sw-result-free p{font-size:13px!important;line-height:1.5!important;color:#b8bdb0!important;margin:0!important}
+html body main#main-content.sw #sw-result .sw-result-free a{font-size:13px!important}
+@media(max-width:800px){html body main#main-content.sw #sw-result .sw-medicine-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important}html body main#main-content.sw #sw-result .sw-medicine-card{padding:13px!important}html body main#main-content.sw #sw-result .sw-medicine-card h3{font-size:22px!important}}
+@media(max-width:520px){html body main#main-content.sw #sw-result .sw-medicine-grid{grid-template-columns:1fr!important;gap:14px!important}html body main#main-content.sw #sw-result .sw-medicine-card{padding:15px!important}html body main#main-content.sw #sw-result .sw-medicine-card h3{font-size:25px!important}html body main#main-content.sw #sw-answer-summary{font-size:11px!important}html body main#main-content.sw #sw-result .sw-answers-bar{gap:10px!important;padding:8px 12px!important}html body main#main-content.sw #sw-edit{font-size:11px!important}html body main#main-content.sw [data-medicine-filter]{font-size:12px!important;min-width:76px!important;padding:8px 16px!important}html body main#main-content.sw #sw-option-count{display:none!important}html body main#main-content.sw #sw-result .sw-dose-panel select{font-size:16px!important}html body main#main-content.sw #sw-result .sw-result-free{align-items:start!important}html body main#main-content.sw #sw-result .sw-result-free a{max-width:135px!important;text-align:right!important}html body main#main-content.sw #sw-result .sw-result-explanations>.sw-inline-details>summary{font-size:13px!important}}
 
 html body main#main-content.sw #sw-result [hidden]{display:none!important}
+
+html body main#main-content.sw #sw-result .sw-medicine-grid{grid-auto-rows:auto!important}
+html body main#main-content.sw #sw-result .sw-medicine-card{height:auto!important;min-height:0!important;align-self:start!important}
