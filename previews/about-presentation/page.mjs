@@ -13,5 +13,5 @@ export function mainFor(html){
  const original=html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)[1];
  const signoff='<div class="ab-signoff"><span class="ab-signature">Matt</span><p>Matt O’Brien<br><span>Founder, Shift Some Timber</span></p></div>';
  const story=original.replace('<div class="actions">',signoff+'<div class="actions">');
- return `<div class="ab-wrap"><div class="ab-letter"><div class="ab-letter-heading"><p class="ab-eyebrow">OUR STORY</p><h1>An open letter from Matt</h1><p class="ab-byline">Founder, Shift Some Timber</p></div><article class="ab-story">${story}</article></div></div>`;
+ return `<div class="ab-wrap"><div class="ab-letter"><div class="ab-letter-heading"><p class="ab-eyebrow">OUR STORY</p><h1>My story</h1><p class="ab-byline">Founder, Shift Some Timber</p></div><article class="ab-story">${story}</article></div></div>`;
 }
