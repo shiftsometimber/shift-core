@@ -27,3 +27,15 @@ User-facing image: `SHIFT-Feeling-Preview-2026-10-22.png`, saved as `libfile_72d
 ## Approved release — 22 October 2026 (BST)
 
 Matt replied “Go” to the qualified preview and its publication question. This authorises that exact pinned presentation for the six exact check-in routes. Publication will retain the worker/style blobs in preview-gate.json, original questions, scoring and account behaviour. The live workflow qualifies isolated staging before route activation, then checks the actual public page with synthetic answers and outbound writes blocked. Rollback removes only this release’s owned routes if acceptance fails. All existing exclusions remain in force.
+
+## Verified live closure — 22 October 2026, 13:55 BST
+
+Published https://shiftsometimber.co.uk/how-are-you-feeling as `20261022-feeling-live-v1`, retaining exact approved worker/style blobs. Release source `cd8976cf757bd61f61e13ebe5a0544aa0cdf2851`; workflow https://github.com/shiftsometimber/shift-core/actions/runs/39782060051, job `119835541509`, completed successfully. The initial workflow expression typo failed before any job or deployment and was corrected in this source; no presentation source changed.
+
+Isolated staging passed before activation. Exactly six apex/www base, trailing-slash and .html check-in routes now point to `shift-feeling-presentation-20261022`. All 210 earlier route records remained unchanged. All twelve HTTP/HTTPS host/path combinations returned the release marker. Current published copy, links, original form and shared header/footer matched the captured public fixture.
+
+Actual public Chromium and WebKit each passed at 390px and 1440px: five questions, twenty original options, rationale and links preserved; keyboard selection and Back; all three original result bands in every view (twelve result cases), correct energy priority, five signal rows, existing heavy-week support block, contrast and no horizontal overflow. Public no-JavaScript structure passed with the original enabled submit behaviour. Fresh unauthenticated test contexts used only synthetic answers and intercepted every outbound write. No personal health details, My Timber updates or messages.
+
+The independent review browser confirmed the public release marker, first question, zero answers selected and no preview guard. Actual initial desktop/mobile screenshots were visually reviewed. Artifact `12426554126`, `feeling-presentation-live-cd8976cf757bd61f61e13ebe5a0544aa0cdf2851`, SHA-256 `1e2c4cccfdfda55dd1853faa94bf76dc54d845756e26472f6d40ddc6ba6d1cd8`, was downloaded and digest verified. It contains route inventories, live receipts, browser results and screenshots. User image `SHIFT-Feeling-Live-2026-10-22.png` saved as `libfile_0e2373772d308191846595c88550b150`.
+
+This page is complete and verified. Homepage remains locked; separate Start Here work and paused Medicines Watch, reconciliation and shared-Core work remain excluded. No further action is authorised by this closure.
