@@ -1,6 +1,6 @@
 # Work with us presentation
 
-Presentation preview for the remaining page in Matt's Review Images Together work. Preserve the current page copy, all six partnership routes, four source-backed figures, anchor and contact links, shared header, footer and font. Only add scoped CSS and a preview marker. The page is read from the current Core response on each request. Nothing is sent through its contact links during checks.
+Presentation preview for the remaining page in Matt's Review Images Together work. Preserve the current page copy, all six partnership routes, four source-backed figures, anchor and contact links, shared header, footer and font. The current published content is in assets/work-with-shift-v2.js. Read that literal HTML on each request and render it on the server, remove only the redundant content-replacing script, and add scoped CSS and a preview marker. Never execute the source script on the server. Nothing is sent through its contact links during checks.
 
 Preview is GET/HEAD-only, noindex and has no production route. Requests for member data and service workers are rejected. No homepage, clinical journey, publishing schedule or paused work is changed.
 
