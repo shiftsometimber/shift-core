@@ -1,0 +1,15 @@
+{
+  "design": "20261022-husband-presentation-v1",
+  "commit": "9b0e6d9fecee6dce5ebe8b560b45980d608f1e57",
+  "run": 39799004000,
+  "job": 119894033237,
+  "artifact": {
+    "id": 12435600198,
+    "name": "husband-preview-9b0e6d9fecee6dce5ebe8b560b45980d608f1e57",
+    "digest": "sha256:8dd93d3ed022c5a2955ad020165757b23c17c064921bc3f13e420b120ca4b85d"
+  },
+  "blobs": {
+    "previews/husband-presentation/worker.mjs": "8a572d9a5d1c461e8431b32e3ee47d56b34fa3ae",
+    "previews/husband-presentation/style.mjs": "af4dae9f9468cecd6a08c23d018ebda61dffaa54"
+  }
+}
