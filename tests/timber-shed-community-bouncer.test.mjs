@@ -90,3 +90,15 @@ test('neutral discussion of medical research is reviewable, not presumed trading
   assert(!r.categories.includes('medication-trading'));
  }
 });
+test('Community Bouncer holds a proposed home-address disclosure',()=>{
+ const result=screenForumText({title:'Fictional privacy question',body:'Fictional example: I was thinking of sharing my home address online.'});
+ assert.equal(result.severity,'high');
+ assert(result.categories.includes('personal-information'));
+ assert.equal(result.requiresSafeguardingSignoff,true);
+ assert.equal(result.mayAutoPublish,false);
+});
+test('ordinary conversation remains routine after privacy screening change',()=>{
+ const result=screenForumText({title:'Fictional walking discussion',body:'I enjoyed a short walk and a cup of tea today.'});
+ assert.equal(result.severity,'routine');
+ assert(!result.categories.includes('personal-information'));
+});

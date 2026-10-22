@@ -56,3 +56,20 @@ CREATE TABLE IF NOT EXISTS timber_shed_bouncer_screenings (
 );
 CREATE INDEX IF NOT EXISTS idx_timber_shed_bouncer_priority
  ON timber_shed_bouncer_screenings(priority,screened_at);
+-- Private, in-app-only notifications. No email, SMS, push or external delivery.
+-- No post text, treatment data, real names or recipient contact details stored.
+CREATE TABLE IF NOT EXISTS timber_shed_forum_notifications (
+ id TEXT PRIMARY KEY,
+ recipient_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ post_id TEXT NOT NULL REFERENCES timber_shed_forum_posts(id) ON DELETE CASCADE,
+ thread_id TEXT NOT NULL REFERENCES timber_shed_forum_posts(id) ON DELETE CASCADE,
+ room_id TEXT NOT NULL,
+ kind TEXT NOT NULL CHECK(kind IN ('approved','rejected','removed','reply')),
+ created_at TEXT NOT NULL,
+ read_at TEXT,
+ UNIQUE(recipient_id,post_id,kind)
+);
+CREATE INDEX IF NOT EXISTS idx_timber_shed_notifications_recipient
+ ON timber_shed_forum_notifications(recipient_id,read_at,created_at);
+
+CREATE INDEX IF NOT EXISTS idx_timber_shed_topics_paged ON timber_shed_forum_posts(room_id,status,parent_id,reviewed_at,id);

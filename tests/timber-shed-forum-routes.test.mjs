@@ -309,3 +309,173 @@ test('suspected trial-stage product sales cannot pass ordinary moderator approva
  assert.equal((await t.send(3,'moderate','POST',{postId:item.body.id,action:'approve'})).status,409);
  assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
 });
+test('latest conversations show only approved top-level posts, never pending or rejected',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const first=await submit(t,1);
+ const held=await submit(t,2,'main-shed','Another fictional discussion, still pending.','Unapproved conversation');
+ assert.equal((await t.send(2,'latest')).body.posts.length,0);
+ await t.send(3,'moderate','POST',{postId:first.body.id,action:'approve'});
+ const feed=(await t.send(2,'latest')).body.posts;
+ assert.equal(feed.length,1);assert.equal(feed[0].id,first.body.id);
+ assert.equal(feed[0].display_name,'Shed Walker');assert.equal(feed[0].reply_count,0);
+ assert(!Object.keys(feed[0]).some(k=>/user_id|email|dob|health|weight/i.test(k)));
+ assert(!JSON.stringify(feed).includes(held.body.id));
+});
+test('only authors get in-app decisions; only parent author gets approved reply alert',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const topic=await submit(t,1);
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,0);
+ await t.send(3,'moderate','POST',{postId:topic.body.id,action:'approve'});
+ const own=(await t.send(1,'notifications')).body;
+ assert.equal(own.unreadCount,1);assert.equal(own.notifications[0].kind,'approved');
+ assert.equal(own.notifications[0].thread_id,topic.body.id);
+ assert(!JSON.stringify(own).includes('fictional example'));
+ assert.equal((await t.send(2,'notifications')).body.unreadCount,0);
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:topic.body.id,body:'This is a fictional reply to the original discussion.'});
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,1);
+ await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ const parent=(await t.send(1,'notifications')).body;
+ assert.equal(parent.unreadCount,2);
+ assert(parent.notifications.some(n=>n.kind==='reply'&&n.thread_id===topic.body.id));
+ const replier=(await t.send(2,'notifications')).body;
+ assert.equal(replier.unreadCount,1);
+ assert.equal(replier.notifications[0].kind,'approved');
+ assert.equal((await t.send(3,'notifications')).body.unreadCount,0);
+ assert.equal((await t.send(1,'latest')).body.posts[0].reply_count,1);
+});
+test('in-app notifications cannot be read or marked by another account',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const topic=await submit(t,1);await t.send(3,'moderate','POST',{postId:topic.body.id,action:'approve'});
+ const note=(await t.send(1,'notifications')).body.notifications[0];
+ assert.equal((await t.send(2,'notifications/read','POST',{notificationId:note.id})).status,404);
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,1);
+ assert.equal((await t.send(1,'notifications/read','POST',{notificationId:note.id})).status,200);
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,0);
+ assert.equal((await t.send(1,'notifications/read','POST',{notificationId:note.id})).status,200);
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,0);
+});
+test('rejected and removed posts produce only private generic author notices',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const rejected=await submit(t,1);await t.send(3,'moderate','POST',{postId:rejected.body.id,action:'reject'});
+ assert.deepEqual((await t.send(1,'notifications')).body.notifications.map(n=>n.kind),['rejected']);
+ assert.equal((await t.send(2,'notifications')).body.unreadCount,0);
+ const approved=await submit(t,1);await t.send(3,'moderate','POST',{postId:approved.body.id,action:'approve'});
+ await t.send(3,'moderate','POST',{postId:approved.body.id,action:'remove'});
+ assert.deepEqual((await t.send(1,'notifications')).body.notifications.map(n=>n.kind).sort(),['rejected','removed']);
+});
+test('failed moderation audit or notification insert cannot leave a published post',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const topic=await submit(t,1);
+ t.sqlite.exec("CREATE TRIGGER notification_failure BEFORE INSERT ON timber_shed_forum_notifications BEGIN SELECT RAISE(ABORT,'no notification'); END;");
+ assert.equal((await t.send(3,'moderate','POST',{postId:topic.body.id,action:'approve'})).status,503);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(topic.body.id).status,'pending');
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_audit').get().n,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_notifications').get().n,0);
+});
+test('withdrawal does not leave a notification linking to hidden content',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const topic=await submit(t,1);await t.send(3,'moderate','POST',{postId:topic.body.id,action:'approve'});
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:topic.body.id,body:'This is a fictional reply to a conversation.'});
+ await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,2);
+ await t.send(1,'withdraw','POST',{postId:topic.body.id});
+ assert.equal((await t.send(1,'latest')).body.posts.length,0);
+ // In-app alert content is generic, but links must not reveal withdrawn discussions.
+ assert.equal((await t.send(1,'notifications')).body.notifications.filter(n=>n.kind==='reply').length,0);
+});
+test('opening a specific approved discussion returns only that root and its approved replies',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const first=await submit(t,1,'main-shed','The first fictional conversation has been started.','First discussion');
+ const second=await submit(t,2,'main-shed','Another fictional conversation has been started.','Second discussion');
+ await t.send(3,'moderate','POST',{postId:first.body.id,action:'approve'});
+ await t.send(3,'moderate','POST',{postId:second.body.id,action:'approve'});
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:first.body.id,body:'A fictional reply to the first conversation.'});
+ await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ const scoped=(await t.send(1,'threads','GET',undefined,'?room=main-shed&threadId='+first.body.id)).body.posts;
+ assert.equal(scoped.length,2);
+ assert(scoped.every(x=>x.id===first.body.id||x.parent_id===first.body.id));
+ assert(!JSON.stringify(scoped).includes(second.body.id));
+ assert.equal((await t.send(1,'threads','GET',undefined,'?room=main-shed&threadId=bad')).status,400);
+ assert.equal((await t.send(1,'threads','GET',undefined,'?room=grub-fit&threadId='+first.body.id)).body.posts.length,0);
+});
+test('self replies do not generate a redundant parent-author reply notification',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const root=await submit(t,1);await t.send(3,'moderate','POST',{postId:root.body.id,action:'approve'});
+ const reply=await t.send(1,'submit','POST',{roomId:'main-shed',parentId:root.body.id,body:'A fictional follow-up from the same author.'});
+ await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ const notices=(await t.send(1,'notifications')).body.notifications;
+ assert.equal(notices.length,2);
+ assert(notices.every(x=>x.kind==='approved'));
+});
+test('notifications do not store post text, email, names or private health data',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const topic=await submit(t,1);await t.send(3,'moderate','POST',{postId:topic.body.id,action:'approve'});
+ const columns=t.sqlite.prepare('PRAGMA table_info(timber_shed_forum_notifications)').all().map(x=>x.name);
+ assert(!columns.some(k=>/body|title|email|name|health|treatment|phone|device_token/i.test(k)));
+ const visible=(await t.send(1,'notifications')).body.notifications[0];
+ assert.deepEqual(Object.keys(visible).sort(),['created_at','id','kind','read_at','room_id','thread_id']);
+});
+test('room browsing paginates approved top-level discussions without duplicates or pending leaks',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ const insert=t.sqlite.prepare("INSERT INTO timber_shed_forum_posts(id,user_id,room_id,parent_id,title,body,status,created_at,reviewed_at) VALUES(?,1,'main-shed',NULL,?,?,'approved',?,?)");
+ for(let i=0;i<25;i++){
+  const date='2026-10-22T12:'+String(i).padStart(2,'0')+':00Z';
+  insert.run('synthetic-room-topic-'+i,'Fictional conversation '+i,'A synthetic post for pagination.',date,date);
+ }
+ t.sqlite.prepare("INSERT INTO timber_shed_forum_posts(id,user_id,room_id,title,body,status,created_at) VALUES('synthetic-hidden',1,'main-shed','Unapproved','Invisible to members','pending','2026-10-22T13:00:00Z')").run();
+ const first=(await t.send(2,'room-topics','GET',undefined,'?room=main-shed&offset=0')).body;
+ const second=(await t.send(2,'room-topics','GET',undefined,'?room=main-shed&offset=20')).body;
+ assert.equal(first.posts.length,20);assert.equal(first.hasMore,true);
+ assert.equal(second.posts.length,5);assert.equal(second.hasMore,false);
+ assert.equal(new Set([...first.posts,...second.posts].map(x=>x.id)).size,25);
+ assert(!JSON.stringify(first.posts).includes('synthetic-hidden'));
+ assert.equal((await t.send(2,'room-topics','GET',undefined,'?room=main-shed&offset=-1')).status,400);
+ assert.equal((await t.send(2,'room-topics','GET',undefined,'?room=main-shed&offset=2001')).status,400);
+});
+test('reply cannot be approved after its parent discussion is withdrawn',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const root=await submit(t,1);await t.send(3,'moderate','POST',{postId:root.body.id,action:'approve'});
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:root.body.id,body:'A fictional reply waiting for moderator approval.'});
+ await t.send(1,'withdraw','POST',{postId:root.body.id});
+ const decision=await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ assert.equal(decision.status,409);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(reply.body.id).status,'pending');
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,0);
+});
+test('removing an approved parent clears old reply alerts and leaves only the removal notice',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const root=await submit(t,1);await t.send(3,'moderate','POST',{postId:root.body.id,action:'approve'});
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:root.body.id,body:'A fictional reply from a second member.'});
+ await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,2);
+ assert.equal((await t.send(3,'moderate','POST',{postId:root.body.id,action:'remove'})).status,200);
+ assert.deepEqual((await t.send(1,'notifications')).body.notifications.map(x=>x.kind),['removed']);
+ assert.equal((await t.send(1,'latest')).body.posts.length,0);
+});
+test('in-app notification history paginates privately with global unread count',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ const post=t.sqlite.prepare("INSERT INTO timber_shed_forum_posts(id,user_id,room_id,title,body,status,created_at,reviewed_at) VALUES(?,1,'main-shed','Fictional post','A fictional message','approved',?,?)");
+ const note=t.sqlite.prepare("INSERT INTO timber_shed_forum_notifications(id,recipient_id,post_id,thread_id,room_id,kind,created_at) VALUES(?,1,?,?,'main-shed','approved',?)");
+ for(let i=0;i<25;i++){
+  const id='synthetic-notice-post-'+i,date='2026-10-22T12:'+String(i).padStart(2,'0')+':00Z';
+  post.run(id,date,date);note.run('synthetic-notification-'+i,id,id,date);
+ }
+ const first=(await t.send(1,'notifications')).body;
+ const second=(await t.send(1,'notifications','GET',undefined,'?offset=20')).body;
+ assert.equal(first.notifications.length,20);assert.equal(first.hasMore,true);assert.equal(first.unreadCount,25);
+ assert.equal(second.notifications.length,5);assert.equal(second.hasMore,false);assert.equal(second.unreadCount,25);
+ assert.equal(new Set([...first.notifications,...second.notifications].map(x=>x.id)).size,25);
+ assert.equal((await t.send(2,'notifications')).body.notifications.length,0);
+ assert.equal((await t.send(1,'notifications','GET',undefined,'?offset=2001')).status,400);
+});

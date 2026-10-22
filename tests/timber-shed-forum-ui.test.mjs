@@ -60,3 +60,24 @@ test('AI-assisted label is displayed only when both model and provider gates are
  assert.match(src,/TIMBER_SHED_AI_MODERATION_ENABLED==='true'&&env\.TIMBER_SHED_AI_PROVIDER_APPROVED==='true'/);
  assert.match(src,/AI-model and rule-based safety screening/);
 });
+test('community navigation exposes latest, rooms, own posts, notifications and moderator-only queue',()=>{
+ for(const id of ['shedLatestView','shedRoomsView','shedMyPosts','shedNotificationsView','shedModeratorPanel','shedUnreadBadge','shedPendingBadge']){
+  assert.match(timberShedForumPilotMarkup,new RegExp('id="'+id+'"'));
+ }
+ for(const view of ['latest','rooms','mine','notifications','moderation']){
+  assert.match(timberShedForumPilotMarkup,new RegExp('data-shed-view="'+view+'"'));
+ }
+ assert.match(timberShedForumPilotMarkup,/aria-pressed="true"/);
+ assert.match(timberShedForumPilotMarkup,/role="status"/);
+ assert.match(timberShedForumPilotMarkup,/No emails, text messages or push notifications are sent/);
+ assert.match(timberShedForumPilotMarkup,/id="shedModNav"[^>]*hidden/);
+});
+test('community navigation and notification actions are private same-origin only',()=>{
+ assert.match(timberShedForumPilotClient,/api\('notifications\?offset='/);
+ assert.match(timberShedForumPilotClient,/api\('notifications\/read'/);
+ assert.match(timberShedForumPilotClient,/api\('room-topics\?/);
+ assert.match(timberShedForumPilotClient,/api\('latest'\)/);
+ assert.match(timberShedForumPilotClient,/api\('mine'\)/);
+ assert.match(timberShedForumPilotClient,/credentials:'same-origin'/);
+ assert.doesNotMatch(timberShedForumPilotClient,/Notification\.requestPermission|serviceWorker|sendEmail|sendSMS|mailto:|window\.open|localStorage|sessionStorage|innerHTML/);
+});

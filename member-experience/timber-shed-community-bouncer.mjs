@@ -1,7 +1,8 @@
+import {suggestsPrivateDetails} from './timber-shed-privacy-signals.mjs';
 // SHIFT Community Bouncer: deterministic, explainable pre-publication triage.
 // This is not a clinical assessment, diagnosis, crisis detector, or an external AI service.
 // No My Timber health/profile records, third-party model calls or auto-publication.
-export const BOUNCER_VERSION='bouncer-rules-2026-10-22-v2';
+export const BOUNCER_VERSION='bouncer-rules-2026-10-22-v3';
 export const BOUNCER_NAME='SHIFT Community Bouncer';
 export const BOUNCER_TAGLINE="Everyone’s welcome. Hassle isn’t.";
 const RULES=[
@@ -81,6 +82,7 @@ export function screenForumText({title='',body=''}={}){
    if(severityRank[rule.severity]>severityRank[severity])severity=rule.severity;
   }
  }
+ if(suggestsPrivateDetails(content)&&!categories.includes('personal-information')){categories.push('personal-information');reasons.push(GUIDANCE['personal-information']);if(severityRank.high>severityRank[severity])severity='high'}
  // Ambiguity is a reason to escalate, not proof of a condition or wrongdoing.
  return Object.freeze({
   policyVersion:BOUNCER_VERSION,
