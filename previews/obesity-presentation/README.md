@@ -22,3 +22,15 @@ Artifact `12428765824`, `obesity-preview-f44d8db32602d2cc907dcf677a224219f1daf94
 ## Approved for publication — 22 October 2026 (BST)
 
 Matt replied “Yes” to the completed preview and then explicitly instructed “Deploy and then go to next”. This approves the exact v3 preview for publication. Retain the pinned worker/style, stage and qualify before six exact route activation, verify the actual live guide and preserve all earlier routes. Inspect fresh route ownership before mutation; the qualified inventory contained no obesity-specific routes. No content changes or separately paused work are authorised. After verified publication, prepare the next public page for visual review; its publication still requires sign-off.
+
+## Verified live closure — 22 October 2026, 14:28 BST
+
+Published https://shiftsometimber.co.uk/male-obesity as `20261022-obesity-live-v1`, using exact approved `20261022-obesity-presentation-v3` worker/style. Release source `8b678a21540d003b9f7ec908b37e3573a5d71e5c`; workflow https://github.com/shiftsometimber/shift-core/actions/runs/39786888826 and job `119852360084` completed successfully.
+
+Staging passed before activation. Six exact apex/www base, trailing-slash and .html routes point to `shift-obesity-presentation-20261022`; all 216 earlier route records remained unchanged. Twelve HTTP/HTTPS host/path checks passed. Published guide words, links, raw table/disclosure markup and shared header/footer matched the current pre-release fixture.
+
+Actual public Chromium and WebKit at 390px/1440px passed all guide copy, sources, links, IDs and tables, six keyboard anchors, three disclosures, three local review responses, larger text/reduced motion, 257 contrast checks per view and no overflow. Native disclosure without JavaScript passed. Tests used fresh unsigned contexts with outbound writes blocked; no personal health details, My Timber updates or messages. Independent review browser confirmed public marker, six navigation cards, three tables and no preview guard.
+
+Artifact `12429795967`, `obesity-presentation-live-8b678a21540d003b9f7ec908b37e3573a5d71e5c`, SHA-256 `7db19b3e19989a138da39412ada2e2b6f606a5145e7ab1fcc7a35bb89eb6a27c`, downloaded and digest verified. Actual initial desktop/mobile proof was visually reviewed and saved as `SHIFT-Male-Obesity-Live-2026-10-22.png`, `libfile_54c92bb759f48191b74a8ecd66d2a61e`.
+
+This release is complete. Matt also authorised moving to the next preview; Free weight-loss support for men was prepared only after verified publication. That new preview requires its own sign-off. Homepage, separate Start Here and paused work remain excluded.

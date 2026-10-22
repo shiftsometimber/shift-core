@@ -1,0 +1,9 @@
+{
+  "design": "20261022-support-presentation-v1",
+  "commit": "1055f22e67db5b916a9c18bb9e3d73d447ff79ba",
+  "run": 39787732128,
+  "blobs": {
+    "previews/support-presentation/worker.mjs": "bfb884a3e91de29c36e3ee182eeeb6574f185480",
+    "previews/support-presentation/style.mjs": "2e180a390342c1b9ce20a61835fa52e4ce24cf07"
+  }
+}
