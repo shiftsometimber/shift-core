@@ -1,0 +1,9 @@
+{
+  "design": "20261022-obesity-presentation-v3",
+  "commit": "f44d8db32602d2cc907dcf677a224219f1daf94c",
+  "run": 39784356740,
+  "blobs": {
+    "previews/obesity-presentation/worker.mjs": "743c8a5b493440e2021b10c9ca1e4dff5374777b",
+    "previews/obesity-presentation/style.mjs": "4fcc638530e081638b7f19c4d4e2a625f46c549f"
+  }
+}
