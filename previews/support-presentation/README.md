@@ -22,3 +22,15 @@ Artifact `12429068418`, `support-preview-1055f22e67db5b916a9c18bb9e3d73d447ff79b
 ## Approved publication — 22 October 2026 (BST)
 
 Matt replied “Agreed” to the completed free-support preview and explicit go-live question. Publish the exact pinned v1 worker/style through staging acceptance and six exact public routes, retaining all existing content, links and account behaviour. Verify actual public mobile/desktop, FAQs, keyboard anchors, table and no-JavaScript. This approves this page only; homepage, separate Start Here and paused work remain excluded.
+
+## Verified live closure — 22 October 2026, 14:39 BST
+
+Published https://shiftsometimber.co.uk/weight-loss-support-for-men as `20261022-support-live-v1` using the exact approved v1 worker/style. Release source `62ade2e75387b90b441ac5390a1e0b2b83045161`; workflow https://github.com/shiftsometimber/shift-core/actions/runs/39788509714 and job `119857953406` completed successfully.
+
+Staging acceptance passed before activation. Six exact apex/www base, trailing-slash and .html routes now point to `shift-support-presentation-20261022`. All 222 earlier route records remain unchanged. Twelve HTTP/HTTPS host/path checks passed. Published words, links, raw table/FAQ markup and shared header/footer matched the captured pre-release page.
+
+Actual public Chromium and WebKit at 390px and 1440px passed copy, IDs and account-link preservation, three features before explanation, both keyboard anchors, all six keyboard FAQs, table fit without horizontal scrolling, 98 contrast checks per view, no overflow and native no-JavaScript disclosure. No member accounts opened, health details entered, My Timber updates or messages. Independent browser confirmed public release marker, Today/Grub/Life Back cards, six FAQs and no preview guard.
+
+Artifact `12431010914`, `support-presentation-live-62ade2e75387b90b441ac5390a1e0b2b83045161`, SHA-256 `ff36edaab4970acd4e62680354e80153904aaac6f96db0d59168c03cb48acf2e`, downloaded and digest verified. Actual initial desktop/mobile screenshots visually reviewed and saved as `SHIFT-Free-Support-Live-2026-10-22.png`, `libfile_a8a76f36db8481919770ee57c39d7d6a`.
+
+This page is complete and verified. Homepage, separate Start Here and paused Medicines Watch, reconciliation and shared-Core work remain excluded.
