@@ -2,6 +2,7 @@ import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from '
 import {currentRuntimePreservationHistoricalView,verifyCurrentRuntimePreservation} from './current-runtime-preservation-20261016.mjs';
 import {ciExecutionNativeReaderProvenance,verifyCiExecutionAllowance,ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
 import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
+import {mainReleaseHistoricalReader} from './main-release-historical-projection-20261022.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync as repairNativeExecFileSync} from 'node:child_process';
 import {assertGitTrackedSourceVisible,nativeGitSourceDifference,immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
@@ -171,8 +172,9 @@ function verifyReleaseMachineryRepairCurrentProof(c,options={}){
   isAncestor:ciExecutionAuthenticatedAncestor(options.isAncestor??rawAncestor,ci)},ci);
 }
 export function releaseMachineryRepairHistoricalView(reader=null,{defaultReader=reader===null}={}){
- const ci=ciExecutionHistoricalView(reader===rawBlob?null:reader);
- if(ci.head===ci.rawHead)return releaseMachineryRepairHistoricalViewOriginal(reader,{defaultReader});
+ const mainReader=mainReleaseHistoricalReader(reader===rawBlob?null:reader,{defaultReader:reader===null||reader===rawBlob});
+ const ci=ciExecutionHistoricalView(mainReader,{defaultReader:false});
+ if(ci.head===ci.rawHead)return releaseMachineryRepairHistoricalViewOriginal(mainReader,{defaultReader:false});
  const inner=releaseMachineryRepairHistoricalViewOriginal(ci.read,{defaultReader:false},ci);
  const ref=r=>r===ci.rawHead?'HEAD':r;
  return {...inner,rawHead:ci.rawHead,affected:p=>ci.affected(p)||inner.affected(p),

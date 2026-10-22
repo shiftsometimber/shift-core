@@ -23,7 +23,7 @@ export function originalPhotoCalendarFrontend(bytes){assert.equal(bytes.split(PH
 function originalCurrentMainRootShare(bytes){
  const start=['// CURRENT_MAIN_ROOT_SHARE_REPAIR','_BEGIN\n'].join(''),end=['// CURRENT_MAIN_ROOT_SHARE_REPAIR','_END\n'].join(''),a=bytes.indexOf(start);if(a<0)return bytes;
  const b=bytes.indexOf(end,a+start.length);assert(b>a&&bytes.indexOf(start,a+1)<0&&bytes.indexOf(end,b+1)<0,'One exact current-main root-share repair block required');
- const injections=[[' ({read,blob}=rootShare','CurrentMainReaders({c,head,read,blob,content}));\n'].join(''),[' if(!defaultReader)reader=rootShare','CurrentMainReader(reader);\n'].join(''),[' if(defaultReader){const actual=git(\'rev-parse\',\'HEAD\');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes(\'// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\\n\')){reader=(ref,p)=>contents(ref===\'HEAD\'?actual:ref,p);defaultReader=','false;}}\n'].join('')];
+ const injections=[[' ({read,blob}=rootShare','CurrentMainReaders({c,head,read,blob,content}));\n'].join(''),[' if(!defaultReader)reader=rootShare','CurrentMainReader(reader);\n'].join(''),[' if(defaultReader){const actual=git(\'rev-parse\',\'HEAD\');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes(\'// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\\n\')){reader=(ref,p)=>git(\'rev-parse\',(ref===\'HEAD\'?actual:ref)+\':\'+p);defaultReader=','false;}}\n'].join('')];
  for(const injection of injections){assert.equal(bytes.split(injection).length,2,'One exact current-main root-share projection required');bytes=bytes.replace(injection,'');}
  const blockStart=bytes.indexOf(start),blockEnd=bytes.indexOf(end,blockStart+start.length);return bytes.slice(0,blockStart)+bytes.slice(blockEnd+end.length);
 }
