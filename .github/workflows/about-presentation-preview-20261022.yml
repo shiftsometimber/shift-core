@@ -7,7 +7,7 @@ permissions:
   contents: read
 concurrency:
   group: about-presentation-preview-20261022
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   preview-and-check:
     runs-on: ubuntu-latest
