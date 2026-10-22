@@ -11,6 +11,8 @@ export const MAIN_RELEASE_TIMEOUT_BASE='fc0baf8d2e41c577590531cb0fc9d178a6297b63
 export const MAIN_RELEASE_TIMEOUT_PAYLOAD='0f9a1a299b65b4cc661b178b15b244a0265fef5c';
 export const MAIN_RELEASE_ROUTE_BASE='3ae2b6c0f664ca205c9607ce80617ba6f14999f0';
 export const MAIN_RELEASE_ROUTE_PAYLOAD='a86b95330c15e0894434743a545d539895c57799';
+export const MAIN_RELEASE_ROUTE_EXPANSION_BASE='9507c51aa45e60db53fcbc27ff989221caf6835f';
+export const MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD='50226c3a8de84de1311d11fcd41756e69e516945';
 export const MAIN_RELEASE_RECEIPT='release/main-release-readiness-scope-20261021.json';
 export const MAIN_LIVE_HEADER_CSS_SHA256='74b8c12bc157dfab638bb1202a3358d12b6a47bd5932c5df5480a1c887a3ef6d';
 
@@ -50,6 +52,12 @@ const routeExpected={
  repair:{wholeEstateSweepMax:2500,requiredDiscoveryExhaustionRetained:true,routeFailureRejectionRetained:true,blankPageRejectionRetained:true,sourceTestSelectionChanged:false,sourceAssertionsRemoved:0,productionRuntimeChanged:false,memberExperienceChanged:false,homepageBodyChanged:false,clinicalSafetyChanged:false,privacyOrConsentChanged:false,memberRecordsChanged:false,stockChanged:false,commercialSettingsChanged:false},
  authority:{myTimberDeploymentApproved:true,publicHomepageChangeApproved:false,clinicalActivationApproved:false,unrelatedChangesApproved:false},productionVerified:false
 };
+const routeExpansionExpected={
+ kind:'EXACT_WHOLE_ESTATE_CURRENT_SIZE_REPAIR_20261022',base:MAIN_RELEASE_ROUTE_EXPANSION_BASE,payload:MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD,paths:[...ROUTE_PATHS],maintenancePaths:[...ROUTE_MAINTENANCE],
+ evidence:{hostedRun:39784592626,job:119844297373,checked:2500,htmlPages:2185,failures:0,truncated:true,previousLimit:2500,knownMinimumRecipes:2500,knownMinimumExerciseVariations:2500,memberAssetInventory:5711},
+ repair:{wholeEstateSweepMax:20000,finiteEvidenceSizedCeiling:true,requiredDiscoveryExhaustionRetained:true,routeFailureRejectionRetained:true,blankPageRejectionRetained:true,crawlerImplementationChanged:false,sourceTestSelectionChanged:false,sourceAssertionsRemoved:0,productionRuntimeChanged:false,memberExperienceChanged:false,homepageBodyChanged:false,clinicalSafetyChanged:false,privacyOrConsentChanged:false,memberRecordsChanged:false,stockChanged:false,commercialSettingsChanged:false},
+ authority:{myTimberDeploymentApproved:true,publicHomepageChangeApproved:false,clinicalActivationApproved:false,unrelatedChangesApproved:false},productionVerified:false
+};
 
 const git=(...args)=>execFileSync('git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const content=(ref,path)=>execFileSync('git',['--no-replace-objects','show',ref+':'+path],{encoding:'utf8',maxBuffer:64e6});
@@ -69,7 +77,7 @@ export function verifyMainReleaseReadinessExtension(){
  for(const row of git('ls-files','-v','-z').split('\0').filter(Boolean))assert(row.startsWith('H '),'Release-readiness hidden source forbidden');
 
  const finalReceipt=JSON.parse(content(actual,MAIN_RELEASE_RECEIPT));
- const {maintenanceSource:originalMaintenanceSource,followup,timeoutFollowup,wholeEstateFollowup,...originalRecord}=finalReceipt;
+ const {maintenanceSource:originalMaintenanceSource,followup,timeoutFollowup,wholeEstateFollowup,wholeEstateExpansionFollowup,...originalRecord}=finalReceipt;
  assert.deepEqual(originalRecord,originalExpected,'Original current-main repair authority changed');
  assert.match(originalMaintenanceSource,/^[a-f0-9]{40}$/);
  assert.deepEqual(JSON.parse(content(MAIN_RELEASE_ORIGINAL_RECEIPT,MAIN_RELEASE_RECEIPT)),{...originalExpected,maintenanceSource:originalMaintenanceSource},'Original immutable repair receipt changed');
@@ -82,8 +90,11 @@ export function verifyMainReleaseReadinessExtension(){
  const {maintenanceSource:routeMaintenanceSource,...routeRecord}=wholeEstateFollowup||{};
  assert.deepEqual(routeRecord,routeExpected,'Only the exact evidenced whole-estate capacity repair is authorised');
  assert.match(routeMaintenanceSource,/^[a-f0-9]{40}$/);
+ const {maintenanceSource:routeExpansionMaintenanceSource,...routeExpansionRecord}=wholeEstateExpansionFollowup||{};
+ assert.deepEqual(routeExpansionRecord,routeExpansionExpected,'Only the exact evidenced current-size whole-estate repair is authorised');
+ assert.match(routeExpansionMaintenanceSource,/^[a-f0-9]{40}$/);
 
- for(const [a,b,list] of [[MAIN_RELEASE_BASE,MAIN_RELEASE_PAYLOAD,ORIGINAL_PATHS],[MAIN_RELEASE_PAYLOAD,originalMaintenanceSource,ORIGINAL_MAINTENANCE],[originalMaintenanceSource,MAIN_RELEASE_ORIGINAL_RECEIPT,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_ORIGINAL_RECEIPT,MAIN_RELEASE_FOLLOWUP_PAYLOAD,FOLLOWUP_PATHS],[MAIN_RELEASE_FOLLOWUP_PAYLOAD,followupMaintenanceSource,FOLLOWUP_MAINTENANCE],[followupMaintenanceSource,MAIN_RELEASE_TIMEOUT_BASE,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_TIMEOUT_BASE,MAIN_RELEASE_TIMEOUT_PAYLOAD,TIMEOUT_PATHS],[MAIN_RELEASE_TIMEOUT_PAYLOAD,timeoutMaintenanceSource,TIMEOUT_MAINTENANCE],[timeoutMaintenanceSource,MAIN_RELEASE_ROUTE_BASE,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_ROUTE_BASE,MAIN_RELEASE_ROUTE_PAYLOAD,ROUTE_PATHS],[MAIN_RELEASE_ROUTE_PAYLOAD,routeMaintenanceSource,ROUTE_MAINTENANCE],[routeMaintenanceSource,actual,[MAIN_RELEASE_RECEIPT]]]){
+ for(const [a,b,list] of [[MAIN_RELEASE_BASE,MAIN_RELEASE_PAYLOAD,ORIGINAL_PATHS],[MAIN_RELEASE_PAYLOAD,originalMaintenanceSource,ORIGINAL_MAINTENANCE],[originalMaintenanceSource,MAIN_RELEASE_ORIGINAL_RECEIPT,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_ORIGINAL_RECEIPT,MAIN_RELEASE_FOLLOWUP_PAYLOAD,FOLLOWUP_PATHS],[MAIN_RELEASE_FOLLOWUP_PAYLOAD,followupMaintenanceSource,FOLLOWUP_MAINTENANCE],[followupMaintenanceSource,MAIN_RELEASE_TIMEOUT_BASE,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_TIMEOUT_BASE,MAIN_RELEASE_TIMEOUT_PAYLOAD,TIMEOUT_PATHS],[MAIN_RELEASE_TIMEOUT_PAYLOAD,timeoutMaintenanceSource,TIMEOUT_MAINTENANCE],[timeoutMaintenanceSource,MAIN_RELEASE_ROUTE_BASE,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_ROUTE_BASE,MAIN_RELEASE_ROUTE_PAYLOAD,ROUTE_PATHS],[MAIN_RELEASE_ROUTE_PAYLOAD,routeMaintenanceSource,ROUTE_MAINTENANCE],[routeMaintenanceSource,MAIN_RELEASE_ROUTE_EXPANSION_BASE,[MAIN_RELEASE_RECEIPT]],[MAIN_RELEASE_ROUTE_EXPANSION_BASE,MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD,ROUTE_PATHS],[MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD,routeExpansionMaintenanceSource,ROUTE_MAINTENANCE],[routeExpansionMaintenanceSource,actual,[MAIN_RELEASE_RECEIPT]]]){
   git('merge-base','--is-ancestor',a,b);assert.deepEqual(sorted(changed(a,b)),sorted(list),'Exact release-readiness increment required');
  }
  const netPaths=[...new Set([...ORIGINAL_PATHS,...ORIGINAL_MAINTENANCE,...FOLLOWUP_PATHS,...FOLLOWUP_MAINTENANCE,...TIMEOUT_PATHS,...TIMEOUT_MAINTENANCE,...ROUTE_PATHS,...ROUTE_MAINTENANCE,MAIN_RELEASE_RECEIPT])];
@@ -96,8 +107,8 @@ export function verifyMainReleaseReadinessExtension(){
  for(const path of FOLLOWUP_MAINTENANCE.filter(path=>!TIMEOUT_MAINTENANCE.includes(path))){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',followupMaintenanceSource+':'+path),'Pinned follow-up maintenance bytes changed: '+path);regularAt(actual,path);}
  for(const path of TIMEOUT_PATHS){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',MAIN_RELEASE_TIMEOUT_PAYLOAD+':'+path),'Pinned Public Alias runtime repair bytes changed: '+path);regularAt(actual,path);}
  for(const path of TIMEOUT_MAINTENANCE.filter(path=>!ROUTE_MAINTENANCE.includes(path))){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',timeoutMaintenanceSource+':'+path),'Pinned Public Alias maintenance bytes changed: '+path);regularAt(actual,path);}
- for(const path of ROUTE_PATHS){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',MAIN_RELEASE_ROUTE_PAYLOAD+':'+path),'Pinned whole-estate capacity bytes changed: '+path);regularAt(actual,path);}
- for(const path of ROUTE_MAINTENANCE){assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',routeMaintenanceSource+':'+path),'Pinned whole-estate maintenance bytes changed: '+path);regularAt(actual,path);}
+ for(const path of ROUTE_PATHS){assert.equal(git('rev-parse',MAIN_RELEASE_ROUTE_EXPANSION_BASE+':'+path),git('rev-parse',MAIN_RELEASE_ROUTE_PAYLOAD+':'+path),'Pinned whole-estate capacity bytes changed before the evidenced expansion: '+path);assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD+':'+path),'Pinned current-size whole-estate capacity bytes changed: '+path);regularAt(actual,path);}
+ for(const path of ROUTE_MAINTENANCE){assert.equal(git('rev-parse',MAIN_RELEASE_ROUTE_EXPANSION_BASE+':'+path),git('rev-parse',routeMaintenanceSource+':'+path),'Pinned whole-estate maintenance bytes changed before the evidenced expansion: '+path);assert.equal(git('rev-parse',actual+':'+path),git('rev-parse',routeExpansionMaintenanceSource+':'+path),'Pinned current-size whole-estate maintenance bytes changed: '+path);regularAt(actual,path);}
  regularAt(actual,MAIN_RELEASE_RECEIPT);
 
  assert.equal(git('rev-parse',actual+':release/approved-runtime-composition.json'),git('rev-parse',MAIN_RELEASE_BASE+':release/approved-runtime-composition.json'),'Previous approval ledger changed');
@@ -141,9 +152,11 @@ export function verifyMainReleaseReadinessExtension(){
  const expandedRouteStep="      - name: Whole-estate production routes, links and blank-page sweep\n        env:\n          SHIFT_SWEEP_MAX: '2500'\n        run: node gate1-whole-estate-production-sweep.mjs";
  assert.equal(occurrences(routeBefore,routeStep),1,'One original whole-estate sweep step required');
  assert.equal(routeAfter,routeBefore.replace(routeStep,expandedRouteStep),'Only the whole-estate discovery ceiling may increase; all route and blank-page checks remain exact');
- assert.equal(content(actual,'gate1-whole-estate-production-sweep.mjs'),content(MAIN_RELEASE_ROUTE_BASE,'gate1-whole-estate-production-sweep.mjs'),'Whole-estate rejection logic changed');
+ const routeExpansionBefore=content(MAIN_RELEASE_ROUTE_EXPANSION_BASE,'.github/workflows/whole-estate-route-sweep.yml'),routeExpansionAfter=content(MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD,'.github/workflows/whole-estate-route-sweep.yml');
+ assert.equal(routeExpansionAfter,routeExpansionBefore.replace("SHIFT_SWEEP_MAX: '2500'","SHIFT_SWEEP_MAX: '20000'"),'Only the evidenced whole-estate ceiling may expand to the current estate size');
+ assert.equal(content(actual,'gate1-whole-estate-production-sweep.mjs'),content(MAIN_RELEASE_ROUTE_EXPANSION_BASE,'gate1-whole-estate-production-sweep.mjs'),'Whole-estate rejection logic changed');
 
  assert.equal(readFileSync(MAIN_RELEASE_RECEIPT,'utf8').trimEnd(),content(actual,MAIN_RELEASE_RECEIPT).trimEnd(),'Working release-readiness receipt changed');
  assert.equal(git('rev-parse','HEAD'),actual,'Release-readiness HEAD moved');
- return Object.freeze({actual,predecessor:MAIN_RELEASE_BASE,payload:MAIN_RELEASE_PAYLOAD,followupPayload:MAIN_RELEASE_FOLLOWUP_PAYLOAD,timeoutPayload:MAIN_RELEASE_TIMEOUT_PAYLOAD,routePayload:MAIN_RELEASE_ROUTE_PAYLOAD,productionVerified:false});
+ return Object.freeze({actual,predecessor:MAIN_RELEASE_BASE,payload:MAIN_RELEASE_PAYLOAD,followupPayload:MAIN_RELEASE_FOLLOWUP_PAYLOAD,timeoutPayload:MAIN_RELEASE_TIMEOUT_PAYLOAD,routePayload:MAIN_RELEASE_ROUTE_PAYLOAD,routeExpansionPayload:MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD,productionVerified:false});
 }
