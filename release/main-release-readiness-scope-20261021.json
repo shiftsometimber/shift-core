@@ -614,6 +614,54 @@
     },
     "productionVerified": false,
     "maintenanceSource": "cfbb16cd1d8678dfd838048b2f04b6c7410b522e"
+  },
+  "releaseGateRootProjectionFollowup": {
+    "kind": "EXACT_ROOT_PROJECTION_CHAIN_REPAIR_20261022",
+    "base": "19fa39dd6704bc836f401ad8b678a4c084571a60",
+    "payload": "f0e4b6be9f1d2c306b0eaa00301653317b69cc79",
+    "paths": [
+      "release/root-share-preview-scope.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "localFocusedRun": {
+        "tests": 3,
+        "passed": 0,
+        "failed": 3,
+        "failures": [
+          "root-share actual registered source",
+          "member-consent actual current source",
+          "finite-growth actual current registration"
+        ],
+        "sharedFailure": "root-share projection authenticated its current source against the earlier completion payload instead of the later admitted composition payload"
+      }
+    },
+    "repair": {
+      "everyAdmittedCurrentReleaseStageProjected": true,
+      "exactKindsAndBasesPinned": true,
+      "callbackAliasDriftRejectionRetained": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "a691fc5e260a2611fb0aae7900cbd5422ede63b8"
   }
 }
 
