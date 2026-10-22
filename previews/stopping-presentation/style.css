@@ -45,3 +45,5 @@ html body main#main-content.sgp .sst-service-bridge .sst-service-bridge__main{pa
 html body main#main-content.sgp .sst-service-bridge__limit{padding:18px!important;background:#f6f4ef!important;color:#050505!important;border:1px solid #aeb3a2!important;border-radius:5px!important}
 html body main#main-content.sgp .sst-service-bridge__limit *{color:#050505!important}
 html body main#main-content.sgp .sst-service-bridge__cta{background:#050505!important;color:#E7E3DA!important}
+html body main#main-content.sgp .cluster-body :is(p,li,h2,h3,h4,summary,a,strong,span){color:#050505!important;-webkit-text-fill-color:#050505!important}
+html body main#main-content.sgp .cluster-body a.sst-service-bridge__cta{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
