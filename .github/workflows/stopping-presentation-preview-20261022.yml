@@ -1,0 +1,51 @@
+name: Preview Coming off GLP-1 presentation
+on:
+  push:
+    branches: [preview/stopping-presentation-20261022]
+    paths: [previews/stopping-presentation/**, .github/workflows/stopping-presentation-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: stopping-presentation-preview-20261022
+  cancel-in-progress: true
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/stopping-presentation
+      - name: Trust this checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Build scoped style and check source
+        run: |
+          node previews/stopping-presentation/build.cjs
+          git diff --exit-code -- previews/stopping-presentation/style.mjs
+          node --check previews/stopping-presentation/worker.mjs
+          node --check previews/stopping-presentation/deploy-preview.mjs
+          node --check previews/stopping-presentation/check-browser.cjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/stopping-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage guide preview with the original copy and sources
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/stopping-presentation/deploy-preview.mjs
+      - name: Check mobile, desktop, takeaways, planning, sources and preserved links
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/stopping-browser/node_modules/playwright
+        run: node previews/stopping-presentation/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stopping-preview-${{ github.sha }}
+          path: stopping-presentation-preview-evidence/
+          retention-days: 90

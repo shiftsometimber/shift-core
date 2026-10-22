@@ -1,0 +1,7 @@
+# Coming off GLP-1 article presentation
+
+Matt requested “Next” after verified Life Back v3 publication on 22 October 2026 (BST). This is presentation only for the existing /articles/stopping-glp1 article, whose earlier content addition stays complete. Preserve every paragraph, link, ID, FAQ, source disclosure, JSON-LD, clinical-care limit and existing My Timber destination. No new medical claims or independent clinical review. No member accounts, forms, messages, treatments, check-ins, goals or ratings touched.
+
+Use a black original hero, original Quick takeaways directly beneath, consistent cream flow, five original planning items as cards and all later reading/FAQ/sources/continuity content retained. Hero/takeaways/body share flush 1160px edges and responsive margins. Original article content order changes only to bring the existing Quick takeaways above the long maintenance plan.
+
+Preview only: noindex; zero public routes; writes/private API blocked; analytics/serviceworkers suppressed. Qualify original paragraphs/hrefs/IDs/details/metadata, responsive layout, keyboard FAQ and source disclosures, 4/1 takeaway and 2/1 planning columns, contrast, no overflow, no-JavaScript and six public destinations in Chromium/WebKit at 390/1440px. Preserve every earlier route and shared header/footer. Review the full preview before publication. Homepage, Start Here and questionnaire belong to other chats; Medicines Watch/shared-Core/reconciliation remain paused.
