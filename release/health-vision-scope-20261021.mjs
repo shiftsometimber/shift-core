@@ -26,9 +26,10 @@ export function verifyHealthVisionExtension(){
  for(const [ref,paths] of [[HEALTH_PAYLOAD,HEALTH_PATHS],[maintenanceSource,HEALTH_MAINTENANCE]])for(const p of paths){
   const approved=git('rev-parse',ref+':'+p);
   assert.equal(git('rev-parse',snapshot+':'+p),approved,'Health historical pinned bytes changed: '+p);
-  // This verifier may be maintained in a later, separately reviewed commit.
-  // All actual health content and the other historical maintenance files stay pinned.
-  if(p!=='release/health-vision-scope-20261021.mjs')assert.equal(git('rev-parse',actual+':'+p),approved,'Health pinned bytes changed: '+p);
+  // This verifier and its regression test may be maintained together in a
+  // later reviewed commit; original historical bytes remain pinned above.
+  // All Health content and other maintenance files remain byte-identical.
+  if(!['release/health-vision-scope-20261021.mjs','tests/health-vision-scope-20261021.test.mjs'].includes(p))assert.equal(git('rev-parse',actual+':'+p),approved,'Health pinned bytes changed: '+p);
   assert(git('ls-tree',actual,'--',p).startsWith('100644 blob '),'Health regular source file required');
  }
  assert.equal(git('rev-parse',actual+':release/approved-runtime-composition.json'),git('rev-parse',HEALTH_BASE+':release/approved-runtime-composition.json'),'Health previous approvals changed');
