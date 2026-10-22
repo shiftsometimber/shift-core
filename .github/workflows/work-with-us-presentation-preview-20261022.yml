@@ -1,0 +1,50 @@
+name: Preview Work with us presentation
+on:
+  push:
+    branches: [preview/work-with-us-presentation-20261022]
+    paths: [previews/work-with-us-presentation/**, .github/workflows/work-with-us-presentation-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: work-with-us-presentation-preview-20261022
+  cancel-in-progress: true
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/work-with-us-presentation
+      - name: Trust the preview checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Build scoped presentation
+        run: |
+          node previews/work-with-us-presentation/build.cjs
+          git diff --exit-code -- previews/work-with-us-presentation/style.mjs
+          node --check previews/work-with-us-presentation/worker.mjs
+          node --check previews/work-with-us-presentation/deploy-preview.mjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/work-preview-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage preview and verify all published copy and links remain
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/work-with-us-presentation/deploy-preview.mjs
+      - name: Verify mobile, desktop, Safari engine, contrast and links
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/work-preview-browser/node_modules/playwright
+        run: node previews/work-with-us-presentation/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: work-with-us-preview-${{ github.sha }}
+          path: work-with-us-presentation-preview-evidence/
+          retention-days: 90
