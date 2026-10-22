@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "head": "1804c1be7a6694e8d562afd04c325df3e277bb2d",
+  "stagingMethod": "Staged Start Here HTML/assets on canonical browser origin; real live API and order pages",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "allSix": true,
+      "inlineInfo": true,
+      "inlineSwitch": true,
+      "fullClickThrough": true,
+      "startingDoseLocked": true,
+      "continuingDoseSelectable": true,
+      "paymentClosed": true,
+      "bmiBranches": false,
+      "calculator": true,
+      "finalLayout": true,
+      "obsoleteHandoffRemoved": true,
+      "errors": []
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "allSix": true,
+      "inlineInfo": true,
+      "inlineSwitch": true,
+      "fullClickThrough": true,
+      "startingDoseLocked": true,
+      "continuingDoseSelectable": true,
+      "paymentClosed": true,
+      "bmiBranches": false,
+      "calculator": true,
+      "finalLayout": true,
+      "obsoleteHandoffRemoved": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "allSix": true,
+      "inlineInfo": true,
+      "inlineSwitch": true,
+      "fullClickThrough": true,
+      "startingDoseLocked": true,
+      "continuingDoseSelectable": true,
+      "paymentClosed": true,
+      "bmiBranches": false,
+      "calculator": true,
+      "finalLayout": true,
+      "obsoleteHandoffRemoved": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "allSix": true,
+      "inlineInfo": true,
+      "inlineSwitch": true,
+      "fullClickThrough": true,
+      "startingDoseLocked": true,
+      "continuingDoseSelectable": true,
+      "paymentClosed": true,
+      "bmiBranches": false,
+      "calculator": true,
+      "finalLayout": true,
+      "obsoleteHandoffRemoved": true,
+      "errors": []
+    }
+  ]
+}

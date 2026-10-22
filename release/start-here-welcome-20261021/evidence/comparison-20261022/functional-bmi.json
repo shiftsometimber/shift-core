@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "head": "f83b5d14756b9081f4d156ef91b1ad82062f559e",
+  "stagingMethod": "Staged Start Here HTML/assets on canonical browser origin; real live API and order pages",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "allSix": true,
+      "inlineInfo": true,
+      "inlineSwitch": true,
+      "fullClickThrough": true,
+      "startingDoseLocked": true,
+      "continuingDoseSelectable": true,
+      "paymentClosed": true,
+      "bmiBranches": true,
+      "calculator": true,
+      "errors": []
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "allSix": true,
+      "inlineInfo": true,
+      "inlineSwitch": true,
+      "fullClickThrough": true,
+      "startingDoseLocked": true,
+      "continuingDoseSelectable": true,
+      "paymentClosed": true,
+      "bmiBranches": true,
+      "calculator": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "allSix": true,
+      "inlineInfo": true,
+      "inlineSwitch": true,
+      "fullClickThrough": true,
+      "startingDoseLocked": true,
+      "continuingDoseSelectable": true,
+      "paymentClosed": true,
+      "bmiBranches": true,
+      "calculator": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "allSix": true,
+      "inlineInfo": true,
+      "inlineSwitch": true,
+      "fullClickThrough": true,
+      "startingDoseLocked": true,
+      "continuingDoseSelectable": true,
+      "paymentClosed": true,
+      "bmiBranches": true,
+      "calculator": true,
+      "errors": []
+    }
+  ]
+}
