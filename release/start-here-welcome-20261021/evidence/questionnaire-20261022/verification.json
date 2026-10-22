@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "at": "2026-10-22T14:22:19.653Z",
+  "londonTime": "22/10/2026, 15:22:19",
+  "activeWorker": "shift-start-questions-20261022",
+  "sixStartHereBindings": [
+    "shiftsometimber.co.uk/start-here",
+    "shiftsometimber.co.uk/start-here/",
+    "www.shiftsometimber.co.uk/start-here",
+    "www.shiftsometimber.co.uk/start-here/",
+    "shiftsometimber.co.uk/start-here*",
+    "www.shiftsometimber.co.uk/start-here*"
+  ],
+  "originalUnrelatedRoutesUnchanged": true,
+  "concurrentUnrelatedAdditions": [
+    {
+      "pattern": "www.shiftsometimber.co.uk/clinic-gone-quiet",
+      "script": "shift-quiet-presentation-20261022"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/clinic-gone-quiet",
+      "script": "shift-quiet-presentation-20261022"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/clinic-gone-quiet.html",
+      "script": "shift-quiet-presentation-20261022"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/clinic-gone-quiet/",
+      "script": "shift-quiet-presentation-20261022"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/clinic-gone-quiet/",
+      "script": "shift-quiet-presentation-20261022"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/clinic-gone-quiet.html",
+      "script": "shift-quiet-presentation-20261022"
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://shiftsometimber.co.uk/start-here?route=weight-loss",
+      "finalUrl": "https://shiftsometimber.co.uk/start-here?route=weight-loss",
+      "status": 200,
+      "version": "20261022-brand-v1"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/start-here/",
+      "finalUrl": "https://shiftsometimber.co.uk/start-here",
+      "status": 200,
+      "version": "20261022-brand-v1"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/start-here.html",
+      "finalUrl": "https://shiftsometimber.co.uk/start-here",
+      "status": 200,
+      "version": "20261022-brand-v1"
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/start-here",
+      "finalUrl": "https://shiftsometimber.co.uk/start-here",
+      "status": 200,
+      "version": "20261022-brand-v1"
+    }
+  ]
+}

@@ -48,3 +48,19 @@ Seven native boundary tests pass. Four staged Chrome/WebKit 390/1440 runs pass c
 Ordering remains unavailable. The existing clinical-verification integration and stock/supply requirements are still outstanding; this presentation release does not open checkout, simulate purchases or claim the purchase path is complete. Prior checkout limitations above remain applicable.
 
 Rollback from this clean branch: node release/start-here-welcome-20261021/deploy.cjs rollback restores the six prior bindings to shift-start-comparison-20261022.
+
+## 22 October approved branded question flow — live, verified and closed
+
+Matt approved the corrected SHIFT design and instructed “sort it formally and move on”. The approved private design source was 5f16f35a8438ec8f41788e5e2418042551171f30. Public source f662d14dfa98776bdc111bd4666b9f93ef0a29ec is now served by shift-start-questions-20261022 on the six Start Here bindings. X-Shift-Questions-Version is 20261022-brand-v1. Public verification completed 22/10/2026, 15:22:19 Europe/London.
+
+The questions use SHIFT black, cream and ash green, stronger headings, cream selected answers, a visible three-step progress strip, retained choices, direct back/edit navigation and the mobile Continue control. They lead into the existing treatment results. Shared callout decorations are suppressed inside these answer tiles only. The public header/footer remain provided by the existing upstream shell. Welcome markup, result markup, medicine code and preceding styles are preserved; hashes are recorded in preservation.json. No health-answer storage, submission or clinical/payment changes were introduced.
+
+Seven native boundary tests passed. Four staged and four live Chrome/WebKit checks at 390/1440 passed the question colours/layout, selected goals, required-choice feedback, progress/back/edit, conditional BMI, all six cream treatment options, filters, inline information, starting-dose lock and unavailable ordering. The staged checks also cover continuing dose/price changes, BMI branches, NHS/no-medication and failed-catalogue fallback. The live mobile check includes the local BMI calculator. No page errors or horizontal overflow. Canonical, slash, .html and www requests return the new release.
+
+All original unrelated route bindings remained unchanged. A separate concurrent clinic-gone-quiet presentation release added six unrelated bindings during verification; these were preserved and recorded rather than mistaken for a Start Here change. The new question worker is bound only to the six approved Start Here patterns.
+
+Evidence and acceptance sources: questionnaire-20261022/. The first fresh staging-URL probe briefly returned 404 after service creation; a read-only check confirmed 200 with the correct version before acceptance. Final staged/live acceptance concerns the exact source above.
+
+Question-flow change: complete. Existing ordering/stock/clinical-verification boundaries documented above remain in force. The paused Core/editorial PR work was not changed or resumed.
+
+Rollback from this clean branch: node release/start-here-welcome-20261021/deploy.cjs rollback restores the six previous Start Here bindings to shift-start-cream-20261022.

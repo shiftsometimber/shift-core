@@ -1,0 +1,8 @@
+{
+  "sourceBefore": "04e7e14fd39e248a59a82d29ea28ff5502f1ae60",
+  "approvedPreviewSource": "5f16f35a8438ec8f41788e5e2418042551171f30",
+  "welcomeHash": "0d992c8ac37b7a256b590e550cb9811108ef6e1c165597a9fc0d7d99ac424f90",
+  "resultMarkupHash": "6ff1988d1148bd4e2c9ad594b915a373d245068deaa775701fdd72057588dbef",
+  "medicineCodeHash": "6c015112b82fbf96c9f65234f6a3044668ad8f00e966fe2fcd732561900ea990",
+  "scope": "Question presentation/navigation only; existing medicine catalogue, dose, eligibility and order behaviour retained."
+}
