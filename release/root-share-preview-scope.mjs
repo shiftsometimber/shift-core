@@ -26,7 +26,7 @@ function rootShareBeforeCurrentMainRepair(path,bytes){
   return bytes.replace(importHook,'').replace(assertions,'').replace(prepared,'').replace(current,original);
  }
  if(path===CURRENT_MAIN_ROOT_SHARE_SCOPE){
-  const injections=[[' ({read,blob}=rootShare','CurrentMainReaders({c,head,read,blob,content}));\n'].join(''),[' if(!defaultReader)reader=rootShare','CurrentMainReader(reader);\n'].join('')];for(const injection of injections){assert.equal(bytes.split(injection).length,2,'One exact current-main root-share projection required');bytes=bytes.replace(injection,'');}
+  const injections=[[' ({read,blob}=rootShare','CurrentMainReaders({c,head,read,blob,content}));\n'].join(''),[' if(!defaultReader)reader=rootShare','CurrentMainReader(reader);\n'].join(''),[' if(defaultReader){const actual=git(\'rev-parse\',\'HEAD\');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes(\'// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\\n\')){reader=(ref,p)=>contents(ref===\'HEAD\'?actual:ref,p);defaultReader=','false;}}\n'].join('')];for(const injection of injections){assert.equal(bytes.split(injection).length,2,'One exact current-main root-share projection required');bytes=bytes.replace(injection,'');}
   const start=['// CURRENT_MAIN_ROOT_SHARE_REPAIR','_BEGIN\n'].join(''),end=['// CURRENT_MAIN_ROOT_SHARE_REPAIR','_END\n'].join(''),a=bytes.indexOf(start),b=bytes.indexOf(end,a+start.length);assert(a>=0&&b>a&&bytes.indexOf(start,a+1)<0&&bytes.indexOf(end,b+1)<0,'One exact current-main root-share repair block required');return bytes.slice(0,a)+bytes.slice(b+end.length);
  }
  assert.fail('Unknown current-main root-share repair path: '+path);
@@ -39,9 +39,10 @@ function rootShareCurrentMainReaders({c,head,read,blob,content}){
 }
 function rootShareCurrentMainReader(reader){
  const head=git('rev-parse','HEAD'),current=contents(head,CURRENT_MAIN_ROOT_SHARE_SCOPE);if(!current.includes('// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\n'))return reader;
- const receipt='release/main-release-readiness-scope-20261021.json',record=JSON.parse(contents(head,receipt)),followup=record.followup;
- assert.equal(record.kind,'EXACT_CURRENT_MAIN_RELEASE_READINESS_REPAIR_20261021');assert.equal(record.base,'39c703ac068b800bbf4a92a9277e21bd3d7b89e6');assert.equal(followup?.kind,'EXACT_TERMINAL_RELEASE_GATE_REPAIR_20261022');assert.equal(followup.base,'aec895cc2543f83f8dd7af0111850745605b95a6');
+ const receipt='release/main-release-readiness-scope-20261021.json',record=JSON.parse(contents(head,receipt)),followup=record.followup,timeoutFollowup=record.timeoutFollowup;
+ assert.equal(record.kind,'EXACT_CURRENT_MAIN_RELEASE_READINESS_REPAIR_20261021');assert.equal(record.base,'39c703ac068b800bbf4a92a9277e21bd3d7b89e6');assert.equal(followup?.kind,'EXACT_TERMINAL_RELEASE_GATE_REPAIR_20261022');assert.equal(followup.base,'aec895cc2543f83f8dd7af0111850745605b95a6');if(timeoutFollowup){assert.equal(timeoutFollowup.kind,'EXACT_PUBLIC_ALIAS_RUNTIME_CAP_REPAIR_20261022');assert.equal(timeoutFollowup.base,'fc0baf8d2e41c577590531cb0fc9d178a6297b63');}
  const currentRefs=new Map();for(const path of record.paths)currentRefs.set(path,record.payload);for(const path of record.maintenancePaths)currentRefs.set(path,record.maintenanceSource);for(const path of followup.paths)currentRefs.set(path,followup.payload);for(const path of followup.maintenancePaths)currentRefs.set(path,followup.maintenanceSource);
+ if(timeoutFollowup){for(const path of timeoutFollowup.paths)currentRefs.set(path,timeoutFollowup.payload);for(const path of timeoutFollowup.maintenancePaths)currentRefs.set(path,timeoutFollowup.maintenanceSource);}
  const references=new Map();for(const[path,source]of currentRefs){if(!git('ls-tree',record.base,'--',path))continue;assert.equal(contents(head,path),contents(source,path),'Exact current-main callback source changed: '+path);assert.equal(reader('HEAD',path),reader(head,path),'Current-main callback aliases changed: '+path);references.set(path,record.base);}
  assert.equal(rootShareBeforeCurrentMainRepair(CURRENT_MAIN_ROOT_SHARE_TEST,contents(head,CURRENT_MAIN_ROOT_SHARE_TEST)),contents(record.base,CURRENT_MAIN_ROOT_SHARE_TEST),'Exact prior root-share callback test must restore');assert.equal(rootShareBeforeCurrentMainRepair(CURRENT_MAIN_ROOT_SHARE_SCOPE,current),contents(record.base,CURRENT_MAIN_ROOT_SHARE_SCOPE),'Exact prior root-share callback scope must restore');
  return(ref,path)=>references.has(path)&&(ref==='HEAD'||ref===head)?reader(references.get(path),path):reader(ref,path);
@@ -73,6 +74,7 @@ export function verifyRootShareSource(c,{head,read,blob=read,diff,ancestor,conte
  const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.rootSharePreview;assert.deepEqual(current,prior,'Every prior approval, watermark and release record must remain unchanged');return c;
 }
 export function rootShareHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ if(defaultReader){const actual=git('rev-parse','HEAD');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes('// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\n')){reader=(ref,p)=>contents(ref==='HEAD'?actual:ref,p);defaultReader=false;}}
  if(!defaultReader)reader=rootShareCurrentMainReader(reader);
  const calendar=photoCalendarHistoricalView(reader,{defaultReader}),rawHead=calendar.head,current=calendar.record,repair=current.rootSharePreview;
  const rawBlob=calendar.blob,rawRead=calendar.read;

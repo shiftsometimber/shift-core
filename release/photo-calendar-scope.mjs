@@ -20,7 +20,15 @@ const manifest='release/approved-runtime-composition.json',sorted=a=>[...a].sort
 function fact(...args){const immutable=args.every((x,i)=>i===0||!x.includes('HEAD'))&&(['show','rev-parse','diff','merge-base'].includes(args[0]));const key=JSON.stringify([process.cwd(),...args]);if(!immutable)return execFileSync('git',args,{encoding:'utf8'});if(!facts.has(key))facts.set(key,execFileSync('git',args,{encoding:'utf8'}));return facts.get(key);}
 const git=(...a)=>fact(...a).trim(),contents=(ref,p)=>fact('show',ref+':'+p);
 export function originalPhotoCalendarFrontend(bytes){assert.equal(bytes.split(PHOTO_CALENDAR_HELPER).length,2);const before="capturedAt:form.elements.on.value+'T00:00:00Z'",after='capturedAt:photoCalendarTimestamp(form.elements.on.value)';assert.equal(bytes.split(after).length,2);return bytes.replace(PHOTO_CALENDAR_HELPER,'').replace(after,before);}
+function originalCurrentMainRootShare(bytes){
+ const start=['// CURRENT_MAIN_ROOT_SHARE_REPAIR','_BEGIN\n'].join(''),end=['// CURRENT_MAIN_ROOT_SHARE_REPAIR','_END\n'].join(''),a=bytes.indexOf(start);if(a<0)return bytes;
+ const b=bytes.indexOf(end,a+start.length);assert(b>a&&bytes.indexOf(start,a+1)<0&&bytes.indexOf(end,b+1)<0,'One exact current-main root-share repair block required');
+ const injections=[[' ({read,blob}=rootShare','CurrentMainReaders({c,head,read,blob,content}));\n'].join(''),[' if(!defaultReader)reader=rootShare','CurrentMainReader(reader);\n'].join(''),[' if(defaultReader){const actual=git(\'rev-parse\',\'HEAD\');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes(\'// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\\n\')){reader=(ref,p)=>contents(ref===\'HEAD\'?actual:ref,p);defaultReader=','false;}}\n'].join('')];
+ for(const injection of injections){assert.equal(bytes.split(injection).length,2,'One exact current-main root-share projection required');bytes=bytes.replace(injection,'');}
+ const blockStart=bytes.indexOf(start),blockEnd=bytes.indexOf(end,blockStart+start.length);return bytes.slice(0,blockStart)+bytes.slice(blockEnd+end.length);
+}
 export function originalPhotoCalendarRootScope(bytes){
+ bytes=originalCurrentMainRootShare(bytes);
  const line="import {photoCalendarHistoricalView} from './photo-calendar-scope.mjs';\n";assert.equal(bytes.split(line).length,2);let s=bytes.replace(line,'');
  const before=" const rawHead=git('rev-parse','HEAD'),current=JSON.parse(contents(rawHead,manifest)),repair=current.rootSharePreview;",after=" const calendar=photoCalendarHistoricalView(reader,{defaultReader}),rawHead=calendar.head,current=calendar.record,repair=current.rootSharePreview;";assert.equal(s.split(after).length,2);s=s.replace(after,before);
  const old=" const rawBlob=(ref,p)=>git('rev-parse',(ref==='HEAD'?rawHead:ref)+':'+p),rawRead=defaultReader?rawBlob:reader;",changed=" const rawBlob=calendar.blob,rawRead=calendar.read;";assert.equal(s.split(changed).length,2);s=s.replace(changed,old);
