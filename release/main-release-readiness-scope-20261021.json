@@ -908,6 +908,56 @@
     },
     "productionVerified": false,
     "maintenanceSource": "70ec574c31f9b13fca7c6f8ee48eb9bbf94feddb"
+  },
+  "wholeEstateEntityCompositionFollowup": {
+    "kind": "EXACT_WHOLE_ESTATE_ENTITY_HISTORICAL_COMPOSITION_20261022",
+    "base": "bc86f5319df48ac8419e8b96a01cd6412124c027",
+    "payload": "34c8e92e2b3b81b847abb887c15d6d6ed5ee9629",
+    "paths": [
+      "release/root-share-preview-scope.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "publicAlias": {
+        "run": 39868778975,
+        "job": 120137642580,
+        "failedTest": "tests/organic-measurement-composition.test.mjs: real reconciled source retains the prior runtime and detects reporting drift"
+      },
+      "ranking": {
+        "run": 39868779001,
+        "job": 120137642539,
+        "failedTests": 4
+      },
+      "sharedFailure": "Exact current-main callback source changed: gate1-whole-estate-production-sweep.mjs"
+    },
+    "repair": {
+      "netProjectionStageProjected": true,
+      "entityStageProjected": true,
+      "entityCompositionStageProjected": true,
+      "priorHistoricalBytesStillRequired": true,
+      "unknownCurrentSourceRejected": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "a5214ef3b1bef1a396fb649359d544fa60a2100e"
   }
 }
 
