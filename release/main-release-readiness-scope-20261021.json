@@ -958,6 +958,66 @@
     },
     "productionVerified": false,
     "maintenanceSource": "a5214ef3b1bef1a396fb649359d544fa60a2100e"
+  },
+  "wholeEstateRetryFollowup": {
+    "kind": "EXACT_WHOLE_ESTATE_TRANSIENT_TIMEOUT_RETRY_20261022",
+    "base": "980f35cf915934ce6849899c0187151af891f2c8",
+    "payload": "1bf5a686c81cd0b273906b0afdb6f16ad85c55f5",
+    "paths": [
+      "gate1-whole-estate-production-sweep.mjs",
+      "release/root-share-preview-scope.mjs",
+      "tests/whole-estate-route-sweep.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "hostedRun": 39868779012,
+      "hostedJob": 120137642558,
+      "checked": 7044,
+      "htmlPages": 6718,
+      "truncated": false,
+      "requestTimeoutMs": 30000,
+      "transientTimeoutFailures": 6,
+      "failedRoutes": [
+        "/articles/mens-fat-loss-workouts",
+        "/medicine-news/antidepressant-safety-information-mhra-october-2026",
+        "/medicine-news/uk-archive-adult-adhd-taskforce-final-report",
+        "/medicine-news/diet-glp1-biology-metabolic-health-aging",
+        "/shift-newsroom?page=998",
+        "/shift-newsroom?topic=mental-health&page=998"
+      ]
+    },
+    "repair": {
+      "networkRetryLimit": 1,
+      "networkRetryDelayMs": 250,
+      "retryLimitedToTimeoutOrAbort": true,
+      "persistentNetworkFailureRejected": true,
+      "httpFailureRejectionRetained": true,
+      "routeFailureRejectionRetained": true,
+      "blankPageRejectionRetained": true,
+      "discoveryExhaustionRequired": true,
+      "regressionTestAdded": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "218031af93c78086b3bd0fdce2f82bb380ad416f"
   }
 }
 
