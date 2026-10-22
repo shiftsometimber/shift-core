@@ -243,3 +243,17 @@ test('withdrawal audit failure rolls back the removal',async()=>{
  const stored=t.sqlite.prepare('SELECT status,body FROM timber_shed_forum_posts WHERE id=?').get(topic.body.id);
  assert.equal(stored.status,'pending');assert.match(stored.body,/fictional example/);
 });
+test('safeguarding reports appear ahead of routine reports in moderator queue',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const first=await submit(t,1,'main-shed','A quiet evening and a nice walk were helpful.','First friendly question');
+ const second=await submit(t,1,'main-shed','Some simple routines helped me through the week.','Second friendly question');
+ await t.send(3,'moderate','POST',{postId:first.body.id,action:'approve'});
+ await t.send(3,'moderate','POST',{postId:second.body.id,action:'approve'});
+ await t.send(2,'report','POST',{postId:first.body.id,reason:'spam'});
+ await t.send(2,'report','POST',{postId:second.body.id,reason:'self-harm-risk'});
+ const reports=(await t.send(3,'moderation')).body.reports;
+ assert.equal(reports.length,2);
+ assert.equal(reports[0].reason,'self-harm-risk');
+ assert.equal(reports[1].reason,'spam');
+});

@@ -88,7 +88,7 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
    if(route==='moderation'){
     if(!await isModerator(db,uid))return json({error:'moderator_only'},403);
     const queue=await db.prepare("SELECT p.id,p.room_id,p.parent_id,p.title,p.body,p.status,p.created_at,pr.display_name,b.severity,b.priority,b.policy_version,b.categories_json FROM timber_shed_forum_posts p JOIN timber_shed_forum_profiles pr ON pr.user_id=p.user_id LEFT JOIN timber_shed_bouncer_screenings b ON b.post_id=p.id WHERE p.status='pending' ORDER BY COALESCE(b.priority,0) ASC,p.created_at ASC LIMIT 100").all();
-    const reports=await db.prepare("SELECT r.id,r.post_id,r.reason,r.created_at,p.room_id,p.title,p.body FROM timber_shed_forum_reports r JOIN timber_shed_forum_posts p ON p.id=r.post_id WHERE r.status='open' ORDER BY r.created_at ASC LIMIT 100").all();
+    const reports=await db.prepare("SELECT r.id,r.post_id,r.reason,r.created_at,p.room_id,p.title,p.body FROM timber_shed_forum_reports r JOIN timber_shed_forum_posts p ON p.id=r.post_id WHERE r.status='open' ORDER BY CASE r.reason WHEN 'self-harm-risk' THEN 0 WHEN 'unsafe-health-advice' THEN 1 WHEN 'privacy' THEN 1 WHEN 'harassment' THEN 1 ELSE 2 END ASC,r.created_at ASC LIMIT 100").all();
     const pending=(queue.results||[]).map(({categories_json,...post})=>({...post,categories:post.policy_version&&categories_json?JSON.parse(categories_json):[],priority:post.priority??0,severity:post.severity||'unreviewed'}));
     return json({pending,reports:reports.results||[]});
    }
