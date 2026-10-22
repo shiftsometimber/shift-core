@@ -50,3 +50,5 @@ Artifact `12436834461`, `life-preview-247bf6706940739ac9c9885faa0d1dee25ec47cf`,
 ## Approved release — 22 October 2026 (BST)
 
 Matt reviewed the flush v3 preview, replied “Magic”, then explicitly instructed “And live”. This approves publication of exact v3 worker/style only. Deploy via isolated Life Back worker and six exact routes, qualify staged and actual public Chromium/WebKit mobile/desktop, preserve all prior routes and all original source/account/care limits. No member pages, updates, communications or other paused/excluded work authorised.
+
+Release execution: the isolated release branch is prepared; the next push starts the staging, activation and actual-public acceptance job for the approved v3.
