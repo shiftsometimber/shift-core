@@ -1,0 +1,16 @@
+(()=>{'use strict';
+ const panel=document.getElementById('shift-checkout-support'),flow=document.querySelector('.op-wrap'),rules=globalThis.SHIFT_CHECKOUT_SUPPORT_RULES;if(!panel||!flow||!rules)return;
+ const $=s=>document.querySelector(s);let opener=null;const returnTarget=document.getElementById('final-closeout-v119');
+ function text(selector,fallback){return $(selector)?.textContent?.trim()||fallback;}
+ function sync(){const dose=$('[data-dose-select]')?.selectedOptions?.[0];$('#cs-treatment').textContent=text('[data-product-name]','Your selected treatment');$('#cs-dose').textContent=dose?.dataset.label||dose?.textContent?.split(' — £')[0]||'';const value=text('[data-op-price]','Price unavailable');for(const id of ['cs-price','cs-total','cs-mobile-total'])document.getElementById(id).textContent=value;$('#cs-period').textContent=text('.op-price>span','Price and supply period shown with your selected treatment.');$('#cs-stock').textContent=text('[data-stock-status]','Ordering unavailable');}
+ function show(button){opener=button||document.activeElement;sync();flow.hidden=true;if(returnTarget)returnTarget.hidden=true;panel.hidden=false;document.documentElement.classList.add('cs-screen-open');$('#cs-title').focus({preventScroll:true});panel.scrollIntoView({block:'start',behavior:'auto'});}
+ function close(){panel.hidden=true;flow.hidden=false;if(returnTarget)returnTarget.hidden=false;document.documentElement.classList.remove('cs-screen-open');if(opener?.isConnected){opener.focus({preventScroll:true});opener.scrollIntoView({block:'center',behavior:'auto'});}const u=new URL(location.href);if(u.searchParams.get('support')==='open'){u.searchParams.delete('support');history.replaceState(null,'',u.pathname+u.search+u.hash);}}
+ // Keep the existing clinical controls and payment handlers intact. This step returns to its caller.
+ for(const stage of flow.querySelectorAll('[data-op-step]')){if(!['0','1','2'].includes(stage.dataset.opStep))continue;const actions=stage.querySelector('.op-controls');if(!actions)continue;const button=document.createElement('button');button.type='button';button.className='cs-entry';button.textContent=stage.dataset.opStep==='0'?'Explore optional support':'Review optional support';button.setAttribute('aria-controls',panel.id);button.onclick=()=>show(button);actions.prepend(button);}
+ for(const b of panel.querySelectorAll('[data-cs-details]'))b.onclick=()=>{const p=document.getElementById(b.dataset.csDetails);p.hidden=!p.hidden;b.setAttribute('aria-expanded',String(!p.hidden));};
+ $('#cs-recent-toggle').onclick=()=>{const p=$('#cs-recent-panel');p.hidden=!p.hidden;$('#cs-recent-toggle').setAttribute('aria-expanded',String(!p.hidden));};
+ $('#cs-recent').onchange=e=>{const result=rules.recommend({recentBloods:e.target.checked});panel.querySelectorAll('[data-cs-item]').forEach(card=>card.hidden=!result.items.some(p=>p.id===card.dataset.csItem));$('#cs-announcement').textContent=e.target.checked?'Blood test option hidden. No extras have been added.':'Blood test option restored. No extras have been added.';};
+ $('#cs-continue').onclick=$('#cs-mobile-continue').onclick=close;
+ new MutationObserver(()=>{if(!panel.hidden)sync();}).observe(flow,{subtree:true,childList:true,characterData:true});
+ if(new URL(location.href).searchParams.get('support')==='open')show();
+})();
