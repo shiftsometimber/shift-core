@@ -1,4 +1,6 @@
 /* Index-only presentation; calculator pages and their logic are unchanged. */
+html body main#main-content.tpp.page-template.template-calculator-tool-result .sv-menu-landing-v7{display:none!important}
+html body main#main-content.tpp.page-template.template-calculator-tool-result section::before,html body main#main-content.tpp.page-template.template-calculator-tool-result section::after{display:none!important}
 html body main#main-content.tpp.page-template.template-calculator-tool-result{background:#050505!important;color:#e7e3da!important;font-family:Arial,Helvetica,sans-serif!important;padding:0 0 64px!important;overflow:visible!important}
 html body main#main-content.tpp.page-template.template-calculator-tool-result *,html body main#main-content.tpp.page-template.template-calculator-tool-result *::before,html body main#main-content.tpp.page-template.template-calculator-tool-result *::after{box-sizing:border-box}
 html body main#main-content.tpp.page-template.template-calculator-tool-result .tool-layout{display:block!important;max-width:none!important;width:100%!important;margin:0!important;padding:0!important}
