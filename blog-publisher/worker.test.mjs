@@ -54,3 +54,14 @@ test('sitemap preserves all existing URLs and replaces a refreshed URL once',()=
  assert.ok(merged.includes('<lastmod>2026-10-23</lastmod>'));assert.ok(merged.includes('/articles/second-post</loc>'));
  assert.equal(mergeSitemap(merged,rows),merged);
 });
+
+test('owner media preview has executable controls and only loads first-party media',async()=>{
+ const {contributorConsole}=await import('../babylove/contributor-console.mjs');
+ const response=contributorConsole([],[]),html=await response.text();
+ assert.ok(response.headers.get('Content-Security-Policy').includes('media-src https://shiftsometimber.co.uk;'));
+ assert.ok(html.includes('id="media-preview"'));
+ const script=html.match(/<script nonce="[^"]+">([\s\S]*?)<\/script>/)[1];
+ assert.doesNotThrow(()=>new Function(script));
+ assert.ok(script.includes("media.controls=true"));
+ assert.ok(script.includes("url.origin!=='https://shiftsometimber.co.uk'"));
+});

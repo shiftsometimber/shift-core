@@ -24,7 +24,7 @@ if not beforeFile.exists():
 else:before=json.loads(beforeFile.read_text())
 proof=json.loads((p/'acceptance.private.json').read_text())['proof']
 assert proof.get('pass') and proof.get('actualD1') and proof.get('actualR2')
-tests=(d/'standalone-all-tests-20261022.log').read_text();assert 'tests 90' in tests and 'fail 0' in tests
+tests=(d/'standalone-all-tests-20261022.log').read_text();assert 'tests 91' in tests and 'fail 0' in tests
 # Core may be independently owned; never move routes if its deployment changed meanwhile.
 assert api('/accounts/'+ACCOUNT+'/workers/scripts/shift-core/deployments')['deployments'][0]['id']==before['coreDeployments']['deployments'][0]['id'],'Core changed; reconcile first'
 wr=['/usr/local/bin/node',str(root/'node_modules/wrangler/bin/wrangler.js')]
