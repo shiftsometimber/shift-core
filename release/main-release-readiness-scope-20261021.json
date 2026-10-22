@@ -322,6 +322,51 @@
     },
     "productionVerified": false,
     "maintenanceSource": "8723dabd1efe3bf34ee1c62e8550cf04055da543"
+  },
+  "publicAliasWindowFollowup": {
+    "kind": "EXACT_PUBLIC_ALIAS_CURRENT_RUNTIME_REPAIR_20261022",
+    "base": "cb59d517b99f37342bccc1d16e808f061965f5e7",
+    "payload": "7e0898997f50c51a2819192db8b9d3fce83d3213",
+    "paths": [
+      ".github/workflows/organic-followthrough-proof.yml"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "hostedRun": 39788887229,
+      "job": 119859280142,
+      "hostedConclusion": "cancelled",
+      "priorHostedCapMinutes": 120,
+      "reportingGuardPassed": 13,
+      "reportingGuardFailures": 0,
+      "mainSuiteObservedFailures": 0,
+      "activeIsolatedTest": "tests/seo-link-repairs-release.test.mjs",
+      "localIsolationExceededSeconds": 240
+    },
+    "repair": {
+      "publicAliasWorkflowTimeoutMinutes": 360,
+      "publicAliasTestConcurrency": 2,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "a6337682bb044b5f77994ac2ecd0779288b05f2c"
   }
 }
 
