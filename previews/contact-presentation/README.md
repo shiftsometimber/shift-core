@@ -6,7 +6,7 @@ Preserve every original field, option, required flag, input name, label, link, t
 
 Preview has zero public routes and is noindex. Its submit button is disabled, a capture listener prevents form submission, and non-GET/HEAD requests and private APIs are rejected. Browser checks use empty fields and inspect form structure/category selection; never send a message or claim delivery acceptance. Production form submission remains outside this design change.
 
-Matt requested the next page in the visual review. Preview preparation is authorised; publication awaits approval of the completed Contact preview. No homepage or separately paused Medicines Watch/shared-Core work is in scope.
+Matt requested the next page in the visual review. Matt approved the completed Contact preview for publication with “Agreed” on 22 October 2026. No homepage or separately paused Medicines Watch/shared-Core work is in scope.
 
 ## Review-ready checkpoint — 22 October 2026
 
@@ -23,4 +23,8 @@ The reviewed design is `20261022-contact-presentation-v1`; future public release
 
 User-facing screenshot: `SHIFT-Contact-Preview-2026-10-22.png`, saved as `libfile_851d3134a27081919928c9eb99b23a92`.
 
-**Publication is not yet authorised.** Present this preview for Matt's sign-off. After explicit approval of this version, create `release/contact-presentation-20261022` from this checkpoint and add the approval to this README on that release branch to trigger its existing live workflow. Verify successful public activation and the enabled original form structure without submitting a message; then record the final result here. No additional approval request is needed after that specific sign-off unless the design or scope changes.
+**Publication authorised.** Matt replied “Agreed” to the exact Contact preview and desktop/mobile screenshot shown in this chat, in response to “Approve this version for go-live?”. Release only that approved version. No runtime or style changes are included in this approval commit. The existing live workflow stages, checks, activates the two Contact patterns and verifies the actual public page. Record the verified result here after the run. Never submit a contact message as part of acceptance.
+
+## Approved publication — 22 October 2026
+
+Release branch: `release/contact-presentation-20261022`, based on review checkpoint `64fa9fe6bf0762c252972e3167c75bd4ede461be`. The exact preview worker/style blobs remain pinned by `preview-gate.json`. Homepage and separately paused Medicines Watch/shared-Core work remain outside scope.
