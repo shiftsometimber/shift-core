@@ -26,7 +26,7 @@ jobs:
           sparse-checkout: previews/contact-presentation
           fetch-depth: 4
       - name: Trust this checkout inside the job container
-        run: git config --global --add safe.directory "$GITHUB_CONTACTSPACE"
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
