@@ -1,0 +1,104 @@
+{
+  "source": "working tree",
+  "physicalDevice": false,
+  "productionWrites": 0,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 360,
+      "input": "mouse",
+      "checks": [
+        "Today opens with check-in, one visible navigation and no website footer",
+        "More, health, privacy and keyboard dismissal work",
+        "Varied discovery, combined filters, explicit sorting, refresh and actual account save",
+        "Fit builder, active movement focus, saved completion, rest, pause and resume",
+        "Session resumes from saved progress after refresh and finishes with accurate completion feedback",
+        "Connected health shows truthful browser and empty-source states",
+        "Privacy choices remain reachable and usable after initial choice",
+        "Real check-in control saves to the isolated member and leaves the second account unchanged",
+        "Bottom navigation, Journey, Back, retained embedded filters, meal choice and two-serving shopping plan",
+        "200% zoom reflows at small phone width and primary action accepts keyboard focus",
+        "Second authenticated account cannot see saved meals, chosen meal or week",
+        "PWA Today launch, controlled offline fallback, no website footer and online recovery"
+      ],
+      "failedRequests": [],
+      "pageErrors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "input": "mouse",
+      "checks": [
+        "Today opens with check-in, one visible navigation and no website footer",
+        "More, health, privacy and keyboard dismissal work",
+        "Did-not-fit produces a one-minute step; did-not-help changes the approach in kind",
+        "Prepared coaching becomes the one primary step; acceptance and did-not-fit feedback save through the existing UI",
+        "Varied discovery, combined filters, explicit sorting, refresh and actual account save",
+        "Fit builder, active movement focus, saved completion, rest, pause and resume",
+        "Connected health shows truthful browser and empty-source states"
+      ],
+      "failedRequests": [],
+      "pageErrors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 430,
+      "input": "mouse",
+      "checks": [
+        "Today opens with check-in, one visible navigation and no website footer",
+        "More, health, privacy and keyboard dismissal work",
+        "Varied discovery, combined filters, explicit sorting, refresh and actual account save",
+        "Fit builder, active movement focus, saved completion, rest, pause and resume",
+        "Connected health shows truthful browser and empty-source states"
+      ],
+      "failedRequests": [],
+      "pageErrors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "input": "mouse",
+      "checks": [
+        "Today opens with check-in, one visible navigation and no website footer",
+        "More, health, privacy and keyboard dismissal work",
+        "Varied discovery, combined filters, explicit sorting, refresh and actual account save",
+        "Fit builder, active movement focus, saved completion, rest, pause and resume",
+        "Connected health shows truthful browser and empty-source states"
+      ],
+      "failedRequests": [],
+      "pageErrors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "input": "touch",
+      "checks": [
+        "Today opens with check-in, one visible navigation and no website footer",
+        "More, health, privacy and keyboard dismissal work",
+        "Varied discovery, combined filters, explicit sorting, refresh and actual account save"
+      ],
+      "failedRequests": []
+    }
+  ],
+  "passed": false,
+  "failure": "locator.tap: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#fitGenerate')\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"sf-build\" id=\"fitGenerate\">↵              BUILD TODAY’S SESSION →↵          …</button>\u001b[22m\n\u001b[2m  - attempting tap action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  - retrying tap action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not visible\u001b[22m\n\u001b[2m  - retrying tap action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying tap action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    56 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying tap action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at activate (/Users/shiftsometimberltd/SST/my-timber-experience-20261015/shift-coach/member-experience-proof.mjs:43:51)\n    at /Users/shiftsometimberltd/SST/my-timber-experience-20261015/shift-coach/member-experience-proof.mjs:65:321",
+  "failureScreen": "MY TIMBER\nFit\nSkip to main content\n\nSHIFT FIT\n\nWhat can I do today?\n\nFitness that fits the time, place, equipment and body you have today. Build it, start it, complete it and save an honest record of what worked.\n\nAdjust your session\nAbout 20 seconds. Then you can get moving.\nTHIS WEEK\n•\n1 SESSION\n•\n20 MINUTES\nDAY 1Home session\nHome session\n\n0 completed · 5 exercises\n\nView exercise list\nStart session →\nCOACH’S BRIEFToday we’re working on legs, balance and everyday strength.\n\nThe aim is to make stairs, walking and getting up and down feel easier. Controlled work, no heroics.\n\nSESSION EFFORT\nGo easier\nAs planned\nGo harder\nAbout session effort\n\nNext time: When this feels comfortable for two sessions, add 1–2 reps per set or a small amount of resistance rather than simply padding the session with more of the same exercise.\n\nKeep your story together.\n\nYour saved activity and check-ins feed the same My Timber history.\n\nLog how life feels · Back to Today\nToday\nJourney\nGrub\nFit\nMore",
+  "dom": [
+    {
+      "s": "#panel-today",
+      "display": null
+    },
+    {
+      "s": "#appToolPanels",
+      "display": null
+    },
+    {
+      "s": "#appTool-grub",
+      "display": null
+    },
+    {
+      "s": "#appTool-fit",
+      "display": null
+    }
+  ]
+}

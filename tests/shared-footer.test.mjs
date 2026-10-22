@@ -36,12 +36,12 @@ test('API/HQ, non-HTML, POST and HEAD are untouched',async()=>{
  for(const [path,method,type] of [['/v1/x','GET','text/html'],['/hq/x','GET','text/html'],['/assets/style.css','GET','text/css'],['/contact','POST','text/html'],['/','HEAD','text/html']]){const r=new Response(page(),{headers:{'Content-Type':type}});assert.equal(await withSharedFooter(new Request('https://shiftsometimber.co.uk'+path,{method}),r),r);}
  assert.equal(applySharedFooter('<p>fragment</p>'),'<p>fragment</p>');
 });
-test('generated PWA offline response includes the same footer and does not cache member data',async()=>{
+test('generated My Timber offline response avoids website chrome and does not cache member data',async()=>{
  new Script(serviceWorker);const listeners={};runInNewContext(serviceWorker,{self:{addEventListener:(name,fn)=>listeners[name]=fn,location:{origin:'https://shiftsometimber.co.uk'}},URL,Response,fetch:async()=>{throw Error('offline')}});
  let result;listeners.fetch({request:new Request('https://shiftsometimber.co.uk/member/dashboard',{method:'GET'}),respondWith:p=>result=p});
  // Request.mode is read-only; use a navigation request descriptor.
  listeners.fetch({request:{url:'https://shiftsometimber.co.uk/member/dashboard',method:'GET',mode:'navigate'},respondWith:p=>result=p});
- const r=await result,html=await r.text();assert.equal(r.status,503);assert(html.includes(approvedFooter));assert(html.includes(approvedFooterStyles));assert(!serviceWorker.includes('caches.open'));
+ const r=await result,html=await r.text();assert.equal(r.status,503);assert(!html.includes(approvedFooter));assert(!html.includes(approvedFooterStyles));assert(html.includes('MY TIMBER'));assert(html.includes('Try My Timber again'));assert(!serviceWorker.includes('caches.open'));
 });
 test('final Worker integration wraps both normal and early public HTML routes',()=>{
  const source=readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');assert(source.includes('if(appStorePublic)return withTimberShedTeaser(request,await withSharedFooter(request,appStorePublic));'));assert(source.includes('return withTimberShedTeaser(request,await withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy('));
