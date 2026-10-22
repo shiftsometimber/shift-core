@@ -28,7 +28,7 @@ const MEMBER_EVENTS=Object.freeze({
  },
  reply:{
   subject:'The Timber Shed — someone has replied',
-  text:'Someone has replied to a discussion you started. Their reply has been approved by a community moderator.'+signIn+'\n\nYou can manage community email preferences in your account once this feature is available. Please do not reply with private medical information.'+signoff,
+  text:'Someone has replied to a discussion you started. Their reply has been approved by a community moderator.'+signIn+'\n\nReply notifications are optional. You can switch them off in your community email preferences. Please do not reply with private medical information.'+signoff,
   deliveryPreference:'opt-in'
  }
 });
