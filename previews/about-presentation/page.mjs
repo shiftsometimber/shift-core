@@ -1,4 +1,4 @@
-export const version='20261022-about-preview-v4';
+export const version='20261022-about-preview-v5-letter';
 export const arrow='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function storyFrom(html){
@@ -8,7 +8,10 @@ export function storyFrom(html){
  if(!intro||chapters.length!==7||!chapters[1].body.includes("I'm not convinced")||!chapters[1].body.includes('still occasionally'))throw Error('Published story structure changed');
  return{intro,chapters};
 }
-export function mainFor(html){const{intro,chapters}=storyFrom(html),short=['More than weight','A turning point','Getting help','Everyday changes','Why SHIFT exists','Keeping the thread','Your next step'];return`<div class="ab-wrap"><section class="ab-hero" aria-labelledby="ab-title"><div><p class="ab-eyebrow">ABOUT SHIFT / OUR STORY</p><h1 id="ab-title">Built by an ordinary bloke.<br><span>For ordinary blokes.</span></h1><p class="ab-intro">Shift Some Timber started with one fairly simple idea: men's health support should feel useful, honest and human.</p><a class="ab-link ab-hero-link" href="#story">Read Matt's story ${arrow}</a></div><aside class="ab-note" aria-label="A note from Matt"><span class="ab-note-label">A NOTE FROM MATT</span><blockquote>“The number only tells you part of the story.”</blockquote><div class="ab-note-rule"></div><p>Matt<br><span>Founder, Shift Some Timber</span></p></aside></section>
-<nav class="ab-principles" aria-label="About SHIFT"><a href="#story"><span>01 / THE STORY</span><strong>It starts with real life.</strong>${arrow}</a><a href="/shift-promise"><span>02 / THE SHIFT PROMISE</span><strong>Useful first. No judgement.</strong>${arrow}</a><a href="/editorial-standards"><span>03 / HOW WE WORK</span><strong>Evidence before hype.</strong>${arrow}</a></nav></div>
-<div class="ab-paper"><div class="ab-wrap ab-reading"><aside class="ab-contents"><p class="ab-eyebrow">THE STORY, IN SEVEN PARTS</p><nav aria-label="Matt's story chapters">${chapters.map((c,i)=>`<a href="#${esc(c.id)}"><span>${String(i+1).padStart(2,'0')}</span>${short[i]}</a>`).join('')}</nav><p class="ab-margin-note">Built from lived experience.<br>Kept useful by principle.</p></aside><article class="ab-story"><div class="ab-standfirst"><p>${intro}</p></div>${chapters.map((c,i)=>`<section class="ab-chapter" id="${esc(c.id)}" aria-labelledby="ab-heading-${i}"><p class="ab-chapter-number">${String(i+1).padStart(2,'0')} / ${short[i].toUpperCase()}</p><h2 id="ab-heading-${i}">${c.title}</h2><div class="ab-prose">${c.body}</div></section>`).join('')}</article></div></div>
-<section class="ab-end"><div class="ab-wrap"><p class="ab-eyebrow">ONE USEFUL NEXT STEP</p><h2>Your life.<br><span>Your reason to start.</span></h2><div class="ab-end-row"><p>You get to decide what you want your life back for. Start with one honest next step, then come back and see whether it helped.</p><div class="ab-actions"><a class="ab-button" href="/start-here">Find your starting point ${arrow}</a><a class="ab-button ab-outline" href="/member/dashboard">Explore free My Timber ${arrow}</a></div></div><div class="ab-small-links"><a href="/mens-mental-health">Good to Talk ${arrow}</a><a href="/community">Find SHIFT elsewhere ${arrow}</a><span>@ShiftSomeTimber</span></div></div></section>`;}
+export function mainFor(html){
+ storyFrom(html);
+ const original=html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)[1];
+ const signoff='<div class="ab-signoff"><span class="ab-signature">Matt</span><p>Matt O’Brien<br><span>Founder, Shift Some Timber</span></p></div>';
+ const story=original.replace('<div class="actions">',signoff+'<div class="actions">');
+ return `<div class="ab-wrap"><div class="ab-letter"><div class="ab-letter-heading"><p class="ab-eyebrow">OUR STORY</p><h1>An open letter from Matt</h1><p class="ab-byline">Founder, Shift Some Timber</p></div><article class="ab-story">${story}</article></div></div>`;
+}
