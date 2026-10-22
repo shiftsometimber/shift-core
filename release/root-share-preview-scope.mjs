@@ -51,8 +51,8 @@ function rootShareCurrentMainReader(reader){
 const immutableFacts=new Map();
 function fact(...a){
  const immutable=(['show','rev-parse'].includes(a[0])&&/^[a-f0-9]{40}:/.test(a[1]||''))||(a[0]==='diff'&&a[1]==='--name-only'&&a.slice(2).length===2&&a.slice(2).every(r=>/^[a-f0-9]{40}$/.test(r)))||(a[0]==='merge-base'&&a[1]==='--is-ancestor'&&a.slice(2).length===2&&a.slice(2).every(r=>/^[a-f0-9]{40}$/.test(r)));
- if(!immutable)return execFileSync('git',a,{encoding:'utf8'});
- const key=JSON.stringify([process.cwd(),...a]);if(!immutableFacts.has(key))immutableFacts.set(key,execFileSync('git',a,{encoding:'utf8'}));return immutableFacts.get(key);
+ if(!immutable)return execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6});
+ const key=JSON.stringify([process.cwd(),...a]);if(!immutableFacts.has(key))immutableFacts.set(key,execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}));return immutableFacts.get(key);
 }
 const git=(...a)=>fact(...a).trim();
 const contents=(ref,path)=>fact('show',(ref==='HEAD'?git('rev-parse','HEAD'):ref)+':'+path);

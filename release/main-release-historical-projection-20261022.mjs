@@ -51,6 +51,11 @@ export function mainReleaseHistoricalReader(reader=null,{defaultReader=reader===
   };
 }
 
+export function mainReleaseHistoricalAffected(path){
+  const s=state();
+  return affected(path,s)&&exists(MAIN_RELEASE_BASE,path);
+}
+
 export function mainReleaseHistoricalContent(reader=null,{defaultReader=reader===null}={}){
   const s=state(),source=defaultReader?(ref,path)=>content(ref==='HEAD'?s.actual:ref,path):reader;
   assert.equal(typeof source,'function','Current-main historical projection requires a content reader');
