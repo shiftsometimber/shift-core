@@ -367,6 +367,108 @@
     },
     "productionVerified": false,
     "maintenanceSource": "a6337682bb044b5f77994ac2ecd0779288b05f2c"
+  },
+  "releaseGateCompletionFollowup": {
+    "kind": "EXACT_HOSTED_RELEASE_COMPLETION_REPAIR_20261022",
+    "base": "504ffbd11ed629f9dfd576dfa72904059df68b5e",
+    "payload": "039765910a158b3f98ea95706041e2d0c245a81a",
+    "paths": [
+      ".github/workflows/programme-day-preview.yml",
+      ".github/workflows/shift-coach-integration.yml",
+      ".github/workflows/whole-estate-route-sweep.yml",
+      "gate1-whole-estate-production-sweep.mjs",
+      "release/main-release-historical-projection-20261022.mjs",
+      "release/photo-calendar-scope.mjs",
+      "release/release-machinery-repair-scope-20261014.mjs",
+      "release/root-share-preview-scope.mjs",
+      "release/website-editorial-scope-20261018.mjs",
+      "tests/approved-runtime-composition.test.mjs",
+      "tests/whole-estate-route-sweep.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "programme": {
+        "run": 39788887047,
+        "job": 119859281853,
+        "conclusion": "cancelled",
+        "reason": "maximum execution time 6h0m0s",
+        "artifact": {
+          "id": 12453173352,
+          "sha256": "8d00870245bbf47e4ac082fb7e6e64bdc472bddc5a7e72be2679820da42d0255",
+          "bytes": 113660
+        },
+        "sourceTestsLastObserved": 603,
+        "observedFailures": [
+          "combined finite historical projection used the later combined-legacy test blob",
+          "current reader poisoning used the later combined-legacy test blob",
+          "website-editorial fixture received later Food test bytes"
+        ]
+      },
+      "integration": {
+        "run": 39788887055,
+        "job": 119859280362,
+        "conclusion": "cancelled",
+        "reason": "maximum execution time 6h0m0s",
+        "artifact": {
+          "id": 12454190595,
+          "sha256": "eca91811bdd76f7a2b5600fa42953c5853844591ade9b8bd9cebe7d781a84096",
+          "bytes": 141540
+        },
+        "observedFailures": [
+          "finite-source historical combined-legacy projection",
+          "root-sharing supplied-alias diagnostic",
+          "member-consent default historical reader type",
+          "finite-growth default historical reader type"
+        ],
+        "longestCompletedTaskMinutes": 83.1
+      },
+      "wholeEstate": {
+        "run": 39788887095,
+        "job": 119859280255,
+        "conclusion": "cancelled",
+        "reason": "maximum execution time 6h0m0s",
+        "command": "SHIFT_SWEEP_MAX=20000 node gate1-whole-estate-production-sweep.mjs",
+        "assertionFailuresObserved": 0,
+        "priorCrawler": "strictly sequential without a per-request timeout"
+      }
+    },
+    "repair": {
+      "currentMainHistoricalProjection": true,
+      "rootShareDefaultReader": "git-blob",
+      "suppliedReaderDriftStillRejected": true,
+      "programmeSourceSuitesPartitioned": true,
+      "programmeWorkflowTaskConcurrency": 4,
+      "integrationWorkflowTaskConcurrency": 4,
+      "wholeEstateConcurrency": 12,
+      "wholeEstateRequestTimeoutMs": 30000,
+      "wholeEstateDiscoveryOrder": "deterministic-batches",
+      "routeFailureRejectionRetained": true,
+      "blankPageRejectionRetained": true,
+      "discoveryExhaustionRequired": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "runnerClassChanged": false,
+      "newPaidService": false,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "d1cd3205310f8aae63cb0d83b1ca84be24838d8c"
   }
 }
 
