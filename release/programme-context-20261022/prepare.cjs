@@ -1,0 +1,17 @@
+const fs=require('fs'),cp=require('child_process'),assert=require('assert'),r=__dirname;
+const before=fs.readFileSync(r+'/programme-before.html','utf8');
+const old='<section class="pv-steps" aria-label="How the programme works"><div class="pv-wrap pv-step-grid"><div><span class="pv-step-no">1</span><div><h3>Start where you are.</h3><p>Your goals. Your routine. One useful place to begin.</p></div></div><div><span class="pv-step-no">2</span><div><h3>Build your week.</h3><p>Bring food, movement and check-ins into everyday life.</p></div></div><div><span class="pv-step-no">3</span><div><h3>Keep what works.</h3><p>Review your progress and find the next step that fits.</p></div></div></div></section>';
+let section=old.replace('<p>Your goals. Your routine. One useful place to begin.</p>','<p>Your goals. Your routine. One useful place to begin.</p><div class="pv-context-example"><span>MY REASON</span><strong>More energy for the kids.</strong></div>').replace('<p>Bring food, movement and check-ins into everyday life.</p>','<p>Choose a manageable step, with Grub and Fit to help.</p><div class="pv-context-example"><span>MY NEXT SHIFT</span><strong>Sort tea for a busy evening.</strong></div>').replace('<p>Review your progress and find the next step that fits.</p>','<p>Tell us what helped. Keep it, simplify it or try another way.</p><div class="pv-context-example"><span>DID IT HELP?</span><strong>Helped &nbsp; / &nbsp; Make it smaller &nbsp; / &nbsp; Try another way</strong></div>');
+const css='<style id="programme-context-20261022">\nhtml body main#main-content.pv .pv-context-example{margin-top:16px!important;padding:12px 0 0!important;border-top:1px solid #424939!important;background:transparent!important;display:flex!important;flex-direction:column!important;gap:6px!important}\nhtml body main#main-content.pv .pv-context-example span{font-size:9px!important;letter-spacing:.13em!important;font-weight:700!important;color:#a6af96!important}\nhtml body main#main-content.pv .pv-context-example strong{font-family:Arial,Helvetica,sans-serif!important;font-size:13px!important;line-height:1.5!important;font-weight:500!important;color:#e7e3da!important}\n</style>';
+assert.equal(before.split(old).length,2);let after=before.replace(old,section).replace('</head>',css+'</head>');
+assert.equal(after.replace(section,old).replace(css,''),before);
+const links=s=>[...s.matchAll(/(?:href|src)=["']([^"']*)["']/g)].map(m=>m[1]);
+assert.deepEqual(links(after),links(before));
+assert.equal(after.match(/class="pv-context-example"/g).length,3);
+assert(!/[\u00e2\u00c3]\u20ac|\ufffd/.test(after));
+fs.writeFileSync(r+'/programme.html',after);
+fs.copyFileSync('/Users/shiftsometimberltd/SST/footer-align-20261022/_headers',r+'/_headers');
+fs.writeFileSync(r+'/source-checks.json',JSON.stringify({pass:true,exactInverse:true,linksAndAssetsPreserved:true,changedPaths:['/programme.html'],at:new Date().toISOString()},null,2));
+const dest=r+'/source/release/programme-context-20261022';fs.mkdirSync(dest,{recursive:true});
+for(const n of ['programme.html','prepare.cjs'])fs.copyFileSync(r+'/'+n,dest+'/'+n);
+console.log('Prepared approved one-page change; all other source bytes are identical.');
