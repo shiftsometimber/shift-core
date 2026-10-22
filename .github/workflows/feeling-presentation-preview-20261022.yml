@@ -1,0 +1,51 @@
+name: Preview How are you feeling presentation
+on:
+  push:
+    branches: [preview/feeling-presentation-20261022]
+    paths: [previews/feeling-presentation/**, .github/workflows/feeling-presentation-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: feeling-presentation-preview-20261022
+  cancel-in-progress: true
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/feeling-presentation
+      - name: Trust this checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Build scoped style and check source
+        run: |
+          node previews/feeling-presentation/build.cjs
+          git diff --exit-code -- previews/feeling-presentation/style.mjs
+          node --check previews/feeling-presentation/worker.mjs
+          node --check previews/feeling-presentation/deploy-preview.mjs
+          node --check previews/feeling-presentation/check-browser.cjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/feeling-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage check-in preview with the original form and clients
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/feeling-presentation/deploy-preview.mjs
+      - name: Check mobile, desktop, keyboard and twelve original result cases
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/feeling-browser/node_modules/playwright
+        run: node previews/feeling-presentation/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: feeling-preview-${{ github.sha }}
+          path: feeling-presentation-preview-evidence/
+          retention-days: 90
