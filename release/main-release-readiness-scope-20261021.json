@@ -469,6 +469,60 @@
     },
     "productionVerified": false,
     "maintenanceSource": "d1cd3205310f8aae63cb0d83b1ca84be24838d8c"
+  },
+  "releaseGateCompositionFollowup": {
+    "kind": "EXACT_HOSTED_RELEASE_HISTORICAL_COMPOSITION_REPAIR_20261022",
+    "base": "5dd5b48a7d7e63e6d354436ad84c7f39c08f8dd7",
+    "payload": "603568cf1662e3614b387db97439a8c08a8b0b46",
+    "paths": [
+      "release/main-release-historical-projection-20261022.mjs",
+      "release/release-machinery-repair-scope-20261014.mjs",
+      "release/root-share-preview-scope.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "localFocusedRun": {
+        "tests": 7,
+        "passed": 1,
+        "failed": 6,
+        "passedTest": "native warm guard status credit accepts only actual strict clean Buffer results",
+        "failures": [
+          "current-runtime guard received projected release-machinery bytes before authenticating current source",
+          "finite-growth historical reader exceeded the default Git output buffer",
+          "member-consent historical reader exceeded the default Git output buffer",
+          "direct combined admission received projected release-machinery bytes before authenticating current source",
+          "reader-poisoning test received projected release-machinery bytes before authenticating current source",
+          "root-share historical view exceeded the default Git output buffer"
+        ]
+      }
+    },
+    "repair": {
+      "currentSourceAuthenticatedBeforeHistoricalProjection": true,
+      "mainReleaseAffectedPathsComposedAfterExistingHistoricalGuards": true,
+      "suppliedReaderPoisoningRejectionRetained": true,
+      "gitOutputBufferBytes": 64000000,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "cdb7569a141a81025447a09b3a8cf088b769c88f"
   }
 }
 
