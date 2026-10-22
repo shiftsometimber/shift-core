@@ -6,7 +6,7 @@ The original three situations move directly below the existing introduction as c
 
 Preview only, noindex, zero public routes, blocked writes/private APIs and analytics suppressed. Chromium/WebKit at 390px and 1440px must preserve every original word, paragraph, link, ID, ordered handover step and source metadata; verify six original cards, three situation cards before support, keyboard links, readable contrast, no overflow and no-JavaScript. Preserve all existing routes and shared header/footer.
 
-Await Matt’s approval of the finished preview before publication. Homepage and Start Here belong to other workers; Medicines Watch, reconciliation and shared-Core remain paused.
+Matt approved the finished preview with “Yes”; publication is authorised only for the exact pinned design. Homepage and Start Here belong to other workers; Medicines Watch, reconciliation and shared-Core remain paused.
 
 ## Qualified preview — 22 October 2026 (BST)
 
@@ -34,3 +34,16 @@ Matt’s explicit “Yes” authorises go-live of the completed Changing provide
 ## Receipt gate repair
 
 Release attempt 39796557093 stopped at the preview summary-conclusion assertion before any Cloudflare upload or public activation; its logs confirm “No public Provider activation started”. The exact preview job 119879547139 now reports completed/success, with every step completed/success. Its sole-job execution receipt and exact previously qualified artifact are authoritative evidence despite the stale aggregate run status. The repaired gate accepts normal workflow success, or strictly requires an in-progress/null summary, unchanged approved source head, exactly that single completed/success job, every step success including browser qualification and Complete job, plus the exact nonexpired artifact ID/name/digest/source SHA. Any failed or additional unfinished job still blocks release. This preserves actual acceptance and blob pins; no tests, clinical checks or approvals are waived. No design/content changes were made.
+
+## Live and verified — 22 October 2026 (BST)
+
+Live URL: https://shiftsometimber.co.uk/provider-switch
+Approved design `20261022-provider-presentation-v1`; release `20261022-provider-live-v1`; deployed source `edbffb7dfed46bf8abc53528bddb96f6ee3ac8f0`. Workflow https://github.com/shiftsometimber/shift-core/actions/runs/39797374175, job `119888043149`. Logs confirm APPROVED_PROVIDER_STAGED_WITH_CURRENT_PUBLISHED_INDEX, PROVIDER_STAGING_FOUR_BROWSER_VIEWS_PASSED, APPROVED_PROVIDER_LIVE and PROVIDER_PUBLIC_FOUR_BROWSER_VIEWS_PASSED, followed by artifact finalisation and job cleanup. No worker/style change from the approved preview.
+
+The exact-source preview qualification used the sole completed/success job and matching qualified artifact because the aggregate preview summary remained stale. The full qualification receipt is preserved in preview-qualification.json. This retired the obsolete summary-only wait while retaining every browser/content check and exact source pin. The earlier release attempt changed no public route or worker.
+
+Six exact apex/www base, slash and .html routes activated; all 234 previous records preserved, plus original shared header/footer. Twelve HTTP/HTTPS host/path variants returned 200 with the release header. Public Chromium/WebKit each passed at 390px and 1440px: all original paragraphs, links, IDs, JSON-LD, cost comparison, four ordered handover steps, six cards and account/settings destinations preserved; three situation cards before continuity support; clinic-quiet link keyboard-focusable; 55 contrast checks per view; no overflow; no-JavaScript passed. Three onward public destinations returned 200. No accounts opened, health details entered, My Timber updates, messages or providers contacted.
+
+Artifact `12433638365`, `provider-presentation-live-edbffb7dfed46bf8abc53528bddb96f6ee3ac8f0`, SHA-256 `e92473016c6cf6cccac8c256d29035d2294ba0bf7943d0db76eac9eb6c5cd656`, downloaded and digest verified. accepted.json confirms production=true, four browser passes and noJavaScriptPassed=true; live.json confirms exact source, six owned routes and 234 prior routes preserved. Desktop/mobile actual-public composite visually reviewed and saved as `SHIFT-Changing-Provider-Live-2026-10-22.png`, `libfile_15a0ee3f6f9c81919a0878b28186a486`. Independent public browser confirms data-provider-release=20261022-provider-live-v1 and all three original situation titles.
+
+Changing provider presentation release and actual live acceptance are complete. Do not repeat deployment because delayed summary metadata has not yet refreshed. Do not reopen completed pages absent a current regression. No next unseen preview is approved by this release sign-off. Homepage/Start Here stay with their workers; Medicines Watch, reconciliation and shared-Core remain paused.
