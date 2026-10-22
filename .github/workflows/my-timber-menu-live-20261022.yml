@@ -1,0 +1,69 @@
+name: Complete approved My Timber Menu
+on:
+  push:
+    branches: [release/my-timber-menu-20261022]
+    paths: [previews/my-timber-menu/**, .github/workflows/my-timber-menu-live-20261022.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: my-timber-menu-live-20261022
+  cancel-in-progress: true
+jobs:
+  publish-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            previews/my-timber-menu
+            previews/about-presentation/menu-client.mjs
+          sparse-checkout-cone-mode: false
+      - name: Trust this checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Check the asset integration syntax
+        run: |
+          node --check previews/my-timber-menu/worker.mjs
+          node --check previews/my-timber-menu/deploy.mjs
+          node --check previews/my-timber-menu/check-browser.cjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/menu-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage the exact approved Menu with original welcome bytes preserved
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node previews/my-timber-menu/deploy.mjs stage
+      - name: Verify staged menu on mobile and desktop in both browser engines
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/menu-browser/node_modules/playwright
+          MENU_ORIGIN: https://shift-mytimber-menu-20261022.matobrien.workers.dev
+        run: node previews/my-timber-menu/check-browser.cjs
+      - name: Activate only the public welcome asset route
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/my-timber-menu/deploy.mjs activate
+      - name: Verify the menu on actual public My Timber
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/menu-browser/node_modules/playwright
+          MENU_ORIGIN: https://shiftsometimber.co.uk
+        run: node previews/my-timber-menu/check-browser.cjs
+      - name: Restore only owned asset routes if acceptance fails
+        if: ${{ failure() || cancelled() }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/my-timber-menu/deploy.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: my-timber-menu-live-${{ github.sha }}
+          path: my-timber-menu-live-evidence/
+          retention-days: 90
