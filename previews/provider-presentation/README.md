@@ -7,3 +7,16 @@ The original three situations move directly below the existing introduction as c
 Preview only, noindex, zero public routes, blocked writes/private APIs and analytics suppressed. Chromium/WebKit at 390px and 1440px must preserve every original word, paragraph, link, ID, ordered handover step and source metadata; verify six original cards, three situation cards before support, keyboard links, readable contrast, no overflow and no-JavaScript. Preserve all existing routes and shared header/footer.
 
 Await Matt’s approval of the finished preview before publication. Homepage and Start Here belong to other workers; Medicines Watch, reconciliation and shared-Core remain paused.
+
+## Qualified preview — 22 October 2026 (BST)
+
+Review URL: https://shift-provider-presentation-preview-20261022.matobrien.workers.dev/provider-switch
+Source `eecea4b9cdcd2974909115dcfa8a3b88b3a25f4f`, design `20261022-provider-presentation-v1`. Workflow https://github.com/shiftsometimber/shift-core/actions/runs/39794872423, job `119879547139`.
+
+Chromium/WebKit each passed at 390px and 1440px: every original paragraph, link, ID and JSON-LD source metadata preserved; three original situation cards before free continuity support; six original cards retained; cost-comparison section and four ordered handover steps preserved; existing account/settings destinations unchanged; Clinic gone quiet link visible and keyboard-focusable; 55 contrast checks per view; no overflow. Hero heights Chromium 679/477px, WebKit 647/474px. No-JavaScript passed. Clinic gone quiet, coming-off guide and Life Back returned 200.
+
+All 234 earlier route records and shared header/footer stayed unchanged. Zero production routes owned; preview write/private-API guards passed. No member accounts opened, health details entered, My Timber updates, messages or provider contacts. This validates presentation and content retention, not new clinical advice or account capabilities.
+
+Artifact `12432932143`, `provider-preview-eecea4b9cdcd2974909115dcfa8a3b88b3a25f4f`, SHA-256 `c5450fe63e2c8759a72424830c3f910b7ab844c7722d585baaf2a6e3e4a531ec`, downloaded and digest verified. Initial desktop/mobile composite and WebKit mobile ordered-handover screenshot visually reviewed. Review image `SHIFT-Changing-Provider-Preview-2026-10-22.png` saved as `libfile_71f02dbae1f88191a7eb0d006d136ddd`. Browser shows the exact preview without following account links.
+
+**Awaiting Matt’s approval of this completed preview.** On approval, preserve exact worker/style blobs in preview-gate.json, inspect fresh route ownership and stage before activating only six exact apex/www `/provider-switch`, slash and .html routes if unowned. Never overwrite another owner blindly. Verify actual public mobile/desktop, original content and metadata, situation card order, handover steps, cost comparison, contrast, no overflow and no-JavaScript. Homepage/Start Here remain with other workers; Medicines Watch, reconciliation and shared-Core remain paused.

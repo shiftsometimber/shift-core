@@ -1,0 +1,9 @@
+{
+  "design": "20261022-provider-presentation-v1",
+  "commit": "eecea4b9cdcd2974909115dcfa8a3b88b3a25f4f",
+  "run": 39794872423,
+  "blobs": {
+    "previews/provider-presentation/worker.mjs": "246be77d4cbedf7fb79a9f7811a3eed84475645d",
+    "previews/provider-presentation/style.mjs": "bc2851f802270352a65b021d0192bfd4d9333724"
+  }
+}
