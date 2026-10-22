@@ -117,3 +117,10 @@ html body main#main-content.sw .sw-medicine-card>.sw-button{width:100%!important
 html body main#main-content.sw .sw-comparison-note{font-size:13px!important;line-height:1.7!important;margin:22px 0!important;color:#c6cfb9!important}
 html body main#main-content.sw .sw-switch-details{padding:22px!important;border:1px solid #707762!important;border-radius:10px!important}
 @media(max-width:700px){html body main#main-content.sw .sw-medicine-grid{grid-template-columns:1fr!important}html body main#main-content.sw .sw-medicine-card{padding:22px!important}}
+
+html body main#main-content.sw [data-quick-step="2"] h3{font-size:19px!important;line-height:1.4!important;margin:26px 0 14px!important}
+html body main#main-content.sw [data-quick-step="2"] label{display:block!important;margin:12px 0!important}
+html body main#main-content.sw [data-quick-step="2"] input{display:block!important;width:100%!important;max-width:320px!important;min-height:44px!important;padding:10px!important;margin-top:6px!important;border:1px solid #707762!important;border-radius:6px!important;background:#e7e3da!important;color:#050505!important;font-size:16px!important}
+html body main#main-content.sw #sw-bmi-calculated{margin-top:14px!important}
+html body main#main-content.sw .sw-summary{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+@media(max-width:650px){html body main#main-content.sw .sw-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
