@@ -1,0 +1,72 @@
+name: Publish approved Contact presentation
+on:
+  push:
+    branches: [release/contact-presentation-20261022]
+    paths: [previews/contact-presentation/**, .github/workflows/contact-presentation-live-20261022.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: contact-presentation-live-20261022
+  cancel-in-progress: true
+jobs:
+  publish-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+      CONTACT_EVIDENCE_DIR: contact-presentation-live-evidence
+      CONTACT_RELEASE: 20261022-contact-live-v1
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/contact-presentation
+          fetch-depth: 4
+      - name: Trust this checkout inside the job container
+        run: git config --global --add safe.directory "$GITHUB_CONTACTSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Capture the current published index once
+        run: node --input-type=module -e "import{writeFileSync}from'node:fs';const r=await fetch('https://shiftsometimber.co.uk/contact',{signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Could not read Contact');writeFileSync('previews/contact-presentation/source-fixture.html',await r.text())"
+      - name: Verify approved source and production boundaries
+        run: |
+          node previews/contact-presentation/build.cjs
+          git diff --exit-code -- previews/contact-presentation/style.mjs
+          node --check previews/contact-presentation/worker.mjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/contact-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage approved Contact without changing public routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node previews/contact-presentation/deploy-live.mjs stage
+      - name: Check hosted release before public activation
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/contact-browser/node_modules/playwright
+          CONTACT_ORIGIN: https://shift-contact-presentation-20261022.matobrien.workers.dev
+          CONTACT_CHECK_LINKS: '0'
+        run: node previews/contact-presentation/check-live.cjs
+      - name: Activate only the two Contact route families
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/contact-presentation/deploy-live.mjs activate
+      - name: Verify the actual public Contact on mobile and desktop
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/contact-browser/node_modules/playwright
+          CONTACT_ORIGIN: https://shiftsometimber.co.uk
+        run: node previews/contact-presentation/check-live.cjs
+      - name: Restore only this release's routes if acceptance fails
+        if: ${{ failure() || cancelled() }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/contact-presentation/deploy-live.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contact-presentation-live-${{ github.sha }}
+          path: contact-presentation-live-evidence/
+          retention-days: 90

@@ -1,0 +1,9 @@
+{
+  "design": "20261022-contact-presentation-v1",
+  "commit": "0b879857b4ba947c683f47b22bef28983a221b76",
+  "run": 39773092259,
+  "blobs": {
+    "previews/contact-presentation/worker.mjs": "298d8abfd22ddd95e70b99a90ded38181d2ecc7f",
+    "previews/contact-presentation/style.mjs": "bc64bbfef5f4fb22d37307d9b782645f49de8dbe"
+  }
+}
