@@ -25,6 +25,8 @@ import {withPasswordSettings,passwordSettingsRuntime} from './password-settings.
 import {withMemberDetails,memberDetailsRuntime,memberDetailsStyles} from './member-details.mjs';
 import {ordersHTML,ordersStyles,ordersRuntime} from './orders.mjs';
 import {timberShedPage,timberShedClient} from './timber-shed-page.mjs';
+import {timberShedForumPreview} from './timber-shed-forums.mjs';
+import {timberShedForumPilotMarkup,timberShedForumPilotCSS,timberShedForumPilotClient} from './timber-shed-forum-ui.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
@@ -34,7 +36,13 @@ export function memberExperienceRoutes(request, env) {
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
   if(env.TIMBER_SHED_PRIVATE_ENABLED==='true'){
-    if(['/member/timber-shed','/member/timber-shed.html'].includes(path))return new Response(request.method==='HEAD'?null:timberShedPage,{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
+    if(['/member/timber-shed','/member/timber-shed.html'].includes(path)){
+      const forum=(env.TIMBER_SHED_FORUM_ENABLED==='true'&&env.TIMBER_SHED_FORUM_PILOT_APPROVED==='true');
+      const page=forum?timberShedPage.replace(timberShedForumPreview(),timberShedForumPilotMarkup).replace('</head>','<style>'+timberShedForumPilotCSS+'</style></head>').replace('</body>','<script src="/assets/member-experience/timber-shed-forum.mjs" defer></script></body>'):timberShedPage;
+      return new Response(request.method==='HEAD'?null:page,{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
+    }
+    if((env.TIMBER_SHED_FORUM_ENABLED==='true'&&env.TIMBER_SHED_FORUM_PILOT_APPROVED==='true')&&path==='/assets/member-experience/timber-shed-forum.mjs')return new Response(request.method==='HEAD'?null:timberShedForumPilotClient,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+
     if(path==='/assets/member-experience/timber-shed.mjs')return new Response(request.method==='HEAD'?null:timberShedClient,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   }
   if(env.MY_TREATMENT_ENABLED==='true'){

@@ -6,8 +6,8 @@ Status: implementation candidate only; feature disabled by default. Not a clinic
 
 - One existing My Timber login. The server derives member identity exclusively from the existing authenticated session.
 - No member profile, weight, treatment, mood, mental-health, device reading, clinical note, personal message or contact detail is copied into the Shed.
-- No public profiles, member feed, search, posting, messaging, ranking, leaderboards or member-to-member data APIs.
-- The only optional persisted information is one member's own activity identifier (from a fixed six-week catalogue), completion state and one of three feedback choices. Free text is prohibited.
+- The private progress tracker has no member feed, posts, messaging, rankings, leaderboards or member-to-member data APIs. The separate, disabled-by-default forum pilot has its own explicit posting and moderation contract below.
+- In the private progress tracker, the only optional persisted information is one member's activity identifier, completion state and one of three feedback choices. Free text is prohibited there. The separate forum pilot stores only deliberately submitted forum content after separate opt-in.
 - Saving is opt-in, initially disabled, and can be switched off and cleared by the member.
 - Only the authenticated member can retrieve their own activity ticks. Every database query is scoped to the authenticated user ID; the client cannot supply another ID.
 - Same-origin writes, private no-store headers, no CORS permissions and a default-off feature flag. Never place private data in URLs, HTML source, analytics or server logs.
@@ -26,7 +26,7 @@ Status: implementation candidate only; feature disabled by default. Not a clinic
 
 Clinical reviewer and content boundaries; adult-only eligibility; safeguarding and moderation cover; urgent-risk escalation; specialist charity arrangements; DPIA and controller/processor roles; consent language and withdrawal behaviour; account deletion/export end-to-end acceptance; accessibility; real session/account-isolation browser tests; integration with existing My Timber navigation; production migration; release/rollback; public domain routing.
 
-No clinical advice, automated crisis detection or community conversations are delivered by this implementation. The six-week activities are non-clinical drafts requiring editorial review before real use.
+No clinical advice, automated crisis detection or real community conversations are delivered to users while the feature remains disabled. The six-week activities are non-clinical drafts requiring editorial review before real use.
 
 ## Forum foundation — six rooms (private design only)
 
@@ -45,4 +45,15 @@ The Main Shed; Shifting Timber; Grub & Fit; Good to Talk; Small Wins; Life After
 9. No commercial targeting based on health information, no partner access to community data without a separate approved agreement, and no claims of charity endorsement without permission.
 10. Test two fictional member accounts plus a separate moderator identity: no cross-account reads, pending invisibility, rejected invisibility, approved visibility only after moderation, deletion and exports, logged moderation actions and safe failure when moderation is unavailable.
 
-**Release rule:** A visually working sample forum is not a live moderated service. The current PR contains only fictional examples and no publishing backend; production forum launch remains blocked pending the above gates and a fresh scoped approval.
+## Forum pilot code — implemented but disabled
+
+- `member-experience/timber-shed-forum-routes.mjs`: session-bound, verified-email, adult-DOB gated forum API; separate opt-in pseudonym; six rooms; private pending submissions; approved-only read; report; staff-only approve/reject/remove/dismiss and atomic moderation audit.
+- `member-experience/timber-shed-forum-ui.mjs`: responsive branded forum, post/reply form, report reason selection and moderator queue. All user text is rendered with `textContent`, not injected as HTML.
+- `member-experience/timber-shed-forums.sql`: isolated D1 schema, not applied to production.
+- `TIMBER_SHED_FORUM_ENABLED` and `TIMBER_SHED_FORUM_PILOT_APPROVED` are additional independent default-off switches. No production setting has been enabled. Staff access is controlled by a separate `timber_shed_forum_moderators` table with inactive default.
+- Tests use synthetic adults, a synthetic under-18, a separate moderator, actual in-memory SQLite and browser simulations. Failed audit insertion rolls back approval. No automatic member posting, no direct messages and no My Timber health-data reads.
+- The password-protected design preview contains a **fictional, client-only** moderation walkthrough. It is not connected to the database or My Timber.
+
+**Outstanding pilot blockers:** independent age assurance beyond a self-declared date of birth; named adult moderator coverage and training; formal clinical-content and safeguarding boundaries; emergency escalation; Ofcom online-safety assessment and reporting/complaints obligations; DPIA and privacy notice for voluntary member posts; separate community participation consent/choice; safe removal and appeal mechanisms; user post export and deletion requests; stronger PII and harmful-content detection; moderation staffing and response-time testing; external security and accessibility acceptance; operational recovery and rollback. The current prototype rejects some obvious contact details but does not guarantee sensitive information cannot be written into a post. Human review remains essential.
+
+**Release rule:** Source code and a working synthetic UI are not a live moderated service. No real posting or member access may be activated without the outstanding gates, explicit release authority and verified acceptance. No public SHIFT page or thetimbershed.co.uk routing is changed.
