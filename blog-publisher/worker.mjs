@@ -3,6 +3,8 @@ import {API,ADMIN,blogRoutes,blogPublication,blogDiscovery,runBlogQueue} from '.
 import {dynamicBabyLovePublicRoute} from '../babylove/dynamic-public.mjs';
 import {parseCatalogue} from './knowledge-v20261022/live-catalogue.mjs';
 import {mainFor} from './knowledge-v20261022/page.mjs';
+import {approvedRefreshRoute,refreshCatalogue,refreshSitemap} from './approved-refreshes/refreshes.mjs';
+import {approvedImage} from './approved-refreshes/assets.mjs';
 const ROOT='https://shiftsometimber.co.uk';
 const PUBLIC=new Set(['shiftsometimber.co.uk','www.shiftsometimber.co.uk']);
 const exact=(p,base)=>p===base||p.startsWith(base+'/');
@@ -40,6 +42,8 @@ export async function handleRequest(request,env,ctx,options={}){
   return await blogRoutes(request,env,ctx,{...options,ownerResolver:options.ownerResolver||((r)=>resolveOwner(r,env))})||json('not_found',404);
  }
  if(!PUBLIC.has(u.hostname))return json('outside_blog_service',404);
+ const approvedAsset=env.APPROVED_REFRESHES_ENABLED==='true'?approvedImage(p,request.method):null;if(approvedAsset)return approvedAsset;
+ const approvedPage=env.APPROVED_REFRESHES_ENABLED==='true'?await approvedRefreshRoute(request,env):null;if(approvedPage)return approvedPage;
  if(p.startsWith('/uploads/blog/'))return await blogRoutes(request,env,ctx,options)||json('not_found',404);
  if(!['GET','HEAD'].includes(request.method))return json('read_only_public_blog',405);
  const article=p.match(/^\/articles\/([a-z0-9]+(?:-[a-z0-9]+)*)(?:\/image)?\/?$/);
@@ -50,18 +54,18 @@ export async function handleRequest(request,env,ctx,options={}){
  if(['/explore-knowledge','/explore-knowledge/','/explore-knowledge.html'].includes(p)){
   const response=await env.KNOWLEDGE.fetch(request);
   if(!response.ok||request.method==='HEAD')return response;
-  const rows=await blogDiscovery(env);if(!rows.length)return response;
+  const rows=await blogDiscovery(env);if(!env.APPROVED_REFRESHES_ENABLED&&!rows.length)return response;
   // Preserve the current live shell, styling and ticker; hold if its version changes.
   if(response.headers.get('X-Shift-Knowledge-Version')!=='20261022-knowledge-live-v1')return response;
   const source=await env.CORE.fetch(new Request(ROOT+'/explore-knowledge',{headers:{Accept:'text/html'}}));
   if(!source.ok)return response;
   let order={items:{}};try{const r=await env.CORE.fetch(new Request(ROOT+'/assets/knowledge-order-data-v1.json'));if(r.ok)order=await r.json()}catch{}
-  let catalogue;try{catalogue=mergeCatalogue(parseCatalogue(await source.text(),order),rows)}catch{return response}
+  let catalogue;try{catalogue=mergeCatalogue(parseCatalogue(await source.text(),order),rows);if(env.APPROVED_REFRESHES_ENABLED==='true')catalogue=refreshCatalogue(catalogue)}catch{return response}
   return new HTMLRewriter().on('main#main-content.kp',{element(e){e.setInnerContent(mainFor(catalogue,u),{html:true})}}).transform(rewritten(response,response.body));
  }
  if(p==='/sitemap.xml'){
   const response=await env.CORE.fetch(request);if(!response.ok||request.method==='HEAD')return response;
-  const rows=await blogDiscovery(env);return rows.length?rewritten(response,mergeSitemap(await response.text(),rows)):response;
+  const rows=await blogDiscovery(env);if(!rows.length&&env.APPROVED_REFRESHES_ENABLED!=='true')return response;let text=mergeSitemap(await response.text(),rows);if(env.APPROVED_REFRESHES_ENABLED==='true')text=refreshSitemap(text);return rewritten(response,text);
  }
  return json('outside_blog_service',404);
 }

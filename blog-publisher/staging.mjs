@@ -2,10 +2,11 @@
 // Dedicated synthetic-content D1; never production/member data or notifications.
 import {blogRoutes,createBlogKey,ensureBlogSchema,runBlogQueue,API,ADMIN} from '../babylove/contributor-service.mjs';
 import {handleRequest} from './worker.mjs';
+import {ownsRefreshPath} from './approved-refreshes/refreshes.mjs';
 import {sha256,BLOG_ORIGIN} from '../babylove/contributor-policy.mjs';
 const privateHeaders={'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer'};
 const json=(v,status=200)=>new Response(JSON.stringify(v),{status,headers:{...privateHeaders,'Content-Type':'application/json'}});
-const protectedPath=p=>p.startsWith(API)||p.startsWith(ADMIN)||p.startsWith('/__blog-stage/')||p.startsWith('/uploads/blog/')||p.startsWith('/articles/blog-stage-')||['/explore-knowledge','/sitemap.xml'].includes(p);
+const protectedPath=p=>ownsRefreshPath(p)||p.startsWith(API)||p.startsWith(ADMIN)||p.startsWith('/__blog-stage/')||p.startsWith('/uploads/blog/')||p.startsWith('/articles/blog-stage-')||['/explore-knowledge','/sitemap.xml'].includes(p);
 async function equal(a,b){return typeof a==='string'&&typeof b==='string'&&a.length>32&&await sha256(a)===await sha256(b);}
 export default {async fetch(request,env,ctx){
  const u=new URL(request.url),path=u.pathname;

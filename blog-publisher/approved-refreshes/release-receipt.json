@@ -1,0 +1,146 @@
+{
+  "release": {
+    "publishedAt": "2026-10-22T16:42:45.546633+00:00",
+    "ownerInstruction": "Apply the three supplied refresh packs; preserve original publish dates and set 22 October 2026 as modified date.",
+    "worker": {
+      "id": "02355e0a-96e5-4d93-9a93-3345bfb82445",
+      "source": "wrangler",
+      "strategy": "percentage",
+      "author_email": "matobrien@hotmail.co.uk",
+      "annotations": {
+        "workers/triggered_by": "deployment"
+      },
+      "versions": [
+        {
+          "version_id": "fb46501a-c770-4100-addb-e6f734349a09",
+          "percentage": 100
+        }
+      ],
+      "created_on": "2026-10-22T16:40:34.752259Z"
+    },
+    "routesChanged": 48,
+    "originalWorkersUnchanged": true,
+    "CMSWrites": false,
+    "keyScopeChanged": false,
+    "emailsSent": false,
+    "newSchedules": false,
+    "versionedPacks": [
+      {
+        "path": "/male-obesity",
+        "published": "2026-10-10",
+        "modified": "2026-10-22",
+        "packSHA256": "b89b4b8b536c6d69f1ae7cbfb1ffdc7ff0667e0a3dfee867476b5c84441a5ee7"
+      },
+      {
+        "path": "/guides/mens-health-mot-guide",
+        "published": "2026-05-04",
+        "modified": "2026-10-22",
+        "packSHA256": "53b374be5d8122cc432b83deba308507285b615ebcad5620ef31674d164aa225"
+      },
+      {
+        "path": "/articles/testosterone-weight-men",
+        "published": "2026-08-26",
+        "modified": "2026-10-22",
+        "packSHA256": "4991a87a7a04132be048a7e2eb013c90a898c9a35f1f2c962a910eb51b26eda2"
+      }
+    ]
+  },
+  "liveAcceptance": {
+    "checkedAt": "2026-10-22T16:42:26.540Z",
+    "staging": false,
+    "pass": true,
+    "checks": [
+      {
+        "path": "/male-obesity",
+        "HTTP": 200,
+        "published": "2026-10-10",
+        "modified": "2026-10-22",
+        "canonical": true,
+        "originalLinksPreserved": 53,
+        "FAQ": 4
+      },
+      {
+        "path": "/guides/mens-health-mot-guide",
+        "HTTP": 200,
+        "published": "2026-05-04",
+        "modified": "2026-10-22",
+        "canonical": true,
+        "originalLinksPreserved": 14,
+        "FAQ": 3
+      },
+      {
+        "path": "/uploads/blog/refresh-5632661e40cb.jpg",
+        "HTTP": 200,
+        "imageBytes": 103614
+      },
+      {
+        "path": "/articles/testosterone-weight-men",
+        "HTTP": 200,
+        "published": "2026-08-26",
+        "modified": "2026-10-22",
+        "canonical": true,
+        "originalLinksPreserved": 14,
+        "FAQ": 4
+      },
+      {
+        "path": "/uploads/blog/refresh-83e64f2e4849.jpg",
+        "HTTP": 200,
+        "imageBytes": 164039
+      },
+      {
+        "path": "/guides/blood-pressure-guide",
+        "HTTP": 200,
+        "backlinks": true
+      },
+      {
+        "path": "/articles/men-belly-fat",
+        "HTTP": 200,
+        "backlinks": true
+      },
+      {
+        "path": "/shift-health",
+        "HTTP": 200,
+        "backlinks": true
+      },
+      {
+        "path": "/articles/weight-loss-blood-tests",
+        "HTTP": 200,
+        "backlinks": true
+      },
+      {
+        "path": "/shift-health/testosterone-energy",
+        "HTTP": 200,
+        "backlinks": true
+      },
+      {
+        "path": "/sitemap.xml",
+        "HTTP": 200,
+        "allRefreshLastmods": true
+      },
+      {
+        "path": "/explore-knowledge?limit=200",
+        "HTTP": 200,
+        "allRefreshURLs": true
+      }
+    ]
+  },
+  "automatedTests": 99,
+  "failedTests": 0,
+  "browserVerified": [
+    "/male-obesity",
+    "/guides/mens-health-mot-guide",
+    "/articles/testosterone-weight-men"
+  ],
+  "sourceReview": {
+    "checkedOn": "2026-10-22",
+    "NHSHealthCheck": "official NHS page read on publish day",
+    "PrivateScreening": "official GOV.UK / UK NSC page read on publish day",
+    "EAA2020": "PubMed PMID 32026626 and DOI 10.1111/andr.12770 verified through official web retrieval; direct Mac automated PubMed fetch returned an interstitial (203), not counted as a successful content fetch",
+    "editorialCorrections": [
+      "Qualify pharmacy blood-pressure eligibility instead of promising a free check to every man over 40",
+      "Separate immediate danger of serious self-harm from urgent mental-health support without immediate danger"
+    ]
+  },
+  "CMSMigrated": false,
+  "futureStaticRevisions": "Still require source-controlled owner approval; contributor API scope remains unchanged."
+}

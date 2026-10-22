@@ -17,7 +17,8 @@
     "BLOG_MEDIA_UPLOAD_ENABLED": "true",
     "BLOG_ACCESS_ACCEPTED": "false",
     "DAILY_WEBSITE_CONTENT_ENABLED": "false",
-    "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH": "false"
+    "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH": "false",
+    "APPROVED_REFRESHES_ENABLED": "true"
   },
   "d1_databases": [
     {
@@ -43,6 +44,14 @@
     {
       "binding": "KNOWLEDGE",
       "service": "shift-knowledge-presentation-20261022"
+    },
+    {
+      "binding": "OBESITY",
+      "service": "shift-obesity-presentation-20261022"
+    },
+    {
+      "binding": "HEALTH",
+      "service": "shift-health-presentation-20261021"
     }
   ]
 }
