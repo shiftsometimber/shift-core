@@ -12,7 +12,7 @@ const luminance=rgb=>rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055
    page.setDefaultTimeout(15000);
    await page.route('**/*',route=>['GET','HEAD'].includes(route.request().method())?route.continue():route.fulfill({status:204,body:''}));
    await page.goto(staged.url,{waitUntil:'domcontentloaded',timeout:45000});
-   await page.locator('main.wwp h1').waitFor();
+   await page.locator('main.wwp h1').waitFor();const consent=page.getByRole('button',{name:'Necessary only',exact:true});if(await consent.count()&&await consent.isVisible()){await consent.click();await page.getByRole('dialog',{name:'Cookie choices',exact:true}).waitFor({state:'hidden'});}
    assert.equal(await page.locator('main').getAttribute('data-work-preview'),'20261022-work-with-us-preview-v1');
    assert.equal(await page.locator('main h1').count(),1);
    assert.equal(await page.locator('.ww-route').count(),6);assert.equal(await page.locator('.ww-stat').count(),4);
@@ -24,7 +24,7 @@ const luminance=rgb=>rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055
     return {label:element.textContent.trim(),colour:css.color,fill:css.webkitTextFillColor,background};
    }));
    for(const row of colours){const rgb=s=>s.match(/[\d.]+/g).slice(0,3).map(Number),fg=luminance(rgb(row.fill||row.colour)),bg=luminance(rgb(row.background)),ratio=(Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05);assert(ratio>=4.5,'Low contrast: '+JSON.stringify({...row,ratio}));}
-   await page.screenshot({path:dir+'/'+name+'-'+width+'.png',fullPage:true});
+   if(width<700){const spacing=await page.locator('.ww-gap-grid').evaluate(e=>{const heading=e.querySelector('h2').getBoundingClientRect(),copy=e.querySelector('.ww-gap-copy').getBoundingClientRect();return copy.top-heading.bottom;});assert(spacing>=0&&spacing<80,'Excess mobile gap: '+spacing);}await page.screenshot({path:dir+'/'+name+'-'+width+'.png',fullPage:true});
    await page.locator('.ww-hero-copy a').click();assert.equal(new URL(page.url()).hash,'#opportunity');assert(await page.locator('#opportunity h2').isVisible());
    for(const element of await page.locator('.ww-route').all()){assert(await element.isVisible());assert(await element.getAttribute('href'));}
    results.push({browser:name,width,passed:true,contrastChecks:colours.length,partnershipRoutes:6});

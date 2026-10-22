@@ -1,7 +1,7 @@
 html body main#main-content.wwp{--ww-ink:#050505;--ww-cream:#e7e3da;--ww-ash:#707762;--ww-light:#adb39b;margin:0!important;padding:0!important;background:var(--ww-ink)!important;color:var(--ww-cream)!important;font:17px/1.6 Arial,sans-serif!important}
 html body main#main-content.wwp *{box-sizing:border-box}
 html body main#main-content.wwp section{margin:0!important;padding:64px 0!important;background:var(--ww-ink)!important;color:var(--ww-cream)!important;border:0!important;border-radius:0!important;box-shadow:none!important;display:block!important}
-html body main#main-content.wwp .ww-wrap{width:calc(100% - 64px)!important;max-width:1200px!important;padding:0!important;margin:0 auto!important}
+html body main#main-content.wwp .ww-wrap{width:calc(100% - 64px)!important;max-width:1200px!important;padding:0!important;margin:0 auto!important;grid-auto-rows:auto!important;grid-template-rows:none!important;align-items:start!important}
 html body main#main-content.wwp h1{font:750 clamp(42px,5.15vw,72px)/1.04 Arial,sans-serif!important;letter-spacing:-.045em!important;color:var(--ww-cream)!important;margin:14px 0 28px!important;max-width:1080px!important}
 html body main#main-content.wwp h1 span{display:block!important;color:var(--ww-light)!important;-webkit-text-fill-color:var(--ww-light)!important;margin-top:8px}
 html body main#main-content.wwp h2{font:750 clamp(30px,3.2vw,42px)/1.1 Arial,sans-serif!important;letter-spacing:-.035em!important;margin:0 0 22px!important;max-width:none!important;color:inherit!important}
