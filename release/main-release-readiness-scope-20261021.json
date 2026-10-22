@@ -272,6 +272,56 @@
     },
     "productionVerified": false,
     "maintenanceSource": "4cba86d5f22e57fc9f3470dfe9d2e28821999e5d"
+  },
+  "wholeEstateExpansionFollowup": {
+    "kind": "EXACT_WHOLE_ESTATE_CURRENT_SIZE_REPAIR_20261022",
+    "base": "9507c51aa45e60db53fcbc27ff989221caf6835f",
+    "payload": "50226c3a8de84de1311d11fcd41756e69e516945",
+    "paths": [
+      ".github/workflows/whole-estate-route-sweep.yml"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "hostedRun": 39784592626,
+      "job": 119844297373,
+      "checked": 2500,
+      "htmlPages": 2185,
+      "failures": 0,
+      "truncated": true,
+      "previousLimit": 2500,
+      "knownMinimumRecipes": 2500,
+      "knownMinimumExerciseVariations": 2500,
+      "memberAssetInventory": 5711
+    },
+    "repair": {
+      "wholeEstateSweepMax": 20000,
+      "finiteEvidenceSizedCeiling": true,
+      "requiredDiscoveryExhaustionRetained": true,
+      "routeFailureRejectionRetained": true,
+      "blankPageRejectionRetained": true,
+      "crawlerImplementationChanged": false,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "8723dabd1efe3bf34ee1c62e8550cf04055da543"
   }
 }
 
