@@ -1,0 +1,51 @@
+name: Preview Knowledge library
+on:
+  push:
+    branches: [preview/knowledge-presentation-20261022]
+    paths: [previews/knowledge-presentation/**, .github/workflows/knowledge-presentation-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: knowledge-presentation-preview-20261022
+  cancel-in-progress: true
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            previews/knowledge-presentation
+            previews/about-presentation
+      - name: Trust this checkout inside the job container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Build and verify story and preview boundaries
+        run: |
+          node previews/knowledge-presentation/build.cjs
+          git diff --exit-code -- previews/knowledge-presentation/style.mjs
+          node --test previews/knowledge-presentation/test.mjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/knowledge-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage an isolated preview only
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/knowledge-presentation/deploy-preview.mjs
+      - name: Check the actual hosted pages on mobile and desktop
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/knowledge-browser/node_modules/playwright
+        run: node previews/knowledge-presentation/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: knowledge-preview-${{ github.sha }}
+          path: knowledge-presentation-preview-evidence/
+          retention-days: 90
