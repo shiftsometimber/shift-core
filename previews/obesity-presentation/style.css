@@ -46,3 +46,5 @@ html body main#main-content.shift-understanding.mop[data-guide-large-text="true"
 html body main#main-content.shift-understanding.mop[data-guide-large-text="true"] h1{font-size:clamp(34px,5vw,48px)!important}
 html body main#main-content.shift-understanding.mop[data-guide-large-text="true"] h2{font-size:32px!important}
 html body main#main-content.shift-understanding.mop[data-guide-large-text="true"] h3{font-size:26px!important}
+
+html body main#main-content.shift-understanding.mop[data-guide-large-text="true"] .mop-reading>p:first-child{font-size:22px!important;line-height:1.6!important}
