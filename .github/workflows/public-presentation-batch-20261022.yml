@@ -26,6 +26,38 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node previews/public-presentation-batch/prepare.mjs
+      - name: Trust checkout and check scoped code
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          node --check previews/public-presentation-batch/worker.mjs
+          node --check previews/public-presentation-batch/deploy.mjs
+          node --check previews/public-presentation-batch/check-browser.cjs
+      - name: Match browser client
+        run: npm install --prefix "$RUNNER_TEMP/batch-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage batch with full existing source composition retained
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/public-presentation-batch/deploy.mjs stage
+      - name: Verify every staged page at mobile and desktop sizes
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/batch-browser/node_modules/playwright
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+        run: node previews/public-presentation-batch/check-browser.cjs
+      - name: Activate only new exact public routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/public-presentation-batch/deploy.mjs activate
+      - name: Verify every actual public page at mobile and desktop sizes
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/batch-browser/node_modules/playwright
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+          BATCH_PRODUCTION: '1'
+        run: node previews/public-presentation-batch/check-browser.cjs
+      - name: Remove only batch-owned routes if public acceptance fails
+        if: ${{ failure() || cancelled() }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/public-presentation-batch/deploy.mjs rollback
       - uses: actions/upload-artifact@v4
         if: always()
         with:
