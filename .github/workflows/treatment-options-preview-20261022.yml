@@ -1,0 +1,49 @@
+name: Preview treatment information and strength selection
+on:
+  push:
+    branches: [preview/treatment-options-20261022]
+    paths: [previews/treatment-options/**, .github/workflows/treatment-options-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: treatment-options-preview-20261022
+  cancel-in-progress: false
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/treatment-options
+      - name: Trust this checkout inside the job container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Build and check read-only boundaries
+        run: |
+          node previews/treatment-options/build.cjs
+          git diff --exit-code -- previews/treatment-options/style.mjs previews/treatment-options/client.mjs
+          node --test previews/treatment-options/test.mjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/options-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage the preview with zero production routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/treatment-options/deploy-preview.mjs
+      - name: Check the actual hosted mobile and desktop preview
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/options-browser/node_modules/playwright
+        run: node previews/treatment-options/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: treatment-options-preview-${{ github.sha }}
+          path: treatment-options-preview-evidence/
+          retention-days: 90
