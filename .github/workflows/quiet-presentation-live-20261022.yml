@@ -1,0 +1,72 @@
+name: Publish approved When the clinic goes quiet presentation
+on:
+  push:
+    branches: [release/quiet-presentation-20261022]
+    paths: [previews/quiet-presentation/**, .github/workflows/quiet-presentation-live-20261022.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: quiet-presentation-live-20261022
+  cancel-in-progress: true
+jobs:
+  publish-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+      QUIET_RELEASE: 20261022-quiet-live-v1
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/quiet-presentation
+          fetch-depth: 4
+      - name: Trust this checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Capture the current published guide once
+        run: node --input-type=module -e "import{writeFileSync}from'node:fs';const r=await fetch('https://shiftsometimber.co.uk/clinic-gone-quiet',{signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Could not read Quiet');writeFileSync('previews/quiet-presentation/source-fixture.html',await r.text())"
+      - name: Check the exact approved source
+        run: |
+          node previews/quiet-presentation/build.cjs
+          git diff --exit-code -- previews/quiet-presentation/style.mjs
+          node --check previews/quiet-presentation/worker.mjs
+          node --check previews/quiet-presentation/deploy-live.mjs
+          node --check previews/quiet-presentation/check-live.cjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/quiet-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage approved guide with all public routes preserved
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node previews/quiet-presentation/deploy-live.mjs stage
+      - name: Check staged mobile and desktop guide
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/quiet-browser/node_modules/playwright
+          QUIET_ORIGIN: https://shift-quiet-presentation-20261022.matobrien.workers.dev
+        run: node previews/quiet-presentation/check-live.cjs
+      - name: Activate only six exact guide routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/quiet-presentation/deploy-live.mjs activate
+      - name: Verify actual public mobile and desktop guide
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/quiet-browser/node_modules/playwright
+          QUIET_ORIGIN: https://shiftsometimber.co.uk
+        run: node previews/quiet-presentation/check-live.cjs
+      - name: Restore only owned guide routes if acceptance fails
+        if: ${{ failure() || cancelled() }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/quiet-presentation/deploy-live.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quiet-presentation-live-${{ github.sha }}
+          path: quiet-presentation-live-evidence/
+          retention-days: 90
