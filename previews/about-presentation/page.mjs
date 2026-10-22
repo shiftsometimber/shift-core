@@ -12,6 +12,7 @@ export function mainFor(html){
  storyFrom(html);
  const original=html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)[1];
  const signoff='<div class="ab-signoff"><span class="ab-signature">Matt</span><p>Matt O’Brien<br><span>Founder, Shift Some Timber</span></p></div>';
- const story=original.replace('<div class="actions">',signoff+'<div class="actions">');
+ const linked=original.replace(/<a\b[^>]*href="(?:\/articles\/sleep-apnoea-weight-men|\/life-back)"[^>]*>([\s\S]*?)<\/a>/g,'$1').replace('<a class="btn" href="/mens-mental-health">Good to Talk</a>','').replace('>Open My Timber</a>','>Explore free My Timber</a>');
+ const story=linked.replace('<div class="actions">',signoff+'<div class="actions">');
  return `<div class="ab-wrap"><div class="ab-letter"><div class="ab-letter-heading"><p class="ab-eyebrow">OUR STORY</p><h1>My story</h1><p class="ab-byline">Founder, Shift Some Timber</p></div><article class="ab-story">${story}</article></div></div>`;
 }
