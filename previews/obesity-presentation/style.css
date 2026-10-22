@@ -42,3 +42,7 @@ html body main#main-content.shift-understanding.mop[data-guide-large-text="true"
 
 html body main#main-content.shift-understanding.mop .mop-nav-separator{display:none!important}
 .mop-preview-notice{display:block!important;width:100%!important;max-width:none!important;box-sizing:border-box!important}
+html body main#main-content.shift-understanding.mop[data-guide-large-text="true"] :is(.mop-reading,.mop-hero,.mop-contents) :is(p,li,td,th,caption,summary,button){font-size:22px!important;line-height:1.6!important}
+html body main#main-content.shift-understanding.mop[data-guide-large-text="true"] h1{font-size:clamp(34px,5vw,48px)!important}
+html body main#main-content.shift-understanding.mop[data-guide-large-text="true"] h2{font-size:32px!important}
+html body main#main-content.shift-understanding.mop[data-guide-large-text="true"] h3{font-size:26px!important}
