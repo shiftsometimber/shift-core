@@ -1,15 +1,15 @@
 {
-  "design": "20261022-life-presentation-v1",
-  "commit": "5be164768f495d4d1b836fa8c456fa6571634ebb",
-  "run": 39804005088,
-  "job": 119912224369,
+  "design": "20261022-life-presentation-v2",
+  "commit": "e8d3f9f46b59dcf2ebd50155467816670380ba83",
+  "run": 39805758271,
+  "job": 119918399454,
   "artifact": {
-    "id": 12437661217,
-    "name": "life-preview-5be164768f495d4d1b836fa8c456fa6571634ebb",
-    "digest": "sha256:9b059498b7b6c5049d51f9e85707e65000e7dfefab4a77a7ec783b0528d68ba1"
+    "id": 12436863678,
+    "name": "life-preview-e8d3f9f46b59dcf2ebd50155467816670380ba83",
+    "digest": "sha256:b08883fb6ebc1c4e955ae9f19e9aee5aa0d5f8b4c26a1cc5c4768197e000c246"
   },
   "blobs": {
-    "previews/life-presentation/worker.mjs": "b4d7028276e65f73b6ad879384bcd523e19a6cdf",
-    "previews/life-presentation/style.mjs": "b826bae7b539d32e07594929f9abeb6a9cc6f068"
+    "previews/life-presentation/worker.mjs": "c2f40e2d171c2596361647846d3ffd22944d0883",
+    "previews/life-presentation/style.mjs": "36f067ad90b094d531a1526852352827b82c6d6f"
   }
 }
