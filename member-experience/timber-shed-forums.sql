@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS timber_shed_forum_posts (
   parent_id TEXT REFERENCES timber_shed_forum_posts(id) ON DELETE CASCADE,
   title TEXT,
   body TEXT NOT NULL,
-  status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','approved','rejected','removed')),
+  status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','approved','rejected','removed','withdrawn')),
   created_at TEXT NOT NULL,
   reviewed_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
   reviewed_at TEXT
@@ -38,6 +38,20 @@ CREATE TABLE IF NOT EXISTS timber_shed_forum_audit (
   id TEXT PRIMARY KEY,
   post_id TEXT NOT NULL REFERENCES timber_shed_forum_posts(id) ON DELETE CASCADE,
   moderator_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
-  action TEXT NOT NULL CHECK(action IN ('approve','reject','remove','dismiss')),
+  action TEXT NOT NULL CHECK(action IN ('approve','reject','remove','dismiss','withdraw')),
   created_at TEXT NOT NULL
 );
+
+
+-- Only rule IDs, categories, severity and priority; no duplicate text or health records.
+-- The submitted post remains private until human review.
+CREATE TABLE IF NOT EXISTS timber_shed_bouncer_screenings (
+  post_id TEXT PRIMARY KEY REFERENCES timber_shed_forum_posts(id) ON DELETE CASCADE,
+  policy_version TEXT NOT NULL,
+  severity TEXT NOT NULL CHECK(severity IN ('routine','review','high','critical')),
+  priority INTEGER NOT NULL CHECK(priority BETWEEN 0 AND 3),
+  categories_json TEXT NOT NULL DEFAULT '[]',
+  screened_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_timber_shed_bouncer_priority
+ ON timber_shed_bouncer_screenings(priority,screened_at);

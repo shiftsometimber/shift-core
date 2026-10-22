@@ -37,3 +37,20 @@ test('API dispatch is feature-gated; no public route or community data reads in 
  assert.match(route,/moderator_only/);
  assert.doesNotMatch(route,/SELECT .* FROM (member_state|health_|treatment_)/);
 });
+test('Community Bouncer appears as a transparent automated assistant, never an AI clinician',()=>{
+ assert.match(timberShedForumPilotMarkup,/SHIFT COMMUNITY BOUNCER/);
+ assert.match(timberShedForumPilotMarkup,/Everyone’s welcome\. Hassle isn’t\./);
+ assert.match(timberShedForumPilotMarkup,/Automated rule-based safety screening/);
+ assert.match(timberShedForumPilotMarkup,/not clinical assessment/);
+ assert.match(timberShedForumPilotMarkup,/human approval/);
+ assert.match(timberShedForumPilotClient,/Safeguarding hold/);
+ assert.match(timberShedForumPilotClient,/\['high','critical','unreviewed'\]/);
+});
+test('members can review and withdraw their own posts without public-profile controls',()=>{
+ assert.match(timberShedForumPilotMarkup,/Your submissions/);
+ assert.match(timberShedForumPilotMarkup,/id="shedMyPosts"/);
+ assert.match(timberShedForumPilotClient,/api\('mine'\)/);
+ assert.match(timberShedForumPilotClient,/api\('withdraw',\{postId:post.id\}\)/);
+ assert.match(timberShedForumPilotClient,/Withdraw my post/);
+ assert.doesNotMatch(timberShedForumPilotClient,/localStorage|sessionStorage|innerHTML/);
+});

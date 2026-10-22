@@ -1,5 +1,6 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {timberShedForumRooms} from './timber-shed-forums.mjs';
+import {screenForumText,bouncerSubmissionNotice,BOUNCER_VERSION} from './timber-shed-community-bouncer.mjs';
 
 // Separate, disabled-by-default forum backend. No My Timber health/profile reads.
 const HEADERS={'Cache-Control':'private, no-store, max-age=0','Vary':'Cookie','X-Robots-Tag':'noindex, nofollow, noarchive','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
@@ -32,6 +33,10 @@ export function validateForumInput(kind,input){
   if(!reply&&(!clean(input.title,8,100)||privateInfo(input.title)))return 'invalid_title';
   return null;
  }
+ if(kind==='withdraw'){
+  if(!only(input,['postId'])||!clean(input.postId,10,80))return 'invalid_withdrawal';
+  return null;
+ }
  if(kind==='report'){
   if(!only(input,['postId','reason'])||!clean(input.postId,10,80)||!REASONS.has(input.reason))return 'invalid_report';
   return null;
@@ -54,7 +59,7 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
   if(!path.startsWith('/v1/timber-shed/forum/'))return null;
   if(env.TIMBER_SHED_FORUM_ENABLED!=='true'||env.TIMBER_SHED_PRIVATE_ENABLED!=='true'||env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||env.TIMBER_SHED_FORUM_PILOT_APPROVED!=='true')return json({error:'not_available'},404);
   const route=path.slice('/v1/timber-shed/forum/'.length);
-  if(!new Set(['rooms','threads','mine','moderation','profile','profile/save','submit','report','moderate']).has(route))return json({error:'not_found'},404);
+  if(!new Set(['rooms','threads','mine','moderation','profile','profile/save','submit','report','moderate','withdraw']).has(route))return json({error:'not_found'},404);
   const method=route==='rooms'||route==='threads'||route==='mine'||route==='moderation'||route==='profile'?'GET':'POST';
   if(request.method!==method)return json({error:'method_not_allowed'},405);
   if(method==='POST'&&request.headers.get('Origin')!==new URL(request.url).origin)return json({error:'same_origin_required'},403);
@@ -82,11 +87,12 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
    }
    if(route==='moderation'){
     if(!await isModerator(db,uid))return json({error:'moderator_only'},403);
-    const queue=await db.prepare("SELECT p.id,p.room_id,p.parent_id,p.title,p.body,p.status,p.created_at,pr.display_name FROM timber_shed_forum_posts p JOIN timber_shed_forum_profiles pr ON pr.user_id=p.user_id WHERE p.status='pending' ORDER BY p.created_at ASC LIMIT 100").all();
+    const queue=await db.prepare("SELECT p.id,p.room_id,p.parent_id,p.title,p.body,p.status,p.created_at,pr.display_name,b.severity,b.priority,b.policy_version,b.categories_json FROM timber_shed_forum_posts p JOIN timber_shed_forum_profiles pr ON pr.user_id=p.user_id LEFT JOIN timber_shed_bouncer_screenings b ON b.post_id=p.id WHERE p.status='pending' ORDER BY COALESCE(b.priority,0) ASC,p.created_at ASC LIMIT 100").all();
     const reports=await db.prepare("SELECT r.id,r.post_id,r.reason,r.created_at,p.room_id,p.title,p.body FROM timber_shed_forum_reports r JOIN timber_shed_forum_posts p ON p.id=r.post_id WHERE r.status='open' ORDER BY r.created_at ASC LIMIT 100").all();
-    return json({pending:queue.results||[],reports:reports.results||[]});
+    const pending=(queue.results||[]).map(({categories_json,...post})=>({...post,categories:post.policy_version&&categories_json?JSON.parse(categories_json):[],priority:post.priority??0,severity:post.severity||'unreviewed'}));
+    return json({pending,reports:reports.results||[]});
    }
-   if(!['profile/save','submit','report','moderate'].includes(route))return json({error:'not_found'},404);
+   if(!['profile/save','submit','report','moderate','withdraw'].includes(route))return json({error:'not_found'},404);
    const parsed=await parse(request);if(parsed.error)return json({error:parsed.error},parsed.status);
    const input=parsed.value,kind=route==='profile/save'?'profile':route;
    const problem=validateForumInput(kind,input);if(problem)return json({error:problem},400);
@@ -107,9 +113,27 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
     }
     const quota=await db.prepare("SELECT COUNT(*) AS n FROM timber_shed_forum_posts WHERE user_id=? AND created_at>=?").bind(uid,new Date(now().getTime()-86400000).toISOString()).first();
     if(Number(quota?.n||0)>=5)return json({error:'daily_submission_limit'},429);
+    const screening=screenForumText({title:input.title||'',body:input.body});
     const id=crypto.randomUUID();
-    await db.prepare("INSERT INTO timber_shed_forum_posts(id,user_id,room_id,parent_id,title,body,status,created_at) VALUES(?,?,?,?,?,?,'pending',?)").bind(id,uid,input.roomId,input.parentId||null,input.title||null,input.body,timestamp).run();
-    return json({ok:true,id,status:'pending',message:'Submitted privately for moderation. Not visible to other members.'},202);
+    // Atomic submission and screening: no post is accepted without a triage record.
+    const results=await db.batch([
+     db.prepare("INSERT INTO timber_shed_forum_posts(id,user_id,room_id,parent_id,title,body,status,created_at) VALUES(?,?,?,?,?,?,'pending',?)").bind(id,uid,input.roomId,input.parentId||null,input.title||null,input.body,timestamp),
+     db.prepare("INSERT INTO timber_shed_bouncer_screenings(post_id,policy_version,severity,priority,categories_json,screened_at) VALUES(?,?,?,?,?,?)").bind(id,screening.policyVersion,screening.severity,screening.priority,JSON.stringify(screening.categories),timestamp)
+    ]);
+    if(Number(results[0]?.meta?.changes)!==1||Number(results[1]?.meta?.changes)!==1)return json({error:'screening_unavailable'},503);
+    return json({ok:true,id,status:'pending',message:bouncerSubmissionNotice(screening)},202);
+   }
+   if(route==='withdraw'){
+    const existing=await db.prepare("SELECT id FROM timber_shed_forum_posts WHERE id=? AND user_id=? AND status IN ('pending','approved','rejected')").bind(input.postId,uid).first();
+    if(!existing)return json({error:'post_unavailable'},404);
+    const operations=[
+     db.prepare("UPDATE timber_shed_forum_posts SET status='withdrawn',title=NULL,body='[withdrawn by member]',reviewed_at=? WHERE id=? AND user_id=? AND status IN ('pending','approved','rejected')").bind(timestamp,input.postId,uid),
+     db.prepare("INSERT INTO timber_shed_forum_audit(id,post_id,moderator_id,action,created_at) SELECT ?,?,NULL,'withdraw',? WHERE EXISTS(SELECT 1 FROM timber_shed_forum_posts WHERE id=? AND user_id=? AND status='withdrawn')").bind(crypto.randomUUID(),input.postId,timestamp,input.postId,uid),
+     db.prepare("UPDATE timber_shed_forum_reports SET status='closed' WHERE post_id=? AND status='open'").bind(input.postId)
+    ];
+    const results=await db.batch(operations);
+    if(Number(results[0]?.meta?.changes)!==1||Number(results[1]?.meta?.changes)!==1)return json({error:'withdrawal_conflict'},409);
+    return json({ok:true,status:'withdrawn',message:'Your post is no longer visible and its text has been cleared.'});
    }
    if(route==='report'){
     const post=await db.prepare("SELECT id FROM timber_shed_forum_posts WHERE id=? AND status='approved'").bind(input.postId).first();
@@ -131,9 +155,12 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
     if(Number(results[0]?.meta?.changes)!==1||Number(results[1]?.meta?.changes)!==1)return json({error:'moderation_conflict'},409);
     return json({ok:true,status:'dismissed'});
    }
-   const post=await db.prepare('SELECT user_id,status FROM timber_shed_forum_posts WHERE id=?').bind(input.postId).first();
+   const post=await db.prepare('SELECT p.user_id,p.status,b.severity,b.policy_version FROM timber_shed_forum_posts p LEFT JOIN timber_shed_bouncer_screenings b ON b.post_id=p.id WHERE p.id=?').bind(input.postId).first();
    if(!post)return json({error:'post_unavailable'},404);
    if(post.user_id===uid)return json({error:'cannot_moderate_own_post'},403);
+   // Missing or outdated screening is a fail-closed hold. High/critical content
+   // requires an independently approved safeguarding pathway not present in this pilot.
+   if(input.action==='approve'&&(post.policy_version!==BOUNCER_VERSION||post.severity==='high'||post.severity==='critical'))return json({error:'safeguarding_review_required'},409);
    if(input.action==='approve'&&post.status!=='pending')return json({error:'not_pending'},409);
    if(input.action==='reject'&&post.status!=='pending')return json({error:'not_pending'},409);
    if(input.action==='remove'&&post.status!=='approved')return json({error:'not_approved'},409);

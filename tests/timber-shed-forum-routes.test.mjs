@@ -162,3 +162,84 @@ test('invalid route, method, cross-site request and moderator status all fail cl
  assert.equal((await t.send(1,'unknown')).status,404);
  assert.equal((await t.send(1,'moderation')).status,403);
 });
+test('Bouncer prioritises safeguarding content and holds it even from ordinary moderator approval',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const ordinary=await submit(t,1,'main-shed','A nice walk helped me reset after work.');
+ const sensitive=await submit(t,2,'main-shed','I have been thinking about self-harm recently.');
+ const urgent=await submit(t,1,'main-shed','I am going to end my life tonight.');
+ assert.equal(ordinary.status,202);assert.equal(sensitive.status,202);assert.equal(urgent.status,202);
+ assert.match(urgent.body.message,/999/);
+ const queue=(await t.send(3,'moderation')).body.pending;
+ assert.equal(queue.length,3);
+ assert.deepEqual(queue.map(p=>p.severity),['critical','high','routine']);
+ assert.deepEqual(queue.map(p=>p.priority),[0,1,3]);
+ assert(queue[0].categories.includes('immediate-safety'));
+ assert(queue[1].categories.includes('self-harm'));
+ assert.equal((await t.send(3,'moderate','POST',{postId:urgent.body.id,action:'approve'})).body.error,'safeguarding_review_required');
+ assert.equal((await t.send(3,'moderate','POST',{postId:sensitive.body.id,action:'approve'})).status,409);
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+ assert.equal((await t.send(3,'moderate','POST',{postId:ordinary.body.id,action:'approve'})).status,200);
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,1);
+ assert.equal(t.sqlite.prepare("SELECT count(*) n FROM timber_shed_bouncer_screenings").get().n,3);
+});
+test('Bouncer screening persistence failure rolls back the entire pending submission',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.exec("CREATE TRIGGER bouncer_failure BEFORE INSERT ON timber_shed_bouncer_screenings BEGIN SELECT RAISE(ABORT,'screen failed'); END;");
+ const attempted=await submit(t,1);
+ assert.equal(attempted.status,503);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_bouncer_screenings').get().n,0);
+});
+test('missing Bouncer screening never permits approval',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const topic=await submit(t,1);
+ t.sqlite.prepare('DELETE FROM timber_shed_bouncer_screenings WHERE post_id=?').run(topic.body.id);
+ assert.equal((await t.send(3,'moderate','POST',{postId:topic.body.id,action:'approve'})).status,409);
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+ const queue=(await t.send(3,'moderation')).body.pending;
+ assert.equal(queue[0].severity,'unreviewed');
+ assert.equal(queue[0].priority,0);
+});
+test('Bouncer policy changes hold previously screened content until re-reviewed',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const topic=await submit(t,1);
+ t.sqlite.prepare('UPDATE timber_shed_bouncer_screenings SET policy_version=? WHERE post_id=?').run('superseded-rules',topic.body.id);
+ const decision=await t.send(3,'moderate','POST',{postId:topic.body.id,action:'approve'});
+ assert.equal(decision.status,409);
+ assert.equal(decision.body.error,'safeguarding_review_required');
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+});
+test('member can withdraw own pending or approved post and clear the stored text',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ const topic=await submit(t,1);
+ assert.equal((await t.send(2,'withdraw','POST',{postId:topic.body.id})).status,404);
+ const withdrawn=await t.send(1,'withdraw','POST',{postId:topic.body.id});
+ assert.equal(withdrawn.status,200);assert.equal(withdrawn.body.status,'withdrawn');
+ const stored=t.sqlite.prepare('SELECT status,title,body FROM timber_shed_forum_posts WHERE id=?').get(topic.body.id);
+ assert.equal(stored.status,'withdrawn');assert.equal(stored.title,null);assert.equal(stored.body,'[withdrawn by member]');
+ assert.equal((await t.send(1,'mine')).body.posts[0].body,'[withdrawn by member]');
+ assert.equal((await t.send(1,'withdraw','POST',{postId:topic.body.id})).status,404);
+ assert.equal(t.sqlite.prepare("SELECT count(*) n FROM timber_shed_forum_audit WHERE action='withdraw'").get().n,1);
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+});
+test('withdrawal of approved parent hides its approved replies',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const topic=await submit(t,1);await t.send(3,'moderate','POST',{postId:topic.body.id,action:'approve'});
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:topic.body.id,body:'A fictional reply with no private details.'});
+ assert.equal(reply.status,202);
+ await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,2);
+ assert.equal((await t.send(1,'withdraw','POST',{postId:topic.body.id})).status,200);
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+});
+test('withdrawal audit failure rolls back the removal',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');const topic=await submit(t,1);
+ t.sqlite.exec("CREATE TRIGGER withdrawal_audit_failure BEFORE INSERT ON timber_shed_forum_audit BEGIN SELECT RAISE(ABORT,'audit failed'); END;");
+ assert.equal((await t.send(1,'withdraw','POST',{postId:topic.body.id})).status,503);
+ const stored=t.sqlite.prepare('SELECT status,body FROM timber_shed_forum_posts WHERE id=?').get(topic.body.id);
+ assert.equal(stored.status,'pending');assert.match(stored.body,/fictional example/);
+});

@@ -57,3 +57,28 @@ The Main Shed; Shifting Timber; Grub & Fit; Good to Talk; Small Wins; Life After
 **Outstanding pilot blockers:** independent age assurance beyond a self-declared date of birth; named adult moderator coverage and training; formal clinical-content and safeguarding boundaries; emergency escalation; Ofcom online-safety assessment and reporting/complaints obligations; DPIA and privacy notice for voluntary member posts; separate community participation consent/choice; safe removal and appeal mechanisms; user post export and deletion requests; stronger PII and harmful-content detection; moderation staffing and response-time testing; external security and accessibility acceptance; operational recovery and rollback. The current prototype rejects some obvious contact details but does not guarantee sensitive information cannot be written into a post. Human review remains essential.
 
 **Release rule:** Source code and a working synthetic UI are not a live moderated service. No real posting or member access may be activated without the outstanding gates, explicit release authority and verified acceptance. No public SHIFT page or thetimbershed.co.uk routing is changed.
+
+## SHIFT Community Bouncer — private moderation foundation (22 October 2026)
+
+**Approved public identity:** SHIFT Community Bouncer. **Tagline:** “Everyone’s welcome. Hassle isn’t.”
+
+**Current implementation:** version `bouncer-rules-2026-10-22-v1`, a deterministic rule-based pre-publication screener. It is **not yet a language-model-powered service**, clinical assessment, crisis detector, safeguarding officer or autonomous moderator. It makes **no external AI API calls** and accesses **no My Timber health, mood, weight, treatment or device records**. Only the member's deliberately submitted forum title and body are screened. No automated publishing is permitted.
+
+**What happens to each submission:**
+- A separate community display name is required; the member deliberately writes the post or reply.
+- The post and Bouncer's minimal rule IDs/severity/priority are written atomically to the private forum tables. No duplicate copy of the post is stored in the screening table.
+- Bouncer labels possible categories: immediate safety, self-harm, eating disorder, medication, substance use, harassment, personal information, unsafe weight advice and sensitive mental wellbeing.
+- **Routine** content is held for ordinary human approval; **review** content is held for careful human approval; **high/critical** content is held and cannot be approved through the ordinary moderator controls. An absent or superseded screening result also blocks approval.
+- The private moderator queue is sorted by priority. The moderator sees categories and severity with the submitted words; no private My Timber records are supplied.
+- The member receives a private confirmation. Potential immediate-danger language also receives clear 999/NHS 111/Samaritans signposting and an explicit warning that nobody may see the post immediately.
+- Every approval, rejection, removal and report dismissal is human-controlled and audited. Audit failures roll back moderation changes. No direct messages or notifications are sent.
+
+**Important limitations:** Pattern matching can miss urgent risks, misunderstand context and flag benign text. A routine classification is **not** a guarantee of safety. A high/critical classification is **not** a diagnosis. Bouncer cannot provide emergency monitoring or clinical advice, and the community must never promise continuous cover. The private preview shows **fictional scenarios**, not real moderation outcomes.
+
+**Future AI-assisted capability:** Before any model receives member-written forum content, establish an approved provider and contractual data roles, UK GDPR lawful basis and special-category condition where applicable, DPIA, data minimisation and retention, access/audit controls, safety evaluation across representative and adversarial content, cost limits, human review, incident response and opt-out/appeal arrangements. No provider integration or transmission is authorised by this build.
+
+**Operational launch gates:** named trained adult moderators, approved safeguarding lead and escalation pathway, professional review of high-risk content policies, Online Safety Act/Ofcom risk and children's-access assessments, robust age assurance, privacy and retention/deletion/appeal controls, test coverage and security review. High-risk content has no ordinary approval path until a separately accepted specialist-informed process exists. All real-member feature flags remain off; no production migration or public release has occurred.
+
+## Member-controlled forum withdrawal
+
+A signed-in member can review only their own submitted posts and withdraw a pending, approved or rejected post. The withdrawal is atomic with its audit record, changes status to `withdrawn`, clears the post title and replaces its stored body with a withdrawal marker. An approved parent withdrawal also hides its replies from the member-visible thread. The author cannot withdraw another member's content. This does **not** yet implement full erasure of backups, quotations, appeals, retention policies or regulatory data-subject requests; those remain release gates. No real-member feature has been enabled.
