@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "head": "dc91c3b525110a57680a5a6b3be052b09b4642ef",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "heroHeight": 508.40625,
+      "gap": 20,
+      "imageHeight": 190,
+      "clickAndRepeat": true,
+      "focus": true,
+      "questionRoute": true
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "heroHeight": 422.46875,
+      "gap": 32,
+      "imageHeight": 422.46875,
+      "clickAndRepeat": true,
+      "focus": true,
+      "questionRoute": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "heroHeight": 523.78125,
+      "gap": 20,
+      "imageHeight": 190,
+      "clickAndRepeat": true,
+      "focus": true,
+      "questionRoute": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "heroHeight": 422.46875,
+      "gap": 32,
+      "imageHeight": 422.46875,
+      "clickAndRepeat": true,
+      "focus": true,
+      "questionRoute": true
+    }
+  ]
+}

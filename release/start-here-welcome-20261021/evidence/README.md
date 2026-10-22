@@ -15,3 +15,9 @@ Six owned exact/wildcard routes cover canonical, www, slash, query and .html var
 Exact rollback from the clean release worktree: node release/start-here-welcome-20261021/deploy.cjs rollback. Validates current ownership and removes only the six newly created routes. Full route IDs and original snapshot are retained here.
 
 Next requested page: Good to Talk (/mens-mental-health), currently preparing a visual proposal for approval. Public content fetched21October into the existing programme-vision evidence directory. Do not publish that next proposal without its own approval. Full Core/TRT and verifier performance work remain separate; this presentation release does not claim them complete.
+
+## 22 October feedback correction — live and verified
+
+Supersedes the presentation deployment above for Start Here only. Worker `shift-start-welcome-spacing-20261022`, source `dc91c3b525110a57680a5a6b3be052b09b4642ef`, branch `fix/start-here-spacing-20261022`. The Explore your routes link explicitly scrolls and focuses the routes section without triggering the welcome view reset. Desktop hero is about 422px with a 32px positive gap; mobile photo is 190px with a 20px gap. Chrome/WebKit at 390px and 1440px passed staged and live first/repeated clicks, focus, quiz entry/back and overflow checks. Seven existing boundary tests passed. All unrelated Cloudflare routes were verified unchanged. Evidence in `spacing-20261022/`.
+
+Rollback from this clean branch: `node release/start-here-welcome-20261021/deploy.cjs rollback` restores the six previous Start Here route bindings to the 21 October worker.

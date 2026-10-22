@@ -1,0 +1,56 @@
+[
+  {
+    "pattern": "shiftsometimber.co.uk/start-here",
+    "before": {
+      "id": "3c727f7927404d01baf6d8d9b5efcd48",
+      "pattern": "shiftsometimber.co.uk/start-here",
+      "script": "shift-start-welcome-presentation-20261021",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/start-here/",
+    "before": {
+      "id": "2d166ab995524c258f7c8d9ac835a781",
+      "pattern": "shiftsometimber.co.uk/start-here/",
+      "script": "shift-start-welcome-presentation-20261021",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/start-here",
+    "before": {
+      "id": "399c4087622d4a049b1f9a506c9d72fc",
+      "pattern": "www.shiftsometimber.co.uk/start-here",
+      "script": "shift-start-welcome-presentation-20261021",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/start-here/",
+    "before": {
+      "id": "d4f69fd7fdf749148be7503a413cca69",
+      "pattern": "www.shiftsometimber.co.uk/start-here/",
+      "script": "shift-start-welcome-presentation-20261021",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/start-here*",
+    "before": {
+      "id": "1bbfb5b55cb2498d910388208ea5c79a",
+      "pattern": "shiftsometimber.co.uk/start-here*",
+      "script": "shift-start-welcome-presentation-20261021",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/start-here*",
+    "before": {
+      "id": "c026ea0168d24043b967a8bb02f29533",
+      "pattern": "www.shiftsometimber.co.uk/start-here*",
+      "script": "shift-start-welcome-presentation-20261021",
+      "request_limit_fail_open": false
+    }
+  }
+]
