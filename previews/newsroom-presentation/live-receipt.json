@@ -1,0 +1,336 @@
+{
+  "url": "https://shiftsometimber.co.uk/shift-newsroom",
+  "version": "20261022-newsroom-live-v1",
+  "design": "20261022-newsroom-preview-v2-refined",
+  "commit": "0435b8445ec7239a3ab897bee0dae7bd9f94aa64",
+  "approvedPreview": {
+    "commit": "4aaaf6632f28750f542633b094f1e4ec69cd6844",
+    "run": 39740505366,
+    "artifact": 12408818767,
+    "artifactSha256": "5ca267d8be3edfa673a08fbc44a8a0b9ed357698c702ff7b7bd4afb0a6b1f840",
+    "design": "20261022-newsroom-preview-v2-refined",
+    "approval": "Matt: Mega, go live - then go to next now !, 22 October 2026",
+    "blobs": {
+      "previews/newsroom-presentation/page.mjs": "04924d23c20da44dcc812879432ba7f5bd0c68b7",
+      "previews/newsroom-presentation/style.mjs": "bb04627007834ca044dc41c555193253b190cc71",
+      "previews/newsroom-presentation/client.mjs": "c9fd5bf92efe5980fa0104a61c3f463ee865a4c4",
+      "radar-newsroom-sort-v1.js": "a12d9b19b67434023ab0e7e6ecd1f959a298ec0c"
+    }
+  },
+  "ownedRoutes": [
+    {
+      "id": "1e426b50e9394a80a9857f5e644f4963",
+      "pattern": "shiftsometimber.co.uk/shift-newsroom*",
+      "script": "shift-newsroom-presentation-20261022",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "d9b5a59b9d834569b9fd4caad42828b8",
+      "pattern": "www.shiftsometimber.co.uk/shift-newsroom*",
+      "script": "shift-newsroom-presentation-20261022",
+      "request_limit_fail_open": false
+    }
+  ],
+  "unrelatedRoutesPreserved": 192,
+  "publishedStoriesPreserved": 176,
+  "sharedHeaderAndFooterPreserved": true,
+  "at": "2026-10-22T08:05:50.164Z",
+  "state": "deployed-and-verified-live",
+  "run": 39744870354,
+  "job": 119711207028,
+  "artifact": 12410568560,
+  "artifactSha256": "991d2aa5e16aa7daa238a63dd3740cda621be249248b36f1296746dbcc460ebf",
+  "artifactDownloadedAndDigestVerified": true,
+  "contractsPassed": 9,
+  "stagingBrowserPasses": [
+    {
+      "browser": "chromium",
+      "width": 390,
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "mainLeft": 20,
+        "tickerLabelLeft": 20,
+        "tickerVisible": true
+      },
+      "publishedCount": 176,
+      "initialBatch": 12,
+      "moreBatch": 24,
+      "search": true,
+      "topics": true,
+      "combinedFilters": true,
+      "publicationSorting": true,
+      "back": true,
+      "keyboardDisclosure": true,
+      "noOverflow": true,
+      "noWrites": true,
+      "errors": []
+    },
+    {
+      "browser": "chromium",
+      "width": 1440,
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440,
+        "mainLeft": 80,
+        "tickerLabelLeft": 80,
+        "tickerVisible": true
+      },
+      "publishedCount": 176,
+      "initialBatch": 12,
+      "moreBatch": 24,
+      "search": true,
+      "topics": true,
+      "combinedFilters": true,
+      "publicationSorting": true,
+      "back": true,
+      "keyboardDisclosure": true,
+      "noOverflow": true,
+      "noWrites": true,
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "mainLeft": 20,
+        "tickerLabelLeft": 20,
+        "tickerVisible": true
+      },
+      "publishedCount": 176,
+      "initialBatch": 12,
+      "moreBatch": 24,
+      "search": true,
+      "topics": true,
+      "combinedFilters": true,
+      "publicationSorting": true,
+      "back": true,
+      "keyboardDisclosure": true,
+      "noOverflow": true,
+      "noWrites": true,
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "width": 1440,
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440,
+        "mainLeft": 80,
+        "tickerLabelLeft": 80,
+        "tickerVisible": true
+      },
+      "publishedCount": 176,
+      "initialBatch": 12,
+      "moreBatch": 24,
+      "search": true,
+      "topics": true,
+      "combinedFilters": true,
+      "publicationSorting": true,
+      "back": true,
+      "keyboardDisclosure": true,
+      "noOverflow": true,
+      "noWrites": true,
+      "errors": []
+    }
+  ],
+  "liveBrowserPasses": [
+    {
+      "browser": "chromium",
+      "width": 390,
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "mainLeft": 20,
+        "tickerLabelLeft": 20,
+        "tickerVisible": true
+      },
+      "publishedCount": 176,
+      "initialBatch": 12,
+      "moreBatch": 24,
+      "search": true,
+      "topics": true,
+      "combinedFilters": true,
+      "publicationSorting": true,
+      "back": true,
+      "keyboardDisclosure": true,
+      "noOverflow": true,
+      "noWrites": true,
+      "errors": []
+    },
+    {
+      "browser": "chromium",
+      "width": 1440,
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440,
+        "mainLeft": 80,
+        "tickerLabelLeft": 80,
+        "tickerVisible": true
+      },
+      "publishedCount": 176,
+      "initialBatch": 12,
+      "moreBatch": 24,
+      "search": true,
+      "topics": true,
+      "combinedFilters": true,
+      "publicationSorting": true,
+      "back": true,
+      "keyboardDisclosure": true,
+      "noOverflow": true,
+      "noWrites": true,
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "mainLeft": 20,
+        "tickerLabelLeft": 20,
+        "tickerVisible": true
+      },
+      "publishedCount": 176,
+      "initialBatch": 12,
+      "moreBatch": 24,
+      "search": true,
+      "topics": true,
+      "combinedFilters": true,
+      "publicationSorting": true,
+      "back": true,
+      "keyboardDisclosure": true,
+      "noOverflow": true,
+      "noWrites": true,
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "width": 1440,
+      "geometry": {
+        "viewport": 1440,
+        "scroll": 1440,
+        "mainLeft": 80,
+        "tickerLabelLeft": 80,
+        "tickerVisible": true
+      },
+      "publishedCount": 176,
+      "initialBatch": 12,
+      "moreBatch": 24,
+      "search": true,
+      "topics": true,
+      "combinedFilters": true,
+      "publicationSorting": true,
+      "back": true,
+      "keyboardDisclosure": true,
+      "noOverflow": true,
+      "noWrites": true,
+      "errors": []
+    }
+  ],
+  "noJavaScriptStagingAndLivePassed": true,
+  "canonicalLinks": [
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up",
+      "status": 200,
+      "attempts": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/onswik-weekly-insulin-uk-approval-october-2026",
+      "status": 200,
+      "attempts": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up",
+      "status": 200,
+      "attempts": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/foundayo-european-recommendation-october-2026",
+      "status": 200,
+      "attempts": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cbl-514-supreme-01-phase-3-catch-up",
+      "status": 200,
+      "attempts": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/antidepressant-safety-information-mhra-october-2026",
+      "status": 200,
+      "attempts": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/editorial-standards#newsroom",
+      "status": 200,
+      "attempts": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/editorial-standards#corrections",
+      "status": 200,
+      "attempts": 1
+    }
+  ],
+  "hostProtocolPathVariants": [
+    {
+      "url": "http://shiftsometimber.co.uk/shift-newsroom",
+      "status": 200
+    },
+    {
+      "url": "http://shiftsometimber.co.uk/shift-newsroom/",
+      "status": 200
+    },
+    {
+      "url": "http://shiftsometimber.co.uk/shift-newsroom.html",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-newsroom",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-newsroom/",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-newsroom.html",
+      "status": 200
+    },
+    {
+      "url": "http://www.shiftsometimber.co.uk/shift-newsroom",
+      "status": 200
+    },
+    {
+      "url": "http://www.shiftsometimber.co.uk/shift-newsroom/",
+      "status": 200
+    },
+    {
+      "url": "http://www.shiftsometimber.co.uk/shift-newsroom.html",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/shift-newsroom",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/shift-newsroom/",
+      "status": 200
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/shift-newsroom.html",
+      "status": 200
+    }
+  ],
+  "totalRoutesAfter": 194,
+  "actualLiveAcceptanceAt": "2026-10-22T08:06:18.000Z",
+  "normalCloudBrowserVerified": {
+    "url": "https://shiftsometimber.co.uk/shift-newsroom",
+    "release": "20261022-newsroom-live-v1",
+    "design": "20261022-newsroom-preview-v2-refined",
+    "results": "Showing 12 of 176 stories"
+  },
+  "rollback": "Use node previews/newsroom-presentation/deploy-live.mjs rollback with this successful run's activation-plan.json and routes-before.json; remove only the two owned Newsroom routes.",
+  "restrictions": "No further production publication is required for this version. Do not replay release on the active worker. About and My Timber Menu remain preview-only. Master and separately paused Core/TRT, Medicines Watch and broad reconciliation/performance remain paused."
+}

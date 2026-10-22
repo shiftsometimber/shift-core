@@ -1,9 +1,11 @@
-# Newsroom presentation preview — 22 October 2026
+# Newsroom presentation — live, 22 October 2026
 
-Next in Matt's original public-page sequence, following the verified live treatment-options release. Preview only; publication requires approval of this version.
+The reviewed design is deployed and verified at https://shiftsometimber.co.uk/shift-newsroom. Matt explicitly approved publication with “Mega, go live - then go to next now !”. Release source 0435b8445ec7239a3ab897bee0dae7bd9f94aa64, version 20261022-newsroom-live-v1; approved design remains 20261022-newsroom-preview-v2-refined. See live-receipt.json for the exact source, approval, activation, acceptance, artifact digest and rollback evidence.
 
-The preview reads the current published Newsroom through Core. It preserves every published story's headline, link, classification and first-publication date, while showing twelve results initially. Search, quick topics, detailed medicine/topic/region filters, publication/title sorting, back navigation and progressive browsing use the same sort comparator as the existing index. Native GET forms and pagination work without JavaScript.
+Successful run 39744870354/job 119711207028 passed nine contracts, four hosted staging and four actual public Chromium/WebKit mobile/desktop passes, native GET browsing without JavaScript, eight canonical destinations and twelve host/protocol/path variants. All 176 published headlines, links, classifications and first-publication dates remain intact. The worker reads the current published index through Core on every render; source-fixture.html is never deployed. Two scoped Newsroom route families are owned; all 192 previous routes and shared header/full footer are preserved.
 
-No stories are created, edited, redated, unpublished or promoted into production. `source-fixture.html` is an isolated test capture and is not deployed. The shared header/full footer and privacy scripts are retained. The ticker stays visible and aligns with the content. The raw `retrospective_development` source badge is presented as “Research update”; actual publisher labels remain unchanged.
+Search, quick topics, detailed filters, sorting, back navigation, progressive batches and native forms work. No stories, private APIs, account data, authentication, consent or clinical decisions were changed. Source-date distinctions and genuine first-publication dates remain visible.
 
-This preview owns zero production routes and cannot proxy private APIs or mutate data. Keep the Master, Core/TRT, Medicines Watch and broader reconciliation/performance work paused.
+Earlier attempts stopped safely or restored only their own routes after read timeouts. The superseded verifier's unbounded font wait was removed; checks now have explicit deadlines, progress evidence and one bounded retry for transient route reads. The successful final run needed no rollback. Do not repeat production activation on the active worker. Keep subject evidence on this proof branch; publication workflows are restricted to the release branch.
+
+The isolated reviewed preview remains available. About and the My Timber Menu addition are the next previews and have no production approval. Master, Core/TRT, Medicines Watch and broader reconciliation/performance work stay paused.
