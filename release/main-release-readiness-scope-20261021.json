@@ -858,6 +858,56 @@
     },
     "productionVerified": false,
     "maintenanceSource": "4d6cd542d444f5aa17a3b3093ae793d003026e46"
+  },
+  "wholeEstateEntityFollowup": {
+    "kind": "EXACT_WHOLE_ESTATE_HTML_ENTITY_NORMALISATION_20261022",
+    "base": "e17c8600c7cc87d56c1d7f1e6b2b23a1e0e9badd",
+    "payload": "1914dbc2d1ba02d617ca853f303a838faf9257af",
+    "paths": [
+      "gate1-whole-estate-production-sweep.mjs",
+      "tests/whole-estate-route-sweep.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "hostedRun": 39859713411,
+      "hostedJob": 120106954172,
+      "checked": 20000,
+      "htmlPages": 19678,
+      "truncated": true,
+      "failureCount": 1,
+      "failureStatus": 502,
+      "failureClass": "HTML attribute ampersand entity amplified into distinct same-origin query URLs"
+    },
+    "repair": {
+      "htmlUrlEntitiesDecodedOnce": true,
+      "browserEquivalentAttributeParsing": true,
+      "crawlLimitChanged": false,
+      "routeFailureRejectionRetained": true,
+      "blankPageRejectionRetained": true,
+      "discoveryExhaustionRequired": true,
+      "regressionTestAdded": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "70ec574c31f9b13fca7c6f8ee48eb9bbf94feddb"
   }
 }
 
