@@ -1,0 +1,51 @@
+name: Preview refreshed Newsroom presentation
+on:
+  push:
+    branches: [preview/newsroom-presentation-20261022]
+    paths: [previews/newsroom-presentation/**, .github/workflows/newsroom-presentation-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: newsroom-presentation-preview-20261022
+  cancel-in-progress: false
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/newsroom-presentation
+      - name: Trust this checkout inside the job container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Capture the current published index for read-only checks
+        run: node --input-type=module -e "import{writeFileSync}from'node:fs';const r=await fetch('https://shiftsometimber.co.uk/shift-newsroom');if(!r.ok)throw Error('Could not read Newsroom');writeFileSync('previews/newsroom-presentation/source-fixture.html',await r.text())"
+      - name: Build and verify presentation boundaries
+        run: |
+          node previews/newsroom-presentation/build.cjs
+          git diff --exit-code -- previews/newsroom-presentation/style.mjs previews/newsroom-presentation/client.mjs
+          node --test previews/newsroom-presentation/test.mjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/newsroom-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage the isolated preview with zero production routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/newsroom-presentation/deploy-preview.mjs
+      - name: Check the actual hosted mobile and desktop preview
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/newsroom-browser/node_modules/playwright
+        run: node previews/newsroom-presentation/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newsroom-presentation-preview-${{ github.sha }}
+          path: newsroom-presentation-preview-evidence/
+          retention-days: 90
