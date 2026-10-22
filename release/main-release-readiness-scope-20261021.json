@@ -181,6 +181,51 @@
     },
     "productionVerified": false,
     "maintenanceSource": "d4dc9cb02dd275c78a2b418c3e6f8fd08da39c4e"
+  },
+  "timeoutFollowup": {
+    "kind": "EXACT_PUBLIC_ALIAS_RUNTIME_CAP_REPAIR_20261022",
+    "base": "fc0baf8d2e41c577590531cb0fc9d178a6297b63",
+    "payload": "0f9a1a299b65b4cc661b178b15b244a0265fef5c",
+    "paths": [
+      ".github/workflows/organic-followthrough-proof.yml",
+      "release/root-share-preview-scope.mjs",
+      "release/photo-calendar-scope.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "hostedRun": 39733153504,
+      "hostedConclusion": "cancelled",
+      "priorHostedCapMinutes": 30,
+      "localExactWorkloadExceededSeconds": 3600,
+      "observedAssertionFailuresAtBoundary": 0,
+      "activeTest": "acquisition-activation/metrics-release.test.mjs"
+    },
+    "repair": {
+      "publicAliasWorkflowTimeoutMinutes": 120,
+      "publicAliasTestConcurrency": 2,
+      "defaultRootShareHistoricalReaderProjected": true,
+      "photoCalendarRootInverseComposed": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "memberRuntimeChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "863931a36192f55fc810eb6337264053bbfd4b78"
   }
 }
 
