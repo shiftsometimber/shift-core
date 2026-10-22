@@ -7,7 +7,7 @@ export function present(html){
  if(!hero||!actions||!nav)throw Error('Guide structure changed');
  const rest=body.replace(hero,'').replace(actions,'').replace(nav,'');
  const opening=match[0].slice(0,match[0].indexOf('>')+1);
- return html.replace(match[0],opening+'<div class="mop-hero"><div class="mop-wrap">'+hero+'<div class="mop-actions">'+actions+'</div></div></div><div class="mop-contents"><div class="mop-wrap">'+nav+'</div></div><div class="mop-reading">'+rest+'</div></main>');
+ return html.replace(match[0],opening+'<div class="mop-hero"><div class="mop-wrap">'+hero+'<div class="mop-actions">'+actions+'</div></div></div><div class="mop-contents"><div class="mop-wrap">'+nav.replace(/ · /g,'<span class="mop-nav-separator" aria-hidden="true"> · </span>')+'</div></div><div class="mop-reading">'+rest+'</div></main>');
 }
 const guard='<script data-obesity-preview-guard>window.SST_ANALYTICS_SUPPRESSED=true;document.addEventListener("submit",function(e){e.preventDefault();e.stopImmediatePropagation();},true);</script>';
 export default{async fetch(request,env){
