@@ -2,6 +2,8 @@ const START=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').repla
 const MAX_PAGES=Number(process.env.SHIFT_SWEEP_MAX||1000);
 const CONCURRENCY=Number(process.env.SHIFT_SWEEP_CONCURRENCY||12);
 const REQUEST_TIMEOUT_MS=Number(process.env.SHIFT_SWEEP_TIMEOUT_MS||30000);
+const NETWORK_RETRY_LIMIT=1;
+const NETWORK_RETRY_DELAY_MS=250;
 const USER_AGENT='ShiftCommissioning/1.0 (+release-route-sweep)';
 const queue=[START+'/',START+'/member-login.html'];
 const queued=new Set(queue),visited=new Map(),failures=[],externalHosts=new Map(),discoveredFrom=new Map([[START+'/',null],[START+'/member-login.html',null]]);
@@ -45,13 +47,23 @@ async function fetchWithRedirectAudit(url){
   }
   return{r:null,chain,error:'too_many_redirects'};
 }
+function retryableNetworkFailure(error){return error?.name==='TimeoutError'||error?.name==='AbortError'}
+async function fetchWithBoundedNetworkRetry(url){
+  for(let attempt=1;attempt<=NETWORK_RETRY_LIMIT+1;attempt++){
+    try{return{...await fetchWithRedirectAudit(url),attempts:attempt}}
+    catch(error){
+      if(!retryableNetworkFailure(error)||attempt>NETWORK_RETRY_LIMIT){error.sweepAttempts=attempt;throw error}
+      await new Promise(resolve=>setTimeout(resolve,NETWORK_RETRY_DELAY_MS));
+    }
+  }
+}
 
 async function inspect(url,parent){
-  let result;try{result=await fetchWithRedirectAudit(url)}catch(e){return{url,parent,record:{error:true},failures:[{url,discoveredFrom:parent,error:`network:${e?.name||'Error'}:${e?.message||e}`}],children:[],external:[]}}
-  const {r,chain,error}=result;
+  let result;try{result=await fetchWithBoundedNetworkRetry(url)}catch(e){const attempts=e?.sweepAttempts||1;return{url,parent,record:{error:true,attempts},failures:[{url,discoveredFrom:parent,error:`network:${e?.name||'Error'}:${e?.message||e}`,attempts}],children:[],external:[]}}
+  const {r,chain,error,attempts}=result;
   if(error||!r)return{url,parent,record:{error:true},failures:[{url,discoveredFrom:parent,error:error||'no_response',chain}],children:[],external:[]};
   const final=chain.at(-1)?.url||url,status=r.status,type=(r.headers.get('content-type')||'').toLowerCase(),localFailures=[];
-  const record={status,type,final,chain,discoveredFrom:parent};
+  const record={status,type,final,chain,discoveredFrom:parent,attempts};
   if(status>=400)return{url,parent,record,failures:[{url,discoveredFrom:parent,status,final}],children:[],external:[]};
   let body='';if(!assetExt.test(final)){try{body=await r.text()}catch(e){localFailures.push({url,discoveredFrom:parent,status,error:`body:${e?.name||'Error'}:${e?.message||e}`})}}
   const children=[],external=[];
@@ -78,7 +90,7 @@ while(queue.length&&visited.size<MAX_PAGES){
 
 const checked=[...visited.entries()].map(([url,x])=>({url,...x}));
 const critical=failures.filter(x=>x.status>=400||x.error);
-const report={proof:'M10_WHOLE_ESTATE_ROUTE_SWEEP',start:START,checked:checked.length,htmlPages:checked.filter(x=>x.type?.includes('text/html')).length,failures:critical,externalHosts:[...externalHosts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,30),truncated:queue.length>0,limit:MAX_PAGES,concurrency:CONCURRENCY,requestTimeoutMs:REQUEST_TIMEOUT_MS};
+const report={proof:'M10_WHOLE_ESTATE_ROUTE_SWEEP',start:START,checked:checked.length,htmlPages:checked.filter(x=>x.type?.includes('text/html')).length,failures:critical,externalHosts:[...externalHosts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,30),truncated:queue.length>0,limit:MAX_PAGES,concurrency:CONCURRENCY,requestTimeoutMs:REQUEST_TIMEOUT_MS,networkRetryLimit:NETWORK_RETRY_LIMIT,networkRetryDelayMs:NETWORK_RETRY_DELAY_MS,retriedRoutes:checked.filter(x=>x.attempts>1).length};
 console.log(JSON.stringify(report,null,2));
 if(critical.length){
   for(const f of critical.slice(0,20)){const detail=[f.status&&`HTTP ${f.status}`,f.error,f.discoveredFrom&&`from=${f.discoveredFrom}`,f.final&&f.final!==f.url&&`final=${f.final}`].filter(Boolean).join(' · ');console.error(`::error title=M10 route sweep::${String(f.url).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')} — ${String(detail).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')}`)}

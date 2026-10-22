@@ -25,13 +25,27 @@ test('whole-estate sweep uses bounded concurrency while retaining complete route
 });
 
 test('whole-estate sweep fails closed when a route exceeds the bounded request timeout',async()=>{
+  let slowRequests=0;
   await fixture((request,response)=>{
+    if(request.url==='/hang')slowRequests++;
     const finish=()=>{response.writeHead(200,{'content-type':'text/html'});response.end(page(request.url==='/'?'<a href="/hang">Slow route</a>':'Complete route content for timeout verification.'));};
     setTimeout(finish,request.url==='/hang'?500:5);
   },async base=>{
     await assert.rejects(run(process.execPath,['gate1-whole-estate-production-sweep.mjs'],{cwd:process.cwd(),env:{...process.env,SHIFT_SITE_BASE:base,SHIFT_SWEEP_MAX:'10',SHIFT_SWEEP_CONCURRENCY:'2',SHIFT_SWEEP_TIMEOUT_MS:'100'},maxBuffer:4e6}),error=>{
-      const result=report(error.stdout);assert(result.failures.some(item=>item.url===base+'/hang'&&/^network:(?:TimeoutError|AbortError):/.test(item.error)));return true;
+      const result=report(error.stdout);assert(result.failures.some(item=>item.url===base+'/hang'&&/^network:(?:TimeoutError|AbortError):/.test(item.error)&&item.attempts===2));assert.equal(slowRequests,2);return true;
     });
+  });
+});
+
+test('whole-estate sweep retries one transient timeout and still fails persistent faults closed',async()=>{
+  let transientRequests=0;
+  await fixture((request,response)=>{
+    if(request.url==='/transient')transientRequests++;
+    const finish=()=>{response.writeHead(200,{'content-type':'text/html'});response.end(page(request.url==='/'?'Useful route directory for bounded retry verification. <a href="/transient">Transient route</a>':'Complete route content after one transient timeout.'));};
+    setTimeout(finish,request.url==='/transient'&&transientRequests===1?150:5);
+  },async base=>{
+    const {stdout}=await run(process.execPath,['gate1-whole-estate-production-sweep.mjs'],{cwd:process.cwd(),env:{...process.env,SHIFT_SITE_BASE:base,SHIFT_SWEEP_MAX:'10',SHIFT_SWEEP_CONCURRENCY:'2',SHIFT_SWEEP_TIMEOUT_MS:'100'},maxBuffer:4e6});
+    const result=report(stdout);assert.equal(result.failures.length,0);assert.equal(result.truncated,false);assert.equal(result.networkRetryLimit,1);assert.equal(result.retriedRoutes,1);assert.equal(transientRequests,2);
   });
 });
 
