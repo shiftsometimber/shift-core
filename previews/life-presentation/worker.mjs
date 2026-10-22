@@ -1,6 +1,6 @@
 import style from './style.mjs';
-export const version='20261022-life-presentation-v2';
-export const releaseVersion='20261022-life-live-v2';
+export const version='20261022-life-presentation-v3';
+export const releaseVersion='20261022-life-live-v3';
 export function present(html){
  const match=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/);if(!match)throw Error('Missing continuity page');
  const body=match[1],hero=body.match(/^\s*<p class="continuity-kicker">[\s\S]*?<div class="continuity-actions">[\s\S]*?<\/div><p class="continuity-meta">[\s\S]*?<\/p>/)?.[0],needs=body.match(/<section><h2>How Life Back works<\/h2>[\s\S]*?<\/section>/)?.[0];if(!hero||!needs)throw Error('Continuity structure changed');
