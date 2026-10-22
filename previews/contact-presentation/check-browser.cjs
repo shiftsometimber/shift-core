@@ -17,7 +17,7 @@ const luminance=rgb=>rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055
    const consent=page.getByRole('button',{name:'Necessary only',exact:true});if(await consent.count()&&await consent.isVisible()){await consent.click();await page.getByRole('dialog',{name:'Cookie choices',exact:true}).waitFor({state:'hidden'});}
    await page.waitForFunction(()=>{const image=document.querySelector('header img');return image?.complete&&image.naturalWidth>0;});
    assert.equal(await page.locator('main').getAttribute('data-contact-preview'),'20261022-contact-presentation-v1');
-   assert.deepEqual(await page.locator('#shiftContactForm').evaluate(form=>Array.from(form.elements).map(e=>[e.tagName,e.id,e.name,e.type,e.required])),fields);
+   assert.deepEqual(await page.locator('#shiftContactForm').evaluate(form=>Array.from(form.elements).map(e=>[e.tagName,e.id,e.name,e.type,Boolean(e.required)])),fields);
    assert.deepEqual(await page.locator('#ct-subject option').evaluateAll(rows=>rows.map(e=>e.value)),options);
    assert(await page.locator('.ct-submit').isDisabled());
    for(const id of['ct-name','ct-email','ct-message'])assert.equal(await page.locator('#'+id).inputValue(),'');
