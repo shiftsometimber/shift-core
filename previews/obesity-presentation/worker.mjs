@@ -1,5 +1,5 @@
 import style from './style.mjs';
-export const version='20261022-obesity-presentation-v1';
+export const version='20261022-obesity-presentation-v2';
 export const releaseVersion='20261022-obesity-live-v1';
 export function present(html){
  const match=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/);if(!match)throw Error('Missing guide');
