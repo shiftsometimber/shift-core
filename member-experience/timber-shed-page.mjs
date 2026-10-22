@@ -1,5 +1,6 @@
+import {timberShedForumPreview} from './timber-shed-forums.mjs';
 // Authenticated My Timber companion. No community publishing and no health-record reads.
-export const timberShedPage=String.raw`<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive,nosnippet"><title>The Timber Shed | My Timber</title>
+const timberShedBasePage=String.raw`<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive,nosnippet"><title>The Timber Shed | My Timber</title>
 <style>
 :root{color-scheme:dark;--black:#050505;--cream:#E7E3DA;--ash:#707762;--card:#181b17;--line:#434b3d}
 *{box-sizing:border-box}body{margin:0;background:var(--black);color:var(--cream);font:16px/1.55 Arial,Helvetica,sans-serif}
@@ -28,6 +29,7 @@ h1{font:900 clamp(70px,9vw,130px)/.86 Impact,'Arial Narrow',Arial,sans-serif;let
 <section class="section"><div class="eyebrow">FOUNDING PROGRAMME</div><h2>Six weeks. One step at a time.</h2><p class="lead">The programme is non-clinical and optional. No weight-loss competitions, no dose instructions and no pressure to buy. Medical concerns should go to your treating clinician.</p><div class="week-grid" id="weeks"></div></section>
 <footer class="footer">THE TIMBER SHED · MY TIMBER · PRIVATE ACCOUNT EXPERIENCE · NOT A CLINIC OR EMERGENCY SERVICE. If you're in immediate danger call 999. For urgent NHS advice call 111.</footer></div>
 <script src="/assets/member-experience/timber-shed.mjs" defer></script></body></html>`;
+export const timberShedPage=timberShedBasePage.replace('</style></head>','</style>'+'<style>.forum-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:24px 0}.forum-room{background:#181d17;border:1px solid #465142;border-radius:13px;padding:24px}.forum-room h3{font-size:26px;letter-spacing:-.035em;line-height:1.12;margin:8px 0}.forum-room>p:not(.eyebrow){color:#cdd5ca;font-size:14px}.forum-topics{margin-top:18px;border-top:1px solid #394338}.forum-topic{border-bottom:1px solid #394338;padding:11px 0}.forum-topic summary{cursor:pointer;font-weight:700;font-size:14px;line-height:1.5}.forum-topic p{font-size:13px;color:#cbd3c7}.forum-sample{font-weight:800;letter-spacing:.05em;font-size:10px!important;color:#b7c6aa!important}@media(max-width:750px){.forum-grid{grid-template-columns:1fr}}</style>'+'</head>').replace('<footer class="footer">',timberShedForumPreview()+'<footer class="footer">');
 export const timberShedClient=String.raw`(()=>{'use strict';
 const weeks=[
  ['Finding your feet',['Choose one small thing','Check how your week feels','A conversation worth having','What worked this week?']],
