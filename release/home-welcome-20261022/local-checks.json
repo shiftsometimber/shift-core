@@ -1,0 +1,125 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "name": "chrome",
+      "width": 390,
+      "x": 18,
+      "titleX": 18,
+      "font": "33.93px",
+      "pfont": "17.5px",
+      "weight": "600",
+      "colour": "rgb(255, 255, 255)",
+      "italic": "italic",
+      "emWeight": "400",
+      "overflow": false,
+      "headingOverflow": false,
+      "text": "Practical weight and health support for men, with free tools for food, movement and tracking your progress.Real talk, no judgement.",
+      "links": [
+        "/start-here",
+        "/about"
+      ],
+      "image": "/assets/seo-20260923/heroLarge-22b76937213e5741.webp"
+    },
+    {
+      "name": "chrome",
+      "width": 768,
+      "x": 24,
+      "titleX": 24,
+      "font": "42.24px",
+      "pfont": "18px",
+      "weight": "600",
+      "colour": "rgb(255, 255, 255)",
+      "italic": "italic",
+      "emWeight": "400",
+      "overflow": false,
+      "headingOverflow": false,
+      "text": "Practical weight and health support for men, with free tools for food, movement and tracking your progress.Real talk, no judgement.",
+      "links": [
+        "/start-here",
+        "/about"
+      ],
+      "image": "/assets/seo-20260923/heroLarge-22b76937213e5741.webp"
+    },
+    {
+      "name": "chrome",
+      "width": 1440,
+      "x": 24,
+      "titleX": 24,
+      "font": "54.72px",
+      "pfont": "20.16px",
+      "weight": "600",
+      "colour": "rgb(255, 255, 255)",
+      "italic": "italic",
+      "emWeight": "400",
+      "overflow": false,
+      "headingOverflow": false,
+      "text": "Practical weight and health support for men, with free tools for food, movement and tracking your progress.Real talk, no judgement.",
+      "links": [
+        "/start-here",
+        "/about"
+      ],
+      "image": "/assets/seo-20260923/heroLarge-22b76937213e5741.webp"
+    },
+    {
+      "name": "webkit",
+      "width": 390,
+      "x": 18,
+      "titleX": 18,
+      "font": "33.93px",
+      "pfont": "17.5px",
+      "weight": "600",
+      "colour": "rgb(255, 255, 255)",
+      "italic": "italic",
+      "emWeight": "400",
+      "overflow": false,
+      "headingOverflow": false,
+      "text": "Practical weight and health support for men, with free tools for food, movement and tracking your progress.Real talk, no judgement.",
+      "links": [
+        "/start-here",
+        "/about"
+      ],
+      "image": "/assets/seo-20260923/heroLarge-22b76937213e5741.webp"
+    },
+    {
+      "name": "webkit",
+      "width": 768,
+      "x": 24,
+      "titleX": 24,
+      "font": "42.240002px",
+      "pfont": "18px",
+      "weight": "600",
+      "colour": "rgb(255, 255, 255)",
+      "italic": "italic",
+      "emWeight": "400",
+      "overflow": false,
+      "headingOverflow": false,
+      "text": "Practical weight and health support for men, with free tools for food, movement and tracking your progress.Real talk, no judgement.",
+      "links": [
+        "/start-here",
+        "/about"
+      ],
+      "image": "/assets/seo-20260923/heroLarge-22b76937213e5741.webp"
+    },
+    {
+      "name": "webkit",
+      "width": 1440,
+      "x": 24,
+      "titleX": 24,
+      "font": "54.720001px",
+      "pfont": "20.16px",
+      "weight": "600",
+      "colour": "rgb(255, 255, 255)",
+      "italic": "italic",
+      "emWeight": "400",
+      "overflow": false,
+      "headingOverflow": false,
+      "text": "Practical weight and health support for men, with free tools for food, movement and tracking your progress.Real talk, no judgement.",
+      "links": [
+        "/start-here",
+        "/about"
+      ],
+      "image": "/assets/seo-20260923/heroLarge-22b76937213e5741.webp"
+    }
+  ]
+}

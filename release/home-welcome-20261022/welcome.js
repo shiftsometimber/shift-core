@@ -1,0 +1,1 @@
+(()=>{const p=document.querySelector('.home-hero-copy>p');if(!p||p.querySelector('em'))return;for(const n of [...p.childNodes]){if(n.nodeType===3&&n.textContent.trim()==='Real talk, no judgement.'){const em=document.createElement('em');em.textContent=n.textContent;n.replaceWith(em);}}})();
