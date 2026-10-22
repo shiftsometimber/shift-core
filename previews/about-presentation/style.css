@@ -22,3 +22,8 @@ html body #shift-public-news .shift-news-inner{max-width:1240px;margin:0 auto;pa
 @media(max-width:700px){html body main#main-content.ab .ab-wrap{padding:0 24px}html body main#main-content.ab .ab-letter{padding:40px 0 48px}html body main#main-content.ab article.ab-story p,html body main#main-content.ab article.ab-story .note{font-size:18px!important;line-height:1.7!important}html body main#main-content.ab article.ab-story .standfirst{font-size:20px!important}html body main#main-content.ab article.ab-story h2{font-size:20px!important}html body main#main-content.ab .ab-letter-heading{padding-bottom:24px;margin-bottom:28px}html body #shift-public-news .shift-news-inner{padding-left:24px;padding-right:24px}}
 html body #shift-public-news{max-width:1240px!important;width:100%!important;box-sizing:border-box!important;margin:0 auto!important;padding-left:28px!important;padding-right:28px!important}
 @media(max-width:700px){html body #shift-public-news{padding-left:24px!important;padding-right:24px!important}}
+html body main#main-content.ab .ab-letter-heading{display:block!important}
+html body main#main-content.ab .ab-letter-heading>*{width:auto!important;grid-column:auto!important;transform:none!important}
+html body #shift-public-news{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;align-items:center!important;gap:22px!important;padding-top:12px!important;padding-bottom:12px!important}
+html body #shift-public-news a{color:#e7e3da!important}
+html body #shift-public-news .shift-news-window{overflow:hidden!important}
