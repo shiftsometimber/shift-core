@@ -1,0 +1,51 @@
+name: Preview Clinic gone quiet presentation presentation
+on:
+  push:
+    branches: [preview/quiet-presentation-20261022]
+    paths: [previews/quiet-presentation/**, .github/workflows/quiet-presentation-preview-20261022.yml]
+permissions:
+  contents: read
+concurrency:
+  group: quiet-presentation-preview-20261022
+  cancel-in-progress: true
+jobs:
+  preview-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/quiet-presentation
+      - name: Trust this checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Build scoped style and check source
+        run: |
+          node previews/quiet-presentation/build.cjs
+          git diff --exit-code -- previews/quiet-presentation/style.mjs
+          node --check previews/quiet-presentation/worker.mjs
+          node --check previews/quiet-presentation/deploy-preview.mjs
+          node --check previews/quiet-presentation/check-browser.cjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/quiet-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage guide preview with the original copy and sources
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/quiet-presentation/deploy-preview.mjs
+      - name: Check mobile, desktop, need cards, continuity cards and preserved onward links
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/quiet-browser/node_modules/playwright
+        run: node previews/quiet-presentation/check-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quiet-preview-${{ github.sha }}
+          path: quiet-presentation-preview-evidence/
+          retention-days: 90
