@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "at": "2026-10-22T20:58:37.318Z",
+  "preview": "c26c9b7e-b106-4ee8-a7f8-b0841b70cd9f",
+  "checks": [
+    "desktop approved colours/font/card layout",
+    "390px frame: 375px content width and scroll width equal",
+    "expanded blood-test details",
+    "recent-result checkbox hides blood-test option",
+    "continue restores exact original treatment stage",
+    "stock and clinical continue controls stay closed"
+  ],
+  "scope": "Chrome desktop and responsive frame; no real payment or clinical submission"
+}

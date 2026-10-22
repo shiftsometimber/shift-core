@@ -1,0 +1,20 @@
+{
+  "pass": true,
+  "at": "2026-10-22T21:00:06.571Z",
+  "productionDeployment": "a96fda9c-8832-4f37-8ce0-35bc043c03e6",
+  "releasedSource": "f76411e7",
+  "liveUrl": "https://shiftsometimber.co.uk/treatment-order?medicine=mounjaro&support=open",
+  "checks": [
+    "public domain shows approved support screen",
+    "standard live header and sst-footer-c visible",
+    "live HQ treatment price £169.00; optional extras £0; total £169.00",
+    "original insulin/BMI controls and ordering closure remain",
+    "continue returns to original request; live Explore optional support reopens panel",
+    "removed Shown because text absent"
+  ],
+  "limitations": [
+    "add-on sales held pending confirmed products/prices/fulfilment",
+    "no clinical or payment API changes",
+    "responsive browser frame checked; no physical iPhone verification"
+  ]
+}

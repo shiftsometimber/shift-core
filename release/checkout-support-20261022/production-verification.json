@@ -1,0 +1,17 @@
+{
+  "pass": true,
+  "id": "a96fda9c-8832-4f37-8ce0-35bc043c03e6",
+  "url": "https://a96fda9c.projectshift.pages.dev",
+  "at": "2026-10-22T20:59:01.583Z",
+  "changedPaths": [
+    "/treatment-order.html",
+    "/assets/checkout-support-v1/blood-kit.webp",
+    "/assets/checkout-support-v1/checkout-support-rules.js",
+    "/assets/checkout-support-v1/checkout-support.css",
+    "/assets/checkout-support-v1/checkout-support.js",
+    "/assets/checkout-support-v1/heading.ttf",
+    "/assets/checkout-support-v1/mobile-review.html",
+    "/assets/checkout-support-v1/nutrition.jpg"
+  ],
+  "preservedAssetCount": 847
+}
