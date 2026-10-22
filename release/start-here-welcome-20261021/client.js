@@ -4,6 +4,13 @@ const $=s=>root.querySelector(s),$$=s=>[...root.querySelectorAll(s)],welcome=$('
 const answers={why:['Lose weight'],med:[],access:[],budget:[]};let step=0;
 const arrow='<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>';
 const motion=()=>matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth';
+const routes=$('#sw-routes');
+$('a[href="#sw-routes"]').addEventListener('click',e=>{
+ e.preventDefault();e.stopPropagation();
+ history.pushState({},'',location.pathname+location.search+'#sw-routes');
+ routes.setAttribute('tabindex','-1');routes.focus({preventScroll:true});
+ routes.scrollIntoView({behavior:motion(),block:'start'});
+});
 function view(which,focus=true){welcome.hidden=which!=='welcome';questions.hidden=which!=='questions';result.hidden=which!=='result';document.title=which==='result'?'Your weight-loss starting point | SHIFT Some Timber':'Start Here | SHIFT Some Timber';if(focus){const el=which==='welcome'?$('#sw-title'):which==='questions'?$('[data-quick-step="'+step+'"] h2'):$('#sw-result-title');el.setAttribute('tabindex','-1');el.focus({preventScroll:true});scrollTo({top:0,behavior:'auto'});}}
 function sync(){ $$('[data-quick-step]').forEach((el,i)=>el.hidden=i!==step);$('[data-quick-count]').textContent='Question '+(step+1)+' of 3';$('[role=progressbar]').setAttribute('aria-valuenow',step+1);$('[data-quick-bar]').style.width=((step+1)/3*100)+'%';$('[data-quick-back]').hidden=step===0;$('[data-quick-next]').innerHTML=(step===2?'Show my next steps':'Continue')+' '+arrow;$('[data-quick-validation]').textContent='';}
 function openQuestions(){step=0;sync();view('questions');}
