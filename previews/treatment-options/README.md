@@ -1,15 +1,17 @@
-# Treatment options review preview — 22 October 2026
+# Treatment options — approved and live, 22 October 2026
 
-This is the next preview in Matt's originally queried public-page sequence. It is **not approved for production**. The Newsroom layout follows it. Keep the Master, Core/TRT, Medicines Watch and broad reconciliation/performance work paused.
+Matt reviewed the inline provider-switch guidance, said “Spot on”, then explicitly instructed “Go live”. The approved design is now live at https://shiftsometimber.co.uk/treatment-options, with the existing treatment-order browsing entry using the same presentation. Specification, selected-variant and clinical requests pass through to the existing Core journey.
 
-The preview is a standalone, read-only presentation at `/treatment-options`. It uses the current shared website header and full footer from the Core treatment-order document, the approved Start Here photography, native expandable information, format filters and a strength-selection view. All product names, variants and listed prices are captured from the existing public medicine catalogue. No strength is selected or recommended by default. Stock appears only after the explicit buying-options action. All six products were out of stock at capture.
+Release source: `release/treatment-options-20261022` at `a3ae41de58996f40fd5bcbb6e324c2c99a0ae9a8`. Successful run `39737363925`, job `119686117695`. Evidence artifact `12406919403`, verified SHA256 `a56e78d2c69af3f2fb1933a7876c7af9907afa897321f03532caf960b4b472f7`.
 
-No assessment, eligibility, pricing, inventory, checkout, member or contact system is changed. There are no account/contact writes or communications in acceptance checks. The new preview has zero production routes and cannot process POSTs or proxy private APIs. No production-deployment helper is included.
+Production uses the authoritative live medicine catalogue on each render. The captured `catalogue.mjs` remains a preview/test fixture only and is not uploaded as a production module. The production generator preserves the reviewed rendering exactly when supplied equivalent data; the approved page, CSS and browser client hashes are gated before deployment.
 
-After Matt reviews the actual preview, reconcile the exact serving source and integrate only the approved presentation and navigation. Stock and price must come from the authoritative live catalogue in a production implementation; do not publish this captured snapshot as a live inventory service. Preserve insulin/BMI and clinical gates, current medicine information, actual service limitations, verification-before-payment and assessment/checkout boundaries. Check all six medicine slugs against the live order controller before linking it. Do not infer clinical launch authority.
+All 11 contract tests, four hosted staging browser checks and four actual live Chromium/WebKit checks at 390/1440 passed. Native controls without JavaScript, 8 canonical links, 24 host/protocol/path variants and all 6 specification/clinical passthrough routes passed. The mobile gap is 20px. Inline switching guidance opens and closes without navigation or losing the selected strength.
 
-Source of medicine safety framing: MHRA GLP-1 patient information, updated 5 February 2026, reread 22 October 2026. The preview adds no efficacy or personal suitability claims. Existing medicine-information and provider-switch pages remain the detailed guidance destinations.
+Worker `shift-treatment-options-presentation-20261022` owns only the four treatment-options/treatment-order route families recorded in `live-receipt.json`. All 188 prior routes were preserved. Shared header/full footer and privacy scripts are preserved. Existing insulin/BMI, verification, prescribing, stock and checkout gates remain with Core. No account/contact writes, emails, messages or costs were made by acceptance checks.
 
-Build: `node previews/treatment-options/build.cjs`.
-Contracts: `node --test previews/treatment-options/test.mjs`.
-The preview workflow records the exact source, production routes before/after, shared-layout preservation and actual Chromium/WebKit checks at 390 and 1440 pixels.
+Rollback: use this successful run’s `activation-plan.json` and `routes-before.json` with `node previews/treatment-options/deploy-live.mjs rollback`; it deletes only this release’s four routes after checking their owner. Do not rerun publication on the already-active service.
+
+The first release run reached a new workers.dev address before it had propagated; no production routes were activated. The readiness helper now waits within a bounded interval before asserting success. The second run completed and its rollback step was correctly skipped.
+
+Newsroom presentation is next in the original page sequence. Keep the Master, Core/TRT, Medicines Watch and broad reconciliation/performance work paused.

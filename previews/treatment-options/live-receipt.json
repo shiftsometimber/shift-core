@@ -1,0 +1,201 @@
+{
+  "version": "20261022-options-live-v1",
+  "design": "20261022-options-preview-v3-inline-switch",
+  "commit": "a3ae41de58996f40fd5bcbb6e324c2c99a0ae9a8",
+  "approvedPreview": {
+    "commit": "1d8b9fbba1cfa40ecb3746a8f27e64b82b2ab7cb",
+    "run": 39735617545,
+    "artifact": 12406932385,
+    "design": "20261022-options-preview-v3-inline-switch",
+    "approval": "Matt reviewed the inline provider guidance, said Spot on, then explicitly instructed Go live on 22 October 2026.",
+    "blobs": {
+      "page.mjs": "53a9f36aaa6af28991b56a2a5c2a1215a76b1a81",
+      "style.mjs": "25ff8db2ca416ac7113292676a165eeea364f00a",
+      "client.mjs": "fa563c91f8dcd5911d52177bdb5fcb7ec170007c",
+      "worker.mjs": "4b10af9f84ee58fa9efe5f5bde09a4edc927f290"
+    }
+  },
+  "url": "https://shiftsometimber.co.uk/treatment-options",
+  "ownedRoutes": [
+    {
+      "id": "3d3b404b730946d0bc811abb19204377",
+      "pattern": "shiftsometimber.co.uk/treatment-options*",
+      "script": "shift-treatment-options-presentation-20261022",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "e0307d92fc8847caa75396fede1c5af7",
+      "pattern": "www.shiftsometimber.co.uk/treatment-options*",
+      "script": "shift-treatment-options-presentation-20261022",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "446d02c7219e4411a506edcb4ebe7f98",
+      "pattern": "shiftsometimber.co.uk/treatment-order*",
+      "script": "shift-treatment-options-presentation-20261022",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "034248db41154226bafbd61d9e18665e",
+      "pattern": "www.shiftsometimber.co.uk/treatment-order*",
+      "script": "shift-treatment-options-presentation-20261022",
+      "request_limit_fail_open": false
+    }
+  ],
+  "unrelatedRoutesPreserved": 188,
+  "liveCatalogue": true,
+  "clinicalChecks": [
+    {
+      "medicine": "mounjaro",
+      "specificationAndClinicalPassThrough": true
+    },
+    {
+      "medicine": "wegovy-injection",
+      "specificationAndClinicalPassThrough": true
+    },
+    {
+      "medicine": "wegovy-tablets",
+      "specificationAndClinicalPassThrough": true
+    },
+    {
+      "medicine": "orlistat",
+      "specificationAndClinicalPassThrough": true
+    },
+    {
+      "medicine": "foundayo",
+      "specificationAndClinicalPassThrough": true
+    },
+    {
+      "medicine": "liraglutide",
+      "specificationAndClinicalPassThrough": true
+    }
+  ],
+  "at": "2026-10-22T07:02:20.675Z",
+  "verification": {
+    "completedAt": "2026-10-22T07:03:33.973Z",
+    "browserPasses": [
+      {
+        "browser": "chromium",
+        "width": 390,
+        "filters": true,
+        "back": true,
+        "expanders": true,
+        "noPreselectedDose": true,
+        "listedPrice": true,
+        "buyingStock": true,
+        "inlineProviderGuidance": true,
+        "strengthSpacing": {
+          "autoRows": "auto",
+          "gap": 20,
+          "readingRight": 370,
+          "optionsLeft": 20
+        },
+        "noOverflow": true,
+        "noWrites": true,
+        "errors": []
+      },
+      {
+        "browser": "chromium",
+        "width": 1440,
+        "filters": true,
+        "back": true,
+        "expanders": true,
+        "noPreselectedDose": true,
+        "listedPrice": true,
+        "buyingStock": true,
+        "inlineProviderGuidance": true,
+        "strengthSpacing": {
+          "autoRows": "auto",
+          "gap": -463.9375,
+          "readingRight": 695,
+          "optionsLeft": 745
+        },
+        "noOverflow": true,
+        "noWrites": true,
+        "errors": []
+      },
+      {
+        "browser": "webkit",
+        "width": 390,
+        "filters": true,
+        "back": true,
+        "expanders": true,
+        "noPreselectedDose": true,
+        "listedPrice": true,
+        "buyingStock": true,
+        "inlineProviderGuidance": true,
+        "strengthSpacing": {
+          "autoRows": "auto",
+          "gap": 20,
+          "readingRight": 370,
+          "optionsLeft": 20
+        },
+        "noOverflow": true,
+        "noWrites": true,
+        "errors": []
+      },
+      {
+        "browser": "webkit",
+        "width": 1440,
+        "filters": true,
+        "back": true,
+        "expanders": true,
+        "noPreselectedDose": true,
+        "listedPrice": true,
+        "buyingStock": true,
+        "inlineProviderGuidance": true,
+        "strengthSpacing": {
+          "autoRows": "auto",
+          "gap": -461,
+          "readingRight": 695,
+          "optionsLeft": 745
+        },
+        "noOverflow": true,
+        "noWrites": true,
+        "errors": []
+      }
+    ],
+    "noJavaScriptPassed": true,
+    "canonicalLinks": [
+      {
+        "url": "https://shiftsometimber.co.uk/treatment-order?medicine=mounjaro&view=spec",
+        "status": 200
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/treatment-order?medicine=wegovy-injection&view=spec",
+        "status": 200
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/treatment-order?medicine=wegovy-tablets&view=spec",
+        "status": 200
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/treatment-order?medicine=orlistat&view=spec",
+        "status": 200
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/treatment-order?medicine=foundayo&view=spec",
+        "status": 200
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/treatment-order?medicine=liraglutide&view=spec",
+        "status": 200
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/provider-switch",
+        "status": 200
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/my-timber",
+        "status": 200
+      }
+    ],
+    "hostProtocolPathChecks": 24,
+    "stagingBrowserPasses": 4,
+    "workflowRun": 39737363925,
+    "job": 119686117695,
+    "artifact": 12406919403,
+    "artifactSha256": "a56e78d2c69af3f2fb1933a7876c7af9907afa897321f03532caf960b4b472f7",
+    "browserScreenshot": "/workspace/scratch/sst-treatment-options-live-1792652517275.jpg"
+  }
+}
