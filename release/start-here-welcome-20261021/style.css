@@ -97,3 +97,23 @@ html body main#main-content.sw .hp-draft-choice{border:1px solid #707762!importa
 html body main#main-content.sw .sw-route-card{height:285px!important}html body main#main-content.sw .sw-route-card img{min-height:0!important}@media(max-width:700px){html body main#main-content.sw .sw-route-card{height:auto!important}}
 
 html body main#main-content.sw #sw-routes{scroll-margin-top:90px!important}
+
+html body main#main-content.sw #sw-medicines{margin:24px 0!important}
+html body main#main-content.sw #sw-match-explanation{max-width:900px!important;font-size:18px!important;margin:0 0 24px!important}
+html body main#main-content.sw .sw-medicine-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important;align-items:start!important}
+html body main#main-content.sw .sw-medicine-card{padding:26px!important;border:1px solid #707762!important;border-radius:12px!important;background:#10130d!important;min-width:0!important}
+html body main#main-content.sw .sw-medicine-card[data-featured]{border:2px solid #b2bd9e!important}
+html body main#main-content.sw .sw-medicine-card h3{font-size:32px!important;line-height:1.15!important;margin:8px 0 10px!important}
+html body main#main-content.sw .sw-medicine-card p{font-size:15px!important;line-height:1.6!important;margin:12px 0!important}
+html body main#main-content.sw .sw-medicine-card .sw-medicine-price{font-size:23px!important;font-weight:700!important}
+html body main#main-content.sw .sw-medicine-card .sw-medicine-stock{color:#c6cfb9!important;font-weight:700!important}
+html body main#main-content.sw .sw-inline-details{border-top:1px solid #707762!important;margin:18px 0!important;padding:14px 0!important;color:#e7e3da!important}
+html body main#main-content.sw .sw-inline-details summary{cursor:pointer!important;font-weight:700!important;font-size:16px!important;min-height:36px!important}
+html body main#main-content.sw .sw-inline-details>div{padding-top:14px!important}
+html body main#main-content.sw .sw-inline-details h4{font-size:17px!important;margin:16px 0 8px!important}
+html body main#main-content.sw .sw-inline-details ul{padding-left:22px!important;line-height:1.7!important}
+html body main#main-content.sw .sw-inline-details li{margin:8px 0!important}
+html body main#main-content.sw .sw-medicine-card>.sw-button{width:100%!important;margin-top:10px!important;font-size:14px!important}
+html body main#main-content.sw .sw-comparison-note{font-size:13px!important;line-height:1.7!important;margin:22px 0!important;color:#c6cfb9!important}
+html body main#main-content.sw .sw-switch-details{padding:22px!important;border:1px solid #707762!important;border-radius:10px!important}
+@media(max-width:700px){html body main#main-content.sw .sw-medicine-grid{grid-template-columns:1fr!important}html body main#main-content.sw .sw-medicine-card{padding:22px!important}}

@@ -1,0 +1,75 @@
+{
+  "mounjaro": {
+    "name": "Mounjaro",
+    "active": "tirzepatide",
+    "form": "Once-weekly injection",
+    "course": "4 weeks · four weekly doses",
+    "start": "2.5",
+    "review": "Medical history, medicines, pregnancy plans, pancreatitis risk, gastrointestinal disease and other factors require individual assessment.",
+    "newGuidance": "New patients normally begin at 2.5 mg once weekly. The prescriber confirms the medicine and dose after assessment.",
+    "continuingGuidance": "Select the Mounjaro strength you currently use. Evidence may be requested and the prescriber must confirm whether it is appropriate to continue.",
+    "tradeoff": "An injection with gastrointestinal side effects and a gradual, clinician-led dose pathway.",
+    "source": "https://www.medicines.org.uk/emc/product/15481/smpc"
+  },
+  "wegovy-injection": {
+    "name": "Wegovy injection",
+    "active": "semaglutide",
+    "form": "Once-weekly injection",
+    "course": "4 weeks · four weekly doses",
+    "start": "0.25",
+    "review": "Medical history, current medicines, pregnancy plans, previous GLP-1 treatment and tolerability require individual assessment.",
+    "newGuidance": "New patients normally begin at 0.25 mg once weekly. Dose escalation is gradual and must be confirmed by the prescriber.",
+    "continuingGuidance": "Select the Wegovy injection strength you currently use. Higher strengths are not automatic and remain subject to clinical confirmation.",
+    "tradeoff": "Still an injection, with gradual titration and response that varies considerably.",
+    "source": "https://www.medicines.org.uk/emc/product/13799/smpc"
+  },
+  "wegovy-tablets": {
+    "name": "Wegovy tablet",
+    "active": "semaglutide",
+    "form": "Once-daily tablet",
+    "course": "Once-daily tablets · pack duration to be confirmed",
+    "start": "1.5",
+    "review": "Medical history, current medicines, pregnancy plans and ability to follow the tablet fasting instructions require individual assessment.",
+    "newGuidance": "New patients normally begin at 1.5 mg once daily. Tablets have specific fasting and administration instructions supplied by your prescribing service.",
+    "continuingGuidance": "Select the Wegovy tablet strength you currently use. The prescriber confirms continuation or escalation after clinical review.",
+    "tradeoff": "Daily dosing and specific fasting/administration instructions demand a consistent routine.",
+    "source": "https://www.gov.uk/government/news/first-glp-1-tablet-for-weight-loss-approved-in-the-uk"
+  },
+  "liraglutide": {
+    "name": "Liraglutide",
+    "active": "Saxenda or licensed equivalent",
+    "form": "Once-daily injection",
+    "course": "Multi-dose pens · quantity varies by stage",
+    "start": "0.6",
+    "review": "Medical history, current medicines, pregnancy plans, pancreatitis risk and tolerability require individual assessment.",
+    "newGuidance": "Liraglutide normally starts at 0.6 mg daily and increases gradually. A starter pen lasts longer than a pen used at the 3 mg maintenance dose.",
+    "continuingGuidance": "Select your current daily dose and the corresponding pack. An appropriately regulated prescribing service confirms brand, quantity and continuation.",
+    "tradeoff": "Daily injections and generally more modest average loss than newer weekly incretin options.",
+    "source": "https://www.medicines.org.uk/emc/product/2313/smpc"
+  },
+  "foundayo": {
+    "name": "Foundayo",
+    "active": "orforglipron",
+    "form": "Once-daily tablet",
+    "course": "Once-daily tablets · pack duration to be confirmed",
+    "start": "0.8",
+    "review": "Medical history, current medicines, pregnancy plans and individual risks require assessment by the prescriber.",
+    "newGuidance": "New patients use a staged route beginning at 0.8 mg once daily. The prescriber confirms suitability and each change.",
+    "continuingGuidance": "Select the Foundayo strength you currently use. Treatment history and evidence must be verified before continuation.",
+    "tradeoff": "A daily routine, familiar gastrointestinal GLP-1 effects and less real-world experience than established options.",
+    "source": "https://www.gov.uk/government/news/uk-first-in-europe-to-authorise-orforglipron-for-weight-management-and-type-2-diabetes"
+  },
+  "orlistat": {
+    "name": "Orlistat",
+    "active": "orlistat",
+    "form": "Capsule with meals",
+    "course": "120 mg capsules · pack-size selection",
+    "start": "84",
+    "fixedDose": true,
+    "review": "Digestive conditions, medicines including anticoagulants or ciclosporin, nutritional considerations and other factors require individual assessment.",
+    "newGuidance": "Prescription orlistat is supplied as 120 mg capsules. Pack size—not a higher dose—is the purchasing choice. It is taken only as directed with appropriate meals.",
+    "continuingGuidance": "Select the pack size required. The 120 mg strength does not increase with treatment stage; the prescriber confirms suitability and quantity.",
+    "tradeoff": "Meal-linked dosing, gastrointestinal effects and more modest average weight loss than incretin treatments.",
+    "source": "https://www.medicines.org.uk/emc/product/2592/smpc"
+  }
+}
