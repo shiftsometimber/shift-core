@@ -1,0 +1,9 @@
+{
+  "design": "20261022-quiet-presentation-v1",
+  "commit": "e2e829b0de58e45cd91064cd8e7ec787bbc17fca",
+  "run": 39793155909,
+  "blobs": {
+    "previews/quiet-presentation/worker.mjs": "4c3aebf07bb796cbc55aa4c20efc783daf6e3d7d",
+    "previews/quiet-presentation/style.mjs": "b50f25e43705461f76db0680d3e5706723dd7c79"
+  }
+}
