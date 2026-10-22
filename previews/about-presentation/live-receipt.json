@@ -1,0 +1,16 @@
+{
+  "status": "live verified",
+  "url": "https://shiftsometimber.co.uk/about",
+  "version": "20261022-about-live-v1",
+  "design": "20261022-about-preview-v6-links",
+  "commit": "a01ed1e1ac90590062b7952567dee67dd29503c5",
+  "run": 39762016589,
+  "job": 119768239180,
+  "artifact": 12417979491,
+  "artifactDigest": "sha256:0e74b0a1cf6d960f00fb05457f9565a6fd64e055075d12adaec3478f88799d4e",
+  "checks": "Four staged and four live Chromium/WebKit cases; full original story with approved link edits; native no-JavaScript; header/footer preserved; scoped routes; cloud browser confirmed live marker and five links",
+  "approval": "Then get it live and go to next",
+  "font": "Georgia retained as explicitly requested",
+  "menu": "Separate My Timber Menu remains preview only",
+  "next": "Knowledge visual concept produced, not implemented or published"
+}
