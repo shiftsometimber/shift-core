@@ -15,6 +15,15 @@ The approved My Timber Menu is now live: source 5c3e41b1932f48212e486054050246f7
 
 Work with us final preview: 0a678abe406aa1a1bb19de14353a73584a2b1524, run 39769790378. Four browser/viewport checks, 25 text-contrast checks per view, the mobile spacing check, seven destination checks and no-JavaScript navigation all passed. Published copy and links are preserved. Preview URL: https://shift-work-with-us-presentation-preview-20261022.matobrien.workers.dev/work-with-us . Owns zero public routes.
 
-Production candidate 3b407d8f385c80874f740c208383a1ab2f53aa45 was separately staged and passed the same hosted browser acceptance in run 39769983881 without public activation. Matt approved the displayed final Work with us preview in this thread on 22 October 2026 by replying “Agreed” to the explicit go-live approval question. Approval covers preview 0a678abe406aa1a1bb19de14353a73584a2b1524 and the unchanged staged runtime. The release branch is now created; follow its guarded release through actual public acceptance before marking publication complete.
+Production candidate 3b407d8f385c80874f740c208383a1ab2f53aa45 was separately staged and passed the same hosted browser acceptance in run 39769983881 without public activation. Matt approved the displayed final Work with us preview in this thread on 22 October 2026 by replying “Agreed” to the explicit go-live approval question. Approval covers preview 0a678abe406aa1a1bb19de14353a73584a2b1524 and the unchanged staged runtime. The approved release completed successfully as recorded below.
 
 No broad completion handover, new recurring job or competing action queue was created. The homepage and the separately paused Medicines Watch/Core reconciliation work were not changed. Earlier failed preview/release attempts remain in Actions history; their corrected successors are named above.
+
+
+## Publication complete — 22 October 2026, 12:32 BST
+
+Matt's approved Work with us presentation is live and verified at https://shiftsometimber.co.uk/work-with-us . Release source: 830fb4b8fbe2c91ee737c4381021eb23e183bc5b. Production version: 20261022-work-with-us-live-v1. Actions run 39771135972 / job 119798673691 completed successfully at 12:32:10 BST. The production runtime matches the previously staged candidate; the intervening changes record approval and release evidence only.
+
+Staging, scoped route activation, all host/path variants and actual public mobile/desktop Chromium/WebKit acceptance passed. Existing published copy, links, shared header and footer were preserved. The public acceptance step finished at 12:32:05 BST; rollback was correctly skipped. Full evidence and screenshots are retained in artifact 12421863990, SHA-256 e72dcdf3a4929d53ad8ff739579efc2177b8cf53e68574a892b0706d6cceebad.
+
+This completes the four page updates (My story, Knowledge, Newsroom and Work with us) and the separately approved My Timber Menu within this review's scope. No outstanding publication approval remains for these changes.
