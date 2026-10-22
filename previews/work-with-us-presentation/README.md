@@ -4,7 +4,7 @@ Presentation preview for the remaining page in Matt's Review Images Together wor
 
 Preview is GET/HEAD-only, noindex and has no production route. Requests for member data and service workers are rejected. No homepage, clinical journey, publishing schedule or paused work is changed.
 
-Recovered evidence on 22 October 2026: Knowledge release a261a9aa003b1e18b0a1e4165dc3e468c36617db / run 39766623400 completed successfully, including public activation and four browser/viewport checks. Live Knowledge search returned eight matching protein resources during this recovery. My story is already published. Work with us requires Matt's review of the final preview before public release.
+Recovered evidence on 22 October 2026: Knowledge release a261a9aa003b1e18b0a1e4165dc3e468c36617db / run 39766623400 completed successfully, including public activation and four browser/viewport checks. Live Knowledge search returned eight matching protein resources during this recovery. My story is already published. Matt's approval of the final Work with us preview is recorded below.
 
 
 ## Verified recovery outcome — 22 October 2026 (BST)
@@ -15,6 +15,6 @@ The approved My Timber Menu is now live: source 5c3e41b1932f48212e486054050246f7
 
 Work with us final preview: 0a678abe406aa1a1bb19de14353a73584a2b1524, run 39769790378. Four browser/viewport checks, 25 text-contrast checks per view, the mobile spacing check, seven destination checks and no-JavaScript navigation all passed. Published copy and links are preserved. Preview URL: https://shift-work-with-us-presentation-preview-20261022.matobrien.workers.dev/work-with-us . Owns zero public routes.
 
-Production candidate 3b407d8f385c80874f740c208383a1ab2f53aa45 was separately staged and passed the same hosted browser acceptance in run 39769983881 without public activation. It is ready for Matt's review. Publication is not yet approved for this new Work with us design. After explicit go-live approval of the final preview, create release/work-with-us-presentation-20261022 from this prepared source (or this documentation-only successor) and follow the existing guarded release through public acceptance.
+Production candidate 3b407d8f385c80874f740c208383a1ab2f53aa45 was separately staged and passed the same hosted browser acceptance in run 39769983881 without public activation. Matt approved the displayed final Work with us preview in this thread on 22 October 2026 by replying “Agreed” to the explicit go-live approval question. Approval covers preview 0a678abe406aa1a1bb19de14353a73584a2b1524 and the unchanged staged runtime. The release branch is now created; follow its guarded release through actual public acceptance before marking publication complete.
 
 No broad completion handover, new recurring job or competing action queue was created. The homepage and the separately paused Medicines Watch/Core reconciliation work were not changed. Earlier failed preview/release attempts remain in Actions history; their corrected successors are named above.
