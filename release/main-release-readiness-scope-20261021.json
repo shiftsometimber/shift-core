@@ -523,6 +523,53 @@
     },
     "productionVerified": false,
     "maintenanceSource": "cdb7569a141a81025447a09b3a8cf088b769c88f"
+  },
+  "releaseGateProjectionCacheFollowup": {
+    "kind": "EXACT_HISTORICAL_PROJECTION_RUNTIME_REPAIR_20261022",
+    "base": "a1d0898993a7c5a9e4e016f14bd0e8963ab23412",
+    "payload": "b0120035206df050d7a3e5b436fb63b5ff9cf843",
+    "paths": [
+      "release/main-release-historical-projection-20261022.mjs",
+      "release/release-machinery-repair-scope-20261014.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "localFocusedRun": {
+        "commandTests": 7,
+        "interruptedAfterSeconds": 244,
+        "completedTests": 0,
+        "activeTest": "one current finite payload exposes only the frozen original baseline to historical guards",
+        "observedWorkerCpuPercent": 117,
+        "reason": "verified current release state and tree existence were recomputed for every projected path read"
+      }
+    },
+    "repair": {
+      "verifiedProjectionSnapshotPerView": true,
+      "projectablePathSetCached": true,
+      "historicalTargetExistenceCachedPerPath": true,
+      "currentHeadAndCleanlinessCheckedAtViewEntry": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "9dc017fd1386464cd0926565e98b04bb49f8ac9f"
   }
 }
 
