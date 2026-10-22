@@ -762,6 +762,58 @@
     },
     "productionVerified": false,
     "maintenanceSource": "121dccb4c6c4a9b09584939a5f8add8f78621d43"
+  },
+  "currentMainGuardCompositionFollowup": {
+    "kind": "EXACT_CURRENT_MAIN_GUARD_COMPOSITION_20261022",
+    "base": "3f097fd8fbf34582fe6c18a60e897274e3644b99",
+    "payload": "25b361f2bd43716ddcc2bd6b161952284aca88ba",
+    "paths": [
+      "release/health-vision-scope-20261021.mjs",
+      "release/root-share-preview-scope.mjs",
+      "tests/health-vision-scope-20261021.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "localFocusedRun": {
+        "tests": 24,
+        "passed": 20,
+        "failed": 4,
+        "failures": [
+          "Health current maintenance pin rejected the admitted website-editorial verifier",
+          "Health regression expected arbitrary later commit acceptance outside the bounded release chain",
+          "root-share inverse counted its own current-main reconciliation marker",
+          "root-share outer composition inherited the Health maintenance failure"
+        ]
+      }
+    },
+    "repair": {
+      "healthHistoricalSnapshotRetained": true,
+      "currentReleaseVerifierRequired": true,
+      "unknownCommittedSourceRejected": true,
+      "rootInverseSelfMatchRemoved": true,
+      "currentMainGuardStageProjected": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "8d308af94d6308ce4ec509b6232fe09075d3cf9f"
   }
 }
 
