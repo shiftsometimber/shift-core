@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "head": "ffd557414a812f23fbf3b681384eaa1682b510e3",
+  "rows": [
+    {
+      "engine": "chrome",
+      "width": 390,
+      "header": true,
+      "sixCreamCards": true,
+      "optionsBeforeExplanation": true,
+      "images": true,
+      "noOverflow": true,
+      "filters": true,
+      "inlineDoseLocked": true,
+      "inlineInfo": true,
+      "paymentUnavailable": true,
+      "errors": []
+    },
+    {
+      "engine": "chrome",
+      "width": 1440,
+      "header": true,
+      "sixCreamCards": true,
+      "optionsBeforeExplanation": true,
+      "images": true,
+      "noOverflow": true,
+      "filters": true,
+      "inlineDoseLocked": true,
+      "inlineInfo": true,
+      "paymentUnavailable": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "header": true,
+      "sixCreamCards": true,
+      "optionsBeforeExplanation": true,
+      "images": true,
+      "noOverflow": true,
+      "filters": true,
+      "inlineDoseLocked": true,
+      "inlineInfo": true,
+      "paymentUnavailable": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "header": true,
+      "sixCreamCards": true,
+      "optionsBeforeExplanation": true,
+      "images": true,
+      "noOverflow": true,
+      "filters": true,
+      "inlineDoseLocked": true,
+      "inlineInfo": true,
+      "paymentUnavailable": true,
+      "errors": []
+    }
+  ]
+}
