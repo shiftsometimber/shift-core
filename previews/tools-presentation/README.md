@@ -4,7 +4,7 @@ Next visual preview after the completed Contact refresh. Help already has its ap
 
 Use the established Arial font and black, cream and ash-green palette. Bring the existing check-in and eight calculator cards forward. Add a direct in-page calculator link and the missing `calculators` anchor. Move the unchanged, dynamically inserted “What Shift does” panel below the calculator grid in actual DOM order, preserving keyboard order. Keep the nutrition, exercise, guidance and review-checklist links.
 
-Preview preparation is authorised by Matt’s “And next”. Public deployment requires approval of the completed preview. Preview has no production routes, is noindex, blocks writes/private APIs/service workers and redirects calculator pages to their existing live destinations. No health details are entered and no messages are sent.
+Preview preparation is authorised by Matt’s “And next”. Matt approved this completed preview for public deployment with “Agreed” on 22 October 2026. Preview has no production routes, is noindex, blocks writes/private APIs/service workers and redirects calculator pages to their existing live destinations. No health details are entered and no messages are sent.
 
 Homepage, Start Here feedback in another chat and separately paused Medicines Watch/reconciliation/shared-Core work are outside this scope.
 
@@ -22,4 +22,8 @@ Zero production routes were changed; all 204 existing routes were preserved. No 
 
 User-facing desktop/mobile image: `SHIFT-Tools-Preview-2026-10-22.png`, saved as `libfile_6938bc0db83c8191a59d7a6e05f322af`. The browser preview was reopened and confirmed to show the final layout, preview notice and corrected explanation card.
 
-**Publication awaits Matt's sign-off on this preview.** After that approval, use this pinned worker/style without design or copy changes. Prepare and qualify the existing Cloudflare/GitHub release mechanism, then activate only the exact `/tools`, `/tools/` and `/tools.html` hub paths for apex and www (six exact route patterns). Preserve the existing apex/www `/tools/*` routes bound to Core and all other routes, so individual calculators retain their current handling. Verify public mobile/desktop views, existing content, keyboard jump, eight tool links and aliases, then update this README. Do not publish on “next” alone and do not resume any separately paused work.
+**Publication approved by Matt on 22 October 2026.** Use this pinned worker/style without design or copy changes. Prepare and qualify the existing Cloudflare/GitHub release mechanism, then activate only the exact `/tools`, `/tools/` and `/tools.html` hub paths for apex and www (six exact route patterns). Preserve the existing apex/www `/tools/*` routes bound to Core and all other routes, so individual calculators retain their current handling. Verify public mobile/desktop views, existing content, keyboard jump, eight tool links and aliases, then update this README. Do not publish on “next” alone and do not resume any separately paused work.
+
+## Approved publication — 22 October 2026
+
+Matt replied “Agreed” to the exact completed Tools preview and desktop/mobile image shown in this chat, in response to “Approve this version for go-live?”. The source starts at review checkpoint `b0a84ce02fe36a7edc67a6ef65bc246c222bf773`. No worker or style change is included in release preparation. The release workflow verifies the pinned source and preview acceptance, qualifies the staged hub, activates only six exact hub routes, checks the actual public hub and restores only owned routes if acceptance fails. Final deployment evidence will be recorded here after completion. No messages or health details may be submitted during acceptance.

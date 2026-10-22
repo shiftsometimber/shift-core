@@ -1,0 +1,72 @@
+name: Publish approved Calculators and Tools presentation
+on:
+  push:
+    branches: [release/tools-presentation-20261022]
+    paths: [previews/tools-presentation/**, .github/workflows/tools-presentation-live-20261022.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: tools-presentation-live-20261022
+  cancel-in-progress: true
+jobs:
+  publish-and-check:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+      TOOLS_RELEASE: 20261022-tools-live-v1
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: previews/tools-presentation
+          fetch-depth: 4
+      - name: Trust this checkout
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Capture the current published hub once
+        run: node --input-type=module -e "import{writeFileSync}from'node:fs';const r=await fetch('https://shiftsometimber.co.uk/tools',{signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Could not read Tools');writeFileSync('previews/tools-presentation/source-fixture.html',await r.text())"
+      - name: Check the exact approved source
+        run: |
+          node previews/tools-presentation/build.cjs
+          git diff --exit-code -- previews/tools-presentation/style.mjs
+          node --check previews/tools-presentation/worker.mjs
+          node --check previews/tools-presentation/deploy-live.mjs
+          node --check previews/tools-presentation/check-live.cjs
+      - name: Match the browser client
+        run: npm install --prefix "$RUNNER_TEMP/tools-browser" playwright@1.58.2 --no-audit --no-fund
+      - name: Stage approved hub with all public routes preserved
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node previews/tools-presentation/deploy-live.mjs stage
+      - name: Check staged mobile and desktop hub
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/tools-browser/node_modules/playwright
+          TOOLS_ORIGIN: https://shift-tools-presentation-20261022.matobrien.workers.dev
+        run: node previews/tools-presentation/check-live.cjs
+      - name: Activate only six exact hub routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/tools-presentation/deploy-live.mjs activate
+      - name: Verify actual public mobile and desktop hub
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/tools-browser/node_modules/playwright
+          TOOLS_ORIGIN: https://shiftsometimber.co.uk
+        run: node previews/tools-presentation/check-live.cjs
+      - name: Restore only owned hub routes if acceptance fails
+        if: ${{ failure() || cancelled() }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node previews/tools-presentation/deploy-live.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tools-presentation-live-${{ github.sha }}
+          path: tools-presentation-live-evidence/
+          retention-days: 90
