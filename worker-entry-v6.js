@@ -36,6 +36,7 @@ import {withPublicSeoCloseout} from './public-seo-closeout.mjs';
 import {withKnowledgeAssetRepair} from './knowledge-heading-repair.mjs';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
+import {timberShedPrivateRoutes,appendTimberShedPrivateExport} from './member-experience/timber-shed-private.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
 import { withSessionState } from './member-experience/session-state.mjs';
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
@@ -908,6 +909,7 @@ const worker = {
     if (authRecovery) return withMemberCors(authRecovery, request);
 
 
+    const timberShed = await timberShedPrivateRoutes(request,env); if(timberShed)return timberShed;
     const lifeBack = await lifeBackRoutes(request,env); if(lifeBack)return lifeBack;
     const passport = await passportRoutes(request, env); if(passport)return withMemberCors(passport,request);
     const treatmentNotifications=await treatmentNotificationRoutes(request,env);if(treatmentNotifications)return treatmentNotifications;
@@ -996,6 +998,7 @@ const worker = {
     );
     fallback = await appendHealthExport(request, env, fallback);
     fallback = await appendMemberDetailsExport(request, env, fallback);
+    fallback = await appendTimberShedPrivateExport(request, env, fallback);
     fallback = await appendPwaExport(request, env, fallback);
     fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);

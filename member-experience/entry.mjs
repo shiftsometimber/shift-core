@@ -24,6 +24,7 @@ import {grubIntelligenceCSS} from './grub-intelligence-client.mjs';
 import {withPasswordSettings,passwordSettingsRuntime} from './password-settings.mjs';
 import {withMemberDetails,memberDetailsRuntime,memberDetailsStyles} from './member-details.mjs';
 import {ordersHTML,ordersStyles,ordersRuntime} from './orders.mjs';
+import {timberShedPage,timberShedClient} from './timber-shed-page.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
@@ -32,6 +33,10 @@ export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
+  if(env.TIMBER_SHED_PRIVATE_ENABLED==='true'){
+    if(['/member/timber-shed','/member/timber-shed.html'].includes(path))return new Response(request.method==='HEAD'?null:timberShedPage,{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
+    if(path==='/assets/member-experience/timber-shed.mjs')return new Response(request.method==='HEAD'?null:timberShedClient,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+  }
   if(env.MY_TREATMENT_ENABLED==='true'){
     const treatment={'/member/treatment':[treatmentHTML(false),'text/html'],'/member/treatment.html':[treatmentHTML(false),'text/html'],'/assets/member-experience/treatment.mjs':[treatmentRuntime,'text/javascript'],'/assets/member-experience/treatment.css':[treatmentStyles,'text/css'],'/treatment-sw.js':[treatmentServiceWorker,'text/javascript'],'/treatment-manifest.json':[JSON.stringify({name:'My Timber',short_name:'My Timber',start_url:'/member/treatment',scope:'/member/',display:'standalone',theme_color:'#050505',background_color:'#050505'}),'application/manifest+json']}[path];
     if(treatment)return new Response(request.method==='HEAD'?null:treatment[0],{headers:{...privateHeaders,'Content-Type':treatment[1]+'; charset=utf-8',...(path==='/treatment-sw.js'?{'Service-Worker-Allowed':'/member/'}:{})}});
