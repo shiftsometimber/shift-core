@@ -1,0 +1,10 @@
+{
+  "commit": "3eea28ab2e2f833461a65f30693d589d5de42fb5",
+  "run": 39760481183,
+  "design": "20261022-about-preview-v6-links",
+  "blobs": {
+    "previews/about-presentation/page.mjs": "cb0dcfb55d8e5b31a1741b307e3bac9c85eaec00",
+    "previews/about-presentation/style.mjs": "db7586003034bfe96a222c7c6e969e6c7dc72756",
+    "previews/about-presentation/ticker.mjs": "9923bf75e6b5bb31d35cbfe7c8ece8e17d98da4b"
+  }
+}
