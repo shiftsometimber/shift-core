@@ -18,6 +18,7 @@ export const RELEASE_MACHINERY_REPAIR_PROTECTED=Object.freeze(['frontend','publi
 export const RELEASE_MACHINERY_REPAIR_POLICY=Object.freeze({record:RELEASE_MACHINERY_REPAIR_RECORD,inverses:RELEASE_MACHINERY_REPAIR_INVERSES,protectedPaths:RELEASE_MACHINERY_REPAIR_PROTECTED});
 const manifest=RELEASE_MACHINERY_REPAIR_MANIFEST,key=RELEASE_MACHINERY_REPAIR_KEY,sorted=a=>[...a].sort();
 const nativeCiReadSources=new WeakMap();
+const mainProjectionTargets=new Map();
 function git(...args){return execFileSync('git',args,{encoding:'utf8',maxBuffer:64e6});}
 const nativeFactRef=r=>r==='HEAD'?(freshDetachedSourceHead()??r):r;
 const rawBlob=(r,p)=>git('rev-parse',nativeFactRef(r)+':'+p).trim(),rawContent=(r,p)=>git('show',nativeFactRef(r)+':'+p),rawDiff=nativeGitSourceDifference,rawAncestor=(a,b)=>git('merge-base','--is-ancestor',a,b),currentHead=()=>freshDetachedSourceHead()??git('rev-parse','HEAD').trim();
@@ -175,7 +176,9 @@ export function releaseMachineryRepairHistoricalView(reader=null,{defaultReader=
  const ci=ciExecutionHistoricalView(reader,{defaultReader});
  if(ci.head===ci.rawHead)return releaseMachineryRepairHistoricalViewOriginal(reader,{defaultReader});
  const inner=releaseMachineryRepairHistoricalViewOriginal(ci.read,{defaultReader:false},ci);
- const main=mainReleaseHistoricalProjection(),mainExistence=new Map(),mainAffected=p=>{if(!main.affected(p))return false;if(!mainExistence.has(p))mainExistence.set(p,git('ls-tree',inner.head,'--',p).trim()!=='');return mainExistence.get(p);};
+ const main=mainReleaseHistoricalProjection(),targetKey=main.actual+':'+inner.head;
+ if(!mainProjectionTargets.has(targetKey))mainProjectionTargets.set(targetKey,Object.freeze(main.paths.filter(p=>git('ls-tree',inner.head,'--',p).trim()!=='')));
+ const mainTargets=mainProjectionTargets.get(targetKey),mainAffected=p=>mainTargets.includes(p)||mainTargets.some(item=>item.startsWith(p+'/'));
  const ref=(r,p)=>mainAffected(p)&&(r==='HEAD'||r===ci.rawHead)?inner.head:r===ci.rawHead?'HEAD':r;
  return {...inner,rawHead:ci.rawHead,affected:p=>mainAffected(p)||ci.affected(p)||inner.affected(p),
   read:(r,p)=>inner.read(ref(r,p),p),blob:(r,p)=>inner.blob(ref(r,p),p),content:(r,p)=>inner.content(ref(r,p),p),
