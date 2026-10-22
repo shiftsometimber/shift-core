@@ -1,5 +1,5 @@
 import {catalogue} from './catalogue.mjs';
-export const version='20261022-options-preview-v1';
+export const version='20261022-options-preview-v2-compact';
 export const path='/treatment-options';
 export const arrow='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 export const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
