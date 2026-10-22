@@ -814,6 +814,50 @@
     },
     "productionVerified": false,
     "maintenanceSource": "8d308af94d6308ce4ec509b6232fe09075d3cf9f"
+  },
+  "currentMainNetProjectionFollowup": {
+    "kind": "EXACT_ZERO_NET_HEALTH_GUARD_PROJECTION_20261022",
+    "base": "c9dea42fc5326e98eacabf9aadd271ef21487553",
+    "payload": "a345267ae5c8006b32f606fdf7d4af85d561bd59",
+    "paths": [
+      "release/main-release-readiness-scope-20261021.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "localFocusedRun": {
+        "tests": 27,
+        "passed": 21,
+        "failed": 6,
+        "sharedFailure": "the staged Health regression test was restored exactly to its original base bytes and therefore is absent from the final net diff"
+      }
+    },
+    "repair": {
+      "zeroNetPath": "tests/health-vision-scope-20261021.test.mjs",
+      "stagedHistoryStillVerified": true,
+      "finalNetDiffExact": true,
+      "unrelatedChangeRejectionRetained": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "4d6cd542d444f5aa17a3b3093ae793d003026e46"
   }
 }
 
