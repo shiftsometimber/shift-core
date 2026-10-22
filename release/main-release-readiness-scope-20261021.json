@@ -570,6 +570,50 @@
     },
     "productionVerified": false,
     "maintenanceSource": "9dc017fd1386464cd0926565e98b04bb49f8ac9f"
+  },
+  "releaseGateTargetCacheFollowup": {
+    "kind": "EXACT_HISTORICAL_TARGET_CACHE_REPAIR_20261022",
+    "base": "bac2dc8cb5f10ca654ec934977d990f6b7963c8c",
+    "payload": "3277db25edd8ea2a997fe8fbf6745247bda422d7",
+    "paths": [
+      "release/release-machinery-repair-scope-20261014.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "localFocusedRun": {
+        "interruptedAfterSeconds": 175,
+        "completedTests": 0,
+        "activeTest": "one current finite payload exposes only the frozen original baseline to historical guards",
+        "observedWorkerCpuPercent": 121,
+        "reason": "historical target existence was cached only inside each transient view"
+      }
+    },
+    "repair": {
+      "immutableTargetSetCachedByActualAndHistoricalHead": true,
+      "arbitraryPathGitProbeRemoved": true,
+      "currentAuthenticationRetained": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "cfbb16cd1d8678dfd838048b2f04b6c7410b522e"
   }
 }
 
