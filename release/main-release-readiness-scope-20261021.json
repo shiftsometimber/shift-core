@@ -662,6 +662,49 @@
     },
     "productionVerified": false,
     "maintenanceSource": "a691fc5e260a2611fb0aae7900cbd5422ede63b8"
+  },
+  "releaseGateRootInverseFollowup": {
+    "kind": "EXACT_ROOT_OUTPUT_BUFFER_INVERSE_REPAIR_20261022",
+    "base": "a936f9aaad51cb8f9da680ac66c154c098892e3f",
+    "payload": "af7b90df5f8303c0ba9b17e11e475efb00cad9db",
+    "paths": [
+      "release/root-share-preview-scope.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "localFocusedRun": {
+        "tests": 3,
+        "passed": 0,
+        "failed": 3,
+        "sharedFailure": "historical root-share reconstruction retained the later two output-buffer options"
+      }
+    },
+    "repair": {
+      "twoExactOutputBufferOptionsRemovedOnlyFromHistoricalReconstruction": true,
+      "currentOutputBufferRetained": true,
+      "currentStageProjectionExtended": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "2badc697f21b901cd86cf805d1f2726f3efacab6"
   }
 }
 
