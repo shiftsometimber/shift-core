@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
+import {myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';
 
 export const MAIN_RELEASE_BASE='39c703ac068b800bbf4a92a9277e21bd3d7b89e6';
 export const MAIN_RELEASE_PAYLOAD='e85fe30291663f37d800009a9199620d6e2f1cb6';
@@ -217,7 +218,8 @@ function regularAt(ref,path){assert(git('ls-tree',ref,'--',path).startsWith('100
 function retainedTests(name,prior,current){assert.deepEqual(testNames(current),testNames(prior),name+' test selection changed');assert((current.match(/assert\./g)||[]).length>=(prior.match(/assert\./g)||[]).length,name+' assertions removed');}
 
 export function verifyMainReleaseReadinessExtension(){
- const actual=git('rev-parse','HEAD');
+ const myTimber=myTimberExperienceHistoricalView(),rawActual=git('rev-parse','HEAD'),actual=myTimber.head;
+ assert.equal(myTimber.rawHead,rawActual,'My Timber actual HEAD required before release-readiness projection');
  assert.equal(git('diff','--name-only','HEAD','--'),'','Release-readiness tracked source changed');
  assert.equal(git('diff','--cached','--name-only','--'),'','Release-readiness staged source changed');
  assert.equal(git('for-each-ref','--format=%(refname)','refs/replace'),'','Release-readiness replacement history forbidden');
@@ -416,6 +418,6 @@ export function verifyMainReleaseReadinessExtension(){
  const transportRoot=content(MAIN_RELEASE_TRANSPORT_PAYLOAD,'release/root-share-preview-scope.mjs');for(const fragment of ['wholeEstateTransportFollowup=record.wholeEstateTransportFollowup',"wholeEstateTransportFollowup.kind,'EXACT_WHOLE_ESTATE_TRANSIENT_FETCH_RETRY_20261023'",'transportFragments'])assert(transportRoot.includes(fragment),'Whole-estate fetch retry historical projection bridge missing: '+fragment);
 
  assert.equal(readFileSync(MAIN_RELEASE_RECEIPT,'utf8').trimEnd(),content(actual,MAIN_RELEASE_RECEIPT).trimEnd(),'Working release-readiness receipt changed');
- assert.equal(git('rev-parse','HEAD'),actual,'Release-readiness HEAD moved');
- return Object.freeze({actual,predecessor:MAIN_RELEASE_BASE,payload:MAIN_RELEASE_PAYLOAD,followupPayload:MAIN_RELEASE_FOLLOWUP_PAYLOAD,timeoutPayload:MAIN_RELEASE_TIMEOUT_PAYLOAD,routePayload:MAIN_RELEASE_ROUTE_PAYLOAD,routeExpansionPayload:MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD,aliasWindowPayload:MAIN_RELEASE_ALIAS_WINDOW_PAYLOAD,completionPayload:MAIN_RELEASE_COMPLETION_PAYLOAD,compositionPayload:MAIN_RELEASE_COMPOSITION_PAYLOAD,projectionCachePayload:MAIN_RELEASE_PROJECTION_CACHE_PAYLOAD,targetCachePayload:MAIN_RELEASE_TARGET_CACHE_PAYLOAD,rootProjectionPayload:MAIN_RELEASE_ROOT_PROJECTION_PAYLOAD,rootInversePayload:MAIN_RELEASE_ROOT_INVERSE_PAYLOAD,reconciliationPayload:MAIN_RELEASE_RECONCILIATION_PAYLOAD,reconciliationComposition:MAIN_RELEASE_RECONCILIATION_COMPOSITION,upstreamMain:MAIN_RELEASE_UPSTREAM_MAIN,guardCompositionPayload:MAIN_RELEASE_GUARD_COMPOSITION_PAYLOAD,netProjectionPayload:MAIN_RELEASE_NET_PROJECTION_PAYLOAD,entityPayload:MAIN_RELEASE_ENTITY_PAYLOAD,entityCompositionPayload:MAIN_RELEASE_ENTITY_COMPOSITION_PAYLOAD,retryPayload:MAIN_RELEASE_RETRY_PAYLOAD,transportPayload:MAIN_RELEASE_TRANSPORT_PAYLOAD,productionVerified:false});
+ assert.equal(git('rev-parse','HEAD'),rawActual,'Release-readiness HEAD moved');
+ return Object.freeze({actual:rawActual,predecessor:MAIN_RELEASE_BASE,payload:MAIN_RELEASE_PAYLOAD,followupPayload:MAIN_RELEASE_FOLLOWUP_PAYLOAD,timeoutPayload:MAIN_RELEASE_TIMEOUT_PAYLOAD,routePayload:MAIN_RELEASE_ROUTE_PAYLOAD,routeExpansionPayload:MAIN_RELEASE_ROUTE_EXPANSION_PAYLOAD,aliasWindowPayload:MAIN_RELEASE_ALIAS_WINDOW_PAYLOAD,completionPayload:MAIN_RELEASE_COMPLETION_PAYLOAD,compositionPayload:MAIN_RELEASE_COMPOSITION_PAYLOAD,projectionCachePayload:MAIN_RELEASE_PROJECTION_CACHE_PAYLOAD,targetCachePayload:MAIN_RELEASE_TARGET_CACHE_PAYLOAD,rootProjectionPayload:MAIN_RELEASE_ROOT_PROJECTION_PAYLOAD,rootInversePayload:MAIN_RELEASE_ROOT_INVERSE_PAYLOAD,reconciliationPayload:MAIN_RELEASE_RECONCILIATION_PAYLOAD,reconciliationComposition:MAIN_RELEASE_RECONCILIATION_COMPOSITION,upstreamMain:MAIN_RELEASE_UPSTREAM_MAIN,guardCompositionPayload:MAIN_RELEASE_GUARD_COMPOSITION_PAYLOAD,netProjectionPayload:MAIN_RELEASE_NET_PROJECTION_PAYLOAD,entityPayload:MAIN_RELEASE_ENTITY_PAYLOAD,entityCompositionPayload:MAIN_RELEASE_ENTITY_COMPOSITION_PAYLOAD,retryPayload:MAIN_RELEASE_RETRY_PAYLOAD,transportPayload:MAIN_RELEASE_TRANSPORT_PAYLOAD,productionVerified:false});
 }
