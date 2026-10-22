@@ -57,5 +57,130 @@
     "unrelatedChangesApproved": false
   },
   "productionVerified": false,
-  "maintenanceSource": "39f5126daa15406b7f7456d57b58b31d84693d5a"
+  "maintenanceSource": "39f5126daa15406b7f7456d57b58b31d84693d5a",
+  "followup": {
+    "kind": "EXACT_TERMINAL_RELEASE_GATE_REPAIR_20261022",
+    "base": "aec895cc2543f83f8dd7af0111850745605b95a6",
+    "payload": "35eb63b29bb2e617775aa900ffaa657ad6a9b384",
+    "paths": [
+      ".github/workflows/programme-day-preview.yml",
+      ".github/workflows/shift-coach-integration.yml",
+      "release/app-preflight.mjs",
+      "release/root-share-preview-scope.mjs",
+      "tests/bounded-source-scheduling-20261016.test.mjs",
+      "tests/combined-legacy-projection-20261014.test.mjs",
+      "tests/combined-organic-admission-negative-20261014.test.mjs",
+      "tests/food-diary-london-date-stack-20261015.test.mjs",
+      "tests/recorded-week-browser-repair-20261017.test.mjs",
+      "tests/root-share-preview.test.mjs",
+      "tests/website-editorial-scope-20261018.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "observedFailures": {
+      "integration": {
+        "run": 39684371014,
+        "job": 119514568491,
+        "conclusion": "cancelled",
+        "reason": "maximum execution time 4h0m0s",
+        "artifact": {
+          "id": 12396870990,
+          "sha256": "827e1e8f7ecf11d1ccbc8c0c1ee40a3f7bec546490684eba3c81e633de671b26",
+          "bytes": 72009,
+          "files": 46
+        },
+        "failedTests": [
+          "tests/combined-legacy-projection-20261014.test.mjs: independent actual Git proof",
+          "tests/combined-organic-admission-negative-20261014.test.mjs: missing-ledger",
+          "tests/combined-organic-admission-negative-20261014.test.mjs: unknown-tail",
+          "tests/combined-organic-admission-negative-20261014.test.mjs: missing-ledger-protected-change",
+          "tests/root-share-preview.test.mjs: prepared Worker hook"
+        ]
+      },
+      "programme": {
+        "run": 39684370994,
+        "job": 119514568575,
+        "conclusion": "cancelled",
+        "reason": "maximum execution time 6h0m0s",
+        "artifact": {
+          "id": 12400843668,
+          "sha256": "cc9c51fa935dabe58830e9a24e78742d5a770eab490356e6754dc115624b659c",
+          "bytes": 96733
+        },
+        "sourceTestsLastCompleted": 335,
+        "failures": [
+          "website editorial isolated HEAD-move child exceeded 45 seconds",
+          "recorded-week fixture expected pre-reconciliation coaching config",
+          "bounded overlap fixture used a 40ms race window",
+          "Growth preflight compared verified Health paths with the pre-Health app preview"
+        ]
+      },
+      "programmeSingleFileEvidence": {
+        "run": 39626334852,
+        "job": 119312440952,
+        "artifact": {
+          "id": 12383291644,
+          "sha256": "95c66bd4678c0e8119aa2375bec981087fcd165a175effa912e16a0024663dc8",
+          "bytes": 110874
+        },
+        "sourceTestsLastCompleted": 617,
+        "observedFailures": 0,
+      "nextTest": "Combined native Original binding exact prior102 restoration"
+    },
+    "publicAlias": {
+      "run": 39724771343,
+      "job": 119646059468,
+      "conclusion": "failure",
+      "failure": "Legacy reporting drift assertion received the exact repaired root-share test before its historical projection"
+      }
+    },
+    "repair": {
+      "integrationWorkflowTimeoutMinutes": 360,
+      "integrationWorkflowTaskConcurrency": 2,
+      "standaloneCloneFixtures": true,
+      "objectAlternatesRemoved": true,
+      "workingTreeSyncedToSyntheticCommit": true,
+      "rootShareHistoricalPreparedSource": "da67872e84109577d5c6e6eff5cb9a85206c537f",
+      "rootShareHistoricalBaseline": "7a74a7d4a29421a540e67786fa83b7e6ac44b6c0",
+    "rootShareHistoricalProjectionReconciled": true,
+      "programmeSourceTestConcurrency": 1,
+      "programmeWorkflowTaskConcurrency": 2,
+      "programmeTriggerPaths": [
+        "release/app-preflight.mjs",
+      "release/root-share-preview-scope.mjs",
+        "tests/bounded-source-scheduling-20261016.test.mjs",
+        "tests/combined-legacy-projection-20261014.test.mjs",
+        "tests/combined-organic-admission-negative-20261014.test.mjs",
+        "tests/food-diary-london-date-stack-20261015.test.mjs",
+        "tests/recorded-week-browser-repair-20261017.test.mjs",
+        "tests/root-share-preview.test.mjs",
+        "tests/website-editorial-scope-20261018.test.mjs"
+      ],
+      "immutableHistoryReuseForLongTest": true,
+      "headMoveFixtureTimeoutMs": 120000,
+      "boundedOverlapDelayMs": 500,
+      "healthAndMainReleasePathsIndependentlyAdmitted": true,
+      "coachingFixtureAssertionReconciled": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "memberRuntimeChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "d4dc9cb02dd275c78a2b418c3e6f8fd08da39c4e"
+  }
 }
+
