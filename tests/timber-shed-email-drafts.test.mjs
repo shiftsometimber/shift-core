@@ -44,3 +44,31 @@ test('email draft helpers never call a mail provider, network or mailbox mutatio
  assert.throws(()=>memberNotificationEmailDraft('not-an-event','fictional@example.test'),/invalid_member_email_draft/);
  assert.throws(()=>moderatorNotificationEmailDraft('not-an-event'),/invalid_moderator_email_draft/);
 });
+test('reply alerts require an explicit member opt-in; moderation decisions remain service drafts',()=>{
+ for(const kind of ['approved','rejected','removed']){
+  assert.equal(memberNotificationEmailDraft(kind,'fictional@example.test').deliveryPreference,'service');
+ }
+ assert.equal(memberNotificationEmailDraft('reply','fictional@example.test').deliveryPreference,'opt-in');
+ for(const kind of ['pending','report','priority']){
+  assert.equal(moderatorNotificationEmailDraft(kind).deliveryPreference,'on-duty-staff-only');
+ }
+});
+test('every draft has complete plain-text body and no actual customer or clinical content',()=>{
+ const all=[
+  ...['approved','rejected','removed','reply'].map(k=>memberNotificationEmailDraft(k,'fictional@example.test')),
+  ...['pending','report','priority'].map(moderatorNotificationEmailDraft)
+ ];
+ assert.equal(all.length,7);
+ for(const item of all){
+  assert.equal(item.state,'DRAFT_ONLY_NOT_APPROVED');
+  assert.match(item.version,/v2-draft/);
+  assert(item.subject.startsWith('The Timber Shed'));
+  assert(item.text.length>150);
+  assert.match(item.text,/Everyone’s welcome\. Hassle isn’t\./);
+  assert.match(item.text,/not monitored continuously/i);
+  assert.deepEqual(item.attachments,[]);
+  assert.deepEqual(item.cc,[]);
+  assert.deepEqual(item.bcc,[]);
+  assert(!item.text.includes('fictional@example.test'));
+ }
+});
