@@ -1,0 +1,10 @@
+{
+  "sourceWorker": "shift-knowledge-presentation-20261022",
+  "release": "20261022-knowledge-live-v1",
+  "captured": "2026-10-22",
+  "modules": {
+    "previews/knowledge-presentation/catalogue.mjs": "9c35ac937b77390201f03eee17160990644fb06e956efe36baa49fac61bdbd2f",
+    "previews/knowledge-presentation/live-catalogue.mjs": "f2670fd04429a1d24804c32798a6214a4e8daf7baf138bc60c2b0ee2ef94adff",
+    "previews/knowledge-presentation/page.mjs": "ece1bedbf7a48016022652d519165d512cb50aa6406917cbb0f8ba4406edac50"
+  }
+}

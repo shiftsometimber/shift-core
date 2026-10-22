@@ -1,0 +1,48 @@
+{
+  "name": "shift-blog-publisher-staging",
+  "main": "staging.mjs",
+  "compatibility_date": "2026-08-09",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    "DAILY_CONTENT_BUDGET_VERIFIED": "true",
+    "DAILY_CONTENT_GATEWAY": "shift-ai",
+    "SHIFT_AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "BLOG_STAGING_MODE": "isolated-acceptance",
+    "BLOG_CONTRIBUTOR_ENABLED": "true",
+    "BLOG_MEDIA_UPLOAD_ENABLED": "true",
+    "BLOG_ACCESS_ACCEPTED": "false",
+    "DAILY_WEBSITE_CONTENT_ENABLED": "false",
+    "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH": "false"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shift-blog-publisher-stage-20261022",
+      "database_id": "a7b239ea-384b-4256-99fc-6eca94ef0986"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BLOG_MEDIA",
+      "bucket_name": "shift-blog-media"
+    }
+  ],
+  "ai": {
+    "binding": "AI"
+  },
+  "services": [
+    {
+      "binding": "CORE",
+      "service": "shift-core"
+    },
+    {
+      "binding": "KNOWLEDGE",
+      "service": "shift-knowledge-presentation-20261022"
+    }
+  ]
+}

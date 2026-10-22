@@ -1,0 +1,30 @@
+{
+  "kind": "protected_hosted_acceptance",
+  "actualHTTP": true,
+  "actualD1": true,
+  "actualR2": true,
+  "syntheticOwner": true,
+  "controlledClock": true,
+  "genuineHQOwnerSessionVerified": false,
+  "unattendedScheduleVerified": false,
+  "productionPublication": false,
+  "checks": {
+    "privateStagingGate": true,
+    "genuineHostedImageAndMP4UploadReadback": true,
+    "actualGatewayD1PublicationAndSixHostedHTTPReceipts": true,
+    "siteSchemaMattAuthorAndPrivatePage": true,
+    "relatedLineUsesActualPublicDestinationWithoutIndividualApproval": true,
+    "rewriteHeldAndContributorCannotApprove": true,
+    "hostedApprovedRefreshPreservesOriginalDate": true,
+    "unsafeCopyHeld": true,
+    "hostedOwnerConsoleHasUploadControl": true,
+    "hostedRollbackIsPrivateOwnerReviewedRevision": true,
+    "hostedCrossKeyReceiptAndMediaIsolation": true,
+    "hostedKeyRevocationStopsReadAndUpload": true
+  },
+  "articlePath": "/articles/blog-stage-847f2a97f221455bac72ddcb270c6698",
+  "stageBase": "https://shift-blog-publisher-staging.matobrien.workers.dev",
+  "realModel": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  "pass": true,
+  "completedAt": "2026-10-22T15:50:00.155664+00:00"
+}
