@@ -1,0 +1,18 @@
+{
+  "design": "20261022-stopping-presentation-v3",
+  "commit": "1280042742b49559067781759e0490c4c35e4e22",
+  "run": 39812947989,
+  "job": 119943803553,
+  "artifact": {
+    "id": 12441300824,
+    "name": "stopping-preview-1280042742b49559067781759e0490c4c35e4e22",
+    "digest": "sha256:f358f953c22f685b039c037ccd446c2088473ea5a381f29e74ff90d03db2a457"
+  },
+  "blobs": {
+    "previews/stopping-presentation/worker.mjs": "55feb9722bc8c2fe6435c8235d082cfb468a863e",
+    "previews/stopping-presentation/style.mjs": "a6af5b42ebb2056cef7017cc203f04d3fabc6260",
+    "previews/stopping-presentation/source-fixture.html": "1031ab129eec3c87b4ab85fcc0da30cb72d7510e"
+  },
+  "completePublicHtmlSha256": "a54b726d94cba3ababe4f71e08138641ee9896a5fc5112fdbfbfedb4e721c8a6",
+  "previewSnapshotOnly": true
+}
