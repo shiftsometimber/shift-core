@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {createTimberShedForumRoutes} from '../member-experience/timber-shed-forum-routes.mjs';
 const origin='https://shift.test';
 const path='/v1/timber-shed/forum/';
-function setup(){
+function setup(modelClassifier){
  const sqlite=new DatabaseSync(':memory:');sqlite.exec('PRAGMA foreign_keys=ON; CREATE TABLE users(id INTEGER PRIMARY KEY,date_of_birth TEXT); CREATE TABLE user_auth(user_id INTEGER PRIMARY KEY,email_verified INTEGER);');
  sqlite.exec(readFileSync(new URL('../member-experience/timber-shed-forums.sql',import.meta.url),'utf8'));
  for(const [id,dob,verified] of [[1,'1985-01-01',1],[2,'1990-05-01',1],[3,'1981-08-15',1],[4,'2013-02-01',1],[5,'1980-01-01',0]]){
@@ -30,7 +30,7 @@ function setup(){
   }
  };
  const auth=async request=>{const id=Number(request.headers.get('x-member'));return id?{userId:id}:{response:Response.json({error:'authentication_required'},{status:401})}};
- const route=createTimberShedForumRoutes(auth,()=>new Date('2026-10-22T12:00:00Z'));
+ const route=createTimberShedForumRoutes(auth,()=>new Date('2026-10-22T12:00:00Z'),modelClassifier);
  const env={TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_PRIVATE_ENABLED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true',DB:db};
  async function send(user,resource,method='GET',body,query=''){
   const headers={'x-member':String(user)};
@@ -256,4 +256,45 @@ test('safeguarding reports appear ahead of routine reports in moderator queue',a
  assert.equal(reports.length,2);
  assert.equal(reports[0].reason,'self-harm-risk');
  assert.equal(reports[1].reason,'spam');
+});
+test('AI model mode cannot run without separately approved data-processing gate',async()=>{
+ let calls=0;const t=setup(async()=>{calls++;return {ok:true}});
+ t.env.TIMBER_SHED_AI_MODERATION_ENABLED='true';
+ await profile(t,1,'Shed Walker');
+ const result=await submit(t,1);
+ assert.equal(result.status,503);
+ assert.equal(result.body.error,'model_not_authorised');
+ assert.equal(calls,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
+});
+test('mock model adds independent risk signal; high-risk post cannot be approved',async()=>{
+ let calls=0;
+ const t=setup(async()=>{calls++;return{ok:true,policyVersion:'bouncer-omni-2026-10-22-v1',model:'omni-moderation-latest',severity:'high',priority:1,categories:['self-harm'],flagged:true}});
+ t.env.TIMBER_SHED_AI_MODERATION_ENABLED='true';
+ t.env.TIMBER_SHED_AI_PROVIDER_APPROVED='true';
+ await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const result=await submit(t,1,'main-shed','I took a nice walk today and felt good.');
+ assert.equal(result.status,202);assert.equal(calls,1);
+ const pending=(await t.send(3,'moderation')).body.pending[0];
+ assert.equal(pending.severity,'high');
+ assert(pending.categories.includes('model:self-harm'));
+ assert.equal((await t.send(3,'moderate','POST',{postId:result.body.id,action:'approve'})).status,409);
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+});
+test('mock clean model still requires human approval; model failure saves nothing',async()=>{
+ const clean=setup(async()=>({ok:true,policyVersion:'bouncer-omni-2026-10-22-v1',model:'omni-moderation-latest',severity:'routine',priority:3,categories:[],flagged:false}));
+ clean.env.TIMBER_SHED_AI_MODERATION_ENABLED='true';clean.env.TIMBER_SHED_AI_PROVIDER_APPROVED='true';
+ await profile(clean,1,'Shed Walker');
+ clean.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
+ const result=await submit(clean,1);
+ assert.equal(result.status,202);
+ assert.equal((await clean.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+ assert.equal((await clean.send(3,'moderate','POST',{postId:result.body.id,action:'approve'})).status,200);
+ const failed=setup(async()=>({ok:false,error:'model_unavailable'}));
+ failed.env.TIMBER_SHED_AI_MODERATION_ENABLED='true';failed.env.TIMBER_SHED_AI_PROVIDER_APPROVED='true';
+ await profile(failed,1,'Shed Walker');
+ const error=await submit(failed,1);
+ assert.equal(error.status,503);
+ assert.equal(failed.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
 });

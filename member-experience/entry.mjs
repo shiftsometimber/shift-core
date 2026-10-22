@@ -38,7 +38,8 @@ export function memberExperienceRoutes(request, env) {
   if(env.TIMBER_SHED_PRIVATE_ENABLED==='true'){
     if(['/member/timber-shed','/member/timber-shed.html'].includes(path)){
       const forum=(env.TIMBER_SHED_FORUM_ENABLED==='true'&&env.TIMBER_SHED_FORUM_PILOT_APPROVED==='true');
-      const page=forum?timberShedPage.replace(timberShedForumPreview(),timberShedForumPilotMarkup).replace('</head>','<style>'+timberShedForumPilotCSS+'</style></head>').replace('</body>','<script src="/assets/member-experience/timber-shed-forum.mjs" defer></script></body>'):timberShedPage;
+      const forumMarkup=env.TIMBER_SHED_AI_MODERATION_ENABLED==='true'&&env.TIMBER_SHED_AI_PROVIDER_APPROVED==='true'?timberShedForumPilotMarkup.replace('Automated rule-based safety screening','AI-model and rule-based safety screening'):timberShedForumPilotMarkup;
+      const page=forum?timberShedPage.replace(timberShedForumPreview(),forumMarkup).replace('</head>','<style>'+timberShedForumPilotCSS+'</style></head>').replace('</body>','<script src="/assets/member-experience/timber-shed-forum.mjs" defer></script></body>'):timberShedPage;
       return new Response(request.method==='HEAD'?null:page,{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
     }
     if((env.TIMBER_SHED_FORUM_ENABLED==='true'&&env.TIMBER_SHED_FORUM_PILOT_APPROVED==='true')&&path==='/assets/member-experience/timber-shed-forum.mjs')return new Response(request.method==='HEAD'?null:timberShedForumPilotClient,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});

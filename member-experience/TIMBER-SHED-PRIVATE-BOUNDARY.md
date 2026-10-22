@@ -82,3 +82,21 @@ The Main Shed; Shifting Timber; Grub & Fit; Good to Talk; Small Wins; Life After
 ## Member-controlled forum withdrawal
 
 A signed-in member can review only their own submitted posts and withdraw a pending, approved or rejected post. The withdrawal is atomic with its audit record, changes status to `withdrawn`, clears the post title and replaces its stored body with a withdrawal marker. An approved parent withdrawal also hides its replies from the member-visible thread. The author cannot withdraw another member's content. This does **not** yet implement full erasure of backups, quotations, appeals, retention policies or regulatory data-subject requests; those remain release gates. No real-member feature has been enabled.
+
+## AI-model moderation integration candidate (22 October 2026)
+
+The server-side adapter `member-experience/timber-shed-ai-moderation.mjs` implements a separately gated **real model moderation API** integration candidate, using OpenAI's `omni-moderation-latest` endpoint for text classification. It does **not** run in production or transmit real member content while the gate is off.
+
+**Activation contract (requires fresh approvals):**
+- `TIMBER_SHED_AI_MODERATION_ENABLED=true` — enables model classification only within the already disabled forum pilot.
+- `TIMBER_SHED_AI_PROVIDER_APPROVED=true` — explicit separate legal/privacy/data-processing approval. Without this, no third-party call occurs, even if the model feature flag is accidentally enabled.
+- `TIMBER_SHED_AI_MODERATION_KEY` — server-only provider secret. Never expose it to browsers, repository, logs or public preview.
+- The existing four forum gates remain required. No key has been created or configured as part of this build, and no live model call has been made.
+
+**Behaviour:** The member deliberately submits a title/body. The existing local rules screen the same text. If and only if all gates are enabled and a provider key is available, the server calls the allowlisted model moderation endpoint with only the submitted title and body. The provider returns flagged categories; no generated answer or model-written forum content is produced. The server merges local and model categories conservatively, using the higher severity. Posts and screening metadata are inserted atomically and remain pending until independent human approval. High/critical or missing/outdated screening cannot pass ordinary approval. On a timeout, malformed response, rate limit or provider failure, submission returns an explicit error and no post is saved. The member's editor retains the unsent draft. Model identity, policy version, severity and category IDs are recorded; raw text is not duplicated in the screening table.
+
+**Privacy:** Model processing would transfer voluntarily authored forum text to a third party. It is not equivalent to publishing it publicly, but it is a distinct data-processing activity. Forum text may contain health or mental-health disclosures. Before enabling, complete the DPIA, lawful basis and special-category condition where applicable, provider agreement and retention/region checks, transparency wording, appropriate age assurance and moderation/safeguarding acceptance. No My Timber health records, contact details, profile fields, identifiers, IP address or cookies are intentionally sent to the provider. The external model cannot be considered a safeguarding officer or medical professional.
+
+**Coverage limits:** The model's categories include self-harm, harassment, hate, sexual content, illicit activity and violence. It is not a complete classifier for eating disorders, medication dosing, subtle privacy leaks or suicide risk. SHIFT's additional local rules and human specialist review remain mandatory. The model must not automatically approve or publish posts, and no model outcome is an emergency alert or promise of live monitoring.
+
+**Testing:** Synthetic model responses and injected fetch mocks exercise the authorisation gate, minimum text-only request, category parsing, unknown-category handling, provider errors, no-publish invariant, risk merging, model-policy drift and no-write-on-failure. A real API connectivity check with **fictional text only** is still required after the service account and cost/data terms have been approved. No real member content should be used for initial tests.

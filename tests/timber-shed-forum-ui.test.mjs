@@ -22,7 +22,7 @@ test('member page switches from fictional preview only under a separate forum fe
  const source=readFileSync(new URL('../member-experience/entry.mjs',import.meta.url),'utf8');
  assert.match(source,/env\.TIMBER_SHED_FORUM_ENABLED==='true'/);
  assert.match(source,/TIMBER_SHED_FORUM_PILOT_APPROVED/);
- assert.match(source,/replace\(timberShedForumPreview\(\),timberShedForumPilotMarkup\)/);
+ assert.match(source,/replace\(timberShedForumPreview\(\),forumMarkup\)/);
  assert.match(source,/env\.TIMBER_SHED_PRIVATE_ENABLED==='true'/);
  assert.match(source,/env\.MEMBER_EXPERIENCE_V1_ENABLED !== 'true'/);
  assert(timberShedPage.includes(timberShedForumPreview()));
@@ -53,4 +53,10 @@ test('members can review and withdraw their own posts without public-profile con
  assert.match(timberShedForumPilotClient,/api\('withdraw',\{postId:post.id\}\)/);
  assert.match(timberShedForumPilotClient,/Withdraw my post/);
  assert.doesNotMatch(timberShedForumPilotClient,/localStorage|sessionStorage|innerHTML/);
+});
+
+test('AI-assisted label is displayed only when both model and provider gates are enabled',()=>{
+ const src=readFileSync(new URL('../member-experience/entry.mjs',import.meta.url),'utf8');
+ assert.match(src,/TIMBER_SHED_AI_MODERATION_ENABLED==='true'&&env\.TIMBER_SHED_AI_PROVIDER_APPROVED==='true'/);
+ assert.match(src,/AI-model and rule-based safety screening/);
 });

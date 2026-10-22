@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS timber_shed_forum_audit (
 CREATE TABLE IF NOT EXISTS timber_shed_bouncer_screenings (
   post_id TEXT PRIMARY KEY REFERENCES timber_shed_forum_posts(id) ON DELETE CASCADE,
   policy_version TEXT NOT NULL,
+  model_name TEXT,
   severity TEXT NOT NULL CHECK(severity IN ('routine','review','high','critical')),
   priority INTEGER NOT NULL CHECK(priority BETWEEN 0 AND 3),
   categories_json TEXT NOT NULL DEFAULT '[]',

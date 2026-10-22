@@ -1,6 +1,7 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {timberShedForumRooms} from './timber-shed-forums.mjs';
 import {screenForumText,bouncerSubmissionNotice,BOUNCER_VERSION} from './timber-shed-community-bouncer.mjs';
+import {classifyForumSubmissionWithModel,mergeModerationSignals,AI_MODERATION_POLICY} from './timber-shed-ai-moderation.mjs';
 
 // Separate, disabled-by-default forum backend. No My Timber health/profile reads.
 const HEADERS={'Cache-Control':'private, no-store, max-age=0','Vary':'Cookie','X-Robots-Tag':'noindex, nofollow, noarchive','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
@@ -53,7 +54,7 @@ async function parse(request){
  try{return {value:JSON.parse(raw)}}catch{return {error:'invalid_json',status:400}}
 }
 const isModerator=async(db,id)=>!!(await db.prepare("SELECT user_id FROM timber_shed_forum_moderators WHERE user_id=? AND active=1").bind(id).first());
-export function createTimberShedForumRoutes(authenticate=authenticateMember,now=()=>new Date()){
+export function createTimberShedForumRoutes(authenticate=authenticateMember,now=()=>new Date(),modelClassifier=classifyForumSubmissionWithModel){
  return async function forumRoutes(request,env){
   const path=new URL(request.url).pathname;
   if(!path.startsWith('/v1/timber-shed/forum/'))return null;
@@ -113,12 +114,22 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
     }
     const quota=await db.prepare("SELECT COUNT(*) AS n FROM timber_shed_forum_posts WHERE user_id=? AND created_at>=?").bind(uid,new Date(now().getTime()-86400000).toISOString()).first();
     if(Number(quota?.n||0)>=5)return json({error:'daily_submission_limit'},429);
-    const screening=screenForumText({title:input.title||'',body:input.body});
+    const local=screenForumText({title:input.title||'',body:input.body});
+    const modelRequired=env.TIMBER_SHED_AI_MODERATION_ENABLED==='true';
+    if(modelRequired&&env.TIMBER_SHED_AI_PROVIDER_APPROVED!=='true')return json({error:'model_not_authorised'},503);
+    let screening=local;
+    if(modelRequired){
+     const modelResult=await modelClassifier({title:input.title||'',body:input.body},env);
+     if(!modelResult?.ok)return json({error:'model_unavailable'},503);
+     const merged=mergeModerationSignals(local,modelResult);
+     if(!merged.ok)return json({error:'model_unavailable'},503);
+     screening=merged;
+    }
     const id=crypto.randomUUID();
     // Atomic submission and screening: no post is accepted without a triage record.
     const results=await db.batch([
      db.prepare("INSERT INTO timber_shed_forum_posts(id,user_id,room_id,parent_id,title,body,status,created_at) VALUES(?,?,?,?,?,?,'pending',?)").bind(id,uid,input.roomId,input.parentId||null,input.title||null,input.body,timestamp),
-     db.prepare("INSERT INTO timber_shed_bouncer_screenings(post_id,policy_version,severity,priority,categories_json,screened_at) VALUES(?,?,?,?,?,?)").bind(id,screening.policyVersion,screening.severity,screening.priority,JSON.stringify(screening.categories),timestamp)
+     db.prepare("INSERT INTO timber_shed_bouncer_screenings(post_id,policy_version,model_name,severity,priority,categories_json,screened_at) VALUES(?,?,?,?,?,?,?)").bind(id,screening.policyVersion,screening.model||null,screening.severity,screening.priority,JSON.stringify(screening.categories),timestamp)
     ]);
     if(Number(results[0]?.meta?.changes)!==1||Number(results[1]?.meta?.changes)!==1)return json({error:'screening_unavailable'},503);
     return json({ok:true,id,status:'pending',message:bouncerSubmissionNotice(screening)},202);
@@ -160,7 +171,7 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
    if(post.user_id===uid)return json({error:'cannot_moderate_own_post'},403);
    // Missing or outdated screening is a fail-closed hold. High/critical content
    // requires an independently approved safeguarding pathway not present in this pilot.
-   if(input.action==='approve'&&(post.policy_version!==BOUNCER_VERSION||post.severity==='high'||post.severity==='critical'))return json({error:'safeguarding_review_required'},409);
+   if(input.action==='approve'&&(post.policy_version!==(env.TIMBER_SHED_AI_MODERATION_ENABLED==='true'?BOUNCER_VERSION+'+'+AI_MODERATION_POLICY:BOUNCER_VERSION)||post.severity==='high'||post.severity==='critical'))return json({error:'safeguarding_review_required'},409);
    if(input.action==='approve'&&post.status!=='pending')return json({error:'not_pending'},409);
    if(input.action==='reject'&&post.status!=='pending')return json({error:'not_pending'},409);
    if(input.action==='remove'&&post.status!=='approved')return json({error:'not_approved'},409);
