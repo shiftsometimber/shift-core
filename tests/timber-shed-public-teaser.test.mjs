@@ -13,6 +13,9 @@ test('public header, drawer and canonical footer get exactly one visible, disabl
   assert.equal((after.match(/The Timber Shed/g)||[]).length,6);
   assert.match(after,/aria-label="The Timber Shed — coming soon"/);
   assert.match(after,/\bSOON<\/small>/);
+  assert.match(after,/\.desktop-nav \.sst-shed-teaser::before/);
+  assert.match(after,/font-size:12px;position:relative;padding:10px 0/);
+  assert.doesNotMatch(after,/font-size:\.(?:88|76)em/);
   assert.match(after,/<a href="\/member\/dashboard">My Timber<\/a><span class="sst-shed-teaser sst-shed-footer"/);
   assert.match(after,/<main><h1>Original home page<\/h1><\/main>/);
   assert.doesNotMatch(after,/href=["'][^"']*(?:timber-shed|thetimbershed)/i);

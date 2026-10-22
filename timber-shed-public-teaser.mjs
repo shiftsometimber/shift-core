@@ -4,12 +4,13 @@ const tag='<span class="sst-shed-teaser" aria-label="The Timber Shed — coming 
 const drawerTag='<span class="sst-shed-teaser sst-shed-drawer" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
 const footerTag='<span class="sst-shed-teaser sst-shed-footer" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
 const css='<style id="sst-timber-shed-teaser-css">'+
-'.desktop-nav .sst-shed-teaser{display:inline-flex;align-items:center;gap:5px;color:#707762;font-weight:800;white-space:nowrap;cursor:default;font-size:.88em}'+
+'.desktop-nav .sst-shed-teaser{display:inline-flex;align-items:center;gap:5px;color:#707762;font-weight:800;white-space:nowrap;cursor:default;font-size:12px;position:relative;padding:10px 0}'+
+'.desktop-nav .sst-shed-teaser::before{content:"";display:block;position:absolute;left:-13px;top:50%;margin-top:-10px;width:1px;height:20px;background:#707762}'+
 '.sst-shed-teaser small{font-size:9px;font-weight:800;letter-spacing:.04em;line-height:1;border:1px solid currentColor;border-radius:3px;padding:3px 4px;vertical-align:middle}'+
 '.site-drawer .sst-shed-teaser{display:flex;align-items:center;gap:9px;padding:12px 0;color:#707762;font-weight:800;cursor:default}'+
 'footer.site-footer .sst-shed-teaser{display:inline-flex;align-items:center;gap:5px;margin:6px 0;color:#707762;font-size:12px;font-weight:700;white-space:nowrap;cursor:default}'+
 'footer.site-footer .sst-shed-teaser small{text-transform:uppercase;font-size:9px}'+
-'@media(max-width:1150px){.desktop-nav .sst-shed-teaser{font-size:.76em;gap:3px}.desktop-nav .sst-shed-teaser small{font-size:8px;padding:2px 3px}}'+
+'@media(max-width:1150px){.desktop-nav .sst-shed-teaser{font-size:12px}.desktop-nav .sst-shed-teaser small{font-size:8px;padding:2px 3px}}'+
 '</style>';
 const primary=/<nav\b[^>]*class=["'][^"']*\bdesktop-nav\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i;
 const drawer=/<aside\b[^>]*id=["']site-drawer["'][^>]*>[\s\S]*?<\/aside>/i;
