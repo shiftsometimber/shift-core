@@ -1,7 +1,7 @@
 (()=>{'use strict';
 const root=document.querySelector('[data-start-welcome-version]');if(!root)return;
 const $=s=>root.querySelector(s),$$=s=>[...root.querySelectorAll(s)],welcome=$('#sw-welcome'),questions=$('#sw-questions'),result=$('#sw-result');
-const answers={why:['Lose weight'],med:[],access:[],bmi:[],condition:[],stage:[]};let step=0;
+const answers={why:['Lose weight'],med:[],access:[],bmi:[],condition:[],stage:[]};let step=0,furthest=0;
 const arrow='<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>';
 const motion=()=>matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth';
 const routes=$('#sw-routes');
@@ -11,17 +11,39 @@ $('a[href="#sw-routes"]').addEventListener('click',e=>{
  routes.setAttribute('tabindex','-1');routes.focus({preventScroll:true});
  routes.scrollIntoView({behavior:motion(),block:'start'});
 });
-function view(which,focus=true){welcome.hidden=which!=='welcome';questions.hidden=which!=='questions';result.hidden=which!=='result';document.title=which==='result'?'Your treatment options | SHIFT Some Timber':'Start Here | SHIFT Some Timber';if(focus){const el=which==='welcome'?$('#sw-title'):which==='questions'?$('[data-quick-step="'+step+'"] h2'):$('#sw-result-title');el.setAttribute('tabindex','-1');el.focus({preventScroll:true});scrollTo({top:0,behavior:'auto'});}}
-function sync(){ $$('[data-quick-step]').forEach((el,i)=>el.hidden=i!==step);$('[data-quick-count]').textContent='Question '+(step+1)+' of 3';$('[role=progressbar]').setAttribute('aria-valuenow',step+1);$('[data-quick-bar]').style.width=((step+1)/3*100)+'%';$('[data-quick-back]').hidden=step===0;$('[data-quick-next]').innerHTML=(step===2?'Show my options':'Continue')+' '+arrow;$('[data-quick-validation]').textContent='';}
+function view(which,focus=true){welcome.hidden=which!=='welcome';questions.hidden=which!=='questions';result.hidden=which!=='result';document.title=which==='result'?'Your treatment options | SHIFT Some Timber':'Start Here | SHIFT Some Timber';if(focus){const el=which==='welcome'?$('#sw-title'):which==='questions'?$('#sw-question-title'):$('#sw-result-title');el.setAttribute('tabindex','-1');el.focus({preventScroll:true});scrollTo({top:0,behavior:'auto'});}}
+const questionHeadings=[['What would you','like to change?'],['What feels right','for you?'],['Let’s check','your starting point.']];
+const questionHints=['Weight loss is selected. Pick anything else that matters to you.','Choose what you’re open to. You can compare all the options afterwards.','For adults aged 18 and over. A prescriber confirms whether treatment is suitable.'];
+function sync(){
+ $$('[data-quick-step]').forEach((el,i)=>el.hidden=i!==step);
+ const heading=$('#sw-question-title'),accent=document.createElement('span');accent.textContent=questionHeadings[step][1];heading.replaceChildren(document.createTextNode(questionHeadings[step][0]+' '),accent);$('#question-hint').textContent=questionHints[step];
+ $('[data-quick-count]').textContent='STEP '+(step+1)+' OF 3';$('[role=progressbar]').setAttribute('aria-valuenow',step+1);$('[role=progressbar]').setAttribute('aria-valuetext','Step '+(step+1)+' of 3');$('[data-quick-bar]').style.width=((step+1)/3*100)+'%';
+ $$('[data-go-step]').forEach(button=>{const n=Number(button.dataset.goStep);button.disabled=n>furthest||(n===2&&answers.med[0]==='No medication');button.classList.toggle('is-complete',n<step);button.setAttribute('aria-current',n===step?'step':'false');button.querySelector('.q-step-number').textContent=n<step?'✓':String(n+1);});
+ $('[data-quick-back]').hidden=step===0;$('[data-quick-next]').innerHTML=(step===2?'Show my options':step===1&&answers.med[0]==='No medication'?'Show my support':'Continue')+' '+arrow;
+ $('#q-next-hint').textContent=step===0?answers.why.length+' '+(answers.why.length===1?'priority':'priorities')+' selected':step===1?'Choose a format and access route':'Next: your options, doses and prices';
+ $('#q-stage-help').textContent=answers.stage[0]==='continuing'?'Your treatment history matters. Your current BMI alone does not decide whether prescribed treatment can continue.':'New to treatment? Starting doses are shown first. Higher strengths need a clinician-led plan.';
+ $('#sw-condition').hidden=!['27','28'].includes(answers.bmi[0]);$('[data-quick-validation]').textContent='';
+}
+function changeStep(n){step=n;furthest=Math.max(furthest,step);sync();view('questions');}
 function openQuestions(){step=0;sync();view('questions');}
 $$('[data-weight-start]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();history.pushState({route:'weight-loss'},'',a.getAttribute('href'));openQuestions();}));
 $$('[data-welcome-back]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();history.pushState({},'','/start-here');view('welcome');}));
-$$('[data-multi],[data-one]').forEach(group=>{const key=group.dataset.multi||group.dataset.one;group.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{if(button.getAttribute('aria-disabled')==='true')return;if(group.dataset.one){group.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));}else button.setAttribute('aria-pressed',String(button.getAttribute('aria-pressed')!=='true'));answers[key]=[...group.querySelectorAll('[aria-pressed=true]')].map(b=>b.dataset.choice);if(key==='bmi')$('#sw-condition').hidden=!['27','28'].includes(answers.bmi[0]);$('[data-quick-validation]').textContent='';}));});
-$('[data-quick-back]').addEventListener('click',()=>{step--;sync();view('questions');});
-$('[data-quick-next]').addEventListener('click',()=>{if(step===1&&(!answers.med.length||!answers.access.length)){$('[data-quick-validation]').textContent='Choose a support preference and an access route to continue.';return;}if(step===2&&answers.med[0]!=='No medication'&&(!answers.stage.length||!answers.bmi.length||(['27','28'].includes(answers.bmi[0])&&!answers.condition.length))){$('[data-quick-validation]').textContent='Choose your treatment stage, BMI range and, if shown, whether you have a diagnosed condition.';return;}if(step===1&&answers.med[0]==='No medication'){render();return;}if(step<2){step++;sync();view('questions');}else render();});
+$$('[data-multi],[data-one]').forEach(group=>{const key=group.dataset.multi||group.dataset.one;group.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{if(button.getAttribute('aria-disabled')==='true')return;if(group.dataset.one){group.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));}else button.setAttribute('aria-pressed',String(button.getAttribute('aria-pressed')!=='true'));answers[key]=[...group.querySelectorAll('[aria-pressed=true]')].map(b=>b.dataset.choice);sync();}));});
+$$('[data-go-step]').forEach(button=>button.addEventListener('click',()=>changeStep(Number(button.dataset.goStep))));
+$('[data-quick-back]').addEventListener('click',()=>changeStep(step-1));
+function requireChoice(key,message){if(answers[key].length)return true;$('[data-quick-validation]').textContent=message;$('[data-one="'+key+'"] button').focus();return false;}
+$('[data-quick-next]').addEventListener('click',()=>{
+ if(step===1&&(!requireChoice('med','Choose the treatment format you’re open to.')||!requireChoice('access','Choose the access route you’d like to explore.')))return;
+ if(step===2&&answers.med[0]!=='No medication'){
+  if(!requireChoice('stage','Choose whether you’re starting or already on treatment.')||!requireChoice('bmi','Choose your BMI band, or select “I’m not sure”.'))return;
+  if(['27','28'].includes(answers.bmi[0])&&!requireChoice('condition','Choose an answer about a diagnosed condition, or select “I’m not sure”.'))return;
+ }
+ if(step===1&&answers.med[0]==='No medication'){render();return;}
+ if(step<2)changeStep(step+1);else render();
+});
 $('#sw-calculate').addEventListener('click',()=>{const h=Number($('#sw-height').value),w=Number($('#sw-weight-kg').value);if(h<120||h>230||w<35||w>320){$('#sw-bmi-calculated').textContent='Enter a height from 120–230 cm and weight from 35–320 kg, or ask a clinician to help check your BMI.';return;}const bmi=w/((h/100)**2),band=bmi>=30?'30':bmi>=28?'28':bmi>=27?'27':'below';$('[data-one="bmi"] [data-choice="'+band+'"]').click();$('#sw-bmi-calculated').textContent='Your BMI is approximately '+bmi.toFixed(2)+'. Your range is selected above using the unrounded result.';});
 function bmiRoute(key,choice){if(choice.stage==='continuing')return 'review';if(choice.bmi==='unknown')return 'unknown';if(choice.bmi==='30')return 'possible';if(choice.bmi==='below'||(key==='orlistat'&&choice.bmi==='27'))return 'outside';if(choice.condition==='yes')return 'possible';return choice.condition==='no'?'outside':'unknown';}
-$('#sw-edit').addEventListener('click',()=>{step=0;sync();view('questions');});
+$('#sw-edit').addEventListener('click',()=>changeStep(1));
 function pair(label,value){const div=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;div.append(dt,dd);return div;}
 
 const medicineInfo={

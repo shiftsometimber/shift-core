@@ -191,3 +191,313 @@ html body main#main-content.sw #sw-result [hidden]{display:none!important}
 
 html body main#main-content.sw #sw-result .sw-medicine-grid{grid-auto-rows:auto!important}
 html body main#main-content.sw #sw-result .sw-medicine-card{height:auto!important;min-height:0!important;align-self:start!important}
+
+/* Approved SHIFT question design — 22 October 2026. Scoped to questions only. */
+html body main#main-content.sw #sw-questions{max-width:980px!important;margin:30px auto 0!important;scroll-margin-top:22px!important}
+html body main#main-content.sw #sw-questions .q-topline{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;margin-bottom:21px!important}
+html body main#main-content.sw #sw-questions .q-kicker{margin:0!important;font-size:10px!important;font-weight:700!important;letter-spacing:.16em!important;color:#b9c7a5!important}
+html body main#main-content.sw #sw-questions .q-back-link{border:0!important;background:transparent!important;padding:6px 0!important;color:#b9c1ae!important;font-size:12px!important;text-decoration:none!important}
+html body main#main-content.sw #sw-questions .q-back-link:hover{text-decoration:underline!important}
+html body main#main-content.sw #sw-questions .q-progress{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:12px!important;margin:0 0 29px!important}
+html body main#main-content.sw #sw-questions .q-progress button{display:flex!important;align-items:center!important;gap:11px!important;padding:12px 15px!important;border:1px solid #3c4434!important;border-radius:9px!important;background:#11150f!important;color:#9ba58e!important;font-size:12px!important;text-align:left!important;min-height:55px!important;font-weight:700!important}
+html body main#main-content.sw #sw-questions .q-step-number{display:grid!important;place-items:center!important;flex-shrink:0!important;width:25px!important;height:25px!important;border-radius:50%!important;border:1px solid #57634a!important;font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-progress button[aria-current=step]{background:#27321f!important;color:#e4eadc!important;border-color:#9eaf89!important;box-shadow:inset 0 -2px #b5c69d!important}
+html body main#main-content.sw #sw-questions .q-progress button[aria-current=step] .q-step-number{background:#c1cfac!important;color:#11180b!important;border-color:#c1cfac!important}
+html body main#main-content.sw #sw-questions .q-progress button.is-complete{color:#c5d1b5!important}
+html body main#main-content.sw #sw-questions .q-progress button.is-complete .q-step-number{background:#4b5a3d!important;color:#e2ead8!important;border:0!important}
+html body main#main-content.sw #sw-questions .q-progress button:disabled{cursor:default!important}
+html body main#main-content.sw #sw-questions .q-heading-row{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:30px!important;margin-bottom:24px!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1{font-size:clamp(32px,3.5vw,46px)!important;max-width:800px!important;letter-spacing:-.047em!important;line-height:1.08!important;margin:0 0 11px!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1:focus{outline:0!important}
+html body main#main-content.sw #sw-questions .q-heading-row p{margin:0!important;color:#bec6b3!important;line-height:1.6!important;font-size:14px!important}
+html body main#main-content.sw #sw-questions .q-stage-label{display:block!important;color:#b0bf9d!important;font-size:10px!important;font-weight:700!important;letter-spacing:.12em!important;margin-bottom:11px!important}
+html body main#main-content.sw #sw-questions .q-choices{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+html body main#main-content.sw #sw-questions .q-choice{position:relative!important;display:flex!important;align-items:center!important;gap:15px!important;min-height:94px!important;border:2px solid transparent!important;border-radius:10px!important;padding:17px 47px 17px 18px!important;background:#e8e4db!important;color:#151a10!important;text-align:left!important;box-shadow:0 3px 0 #0003!important;transition:transform .14s ease,border-color .14s ease,background .14s ease!important}
+html body main#main-content.sw #sw-questions .q-choice:hover{transform:translateY(-2px)!important;border-color:#a7bc8d!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true]{background:#cfdbc0!important;border-color:#acbf93!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-disabled=true]{cursor:default!important;transform:none!important}
+html body main#main-content.sw #sw-questions .q-choice strong{display:block!important;font-size:17px!important;line-height:1.25!important;letter-spacing:-.025em!important}
+html body main#main-content.sw #sw-questions .q-choice small{display:block!important;margin-top:5px!important;font-size:12px!important;line-height:1.45!important;color:#515b46!important;font-weight:400!important}
+html body main#main-content.sw #sw-questions .q-choice-icon{display:grid!important;place-items:center!important;flex-shrink:0!important;width:43px!important;height:43px!important;border-radius:10px!important;background:#d6d9cc!important;color:#4c5d3e!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true] .q-choice-icon{background:#b5c5a2!important;color:#283c18!important}
+html body main#main-content.sw #sw-questions .q-choice-icon svg{width:27px!important;height:27px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.6!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+html body main#main-content.sw #sw-questions .q-check{position:absolute!important;right:18px!important;top:50%!important;transform:translateY(-50%)!important;width:21px!important;height:21px!important;border:1px solid #979f8a!important;border-radius:50%!important;background:#f3f0e9!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true] .q-check{background:#334d23!important;border-color:#334d23!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true] .q-check:after{content:''!important;position:absolute!important;left:6px!important;top:4px!important;width:5px!important;height:9px!important;border:solid #f0f4e8!important;border-width:0 2px 2px 0!important;transform:rotate(45deg)!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child{grid-column:1/-1!important;min-height:79px!important;background:#cfdbc0!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child small{display:inline!important}
+html body main#main-content.sw #sw-questions .q-choice-tag{display:inline-block!important;margin-left:10px!important;font-size:9px!important;letter-spacing:.06em!important;text-transform:uppercase!important;font-weight:700!important;border:1px solid #8f9f7b!important;border-radius:30px!important;padding:4px 8px!important;vertical-align:middle!important;color:#3a4c2b!important}
+html body main#main-content.sw #sw-questions .q-subtitle{font-size:15px!important;letter-spacing:-.02em!important;line-height:1.4!important;margin:23px 0 12px!important}
+html body main#main-content.sw #sw-questions .q-subtitle.first{margin-top:0!important}
+html body main#main-content.sw #sw-questions .q-choice.compact{min-height:53px!important;padding:13px 43px 13px 16px!important}
+html body main#main-content.sw #sw-questions .q-choice.compact strong{font-size:14px!important}
+html body main#main-content.sw #sw-questions .q-access{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice{display:block!important;min-height:75px!important}
+html body main#main-content.sw #sw-questions .q-access small{font-size:11px!important;max-width:calc(100% + 22px)!important}
+html body main#main-content.sw #sw-questions .q-formats{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice{display:block!important;padding:16px 15px!important;min-height:158px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice-icon{margin-bottom:13px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice strong{font-size:17px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-check{top:22px!important;right:15px!important;transform:none!important}
+html body main#main-content.sw #sw-questions .q-formats small{font-size:12px!important;max-width:160px!important}
+html body main#main-content.sw #sw-questions .q-bmi{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+html body main#main-content.sw #sw-questions .q-bmi .q-choice:last-child{grid-column:span 2!important}
+html body main#main-content.sw #sw-questions .q-bmi-number{font-size:20px!important;letter-spacing:-.04em!important;display:block!important;font-weight:800!important;line-height:1.2!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice{min-height:80px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice strong{font-size:15px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice small{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-help{font-size:11px!important;line-height:1.55!important;color:#b6c1a8!important;margin:12px 0!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools{margin-top:14px!important;border:1px solid #46513b!important;border-radius:7px!important;background:#12170e!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools summary{padding:12px 15px!important;color:#cbd8b9!important;cursor:pointer!important;font-size:12px!important;font-weight:700!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools>div{padding:3px 15px 13px!important;display:grid!important;grid-template-columns:1fr 1fr auto!important;align-items:end!important;gap:12px!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools label{font-size:11px!important;line-height:1.5!important;color:#c2ccb6!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools input{display:block!important;width:100%!important;min-height:42px!important;margin-top:5px!important;padding:9px!important;color:#17200f!important;background:#e8e4db!important;border:1px solid #8b9b78!important;border-radius:5px!important;font:inherit!important;font-size:16px!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools button{min-height:42px!important;background:#c1cfac!important;color:#18240f!important;border:0!important;border-radius:5px!important;padding:10px 16px!important;font-size:12px!important;font-weight:700!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools p{grid-column:1/-1!important;margin:0!important;font-size:12px!important;color:#d1ddbf!important;line-height:1.6!important}
+html body main#main-content.sw #sw-questions .q-condition{padding-top:4px!important}
+html body main#main-content.sw #sw-questions .q-condition>p{font-size:12px!important;line-height:1.6!important;color:#bbc5ae!important;max-width:760px!important;margin:0 0 12px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choices{grid-template-columns:repeat(3,1fr)!important}
+html body main#main-content.sw #sw-questions .q-error{color:#f3cdb8!important;font-size:13px!important;line-height:1.5!important;margin:14px 0 0!important}
+html body main#main-content.sw #sw-questions .q-error:empty{display:none!important}
+html body main#main-content.sw #sw-questions .q-controls{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;border-top:1px solid #35402c!important;margin-top:23px!important;padding-top:19px!important}
+html body main#main-content.sw #sw-questions .q-control-left{display:flex!important;gap:22px!important;align-items:center!important}
+html body main#main-content.sw #sw-questions .q-controls .q-back-link{min-height:45px!important;color:#d2dcc5!important;font-weight:700!important}
+html body main#main-content.sw #sw-questions .q-next-hint{font-size:11px!important;color:#b1bfa0!important;margin:0!important}
+html body main#main-content.sw #sw-questions .q-next{background:#c4d2b2!important;color:#18220f!important;min-height:48px!important;min-width:208px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:30px!important;padding:14px 19px!important;border:1px solid #c4d2b2!important;border-radius:7px!important;font-size:13px!important;font-weight:800!important;box-shadow:0 4px 20px #829e5b12!important}
+html body main#main-content.sw #sw-questions .q-next:hover{background:#d8e3cc!important}
+html body main#main-content.sw #sw-questions .q-next svg{width:19px!important;height:19px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+html body main#main-content.sw #sw-questions .q-trust{display:flex!important;gap:8px!important;align-items:center!important;justify-content:center!important;color:#8f9b82!important;font-size:10px!important;line-height:1.5!important;margin:21px 0 30px!important}
+html body main#main-content.sw #sw-questions .q-trust svg{width:13px!important;height:13px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.6!important;flex-shrink:0!important}
+html body main#main-content.sw #sw-questions .q-route-note{font-size:13px!important;line-height:1.6!important;border-left:2px solid #92a479!important;padding:10px 13px!important;background:#171e12!important;color:#cad6bb!important}
+html body main#main-content.sw #sw-questions .q-support{max-width:800px!important;margin:34px auto!important}
+html body main#main-content.sw #sw-questions .q-support h1{margin-bottom:20px!important}
+html body main#main-content.sw #sw-questions .q-support-box{background:#e8e4db!important;padding:25px!important;border-radius:12px!important;color:#15200e!important}
+html body main#main-content.sw #sw-questions .q-support-box p{font-size:15px!important;line-height:1.7!important;max-width:600px!important}
+html body main#main-content.sw #sw-questions .q-support-box .button{width:auto!important;display:inline-flex!important;padding-inline:23px!important;margin-top:8px!important}
+html body main#main-content.sw #sw-questions .q-support .text-button{margin-top:23px!important}
+html body main#main-content.sw #sw-questions .q-preview-footer{color:#a5b299!important}
+@media(max-width:760px){html body main#main-content.sw #sw-questions{margin-top:22px!important}
+html body main#main-content.sw #sw-questions .q-topline{margin-bottom:15px!important}
+html body main#main-content.sw #sw-questions .q-kicker{font-size:9px!important;letter-spacing:.12em!important}
+html body main#main-content.sw #sw-questions .q-back-link{font-size:10px!important}
+html body main#main-content.sw #sw-questions .q-progress{gap:7px!important;margin-bottom:23px!important}
+html body main#main-content.sw #sw-questions .q-progress button{font-size:10px!important;padding:9px 10px!important;gap:7px!important;min-height:49px!important}
+html body main#main-content.sw #sw-questions .q-step-number{width:21px!important;height:21px!important;font-size:10px!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1{font-size:35px!important;max-width:570px!important}
+html body main#main-content.sw #sw-questions .q-heading-row p{font-size:13px!important;line-height:1.55!important}
+html body main#main-content.sw #sw-questions .q-stage-label{font-size:9px!important;margin-bottom:9px!important}
+html body main#main-content.sw #sw-questions .q-heading-row{margin-bottom:21px!important}
+html body main#main-content.sw #sw-questions .q-formats{grid-template-columns:repeat(2,1fr)!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice{display:flex!important;gap:13px!important;min-height:91px!important;padding:14px 43px 14px 13px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice-icon{width:35px!important;height:35px!important;margin:0!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice-icon svg{width:23px!important;height:23px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice strong{font-size:15px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice small{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-check{width:18px!important;height:18px!important;top:50%!important;right:13px!important;transform:translateY(-50%)!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice[aria-pressed=true] .q-check:after{left:5px!important;top:3px!important;width:4px!important;height:8px!important}
+html body main#main-content.sw #sw-questions .q-bmi{grid-template-columns:repeat(2,1fr)!important}
+html body main#main-content.sw #sw-questions .q-bmi .q-choice:last-child{grid-column:1/-1!important}
+html body main#main-content.sw #sw-questions .q-control-left{gap:15px!important}
+html body main#main-content.sw #sw-questions .q-next-hint{font-size:10px!important;max-width:190px!important;line-height:1.5!important}
+html body main#main-content.sw #sw-questions .q-next{min-width:190px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice{padding-left:13px!important;gap:12px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice-icon{display:none!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools>div{grid-template-columns:1fr 1fr!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools button{grid-column:1/-1!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choices{gap:8px!important}
+html body main#main-content.sw #sw-questions .q-trust{font-size:9px!important;text-align:center!important}
+html body main#main-content.sw #sw-questions .q-access{gap:9px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice{padding:12px 31px 12px 12px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice strong{font-size:14px!important}
+html body main#main-content.sw #sw-questions .q-access .q-check{width:17px!important;height:17px!important;right:10px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice[aria-pressed=true] .q-check:after{left:5px!important;top:3px!important;width:4px!important;height:7px!important}}
+@media(max-width:520px){html body main#main-content.sw #sw-questions .q-heading-row h1{font-size:32px!important;line-height:1.08!important}
+html body main#main-content.sw #sw-questions .q-choices{gap:10px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice{display:block!important;min-height:127px!important;padding:13px 12px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice-icon{width:31px!important;height:31px!important;margin-bottom:11px!important;border-radius:8px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice-icon svg{width:22px!important;height:22px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice strong{font-size:15px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice small{font-size:11px!important;line-height:1.4!important;max-width:150px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-check{top:15px!important;right:13px!important;transform:none!important;width:18px!important;height:18px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice[aria-pressed=true] .q-check:after{left:5px!important;top:3px!important;width:4px!important;height:8px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child{display:flex!important;min-height:65px!important;padding:13px 44px 13px 13px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child .q-choice-icon{margin:0!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child .q-check{top:50%!important;transform:translateY(-50%)!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child small{display:block!important;font-size:10px!important;margin-top:3px!important}
+html body main#main-content.sw #sw-questions .q-choice-tag{font-size:8px!important;padding:3px 7px!important;margin-left:4px!important}
+html body main#main-content.sw #sw-questions .q-controls{margin-top:18px!important;padding-top:16px!important;gap:10px!important}
+html body main#main-content.sw #sw-questions .q-next{min-width:168px!important;font-size:12px!important;gap:17px!important;padding:13px 14px!important}
+html body main#main-content.sw #sw-questions .q-next-hint{font-size:10px!important;max-width:135px!important}
+html body main#main-content.sw #sw-questions .q-controls .q-back-link{font-size:11px!important;min-height:44px!important}
+html body main#main-content.sw #sw-questions .q-control-left{display:block!important}
+html body main#main-content.sw #sw-questions .q-control-left:has(#q-back:not([hidden])) .q-next-hint{display:none!important}
+html body main#main-content.sw #sw-questions .q-trust{margin:17px 0 23px!important}
+html body main#main-content.sw #sw-questions .q-progress button{gap:6px!important;font-size:9px!important;padding:9px 7px!important}
+html body main#main-content.sw #sw-questions .q-topline .q-back-link{font-size:10px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice{display:block!important;min-height:117px!important;padding:13px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice-icon{margin:0 0 10px!important;width:29px!important;height:29px!important;border-radius:8px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice strong{font-size:15px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice small{font-size:10px!important;margin-top:4px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-check{top:14px!important;transform:none!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice{min-height:74px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice small{font-size:9px!important;margin-top:5px!important}
+html body main#main-content.sw #sw-questions .q-access .q-check{top:15px!important;transform:none!important;width:15px!important;height:15px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice[aria-pressed=true] .q-check:after{left:4px!important;top:2px!important}
+html body main#main-content.sw #sw-questions .q-subtitle{font-size:14px!important;margin-top:20px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice{min-height:83px!important;padding:12px 33px 12px 12px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice strong{font-size:13px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice small{font-size:10px!important;margin-top:4px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-check,html body main#main-content.sw #sw-questions .q-bmi .q-check,html body main#main-content.sw #sw-questions .q-condition .q-check{right:11px!important;width:18px!important;height:18px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice[aria-pressed=true] .q-check:after,html body main#main-content.sw #sw-questions .q-bmi .q-choice[aria-pressed=true] .q-check:after,html body main#main-content.sw #sw-questions .q-condition .q-choice[aria-pressed=true] .q-check:after{left:5px!important;top:3px!important;width:4px!important;height:8px!important}
+html body main#main-content.sw #sw-questions .q-bmi .q-choice{padding:12px 35px 12px 13px!important;min-height:50px!important}
+html body main#main-content.sw #sw-questions .q-bmi .q-choice strong{font-size:13px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choice{padding:12px 27px 12px 10px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choice strong{font-size:12px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choice:last-child strong{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-check{width:15px!important;height:15px!important;right:8px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choice[aria-pressed=true] .q-check:after{left:4px!important;top:2px!important;width:4px!important;height:7px!important}
+html body main#main-content.sw #sw-questions .q-support-box{padding:21px!important}
+html body main#main-content.sw #sw-questions .q-support-box p{font-size:14px!important}}
+@media(max-width:520px){html body main#main-content.sw #sw-questions .q-goals .q-choice{min-height:112px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child .q-choice-tag{display:none!important}
+html body main#main-content.sw #sw-questions .q-progress{margin-bottom:20px!important}
+html body main#main-content.sw #sw-questions .q-controls{position:sticky!important;bottom:0!important;z-index:3!important;background:#0b1008f5!important;backdrop-filter:blur(10px)!important;padding:13px 0 12px!important;box-shadow:0 -10px 18px #05050599!important}
+html body main#main-content.sw #sw-questions .q-trust{margin-top:12px!important}}
+@media(prefers-reduced-motion:reduce){html body main#main-content.sw #sw-questions .q-choice{transition:none!important}
+html body main#main-content.sw #sw-questions .q-choice:hover{transform:none!important}}
+html body main#main-content.sw #sw-questions{max-width:1040px!important;margin-top:27px!important}
+html body main#main-content.sw #sw-questions .q-topline{margin-bottom:19px!important}
+html body main#main-content.sw #sw-questions .q-kicker{color:#e7e3da!important;font-size:11px!important;letter-spacing:.16em!important}
+html body main#main-content.sw #sw-questions .q-back-link{color:#e7e3da!important;font-size:12px!important}
+html body main#main-content.sw #sw-questions .q-progress{gap:0!important;margin-bottom:27px!important;border-top:1px solid #707762!important;border-bottom:1px solid #707762!important}
+html body main#main-content.sw #sw-questions .q-progress button{border:0!important;border-radius:0!important;min-height:55px!important;padding:13px 20px!important;background:none!important;color:#e7e3da!important;box-shadow:none!important;position:relative!important;font-size:12px!important;letter-spacing:.025em!important;opacity:.5!important}
+html body main#main-content.sw #sw-questions .q-progress button+button{border-left:1px solid #707762!important}
+html body main#main-content.sw #sw-questions .q-progress button[aria-current=step]{background:none!important;color:#e7e3da!important;box-shadow:inset 0 -3px #707762!important;opacity:1!important}
+html body main#main-content.sw #sw-questions .q-progress button.is-complete{color:#e7e3da!important;opacity:.8!important}
+html body main#main-content.sw #sw-questions .q-step-number{border:1px solid #707762!important;background:none!important;color:#e7e3da!important;border-radius:0!important;width:24px!important;height:24px!important;font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-progress button[aria-current=step] .q-step-number,html body main#main-content.sw #sw-questions .q-progress button.is-complete .q-step-number{background:#e7e3da!important;color:#050505!important;border:1px solid #e7e3da!important}
+html body main#main-content.sw #sw-questions .q-stage-label{color:#e7e3da!important;font-size:10px!important;letter-spacing:.14em!important}
+html body main#main-content.sw #sw-questions .q-heading-row{margin-bottom:24px!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1{max-width:none!important;font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(36px,4.3vw,58px)!important;font-weight:800!important;line-height:1.02!important;letter-spacing:-.045em!important;text-transform:uppercase!important;margin-bottom:16px!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1 span{color:#707762!important}
+html body main#main-content.sw #sw-questions .q-heading-row p{font-size:15px!important;line-height:1.5!important;color:#e7e3da!important;opacity:.86!important}
+html body main#main-content.sw #sw-questions .q-choices{gap:12px!important}
+html body main#main-content.sw #sw-questions .q-choice{border:1px solid #707762!important;border-radius:6px!important;background:#050505!important;color:#e7e3da!important;box-shadow:none!important;padding:19px 53px 19px 21px!important;gap:14px!important;min-height:93px!important;transition:border-color .15s ease,background .15s ease!important;transform:none!important}
+html body main#main-content.sw #sw-questions .q-choice:hover{border-color:#e7e3da!important;transform:none!important;background:#7077621a!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true]{background:#e7e3da!important;color:#050505!important;border-color:#e7e3da!important}
+html body main#main-content.sw #sw-questions .q-choice strong{font-size:22px!important;font-weight:800!important;letter-spacing:-.035em!important;line-height:1.15!important}
+html body main#main-content.sw #sw-questions .q-choice small{color:inherit!important;opacity:.8!important;font-size:13px!important;line-height:1.4!important;margin-top:6px!important}
+html body main#main-content.sw #sw-questions .q-check{width:23px!important;height:23px!important;right:21px!important;border:1px solid #707762!important;background:transparent!important;border-radius:2px!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true] .q-check{background:#707762!important;border-color:#707762!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true] .q-check:after{border-color:#e7e3da!important;left:7px!important;top:4px!important;width:5px!important;height:10px!important}
+html body main#main-content.sw #sw-questions .q-choice-icon{display:none!important;background:none!important;color:inherit!important;border-radius:0!important;box-shadow:none!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true] .q-choice-icon{background:none!important;color:inherit!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child{min-height:77px!important;background:#e7e3da!important;border-color:#e7e3da!important;color:#050505!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child strong{font-size:23px!important}
+html body main#main-content.sw #sw-questions .q-choice-tag{border-color:#707762!important;color:#050505!important;border-radius:0!important;font-size:9px!important;padding:3px 6px!important;margin-left:9px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice{min-height:145px!important;padding:20px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice-icon{display:block!important;width:30px!important;height:30px!important;margin:0 0 15px!important;color:#e7e3da!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice[aria-pressed=true] .q-choice-icon{color:#050505!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice strong{font-size:21px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice small{font-size:12px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-check{top:21px!important;right:20px!important;transform:none!important}
+html body main#main-content.sw #sw-questions .q-subtitle{font-size:18px!important;letter-spacing:-.025em!important;font-weight:700!important;margin:23px 0 12px!important}
+html body main#main-content.sw #sw-questions .q-subtitle.first{margin-top:0!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice{min-height:77px!important;padding:16px 45px 16px 18px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice strong{font-size:17px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice small{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice{min-height:80px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice strong{font-size:18px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice small{font-size:12px!important}
+html body main#main-content.sw #sw-questions .q-choice.compact{min-height:52px!important;padding:14px 48px 14px 18px!important}
+html body main#main-content.sw #sw-questions .q-choice.compact strong{font-size:16px!important}
+html body main#main-content.sw #sw-questions .q-help,html body main#main-content.sw #sw-questions .q-condition>p{color:#e7e3da!important;opacity:.8!important;line-height:1.55!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools{background:#050505!important;border-color:#707762!important;border-radius:4px!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools summary,html body main#main-content.sw #sw-questions .q-bmi-tools p,html body main#main-content.sw #sw-questions .q-bmi-tools label{color:#e7e3da!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools input{background:#e7e3da!important;color:#050505!important;border-color:#707762!important;border-radius:3px!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools button{background:#e7e3da!important;color:#050505!important;border-radius:999px!important}
+html body main#main-content.sw #sw-questions .q-controls{border-color:#707762!important;background:#050505!important;margin-top:23px!important;padding-top:18px!important;box-shadow:none!important;backdrop-filter:none!important}
+html body main#main-content.sw #sw-questions .q-controls .q-back-link{color:#e7e3da!important}
+html body main#main-content.sw #sw-questions .q-next-hint{color:#e7e3da!important;font-size:12px!important;opacity:.8!important}
+html body main#main-content.sw #sw-questions .q-next{background:#e7e3da!important;border-color:#e7e3da!important;color:#050505!important;border-radius:999px!important;box-shadow:none!important;min-height:49px!important;min-width:211px!important;font-size:14px!important;padding:13px 24px!important}
+html body main#main-content.sw #sw-questions .q-next:hover{background:#050505!important;color:#e7e3da!important}
+html body main#main-content.sw #sw-questions .q-trust{color:#e7e3da!important;opacity:.6!important;font-size:10px!important;margin:20px 0 27px!important}
+html body main#main-content.sw #sw-questions .q-error{color:#e7e3da!important;border-left:3px solid #707762!important;padding-left:12px!important}
+html body main#main-content.sw #sw-questions .q-route-note{background:#7077621a!important;color:#e7e3da!important;border-color:#707762!important}
+html body main#main-content.sw #sw-questions :is(button,a,select,input,summary):focus-visible{outline:2px solid #e7e3da!important;outline-offset:4px!important}
+html body main#main-content.sw #sw-questions .q-choice[aria-pressed=true]:focus-visible{outline-color:#707762!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1:focus{outline:0!important}
+@media(max-width:760px){html body main#main-content.sw #sw-questions .q-kicker{font-size:9px!important;letter-spacing:.12em!important}
+html body main#main-content.sw #sw-questions .q-back-link{font-size:10px!important}
+html body main#main-content.sw #sw-questions{margin-top:22px!important}
+html body main#main-content.sw #sw-questions .q-progress{margin-bottom:23px!important}
+html body main#main-content.sw #sw-questions .q-progress button{padding:11px 10px!important;gap:8px!important;font-size:10px!important;min-height:50px!important}
+html body main#main-content.sw #sw-questions .q-step-number{width:20px!important;height:20px!important;font-size:9px!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1{font-size:40px!important;line-height:1.03!important}
+html body main#main-content.sw #sw-questions .q-heading-row p{font-size:13px!important}
+html body main#main-content.sw #sw-questions .q-choice strong{font-size:20px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice{min-height:120px!important;padding:16px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice strong{font-size:18px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice small{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-check{width:20px!important;height:20px!important;top:17px!important;right:17px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice[aria-pressed=true] .q-check:after{left:6px!important;top:3px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice{padding:14px 36px 14px 14px!important}
+html body main#main-content.sw #sw-questions .q-access .q-check{width:19px!important;height:19px!important;right:12px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice[aria-pressed=true] .q-check:after{left:5px!important;top:3px!important}
+html body main#main-content.sw #sw-questions .q-controls .q-back-link{font-size:12px!important}
+html body main#main-content.sw #sw-questions .q-next{font-size:13px!important;min-width:187px!important;padding:13px 20px!important}
+html body main#main-content.sw #sw-questions .q-next-hint{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-subtitle{font-size:16px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice strong{font-size:16px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice small{font-size:11px!important}}
+@media(max-width:520px){html body main#main-content.sw #sw-questions .q-topline{gap:9px!important;margin-bottom:17px!important}
+html body main#main-content.sw #sw-questions .q-progress button{font-size:9px!important;padding:10px 7px!important;gap:7px!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1{font-size:36px!important;line-height:1.03!important;margin-bottom:14px!important}
+html body main#main-content.sw #sw-questions .q-heading-row h1 span{display:block!important}
+html body main#main-content.sw #sw-questions .q-stage-label{font-size:9px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice{min-height:102px!important;padding:17px 36px 16px 15px!important;display:flex!important;align-items:start!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice strong{font-size:19px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice small{font-size:11px!important;line-height:1.45!important;margin-top:6px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child{min-height:67px!important;padding:15px 43px 15px 15px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child strong{font-size:21px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child small{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-check{width:18px!important;height:18px!important;right:12px!important;top:17px!important;transform:none!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice[aria-pressed=true] .q-check:after{left:5px!important;top:3px!important;width:4px!important;height:8px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice:first-child .q-check{top:50%!important;transform:translateY(-50%)!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice{min-height:119px!important;padding:15px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice-icon{width:25px!important;height:25px!important;margin-bottom:12px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice-icon svg{width:25px!important;height:25px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice strong{font-size:19px!important}
+html body main#main-content.sw #sw-questions .q-formats .q-choice small{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice{padding:13px 28px 13px 12px!important;min-height:78px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice strong{font-size:15px!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice small{font-size:10px!important;margin-top:6px!important}
+html body main#main-content.sw #sw-questions .q-access .q-check{width:14px!important;height:14px!important;top:15px!important;right:9px!important;transform:none!important}
+html body main#main-content.sw #sw-questions .q-access .q-choice[aria-pressed=true] .q-check:after{left:4px!important;top:1px!important;width:3px!important;height:7px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice{min-height:89px!important;padding:14px 32px 14px 13px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice strong{font-size:15px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice small{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-check,html body main#main-content.sw #sw-questions .q-bmi .q-check{width:17px!important;height:17px!important;right:10px!important}
+html body main#main-content.sw #sw-questions .q-stage .q-choice[aria-pressed=true] .q-check:after,html body main#main-content.sw #sw-questions .q-bmi .q-choice[aria-pressed=true] .q-check:after{left:5px!important;top:2px!important;width:4px!important;height:8px!important}
+html body main#main-content.sw #sw-questions .q-choice.compact{min-height:51px!important;padding:13px 33px 13px 13px!important}
+html body main#main-content.sw #sw-questions .q-choice.compact strong{font-size:14px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choice{padding-left:10px!important;padding-right:26px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choice strong{font-size:12px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-check{width:14px!important;height:14px!important;right:8px!important}
+html body main#main-content.sw #sw-questions .q-condition .q-choice[aria-pressed=true] .q-check:after{left:4px!important;top:1px!important;width:3px!important;height:7px!important}
+html body main#main-content.sw #sw-questions .q-controls{padding:13px 0 11px!important;background:#050505!important;border-color:#707762!important;box-shadow:0 -8px 0 #050505!important}
+html body main#main-content.sw #sw-questions .q-next{min-width:169px!important;font-size:13px!important;padding:13px 18px!important}
+html body main#main-content.sw #sw-questions .q-controls .q-back-link{font-size:11px!important}
+html body main#main-content.sw #sw-questions .q-next-hint{font-size:11px!important;max-width:130px!important}
+html body main#main-content.sw #sw-questions .q-trust{font-size:9px!important;margin:14px 0 22px!important}
+html body main#main-content.sw #sw-questions .q-bmi-tools summary{font-size:12px!important}}
+@media(max-width:365px){html body main#main-content.sw #sw-questions .q-heading-row h1{font-size:32px!important}
+html body main#main-content.sw #sw-questions .q-goals .q-choice strong{font-size:17px!important}}
+@media(prefers-reduced-motion:reduce){html body main#main-content.sw #sw-questions .q-choice{transition:none!important}}
+html body main#main-content.sw #sw-questions{width:calc(100% - 64px)!important;max-width:1040px!important;margin:0 auto!important;padding:30px 0 40px!important;background:#050505!important;color:#e7e3da!important;font:16px/1.55 Arial,Helvetica,sans-serif!important}
+html body main#main-content.sw #sw-questions .q-choice,html body main#main-content.sw #sw-questions .q-next,html body main#main-content.sw #sw-questions .q-progress button{font-family:Arial,Helvetica,sans-serif!important;text-transform:none!important;height:auto!important;white-space:normal!important;max-width:100%!important}
+html body main#main-content.sw #sw-questions .q-choice>span:not(.q-check):not(.q-choice-icon){min-width:0!important}
+html body main#main-content.sw #sw-questions .q-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+html body main#main-content.sw #sw-questions #weight-loss-questions{scroll-margin-top:120px!important}
+html body main#main-content.sw #sw-questions [hidden]{display:none!important}
+@media(max-width:760px){html body main#main-content.sw #sw-questions{width:calc(100% - 32px)!important;padding:22px 0 30px!important}}
