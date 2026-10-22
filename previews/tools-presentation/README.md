@@ -22,8 +22,25 @@ Zero production routes were changed; all 204 existing routes were preserved. No 
 
 User-facing desktop/mobile image: `SHIFT-Tools-Preview-2026-10-22.png`, saved as `libfile_6938bc0db83c8191a59d7a6e05f322af`. The browser preview was reopened and confirmed to show the final layout, preview notice and corrected explanation card.
 
-**Publication approved by Matt on 22 October 2026.** Use this pinned worker/style without design or copy changes. Prepare and qualify the existing Cloudflare/GitHub release mechanism, then activate only the exact `/tools`, `/tools/` and `/tools.html` hub paths for apex and www (six exact route patterns). Preserve the existing apex/www `/tools/*` routes bound to Core and all other routes, so individual calculators retain their current handling. Verify public mobile/desktop views, existing content, keyboard jump, eight tool links and aliases, then update this README. Do not publish on “next” alone and do not resume any separately paused work.
+**Publication approved and verified live on 22 October 2026.** The pinned worker/style were deployed without design or copy changes to the six exact hub routes. The existing apex/www `/tools/*` routes remain bound to Core and individual calculator handling is preserved. The verified result is recorded below.
 
 ## Approved publication — 22 October 2026
 
-Matt replied “Agreed” to the exact completed Tools preview and desktop/mobile image shown in this chat, in response to “Approve this version for go-live?”. The source starts at review checkpoint `b0a84ce02fe36a7edc67a6ef65bc246c222bf773`. No worker or style change is included in release preparation. The release workflow verifies the pinned source and preview acceptance, qualifies the staged hub, activates only six exact hub routes, checks the actual public hub and restores only owned routes if acceptance fails. Final deployment evidence will be recorded here after completion. No messages or health details may be submitted during acceptance.
+Matt replied “Agreed” to the exact completed Tools preview and desktop/mobile image shown in this chat, in response to “Approve this version for go-live?”. The source starts at review checkpoint `b0a84ce02fe36a7edc67a6ef65bc246c222bf773`. No worker or style change is included in release preparation. The release workflow verifies the pinned source and preview acceptance, qualifies the staged hub, activates only six exact hub routes, checks the actual public hub and restores only owned routes if acceptance fails. Final deployment evidence is recorded below. No messages or health details may be submitted during acceptance.
+
+## Verified live — 22 October 2026
+
+Public hub: https://shiftsometimber.co.uk/tools
+Release marker: `20261022-tools-live-v1`.
+Release source: `8efaa23b906f360e543253c88389dbd2b68d2cdb` on `release/tools-presentation-20261022`.
+Workflow https://github.com/shiftsometimber/shift-core/actions/runs/39778630614 and job `119823900302` completed successfully. Staging passed before activation. Public activation passed at 12:29:51 UTC (13:29:51 BST); actual public browser acceptance passed at 12:30:08 UTC (13:30:08 BST). No rollback was needed.
+
+The exact approved worker/style blobs were retained. Actual public Chromium and WebKit each passed at 390px and 1440px: existing content and links, eight tool cards, check-in and calculator grid before the explanation, keyboard jump, heading height, no horizontal overflow and 44 text-contrast checks per view. All eight existing tool destinations returned 200. The no-JavaScript page loaded its shared assets and passed visibility and overflow checks. No health details were entered and no message was sent. Individual calculator calculations were not changed or retested.
+
+All 12 HTTP/HTTPS, apex/www and hub-path variants resolved with the public release marker. Only the six exact hub routes were added for `shift-tools-presentation-20261022`; all 204 prior route records were preserved, including the existing apex/www `/tools/*` routes bound to Core. Original copy and links, shared header/footer and every calculator destination remain preserved.
+
+Artifact `12426006453`, `tools-presentation-live-8efaa23b906f360e543253c88389dbd2b68d2cdb`, SHA-256 `b8e28f1b65b49874fc056b27ed2728ea457d9525f6d303df95f605f0689a0605`, preserves staging/public results, screenshots, route inventories, source and release evidence. The downloaded digest was verified. The actual public hub was also reloaded in the review browser and confirmed to show all eight cards, the public release marker, the explanation below the tools and no preview notice.
+
+Final desktop/mobile image: `SHIFT-Tools-Live-2026-10-22.png`, saved as `libfile_1e9efe0bd93c81919e12ff1bb6b88ef3`.
+
+The approved Tools hub presentation is complete. No separately paused work was resumed.
