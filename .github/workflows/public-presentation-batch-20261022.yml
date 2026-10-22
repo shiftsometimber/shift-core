@@ -7,7 +7,7 @@ permissions:
   contents: read
 concurrency:
   group: public-presentation-batch-20261022
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   source-and-qualify:
     runs-on: ubuntu-latest
