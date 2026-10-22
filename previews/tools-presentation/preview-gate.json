@@ -1,0 +1,9 @@
+{
+  "design": "20261022-tools-presentation-v1",
+  "commit": "a5e8ad0ba5a96bf4747fcdea98a91b9195dc80c3",
+  "run": 39777675364,
+  "blobs": {
+    "previews/tools-presentation/worker.mjs": "cc7788995789c4ac4e9eb56c0d42afd25088fd3e",
+    "previews/tools-presentation/style.mjs": "ea6bbdca58d5024eafe40b2d4534284ccdfdbde5"
+  }
+}
