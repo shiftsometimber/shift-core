@@ -5,7 +5,7 @@ import {
  EXPERIENCE_BASE,EXPERIENCE_SOURCE,EXPERIENCE_KEY,EXPERIENCE_MANIFEST,
  EXPERIENCE_PATHS,EXPERIENCE_MAINTENANCE,EXPERIENCE_RECORD,EXPERIENCE_PINS,
  myTimberExperienceHistoricalView,verifyMyTimberExperience,
- originalExperienceMainRelease,originalExperienceRuntime,originalExperienceNavigation,originalExperienceMainTest,originalExperienceHealthTest,originalExperienceFiniteGrowth,
+ originalExperienceMainRelease,originalExperienceRuntime,originalExperienceNavigation,originalExperienceMainTest,originalExperienceHealthTest,originalExperienceFiniteGrowth,originalExperienceRootShare,
  EXPERIENCE_MAIN_AFTER,EXPERIENCE_RUNTIME_BRANCH,EXPERIENCE_RUNTIME_VERIFY_AFTER,EXPERIENCE_RUNTIME_MEMBER_AFTER,EXPERIENCE_HEALTH_TEST_AFTER,EXPERIENCE_FINITE_GROWTH_AFTER
 } from '../release/my-timber-experience-scope-20261022.mjs';
 
@@ -48,13 +48,14 @@ test('reject changed payload, registration tail and prior ledger',()=>{
 });
 
 test('every prior release/runtime/navigation byte restores and altered hooks reject',()=>{
- const mainPath='release/main-release-readiness-scope-20261021.mjs',runtimePath='release/approved-runtime-composition.mjs',navigationPath='release/recorded-week-navigation-outer-frame-20261018.mjs',mainTestPath='tests/main-release-readiness-scope-20261021.test.mjs',healthTestPath='tests/health-vision-scope-20261021.test.mjs',finiteGrowthPath='release/finite-growth-scope.mjs';
+ const mainPath='release/main-release-readiness-scope-20261021.mjs',runtimePath='release/approved-runtime-composition.mjs',navigationPath='release/recorded-week-navigation-outer-frame-20261018.mjs',mainTestPath='tests/main-release-readiness-scope-20261021.test.mjs',healthTestPath='tests/health-vision-scope-20261021.test.mjs',finiteGrowthPath='release/finite-growth-scope.mjs',rootSharePath='release/root-share-preview-scope.mjs';
  assert.equal(originalExperienceMainRelease(content(head,mainPath)),content(EXPERIENCE_BASE,mainPath));
  assert.equal(originalExperienceRuntime(content(head,runtimePath)),content(EXPERIENCE_BASE,runtimePath));
  assert.equal(originalExperienceNavigation(content(head,navigationPath)),content(EXPERIENCE_BASE,navigationPath));
  assert.equal(originalExperienceMainTest(content(head,mainTestPath)),content(EXPERIENCE_BASE,mainTestPath));
  assert.equal(originalExperienceHealthTest(content(head,healthTestPath)),content(EXPERIENCE_BASE,healthTestPath));
  assert.equal(originalExperienceFiniteGrowth(content(head,finiteGrowthPath)),content(EXPERIENCE_BASE,finiteGrowthPath));
+ assert.equal(originalExperienceRootShare(content(head,rootSharePath)),content(EXPERIENCE_BASE,rootSharePath));
  assert.throws(()=>originalExperienceMainRelease(content(head,mainPath).replace(EXPERIENCE_MAIN_AFTER,EXPERIENCE_MAIN_AFTER+EXPERIENCE_MAIN_AFTER)),/One exact/);
  assert.throws(()=>originalExperienceRuntime(content(head,runtimePath).replace(EXPERIENCE_RUNTIME_BRANCH,'')),/One exact/);
  assert.throws(()=>originalExperienceRuntime(content(head,runtimePath).replace(EXPERIENCE_RUNTIME_VERIFY_AFTER,EXPERIENCE_RUNTIME_VERIFY_AFTER+EXPERIENCE_RUNTIME_VERIFY_AFTER)),/One exact/);

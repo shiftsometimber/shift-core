@@ -57,6 +57,7 @@ export const EXPERIENCE_MAINTENANCE=Object.freeze([
  'release/finite-growth-scope.mjs',
  'release/main-release-readiness-scope-20261021.mjs',
  'release/approved-runtime-composition.mjs',
+ 'release/root-share-preview-scope.mjs',
  'release/recorded-week-navigation-outer-frame-20261018.mjs',
  'tests/health-vision-scope-20261021.test.mjs',
  'tests/main-release-readiness-scope-20261021.test.mjs',
@@ -98,6 +99,11 @@ export const EXPERIENCE_HEALTH_TEST_AFTER="const myTimber=myTimberExperienceHist
 export const EXPERIENCE_FINITE_GROWTH_IMPORT="import {myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';\n";
 export const EXPERIENCE_FINITE_GROWTH_BEFORE="export function finiteGrowthHistoricalView(){\n const memberView=memberConsentHistoricalView(),record=memberView.record,rawHead=memberView.head,repair=record.finiteGrowthRepair;";
 export const EXPERIENCE_FINITE_GROWTH_AFTER="export function finiteGrowthHistoricalView(){\n const experience=myTimberExperienceHistoricalView();\n const memberView=memberConsentHistoricalView(experience.content,{defaultReader:false}),record=memberView.record,rawHead=memberView.head,repair=record.finiteGrowthRepair;";
+export const EXPERIENCE_ROOT_SHARE_IMPORT="import {myTimberExperienceHistoricalView,myTimberExperienceReaderAffects,originalExperienceRootShare} from './my-timber-experience-scope-20261022.mjs';\n";
+export const EXPERIENCE_ROOT_SHARE_INVERSE="  bytes=originalExperienceRootShare(bytes);\n";
+export const EXPERIENCE_ROOT_SHARE_COMPARE_BEFORE=" const references=new Map();for(const[path,source]of currentRefs){if(!git('ls-tree',record.base,'--',path))continue;assert.equal(contents(head,path),contents(source,path),'Exact current-main callback source changed: '+path);assert.equal(reader('HEAD',path),reader(head,path),'Current-main callback aliases drift: '+path);references.set(path,record.base);}\n";
+export const EXPERIENCE_ROOT_SHARE_COMPARE_AFTER=" const references=new Map();for(const[path,source]of currentRefs){if(!git('ls-tree',record.base,'--',path))continue;const actual=contents(head,path),expected=contents(source,path);if(actual!==expected){assert.equal(myTimberExperienceReaderAffects(reader,path),true,'Exact current-main callback source changed: '+path);assert.equal(reader('HEAD',path),reader(source,path),'Exact projected current-main callback source changed: '+path);}assert.equal(reader('HEAD',path),reader(head,path),'Current-main callback aliases drift: '+path);references.set(path,record.base);}\n";
+export const EXPERIENCE_ROOT_SHARE_DEFAULT=" if(defaultReader){const experience=myTimberExperienceHistoricalView();if(experience.rawHead!==experience.head){reader=experience.read;defaultReader=false;}}\n";
 const once=(text,before,after='')=>{assert.equal(text.split(before).length,2,'One exact My Timber experience hook required');return text.replace(before,after);};
 export function originalExperienceMainRelease(text){
  text=once(text,EXPERIENCE_MAIN_IMPORT);
@@ -127,6 +133,12 @@ export function originalExperienceHealthTest(text){
 export function originalExperienceFiniteGrowth(text){
  text=once(text,EXPERIENCE_FINITE_GROWTH_IMPORT);
  return once(text,EXPERIENCE_FINITE_GROWTH_AFTER,EXPERIENCE_FINITE_GROWTH_BEFORE);
+}
+export function originalExperienceRootShare(text){
+ text=once(text,EXPERIENCE_ROOT_SHARE_IMPORT);
+ text=once(text,EXPERIENCE_ROOT_SHARE_INVERSE);
+ text=once(text,EXPERIENCE_ROOT_SHARE_COMPARE_AFTER,EXPERIENCE_ROOT_SHARE_COMPARE_BEFORE);
+ return once(text,EXPERIENCE_ROOT_SHARE_DEFAULT);
 }
 
 const sorted=values=>[...values].sort();
@@ -185,19 +197,20 @@ export function verifyMyTimberExperience(record,{head,read=rawBlob,blob=rawBlob,
  assert.equal(originalExperienceMainTest(content(head,'tests/main-release-readiness-scope-20261021.test.mjs')),content(record.base,'tests/main-release-readiness-scope-20261021.test.mjs'),'All original release-readiness tests retained');
  assert.equal(originalExperienceHealthTest(content(head,'tests/health-vision-scope-20261021.test.mjs')),content(record.base,'tests/health-vision-scope-20261021.test.mjs'),'All original immutable Health tests retained');
  assert.equal(originalExperienceFiniteGrowth(content(head,'release/finite-growth-scope.mjs')),content(record.base,'release/finite-growth-scope.mjs'),'All original finite-growth assertions and historical mappings retained');
+ assert.equal(originalExperienceRootShare(content(head,'release/root-share-preview-scope.mjs')),content(record.base,'release/root-share-preview-scope.mjs'),'All original root-share assertions and historical mappings retained');
  const current=JSON.parse(content(head,EXPERIENCE_MANIFEST)),prior=JSON.parse(content(record.base,EXPERIENCE_MANIFEST));
  assert.deepEqual(current[EXPERIENCE_KEY],record);delete current[EXPERIENCE_KEY];
  assert.deepEqual(current,prior,'Every previous approval, failure, receipt and hold retained');
  return record;
 }
 
-const admittedViews=new WeakSet();
+const admittedViews=new WeakSet(),admittedReaders=new WeakMap();
 export function myTimberExperienceHistoricalView(reader=null,{defaultReader=reader===null}={}){
  const rawHead=git('rev-parse','HEAD');clean(rawHead);
  const current=JSON.parse(rawContent(rawHead,EXPERIENCE_MANIFEST)),record=current[EXPERIENCE_KEY];
  const supplied=defaultReader?rawBlob:reader;assert.equal(typeof supplied,'function','Current source reader required');
  const assertCurrent=()=>clean(rawHead);
- if(!record){const view={rawHead,head:rawHead,record:current,read:supplied,blob:rawBlob,content:rawContent,affected:()=>false,assertCurrent,finish:assertCurrent};admittedViews.add(view);return Object.freeze(view);}
+ if(!record){const affected=()=>false,view={rawHead,head:rawHead,record:current,read:supplied,blob:rawBlob,content:rawContent,affected,assertCurrent,finish:assertCurrent};admittedViews.add(view);admittedReaders.set(view.read,affected);return Object.freeze(view);}
  verifyMyTimberExperience(record,{head:rawHead,read:supplied});
  const all=[...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE,EXPERIENCE_MANIFEST];
  const affected=path=>all.includes(path)||all.some(p=>p.startsWith(path+'/'));
@@ -215,8 +228,9 @@ export function myTimberExperienceHistoricalView(reader=null,{defaultReader=read
  };
  const prior=structuredClone(current);delete prior[EXPERIENCE_KEY];assertCurrent();
  const view={rawHead,head:record.base,record:prior,read,blob:(r,p)=>rawBlob(map(r,p),p),content:(r,p)=>rawContent(map(r,p),p),affected,assertCurrent,finish:assertCurrent};
- admittedViews.add(view);return Object.freeze(view);
+ admittedViews.add(view);admittedReaders.set(view.read,affected);return Object.freeze(view);
 }
 export function assertMyTimberExperienceView(view){assert(admittedViews.has(view),'Independently admitted My Timber view required');view.assertCurrent();return view;}
+export function myTimberExperienceReaderAffects(reader,path){return admittedReaders.get(reader)?.(path)===true;}
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){myTimberExperienceHistoricalView();console.log('PASS exact My Timber experience source; original release and rollback guards retained; no deployment claimed');}

@@ -1,4 +1,5 @@
 import {photoCalendarHistoricalView} from './photo-calendar-scope.mjs';
+import {myTimberExperienceHistoricalView,myTimberExperienceReaderAffects,originalExperienceRootShare} from './my-timber-experience-scope-20261022.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
@@ -26,6 +27,7 @@ function rootShareBeforeCurrentMainRepair(path,bytes){
   return bytes.replace(importHook,'').replace(assertions,'').replace(prepared,'').replace(current,original);
  }
  if(path===CURRENT_MAIN_ROOT_SHARE_SCOPE){
+  bytes=originalExperienceRootShare(bytes);
   const upstreamFragments=[[',currentMainReconciliation','Followup=record.currentMainReconciliationFollowup'].join(''),["if(currentMainReconciliation","Followup){assert.equal(currentMainReconciliationFollowup.kind,'EXACT_CURRENT_MAIN_RECONCILIATION_20261022');assert.equal(currentMainReconciliationFollowup.base,'8c78928accc388444515263df21fcdef1f17e51d');assert.equal(currentMainReconciliationFollowup.upstreamMain,'ed65a6d09df7b157f05f9654e8f584b32b6c4337');}"].join(''),[',currentMainReconciliation','Followup'].join('')];for(const fragment of upstreamFragments){assert.equal(bytes.split(fragment).length,2,'One exact current-main reconciliation projection required');bytes=bytes.replace(fragment,'');}
   const guardFragments=[[',currentMainGuardComposition','Followup=record.currentMainGuardCompositionFollowup'].join(''),["if(currentMainGuardComposition","Followup){assert.equal(currentMainGuardCompositionFollowup.kind,'EXACT_CURRENT_MAIN_GUARD_COMPOSITION_20261022');assert.equal(currentMainGuardCompositionFollowup.base,'3f097fd8fbf34582fe6c18a60e897274e3644b99');}"].join(''),[',currentMainGuardComposition','Followup'].join('')];for(const fragment of guardFragments){assert.equal(bytes.split(fragment).length,2,'One exact current-main guard projection required');bytes=bytes.replace(fragment,'');}
   const entityFragments=[
@@ -68,7 +70,7 @@ function rootShareCurrentMainReader(reader){
  if(wholeEstateRetryFollowup){assert.equal(wholeEstateRetryFollowup.kind,'EXACT_WHOLE_ESTATE_TRANSIENT_TIMEOUT_RETRY_20261022');assert.equal(wholeEstateRetryFollowup.base,'980f35cf915934ce6849899c0187151af891f2c8');}
  if(wholeEstateTransportFollowup){assert.equal(wholeEstateTransportFollowup.kind,'EXACT_WHOLE_ESTATE_TRANSIENT_FETCH_RETRY_20261023');assert.equal(wholeEstateTransportFollowup.base,'ff830641334949abae213a5124faa07ef7c04bbc');}
  const currentRefs=new Map(),stages=[record,followup,timeoutFollowup,wholeEstateFollowup,wholeEstateExpansionFollowup,publicAliasWindowFollowup,completionFollowup,compositionFollowup,projectionCacheFollowup,targetCacheFollowup,rootProjectionFollowup,rootInverseFollowup,currentMainReconciliationFollowup,currentMainGuardCompositionFollowup,currentMainNetProjectionFollowup,wholeEstateEntityFollowup,wholeEstateEntityCompositionFollowup,wholeEstateRetryFollowup,wholeEstateTransportFollowup].filter(Boolean);for(const stage of stages){for(const path of stage.paths)currentRefs.set(path,stage.payload);for(const path of stage.compositionPaths||[])currentRefs.set(path,stage.compositionPayload);for(const path of stage.maintenancePaths)currentRefs.set(path,stage.maintenanceSource);}
- const references=new Map();for(const[path,source]of currentRefs){if(!git('ls-tree',record.base,'--',path))continue;assert.equal(contents(head,path),contents(source,path),'Exact current-main callback source changed: '+path);assert.equal(reader('HEAD',path),reader(head,path),'Current-main callback aliases drift: '+path);references.set(path,record.base);}
+ const references=new Map();for(const[path,source]of currentRefs){if(!git('ls-tree',record.base,'--',path))continue;const actual=contents(head,path),expected=contents(source,path);if(actual!==expected){assert.equal(myTimberExperienceReaderAffects(reader,path),true,'Exact current-main callback source changed: '+path);assert.equal(reader('HEAD',path),reader(source,path),'Exact projected current-main callback source changed: '+path);}assert.equal(reader('HEAD',path),reader(head,path),'Current-main callback aliases drift: '+path);references.set(path,record.base);}
  assert.equal(rootShareBeforeCurrentMainRepair(CURRENT_MAIN_ROOT_SHARE_TEST,contents(head,CURRENT_MAIN_ROOT_SHARE_TEST)),contents(record.base,CURRENT_MAIN_ROOT_SHARE_TEST),'Exact prior root-share callback test must restore');assert.equal(rootShareBeforeCurrentMainRepair(CURRENT_MAIN_ROOT_SHARE_SCOPE,current),contents(record.base,CURRENT_MAIN_ROOT_SHARE_SCOPE),'Exact prior root-share callback scope must restore');
  return(ref,path)=>references.has(path)&&(ref==='HEAD'||ref===head)?reader(references.get(path),path):reader(ref,path);
 }
@@ -99,6 +101,7 @@ export function verifyRootShareSource(c,{head,read,blob=read,diff,ancestor,conte
  const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.rootSharePreview;assert.deepEqual(current,prior,'Every prior approval, watermark and release record must remain unchanged');return c;
 }
 export function rootShareHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ if(defaultReader){const experience=myTimberExperienceHistoricalView();if(experience.rawHead!==experience.head){reader=experience.read;defaultReader=false;}}
  if(defaultReader){const actual=git('rev-parse','HEAD');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes('// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\n')){reader=(ref,p)=>git('rev-parse',(ref==='HEAD'?actual:ref)+':'+p);defaultReader=false;}}
  if(!defaultReader)reader=rootShareCurrentMainReader(reader);
  const calendar=photoCalendarHistoricalView(reader,{defaultReader}),rawHead=calendar.head,current=calendar.record,repair=current.rootSharePreview;
