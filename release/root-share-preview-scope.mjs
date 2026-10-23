@@ -1,4 +1,5 @@
 import {photoCalendarHistoricalView} from './photo-calendar-scope.mjs';
+import {myTimberExperienceHistoricalView,myTimberExperienceReaderAffects,originalExperienceRootShare} from './my-timber-experience-scope-20261022.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
@@ -13,12 +14,73 @@ export const ROOT_SHARE_MAINTENANCE=Object.freeze(["release/root-share-preview-s
 export const ROOT_SHARE_APPROVAL=Object.freeze({owner:'Matt',instruction:'Sorry this needs deploying - it’s a huge fault !',recordedAt:'2026-10-13T17:17:57Z',scope:'Prepared corrected sharing artwork and exactly the two homepage sharing-image URL replacements through #1065',source:ROOT_SHARE_SOURCE,integrationIssue:1065,emailAuthority:false,rollbackAuthorityBroadened:false});
 export const ROOT_SHARE_FLAGS=Object.freeze(['homepageBodyChanged','homepageTitleDescriptionChanged','faviconChanged','memberProductChanged','clinicalChanged','stockChanged','customerDataChanged','consentChanged','paidModelEnabled','externalCommunicationsSent','emailGeneratingStepsStarted','existingGatesWeakened','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened']);
 const manifest='release/approved-runtime-composition.json',sort=a=>[...a].sort();
+// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN
+const CURRENT_MAIN_ROOT_SHARE_SCOPE='release/root-share-preview-scope.mjs',CURRENT_MAIN_ROOT_SHARE_TEST='tests/root-share-preview.test.mjs';
+function rootShareBeforeCurrentMainRepair(path,bytes){
+ if(path===CURRENT_MAIN_ROOT_SHARE_TEST){
+  const importHook=` const importHook="import {withRootShareWorker} from '../share-preview/metadata.mjs';\\n",wrapperHook='withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)))';\n`;
+  const assertions=' assert.equal(current.split(importHook).length,2);assert.equal(current.split(wrapperHook).length,2);\n';
+  const prepared=" const prepared=execFileSync('git',['show','da67872e84109577d5c6e6eff5cb9a85206c537f:shift-coach/worker.mjs'],{encoding:'utf8'});\n";
+  const current=" const inverse=prepared.replace(importHook,'').replace(wrapperHook,'withPublicResponsePolicyWorker(withMaleObesity(composedWorker))');\n";
+  const original=` const inverse=current.replace("import {withRootShareWorker} from '../share-preview/metadata.mjs';\\n",'').replace('withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)))','withPublicResponsePolicyWorker(withMaleObesity(composedWorker))');\n`;
+  for(const fragment of[importHook,assertions,prepared,current])assert.equal(bytes.split(fragment).length,2,'One exact current-main root-share test repair fragment required');
+  return bytes.replace(importHook,'').replace(assertions,'').replace(prepared,'').replace(current,original);
+ }
+ if(path===CURRENT_MAIN_ROOT_SHARE_SCOPE){
+  bytes=originalExperienceRootShare(bytes);
+  const upstreamFragments=[[',currentMainReconciliation','Followup=record.currentMainReconciliationFollowup'].join(''),["if(currentMainReconciliation","Followup){assert.equal(currentMainReconciliationFollowup.kind,'EXACT_CURRENT_MAIN_RECONCILIATION_20261022');assert.equal(currentMainReconciliationFollowup.base,'8c78928accc388444515263df21fcdef1f17e51d');assert.equal(currentMainReconciliationFollowup.upstreamMain,'ed65a6d09df7b157f05f9654e8f584b32b6c4337');}"].join(''),[',currentMainReconciliation','Followup'].join('')];for(const fragment of upstreamFragments){assert.equal(bytes.split(fragment).length,2,'One exact current-main reconciliation projection required');bytes=bytes.replace(fragment,'');}
+  const guardFragments=[[',currentMainGuardComposition','Followup=record.currentMainGuardCompositionFollowup'].join(''),["if(currentMainGuardComposition","Followup){assert.equal(currentMainGuardCompositionFollowup.kind,'EXACT_CURRENT_MAIN_GUARD_COMPOSITION_20261022');assert.equal(currentMainGuardCompositionFollowup.base,'3f097fd8fbf34582fe6c18a60e897274e3644b99');}"].join(''),[',currentMainGuardComposition','Followup'].join('')];for(const fragment of guardFragments){assert.equal(bytes.split(fragment).length,2,'One exact current-main guard projection required');bytes=bytes.replace(fragment,'');}
+  const entityFragments=[
+   [',currentMainNetProjection','Followup=record.currentMainNetProjectionFollowup,wholeEstateEntityFollowup=record.wholeEstateEntityFollowup,wholeEstateEntityCompositionFollowup=record.wholeEstateEntityCompositionFollowup'].join(''),
+   [" if(currentMainNetProjection","Followup){assert.equal(currentMainNetProjectionFollowup.kind,'EXACT_ZERO_NET_HEALTH_GUARD_PROJECTION_20261022');assert.equal(currentMainNetProjectionFollowup.base,'c9dea42fc5326e98eacabf9aadd271ef21487553');}\n"].join(''),
+   [" if(wholeEstateEntity","Followup){assert.equal(wholeEstateEntityFollowup.kind,'EXACT_WHOLE_ESTATE_HTML_ENTITY_NORMALISATION_20261022');assert.equal(wholeEstateEntityFollowup.base,'e17c8600c7cc87d56c1d7f1e6b2b23a1e0e9badd');}\n"].join(''),
+   [" if(wholeEstateEntityComposition","Followup){assert.equal(wholeEstateEntityCompositionFollowup.kind,'EXACT_WHOLE_ESTATE_ENTITY_HISTORICAL_COMPOSITION_20261022');assert.equal(wholeEstateEntityCompositionFollowup.base,'bc86f5319df48ac8419e8b96a01cd6412124c027');}\n"].join(''),
+   [',currentMainNetProjection','Followup,wholeEstateEntityFollowup,wholeEstateEntityCompositionFollowup'].join('')
+  ];for(const fragment of entityFragments){assert.equal(bytes.split(fragment).length,2,'One exact whole-estate entity projection required');bytes=bytes.replace(fragment,'');}
+  const retryFragments=[
+   [',wholeEstateRetry','Followup=record.wholeEstateRetryFollowup'].join(''),
+   [" if(wholeEstateRetry","Followup){assert.equal(wholeEstateRetryFollowup.kind,'EXACT_WHOLE_ESTATE_TRANSIENT_TIMEOUT_RETRY_20261022');assert.equal(wholeEstateRetryFollowup.base,'980f35cf915934ce6849899c0187151af891f2c8');}\n"].join(''),
+   [',wholeEstateRetry','Followup'].join('')
+  ];for(const fragment of retryFragments){assert.equal(bytes.split(fragment).length,2,'One exact whole-estate timeout retry projection required');bytes=bytes.replace(fragment,'');}
+  const transportFragments=[
+   [',wholeEstateTransport','Followup=record.wholeEstateTransportFollowup'].join(''),
+   [" if(wholeEstateTransport","Followup){assert.equal(wholeEstateTransportFollowup.kind,'EXACT_WHOLE_ESTATE_TRANSIENT_FETCH_RETRY_20261023');assert.equal(wholeEstateTransportFollowup.base,'ff830641334949abae213a5124faa07ef7c04bbc');}\n"].join(''),
+   [',wholeEstateTransport','Followup'].join('')
+  ];for(const fragment of transportFragments){assert.equal(bytes.split(fragment).length,2,'One exact whole-estate fetch retry projection required');bytes=bytes.replace(fragment,'');}
+  const injections=[[' ({read,blob}=rootShare','CurrentMainReaders({c,head,read,blob,content}));\n'].join(''),[' if(!defaultReader)reader=rootShare','CurrentMainReader(reader);\n'].join(''),[' if(defaultReader){const actual=git(\'rev-parse\',\'HEAD\');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes(\'// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\\n\')){reader=(ref,p)=>git(\'rev-parse\',(ref===\'HEAD\'?actual:ref)+\':\'+p);defaultReader=','false;}}\n'].join('')];for(const injection of injections){assert.equal(bytes.split(injection).length,2,'One exact current-main root-share projection required');bytes=bytes.replace(injection,'');}
+  const start=['// CURRENT_MAIN_ROOT_SHARE_REPAIR','_BEGIN\n'].join(''),end=['// CURRENT_MAIN_ROOT_SHARE_REPAIR','_END\n'].join(''),a=bytes.indexOf(start),b=bytes.indexOf(end,a+start.length);assert(a>=0&&b>a&&bytes.indexOf(start,a+1)<0&&bytes.indexOf(end,b+1)<0,'One exact current-main root-share repair block required');bytes=bytes.slice(0,a)+bytes.slice(b+end.length);
+  const buffered="{encoding:'utf8',maxBuffer:64e6}",original="{encoding:'utf8'}";assert.equal(bytes.split(buffered).length,3,'Two exact root-share output-buffer repairs required');return bytes.split(buffered).join(original);
+ }
+ assert.fail('Unknown current-main root-share repair path: '+path);
+}
+function rootShareCurrentMainReaders({c,head,read,blob,content}){
+ if(!content(head,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes('// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\n'))return{read,blob};
+ const actualRead=read,actualBlob=blob,references=new Map([[CURRENT_MAIN_ROOT_SHARE_TEST,c.source],[CURRENT_MAIN_ROOT_SHARE_SCOPE,c.maintenanceSource]]);
+ for(const[path,prior]of references){assert.equal(rootShareBeforeCurrentMainRepair(path,content(head,path)),content(prior,path),'Exact prior root-share source must restore: '+path);assert.equal(actualBlob('HEAD',path),actualBlob(head,path),'Current root-share blob aliases changed: '+path);assert.equal(actualRead('HEAD',path),actualRead(head,path),'Current root-share reader aliases changed: '+path);}
+ const project=fn=>(ref,path)=>references.has(path)&&(ref==='HEAD'||ref===head)?fn(references.get(path),path):fn(ref,path);return{read:project(actualRead),blob:project(actualBlob)};
+}
+function rootShareCurrentMainReader(reader){
+ const head=git('rev-parse','HEAD'),current=contents(head,CURRENT_MAIN_ROOT_SHARE_SCOPE);if(!current.includes('// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\n'))return reader;
+ const receipt='release/main-release-readiness-scope-20261021.json',record=JSON.parse(contents(head,receipt)),followup=record.followup,timeoutFollowup=record.timeoutFollowup,wholeEstateFollowup=record.wholeEstateFollowup,wholeEstateExpansionFollowup=record.wholeEstateExpansionFollowup,publicAliasWindowFollowup=record.publicAliasWindowFollowup,completionFollowup=record.releaseGateCompletionFollowup,compositionFollowup=record.releaseGateCompositionFollowup,projectionCacheFollowup=record.releaseGateProjectionCacheFollowup,targetCacheFollowup=record.releaseGateTargetCacheFollowup,rootProjectionFollowup=record.releaseGateRootProjectionFollowup,rootInverseFollowup=record.releaseGateRootInverseFollowup,currentMainReconciliationFollowup=record.currentMainReconciliationFollowup,currentMainGuardCompositionFollowup=record.currentMainGuardCompositionFollowup,currentMainNetProjectionFollowup=record.currentMainNetProjectionFollowup,wholeEstateEntityFollowup=record.wholeEstateEntityFollowup,wholeEstateEntityCompositionFollowup=record.wholeEstateEntityCompositionFollowup,wholeEstateRetryFollowup=record.wholeEstateRetryFollowup,wholeEstateTransportFollowup=record.wholeEstateTransportFollowup;
+ assert.equal(record.kind,'EXACT_CURRENT_MAIN_RELEASE_READINESS_REPAIR_20261021');assert.equal(record.base,'39c703ac068b800bbf4a92a9277e21bd3d7b89e6');assert.equal(followup?.kind,'EXACT_TERMINAL_RELEASE_GATE_REPAIR_20261022');assert.equal(followup.base,'aec895cc2543f83f8dd7af0111850745605b95a6');if(timeoutFollowup){assert.equal(timeoutFollowup.kind,'EXACT_PUBLIC_ALIAS_RUNTIME_CAP_REPAIR_20261022');assert.equal(timeoutFollowup.base,'fc0baf8d2e41c577590531cb0fc9d178a6297b63');}if(wholeEstateFollowup){assert.equal(wholeEstateFollowup.kind,'EXACT_WHOLE_ESTATE_ROUTE_CAPACITY_REPAIR_20261022');}if(wholeEstateExpansionFollowup){assert.equal(wholeEstateExpansionFollowup.kind,'EXACT_WHOLE_ESTATE_CURRENT_SIZE_REPAIR_20261022');}if(publicAliasWindowFollowup){assert.equal(publicAliasWindowFollowup.kind,'EXACT_PUBLIC_ALIAS_CURRENT_RUNTIME_REPAIR_20261022');}if(completionFollowup){assert.equal(completionFollowup.kind,'EXACT_HOSTED_RELEASE_COMPLETION_REPAIR_20261022');assert.equal(completionFollowup.base,'504ffbd11ed629f9dfd576dfa72904059df68b5e');}if(compositionFollowup){assert.equal(compositionFollowup.kind,'EXACT_HOSTED_RELEASE_HISTORICAL_COMPOSITION_REPAIR_20261022');assert.equal(compositionFollowup.base,'5dd5b48a7d7e63e6d354436ad84c7f39c08f8dd7');}if(projectionCacheFollowup){assert.equal(projectionCacheFollowup.kind,'EXACT_HISTORICAL_PROJECTION_RUNTIME_REPAIR_20261022');assert.equal(projectionCacheFollowup.base,'a1d0898993a7c5a9e4e016f14bd0e8963ab23412');}if(targetCacheFollowup){assert.equal(targetCacheFollowup.kind,'EXACT_HISTORICAL_TARGET_CACHE_REPAIR_20261022');assert.equal(targetCacheFollowup.base,'bac2dc8cb5f10ca654ec934977d990f6b7963c8c');}if(rootProjectionFollowup){assert.equal(rootProjectionFollowup.kind,'EXACT_ROOT_PROJECTION_CHAIN_REPAIR_20261022');assert.equal(rootProjectionFollowup.base,'19fa39dd6704bc836f401ad8b678a4c084571a60');}if(rootInverseFollowup){assert.equal(rootInverseFollowup.kind,'EXACT_ROOT_OUTPUT_BUFFER_INVERSE_REPAIR_20261022');assert.equal(rootInverseFollowup.base,'a936f9aaad51cb8f9da680ac66c154c098892e3f');}if(currentMainReconciliationFollowup){assert.equal(currentMainReconciliationFollowup.kind,'EXACT_CURRENT_MAIN_RECONCILIATION_20261022');assert.equal(currentMainReconciliationFollowup.base,'8c78928accc388444515263df21fcdef1f17e51d');assert.equal(currentMainReconciliationFollowup.upstreamMain,'ed65a6d09df7b157f05f9654e8f584b32b6c4337');}
+ if(currentMainGuardCompositionFollowup){assert.equal(currentMainGuardCompositionFollowup.kind,'EXACT_CURRENT_MAIN_GUARD_COMPOSITION_20261022');assert.equal(currentMainGuardCompositionFollowup.base,'3f097fd8fbf34582fe6c18a60e897274e3644b99');}
+ if(currentMainNetProjectionFollowup){assert.equal(currentMainNetProjectionFollowup.kind,'EXACT_ZERO_NET_HEALTH_GUARD_PROJECTION_20261022');assert.equal(currentMainNetProjectionFollowup.base,'c9dea42fc5326e98eacabf9aadd271ef21487553');}
+ if(wholeEstateEntityFollowup){assert.equal(wholeEstateEntityFollowup.kind,'EXACT_WHOLE_ESTATE_HTML_ENTITY_NORMALISATION_20261022');assert.equal(wholeEstateEntityFollowup.base,'e17c8600c7cc87d56c1d7f1e6b2b23a1e0e9badd');}
+ if(wholeEstateEntityCompositionFollowup){assert.equal(wholeEstateEntityCompositionFollowup.kind,'EXACT_WHOLE_ESTATE_ENTITY_HISTORICAL_COMPOSITION_20261022');assert.equal(wholeEstateEntityCompositionFollowup.base,'bc86f5319df48ac8419e8b96a01cd6412124c027');}
+ if(wholeEstateRetryFollowup){assert.equal(wholeEstateRetryFollowup.kind,'EXACT_WHOLE_ESTATE_TRANSIENT_TIMEOUT_RETRY_20261022');assert.equal(wholeEstateRetryFollowup.base,'980f35cf915934ce6849899c0187151af891f2c8');}
+ if(wholeEstateTransportFollowup){assert.equal(wholeEstateTransportFollowup.kind,'EXACT_WHOLE_ESTATE_TRANSIENT_FETCH_RETRY_20261023');assert.equal(wholeEstateTransportFollowup.base,'ff830641334949abae213a5124faa07ef7c04bbc');}
+ const currentRefs=new Map(),stages=[record,followup,timeoutFollowup,wholeEstateFollowup,wholeEstateExpansionFollowup,publicAliasWindowFollowup,completionFollowup,compositionFollowup,projectionCacheFollowup,targetCacheFollowup,rootProjectionFollowup,rootInverseFollowup,currentMainReconciliationFollowup,currentMainGuardCompositionFollowup,currentMainNetProjectionFollowup,wholeEstateEntityFollowup,wholeEstateEntityCompositionFollowup,wholeEstateRetryFollowup,wholeEstateTransportFollowup].filter(Boolean);for(const stage of stages){for(const path of stage.paths)currentRefs.set(path,stage.payload);for(const path of stage.compositionPaths||[])currentRefs.set(path,stage.compositionPayload);for(const path of stage.maintenancePaths)currentRefs.set(path,stage.maintenanceSource);}
+ const references=new Map();for(const[path,source]of currentRefs){if(!git('ls-tree',record.base,'--',path))continue;const actual=contents(head,path),expected=contents(source,path);if(actual!==expected){assert.equal(myTimberExperienceReaderAffects(reader,path),true,'Exact current-main callback source changed: '+path);assert.equal(reader('HEAD',path),reader(source,path),'Exact projected current-main callback source changed: '+path);}assert.equal(reader('HEAD',path),reader(head,path),'Current-main callback aliases drift: '+path);references.set(path,record.base);}
+ assert.equal(rootShareBeforeCurrentMainRepair(CURRENT_MAIN_ROOT_SHARE_TEST,contents(head,CURRENT_MAIN_ROOT_SHARE_TEST)),contents(record.base,CURRENT_MAIN_ROOT_SHARE_TEST),'Exact prior root-share callback test must restore');assert.equal(rootShareBeforeCurrentMainRepair(CURRENT_MAIN_ROOT_SHARE_SCOPE,current),contents(record.base,CURRENT_MAIN_ROOT_SHARE_SCOPE),'Exact prior root-share callback scope must restore');
+ return(ref,path)=>references.has(path)&&(ref==='HEAD'||ref===head)?reader(references.get(path),path):reader(ref,path);
+}
+// CURRENT_MAIN_ROOT_SHARE_REPAIR_END
 // Cache only immutable object facts, never HEAD identity, worktree state or a supplied reader.
 const immutableFacts=new Map();
 function fact(...a){
  const immutable=(['show','rev-parse'].includes(a[0])&&/^[a-f0-9]{40}:/.test(a[1]||''))||(a[0]==='diff'&&a[1]==='--name-only'&&a.slice(2).length===2&&a.slice(2).every(r=>/^[a-f0-9]{40}$/.test(r)))||(a[0]==='merge-base'&&a[1]==='--is-ancestor'&&a.slice(2).length===2&&a.slice(2).every(r=>/^[a-f0-9]{40}$/.test(r)));
- if(!immutable)return execFileSync('git',a,{encoding:'utf8'});
- const key=JSON.stringify([process.cwd(),...a]);if(!immutableFacts.has(key))immutableFacts.set(key,execFileSync('git',a,{encoding:'utf8'}));return immutableFacts.get(key);
+ if(!immutable)return execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6});
+ const key=JSON.stringify([process.cwd(),...a]);if(!immutableFacts.has(key))immutableFacts.set(key,execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}));return immutableFacts.get(key);
 }
 const git=(...a)=>fact(...a).trim();
 const contents=(ref,path)=>fact('show',(ref==='HEAD'?git('rev-parse','HEAD'):ref)+':'+path);
@@ -26,6 +88,7 @@ export function requireRootShareAuthority(c){
  assert.deepEqual(c?.releaseApproval,ROOT_SHARE_APPROVAL,'Exact prepared preview publication approval required');return c.releaseApproval;
 }
 export function verifyRootShareSource(c,{head,read,blob=read,diff,ancestor,content}){
+ ({read,blob}=rootShareCurrentMainReaders({c,head,read,blob,content}));
  assert.equal(c?.proof,'EXACT_APPROVED_ROOT_SHARE_PREVIEW_20261013');assert.equal(c.base,ROOT_SHARE_BASE);assert.equal(c.source,ROOT_SHARE_SOURCE);assert.equal(c.integrationIssue,1065);
  assert.deepEqual(c.paths,ROOT_SHARE_PATHS);assert.deepEqual(c.maintenancePaths,ROOT_SHARE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
  for(const flag of ROOT_SHARE_FLAGS)assert.equal(c[flag],false,'Root sharing boundary: '+flag);requireRootShareAuthority(c);
@@ -38,6 +101,9 @@ export function verifyRootShareSource(c,{head,read,blob=read,diff,ancestor,conte
  const prior=JSON.parse(content(c.base,manifest)),current=JSON.parse(content(head,manifest));delete current.rootSharePreview;assert.deepEqual(current,prior,'Every prior approval, watermark and release record must remain unchanged');return c;
 }
 export function rootShareHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ if(defaultReader){const experience=myTimberExperienceHistoricalView();if(experience.rawHead!==experience.head){reader=experience.read;defaultReader=false;}}
+ if(defaultReader){const actual=git('rev-parse','HEAD');if(contents(actual,CURRENT_MAIN_ROOT_SHARE_SCOPE).includes('// CURRENT_MAIN_ROOT_SHARE_REPAIR_BEGIN\n')){reader=(ref,p)=>git('rev-parse',(ref==='HEAD'?actual:ref)+':'+p);defaultReader=false;}}
+ if(!defaultReader)reader=rootShareCurrentMainReader(reader);
  const calendar=photoCalendarHistoricalView(reader,{defaultReader}),rawHead=calendar.head,current=calendar.record,repair=current.rootSharePreview;
  const rawBlob=calendar.blob,rawRead=calendar.read;
  if(!repair)return {record:current,rawHead:calendar.rawHead,head:rawHead,read:rawRead,blob:rawBlob,content:(ref,p)=>contents(ref==='HEAD'?rawHead:ref,p)};

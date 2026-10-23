@@ -94,7 +94,7 @@ export const memberChromeClient=String.raw`(()=>{
  function placeUtilities(){
   if(document.body.dataset.appPanel==='1')return;
   const controls=all('#sstCookieSettings,#askTimberLaunch');if(!controls.length)return;
-  let host=document.getElementById('memberUtilities');
+  let host=document.getElementById('memberMoreUtilities')||document.getElementById('memberUtilities');
   if(!host){host=document.createElement('nav');host.id='memberUtilities';host.setAttribute('aria-label','Help and privacy');document.querySelector('main')?.after(host);}
   controls.forEach(control=>{if(control.parentElement!==host)host.append(control)});
  }

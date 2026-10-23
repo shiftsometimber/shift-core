@@ -50,6 +50,8 @@ export function filterRecipe(r,filter){
 }
 export function searchGrubRecipes(input,records){
  const mode=input?.mode==='fridge'?'fridge':'discover',filter=normalise(input?.filter||'');
+ const mealType=normalise(input?.meal_type||''),sort=normalise(input?.sort||'recommended');
+ const maxMinutes=Number(input?.max_minutes)||0;
  const items=(Array.isArray(input?.items)?input.items:[]).map(x=>String(x).trim()).filter(Boolean).slice(0,40);
  const query=String(input?.query||'').trim().slice(0,300);
  const requestedMeal=query.toLowerCase().match(/\b(breakfast|lunch|dinner|snack)s?\b/)?.[1]||null;
@@ -58,22 +60,28 @@ export function searchGrubRecipes(input,records){
  const usable=records.map(r=>memberRecipe(r,mode==='fridge'?items:[])).filter(r=>r&&discoverable(r));
  if(mode==='fridge'&&!items.length)return {top:[],source:'published_catalogue',catalogue_size:usable.length,message:'Add at least one ingredient first.'};
  if(filter&&!['fast','high protein','family','budget','vegetarian'].includes(filter))return {top:[],source:'published_catalogue',catalogue_size:usable.length,message:'Choose one of the available recipe filters.'};
+ if(mealType&&!['breakfast','lunch','dinner','snack'].includes(mealType)||!['recommended','quickest','protein','name'].includes(sort)||![0,10,15,25,45].includes(maxMinutes))return {top:[],source:'published_catalogue',catalogue_size:usable.length,message:'Choose one of the available discovery options.'};
  // Free-text allergy promises would be unsafe: this is ingredient search, not
  // a validated allergy selector. Do not silently ignore those constraints.
  if(/\b(allerg|coeliac|celiac|gluten.free|nut.free|dairy.free|without|no )/i.test(query))return {top:[],source:'published_catalogue',catalogue_size:usable.length,message:'This search cannot verify allergy or exclusion requests. Search for an ingredient, then check the full ingredient list and product labels.'};
- let candidates=usable.filter(r=>(!requestedMeal||r.meal_type===requestedMeal)&&filterRecipe(r,filter)).map(r=>{
+ let candidates=usable.filter(r=>(!requestedMeal||r.meal_type===requestedMeal)&&filterRecipe(r,filter)&&(!mealType||normalise(r.meal_type)===mealType)&&(!maxMinutes||r.minutes!==null&&r.minutes<=maxMinutes)).map(r=>{
   const missingCore=r.missing.filter(x=>!pantry.has(normalise(x))),matchedCore=r.matched.filter(x=>!pantry.has(normalise(x)));
   const title=words(r.name),all=words([r.name,...r.ingredients.map(x=>x.item),...r.equipment,...r.tags].join(' '));
   const queryMatches=queryParts.filter(part=>part.every(w=>all.includes(w))).length;
   const relevance=queryMatches*100+queryParts.filter(part=>part.every(w=>title.includes(w))).length*20;
   return {...r,score:mode==='fridge'?matchedCore.length*20-missingCore.length*5:relevance,missingCore,matchedCore,queryMatches};
  }).filter(r=>mode==='fridge'?r.matchedCore.length>0:!queryParts.length||r.queryMatches>0);
- candidates.sort((a,b)=>b.score-a.score||(broadDiscovery?genericMealOrder(a)-genericMealOrder(b):0)||discoveryTier(a)-discoveryTier(b)||discoveryRank(a)-discoveryRank(b)||(a.minutes??999)-(b.minutes??999)||a.name.localeCompare(b.name));
- // Prefer different meal formats before filling the result with seasoning
- // variants of the same toastie. Exact recipe content remains untouched.
+ const recommendedCompare=(a,b)=>b.score-a.score||(broadDiscovery?genericMealOrder(a)-genericMealOrder(b):0)||discoveryTier(a)-discoveryTier(b)||discoveryRank(a)-discoveryRank(b)||(a.minutes??999)-(b.minutes??999)||a.name.localeCompare(b.name);
+ candidates.sort((a,b)=>mode==='fridge'||sort==='recommended'?recommendedCompare(a,b):sort==='quickest'?(a.minutes??Infinity)-(b.minutes??Infinity)||b.score-a.score||discoveryTier(a)-discoveryTier(b)||discoveryRank(a)-discoveryRank(b)||a.name.localeCompare(b.name):sort==='protein'?(b.protein_g??-1)-(a.protein_g??-1)||b.score-a.score||discoveryTier(a)-discoveryTier(b)||discoveryRank(a)-discoveryRank(b)||a.name.localeCompare(b.name):a.name.replace(/^shift\s+/i,'').localeCompare(b.name.replace(/^shift\s+/i,'')));
+ // Collapse identical recipe content in discovery only. Saved IDs and the
+ // governed publication remain untouched, and genuine recipe differences stay.
+ if(mode==='discover'){const groups=new Map();for(const r of candidates){const key=JSON.stringify([r.meal_type,r.servings,r.minutes,r.prep_minutes,r.cook_minutes,r.nutrition,r.ingredients,r.method,r.allergens,r.food_safety,r.storage,r.equipment]);if(groups.has(key))groups.get(key).equivalent_names.push(r.name);else groups.set(key,{...r,equivalent_names:[]})}candidates=[...groups.values()]}
+ // Preserve governed discovery priority while varying familiar meals within
+ // each priority tier. Explicit sorting and query ranking keep their order.
  const seen=new Set(),first=[],rest=[];
- for(const r of candidates){const key=[r.food_format||r.name,r.taxonomy.main_protein||''].join(':');(seen.has(key)?rest:first).push(r);seen.add(key)}
- const ordered=queryParts.length?candidates:[...first,...rest].sort((a,b)=>(broadDiscovery?genericMealOrder(a)-genericMealOrder(b):0)||discoveryTier(a)-discoveryTier(b));
- const total=candidates.length,offset=Math.max(0,Math.min(total,Number.isSafeInteger(input?.offset)?input.offset:0)),top=ordered.slice(offset,offset+12).map(({score,missingCore,matchedCore,queryMatches,taxonomy,tags,food_format,...r})=>r);
- return {top,total,offset,page_size:12,has_more:offset+top.length<total,source:'published_catalogue',catalogue_size:usable.length,mode,filter,message:top.length?(mode==='fridge'?'Closest matches first. Missing ingredients include oil and seasonings; nothing is assumed.':`${total} recipes match. Showing ${offset+1}–${offset+top.length}.`):'No recipe matches this search. Try one ingredient or clear the filter.'};
+ for(const r of candidates){const lead=words(r.name).find(w=>!['shift','quick','easy','simple','high','protein','one','pan'].includes(w))||r.id;const key=mode==='discover'&&sort==='recommended'&&!queryParts.length?lead:[r.food_format||r.name,r.taxonomy.main_protein||''].join(':');(seen.has(key)?rest:first).push(r);seen.add(key)}
+ let ordered=mode==='fridge'||sort!=='recommended'||queryParts.length?candidates:[...first,...rest].sort((a,b)=>(broadDiscovery?genericMealOrder(a)-genericMealOrder(b):0)||discoveryTier(a)-discoveryTier(b));
+ if(mode==='discover'&&sort==='recommended'&&!queryParts.length&&!mealType){const varied=[];const priority=r=>[genericMealOrder(r),discoveryTier(r)].join(':');const groups=[...new Map(candidates.map(r=>[priority(r),r])).values()].sort((a,b)=>genericMealOrder(a)-genericMealOrder(b)||discoveryTier(a)-discoveryTier(b));for(const group of groups){const buckets=new Map(['breakfast','lunch','dinner','snack','other'].map(k=>[k,[]]));for(const r of first.filter(r=>priority(r)===priority(group)))(buckets.get(normalise(r.meal_type))||buckets.get('other')).push(r);while([...buckets.values()].some(b=>b.length))for(const b of buckets.values())if(b.length)varied.push(b.shift());varied.push(...rest.filter(r=>priority(r)===priority(group)))}ordered=varied}
+ const total=candidates.length,safeOffset=Math.max(0,Math.min(total,Number.isSafeInteger(input?.offset)?input.offset:0)),top=ordered.slice(safeOffset,safeOffset+12).map(({score,missingCore,matchedCore,queryMatches,taxonomy,tags,food_format,...r})=>r);
+ return {top,total,offset:safeOffset,page_size:12,has_more:safeOffset+top.length<total,source:'published_catalogue',catalogue_size:usable.length,mode,filter,meal_type:mealType,sort,message:top.length?(mode==='fridge'?'Closest matches first. Missing ingredients include oil and seasonings; nothing is assumed.':`${total} recipes match. Showing ${safeOffset+1}–${safeOffset+top.length}.`):'No recipe matches this search. Try one ingredient or clear the filter.'};
 }

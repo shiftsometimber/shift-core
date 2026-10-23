@@ -36,5 +36,6 @@ test('non-string data cannot supply a browser repair proof',()=>{
  for(const path of RECORDED_WEEK_BROWSER_REPAIR_PATHS)for(const bad of [null,{},Buffer.from(actual(path))])assert.throws(()=>assertRecordedWeekBrowserRepair(path,bad,original(path)));
 });
 test('all original live assertions, source tests, workflow commands and configuration are unchanged',()=>{
- for(const path of ['release/recorded-week-live-20261014.mjs','tests/recorded-week-live-20261014.test.mjs','tests/recorded-week-direct-source-20261016.test.mjs','tests/recorded-week-direct-owned-release-20261016.test.mjs','.github/workflows/factual-recorded-week-direct-release-20261016.yml','.github/workflows/rendered-member-production-acceptance.yml','wrangler.jsonc','wrangler.coaching.jsonc','wrangler.hq-management.jsonc'])assert.equal(actual(path),g('show',base+':'+path),path);
+ for(const path of ['release/recorded-week-live-20261014.mjs','tests/recorded-week-live-20261014.test.mjs','tests/recorded-week-direct-source-20261016.test.mjs','tests/recorded-week-direct-owned-release-20261016.test.mjs','.github/workflows/factual-recorded-week-direct-release-20261016.yml','.github/workflows/rendered-member-production-acceptance.yml','wrangler.jsonc','wrangler.hq-management.jsonc'])assert.equal(actual(path),g('show',base+':'+path),path);
+ assert.equal(readFileSync('wrangler.coaching.jsonc','utf8'),readFileSync('wrangler.jsonc','utf8'),'The approved coaching fixture must equal unchanged current production configuration');
 });

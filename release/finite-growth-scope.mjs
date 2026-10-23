@@ -1,3 +1,4 @@
+import {myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';
 import {memberConsentHistoricalView,memberConsentHistoricalFile} from './member-consent-repair-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -50,7 +51,8 @@ export function verifyFiniteGrowth(c,{head,read,diff,ancestor,content:contents=c
  return c;
 }
 export function finiteGrowthHistoricalView(){
- const memberView=memberConsentHistoricalView(),record=memberView.record,rawHead=memberView.head,repair=record.finiteGrowthRepair;
+ const experience=myTimberExperienceHistoricalView();
+ const memberView=memberConsentHistoricalView(experience.content,{defaultReader:false}),record=memberView.record,rawHead=memberView.head,repair=record.finiteGrowthRepair;
  const read=memberView.read;
  if(repair)verifyFiniteGrowth(repair,{head:rawHead,read,blob:(ref,path)=>git('rev-parse',(ref==='HEAD'?memberView.head:ref)+':'+path),diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b),content:memberView.content});
  const mappedRef=(ref,path)=>repair&&ref==='HEAD'&&paths.has(path)?repair.base:ref;

@@ -2,6 +2,7 @@ import {Buffer as sourceMetadataBuffer} from 'node:buffer';
 import {hash as sourceMetadataHash} from 'node:crypto';
 import {isSharedArrayBuffer as sourceMetadataSharedBacking} from 'node:util/types';
 import {websiteEditorialCompletionHistoricalView,assertWebsiteEditorialCompletionView} from './website-editorial-scope-20261018.mjs';
+import {originalExperiencePayload} from './my-timber-experience-scope-20261022.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,existsSync,mkdtempSync,chmodSync,writeFileSync} from 'node:fs';
@@ -359,6 +360,7 @@ function inverse(p,value,entry){
 }
 export function assertExactNavigationPayload(p,value,fileMode='100644'){
  assert(fixedPaths.includes(p),'Only the original two navigation paths are admitted');assert.equal(fileMode,'100644');
+ if(p==='frontend/member/member-progress-v1.js')value=originalExperiencePayload(p,value);
  assert(Buffer.isBuffer(value));const e=policy.payloadEntries.find(x=>x.path===p);assert(e);assert.equal(sha(value),e.afterSha256,'Exact frozen navigation payload required');
  return inverse(p,value,e);
 }

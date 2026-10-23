@@ -20,14 +20,15 @@ export function validateMemberDesignPayload(read,changed){
  assert.deepEqual([...changed].sort(),[...MEMBER_DESIGN_PATHS].sort(),'Member design changed outside the reviewed presentation delta');
  for(const path of MEMBER_DESIGN_PATHS)assert.equal(read('HEAD',path),read(MEMBER_DESIGN_CANDIDATE,path),'Approved member design drift: '+path);
 }
-export function validateMemberDesignSource(){
+export function validateMemberDesignSource(sourceRead=null){
  const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
+ const read=sourceRead??((ref,path)=>git('rev-parse',ref+':'+path));
  git('merge-base','--is-ancestor',MEMBER_DESIGN_BASE,MEMBER_DESIGN_CANDIDATE);
  git('merge-base','--is-ancestor',MEMBER_DESIGN_CANDIDATE,'HEAD');
- validateMemberDesignPayload((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='member-design.mjs'?MEMBER_LAYOUT_BASE:ref)+':'+path),git('diff','--name-only',MEMBER_DESIGN_BASE,MEMBER_DESIGN_CANDIDATE).split('\n').filter(Boolean));
+ validateMemberDesignPayload((ref,path)=>read(ref==='HEAD'&&path==='member-design.mjs'?MEMBER_LAYOUT_BASE:ref,path),git('diff','--name-only',MEMBER_DESIGN_BASE,MEMBER_DESIGN_CANDIDATE).split('\n').filter(Boolean));
  git('merge-base','--is-ancestor',MEMBER_LAYOUT_BASE,MEMBER_LAYOUT_CANDIDATE);
  git('merge-base','--is-ancestor',MEMBER_LAYOUT_CANDIDATE,'HEAD');
- validateMemberLayoutPayload((ref,path)=>git('rev-parse',ref+':'+path),git('diff','--name-only',MEMBER_LAYOUT_BASE,MEMBER_LAYOUT_CANDIDATE).split('\n').filter(Boolean));
+ validateMemberLayoutPayload(read,git('diff','--name-only',MEMBER_LAYOUT_BASE,MEMBER_LAYOUT_CANDIDATE).split('\n').filter(Boolean));
  const p='.github/workflows/continuity-live-acceptance.yml';
  const original=execFileSync('git',['show',MEMBER_DESIGN_BASE+':'+p],{encoding:'utf8'});
  const expected=original.replaceAll("frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/","frontend/member/ member-experience/ my-journey-v1.js public-shell-contract.mjs worker-entry-v6.js scripts/ app-layout-live.mjs member-design.mjs growth-member-public.mjs preview/app-layout/");

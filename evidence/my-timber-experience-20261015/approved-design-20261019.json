@@ -1,0 +1,84 @@
+{
+  "schema": "shift-approved-member-design-proof/v1",
+  "sourceParent": "b7dfac8c3556ae5d7896a744669541f3763d9f06",
+  "sourceFiles": {
+    "member-experience/app-experience.mjs": "10e9ce1b7a2155a1998e4b65568a6ee81ce0daa070f20ece81c15f26d3cac5b5",
+    "member-experience/grub-runtime.mjs": "fe13c978c8f6f5fb3906253320e0b33b89a47a3847aef7042d81abdb29dbcfa9",
+    "shift-coach/member-approved-design-proof.cjs": "b10af0e3bcc3803800fd0a543a0b40af4b7d434a77e8f44e576cabb3b239f1d9",
+    "tests/progress-charts.test.mjs": "2a97f5dc70697887d89ec176686acdb045de04711dbe5e9b4d6ab52c1c86c186"
+  },
+  "browser": {
+    "at": "2026-10-20T06:09:56.098Z",
+    "passed": true,
+    "checks": [
+      "Today: original logo, approved primary action, one navigation, keyboard focus and truthful empty records",
+      "Actual check-in saves through the original account route",
+      "Grub: varied results, filter/sort, inline recipe, real save/meal choice, two servings, actual shopping list, keyboard tabs and refresh restoration",
+      "Fit: actual builder, focused exercise, saved Done/Skip/Swap, accurate progress, rest, pause/resume and refresh",
+      "Selected meal appears on Today; Journey selected state and Back work",
+      "320px: Today/Grub/Fit do not overflow",
+      "390px: Today/Grub/Fit do not overflow",
+      "1440px: Today/Grub/Fit do not overflow",
+      "200% zoom reflows and check-in remains keyboard reachable",
+      "Second isolated account cannot see the selected meal, saved recipes or shopping week"
+    ],
+    "errors": [],
+    "productionWrites": 0,
+    "physicalDevice": false
+  },
+  "targetedRegressions": {
+    "passed": 131,
+    "failed": 0,
+    "skipped": 0,
+    "tapSHA256": "cae23661138acadf8f4a847ff6dfde2df71bbee11f72ebd42f6b12f05d7f3a82"
+  },
+  "scope": "Approved Today, Grub and Fit visual/interaction design; existing account readers/writers and safeguards retained",
+  "fit": "Today is one session. Existing unsupported three-session selector hidden in this interface; saved plans and history retained.",
+  "priorFailureEvidence": [
+    "approved-design-browser-original-tab-order-failure.json",
+    "approved-design-original-back-navigation-failure.json",
+    "approved-design-three-session-selector-failure.json",
+    "approved-design-prepaint-assertion-failure.json"
+  ],
+  "priorFailureDirectory": "/Users/shiftsometimberltd/SST/my-timber-experience-20261015/work/member-experience-resume-20261015/approved-tracker-20261019",
+  "release": {
+    "lane": 1065,
+    "sourceAdmission": false,
+    "deployed": false,
+    "liveVerified": false,
+    "nativeBinaryChanged": false,
+    "installedBuildsTested": [],
+    "physicalAppleHealthPassed": false,
+    "physicalHealthConnectPassed": false,
+    "externalCommunicationsSent": false,
+    "publicHomepageChanged": false,
+    "clinicalConsentCommercialSettingsChanged": false
+  },
+  "remaining": "Shared original full-source jobs39345866401/39345866346/39345866417 timed out at original90/90/120-minute limits; no release is running. Existing #1065 owner must repair full-source completion while retaining all original assertions/deadlines. Actual accepted normal-main pack, precise finite UI admission, normal guarded promotion and live member acceptance remain required; physical health tests remain outstanding.",
+  "priorDonorEvidence": {
+    "commit": "c906558faea8b1f163db54be414ee0072e1a446e",
+    "path": "evidence/my-timber-experience-20261015/approved-design-20261019.json"
+  },
+  "sharedSource": "792797bf38cfb776557b601323a59fe3fba774b4",
+  "currentSourcePreparation": {
+    "paths": 35,
+    "checks": [
+      "Whole35 exact native apply/inverse",
+      "Inherited35 gets no repeated edit",
+      "Independent owner sentinel survives and restores",
+      "Changed hunk rejects",
+      "Duplicate hunk rejects"
+    ],
+    "threeWayPreservedCurrentFiles": [
+      "frontend/member/member-progress-v1.js",
+      "member-experience/grub-runtime.mjs"
+    ],
+    "sourceAdmission": false,
+    "nativeBeforeImageCorrectionRetained": {
+      "path": "member-experience/app-experience.mjs",
+      "reason": "Original shared source has no app presentation file. Treat as added file, not a hunk against the intermediate original UI payload. Actual runtime bytes unchanged.",
+      "previousFailureRetained": "payload-before-image-failure.json"
+    },
+    "testPlacementCorrection": "Only the three new custom-date tests moved inside the existing file. Every original assertion/body remains exact. Two-sided context makes original and inherited hunk states unambiguous without changing the strict original helper."
+  }
+}

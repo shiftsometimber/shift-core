@@ -1,4 +1,5 @@
 import {ACTUAL_NAVIGATION_PATHS,ACTUAL_NAVIGATION_MAINTENANCE,actualNavigationChangedPath} from './recorded-week-navigation-outer-frame-20261018.mjs';
+import {EXPERIENCE_BASE,EXPERIENCE_PATHS,EXPERIENCE_MAINTENANCE,myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';
 import {CURRENT_RUNTIME_PRESERVATION_PATHS,CURRENT_RUNTIME_PRESERVATION_MAINTENANCE} from './current-runtime-preservation-20261016.mjs';
 import {WEBSITE_EDITORIAL_COMPLETION_PATHS,WEBSITE_EDITORIAL_COMPLETION_MAINTENANCE} from './website-editorial-scope-20261018.mjs';
 import {SEO_AUDIT_PATHS,SEO_AUDIT_MAINTENANCE} from './seo-audit-scope-20261016.mjs';
@@ -2276,10 +2277,12 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
 }
 function verifyReconciledReleaseOriginal(read){
  const memberDefaultRead=read===defaultReconciliationRead;
+ const experienceView=myTimberExperienceHistoricalView(memberDefaultRead?null:read,{defaultReader:memberDefaultRead});
+ read=experienceView.read;
  // Preserve the original fail-closed assertion and its error identity. The one
  // overlapping original Watch diagnostic must remain recognisable to its owner.
  let memberView;
- try{memberView=memberConsentHistoricalView(memberDefaultRead?null:read,{defaultReader:memberDefaultRead});}
+ try{memberView=memberConsentHistoricalView(read,{defaultReader:false});}
  catch(error){
   const diagnostic='Approved composition source / boundary drift / sharing maintenance drift: .github/workflows/cloudflare-production-promote.yml';
   if(!memberDefaultRead&&reconciliationRecord()?.combinedFinite20261014&&error?.code==='ERR_ASSERTION'&&error.message.startsWith(diagnostic))error.message='Late Watch source drift: '+error.message;
@@ -2787,6 +2790,10 @@ export function reconciliationGitArgs(args){
 export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_BASE:git('rev-parse','HEAD');}
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
 export function reconciliationChangedPath(status,path){
+ if(EXPERIENCE_ADDITIONAL_PATHS.includes(path)){
+  let existed;try{execFileSync('git',['cat-file','-e',EXPERIENCE_BASE+':'+path],{stdio:'ignore'});existed=true;}catch{existed=false;}
+  assert.equal(status,existed?'M':'A','Unexpected exact My Timber experience status: '+status+' '+path);return true;
+ }
  if(ACTUAL_NAVIGATION_ADDITIONAL_PATHS.includes(path))return actualNavigationChangedPath(status,path);
  if(!reconciliationPath(path))return false;
  if(["babylove/corrected-public-rows.json","babylove/dynamic-public.mjs","babylove/seo-repairs-20261016.test.mjs","public-https-redirect.mjs","public-https-redirect.test.mjs","release/seo-audit-scope-20261016.mjs","tests/seo-audit-scope-20261016.test.mjs"].includes(path)){
@@ -3134,3 +3141,6 @@ for(const p of [...CURRENT_RUNTIME_PRESERVATION_PATHS,...CURRENT_RUNTIME_PRESERV
 
 export const ACTUAL_NAVIGATION_ADDITIONAL_PATHS=Object.freeze([...ACTUAL_NAVIGATION_PATHS,...ACTUAL_NAVIGATION_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of ACTUAL_NAVIGATION_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+
+export const EXPERIENCE_ADDITIONAL_PATHS=Object.freeze([...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
+for(const p of EXPERIENCE_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);

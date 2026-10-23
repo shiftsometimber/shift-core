@@ -1,7 +1,9 @@
-import './seo-audit-scope-20261016.test.mjs';
-import './food-diary-london-date-stack-20261015.test.mjs';
-import './ci-execution-stack-20261014.test.mjs';
-import './release-machinery-repair-composition.test.mjs';
+if(process.env.SHIFT_APPROVED_RUNTIME_IMPORTS!=='none'){
+ await import('./seo-audit-scope-20261016.test.mjs');
+ await import('./food-diary-london-date-stack-20261015.test.mjs');
+ await import('./ci-execution-stack-20261014.test.mjs');
+ await import('./release-machinery-repair-composition.test.mjs');
+}
 import './immutable-git-facts-20261014.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
