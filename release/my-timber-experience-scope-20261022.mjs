@@ -10,19 +10,35 @@ export const EXPERIENCE_SOURCE='4945fef66201f1281f37eb6d3377dff31ce31eac';
 export const EXPERIENCE_MANIFEST='release/approved-runtime-composition.json';
 export const EXPERIENCE_KEY='myTimberExperience20261022';
 // Main advanced while this approved release was gated. Admit only the exact
-// already-merged footer/teaser composition, then project it away for the older
+// already-merged footer/teaser and Causes composition, then project it away for the older
 // release guards. This is not My Timber product or deployment authority.
 export const EXPERIENCE_CURRENT_MAIN_BASE='ed65a6d09df7b157f05f9654e8f584b32b6c4337';
-export const EXPERIENCE_CURRENT_MAIN_SOURCE='4e3fcf85c9396260981b495cb2cc5861a76b2734';
+export const EXPERIENCE_CURRENT_MAIN_SOURCE='567c56690ecdc77a2534b17a9f8a6d0a09641d2f';
 export const EXPERIENCE_CURRENT_MAIN_PINS=Object.freeze({
+ 'causes-partners-teaser.mjs':'988f6bcd0c30a6d1f1dcbdb40c20062c1ac471a3',
+ 'causes-partners/README.md':'719c8c220010064561446bbbdc347e50f3c776ff',
+ 'causes-partners/index.html':'ed94be14806e90842f4fa7364f10ceb206862e9d',
+ 'causes-partners/production.mjs':'f0ccef7b041750f4ace8fd87c508e77fc6d56014',
+ 'causes-partners/public-content.mjs':'bdb0719796941fc05a6911f0c07c36bba1a7400c',
+ 'frontend/member/assets/causes/hopeful-outlook-hero.webp':'11653daaccd8d7e56cae8c40813ef8368b6fe8db',
+ 'tests/causes-partners-teaser.test.mjs':'58075dcb2c12fe5b7fa8f28b47d7b4123862c202',
+ 'tests/causes-public.test.mjs':'1f9b1a1771a7469cc1d3c7e97322b7462d12e356',
  'tests/shared-footer.test.mjs':'add6f9d692d796eae58580611207ea6d42fbc7a6',
- 'timber-shed-public-teaser.mjs':'f4355f0fb74351c0678895b3c636f296634ef6ae',
- 'worker-entry-v6.js':'d4ac95922c8655acb8a44f1b56ca14950d29617e'
+ 'timber-shed-public-teaser.mjs':'9f80d5a43d819c4ccc4bc4b0d7a88f604aac9028',
+ 'worker-entry-v6.js':'fd4fb55613f76fdef6f5c54b3b6ff220927147fe'
 });
 export const EXPERIENCE_CURRENT_MAIN_COMPOSED_PINS=Object.freeze({
+ 'causes-partners-teaser.mjs':'988f6bcd0c30a6d1f1dcbdb40c20062c1ac471a3',
+ 'causes-partners/README.md':'719c8c220010064561446bbbdc347e50f3c776ff',
+ 'causes-partners/index.html':'ed94be14806e90842f4fa7364f10ceb206862e9d',
+ 'causes-partners/production.mjs':'f0ccef7b041750f4ace8fd87c508e77fc6d56014',
+ 'causes-partners/public-content.mjs':'bdb0719796941fc05a6911f0c07c36bba1a7400c',
+ 'frontend/member/assets/causes/hopeful-outlook-hero.webp':'11653daaccd8d7e56cae8c40813ef8368b6fe8db',
+ 'tests/causes-partners-teaser.test.mjs':'58075dcb2c12fe5b7fa8f28b47d7b4123862c202',
+ 'tests/causes-public.test.mjs':'1f9b1a1771a7469cc1d3c7e97322b7462d12e356',
  'tests/shared-footer.test.mjs':'2ca761ba40d194d21b22abd94172548714d44a27',
- 'timber-shed-public-teaser.mjs':'f4355f0fb74351c0678895b3c636f296634ef6ae',
- 'worker-entry-v6.js':'d4ac95922c8655acb8a44f1b56ca14950d29617e'
+ 'timber-shed-public-teaser.mjs':'9f80d5a43d819c4ccc4bc4b0d7a88f604aac9028',
+ 'worker-entry-v6.js':'fd4fb55613f76fdef6f5c54b3b6ff220927147fe'
 });
 export const EXPERIENCE_CURRENT_MAIN_PATHS=Object.freeze(Object.keys(EXPERIENCE_CURRENT_MAIN_PINS).sort());
 export const EXPERIENCE_CURRENT_MAIN_TEST_BEFORE=" const source=readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');assert(source.includes('if(appStorePublic)return withTimberShedTeaser(request,await withSharedFooter(request,appStorePublic));'));assert(source.includes('return withTimberShedTeaser(request,await withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy('));";
