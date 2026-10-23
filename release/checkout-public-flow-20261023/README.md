@@ -1,0 +1,7 @@
+# Public checkout sequence and assessment entry — 23 October 2026
+
+Approved scope: publish recent checkout presentation, retain standard shell and stock closure. This release adds the agreed payment-to-medical-assessment explanation and replaces the old unconnected intake form with a closed entry page that can read the signed-in member’s existing treatment requests. No medical inputs, photo uploads, payment actions, credentials, local test users or clinical submission are exposed. An existing-account request check uses only the existing same-origin treatment-order API.
+
+This is a public presentation/entry release, not the production deployment of the private clinical backend. The 71-test v0.5 Mac build remains private. The production Worker currently has no R2 clinical-image binding or pharmacy integration endpoints/secrets. Native hosted clinical persistence/evidence storage, partner-approved consultation/verification, production payment-to-questionnaire linkage and clinical reviewer access still need integration before patient collection or ordering can open. Stock alone is insufficient. No supplier call, message, new charge or infrastructure spend is authorised by this release.
+
+Original order page content and handlers are preserved byte-for-byte apart from the scoped explainer and stylesheet. Existing optional-support assets are retained. The new assessment page uses the original standard header/footer and has no form controls for sensitive data. All unrelated Pages assets and homepage are preserved.
