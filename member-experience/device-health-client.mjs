@@ -32,8 +32,8 @@ export const deviceHealthRuntime=String.raw`(()=>{
    if(sync.deviceConnected(state))panel.append(button('Sync now',async()=>{await sync.sync(true);await boot();}));
    host.append(panel);
   }else if(nativeBridge)host.append(el('p','Automatic imports need an updated My Timber app. You can still preview and save readings individually below.'));
-  const native=window.SST_NATIVE_HEALTH;
-  const manual=el('details');manual.open=!!preview;manual.append(el('summary','Import individual readings'));host.append(manual);
+  const native=window.SST_NATIVE_HEALTH,manualDetails=!!sync?.supported(),manual=manualDetails?el('details'):host;
+  if(manualDetails){manual.open=!!preview;manual.append(el('summary','Import individual readings'));host.append(manual);}else host.append(el('h3','Import individual readings'));
   if(native){
    const p=native.platform,box=el('label'),check=el('input');check.type='checkbox';box.append(check,document.createTextNode(' I consent to SHIFT saving the heart-rate, blood-pressure and weight readings I select from '+label(p)+' in my private My Timber account.'));manual.append(box);
    const connect=button('Preview '+label(p)+' readings',async()=>{
@@ -51,7 +51,7 @@ export const deviceHealthRuntime=String.raw`(()=>{
    for(const r of preview.readings){const l=el('label'),c=el('input');c.type='checkbox';c.checked=true;l.append(c,document.createTextNode(reading(r)));l.style.display='block';panel.append(l);selected.push({c,r});}
    panel.append(button('Save selected readings',async()=>{const readings=selected.filter(x=>x.c.checked).map(x=>x.r);if(!readings.length)throw Error('Choose at least one reading.');state=await api({action:'import',platform:preview.platform,expectedAccountId:preview.accountId,readings});preview=null;render();msg.textContent='Selected readings saved to your My Timber account.';}),button('Cancel preview',async()=>{preview=null;render();msg.textContent='Preview cleared. Nothing imported.';}));host.append(panel);
   }
-  const savedReadings=el('details');savedReadings.append(el('summary','Saved readings ('+state.readings.length+')'),el('p',(state.readings.length||0)+' of '+state.limit+' readings saved. '+(state.lastImportedAt?'Last import: '+new Date(state.lastImportedAt).toLocaleString('en-GB')+'.':'')));
+  const savedReadings=el('details');savedReadings.open=state.readings.length>0;savedReadings.append(el('summary','Saved readings ('+state.readings.length+')'),el('p',(state.readings.length||0)+' of '+state.limit+' readings saved. '+(state.lastImportedAt?'Last import: '+new Date(state.lastImportedAt).toLocaleString('en-GB')+'.':'')));
   host.append(savedReadings);
   const list=el('ul');for(const r of state.readings)list.append(el('li',label(r.platform)+' · '+reading(r)));savedReadings.append(list);
   for(const p of ['apple_health','health_connect']){
