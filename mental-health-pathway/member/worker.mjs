@@ -46,7 +46,8 @@ export default {
   const response=await binding.fetch(target);
   if(request.method!=='GET'||!response.ok||!(response.headers.get('Content-Type')||'').includes('text/html')||(!dashboardPaths.has(path)&&!hubPaths.has(path)))return response;
   const original=await response.text();let html;try{html=dashboardPaths.has(path)?enhanceDashboard(original):enhanceHub(original);}catch{return new Response(original,response);}
-  return new Response(html,{status:response.status,headers:cleanHeaders(response)});
+  const headers=cleanHeaders(response);if(hubPaths.has(path)){const robots=response.headers.get('X-Robots-Tag');if(robots)headers.set('X-Robots-Tag',robots);else headers.delete('X-Robots-Tag');}
+  return new Response(html,{status:response.status,headers});
  },
  async scheduled(controller,env,ctx){const run=runSupportReminders(env,new Date(controller.scheduledTime||Date.now()),sendSupportPush);if(ctx?.waitUntil)ctx.waitUntil(run);else await run;}
 };
