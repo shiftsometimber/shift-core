@@ -1,5 +1,5 @@
 import {publicHttpsRedirect} from './public-https-redirect.mjs';
-import {withSharedFooter} from './shared-footer.mjs';
+import {withSharedFooter} from './timber-shed-public-teaser.mjs';
 import {foodSupplementGuideRoute,withFoodGuideDiscovery} from './food-supplement-guide/production.mjs';
 import {withGrowthPublicCopy} from './growth-member-public.mjs';
 import {treatmentRoutes} from './member-experience/treatment-routes.mjs';

@@ -7,6 +7,10 @@ on:
     branches: [main]
     paths:
       - "release/approved-runtime-composition.mjs"
+      - "release/health-vision-scope-20261021.mjs"
+      - "tests/health-vision-scope-20261021.test.mjs"
+      - "timber-shed-public-teaser.mjs"
+      - "tests/timber-shed-public-teaser.test.mjs"
       - "release/approved-runtime-composition.json"
       - "public-tool-guidance.mjs"
       - "public-tool-delivery.mjs"
