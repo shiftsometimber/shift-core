@@ -1,0 +1,94 @@
+{
+  "pass": true,
+  "at": "2026-10-18T13:34:41.451Z",
+  "checks": [
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline/your-test",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced/your-test",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/complete",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/complete/your-test",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/my-timber-example",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/about",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health",
+      "status": 200,
+      "ctaCount": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline/your-test",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced/your-test",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/complete",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/complete/your-test",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/my-timber-example",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/about",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health",
+      "status": 200,
+      "ctaCount": 1
+    }
+  ],
+  "retainedAssets": 880,
+  "retainedAssetsUnchanged": true,
+  "homepageRouteChanged": false,
+  "coreRedeployed": false,
+  "ordersEnabled": false,
+  "sourceCommit": "7bf1b71f607a6713a6bd362a4fb7ff03244a950b"
+}

@@ -1,0 +1,54 @@
+{
+  "status": "deployed_verified",
+  "source": "5622b3eb1e0bb1211c9e8f2a442e1caeab11672e",
+  "deployment": "2fed993e-7f6a-428e-8c34-8aaba3505f07",
+  "version": "ccc8af31-a025-4b66-8600-d8a6e3c1802a",
+  "percentage": 100,
+  "tests": {
+    "original": 8,
+    "additional": 3,
+    "total": 11,
+    "failures": 0
+  },
+  "browserChecks": [
+    {
+      "path": "/shift-health/blood-tests",
+      "cardCount": 1,
+      "card": "summary_large_image",
+      "bodyPreserved": true,
+      "titlePreserved": true,
+      "canonicalPreserved": true
+    },
+    {
+      "path": "/shift-health/blood-tests/baseline",
+      "cardCount": 1,
+      "card": "summary_large_image",
+      "bodyPreserved": true,
+      "titlePreserved": true,
+      "canonicalPreserved": true
+    },
+    {
+      "path": "/shift-health/blood-tests/advanced",
+      "cardCount": 1,
+      "card": "summary_large_image",
+      "bodyPreserved": true,
+      "titlePreserved": true,
+      "canonicalPreserved": true
+    },
+    {
+      "path": "/shift-health/blood-tests/complete",
+      "cardCount": 1,
+      "card": "summary_large_image",
+      "bodyPreserved": true,
+      "titlePreserved": true,
+      "canonicalPreserved": true
+    }
+  ],
+  "providerModulesExact": true,
+  "settingsPreserved": true,
+  "eightRoutesPreserved": true,
+  "coreChanged": false,
+  "pagesAssetsChanged": false,
+  "homepageChanged": false,
+  "privacyChanged": false
+}

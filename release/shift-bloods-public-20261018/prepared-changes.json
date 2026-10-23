@@ -1,0 +1,116 @@
+{
+  "release": "shift-bloods-public-20261018",
+  "approval": "Matt: Publish all, 18 October 2026; public marketing pages only, ordering closed",
+  "approvedPreviewCommit": "605f5ce41a82895eeb4634cbdd4d4580922a6a72",
+  "baseDeployment": "528339cd-3a04-4ff7-9167-92024a3e7f56",
+  "baseCommit": "52f473bf8071ef6258f268a0ed45049a1d20ec00",
+  "baseFiles": 880,
+  "changes": [
+    {
+      "path": "/shift-health/blood-tests.html",
+      "sha256": "4a9f8e91a9e4e4637fc60b3f1340b3fc8438aedd213fdceb16536f0c30c44276",
+      "bytes": 24540,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/baseline.html",
+      "sha256": "03020aa1629de39edf50174644cdf958d12d051ca9db52cfd4cfcf40709384bd",
+      "bytes": 16598,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/baseline/your-test.html",
+      "sha256": "b9b850dc18a2a8b09dd460fb349bfbc2db8959047333f27742f673011caba337",
+      "bytes": 12903,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/advanced.html",
+      "sha256": "8c95001ab998180fbbff4c32c915ce562bd24a9f5381f2eb3bb241e24709b627",
+      "bytes": 19660,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/advanced/your-test.html",
+      "sha256": "0eeba70320c327c8ee28e47981e61fc77a9251e5c24e51327449f98074cb9a3e",
+      "bytes": 12905,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/complete.html",
+      "sha256": "df3acfc37f3abda74693b4b92f1abf84e8f4c937132dd690f6b82501028039d0",
+      "bytes": 24661,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/complete/your-test.html",
+      "sha256": "bc5ac3aa74290bc41a338d3afaa9b85d1b4054edb4bdf38b911ef9117b4cf8fb",
+      "bytes": 12418,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/my-timber-example.html",
+      "sha256": "257beb41d714219d0a3227eeb6799738145a6fc439f88a2a00df780bf3ebd2b4",
+      "bytes": 13969,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/shift-health/blood-tests/about.html",
+      "sha256": "91acf7b062a410855b5bba84efde1e738448983cdf5326e7c4a712ef5e07b1ba",
+      "bytes": 11546,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/bloods.css",
+      "sha256": "b61a5a5340c4f7eae36755231f7bafbbecfedaf2549ee99f8091e54c79dfe035",
+      "bytes": 25535,
+      "contentType": "text/css; charset=utf-8"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/bloods.js",
+      "sha256": "01832d8c90bec6c9a183be5722ba943ea9f3210822c886ceb55c1edc1f1a3d82",
+      "bytes": 3324,
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/upper-arm-collection.svg",
+      "sha256": "481dafeb9133f0687142627102f103d1c6008c9614efe297701b503f4a2d4d0d",
+      "bytes": 871,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/upper-arm-overview-poster.png",
+      "sha256": "2ed70a85b6b56e979772cc6d38668c35570b3454a9f2f4f19d0c8f12855190b7",
+      "bytes": 34782,
+      "contentType": "image/png"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/upper-arm-overview.mp4",
+      "sha256": "89606c4772b69045025eb103a2d9e3fa8b3eb5cdb33a160ed45020fb82e5bc07",
+      "bytes": 110259,
+      "contentType": "video/mp4"
+    },
+    {
+      "path": "/assets/shift-bloods/20261018/upper-arm-overview.vtt",
+      "sha256": "52c1f151b6bbcb9c62f485f72a776af5bfffe4b279eefd1f91f493b17c446044",
+      "bytes": 648,
+      "contentType": "text/vtt; charset=utf-8"
+    },
+    {
+      "path": "/sitemap.xml",
+      "sha256": "7d35f527e237c7259eb48400d2b7d319df7243d9845f9b87490af651de66a7ea",
+      "bytes": 30275,
+      "contentType": "application/xml; charset=utf-8"
+    }
+  ],
+  "headersSHA256": "01b1750e3d8c9e267e57487e4c7672b9d9f73a1f03ccfb7646b0c2fb02319a7e",
+  "indexRoutes": [
+    "/shift-health/blood-tests",
+    "/shift-health/blood-tests/baseline",
+    "/shift-health/blood-tests/advanced",
+    "/shift-health/blood-tests/complete"
+  ],
+  "ordersEnabled": false,
+  "homepageChanged": false,
+  "patientDataForms": false
+}

@@ -1,0 +1,292 @@
+{
+  "verifiedAt": "2026-10-19T20:38:06.231Z",
+  "owner": "Organic Growth measurement and SEO executor",
+  "scope": "Finite closure of campaign collection diagnosis, Bloods Twitter metadata, field-data availability and retained Google attribution dependency",
+  "bloods": {
+    "status": "deployed_verified",
+    "source": "5622b3eb1e0bb1211c9e8f2a442e1caeab11672e",
+    "deployment": "2fed993e-7f6a-428e-8c34-8aaba3505f07",
+    "version": "ccc8af31-a025-4b66-8600-d8a6e3c1802a",
+    "percentage": 100,
+    "tests": {
+      "original": 8,
+      "additional": 3,
+      "total": 11,
+      "failures": 0
+    },
+    "browserChecks": [
+      {
+        "path": "/shift-health/blood-tests",
+        "cardCount": 1,
+        "card": "summary_large_image",
+        "bodyPreserved": true,
+        "titlePreserved": true,
+        "canonicalPreserved": true
+      },
+      {
+        "path": "/shift-health/blood-tests/baseline",
+        "cardCount": 1,
+        "card": "summary_large_image",
+        "bodyPreserved": true,
+        "titlePreserved": true,
+        "canonicalPreserved": true
+      },
+      {
+        "path": "/shift-health/blood-tests/advanced",
+        "cardCount": 1,
+        "card": "summary_large_image",
+        "bodyPreserved": true,
+        "titlePreserved": true,
+        "canonicalPreserved": true
+      },
+      {
+        "path": "/shift-health/blood-tests/complete",
+        "cardCount": 1,
+        "card": "summary_large_image",
+        "bodyPreserved": true,
+        "titlePreserved": true,
+        "canonicalPreserved": true
+      }
+    ],
+    "providerModulesExact": true,
+    "settingsPreserved": true,
+    "eightRoutesPreserved": true,
+    "coreChanged": false,
+    "pagesAssetsChanged": false,
+    "homepageChanged": false,
+    "privacyChanged": false
+  },
+  "ga4": {
+    "property": "549150735",
+    "timeZone": "Etc/GMT",
+    "startDate": "2026-10-09",
+    "endDate": "2026-10-18",
+    "hostNames": [
+      "shiftsometimber.co.uk",
+      "www.shiftsometimber.co.uk"
+    ],
+    "campaignReport": {
+      "siteUrl": "sc-domain:shiftsometimber.co.uk",
+      "propertyId": "properties/549150735",
+      "siteScope": null,
+      "dataSource": "ga4-api",
+      "timeZone": "Etc/GMT",
+      "range": {
+        "startDate": "2026-10-09",
+        "endDate": "2026-10-18"
+      },
+      "comparisonRange": null,
+      "hasComparison": false,
+      "dimension": "event",
+      "secondaryDimension": "date",
+      "metrics": [
+        "eventCount",
+        "totalUsers"
+      ],
+      "rowCount": 12,
+      "totalRows": 12,
+      "truncated": false,
+      "sortedBy": "date",
+      "sortOrder": "asc",
+      "thenBy": "eventCount",
+      "thenOrder": "desc",
+      "rows": [
+        {
+          "key": "shift_pillar_review_used",
+          "date": "2026-10-09",
+          "eventCount": 4,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_first_step_opened",
+          "date": "2026-10-09",
+          "eventCount": 3,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_step_tried",
+          "date": "2026-10-09",
+          "eventCount": 3,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_onward_opened",
+          "date": "2026-10-09",
+          "eventCount": 1,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_onward_opened",
+          "date": "2026-10-10",
+          "eventCount": 2,
+          "prevEventCount": 0,
+          "totalUsers": 2,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_review_used",
+          "date": "2026-10-10",
+          "eventCount": 2,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_first_step_opened",
+          "date": "2026-10-10",
+          "eventCount": 1,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_step_tried",
+          "date": "2026-10-10",
+          "eventCount": 1,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_first_step_opened",
+          "date": "2026-10-15",
+          "eventCount": 1,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_onward_opened",
+          "date": "2026-10-15",
+          "eventCount": 1,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_review_used",
+          "date": "2026-10-15",
+          "eventCount": 1,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        },
+        {
+          "key": "shift_pillar_step_tried",
+          "date": "2026-10-15",
+          "eventCount": 1,
+          "prevEventCount": 0,
+          "totalUsers": 1,
+          "prevTotalUsers": 0
+        }
+      ]
+    },
+    "retainedRealtime": {
+      "at": "2026-10-15T21:30:37.955Z",
+      "source": "libfile_92c16180837c81918c8d2a417754f998 v38, lines 1588-1590",
+      "allFourEachOne": true,
+      "limitation": "Time-correlated Realtime observations; no event identity join to either 10 October HTTP204 batch."
+    },
+    "qaExcludedFromGrowthClaims": true,
+    "configuredKeyEventNames": [
+      "close_convert_lead",
+      "purchase",
+      "qualify_lead"
+    ],
+    "configuredKeyEventOccurrences": 0,
+    "diagnosis": "Four public engagement producers have processed collection evidence. The inspected public source has no qualify_lead/close_convert_lead producer; configuration alone cannot measure real member activation. Zero rows do not establish no actual activity or collector rejection.",
+    "publicPrivateBoundary": "activation-measurement/assets.mjs suppresses Google on member/authentication/health/payment paths. No change made.",
+    "outcomeReport": {
+      "existingOwner": "Product/HQ outcome owner, reconciled by Organic Growth measurement lead",
+      "path": "/v1/hq/journey?days=90",
+      "observedResponse": "hq_unauthorized",
+      "accessSurface": "Current cloud browser, anonymous request",
+      "requiredAccess": "Authenticated authorised HQ aggregate report only; no private member dashboard or record inspection",
+      "existingDefinition": "Verified same-account login followed by successful audited Journey/Passport save",
+      "coverage": "Known synthetic accounts excluded by existing scorecard; unknown staff/test activity can remain. Helpfulness denominator unavailable.",
+      "counts": "unavailable",
+      "outcomeClaimsAllowed": false
+    }
+  },
+  "searchConsole": {
+    "pageCTRUsable": false,
+    "independentExportAcquisition": "closed_not_repeated",
+    "scope": {
+      "start": "2026-09-09",
+      "end": "2026-10-06",
+      "dateBasis": "America/Los_Angeles",
+      "country": "gbr",
+      "searchType": "web",
+      "otherFilters": "none"
+    },
+    "property": {
+      "clicks": 24,
+      "impressions": 2895
+    },
+    "page": {
+      "clicks": 0,
+      "impressions": 1901
+    },
+    "cause": "unresolved",
+    "enquiry": {
+      "exactDraftPreviouslyApproved": true,
+      "source": "libfile_418bdcd88ad48191b9ebe96e9966d55d",
+      "recipient": "Google Search Central Help Community",
+      "destination": "https://support.google.com/webmasters/community",
+      "sent": false,
+      "blocker": "Existing communications hold; normal human-verification handoff preserved. No repeated export or new approval requested."
+    }
+  },
+  "performance": {
+    "canonicalOrigin": "https://shiftsometimber.co.uk",
+    "platform": "Google CrUX Vis",
+    "device": "PHONE",
+    "observed": "CrUX data is not available. Do you need to include www in the URL?",
+    "interpretation": "No field dataset available for the canonical origin on this public surface. A missing API key is not the cause established by this check and configuring one cannot create eligible data.",
+    "fieldCWV": "unavailable_not_pass",
+    "homepageChanged": false
+  },
+  "restrictions": {
+    "sixPrioritiesPreserved": true,
+    "maleObesityPermanent": true,
+    "retatrutideEvergreenPreserved": true,
+    "privateHealthExcluded": true,
+    "communicationsSent": false,
+    "analyticsConfigurationChanged": false
+  },
+  "followThrough": {
+    "checkedAt": "2026-10-19T20:52:31.641Z",
+    "owner": "Organic Growth measurement executor",
+    "completedPreviously": "Four-page metadata deployed/verified; campaign Realtime and processed collection verified; CrUX unavailable classification recorded.",
+    "hq": {
+      "canonicalEntry": "https://hq.shiftsometimber.co.uk/",
+      "entryVerified": true,
+      "visibleState": "Not signed in; normal named-account Email/Password form",
+      "aggregateRoute": "/v1/hq/journey?days=90",
+      "credentialRequest": "Not created",
+      "signedIn": false,
+      "blockedAction": "Secure normal HQ sign-in solely for the existing aggregate activation report",
+      "blocker": "Automatic approval review denied the sign-in because a broad HQ session exposes member, support, medicines and operational areas while established authority was limited to the aggregate report.",
+      "smallestRequirement": "Matt's explicit approval of normal HQ sign-in for the sole purpose of reading the aggregate activation report, or Matt supplies that aggregate export.",
+      "noPrivateMemberDataInspected": true,
+      "noAlternateAuthenticationOrCredentialExtractionAttempted": true
+    },
+    "google": {
+      "exactDraftApprovalPreserved": true,
+      "destination": "https://support.google.com/webmasters/community",
+      "recipient": "Google Search Central Help Community",
+      "subject": "24 UK Web property clicks but zero page clicks in native Search Console and the Search Analytics API",
+      "routeVerified": true,
+      "posted": false,
+      "remainingRequirement": "Explicitly lift the retained communications hold for posting this already-approved enquiry. Content approval is not reopened. Normal human-verification handoff remains."
+    }
+  }
+}

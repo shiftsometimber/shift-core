@@ -1,0 +1,824 @@
+[
+  {
+    "id": "0a34cf6527e7452988a9a5bcc2da4710",
+    "pattern": "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help*",
+    "script": "shift-public-answers",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c76b41fceab0490fa63e6e738c0620a2",
+    "pattern": "https://shiftsometimber.co.uk/mens-mental-health*",
+    "script": "shift-public-answers",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "41cd4ea2bf484f498930c6c7e1671f24",
+    "pattern": "https://shiftsometimber.co.uk/weight-loss-support-for-men*",
+    "script": "shift-public-answers",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "244fd3cfc2dd4ef9a2b9b77f92e38eda",
+    "pattern": "https://shiftsometimber.co.uk/mens-weight-management*",
+    "script": "shift-public-answers",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "f9d4c7f916a745c6802e60936eebd9c6",
+    "pattern": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men*",
+    "script": "shift-public-answers",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "21c5f4eba62c4772848ae24882140a24",
+    "pattern": "https://shiftsometimber.co.uk/mounjaro*",
+    "script": "shift-public-answers",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "5bfe2084e91b4f9eb18d56ee544ae0a0",
+    "pattern": "https://shiftsometimber.co.uk/wegovy*",
+    "script": "shift-public-answers",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "bce09dad585c4141a740b6ee2f972101",
+    "pattern": "https://shiftsometimber.co.uk/articles/stopping-glp1*",
+    "script": "shift-public-answers",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "2b63db63377046eca70f0c9cd81236f1",
+    "pattern": "api.shiftsometimber.co.uk/v1/hq/management/*",
+    "script": "shift-hq-management",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "db4ca5eb7c1042219925fd131c8b9af2",
+    "pattern": "www.shiftsometimber.co.uk/member-shell-v33g.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "ab020a539ece4c65a9435610c2cb759e",
+    "pattern": "shiftsometimber.co.uk/member-plans-premium-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "e26f277846a4423aaf91f659ee972832",
+    "pattern": "www.shiftsometimber.co.uk/assets/fit/premium/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "320db888a24b4936b373959c6571b587",
+    "pattern": "www.shiftsometimber.co.uk/assets/shift-health/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "fca9307c7a994988b6052db55b282c82",
+    "pattern": "www.shiftsometimber.co.uk/member/health-mot*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "15f9dd40731f4ef983d0a0221a0f3ca4",
+    "pattern": "www.shiftsometimber.co.uk/member/dashboard*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "6ac40df2450f45b0b54c78890c288569",
+    "pattern": "www.shiftsometimber.co.uk/member/tap-room*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "85f5bee55e41414bbec900a33b51908c",
+    "pattern": "www.shiftsometimber.co.uk/member/progress*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "769a0ca4f64c439ea652d87f30e07ac9",
+    "pattern": "www.shiftsometimber.co.uk/assets/v42.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "4965e47d8d164e16a81e296ed0109928",
+    "pattern": "www.shiftsometimber.co.uk/member/fit*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "717bb830ebd449b3b23d027828e0d39e",
+    "pattern": "www.shiftsometimber.co.uk/tools/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "52cc8e77fdba4097bbb5b894c223f7fa",
+    "pattern": "www.shiftsometimber.co.uk/faq/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "d4ada4f9263547bab4bbe490fe9e7299",
+    "pattern": "www.shiftsometimber.co.uk/v1/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "97645c3f70cd40b18bc4f08d699ec912",
+    "pattern": "www.shiftsometimber.co.uk/member-progress-picture-premium-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "3475c56b63b94be296ccb7a86b5e82e0",
+    "pattern": "www.shiftsometimber.co.uk/member-my-journey-checkin-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "80ddd19c63a14d0cbe7d52977aae5984",
+    "pattern": "www.shiftsometimber.co.uk/member-my-journey-checkin-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "188cd8e505f34981a1c6dceccf8effa1",
+    "pattern": "www.shiftsometimber.co.uk/member-treatment-journey-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "90945f32b41f4366b760abaf9517f3c4",
+    "pattern": "www.shiftsometimber.co.uk/member-my-timber-problem-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "613dbcaf6ad54e2ba9887ded22805837",
+    "pattern": "www.shiftsometimber.co.uk/member-shift-me-premium-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "93537ac77322463d8056ee62ca15ee12",
+    "pattern": "www.shiftsometimber.co.uk/member-medicines-watch-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "5012e99f4b3646ddb5768e5d303624bb",
+    "pattern": "www.shiftsometimber.co.uk/member-shift-me-premium-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "74db3dbe725346a3aa66d52bfda1ea10",
+    "pattern": "www.shiftsometimber.co.uk/whole-man-journey-modes-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "ff4b18e80e014b0781ca6e00bec22171",
+    "pattern": "www.shiftsometimber.co.uk/member-medicines-watch-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "b4034aab8dd64c8988204e6486790e45",
+    "pattern": "www.shiftsometimber.co.uk/member-grub-programme-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "4ad93cc7b1f8417bb714ddade915b7c1",
+    "pattern": "www.shiftsometimber.co.uk/member-grub-programme-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "b0bcaa11b5d2452381ac2f66434daf7c",
+    "pattern": "www.shiftsometimber.co.uk/member-today-premium-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "a53be8c1f0cf4173bd711303c62e0e21",
+    "pattern": "www.shiftsometimber.co.uk/member-plans-premium-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "e647fe8767aa406194480cc385aa5625",
+    "pattern": "www.shiftsometimber.co.uk/member-plans-premium-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "a5cdbe9ce44043fbb2505af8ded5e579",
+    "pattern": "www.shiftsometimber.co.uk/member-today-premium-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "6797849269d24b6c928f1d39a86559b3",
+    "pattern": "www.shiftsometimber.co.uk/member-today-final-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "49ea3502bb51435182fb3678f95dd9a3",
+    "pattern": "www.shiftsometimber.co.uk/whole-man-intent-os-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "2667e11f288e409f92a5b11a7bc8e49f",
+    "pattern": "www.shiftsometimber.co.uk/member-my-journey-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c057965d63254dde9e396ee49eb5a05a",
+    "pattern": "www.shiftsometimber.co.uk/member-my-journey-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "25faa249875d426687d6ac146183a7bd",
+    "pattern": "www.shiftsometimber.co.uk/member-life-back-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "78388291ba404a989457c9fc35479d21",
+    "pattern": "www.shiftsometimber.co.uk/clinical-intake-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "921a688e0b1f4be6a827a2e78e62ad43",
+    "pattern": "www.shiftsometimber.co.uk/member-life-back-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "0a719f6cb1264025b62f26fd97678365",
+    "pattern": "www.shiftsometimber.co.uk/member-product-v33d.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "986f8f388f084d7d930301cab7141b24",
+    "pattern": "www.shiftsometimber.co.uk/authority-menu-v35.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "5bb8523882a5421db87bc0234381c2bf",
+    "pattern": "www.shiftsometimber.co.uk/member-progress-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "ad2c096e7ea94751ad4d119bc043f42b",
+    "pattern": "www.shiftsometimber.co.uk/sst-logo-official.png*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "e09b559926904097881ef84d62059ff6",
+    "pattern": "www.shiftsometimber.co.uk/treatment-assessment*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "71e2b1e3b8ad433198d16e923b25f869",
+    "pattern": "www.shiftsometimber.co.uk/turnstile-auth-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "08d767be0f3a4874a19791857df00c43",
+    "pattern": "www.shiftsometimber.co.uk/member-pen-day-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "4b0a254702c740279fda336cef768bb6",
+    "pattern": "www.shiftsometimber.co.uk/shift-push-sw-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "0228a4fe946f412f83b53f8d35bac8dc",
+    "pattern": "www.shiftsometimber.co.uk/member-sport-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "de0bce3a7cae441e8f0d69cc8ab3bec1",
+    "pattern": "www.shiftsometimber.co.uk/api-adapter-v33d.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "e19533bed0104c88b7c7b00bd13803dc",
+    "pattern": "www.shiftsometimber.co.uk/site-config-v3a.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c83c3321b1bc4495a420ab3a75e707a1",
+    "pattern": "www.shiftsometimber.co.uk/shift-me-api-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "367fd8e28295401dbea85d2dbcd98a1f",
+    "pattern": "www.shiftsometimber.co.uk/member-sport-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "92866be6cafa418f94a75e02483e02f7",
+    "pattern": "www.shiftsometimber.co.uk/my-timber-v11.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "578f3de1fc04400e829d6129b8c5f2e8",
+    "pattern": "www.shiftsometimber.co.uk/shift-me-3d-proof*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "df9d906f8b9f47d6ba5ffdde6f738061",
+    "pattern": "www.shiftsometimber.co.uk/member-p0-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "390e27bf60af43c8bf47dac4f50a4680",
+    "pattern": "www.shiftsometimber.co.uk/my-timber-v11.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c3ade758bfda4338a0c0a331513220e6",
+    "pattern": "www.shiftsometimber.co.uk/tap-room-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "43d65464a61743d0a6e2003097150d06",
+    "pattern": "www.shiftsometimber.co.uk/member-register*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "4fe0f712c54842dcae7da777a70b99f8",
+    "pattern": "www.shiftsometimber.co.uk/tap-room-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "0d80219ef4874e64abde33c68d856680",
+    "pattern": "www.shiftsometimber.co.uk/shift-health*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "42966dfd64cb40f5ad9fb3db0d44375a",
+    "pattern": "www.shiftsometimber.co.uk/member-login*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "2ce34bc9ace048938253efe16d1991e0",
+    "pattern": "www.shiftsometimber.co.uk/sitemap.xml*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "acb2ed1810894f7d9f1c6bc11214175f",
+    "pattern": "www.shiftsometimber.co.uk/member-fit*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "3ae4f361ea8d426a8a28c5bf710b912b",
+    "pattern": "www.shiftsometimber.co.uk/programme*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "f22b619648424e1ea2544467e0a52834",
+    "pattern": "www.shiftsometimber.co.uk/tap-room*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "6205946b9c2f400eb51f45b1885f3450",
+    "pattern": "www.shiftsometimber.co.uk/shift-me*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "062d8eb65a0a40409eb53c63dec11d93",
+    "pattern": "www.shiftsometimber.co.uk/lounge*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "7a42e6a850e84885a4b39d205e5a956b",
+    "pattern": "www.shiftsometimber.co.uk/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "700dd66179944012823c952681b71301",
+    "pattern": "shiftsometimber.co.uk/assets/fit/premium/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "83a2bc1d26b84165aff998eac91000b8",
+    "pattern": "shiftsometimber.co.uk/assets/shift-health/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "27abb9856a204f0e82cb0638cddd4037",
+    "pattern": "shiftsometimber.co.uk/member/health-mot*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "cd2ae3b346db423897ee34313ded955d",
+    "pattern": "shiftsometimber.co.uk/member/dashboard*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "2ac2f75d62254db3a90babcaf0f0d2bc",
+    "pattern": "shiftsometimber.co.uk/member/tap-room*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "3caec1d672e84c508f3ab7ceb814cdce",
+    "pattern": "shiftsometimber.co.uk/member/progress*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "0c481e5d105d4f8aa6ce1bafeab45269",
+    "pattern": "shiftsometimber.co.uk/assets/v42.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "688251bf932c4f2681c0a8d4bc8b77ee",
+    "pattern": "shiftsometimber.co.uk/member/fit*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "a0e20e4fb72b4ad1be62afcecf94ff40",
+    "pattern": "shiftsometimber.co.uk/tools/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "b996e49324d648d5ab90466103e47e46",
+    "pattern": "shiftsometimber.co.uk/faq/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "9e407adbc1de4124bc767d61b1c26f02",
+    "pattern": "shiftsometimber.co.uk/v1/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c19ba1d5ece146fd81e6833a826c4f2a",
+    "pattern": "shiftsometimber.co.uk/member-progress-picture-premium-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "1498cc9a3dfe45c397d2c4f1c91cfe65",
+    "pattern": "shiftsometimber.co.uk/member-my-journey-checkin-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "d09d6acb584f424f862d96b9db86e5f3",
+    "pattern": "shiftsometimber.co.uk/member-my-journey-checkin-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "fa839a1c10034c5e865fe1b3e90fd5db",
+    "pattern": "shiftsometimber.co.uk/member-treatment-journey-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "7acfa6b776284d6d9f45869be7bed553",
+    "pattern": "shiftsometimber.co.uk/member-my-timber-problem-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "5c11d7feea474b4bb9da30982f9a46fe",
+    "pattern": "shiftsometimber.co.uk/member-shift-me-premium-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "d1d224567738481cb055858be1a379fb",
+    "pattern": "shiftsometimber.co.uk/whole-man-journey-modes-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "4e06a0e81ea14c57af1fdf6ccacd28ce",
+    "pattern": "shiftsometimber.co.uk/member-shift-me-premium-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "6625814c5e59412ab0fa7d1ac13a16c6",
+    "pattern": "shiftsometimber.co.uk/member-medicines-watch-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "5b95ccf1c1424cce8b26cc742ac4da60",
+    "pattern": "shiftsometimber.co.uk/member-grub-programme-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "1cd2403fbbc1474b959581166ea4c343",
+    "pattern": "shiftsometimber.co.uk/member-medicines-watch-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "49a890a7dd5d422881ab3bae5adc08d4",
+    "pattern": "shiftsometimber.co.uk/member-grub-programme-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "754daf5413714f0d9f8b267a03ce69ea",
+    "pattern": "shiftsometimber.co.uk/member-today-premium-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "dbc3e679d37f421eb49ded1d430bd6d2",
+    "pattern": "shiftsometimber.co.uk/member-plans-premium-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "48fbfc34185f46c29e7a9cb63cd7c1c7",
+    "pattern": "shiftsometimber.co.uk/member-today-premium-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "cf57731533784f4d812f51aa5ed4dd6c",
+    "pattern": "shiftsometimber.co.uk/whole-man-intent-os-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "eea011cdcb8448828ff86518aad43e87",
+    "pattern": "shiftsometimber.co.uk/member-today-final-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "70617773123746d4ad5e52745ca7b3a0",
+    "pattern": "shiftsometimber.co.uk/member-my-journey-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "0ccd28fd90904c1d9c79af9b875ca05a",
+    "pattern": "shiftsometimber.co.uk/member-my-journey-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "a34b55f0ee0a4b838ac801c92455f416",
+    "pattern": "shiftsometimber.co.uk/member-life-back-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "c776f113bcde490aa503a7b87b42f828",
+    "pattern": "shiftsometimber.co.uk/member-product-v33d.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "27f2ac298c614f83a388324fe927762e",
+    "pattern": "shiftsometimber.co.uk/clinical-intake-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "cc0c4ea11130488298231f9a2895d56f",
+    "pattern": "shiftsometimber.co.uk/member-life-back-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "ccdab72f86554efaad667acb4eebf416",
+    "pattern": "shiftsometimber.co.uk/member-progress-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "b9338cd03a6c40dfaa80153b7f665a92",
+    "pattern": "shiftsometimber.co.uk/sst-logo-official.png*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "90db274db8744cbda864ca3d343b2a79",
+    "pattern": "shiftsometimber.co.uk/authority-menu-v35.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "54b828f5845f4e06bcb61515e5b524a0",
+    "pattern": "shiftsometimber.co.uk/member-pen-day-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "47da4abbaca44e0c9738519779023b02",
+    "pattern": "shiftsometimber.co.uk/member-shell-v33g.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "7339088232fb47cdaf41de020c5b646d",
+    "pattern": "shiftsometimber.co.uk/turnstile-auth-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "d16cc8682e2a4bc293b1d7f6f5ea01bc",
+    "pattern": "shiftsometimber.co.uk/treatment-assessment*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "acffd92efd8f4954b842e99249e2f6ce",
+    "pattern": "shiftsometimber.co.uk/member-sport-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "64b0e716e66b4e2fab7cab376a67311f",
+    "pattern": "shiftsometimber.co.uk/shift-push-sw-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "8bb30a4cecb64695883d69ed1a242642",
+    "pattern": "shiftsometimber.co.uk/api-adapter-v33d.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "3ca3030fee4a48e9ab1e09d6997a20fe",
+    "pattern": "shiftsometimber.co.uk/site-config-v3a.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "6432baea10874ee78547986912fccfaf",
+    "pattern": "shiftsometimber.co.uk/shift-me-api-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "e1abeed3d73448c8a94261097c092b60",
+    "pattern": "shiftsometimber.co.uk/member-sport-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "76c4da8f07e94dfd8a84995c92d734ca",
+    "pattern": "shiftsometimber.co.uk/my-timber-v11.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "2a2e8256ad964b2189bb2e89b741f2ce",
+    "pattern": "shiftsometimber.co.uk/shift-me-3d-proof*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "2384f2d8df19445a99d5a475a2730fcd",
+    "pattern": "shiftsometimber.co.uk/member-p0-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "1b8e82b18aca40e6b9e4a012e4b4d852",
+    "pattern": "shiftsometimber.co.uk/my-timber-v11.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "9443e9f20b78406599d775fd056f5e3e",
+    "pattern": "shiftsometimber.co.uk/tap-room-v1.css*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "5a7f6eda71a841a08b505bc0070a2cb7",
+    "pattern": "shiftsometimber.co.uk/member-register*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "843fa40a8c1e43169685aaf0ee7ad7dc",
+    "pattern": "shiftsometimber.co.uk/tap-room-v1.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "e3e06654a323472c854d7b737a7b53ff",
+    "pattern": "shiftsometimber.co.uk/shift-health*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "d191591ba3ee4611bcfb280f19a4c643",
+    "pattern": "shiftsometimber.co.uk/member-login*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "008af0d1e6f74312bbbbe6a71891e197",
+    "pattern": "shiftsometimber.co.uk/sitemap.xml*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "733cc56e1bd247e381132069e9c87dcd",
+    "pattern": "shiftsometimber.co.uk/member-fit*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "f47eb593ea404e38a9973e30f69dfc01",
+    "pattern": "shiftsometimber.co.uk/programme*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "ec20ec177dad410dba51c2bfc01bccf7",
+    "pattern": "shiftsometimber.co.uk/shift-me*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "5792c36f1c2a467ab67f647dd529b12e",
+    "pattern": "shiftsometimber.co.uk/tap-room*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "06c92b1fb1954c599706faaae9206ecc",
+    "pattern": "shiftsometimber.co.uk/lounge*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "790411ce10244d5eae7f3fc44b2bc859",
+    "pattern": "shiftsometimber.co.uk/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  }
+]
