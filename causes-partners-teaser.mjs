@@ -1,6 +1,6 @@
-// Public shell placeholder only. No destination, activation flag or data access.
-export const causesLabel = '<span class="sst-causes-teaser" role="link" aria-disabled="true">Our Causes &amp; Partners</span>';
-const css = '<style id="sst-causes-teaser-css">.sst-causes-teaser{color:#8b8b86!important;cursor:default;pointer-events:none;text-decoration:none!important;font:inherit;display:block;padding:12px 0}.site-drawer .sst-causes-teaser{font-weight:700;border-top:1px solid #707762}footer.site-footer .sst-causes-teaser{padding:6px 0;font-size:12px;font-weight:700}.sst-global-menu .sst-causes-teaser{padding:15px;border-bottom:1px solid rgba(5,5,5,.2)}</style>';
+// Owner approved public discovery link. Timber Shed stays unchanged.
+export const causesLabel = '<a class="sst-causes-teaser" href="/our-causes-partners">Our Causes &amp; Partners</a>';
+const css = '<style id="sst-causes-teaser-css">.sst-causes-teaser{color:inherit;text-decoration:none;font:inherit;display:block;padding:12px 0}.site-drawer .sst-causes-teaser{font-weight:700;border-top:1px solid #707762}footer.site-footer .sst-causes-teaser{padding:6px 0;font-size:12px;font-weight:700}.sst-global-menu .sst-causes-teaser{padding:15px;border-bottom:1px solid rgba(5,5,5,.2)}</style>';
 export function addCausesTeaser(html, path='/') {
   if(typeof html!=='string'||!/<html\b/i.test(html)||!/<\/head>/i.test(html)||!/<\/body>/i.test(html))return html;
   if(/^\/(?:v1|api|hq|staging)(?:\/|$)/.test(path)||html.includes('id="sst-causes-teaser-css"'))return html;

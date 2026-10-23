@@ -1,3 +1,4 @@
+import {causesPublicRoute} from './causes-partners/production.mjs';
 import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {withSharedFooter} from './timber-shed-public-teaser.mjs';
 import {foodSupplementGuideRoute,withFoodGuideDiscovery} from './food-supplement-guide/production.mjs';
@@ -1192,6 +1193,8 @@ export default {
       const source = new URL(request.url); source.pathname = '/sitemap.xml'; source.search = '';
       return articleSitemapResponse(request, () => publicFetch(new Request(source, {method:'GET'}), env, ctx));
     }
+    const causes=await causesPublicRoute(request,env,()=>{const u=new URL(request.url);u.pathname='/programme';u.search='';return worker.fetch(new Request(u,{method:'GET',headers:request.headers}),env,ctx);});
+    if(causes)return withSharedFooter(request,await withPublicShellContract(request,causes));
     const guide=await foodSupplementGuideRoute(request,()=>{
       const u=new URL(request.url);u.pathname='/programme';u.search='';
       return worker.fetch(new Request(u,{method:'GET',headers:request.headers}),env,ctx);
