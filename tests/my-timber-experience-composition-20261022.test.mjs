@@ -5,7 +5,7 @@ import {
  EXPERIENCE_BASE,EXPERIENCE_SOURCE,EXPERIENCE_KEY,EXPERIENCE_MANIFEST,
  EXPERIENCE_PATHS,EXPERIENCE_MAINTENANCE,EXPERIENCE_RECORD,EXPERIENCE_PINS,
  myTimberExperienceHistoricalView,verifyMyTimberExperience,
- originalExperienceMainRelease,originalExperienceRuntime,originalExperienceNavigation,originalExperienceMainTest,originalExperienceHealthTest,originalExperienceFiniteGrowth,originalExperienceRootShare,originalExperiencePwaServiceWorker,
+ originalExperienceMainRelease,originalExperienceRuntime,originalExperienceNavigation,originalExperienceMainTest,originalExperienceHealthTest,originalExperienceFiniteGrowth,originalExperienceRootShare,originalExperiencePwaServiceWorker,originalExperienceTabs,
  EXPERIENCE_MAIN_AFTER,EXPERIENCE_RUNTIME_BRANCH,EXPERIENCE_RUNTIME_VERIFY_AFTER,EXPERIENCE_RUNTIME_MEMBER_AFTER,EXPERIENCE_HEALTH_TEST_AFTER,EXPERIENCE_FINITE_GROWTH_AFTER
 } from '../release/my-timber-experience-scope-20261022.mjs';
 
@@ -88,4 +88,16 @@ test('footer guard receives only the exact pre-experience PWA bytes',()=>{
  const projected=originalExperiencePwaServiceWorker(current).replace(" const panel=['/member/fit','/member/grub','/member/life-back'].includes(u.pathname)&&u.searchParams.get('app_panel')==='1'&&['app','web'].includes(u.searchParams.get('view'))&&u.searchParams.size===2;\n if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||(u.search&&!panel))return;"," if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||u.search)return;");
  assert.equal(projected,content('59b7d1da00fe4ada0e66d64954d99fee6ae35916',path));
  assert.throws(()=>originalExperiencePwaServiceWorker(current+'drift'),/Exact current My Timber service-worker source/);
+});
+
+test('footer guard receives only the exact pre-experience app-tab bytes',()=>{
+ const path='preview/app-layout/tabs.mjs',prior=content(EXPERIENCE_BASE,path),current=content(EXPERIENCE_SOURCE,path);
+ assert.equal(originalExperienceTabs(current),prior);
+ assert.equal(originalExperienceTabs(prior),prior);
+ assert.match(content(head,'release/footer-scope.mjs'),/originalFooterTabs\(execFileSync/);
+ const after=" function select(key,push=false,hash=''){if(!toolKeys.includes(key))key='today';chosen=key;syncTabs();if(!host)return;if(push){const u=new URL(location.href);if(key==='today')u.searchParams.delete('tool');else u.searchParams.set('tool',key);u.hash='today';history.pushState(null,'',u)}host.hidden=key==='today';if(key!=='today'&&!panels.has(key))createPanel(key,hash);else if(key!=='today'&&hash){const frame=panels.get(key).frame;try{frame.contentWindow.location.hash=hash;frame.contentWindow.dispatchEvent(new Event('hashchange'))}catch{}}panels.forEach((v,k)=>{v.panel.hidden=k!==key;if(k===key)requestAnimationFrame(()=>measure(v.frame))}); }";
+ const before=" function select(key,push=false,hash=''){if(!toolKeys.includes(key))key='today';chosen=key;syncTabs();if(!host)return;host.hidden=key==='today';if(key!=='today'&&!panels.has(key))createPanel(key,hash);else if(key!=='today'&&hash){const frame=panels.get(key).frame;try{frame.contentWindow.location.hash=hash;frame.contentWindow.dispatchEvent(new Event('hashchange'))}catch{}}panels.forEach((v,k)=>{v.panel.hidden=k!==key;if(k===key)requestAnimationFrame(()=>measure(v.frame))});if(push){const u=new URL(location.href);if(key==='today')u.searchParams.delete('tool');else u.searchParams.set('tool',key);u.hash='today';history.pushState(null,'',u)} }";
+ assert.equal(prior.split(after).length,2);
+ assert.equal(originalExperienceTabs(current).replace(after,before),content('59b7d1da00fe4ada0e66d64954d99fee6ae35916',path));
+ assert.throws(()=>originalExperienceTabs(current+'drift'),/Exact current My Timber app-tabs source/);
 });

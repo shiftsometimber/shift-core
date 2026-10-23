@@ -165,6 +165,14 @@ export function originalExperiencePwaServiceWorker(value){
  assert.equal(value,current,'Exact current My Timber service-worker source required before footer projection');
  return prior;
 }
+export function originalExperienceTabs(value){
+ const path='preview/app-layout/tabs.mjs';
+ assert.equal(typeof value,'string','Exact My Timber app-tabs source required');
+ const current=rawContent(EXPERIENCE_SOURCE,path),prior=rawContent(EXPERIENCE_BASE,path);
+ if(value===prior)return value;
+ assert.equal(value,current,'Exact current My Timber app-tabs source required before footer projection');
+ return prior;
+}
 function clean(head){
  assert.equal(realpathSync(git('rev-parse','--show-toplevel')),realpathSync(process.cwd()),'Actual current checkout required');
  assert.equal(git('rev-parse','HEAD'),head,'My Timber source HEAD changed');
