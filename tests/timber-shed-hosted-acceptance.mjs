@@ -30,6 +30,8 @@ for(const role of ['member-one','member-two','moderator-one','moderator-two']){
 const rendered=await request('/member/timber-shed',{role:'member-one'});
 check('hostedPrivacyCopyMatchesForum',rendered.status===200&&!rendered.text.includes('There is no public profile, member feed or posting.'));
 check('hostedHealthRecordSeparationExplained',rendered.text.includes('Only posts you deliberately submit can enter the member community, after human review.'));
+check('hostedForumImmediatelyAfterWelcome',rendered.text.indexOf('class="hero"')<rendered.text.indexOf('id="shedForumPilot"')&&rendered.text.indexOf('id="shedForumPilot"')<rendered.text.indexOf('YOUR CHOICE'));
+check('hostedProgrammeBelowForum',rendered.text.indexOf('id="shedForumPilot"')<rendered.text.indexOf('FOUNDING PROGRAMME')&&(rendered.text.match(/id="shedForumPilot"/g)||[]).length===1);
 const initial=(await api('member-one','participation')).data;
 check('newMemberHasNoInventedConsent',initial.adultAccess&&!initial.joined&&!initial.healthConsent);
 const agreement={version:initial.policy.version,rulesAccepted:true,privacyAcknowledged:true,healthConsent:false};
@@ -107,7 +109,7 @@ try{
   for(const b of buttons)if(await b.evaluate(el=>el.textContent.trim()==='approve')){approve=b;break}
   assert(approve,'Moderator approval control missing');await approve.click();
   await mod.waitForFunction(()=>!document.getElementById('shedQueue').textContent.includes('Browser fictional'));
-  await page.reload({waitUntil:'networkidle0'});
+  await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(title=>document.getElementById('shedLatestItems').textContent.includes(title),{},title);
   check(viewport+'BrowserHumanApprovalVisible',true);
   check(viewport+'NoOverflow',!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth));

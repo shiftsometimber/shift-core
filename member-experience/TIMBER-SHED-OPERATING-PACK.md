@@ -1,5 +1,5 @@
 # The Timber Shed — private pilot operating pack
-Version: 23 October 2026. Status: member rules approved by Matt; Linda O'Brien nominated as cover. Other operating, privacy and release decisions remain as marked below. Not published or activated.
+Version: 23 October 2026. Status: member rules approved by Matt; Linda O'Brien nominated as cover. Forum layout/flow approved by Matt after reviewing the four-screen mockup pack. The latest approved layout is deployed to the protected synthetic host. Real-member activation is not approved; current decisions are consolidated in section 12.
 
 This pack accompanies the existing TIMBER-SHED-PRIVATE-BOUNDARY.md checkpoint and draft PR #1393. It does not authorise launch, enable flags, appoint anyone beyond the nominations expressly recorded below, send mail or approve real member text being sent to an AI provider.
 
@@ -12,7 +12,7 @@ Matt O'Brien has confirmed that his name is above the door. Record him as the ac
 | Accountable owner | Record Matt's nomination and decision authority | Recorded in this pack and checkpoint | Nomination confirmed by Matt; duties/operating policy below still to adopt |
 | Nonclinical remit | Apply the approved member rules and support boundaries below; remove any promise of treatment, crisis response or clinician moderation from member copy | Matt approved the rules on 23 October; technical high-risk holds retained | Publication/application to deployed service still held; clinical functionality remains disabled pending qualified review |
 | Moderation and cover | Linda O'Brien nominated by Matt; record availability, handovers, leave cover and independent appeals access | Named cover recorded; role description, training and handover checklist below | Linda's acceptance/availability, training, verified individual moderator account and rehearsal remain unverified |
-| Community controls | Verify premoderation, report/block, restrictions, appeals, privacy and authentication | Implemented; 151 scoped tests and 45 fictional local-runtime checks passed | Controlled deployed acceptance and final CI |
+| Community controls | Verify premoderation, report/block, restrictions, appeals, privacy and authentication | Implemented; 172 scoped tests, 59 actual-cookie/local-D1 checks and earlier 53 hosted checks passed; approved-layout reacceptance is recorded in section 12 | Wider release CI and real operating acceptance |
 | Age and online safety | Complete children's access and illegal-content risk assessments against actual service, users and mitigations | Assessment worksheet below | Actual access method, likelihood evidence, risk findings and owner adoption |
 | Privacy | Determine Article 6 basis and Article 9 condition; adopt data map, DPIA, notices, retention and rights process | Draft worksheet and technical inventory below | Controller decisions, provider facts, remaining controls and residual-risk acceptance |
 | AI moderation | Decide whether needed; assess processor terms, transfers, retention and member notice | Deterministic screening and human workflow operate without live AI | Real-text provider approval and activation remain separate and off |
@@ -47,7 +47,7 @@ The Shed is not monitored continuously. Do not wait here for urgent help. If som
 
 You can withdraw your posts, export your community information and leave the community. Leaving clears your chosen name and post text from the active forum, but limited moderation records and restrictions may remain under the published retention policy. Deleting a forum post cannot recall screenshots or material another person has already copied.
 
-Before publication add the actual review hours, routine response target, complaint contact and adopted retention periods. Do not publish placeholders or imply support coverage that has not been staffed.
+Before real-member publication record actual review hours and routine response target; use timbershed@shiftsometimber.co.uk for complaints and privacy enquiries. The candidate retention periods are in section 8 and require adoption. Do not imply support coverage that has not been agreed.
 
 ## 3. Human moderation procedure
 
@@ -116,7 +116,7 @@ Assess at least these risks: member reidentification; sensitive disclosures; uns
 
 The existing premoderation, server-side authorisation, privacy-scoped exports, independent appeals, transaction/audit guards and default-off provider reduce some risks. They do not demonstrate that residual risk is acceptable. Obtain any specialist advice necessary for an unresolved clinical, safeguarding, data-protection or regulatory risk; otherwise keep the relevant capability closed.
 
-### Proposed retention decision schedule — periods deliberately not invented
+### Historical retention worksheet — superseded by section 8 implementation
 
 | Record | Required owner decision | Implementation gap |
 | --- | --- | --- |
@@ -127,7 +127,7 @@ The existing premoderation, server-side authorisation, privacy-scoped exports, i
 | In-app notifications | Short useful history period | No adopted age-based purge |
 | Backups / exports / mailbox incidents | Actual backup expiry, export storage, restricted incident retention | Verify provider behaviour and adopt deletion procedure |
 
-Do not claim "all data deleted immediately". Community departure does not erase every audit or backup. Any lawful exception to a rights request needs a documented reason and an accurate response. Retention implementation remains a release task, not a signature that can be inferred from this document.
+Do not claim "all data deleted immediately". Community departure does not erase every audit or backup. Any lawful exception to a rights request needs a documented reason and an accurate response. The automatic retention implementation is now completed as recorded in section 8; adoption of that schedule and real processing remain separate decisions.
 
 ## 5. Online safety and children's access worksheets
 
@@ -314,3 +314,42 @@ Protected Worker: https://shift-timber-shed-acceptance-20261023.matobrien.worker
 **Limits and next genuine decisions:** these are fictional seeded sessions, not a fresh production registration/email or elapsed twelve-hour acceptance. No real clinician/charity endorsement, live AI processing, email delivery, real-person incident rehearsal or HEAA certification is inferred. The new detailed privacy/retention and admission/risk assessment proposal requires controller adoption and validation before real people join. The actual member release remains separately authorised; the candidate is a capped adult pilot rather than an unrestricted public launch. Matt's rules/ownership and Linda's nomination remain recorded without further staffing requests in this increment.
 
 The former Medicines Watch source-preservation CI failure is now verified resolved on parent bc2a39dc; that workflow completed successfully. Its whole-estate serial crawl was still running when checked. The crawler now uses four bounded requests and per-request deadlines, with dedicated local fixtures proving full discovery, truncation failure, HTTP/blank/redirect failure and a hanging-body deadline. Current-head CI must be observed separately; old-head results are not relabelled as new-head passes.
+
+## 12. Approved design hosted; finite opening decisions — 23 October 2026
+
+### Completed and verified
+
+Matt reviewed the four-screen `Timber-Shed-Forum-Mockups.pdf` and confirmed “Perfect - does what it says on the tin for me”. This approves the pictured forum layout and flow, including the forum immediately after the welcome. It does not adopt the separate privacy/risk decisions or open real-member access. His subsequent “Can we facilitate all this please then now” authorises completing the necessary private deployment and release preparation. Linda's nomination remains settled; no new staffing invitation or commitment has been made.
+
+The approved runtime source `b4090798e3c810826e9d0d570044463554d62a06` is now deployed to the protected synthetic host, version `88bb5bf9-d5e3-4ab8-a5ca-f1176039e784`. Actual hosted acceptance passed **55 checks at 2026-10-23T13:00:48Z**, including both desktop/mobile member/moderator flows and two new assertions that exactly one forum follows the welcome and precedes private progress/the programme. A separate authenticated page check also verified that order, private no-store/noindex headers and unauthorised 401 denial. No real account or production binding was used.
+
+The first rerun reached the browser reload but exceeded a 20-second network-idle wait. The harness now waits for DOM navigation then still requires the actual approved discussion to appear; no publication, privacy, independent-review or content assertion was removed. The corrected full hosted rerun passed. A reset-receipt parser initially failed on the CLI's file-operation progress output after command completion; a subsequent read verified the isolated target was reset and all four fictional sessions valid before the successful run. No failed run is counted as acceptance.
+
+Read-only production schema inspection found no `timber_shed_%` tables and confirmed the expected user DOB, verified-email and session columns. No member row was retrieved and no production schema/data/flags were changed. The earlier native Cloudflare restore rehearsal remains valid for the unchanged schema; it is not relabelled as a new restore.
+
+Source `b4090798` has 14 successful GitHub workflows, one skipped, and two still running at this receipt: Medicines Watch `39953991871` and Whole-Estate Route Sweep `39953991974`. The dedicated private release workflow `39953991830` passed. These are exact-source results, not a blanket green for later commits. The new changes accompanying this section affect the hosted test harness and operating receipts only; deployed runtime modules remain identical to the cited source.
+
+### Exact owner decisions prepared for review
+
+| Decision | Concrete proposal | Acceptance still needed |
+| --- | --- | --- |
+| Initial audience and scope | Maximum ten active cleared adults including staff; nonclinical text-only peer community; no DMs/media/public profiles; every post/reply held for human approval; specialist-risk material stays withheld | Owner adopts this bounded pilot scope; an unrestricted public launch is a different decision |
+| Privacy and participation | Adopt governance version `shed-pilot-governance-2026-10-23-v1` and the actual notice in `timber-shed-governance.mjs`; optional participation, separate explicit health-disclosure consent, read-only alternative, owner-only export and departure clearing | Controller reviews/adopts notice and the section 8 processing/DPIA/risk decisions; no regulator or qualified-specialist approval is implied |
+| Retention | Pending 7 days; rejected/removed 30 days, up to 90 during open post appeal; approved posts/closed moderation metadata at most 365 days; notices 30 days; active restrictions while justified with human review at least every 90 days; recovery history up to 30 days with erasures reapplied on restore | Owner adopts these proposed periods and necessary operational review duties |
+| Adult admission | Use the section 8 procedure: verify a genuine upstream adult identity result belongs to the account, or original-document/live-holder matching with authenticity/likeness checks; store only result/reference/reviewer/expiry, no copied ID image in the forum | Validate accuracy, robustness, reliability/fairness and accessibility of the actual process; record genuine evidence for each admitted account. A self-declared DOB or database label cannot fulfil this |
+| Moderation operation | Matt accountable, Linda nominated cover/independent reviewer, Bouncer screens; no continuous monitoring promise. Record actual review windows and a response target that can be met; close access if cover fails | Confirm feasible review windows/target and run the finite fictional rehearsal below. No working hours or commitments have been invented |
+
+The published member notice currently says the community is not monitored continuously. Do not advertise a specific response time until it is agreed and achievable. No proposal above authorises invitations, messages, supplier costs or external commitments.
+
+### Ten-minute human rehearsal prepared (not claimed completed)
+
+1. **Ordinary conversation:** author deliberately submits a fictional everyday post. An authorised reviewer reads it and approves. A second fictional account sees it only after approval.
+2. **Unsafe medicine offer / personal information:** submission remains withheld. Reviewer checks context, does not override a high-risk hold, and records the appropriate human decision. No external message or clinical advice is sent.
+3. **Independent appeal:** original reviewer cannot decide their own rejection appeal; a different authorised reviewer can uphold or return to pending, never publish through the appeal.
+4. **Absence or incident:** identify who actually owns the next review; demonstrate the access-closure procedure and locate restricted incident/complaint records. If no responsible cover is available, leave access closed.
+
+Automated browser/API versions of these controls already pass. The actual operators must demonstrate the human steps and record who participated, date, results and any corrections. No appointment or invitation has been sent to arrange this.
+
+### Release sequence, once dependencies are satisfied
+
+Keep the synthetic host separate. For an actual member pilot, review all required CI, the exact current-main integration and migration, target backup/recovery point, four service flags plus governance/retention configuration, the separate hourly maintenance event and successful heartbeat, and individual real moderator/adult clearances. Obtain the exact production/pilot release decision before merge/production mutation. Verify deployed access boundaries and rollback with the approved configuration; only then admit cleared adults. Invitations require their own full draft/recipient sign-off. No production activation is performed by this receipt.
