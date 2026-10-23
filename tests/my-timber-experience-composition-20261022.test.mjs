@@ -81,7 +81,7 @@ test('every prior release/runtime/navigation byte restores and altered hooks rej
  assert.equal(originalExperienceRootShare(content(head,rootSharePath)),content(EXPERIENCE_BASE,rootSharePath));
  assert.equal(originalExperienceMemberDesignScope(content(head,memberDesignPath)),content(EXPERIENCE_BASE,memberDesignPath));
  assert.equal(originalExperienceAppScope(content(head,appScopePath)),content(EXPERIENCE_BASE,appScopePath));
- assert.throws(()=>originalExperienceMemberDesignScope(content(head,memberDesignPath).replace(" validateMemberDesignSource(sourceRead=null){"," validateMemberDesignSource(sourceRead=null){ validateMemberDesignSource(sourceRead=null){")),/One exact/);
+ assert.throws(()=>originalExperienceMemberDesignScope(content(head,memberDesignPath).replace("export function validateMemberDesignSource(sourceRead=null){","export function validateMemberDesignSource(sourceRead=null){export function validateMemberDesignSource(sourceRead=null){")),/One exact/);
  assert.throws(()=>originalExperienceAppScope(content(head,appScopePath).replace(" validateMemberDesignSource(myTimber.read);"," validateMemberDesignSource(myTimber.read); validateMemberDesignSource(myTimber.read);")),/One exact/);
  assert.throws(()=>originalExperienceMainRelease(content(head,mainPath).replace(EXPERIENCE_MAIN_AFTER,EXPERIENCE_MAIN_AFTER+EXPERIENCE_MAIN_AFTER)),/One exact/);
  assert.throws(()=>originalExperienceRuntime(content(head,runtimePath).replace(EXPERIENCE_RUNTIME_BRANCH,'')),/One exact/);
