@@ -56,3 +56,15 @@ test('forum presentation distinguishes deliberate community posts from private M
  const inactive=await (await route(request,{...flags,TIMBER_SHED_FORUM_ENABLED:'false'})).text();
  assert(inactive.includes('There is no public profile, member feed or posting.'));
 });
+
+test('automatic lane presentation discloses the changed publication model only with exact new adoption',async()=>{
+ const route=createTimberShedPresentationRoutes(async()=>({userId:1}));
+ const flags={...enabled,TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true',TIMBER_SHED_ROUTINE_AUTOPUBLISH_ENABLED:'true',TIMBER_SHED_GOVERNANCE_APPROVED_VERSION:'shed-pilot-governance-2026-10-23-v2'};
+ const html=await(await route(new Request(origin+'/member/timber-shed'),flags)).text();
+ assert(html.includes('Recognised everyday posts can appear immediately after Bouncer checks.'));
+ assert(html.includes('Post to the Shed'));
+ assert(!html.includes('Every new discussion and reply waits for a trained moderator.'));
+ assert(!html.includes('after human review. There are no public member profiles.'));
+ const old=await(await route(new Request(origin+'/member/timber-shed'),{...flags,TIMBER_SHED_GOVERNANCE_APPROVED_VERSION:'shed-pilot-governance-2026-10-23-v1'})).text();
+ assert(old.includes('Every new discussion and reply waits for a trained moderator.'));
+});

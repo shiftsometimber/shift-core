@@ -161,3 +161,11 @@ CREATE TABLE IF NOT EXISTS timber_shed_participation (
 CREATE INDEX IF NOT EXISTS idx_timber_shed_posts_parent ON timber_shed_forum_posts(parent_id);
 
 CREATE TABLE IF NOT EXISTS timber_shed_maintenance (id INTEGER PRIMARY KEY CHECK(id=1),completed_at TEXT NOT NULL);
+
+-- Explicit automated publication provenance; never represents a human reviewer.
+CREATE TABLE IF NOT EXISTS timber_shed_auto_publications (
+ post_id TEXT PRIMARY KEY REFERENCES timber_shed_forum_posts(id) ON DELETE CASCADE,
+ decision_policy TEXT NOT NULL,
+ governance_version TEXT NOT NULL,
+ created_at TEXT NOT NULL
+);

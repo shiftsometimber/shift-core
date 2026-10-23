@@ -10,7 +10,7 @@ export function notificationWrites(db,{postId,action,moderatorId,timestamp}){
     (id,recipient_id,post_id,thread_id,room_id,kind,created_at)
     SELECT ?,p.user_id,p.id,COALESCE(p.parent_id,p.id),p.room_id,?,?
     FROM timber_shed_forum_posts p
-    WHERE p.id=? AND p.status=? AND p.reviewed_by=? AND p.reviewed_at=?`)
+    WHERE p.id=? AND p.status=? AND p.reviewed_by IS ? AND p.reviewed_at=?`)
    .bind(crypto.randomUUID(),kind,timestamp,postId,status,moderatorId,timestamp)
  ];
  if(action==='approve'){
@@ -22,7 +22,7 @@ export function notificationWrites(db,{postId,action,moderatorId,timestamp}){
     FROM timber_shed_forum_posts reply
     JOIN timber_shed_forum_posts parent ON parent.id=reply.parent_id
     WHERE reply.id=? AND reply.status='approved' AND parent.status='approved'
-      AND reply.reviewed_by=? AND reply.reviewed_at=? AND parent.user_id<>reply.user_id`)
+      AND reply.reviewed_by IS ? AND reply.reviewed_at=? AND parent.user_id<>reply.user_id`)
    .bind(crypto.randomUUID(),timestamp,postId,moderatorId,timestamp));
  }
  return writes;

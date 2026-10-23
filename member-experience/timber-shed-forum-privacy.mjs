@@ -7,6 +7,7 @@ export async function exportOwnForum(db,uid){
   participation:await all('SELECT rules_version,privacy_version,disclosure_consent_at,accepted_at FROM timber_shed_participation WHERE user_id=?'),
   adultAccess:await all('SELECT evidence_method,verified_at,expires_at,revoked_at FROM timber_shed_adult_access WHERE user_id=?'),
   posts:await all("SELECT id,room_id,parent_id,title,body,status,created_at,reviewed_at FROM timber_shed_forum_posts WHERE user_id=? ORDER BY created_at,id"),
+  publications:await all('SELECT a.post_id,a.decision_policy,a.governance_version,a.created_at FROM timber_shed_auto_publications a JOIN timber_shed_forum_posts p ON p.id=a.post_id WHERE p.user_id=?'),
   reports:await all("SELECT id,post_id,reason,status,created_at FROM timber_shed_forum_reports WHERE reporter_id=? ORDER BY created_at,id"),
   appeals:await all("SELECT a.id,a.post_id,a.reason,a.status,a.created_at,a.resolved_at FROM timber_shed_forum_appeals a JOIN timber_shed_forum_posts p ON p.id=a.post_id WHERE p.user_id=? ORDER BY a.created_at,a.id"),
   restrictions:await all("SELECT id,kind,reason,created_at,expires_at,lifted_at FROM timber_shed_forum_restrictions WHERE user_id=? ORDER BY created_at,id"),

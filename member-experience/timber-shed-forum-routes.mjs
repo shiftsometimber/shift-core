@@ -1,4 +1,5 @@
-import {governanceApproved,forumParticipation,validParticipation,saveForumParticipation} from './timber-shed-governance.mjs';
+import {routinePublicationDecision} from './timber-shed-routine-publication.mjs';
+import {governanceApproved,forumParticipation,validParticipation,saveForumParticipation,routinePublicationEnabled,forumPolicy} from './timber-shed-governance.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {timberShedForumRooms} from './timber-shed-forums.mjs';
 import {screenForumText,bouncerSubmissionNotice,BOUNCER_VERSION} from './timber-shed-community-bouncer.mjs';
@@ -86,15 +87,15 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
    const eligibility=await db.prepare('SELECT a.email_verified,u.date_of_birth FROM users u JOIN user_auth a ON a.user_id=u.id WHERE u.id=?').bind(uid).first();
    if(!['export','leave'].includes(route)&&(!eligibility||Number(eligibility.email_verified)!==1||!adult(eligibility.date_of_birth,now())))return json({error:'adult_verified_members_only'},403);
    const timestampNow=now().toISOString();
-   const participation=await forumParticipation(db,uid,timestampNow);
+   const participation=await forumParticipation(db,uid,timestampNow,env);
    if(route==='participation')return json(participation);
    if(route==='participation/consent'){
     const parsed=await parse(request);if(parsed.error)return json({error:parsed.error},parsed.status);
-    if(!validParticipation(parsed.value))return json({error:'explicit_current_agreement_required'},400);
+    if(!validParticipation(parsed.value,env))return json({error:'explicit_current_agreement_required'},400);
     if(!participation.adultAccess)return json({error:'adult_access_review_required'},403);
-    if(participation.healthConsent&&!parsed.value.healthConsent)return json({error:'withdraw_consent_using_leave_community'},409);
-    await saveForumParticipation(db,uid,parsed.value,timestampNow);
-    return json({ok:true,participation:await forumParticipation(db,uid,timestampNow)});
+    if(participation.disclosureConsentRecorded&&!parsed.value.healthConsent)return json({error:'withdraw_consent_using_leave_community'},409);
+    await saveForumParticipation(db,uid,parsed.value,timestampNow,env);
+    return json({ok:true,participation:await forumParticipation(db,uid,timestampNow,env)});
    }
    const ownOnly=new Set(['export','leave','mine','withdraw','appeals','appeal','access','restriction/appeal']);
    if(!ownOnly.has(route)&&!participation.adultAccess)return json({error:'adult_access_review_required'},403);
@@ -190,13 +191,24 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
     if(modelRequired)return json({error:'external_ai_not_in_pilot_policy'},503);
     const screening=local;
     const id=crypto.randomUUID();
+    const decision=routinePublicationEnabled(env)?routinePublicationDecision(input,screening):{publish:false};
     // Atomic submission and screening: no post is accepted without a triage record.
-    const results=await db.batch([
+    const operations=[
      db.prepare(`INSERT INTO timber_shed_forum_posts(id,user_id,room_id,parent_id,title,body,status,created_at) SELECT ?,?,?,?,?,?,'pending',? WHERE NOT EXISTS(SELECT 1 FROM timber_shed_forum_restrictions ar WHERE ar.user_id=? AND ar.lifted_at IS NULL AND (ar.expires_at IS NULL OR ar.expires_at>?)) AND (? IS NULL OR EXISTS(SELECT 1 FROM timber_shed_forum_posts p WHERE p.id=? AND p.status='approved' AND p.parent_id IS NULL AND ${visibleAuthorSQL('p',uid)}))`).bind(id,uid,input.roomId,input.parentId||null,input.title||null,input.body,timestamp,uid,timestamp,input.parentId||null,input.parentId||null),
      db.prepare("INSERT INTO timber_shed_bouncer_screenings(post_id,policy_version,model_name,severity,priority,categories_json,screened_at) VALUES(?,?,?,?,?,?,?)").bind(id,screening.policyVersion,screening.model||null,screening.severity,screening.priority,JSON.stringify(screening.categories),timestamp)
-    ]);
+    ];
+    if(decision.publish){
+     // These run in the SAME transaction as insertion and screening. Any write failure rolls it all back.
+     operations.push(db.prepare("UPDATE timber_shed_forum_posts SET status='approved',reviewed_at=?,reviewed_by=NULL WHERE id=? AND status='pending'").bind(timestamp,id));
+     // A silently ignored status update makes decision_policy NULL, violating its NOT NULL constraint and rolling back the whole batch.
+     operations.push(db.prepare("INSERT INTO timber_shed_auto_publications(post_id,decision_policy,governance_version,created_at) VALUES(?,(SELECT ? WHERE EXISTS(SELECT 1 FROM timber_shed_forum_posts WHERE id=? AND status='approved' AND reviewed_by IS NULL AND reviewed_at=?)),?,?)").bind(id,decision.policyVersion,id,timestamp,forumPolicy(env).version,timestamp));
+     operations.push(db.prepare("INSERT INTO timber_shed_forum_audit(id,post_id,moderator_id,action,created_at) VALUES(?,?,NULL,'approve',?)").bind(crypto.randomUUID(),id,timestamp));
+     operations.push(...notificationWrites(db,{postId:id,action:'approve',moderatorId:null,timestamp}));
+    }
+    const results=await db.batch(operations);
     if(Number(results[0]?.meta?.changes)!==1||Number(results[1]?.meta?.changes)!==1)return json({error:'screening_unavailable'},503);
-    return json({ok:true,id,status:'pending',message:bouncerSubmissionNotice(screening)},202);
+    if(decision.publish)return json({ok:true,id,status:'approved',publication:'automated-routine',message:'Published by Bouncer after routine checks. You can withdraw your post in My posts.'},201);
+    return json({ok:true,id,status:'pending',message:routinePublicationEnabled(env)&&screening.severity==='routine'?'Bouncer could not clearly recognise this as routine. It is private and waiting for human review.':bouncerSubmissionNotice(screening)},202);
    }
    if(route==='withdraw'){
     const existing=await db.prepare("SELECT id FROM timber_shed_forum_posts WHERE id=? AND user_id=? AND status IN ('pending','approved','rejected','removed')").bind(input.postId,uid).first();

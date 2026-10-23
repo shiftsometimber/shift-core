@@ -381,7 +381,10 @@ compose.addEventListener('submit',async event=>{
  if(parentId)payload.parentId=parentId;else payload.title=by('shedTitle').value.trim();
  try{
   const result=await api('submit',payload);say('shedComposeStatus',result.message);
-  compose.reset();cancelReply();switchView('mine');await myPosts();await notifications();await moderation();
+  compose.reset();cancelReply();
+  if(result.status==='approved'){switchView('latest');await latest();say('shedForumStatus',result.message)}
+  else{switchView('mine');await myPosts();say('shedForumStatus',result.message)}
+  await notifications();await moderation();
  }catch(e){say('shedComposeStatus',e.message)}
 });
 (async()=>{try{

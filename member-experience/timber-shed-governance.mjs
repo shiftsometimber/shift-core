@@ -22,20 +22,31 @@ export const SHED_POLICY=Object.freeze({
  ],
  healthConsent:'I explicitly consent to SHIFT processing the health information I choose to share in my Shed submissions for private moderation and, only if approved, sharing with authorised community members. I can withdraw by leaving the community. This does not consent to external AI processing, marketing or use of my My Timber health records.'
 });
-export function governanceApproved(env){return env.TIMBER_SHED_GOVERNANCE_APPROVED_VERSION===SHED_POLICY_VERSION}
-export async function forumParticipation(db,uid,timestamp){
+export const SHED_ROUTINE_POLICY_VERSION='shed-pilot-governance-2026-10-23-v2';
+const ROUTINE_POLICY=Object.freeze({...SHED_POLICY,version:SHED_ROUTINE_POLICY_VERSION,
+ rules:SHED_POLICY.rules.map(s=>s.startsWith('Every post and reply')?'Bouncer can publish narrowly recognised everyday messages automatically. Unrecognised, uncertain or sensitive submissions wait for a human. Reports, removals, bans and appeals remain human decisions.':s),
+ privacy:SHED_POLICY.privacy.map(s=>s.startsWith('Only approved posts')?'Published posts are shown to authorised community members. Recognised everyday messages may be approved automatically using local rules. Unrecognised or flagged text stays private for human review; moderators can review it and reports. Do not post information about another person.':s),
+ healthConsent:SHED_POLICY.healthConsent.replace('private moderation and, only if approved, sharing','automated screening and human moderation where needed and, only if approved, sharing')
+});
+export function forumPolicy(env={}){return env.TIMBER_SHED_ROUTINE_AUTOPUBLISH_ENABLED==='true'||env.TIMBER_SHED_GOVERNANCE_APPROVED_VERSION===SHED_ROUTINE_POLICY_VERSION?ROUTINE_POLICY:SHED_POLICY}
+export function governanceApproved(env){return env.TIMBER_SHED_GOVERNANCE_APPROVED_VERSION===forumPolicy(env).version}
+export function routinePublicationEnabled(env){return env.TIMBER_SHED_ROUTINE_AUTOPUBLISH_ENABLED==='true'&&governanceApproved(env)}
+export async function forumParticipation(db,uid,timestamp,env={}){
+ const policy=forumPolicy(env);
  const adult=await db.prepare('SELECT verified_at,expires_at FROM timber_shed_adult_access WHERE user_id=? AND revoked_at IS NULL AND verified_at<=? AND expires_at>? AND (SELECT count(*) FROM timber_shed_adult_access a WHERE a.revoked_at IS NULL AND a.verified_at<=? AND a.expires_at>?)<=10').bind(uid,timestamp,timestamp,timestamp,timestamp).first();
  const heartbeat=await db.prepare('SELECT completed_at FROM timber_shed_maintenance WHERE id=1').bind().first();
  const age=Date.parse(timestamp)-Date.parse(heartbeat?.completed_at||'');
  const maintenanceReady=Number.isFinite(age)&&age>=0&&age<=2*3600000;
  const consent=await db.prepare('SELECT rules_version,privacy_version,disclosure_consent_at,accepted_at FROM timber_shed_participation WHERE user_id=?').bind(uid).first();
- return {maintenanceReady,adultAccess:!!adult,joined:!!(consent&&consent.rules_version===SHED_POLICY_VERSION&&consent.privacy_version===SHED_POLICY_VERSION),healthConsent:!!consent?.disclosure_consent_at,acceptedAt:consent?.accepted_at||null,policy:SHED_POLICY};
+ const joined=!!(consent&&consent.rules_version===policy.version&&consent.privacy_version===policy.version);
+ return {maintenanceReady,adultAccess:!!adult,joined,healthConsent:joined&&!!consent?.disclosure_consent_at,disclosureConsentRecorded:!!consent?.disclosure_consent_at,acceptedAt:consent?.accepted_at||null,policy,routineAutoPublish:routinePublicationEnabled(env)};
 }
-export function validParticipation(input){
+export function validParticipation(input,env={}){
  return input&&typeof input==='object'&&!Array.isArray(input)&&Object.keys(input).length===4&&
  Object.keys(input).every(k=>['version','rulesAccepted','privacyAcknowledged','healthConsent'].includes(k))&&
- input.version===SHED_POLICY_VERSION&&input.rulesAccepted===true&&input.privacyAcknowledged===true&&typeof input.healthConsent==='boolean';
+ input.version===forumPolicy(env).version&&input.rulesAccepted===true&&input.privacyAcknowledged===true&&typeof input.healthConsent==='boolean';
 }
-export async function saveForumParticipation(db,uid,input,timestamp){
- await db.prepare('INSERT INTO timber_shed_participation(user_id,rules_version,privacy_version,disclosure_consent_at,accepted_at) VALUES(?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET rules_version=excluded.rules_version,privacy_version=excluded.privacy_version,disclosure_consent_at=excluded.disclosure_consent_at,accepted_at=excluded.accepted_at').bind(uid,SHED_POLICY_VERSION,SHED_POLICY_VERSION,input.healthConsent?timestamp:null,timestamp).run();
+export async function saveForumParticipation(db,uid,input,timestamp,env={}){
+ const version=forumPolicy(env).version;
+ await db.prepare('INSERT INTO timber_shed_participation(user_id,rules_version,privacy_version,disclosure_consent_at,accepted_at) VALUES(?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET rules_version=excluded.rules_version,privacy_version=excluded.privacy_version,disclosure_consent_at=excluded.disclosure_consent_at,accepted_at=excluded.accepted_at').bind(uid,version,version,input.healthConsent?timestamp:null,timestamp).run();
 }

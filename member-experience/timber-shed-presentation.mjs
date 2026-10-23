@@ -1,3 +1,4 @@
+import {routinePublicationEnabled} from './timber-shed-governance.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {timberShedPage,timberShedClient} from './timber-shed-page.mjs';
 import {timberShedForumPreview} from './timber-shed-forums.mjs';
@@ -17,11 +18,16 @@ export function createTimberShedPresentationRoutes(authenticate=authenticateMemb
   if(page){
    const auth=await authenticate(request,env);
    if(auth.response||!Number.isSafeInteger(auth.userId)||auth.userId<=0)return new Response('Sign in to My Timber to continue.',{status:401,headers:{...headers,'Content-Type':'text/plain; charset=utf-8'}});
-   const markup=env.TIMBER_SHED_AI_MODERATION_ENABLED==='true'&&env.TIMBER_SHED_AI_PROVIDER_APPROVED==='true'?timberShedForumPilotMarkup.replace('Automated rule-based safety screening','AI-model and rule-based safety screening'):timberShedForumPilotMarkup;
+   const baseMarkup=env.TIMBER_SHED_AI_MODERATION_ENABLED==='true'&&env.TIMBER_SHED_AI_PROVIDER_APPROVED==='true'?timberShedForumPilotMarkup.replace('Automated rule-based safety screening','AI-model and rule-based safety screening'):timberShedForumPilotMarkup;
+   const markup=routinePublicationEnabled(env)?baseMarkup
+    .replace('Nothing is published immediately. Every new discussion and reply waits for a trained moderator.','Recognised everyday posts can appear immediately after Bouncer checks. Unrecognised, grey or sensitive posts stay private until a human reviews them.')
+    .replace('Submit for moderation','Post to the Shed')
+    .replace('Every post requires human approval.','Recognised routine posts may publish automatically. Uncertain posts require human review.')
+    :baseMarkup;
    const source=forum?timberShedPage
-    .replace('There is no public profile, member feed or posting. Your weight, treatment, mood and health records are never copied into The Timber Shed.','Your My Timber health records stay private. Only posts you deliberately submit can enter the member community, after human review. There are no public member profiles.')
+    .replace('There is no public profile, member feed or posting. Your weight, treatment, mood and health records are never copied into The Timber Shed.',routinePublicationEnabled(env)?'Your My Timber health records stay private. Only posts you deliberately submit can enter the community. Bouncer publishes recognised routine messages; uncertain posts wait for human review. There are no public member profiles.':'Your My Timber health records stay private. Only posts you deliberately submit can enter the member community, after human review. There are no public member profiles.')
     .replace('No health records are read, shared or published.','Your private My Timber health records are not read or shared here.')
-    .replace('We only save a programme activity ID, whether you completed it and optional simple feedback if you opt in. No names, measurements, medical notes or community posts.','For these optional private progress ticks, we save the activity ID, completion and simple feedback. Community posts are separate and require your deliberate submission and human review.')
+    .replace('We only save a programme activity ID, whether you completed it and optional simple feedback if you opt in. No names, measurements, medical notes or community posts.','For these optional private progress ticks, we save the activity ID, completion and simple feedback. Community posts are separate and require deliberate submission and screening.')
     :timberShedPage;
    const html=forum?source.replace(timberShedForumPreview(),'').replace('<section class="section"><div class="eyebrow">YOUR CHOICE</div>',markup+'<section class="section"><div class="eyebrow">YOUR CHOICE</div>').replace('</head>','<style>'+timberShedForumPilotCSS+'</style></head>').replace('</body>','<script src="/assets/member-experience/timber-shed-forum.mjs" defer></script></body>'):source;
    return new Response(request.method==='HEAD'?null:html,{headers:{...headers,'Content-Type':'text/html; charset=utf-8'}});

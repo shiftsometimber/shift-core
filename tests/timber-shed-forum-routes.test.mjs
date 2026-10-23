@@ -909,3 +909,91 @@ test('retention continues when community access is switched off and renews its h
  await assert.rejects(runTimberShedRetention(t.env,new Date('2026-10-22T14:00:00Z')));
  assert.equal(t.sqlite.prepare('SELECT completed_at FROM timber_shed_maintenance').get().completed_at,now.toISOString());
 });
+
+const routineVersion='shed-pilot-governance-2026-10-23-v2';
+async function routineMode(t){
+ t.env.TIMBER_SHED_ROUTINE_AUTOPUBLISH_ENABLED='true';t.env.TIMBER_SHED_GOVERNANCE_APPROVED_VERSION=routineVersion;
+ for(const id of [1,2,3])assert.equal((await t.send(id,'participation/consent','POST',{version:routineVersion,rulesAccepted:true,privacyAcknowledged:true,healthConsent:true})).status,200);
+}
+const routineBody='I went for a walk today. It felt good to get outside.';
+test('automatic routine lane requires exact new governance and fresh explicit member agreement',async()=>{
+ const t=setup();t.env.TIMBER_SHED_ROUTINE_AUTOPUBLISH_ENABLED='true';
+ assert.equal((await t.send(1,'latest')).body.error,'governance_not_approved');
+ t.env.TIMBER_SHED_GOVERNANCE_APPROVED_VERSION=routineVersion;
+ const p=(await t.send(1,'participation')).body;assert.equal(p.joined,false);assert.equal(p.healthConsent,false);assert.equal(p.routineAutoPublish,true);assert.equal(p.policy.version,routineVersion);
+ assert(p.policy.rules.some(s=>s.includes('automatically')));
+ assert.equal((await t.send(1,'latest')).body.error,'community_agreement_required');
+ assert.equal((await t.send(1,'participation/consent','POST',{version:'shed-pilot-governance-2026-10-23-v1',rulesAccepted:true,privacyAcknowledged:true,healthConsent:true})).status,400);
+});
+test('recognised routine topic publishes atomically with explicit system provenance and own notice',async()=>{
+ const t=setup();await routineMode(t);await profile(t,1,'Weekend Walker');await profile(t,2,'Shed Regular');
+ const r=await submit(t,1,'main-shed',routineBody,'Weekend plans');assert.equal(r.status,201);assert.equal(r.body.status,'approved');assert.equal(r.body.publication,'automated-routine');
+ assert.equal((await t.send(2,'latest')).body.posts.length,1);
+ const row=t.sqlite.prepare('SELECT reviewed_by,reviewed_at FROM timber_shed_forum_posts WHERE id=?').get(r.body.id);assert.equal(row.reviewed_by,null);assert(row.reviewed_at);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_auto_publications').get().n,1);
+ assert.equal(t.sqlite.prepare("SELECT count(*) n FROM timber_shed_forum_audit WHERE action='approve' AND moderator_id IS NULL").get().n,1);
+ assert.equal((await t.send(1,'notifications')).body.unreadCount,1);
+ assert.equal((await t.send(1,'export')).body.forum.publications.length,1);assert.equal((await t.send(2,'export')).body.forum.publications.length,0);
+});
+test('unrecognised routine wording and sensitive topics stay pending; no inferred safety from missing keywords',async()=>{
+ const t=setup();await routineMode(t);await profile(t,1,'Weekend Walker');await profile(t,2,'Shed Regular');
+ for(const [title,body] of [['Weekend plans','I have an unusual situation and want to discuss it.'],['Weekend plans','My anxiety has been difficult this week.'],['Weekend plans','I have spare Mounjaro pens to sell. Message me to buy them.']]){
+  const r=await submit(t,1,'main-shed',body,title);assert.equal(r.status,202);assert.equal(r.body.status,'pending');
+ }
+ assert.equal((await t.send(2,'latest')).body.posts.length,0);assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_auto_publications').get().n,0);
+});
+test('automatic routine replies require visible approved parent and notify only its owner after publication',async()=>{
+ const t=setup();await routineMode(t);await profile(t,1,'Weekend Walker');await profile(t,2,'Shed Regular');
+ const root=await submit(t,1,'main-shed',routineBody,'Weekend plans');
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:root.body.id,body:'Sounds like a good plan. Hope you have a lovely weekend.'});assert.equal(reply.status,201);
+ assert.equal((await t.send(1,'threads','GET',undefined,'?room=main-shed&threadId='+root.body.id)).body.posts.length,2);
+ assert((await t.send(1,'notifications')).body.notifications.some(n=>n.kind==='reply'));
+ await t.send(1,'withdraw','POST',{postId:root.body.id});
+ assert.equal((await t.send(2,'submit','POST',{roomId:'main-shed',parentId:root.body.id,body:'Thanks for sharing.'})).status,404);
+});
+test('system provenance write failure rolls back automatic post, screening, audit and notices',async()=>{
+ const t=setup();await routineMode(t);await profile(t,1,'Weekend Walker');
+ t.sqlite.exec("CREATE TRIGGER fail_auto BEFORE INSERT ON timber_shed_auto_publications BEGIN SELECT RAISE(ABORT,'fictional failure'); END");
+ assert.equal((await submit(t,1,'main-shed',routineBody,'Weekend plans')).status,503);
+ for(const table of ['timber_shed_forum_posts','timber_shed_bouncer_screenings','timber_shed_forum_audit','timber_shed_auto_publications','timber_shed_forum_notifications'])assert.equal(t.sqlite.prepare('SELECT count(*) n FROM '+table).get().n,0);
+});
+test('automatic notification write failure cannot leave a published post',async()=>{
+ const t=setup();await routineMode(t);await profile(t,1,'Weekend Walker');
+ t.sqlite.exec("CREATE TRIGGER fail_auto_notice BEFORE INSERT ON timber_shed_forum_notifications BEGIN SELECT RAISE(ABORT,'fictional failure'); END");
+ assert.equal((await submit(t,1,'main-shed',routineBody,'Weekend plans')).status,503);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
+});
+test('reports and removal of an automatic post still require humans and permit independent appeal',async()=>{
+ const t=setup();await routineMode(t);await profile(t,1,'Weekend Walker');await profile(t,2,'Shed Regular');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators VALUES(3,1,?)').run('now');
+ const r=await submit(t,1,'main-shed',routineBody,'Weekend plans');
+ assert.equal((await t.send(2,'report','POST',{postId:r.body.id,reason:'other'})).status,200);
+ assert.equal((await t.send(2,'moderate','POST',{postId:r.body.id,action:'remove'})).status,403);
+ assert.equal((await t.send(3,'moderate','POST',{postId:r.body.id,action:'remove'})).status,200);
+ assert.equal((await t.send(2,'latest')).body.posts.length,0);
+ const appeal=await t.send(1,'appeal','POST',{postId:r.body.id,reason:'missed-context'});assert.equal(appeal.status,202);
+ assert.equal((await t.send(3,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'})).status,403);
+});
+test('turning off automatic lane preserves the original human-review model',async()=>{
+ const t=setup();await profile(t,1,'Weekend Walker');
+ const r=await submit(t,1,'main-shed',routineBody,'Weekend plans');assert.equal(r.status,202);assert.equal(r.body.status,'pending');
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_auto_publications').get().n,0);
+});
+
+test('automatic-lane kill switch keeps v2 consent, maintenance and manual participation available',async()=>{
+ const t=setup();await routineMode(t);await profile(t,1,'Weekend Walker');
+ t.env.TIMBER_SHED_ROUTINE_AUTOPUBLISH_ENABLED='false';
+ assert.equal((await t.send(1,'participation')).body.joined,true);
+ assert.equal((await t.send(1,'participation')).body.routineAutoPublish,false);
+ assert.equal((await submit(t,1,'main-shed',routineBody,'Weekend plans')).body.status,'pending');
+ const {runTimberShedRetention}=await import('../member-experience/timber-shed-retention.mjs');
+ assert.equal((await runTimberShedRetention(t.env,new Date('2026-10-22T12:00:00Z'))).enabled,true);
+});
+
+test('a silently ignored automatic approval rolls back rather than fabricating a publication receipt',async()=>{
+ const t=setup();await routineMode(t);await profile(t,1,'Weekend Walker');
+ t.sqlite.exec("CREATE TRIGGER ignore_auto BEFORE UPDATE OF status ON timber_shed_forum_posts WHEN NEW.status='approved' BEGIN SELECT RAISE(IGNORE); END");
+ assert.equal((await submit(t,1,'main-shed',routineBody,'Weekend plans')).status,503);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_auto_publications').get().n,0);
+});
