@@ -50,7 +50,7 @@ while(queue.length&&visited.size<MAX_PAGES){
     if(/(?:internal server error|application error|something went wrong\s*$)/i.test(visible)&&visible.length<800)failures.push({url,discoveredFrom:parent,status,error:'generic_error_page_detected'});
     for(const child of extract(body,final)){
       const root=new URL(START);
-      if(child.host===root.host){const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
+      if(child.host===root.host){child.search='';const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
       else externalHosts.set(child.host,(externalHosts.get(child.host)||0)+1);
     }
   }
