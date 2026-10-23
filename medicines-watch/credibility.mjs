@@ -1,3 +1,4 @@
+import zenagamtideSwitchCorrection from './reviews/2026-10-18-approved-zenagamtide-switch.json' with {type:'json'};
 import teAscRenewal from './reviews/2026-10-12-authorised-te8105-asc36-renewal.json' with {type:'json'};
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
@@ -78,7 +79,7 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
  }).concat(ly4329090Discovery.registrySources,gzcAsc30Maritide.registrySources).map(s=>{
   const renewed=teAscRenewal.sourceRenewals.find(r=>r.id===s.id);
   return renewed?{...s,reviewedAt:renewed.reviewedAt,reviewedFingerprint:renewed.reviewedFingerprint}:s;
- });
+ }).map(s=>s.id===zenagamtideSwitchCorrection.source.id?zenagamtideSwitchCorrection.source:s);
 export const supportSources=receipt.supportSources.map(s=>{
  const renewal=overdueRegistryAccessRenewal.supportSources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
@@ -105,7 +106,7 @@ export function registryEvidenceMarkup(link,health) {
   const h=health.sources?.find(h=>h.id===s.id);
   const labels={NOT_YET_RECRUITING:'Not yet recruiting',RECRUITING:'Recruiting',ENROLLING_BY_INVITATION:'Enrolling by invitation',ACTIVE_NOT_RECRUITING:'Active, not recruiting',COMPLETED:'Completed',SUSPENDED:'Suspended',TERMINATED:'Terminated',WITHDRAWN:'Withdrawn',UNKNOWN:'Unknown'};
   const lifecycle=s.lifecycle,typedDate=d=>d?`${date(d.date)} (${d.type==='ACTUAL'?'actual':'estimated'})`:'Not recorded';
-  return `<li><a href="${esc(s.url)}" rel="noopener noreferrer">${esc(link.title)}</a><small>Trial registry record · Last reviewed record: ${labels[lifecycle.status]||'Unknown'} · ${lifecycle.hasResults?'Results posted; outcomes need separate assessment':'No results posted at record-status review'} · First posted ${date(s.sourcePublishedAt)} · Updated ${date(s.sourceUpdatedAt)}</small><small>Start ${typedDate(lifecycle.start)} · Primary completion ${typedDate(lifecycle.primaryCompletion)} · Completion ${typedDate(lifecycle.completion)}${lifecycle.whyStopped?' · Stopping reason: '+esc(lifecycle.whyStopped):''}</small><small>Medical evidence summary reviewed ${date(link.reviewedAt)} · Record status reviewed ${date(s.reviewedAt)} · ${sourceStatus(h?.status)} · These are the dated reviewed facts, not a newly assessed live record. Status checks do not assess clinical outcomes.</small></li>`;
+  return `<li><a href="${esc(s.url)}" rel="noopener noreferrer">${esc(link.title)}</a><small>Trial registry record · Last reviewed record: ${labels[lifecycle.status]||'Unknown'} · ${lifecycle.hasResults?'Results posted; outcomes need separate assessment':'No results posted at record-status review'} · First posted ${date(s.sourcePublishedAt)} · Updated ${date(s.sourceUpdatedAt)}</small><small>Start ${typedDate(lifecycle.start)} · Primary completion ${typedDate(lifecycle.primaryCompletion)} · Completion ${typedDate(lifecycle.completion)}${lifecycle.whyStopped?' · Stopping reason: '+esc(lifecycle.whyStopped):''}</small><small>Medical evidence summary reviewed ${date(link.reviewedAt)} · Record status reviewed ${date(s.reviewedAt)} · ${s.factualReviewLabel&&h?.status==='current'?esc(s.factualReviewLabel):sourceStatus(h?.status)} · These are the dated reviewed facts, not a newly assessed live record. Status checks do not assess clinical outcomes.</small></li>`;
 }
 export function industryReviewFlag(entry,health,now=Date.now()) {
   const ids=[...entry.sourceIds,...registrySources.filter(s=>s.entryIds.includes(entry.id)).map(s=>s.id)];

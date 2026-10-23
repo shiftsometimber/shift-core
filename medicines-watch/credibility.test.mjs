@@ -62,7 +62,7 @@ test('HTML comparator text cannot hide a later required indication; fingerprint 
 });
 test('public status distinguishes record review, summary review, results and uncertain access',()=>{
  const s=registrySources[0];const markup=registryEvidenceMarkup({url:s.url,title:'A <record>',reviewedAt:'2026-09-01'},{});
- assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 10 October 2026/);assert.match(markup,/Verification pending/);
+ assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 18 October 2026/);assert.match(markup,/Verification pending/);
  const renewedSource=registrySources.find(source=>source.nctId==='NCT07721597');
  assert.equal(renewedSource.reviewedAt,'2026-10-10T09:39:21Z');
  const entry=industry.find(e=>renewedSource.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse(entry.reviewedAt)+8*24*60*60*1000),/due for factual review/);
