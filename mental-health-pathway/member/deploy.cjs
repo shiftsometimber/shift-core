@@ -1,5 +1,5 @@
 const fs=require('fs'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto'),{execFileSync}=require('child_process');
-const c=require('/Users/shiftsometimberltd/SST/organic-deploy-20261017/normal-wrangler-api.cjs'),root=path.resolve(__dirname,'../../..'),out=path.join(root,'.support-member-release'),script='shift-mytimber-support-20261023',account='/accounts/9e5386dcf455be34c582d93f8bfc79e6',zone='/zones/66ec3268950adcfc837b7b8b2f8356ed';
+const c=require('/Users/shiftsometimberltd/SST/organic-deploy-20261017/normal-wrangler-api.cjs'),root=path.resolve(__dirname,'../..'),out=path.join(root,'.support-member-release'),script='shift-mytimber-support-20261023',account='/accounts/9e5386dcf455be34c582d93f8bfc79e6',zone='/zones/66ec3268950adcfc837b7b8b2f8356ed';
 fs.mkdirSync(out,{recursive:true});const save=(n,v)=>fs.writeFileSync(path.join(out,n+'.json'),JSON.stringify(v,null,2)),read=n=>JSON.parse(fs.readFileSync(path.join(out,n+'.json'))),git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim(),sha=s=>crypto.createHash('sha256').update(s).digest('hex');
 async function routes(){return c.organicApi(zone+'/workers/routes');}
 const relevant=r=>/^(?:https:\/\/)?(?:www\.)?shiftsometimber\.co\.uk\/(?:mens-mental-health(?:\*|\/|\.html)?|member\/dashboard\*)$/.test(r.pattern);
