@@ -16,7 +16,7 @@ export const timberShedForumPilotMarkup=`<section class="section" id="shedForumP
 <form id="shedAliasForm" class="shed-form"><h3>Your community name</h3><label for="shedAlias">Choose a display name (not your real name)</label><input id="shedAlias" name="displayName" minlength="3" maxlength="24" autocomplete="off" required placeholder="e.g. Weekend Walker"><button class="btn" type="submit">Use this display name</button><p id="shedAliasStatus" role="status"></p></form>
 <div class="shed-forum-picker"><label for="shedRoom">Discussion room</label><select id="shedRoom"></select></div>
 <div id="shedTopics" aria-live="polite"></div></section>
-<section id="shedMyPosts" class="shed-form" hidden><h3 tabindex="-1">Your submissions</h3><p>Pending submissions are private. You can withdraw your own post; its stored text is cleared and it will no longer appear in the community.</p><div id="shedMyPostItems"></div></section><section id="shedModeratorPanel" class="shed-form" aria-label="Moderator queue" hidden><h3 tabindex="-1">Moderator queue</h3><div class="shed-bouncer-brand"><span aria-hidden="true">⬡</span><div><span class="eyebrow">SHIFT COMMUNITY BOUNCER</span><h3>Everyone’s welcome. Hassle isn’t.</h3></div></div><p>Automated rule-based safety screening prioritises the private queue. It is not clinical assessment or a substitute for trained human moderation. Every post requires human approval. High-risk posts cannot be approved in this pilot.</p><div id="shedQueue"></div><div id="shedReports"></div></section>
+<section id="shedMyPosts" class="shed-form" hidden><h3 tabindex="-1">Your submissions</h3><p>Pending submissions are private. You can appeal a rejection or removal for independent human review. Your post stays hidden during an appeal. You can withdraw your own post; its stored text is cleared and it will no longer appear in the community.</p><div id="shedMyPostItems"></div></section><section id="shedModeratorPanel" class="shed-form" aria-label="Moderator queue" hidden><h3 tabindex="-1">Moderator queue</h3><div class="shed-bouncer-brand"><span aria-hidden="true">⬡</span><div><span class="eyebrow">SHIFT COMMUNITY BOUNCER</span><h3>Everyone’s welcome. Hassle isn’t.</h3></div></div><p>Automated rule-based safety screening prioritises the private queue. It is not clinical assessment or a substitute for trained human moderation. Every post requires human approval. High-risk posts cannot be approved in this pilot.</p><div id="shedQueue"></div><div id="shedReports"></div><div id="shedAppeals"></div></section>
 <section id="shedNotificationsView" aria-label="Your notifications" hidden><h3 tabindex="-1">Your notifications</h3><p>Private in-app alerts only. No emails, text messages or push notifications are sent.</p><button type="button" id="shedRefreshNotifications" class="shed-subtle-btn">Refresh notifications</button><div id="shedNotificationItems" aria-live="polite"></div></section>
 </div>
 <div><form id="shedCompose" class="shed-form" hidden><h3 id="shedComposeHeading">Start a conversation</h3><p>Posting in <strong id="shedComposeRoom">The Main Shed</strong> <button type="button" id="shedChangeRoom" class="shed-subtle-btn">Change room</button></p><p>Keep it respectful and avoid identifying or sensitive details.</p><label for="shedTitle">Discussion title</label><input id="shedTitle" maxlength="100" minlength="8" required><label for="shedBody">What would you like to share?</label><textarea id="shedBody" rows="6" maxlength="1000" minlength="12" required></textarea><button class="btn" type="submit">Submit for moderation</button><button class="btn secondary" type="button" id="shedCancelReply" hidden>Cancel reply</button><p id="shedComposeStatus" role="status"></p></form>
@@ -72,7 +72,7 @@ async function api(path,body){
  if(body!==undefined){opts.method='POST';opts.headers['Content-Type']='application/json';opts.body=JSON.stringify(body)}
  const res=await fetch('/v1/timber-shed/forum/'+path,opts);
  let data;try{data=await res.json()}catch{throw Error('The forum is temporarily unavailable.')}
- if(!res.ok)throw Error(data.error==='adult_verified_members_only'?'The pilot requires a verified adult My Timber account.':data.error==='authentication_required'?'Sign in to My Timber first.':data.error==='forum_unavailable'?'The forum is temporarily unavailable.':data.error||'Unable to complete that action.');
+ if(!res.ok)throw Error(data.error==='adult_verified_members_only'?'The pilot requires a verified adult My Timber account.':data.error==='authentication_required'?'Sign in to My Timber first.':data.error==='independent_reviewer_required'?'A different moderator must review this appeal.':data.error==='appeal_already_reviewed'?'This appeal has already been reviewed. Refresh the queue.':data.error==='decision_changed'?'The post has changed. Refresh the queue before reviewing.':data.error==='forum_unavailable'?'The forum is temporarily unavailable.':data.error||'Unable to complete that action.');
  return data;
 }
 function button(label,callback){const el=text('button',label);el.type='button';el.addEventListener('click',callback);return el}
@@ -167,7 +167,7 @@ async function latest(){
  }
 }
 async function myPosts(){
- const data=await api('mine'),items=by('shedMyPostItems');items.replaceChildren();
+ const [data,appealData]=await Promise.all([api('mine'),api('appeals')]);const items=by('shedMyPostItems');items.replaceChildren();
  if(!data.posts.length){items.append(text('p','You have not submitted anything yet.','shed-empty'));return}
  for(const post of data.posts){
   const card=document.createElement('article');card.className='shed-mod-item';
@@ -176,10 +176,25 @@ async function myPosts(){
   if(post.status!=='withdrawn')card.append(text('p',post.body));
   if(post.status==='pending')card.append(text('p','Only you and authorised moderators can see this submission.','meta'));
   if(post.status==='approved')card.append(button('View in discussion',()=>openThread(post.room_id,post.parent_id||post.id).catch(e=>say('shedForumStatus',e.message))));
-  if(['pending','approved','rejected'].includes(post.status))card.append(button('Withdraw my post',async()=>{
+  if(['pending','approved','rejected','removed'].includes(post.status))card.append(button('Withdraw my post',async()=>{
    try{await api('withdraw',{postId:post.id});await myPosts();await refresh();await latest();await notifications();say('shedForumStatus','Your post has been withdrawn and its text cleared.')}
    catch(e){say('shedForumStatus',e.message)}
   }));
+  const appeal=appealData.appeals.find(a=>a.post_id===post.id&&(['pending','approved','withdrawn'].includes(post.status)||a.decision_at===post.reviewed_at));
+  if(appeal)card.append(text('p',{open:'Your appeal is waiting for a different moderator.',upheld:'Appeal reviewed: the original decision stands.',reconsider:'Appeal reviewed: returned for fresh moderation.',withdrawn:'Appeal closed after withdrawal.'}[appeal.status]||'Appeal update available.','meta'));
+  if(['rejected','removed'].includes(post.status)&&!appeal){
+   const reasons=document.createElement('select');reasons.setAttribute('aria-label','Reason for appealing this decision');
+   for(const [value,label] of [['','Choose an appeal reason'],['missed-context','The context was missed'],['incorrect-rule','The rule was applied incorrectly'],['other','Another reason for review']]){
+    const option=text('option',label);option.value=value;reasons.append(option);
+   }
+   const send=button('Request independent review',async()=>{
+    if(!reasons.value){say('shedForumStatus','Choose an appeal reason first.');reasons.focus();return}
+    send.disabled=true;
+    try{await api('appeal',{postId:post.id,reason:reasons.value});await myPosts();say('shedForumStatus','Appeal received. Your post remains hidden while a different moderator reviews it.')}
+    catch(e){send.disabled=false;say('shedForumStatus',e.message)}
+   });
+   card.append(reasons,send);
+  }
   items.append(card);
  }
 }
@@ -234,10 +249,23 @@ function modItem(item,reported=false){
 }
 async function moderation(){
  try{
-  const data=await api('moderation');by('shedModNav').hidden=false;by('shedPendingBadge').textContent=String(data.pending.length+data.reports.length);
+  const data=await api('moderation');by('shedModNav').hidden=false;by('shedPendingBadge').textContent=String(data.pending.length+data.reports.length+(data.appeals||[]).length);
   const q=by('shedQueue'),r=by('shedReports');q.replaceChildren(text('h4','Pending review ('+data.pending.length+')'));r.replaceChildren(text('h4','Reports ('+data.reports.length+')'));
   for(const item of data.pending)q.append(modItem(item));
   for(const item of data.reports)r.append(modItem(item,true));
+  const appeals=by('shedAppeals');appeals.replaceChildren(text('h4','Appeals ('+(data.appeals||[]).length+')'));
+  for(const item of data.appeals||[]){
+   const card=document.createElement('article');card.className='shed-mod-item';
+   const reason={'missed-context':'Context may have been missed','incorrect-rule':'Rule may have been applied incorrectly',other:'Another reason for review'}[item.reason]||'Review requested';
+   card.append(text('strong','Appeal: '+(item.title||'Reply')),text('p',reason),text('p',item.body),text('p','A different moderator must review this. Returning a post for review does not publish it.','meta'));
+   for(const [outcome,label] of [['upheld','Uphold decision'],['reconsider','Return for fresh moderation']]){
+    const review=button(label,async()=>{
+     review.disabled=true;
+     try{await api('appeal/review',{appealId:item.id,outcome});await moderation();await myPosts();say('shedForumStatus','Appeal reviewed. No content has been published.')}
+     catch(e){review.disabled=false;say('shedForumStatus',e.message)}
+    });card.append(review);
+   }appeals.append(card);
+  }
  }catch(e){if(e.message==='moderator_only'){by('shedModNav').hidden=true;mod.hidden=true}else say('shedForumStatus',e.message)}
 }
 by('shedCancelReply').addEventListener('click',cancelReply);

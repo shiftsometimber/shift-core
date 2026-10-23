@@ -2,6 +2,7 @@ import {authenticateMember} from '../member-state-fast-v1.js';
 import {timberShedForumRooms} from './timber-shed-forums.mjs';
 import {screenForumText,bouncerSubmissionNotice,BOUNCER_VERSION} from './timber-shed-community-bouncer.mjs';
 import {classifyForumSubmissionWithModel,mergeModerationSignals,AI_MODERATION_POLICY} from './timber-shed-ai-moderation.mjs';
+import {forumAppealAction,listOpenAppeals,validateForumAppeal} from './timber-shed-forum-appeals.mjs';
 import {notificationWrites} from './timber-shed-forum-notifications.mjs';
 
 // Separate, disabled-by-default forum backend. No My Timber health/profile reads.
@@ -21,6 +22,7 @@ function adult(dob,now=new Date()){
  return date<=cut;
 }
 export function validateForumInput(kind,input){
+ if(kind==='appeal'||kind==='appeal/review')return validateForumAppeal(kind,input);
  if(kind==='profile'){
   if(!only(input,['displayName'])||!own(input,'displayName'))return 'invalid_profile';
   const name=input.displayName;
@@ -65,8 +67,8 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
   if(!path.startsWith('/v1/timber-shed/forum/'))return null;
   if(env.TIMBER_SHED_FORUM_ENABLED!=='true'||env.TIMBER_SHED_PRIVATE_ENABLED!=='true'||env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||env.TIMBER_SHED_FORUM_PILOT_APPROVED!=='true')return json({error:'not_available'},404);
   const route=path.slice('/v1/timber-shed/forum/'.length);
-  if(!new Set(['rooms','threads','room-topics','latest','mine','notifications','notifications/read','moderation','profile','profile/save','submit','report','moderate','withdraw']).has(route))return json({error:'not_found'},404);
-  const method=route==='rooms'||route==='threads'||route==='room-topics'||route==='latest'||route==='mine'||route==='notifications'||route==='moderation'||route==='profile'?'GET':'POST';
+  if(!new Set(['rooms','threads','room-topics','latest','mine','notifications','notifications/read','moderation','profile','profile/save','submit','report','moderate','withdraw','appeals','appeal','appeal/review']).has(route))return json({error:'not_found'},404);
+  const method=route==='appeals'||route==='rooms'||route==='threads'||route==='room-topics'||route==='latest'||route==='mine'||route==='notifications'||route==='moderation'||route==='profile'?'GET':'POST';
   if(request.method!==method)return json({error:'method_not_allowed'},405);
   if(method==='POST'&&request.headers.get('Origin')!==new URL(request.url).origin)return json({error:'same_origin_required'},403);
   const auth=await authenticate(request,env);if(auth.response)return auth.response;
@@ -76,6 +78,7 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
    // Eligibility is checked server-side; DOB and email verification never enter responses.
    const eligibility=await db.prepare('SELECT a.email_verified,u.date_of_birth FROM users u JOIN user_auth a ON a.user_id=u.id WHERE u.id=?').bind(uid).first();
    if(!eligibility||Number(eligibility.email_verified)!==1||!adult(eligibility.date_of_birth,now()))return json({error:'adult_verified_members_only'},403);
+   if(route==='appeals')return await forumAppealAction({route,db,uid,json});
    if(route==='rooms')return json({rooms:timberShedForumRooms.map(({id,name,kicker,description})=>({id,name,kicker,description}))});
    if(route==='threads'){
     const room=new URL(request.url).searchParams.get('room');
@@ -109,7 +112,7 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
     return json({notifications:(entries.results||[]).slice(0,20),unreadCount:Number(count?.n||0),hasMore:(entries.results||[]).length>20,nextOffset:offset+20});
    }
    if(route==='mine'){
-    const rows=await db.prepare("SELECT id,room_id,parent_id,title,body,status,created_at FROM timber_shed_forum_posts WHERE user_id=? ORDER BY created_at DESC LIMIT 100").bind(uid).all();
+    const rows=await db.prepare("SELECT id,room_id,parent_id,title,body,status,created_at,reviewed_at FROM timber_shed_forum_posts WHERE user_id=? ORDER BY created_at DESC LIMIT 100").bind(uid).all();
     return json({posts:rows.results||[]});
    }
    if(route==='profile'){
@@ -121,13 +124,14 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
     const queue=await db.prepare("SELECT p.id,p.room_id,p.parent_id,p.title,p.body,p.status,p.created_at,pr.display_name,b.severity,b.priority,b.policy_version,b.categories_json FROM timber_shed_forum_posts p JOIN timber_shed_forum_profiles pr ON pr.user_id=p.user_id LEFT JOIN timber_shed_bouncer_screenings b ON b.post_id=p.id WHERE p.status='pending' ORDER BY COALESCE(b.priority,0) ASC,p.created_at ASC LIMIT 100").all();
     const reports=await db.prepare("SELECT r.id,r.post_id,r.reason,r.created_at,p.room_id,p.title,p.body FROM timber_shed_forum_reports r JOIN timber_shed_forum_posts p ON p.id=r.post_id WHERE r.status='open' ORDER BY CASE r.reason WHEN 'self-harm-risk' THEN 0 WHEN 'unsafe-health-advice' THEN 1 WHEN 'privacy' THEN 1 WHEN 'harassment' THEN 1 ELSE 2 END ASC,r.created_at ASC LIMIT 100").all();
     const pending=(queue.results||[]).map(({categories_json,...post})=>({...post,categories:post.policy_version&&categories_json?JSON.parse(categories_json):[],priority:post.priority??0,severity:post.severity||'unreviewed'}));
-    return json({pending,reports:reports.results||[]});
+    return json({pending,reports:reports.results||[],appeals:await listOpenAppeals(db)});
    }
-   if(!['profile/save','submit','report','moderate','withdraw','notifications/read'].includes(route))return json({error:'not_found'},404);
+   if(!['profile/save','submit','report','moderate','withdraw','notifications/read','appeal','appeal/review'].includes(route))return json({error:'not_found'},404);
    const parsed=await parse(request);if(parsed.error)return json({error:parsed.error},parsed.status);
    const input=parsed.value,kind=route==='profile/save'?'profile':route==='notifications/read'?'notificationRead':route;
    const problem=validateForumInput(kind,input);if(problem)return json({error:problem},400);
    const timestamp=now().toISOString();
+   if(route==='appeal'||route==='appeal/review')return await forumAppealAction({route,input,db,uid,timestamp,json});
    if(route==='notifications/read'){
     const record=await db.prepare("SELECT id FROM timber_shed_forum_notifications WHERE id=? AND recipient_id=?").bind(input.notificationId,uid).first();
     if(!record)return json({error:'notification_unavailable'},404);
@@ -171,13 +175,15 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
     return json({ok:true,id,status:'pending',message:bouncerSubmissionNotice(screening)},202);
    }
    if(route==='withdraw'){
-    const existing=await db.prepare("SELECT id FROM timber_shed_forum_posts WHERE id=? AND user_id=? AND status IN ('pending','approved','rejected')").bind(input.postId,uid).first();
+    const existing=await db.prepare("SELECT id FROM timber_shed_forum_posts WHERE id=? AND user_id=? AND status IN ('pending','approved','rejected','removed')").bind(input.postId,uid).first();
     if(!existing)return json({error:'post_unavailable'},404);
     const operations=[
-     db.prepare("UPDATE timber_shed_forum_posts SET status='withdrawn',title=NULL,body='[withdrawn by member]',reviewed_at=? WHERE id=? AND user_id=? AND status IN ('pending','approved','rejected')").bind(timestamp,input.postId,uid),
+     db.prepare("UPDATE timber_shed_forum_posts SET status='withdrawn',title=NULL,body='[withdrawn by member]',reviewed_at=? WHERE id=? AND user_id=? AND status IN ('pending','approved','rejected','removed')").bind(timestamp,input.postId,uid),
      db.prepare("INSERT INTO timber_shed_forum_audit(id,post_id,moderator_id,action,created_at) SELECT ?,?,NULL,'withdraw',? WHERE EXISTS(SELECT 1 FROM timber_shed_forum_posts WHERE id=? AND user_id=? AND status='withdrawn')").bind(crypto.randomUUID(),input.postId,timestamp,input.postId,uid),
      db.prepare("UPDATE timber_shed_forum_reports SET status='closed' WHERE post_id=? AND status='open'").bind(input.postId),
-     db.prepare("DELETE FROM timber_shed_forum_notifications WHERE post_id=? OR thread_id=?").bind(input.postId,input.postId)
+     db.prepare("DELETE FROM timber_shed_forum_notifications WHERE post_id=? OR thread_id=?").bind(input.postId,input.postId),
+     db.prepare("UPDATE timber_shed_forum_appeals SET status='withdrawn',resolved_at=? WHERE post_id=? AND status='open'").bind(timestamp,input.postId),
+     db.prepare("INSERT INTO timber_shed_forum_appeal_audit(id,appeal_id,actor_id,action,created_at) SELECT ?,id,?,'withdrawn',? FROM timber_shed_forum_appeals WHERE post_id=? AND status='withdrawn' AND resolved_at=?").bind(crypto.randomUUID(),uid,timestamp,input.postId,timestamp)
     ];
     const results=await db.batch(operations);
     if(Number(results[0]?.meta?.changes)!==1||Number(results[1]?.meta?.changes)!==1)return json({error:'withdrawal_conflict'},409);

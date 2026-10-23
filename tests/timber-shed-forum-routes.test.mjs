@@ -479,3 +479,148 @@ test('in-app notification history paginates privately with global unread count',
  assert.equal((await t.send(2,'notifications')).body.notifications.length,0);
  assert.equal((await t.send(1,'notifications','GET',undefined,'?offset=2001')).status,400);
 });
+
+function appealModerators(t){
+ for(const id of [2,3])t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(id,1,'now');
+}
+async function rejectedAppeal(t){
+ await profile(t,1,'Shed Walker');appealModerators(t);
+ const post=await submit(t,1);
+ assert.equal((await t.send(3,'moderate','POST',{postId:post.body.id,action:'reject'})).status,200);
+ const appeal=await t.send(1,'appeal','POST',{postId:post.body.id,reason:'missed-context'});
+ return{postId:post.body.id,appeal};
+}
+test('appeals require adult authenticated same-origin session and preserve default-off gates',async()=>{
+ const t=setup();
+ assert.equal((await t.send(0,'appeals')).status,401);
+ assert.equal((await t.send(4,'appeals')).status,403);
+ assert.equal((await t.send(5,'appeals')).status,403);
+ const req=new Request(origin+path+'appeal',{method:'POST',headers:{'x-member':'1','Origin':'https://other.test','Content-Type':'application/json'},body:JSON.stringify({postId:'synthetic-post',reason:'other'})});
+ assert.equal((await t.route(req,t.env)).status,403);
+ t.env.TIMBER_SHED_FORUM_ENABLED='false';const before=t.calls.length;
+ assert.equal((await t.send(1,'appeals')).status,404);assert.equal(t.calls.length,before);
+});
+test('only the author can appeal rejected or removed content; no appeal of pending or approved posts',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');appealModerators(t);
+ const post=await submit(t,1);
+ assert.equal((await t.send(1,'appeal','POST',{postId:post.body.id,reason:'other'})).status,404);
+ await t.send(3,'moderate','POST',{postId:post.body.id,action:'approve'});
+ assert.equal((await t.send(1,'appeal','POST',{postId:post.body.id,reason:'other'})).status,404);
+ await t.send(3,'moderate','POST',{postId:post.body.id,action:'remove'});
+ assert.equal((await t.send(2,'appeal','POST',{postId:post.body.id,reason:'other'})).status,404);
+ assert.equal((await t.send(1,'appeal','POST',{postId:post.body.id,reason:'other'})).status,202);
+ assert.equal((await t.send(1,'latest')).body.posts.length,0);
+});
+test('appeals are private, enum-only, deduplicated and atomically audited',async()=>{
+ const t=setup();const {postId,appeal}=await rejectedAppeal(t);
+ assert.equal(appeal.status,202);
+ assert.equal((await t.send(1,'appeal','POST',{postId,reason:'other'})).body.id,appeal.body.id);
+ assert.equal((await t.send(1,'appeal','POST',{postId,reason:'other',body:'Private details'})).status,400);
+ assert.equal((await t.send(1,'appeal','POST',{postId,reason:'arbitrary text'})).status,400);
+ const own=(await t.send(1,'appeals')).body.appeals;
+ assert.equal(own.length,1);assert.equal((await t.send(2,'appeals')).body.appeals.length,0);
+ assert(!JSON.stringify(own).includes('fictional example'));
+ assert(!Object.keys(own[0]).some(k=>/user_id|decision_by|resolved_by|body|email|name/.test(k)));
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_appeal_audit').get().n,1);
+ assert.equal((await t.send(1,'moderation')).status,403);
+ assert.equal((await t.send(2,'moderation')).body.appeals.length,1);
+});
+test('appeal review excludes original moderator and post author; inactive moderators have no authority',async()=>{
+ const t=setup();const {appeal}=await rejectedAppeal(t);
+ const payload={appealId:appeal.body.id,outcome:'reconsider'};
+ assert.equal((await t.send(1,'appeal/review','POST',payload)).status,403);
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(1,1,?)').run('now');
+ assert.equal((await t.send(1,'appeal/review','POST',payload)).body.error,'independent_reviewer_required');
+ assert.equal((await t.send(3,'appeal/review','POST',payload)).body.error,'independent_reviewer_required');
+ t.sqlite.prepare('UPDATE timber_shed_forum_moderators SET active=0 WHERE user_id=2').run();
+ assert.equal((await t.send(2,'appeal/review','POST',payload)).body.error,'moderator_only');
+});
+test('upholding an appeal leaves the post hidden and prevents a second review',async()=>{
+ const t=setup();const {postId,appeal}=await rejectedAppeal(t);
+ const review=await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'upheld'});
+ assert.equal(review.status,200);assert.equal(review.body.status,'upheld');
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(postId).status,'rejected');
+ assert.equal((await t.send(1,'appeals')).body.appeals[0].status,'upheld');
+ assert.equal((await t.send(2,'moderation')).body.appeals.length,0);
+ assert.equal((await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'})).status,409);
+ assert.equal((await t.send(1,'latest')).body.posts.length,0);
+});
+test('successful appeal returns to pending; only a separate normal moderation action can publish',async()=>{
+ const t=setup();const {postId,appeal}=await rejectedAppeal(t);
+ assert.equal((await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'})).status,200);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(postId).status,'pending');
+ assert.equal((await t.send(1,'latest')).body.posts.length,0);
+ assert.equal((await t.send(1,'notifications')).body.notifications.filter(n=>n.kind==='approved').length,0);
+ assert.equal((await t.send(2,'moderation')).body.pending.length,1);
+ assert.equal((await t.send(3,'moderate','POST',{postId,action:'approve'})).status,200);
+ assert.equal((await t.send(1,'latest')).body.posts.length,1);
+});
+test('appeal cannot override high-risk or obsolete screening approval holds',async()=>{
+ for(const change of ['high','outdated']){
+  const t=setup();const {postId,appeal}=await rejectedAppeal(t);
+  t.sqlite.prepare(change==='high'?"UPDATE timber_shed_bouncer_screenings SET severity='high' WHERE post_id=?":"UPDATE timber_shed_bouncer_screenings SET policy_version='old' WHERE post_id=?").run(postId);
+  assert.equal((await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'})).status,200);
+  assert.equal((await t.send(3,'moderate','POST',{postId,action:'approve'})).body.error,'safeguarding_review_required');
+  assert.equal((await t.send(1,'latest')).body.posts.length,0);
+ }
+});
+test('appeal audit failure rolls back submission and reconsideration',async()=>{
+ const first=setup();await profile(first,1,'Shed Walker');appealModerators(first);const post=await submit(first,1);
+ await first.send(3,'moderate','POST',{postId:post.body.id,action:'reject'});
+ first.sqlite.exec("CREATE TRIGGER appeal_audit_failure BEFORE INSERT ON timber_shed_forum_appeal_audit BEGIN SELECT RAISE(ABORT,'audit unavailable'); END;");
+ assert.equal((await first.send(1,'appeal','POST',{postId:post.body.id,reason:'other'})).status,503);
+ assert.equal(first.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_appeals').get().n,0);
+ const t=setup();const {postId,appeal}=await rejectedAppeal(t);
+ t.sqlite.exec("CREATE TRIGGER appeal_audit_failure BEFORE INSERT ON timber_shed_forum_appeal_audit BEGIN SELECT RAISE(ABORT,'audit unavailable'); END;");
+ assert.equal((await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'})).status,503);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_appeals').get().status,'open');
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(postId).status,'rejected');
+});
+test('post-update failure rolls back appeal resolution and its audit',async()=>{
+ const t=setup();const {postId,appeal}=await rejectedAppeal(t);
+ t.sqlite.exec("CREATE TRIGGER appeal_post_failure BEFORE UPDATE ON timber_shed_forum_posts WHEN NEW.status='pending' BEGIN SELECT RAISE(ABORT,'post unavailable'); END;");
+ assert.equal((await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'})).status,503);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_appeals').get().status,'open');
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_appeal_audit').get().n,1);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(postId).status,'rejected');
+});
+test('withdrawal clears removed content and closes open appeal without restoring its text',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');appealModerators(t);const post=await submit(t,1);
+ await t.send(3,'moderate','POST',{postId:post.body.id,action:'approve'});
+ await t.send(3,'moderate','POST',{postId:post.body.id,action:'remove'});
+ const appeal=await t.send(1,'appeal','POST',{postId:post.body.id,reason:'other'});
+ assert.equal((await t.send(1,'withdraw','POST',{postId:post.body.id})).status,200);
+ const stored=t.sqlite.prepare('SELECT status,body FROM timber_shed_forum_posts WHERE id=?').get(post.body.id);
+ assert.equal(stored.status,'withdrawn');assert.equal(stored.body,'[withdrawn by member]');
+ assert.equal((await t.send(1,'appeals')).body.appeals[0].status,'withdrawn');
+ assert.equal((await t.send(2,'moderation')).body.appeals.length,0);
+ assert.equal((await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'})).status,409);
+});
+test('account deletion cascades own appeals and audit without orphaning post content',async()=>{
+ const t=setup();await rejectedAppeal(t);t.sqlite.prepare('DELETE FROM users WHERE id=1').run();
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_appeals').get().n,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_appeal_audit').get().n,0);
+});
+
+test('decision changed during appeal review aborts the entire resolution batch',async()=>{
+ const t=setup();const {postId,appeal}=await rejectedAppeal(t),batch=t.env.DB.batch.bind(t.env.DB);
+ t.env.DB.batch=async ops=>{
+  t.sqlite.prepare("UPDATE timber_shed_forum_posts SET reviewed_at='2026-10-23T09:00:00Z' WHERE id=?").run(postId);
+  return batch(ops);
+ };
+ assert.equal((await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'})).status,503);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_appeals').get().status,'open');
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_appeal_audit').get().n,1);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(postId).status,'rejected');
+});
+test('an appeal may address a later independent decision without replaying the old appeal',async()=>{
+ const t=setup();const {postId,appeal}=await rejectedAppeal(t);
+ await t.send(2,'appeal/review','POST',{appealId:appeal.body.id,outcome:'reconsider'});
+ await t.send(3,'moderate','POST',{postId,action:'reject'});
+ t.sqlite.prepare("UPDATE timber_shed_forum_posts SET reviewed_at='2026-10-23T09:00:00Z' WHERE id=?").run(postId);
+ const second=await t.send(1,'appeal','POST',{postId,reason:'incorrect-rule'});
+ assert.equal(second.status,202);assert.notEqual(second.body.id,appeal.body.id);
+ assert.equal((await t.send(1,'mine')).body.posts[0].reviewed_at,'2026-10-23T09:00:00Z');
+ assert.equal((await t.send(1,'appeals')).body.appeals.length,2);
+ assert.equal((await t.send(2,'moderation')).body.appeals.length,1);
+});
