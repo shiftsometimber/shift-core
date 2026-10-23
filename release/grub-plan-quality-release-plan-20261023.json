@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-23T16:47:30.442Z",
+  "state": "read_only_preflight_not_deployed",
+  "worker": "shift-programme-member-20261023",
+  "currentEtag": "8b7cf510ecd2658fa78dce7be7715f2de3e3b93ec1e35867eba12013a8d99dd6",
+  "programmeSettingsSha256": "d134ffaef972c5e82474d4a56ec6f8859242ee530506653ec308254311d03495",
+  "coreSettingsSha256": "ab1e5ff362838d9c7d8284f2a25c703a2ede8bcef88417dd4c157076c65896b7",
+  "routesSha256": "fbaf5ca97799cd43dc4b495fbc7eb75fc3555618c5670f78d845b17f93165956",
+  "currentlyOwnedRoutes": 45,
+  "additionalRoutes": [
+    {
+      "pattern": "shiftsometimber.co.uk/v1/grub/workspace*",
+      "before": null
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/v1/grub/workspace*",
+      "before": null
+    },
+    {
+      "pattern": "api.shiftsometimber.co.uk/v1/grub/workspace*",
+      "before": null
+    }
+  ],
+  "productionWrites": 0
+}

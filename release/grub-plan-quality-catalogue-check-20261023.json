@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-23T16:45:50.532Z",
+  "state": "prepared_and_tested_not_deployed",
+  "catalogue": "Current governed 2692-row source, including UK corrections and discovery rules",
+  "recipes": 2692,
+  "attempts": 360,
+  "styles": [
+    {
+      "style": "protein",
+      "attempted": 90,
+      "returned": 90,
+      "heldForReview": 0,
+      "returnedDays": 450,
+      "minimumReturnedKcal": 1200.6,
+      "maximumReturnedKcal": 1757.9
+    },
+    {
+      "style": "budget",
+      "attempted": 90,
+      "returned": 90,
+      "heldForReview": 0,
+      "returnedDays": 450,
+      "minimumReturnedKcal": 1200.4,
+      "maximumReturnedKcal": 1705.3
+    },
+    {
+      "style": "fast",
+      "attempted": 90,
+      "returned": 90,
+      "heldForReview": 0,
+      "returnedDays": 450,
+      "minimumReturnedKcal": 1200.1,
+      "maximumReturnedKcal": 1752.4
+    },
+    {
+      "style": "vegetarian",
+      "attempted": 90,
+      "returned": 90,
+      "heldForReview": 0,
+      "returnedDays": 450,
+      "minimumReturnedKcal": 1213.1,
+      "maximumReturnedKcal": 1788.5
+    }
+  ],
+  "productionWrites": 0,
+  "nutritionSignOff": false,
+  "interpretation": "A returned plan is above the engineering low-total trigger; this does not establish nutritional adequacy or a member calorie target."
+}

@@ -2,6 +2,7 @@ import {ingredientOptions} from './grub-ingredients.mjs';
 import {discoverable} from './grub-discovery.mjs';
 import {memberRecipe,filterRecipe} from './grub-search.mjs';
 import {recommendationFor,adjustRecommendation,nextRecommendation,nutritionForWeek,grubEfforts,repeatMeals} from './grub-intelligence.mjs';
+import {automaticPlanIssue} from './grub-plan-quality.mjs';
 
 export const emptyGrub=()=>({revision:0,saved:[],week:[],shopping:[],options:{days:7,style:'protein',servings:1,exclude:''},operations:[]});
 export class GrubError extends Error{constructor(message,status=400){super(message);this.status=status}}
@@ -21,12 +22,12 @@ const excluded=(r,text)=>text.split(',').map(x=>x.trim().toLowerCase()).filter(B
  const terms=x==='fish'?['fish','salmon','tuna','cod','haddock','anchovy','mackerel','sardine']:x==='nuts'?['nut','almond','cashew','pecan','pistachio']: [x];
  return terms.some(t=>r.ingredients.some(i=>i.item.toLowerCase().includes(t))||r.allergens.some(a=>a.toLowerCase().includes(t))||String(r.allergen_note||'').toLowerCase().includes(t));
 });
-function candidates(recipes,options,slot){
+function candidates(recipes,options,slot,context={}){
  const curated=recipes.some(r=>r.discovery);
  // In the corrected menu, protein/budget are preferences, not nutritional
  // adequacy or retailer-price guarantees. Time and vegetarian choices remain hard.
  const preference=curated&&['protein','budget'].includes(options.style);
- return recipes.filter(r=>discoverable(r)&&(r.meal_type===slot||(slot==='dinner'&&options.style==='fast'&&r.meal_type==='lunch'))&&(preference||filterRecipe(r,styles[options.style]))&&!excluded(r,options.exclude))
+ return recipes.filter(r=>discoverable(r)&&(r.meal_type===slot||(slot==='dinner'&&options.style==='fast'&&r.meal_type==='lunch'))&&(preference||filterRecipe(r,styles[options.style]))&&!excluded(r,options.exclude)&&!excluded(r,context.exclusions||'')&&(!context.maxMinutes||Number.isFinite(r.minutes)&&r.minutes>0&&r.minutes<=context.maxMinutes))
   .sort((a,b)=>Number(filterRecipe(b,styles[options.style]))-Number(filterRecipe(a,styles[options.style])));
 }
 function choose(pool,used,seed){const fresh=pool.filter(r=>!used.has(r.id));const list=fresh.length?fresh:pool;return list[seed%list.length]}
@@ -37,20 +38,35 @@ export function mealFamily(recipe){
  if(/slow.cook/.test(format+' '+name))return 'slow-cooker';
  return format||name;
 }
-function chooseVaried(pool,used,counts,seed){
+function chooseVaried(pool,used,counts,seed,flexibleFamily=false){
  const fresh=pool.filter(r=>!used.has(r.id));let choices=fresh.length?fresh:pool;
  const nonBread=choices.filter(r=>mealFamily(r)!=='bread');
  if((counts.get('bread')||0)>=2&&nonBread.length)choices=nonBread;
  const lowest=Math.min(...choices.map(r=>counts.get(mealFamily(r))||0));
- choices=choices.filter(r=>(counts.get(mealFamily(r))||0)===lowest);
+ if(!flexibleFamily)choices=choices.filter(r=>(counts.get(mealFamily(r))||0)===lowest);
  return choices[seed%choices.length];
 }
-export function buildWeek(recipes,input,seed=0,learning={}){
- const options=planOptions(input),used=new Set(learning.recent||[]),week=[],families={breakfast:new Map(),main:new Map()};
+function assertAutomaticChoices(context){
+ if(context.dietaryReviewRequired)fail('Your saved dietary requirements need checking before we build or swap meals. Use your agreed food plan and check recipes and labels. Your saved week has not changed.');
+}
+export function buildWeek(recipes,input,seed=0,learning={},context={}){
+ assertAutomaticChoices(context);
+ const options=planOptions(input),week=[];let used=new Set(learning.recent||[]),families={breakfast:new Map(),main:new Map()};
  recipes=recipes.filter(r=>discoverable(r)&&!(learning.nay||[]).includes(r.id));
- for(let day=1;day<=options.days;day++)for(const slot of slots){
-  const pool=candidates(recipes,options,slot);if(!pool.length)fail('No '+slot+' recipes meet all these choices. Change the style or ingredients to leave out. Your saved week has not changed.');
-  const counts=families[slot==='breakfast'?'breakfast':'main'],r=chooseVaried(pool,used,counts,seed+day*7+slots.indexOf(slot));used.add(r.id);counts.set(mealFamily(r),(counts.get(mealFamily(r))||0)+1);week.push({key:day+':'+slot,day,slot,recipeId:r.id,servings:options.servings});
+ const pools=Object.fromEntries(slots.map(slot=>{const pool=candidates(recipes,options,slot,context);if(!pool.length)fail('No '+slot+' recipes meet all your choices and saved food settings. Change your choices or choose individual meals. Your saved week has not changed.');return [slot,pool]}));
+ for(let day=1;day<=options.days;day++){
+  let issue;
+  // Try other eligible meal combinations, never larger portions or looser
+  // member constraints. Only a checked candidate changes this local plan.
+  for(let attempt=0;attempt<64;attempt++){
+   const dayUsed=new Set(used),dayFamilies={breakfast:new Map(families.breakfast),main:new Map(families.main)},entries=[];
+   for(const [index,slot]of slots.entries()){
+    const counts=dayFamilies[slot==='breakfast'?'breakfast':'main'],r=chooseVaried(pools[slot],dayUsed,counts,seed+day*7+index+attempt*(13+index*17),attempt>=32);
+    dayUsed.add(r.id);counts.set(mealFamily(r),(counts.get(mealFamily(r))||0)+1);entries.push({key:day+':'+slot,day,slot,recipeId:r.id,servings:options.servings});
+   }
+   issue=automaticPlanIssue(entries,recipes);if(!issue){week.push(...entries);used=dayUsed;families=dayFamilies;break}
+  }
+  if(issue)fail(issue);
  }
  return {week,options};
 }
@@ -110,7 +126,7 @@ export function applyGrubOperation(current,input,recipes,context={}){
   if(input.sentiment==='nay')next.recommendation=null;
  }else if(a==='plan'){
   const learning=next.learning||{yay:[],nay:[],recent:[]};learning.recent=[...(learning.recent||[]),...next.week.map(x=>x.recipeId)].slice(-180);
-  const built=buildWeek(recipes,input.options,next.revision,learning);next.week=built.week;next.options={...next.options,...built.options};next.learning=learning;next.recommendation=null;
+  const built=buildWeek(recipes,input.options,next.revision,learning,context);next.week=built.week;next.options={...next.options,...built.options};next.learning=learning;next.recommendation=null;
  }else if(a==='add'){
   recipeById(recipes,input.recipeId);if(!integer(input.day,1,7)||!slots.includes(input.slot)||!integer(input.servings,1,8))fail('Choose a day, meal and 1–8 servings.');
   const key=input.day+':'+input.slot;next.week=next.week.filter(x=>x.key!==key);next.week.push({key,day:input.day,slot:input.slot,recipeId:input.recipeId,servings:input.servings});next.week.sort((a,b)=>a.day-b.day||slots.indexOf(a.slot)-slots.indexOf(b.slot));
@@ -118,7 +134,7 @@ export function applyGrubOperation(current,input,recipes,context={}){
  }else if(a==='remove-meal'||a==='swap'){
   const entry=next.week.find(x=>x.key===input.key);if(!entry)fail('This meal is no longer in your week.');
   if(a==='remove-meal')next.week=next.week.filter(x=>x.key!==input.key);
-  else{const pool=candidates(recipes,next.options,entry.slot).filter(r=>r.id!==entry.recipeId&&!(next.learning?.nay||[]).includes(r.id));if(!pool.length)fail('There is no alternative matching this meal style. Choose a recipe in Discover instead.');entry.recipeId=choose(pool,new Set([...next.week.map(x=>x.recipeId),...(next.learning?.recent||[])]),next.revision).id;}
+  else{assertAutomaticChoices(context);const pool=candidates(recipes,next.options,entry.slot,context).filter(r=>r.id!==entry.recipeId&&!(next.learning?.nay||[]).includes(r.id));if(!pool.length)fail('There is no alternative matching your choices and saved food settings. Choose a recipe in Discover instead.');const day=next.week.filter(x=>x.day===entry.day),checked=pool.filter(r=>!automaticPlanIssue(day.map(x=>x===entry?{...x,recipeId:r.id}:x),recipes));if(!checked.length)fail(automaticPlanIssue(day.map(x=>x===entry?{...x,recipeId:pool[0].id}:x),recipes));entry.recipeId=choose(checked,new Set([...next.week.map(x=>x.recipeId),...(next.learning?.recent||[])]),next.revision).id;}
  }else if(a==='shopping-add'){
   const text=String(input.text||'').trim();if(!text||text.length>160)fail('Enter a shopping item under 160 characters.');if(next.shopping.filter(x=>x.source==='manual').length>=100)fail('Remove a shopping item before adding another.');
   next.shopping.push({key:'manual:'+input.operationId,text,source:'manual',done:false});

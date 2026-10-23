@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {repairMemberAsset,repairAskDocument,toolSelectionBefore,toolSelectionAfter,askCopyRepairs,grubPlanBefore,grubPlanAfter} from '../../release/joined-member-repairs.mjs';
+import {repairMemberAsset,repairAskDocument,toolSelectionBefore,toolSelectionAfter,askCopyRepairs,grubNutritionBefore} from '../../release/joined-member-repairs.mjs';
 import overlay from '../../release/connected-programme-worker.mjs';
 const req=p=>new Request('https://shiftsometimber.co.uk'+p);
 const response=s=>new Response(s,{headers:{'Content-Type':'text/javascript',ETag:'old'}});
@@ -21,7 +21,8 @@ test('the current pinned Journey asset is replaced; unknown source remains untou
  const newer=await repairMemberAsset(req('/member-my-journey-v2.js'),response('another release'));assert.equal(await newer.text(),'another release');
 });
 test('meal plan totals are explicitly a partial food record, with no invented nutrition target',async()=>{
- const r=await repairMemberAsset(req('/assets/member-experience/grub.mjs'),response('before '+grubPlanBefore+' after'));assert.equal(await r.text(),'before '+grubPlanAfter+' after');
+ const r=await repairMemberAsset(req('/assets/member-experience/grub.mjs'),response('before '+grubNutritionBefore+' after')),body=await r.text();assert(body.startsWith('before '));assert(body.endsWith(' after'));assert.match(body,/These days need another look/);assert.match(body,/higher calorie total does not confirm/);assert.equal(r.headers.get('X-Shift-Grub-Quality'),'grub-plan-quality-20261023');
+ const newer='independent nutrition function';const unchanged=await repairMemberAsset(req('/assets/member-experience/grub.mjs'),response(newer));assert.equal(await unchanged.text(),newer);assert.equal(unchanged.headers.get('X-Shift-Member-Repair'),'source-changed-unpatched');
 });
 test('after-treatment Life Back links use the actual page for all three later weeks',async()=>{
  const old=Array(3).fill("href:'/member/dashboard#lifeback'").join(';');const r=await repairMemberAsset(req('/my-timber-v11.js'),response(old));assert.equal(await r.text(),Array(3).fill("href:'/member/life-back'").join(';'));
@@ -31,8 +32,8 @@ test('Ask document removes only its live preview title and preserves the rest of
 });
 test('the new private GET routes deny anonymous access; writes and unrelated clinical routes stay with core',async()=>{
  const env={MEMBER_EXPERIENCE_V1_ENABLED:'true',CORE:{fetch:async()=>new Response('existing core')}};
- for(const p of ['/v1/my-journey','/v1/journey','/v1/member/treatment','/v1/member/treatment/summary.pdf'])assert.equal((await overlay.fetch(req(p),env)).status,401,p);
- for(const p of ['/v1/journey/weekly-check-in','/v1/member/treatment/records','/v1/member/treatment-notifications','/treatment-assessment','/'])assert.equal(await(await overlay.fetch(req(p),env)).text(),'existing core',p);
+ for(const p of ['/v1/my-journey','/v1/journey','/v1/member/treatment','/v1/member/treatment/summary.pdf','/v1/grub/workspace'])assert.equal((await overlay.fetch(req(p),env)).status,401,p);
+ for(const p of ['/v1/journey/weekly-check-in','/v1/member/treatment/records','/v1/member/treatment-notifications','/treatment-assessment','/v1/grub/search','/v1/grub/diary','/'])assert.equal(await(await overlay.fetch(req(p),env)).text(),'existing core',p);
 });
 
  test('Ask repair gives previously cached scripts a fresh versioned URL',async()=>{

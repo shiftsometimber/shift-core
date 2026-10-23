@@ -1,0 +1,12 @@
+import {AUTOMATIC_PLAN_REVIEW_KCAL} from './grub-plan-quality.mjs';
+export const grubPlanQualityClient='const planEnergyReviewKcal='+AUTOMATIC_PLAN_REVIEW_KCAL+';\n'+String.raw`
+function nutritionContextMarkup(){
+ const info=workspace?.nutritionContext;if(!info?.days.length)return '';
+ const amount=(value,label,unit)=>value===null||value===undefined||value===''||!Number.isFinite(Number(value))?'<span>'+label+' unknown</span>':'<span>'+foodNumber(value)+unit+' '+label+'</span>';
+ const line=d=>amount(d.kcal,'kcal','')+amount(d.protein,'protein','g')+amount(d.fibre,'fibre','g');
+ const review=d=>d.review||(d.meals===3?(d.kcal===null||d.kcal===undefined?'unknown-energy':d.kcal<=planEnergyReviewKcal?'low-energy':null):null);
+ const concerns=info.days.filter(d=>review(d));
+ const notice=concerns.length?'<div class="grub-plan-review" role="note"><strong>These days need another look</strong><p>'+concerns.map(d=>'Day '+esc(d.day)+(review(d)==='low-energy'?' has a low total across three meals.':' is missing energy information.')).join(' ')+' These meal ideas have not been checked as a complete day of food. Review portions and everything else you eat with your agreed food plan.</p><a href="/guides/food-guide">Open the food guide →</a></div>':'';
+ return '<section class="grub-nutrition-context"><h3>How your meal ideas add up</h3><p>Per person, from the meals below. These are meal ideas, not a complete daily allowance or a personalised nutrition target. People eating changes shopping quantities, not the nutrition shown for one person. Planning a meal does not record it as eaten.</p>'+notice+info.days.map(d=>'<div class="grub-nutrition-row"><strong>Day '+esc(d.day)+' · '+esc(d.meals)+' meals</strong>'+line(d)+'</div>').join('')+'<div class="grub-nutrition-row"><strong>Whole saved plan</strong>'+line(info.totals)+'</div><details><summary>What these numbers can tell you</summary><p>Snacks, drinks and other food are excluded. Unknown nutrition is never counted as zero. A higher calorie total does not confirm that a day is balanced or right for you.</p><p>Think about variety across your day and week: fruit and vegetables; starchy foods; protein foods; dairy or suitable alternatives. If you have medical or dietary requirements, use the food plan agreed with your care team.</p><a href="https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/" target="_blank" rel="noopener">NHS Eatwell Guide →</a></details></section>';
+}
+`;

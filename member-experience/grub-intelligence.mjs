@@ -1,5 +1,6 @@
 import {filterRecipe} from './grub-search.mjs';
 import {discoverable,discoveryRank,discoveryTier} from './grub-discovery.mjs';
+import {planNutrition} from './grub-plan-quality.mjs';
 
 export const grubModes=['lighter','fuller','protein','quicker','budget'];
 export const grubEfforts=['no-cook','five','cook'];
@@ -109,12 +110,5 @@ export function nextRecommendation(state,recipes,context={}){
  return {recipeId:pool[0].id,baseId:base.id,mode:'planned',message:''};
 }
 export function nutritionForWeek(state,recipes){
- const lookup=new Map(recipes.map(r=>[r.id,r])),days=[];
- for(const day of [...new Set(state.week.map(x=>x.day))]){
-  const meals=state.week.filter(x=>x.day===day).map(x=>lookup.get(x.recipeId));
-  const sum=get=>meals.every(r=>r&&number(get(r)))?round(meals.reduce((n,r)=>n+Number(get(r)),0)):null;
-  days.push({day,meals:meals.length,kcal:sum(r=>r.kcal),protein:sum(r=>r.protein_g),fibre:sum(fibre)});
- }
- const totals=Object.fromEntries(['kcal','protein','fibre'].map(k=>[k,days.length&&days.every(d=>number(d[k]))?round(days.reduce((n,d)=>n+d[k],0)):null]));
- return {days,totals};
+ return planNutrition(state.week,recipes);
 }

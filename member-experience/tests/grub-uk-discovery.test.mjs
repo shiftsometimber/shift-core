@@ -76,10 +76,18 @@ test('no-cook and five-minute choices use actual times and methods; overnight oa
  const oats=recipes.filter(r=>discoverable(r)&&/overnight/i.test(r.name));assert(oats.every(r=>r.minutes>=360));
 });
 test('plans in each style contain no withdrawn recipes and preserve source state on an impossible request',()=>{
+ const before=JSON.stringify(recipes);
  for(const style of ['protein','vegetarian','fast','budget']){
-  const result=buildWeek(recipes,{days:3,style,servings:4,exclude:''});
-  assert(result.week.every(e=>discoverable(recipes.find(r=>r.id===e.recipeId))));
+  let returned=0;
+  for(let seed=0;seed<32;seed++){
+   let result;
+   try{result=buildWeek(recipes,{days:3,style,servings:4,exclude:''},seed)}catch(error){assert.equal(error.status,400);assert.match(error.message,/cannot save this as an automatic week|missing energy information/);continue}
+   returned++;assert(result.week.every(e=>discoverable(recipes.find(r=>r.id===e.recipeId))));
+   const view=workspaceView({...emptyGrub(),week:result.week},recipes);assert(view.nutritionContext.days.every(d=>d.review===null));
+  }
+  assert(returned>0,'Checked plans remain available for '+style);
  }
+ assert.equal(JSON.stringify(recipes),before,'Source recipe content and authority remain untouched');
 });
 test('pizza prototype data are actual classics, not renamed legacy recipes',()=>{
  const pack=JSON.parse(fs.readFileSync(new URL('../../content/grub/uk-core-drafts-20261017.json',import.meta.url)));

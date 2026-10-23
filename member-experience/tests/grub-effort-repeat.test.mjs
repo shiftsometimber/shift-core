@@ -48,7 +48,7 @@ test('weekly planning keeps the remembered effort preference; impossible effort 
  const s=emptyGrub();s.options.effort='five';
  const none=recommendationFor(s,[recipes[3]],ctx);assert.equal(none.recipe,null);
  assert.deepEqual(workspaceView(s,[recipes[3]],ctx).repeats,[]);
- const pool=[...recipes,{...recipes[0],id:'breakfast',meal_type:'breakfast'},{...recipes[3],id:'dinner',meal_type:'dinner'}];
+ const pool=[...recipes,{...recipes[0],id:'breakfast',meal_type:'breakfast',kcal:500},{...recipes[3],id:'dinner',meal_type:'dinner',kcal:500}];
  const planned=op(s,{action:'plan',options:{days:3,style:'protein',servings:1,exclude:''}},pool);
  assert.equal(planned.options.effort,'five');assert.equal(planned.week.length,9);
  assert(recommendationFor(planned,pool,ctx).recipe.minutes<=5);

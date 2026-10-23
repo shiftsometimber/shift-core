@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {emptyGrub,applyGrubOperation,buildWeek,shoppingForWeek} from '../grub-workspace.mjs';
 import {grubRuntime,upgradeGrubHTML} from '../grub-runtime.mjs';
-const recipes=['breakfast','lunch','dinner'].flatMap((meal_type,i)=>[0,1].map(j=>({id:meal_type+j,name:meal_type+j,meal_type,servings:1,minutes:15,protein_g:30,taxonomy:{budget:'budget',family_size:'scalable'},ingredients:[{item:'rice',amount:'100g'},{item:'olive oil',amount:'1 tsp (5ml)'}],allergens:[]})));
+const recipes=['breakfast','lunch','dinner'].flatMap((meal_type,i)=>[0,1].map(j=>({id:meal_type+j,name:meal_type+j,meal_type,servings:1,minutes:15,kcal:500,protein_g:30,taxonomy:{budget:'budget',family_size:'scalable'},ingredients:[{item:'rice',amount:'100g'},{item:'olive oil',amount:'1 tsp (5ml)'}],allergens:[]})));
 let seq=0;const op=(state,action)=>applyGrubOperation(state,{revision:state.revision,operationId:'test-operation-'+String(++seq).padStart(8,'0'),...action},recipes);
 test('plan is complete, saved IDs are stable, swaps preserve other meals and servings reach real ingredient list',()=>{
  let s=op(emptyGrub(),{action:'save',recipeId:'dinner0',saved:true});assert.deepEqual(s.saved,['dinner0']);

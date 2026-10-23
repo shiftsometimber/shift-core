@@ -1,6 +1,13 @@
 // Surgical repairs over the current core. Unrelated live code is retained.
 import {joinedAssets} from './joined-member-assets.mjs';
 import {treatmentRuntime} from '../member-experience/treatment-page.mjs';
+import {grubPlanQualityClient} from '../member-experience/grub-plan-quality-client.mjs';
+export const grubNutritionBefore=String.raw`function nutritionContextMarkup(){
+ const info=workspace?.nutritionContext;if(!info?.days.length)return '';
+ const line=d=>'<span>'+foodNumber(d.kcal)+' kcal</span><span>'+foodNumber(d.protein)+'g protein</span><span>'+foodNumber(d.fibre)+'g fibre</span>';
+ return '<section class="grub-nutrition-context"><h3>How your plan adds up</h3><p>Per person, from the meals saved below. Snacks, drinks and unlogged food are not included. These are planned meals, not a record of what you ate.</p>'+info.days.map(d=>'<div class="grub-nutrition-row"><strong>Day '+d.day+' · '+d.meals+' meals</strong>'+line(d)+'</div>').join('')+'<div class="grub-nutrition-row"><strong>Whole saved plan</strong>'+line(info.totals)+'</div></section>';
+}
+`;
 const revision='joined-member-20261023';
 const hashes={
  '/member-my-journey-v2.js':'48b71ff5b1160f43832af6b02817c2e6c247999bb77eb4b0cbc955627992e44a',
@@ -26,7 +33,7 @@ export async function repairMemberAsset(request,response){
  if(hashes[path]){
   if(await digest(body)===hashes[path]){body=path==='/assets/member-experience/treatment.mjs'?treatmentRuntime:joinedAssets[path];changed=true;}
  }else{
-  const edits=path==='/assets/my-timber-layout.mjs'?[[toolSelectionBefore,toolSelectionAfter]]:path==='/assets/ask-timber-phase8.js'?askCopyRepairs:path==='/assets/member-experience/grub.mjs'?[[grubPlanBefore,grubPlanAfter]]:[["'/member/dashboard#lifeback'","'/member/life-back'"]];
+  const edits=path==='/assets/my-timber-layout.mjs'?[[toolSelectionBefore,toolSelectionAfter]]:path==='/assets/ask-timber-phase8.js'?askCopyRepairs:path==='/assets/member-experience/grub.mjs'?[[grubNutritionBefore,grubPlanQualityClient]]:[["'/member/dashboard#lifeback'","'/member/life-back'"]];
   // Check every expected fragment before changing anything. Never partially
   // patch a newer independently released runtime.
   const expected=path==='/my-timber-v11.js'?3:1;
@@ -35,6 +42,7 @@ export async function repairMemberAsset(request,response){
   }
  }
  const headers=new Headers(response.headers);headers.set('X-Shift-Member-Repair',changed?revision:'source-changed-unpatched');
+ if(changed&&path==='/assets/member-experience/grub.mjs')headers.set('X-Shift-Grub-Quality','grub-plan-quality-20261023');
  headers.set('Cache-Control','no-store, must-revalidate');for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
  return new Response(body,{status:response.status,headers});
 }
