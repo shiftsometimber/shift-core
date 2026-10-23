@@ -37,6 +37,7 @@ import {withKnowledgeAssetRepair} from './knowledge-heading-repair.mjs';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
 import {timberShedPrivateRoutes,appendTimberShedPrivateExport} from './member-experience/timber-shed-private.mjs';
+import {timberShedPresentationRoutes} from './member-experience/timber-shed-presentation.mjs';
 import {timberShedForumRoutes} from './member-experience/timber-shed-forum-routes.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
 import { withSessionState } from './member-experience/session-state.mjs';
@@ -599,10 +600,7 @@ const worker = {
     const medicinesWatch = await medicinesWatchRoutes(request, env);
     if (medicinesWatch) return rewritePublicLoungeChrome(medicinesWatch);
     const passportAsset = passportAssets(request, env); if(passportAsset)return passportAsset;
-    if(env.TIMBER_SHED_PRIVATE_ENABLED==='true'&&['/member/timber-shed','/member/timber-shed.html'].includes(path)){
-      const shedAuth=await authenticateMember(request,env);
-      if(shedAuth.response)return new Response('Sign in to My Timber to continue.',{status:401,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Content-Type':'text/plain; charset=utf-8'}});
-    }
+    const shedPresentation=await timberShedPresentationRoutes(request,env);if(shedPresentation)return shedPresentation;
     const memberExperience = memberExperienceRoutes(request, env);
     if (memberExperience) return memberExperience;
     const workplace = await workRoutes(request, env, {authenticate: authenticateMember, authenticateHQ: authenticateWorkHQ});

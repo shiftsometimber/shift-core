@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {timberShedPage,timberShedClient} from '../member-experience/timber-shed-page.mjs';
 test('member page and script are behind explicit, default-off feature flags',()=>{
- const src=readFileSync(new URL('../member-experience/entry.mjs',import.meta.url),'utf8');
- assert.match(src,/env\.MEMBER_EXPERIENCE_V1_ENABLED !== 'true'/);
- assert.match(src,/env\.TIMBER_SHED_PRIVATE_ENABLED==='true'/);
+ const src=readFileSync(new URL('../member-experience/timber-shed-presentation.mjs',import.meta.url),'utf8');
+ assert.match(src,/env\.MEMBER_EXPERIENCE_V1_ENABLED!=='true'/);
+ assert.match(src,/env\.TIMBER_SHED_PRIVATE_ENABLED!=='true'/);
  assert.match(src,/\/member\/timber-shed/);
  assert.match(src,/\/assets\/member-experience\/timber-shed\.mjs/);
 });

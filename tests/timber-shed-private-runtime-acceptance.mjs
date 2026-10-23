@@ -10,16 +10,12 @@ const dependency=name=>require(process.env.TIMBER_SHED_RUNTIME_MODULES?process.e
 const {build}=dependency('esbuild'),{Miniflare}=dependency('miniflare');
 const entry=String.raw`
 import {timberShedForumRoutes} from './member-experience/timber-shed-forum-routes.mjs';
-import {authenticateMember} from './member-state-fast-v1.js';
+import {timberShedPresentationRoutes} from './member-experience/timber-shed-presentation.mjs';
 import {appendTimberShedPrivateExport,timberShedPrivateRoutes} from './member-experience/timber-shed-private.mjs';
-import {timberShedForumPilotMarkup,timberShedForumPilotCSS,timberShedForumPilotClient} from './member-experience/timber-shed-forum-ui.mjs';
+
 export default {async fetch(request,env){
  const pathname=new URL(request.url).pathname;
- if(pathname==='/member/timber-shed'){
-  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
-  const html='<!doctype html><html lang="en-GB"><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box}body{margin:0;background:#050505;color:#e7e3da;font:16px Arial;padding:20px}.section{max-width:1100px;margin:auto}'+timberShedForumPilotCSS+'</style>'+timberShedForumPilotMarkup+'<script>'+timberShedForumPilotClient+'</script></html>';
-  return new Response(html,{headers:{'Content-Type':'text/html','Cache-Control':'private, no-store'}});
- }
+ const presentation=await timberShedPresentationRoutes(request,env);if(presentation)return presentation;
  if(pathname==='/v1/privacy/export'&&request.method==='POST'){
   if(request.headers.get('Origin')!==new URL(request.url).origin)return new Response(null,{status:403});
   return appendTimberShedPrivateExport(request,env,Response.json({syntheticBaseExport:true}));
