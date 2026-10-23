@@ -7,6 +7,7 @@ on:
       - 'worker-entry-v6.js'
       - 'gate1-whole-estate-production-sweep.mjs'
       - 'wrangler.timber-shed-acceptance.template.jsonc'
+      - 'wrangler.timber-shed-member-test.jsonc'
       - '.github/workflows/timber-shed-private-check.yml'
 permissions:
   contents: read
@@ -40,3 +41,6 @@ jobs:
           node tests/timber-shed-forum-appeals-browser.mjs
       - name: Build complete Worker without deployment or production access
         run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/shed-worker-build"
+
+      - name: Build isolated direct-domain Test-member release without deployment
+        run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.timber-shed-member-test.jsonc --outdir "$RUNNER_TEMP/shed-member-test-build"

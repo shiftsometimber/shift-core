@@ -1,0 +1,60 @@
+{
+  "name": "shift-timber-shed-member-test",
+  "main": "member-experience/timber-shed-member-test-entry.mjs",
+  "compatibility_date": "2025-11-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": {
+    "TIMBER_SHED_MEMBER_TEST_RELEASE": "true",
+    "TIMBER_SHED_TEST_MEMBER_ID": "11245"
+  },
+  "d1_databases": [
+    {
+      "binding": "MEMBER_AUTH_DB",
+      "database_name": "shift-core-db",
+      "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847"
+    },
+    {
+      "binding": "SYNTHETIC_DB",
+      "database_name": "shift-timber-shed-synthetic-acceptance-20261023",
+      "database_id": "bd6a12c0-8389-4c9f-9131-c9b7ede3e67b"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "shiftsometimber.co.uk/member/timber-shed*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/v1/timber-shed/*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/assets/member-experience/timber-shed.mjs",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/assets/member-experience/timber-shed-forum.mjs",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/timber-shed*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/v1/timber-shed/*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/assets/member-experience/timber-shed.mjs",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/assets/member-experience/timber-shed-forum.mjs",
+      "zone_name": "shiftsometimber.co.uk"
+    }
+  ],
+  "observability": {
+    "enabled": false
+  }
+}
