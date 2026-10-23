@@ -1,7 +1,7 @@
 # The Timber Shed — private pilot operating pack
-Version: 23 October 2026. Status: prepared for Matt's review; not published or operationally accepted.
+Version: 23 October 2026. Status: member rules approved by Matt; Linda O'Brien nominated as cover. Other operating, privacy and release decisions remain as marked below. Not published or activated.
 
-This pack accompanies the existing TIMBER-SHED-PRIVATE-BOUNDARY.md checkpoint and draft PR #1393. It does not authorise launch, enable flags, appoint another person, send mail or approve real member text being sent to an AI provider.
+This pack accompanies the existing TIMBER-SHED-PRIVATE-BOUNDARY.md checkpoint and draft PR #1393. It does not authorise launch, enable flags, appoint anyone beyond the nominations expressly recorded below, send mail or approve real member text being sent to an AI provider.
 
 ## 1. Ownership and the finite release checklist
 
@@ -10,8 +10,8 @@ Matt O'Brien has confirmed that his name is above the door. Record him as the ac
 | Item | Concrete work / evidence needed | What can be completed in this build | Outstanding acceptance |
 | --- | --- | --- | --- |
 | Accountable owner | Record Matt's nomination and decision authority | Recorded in this pack and checkpoint | Nomination confirmed by Matt; duties/operating policy below still to adopt |
-| Nonclinical remit | Accept the rules and support boundaries below; remove any promise of treatment, crisis response or clinician moderation from member copy | Draft ready; technical high-risk holds retained | Matt accepts remit; any clinical functionality stays disabled pending qualified review |
-| Moderation and cover | Name another trained adult; record availability, handovers, leave cover and independent appeals access | Role description, training and handover checklist below | Actual person, accepted duties, verified individual moderator account and rehearsal |
+| Nonclinical remit | Apply the approved member rules and support boundaries below; remove any promise of treatment, crisis response or clinician moderation from member copy | Matt approved the rules on 23 October; technical high-risk holds retained | Publication/application to deployed service still held; clinical functionality remains disabled pending qualified review |
+| Moderation and cover | Linda O'Brien nominated by Matt; record availability, handovers, leave cover and independent appeals access | Named cover recorded; role description, training and handover checklist below | Linda's acceptance/availability, training, verified individual moderator account and rehearsal remain unverified |
 | Community controls | Verify premoderation, report/block, restrictions, appeals, privacy and authentication | Implemented; 151 scoped tests and 45 fictional local-runtime checks passed | Controlled deployed acceptance and final CI |
 | Age and online safety | Complete children's access and illegal-content risk assessments against actual service, users and mitigations | Assessment worksheet below | Actual access method, likelihood evidence, risk findings and owner adoption |
 | Privacy | Determine Article 6 basis and Article 9 condition; adopt data map, DPIA, notices, retention and rights process | Draft worksheet and technical inventory below | Controller decisions, provider facts, remaining controls and residual-risk acceptance |
@@ -21,9 +21,19 @@ Matt O'Brien has confirmed that his name is above the door. Record him as the ac
 
 A second reviewer is necessary for the independent appeal design implemented here. This pack does not claim that UK law universally requires two moderators or 24-hour cover. If no second reviewer is available, do not promise independent appeals or open this pilot with the present workflow.
 
-## 2. Proposed member rules and service description
+### Named responsibilities — Matt's 23 October instruction
 
-Proposed member-facing wording, subject to Matt's acceptance:
+| Role | Named owner / system | Responsibility and boundary |
+| --- | --- | --- |
+| Accountable community owner | Matt O'Brien | Owns the service, unresolved incidents and release decisions; human moderation and appeal reviewer when independent of the original decision |
+| Nominated cover / second human reviewer | Linda O'Brien | Cover and independent appeals when trained, available and authorised; cannot decide an appeal against her own original decision |
+| Primary automated moderator | SHIFT Community Bouncer | First screening pass on every submission, risk flags and unpublished holds; assists human prioritisation and review. It does not provide clinical judgement, approve publication, make final incident decisions, decide appeals or impose automatic bans |
+
+Bouncer is central to this operating model. Its deterministic screening can operate without an external AI provider; sending real member text to a live AI model retains its separate provider/privacy/activation gates. Naming Bouncer as the key moderator does not enable those gates. The approved rule that every post/reply waits for human review remains in force. Matt and Linda can independently review each other's decisions when neither is the author or otherwise conflicted. Linda's nomination resolves the missing-name item; agreed hours, accepted duties, rehearsal and individual access remain to verify. No message or invitation to Linda is authorised by this record.
+
+## 2. Approved member rules and service description
+
+Matt approved the following rules on 23 October 2026. Approval of wording does not authorise publishing the service or filling unresolved operating details with assumptions:
 
 The Timber Shed is a private, adult peer community for sharing everyday experiences of changing habits and managing weight. It is run by SHIFT. Members and moderators speak from experience; the community does not provide diagnosis, prescriptions, personalised treatment or emergency care.
 
@@ -148,4 +158,4 @@ Official references checked 23 October 2026:
 - Ofcom children's access assessment: https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/childrens-access-assessment-duties-under-the-online-safety-act
 - ICO special-category data guidance: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/a-guide-to-lawful-basis/special-category-data/
 
-Follow current official guidance when completing the assessments; this pack is an operational draft, not a claim of regulatory approval. Existing source checks and the synthetic receipts are detailed in TIMBER-SHED-PRIVATE-BOUNDARY.md. No clinician, deputy, external organisation, insurer or regulator has been appointed, contacted or represented as approving this build.
+Follow current official guidance when completing the assessments; this pack is an operational draft, not a claim of regulatory approval. Existing source checks and the synthetic receipts are detailed in TIMBER-SHED-PRIVATE-BOUNDARY.md. No clinician, external organisation, insurer or regulator has been appointed, contacted or represented as approving this build. Matt has nominated Linda O'Brien as cover; her accepted availability, training and account access have not been verified, and she has not been contacted by this worker.
