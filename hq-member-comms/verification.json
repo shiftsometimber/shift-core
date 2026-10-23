@@ -1,5 +1,5 @@
 {
-  "status": "deployed; live routing/access guards and member view verified; real delivery pending",
+  "status": "deployed; approved outbound email received in Gmail inbox; signed-in HQ and push acceptance pending",
   "source": "987373f83fa677b55430bace3018db5a8dc4cf2e",
   "checkedAt": "2026-10-23T13:41:40.660Z",
   "automatedTests": 43,
@@ -46,8 +46,8 @@
   "schedulesVerified": true,
   "liveAuthenticatedMemberView": true,
   "ownerAuthenticatedCommissioning": false,
-  "realEmailSent": false,
-  "realEmailInboxReceipt": false,
+  "realEmailSent": true,
+  "realEmailInboxReceipt": true,
   "realPhoneReceipt": false,
   "nativePushIntegrated": false,
   "counts": {
@@ -61,5 +61,22 @@
     "branch": "codex/hq-member-comms-20261023",
     "verifiedReleaseCommit": "4120ce677ac602bd975044fea18c0fe12adc137d",
     "verifiedAt": "2026-10-23T14:26:23.741615+00:00"
-  }
+  },
+  "emailDeliveryProof": {
+    "approvedInChat": true,
+    "scope": "production emailMessage builder and existing Cloudflare Email service; dedicated one-message test, not a signed-in HQ UI commissioning test",
+    "recipient": "shiftsometimber@gmail.com",
+    "subject": "SHIFT HQ \u2014 delivery test",
+    "providerMessageId": "<K06pUpk3Xc9FpDsOwPE6Lpx2X9EqQA3URCEI@shiftsometimber.co.uk>",
+    "gmailMessageId": "1a16a33237d87cef",
+    "inboxLabelVerified": true,
+    "fromAndReplyToVerified": true,
+    "approvedBodyVerified": true,
+    "noCCOrAttachments": true,
+    "receivedAt": "2026-10-23T19:18:18Z",
+    "temporaryTestWorkerDeleted": true,
+    "duplicateGuardKey": "owner-approved-hq-email-delivery-20261023-v1"
+  },
+  "testDevicesCurrentlyRegistered": 0,
+  "lastAcceptanceUpdate": "2026-10-23T19:19:13.769841+00:00"
 }
