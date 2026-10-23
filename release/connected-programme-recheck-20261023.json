@@ -1,0 +1,119 @@
+{
+  "at": "2026-10-23T10:02:03.363Z",
+  "activation": {
+    "pass": true,
+    "script": "shift-programme-member-20261023",
+    "at": "2026-10-23T09:33:57.897Z",
+    "approvedSource": "0bbf4acfd71d86a51ffffc211dc55961d5a47b36",
+    "bundleSha256": "b7ef0865894f25a57d6821d416c7bf0afe287e1f53e5af28e1800ba3728887f3",
+    "routes": 22,
+    "unrelatedRoutesPreserved": true,
+    "coreBindingsPreserved": true,
+    "coreCodeDeploymentPerformed": false,
+    "worker": {
+      "script": "shift-programme-member-20261023",
+      "id": "shift-programme-member-20261023",
+      "etag": "8eee25259e0c1c06e6e97aeed5b177977fee8fc77a28c2f027139bea3959a3c4",
+      "modified_on": "2026-10-23T09:40:45.333151Z",
+      "at": "2026-10-23T09:40:45.871Z",
+      "bundleSha256": "b7ef0865894f25a57d6821d416c7bf0afe287e1f53e5af28e1800ba3728887f3"
+    },
+    "apiRoutesVerified": true,
+    "latestPublishedAt": "2026-10-23T09:40:45.871Z"
+  },
+  "assets": [
+    {
+      "path": "/assets/member-experience/programme-client.js",
+      "status": 200,
+      "sha256": "25121490cee03c999cebc7478f778f5d2df1d2f2281c3c316827ea3d7dd50b9e",
+      "matchesSource": true
+    },
+    {
+      "path": "/assets/member-experience/programme-joining.js",
+      "status": 200,
+      "sha256": "22a740c97fedc049d8470449e60c744baa90a2a7334d690369cf4e616e91e3c8",
+      "matchesSource": true
+    },
+    {
+      "path": "/assets/member-experience/programme-style.css",
+      "status": 200,
+      "sha256": "55e2d4761403c0c383ba8e8a2d4c4fee6ac6a4b53fa405ca9631ca5fb906e147",
+      "matchesSource": true
+    },
+    {
+      "path": "/assets/member-experience/checkin-followup.mjs",
+      "status": 200,
+      "sha256": "82e2558060c5eda419ef0b39f7bdee1e32079b139906cf1ec8a020d7fc0edcd4",
+      "matchesSource": true
+    },
+    {
+      "path": "/assets/member-experience/life-back/client.mjs",
+      "status": 200,
+      "sha256": "d9a398ac5e931e7f60577ba545915dbcbcb5da6644e394aa1b6f1e37842f9d68",
+      "matchesSource": true
+    },
+    {
+      "path": "/member/get-started",
+      "status": 200,
+      "sha256": "4dc860e89ca5e97d82c60c0dbda9368e9b44f347469f8e146bf15c85686059ac",
+      "matchesSource": true
+    }
+  ],
+  "pages": [
+    {
+      "path": "/member/dashboard",
+      "status": 200,
+      "programmeMountedOnce": true,
+      "sha256": "ef1721827c831ac2db053dc9574b80539d623e1b6027f2ca2dcc5d97b92a9459"
+    },
+    {
+      "path": "/member/grub",
+      "status": 200,
+      "programmeMountedOnce": true,
+      "sha256": "b91943021a1467a236d895b94b3334014dcba5ded958d3869e3ff87d37faf9b3"
+    },
+    {
+      "path": "/member/fit",
+      "status": 200,
+      "programmeMountedOnce": true,
+      "sha256": "7b7d478165c7a145e664c9358bcc0fa17f81a063b8dd3d346191d4666f14370c"
+    },
+    {
+      "path": "/member/life-back",
+      "status": 200,
+      "programmeMountedOnce": true,
+      "sha256": "d44dd62e27835e1186435983ec3d6c59c9e53ae8ea95378c8eccf9ac36bcddb8"
+    }
+  ],
+  "auth": [
+    {
+      "path": "/v1/life-back",
+      "status": 401,
+      "noPrivateHistory": true
+    },
+    {
+      "path": "/v1/life-back?feedback=not-helped&shiftId=anonymous",
+      "status": 401,
+      "noPrivateHistory": true
+    },
+    {
+      "path": "/v1/check-ins/follow-up",
+      "status": 401,
+      "noPrivateHistory": true
+    },
+    {
+      "path": "/v1/life-back",
+      "method": "POST",
+      "status": 401
+    },
+    {
+      "path": "/v1/life-back",
+      "method": "POST",
+      "status": 403,
+      "untrustedOriginRejected": true
+    }
+  ],
+  "accountWriteLiveVerified": false,
+  "accountWriteLimitation": "Existing audited commissioning identity is not available in this local deployment session. No customer account or optional health record was used for a synthetic test.",
+  "pass": true
+}
