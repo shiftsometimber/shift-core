@@ -1,0 +1,137 @@
+{
+  "date": "2026-10-23",
+  "state": "prepared_tested_not_deployed",
+  "sourceHead": "a03d45bc51408137b54666a63b809c7e98f836e9",
+  "liveSourceUnchanged": "b654136e2e2e1ac4dc546119a52c9bc008d32982",
+  "request": "Progress what remains after the joined-up member repairs",
+  "productionWrites": 0,
+  "externalCommunications": 0,
+  "implemented": [
+    "Automatic week generation and swaps use saved food exclusions, maximum cooking time and dietary-review requirements.",
+    "Three-meal automatic days with unknown energy or <=1200 kcal/person are held. Up to 64 eligible combinations are tried per day, retaining member restrictions, people eating, Nay feedback, current recipe authority and bread-repeat limits; soft meal-family rotation can give way to another eligible combination.",
+    "A rejected request cannot change the owned previous week, shopping, saved meals, learning or revision. Existing low-total saved meal ideas stay available with a review notice.",
+    "Missing nutrition is explicitly unknown with per-nutrient coverage; people eating scales shopping, never per-person nutrition. Passing the energy trigger does not establish adequacy.",
+    "The current Grub totals function is patched only on an exact expected match, preserving all other deployed script bytes. Unknown independent versions stay untouched.",
+    "The prepared adapter owns only GET/POST at the normalised /v1/grub/workspace endpoint; search, diary, other methods and unrelated routes delegate to core."
+  ],
+  "policy": {
+    "engineeringReviewTriggerKcal": 1200,
+    "inclusive": true,
+    "personalisedTarget": false,
+    "nutritionalAdequacyClaim": false,
+    "specialistNutritionApproval": false,
+    "rationale": "A conservative engineering hold prevents an automatic three-meal week entering the NICE low-energy range. This is a product judgement based on guidance, not a clinically validated adequacy threshold.",
+    "references": [
+      {
+        "url": "https://www.nice.org.uk/guidance/ng246/chapter/Physical-activity-and-diet",
+        "section": "1.16.8–1.16.12",
+        "access": "Official search excerpts retrieved; direct page/PDF returned 403."
+      },
+      {
+        "url": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/",
+        "access": "Official page retrieved on 23 October 2026."
+      }
+    ]
+  },
+  "verification": {
+    "memberSuite": {
+      "tests": 553,
+      "passed": 553,
+      "failed": 0,
+      "skipped": 0,
+      "source": "a03d45bc51408137b54666a63b809c7e98f836e9",
+      "checkout": "/Users/shiftsometimberltd/SST/grub-quality-native-check-20261023",
+      "log": "work/member-process-acceptance-20261023/nutrition-native-final-member-tests.txt"
+    },
+    "focusedGrubAndOverlay": {
+      "tests": 82,
+      "passed": 82,
+      "subsetOfMemberSuite": true,
+      "log": "work/member-process-acceptance-20261023/nutrition-grub-tests.txt"
+    },
+    "finalRouteAndQuality": {
+      "tests": 21,
+      "passed": 21,
+      "subsetOfMemberSuite": true,
+      "log": "work/member-process-acceptance-20261023/nutrition-final-route-tests.txt"
+    },
+    "catalogue": {
+      "plans": 360,
+      "days": 1800,
+      "allFourStyles": true,
+      "heldInThisMatrix": 0,
+      "allReturnedDaysAboveReviewTrigger": true,
+      "receipt": "grub-plan-quality-catalogue-check-20261023.json",
+      "clinicalAcceptance": false
+    },
+    "npmCheck": true,
+    "sourceWhitespaceCheck": true,
+    "assetReceipt": "grub-plan-quality-asset-check-20261023.json",
+    "retiredBlocker": "All three native-.git-directory preservation checks pass in an unchanged clean native checkout. No preservation checks weakened.",
+    "legacySupplementary": "The separate original supplementary audit's two after-treatment static expectation mismatches and skipped real-model pilot were not rerun or closed by this member-suite result."
+  },
+  "release": {
+    "approved": false,
+    "deployed": false,
+    "approvalRequested": false,
+    "reasonNotRequested": "Final rendered browser acceptance is currently blocked; complete independent preparation first.",
+    "bundle": {
+      "bytes": 23809949,
+      "gzipBytes": 2186464,
+      "sha256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
+      "path": "work/build/programme-overlay/grub-quality-worker.mjs"
+    },
+    "plan": "grub-plan-quality-release-plan-20261023.json",
+    "currentlyOwnedRoutesObserved": 45,
+    "proposedAdditionalRoutes": 3,
+    "newRoutesCreated": 0,
+    "existingBindingsChanged": false,
+    "coreRedeployed": false,
+    "rollback": "After an explicitly approved future activation, restore the prior Programme Worker and only the three additional workspace route owners captured by that activation; never restore or alter member data."
+  },
+  "remaining": [
+    {
+      "item": "Rendered Grub and export/PDF file-content acceptance",
+      "owner": "This workstream",
+      "state": "blocked_by_current_browser_runtime",
+      "evidence": "Export download wait timed out. Subsequent tab observation twice reported that native credential state could not be safely resumed, including after reset. No completed export file was observed. This does not prove endpoint failure.",
+      "next": "Restore a working browser test session, inspect the new screen and actual files using the dedicated Test account; then request exact-version release approval."
+    },
+    {
+      "item": "Nutrition adequacy and balance",
+      "owner": "Appropriate nutrition/clinical reviewer; no named reviewer recovered",
+      "state": "not_signed_off",
+      "next": "Review recipe portions, day/week balance, fibre/other unknowns and the intended partial-plan offer. Engineering energy gates are not sign-off."
+    },
+    {
+      "item": "Native iPhone/Android and notification delivery",
+      "owner": "Engineering–QA with consenting device tester and Matt acceptance; existing separate workstream",
+      "state": "requires_physical_device_receipts",
+      "next": "Prove weight/BP permissions/import/deduplication/revoke/account isolation and locked-device notification receipt/tap/off. Preserve App Review submission. No duplicate native or HQ implementation started."
+    },
+    {
+      "item": "Real elapsed Programme and after-treatment reviews",
+      "owner": "Programme QA",
+      "state": "fixture_proof_only",
+      "next": "Use the original dated Test-account baselines when elapsed review windows genuinely open; do not backdate production."
+    },
+    {
+      "item": "Second production account isolation",
+      "owner": "Account QA",
+      "state": "production_not_exercised",
+      "next": "Use a second authorised synthetic account through normal secure sign-in. SQLite ownership tests pass; they do not replace this."
+    },
+    {
+      "item": "Controlled payment, clinical approval, dispensing, dispatch, repeat and refund",
+      "owner": "Commerce/clinical operators",
+      "state": "not_exercised",
+      "next": "Prepare the controlled partner environment and obtain exact transaction/communication approval or operator handoff before consequential actions."
+    },
+    {
+      "item": "Other original audit boundaries",
+      "owner": "Member QA",
+      "state": "not_claimed_complete",
+      "next": "Preserve the original upload, GP/delivery-address, password/email, real-model, support-delivery and irreversible-erasure boundaries. Sending, resetting, booking, spending or erasing require their applicable explicit approvals."
+    }
+  ]
+}
