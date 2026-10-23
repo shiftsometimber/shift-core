@@ -9,7 +9,7 @@ test('additive portal serves the brand and only exact allowlisted assets',async(
  assert.equal((await worker.fetch(new Request('https://hq.shiftsometimber.co.uk/clinical-portal',{method:'POST'}),{})).status,405);
 });
 test('identity delegates only to existing HQ authentication with minimal headers',async()=>{
- const result=await existingHqIdentity(new Request('https://api.shiftsometimber.co.uk/v1/hq/clinical',{headers:{Cookie:'hq=opaque','X-User-Role':'clinical'}}),{},async(url,opts)=>{assert.equal(url,'https://api.shiftsometimber.co.uk/v1/hq/me');assert.equal(opts.headers.get('cookie'),'hq=opaque');assert.equal(opts.headers.has('X-User-Role'),false);assert.equal(opts.redirect,'error');return Response.json({user:{id:7,role:'owner'}});});assert.equal(result.user.role,'owner');
+ const result=await existingHqIdentity(new Request('https://api.shiftsometimber.co.uk/v1/hq/clinical',{headers:{Cookie:'hq=opaque','X-User-Role':'clinical'}}),{},async(req)=>{assert.equal(req.url,'https://api.shiftsometimber.co.uk/v1/hq/me');assert.equal(req.headers.get('cookie'),'hq=opaque');assert.equal(req.headers.has('X-User-Role'),false);assert.equal(req.redirect,'manual');return Response.json({user:{id:7,role:'owner'}});});assert.equal(result.user.role,'owner');
 });
 test('unauthenticated and failed HQ authentication fail closed',async()=>{
  for(const [status,want] of [[401,401],[403,503],[500,503]]){const r=await existingHqIdentity(new Request('https://api.shiftsometimber.co.uk/v1/hq/clinical'),{},async()=>new Response('',{status}));assert.equal(r.response.status,want);}

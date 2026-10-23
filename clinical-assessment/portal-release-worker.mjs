@@ -8,7 +8,7 @@ export async function existingHqIdentity(request,env,fetchImpl=env.HQ_AUTH?.fetc
  if(!fetchImpl)throw Error('HQ authentication binding unavailable');
  const forwarded=new Headers();for(const name of ['cookie','authorization'])if(request.headers.has(name))forwarded.set(name,request.headers.get(name));
  forwarded.set('Origin',origin);
- const response=await fetchImpl('https://api.shiftsometimber.co.uk/v1/hq/me',{headers:forwarded,redirect:'error',cache:'no-store'});
+ const response=await fetchImpl(new Request('https://api.shiftsometimber.co.uk/v1/hq/me',{headers:forwarded,redirect:'manual'}));
  if(!response.ok)return {response:new Response(JSON.stringify({error:response.status===401?'hq_sign_in_required':'hq_authentication_unavailable'}),{status:response.status===401?401:503,headers:{...headers,'Content-Type':'application/json','Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Vary':'Origin'}})};
  return response.json();
 }
