@@ -1018,6 +1018,66 @@
     },
     "productionVerified": false,
     "maintenanceSource": "218031af93c78086b3bd0fdce2f82bb380ad416f"
+  },
+  "wholeEstateTransportFollowup": {
+    "kind": "EXACT_WHOLE_ESTATE_TRANSIENT_FETCH_RETRY_20261023",
+    "base": "ff830641334949abae213a5124faa07ef7c04bbc",
+    "payload": "101d9e9b4c27b4758b882fd9ccc490509677154d",
+    "paths": [
+      "gate1-whole-estate-production-sweep.mjs",
+      "release/root-share-preview-scope.mjs",
+      "tests/whole-estate-route-sweep.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/main-release-readiness-scope-20261021.mjs",
+      "tests/main-release-readiness-scope-20261021.test.mjs"
+    ],
+    "evidence": {
+      "hostedRun": 39875257137,
+      "hostedJob": 120159197856,
+      "checked": 3920,
+      "htmlPages": 3589,
+      "truncated": false,
+      "limit": 20000,
+      "concurrency": 12,
+      "requestTimeoutMs": 30000,
+      "networkRetryLimit": 1,
+      "networkRetryDelayMs": 250,
+      "retriedRoutes": 0,
+      "transientFetchFailures": 18,
+      "failureClass": "TypeError:fetch failed"
+    },
+    "repair": {
+      "networkRetryLimit": 1,
+      "networkRetryDelayMs": 250,
+      "exactFetchFailureRetryAdded": true,
+      "timeoutAndAbortRetryRetained": true,
+      "nonRetryableTlsFailureRejected": true,
+      "persistentNetworkFailureRejected": true,
+      "httpFailureRejectionRetained": true,
+      "routeFailureRejectionRetained": true,
+      "blankPageRejectionRetained": true,
+      "discoveryExhaustionRequired": true,
+      "regressionTestAdded": true,
+      "sourceTestSelectionChanged": false,
+      "sourceAssertionsRemoved": 0,
+      "productionRuntimeChanged": false,
+      "memberExperienceChanged": false,
+      "homepageBodyChanged": false,
+      "clinicalSafetyChanged": false,
+      "privacyOrConsentChanged": false,
+      "memberRecordsChanged": false,
+      "stockChanged": false,
+      "commercialSettingsChanged": false
+    },
+    "authority": {
+      "myTimberDeploymentApproved": true,
+      "publicHomepageChangeApproved": false,
+      "clinicalActivationApproved": false,
+      "unrelatedChangesApproved": false
+    },
+    "productionVerified": false,
+    "maintenanceSource": "bd1d7ec5240c718d0d22b4ba9eac897e035b6849"
   }
 }
 
