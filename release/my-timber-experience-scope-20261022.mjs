@@ -6,7 +6,7 @@ import {pathToFileURL} from 'node:url';
 // Admit only the owner-approved member/PWA payload.  The current source is
 // proved first; existing release scopes then receive its exact predecessor.
 export const EXPERIENCE_BASE='b6270ef6e45698cf9ef500326a5c7e47c45f2e49';
-export const EXPERIENCE_SOURCE='79e66b215c0d5b2ee899c1121f24f168e82510ac';
+export const EXPERIENCE_SOURCE='4945fef66201f1281f37eb6d3377dff31ce31eac';
 export const EXPERIENCE_MANIFEST='release/approved-runtime-composition.json';
 export const EXPERIENCE_KEY='myTimberExperience20261022';
 export const EXPERIENCE_PINS=Object.freeze({
@@ -29,7 +29,7 @@ export const EXPERIENCE_PINS=Object.freeze({
  'member-design.mjs':'9dd1b834ce5622cb1d51e64bad45597fdd194b59',
  'member-experience/app-experience.mjs':'0570989068bd1d88a92cc01d225702cfa07545b7',
  'member-experience/chrome.mjs':'c34c7bc4ce288372f09e34227ecf06e4df63016e',
- 'member-experience/device-health-client.mjs':'f85c588b95e9a9d601bfce4cf253c8d03f1dc267',
+ 'member-experience/device-health-client.mjs':'8a0ba9327709061db702f03d9a304b79c6f22f55',
  'member-experience/device-health-sync-client.mjs':'1542796258f193342d2c77522302c46049a0a58e',
  'member-experience/device-health.mjs':'1e86317eaa9f4b0b60581bdb42f53a14b6d49905',
  'member-experience/entry.mjs':'3be8a5aee8cd5dad40bb838e5bf2343cc1b171b1',
