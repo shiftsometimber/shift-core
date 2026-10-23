@@ -87,7 +87,7 @@ test('every prior release/runtime/navigation byte restores and altered hooks rej
  assert.equal(originalExperienceAppScope(content(head,appScopePath)),content(EXPERIENCE_BASE,appScopePath));
  assert.throws(()=>originalExperienceMemberDesignScope(content(head,memberDesignPath).replace("export function validateMemberDesignSource(sourceRead=null){","export function validateMemberDesignSource(sourceRead=null){export function validateMemberDesignSource(sourceRead=null){")),/One exact/);
  assert.throws(()=>originalExperienceAppScope(content(head,appScopePath).replace(" validateMemberDesignSource(myTimber.read);"," validateMemberDesignSource(myTimber.read); validateMemberDesignSource(myTimber.read);")),/One exact/);
- const approvedPathsHook=" const approvedPaths=new Set([...APP_PATHS,...EXPERIENCE_CURRENT_MAIN_PATHS]);";
+ const approvedPathsHook=" const approvedPaths=new Set([...APP_PATHS,...EXPERIENCE_CURRENT_MAIN_PATHS]);\n";
  const approvedPathsGuard=" assert(changed.every(p=>approvedPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!approvedPaths.has(p)).join(','));";
  assert.throws(()=>originalExperienceAppScope(content(head,appScopePath).replace(approvedPathsHook,approvedPathsHook+approvedPathsHook)),/One exact/);
  assert.throws(()=>originalExperienceAppScope(content(head,appScopePath).replace(approvedPathsGuard,'')),/One exact/);
