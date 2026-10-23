@@ -21,3 +21,8 @@ test('generated portal assets are exactly the validated runtime sources and rout
  const r=await worker.fetch(new Request('https://hq.shiftsometimber.co.uk/clinical-assets/client.mjs'),{});assert.equal(await r.text(),readFileSync(new URL('../clinical-assessment/hq-clinical-client.mjs',import.meta.url),'utf8'));
  const config=JSON.parse(readFileSync(new URL('../clinical-assessment/wrangler.portal-release.json',import.meta.url)));assert.equal(config.name,'shift-hq-clinical-portal');assert.equal(config.workers_dev,false);assert.equal(config.preview_urls,false);assert(config.routes.every(r=>r.pattern.includes('/clinical-')||r.pattern.includes('/v1/hq/clinical')));assert(Object.values(config.vars).every(v=>v==='false'));
 });
+test('fictional demo has no network permission and never opens live clinical flags',async()=>{
+ const r=await worker.fetch(new Request('https://hq.shiftsometimber.co.uk/clinical-portal/demo'),{});assert.equal(r.status,200);assert.match(r.headers.get('Content-Security-Policy'),/connect-src 'none'/);const html=await r.text();assert.match(html,/demo-client.mjs/);assert.match(html,/fictional information only/);
+ const script=await worker.fetch(new Request('https://hq.shiftsometimber.co.uk/clinical-assets/demo-client.mjs'),{});assert.match(await script.text(),/^import \{demoFetch as fetch\}/);
+ const root=await worker.fetch(new Request('https://hq.shiftsometimber.co.uk/clinical-portal'),{});assert.doesNotMatch(await root.text(),/demo-client.mjs/);
+});
