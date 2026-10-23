@@ -47,7 +47,11 @@ async function fetchWithRedirectAudit(url){
   }
   return{r:null,chain,error:'too_many_redirects'};
 }
-function retryableNetworkFailure(error){return error?.name==='TimeoutError'||error?.name==='AbortError'}
+const NON_RETRYABLE_TLS_CODES=new Set(['CERT_HAS_EXPIRED','DEPTH_ZERO_SELF_SIGNED_CERT','ERR_TLS_CERT_ALTNAME_INVALID','UNABLE_TO_VERIFY_LEAF_SIGNATURE','SELF_SIGNED_CERT_IN_CHAIN']);
+function retryableNetworkFailure(error){
+  if(error?.name==='TimeoutError'||error?.name==='AbortError')return true;
+  return error?.name==='TypeError'&&error?.message==='fetch failed'&&!NON_RETRYABLE_TLS_CODES.has(error?.cause?.code);
+}
 async function fetchWithBoundedNetworkRetry(url){
   for(let attempt=1;attempt<=NETWORK_RETRY_LIMIT+1;attempt++){
     try{return{...await fetchWithRedirectAudit(url),attempts:attempt}}
@@ -59,7 +63,7 @@ async function fetchWithBoundedNetworkRetry(url){
 }
 
 async function inspect(url,parent){
-  let result;try{result=await fetchWithBoundedNetworkRetry(url)}catch(e){const attempts=e?.sweepAttempts||1;return{url,parent,record:{error:true,attempts},failures:[{url,discoveredFrom:parent,error:`network:${e?.name||'Error'}:${e?.message||e}`,attempts}],children:[],external:[]}}
+  let result;try{result=await fetchWithBoundedNetworkRetry(url)}catch(e){const attempts=e?.sweepAttempts||1;return{url,parent,record:{error:true,attempts},failures:[{url,discoveredFrom:parent,error:`network:${e?.name||'Error'}:${e?.message||e}`,code:e?.cause?.code,attempts}],children:[],external:[]}}
   const {r,chain,error,attempts}=result;
   if(error||!r)return{url,parent,record:{error:true},failures:[{url,discoveredFrom:parent,error:error||'no_response',chain}],children:[],external:[]};
   const final=chain.at(-1)?.url||url,status=r.status,type=(r.headers.get('content-type')||'').toLowerCase(),localFailures=[];

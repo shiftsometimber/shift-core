@@ -49,6 +49,27 @@ test('whole-estate sweep retries one transient timeout and still fails persisten
   });
 });
 
+test('whole-estate sweep retries one transient fetch failure and still fails persistent faults closed',async()=>{
+  let transientRequests=0;
+  await fixture((request,response)=>{
+    if(request.url==='/transient-fetch'&&++transientRequests===1){request.socket.destroy();return;}
+    response.writeHead(200,{'content-type':'text/html'});
+    response.end(page(request.url==='/'?'Useful route directory for transport retry verification. <a href="/transient-fetch">Transient fetch route</a>':'Complete route content after one transient fetch failure.'));
+  },async base=>{
+    const {stdout}=await run(process.execPath,['gate1-whole-estate-production-sweep.mjs'],{cwd:process.cwd(),env:{...process.env,SHIFT_SITE_BASE:base,SHIFT_SWEEP_MAX:'10',SHIFT_SWEEP_CONCURRENCY:'1',SHIFT_SWEEP_TIMEOUT_MS:'2000'},maxBuffer:4e6});
+    const result=report(stdout);assert.equal(result.failures.length,0);assert.equal(result.retriedRoutes,1);assert.equal(transientRequests,2);
+  });
+  let persistentRequests=0;
+  await fixture((request,response)=>{
+    if(request.url==='/persistent-fetch'){persistentRequests++;request.socket.destroy();return;}
+    response.writeHead(200,{'content-type':'text/html'});response.end(page('<a href="/persistent-fetch">Persistent fetch fault</a>'));
+  },async base=>{
+    await assert.rejects(run(process.execPath,['gate1-whole-estate-production-sweep.mjs'],{cwd:process.cwd(),env:{...process.env,SHIFT_SITE_BASE:base,SHIFT_SWEEP_MAX:'10',SHIFT_SWEEP_CONCURRENCY:'1',SHIFT_SWEEP_TIMEOUT_MS:'2000'},maxBuffer:4e6}),error=>{
+      const result=report(error.stdout);assert(result.failures.some(item=>item.url===base+'/persistent-fetch'&&item.error==='network:TypeError:fetch failed'&&item.attempts===2));assert.equal(persistentRequests,2);return true;
+    });
+  });
+});
+
 test('whole-estate sweep decodes HTML URL entities once and does not amplify query links',async()=>{
   const requested=[];
   await fixture((request,response)=>{
