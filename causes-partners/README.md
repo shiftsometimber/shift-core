@@ -21,3 +21,7 @@ Activation requires separate owner instruction. Verify each organisation’s cur
 - Timber Shed: proposed pinned Find support panel and awareness area, demonstrated in the private preview only.
 - My Timber: proposed More → Find support panel and family/friends route, demonstrated in the private preview only.
 - Relevant Health pages: future contextual support links, pending activation; no existing help links removed.
+
+## Public activation — 23 October 2026
+
+Matt approved publishing the reset design and then instructed “Get it live please”. The public route is `/our-causes-partners`, built from the approved causes surface with the canonical header/footer. Internal preview controls, outreach statuses and private integration mock-ups are excluded. The menu/footer label is now an active link. Timber Shed and My Timber integrations stay private. No partnership is claimed; no clinical referrals, member-data sharing, fundraising or transactions are enabled.
