@@ -40,7 +40,9 @@ while(queue.length&&visited.size<MAX_PAGES){
   if(error||!r){failures.push({url,discoveredFrom:parent,error:error||'no_response',chain});visited.set(url,{error:true});continue}
   const final=chain.at(-1)?.url||url,status=r.status,type=(r.headers.get('content-type')||'').toLowerCase();
   const record={status,type,final,chain,discoveredFrom:parent};visited.set(url,record);
-  const finalPath=new URL(final).pathname;\n  const expectedProtectedDenial=status===401&&finalPath==='/v1/my-timber-support/calendar.ics'&&parent===START+'/member/support';\n  if(status>=400){if(expectedProtectedDenial)continue;failures.push({url,discoveredFrom:parent,status,final});continue}
+  const finalPath=new URL(final).pathname;
+  const expectedProtectedDenial=status===401&&finalPath==='/v1/my-timber-support/calendar.ics'&&parent===START+'/member/support';
+  if(status>=400){if(expectedProtectedDenial)continue;failures.push({url,discoveredFrom:parent,status,final});continue}
   let body='';if(!assetExt.test(final)){try{body=await r.text()}catch{}}
   if(type.includes('text/html')){
     const visible=body.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
