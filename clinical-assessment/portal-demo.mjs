@@ -20,18 +20,21 @@ export async function demoFetch(input,options={}){
  if(parts[1]==='audit')return json({events:c.events.map(e=>({id:e.id,created_at:e.createdAt,actor_user_id:900001,action:e.kind,details:{actorKind:'fictional_demo'}})).reverse(),next:null});
  if(parts[1]==='action'){
   let b;try{b=JSON.parse(options.body);}catch{return json({error:'invalid_demo_action'},400);}
-  if(b.version!==c.version)return json({error:'case_changed_refresh_demo'},409);
+  let signatureReceipt;if(b.version!==c.version)return json({error:'case_changed_refresh_demo'},409);
   if(b.action==='start_review')c.status='in_review';
   else if(b.action==='review_evidence'){const e=evidence(c).find(e=>e.id===b.evidenceId);if(!e||e.kind==='photo_id')return json({error:'use_independent_identity_check'},422);if(b.outcome!=='approve'&&!b.message?.trim())return json({error:'reason_required'},422);if(b.outcome!=='approve')c.status='needs_information';event(c,'evidence_reviewed',b.message,{evidenceId:e.id,evidenceDigest:e.digest,outcome:b.outcome});return json({demo:true});}
   else if(b.action==='request_information')c.status='needs_information';
   else if(b.action==='decision'){
+   const s=b.signature;if(!s?.confirmed||!['draw','typed'].includes(s.mode)||typeof s.mark!=='string'||(s.mode==='typed'?!s.mark.trim()||s.mark.length>100:!/^data:image\/png;base64,[A-Za-z0-9+/=]+$/.test(s.mark)||s.mark.length<100||s.mark.length>100000))return json({error:'demo_signature_and_confirmation_required'},422);
+   const assessment=card(c).assessment;const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify({version:assessment.version,answers:assessment.answers,evidence:assessment.evidence.map(e=>({id:e.id,digest:e.digest}))})))),b=>b.toString(16).padStart(2,'0')).join('');
+   signatureReceipt={...s,signer:'Demo clinician',registration:'DEMO-ONLY',signedAt:at(),assessmentVersion:c.assessmentVersion,assessmentDigest:digest,affirmation:'I have reviewed this assessment and confirm this decision.'};
    if(b.outcome==='proceed'){
     if(!b.identityVerified||!b.independentMeasurementsVerified||!b.verification?.trim())return json({error:'independent_checks_required_even_in_demo'},422);
     const approved=evidence(c).filter(e=>e.kind!=='photo_id').every(e=>c.events.filter(v=>v.evidenceId===e.id&&v.evidenceDigest===e.digest).at(-1)?.outcome==='approve');if(!approved)return json({error:'approve_each_medical_image_first'},422);
     c.status='ready_for_prescription';
    }else c.status=b.outcome==='decline'?'declined':'consultation_required';
   }else if(!['note','review_updates'].includes(b.action))return json({error:'unknown_demo_action'},422);
-  event(c,b.action==='review_updates'?'app_updates_reviewed':b.action,b.message,{clinical:{note:b.note,rationale:b.rationale,...b.action==='review_updates'?{updates:updates(c)}:{}}});return json({demo:true,prescriptionIssued:false,pharmacyReleased:false});
+  event(c,b.action==='review_updates'?'app_updates_reviewed':b.action,b.message,{clinical:{note:b.note,rationale:b.rationale,...signatureReceipt?{signature:signatureReceipt}:{},...b.action==='review_updates'?{updates:updates(c)}:{}}});return json({demo:true,prescriptionIssued:false,pharmacyReleased:false});
  }
  if(parts.length===1)return json(card(c));return json({error:'demo_route_not_found'},404);
 }
