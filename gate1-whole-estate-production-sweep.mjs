@@ -20,7 +20,7 @@ function extract(html,base){
 async function fetchWithRedirectAudit(url){
   let current=url;const chain=[];
   for(let i=0;i<8;i++){
-    const r=await fetch(current,{redirect:'manual',headers:{'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/json;q=0.8,*/*;q=0.5'}});
+    const r=await fetch(current,{redirect:'manual',signal:AbortSignal.timeout(20000),headers:{'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/json;q=0.8,*/*;q=0.5'}});
     chain.push({url:current,status:r.status});
     if([301,302,303,307,308].includes(r.status)){
       const location=r.headers.get('location');if(!location)return{r,chain,error:'redirect_without_location'};
