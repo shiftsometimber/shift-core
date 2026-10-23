@@ -41,16 +41,18 @@ try{
   try{
    await page.goto('https://shift.test/member/timber-shed',{waitUntil:'networkidle0'});
    await page.click('[data-shed-view="mine"]');
-   await page.waitForSelector('#shedMyPostItems select');
-   await page.click('#shedMyPostItems select + button');
+   await page.waitForNetworkIdle({idleTime:200});
+   await page.waitForSelector('#shedMyPostItems select',{visible:true});
+   await page.locator('#shedMyPostItems select + button').click();
    assert.equal(writes.length,0,'An appeal must require an explicit reason');
    await page.select('#shedMyPostItems select','missed-context');
-   await page.click('#shedMyPostItems select + button');
+   await page.locator('#shedMyPostItems select + button').click();
    await page.waitForFunction(()=>document.getElementById('shedMyPostItems').textContent.includes('waiting for a different moderator'));
    assert.deepEqual(writes[0],{resource:'appeal',input:{postId:post.id,reason:'missed-context'}});
    assert.equal(await page.$('#shedMyPostItems img'),null,'Post titles must remain literal text');
    await page.click('[data-shed-view="moderation"]');
-   await page.waitForSelector('#shedAppeals .shed-mod-item');
+   await page.waitForNetworkIdle({idleTime:200});
+   await page.waitForSelector('#shedAppeals .shed-mod-item',{visible:true});
    const controls=await page.$$('#shedAppeals button');await controls[1].click();
    await page.waitForFunction(()=>document.getElementById('shedMyPostItems').textContent.includes('Awaiting moderator review'));
    assert.deepEqual(writes[1],{resource:'appeal/review',input:{appealId:'synthetic-appeal-id',outcome:'reconsider'}});
