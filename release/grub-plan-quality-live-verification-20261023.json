@@ -1,0 +1,121 @@
+{
+  "at": "2026-10-23T19:10:45.809Z",
+  "sourceCommit": "a03d45bc51408137b54666a63b809c7e98f836e9",
+  "pass": true,
+  "count": 27,
+  "checks": [
+    {
+      "name": "https://shiftsometimber.co.uk Grub asset version and syntax",
+      "passed": true
+    },
+    {
+      "name": "Served renderer flags original synthetic low day and unknown fibre",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk/member-my-journey-v2.js retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk/member-my-journey-checkin-v1.js retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk/assets/my-timber-layout.mjs retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk/assets/ask-timber-phase8.js retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk/assets/member-experience/treatment.mjs retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk/my-timber-v11.js retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk Grub document and Programme mount",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk Grub asset version and syntax",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk/member-my-journey-v2.js retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk/member-my-journey-checkin-v1.js retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk/assets/my-timber-layout.mjs retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk/assets/ask-timber-phase8.js retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk/assets/member-experience/treatment.mjs retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk/my-timber-v11.js retained repair",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk Grub document and Programme mount",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk/v1/grub/workspace anonymous data denied",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk/v1/grub/workspace/ anonymous data denied",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk/v1/grub/workspace anonymous data denied",
+      "passed": true
+    },
+    {
+      "name": "https://www.shiftsometimber.co.uk/v1/grub/workspace/ anonymous data denied",
+      "passed": true
+    },
+    {
+      "name": "https://api.shiftsometimber.co.uk/v1/grub/workspace anonymous data denied",
+      "passed": true
+    },
+    {
+      "name": "https://api.shiftsometimber.co.uk/v1/grub/workspace/ anonymous data denied",
+      "passed": true
+    },
+    {
+      "name": "https://shiftsometimber.co.uk foreign-origin write denied",
+      "passed": true
+    },
+    {
+      "name": "https://api.shiftsometimber.co.uk foreign-origin write denied",
+      "passed": true
+    },
+    {
+      "name": "Existing www canonical redirect preserved",
+      "passed": true
+    },
+    {
+      "name": "Official-origin CORS retains authentication denial",
+      "passed": true
+    }
+  ],
+  "verificationKind": "public HTTP and served-renderer execution with fictional input",
+  "authenticatedBrowserAcceptance": false,
+  "browserBlocker": "Current browser runtime cannot safely resume native credential state",
+  "productionMemberWrites": 0,
+  "canonicalRedirectNote": "www POST is checked without following the existing 301, which would otherwise become a GET and return401."
+}

@@ -1,11 +1,8 @@
 {
   "date": "2026-10-23",
-  "state": "prepared_tested_not_deployed",
+  "state": "deployed_http_verified_authenticated_browser_acceptance_pending",
   "sourceHead": "a03d45bc51408137b54666a63b809c7e98f836e9",
-  "liveSourceUnchanged": "b654136e2e2e1ac4dc546119a52c9bc008d32982",
   "request": "Progress what remains after the joined-up member repairs",
-  "productionWrites": 0,
-  "externalCommunications": 0,
   "implemented": [
     "Automatic week generation and swaps use saved food exclusions, maximum cooking time and dietary-review requirements.",
     "Three-meal automatic days with unknown energy or <=1200 kcal/person are held. Up to 64 eligible combinations are tried per day, retaining member restrictions, people eating, Nay feedback, current recipe authority and bread-repeat limits; soft meal-family rotation can give way to another eligible combination.",
@@ -68,13 +65,32 @@
     "sourceWhitespaceCheck": true,
     "assetReceipt": "grub-plan-quality-asset-check-20261023.json",
     "retiredBlocker": "All three native-.git-directory preservation checks pass in an unchanged clean native checkout. No preservation checks weakened.",
-    "legacySupplementary": "The separate original supplementary audit's two after-treatment static expectation mismatches and skipped real-model pilot were not rerun or closed by this member-suite result."
+    "legacySupplementary": "The separate original supplementary audit's two after-treatment static expectation mismatches and skipped real-model pilot were not rerun or closed by this member-suite result.",
+    "publicLive": {
+      "checks": 27,
+      "passed": 27,
+      "receipt": "grub-plan-quality-live-verification-20261023.json",
+      "authenticatedBrowserAcceptance": false
+    },
+    "productionCatalogue": {
+      "plans": 12,
+      "styles": 4,
+      "durations": [
+        3,
+        5,
+        7
+      ],
+      "catalogueRecipes": 2692,
+      "readOnlyQueries": 6,
+      "customerRecordsRead": false,
+      "databaseMutations": 0,
+      "receipt": "grub-plan-quality-live-catalogue-20261023.json"
+    }
   },
   "release": {
-    "approved": false,
-    "deployed": false,
+    "approved": true,
+    "deployed": true,
     "approvalRequested": false,
-    "reasonNotRequested": "Final rendered browser acceptance is currently blocked; complete independent preparation first.",
     "bundle": {
       "bytes": 23809949,
       "gzipBytes": 2186464,
@@ -84,10 +100,19 @@
     "plan": "grub-plan-quality-release-plan-20261023.json",
     "currentlyOwnedRoutesObserved": 45,
     "proposedAdditionalRoutes": 3,
-    "newRoutesCreated": 0,
+    "newRoutesCreated": 3,
     "existingBindingsChanged": false,
     "coreRedeployed": false,
-    "rollback": "After an explicitly approved future activation, restore the prior Programme Worker and only the three additional workspace route owners captured by that activation; never restore or alter member data."
+    "rollback": "Restore work/build/programme-overlay/grub-quality-previous-worker.mjs (SHA256 1caed51f7316061fcb6eb32bf381fc872b9eee7efeb0388337e44265fc0ffcd4) and only the three added routes to their recorded prior owners. Preserve all other routes and member data.",
+    "approvalReceived": {
+      "instruction": "Can we get it live please",
+      "scope": "Prepared Grub update at a03d45bc51408137b54666a63b809c7e98f836e9",
+      "receivedBeforeDeployment": true
+    },
+    "deployedAt": "2026-10-23T19:08:27.627Z",
+    "deploymentReceipt": "grub-plan-quality-deployment-20261023.json",
+    "routeRollbackReceipt": "grub-plan-quality-route-rollback-20261023.json",
+    "currentlyOwnedRoutesAfterRelease": 48
   },
   "remaining": [
     {
@@ -95,7 +120,7 @@
       "owner": "This workstream",
       "state": "blocked_by_current_browser_runtime",
       "evidence": "Export download wait timed out. Subsequent tab observation twice reported that native credential state could not be safely resumed, including after reset. No completed export file was observed. This does not prove endpoint failure.",
-      "next": "Restore a working browser test session, inspect the new screen and actual files using the dedicated Test account; then request exact-version release approval."
+      "next": "Restore a working browser test session; complete signed-in live screen/save/retention and actual export/PDF-content acceptance using the dedicated Test account. The authorised release is already deployed; do not replay it."
     },
     {
       "item": "Nutrition adequacy and balance",
@@ -133,5 +158,9 @@
       "state": "not_claimed_complete",
       "next": "Preserve the original upload, GP/delivery-address, password/email, real-model, support-delivery and irreversible-erasure boundaries. Sending, resetting, booking, spending or erasing require their applicable explicit approvals."
     }
-  ]
+  ],
+  "previousLiveSource": "b654136e2e2e1ac4dc546119a52c9bc008d32982",
+  "productionInfrastructureWrites": 4,
+  "productionMemberWrites": 0,
+  "personDirectedCommunications": 0
 }

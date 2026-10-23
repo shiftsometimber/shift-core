@@ -1,0 +1,23 @@
+{
+  "pass": true,
+  "at": "2026-10-23T19:08:27.627Z",
+  "sourceCommit": "a03d45bc51408137b54666a63b809c7e98f836e9",
+  "sourceReceiptCommit": "912919412fe9321ad9f6e1fc7705ddf9355366b3",
+  "bundleSha256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
+  "bundleBytes": 23809949,
+  "worker": {
+    "script": "shift-programme-member-20261023",
+    "id": "shift-programme-member-20261023",
+    "etag": "64497d634f7831d11579247b8b8c3e22d033344f53d46930bdb82afdaf407cd3",
+    "modified_on": "2026-10-23T19:08:14.469735Z",
+    "at": "2026-10-23T19:08:16.331Z",
+    "bundleSha256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
+    "sourceCommit": "a03d45bc51408137b54666a63b809c7e98f836e9"
+  },
+  "additionalRoutes": 3,
+  "coreSourceUnchanged": true,
+  "coreSettingsUnchanged": true,
+  "programmeBindingsUnchanged": true,
+  "programmeSettingsUnchanged": true,
+  "unrelatedRoutesUnchanged": true
+}

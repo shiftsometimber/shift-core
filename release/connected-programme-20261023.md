@@ -94,10 +94,20 @@ Current detailed evidence and the remaining action states: grub-plan-quality-acc
 
 | Open outcome | State and owner | Next observable acceptance |
 | --- | --- | --- |
-| Grub safeguard live | Prepared/tested; this workstream | Restore browser acceptance, obtain approval for the exact reviewed version, activate only its bounded adapter/routes, then verify authenticated saves and retention. |
+| Grub safeguard live | Deployed and27HTTP/renderer checks passed; this workstream | Complete the pending signed-in visual/save/retention and file-content checks when the browser runtime is available. Do not redeploy the same version. |
 | Nutrition adequacy | No specialist sign-off; appropriate nutrition/clinical reviewer | Review portions, day/week balance, unknown nutrients and the precise partial-plan offer; no adequate-above1200 claim. |
 | Native health and notifications | Existing Engineering–QA/device-tester workstream | Actual iPhone/Android weight/BP permission/import/revoke/isolation and locked-device receipt/tap/off evidence; preserve App Review submission. |
 | Elapsed reviews | Fixture proof only; Programme QA | Genuine elapsed windows using retained Test baseline dates; do not backdate production or claim a simulation is elapsed proof. |
 | Second production account | Not exercised; account QA | Normal secure sign-in with a second authorised synthetic identity and real cross-account isolation checks. |
 | Purchase/clinical/fulfilment | Not exercised; commerce/clinical operators | Controlled partner environment and explicitly approved consequential actions/operator handoff through repeat/refund. |
 | Other original boundaries | Retain original audit; member QA | Complete actual files/uploads and GP/address checks when access permits; obtain applicable approval for messages, reset/email delivery and destructive final actions. |
+
+## Grub safeguard — authorised release and live verification, 23 October 2026, 20:08 BST
+
+Matt explicitly requested that the prepared update go live. Source a03d45bc51408137b54666a63b809c7e98f836e9, exact bundle SHA-256d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e, is now deployed through the existing Programme Worker. Three narrow Grub workspace route patterns were added, taking the observed owned route count from45to48. Core source/settings, Programme bindings/settings and unrelated routes were verified unchanged. Deployment etag64497d634f7831d11579247b8b8c3e22d033344f53d46930bdb82afdaf407cd3. No member data was changed by release or verification.
+
+All27public HTTP/served-renderer checks pass: exact Grub asset, the original synthetic861.2kcal review warning, unknown fibre, retained prior member repairs, documents/Programme mounting, anonymous denials, foreign-origin write denials and official-origin authentication/CORS. The existing www301redirect is preserved and tested explicitly; following it changes a POST to a GET, so its401response is not evidence of a failed origin guard. The production2692-recipe catalogue also passed six read-only publication queries and12pure plan-generation cases covering all four styles and3/5/7days, without reading customer records or writing member data.
+
+The browser runtime still reports that native credential state cannot be safely resumed. Consequently these receipts do not claim an authenticated browser save/read-back, visual sign-off or completed export/PDF-content check for this release. Prior authenticated member receipts remain historical; source553-test and360-plan evidence remains valid. Specialist nutrition adequacy, actual-device delivery/import and controlled clinical/transactional acceptance are still separate and open.
+
+Current detailed status: grub-plan-quality-acceptance-20261023.json. Deployment, live HTTP, production-catalogue and three-route rollback receipts are adjacent. The current generic joined-worker.mjs now matches the deployed Grub bundle; the exact prior runtime is preserved as work/build/programme-overlay/grub-quality-previous-worker.mjs, SHA-2561caed51f7316061fcb6eb32bf381fc872b9eee7efeb0388337e44265fc0ffcd4. To undo only this release, restore that Worker and the three recorded route owners; never restore member data. Existing one-shot deployment intents are complete and must not be replayed.

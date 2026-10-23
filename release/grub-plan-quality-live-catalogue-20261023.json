@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-23T19:11:54.105Z",
+  "sourceCommit": "a03d45bc51408137b54666a63b809c7e98f836e9",
+  "pass": true,
+  "catalogueRecipes": 2692,
+  "readOnlyCatalogueQueries": 6,
+  "plans": [
+    {
+      "style": "protein",
+      "days": 3,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "protein",
+      "days": 5,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "protein",
+      "days": 7,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "budget",
+      "days": 3,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "budget",
+      "days": 5,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "budget",
+      "days": 7,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "fast",
+      "days": 3,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "fast",
+      "days": 5,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "fast",
+      "days": 7,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "vegetarian",
+      "days": 3,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "vegetarian",
+      "days": 5,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    },
+    {
+      "style": "vegetarian",
+      "days": 7,
+      "returned": true,
+      "allDaysAboveReviewTrigger": true
+    }
+  ],
+  "customerRecordsRead": false,
+  "memberWrites": 0,
+  "databaseMutations": 0,
+  "authenticatedAccountAcceptance": false,
+  "nutritionAdequacySignOff": false
+}
