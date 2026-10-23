@@ -85,6 +85,19 @@
       "customerRecordsRead": false,
       "databaseMutations": 0,
       "receipt": "grub-plan-quality-live-catalogue-20261023.json"
+    },
+    "nutritionTechnicalAudit": {
+      "at": "2026-10-23T19:36:34.520Z",
+      "recipes": 2692,
+      "plans": 360,
+      "days": 1800,
+      "recipesWithUnknownFibre": 1712,
+      "daysWithUnknownFibre": 1711,
+      "exampleRecipes": 78,
+      "receipt": "grub-plan-nutrition-review-20261023.json",
+      "readableReview": "Grub-Plan-Nutrition-Review-20261023.html",
+      "independentHumanReview": false,
+      "priorRecipePublicationWaiverPreserved": true
     }
   },
   "release": {
@@ -120,13 +133,15 @@
       "owner": "This workstream",
       "state": "blocked_by_current_browser_runtime",
       "evidence": "Export download wait timed out. Subsequent tab observation twice reported that native credential state could not be safely resumed, including after reset. No completed export file was observed. This does not prove endpoint failure.",
-      "next": "Restore a working browser test session; complete signed-in live screen/save/retention and actual export/PDF-content acceptance using the dedicated Test account. The authorised release is already deployed; do not replay it."
+      "next": "Restore a working browser test session; complete signed-in live screen/save/retention and actual export/PDF-content acceptance using the dedicated Test account. The authorised release is already deployed; do not replay it.",
+      "latestRecheck": "23October2026follow-through: browser documentation call again failed before any page observation with native credential state cannot be safely resumed. No member process or export was replayed."
     },
     {
       "item": "Nutrition adequacy and balance",
       "owner": "Appropriate nutrition/clinical reviewer; no named reviewer recovered",
-      "state": "not_signed_off",
-      "next": "Review recipe portions, day/week balance, fibre/other unknowns and the intended partial-plan offer. Engineering energy gates are not sign-off."
+      "state": "technical_evidence_prepared_independent_reviewer_unassigned",
+      "next": "Nominate an appropriate independent nutrition reviewer for the current generated-day/week proposition and exact evidence. Retain the previous recipe-publication waiver; it is not a new release gate.",
+      "evidence": "Current recipe-library review version2 confirms the October17owner waiver. Current technical evidence includes360plans and78exact example recipes;1712/2692recipes and1711/1800days have unknown fibre. No independent review or nutrient adequacy attestation is invented."
     },
     {
       "item": "Native iPhone/Android and notification delivery",
