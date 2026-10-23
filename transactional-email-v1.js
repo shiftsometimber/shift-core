@@ -23,6 +23,8 @@ const ROUTING=Object.freeze({
   clinical_status:[SHIFT_MAILBOXES.clinical,SHIFT_MAILBOXES.hello],
   interest_notify:[SHIFT_MAILBOXES.support,SHIFT_MAILBOXES.hello],
   support:[SHIFT_MAILBOXES.support],
+  orders:[SHIFT_MAILBOXES.orders],
+  clinical:[SHIFT_MAILBOXES.clinical],
   complaint:[SHIFT_MAILBOXES.complaints],
   privacy:[SHIFT_MAILBOXES.privacy],
   partner:[SHIFT_MAILBOXES.partners],

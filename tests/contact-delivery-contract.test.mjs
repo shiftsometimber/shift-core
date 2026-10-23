@@ -56,3 +56,21 @@ test('Turnstile rejection prevents delivery',{concurrency:false},async t=>{
  const table=a.DB.sqlite.prepare("SELECT COUNT(*) n FROM sqlite_master WHERE name='auth_delivery_events'").get();
  assert.equal(table.n,0);
 });
+
+test('existing contact selector categories use existing role mailboxes, not an invented recipient',{concurrency:false},async t=>{
+ const cases=[
+  ['My account','accounts@shiftsometimber.co.uk'],
+  ['My order','orders@shiftsometimber.co.uk'],
+  ['The Shift Programme','support@shiftsometimber.co.uk'],
+  ['Technology','it@shiftsometimber.co.uk'],
+  ['Investment','finance@shiftsometimber.co.uk'],
+  ['Website or technical help','it@shiftsometimber.co.uk'],
+ ];
+ for(const [event,expected] of cases){
+  // New independent synthetic database/Turnstile/transport for each enquiry.
+  await t.test(event,{concurrency:false},async sub=>{
+   const a=setup(sub,{event}),r=await continuityInterestRoutes(a.request(),a.env);
+   assert.equal(r.status,201);assert.deepEqual(a.delivered.map(v=>v.to),[expected]);
+  });
+ }
+});
