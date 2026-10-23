@@ -1,0 +1,17 @@
+# HQ service communications and background reminders — 23 October 2026
+
+Owner request: “Can we do this? and emails from HQ backend?”
+
+New service emails and private My Timber updates have immutable drafts with exact recipient addresses, sender, reply-to, subject, full body, empty CC/BCC, optional complete calendar attachment and schedule. Up to 25 explicit addresses, separate email deliveries. Admins/owners draft; only a real signed-in HQ owner can approve the exact SHA-256 snapshot or cancel pending delivery. A changed message is a new draft. No marketing campaigns, automatic imports of segments, SMS, WhatsApp, mailbox access or email replies are provided. Reply chains cannot silently be omitted: the composer explicitly creates new emails only.
+
+Uses the existing Cloudflare Email binding, restricted to hq@shiftsometimber.co.uk, with hello@shiftsometimber.co.uk as reply-to. Real provider message IDs are required. “Provider accepted” is distinct from actual inbox delivery; “unknown” is never automatically retried. The previous legacy /v1/hq/outbox write/process routes are disabled, preserving read-only history. This prevents the prior provider-placeholder adapter from reporting simulated sends.
+
+Private notifications have an account-isolated inbox and a separate optional 90-day HQ-device consent. Pushes contain only a neutral title/body; private content requires normal authentication. No existing support/Fit opt-in is reused for HQ messages. The existing VAPID identity and shared service worker are reused without changing other notification preferences. Explicit logout/revocation, opt-out, account erasure requests, verified-address changes and device permission expiry suppress delivery. The 12-hour private-account session expiry is unchanged.
+
+Saved support reminders also offer separate 90-day background permission, with no automatic upgrade of existing subscriptions. Legacy device consent retains session-expiry suppression. Deletion, withdrawn support consent and completion remain effective. Calendar exports remain optional copies controlled by the recipient. HQ calendar attachments point to the private updates page.
+
+Only new dedicated tables and a nullable support-device background_until column are added to the existing D1. No accounts, email subscriptions, DNS changes or new paid providers are provisioned. Member export includes own service messages and device-consent dates, excluding device endpoints and keys; account-erasure requests remove device subscriptions and suppress pending account messages. Email/audit records follow the existing account-erasure review rather than being represented as fully erased.
+
+Release uses a new bounded Worker with CORE/HQ/SUPPORT service bindings and owned exact routes. Public homepage, stock, checkout, clinical settings, existing programme content and unrelated queues are unchanged. Route rollback and prior support deployment receipts are retained privately. No production test send, recipient/device enrolment or message approval is performed by deployment.
+
+Validation: node --test tests/hq-member-comms.test.mjs tests/support-followthrough.test.mjs tests/mental-health-pathway.test.mjs (42 tests, real SQLite and recording transports). Browser UI check uses a completely fictional offline fixture, no production bindings. Real owner-authenticated commissioning and inbox/physical-device receipt remain distinct live acceptance steps; do not claim these passed without evidence.

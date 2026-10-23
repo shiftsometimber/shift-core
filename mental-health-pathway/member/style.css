@@ -3,3 +3,5 @@
 #support-signin .button{margin:0 14px 12px 0}
 
 .support-logo-filter{position:absolute;width:0;height:0;pointer-events:none}.support-header-logo{display:block;position:relative;width:210px;max-width:45vw}.support-header-logo img{width:100%;max-width:none;filter:url(#sst-cream-logo)}.support-header-logo::after{content:"";position:absolute;pointer-events:none;left:5.7%;top:50%;width:17.95%;aspect-ratio:1;transform:translateY(-50%);clip-path:ellipse(44% 45% at 50% 50%);background:#050505 url("/fit-v3-images/sst-header-brand-mark-20261001.png") center/100% 100% no-repeat}
+
+.support-background{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.5;margin:16px 0}.support-background input{width:18px;height:18px;flex:0 0 18px;margin-top:3px}

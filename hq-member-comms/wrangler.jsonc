@@ -1,0 +1,6 @@
+{
+ "name":"shift-hq-member-comms-20261023","main":"worker.mjs","compatibility_date":"2026-10-23","compatibility_flags":["nodejs_compat"],"workers_dev":true,"preview_urls":false,"observability":{"enabled":false},
+ "services":[{"binding":"CORE","service":"shift-core"},{"binding":"HQ","service":"shift-hq"},{"binding":"SUPPORT","service":"shift-mytimber-support-20261023"}],
+ "send_email":[{"name":"EMAIL","allowed_sender_addresses":["hq@shiftsometimber.co.uk"]}],
+ "d1_databases":[{"binding":"DB","database_name":"shift_core","database_id":"88f40aed-cb23-4372-8c94-8a73f48bc847"}]
+}
