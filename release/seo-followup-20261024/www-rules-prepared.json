@@ -1,0 +1,103 @@
+{
+  "status": "prepared_not_deployed",
+  "phase": "http_request_dynamic_redirect",
+  "insertBefore": "Existing www canonical-host rule; preserve all existing rules unchanged",
+  "rules": [
+    {
+      "ref": "sst_legacy_www_20261024_0",
+      "description": "SST legacy www /treatments directly to current canonical",
+      "expression": "(http.host eq \"www.shiftsometimber.co.uk\" and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path in {\"/treatments\" \"/treatments/\"})",
+      "action": "redirect",
+      "action_parameters": {
+        "from_value": {
+          "target_url": {
+            "value": "https://shiftsometimber.co.uk/treatment-centre"
+          },
+          "status_code": 301,
+          "preserve_query_string": true
+        }
+      },
+      "enabled": true
+    },
+    {
+      "ref": "sst_legacy_www_20261024_1",
+      "description": "SST legacy www /help-centre directly to current canonical",
+      "expression": "(http.host eq \"www.shiftsometimber.co.uk\" and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path in {\"/help-centre\" \"/help-centre/\"})",
+      "action": "redirect",
+      "action_parameters": {
+        "from_value": {
+          "target_url": {
+            "value": "https://shiftsometimber.co.uk/help"
+          },
+          "status_code": 301,
+          "preserve_query_string": true
+        }
+      },
+      "enabled": true
+    },
+    {
+      "ref": "sst_legacy_www_20261024_2",
+      "description": "SST legacy www /waiting-list directly to current canonical",
+      "expression": "(http.host eq \"www.shiftsometimber.co.uk\" and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path in {\"/waiting-list\" \"/waiting-list/\"})",
+      "action": "redirect",
+      "action_parameters": {
+        "from_value": {
+          "target_url": {
+            "value": "https://shiftsometimber.co.uk/waiting-list-journey"
+          },
+          "status_code": 301,
+          "preserve_query_string": true
+        }
+      },
+      "enabled": true
+    },
+    {
+      "ref": "sst_legacy_www_20261024_3",
+      "description": "SST legacy www /blog directly to current canonical",
+      "expression": "(http.host eq \"www.shiftsometimber.co.uk\" and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path in {\"/blog\" \"/blog/\"})",
+      "action": "redirect",
+      "action_parameters": {
+        "from_value": {
+          "target_url": {
+            "value": "https://shiftsometimber.co.uk/explore-knowledge"
+          },
+          "status_code": 301,
+          "preserve_query_string": true
+        }
+      },
+      "enabled": true
+    },
+    {
+      "ref": "sst_legacy_www_20261024_4",
+      "description": "SST legacy www /newsroom directly to current canonical",
+      "expression": "(http.host eq \"www.shiftsometimber.co.uk\" and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path in {\"/newsroom\" \"/newsroom/\"})",
+      "action": "redirect",
+      "action_parameters": {
+        "from_value": {
+          "target_url": {
+            "value": "https://shiftsometimber.co.uk/shift-newsroom"
+          },
+          "status_code": 301,
+          "preserve_query_string": true
+        }
+      },
+      "enabled": true
+    },
+    {
+      "ref": "sst_legacy_www_20261024_5",
+      "description": "SST legacy www /guides/mounjaro-ultimate-uk-guide directly to current canonical",
+      "expression": "(http.host eq \"www.shiftsometimber.co.uk\" and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path in {\"/guides/mounjaro-ultimate-uk-guide\" \"/guides/mounjaro-ultimate-uk-guide/\"})",
+      "action": "redirect",
+      "action_parameters": {
+        "from_value": {
+          "target_url": {
+            "value": "https://shiftsometimber.co.uk/mounjaro"
+          },
+          "status_code": 301,
+          "preserve_query_string": true
+        }
+      },
+      "enabled": true
+    }
+  ]
+}
