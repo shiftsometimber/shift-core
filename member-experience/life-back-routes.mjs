@@ -1,3 +1,4 @@
+import {applyProgrammeOperation,programmeSummary} from './programme-model.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
 import {score,areas,hasPersonalGoal} from './life-back/model.mjs';
@@ -11,8 +12,10 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  const next=structuredClone(current||emptyLifeBack());
  const fail=(message,status=400)=>{throw Object.assign(Error(message),{status})};
  if(!/^[a-zA-Z0-9-]{16,80}$/.test(input.operationId||''))fail('Refresh this page before saving.');
- if(next.operations.includes(input.operationId)||next.entries.some(e=>e.id===input.operationId))return next;
- if(input.action==='goal'){
+ if(next.operations.includes(input.operationId)||next.entries.some(e=>e.id===input.operationId)||[next.programme?.baseline,next.programme?.focus,...(next.programme?.focusHistory||[]),...(next.programme?.weeklyReviews||[]),...(next.programme?.reflections||[])].some(e=>e?.id===input.operationId))return next;
+ if(['programme-start','programme-week','programme-reflection'].includes(input.action)){
+  applyProgrammeOperation(next,input,at);
+ }else if(input.action==='goal'){
   if(input.revision!==next.revision)fail('Your goal changed in another tab. Reload before changing it.',409);
   const goal=String(input.goal||'').trim();if(!hasPersonalGoal(goal)||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
   if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId}
@@ -26,6 +29,7 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  }else if(input.action==='start-shift'){
   startNextShift(next,input,at);
  }else if(input.action==='shift-feedback'){
+  if(input.revision!==undefined&&input.revision!==next.revision)fail('Your step changed in another tab. Reload before answering.',409);
   reviewNextShift(next,input,at);
  }else if(input.action==='shift-status'){
   markNextShift(next,input,at);
@@ -50,7 +54,22 @@ export async function lifeBackRoutes(request,env){
  try{
   const read=async()=>parse((await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first())?.preferences);
   let prefs=await read();
-  if(request.method==='GET')return json({progress:prefs.lifeBack?.progress||emptyLifeBack(),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(prefs.lifeBack?.progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+  if(request.method==='GET'){
+   const progress=prefs.lifeBack?.progress||emptyLifeBack(),u=new URL(request.url);
+   if(u.searchParams.has('focusApproach')){
+    const next=applyLifeBackOperation(progress,{action:'focus',revision:progress.revision,supportNeed:progress.nextShift?.kind,approach:u.searchParams.get('focusApproach'),operationId:'proposal-preview-operation'});
+    return json({proposal:next.nextShift,revision:progress.revision});
+   }
+   if(u.searchParams.has('weekFocus')){
+    const next=applyLifeBackOperation(progress,{action:'programme-week',revision:progress.revision,focus:u.searchParams.get('weekFocus'),managed:[],barrier:'nothing',operationId:'proposal-preview-operation'});
+    return json({proposal:next.nextShift,revision:progress.revision});
+   }
+   if(u.searchParams.has('feedback')){
+    const next=applyLifeBackOperation(progress,{action:'shift-feedback',shiftId:u.searchParams.get('shiftId'),outcome:u.searchParams.get('feedback'),operationId:'proposal-preview-operation'});
+    return json({proposal:next.nextShift,revision:progress.revision});
+   }
+   return json({progress,programme:programmeSummary(progress.programme),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+  }
   const raw=await request.text();if(raw.length>8000)return json({error:'Check-in is too large.'},413);
   let input;try{input=JSON.parse(raw)}catch{return json({error:'Invalid check-in.'},400)}
   if(!input||typeof input!=='object'||Array.isArray(input))return json({error:'Invalid check-in.'},400);

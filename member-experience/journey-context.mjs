@@ -1,3 +1,4 @@
+import {programmeSummary} from './programme-model.mjs';
 import {nextShiftCard} from './life-back/next-shift.mjs';
 import {summary,lifeBackState} from './life-back/model.mjs';
 export function ukDate(at=new Date()){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(at)}
@@ -26,9 +27,10 @@ export async function connectedDay(DB,userId,prefs,date=ukDate()){
    if((linked&&linked===progress?.nextShift?.id)||(!linked&&(!progress?.nextShift||row.created_at>=progress.nextShift.createdAt))){
     next={...offered,dailyActionId:row.id};
     if(row.feedback==='not-fit')next={...next,title:'Choose a smaller step',detail:'That step did not fit. Pick food, movement or a quieter day from More for today.',href:'/member/dashboard#more-for-today',label:'Choose what fits now',dailyActionId:null};
+    if(row.feedback==='not-helped')next={title:'Try a different kind of help',detail:'That approach was not useful. Choose a different food, movement or everyday focus for this week.',href:'/member/dashboard#more-for-today',label:'Choose a different focus',dailyActionId:null};
     if(row.feedback==='helped')next={...next,title:'Keep the useful part',detail:'You said this step helped. Open it again if it still fits today, or choose something else.',dailyActionId:null};
    }
   }
  }
- return {date,meal,week:reflectionWeek(state.entries,date),weekMeals:prefs.grubV2?.week?.length||0,weekMovement:{done:weekMovement.filter(e=>e.status==='done').length,skipped:weekMovement.filter(e=>e.status==='skipped').length},movement:{done,skipped},lifeBack:{score:s.score,change:s.change,at:last?.at||null,win:state.win,recordedWin:[...state.entries].reverse().find(e=>e.win)?.win||null,goal:state.goal,entries:state.entries.length},mood:mood?{label:['Tough day','Struggling','OK','Good','Brilliant'][mood.wellbeing_score-1],at:mood.submitted_at}:null,next};
+ return {date,meal,programme:programmeSummary(progress?.programme),week:reflectionWeek(state.entries,date),weekMeals:prefs.grubV2?.week?.length||0,weekMovement:{done:weekMovement.filter(e=>e.status==='done').length,skipped:weekMovement.filter(e=>e.status==='skipped').length},movement:{done,skipped},lifeBack:{score:s.score,change:s.change,at:last?.at||null,win:state.win,recordedWin:[...state.entries].reverse().find(e=>e.win)?.win||null,goal:state.goal,entries:state.entries.length},mood:mood?{label:['Tough day','Struggling','OK','Good','Brilliant'][mood.wellbeing_score-1],at:mood.submitted_at}:null,next};
 }

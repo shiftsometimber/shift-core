@@ -15,7 +15,8 @@ export const checkinFollowupStyles=`
 `;
 export const checkinFollowupRuntime=String.raw`(()=>{
  'use strict';
- const labels={'helped':'It helped','not-fit':'It did not fit','not-tried':'I have not tried it yet','skip':'Skip this question'};
+ const labels={'helped':'It helped','not-fit':'It did not fit','not-helped':'I tried it. It did not help','not-tried':'I have not tried it yet','skip':'Skip this question'};
+ let proposalRevision=null,proposalReady=false,proposalGeneration=0;
  let host,record,pending=false,generation=0,offered=null,dirty=false,operation=null;
  const element=(tag,text)=>{const e=document.createElement(tag);if(text)e.textContent=text;return e};
  const params=new URLSearchParams(location.search),step=params.get('step'),shift=params.get('shift');
@@ -39,20 +40,30 @@ export const checkinFollowupRuntime=String.raw`(()=>{
   if(record.active===false){details.append(element('p','This step has moved on. Open Today for your current step.'));return;}
   const form=element('form'),choices=element('fieldset');choices.append(element('legend','What happened?'));
   for(const [value,label]of Object.entries(labels)){const row=element('label'),input=element('input');input.type='radio';input.name='dailyFeedback';input.value=value;input.required=true;input.checked=record.feedback===value;row.append(input,element('span',label));choices.append(row)}
-  const submit=element('button','Save feedback');submit.type='submit';form.append(choices,submit,status);details.append(element('p','Optional. Choosing a meal or opening Fit does not mean you ate it or completed a session. Answer after trying the step, or choose “I have not tried it yet”.'),form);
-  form.addEventListener('change',()=>{dirty=true});
+  const proposal=element('div');proposal.className='pg-feedback-proposal';proposal.setAttribute('aria-live','polite');
+  const submit=element('button','Save feedback');submit.type='submit';form.append(choices,proposal,submit,status);details.append(element('p','Optional. Choosing a meal or opening Fit does not mean you ate it or completed a session. Answer after trying the step, or choose “I have not tried it yet”.'),form);
+  form.addEventListener('change',async()=>{
+   dirty=true;const outcome=form.querySelector('input:checked')?.value,linked=record.source==='life-back'||record.action.loopId,version=++proposalGeneration;
+   proposal.replaceChildren();proposalReady=false;proposalRevision=null;
+   if(!linked||!['helped','not-fit','not-helped'].includes(outcome)){submit.disabled=false;submit.textContent='Save feedback';return}
+   submit.disabled=true;proposal.append(element('p','Preparing a step for you to choose…'));
+   try{const d=await request('/v1/life-back?feedback='+encodeURIComponent(outcome)+'&shiftId='+encodeURIComponent(record.action.loopId||record.id));if(version!==proposalGeneration)return;
+    proposalRevision=d.revision;proposalReady=true;proposal.replaceChildren(element('strong','YOUR NEXT STEP · PROPOSED'),element('h3',d.proposal.title),element('p',d.proposal.detail));submit.textContent='Save feedback & use this step';submit.disabled=false;
+   }catch(e){if(version!==proposalGeneration)return;proposal.replaceChildren(element('p',e.message+' Choose an answer again to retry.'));submit.disabled=true}
+  });
   form.addEventListener('submit',async event=>{
    event.preventDefault();if(pending)return;const selected=form.querySelector('input:checked');if(!selected)return;
+   if((record.source==='life-back'||record.action.loopId)&&['helped','not-fit','not-helped'].includes(selected.value)&&!proposalReady){status.textContent='Choose your answer to review the proposed next step first.';return;}
    pending=true;submit.disabled=true;choices.disabled=true;status.textContent='Saving feedback…';
    try{
     if(record.source==='life-back'){
      const signature=record.id+':'+selected.value;if(operation?.signature!==signature)operation={signature,id:crypto.randomUUID()};
-     const saved=await request('/v1/life-back',{action:'shift-feedback',shiftId:record.id,outcome:selected.value,operationId:operation.id});
+     const saved=await request('/v1/life-back',{action:'shift-feedback',shiftId:record.id,outcome:selected.value,revision:proposalRevision??undefined,operationId:operation.id});
      const action=saved.progress.nextShift?.id===record.id?saved.progress.nextShift:saved.progress.shiftHistory.find(a=>a.id===record.id);
      record=fromLife(action,saved.progress.nextShift?.id===record.id);
     }else{
-     const saved=await request(endpoint(),{actionId:record.id,revision:record.revision,outcome:selected.value});record=saved.followUp;
-     if(record.action.loopId&&['helped','not-fit'].includes(record.feedback))record.active=false;
+     const saved=await request(endpoint(),{actionId:record.id,revision:record.revision,outcome:selected.value,lifeBackRevision:proposalRevision??undefined});record=saved.followUp;
+     if(record.action.loopId&&['helped','not-fit','not-helped'].includes(record.feedback))record.active=false;
     }
     dirty=false;operation=null;render();host.querySelector('details').open=true;document.dispatchEvent(new CustomEvent('sst:action-reviewed'));
    }catch(e){status.textContent=e.status===401?'Please sign in again before saving feedback.':e.message;if(e.status===409){operation=null;const retry=element('button','Reload saved step');retry.type='button';retry.addEventListener('click',()=>{dirty=false;load()});status.append(retry)}}

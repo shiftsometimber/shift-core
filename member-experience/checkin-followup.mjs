@@ -1,6 +1,6 @@
 import {connectedDay} from './journey-context.mjs';
 import {reviewNextShift} from './life-back/next-shift.mjs';
-export const followupOutcomes=['helped','not-fit','not-tried','skip'];
+export const followupOutcomes=['helped','not-fit','not-helped','not-tried','skip'];
 const consentSQL="(SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1";
 const shape=row=>row?{id:row.id,checkInId:row.checkin_id,action:JSON.parse(row.action_json),createdAt:row.created_at,feedback:row.feedback,revision:row.revision,reviewedAt:row.reviewed_at}:null;
 const fail=(message,status)=>{throw Object.assign(Error(message),{status})};
@@ -29,6 +29,7 @@ export async function reviewCheckinAction(DB,userId,input){
  if(action.loopId){
   const prefs=JSON.parse((await DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(userId).first())?.preferences||'{}');
   const old=prefs.lifeBack?.progress;
+  if(input.lifeBackRevision!==undefined&&input.lifeBackRevision!==old?.revision)fail('Your proposed step changed. Reload before choosing it.',409);
   if(!old||old.nextShift?.id!==action.loopId)fail('This step has already moved on. Reload to see your current next step.',409);
   const next=structuredClone(old),operationId='daily-'+before.id+'-'+input.revision;
   reviewNextShift(next,{shiftId:action.loopId,outcome:input.outcome,operationId},at);
