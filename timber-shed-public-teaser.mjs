@@ -1,3 +1,4 @@
+import {withCausesTeaser} from './causes-partners-teaser.mjs';
 import {withSharedFooter as withCanonicalSharedFooter} from './shared-footer.mjs';
 // Visible but deliberately non-interactive Timber Shed teaser.
 // No route, link, signup, member data, publication or community activation.
@@ -41,5 +42,5 @@ export async function withTimberShedTeaser(request,response){
 // Compose only after the canonical footer has been installed. Preserve the
 // original Worker call sites and historical footer integration tests.
 export async function withSharedFooter(request,response){
- return withTimberShedTeaser(request,await withCanonicalSharedFooter(request,response));
+ return withCausesTeaser(request,await withTimberShedTeaser(request,await withCanonicalSharedFooter(request,response)));
 }
