@@ -2,7 +2,6 @@
   "id": "8b8fbba3-915d-4475-b952-b0715c969c4d",
   "source": "wrangler",
   "strategy": "percentage",
-  "author_email": "matobrien@hotmail.co.uk",
   "annotations": {
     "workers/message": "Automatic deployment on upload.",
     "workers/triggered_by": "upload"

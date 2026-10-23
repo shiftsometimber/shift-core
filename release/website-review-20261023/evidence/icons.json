@@ -28,5 +28,11 @@
       "contentType": "image/png"
     }
   ],
-  "safariCacheUnverified": true
+  "safariCacheUnverified": true,
+  "browserArtworkInspection": {
+    "browser": "Chrome CUA",
+    "favicon": "Versioned 32x32 S-in-circle icon rendered",
+    "appleTouch": "180x180 cream S, ash-green ring and black background rendered",
+    "actualSafariCacheVerified": false
+  }
 }
