@@ -1,8 +1,7 @@
 // Narrow release adapter. The existing live Worker remains the authority for
 // all other pages, bindings, scheduled work and clinical/commerce behaviour.
 import {programmeAssets} from '../member-experience/programme-assets.mjs';
-import {programmeJoiningHTML} from '../member-experience/programme-joining-page.mjs';
-import {withSessionState} from '../member-experience/session-state.mjs';
+import {programmeJoiningDocument} from '../member-experience/programme-joining-document.mjs';
 import {lifeBackRoutes} from '../member-experience/life-back-routes.mjs';
 import {memberHealthRoutes} from '../member-experience/health-routes.mjs';
 import {checkinFollowupRuntime} from '../member-experience/checkin-followup-client.mjs';
@@ -28,7 +27,7 @@ export default {
    const u=new URL(request.url);u.pathname=path;return apiResponse(request,await memberHealthRoutes(new Request(u,request),env));
   }
   if(['GET','HEAD'].includes(request.method)){
-   if(['/member/get-started','/member/get-started.html'].includes(path))return new Response(request.method==='HEAD'?null:withSessionState(programmeJoiningHTML),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8'}});
+   if(['/member/get-started','/member/get-started.html'].includes(path))return new Response(request.method==='HEAD'?null:programmeJoiningDocument(),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8'}});
    const name=path.slice(prefix.length),asset=path.startsWith(prefix)&&Object.hasOwn(programmeAssets,name)?programmeAssets[name]:path===prefix+'checkin-followup.mjs'?checkinFollowupRuntime:path===prefix+'life-back/client.mjs'?lifeBackAssets['client.mjs'].body:null;
    if(asset!==null)return new Response(request.method==='HEAD'?null:asset,{headers:{...privateHeaders,'Content-Type':path.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}});
   }

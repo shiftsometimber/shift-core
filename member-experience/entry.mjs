@@ -1,5 +1,5 @@
 import {programmeAssets} from './programme-assets.mjs';
-import {programmeJoiningHTML} from './programme-joining-page.mjs';
+import {programmeJoiningDocument} from './programme-joining-document.mjs';
 import {foodDiaryRuntime} from './food-diary-client.mjs';
 import {treatmentHTML,treatmentRuntime,treatmentStyles} from './treatment-page.mjs';
 import {treatmentWeekRuntime,treatmentWeekStyles} from './treatment-week-client.mjs';
@@ -38,7 +38,7 @@ export function memberExperienceRoutes(request, env) {
     const treatment={'/member/treatment':[treatmentHTML(false),'text/html'],'/member/treatment.html':[treatmentHTML(false),'text/html'],'/assets/member-experience/treatment.mjs':[treatmentRuntime,'text/javascript'],'/assets/member-experience/treatment.css':[treatmentStyles,'text/css'],'/treatment-sw.js':[treatmentServiceWorker,'text/javascript'],'/treatment-manifest.json':[JSON.stringify({name:'My Timber',short_name:'My Timber',start_url:'/member/treatment',scope:'/member/',display:'standalone',theme_color:'#050505',background_color:'#050505'}),'application/manifest+json']}[path];
     if(treatment)return new Response(request.method==='HEAD'?null:treatment[0],{headers:{...privateHeaders,'Content-Type':treatment[1]+'; charset=utf-8',...(path==='/treatment-sw.js'?{'Service-Worker-Allowed':'/member/'}:{})}});
   }
-  if(path==='/member/get-started'||path==='/member/get-started.html')return new Response(request.method==='HEAD'?null:withSessionState(programmeJoiningHTML),{headers:{...privateHeaders,'Vary':'Cookie','Content-Type':'text/html; charset=utf-8'}});
+  if(path==='/member/get-started'||path==='/member/get-started.html')return new Response(request.method==='HEAD'?null:programmeJoiningDocument(),{headers:{...privateHeaders,'Vary':'Cookie','Content-Type':'text/html; charset=utf-8'}});
   const programmeAsset=path.slice('/assets/member-experience/'.length);
   if(path.startsWith('/assets/member-experience/')&&Object.hasOwn(programmeAssets,programmeAsset))return new Response(request.method==='HEAD'?null:programmeAssets[programmeAsset],{headers:{...privateHeaders,'Content-Type':programmeAsset.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/treatment-week.mjs')return new Response(request.method==='HEAD'?null:treatmentWeekRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
