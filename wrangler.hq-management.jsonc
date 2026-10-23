@@ -7,11 +7,18 @@
     {
       "pattern": "api.shiftsometimber.co.uk/v1/hq/management/*",
       "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "api.shiftsometimber.co.uk/v1/hq/clinical*",
+      "zone_name": "shiftsometimber.co.uk"
     }
   ],
   "vars": {
     "ALLOWED_ORIGINS": "https://hq.shiftsometimber.co.uk",
-    "MEMBER_GP_DIRECTORY_V2_ENABLED": "true"
+    "MEMBER_GP_DIRECTORY_V2_ENABLED": "true",
+    "CLINICAL_CONTEXT_ENABLED": "false",
+    "CLINICAL_CASEWORK_ENABLED": "false",
+    "CLINICAL_REVIEW_READY": "false"
   },
   "d1_databases": [
     {
@@ -25,5 +32,11 @@
     "logs": {
       "enabled": true
     }
-  }
+  },
+  "r2_buckets": [
+    {
+      "binding": "CLINICAL_PRIVATE_FILES",
+      "bucket_name": "shift-clinical-member-records"
+    }
+  ]
 }

@@ -461,7 +461,7 @@ const HQ_ROLE_PERMISSIONS={
   support:['crm_read','crm_write','support_read','support_write','intelligence_read'],
   marketing:['crm_read','content_read','content_write','intelligence_read'],
   content:['content_read','content_write','intelligence_read'],
-  clinical:['crm_read','health_read','support_read','support_write','intelligence_read','audit_read'],
+  clinical:[],
   readonly:['crm_read','commerce_read','content_read','support_read','intelligence_read']
 };
 async function hqBootstrap(request,env){

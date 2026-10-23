@@ -1,0 +1,49 @@
+{
+  "name": "shift-clinical-records",
+  "main": "live-worker.mjs",
+  "account_id": "9e5386dcf455be34c582d93f8bfc79e6",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shift-core-db",
+      "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "CLINICAL_PRIVATE_FILES",
+      "bucket_name": "shift-clinical-member-records"
+    }
+  ],
+  "vars": {
+    "CLINICAL_CONTEXT_ENABLED": "false",
+    "CLINICAL_MEMBER_RECORDS_ENABLED": "true",
+    "CLINICAL_REVIEW_READY": "false",
+    "CLINICAL_TEST_MEMBER_EMAIL": "shiftsometimber@gmail.com"
+  },
+  "routes": [
+    {
+      "pattern": "shiftsometimber.co.uk/member/treatment-records*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/clinical-review/record*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/assets/clinical-records/*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/v1/member/clinical-records*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/v1/clinical-review/records*",
+      "zone_name": "shiftsometimber.co.uk"
+    }
+  ]
+}

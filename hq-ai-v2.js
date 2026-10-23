@@ -1,3 +1,4 @@
+import {clinicalAccessBoundary} from './clinical-assessment/clinical-access-boundary.mjs';
 import {managementRoute} from './hq-management-api.mjs';
 import {continuityScorecard} from './continuity-measurement/scorecard.mjs';
 import legacy from './hq-ai.js';
@@ -6,6 +7,7 @@ import {outcomesSnapshot} from './outcomes-v1.js';
 import {memberJourneySnapshot} from './journey-analytics-v1.js';
 
 export default{async fetch(request,env,ctx){
+ const boundary=await clinicalAccessBoundary(request,env,async(r,e)=>{const response=await legacy.fetch(new Request(new URL('/v1/hq/me',r.url),{headers:r.headers}),e,ctx);return response.ok?await response.json():{response};});if(boundary)return boundary;
   const management=await managementRoute(request,env,ctx,(r,e,c)=>legacy.fetch(r,e,c));if(management){const headers=new Headers(management.headers);if(request.headers.get('Origin')==='https://hq.shiftsometimber.co.uk'){headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');headers.set('Access-Control-Allow-Credentials','true');headers.set('Vary','Origin');}return new Response(management.body,{status:management.status,headers});}
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   const readPaths=['/v1/hq/continuity','/v1/hq/watchtower','/v1/hq/outcomes','/v1/hq/journey','/v1/hq/attention'];

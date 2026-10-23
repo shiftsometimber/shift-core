@@ -1,0 +1,345 @@
+{
+  "authority": "Matt: supplied competitor screenshots are minimum coverage; preserve additional SHIFT questions.",
+  "scope": "Only the supplied screenshots, not unseen competitor pages. Collection coverage is not clinical approval.",
+  "questionCoverage": [
+    {
+      "field": "prediabetes",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "diabetes",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "hypertension",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "cholesterol",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "cardiovascular",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "erectileDysfunction",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "sleepApnoea",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "asthma",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "osteoarthritis",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "reflux",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "chronicBackPain",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "depression",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "pcos",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "fattyLiver",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "liver",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "liverTransplant",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "kidney",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "heartFailure",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "pancreas",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "thyroidMen2",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "activeCancer",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "eyes",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "eatingDisorder",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "gallbladder",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "bariatric",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "bowelSurgery",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "endocrine",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "malabsorption",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "stoma",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "inflammatoryBowel",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "digestive",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "allergies",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "otherAllergies",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "weightLossMedicines",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "parkinsonsMedicines",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "epilepsyMedicines",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "diabetesMedicines",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "anticoagulants",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "monitoredMedicines",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "immunosuppressants",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "heartRhythmMedicines",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "antibiotics",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "antivirals",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "antifungals",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "otherListedMedicines",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    },
+    {
+      "field": "stJohnsWort",
+      "required": true,
+      "status": "implemented_in_private_draft"
+    }
+  ],
+  "explicitDetails": [
+    "kidney eGFR below 30 mL/min",
+    "bariatric procedure within 12 months including balloon",
+    "first-degree relative MEN2/medullary thyroid carcinoma"
+  ],
+  "evidence": [
+    {
+      "kind": "photo_id",
+      "status": "draft_collection_instructions_and_presence_enforced"
+    },
+    {
+      "kind": "front_photo",
+      "status": "draft_collection_instructions_and_presence_enforced"
+    },
+    {
+      "kind": "scale_photo",
+      "status": "draft_collection_instructions_and_presence_enforced"
+    },
+    {
+      "kind": "prescription",
+      "status": "draft_collection_instructions_and_presence_enforced",
+      "detail": "Name/medicine/dose/date required in answers; eight-week date enforced; clinician must verify against uploaded evidence."
+    }
+  ],
+  "declarations": [
+    {
+      "topic": "Accuracy and personal use",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    },
+    {
+      "topic": "Read patient information leaflet",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    },
+    {
+      "topic": "Structured diet and exercise support",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    },
+    {
+      "topic": "Concurrent weight medicines and urgent abdominal symptoms",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    },
+    {
+      "topic": "Contraception and pregnancy advice",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    },
+    {
+      "topic": "Mood changes and mental health contact",
+      "status": "draft_contact_prompt_no_blanket_stop_instruction"
+    },
+    {
+      "topic": "Missed doses: contact clinical team",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    },
+    {
+      "topic": "Report side effects/new medicines/health changes",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    },
+    {
+      "topic": "Off-label prescribing",
+      "status": "specific_consent_separate_from_general_information"
+    },
+    {
+      "topic": "GP contact and sharing",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    },
+    {
+      "topic": "NHS Summary Care Record access",
+      "status": "capability_dependent_not_claimed"
+    },
+    {
+      "topic": "Privacy, terms and age range",
+      "status": "implemented_in_fictional_draft_requires_clinical_approval"
+    }
+  ],
+  "releaseAccepted": false,
+  "declarationFields": [
+    "leafletAcknowledgement",
+    "lifestyleAcknowledgement",
+    "combinationAcknowledgement",
+    "urgentHelpAcknowledgement",
+    "mentalHealthAcknowledgement",
+    "missedDoseAcknowledgement",
+    "healthChangesAcknowledgement",
+    "ownUseAcknowledgement",
+    "accuracyAcknowledgement",
+    "approvalAcknowledgement",
+    "privacyAcknowledgement",
+    "ageScopeAcknowledgement",
+    "contraceptionAcknowledgement",
+    "pregnancyAcknowledgement",
+    "gpSharingChoice",
+    "offLabelInformation"
+  ],
+  "intentionalDifferences": [
+    {
+      "id": "summaryCareRecord",
+      "topic": "NHS Summary Care Record access consent",
+      "status": "not_displayed_or_collected_until_authorised_access_exists",
+      "competitorCoverage": "Their explicit access-consent topic is retained for mapping; SHIFT does not claim access."
+    },
+    {
+      "id": "offLabelSpecificConsent",
+      "topic": "Specific consent to an off-label proposal",
+      "status": "requires_actual_clinical_proposal_and_separate_consent",
+      "competitorCoverage": "A blanket consent is replaced with information and a case-specific clinical step."
+    }
+  ],
+  "clinicalApproval": false,
+  "privateDraftCollectionMatched": true
+}

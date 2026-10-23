@@ -1,0 +1,1747 @@
+{
+  "version": "shift-assessment-v4-draft-2026-10-23",
+  "sections": [
+    {
+      "title": "Your request",
+      "questions": [
+        {
+          "id": "requestPath",
+          "label": "Which best describes your request?",
+          "type": "select",
+          "options": [
+            "Starting treatment",
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "forMyself",
+          "label": "Are you completing this assessment for yourself?",
+          "type": "select",
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "inUK",
+          "label": "Are you currently in the UK and able to receive care here?",
+          "type": "select",
+          "options": [
+            "Yes",
+            "No",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "preference",
+          "label": "Do you have a treatment preference?",
+          "type": "select",
+          "options": [
+            "I would like to discuss the options",
+            "I have a preference to discuss"
+          ]
+        },
+        {
+          "id": "preferenceDetails",
+          "label": "Which medicine or dose would you like to discuss, and why?",
+          "type": "textarea",
+          "when": [
+            "preference",
+            [
+              "I have a preference to discuss"
+            ]
+          ]
+        },
+        {
+          "id": "goals",
+          "label": "What would you like to achieve, and what support would help you?",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "title": "Measurements and weight history",
+      "questions": [
+        {
+          "id": "heightMeasuredAt",
+          "label": "When was your height measured?",
+          "type": "date"
+        },
+        {
+          "id": "weightMeasuredAt",
+          "label": "When was your current weight measured?",
+          "type": "date"
+        },
+        {
+          "id": "measurementMethod",
+          "label": "How were your height and weight measured? Who measured them, and what evidence can you provide for an independent check?",
+          "type": "textarea"
+        },
+        {
+          "id": "weightChange",
+          "label": "Have you had a recent unexpected or unintentional change in weight?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "weightChangeDetails",
+          "label": "How much has your weight changed, over what period, and has a clinician investigated it?",
+          "type": "textarea",
+          "when": [
+            "weightChange",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "previousApproaches",
+          "label": "What have you already tried to manage your weight, for how long, and with what results?",
+          "type": "textarea"
+        },
+        {
+          "id": "weightHistory",
+          "label": "Tell us about your weight history, including your highest adult weight and any significant recent changes.",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "title": "Diagnosed conditions related to weight",
+      "questions": [
+        {
+          "id": "hypertension",
+          "label": "Have you been diagnosed with high blood pressure?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "hypertensionDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "hypertension",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "cholesterol",
+          "label": "Have you been diagnosed with abnormal cholesterol or blood fats?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "cholesterolDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "cholesterol",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "sleepApnoea",
+          "label": "Have you been diagnosed with obstructive sleep apnoea?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "sleepApnoeaDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "sleepApnoea",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "cardiovascular",
+          "label": "Have you had heart or blood vessel disease, including a heart attack, stroke or atrial fibrillation?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "cardiovascularDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "cardiovascular",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "prediabetes",
+          "label": "Have you been diagnosed with prediabetes?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "prediabetesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "prediabetes",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "diabetes",
+          "label": "Have you been diagnosed with diabetes?",
+          "type": "select",
+          "options": [
+            "No",
+            "Type 1",
+            "Type 2",
+            "Another type",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "diabetesDetails",
+          "label": "Who manages your diabetes? Include treatment, recent HbA1c if known, low blood sugar episodes and any complications.",
+          "type": "textarea",
+          "when": [
+            "diabetes",
+            [
+              "Type 1",
+              "Type 2",
+              "Another type",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "erectileDysfunction",
+          "label": "Have you been diagnosed with erectile dysfunction?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "erectileDysfunctionDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "erectileDysfunction",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "asthma",
+          "label": "Have you been diagnosed with asthma?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "asthmaDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "asthma",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "osteoarthritis",
+          "label": "Have you been diagnosed with osteoarthritis?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "osteoarthritisDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "osteoarthritis",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "reflux",
+          "label": "Have you been diagnosed with acid reflux or gastro-oesophageal reflux disease (GORD)?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "refluxDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "reflux",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "chronicBackPain",
+          "label": "Do you have chronic back pain?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "chronicBackPainDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "chronicBackPain",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "depression",
+          "label": "Have you been diagnosed with depression?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "depressionDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "depression",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "pcos",
+          "label": "Have you been diagnosed with polycystic ovary syndrome (PCOS)?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "pcosDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "pcos",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "fattyLiver",
+          "label": "Have you been diagnosed with non-alcoholic fatty liver disease (NAFLD) or metabolic dysfunction-associated steatotic liver disease (MASLD)?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "fattyLiverDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "fattyLiver",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Medical and surgical history",
+      "questions": [
+        {
+          "id": "pancreas",
+          "label": "Have you had pancreatitis or another pancreatic condition?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "pancreasDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "pancreas",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "gallbladder",
+          "label": "Have you had gallstones or gallbladder disease?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "gallbladderDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "gallbladder",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "digestive",
+          "label": "Have you had severe digestive problems, delayed stomach emptying (gastroparesis), bowel obstruction or persistent vomiting?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "digestiveDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "digestive",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "kidney",
+          "label": "Do you have kidney disease or ongoing kidney monitoring, including an eGFR below 30 mL/min?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "kidneyDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "kidney",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "liver",
+          "label": "Do you have liver disease, including severe liver disease, or ongoing liver monitoring?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "liverDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "liver",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "eyes",
+          "label": "Do you have diabetic eye disease, a serious eye condition or recent changes to your vision?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "eyesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "eyes",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "bariatric",
+          "label": "Have you had, or are you planning, a weight-loss procedure or surgery, including a gastric sleeve, band, bypass or balloon?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "bariatricDetails",
+          "label": "Please give the procedure, date (including whether within the last 12 months), treatment, symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "bariatric",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "procedure",
+          "label": "Do you have an operation or procedure planned involving general anaesthesia or deep sedation?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "procedureDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "procedure",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "eatingDisorder",
+          "label": "Have you ever had an eating disorder or disordered eating, including anorexia, bulimia or binge eating disorder, or received support for this?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "eatingDisorderDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "eatingDisorder",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "otherHistory",
+          "label": "Tell us about any other medical conditions, operations, hospital admissions, ongoing investigations or mental health concerns relevant to your care. Enter “None” if there are none.",
+          "type": "textarea"
+        },
+        {
+          "id": "liverTransplant",
+          "label": "Have you had a liver transplant?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "liverTransplantDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "liverTransplant",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "heartFailure",
+          "label": "Have you been diagnosed with heart failure, including shortness of breath?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "heartFailureDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "heartFailure",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "thyroidMen2",
+          "label": "Do you or a first-degree relative have a history of medullary thyroid carcinoma or multiple endocrine neoplasia type 2 (MEN2)?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "thyroidMen2Details",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "thyroidMen2",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "activeCancer",
+          "label": "Do you have active cancer requiring treatment or monitoring?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "activeCancerDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "activeCancer",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "endocrine",
+          "label": "Do you have an uncontrolled or clinically significant endocrine (hormonal) disorder, such as Addison’s disease, Cushing’s syndrome, congenital adrenal hyperplasia, acromegaly or another growth hormone disorder?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "endocrineDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "endocrine",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "bowelSurgery",
+          "label": "Have you had bowel or intestinal surgery, other than an appendicectomy?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "bowelSurgeryDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "bowelSurgery",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "malabsorption",
+          "label": "Do you have chronic malabsorption?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "malabsorptionDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "malabsorption",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "stoma",
+          "label": "Do you currently have a gastrointestinal stoma, such as a colostomy, ileostomy or another stoma following bowel surgery?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "stomaDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "stoma",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "inflammatoryBowel",
+          "label": "Have you been diagnosed with Crohn’s disease or ulcerative colitis?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "inflammatoryBowelDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "inflammatoryBowel",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Medicines and allergies",
+      "questions": [
+        {
+          "id": "allergies",
+          "label": "Do you have any medicine allergies or previous serious reactions to a medicine or injection?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "allergiesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "allergies",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "medicineList",
+          "label": "List every prescribed medicine, over-the-counter medicine, supplement and herbal product. Include name, strength, dose and frequency. Enter “None” if you take none.",
+          "type": "textarea"
+        },
+        {
+          "id": "otherWeightMedicine",
+          "label": "Are you currently using another weight-management, GLP-1 or diabetes medicine, including supplies from another provider?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "otherWeightMedicineDetails",
+          "label": "Give the medicine, dose, provider, start date and most recent dose. Include any medicines bought privately or online.",
+          "type": "textarea",
+          "when": [
+            "otherWeightMedicine",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "otherAllergies",
+          "label": "Do you have other allergies, including food, latex, plasters or insect stings?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "otherAllergiesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "otherAllergies",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "weightLossMedicines",
+          "label": "Are you currently taking any of the following? Other weight-loss medicines, including orlistat or Mysimba",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "weightLossMedicinesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "weightLossMedicines",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "parkinsonsMedicines",
+          "label": "Are you currently taking any of the following? Parkinson’s medicines, including levodopa, pramipexole, ropinirole, amantadine, bromocriptine, cabergoline, pergolide, rasagiline or selegiline",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "parkinsonsMedicinesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "parkinsonsMedicines",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "epilepsyMedicines",
+          "label": "Are you currently taking any of the following? Epilepsy medicines, including carbamazepine, phenytoin, phenobarbital, primidone, sodium valproate/valproic acid, fenfluramine, divalproex, zonisamide or ethosuximide",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "epilepsyMedicinesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "epilepsyMedicines",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "diabetesMedicines",
+          "label": "Are you currently taking any of the following? Diabetes medicines, including insulin or sulfonylureas",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "diabetesMedicinesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "diabetesMedicines",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "anticoagulants",
+          "label": "Are you currently taking any of the following? Blood thinners, including warfarin, acenocoumarol or phenindione",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "anticoagulantsDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "anticoagulants",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "monitoredMedicines",
+          "label": "Are you currently taking any of the following? Medicines requiring close monitoring, including azathioprine, lithium, methotrexate, theophylline, mycophenolate mofetil, clozapine, colchicine or isoprenaline",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "monitoredMedicinesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "monitoredMedicines",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "immunosuppressants",
+          "label": "Are you currently taking any of the following? Immunosuppressants, including ciclosporin, tacrolimus or sirolimus",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "immunosuppressantsDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "immunosuppressants",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "heartRhythmMedicines",
+          "label": "Are you currently taking any of the following? Heart rhythm medicines, including flecainide, quinidine, procainamide, disopyramide, amiodarone or digoxin",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "heartRhythmMedicinesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "heartRhythmMedicines",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "antibiotics",
+          "label": "Are you currently taking any of the following? Antibiotics, including clarithromycin, rifabutin or rifampicin",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "antibioticsDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "antibiotics",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "antivirals",
+          "label": "Are you currently taking any of the following? Antivirals, including Paxlovid, ritonavir, cobicistat, telaprevir, nevirapine, efavirenz or etravirine",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "antiviralsDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "antivirals",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "antifungals",
+          "label": "Are you currently taking any of the following? Antifungals, including itraconazole, oral ketoconazole, posaconazole or voriconazole",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "antifungalsDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "antifungals",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "otherListedMedicines",
+          "label": "Are you currently taking any of the following? Dexamethasone, modafinil, repaglinide, lumacaftor/ivacaftor, bosentan, gemfibrozil, oral topotecan, simvastatin or rosuvastatin",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "otherListedMedicinesDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "otherListedMedicines",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "stJohnsWort",
+          "label": "Are you currently taking any of the following? St John’s wort",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "stJohnsWortDetails",
+          "label": "Please give details, dates, treatment, current symptoms and the clinician or team managing this.",
+          "type": "textarea",
+          "when": [
+            "stJohnsWort",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Pregnancy and reproductive health",
+      "questions": [
+        {
+          "id": "pregnancyPossible",
+          "label": "Could you become pregnant?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "pregnancyStatus",
+          "label": "Are you pregnant, planning a pregnancy or breastfeeding?",
+          "type": "select",
+          "options": [
+            "No",
+            "Pregnant",
+            "Planning a pregnancy",
+            "Breastfeeding",
+            "Not sure"
+          ],
+          "when": [
+            "pregnancyPossible",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "contraception",
+          "label": "What contraception do you use, if any? Include oral contraceptives and any plans to change or stop contraception.",
+          "type": "textarea",
+          "when": [
+            "pregnancyPossible",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Switching, restarting and repeat treatment",
+      "questions": [
+        {
+          "id": "previousProvider",
+          "label": "Who prescribed and dispensed your previous or current treatment?",
+          "type": "textarea",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "treatmentStartedAt",
+          "label": "When did you start that treatment? If you do not know the date, use the treatment history box below.",
+          "type": "date",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ],
+          "optional": true
+        },
+        {
+          "id": "startingWeight",
+          "label": "What was your weight before starting treatment, and when was it measured?",
+          "type": "textarea",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "doseHistory",
+          "label": "Tell us your actual dose history, time on the current dose, doses missed, breaks and dates. Include your most recent dose and any instructions from your previous clinician.",
+          "type": "textarea",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "treatmentEffects",
+          "label": "What benefits and side effects have you experienced? Include severity, duration, whether they have resolved and any treatment or advice received.",
+          "type": "textarea",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "changeReason",
+          "label": "Why are you switching or restarting, and why did you stop? What advice did your clinician give?",
+          "type": "textarea",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break"
+          ]
+        },
+        {
+          "id": "dispensingEvidence",
+          "label": "What evidence of your previous prescription, dispensing label and dose can you provide? The prescribing team may need to obtain or independently verify this.",
+          "type": "textarea",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "repeatChanges",
+          "label": "Since your last assessment, have there been any new symptoms, conditions, medicines, hospital treatment or changes in pregnancy status? Include anything else that has changed. Enter “No changes” if none.",
+          "type": "textarea",
+          "paths": [
+            "Repeat treatment"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Current symptoms and support",
+      "questions": [
+        {
+          "id": "urgentSymptoms",
+          "label": "Do you currently have severe, persistent stomach pain, sudden loss of vision, or a severe allergic reaction?",
+          "type": "select",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "urgentSymptomsDetails",
+          "label": "Please describe your symptoms and any medical advice already sought. Do not wait for this form to be reviewed to seek medical help.",
+          "type": "textarea",
+          "when": [
+            "urgentSymptoms",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "contactNeeds",
+          "label": "How can the clinical team contact you safely? Tell us about communication, language or accessibility needs. Enter “No additional needs” if none.",
+          "type": "textarea"
+        },
+        {
+          "id": "patientQuestions",
+          "label": "What else should the prescriber know, or what would you like to ask? Enter “Nothing further” if none.",
+          "type": "textarea"
+        },
+        {
+          "id": "prescriptionEvidenceName",
+          "label": "What patient name is shown on your previous prescription evidence?",
+          "type": "text",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "prescriptionEvidenceMedicine",
+          "label": "What medicine and strength are shown on that evidence?",
+          "type": "text",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "prescriptionEvidenceDose",
+          "label": "What prescribed dose is shown on that evidence?",
+          "type": "text",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "prescriptionEvidenceDate",
+          "label": "What prescription or dispensing date is shown on that evidence? It must be within the last eight weeks for this draft pathway.",
+          "type": "date",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        },
+        {
+          "id": "prescriptionEvidenceType",
+          "label": "What are you uploading: prescription, invoice or pharmacy dispensing label?",
+          "type": "text",
+          "paths": [
+            "Switching provider or medicine",
+            "Restarting after a break",
+            "Repeat treatment"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Treatment information and confirmations - draft for clinical review",
+      "questions": [
+        {
+          "id": "leafletAcknowledgement",
+          "label": "I will read the patient information leaflet for the medicine supplied before using it.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "leafletAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "leafletAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "lifestyleAcknowledgement",
+          "label": "I understand prescribed weight-management medicine is used alongside an appropriate reduced-calorie eating plan and physical activity, agreed with my clinical team.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "lifestyleAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "lifestyleAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "combinationAcknowledgement",
+          "label": "I will tell the prescriber about all weight-loss medicines and will not combine treatments without their specific instructions.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "combinationAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "combinationAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "urgentHelpAcknowledgement",
+          "label": "I understand severe or persistent abdominal pain, vomiting or yellowing of the skin or eyes needs prompt medical assessment, rather than waiting for an online reply.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "urgentHelpAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "urgentHelpAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "mentalHealthAcknowledgement",
+          "label": "I will contact the clinical team about mood changes or new mental health concerns and seek urgent help if my safety is at risk. The prescriber must provide individual advice about any treatment changes.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "mentalHealthAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "mentalHealthAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "missedDoseAcknowledgement",
+          "label": "I will follow the medicine-specific missed-dose instructions and contact the clinical team before restarting after two or more missed doses.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "missedDoseAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "missedDoseAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "healthChangesAcknowledgement",
+          "label": "I will report side effects, new medicines and changes in my health to the clinical team and keep my GP informed as advised.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "healthChangesAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "healthChangesAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "ownUseAcknowledgement",
+          "label": "I confirm this request is for my own treatment and I will not share prescribed medicine.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "ownUseAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "ownUseAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "accuracyAcknowledgement",
+          "label": "I confirm my answers are complete and accurate, and understand the prescriber uses them to assess suitability.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "accuracyAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "accuracyAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "approvalAcknowledgement",
+          "label": "I understand all treatment requests require a prescriber’s decision; more information may be needed and payment does not guarantee a prescription.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "approvalAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "approvalAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "privacyAcknowledgement",
+          "label": "For this fictional test, I have read the displayed private-workspace information and understand the test answers and files are saved with this request.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "privacyAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "privacyAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "ageScopeAcknowledgement",
+          "label": "I confirm I am aged 18 to 75 for this draft pathway. This draft service boundary requires clinical approval before real use.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "ageScopeAcknowledgementDetails",
+          "label": "What would you like the clinical team to clarify?",
+          "type": "textarea",
+          "when": [
+            "ageScopeAcknowledgement",
+            [
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "contraceptionAcknowledgement",
+          "label": "I understand vomiting or severe diarrhoea can affect oral contraception. If tirzepatide is proposed, I need the specific additional contraception advice at treatment initiation and dose increases.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ],
+          "when": [
+            "pregnancyPossible",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "pregnancyAcknowledgement",
+          "label": "I understand the clinical team must advise me about pregnancy, trying to conceive and breastfeeding before treatment, and I will contact them immediately if my circumstances change.",
+          "type": "select",
+          "options": [
+            "I confirm",
+            "I need to discuss this"
+          ],
+          "when": [
+            "pregnancyPossible",
+            [
+              "Yes",
+              "Not sure"
+            ]
+          ]
+        },
+        {
+          "id": "gpSharingChoice",
+          "label": "May the treating clinical service contact your GP and share relevant information about your assessment and treatment?",
+          "type": "select",
+          "options": [
+            "Yes",
+            "No",
+            "I need to discuss this"
+          ]
+        },
+        {
+          "id": "gpSharingDetails",
+          "label": "Please explain any concerns or restrictions about GP contact or information sharing. A clinician must assess whether care can proceed safely.",
+          "type": "textarea",
+          "when": [
+            "gpSharingChoice",
+            [
+              "No",
+              "I need to discuss this"
+            ]
+          ]
+        },
+        {
+          "id": "offLabelInformation",
+          "label": "If a clinician proposes treatment outside its licence, I understand they must explain the specific proposal, benefits, risks and alternatives and obtain appropriate consent before prescribing. This answer is not consent to off-label treatment.",
+          "type": "select",
+          "options": [
+            "I understand",
+            "I need to discuss this"
+          ]
+        }
+      ]
+    }
+  ],
+  "approvalStatus": "requires-prescribing-partner-approval",
+  "benchmarkNote": "Named medicine prompts reproduce competitor coverage for clinical review, not an assertion of contraindications or interactions. No automatic prescribing decisions.",
+  "serviceDependentTopics": [
+    {
+      "id": "summaryCareRecord",
+      "topic": "NHS Summary Care Record access consent",
+      "status": "not_displayed_or_collected_until_authorised_access_exists",
+      "competitorCoverage": "Their explicit access-consent topic is retained for mapping; SHIFT does not claim access."
+    },
+    {
+      "id": "offLabelSpecificConsent",
+      "topic": "Specific consent to an off-label proposal",
+      "status": "requires_actual_clinical_proposal_and_separate_consent",
+      "competitorCoverage": "A blanket consent is replaced with information and a case-specific clinical step."
+    }
+  ],
+  "clinicalReviewNotes": [
+    "Competitor mood-change statement is not copied as a blanket instruction to stop medicine. Individual clinical advice is required.",
+    "Current draft uses competitor age range 18-75 and eight-week evidence window as collection/service boundaries, not clinical authorisation.",
+    "All information is fictional-only until clinical policy, privacy notice and service terms are approved."
+  ]
+}

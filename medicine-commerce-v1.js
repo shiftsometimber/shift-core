@@ -1,3 +1,4 @@
+import {memberClinicalRoutes} from './clinical-assessment/member-records.mjs';
 import {ensureCheckoutAttempts,acquireCheckoutAttempt,prepareCheckoutAttempt,requestCheckoutSession,checkoutProblem} from './checkout-attempt-v1.mjs';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
@@ -871,6 +872,7 @@ async function pharmacyStatus(request, env) {
 }
 
 export async function medicineCommerceRoutes(request, env, ctx) {
+  const clinicalRecordResponse=await memberClinicalRoutes(request,env,member);if(clinicalRecordResponse)return clinicalRecordResponse;
   const path = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
   const memberWrites=["/v1/commerce/medicine-checkout","/v1/commerce/medicine-prepay-verification","/v1/commerce/medicine-clinical-intake","/v1/commerce/medicine-clinical-intake-resume"];
   if(request.method==='POST'&&memberWrites.includes(path)&&request.headers.has('Origin')&&!ALLOWED_ORIGINS.has(request.headers.get('Origin')))return json({ok:false,error:'origin_not_allowed'},403);

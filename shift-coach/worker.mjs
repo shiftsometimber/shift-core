@@ -1,3 +1,4 @@
+import {clinicalRecordAsset,withClinicalRecordLink} from '../clinical-assessment/member-records-assets.mjs';
 import {repairHomeSpeed} from '../home-speed-repair.mjs';
 import {withPublicResponsePolicyWorker} from '../public-response-policy.mjs';
 import {withRootShareWorker} from '../share-preview/metadata.mjs';
@@ -27,6 +28,7 @@ import {withFitActiveEdit} from './fit-active-edit.mjs';
 const composedWorker = {
  ...core,
  async fetch(request,env,ctx){
+  const clinicalAsset=clinicalRecordAsset(request);if(clinicalAsset)return clinicalAsset;
   const tablet=await tabletRoutineRoutes(request,env);if(tablet)return tablet;
   const discovery=discoveryRoute(request);if(discovery)return discovery;
   const worksheet=worksheetRoute(request);if(worksheet)return worksheet;
@@ -44,7 +46,7 @@ const composedWorker = {
    try{const initial=await coachingRoutes(new Request(url,{method:'GET',headers:request.headers}),env);if(initial?.ok)seed=await initial.json();}catch{/* Client keeps its normal retry path; no unchecked snapshot is used. */}
   }
   const publicResponse=await withContextSeo(await withDiscoverySeo(await withApprovedSeo(await withTechnicalSeo(await withSeoFollowThrough(await withProgrammeSeo(await withCatalogueBenefits(request,await withCoaching(request,await withFitActiveEdit(request,response),seed)),request),request),request),request),request),request);
-  return withPublicToolDelivery(await (url.pathname.replace(/\/+$/,'')==='/articles/oral-semaglutide-for-weight-loss'?withPublicSeoCloseout(publicResponse,request):publicResponse),request);
+  return withClinicalRecordLink(request,await withPublicToolDelivery(await (url.pathname.replace(/\/+$/,'')==='/articles/oral-semaglutide-for-weight-loss'?withPublicSeoCloseout(publicResponse,request):publicResponse),request),env);
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);

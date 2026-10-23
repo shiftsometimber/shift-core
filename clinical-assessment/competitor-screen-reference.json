@@ -1,0 +1,170 @@
+{
+  "version": "competitor-screen-reference-2026-10-23",
+  "status": "corrected_complete_journey_draft_not_wired_or_live",
+  "scope": "Visible supplied screens only. Positive-answer branches and earlier screens not supplied are not reconstructed.",
+  "sections": [
+    {
+      "id": "conditions",
+      "title": "Do you have any of the following medical conditions?",
+      "items": [
+        "Prediabetes",
+        "Type 2 diabetes",
+        "High blood pressure",
+        "High cholesterol",
+        "Heart or blood vessel disease (e.g., heart attack, stroke, atrial fibrillation)",
+        "Erectile dysfunction",
+        "Obstructive sleep apnoea",
+        "Asthma",
+        "Osteoarthritis",
+        "Acid reflux or gastro-oesophageal reflux disease (GORD)",
+        "Chronic back pain",
+        "Depression",
+        "PCOS",
+        "NAFLD (Non-Alcoholic Fatty Liver Disease) or MASLD (Metabolic dysfunction-associated steatotic liver disease)",
+        "None of the above"
+      ],
+      "options": [],
+      "sourceScreens": [
+        "12.40.46",
+        "12.40.51"
+      ]
+    },
+    {
+      "id": "history",
+      "title": "Have you ever been diagnosed with any of the following?",
+      "items": [
+        "Severe liver or liver transplant",
+        "Kidney disease (eGFR less than 30mL/min)",
+        "Heart failure with shortness of breath",
+        "History of pancreatitis (inflammation of the pancreas)",
+        "Personal or family history (first-degree relatives) of multiple endocrine neoplasia type 2 and medullary thyroid carcinoma",
+        "Active cancer, requiring monitoring or treatment",
+        "Type 1 diabetes",
+        "Diabetes-related eye problems (e.g., diabetic retinopathy)",
+        "A current eating disorder or a history of an eating disorder (e.g., anorexia, bulimia, binge eating disorder)",
+        "A history of gallstones (if you still have your gallbladder) or gallbladder disease",
+        "Any weight loss procedures or surgery in the last 12 months (e.g., gastric sleeve, gastric band, gastric bypass, gastric balloon)",
+        "Previous history of bowel or intestinal surgery (excluding appendectomy)",
+        "Any uncontrolled or clinically significant endocrine (hormonal) disorder, such as Addison’s disease, Cushing’s syndrome, congenital adrenal hyperplasia, acromegaly, or another growth hormone disorder",
+        "Chronic malabsorption syndrome",
+        "Current gastrointestinal stoma (e.g. colostomy, ileostomy or other stoma following bowel surgery)",
+        "Severe digestive conditions (e.g., Crohn’s disease, ulcerative colitis or gastroparesis)"
+      ],
+      "options": [
+        "Yes - I have one of the above listed conditions",
+        "I have other medical conditions",
+        "None of the above"
+      ],
+      "sourceScreens": [
+        "12.41.38",
+        "12.41.43"
+      ]
+    },
+    {
+      "id": "medicines1",
+      "title": "Are you currently taking any medications? (1 of 2)",
+      "items": [
+        "Weight loss medication (Orlistat, MySimba)",
+        "Parkinson’s medication (levodopa, pramipexole, ropinirole, amantadine, bromocriptine, cabergoline, pergolide, rasagiline, selegiline)",
+        "Epilepsy medication (carbamazepine, phenytoin, phenobarbital, primidone, sodium valproate/valproic acid, fenfluramine, divalproex, zonisamide, ethosuximide)",
+        "Diabetes medication (insulin, sulfonylureas)",
+        "Blood thinners (warfarin, acenocoumarol, phenidione)",
+        "Medication that requires close monitoring (azathioprine, lithium, methotrexate, theophylline, mycophenolate mofetil, clozapine, colchicine, isoprenaline)",
+        "Immunosuppressants (ciclosporin, tacrolimus, sirolimus)",
+        "Medication to control your heart rate (flecainide, quinidine, procainamide, disopyramide, amiodarone, digoxin)"
+      ],
+      "options": [
+        "Yes - I am currently taking one of the above listed medications",
+        "I take other medication",
+        "None of the above"
+      ],
+      "sourceScreens": [
+        "12.41.52",
+        "12.41.56"
+      ]
+    },
+    {
+      "id": "medicines2",
+      "title": "Are you currently taking any medications? (2 of 2)",
+      "items": [
+        "Certain antibiotics (Clarithromycin, rifabutin or rifampicin)",
+        "Certain antiviral medicines (Paxlovid, ritonavir, cobicistat, telaprevir, nevirapine, efavirenz or etravirine)",
+        "Certain antifungal medicines (Itraconazole, oral ketoconazole, posaconazole or voriconazole)",
+        "Other medicines (Dexamethasone, modafinil, repaglinide, lumacaftor/ivacaftor, bosentan, gemfibrozil, oral topotecan, simvastatin or rosuvastatin)",
+        "Herbal medicines (St John’s wort)"
+      ],
+      "options": [
+        "Yes - I am currently taking one of the above listed medications",
+        "None of the above"
+      ],
+      "sourceScreens": [
+        "12.42.03"
+      ]
+    }
+  ],
+  "flowOrder": [
+    "nameAndDateOfBirth",
+    "addressAndContact",
+    "heightWeightBMI",
+    "treatmentHistory",
+    "conditions",
+    "medicalHistory",
+    "medicines",
+    "allergies",
+    "GP",
+    "delivery",
+    "uploads",
+    "declarations"
+  ],
+  "retainedCoreFields": [
+    "fullName",
+    "dateOfBirth",
+    "email",
+    "phone",
+    "homeAddress",
+    "homePostcode",
+    "deliveryAddress",
+    "deliveryPostcode",
+    "gpName",
+    "gpPractice",
+    "gpAddress",
+    "gpPostcode"
+  ],
+  "retainedTreatmentHistory": [
+    "currentPreviousNever",
+    "medicine",
+    "actualDose",
+    "timeOnDose",
+    "lastDoseDate",
+    "usualDayNextExpected",
+    "missedDosesBreaks",
+    "sideEffects",
+    "previousProvider"
+  ],
+  "sourceTerms": [
+    "I confirm that the information I have provided is true and accurate, and I understand it will be used by prescribers to decide whether treatment is suitable for me.",
+    "I confirm this treatment is for my own use only, and I will read the patient information leaflet before use.",
+    "I confirm that I will adhere to a structured diet and exercise plan, to be followed alongside my prescribed medication, and I understand that both are essential components of this weight-management programme.",
+    "I understand that injectable weight loss treatments such as Mounjaro or Wegovy must not be combined with other weight loss medicines and can increase the risk of pancreatitis or gallbladder issues. If I experience severe abdominal pain, vomiting, or jaundice, I will seek urgent medical help.",
+    "I understand that severe diarrhoea or vomiting may affect contraceptive effectiveness, and I will seek medical advice if this happens.",
+    "I understand I must stop treatment and contact the clinical team immediately if I become pregnant, plan to become pregnant, or begin trying to conceive.",
+    "I will stop treatment and contact a doctor if I experience mood changes or mental health issues.",
+    "I will contact the clinical team if I miss two or more doses of my medication.",
+    "I will inform New Health and my GP of any side effects, new medications, or changes to my health during treatment.",
+    "I understand that medication may sometimes be prescribed off-label where this is considered clinically appropriate by the prescribing clinician.",
+    "I agree that New Health may notify my GP that I am taking a prescribed weight-management medication and may request or share relevant information with my GP where necessary and where appropriate consent has been obtained.",
+    "I give explicit consent for New Health’s clinicians, who are providing my care, to view my NHS Summary Care Record (including Additional Information where available) via NHS systems for the purposes of direct care and to document relevant information back to my GP.",
+    "I consent to my personal and health data being processed in line with the Privacy Policy, agree to the Terms and Conditions, and confirm that I am aged 18-75 years and meet the eligibility requirements for this service."
+  ],
+  "removedExtras": [
+    "Measurement dates and who measured them",
+    "Goals and support essay",
+    "Highest adult weight and previous approaches",
+    "Repeated details for each condition or medicine",
+    "Full medicine list in addition to the two lists",
+    "Dose-history, benefits, side-effect and switching essays",
+    "Typing prescription name, medicine, dose, date and document type again",
+    "Side-photo request",
+    "Separate confirmations for every term"
+  ]
+}

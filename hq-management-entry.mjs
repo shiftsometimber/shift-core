@@ -1,6 +1,10 @@
+import {clinicalAccessBoundary} from './clinical-assessment/clinical-access-boundary.mjs';
+import {hqClinicalRoute} from './clinical-assessment/hq-clinical-api.mjs';
 import {partnerRoute} from './hq-partner-api.mjs';
 import hq from './hq-ai-v2.js';
 export default {async fetch(request,env,ctx){
+ const boundary=await clinicalAccessBoundary(request,env,async(r,e)=>{const response=await hq.fetch(new Request(new URL('/v1/hq/me',r.url),{headers:r.headers}),e,ctx);return response.ok?await response.json():{response};});if(boundary)return boundary;
+ const clinical=await hqClinicalRoute(request,env,async(r,e)=>{const response=await hq.fetch(new Request(new URL('/v1/hq/me',r.url),{headers:r.headers}),e,ctx);return response.ok?await response.json():{response};});if(clinical)return clinical;
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'');
  if(/^\/v1\/hq\/management\/(partners|partner-handovers)(?:\/|$)/.test(path)){
    if(request.method==='OPTIONS')return hq.fetch(request,env,ctx);

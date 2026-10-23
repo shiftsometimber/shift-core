@@ -1,3 +1,4 @@
+import {clinicalAccessBoundary} from './clinical-assessment/clinical-access-boundary.mjs';
 import {causesPublicRoute} from './causes-partners/production.mjs';
 import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {withSharedFooter} from './timber-shed-public-teaser.mjs';
@@ -581,6 +582,7 @@ async function coreAuthFetch(request, env, ctx) {
 
 const worker = {
   async fetch(request, env, ctx) {
+    const clinicalBoundary=await clinicalAccessBoundary(request,env,authenticateWorkHQ);if(clinicalBoundary)return clinicalBoundary;
     const requestUrl = new URL(request.url);
     if (requestUrl.protocol === "http:") {
       requestUrl.protocol = "https:";
