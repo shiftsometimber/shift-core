@@ -1,3 +1,4 @@
+import {retrospectiveIndustry} from './retrospective-catchup.mjs';
 import teAscRenewal from './reviews/2026-10-12-authorised-te8105-asc36-renewal.json' with {type:'json'};
 import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
 import rhythmPdfAlternatives from './reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json' with {type:'json'};
@@ -193,7 +194,7 @@ const originalIndustry = [
 
 
 // Preserve historical source dates; only the affected entry receives the newer review.
-export const industry = [...originalIndustry.map(e => {
+export const industry = retrospectiveIndustry( [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
 }),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries,...broaderDiscovery.entries,...internationalOmissions.entries,...expandedDiscovery.entries,...ubt251Publication.entries,...sgb7342Publication.entries,...abbvAsc30TernBimagrumab.entries,...registryOmissions.entries,...enobosarmSemaglutide.entries,...expandedRegistryWave.entries,...semaglutideSpecialistTrials.entries,...glimrCopd.entries,...specialistRegistryFollowup.entries,...na931Publication.entries]
@@ -517,4 +518,4 @@ export const industry = [...originalIndustry.map(e => {
   const renewed=teAscRenewal.programmeSummaryReviews.find(r=>r.id===e.id);
   if(!renewed)return e;
   return {...e,reviewedAt:renewed.reviewedAt,additionalEvidence:(e.additionalEvidence||[]).map(link=>({...link,reviewedAt:renewed.reviewedAt}))};
- });
+ }));

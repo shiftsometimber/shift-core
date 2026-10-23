@@ -1,9 +1,15 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import receipt from './reviews/2026-10-10-overdue-registry-access-renewal.json' with {type:'json'};
 import {registrySources,supportSources} from './credibility.mjs';
 
+const retrospectiveCurrent_registrySources=registrySources;
+
 test('renewal advances exactly the reviewed registry and UK support sources',()=>{
+ // Preserve this dated review receipt against its exact before-image.
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(receipt.registrySources.length,63);
  assert.equal(receipt.supportSources.length,4);
  assert.equal(receipt.clinicalApproval,null);

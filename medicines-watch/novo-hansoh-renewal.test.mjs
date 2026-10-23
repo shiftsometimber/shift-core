@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -10,7 +11,16 @@ import {projectSourceHealth} from './monitor.mjs';
 
 const observation=(source,time)=>({id:source.id,source_url:source.url,check_url:source.checkUrl,last_attempt_at:new Date(time).toISOString(),last_success_at:new Date(time).toISOString(),attempt_status:'succeeded',last_http_status:200,last_fingerprint:source.reviewedFingerprint,last_withdrawn:0});
 
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
+const retrospectiveCurrent_registrySources=registrySources;
+
 test('seven unchanged registry records renew only after complete primary-source review',()=>{
+ // Preserve this dated review receipt against its exact before-image.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');assert.equal(receipt.clinicalApproval,null);assert.equal(receipt.industryComplete,false);
  assert.equal(receipt.registrySources.length,7);
  for(const review of receipt.registrySources){
@@ -35,6 +45,11 @@ test('Hansoh selector repair pins the reviewed article body and preserves medica
 });
 
 test('programme reviews and counters remain separate and exact at the review instant',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  for(const review of receipt.programmeReviews){const entry=industry.find(item=>item.id===review.id);assert.ok(entry,review.id);assert.equal(entry.reviewedAt,receipt.reviewedAt);}
  const industryAtReview=industry.filter(entry=>entry.id!=='ly4329090').map(entry=>({...entry,additionalEvidence:(entry.additionalEvidence||[]).filter(link=>Date.parse(link.reviewedAt)<=Date.parse(receipt.reviewedAt))}));
  const sourcesAtReview=sources.filter(source=>!['registry-nct07808073','registry-nct07866066'].includes(source.id));

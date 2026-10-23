@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -10,7 +11,16 @@ import {manualEvidence,programmeSummaryQueue} from './evidence-desk.mjs';
 import {catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const clean=entries=>entries.map(({reviewedAt,...entry})=>({...entry,additionalEvidence:entry.additionalEvidence?.map(({reviewedAt,...link})=>link)}));
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
+const retrospectiveCurrent_registrySources=registrySources;
+
 test('12 October renewal advances one source and two fully reread summaries, preserving all medical wording',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(hash(clean(industry)),baseline.programmeWordingSha256);
  assert.equal(hash(registrySources.map(({reviewedAt,...source})=>source)),baseline.registrySha256);
  assert.deepEqual(receipt.sourceRenewals.map(item=>item.id),['registry-nct07857473']);
@@ -28,6 +38,11 @@ test('12 October renewal advances one source and two fully reread summaries, pre
  assert.equal(receipt.sourceRenewals[0].lifecycle.start.type,'ESTIMATED');
 });
 test('12 October renewal has exact separate counters and retains pending monitoring and unadopted discovery',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  const entries=[...medicines,...industry];assert.equal(entries.length,119);assert.equal(sources.length,204);assert.equal(manualEvidence(entries,sources).length,102);
  assert.equal(programmeSummaryQueue(entries,Date.parse(receipt.reviewedAt)).length,69);
  assert.equal(programmeSummaryQueue(catalogueBeforeSuccessor(entries,Date.parse(receipt.reviewedAt)-1),Date.parse(receipt.reviewedAt)-1).length,71);

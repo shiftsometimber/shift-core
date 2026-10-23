@@ -10,8 +10,8 @@ const fingerprint=data=>fingerprintSource(source,JSON.stringify(data),'applicati
 test('registry monitoring covers all exact linked records, with bounded reviewed identities',()=>{
  const links=[...medicines.flatMap(e=>e.evidenceLinks||[]),...industry.flatMap(e=>e.additionalEvidence||[])];
  const urls=new Set(links.filter(l=>/^https:\/\/clinicaltrials.gov\/study\/NCT\d{8}$/.test(l.url)).map(l=>l.url));
- assert.equal(urls.size,139);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
- assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,204);
+ assert.equal(urls.size,141);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
+ assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,206);
  for(const s of registrySources){assert.match(s.reviewedFingerprint,/^[a-f0-9]{64}$/);assert.equal(s.nctId,s.lifecycle.nctId);assert.ok(s.reviewedAt);}
  const taldefgrobep=registrySources.find(s=>s.id==='registry-nct07281495');assert.ok(taldefgrobep);assert.equal(taldefgrobep.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(taldefgrobep.lifecycle.completion.type,'ESTIMATED');assert.equal(taldefgrobep.lifecycle.hasResults,false);
  const attainMaintain=registrySources.find(s=>s.id==='registry-nct06584916');assert.ok(attainMaintain);assert.equal(attainMaintain.lifecycle.status,'COMPLETED');assert.equal(attainMaintain.lifecycle.completion.type,'ACTUAL');assert.equal(attainMaintain.lifecycle.hasResults,false);
@@ -62,7 +62,7 @@ test('HTML comparator text cannot hide a later required indication; fingerprint 
 });
 test('public status distinguishes record review, summary review, results and uncertain access',()=>{
  const s=registrySources[0];const markup=registryEvidenceMarkup({url:s.url,title:'A <record>',reviewedAt:'2026-09-01'},{});
- assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 10 October 2026/);assert.match(markup,/Verification pending/);
+ assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 19 October 2026/);assert.match(markup,/Verification pending/);
  const renewedSource=registrySources.find(source=>source.nctId==='NCT07721597');
  assert.equal(renewedSource.reviewedAt,'2026-10-10T09:39:21Z');
  const entry=industry.find(e=>renewedSource.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse(entry.reviewedAt)+8*24*60*60*1000),/due for factual review/);

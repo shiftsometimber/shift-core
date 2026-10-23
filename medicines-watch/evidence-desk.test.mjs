@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {matchesSearch,evidenceQueue,manualEvidence,programmeSummaryQueue,evidenceDeskMarkup} from './evidence-desk.mjs';
 import {sources,medicines} from './data.mjs';import {industry} from './industry.mjs';
@@ -5,6 +6,10 @@ import {industryMarkup} from './industry-page.mjs';import {registrySources,regis
 import {topicQueriesForDate,summariseTopicDiscovery,discoveryTopics} from './discovery.mjs';
 import receipt from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 const now=Date.parse('2026-10-03T21:00:00Z');
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
+const retrospectiveCurrent_registrySources=registrySources;
+
 test('programme search combines developer and mechanism without implying suitability',()=>{
  assert.ok(matchesSearch(industry.find(e=>e.id==='zp6590'),'zealand GIP'));
  const html=industryMarkup({},new URLSearchParams('q=Viking'));
@@ -54,6 +59,11 @@ test('coverage directory deduplicates exact configured URLs and escapes evidence
  const html=evidenceDeskMarkup([],entries,{},now);assert.match(html,/&lt;source&gt;/);assert.match(html,/not complete/);assert.doesNotMatch(html,/<A>/);
 });
 test('ZP6590 review preserves conflicts, estimates and absent results',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  const entry=industry.find(e=>e.id==='zp6590'),s=registrySources.find(s=>s.nctId==='NCT07721597');
  assert.equal(s.lifecycle.status,'RECRUITING');assert.deepEqual(s.lifecycle.start,{date:'2026-07-09',type:'ACTUAL'});assert.equal(s.lifecycle.hasResults,false);assert.equal(entry.clinicalApproval,null);assert.match(entry.limitations,/next step/);assert.match(entry.limitations,/not human combination benefits/);
  assert.match(registryEvidenceMarkup(entry.additionalEvidence[0],{}),/Last reviewed record: Recruiting/);assert.match(registryEvidenceMarkup(entry.additionalEvidence[0],{}),/6 September 2027 \(estimated\)/);

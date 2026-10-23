@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -5,6 +6,9 @@ import receipt from './reviews/2026-10-11-authorised-alnylam-rnai-discovery.json
 import {medicines,sources} from './data.mjs';
 import {industry,industrySources} from './industry.mjs';
 import {manualEvidence} from './evidence-desk.mjs';
+
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
 
 test('Alnylam RNAi discovery adds two distinct bounded programmes',()=>{
  assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');
@@ -28,6 +32,10 @@ test('Alnylam RNAi discovery adds two distinct bounded programmes',()=>{
 });
 
 test('Alnylam evidence remains manual and preserves established queues and uncertainty',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+
  const entriesAtReview=[...medicines,...industry].filter(entry=>entry.id!=='ly4329090').map(entry=>({...entry,additionalEvidence:(entry.additionalEvidence||[]).filter(link=>Date.parse(link.reviewedAt)<=Date.parse(receipt.reviewedAt))}));
  const sourcesAtReview=sources.filter(source=>!['registry-nct07808073','registry-nct07866066'].includes(source.id));
  assert.equal(entriesAtReview.length,118);assert.equal(sourcesAtReview.length,202);

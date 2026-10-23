@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -6,6 +7,9 @@ import {industry,industrySources} from './industry.mjs';
 import {medicines,sources} from './data.mjs';
 import {projectSourceHealth} from './monitor.mjs';
 import {manualEvidence} from './evidence-desk.mjs';
+
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
 
 test('ASC36 source renews only after a complete unchanged primary-source rereview',()=>{
  const source=industrySources.find(item=>item.id===receipt.source.id);
@@ -23,6 +27,10 @@ test('ASC36 source-only receipt preserves medical wording and its historical pro
 });
 
 test('ASC36 renewal preserves catalogue, manual evidence, summary queue and ZP6590 boundaries',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+
  const all=[...medicines,...industry];assert.equal(all.length,119);assert.equal(sources.length,204);assert.equal(manualEvidence(all,sources).length,102);assert.equal(programmeSummaryQueueAtReceipt(all,Date.parse(receipt.reviewedAt)).length,70);
  assert.deepEqual(receipt.monitoring,{sourceCountBefore:204,sourceCountAfter:204,configuredSourceReviewQueueBefore:1,configuredSourceReviewQueueAfter:0,priorCompletedReviews:40,completedReviewsAfter:41,programmeSummaryFactualReviewNeeded:70,thresholdsChanged:false,successesSeeded:false});
  assert.equal(receipt.preserved.zp6590VerificationPending,true);assert.equal(receipt.preserved.zp6590CheckDelayed,true);assert.equal(receipt.preserved.monitoringFinished,false);
