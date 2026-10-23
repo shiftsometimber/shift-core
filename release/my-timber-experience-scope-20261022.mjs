@@ -168,7 +168,7 @@ export function originalExperienceMemberDesignScope(text){
  text=once(text,"export function validateMemberDesignSource(sourceRead=null){","export function validateMemberDesignSource(){");
  text=once(text," const read=sourceRead??((ref,path)=>git('rev-parse',ref+':'+path));\n");
  text=once(text," validateMemberDesignPayload((ref,path)=>read(ref==='HEAD'&&path==='member-design.mjs'?MEMBER_LAYOUT_BASE:ref,path),"," validateMemberDesignPayload((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='member-design.mjs'?MEMBER_LAYOUT_BASE:ref)+':'+path),");
- return once(text," validateMemberLayoutPayload(read,"," validateMemberLayoutPayload((ref,path)=>git('rev-parse',ref+':'+path),");
+ return once(text," validateMemberLayoutPayload(read,git('diff','--name-only',MEMBER_LAYOUT_BASE,MEMBER_LAYOUT_CANDIDATE).split('\\n').filter(Boolean));"," validateMemberLayoutPayload((ref,path)=>git('rev-parse',ref+':'+path),git('diff','--name-only',MEMBER_LAYOUT_BASE,MEMBER_LAYOUT_CANDIDATE).split('\\n').filter(Boolean));");
 }
 export function originalExperienceAppScope(text){
  text=once(text,"import {EXPERIENCE_BASE,assertMyTimberExperienceView,myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';\n");
