@@ -18,9 +18,9 @@
   if(host.parentElement!==anchor)anchor.prepend(host);if(!dialog.isConnected)document.body.append(dialog);return true;
  }
  function render(){
-  if(!data||!mount())return;host.hidden=false;const p=data.progress.programme,s=data.programme,tool=/\/(?:grub|fit)(?:\.html)?$/.test(location.pathname),life=location.pathname.includes('/life-back');
+  if(!data||!mount())return;document.body.toggleAttribute('data-programme-ready',!!data.progress.programme);host.hidden=false;const p=data.progress.programme,s=data.programme,tool=/\/(?:grub|fit)(?:\.html)?$/.test(location.pathname),life=location.pathname.includes('/life-back');
   if(!p){host.innerHTML=tool?'':`<div class="pg-start"><div><span class="pg-kicker">MAKE THIS YOURS</span><h2>What do you want your life back for?</h2><p>Keep a starting point. Choose a small win. Come back and see what changes.</p></div><a class="pg-button" href="/member/get-started">Make this mine →</a></div>`;host.hidden=tool;return}
-  if(tool){const next=data.progress.nextShift;host.innerHTML=`<div class="pg-from-week"><div><span class="pg-kicker">FROM YOUR WEEK</span><p>${esc(next?.title||s.reason)}</p></div><a href="/member/dashboard#today">Back to my week →</a></div>`;if(location.pathname.includes('/grub')&&new URLSearchParams(location.search).get('approach')==='meal-guide')host.insertAdjacentHTML('beforeend','<div class="pg-meal-guide"><span class="pg-kicker">A DIFFERENT APPROACH</span><h2>Build an easy meal.</h2><p>Start with food you enjoy and what you already have.</p><ol><li>Choose a familiar starting point.</li><li>Add a suitable protein source and some vegetables or fruit.</li><li>Include a suitable starchy side, and make the portions work for you.</li></ol><p>Your dietary needs and any professional advice take priority.</p><a href="#dailyCheckinFollowup">After trying it: did it help? →</a> · <a href="/member/grub">Browse meal ideas</a></div>');return}
+  if(tool){const next=data.progress.nextShift,relevant=next?.kind===(location.pathname.includes('/grub')?'food':'movement');host.innerHTML=`<div class="pg-from-week"><div><span class="pg-kicker">FROM YOUR WEEK</span><p>${esc(relevant?next.title:s.reason)}</p></div><a href="/member/dashboard#today">Back to my week →</a></div>`;if(location.pathname.includes('/grub')&&(new URLSearchParams(location.search).get('approach')==='meal-guide'||(next?.kind==='food'&&next.approach==='meal-guide')))host.insertAdjacentHTML('beforeend','<div class="pg-meal-guide"><span class="pg-kicker">A DIFFERENT APPROACH</span><h2>Build an easy meal.</h2><p>Start with food you enjoy and what you already have.</p><ol><li>Choose a familiar starting point.</li><li>Add a suitable protein source and some vegetables or fruit.</li><li>Include a suitable starchy side, and make the portions work for you.</li></ol><p>Your dietary needs and any professional advice take priority.</p><a href="/member/dashboard#dailyCheckinFollowup" target="_top">After trying it: did it help? →</a> · <a href="/member/grub">Browse meal ideas</a></div>');return}
   host.innerHTML=`<div class="pg-reason"><div><span class="pg-kicker">MY REASON</span><h2>${esc(s.reason)}</h2></div><a href="/member/get-started">Change my reason</a></div><div class="pg-progress" aria-label="Your first four weeks">${[1,2,3,4].map(n=>`<span class="${n<=s.week?'pg-on':''}">Week ${n}</span>`).join('')}</div><div class="pg-recap"><p>My small win: <strong>${esc(s.smallWin)}</strong></p><div>${s.reviewDue?'<button type="button" data-pg="weekly">Review my week →</button>':'<a href="/member/life-back#programmeJourney">My reflections →</a>'}${s.reflectionDue?'<button type="button" data-pg="reflection">My four-week reflection →</button>':''}</div></div>${life?history(p,s):''}<p id="pg-status" role="status" aria-live="polite"></p>`;
  }
  function history(p,s){
@@ -36,7 +36,7 @@
   const signature=JSON.stringify(body);if(pending?.signature!==signature)pending={signature,body:{...body,operationId:crypto.randomUUID()}};
   const r=await request(pending.body);pending=null;data={...data,progress:r.progress};await load(true);document.dispatchEvent(new CustomEvent('sst:focus-saved'));document.dispatchEvent(new CustomEvent('sst:refresh-today'));document.dispatchEvent(new CustomEvent('sst:account-focus-changed'));return r;
  }
- async function load(force=false){if(loading||(!force&&(busy||dialog.open)))return;loading=true;try{data=await request();render()}catch(e){if(e.status===401){data=null;host.replaceChildren();host.hidden=true;if(dialog.open)dialog.close()}else if(data)status(e.message)}finally{loading=false}}
+ async function load(force=false){if(loading||(!force&&(busy||dialog.open)))return;loading=true;try{const before=data?.progress?.revision;data=await request();render();if(before!==data.progress.revision)refreshPanels()}catch(e){if(e.status===401){data=null;document.body.removeAttribute('data-programme-ready');host.replaceChildren();host.hidden=true;if(dialog.open)dialog.close()}else if(data)status(e.message)}finally{loading=false}}
  document.addEventListener('click',async event=>{const b=event.target.closest('[data-pg]');if(!b||busy)return;const action=b.dataset.pg;if(action==='close')return close();if(action==='weekly')return weekly();if(action==='reflection')return reflection();if(action==='edit-week')return weekly();if(action==='smaller'){
   busy=true;try{const proposed=await request(null,'?focusApproach=smaller');focusDraft={action:'focus',revision:proposed.revision,supportNeed:proposed.proposal.kind,approach:'smaller'};show('A smaller step, proposed.',`<div class="pg-before"><h3>${esc(proposed.proposal.title)}</h3><p>${esc(proposed.proposal.detail)}</p></div><button class="pg-button" type="button" data-pg="accept-focus">Use this smaller step →</button>`)}catch(e){dialog.querySelector('.pg-message').textContent=e.message}finally{busy=false}return;
  }if(action==='accept-week'||action==='accept-focus'){
@@ -57,6 +57,19 @@
   }}catch(e){out.textContent=e.message;if(e.status===409){pending=null;await load(true)}}finally{busy=false;button.disabled=false}
  });
  dialog.addEventListener('cancel',event=>{if(busy)event.preventDefault()});dialog.addEventListener('click',event=>{if(event.target===dialog)close()});
+ // Tool panels are retained by the shared shell. Ask them to reread their own
+ // account state after a saved change; no answers cross the frame boundary.
+ function refreshPanels(){if(window.parent!==window)return;for(const frame of document.querySelectorAll('#appToolPanels iframe'))frame.contentWindow?.postMessage({type:'sst:programme-refresh'},location.origin)}
+ window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===window.parent&&event.data?.type==='sst:programme-refresh')load(true)});
+ // Capture before the shell's document handler, which drops query parameters.
+ // The canonical next step also restores the guide after a normal tab/reload.
+ window.addEventListener('click',event=>{
+  const link=event.target.closest?.('a[href]');if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  const url=new URL(link.href,location.href),tab=$('#appTab-grub');
+  if(!tab||url.origin!==location.origin||url.pathname!=='/member/grub'||url.searchParams.get('approach')!=='meal-guide')return;
+  event.preventDefault();event.stopImmediatePropagation();tab.click();
+  const frame=$('#appTool-grub iframe');if(frame){url.searchParams.set('view','app');url.searchParams.set('app_panel','1');frame.src=url.pathname+url.search+url.hash;}
+ },true);
  document.addEventListener('sst:today-rendered',()=>{mount();load()});document.addEventListener('sst:focus-saved',()=>load());document.addEventListener('sst:action-reviewed',()=>load());
  window.addEventListener('pageshow',()=>load());document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load()});
  mount();load();
