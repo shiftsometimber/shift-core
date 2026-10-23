@@ -34,3 +34,5 @@ body[data-programme-ready] #myTimberSetupCard{display:none!important}
 
 
 .pg-extra-coaching{margin:16px 0;border:1px solid #707762;border-radius:12px;padding:12px 16px;background:#e7e3da;color:#050505}.pg-extra-coaching>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700}.pg-extra-coaching:not([open])>#shiftCoach{display:none!important}
+
+#shiftCoach.pg-extra-coach{padding:0;border:0;background:transparent;margin:16px 0}#shiftCoach.pg-extra-coach>.pg-extra-coaching{margin:0}.pg-extra-coaching:not([open])>:not(summary){display:none!important}

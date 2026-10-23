@@ -25,12 +25,15 @@
  }
  let coachingObserver;
  function connectCoaching(){
-  const coach=$('#shiftCoach'),wrapper=$('#programmeExtraCoaching');
-  if(coach&&!coachingObserver){coachingObserver=new MutationObserver(connectCoaching);coachingObserver.observe(coach,{childList:true,subtree:true});}
-  const extra=!!data?.progress?.nextShift&&!!coach?.querySelector('[data-coach-setup]')&&!coach.querySelector('[data-coach-help][open]');
-  if(extra&&!wrapper){const details=document.createElement('details'),summary=document.createElement('summary');details.id='programmeExtraCoaching';details.className='pg-extra-coaching';summary.textContent='Want extra help with today?';details.append(summary);coach.before(details);details.append(coach);}
-  else if(!extra&&wrapper){if(coach)wrapper.before(coach);wrapper.remove();}
+  const coach=$('#shiftCoach');let wrapper=$('#programmeExtraCoaching');if(!coach)return;
+  if(!coachingObserver){coachingObserver=new MutationObserver(connectCoaching);coachingObserver.observe(coach,{childList:true,subtree:true});}
+  const extra=!!data?.progress?.nextShift&&!!coach.querySelector('[data-coach-setup]')&&!coach.querySelector('[data-coach-help][open]');
+  if(wrapper&&wrapper.parentElement!==coach){wrapper.remove();wrapper=null;}
+  coach.classList.toggle('pg-extra-coach',extra);
+  if(extra&&!wrapper){const details=document.createElement('details'),summary=document.createElement('summary');details.id='programmeExtraCoaching';details.className='pg-extra-coaching';summary.textContent='Want extra help with today?';details.append(summary);const children=[...coach.children];coach.append(details);children.forEach(child=>details.append(child));}
+  else if(!extra&&wrapper){for(const child of [...wrapper.children])if(child.tagName!=='SUMMARY')wrapper.before(child);wrapper.remove();}
  }
+
  function render(){
   if(!data||!mount())return;connectCoaching();document.body.toggleAttribute('data-programme-ready',!!data.progress.programme);host.hidden=false;const p=data.progress.programme,s=data.programme,tool=/\/(?:grub|fit)(?:\.html)?$/.test(location.pathname),life=location.pathname.includes('/life-back');
   if(!p){host.innerHTML=tool?'':`<div class="pg-start"><div><span class="pg-kicker">MAKE THIS YOURS</span><h2>What do you want your life back for?</h2><p>Keep a starting point. Choose a small win. Come back and see what changes.</p></div><a class="pg-button" href="/member/get-started">Make this mine →</a></div>`;host.hidden=tool;return}

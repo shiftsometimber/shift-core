@@ -34,3 +34,8 @@ test('the new private GET routes deny anonymous access; writes and unrelated cli
  for(const p of ['/v1/my-journey','/v1/journey','/v1/member/treatment','/v1/member/treatment/summary.pdf'])assert.equal((await overlay.fetch(req(p),env)).status,401,p);
  for(const p of ['/v1/journey/weekly-check-in','/v1/member/treatment/records','/v1/member/treatment-notifications','/treatment-assessment','/'])assert.equal(await(await overlay.fetch(req(p),env)).text(),'existing core',p);
 });
+
+ test('Ask repair gives previously cached scripts a fresh versioned URL',async()=>{
+ const old='<title>Ask Timber | My Timber preview</title><script src="/assets/ask-timber-phase8.js?v=15"></script>';
+ const r=await repairAskDocument(req('/member/ask-timber'),new Response(old,{headers:{'Content-Type':'text/html'}}));assert.match(await r.text(),/src="\/assets\/ask-timber-phase8\.js\?v=joined-member-20261023"/);
+ });

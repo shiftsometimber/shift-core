@@ -40,7 +40,7 @@ export async function repairMemberAsset(request,response){
 }
 export async function repairAskDocument(request,response){
  if(!['/member/ask-timber','/member/ask-timber.html'].includes(new URL(request.url).pathname)||request.method!=='GET'||!response.ok||!response.headers.get('Content-Type')?.includes('text/html'))return response;
- const html=await response.text(),body=html.replace('<title>Ask Timber | My Timber preview</title>','<title>Ask Timber | My Timber</title>');
+ const html=await response.text(),body=html.replace('<title>Ask Timber | My Timber preview</title>','<title>Ask Timber | My Timber</title>').replace(/(src=[\"']\/assets\/ask-timber-phase8\.js)(?:\?[^\"']*)?([\"'])/g,'$1?v=joined-member-20261023$2');
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, must-revalidate');headers.set('X-Shift-Member-Repair',revision);for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
  return new Response(body,{status:response.status,headers});
 }
