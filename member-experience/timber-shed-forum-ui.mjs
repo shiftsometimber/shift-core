@@ -289,6 +289,7 @@ async function safety(){
  for(const item of blockData.blocks){const card=document.createElement('div');card.append(text('span',item.display_name),button('Unblock',async()=>{try{await api('unblock',{blockId:item.id});await safety();await latest();say('shedForumStatus','Your block has been removed. The other member may still have a block in place.')}catch(e){say('shedForumStatus',e.message)}}));blocks.append(card)}
 }
 async function moderation(){
+ for(const id of ['shedQueue','shedReports','shedAppeals','shedRestrictions','shedRestrictionAppeals'])by(id).replaceChildren(text('p','Loading moderator queue…'));
  try{
   const data=await api('moderation');by('shedModNav').hidden=false;by('shedPendingBadge').textContent=String(data.pending.length+data.reports.length+(data.appeals||[]).length+(data.restrictionAppeals||[]).length);
   const q=by('shedQueue'),r=by('shedReports');q.replaceChildren(text('h4','Pending review ('+data.pending.length+')'));r.replaceChildren(text('h4','Reports ('+data.reports.length+')'));

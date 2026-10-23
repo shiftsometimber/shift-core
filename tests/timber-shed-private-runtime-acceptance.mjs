@@ -128,6 +128,7 @@ try{
   await moderatorPage.setCookie({name:'sst_session',value:tokens[3],url:origin,httpOnly:true,sameSite:'Strict'});
   await moderatorPage.goto(origin+'/member/timber-shed',{waitUntil:'networkidle0'});
   await moderatorPage.click('[data-shed-view="moderation"]');
+  await moderatorPage.waitForNetworkIdle({idleTime:200});
   await moderatorPage.waitForSelector('#shedQueue details');
   await moderatorPage.click('#shedQueue details summary');
   await moderatorPage.click('#shedQueue details button');
