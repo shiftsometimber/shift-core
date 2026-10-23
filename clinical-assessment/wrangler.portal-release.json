@@ -1,0 +1,43 @@
+{
+  "name": "shift-hq-clinical-portal",
+  "main": "portal-release-worker.mjs",
+  "account_id": "9e5386dcf455be34c582d93f8bfc79e6",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shift-core-db",
+      "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "CLINICAL_PRIVATE_FILES",
+      "bucket_name": "shift-clinical-member-records"
+    }
+  ],
+  "vars": {
+    "CLINICAL_CASEWORK_ENABLED": "false",
+    "CLINICAL_REVIEW_READY": "false",
+    "CLINICAL_CONTEXT_ENABLED": "false"
+  },
+  "routes": [
+    {
+      "pattern": "hq.shiftsometimber.co.uk/clinical-portal*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "hq.shiftsometimber.co.uk/clinical-assets/*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "api.shiftsometimber.co.uk/v1/hq/clinical*",
+      "zone_name": "shiftsometimber.co.uk"
+    }
+  ],
+  "observability": {
+    "enabled": false
+  }
+}
