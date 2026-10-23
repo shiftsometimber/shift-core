@@ -187,10 +187,12 @@ export function originalExperienceMemberDesignScope(text){
  return once(text," validateMemberLayoutPayload(read,git('diff','--name-only',MEMBER_LAYOUT_BASE,MEMBER_LAYOUT_CANDIDATE).split('\\n').filter(Boolean));"," validateMemberLayoutPayload((ref,path)=>git('rev-parse',ref+':'+path),git('diff','--name-only',MEMBER_LAYOUT_BASE,MEMBER_LAYOUT_CANDIDATE).split('\\n').filter(Boolean));");
 }
 export function originalExperienceAppScope(text){
- text=once(text,"import {EXPERIENCE_BASE,assertMyTimberExperienceView,myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';\n");
+ text=once(text,"import {EXPERIENCE_BASE,EXPERIENCE_CURRENT_MAIN_PATHS,assertMyTimberExperienceView,myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';\n");
  text=once(text,":p==='release/member-design-scope.mjs'?EXPERIENCE_BASE");
  text=once(text," const myTimber=assertMyTimberExperienceView(myTimberExperienceHistoricalView());\n");
  text=once(text," validateMemberDesignSource(myTimber.read);"," validateMemberDesignSource();");
+ text=once(text," const approvedPaths=new Set([...APP_PATHS,...EXPERIENCE_CURRENT_MAIN_PATHS]);\n");
+ text=once(text," assert(changed.every(p=>approvedPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!approvedPaths.has(p)).join(','));"," assert(changed.every(p=>APP_PATHS.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)).join(','));");
  text=once(text,"originalMemberWorkerPresentation(myTimber.content('HEAD',p))","originalMemberWorkerPresentation(execFileSync('git',['show','HEAD:'+p],{encoding:'utf8'}))");
  return once(text,"myTimber.content('HEAD','my-timber-pwa/service-worker.mjs').replace(","execFileSync('git',['show','HEAD:my-timber-pwa/service-worker.mjs'],{encoding:'utf8'}).replace(");
 }

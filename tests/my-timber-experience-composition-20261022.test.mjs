@@ -35,6 +35,10 @@ test('exact approved My Timber source is registered before prior release scopes'
 
 test('exact current-main footer refactor composes without changing either approved source',()=>{
  assert.deepEqual(diff(EXPERIENCE_CURRENT_MAIN_BASE,EXPERIENCE_CURRENT_MAIN_SOURCE),EXPERIENCE_CURRENT_MAIN_PATHS);
+ const appScope=content(head,'release/app-scope.mjs');
+ assert.equal(appScope.split("import {EXPERIENCE_BASE,EXPERIENCE_CURRENT_MAIN_PATHS,assertMyTimberExperienceView,myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';").length,2);
+ assert.equal(appScope.split(" const approvedPaths=new Set([...APP_PATHS,...EXPERIENCE_CURRENT_MAIN_PATHS]);").length,2);
+ assert.equal(appScope.split(" assert(changed.every(p=>approvedPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!approvedPaths.has(p)).join(','));").length,2);
  for(const [path,pin] of Object.entries(EXPERIENCE_CURRENT_MAIN_PINS))assert.equal(blob(EXPERIENCE_CURRENT_MAIN_SOURCE,path),pin);
  const path='tests/shared-footer.test.mjs';
  const product=content(EXPERIENCE_SOURCE,path);
@@ -83,6 +87,10 @@ test('every prior release/runtime/navigation byte restores and altered hooks rej
  assert.equal(originalExperienceAppScope(content(head,appScopePath)),content(EXPERIENCE_BASE,appScopePath));
  assert.throws(()=>originalExperienceMemberDesignScope(content(head,memberDesignPath).replace("export function validateMemberDesignSource(sourceRead=null){","export function validateMemberDesignSource(sourceRead=null){export function validateMemberDesignSource(sourceRead=null){")),/One exact/);
  assert.throws(()=>originalExperienceAppScope(content(head,appScopePath).replace(" validateMemberDesignSource(myTimber.read);"," validateMemberDesignSource(myTimber.read); validateMemberDesignSource(myTimber.read);")),/One exact/);
+ const approvedPathsHook=" const approvedPaths=new Set([...APP_PATHS,...EXPERIENCE_CURRENT_MAIN_PATHS]);";
+ const approvedPathsGuard=" assert(changed.every(p=>approvedPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!approvedPaths.has(p)).join(','));";
+ assert.throws(()=>originalExperienceAppScope(content(head,appScopePath).replace(approvedPathsHook,approvedPathsHook+approvedPathsHook)),/One exact/);
+ assert.throws(()=>originalExperienceAppScope(content(head,appScopePath).replace(approvedPathsGuard,'')),/One exact/);
  assert.throws(()=>originalExperienceMainRelease(content(head,mainPath).replace(EXPERIENCE_MAIN_AFTER,EXPERIENCE_MAIN_AFTER+EXPERIENCE_MAIN_AFTER)),/One exact/);
  assert.throws(()=>originalExperienceRuntime(content(head,runtimePath).replace(EXPERIENCE_RUNTIME_BRANCH,'')),/One exact/);
  assert.throws(()=>originalExperienceRuntime(content(head,runtimePath).replace(EXPERIENCE_RUNTIME_VERIFY_AFTER,EXPERIENCE_RUNTIME_VERIFY_AFTER+EXPERIENCE_RUNTIME_VERIFY_AFTER)),/One exact/);

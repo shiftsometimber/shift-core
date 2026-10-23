@@ -8,7 +8,7 @@ import {RECIPE_IMAGE_PATHS,validateRecipeImages} from './recipe-image-scope.mjs'
 import {DEVICE_HEALTH_PATHS,historicalDeviceHealthRef,validateDeviceHealthSource,verifyDeviceHealthProof} from './device-health-scope.mjs';
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {MEMBER_DESIGN_PATHS,MEMBER_LAYOUT_PATHS,validateMemberDesignSource} from './member-design-scope.mjs';
-import {EXPERIENCE_BASE,assertMyTimberExperienceView,myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';
+import {EXPERIENCE_BASE,EXPERIENCE_CURRENT_MAIN_PATHS,assertMyTimberExperienceView,myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';
 import {FOOTER_CANDIDATE,FOOTER_PATHS,FOOTER_RUNTIME_PATHS,historicalFooterRef,validateFooterSource} from './footer-scope.mjs';
 import {validateHomeBanner} from './home-banner-scope.mjs';
 import {MEMBER_FOCUS_APPROVED,MEMBER_FOCUS_PATHS,validateMemberFocus} from './member-focus-scope.mjs';
@@ -66,7 +66,8 @@ export function validateAppSource(){
  for(const p of PWA_DISMISS_PATHS)if(p==='my-timber-pwa/presentation.mjs')assert.equal(originalMemberWorkerPresentation(myTimber.content('HEAD',p)),execFileSync('git',['show',PWA_DISMISS_APPROVED+':'+p],{encoding:'utf8'}),'Complete PWA presentation differs beyond exact shared member worker registration');else assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',PWA_DISMISS_APPROVED+':'+p),'Reviewed PWA install dismissal drift: '+p);
  validateMemberFocus((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='preview/app-layout/tabs.mjs'?FOOTER_CANDIDATE:ref)+':'+path));
  const changed=git('diff','--name-only',APP_BASE,'HEAD').split('\n').filter(Boolean);
- assert(changed.every(p=>APP_PATHS.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)).join(','));
+ const approvedPaths=new Set([...APP_PATHS,...EXPERIENCE_CURRENT_MAIN_PATHS]);
+ assert(changed.every(p=>approvedPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!approvedPaths.has(p)).join(','));
  for(const [p,sha]of Object.entries(APP_HASHES))assert.equal(createHash('sha256').update(execFileSync('git',reconciliationGitArgs(['show',originalAppHashRef(p)+':'+p]))).digest('hex'),sha,'App release drift: '+p);
  for(const p of ['presentation.mjs','screens.mjs','tabs.mjs','refinement.mjs','verify.cjs'])assert.equal(git('rev-parse',historicalFooterRef('HEAD','preview/app-layout/'+p)+':preview/app-layout/'+p),git('rev-parse',APP_APPROVED+':preview/app-layout/'+p),'Approved app design changed: '+p);
  assert.equal(originalPwaLiveReadVerifier(execFileSync('git',['show','HEAD:my-timber-pwa/verify-live.mjs'],{encoding:'utf8'})),execFileSync('git',['show',APP_BASE+':my-timber-pwa/verify-live.mjs'],{encoding:'utf8'}),'PWA verifier differs beyond the exact bounded GET retry repair');
