@@ -10,7 +10,7 @@ test('complete original footer script is retained as an unchanged prefix',()=>{
 });
 test('asset release owns only two exact public asset routes with no data bindings',()=>{
  const c=JSON.parse(readFileSync(new URL('../wrangler.timber-shed-disabled-navigation.jsonc',import.meta.url)));
- assert.deepEqual(c.routes.map(r=>r.pattern),['shiftsometimber.co.uk/assets/footer-social-links-v1.js','www.shiftsometimber.co.uk/assets/footer-social-links-v1.js']);
+ assert.deepEqual(c.routes.map(r=>r.pattern),['shiftsometimber.co.uk/assets/footer-social-links-v1.js*','www.shiftsometimber.co.uk/assets/footer-social-links-v1.js*']);
  assert.equal(c.workers_dev,false);assert.equal(c.preview_urls,false);assert.equal(c.d1_databases,undefined);assert.equal(c.services,undefined);
 });
 test('JavaScript response has correct type and cannot retain stale content',async()=>{

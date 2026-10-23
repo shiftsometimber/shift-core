@@ -6,11 +6,11 @@
   "preview_urls": false,
   "routes": [
     {
-      "pattern": "shiftsometimber.co.uk/assets/footer-social-links-v1.js",
+      "pattern": "shiftsometimber.co.uk/assets/footer-social-links-v1.js*",
       "zone_name": "shiftsometimber.co.uk"
     },
     {
-      "pattern": "www.shiftsometimber.co.uk/assets/footer-social-links-v1.js",
+      "pattern": "www.shiftsometimber.co.uk/assets/footer-social-links-v1.js*",
       "zone_name": "shiftsometimber.co.uk"
     }
   ],
