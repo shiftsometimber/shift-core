@@ -9,3 +9,5 @@ Guarded commands: `node release/seo-followup-20261024/release.cjs stage`, `verif
 Two duplicate guide pairs remain unidentified. No canonical consolidation guessed. Search Console submission occurs only after verified production sitemap and Work metadata.
 
 First production acceptance caught Cloudflare exact patterns excluding query strings; restored all 26 original route before-images before correction. V2 uses prefix route patterns plus exact path guards, preserving existing Work, sitemap and Help service handlers for all unmatched paths/methods. Longer existing treatment and waiting-list-journey routes retain priority. Both plain URLs and query strings are verified.
+
+The established common.phase uses anonymous GitHub reads. Its 60-request quota was exhausted before V2 activation, which stopped safely with no route mutations. production-phase.cjs preserves the identical active-run/job/step interlock using existing Git authentication in memory. It neither changes permissions nor stores/displays credentials.
