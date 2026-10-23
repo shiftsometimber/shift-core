@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-23T23:13:20.440Z",
+  "reason": "Three unrelated clinical portal routes recreated with new IDs; complete semantic route map and all dependency deployments unchanged",
+  "changes": [
+    {
+      "id": "1c9c038dd2b24306befbe173886d8df1",
+      "pattern": "api.shiftsometimber.co.uk/v1/hq/clinical*",
+      "script": "shift-hq-clinical-portal",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "b17bd10faa894b0b953e0dfc896705cb",
+      "pattern": "hq.shiftsometimber.co.uk/clinical-assets/*",
+      "script": "shift-hq-clinical-portal",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "0679394ac3294484a242b28886446f58",
+      "pattern": "hq.shiftsometimber.co.uk/clinical-portal*",
+      "script": "shift-hq-clinical-portal",
+      "request_limit_fail_open": false
+    }
+  ]
+}

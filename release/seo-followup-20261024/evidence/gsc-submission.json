@@ -1,0 +1,23 @@
+{
+  "siteUrl": "sc-domain:shiftsometimber.co.uk",
+  "attempted": 1,
+  "submitted": 1,
+  "failed": 0,
+  "results": [
+    {
+      "sitemapUrl": "https://shiftsometimber.co.uk/sitemap.xml",
+      "accepted": true,
+      "confirmed": true,
+      "lastSubmitted": "2026-10-23T23:17:06.793Z",
+      "isPending": true,
+      "isSitemapsIndex": false,
+      "type": "sitemap",
+      "warnings": "0",
+      "errors": "0"
+    }
+  ],
+  "message": "Submitted 1 of 1 sitemap(s) to Search Console for sc-domain:shiftsometimber.co.uk. Submitting queues a download; it does not index the URLs.",
+  "actions": [
+    "Re-check list_sitemaps in a few hours: warnings and errors appear only after Google has downloaded the sitemap."
+  ]
+}

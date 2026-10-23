@@ -13,3 +13,9 @@ First production acceptance caught Cloudflare exact patterns excluding query str
 The established common.phase uses anonymous GitHub reads. Its 60-request quota was exhausted before V2 activation, which stopped safely with no route mutations. production-phase.cjs preserves the identical active-run/job/step interlock using existing Git authentication in memory. It neither changes permissions nor stores/displays credentials.
 
 Production acceptance: canonical-host aliases resolve in one 301. www aliases encounter an existing canonical-host redirect before the scoped Worker, then resolve in a second 301. Verified finite chain, no loop; removing the extra hop remains blocked because the existing Cloudflare credential cannot read zone dynamic redirect rules (API 10000). The acceptance verifier records this limitation explicitly rather than claiming single-hop www redirects. Work indexability and canonical sitemap submission are independent and remain authorised.
+
+## Final verified status
+
+Deployment 93de4dc3-bd5d-40c6-ad39-4ff237b1231c, 40 scoped routes. Six targeted tests, 80 production URL/method checks, valid XML with 420 unique URLs, Work canonical/robots and unchanged approved presentation verified. Homepage response SHA unchanged; cart/checkout remain 404. Google accepted sitemap resubmission at 2026-10-23T23:17:06.793Z; download pending, indexing unconfirmed. Sanitised receipts in evidence/. Existing separate clinical route ID refresh reconciled only after proving complete route semantics and all dependent deployments unchanged. First attempt rolled back, all before-images preserved externally. Owned workers.dev previews disabled after acceptance.
+
+Open: www extra canonical hop (zone redirect-rule read access unavailable), exact two duplicate-guide pairs, Google subsequent fetch/indexing. Earlier mobile/Safari and homepage ticker restrictions from the main review remain in STATUS.md.

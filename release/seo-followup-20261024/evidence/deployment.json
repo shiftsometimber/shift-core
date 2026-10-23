@@ -1,0 +1,12 @@
+{
+  "service": "shift-seo-followup-v2-20261024",
+  "deploymentID": "93de4dc3-bd5d-40c6-ad39-4ff237b1231c",
+  "versions": [
+    {
+      "version_id": "3e96a85a-a220-4b12-b028-c329b2ef200a",
+      "percentage": 100
+    }
+  ],
+  "productionRouteSource": "c6c46218d46a2b4e200d454ac0b1e3d741fdb849",
+  "workerModuleSource": "9ddef7d53472a93555107747db56551e8240a259"
+}

@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-23T23:17:37.512Z",
+  "outsideScopeRouteSemanticsUnchanged": true,
+  "cleanup": [
+    {
+      "name": "shift-seo-followup-20261024",
+      "workersDevDisabled": true
+    },
+    {
+      "name": "shift-seo-followup-v2-20261024",
+      "workersDevDisabled": true
+    }
+  ],
+  "workBrowser": {
+    "url": "https://shiftsometimber.co.uk/shift-for-work",
+    "canonical": "https://shiftsometimber.co.uk/shift-for-work",
+    "robots": "index,follow,max-image-preview:large",
+    "mainHeading": "Men’s health support your workforce might actually use."
+  },
+  "robotsTxtAllowsWork": true
+}
