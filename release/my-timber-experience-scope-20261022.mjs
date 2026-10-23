@@ -57,6 +57,7 @@ export const EXPERIENCE_MAINTENANCE=Object.freeze([
  'release/finite-growth-scope.mjs',
  'release/main-release-readiness-scope-20261021.mjs',
  'release/approved-runtime-composition.mjs',
+ 'release/footer-scope.mjs',
  'release/root-share-preview-scope.mjs',
  'release/recorded-week-navigation-outer-frame-20261018.mjs',
  'tests/health-vision-scope-20261021.test.mjs',
@@ -154,6 +155,14 @@ export function originalExperiencePayload(path,value){
  const current=Buffer.from(rawContent(EXPERIENCE_SOURCE,path)),prior=Buffer.from(rawContent(EXPERIENCE_BASE,path));
  if(value.equals(prior))return value;
  assert(value.equals(current),'Exact current My Timber payload required before navigation projection');
+ return prior;
+}
+export function originalExperiencePwaServiceWorker(value){
+ const path='my-timber-pwa/service-worker.mjs';
+ assert.equal(typeof value,'string','Exact My Timber service-worker source required');
+ const current=rawContent(EXPERIENCE_SOURCE,path),prior=rawContent(EXPERIENCE_BASE,path);
+ if(value===prior)return value;
+ assert.equal(value,current,'Exact current My Timber service-worker source required before footer projection');
  return prior;
 }
 function clean(head){
