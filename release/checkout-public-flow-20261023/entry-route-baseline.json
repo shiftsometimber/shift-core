@@ -1,0 +1,14 @@
+[
+  {
+    "id": "ecfc6c69b8334ff8a39624bc4b6b3cae",
+    "pattern": "www.shiftsometimber.co.uk/treatment-assessment*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  {
+    "id": "332f3558311f4a24a47c0f036f6e1dd3",
+    "pattern": "shiftsometimber.co.uk/treatment-assessment*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  }
+]

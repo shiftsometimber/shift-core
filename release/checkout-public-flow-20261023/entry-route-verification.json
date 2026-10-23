@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "at": "2026-10-23T09:02:24.014Z",
+  "script": "shift-clinical-entry",
+  "patterns": [
+    "www.shiftsometimber.co.uk/treatment-assessment*",
+    "shiftsometimber.co.uk/treatment-assessment*"
+  ]
+}

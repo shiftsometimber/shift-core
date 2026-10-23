@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "id": "b6217836-f57d-485a-8d29-6f9c6bfb8437",
+  "url": "https://b6217836.projectshift.pages.dev",
+  "at": "2026-10-23T08:47:40.336Z",
+  "changedPaths": [
+    "/treatment-order.html",
+    "/treatment-assessment.html",
+    "/assets/clinical-journey-v1/clinical-journey.css",
+    "/assets/clinical-journey-v1/clinical-journey.js"
+  ],
+  "preservedAssetCount": 853
+}

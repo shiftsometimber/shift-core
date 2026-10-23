@@ -1,0 +1,17 @@
+{
+  "pass": true,
+  "at": "2026-10-23T09:03:58.759Z",
+  "widths": [
+    1365,
+    390
+  ],
+  "anonymous": true,
+  "emptyAccountFixture": true,
+  "paidAccountStillClosedFixture": true,
+  "safeTextRendering": true,
+  "noClinicalInputs": true,
+  "noClinicalOrPaymentWrites": true,
+  "consentOnlyDeletes": 2,
+  "orderClosure": true,
+  "noOverflow": true
+}

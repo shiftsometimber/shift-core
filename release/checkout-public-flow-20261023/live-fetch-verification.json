@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "at": "2026-10-23T09:03:44.154Z",
+  "pages": [
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-order?medicine=mounjaro&support=open",
+      "status": 200,
+      "sha256": "2cfe35a6705aecc36d175fd16517f909243fcd90c7e02dcc596137a81da4f206",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-assessment",
+      "status": 200,
+      "sha256": "8aeac38616f4287033bbce70996505c3c3cbdbfb6963930fefa74e4db74437a9",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store, private",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-assessment?variant=2",
+      "status": 200,
+      "sha256": "8aeac38616f4287033bbce70996505c3c3cbdbfb6963930fefa74e4db74437a9",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store, private",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    }
+  ],
+  "css": {
+    "url": "https://shiftsometimber.co.uk/assets/clinical-journey-v1/clinical-journey.css?v=20261023-2",
+    "status": 200,
+    "sha256": "da3ad9c88065e1920541950b9d00150d40f245a2f62604bdb3d7aa9eeaa10278",
+    "headers": {
+      "content-type": "text/css; charset=utf-8",
+      "cache-control": "public, max-age=0, must-revalidate",
+      "content-security-policy": null,
+      "strict-transport-security": null,
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": null,
+      "x-frame-options": null
+    }
+  },
+  "clinicalPagePostBlocked": true
+}

@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-23T08:47:17.827Z",
+  "stripeMode": "test",
+  "clinicalImageR2Binding": false,
+  "clinicalIntakeConfigured": false,
+  "prepayVerificationConfigured": false,
+  "stock": [
+    {
+      "variants_with_unreserved_stock": 0
+    }
+  ],
+  "privateClinicalV05PubliclyDeployed": false
+}
