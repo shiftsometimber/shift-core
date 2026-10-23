@@ -23,7 +23,7 @@ export function createTimberShedPresentationRoutes(authenticate=authenticateMemb
     .replace('No health records are read, shared or published.','Your private My Timber health records are not read or shared here.')
     .replace('We only save a programme activity ID, whether you completed it and optional simple feedback if you opt in. No names, measurements, medical notes or community posts.','For these optional private progress ticks, we save the activity ID, completion and simple feedback. Community posts are separate and require your deliberate submission and human review.')
     :timberShedPage;
-   const html=forum?source.replace(timberShedForumPreview(),markup).replace('</head>','<style>'+timberShedForumPilotCSS+'</style></head>').replace('</body>','<script src="/assets/member-experience/timber-shed-forum.mjs" defer></script></body>'):source;
+   const html=forum?source.replace(timberShedForumPreview(),'').replace('<section class="section"><div class="eyebrow">YOUR CHOICE</div>',markup+'<section class="section"><div class="eyebrow">YOUR CHOICE</div>').replace('</head>','<style>'+timberShedForumPilotCSS+'</style></head>').replace('</body>','<script src="/assets/member-experience/timber-shed-forum.mjs" defer></script></body>'):source;
    return new Response(request.method==='HEAD'?null:html,{headers:{...headers,'Content-Type':'text/html; charset=utf-8'}});
   }
   const body=path.endsWith('timber-shed-forum.mjs')?timberShedForumPilotClient:timberShedClient;

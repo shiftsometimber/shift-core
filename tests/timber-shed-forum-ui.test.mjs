@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {timberShedForumPilotMarkup,timberShedForumPilotClient,timberShedForumPilotCSS} from '../member-experience/timber-shed-forum-ui.mjs';
 import {timberShedForumPreview} from '../member-experience/timber-shed-forums.mjs';
 import {timberShedPage} from '../member-experience/timber-shed-page.mjs';
+import {createTimberShedPresentationRoutes} from '../member-experience/timber-shed-presentation.mjs';
 test('private forum pilot UI provides deliberate posting and reporting, not automatic publication',()=>{
  assert.match(timberShedForumPilotMarkup,/Submit for moderation/);
  assert.match(timberShedForumPilotMarkup,/Nothing is published immediately/);
@@ -18,11 +19,17 @@ test('private forum pilot UI provides deliberate posting and reporting, not auto
  assert.match(timberShedForumPilotClient,/credentials:'same-origin'/);
  assert.match(timberShedForumPilotCSS,/max-width:800px/);
 });
-test('member page switches from fictional preview only under a separate forum feature flag',()=>{
+test('member page switches from fictional preview only under a separate forum feature flag',async()=>{
  const source=readFileSync(new URL('../member-experience/timber-shed-presentation.mjs',import.meta.url),'utf8');
  assert.match(source,/env\.TIMBER_SHED_FORUM_ENABLED==='true'/);
  assert.match(source,/TIMBER_SHED_FORUM_PILOT_APPROVED/);
- assert.match(source,/replace\(timberShedForumPreview\(\),markup\)/);
+ const route=createTimberShedPresentationRoutes(async()=>({userId:2}));
+ const html=await (await route(new Request('https://fixture.test/member/timber-shed'),{MEMBER_EXPERIENCE_V1_ENABLED:'true',TIMBER_SHED_PRIVATE_ENABLED:'true',TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true'})).text();
+ assert.equal((html.match(/id="shedForumPilot"/g)||[]).length,1);
+ assert(!html.includes('id="forum-preview"'));
+ assert(html.indexOf('class="hero"')<html.indexOf('id="shedForumPilot"'));
+ assert(html.indexOf('id="shedForumPilot"')<html.indexOf('YOUR CHOICE'));
+ assert(html.indexOf('id="shedForumPilot"')<html.indexOf('FOUNDING PROGRAMME'));
  assert.match(source,/env\.TIMBER_SHED_PRIVATE_ENABLED!=='true'/);
  assert.match(source,/env\.MEMBER_EXPERIENCE_V1_ENABLED!=='true'/);
  assert(timberShedPage.includes(timberShedForumPreview()));
