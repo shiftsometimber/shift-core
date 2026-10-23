@@ -75,7 +75,9 @@ export const EXPERIENCE_MAINTENANCE=Object.freeze([
  'release/finite-growth-scope.mjs',
  'release/main-release-readiness-scope-20261021.mjs',
  'release/approved-runtime-composition.mjs',
+ 'release/app-scope.mjs',
  'release/footer-scope.mjs',
+ 'release/member-design-scope.mjs',
  'release/root-share-preview-scope.mjs',
  'release/recorded-week-navigation-outer-frame-20261018.mjs',
  'tests/health-vision-scope-20261021.test.mjs',
@@ -161,6 +163,20 @@ export function originalExperienceRootShare(text){
  text=once(text,EXPERIENCE_ROOT_SHARE_INVERSE);
  text=once(text,EXPERIENCE_ROOT_SHARE_COMPARE_AFTER,EXPERIENCE_ROOT_SHARE_COMPARE_BEFORE);
  return once(text,EXPERIENCE_ROOT_SHARE_DEFAULT);
+}
+export function originalExperienceMemberDesignScope(text){
+ text=once(text,"export function validateMemberDesignSource(sourceRead=null){","export function validateMemberDesignSource(){");
+ text=once(text," const read=sourceRead??((ref,path)=>git('rev-parse',ref+':'+path));\n");
+ text=once(text," validateMemberDesignPayload((ref,path)=>read(ref==='HEAD'&&path==='member-design.mjs'?MEMBER_LAYOUT_BASE:ref,path),"," validateMemberDesignPayload((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='member-design.mjs'?MEMBER_LAYOUT_BASE:ref)+':'+path),");
+ return once(text," validateMemberLayoutPayload(read,"," validateMemberLayoutPayload((ref,path)=>git('rev-parse',ref+':'+path),");
+}
+export function originalExperienceAppScope(text){
+ text=once(text,"import {EXPERIENCE_BASE,assertMyTimberExperienceView,myTimberExperienceHistoricalView} from './my-timber-experience-scope-20261022.mjs';\n");
+ text=once(text,":p==='release/member-design-scope.mjs'?EXPERIENCE_BASE");
+ text=once(text," const myTimber=assertMyTimberExperienceView(myTimberExperienceHistoricalView());\n");
+ text=once(text," validateMemberDesignSource(myTimber.read);"," validateMemberDesignSource();");
+ text=once(text,"originalMemberWorkerPresentation(myTimber.content('HEAD',p))","originalMemberWorkerPresentation(execFileSync('git',['show','HEAD:'+p],{encoding:'utf8'}))");
+ return once(text,"myTimber.content('HEAD','my-timber-pwa/service-worker.mjs').replace(","execFileSync('git',['show','HEAD:my-timber-pwa/service-worker.mjs'],{encoding:'utf8'}).replace(");
 }
 
 const sorted=values=>[...values].sort();
@@ -256,6 +272,8 @@ export function verifyMyTimberExperience(record,{head,read=rawBlob,blob=rawBlob,
  assert.equal(originalExperienceHealthTest(content(head,'tests/health-vision-scope-20261021.test.mjs')),content(record.base,'tests/health-vision-scope-20261021.test.mjs'),'All original immutable Health tests retained');
  assert.equal(originalExperienceFiniteGrowth(content(head,'release/finite-growth-scope.mjs')),content(record.base,'release/finite-growth-scope.mjs'),'All original finite-growth assertions and historical mappings retained');
  assert.equal(originalExperienceRootShare(content(head,'release/root-share-preview-scope.mjs')),content(record.base,'release/root-share-preview-scope.mjs'),'All original root-share assertions and historical mappings retained');
+ assert.equal(originalExperienceMemberDesignScope(content(head,'release/member-design-scope.mjs')),content(record.base,'release/member-design-scope.mjs'),'All original member-design assertions retained');
+ assert.equal(originalExperienceAppScope(content(head,'release/app-scope.mjs')),content(record.base,'release/app-scope.mjs'),'All original app release assertions retained');
  const current=JSON.parse(content(head,EXPERIENCE_MANIFEST)),prior=JSON.parse(content(record.base,EXPERIENCE_MANIFEST));
  assert.deepEqual(current[EXPERIENCE_KEY],record);delete current[EXPERIENCE_KEY];
  assert.deepEqual(current,prior,'Every previous approval, failure, receipt and hold retained');
