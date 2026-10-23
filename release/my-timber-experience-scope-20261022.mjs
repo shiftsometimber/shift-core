@@ -211,9 +211,6 @@ export function myTimberExperienceHistoricalView(reader=null,{defaultReader=read
  const supplied=defaultReader?rawBlob:reader;assert.equal(typeof supplied,'function','Current source reader required');
  const assertCurrent=()=>clean(rawHead);
  if(!record){const affected=()=>false,view={rawHead,head:rawHead,record:current,read:supplied,blob:rawBlob,content:rawContent,affected,assertCurrent,finish:assertCurrent};admittedViews.add(view);admittedReaders.set(view.read,affected);return Object.freeze(view);}
- verifyMyTimberExperience(record,{head:rawHead,read:supplied});
- const all=[...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE,EXPERIENCE_MANIFEST];
- const affected=path=>all.includes(path)||all.some(p=>p.startsWith(path+'/'));
  const currentRef=ref=>ref==='HEAD'||ref===rawHead;
  const normal=(ref,path)=>{
   const value=supplied(ref,path),resolved=ref==='HEAD'?rawHead:ref;
@@ -222,6 +219,9 @@ export function myTimberExperienceHistoricalView(reader=null,{defaultReader=read
   }
   return value;
  };
+ verifyMyTimberExperience(record,{head:rawHead,read:normal});
+ const all=[...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE,EXPERIENCE_MANIFEST];
+ const affected=path=>all.includes(path)||all.some(p=>p.startsWith(path+'/'));
  const map=(ref,path)=>currentRef(ref)&&affected(path)?record.base:(ref==='HEAD'?rawHead:ref);
  const read=(ref,path)=>{
   return normal(map(ref,path),path);
