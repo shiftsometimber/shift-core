@@ -99,7 +99,10 @@
       "independentHumanReview": false,
       "priorRecipePublicationWaiverPreserved": true,
       "ownerReviewer": "Matt O’Brien",
-      "ownerDecisionPending": true
+      "ownerDecisionPending": false,
+      "ownerDecision": "approved",
+      "ownerApprovalRecordedAt": "2026-10-23T20:08:00.100796+00:00",
+      "ownerApprovalReviewCommit": "3bb9da207ead5690ec69a63872d26261e59af748"
     }
   },
   "release": {
@@ -141,9 +144,11 @@
     {
       "item": "Nutrition adequacy and balance",
       "owner": "Matt O’Brien — owner review; independent professional reviewer not appointed",
-      "state": "owner_reviewer_nominated_decision_pending",
-      "next": "Matt reviews the exact current pack and supplies approve/change/reject decisions and limitations. Nomination does not establish a completed review, independent professional status or specialist nutrition sign-off.",
-      "evidence": "Current recipe-library review version2 confirms the October17owner waiver. Current technical evidence includes360plans and78exact example recipes;1712/2692recipes and1711/1800days have unknown fibre. No independent review or nutrient adequacy attestation is invented."
+      "state": "owner_pack_approved_independent_adequacy_not_attested",
+      "next": "Owner decision on this exact pack is complete. Preserve partial-meal limitations and honest unknowns; any future claim of complete or personalised dietary adequacy needs separately evidenced assessment.",
+      "evidence": "Current recipe-library review version2 confirms the October17owner waiver. Current technical evidence includes360plans and78exact example recipes;1712/2692recipes and1711/1800days have unknown fibre. No independent review or nutrient adequacy attestation is invented.",
+      "ownerApprovalInstruction": "All approved",
+      "ownerApprovalRecordedAt": "2026-10-23T20:08:00.100796+00:00"
     },
     {
       "item": "Native iPhone/Android and notification delivery",

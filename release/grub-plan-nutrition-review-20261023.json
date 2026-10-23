@@ -1,6 +1,6 @@
 {
   "at": "2026-10-23T19:36:34.520Z",
-  "state": "technical_evidence_ready_owner_reviewer_nominated_decision_pending",
+  "state": "technical_evidence_owner_approved",
   "sourceCommit": "a03d45bc51408137b54666a63b809c7e98f836e9",
   "productionCatalogue": {
     "recipes": 2692,
@@ -7715,9 +7715,15 @@
     "role": "owner",
     "nominatedBy": "Matt",
     "nominationInstruction": "Me",
-    "decision": null,
-    "reviewCompleted": false,
+    "decision": "approved",
+    "reviewCompleted": true,
     "independent": false,
-    "professionalQualificationAttested": false
+    "professionalQualificationAttested": false,
+    "decisionRecordedAt": "2026-10-23T20:08:00.100796+00:00",
+    "approvalInstruction": "All approved",
+    "approvedReviewCommit": "3bb9da207ead5690ec69a63872d26261e59af748",
+    "approvedDataSha256": "fd46e24d6bfe50716d063192a7607fed2d41fbeba3c725658a3d3b9598d8a2df",
+    "approvedHtmlSha256": "16735f7c384a613e6844e31cc66ce8eceb56114b4e48f08e971a3b9688b2b40f",
+    "scope": "Owner approval of the current generated-week review pack and existing partial-meal offer with its stated limitations; no independent specialist adequacy attestation or acceptance of unperformed technical checks."
   }
 }

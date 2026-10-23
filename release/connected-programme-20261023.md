@@ -95,7 +95,7 @@ Current detailed evidence and the remaining action states: grub-plan-quality-acc
 | Open outcome | State and owner | Next observable acceptance |
 | --- | --- | --- |
 | Grub safeguard live | Deployed and27HTTP/renderer checks passed; this workstream | Complete the pending signed-in visual/save/retention and file-content checks when the browser runtime is available. Do not redeploy the same version. |
-| Nutrition adequacy | Matt O’Brien nominated for owner review; decision pending | Matt supplies decisions on the current360-plan/78-recipe evidence. Preserve the prior publication waiver; nomination is not completed review or independent specialist sign-off. |
+| Nutrition review | Matt O’Brien approved the current owner review pack | Owner decision complete. Preserve the partial-meal scope, declared unknowns and prior publication waiver. Independent dietary adequacy is not attested; unperformed technical checks remain open. |
 | Native health and notifications | Existing Engineering–QA/device-tester workstream | Actual iPhone/Android weight/BP permission/import/revoke/isolation and locked-device receipt/tap/off evidence; preserve App Review submission. |
 | Elapsed reviews | Fixture proof only; Programme QA | Genuine elapsed windows using retained Test baseline dates; do not backdate production or claim a simulation is elapsed proof. |
 | Second production account | Not exercised; account QA | Normal secure sign-in with a second authorised synthetic identity and real cross-account isolation checks. |
@@ -125,3 +125,7 @@ Readable exact review evidence: release/Grub-Plan-Nutrition-Review-20261023.html
 ## Nutrition reviewer nomination — 23 October 2026
 
 Matt answered “Me” when asked who should review the nutrition pack. Record Matt O’Brien as the nominated owner reviewer, with his decision and review date pending. No professional qualification, independent status, completed review or specialist approval was supplied or inferred. The pack remains available for his approve/change/reject decisions. This nomination changes no live website code or release status.
+
+## Owner nutrition-pack approval — 2026-10-23T20:08:00.100796+00:00
+
+Matt explicitly stated “All approved” following his nomination as owner reviewer. Record approval of the current review pack at commit 3bb9da207ead5690ec69a63872d26261e59af748, including its partial-meal scope and declared limitations. The approval receipt retains exact pre-approval JSON and HTML hashes. This completes the pending owner decision; no independent specialist status, personalised dietary adequacy, physical cooking trial or unperformed browser/device/transactional acceptance is inferred. The Grub safeguard was already deployed and verified at source a03d45bc51408137b54666a63b809c7e98f836e9; this evidence-only update needs no runtime deployment. Browser/export acceptance and the other separately recorded acceptance boundaries remain open.
