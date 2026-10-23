@@ -17,7 +17,7 @@ export default {
   else if(path.startsWith('/v1/my-timber-communications'))response=await memberApi(request,env);
   else{
    const asset=({'/communications':[hq,'text/html'],'/communications/':[hq,'text/html'],'/communications/style.css':[css,'text/css'],'/communications/client.js':[client,'application/javascript'],'/member/notifications':[member,'text/html'],'/member/notifications/':[member,'text/html'],'/member/notifications/client.js':[memberClient,'application/javascript']})[path];
-   if(asset)response=new Response(read&&request.method!=='HEAD'?asset[0]:null,{status:read?200:405,headers:{...headers,'Content-Type':asset[1]+'; charset=utf-8','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'; form-action 'self'"}});
+   if(asset)response=new Response(read&&request.method!=='HEAD'?asset[0]:null,{status:read?200:405,headers:{...headers,'Content-Type':asset[1]+'; charset=utf-8','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://api.shiftsometimber.co.uk; img-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'; form-action 'self'"}});
    else if(['/v1/privacy/export','/v1/privacy/account'].includes(path)){
     const target=new Request(new URL(path+u.search,'https://shiftsometimber.co.uk'),request);
     if(request.method==='POST'&&path.endsWith('export')||request.method==='DELETE'&&path.endsWith('account')){
