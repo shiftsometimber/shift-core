@@ -7,7 +7,7 @@ import {approvedFooter} from '../shared-footer.mjs';
 const sample=addTimberShedTeaser('<html><head></head><body>'+publicHeader+publicDrawer+approvedFooter+'</body></html>');
 const css=sample.match(/<style id="sst-timber-shed-teaser-css">([\s\S]*?)<\/style>/)?.[1];
 if(!css)throw Error('Approved Shed styling is unavailable');
-export const disabledNavigationClient=';\n('+function(style){
+export const disabledNavigationClient=String.raw`;(function(style){
  'use strict';
  if(/^\/(?:member(?:\/|$)|v1(?:\/|$)|hq(?:\/|$)|api(?:\/|$)|staging(?:\/|$))/.test(location.pathname))return;
  function install(){
@@ -27,7 +27,8 @@ export const disabledNavigationClient=';\n('+function(style){
  }
  const start=()=>{install();new MutationObserver(install).observe(document.body,{childList:true,subtree:true})};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
-}.toString()+')('+JSON.stringify(css)+');\n';
+})(${JSON.stringify(css)});
+`;
 export const publicNavigationAsset=originalFooterScript+disabledNavigationClient;
 const hosts=new Set(['shiftsometimber.co.uk','www.shiftsometimber.co.uk']);
 export default {

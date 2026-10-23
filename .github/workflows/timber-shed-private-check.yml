@@ -48,4 +48,6 @@ jobs:
         run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.timber-shed-member-test.jsonc --outdir "$RUNNER_TEMP/shed-member-test-build"
 
       - name: Build bounded disabled public navigation asset without deployment
-        run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.timber-shed-disabled-navigation.jsonc --outdir "$RUNNER_TEMP/shed-disabled-navigation-build"
+        run: |
+          node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.timber-shed-disabled-navigation.jsonc --outdir "$RUNNER_TEMP/shed-disabled-navigation-build"
+          node tests/timber-shed-disabled-navigation-build.mjs "$RUNNER_TEMP/shed-disabled-navigation-build/timber-shed-disabled-navigation-entry.js"
