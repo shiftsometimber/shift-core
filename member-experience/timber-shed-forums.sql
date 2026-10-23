@@ -96,3 +96,44 @@ CREATE TABLE IF NOT EXISTS timber_shed_forum_appeal_audit (
  action TEXT NOT NULL CHECK(action IN ('submitted','upheld','reconsider','returned','withdrawn')),
  created_at TEXT NOT NULL
 );
+
+-- Member-controlled hiding and human-only community access restrictions.
+CREATE TABLE IF NOT EXISTS timber_shed_forum_blocks (
+ id TEXT PRIMARY KEY,
+ blocker_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ blocked_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ created_at TEXT NOT NULL,
+ CHECK(blocker_id<>blocked_id),
+ UNIQUE(blocker_id,blocked_id)
+);
+CREATE INDEX IF NOT EXISTS idx_timber_shed_blocked ON timber_shed_forum_blocks(blocked_id,blocker_id);
+CREATE TABLE IF NOT EXISTS timber_shed_forum_restrictions (
+ id TEXT PRIMARY KEY,
+ user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ source_post_id TEXT REFERENCES timber_shed_forum_posts(id) ON DELETE SET NULL,
+ kind TEXT NOT NULL CHECK(kind IN ('suspended','banned')),
+ reason TEXT NOT NULL CHECK(reason IN ('medication-trading','harassment','privacy','unsafe-content','spam','other')),
+ created_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+ created_at TEXT NOT NULL,
+ expires_at TEXT,
+ lifted_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+ lifted_at TEXT,
+ CHECK((kind='banned' AND expires_at IS NULL) OR (kind='suspended' AND expires_at IS NOT NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_timber_shed_one_restriction ON timber_shed_forum_restrictions(user_id) WHERE lifted_at IS NULL;
+CREATE TABLE IF NOT EXISTS timber_shed_restriction_appeals (
+ id TEXT PRIMARY KEY,
+ restriction_id TEXT NOT NULL UNIQUE REFERENCES timber_shed_forum_restrictions(id) ON DELETE CASCADE,
+ reason TEXT NOT NULL CHECK(reason IN ('missed-context','incorrect-rule','other')),
+ status TEXT NOT NULL CHECK(status IN ('open','upheld','reinstated')),
+ created_at TEXT NOT NULL,
+ resolved_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+ resolved_at TEXT
+);
+CREATE TABLE IF NOT EXISTS timber_shed_access_audit (
+ id TEXT PRIMARY KEY,
+ restriction_id TEXT NOT NULL REFERENCES timber_shed_forum_restrictions(id) ON DELETE CASCADE,
+ actor_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+ action TEXT NOT NULL CHECK(action IN ('suspended','banned','lifted','appealed','upheld','reinstated','expired')),
+ created_at TEXT NOT NULL
+);

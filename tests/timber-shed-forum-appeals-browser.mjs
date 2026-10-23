@@ -19,7 +19,9 @@ try{
    let data={},status=200;
    if(url.pathname==='/member/timber-shed')return request.respond({status,contentType:'text/html',body:html});
    if(request.method()==='POST')writes.push({resource,input});
-   if(resource==='rooms')data={rooms:[{id:'main-shed',name:'The Main Shed'}]};
+   if(resource==='access')data={restriction:null,appeals:[]};
+   else if(resource==='blocks')data={blocks:[]};
+   else if(resource==='rooms')data={rooms:[{id:'main-shed',name:'The Main Shed'}]};
    else if(resource==='profile')data={profile:{displayName:'Weekend Walker'}};
    else if(resource==='mine')data={posts:[{...post,status:postStatus}]};
    else if(resource==='appeals')data={appeals:appeal?[appeal]:[]};

@@ -1,3 +1,4 @@
+import {exportOwnForum} from './timber-shed-forum-privacy.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 
 // No community feed, no public profile, no member-to-member reads, and no clinical data.
@@ -72,6 +73,7 @@ export async function appendTimberShedPrivateExport(request,env,response,authent
   const data=await response.clone().json();
   const row=await env.DB.prepare('SELECT enabled,revision,activities_json FROM timber_shed_private_progress WHERE user_id=?').bind(auth.userId).first();
   data.timberShedPrivateProgress=state(row);
+  if(env.TIMBER_SHED_FORUM_ENABLED==='true'&&env.TIMBER_SHED_FORUM_PILOT_APPROVED==='true'&&env.MEMBER_EXPERIENCE_V1_ENABLED==='true')data.timberShedForum=await exportOwnForum(env.DB,auth.userId);
   const headers=new Headers(response.headers);for(const[k,v]of Object.entries(HEADERS))headers.set(k,v);headers.delete('Content-Length');
   return new Response(JSON.stringify(data),{status:response.status,headers});
  }catch{return reply({error:'private_export_unavailable'},503)}

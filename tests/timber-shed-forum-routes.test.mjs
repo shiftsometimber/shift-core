@@ -624,3 +624,186 @@ test('an appeal may address a later independent decision without replaying the o
  assert.equal((await t.send(1,'appeals')).body.appeals.length,2);
  assert.equal((await t.send(2,'moderation')).body.appeals.length,1);
 });
+
+async function approvedPair(t){
+ await profile(t,1,'Shed Walker');await profile(t,2,'Weekend Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(3,1,?)').run('now');
+ const a=await submit(t,1),b=await submit(t,2);
+ await t.send(3,'moderate','POST',{postId:a.body.id,action:'approve'});
+ await t.send(3,'moderate','POST',{postId:b.body.id,action:'approve'});
+ return{a:a.body.id,b:b.body.id};
+}
+test('blocking hides each other across all feeds, direct threads and nested replies',async()=>{
+ const t=setup();const {a,b}=await approvedPair(t);
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:a,body:'A fictional reply from a second account.'});
+ await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ assert.equal((await t.send(1,'latest')).body.posts.length,2);
+ assert.equal((await t.send(1,'block','POST',{postId:b})).status,200);
+ for(const [user,expected] of [[1,a],[2,b]]){
+  assert.deepEqual((await t.send(user,'latest')).body.posts.map(p=>p.id),[expected]);
+  assert.deepEqual((await t.send(user,'room-topics','GET',undefined,'?room=main-shed')).body.posts.map(p=>p.id),[expected]);
+  const thread=(await t.send(user,'threads','GET',undefined,'?room=main-shed')).body.posts;
+  assert.deepEqual(thread.map(p=>p.id),[expected]);
+ }
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed&threadId='+a)).body.posts.length,0);
+ assert.equal((await t.send(1,'latest')).body.posts[0].reply_count,0);
+ assert.equal((await t.send(1,'notifications')).body.notifications.some(n=>n.kind==='reply'),false);
+});
+test('blocked members cannot submit replies or report invisible posts; blocks do not hide moderation evidence',async()=>{
+ const t=setup();const {a,b}=await approvedPair(t);
+ await t.send(1,'report','POST',{postId:b,reason:'harassment'});
+ await t.send(1,'block','POST',{postId:b});
+ assert.equal((await t.send(2,'submit','POST',{roomId:'main-shed',parentId:a,body:'An attempted reply after blocking.'})).status,404);
+ assert.equal((await t.send(2,'report','POST',{postId:a,reason:'spam'})).status,404);
+ assert.equal((await t.send(3,'moderation')).body.reports.length,1);
+ assert.equal((await t.send(1,'mine')).body.posts.length,1);
+});
+test('only the blocker can list and remove their block; no account identifiers exposed',async()=>{
+ const t=setup();const {b}=await approvedPair(t);await t.send(1,'block','POST',{postId:b});
+ await t.send(1,'block','POST',{postId:b});
+ const blocks=(await t.send(1,'blocks')).body.blocks;
+ assert.equal(blocks.length,1);assert.equal(blocks[0].display_name,'Weekend Walker');
+ assert.deepEqual(Object.keys(blocks[0]).sort(),['created_at','display_name','id']);
+ assert.equal((await t.send(2,'blocks')).body.blocks.length,0);
+ await t.send(2,'unblock','POST',{blockId:blocks[0].id});
+ assert.equal((await t.send(1,'blocks')).body.blocks.length,1);
+ await t.send(1,'unblock','POST',{blockId:blocks[0].id});
+ assert.equal((await t.send(1,'latest')).body.posts.length,2);
+});
+test('blocking your own or a private pending post is unavailable; injected identities rejected',async()=>{
+ const t=setup();const {a}=await approvedPair(t);const pending=await submit(t,2);
+ assert.equal((await t.send(1,'block','POST',{postId:a})).status,404);
+ assert.equal((await t.send(1,'block','POST',{postId:pending.body.id})).status,404);
+ assert.equal((await t.send(1,'block','POST',{postId:a,userId:2})).status,400);
+});
+test('only active moderators can suspend or ban; self and moderator targeting are blocked',async()=>{
+ const t=setup();const {a,b}=await approvedPair(t);
+ const payload={postId:a,kind:'banned',reason:'medication-trading'};
+ assert.equal((await t.send(2,'restrict','POST',payload)).status,403);
+ t.sqlite.prepare('UPDATE timber_shed_forum_moderators SET active=0 WHERE user_id=3').run();
+ assert.equal((await t.send(3,'restrict','POST',payload)).status,403);
+ t.sqlite.prepare('UPDATE timber_shed_forum_moderators SET active=1 WHERE user_id=3').run();
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(2,1,?)').run('now');
+ assert.equal((await t.send(3,'restrict','POST',{...payload,postId:b})).body.error,'independent_admin_required');
+ assert.equal((await t.send(2,'restrict','POST',{...payload,postId:b})).status,403);
+ assert.equal((await t.send(3,'restrict','POST',{...payload,days:30})).status,400);
+ assert.equal((await t.send(3,'restrict','POST',{...payload,kind:'suspended',days:365})).status,400);
+});
+test('community restriction blocks reading, posting and staff actions but preserves private appeals and withdrawal',async()=>{
+ const t=setup();const {a}=await approvedPair(t);
+ const pending=await submit(t,1);
+ const restriction=await t.send(3,'restrict','POST',{postId:a,kind:'suspended',days:7,reason:'harassment'});
+ assert.equal(restriction.status,201);
+ for(const resource of ['rooms','latest','threads','profile','notifications','moderation','blocks'])assert.equal((await t.send(1,resource)).status,403);
+ assert.equal((await submit(t,1)).body.error,'community_access_restricted');
+ assert.equal((await t.send(1,'access')).body.restriction.kind,'suspended');
+ assert.equal((await t.send(1,'mine')).status,200);
+ assert.equal((await t.send(1,'withdraw','POST',{postId:pending.body.id})).status,200);
+ assert.equal((await t.send(1,'restriction/appeal','POST',{restrictionId:restriction.body.id,reason:'incorrect-rule'})).status,202);
+ assert.equal((await t.send(2,'restriction/appeal','POST',{restrictionId:restriction.body.id,reason:'other'})).status,404);
+ assert.equal((await t.send(3,'moderate','POST',{postId:a,action:'remove'})).status,200);
+});
+test('restriction never publishes or removes historic posts and pending authors cannot be approved while restricted',async()=>{
+ const t=setup();const {a}=await approvedPair(t);const pending=await submit(t,1);
+ await t.send(3,'restrict','POST',{postId:a,kind:'banned',reason:'medication-trading'});
+ assert.equal((await t.send(2,'latest')).body.posts.some(p=>p.id===a),true);
+ assert.equal((await t.send(3,'moderate','POST',{postId:pending.body.id,action:'approve'})).body.error,'author_access_restricted');
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(pending.body.id).status,'pending');
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_access_audit').get().n,1);
+});
+test('restriction review is independent and reinstatement restores access without changing posts',async()=>{
+ const t=setup();const {a}=await approvedPair(t);
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(2,1,?)').run('now');
+ const r=await t.send(3,'restrict','POST',{postId:a,kind:'banned',reason:'other'});
+ const appeal=await t.send(1,'restriction/appeal','POST',{restrictionId:r.body.id,reason:'other'});
+ assert.equal((await t.send(1,'restriction/appeal','POST',{restrictionId:r.body.id,reason:'other'})).body.id,appeal.body.id);
+ assert.equal((await t.send(3,'restriction/review','POST',{appealId:appeal.body.id,outcome:'reinstated'})).body.error,'independent_reviewer_required');
+ assert.equal((await t.send(2,'restriction/review','POST',{appealId:appeal.body.id,outcome:'reinstated'})).status,200);
+ assert.equal((await t.send(1,'latest')).status,200);
+ assert.equal((await t.send(1,'access')).body.restriction,null);
+ assert.equal((await t.send(1,'access')).body.appeals[0].status,'reinstated');
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(a).status,'approved');
+});
+test('human lift closes any open restriction appeal and inactive bans cannot be replayed',async()=>{
+ const t=setup();const {a}=await approvedPair(t);const r=await t.send(3,'restrict','POST',{postId:a,kind:'banned',reason:'other'});
+ await t.send(1,'restriction/appeal','POST',{restrictionId:r.body.id,reason:'other'});
+ assert.equal((await t.send(3,'restriction/lift','POST',{restrictionId:r.body.id})).status,200);
+ assert.equal((await t.send(1,'access')).body.restriction,null);
+ assert.equal((await t.send(1,'access')).body.appeals[0].status,'reinstated');
+ assert.equal((await t.send(3,'restriction/lift','POST',{restrictionId:r.body.id})).status,404);
+});
+test('expired suspensions cease blocking access; a later manual sanction is separately audited',async()=>{
+ const t=setup();const {a}=await approvedPair(t);
+ const first=await t.send(3,'restrict','POST',{postId:a,kind:'suspended',days:1,reason:'spam'});
+ t.sqlite.prepare("UPDATE timber_shed_forum_restrictions SET expires_at='2026-10-21T12:00:00Z' WHERE id=?").run(first.body.id);
+ assert.equal((await t.send(1,'latest')).status,200);
+ const second=await t.send(3,'restrict','POST',{postId:a,kind:'banned',reason:'spam'});
+ assert.equal(second.status,201);assert.notEqual(second.body.id,first.body.id);
+ assert.equal(t.sqlite.prepare("SELECT count(*) n FROM timber_shed_access_audit WHERE action='expired'").get().n,1);
+});
+test('restriction audit failure rolls back ban, appeal and lift with no partial access change',async()=>{
+ const t=setup();const {a}=await approvedPair(t);
+ t.sqlite.exec("CREATE TRIGGER access_audit_failure BEFORE INSERT ON timber_shed_access_audit BEGIN SELECT RAISE(ABORT,'audit failed'); END;");
+ assert.equal((await t.send(3,'restrict','POST',{postId:a,kind:'banned',reason:'other'})).status,503);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_restrictions').get().n,0);
+ t.sqlite.exec('DROP TRIGGER access_audit_failure');
+ const r=await t.send(3,'restrict','POST',{postId:a,kind:'banned',reason:'other'});
+ t.sqlite.exec("CREATE TRIGGER access_audit_failure BEFORE INSERT ON timber_shed_access_audit BEGIN SELECT RAISE(ABORT,'audit failed'); END;");
+ assert.equal((await t.send(1,'restriction/appeal','POST',{restrictionId:r.body.id,reason:'other'})).status,503);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_restriction_appeals').get().n,0);
+ assert.equal((await t.send(3,'restriction/lift','POST',{restrictionId:r.body.id})).status,503);
+ assert.equal((await t.send(1,'access')).body.restriction.kind,'banned');
+});
+
+test('forum export contains only own contributions, decisions and generic account-scoped records',async()=>{
+ const t=setup();const {a,b}=await approvedPair(t);
+ await t.send(1,'report','POST',{postId:b,reason:'privacy'});
+ const data=(await t.send(1,'export')).body.forum;
+ assert.equal(data.profile.display_name,'Shed Walker');
+ assert.deepEqual(data.posts.map(p=>p.id),[a]);
+ assert.equal(data.reports.length,1);
+ assert(!JSON.stringify(data).includes('Weekend Walker'));
+ for(const rows of Object.values(data))if(Array.isArray(rows))for(const row of rows)assert(!Object.keys(row).some(k=>/user_id|created_by|reviewed_by|actor_id|moderator_id|token_hash|email/.test(k)));
+ assert.equal((await t.send(0,'export')).status,401);
+});
+test('leaving the community clears author text and profile, hides child replies and clears stale alerts',async()=>{
+ const t=setup();const {a,b}=await approvedPair(t);
+ const reply=await t.send(2,'submit','POST',{roomId:'main-shed',parentId:a,body:'A fictional reply on another member thread.'});
+ await t.send(3,'moderate','POST',{postId:reply.body.id,action:'approve'});
+ const rejected=await submit(t,1);await t.send(3,'moderate','POST',{postId:rejected.body.id,action:'reject'});
+ await t.send(1,'appeal','POST',{postId:rejected.body.id,reason:'other'});
+ assert.equal((await t.send(1,'leave','POST',{})).status,400);
+ assert.equal((await t.send(1,'leave','POST',{confirm:'leave-community'})).status,200);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_profiles WHERE user_id=1').get().n,0);
+ assert(t.sqlite.prepare('SELECT body,status FROM timber_shed_forum_posts WHERE user_id=1').all().every(p=>p.status==='withdrawn'&&p.body==='[withdrawn by member]'));
+ assert.deepEqual((await t.send(2,'latest')).body.posts.map(p=>p.id),[b]);
+ assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed&threadId='+a)).body.posts.length,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_appeals').get().n,0);
+ assert.equal((await t.send(2,'mine')).body.posts.length,2);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM users WHERE id=1').get().n,1);
+});
+test('leaving cannot evade a ban and does not change other member records',async()=>{
+ const t=setup();const {a,b}=await approvedPair(t);
+ await t.send(3,'restrict','POST',{postId:a,kind:'banned',reason:'spam'});
+ assert.equal((await t.send(1,'leave','POST',{confirm:'leave-community'})).status,200);
+ assert.equal((await t.send(1,'access')).body.restriction.kind,'banned');
+ assert.equal((await t.send(1,'export')).status,200);
+ assert.equal((await profile(t,1,'Another Alias')).status,403);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(b).status,'approved');
+});
+test('failed departure audit rolls back content clearing and profile deletion',async()=>{
+ const t=setup();const {a}=await approvedPair(t);
+ t.sqlite.exec("CREATE TRIGGER departure_failure BEFORE INSERT ON timber_shed_forum_audit BEGIN SELECT RAISE(ABORT,'audit unavailable'); END;");
+ assert.equal((await t.send(1,'leave','POST',{confirm:'leave-community'})).status,503);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(a).status,'approved');
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_profiles WHERE user_id=1').get().n,1);
+});
+test('a block created during submission prevents a stale reply being saved',async()=>{
+ const t=setup();const {a}=await approvedPair(t),batch=t.env.DB.batch.bind(t.env.DB);
+ t.env.DB.batch=async ops=>{
+  t.sqlite.prepare("INSERT INTO timber_shed_forum_blocks(id,blocker_id,blocked_id,created_at) VALUES('synthetic-late-block',1,2,'now')").run();
+  return batch(ops);
+ };
+ assert.equal((await t.send(2,'submit','POST',{roomId:'main-shed',parentId:a,body:'A fictional reply racing a block.'})).status,503);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts WHERE parent_id=?').get(a).n,0);
+});
