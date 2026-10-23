@@ -1,6 +1,6 @@
 {
   "at": "2026-10-23T19:36:34.520Z",
-  "state": "technical_evidence_ready_independent_plan_review_not_performed",
+  "state": "technical_evidence_ready_owner_reviewer_nominated_decision_pending",
   "sourceCommit": "a03d45bc51408137b54666a63b809c7e98f836e9",
   "productionCatalogue": {
     "recipes": 2692,
@@ -7709,5 +7709,15 @@
       "kale": 1,
       "katsu-style sauce": 1
     }
+  },
+  "ownerReview": {
+    "reviewer": "Matt O’Brien",
+    "role": "owner",
+    "nominatedBy": "Matt",
+    "nominationInstruction": "Me",
+    "decision": null,
+    "reviewCompleted": false,
+    "independent": false,
+    "professionalQualificationAttested": false
   }
 }

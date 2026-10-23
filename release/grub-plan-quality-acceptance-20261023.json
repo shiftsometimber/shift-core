@@ -97,7 +97,9 @@
       "receipt": "grub-plan-nutrition-review-20261023.json",
       "readableReview": "Grub-Plan-Nutrition-Review-20261023.html",
       "independentHumanReview": false,
-      "priorRecipePublicationWaiverPreserved": true
+      "priorRecipePublicationWaiverPreserved": true,
+      "ownerReviewer": "Matt O’Brien",
+      "ownerDecisionPending": true
     }
   },
   "release": {
@@ -138,9 +140,9 @@
     },
     {
       "item": "Nutrition adequacy and balance",
-      "owner": "Appropriate nutrition/clinical reviewer; no named reviewer recovered",
-      "state": "technical_evidence_prepared_independent_reviewer_unassigned",
-      "next": "Nominate an appropriate independent nutrition reviewer for the current generated-day/week proposition and exact evidence. Retain the previous recipe-publication waiver; it is not a new release gate.",
+      "owner": "Matt O’Brien — owner review; independent professional reviewer not appointed",
+      "state": "owner_reviewer_nominated_decision_pending",
+      "next": "Matt reviews the exact current pack and supplies approve/change/reject decisions and limitations. Nomination does not establish a completed review, independent professional status or specialist nutrition sign-off.",
       "evidence": "Current recipe-library review version2 confirms the October17owner waiver. Current technical evidence includes360plans and78exact example recipes;1712/2692recipes and1711/1800days have unknown fibre. No independent review or nutrient adequacy attestation is invented."
     },
     {
