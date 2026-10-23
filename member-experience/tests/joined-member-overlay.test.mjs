@@ -32,7 +32,7 @@ test('Ask document removes only its live preview title and preserves the rest of
 });
 test('the new private GET routes deny anonymous access; writes and unrelated clinical routes stay with core',async()=>{
  const env={MEMBER_EXPERIENCE_V1_ENABLED:'true',CORE:{fetch:async()=>new Response('existing core')}};
- for(const p of ['/v1/my-journey','/v1/journey','/v1/member/treatment','/v1/member/treatment/summary.pdf','/v1/grub/workspace'])assert.equal((await overlay.fetch(req(p),env)).status,401,p);
+ for(const p of ['/v1/my-journey','/v1/journey','/v1/member/treatment','/v1/member/treatment/summary.pdf','/v1/grub/workspace','/v1/grub/workspace/'])assert.equal((await overlay.fetch(req(p),env)).status,401,p);
  for(const p of ['/v1/journey/weekly-check-in','/v1/member/treatment/records','/v1/member/treatment-notifications','/treatment-assessment','/v1/grub/search','/v1/grub/diary','/'])assert.equal(await(await overlay.fetch(req(p),env)).text(),'existing core',p);
 });
 

@@ -33,7 +33,7 @@ export default {
    // other treatment, notifications, clinical and commerce routes delegate.
    return apiResponse(request,await treatmentRoutes(request,{...env,MY_TREATMENT_ENABLED:'true'}));
   }
-  if(path==='/v1/grub/workspace'&&['GET','POST'].includes(request.method))return apiResponse(request,await grubWorkspaceRoutes(request,env));
+  if(path==='/v1/grub/workspace'&&['GET','POST'].includes(request.method)){const u=new URL(request.url);u.pathname=path;return apiResponse(request,await grubWorkspaceRoutes(new Request(u,request),env));}
   if(joinedAssetPaths.has(path))return repairMemberAsset(request,await env.CORE.fetch(request));
   if(['/member/ask-timber','/member/ask-timber.html'].includes(path))return repairAskDocument(request,await env.CORE.fetch(request));
   if(path==='/v1/life-back'){if(request.method==='OPTIONS')return env.CORE.fetch(request);const u=new URL(request.url);u.pathname=path;return apiResponse(request,await lifeBackRoutes(new Request(u,request),env))}
