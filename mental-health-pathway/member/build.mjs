@@ -1,0 +1,1 @@
+import {readFileSync,writeFileSync} from 'node:fs';const files={'page':'page.html','styles':'style.css','client':'client.js','dashboardClient':'dashboard.js'};writeFileSync(new URL('content.mjs',import.meta.url),Object.entries(files).map(([k,v])=>'export const '+k+'='+JSON.stringify(readFileSync(new URL(v,import.meta.url),'utf8'))+';').join('\n')+'\n');
