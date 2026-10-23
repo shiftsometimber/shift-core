@@ -13,3 +13,5 @@ Deployment is a separate presentation/API service, not a Core deployment. It del
 Build: `node mental-health-pathway/member/build.mjs`; `node --test tests/support-followthrough.test.mjs tests/mental-health-pathway.test.mjs`; `node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config mental-health-pathway/member/wrangler.jsonc --outdir PATH`.
 
 Deployment helper uses the existing authorised SST Mac Wrangler session without exporting credentials. Stage does not configure cron or public routes. Activate requires the exact source/bundle acceptance record. Rollback first disables the schedule, then restores only owned routes and preserves saved data.
+
+Successor release: ../../hq-member-comms/verification.json records the 23 October HQ communication controls and separately consented 90-day background device reminders. Normal account access still expires after 12 hours; explicit logout stops background alerts. Existing devices were not automatically upgraded. The original 26-route ownership record above is historical: the successor narrowly wraps the existing dashboard and export/account privacy handlers via service binding.

@@ -1,0 +1,59 @@
+{
+  "status": "deployed; live routing/access guards and member view verified; real delivery pending",
+  "source": "987373f83fa677b55430bace3018db5a8dc4cf2e",
+  "checkedAt": "2026-10-23T13:41:40.660Z",
+  "automatedTests": 43,
+  "checks": [
+    {
+      "url": "https://hq.shiftsometimber.co.uk/",
+      "status": 200
+    },
+    {
+      "url": "https://hq.shiftsometimber.co.uk/communications",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/member/notifications",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/member/support",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/member/dashboard",
+      "status": 200
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/communications/style.css",
+      "status": 200
+    },
+    {
+      "url": "https://api.shiftsometimber.co.uk/v1/hq/member-comms",
+      "status": 401
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/v1/my-timber-communications",
+      "status": 401
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/v1/privacy/export",
+      "method": "POST",
+      "status": 401
+    }
+  ],
+  "legacyPlaceholderSendDisabled": true,
+  "schedulesVerified": true,
+  "liveAuthenticatedMemberView": true,
+  "ownerAuthenticatedCommissioning": false,
+  "realEmailSent": false,
+  "realEmailInboxReceipt": false,
+  "realPhoneReceipt": false,
+  "nativePushIntegrated": false,
+  "counts": {
+    "drafts": 0,
+    "devices": 0,
+    "push_receipts": 0
+  },
+  "githubPush": "blocked by automatic approval review; explicit destination approval pending"
+}
