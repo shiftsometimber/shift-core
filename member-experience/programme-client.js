@@ -3,6 +3,12 @@
  const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const reasons={energy:['Energy for the family',['Running on empty','Often tired','Up and down','Mostly good','Plenty left']],clothes:['Comfort in my clothes',['Really uncomfortable','Often uncomfortable','It varies','Mostly comfortable','Comfortable as I am']],move:['Moving comfortably',['Very difficult','Often difficult','It varies','Mostly manageable','Comfortable for me']],confidence:['My confidence',['Very low','Lower than I’d like','Up and down','Mostly good','Feeling confident']],self:['Feeling like myself',['Not much at all','A little','It comes and goes','Mostly myself','Feeling like me']],own:['My own reason',['A long way off','A little way there','Somewhere in the middle','Getting closer','In a good place']]};
  let data=null,busy=false,loading=false,pending=null,weeklyDraft=null,reflectionDraft=null,focusDraft=null,returnFocus=null;
+ // The shared shell normalises the Today hash while loading. Retain only
+ // this non-personal navigation intent until the feedback control exists.
+ if(location.hash==='#dailyCheckinFollowup'){
+  const observer=new MutationObserver(()=>{const details=$('#dailyCheckinFollowup details');if(details){observer.disconnect();details.open=true;details.scrollIntoView({block:'start',behavior:'instant'});}});
+  observer.observe(document.body,{childList:true,subtree:true});
+ }
  const host=document.createElement('section');host.id='programmeJourney';host.hidden=true;host.className='pg-panel';
  const dialog=document.createElement('dialog');dialog.className='pg-dialog';dialog.setAttribute('aria-labelledby','pg-dialog-title');
  const fmt=s=>new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
