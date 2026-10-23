@@ -46,7 +46,7 @@ test('Journey renders saved Life Back and reuses Programme reason without a seco
  const ctx={window:{SST_API:{}},document:{readyState:'loading',addEventListener(){}},location:{pathname:'/member/dashboard'},setTimeout(){}};vm.runInNewContext(source,ctx);
  const prefs=preferences(),j=joinedJourney({...prefs.myJourney,setup:{...prefs.myJourney.setup,complete:true}},prefs,{weight:{weight_kg:94.5}});
  assert.match(ctx.window.joinedViewTest.summary(j),/54 \/ 100/);assert.doesNotMatch(ctx.window.joinedViewTest.summary(j),/Set your baseline/);
- const form=ctx.window.joinedViewTest.setup(j);assert.match(form,/What matters to you/);assert.match(form,/type="hidden" name="why" value="More energy for the family"/);assert.doesNotMatch(form,/Life Back baseline|name="life_energy"/);
+ const form=ctx.window.joinedViewTest.setup(j);assert.match(form,/What matters to you/);assert.match(form,/type="hidden" name="why" value="More energy for the family"/);assert.doesNotMatch(form,/Life Back baseline|name="life_energy"/);assert.match(form,/<input[^>]*name="current"[^>]*readonly/);assert.doesNotMatch(form,/<input[^>]*name="start"[^>]*readonly/);
 });
 test('opening a tool from Progress activates Today before displaying the embedded tool',()=>{
  let active='visualise',todayClicks=0;
@@ -58,4 +58,11 @@ test('opening a tool from Progress activates Today before displaying the embedde
 test('appointments have no supply estimate while medicine supply retains its existing boundary',()=>{
  for(const medicine of ['Health appointment','Blood test'])assert.equal(supplyEstimate({medicine,status:'active',supply:0}),null);
  assert.equal(supplyEstimate({medicine:'Mounjaro',status:'active',supply:4}).status,'setup');
+});
+
+test('Journey save re-reads the canonical view instead of rendering a stale PATCH response',async()=>{
+ const source=readFileSync(new URL('../../frontend/member/member-my-journey-v2.js',import.meta.url),'utf8').replace('function ensure(){','window.storedForTest=stored;function ensure(){');let reads=0;
+ const current={weight:{currentKg:94},connected:{lifeBack:{score:54},reason:'More energy for the family'}};
+ const ctx={window:{},SST_API:{getMyJourney:async()=>{reads++;return{journey:current}}},document:{readyState:'loading',addEventListener(){}},location:{pathname:'/member/dashboard'}};vm.runInNewContext(source,ctx);
+ const result=await ctx.window.storedForTest({journey:{weight:{currentKg:95}}});assert.equal(reads,1);assert.equal(result.weight.currentKg,94);assert.equal(result.connected.lifeBack.score,54);
 });

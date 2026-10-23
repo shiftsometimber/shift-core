@@ -33,7 +33,8 @@ test('saving just a goal preserves missing measurements and never invents a well
  const {model}=journey(),out=model({_journey:{healthInterests:['health-mot']}},{units:'kg',why:'Enjoy weekend walks',focus:'movement',reviewDay:'6',reviewCadence:'weekly'});
  assert.equal(out.setup.why,'Enjoy weekend walks');assert.equal(out.setup.reviewDay,6);
  assert.equal(out.weight.startKg,null);assert.equal(out.weight.currentKg,null);
- assert(Object.values(out.lifeBack.baseline.scores).every(v=>v===null));
+ assert.equal(out.lifeBack.baseline,undefined,'Journey must not create a second Life Back baseline');
+ assert.equal(out.wellbeing.baseline,null,'an unanswered wellbeing marker stays unrecorded');
  assert.deepEqual(Array.from(out.healthInterests),['health-mot']);
 });
 
