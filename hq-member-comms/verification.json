@@ -55,5 +55,11 @@
     "devices": 0,
     "push_receipts": 0
   },
-  "githubPush": "blocked by automatic approval review; explicit destination approval pending"
+  "githubPush": {
+    "status": "owner approved; release source pushed and remote SHA verified",
+    "repository": "shiftsometimber/shift-core",
+    "branch": "codex/hq-member-comms-20261023",
+    "verifiedReleaseCommit": "4120ce677ac602bd975044fea18c0fe12adc137d",
+    "verifiedAt": "2026-10-23T14:26:23.741615+00:00"
+  }
 }
