@@ -2,7 +2,7 @@ import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {PUBLIC_HEADERS} from './babylove/response-policy.mjs';
 
 const ORIGIN='https://shiftsometimber.co.uk';
-const protectedPath=/^\/(?:member|v1|api|hq|admin|work|auth|checkout|treatment-order|my-timber|my-treatment|my-journey|account)(?:\/|$|-|\.)/;
+const protectedPath=/^\/(?:member|v1|api|hq|admin|auth|checkout|treatment-order|my-timber|my-treatment|my-journey|account)(?:\/|$|-|\.)|^\/work(?:\/|$|\.)/;
 const sensitiveVary=/(?:^|,)\s*(?:cookie|authorization|\*)\s*(?:,|$)/i;
 
 // Restore the existing public policy after every content adapter.
