@@ -38,6 +38,7 @@ jobs:
         run: |
           test -x "$TIMBER_SHED_CHROME_PATH"
           node tests/timber-shed-private-runtime-acceptance.mjs
+          node tests/timber-shed-member-test-runtime.mjs
           node tests/timber-shed-forum-appeals-browser.mjs
       - name: Build complete Worker without deployment or production access
         run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/shed-worker-build"
