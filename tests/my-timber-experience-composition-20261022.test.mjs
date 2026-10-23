@@ -4,8 +4,9 @@ import {execFileSync} from 'node:child_process';
 import {
  EXPERIENCE_BASE,EXPERIENCE_SOURCE,EXPERIENCE_KEY,EXPERIENCE_MANIFEST,
  EXPERIENCE_PATHS,EXPERIENCE_MAINTENANCE,EXPERIENCE_RECORD,EXPERIENCE_PINS,
+ EXPERIENCE_CURRENT_MAIN_BASE,EXPERIENCE_CURRENT_MAIN_SOURCE,EXPERIENCE_CURRENT_MAIN_PATHS,EXPERIENCE_CURRENT_MAIN_PINS,EXPERIENCE_CURRENT_MAIN_COMPOSED_PINS,EXPERIENCE_CURRENT_MAIN_TEST_BEFORE,EXPERIENCE_CURRENT_MAIN_TEST_AFTER,
  myTimberExperienceHistoricalView,verifyMyTimberExperience,
- originalExperienceMainRelease,originalExperienceRuntime,originalExperienceNavigation,originalExperienceMainTest,originalExperienceHealthTest,originalExperienceFiniteGrowth,originalExperienceRootShare,originalExperiencePwaServiceWorker,originalExperienceTabs,
+ originalExperienceCurrentMainSharedFooterTest,originalExperienceMainRelease,originalExperienceRuntime,originalExperienceNavigation,originalExperienceMainTest,originalExperienceHealthTest,originalExperienceFiniteGrowth,originalExperienceRootShare,originalExperiencePwaServiceWorker,originalExperienceTabs,
  EXPERIENCE_MAIN_AFTER,EXPERIENCE_RUNTIME_BRANCH,EXPERIENCE_RUNTIME_VERIFY_AFTER,EXPERIENCE_RUNTIME_MEMBER_AFTER,EXPERIENCE_HEALTH_TEST_AFTER,EXPERIENCE_FINITE_GROWTH_AFTER
 } from '../release/my-timber-experience-scope-20261022.mjs';
 
@@ -16,6 +17,8 @@ const content=(r,p)=>native('show',(r==='HEAD'?head:r)+':'+p);
 const blob=(r,p)=>git('rev-parse',(r==='HEAD'?head:r)+':'+p);
 const diff=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 const ancestor=(a,b)=>{native('merge-base','--is-ancestor',a,b);return true;};
+const object=text=>execFileSync('git',['--no-replace-objects','hash-object','--stdin'],{encoding:'utf8',input:text}).trimEnd();
+const currentMainApplied=(()=>{try{return ancestor(EXPERIENCE_CURRENT_MAIN_SOURCE,head);}catch{return false;}})();
 const record=JSON.parse(content(head,EXPERIENCE_MANIFEST))[EXPERIENCE_KEY];
 const context={head,read:blob,blob,content,diff,ancestor};
 
@@ -28,6 +31,26 @@ test('exact approved My Timber source is registered before prior release scopes'
  assert.equal(view.record[EXPERIENCE_KEY],undefined);
  assert.equal(view.blob('HEAD','member-experience/entry.mjs'),blob(EXPERIENCE_BASE,'member-experience/entry.mjs'));
  assert.equal(blob(EXPERIENCE_SOURCE,'member-experience/app-experience.mjs'),EXPERIENCE_PINS['member-experience/app-experience.mjs']);
+});
+
+test('exact current-main footer refactor composes without changing either approved source',()=>{
+ assert.deepEqual(diff(EXPERIENCE_CURRENT_MAIN_BASE,EXPERIENCE_CURRENT_MAIN_SOURCE),EXPERIENCE_CURRENT_MAIN_PATHS);
+ for(const [path,pin] of Object.entries(EXPERIENCE_CURRENT_MAIN_PINS))assert.equal(blob(EXPERIENCE_CURRENT_MAIN_SOURCE,path),pin);
+ const path='tests/shared-footer.test.mjs';
+ const product=content(EXPERIENCE_SOURCE,path);
+ const composed=product.replace(EXPERIENCE_CURRENT_MAIN_TEST_BEFORE,EXPERIENCE_CURRENT_MAIN_TEST_AFTER);
+ assert.equal(product.split(EXPERIENCE_CURRENT_MAIN_TEST_BEFORE).length,2);
+ assert.equal(object(composed),EXPERIENCE_CURRENT_MAIN_COMPOSED_PINS[path]);
+ assert.equal(originalExperienceCurrentMainSharedFooterTest(composed),product);
+ assert.throws(()=>originalExperienceCurrentMainSharedFooterTest(composed.replace(EXPERIENCE_CURRENT_MAIN_TEST_AFTER,EXPERIENCE_CURRENT_MAIN_TEST_AFTER+EXPERIENCE_CURRENT_MAIN_TEST_AFTER)),/One exact|hook required/);
+});
+
+test('actual pull-request merge projects the exact current-main tail for historical guards',{skip:!currentMainApplied},()=>{
+ assert.equal(verifyMyTimberExperience(record,context),record);
+ const view=myTimberExperienceHistoricalView();
+ assert.equal(view.blob('HEAD','worker-entry-v6.js'),blob(EXPERIENCE_CURRENT_MAIN_BASE,'worker-entry-v6.js'));
+ assert.equal(view.blob('HEAD','tests/shared-footer.test.mjs'),blob(EXPERIENCE_BASE,'tests/shared-footer.test.mjs'));
+ assert.equal(view.affected('worker-entry-v6.js'),true);
 });
 
 for(const key of ['publicHomepageChanged','clinicalChanged','memberRecordsChanged','consentControlsRemoved','commercialSettingsChanged','nativeBinaryChanged','externalCommunicationsSent','newSpendingAuthorised','existingGatesWeakened','rollbackAuthorityBroadened','physicalHealthAcceptanceClaimed']){

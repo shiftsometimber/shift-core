@@ -9,6 +9,24 @@ export const EXPERIENCE_BASE='b6270ef6e45698cf9ef500326a5c7e47c45f2e49';
 export const EXPERIENCE_SOURCE='4945fef66201f1281f37eb6d3377dff31ce31eac';
 export const EXPERIENCE_MANIFEST='release/approved-runtime-composition.json';
 export const EXPERIENCE_KEY='myTimberExperience20261022';
+// Main advanced while this approved release was gated. Admit only the exact
+// already-merged footer/teaser composition, then project it away for the older
+// release guards. This is not My Timber product or deployment authority.
+export const EXPERIENCE_CURRENT_MAIN_BASE='ed65a6d09df7b157f05f9654e8f584b32b6c4337';
+export const EXPERIENCE_CURRENT_MAIN_SOURCE='4e3fcf85c9396260981b495cb2cc5861a76b2734';
+export const EXPERIENCE_CURRENT_MAIN_PINS=Object.freeze({
+ 'tests/shared-footer.test.mjs':'add6f9d692d796eae58580611207ea6d42fbc7a6',
+ 'timber-shed-public-teaser.mjs':'f4355f0fb74351c0678895b3c636f296634ef6ae',
+ 'worker-entry-v6.js':'d4ac95922c8655acb8a44f1b56ca14950d29617e'
+});
+export const EXPERIENCE_CURRENT_MAIN_COMPOSED_PINS=Object.freeze({
+ 'tests/shared-footer.test.mjs':'2ca761ba40d194d21b22abd94172548714d44a27',
+ 'timber-shed-public-teaser.mjs':'f4355f0fb74351c0678895b3c636f296634ef6ae',
+ 'worker-entry-v6.js':'d4ac95922c8655acb8a44f1b56ca14950d29617e'
+});
+export const EXPERIENCE_CURRENT_MAIN_PATHS=Object.freeze(Object.keys(EXPERIENCE_CURRENT_MAIN_PINS).sort());
+export const EXPERIENCE_CURRENT_MAIN_TEST_BEFORE=" const source=readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');assert(source.includes('if(appStorePublic)return withTimberShedTeaser(request,await withSharedFooter(request,appStorePublic));'));assert(source.includes('return withTimberShedTeaser(request,await withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy('));";
+export const EXPERIENCE_CURRENT_MAIN_TEST_AFTER=" const source=readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');assert(source.includes('if(appStorePublic)return withSharedFooter(request,appStorePublic);'));assert(source.includes('return withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy('));";
 export const EXPERIENCE_PINS=Object.freeze({
  'evidence/my-timber-experience-20261015/approved-design-20261019.json':'3f8bbca8e7877c89449ca0cc032481c0c45a06e0',
  'evidence/my-timber-experience-20261015/browser-receipt.json':'3bf698d4b5c6a798ec8cfb6684a1b4f35d01459e',
@@ -106,6 +124,9 @@ export const EXPERIENCE_ROOT_SHARE_COMPARE_BEFORE=" const references=new Map();f
 export const EXPERIENCE_ROOT_SHARE_COMPARE_AFTER=" const references=new Map();for(const[path,source]of currentRefs){if(!git('ls-tree',record.base,'--',path))continue;const actual=contents(head,path),expected=contents(source,path);if(actual!==expected){assert.equal(myTimberExperienceReaderAffects(reader,path),true,'Exact current-main callback source changed: '+path);assert.equal(reader('HEAD',path),reader(source,path),'Exact projected current-main callback source changed: '+path);}assert.equal(reader('HEAD',path),reader(head,path),'Current-main callback aliases drift: '+path);references.set(path,record.base);}\n";
 export const EXPERIENCE_ROOT_SHARE_DEFAULT=" if(defaultReader){const experience=myTimberExperienceHistoricalView();if(experience.rawHead!==experience.head){reader=experience.read;defaultReader=false;}}\n";
 const once=(text,before,after='')=>{assert.equal(text.split(before).length,2,'One exact My Timber experience hook required');return text.replace(before,after);};
+export function originalExperienceCurrentMainSharedFooterTest(text){
+ return once(text,EXPERIENCE_CURRENT_MAIN_TEST_AFTER,EXPERIENCE_CURRENT_MAIN_TEST_BEFORE);
+}
 export function originalExperienceMainRelease(text){
  text=once(text,EXPERIENCE_MAIN_IMPORT);
  text=once(text,EXPERIENCE_MAIN_AFTER,EXPERIENCE_MAIN_BEFORE);
@@ -184,18 +205,37 @@ export function verifyMyTimberExperience(record,{head,read=rawBlob,blob=rawBlob,
  const {maintenanceSource,...fixed}=record||{};
  assert.deepEqual(fixed,EXPERIENCE_RECORD,'Exact approved My Timber experience record required');
  assert.match(head,/^[a-f0-9]{40}$/);assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
+ const currentMainApplied=(()=>{try{return ancestor(EXPERIENCE_CURRENT_MAIN_SOURCE,head)===true;}catch{return false;}})();
  for(const ref of [record.base,record.source,maintenanceSource])ancestor(ref,head);
  ancestor(record.base,record.source);ancestor(record.source,maintenanceSource);
  assert.deepEqual(sorted(diff(record.base,record.source)),EXPERIENCE_PATHS,'Unrelated member-experience payload');
  assert.deepEqual(sorted(diff(record.source,maintenanceSource)),EXPERIENCE_MAINTENANCE,'Unrelated member-experience maintenance');
- assert.deepEqual(diff(maintenanceSource,head),[EXPERIENCE_MANIFEST],'Unreviewed member-experience registration tail');
- assert.deepEqual(sorted(diff(record.base,head)),sorted([...new Set([...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE,EXPERIENCE_MANIFEST])]),'Unlisted member-experience source');
+ if(currentMainApplied){
+  ancestor(EXPERIENCE_CURRENT_MAIN_BASE,EXPERIENCE_CURRENT_MAIN_SOURCE);
+  assert.deepEqual(sorted(diff(EXPERIENCE_CURRENT_MAIN_BASE,EXPERIENCE_CURRENT_MAIN_SOURCE)),EXPERIENCE_CURRENT_MAIN_PATHS,'Unrelated current-main footer composition');
+ }
+ const currentMainTail=currentMainApplied?EXPERIENCE_CURRENT_MAIN_PATHS:[];
+ assert.deepEqual(sorted(diff(maintenanceSource,head)),sorted([EXPERIENCE_MANIFEST,...currentMainTail]),'Unreviewed member-experience registration tail');
+ assert.deepEqual(sorted(diff(record.base,head)),sorted([...new Set([...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE,EXPERIENCE_MANIFEST,...currentMainTail])]),'Unlisted member-experience source');
  for(const [path,pin] of Object.entries(EXPERIENCE_PINS)){
+  const composed=currentMainApplied&&Object.hasOwn(EXPERIENCE_CURRENT_MAIN_COMPOSED_PINS,path);
   assert.equal(blob(record.source,path),pin,'Frozen approved member-experience source drift: '+path);
-  assert.equal(blob(head,path),pin,'Current member-experience source drift: '+path);
-  assert.equal(read('HEAD',path),read(record.source,path),'Fresh member-experience source drift: '+path);
-  assert.equal(read(head,path),read(record.source,path),'Fresh member-experience resolved-head source drift: '+path);
+  assert.equal(blob(head,path),composed?EXPERIENCE_CURRENT_MAIN_COMPOSED_PINS[path]:pin,'Current member-experience source drift: '+path);
+  if(composed){
+   assert.equal(originalExperienceCurrentMainSharedFooterTest(content(head,path)),content(record.source,path),'Exact current-main and My Timber test composition required');
+   assert.equal(read('HEAD',path),read(head,path),'Fresh composed member-experience source drift: '+path);
+  }else{
+   assert.equal(read('HEAD',path),read(record.source,path),'Fresh member-experience source drift: '+path);
+   assert.equal(read(head,path),read(record.source,path),'Fresh member-experience resolved-head source drift: '+path);
+  }
   assert.match(git('ls-tree',head,'--',path),/^100644 blob [a-f0-9]{40}\t/,'Regular member-experience source required: '+path);
+ }
+ if(currentMainApplied)for(const [path,pin] of Object.entries(EXPERIENCE_CURRENT_MAIN_PINS)){
+  assert.equal(blob(EXPERIENCE_CURRENT_MAIN_SOURCE,path),pin,'Frozen current-main footer composition drift: '+path);
+  assert.equal(blob(head,path),EXPERIENCE_CURRENT_MAIN_COMPOSED_PINS[path],'Current composed footer source drift: '+path);
+  assert.equal(read('HEAD',path),read(head,path),'Fresh current-main composed source drift: '+path);
+  if(path!=='tests/shared-footer.test.mjs')assert.equal(content(head,path),content(EXPERIENCE_CURRENT_MAIN_SOURCE,path),'Exact current-main footer source required: '+path);
+  assert.match(git('ls-tree',head,'--',path),/^100644 blob [a-f0-9]{40}\t/,'Regular current-main footer source required: '+path);
  }
  for(const path of EXPERIENCE_MAINTENANCE){
   assert.equal(blob(head,path),blob(maintenanceSource,path),'Current member-experience maintenance drift: '+path);
@@ -204,9 +244,10 @@ export function verifyMyTimberExperience(record,{head,read=rawBlob,blob=rawBlob,
   assert.match(git('ls-tree',head,'--',path),/^100644 blob [a-f0-9]{40}\t/,'Regular member-experience maintenance required: '+path);
  }
  for(const path of ['wrangler.jsonc','wrangler.coaching.jsonc','wrangler.hq-management.jsonc','package.json','package-lock.json','worker-entry-v6.js','worker.js','shift-coach/worker.mjs','.github/workflows/cloudflare-production-promote.yml','my-timber-app','public','privacy-health-erasure-route-v1.js','member-experience/treatment-routes.mjs','member-experience/treatment-privacy.mjs','member-experience/treatment.sql']){
-  assert.equal(blob(head,path),blob(record.base,path),'Protected member-experience boundary drift: '+path);
-  assert.equal(read('HEAD',path),read(record.base,path),'Fresh protected member-experience boundary drift: '+path);
-  assert.equal(read(head,path),read(record.base,path),'Fresh protected resolved-head member-experience boundary drift: '+path);
+  const boundary=currentMainApplied&&Object.hasOwn(EXPERIENCE_CURRENT_MAIN_PINS,path)?EXPERIENCE_CURRENT_MAIN_SOURCE:record.base;
+  assert.equal(blob(head,path),blob(boundary,path),'Protected member-experience boundary drift: '+path);
+  assert.equal(read('HEAD',path),read(boundary,path),'Fresh protected member-experience boundary drift: '+path);
+  assert.equal(read(head,path),read(boundary,path),'Fresh protected resolved-head member-experience boundary drift: '+path);
  }
  assert.equal(originalExperienceMainRelease(content(head,'release/main-release-readiness-scope-20261021.mjs')),content(record.base,'release/main-release-readiness-scope-20261021.mjs'),'All original release-readiness assertions and gates retained');
  assert.equal(originalExperienceRuntime(content(head,'release/approved-runtime-composition.mjs')),content(record.base,'release/approved-runtime-composition.mjs'),'All original runtime assertions and gates retained');
@@ -237,12 +278,20 @@ export function myTimberExperienceHistoricalView(reader=null,{defaultReader=read
   return value;
  };
  verifyMyTimberExperience(record,{head:rawHead,read:normal});
- const all=[...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE,EXPERIENCE_MANIFEST];
- const affected=path=>all.includes(path)||all.some(p=>p.startsWith(path+'/'));
- // Project only the files owned by this release.  Preserve a supplied
- // reader's HEAD alias everywhere else so older fail-closed drift checks see
- // exactly the same caller contract they had before this overlay existed.
- const map=(ref,path)=>currentRef(ref)&&affected(path)?record.base:ref;
+ const currentMainApplied=(()=>{try{return rawAncestor(EXPERIENCE_CURRENT_MAIN_SOURCE,rawHead);}catch{return false;}})();
+ const owned=[...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE,EXPERIENCE_MANIFEST];
+ const currentMain=currentMainApplied?EXPERIENCE_CURRENT_MAIN_PATHS:[];
+ const contains=(paths,path)=>paths.includes(path)||paths.some(p=>p.startsWith(path+'/'));
+ const affected=path=>contains(owned,path)||contains(currentMain,path);
+ // Project only the files authenticated above. Preserve a supplied reader's
+ // HEAD alias everywhere else so older fail-closed drift checks retain the
+ // caller contract they had before either overlay existed.
+ const map=(ref,path)=>{
+  if(!currentRef(ref))return ref;
+  if(contains(owned,path))return record.base;
+  if(contains(currentMain,path))return EXPERIENCE_CURRENT_MAIN_BASE;
+  return ref;
+ };
  const read=(ref,path)=>{
   return normal(map(ref,path),path);
  };
