@@ -1,0 +1,40 @@
+// Destructive only to the four-account fictional acceptance database; never production.
+import {readFileSync,writeFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+if(!process.argv.includes('--synthetic-only'))throw Error('Explicit --synthetic-only required');
+const config=process.env.TIMBER_SHED_ACCEPTANCE_CONFIG,cfg=JSON.parse(readFileSync(config,'utf8'));
+assert.equal(cfg.name,'shift-timber-shed-acceptance-20261023');
+assert.equal(cfg.d1_databases.length,1);
+assert.equal(cfg.d1_databases[0].binding,'SYNTHETIC_DB');
+assert.equal(cfg.d1_databases[0].database_name,'shift-timber-shed-synthetic-acceptance-20261023');
+assert.notEqual(cfg.d1_databases[0].database_id,'__DEDICATED_SYNTHETIC_D1_ID__');
+const wrangler=new URL('../node_modules/wrangler/bin/wrangler.js',import.meta.url).pathname;
+function cli(args){return execFileSync(process.execPath,[wrangler,...args,'--config',config],{encoding:'utf8',input:'y\n',timeout:120000,stdio:['pipe','pipe','pipe']})}
+function sql(command){return JSON.parse(cli(['d1','execute','SYNTHETIC_DB','--remote','--yes','--json','--command',command]))[0].results}
+const members=sql('SELECT group_concat(id) ids,count(*) n FROM users')[0];
+assert.equal(members.n,4);assert.deepEqual(members.ids.split(',').map(Number).sort((a,b)=>a-b),[1,2,3,6]);
+const snapshot=()=>sql('SELECT id,user_id,status,title,body,created_at FROM timber_shed_forum_posts ORDER BY id');
+const before=snapshot();assert(before.length>0,'A completed hosted acceptance fixture is required');
+const digest=rows=>createHash('sha256').update(JSON.stringify(rows)).digest('hex');
+const consentBefore=sql('SELECT count(*) n FROM timber_shed_participation WHERE user_id=1')[0].n;
+assert.equal(consentBefore,0,'Departed fictional member must already be cleared');
+const bookmark=JSON.parse(cli(['d1','time-travel','info','SYNTHETIC_DB','--json'])).bookmark;assert(bookmark);
+sql('DELETE FROM timber_shed_forum_posts');
+assert.equal(snapshot().length,0,'Synthetic damage not applied');
+cli(['d1','time-travel','restore','SYNTHETIC_DB','--bookmark',bookmark,'--json']);
+const after=snapshot();
+assert.equal(digest(after),digest(before),'Actual Cloudflare recovery did not restore exact content/state');
+assert.equal(sql('SELECT count(*) n FROM timber_shed_participation WHERE user_id=1')[0].n,0,'Recovery resurrected departed-member consent');
+assert.equal(sql('SELECT count(*) n FROM timber_shed_forum_profiles WHERE user_id=1')[0].n,0,'Recovery resurrected departed-member profile');
+const base=process.env.TIMBER_SHED_ACCEPTANCE_URL;
+assert(/^https:\/\/shift-timber-shed-acceptance-20261023\.[a-z0-9-]+\.workers\.dev$/.test(base));
+const credential=JSON.parse(readFileSync(process.env.TIMBER_SHED_ACCEPTANCE_AUTH_FILE,'utf8'));
+const response=await fetch(base+'/v1/timber-shed/forum/export',{headers:{Authorization:credential.authorization,Cookie:'sst_session=fictional-member-two','User-Agent':'Mozilla/5.0'},signal:AbortSignal.timeout(30000)});
+assert.equal(response.status,200,'Hosted session/export failed after native recovery');
+const unauthorised=await fetch(base,{headers:{'User-Agent':'Mozilla/5.0'},signal:AbortSignal.timeout(30000)});
+assert.equal(unauthorised.status,401,'Private host opened after recovery');
+const receipt={checkedAt:new Date().toISOString(),syntheticOnly:true,actualCloudflareD1TimeTravel:true,rowsRestored:after.length,exactDigestRestored:true,departedConsentNotResurrected:true,departedProfileNotResurrected:true,hostedCookieAndExportAfterRecovery:true,privateGatewayStillClosed:true,productionWrites:false};
+if(process.env.TIMBER_SHED_RECOVERY_RECEIPT)writeFileSync(process.env.TIMBER_SHED_RECOVERY_RECEIPT,JSON.stringify(receipt,null,2)+'\n');
+console.log(JSON.stringify(receipt,null,2));

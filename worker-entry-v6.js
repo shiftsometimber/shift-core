@@ -1,3 +1,4 @@
+import {runTimberShedRetention} from './member-experience/timber-shed-retention.mjs';
 import {causesPublicRoute} from './causes-partners/production.mjs';
 import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {withSharedFooter} from './timber-shed-public-teaser.mjs';
@@ -37,6 +38,9 @@ import {withPublicSeoCloseout} from './public-seo-closeout.mjs';
 import {withKnowledgeAssetRepair} from './knowledge-heading-repair.mjs';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
+import {timberShedPrivateRoutes,appendTimberShedPrivateExport} from './member-experience/timber-shed-private.mjs';
+import {timberShedPresentationRoutes} from './member-experience/timber-shed-presentation.mjs';
+import {timberShedForumRoutes} from './member-experience/timber-shed-forum-routes.mjs';
 import { memberHealthRoutes, persistFitReplacement, appendHealthExport } from "./member-experience/health-routes.mjs";
 import { withSessionState } from './member-experience/session-state.mjs';
 import { memberExperienceEntry, memberExperienceRoutes } from "./member-experience/entry.mjs";
@@ -598,6 +602,7 @@ const worker = {
     const medicinesWatch = await medicinesWatchRoutes(request, env);
     if (medicinesWatch) return rewritePublicLoungeChrome(medicinesWatch);
     const passportAsset = passportAssets(request, env); if(passportAsset)return passportAsset;
+    const shedPresentation=await timberShedPresentationRoutes(request,env);if(shedPresentation)return shedPresentation;
     const memberExperience = memberExperienceRoutes(request, env);
     if (memberExperience) return memberExperience;
     const workplace = await workRoutes(request, env, {authenticate: authenticateMember, authenticateHQ: authenticateWorkHQ});
@@ -909,6 +914,8 @@ const worker = {
     if (authRecovery) return withMemberCors(authRecovery, request);
 
 
+    const timberShed = await timberShedPrivateRoutes(request,env); if(timberShed)return timberShed;
+    const shedForum = await timberShedForumRoutes(request,env); if(shedForum)return shedForum;
     const lifeBack = await lifeBackRoutes(request,env); if(lifeBack)return lifeBack;
     const passport = await passportRoutes(request, env); if(passport)return withMemberCors(passport,request);
     const treatmentNotifications=await treatmentNotificationRoutes(request,env);if(treatmentNotifications)return treatmentNotifications;
@@ -997,6 +1004,7 @@ const worker = {
     );
     fallback = await appendHealthExport(request, env, fallback);
     fallback = await appendMemberDetailsExport(request, env, fallback);
+    fallback = await appendTimberShedPrivateExport(request, env, fallback);
     fallback = await appendPwaExport(request, env, fallback);
     fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);
@@ -1009,6 +1017,12 @@ const worker = {
       : fallback;
   },
   async scheduled(controller, env, ctx) {
+    // A separate hourly event avoids consuming the existing quarter-hour jobs' D1 budget.
+    if(controller?.cron==='17 * * * *'){
+      const shedMaintenance=runTimberShedRetention(env).catch(()=>console.warn('timber_shed_retention_failed'));
+      if(ctx?.waitUntil)ctx.waitUntil(shedMaintenance);else await shedMaintenance;
+      return;
+    }
     const job = (async () => {
       // Reserve and run the bounded evidence checks before the shared D1-heavy
       // jobs. A sibling failure or contention must not silently starve the Watch.

@@ -14,7 +14,8 @@ export const SHIFT_MAILBOXES=Object.freeze({
   accounts:'accounts@shiftsometimber.co.uk',
   feedback:'feedback@shiftsometimber.co.uk',
   hq:'hq@shiftsometimber.co.uk',
-  it:'it@shiftsometimber.co.uk'
+  it:'it@shiftsometimber.co.uk',
+  timbershed:'timbershed@shiftsometimber.co.uk'
 });
 
 const DEFAULT_FROM=SHIFT_MAILBOXES.hello;
