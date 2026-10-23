@@ -13,3 +13,7 @@ The deployment helper runs on the authorised SST Mac using its existing Wrangler
 Notes use no network, browser storage, account records or AI. Empty fields are optional. User-controlled copying/printing creates external copies. The client clears text on pagehide and back/forward cache restoration. Do not add analytics to the notes tool.
 
 Official routes checked on 23 October 2026: NHS Talking Therapies England; NHS inform psychological therapy Scotland; NHS 111 Wales counselling; NI Direct mental health services. Existing urgent-support guide remains directly accessible. No charity or treatment partnership is claimed.
+
+## Release status
+
+Live at https://shiftsometimber.co.uk/mens-mental-health with the existing check-in connected. Implementation source and verified checks are in verification.json. The exact 14 prior route owners and owned activation records remain in the retained release checkout for rollback. My Timber account saving and reminders remain outstanding.

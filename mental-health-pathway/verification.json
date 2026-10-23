@@ -1,0 +1,65 @@
+{
+  "status": "deployed and live browser verified",
+  "url": "https://shiftsometimber.co.uk/mens-mental-health#your-next-step",
+  "implementationSource": "d87b09c95f195f73b779f598813d3497e6823e7b",
+  "httpChecks": [
+    {
+      "path": "/mens-mental-health",
+      "status": 200,
+      "marker": "20261023-pathway-v1"
+    },
+    {
+      "path": "/mens-mental-health/",
+      "status": 200,
+      "marker": "20261023-pathway-v1"
+    },
+    {
+      "path": "/mens-mental-health.html",
+      "status": 200,
+      "marker": "20261023-pathway-v1"
+    },
+    {
+      "path": "/mens-mental-health/pathway.js",
+      "status": 200,
+      "marker": "20261023-pathway-v1"
+    },
+    {
+      "path": "/how-are-you-feeling",
+      "status": 200,
+      "marker": "20261023-pathway-v1"
+    },
+    {
+      "path": "/how-are-you-feeling/",
+      "status": 200,
+      "marker": "20261023-pathway-v1"
+    },
+    {
+      "path": "/how-are-you-feeling.html",
+      "status": 200,
+      "marker": "20261023-pathway-v1"
+    }
+  ],
+  "routeCount": 14,
+  "browserChecks": [
+    "10 focused source and route tests",
+    "All 74 existing external and internal destination links retained",
+    "Chrome staged page rendering and layout",
+    "Anchors open professional-help, notes and waiting sections",
+    "Fictional notes copied through browser clipboard",
+    "Clear notes removes typed values",
+    "Leaving and returning clears notes",
+    "Existing 20 wellbeing radio inputs retained",
+    "Free support navigation alongside existing check-in",
+    "No automatic notes transmission, storage or diagnosis"
+  ],
+  "verificationLimits": [
+    "No physical mobile or Safari acceptance",
+    "Browser print-dialog output not inspected",
+    "My Timber account persistence and reminders not implemented"
+  ],
+  "remaining": [
+    "My Timber consented account persistence and optional reminders",
+    "Professional assessment/treatment partnership"
+  ],
+  "rollback": "node mental-health-pathway/deploy.cjs rollback on the retained authorised release checkout"
+}
