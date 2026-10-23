@@ -19,9 +19,9 @@ test('account identity cannot be chosen through URL or forged role headers',asyn
  const wrongEmail=createMemberTestWorker(async()=>({userId:11245,user:{email:'other@example.invalid'}}));
  assert.equal((await wrongEmail.fetch(req(),env())).status,404);
 });
-test('unauthenticated asset and API access denied',async()=>{
+test('unauthenticated private member page and API access denied',async()=>{
  const w=createMemberTestWorker(async()=>({response:new Response(null,{status:401})}));
- for(const path of ['/member/timber-shed','/assets/member-experience/timber-shed-forum.mjs','/v1/timber-shed/forum/latest'])
+ for(const path of ['/member/timber-shed','/v1/timber-shed/forum/latest'])
   assert.equal((await w.fetch(req(path),env())).status,401);
 });
 test('default off and absent/misbound data fail closed before authentication',async()=>{
@@ -48,18 +48,26 @@ test('authentication failure is closed and does not disclose internal errors',as
  const r=await w.fetch(req(),env());assert.equal(r.status,503);assert.doesNotMatch(await r.text(),/database/);
 });
 
-test('direct Shed address renders the same full forum behind the existing account gate',async()=>{
+test('direct Shed address renders the agreed public homepage',async()=>{
  const w=createMemberTestWorker(async()=>account);
  for(const path of ['/timber-shed','/timber-shed/','/timber-shed?source=direct']){
   const r=await w.fetch(req(path),env());assert.equal(r.status,200);const html=await r.text();
   assert.match(html,/Discussion rooms/);assert.match(html,/Start a conversation/);
-  assert.match(html,/PRIVATE TEST · TEST ACCOUNT ONLY/);assert.match(r.headers.get('Cache-Control'),/no-store/);
+  assert.match(html,/Sign in to My Timber/);assert.match(r.headers.get('Cache-Control'),/no-store/);
  }
 });
-test('direct address does not admit visitors or other member accounts',async()=>{
+test('direct homepage opens for visitors and other accounts without admitting them to private data',async()=>{
  const loggedOut=createMemberTestWorker(async()=>({response:new Response(null,{status:401})}));
  const other=createMemberTestWorker(async()=>({userId:99,user:{email:'other@example.invalid'}}));
- assert.equal((await loggedOut.fetch(req('/timber-shed'),env())).status,401);
- assert.equal((await other.fetch(req('/timber-shed'),env())).status,404);
+ assert.equal((await loggedOut.fetch(req('/timber-shed'),env())).status,200);
+ assert.equal((await other.fetch(req('/timber-shed'),env())).status,200);
  assert.equal((await createMemberTestWorker(async()=>account).fetch(req('/timber-shed-other'),env())).status,404);
+});
+
+test('public homepage and scripts perform no account or forum-data reads',async()=>{
+ let authCalls=0;const w=createMemberTestWorker(async()=>{authCalls++;throw Error('must not authenticate public presentation')});
+ for(const path of ['/timber-shed','/assets/member-experience/timber-shed.mjs','/assets/member-experience/timber-shed-forum.mjs'])assert.equal((await w.fetch(req(path),env())).status,200);
+ assert.equal(authCalls,0);
+ const anonymous=createMemberTestWorker(async()=>({response:new Response(null,{status:401})}));
+ const feed=await anonymous.fetch(req('/v1/timber-shed/forum/latest'),env());assert.equal(feed.status,401);assert.equal((await feed.json()).error,'authentication_required');
 });
