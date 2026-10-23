@@ -12,7 +12,7 @@ if(mode==='status'){console.log(JSON.stringify(routes.filter(own),null,2));retur
 if(mode==='stage'){
  assert.equal(git('status','--porcelain'),'','Commit source before staging');
  assert(!routes.some(r=>r.script===script),'This release is already active; reconcile before replacing it');
- const services=await c.organicApi(account+'/workers/services');assert(!services.some(s=>s.id===script),'Stage service already exists; inspect instead of overwriting');
+ const services=await c.organicApi(account+'/workers/services');if(services.some(s=>s.id===script))assert(fs.existsSync(path.join(out,'upload.json')),'Unowned staging service');
  const selected=routes.filter(own);assert(selected.length>=12,'Expected both existing page route families');
  assert(selected.every(r=>r.script===(r.pattern.includes('how-are-you-feeling')?'shift-feeling-presentation-20261022':'shift-final-pages-presentation-20261021')),'Unexpected current route owner');
  save('routes-before',selected);const source={head:git('rev-parse','HEAD'),worker:sha(fs.readFileSync(path.join(__dirname,'worker.mjs'))),content:sha(fs.readFileSync(path.join(__dirname,'content.mjs')))};save('source',source);

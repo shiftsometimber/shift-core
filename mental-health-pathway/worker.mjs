@@ -10,6 +10,7 @@ export function enhance(html,kind){
   if(!anchor.test(html))throw Error('Expected approved Good to Talk presentation missing');
   html=html.replace(anchor,m=>m+panel);
   html=html.replace(/(<article\b[^>]*class="ft-card"[^>]*>[\s\S]*?<a\b[^>]*href=")\/how-are-you-feeling("[^>]*>)/,'$1#your-next-step$2');
+  html=html.replace('Explore how you’re feeling <svg','Find a helpful next step <svg');
   html=html.replace('</body>','<script data-gtt-pathway-release="'+VERSION+'" src="/mens-mental-health/pathway.js" defer></script></body>');
  }else{
   const banner='<section class="gtt-checkin" aria-labelledby="gtt-checkin-title" data-gtt-pathway-release="'+VERSION+'"><h2 id="gtt-checkin-title">Would help taking the next step be useful?</h2><p>This check-in is a reflection, not a mental-health assessment. Good to Talk can help you find professional support, prepare for a conversation or manage the wait.</p><p><a href="/mens-mental-health#your-next-step">Explore free support and next steps</a> · <a href="/mental-health/urgent-mental-health-help">Find urgent support</a></p><p>No account or purchase needed.</p></section>';
