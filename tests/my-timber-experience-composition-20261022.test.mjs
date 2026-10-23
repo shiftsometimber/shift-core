@@ -25,6 +25,7 @@ const context={head,read:blob,blob,content,diff,ancestor};
 test('exact approved My Timber source is registered before prior release scopes',()=>{
  assert.equal(EXPERIENCE_PATHS.length,40);
  assert.deepEqual(EXPERIENCE_PATHS,Object.keys(EXPERIENCE_PINS).sort());
+ assert.deepEqual(EXPERIENCE_MAINTENANCE.filter(path=>path.includes('whole-estate')),['gate1-whole-estate-production-sweep.mjs','tests/whole-estate-route-sweep.test.mjs']);
  assert.equal(verifyMyTimberExperience(record,context),record);
  const view=myTimberExperienceHistoricalView();
  assert.equal(view.rawHead,head);assert.equal(view.head,EXPERIENCE_BASE);

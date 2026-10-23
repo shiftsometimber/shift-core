@@ -5,6 +5,7 @@ const REQUEST_TIMEOUT_MS=Number(process.env.SHIFT_SWEEP_TIMEOUT_MS||30000);
 const NETWORK_RETRY_LIMIT=1;
 const NETWORK_RETRY_DELAY_MS=250;
 const USER_AGENT='ShiftCommissioning/1.0 (+release-route-sweep)';
+const PRIVATE_CALENDAR_PATH='/v1/my-timber-support/calendar.ics';
 const queue=[START+'/',START+'/member-login.html'];
 const queued=new Set(queue),visited=new Map(),failures=[],externalHosts=new Map(),discoveredFrom=new Map([[START+'/',null],[START+'/member-login.html',null]]);
 const assetExt=/\.(?:css|js|mjs|png|jpe?g|webp|svg|gif|ico|woff2?|ttf|pdf)(?:\?|$)/i;
@@ -61,6 +62,16 @@ async function fetchWithBoundedNetworkRetry(url){
     }
   }
 }
+function headerTokens(value){return new Set(String(value||'').toLowerCase().split(',').map(value=>value.trim()).filter(Boolean))}
+async function privateUnauthenticatedEnvelope(response,{url,final,status,type,chain}){
+  const target=new URL(final),root=new URL(START),expected=target.origin===root.origin&&target.pathname===PRIVATE_CALENDAR_PATH&&!target.search&&!target.hash;
+  if(!expected)return{expected:false};
+  const cache=headerTokens(response.headers.get('cache-control')),vary=headerTokens(response.headers.get('vary')),robots=headerTokens(response.headers.get('x-robots-tag'));
+  let payload=null;try{payload=JSON.parse(await response.text())}catch{}
+  const body=payload&&typeof payload==='object'&&!Array.isArray(payload)&&Object.keys(payload).length===1&&payload.error==='authentication_required';
+  const accepted=status===401&&chain.length===1&&new URL(url).href===target.href&&type.split(';')[0].trim()==='application/json'&&cache.has('private')&&cache.has('no-store')&&vary.has('cookie')&&robots.has('noindex')&&robots.has('nofollow')&&body;
+  return{expected:true,accepted,error:accepted?null:'private_auth_envelope_invalid'};
+}
 
 async function inspect(url,parent){
   let result;try{result=await fetchWithBoundedNetworkRetry(url)}catch(e){const attempts=e?.sweepAttempts||1;return{url,parent,record:{error:true,attempts},failures:[{url,discoveredFrom:parent,error:`network:${e?.name||'Error'}:${e?.message||e}`,code:e?.cause?.code,attempts}],children:[],external:[]}}
@@ -68,6 +79,8 @@ async function inspect(url,parent){
   if(error||!r)return{url,parent,record:{error:true},failures:[{url,discoveredFrom:parent,error:error||'no_response',chain}],children:[],external:[]};
   const final=chain.at(-1)?.url||url,status=r.status,type=(r.headers.get('content-type')||'').toLowerCase(),localFailures=[];
   const record={status,type,final,chain,discoveredFrom:parent,attempts};
+  const privateRoute=await privateUnauthenticatedEnvelope(r,{url,final,status,type,chain});
+  if(privateRoute.expected){record.protected=privateRoute.accepted;return privateRoute.accepted?{url,parent,record,failures:[],children:[],external:[]}:{url,parent,record,failures:[{url,discoveredFrom:parent,status,final,error:privateRoute.error}],children:[],external:[]}}
   if(status>=400)return{url,parent,record,failures:[{url,discoveredFrom:parent,status,final}],children:[],external:[]};
   let body='';if(!assetExt.test(final)){try{body=await r.text()}catch(e){localFailures.push({url,discoveredFrom:parent,status,error:`body:${e?.name||'Error'}:${e?.message||e}`})}}
   const children=[],external=[];
@@ -94,7 +107,7 @@ while(queue.length&&visited.size<MAX_PAGES){
 
 const checked=[...visited.entries()].map(([url,x])=>({url,...x}));
 const critical=failures.filter(x=>x.status>=400||x.error);
-const report={proof:'M10_WHOLE_ESTATE_ROUTE_SWEEP',start:START,checked:checked.length,htmlPages:checked.filter(x=>x.type?.includes('text/html')).length,failures:critical,externalHosts:[...externalHosts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,30),truncated:queue.length>0,limit:MAX_PAGES,concurrency:CONCURRENCY,requestTimeoutMs:REQUEST_TIMEOUT_MS,networkRetryLimit:NETWORK_RETRY_LIMIT,networkRetryDelayMs:NETWORK_RETRY_DELAY_MS,retriedRoutes:checked.filter(x=>x.attempts>1).length};
+const report={proof:'M10_WHOLE_ESTATE_ROUTE_SWEEP',start:START,checked:checked.length,htmlPages:checked.filter(x=>x.type?.includes('text/html')).length,protectedRoutes:checked.filter(x=>x.protected).length,failures:critical,externalHosts:[...externalHosts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,30),truncated:queue.length>0,limit:MAX_PAGES,concurrency:CONCURRENCY,requestTimeoutMs:REQUEST_TIMEOUT_MS,networkRetryLimit:NETWORK_RETRY_LIMIT,networkRetryDelayMs:NETWORK_RETRY_DELAY_MS,retriedRoutes:checked.filter(x=>x.attempts>1).length};
 console.log(JSON.stringify(report,null,2));
 if(critical.length){
   for(const f of critical.slice(0,20)){const detail=[f.status&&`HTTP ${f.status}`,f.error,f.discoveredFrom&&`from=${f.discoveredFrom}`,f.final&&f.final!==f.url&&`final=${f.final}`].filter(Boolean).join(' · ');console.error(`::error title=M10 route sweep::${String(f.url).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')} — ${String(detail).replace(/%/g,'%25').replace(/\r?\n/g,'%0A')}`)}
@@ -103,4 +116,4 @@ if(critical.length){
 if(!visited.has(START+'/'))throw new Error('Homepage was not swept');
 if(checked.length<2)throw new Error('Sweep discovered too little estate surface to be meaningful');
 if(report.truncated)throw new Error(`Whole-estate sweep exceeded ${MAX_PAGES} same-origin URLs; increase SHIFT_SWEEP_MAX rather than accepting partial evidence.`);
-console.log(`::notice title=M10 production sweep GREEN::${checked.length} same-origin URLs checked · ${report.htmlPages} HTML pages · 0 critical route/asset/blank-page failures · discovery exhausted`);
+console.log(`::notice title=M10 production sweep GREEN::${checked.length} same-origin URLs checked · ${report.htmlPages} HTML pages · ${report.protectedRoutes} exact private auth envelopes · 0 critical route/asset/blank-page failures · discovery exhausted`);

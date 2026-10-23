@@ -87,6 +87,7 @@ export const EXPERIENCE_PINS=Object.freeze({
 });
 export const EXPERIENCE_PATHS=Object.freeze(Object.keys(EXPERIENCE_PINS).sort());
 export const EXPERIENCE_MAINTENANCE=Object.freeze([
+ 'gate1-whole-estate-production-sweep.mjs',
  'release/my-timber-experience-scope-20261022.mjs',
  'release/finite-growth-scope.mjs',
  'release/main-release-readiness-scope-20261021.mjs',
@@ -98,7 +99,8 @@ export const EXPERIENCE_MAINTENANCE=Object.freeze([
  'release/recorded-week-navigation-outer-frame-20261018.mjs',
  'tests/health-vision-scope-20261021.test.mjs',
  'tests/main-release-readiness-scope-20261021.test.mjs',
- 'tests/my-timber-experience-composition-20261022.test.mjs'
+ 'tests/my-timber-experience-composition-20261022.test.mjs',
+ 'tests/whole-estate-route-sweep.test.mjs'
 ].sort());
 export const EXPERIENCE_RECORD=Object.freeze({
  proof:'EXACT_AUTHORISED_MY_TIMBER_EXPERIENCE_20261022',
