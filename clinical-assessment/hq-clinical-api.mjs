@@ -1,5 +1,5 @@
 import {clinicalContext,contextSharing} from './clinical-context.mjs';
-import {clinicianAnswers,caseLabels,questionLabel} from './clinician-presentation.mjs';
+import {clinicianAnswers,caseLabels,questionLabel,questionnaireContext} from './clinician-presentation.mjs';
 import {caseQueue,caseView,caseAction,clinicalStaff} from './casework.mjs';
 const base='/v1/hq/clinical',origin='https://hq.shiftsometimber.co.uk';
 const json=(v,status=200)=>new Response(JSON.stringify(v),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','Vary':'Origin','Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true'}});
@@ -56,7 +56,7 @@ export async function hqClinicalRoute(request,env,authenticate){
    if(!assessment?.submitted)fail(409,'submitted_assessment_required');
    await env.DB.prepare('INSERT INTO clinical_member_audit VALUES(?,?,?,?,?,?)').bind(crypto.randomUUID(),id,actor.id,'hq_clinician_viewed',JSON.stringify({actorKind:'hq',version:assessment.version}),new Date().toISOString()).run();
    const workflow=await caseView(env,record,true);await assertAccess();
-   return json({record,assessment:{version:assessment.version,answers:clinicianAnswers(JSON.parse(assessment.answers_json)),evidence:JSON.parse(assessment.evidence_json),declarations:JSON.parse(assessment.declarations_json),digest:assessment.digest},workflow,answerLabels:Object.fromEntries(Object.keys(clinicianAnswers(JSON.parse(assessment.answers_json))).map(k=>[k,questionLabel(k)])),contactFieldsWithheld:true,displayStatus:caseLabels[workflow.status]||'Pending',prescriptionIssued:false,pharmacyReleased:false});
+   return json({record,assessment:{version:assessment.version,answers:clinicianAnswers(JSON.parse(assessment.answers_json)),evidence:JSON.parse(assessment.evidence_json),declarations:JSON.parse(assessment.declarations_json),digest:assessment.digest},workflow,answerLabels:Object.fromEntries(Object.keys(clinicianAnswers(JSON.parse(assessment.answers_json))).map(k=>[k,questionLabel(k)])),questionContext:questionnaireContext(assessment),contactFieldsWithheld:true,displayStatus:caseLabels[workflow.status]||'Pending',prescriptionIssued:false,pharmacyReleased:false});
   }
   if(parts[1]==='context'&&parts.length===2&&request.method==='GET'){
    const context=await clinicalContext(env,record);

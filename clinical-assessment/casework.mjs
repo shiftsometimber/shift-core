@@ -1,3 +1,4 @@
+import {validateCareHandover} from './care-handover.mjs';
 import {contextSharing,saveContextSharing,clinicalContext} from './clinical-context.mjs';
 // Workflow decisions are not prescriptions. No signing, release or email sending here.
 const kinds=new Set(['photo_id','front_photo','scale_photo','prescription']);
@@ -65,7 +66,7 @@ export async function caseAction(env,record,actor,reviewer,b){
   if(b.outcome==='proceed'){
    const latestFiles=new Map();for(const e of JSON.parse(assessment.evidence_json))latestFiles.set(e.kind,e);
    for(const file of latestFiles.values()){if(file.kind==='photo_id')continue;const review=history.filter(e=>{const d=JSON.parse(e.public_json);return d.evidenceId===file.id&&d.evidenceDigest===file.digest;}).at(-1);if(!review||JSON.parse(review.public_json).outcome!=='approve')fail(422,'medical_evidence_approval_required');}
-   if(b.identityVerified!==true||b.independentMeasurementsVerified!==true)fail(422,'verification_required');privateData.verification=clean(b.verification);}
+   if(b.identityVerified!==true||b.independentMeasurementsVerified!==true)fail(422,'verification_required');privateData.verification=clean(b.verification);privateData.handover=validateCareHandover(b.handover);}
   kind='clinical_decision';status={proceed:'ready_for_prescription',decline:'declined',consultation:'consultation_required'}[b.outcome];publicData={outcome:b.outcome,message:clean(b.message)};privateData.rationale=clean(b.rationale);recipient=record.user_id;
  }else fail(422,'unknown_case_action');
  const sharingGuard=kind==='app_updates_reviewed'?' AND COALESCE((SELECT MAX(revision) FROM clinical_context_sharing WHERE record_id=?),0)=?':'';

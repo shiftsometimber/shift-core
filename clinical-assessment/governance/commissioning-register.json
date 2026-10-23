@@ -1,0 +1,23 @@
+{
+ "version":"shift-clinical-commissioning-v1","status":"review_preparation_only","assumption":"A hypothetical clinician is available; no professional appointment, registration or approval is inferred.",
+ "gates":[
+  {"id":"provider_model","owner":"Business owner and regulatory adviser","state":"open","evidence":"","requirement":"Identify the clinical provider, accountable entity and applicable registrations and exemptions, including CQC scope and UK geographical coverage."},
+  {"id":"clinician_credentials","owner":"Clinical lead","state":"open","evidence":"","requirement":"Record professional and prescriber registration checks, restrictions, indemnity, scope, credential expiry and removal procedure."},
+  {"id":"clinical_protocols","owner":"Clinical lead","state":"open","evidence":"","requirement":"Approve medicine-specific eligibility, interactions, verification, titration, restart, monitoring, stopping and escalation protocols with current product information."},
+  {"id":"questionnaire_approval","owner":"Clinical lead","state":"open","evidence":"","requirement":"Approve the questionnaire and answer-to-action mapping; verify exact wording and lists persist with every submitted assessment."},
+  {"id":"consultation_verification","owner":"Clinical lead","state":"open","evidence":"","requirement":"Accept independent measurements, identity, history reconciliation and two-way consultation methods and their evidence requirements."},
+  {"id":"gp_and_consent","owner":"Clinical lead and privacy reviewer","state":"open","evidence":"","requirement":"Approve informed consent, verified GP routing, sharing refusal/no-GP decisions and delivery-failure handling."},
+  {"id":"prescription_service","owner":"Clinical lead and pharmacy lead","state":"open","evidence":"","requirement":"Validate legal prescription fields, signature mechanism, immutable prescription ID, pharmacy receipt and duplicate/revocation controls."},
+  {"id":"dispensing_delivery","owner":"Pharmacy lead","state":"open","evidence":"","requirement":"Accept pharmacy review, stock, labelling, patient checks, cold chain, dispatch, recalls and failed-delivery handling."},
+  {"id":"followup_safety","owner":"Clinical lead","state":"open","evidence":"","requirement":"Agree monitoring, repeat review, safeguarding, urgent advice, incident reporting, service hours and cover."},
+  {"id":"data_governance","owner":"Privacy reviewer and business owner","state":"open","evidence":"","requirement":"Complete lawful basis and special-category analysis, controller/processor agreements, notices and DPIA actions; assess whether DPO appointment is required."},
+  {"id":"retention_rights","owner":"Privacy reviewer and security owner","state":"open","evidence":"","requirement":"Approve category-specific retention and legal holds and test access/correction/deletion and backup/restoration processes."},
+  {"id":"identity_ai","owner":"Privacy reviewer and clinical lead","state":"excluded_from_launch","evidence":"","requirement":"AI identity remains off. Any future use needs separate supplier, accuracy, equality, human-review, biometrics and DPIA assessment."},
+  {"id":"security_sessions","owner":"Security owner","state":"open","evidence":"","requirement":"Test genuine clinician/member authentication, MFA, session expiry, assignment revocation, authorised emergency access and isolation across all HQ/CRM routes."},
+  {"id":"uploads","owner":"Security owner","state":"open","evidence":"","requirement":"Demonstrate upload validation/quarantine/scanning, private storage, signed access controls, access logs and failure recovery."},
+  {"id":"production_integration","owner":"Technical owner","state":"open","evidence":"","requirement":"Apply approved schema, require structured handover, connect owned orders and member records, deliver notifications and verify prescription/pharmacy acknowledgements in a commissioned test environment."},
+  {"id":"clinical_audit","owner":"Clinical lead","state":"open","evidence":"","requirement":"Approve consultation/prescribing audit, sample review, amendments, clinical incident learning and complaints procedures."},
+  {"id":"advertising_terms","owner":"Business owner and clinical lead","state":"open","evidence":"","requirement":"Review public claims, medicine advertising, provider identities, checkout/payment timing, refunds and complaints without promising a prescription."},
+  {"id":"release_acceptance","owner":"Business owner, clinical lead, pharmacy lead, privacy reviewer and security owner","state":"open","evidence":"","requirement":"Record signed release decision after all included gates pass; perform controlled genuine end-to-end acceptance and name rollback and incident owners."}
+ ]
+}
