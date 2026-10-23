@@ -3,8 +3,9 @@ import {hqClinicalRoute} from './hq-clinical-api.mjs';
 import {shell,assets} from './portal-release-assets.mjs';
 const origin='https://hq.shiftsometimber.co.uk';
 const headers={'Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
-export async function existingHqIdentity(request,_env,fetchImpl=fetch){
+export async function existingHqIdentity(request,env,fetchImpl=env.HQ_AUTH?.fetch.bind(env.HQ_AUTH)){
  // Always use the existing HQ authentication endpoint; never member sessions or caller-supplied identity.
+ if(!fetchImpl)throw Error('HQ authentication binding unavailable');
  const forwarded=new Headers();for(const name of ['cookie','authorization'])if(request.headers.has(name))forwarded.set(name,request.headers.get(name));
  forwarded.set('Origin',origin);
  const response=await fetchImpl('https://api.shiftsometimber.co.uk/v1/hq/me',{headers:forwarded,redirect:'error',cache:'no-store'});

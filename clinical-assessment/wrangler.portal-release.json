@@ -39,5 +39,11 @@
   ],
   "observability": {
     "enabled": false
-  }
+  },
+  "services": [
+    {
+      "binding": "HQ_AUTH",
+      "service": "shift-core"
+    }
+  ]
 }

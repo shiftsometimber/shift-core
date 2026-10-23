@@ -15,7 +15,7 @@ test('unauthenticated and failed HQ authentication fail closed',async()=>{
  for(const [status,want] of [[401,401],[403,503],[500,503]]){const r=await existingHqIdentity(new Request('https://api.shiftsometimber.co.uk/v1/hq/clinical'),{},async()=>new Response('',{status}));assert.equal(r.response.status,want);}
 });
 test('infrastructure release cannot activate clinical access even with provider flags enabled',async()=>{
- const saved=globalThis.fetch;try{globalThis.fetch=async()=>Response.json({user:{id:7,role:'clinical'}});const r=await worker.fetch(new Request('https://api.shiftsometimber.co.uk/v1/hq/clinical'),{CLINICAL_CASEWORK_ENABLED:'true',CLINICAL_REVIEW_READY:'true',CLINICAL_CONTEXT_ENABLED:'true',DB:{prepare(){throw Error('must not read patient data');}}});assert.equal(r.status,503);assert.equal((await r.json()).error,'clinical_casework_not_open');}finally{globalThis.fetch=saved;}
+ const saved=globalThis.fetch;try{globalThis.fetch=async()=>Response.json({user:{id:7,role:'clinical'}});const r=await worker.fetch(new Request('https://api.shiftsometimber.co.uk/v1/hq/clinical'),{CLINICAL_CASEWORK_ENABLED:'true',CLINICAL_REVIEW_READY:'true',CLINICAL_CONTEXT_ENABLED:'true',HQ_AUTH:{fetch:globalThis.fetch},DB:{prepare(){throw Error('must not read patient data');}}});assert.equal(r.status,503);assert.equal((await r.json()).error,'clinical_casework_not_open');}finally{globalThis.fetch=saved;}
 });
 test('generated portal assets are exactly the validated runtime sources and route scope is additive',async()=>{
  const r=await worker.fetch(new Request('https://hq.shiftsometimber.co.uk/clinical-assets/client.mjs'),{});assert.equal(await r.text(),readFileSync(new URL('../clinical-assessment/hq-clinical-client.mjs',import.meta.url),'utf8'));
