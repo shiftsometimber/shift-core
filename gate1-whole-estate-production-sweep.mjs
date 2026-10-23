@@ -20,7 +20,16 @@ function extract(html,base){
 async function fetchWithRedirectAudit(url){
   let current=url;const chain=[];
   for(let i=0;i<8;i++){
-    const r=await fetch(current,{redirect:'manual',signal:AbortSignal.timeout(20000),headers:{'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/json;q=0.8,*/*;q=0.5'}});
+    let r;
+    for(let attempt=0;attempt<2;attempt++){
+      try{
+        r=await fetch(current,{redirect:'manual',signal:AbortSignal.timeout(20000),headers:{'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/json;q=0.8,*/*;q=0.5'}});
+        break;
+      }catch(e){
+        if(attempt===1)throw e;
+        await new Promise(resolve=>setTimeout(resolve,250));
+      }
+    }
     chain.push({url:current,status:r.status});
     if([301,302,303,307,308].includes(r.status)){
       const location=r.headers.get('location');if(!location)return{r,chain,error:'redirect_without_location'};
@@ -50,7 +59,7 @@ while(queue.length&&visited.size<MAX_PAGES){
     if(/(?:internal server error|application error|something went wrong\s*$)/i.test(visible)&&visible.length<800)failures.push({url,discoveredFrom:parent,status,error:'generic_error_page_detected'});
     for(const child of extract(body,final)){
       const root=new URL(START);
-      if(child.host===root.host){child.search='';const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
+      if(child.host===root.host){if(!/\/image\/?$/.test(child.pathname))child.search='';const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
       else externalHosts.set(child.host,(externalHosts.get(child.host)||0)+1);
     }
   }
