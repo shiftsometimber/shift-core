@@ -1,0 +1,172 @@
+[
+  {
+    "pattern": "shiftsometimber.co.uk/v1/my-journey*",
+    "id": "6857cd1450fa4019923dc9d6b3d4f73e",
+    "before": null,
+    "at": "2026-10-23T12:27:12.878Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/v1/journey*",
+    "id": "e9110782fd484ec1b4380e21e9190d68",
+    "before": null,
+    "at": "2026-10-23T12:27:14.996Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/v1/member/treatment*",
+    "id": "dfc38e9762d44ecfa13c0e947aa10808",
+    "before": null,
+    "at": "2026-10-23T12:27:17.177Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/member-my-journey-v2.js*",
+    "id": "d0448ede38dc40bf8133ca7aae8cfc3c",
+    "before": null,
+    "at": "2026-10-23T12:27:19.470Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/member-my-journey-checkin-v1.js*",
+    "id": "69ce523ae63541b4ae5fd25b3072314d",
+    "before": {
+      "id": "69ce523ae63541b4ae5fd25b3072314d",
+      "pattern": "shiftsometimber.co.uk/member-my-journey-checkin-v1.js*",
+      "script": "shift-core",
+      "request_limit_fail_open": false
+    },
+    "at": "2026-10-23T12:27:21.806Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/assets/my-timber-layout.mjs*",
+    "id": "0eeb3c0e4502469d9a6a1978656a5cd8",
+    "before": null,
+    "at": "2026-10-23T12:27:23.989Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/assets/ask-timber-phase8.js*",
+    "id": "b975dd9c527a4199aa6870226fa9024e",
+    "before": null,
+    "at": "2026-10-23T12:27:26.105Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/assets/member-experience/treatment.mjs*",
+    "id": "a18caf86e4d94cc580ce447b2aefd0c8",
+    "before": null,
+    "at": "2026-10-23T12:27:28.257Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/assets/member-experience/grub.mjs*",
+    "id": "e96063fb80334639be4f67c0d2815071",
+    "before": null,
+    "at": "2026-10-23T12:27:30.563Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/my-timber-v11.js*",
+    "id": "5265807ce68e467b872def0d85ed46e4",
+    "before": {
+      "id": "5265807ce68e467b872def0d85ed46e4",
+      "pattern": "shiftsometimber.co.uk/my-timber-v11.js*",
+      "script": "shift-core",
+      "request_limit_fail_open": false
+    },
+    "at": "2026-10-23T12:27:32.709Z"
+  },
+  {
+    "pattern": "shiftsometimber.co.uk/member/ask-timber*",
+    "id": "9df964d0e9e54d37b4226a950713f6c4",
+    "before": null,
+    "at": "2026-10-23T12:27:34.861Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/v1/my-journey*",
+    "id": "89bdec487ec540b29583a67039bdaaee",
+    "before": null,
+    "at": "2026-10-23T12:27:36.925Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/v1/journey*",
+    "id": "0fea0d38bbe44deba2980a0b6bfde0df",
+    "before": null,
+    "at": "2026-10-23T12:27:39.245Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/v1/member/treatment*",
+    "id": "d9833e3edd594af5af9462af114f8069",
+    "before": null,
+    "at": "2026-10-23T12:27:41.523Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/member-my-journey-v2.js*",
+    "id": "7fd053a949604a16b398a28fec5382ce",
+    "before": null,
+    "at": "2026-10-23T12:27:43.697Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/member-my-journey-checkin-v1.js*",
+    "id": "d9ba4d8aad7c433481f5067b8bc2be4e",
+    "before": {
+      "id": "d9ba4d8aad7c433481f5067b8bc2be4e",
+      "pattern": "www.shiftsometimber.co.uk/member-my-journey-checkin-v1.js*",
+      "script": "shift-core",
+      "request_limit_fail_open": false
+    },
+    "at": "2026-10-23T12:27:45.921Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/assets/my-timber-layout.mjs*",
+    "id": "4ef49d40ca8a4e8ca8d397c3728bc7a3",
+    "before": null,
+    "at": "2026-10-23T12:27:48.172Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/assets/ask-timber-phase8.js*",
+    "id": "4cd2fbf3cbd545838aee15bf235a7ada",
+    "before": null,
+    "at": "2026-10-23T12:27:50.425Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/assets/member-experience/treatment.mjs*",
+    "id": "e1d1f88390b247bd96b3ba07dcbc1995",
+    "before": null,
+    "at": "2026-10-23T12:27:52.506Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/assets/member-experience/grub.mjs*",
+    "id": "01b897791929461cb452b6a4532e4e7b",
+    "before": null,
+    "at": "2026-10-23T12:27:54.676Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/my-timber-v11.js*",
+    "id": "0c976118ee56403e8694d5f600631936",
+    "before": {
+      "id": "0c976118ee56403e8694d5f600631936",
+      "pattern": "www.shiftsometimber.co.uk/my-timber-v11.js*",
+      "script": "shift-core",
+      "request_limit_fail_open": false
+    },
+    "at": "2026-10-23T12:27:56.762Z"
+  },
+  {
+    "pattern": "www.shiftsometimber.co.uk/member/ask-timber*",
+    "id": "af9b623e6edd427994770e87e65d73c0",
+    "before": null,
+    "at": "2026-10-23T12:27:58.826Z"
+  },
+  {
+    "pattern": "api.shiftsometimber.co.uk/v1/my-journey*",
+    "id": "8dde8a1cf25e4e148e80e0e0cfe35dd1",
+    "before": null,
+    "at": "2026-10-23T12:28:01.146Z"
+  },
+  {
+    "pattern": "api.shiftsometimber.co.uk/v1/journey*",
+    "id": "0bd0593b5e944718a13812deed515b51",
+    "before": null,
+    "at": "2026-10-23T12:28:03.740Z"
+  },
+  {
+    "pattern": "api.shiftsometimber.co.uk/v1/member/treatment*",
+    "id": "6fe4f090d5af477982259d0be6df6fe2",
+    "before": null,
+    "at": "2026-10-23T12:28:06.210Z"
+  }
+]

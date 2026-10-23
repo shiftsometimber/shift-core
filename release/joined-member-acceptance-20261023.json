@@ -1,0 +1,231 @@
+{
+  "sourceCommit": "b654136e2e2e1ac4dc546119a52c9bc008d32982",
+  "state": "deployed-and-live-retested",
+  "scope": "Repair joined-up defects from the member-process audit; existing design retained.",
+  "account": "Dedicated Test account; fictional data only",
+  "focusedTests": {
+    "total": 84,
+    "passed": 84,
+    "failed": 0,
+    "log": "work/member-process-acceptance-20261023/joined-final-tests.txt"
+  },
+  "broaderMemberTests": {
+    "total": 541,
+    "passed": 538,
+    "failed": 3,
+    "skipped": 0,
+    "log": "work/member-process-acceptance-20261023/joined-final-full-member-tests.txt",
+    "remainingFailures": "The same three source-preservation harness checks requiring a native .git directory; current authorised checkout is a worktree. No checks weakened."
+  },
+  "live": [
+    {
+      "id": "M01",
+      "result": "resolved-live",
+      "checks": [
+        "Confirmed weekly reading94.5kg/99cm displayed consistently on initial repaired Journey.",
+        "A further fictional94kg weekly save updated Journey without reload; original95kg/100cm starting fields retained.",
+        "Progress showed94kg/99cm. Life Back showed94kg/99cm and retained54/100 six-area score.",
+        "Journey save reread canonical context and retained94kg,54/100 and the saved Programme reason."
+      ]
+    },
+    {
+      "id": "M02",
+      "result": "resolved-live",
+      "checks": [
+        "From Progress, bottom Fit changed the visible panel immediately: Progress hidden, Fit visible; no reload.",
+        "Saved partial Fit session remained1of3done, one skipped and the swapped final exercise."
+      ]
+    },
+    {
+      "id": "M03",
+      "result": "resolved-audited-duplicates",
+      "checks": [
+        "Journey setup showed saved More energy for the family reason with canonical Change my reason link, instead of a blank repeat question.",
+        "Duplicate Journey six-area Life Back baseline form removed; actual54/100 score and win displayed.",
+        "Latest weight/waist readonly in setup once recorded; weekly check-in is the update path.",
+        "Uninitialised extra-coaching prompt stays in a closed Want extra help with today? disclosure inside its stable host after reload and rerender.",
+        "Programme original3/5 answer, test note and small win remained intact."
+      ],
+      "boundary": "The optional measurement review and Programme reflection retain their distinct records. No combined review transaction or migration introduced."
+    },
+    {
+      "id": "M04",
+      "result": "claim-clarified-nutrition-review-outstanding",
+      "checks": [
+        "Saved Grub plan, swaps and partial totals retained.",
+        "Live totals explicitly describe saved meal ideas, not a complete daily allowance or personalised nutrition target; unknown nutrition stays unknown."
+      ],
+      "remaining": "Nutritional adequacy/balance and any personalised energy targets need an appropriate nutrition review. The low-total day is not declared clinically adequate."
+    },
+    {
+      "id": "M05",
+      "result": "resolved-live-plus-route-tests",
+      "checks": [
+        "Existing fictional Health appointment retained, with Appointment details and reminders and Optional wellbeing notes.",
+        "No dose/supply controls on the appointment card; records do not book or contact a provider.",
+        "Real SQLite tests reject medicine stock/dose events for appointments, preserve scheduling, and verify appointment PDF wording. Actual-device PDF/share remains separate."
+      ]
+    },
+    {
+      "id": "M06",
+      "result": "resolved-live",
+      "checks": [
+        "Ask Timber title is Ask Timber | My Timber.",
+        "Working late answer shows Review this adjustment in My Timber before saving it; confidence badge and technical constraint tags absent.",
+        "Previously cached Ask runtime receives a fresh versioned URL; original handoff/acceptance behaviour retained."
+      ]
+    },
+    {
+      "id": "after-treatment-links",
+      "result": "deployed-and-source-verified",
+      "checks": [
+        "Three later-week Life Back destinations now point to /member/life-back.",
+        "Week-one activation already persisted during the audit; actual elapsed future weeks remain unverified."
+      ]
+    }
+  ],
+  "noExternalCommunication": true,
+  "noOrdersOrCharges": true,
+  "noClinicalAction": true,
+  "noHistoryErasure": true,
+  "remainingAcceptance": [
+    "Nutrition review",
+    "Actual native-device health import/permissions/revocation and closed-app notification delivery",
+    "Genuine elapsed Programme reviews and later12week support",
+    "Second-account production isolation; SQLite ownership tests pass",
+    "Controlled clinical/payment/dispatch/repeat/refund and file-upload/export acceptance from original audit"
+  ],
+  "evidenceScreenshot": "SHIFT-joined-up-member-fixes-23-October.jpg",
+  "recordedAt": "2026-10-23T12:42:37.317046+00:00",
+  "deployment": {
+    "pass": true,
+    "sourceCommit": "b654136e2e2e1ac4dc546119a52c9bc008d32982",
+    "sha256": "1caed51f7316061fcb6eb32bf381fc872b9eee7efeb0388337e44265fc0ffcd4",
+    "bytes": 455355,
+    "at": "2026-10-23T12:38:20.982Z",
+    "worker": {
+      "script": "shift-programme-member-20261023",
+      "id": "shift-programme-member-20261023",
+      "etag": "8b7cf510ecd2658fa78dce7be7715f2de3e3b93ec1e35867eba12013a8d99dd6",
+      "modified_on": "2026-10-23T12:38:15.924974Z",
+      "at": "2026-10-23T12:38:16.612Z",
+      "bundleSha256": "1caed51f7316061fcb6eb32bf381fc872b9eee7efeb0388337e44265fc0ffcd4",
+      "sourceCommit": "b654136e2e2e1ac4dc546119a52c9bc008d32982"
+    },
+    "routesUnchanged": true,
+    "coreSourceUnchanged": true,
+    "coreSettingsUnchanged": true,
+    "programmeBindingsUnchanged": true
+  },
+  "initialDeployment": {
+    "pass": true,
+    "bytes": 454220,
+    "sha256": "439a27b5a4cc68d330b399a3f2064639e3e383a5fc5e5d640c1b2c6f8d41a0c8",
+    "sourceCommit": "c9c7b34183e08e0b54917dca0eae212e5bc20931",
+    "at": "2026-10-23T12:28:10.492Z",
+    "worker": {
+      "script": "shift-programme-member-20261023",
+      "id": "shift-programme-member-20261023",
+      "etag": "16d8f44af1546b34c4f29976eb5a876f668580d250712139dcf74646d4f504ff",
+      "modified_on": "2026-10-23T12:27:10.092482Z",
+      "at": "2026-10-23T12:27:10.630Z",
+      "bundleSha256": "439a27b5a4cc68d330b399a3f2064639e3e383a5fc5e5d640c1b2c6f8d41a0c8",
+      "sourceCommit": "c9c7b34183e08e0b54917dca0eae212e5bc20931"
+    },
+    "additionalRoutes": 25,
+    "coreSourceUnchanged": true,
+    "coreSettingsUnchanged": true,
+    "programmeBindingsUnchanged": true,
+    "unrelatedRoutesUnchanged": true
+  },
+  "httpVerification": {
+    "at": "2026-10-23T12:40:35.461Z",
+    "sourceCommit": "b654136e2e2e1ac4dc546119a52c9bc008d32982",
+    "pass": true,
+    "results": [
+      {
+        "path": "/member-my-journey-v2.js",
+        "status": 200,
+        "repair": "joined-member-20261023",
+        "pass": true,
+        "bytes": 19742
+      },
+      {
+        "path": "/member-my-journey-checkin-v1.js",
+        "status": 200,
+        "repair": "joined-member-20261023",
+        "pass": true,
+        "bytes": 17143
+      },
+      {
+        "path": "/assets/my-timber-layout.mjs",
+        "status": 200,
+        "repair": "joined-member-20261023",
+        "pass": true,
+        "bytes": 43165
+      },
+      {
+        "path": "/assets/ask-timber-phase8.js?v=joined-member-20261023",
+        "status": 200,
+        "repair": "joined-member-20261023",
+        "pass": true,
+        "bytes": 9965
+      },
+      {
+        "path": "/assets/member-experience/treatment.mjs",
+        "status": 200,
+        "repair": "joined-member-20261023",
+        "pass": true,
+        "bytes": 29082
+      },
+      {
+        "path": "/assets/member-experience/grub.mjs",
+        "status": 200,
+        "repair": "joined-member-20261023",
+        "pass": true,
+        "bytes": 32821
+      },
+      {
+        "path": "/my-timber-v11.js",
+        "status": 200,
+        "repair": "joined-member-20261023",
+        "pass": true,
+        "bytes": 21600
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/v1/my-journey",
+        "status": 401,
+        "pass": true
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/v1/journey",
+        "status": 401,
+        "pass": true
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/v1/member/treatment",
+        "status": 401,
+        "pass": true
+      },
+      {
+        "url": "https://api.shiftsometimber.co.uk/v1/my-journey",
+        "status": 401,
+        "pass": true
+      },
+      {
+        "url": "https://api.shiftsometimber.co.uk/v1/journey",
+        "status": 401,
+        "pass": true
+      },
+      {
+        "url": "https://api.shiftsometimber.co.uk/v1/member/treatment",
+        "status": 401,
+        "pass": true
+      },
+      {
+        "path": "/member/ask-timber",
+        "pass": true
+      }
+    ]
+  }
+}
