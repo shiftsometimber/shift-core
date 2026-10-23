@@ -40,7 +40,7 @@ function drawRecommendation(){
 function nutritionContextMarkup(){
  const info=workspace?.nutritionContext;if(!info?.days.length)return '';
  const line=d=>'<span>'+foodNumber(d.kcal)+' kcal</span><span>'+foodNumber(d.protein)+'g protein</span><span>'+foodNumber(d.fibre)+'g fibre</span>';
- return '<section class="grub-nutrition-context"><h3>How your plan adds up</h3><p>Per person, from the meals saved below. Snacks, drinks and unlogged food are not included. These are planned meals, not a record of what you ate.</p>'+info.days.map(d=>'<div class="grub-nutrition-row"><strong>Day '+d.day+' · '+d.meals+' meals</strong>'+line(d)+'</div>').join('')+'<div class="grub-nutrition-row"><strong>Whole saved plan</strong>'+line(info.totals)+'</div></section>';
+ return '<section class="grub-nutrition-context"><h3>How your plan adds up</h3><p>Per person, from your saved meal ideas. This is not a complete daily food allowance or a personalised nutrition target. Add meals, portions and snacks to suit your needs. Drinks and unlogged food are excluded; missing nutrition stays unknown. Planning a meal does not record it as eaten.</p>'+info.days.map(d=>'<div class="grub-nutrition-row"><strong>Day '+d.day+' · '+d.meals+' meals</strong>'+line(d)+'</div>').join('')+'<div class="grub-nutrition-row"><strong>Whole saved plan</strong>'+line(info.totals)+'</div></section>';
 }
 document.addEventListener('click',async event=>{
  const button=event.target.closest('[data-grub-adjust],[data-grub-feedback],[data-food-pick],[data-food-next],[data-food-effort],[data-food-repeat]');if(!button||button.disabled)return;

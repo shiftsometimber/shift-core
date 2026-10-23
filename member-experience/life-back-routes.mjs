@@ -1,3 +1,4 @@
+import {readJoinedJourney} from './joined-journey.mjs';
 import {applyProgrammeOperation,programmeSummary} from './programme-model.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
@@ -68,7 +69,7 @@ export async function lifeBackRoutes(request,env){
     const next=applyLifeBackOperation(progress,{action:'shift-feedback',shiftId:u.searchParams.get('shiftId'),outcome:u.searchParams.get('feedback'),operationId:'proposal-preview-operation'});
     return json({proposal:next.nextShift,revision:progress.revision});
    }
-   return json({progress,programme:programmeSummary(progress.programme),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+   return json({progress,programme:programmeSummary(progress.programme),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(progress),journey:await readJoinedJourney(env.DB,auth.userId,prefs.myJourney||{},prefs),day:await connectedDay(env.DB,auth.userId,prefs)});
   }
   const raw=await request.text();if(raw.length>8000)return json({error:'Check-in is too large.'},413);
   let input;try{input=JSON.parse(raw)}catch{return json({error:'Invalid check-in.'},400)}

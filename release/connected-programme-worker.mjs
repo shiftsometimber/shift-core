@@ -1,3 +1,6 @@
+import {myJourneyRoutes} from '../my-journey-v1.js';
+import {treatmentRoutes} from '../member-experience/treatment-routes.mjs';
+import {repairMemberAsset,repairAskDocument,joinedAssetPaths} from './joined-member-repairs.mjs';
 // Narrow release adapter. The existing live Worker remains the authority for
 // all other pages, bindings, scheduled work and clinical/commerce behaviour.
 import {programmeAssets} from '../member-experience/programme-assets.mjs';
@@ -21,6 +24,16 @@ export async function enhanceProgrammePage(request,response){
 export default {
  async fetch(request,env,ctx){
   const path=new URL(request.url).pathname.replace(/\/+$/,'');
+  if(['/v1/my-journey','/v1/journey'].includes(path)&&request.method==='GET'){
+   try{return apiResponse(request,await myJourneyRoutes(request,env))}catch{return apiResponse(request,Response.json({error:'journey_unavailable',message:'Your saved Journey could not load. Please retry.'},{status:503}))}
+  }
+  if((['/v1/member/treatment','/v1/member/treatment/summary.pdf'].includes(path)&&request.method==='GET')||(path==='/v1/member/treatment/events'&&request.method==='POST')){
+   // These existing live record endpoints are already enabled in core. All
+   // other treatment, notifications, clinical and commerce routes delegate.
+   return apiResponse(request,await treatmentRoutes(request,{...env,MY_TREATMENT_ENABLED:'true'}));
+  }
+  if(joinedAssetPaths.has(path))return repairMemberAsset(request,await env.CORE.fetch(request));
+  if(['/member/ask-timber','/member/ask-timber.html'].includes(path))return repairAskDocument(request,await env.CORE.fetch(request));
   if(path==='/v1/life-back'){if(request.method==='OPTIONS')return env.CORE.fetch(request);const u=new URL(request.url);u.pathname=path;return apiResponse(request,await lifeBackRoutes(new Request(u,request),env))}
   if(path==='/v1/check-ins/follow-up'){
    if(request.method==='OPTIONS')return env.CORE.fetch(request);

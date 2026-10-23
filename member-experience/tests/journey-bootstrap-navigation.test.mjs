@@ -8,9 +8,10 @@ import vm from 'node:vm';
 const source=readFileSync(process.env.JOURNEY_BOOTSTRAP_SOURCE||new URL('../../frontend/member/member-my-journey-v2.js',import.meta.url),'utf8');
 
 test('pinned Journey V2 preserves the served source outside the approved progressive setup, honest empty ratings, startup and consented-priority repairs',()=>{
+ const patch=JSON.parse(readFileSync(new URL('../../release/joined-journey-source-patch-20261023.json',import.meta.url),'utf8'));let preserved=source;for(const h of patch.hunks){assert(h.after&&preserved.split(h.after).length===2,'Exact scoped Journey repair must remain present once');preserved=preserved.replace(h.after,h.before);}
  const original="activate(['journey','lifeback','progress'].includes(location.hash.slice(1))?'journey':'today',false);";
  const repaired="const requested=location.hash.slice(1),initial=['journey','lifeback','progress'].includes(requested)?'journey':document.body?.dataset.memberTools==='v1'&&['plans','visualise'].includes(requested)&&$('#panel-'+requested)?requested:'today';activate(initial,false);";
- assert.equal(createHash('sha256').update(source.replace(CURRENT_HEALTH_BLOCK,LEGACY_HEALTH_BLOCK).replace(repaired,original)).digest('hex'),'c1a3b897b6563ffed64bc82a9a3c0eafa3676efea144c0de217da0486ade73b2');
+ assert.equal(createHash('sha256').update(preserved.replace(CURRENT_HEALTH_BLOCK,LEGACY_HEALTH_BLOCK).replace(repaired,original)).digest('hex'),'c1a3b897b6563ffed64bc82a9a3c0eafa3676efea144c0de217da0486ade73b2');
  const worker=readFileSync(new URL('../../worker-entry-v6.js',import.meta.url),'utf8');
  assert.match(worker,/\["\/member-my-journey-v2\.js", "application\/javascript; charset=utf-8"\]/);
 });
@@ -21,7 +22,7 @@ function boot({hash='',delayed=false,selection=null,restored=true,panelNames=['t
  const tabs=panelNames.map(name=>({dataset:{panel:name},classList:{toggle(){}},setAttribute(){},removeAttribute(){},addEventListener(){}}));
  const tabHost={querySelectorAll:()=>tabs};
  const location={pathname:'/member/dashboard',hash,search:''};
- const document={body:{dataset:restored?{memberTools:'v1'}:{}},readyState:'complete',querySelector:selector=>selector==='.mp-tabs'?tabHost:panels.find(panel=>'#'+panel.id===selector),querySelectorAll:selector=>selector==='.mp-panel'?panels:selector==='.mp-tab'?tabs:[]};
+ const document={addEventListener(){},body:{dataset:restored?{memberTools:'v1'}:{}},readyState:'complete',querySelector:selector=>selector==='.mp-tabs'?tabHost:panels.find(panel=>'#'+panel.id===selector),querySelectorAll:selector=>selector==='.mp-panel'?panels:selector==='.mp-tab'?tabs:[]};
  const api={getMyJourney:()=>new Promise(()=>{})};
  const context={document,window:{SST_API:delayed?null:api},SST_API:api,location,history:{replaceState:(_,__,hash)=>{writes.push(hash);location.hash=hash}},setTimeout:callback=>timers.push(callback)};
  vm.runInNewContext(source,context);

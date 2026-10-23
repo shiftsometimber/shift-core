@@ -32,3 +32,19 @@ test('production treatment page and assets require the flag and omit fictional-p
  const {memberExperienceRoutes}=await import('../entry.mjs');const request=new Request('https://preview.invalid/member/treatment');assert.equal(memberExperienceRoutes(request,{MEMBER_EXPERIENCE_V1_ENABLED:'true'}),null);
  const r=memberExperienceRoutes(request,{MEMBER_EXPERIENCE_V1_ENABLED:'true',MY_TREATMENT_ENABLED:'true'});assert.equal(r.status,200);const body=await r.text();assert(!body.includes('Isolated preview'));assert(!body.includes('fictional details'));assert.equal(r.headers.get('Cache-Control'),'no-store, must-revalidate');
 });
+
+
+test('appointment records reject medicine stock events, retain schedules and export appointment wording',async()=>{
+ const env=setup(),one=await token(env,1);
+ for(const medicine of ['Health appointment','Blood test']){
+  const response=await treatmentRoutes(req('/records',one,{medicine,prescriptionDetails:'Fictional appointment record',supply:0,nextAt:null}),env);assert.equal(response.status,201);const {id}=await response.json();
+  for(const kind of ['dose_taken','supply_updated','repeat_order','prescription_record']){
+   const event={treatmentId:id,kind,note:'Fictional QA',occurredAt:new Date().toISOString(),operationId:crypto.randomUUID(),...(kind==='supply_updated'?{supply:2}:{})};
+   assert.equal((await treatmentRoutes(req('/events',one,event),env)).status,400,kind);
+  }
+  const nextAt=new Date(Date.now()+86400000).toISOString();
+  assert.equal((await treatmentRoutes(req('/events',one,{treatmentId:id,kind:'schedule_updated',note:'Provider-confirmed fictional time',occurredAt:new Date().toISOString(),operationId:crypto.randomUUID(),nextAt}),env)).status,201);
+  const saved=(await(await treatmentRoutes(req('',one),env)).json()).treatments.find(t=>t.id===id);assert.equal(saved.next_at,nextAt);assert.equal(saved.supplyEstimate,null);
+  const pdf=await(await treatmentRoutes(req('/summary.pdf?treatment='+id+'&period=all',one),env)).text();assert.match(pdf,/Recorded appointment/);assert.doesNotMatch(pdf,/Recorded supply/);
+ }
+});

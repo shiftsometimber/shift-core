@@ -21,6 +21,7 @@ export function weightProjection(series, now=Date.now()) {
  return {status:'ready',from:last.on,to:date(28),recordedDays:points.length,weeklyChangeKg:round(mid*7),projection,meaning:'If your recent trend continues. The shaded scenarios use variation in recorded trends; they are not a probability interval or a guaranteed outcome. No target date or treatment recommendation.'};
 }
 export function supplyEstimate(t,events=[],now=Date.now()) {
+ if(['Blood test','Health appointment'].includes(t.medicine))return null;
  const DAY=86400000,at=v=>Date.parse(v), ordered=[...events].filter(e=>e.treatment_id===t.id&&Number.isFinite(at(e.occurred_at))&&at(e.occurred_at)<=now).sort((a,b)=>at(a.occurred_at)-at(b.occurred_at)||(a.sequence||0)-(b.sequence||0));
  const detail=e=>e.details||JSON.parse(e.body_json||'{}');
  const confirmed=ordered.filter(e=>e.kind==='supply_updated').at(-1), plan=confirmed?detail(confirmed).supplyDetails:null;
