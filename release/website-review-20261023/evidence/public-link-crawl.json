@@ -1,0 +1,1150 @@
+{
+  "at": "2026-10-23T21:59:26.335Z",
+  "checked": 127,
+  "rows": [
+    {
+      "path": "/",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/before-you-decide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/before-you-decide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/treatment-centre",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/clinical-governance",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/clinical-governance",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/editorial-standards",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/editorial-standards",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mounjaro",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/surgery-comparison-centre",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/surgery-comparison-centre",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/medical-disclaimer",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/medical-disclaimer",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/future-medicines-comparison",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/future-medicines-comparison",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/bariatric-surgery-costs-uk-europe",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/bariatric-surgery-costs-uk-europe",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/wegovy",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/wegovy",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/programme",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/programme",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/compare-weight-loss-treatments",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/knowledge",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/knowledge",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/lifestyle-vs-treatment",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/lifestyle-vs-treatment",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/walking-for-weight-management-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/walking-for-weight-management-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/sleep-stress-mindset-emotional-eating-maintenance",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/sleep-stress-mindset-emotional-eating-maintenance",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/how-are-you-feeling",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/how-are-you-feeling",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/walking",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/walking",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/weight-and-blood-pressure-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/weight-and-blood-pressure-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/steps",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/steps",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/start-here",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/start-here",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/protein-for-men-weight-management",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/protein-for-men-weight-management",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/glp1-knowledge-centre",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/glp1-knowledge-centre",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/first-health-check-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/first-health-check-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/gastric-bypass-roux-en-y-uk-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/gastric-bypass-roux-en-y-uk-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/bariatric-surgery-europe-costs-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/bariatric-surgery-europe-costs-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/male-obesity",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/male-obesity",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/sleep-apnoea-weight-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/sleep-apnoea-weight-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/mini-gastric-bypass-oagb-uk-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mini-gastric-bypass-oagb-uk-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/health-mot",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/health-mot",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/waist-height",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/waist-height",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/bmi",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/bmi",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/health-mot-methodology",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/health-mot-methodology",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/privacy-centre",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/privacy-centre",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/mens-mental-health-and-weight",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/mens-mental-health-and-weight",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/understanding-blood-test-results",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/understanding-blood-test-results",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mens-weight-management",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mens-weight-management",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/nhs-vs-private",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/nhs-vs-private",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mens-mental-health",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mens-mental-health",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/heart-health-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/heart-health-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/nhs-weight-loss-medication-pathways",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/nhs-weight-loss-medication-pathways",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/nhs-bariatric-surgery-pathways",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/nhs-bariatric-surgery-pathways",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/weight-loss-surgery-uk-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/treatments/lifestyle",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments/lifestyle",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/food-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/food-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/meal-prep-busy-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/weight-loss-surgery-uk-costs-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-costs-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/stopping-glp1",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/stopping-glp1",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/blood-pressure-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/blood-pressure-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/sleep",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/sleep",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/weight-loss-support-for-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/weight-loss-support-for-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/alcohol",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/alcohol",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/glp-1-muscle-loss",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/glp-1-muscle-loss",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/food-noise-after-stopping-glp1",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/exercise-walking-strength-mobility",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/exercise-walking-strength-mobility",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/protein",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/protein",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/calories",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/calories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-gastric-bypass",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/tools/water",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/tools/water",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/beginner-walking-plan-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/beginner-walking-plan-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/gastric-balloon-uk-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/gastric-balloon-uk-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/gastric-band-uk-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/gastric-band-uk-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/nhs-weight-management-uk-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/nhs-weight-management-uk-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/endoscopic-sleeve-gastroplasty-esg-uk-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/endoscopic-sleeve-gastroplasty-esg-uk-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/weight-loss-after-40-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shop",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shop",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/about",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/about",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/ask-timber",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/ask-timber",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-for-work",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-for-work",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/work-with-us",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/work-with-us",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/terms",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/terms",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/expert-contributors",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/expert-contributors",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/privacy",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/privacy",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/complaints",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/complaints",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/provider-switch",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/provider-switch",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/cookies",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/cookies",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/life-back",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/life-back",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/contact",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/contact",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/testosterone-energy",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/testosterone-energy",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/clinic-gone-quiet",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/clinic-gone-quiet",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/sleep-apnoea",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/sleep-apnoea",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/hair-loss",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/hair-loss",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/blood-pressure-monitor",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/erectile-dysfunction",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/erectile-dysfunction",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/guides/mens-health-mot-guide",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/shift-measure",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/shift-measure",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/manifest.webmanifest",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/terms-of-sale",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/terms-of-sale",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/refunds",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/refunds",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/accessibility",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/accessibility",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/urgent-mental-health-help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/urgent-mental-health-help",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/things-you-can-do-yourself",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/things-you-can-do-yourself",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/getting-professional-help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/getting-professional-help",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/talking-about-it",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/talking-about-it",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/anxiety-overthinking",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/anxiety-overthinking",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/shift-health/stop-smoking",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/shift-health/stop-smoking",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/feeling-low",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/feeling-low",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/helping-someone",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/helping-someone",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/stress-overwhelm",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/stress-overwhelm",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/sleep-mental-health",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/sleep-mental-health",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/loneliness-isolation",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/loneliness-isolation",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/confidence-self-worth",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/confidence-self-worth",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/not-feeling-yourself",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/not-feeling-yourself",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/life-gets-bloody-hard",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/life-gets-bloody-hard",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/anger-irritability",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/anger-irritability",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/numb-disconnected",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/numb-disconnected",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/bad-week-reset",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/bad-week-reset",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/when-someone-refuses-help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/mental-health-and-weight",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/mental-health-and-weight",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/nhs-talking-therapies",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/nhs-talking-therapies",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/myths-men-mental-health",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/myths-men-mental-health",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/research/uk-mens-weight-health-statistics",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/research/uk-mens-weight-health-statistics",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/waist-size-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/waist-size-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/prediabetes-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/prediabetes-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/testosterone-weight-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/testosterone-weight-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/weight-loss-plateau-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/weight-loss-plateau-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/knee-pain-weight-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/knee-pain-weight-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/articles/sleep-and-weight-men",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/articles/sleep-and-weight-men",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/mental-health/when-to-get-help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/mental-health/when-to-get-help",
+          "status": 200
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

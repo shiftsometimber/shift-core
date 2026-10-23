@@ -1,0 +1,94 @@
+{
+  "checkedAt": "2026-10-23T21:48:51.220Z",
+  "staging": false,
+  "pass": true,
+  "checks": [
+    {
+      "path": "/male-obesity",
+      "HTTP": 200,
+      "published": "2026-10-10",
+      "modified": "2026-10-22",
+      "canonical": true,
+      "originalLinksPreserved": 53,
+      "FAQ": 4
+    },
+    {
+      "path": "/guides/mens-health-mot-guide",
+      "HTTP": 200,
+      "published": "2026-05-04",
+      "modified": "2026-10-22",
+      "canonical": true,
+      "originalLinksPreserved": 14,
+      "FAQ": 3
+    },
+    {
+      "path": "/uploads/blog/refresh-5632661e40cb.jpg",
+      "HTTP": 200,
+      "imageBytes": 103614
+    },
+    {
+      "path": "/articles/testosterone-weight-men",
+      "HTTP": 200,
+      "published": "2026-08-26",
+      "modified": "2026-10-22",
+      "canonical": true,
+      "originalLinksPreserved": 14,
+      "FAQ": 4
+    },
+    {
+      "path": "/uploads/blog/refresh-83e64f2e4849.jpg",
+      "HTTP": 200,
+      "imageBytes": 164039
+    },
+    {
+      "path": "/guides/blood-pressure-guide",
+      "HTTP": 200,
+      "backlinks": true
+    },
+    {
+      "path": "/articles/men-belly-fat",
+      "HTTP": 200,
+      "backlinks": true
+    },
+    {
+      "path": "/shift-health",
+      "HTTP": 200,
+      "backlinks": true
+    },
+    {
+      "path": "/articles/weight-loss-blood-tests",
+      "HTTP": 200,
+      "backlinks": true
+    },
+    {
+      "path": "/shift-health/testosterone-energy",
+      "HTTP": 200,
+      "backlinks": true
+    },
+    {
+      "path": "/male-obesity?utm_source=refresh-check",
+      "HTTP": 200,
+      "refreshApplied": true
+    },
+    {
+      "path": "/guides/mens-health-mot-guide?utm_source=refresh-check",
+      "HTTP": 200,
+      "refreshApplied": true
+    },
+    {
+      "path": "/articles/testosterone-weight-men?utm_source=refresh-check",
+      "HTTP": 200,
+      "refreshApplied": true
+    },
+    {
+      "path": "/sitemap.xml",
+      "HTTP": 200,
+      "allRefreshLastmods": true
+    },
+    {
+      "path": "/explore-knowledge?limit=200",
+      "HTTP": 200,
+      "allRefreshURLs": true
+    }
+  ]
+}

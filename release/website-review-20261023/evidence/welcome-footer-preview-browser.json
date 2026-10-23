@@ -1,0 +1,16 @@
+{
+  "pass": true,
+  "at": "2026-10-23T21:57:17.807234+00:00",
+  "url": "https://shift-welcome-footer-review-20261023.matobrien.workers.dev/member/dashboard",
+  "browser": "Chrome via CUA",
+  "session": "signed-out",
+  "footerCount": 1,
+  "footerDisplay": "block",
+  "background": "rgb(5, 5, 5)",
+  "headingColour": "rgb(139, 148, 123)",
+  "visibleCopyrights": 1,
+  "compactLinks": 0,
+  "cookieProxyVisible": true,
+  "horizontalOverflow": false,
+  "mobileUnverified": true
+}

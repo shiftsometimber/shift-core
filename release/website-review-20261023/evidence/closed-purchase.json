@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-23T22:01:00.060Z",
+  "pass": true,
+  "scope": "Public entry points only; not proof about every backend payment path",
+  "rows": [
+    {
+      "path": "/start-here",
+      "status": 200,
+      "closedMessage": true
+    },
+    {
+      "path": "/cart",
+      "status": 404
+    },
+    {
+      "path": "/checkout",
+      "status": 404
+    }
+  ]
+}

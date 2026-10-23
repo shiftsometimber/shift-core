@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-23T22:03:48.209246+00:00",
+  "source": "Chrome CUA: each of 29 options selected; selected-supply price compared to the read-only live catalogue; 29 matched, zero failures. New-treatment starter strength locked; continuing strengths selectable. Six unavailable buttons remain disabled.",
+  "products": 6,
+  "variants": 29,
+  "priceTestsPassed": 29,
+  "priceTestsFailed": 0,
+  "allProductsOutOfStock": true,
+  "supplyPeriodLimitation": "Only weekly pens explicitly say four weeks; quantities/periods for liraglutide and oral packs must be confirmed before ordering. Orlistat capsule counts are shown.",
+  "budgetQuestion": "No budget selector is present in the current flow; do not reinstate one without product direction.",
+  "realPurchases": 0
+}

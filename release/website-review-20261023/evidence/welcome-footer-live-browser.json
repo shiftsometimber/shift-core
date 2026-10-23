@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-23T22:03:48.209449+00:00",
+  "source": "Chrome CUA actual live signed-out /member/dashboard after deployment",
+  "pass": true,
+  "footerCount": 1,
+  "footerDisplay": "block",
+  "visibleCopyrights": 1,
+  "horizontalOverflow": false,
+  "privateFixtureVisible": false,
+  "cookieProxyOpenedPreferences": true,
+  "signedInBeforeChange": "Existing authorised fictional test session rendered one header/footer. CSS addition is strictly signed-out scoped; no new sign-in was performed after logout.",
+  "mobileAndActualSafariUnverified": true
+}

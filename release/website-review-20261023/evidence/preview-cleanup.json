@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-23T22:02:00.629Z",
+  "rows": [
+    {
+      "script": "shift-treatments-images-review-20261023",
+      "publicPreviewDisabled": true,
+      "productionRoutes": 0
+    },
+    {
+      "script": "shift-welcome-footer-review-20261023",
+      "publicPreviewDisabled": true,
+      "productionRoutes": 0
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "pass": true,
+  "at": "2026-10-23T21:51:56.399Z",
+  "htmlBytes": 58879,
+  "images": [
+    {
+      "path": "/treatment-centre/images/fe2ff3512cc1688c25bc7b8058450467f3049e8b3cf0941a97e116bea5226efb.jpg",
+      "bytes": 157337,
+      "sha256": "fe2ff3512cc1688c25bc7b8058450467f3049e8b3cf0941a97e116bea5226efb"
+    },
+    {
+      "path": "/treatment-centre/images/56321dd493410978e34f16ab00cbbcac3caee2ba8bed33e335e5c67f785ef9ca.jpg",
+      "bytes": 158918,
+      "sha256": "56321dd493410978e34f16ab00cbbcac3caee2ba8bed33e335e5c67f785ef9ca"
+    },
+    {
+      "path": "/treatment-centre/images/cb825ce0efda57ce6a88e29ef265dc6ccea5e7c1bff06972e81ce4a3f9e93543.jpg",
+      "bytes": 118618,
+      "sha256": "cb825ce0efda57ce6a88e29ef265dc6ccea5e7c1bff06972e81ce4a3f9e93543"
+    },
+    {
+      "path": "/treatment-centre/images/b02b36dc2dc10cf97eac7ba5856d267e08f07eaacc07abb0a306ab87adf8bd86.jpg",
+      "bytes": 317208,
+      "sha256": "b02b36dc2dc10cf97eac7ba5856d267e08f07eaacc07abb0a306ab87adf8bd86"
+    },
+    {
+      "path": "/treatment-centre/images/b4116c30eb1c59c86592c0631a0d6f5136ef4e393e0b98231bcd4cf16f668fab.jpg",
+      "bytes": 133036,
+      "sha256": "b4116c30eb1c59c86592c0631a0d6f5136ef4e393e0b98231bcd4cf16f668fab"
+    }
+  ]
+}

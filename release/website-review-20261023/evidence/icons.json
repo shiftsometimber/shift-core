@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-23T22:01:03.030Z",
+  "tags": [
+    "<link rel=\"icon\" sizes=\"32x32\" type=\"image/png\" href=\"/assets/favicon-shift-s-20261020.png\">",
+    "<link rel=\"manifest\" href=\"/my-timber.webmanifest\">",
+    "<link rel=\"apple-touch-icon\" href=\"/assets/apple-touch-icon.png\">"
+  ],
+  "rows": [
+    {
+      "path": "/assets/favicon-shift-s-20261020.png",
+      "status": 200,
+      "bytes": 1709,
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+      "contentType": "image/png"
+    },
+    {
+      "path": "/my-timber.webmanifest",
+      "status": 200,
+      "bytes": 586,
+      "sha256": "41341a7fec282095d79ddae9e5212b355cee2f32508ff93356c8a28c7d92749d",
+      "contentType": "application/manifest+json; charset=utf-8"
+    },
+    {
+      "path": "/assets/apple-touch-icon.png",
+      "status": 200,
+      "bytes": 17769,
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4",
+      "contentType": "image/png"
+    }
+  ],
+  "safariCacheUnverified": true
+}

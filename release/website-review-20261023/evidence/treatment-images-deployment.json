@@ -1,0 +1,17 @@
+{
+  "id": "8b8fbba3-915d-4475-b952-b0715c969c4d",
+  "source": "wrangler",
+  "strategy": "percentage",
+  "author_email": "matobrien@hotmail.co.uk",
+  "annotations": {
+    "workers/message": "Automatic deployment on upload.",
+    "workers/triggered_by": "upload"
+  },
+  "versions": [
+    {
+      "version_id": "c75b5d55-0aee-4e37-a774-3a1565744b0d",
+      "percentage": 100
+    }
+  ],
+  "created_on": "2026-10-23T21:51:49.181368Z"
+}
