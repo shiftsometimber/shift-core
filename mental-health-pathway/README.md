@@ -16,4 +16,4 @@ Official routes checked on 23 October 2026: NHS Talking Therapies England; NHS i
 
 ## Release status
 
-Live at https://shiftsometimber.co.uk/mens-mental-health with the existing check-in connected. Implementation source and verified checks are in verification.json. The exact 14 prior route owners and owned activation records remain in the retained release checkout for rollback. My Timber account saving and reminders remain outstanding.
+Live at https://shiftsometimber.co.uk/mens-mental-health with the existing check-in connected. Implementation source and verified checks are in verification.json. The exact 14 prior route owners and owned activation records remain in the retained release checkout for rollback. My Timber account saving and reminders are now deployed; see member/verification.json for live acceptance and the remaining real-device check.

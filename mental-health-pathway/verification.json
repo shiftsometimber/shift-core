@@ -58,8 +58,9 @@
     "My Timber account persistence and reminders not implemented"
   ],
   "remaining": [
-    "My Timber consented account persistence and optional reminders",
-    "Professional assessment/treatment partnership"
+    "Professional assessment/treatment partnership",
+    "Real-device notification receipt and physical mobile/Safari acceptance"
   ],
-  "rollback": "node mental-health-pathway/deploy.cjs rollback on the retained authorised release checkout"
+  "rollback": "node mental-health-pathway/deploy.cjs rollback on the retained authorised release checkout",
+  "memberFollowThroughSuccessor": "mental-health-pathway/member/verification.json"
 }

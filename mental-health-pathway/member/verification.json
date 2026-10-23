@@ -1,0 +1,64 @@
+{
+  "status": "deployed; live authenticated save/reload/dashboard/calendar/deletion verified",
+  "implementationSource": "f9dcb7f322e417bdb418cc287bba3ccc569dc0fc",
+  "presentationSource": "ec4064e5086f82019ba826dd717bf3959e1df05f",
+  "url": "https://shiftsometimber.co.uk/member/support",
+  "automatedTests": 28,
+  "livePublicChecks": [
+    {
+      "path": "/member/support",
+      "status": 200
+    },
+    {
+      "path": "/member/support/client.js",
+      "status": 200
+    },
+    {
+      "path": "/member/support/style.css",
+      "status": 200
+    },
+    {
+      "path": "/member/support/dashboard.js",
+      "status": 200
+    },
+    {
+      "path": "/v1/my-timber-support",
+      "status": 401
+    },
+    {
+      "path": "/mens-mental-health",
+      "status": 200
+    },
+    {
+      "path": "/v1/privacy/export",
+      "status": 401
+    },
+    {
+      "path": "/v1/consents",
+      "status": 401
+    }
+  ],
+  "ownedRoutes": 26,
+  "reminderSchedule": "every five minutes; provider configuration verified",
+  "liveAuthenticatedAcceptance": {
+    "account": "authorised Programme QA test account",
+    "savedStep": true,
+    "persistsAfterReload": true,
+    "dashboardCard": true,
+    "calendarDownloadedOverHTTPS": true,
+    "calendarTitleAndUTCChecked": true,
+    "completionClearsReminder": true,
+    "deletionPersistsAfterReload": true,
+    "testStepCleared": true,
+    "testDeviceSubscriptions": 0
+  },
+  "deviceTest": {
+    "realNotificationSent": false,
+    "closedAppReceiptVerified": false
+  },
+  "remaining": [
+    "Real-device notification permission and closed-app receipt acceptance",
+    "Physical mobile/Safari acceptance"
+  ],
+  "scope": "Optional structured support steps only; no appointment notes, diagnosis, clinical monitoring or external sharing"
+}
