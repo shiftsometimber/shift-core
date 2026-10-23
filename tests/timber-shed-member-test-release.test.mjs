@@ -47,3 +47,19 @@ test('authentication failure is closed and does not disclose internal errors',as
  const w=createMemberTestWorker(async()=>{throw Error('private database detail')});
  const r=await w.fetch(req(),env());assert.equal(r.status,503);assert.doesNotMatch(await r.text(),/database/);
 });
+
+test('direct Shed address renders the same full forum behind the existing account gate',async()=>{
+ const w=createMemberTestWorker(async()=>account);
+ for(const path of ['/timber-shed','/timber-shed/','/timber-shed?source=direct']){
+  const r=await w.fetch(req(path),env());assert.equal(r.status,200);const html=await r.text();
+  assert.match(html,/Discussion rooms/);assert.match(html,/Start a conversation/);
+  assert.match(html,/PRIVATE TEST · TEST ACCOUNT ONLY/);assert.match(r.headers.get('Cache-Control'),/no-store/);
+ }
+});
+test('direct address does not admit visitors or other member accounts',async()=>{
+ const loggedOut=createMemberTestWorker(async()=>({response:new Response(null,{status:401})}));
+ const other=createMemberTestWorker(async()=>({userId:99,user:{email:'other@example.invalid'}}));
+ assert.equal((await loggedOut.fetch(req('/timber-shed'),env())).status,401);
+ assert.equal((await other.fetch(req('/timber-shed'),env())).status,404);
+ assert.equal((await createMemberTestWorker(async()=>account).fetch(req('/timber-shed-other'),env())).status,404);
+});

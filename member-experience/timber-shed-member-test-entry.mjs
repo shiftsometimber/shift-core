@@ -12,7 +12,9 @@ const notice='<aside role="note" style="background:#e7e3da;color:#050505;padding
 export function createMemberTestWorker(authenticate=authenticateMember){
  return {
   async fetch(request,env){
-   const url=new URL(request.url),path=url.pathname;
+   const url=new URL(request.url);let path=url.pathname;
+   // Owner-requested direct address: same authenticated forum, no public preview.
+   if(['/timber-shed','/timber-shed/'].includes(path)){url.pathname='/member/timber-shed';request=new Request(url,request);path=url.pathname;}
    if(url.protocol!=='https:'||!['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(url.hostname))return closed();
    if(!pages.has(path)&&!assets.has(path)&&!path.startsWith('/v1/timber-shed/'))return closed();
    if(env.TIMBER_SHED_MEMBER_TEST_RELEASE!=='true'||!env.MEMBER_AUTH_DB||!env.SYNTHETIC_DB||env.MEMBER_AUTH_DB===env.SYNTHETIC_DB||env.TIMBER_SHED_TEST_MEMBER_ID!=='11245')return closed();

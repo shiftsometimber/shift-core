@@ -52,6 +52,14 @@
     {
       "pattern": "www.shiftsometimber.co.uk/assets/member-experience/timber-shed-forum.mjs",
       "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/timber-shed*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/timber-shed*",
+      "zone_name": "shiftsometimber.co.uk"
     }
   ],
   "observability": {
