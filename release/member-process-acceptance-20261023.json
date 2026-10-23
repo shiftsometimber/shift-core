@@ -1,0 +1,232 @@
+{
+  "date": "2026-10-23",
+  "scope": "Broad member-process acceptance audit; live dedicated Test account with fictional data only",
+  "sourceHead": "cdd8a6c2a84c72416376fa9aeeec9a67c3cf3e88",
+  "outcome": "Core account writes and return visits work. Member processes are not fully joined up; do not mark universal acceptance.",
+  "productionCodeChanged": false,
+  "automated": {
+    "total": 682,
+    "passed": 676,
+    "failed": 5,
+    "skipped": 1,
+    "suites": [
+      {
+        "name": "member-experience/tests/*.test.mjs",
+        "total": 524,
+        "passed": 521,
+        "failed": 3,
+        "skipped": 0,
+        "log": "work/member-process-acceptance-20261023/member-tests.txt"
+      },
+      {
+        "name": "Health passport, auth, AI, after-treatment, reminders, photos, privacy and reliability",
+        "total": 158,
+        "passed": 155,
+        "failed": 2,
+        "skipped": 1,
+        "log": "work/member-process-acceptance-20261023/supplementary-tests.txt"
+      }
+    ],
+    "exceptions": [
+      {
+        "count": 3,
+        "classification": "Harness/environment failure",
+        "detail": "Preservation tests require a native .git directory; authorised current checkout uses a git worktree .git file. No checks weakened. These source gates remain unverified here."
+      },
+      {
+        "count": 2,
+        "classification": "Static expectation mismatch",
+        "detail": "Old coming-off six-action URL/text and showComingPlan(true) expectations differ from current 12-week implementation. Live week-one start and reload pass; later-week route and elapsed-time acceptance still required."
+      },
+      {
+        "count": 1,
+        "classification": "Skipped",
+        "detail": "Real-model practical pilot evaluation with synthetic accounts only was skipped. Other deterministic AI tests do not replace this."
+      }
+    ]
+  },
+  "live": [
+    {
+      "process": "Sign-in and joining",
+      "result": "pass",
+      "detail": "Normal authenticated Test session. Programme reason, immutable 3/5 baseline, labelled note and small win survive reload/cross-page return; earlier receipt retains full evidence."
+    },
+    {
+      "process": "Daily check-in and history",
+      "result": "pass",
+      "detail": "OK plus fictional note saved and read back in history after reload; Today remembers same entry."
+    },
+    {
+      "process": "Life Back",
+      "result": "pass_with_integration_fault",
+      "detail": "Six ratings 50/60/55/45/65/50, score54 and fictional win persist. Original Programme baseline preserved; Journey summary still asks to set baseline."
+    },
+    {
+      "process": "Next Shift feedback",
+      "result": "pass",
+      "detail": "Earlier did-not-help proposal required explicit acceptance; accepted meal-guide approach persisted. Current Life Back movement topic produces a manageable movement step."
+    },
+    {
+      "process": "Journey setup",
+      "result": "pass_with_integration_fault",
+      "detail": "Fictional baseline95kg/100cm, target90kg, height175cm, Lifestyle only, Friday saved/reloaded. It redundantly asked for reason already supplied in Programme."
+    },
+    {
+      "process": "Journey weekly review",
+      "result": "pass_with_summary_fault",
+      "detail": "94.5kg/99cm and seven wellbeing ratings60 saved in confirmed record and chart after reload. Top Now remains95kg and waist100cm; Life Back measurements also remain95kg/100cm."
+    },
+    {
+      "process": "Progress",
+      "result": "partial_pass",
+      "detail": "Latest94.5kg/99cm, one real record and optional projection accurately shown. Direct dated log-reading/symptom entry was not found in tested navigation; photo/CSV upload not executed."
+    },
+    {
+      "process": "Progress to Fit",
+      "result": "fail",
+      "detail": "Repeated live test: bottom Fit link changes URL to /member/dashboard?tool=fit#today but Progress remains visible on subsequent observation. Reload opens selected Fit and saved session."
+    },
+    {
+      "process": "Fit builder and session",
+      "result": "pass",
+      "detail": "One10minute home low-impact no-equipment session generated. Go easier altered dose. First exercise done, second skipped with Ran out of time, third swapped. Reload retained third exercise and Today showed1done/1skipped; planned/tried/done are distinct."
+    },
+    {
+      "process": "Grub choose recipe",
+      "result": "pass",
+      "detail": "Chicken salad sandwich accepted for Today; ingredients generated without replacing weekly plan."
+    },
+    {
+      "process": "Grub weekly planner",
+      "result": "pass_with_quality_review",
+      "detail": "3days x3meals,2servings,Fast saved and reloaded. Swap changed first breakfast from barbecue chicken bap to egg breakfast wrap, preserved other meals and updated shopping list."
+    },
+    {
+      "process": "Grub saved recipes",
+      "result": "pass",
+      "detail": "Pesto chicken pasta salad saved from fridge matches and appeared in Saved."
+    },
+    {
+      "process": "Grub fridge",
+      "result": "pass",
+      "detail": "Chicken ingredient autocomplete returned recognised choices; matcher returned real recipes with explicit missing ingredients and no assumed pantry."
+    },
+    {
+      "process": "Grub shopping",
+      "result": "pass",
+      "detail": "Bought chicken checkbox and fictional custom item persisted after reload and meal swap."
+    },
+    {
+      "process": "Grub actual-food diary",
+      "result": "pass",
+      "detail": "Fictional toast-and-eggs entry saved with date, separate from planned meals. Empty diary was not filled by creating a plan."
+    },
+    {
+      "process": "Settings personal details",
+      "result": "pass",
+      "detail": "Fictional surname Programme QA and DOB1990-01-01 saved and survived reload. Account email was not changed."
+    },
+    {
+      "process": "GP lookup",
+      "result": "partial_pass",
+      "detail": "Macclesfield search returned10real practices. No GP assignment or clinical contact submitted."
+    },
+    {
+      "process": "Optional tracking consent",
+      "result": "pass",
+      "detail": "Withdraw consent changed settings to off. Subsequent complete Life Back save displayed unchecked explicit-consent gate with disabled Agree button; no new entry saved. Settings opt-in restored on; existing baseline/history retained."
+    },
+    {
+      "process": "Export",
+      "result": "unverified_contents",
+      "detail": "Export UI emitted download handoff; returned browser artifact path was empty/unreadable. Contents not verified. This does not prove endpoint failure."
+    },
+    {
+      "process": "My Orders",
+      "result": "empty_state_pass_only",
+      "detail": "Honest no-shop-orders screen. No payment, clinical order, dispatch or refund performed."
+    },
+    {
+      "process": "Saved navigation",
+      "result": "pass",
+      "detail": "Food, Journey, check-in, choices and My Treatment destinations opened."
+    },
+    {
+      "process": "My Treatment",
+      "result": "pass_with_model_copy_fault",
+      "detail": "Labelled fictional Health appointment saved/reloaded. Non-medicine record still displays supply/dose/prescribed-interval language. No appointment booked."
+    },
+    {
+      "process": "Doctor summary",
+      "result": "preview_pass_only",
+      "detail": "Preview displayed fictional member-reported appointment, no scheduled date and optional medical disclosure checkbox unchecked. PDF contents/print and transmission not tested."
+    },
+    {
+      "process": "Ask Timber adjustment",
+      "result": "pass_with_copy_polish",
+      "detail": "Working late quick prompt -> explicit handoff review -> Life changed dialog -> chosen adjustment saved. Day rebuilt state persisted; saved meal and partial Fit session stayed intact. Live title says preview; confidence/tags/governed-flow copy leaks implementation language."
+    },
+    {
+      "process": "After-treatment support",
+      "result": "week_one_pass",
+      "detail": "Start saved active support, showed actual week1 actions, persisted on reload and Today remembered it. No medicine action recommended/performed. Future elapsed weeks not live tested."
+    },
+    {
+      "process": "Notifications/native health",
+      "result": "environment_or_device_acceptance_required",
+      "detail": "Browser notifications blocked; enable disabled. Health imports honestly require native app build. Delivery/import/revoke across actual devices not verified."
+    }
+  ],
+  "findings": [
+    {
+      "id": "M01",
+      "priority": 1,
+      "title": "Current progress summaries disagree with confirmed latest review",
+      "evidence": "Confirmed94.5kg/99cm in Progress and weekly history; Journey Now95kg/waist100cm and Life Back95kg/100cm after reload.",
+      "action": "Resolve latest confirmed measurement consistently without rewriting immutable starting values."
+    },
+    {
+      "id": "M02",
+      "priority": 1,
+      "title": "Progress to Fit changes URL without changing visible panel",
+      "action": "Synchronise route, selected tab and visible panel; verify without reload."
+    },
+    {
+      "id": "M03",
+      "priority": 1,
+      "title": "One Programme still exposes competing baseline and next-step flows",
+      "evidence": "Journey asks reason again; Journey Life Back says Set your baseline despite actual54/100. Today also offers a separate one-question coaching start alongside existing Next Shift.",
+      "action": "Reuse saved reason and Life Back state; define one primary member action and how weekly Journey, Programme reviews and coaching relate."
+    },
+    {
+      "id": "M04",
+      "priority": 2,
+      "title": "Meal planner needs nutrition-quality acceptance",
+      "evidence": "Fast3day plan showed3meals on day3 totalling861.2kcal/person and no fibre totals. Snacks/drinks are explicitly excluded.",
+      "action": "Review full-day plan balance and intended completeness/targets with appropriate nutrition owner; do not imply the audit establishes clinical adequacy."
+    },
+    {
+      "id": "M05",
+      "priority": 2,
+      "title": "Appointment record inherits medicine-stock workflow",
+      "action": "Separate appointment questions/reminders/copy from dose and supply management."
+    },
+    {
+      "id": "M06",
+      "priority": 3,
+      "title": "Member-facing technical and preview copy",
+      "action": "Remove internal tags/confidence/governed wording and live preview title; tighten context without page redesign."
+    }
+  ],
+  "notCompleted": [
+    "Live elapsed7day/28day Programme review and12week after-treatment timing; fixture-clock checks remain separate.",
+    "Second-account production isolation; existing SQLite-backed isolation tests pass.",
+    "Actual native-device health permission/import/revoke and notification delivery with app closed.",
+    "Controlled payment, clinical assessment/approval, order fulfilment, dispatch, repeat and refund journeys.",
+    "Password reset/email-change delivery, GP assignment and delivery-address save.",
+    "Photo upload, CSV import and real-model practical pilot.",
+    "Export/PDF file content acceptance.",
+    "Irreversible history erasure/account deletion final action and external human-support message delivery were not executed."
+  ],
+  "safety": "No customer records, credentials, cookies, real medical details, payment or external support messages recorded. Fictional QA records retained in dedicated Test account; optional tracking restored on. No production deployment."
+}
