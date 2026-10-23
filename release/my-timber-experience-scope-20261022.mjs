@@ -222,7 +222,10 @@ export function myTimberExperienceHistoricalView(reader=null,{defaultReader=read
  verifyMyTimberExperience(record,{head:rawHead,read:normal});
  const all=[...EXPERIENCE_PATHS,...EXPERIENCE_MAINTENANCE,EXPERIENCE_MANIFEST];
  const affected=path=>all.includes(path)||all.some(p=>p.startsWith(path+'/'));
- const map=(ref,path)=>currentRef(ref)&&affected(path)?record.base:(ref==='HEAD'?rawHead:ref);
+ // Project only the files owned by this release.  Preserve a supplied
+ // reader's HEAD alias everywhere else so older fail-closed drift checks see
+ // exactly the same caller contract they had before this overlay existed.
+ const map=(ref,path)=>currentRef(ref)&&affected(path)?record.base:ref;
  const read=(ref,path)=>{
   return normal(map(ref,path),path);
  };

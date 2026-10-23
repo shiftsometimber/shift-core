@@ -73,3 +73,9 @@ test('coherent opaque readers retain their original contract through the histori
  const view=myTimberExperienceHistoricalView(()=>'same opaque fixture',{defaultReader:false});
  assert.equal(view.read('HEAD','member-experience/entry.mjs'),'same opaque fixture');
 });
+
+test('supplied readers retain the HEAD alias outside the My Timber overlay',()=>{
+ const path='scripts/reconcile-organic-measurement.mjs';
+ const view=myTimberExperienceHistoricalView((r,p)=>r==='HEAD'&&p===path?'caller HEAD sentinel':blob(r,p),{defaultReader:false});
+ assert.equal(view.read('HEAD',path),'caller HEAD sentinel');
+});
