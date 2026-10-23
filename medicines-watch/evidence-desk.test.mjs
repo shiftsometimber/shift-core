@@ -1,4 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
+import {watchMain,WATCH_PATH} from './page.mjs';
 import {matchesSearch,evidenceQueue,manualEvidence,programmeSummaryQueue,evidenceDeskMarkup} from './evidence-desk.mjs';
 import {sources,medicines} from './data.mjs';import {industry} from './industry.mjs';
 import {industryMarkup} from './industry-page.mjs';import {registrySources,registryEvidenceMarkup} from './credibility.mjs';
@@ -65,4 +66,20 @@ test('topic discovery requires dated and undated attempts; failure is never comp
  const result=summariseTopicDiscovery([{id:plan[0].id,status:'blocked',error:'Access denied'}],date);
  assert.equal(result.scanComplete,false);assert.equal(result.failed[0].error,'Access denied');assert.equal(result.missing.length,plan.length-1);assert.equal(result.industryComplete,false);
  assert.equal(summariseTopicDiscovery(plan.map(q=>({id:q.id,status:'searched'})),date).scanComplete,true);
+});
+
+
+test('every programme review link resolves to its rendered owner after filters are cleared',()=>{
+ const unfiltered=watchMain({},new URLSearchParams());
+ const ids=new Set([...unfiltered.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));
+ for(const filter of ['', 'q=zealand', 'status=authorised', 'industry=research']){
+  const html=watchMain({},new URLSearchParams(filter));
+  const queue=html.split('<section id="watch-evidence-desk"')[1].split('<section id="watch-coverage-gaps"')[0];
+  const links=[...queue.matchAll(/href="([^" ]*#([^" ]+))"/g)];
+  assert.ok(links.length>=medicines.length,'Expected overdue programme evidence links');
+  for(const [,href,id] of links){
+   assert.ok(ids.has(id),'Review queue target does not exist: '+id);
+   assert.equal(href,WATCH_PATH+'#'+id,'Review link must clear filtering before navigating');
+  }
+ }
 });
