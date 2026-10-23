@@ -8,6 +8,7 @@ on:
       - 'gate1-whole-estate-production-sweep.mjs'
       - 'wrangler.timber-shed-acceptance.template.jsonc'
       - 'wrangler.timber-shed-member-test.jsonc'
+      - 'wrangler.timber-shed-disabled-navigation.jsonc'
       - '.github/workflows/timber-shed-private-check.yml'
 permissions:
   contents: read
@@ -45,3 +46,6 @@ jobs:
 
       - name: Build isolated direct-domain Test-member release without deployment
         run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.timber-shed-member-test.jsonc --outdir "$RUNNER_TEMP/shed-member-test-build"
+
+      - name: Build bounded disabled public navigation asset without deployment
+        run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.timber-shed-disabled-navigation.jsonc --outdir "$RUNNER_TEMP/shed-disabled-navigation-build"
