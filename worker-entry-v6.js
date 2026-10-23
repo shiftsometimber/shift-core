@@ -1,3 +1,4 @@
+import {runTimberShedRetention} from './member-experience/timber-shed-retention.mjs';
 import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {withSharedFooter} from './timber-shed-public-teaser.mjs';
 import {foodSupplementGuideRoute,withFoodGuideDiscovery} from './food-supplement-guide/production.mjs';
@@ -1015,6 +1016,12 @@ const worker = {
       : fallback;
   },
   async scheduled(controller, env, ctx) {
+    // A separate hourly event avoids consuming the existing quarter-hour jobs' D1 budget.
+    if(controller?.cron==='17 * * * *'){
+      const shedMaintenance=runTimberShedRetention(env).catch(()=>console.warn('timber_shed_retention_failed'));
+      if(ctx?.waitUntil)ctx.waitUntil(shedMaintenance);else await shedMaintenance;
+      return;
+    }
     const job = (async () => {
       // Reserve and run the bounded evidence checks before the shared D1-heavy
       // jobs. A sibling failure or contention must not silently starve the Watch.

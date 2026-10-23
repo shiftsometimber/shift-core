@@ -1,0 +1,35 @@
+{
+  "name": "shift-timber-shed-acceptance-20261023",
+  "main": "member-experience/timber-shed-staging-entry.mjs",
+  "compatibility_date": "2025-11-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    "SHIFT_ENVIRONMENT": "timber-shed-synthetic-acceptance",
+    "TIMBER_SHED_SYNTHETIC_ONLY": "true",
+    "TIMBER_SHED_PRIVATE_ENABLED": "true",
+    "MEMBER_EXPERIENCE_V1_ENABLED": "true",
+    "TIMBER_SHED_FORUM_ENABLED": "true",
+    "TIMBER_SHED_FORUM_PILOT_APPROVED": "true",
+    "TIMBER_SHED_RETENTION_ENABLED": "true",
+    "TIMBER_SHED_GOVERNANCE_APPROVED_VERSION": "shed-pilot-governance-2026-10-23-v1",
+    "TIMBER_SHED_AI_MODERATION_ENABLED": "false",
+    "TIMBER_SHED_AI_PROVIDER_APPROVED": "false",
+    "TIMBER_SHED_EMAIL_DELIVERY_ENABLED": "false"
+  },
+  "d1_databases": [
+    {
+      "binding": "SYNTHETIC_DB",
+      "database_name": "shift-timber-shed-synthetic-acceptance-20261023",
+      "database_id": "__DEDICATED_SYNTHETIC_D1_ID__"
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "17 * * * *"
+    ]
+  },
+  "observability": {
+    "enabled": false
+  }
+}

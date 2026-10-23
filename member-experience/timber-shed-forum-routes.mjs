@@ -1,7 +1,8 @@
+import {governanceApproved,forumParticipation,validParticipation,saveForumParticipation} from './timber-shed-governance.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {timberShedForumRooms} from './timber-shed-forums.mjs';
 import {screenForumText,bouncerSubmissionNotice,BOUNCER_VERSION} from './timber-shed-community-bouncer.mjs';
-import {classifyForumSubmissionWithModel,mergeModerationSignals,AI_MODERATION_POLICY} from './timber-shed-ai-moderation.mjs';
+import {AI_MODERATION_POLICY} from './timber-shed-ai-moderation.mjs';
 import {forumAppealAction,listOpenAppeals,validateForumAppeal} from './timber-shed-forum-appeals.mjs';
 import {visibleAuthorSQL,visiblePostSQL,validateProtectionInput,activeForumRestriction,listForumRestrictions,forumProtectionAction} from './timber-shed-forum-protection.mjs';
 import {exportOwnForum,leaveForum} from './timber-shed-forum-privacy.mjs';
@@ -65,14 +66,16 @@ async function parse(request){
  try{return {value:JSON.parse(raw)}}catch{return {error:'invalid_json',status:400}}
 }
 const isModerator=async(db,id)=>!!(await db.prepare("SELECT user_id FROM timber_shed_forum_moderators WHERE user_id=? AND active=1").bind(id).first());
-export function createTimberShedForumRoutes(authenticate=authenticateMember,now=()=>new Date(),modelClassifier=classifyForumSubmissionWithModel){
+export function createTimberShedForumRoutes(authenticate=authenticateMember,now=()=>new Date()){
  return async function forumRoutes(request,env){
   const path=new URL(request.url).pathname;
   if(!path.startsWith('/v1/timber-shed/forum/'))return null;
   if(env.TIMBER_SHED_FORUM_ENABLED!=='true'||env.TIMBER_SHED_PRIVATE_ENABLED!=='true'||env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||env.TIMBER_SHED_FORUM_PILOT_APPROVED!=='true')return json({error:'not_available'},404);
+  if(env.TIMBER_SHED_RETENTION_ENABLED!=='true')return json({error:'community_maintenance_not_enabled'},404);
+  if(!governanceApproved(env))return json({error:'governance_not_approved'},404);
   const route=path.slice('/v1/timber-shed/forum/'.length);
-  if(!new Set(['rooms','threads','room-topics','latest','mine','notifications','notifications/read','moderation','profile','profile/save','submit','report','moderate','withdraw','appeals','appeal','appeal/review','access','blocks','block','unblock','restrict','restriction/lift','restriction/appeal','restriction/review','export','leave']).has(route))return json({error:'not_found'},404);
-  const method=route==='export'||route==='access'||route==='blocks'||route==='appeals'||route==='rooms'||route==='threads'||route==='room-topics'||route==='latest'||route==='mine'||route==='notifications'||route==='moderation'||route==='profile'?'GET':'POST';
+  if(!new Set(['participation','participation/consent','rooms','threads','room-topics','latest','mine','notifications','notifications/read','moderation','profile','profile/save','submit','report','moderate','withdraw','appeals','appeal','appeal/review','access','blocks','block','unblock','restrict','restriction/lift','restriction/appeal','restriction/review','export','leave']).has(route))return json({error:'not_found'},404);
+  const method=route==='participation'||route==='export'||route==='access'||route==='blocks'||route==='appeals'||route==='rooms'||route==='threads'||route==='room-topics'||route==='latest'||route==='mine'||route==='notifications'||route==='moderation'||route==='profile'?'GET':'POST';
   if(request.method!==method)return json({error:'method_not_allowed'},405);
   if(method==='POST'&&request.headers.get('Origin')!==new URL(request.url).origin)return json({error:'same_origin_required'},403);
   const auth=await authenticate(request,env);if(auth.response)return auth.response;
@@ -81,7 +84,23 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
   try{
    // Eligibility is checked server-side; DOB and email verification never enter responses.
    const eligibility=await db.prepare('SELECT a.email_verified,u.date_of_birth FROM users u JOIN user_auth a ON a.user_id=u.id WHERE u.id=?').bind(uid).first();
-   if(!eligibility||Number(eligibility.email_verified)!==1||!adult(eligibility.date_of_birth,now()))return json({error:'adult_verified_members_only'},403);
+   if(!['export','leave'].includes(route)&&(!eligibility||Number(eligibility.email_verified)!==1||!adult(eligibility.date_of_birth,now())))return json({error:'adult_verified_members_only'},403);
+   const timestampNow=now().toISOString();
+   const participation=await forumParticipation(db,uid,timestampNow);
+   if(route==='participation')return json(participation);
+   if(route==='participation/consent'){
+    const parsed=await parse(request);if(parsed.error)return json({error:parsed.error},parsed.status);
+    if(!validParticipation(parsed.value))return json({error:'explicit_current_agreement_required'},400);
+    if(!participation.adultAccess)return json({error:'adult_access_review_required'},403);
+    if(participation.healthConsent&&!parsed.value.healthConsent)return json({error:'withdraw_consent_using_leave_community'},409);
+    await saveForumParticipation(db,uid,parsed.value,timestampNow);
+    return json({ok:true,participation:await forumParticipation(db,uid,timestampNow)});
+   }
+   const ownOnly=new Set(['export','leave','mine','withdraw','appeals','appeal','access','restriction/appeal']);
+   if(!ownOnly.has(route)&&!participation.adultAccess)return json({error:'adult_access_review_required'},403);
+   if(!ownOnly.has(route)&&!participation.maintenanceReady)return json({error:'community_maintenance_unavailable'},503);
+   if(!ownOnly.has(route)&&!participation.joined)return json({error:'community_agreement_required'},403);
+   if(route==='submit'&&!participation.healthConsent)return json({error:'explicit_health_consent_required'},403);
    const restriction=await activeForumRestriction(db,uid,now().toISOString());
    if(restriction&&!['access','appeals','appeal','mine','withdraw','restriction/appeal','export','leave'].includes(route))return json({error:'community_access_restricted'},403);
    if(route==='export')return json({forum:await exportOwnForum(db,uid)});
@@ -167,14 +186,9 @@ export function createTimberShedForumRoutes(authenticate=authenticateMember,now=
     const local=screenForumText({title:input.title||'',body:input.body});
     const modelRequired=env.TIMBER_SHED_AI_MODERATION_ENABLED==='true';
     if(modelRequired&&env.TIMBER_SHED_AI_PROVIDER_APPROVED!=='true')return json({error:'model_not_authorised'},503);
-    let screening=local;
-    if(modelRequired){
-     const modelResult=await modelClassifier({title:input.title||'',body:input.body},env);
-     if(!modelResult?.ok)return json({error:'model_unavailable'},503);
-     const merged=mergeModerationSignals(local,modelResult);
-     if(!merged.ok)return json({error:'model_unavailable'},503);
-     screening=merged;
-    }
+    // The adopted v1 notice excludes external AI; provider flags cannot override member terms.
+    if(modelRequired)return json({error:'external_ai_not_in_pilot_policy'},503);
+    const screening=local;
     const id=crypto.randomUUID();
     // Atomic submission and screening: no post is accepted without a triage record.
     const results=await db.batch([

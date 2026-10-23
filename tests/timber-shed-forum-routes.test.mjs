@@ -12,6 +12,11 @@ function setup(modelClassifier){
   sqlite.prepare('INSERT INTO users(id,date_of_birth) VALUES(?,?)').run(id,dob);
   sqlite.prepare('INSERT INTO user_auth(user_id,email_verified) VALUES(?,?)').run(id,verified);
  }
+ for(const id of [1,2,3]){
+  sqlite.prepare('INSERT INTO timber_shed_adult_access VALUES(?,?,?,?,?,?,NULL)').run(id,'verified-adult-account','fictional-proof-'+id,3,'2026-10-01T00:00:00.000Z','2027-10-01T00:00:00.000Z');
+  sqlite.prepare('INSERT INTO timber_shed_participation VALUES(?,?,?,?,?)').run(id,'shed-pilot-governance-2026-10-23-v1','shed-pilot-governance-2026-10-23-v1','2026-10-01T00:00:00.000Z','2026-10-01T00:00:00.000Z');
+ }
+ sqlite.prepare('INSERT INTO timber_shed_maintenance VALUES(1,?)').run('2026-10-22T12:00:00.000Z');
  const calls=[];
  const db={
   prepare(sql){calls.push(sql);return{
@@ -31,7 +36,7 @@ function setup(modelClassifier){
  };
  const auth=async request=>{const id=Number(request.headers.get('x-member'));return id?{userId:id}:{response:Response.json({error:'authentication_required'},{status:401})}};
  const route=createTimberShedForumRoutes(auth,()=>new Date('2026-10-22T12:00:00Z'),modelClassifier);
- const env={TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_PRIVATE_ENABLED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true',DB:db};
+ const env={TIMBER_SHED_RETENTION_ENABLED:'true',TIMBER_SHED_GOVERNANCE_APPROVED_VERSION:'shed-pilot-governance-2026-10-23-v1',TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_PRIVATE_ENABLED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true',DB:db};
  async function send(user,resource,method='GET',body,query=''){
   const headers={'x-member':String(user)};
   if(method==='POST'){headers.Origin=origin;headers['Content-Type']='application/json'}
@@ -267,36 +272,21 @@ test('AI model mode cannot run without separately approved data-processing gate'
  assert.equal(calls,0);
  assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
 });
-test('mock model adds independent risk signal; high-risk post cannot be approved',async()=>{
- let calls=0;
- const t=setup(async()=>{calls++;return{ok:true,policyVersion:'bouncer-omni-2026-10-22-v1',model:'omni-moderation-latest',severity:'high',priority:1,categories:['self-harm'],flagged:true}});
- t.env.TIMBER_SHED_AI_MODERATION_ENABLED='true';
- t.env.TIMBER_SHED_AI_PROVIDER_APPROVED='true';
+test('provider flags cannot override the v1 member notice excluding external AI',async()=>{
+ let calls=0;const t=setup(async()=>{calls++;return {ok:true}});
+ t.env.TIMBER_SHED_AI_MODERATION_ENABLED='true';t.env.TIMBER_SHED_AI_PROVIDER_APPROVED='true';
  await profile(t,1,'Shed Walker');
- t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
- const result=await submit(t,1,'main-shed','I took a nice walk today and felt good.');
- assert.equal(result.status,202);assert.equal(calls,1);
- const pending=(await t.send(3,'moderation')).body.pending[0];
- assert.equal(pending.severity,'high');
- assert(pending.categories.includes('model:self-harm'));
- assert.equal((await t.send(3,'moderate','POST',{postId:result.body.id,action:'approve'})).status,409);
- assert.equal((await t.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
+ const result=await submit(t,1);
+ assert.equal(result.status,503);assert.equal(result.body.error,'external_ai_not_in_pilot_policy');assert.equal(calls,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
 });
-test('mock clean model still requires human approval; model failure saves nothing',async()=>{
- const clean=setup(async()=>({ok:true,policyVersion:'bouncer-omni-2026-10-22-v1',model:'omni-moderation-latest',severity:'routine',priority:3,categories:[],flagged:false}));
- clean.env.TIMBER_SHED_AI_MODERATION_ENABLED='true';clean.env.TIMBER_SHED_AI_PROVIDER_APPROVED='true';
- await profile(clean,1,'Shed Walker');
- clean.sqlite.prepare('INSERT INTO timber_shed_forum_moderators(user_id,active,created_at) VALUES(?,?,?)').run(3,1,'now');
- const result=await submit(clean,1);
- assert.equal(result.status,202);
- assert.equal((await clean.send(2,'threads','GET',undefined,'?room=main-shed')).body.posts.length,0);
- assert.equal((await clean.send(3,'moderate','POST',{postId:result.body.id,action:'approve'})).status,200);
- const failed=setup(async()=>({ok:false,error:'model_unavailable'}));
- failed.env.TIMBER_SHED_AI_MODERATION_ENABLED='true';failed.env.TIMBER_SHED_AI_PROVIDER_APPROVED='true';
- await profile(failed,1,'Shed Walker');
- const error=await submit(failed,1);
- assert.equal(error.status,503);
- assert.equal(failed.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts').get().n,0);
+test('v1 deterministic mode still screens and requires human approval when external AI is off',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');
+ t.sqlite.prepare('INSERT INTO timber_shed_forum_moderators VALUES(3,1,?)').run('2026-10-22');
+ const result=await submit(t,1);assert.equal(result.status,202);
+ assert.equal((await t.send(2,'latest')).body.posts.length,0);
+ assert.equal((await t.send(3,'moderate','POST',{postId:result.body.id,action:'approve'})).status,200);
+ assert.equal((await t.send(2,'latest')).body.posts.length,1);
 });
 test('suspected trial-stage product sales cannot pass ordinary moderator approval',async()=>{
  const t=setup();await profile(t,1,'Shed Walker');
@@ -806,4 +796,116 @@ test('a block created during submission prevents a stale reply being saved',asyn
  };
  assert.equal((await t.send(2,'submit','POST',{roomId:'main-shed',parentId:a,body:'A fictional reply racing a block.'})).status,503);
  assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_posts WHERE parent_id=?').get(a).n,0);
+});
+
+test('governance adoption is exact and default-closed before any member read',async()=>{
+ const t=setup();delete t.env.TIMBER_SHED_GOVERNANCE_APPROVED_VERSION;
+ assert.equal((await t.send(1,'latest')).status,404);assert.equal(t.calls.length,0);
+ t.env.TIMBER_SHED_GOVERNANCE_APPROVED_VERSION='old-policy';
+ assert.equal((await t.send(1,'latest')).status,404);
+});
+test('DOB alone cannot enter pilot; expired and revoked adult clearances deny browsing',async()=>{
+ const t=setup();t.sqlite.prepare('DELETE FROM timber_shed_adult_access WHERE user_id=1').run();
+ assert.equal((await t.send(1,'latest')).body.error,'adult_access_review_required');
+ const state=await t.send(1,'participation');assert.equal(state.body.adultAccess,false);
+ assert.equal((await t.send(1,'export')).status,200);
+ t.sqlite.prepare("UPDATE timber_shed_adult_access SET expires_at='2026-10-20T00:00:00.000Z' WHERE user_id=2").run();
+ assert.equal((await t.send(2,'latest')).status,403);
+ t.sqlite.prepare("UPDATE timber_shed_adult_access SET revoked_at='2026-10-21' WHERE user_id=3").run();
+ assert.equal((await t.send(3,'latest')).status,403);
+});
+test('participation is current, affirmative, account-scoped and permits reading without health consent',async()=>{
+ const t=setup();t.sqlite.prepare('DELETE FROM timber_shed_participation WHERE user_id=1').run();
+ assert.equal((await t.send(1,'latest')).body.error,'community_agreement_required');
+ const input={version:'shed-pilot-governance-2026-10-23-v1',rulesAccepted:true,privacyAcknowledged:true,healthConsent:false};
+ for(const bad of [{...input,rulesAccepted:false},{...input,version:'old'},{...input,userId:2},{...input,healthConsent:'true'}])
+  assert.equal((await t.send(1,'participation/consent','POST',bad)).status,400);
+ assert.equal((await t.send(1,'participation/consent','POST',input)).status,200);
+ assert.equal((await t.send(1,'latest')).status,200);
+ assert.equal((await submit(t,1)).body.error,'explicit_health_consent_required');
+ assert.equal((await t.send(1,'participation/consent','POST',{...input,healthConsent:true})).status,200);
+ assert.equal((await t.send(1,'participation')).body.healthConsent,true);
+ assert.equal((await t.send(2,'participation')).body.healthConsent,true);
+ assert.equal((await t.send(1,'participation/consent','POST',input)).body.error,'withdraw_consent_using_leave_community');
+});
+test('stale agreement needs renewal and uncleared adult cannot manufacture consent',async()=>{
+ const t=setup();t.sqlite.prepare("UPDATE timber_shed_participation SET privacy_version='old' WHERE user_id=1").run();
+ assert.equal((await t.send(1,'latest')).body.error,'community_agreement_required');
+ t.sqlite.prepare('DELETE FROM timber_shed_adult_access WHERE user_id=1').run();
+ assert.equal((await t.send(1,'participation/consent','POST',{version:'shed-pilot-governance-2026-10-23-v1',rulesAccepted:true,privacyAcknowledged:true,healthConsent:true})).status,403);
+});
+test('leaving withdraws consent and removes derived screening and incoming report categories',async()=>{
+ const t=setup();await profile(t,1,'Shed Walker');const item=await submit(t,1);
+ t.sqlite.prepare("INSERT INTO timber_shed_forum_reports VALUES('fictional-report',?,?, 'self-harm-risk','open','2026-10-22')").run(item.body.id,2);
+ assert.equal((await t.send(1,'leave','POST',{confirm:'leave-community'})).status,200);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_participation WHERE user_id=1').get().n,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_bouncer_screenings WHERE post_id=?').get(item.body.id).n,0);
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_forum_reports WHERE post_id=?').get(item.body.id).n,0);
+ assert.equal((await t.send(1,'latest')).body.error,'community_agreement_required');
+ assert.equal((await t.send(1,'export')).status,200);
+});
+test('own consent export excludes adult evidence references and reviewer identity; own erasure survives changed eligibility',async()=>{
+ const t=setup();const data=(await t.send(1,'export')).body.forum;
+ assert.equal(data.participation.length,1);assert.equal(data.adultAccess.length,1);
+ assert(!JSON.stringify(data).includes('fictional-proof'));assert(!JSON.stringify(data).includes('verified_by'));
+ t.sqlite.prepare("UPDATE users SET date_of_birth='2013-01-01' WHERE id=1").run();
+ assert.equal((await t.send(1,'latest')).status,403);
+ assert.equal((await t.send(1,'export')).status,200);
+ assert.equal((await t.send(1,'leave','POST',{confirm:'leave-community'})).status,200);
+});
+test('retention is default-off and never reads DB without exact adoption',async()=>{
+ const {runTimberShedRetention}=await import('../member-experience/timber-shed-retention.mjs');
+ const t=setup();delete t.env.TIMBER_SHED_GOVERNANCE_APPROVED_VERSION;
+ assert.deepEqual(await runTimberShedRetention(t.env),{enabled:false});assert.equal(t.calls.length,0);
+});
+test('retention clears expired text and sensitive signals, preserves appeal window and current content, and is idempotent',async()=>{
+ const {runTimberShedRetention}=await import('../member-experience/timber-shed-retention.mjs');
+ const t=setup();await profile(t,1,'Shed Walker');const a=await submit(t,1),b=await submit(t,1),c=await submit(t,1),d=await submit(t,1);
+ t.sqlite.prepare("UPDATE timber_shed_forum_posts SET created_at='2026-10-01T00:00:00.000Z' WHERE id=?").run(a.body.id);
+ t.sqlite.prepare("UPDATE timber_shed_forum_posts SET status='rejected',reviewed_by=3,reviewed_at='2026-09-01T00:00:00.000Z' WHERE id=?").run(b.body.id);
+ await t.send(1,'appeal','POST',{postId:b.body.id,reason:'missed-context'});
+ t.sqlite.prepare("UPDATE timber_shed_forum_posts SET status='approved',created_at='2025-01-01T00:00:00.000Z' WHERE id=?").run(c.body.id);
+ const first=await runTimberShedRetention(t.env,new Date('2026-10-22T12:00:00Z'));assert.equal(first.expiredPosts,2);
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(a.body.id).status,'withdrawn');
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(b.body.id).status,'rejected');
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(d.body.id).status,'pending');
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_bouncer_screenings WHERE post_id=?').get(a.body.id).n,0);
+ assert.equal((await runTimberShedRetention(t.env,new Date('2026-10-22T12:00:00Z'))).expiredPosts,0);
+ await runTimberShedRetention(t.env,new Date('2027-01-01T12:00:00Z'));
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(b.body.id).status,'withdrawn');
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_appeals WHERE post_id=?').get(b.body.id).status,'withdrawn');
+});
+test('failed retention text update rolls back cleared report/screening data',async()=>{
+ const {runTimberShedRetention}=await import('../member-experience/timber-shed-retention.mjs');
+ const t=setup();await profile(t,1,'Shed Walker');const a=await submit(t,1);
+ t.sqlite.prepare("UPDATE timber_shed_forum_posts SET created_at='2026-10-01T00:00:00.000Z' WHERE id=?").run(a.body.id);
+ t.sqlite.exec("CREATE TRIGGER reject_retention BEFORE UPDATE OF body ON timber_shed_forum_posts BEGIN SELECT RAISE(ABORT,'fictional write failure'); END");
+ await assert.rejects(runTimberShedRetention(t.env,new Date('2026-10-22T12:00:00Z')));
+ assert.equal(t.sqlite.prepare('SELECT status FROM timber_shed_forum_posts WHERE id=?').get(a.body.id).status,'pending');
+ assert.equal(t.sqlite.prepare('SELECT count(*) n FROM timber_shed_bouncer_screenings WHERE post_id=?').get(a.body.id).n,1);
+});
+
+test('failed or missing maintenance pauses participation while own export and departure remain available',async()=>{
+ const t=setup();t.sqlite.prepare("UPDATE timber_shed_maintenance SET completed_at='2026-10-22T09:00:00.000Z'").run();
+ assert.equal((await t.send(1,'latest')).body.error,'community_maintenance_unavailable');
+ assert.equal((await t.send(1,'export')).status,200);
+ assert.equal((await t.send(1,'leave','POST',{confirm:'leave-community'})).status,200);
+});
+test('pilot limit cannot be bypassed by adding more adult-clearance rows',async()=>{
+ const t=setup();
+ for(let id=10;id<18;id++){
+  t.sqlite.prepare("INSERT INTO users VALUES(?,'1980-01-01')").run(id);
+  t.sqlite.prepare('INSERT INTO timber_shed_adult_access VALUES(?,?,?,?,?,?,NULL)').run(id,'verified-adult-account','fictional-proof-'+id,3,'2026-10-01T00:00:00.000Z','2027-10-01T00:00:00.000Z');
+ }
+ assert.equal((await t.send(1,'latest')).body.error,'adult_access_review_required');
+});
+test('retention continues when community access is switched off and renews its heartbeat only on success',async()=>{
+ const {runTimberShedRetention}=await import('../member-experience/timber-shed-retention.mjs');
+ const t=setup();t.env.TIMBER_SHED_FORUM_ENABLED='false';
+ const now=new Date('2026-10-22T13:00:00Z');
+ assert.equal((await runTimberShedRetention(t.env,now)).enabled,true);
+ assert.equal(t.sqlite.prepare('SELECT completed_at FROM timber_shed_maintenance').get().completed_at,now.toISOString());
+ t.sqlite.exec("CREATE TRIGGER reject_heartbeat BEFORE UPDATE ON timber_shed_maintenance BEGIN SELECT RAISE(ABORT,'fictional heartbeat failure'); END");
+ await assert.rejects(runTimberShedRetention(t.env,new Date('2026-10-22T14:00:00Z')));
+ assert.equal(t.sqlite.prepare('SELECT completed_at FROM timber_shed_maintenance').get().completed_at,now.toISOString());
 });

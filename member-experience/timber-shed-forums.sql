@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS timber_shed_forum_appeal_audit (
  id TEXT PRIMARY KEY,
  appeal_id TEXT NOT NULL REFERENCES timber_shed_forum_appeals(id) ON DELETE CASCADE,
  actor_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
- action TEXT NOT NULL CHECK(action IN ('submitted','upheld','reconsider','returned','withdrawn')),
+ action TEXT NOT NULL CHECK(action IN ('submitted','upheld','reconsider','returned','withdrawn','expired')),
  created_at TEXT NOT NULL
 );
 
@@ -137,3 +137,27 @@ CREATE TABLE IF NOT EXISTS timber_shed_access_audit (
  action TEXT NOT NULL CHECK(action IN ('suspended','banned','lifted','appealed','upheld','reinstated','expired')),
  created_at TEXT NOT NULL
 );
+
+-- A pilot membership is separately cleared as adult; account DOB is not age assurance.
+-- Evidence is a non-sensitive reference to an actual checked record, never an ID image.
+CREATE TABLE IF NOT EXISTS timber_shed_adult_access (
+ user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+ evidence_method TEXT NOT NULL CHECK(evidence_method IN ('verified-adult-account','photo-id-match')),
+ evidence_reference TEXT NOT NULL CHECK(length(evidence_reference) BETWEEN 8 AND 80),
+ verified_by INTEGER NOT NULL REFERENCES users(id),
+ verified_at TEXT NOT NULL,
+ expires_at TEXT NOT NULL,
+ revoked_at TEXT,
+ CHECK(expires_at>verified_at)
+);
+CREATE TABLE IF NOT EXISTS timber_shed_participation (
+ user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+ rules_version TEXT NOT NULL,
+ privacy_version TEXT NOT NULL,
+ disclosure_consent_at TEXT,
+ accepted_at TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_timber_shed_posts_parent ON timber_shed_forum_posts(parent_id);
+
+CREATE TABLE IF NOT EXISTS timber_shed_maintenance (id INTEGER PRIMARY KEY CHECK(id=1),completed_at TEXT NOT NULL);

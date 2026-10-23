@@ -1,5 +1,7 @@
 const START=(process.env.SHIFT_SITE_BASE||'https://shiftsometimber.co.uk').replace(/\/$/,'');
 const MAX_PAGES=Number(process.env.SHIFT_SWEEP_MAX||1000);
+const CONCURRENCY=4;
+const TIMEOUT_MS=Number(process.env.SHIFT_SWEEP_TIMEOUT_MS||15000);
 const USER_AGENT='ShiftCommissioning/1.0 (+release-route-sweep)';
 const queue=[START+'/',START+'/member-login.html'];
 const queued=new Set(queue),visited=new Map(),failures=[],externalHosts=new Map(),discoveredFrom=new Map([[START+'/',null],[START+'/member-login.html',null]]);
@@ -20,28 +22,28 @@ function extract(html,base){
 async function fetchWithRedirectAudit(url){
   let current=url;const chain=[];
   for(let i=0;i<8;i++){
-    const r=await fetch(current,{redirect:'manual',headers:{'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/json;q=0.8,*/*;q=0.5'}});
+    const r=await fetch(current,{redirect:'manual',signal:AbortSignal.timeout(TIMEOUT_MS),headers:{'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/json;q=0.8,*/*;q=0.5'}});
     chain.push({url:current,status:r.status});
     if([301,302,303,307,308].includes(r.status)){
       const location=r.headers.get('location');if(!location)return{r,chain,error:'redirect_without_location'};
       const next=normalise(location,current);if(!next)return{r,chain,error:'invalid_redirect_location'};
       if(chain.some(x=>x.url===next.href))return{r,chain,error:'redirect_loop'};
-      current=next.href;continue;
+      await r.body?.cancel();current=next.href;continue;
     }
     return{r,chain};
   }
   return{r:null,chain,error:'too_many_redirects'};
 }
 
-while(queue.length&&visited.size<MAX_PAGES){
-  const url=queue.shift();if(visited.has(url))continue;const parent=discoveredFrom.get(url)||null;
-  let result;try{result=await fetchWithRedirectAudit(url)}catch(e){failures.push({url,discoveredFrom:parent,error:`network:${e?.message||e}`});visited.set(url,{error:true});continue}
+async function visit(url){
+  if(visited.has(url))return;const parent=discoveredFrom.get(url)||null;
+  let result;try{result=await fetchWithRedirectAudit(url)}catch(e){failures.push({url,discoveredFrom:parent,error:`network:${e?.message||e}`});visited.set(url,{error:true});return}
   const {r,chain,error}=result;
-  if(error||!r){failures.push({url,discoveredFrom:parent,error:error||'no_response',chain});visited.set(url,{error:true});continue}
+  if(error||!r){failures.push({url,discoveredFrom:parent,error:error||'no_response',chain});visited.set(url,{error:true});return}
   const final=chain.at(-1)?.url||url,status=r.status,type=(r.headers.get('content-type')||'').toLowerCase();
   const record={status,type,final,chain,discoveredFrom:parent};visited.set(url,record);
-  if(status>=400){failures.push({url,discoveredFrom:parent,status,final});continue}
-  let body='';if(!assetExt.test(final)){try{body=await r.text()}catch{}}
+  if(status>=400){failures.push({url,discoveredFrom:parent,status,final});return}
+  let body='';if(!assetExt.test(final)){try{body=await r.text()}catch{}}else await r.body?.cancel();
   if(type.includes('text/html')){
     const visible=body.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
     if(visible.length<40)failures.push({url,discoveredFrom:parent,status,error:'blank_or_near_blank_html',visibleChars:visible.length});
@@ -52,6 +54,10 @@ while(queue.length&&visited.size<MAX_PAGES){
       else externalHosts.set(child.host,(externalHosts.get(child.host)||0)+1);
     }
   }
+}
+while(queue.length&&visited.size<MAX_PAGES){
+  const batch=queue.splice(0,Math.min(CONCURRENCY,MAX_PAGES-visited.size));
+  await Promise.all(batch.map(visit));
 }
 
 const checked=[...visited.entries()].map(([url,x])=>({url,...x}));

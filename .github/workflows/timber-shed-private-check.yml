@@ -1,0 +1,42 @@
+name: Timber Shed private release checks
+on:
+  pull_request:
+    paths:
+      - 'member-experience/timber-shed*'
+      - 'tests/timber-shed*'
+      - 'worker-entry-v6.js'
+      - 'gate1-whole-estate-production-sweep.mjs'
+      - 'wrangler.timber-shed-acceptance.template.jsonc'
+      - '.github/workflows/timber-shed-private-check.yml'
+permissions:
+  contents: read
+jobs:
+  private-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install pinned source dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Scoped community, privacy, mail and public-shell regressions
+        run: node --test tests/timber-shed-*.test.mjs tests/transactional-mail-reliability.test.mjs tests/shared-footer.test.mjs tests/public-shell-contract.test.mjs
+      - name: Install browser driver without downloading a browser
+        run: npm install --prefix "$RUNNER_TEMP/shed-browser" --ignore-scripts --no-audit --no-fund --package-lock=false --no-save puppeteer-core@25.12.0
+      - name: Actual cookie, local D1, desktop/mobile and backup-restore acceptance
+        env:
+          TIMBER_SHED_RUNTIME_MODULES: ${{ github.workspace }}/node_modules
+          TIMBER_SHED_PUPPETEER_PATH: ${{ runner.temp }}/shed-browser/node_modules/puppeteer-core
+          TIMBER_SHED_CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          test -x "$TIMBER_SHED_CHROME_PATH"
+          node tests/timber-shed-private-runtime-acceptance.mjs
+          node tests/timber-shed-forum-appeals-browser.mjs
+      - name: Build complete Worker without deployment or production access
+        run: node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/shed-worker-build"

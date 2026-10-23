@@ -159,3 +159,158 @@ Official references checked 23 October 2026:
 - ICO special-category data guidance: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/a-guide-to-lawful-basis/special-category-data/
 
 Follow current official guidance when completing the assessments; this pack is an operational draft, not a claim of regulatory approval. Existing source checks and the synthetic receipts are detailed in TIMBER-SHED-PRIVATE-BOUNDARY.md. No clinician, external organisation, insurer or regulator has been appointed, contacted or represented as approving this build. Matt has nominated Linda O'Brien as cover; her accepted availability, training and account access have not been verified, and she has not been contacted by this worker.
+
+## 8. 23 October resolution increment — concrete pilot proposal
+
+Matt instructed “Resolve” after the launch-readiness gaps were identified. The following is prepared for a controlled initial pilot, not an open public launch. Maximum ten active, individually cleared adults; no new vendor, paid service, real-member invitation, public launch or external message is created by this proposal. Matt has asked that Linda's arrangements be left aside for now; this increment does not reopen that discussion or invent a completed human drill.
+
+### Membership, consent and age control now implemented
+
+The server requires the exact adopted governance version `shed-pilot-governance-2026-10-23-v1`, all existing service gates, explicit retention enablement, a current maintenance heartbeat, a current adult-access clearance and the member's versioned rules/privacy agreement. An account DOB and verified email alone no longer open the community. More than ten active adult clearances pauses pilot access rather than silently expanding the pilot.
+
+The member sees unticked agreement/consent controls. Health-disclosure consent is separate and optional: a member may join to read without agreeing to post health information. Submitting requires explicit disclosure consent; neither a moderator nor an AI can tick it on the member's behalf. The record holds account ID, policy versions, acceptance time and disclosure-consent time. A stale policy requires renewal. The member can reopen the rules/privacy text, export the record and leave to withdraw participation. Their My Timber account remains independent.
+
+Adult-access evidence is limited to a method, opaque reference, reviewer, check date, expiry and revocation. No ID image or extra DOB is collected by these tables. Two methods are prepared: a genuinely verified adult-account record or live photo-ID matching. A label in the database is not proof of an effective check.
+
+**Proposed manual admission procedure:** verify an existing identity/age result actually belongs to the same account and establishes adulthood, or check the original age document and live holder with appropriate authenticity/likeness safeguards. Check DOB is 18+, identity/account ownership and attempts to reuse another person's evidence. Record only the result/reference, reviewer and validity; do not copy identity images into the forum, emails or personal device folders. Do not substitute self-declaration, a family relationship, an unverified photograph or a billing card for this check. Refuse admission where the evidence cannot be reliably assessed. Provide an accessible alternative review route; do not improvise an unreliable check.
+
+A competent owner still needs to validate and adopt the actual age-assurance procedure against Ofcom's accuracy, robustness, reliability and fairness criteria. No HEAA certification or “children cannot access” conclusion is claimed. The executable gate is completed; its real evidence cannot be fabricated in software.
+
+### Candidate processing decisions — prepared for controller adoption
+
+| Purpose | Proposed basis / condition | Safeguards and remaining decision |
+| --- | --- | --- |
+| Requested private community account and access | Article 6(1)(b), limited to delivering the optional requested service | Separate from treatment; verify necessity and approve final member notice |
+| A member's chosen health disclosures, premoderation and approved sharing | Article 6(1)(a) and Article 9(2)(a), explicit consent | Separate unticked control; read-only alternative; withdrawal clears active text and derived flags; assess freely given choice before adopting |
+| Minimal nonclinical security/moderation/access evidence | Article 6(1)(f), legitimate interests in safe operation, fair appeals and preventing ban evasion | Necessity/balancing below; do not retain health content indefinitely under this heading |
+| A necessary disclosure or retention for a genuine legal obligation/claim | Case-specific assessment only | No blanket emergency/legal-claims exemption asserted; record the actual justification and applicable Article 9 condition where needed |
+
+Legitimate-interest assessment draft: purpose is preventing misuse and supporting fair community decisions. The least data needed is account linkage, generic action, controlled reason and times; a public name or copied health narrative is unnecessary. Member impact includes mistaken restrictions and unwanted persistence. Independent human appeal, export, tight access, short evidence windows, text clearing and periodic review reduce that impact. Limit processing to those purposes, do not reuse it for marketing/treatment decisions and reconsider an objection individually. Matt must adopt the balancing judgement; this draft does not assert his signature.
+
+For the initial proposal, external AI and automated email remain off. Bouncer's deterministic screening and human approval operate without transmitting member text to OpenAI. A real-text AI launch needs separate assessed provider processing, accurate member information and a compatible lawful processing condition; the present health consent is not permission for an undisclosed new purpose.
+
+### Candidate retention schedule — now implemented but not activated
+
+| Record | Proposed maximum / trigger | Implemented treatment |
+| --- | --- | --- |
+| Pending text | 7 days awaiting review | Clear text, signals and related notices/reports; leave a minimal expired record |
+| Rejected/removed text | 30 days after decision; up to 90 days while a post appeal is open | Clear text/signals and close any over-age open post appeal with an explicit expiry audit |
+| Approved text | 365 days from creation | Clear and remove from feeds; a parent disappearing also hides its replies |
+| In-app notifications | 30 days | Purge in bounded maintenance |
+| Closed reports, post appeals and moderation metadata | At most 365 days, subject to earlier erasure and linked content clearing | Bounded purge; recent/open appeal records prevent cascading deletion of their tombstone |
+| Active restriction | While necessary to enforce it; review at least every 90 days | Active bans are not silently purged or automatically renewed; human review remains required |
+| Closed restriction/access-appeal evidence | At most 365 days after closure/expiry, retaining a recent appeal's period | Purge restriction and linked audit when eligible |
+| Member leaves / withdraws participation | Immediate active-forum clearing | Clear consent, chosen name, own text, derived screening flags, incoming report categories and stale notices; retain only justified minimal access/moderation records |
+| Recovery backups | Up to 30 days under D1's published recovery limits | Not an immediate-erasure promise; restore procedure must reapply erasures before access resumes |
+
+These periods are an engineering/operating proposal, not statutory retention periods. Adopt them deliberately or request a different justified schedule before real-member processing. “At most” does not create a minimum retention entitlement; member withdrawal or linked deletion may clear records earlier. No perpetual legal hold or health-data archive has been created.
+
+Maintenance uses a separate hourly event (`17 * * * *`) rather than consuming the existing quarter-hour intelligence jobs' D1 allowance. It clears seven content records per invocation and bounded metadata batches, remains idempotent and writes a completion heartbeat only after success. Browsing/posting pauses if no successful heartbeat exists within two hours; own export/departure remain available. Retention can continue while community access is switched off. The production cron/configuration is unchanged: this is prepared code, not activated processing.
+
+### Risk assessment draft against the actual candidate
+
+Ratings are engineering judgements for owner review, using Low/Moderate/High, not a regulator's classification. A residual rating is conditional on the listed controls being operated and verified in the deployed environment.
+
+| Risk | Initial | Specific controls/evidence | Residual / unresolved point |
+| --- | --- | --- | --- |
+| Unsafe medication advice/trading | High | Rule-based holds; every post premoderated; high-risk ordinary approval blocked; controlled bans and independent appeals tested | Moderate; missed language/context and human error remain |
+| Self-harm/eating-disorder or other specialist-risk material | High | Unpublished high/critical holds; no clinical response; incident procedure and scope messages | Moderate/High until a factual incident rehearsal is accepted; no clinician substituted |
+| A child entering an adult weight/health space | High | Server DOB/email check plus separate reviewed adult clearance, expiry/revocation and ten-adult cap | High until actual assurance method is validated; self-declaration is insufficient |
+| Sensitive data exposed to other accounts | High | Actual-cookie/D1 isolation tests; approved-only feeds; no public profiles/DMs; separate display names; no health-record import | Moderate; copied or identifying text can escape screening |
+| Third-party health information in a post | High | Prohibition, personal-information flags, human withholding, report/withdrawal | Moderate; cannot rely on the author's consent for another person's data |
+| Invalid or bundled consent | High | Separate affirmative health consent, version/time record, read-only choice, independent My Timber access | Moderate pending controller adoption of notice and freely-given assessment |
+| Over-retention | High | Implemented 7/30/90/365 schedule, withdrawal clearing, hourly maintenance and failure heartbeat | Moderate pending deployed scheduler/backup acceptance |
+| Lost evidence / unfair ban | High | Atomic audit, failed-write rollback, independent post/access appeals, recent-appeal retention guard | Moderate; staff conflicts and human timeliness remain operational |
+| Unstaffed incident or missed report | High | Human queue, no continuous-monitoring claim, pause procedure, no automatic incident resolution | High until accepted practical operating readiness; no staffing evidence invented |
+| Account sharing/compromise or staff misuse | High | Existing session auth, revoked/expired cookie denial, individual moderator roles, no client-supplied account identities | Moderate; deployed device/account controls and access review still required |
+| Backup restore reintroduces erased information | High | Closed-database snapshot/damage/restore rehearsal; record erasures and reapply before reopening | Moderate pending controlled hosted recovery acceptance |
+| External model or email disclosure | High | Default-off separate gates; synthetic acceptance host forces both off and has no provider secrets | Low for initial deterministic/in-app-only candidate; reassess before any change |
+
+### Children's access and online-safety findings
+
+Stage 1: current DOB/email checks alone do not justify concluding children cannot access. The new clearance table enforces admission but does not prove the check's effectiveness. A manual process or upstream verified-age evidence must be validated before relying on it as highly effective assurance.
+
+Stage 2 draft: no real pilot usage exists to measure. The topic (weight/body image, wellbeing and medication discussion) can interest children despite adult branding. There is insufficient evidence to assert that the child-user condition is not met. Treat child access as a live risk; keep access closed until an evidence-backed assessment and appropriate measures are adopted. The ten-person proposal does not claim a small-service exemption.
+
+Illegal-content assessment draft: text-only posts and replies create potential for harassment/threats, discrimination, medicine trading, fraud and harmful coercion despite no DMs/media. Controls are premoderation, high-risk withholding, reports, account restrictions, appeals, audit and restricted staff evidence. No virality, paid promotion, public discovery or algorithmic engagement recommender is present. Low apparent exposure to other illegal-content categories does not mean zero; the owner must complete and retain the current Ofcom category-by-category assessment and justified conclusions for the actual deployed design. This section is evidence and findings, not a claim that the full statutory assessment has been signed.
+
+## 9. Prepared protected acceptance deployment
+
+Exact proposed target: `shift-timber-shed-acceptance-20261023`, using a **new dedicated synthetic D1 database** named `shift-timber-shed-synthetic-acceptance-20261023`. Template: `wrangler.timber-shed-acceptance.template.jsonc`. It has no production domain routes/bindings, no email/provider secrets, no real accounts and no public invitation flow. It fails closed without the explicit synthetic environment, dedicated binding and a securely configured private Basic-auth credential. No credential is embedded in source.
+
+The host serves the actual Shed presentation and forum/private handlers and existing cookie authentication. It exposes only the protected fictional-account selector, same-origin session/maintenance endpoints and Shed paths/assets; unrelated registration, checkout and public APIs return 404. AI and email are forcibly disabled even if a template is misconfigured.
+
+Prepared migration sequence for a **fresh synthetic database only**:
+1. Verify the exact approved target/database ID; refuse an existing account database.
+2. Apply `timber-shed-acceptance-base.sql` (initial CREATE fails if users already exists), then `timber-shed-forums.sql`, then `timber-shed-private.sql`, then `timber-shed-acceptance-seed.sql`.
+3. Configure a generated private credential securely; do not paste it into chat/source/logs. Execute only within authorisation for this isolated synthetic target. Matt’s current instruction to resolve readiness authorises this necessary private acceptance work; public/member launch remains separately held.
+4. From the authenticated host run the protected same-origin maintenance POST; verify a current heartbeat. Choose each fictional account, explicitly agree, and test both member and moderator paths.
+5. Verify unauthorised 401, unrelated routes 404, pending invisibility, high-risk holds, consent/age/revocation, independent appeals, restrictions, mobile/keyboard use, expiry maintenance, export/leave and recovery. Record exact deployed version and results.
+6. Stop access first if anything fails. Disable the test Worker or its credentials, preserve sanitised evidence and rebuild only the synthetic database. Never use a whole-production-database restore as a forum rollback.
+
+The original proposal above is superseded as to test execution by the verified private acceptance receipt below; it still does not authorise real-member release. Creation/deployment uses the existing Cloudflare account; no new subscription, cost agreement or purchase is authorised. A later real pilot needs an exact release instruction, approved real configuration/migration, validated adult evidence and completed operating/privacy decisions. Public general registration is outside this ten-person candidate.
+
+Sources for this increment, checked 23 October 2026:
+- ICO explicit consent conditions: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-are-the-conditions-for-processing/
+- Ofcom children's access guidance: https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/childrens-access-assessment-duties-under-the-online-safety-act
+- Cloudflare D1 recovery limits: https://developers.cloudflare.com/d1/platform/limits/
+- Cloudflare Time Travel: https://developers.cloudflare.com/d1/reference/time-travel/
+
+## 10. Detailed illegal-content assessment draft — 23 October 2026
+
+This records each category on Ofcom's current illegal-content duties page, including its CSEA subgroups and the June 2026 updates. The labels below are factual categories, not a finding that an individual post commits an offence. This is a service-specific pre-launch draft for Matt's adoption, with no real usage data; do not label it regulator-approved.
+
+Assessed configuration: UK user-to-user text community; at most ten cleared adult accounts; separate display names; no public feed/profile, private messaging, media upload, outbound links, paid promotion or engagement recommender; all text held until human approval; report/block/access controls and independent appeals. URL syntax is rejected, but obfuscated references remain possible. All risk findings change if these features or the audience change.
+
+Evidence: actual Cloudflare D1/cookie and browser acceptance; high-risk ordinary publication refusal; private membership/consent gates; tested report, block, restriction and appeal controls; source review of the deterministic Bouncer. A keyword rule is not a general criminality classifier. Human review of every post, effective staff availability and validated admission are essential assumptions, not facts proven by a synthetic run.
+
+Control references: H = human premoderation and unpublished specialist-risk hold; T = text-only/no DM/media and URL/contact restrictions; A = reviewed adult admission and capped accounts; R = reports, blocks, restrictions, appeal/audit; E = factual incident/evidence and appropriate escalation procedure. Likelihood is a cautious qualitative estimate for this design; impact addresses affected people, including people outside the service.
+
+| Kind assessed | Likelihood / impact | Draft current risk | Relevant findings and measures |
+| --- | --- | --- | --- |
+| Terrorism | Unlikely / severe | Low | Text could praise, recruit or direct people elsewhere despite no media. H/T/R/E; no keyword-only assurance |
+| CSEA overall | Unlikely / severe | Low, conditional on admission | Adult design reduces contact opportunities, not exploitation risk to zero. A/H/T/R/E; reassess immediately on an age concern |
+| Grooming (CSEA subgroup) | Unlikely / severe | Low, conditional | No private messaging or public profile; off-platform contact proposals can still occur. H/A/T/R; do not rely on adult branding |
+| Child abuse imagery (CSEA subgroup) | Unlikely / severe | Low | No upload or embedded-user-HTML path; literal text and references could facilitate harm. T/H/E; never circulate suspected material through routine email |
+| CSAM URL references (CSEA subgroup) | Unlikely / severe | Low | Ordinary URL forms rejected; obfuscation may bypass pattern checks. H/T/R/E; no claim of comprehensive URL detection |
+| Hate | Possible / serious | Medium | A health/body-image group can attract targeted hate or hostility. H/R/E plus rules on discriminatory abuse; context matters |
+| Harassment, stalking, threats and abuse | Possible / serious | Medium | Persistent contact and disclosures can occur through replies; pseudonyms do not prevent targeting. H/T/R; mutual hiding and restricted staff evidence |
+| Coercive/controlling conduct | Possible / serious | Medium | Manipulative health, relationship or money demands can be framed as support. H/R/E; moderators must assess patterns rather than a single phrase |
+| Intimate-image abuse | Unlikely / severe | Low | No image upload; threats or pointers could still be posted. T/H/R/E |
+| Extreme pornography | Unlikely / severe | Low | No media rendering or URL posting; text can still facilitate access. T/H/E |
+| Adult sexual exploitation | Unlikely / severe | Low | No DM/profile directory or solicitation; text recruitment remains possible. H/T/R/E |
+| Human trafficking | Unlikely / severe | Low | No marketplace, matching or employment offer feature; recruitment text remains possible. H/T/R/E |
+| Illegal immigration facilitation | Unlikely / serious | Low | No service purpose or transaction feature for this conduct; possible off-topic facilitation text must still be withheld. H/T/R/E |
+| Fraud and financial offences | Possible / serious | Medium | Weight-loss services and medicines create a plausible scam/impersonation route. H/T/R; no member payments, promotion or automatic commercial referrals |
+| Criminal proceeds | Unlikely / serious | Low | No payment transfer, trading or marketplace features; text could arrange activity elsewhere. H/T/R/E |
+| Drugs/psychoactive substances | Possible / severe | Medium | Medicine trading and illicit products are directly relevant misuse risks. Strong no-trading rule, Bouncer hold, H/T/R/E; personal experience is distinguished from supply |
+| Weapons | Unlikely / severe | Low | No marketplace/media; threats or procurement text can still appear. H/T/R/E |
+| Suicide/serious self-harm encouragement or assistance | Possible / severe | Medium | Health/wellbeing discussion can contain vulnerable disclosures or harmful encouragement. H/R/E; withheld high-risk material, no clinical advice or automatic crisis promises |
+| Foreign interference | Unlikely / serious | Low | No political targeting, advertising or recommender; coordinated deceptive text remains possible. H/T/R |
+| Animal cruelty | Unlikely / serious | Low | No images/video or service purpose for it; encouragement/facilitation in text remains possible. H/T/R/E |
+| Cyberflashing | Unlikely / severe | Low | Direct image transmission is absent; indirect references/solicitation remain possible. T/H/R/E; reassess before adding media/DMs |
+| Other potentially illegal conduct | Possible / serious | Medium for health/product misuse | Assess unsafe/unlicensed supply, unlawful claims, privacy violations, impersonation and harmful communications on their facts. H/T/R/E and no clinical/commercial expansion by default |
+
+Multiple provisional Medium findings mean the proposal must not be described as a low-risk service merely because it is small. Before activation, reconcile the current applicable user-to-user Code measures against this assessed design: governance/accountability, moderation, reporting/complaints, user settings/support, terms, access and controls. No recommender or media-processing obligation is declared irrelevant simply from a feature name; record the actual absence and revisit before adding it.
+
+Prepared operating decisions: Matt owns this record; keep unlawful/specialist-risk material unpublished; remove promptly on awareness; preserve only necessary restricted evidence; support reporting and independent complaints; log review outcomes and changes to controls. Review the assessment before material feature/audience changes, after a significant incident or regulator guidance change, and at least annually. These are proposed operating duties, not newly created monitoring automations.
+
+Children's-risk preparation remains conservative: body-image/eating-disorder encouragement, self-harm, bullying/hate, dangerous health practices and substance misuse are plausible even in an adult-labelled service. Admission and premoderation must operate before exposure. No engagement ranking, competition, calorie target, private messaging or media is added by this build. Validate adult assurance and record the actual children's-access conclusion; if the service is found likely to be accessed by children, complete/adopt the corresponding children's assessment and measures rather than treating this adult-pilot proposal as an exemption.
+
+Official category source: https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/illegal-content-duties-under-the-online-safety-act (current June 2026 update reviewed 23 October). Full guidance: https://www.ofcom.org.uk/siteassets/resources/documents/online-safety/information-for-industry/illegal-harms/updates/risk-assessment-guidance-and-risk-profiles.pdf?v=419947
+
+## 11. Private acceptance completion receipt — 23 October 2026 (UTC)
+
+Executed the necessary protected synthetic acceptance under Matt's “Resolve” instruction. The earlier no-hosted-deployment wording described the prior increment, not an indefinite bar on this private test. The stopped original worker/public-teaser scope is not restarted; public/member activation, communications and production changes remain held.
+
+Protected Worker: https://shift-timber-shed-acceptance-20261023.matobrien.workers.dev. Verified version `dc753bb9-07cc-4b97-a4b8-0b64741d0812`, deployed 11:43:35 UTC. Its dedicated new database contains only the four fictional accounts; no production binding or member data was copied. Private credential configured through encrypted Worker secret and kept out of source/chat. Missing-secret/unauthorised access returns 401.
+
+**Verification:** 172 scoped automated tests, zero failures; 59 actual-cookie/local-D1 checks, including explicit desktop/mobile consent, expiry/retention, failed-write rollback, stable-database backup/damage/restore and migration reapply. The complete production Worker builds in dry-run (about 5.5 MiB gzip); this is not a production deployment. The dedicated CI workflow now runs the scoped tests, required real browser/runtime acceptance and full build for future changes.
+
+**Hosted acceptance:** 53 checks passed at 11:47:27 UTC, using actual Cloudflare D1 and the shipped authentication/routes. Includes false-identity refusal, explicit/read-only agreement, separate names, pending invisibility, human approval, Bouncer high-risk refusal, independent post/access appeals, blocking, restrictions, owner-only export, departure, and keyboard/desktop/mobile posting plus browser moderator approval. No page errors or overflow in the scoped flows. Corrected a test-selector form hand-off: no-referrer produced Origin:null on native navigation; the selector now uses same-origin referrer policy while retaining strict Origin validation. Null/cross-origin submissions remain denied. Corrected stale guided-only hero/privacy wording in forum mode; ordinary private-progress mode is unchanged.
+
+**Native hosted recovery:** at 11:48:52 UTC captured a D1 Time Travel bookmark, deliberately deleted only the verified fictional post table contents, restored through Cloudflare and matched the exact digest of all six post rows. Departed-member consent/profile remained cleared; the hosted session/export still worked and the private gateway still returned 401 unauthorised. This was the separate synthetic database, never the production database. A real restoration must additionally reconcile any erasures since its chosen recovery point before reopening access.
+
+**Limits and next genuine decisions:** these are fictional seeded sessions, not a fresh production registration/email or elapsed twelve-hour acceptance. No real clinician/charity endorsement, live AI processing, email delivery, real-person incident rehearsal or HEAA certification is inferred. The new detailed privacy/retention and admission/risk assessment proposal requires controller adoption and validation before real people join. The actual member release remains separately authorised; the candidate is a capped adult pilot rather than an unrestricted public launch. Matt's rules/ownership and Linda's nomination remain recorded without further staffing requests in this increment.
+
+The former Medicines Watch source-preservation CI failure is now verified resolved on parent bc2a39dc; that workflow completed successfully. Its whole-estate serial crawl was still running when checked. The crawler now uses four bounded requests and per-request deadlines, with dedicated local fixtures proving full discovery, truncation failure, HTTP/blank/redirect failure and a hanging-body deadline. Current-head CI must be observed separately; old-head results are not relabelled as new-head passes.

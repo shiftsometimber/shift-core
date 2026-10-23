@@ -43,3 +43,16 @@ test('forum scripts require both forum gates and AI label requires both AI gates
  assert.doesNotMatch(await (await route(new Request(origin+'/member/timber-shed'),{...forum,TIMBER_SHED_AI_MODERATION_ENABLED:'true'})).text(),/AI-model and rule-based safety screening/);
  assert.match(await (await route(new Request(origin+'/member/timber-shed'),{...forum,TIMBER_SHED_AI_MODERATION_ENABLED:'true',TIMBER_SHED_AI_PROVIDER_APPROVED:'true'})).text(),/AI-model and rule-based safety screening/);
 });
+
+test('forum presentation distinguishes deliberate community posts from private My Timber records',async()=>{
+ const {createTimberShedPresentationRoutes}=await import('../member-experience/timber-shed-presentation.mjs');
+ const route=createTimberShedPresentationRoutes(async()=>({userId:1}));
+ const flags={MEMBER_EXPERIENCE_V1_ENABLED:'true',TIMBER_SHED_PRIVATE_ENABLED:'true',TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true'};
+ const request=new Request('https://fixture.test/member/timber-shed');
+ const active=await (await route(request,flags)).text();
+ assert(!active.includes('There is no public profile, member feed or posting.'));
+ assert(active.includes('Only posts you deliberately submit can enter the member community, after human review.'));
+ assert(active.includes('For these optional private progress ticks'));
+ const inactive=await (await route(request,{...flags,TIMBER_SHED_FORUM_ENABLED:'false'})).text();
+ assert(inactive.includes('There is no public profile, member feed or posting.'));
+});

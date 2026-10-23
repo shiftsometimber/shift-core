@@ -3,6 +3,8 @@ export const timberShedForumPilotMarkup=`<section class="section" id="shedForumP
 <div class="eyebrow">THE TIMBER SHED / PRIVATE FORUM PILOT</div><h2>Pull up a chair.</h2>
 <p class="lead">Six rooms, one community. Choose a separate display name before joining. Your My Timber account information is never shown here.</p>
 <div class="privacy"><strong>Only words you deliberately submit can enter a forum.</strong><p>Nothing is published immediately. Every new discussion and reply waits for a trained moderator. Do not include your real name, contact details, medical records or anything you would not want other members to read.</p></div>
+<section id="shedParticipation" class="shed-form" hidden><h3 tabindex="-1">Before you join</h3><div id="shedPolicyText"></div><form id="shedParticipationForm"><label><input type="checkbox" id="shedRulesAccepted" required> I agree to the community rules</label><label><input type="checkbox" id="shedPrivacyAcknowledged" required> I have read the community privacy information</label><label><input type="checkbox" id="shedHealthConsent"> <span id="shedHealthConsentText"></span></label><p>You can leave health consent unticked and read without posting. Joining the Shed is optional; your My Timber account and treatment access are unaffected.</p><button type="submit" class="btn" id="shedJoin">Save my community choices</button><p id="shedParticipationStatus" role="status"></p></form></section>
+<button type="button" id="shedViewPolicy" class="shed-subtle-btn">Community rules and privacy</button>
 <nav class="shed-community-nav" aria-label="Community sections">
 <button type="button" data-shed-view="latest" aria-pressed="true">Latest conversations</button>
 <button type="button" data-shed-view="rooms" aria-pressed="false">Discussion rooms</button>
@@ -64,7 +66,7 @@ export const timberShedForumPilotClient=String.raw`(()=>{'use strict';
 const by=id=>document.getElementById(id);
 const status=by('shedForumStatus'),aliasForm=by('shedAliasForm'),alias=by('shedAlias'),compose=by('shedCompose'),room=by('shedRoom'),topics=by('shedTopics'),mod=by('shedModeratorPanel');
 if(!status)return;
-let currentRoom='main-shed',currentThread=null,parentId=null,hasAlias=false,rooms=[];
+let currentRoom='main-shed',currentThread=null,parentId=null,hasAlias=false,rooms=[],healthConsent=false,participationVersion=null;
 const text=(tag,value,cls)=>{const el=document.createElement(tag);el.textContent=String(value??'');if(cls)el.className=cls;return el};
 const say=(id,message)=>{const el=by(id);if(el)el.textContent=message};
 const roomName=id=>rooms.find(r=>r.id===id)?.name||'Discussion room';
@@ -321,6 +323,26 @@ async function moderation(){
   }
  }catch(e){if(e.message==='moderator_only'){by('shedModNav').hidden=true;mod.hidden=true}else say('shedForumStatus',e.message)}
 }
+function showParticipation(data){
+ healthConsent=data.healthConsent;participationVersion=data.policy.version;
+ const panel=by('shedParticipation');panel.hidden=data.joined&&data.adultAccess&&healthConsent;
+ const info=by('shedPolicyText');info.replaceChildren(text('h4','Community rules'));
+ for(const value of data.policy.rules)info.append(text('p',value));
+ info.append(text('h4','Your community information'));
+ for(const value of data.policy.privacy)info.append(text('p',value));
+ by('shedRulesAccepted').checked=data.joined;by('shedPrivacyAcknowledged').checked=data.joined;
+ by('shedHealthConsent').checked=healthConsent;by('shedHealthConsentText').textContent=data.policy.healthConsent;
+ by('shedJoin').disabled=!data.adultAccess;
+ if(!data.adultAccess)say('shedParticipationStatus','Community access needs an adult-access review before you can join. You can still export or clear your own previous community information.');
+}
+by('shedViewPolicy').addEventListener('click',()=>{by('shedParticipation').hidden=false;by('shedParticipation').querySelector('h3').focus()});
+by('shedParticipationForm').addEventListener('submit',async event=>{
+ event.preventDefault();const submit=by('shedJoin');submit.disabled=true;
+ try{
+  await api('participation/consent',{version:participationVersion,rulesAccepted:by('shedRulesAccepted').checked,privacyAcknowledged:by('shedPrivacyAcknowledged').checked,healthConsent:by('shedHealthConsent').checked});
+  location.reload();
+ }catch(e){submit.disabled=false;say('shedParticipationStatus',e.message)}
+});
 by('shedExport').addEventListener('click',async()=>{
  try{
   const data=await api('export'),url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
@@ -348,7 +370,7 @@ by('shedRefreshNotifications').addEventListener('click',()=>notifications().catc
 aliasForm.addEventListener('submit',async event=>{
  event.preventDefault();
  try{
-  const data=await api('profile/save',{displayName:alias.value.trim()});hasAlias=true;aliasForm.hidden=true;compose.hidden=false;
+  const data=await api('profile/save',{displayName:alias.value.trim()});hasAlias=true;aliasForm.hidden=true;compose.hidden=!healthConsent;
   say('shedForumStatus','Community name saved. Your My Timber personal details remain private.');
   switchView('latest');await latest();
  }catch(e){say('shedAliasStatus',e.message)}
@@ -363,6 +385,12 @@ compose.addEventListener('submit',async event=>{
  }catch(e){say('shedComposeStatus',e.message)}
 });
 (async()=>{try{
+ const participation=await api('participation');showParticipation(participation);
+ if(!participation.adultAccess||!participation.joined||!participation.maintenanceReady){
+  aliasForm.hidden=true;compose.hidden=true;
+  for(const control of document.querySelectorAll('[data-shed-view]'))control.hidden=!['mine','safety'].includes(control.dataset.shedView);
+  switchView('safety',false);await safety();say('shedForumStatus',!participation.adultAccess?'Adult-access review is required.':!participation.maintenanceReady?'Community access is temporarily paused while maintenance is checked. Your export and departure controls remain available.':'Read the rules and privacy information to join.');return;
+ }
  const access=await api('access');accessRestricted=!!access.restriction;
  if(accessRestricted){
   aliasForm.hidden=true;compose.hidden=true;
@@ -372,7 +400,7 @@ compose.addEventListener('submit',async event=>{
  const result=await Promise.all([api('rooms'),api('profile')]);rooms=result[0].rooms;
  for(const item of rooms){const option=document.createElement('option');option.value=item.id;option.textContent=item.name;room.append(option)}
  currentRoom=room.value||currentRoom;updateRoom();
- hasAlias=!!result[1].profile;aliasForm.hidden=hasAlias;compose.hidden=!hasAlias;
+ hasAlias=!!result[1].profile;aliasForm.hidden=hasAlias;compose.hidden=!hasAlias||!healthConsent;
  if(hasAlias)say('shedForumStatus','Signed in as '+result[1].profile.displayName+'. Your My Timber records are not shared.');
  else say('shedForumStatus','Choose a separate community name to take part. Nothing is published without moderator approval.');
  switchView(hasAlias?'latest':'rooms',false);

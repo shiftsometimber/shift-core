@@ -1,7 +1,9 @@
 // Actual cookie authentication + local workerd/D1. Fictional accounts only.
 // Runtime dependencies may be supplied from an existing Wrangler installation.
 import {createRequire} from 'node:module';
-import {readFileSync} from 'node:fs';
+import {readFileSync,mkdtempSync,cpSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -10,11 +12,13 @@ const dependency=name=>require(process.env.TIMBER_SHED_RUNTIME_MODULES?process.e
 const {build}=dependency('esbuild'),{Miniflare}=dependency('miniflare');
 const entry=String.raw`
 import {timberShedForumRoutes} from './member-experience/timber-shed-forum-routes.mjs';
+import {runTimberShedRetention} from './member-experience/timber-shed-retention.mjs';
 import {timberShedPresentationRoutes} from './member-experience/timber-shed-presentation.mjs';
 import {appendTimberShedPrivateExport,timberShedPrivateRoutes} from './member-experience/timber-shed-private.mjs';
 
 export default {async fetch(request,env){
  const pathname=new URL(request.url).pathname;
+ if(pathname==='/__synthetic/maintenance'&&request.method==='POST'&&request.headers.get('Origin')===new URL(request.url).origin)return Response.json(await runTimberShedRetention(env));
  const presentation=await timberShedPresentationRoutes(request,env);if(presentation)return presentation;
  if(pathname==='/v1/privacy/export'&&request.method==='POST'){
   if(request.headers.get('Origin')!==new URL(request.url).origin)return new Response(null,{status:403});
@@ -24,8 +28,11 @@ export default {async fetch(request,env){
 }};
 `;
 const bundle=await build({stdin:{contents:entry,resolveDir:root,sourcefile:'timber-shed-synthetic-entry.mjs'},bundle:true,format:'esm',platform:'browser',write:false});
-const flags={TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_PRIVATE_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true'};
-const mf=new Miniflare({modules:true,script:bundle.outputFiles[0].text,compatibilityDate:'2025-11-01',d1Databases:{DB:'timber-shed-synthetic-only'},bindings:flags,host:'127.0.0.1',port:0,outboundService:()=>new Response(null,{status:503})});
+const flags={TIMBER_SHED_RETENTION_ENABLED:'true',TIMBER_SHED_GOVERNANCE_APPROVED_VERSION:'shed-pilot-governance-2026-10-23-v1',TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_PRIVATE_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true'};
+const stateRoot=mkdtempSync(join(tmpdir(),'timber-shed-synthetic-rehearsal-'));
+const persist=join(stateRoot,'live'),backup=join(stateRoot,'backup'),restored=join(stateRoot,'restored');
+const runtimeOptions={modules:true,script:bundle.outputFiles[0].text,compatibilityDate:'2025-11-01',d1Databases:{DB:'timber-shed-synthetic-only'},bindings:flags,host:'127.0.0.1',port:0,outboundService:()=>new Response(null,{status:503})};
+let mf=new Miniflare({...runtimeOptions,d1Persist:persist}),recovery;
 let browser;
 try{
  const db=await mf.getD1Database('DB'),origin=String(await mf.ready).replace(/\/$/,'');
@@ -42,6 +49,11 @@ try{
   await db.prepare("INSERT INTO user_auth VALUES(?,1)").bind(id).run();
   await db.prepare("INSERT INTO user_sessions(id,user_id,token_hash,expires_at) VALUES(?,?,?,?)").bind('synthetic-session-'+id,id,createHash('sha256').update(tokens[id]).digest('hex'),new Date(Date.now()+3600000).toISOString()).run();
  }
+ for(const id of [1,2,3,6]){
+  await db.prepare('INSERT INTO timber_shed_adult_access VALUES(?,?,?,?,?,?,NULL)').bind(id,'verified-adult-account','fictional-proof-'+id,3,new Date(Date.now()-86400000).toISOString(),new Date(Date.now()+365*86400000).toISOString()).run();
+  await db.prepare('INSERT INTO timber_shed_participation VALUES(?,?,?,?,?)').bind(id,'shed-pilot-governance-2026-10-23-v1','shed-pilot-governance-2026-10-23-v1',new Date().toISOString(),new Date().toISOString()).run();
+ }
+ await db.prepare('INSERT INTO timber_shed_maintenance VALUES(1,?)').bind(new Date().toISOString()).run();
  for(const id of [3,6])await db.prepare("INSERT INTO timber_shed_forum_moderators VALUES(?,1,'now')").bind(id).run();
  const checks=[];
  const check=(name,value)=>{assert(value,name);checks.push(name)};
@@ -102,7 +114,18 @@ try{
    const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(12000);
    await page.setViewport({width,height,deviceScaleFactor:1});
    await page.setCookie({name:'sst_session',value:tokens[2],url:origin,httpOnly:true,sameSite:'Strict'});
+   await db.prepare('DELETE FROM timber_shed_participation WHERE user_id=2').run();
    await page.goto(origin+'/member/timber-shed',{waitUntil:'networkidle0'});
+   await page.waitForFunction(()=>!document.getElementById('shedParticipation').hidden);
+   check('browser'+viewport+'ConsentNotPreticked',!await page.$eval('#shedHealthConsent',el=>el.checked));
+   await page.click('#shedJoin');
+   check('browser'+viewport+'RequiresExplicitRules',!(await call(2,'participation')).data.joined);
+   await page.focus('#shedRulesAccepted');await page.keyboard.press('Space');
+   await page.focus('#shedPrivacyAcknowledged');await page.keyboard.press('Space');
+   await page.focus('#shedHealthConsent');await page.keyboard.press('Space');
+   await Promise.all([page.waitForNavigation({waitUntil:'networkidle0'}),page.click('#shedJoin')]);
+   check('browser'+viewport+'ExplicitAgreementStored',(await call(2,'participation')).data.healthConsent);
+
    await page.click('#shedLatestItems button');
    await page.waitForSelector('#shedTopics .shed-topic-live');
    const controls=await page.$$('#shedTopics .shed-topic-live button');
@@ -150,5 +173,33 @@ try{
  check('leaveClearsAccountContent',(await call(1,'leave',{confirm:'leave-community'})).status===200);
  check('leaveRemovesVisiblePosts',(await call(2,'latest')).data.posts.length===0);
  check('leaveKeepsMyTimberSession',(await call(1,'mine')).status===200);
- console.log(JSON.stringify({localRuntime:true,actualCookieAuthentication:true,actualD1:true,syntheticAccountsOnly:true,checks:checks.length,passed:checks},null,2));
-}finally{if(browser)await browser.close();await mf.dispose()}
+ for(let index=0;index<8;index++){
+  const id='synthetic-expired-'+index;
+  await db.prepare("INSERT INTO timber_shed_forum_posts(id,user_id,room_id,title,body,status,created_at) VALUES(?,2,'main-shed','Fictional expiry test','Fictional content for retention rehearsal','pending',?)").bind(id,new Date(Date.now()-9*86400000).toISOString()).run();
+  await db.prepare("INSERT INTO timber_shed_bouncer_screenings VALUES(?,'fictional-policy',NULL,'routine',3,'[]',?)").bind(id,new Date().toISOString()).run();
+ }
+ const retentionOne=await call(3,'/__synthetic/maintenance',{});
+ check('actualD1RetentionBounded',retentionOne.status===200&&retentionOne.data.expiredPosts===7);
+ const retentionTwo=await call(3,'/__synthetic/maintenance',{});
+ check('actualD1RetentionCompletesBacklog',retentionTwo.status===200&&retentionTwo.data.expiredPosts===1);
+ check('actualD1RetentionClearsSignals',(await db.prepare("SELECT count(*) n FROM timber_shed_bouncer_screenings WHERE post_id LIKE 'synthetic-expired-%'").first()).n===0);
+ check('actualD1MaintenanceHeartbeat',(await call(2,'participation')).data.maintenanceReady===true);
+ // Close the runtime before a filesystem snapshot so WAL/SQLite files form a stable backup.
+ const before=await db.prepare('SELECT count(*) n FROM timber_shed_forum_posts').first();
+ await mf.dispose();mf=null;cpSync(persist,backup,{recursive:true});
+ recovery=new Miniflare({...runtimeOptions,d1Persist:persist});
+ const damaged=await recovery.getD1Database('DB');
+ await damaged.prepare('DELETE FROM timber_shed_forum_posts').run();
+ check('syntheticDamageApplied',(await damaged.prepare('SELECT count(*) n FROM timber_shed_forum_posts').first()).n===0);
+ await recovery.dispose();recovery=null;
+ cpSync(backup,restored,{recursive:true});
+ recovery=new Miniflare({...runtimeOptions,d1Persist:restored});
+ const recovered=await recovery.getD1Database('DB');
+ check('actualD1SnapshotRestored',(await recovered.prepare('SELECT count(*) n FROM timber_shed_forum_posts').first()).n===before.n);
+ for(const sql of readFileSync(root+'member-experience/timber-shed-forums.sql','utf8').replace(/--[^\n]*/g,'').split(';'))if(sql.trim())await recovered.prepare(sql).run();
+ check('migrationReapplyPreservesData',(await recovered.prepare('SELECT count(*) n FROM timber_shed_forum_posts').first()).n===before.n);
+ const recoveryOrigin=String(await recovery.ready).replace(/\/$/,'');
+ const proof=await recovery.dispatchFetch(recoveryOrigin+'/v1/timber-shed/forum/export',{headers:{Cookie:'sst_session='+tokens[2]}});
+ check('restoredCookieAndOwnExport',proof.status===200&&(await proof.json()).forum.participation.length===1);
+ console.log(JSON.stringify({localRuntime:true,actualCookieAuthentication:true,actualD1:true,syntheticAccountsOnly:true,closedDatabaseSnapshot:true,restoreVerified:true,checks:checks.length,passed:checks},null,2));
+}finally{if(browser)await browser.close();if(mf)await mf.dispose();if(recovery)await recovery.dispose();rmSync(stateRoot,{recursive:true,force:true})}

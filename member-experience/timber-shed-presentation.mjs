@@ -18,7 +18,12 @@ export function createTimberShedPresentationRoutes(authenticate=authenticateMemb
    const auth=await authenticate(request,env);
    if(auth.response||!Number.isSafeInteger(auth.userId)||auth.userId<=0)return new Response('Sign in to My Timber to continue.',{status:401,headers:{...headers,'Content-Type':'text/plain; charset=utf-8'}});
    const markup=env.TIMBER_SHED_AI_MODERATION_ENABLED==='true'&&env.TIMBER_SHED_AI_PROVIDER_APPROVED==='true'?timberShedForumPilotMarkup.replace('Automated rule-based safety screening','AI-model and rule-based safety screening'):timberShedForumPilotMarkup;
-   const html=forum?timberShedPage.replace(timberShedForumPreview(),markup).replace('</head>','<style>'+timberShedForumPilotCSS+'</style></head>').replace('</body>','<script src="/assets/member-experience/timber-shed-forum.mjs" defer></script></body>'):timberShedPage;
+   const source=forum?timberShedPage
+    .replace('There is no public profile, member feed or posting. Your weight, treatment, mood and health records are never copied into The Timber Shed.','Your My Timber health records stay private. Only posts you deliberately submit can enter the member community, after human review. There are no public member profiles.')
+    .replace('No health records are read, shared or published.','Your private My Timber health records are not read or shared here.')
+    .replace('We only save a programme activity ID, whether you completed it and optional simple feedback if you opt in. No names, measurements, medical notes or community posts.','For these optional private progress ticks, we save the activity ID, completion and simple feedback. Community posts are separate and require your deliberate submission and human review.')
+    :timberShedPage;
+   const html=forum?source.replace(timberShedForumPreview(),markup).replace('</head>','<style>'+timberShedForumPilotCSS+'</style></head>').replace('</body>','<script src="/assets/member-experience/timber-shed-forum.mjs" defer></script></body>'):source;
    return new Response(request.method==='HEAD'?null:html,{headers:{...headers,'Content-Type':'text/html; charset=utf-8'}});
   }
   const body=path.endsWith('timber-shed-forum.mjs')?timberShedForumPilotClient:timberShedClient;

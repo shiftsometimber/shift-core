@@ -19,7 +19,8 @@ try{
    let data={},status=200;
    if(url.pathname==='/member/timber-shed')return request.respond({status,contentType:'text/html',body:html});
    if(request.method()==='POST')writes.push({resource,input});
-   if(resource==='access')data={restriction:null,appeals:[]};
+   if(resource==='participation')data={maintenanceReady:true,adultAccess:true,joined:true,healthConsent:true,policy:{version:'shed-pilot-governance-2026-10-23-v1',rules:[],privacy:[],healthConsent:'Fictional consent'}};
+   else if(resource==='access')data={restriction:null,appeals:[]};
    else if(resource==='blocks')data={blocks:[]};
    else if(resource==='rooms')data={rooms:[{id:'main-shed',name:'The Main Shed'}]};
    else if(resource==='profile')data={profile:{displayName:'Weekend Walker'}};
