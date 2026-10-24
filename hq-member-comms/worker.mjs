@@ -4,7 +4,7 @@ import {hqApi,json,headers} from './api.mjs';
 import {memberApi,suppressAccountCommunications,exportCommunications} from './member.mjs';
 import {runCommunications} from './delivery.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
-const mark='20261024-hq-event-eligibility-v2';
+const mark='20261024-hq-prescription-eligibility-v3';
 export function enhanceHQ(html){if(html.includes('data-real-communications'))return html;const end='<section id="communications" class="view">';if(!html.includes(end))throw Error('hq_communications_anchor_missing');return html.replace(end,end+'<article class="panel" data-real-communications><h2>Emails &amp; My Timber updates</h2><p>Create a service message, review its exact recipients and content, then approve sending or scheduling.</p><a href="/communications" style="display:inline-block;padding:12px 18px;background:#707762;color:#050505;font-weight:800;border-radius:6px">Open communications</a> <a href="https://api.shiftsometimber.co.uk/v1/hq/management/report/notifications/view" style="display:inline-block;padding:12px 18px;background:#707762;color:#050505;font-weight:800;border-radius:6px">Review notification events</a><p>The old provider-placeholder queue below is read-only. Use the new composer for delivery.</p></article>');}
 export function enhanceMember(html){if(html.includes('data-member-updates'))return html;return html.replace('</main>','<p data-member-updates style="padding:16px 0"><a href="/member/notifications" style="color:inherit;font-weight:700">My updates and device notifications</a></p></main>');}
 export default {

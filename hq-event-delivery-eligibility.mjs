@@ -1,5 +1,6 @@
 // Invoked immediately before transport for event-linked drafts only.
 // Existing independently approved manual drafts retain their current path.
+import {prescriptionEventEligibility,prescriptionOutboxEligibility,isPrescriptionEventKind} from './hq-prescription-event-eligibility.mjs';
 export async function eventDeliveryEligibility(DB,payload,draftId,recipient,now=new Date()){
  try{return await checkEvent(DB,payload,draftId,recipient,now)}catch{return{eligible:null,reason:'event_source_unavailable'}}
 }
@@ -45,7 +46,8 @@ async function checkEvent(DB,payload,draftId,recipient,now){
 // Only reference/permission fields are read; no assessment answers or evidence.
 export async function clinicalEventEligibility(DB,item,now=new Date()){
  try{
-  if(String(item.source_id).startsWith('channel:'))return await canonicalClinicalEligibility(DB,item);
+  if(String(item.source_id).startsWith('channel:'))return await canonicalClinicalEligibility(DB,item,now);
+  if(/^(prescription|pharmacy):/.test(String(item.source_id)))return await prescriptionOutboxEligibility(DB,item,now);
   const row=await DB.prepare("SELECT o.recipient_user_id,o.recipient_kind,o.template,e.record_id,r.user_id,r.review_sharing,s.status FROM clinical_case_outbox o JOIN clinical_case_events e ON e.id=o.event_id JOIN clinical_member_records r ON r.id=e.record_id JOIN clinical_case_state s ON s.record_id=r.id WHERE o.id=? AND o.status='pending'").bind(item.source_id).first();
   if(!row||Number(row.review_sharing)!==1||row.recipient_user_id!==item.recipient_user_id)return{eligible:false,reason:'clinical_consent_or_event_changed'};
   if(item.recipient_kind==='member')return{eligible:row.recipient_kind==='member'&&row.user_id===item.recipient_user_id&&(row.template!=='member_action_needed'||row.status==='needs_information'),reason:'clinical_action_no_longer_required'};
@@ -66,9 +68,13 @@ export async function intentSourceEligibility(DB,item,now=new Date()){
  }catch{return{eligible:null,reason:'source_unavailable'}}
 }
 
-async function canonicalClinicalEligibility(DB,item){
- const row=await DB.prepare("SELECT o.recipient_user_id,o.recipient_kind,e.member_id,e.record_id,e.order_number,e.kind,r.user_id,r.review_sharing,c.status,c.draft_id,s.status case_status FROM clinical_case_outbox o JOIN clinical_notification_events e ON o.id IN ('channel:'||e.id||':email','channel:'||e.id||':app') AND o.event_id=o.id JOIN clinical_notification_channels c ON c.event_id=e.id AND o.id='channel:'||e.id||':'||c.channel JOIN clinical_member_records r ON r.id=e.record_id AND r.user_id=e.member_id LEFT JOIN clinical_case_state s ON s.record_id=r.id WHERE o.id=? AND o.status='pending'").bind(item.source_id).first();
+async function canonicalClinicalEligibility(DB,item,now){
+ const row=await DB.prepare("SELECT o.recipient_user_id,o.recipient_kind,e.id notification_id,e.member_id,e.record_id,e.order_number,e.kind,r.user_id,r.review_sharing,c.status,c.draft_id,s.status case_status FROM clinical_case_outbox o JOIN clinical_notification_events e ON o.id IN ('channel:'||e.id||':email','channel:'||e.id||':app') AND o.event_id=o.id JOIN clinical_notification_channels c ON c.event_id=e.id AND o.id='channel:'||e.id||':'||c.channel JOIN clinical_member_records r ON r.id=e.record_id AND r.user_id=e.member_id LEFT JOIN clinical_case_state s ON s.record_id=r.id WHERE o.id=? AND o.status='pending'").bind(item.source_id).first();
  if(!row||item.recipient_kind!=='member'||row.recipient_kind!=='member'||row.member_id!==item.recipient_user_id||row.recipient_user_id!==row.member_id||Number(row.review_sharing)!==1||row.status!=='prepared'||item.draft_id&&row.draft_id!==item.draft_id)return{eligible:false,reason:'clinical_channel_consent_or_event_changed'};
+ if(isPrescriptionEventKind(row.kind)||row.notification_id.startsWith('prescription:')){
+  if(!row.notification_id.startsWith('prescription:'))return{eligible:false,reason:'prescription_source_reference_changed'};
+  return prescriptionEventEligibility(DB,{eventId:row.notification_id.slice('prescription:'.length),recordId:row.record_id,orderNumber:row.order_number,memberId:row.member_id,kind:row.kind,recipientKind:'member',recipientId:item.recipient_user_id},now);
+ }
  if(row.kind==='information_requested'&&row.case_status!=='needs_information')return{eligible:false,reason:'clinical_action_no_longer_required'};
  if(row.kind==='fulfilment_query'){
   const order=await DB.prepare("SELECT json_extract(state_json,'$.status') status FROM partner_fulfilment WHERE order_number=? AND member_id=?").bind(row.order_number,row.member_id).first();if(order?.status!=='query')return{eligible:false,reason:'pharmacy_action_no_longer_required'};
