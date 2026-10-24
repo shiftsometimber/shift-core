@@ -1,0 +1,58 @@
+# HQ people, clinical scope and dispensing — 24 October 2026
+
+Owner request: build the proposed professional onboarding, permissions and dispensing workspace within existing HQ, matching the clinician look and feel. One joined-up order reference. This is an additive implementation, not clinical commissioning or a replacement pharmacy PMR.
+
+## Surfaces
+
+- `/clinical-portal/partners`: restricted HQ directory, partner organisations, applications, evidence metadata, verification, scope, activation/suspension/renewal and audit.
+- `/clinical-portal/partners/application#<capability>`: limited, expiring application link. No HQ or patient access.
+- `/clinical-portal/partners/activation#<capability>`: one-use password creation; no automatic patient access.
+- `/clinical-portal/partners/sign-in`: allocated username, retained HQ password/session verifier and MFA challenge/setup.
+- `/clinical-portal/my-profile`: own professional profile, scope and renewal information.
+- `/clinical-portal/dispensing`: assigned partner orders, pharmacy decisions, preparation, courier tracking and audit.
+- `/clinical-portal/partners/demo` and `/clinical-portal/dispensing/demo`: explicitly fictional, browser-memory-only walkthroughs, network blocked by CSP, refresh resets them. Demo roles intentionally combine privileges to demonstrate the separate approval steps; real HQ ownership does not confer professional governance permission.
+
+No emails, invitations or WhatsApp messages are sent. Setup links are prepared for owner review, not dispatched. Fulfilment messages are durable **drafts**, not delivered notifications. The demo's stock toggle does not affect live stock.
+
+## Security and data boundaries
+
+Existing HQ identity is reused; no member session is accepted for staff endpoints. MFA required for professional/administrative reads and writes. Server permissions are separate from presentation. Each account has an immutable profile ID and allocated username; no shared pharmacy accounts. Credentials are hashed in the retained HQ-compatible PBKDF2 format; setup tokens are hashed, single-purpose, expiring and activation is one-use. No credentials or tokens enter audit snapshots.
+
+Evidence is PNG/JPEG only, size/signature checked, stored using opaque private keys. Evidence viewing requires authority and a successful access audit, is inline/no-store, and fails when retention has elapsed. No automatic facial matching or AI identity approval is implemented. Evidence retention configuration and a tested purge/hold process are required before real uploads; expired access alone is not a deletion system.
+
+Each credential change/renewal invalidates the old verification and scope version. Real register/identity/indemnity/competence checks are human verifications with references and expiry, not proof supplied by ticking a box. Professional scope approval requires a separately configured qualified reviewer and cannot be self-approved. Partner organisation approval is separate from individual approval. Mutations use optimistic versions and atomic audit writes; expiry/revocation is checked at use. Snapshot audits retain professional-state changes without storing the raw ID images in audit logs.
+
+Clinical integration preserves existing assignment, evidence, sharing and revision boundaries, adds service/action scope checks, and binds permission/organisation versions into the case-event transaction. The current casework serves weight-management assessments only; listing a future area in the permission UI does not implement that clinical service.
+
+Dispensing requires a trusted issued-prescription adapter, not a CRM decision. Same order/member/partner mapping is retained. Duplicate prescription handovers and conflicting order mappings are rejected. Partner staff see their assigned orders only; HQ oversight excludes patient/delivery details. Owners cannot perform pharmacy supply decisions using owner permissions. Preparation and dispatch require a current prescription and a fresh positive stock result. Courier links are constructed from an allowlist. Delivery confirmation/webhook ingestion is not yet implemented.
+
+`memberFulfilment()` joins the order AND member identity into the existing case workflow. This is a tested integration seam; the separate My Shift deployment still needs its rendering/production acceptance against the commissioned service. No end-to-end live member delivery is claimed.
+
+## Commissioning requirements — not silently switched on
+
+The published worker **hard-closes** `PARTNER_OPERATIONS_ENABLED`, `PARTNER_LOGIN_ENABLED`, `PARTNER_FULFILMENT_ENABLED` as well as retaining the existing real clinical gates. Provider flag changes alone cannot activate these features.
+
+Before a reviewed activation release:
+
+1. Apply `schema.sql` to the intended DB using the existing additive migration process, with backup/rollback evidence. Requires retained HQ and clinical-casework tables.
+2. Bind a reviewed private staff-evidence store as `PARTNER_PRIVATE_FILES`. Set the agreed retention policy (`PARTNER_EVIDENCE_RETENTION_UNTIL` for this implementation), privacy notice, lawful basis and tested purge/legal-hold process. Do not insert staff ID/selfie data into Git, public assets or fictional fixtures.
+3. Commission named professional scope approvers (`PARTNER_CLINICAL_APPROVER_IDS`, `PARTNER_PHARMACY_APPROVER_IDS`) and verify their retained clinical staff record. Owner sign-off is access approval, not a substitute for competence assessment.
+4. Complete actual-session username/password/MFA acceptance, rate-limit and recovery checks. Login remains separately off until this passes. Restrict legacy HQ user administration from altering managed professional identities outside this workflow.
+5. Connect and verify issued-prescription, prescription-currentness, stock and pharmacy/courier adapters. The verifier is an internal integration dependency, never a browser-supplied declaration. Complete real partner isolation, exception and cancellation acceptance, including repeats and interrupted supply.
+6. Review complete notification drafts, recipients/trigger policy, opt-in and WhatsApp template approval with Matt before enabling delivery. No sending consumer is enabled here.
+7. Finish the shared HQ navigation insertion against the current HQ shell (another active workstream owns its root); these pages already use the HQ hostname/login and do not replace its root worker. Review the staff portal identity/access boundary together with the main API before enabling real casework.
+8. Have the responsible clinical/pharmacy and privacy/security owners approve the operational service. UI tests are not compliance certification.
+
+## Reproduce checks
+
+From repository root:
+
+```
+node clinical-assessment/build-portal-release.mjs
+node clinical-assessment/partner-operations/build.mjs
+node --test tests/clinical-portal-release.test.mjs tests/clinical-casework.test.mjs tests/clinical-handover-readiness.test.mjs clinical-assessment/partner-operations/*.test.mjs
+node clinical-assessment/partner-operations/browser-check.mjs
+wrangler deploy --dry-run --config clinical-assessment/wrangler.portal-release.json
+```
+
+The browser harness uses an existing native Playwright toolchain and only synthetic records. It checks 390/1280px, inner panel padding/overflow, five independent checks, generated username, no-stock denial and fictional acceptance/preparation/dispatch, with zero external browser requests. The published closed API must return 503 even if flags are passed true.

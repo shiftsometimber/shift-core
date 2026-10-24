@@ -1,4 +1,5 @@
 import {validateCareHandover} from './care-handover.mjs';
+import {clinicianPermission,memberFulfilment} from './partner-operations/api.mjs';
 import {contextSharing,saveContextSharing,clinicalContext} from './clinical-context.mjs';
 // Workflow decisions are not prescriptions. No signing, release or email sending here.
 const kinds=new Set(['photo_id','front_photo','scale_photo','prescription']);
@@ -6,14 +7,14 @@ const fail=(status,code)=>{throw Object.assign(Error(code),{status});};
 const rows=async q=>(await q.all()).results;
 const now=()=>new Date().toISOString();
 const clean=(v,max=4000)=>{if(typeof v!=='string'||!v.trim()||v.length>max||/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(v))fail(422,'message_required');return v.trim();};
-export async function clinicalStaff(env,actor,role){const staff=await env.DB.prepare('SELECT * FROM clinical_hq_staff WHERE user_id=? AND active=1 AND expires_at>?').bind(actor.id,now()).first();if(!staff||staff.role!==role||!staff.verified_by||(role==='clinician'&&(!staff.registration_number||!staff.registration_body)))fail(403,'clinical_role_required');return staff;}
+export async function clinicalStaff(env,actor,role){const staff=await env.DB.prepare('SELECT * FROM clinical_hq_staff WHERE user_id=? AND active=1 AND expires_at>?').bind(actor.id,now()).first();if(!staff||staff.role!==role||!staff.verified_by||(role==='clinician'&&(!staff.registration_number||!staff.registration_body)))fail(403,'clinical_role_required');if(role==='clinician')await clinicianPermission(env,actor);return staff;}
 export async function caseView(env,record,reviewer=false){
  const state=await env.DB.prepare('SELECT * FROM clinical_case_state WHERE record_id=?').bind(record.id).first();
  const events=await rows(env.DB.prepare('SELECT * FROM clinical_case_events WHERE record_id=? ORDER BY version').bind(record.id));
  const latest=await env.DB.prepare('SELECT version,submitted FROM clinical_member_versions WHERE record_id=? ORDER BY version DESC LIMIT 1').bind(record.id).first();
  const answered=new Set(events.filter(e=>e.kind==='member_reply').map(e=>JSON.parse(e.public_json).requestId));const pending=events.some(e=>e.kind==='information_requested'&&!answered.has(e.id));
  const stale=!!state&&state.assessment_version!==latest?.version;
- return {version:state?.version||0,status:!record.review_sharing?'draft':pending?'needs_information':stale?'awaiting_review':state?.status||record.status,assessmentVersion:latest?.version||0,decisionOutdated:stale,events:events.filter(e=>reviewer||e.kind!=='internal_note').map(e=>({id:e.id,version:e.version,assessmentVersion:e.assessment_version,kind:e.kind,createdAt:e.created_at,...JSON.parse(e.public_json),...reviewer?{clinical:JSON.parse(e.private_json),actorUserId:e.actor_user_id,actorKind:e.actor_kind}:{}})),prescriptionIssued:false,pharmacyReleased:false};
+ return {version:state?.version||0,status:!record.review_sharing?'draft':pending?'needs_information':stale?'awaiting_review':state?.status||record.status,assessmentVersion:latest?.version||0,decisionOutdated:stale,events:events.filter(e=>reviewer||e.kind!=='internal_note').map(e=>({id:e.id,version:e.version,assessmentVersion:e.assessment_version,kind:e.kind,createdAt:e.created_at,...JSON.parse(e.public_json),...reviewer?{clinical:JSON.parse(e.private_json),actorUserId:e.actor_user_id,actorKind:e.actor_kind}:{}})),prescriptionIssued:false,pharmacyReleased:false,fulfilment:await memberFulfilment(env,record)};
 }
 export async function caseQueue(env,actor,operations=false){
  await clinicalStaff(env,actor,operations?'operations':'clinician');
@@ -31,6 +32,7 @@ export async function caseAction(env,record,actor,reviewer,b){
  const history=await rows(env.DB.prepare('SELECT * FROM clinical_case_events WHERE record_id=? ORDER BY version').bind(record.id));
  const answered=new Set(history.filter(e=>e.kind==='member_reply').map(e=>JSON.parse(e.public_json).requestId));
  const outstanding=history.filter(e=>e.kind==='information_requested'&&!answered.has(e.id));
+ const permissionProof=reviewer?await clinicianPermission(env,actor,b.action==='decision'?'clinical_decision':(b.action==='request_information'||b.action==='review_evidence'&&b.outcome!=='approve')?'query':'review',b.handover?.medicine):null;
  let kind,status=effective,publicData={},privateData={},recipient;
  if(!reviewer){
   if(b.action!=='reply')fail(403,'member_action_not_allowed');
@@ -71,11 +73,14 @@ export async function caseAction(env,record,actor,reviewer,b){
  }else fail(422,'unknown_case_action');
  const sharingGuard=kind==='app_updates_reviewed'?' AND COALESCE((SELECT MAX(revision) FROM clinical_context_sharing WHERE record_id=?),0)=?':'';
  const sharingArgs=kind==='app_updates_reviewed'?[record.id,privateData.sharingRevision]:[];
+ if(permissionProof)privateData.permissionVersion=permissionProof.version;
  const id=crypto.randomUUID(),date=now(),version=state.version+1;
  const staffGuard=reviewer?" AND EXISTS(SELECT 1 FROM clinical_case_assignments WHERE record_id=? AND hq_user_id=? AND active=1 AND expires_at>?) AND EXISTS(SELECT 1 FROM clinical_hq_staff WHERE user_id=? AND active=1 AND role='clinician' AND verified_by IS NOT NULL AND verified_by<>'' AND registration_number IS NOT NULL AND registration_number<>'' AND registration_body IS NOT NULL AND registration_body<>'' AND expires_at>?)":'';
  const staffArgs=reviewer?[record.id,actor.id,date,actor.id,date]:[];
+ const scopeGuard=permissionProof?" AND EXISTS(SELECT 1 FROM partner_staff WHERE id=? AND version=?) AND EXISTS(SELECT 1 FROM partner_organisations WHERE id=? AND version=?)":'';
+ const scopeArgs=permissionProof?[permissionProof.staffId,permissionProof.version,permissionProof.organisationId,permissionProof.organisationVersion]:[];
  // D1 batch is transactional. The conditional INSERT and UPDATE prevent stale or concurrent decisions.
- const statements=[env.DB.prepare('INSERT INTO clinical_case_events(id,record_id,version,assessment_version,actor_user_id,actor_kind,kind,public_json,private_json,created_at) SELECT ?,?,?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM clinical_case_state WHERE record_id=? AND version=?) AND EXISTS(SELECT 1 FROM clinical_member_records WHERE id=? AND revision=? AND review_sharing=1)'+sharingGuard+staffGuard).bind(id,record.id,version,assessment.version,actor.id,reviewer?'hq':'member',kind,JSON.stringify(publicData),JSON.stringify(privateData),date,record.id,state.version,record.id,record.revision,...sharingArgs,...staffArgs)];
+ const statements=[env.DB.prepare('INSERT INTO clinical_case_events(id,record_id,version,assessment_version,actor_user_id,actor_kind,kind,public_json,private_json,created_at) SELECT ?,?,?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM clinical_case_state WHERE record_id=? AND version=?) AND EXISTS(SELECT 1 FROM clinical_member_records WHERE id=? AND revision=? AND review_sharing=1)'+sharingGuard+staffGuard+scopeGuard).bind(id,record.id,version,assessment.version,actor.id,reviewer?'hq':'member',kind,JSON.stringify(publicData),JSON.stringify(privateData),date,record.id,state.version,record.id,record.revision,...sharingArgs,...staffArgs,...scopeArgs)];
  statements.push(env.DB.prepare('UPDATE clinical_case_state SET version=?,status=?,assessment_version=?,updated_at=? WHERE record_id=? AND version=? AND EXISTS(SELECT 1 FROM clinical_case_events WHERE id=?)').bind(version,status,assessment.version,date,record.id,state.version,id));
  if(recipient!==undefined)statements.push(env.DB.prepare('INSERT INTO clinical_case_outbox SELECT ?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM clinical_case_events WHERE id=?)').bind(crypto.randomUUID(),id,recipient,reviewer?'member':'hq',reviewer?(kind==='information_requested'?'member_action_needed':'member_case_update'):'reviewer_case_update',(reviewer?'/member/treatment-records?record=':'/?view=clinical&record=')+record.id,'pending',date,id));
  const result=await env.DB.batch(statements);if(Number(result[0].meta?.changes)!==1)fail(409,'case_changed');
