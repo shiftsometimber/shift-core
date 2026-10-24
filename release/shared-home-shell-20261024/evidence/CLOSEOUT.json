@@ -1,0 +1,102 @@
+{
+  "at": "2026-10-24T22:19:20.443Z",
+  "state": "deployed and production verified",
+  "scope": "One homepage-master header and footer across front-end website pages; no page-specific brand variants",
+  "deployedSource": "0c9e50db082f706c27115a0e9d056c0277d7b11b",
+  "sourceCommitted": true,
+  "sourcePushed": true,
+  "mergedToMain": false,
+  "releaseRoute": "Existing guarded native Pages and existing Shed Worker sequence; no Core deployment or route change",
+  "pages": {
+    "id": "b505454e-89f1-4750-9c1d-d21014085504",
+    "url": "https://b505454e.projectshift.pages.dev",
+    "source": "0c9e50db082f706c27115a0e9d056c0277d7b11b"
+  },
+  "shed": {
+    "deployment": "68a7e008-953b-4e0a-af6e-91e40070021f",
+    "versions": [
+      {
+        "version_id": "781b97d5-0833-4931-9802-8612e4c38cd7",
+        "percentage": 100
+      }
+    ],
+    "originalModuleSHA": "0fb170095cef05dfc5df19d3492ab11ea87494b122bea49fff600849b6d30c5a"
+  },
+  "verification": {
+    "distinctLiveURLs": 513,
+    "viewports": [
+      390,
+      1440
+    ],
+    "inventoryCases": 1026,
+    "initialStrictPasses": 907,
+    "focusedRechecks": 119,
+    "focusedRecheckedURLs": 60,
+    "failures": 0,
+    "layoutCases": 120,
+    "interactiveCases": 32,
+    "memberStyleFixtures": 4,
+    "shedSafetyChecks": 5,
+    "headerLogoPixelCases": 4,
+    "squareAppIconPairedPixelCases": 8
+  },
+  "protected": {
+    "homepageHTMLUnchanged": true,
+    "otherNativeAssetsPreserved": 855,
+    "coreUntouched": true,
+    "shedOriginalLogicUnchanged": true,
+    "shedBindingsFlagsRoutesUnchanged": true,
+    "anonymousPrivateApiStatus": 401,
+    "realMemberDataRead": false,
+    "externalCommunicationsSent": false,
+    "clinicalActivation": false
+  },
+  "retiredBlockers": [
+    {
+      "item": "Public v42 differs from raw Pages file",
+      "resolution": "Exact approved source prefix plus exact pre-existing Core suffix; SHA receipt in live-assets.json"
+    },
+    {
+      "item": "Inherited logo color differs",
+      "resolution": "Image-only nodes; exact source and pixel-identical logo proof retained"
+    },
+    {
+      "item": "Footer square app icon contain/fill differs",
+      "resolution": "Exact 28px square box and 180px square source; paired screenshot pixel equivalence at same position passed 8 cases"
+    },
+    {
+      "item": "Three redirect races",
+      "resolution": "Wait for current header/footer after navigation; focused rechecks passed"
+    }
+  ],
+  "rollback": {
+    "immediatePages": "e3b6c218-e734-4b5d-af42-29ed60dfaf2a",
+    "preTaskPages": "a8b638df-c277-4e0e-9333-684dcd0d77da",
+    "immediateShed": {
+      "id": "9e6b3615-3305-4000-b799-2534826c1235",
+      "versions": [
+        {
+          "version_id": "ab7ef38f-5b3a-4fa7-86ca-b99baf4b2ddb",
+          "percentage": 100
+        }
+      ]
+    },
+    "preTaskShed": {
+      "id": "607c1352-e2b3-4326-b086-04b7a1cfe0be",
+      "versions": [
+        {
+          "version_id": "cbd9e9fb-c6c5-47eb-8354-4da70ee945db",
+          "percentage": 100
+        }
+      ]
+    },
+    "originalWorkerModulePreserved": true,
+    "executed": false
+  },
+  "limitations": [
+    "Public fresh signed-out browser views; member style fixtures are synthetic. Actual signed-in account transactions were not tested.",
+    "Chromium and WebKit browser automation; no physical iPhone or Android device claim.",
+    "This closeout covers the shared header/footer release only; no claim about unrelated newsroom, ticker, SEO or Core changes."
+  ],
+  "remainingReleaseBlockers": []
+}

@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-24T21:30:20.600Z",
+  "fixture": "Public signed-out HTML; DOM style attributes only, all APIs blocked",
+  "cases": [
+    {
+      "width": 390,
+      "panel": "0",
+      "header": "block",
+      "footer": "block",
+      "footerInline": null,
+      "hiddenRules": [],
+      "headerWidth": 390,
+      "headerHeight": 64
+    },
+    {
+      "width": 390,
+      "panel": "1",
+      "header": "block",
+      "footer": "block",
+      "footerInline": null,
+      "hiddenRules": [
+        "html body[data-member-design=\"20261001\"]:is(#approved-member-design, [data-member-design]):is(#approved-member-palette, [data-member-design]):is(#approved-member-layout, [data-member-design])[data-app-panel=\"1\"] :is(#todayBrand, #appBottomNav, #sst-footer-c, footer, .app-footer-details, #memberUtilities, #myTimberApp)"
+      ],
+      "headerWidth": 390,
+      "headerHeight": 64
+    },
+    {
+      "width": 1440,
+      "panel": "0",
+      "header": "block",
+      "footer": "block",
+      "footerInline": null,
+      "hiddenRules": [],
+      "headerWidth": 1440,
+      "headerHeight": 76
+    },
+    {
+      "width": 1440,
+      "panel": "1",
+      "header": "block",
+      "footer": "block",
+      "footerInline": null,
+      "hiddenRules": [
+        "html body[data-member-design=\"20261001\"]:is(#approved-member-design, [data-member-design]):is(#approved-member-palette, [data-member-design]):is(#approved-member-layout, [data-member-design])[data-app-panel=\"1\"] :is(#todayBrand, #appBottomNav, #sst-footer-c, footer, .app-footer-details, #memberUtilities, #myTimberApp)"
+      ],
+      "headerWidth": 1440,
+      "headerHeight": 76
+    }
+  ],
+  "pass": true
+}

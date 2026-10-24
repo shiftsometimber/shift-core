@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-24T21:57:31.538Z",
+  "pass": true,
+  "deployment": {
+    "id": "68a7e008-953b-4e0a-af6e-91e40070021f",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "matobrien@hotmail.co.uk",
+    "annotations": {
+      "workers/message": "Automatic deployment on upload.",
+      "workers/triggered_by": "upload"
+    },
+    "versions": [
+      {
+        "version_id": "781b97d5-0833-4931-9802-8612e4c38cd7",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-24T21:54:23.719642Z"
+  },
+  "publicPage": {
+    "url": "https://shiftsometimber.co.uk/timber-shed",
+    "status": 200,
+    "sha256": "f7b0113b52067d4762bed6f7bbf120308d1b6ef03c7fdf0139c93cf48018d283",
+    "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "private, no-store, max-age=0",
+      "content-security-policy": null,
+      "strict-transport-security": null,
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "no-referrer",
+      "permissions-policy": null,
+      "x-frame-options": null
+    }
+  },
+  "unauthenticatedApiStatus": 401,
+  "bindingsAndFlagsUnchanged": true,
+  "routesUnchanged": true,
+  "originalModuleSHA": "0fb170095cef05dfc5df19d3492ab11ea87494b122bea49fff600849b6d30c5a",
+  "source": "0c9e50db082f706c27115a0e9d056c0277d7b11b"
+}

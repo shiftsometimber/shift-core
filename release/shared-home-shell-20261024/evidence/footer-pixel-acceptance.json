@@ -1,0 +1,174 @@
+{
+  "at": "2026-10-24T22:17:34.550Z",
+  "cases": [
+    {
+      "path": "/",
+      "width": 390,
+      "natural": [
+        180,
+        180
+      ],
+      "size": [
+        28,
+        28
+      ],
+      "position": [
+        20,
+        784.421875
+      ],
+      "src": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+      "fit": "contain",
+      "alternateHash": "5dcbcbf3d657c373203383d0db135ee52d0b57c9930095771631ffa047d3d415",
+      "hash": "5dcbcbf3d657c373203383d0db135ee52d0b57c9930095771631ffa047d3d415",
+      "pass": true
+    },
+    {
+      "path": "/articles/upper-arm-blood-collection",
+      "width": 390,
+      "natural": [
+        180,
+        180
+      ],
+      "size": [
+        28,
+        28
+      ],
+      "position": [
+        20,
+        784.140625
+      ],
+      "src": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+      "fit": "fill",
+      "alternateHash": "5dcbcbf3d657c373203383d0db135ee52d0b57c9930095771631ffa047d3d415",
+      "hash": "5dcbcbf3d657c373203383d0db135ee52d0b57c9930095771631ffa047d3d415",
+      "pass": true
+    },
+    {
+      "path": "/member-login",
+      "width": 390,
+      "natural": [
+        180,
+        180
+      ],
+      "size": [
+        28,
+        28
+      ],
+      "position": [
+        20,
+        784.125
+      ],
+      "src": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+      "fit": "fill",
+      "alternateHash": "d4c6569efe93f7a20e026db3d4cb57ec427ec6b52b7c2afc5e820e3d1900a63c",
+      "hash": "d4c6569efe93f7a20e026db3d4cb57ec427ec6b52b7c2afc5e820e3d1900a63c",
+      "pass": true
+    },
+    {
+      "path": "/timber-shed",
+      "width": 390,
+      "natural": [
+        180,
+        180
+      ],
+      "size": [
+        28,
+        28
+      ],
+      "position": [
+        20,
+        783.8125
+      ],
+      "src": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+      "fit": "fill",
+      "alternateHash": "5146c132d6ea65799a8312b51159052b75e92ede4256bc7fbb582d492f02d143",
+      "hash": "5146c132d6ea65799a8312b51159052b75e92ede4256bc7fbb582d492f02d143",
+      "pass": true
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "natural": [
+        180,
+        180
+      ],
+      "size": [
+        28,
+        28
+      ],
+      "position": [
+        140,
+        835.984375
+      ],
+      "src": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+      "fit": "contain",
+      "alternateHash": "8f538445eff6802eaa23675c1bc7e31db30cd98ddb5997dcd83745bba5d0c00e",
+      "hash": "8f538445eff6802eaa23675c1bc7e31db30cd98ddb5997dcd83745bba5d0c00e",
+      "pass": true
+    },
+    {
+      "path": "/articles/upper-arm-blood-collection",
+      "width": 1440,
+      "natural": [
+        180,
+        180
+      ],
+      "size": [
+        28,
+        28
+      ],
+      "position": [
+        140,
+        836.203125
+      ],
+      "src": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+      "fit": "fill",
+      "alternateHash": "5dcbcbf3d657c373203383d0db135ee52d0b57c9930095771631ffa047d3d415",
+      "hash": "5dcbcbf3d657c373203383d0db135ee52d0b57c9930095771631ffa047d3d415",
+      "pass": true
+    },
+    {
+      "path": "/member-login",
+      "width": 1440,
+      "natural": [
+        180,
+        180
+      ],
+      "size": [
+        28,
+        28
+      ],
+      "position": [
+        140,
+        835.640625
+      ],
+      "src": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+      "fit": "fill",
+      "alternateHash": "375557c6c2a3624dbd289234d8cf5253775674852c716ab54c66741456539fa2",
+      "hash": "375557c6c2a3624dbd289234d8cf5253775674852c716ab54c66741456539fa2",
+      "pass": true
+    },
+    {
+      "path": "/timber-shed",
+      "width": 1440,
+      "natural": [
+        180,
+        180
+      ],
+      "size": [
+        28,
+        28
+      ],
+      "position": [
+        140,
+        835.796875
+      ],
+      "src": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
+      "fit": "fill",
+      "alternateHash": "46eb4ec8aaf8d0fed87c69cf5550571a90783a5c21e64b5baee0a0725723a016",
+      "hash": "46eb4ec8aaf8d0fed87c69cf5550571a90783a5c21e64b5baee0a0725723a016",
+      "pass": true
+    }
+  ],
+  "pass": true
+}

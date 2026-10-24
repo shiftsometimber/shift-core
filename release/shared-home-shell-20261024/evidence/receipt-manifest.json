@@ -1,0 +1,50 @@
+[
+  {
+    "file": "production-deployment.json",
+    "sha256": "cd2f80fb8e0a44820ca56d5587077a469951e2c681cbae7767b25968858310ec"
+  },
+  {
+    "file": "production-verification.json",
+    "sha256": "a8389f008a961294a6de43f35f793cd0c8de791d852bc1311e436706c4c72d6c"
+  },
+  {
+    "file": "live-assets.json",
+    "sha256": "b9b10e46354173a59ae364d40c00104039089ec0e41c25868673694d596a1554"
+  },
+  {
+    "file": "inventory-final.json",
+    "sha256": "90821f6cdba6d37d2ce78f551133ef9aabe8a5b918c22b1c2da7be75682ea203"
+  },
+  {
+    "file": "inventory-retest.json",
+    "sha256": "f55f3238c57e5db79f2e5621c14d3516fe17b66aab7d3687fd81a7288e86817f"
+  },
+  {
+    "file": "candidate-browser.json",
+    "sha256": "4dcca09c90bce890b988d6397e2e585cae8c7f6b4d7ba25872798258bf4b56f5"
+  },
+  {
+    "file": "production-journeys.json",
+    "sha256": "d19a5102372f04130102b7db69587d8649145cf53655d0240cfb75e63b005b9f"
+  },
+  {
+    "file": "member-style-checks.json",
+    "sha256": "de26475421a06f1f1e8de7862170965ead847a8c79821218ae460b7d20909176"
+  },
+  {
+    "file": "shed-source-checks.json",
+    "sha256": "8a748d5dfa84bb841fde974dbca4b0968f352f555a066c82840be24ed7563020"
+  },
+  {
+    "file": "logo-pixel-acceptance.json",
+    "sha256": "fafbd57f4ca9c80cf3391b52c4c99fcee1a3477523f1cfdb9f46e41d375a11ad"
+  },
+  {
+    "file": "footer-pixel-acceptance.json",
+    "sha256": "125137926977fdb9f70a824da218f4fc7538c3df7109ebac71d19a4c029ff2a3"
+  },
+  {
+    "file": "CLOSEOUT.json",
+    "sha256": "62f4411300b6af80bdf4ee5e362f781980ed13b457d556502f9dcf61f4b86897"
+  }
+]

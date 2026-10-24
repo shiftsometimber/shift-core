@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-24T21:30:27.985Z",
+  "checks": [
+    "Real deployed original public renderer plus new presentation wrapper:200; one header/footer; sign-in, room content and safety notice preserved; database reads prohibited",
+    "API: identical original Response object retained",
+    "POST: identical original Response object retained",
+    "Non-HTML: identical original Response object retained",
+    "Actual original default-off gate remains404"
+  ],
+  "pass": true,
+  "productionDatabaseReads": 0,
+  "productionWrites": 0
+}

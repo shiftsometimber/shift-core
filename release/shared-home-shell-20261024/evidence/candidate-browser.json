@@ -1,0 +1,2055 @@
+{
+  "at": "2026-10-24T21:46:29.215Z",
+  "mode": "candidate",
+  "assetHashes": {
+    "v42.js": "64c896d6bb94d192e91fb8539649d1e595810bc0c0b7503bf980170d47d1b992",
+    "whatsapp-chat-v1.js": "6f375e74a6eb6954cbfd4bb19e08f4d8e3fa068340ff3f5c25c3ddaf05b403e9",
+    "home-shell-v1.js": "50141c1b9a5dd33e68cf65edc3f66c17879dca93feb64a87363e243c590c3964",
+    "header-navigation-v2.css": "83fcff138e0b3f88d5e6fb06c78bb334fb4073553652037e074f75223785ad94",
+    "header-logo-fix-20261020.css": "65d6052f5a76d1e2cfe774272b5e1903cef68ba9425bbcc918346bdfb4ecba53"
+  },
+  "cases": [
+    {
+      "path": "/",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/start-here",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/programme",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-health",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-centre",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/explore-knowledge",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/about",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/help",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/contact",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shop",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/dashboard",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-newsroom",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/wegovy",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/foundayo",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/work-with-us",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/tools",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/tools/weight-management-review",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/assessment-walkthrough",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/faq/what-is-tap-room",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/join-my-timber",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/medicine-preference",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/order-success",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-assessment-terms",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-terms",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/timber-shed",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/email-framework",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/achievements",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/check-in",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/grub",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/ask-timber",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/fit",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/saved",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/settings",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/my-target",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/my-why",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/timber-circle",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/articles/upper-arm-blood-collection",
+      "width": 390,
+      "status": 200,
+      "header": [
+        0,
+        390,
+        64
+      ],
+      "footer": [
+        0,
+        390,
+        1595.703125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/start-here",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/programme",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-health",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-centre",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/explore-knowledge",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/about",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/help",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/contact",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shop",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/dashboard",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-newsroom",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/wegovy",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/foundayo",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/work-with-us",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/tools",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/tools/weight-management-review",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/assessment-walkthrough",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/faq/what-is-tap-room",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/join-my-timber",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/medicine-preference",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/order-success",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-assessment-terms",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-terms",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/timber-shed",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/email-framework",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/achievements",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/check-in",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/grub",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/ask-timber",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/fit",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/saved",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/settings",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/my-target",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/my-why",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/timber-circle",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/articles/upper-arm-blood-collection",
+      "width": 1024,
+      "status": 200,
+      "header": [
+        0,
+        1024,
+        76
+      ],
+      "footer": [
+        0,
+        1024,
+        1101.953125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/start-here",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/programme",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-health",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-centre",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/explore-knowledge",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/about",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/help",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/contact",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shop",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/dashboard",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/shift-newsroom",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/wegovy",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/foundayo",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/work-with-us",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/tools",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/tools/weight-management-review",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/assessment-walkthrough",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/faq/what-is-tap-room",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/join-my-timber",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/medicine-preference",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/order-success",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-assessment-terms",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/treatment-terms",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/timber-shed",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/email-framework",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/achievements",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/check-in",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/grub",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/ask-timber",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/fit",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/saved",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/settings",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/my-target",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/my-why",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/member/timber-circle",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    },
+    {
+      "path": "/articles/upper-arm-blood-collection",
+      "width": 1440,
+      "status": 200,
+      "header": [
+        0,
+        1440,
+        76
+      ],
+      "footer": [
+        0,
+        1440,
+        663.78125
+      ],
+      "overflow": false,
+      "pass": true
+    }
+  ],
+  "differences": [],
+  "pass": true
+}
