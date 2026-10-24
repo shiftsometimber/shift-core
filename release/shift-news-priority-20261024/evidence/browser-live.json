@@ -1,0 +1,1446 @@
+{
+  "at": "2026-10-24T20:03:40.844Z",
+  "mode": "production",
+  "cases": [
+    {
+      "path": "/treatment-centre",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/explore-knowledge",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/shop",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/shift-newsroom",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/start-here",
+      "width": 390,
+      "ticker": false
+    },
+    {
+      "path": "/programme",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/shift-health",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/wegovy",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/foundayo",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/about",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/help",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/contact",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/member/dashboard",
+      "width": 390,
+      "ticker": false
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "width": 390,
+      "ticker": false
+    },
+    {
+      "path": "/timber-shed",
+      "width": 390,
+      "ticker": false
+    },
+    {
+      "path": "/work-with-us",
+      "width": 390,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/",
+      "width": 390,
+      "ticker": false
+    },
+    {
+      "path": "/treatment-centre",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/explore-knowledge",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/shop",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/shift-newsroom",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/start-here",
+      "width": 1440,
+      "ticker": false
+    },
+    {
+      "path": "/programme",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/shift-health",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/wegovy",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/foundayo",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/weight-loss-tablets-for-men",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/about",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/help",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/contact",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/member/dashboard",
+      "width": 1440,
+      "ticker": false
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "width": 1440,
+      "ticker": false
+    },
+    {
+      "path": "/timber-shed",
+      "width": 1440,
+      "ticker": false
+    },
+    {
+      "path": "/work-with-us",
+      "width": 1440,
+      "ticker": true,
+      "count": 1,
+      "label": "SHIFT News:",
+      "edition": "shift-news-shared-v3",
+      "visible": true,
+      "links": [
+        {
+          "text": "MPs call for better access and long-term weight-loss support · Published 24 Oct 2026",
+          "path": "/medicine-news/mps-obesity-treatment-access-support-october-2026"
+        },
+        {
+          "text": "IXCHIQ: UK authorisation withdrawn after safety review · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-uk-restrictions-safety-review-2026"
+        },
+        {
+          "text": "IXCHIQ: UK withdrawal supersedes the 2025 pause · Updated 24 Oct 2026",
+          "path": "/medicine-news/ixchiq-2025-pause-superseded-2026-review"
+        },
+        {
+          "text": "MHRA strengthens antidepressant safety information · Published 20 Oct 2026",
+          "path": "/medicine-news/antidepressant-safety-information-mhra-october-2026"
+        },
+        {
+          "text": "CBL-514: Phase 3 dosing and the limits of weight-regain claims · Published 19 Oct 2026",
+          "path": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up"
+        },
+        {
+          "text": "Oral VK2735: Phase 3 announcement and registry dates differ · Published 19 Oct 2026",
+          "path": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up"
+        },
+        {
+          "text": "MHRA approves weekly Onswik insulin for adult type 2 diabetes · Published 19 Oct 2026",
+          "path": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026"
+        },
+        {
+          "text": "Orforglipron cardiovascular safety: what ACHIEVE-4 found · Published 19 Oct 2026",
+          "path": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up"
+        }
+      ],
+      "asset": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "overflow": false,
+      "duplicates": true
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "ticker": false
+    }
+  ],
+  "nonReadRequests": [],
+  "pass": true,
+  "sameHeadlinesAndOrder": true,
+  "tickerSurfaces": 28,
+  "withoutTicker": [
+    {
+      "path": "/start-here",
+      "width": 390
+    },
+    {
+      "path": "/member/dashboard",
+      "width": 390
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "width": 390
+    },
+    {
+      "path": "/timber-shed",
+      "width": 390
+    },
+    {
+      "path": "/",
+      "width": 390
+    },
+    {
+      "path": "/start-here",
+      "width": 1440
+    },
+    {
+      "path": "/member/dashboard",
+      "width": 1440
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "width": 1440
+    },
+    {
+      "path": "/timber-shed",
+      "width": 1440
+    },
+    {
+      "path": "/",
+      "width": 1440
+    }
+  ]
+}

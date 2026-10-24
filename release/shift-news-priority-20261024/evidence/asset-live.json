@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-24T20:03:40.173Z",
+  "pass": true,
+  "asset": {
+    "url": "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4",
+    "status": 200,
+    "sha256": "6ad3f5d2370099cae5746c4d67f1acbebca770a950545c48c5b65c051dafb69c",
+    "headers": {
+      "content-type": "application/javascript; charset=utf-8",
+      "cache-control": "public, max-age=60, must-revalidate",
+      "content-security-policy": null,
+      "strict-transport-security": null,
+      "x-content-type-options": "nosniff",
+      "referrer-policy": null,
+      "permissions-policy": null,
+      "x-frame-options": null
+    }
+  },
+  "homepageHTMLUnchanged": true,
+  "coreAndRoutesUnchanged": true,
+  "source": "c05518ee04c85c356bae8b1142dfd0fa92b97661"
+}

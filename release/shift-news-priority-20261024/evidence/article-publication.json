@@ -1,0 +1,62 @@
+{
+  "at": "2026-10-24T20:01:05.905Z",
+  "id": 1472,
+  "status": "published",
+  "url": "https://shiftsometimber.co.uk/medicine-news/mps-obesity-treatment-access-support-october-2026",
+  "pkg": {
+    "headline": "MPs call for better access and long-term weight-loss support",
+    "standfirst": "A parliamentary report calls for clearer access and continuing support. These recommendations do not change NHS eligibility.",
+    "article_markdown": "MPs want obesity care in England redesigned around a long-term condition, with clearer treatment pathways and fairer access. Their report was published on 23 October 2026.\n\nThe Health and Social Care Committee calls for continuing nutritional, behavioural and mental-health support. It also sees a possible role for private digital providers, supported by better data sharing.\n\nThe report flags weight-loss tablets when questioning whether regulators can keep pace with illegal sales. It does not announce a tablet approval, change NHS eligibility or confirm new funding. These are recommendations to government.\n\n[Read the full parliamentary report](https://publications.parliament.uk/pa/cm5902/cmselect/cmhealth/518/report.html).",
+    "what_changed": "",
+    "why_it_matters_to_uk": "",
+    "shift_take": "For tablet users, care and follow-up matter alongside the prescription.",
+    "known_facts": [
+      {
+        "claim": "Report published 23 October 2026.",
+        "source_url": "https://publications.parliament.uk/pa/cm5902/cmselect/cmhealth/518/report.html"
+      }
+    ],
+    "unknowns": [
+      "Government response and implementation remain to be established."
+    ],
+    "safety": "",
+    "ticker_line": "MPs call for better access and long-term weight-loss support",
+    "review_flags": [],
+    "destinations": [
+      "medicine_news",
+      "ticker_knowledge",
+      "ticker_treatments",
+      "knowledge_links",
+      "search",
+      "sitemap"
+    ],
+    "existing_page_updates": [],
+    "dossier_amendment": "",
+    "shift_brain": {},
+    "seo": {
+      "title": "MPs call for better access and long-term weight-loss support",
+      "description": "MPs call for fairer obesity treatment access and continuing nutrition, behavioural and mental-health support. What the 23 October parliamentary report means.",
+      "slug": "medicine-news/mps-obesity-treatment-access-support-october-2026",
+      "author": "SHIFT Newsroom",
+      "reviewer": "AI-assisted factual source review; no independent clinical review claimed",
+      "source_url": "https://publications.parliament.uk/pa/cm5902/cmselect/cmhealth/518/report.html",
+      "canonical": "https://shiftsometimber.co.uk/medicine-news/mps-obesity-treatment-access-support-october-2026",
+      "image": "/assets/og-default.jpg",
+      "image_alt": "MPs call for better access and long-term weight-loss support",
+      "keywords": [],
+      "datePublished": "2026-10-24T20:01:00.353Z",
+      "dateModified": "2026-10-24T20:01:00.353Z",
+      "schemaType": "Article"
+    },
+    "source_publication_date": "2026-10-23",
+    "editorial_provenance": {
+      "authority": "Matt explicitly requested publication and prominence on the shared ticker, 24 October 2026",
+      "clinical_review": false,
+      "source_sha256": "8cbe8b2c2f992c95efafdcd9fe5de02b0216e42b96481e7c03f36abad572a648"
+    }
+  },
+  "mail": {
+    "status": "cancelled",
+    "attempts": 0
+  }
+}

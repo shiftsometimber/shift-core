@@ -1,0 +1,15 @@
+# Shared SHIFT News ticker — approved 24 October 2026
+
+Matt explicitly instructed that the ticker be identical across pages, labelled `SHIFT News:`, and lead with the parliamentary obesity report immediately. This is a successor to the existing 24 October latest-published ticker repair, not a competing Core release.
+
+The article is published as radar event 1472 at `/medicine-news/mps-obesity-treatment-access-support-october-2026`. Its source report date is 23 October; SHIFT publication is 24 October. Every claim was checked against the public parliamentary report using the search-service primary retrieval. Direct device retrieval returned 403; this was recorded and not bypassed. The article distinguishes committee recommendations from adopted NHS policy. It does not change medicine registry or clinical services. Its email journal is cancelled with zero attempts.
+
+The shared existing asset now labels both loading/failure fallback and the loaded state `SHIFT News:`. It prioritises the validated published article through 31 October 2026 20:00 UTC. Dates are preserved; ordinary chronological ordering resumes after expiry. No unpublished item is injected. Existing safe URLs, textContent, future-date filtering, deduplication and accessible duplicate animation copy remain enforced.
+
+Production source c05518ee04c85c356bae8b1142dfd0fa92b97661 was staged, tested at 390/1440 viewport widths, pushed, then published using the existing scoped Worker owner `shift-latest-news-ticker-20261024`. Exact prior route and Core deployment snapshots were checked before and after. Homepage HTML was byte-identical. Rollback uses the exact saved prior ticker Worker version and refuses concurrent ownership changes. Existing source gates and the separate Core release were untouched.
+
+Verification: eight selector/failure-case tests passed. A live census read all 424 sitemap URLs: 314 have exactly one ticker, all use the same canonical asset; no differing script or unshared legacy section was found. The remaining 110 do not have tickers and were not changed. Rendered Chromium checks covered 19 routes at 390/1440 widths (38 cases, 28 ticker surfaces); all ticker surfaces had identical headlines/order and the parliamentary story first, one strip and one client, no hidden ticker and no horizontal overflow. This is viewport testing, not physical-device testing. Staging was closed after live acceptance.
+
+Receipts remain under `/Users/shiftsometimberltd/SST/website-review-evidence-20261023/ticker-latest-20261024/priority`; the parent ticker closeout points to this successor. No new schedule, reporting system or recurring watcher was created.
+
+The live click journey also passed: first ticker headline on Treatments opens the article, whose visible source date, policy limitations and primary-source link were checked. The first two diagnostic attempts selected the initial neutral fallback before the feed loaded; the corrected acceptance waits for the shared edition, asserts the actual article href, then clicks it. No product workaround or guard relaxation was needed.

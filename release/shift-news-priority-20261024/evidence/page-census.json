@@ -1,0 +1,4151 @@
+{
+  "at": "2026-10-24T20:04:19.553Z",
+  "total": 424,
+  "tickerPages": 314,
+  "withoutTicker": [
+    "https://shiftsometimber.co.uk/",
+    "https://shiftsometimber.co.uk/start-here",
+    "https://shiftsometimber.co.uk/mental-health/feeling-low",
+    "https://shiftsometimber.co.uk/mental-health/not-feeling-yourself",
+    "https://shiftsometimber.co.uk/mental-health/anxiety-overthinking",
+    "https://shiftsometimber.co.uk/mental-health/stress-overwhelm",
+    "https://shiftsometimber.co.uk/mental-health/anger-irritability",
+    "https://shiftsometimber.co.uk/mental-health/sleep-mental-health",
+    "https://shiftsometimber.co.uk/mental-health/numb-disconnected",
+    "https://shiftsometimber.co.uk/mental-health/myths-men-mental-health",
+    "https://shiftsometimber.co.uk/mental-health/talking-about-it",
+    "https://shiftsometimber.co.uk/mental-health/mental-health-and-weight",
+    "https://shiftsometimber.co.uk/mental-health/when-to-get-help",
+    "https://shiftsometimber.co.uk/mental-health/work-stress-burnout",
+    "https://shiftsometimber.co.uk/mental-health/dads-mental-health",
+    "https://shiftsometimber.co.uk/mental-health/bereavement-grief",
+    "https://shiftsometimber.co.uk/mental-health/relationship-problems",
+    "https://shiftsometimber.co.uk/mental-health/separation-divorce",
+    "https://shiftsometimber.co.uk/mental-health/money-worries",
+    "https://shiftsometimber.co.uk/mental-health/parenting-pressure",
+    "https://shiftsometimber.co.uk/mental-health/loneliness-isolation",
+    "https://shiftsometimber.co.uk/mental-health/alcohol-and-mental-health",
+    "https://shiftsometimber.co.uk/mental-health/sex-intimacy-confidence",
+    "https://shiftsometimber.co.uk/mental-health/redundancy-job-loss",
+    "https://shiftsometimber.co.uk/mental-health/chronic-illness-pain",
+    "https://shiftsometimber.co.uk/mental-health/confidence-self-worth",
+    "https://shiftsometimber.co.uk/mental-health/life-gets-bloody-hard",
+    "https://shiftsometimber.co.uk/mental-health/weight-loss-identity",
+    "https://shiftsometimber.co.uk/mental-health/friendships-men",
+    "https://shiftsometimber.co.uk/mental-health/social-media-comparison",
+    "https://shiftsometimber.co.uk/mental-health/retirement-purpose",
+    "https://shiftsometimber.co.uk/mental-health/get-through-a-bad-day",
+    "https://shiftsometimber.co.uk/mental-health/gambling-mental-health",
+    "https://shiftsometimber.co.uk/mental-health/caring-for-someone",
+    "https://shiftsometimber.co.uk/mental-health/routine-when-struggling",
+    "https://shiftsometimber.co.uk/mental-health/overthinking-tools",
+    "https://shiftsometimber.co.uk/mental-health/grounding",
+    "https://shiftsometimber.co.uk/mental-health/get-outside",
+    "https://shiftsometimber.co.uk/mental-health/movement-for-mood",
+    "https://shiftsometimber.co.uk/mental-health/sleep-reset",
+    "https://shiftsometimber.co.uk/mental-health/talking-to-partner",
+    "https://shiftsometimber.co.uk/mental-health/talking-to-a-mate",
+    "https://shiftsometimber.co.uk/mental-health/work-stress-reset",
+    "https://shiftsometimber.co.uk/mental-health/reconnect-with-people",
+    "https://shiftsometimber.co.uk/mental-health/alcohol-coping-check",
+    "https://shiftsometimber.co.uk/mental-health/phone-social-media-reset",
+    "https://shiftsometimber.co.uk/mental-health/tiny-goals",
+    "https://shiftsometimber.co.uk/mental-health/breathing-for-stress",
+    "https://shiftsometimber.co.uk/mental-health/help-yourself-without-doing-it-alone",
+    "https://shiftsometimber.co.uk/mental-health/bad-week-reset",
+    "https://shiftsometimber.co.uk/mental-health/build-a-support-circle",
+    "https://shiftsometimber.co.uk/mental-health/personal-mental-health-plan",
+    "https://shiftsometimber.co.uk/mental-health/gp-mental-health-appointment",
+    "https://shiftsometimber.co.uk/mental-health/what-will-gp-ask",
+    "https://shiftsometimber.co.uk/mental-health/getting-professional-help",
+    "https://shiftsometimber.co.uk/mental-health/journalling-without-cringe",
+    "https://shiftsometimber.co.uk/mental-health/nhs-talking-therapies",
+    "https://shiftsometimber.co.uk/mental-health/cbt-explained",
+    "https://shiftsometimber.co.uk/mental-health/types-of-talking-therapy",
+    "https://shiftsometimber.co.uk/mental-health/counselling-explained",
+    "https://shiftsometimber.co.uk/mental-health/self-care-that-isnt-bubble-baths",
+    "https://shiftsometimber.co.uk/mental-health/first-therapy-session",
+    "https://shiftsometimber.co.uk/mental-health/things-you-can-do-yourself",
+    "https://shiftsometimber.co.uk/mental-health/starting-antidepressants",
+    "https://shiftsometimber.co.uk/mental-health/antidepressants-explained",
+    "https://shiftsometimber.co.uk/mental-health/antidepressant-side-effects",
+    "https://shiftsometimber.co.uk/mental-health/self-refer-talking-therapy",
+    "https://shiftsometimber.co.uk/mental-health/stopping-antidepressants",
+    "https://shiftsometimber.co.uk/mental-health/therapy-confidentiality",
+    "https://shiftsometimber.co.uk/mental-health/medication-and-weight",
+    "https://shiftsometimber.co.uk/mental-health/private-therapy",
+    "https://shiftsometimber.co.uk/mental-health/occupational-health-mental-health",
+    "https://shiftsometimber.co.uk/mental-health/choosing-a-therapist",
+    "https://shiftsometimber.co.uk/mental-health/sick-note-mental-health",
+    "https://shiftsometimber.co.uk/mental-health/therapy-waiting-lists",
+    "https://shiftsometimber.co.uk/mental-health/signs-a-mate-is-struggling",
+    "https://shiftsometimber.co.uk/mental-health/mental-health-medication-myths",
+    "https://shiftsometimber.co.uk/mental-health/prepare-for-therapy",
+    "https://shiftsometimber.co.uk/mental-health/when-treatment-isnt-working",
+    "https://shiftsometimber.co.uk/mental-health/helping-a-mate",
+    "https://shiftsometimber.co.uk/mental-health/supporting-treatment-at-home",
+    "https://shiftsometimber.co.uk/mental-health/how-to-ask-are-you-okay",
+    "https://shiftsometimber.co.uk/mental-health/what-not-to-say",
+    "https://shiftsometimber.co.uk/mental-health/mate-says-hes-depressed",
+    "https://shiftsometimber.co.uk/mental-health/someone-is-suicidal",
+    "https://shiftsometimber.co.uk/mental-health/suicide-warning-signs",
+    "https://shiftsometimber.co.uk/mental-health/mental-health-crisis-plan",
+    "https://shiftsometimber.co.uk/mental-health/supporting-a-dad",
+    "https://shiftsometimber.co.uk/mental-health/urgent-mental-health-help",
+    "https://shiftsometimber.co.uk/mental-health/supporting-partner-mental-health",
+    "https://shiftsometimber.co.uk/mental-health/help-someone-book-gp",
+    "https://shiftsometimber.co.uk/mental-health/supporting-someone-after-loss",
+    "https://shiftsometimber.co.uk/mental-health/what-to-say-to-someone-struggling",
+    "https://shiftsometimber.co.uk/mental-health/supporting-someone-with-anxiety",
+    "https://shiftsometimber.co.uk/mental-health/supporting-someone-with-depression",
+    "https://shiftsometimber.co.uk/mental-health/look-after-yourself-when-supporting",
+    "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help",
+    "https://shiftsometimber.co.uk/mental-health/after-a-mental-health-crisis",
+    "https://shiftsometimber.co.uk/mental-health/ask-about-suicide",
+    "https://shiftsometimber.co.uk/mental-health/worried-about-family-member",
+    "https://shiftsometimber.co.uk/mental-health/helping-someone-online",
+    "https://shiftsometimber.co.uk/mental-health/worried-about-colleague",
+    "https://shiftsometimber.co.uk/mental-health/helping-someone",
+    "https://shiftsometimber.co.uk/mental-health/someone-says-theyd-be-better-off-dead",
+    "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced",
+    "https://shiftsometimber.co.uk/shift-health/blood-tests/complete",
+    "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline",
+    "https://shiftsometimber.co.uk/shift-health/blood-tests",
+    "https://shiftsometimber.co.uk/articles/winter-low-mood-men",
+    "https://shiftsometimber.co.uk/articles/alcohol-free-beer-weight-loss"
+  ],
+  "errors": [],
+  "different": [],
+  "legacy": [],
+  "rows": [
+    {
+      "url": "https://shiftsometimber.co.uk/",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/advertise-with-us",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/bmi-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/air-fryer-meals-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/alcohol-and-weight-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/cholesterol-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/dad-bod-nobody-talks-about",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/confidence-and-weight-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/football-fitness-after-40",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/calories-explained-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/exercise-on-glp1",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/eating-out-weight-management-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp1-myths",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/healthy-habits-that-last-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/about",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/healthy-bbq-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/health-isnt-about-six-packs",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/helping-ordinary-blokes-feel-like-themselves-again",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/beginner-walking-plan-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/healthy-takeaways-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/heart-health-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/affiliate-disclosure",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/meal-prep-busy-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/prediabetes-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/home-strength-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/sleep-and-weight-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/men-weight-loss-after-40",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/asking-for-help-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/motivation-vs-routine-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/stress-and-weight-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/mens-mental-health-and-weight",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-and-blood-pressure-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/before-you-decide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/ask-timber",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/clinical-governance",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/protein-for-men-weight-management",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/commercial-principles",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/headline-price-vs-true-cost",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/walking-for-weight-management-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/authors/shift-some-timber-editorial-team",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/why-blokes-put-everyone-else-first",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/community",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/overseas-surgery-complications",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-overseas-aftercare",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-poland-bariatric-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-lithuania-bariatric-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/verify-overseas-bariatric-clinic",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparison-centre",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-latvia-bariatric-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/lifestyle-vs-medication",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-turkey-bariatric-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/lifestyle-vs-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/structured-vs-diy",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-orlistat",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/europe/uk-vs-czechia-bariatric-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/why-we-built-shift-some-timber",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/waist-size-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/medication-plus-lifestyle",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/cardio-vs-strength",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/surgery-plus-lifestyle",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/ozempic-vs-wegovy",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-saxenda",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-wegovy-tablets",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-injection-vs-tablets",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/gp-vs-specialist-weight-management",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-medication",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/lifestyle/walking-vs-structured-exercise",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/wait-vs-pay-private",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/saxenda-vs-orlistat",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-saxenda",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-sleeve",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-aftercare",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/esg-vs-gastric-sleeve",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/gastric-band-vs-bypass",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-orlistat",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/gastric-band-vs-sleeve",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/esg-vs-wegovy-tablets",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-gastric-bypass",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/online-pharmacy-vs-clinic",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-esg",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/nhs-private/nice-eligible-but-no-access",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/lifestyle-vs-mounjaro",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/mounjaro-vs-gastric-sleeve",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/nhs-medication-vs-private-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/uk-surgery-vs-turkey",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/corporate-wellbeing",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/private-medication-vs-nhs-surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/cookies",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-centre",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/orlistat-vs-lifestyle",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-readiness",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-mini-bypass",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-trees-explained",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/downloads-resources",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/contact",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-readiness-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/decision-centre-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/editorial-standards",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-men-take-wegovy",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/expert-contributors",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-men-take-mounjaro",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/bbq-and-weight-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/are-carbs-bad",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-women-use-tools",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/does-alcohol-cause-belly-fat",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/daily-weight-fluctuation",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/does-belly-fat-increase-risk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/family-discussion-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-stress-cause-weight-gain",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/comparisons/universal/wegovy-vs-gastric-bypass",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/explore-knowledge",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/how-often-weigh",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/can-walking-help-weight-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-20-percent-realistic",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/how-much-protein-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/how-quickly-should-men-lose-weight",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-fat-bad",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-health-mot-saved",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-sst-gp-replacement",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-glp1-only-for-women",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/mounjaro-vs-ozempic",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/does-sleep-affect-weight",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/need-breakfast-weight-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/takeaways-and-weight-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/does-sst-prescribe",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/need-gym-to-lose-weight",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/wegovy-vs-ozempic",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/weight-loss-diabetes-risk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/what-is-20-percent-club",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/glp1-knowledge-centre",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/what-is-founding-shifter",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/future-medicines-comparison",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/amycretin-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/bariatric-surgery-costs-uk-europe",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/bariatric-surgery-europe-costs-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/blood-pressure-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/weight-loss-lower-bp",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/weight-loss-cholesterol",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/gastric-balloon-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/gastric-band-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/cagrisema-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/exercise-walking-strength-mobility",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/faq/is-health-mot-medical",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/gastric-sleeve-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nhs-weight-loss-medication-pathways",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mini-gastric-bypass-oagb-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/gastric-bypass-roux-en-y-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/maritide-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/endoscopic-sleeve-gastroplasty-esg-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nutrition-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/walking-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nhs-weight-management-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nutrition-protein-calories-meal-planning",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/nhs-bariatric-surgery-pathways",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/knowledge",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/lifestyle-vs-treatment",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/media-centre",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medical-disclaimer",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/my-weight-loss-roadmap",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-costs-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/health-mot-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/how-we-review-products",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/sleep-stress-mindset-emotional-eating-maintenance",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/orlistat-definitive-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/nhs-vs-private",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/nhs-private-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medication-comparison-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/ozempic-definitive-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/partner-with-us",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/lifestyle-treatment-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/privacy-centre",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/progress-centre-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/press-centre",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/product-reviews",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/privacy",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-promise",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/how-are-you-feeling",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/surgery-comparison-centre",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/saxenda-definitive-uk-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/research/uk-mens-weight-health-statistics",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/start-here",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/alcohol",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/bmi",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/healthy-weight",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/protein",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/steps",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/roadmap-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/terms",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/waist-height",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/surgery-comparison-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/sleep",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/emerging",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/water",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/lifestyle",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/medication",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-centre",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/calories",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-finder-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/trusted-partners",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/surgery",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/walking",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/uk-europe-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/universal-comparison-methodology",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/nhs",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/feeling-low",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/not-feeling-yourself",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-finder",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/anxiety-overthinking",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/work-with-us",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/stress-overwhelm",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/anger-irritability",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/sleep-mental-health",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/numb-disconnected",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/myths-men-mental-health",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/talking-about-it",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/mental-health-and-weight",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/when-to-get-help",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/uk-vs-europe-treatment",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/work-stress-burnout",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/dads-mental-health",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/bereavement-grief",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/relationship-problems",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/separation-divorce",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/money-worries",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/parenting-pressure",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/loneliness-isolation",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/alcohol-and-mental-health",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/sex-intimacy-confidence",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/redundancy-job-loss",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/chronic-illness-pain",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/confidence-self-worth",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/life-gets-bloody-hard",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/weight-loss-identity",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/friendships-men",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/social-media-comparison",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/retirement-purpose",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/get-through-a-bad-day",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/gambling-mental-health",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/caring-for-someone",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/routine-when-struggling",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/overthinking-tools",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/grounding",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/get-outside",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/movement-for-mood",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/sleep-reset",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/talking-to-partner",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/talking-to-a-mate",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/work-stress-reset",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/reconnect-with-people",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/alcohol-coping-check",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/phone-social-media-reset",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/tiny-goals",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/breathing-for-stress",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/help-yourself-without-doing-it-alone",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/bad-week-reset",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/build-a-support-circle",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/personal-mental-health-plan",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/gp-mental-health-appointment",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/what-will-gp-ask",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/getting-professional-help",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/journalling-without-cringe",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/nhs-talking-therapies",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/cbt-explained",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/types-of-talking-therapy",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/counselling-explained",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/self-care-that-isnt-bubble-baths",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/first-therapy-session",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/things-you-can-do-yourself",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/starting-antidepressants",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/antidepressants-explained",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/antidepressant-side-effects",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/self-refer-talking-therapy",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/stopping-antidepressants",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/therapy-confidentiality",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/medication-and-weight",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/private-therapy",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/occupational-health-mental-health",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/choosing-a-therapist",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/sick-note-mental-health",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/therapy-waiting-lists",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/signs-a-mate-is-struggling",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/mental-health-medication-myths",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/prepare-for-therapy",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/when-treatment-isnt-working",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/helping-a-mate",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-treatment-at-home",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/how-to-ask-are-you-okay",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/what-not-to-say",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/mate-says-hes-depressed",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/someone-is-suicidal",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/suicide-warning-signs",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/mental-health-crisis-plan",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-a-dad",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/urgent-mental-health-help",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-partner-mental-health",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/help-someone-book-gp",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-someone-after-loss",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/what-to-say-to-someone-struggling",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-someone-with-anxiety",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/supporting-someone-with-depression",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/look-after-yourself-when-supporting",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/after-a-mental-health-crisis",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/ask-about-suicide",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/worried-about-family-member",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/helping-someone-online",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/worried-about-colleague",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/helping-someone",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mental-health/someone-says-theyd-be-better-off-dead",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/authors/matt-obrien",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/foundayo",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/weight-loss-injections-for-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/weight-loss-tablets-for-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/wegovy",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/men-belly-fat",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-mental-health",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mens-weight-management",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/knee-pain-weight-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/sleep-apnoea-weight-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/stopping-glp1",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/alcohol-on-glp1",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/muscle-on-glp1",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/return-to-sport-after-weight-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/dpia-summary",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp1-side-effects",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/data-governance",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/complaints",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/travelling-with-weight-loss-medication",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/mounjaro",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-loss-plateau-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/testosterone-weight-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/programme",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced",
+      "status": 200,
+      "strips": 0,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/newsroom-ticker-v2.js?v=footer-wire-20260911b"
+      ],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/complete",
+      "status": 200,
+      "strips": 0,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/newsroom-ticker-v2.js?v=footer-wire-20260911b"
+      ],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/tools/weight-management-review",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests/baseline",
+      "status": 200,
+      "strips": 0,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/newsroom-ticker-v2.js?v=footer-wire-20260911b"
+      ],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/understanding-blood-test-results",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/first-health-check-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/testosterone-energy",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "status": 200,
+      "strips": 0,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/newsroom-ticker-v2.js?v=footer-wire-20260911b"
+      ],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/health-mot",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/digital-scales",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/shift-measure",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/resistance-bands",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/upper-arm-blood-collection",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/erectile-dysfunction",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/stop-smoking",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/hair-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/sleep-apnoea",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/mhra-fake-weight-loss-pens-birmingham-october-2026",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-newsroom",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/mps-obesity-treatment-access-support-october-2026",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/foundayo-european-recommendation-october-2026",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/antidepressant-safety-information-mhra-october-2026",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/onswik-weekly-insulin-uk-approval-october-2026",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-transform-prostate-screening-black-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/cbl-514-supreme-01-phase-3-catch-up",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/life-back",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/clinic-gone-quiet",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/my-timber-for-providers",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/weight-loss-support-for-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/provider-switch",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-reduce-antidepressant-review-support",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/rybelsus-weight-loss-uk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/low-energy-in-men-over-40",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-cost-uk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/high-protein-meals-for-weight-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/healthy-meals-on-a-budget-uk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/emotional-eating-in-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/husband-help",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-loss-medication-eligibility-uk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/weight-loss-blood-tests",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/mens-fat-loss-workouts",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/metabolic-health-markers",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/mens-weight-loss-diet",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/body-composition-tracking",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/high-protein-breakfasts-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/ozempic-weight-loss-plateau",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-less-processed-food-ucl-weight-loss-trial",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-nausea",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-constipation",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-eligibility-uk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-plateau",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-dosage-guide",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-and-alcohol",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-weight-loss-uk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-for-men",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/semaglutide-and-antidepressants",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/life-after-ozempic",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-coaching",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/evidence-based-weight-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/semaglutide-results-timeline",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-not-working",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-binge-eating",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-and-exercise",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/glp-1-muscle-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/missed-wegovy-dose",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/male-obesity",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/winter-low-mood-men",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/medicine-news/uk-archive-game-of-stones-men-weight-loss-followup",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shift-for-work",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/alcohol-free-beer-weight-loss",
+      "status": 200,
+      "strips": 0,
+      "scripts": [],
+      "legacy": 0,
+      "legacyUnshared": false
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/oral-semaglutide-for-weight-loss",
+      "status": 200,
+      "strips": 1,
+      "scripts": [
+        "https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js?v=public-news-20260917-r4"
+      ],
+      "legacy": 1,
+      "legacyUnshared": false
+    }
+  ],
+  "pass": true
+}
