@@ -2,6 +2,7 @@
 import {hqClinicalRoute} from './hq-clinical-api.mjs';
 import {shell,assets} from './portal-release-assets.mjs';
 import {partnerRoute} from './partner-operations/api.mjs';
+import {notificationManagementRoute} from './partner-operations/notification-management.mjs';
 import {commissioningRoute} from './partner-operations/commissioning.mjs';
 import {pages as partnerPages,assets as partnerAssets} from './partner-operations/assets.mjs';
 const origin='https://hq.shiftsometimber.co.uk';
@@ -19,7 +20,8 @@ export default {async fetch(request,env){
  const url=new URL(request.url);
  if(url.hostname==='api.shiftsometimber.co.uk'&&(url.pathname==='/v1/hq/clinical'||url.pathname.startsWith('/v1/hq/clinical/'))){
   const internal=await commissioningRoute(request,env,existingHqIdentity);if(internal)return internal;
-  const partner=await partnerRoute(request,{...env,PARTNER_OPERATIONS_ENABLED:'true',PARTNER_INTERNAL_SETUP_ONLY:'true',PARTNER_NOTIFICATION_REVIEW_ENABLED:'true',PARTNER_LOGIN_ENABLED:'false',PARTNER_FULFILMENT_ENABLED:'false'},existingHqIdentity);
+  const notifications=await notificationManagementRoute(request,{...env,NOTIFICATION_EVENTS_ENABLED:'true'},existingHqIdentity);if(notifications)return notifications;
+  const partner=await partnerRoute(request,{...env,NOTIFICATION_EVENTS_ENABLED:'true',PARTNER_OPERATIONS_ENABLED:'true',PARTNER_INTERNAL_SETUP_ONLY:'true',PARTNER_NOTIFICATION_REVIEW_ENABLED:'true',PARTNER_LOGIN_ENABLED:'false',PARTNER_FULFILMENT_ENABLED:'false'},existingHqIdentity);
   if(partner)return partner;
   // This release is infrastructure only. Activation requires a separately reviewed release,
   // including the existing HQ/CRM access boundaries and genuine session acceptance.

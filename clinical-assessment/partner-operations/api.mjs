@@ -1,6 +1,8 @@
 import {newStaff,staffAction,fulfilmentAction,permission,credentialsCurrent,memberTracking,EVIDENCE,fail,text,future} from './domain.mjs';
 import {limitProfessionalAuth} from './auth-limits.mjs';
 import {purgeStaffEvidence} from './evidence-retention.mjs';
+import {orderEventStatements} from './notification-events.mjs';
+import {prepareInvitation} from './invitation-drafts.mjs';
 import {orderNotificationReviewStatements} from './notification-review.mjs';
 export const PARTNER_BASE='/v1/hq/clinical/partners';
 const ORIGIN='https://hq.shiftsometimber.co.uk';
@@ -17,12 +19,12 @@ async function body(request,max=24000){
  const reader=request.body?.getReader();let length=0,parts=[];if(reader)while(true){const {done,value}=await reader.read();if(done)break;length+=value.length;if(length>max){await reader.cancel();fail(413,'request_too_large');}parts.push(value);}
  const all=new Uint8Array(length);let offset=0;for(const p of parts){all.set(p,offset);offset+=p.length;}return all;
 }
-async function readJson(request){try{return JSON.parse(new TextDecoder().decode(await body(request)));}catch(e){if(e.status)throw e;fail(400,'invalid_json');}}
-function authCondition(a,date){
+export async function readJson(request){try{return JSON.parse(new TextDecoder().decode(await body(request)));}catch(e){if(e.status)throw e;fail(400,'invalid_json');}}
+export function authCondition(a,date){
  if(a.application)return{sql:'EXISTS(SELECT 1 FROM partner_access_tokens WHERE token_hash=? AND staff_id=? AND kind=\'application\' AND used_at IS NULL AND expires_at>?)',args:[a.tokenHash,a.application,date]};
  return{sql:'EXISTS(SELECT 1 FROM hq_users h JOIN hq_sessions ss ON ss.hq_user_id=h.id WHERE h.id=? AND h.role=? AND h.status=\'active\' AND h.mfa_enabled=1 AND ss.token_hash=? AND ss.revoked_at IS NULL AND julianday(ss.expires_at)>julianday(?))'+(a.clinicalGovernor||a.pharmacyGovernor?' AND EXISTS(SELECT 1 FROM clinical_hq_staff WHERE user_id=? AND active=1 AND expires_at>? AND registration_number<>\'\' AND verified_by<>\'\')':''),args:[a.id,a.role,a.sessionHash,date,...a.clinicalGovernor||a.pharmacyGovernor?[a.id,date]:[]]};
 }
-async function audit(env,a,type,id,action,details={}){
+export async function audit(env,a,type,id,action,details={}){
  const g=authCondition(a,now()),n=await query(env,'INSERT INTO partner_audit SELECT ?,?,?,(SELECT COALESCE(MAX(version),-1)+1 FROM partner_audit WHERE entity_type=? AND entity_id=?),?,?,?,? WHERE '+g.sql,uid(),type,id,type,id,String(a.id),action,JSON.stringify(details),now(),...g.args).run();
  if(n.meta?.changes!==1)fail(403,'access_revoked');
 }
@@ -45,7 +47,7 @@ export async function clinicianPermission(env,actor,action='review',medicine){
 }
 function summary(s){return{id:s.id,kind:s.kind,orgId:s.orgId,version:s.version,status:s.status,username:s.username,name:s.details.name,updatedAt:s.updatedAt};}
 function publicStaff(s){return{...s,evidence:s.evidence.map(({objectKey,...e})=>e)};}
-async function actorFor(request,env,authenticate,application=false){
+export async function actorFor(request,env,authenticate,application=false){
  if(application){const raw=request.headers.get('X-Application-Token');if(!raw||!/^[a-f0-9]{64}$/.test(raw))fail(401,'application_link_required');const tokenHash=await digest(raw),row=await query(env,"SELECT staff_id FROM partner_access_tokens WHERE token_hash=? AND kind='application' AND used_at IS NULL AND expires_at>?",tokenHash,now()).first();if(!row)fail(401,'application_link_expired');return{id:'application:'+row.staff_id,application:row.staff_id,tokenHash};}
  const access=await authenticate(request,env);if(access.response)return{response:access.response};const u=access.user;if(!u)fail(401,'hq_sign_in_required');
  if(!u.mfaEnabled)fail(403,'hq_mfa_required');const token=(request.headers.get('cookie')||'').match(/(?:^|;\s*)sst_hq_session=([^;]+)/)?.[1];if(!token)fail(401,'hq_session_required');
@@ -111,6 +113,12 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
   const app=p[0]==='application',a=await actorFor(request,env,authenticate,app);if(a.response)return a.response;
   const administrator=admin(a),governor=a.clinicalGovernor||a.pharmacyGovernor;
   if(internalSetup&&!administrator)fail(403,'internal_owner_access_required');
+  if(p[0]==='invitations'&&p.length===1){
+   if(!administrator)fail(403,'owner_approval_required');
+   await audit(env,a,'directory','invitations','invitation_drafts_viewed');
+   if(request.method==='GET')return json({drafts:await rows(query(env,'SELECT * FROM partner_invitation_drafts ORDER BY created_at DESC LIMIT 100')),sent:false});
+   return json(await prepareInvitation(env,await readJson(request),a,()=>authCondition(a,now())),201);
+  }
   if(p[0]==='organisations'){
    if(!administrator)fail(403,'owner_approval_required');
    if(p.length===2&&request.method==='POST'){
@@ -215,7 +223,7 @@ async function fulfilmentRoute(request,env,a,p,adapters){
    query(env,'UPDATE partner_fulfilment SET state_json=?,version=?,updated_at=? WHERE order_number=? AND version=? AND '+g.sql+' AND EXISTS(SELECT 1 FROM partner_staff WHERE id=? AND version=? AND state_json=?) AND EXISTS(SELECT 1 FROM partner_organisations WHERE id=? AND version=? AND state_json=?)',JSON.stringify(result.state),result.state.version,date,order,f.version,...g.args,s.id,s.version,JSON.stringify(s),organisation.id,organisation.version,JSON.stringify(organisation)),
    query(env,'INSERT INTO partner_audit SELECT ?,?,?,(SELECT COALESCE(MAX(version),-1)+1 FROM partner_audit WHERE entity_type=? AND entity_id=?),?,?,?,? WHERE changes()=1',result.event.id,'order',order,'order',order,String(a.id),result.event.action,JSON.stringify({...result.event.details,source:'partner_portal',orderVersion:result.state.version,permissionVersion:s.version,beforeStatus:f.status,afterStatus:result.state.status,memberMessage:result.state.message||null,tracking:result.state.tracking||null}),date),
    query(env,"INSERT INTO partner_notification_outbox SELECT ?,?,?,?,?,'draft',? WHERE EXISTS(SELECT 1 FROM partner_audit WHERE id=?)",uid(),result.event.id,order,f.memberId,'order_status_update',date,result.event.id),
-   ...orderNotificationReviewStatements(env,result.state,result.event)
+   ...orderNotificationReviewStatements(env,result.state,result.event),...await orderEventStatements(env,result.state,result.event)
   ]);if(rs[0].meta?.changes!==1)fail(409,'order_or_permissions_changed');return json({order:result.state,notificationStatus:'draft_not_sent'});
  }
  fail(404,'not_found');
@@ -229,7 +237,7 @@ export async function receiveIssuedPrescription(env,input,verify){
  const previous=parse(await query(env,'SELECT state_json FROM partner_fulfilment WHERE order_number=?',proof.orderNumber).first());
  if(previous&&['prescriptionId','partnerId','memberId','medicine','area'].some(k=>previous[k]!==proof[k]))fail(409,'conflicting_prescription_handover');
  const repeated=await query(env,"SELECT order_number FROM partner_fulfilment WHERE json_extract(state_json,'$.prescriptionId')=?",proof.prescriptionId).first();if(repeated&&repeated.order_number!==proof.orderNumber)fail(409,'prescription_already_handed_over');
- const rs=await env.DB.batch([query(env,'INSERT OR IGNORE INTO partner_fulfilment VALUES(?,?,?,0,?,?)',proof.orderNumber,proof.partnerId,proof.memberId,JSON.stringify(s),date),query(env,'INSERT INTO partner_audit SELECT ?,?,?,0,?,?,?,? WHERE changes()=1',id,'order',proof.orderNumber,'verified_prescription_adapter','prescription_received',JSON.stringify({prescriptionId:proof.prescriptionId}),date),...orderNotificationReviewStatements(env,s,{id,at:date})]);
+ const rs=await env.DB.batch([query(env,'INSERT OR IGNORE INTO partner_fulfilment VALUES(?,?,?,0,?,?)',proof.orderNumber,proof.partnerId,proof.memberId,JSON.stringify(s),date),query(env,'INSERT INTO partner_audit SELECT ?,?,?,0,?,?,?,? WHERE changes()=1',id,'order',proof.orderNumber,'verified_prescription_adapter','prescription_received',JSON.stringify({prescriptionId:proof.prescriptionId}),date),...orderNotificationReviewStatements(env,s,{id,at:date}),...await orderEventStatements(env,s,{id,at:date,action:'prescription_received'})]);
  return{created:rs[0].meta?.changes===1,orderNumber:proof.orderNumber};
 }
 // Member projection and replies retain BOTH order and authenticated member ownership.

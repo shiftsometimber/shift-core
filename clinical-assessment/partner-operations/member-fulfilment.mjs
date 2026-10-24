@@ -1,3 +1,4 @@
+import {orderEventStatements} from './notification-events.mjs';
 import {memberTracking,fail,text} from './domain.mjs';
 import {supersedeAnsweredQueryStatement} from './notification-review.mjs';
 const q=(env,s,...a)=>env.DB.prepare(s).bind(...a),rows=async s=>(await s.all()).results||[],now=()=>new Date().toISOString();
@@ -31,7 +32,7 @@ export async function replyToFulfilment(request,env,record,actor,b){
  const result=await env.DB.batch([
   q(env,'UPDATE partner_fulfilment SET state_json=?,version=?,updated_at=? WHERE order_number=? AND member_id=? AND version=?'+guard,JSON.stringify(next),next.version,date,s.orderNumber,actor.id,s.version,record.id,actor.id,s.orderNumber,actor.id,hash,date),
   q(env,"INSERT INTO partner_audit SELECT ?,?,?,(SELECT COALESCE(MAX(version),-1)+1 FROM partner_audit WHERE entity_type='order' AND entity_id=?),?,?,?,? WHERE changes()=1",event,'order',s.orderNumber,s.orderNumber,String(actor.id),'member_fulfilment_reply',JSON.stringify({source:'member_portal',recordId:record.id,queryId:s.queryId,message,orderVersion:next.version}),date),
-  ...supersedeAnsweredQueryStatement(env,s,event)
+  ...supersedeAnsweredQueryStatement(env,s,event),...await orderEventStatements(env,s,{id:event,action:'member_fulfilment_reply',at:date})
  ]);
  if(result[0].meta?.changes!==1)fail(409,'order_or_session_changed');
  return{saved:true,notificationStatus:'not_sent',fulfilment:await memberFulfilment(env,record)};

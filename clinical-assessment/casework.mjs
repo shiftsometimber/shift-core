@@ -1,3 +1,4 @@
+import {notificationEventStatements} from './partner-operations/notification-events.mjs';
 import {validateCareHandover} from './care-handover.mjs';
 import {clinicianPermission,memberFulfilment} from './partner-operations/api.mjs';
 import {contextSharing,saveContextSharing,clinicalContext} from './clinical-context.mjs';
@@ -83,6 +84,7 @@ export async function caseAction(env,record,actor,reviewer,b){
  const statements=[env.DB.prepare('INSERT INTO clinical_case_events(id,record_id,version,assessment_version,actor_user_id,actor_kind,kind,public_json,private_json,created_at) SELECT ?,?,?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM clinical_case_state WHERE record_id=? AND version=?) AND EXISTS(SELECT 1 FROM clinical_member_records WHERE id=? AND revision=? AND review_sharing=1)'+sharingGuard+staffGuard+scopeGuard).bind(id,record.id,version,assessment.version,actor.id,reviewer?'hq':'member',kind,JSON.stringify(publicData),JSON.stringify(privateData),date,record.id,state.version,record.id,record.revision,...sharingArgs,...staffArgs,...scopeArgs)];
  statements.push(env.DB.prepare('UPDATE clinical_case_state SET version=?,status=?,assessment_version=?,updated_at=? WHERE record_id=? AND version=? AND EXISTS(SELECT 1 FROM clinical_case_events WHERE id=?)').bind(version,status,assessment.version,date,record.id,state.version,id));
  if(recipient!==undefined)statements.push(env.DB.prepare('INSERT INTO clinical_case_outbox SELECT ?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM clinical_case_events WHERE id=?)').bind(crypto.randomUUID(),id,recipient,reviewer?'member':'hq',reviewer?(kind==='information_requested'?'member_action_needed':'member_case_update'):'reviewer_case_update',(reviewer?'/member/treatment-records?record=':'/?view=clinical&record=')+record.id,'pending',date,id));
+ statements.push(...notificationEventStatements(env,record,{id,kind,source:'case',sourceId:id,at:date}));
  const result=await env.DB.batch(statements);if(Number(result[0].meta?.changes)!==1)fail(409,'case_changed');
  return caseView(env,record,reviewer);
 }

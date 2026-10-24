@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-24T16:37:52.785Z",
+  "scope": "Actual UI and routes with local SQLite and fictional HQ identity; not production signed-in acceptance",
+  "checks": [
+    {
+      "width": 390,
+      "clinicianBanner": true,
+      "clinicianInvitePersisted": true,
+      "partnerInvitePersisted": true,
+      "fullDraftPreview": true,
+      "threeChannelReview": true,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "clinicianBanner": true,
+      "clinicianInvitePersisted": true,
+      "partnerInvitePersisted": true,
+      "fullDraftPreview": true,
+      "threeChannelReview": true,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "messagesSent": 0,
+  "accessTokensCreated": 0
+}

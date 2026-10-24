@@ -7,14 +7,15 @@ function profile(id,kind){const s=newStaff({name:kind==='clinician'?'Alex Exampl
 const applicant=profile('DEMO-APPLICANT','clinician'),dispenser=profile('DEMO-DISPENSER','dispensing');
 dispenser.status='active';dispenser.username='DSP-AABBCCDDEEFF';dispenser.hqUserId=12;dispenser.checks=CHECKS.map(kind=>({kind,outcome:'verified',credentialVersion:0,expiresAt:expiry,reviewedBy:'DEMO-VERIFIER'}));dispenser.grants=[{credentialVersion:0,id:'DEMO-GRANT',area:'weight_management',actions:['view_fulfilment','query','supply_decision','prepare','dispatch'],medicines:[],restrictions:'Fictional demonstration only',approvedBy:'DEMO-GOVERNOR',startsAt:date,expiresAt:expiry}];
 const staff=new Map([[applicant.id,applicant],[dispenser.id,dispenser]]),organisations=[organisation,pharmacy],events=[];
-let stock=false;
+const invitationDrafts=[];let stock=false;
 let order={orderNumber:'DEMO-1042',partnerId:pharmacy.id,memberId:999,area:'weight_management',medicine:'Fictional medicine — not a real prescription',prescriptionId:'DEMO-RX-NOT-VALID',patient:{name:'Alex Example · fictional member'},delivery:{address:'Fictional delivery address'},status:'received',version:0,updatedAt:date};
 export function toggleDemoStock(){stock=!stock;return stock;}
 export async function demoFetch(url,options={}){
  const parts=new URL(url).pathname.split('/partners')[1]?.split('/').filter(Boolean)||[],data=options.body?JSON.parse(options.body):undefined;
  try{
   let result;
-  if(parts[0]==='organisations'){if(data&&parts[1]){result=organisations.find(o=>o.id===parts[1]);Object.assign(result,{status:data.action==='approve'?'approved':'suspended',version:(result.version||0)+1});}else if(data){result={id:crypto.randomUUID(),...data};organisations.push(result);}else result={organisations};}
+  if(parts[0]==='invitations'){if(data){const s=staff.get(data.staffId),draft={id:crypto.randomUUID(),kind:data.kind,recipient_name:s?.details.name||data.name,recipient_email:s?.details.email||data.email,subject:'FICTIONAL SHIFT invitation',body:'Fictional invitation preview only. Professional onboarding is not open. No invitation is sent and no access is granted.',status:'held_onboarding_closed'};invitationDrafts.push(draft);result={draft,sent:false,accessGranted:false};}else result={drafts:invitationDrafts,sent:false};}
+  else if(parts[0]==='organisations'){if(data&&parts[1]){result=organisations.find(o=>o.id===parts[1]);Object.assign(result,{status:data.action==='approve'?'approved':'suspended',version:(result.version||0)+1});}else if(data){result={id:crypto.randomUUID(),...data};organisations.push(result);}else result={organisations};}
   else if(parts[0]==='fulfilment'){
    if(parts[2]==='action'){const r=fulfilmentAction(order,data,dispenser,{id:12,role:'clinical',mfa:true},new Date().toISOString(),crypto.randomUUID(),{prescriptionCurrent:true,stockAvailable:stock});order=r.state;events.push({actor_id:'DEMO-PHARMACIST',action:r.event.action,created_at:r.event.at});result={order,notificationStatus:'fictional_no_message'};}
    else result=parts.length===1?{orders:[order],oversight:false}:{order,oversight:false,events:[...events]};
