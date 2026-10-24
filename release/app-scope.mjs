@@ -100,14 +100,18 @@ const CURRENT_MAIN_SAFETY_CHECK_BLOBS=Object.freeze({
  'tests/approved-public-corrections-20261024.test.mjs':'f87dc2a7dc796b50691553f3851b4be0288dc175',
  'tests/fixtures/approved-corrections-20261024/nhs-before.json':'297367c88854c575b79dea953df729fe5d726c22',
  'release/approved-source-comparison-20261024.mjs':'6af31f06d5667c037f65cae202af1b478813dbaa',
- 'release/approved-source-comparison-data-20261024.mjs':'232762c82f694e61529759359a75dda95467757d',
+ 'release/approved-source-comparison-data-20261024.mjs':'b212df000aee8b17cc3055df232f60f2794df016',
  'tests/approved-source-comparison-20261024.test.mjs':'9c9e3af228b7dde074621698ebe8f49c85323f45',
  'release/recorded-week-navigation-outer-frame-20261018.mjs':'dd48e3d21472804243a7e9c141b0ff8a7ee89a77',
  'shift-coach/release-contract.mjs':'9b86959aa0b88793d8b3df38f397880e971119f3',
  'release/root-share-preview-scope.mjs':'aff239d1880a84481dd62ff1d71b3eef17216811',
  'tests/root-share-preview-composition.test.mjs':'cb410665b8b0294a102d9a04d4f84ffe44e2387f',
  'tests/root-share-preview.test.mjs':'d69bcf08a28cb1008b38693968377352fb976044',
- 'release/combined-finite-scope-20261014.mjs':'b5c1ffe7141f223803088a84058d9ad4e163833c'
+ 'release/combined-finite-scope-20261014.mjs':'b5c1ffe7141f223803088a84058d9ad4e163833c',
+ 'home-speed-repair.mjs':'f0d2db246ea89b2cce17a2a05c9d8d77fe6f008f',
+ 'timber-shed-public-teaser.mjs':'3d8d11d641a1409aab7b8013bb7cb4d941d98506',
+ 'home-header-baseline-20261024.mjs':'8dcab2585a0a07844a73c9670f609055ac909410',
+ '.github/workflows/online-privacy-recovery-proof.yml':'52341409f18e452c6fe4c83fb1730427e0b1e544'
 });
 export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}).trim()){
  for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);
