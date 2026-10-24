@@ -112,8 +112,9 @@ const CURRENT_MAIN_SAFETY_CHECK_BLOBS=Object.freeze({
 });
 export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}).trim()){
  verifyMyShiftRelease();
+ for(const path of MY_SHIFT_PATHS)APP_PATHS.add(path);
  for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);
- return [...Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS),...MY_SHIFT_PATHS];
+ return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);
 }
 export function validateAppSource(){
  return withImmutableHistoryVerification(()=>{

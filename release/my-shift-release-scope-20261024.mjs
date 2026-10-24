@@ -22,7 +22,7 @@ export const COMPARISON_IMPORT="import {myShiftComparisonValue} from './my-shift
 export const COMPARISON_HOOK=" const shift=myShiftComparisonValue(path,value,head);if(shift!==value)return shift;\n";
 export const APP_IMPORT="import {verifyMyShiftRelease,myShiftSafetyComparison,MY_SHIFT_PATHS} from './my-shift-release-scope-20261024.mjs';\n";
 export const APP_BEFORE=" for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
-export const APP_AFTER=" verifyMyShiftRelease();\n for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);\n return [...Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS),...MY_SHIFT_PATHS];";
+export const APP_AFTER=" verifyMyShiftRelease();\n for(const path of MY_SHIFT_PATHS)APP_PATHS.add(path);\n for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
 const git=(...args)=>exec('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const bytes=(ref,path)=>exec('git',['show',ref+':'+path],{encoding:'utf8',maxBuffer:64e6});
 const oid=value=>createHash('sha1').update('blob '+Buffer.byteLength(value)+'\0').update(value).digest('hex');
