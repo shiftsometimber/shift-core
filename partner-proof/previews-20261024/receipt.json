@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-24T15:44:56.399Z",
+  "fictionalOnly": true,
+  "liveDemoScreens": [
+    "clinician",
+    "hq-partners",
+    "dispensing"
+  ],
+  "fixtureFedCurrentMemberClient": [
+    "my-shift-action",
+    "my-shift-tracking"
+  ],
+  "previews": [
+    "clinician",
+    "hq-partners",
+    "dispensing",
+    "my-shift-action",
+    "my-shift-tracking"
+  ],
+  "errors": [],
+  "noRealWrites": true
+}
