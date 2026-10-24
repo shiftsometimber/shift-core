@@ -38,6 +38,11 @@ export function staffAction(original,b,actor,now,id){
   if(!admin&&!app)fail(403,'application_access_required');if(!['draft','more_information','submitted'].includes(s.status))fail(409,'reapplication_required');
   if(!EVIDENCE.includes(b.evidence?.kind)||!/^[a-f0-9]{64}$/.test(b.evidence.digest)||!b.evidence.id)fail(422,'verified_upload_required');
   s.evidence.push(b.evidence);s.credentialVersion++;s.status='draft';metadata.kind=b.evidence.kind;metadata.evidenceId=b.evidence.id;
+ }else if(b.action==='hold_evidence'||b.action==='release_evidence_hold'){
+  requireAdmin();const e=s.evidence.find(e=>e.id===b.evidenceId&&!e.purgedAt);if(!e)fail(404,'evidence_not_found');if(e.deletionPendingAt)fail(409,'evidence_deletion_already_pending');
+  metadata.evidenceId=e.id;metadata.reason=text(b.reason,2000);
+  if(b.action==='hold_evidence'){e.legalHold={reason:metadata.reason,actorId:String(actor.id),at:now,reviewAt:future(b.reviewAt,now)};metadata.reviewAt=e.legalHold.reviewAt;}
+  else{if(!e.legalHold)fail(409,'evidence_not_on_hold');delete e.legalHold;}
  }else if(b.action==='submit'){
   if(!admin&&!app)fail(403,'application_access_required');if(!['draft','more_information'].includes(s.status))fail(409,'application_not_editable');
   for(const k of ['name','email','professionalContact','profession','regulator','registrationNumber','indemnityProvider','experience'])text(s.details[k],4000);

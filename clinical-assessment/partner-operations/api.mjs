@@ -1,5 +1,6 @@
 import {newStaff,staffAction,fulfilmentAction,permission,credentialsCurrent,memberTracking,EVIDENCE,fail,text,future} from './domain.mjs';
 import {limitProfessionalAuth} from './auth-limits.mjs';
+import {purgeStaffEvidence} from './evidence-retention.mjs';
 export const PARTNER_BASE='/v1/hq/clinical/partners';
 const ORIGIN='https://hq.shiftsometimber.co.uk';
 const now=()=>new Date().toISOString(),uid=()=>crypto.randomUUID();
@@ -152,6 +153,10 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
    }
    if(s.passwordSetAt)fail(409,'use_existing_hq_password_recovery');return json(await token(env,s,'activation',a));
   }
+  if(p[1]==='retention'&&p.length===2&&request.method==='POST'){
+   if(!administrator)fail(403,'owner_approval_required');const b=await readJson(request);if(b.version!==s.version)fail(409,'profile_changed');if(b.dryRun!==undefined&&typeof b.dryRun!=='boolean')fail(422,'boolean_dry_run_required');
+   const result=await purgeStaffEvidence(env,s,b.evidenceId,a,(original,result)=>saveStaff(env,original,result,a),{dryRun:b.dryRun!==false});return json({...result,...result.state?{state:publicStaff(result.state)}:{}});
+  }
   if(p[1]==='evidence'){
    if(!administrator&&!app)fail(403,'identity_evidence_restricted_to_verifiers');
    if(request.method==='POST'&&p.length===2){
@@ -172,7 +177,7 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
    }
   }
   if(p[1]==='action'&&request.method==='POST'&&p.length===2){
-   const b=await readJson(request);if(internalSetup&&!['details','query','reject','suspend','revoke_grant'].includes(b.action))fail(503,'professional_onboarding_not_open');if(b.action==='evidence')fail(403,'use_verified_upload_route');
+   const b=await readJson(request);if(internalSetup&&!['details','query','reject','suspend','revoke_grant','hold_evidence','release_evidence_hold'].includes(b.action))fail(503,'professional_onboarding_not_open');if(b.action==='evidence')fail(403,'use_verified_upload_route');
    const organisation=['approve','activate','grant'].includes(b.action)?await currentPartner(env,s):null;
    if(b.action==='approve')b.username=s.username||(s.kind==='clinician'?'CLN-':'DSP-')+random().slice(0,12).toUpperCase();
    if(b.action==='activate'){const u=await query(env,'SELECT mfa_enabled,status FROM hq_users WHERE id=?',s.hqUserId).first();b.accountMfaVerified=u?.mfa_enabled===1&&u.status==='active';}

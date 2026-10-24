@@ -74,3 +74,11 @@ node clinical-assessment/partner-operations/commissioning-browser.mjs
 ```
 
 Actual partner-directory preparation is now available behind HQ owner/admin MFA. Its UI hides upload, verification and activation controls while the server independently rejects those operations. This is separate from the synthetic order acceptance workspace. All real-service gates and the separate main release are preserved. No messages, invitations, charges, scheduled jobs or customer enrolments are created by these changes.
+
+## Evidence retention implementation
+
+The existing private R2 store is bound under `PARTNER_PRIVATE_FILES` as well as the retained clinical binding; staff objects use an isolated `staff/<profile>/<opaque-id>` namespace and existing admin-only audited access. This is logical separation within the same private bucket, not a claim of a dedicated storage account. Real uploads remain source-blocked in internal preparation; no retention date/policy is invented and no real images have been collected.
+
+`evidence-retention.mjs` adds a non-destructive expiry/hold plan, independent audited owner hold/release actions, and a two-phase explicit deletion operation. The deletion intent is committed before private-store deletion; failed storage deletion remains pending for manual retry; successful deletion is separately committed, without the object key in returned profiles/audit snapshots. Hold review dates never silently release a hold. A queued deletion rejects retrospective hold changes. Storage/transaction failures cannot be reported as successful deletion. Deletion requires `PARTNER_EVIDENCE_PURGE_ENABLED:true` and a non-empty agreed `PARTNER_RETENTION_POLICY_REFERENCE`, neither configured. The published internal-only source additionally rejects the retention execution route. There is no new timer or background deletion process.
+
+Local API/domain tests cover dry-run privacy, uncommissioned rejection, current evidence, legal holds, role/MFA, audit outage, private-store outage/retry and successful two-phase audit. Actual retention periods, legal basis, privacy notices, holds policy and operational purge acceptance still require the responsible owner's agreement before ID/selfie onboarding. No real evidence was deleted by this work.

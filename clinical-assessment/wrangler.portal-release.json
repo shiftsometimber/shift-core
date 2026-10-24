@@ -16,6 +16,10 @@
     {
       "binding": "CLINICAL_PRIVATE_FILES",
       "bucket_name": "shift-clinical-member-records"
+    },
+    {
+      "binding": "PARTNER_PRIVATE_FILES",
+      "bucket_name": "shift-clinical-member-records"
     }
   ],
   "vars": {
