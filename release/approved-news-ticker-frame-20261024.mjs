@@ -2,11 +2,11 @@ import {immutableHistoryExecFileSync as immutableExecFileSync} from './immutable
 import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {readFileSync} from 'node:fs';
+import {readFileSync,lstatSync,readdirSync,realpathSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {nativeNavigationFreshSourceChecker} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import inverse from './approved-news-ticker-maintenance-20261024.json' with {type:'json'};
-const fixed={"record":{"proof":"EXACT_APPROVED_NEWS_TICKER_20261024","base":"16a2446bdf537c6bd65e85acef067d31f00c7a08","payload":"686abf6a867808bf3a95620b43c8f6ab319df305","paths":["public-navigation-policy.mjs","radar-integration-v1.js","radar-published-ticker-v1.js","tests/public-ticker-motion.test.mjs","tests/radar-published-ticker-catchup.test.mjs","tests/fixtures/radar-catchup-public-edition-20261019.json"],"maintenancePaths":["release/approved-news-ticker-frame-20261024.mjs","release/approved-news-ticker-maintenance-20261024.json","release/website-editorial-scope-20261018.mjs","release/approved-runtime-composition.mjs","tests/website-editorial-scope-20261018.test.mjs","tests/approved-news-ticker-frame-20261024.test.mjs","release/health-vision-scope-20261021.mjs","release/testosterone-scope-20261021.mjs","tests/health-vision-scope-20261021.test.mjs","tests/testosterone-release-scope.test.mjs","release/member-recording-repair-20261024.mjs"],"scope":{"publicCopyApproval":"Matt20October exact MW-CATCHUP-19OCT-v1 and retained routine factual authority","publicCopySha256":"cbafd7ef28dc65628a2e7a5c8092b8550138a9a802b9e2768281cdae8259fb60","completePublicationSnapshotRequired":true,"pendingSourceChangesExcluded":true,"firstActualPublicationPreserved":true,"currentWireClaim":false,"clinicalApprovalGranted":false,"notificationAuthorityGranted":false,"medicineCatalogueChanged":false,"pausedLinkRepairIncluded":false,"homepageMainContentChanged":false}}}.record,KEY='approvedNewsTicker20261024',LEDGER='release/approved-runtime-composition.json';
+const fixed={"record":{"proof":"EXACT_APPROVED_NEWS_TICKER_20261024","base":"16a2446bdf537c6bd65e85acef067d31f00c7a08","payload":"686abf6a867808bf3a95620b43c8f6ab319df305","paths":["public-navigation-policy.mjs","radar-integration-v1.js","radar-published-ticker-v1.js","tests/public-ticker-motion.test.mjs","tests/radar-published-ticker-catchup.test.mjs","tests/fixtures/radar-catchup-public-edition-20261019.json"],"maintenancePaths":["release/approved-news-ticker-frame-20261024.mjs","release/approved-news-ticker-maintenance-20261024.json","release/website-editorial-scope-20261018.mjs","release/approved-runtime-composition.mjs","tests/website-editorial-scope-20261018.test.mjs","tests/approved-news-ticker-frame-20261024.test.mjs","release/health-vision-scope-20261021.mjs","release/testosterone-scope-20261021.mjs","tests/health-vision-scope-20261021.test.mjs","tests/testosterone-release-scope.test.mjs","release/member-recording-repair-20261024.mjs"],"scope":{"publicCopyApproval":"Matt20October exact MW-CATCHUP-19OCT-v1 and retained routine factual authority","publicCopySha256":"cbafd7ef28dc65628a2e7a5c8092b8550138a9a802b9e2768281cdae8259fb60","completePublicationSnapshotRequired":true,"pendingSourceChangesExcluded":true,"firstActualPublicationPreserved":true,"currentWireClaim":false,"clinicalApprovalGranted":false,"notificationAuthorityGranted":false,"medicineCatalogueChanged":false,"pausedLinkRepairIncluded":false,"homepageMainContentChanged":false},"repairBase":"07850862f8d4cf56a4d73473c6320a33c64b624e","repairPaths":["release/approved-news-ticker-frame-20261024.mjs","tests/approved-news-ticker-frame-20261024.test.mjs"]}}.record,KEY='approvedNewsTicker20261024',LEDGER='release/approved-runtime-composition.json';
 const sorted=x=>[...x].sort(),sha=x=>createHash('sha256').update(x).digest('hex');
 const git=(...args)=>(args.length===2&&['show','rev-parse'].includes(args[0])&&/^[a-f0-9]{40}:/.test(args[1])?immutableExecFileSync('git',args,{encoding:'utf8',maxBuffer:64e6}):execFileSync('/usr/bin/git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6})).trimEnd();
 const actual=()=>freshDetachedSourceHead()??git('rev-parse','HEAD');
@@ -41,25 +41,61 @@ const text=(r,p)=>bytes(r,p).toString('utf8');
 const diff=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 const ancestor=(a,b)=>{git('merge-base','--is-ancestor',a,b);return true};
 const frames=new WeakSet();let active=null;
+// A retained frame is never a cached source verdict. Ordinary Git storage and
+// every ref are inventoried before/after the original native source check.
+// Unknown storage, symlinks, races or any namespace change use the full constructor.
+const privateFrameStorage=new WeakMap();
+function storageSignature(){
+ try{
+  const root=process.cwd()+'/.git',rows=[];let count=0;
+  const stamp=s=>[s.dev,s.ino,s.mode,s.nlink,s.uid,s.gid,s.size,s.mtimeNs,s.ctimeNs].map(String);
+  function walk(path,relative,refs,depth=0){
+   if(depth>32||++count>200000)throw Error('Unsupported native Git storage inventory');
+   const st=lstatSync(path,{bigint:true,throwIfNoEntry:false});
+   if(!st){rows.push([relative,'absent']);return;}
+   if(st.isSymbolicLink()||realpathSync(path)!==path)throw Error('Ordinary native Git storage required');
+   if(st.isDirectory()){
+    const names=readdirSync(path).sort();rows.push([relative,'directory',stamp(st),names]);
+    for(const name of names){if(!name||name==='.'||name==='..'||name.includes('/')||name.includes('\0'))throw Error('Native storage name required');walk(path+'/'+name,relative+'/'+name,refs,depth+1);}
+   }else if(st.isFile()){
+    if(refs&&st.size>1048576n)throw Error('Bounded native ref required');
+    rows.push([relative,'file',stamp(st),refs?sha(readFileSync(path)):null]);
+   }else throw Error('Unsupported native Git storage entry');
+  }
+  walk(root+'/objects','objects',false);walk(root+'/refs','refs',true);
+  return sha(Buffer.from(JSON.stringify(rows)));
+ }catch{return null;}
+}
+
 export const APPROVED_NEWS_TICKER_PATHS=Object.freeze(fixed.paths);
 export const APPROVED_NEWS_TICKER_MAINTENANCE=Object.freeze(fixed.maintenancePaths);
 export const approvedTickerPredecessorHead=()=>active?.base??null;
 export const approvedTickerActualHead=()=>active?.rawHead??null;
 export function approvedNewsTickerOuterFrame(){
- // Nested callers may reuse only this private synchronous admitted frame.
- // Its original fresh HEAD/index/config/environment/working-source guard still runs.
- if(active){active.assertCurrent();return active;}
+ // Reuse only inside this private synchronous callback with the complete
+ // object/ref namespace unchanged on both sides of fresh native source checks.
+ if(active){
+  active.assertCurrent();const expected=privateFrameStorage.get(active),before=storageSignature();
+  if(expected!==null&&expected!==undefined&&before===expected){
+   active.assertCurrent();if(storageSignature()===before)return active;
+  }
+ }
+ const storageBefore=storageSignature();
  const rawHead=actual(),record=JSON.parse(text(rawHead,LEDGER)),c=record[KEY];if(!c)return null;
  const fresh=freshChecker(rawHead);
- const {maintenanceSource,...scope}=c;assert.deepEqual(scope,fixed,'Only the exact finite approvedTicker scope is admitted');
+ const {maintenanceSource,repairSource,...scope}=c;assert.deepEqual(scope,fixed,'Only the exact finite approvedTicker scope is admitted');
  assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
- for(const[a,b,ps]of[[fixed.base,fixed.payload,fixed.paths],[fixed.payload,maintenanceSource,fixed.maintenancePaths],[maintenanceSource,rawHead,[LEDGER]]]){
+ assert.match(repairSource,/^[a-f0-9]{40}$/);
+ const {repairBase,repairPaths,...originalFixed}=fixed;
+ assert.deepEqual(JSON.parse(text(repairBase,LEDGER))[KEY],{...originalFixed,maintenanceSource},'Every original ticker registration field must remain exact');
+
+ for(const[a,b,ps]of[[fixed.base,fixed.payload,fixed.paths],[fixed.payload,maintenanceSource,fixed.maintenancePaths],[maintenanceSource,fixed.repairBase,[LEDGER]],[fixed.repairBase,repairSource,fixed.repairPaths],[repairSource,rawHead,[LEDGER]]]){
   ancestor(a,b);assert.deepEqual(sorted(diff(a,b)),sorted(ps),'Exact approvedTicker native increment required');
  }
  const all=[...fixed.paths,...fixed.maintenancePaths];
  assert.equal(new Set(all).size,all.length);
  const modeMaps=new Map();
- for(const[ref,list]of[[rawHead,[...all,LEDGER]],[fixed.payload,fixed.paths],[maintenanceSource,fixed.maintenancePaths],[fixed.base,[...Object.keys(inverse.modified),LEDGER]]]){
+ for(const[ref,list]of[[rawHead,[...all,LEDGER]],[fixed.payload,fixed.paths],[maintenanceSource,fixed.maintenancePaths],[repairSource,fixed.repairPaths],[fixed.base,[...Object.keys(inverse.modified),LEDGER]]]){
   const rows=execFileSync('/usr/bin/git',['--no-replace-objects','ls-tree','-z',ref,'--',...list],{encoding:'utf8',maxBuffer:64e6}).split('\0');assert.equal(rows.pop(),'');const map=new Map();
   for(const row of rows){const m=/^(100644) blob ([a-f0-9]{40})\t(.+)$/.exec(row);assert(m&&list.includes(m[3])&&!map.has(m[3]),'Exact unique regular native mode row required');map.set(m[3],m[2])}
   assert.deepEqual(sorted([...map.keys()]),sorted(list),'Every original native source mode remains required');modeMaps.set(ref,map);
@@ -67,7 +103,7 @@ export function approvedNewsTickerOuterFrame(){
  const facts={blob:(r,p)=>{const value=modeMaps.get(r)?.get(p);assert(value,'Exact native immutable path required');return value},content:(r,p)=>{const value=text(r,p);assert.equal(oid(r,p),modeMaps.get(r)?.get(p),'Native source identity changed');return value},mode:(r,p)=>{assert(modeMaps.get(r)?.has(p));return '100644'}};
  assert.deepEqual(sorted(diff(fixed.base,rawHead)),sorted([...all,LEDGER]),'Unrelated approvedTicker source change');
  for(const p of all){
-  const source=fixed.paths.includes(p)?fixed.payload:maintenanceSource;
+  const source=fixed.paths.includes(p)?fixed.payload:fixed.repairPaths.includes(p)?repairSource:maintenanceSource;
   assert.equal(facts.blob(rawHead,p),facts.blob(source,p),'Exact reviewed approvedTicker blob required: '+p);
   assert.equal(facts.mode(rawHead,p),'100644','Original regular source mode required');
   assert(readFileSync(p).equals(Buffer.from(facts.content(rawHead,p))),'Current approvedTicker working bytes changed');
@@ -106,6 +142,7 @@ export function approvedNewsTickerOuterFrame(){
   currentContent:(r,p)=>text(r==='HEAD'?rawHead:r,p),
   originalContent:(p,value)=>{assertCurrent();assert.equal(value,text(rawHead,p),'Exact current approvedTicker fixture bytes required');return text(fixed.base,p)},
   projectRead:s=>project('read',s),projectContent:s=>project('content',s),projectDiff:s=>binary('diff',s),projectAncestor:s=>binary('ancestor',s)};
+ const storageAfter=storageSignature();privateFrameStorage.set(frame,storageBefore!==null&&storageAfter===storageBefore?storageAfter:null);
  frames.add(frame);assertCurrent();return Object.freeze(frame);
 }
 export function withApprovedTickerPredecessor(frame,callback){
