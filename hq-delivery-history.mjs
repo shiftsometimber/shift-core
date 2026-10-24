@@ -43,7 +43,8 @@ export async function deliveryHistory(DB,now=new Date(),days=30){
  for(const [name,sql] of sources){
   if(!tables.has(name)){coverage.push({source:name,status:'unavailable',reason:'source_not_installed'});continue}
   try{
-   const rows=(await DB.prepare(`SELECT * FROM (${sql}) WHERE julianday(occurred_at)>=julianday(?) AND julianday(occurred_at)<=julianday(?) ORDER BY julianday(occurred_at) DESC LIMIT 101`).bind(since,until).all()).results;
+   const projection=name==='auth_delivery_events'&&tables.has('auth_delivery_event_links')?`SELECT 'auth:'||a.id reference,a.event_type trigger,a.user_id member_id,a.status raw_state,a.provider_id,a.created_at occurred_at,a.error_code,l.event_reference,l.template_version,l.recipient_role FROM auth_delivery_events a LEFT JOIN auth_delivery_event_links l ON l.delivery_event_id=a.id`:sql;
+   const rows=(await DB.prepare(`SELECT * FROM (${projection}) WHERE julianday(occurred_at)>=julianday(?) AND julianday(occurred_at)<=julianday(?) ORDER BY julianday(occurred_at) DESC LIMIT 101`).bind(since,until).all()).results;
    coverage.push({source:name,status:'available',returned:Math.min(rows.length,100),truncated:rows.length>100});
    for(const original of rows.slice(0,100)){const {private_key,...row}=original;if(private_key){if(name==='hq_comms_recipients'&&private_key.includes('@'))row.recipient_label=private_key[0]+'***@'+private_key.split('@').at(-1);const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(private_key));row.reference+=':'+Array.from(new Uint8Array(hash)).map(x=>x.toString(16).padStart(2,'0')).join('')}records.push({...row,source:name,state:deliveryState(row.raw_state,row.provider_id),actualReceipt:'not_established'})}
   }catch{coverage.push({source:name,status:'unavailable',reason:'source_query_failed'})}
