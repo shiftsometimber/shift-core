@@ -98,7 +98,16 @@ const CURRENT_MAIN_SAFETY_CHECK_BLOBS=Object.freeze({
  'tests/contact-success-analytics.test.mjs':'ec8387b925cd7d97420a585d30c8c81d31ef76fe',
  'tests/generic-form-telemetry-removal.test.mjs':'bd1c15590b3d6a1580978c825ff8bee7c3b86625',
  'tests/approved-public-corrections-20261024.test.mjs':'f87dc2a7dc796b50691553f3851b4be0288dc175',
- 'tests/fixtures/approved-corrections-20261024/nhs-before.json':'297367c88854c575b79dea953df729fe5d726c22'
+ 'tests/fixtures/approved-corrections-20261024/nhs-before.json':'297367c88854c575b79dea953df729fe5d726c22',
+ 'release/approved-source-comparison-20261024.mjs':'6af31f06d5667c037f65cae202af1b478813dbaa',
+ 'release/approved-source-comparison-data-20261024.mjs':'232762c82f694e61529759359a75dda95467757d',
+ 'tests/approved-source-comparison-20261024.test.mjs':'9c9e3af228b7dde074621698ebe8f49c85323f45',
+ 'release/recorded-week-navigation-outer-frame-20261018.mjs':'dd48e3d21472804243a7e9c141b0ff8a7ee89a77',
+ 'shift-coach/release-contract.mjs':'9b86959aa0b88793d8b3df38f397880e971119f3',
+ 'release/root-share-preview-scope.mjs':'aff239d1880a84481dd62ff1d71b3eef17216811',
+ 'tests/root-share-preview-composition.test.mjs':'cb410665b8b0294a102d9a04d4f84ffe44e2387f',
+ 'tests/root-share-preview.test.mjs':'d69bcf08a28cb1008b38693968377352fb976044',
+ 'release/combined-finite-scope-20261014.mjs':'b5c1ffe7141f223803088a84058d9ad4e163833c'
 });
 export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}).trim()){
  for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);

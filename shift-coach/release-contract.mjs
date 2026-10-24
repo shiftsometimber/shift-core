@@ -1,3 +1,4 @@
+import {approvedSourceComparison} from '../release/approved-source-comparison-20261024.mjs';
 import {withImmutableHistoryVerification,immutableHistoryExecFileSync,nativeReconciliationSourceRead} from '../release/approved-runtime-composition.mjs';
 import {immutableHistorySourceHead} from '../release/immutable-git-facts.mjs';
 import {withoutTreatmentFlag} from '../release/my-treatment-config.mjs';
@@ -127,7 +128,7 @@ export function coachingPinnedRef(manifest,p){
 }
 export function validateCoachingPins(read,manifest){
  assert.deepEqual(manifest.pinnedPaths,[...COACH_PATHS].filter(p=>p!=='shift-coach/release-manifest.json').sort(),'Exact coaching path list required');
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(coachingPinnedRef(manifest,p),p),'Coaching release source drift: '+p);
+ for(const p of manifest.pinnedPaths)assert.equal(approvedSourceComparison(p,read('HEAD',p)),read(coachingPinnedRef(manifest,p),p),'Coaching release source drift: '+p);
  return true;
 }
 

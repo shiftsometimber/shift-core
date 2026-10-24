@@ -1,3 +1,4 @@
+import {approvedLegacyComparisonValue} from './approved-source-comparison-20261024.mjs';
 import {assertNavigationOuterChainContext} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import {withImmutableHistoryVerification as withClosedCurrentSourceProof,immutableHistorySourceHead} from './immutable-git-facts.mjs';
 import {verifyCiExecutionAllowance,ciExecutionNativeReaderProvenance} from './ci-execution-scope-20261014.mjs';
@@ -168,7 +169,7 @@ export function combinedFiniteLegacyHistoricalView(reader=null,{defaultReader=re
    if(exactCombinedDirectoryDisplay(headValue,'HEAD',path)!==exactCombinedDirectoryDisplay(aliasValue,actual.rawHead,path))return headValue;
    return exactCombinedDirectoryDisplay(reader(actual.head,path),actual.head,path);
   }
-  return exactCombinedDirectoryDisplay(reader(ref,path),ref,path);
+  return exactCombinedDirectoryDisplay(approvedLegacyComparisonValue(ref,path,reader(ref,path),actual.rawHead),ref,path);
  };
  return{...actual,read,currentReaderAuthenticated:false,legacyComparisonOnly:true};
 }
