@@ -1,12 +1,12 @@
 {
-  "at": "2026-10-24T14:23:42.878Z",
+  "at": "2026-10-24T14:55:48.268Z",
   "timezone": "Europe/London",
   "request": "Create shared HQ professional onboarding/permissions, clinical link and dispensing workspace; match clinician branding",
-  "sourceCommit": "8e5c94a146092a6d4db798a94239aeaa2fc78767",
+  "sourceCommit": "8fbd3634dd8c2d662aee974d9967eb6eabf9aa7e",
   "branch": "feat/hq-partner-operations-20261024",
   "worker": "shift-hq-clinical-portal",
-  "previousVersion": "c91c7e3b-4d49-4f7f-994e-15c7ef10518b",
-  "deployedVersion": "7288bc8b-9360-4567-8012-1793e9f03f36",
+  "previousVersion": "7288bc8b-9360-4567-8012-1793e9f03f36",
+  "deployedVersion": "6c805e7c-584a-4909-ab8a-98009c57d380",
   "built": true,
   "reviewSurfacesDeployed": true,
   "liveVerified": true,
@@ -23,11 +23,12 @@
     "hqReview": "https://hq.shiftsometimber.co.uk/clinical-portal/partners/demo",
     "dispensingReview": "https://hq.shiftsometimber.co.uk/clinical-portal/dispensing/demo",
     "staffShell": "https://hq.shiftsometimber.co.uk/clinical-portal/partners",
-    "professionalProfile": "https://hq.shiftsometimber.co.uk/clinical-portal/my-profile"
+    "professionalProfile": "https://hq.shiftsometimber.co.uk/clinical-portal/my-profile",
+    "internalCommissioning": "https://hq.shiftsometimber.co.uk/clinical-portal/commissioning"
   },
   "proof": {
     "nativeTests": {
-      "pass": 85,
+      "pass": 109,
       "fail": 0,
       "log": "/tmp/hq-partner-release-tests.log"
     },
@@ -41,36 +42,60 @@
       "receipt": "partner-proof/browser-receipt.json"
     },
     "live": {
-      "exactRoutes": 15,
+      "exactRoutes": 17,
       "browserErrors": 0,
       "noStockBlocked": true,
       "receipt": "partner-proof/live-receipt.json"
     },
-    "bundleKiB": 265.37
+    "bundleKiB": 265.37,
+    "internalCommissioning": {
+      "localBrowser": "partner-proof/commissioning-browser-receipt.json",
+      "internalSetupBrowser": "partner-proof/internal-setup-browser-receipt.json",
+      "live": "partner-proof/commissioning-live-receipt.json",
+      "databaseReopenPersistence": true,
+      "localFixtureIdentityOnly": true,
+      "actualHqSessionAcceptance": false
+    },
+    "privateStore": {
+      "r2DevAccess": "disabled",
+      "customDomains": 0,
+      "checkedAt": "2026-10-24T14:55:48.268Z",
+      "logs": [
+        "/tmp/hq-private-store-public-access.log",
+        "/tmp/hq-private-store-domains.log"
+      ]
+    }
   },
   "pending": [
-    "Owner completes actual MFA enrolment; all 3 current active owners have mfa_enabled=0",
-    "Build/verify authenticated internal commissioning mode with durable synthetic test records; preserve real-service separation",
-    "Actual HQ root-navigation insertion (separate active owner/workstream; no root replacement)",
-    "Staff privacy, retention/hold/deletion policy and tested purge process",
-    "Named verified clinical/pharmacy scope reviewers",
-    "Actual-session username/MFA/recovery/rate-limit acceptance",
-    "Trusted prescription, stock and courier adapters and real partner acceptance",
-    "My Shift rendering and live end-to-end order acceptance",
-    "Approved communication drafts/trigger policies and delivery integration"
+    "Owner MFA enrolment is deliberately deferred by Matt; actual-session acceptance and authorised live synthetic writes remain pending, not fabricated.",
+    "Shared HQ root-navigation insertion must be coordinated with its active source owner; existing People & partners links to the internal test workspace and direct URLs are live.",
+    "Agree real professional privacy/retention/legal-hold policy and conduct operational purge acceptance before collecting ID/selfie. Private binding and tested plan/hold/two-phase retry code are now implemented; actual deletion and onboarding remain off.",
+    "Commission named verified clinical/pharmacy scope reviewers before real professional approvals.",
+    "Actual professional username/password/MFA/recovery acceptance before external onboarding/login is opened; database rate-limit code and tables are installed.",
+    "Trusted real prescription/currentness/stock/courier adapters, partner acceptance, cancellations and delivery confirmation remain unconnected in this workflow.",
+    "Actual My Shift member rendering/production end-to-end acceptance must be reconciled with the separate shared member release.",
+    "Approved production notification drafts, recipients/trigger policies and email/WhatsApp delivery integration/acceptance. No messages have been sent."
   ],
-  "note": "Working fictional review surfaces and a tested implementation, not a commissioned clinical/pharmacy service or a compliance certification. No new recurring jobs, costs or messages. Existing public/core-main release is separate and untouched.",
+  "note": "Durable internal commissioning and actual owner/admin partner preparation are deployed, with 109 passing tests and live route/access-denial proof. Synthetic order views share one saved record and exercise the production dispensing reducer, but are not a real prescription/pharmacy/member integration. Live authenticated acceptance is explicitly unverified pending actual owner MFA. Public ordering, professional onboarding/ID collection, clinical service, pharmacy fulfilment and message delivery remain closed. Main/core release, root HQ and homepage are untouched.",
   "internalCommissioning": {
     "requested": true,
     "authority": "Matt explicitly requested persistent connected internal operation now, not browser-only demonstrations; no real onboarding/customers yet.",
-    "state": "schema_live_access_preparation",
-    "databaseTablesVerified": 6,
+    "state": "deployed_private_workspaces_access_acceptance_pending_mfa",
+    "databaseTablesVerified": 10,
     "ownerMfa": {
       "enabled": 0,
       "activeOwners": 3,
-      "requiredUserAction": "Enrol owner's own authenticator through existing HQ settings; never mark MFA verified without completion."
+      "requiredUserAction": "Matt explicitly defers his own MFA enrolment; do not repeat it as a blanket engineering blocker or bypass it."
     },
     "schemaLog": "/tmp/hq-partner-schema-live.log",
-    "realServiceActivation": false
-  }
+    "realServiceActivation": false,
+    "schemaLogs": [
+      "/tmp/hq-partner-schema-live.log",
+      "/tmp/hq-commissioning-schema-live.log",
+      "/tmp/hq-auth-limits-schema-live.log"
+    ]
+  },
+  "internalPartnerPreparationEnabled": true,
+  "privateCommissioningWorkspaceDeployed": true,
+  "actualAuthenticatedLiveWritesVerified": false
 }

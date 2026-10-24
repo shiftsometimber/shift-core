@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-24T14:43:14.579Z",
+  "at": "2026-10-24T14:55:43.556Z",
   "checks": [
     {
       "path": "/clinical-portal/partners",
@@ -78,7 +78,7 @@
     },
     {
       "path": "/v1/hq/clinical/partners",
-      "status": 503,
+      "status": 401,
       "realAccessClosed": true
     },
     {
