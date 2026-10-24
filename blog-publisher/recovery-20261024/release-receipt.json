@@ -194,5 +194,31 @@
       "modelCalls": 0,
       "published": false
     }
+  },
+  "day4PublicationVerified": {
+    "state": "verified",
+    "url": "https://shiftsometimber.co.uk/articles/winter-low-mood-men",
+    "checkedAt": "2026-10-24T11:15:47.942Z",
+    "checks": {
+      "pageLive": {
+        "status": "pass"
+      },
+      "canonicalCorrect": {
+        "status": "pass"
+      },
+      "imageLoads": {
+        "status": "pass"
+      },
+      "internalLinksResolve": {
+        "status": "pass"
+      },
+      "blogListing": {
+        "status": "pass"
+      },
+      "sitemap": {
+        "status": "pass"
+      }
+    },
+    "googleIndexed": false
   }
 }
