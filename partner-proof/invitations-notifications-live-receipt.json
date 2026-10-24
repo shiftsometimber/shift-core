@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-24T16:41:31.220Z",
+  "checks": [
+    {
+      "path": "/partners/invitations",
+      "status": 401
+    },
+    {
+      "path": "/partners/invitations",
+      "crossOriginStatus": 403
+    },
+    {
+      "path": "/notifications",
+      "status": 401
+    },
+    {
+      "path": "/notifications",
+      "crossOriginStatus": 403
+    }
+  ],
+  "actualAuthenticatedAcceptance": false,
+  "messagesSent": 0
+}

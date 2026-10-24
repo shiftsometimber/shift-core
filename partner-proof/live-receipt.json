@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-24T15:33:59.971Z",
+  "at": "2026-10-24T16:41:25.821Z",
   "checks": [
     {
       "path": "/clinical-portal/partners",
@@ -42,7 +42,17 @@
       "exact": true
     },
     {
+      "path": "/clinical-portal/notifications",
+      "status": 200,
+      "exact": true
+    },
+    {
       "path": "/clinical-portal/commissioning",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-assets/partners/notifications-client.mjs",
       "status": 200,
       "exact": true
     },
