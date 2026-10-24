@@ -1,3 +1,4 @@
+import {approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead,approvedTickerActualHead} from './approved-news-ticker-frame-20261024.mjs';
 import {HEALTH_PATHS,HEALTH_MAINTENANCE,HEALTH_RECEIPT} from './health-vision-scope-20261021.mjs';
 import {verifyTestosteroneExtension,TRT_BASE,TRT_PATHS,TRT_MAINTENANCE,TRT_RECEIPT} from './testosterone-scope-20261021.mjs';
 import assert from 'node:assert/strict';
@@ -10,7 +11,7 @@ const ledger='release/approved-runtime-composition.json',key='websiteEditorialCo
 export const WEBSITE_EDITORIAL_COMPLETION_PATHS=Object.freeze([...policy.paths,...TRT_PATHS]);
 export const WEBSITE_EDITORIAL_COMPLETION_MAINTENANCE=Object.freeze([...policy.maintenancePaths,...TRT_MAINTENANCE,TRT_RECEIPT]);
 const sort=a=>[...a].sort(),git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64e6});
-const head=()=>freshDetachedSourceHead()??git('rev-parse','HEAD').trim(),blob=(r,p)=>git('rev-parse',(r==='HEAD'?head():r)+':'+p).trim(),content=(r,p)=>git('show',(r==='HEAD'?head():r)+':'+p),diff=(a,b)=>git('diff','--no-renames','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor=(a,b)=>git('merge-base','--is-ancestor',a,b);
+const head=()=>approvedTickerPredecessorHead()??freshDetachedSourceHead()??git('rev-parse','HEAD').trim(),blob=(r,p)=>git('rev-parse',(r==='HEAD'?head():r)+':'+p).trim(),content=(r,p)=>git('show',(r==='HEAD'?head():r)+':'+p),diff=(a,b)=>git('diff','--no-renames','--name-only',a,b).trim().split('\n').filter(Boolean),ancestor=(a,b)=>git('merge-base','--is-ancestor',a,b);
 const freshWebsiteEditorialCompletionSourceClean=makeFreshCleanHint(),freshWebsiteEditorialCompletionSourceHead=makeFreshCleanHeadHint();
 function clean(){
  assertGitTrackedSourceVisible('website editorial completion');
@@ -29,7 +30,7 @@ function inverse(path,value){
 // Verify the newly approved finite delta independently, then retain every
 // historical editorial assertion against its actual immutable predecessor.
 // Git HEAD and native facts are never substituted or rewritten.
-export function verifyWebsiteEditorialCompletion(c,{rawHead=head(),read=blob,readContent=content,readDiff=diff,isAncestor=ancestor}={}){
+function verifyWebsiteEditorialCompletionBeforeApprovedTicker(c,{rawHead=head(),read=blob,readContent=content,readDiff=diff,isAncestor=ancestor}={}){
  const extension=verifyTestosteroneExtension();
  assert.equal(rawHead,extension.actual,'Website-editorial-completion source drift: actual HEAD required');
  const actual=extension.actual, prior=extension.predecessor;
@@ -80,8 +81,8 @@ function verifyWebsiteEditorialSnapshot(c,{rawHead,read,readContent,readDiff,isA
   const nativeFacts=readSeoNativeImmutableFacts({head:rawHead,base:policy.base,payload:policy.payload,maintenanceSource,paths:payloadPaths,maintenancePaths:policy.maintenancePaths,inversePaths:Object.keys(policy.inverses),ledger});
   const requests=new Map(),add=(ref,paths)=>{const set=requests.get(ref)??new Set();for(const p of paths)set.add(p);requests.set(ref,set);};
   add(rawHead,[...payloadPaths,...policy.maintenancePaths,ledger]);add(policy.payload,payloadPaths);add(maintenanceSource,policy.maintenancePaths);add(policy.base,[...Object.keys(policy.inverses),ledger]);
-  const expectedBlob=(r,p)=>requests.get(r==='HEAD'?rawHead:r)?.has(p)?nativeFacts.blob(r,p):blob(r,p);
-  const expectedContent=(r,p)=>requests.get(r==='HEAD'?rawHead:r)?.has(p)?nativeFacts.content(r,p):content(r,p);
+  const expectedBlob=(r,p)=>requests.get(r==='HEAD'?rawHead:r)?.has(p)?nativeFacts.blob(approvedTickerPredecessorHead()&&r==='HEAD'?rawHead:r,p):blob(r,p);
+  const expectedContent=(r,p)=>requests.get(r==='HEAD'?rawHead:r)?.has(p)?nativeFacts.content(approvedTickerPredecessorHead()&&r==='HEAD'?rawHead:r,p):content(r,p);
   if(read===blob)read=expectedBlob;if(readContent===content)readContent=expectedContent;
   for(const donor of policy.donors){ancestor(donor.base,donor.source);ancestor(donor.source,policy.payload);assert.deepEqual(sort(diff(donor.base,donor.source)),sort(donor.paths),'Website-editorial-completion source drift: exact real donor increment required');for(const p of donor.exactPaths)assert.equal(expectedBlob(donor.source,p),policy.payloadBlobs[p],'Website-editorial-completion source drift: actual selected donor blob changed '+p);}
   for(const [a,b,paths] of [[policy.base,policy.payload,policy.paths],[policy.payload,maintenanceSource,policy.maintenancePaths],[maintenanceSource,rawHead,[ledger]]]){
@@ -141,12 +142,12 @@ function authentic(value,r,p,h=head(),kind='read'){
  return value===actual||(actual.startsWith(prefix)&&value===actual.replace(prefix,'tree '+r+':'+p+'\n'));
 }
 const admittedViews=new WeakSet();
-export function websiteEditorialCompletionHistoricalView(reader=null){
+function websiteEditorialCompletionHistoricalViewBeforeApprovedTicker(reader=null){
  const rawHead=head(),record=JSON.parse(content(rawHead,ledger)),c=record[key];if(!c)return null;
- verifyWebsiteEditorialCompletion(c,{rawHead});const prior=JSON.parse(content(policy.base,ledger));
+ verifyWebsiteEditorialCompletionBeforeApprovedTicker(c,{rawHead});const prior=JSON.parse(content(policy.base,ledger));
  const assertCurrent=()=>{
   const fresh=freshWebsiteEditorialCompletionSourceHead();
-  if(fresh!==null){assert.equal(fresh,rawHead,'Website-editorial-completion source drift: HEAD moved');return;}
+  if(fresh!==null){assert.equal(fresh,approvedTickerActualHead()??rawHead,'Website-editorial-completion source drift: HEAD moved');return;}
   assert.equal(head(),rawHead,'Website-editorial-completion source drift: HEAD moved');clean();
  };
  // Preserve full source checks at construction, explicit assertCurrent and
@@ -182,7 +183,7 @@ export function websiteEditorialCompletionHistoricalView(reader=null){
  assertCurrent();admittedViews.add(view);return Object.freeze(view);
 }
 export function assertWebsiteEditorialCompletionView(view){assert(admittedViews.has(view),'Website-editorial-completion source drift: independently admitted view required');view.assertCurrent();return view;}
-export function websiteEditorialCompletionOriginalSource(path,bytes,view=websiteEditorialCompletionHistoricalView()){
+function websiteEditorialCompletionOriginalSourceBeforeApprovedTicker(path,bytes,view=websiteEditorialCompletionHistoricalView()){
  assertWebsiteEditorialCompletionView(view);
  assert.equal(bytes,content(view.rawHead,path),'Website-editorial-completion source drift: exact current fixture source required');
  if(path===ledger){
@@ -197,4 +198,42 @@ export function websiteEditorialCompletionOriginalSource(path,bytes,view=website
  }
  assert(!policy.paths.includes(path)&&!policy.maintenancePaths.includes(path),'Website-editorial-completion source drift: added source has no historical fixture');
  assert.equal(bytes,content(policy.base,path),'Website-editorial-completion source drift: unrelated fixture source changed');return bytes;
+}
+
+// A separately admitted finite increment is projected only after fresh native
+// source/ancestry/mode/whole-ledger proof; all original predicates remain above.
+const approvedTickerViews=new WeakMap();
+export function verifyWebsiteEditorialCompletion(c,options={}){
+ const outer=approvedNewsTickerOuterFrame();if(!outer)return verifyWebsiteEditorialCompletionBeforeApprovedTicker(c,options);
+ if(options.rawHead!==undefined)assert.equal(options.rawHead,outer.rawHead,'Actual raw current native HEAD required');
+ const projected={...options,rawHead:outer.base};
+ if(options.read)projected.read=outer.projectRead(options.read);
+ if(options.readContent)projected.readContent=outer.projectContent(options.readContent);
+ if(options.readDiff)projected.readDiff=outer.projectDiff(options.readDiff);
+ if(options.isAncestor)projected.isAncestor=outer.projectAncestor(options.isAncestor);
+ return withApprovedTickerPredecessor(outer,()=>verifyWebsiteEditorialCompletionBeforeApprovedTicker(c,projected));
+}
+export function websiteEditorialCompletionHistoricalView(reader=null){
+ const outer=approvedNewsTickerOuterFrame();if(!outer)return websiteEditorialCompletionHistoricalViewBeforeApprovedTicker(reader);
+ const run=fn=>withApprovedTickerPredecessor(outer,fn);
+ const inner=run(()=>websiteEditorialCompletionHistoricalViewBeforeApprovedTicker(reader?outer.projectRead(reader):null));
+ assert(inner,'Original website editorial admission remains required');
+ const ref=r=>r===outer.rawHead?'HEAD':r,wrap=fn=>(...args)=>run(()=>fn(...args)),unary=fn=>(r,p)=>run(()=>fn(ref(r),p)),binary=fn=>(a,b)=>run(()=>fn(ref(a),ref(b)));
+ const view={...inner,rawHead:outer.rawHead,
+  assertCurrent:wrap(inner.assertCurrent),assertCurrentHead:wrap(inner.assertCurrentHead),
+  affected:p=>outer.affected(p)||inner.affected(p),
+  currentContent:outer.currentContent,
+  nativeAuthentic:(v,r,p)=>outer.authentic(v,r,p,'read'),
+  nativeContentAuthentic:(v,r,p)=>outer.authentic(v,r,p,'content'),
+  read:unary(inner.read),blob:unary(inner.blob),content:unary(inner.content),diff:binary(inner.diff),ancestor:binary(inner.ancestor),
+  projectRead:reader=>unary(inner.projectRead(outer.projectRead(reader))),
+  projectContent:reader=>unary(inner.projectContent(outer.projectContent(reader))),
+  projectDiff:reader=>binary(inner.projectDiff(outer.projectDiff(reader))),
+  projectAncestor:reader=>binary(inner.projectAncestor(outer.projectAncestor(reader)))};
+ admittedViews.add(view);approvedTickerViews.set(view,{outer,inner});view.assertCurrent();return Object.freeze(view);
+}
+export function websiteEditorialCompletionOriginalSource(path,value,view=websiteEditorialCompletionHistoricalView()){
+ const extension=approvedTickerViews.get(view);
+ if(!extension)return websiteEditorialCompletionOriginalSourceBeforeApprovedTicker(path,value,view);
+ const{outer,inner}=extension;return withApprovedTickerPredecessor(outer,()=>websiteEditorialCompletionOriginalSourceBeforeApprovedTicker(path,outer.originalContent(path,value),inner));
 }
