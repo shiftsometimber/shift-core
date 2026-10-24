@@ -1,3 +1,4 @@
+import {processStartToken,readOwnedChildProgress} from './source-child-progress.mjs';
 import assert from 'node:assert/strict';
 import {sourceAuthority,productionContext,makeScopeEvidence} from './verified-source-evidence-20261016.mjs';
 import {spawn,execFileSync} from 'node:child_process';
@@ -51,7 +52,7 @@ export async function runBoundedChecks(tasks,{proofDir,poolId,snapshot=sourceSna
  const state=()=>({poolId,maxConcurrent:2,active,cancelled,finishedAt,sourceBefore,sourceAfter,sourceUnchanged,evidenceFailed:errors.length>0,errors,results,events});
  const evidence=(operation,fn)=>{try{return fn();}catch(error){errors.push({operation,code:typeof error.code==='string'?error.code:'EVIDENCE_ERROR'});return undefined;}};
  const save=()=>evidence('status',()=>{writeFileSync(join(proofDir,'status.json.tmp'),JSON.stringify(state(),null,2)+'\n');renameSync(join(proofDir,'status.json.tmp'),join(proofDir,'status.json'));});
- const record=(event,details={})=>{events.push({at:now(),event,active,...details});save();evidence('progress',()=>process.stdout.write('['+poolId+'] '+event+(details.id?' '+details.id:'')+' active='+active+'\n'));};
+ const record=(event,details={})=>{events.push({at:now(),event,active,...details});save();evidence('progress',()=>process.stdout.write('['+poolId+'] '+event+(details.id?' '+details.id:'')+' active='+active+(event==='heartbeat'?' children='+JSON.stringify(details.children??[]):'')+'\n'));};
  writeFileSync(join(proofDir,'commands.json'),JSON.stringify({poolId,maxConcurrent:2,tasks},null,2)+'\n');
  for(const task of tasks)for(const suffix of ['.stdout.log','.stderr.log','.log','.outputs'])writeFileSync(join(proofDir,task.id+suffix),'');
  save();
@@ -64,7 +65,7 @@ export async function runBoundedChecks(tasks,{proofDir,poolId,snapshot=sourceSna
   }
  }
  const onTerm=()=>stop('SIGTERM'),onInt=()=>stop('SIGINT');process.on('SIGTERM',onTerm);process.on('SIGINT',onInt);
- const heartbeat=setInterval(()=>record('heartbeat',{running:[...children.keys()]}),30000);heartbeat.unref();
+ const heartbeat=setInterval(()=>record('heartbeat',{running:[...children.keys()],children:[...children].map(([id,owned])=>({id,elapsedMs:Date.now()-owned.startedMs,stdoutBytes:owned.stdoutBytes,stderrBytes:owned.stderrBytes,lastOutputAt:owned.lastOutputAt,process:readOwnedChildProgress(owned.child.pid,owned.startToken)}))}),30000);heartbeat.unref();
  try{
   record('started');
   await new Promise(resolveDone=>{
@@ -94,11 +95,11 @@ export async function runBoundedChecks(tasks,{proofDir,poolId,snapshot=sourceSna
     };
     try{
      const child=spawn('bash',['--noprofile','--norc','-e','-o','pipefail','-c',task.body],{env:{...env,GITHUB_OUTPUT:join(proofDir,task.id+'.outputs')},stdio:['ignore','pipe','pipe'],detached:true});
-     owned={child,escalation:null};children.set(task.id,owned);result.pid=child.pid??null;record('command-started',{id:task.id,pid:result.pid});
+     owned={child,escalation:null,startedMs:Date.now(),startToken:processStartToken(child.pid),stdoutBytes:0,stderrBytes:0,lastOutputAt:null};children.set(task.id,owned);result.pid=child.pid??null;record('command-started',{id:task.id,pid:result.pid});
      child.once('error',error=>finish(null,null,typeof error.code==='string'?error.code:'SPAWN_ERROR'));
      child.once('close',(code,signal)=>finish(code,signal));
      for(const name of ['stdout','stderr']){
-      child[name].on('data',chunk=>{evidence(task.id+'-'+name,()=>appendFileSync(join(proofDir,task.id+'.'+name+'.log'),chunk));evidence(task.id+'-combined',()=>appendFileSync(join(proofDir,task.id+'.log'),chunk));});
+      child[name].on('data',chunk=>{owned[name+'Bytes']+=chunk.length;owned.lastOutputAt=now();evidence(task.id+'-'+name,()=>appendFileSync(join(proofDir,task.id+'.'+name+'.log'),chunk));evidence(task.id+'-combined',()=>appendFileSync(join(proofDir,task.id+'.log'),chunk));});
       child[name].on('error',error=>errors.push({operation:task.id+'-'+name,code:typeof error.code==='string'?error.code:'STREAM_ERROR'}));
      }
     }catch(error){finish(null,null,typeof error.code==='string'?error.code:'SPAWN_ERROR');}

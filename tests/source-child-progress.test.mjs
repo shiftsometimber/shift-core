@@ -1,0 +1,9 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {mkdtempSync,mkdirSync,writeFileSync,rmSync} from 'node:fs';import {tmpdir} from 'node:os';import {join} from 'node:path';
+import {parseProcessStat,processStartToken,readOwnedChildProgress} from '../release/source-child-progress.mjs';
+function stat(pid,parent,cpu,start){const f=Array(22).fill('0');f[0]='S';f[1]=String(parent);f[11]=String(cpu);f[12]='2';f[19]=String(start);return pid+' (name with ) bracket) '+f.join(' ');}
+function fixture(run){const root=mkdtempSync(join(tmpdir(),'shift-child-progress-'));try{const put=(id,parent,cpu,start)=>{mkdirSync(join(root,String(id)),{recursive:true});writeFileSync(join(root,String(id),'stat'),stat(id,parent,cpu,start));};run(root,put);}finally{rmSync(root,{recursive:true,force:true});}}
+test('process-tree evidence includes a busy grandchild and excludes unrelated processes',()=>fixture((root,put)=>{put(10,1,0,100);put(11,10,20,101);put(12,11,30,102);put(13,1,900,103);assert.equal(processStartToken(10,root),'100');assert.deepEqual(readOwnedChildProgress(10,'100',root),{available:true,scope:'observed_live_process_tree',processes:3,cpuTicks:56});put(12,11,45,102);assert.equal(readOwnedChildProgress(10,'100',root).cpuTicks,71);}));
+test('PID reuse and absent identities remain unavailable instead of healthy zero',()=>fixture((root,put)=>{put(10,1,100,200);assert.deepEqual(readOwnedChildProgress(10,'100',root),{available:false,reason:'process_identity_changed'});assert.equal(readOwnedChildProgress(10,null,root).available,false);}));
+test('missing procfs and malformed process data cannot imply stalled source',()=>{assert.equal(readOwnedChildProgress(1,'1','/definitely-not-procfs').available,false);assert.equal(parseProcessStat('broken'),null);});
+test('process names with parentheses retain the correct kernel counters',()=>assert.deepEqual(parseProcessStat(stat(10,4,9,80)),{parent:4,cpuTicks:11,startToken:'80'}));
