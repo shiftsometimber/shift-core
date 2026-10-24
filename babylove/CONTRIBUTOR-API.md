@@ -114,3 +114,5 @@ Contributor retry: `POST /v1/integrations/blog-articles/<id>/retry`, same bearer
 Source holds now include the exact changed source URL and previous/current hashes under `receipt.detail.sourceChanges`. Site failures name the source URL under `receipt.detail.checks`; independent editorial holds expose the model's actual issues under `receipt.detail.issues`. Old proofs have no source snapshot, so their exact historical text changes cannot be reconstructed from a checksum alone.
 
 Read-only connection test: `GET /v1/integrations/blog-articles/capabilities` with the bearer key returns 200 with the scope, supported scheduling modes and review capacity, without creating any article. The base collection GET remains unavailable.
+
+When-ready timing correction, 24 October: an explicit retry mode is retained through budget waiting and London-day rollover. Once capacity is available and the review passes, a when-ready post can publish on that queue cycle rather than reverting to the next 11am slot. Normal scheduled posts retain 11am. The dedicated regression includes the 25 October clock-change date.

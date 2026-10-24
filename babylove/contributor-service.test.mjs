@@ -221,3 +221,14 @@ test('independent hold returns the actual editorial issues',async()=>{
 test('a contributor can verify its key and capabilities without creating a post',async()=>{
  const {env,key}=await setup();try{const r=await blogRoutes(request(API+'/capabilities',key.token),env,{});assert.equal(r.status,200);const x=await r.json();assert.equal(x.authenticated,true);assert.equal(x.scope,'blogs_only');assert.equal(x.dailyModelAttemptLimit,1);assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_blog_submissions').get().n,0);assert.equal((await blogRoutes(request(API+'/capabilities','wrong'),env,{})).status,401);}finally{env.DB.sqlite.close()}
 });
+
+test('when-ready retry retains its intent through a budget wait and publishes after London midnight, not at eleven',async()=>{
+ const {env,key}=await setup();try{
+  await blogRoutes(request(API,key.token,{...payload(),url:'/articles/earlier-reviewed-post'},'earlier'),env,{}, {now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start,fetcher:baseFetcher});
+  const now=Date.parse('2026-10-24T14:00:00Z');const x=await (await blogRoutes(request(API,key.token,payload(),'late'),env,{}, {now,fetcher:baseFetcher})).json();
+  await runBlogQueue(env,{now,fetcher:baseFetcher});
+  const retry=await blogRoutes(request(API+'/'+x.id+'/retry',key.token,{publishMode:'when_ready'}),env,{}, {now:now+60000,fetcher:baseFetcher});assert.equal(retry.status,202);assert.equal((await retry.json()).receipt.publishMode,'when_ready');
+  await runBlogQueue(env,{now:now+120000,fetcher:baseFetcher});let row=env.DB.sqlite.prepare('SELECT * FROM knowledge_blog_submissions WHERE id=?').get(x.id);assert.equal(row.state,'review_waiting_budget');assert.equal(JSON.parse(row.receipt_json).publishMode,'when_ready');
+  const next=Date.parse('2026-10-24T23:01:00Z');await runBlogQueue(env,{now:next,fetcher:baseFetcher});const article=env.DB.sqlite.prepare("SELECT * FROM knowledge_articles WHERE slug='contributor-test'").get();assert.ok(article);assert.equal(article.publish_at,new Date(next).toISOString());assert.equal(env.AI.calls,2);
+ }finally{env.DB.sqlite.close()}
+});
