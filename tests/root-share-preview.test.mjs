@@ -40,7 +40,7 @@ test('new image route is versioned and exact; legacy artwork and every unrelated
 });
 test('the prepared Worker hook is exactly additive; every original handler/cron/route remains byte-identical',()=>{
  const current=readFileSync(new URL('../shift-coach/worker.mjs',import.meta.url),'utf8');
- const speedImport="import {repairHomeSpeed} from '../home-speed-repair.mjs';\n",speedLayer=`const publicWorker=withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker))));
+ const speedImport="import {repairHomeSpeed} from '../home-speed-repair.mjs';\n",speedLayer=`const publicWorker=withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)));
 // Evaluate the already-approved CSS against the settled outer document.
 export default {...publicWorker,async fetch(request,...args){
  const response=await publicWorker.fetch(request,...args);
