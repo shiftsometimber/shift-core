@@ -1,6 +1,6 @@
 {
-  "status": "prepared_not_deployed",
-  "approval": "Explicit homepage-affecting ticker approval required",
+  "status": "superseded_by_deployed_dynamic_newsroom_ticker",
+  "approval": "Matt explicitly prioritised latest-published Newsroom ticker after evening review, 24 October 2026",
   "note": "Refresh the labelled Published in SHIFT edition using the eight already-published stories below. Preserve RED/current=false and all freshness reasons; do not describe as a live/current news wire. No story bodies, clinical claims or dates are revised.",
   "published_edition": {
     "edition_id": "published-newsroom-20261024-prepared",
@@ -64,5 +64,6 @@
         "source_published_at": "2026-06-11"
       }
     ]
-  }
+  },
+  "successor": "release/ticker-latest-20261024"
 }

@@ -1,0 +1,12 @@
+{
+  "source": "b4fbd667d0b9115591d8ec025cb8c34e8d1285fd",
+  "name": "shift-latest-news-ticker-20261024",
+  "deployedAt": "2026-10-24T19:53:48.379Z",
+  "deploymentId": "395aac39-5f63-4cf6-a2f0-b8fe43d64f10",
+  "versions": [
+    {
+      "version_id": "cb3be071-3d84-4516-8b09-495d84b717ee",
+      "percentage": 100
+    }
+  ]
+}

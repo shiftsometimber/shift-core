@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-24T19:53:38.963Z",
+  "removed": {
+    "id": "64914f44ac43455fb2a6e77aed11f002",
+    "pattern": "shiftsometimber.co.uk/assets/v42.js*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  "unchangedFallback": {
+    "id": "07178fa6c72e461a82bb014b0284f37a",
+    "pattern": "shiftsometimber.co.uk/*",
+    "script": "shift-core",
+    "request_limit_fail_open": false
+  },
+  "intersecting": [
+    {
+      "id": "64914f44ac43455fb2a6e77aed11f002",
+      "pattern": "shiftsometimber.co.uk/assets/v42.js*",
+      "script": "shift-core",
+      "request_limit_fail_open": false
+    },
+    {
+      "id": "07178fa6c72e461a82bb014b0284f37a",
+      "pattern": "shiftsometimber.co.uk/*",
+      "script": "shift-core",
+      "request_limit_fail_open": false
+    }
+  ],
+  "authority": "Necessary capacity for approved ticker; no request owner or response change"
+}

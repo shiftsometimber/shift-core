@@ -1,0 +1,93 @@
+{
+  "pass": true,
+  "at": "2026-10-24T19:55:41.753Z",
+  "source": "b4fbd667d0b9115591d8ec025cb8c34e8d1285fd",
+  "environment": "Actual rendered Chrome via CUA",
+  "surfaces": [
+    "https://shiftsometimber.co.uk/treatment-centre",
+    "https://shiftsometimber.co.uk/explore-knowledge",
+    "https://shiftsometimber.co.uk/shop"
+  ],
+  "edition": "latest-published-newsroom-v2",
+  "linksPerSurface": 8,
+  "oralStoryRendered": true,
+  "noDesktopHorizontalOverflow": true,
+  "viewport": 1363,
+  "noActualMobileClaim": true,
+  "homepage": {
+    "tickerStripCount": 0,
+    "htmlUnchanged": true
+  },
+  "timberShedSoonPreserved": true,
+  "scanner": {
+    "current": false,
+    "status": "RED",
+    "notFalselyMarkedCurrent": true
+  },
+  "links": [
+    {
+      "id": 281,
+      "headline": "IXCHIQ: UK authorisation withdrawn after safety review",
+      "url": "https://shiftsometimber.co.uk/medicine-news/ixchiq-uk-restrictions-safety-review-2026",
+      "published": "2026-09-16T21:12:58.702Z",
+      "modified": "2026-10-24T17:57:48.059Z",
+      "status": 200
+    },
+    {
+      "id": 279,
+      "headline": "IXCHIQ: UK withdrawal supersedes the 2025 pause",
+      "url": "https://shiftsometimber.co.uk/medicine-news/ixchiq-2025-pause-superseded-2026-review",
+      "published": "2026-09-16T21:12:52.678Z",
+      "modified": "2026-10-24T17:57:38.472Z",
+      "status": 200
+    },
+    {
+      "id": 1263,
+      "headline": "MHRA strengthens antidepressant safety information",
+      "url": "https://shiftsometimber.co.uk/medicine-news/antidepressant-safety-information-mhra-october-2026",
+      "published": "2026-10-20T07:09:41.617Z",
+      "modified": "2026-10-20T07:09:41.617Z",
+      "status": 200
+    },
+    {
+      "id": 1368,
+      "headline": "CBL-514: Phase 3 dosing and the limits of weight-regain claims",
+      "url": "https://shiftsometimber.co.uk/medicine-news/cbl-514-supreme-01-phase-3-catch-up",
+      "published": "2026-10-19T20:33:55.551Z",
+      "modified": "2026-10-19T20:33:55.551Z",
+      "status": 200
+    },
+    {
+      "id": 1370,
+      "headline": "Oral VK2735: Phase 3 announcement and registry dates differ",
+      "url": "https://shiftsometimber.co.uk/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up",
+      "published": "2026-10-19T20:25:05.123Z",
+      "modified": "2026-10-19T20:25:05.123Z",
+      "status": 200
+    },
+    {
+      "id": 1230,
+      "headline": "MHRA approves weekly Onswik insulin for adult type 2 diabetes",
+      "url": "https://shiftsometimber.co.uk/medicine-news/onswik-weekly-insulin-uk-approval-october-2026",
+      "published": "2026-10-19T20:16:15.408Z",
+      "modified": "2026-10-19T20:16:15.408Z",
+      "status": 200
+    },
+    {
+      "id": 989,
+      "headline": "Orforglipron cardiovascular safety: what ACHIEVE-4 found",
+      "url": "https://shiftsometimber.co.uk/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up",
+      "published": "2026-10-19T20:15:20.631Z",
+      "modified": "2026-10-19T20:15:20.631Z",
+      "status": 200
+    },
+    {
+      "id": 1369,
+      "headline": "Foundayo receives European recommendation; EU decision pending",
+      "url": "https://shiftsometimber.co.uk/medicine-news/foundayo-european-recommendation-october-2026",
+      "published": "2026-10-19T20:14:33.170Z",
+      "modified": "2026-10-19T20:14:33.170Z",
+      "status": 200
+    }
+  ]
+}
