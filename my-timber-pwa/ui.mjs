@@ -2,6 +2,10 @@ export const client=String.raw`(()=>{
 'use strict';
 const box=document.getElementById('myTimberApp'),reminders=document.getElementById('pwaReminderSettings'),firstRun=document.getElementById('pwaReminderFirstRun');
 if(!box&&!reminders&&!firstRun)return;
+// Native apps already have their own install and notification lifecycle.
+if(window.__SST_NATIVE_PRESENTATION__||document.getElementById('my-timber-native-style')||window.webkit?.messageHandlers?.sstHealth||window.sstHealth){
+ [box,reminders,firstRun,...document.querySelectorAll('.my-timber-app-footer')].filter(Boolean).forEach(node=>node.hidden=true);return;
+}
 const el=id=>document.getElementById(id),standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
 const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const android=/Android/i.test(navigator.userAgent);

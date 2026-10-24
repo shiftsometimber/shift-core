@@ -18,9 +18,15 @@ export const accountDeletionRuntime=String.raw`(()=>{
    const result=await SST_API.deleteAccount();if(result?.ok!==true||result.status!=='received')throw Error('unconfirmed');
    form.remove();open.remove();status.textContent='Deletion request received. You are signed out on all current devices. Your request is awaiting review; your account data has not yet been deleted. SHIFT will contact you at your account email.';
    status.dataset.state='received';
+   host.dataset.accountDeletionReceived='1';document.body.dataset.accountDeletionReceived='1';
+   host.querySelector('h3').textContent='Deletion request received';
+   host.querySelectorAll(':scope>p').forEach(node=>{if(node!==status&&!node.querySelector('a[href="/contact"]'))node.remove();});
+   signIn.hidden=false;signIn.textContent='Return to sign in';
+   document.title='Deletion request received · My Timber';
    // Remove the signed-in controls after the server has revoked the sessions.
    const main=host.closest('main');if(main)main.replaceChildren(host);
-   document.querySelector('.sst-member-tabs')?.remove();status.tabIndex=-1;status.focus();
+   document.querySelectorAll('.sst-member-tabs,#appBottomNav,#todayBrand .member-design-account,#memberSessionStatus,#myTimberApp').forEach(node=>node.remove());
+   status.tabIndex=-1;status.focus();host.scrollIntoView({block:'start'});
   }catch(error){
    status.textContent=error?.status===401?'Please sign in again to send your deletion request. If you already submitted it, contact SHIFT to check its status.':'We could not confirm receipt. Your request may have reached SHIFT. Check your connection and try again, or contact SHIFT to check its status.';
    status.dataset.state='error';signIn.hidden=error?.status!==401;for(const item of form.elements)item.disabled=false;
