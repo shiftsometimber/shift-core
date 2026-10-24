@@ -275,7 +275,7 @@ export function verifiedCurrentReleaseAdmission(){
   const expected=ref===RECOVERY_BASE?pin:git('rev-parse',ref+':'+path);
   assert.equal(git('rev-parse',proof.head+':'+path),expected,'Exact current release admission source drift: '+path);
   assert(lstatSync(path).isFile()&&!lstatSync(path).isSymbolicLink(),'Actual regular admission source required');
-  assert.equal(oid(nativeReadFileSync(path,'utf8')),expected,'Actual admission source bytes changed: '+path);
+  assert.equal(oid(nativeReadFileSync(path)),expected,'Actual admission source bytes changed: '+path);
   refs.set(path,ref);
  }
  return {head:proof.head,refs};
