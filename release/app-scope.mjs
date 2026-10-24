@@ -125,6 +125,7 @@ export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['
 }
 export function validateAppSource(){
  return withImmutableHistoryVerification(()=>{
+ const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks());
  verifyReconciledRelease();
  verifyMetricsConnection();
  validateFit300();
@@ -139,7 +140,6 @@ export function validateAppSource(){
  for(const p of PWA_DISMISS_PATHS)if(p==='my-timber-pwa/presentation.mjs')assert.equal(originalMemberWorkerPresentation(execFileSync('git',['show','HEAD:'+p],{encoding:'utf8'})),execFileSync('git',['show',PWA_DISMISS_APPROVED+':'+p],{encoding:'utf8'}),'Complete PWA presentation differs beyond exact shared member worker registration');else assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',PWA_DISMISS_APPROVED+':'+p),'Reviewed PWA install dismissal drift: '+p);
  validateMemberFocus((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='preview/app-layout/tabs.mjs'?FOOTER_CANDIDATE:ref)+':'+path));
  const changed=git('diff','--name-only',APP_BASE,'HEAD').split('\n').filter(Boolean);
- const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks());
  assert(changed.every(p=>APP_PATHS.has(p)||exactSafetyPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)&&!exactSafetyPaths.has(p)).join(','));
  for(const [p,sha]of Object.entries(APP_HASHES))assert.equal(createHash('sha256').update(execFileSync('git',reconciliationGitArgs(['show',originalAppHashRef(p)+':'+p]))).digest('hex'),sha,'App release drift: '+p);
  for(const p of ['presentation.mjs','screens.mjs','tabs.mjs','refinement.mjs','verify.cjs'])assert.equal(git('rev-parse',historicalFooterRef('HEAD','preview/app-layout/'+p)+':preview/app-layout/'+p),git('rev-parse',APP_APPROVED+':preview/app-layout/'+p),'Approved app design changed: '+p);
