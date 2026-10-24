@@ -1,7 +1,7 @@
 {
   "release/my-shift-release-scope-20261024.mjs": {
     "original": "b8d22d49ef87cd1357511e1a3e3b7bfc065e7ea1",
-    "current": "010b5b8424128b34a7b11b8cf2d5f8eeab9a3e7e",
+    "current": "5407b85077f2c84f4d928e952d6dfbe024b4be1c",
     "edits": [
       {
         "start": 0,
@@ -44,72 +44,82 @@
         "before": ""
       },
       {
-        "start": 12864,
-        "after": ")RECONCILIATION_PATHS.add(path);\n for(const path of recordingRepairLegacyPaths()",
+        "start": 12898,
+        "after": "for(const path of recordingRepairLegacyPaths())RECONCILIATION_PATHS.add(path);\n ",
         "before": ""
       },
       {
-        "start": 21125,
-        "after": "value=memberRecordingComparisonValue(path,value);\n ",
-        "before": ""
-      },
-      {
-        "start": 23243,
-        "after": "ordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}\n if(!rec",
-        "before": ""
-      },
-      {
-        "start": 24796,
-        "after": "cording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);\n  const re",
-        "before": ""
-      },
-      {
-        "start": 25099,
-        "after": "",
-        "before": "git('"
-      },
-      {
-        "start": 25101,
-        "after": "co",
-        "before": "v-pa"
-      },
-      {
-        "start": 25104,
-        "after": "",
-        "before": "se',proof.hea"
-      },
-      {
-        "start": 25105,
-        "after": "ing",
-        "before": "+':'+path)"
-      },
-      {
-        "start": 25303,
+        "start": 13148,
         "after": "memberRecordingComparisonValue(path,",
         "before": ""
       },
       {
-        "start": 25343,
+        "start": 13214,
+        "after": "head);\n  value=memberRecordingComparisonValue(path,value,head);\n  const ",
+        "before": ""
+      },
+      {
+        "start": 21233,
+        "after": "value=memberRecordingComparisonValue(path,value);\n ",
+        "before": ""
+      },
+      {
+        "start": 23351,
+        "after": "ordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}\n if(!rec",
+        "before": ""
+      },
+      {
+        "start": 24904,
+        "after": "cording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);\n  const re",
+        "before": ""
+      },
+      {
+        "start": 25207,
+        "after": "",
+        "before": "git('"
+      },
+      {
+        "start": 25209,
+        "after": "co",
+        "before": "v-pa"
+      },
+      {
+        "start": 25212,
+        "after": "",
+        "before": "se',proof.hea"
+      },
+      {
+        "start": 25213,
+        "after": "ing",
+        "before": "+':'+path)"
+      },
+      {
+        "start": 25411,
+        "after": "memberRecordingComparisonValue(path,",
+        "before": ""
+      },
+      {
+        "start": 25451,
         "after": "",
         "before": "n"
       },
       {
-        "start": 25344,
+        "start": 25452,
         "after": "c",
         "before": ""
       },
       {
-        "start": 25346,
+        "start": 25454,
         "after": "ual",
         "before": "ive"
       },
       {
-        "start": 25367,
+        "start": 25475,
         "after": "),proof.head",
         "before": ""
       },
       {
-        "start": 25465,
+        "start": 25573,
         "after": "for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);\n ",
         "before": ""
       }

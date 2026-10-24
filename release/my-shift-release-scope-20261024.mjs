@@ -114,7 +114,9 @@ function verifyRecordingAwareMyShiftRelease(requestedHead){
 }
 export function myShiftComparisonValue(path,value,head){
  if(RECOVERY_FILES.includes(path)){
-  const current=git('rev-parse','HEAD:'+path),identifier=value===current,content=typeof value==='string'&&oid(value)===current;
+  const current=memberRecordingComparisonValue(path,git('rev-parse','HEAD:'+path),head);
+  value=memberRecordingComparisonValue(path,value,head);
+  const identifier=value===current,content=typeof value==='string'&&oid(value)===current;
   if(!identifier&&!content)return value;
   const proof=verifyMyShiftRelease(head);if(!proof.receipt.releaseRecoveryMaintenance)return value;
   return identifier?git('rev-parse',RECOVERY_BASE+':'+path):bytes(RECOVERY_BASE,path);
