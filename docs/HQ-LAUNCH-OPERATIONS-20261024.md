@@ -28,3 +28,17 @@ Read-only evaluation against production D1 returned 1 reportable registration fo
 Deployment is limited to shift-hq-reporting and its two existing report/export route patterns. Preserve CORE and DB bindings and capture prior deployment/schedules. Require exact source/bundle identity, passing focused tests, the production-compatibility cloud-stage receipt, and unchanged route ownership/deployment at activation. Initialise only additive notification tables and an activation cut-off. Start the observer cron only after live source checks. Rollback restores the captured Worker version and prior schedules; retained queue/audit data is preserved.
 
 Final release receipts and actual activation/verification results must be recorded before claiming deployed or verified.
+
+## Verified production result
+
+24 October 2026, 15:03 BST: reporting code source 6e312f395cafd434e6cbad8f975317548b5847af is deployed on shift-hq-reporting version 38a76b7b-f8ae-44ec-92ea-b5eb5781b858. Compiled SHA-256 ccf7621782c82ad08aec160faf409a7e65d5abe9f162d337ab002a83b3cd6cb2. All three protected report/queue/page routes returned anonymous 401 with the exact release marker. The temporary cloud stage was deleted.
+
+The observer schedule is */5 * * * *. Initial manual reconciliation completed at 14:50:53 BST. Automatic execution completed successfully at 15:00:24 BST with zero pending new source events, zero generated messages and no recorded error. This verifies automatic execution, not per-trigger inbox receipt.
+
+The private HQ Communications panel now includes Review notification events. Navigation-only source a5218f00 is preserved on branch feat/hq-notification-nav-20261024; its compiled bundle SHA-256 is 1a4b6c1e7850fac5dea715bfd5fb225ebecbaaf0b4434bdd8f2f735979e7541e. Route ownership and existing communication schedule stayed unchanged. Forty-three communication/support/pathway tests passed after this presentation-only change.
+
+An initial reporting check was rolled back safely because it ran before the new version had propagated; the successful retry retained every source/version condition and observed convergence after a few seconds. A navigation-only check was rolled back because its cache-busting query bypassed the exact root Worker route. Exact root and index routes were compared with query variants, the verification URL was corrected, and the intended live page/link passed. No safety condition was removed.
+
+The follow-up scope has 31 focused report/event/auth/medicine/refund tests plus 43 communications/pathway tests passing, management acceptance passing, and desktop/mobile fictional browser checks passing. A current production read verified one reportable registration, zero unassigned tasks after assignment, one still-pending privacy request and three active HQ staff without MFA. No emails, erasure, payments, clinical settings or stock changes occurred.
+
+Remaining: member/owner live browser acceptance, any newly required exact email draft/recipient approval and per-trigger inbox/device receipt, accounting and cost/settlement inputs, verified analytics attribution, and Matt-led MFA enrolment. Partner backend design sign-off is accepted and is not reopened. The original audit/24-KPI workbook has been updated with the deployed scope and remaining work.
