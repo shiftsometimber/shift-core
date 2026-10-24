@@ -2,7 +2,7 @@
   "kind": "EXACT_MEMBER_RECORDING_REPAIR_20261024",
   "base": "200ff3dd4c4e01505f418e31149389da0f81fe80",
   "payload": "8551b285de1b808c810d49163b5cea5a3b98e575",
-  "registrationSource": "30c8059adf1b08128e4aa3b9edcc28effe530a1c",
+  "registrationSource": "2ba507c6e8ca95f64f6351d7d2ec46bfa5d6e2f2",
   "payloadBlobs": {
     "acquisition-activation/server.mjs": "496da813a348869725fbc32615e1809162e00bd3",
     "auth-email-verification-v1.js": "dee72f89ad1ea23772aba8aebe68d4f082b670ee",
@@ -27,7 +27,7 @@
   },
   "authority": {
     "owner": "Matt",
-    "instruction": "Arh ok\u2026.. sort then please",
+    "instruction": "Arh ok….. sort then please",
     "accountDeletion": "Deletion / cancel my account needs to be an immediate thing. Not send it off",
     "homepage": false,
     "newAppleSubmission": false,
