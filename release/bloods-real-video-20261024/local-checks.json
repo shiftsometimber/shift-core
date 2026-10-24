@@ -1,0 +1,59 @@
+{
+  "pass": true,
+  "structuralOnly": true,
+  "playbackVerified": false,
+  "results": [
+    {
+      "name": "chrome",
+      "width": 194.4375,
+      "playback": {
+        "verified": false,
+        "reason": "Provider blocked automated connection-security check"
+      },
+      "current": null,
+      "height": 109.359375,
+      "overflow": false,
+      "headerVisible": true,
+      "availability": "SHIFT Bloods · Coming soon · Ordering is not open"
+    },
+    {
+      "name": "chrome",
+      "width": 281.390625,
+      "playback": {
+        "verified": false,
+        "reason": "Provider blocked automated connection-security check"
+      },
+      "current": null,
+      "height": 158.28125,
+      "overflow": false,
+      "headerVisible": true,
+      "availability": "SHIFT Bloods · Coming soon · Ordering is not open"
+    },
+    {
+      "name": "webkit",
+      "width": 194.4375,
+      "playback": {
+        "verified": false,
+        "reason": "Provider blocked automated connection-security check"
+      },
+      "current": null,
+      "height": 109.359375,
+      "overflow": false,
+      "headerVisible": true,
+      "availability": "SHIFT Bloods · Coming soon · Ordering is not open"
+    },
+    {
+      "name": "webkit",
+      "width": 281.390625,
+      "playback": {
+        "verified": false,
+        "reason": "Provider blocked automated connection-security check"
+      },
+      "current": null,
+      "height": 158.28125,
+      "overflow": false,
+      "headerVisible": true,
+      "availability": "SHIFT Bloods · Coming soon · Ordering is not open"
+    }
+  ]
+}
