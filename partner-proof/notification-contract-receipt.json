@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-24T15:34:12.834Z",
+  "scope": "Synthetic SQLite plus the saved reporting implementation, not a production trigger/inbox receipt",
+  "sharedObserverContract": true,
+  "reviewIntents": 1,
+  "noMessagesSent": true,
+  "log": "/tmp/hq-partner-notification-contract.log",
+  "productionTransportProof": false
+}

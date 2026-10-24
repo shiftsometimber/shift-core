@@ -1,12 +1,12 @@
 {
-  "at": "2026-10-24T14:55:48.268Z",
+  "at": "2026-10-24T15:34:12.834Z",
   "timezone": "Europe/London",
   "request": "Create shared HQ professional onboarding/permissions, clinical link and dispensing workspace; match clinician branding",
-  "sourceCommit": "8fbd3634dd8c2d662aee974d9967eb6eabf9aa7e",
+  "sourceCommit": "7b817d8cf1ed43c47d5440c15ff46efd66646236",
   "branch": "feat/hq-partner-operations-20261024",
   "worker": "shift-hq-clinical-portal",
-  "previousVersion": "7288bc8b-9360-4567-8012-1793e9f03f36",
-  "deployedVersion": "6c805e7c-584a-4909-ab8a-98009c57d380",
+  "previousVersion": "6c805e7c-584a-4909-ab8a-98009c57d380",
+  "deployedVersion": "da858402-f841-47de-842f-daae37756298",
   "built": true,
   "reviewSurfacesDeployed": true,
   "liveVerified": true,
@@ -24,13 +24,15 @@
     "dispensingReview": "https://hq.shiftsometimber.co.uk/clinical-portal/dispensing/demo",
     "staffShell": "https://hq.shiftsometimber.co.uk/clinical-portal/partners",
     "professionalProfile": "https://hq.shiftsometimber.co.uk/clinical-portal/my-profile",
-    "internalCommissioning": "https://hq.shiftsometimber.co.uk/clinical-portal/commissioning"
+    "internalCommissioning": "https://hq.shiftsometimber.co.uk/clinical-portal/commissioning",
+    "memberRecords": "https://shiftsometimber.co.uk/member/treatment-records"
   },
   "proof": {
     "nativeTests": {
-      "pass": 109,
+      "pass": 131,
       "fail": 0,
-      "log": "/tmp/hq-partner-release-tests.log"
+      "skipped": 0,
+      "log": "/tmp/hq-connected-member-tests.log"
     },
     "localBrowser": {
       "widths": [
@@ -47,7 +49,7 @@
       "noStockBlocked": true,
       "receipt": "partner-proof/live-receipt.json"
     },
-    "bundleKiB": 265.37,
+    "bundleKiB": 306.24,
     "internalCommissioning": {
       "localBrowser": "partner-proof/commissioning-browser-receipt.json",
       "internalSetupBrowser": "partner-proof/internal-setup-browser-receipt.json",
@@ -64,23 +66,53 @@
         "/tmp/hq-private-store-public-access.log",
         "/tmp/hq-private-store-domains.log"
       ]
+    },
+    "connectedMember": {
+      "receipt": "partner-proof/member-tracking-browser-receipt.json",
+      "widths": [
+        390,
+        1280
+      ],
+      "replyPersistsIntoActualPharmacyState": true,
+      "fixtureIdentityOnly": true,
+      "productionSignedInAcceptance": false,
+      "originalQuestionnaireBrowserChecks": 10,
+      "originalQuestionnaireReceipt": "clinical-assessment/browser-connection-receipt.json",
+      "liveReceipt": "partner-proof/member-connected-live-receipt.json",
+      "exactMemberAssets": 6,
+      "anonymousDenials": 4
+    },
+    "navigation": {
+      "receipt": "partner-proof/workspace-navigation-browser-receipt.json",
+      "ownerAndAdminLinks": 3,
+      "clinicalSupportSignedOutLinks": 0,
+      "publishedAssetBytesVerified": true,
+      "liveRootInclusion": false
+    },
+    "notificationReview": {
+      "actualSavedReportingContractPassed": true,
+      "scope": "Synthetic SQLite plus the saved reporting implementation, not a production trigger/inbox receipt",
+      "log": "/tmp/hq-partner-notification-contract.log",
+      "newSchedule": false,
+      "senderAdded": false,
+      "messagesSent": 0
     }
   },
   "pending": [
-    "Owner MFA enrolment is deliberately deferred by Matt; actual-session acceptance and authorised live synthetic writes remain pending, not fabricated.",
-    "Shared HQ root-navigation insertion must be coordinated with its active source owner; existing People & partners links to the internal test workspace and direct URLs are live.",
-    "Agree real professional privacy/retention/legal-hold policy and conduct operational purge acceptance before collecting ID/selfie. Private binding and tested plan/hold/two-phase retry code are now implemented; actual deletion and onboarding remain off.",
-    "Commission named verified clinical/pharmacy scope reviewers before real professional approvals.",
-    "Actual professional username/password/MFA/recovery acceptance before external onboarding/login is opened; database rate-limit code and tables are installed.",
-    "Trusted real prescription/currentness/stock/courier adapters, partner acceptance, cancellations and delivery confirmation remain unconnected in this workflow.",
-    "Actual My Shift member rendering/production end-to-end acceptance must be reconciled with the separate shared member release.",
-    "Approved production notification drafts, recipients/trigger policies and email/WhatsApp delivery integration/acceptance. No messages have been sent."
+    "Matt deliberately defers MFA: actual HQ owner/professional session acceptance waits for his own enrolment, without blocking completed engineering.",
+    "A genuine signed-in designated Test member session is needed for production end-to-end member acceptance. No passwords guessed, CAPTCHA bypass, reset or verification messages attempted.",
+    "Root HQ links are implemented in the retained bootstrap, role-tested and published as an asset. Root inclusion remains with the separate active source owner and guarded run 40097051276/source 2ac8456e; last read 15:20UTC showed in_progress. Do not overwrite that worker or merge into its frozen main candidate.",
+    "Actual selected supplier prescription/currentness/stock API contracts and securely configured access are still needed. Manual scoped delivery/exception/return/cancellation code is implemented; no automatic courier callback is claimed.",
+    "Agree real staff privacy/retention/legal-hold operating policy and verify the named professional reviewers before real ID/selfie collection or professional approval. Existing design sign-off is accepted, not reopened.",
+    "Actual professional username/password/MFA/recovery acceptance remains required before real professional login/onboarding is opened.",
+    "Production email/WhatsApp delivery requires exact approved drafts/recipients, channel/template/opt-in setup and receipt acceptance. Existing owner-review integration is now connected in code and tested; no sender or new schedule was added.",
+    "The wider My Shift dashboard/main release still needs its own production acceptance. This release deploys the actual treatment-record order card and API, not a claim that the separate entire profile/dashboard release completed."
   ],
-  "note": "Durable internal commissioning and actual owner/admin partner preparation are deployed, with 109 passing tests and live route/access-denial proof. Synthetic order views share one saved record and exercise the production dispensing reducer, but are not a real prescription/pharmacy/member integration. Live authenticated acceptance is explicitly unverified pending actual owner MFA. Public ordering, professional onboarding/ID collection, clinical service, pharmacy fulfilment and message delivery remain closed. Main/core release, root HQ and homepage are untouched.",
+  "note": "Connected real member record/pharmacy query-response/status projection and review-only existing notification bridge are deployed. 131 tests, original ten-step questionnaire browser regression and 390/1280 member/pharmacy persistence/UI checks pass; exact live assets and signed-out denials pass. Test-account cohort and no real clinical/pharmacy supply remain unchanged. Actual authenticated production acceptance is explicitly unverified. Manual delivery provenance is labelled; vendor APIs are not invented. No sends, charges, public ordering, real onboarding, root HQ replacement, homepage changes, main merge or new scheduled jobs.",
   "internalCommissioning": {
     "requested": true,
     "authority": "Matt explicitly requested persistent connected internal operation now, not browser-only demonstrations; no real onboarding/customers yet.",
-    "state": "deployed_private_workspaces_access_acceptance_pending_mfa",
+    "state": "connected_private_services_deployed_access_and_external_partner_acceptance_pending",
     "databaseTablesVerified": 10,
     "ownerMfa": {
       "enabled": 0,
@@ -97,5 +129,18 @@
   },
   "internalPartnerPreparationEnabled": true,
   "privateCommissioningWorkspaceDeployed": true,
-  "actualAuthenticatedLiveWritesVerified": false
+  "actualAuthenticatedLiveWritesVerified": false,
+  "memberRelease": {
+    "worker": "shift-clinical-records",
+    "sourceCommit": "045e7f5ba96dabaa171b51b1ca8be3e15556aba2",
+    "previousVersion": "2dc69599-a8ab-408d-a97c-28aadb9ebfbe",
+    "version": "772e110d-bd34-478e-b43c-a388c1c4e742",
+    "testAccountOnly": true,
+    "publicClinicalReady": false,
+    "trackingReadEnabled": true,
+    "memberRepliesEnabled": true,
+    "realDispensingEnabled": false,
+    "actualSignedInAcceptance": false,
+    "liveVerifiedAt": "2026-10-24T15:34:12.834Z"
+  }
 }
