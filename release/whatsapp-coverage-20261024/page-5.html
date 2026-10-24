@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Medicine Front Door - Private Preview</title>
+  <meta name="description" content="Medicine preferences, catalogue prices and a fictional assessment walkthrough. Orders and payments are closed.">
+  <link rel="stylesheet" href="/assets/treatment-walkthrough-v2/styles.css">
+<script defer src="/assets/footer-social-links-v1.js?v=20261020"></script></head>
+<body>
+  <div class="preview-bar"><b>TREATMENT WALKTHROUGH</b><span>No orders, payments or prescriptions · all items out of stock</span></div>
+  <header><button class="logo" data-go="shop" aria-label="Return to shop window"><span>S</span><b>SHIFT <i>SOME</i> TIMBER</b></button><a class="menu" href="/treatment-centre">Treatments</a></header>
+
+  <main><section class="read-intro"><p class="eyebrow">MEDICINE PREFERENCES AND ASSESSMENT</p><h1>Understand the assessment process.</h1><p>A medicine preference is a request for clinical review. The prescriber decides whether a medicine and dose are appropriate. Orders and payments are currently closed. Use fictional information in this walkthrough.</p><p><a href="/treatment-assessment-terms">Medicine preferences and prescribing terms</a></p></section>
+    <nav class="demo-nav" aria-label="Walkthrough sections">
+      <button class="active" data-go="shop">1 · Product</button><button data-go="assessment">2 · Verify</button><button data-go="tracker">3 · Tracker</button><button data-go="journey">4 · Journey</button>
+    </nav>
+
+    <section class="view active" id="shop">
+      <div class="product-tabs" role="tablist"><button class="active" data-product="mounjaro">Mounjaro</button><button data-product="wegovy">Wegovy pen</button><button data-product="wegovy-tablet">Wegovy tablets</button><button data-product="foundayo">Foundayo tablets</button><button data-product="orlistat">Orlistat capsules</button><button data-product="liraglutide">Liraglutide</button></div>
+      <div class="hero-grid">
+        <figure class="product-visual"><img src="/assets/treatment-walkthrough-v2/generic-pen.png" alt="Generic educational illustration of an injection pen, not the supplied medicine or packaging"><figcaption>Educational illustration, not medicine packaging.</figcaption></figure>
+        <div class="product-copy"><p class="eyebrow" id="route">ONCE-WEEKLY INJECTION</p><h1 id="name">Mounjaro</h1><p class="lede" id="intro">Tirzepatide in a four-dose pen, with a staged dose route and clinical review.</p>
+          <div class="entry-toggle"><p>Where are you starting from?</p><button class="active" data-entry="new">New to treatment</button><button data-entry="switching">Switching provider</button><p id="entry-copy">We’ll start with eligibility and the clinically appropriate first dose.</p></div>
+          <div class="buy-card"><div class="supply"><span></span><b id="supply">OUT OF STOCK</b></div><p class="prescribing-notice"><strong>Prescription-only medicine.</strong> You can state a medicine and dose preference before consultation. The final treatment decision is made with the prescriber. A prescription is never guaranteed.</p><label>Preferred dose<select id="dose"></select></label><div class="price"><small>CATALOGUE PRICE</small><strong id="price">£169.00</strong><span>Orders are currently closed</span></div><button class="cta" id="start" disabled>Out of stock</button><p><a id="preview-assessment" href="/assessment-walkthrough">View the assessment walkthrough →</a></p><p>No stock available today. Orders and payments are currently closed.</p></div>
+          <div class="trust"><span>UK clinical assessment</span><span>HQ-controlled price</span><span>Honest supply status</span></div>
+        </div>
+      </div>
+
+      <section class="read-intro"><p class="eyebrow">MEDICINE INFORMATION</p><h2>Understand your options.</h2><p>Read about clinical review, dose options, practical use and side effects.</p><a href="#eligibility">Read about eligibility ↓</a></section>
+
+      <section class="content-block" id="eligibility"><p class="eyebrow">BMI &amp; ELIGIBILITY</p><h2>Two routes into a clinical review.</h2><div class="eligibility-graphic"><article><span>30+</span><b>BMI 30 kg/m² or above</b><p>The licensed obesity route. BMI is a starting gate, not an approval guarantee.</p></article><div class="or">OR</div><article><span>27–29.9</span><b>BMI plus a weight-related condition</b><p>For example high blood pressure, abnormal blood fats, sleep apnoea, cardiovascular disease, prediabetes or type 2 diabetes.</p></article></div><div class="context-strip"><b>Not just a number.</b><span>A prescriber also reviews your health, medicines, pregnancy plans, previous treatment and whether this route is safe and appropriate.</span></div></section>
+
+      <section class="content-block"><p class="eyebrow">THE DOSE ROUTE</p><h2 id="dose-heading">Your dose is a clinical decision.</h2><div class="dose-route" id="dose-route"></div><p class="note" id="dose-note">Overview only. Any dose change requires the prescribing clinician’s approval.</p></section>
+
+      <section class="content-block"><p class="eyebrow" id="format-eyebrow">THE INJECTION FORMAT</p><h2 id="pen-title">One pen. Four weekly doses.</h2><div class="pen-graphic"><img id="oral-illustration" src="/assets/treatment-walkthrough-v2/oral-formats.svg" alt="Generic illustration of oral medicine formats" hidden width="180"><div class="pen-silhouette" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><p class="pen-number" id="pen-number">4</p><b id="pen-label">doses in each Mounjaro KwikPen</b><p id="pen-copy">Each selected strength delivers one dose weekly. New needles are needed and are not represented in this educational visual.</p></div></div><div class="fact-grid" id="pen-facts"></div></section>
+      <section class="content-block negatives"><p class="eyebrow">WHY THIS MAY NOT BE RIGHT</p><h2>Side effects and limitations.</h2><div class="negative-grid" id="negatives"></div><div class="alert"><b>Stop and get help when needed.</b><span>Severe or urgent symptoms need medical care, not a website. Always read the current patient leaflet.</span></div></section>
+      <section class="content-block detail-library"><p class="eyebrow">THE DETAILS, ON YOUR TERMS</p><h2>Open what matters to you.</h2><details open><summary>How it works</summary><div id="how-it-works"></div></details><details><summary>Common effects and practical tips</summary><div id="common-effects"></div></details><details><summary>Important cautions</summary><div id="cautions"></div></details><details><summary>Missed doses, storage and routine</summary><div id="practical"></div></details><details><summary>Evidence and medicine sources</summary><div id="sources"></div></details></section>
+      <section class="content-block"><p class="eyebrow">WHAT HAPPENS NEXT</p><div class="process"><article><b>1</b><h3>Choose</h3><p>Dose, price and stock upfront.</p></article><article><b>2</b><h3>Verify</h3><p>Clinical answers and identity before payment.</p></article><article><b>3</b><h3>Track</h3><p>Approval and dispatch in My Shift.</p></article><article><b>4</b><h3>Continue</h3><p>Light Journey setup after approval.</p></article></div></section>
+    </section>
+
+    <section class="view" id="assessment">
+      <div class="flow-head"><p class="eyebrow">ASSESSMENT WALKTHROUGH</p><h1>Your clinical assessment.</h1><p>A prescribing clinician decides suitability. This walkthrough uses fictional examples and stores and sends nothing.</p></div>
+      <p><a class="cta" href="/assessment-walkthrough">Open the expanded clinical assessment</a></p><p>Explore the assessment questions, four treatment paths and the information prepared for a prescriber. Fictional examples only; no real information is sent.</p><form hidden id="verify-form" class="form-card"><div class="progress"><span style="width:70%"></span></div><p class="step">STEP 4 OF 5 · IDENTITY &amp; FINAL CHECK</p><div class="review-product"><span id="review-letter">M</span><div><b id="review-name">Mounjaro 2.5 mg</b><p id="review-price">£169.00 · mock price</p></div></div><label>Photo ID status<select required><option value="">Choose</option><option>Ready to upload</option><option>Already verified by partner</option></select></label><label class="check"><input type="checkbox" required><span>I confirm my answers are complete and accurate.</span></label><label class="check"><input type="checkbox" required><span>I understand the prescriber may recommend a different treatment or dose.</span></label><div class="privacy"><b>What happens to your answers?</b><p>They go to the regulated clinical partner for assessment. Shift retains only the verification reference needed to join up your order status.</p></div><button class="cta">Verify and continue to test checkout</button><button type="button" class="text-button" data-go="shop">Back to medicine</button></form>
+    </section>
+
+    <section class="view" id="tracker">
+      <div class="flow-head"><p class="eyebrow">ORDER CONFIRMATION</p><h1>Your example order.</h1><p>Example order <b>SST-MED-1042</b>. No real payment has been taken.</p></div><div class="tracker-card"><div class="tracker-product"><img src="/assets/treatment-walkthrough-v2/generic-pen.png" alt=""><div><small>EXAMPLE ORDER</small><h2 id="track-name">Mounjaro 2.5 mg</h2><p id="track-price">£169.00 · example order</p></div></div><div class="timeline"><article class="done"><span>✓</span><div><b>Order received</b><p>Illustrative payment status</p></div></article><article class="current"><span>2</span><div><b>Clinical checks</b><p>The prescribing team is reviewing your information</p></div></article><article><span>3</span><div><b>Approved &amp; dispensing</b><p>Unlocks only after the clinical decision</p></div></article><article><span>4</span><div><b>Dispatched</b><p>Tracking appears here when available</p></div></article></div><div class="tracker-actions"><button id="advance">Preview approved state</button><button data-go="shop">Back to products</button></div></div>
+    </section>
+
+    <section class="view" id="journey">
+      <div class="flow-head"><p class="eyebrow">APPROVED · NOW MAKE IT YOURS</p><h1>Set up your ongoing support.</h1><p>Set your starting point and preferences for ongoing support.</p></div><div class="journey-grid"><div class="journey-form"><p class="step">MY JOURNEY · 1 OF 3</p><h2>Your starting point</h2><label>Start weight<div class="input-row"><input value="95.0" inputmode="decimal"><span>kg</span></div></label><label>Your direction<select><option>Lose weight</option><option>Maintain my progress</option></select></label><label>Weekly check-in day<select><option>My treatment day</option><option>Sunday</option><option>Monday</option></select></label><button class="cta" id="journey-next">Save and show my week</button></div><aside><p class="eyebrow">WHAT THIS UNLOCKS</p><ul><li>Weekly weight, waist and clothes check-ins</li><li>Food, movement and “Life Back” context</li><li>Side-effect and Clinic Gone Quiet support</li><li>Reorder readiness when clinically eligible</li></ul><p class="note">Medicine decisions stay with the prescriber. Shift joins up the bits around them.</p></aside></div>
+    </section>
+  </main>
+  <footer style="padding:24px 5vw"><p><a href="/treatment-centre">Back to Treatments</a> · <a href="/treatment-assessment-terms">Medicine preferences and prescribing terms</a> · <a href="/privacy">Privacy</a></p></footer><div class="toast" id="toast" role="status"></div>
+  <script src="/assets/treatment-walkthrough-v2/oral-options.js"></script><script src="/assets/treatment-walkthrough-v2/app.js"></script>
+<script defer src="/assets/whatsapp-chat-v1.js?v=20261024"></script></body>
+</html>
