@@ -1,3 +1,4 @@
+import {eventDeliveryEligibility} from '../hq-event-delivery-eligibility.mjs';
 import {PUSH,emailMessage,hash} from './model.mjs';
 import {sendSupportPush} from '../mental-health-pathway/member/push.mjs';
 export async function runCommunications(env,now=new Date(),{sendEmail=(e,p,to)=>e.EMAIL.send(emailMessage(p,to)),sendPush=sendSupportPush}={}){
@@ -15,6 +16,7 @@ export async function runCommunications(env,now=new Date(),{sendEmail=(e,p,to)=>
     // Recheck cancellation just before dispatch. A provider request already in flight cannot be recalled.
     const current=await DB.prepare("SELECT id FROM hq_comms_drafts WHERE id=? AND status='scheduled'").bind(d.id).first();
     if(!current){status='suppressed';out.suppressed++;}
+    else if(!(await eventDeliveryEligibility(DB,p,d.id,r)).eligible){status='suppressed';errorCode='event_no_longer_eligible';out.suppressed++;}
     else if(p.channel==='email'){
      if(r.user_id&&!await DB.prepare('SELECT id FROM users WHERE id=? AND lower(email)=?').bind(r.user_id,r.email).first()){status='suppressed';out.suppressed++;}else{const result=await sendEmail(env,p,r.email);if(!result?.messageId||String(result.messageId).startsWith('sim-'))throw Error('missing_real_provider_receipt');provider=String(result.messageId).slice(0,240);status='provider_accepted';out.emailAccepted++;}
     }else{
