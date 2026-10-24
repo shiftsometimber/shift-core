@@ -2,7 +2,7 @@
   "kind": "EXACT_MEMBER_RECORDING_REPAIR_20261024",
   "base": "200ff3dd4c4e01505f418e31149389da0f81fe80",
   "payload": "8551b285de1b808c810d49163b5cea5a3b98e575",
-  "registrationSource": "b785e7927b016bec2dd4acd67608ff3d25744966",
+  "registrationSource": "e7fb35eac6f3974afded7da2114ad13451c21e0e",
   "payloadBlobs": {
     "acquisition-activation/server.mjs": "496da813a348869725fbc32615e1809162e00bd3",
     "auth-email-verification-v1.js": "dee72f89ad1ea23772aba8aebe68d4f082b670ee",
