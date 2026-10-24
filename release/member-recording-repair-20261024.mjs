@@ -3,7 +3,7 @@ import {execFileSync} from 'node:child_process';
 import {readFileSync,lstatSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
-import {immutableHistorySourceHead} from './immutable-git-facts.mjs';
+import {immutableHistorySourceHead,withImmutableHistoryVerification} from './immutable-git-facts.mjs';
 import inverses from './member-recording-repair-inverses-20261024.json' with {type:'json'};
 export const RECORDING_REPAIR_BASE="200ff3dd4c4e01505f418e31149389da0f81fe80";
 export const RECORDING_REPAIR_PAYLOAD="8551b285de1b808c810d49163b5cea5a3b98e575";
@@ -45,10 +45,10 @@ export function validateRecordingRepairReceipt(receipt){
  assert.deepEqual(receipt.payloadBlobs,RECORDING_REPAIR_BLOBS);assert.deepEqual(receipt.authority,RECORDING_REPAIR_AUTHORITY);
  assert.match(receipt.registrationSource,/^[a-f0-9]{40}$/);return receipt;
 }
-let cached=null;
+let cached=null,qualificationDepth=0;
 export function verifyMemberRecordingRepair(suppliedReceipt){
  const frozen=immutableHistorySourceHead(),head=frozen??git('rev-parse','HEAD');
- if(frozen&&cached?.head===head){for(const [path,pin]of cached.filePins)assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
+ if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
  assert.equal(git('diff','--name-only','HEAD','--'),'','Repair worktree must be clean');
  assert.equal(git('diff','--cached','--name-only','--'),'','Repair index must be clean');
  const receipt=validateRecordingRepairReceipt(JSON.parse(bytes(head,RECORDING_REPAIR_RECEIPT)));
@@ -69,7 +69,7 @@ export function verifyMemberRecordingRepair(suppliedReceipt){
  }
  for(const [path,data]of Object.entries(inverses))assert.equal(originalRecordingMaintenance(path,bytes(head,path)),bytes(RECORDING_REPAIR_BASE,path),'Every original source assertion must remain: '+path);
  const paths=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT],filePins=Object.freeze(paths.map(path=>Object.freeze([path,git('rev-parse',head+':'+path)])));
- const proof=Object.freeze({head,receipt,paths:RECORDING_REPAIR_PATHS,filePins});if(frozen)cached=proof;return proof;
+ const proof=Object.freeze({head,receipt,paths:RECORDING_REPAIR_PATHS,filePins});if(frozen&&qualificationDepth)cached=proof;return proof;
 }
 // This qualifies a finite successor; it does not replace or bypass the existing
 // production admission, current-main guard, rollback or live acceptance gates.
@@ -91,3 +91,8 @@ export function memberRecordingComparisonValue(path,value,requestedHead){
  return identifier?old:bytes(RECORDING_REPAIR_BASE,path);
 }
 export function recordingRepairLegacyPaths(){verifyMemberRecordingRepair();return [...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT];}
+
+export function withMemberRecordingQualification(callback){
+ if(qualificationDepth){qualificationDepth++;try{return callback();}finally{qualificationDepth--;}}
+ cached=null;qualificationDepth=1;try{return withImmutableHistoryVerification(callback);}finally{qualificationDepth=0;cached=null;}
+}

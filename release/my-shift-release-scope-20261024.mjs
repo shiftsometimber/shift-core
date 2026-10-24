@@ -1,4 +1,4 @@
-import {verifyMemberRecordingRepair,RECORDING_REPAIR_BASE,memberRecordingComparisonValue,recordingRepairLegacyPaths} from './member-recording-repair-20261024.mjs';
+import {verifyMemberRecordingRepair,RECORDING_REPAIR_BASE,memberRecordingComparisonValue,recordingRepairLegacyPaths,withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync as actualReadFileSync,lstatSync} from 'node:fs';
@@ -42,6 +42,7 @@ const sorted=values=>[...values].sort();
 const changed=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 const once=(value,part,replacement='')=>{assert.equal(value.split(part).length,2,'One exact My Shift maintenance inverse required');return value.replace(part,replacement);};
 export function originalMyShiftMaintenance(path,value){
+ value=memberRecordingComparisonValue(path,value);
  if(path==='release/approved-source-comparison-20261024.mjs')return once(once(value,COMPARISON_IMPORT),COMPARISON_HOOK);
  if(path==='release/app-scope.mjs'){if(value.includes(MY_SHIFT_COMPOSITION_MARKER))value=once(value,MY_SHIFT_COMPOSITION_MARKER);return once(once(value,APP_IMPORT),APP_AFTER,APP_BEFORE);}
  if(path==='release/combined-finite-scope-20261014.mjs')return once(value,DEFAULT_AFTER,DEFAULT_BEFORE);
@@ -97,7 +98,8 @@ function verifyOriginalMyShiftComposition({head,receipt}){
  }
  return {head,paths:MY_SHIFT_PATHS,receipt};
 }
-export function verifyMyShiftRelease(requestedHead){
+export function verifyMyShiftRelease(requestedHead){return withMemberRecordingQualification(()=>verifyRecordingAwareMyShiftRelease(requestedHead));}
+function verifyRecordingAwareMyShiftRelease(requestedHead){
  const head=git('rev-parse','HEAD');if(requestedHead)assert.equal(requestedHead,head,'Actual My Shift source HEAD required');
  assert.equal(git('diff','--name-only','HEAD','--'),'','My Shift tracked working source changed');assert.equal(git('diff','--cached','--name-only','--'),'','My Shift staged source changed');
  const receipt=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));
@@ -263,7 +265,7 @@ function qualifyRecovery(head,receipt){
  return {source,prior};
 }
 export function verifyMyShiftComposition({head,receipt}){
- if(!recordingProjection){verifyMemberRecordingRepair();assert.deepEqual(receipt,JSON.parse(bytes(head,MY_SHIFT_RECEIPT)),'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}
+ if(!recordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}
  if(!receipt.releaseRecoveryMaintenance)return verifyOriginalMyShiftComposition({head,receipt});
  assert.equal(head,git('rev-parse','HEAD'),'Actual recovery source HEAD required');
  const native=JSON.parse(bytes(head,MY_SHIFT_RECEIPT)),proof=qualifyRecovery(head,native);
@@ -284,5 +286,6 @@ export function verifiedCurrentReleaseAdmission(){
   assert.equal(memberRecordingComparisonValue(path,oid(actualReadFileSync(path)),proof.head),expected,'Actual admission source bytes changed: '+path);
   refs.set(path,ref);
  }
+ for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);
  return {head:proof.head,refs};
 }
