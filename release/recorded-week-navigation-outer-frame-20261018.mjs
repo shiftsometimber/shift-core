@@ -1,3 +1,4 @@
+import {reuseExactNativeProjection as reuseNativeNavigationProof} from './scoped-native-projection-evidence.mjs';
 import {Buffer as sourceMetadataBuffer} from 'node:buffer';
 import {hash as sourceMetadataHash} from 'node:crypto';
 import {isSharedArrayBuffer as sourceMetadataSharedBacking} from 'node:util/types';
@@ -392,7 +393,22 @@ function receipt(){
  const ownedLines=decoded.logs.toString('utf8').split('\n').flatMap(line=>{const i=line.indexOf('{"kind":"owned_runtime_deployment"');if(i<0)return[];try{return[JSON.parse(line.slice(i))]}catch{return[]}});
  assert.equal(ownedLines.filter(x=>JSON.stringify(x)===JSON.stringify(owned)).length,1);assert.equal(verifiedOwnedRuntime(active,run,job,owned),true);return owned;
 }
+const nativeNavigationProofOwners=new Map();
 function prove(rawHead,editorialOuter=null){
+ if(editorialOuter)assertWebsiteEditorialCompletionView(editorialOuter);
+ const key=JSON.stringify([rawHead,editorialOuter?.rawHead??null,editorialOuter?.head??null]);
+ let owner=nativeNavigationProofOwners.get(key);
+ if(!owner){owner=Object.freeze({});nativeNavigationProofOwners.set(key,owner);while(nativeNavigationProofOwners.size>16)nativeNavigationProofOwners.delete(nativeNavigationProofOwners.keys().next().value);}
+ const check=nativeNavigationFreshSourceChecker(editorialOuter?.rawHead??rawHead);
+ const retained=reuseNativeNavigationProof(owner,()=>{
+  // Every original native assertion runs on a miss. Inputs are private native
+  // facts; no supplied source reader or callback verdict enters this cache.
+  const record=proveOriginal(rawHead,editorialOuter);
+  return record===null?null:Object.freeze({nativeSource:true,assertCurrent:check,record});
+ });
+ return retained?.record??null;
+}
+function proveOriginal(rawHead,editorialOuter=null){
  const {clean:proofClean,readFileSync:proofRead}=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean,readFileSync};
  const record=JSON.parse(content(rawHead,LEDGER)),c=record[KEY];if(!c)return null;
  const{maintenanceSource,...fixed}=data(c);assert.deepEqual(fixed,policy.record);assert.equal(c.base,BASE);assert.equal(c.payload,PAYLOAD);assert.deepEqual(c.paths,fixedPaths);
