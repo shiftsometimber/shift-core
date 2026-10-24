@@ -1,0 +1,199 @@
+{
+  "status": "assessed_no_duplicate_pair_confirmed",
+  "pagesChecked": 30,
+  "exactMainTextHashesUnique": true,
+  "highest5gramJaccard": 0.139,
+  "limitations": [
+    "Shared wording alone is not duplicate search intent.",
+    "Available Search Console query rows do not establish two competing guide pairs; query reporting is incomplete.",
+    "Original audit pair identities remain unavailable; do not guess canonicals or delete useful content."
+  ],
+  "manualFamiliesReviewed": [
+    "nutrition overview versus detailed protein/calorie/meal-planning guide",
+    "walking-specific guide versus combined exercise/strength/mobility guide",
+    "UK surgery decision guide versus UK costs/provider checklist",
+    "UK/Europe cost comparison versus Europe safety/aftercare guide"
+  ],
+  "pages": [
+    {
+      "file": "_ozempic-definitive-uk-guide.html",
+      "title": "Ozempic and weight loss: the UK distinction | Shift Some Timber",
+      "words": 486,
+      "mainSHA256": "5060e9c44293ef48557e702c3e835d3fa30d54beebf256659aadf16c0cd43270"
+    },
+    {
+      "file": "_guides_gastric-sleeve-uk-guide.html",
+      "title": "Gastric Sleeve UK: The Definitive Decision Guide",
+      "words": 2526,
+      "mainSHA256": "faa29ae02831a903d87df4779ee999f19f1ddfae72341da039d0e971e686f10c"
+    },
+    {
+      "file": "_guides_mini-gastric-bypass-oagb-uk-guide.html",
+      "title": "Mini Gastric Bypass (OAGB) UK: The Definitive Decision Guide",
+      "words": 1633,
+      "mainSHA256": "b6ee38607178f6d157833bb93adc57f205c20f4ea59ac350b3aef224783c495a"
+    },
+    {
+      "file": "_guides_cagrisema-uk-guide.html",
+      "title": "CagriSema UK: Availability, Trial Evidence and Alternatives",
+      "words": 2885,
+      "mainSHA256": "7f047c48b9ea2dc5344f6cf0debd9776ee0288e5775529e1cdccbd534fc78101"
+    },
+    {
+      "file": "_guides_amycretin-uk-guide.html",
+      "title": "Amycretin (Zenagamtide) UK: Definitive Future-Medicine Guide",
+      "words": 1351,
+      "mainSHA256": "823c4e42215ab48ec4efed14b05dc577be0de5e8db9767244420243967136d3c"
+    },
+    {
+      "file": "_guides_mens-health-mot-guide.html",
+      "title": "Men's Health MOT: What's Checked and Is It Worth It?",
+      "words": 1498,
+      "mainSHA256": "a16fc3b3b81551263108a3e492d57df0444e5b19b2f94164e4bb0cc7e336763b"
+    },
+    {
+      "file": "_guides_gastric-bypass-roux-en-y-uk-guide.html",
+      "title": "Gastric Bypass UK: The Definitive Roux-en-Y Decision Guide",
+      "words": 2059,
+      "mainSHA256": "2ff60eacce2268d3500c5827fdc5f7d6c5d27879c4cbe8e7e6609ea9c928f3df"
+    },
+    {
+      "file": "_saxenda-definitive-uk-guide.html",
+      "title": "Saxenda (liraglutide): a practical UK guide | Shift Some Timber",
+      "words": 481,
+      "mainSHA256": "e909da65fe3106ede1de537a1d26466fb14008538ee3ee117b445089c1f726aa"
+    },
+    {
+      "file": "_guides_walking-guide.html",
+      "title": "The Complete Walking Guide for Men | Shift Some Timber",
+      "words": 745,
+      "mainSHA256": "98eab9522545f7ca45939a50f93af31077c58aa17253a8b83c0df1753b879421"
+    },
+    {
+      "file": "_articles_glp-1-dosage-guide.html",
+      "title": "UK GLP-1 Dosing: 4 week steps to cut side effects and protect muscle",
+      "words": 1713,
+      "mainSHA256": "00d5b611326a7edd818afbe8dff812970d52c4764290e9662fb82316b9530d6c"
+    },
+    {
+      "file": "_guides_blood-pressure-guide.html",
+      "title": "The Blood Pressure Guide for Men | Shift Some Timber",
+      "words": 701,
+      "mainSHA256": "803e5a338f60efc69e8e3025e093d80506c7af47957858a5f371da2e80f89ada"
+    },
+    {
+      "file": "_guides_nhs-weight-loss-medication-pathways.html",
+      "title": "NHS weight-loss medication: access routes and eligibility in 2026 | SHIFT",
+      "words": 1419,
+      "mainSHA256": "c3118dbdebbfab8fff482fce58fa88ff0d3ce2ad257abcb6331b5f48412c7ede"
+    },
+    {
+      "file": "_guides_gastric-band-uk-guide.html",
+      "title": "Gastric Band UK: The Definitive Decision Guide",
+      "words": 1579,
+      "mainSHA256": "ac34a530c138d02612cb71d1edac0e7a41ed34039760c989e77f9c0c162c18e2"
+    },
+    {
+      "file": "_guides_nhs-bariatric-surgery-pathways.html",
+      "title": "NHS Bariatric Surgery: Referrals, Waiting Lists and Appeals",
+      "words": 2567,
+      "mainSHA256": "a642214ab5712223032a41cccf967b6c89c364b00f28ddf6b8cef424a903234f"
+    },
+    {
+      "file": "_guides_nutrition-protein-calories-meal-planning.html",
+      "title": "Nutrition for Weight Loss: Protein, Calories and Meal Planning",
+      "words": 3590,
+      "mainSHA256": "259a33d916b3a061e42e643a0426f2c9f5ced2ab9b259503ee15d2aa044b3a78"
+    },
+    {
+      "file": "_guides_nhs-weight-management-uk-guide.html",
+      "title": "NHS Weight Management: Services, Medication and Surgery",
+      "words": 3294,
+      "mainSHA256": "0efda17aaae604425d83b87561eb7252e591f307b0d453d483ea633f0b0f5667"
+    },
+    {
+      "file": "_guides_bariatric-surgery-europe-costs-guide.html",
+      "title": "Bariatric Surgery in Europe: Cost, Safety and Aftercare",
+      "words": 939,
+      "mainSHA256": "86e708a298a5d12f7b56a625ed99394a7bb3457d63f3416ec27380c04b5c0448"
+    },
+    {
+      "file": "_guides_endoscopic-sleeve-gastroplasty-esg-uk-guide.html",
+      "title": "Endoscopic Sleeve Gastroplasty (ESG) UK Guide",
+      "words": 1558,
+      "mainSHA256": "f3d39c734b892150c2036a243b51a68591d20b1c711ae7f91ae391afbc0497c5"
+    },
+    {
+      "file": "_guides_weight-loss-surgery-uk-guide.html",
+      "title": "Weight-Loss Surgery UK: The Definitive Decision Guide",
+      "words": 1859,
+      "mainSHA256": "762134b0eae5f8a2149635046f1d6acdd500dee67de05eec1a5d105733c7b49a"
+    },
+    {
+      "file": "_guides.html",
+      "title": "Men's Health & Weight Management Guides | Shift Some Timber",
+      "words": 295,
+      "mainSHA256": "43885008fce4d9d162b71c3b8ac29c58c8e2b408c7c96a7933cd50a55578bc8b"
+    },
+    {
+      "file": "_guides_nutrition-guide.html",
+      "title": "The Practical Men's Nutrition Guide | Shift Some Timber",
+      "words": 823,
+      "mainSHA256": "cfffd2e29ef1807f660fd640d09a33b34bc09a6c1d7b4721bc457e807c11856a"
+    },
+    {
+      "file": "_family-discussion-guide.html",
+      "title": "Family Discussion Guide | Shift Some Timber",
+      "words": 178,
+      "mainSHA256": "bde3b5118c6dca4a75891c605726870215c4592e0a90d0b9874775bf4f10aebb"
+    },
+    {
+      "file": "_guides_bariatric-surgery-costs-uk-europe.html",
+      "title": "Bariatric Surgery Costs: UK vs Europe \u2013 The Real Price Guide",
+      "words": 541,
+      "mainSHA256": "014077d7e4b747e565bcde41837b32d9d23bd60f224fe02082e5e2854f485790"
+    },
+    {
+      "file": "_guides_gastric-balloon-uk-guide.html",
+      "title": "Gastric Balloon UK: The Definitive Decision Guide",
+      "words": 1443,
+      "mainSHA256": "4ba3f5f8ebdf96df95dad9d6837d6f6b2b4c47650080c990357f4d03e035085c"
+    },
+    {
+      "file": "_guides_exercise-walking-strength-mobility.html",
+      "title": "Exercise for Weight Loss: Walking, Strength and Mobility",
+      "words": 2576,
+      "mainSHA256": "d0b087cc15f9f748318c945103f859fcbc9934114e566ee0f64b591113a7bcfe"
+    },
+    {
+      "file": "_guides_retatrutide-uk-guide.html",
+      "title": "Retatrutide (Reta) UK: Availability, Trials & Safety",
+      "words": 2647,
+      "mainSHA256": "de1419fc4690b4d7f3bfd2cf10a9cfa6713169f37a2e72779ee737f03ea1825f"
+    },
+    {
+      "file": "_guides_weight-loss-surgery-uk-costs-guide.html",
+      "title": "Weight-Loss Surgery UK: NHS, Private Costs and Providers",
+      "words": 780,
+      "mainSHA256": "09de015b8f8efbe86a077a89e0eba2f09dd2c14d4af59a6580d6dc3b68a69876"
+    },
+    {
+      "file": "_guides_sleep-stress-mindset-emotional-eating-maintenance.html",
+      "title": "Sleep, Stress and Emotional Eating: Maintenance Guide",
+      "words": 2742,
+      "mainSHA256": "da80836f9e2e0c14ec2ffa832b3c228b36e7587d29367c1b05de8b4c842e53e8"
+    },
+    {
+      "file": "_guides_maritide-uk-guide.html",
+      "title": "MariTide UK: Definitive Future-Medicine Guide | Shift Some Timber",
+      "words": 1246,
+      "mainSHA256": "54721ceb5e67595713b4df9e65b2a65f86537f8e0259ee018d765aab638e81fd"
+    },
+    {
+      "file": "_orlistat-definitive-uk-guide.html",
+      "title": "Orlistat: a practical UK guide | Shift Some Timber",
+      "words": 496,
+      "mainSHA256": "fbd96f6103ed567e89f77c869c7df11ff3b3577cc3f5d38d995d53539f6a78c8"
+    }
+  ]
+}

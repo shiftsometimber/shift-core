@@ -1,0 +1,68 @@
+{
+  "status": "prepared_not_deployed",
+  "approval": "Explicit homepage-affecting ticker approval required",
+  "note": "Refresh the labelled Published in SHIFT edition using the eight already-published stories below. Preserve RED/current=false and all freshness reasons; do not describe as a live/current news wire. No story bodies, clinical claims or dates are revised.",
+  "published_edition": {
+    "edition_id": "published-newsroom-20261024-prepared",
+    "label": "Published in SHIFT",
+    "current_wire": false,
+    "items": [
+      {
+        "id": 1263,
+        "headline": "MHRA strengthens antidepressant safety information",
+        "url": "/medicine-news/antidepressant-safety-information-mhra-october-2026",
+        "published_at": "2026-10-20T07:09:44.184Z",
+        "source_published_at": "2026-10-15T08:30:08.000Z"
+      },
+      {
+        "id": 1368,
+        "headline": "CBL-514: Phase 3 dosing and the limits of weight-regain claims",
+        "url": "/medicine-news/cbl-514-supreme-01-phase-3-catch-up",
+        "published_at": "2026-10-19T20:33:56.572Z",
+        "source_published_at": "2026-10-19"
+      },
+      {
+        "id": 1370,
+        "headline": "Oral VK2735: Phase 3 announcement and registry dates differ",
+        "url": "/medicine-news/oral-vk2735-sunrise-announcement-registry-catch-up",
+        "published_at": "2026-10-19T20:25:06.052Z",
+        "source_published_at": "2026-10-16"
+      },
+      {
+        "id": 1230,
+        "headline": "MHRA approves weekly Onswik insulin for adult type 2 diabetes",
+        "url": "/medicine-news/onswik-weekly-insulin-uk-approval-october-2026",
+        "published_at": "2026-10-19T20:16:16.452Z",
+        "source_published_at": "2026-10-13T13:10:48.000Z"
+      },
+      {
+        "id": 989,
+        "headline": "Orforglipron cardiovascular safety: what ACHIEVE-4 found",
+        "url": "/medicine-news/orforglipron-achieve-4-cardiovascular-safety-catch-up",
+        "published_at": "2026-10-19T20:15:21.966Z",
+        "source_published_at": "2026-09-30T00:00:00.000Z"
+      },
+      {
+        "id": 1369,
+        "headline": "Foundayo receives European recommendation; EU decision pending",
+        "url": "/medicine-news/foundayo-european-recommendation-october-2026",
+        "published_at": "2026-10-19T20:14:34.218Z",
+        "source_published_at": "2026-10-16"
+      },
+      {
+        "id": 1277,
+        "headline": "MHRA seizes fake weight-loss pens in Birmingham",
+        "url": "/medicine-news/mhra-fake-weight-loss-pens-birmingham-october-2026",
+        "published_at": "2026-10-19T19:54:24.643Z",
+        "source_published_at": "2026-10-15T13:36:00.000Z"
+      },
+      {
+        "id": 236,
+        "headline": "Wegovy tablet approved in the UK: what the new needle-free route means",
+        "url": "/weight-loss-tablets-for-men",
+        "published_at": "2026-09-09T20:59:11.225Z",
+        "source_published_at": "2026-06-11"
+      }
+    ]
+  }
+}

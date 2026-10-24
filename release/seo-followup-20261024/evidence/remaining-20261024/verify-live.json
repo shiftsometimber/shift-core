@@ -1,0 +1,809 @@
+{
+  "pass": true,
+  "at": "2026-10-23T23:31:22.561Z",
+  "redirectChecks": [
+    {
+      "url": "https://shiftsometimber.co.uk/treatments",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatment-centre",
+      "target": "https://shiftsometimber.co.uk/treatment-centre",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatment-centre",
+      "target": "https://shiftsometimber.co.uk/treatment-centre",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatment-centre",
+      "target": "https://shiftsometimber.co.uk/treatment-centre",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatment-centre",
+      "target": "https://shiftsometimber.co.uk/treatment-centre",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/treatments/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help-centre",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help",
+      "target": "https://shiftsometimber.co.uk/help",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help-centre",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help",
+      "target": "https://shiftsometimber.co.uk/help",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help-centre?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help-centre?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help-centre/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help",
+      "target": "https://shiftsometimber.co.uk/help",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help-centre/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help",
+      "target": "https://shiftsometimber.co.uk/help",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help-centre/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/help-centre/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/waiting-list/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/blog",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/explore-knowledge",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/blog",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/explore-knowledge",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/blog?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/blog?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/blog/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/explore-knowledge",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/blog/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/explore-knowledge",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/blog/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/blog/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/newsroom",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/shift-newsroom",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/newsroom",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/shift-newsroom",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/newsroom?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/newsroom?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/newsroom/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/shift-newsroom",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/newsroom/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/shift-newsroom",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/newsroom/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/newsroom/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/mounjaro",
+      "target": "https://shiftsometimber.co.uk/mounjaro",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/mounjaro",
+      "target": "https://shiftsometimber.co.uk/mounjaro",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/mounjaro",
+      "target": "https://shiftsometimber.co.uk/mounjaro",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/mounjaro",
+      "target": "https://shiftsometimber.co.uk/mounjaro",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "hops": 1
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/treatments",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments",
+      "target": "https://shiftsometimber.co.uk/treatment-centre",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/treatments",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments",
+      "target": "https://shiftsometimber.co.uk/treatment-centre",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/treatments?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/treatments?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/treatments/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments/",
+      "target": "https://shiftsometimber.co.uk/treatment-centre",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/treatments/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments/",
+      "target": "https://shiftsometimber.co.uk/treatment-centre",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/treatments/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/treatments/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/treatment-centre?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/help-centre",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre",
+      "target": "https://shiftsometimber.co.uk/help",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/help-centre",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre",
+      "target": "https://shiftsometimber.co.uk/help",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/help-centre?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/help-centre?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/help-centre/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre/",
+      "target": "https://shiftsometimber.co.uk/help",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/help-centre/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre/",
+      "target": "https://shiftsometimber.co.uk/help",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/help-centre/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/help-centre/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/help?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/waiting-list",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/waiting-list",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/waiting-list?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/waiting-list?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list/",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list/",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/waiting-list-journey?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/blog",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/blog",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/blog?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/blog?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/blog/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog/",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/blog/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog/",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/blog/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/blog/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/explore-knowledge?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/newsroom",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/newsroom",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/newsroom?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/newsroom?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/newsroom/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom/",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/newsroom/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom/",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/newsroom/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/newsroom/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/shift-newsroom?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "target": "https://shiftsometimber.co.uk/mounjaro",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "target": "https://shiftsometimber.co.uk/mounjaro",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "target": "https://shiftsometimber.co.uk/mounjaro",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "target": "https://shiftsometimber.co.uk/mounjaro",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?from=seo-review",
+      "method": "GET",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "hops": 2
+    },
+    {
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?from=seo-review",
+      "method": "HEAD",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?from=seo-review",
+      "target": "https://shiftsometimber.co.uk/mounjaro?from=seo-review",
+      "hops": 2
+    }
+  ],
+  "work": {
+    "url": "https://shiftsometimber.co.uk/shift-for-work",
+    "status": 200,
+    "sha256": "670819a915be797460e7fee95135ce3afe3abba26438e5c7ae0c46d1f2c5c24d",
+    "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "private, no-store",
+      "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+      "x-frame-options": "SAMEORIGIN",
+      "x-robots-tag": "index,follow,max-image-preview:large"
+    }
+  },
+  "sitemap": {
+    "url": "https://shiftsometimber.co.uk/sitemap.xml",
+    "status": 200,
+    "sha256": "901f84facd3e8b7163d2e99cc53a6448381b029d08246bd4d4f429431e4e3c83",
+    "headers": {
+      "content-type": "application/xml; charset=utf-8",
+      "cache-control": "private, no-store",
+      "content-security-policy": null,
+      "strict-transport-security": null,
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": null,
+      "x-frame-options": null
+    }
+  },
+  "sitemapURLs": 420,
+  "homepageUnchanged": true,
+  "wwwExtraHopChecks": 48,
+  "limitation": "www aliases require an extra canonical-host hop before the scoped redirect; existing credential cannot read zone redirect rules (Cloudflare code 10000) for a safe correction"
+}

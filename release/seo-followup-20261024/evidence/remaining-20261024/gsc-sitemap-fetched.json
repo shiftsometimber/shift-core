@@ -1,0 +1,24 @@
+{
+  "siteUrl": "sc-domain:shiftsometimber.co.uk",
+  "sitemaps": [
+    {
+      "path": "https://shiftsometimber.co.uk/sitemap.xml",
+      "lastSubmitted": "2026-10-23T23:17:06.793Z",
+      "isPending": false,
+      "isSitemapsIndex": false,
+      "type": "sitemap",
+      "lastDownloaded": "2026-10-23T23:17:11.900Z",
+      "warnings": "0",
+      "errors": "0",
+      "contents": [
+        {
+          "type": "web",
+          "submitted": "420",
+          "indexed": "0"
+        }
+      ]
+    }
+  ],
+  "sortedBy": "path",
+  "sortOrder": "asc"
+}

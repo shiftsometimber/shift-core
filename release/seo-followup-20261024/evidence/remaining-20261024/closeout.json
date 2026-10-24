@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-24T00:54:19.558Z",
+  "currentDeploymentMatchesVerifiedReceipt": true,
+  "deployment": "7fae2bef-503c-4ece-baeb-932084c19ebe",
+  "scopedRoutes": 46,
+  "workersDevDisabled": true,
+  "cloudflareDashboardSignIn": "interrupted; no www redirect-rule mutation performed"
+}
