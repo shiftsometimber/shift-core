@@ -36,7 +36,7 @@ requireText(analytics,"const a=await auth(request,env,ctx)",'analytics endpoint 
 for(const marker of ["AUDIENCE='shift-production-commissioning'","REPOSITORY='shiftsometimber/shift-core'","ACTOR_ID='315011648'","SYNTHETIC=/^shiftsometimber\\+","ALLOWED_WORKFLOWS","header.alg!=='RS256'","claims.iss!==ISSUER","claims.repository!==REPOSITORY","String(claims.actor_id)!==ACTOR_ID"]) requireText(identity,marker,`commissioning identity restriction ${marker}`);
 forbid(identity,/AUTO_VERIFY_EMAIL|verificationRequired\s*:\s*false[\s\S]*email\.test/i,'commissioning identity must not become generic verification bypass');
 
-for(const marker of ['RESET_TTL_MS=30*60*1000','password.length<12','constantTimeBytesEqual','token_type=\'password_reset\'']) requireText(recovery,marker,`recovery security ${marker}`);
+for(const marker of ['RESET_TTL_MS=30*60*1000','!passwordMeetsPolicy(password)','constantTimeBytesEqual','token_type=\'password_reset\'']) requireText(recovery,marker,`recovery security ${marker}`);
 
 for(const marker of ['PBKDF2','iterations = 100000','HttpOnly','Secure','SameSite=Lax']) requireText(worker,marker,`auth defence ${marker}`);
 
