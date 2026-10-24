@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {immutableHistoryExecFileSync as exec} from './immutable-git-facts.mjs';
-import {RECONCILIATION_PATHS} from './approved-runtime-composition.mjs';
+import {createRequire} from 'node:module';
 
 export const MY_SHIFT_BASE='44ade5dfee81c299008912ac48c8e7f2a1adbe92';
 export const MY_SHIFT_PAYLOAD='ea098411391682ee838f2af4af7221b40629d178';
@@ -15,11 +15,13 @@ export const MY_SHIFT_BLOBS=Object.freeze({
  'preview/my-shift-browser.mjs':'e848219205047e58a461b4415dc2655a75e0be05',
  'preview/my-shift-proof/browser-receipt.json':'8b0b8b41489b2342fb09a542f8660f64916eada7'
 });
-export const MY_SHIFT_MAINTENANCE=Object.freeze(['release/my-shift-release-scope-20261024.mjs','tests/my-shift-release-scope-20261024.test.mjs','release/approved-source-comparison-20261024.mjs','release/app-scope.mjs']);
+export const MY_SHIFT_MAINTENANCE=Object.freeze(['release/my-shift-release-scope-20261024.mjs','tests/my-shift-release-scope-20261024.test.mjs','release/approved-source-comparison-20261024.mjs','release/app-scope.mjs','release/combined-finite-scope-20261014.mjs']);
 export const MY_SHIFT_PATHS=Object.freeze([...Object.keys(MY_SHIFT_BLOBS),...MY_SHIFT_MAINTENANCE,MY_SHIFT_RECEIPT]);
 export const MY_SHIFT_APPROVAL=Object.freeze({owner:'Matt',instruction:'Please do',scope:'Exact My Shift source registration and guarded deployment; preserve all safety assertions',homepage:false,purchasing:false,clinicalActivation:false,messaging:false});
 export const COMPARISON_IMPORT="import {myShiftComparisonValue} from './my-shift-release-scope-20261024.mjs';\n";
 export const COMPARISON_HOOK=" const shift=myShiftComparisonValue(path,value,head);if(shift!==value)return shift;\n";
+export const DEFAULT_BEFORE=" if(defaultReader)return read;";
+export const DEFAULT_AFTER=" if(defaultReader)return(ref,path)=>ref==='HEAD'?approvedLegacyComparisonValue(ref,path,read(ref,path)):read(ref,path);";
 export const APP_IMPORT="import {verifyMyShiftRelease,myShiftSafetyComparison,MY_SHIFT_PATHS} from './my-shift-release-scope-20261024.mjs';\n";
 export const APP_BEFORE=" for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
 export const APP_AFTER=" verifyMyShiftRelease();\n for(const path of MY_SHIFT_PATHS)APP_PATHS.add(path);\n for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
@@ -32,6 +34,7 @@ const once=(value,part,replacement='')=>{assert.equal(value.split(part).length,2
 export function originalMyShiftMaintenance(path,value){
  if(path==='release/approved-source-comparison-20261024.mjs')return once(once(value,COMPARISON_IMPORT),COMPARISON_HOOK);
  if(path==='release/app-scope.mjs')return once(once(value,APP_IMPORT),APP_AFTER,APP_BEFORE);
+ if(path==='release/combined-finite-scope-20261014.mjs')return once(value,DEFAULT_AFTER,DEFAULT_BEFORE);
  return value;
 }
 export function originalMyShiftEntry(value){
@@ -55,8 +58,11 @@ export function verifyMyShiftRelease(requestedHead){
  for(const path of MY_SHIFT_MAINTENANCE)assert.equal(git('rev-parse',head+':'+path),git('rev-parse',receipt.maintenanceSource+':'+path),'My Shift registration drift: '+path);
  for(const path of MY_SHIFT_PATHS){assert(git('ls-tree',head,'--',path).startsWith('100644 blob '),'Regular My Shift source required: '+path);assert.equal(readFileSync(path,'utf8'),bytes(head,path),'Actual My Shift worktree bytes changed: '+path);}
  assert.equal(originalMyShiftEntry(bytes(head,'member-experience/entry.mjs')),bytes(MY_SHIFT_BASE,'member-experience/entry.mjs'));
- for(const path of ['release/approved-source-comparison-20261024.mjs','release/app-scope.mjs'])assert.equal(originalMyShiftMaintenance(path,bytes(head,path)),bytes(MY_SHIFT_BASE,path),'Every prior release assertion and pin must remain: '+path);
+ for(const path of ['release/approved-source-comparison-20261024.mjs','release/app-scope.mjs','release/combined-finite-scope-20261014.mjs'])assert.equal(originalMyShiftMaintenance(path,bytes(head,path)),bytes(MY_SHIFT_BASE,path),'Every prior release assertion and pin must remain: '+path);
  // Register only after native qualification of this complete finite increment.
+ // Resolve the already-initialised registry lazily: a static import introduces
+ // an ESM cycle when the existing comparison module is imported independently.
+ const {RECONCILIATION_PATHS}=createRequire(import.meta.url)('./approved-runtime-composition.mjs');
  for(const path of MY_SHIFT_PATHS)RECONCILIATION_PATHS.add(path);
  return Object.freeze({head,paths:MY_SHIFT_PATHS,receipt});
 }
@@ -67,7 +73,7 @@ export function myShiftComparisonValue(path,value,head){
  const proof=verifyMyShiftRelease(head);return identifier?'cdb3c419760c11c8511e4dfb68ac5a8cab4b8bad':originalMyShiftEntry(bytes(proof.head,path));
 }
 export function myShiftSafetyComparison(path,value){
- if(path!=='release/approved-source-comparison-20261024.mjs')return value;
+ if(!['release/approved-source-comparison-20261024.mjs','release/combined-finite-scope-20261014.mjs'].includes(path))return value;
  const {head}=verifyMyShiftRelease(),actual=git('rev-parse',head+':'+path);if(value!==actual)return value;
  return git('rev-parse',MY_SHIFT_BASE+':'+path);
 }

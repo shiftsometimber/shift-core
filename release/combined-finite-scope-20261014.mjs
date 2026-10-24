@@ -196,7 +196,7 @@ export function compactLiteralExcludes(args){
 // remain untouched, so an earlier payload's original comparator owns its override.
 export function combinedLegacyValidationRead(read,blob,{defaultReader,ownPaths=[],maintenancePaths=[],protectedPaths=[]}){
  assert.equal(typeof defaultReader,'boolean');assert.equal(typeof read,'function');assert.equal(typeof blob,'function');
- if(defaultReader)return read;
+ if(defaultReader)return(ref,path)=>ref==='HEAD'?approvedLegacyComparisonValue(ref,path,read(ref,path)):read(ref,path);
  const own=new Set([...ownPaths,...maintenancePaths]),protectedSet=new Set(protectedPaths),freshDirectories=new Set(['frontend','public','member-experience']);
  return(ref,path)=>own.has(path)||freshDirectories.has(path)||!protectedSet.has(path)?read(ref,path):blob(ref,path);
 }
