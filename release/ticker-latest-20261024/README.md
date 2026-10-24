@@ -1,0 +1,11 @@
+# Latest published Newsroom ticker — 24 October 2026
+
+Matt explicitly prioritised the ticker as a credibility issue: it must share the latest published news. This authorises the shared ticker's effect on the homepage; no other homepage content is authorised to change. Matt also confirmed THE TIMBER SHED — SOON is intentional non-link navigation, not a defect or outstanding decision.
+
+The old client selected a frozen five-story September edition whenever the scanner reported current=false. The new client reads the public published-only Newsroom endpoint, selects the eight newest publication/revision dates, deduplicates canonical paths, uses safe same-origin links and textContent, and labels dates Published or Updated without overwriting original dates. Future/invalid dates and non-Newsroom destinations are excluded. Scanner flags remain unchanged. If Newsroom is unavailable, only the existing governed ticker items can be used; if neither feed works, neutral existing Newsroom links remain. No drafts, source-review queues or clinical text are published.
+
+Production changes only the single JavaScript response /assets/public-news-ticker-v1.js (including its existing query version). Exact path/method guards delegate every other request to unchanged Core. Two narrowly scoped host routes supersede the existing broad asset owner, preserving all prior routes, Core versions, Pages manifests, homepage HTML, member data and purchasing closure. No main merge or competing Core run.
+
+release.cjs follows the established scoped Worker process: pushed exact source, six local tests, original production phase interlock, full route/Core before-image, staging and rendered browser acceptance, rechecked ownership before activation, verified live bytes and exact homepage hash. rollback removes only this release's two exact recorded routes after checking Core ownership, restoring the existing asset immediately. All receipts are in website-review-evidence-20261023/ticker-latest-20261024 on SST Mac.
+
+Commands: stage, verify-stage, production, verify-production, close-preview, rollback. Browser receipts are required before production and before preview closure. Preserve intent and route receipts; never replay a mutation without reconciling them.

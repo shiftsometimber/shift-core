@@ -1,6 +1,6 @@
 # Website review closeout — 23 October 2026, updated 24 October UK time
 
-Scope: tonight's eight-item public website review. Owner authorised scoped guarded releases, excluding homepage edits, purchasing activation, payments, commercial commitments and external communications. These exclusions remain active. No emails or real purchases occurred.
+Scope: tonight's eight-item public website review. Owner authorised scoped guarded releases, excluding homepage edits, purchasing activation, payments, commercial commitments and external communications. These exclusions remain active except the specifically authorised shared Newsroom ticker correction recorded below. No emails or real purchases occurred.
 
 ## Deployed and verified
 
@@ -23,10 +23,14 @@ Scope: tonight's eight-item public website review. Owner authorised scoped guard
 ## Remaining dependencies / decisions
 
 1. Duplicate-guide identities: owner supplied the five legacy URLs on 24 October; those redirects are now deployed (below). The two claimed overlapping guide pairs remain unidentified. Expanded assessment fetched 30 guide-related pages, compared main text/shingles, manually inspected likely topic families, and reviewed available Search Console query/page evidence. No duplicate pair was confirmed; incomplete query coverage cannot disprove overlap. Exact URLs or the original audit are required before consolidating; do not guess.
-2. Ticker: live DOM and radar-published-ticker-v1.js show a pinned five-story September edition, not the requested October oral-medicine story. Updating the shared edition affects homepage output, excluded by current instruction. An eight-story Published in SHIFT candidate using already-published headlines is prepared in release/seo-followup-20261024/ticker-edition-prepared.json; preserves current=false, RED freshness and dates. Not deployed. Explicit homepage-affecting approval remains required before publication; this review does not authorise it.
+2. Ticker: Matt explicitly prioritised correction on 24 October after the evening review: show the latest published Newsroom news. This authorises the shared ticker including homepage presentation, with all other homepage content held. Implemented dynamic published-only feed selection, eight newest publication/revision dates, safe canonical links, real Published/Updated dates and governed fallback in release/ticker-latest-20261024. Scanner freshness flags stay unchanged; no clinical bodies or drafts are published. Local checks passed; staging, production and rendered live acceptance pending. The earlier static eight-story candidate is superseded by this updating behaviour.
 3. Actual Safari, mobile viewport/device and post-deployment signed-in footer checks remain unverified. Historical WebKit/mobile receipts are retained but not represented as fresh actual-Safari evidence. The supported browser interface did not supply a mobile viewport; a zoom-shortcut attempt did not change its 1363 CSS-pixel viewport, so no mobile acceptance is claimed. No new post-deployment sign-in occurred.
 4. iPhone App Store still says Coming soon. No iOS public release has been verified, so availability wording was not falsely changed.
 
 ## Source and evidence
 
 Evidence in ./evidence is public/sanitised, including exact deployment receipts, manifest preservation, scoped crawl, blog acceptance, served-icon checks and closed-purchase results. Main branch not merged or broadly deployed. Existing held clinical/analytics/WhatsApp/Medicines Watch work was not incorporated. Two owned temporary Worker previews were disabled after acceptance; no production routes belonged to them. Original prior release records remain intact; future work should continue from this checkpoint.
+
+## Owner clarification — 24 October evening
+
+THE TIMBER SHED — SOON is intentional non-link navigation. Do not report it as a defect, missing approval or contradictory instruction. Keep this presentation unchanged.
