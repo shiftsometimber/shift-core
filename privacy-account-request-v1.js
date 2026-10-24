@@ -6,6 +6,7 @@ export const ACCOUNT_ERASURE_TABLES=Object.freeze([
  'member_email_changes','member_email_change_limits','member_signup_alerts','auth_tokens',
  'fit_reminder_deliveries','fit_push_subscriptions','fit_reminder_preferences',
  'member_treatment_push_devices','my_timber_push_devices',
+ 'my_timber_support_delivery_history','my_timber_support_devices','my_timber_support_steps',
  'shift_ai_proactive_delivery','shift_ai_proactive_outbox','shift_ai_proactive_insights',
  'shift_ai_conversations','shift_ai_memory_v2','shift_ai_member_memory','ai_memory','ai_memory_consent',
  'ai_action_requests','shift_ai_privacy_settings',
@@ -31,6 +32,7 @@ export async function receiveAccountDeletion(DB,userId,now=new Date().toISOStrin
  const retention=retained.join(' OR ')||'0';
  const statements=[];
  // Children must be removed before the owning rows, with foreign keys enabled.
+ if(present.has('my_timber_support_deliveries')&&present.has('my_timber_support_devices'))statements.push(DB.prepare('DELETE FROM my_timber_support_deliveries WHERE endpoint IN (SELECT endpoint FROM my_timber_support_devices WHERE user_id=?)').bind(id));
  if(present.has('my_timber_push_deliveries'))statements.push(DB.prepare('DELETE FROM my_timber_push_deliveries WHERE endpoint IN (SELECT endpoint FROM my_timber_push_devices WHERE user_id=?)').bind(id));
  if(present.has('member_treatment_push_deliveries'))statements.push(DB.prepare('DELETE FROM member_treatment_push_deliveries WHERE treatment_id IN (SELECT id FROM member_treatment_records WHERE user_id=?)').bind(id));
  for(const table of ACCOUNT_ERASURE_TABLES)if(present.has(table))statements.push(DB.prepare(`DELETE FROM ${table} WHERE user_id=?`).bind(id));

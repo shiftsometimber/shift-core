@@ -96,3 +96,23 @@ test('orphaned authentication is closed without permitting registration recovery
  const f=await setup(t);f.db.exec("DELETE FROM user_auth WHERE user_id=1;INSERT INTO cases VALUES(99,1);CREATE TABLE member_signup_alerts(user_id INTEGER PRIMARY KEY);INSERT INTO member_signup_alerts VALUES(1),(2);INSERT INTO data_requests(user_id,request_type,status,received_at) VALUES(1,'deletion','received','2026-10-01');INSERT INTO hq_tasks(user_id,title,status) VALUES(1,'Review account deletion request','open');");
  await receiveAccountDeletion(f.DB,1,now);assert.match(f.db.prepare('SELECT password_hash FROM user_auth WHERE user_id=1').get().password_hash,/^closed\$/);assert.equal(f.db.prepare('SELECT COUNT(*) n FROM member_signup_alerts WHERE user_id=1').get().n,0);assert.equal(f.db.prepare('SELECT COUNT(*) n FROM member_signup_alerts WHERE user_id=2').get().n,1);assert.equal(f.db.prepare('SELECT status FROM hq_tasks').get().status,'done');assert.equal(f.db.prepare('SELECT status FROM data_requests').get().status,'completed');
 });
+
+
+test('immediate deletion erases owned support history, saved state and device children atomically without erasing another account',async t=>{
+ const f=await setup(t);f.db.exec(`CREATE TABLE my_timber_support_steps(user_id INTEGER PRIMARY KEY REFERENCES users(id),revision INTEGER,state_json TEXT);
+ CREATE TABLE my_timber_support_devices(endpoint TEXT PRIMARY KEY,user_id INTEGER REFERENCES users(id));
+ CREATE TABLE my_timber_support_deliveries(endpoint TEXT REFERENCES my_timber_support_devices(endpoint),reminder_id TEXT,status TEXT,at TEXT,PRIMARY KEY(endpoint,reminder_id));
+ CREATE TABLE my_timber_support_delivery_history(user_id INTEGER NOT NULL REFERENCES users(id),reminder_id TEXT,endpoint_hash TEXT,status TEXT,at TEXT,PRIMARY KEY(reminder_id,endpoint_hash));
+ INSERT INTO my_timber_support_steps VALUES(1,1,'private saved item'),(2,1,'other account');
+ INSERT INTO my_timber_support_devices VALUES('isolated-support-1',1),('isolated-support-2',2);
+ INSERT INTO my_timber_support_deliveries VALUES('isolated-support-1','reminder-1','accepted','2026-10-24'),('isolated-support-2','reminder-2','unknown','2026-10-24');
+ INSERT INTO my_timber_support_delivery_history VALUES(1,'reminder-1','fictional-hash-1','accepted','2026-10-24'),(2,'reminder-2','fictional-hash-2','unknown','2026-10-24');`);
+ await receiveAccountDeletion(f.DB,1,now);
+ for(const table of ['my_timber_support_steps','my_timber_support_devices','my_timber_support_delivery_history']){
+  assert.equal(f.db.prepare('SELECT COUNT(*) n FROM '+table+' WHERE user_id=1').get().n,0,table);
+  assert.equal(f.db.prepare('SELECT COUNT(*) n FROM '+table+' WHERE user_id=2').get().n,1,table+' other account');
+ }
+ assert.equal(f.db.prepare('SELECT COUNT(*) n FROM my_timber_support_deliveries').get().n,1);
+ assert.equal(f.db.prepare('SELECT endpoint FROM my_timber_support_deliveries').get().endpoint,'isolated-support-2');
+ assert.equal(f.db.prepare('SELECT COUNT(*) n FROM hq_tasks').get().n,0);
+});
