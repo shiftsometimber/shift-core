@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-24T15:12:23.237Z",
+  "at": "2026-10-24T15:33:05.159Z",
   "scope": "Local real-route SQLite persistence; fixture HQ identity only. Not live-session acceptance.",
   "checks": [
     {

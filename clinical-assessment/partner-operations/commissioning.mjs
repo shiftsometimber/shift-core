@@ -12,7 +12,7 @@ async function json(request){
  const buf=new Uint8Array(n);let offset=0;for(const part of parts){buf.set(part,offset);offset+=part.length;}
  try{const b=JSON.parse(new TextDecoder().decode(buf));if(!b||typeof b!=='object'||Array.isArray(b))fail(400,'invalid_json');return b;}catch(e){if(e.status)throw e;fail(400,'invalid_json');}
 }
-const guard=a=>({text:"EXISTS(SELECT 1 FROM hq_users u JOIN hq_sessions s ON s.hq_user_id=u.id WHERE u.id=? AND u.role=? AND u.status='active' AND u.mfa_enabled=1 AND s.token_hash=? AND s.revoked_at IS NULL AND s.expires_at>?)",args:[a.id,a.role,a.hash,stamp()]});
+const guard=a=>({text:"EXISTS(SELECT 1 FROM hq_users u JOIN hq_sessions s ON s.hq_user_id=u.id WHERE u.id=? AND u.role=? AND u.status='active' AND u.mfa_enabled=1 AND s.token_hash=? AND s.revoked_at IS NULL AND julianday(s.expires_at)>julianday(?))",args:[a.id,a.role,a.hash,stamp()]});
 async function actor(request,env,authenticate){
  const access=await authenticate(request,env);if(access.response)return access;
  const u=access.user;if(!u)fail(401,'hq_sign_in_required');
