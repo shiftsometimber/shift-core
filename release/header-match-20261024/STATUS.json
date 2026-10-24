@@ -1,0 +1,21 @@
+{
+  "completed": true,
+  "at": "2026-10-24T10:06:11.652Z",
+  "approvedScope": [
+    "Replace separate My Timber welcome banner with shared website header",
+    "Match current logo and responsive dimensions",
+    "Include matching green Timber Shed teaser in desktop navigation and mobile menu on My Timber and Bloods",
+    "Preserve page content and working menus"
+  ],
+  "deployedSource": "876e927e56b6bbf5ed22e99e5805b4cda7065177",
+  "production": {
+    "id": "291a6308-e496-404b-bdf1-5d58049f56f9",
+    "url": "https://291a6308.projectshift.pages.dev"
+  },
+  "rollback": "da859a1a-1082-47cf-9562-648258a14451",
+  "backendDeployed": false,
+  "homepageHTMLUnchanged": true,
+  "securityHeadersUnchanged": true,
+  "browserCases": 8,
+  "authenticatedAccountFlowTested": false
+}
