@@ -1,0 +1,61 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "name": "chrome",
+      "width": 255.984375,
+      "href": "https://wa.me/447932618313",
+      "text": "Chat with us on WhatsApp",
+      "color": "rgb(231, 227, 218)",
+      "bg": "rgb(112, 119, 98)",
+      "phone": false,
+      "panel": true,
+      "form": true,
+      "telephone": true,
+      "footer": true,
+      "overflow": false
+    },
+    {
+      "name": "chrome",
+      "width": 281.3125,
+      "href": "https://wa.me/447932618313",
+      "text": "Chat with us on WhatsApp",
+      "color": "rgb(231, 227, 218)",
+      "bg": "rgb(112, 119, 98)",
+      "phone": false,
+      "panel": true,
+      "form": true,
+      "telephone": true,
+      "footer": true,
+      "overflow": false
+    },
+    {
+      "name": "webkit",
+      "width": 255.984375,
+      "href": "https://wa.me/447932618313",
+      "text": "Chat with us on WhatsApp",
+      "color": "rgb(231, 227, 218)",
+      "bg": "rgb(112, 119, 98)",
+      "phone": false,
+      "panel": true,
+      "form": true,
+      "telephone": true,
+      "footer": true,
+      "overflow": false
+    },
+    {
+      "name": "webkit",
+      "width": 281.3125,
+      "href": "https://wa.me/447932618313",
+      "text": "Chat with us on WhatsApp",
+      "color": "rgb(231, 227, 218)",
+      "bg": "rgb(112, 119, 98)",
+      "phone": false,
+      "panel": true,
+      "form": true,
+      "telephone": true,
+      "footer": true,
+      "overflow": false
+    }
+  ]
+}
