@@ -1,9 +1,8 @@
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
 import {readFileSync,lstatSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
-import {immutableHistorySourceHead,withImmutableHistoryVerification} from './immutable-git-facts.mjs';
+import {immutableHistorySourceHead,withImmutableHistoryVerification,immutableHistoryExecFileSync} from './immutable-git-facts.mjs';
 import inverses from './member-recording-repair-inverses-20261024.json' with {type:'json'};
 export const RECORDING_REPAIR_BASE="200ff3dd4c4e01505f418e31149389da0f81fe80";
 export const RECORDING_REPAIR_PAYLOAD="8551b285de1b808c810d49163b5cea5a3b98e575";
@@ -33,8 +32,8 @@ export const RECORDING_REPAIR_PATHS=Object.freeze(Object.keys(RECORDING_REPAIR_B
 export const RECORDING_REPAIR_REGISTRATION=Object.freeze(['release/member-recording-repair-20261024.mjs','tests/member-recording-repair-admission-20261024.test.mjs','release/member-recording-repair-inverses-20261024.json','release/my-shift-release-scope-20261024.mjs','release/approved-source-comparison-20261024.mjs','release/member-design-scope.mjs','release/app-scope.mjs','.github/workflows/seo-discovery-proof.yml','release/app-preflight.mjs']);
 export const RECORDING_REPAIR_RECEIPT='release/member-recording-repair-20261024.json';
 export const RECORDING_REPAIR_AUTHORITY=Object.freeze({owner:'Matt',instruction:'Arh ok….. sort then please',accountDeletion:'Deletion / cancel my account needs to be an immediate thing. Not send it off',homepage:false,newAppleSubmission:false,messaging:false,realAccountDeletionTest:false,personalHealthRead:false});
-const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
-const bytes=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8',maxBuffer:64e6});
+const git=(...args)=>immutableHistoryExecFileSync('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
+const bytes=(ref,path)=>immutableHistoryExecFileSync('git',['show',ref+':'+path],{encoding:'utf8',maxBuffer:64e6});
 const sorted=values=>[...values].sort();
 const changed=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 const oid=value=>createHash('sha1').update('blob '+Buffer.byteLength(value)+'\0').update(value).digest('hex');
