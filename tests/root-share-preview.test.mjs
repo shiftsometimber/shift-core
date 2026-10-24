@@ -40,6 +40,19 @@ test('new image route is versioned and exact; legacy artwork and every unrelated
 });
 test('the prepared Worker hook is exactly additive; every original handler/cron/route remains byte-identical',()=>{
  const current=readFileSync(new URL('../shift-coach/worker.mjs',import.meta.url),'utf8');
- const inverse=current.replace("import {withRootShareWorker} from '../share-preview/metadata.mjs';\n",'').replace('withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)))','withPublicResponsePolicyWorker(withMaleObesity(composedWorker))');
+ const speedImport="import {repairHomeSpeed} from '../home-speed-repair.mjs';\n",speedLayer=`const publicWorker=withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker))));
+// Evaluate the already-approved CSS against the settled outer document.
+export default {...publicWorker,async fetch(request,...args){
+ const response=await publicWorker.fetch(request,...args);
+ if(request.method!=='GET'||new URL(request.url).pathname!=='/'||response.status!==200||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
+ const before=await response.text(),after=repairHomeSpeed(before,'/',{final:true});
+ if(after===before)return new Response(before,response);
+ const headers=new Headers(response.headers);for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
+ return new Response(after,{status:response.status,statusText:response.statusText,headers});
+}};
+`;
+ assert.equal(current.split(speedImport).length,2);assert.equal(current.split(speedLayer).length,2);
+ const beforeSpeed=current.replace(speedImport,'').replace(speedLayer,'export default withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)));\n');
+ const inverse=beforeSpeed.replace("import {withRootShareWorker} from '../share-preview/metadata.mjs';\n",'').replace('withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)))','withPublicResponsePolicyWorker(withMaleObesity(composedWorker))');
  assert.equal(inverse,execFileSync('git',['show','7a74a7d4:shift-coach/worker.mjs'],{encoding:'utf8'}));
 });
