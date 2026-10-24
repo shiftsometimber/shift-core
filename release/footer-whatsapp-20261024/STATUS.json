@@ -1,0 +1,13 @@
+{
+  "state": "deployed and verified",
+  "at": "2026-10-24T11:29:03.644Z",
+  "deployment": {
+    "id": "de364bf3-2956-40e4-ac15-8c21fa05f37c",
+    "url": "https://de364bf3.projectshift.pages.dev"
+  },
+  "scope": "Compact WhatsApp footer button below social links, no displayed phone number, exact wa.me/447932618313 destination",
+  "browserChecks": 16,
+  "unchangedAssets": 856,
+  "AI": "Not activated; no automatic sending or paid features",
+  "rollback": "1538eb5f-e48a-432e-8b75-adf4e09e04c8"
+}
