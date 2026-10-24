@@ -3,7 +3,8 @@ const c=require('/Users/shiftsometimberltd/SST/shift-bloods-blog-review-v1-20261
 const phase=require('../seo-followup-20261024/production-phase.cjs');
 const r=__dirname,root=path.resolve(r,'../..'),d='/Users/shiftsometimberltd/SST/website-review-evidence-20261023/ticker-latest-20261024';
 const a='/accounts/9e5386dcf455be34c582d93f8bfc79e6',z='/zones/66ec3268950adcfc837b7b8b2f8356ed',name='shift-latest-news-ticker-20261024';
-const asset='/assets/public-news-ticker-v1.js',routes=['shiftsometimber.co.uk'+asset+'*','www.shiftsometimber.co.uk'+asset+'*'];
+const asset='/assets/public-news-ticker-v1.js',routes=['shiftsometimber.co.uk'+asset+'*'];
+const redundant={id:'64914f44ac43455fb2a6e77aed11f002',pattern:'shiftsometimber.co.uk/assets/v42.js*',script:'shift-core',request_limit_fail_open:false};
 const git=(...args)=>cp.execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
 fs.mkdirSync(d,{recursive:true});
 const save=(n,v)=>fs.writeFileSync(d+'/'+n+'.json',JSON.stringify(v,null,2)),read=n=>JSON.parse(fs.readFileSync(d+'/'+n+'.json'));
@@ -28,8 +29,9 @@ async function verify(origin,stage){
  assert.equal((await fetch('https://shiftsometimber.co.uk/checkout')).status,404);
  if(stage==='production'){
   const ss=await snap();assert.deepEqual(ss.core,read('before').core);
-  assert.equal(ss.routes.filter(x=>x.script===name).length,2);
-  assert.deepEqual(ss.routes.filter(x=>x.script!==name),read('before').routes,'All prior route owners retained');
+  assert.equal(ss.routes.filter(x=>x.script===name).length,1);
+  assert.deepEqual(ss.routes.filter(x=>x.script!==name),read('before').routes.filter(x=>x.id!==redundant.id),'All non-redundant prior route owners retained');
+  assert.equal(c.sha((await c.get('https://shiftsometimber.co.uk/assets/v42.js')).bytes),read('v42-before').sha,'Redundant route response unchanged');
  }
  const result={pass:true,at:new Date().toISOString(),asset:actual.receipt,homepageHTMLUnchanged:true,purchaseClosed:true};
  save(stage+'-verification',result);console.log(JSON.stringify(result));
@@ -40,7 +42,8 @@ async function verify(origin,stage){
  if(mode==='rollback'){
   await phase();const before=read('before'),now=await snap();assert.deepEqual(now.core,before.core);
   for(const item of now.routes.filter(x=>x.script===name)){assert(routes.includes(item.pattern));await c.organicApi(z+'/workers/routes/'+item.id,{method:'DELETE'});}
-  assert.deepEqual((await snap()).routes,before.routes);save('rollback',{at:new Date().toISOString(),pass:true});return;
+  const rs=(await snap()).routes;if(!rs.some(x=>x.pattern===redundant.pattern))await c.organicApi(z+'/workers/routes',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern:redundant.pattern,script:redundant.script})});
+  const normal=xs=>xs.map(({id,...x})=>x).sort((a,b)=>a.pattern.localeCompare(b.pattern));assert.deepEqual(normal((await snap()).routes),normal(before.routes));save('rollback',{at:new Date().toISOString(),pass:true});return;
  }
  const g=await guard();
  if(mode==='stage'){
@@ -62,6 +65,24 @@ async function verify(origin,stage){
   assert(read('stage-verification').pass);assert(read('stage-browser').pass);assert.equal(read('stage').head,g.head);
   assert.deepEqual(await snap(),read('before'),'Concurrent route/Core changes; rebase first');
   save('production-intent',g);
+  const before=read('before');
+  assert.deepEqual(before.routes.find(x=>x.id===redundant.id),redundant);
+  const root=before.routes.find(x=>x.pattern==='shiftsometimber.co.uk/*');assert(root&&root.script==='shift-core'&&!root.request_limit_fail_open);
+  const prefix=redundant.pattern.slice(0,-1);
+  // Prove every possibly overlapping simple-prefix route is either the redundant
+  // rule or a same-Core ancestor. No intermediate different owner can win.
+  const intersecting=before.routes.filter(x=>{
+    const p=x.pattern;assert(!p.includes('*')||p.endsWith('*')&&p.indexOf('*')===p.length-1,'Unexpected wildcard form; manual proof required');
+    const fixed=p.endsWith('*')?p.slice(0,-1):p;
+    return prefix.startsWith(fixed)||fixed.startsWith(prefix);
+  });
+  assert(intersecting.every(x=>x.script==='shift-core'&&!x.request_limit_fail_open&&prefix.startsWith(x.pattern.replace(/\*$/,''))),'Overlapping route semantics differ');
+  const old=await c.get('https://shiftsometimber.co.uk/assets/v42.js');save('v42-before',{sha:c.sha(old.bytes),receipt:old.receipt});
+  save('redundant-route-proof',{at:new Date().toISOString(),removed:redundant,unchangedFallback:root,intersecting,authority:'Necessary capacity for approved ticker; no request owner or response change'});
+  await phase();assert.deepEqual(await snap(),before);
+  save('redundant-route-remove-intent',{at:new Date().toISOString(),route:redundant});
+  await c.organicApi(z+'/workers/routes/'+redundant.id,{method:'DELETE'});
+  save('redundant-route-removed',{at:new Date().toISOString()});
   for(const pattern of routes){
    await phase();assert.deepEqual((await snap()).core,read('before').core);
    const created=await c.organicApi(z+'/workers/routes',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern,script:name})});
