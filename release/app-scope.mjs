@@ -1,3 +1,4 @@
+import {verifyMyShiftRelease,myShiftSafetyComparison,MY_SHIFT_PATHS} from './my-shift-release-scope-20261024.mjs';
 import {compactLiteralExcludes} from './combined-finite-scope-20261014.mjs';
 import {reconciliationGitArgs,reconciliationHistoricalRead,reconciliationPath,RECONCILIATION_PATHS,verifyReconciledRelease,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from './approved-runtime-composition.mjs';
 import {METRICS_PATHS,verifyMetricsConnection} from './metrics-connection-scope.mjs';
@@ -114,7 +115,9 @@ const CURRENT_MAIN_SAFETY_CHECK_BLOBS=Object.freeze({
  '.github/workflows/online-privacy-recovery-proof.yml':'52341409f18e452c6fe4c83fb1730427e0b1e544'
 });
 export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}).trim()){
- for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);
+ verifyMyShiftRelease();
+ for(const path of MY_SHIFT_PATHS)APP_PATHS.add(path);
+ for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);
  return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);
 }
 export function validateAppSource(){
