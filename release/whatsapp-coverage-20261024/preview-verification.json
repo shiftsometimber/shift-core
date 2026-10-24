@@ -1,0 +1,19 @@
+{
+  "pass": true,
+  "id": "4c757925-1336-4c9f-9839-a8e9b1431aab",
+  "at": "2026-10-24T11:52:51.359Z",
+  "changed": [
+    "/tools/weight-management-review.html",
+    "/assessment-walkthrough.html",
+    "/assets/checkout-support-v1/mobile-review.html",
+    "/faq/what-is-tap-room.html",
+    "/join-my-timber.html",
+    "/medicine-preference.html",
+    "/order-success.html",
+    "/treatment-terms.html",
+    "/treatment-assessment-terms.html",
+    "/assets/whatsapp-chat-v1.js",
+    "/assets/whatsapp-chat-v1.css"
+  ],
+  "preserved": 848
+}

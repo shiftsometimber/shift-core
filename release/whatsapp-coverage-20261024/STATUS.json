@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-24T11:54:33.956Z",
+  "state": "WhatsApp website links deployed and verified",
+  "deployment": {
+    "id": "52dc4030-c4e6-4438-ac56-5f1f377b16de",
+    "url": "https://52dc4030.projectshift.pages.dev"
+  },
+  "totalURLs": 530,
+  "respondingPages": 526,
+  "coverageGaps": 0,
+  "nonSuccessURLs": [
+    "https://shiftsometimber.co.uk/member/conundrum",
+    "https://shiftsometimber.co.uk/member/hydration",
+    "https://shiftsometimber.co.uk/member/visualise",
+    "https://shiftsometimber.co.uk/member/search-insights"
+  ],
+  "browserCases": 36,
+  "AI": "Not connected; paused; no automatic sending or paid features",
+  "delivery": "WhatsApp destination verified; no message sent",
+  "rollback": "63547726-542d-466d-9703-7404e757be51"
+}
