@@ -1,0 +1,74 @@
+{
+  "pass": true,
+  "at": "2026-10-24T09:46:44.218Z",
+  "deployment": {
+    "id": "da859a1a-1082-47cf-9562-648258a14451",
+    "url": "https://da859a1a.projectshift.pages.dev"
+  },
+  "source": {
+    "branch": "fix/header-contrast-menu-20261024",
+    "commit": "a84cc3589d0b9be8918424215c7ffe0b9b20db42",
+    "base": "e01a9a16e7794bcac69acf84dee7a3a50816cd52",
+    "assetPath": "release/header-contrast-menu-20261024/v42.js"
+  },
+  "homepageUnchanged": true,
+  "securityHeadersUnchanged": true,
+  "liveAssetSHA256": "d287d6984c713468f7b130b791832560c4d4f87c8582c6412b9b220052d9f2b0",
+  "receipts": {
+    "/": {
+      "url": "https://shiftsometimber.co.uk/",
+      "status": 200,
+      "sha256": "960326ddb022efae0f5c2b0a725da1ba31218c027050b87151c7cd8c8f06fe69",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    "/shift-health/blood-tests": {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "status": 200,
+      "sha256": "dd7eb8e5544d0e8a1db1223cae6953dbc662970db05630a5d20b1f553da634e3",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private,no-store",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    "/member/dashboard": {
+      "url": "https://shiftsometimber.co.uk/member/dashboard",
+      "status": 200,
+      "sha256": "880f7efabcc64825052691b8c76fcdaf39bb01f99d8e870a050987be7b9fad49",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-store, must-revalidate",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "no-referrer",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    }
+  },
+  "menus": [
+    {
+      "path": "/shift-health/blood-tests",
+      "openClose": true
+    },
+    {
+      "path": "/member/dashboard",
+      "openClose": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "completed": true,
+  "at": "2026-10-24T09:46:44.391Z",
+  "approvedScope": [
+    "Blood-tests cream header",
+    "Cream green-panel text",
+    "Matching website header on web dashboard",
+    "Working signed-out member menu"
+  ],
+  "deployedSource": "a84cc3589d0b9be8918424215c7ffe0b9b20db42",
+  "production": {
+    "id": "da859a1a-1082-47cf-9562-648258a14451",
+    "url": "https://da859a1a.projectshift.pages.dev"
+  },
+  "rollback": "6fb5295b-8d9b-4255-aa3b-0be4d7c39f82",
+  "backendDeployed": false,
+  "homepageHTMLUnchanged": true,
+  "securityHeadersUnchanged": true,
+  "browserCases": 8,
+  "authenticatedAccountFlowTested": false
+}
