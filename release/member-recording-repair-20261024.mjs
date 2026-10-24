@@ -67,6 +67,9 @@ export function validateRecordingRepairReceipt(receipt){
 }
 let cached=null,qualificationDepth=0;
 export function verifyMemberRecordingRepair(suppliedReceipt){
+ // Standalone callers use the existing closed native-fact scope. All original
+ // assertions and fresh entry/exit mutation checks remain in that scope.
+ if(!qualificationDepth)return withMemberRecordingQualification(()=>verifyMemberRecordingRepair(suppliedReceipt));
  const frozen=immutableHistorySourceHead(),head=frozen??git('rev-parse','HEAD');
  if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
  assert.equal(git('diff','--name-only','HEAD','--'),'','Repair worktree must be clean');
