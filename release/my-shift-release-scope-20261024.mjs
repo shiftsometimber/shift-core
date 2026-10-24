@@ -128,9 +128,11 @@ export function myShiftComparisonValue(path,value,head){
 }
 export function myShiftSafetyComparison(path,value){
  if(!['release/approved-source-comparison-20261024.mjs','release/combined-finite-scope-20261014.mjs'].includes(path))return value;
- value=memberRecordingComparisonValue(path,value);
- const {head}=verifyMyShiftRelease(),actual=git('rev-parse',head+':'+path);if(value!==actual)return value;
- return git('rev-parse',MY_SHIFT_BASE+':'+path);
+ return withMemberRecordingQualification(()=>{
+  const {head}=verifyMyShiftRelease(),actual=memberRecordingComparisonValue(path,git('rev-parse',head+':'+path),head);
+  value=memberRecordingComparisonValue(path,value,head);if(value!==actual)return value;
+  return git('rev-parse',MY_SHIFT_BASE+':'+path);
+ });
 }
 
 export const RECOVERY_BASE='2ac8456e8394c1508b13481fad1f68520926f10b';

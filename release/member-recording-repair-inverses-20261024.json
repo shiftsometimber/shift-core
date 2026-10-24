@@ -1,7 +1,7 @@
 {
   "release/my-shift-release-scope-20261024.mjs": {
     "original": "b8d22d49ef87cd1357511e1a3e3b7bfc065e7ea1",
-    "current": "366952d1f645b5197b3db29a5ae810ee510e85a3",
+    "current": "595813f27fed2cccff084061d05d761bb9225155",
     "edits": [
       {
         "start": 0,
@@ -59,82 +59,102 @@
         "after": "head);\n  value=memberRecordingComparisonValue(path,value,head);\n  const "
       },
       {
-        "start": 14143,
+        "start": 14146,
         "before": "",
-        "after": ";\n value=memberRecordingComparisonValue(path,value)"
+        "after": "return withMemberRecordingQualification(()=>{\n  "
       },
       {
-        "start": 21284,
-        "before": "",
-        "after": "value=memberRecordingComparisonValue(path,value);\n "
-      },
-      {
-        "start": 23402,
-        "before": "",
-        "after": "ordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}\n if(!rec"
-      },
-      {
-        "start": 24788,
-        "before": "",
-        "after": "return withMemberRecordingQualification(()=>{\n "
-      },
-      {
-        "start": 24991,
-        "before": "",
-        "after": "\n  const recording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);"
-      },
-      {
-        "start": 25305,
-        "before": "git('",
-        "after": ""
-      },
-      {
-        "start": 25307,
-        "before": "v-pa",
-        "after": "co"
-      },
-      {
-        "start": 25310,
-        "before": "se',proof.hea",
-        "after": ""
-      },
-      {
-        "start": 25311,
-        "before": "+':'+path)",
-        "after": "ing"
-      },
-      {
-        "start": 25509,
+        "start": 14237,
         "before": "",
         "after": "memberRecordingComparisonValue(path,"
       },
       {
-        "start": 25549,
+        "start": 14302,
+        "before": "",
+        "after": "),head);\n  value=memberRecordingComparisonValue(path,value,head"
+      },
+      {
+        "start": 14399,
+        "before": "",
+        "after": " "
+      },
+      {
+        "start": 14446,
+        "before": "",
+        "after": ");\n }"
+      },
+      {
+        "start": 21386,
+        "before": "",
+        "after": "value=memberRecordingComparisonValue(path,value);\n "
+      },
+      {
+        "start": 23504,
+        "before": "",
+        "after": "ordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}\n if(!rec"
+      },
+      {
+        "start": 24890,
+        "before": "",
+        "after": "return withMemberRecordingQualification(()=>{\n "
+      },
+      {
+        "start": 25093,
+        "before": "",
+        "after": "\n  const recording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);"
+      },
+      {
+        "start": 25407,
+        "before": "git('",
+        "after": ""
+      },
+      {
+        "start": 25409,
+        "before": "v-pa",
+        "after": "co"
+      },
+      {
+        "start": 25412,
+        "before": "se',proof.hea",
+        "after": ""
+      },
+      {
+        "start": 25413,
+        "before": "+':'+path)",
+        "after": "ing"
+      },
+      {
+        "start": 25611,
+        "before": "",
+        "after": "memberRecordingComparisonValue(path,"
+      },
+      {
+        "start": 25651,
         "before": "n",
         "after": ""
       },
       {
-        "start": 25550,
+        "start": 25652,
         "before": "",
         "after": "c"
       },
       {
-        "start": 25552,
+        "start": 25654,
         "before": "ive",
         "after": "ual"
       },
       {
-        "start": 25573,
+        "start": 25675,
         "before": "",
         "after": "),proof.head"
       },
       {
-        "start": 25671,
+        "start": 25773,
         "before": "",
         "after": "for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);\n "
       },
       {
-        "start": 25777,
+        "start": 25879,
         "before": "",
         "after": " });\n"
       }
