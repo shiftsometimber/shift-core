@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-24T15:16:38.985Z",
+  "scope": "Local real member route and client, actual SQLite; fixture authentication. Not production signed-in acceptance.",
+  "checks": [
+    {
+      "width": 390,
+      "replySavedAndReloaded": true,
+      "replyReappearsInPharmacyState": true,
+      "manualDeliveryLabelled": true,
+      "unsafeTrackingHidden": true,
+      "layout": {
+        "width": 390,
+        "scroll": 390,
+        "padding": "20px"
+      }
+    },
+    {
+      "width": 1280,
+      "replySavedAndReloaded": true,
+      "replyReappearsInPharmacyState": true,
+      "manualDeliveryLabelled": true,
+      "unsafeTrackingHidden": true,
+      "layout": {
+        "width": 1280,
+        "scroll": 1280,
+        "padding": "24px"
+      }
+    }
+  ],
+  "errors": []
+}

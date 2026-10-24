@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-24T15:13:54.546Z",
+  "syntheticOnly": true,
+  "live": false,
+  "checks": [
+    "saved profile prefills correct member name and DOB",
+    "mobile flow reaches uploads with compact screening and targeted branches",
+    "ID front and scales uploads persist to the same record",
+    "submission freezes answers and uploads into review version",
+    "member can reopen saved answers and three documents after reload",
+    "anonymous record view denied",
+    "another member cannot access the record",
+    "only assigned clinician can see matching answers and three attachments",
+    "revoked reviewer loses access",
+    "no client exceptions"
+  ]
+}

@@ -1,6 +1,6 @@
 // Shared domain: server-authenticated actors only. UI never supplies authority.
 export const AREAS=['weight_management','testosterone','sexual_health','other'];
-export const ACTIONS={clinician:['review','query','clinical_decision','issue_prescription'],dispensing:['view_fulfilment','query','supply_decision','prepare','dispatch']};
+export const ACTIONS={clinician:['review','query','clinical_decision','issue_prescription'],dispensing:['view_fulfilment','query','supply_decision','prepare','dispatch','record_delivery','record_exception','cancel_supply']};
 export const EVIDENCE=['photo_id','selfie','indemnity','qualification','agreement'];
 export const CHECKS=['identity','registration','indemnity','agreements','competence'];
 export const fail=(status,code)=>{throw Object.assign(Error(code),{status});};
@@ -82,18 +82,20 @@ export const CARRIERS={royal_mail:n=>'https://www.royalmail.com/track-your-item#
 export function fulfilmentAction(original,b,staff,actor,now,id,{prescriptionCurrent=false,stockAvailable=false}={}){
  if(b.version!==original.version||!Number.isInteger(b.version))fail(409,'order_changed');
  if(!actor.mfa||staff.orgId!==original.partnerId||String(staff.hqUserId)!==String(actor.id))fail(404,'order_not_found');
- const required={accept:'supply_decision',reject:'supply_decision',query:'query',prepare:'prepare',dispatch:'dispatch'}[b.action];
+ const required={accept:'supply_decision',reject:'supply_decision',query:'query',prepare:'prepare',dispatch:'dispatch',delivered:'record_delivery',delivery_exception:'record_exception',returned:'record_delivery',cancel:'cancel_supply'}[b.action];
  if(!required||!permission(staff,original.area,required,now,original.medicine))fail(403,'dispensing_permission_required');
- const transitions={accept:['received','query'],reject:['received','query','accepted','preparing'],query:['received','accepted','preparing'],prepare:['accepted'],dispatch:['preparing']};
+ const transitions={accept:['received','query'],reject:['received','query','accepted','preparing'],query:['received','accepted','preparing'],prepare:['accepted'],dispatch:['preparing'],delivered:['dispatched','delivery_exception'],delivery_exception:['dispatched'],returned:['dispatched','delivery_exception','delivered'],cancel:['received','query','accepted','preparing']};
  if(!transitions[b.action].includes(original.status))fail(409,'invalid_fulfilment_transition');
  if(['accept','prepare','dispatch'].includes(b.action)&&(!prescriptionCurrent||!original.prescriptionId))fail(422,'current_issued_prescription_required');
  if(['prepare','dispatch'].includes(b.action)&&!stockAvailable)fail(409,'stock_unavailable');
- const s=structuredClone(original),detail={};s.status={accept:'accepted',reject:'rejected',query:'query',prepare:'preparing',dispatch:'dispatched'}[b.action];
- if(['reject','query'].includes(b.action)){s.message=text(b.message,2000);detail.messagePresent=true;}
+ const s=structuredClone(original),detail={};s.status={accept:'accepted',reject:'rejected',query:'query',prepare:'preparing',dispatch:'dispatched',delivered:'delivered',delivery_exception:'delivery_exception',returned:'returned',cancel:'cancelled'}[b.action];
+ if(['reject','query','delivery_exception','returned','cancel','delivered'].includes(b.action)){s.message=text(b.message,2000);detail.messagePresent=true;}
+ if(b.action==='query'){s.queryId=id;s.memberReply=null;}
+ if(['delivered','delivery_exception','returned'].includes(b.action))s.deliveryUpdate={kind:b.action,source:'pharmacy_manual_record',recordedAt:now,note:s.message};
  if(b.action==='dispatch'){
   if(!Object.hasOwn(CARRIERS,b.carrier)||typeof b.trackingNumber!=='string'||!/^[A-Za-z0-9-]{6,50}$/.test(b.trackingNumber))fail(422,'valid_carrier_tracking_required');
   s.tracking={carrier:b.carrier,number:b.trackingNumber,url:CARRIERS[b.carrier](b.trackingNumber),dispatchedAt:now};detail.carrier=b.carrier;
  }
  s.version++;s.updatedAt=now;return{state:s,event:{id,action:'fulfilment_'+b.action,actorId:String(actor.id),at:now,details:detail}};
 }
-export function memberTracking(s){return{orderNumber:s.orderNumber,status:s.status,updatedAt:s.updatedAt,tracking:s.tracking||null,actionNeeded:s.status==='query',prescriptionId:s.prescriptionId};}
+export function memberTracking(s){return{orderNumber:s.orderNumber,status:s.status,updatedAt:s.updatedAt,tracking:s.tracking||null,actionNeeded:s.status==='query'&&!s.memberReply,prescriptionId:s.prescriptionId,deliveryUpdate:s.deliveryUpdate||null};}

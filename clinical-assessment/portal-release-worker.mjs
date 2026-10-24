@@ -19,7 +19,7 @@ export default {async fetch(request,env){
  const url=new URL(request.url);
  if(url.hostname==='api.shiftsometimber.co.uk'&&(url.pathname==='/v1/hq/clinical'||url.pathname.startsWith('/v1/hq/clinical/'))){
   const internal=await commissioningRoute(request,env,existingHqIdentity);if(internal)return internal;
-  const partner=await partnerRoute(request,{...env,PARTNER_OPERATIONS_ENABLED:'true',PARTNER_INTERNAL_SETUP_ONLY:'true',PARTNER_LOGIN_ENABLED:'false',PARTNER_FULFILMENT_ENABLED:'false'},existingHqIdentity);
+  const partner=await partnerRoute(request,{...env,PARTNER_OPERATIONS_ENABLED:'true',PARTNER_INTERNAL_SETUP_ONLY:'true',PARTNER_NOTIFICATION_REVIEW_ENABLED:'true',PARTNER_LOGIN_ENABLED:'false',PARTNER_FULFILMENT_ENABLED:'false'},existingHqIdentity);
   if(partner)return partner;
   // This release is infrastructure only. Activation requires a separately reviewed release,
   // including the existing HQ/CRM access boundaries and genuine session acceptance.

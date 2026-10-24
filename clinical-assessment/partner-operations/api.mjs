@@ -1,6 +1,7 @@
 import {newStaff,staffAction,fulfilmentAction,permission,credentialsCurrent,memberTracking,EVIDENCE,fail,text,future} from './domain.mjs';
 import {limitProfessionalAuth} from './auth-limits.mjs';
 import {purgeStaffEvidence} from './evidence-retention.mjs';
+import {orderNotificationReviewStatements} from './notification-review.mjs';
 export const PARTNER_BASE='/v1/hq/clinical/partners';
 const ORIGIN='https://hq.shiftsometimber.co.uk';
 const now=()=>new Date().toISOString(),uid=()=>crypto.randomUUID();
@@ -199,7 +200,7 @@ async function fulfilmentRoute(request,env,a,p,adapters){
  const organisation=!administrator?await currentPartner(env,s):null;
  if(!p.length&&request.method==='GET'){
   const result=await rows(administrator?query(env,'SELECT state_json FROM partner_fulfilment ORDER BY updated_at DESC LIMIT 200'):query(env,'SELECT state_json FROM partner_fulfilment WHERE partner_id=? ORDER BY updated_at DESC LIMIT 200',s.orgId));await audit(env,a,'directory','fulfilment','fulfilment_queue_viewed');
-  return json({orders:result.map(parse).filter(o=>administrator||permission(s,o.area,'view_fulfilment',now(),o.medicine)).map(o=>({orderNumber:o.orderNumber,status:o.status,version:o.version,updatedAt:o.updatedAt})),oversight:administrator});
+  return json({orders:result.map(parse).filter(o=>administrator||permission(s,o.area,'view_fulfilment',now(),o.medicine)).map(o=>({orderNumber:o.orderNumber,status:o.status,version:o.version,updatedAt:o.updatedAt,memberReplyReceived:!!o.memberReply})),oversight:administrator});
  }
  const order=decodeURIComponent(p[0]||''),f=parse(await query(env,'SELECT state_json FROM partner_fulfilment WHERE order_number=?',order).first());
  if(!f||!administrator&&(s.orgId!==f.partnerId||!permission(s,f.area,'view_fulfilment',now(),f.medicine)))fail(404,'order_not_found');
@@ -209,11 +210,12 @@ async function fulfilmentRoute(request,env,a,p,adapters){
  }
  if(p[1]==='action'&&p.length===2&&request.method==='POST'){
   if(administrator)fail(403,'pharmacy_staff_account_required');if(env.PARTNER_FULFILMENT_ENABLED!=='true')fail(503,'dispensing_not_commissioned');
-  const b=await readJson(request),current=await adapters.prescriptionCurrent?.(f),stock=await adapters.stockAvailable?.(f),date=now(),result=fulfilmentAction(f,b,s,a,date,uid(),{prescriptionCurrent:current===true,stockAvailable:stock===true}),g=authCondition(a,date);
+  const b=await readJson(request),current=['accept','prepare','dispatch'].includes(b.action)?await adapters.prescriptionCurrent?.(f):false,stock=['prepare','dispatch'].includes(b.action)?await adapters.stockAvailable?.(f):false,date=now(),result=fulfilmentAction(f,b,s,a,date,uid(),{prescriptionCurrent:current===true,stockAvailable:stock===true}),g=authCondition(a,date);
   const rs=await env.DB.batch([
    query(env,'UPDATE partner_fulfilment SET state_json=?,version=?,updated_at=? WHERE order_number=? AND version=? AND '+g.sql+' AND EXISTS(SELECT 1 FROM partner_staff WHERE id=? AND version=? AND state_json=?) AND EXISTS(SELECT 1 FROM partner_organisations WHERE id=? AND version=? AND state_json=?)',JSON.stringify(result.state),result.state.version,date,order,f.version,...g.args,s.id,s.version,JSON.stringify(s),organisation.id,organisation.version,JSON.stringify(organisation)),
    query(env,'INSERT INTO partner_audit SELECT ?,?,?,(SELECT COALESCE(MAX(version),-1)+1 FROM partner_audit WHERE entity_type=? AND entity_id=?),?,?,?,? WHERE changes()=1',result.event.id,'order',order,'order',order,String(a.id),result.event.action,JSON.stringify({...result.event.details,source:'partner_portal',orderVersion:result.state.version,permissionVersion:s.version,beforeStatus:f.status,afterStatus:result.state.status,memberMessage:result.state.message||null,tracking:result.state.tracking||null}),date),
-   query(env,"INSERT INTO partner_notification_outbox SELECT ?,?,?,?,?,'draft',? WHERE EXISTS(SELECT 1 FROM partner_audit WHERE id=?)",uid(),result.event.id,order,f.memberId,'order_status_update',date,result.event.id)
+   query(env,"INSERT INTO partner_notification_outbox SELECT ?,?,?,?,?,'draft',? WHERE EXISTS(SELECT 1 FROM partner_audit WHERE id=?)",uid(),result.event.id,order,f.memberId,'order_status_update',date,result.event.id),
+   ...orderNotificationReviewStatements(env,result.state,result.event)
   ]);if(rs[0].meta?.changes!==1)fail(409,'order_or_permissions_changed');return json({order:result.state,notificationStatus:'draft_not_sent'});
  }
  fail(404,'not_found');
@@ -227,14 +229,8 @@ export async function receiveIssuedPrescription(env,input,verify){
  const previous=parse(await query(env,'SELECT state_json FROM partner_fulfilment WHERE order_number=?',proof.orderNumber).first());
  if(previous&&['prescriptionId','partnerId','memberId','medicine','area'].some(k=>previous[k]!==proof[k]))fail(409,'conflicting_prescription_handover');
  const repeated=await query(env,"SELECT order_number FROM partner_fulfilment WHERE json_extract(state_json,'$.prescriptionId')=?",proof.prescriptionId).first();if(repeated&&repeated.order_number!==proof.orderNumber)fail(409,'prescription_already_handed_over');
- const rs=await env.DB.batch([query(env,'INSERT OR IGNORE INTO partner_fulfilment VALUES(?,?,?,0,?,?)',proof.orderNumber,proof.partnerId,proof.memberId,JSON.stringify(s),date),query(env,'INSERT INTO partner_audit SELECT ?,?,?,0,?,?,?,? WHERE changes()=1',id,'order',proof.orderNumber,'verified_prescription_adapter','prescription_received',JSON.stringify({prescriptionId:proof.prescriptionId}),date)]);
+ const rs=await env.DB.batch([query(env,'INSERT OR IGNORE INTO partner_fulfilment VALUES(?,?,?,0,?,?)',proof.orderNumber,proof.partnerId,proof.memberId,JSON.stringify(s),date),query(env,'INSERT INTO partner_audit SELECT ?,?,?,0,?,?,?,? WHERE changes()=1',id,'order',proof.orderNumber,'verified_prescription_adapter','prescription_received',JSON.stringify({prescriptionId:proof.prescriptionId}),date),...orderNotificationReviewStatements(env,s,{id,at:date})]);
  return{created:rs[0].meta?.changes===1,orderNumber:proof.orderNumber};
 }
-// Called only after the existing member/case ownership boundary has authorised
-// record access. Both the order reference AND member identity must match.
-export async function memberFulfilment(env,record){
- if(env.PARTNER_FULFILMENT_ENABLED!=='true'||!record.order_number)return null;
- const s=parse(await query(env,'SELECT state_json FROM partner_fulfilment WHERE order_number=? AND member_id=?',record.order_number,record.user_id).first());if(!s)return null;
- const events=await rows(query(env,"SELECT action,created_at FROM partner_audit WHERE entity_type='order' AND entity_id=? ORDER BY version",record.order_number));
- return{...memberTracking(s),message:s.status==='query'||s.status==='rejected'?s.message||null:null,events};
-}
+// Member projection and replies retain BOTH order and authenticated member ownership.
+export {memberFulfilment} from './member-fulfilment.mjs';

@@ -20,6 +20,10 @@
   ],
   "vars": {
     "CLINICAL_CONTEXT_ENABLED": "false",
+    "PARTNER_TRACKING_READ_ENABLED": "true",
+    "PARTNER_NOTIFICATION_REVIEW_ENABLED": "true",
+    "PARTNER_MEMBER_REPLIES_ENABLED": "true",
+    "PARTNER_FULFILMENT_ENABLED": "false",
     "CLINICAL_MEMBER_RECORDS_ENABLED": "true",
     "CLINICAL_REVIEW_READY": "false",
     "CLINICAL_TEST_MEMBER_EMAIL": "shiftsometimber@gmail.com"

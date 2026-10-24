@@ -1,5 +1,6 @@
 import {questionnaireSnapshot} from './clinician-presentation.mjs';
 import {caseworkRoute} from './casework.mjs';
+import {memberFulfilment,replyToFulfilment} from './partner-operations/member-fulfilment.mjs';
 import {schema,validateAnswers} from './compact-schema.mjs';
 const PREFIX='/v1/member/clinical-records',REVIEW='/v1/clinical-review/records';
 const origins=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
@@ -14,7 +15,7 @@ async function body(request){try{return JSON.parse(new TextDecoder().decode(awai
 const rows=async stmt=>(await stmt.all()).results;
 async function audit(env,record,actor,action,details={}){await env.DB.prepare('INSERT INTO clinical_member_audit VALUES(?,?,?,?,?,?)').bind(crypto.randomUUID(),record.id,actor.id,action,JSON.stringify(details),new Date().toISOString()).run();}
 async function evidence(env,id){return rows(env.DB.prepare('SELECT id,kind,mime,size,digest,uploaded_at FROM clinical_member_evidence WHERE record_id=? ORDER BY uploaded_at,id').bind(id));}
-async function payload(env,record){const v=await env.DB.prepare('SELECT * FROM clinical_member_versions WHERE record_id=? ORDER BY version DESC LIMIT 1').bind(record.id).first();return {record,assessment:v?{version:v.version,schemaVersion:v.schema_version,answers:JSON.parse(v.answers_json),evidence:JSON.parse(v.evidence_json),declarations:JSON.parse(v.declarations_json),digest:v.digest,submitted:!!v.submitted}:null,evidence:await evidence(env,record.id),prescriptionIssued:false};}
+async function payload(env,record){const v=await env.DB.prepare('SELECT * FROM clinical_member_versions WHERE record_id=? ORDER BY version DESC LIMIT 1').bind(record.id).first();return {record,assessment:v?{version:v.version,schemaVersion:v.schema_version,answers:JSON.parse(v.answers_json),evidence:JSON.parse(v.evidence_json),declarations:JSON.parse(v.declarations_json),digest:v.digest,submitted:!!v.submitted}:null,evidence:await evidence(env,record.id),fulfilment:await memberFulfilment(env,record),prescriptionIssued:false};}
 export async function memberClinicalRoutes(request,env,authenticate){
  const path=new URL(request.url).pathname;const reviewer=path===REVIEW||path.startsWith(REVIEW+'/');if(!reviewer&&path!==PREFIX&&!path.startsWith(PREFIX+'/'))return null;
  const origin=request.headers.get('Origin');
@@ -39,6 +40,11 @@ export async function memberClinicalRoutes(request,env,authenticate){
   const record=await env.DB.prepare('SELECT * FROM clinical_member_records WHERE id=?').bind(id).first();if(!record)problem(404,'record_not_found');
   if(reviewer){const assignment=await env.DB.prepare('SELECT * FROM clinical_reviewer_assignments WHERE record_id=? AND reviewer_user_id=? AND active=1 AND expires_at>?').bind(id,actor.id,new Date().toISOString()).first();if(!assignment||!record.review_sharing)problem(404,'record_not_found');if(request.method!=='GET')problem(405,'read_only_review');}
   else if(record.user_id!==actor.id)problem(404,'record_not_found');
+  if(!reviewer&&parts[1]==='fulfilment'){
+   if(parts.length===2&&request.method==='GET'){await audit(env,record,actor,'member_fulfilment_viewed');return reply(json({fulfilment:await memberFulfilment(env,record)}));}
+   if(parts.length===3&&parts[2]==='reply'&&request.method==='POST')return reply(json(await replyToFulfilment(request,env,record,actor,await body(request))));
+   problem(404,'not_found');
+  }
   if(!reviewer&&env.CLINICAL_CASEWORK_ENABLED==='true'){const result=await caseworkRoute(request,env,actor,record,false,parts,body);if(result)return reply(json(result));}
   if(request.method==='GET'&&!parts[1]){await audit(env,record,actor,reviewer?'reviewer_record_viewed':'member_record_viewed');return reply(json(await payload(env,record)));}
   if(parts[1]==='evidence'&&parts[2]&&request.method==='GET'){
