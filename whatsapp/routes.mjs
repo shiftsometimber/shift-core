@@ -60,6 +60,18 @@ export async function whatsappRoutes(request,env,{memberAuth=authenticateMember,
  }catch(error){return json({error:error.status?error.message:'whatsapp_unavailable'},error.status||503);}
 }
 export async function withWhatsappHQLink(request,response){
+ const publicPath=new URL(request.url).pathname;
+ if(request.method==='GET'&&publicPath!=='/member/settings'&&!/^\/(?:hq|admin|api|v1)(?:\/|$)/.test(publicPath)&&response.ok&&response.headers.get('Content-Type')?.includes('text/html')&&!response.headers.has('Content-Encoding')){
+  const original=await response.clone().text();
+  const link='<p class="footer-whatsapp" data-whatsapp-contact><a href="https://wa.me/447932618313" target="_blank" rel="noopener noreferrer">Chat with us on WhatsApp</a></p>';
+  const html=original.includes('data-whatsapp-contact')?original:original.replace(/(<footer\b[^>]*>[\s\S]*?)(<\/footer>)/i,(_,body,end)=>{
+   const social=/(<nav\b[^>]*aria-label=["'][^"']*social[^"']*["'][^>]*>[\s\S]*?<\/nav>)/i;
+   return (social.test(body)?body.replace(social,'$1'+link):body+link)+end;
+  });
+  if(html===original)return response;
+  const h=new Headers(response.headers);for(const k of ['Content-Length','ETag','Last-Modified'])h.delete(k);
+  return new Response(html,{status:response.status,headers:h});
+ }
  const path=new URL(request.url).pathname.replace(/\.html$/,'').replace(/\/+$/,'');
  if(request.method!=='GET'||!['/hq','/member/settings'].includes(path)||!response.ok||!response.headers.get('Content-Type')?.includes('text/html')||response.headers.has('Content-Encoding'))return response;
  const html=await response.text(),h=new Headers(response.headers);for(const k of ['Content-Length','ETag','Last-Modified'])h.delete(k);for(const[k,v]of Object.entries(headers))h.set(k,v);
