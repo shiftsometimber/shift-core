@@ -234,5 +234,47 @@
         "before": ""
       }
     ]
+  },
+  "tests/approved-ranking-release.test.mjs": {
+    "original": "f816947e3bda323b998517685da97c4d2a35f858",
+    "current": "5a7b70ae2dd203d61d77ebcf009d74cfd9e02391",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {memberRecordingComparisonValue} from '../release/member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 911,
+        "after": "memberRecordingComparisonValue(p,",
+        "before": ""
+      },
+      {
+        "start": 1044,
+        "after": ")",
+        "before": ""
+      }
+    ]
+  },
+  "tests/seo-discovery-release.test.mjs": {
+    "original": "fef29d036a649037ba802e775c7a7e4a36b12519",
+    "current": "e4b64730277945a1d685773528e1e285a67080a4",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {memberRecordingComparisonValue} from '../release/member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 941,
+        "after": "memberRecordingComparisonValue(p,",
+        "before": ""
+      },
+      {
+        "start": 1074,
+        "after": ")",
+        "before": ""
+      }
+    ]
   }
 }
