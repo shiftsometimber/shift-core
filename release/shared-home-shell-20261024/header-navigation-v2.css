@@ -71,38 +71,38 @@ html body header.site-header[data-header-v2][data-header-style] .menu-trigger{
  font:400 14px/1 sans-serif!important;letter-spacing:normal!important;text-transform:none!important;
 }
 html body header.site-header[data-header-v2][data-header-style] .sst-shed-teaser{font-family:sans-serif!important;letter-spacing:.035em!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c{
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c{
  display:block!important;position:static!important;width:100%!important;max-width:none!important;
  margin:0!important;padding:0!important;border:0!important;font:14px/1.6 Arial,Helvetica,sans-serif!important;
  letter-spacing:normal!important;text-transform:none!important;background:#050505!important;
 }
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c *{
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c *{
  box-sizing:border-box!important;font-family:sans-serif!important;letter-spacing:normal!important;
  text-transform:none!important;-webkit-text-fill-color:currentColor!important;
 }
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-main{
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main{
  width:100%!important;max-width:1208px!important;margin:0 auto!important;
  grid-template-columns:minmax(220px,1.6fr) repeat(5,minmax(0,1fr))!important;
 }
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-main>section{
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main>section{
  min-width:0!important;max-width:none!important;line-height:1.6!important;
 }
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-main h2{font:700 16px/1.4 sans-serif!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-main a{font:400 14px/1.5 sans-serif!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .footer-brand a{font-weight:600!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .footer-brand p{font:400 14px/1.6 sans-serif!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .footer-brand img{aspect-ratio:719/243!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-legal-inner{width:100%!important;max-width:1160px!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-legal :is(a,span,strong,button){
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main h2{font:700 16px/1.4 sans-serif!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main a{font:400 14px/1.5 sans-serif!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .footer-brand a{font-weight:600!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .footer-brand p{font:400 14px/1.6 sans-serif!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .footer-brand img{aspect-ratio:719/243!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-legal-inner{width:100%!important;max-width:1160px!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-legal :is(a,span,strong,button){
  font-size:14px!important;line-height:1.6!important;letter-spacing:normal!important;
 }
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-legal :is(a,span,button){font-weight:400!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-legal strong{font-weight:700!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .sst-shed-footer{line-height:1.6!important}
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .my-timber-app-footer{display:flex!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-legal :is(a,span,button){font-weight:400!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-legal strong{font-weight:700!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .sst-shed-footer{line-height:1.6!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .my-timber-app-footer{display:flex!important}
 @media(max-width:1200px){
- html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-main{grid-template-columns:repeat(3,minmax(0,1fr))!important}
- html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-main .footer-brand{max-width:300px!important}
+ html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main .footer-brand{max-width:300px!important}
 }
 @media(max-width:1100px){
  html body header.site-header[data-header-v2][data-header-style] .header-inner{gap:18px!important}
@@ -119,11 +119,20 @@ html body footer#sst-footer-c#sst-footer-c#sst-footer-c .my-timber-app-footer{di
  html body header.site-header[data-header-v2][data-header-style] .menu-trigger{min-width:70px!important;padding-inline:13px!important}
 }
 @media(max-width:600px){
- html body footer#sst-footer-c#sst-footer-c#sst-footer-c .fc-main{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 
-html body footer#sst-footer-c#sst-footer-c#sst-footer-c .footer-bottom{font-size:13px!important;line-height:1.6!important}
+html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .footer-bottom{font-size:13px!important;line-height:1.6!important}
 
 html body header.site-header[data-header-v2][data-header-style]{--shift-logo-width:230px;--shift-logo-height:44px}
 @media(max-width:1100px){html body header.site-header[data-header-v2][data-header-style]{--shift-logo-width:190px}}
 @media(max-width:979px){html body header.site-header[data-header-v2][data-header-style]{--shift-logo-width:185px;--shift-logo-height:36px}}
+
+/* The homepage skip link must not add a line above the shared header. */
+html body a.skip-link,html body>a[href="#main-content"]{position:absolute!important;left:-9999px!important;z-index:500!important;background:#E7E3DA!important;padding:.7rem!important}
+html body a.skip-link:focus,html body>a[href="#main-content"]:focus{left:1rem!important;top:1rem!important}
+
+html body header.site-header[data-header-v2][data-header-style]::before,html body header.site-header[data-header-v2][data-header-style]::after,html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c::before,html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c::after{content:none!important;display:none!important}
+
+/* Keep the brand aligned when navigation changes the page's scroll length. */
+html{scrollbar-gutter:stable}

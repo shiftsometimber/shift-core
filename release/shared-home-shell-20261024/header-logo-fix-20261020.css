@@ -1,0 +1,9 @@
+
+/* Header logo: one self-contained brand asset, with its original proportions. */
+html body header.site-header[data-header-v2][data-header-style] .header-inner{height:100%!important;min-height:0!important;align-items:center!important}
+html body header.site-header[data-header-v2][data-header-style] .site-logo{display:flex!important;align-items:center!important;line-height:0!important}
+html body header.site-header[data-header-v2][data-header-style] .site-logo img{display:block!important;margin:0!important;content:url("/assets/header-logo-20261020-v2.svg")!important;clip-path:none!important;filter:none!important;object-fit:contain!important;object-position:center!important}
+html body header.site-header[data-header-v2][data-header-style] .site-logo::after{content:none!important;display:none!important}
+
+/* Shared homepage alignment across page lengths. */
+html{scrollbar-gutter:stable}

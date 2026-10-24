@@ -2,6 +2,7 @@
 ;(()=>{'use strict';
 if(/^\/(?:hq|admin|v1|api)(?:\/|$)/.test(location.pathname)||window.__shiftHomeShell)return;
 window.__shiftHomeShell=true;
+ for(const [key,cls]of [['sst_large_text','large-text'],['sst_reduce_motion','reduce-motion']])try{if(localStorage.getItem(key)==='1')document.documentElement.classList.add(cls)}catch{}
 const master=__MASTER__,css=__CSS__;
 const style=document.createElement('style');style.id='shift-home-shell-20261024';style.textContent=css;document.head.append(style);
 function node(html){const t=document.createElement('template');t.innerHTML=html;return t.content.firstElementChild}
@@ -30,7 +31,7 @@ function install(){if(!document.body)return;frameBody();
   if(!drawer){drawer=node(master.drawer);document.body.append(drawer)}if(!back){back=node(master.backdrop);document.body.append(back)}
   bindNewHeader(h,drawer,back);h.dataset.homeBound='1';
  }
- const skip=document.body.querySelector(':scope > a.skip-link,:scope > a[href="#main-content"]');if(skip){if(skip.nextElementSibling!==h)skip.after(h)}else if(h.parentElement!==document.body||document.body.firstElementChild!==h)document.body.prepend(h);
+ const skip=document.body.querySelector(':scope > a.skip-link,:scope > a[href="#main-content"]');if(skip){if(document.body.firstElementChild!==skip)document.body.prepend(skip);if(skip.nextElementSibling!==h)skip.after(h)}else if(h.parentElement!==document.body||document.body.firstElementChild!==h)document.body.prepend(h);
  h.id='shift-site-header';h.dataset.shiftHomeShell='20261024';
  if(!h.dataset.homeFocusBound){h.querySelector('.menu-trigger')?.addEventListener('click',event=>event.currentTarget.focus(),{capture:true});h.dataset.homeFocusBound='1'}
  const img=h.querySelector('.site-logo img');
@@ -44,7 +45,7 @@ function install(){if(!document.body)return;frameBody();
  let f=document.querySelector('footer.site-footer');
  if(!f?.dataset.shiftHomeShell){
   const next=node(master.footer);next.dataset.shiftHomeShell='20261024';
-  for(const id of ['toggleLargeText','toggleMotion'])next.querySelector('#'+id)?.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();document.documentElement.classList.toggle(id==='toggleLargeText'?'large-text':'reduce-motion')},{capture:true});
+  for(const id of ['toggleLargeText','toggleMotion'])next.querySelector('#'+id)?.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();const enabled=document.documentElement.classList.toggle(id==='toggleLargeText'?'large-text':'reduce-motion');try{localStorage.setItem(id==='toggleLargeText'?'sst_large_text':'sst_reduce_motion',enabled?'1':'0')}catch{}},{capture:true});
   if(f)f.replaceWith(next);else document.body.append(next);f=next;fit(f);
  }
  if(f.parentElement!==document.body)document.body.append(f);

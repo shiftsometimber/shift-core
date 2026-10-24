@@ -7,4 +7,4 @@
  const start=()=>{install();new MutationObserver(install).observe(document.body,{childList:true,subtree:true})};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
 
-;(()=>{if(/^\/(?:hq|admin|v1|api|email-templates)(?:\/|$)/.test(location.pathname)||document.querySelector('script[src*="/assets/v42.js"]')||window.__shiftHomeShell)return;const s=document.createElement("script");s.src="/assets/home-shell-v1.js?v=20261024";s.defer=true;document.head.append(s)})();
+;(()=>{if(/^\/(?:hq|admin|v1|api|email-templates)(?:\/|$)/.test(location.pathname)||document.querySelector('script[src*="/assets/v42.js"]')||window.__shiftHomeShell)return;const s=document.createElement("script");s.src="/assets/home-shell-v1.js?v=home-master-20261024-r2";s.defer=true;document.head.append(s)})();
