@@ -101,7 +101,7 @@ test('a changed reviewed source holds publication rather than reusing stale fact
 test('the shared editorial gateway is used at most once per local day without retries',async()=>{
  const {env,key}=await setup();try{
   for(const i of [1,2])await blogRoutes(request(API,key.token,{...payload(),url:'/articles/review-'+i},'review_'+i),env,{}, {now:start,fetcher:baseFetcher});
-  await runBlogQueue(env,{now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start+60000,fetcher:baseFetcher});assert.equal(env.AI.calls,1);assert.equal(env.DB.sqlite.prepare("SELECT count(*) n FROM knowledge_blog_submissions WHERE state='draft_review_hold'").get().n,1);
+  await runBlogQueue(env,{now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start+60000,fetcher:baseFetcher});assert.equal(env.AI.calls,1);assert.equal(env.DB.sqlite.prepare("SELECT count(*) n FROM knowledge_blog_submissions WHERE state='review_waiting_budget'").get().n,1);
  }finally{env.DB.sqlite.close()}
 });
 test('a concurrent CMS edit rolls back all publication SQL and leaves history untouched',async()=>{
@@ -171,4 +171,53 @@ test('link policy preserves a website-owned article journal and its existing rev
 test('owner series pause is durable and a storage error cannot silently resume publication',async()=>{
  const {env}=await setup();try{assert.equal(await blogEditorialPaused(env),false);env.DB.sqlite.exec("CREATE TABLE knowledge_blog_controls(name TEXT PRIMARY KEY,value TEXT NOT NULL,reason TEXT,updated_at TEXT); INSERT INTO knowledge_blog_controls VALUES('website_editorial_pause','true','45-day series','2026-10-21')");assert.equal(await blogEditorialPaused(env),true);const bad={DB:{prepare(){throw Error('database unavailable')}}};await assert.rejects(()=>blogEditorialPaused(bad),/database unavailable/);}
  finally{env.DB.sqlite.close()}
+});
+
+
+test('source furniture changes do not invalidate review; main copy changes name the source',async()=>{
+ const {env,key}=await setup();try{
+  const f=async(url,options)=>String(url).includes('nhs.uk')?new Response('<nav>Navigation '+(options?.x||'one')+'</nav><main>'+('Actual source copy. '.repeat(20))+'</main><footer>Campaign one</footer>'):baseFetcher(url,options);
+  const x=await (await blogRoutes(request(API,key.token,payload()),env,{}, {now:start,fetcher:f})).json();await runBlogQueue(env,{now:start,fetcher:f});
+  const chrome=async(url,options)=>String(url).includes('nhs.uk')?new Response('<nav>Navigation two</nav><main>'+('Actual source copy. '.repeat(20))+'</main><footer>Campaign two</footer>'):baseFetcher(url,options);
+  await runBlogQueue(env,{now:Date.parse(x.dueAt),fetcher:chrome});assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_articles').get().n,1);
+ }finally{env.DB.sqlite.close()}
+});
+test('date-only resubmission reuses the existing passed review without another model call',async()=>{
+ const {env,key}=await setup();try{
+  await blogRoutes(request(API,key.token,payload()),env,{}, {now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start,fetcher:baseFetcher});
+  await blogRoutes(request(API,key.token,{...payload(),datePublished:'2026-10-25'},'date_retry'),env,{}, {now:start+60000,fetcher:baseFetcher});await runBlogQueue(env,{now:start+60000,fetcher:baseFetcher});
+  assert.equal(env.AI.calls,1);assert.equal(env.DB.sqlite.prepare("SELECT count(*) n FROM knowledge_blog_submissions WHERE state='scheduled'").get().n,2);
+ }finally{env.DB.sqlite.close()}
+});
+test('changed sources expose their exact URL and retry keeps one record; another key cannot retry it',async()=>{
+ const {env,key}=await setup();try{
+  const x=await (await blogRoutes(request(API,key.token,payload()),env,{}, {now:start,fetcher:baseFetcher})).json();await runBlogQueue(env,{now:start,fetcher:baseFetcher});
+  const f=async(url,options)=>String(url).includes('nhs.uk')?new Response('<main>'+('Material change. '.repeat(30))+'</main>'):baseFetcher(url,options);
+  await runBlogQueue(env,{now:Date.parse(x.dueAt),fetcher:f});let row=env.DB.sqlite.prepare('SELECT * FROM knowledge_blog_submissions').get();assert.equal(JSON.parse(row.receipt_json).detail.sourceChanges[0].url,payload().sources[0].url);
+  const other=await createBlogKey(env.DB,'Other');assert.equal((await blogRoutes(request(API+'/'+x.id+'/retry',other.token,{}),env,{}, {now:start,fetcher:f})).status,404);
+  assert.equal((await blogRoutes(request(API+'/'+x.id+'/retry',key.token,{body:'replacement'}),env,{}, {now:start,fetcher:f})).status,400);
+  const r=await blogRoutes(request(API+'/'+x.id+'/retry',key.token,{publishMode:'when_ready'}),env,{}, {now:Date.parse(x.dueAt)+60000,fetcher:f});assert.equal(r.status,202);assert.equal((await r.json()).id,x.id);assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_blog_submissions').get().n,1);
+ }finally{env.DB.sqlite.close()}
+});
+test('budget exhaustion remains queued and resumes on the next London day across the clock change',async()=>{
+ const {env,key}=await setup();try{
+  for(const i of [1,2])await blogRoutes(request(API,key.token,{...payload(),url:'/articles/budget-'+i},'budget_'+i),env,{}, {now:start,fetcher:baseFetcher});
+  await runBlogQueue(env,{now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start+60000,fetcher:baseFetcher});
+  const waiting=env.DB.sqlite.prepare("SELECT * FROM knowledge_blog_submissions WHERE state='review_waiting_budget'").get();assert.ok(waiting);assert.equal(JSON.parse(waiting.receipt_json).retryAt,'2026-10-24T23:00:00.000Z');
+  await runBlogQueue(env,{now:Date.parse('2026-10-24T23:01:00Z'),fetcher:baseFetcher});const row=env.DB.sqlite.prepare('SELECT * FROM knowledge_blog_submissions WHERE id=?').get(waiting.id);assert.equal(row.state,'scheduled');assert.equal(row.due_at,'2026-10-25T11:00:00.000Z');assert.equal(env.AI.calls,2);
+ }finally{env.DB.sqlite.close()}
+});
+test('explicit when-ready submission publishes after 11 without waiting until tomorrow',async()=>{
+ const {env,key}=await setup();try{
+  const now=Date.parse('2026-10-24T14:00:00Z');const r=await blogRoutes(request(API,key.token,{...payload(),publishMode:'when_ready'}),env,{}, {now,fetcher:baseFetcher});assert.equal((await r.json()).dueAt,new Date(now).toISOString());await runBlogQueue(env,{now,fetcher:baseFetcher});assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_articles').get().n,1);
+ }finally{env.DB.sqlite.close()}
+});
+test('independent hold returns the actual editorial issues',async()=>{
+ const {env,key}=await setup();try{
+  env.AI.run=async()=>({response:{decision:'HOLD',issues:['A claim lacks source support.']}});const x=await (await blogRoutes(request(API,key.token,payload()),env,{}, {now:start,fetcher:baseFetcher})).json();await runBlogQueue(env,{now:start,fetcher:baseFetcher});const row=env.DB.sqlite.prepare('SELECT * FROM knowledge_blog_submissions WHERE id=?').get(x.id);assert.deepEqual(JSON.parse(row.receipt_json).detail.issues,['A claim lacks source support.']);
+ }finally{env.DB.sqlite.close()}
+});
+
+test('a contributor can verify its key and capabilities without creating a post',async()=>{
+ const {env,key}=await setup();try{const r=await blogRoutes(request(API+'/capabilities',key.token),env,{});assert.equal(r.status,200);const x=await r.json();assert.equal(x.authenticated,true);assert.equal(x.scope,'blogs_only');assert.equal(x.dailyModelAttemptLimit,1);assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_blog_submissions').get().n,0);assert.equal((await blogRoutes(request(API+'/capabilities','wrong'),env,{})).status,401);}finally{env.DB.sqlite.close()}
 });

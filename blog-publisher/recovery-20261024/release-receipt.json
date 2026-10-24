@@ -1,0 +1,105 @@
+{
+  "deployedAt": "2026-10-24T10:35:32.125077Z",
+  "worker": {
+    "id": "9fc9505e-c7cc-4329-8104-3565be40728c",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "matobrien@hotmail.co.uk",
+    "annotations": {
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "e336edc5-39d4-4828-b527-5ee34c3a8cd9",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-24T10:35:32.125077Z"
+  },
+  "previousVersion": "1bef18bc-9b0f-457a-9ac3-6f0133b143e8",
+  "tests": {
+    "pass": 59,
+    "fail": 0
+  },
+  "hosted": {
+    "actualHTTP": true,
+    "actualD1": true,
+    "sameIdRetry": true,
+    "capabilities": true,
+    "whenReadyAfter11": true,
+    "ownerIsolation": true,
+    "modelCalls": 0,
+    "publication": false
+  },
+  "dailyModelAttemptLimit": 1,
+  "spendLimitRaised": false,
+  "liveKeysChanged": false,
+  "publicPostsPublishedByThisRepair": false,
+  "existingDay4StateChanged": false,
+  "routesChanged": false,
+  "unrelatedWorkersUnchanged": true,
+  "files": {
+    "babylove/contributor-service.mjs": "bbed449f42e553ee7e3a3e9ec3fabe01542cd28ccfc5635fc9ba65ae696c565a",
+    "babylove/contributor-policy.mjs": "9a5d4b90a6a70c63f69032bb0c9c4276d8560dd00177e2a354de27fcf2a3e5e6"
+  },
+  "liveHTTP": [
+    {
+      "path": "/articles/alcohol-free-beer-weight-loss",
+      "status": 200,
+      "refresh": null,
+      "hold": null,
+      "title": "Alcohol-free beer and weight loss: is it worth the swap?"
+    },
+    {
+      "path": "/male-obesity",
+      "status": 200,
+      "refresh": "20261022",
+      "hold": null,
+      "title": "Male obesity: what it means for your health. What to do next."
+    },
+    {
+      "path": "/guides/mens-health-mot-guide",
+      "status": 200,
+      "refresh": "20261022",
+      "hold": null,
+      "title": "Men&#39;s health MOT: what&#39;s checked and is it worth it?"
+    },
+    {
+      "path": "/articles/testosterone-weight-men",
+      "status": 200,
+      "refresh": "20261022",
+      "hold": null,
+      "title": "Testosterone and weight: which comes first?"
+    },
+    {
+      "path": "/articles/winter-low-mood-men",
+      "status": 404,
+      "refresh": null,
+      "hold": null,
+      "title": "That page has wandered off"
+    },
+    {
+      "path": "/v1/integrations/blog-articles/capabilities",
+      "status": 401,
+      "body": {
+        "error": "unauthorised"
+      }
+    },
+    {
+      "path": "/v1/hq/blog-contributors/keys",
+      "status": 403,
+      "body": {
+        "error": "owner_required"
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-24T10:36:12.081Z",
+  "day4ArchivedOlderHeldAttempts": [
+    "bd3a04a7-b0e8-4bba-9b93-25d6ac1d261a",
+    "9956a708-0107-4e99-a217-5562ca5b89bd",
+    "e9979d40-9c19-4e93-b06c-836aa0a45ed4"
+  ],
+  "day4CurrentId": "1ac94141-fc41-4cd5-83a1-3742e4b18c18",
+  "day4CurrentState": "draft_review_hold",
+  "realContributorPublicationSixChecksPass": true
+}

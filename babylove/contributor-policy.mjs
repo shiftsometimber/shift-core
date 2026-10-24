@@ -64,6 +64,8 @@ export function validateSubmission(payload) {
   if(payload.editorialCheck?.result!=='pass')reasons.push('contributor_editorial_check_failed');
   if(typeof payload.editorialCheck?.reviewer!=='string'||!payload.editorialCheck.reviewer.trim())reasons.push('editorial_reviewer_required');
   article.url=canonical;article.slug=canonical?.split('/').at(-1)||null;
+  article.publishMode=payload.publishMode||'scheduled';
+  if(!['scheduled','when_ready'].includes(article.publishMode))reasons.push('invalid_publish_mode');
   article.requestedDay=payload.releaseDate||null;
   return {valid:reasons.length===0,reasons,article};
 }

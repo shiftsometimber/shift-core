@@ -1,6 +1,6 @@
 # Blog contributor connection
 
-Implementation status, 22 October 2026: **the standalone blog service is deployed on the live SHIFT API and blog routes**. The private hosted new-post and approved-refresh tests pass all six actual HTTP receipts. All 101 current automated tests pass. A genuine Matt O'Brien HQ owner session opened the live blog console and uploaded a real MP4. Live key creation is enabled. A live contributor has authenticated and submitted private drafts; no key material is stored in this repository. The first real contributor publication and future unattended 11am delivery remain to be observed. Keep the email fallback until the first contributor post is verified.
+Implementation status, 22 October 2026: **the standalone blog service is deployed on the live SHIFT API and blog routes**. The private hosted new-post and approved-refresh tests pass all six actual HTTP receipts. All 101 current automated tests pass. A genuine Matt O'Brien HQ owner session opened the live blog console and uploaded a real MP4. Live key creation is enabled. A live contributor has authenticated and submitted private drafts; no key material is stored in this repository. Update, 24 October: the real contributor alcohol-free beer article published through the API and all six production receipts pass. The real 25 October clock-change slot remains future; its scheduling regression passes.
 
 ## Contributor access
 
@@ -24,7 +24,7 @@ Example JSON:
   "keywords": ["primary intent", "supporting topic"],
   "sources": [{"title": "Primary source title", "url": "https://www.nhs.uk/tests-and-treatments/nhs-health-check/"}],
   "author": "Matt O'Brien",
-  "editorialCheck": {"result": "pass", "reviewer": "Named contributor/editorial system"},
+  "editorialCheck": {"result": "pass", "reviewer": "Matt O'Brien"},
   "releaseDate": "2026-10-26"
 }
 ```
@@ -35,7 +35,7 @@ Only new full-article submissions can publish automatically after all checks; th
 
 Images must be HTTPS raster images on the existing SHIFT assets/blog-upload paths or the existing organisation-specific BabyLoveGrowth image stores. Arbitrary server fetches, redirects and SVG/script content are rejected. Primary source hosts are explicitly allowlisted: NHS, NHS England, GOV.UK, NICE, eMC, ClinicalTrials.gov, PubMed/PMC, Samaritans, Mind and the existing UK National Screening Committee government hosts. Source accessibility, visibility and factual support are still checked. Sources must be readable and visible in the article. Internal links and image bytes are checked before publication. The site builds its own Article schema and escapes content through the existing Markdown renderer; supplied executable HTML/schema is never rendered.
 
-The contributor's pass is a declaration, not site approval. The existing capped editorial gateway performs an independent source-backed review, with at most one imported-article model attempt per local day, no retries, logging off and no alternate provider. Missing gateway/budget verification, failed source checks or uncertain review hold the draft. Changed source text invalidates the saved review before publication. This is AI editorial verification, not clinical sign-off.
+The contributor's pass is a declaration, not site approval. The existing capped editorial gateway performs an independent source-backed review, with at most one imported-article model attempt per local day, logging off and no alternate provider. A capacity wait is queued automatically; unchanged passed reviews can be reused without another model call. Missing gateway/budget verification, failed source checks or uncertain review hold the draft. Changed source text invalidates the saved review before publication. This is AI editorial verification, not clinical sign-off.
 
 ## Internal links without individual approval
 
@@ -103,3 +103,14 @@ Private local evidence includes policy/SQL/receiver/renderer/sitemap regressions
 Standalone release: `blog-publisher/wrangler.jsonc`, `worker.mjs` and focused tests. The current Knowledge presentation is pinned to `20261022-knowledge-live-v1`; a different live version is preserved and a missing blog discovery receipt must be reconciled before use. Route ownership and rollback are recorded by `activate.py` / `rollback.py`. Future Core releases must preserve the two sitemap routes now owned by this service. The current independent Core repair is not deployed or waived by this change.
 
 Owner-approved refreshes, 22 October 2026: `/male-obesity`, `/guides/mens-health-mot-guide` and `/articles/testosterone-weight-men` were applied directly from the supplied packs. Their original dates are 2026-10-10, 2026-05-04 and 2026-08-26 respectively; all have modified date 2026-10-22. These three remain source-managed pages, not CMS migrations. Future full revisions to them are still held for an owner-controlled source release; do not retry different page IDs or claim contributor write authority. The approved additive backlinks, packaged images, schema, Knowledge discovery and sitemap are covered by `blog-publisher/approved-refreshes`; the original presentation Workers remain bound upstream and unchanged. The finite release receipt and scoped rollback are stored alongside that module.
+
+
+## Retry and scheduling repair — 24 October 2026
+
+The existing one-model-attempt-per-London-day spend guard is unchanged. Exhaustion now returns `review_waiting_budget`, with `receipt.retryAt`, and the same submission automatically resumes on the next London day. It is not an editorial rejection. A delayed review retains an honest current publication date. Successful reviews are reused without another model call when reviewed content and sources match; changing only transport dates does not invalidate them. New reviews use the readable source main content, excluding navigation/header/footer changes, and retain source snapshots. Existing proofs still use their original full-page hash; they are not silently upgraded or treated as valid after a source change.
+
+Contributor retry: `POST /v1/integrations/blog-articles/<id>/retry`, same bearer key, JSON `{ "publishMode": "when_ready" }`. This retries an owned held submission without creating another draft or replacing its content. It never bypasses changed-base or owner revision approval. The normal default remains 11:00 Europe/London; `publishMode: "when_ready"` on a new submission or retry requests the next successful queue cycle (normally within 15 minutes), subject to review capacity and all checks. A retry can alternatively request `releaseDate` for a future 11am slot.
+
+Source holds now include the exact changed source URL and previous/current hashes under `receipt.detail.sourceChanges`. Site failures name the source URL under `receipt.detail.checks`; independent editorial holds expose the model's actual issues under `receipt.detail.issues`. Old proofs have no source snapshot, so their exact historical text changes cannot be reconstructed from a checksum alone.
+
+Read-only connection test: `GET /v1/integrations/blog-articles/capabilities` with the bearer key returns 200 with the scope, supported scheduling modes and review capacity, without creating any article. The base collection GET remains unavailable.

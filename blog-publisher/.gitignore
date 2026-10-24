@@ -1,2 +1,5 @@
 *.private.json
 .wrangler/
+
+recovery-20261024/*
+!recovery-20261024/release-receipt.json
