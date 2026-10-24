@@ -51,6 +51,7 @@ function waitForNativeIndexWriter(lock,deadline){
  assert(!existsSync(lock),'An actual source-index writer is active');
 }
 function prepareNativeNavigationIndexStats(){
+ if(reusableNavigationChecker(undefined,true))return;
  const root=process.cwd(),index=resolve(root,'.git/index'),lock=resolve(root,'.git/index.lock');
  const entry=lstatSync(index);assert(entry.isFile()&&!entry.isSymbolicLink(),'Ordinary native index required before stat-cache refresh');
  if(existsSync(lock)){
@@ -273,13 +274,27 @@ function makeNativeNavigationFreshTrackedStats(){
  }catch{return null;}
 }
 
+// Retain checkers, never source verdicts. A reused checker still performs the
+// complete native metadata and full tracked-path scan at this call boundary.
+const nativeNavigationCheckers=new Map();
+function reusableNavigationChecker(expected,preparing=false){
+ if(existsSync(resolve(process.cwd(),'.git/index.lock')))return null;
+ const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
+ for(const[key,entry]of nativeNavigationCheckers){
+  if(entry.cwd!==cwd||entry.environment!==environment||!preparing&&entry.expected!==expected)continue;
+  let same=false;try{same=entry.sameMetadata();}catch{}
+  if(!same){nativeNavigationCheckers.delete(key);continue;}
+  entry.check();return entry.check;
+ }return null;
+}
 export function nativeNavigationFreshSourceChecker(expected){
+ const reused=reusableNavigationChecker(expected);if(reused)return reused;
  clean(expected);
  prepareNativeNavigationIndexStats();
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
  let context;try{context=freshSourceContext();}catch{context=null;}
  const freshTrackedStats=context?makeNativeNavigationFreshTrackedStats():null;
- return()=>{
+ const check=()=>{
   assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire],native,'Native navigation source functions changed');
   assert.equal(process.cwd(),cwd,'Navigation source working directory moved');
   assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),environment,'Navigation source execution environment changed');
@@ -292,6 +307,12 @@ export function nativeNavigationFreshSourceChecker(expected){
   assert.equal(freshTrackedStats?.()===true?0:git('diff-files','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','--').length,0,'Fresh navigation working source changed');
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed during current-source check');
  };
+ if(context&&freshTrackedStats&&(expected===undefined||typeof expected==='string'&&oid.test(expected))){
+  const key=JSON.stringify([cwd,environment,expected??null]);
+  nativeNavigationCheckers.set(key,{cwd,environment,expected,check,sameMetadata:()=>context.snapshot()===context.entry});
+  while(nativeNavigationCheckers.size>16)nativeNavigationCheckers.delete(nativeNavigationCheckers.keys().next().value);
+ }
+ return check;
 }
 
 function object(ref,p){assert(oid.test(ref));path(p);const id=immutableNavigationFact('git',['rev-parse',ref+':'+p],{maxBuffer:64e6}).toString('utf8').trimEnd();assert(oid.test(id));return id;}
