@@ -37,6 +37,8 @@ export async function hqApi(request,env,{authenticate=authenticateHQ,now=new Dat
    if(body.confirmation!=='cancel')fail('confirmation_required');
    const r=await DB.batch([DB.prepare("UPDATE hq_comms_drafts SET status='cancelled',cancelled_at=? WHERE id=? AND status IN ('draft','scheduled')").bind(at,d.id),audit(DB,d.id,actor.id,'cancel_requested',at)]);if(!r[0].meta.changes)fail('already_processing',409);return json({ok:true,status:'cancelled'});
   }
+  // Matt is the verified production HQ owner primary key1; other owners retain cancellation.
+  if(actor.id!==1)fail('matt_exact_approval_required',403);
   if(body.confirmation!=='approve_exact_message_and_recipients')fail('exact_approval_required');
   const payload=JSON.parse(d.payload_json);if(payload.channel==='email'&&!env.EMAIL)fail('email_not_configured',503);
   // Require a fresh review if the intended schedule passed while a draft waited.

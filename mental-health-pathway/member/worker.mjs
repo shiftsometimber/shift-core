@@ -1,9 +1,10 @@
+import {recordServiceJob} from '../../hq-service-job-runs.mjs';
 import {page,styles,client,dashboardClient} from './content.mjs';
 import {supportApi,json,forgetSupport,exportSupport} from './api.mjs';
 import {authenticateMember} from '../../member-state-fast-v1.js';
 import {runSupportReminders} from './reminders.mjs';
 import {sendSupportPush} from './push.mjs';
-const version='20261023-followthrough-v1';
+const version='20261024-followthrough-heartbeat-v2';
 const dashboardPaths=new Set(['/member/dashboard','/member/dashboard/','/member/dashboard.html']);
 const hubPaths=new Set(['/mens-mental-health','/mens-mental-health/','/mens-mental-health.html']);
 const privacyPaths=new Set(['/v1/privacy/export','/v1/privacy/health-tracking','/v1/privacy/account','/v1/consents']);
@@ -49,5 +50,5 @@ export default {
   const headers=cleanHeaders(response);if(hubPaths.has(path)){const robots=response.headers.get('X-Robots-Tag');if(robots)headers.set('X-Robots-Tag',robots);else headers.delete('X-Robots-Tag');}
   return new Response(html,{status:response.status,headers});
  },
- async scheduled(controller,env,ctx){const run=runSupportReminders(env,new Date(controller.scheduledTime||Date.now()),sendSupportPush);if(ctx?.waitUntil)ctx.waitUntil(run);else await run;}
+ async scheduled(controller,env,ctx){const run=recordServiceJob(env.DB,'support_reminders',new Date(controller.scheduledTime||Date.now()).toISOString(),()=>runSupportReminders(env,new Date(controller.scheduledTime||Date.now()),sendSupportPush));if(ctx?.waitUntil)ctx.waitUntil(run);else await run;}
 };

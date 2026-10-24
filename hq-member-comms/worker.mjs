@@ -1,3 +1,4 @@
+import {recordServiceJob} from '../hq-service-job-runs.mjs';
 import {hq,member,css,client,memberClient} from './content.mjs';
 import {hqApi,json,headers} from './api.mjs';
 import {memberApi,suppressAccountCommunications,exportCommunications} from './member.mjs';
@@ -33,5 +34,5 @@ export default {
   }
   const h=new Headers(response.headers);h.set('X-Shift-Communications',mark);if(request.headers.get('Origin')==='https://hq.shiftsometimber.co.uk'&&path.startsWith('/v1/hq/')){h.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');h.set('Access-Control-Allow-Credentials','true');h.set('Access-Control-Allow-Methods','GET,POST,OPTIONS');h.set('Access-Control-Allow-Headers','Content-Type');h.set('Vary','Cookie, Origin');}return new Response(response.body,{status:response.status,headers:h});
  },
- async scheduled(event,env,ctx){const job=runCommunications(env,new Date(event.scheduledTime||Date.now()));if(ctx?.waitUntil)ctx.waitUntil(job);else await job;}
+ async scheduled(event,env,ctx){const job=recordServiceJob(env.DB,'hq_communications',new Date(event.scheduledTime||Date.now()).toISOString(),()=>runCommunications(env,new Date(event.scheduledTime||Date.now())));if(ctx?.waitUntil)ctx.waitUntil(job);else await job;}
 };
