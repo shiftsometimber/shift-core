@@ -1,3 +1,4 @@
+import {approvedMedicalArticle} from '../approved-public-corrections-20261024.mjs';
 import {publicArticlePublication,editorialDiscovery} from '../daily-content/publication.mjs';
 import {publicHeader,publicDrawer,publicFooter} from '../public-shell-contract.mjs';
 import {withArticleResponsePolicy} from './response-policy.mjs';
@@ -55,7 +56,7 @@ export function renderMarkdown(markdown,title='',slug=''){
 }
 export async function dynamicBabyLovePublication(env,slug){
  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||!env.DB)return null;
- const row=await publicArticlePublication(env,slug);return row?.editorialBlocked?null:row;
+ const row=await publicArticlePublication(env,slug);return row?.editorialBlocked?null:approvedMedicalArticle(row);
 }
 export function representativeImage(row){
  // Use an image already in the published copy, never a fabricated article image.
@@ -84,7 +85,7 @@ export function articleHTML(row){
  const scripts=['/analytics-bootstrap-v1.js','/site-config-v3a.js','/analytics-v3a.js','/app.js?v=phase8v10','/assets/v42.js?v=cos-live-recovery-20260909-r2','/consent-v4a.js','/analytics-events-v31b.js'].map(x=>'<script defer src="'+x+'"></script>').join('');
  const css='<style>.sst-dynamic-article{max-width:860px;margin:0 auto;padding:48px 22px 80px}.sst-dynamic-article h1{font-size:clamp(2.1rem,6vw,4.6rem);line-height:.98;margin:0 0 18px}.sst-dynamic-article h2{margin-top:46px}.sst-dynamic-article h3{margin-top:30px}.sst-dynamic-article p,.sst-dynamic-article li{font-size:1.05rem;line-height:1.72}.sst-dynamic-article img{display:block;max-width:100%;height:auto;margin:28px auto;border-radius:18px}.sst-dynamic-article blockquote{margin:26px 0;padding:18px 22px;border-left:4px solid #707762;background:#e7e3da;color:#050505}.sst-table-wrap{overflow-x:auto}.sst-dynamic-article table{width:100%;border-collapse:collapse;margin:24px 0}.sst-dynamic-article th,.sst-dynamic-article td{padding:12px;border-bottom:1px solid #707762;text-align:left;vertical-align:top}.sst-dynamic-article a{text-decoration:underline}.sst-article-meta{color:#707762;margin-bottom:30px}</style>';
  // Do not lazy-load the first visible article image (an LCP candidate).
- const body=renderMarkdown(row.body,title,row.slug).replace('<img loading="lazy"','<img loading="eager" fetchpriority="high" decoding="async"');
+ const body=renderMarkdown(row.body,row.approvedBodyHeading||title,row.slug).replace('<img loading="lazy"','<img loading="eager" fetchpriority="high" decoding="async"');
  const sharingImage=lead?.url||'https://shiftsometimber.co.uk/assets/og-default.jpg';
  const social='<meta property="og:image" content="'+esc(sharingImage)+'"><meta name="twitter:title" content="'+esc(title)+'"><meta name="twitter:description" content="'+esc(summary)+'"><meta name="twitter:image" content="'+esc(sharingImage)+'">';
  return '<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050505"><title>'+esc(row.seo_title||title)+'</title><meta name="description" content="'+esc(summary)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+canonical+'"><meta property="og:type" content="article"><meta property="og:title" content="'+esc(title)+'"><meta property="og:description" content="'+esc(summary)+'"><meta property="og:url" content="'+canonical+'"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">'+JSON.stringify(schema).replace(/</g,'\\u003c')+'</script>'+social+shellCss+css+'</head><body class="sst-fullsite-v35 sst-site-v31 contrast-v30o6f contrast-v30o6g one-shift sst-reading-page"><a class="skip-link-v30f" href="#main-content">Skip to main content</a>'+publicHeader+publicDrawer+'<div class="drawer-backdrop" hidden></div><main id="main-content" class="sst-dynamic-article"><h1>'+esc(title)+'</h1><p class="sst-article-meta">Published '+esc(published)+' · '+esc(author)+'</p>'+body+'</main>'+publicFooter+scripts+'</body></html>';

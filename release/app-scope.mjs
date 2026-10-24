@@ -71,6 +71,33 @@ export function originalMemberWorkerPresentation(source){
  return source.replace("\nexport function memberWorkerHtml(html){\n return html.replace(/(<script\\b[^>]*\\bsrc=[\"'])(\\/(?:app\\.js|register-sw-v3a\\.js)(?:\\?[^\"']*)?)([\"'][^>]*>)/gi,(_,before,src,after)=>before+src+(/[?&](?:amp;)?member_worker=1(?:&|$)/.test(src)?'':(src.includes('?')?'&amp;':'?')+'member_worker=1')+after);\n}\nexport async function memberWorkerAsset(request,response){\n const u=new URL(request.url);\n if(request.method!=='GET'||u.searchParams.get('member_worker')!=='1'||!['/app.js','/register-sw-v3a.js'].includes(u.pathname))return null;\n if(!response.ok||!/(?:javascript|ecmascript)/i.test(response.headers.get('Content-Type')||''))return response;\n const before=await response.text(),legacy=u.pathname==='/app.js'?\"navigator.serviceWorker.register('/service-worker.js')\":\"navigator.serviceWorker.register('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2',{updateViaCache:'none'})\",shared=\"navigator.serviceWorker.register('/shift-push-sw-v1.js',{scope:'/',updateViaCache:'none'})\";\n const h=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])h.delete(k);h.set('Cache-Control','no-store');\n if(before.split(legacy).length!==2)return new Response('Member worker registration source changed; please retry later.',{status:503,headers:h});\n return new Response(before.replace(legacy,shared),{status:response.status,statusText:response.statusText,headers:h});\n}\n",'').replace("\n const memberAsset=await memberWorkerAsset(request,response);if(memberAsset)return memberAsset;",'').replace("\n if(/^\\/member\\//.test(path))html=memberWorkerHtml(html);",'');
 }
 for(const p of [...METRICS_PATHS,...RECONCILIATION_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED])APP_PATHS.add(p);
+// Pin the finite owner-approved release and merged safety sources exactly.
+// A path cannot admit later edits; every existing app assertion runs below.
+const CURRENT_MAIN_SAFETY_CHECK_BLOBS=Object.freeze({
+ '.github/workflows/whole-estate-route-sweep.yml':'7252162d1ac21edafd8e71ae504f7c7ad6023ac3',
+ 'gate1-whole-estate-production-sweep.mjs':'5a9a737b89267158c63ca7634b0b22a62ec1fa88',
+ 'public-response-policy.test.mjs':'d2c8c91a42e994c56b3454918bb657e5a348d8f3',
+ 'tests/release-recovery-safety-20261024.test.mjs':'8e364b0358faf18ab78053859db2756e635e754e',
+ 'continuity-interest-v1.js':'9c82570da17bfbc5e45b0b5d343f8ce56503f405',
+ 'transactional-email-v1.js':'4713c190b1d502bac7f22d8c6a4d476c0cf5857b',
+ 'worker-entry-v6.js':'02f14a8badfacae1fd829b1148ba3169fb2e5459',
+ 'babylove/dynamic-public.mjs':'30accc79e573188eebe2dd3432a1ab3a4287fc0d',
+ 'approved-public-corrections-20261024.mjs':'79ef8d2d5c07b228523ee2c85551ff7363b93df0',
+ 'approved-public-corrections-data-20261024.mjs':'03d46a1e31d6247a7fdaff6af3397238125a0812',
+ 'review/nhs-vs-private-eligibility-exact-body-20261023.md':'aa70e4acabd1aedba74f04d543ca84f518075fed',
+ 'review/saxenda-orlistat-exact-addendum-20261023.md':'5cda45dd5ac0648a0559438da27cf82399d59be3',
+ 'review/shift-product-events-v42m-generic-form-removal.diff':'007fdd8957545cf670c9ce5225ce750171135bc5',
+ 'review/shift-product-events-v42m-generic-form-removal.proposed.js':'c04b5e2eb1b08e15dcf7f1fa38f007166371cd11',
+ 'tests/contact-delivery-contract.test.mjs':'2195328a74ec0c86a49a6fcc6b61aebcc418e1fd',
+ 'tests/contact-success-analytics.test.mjs':'ec8387b925cd7d97420a585d30c8c81d31ef76fe',
+ 'tests/generic-form-telemetry-removal.test.mjs':'bd1c15590b3d6a1580978c825ff8bee7c3b86625',
+ 'tests/approved-public-corrections-20261024.test.mjs':'f87dc2a7dc796b50691553f3851b4be0288dc175',
+ 'tests/fixtures/approved-corrections-20261024/nhs-before.json':'297367c88854c575b79dea953df729fe5d726c22'
+});
+export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}).trim()){
+ for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);
+ return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);
+}
 export function validateAppSource(){
  return withImmutableHistoryVerification(()=>{
  verifyReconciledRelease();
@@ -87,7 +114,8 @@ export function validateAppSource(){
  for(const p of PWA_DISMISS_PATHS)if(p==='my-timber-pwa/presentation.mjs')assert.equal(originalMemberWorkerPresentation(execFileSync('git',['show','HEAD:'+p],{encoding:'utf8'})),execFileSync('git',['show',PWA_DISMISS_APPROVED+':'+p],{encoding:'utf8'}),'Complete PWA presentation differs beyond exact shared member worker registration');else assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',PWA_DISMISS_APPROVED+':'+p),'Reviewed PWA install dismissal drift: '+p);
  validateMemberFocus((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='preview/app-layout/tabs.mjs'?FOOTER_CANDIDATE:ref)+':'+path));
  const changed=git('diff','--name-only',APP_BASE,'HEAD').split('\n').filter(Boolean);
- assert(changed.every(p=>APP_PATHS.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)).join(','));
+ const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks());
+ assert(changed.every(p=>APP_PATHS.has(p)||exactSafetyPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)&&!exactSafetyPaths.has(p)).join(','));
  for(const [p,sha]of Object.entries(APP_HASHES))assert.equal(createHash('sha256').update(execFileSync('git',reconciliationGitArgs(['show',originalAppHashRef(p)+':'+p]))).digest('hex'),sha,'App release drift: '+p);
  for(const p of ['presentation.mjs','screens.mjs','tabs.mjs','refinement.mjs','verify.cjs'])assert.equal(git('rev-parse',historicalFooterRef('HEAD','preview/app-layout/'+p)+':preview/app-layout/'+p),git('rev-parse',APP_APPROVED+':preview/app-layout/'+p),'Approved app design changed: '+p);
  assert.equal(originalPwaLiveReadVerifier(execFileSync('git',['show','HEAD:my-timber-pwa/verify-live.mjs'],{encoding:'utf8'})),execFileSync('git',['show',APP_BASE+':my-timber-pwa/verify-live.mjs'],{encoding:'utf8'}),'PWA verifier differs beyond the exact bounded GET retry repair');

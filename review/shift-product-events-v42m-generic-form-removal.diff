@@ -1,0 +1,13 @@
+--- observed-live-asset
++++ proposed-asset-not-deployed
+@@ -32,10 +32,6 @@
+       var id=el.id||el.getAttribute('data-panel')||el.getAttribute('data-shift-action')||'unlabelled_control';
+       push('shift_action',{shift_path:path(),shift_template:template(),shift_action_id:id,shift_destination:destination(href)});
+     },true);
+-    document.addEventListener('submit',function(e){
+-      var f=e.target;if(!f||f.tagName!=='FORM')return;
+-      push('shift_form_submit',{shift_path:path(),shift_template:template(),shift_form_id:f.id||'unnamed_form'});
+-    },true);
+     var toolForm=document.querySelector('form.toolbox');
+     if(toolForm){
+       toolForm.addEventListener('submit',function(){push('shift_tool_used',{shift_path:path(),shift_tool_id:toolForm.id||'tool',shift_funnel_stage:'utility_activation'});});

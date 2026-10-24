@@ -9,7 +9,11 @@ const CONTACT_TYPES=new Map([
   ['general','general'],['general question','general'],['support','support'],['customer support','support'],
   ['order','orders'],['orders','orders'],['delivery','orders'],['clinical','clinical'],['clinical enquiry','clinical'],
   ['complaint','complaint'],['complaints','complaint'],['privacy','privacy'],['partner','partner'],['partnership','partner'],
-  ['press','press'],['media','press'],['finance','finance'],['accounts','accounts'],['feedback','feedback'],['it','it']
+  ['press','press'],['media','press'],['finance','finance'],['accounts','accounts'],['feedback','feedback'],['it','it'],
+  // Exact current /contact selector labels: reuse existing internal mailboxes only.
+  ['my account','accounts'],['my order','orders'],['the shift programme','support'],
+  ['technology','it'],['website or technical help','it'],['investment','finance'],
+  ['something else','general'],['stock update','support']
 ]);
 const json=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff'}});
 const clean=(value,max=180)=>String(value??'').trim().slice(0,max);
