@@ -1,0 +1,34 @@
+{
+  "name": "shift-timber-mill-presentation-20261021",
+  "main": "previews/timber-mill/worker.mjs",
+  "modules": [
+    {
+      "name": "previews/timber-mill/content.mjs",
+      "type": "application/javascript+module",
+      "sha": "6b961389246c2c2f2387653715e96f07c4460ea0b0e7b1beb12c3da3e2e02a3a",
+      "bytes": 1575074
+    },
+    {
+      "name": "previews/timber-mill/worker.mjs",
+      "type": "application/javascript+module",
+      "sha": "52ab3374c9a76d2f549b4a15df128dee8762ad6aa254216687233376744f4e17",
+      "bytes": 3412
+    }
+  ],
+  "deployment": {
+    "id": "dd9e4314-b478-4516-9352-eb4c4eb3c406",
+    "versions": [
+      {
+        "version_id": "0eabb5da-8b86-45bc-a023-51e5565e2cc0",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-21T22:34:06.739572Z"
+  },
+  "bindings": [
+    {
+      "name": "CORE",
+      "type": "service"
+    }
+  ]
+}

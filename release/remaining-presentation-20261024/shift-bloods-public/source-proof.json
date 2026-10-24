@@ -1,0 +1,34 @@
+{
+  "name": "shift-bloods-public",
+  "main": "shift-bloods-marketing-worker.mjs",
+  "modules": [
+    {
+      "name": "shift-bloods-marketing-worker.mjs",
+      "type": "application/javascript+module",
+      "sha": "738baee264f5f51ccc03437c9cbc36d8f9196ec24b8d3f4650882864d5718985",
+      "bytes": 2584
+    },
+    {
+      "name": "shift-bloods-public.mjs",
+      "type": "application/javascript+module",
+      "sha": "0d01cd4b22714bedda81ee618a353a1457197c1b35ca2cadd66ee4f4f28902af",
+      "bytes": 2815
+    }
+  ],
+  "deployment": {
+    "id": "16714b81-a994-4730-8789-495756dcfd3b",
+    "versions": [
+      {
+        "version_id": "882003c1-3315-4d17-b537-67486d111263",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-20T11:15:19.834388Z"
+  },
+  "bindings": [
+    {
+      "name": "PAGES_ORIGIN",
+      "type": "plain_text"
+    }
+  ]
+}
