@@ -1,0 +1,109 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "name": "chrome",
+      "width": 390,
+      "path": "/member/dashboard",
+      "height": 64,
+      "logo": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "logoWidth": 185,
+      "top": 0,
+      "navShed": true,
+      "drawerShed": true,
+      "overflow": false,
+      "heading": "YOUR LIFE.YOUR PACE.MY TIMBER."
+    },
+    {
+      "name": "chrome",
+      "width": 390,
+      "path": "/shift-health/blood-tests",
+      "height": 64,
+      "logo": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "logoWidth": 185,
+      "top": 0,
+      "navShed": true,
+      "drawerShed": true,
+      "overflow": false,
+      "heading": "Less guesswork.A clearer picture."
+    },
+    {
+      "name": "chrome",
+      "width": 1440,
+      "path": "/member/dashboard",
+      "height": 76,
+      "logo": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "logoWidth": 230,
+      "top": 0,
+      "navShed": true,
+      "drawerShed": true,
+      "overflow": false,
+      "heading": "YOUR LIFE.YOUR PACE.MY TIMBER."
+    },
+    {
+      "name": "chrome",
+      "width": 1440,
+      "path": "/shift-health/blood-tests",
+      "height": 76,
+      "logo": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "logoWidth": 230,
+      "top": 0,
+      "navShed": true,
+      "drawerShed": true,
+      "overflow": false,
+      "heading": "Less guesswork.A clearer picture."
+    },
+    {
+      "name": "webkit",
+      "width": 390,
+      "path": "/member/dashboard",
+      "height": 64,
+      "logo": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "logoWidth": 185,
+      "top": 0,
+      "navShed": true,
+      "drawerShed": true,
+      "overflow": false,
+      "heading": "YOUR LIFE.YOUR PACE.MY TIMBER."
+    },
+    {
+      "name": "webkit",
+      "width": 390,
+      "path": "/shift-health/blood-tests",
+      "height": 64,
+      "logo": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "logoWidth": 185,
+      "top": 0,
+      "navShed": true,
+      "drawerShed": true,
+      "overflow": false,
+      "heading": "Less guesswork.A clearer picture."
+    },
+    {
+      "name": "webkit",
+      "width": 1440,
+      "path": "/member/dashboard",
+      "height": 76,
+      "logo": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "logoWidth": 230,
+      "top": 0,
+      "navShed": true,
+      "drawerShed": true,
+      "overflow": false,
+      "heading": "YOUR LIFE.YOUR PACE.MY TIMBER."
+    },
+    {
+      "name": "webkit",
+      "width": 1440,
+      "path": "/shift-health/blood-tests",
+      "height": 76,
+      "logo": "/assets/seo-20260923/logo-ce5904c700ef2787.webp",
+      "logoWidth": 230,
+      "top": 0,
+      "navShed": true,
+      "drawerShed": true,
+      "overflow": false,
+      "heading": "Less guesswork.A clearer picture."
+    }
+  ]
+}
