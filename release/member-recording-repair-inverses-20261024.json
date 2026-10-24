@@ -1,0 +1,305 @@
+{
+  "release/my-shift-release-scope-20261024.mjs": {
+    "original": "b8d22d49ef87cd1357511e1a3e3b7bfc065e7ea1",
+    "current": "d1c75b43f115958588e973a19867c8aeb2f2816a",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {verifyMemberRecordingRepair,RECORDING_REPAIR_BASE,memberRecordingComparisonValue,recordingRepairLegacyPaths,withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 302,
+        "after": "",
+        "before": "n"
+      },
+      {
+        "start": 303,
+        "after": "c",
+        "before": ""
+      },
+      {
+        "start": 305,
+        "after": "ual",
+        "before": "ive"
+      },
+      {
+        "start": 3726,
+        "after": "rdingProjection=false;\nconst nativeReadFileSync=(path,...args)=>recordingProjection&&typeof path==='string'?bytes(RECORDING_REPAIR_BASE,path):actualReadFileSync(path,...args);\nlet reco",
+        "before": ""
+      },
+      {
+        "start": 4135,
+        "after": "recordingProjection?args.map(value=>value==='HEAD'?RECORDING_REPAIR_BASE:value.startsWith('HEAD:')?RECORDING_REPAIR_BASE+value.slice(4):value):",
+        "before": ""
+      },
+      {
+        "start": 4896,
+        "after": "\n value=memberRecordingComparisonValue(path,value);",
+        "before": ""
+      },
+      {
+        "start": 11919,
+        "after": "return withMemberRecordingQualification(()=>verifyRecordingAwareMyShiftRelease(requestedHead));}\nfunction verifyRecordingAwareMyShiftRelease(requestedHead){",
+        "before": ""
+      },
+      {
+        "start": 12898,
+        "after": "for(const path of recordingRepairLegacyPaths())RECONCILIATION_PATHS.add(path);\n ",
+        "before": ""
+      },
+      {
+        "start": 13148,
+        "after": "memberRecordingComparisonValue(path,",
+        "before": ""
+      },
+      {
+        "start": 13214,
+        "after": "head);\n  value=memberRecordingComparisonValue(path,value,head);\n  const ",
+        "before": ""
+      },
+      {
+        "start": 21233,
+        "after": "value=memberRecordingComparisonValue(path,value);\n ",
+        "before": ""
+      },
+      {
+        "start": 23351,
+        "after": "ordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}\n if(!rec",
+        "before": ""
+      },
+      {
+        "start": 24737,
+        "after": "return withMemberRecordingQualification(()=>{\n ",
+        "before": ""
+      },
+      {
+        "start": 24940,
+        "after": "\n  const recording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);",
+        "before": ""
+      },
+      {
+        "start": 25254,
+        "after": "",
+        "before": "git('"
+      },
+      {
+        "start": 25256,
+        "after": "co",
+        "before": "v-pa"
+      },
+      {
+        "start": 25259,
+        "after": "",
+        "before": "se',proof.hea"
+      },
+      {
+        "start": 25260,
+        "after": "ing",
+        "before": "+':'+path)"
+      },
+      {
+        "start": 25458,
+        "after": "memberRecordingComparisonValue(path,",
+        "before": ""
+      },
+      {
+        "start": 25498,
+        "after": "",
+        "before": "n"
+      },
+      {
+        "start": 25499,
+        "after": "c",
+        "before": ""
+      },
+      {
+        "start": 25501,
+        "after": "ual",
+        "before": "ive"
+      },
+      {
+        "start": 25522,
+        "after": "),proof.head",
+        "before": ""
+      },
+      {
+        "start": 25620,
+        "after": "for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);\n ",
+        "before": ""
+      },
+      {
+        "start": 25726,
+        "after": " });\n",
+        "before": ""
+      }
+    ]
+  },
+  "release/approved-source-comparison-20261024.mjs": {
+    "original": "c2ce48a0c6b4e8151fcf3abd99953685c43a0cf8",
+    "current": "0081da7e70c301ccaa8e2a4fcbfbb2eab1620f60",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {memberRecordingComparisonValue} from './member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 1700,
+        "after": "value=memberRecordingComparisonValue(path,value,head);\n ",
+        "before": ""
+      }
+    ]
+  },
+  "release/member-design-scope.mjs": {
+    "original": "f17babd0758d60041d3fe8f77ca711ec9e212d97",
+    "current": "7e76d8482ddc1e8e1a705897fbd129cca7b4eb7e",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {memberRecordingComparisonValue} from './member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 2053,
+        "after": "{const value=",
+        "before": ""
+      },
+      {
+        "start": 2115,
+        "after": ";return args[0]==='rev-parse'&&args[1]?.startsWith('HEAD:')?memberRecordingComparisonValue(args[1].slice(5),value):value;}",
+        "before": ""
+      }
+    ]
+  },
+  "release/app-scope.mjs": {
+    "original": "359a0ad45db487b3d67f0d594722c8a1ec887dc4",
+    "current": "10db2116c044feab0809b0625cf04b7ae91a309c",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {memberRecordingComparisonValue,recordingRepairLegacyPaths} from './member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 2173,
+        "after": "const valu",
+        "before": "r"
+      },
+      {
+        "start": 2184,
+        "after": "=",
+        "before": "turn "
+      },
+      {
+        "start": 2338,
+        "after": ";if(bin==='git'&&['show','rev-parse'].includes(args[0])&&args[1]?.startsWith('HEAD:')){const ending=args[0]==='rev-parse'&&typeof value==='string'&&value.endsWith('\\n')?'\\n':'';return memberRecordingComparisonValue(args[1].slice(5),ending?value.slice(0,-1):value,head)+ending;}return value",
+        "before": ""
+      },
+      {
+        "start": 14635,
+        "after": "recordingRepairLegacyPaths()){APP_PATHS.add(path);RECONCILIATION_PATHS.add(path);}\n for(const path of ",
+        "before": ""
+      }
+    ]
+  },
+  ".github/workflows/seo-discovery-proof.yml": {
+    "original": "1a7b05f08e79ad1d60f80723e17cdb3e8019a2be",
+    "current": "c82f589d47ceffff6a8afabd09f81fe4dfe2428c",
+    "edits": [
+      {
+        "start": 502,
+        "after": "name: Prepare native index before parallel source readers\n        run: git update-index --refresh\n      - ",
+        "before": ""
+      }
+    ]
+  },
+  "release/app-preflight.mjs": {
+    "original": "7a1473994a1f39de23acf68ffc5e93aad44af8f8",
+    "current": "26c3c4e9ad04b54f4edfc5337e4a869b2084420e",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 2128,
+        "after": "console.log('[app-preflight] synchronous-source:start');\nconst currentReleaseAdmission=withMemberRecordingQualification(()=>{\n",
+        "before": ""
+      },
+      {
+        "start": 2308,
+        "after": "",
+        "before": "currentRele"
+      },
+      {
+        "start": 2309,
+        "after": "",
+        "before": "seA"
+      },
+      {
+        "start": 2374,
+        "after": ");\nreturn admission;\n});\nconsole.log('[app-preflight] synchronous-source:passed'",
+        "before": ""
+      },
+      {
+        "start": 2554,
+        "after": ");\nconsole.log('[app-preflight] recorded-proofs:start'",
+        "before": ""
+      },
+      {
+        "start": 15035,
+        "after": "console.log('[app-preflight] recorded-proofs:passed');\nconsole.log('[app-preflight] asset-pins:start');\nwithMemberRecordingQualification(()=>{\n",
+        "before": ""
+      },
+      {
+        "start": 16777,
+        "after": "});\nconsole.log('[app-preflight] asset-pins:passed');\n",
+        "before": ""
+      }
+    ]
+  },
+  "tests/approved-ranking-release.test.mjs": {
+    "original": "f816947e3bda323b998517685da97c4d2a35f858",
+    "current": "5a7b70ae2dd203d61d77ebcf009d74cfd9e02391",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {memberRecordingComparisonValue} from '../release/member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 911,
+        "after": "memberRecordingComparisonValue(p,",
+        "before": ""
+      },
+      {
+        "start": 1044,
+        "after": ")",
+        "before": ""
+      }
+    ]
+  },
+  "tests/seo-discovery-release.test.mjs": {
+    "original": "fef29d036a649037ba802e775c7a7e4a36b12519",
+    "current": "e4b64730277945a1d685773528e1e285a67080a4",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {memberRecordingComparisonValue} from '../release/member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 941,
+        "after": "memberRecordingComparisonValue(p,",
+        "before": ""
+      },
+      {
+        "start": 1074,
+        "after": ")",
+        "before": ""
+      }
+    ]
+  }
+}

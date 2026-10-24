@@ -37,6 +37,6 @@ window.SST_API = (function(){
     getConsents:()=>request('/consents'),
     saveConsent:data=>request('/consents',{method:'POST',body:JSON.stringify(data)}),
     exportData:()=>request('/privacy/export',{method:'POST'}),
-    deleteAccount:()=>request('/privacy/account',{method:'DELETE'})
+    deleteAccount:()=>request('/privacy/account',{method:'DELETE',body:JSON.stringify({confirmation:'DELETE_MY_ACCOUNT'})})
   };
 })();

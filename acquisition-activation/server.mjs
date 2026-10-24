@@ -39,9 +39,8 @@ export async function acquisitionAccountDelete(request,env,ctx,next){
  if(new URL(request.url).pathname!=='/v1/privacy/account'||request.method!=='DELETE')return null;
  if(!sourceOriginAllowed(request))return json({ok:false,error:'origin_not_allowed'},403);
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
- // Source erasure is safe before the separate full-account deletion request.
- // The existing request/revocation/clinical-retention rules remain authoritative.
- try{await eraseAcquisitionStatement(env.DB,auth.userId).run()}catch{return json({ok:false,error:'attribution_erasure_failed'},503)}
+ // The immediate account-deletion transaction erases attribution atomically.
+ // Do not erase anything before the destructive confirmation is validated.
  return next(request,env,ctx);
 }
 export const PURGE_EXPIRED_SQL="UPDATE audit_log SET metadata=json_remove(metadata,'$.acquisition') WHERE action='auth.register' AND CASE WHEN json_valid(metadata) THEN json_type(metadata,'$.acquisition') IS NOT NULL AND (julianday(json_extract(metadata,'$.acquisition.expiresAt'))<=julianday('now') OR julianday(json_extract(metadata,'$.acquisition.expiresAt')) IS NULL) ELSE 0 END";

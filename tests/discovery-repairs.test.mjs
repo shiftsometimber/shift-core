@@ -95,23 +95,32 @@ test('Pen Day cannot race a concurrent withdrawal into a new saved note',async t
 });
 
 function deletionFixture(t){
- const f=database(t);f.sqlite.exec(`CREATE TABLE data_requests(id INTEGER PRIMARY KEY,user_id INTEGER,request_type TEXT,status TEXT,received_at TEXT,completed_at TEXT);
- CREATE TABLE hq_tasks(id INTEGER PRIMARY KEY,user_id INTEGER,title TEXT,description TEXT,status TEXT,due_at TEXT,created_at TEXT,updated_at TEXT);
+ const f=database(t);f.sqlite.exec(`CREATE TABLE users(id INTEGER PRIMARY KEY,email TEXT,first_name TEXT,last_name TEXT,phone TEXT,date_of_birth TEXT,postcode TEXT,updated_at TEXT);
+ CREATE TABLE user_auth(user_id INTEGER PRIMARY KEY,password_hash TEXT,email_verified INTEGER,failed_login_attempts INTEGER,locked_until TEXT,updated_at TEXT);
+ CREATE TABLE auth_tokens(user_id INTEGER);
+ CREATE TABLE member_state(user_id INTEGER);
+ CREATE TABLE member_status(user_id INTEGER,lifecycle_stage TEXT,membership_status TEXT,updated_at TEXT);
+ CREATE TABLE data_requests(id INTEGER PRIMARY KEY,user_id INTEGER,request_type TEXT,status TEXT,received_at TEXT,completed_at TEXT);
+ CREATE TABLE hq_tasks(id INTEGER PRIMARY KEY,user_id INTEGER,title TEXT,description TEXT,status TEXT,due_at TEXT,completed_at TEXT,created_at TEXT,updated_at TEXT);
  CREATE TABLE user_sessions(id INTEGER PRIMARY KEY,user_id INTEGER,revoked_at TEXT);
+ INSERT INTO users(id,email) VALUES(1,'isolated-one@example.invalid'),(2,'isolated-two@example.invalid');
+ INSERT INTO user_auth(user_id,password_hash,email_verified) VALUES(1,'fixture',1),(2,'second-fixture',1);
  INSERT INTO user_sessions VALUES(1,1,NULL),(2,1,NULL),(3,2,NULL);`);return f;
 }
-test('deletion receipt reaches HQ and signs out all member sessions atomically, without claiming completion',async t=>{
- const {sqlite,DB}=deletionFixture(t);
- for(let i=0;i<2;i++)assert.deepEqual(await receiveAccountDeletion(DB,1),{ok:true,status:'received'});
- assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM data_requests').get().n,1);assert.equal(sqlite.prepare('SELECT completed_at FROM data_requests').get().completed_at,null);
- assert.equal(sqlite.prepare("SELECT COUNT(*) n FROM hq_tasks WHERE status='open'").get().n,1);
+test('account deletion completes immediately and revokes all member sessions without an HQ queue',async t=>{
+ const {sqlite,DB}=deletionFixture(t),now='2026-10-24T16:30:00.000Z';
+ for(let i=0;i<2;i++)assert.deepEqual(await receiveAccountDeletion(DB,1,now),{ok:true,status:'deleted',deletedAt:now,accountClosed:true});
+ assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM data_requests').get().n,1);assert.equal(sqlite.prepare('SELECT completed_at FROM data_requests').get().completed_at,now);
+ assert.equal(sqlite.prepare("SELECT COUNT(*) n FROM hq_tasks WHERE status='open'").get().n,0);
  assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM user_sessions WHERE user_id=1 AND revoked_at IS NULL').get().n,0);
  assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM user_sessions WHERE user_id=2 AND revoked_at IS NULL').get().n,1);
+ assert.match(sqlite.prepare('SELECT password_hash FROM user_auth WHERE user_id=1').get().password_hash,/^closed\$/);
 });
-test('a failed HQ task cannot leave a false receipt or revoke sessions',async t=>{
- const {sqlite,DB}=deletionFixture(t);sqlite.exec("CREATE TRIGGER deny_queue BEFORE INSERT ON hq_tasks BEGIN SELECT RAISE(ABORT,'queue unavailable'); END;");
- await assert.rejects(receiveAccountDeletion(DB,1),/queue unavailable/);
+test('a failed deletion transaction cannot leave a false completion or revoke sessions',async t=>{
+ const {sqlite,DB}=deletionFixture(t);sqlite.exec("CREATE TRIGGER deny_completion BEFORE INSERT ON data_requests BEGIN SELECT RAISE(ABORT,'storage unavailable'); END;");
+ await assert.rejects(receiveAccountDeletion(DB,1),/storage unavailable/);
  assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM data_requests').get().n,0);assert.equal(sqlite.prepare('SELECT COUNT(*) n FROM user_sessions WHERE revoked_at IS NULL').get().n,3);
+ assert.equal(sqlite.prepare('SELECT password_hash FROM user_auth WHERE user_id=1').get().password_hash,'fixture');
 });
 
 test('Today uses the same saved-session guard as Fit without changing the retained plan',()=>{

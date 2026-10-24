@@ -94,6 +94,6 @@ test('Apple review privacy and account safety hooks remain present',()=>{
  assert.match(appDelegate,/applicationWillResignActive/);
  assert.match(appDelegate,/privacyCover/);
  assert.match(appDelegate,/window\.addSubview\(cover\)/);
- assert.match(accountDeletion,/Request account deletion/);
+ assert.match(accountDeletion,/Delete my account/);
  assert.match(accountDeletion,/deleteAccount/);
 });
