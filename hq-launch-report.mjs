@@ -46,7 +46,7 @@ export async function appendLaunchMetrics(DB,report,permissions=[],now=new Date(
  const stamp=now.toISOString();
  await read('unassigned_tasks','Unassigned open tasks','crm_read',['hq_tasks'],"SELECT COUNT(*) value FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND (assigned_to IS NULL OR trim(assigned_to)='')");
  const overdue=metrics.find(m=>m.key==='tasks');if(overdue&&allowed(permissions,'crm_read')){
-  const corrected=await read('overdue_tasks_now','Overdue tasks as of report generation','crm_read',['hq_tasks'],"SELECT COUNT(*) value FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND due_at IS NOT NULL AND julianday(due_at)<julianday(?)",[stamp]);
+  const corrected=await read('overdue_tasks_now','Overdue tasks as of report generation','crm_read',['hq_tasks'],"SELECT COUNT(*) value FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND due_at IS NOT NULL AND ((length(due_at)=10 AND due_at<?) OR (length(due_at)<>10 AND julianday(due_at)<julianday(?)))",[new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(now),stamp]);
   if(corrected.status==='available'){overdue.value=corrected.value;overdue.scope='Current snapshot at generation, including time-based due dates';}
  }
  await read('pending_privacy_requests','Pending account-deletion requests','crm_read',['data_requests'],"SELECT COUNT(*) value FROM data_requests WHERE request_type='deletion' AND status NOT IN ('completed','cancelled')");

@@ -41,3 +41,7 @@ test('late source cancellation never relabels an accepted or uncertain transport
   const db=await eventFixture();await reconcileNotifications({DB:db},now);const d=await(await prepareIntent(db,'deletion:1',owner,now)).json();db.sqlite.prepare("UPDATE hq_comms_recipients SET status=? WHERE draft_id=?").run(status,d.id);db.sqlite.exec("UPDATE data_requests SET status='cancelled'");await reconcileNotifications({DB:db},new Date('2030-01-01T12:10:00Z'));assert.equal(db.sqlite.prepare("SELECT state FROM hq_notification_intents WHERE event_key='deletion:1'").get().state,'prepared');assert.equal(db.sqlite.prepare('SELECT status FROM hq_comms_recipients WHERE draft_id=?').get(d.id).status,status);
  }
 });
+
+test('date-only HQ deadlines expire at the end of the London day in summer and winter',async()=>{
+ const db=fixture();db.sqlite.exec("INSERT INTO hq_tasks VALUES(1,'open','2030-01-01','Matt')");let r=await appendLaunchMetrics(db,report(),['*'],new Date('2030-01-01T23:30:00Z'));assert.equal(r.metrics.find(x=>x.key==='tasks').value,0);db.sqlite.exec("UPDATE hq_tasks SET due_at='2030-06-01'");r=await appendLaunchMetrics(db,report(),['*'],new Date('2030-06-01T23:30:00Z'));assert.equal(r.metrics.find(x=>x.key==='tasks').value,1);
+});
