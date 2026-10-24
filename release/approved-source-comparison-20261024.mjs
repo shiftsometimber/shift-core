@@ -16,19 +16,13 @@ function qualify(head,path){
  const original=originalApprovedComparisonSource(path,actual);assert.equal(original,exec('git',['cat-file','blob',d.original],{encoding:'utf8',maxBuffer:64e6}),'Original immutable comparison source changed: '+path);return{d,actual,original};
 }
 export function approvedSourceComparison(path,value,head){
- const d=deltas[path];if(!d||value!==d.current)return value;
- qualify(head??git('rev-parse','HEAD'),path);return d.original;
+ const d=deltas[path];if(!d)return value;
+ const identifier=value===d.current,bytes=typeof value==='string'&&oid(value)===d.current;
+ if(!identifier&&!bytes)return value;
+ const proof=qualify(head??git('rev-parse','HEAD'),path);return identifier?d.original:proof.original;
 }
-export function approvedSourceComparisonFrame(frame){
- if(!frame)return frame;
- try{git('merge-base','--is-ancestor','e01a9a16e7794bcac69acf84dee7a3a50816cd52',frame.rawHead);}catch(error){if(error.status===1)return frame;throw error;}
- for(const path of Object.keys(deltas))qualify(frame.rawHead,path);
- const normalize=(path,value)=>{const d=deltas[path];if(!d)return value;if(value===d.current){qualify(frame.rawHead,path);return d.original;}if(typeof value==='string'&&oid(value)===d.current)return originalApprovedComparisonSource(path,value);return value;};
- const unary=fn=>(ref,path)=>normalize(path,fn(ref,path));
- const result={...frame,read:unary(frame.read),blob:unary(frame.blob),content:unary(frame.content),
-  // Supplied readers retain every existing fresh native authentication call.
-  // Only the authenticated result is projected into the original comparison.
-  projectRead:reader=>unary(frame.projectRead(reader)),projectContent:reader=>unary(frame.projectContent(reader)),
-  finish:()=>{frame.finish();for(const path of Object.keys(deltas))qualify(frame.rawHead,path);}
- };return Object.freeze(result);
+// Pure comparison projection only. This never authenticates supplied readers.
+// The owning factory independently verifies current native source first.
+export function approvedLegacyComparisonValue(ref,path,value,head){
+ return ref==='HEAD'||ref===head?approvedSourceComparison(path,value,head):value;
 }

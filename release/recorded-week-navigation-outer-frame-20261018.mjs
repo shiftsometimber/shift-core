@@ -1,4 +1,3 @@
-import {approvedSourceComparisonFrame} from './approved-source-comparison-20261024.mjs';
 import {Buffer as sourceMetadataBuffer} from 'node:buffer';
 import {hash as sourceMetadataHash} from 'node:crypto';
 import {isSharedArrayBuffer as sourceMetadataSharedBacking} from 'node:util/types';
@@ -452,5 +451,5 @@ export function actualNavigationOuterFrame(){
   projectDiff:r=>{assert.equal(typeof r,'function','Supplied navigation source diff callback required');return binary(inner.projectDiff(outer.projectDiff(r)));},
   projectAncestor:r=>{assert.equal(typeof r,'function','Supplied navigation source ancestor callback required');return binary(inner.projectAncestor(outer.projectAncestor(r)));}
  };
- const qualified=approvedSourceComparisonFrame(frame);frames.add(qualified);qualified.assertCurrent();return qualified;
+ frames.add(frame);frame.assertCurrent();return Object.freeze(frame);
 }
