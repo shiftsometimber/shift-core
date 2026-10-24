@@ -87,6 +87,6 @@ export async function appendLaunchMetrics(DB,report,permissions=[],now=new Date(
  await read('notification_job_failures','Notification reconciliation failures (24 hours)','*',['hq_notification_runs'],"SELECT COUNT(*) value FROM hq_notification_runs WHERE status='failed' AND julianday(started_at)>=julianday(?,'-24 hours')",[stamp]);
  await read('notification_job_age_minutes','Minutes since successful notification reconciliation','*',['hq_notification_runs'],"SELECT (julianday(?)-julianday(MAX(completed_at)))*1440 value FROM hq_notification_runs WHERE status='completed'",[stamp],'minutes','Current snapshot; five-minute schedule. No completed run is unavailable, never zero.');
  limitations.push('Readiness counters are current operational snapshots, not customer growth or proof that an unused integration works. New security and delivery aggregates require existing owner/admin permission. No member identities, message bodies, clinical details, endpoints or secrets are returned. All-account MFA enrolment and enforcement are unchanged.');
- report.version='hq-launch-report-v3-20261024';
+ report.version='hq-launch-report-v3.1-20261024';
  return report;
 }
