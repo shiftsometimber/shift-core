@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-24T14:14:00.000Z",
+  "checks": [
+    {
+      "path": "/clinical-portal/partners",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-portal/partners/demo",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-portal/partners/application",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-portal/partners/activation",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-portal/partners/sign-in",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-portal/dispensing",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-portal/dispensing/demo",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-portal/my-profile",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-assets/partners/client.mjs",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-assets/partners/domain.mjs",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-assets/partners/demo.mjs",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-assets/partners/style.css",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-assets/partners/demo-client.mjs",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/v1/hq/clinical/partners",
+      "status": 503,
+      "realAccessClosed": true
+    },
+    {
+      "path": "/v1/hq/clinical/partners/fulfilment",
+      "status": 503,
+      "realAccessClosed": true
+    }
+  ],
+  "browser": {
+    "width": 390,
+    "errors": [],
+    "noStockBlocked": true
+  },
+  "realWrites": 0
+}

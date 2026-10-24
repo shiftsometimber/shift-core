@@ -1,0 +1,62 @@
+{
+  "at": "2026-10-24T14:16:00.774Z",
+  "timezone": "Europe/London",
+  "request": "Create shared HQ professional onboarding/permissions, clinical link and dispensing workspace; match clinician branding",
+  "sourceCommit": "8e5c94a146092a6d4db798a94239aeaa2fc78767",
+  "branch": "feat/hq-partner-operations-20261024",
+  "worker": "shift-hq-clinical-portal",
+  "previousVersion": "c91c7e3b-4d49-4f7f-994e-15c7ef10518b",
+  "deployedVersion": "7288bc8b-9360-4567-8012-1793e9f03f36",
+  "built": true,
+  "reviewSurfacesDeployed": true,
+  "liveVerified": true,
+  "realStaffOnboardingEnabled": false,
+  "realClinicalEnabled": false,
+  "realDispensingEnabled": false,
+  "productionDatabaseMigrationApplied": false,
+  "realInvitationsSent": 0,
+  "realNotificationsSent": 0,
+  "purchasingChanged": false,
+  "homepageChanged": false,
+  "mainBranchMerged": false,
+  "urls": {
+    "hqReview": "https://hq.shiftsometimber.co.uk/clinical-portal/partners/demo",
+    "dispensingReview": "https://hq.shiftsometimber.co.uk/clinical-portal/dispensing/demo",
+    "staffShell": "https://hq.shiftsometimber.co.uk/clinical-portal/partners",
+    "professionalProfile": "https://hq.shiftsometimber.co.uk/clinical-portal/my-profile"
+  },
+  "proof": {
+    "nativeTests": {
+      "pass": 85,
+      "fail": 0,
+      "log": "/tmp/hq-partner-release-tests.log"
+    },
+    "localBrowser": {
+      "widths": [
+        390,
+        1280
+      ],
+      "errors": 0,
+      "externalRequests": 0,
+      "receipt": "partner-proof/browser-receipt.json"
+    },
+    "live": {
+      "exactRoutes": 15,
+      "browserErrors": 0,
+      "noStockBlocked": true,
+      "receipt": "partner-proof/live-receipt.json"
+    },
+    "bundleKiB": 265.37
+  },
+  "pending": [
+    "Actual HQ root-navigation insertion (separate active owner/workstream; no root replacement)",
+    "Reviewed additive DB migration and private staff-evidence binding",
+    "Staff privacy, retention/hold/deletion policy and tested purge process",
+    "Named verified clinical/pharmacy scope reviewers",
+    "Actual-session username/MFA/recovery/rate-limit acceptance",
+    "Trusted prescription, stock and courier adapters and real partner acceptance",
+    "My Shift rendering and live end-to-end order acceptance",
+    "Approved communication drafts/trigger policies and delivery integration"
+  ],
+  "note": "Working fictional review surfaces and a tested implementation, not a commissioned clinical/pharmacy service or a compliance certification. No new recurring jobs, costs or messages. Existing public/core-main release is separate and untouched."
+}

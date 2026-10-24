@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-24T14:07:49.273Z",
+  "fictionalOnly": true,
+  "realWrites": 0,
+  "results": [
+    {
+      "width": 390,
+      "errors": [],
+      "externalRequests": 0,
+      "checks": "staff checks -> approval -> generated username; dispensing -> no-stock block -> fictional stock -> dispatch; inset and overflow"
+    },
+    {
+      "width": 1280,
+      "errors": [],
+      "externalRequests": 0,
+      "checks": "staff checks -> approval -> generated username; dispensing -> no-stock block -> fictional stock -> dispatch; inset and overflow"
+    }
+  ]
+}
