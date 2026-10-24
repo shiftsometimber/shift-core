@@ -8,7 +8,7 @@ export async function retainInboxObservation(DB,evidence){
 }
 export function deliveryState(raw, providerId) {
  const state=String(raw||'').toLowerCase();
- if(['suppressed','cancelled','canceled','revoked','expired','skipped'].includes(state))return 'suppressed';
+ if(['suppressed','cancelled','canceled','revoked','expired','skipped','superseded'].includes(state))return 'suppressed';
  if(['failed','error','rejected','bounced','binding_missing','configuration_missing'].includes(state))return 'failed';
  if(['unknown','uncertain','sending','in_flight'].includes(state))return 'unknown';
  if(['draft','awaiting_review','held','awaiting_approval','prepared'].includes(state))return 'awaiting_approval';
@@ -22,6 +22,7 @@ export function deliveryState(raw, providerId) {
 }
 const sources=[
  ['auth_delivery_events',`SELECT 'auth:'||id reference,event_type trigger,user_id member_id,status raw_state,provider_id,created_at occurred_at,error_code FROM auth_delivery_events`],
+ ['clinical_notification_channels',`SELECT 'clinical-channel:'||c.event_id||':'||c.channel reference,e.kind trigger,e.member_id member_id,c.status raw_state,c.provider_reference provider_id,c.updated_at occurred_at,NULL error_code,c.channel,'clinical:'||e.id event_reference FROM clinical_notification_channels c JOIN clinical_notification_events e ON e.id=c.event_id WHERE c.draft_id IS NULL`],
  ['commerce_service_delivery',`SELECT r.event_key reference,'shop_'||r.event_type trigger,o.user_id member_id,r.status raw_state,r.provider_id,r.updated_at occurred_at,r.error_code,'shop:'||o.order_number event_reference,r.template_version,r.payload_hash,'email' channel FROM commerce_service_delivery r JOIN orders o ON o.id=r.order_id`],
  ['commerce_receipt_delivery',`SELECT 'shop-receipt:'||r.order_id||':'||r.recipient_role reference,'shop_payment_receipt' trigger,o.user_id member_id,r.state raw_state,r.provider_id,r.updated_at occurred_at,r.last_error error_code,'shop:'||o.order_number event_reference FROM commerce_receipt_delivery r JOIN orders o ON o.id=r.order_id`],
  ['member_signup_alerts',`SELECT 'signup:'||user_id reference,'registration_operator' trigger,user_id member_id,state raw_state,provider_id,updated_at occurred_at,last_error error_code FROM member_signup_alerts`],
