@@ -42,7 +42,7 @@ for(const [engine,type]of [['webkit',webkit],['chromium',chromium]]){
   for(const tool of ['grub','fit']){
    await page.locator('#appBottomNav a[data-app-open="'+tool+'"]').click();
    await page.locator('#appTool-'+tool+' iframe').waitFor({state:'visible'});
-   assert.equal(await page.locator('#appBottomNav a[data-app-open="'+tool+'"]').getAttribute('aria-current'),'page');
+   await page.waitForFunction(tool=>document.querySelector('#appBottomNav a[data-app-open="'+tool+'"]')?.getAttribute('aria-current')==='page',tool);
   }
   receipt.results.push({engine,case:'dashboard duplicate tabs hidden; bottom Grub and Fit still switch panels',pass:true});
 
