@@ -1,0 +1,35 @@
+{
+  "pass": true,
+  "at": "2026-10-24T22:11:10.066Z",
+  "source": "95f2dc1fbd532ae64fba6a186f5d15c2fc67aae4",
+  "engine": "Actual rendered Chrome via CUA",
+  "bloods": {
+    "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+    "visibleCookieControls": 1,
+    "reopens": true,
+    "necessaryOnlyChoicePersistsAfterReload": true,
+    "footerCount": 1,
+    "footerBackground": "rgb(5, 5, 5)",
+    "headingColour": "rgb(139, 148, 123)",
+    "legalLinks": 4,
+    "noDuplicateLegalLinks": true,
+    "horizontalOverflow": false
+  },
+  "shop": {
+    "url": "https://shiftsometimber.co.uk/shop",
+    "appleTouchIcons": 1,
+    "appleTouchHref": "https://shiftsometimber.co.uk/assets/apple-touch-shift-s-20261020.png",
+    "manifests": 1,
+    "manifestHref": "https://shiftsometimber.co.uk/site.webmanifest",
+    "featuredRange": 6,
+    "fullRange": 16,
+    "creamItemsAfterSingleSelection": 1,
+    "firstItemLink": "/shop?item=heavyweight-tee&colour=cream",
+    "horizontalOverflow": false
+  },
+  "viewport": 1363,
+  "physicalIPhoneOrSafariHomeScreenVerified": false,
+  "memberDataRead": false,
+  "ordersCreated": 0,
+  "externalCommunicationsSent": 0
+}

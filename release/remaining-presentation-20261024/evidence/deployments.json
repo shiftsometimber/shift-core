@@ -1,0 +1,62 @@
+{
+  "bloods": {
+    "source": "95f2dc1fbd532ae64fba6a186f5d15c2fc67aae4",
+    "worker": "shift-bloods-public",
+    "deploymentId": "3ba4c9d7-1ba2-49d1-8c7b-879b2a8c6004",
+    "versions": [
+      {
+        "version_id": "27b0d767-36d9-48ab-8dc5-364c4f297801",
+        "percentage": 100
+      }
+    ],
+    "at": "2026-10-24T22:09:28.763Z",
+    "uploadedETag": "176f2f80c6c421117fb38354410baa33e9811c0aadd71681cf5cd07474fb9979",
+    "exactModuleReadback": [
+      {
+        "name": "shift-bloods-marketing-worker.mjs",
+        "sha": "3ef4b573766c58f813f2b265a1f0420c8b5091044c7b819f09f7d101b22abe56"
+      },
+      {
+        "name": "shift-bloods-public.mjs",
+        "sha": "0d01cd4b22714bedda81ee618a353a1457197c1b35ca2cadd66ee4f4f28902af"
+      }
+    ],
+    "rollbackVersion": [
+      {
+        "version_id": "882003c1-3315-4d17-b537-67486d111263",
+        "percentage": 100
+      }
+    ],
+    "noRepeatUpload": true
+  },
+  "shop": {
+    "source": "95f2dc1fbd532ae64fba6a186f5d15c2fc67aae4",
+    "worker": "shift-timber-mill-presentation-20261021",
+    "deploymentId": "b43a3bbd-b527-4a29-95ae-66863b915da4",
+    "versions": [
+      {
+        "version_id": "d57853fe-ab70-4a62-8047-4e7edfa06ec4",
+        "percentage": 100
+      }
+    ],
+    "at": "2026-10-24T22:09:33.251Z",
+    "uploadedETag": "cc682c0cb9f92933573cb3bdd3b789a41f8a9b56a500d75ac42ac6ea7f9b90c6",
+    "exactModuleReadback": [
+      {
+        "name": "previews/timber-mill/content.mjs",
+        "sha": "6b961389246c2c2f2387653715e96f07c4460ea0b0e7b1beb12c3da3e2e02a3a"
+      },
+      {
+        "name": "previews/timber-mill/worker.mjs",
+        "sha": "c02723133e6718e86bd592bd5dd24ab270613c87c2cfd2c59ce87fbb21e4c9f9"
+      }
+    ],
+    "rollbackVersion": [
+      {
+        "version_id": "0eabb5da-8b86-45bc-a023-51e5565e2cc0",
+        "percentage": 100
+      }
+    ],
+    "noRepeatUpload": true
+  }
+}

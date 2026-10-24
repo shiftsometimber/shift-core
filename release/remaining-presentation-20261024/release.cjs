@@ -92,7 +92,7 @@ async function bodyVerify(k,origin,stage=false){
   assert.deepEqual(s.versions[x.name],read(x.name+'/before').deployment,'Other publisher changed target component');
   save(key+'-production-intent',g);const result=await upload(key,false);save(key+'-production-upload',result);
   const deployment=(await c.organicApi(a+'/workers/scripts/'+x.name+'/deployments')).deployments[0];
-  const expected=result.deployment_id;assert.equal(deployment.id,expected,'Provider deployment has not converged; reconcile before retry');
+  const expected=result.deployment_id;assert(deployment.versions.some(v=>v.percentage===100&&v.version_id.replaceAll('-','')===expected),'Provider active version does not match exact uploaded legacy version ID; reconcile before retry');
   save(key+'-production-deployment',{source:g.head,name:x.name,deployment,at:new Date().toISOString()});console.log(JSON.stringify({name:x.name,deployment:deployment.id,source:g.head}));return;
  }
  if(mode==='rollback'){

@@ -1,0 +1,42 @@
+{
+  "pass": true,
+  "at": "2026-10-24T22:09:56.225Z",
+  "receipts": [
+    {
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "status": 200,
+      "sha256": "9d1e45c32691b25c14789df677d8d786518dd80d758b390e0b451cba1c6d6d47",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private,no-store",
+        "content-security-policy": null,
+        "strict-transport-security": null,
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": null,
+        "x-frame-options": null
+      }
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/shop",
+      "status": 200,
+      "sha256": "f7ed6e4c31b987392010ae9f3f451c07ce1902340f413db7794df7d3ef99452e",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-store",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    }
+  ],
+  "coreUnchanged": true,
+  "pagesUnchanged": true,
+  "routesUnchanged": true,
+  "bindingsAndSettingsUnchanged": true,
+  "homepageHTMLUnchanged": true,
+  "purchasingClosed": true
+}
