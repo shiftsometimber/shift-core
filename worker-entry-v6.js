@@ -1,3 +1,4 @@
+import {approvedTelemetryAsset,approvedComparisonAnswer} from './approved-public-corrections-20261024.mjs';
 import {causesPublicRoute} from './causes-partners/production.mjs';
 import {publicHttpsRedirect} from './public-https-redirect.mjs';
 import {withSharedFooter} from './timber-shed-public-teaser.mjs';
@@ -591,6 +592,7 @@ const worker = {
     const articlePage = await babyLovePublicRoute(request,env); if(articlePage)return withPublicSeoCloseout(articlePage,request);
     const dynamicArticlePage = await dynamicBabyLovePublicRoute(request,env); if(dynamicArticlePage)return withPublicSeoCloseout(dynamicArticlePage,request);
     const babyLove = await babyLoveRoutes(request,env); if(babyLove)return babyLove;
+    const approvedTelemetry=approvedTelemetryAsset(request);if(approvedTelemetry)return approvedTelemetry;
     const measurement = measurementAsset(request); if(measurement)return measurement;
     const publicNavigation = myTimberRedirect(request) || publicTickerAsset(request);
     if (publicNavigation) return publicNavigation;
@@ -1211,6 +1213,7 @@ export default {
     });
     const response = await withPublicSeoCloseout(await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx))))),request);
     const final=await withFoodGuideDiscovery(request,await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env)));
-    return withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)))),request);
+    const corrected=await approvedComparisonAnswer(request,final);
+    return withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,corrected):corrected)))),request);
   },
 };

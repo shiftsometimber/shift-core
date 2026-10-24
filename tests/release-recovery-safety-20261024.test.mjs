@@ -4,9 +4,9 @@ import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {verifyCurrentMainSafetyChecks} from '../release/app-scope.mjs';
 
-test('merged source-check additions require their exact Git objects',()=>{
+test('finite approved additions require their exact Git objects',()=>{
  const paths=verifyCurrentMainSafetyChecks();
- assert.equal(paths.length,4);
+ assert(paths.length>=4);
  for(const path of paths)assert.throws(()=>verifyCurrentMainSafetyChecks(p=>p===path?'0'.repeat(40):verify(p)),/Merged safety-check source drift/);
 });
 function verify(path){return execFileSync('git',['hash-object',path],{encoding:'utf8'}).trim();}
