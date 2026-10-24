@@ -20,7 +20,16 @@ function extract(html,base){
 async function fetchWithRedirectAudit(url){
   let current=url;const chain=[];
   for(let i=0;i<8;i++){
-    const r=await fetch(current,{redirect:'manual',headers:{'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/json;q=0.8,*/*;q=0.5'}});
+    let r;
+    for(let attempt=0;attempt<2;attempt++){
+      try{
+        r=await fetch(current,{redirect:'manual',signal:AbortSignal.timeout(20000),headers:{'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/json;q=0.8,*/*;q=0.5'}});
+        break;
+      }catch(e){
+        if(attempt===1)throw e;
+        await new Promise(resolve=>setTimeout(resolve,250));
+      }
+    }
     chain.push({url:current,status:r.status});
     if([301,302,303,307,308].includes(r.status)){
       const location=r.headers.get('location');if(!location)return{r,chain,error:'redirect_without_location'};
@@ -40,7 +49,9 @@ while(queue.length&&visited.size<MAX_PAGES){
   if(error||!r){failures.push({url,discoveredFrom:parent,error:error||'no_response',chain});visited.set(url,{error:true});continue}
   const final=chain.at(-1)?.url||url,status=r.status,type=(r.headers.get('content-type')||'').toLowerCase();
   const record={status,type,final,chain,discoveredFrom:parent};visited.set(url,record);
-  if(status>=400){failures.push({url,discoveredFrom:parent,status,final});continue}
+  const finalPath=new URL(final).pathname;
+  const expectedProtectedDenial=status===401&&finalPath==='/v1/my-timber-support/calendar.ics'&&parent===START+'/member/support';
+  if(status>=400){if(expectedProtectedDenial)continue;failures.push({url,discoveredFrom:parent,status,final});continue}
   let body='';if(!assetExt.test(final)){try{body=await r.text()}catch{}}
   if(type.includes('text/html')){
     const visible=body.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
@@ -48,7 +59,7 @@ while(queue.length&&visited.size<MAX_PAGES){
     if(/(?:internal server error|application error|something went wrong\s*$)/i.test(visible)&&visible.length<800)failures.push({url,discoveredFrom:parent,status,error:'generic_error_page_detected'});
     for(const child of extract(body,final)){
       const root=new URL(START);
-      if(child.host===root.host){const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
+      if(child.host===root.host){if(!/\/image\/?$/.test(child.pathname))child.search='';const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
       else externalHosts.set(child.host,(externalHosts.get(child.host)||0)+1);
     }
   }
