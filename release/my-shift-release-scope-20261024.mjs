@@ -128,7 +128,8 @@ export function myShiftComparisonValue(path,value,head){
 }
 export function myShiftSafetyComparison(path,value){
  if(!['release/approved-source-comparison-20261024.mjs','release/combined-finite-scope-20261014.mjs'].includes(path))return value;
- const {head}=verifyMyShiftRelease(),actual=git('rev-parse',head+':'+path);if(value!==actual)return value;
+ const {head}=verifyMyShiftRelease(),native=git('rev-parse',head+':'+path),actual=memberRecordingComparisonValue(path,native,head);
+ if(value!==native&&value!==actual)return value;
  return git('rev-parse',MY_SHIFT_BASE+':'+path);
 }
 

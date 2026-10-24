@@ -26,3 +26,26 @@ withMemberRecordingQualification(()=>{verifyMemberRecordingRepair();const path='
 });
 
 test('exact repair comparison composes with the original CLI admission instead of masking it',async()=>{const {approvedSourceComparison}=await import('../release/approved-source-comparison-20261024.mjs');const path='release/app-preflight.mjs',current=readFileSync(path,'utf8'),original=execFileSync('git',['show','2ac8456e8394c1508b13481fad1f68520926f10b:'+path],{encoding:'utf8'});const blob=value=>createHash('sha1').update('blob '+Buffer.byteLength(value)+'\0').update(value).digest('hex');assert.equal(approvedSourceComparison(path,current),original);assert.equal(approvedSourceComparison(path,blob(current)),blob(original));assert.equal(approvedSourceComparison(path,current+'unreviewed'),current+'unreviewed');assert.equal(approvedSourceComparison(path,original,'2ac8456e8394c1508b13481fad1f68520926f10b'),original);});
+
+
+test('merged safety pins accept raw and qualified current hashes and reject forged readers',async()=>{
+ const {memberRecordingComparisonValue}=await import('../release/member-recording-repair-20261024.mjs');
+ const {myShiftSafetyComparison,MY_SHIFT_BASE}=await import('../release/my-shift-release-scope-20261024.mjs');
+ const {verifyCurrentMainSafetyChecks}=await import('../release/app-scope.mjs');
+ const pin=(ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim();
+ withMemberRecordingQualification(()=>{
+  const paths=['release/approved-source-comparison-20261024.mjs','release/combined-finite-scope-20261014.mjs'];
+  for(const path of paths){
+   const native=pin('HEAD',path),qualified=memberRecordingComparisonValue(path,native),expected=pin(MY_SHIFT_BASE,path);
+   assert.equal(myShiftSafetyComparison(path,native),expected,'Raw current safety pin: '+path);
+   assert.equal(myShiftSafetyComparison(path,qualified),expected,'Qualified current safety pin: '+path);
+   assert.equal(myShiftSafetyComparison(path,'0'.repeat(40)),'0'.repeat(40),'Forged hash must remain rejected');
+   assert.equal(myShiftSafetyComparison(path,'unreviewed source'),'unreviewed source','Arbitrary reader values must remain unchanged');
+  }
+  const checked=verifyCurrentMainSafetyChecks();
+  for(const target of paths){
+   assert(checked.includes(target));
+   assert.throws(()=>verifyCurrentMainSafetyChecks(path=>path===target?'0'.repeat(40):memberRecordingComparisonValue(path,pin('HEAD',path))),/Merged safety-check source drift/);
+  }
+ });
+});
