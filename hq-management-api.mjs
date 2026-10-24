@@ -26,7 +26,7 @@ export async function managementReport(DB,{permissions=[],start,end,kind='manage
  }
  if(['management','members','growth'].includes(kind)){
   await read('registrations','New registrations','crm_read',['users','audit_log'],"SELECT COUNT(*) value FROM users u WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND NOT "+excludedMemberSql(tables),[period.since,period.until]);
-  limitations.push('Registration count excludes HQ email matches, audit-marked commissioning identities, example.invalid/example.test addresses, internal shiftsometimber+ Gmail test aliases and the retained Apple/Google reviewer accounts. Other unlabelled test identities may remain.');
+  limitations.push('Registration count excludes HQ email matches, audit-marked commissioning identities, example.invalid/example.test addresses, internal shiftsometimber+ Gmail aliases, explicitly approved named member test mailboxes and the retained Apple/Google reviewer accounts. Other unlabelled test identities may remain.');
  }
  if(['management','sales'].includes(kind)){
   const population=commercePopulationSql(tables,'o','customer_email');
