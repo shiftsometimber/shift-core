@@ -1,7 +1,7 @@
 {
   "release/my-shift-release-scope-20261024.mjs": {
     "original": "b8d22d49ef87cd1357511e1a3e3b7bfc065e7ea1",
-    "current": "64e17ce4d11fffda991273592418005075e99ae0",
+    "current": "010b5b8424128b34a7b11b8cf2d5f8eeab9a3e7e",
     "edits": [
       {
         "start": 0,
@@ -49,62 +49,67 @@
         "before": ""
       },
       {
-        "start": 23192,
+        "start": 21125,
+        "after": "value=memberRecordingComparisonValue(path,value);\n ",
+        "before": ""
+      },
+      {
+        "start": 23243,
         "after": "ordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}\n if(!rec",
         "before": ""
       },
       {
-        "start": 24745,
+        "start": 24796,
         "after": "cording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);\n  const re",
         "before": ""
       },
       {
-        "start": 25048,
+        "start": 25099,
         "after": "",
         "before": "git('"
       },
       {
-        "start": 25050,
+        "start": 25101,
         "after": "co",
         "before": "v-pa"
       },
       {
-        "start": 25053,
+        "start": 25104,
         "after": "",
         "before": "se',proof.hea"
       },
       {
-        "start": 25054,
+        "start": 25105,
         "after": "ing",
         "before": "+':'+path)"
       },
       {
-        "start": 25252,
+        "start": 25303,
         "after": "memberRecordingComparisonValue(path,",
         "before": ""
       },
       {
-        "start": 25292,
+        "start": 25343,
         "after": "",
         "before": "n"
       },
       {
-        "start": 25293,
+        "start": 25344,
         "after": "c",
         "before": ""
       },
       {
-        "start": 25295,
+        "start": 25346,
         "after": "ual",
         "before": "ive"
       },
       {
-        "start": 25316,
+        "start": 25367,
         "after": "),proof.head",
         "before": ""
       },
       {
-        "start": 25414,
+        "start": 25465,
         "after": "for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);\n ",
         "before": ""
       }
@@ -185,6 +190,37 @@
       {
         "start": 502,
         "after": "name: Prepare native index before parallel source readers\n        run: git update-index --refresh\n      - ",
+        "before": ""
+      }
+    ]
+  },
+  "release/app-preflight.mjs": {
+    "original": "7a1473994a1f39de23acf68ffc5e93aad44af8f8",
+    "current": "0d40f1234d05084676f4f5c497b57cbeca4722cf",
+    "edits": [
+      {
+        "start": 0,
+        "after": "import {withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';\n",
+        "before": ""
+      },
+      {
+        "start": 2128,
+        "after": "const currentReleaseAdmission=withMemberRecordingQualification(()=>{\n",
+        "before": ""
+      },
+      {
+        "start": 2251,
+        "after": "",
+        "before": "currentRele"
+      },
+      {
+        "start": 2252,
+        "after": "",
+        "before": "seA"
+      },
+      {
+        "start": 2317,
+        "after": ");\nreturn admission;\n}",
         "before": ""
       }
     ]

@@ -1,3 +1,4 @@
+import {withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
 import {verifiedCurrentReleaseAdmission} from './my-shift-release-scope-20261024.mjs';
 import {createGithubProofGet} from './github-proof-get.mjs';
 import {metricsPreflightPath,verifyMetricsConnection} from './metrics-connection-scope.mjs';
@@ -16,10 +17,13 @@ import {FOOTER_PATHS,historicalFooterRef,verifyFooterProof} from './footer-scope
 import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN,CREAM_PREVIEW,CREAM_RUN,FOOTER_PREVIEW,FOOTER_RUN} from './home-banner-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {writeFileSync,mkdirSync} from 'node:fs';
 import {PWA_DISMISS_APPROVED,PWA_DISMISS_PATHS,APP_APPROVED,APP_PATHS,ARTICLE_REPAIR_PATHS,ARTICLE_REPAIR_SOURCE,validateAppSource} from './app-scope.mjs';
+const currentReleaseAdmission=withMemberRecordingQualification(()=>{
 verifyMetricsConnection();
 validateAppSource();
-const currentReleaseAdmission=verifiedCurrentReleaseAdmission();
+const admission=verifiedCurrentReleaseAdmission();
 validateRecipeImages();
+return admission;
+});
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 const get=createGithubProofGet();
 await verifySixTopicSeoProof(get);

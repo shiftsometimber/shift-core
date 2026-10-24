@@ -239,6 +239,7 @@ const CLI_INVERSES=Object.freeze({
  ]
 });
 export function originalAdmissionCli(path,value){
+ value=memberRecordingComparisonValue(path,value);
  const edits=CLI_INVERSES[path];assert(edits,'Only the two source-admission CLIs have an inverse');
  for(const edit of [...edits].reverse()){
   assert.equal(value.slice(edit.start,edit.start+edit.after.length),edit.after,'Exact source-admission repair changed');
