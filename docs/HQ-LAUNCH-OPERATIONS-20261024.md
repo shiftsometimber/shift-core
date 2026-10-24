@@ -135,3 +135,16 @@ Full To/CC/BCC/subject/body/attachments/push payloads are retained in prepared-n
 - Timber Shed remains deliberately approved test-only/synthetic, no general community production data connection. Use the intended approved real store/eligibility/moderator configuration before general commissioning; retain existing navigation/access decisions and verify moderation/report/reply/erasure there.
 
 The SAME audit/workbook are updated with24 original definitions,18 trigger families,16 action IDs and exact approval payloads. Only A09 is fully closed. Record final current heads/build hashes/stage receipts in completion-v3 and backend-completion-coordination.json after this doc commit. No final launch sign-off while the above requirements remain.
+
+
+## Independent production completion —24 October18:16 UTC
+
+Matt explicitly authorised independent guarded component releases. Current-main200ff3 and serving Coreac4e60d9 were checked immediately before each action. Original Core gates were not changed. Communications3c809200 deployed as86ea1245-323c-4118-9fdb-941d77fd465d; actual scheduled completion18:10:11 UTC.
+
+Reporting own3c65347b uploaded as5d8ba9ef at18:06:53 UTC. A concurrent HQ owner uploaded newer b999515b two seconds later, sourcea33a5108 merging the full operations branch. The marker mismatch caused own rollback to old v3.1; the newer approved version was immediately recovered. Rollback now asserts that the active runtime still equals its own upload before changing it. Preserve b999515b and the HQ snapshot owner; no further reporting upload by this task. Evidence concurrent-reporting-preservation.json.
+
+After preservation, authenticated production returned v3.2 with83 measures and24 original KPI definitions, the private KPI page200 with24 cards, and both CSV/PDF export preparations200 with auditRecorded true. An arbitrary8-second probe initially aborted the KPI page; unrestricted normal fetch subsequently succeeded. OS/native download/share proof remains separate. Monitor completed18:10:24 UTC with historical orders source available; unknown-order owner/deadline/escalation handling is live. Original eleven-order provenance is still unavailable. Both exact test drafts remain unapproved and unsent.
+
+Existing release owner has now identified actual source tasks012 (original165/108 test groups then b1-release-scope; previous5471seconds) and005 (growth-preflight; previous3739seconds). At18:07 they had been observed active for25minutes; child progress is not exposed by parent heartbeat. No failure/lock/deadlock evidence supports cancellation. Original candidate and single verifier remain preserved; Core remains undeployed. Do not duplicate recovery.
+
+Latest native sourceb835649f is newer than the prepared support erasure integration base; its optional support history cleanup is still missing. Integrate only the finite abfdb9e2 two-file patch into the approved latest PR1414 successor, with current checks, rather than copying the earlier full file. No real deletion or reviewer erasure. A09 remains the only wholly closed action. All missing partner/finance/classification/device/MFA/recovery dependencies remain exactly as recorded in the SAME audit/register.
