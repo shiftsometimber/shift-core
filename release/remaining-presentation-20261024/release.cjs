@@ -34,8 +34,8 @@ async function upload(k,stage){
  for(const m of modules)f.append(m.name,new(require('buffer').File)([m.bytes],m.name,{type:m.type||'application/javascript+module'}),m.name);
  return c.organicApi(a+'/workers/scripts/'+(stage?x.stage:x.name),{method:'PUT',body:f});
 }
-async function bodyVerify(k,origin){
- const {x}=payload(k),actual=await c.get(origin+x.url),before=fs.readFileSync(d+'/'+k+'-before.html','utf8');
+async function bodyVerify(k,origin,stage=false){
+ const {x}=payload(k),actual=await c.get(origin+x.url),before=fs.readFileSync(d+'/'+k+(stage&&k==='bloods'?'-runtime-before.html':'-before.html'),'utf8');
  const html=actual.bytes.toString();
  if(k==='bloods'){
   const added='<script src="/consent-v4a.js" defer></script>';assert.equal(html.split(added).length-1,1);
@@ -52,16 +52,16 @@ async function bodyVerify(k,origin){
  const mode=process.argv[2],key=process.argv[3];
  if(mode==='capture-live'){
   assert(!fs.existsSync(d+'/estate-before.json'));const s=await snapshot();
-  for(const [k,x]of Object.entries(cfg)){assert.deepEqual(s.versions[x.name],read(x.name+'/before').deployment);const got=await c.get('https://shiftsometimber.co.uk'+x.url);fs.writeFileSync(d+'/'+k+'-before.html',got.bytes);}
+  for(const [k,x]of Object.entries(cfg)){assert.deepEqual(s.versions[x.name],read(x.name+'/before').deployment);const got=await c.get('https://shiftsometimber.co.uk'+x.url);fs.writeFileSync(d+'/'+k+(stage&&k==='bloods'?'-runtime-before.html':'-before.html'),got.bytes);}
   const home=await c.get('https://shiftsometimber.co.uk/');save('estate-before',{...s,homeSHA:c.sha(home.bytes)});console.log('Before-image recorded; no change');return;
  }
  if(mode==='verify-stage'){
-  const x=cfg[key],s=read(key+'-stage-deployment');const receipt=await bodyVerify(key,s.origin);
+  const x=cfg[key],s=read(key+'-stage-deployment');const receipt=await bodyVerify(key,s.origin,true);
   save(key+'-stage-verification',{pass:true,at:new Date().toISOString(),source:s.source,receipt});console.log(key+' exact stage inverse verified');return;
  }
  if(mode==='verify-production'){
   const state=read('estate-before'),s=await snapshot(),receipts=[];
-  assert.deepEqual(s.routes,state.routes);assert.equal(s.pages,state.pages);assert.deepEqual(s.versions['shift-core'],state.versions['shift-core']);
+  assert.deepEqual(s.routes,state.routes);assert.equal(s.pages,state.pages);assert.deepEqual(s.versions['shift-core'],state.versions['shift-core']);assert.deepEqual((await c.organicApi(a+'/workers/scripts/shift-public-presentation-batch-20261022/deployments')).deployments[0],read('bloods-parent-before'));
   for(const [k,x]of Object.entries(cfg)){
    const dep=read(k+'-production-deployment');assert.equal(s.versions[x.name].id,dep.deployment.id);
    const settings=await c.organicApi(a+'/workers/scripts/'+x.name+'/settings');
@@ -88,7 +88,7 @@ async function bodyVerify(k,origin){
  if(mode==='production'){
   assert(!fs.existsSync(d+'/'+key+'-production-intent.json'),'Reconcile existing attempt');
   assert(read(key+'-stage-verification').pass);assert(read('stage-browser').pass);assert.equal(read(key+'-stage-deployment').source,g.head);
-  const state=read('estate-before'),s=await snapshot();assert.deepEqual(s.routes,state.routes);assert.equal(s.pages,state.pages);assert.deepEqual(s.versions['shift-core'],state.versions['shift-core']);
+  const state=read('estate-before'),s=await snapshot();assert.deepEqual(s.routes,state.routes);assert.equal(s.pages,state.pages);assert.deepEqual(s.versions['shift-core'],state.versions['shift-core']);assert.deepEqual((await c.organicApi(a+'/workers/scripts/shift-public-presentation-batch-20261022/deployments')).deployments[0],read('bloods-parent-before'));
   assert.deepEqual(s.versions[x.name],read(x.name+'/before').deployment,'Other publisher changed target component');
   save(key+'-production-intent',g);const result=await upload(key,false);save(key+'-production-upload',result);
   const deployment=(await c.organicApi(a+'/workers/scripts/'+x.name+'/deployments')).deployments[0];
