@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-24T14:41:20.080Z",
+  "scope": "Local real-route SQLite persistence; fixture HQ identity only. Not live-session acceptance.",
+  "checks": [
+    {
+      "width": 390,
+      "persistentAfterDatabaseReopen": true,
+      "noStockBlocked": true,
+      "layout": {
+        "width": 390,
+        "scroll": 390,
+        "padding": "22px"
+      }
+    },
+    {
+      "width": 1280,
+      "persistentAfterDatabaseReopen": true,
+      "noStockBlocked": true,
+      "layout": {
+        "width": 1280,
+        "scroll": 1280,
+        "padding": "28px"
+      }
+    }
+  ],
+  "errors": [],
+  "unexpectedRequests": [],
+  "signedOutDenial": true
+}

@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {text,future} from './domain.mjs';
+test('professional text accepts normal multiline detail but rejects hidden controls',()=>{assert.equal(text('First line\nSecond line\twith detail'),'First line\nSecond line\twith detail');assert.throws(()=>text('hidden\u0000value'),/valid_text/);assert.throws(()=>text('hidden\u007fvalue'),/valid_text/);});
+test('review dates reject impossible normalised calendar values',()=>{assert.throws(()=>future('2027-02-30T12:00:00.000Z','2026-01-01T00:00:00.000Z'),/future_review_date/);assert.equal(future('2028-02-29T12:00:00.000Z','2026-01-01T00:00:00.000Z'),'2028-02-29T12:00:00.000Z');});

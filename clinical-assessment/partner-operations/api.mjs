@@ -1,4 +1,5 @@
 import {newStaff,staffAction,fulfilmentAction,permission,credentialsCurrent,memberTracking,EVIDENCE,fail,text,future} from './domain.mjs';
+import {limitProfessionalAuth} from './auth-limits.mjs';
 export const PARTNER_BASE='/v1/hq/clinical/partners';
 const ORIGIN='https://hq.shiftsometimber.co.uk';
 const now=()=>new Date().toISOString(),uid=()=>crypto.randomUUID();
@@ -78,6 +79,7 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
   const p=path.slice(PARTNER_BASE.length).split('/').filter(Boolean);
   if(p[0]==='login'&&p[1]==='verify'&&p.length===2&&request.method==='POST'){
    if(env.PARTNER_LOGIN_ENABLED!=='true'||!env.HQ_AUTH)fail(503,'partner_login_not_commissioned');const b=await readJson(request);
+   await limitProfessionalAuth(request,env,'mfa',text(b.challenge,200));
    return env.HQ_AUTH.fetch(new Request('https://api.shiftsometimber.co.uk/v1/hq/auth/mfa/verify',{method:'POST',headers:{Origin:ORIGIN,'Content-Type':'application/json'},body:JSON.stringify({challenge:text(b.challenge,200),code:text(b.code,6)}),redirect:'manual'}));
   }
   if(p[0]==='activation'&&p.length===1&&request.method==='POST'){
@@ -93,7 +95,9 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
   }
   if(p[0]==='login'&&p.length===1&&request.method==='POST'){
    if(env.PARTNER_LOGIN_ENABLED!=='true')fail(503,'partner_login_not_commissioned');
-   const b=await readJson(request),r=await query(env,'SELECT state_json FROM partner_staff WHERE username=?',text(b.username,32).toUpperCase()).first(),s=parse(r);
+   const b=await readJson(request),username=text(b.username,32).toUpperCase();
+   await limitProfessionalAuth(request,env,'login',username);
+   const r=await query(env,'SELECT state_json FROM partner_staff WHERE username=?',username).first(),s=parse(r);
    if(!s||!s.passwordSetAt||!['credentials_pending','active'].includes(s.status))fail(401,'invalid_credentials');
    if(typeof b.password!=='string'||b.password.length>128)fail(401,'invalid_credentials');
    // Delegate password verification, sessions and MFA challenges to retained HQ auth.

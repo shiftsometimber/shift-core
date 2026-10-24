@@ -2,6 +2,7 @@
 import {hqClinicalRoute} from './hq-clinical-api.mjs';
 import {shell,assets} from './portal-release-assets.mjs';
 import {partnerRoute} from './partner-operations/api.mjs';
+import {commissioningRoute} from './partner-operations/commissioning.mjs';
 import {pages as partnerPages,assets as partnerAssets} from './partner-operations/assets.mjs';
 const origin='https://hq.shiftsometimber.co.uk';
 const headers={'Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
@@ -17,6 +18,7 @@ export async function existingHqIdentity(request,env,fetchImpl=env.HQ_AUTH?.fetc
 export default {async fetch(request,env){
  const url=new URL(request.url);
  if(url.hostname==='api.shiftsometimber.co.uk'&&(url.pathname==='/v1/hq/clinical'||url.pathname.startsWith('/v1/hq/clinical/'))){
+  const internal=await commissioningRoute(request,env,existingHqIdentity);if(internal)return internal;
   const partner=await partnerRoute(request,{...env,PARTNER_OPERATIONS_ENABLED:'false',PARTNER_LOGIN_ENABLED:'false',PARTNER_FULFILMENT_ENABLED:'false'},existingHqIdentity);
   if(partner)return partner;
   // This release is infrastructure only. Activation requires a separately reviewed release,

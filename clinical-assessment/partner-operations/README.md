@@ -56,3 +56,21 @@ wrangler deploy --dry-run --config clinical-assessment/wrangler.portal-release.j
 ```
 
 The browser harness uses an existing native Playwright toolchain and only synthetic records. It checks 390/1280px, inner panel padding/overflow, five independent checks, generated username, no-stock denial and fictional acceptance/preparation/dispatch, with zero external browser requests. The published closed API must return 503 even if flags are passed true.
+
+## Persistent internal commissioning — implementation update
+
+Matt explicitly authorised persistent private commissioning now, not only browser-memory demos. `/clinical-portal/commissioning` and `/v1/hq/clinical/commissioning` are a separate owner/admin+MFA workspace. They reuse the retained HQ identity service and recheck live user/session/MFA state inside mutation SQL. MFA enrolment remains a user action; nothing here fabricates or bypasses it.
+
+Apply `commissioning-schema.sql` and `auth-limits.sql` additively. The commissioning tables have a separate namespace and fixed synthetic member/documents/medicine fixtures; APIs reject arbitrary patient inputs. They never insert into patient, prescription, actual fulfilment or actual message queues. The three workspace perspectives read the same versioned order and immutable event history. Clinical queries, synthetic responses and replacement revisions, individual medical-document outcomes, assessment rejection/sign-off, pharmacy queries/rejection, no-stock denial, test preparation/dispatch and withheld notification previews are implemented. The dispensing steps use the exact production `fulfilmentAction` reducer. Synthetic tracking never offers a real courier link. A test sign-off explicitly says it is not a legally issued prescription.
+
+This is durable server-side acceptance tooling, not proof that the separate live member portal, clinical service, pharmacy or sender integration is commissioned. The local browser acceptance opens the real route against file-backed SQLite with a fixture HQ identity, then closes/reopens the database and reloads the page. Actual HQ session acceptance and live authorised writes are still unverified until owner MFA enrolment. The shared HQ root menu remains owned by its current workstream; a link is added within People & partners, not by replacing that root.
+
+Professional sign-in additionally has database-backed per-IP, per-subject and daily attempt limits before credential/MFA delegation. Only hashes/counters are held; passwords, MFA codes and plaintext IPs/usernames are not stored in that table. Missing IP/storage and limiter errors fail closed. Expired counters are removed in bounded batches on authentication attempts; a complete retention/purge policy is still required before real onboarding. Real sign-in remains source-gated off pending actual-session/recovery acceptance.
+
+Additional checks:
+
+```
+node clinical-assessment/partner-operations/commissioning-browser.mjs
+```
+
+All real-service gates and the separate main release are preserved. No messages, invitations, charges, scheduled jobs or customer enrolments are created by these changes.

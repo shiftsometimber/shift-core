@@ -4,8 +4,8 @@ export const ACTIONS={clinician:['review','query','clinical_decision','issue_pre
 export const EVIDENCE=['photo_id','selfie','indemnity','qualification','agreement'];
 export const CHECKS=['identity','registration','indemnity','agreements','competence'];
 export const fail=(status,code)=>{throw Object.assign(Error(code),{status});};
-export const text=(v,max=1000)=>{if(typeof v!=='string'||!v.trim()||v.length>max||/[\u0000-\u001f]/.test(v))fail(422,'valid_text_required');return v.trim();};
-export const future=(v,now)=>{if(typeof v!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(v)||!Number.isFinite(Date.parse(v))||v<=now)fail(422,'future_review_date_required');return v;};
+export const text=(v,max=1000)=>{if(typeof v!=='string'||!v.trim()||v.length>max||/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(v))fail(422,'valid_text_required');return v.trim();};
+export const future=(v,now)=>{if(typeof v!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(v)||!Number.isFinite(Date.parse(v))||new Date(v).toISOString()!==v||v<=now)fail(422,'future_review_date_required');return v;};
 const ops=a=>a?.mfa===true&&['owner','admin'].includes(a.role);
 const own=(s,a)=>String(s.hqUserId)===String(a.id);
 const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
