@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-24T19:35:33.760Z",
+  "path": "/member/dashboard.html",
+  "replacements": 3,
+  "locations": [
+    "Illustrative meal card",
+    "Movement benefit",
+    "Google Play download label"
+  ],
+  "headersSHA256": "6fc553ead8d1665b52abc24e3fabfe27f54ee0a8168fda63bfd71d1a9e7fc8af",
+  "homepageUnchanged": true,
+  "authUnchanged": true,
+  "allLinksUnchanged": true,
+  "coreSourceAndWorkflowUnchanged": true,
+  "authority": "Matt: previous approved removal of emoji arrows, reiterated with live screenshot 24 October 2026"
+}
