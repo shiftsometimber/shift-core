@@ -71,6 +71,18 @@ export function originalMemberWorkerPresentation(source){
  return source.replace("\nexport function memberWorkerHtml(html){\n return html.replace(/(<script\\b[^>]*\\bsrc=[\"'])(\\/(?:app\\.js|register-sw-v3a\\.js)(?:\\?[^\"']*)?)([\"'][^>]*>)/gi,(_,before,src,after)=>before+src+(/[?&](?:amp;)?member_worker=1(?:&|$)/.test(src)?'':(src.includes('?')?'&amp;':'?')+'member_worker=1')+after);\n}\nexport async function memberWorkerAsset(request,response){\n const u=new URL(request.url);\n if(request.method!=='GET'||u.searchParams.get('member_worker')!=='1'||!['/app.js','/register-sw-v3a.js'].includes(u.pathname))return null;\n if(!response.ok||!/(?:javascript|ecmascript)/i.test(response.headers.get('Content-Type')||''))return response;\n const before=await response.text(),legacy=u.pathname==='/app.js'?\"navigator.serviceWorker.register('/service-worker.js')\":\"navigator.serviceWorker.register('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2',{updateViaCache:'none'})\",shared=\"navigator.serviceWorker.register('/shift-push-sw-v1.js',{scope:'/',updateViaCache:'none'})\";\n const h=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])h.delete(k);h.set('Cache-Control','no-store');\n if(before.split(legacy).length!==2)return new Response('Member worker registration source changed; please retry later.',{status:503,headers:h});\n return new Response(before.replace(legacy,shared),{status:response.status,statusText:response.statusText,headers:h});\n}\n",'').replace("\n const memberAsset=await memberWorkerAsset(request,response);if(memberAsset)return memberAsset;",'').replace("\n if(/^\\/member\\//.test(path))html=memberWorkerHtml(html);",'');
 }
 for(const p of [...METRICS_PATHS,...RECONCILIATION_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED])APP_PATHS.add(p);
+// Pin the three already-merged safety-check sources exactly. A path alone
+// cannot admit later edits; every existing app assertion still runs below.
+const CURRENT_MAIN_SAFETY_CHECK_BLOBS=Object.freeze({
+ '.github/workflows/whole-estate-route-sweep.yml':'7252162d1ac21edafd8e71ae504f7c7ad6023ac3',
+ 'gate1-whole-estate-production-sweep.mjs':'5a9a737b89267158c63ca7634b0b22a62ec1fa88',
+ 'public-response-policy.test.mjs':'d2c8c91a42e994c56b3454918bb657e5a348d8f3',
+ 'tests/release-recovery-safety-20261024.test.mjs':'64a3ac857efb3ca1a1a948d4fca7ba1d3402ca14'
+});
+export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}).trim()){
+ for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);
+ return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);
+}
 export function validateAppSource(){
  return withImmutableHistoryVerification(()=>{
  verifyReconciledRelease();
@@ -87,7 +99,8 @@ export function validateAppSource(){
  for(const p of PWA_DISMISS_PATHS)if(p==='my-timber-pwa/presentation.mjs')assert.equal(originalMemberWorkerPresentation(execFileSync('git',['show','HEAD:'+p],{encoding:'utf8'})),execFileSync('git',['show',PWA_DISMISS_APPROVED+':'+p],{encoding:'utf8'}),'Complete PWA presentation differs beyond exact shared member worker registration');else assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',PWA_DISMISS_APPROVED+':'+p),'Reviewed PWA install dismissal drift: '+p);
  validateMemberFocus((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='preview/app-layout/tabs.mjs'?FOOTER_CANDIDATE:ref)+':'+path));
  const changed=git('diff','--name-only',APP_BASE,'HEAD').split('\n').filter(Boolean);
- assert(changed.every(p=>APP_PATHS.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)).join(','));
+ const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks());
+ assert(changed.every(p=>APP_PATHS.has(p)||exactSafetyPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)&&!exactSafetyPaths.has(p)).join(','));
  for(const [p,sha]of Object.entries(APP_HASHES))assert.equal(createHash('sha256').update(execFileSync('git',reconciliationGitArgs(['show',originalAppHashRef(p)+':'+p]))).digest('hex'),sha,'App release drift: '+p);
  for(const p of ['presentation.mjs','screens.mjs','tabs.mjs','refinement.mjs','verify.cjs'])assert.equal(git('rev-parse',historicalFooterRef('HEAD','preview/app-layout/'+p)+':preview/app-layout/'+p),git('rev-parse',APP_APPROVED+':preview/app-layout/'+p),'Approved app design changed: '+p);
  assert.equal(originalPwaLiveReadVerifier(execFileSync('git',['show','HEAD:my-timber-pwa/verify-live.mjs'],{encoding:'utf8'})),execFileSync('git',['show',APP_BASE+':my-timber-pwa/verify-live.mjs'],{encoding:'utf8'}),'PWA verifier differs beyond the exact bounded GET retry repair');
