@@ -2,7 +2,7 @@ import {reconciliationHistoricalRef} from './approved-runtime-composition.mjs';
 import {followHistoricalRead,followPinnedRef} from './seo-follow-through-scope.mjs';
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 // Matt's 5 October Go covers only this finite informational SEO payload.
 // Editorial authority is not clinical approval; original medical copy is preserved.
 export const SIX_TOPIC_SEO_SOURCE='7a121c5e86fc889168288d42952fb20d5dbb46fa';

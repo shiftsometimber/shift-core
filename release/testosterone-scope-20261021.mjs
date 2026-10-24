@@ -1,6 +1,6 @@
 import {verifyHealthVisionExtension} from './health-vision-scope-20261021.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {readFileSync} from 'node:fs';
 export const TRT_BASE='a78f893a30d41e4542dfd53c08dcdb77f88090e4';
 export const TRT_PAYLOAD='77eb4af2334f747ab91a2958f3d59875e8e4e4f4';

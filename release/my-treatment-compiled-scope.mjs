@@ -1,6 +1,6 @@
 import {finiteGrowthHistoricalView} from './finite-growth-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const TREATMENT_COMPILED_BASE='e13c49dde529f82155498b875ea0ef7bb3169bf8';
 export const TREATMENT_COMPILED_SOURCE='e279e1c80dad999373d215084295a75391795508';
 export const TREATMENT_COMPILED_PATHS=Object.freeze(["release/my-treatment-live.mjs","release/my-treatment-compiled-control.mjs","tests/my-treatment-compiled-control.test.mjs","release/my-treatment-rollback-runtime.mjs","tests/my-treatment-rollback-runtime.test.mjs","docs/my-treatment-rollback-evidence-20261013.json","shift-coach/recover-cancelled-release.mjs",".github/workflows/my-treatment-compiled-proof.yml"]);

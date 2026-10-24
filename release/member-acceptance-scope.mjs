@@ -2,7 +2,7 @@ import {reconciliationGitArgs,reconciliationRecord,RELOAD_RUN,assertReconciledRe
 import {COACH_BASE,COACH_BACKEND_PATHS,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 // Acceptance only. Bind the exact reviewed scripts to independent live evidence.
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const MEMBER_ACCEPTANCE_BASE='dc02728aaa6637e1e2570f66af83d594a4176f54';
 export const MEMBER_ACCEPTANCE_CANDIDATE='20d385d03b9339411992d5608cb9870294fe6414';
 export const MEMBER_ACCEPTANCE_PATHS=["rendered-member-acceptance-support.mjs","tests/rendered-member-acceptance-support.test.mjs","health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/rendered-member-production-acceptance.yml",".github/workflows/my-timber-final-production.yml","g2-014-progress-picture-premium-production.mjs","my-timber-final-source-gate.mjs","release/app-member-live.mjs"];

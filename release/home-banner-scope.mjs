@@ -2,7 +2,7 @@ import {currentRuntimePreservationHistoricalView} from './current-runtime-preser
 import {coachingHistoricalRef,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 // Extend the historical exact-source gates only for Matt's approved homepage insertion.
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const HOME_BANNER_PREVIEW='a6df71e802cd6296f5f2af28fe8f347fec92ce12';
 export const HOME_BANNER_RUN=36694132592;
 export const CREAM_PREVIEW='4f294ec717d8ce523a2739f757716b51e5117a6c';
