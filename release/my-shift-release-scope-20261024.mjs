@@ -20,8 +20,8 @@ export const MY_SHIFT_PATHS=Object.freeze([...Object.keys(MY_SHIFT_BLOBS),...MY_
 export const MY_SHIFT_APPROVAL=Object.freeze({owner:'Matt',instruction:'Please do',scope:'Exact My Shift source registration and guarded deployment; preserve all safety assertions',homepage:false,purchasing:false,clinicalActivation:false,messaging:false});
 export const COMPARISON_IMPORT="import {myShiftComparisonValue} from './my-shift-release-scope-20261024.mjs';\n";
 export const COMPARISON_HOOK=" const shift=myShiftComparisonValue(path,value,head);if(shift!==value)return shift;\n";
-export const DEFAULT_BEFORE=" if(defaultReader)return read;";
-export const DEFAULT_AFTER=" if(defaultReader)return(ref,path)=>ref==='HEAD'?approvedLegacyComparisonValue(ref,path,read(ref,path)):read(ref,path);";
+export const DEFAULT_BEFORE=" if(defaultReader)return{...actual,currentReaderAuthenticated:true,legacyComparisonOnly:false};";
+export const DEFAULT_AFTER=" if(defaultReader)return{...actual,read:(ref,path)=>approvedLegacyComparisonValue(ref,path,actual.read(ref,path),actual.rawHead),currentReaderAuthenticated:true,legacyComparisonOnly:false};";
 export const APP_IMPORT="import {verifyMyShiftRelease,myShiftSafetyComparison,MY_SHIFT_PATHS} from './my-shift-release-scope-20261024.mjs';\n";
 export const APP_BEFORE=" for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
 export const APP_AFTER=" verifyMyShiftRelease();\n for(const path of MY_SHIFT_PATHS)APP_PATHS.add(path);\n for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
