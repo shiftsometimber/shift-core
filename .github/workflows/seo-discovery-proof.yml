@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Prepare native index before parallel source readers
+        run: git update-index --refresh
       - run: node --check shift-coach/worker.mjs
       - run: node --test tests/public-seo-discovery.test.mjs tests/seo-discovery-release.test.mjs tests/public-seo-approved.test.mjs tests/approved-ranking-release.test.mjs tests/seo-technical-release.test.mjs tests/production-completion-release.test.mjs
       - run: node shift-coach/release-contract.mjs --require-launch

@@ -177,5 +177,16 @@
         "before": ""
       }
     ]
+  },
+  ".github/workflows/seo-discovery-proof.yml": {
+    "original": "1a7b05f08e79ad1d60f80723e17cdb3e8019a2be",
+    "current": "c82f589d47ceffff6a8afabd09f81fe4dfe2428c",
+    "edits": [
+      {
+        "start": 502,
+        "after": "name: Prepare native index before parallel source readers\n        run: git update-index --refresh\n      - ",
+        "before": ""
+      }
+    ]
   }
 }
