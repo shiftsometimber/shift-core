@@ -1,0 +1,1 @@
+{"css":"html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > aside#site-drawer.site-drawer[data-header-v2]:not([hidden]),html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > .drawer-backdrop:not([hidden]){display:block!important}"}
