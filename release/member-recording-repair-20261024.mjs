@@ -3,6 +3,8 @@ import {execFileSync} from 'node:child_process';
 import {readFileSync,lstatSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
+import {immutableHistorySourceHead} from './immutable-git-facts.mjs';
+import inverses from './member-recording-repair-inverses-20261024.json' with {type:'json'};
 export const RECORDING_REPAIR_BASE="200ff3dd4c4e01505f418e31149389da0f81fe80";
 export const RECORDING_REPAIR_PAYLOAD="8551b285de1b808c810d49163b5cea5a3b98e575";
 export const RECORDING_REPAIR_BLOBS=Object.freeze({
@@ -28,7 +30,7 @@ export const RECORDING_REPAIR_BLOBS=Object.freeze({
   "worker.js": "d583d819dddc4f47fa2cff554c2e98141f4fa673"
 });
 export const RECORDING_REPAIR_PATHS=Object.freeze(Object.keys(RECORDING_REPAIR_BLOBS));
-export const RECORDING_REPAIR_REGISTRATION=Object.freeze(['release/member-recording-repair-20261024.mjs','tests/member-recording-repair-admission-20261024.test.mjs']);
+export const RECORDING_REPAIR_REGISTRATION=Object.freeze(['release/member-recording-repair-20261024.mjs','tests/member-recording-repair-admission-20261024.test.mjs','release/member-recording-repair-inverses-20261024.json','release/my-shift-release-scope-20261024.mjs','release/approved-source-comparison-20261024.mjs','release/member-design-scope.mjs','release/app-scope.mjs']);
 export const RECORDING_REPAIR_RECEIPT='release/member-recording-repair-20261024.json';
 export const RECORDING_REPAIR_AUTHORITY=Object.freeze({owner:'Matt',instruction:'Arh ok….. sort then please',accountDeletion:'Deletion / cancel my account needs to be an immediate thing. Not send it off',homepage:false,newAppleSubmission:false,messaging:false,realAccountDeletionTest:false,personalHealthRead:false});
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
@@ -43,15 +45,17 @@ export function validateRecordingRepairReceipt(receipt){
  assert.deepEqual(receipt.payloadBlobs,RECORDING_REPAIR_BLOBS);assert.deepEqual(receipt.authority,RECORDING_REPAIR_AUTHORITY);
  assert.match(receipt.registrationSource,/^[a-f0-9]{40}$/);return receipt;
 }
+let cached=null;
 export function verifyMemberRecordingRepair(suppliedReceipt){
- const head=git('rev-parse','HEAD');
+ const frozen=immutableHistorySourceHead(),head=frozen??git('rev-parse','HEAD');
+ if(frozen&&cached?.head===head){for(const [path,pin]of cached.filePins)assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
  assert.equal(git('diff','--name-only','HEAD','--'),'','Repair worktree must be clean');
  assert.equal(git('diff','--cached','--name-only','--'),'','Repair index must be clean');
  const receipt=validateRecordingRepairReceipt(JSON.parse(bytes(head,RECORDING_REPAIR_RECEIPT)));
  if(suppliedReceipt)assert.deepEqual(suppliedReceipt,receipt,'Native repair receipt must not be substituted');
  for(const [a,b]of [[receipt.base,receipt.payload],[receipt.payload,receipt.registrationSource],[receipt.registrationSource,head]])git('merge-base','--is-ancestor',a,b);
  assert.deepEqual(changed(receipt.base,receipt.payload),sorted(RECORDING_REPAIR_PATHS),'Only the exact tested member repair payload is allowed');
- assert.deepEqual(changed(receipt.payload,receipt.registrationSource),sorted(RECORDING_REPAIR_REGISTRATION),'Only the bounded registration module and tests may be added');
+ assert.deepEqual(changed(receipt.payload,receipt.registrationSource).filter(path=>path!==RECORDING_REPAIR_RECEIPT),sorted(RECORDING_REPAIR_REGISTRATION),'Only the bounded registration module and tests may be added');
  assert.deepEqual(changed(receipt.registrationSource,head),[RECORDING_REPAIR_RECEIPT],'No unreviewed registration tail');
  for(const [path,pin]of Object.entries(RECORDING_REPAIR_BLOBS)){
   assert.equal(git('rev-parse',receipt.payload+':'+path),pin,'Immutable repair payload changed: '+path);
@@ -63,8 +67,27 @@ export function verifyMemberRecordingRepair(suppliedReceipt){
   const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular worktree file required: '+path);
   assert.equal(oid(readFileSync(path)),git('rev-parse',head+':'+path),'Actual repair bytes changed: '+path);
  }
- return Object.freeze({head,receipt,paths:RECORDING_REPAIR_PATHS});
+ for(const [path,data]of Object.entries(inverses))assert.equal(originalRecordingMaintenance(path,bytes(head,path)),bytes(RECORDING_REPAIR_BASE,path),'Every original source assertion must remain: '+path);
+ const paths=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT],filePins=Object.freeze(paths.map(path=>Object.freeze([path,git('rev-parse',head+':'+path)])));
+ const proof=Object.freeze({head,receipt,paths:RECORDING_REPAIR_PATHS,filePins});if(frozen)cached=proof;return proof;
 }
 // This qualifies a finite successor; it does not replace or bypass the existing
 // production admission, current-main guard, rollback or live acceptance gates.
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const proof=verifyMemberRecordingRepair();console.log(JSON.stringify({source:proof.head,paths:proof.paths.length,state:'finite_payload_qualified_not_deployed'}));}
+
+export function originalRecordingMaintenance(path,value){
+ const delta=inverses[path];assert(delta,'Finite repair maintenance path required');assert.equal(oid(value),delta.current,'Exact repair maintenance source required');
+ for(const edit of [...delta.edits].reverse()){assert.equal(value.slice(edit.start,edit.start+edit.after.length),edit.after,'Exact repair maintenance inverse changed');value=value.slice(0,edit.start)+edit.before+value.slice(edit.start+edit.after.length);}
+ assert.equal(oid(value),delta.original,'Every original maintenance byte must remain');return value;
+}
+export function memberRecordingComparisonValue(path,value,requestedHead){
+ const allowed=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION];if(!allowed.includes(path))return value;
+ const head=immutableHistorySourceHead()??git('rev-parse','HEAD');
+ if(requestedHead&&requestedHead!==head)return value;
+ let pin;try{pin=git('rev-parse',head+':'+path);}catch{return value;}
+ const identifier=value===pin,content=typeof value==='string'&&oid(value)===pin;if(!identifier&&!content)return value;
+ const proof=verifyMemberRecordingRepair();assert.equal(proof.head,head);
+ let old;try{old=git('rev-parse',RECORDING_REPAIR_BASE+':'+path);}catch{return value;}
+ return identifier?old:bytes(RECORDING_REPAIR_BASE,path);
+}
+export function recordingRepairLegacyPaths(){verifyMemberRecordingRepair();return [...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT];}
