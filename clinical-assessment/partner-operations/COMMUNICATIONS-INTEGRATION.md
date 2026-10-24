@@ -1,34 +1,25 @@
 # Three-channel source handoff
 
-This branch does not replace the frozen/shared core worker. Its HQ and member
-workers record patient-facing events and prepare review-only drafts. Nothing in
-this module approves, schedules, publishes or sends a message.
+This branch does not replace the shared core worker. Its deployed HQ/member workers record care events and prepare review-only drafts. Nothing here approves, schedules, publishes or sends a message.
 
-The saved central delivery successor now checks actual clinical case-event
-relationships. Do not pretend upload/pharmacy acknowledgements are clinical
-case events. The new intents therefore use the explicit source
-`clinical_notification_channels`, with `source_id` equal to the immutable care
-event ID and a separately bound draft per email/app channel.
+## Reconciled contract
 
-In the central worker's `hq-event-delivery-eligibility.mjs`, the source owner
-needs these additive changes after the held release is reconciled:
+The independent source owner added canonical channel support in hq-event-delivery-eligibility.mjs at commit be44a1cc8470a8fe9526c439fb04257489dffc46. This branch now matches that actual prepared contract:
 
-1. Import `careChannelEligibility` and `careIntentEligibility` from
-   `./clinical-assessment/partner-operations/notification-delivery-eligibility.mjs`.
-2. In `checkEvent`, after the prepared intent is selected and before the source
-   branches, return `careChannelEligibility(DB,item,payload,draftId,recipient)`
-   when `item.source === 'clinical_notification_channels'`.
-3. In `intentSourceEligibility`, before its other source branches, return
-   `careIntentEligibility(DB,item)` for that same source.
-4. Run the saved delivery eligibility/communications tests plus the care-event
-   tests on the combined candidate. Do not bypass the main release hold.
+- Each email/app draft has a clinical_case_outbox row with id and event_id both channel:<event-id>:<email|app>.
+- The intent key is clinical:<outbox-id>, source is clinical_case_outbox and source_id is that outbox ID.
+- The canonical clinical_notification_channels row binds the same immutable event, channel and draft ID. The old member event row is channel_review, not a second send source.
+- The central observer sees the existing prepared intent and cannot prepare a duplicate. Its successor suppresses a legacy partner notification if the canonical care event exists.
+- Consent/record ownership, current verified recipient, channel status, draft binding and current question state are rechecked immediately before transport. An answered query supersedes both channel rows and unattempted channel outboxes.
 
-Until that exact adapter is in the central release, its current source
-allowlist fails closed for these new drafts. The HQ review page explicitly
-reports this dependency. Draft preparation is not delivery acceptance.
+The previous proposed dedicated-source adapter in notification-delivery-eligibility.mjs is retained as superseded history. Do not add that import to the central worker: the shared owner's canonical implementation supersedes it.
 
-No WhatsApp transport was added. That still needs the selected provider,
-approved service template, verified number, opt-in and receipt acceptance.
-The existing app feed uses the `notification` payload channel and only exposes
-approved, scheduled/published recipient rows. Device push is separate and
-requires permission/device registration. No native push receipt is claimed.
+Tests use an exact read-only snapshot of the shared source in partner-proof/contracts/central-delivery-eligibility-be44a.mjs. This is test evidence, not a replacement deployment. The snapshot and owning source SHA are retained with the release receipt. Cross-member/changed-email/unverified/withdrawn-sharing/stale-query/source-revocation cases fail closed. Partial channel preparation and retry create no duplicate drafts. The existing app-feed SQL contract is exercised with fixture-only approval/publication; it is not a production app/device receipt.
+
+## Release boundary
+
+The central source owner must release their own combined Communications successor through the existing controls. Main release 40113641714, candidate 200ff3dd, remained separately owned when this work resumed. No main merge, core overwrite, new sender or schedule is part of this branch's release. The portal continues to say that central delivery release is outstanding. Local compatibility is not production delivery acceptance.
+
+The canonical migration migrations/clinical-casework-v1.sql supplies the reference/state tables used by the prepared checker. Applying this additive schema does not activate clinical review, grant any staff scope or issue a prescription. Existing real-clinical, professional onboarding, supply and private Test-account cohort controls are unchanged.
+
+No WhatsApp transport was added. It still requires the selected provider, approved template, verified number, channel opt-in and exact communication sign-off. The app feed uses payload channel notification and only exposes approved published recipient rows. Device push needs permission/registered devices and separate receipt acceptance. Existing email transport remains plain text; branded HTML delivery is not claimed.

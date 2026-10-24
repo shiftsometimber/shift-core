@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-24T16:53:58.052Z",
+  "at": "2026-10-24T17:06:22.695Z",
   "scope": "Actual UI and routes with local SQLite and fictional HQ identity; not production signed-in acceptance",
   "checks": [
     {
@@ -9,6 +9,7 @@
       "partnerInvitePersisted": true,
       "fullDraftPreview": true,
       "threeChannelReview": true,
+      "tbcProviderAssignmentsVisible": true,
       "readOnlyDispensingOversight": true,
       "overflow": false
     },
@@ -19,6 +20,7 @@
       "partnerInvitePersisted": true,
       "fullDraftPreview": true,
       "threeChannelReview": true,
+      "tbcProviderAssignmentsVisible": true,
       "readOnlyDispensingOversight": true,
       "overflow": false
     }

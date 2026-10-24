@@ -6,7 +6,8 @@ import {createHash} from 'node:crypto';
 import {notificationEventStatements,NOTIFICATION_KINDS,prepareEventChannels,orderEventStatements} from './notification-events.mjs';
 import {notificationManagementRoute,channelOutcome} from './notification-management.mjs';
 import {prepareInvitation} from './invitation-drafts.mjs';
-import {careChannelEligibility,careIntentEligibility} from './notification-delivery-eligibility.mjs';
+import {eventDeliveryEligibility,intentSourceEligibility as careIntentEligibility} from '../../partner-proof/contracts/central-delivery-eligibility-be44a.mjs';
+const careChannelEligibility=(DB,item,payload,draftId,recipient)=>eventDeliveryEligibility(DB,payload,draftId,recipient);
 import {partnerRoute} from './api.mjs';
 const at='2026-10-24T18:00:00.000Z',record={id:'11111111-1111-4111-8111-111111111111',user_id:44,order_number:'SHIFT-1042'};
 function setup(t){
@@ -21,7 +22,7 @@ function setup(t){
  INSERT INTO users VALUES(44,'member@example.invalid');INSERT INTO user_auth VALUES(44,1);
  INSERT INTO hq_users VALUES(1,'owner','active',1);`);
  db.prepare('INSERT INTO hq_sessions VALUES(1,?,?,NULL)').run(createHash('sha256').update('fixture-owner').digest('hex'),'2099-01-01');
- db.prepare('INSERT INTO clinical_member_records(id,user_id,order_number,schema_version,created_at,updated_at) VALUES(?,?,?,?,?,?)').run(record.id,44,record.order_number,'TEST',at,at);
+ db.prepare('INSERT INTO clinical_member_records(id,user_id,order_number,schema_version,created_at,updated_at) VALUES(?,?,?,?,?,?)').run(record.id,44,record.order_number,'TEST',at,at);db.exec('UPDATE clinical_member_records SET review_sharing=1');db.prepare('INSERT INTO partner_fulfilment VALUES(?,?,?,0,?,?)').run(record.order_number,'fixture-pharmacy',44,JSON.stringify({status:'query'}),at);
  const env={NOTIFICATION_EVENTS_ENABLED:'true',PARTNER_OPERATIONS_ENABLED:'true',PARTNER_INTERNAL_SETUP_ONLY:'true',DB:{prepare(sql){return{args:[],bind(...args){this.args=args;return this;},async first(){return db.prepare(sql).get(...this.args)||null;},async all(){return{results:db.prepare(sql).all(...this.args)};},async run(){return{meta:{changes:Number(db.prepare(sql).run(...this.args).changes)}};}};},async batch(ss){db.exec('BEGIN');try{const out=[];for(const s of ss)out.push(await s.run());db.exec('COMMIT');return out;}catch(e){db.exec('ROLLBACK');throw e;}}}};
  const actor={id:1,role:'owner',mfa:true},guard=()=>({sql:"EXISTS(SELECT 1 FROM hq_sessions s JOIN hq_users h ON h.id=s.hq_user_id WHERE h.id=1 AND h.status='active' AND h.mfa_enabled=1 AND s.revoked_at IS NULL AND julianday(s.expires_at)>julianday(?))",args:[at]}),auth=async()=>({user:{id:1,role:'owner',mfaEnabled:true}});
  const source=(id,kind='fulfilment_query')=>db.prepare('INSERT INTO partner_audit VALUES(?,?,?,?,?,?,?,?)').run(id,'order',record.order_number,db.prepare('SELECT COUNT(*) n FROM partner_audit').get().n,'12',kind,'{}',at);
@@ -44,7 +45,7 @@ test('missing source, wrong member and rolled-back source transaction cannot cre
 test('email and app preparation uses existing Communications drafts/intents; never approval, schedule, send or publication',async t=>{
  const f=setup(t);await f.event();const result=await prepareEventChannels(f.env,'partner:e1',f.actor,f.guard,at);assert.equal(result.sent,false);assert.equal(result.drafts.length,2);assert.match(result.whatsapp.status,/opt_in/);
  assert.deepEqual(f.db.prepare('SELECT status,approved_at FROM hq_comms_drafts').all().map(r=>[r.status,r.approved_at]),[['draft',null],['draft',null]]);
- for(const draft of result.drafts){assert.equal(draft.payload.recipients[0].userId,44);assert.equal(draft.payload.recipients[0].email,'member@example.invalid');assert.equal(draft.payload.notificationEvent,'clinical:channel:partner:e1:'+draft.channel);assert.equal(f.db.prepare('SELECT draft_id FROM hq_notification_intents WHERE event_key=?').get(draft.payload.notificationEvent).draft_id,draft.id);const intent=f.db.prepare('SELECT * FROM hq_notification_intents WHERE draft_id=?').get(draft.id);assert.equal(intent.source,'clinical_notification_channels');assert.equal((await careChannelEligibility(f.env.DB,intent,draft.payload,draft.id,{user_id:44,email:'member@example.invalid'})).eligible,true);assert.equal((await careIntentEligibility(f.env.DB,intent)).eligible,true);}
+ for(const draft of result.drafts){assert.equal(draft.payload.recipients[0].userId,44);assert.equal(draft.payload.recipients[0].email,'member@example.invalid');assert.equal(draft.payload.notificationEvent,'clinical:channel:partner:e1:'+draft.channel);assert.equal(f.db.prepare('SELECT draft_id FROM hq_notification_intents WHERE event_key=?').get(draft.payload.notificationEvent).draft_id,draft.id);const intent=f.db.prepare('SELECT * FROM hq_notification_intents WHERE draft_id=?').get(draft.id);assert.equal(intent.source,'clinical_case_outbox');assert.equal(f.db.prepare('SELECT status FROM clinical_case_outbox WHERE id=?').get(intent.source_id).status,'pending');assert.equal((await careChannelEligibility(f.env.DB,intent,draft.payload,draft.id,{user_id:44,email:'member@example.invalid'})).eligible,true);assert.equal((await careIntentEligibility(f.env.DB,intent)).eligible,true);}
  assert.equal(f.db.prepare("SELECT COUNT(*) n FROM hq_comms_recipients WHERE status='available_in_app'").get().n,0);
  assert.equal((await prepareEventChannels(f.env,'partner:e1',f.actor,f.guard,at)).drafts.length,0);
  assert.equal(f.db.prepare('SELECT COUNT(*) n FROM hq_comms_drafts').get().n,2);
@@ -75,4 +76,47 @@ test('invitation routes are private and cannot confuse dispensing profiles, chan
  const f=setup(t),{org,staff}=seedInvitation(f),input={kind:'clinician',orgId:org.id,staffId:staff.id,profileVersion:0};await assert.rejects(prepareInvitation(f.env,{...input,profileVersion:2},f.actor,f.guard,at),/profile_changed/);await assert.rejects(prepareInvitation(f.env,{kind:'partner',orgId:org.id,name:'Bad',email:'not-email'},f.actor,f.guard,at),/valid_email/);
  const req=(origin='https://hq.shiftsometimber.co.uk')=>new Request('https://api.shiftsometimber.co.uk/v1/hq/clinical/partners/invitations',{headers:{Origin:origin,Cookie:'sst_hq_session=fixture-owner'}});assert.equal((await partnerRoute(req(),f.env,f.auth)).status,200);assert.equal((await partnerRoute(req('https://evil.invalid'),f.env,f.auth)).status,403);assert.equal((await partnerRoute(req(),f.env,async()=>({user:{id:1,role:'clinical',mfaEnabled:true}}))).status,403);
  f.db.exec("UPDATE hq_sessions SET revoked_at='2026-01-01'");await assert.rejects(prepareInvitation(f.env,input,f.actor,f.guard,at),/access_revoked/);
+});
+
+test('prepared drafts pass the actual shared source checker and fail when consent, account, ownership or source changes',async t=>{
+ for(const change of ['sharing','verification','email','ownership','outbox','intent','draft'])await t.test(change,async t=>{
+  const f=setup(t);await f.event('receipt','fulfilment_dispatch');const result=await prepareEventChannels(f.env,'partner:receipt',f.actor,f.guard,at),draft=result.drafts[0],recipient={user_id:44,email:'member@example.invalid'};
+  assert.equal((await eventDeliveryEligibility(f.env.DB,draft.payload,draft.id,recipient)).eligible,true);
+  if(change==='sharing')f.db.exec('UPDATE clinical_member_records SET review_sharing=0');
+  if(change==='verification')f.db.exec('UPDATE user_auth SET email_verified=0');
+  if(change==='email')f.db.exec("UPDATE users SET email='changed@example.invalid'");
+  if(change==='ownership')f.db.exec('UPDATE clinical_member_records SET user_id=45');
+  if(change==='outbox')f.db.prepare("UPDATE clinical_case_outbox SET status='superseded' WHERE id=?").run('channel:partner:receipt:email');
+  if(change==='intent')f.db.prepare("UPDATE hq_notification_intents SET draft_id='wrong-draft' WHERE event_key=?").run(draft.payload.notificationEvent);
+  if(change==='draft')f.db.prepare("UPDATE clinical_notification_channels SET draft_id='wrong-draft' WHERE event_id=? AND channel='email'").run('partner:receipt');
+  assert.equal((await eventDeliveryEligibility(f.env.DB,draft.payload,draft.id,recipient)).eligible,false);
+ });
+});
+test('actual shared gate suppresses an outdated pharmacy question and the duplicate legacy email route',async t=>{
+ const f=setup(t);await f.event();const result=await prepareEventChannels(f.env,'partner:e1',f.actor,f.guard,at),draft=result.drafts[0],recipient={user_id:44,email:'member@example.invalid'};
+ assert.equal((await eventDeliveryEligibility(f.env.DB,draft.payload,draft.id,recipient)).eligible,true);
+ f.db.exec("UPDATE partner_fulfilment SET state_json='{\"status\":\"accepted\"}'");
+ assert.equal((await eventDeliveryEligibility(f.env.DB,draft.payload,draft.id,recipient)).eligible,false);
+ f.db.prepare('INSERT INTO partner_notification_outbox VALUES(?,?,?,?,?,?,?)').run('legacy-event','e1',record.order_number,44,'order_status_update','draft',at);
+ f.db.prepare("INSERT INTO hq_notification_intents(event_key,source,source_id,occurred_at,recipient_kind,recipient_user_id,template,link,state,draft_id,created_at,updated_at) VALUES(?,'partner_notification_outbox',?,?,'member',?,'member_order_update','/member/dashboard','prepared',?,?,?)").run('partner:legacy-event','legacy-event',at,44,'legacy-draft',at,at);
+ const legacy=await eventDeliveryEligibility(f.env.DB,{notificationEvent:'partner:legacy-event'},'legacy-draft',recipient);assert.equal(legacy.eligible,false);assert.equal(legacy.reason,'canonical_channel_review_supersedes_legacy');
+});
+test('a failure preparing the app channel preserves the one email draft; retry creates only the missing channel',async t=>{
+ const f=setup(t);await f.event();f.db.exec("CREATE TRIGGER reject_app_draft BEFORE INSERT ON hq_comms_drafts WHEN json_extract(NEW.payload_json,'$.channel')='notification' BEGIN SELECT RAISE(ABORT,'app_draft_outage');END;");
+ await assert.rejects(prepareEventChannels(f.env,'partner:e1',f.actor,f.guard,at),/app_draft_outage/);
+ assert.equal(f.db.prepare('SELECT COUNT(*) n FROM hq_comms_drafts').get().n,1);assert.equal(f.db.prepare('SELECT COUNT(*) n FROM clinical_case_outbox').get().n,1);
+ f.db.exec('DROP TRIGGER reject_app_draft');const retry=await prepareEventChannels(f.env,'partner:e1',f.actor,f.guard,at);assert.equal(retry.drafts.length,1);assert.equal(retry.drafts[0].channel,'app');
+ assert.equal(f.db.prepare('SELECT COUNT(*) n FROM hq_comms_drafts').get().n,2);assert.equal(f.db.prepare('SELECT COUNT(*) n FROM clinical_case_outbox').get().n,2);assert.equal(f.db.prepare('SELECT COUNT(*) n FROM hq_notification_intents').get().n,2);assert.equal((await prepareEventChannels(f.env,'partner:e1',f.actor,f.guard,at)).drafts.length,0);
+ assert.equal(f.db.prepare("SELECT COUNT(*) n FROM hq_comms_drafts WHERE approved_at IS NOT NULL OR status<>'draft'").get().n,0);
+});
+test('existing app-feed query exposes only the approved published owned app update, not prepared drafts or another member',async t=>{
+ const f=setup(t);await f.event();const {drafts}=await prepareEventChannels(f.env,'partner:e1',f.actor,f.guard,at),app=drafts.find(d=>d.channel==='app');
+ const feed=id=>f.db.prepare("SELECT d.id,d.payload_json,d.scheduled_at,r.read_at FROM hq_comms_recipients r JOIN hq_comms_drafts d ON d.id=r.draft_id WHERE r.user_id=? AND r.status='available_in_app' AND d.status IN ('scheduled','processed') AND d.approved_at IS NOT NULL AND d.scheduled_at<=? ORDER BY d.scheduled_at DESC LIMIT 100").all(id,at);
+ assert.equal(feed(44).length,0);f.db.prepare("UPDATE hq_comms_recipients SET status='available_in_app' WHERE draft_id=?").run(app.id);assert.equal(feed(44).length,0);
+ // Local fixture approval/publication only. No live API or transport is called.
+ f.db.prepare("UPDATE hq_comms_drafts SET status='processed',approved_at=? WHERE id=?").run(at,app.id);assert.equal(feed(44).length,1);assert.equal(feed(45).length,0);assert.equal(feed(44)[0].id,app.id);assert.equal(JSON.parse(feed(44)[0].payload_json).channel,'notification');
+});
+test('TBC provider assignments are visible configuration placeholders, not accounts, verification or permissions',async t=>{
+ const f=setup(t),request=new Request('https://api.shiftsometimber.co.uk/v1/hq/clinical/partners',{headers:{Origin:'https://hq.shiftsometimber.co.uk',Cookie:'sst_hq_session=fixture-owner'}}),result=await partnerRoute(request,f.env,f.auth);assert.equal(result.status,200);const b=await result.json();
+ for(const key of ['prescribingClinicianOrGP','dispensingPharmacy'])assert.deepEqual(b.providerAssignments[key],{displayName:'TBC',status:'unassigned',verified:false});assert.equal(f.db.prepare('SELECT COUNT(*) n FROM partner_staff').get().n,0);assert.equal(f.db.prepare('SELECT COUNT(*) n FROM partner_organisations').get().n,0);
 });

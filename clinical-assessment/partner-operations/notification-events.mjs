@@ -44,12 +44,13 @@ export async function prepareEventChannels(env,eventId,actor,sessionGuard,date=n
   const hash=await digest(payload),g=sessionGuard();
   const result=await env.DB.batch([
    q(env,"UPDATE clinical_notification_channels SET status='prepared',draft_id=?,updated_at=? WHERE event_id=? AND channel=? AND status='awaiting_approval' AND "+g.sql+" AND EXISTS(SELECT 1 FROM users u JOIN user_auth a ON a.user_id=u.id WHERE u.id=? AND lower(u.email)=? AND a.email_verified=1)",id,date,event.id,channel,...g.args,recipient.id,recipient.email.toLowerCase()),
-   q(env,"INSERT OR IGNORE INTO hq_notification_intents(event_key,source,source_id,occurred_at,recipient_kind,recipient_user_id,template,link,state,draft_id,created_at,updated_at) SELECT ?,'clinical_notification_channels',?,?,'member',?,'member_case_update',?,'prepared',?,?,? WHERE EXISTS(SELECT 1 FROM clinical_notification_channels WHERE event_id=? AND channel=? AND draft_id=?)",key,event.id,date,event.member_id,event.link,id,date,date,event.id,channel,id),
+   q(env,"INSERT OR IGNORE INTO clinical_case_outbox SELECT ?,?,?,'member','member_case_update',?,'pending',? WHERE EXISTS(SELECT 1 FROM clinical_notification_channels WHERE event_id=? AND channel=? AND draft_id=?)",sourceId,sourceId,event.member_id,event.link,date,event.id,channel,id),
+   q(env,"INSERT OR IGNORE INTO hq_notification_intents(event_key,source,source_id,occurred_at,recipient_kind,recipient_user_id,template,link,state,draft_id,created_at,updated_at) SELECT ?,'clinical_case_outbox',?,?,'member',?,'member_case_update',?,'prepared',?,?,? WHERE EXISTS(SELECT 1 FROM clinical_notification_channels WHERE event_id=? AND channel=? AND draft_id=?)",key,sourceId,date,event.member_id,event.link,id,date,date,event.id,channel,id),
    q(env,"INSERT INTO hq_comms_drafts(id,hash,payload_json,status,scheduled_at,created_by,created_at) SELECT ?,?,?,'draft',?,?,? WHERE EXISTS(SELECT 1 FROM clinical_notification_channels WHERE event_id=? AND channel=? AND draft_id=?)",id,hash,JSON.stringify(payload),date,actor.id,date,event.id,channel,id),
    q(env,"INSERT INTO hq_comms_recipients(draft_id,email,user_id,status) SELECT ?,?,?,'pending' WHERE EXISTS(SELECT 1 FROM hq_comms_drafts WHERE id=?)",id,recipient.email.toLowerCase(),recipient.id,id),
    q(env,"INSERT INTO hq_comms_audit(draft_id,actor_id,action,at) SELECT ?,?,'event_channel_draft_prepared',? WHERE EXISTS(SELECT 1 FROM hq_comms_drafts WHERE id=?)",id,actor.id,date,id)
   ]);
   if(result[0].meta?.changes===1)drafts.push({id,channel,hash,payload,status:'draft',approvalRequired:true});
  }
- return{drafts,whatsapp:{status:'awaiting_approved_template_and_verified_opt_in',text:event.title+'. '+event.body+' https://shiftsometimber.co.uk'+event.link},sent:false,deliveryIntegration:'central_communications_adapter_release_required'};
+ return{drafts,whatsapp:{status:'awaiting_approved_template_and_verified_opt_in',text:event.title+'. '+event.body+' https://shiftsometimber.co.uk'+event.link},sent:false,deliveryIntegration:'canonical_shared_contract_prepared_awaiting_central_release'};
 }

@@ -1,4 +1,7 @@
-// Read-only adapter for the central Communications worker. This module is not a sender.
+// Superseded proposal retained for history; not imported by a runtime worker.
+// Current integration uses canonical clinical_case_outbox rows and the shared
+// source owner's be44a1cc successor. See COMMUNICATIONS-INTEGRATION.md.
+// Read-only adapter proposal; this module is not a sender.
 // Call only after that worker has matched notificationEvent, draft ID and prepared intent.
 export async function careChannelEligibility(DB,item,payload,draftId,recipient){
  try{
