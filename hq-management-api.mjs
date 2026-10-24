@@ -1,3 +1,5 @@
+import {appendLaunchMetrics} from './hq-launch-report.mjs';
+import {TEST_ACCOUNT_SQL} from './activation-measurement/scorecard.mjs';
 import {hqMemberGpRoute} from './gp-directory/hq-member-gp.mjs';
 import {gpDirectoryHqRoute} from './gp-directory/hq.mjs';
 import {continuityScorecard} from './continuity-measurement/scorecard.mjs';
@@ -21,8 +23,8 @@ export async function managementReport(DB,{permissions=[],start,end,kind='manage
   try{const row=await DB.prepare(sql).bind(...bind).first();metrics.push(metric(key,label,Number(row?.value||0),required.join(', '),scope,unit))}catch{unavailable(key,label,'Source query failed.');}
  }
  if(['management','members','growth'].includes(kind)){
-  await read('registrations','New registrations','crm_read',['users'],"SELECT COUNT(*) value FROM users u WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND lower(u.email) NOT LIKE '%@example.invalid' AND lower(u.email) NOT LIKE '%@example.test'"+(tables.has('hq_users')?" AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(h.email)=lower(u.email))":''),[period.since,period.until]);
-  limitations.push('Registration count excludes HQ email matches and example.invalid/example.test addresses; other unlabelled test identities may remain.');
+  await read('registrations','New registrations','crm_read',['users','audit_log'],"SELECT COUNT(*) value FROM users u WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND NOT "+TEST_ACCOUNT_SQL+" AND lower(u.email) NOT LIKE 'shiftsometimber+%@gmail.com' AND lower(u.email) NOT IN ('appletest@shiftsometimber.co.uk','google-review@shiftsometimber.co.uk')"+(tables.has('hq_users')?" AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(h.email)=lower(u.email))":''),[period.since,period.until]);
+  limitations.push('Registration count excludes HQ email matches, audit-marked commissioning identities, example.invalid/example.test addresses, internal shiftsometimber+ Gmail test aliases and the retained Apple/Google reviewer accounts. Other unlabelled test identities may remain.');
  }
  if(['management','sales'].includes(kind)){
   const condition=" FROM orders o JOIN commerce_order_details d ON d.order_id=o.id WHERE d.stripe_checkout_session_id LIKE 'cs_live_%' AND o.currency='GBP' AND julianday(o.created_at)>=julianday(?) AND julianday(o.created_at)<julianday(?)";
@@ -33,14 +35,14 @@ export async function managementReport(DB,{permissions=[],start,end,kind='manage
  }
  if(['management','members'].includes(kind)){
   if(!permit(permissions,'intelligence_read')){unavailable('week4','Week-4 return rate','Your role cannot access this source.');unavailable('helped','Steps rated helpful','Your role cannot access this source.');}
-  else try{const c=await continuityScorecard(DB,{days:90});for(const [key,label] of [['week4','Week-4 return rate'],['helped','Steps rated helpful']]){const v=c[key];if(v?.ratePct!=null)metrics.push({...metric(key,label,v.ratePct,'continuity first-Today scorecard','Trailing 90-day Today cohort as of generation; independent of selected dates','percent'),numerator:v.numerator,denominator:v.denominator});else unavailable(key,label,v?.reason||v?.status||c.reason||'No eligible evidence yet.');}limitations.push(...(c.limitations||[]));}catch{unavailable('week4','Week-4 return rate','Continuity query failed.');unavailable('helped','Steps rated helpful','Continuity query failed.');}
+  else try{const c=await continuityScorecard(DB,{days:90});for(const [key,label] of [['week4','Week-4 return rate'],['helped','Steps rated helpful'],['firstWeekUsefulStep','First-week useful step'],['feedbackCoverage','Feedback coverage']]){const v=c[key];if(v?.ratePct!=null)metrics.push({...metric(key,label,v.ratePct,'continuity first-Today scorecard','Trailing 90-day Today cohort as of generation; independent of selected dates','percent'),numerator:v.numerator,denominator:v.denominator});else unavailable(key,label,v?.reason||v?.status||c.reason||'No eligible evidence yet.');}limitations.push(...(c.limitations||[]));}catch{unavailable('week4','Week-4 return rate','Continuity query failed.');unavailable('helped','Steps rated helpful','Continuity query failed.');}
  }
  if(kind==='management'){
   await read('support','Open support requests','support_read',['support_tickets'],"SELECT COUNT(*) value FROM support_tickets WHERE status NOT IN ('closed','resolved')",[],'count','Current snapshot at generation');
   await read('tasks','Overdue tasks','crm_read',['hq_tasks'],"SELECT COUNT(*) value FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND due_at IS NOT NULL AND julianday(due_at)<julianday(?)",[new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())],'count','Current snapshot at generation');
  }
  if(['management','growth'].includes(kind)){unavailable('organic','Organic search visits','Analytics reporting is not connected to HQ.');unavailable('conversion','Search-to-registration conversion','Verified attribution is not connected to HQ.');}
- return{ok:true,kind,period,generatedAt:new Date().toISOString(),metrics,limitations:[...new Set(limitations)],privacy:'Aggregate only. No member identities, health measurements or free text.',definitions:'Unavailable figures are not zero. Cohort and snapshot measures carry their own labelled scope.'};
+ return await appendLaunchMetrics(DB,{ok:true,kind,period,generatedAt:new Date().toISOString(),metrics,limitations:[...new Set(limitations)],privacy:'Aggregate only. No member identities, health measurements or free text.',definitions:'Unavailable figures are not zero. Cohort and snapshot measures carry their own labelled scope.'},permissions);
 }
 export async function managementRoute(request,env,ctx,authenticate){
  const memberGp=await hqMemberGpRoute(request,env,ctx,authenticate);if(memberGp)return memberGp;
