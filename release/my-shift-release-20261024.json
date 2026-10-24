@@ -26,5 +26,6 @@
     "release/approved-source-comparison-20261024.mjs",
     "release/app-scope.mjs",
     "release/combined-finite-scope-20261014.mjs"
-  ]
+  ],
+  "compositionMaintenance": "c7c45a184d0dc2dc40a4dce1294ac997498be841"
 }
