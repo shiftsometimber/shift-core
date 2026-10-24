@@ -8,7 +8,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: cloudflare-production-promote
+  group: ${{ github.event_name == 'push' && 'cloudflare-production-promote' || format('hq-management-verify-{0}', github.event.pull_request.number) }}
   cancel-in-progress: false
 jobs:
   verify:
