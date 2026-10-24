@@ -10,7 +10,8 @@ export const MY_SHIFT_RECEIPT='release/my-shift-release-20261024.json';
 export const MY_SHIFT_APPROVED_HEAD='ca5311330206b4360dd70742452afd26fc6f4663';
 export const MY_SHIFT_SHARED_MAIN='625016ab3426bc5aa4ad84fcfcaed8c438e3e7e7';
 export const MY_SHIFT_INTEGRATED='c09b42ee9210f55b03386e251508b4d066b4d35d';
-export const MY_SHIFT_COMPOSITION_PATHS=Object.freeze(['release/my-shift-release-scope-20261024.mjs','tests/my-shift-release-scope-20261024.test.mjs']);
+export const MY_SHIFT_COMPOSITION_PATHS=Object.freeze(['release/app-scope.mjs','release/my-shift-release-scope-20261024.mjs','tests/my-shift-release-scope-20261024.test.mjs']);
+export const MY_SHIFT_COMPOSITION_MARKER='// My Shift composition: retain both exact approved merge parents; see my-shift-release-scope-20261024.mjs.\n';
 export const MY_SHIFT_BLOBS=Object.freeze({
  'docs/MY-SHIFT-RELEASE-20261024.md':'d26a3d18e3a316282c15a169a1aaa96e5d72f86b',
  'member-experience/entry.mjs':'3c216ea16a404c0b377f7ac94a4b2716c89e8d2a',
@@ -37,7 +38,7 @@ const changed=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').fi
 const once=(value,part,replacement='')=>{assert.equal(value.split(part).length,2,'One exact My Shift maintenance inverse required');return value.replace(part,replacement);};
 export function originalMyShiftMaintenance(path,value){
  if(path==='release/approved-source-comparison-20261024.mjs')return once(once(value,COMPARISON_IMPORT),COMPARISON_HOOK);
- if(path==='release/app-scope.mjs')return once(once(value,APP_IMPORT),APP_AFTER,APP_BEFORE);
+ if(path==='release/app-scope.mjs'){if(value.includes(MY_SHIFT_COMPOSITION_MARKER))value=once(value,MY_SHIFT_COMPOSITION_MARKER);return once(once(value,APP_IMPORT),APP_AFTER,APP_BEFORE);}
  if(path==='release/combined-finite-scope-20261014.mjs')return once(value,DEFAULT_AFTER,DEFAULT_BEFORE);
  return value;
 }
@@ -86,6 +87,7 @@ export function verifyMyShiftComposition({head,receipt}){
  for(const path of checked){
   assert(git('ls-tree',head,'--',path).startsWith('100644 blob '),'Regular composition source required: '+path);
   assert.equal(readFileSync(path,'utf8'),bytes(head,path),'Actual composition worktree bytes changed: '+path);
+  if(path==='release/app-scope.mjs')assert.equal(once(bytes(head,path),MY_SHIFT_COMPOSITION_MARKER),bytes(MY_SHIFT_INTEGRATED,path),'Only the exact owning scope composition note may change');
   if(![...MY_SHIFT_COMPOSITION_PATHS,MY_SHIFT_RECEIPT].includes(path))assert.equal(bytes(head,path),bytes(MY_SHIFT_INTEGRATED,path),'Integrated runtime or original safety assertion drift: '+path);
  }
  return {head,paths:MY_SHIFT_PATHS,receipt};
