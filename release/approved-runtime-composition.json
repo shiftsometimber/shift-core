@@ -10029,6 +10029,12 @@
       "pausedLinkRepairIncluded": false,
       "homepageMainContentChanged": false
     },
-    "maintenanceSource": "37c392ac3695ca95bc0d9e75b3c996d8b6126e20"
+    "repairBase": "07850862f8d4cf56a4d73473c6320a33c64b624e",
+    "repairPaths": [
+      "release/approved-news-ticker-frame-20261024.mjs",
+      "tests/approved-news-ticker-frame-20261024.test.mjs"
+    ],
+    "maintenanceSource": "37c392ac3695ca95bc0d9e75b3c996d8b6126e20",
+    "repairSource": "51f6e6d177dfd5acf0ab0a964686d8688e133a40"
   }
 }
