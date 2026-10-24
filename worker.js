@@ -448,9 +448,10 @@ async function privacyDeleteRequest(request, env) {
   if(origin&&origin!==new URL(request.url).origin&&!['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com'].includes(origin))return json({ok:false,error:'origin_not_allowed'},403);
   const auth = await requireUser(request, env);
   if (auth.response) return auth.response;
-  await receiveAccountDeletion(env.DB,auth.user.id);
-  await audit(env, auth.user.id, 'privacy.deletion_requested', 'user', String(auth.user.id), request);
-  const response=json({ ok:true, status:'received' }, 202, { 'Set-Cookie': clearSessionCookie(request) });appendLegacyHostCookieClear(response,request);return response;
+  const body=await readJson(request);if(body.confirmation!=='DELETE_MY_ACCOUNT')return json({ok:false,error:'confirmation_required'},400);
+  const result=await receiveAccountDeletion(env.DB,auth.user.id);
+  await audit(env, auth.user.id, 'privacy.account_deleted', 'user', String(auth.user.id), request);
+  const response=json(result, 200, { 'Set-Cookie': clearSessionCookie(request) });appendLegacyHostCookieClear(response,request);return response;
 }
 
 
@@ -1418,7 +1419,8 @@ async function createSession(env,userId,request,rememberMe=false) {
   const token = randomToken(32);
   const hash = await sha256Hex(token);
   const expires = new Date(Date.now() + (rememberMe?90*24*60*60*1000:12*60*60*1000)).toISOString();
-  await env.DB.prepare('INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)').bind(userId,hash,expires,isoNow(),isoNow()).run();
+  const created=await env.DB.prepare("INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) SELECT ?,?,?,?,? FROM user_auth WHERE user_id=? AND password_hash NOT LIKE 'closed$%'").bind(userId,hash,expires,isoNow(),isoNow(),userId).run();
+  if(Number(created?.meta?.changes)!==1)throw Error('account_closed');
   return { token, cookie: sessionCookie(token,expires,request,rememberMe) };
 }
 

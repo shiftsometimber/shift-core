@@ -1,4 +1,4 @@
-const card=`<section class="tracker-card" data-account-deletion aria-labelledby="accountDeletionHeading"><h3 id="accountDeletionHeading">Request account deletion</h3><p>You can ask SHIFT to delete your account and personal data. This sends a request for review; it does not immediately erase every record. We will contact you at your account email about the outcome and any records that must be retained.</p><p>Submitting signs you out on all current devices. You can export your data above before requesting deletion.</p><button type="button" class="btn btn-ghost" id="accountDeletionOpen" aria-expanded="false" aria-controls="accountDeletionForm">Request account deletion</button><form id="accountDeletionForm" hidden><label><input type="checkbox" id="accountDeletionConfirm" required> I want to request account deletion and understand that I will be signed out.</label><div class="actions"><button class="btn btn-primary" type="submit">Send deletion request</button><button class="btn btn-ghost" type="button" id="accountDeletionCancel">Cancel</button></div></form><p id="accountDeletionStatus" role="status" aria-live="polite"></p><a id="accountDeletionSignIn" href="/member-login?returnTo=%2Fmember%2Fsettings" hidden>Sign in again</a><p>If you need help or cannot sign in, <a href="/contact">contact SHIFT</a>.</p></section>`;
+const card=`<section class="tracker-card" data-account-deletion aria-labelledby="accountDeletionHeading"><h3 id="accountDeletionHeading">Delete my account</h3><p>Confirming deletes your My Timber account immediately. Your saved member data is removed and you are signed out on all devices. Records covered by our retention policy are kept as explained in our privacy policy.</p><p>This cannot be undone. You can export your data above before deleting your account.</p><button type="button" class="btn btn-ghost" id="accountDeletionOpen" aria-expanded="false" aria-controls="accountDeletionForm">Delete my account</button><form id="accountDeletionForm" hidden><label><input type="checkbox" id="accountDeletionConfirm" required> I understand that my account will be deleted immediately and I will be signed out on all devices.</label><div class="actions"><button class="btn btn-primary" type="submit">Delete my account now</button><button class="btn btn-ghost" type="button" id="accountDeletionCancel">Cancel</button></div></form><p id="accountDeletionStatus" role="status" aria-live="polite"></p><a id="accountDeletionSignIn" href="/member-login?returnTo=%2Fmember%2Fsettings" hidden>Sign in again</a><p>If you need help or cannot sign in, <a href="/contact">contact SHIFT</a>.</p></section>`;
 export function withAccountDeletion(html){
   if(html.includes('data-account-deletion'))return html;
   return html.replace('</main>',card+'</main>').replace('</body>','<script defer src="/assets/member-experience/account-deletion.mjs"></script></body>');
@@ -12,23 +12,23 @@ export const accountDeletionRuntime=String.raw`(()=>{
  cancel.onclick=()=>{if(pending)return;form.reset();form.hidden=true;open.hidden=false;open.setAttribute('aria-expanded','false');status.textContent='';signIn.hidden=true;open.focus();};
  form.onsubmit=async event=>{
   event.preventDefault();if(pending||!confirm.checked||!form.reportValidity())return;
-  pending=true;form.setAttribute('aria-busy','true');for(const item of form.elements)item.disabled=true;status.textContent='Sending your deletion request…';signIn.hidden=true;
+  pending=true;form.setAttribute('aria-busy','true');for(const item of form.elements)item.disabled=true;status.textContent='Deleting your account…';signIn.hidden=true;
   try{
    if(!window.SST_API?.deleteAccount)throw Error('unavailable');
-   const result=await SST_API.deleteAccount();if(result?.ok!==true||result.status!=='received')throw Error('unconfirmed');
-   form.remove();open.remove();status.textContent='Deletion request received. You are signed out on all current devices. Your request is awaiting review; your account data has not yet been deleted. SHIFT will contact you at your account email.';
-   status.dataset.state='received';
-   host.dataset.accountDeletionReceived='1';document.body.dataset.accountDeletionReceived='1';
-   host.querySelector('h3').textContent='Deletion request received';
+   const result=await SST_API.deleteAccount();if(result?.ok!==true||result.status!=='deleted'||result.accountClosed!==true)throw Error('unconfirmed');
+   form.remove();open.remove();status.textContent='Your My Timber account has been deleted. You are signed out on all devices. Your optional member data has been removed. Records covered by our retention policy are kept as explained in our privacy policy.';
+   status.dataset.state='deleted';
+   host.dataset.accountDeleted='1';document.body.dataset.accountDeleted='1';
+   host.querySelector('h3').textContent='Account deleted';
    host.querySelectorAll(':scope>p').forEach(node=>{if(node!==status&&!node.querySelector('a[href="/contact"]'))node.remove();});
-   signIn.hidden=false;signIn.textContent='Return to sign in';
-   document.title='Deletion request received · My Timber';
+   signIn.hidden=false;signIn.textContent='Back to My Timber';signIn.href='/my-timber';
+   document.title='Account deleted · My Timber';
    // Remove the signed-in controls after the server has revoked the sessions.
    const main=host.closest('main');if(main)main.replaceChildren(host);
    document.querySelectorAll('.sst-member-tabs,#appBottomNav,#todayBrand .member-design-account,#memberSessionStatus,#myTimberApp').forEach(node=>node.remove());
    status.tabIndex=-1;status.focus();host.scrollIntoView({block:'start'});
   }catch(error){
-   status.textContent=error?.status===401?'Please sign in again to send your deletion request. If you already submitted it, contact SHIFT to check its status.':'We could not confirm receipt. Your request may have reached SHIFT. Check your connection and try again, or contact SHIFT to check its status.';
+   status.textContent=error?.status===401?'Your sign-in has expired. Sign in again to delete your account. If you already confirmed deletion, try signing in to check whether the account is closed.':'We could not confirm whether deletion completed. Check your connection before trying again. If you cannot sign in, contact SHIFT to check the account status.';
    status.dataset.state='error';signIn.hidden=error?.status!==401;for(const item of form.elements)item.disabled=false;
   }finally{pending=false;form.removeAttribute('aria-busy');}
  };

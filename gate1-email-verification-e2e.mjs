@@ -20,12 +20,12 @@ class Statement{
 class FakeDB{
   constructor(){
     this.users=[{id:1,email:'verify-test@shiftsometimber.co.uk',first_name:'Dave'}];
-    this.auth=new Map([[1,{email_verified:0,email_verified_at:null}]]);
+    this.auth=new Map([[1,{email_verified:0,email_verified_at:null,password_hash:'pbkdf2$isolated-fixture'}]]);
     this.sessions=[];this.tokens=[];this.delivery=[];this.audit=[];this.nextTokenId=1;
   }
   prepare(sql){return new Statement(this,sql)}
   async exec(sql){if(process.env.AUTH_DELIVERY_AUDIT_FAILURE==='1'&&sql.includes('auth_delivery_events'))throw Error('fictional audit outage');return{success:true}}
-  async batch(statements){for(const s of statements)await s.run();return statements.map(()=>({success:true}))}
+  async batch(statements){const results=[];for(const s of statements)results.push(await s.run());return results;}
   normal(sql){return String(sql).replace(/\s+/g,' ').trim().toLowerCase()}
   async run(sql,args){
     const q=this.normal(sql);
@@ -35,7 +35,7 @@ class FakeDB{
     if(q.startsWith('insert into auth_tokens')){this.tokens.push({id:this.nextTokenId++,user_id:Number(args[0]),token_hash:args[1],token_type:args[2],expires_at:args[3],used_at:null});return{success:true}}
     if(q.startsWith('insert into auth_delivery_events')){this.delivery.push({user_id:args[0],email_hash:args[1],event_type:args[2],status:args[3],provider_id:args[4],error_code:args[5]});return{success:true}}
     if(q.startsWith('insert into audit_log')){this.audit.push({user_id:Number(args[0]),action:args[1],entity_type:args[2],entity_id:args[3],metadata:args[4]});return{success:true}}
-    if(q.startsWith('update user_auth set email_verified=1')){const a=this.auth.get(Number(args[2]));a.email_verified=1;a.email_verified_at=args[0];return{success:true}}
+    if(q.startsWith('update user_auth set email_verified=1')){const a=this.auth.get(Number(args[2])),token=this.tokens.find(t=>t.id===Number(args[3]));if(!a||a.password_hash.startsWith('closed$')||!token||token.used_at||Date.parse(token.expires_at)<=Date.now())return{success:true,meta:{changes:0}};a.email_verified=1;a.email_verified_at=args[0];return{success:true,meta:{changes:1}}}
     if(q.startsWith('update auth_tokens set used_at=? where id=?')){const t=this.tokens.find(x=>x.id===Number(args[1]));if(t)t.used_at=args[0];return{success:true}}
     throw new Error(`Unsupported fake run SQL: ${q}`);
   }

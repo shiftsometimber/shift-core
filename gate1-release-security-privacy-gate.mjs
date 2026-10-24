@@ -24,7 +24,9 @@ for(const marker of ["headers.set('X-Shift-Request-Id'","headers.set('Cache-Cont
 for(const marker of ["if (method === 'POST' && path === '/v1/privacy/export')","if (method === 'DELETE' && path === '/v1/privacy/account')","const auth = await requireUser(request, env)","await receiveAccountDeletion(env.DB,auth.user.id)"]) requireText(worker,marker,`privacy boundary ${marker}`);
 
 requireText(worker,"import {receiveAccountDeletion} from './privacy-account-request-v1.js'",'deletion handler import');
-for(const marker of ['await DB.batch([','INSERT INTO data_requests','INSERT INTO hq_tasks','UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL'])requireText(deletion,marker,'atomic deletion receipt '+marker);
+for(const marker of ['await DB.batch(statements)','INSERT INTO data_requests','ON CONFLICT(user_id) DO UPDATE SET password_hash=excluded.password_hash','closed$','auth_tokens','UPDATE user_sessions SET revoked_at=COALESCE',"status:'deleted'"])requireText(deletion,marker,'atomic immediate account deletion '+marker);
+requireText(worker,"body.confirmation!=='DELETE_MY_ACCOUNT'",'explicit irreversible deletion confirmation');
+if(deletion.includes('INSERT INTO hq_tasks'))fail('Member deletion must complete immediately without an HQ approval queue');
 
 for(const marker of ["httpOnly:true","secure:true","sameSite:'Lax'","exportRequired:true","deleteRequired:true","hqWritesRequired:true","clientExposureForbidden:true","assertMemberBoundary","rejectMaliciousText"]) requireText(security,marker,`security policy ${marker}`);
 

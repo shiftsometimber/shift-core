@@ -80,7 +80,7 @@ css('#todayActions.app-today-v3 .today-followthrough','margin:16px 0;gap:14px')+
 css('#todayActions.app-today-v3 .today-support','margin-top:16px')+
 css('#todayActions.app-today-v3 .today-support :is(.mtm-panel,.mtm-care)','background:#e7e3da;color:#050505;border:0')+
 css('main :is(.app-screen-details,.app-refine-detail,.app-settings-section,.app-account-details,.grub-account)','background:#e7e3da;color:#050505;border:0;border-radius:10px;padding:10px 14px')+
-css('main [data-account-deletion-received]','background:#e7e3da;color:#050505;border:0;border-radius:12px;padding:20px')+
+css('main [data-account-deleted]','background:#e7e3da;color:#050505;border:0;border-radius:12px;padding:20px')+
 css('main :is(.app-screen-details,.app-refine-detail,.app-settings-section,.app-account-details,.grub-account) :is(p,summary,h2,h3,a)','color:#050505;-webkit-text-fill-color:#050505')+
 css('main :is(.grub-meta,.sf-metrics)>*','background:#d3d0c5;color:#050505;font-size:12px')+
 css('main .grub-v8-tabs','background:#050505;border:0;border-radius:11px;padding:4px;margin:0 0 14px')+
@@ -170,7 +170,7 @@ export const memberDesignClient=String.raw`(()=>{
   }catch{}
  }
  function compose(){
-  if(document.body.dataset.accountDeletionReceived==='1')return;
+  if(document.body.dataset.accountDeleted==='1')return;
   if(document.body.dataset.appMore==='open'){const more=document.querySelector('nav.sst-member-tabs .member-nav-more');if(more&&!more.open)more.open=true;}
   if(document.body.dataset.memberPage!=='dashboard'){const main=document.querySelector('main'),follow=document.getElementById('dailyCheckinFollowup');if(main&&follow){const card=follow.closest('details')||follow;if(main.contains(card)&&main.lastElementChild!==card)main.append(card);}}
   const root=document.getElementById('todayActions');

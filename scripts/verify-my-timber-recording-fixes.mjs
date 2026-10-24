@@ -46,20 +46,20 @@ for(const [engine,type]of [['webkit',webkit],['chromium',chromium]]){
   }
   receipt.results.push({engine,case:'dashboard duplicate tabs hidden; bottom Grub and Fit still switch panels',pass:true});
 
-  html=compose(withAccountDeletion(template('<h1>Settings</h1><section class="tracker-card"><h2>Other setting</h2></section>'))).replace('</body>',scripts('window.deletionCalls=0;window.SST_API={deleteAccount:async()=>{window.deletionCalls++;return {ok:true,status:"received"}}};')+scripts(accountDeletionRuntime)+'</body>');
+  html=compose(withAccountDeletion(template('<h1>Settings</h1><section class="tracker-card"><h2>Other setting</h2></section>'))).replace('</body>',scripts('window.deletionCalls=0;window.SST_API={deleteAccount:async()=>{window.deletionCalls++;return {ok:true,status:"deleted",accountClosed:true}}};')+scripts(accountDeletionRuntime)+'</body>');
   await page.goto('https://shiftsometimber.co.uk/member/settings');
   await page.locator('#accountDeletionOpen').click();await page.locator('#accountDeletionConfirm').check();await page.locator('#accountDeletionForm button[type="submit"]').click();
-  await page.waitForFunction(()=>document.getElementById('accountDeletionStatus')?.dataset.state==='received');
+  await page.waitForFunction(()=>document.getElementById('accountDeletionStatus')?.dataset.state==='deleted');
   await page.waitForTimeout(150);
   assert.equal(await page.locator('#accountDeletionStatus').isVisible(),true);
   assert.equal(await page.locator('#accountDeletionStatus').evaluate(n=>!!n.closest('details:not([open])')),false);
-  assert.match(await page.locator('#accountDeletionStatus').innerText(),/awaiting review/);
+  assert.match(await page.locator('#accountDeletionStatus').innerText(),/account has been deleted/);
   assert.equal(await page.locator('#appBottomNav').count(),0);
   assert.equal(await page.locator('.sst-member-tabs').count(),0);
   assert.equal(await page.locator('#accountDeletionSignIn').isVisible(),true);
   assert.equal(await page.evaluate(()=>window.deletionCalls),1);
   await page.screenshot({path:out+'/'+engine+'-deletion-received.png',fullPage:true});
-  receipt.results.push({engine,case:'deletion receipt remains visible; sign-in link; authenticated controls removed; one request',pass:true});
+  receipt.results.push({engine,case:'immediate deletion confirmation remains visible; sign-in link; authenticated controls removed; one request',pass:true});
   html=compose(withAccountDeletion(template('<h1>Settings</h1>'))).replace('</body>',scripts('window.SST_API={deleteAccount:async()=>{throw Object.assign(Error("expired"),{status:401})}};')+scripts(accountDeletionRuntime)+'</body>');
   await page.goto('https://shiftsometimber.co.uk/member/settings');await page.locator('#accountDeletionOpen').click();await page.locator('#accountDeletionConfirm').check();await page.locator('#accountDeletionForm button[type="submit"]').click();
   await page.waitForFunction(()=>document.getElementById('accountDeletionStatus')?.dataset.state==='error');
