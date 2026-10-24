@@ -24,6 +24,7 @@ import {grubIntelligenceCSS} from './grub-intelligence-client.mjs';
 import {withPasswordSettings,passwordSettingsRuntime} from './password-settings.mjs';
 import {withMemberDetails,memberDetailsRuntime,memberDetailsStyles} from './member-details.mjs';
 import {ordersHTML,ordersStyles,ordersRuntime} from './orders.mjs';
+import {myShiftHTML,myShiftStyles,myShiftRuntime} from './my-shift.mjs';
 
 export const memberPages = ['dashboard','grub','fit','check-in','saved','settings','plans','ask-timber','my-target','my-why','achievements','timber-circle'];
 const pageName = path => path.replace(/\.html$/, '').replace(/^\/member\//, '');
@@ -39,7 +40,10 @@ export function memberExperienceRoutes(request, env) {
   if(path==='/assets/member-experience/treatment-week.mjs')return new Response(request.method==='HEAD'?null:treatmentWeekRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/treatment-week.css')return new Response(request.method==='HEAD'?null:treatmentWeekStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/device-health.mjs')return new Response(request.method==='HEAD'?null:deviceHealthRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
-  if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:ordersHTML(env.WORK_V1_ENABLED==='true'),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
+  if(['/member/my-shift','/member/my-shift.html','/my-shift'].includes(path))return new Response(request.method==='HEAD'?null:myShiftHTML(env),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
+  const shiftAsset={'/assets/member-experience/my-shift.mjs':[myShiftRuntime,'text/javascript'],'/assets/member-experience/my-shift.css':[myShiftStyles,'text/css']}[path];
+  if(shiftAsset)return new Response(request.method==='HEAD'?null:shiftAsset[0],{headers:{...privateHeaders,'Content-Type':shiftAsset[1]+'; charset=utf-8','Vary':'Cookie'}});
+  if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:ordersHTML(env.WORK_V1_ENABLED==='true').replace('<main id="main-content">','<main id="main-content"><p><a href="/member/my-shift">Open My Shift · your account, care &amp; orders →</a></p>'),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
   if(path==='/assets/member-experience/orders.mjs')return new Response(request.method==='HEAD'?null:ordersRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/assets/member-experience/orders.css')return new Response(request.method==='HEAD'?null:ordersStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
   if(path==='/assets/member-experience/session.mjs')return new Response(request.method==='HEAD'?null:sessionRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});

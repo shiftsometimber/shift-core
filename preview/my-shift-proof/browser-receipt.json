@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-24T11:35:43.566Z",
+  "fictionalOnly": true,
+  "productionWrites": 0,
+  "calls": 100,
+  "checks": [
+    {
+      "width": 320,
+      "checks": "nine sections, inset, overflow, safe DOM, pulse/pause, resolved, partial failure and session expiry passed",
+      "errors": []
+    },
+    {
+      "width": 390,
+      "checks": "nine sections, inset, overflow, safe DOM, pulse/pause, resolved, partial failure and session expiry passed",
+      "errors": []
+    },
+    {
+      "width": 1024,
+      "checks": "nine sections, inset, overflow, safe DOM, pulse/pause, resolved, partial failure and session expiry passed",
+      "errors": []
+    }
+  ],
+  "reducedMotion": true
+}
