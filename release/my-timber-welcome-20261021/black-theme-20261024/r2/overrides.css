@@ -1,0 +1,3 @@
+/* Public welcome owns the page in the existing signed-out/fallback visibility states; authenticated navigation is preserved. */
+html body[data-member-session="signed-out"]:has(#mtWelcome):is(#mtWelcomePublic,[data-member-session]) #appBottomNav,
+html body:not([data-member-session]):not(.member-ready):has(#mtWelcome):is(#mtWelcomePublic,body) #appBottomNav{display:none!important}
