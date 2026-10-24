@@ -18,6 +18,16 @@ export async function initialiseNotifications(DB,at){
  await DB.batch(notificationDDL.map(sql=>DB.prepare(sql)));
  await DB.prepare('INSERT OR IGNORE INTO hq_notification_config(id,started_at) VALUES(1,?)').bind(at).run();
 }
+// Preserve the source route, recipient and template for the assigned clinical team.
+export function clinicalNotificationCandidate(row){
+ if(!['member','hq'].includes(row.recipient_kind))return null;
+ const member=row.recipient_kind==='member',pharmacy=!member&&row.template==='dispensing_action_needed';
+ const valid=member?/^\/member\/treatment-records\?record=[a-f0-9-]{36}$/.test(row.link):pharmacy?/^\/clinical-portal\/dispensing\?order=[A-Za-z0-9_%.-]{1,160}$/.test(row.link):/^\/\?view=clinical&record=[a-f0-9-]{36}$/.test(row.link);
+ if(!valid)return null;
+ return{key:'clinical:'+row.id,source:'clinical_case_outbox',id:row.id,at:row.created_at,kind:member?'member':'hq_user',user:row.recipient_user_id,
+  template:member?(row.template==='member_action_needed'?'member_action_needed':'member_case_update'):pharmacy?'dispensing_action_needed':'reviewer_case_update',
+  link:member||pharmacy?row.link:'/clinical-portal?record='+row.link.split('record=')[1]};
+}
 export async function reconcileNotifications(env,now=new Date(),invocation={kind:'manual'}){
  const DB=env.DB,at=now.toISOString(),id=crypto.randomUUID(),startedTick=performance.now(),completedAt=()=>new Date(now.getTime()+performance.now()-startedTick).toISOString();
  await initialiseNotifications(DB,at);
@@ -28,10 +38,7 @@ export async function reconcileNotifications(env,now=new Date(),invocation={kind
   const tables=new Set((await DB.prepare("SELECT name FROM sqlite_master WHERE type='table'").all()).results.map(r=>r.name));
   const candidates=[];
   if(tables.has('clinical_case_outbox'))for(const row of (await DB.prepare("SELECT id,event_id,recipient_user_id,recipient_kind,template,link,created_at FROM clinical_case_outbox c WHERE status='pending' AND julianday(created_at)>=julianday(?) AND julianday(created_at)<=julianday(?) AND NOT EXISTS(SELECT 1 FROM hq_notification_intents i WHERE i.event_key='clinical:'||c.id) ORDER BY created_at LIMIT 100").bind(since,at).all()).results){
-   if(!['member','hq'].includes(row.recipient_kind))continue;
-   const member=row.recipient_kind==='member';
-   if(member?!/^\/member\/treatment-records\?record=[a-f0-9-]{36}$/.test(row.link):!/^\/\?view=clinical&record=[a-f0-9-]{36}$/.test(row.link))continue;
-   candidates.push({key:'clinical:'+row.id,source:'clinical_case_outbox',id:row.id,at:row.created_at,kind:member?'member':'hq_user',user:row.recipient_user_id,template:member?(row.template==='member_action_needed'?'member_action_needed':'member_case_update'):'reviewer_case_update',link:member?row.link:'/clinical-portal?record='+row.link.split('record=')[1]});
+   const candidate=clinicalNotificationCandidate(row);if(candidate)candidates.push(candidate);
   }
   if(tables.has('partner_notification_outbox')&&tables.has('partner_audit'))for(const row of (await DB.prepare("SELECT o.id,o.event_id,o.member_id,o.created_at FROM partner_notification_outbox o JOIN partner_audit a ON a.id=o.event_id WHERE o.status='draft' AND o.template='order_status_update' "+(tables.has('clinical_notification_events')?"AND NOT EXISTS(SELECT 1 FROM clinical_notification_events ce WHERE ce.id='partner:'||o.event_id AND ce.member_id=o.member_id) ":'')+"AND julianday(o.created_at)>=julianday(?) AND julianday(o.created_at)<=julianday(?) AND NOT EXISTS(SELECT 1 FROM hq_notification_intents i WHERE i.event_key='partner:'||o.id) ORDER BY o.created_at LIMIT 100").bind(since,at).all()).results)candidates.push({key:'partner:'+row.id,source:'partner_notification_outbox',id:row.id,at:row.created_at,kind:'member',user:row.member_id,template:'member_order_update',link:'/member/dashboard'});
   if(tables.has('data_requests'))for(const row of (await DB.prepare("SELECT id,user_id,received_at FROM data_requests d WHERE request_type='deletion' AND status NOT IN ('completed','cancelled') AND julianday(received_at)>=julianday(?) AND julianday(received_at)<=julianday(?) AND NOT EXISTS(SELECT 1 FROM hq_notification_intents i WHERE i.event_key='deletion:'||d.id) ORDER BY received_at LIMIT 100").bind(since,at).all()).results)candidates.push({key:'deletion:'+row.id,source:'data_requests',id:String(row.id),at:row.received_at,kind:'operations',user:null,template:'deletion_requested',link:'/?view=tasks'});
@@ -62,7 +69,7 @@ export async function reconcileNotifications(env,now=new Date(),invocation={kind
  }catch(error){await DB.prepare("UPDATE hq_notification_runs SET completed_at=?,status='failed',error_code='notification_reconciliation_failed' WHERE id=?").bind(completedAt(),id).run();throw Error('notification_reconciliation_failed')}
 }
 export function intentContent(item){
- const labels={member_order_update:['Your order has an update in My Timber','Sign in to My Timber to view the current status of your order.'],member_action_needed:['Action needed in My Timber','There is a request for more information in My Timber. Sign in to read the request and provide your update.'],member_case_update:['There is an update in My Timber','Sign in to My Timber to read the update to your treatment request.'],reviewer_case_update:['A clinical case needs your attention','Sign in to the clinician portal to review the assigned case.'],deletion_requested:['HQ action: account-deletion request','A new account-deletion request needs an owner and review. Open the HQ task queue. A received request is not completed erasure.'],urgent_support:['HQ action: priority support request','A priority support request needs review in the HQ support queue.'],integration_failed:['HQ action: partner integration failure','A partner callback could not be processed. Review the integration queue and reconcile the outcome before retrying.']};
+ const labels={dispensing_action_needed:['A signed prescription needs pharmacy review','Sign in to the dispensing portal to review the assigned prescription handover.'],member_order_update:['Your order has an update in My Timber','Sign in to My Timber to view the current status of your order.'],member_action_needed:['Action needed in My Timber','There is a request for more information in My Timber. Sign in to read the request and provide your update.'],member_case_update:['There is an update in My Timber','Sign in to My Timber to read the update to your treatment request.'],reviewer_case_update:['A clinical case needs your attention','Sign in to the clinician portal to review the assigned case.'],deletion_requested:['HQ action: account-deletion request','A new account-deletion request needs an owner and review. Open the HQ task queue. A received request is not completed erasure.'],urgent_support:['HQ action: priority support request','A priority support request needs review in the HQ support queue.'],integration_failed:['HQ action: partner integration failure','A partner callback could not be processed. Review the integration queue and reconcile the outcome before retrying.']};
  const entry=labels[item.template];if(!entry)throw Error('unsupported_notification_template');
  const member=item.recipient_kind==='member';
  return{subject:entry[0],body:entry[1]+'\n\n'+(member?'https://shiftsometimber.co.uk':'https://hq.shiftsometimber.co.uk')+item.link+'\n\nShift Some Timber'};

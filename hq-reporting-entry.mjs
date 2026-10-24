@@ -12,7 +12,7 @@ export function reportWorker(fetchImpl=null){
   const notification=path==='/v1/hq/management/report/notifications'||path.startsWith('/v1/hq/management/report/notifications/');
   if(!paths.has(path)&&!notification&&!kpis&&!business)return new Response('Not found',{status:404});
   const trusted=request.headers.get('Origin')===origin;
-  const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Vary':'Cookie, Origin','X-Shift-HQ-Reporting':'business-snapshot-20261024-v1'};
+  const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Vary':'Cookie, Origin','X-Shift-HQ-Reporting':'business-snapshot-20261024-v1','X-Shift-Prescription-Alerts':'20261024-v1'};
   if(trusted)Object.assign(headers,{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true'});
   if(request.method==='OPTIONS'){
    if(!trusted)return new Response(null,{status:403,headers});
