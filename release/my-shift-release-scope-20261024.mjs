@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {immutableHistoryExecFileSync as exec} from './immutable-git-facts.mjs';
+import {execFileSync as exec} from 'node:child_process';
 import {createRequire} from 'node:module';
 
 export const MY_SHIFT_BASE='44ade5dfee81c299008912ac48c8e7f2a1adbe92';
