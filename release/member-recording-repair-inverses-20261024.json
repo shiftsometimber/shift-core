@@ -1,137 +1,142 @@
 {
   "release/my-shift-release-scope-20261024.mjs": {
     "original": "b8d22d49ef87cd1357511e1a3e3b7bfc065e7ea1",
-    "current": "d1c75b43f115958588e973a19867c8aeb2f2816a",
+    "current": "366952d1f645b5197b3db29a5ae810ee510e85a3",
     "edits": [
       {
         "start": 0,
-        "after": "import {verifyMemberRecordingRepair,RECORDING_REPAIR_BASE,memberRecordingComparisonValue,recordingRepairLegacyPaths,withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';\n",
-        "before": ""
+        "before": "",
+        "after": "import {verifyMemberRecordingRepair,RECORDING_REPAIR_BASE,memberRecordingComparisonValue,recordingRepairLegacyPaths,withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';\n"
       },
       {
         "start": 302,
-        "after": "",
-        "before": "n"
+        "before": "n",
+        "after": ""
       },
       {
         "start": 303,
-        "after": "c",
-        "before": ""
+        "before": "",
+        "after": "c"
       },
       {
         "start": 305,
-        "after": "ual",
-        "before": "ive"
+        "before": "ive",
+        "after": "ual"
       },
       {
         "start": 3726,
-        "after": "rdingProjection=false;\nconst nativeReadFileSync=(path,...args)=>recordingProjection&&typeof path==='string'?bytes(RECORDING_REPAIR_BASE,path):actualReadFileSync(path,...args);\nlet reco",
-        "before": ""
+        "before": "",
+        "after": "rdingProjection=false;\nconst nativeReadFileSync=(path,...args)=>recordingProjection&&typeof path==='string'?bytes(RECORDING_REPAIR_BASE,path):actualReadFileSync(path,...args);\nlet reco"
       },
       {
         "start": 4135,
-        "after": "recordingProjection?args.map(value=>value==='HEAD'?RECORDING_REPAIR_BASE:value.startsWith('HEAD:')?RECORDING_REPAIR_BASE+value.slice(4):value):",
-        "before": ""
+        "before": "",
+        "after": "recordingProjection?args.map(value=>value==='HEAD'?RECORDING_REPAIR_BASE:value.startsWith('HEAD:')?RECORDING_REPAIR_BASE+value.slice(4):value):"
       },
       {
         "start": 4896,
-        "after": "\n value=memberRecordingComparisonValue(path,value);",
-        "before": ""
+        "before": "",
+        "after": "\n value=memberRecordingComparisonValue(path,value);"
       },
       {
         "start": 11919,
-        "after": "return withMemberRecordingQualification(()=>verifyRecordingAwareMyShiftRelease(requestedHead));}\nfunction verifyRecordingAwareMyShiftRelease(requestedHead){",
-        "before": ""
+        "before": "",
+        "after": "return withMemberRecordingQualification(()=>verifyRecordingAwareMyShiftRelease(requestedHead));}\nfunction verifyRecordingAwareMyShiftRelease(requestedHead){"
       },
       {
         "start": 12898,
-        "after": "for(const path of recordingRepairLegacyPaths())RECONCILIATION_PATHS.add(path);\n ",
-        "before": ""
+        "before": "",
+        "after": "for(const path of recordingRepairLegacyPaths())RECONCILIATION_PATHS.add(path);\n "
       },
       {
         "start": 13148,
-        "after": "memberRecordingComparisonValue(path,",
-        "before": ""
+        "before": "",
+        "after": "memberRecordingComparisonValue(path,"
       },
       {
         "start": 13214,
-        "after": "head);\n  value=memberRecordingComparisonValue(path,value,head);\n  const ",
-        "before": ""
+        "before": "",
+        "after": "head);\n  value=memberRecordingComparisonValue(path,value,head);\n  const "
       },
       {
-        "start": 21233,
-        "after": "value=memberRecordingComparisonValue(path,value);\n ",
-        "before": ""
+        "start": 14143,
+        "before": "",
+        "after": ";\n value=memberRecordingComparisonValue(path,value)"
       },
       {
-        "start": 23351,
-        "after": "ordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}\n if(!rec",
-        "before": ""
+        "start": 21284,
+        "before": "",
+        "after": "value=memberRecordingComparisonValue(path,value);\n "
       },
       {
-        "start": 24737,
-        "after": "return withMemberRecordingQualification(()=>{\n ",
-        "before": ""
+        "start": 23402,
+        "before": "",
+        "after": "ordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}\n if(!rec"
       },
       {
-        "start": 24940,
-        "after": "\n  const recording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);",
-        "before": ""
+        "start": 24788,
+        "before": "",
+        "after": "return withMemberRecordingQualification(()=>{\n "
       },
       {
-        "start": 25254,
-        "after": "",
-        "before": "git('"
+        "start": 24991,
+        "before": "",
+        "after": "\n  const recording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);"
       },
       {
-        "start": 25256,
-        "after": "co",
-        "before": "v-pa"
+        "start": 25305,
+        "before": "git('",
+        "after": ""
       },
       {
-        "start": 25259,
-        "after": "",
-        "before": "se',proof.hea"
+        "start": 25307,
+        "before": "v-pa",
+        "after": "co"
       },
       {
-        "start": 25260,
-        "after": "ing",
-        "before": "+':'+path)"
+        "start": 25310,
+        "before": "se',proof.hea",
+        "after": ""
       },
       {
-        "start": 25458,
-        "after": "memberRecordingComparisonValue(path,",
-        "before": ""
+        "start": 25311,
+        "before": "+':'+path)",
+        "after": "ing"
       },
       {
-        "start": 25498,
-        "after": "",
-        "before": "n"
+        "start": 25509,
+        "before": "",
+        "after": "memberRecordingComparisonValue(path,"
       },
       {
-        "start": 25499,
-        "after": "c",
-        "before": ""
+        "start": 25549,
+        "before": "n",
+        "after": ""
       },
       {
-        "start": 25501,
-        "after": "ual",
-        "before": "ive"
+        "start": 25550,
+        "before": "",
+        "after": "c"
       },
       {
-        "start": 25522,
-        "after": "),proof.head",
-        "before": ""
+        "start": 25552,
+        "before": "ive",
+        "after": "ual"
       },
       {
-        "start": 25620,
-        "after": "for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);\n ",
-        "before": ""
+        "start": 25573,
+        "before": "",
+        "after": "),proof.head"
       },
       {
-        "start": 25726,
-        "after": " });\n",
-        "before": ""
+        "start": 25671,
+        "before": "",
+        "after": "for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);\n "
+      },
+      {
+        "start": 25777,
+        "before": "",
+        "after": " });\n"
       }
     ]
   },
@@ -174,32 +179,42 @@
   },
   "release/app-scope.mjs": {
     "original": "359a0ad45db487b3d67f0d594722c8a1ec887dc4",
-    "current": "10db2116c044feab0809b0625cf04b7ae91a309c",
+    "current": "bb04f1c1b9eddb9937dd831ee38a47672c5d94c3",
     "edits": [
       {
         "start": 0,
-        "after": "import {memberRecordingComparisonValue,recordingRepairLegacyPaths} from './member-recording-repair-20261024.mjs';\n",
-        "before": ""
+        "before": "",
+        "after": "import {memberRecordingComparisonValue,recordingRepairLegacyPaths} from './member-recording-repair-20261024.mjs';\n"
       },
       {
         "start": 2173,
-        "after": "const valu",
-        "before": "r"
+        "before": "r",
+        "after": "const valu"
       },
       {
         "start": 2184,
-        "after": "=",
-        "before": "turn "
+        "before": "turn ",
+        "after": "="
       },
       {
         "start": 2338,
-        "after": ";if(bin==='git'&&['show','rev-parse'].includes(args[0])&&args[1]?.startsWith('HEAD:')){const ending=args[0]==='rev-parse'&&typeof value==='string'&&value.endsWith('\\n')?'\\n':'';return memberRecordingComparisonValue(args[1].slice(5),ending?value.slice(0,-1):value,head)+ending;}return value",
-        "before": ""
+        "before": "",
+        "after": ";if(bin==='git'&&['show','rev-parse'].includes(args[0])&&args[1]?.startsWith('HEAD:')){const ending=args[0]==='rev-parse'&&typeof value==='string'&&value.endsWith('\\n')?'\\n':'';return memberRecordingComparisonValue(args[1].slice(5),ending?value.slice(0,-1):value,head)+ending;}return value"
       },
       {
         "start": 14635,
-        "after": "recordingRepairLegacyPaths()){APP_PATHS.add(path);RECONCILIATION_PATHS.add(path);}\n for(const path of ",
-        "before": ""
+        "before": "",
+        "after": "recordingRepairLegacyPaths()){APP_PATHS.add(path);RECONCILIATION_PATHS.add(path);}\n for(const path of "
+      },
+      {
+        "start": 15097,
+        "before": "",
+        "after": "\n const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks());"
+      },
+      {
+        "start": 16260,
+        "before": ");\n const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks()",
+        "after": ""
       }
     ]
   },

@@ -26,3 +26,19 @@ withMemberRecordingQualification(()=>{verifyMemberRecordingRepair();const path='
 });
 
 test('exact repair comparison composes with the original CLI admission instead of masking it',async()=>{const {approvedSourceComparison}=await import('../release/approved-source-comparison-20261024.mjs');const path='release/app-preflight.mjs',current=readFileSync(path,'utf8'),original=execFileSync('git',['show','2ac8456e8394c1508b13481fad1f68520926f10b:'+path],{encoding:'utf8'});const blob=value=>createHash('sha1').update('blob '+Buffer.byteLength(value)+'\0').update(value).digest('hex');assert.equal(approvedSourceComparison(path,current),original);assert.equal(approvedSourceComparison(path,blob(current)),blob(original));assert.equal(approvedSourceComparison(path,current+'unreviewed'),current+'unreviewed');assert.equal(approvedSourceComparison(path,original,'2ac8456e8394c1508b13481fad1f68520926f10b'),original);});
+
+// Exercise the original caller that the full preflight reached after its expensive prefix.
+test('actual current-main safety assertions compose only the qualified native repair pin',async()=>{
+ const {verifyCurrentMainSafetyChecks}=await import('../release/app-scope.mjs');
+ const {myShiftSafetyComparison}=await import('../release/my-shift-release-scope-20261024.mjs');
+ const path='release/approved-source-comparison-20261024.mjs',expected='6af31f06d5667c037f65cae202af1b478813dbaa';
+ const read=p=>execFileSync('git',['rev-parse','HEAD:'+p],{encoding:'utf8'}).trim();
+ withMemberRecordingQualification(()=>{
+  const current=read(path);assert.notEqual(current,expected);
+  assert.equal(myShiftSafetyComparison(path,current),expected);
+  assert(verifyCurrentMainSafetyChecks().includes(path));
+  const forged=current+'unreviewed';assert.equal(myShiftSafetyComparison(path,forged),forged);
+  assert.throws(()=>verifyCurrentMainSafetyChecks(p=>p===path?forged:read(p)),/Merged safety-check source drift: release\/approved-source-comparison/);
+  assert.throws(()=>verifyCurrentMainSafetyChecks(p=>p==='worker-entry-v6.js'?'0'.repeat(40):read(p)),/Merged safety-check source drift: worker-entry-v6.js/);
+ });
+});
