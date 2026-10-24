@@ -1,0 +1,21 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {DatabaseSync} from 'node:sqlite';
+import {deliveryState,deliveryHistory} from './hq-delivery-history.mjs';
+function db(){const sqlite=new DatabaseSync(':memory:');return{sqlite,prepare(sql){let args=[];return{bind(...x){args=x;return this},async all(){return{results:sqlite.prepare(sql).all(...args)}}}}}}
+const now=new Date('2030-01-15T12:00:00Z');
+test('acceptance, receipt, ambiguous attempts and suppression remain distinct',()=>{
+ assert.equal(deliveryState('sent','provider-one'),'provider_accepted');assert.equal(deliveryState('sent',null),'attempted');assert.equal(deliveryState('delivered','provider-one'),'provider_accepted');assert.equal(deliveryState('read',null),'attempted');assert.equal(deliveryState('sending','provider-one'),'unknown');assert.equal(deliveryState('cancelled','provider-one'),'suppressed');assert.equal(deliveryState('draft',null),'awaiting_approval');assert.equal(deliveryState('pending',null),'queued');assert.equal(deliveryState('failed',null),'failed');assert.equal(deliveryState('new_vendor_status','provider-one'),'unknown');
+});
+test('missing and broken sources remain unavailable; independent evidence still returned',async()=>{
+ const DB=db();DB.sqlite.exec("CREATE TABLE auth_delivery_events(id INTEGER,user_id INTEGER,event_type TEXT,status TEXT,provider_id TEXT,created_at TEXT,error_code TEXT);INSERT INTO auth_delivery_events VALUES(1,11,'welcome','sent','provider-one','2030-01-14T12:00:00Z',NULL),(2,11,'verification','sent',NULL,'2029-01-01',NULL);CREATE TABLE hq_outbox(broken TEXT)");
+ const result=await deliveryHistory(DB,now);assert.equal(result.records.length,1);assert.equal(result.records[0].state,'provider_accepted');assert.equal(result.records[0].actualReceipt,'not_established');assert.equal(result.coverage.find(x=>x.source==='hq_outbox').reason,'source_query_failed');assert.equal(result.coverage.find(x=>x.source==='message_outbox').reason,'source_not_installed');assert.equal(result.readOnly,true);
+});
+test('approval is preserved, device endpoints and recipient addresses never leave projection',async()=>{
+ const DB=db();DB.sqlite.exec("CREATE TABLE hq_comms_drafts(id TEXT,status TEXT,created_at TEXT);CREATE TABLE hq_comms_recipients(draft_id TEXT,email TEXT,user_id INTEGER,status TEXT,provider_id TEXT,at TEXT,error_code TEXT);INSERT INTO hq_comms_drafts VALUES('draft-1','draft','2030-01-14');INSERT INTO hq_comms_recipients VALUES('draft-1','first@example.test',NULL,'pending',NULL,NULL,NULL),('draft-1','second@example.test',NULL,'pending',NULL,NULL,NULL);CREATE TABLE my_timber_support_deliveries(endpoint TEXT,reminder_id TEXT,status TEXT,at TEXT);INSERT INTO my_timber_support_deliveries VALUES('https://push.example.test/SECRET','reminder-1','sent','2030-01-14');");
+ const result=await deliveryHistory(DB,now),serialized=JSON.stringify(result);assert.doesNotMatch(serialized,/first@example|second@example|SECRET|private_key/);assert.equal(new Set(result.records.map(r=>r.reference)).size,3);assert.equal(result.records.filter(r=>r.state==='awaiting_approval').length,2);assert.equal(result.records.find(r=>r.trigger==='saved_support_reminder').state,'attempted');
+});
+test('commissioning evidence is separate and cannot manufacture per-recipient receipt',async()=>{
+ const DB=db();DB.sqlite.exec("CREATE TABLE hq_comms_delivery_proofs(proof_key TEXT,state TEXT,provider_id TEXT,at TEXT,scope TEXT);INSERT INTO hq_comms_delivery_proofs VALUES('one','provider_accepted','provider-one','2030-01-14','commissioning');");const result=await deliveryHistory(DB,now);assert.equal(result.records.length,0);assert.equal(result.commissioningProofs.records.length,1);assert.match(result.actualReceipt,/No correlated/);
+});
+test('bounded history declares truncation and excludes future events',async()=>{
+ const DB=db();DB.sqlite.exec("CREATE TABLE auth_delivery_events(id INTEGER,user_id INTEGER,event_type TEXT,status TEXT,provider_id TEXT,created_at TEXT,error_code TEXT)");const insert=DB.sqlite.prepare('INSERT INTO auth_delivery_events VALUES(?,1,\'welcome\',\'sent\',NULL,?,NULL)');for(let i=0;i<102;i++)insert.run(i,'2030-01-14');insert.run(103,'2031-01-01');const result=await deliveryHistory(DB,now);assert.equal(result.records.length,100);assert.equal(result.coverage[0].truncated,true);
+});

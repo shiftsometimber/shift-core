@@ -1,5 +1,5 @@
 import {appendLaunchMetrics} from './hq-launch-report.mjs';
-import {TEST_ACCOUNT_SQL} from './activation-measurement/scorecard.mjs';
+import {excludedMemberSql,commercePopulationSql} from './hq-report-population.mjs';
 import {hqMemberGpRoute} from './gp-directory/hq-member-gp.mjs';
 import {gpDirectoryHqRoute} from './gp-directory/hq.mjs';
 import {continuityScorecard} from './continuity-measurement/scorecard.mjs';
@@ -23,14 +23,15 @@ export async function managementReport(DB,{permissions=[],start,end,kind='manage
   try{const row=await DB.prepare(sql).bind(...bind).first();metrics.push(metric(key,label,Number(row?.value||0),required.join(', '),scope,unit))}catch{unavailable(key,label,'Source query failed.');}
  }
  if(['management','members','growth'].includes(kind)){
-  await read('registrations','New registrations','crm_read',['users','audit_log'],"SELECT COUNT(*) value FROM users u WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND NOT "+TEST_ACCOUNT_SQL+" AND lower(u.email) NOT LIKE 'shiftsometimber+%@gmail.com' AND lower(u.email) NOT IN ('appletest@shiftsometimber.co.uk','google-review@shiftsometimber.co.uk')"+(tables.has('hq_users')?" AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(h.email)=lower(u.email))":''),[period.since,period.until]);
+  await read('registrations','New registrations','crm_read',['users','audit_log'],"SELECT COUNT(*) value FROM users u WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND NOT "+excludedMemberSql(tables),[period.since,period.until]);
   limitations.push('Registration count excludes HQ email matches, audit-marked commissioning identities, example.invalid/example.test addresses, internal shiftsometimber+ Gmail test aliases and the retained Apple/Google reviewer accounts. Other unlabelled test identities may remain.');
  }
  if(['management','sales'].includes(kind)){
-  const condition=" FROM orders o JOIN commerce_order_details d ON d.order_id=o.id WHERE d.stripe_checkout_session_id LIKE 'cs_live_%' AND o.currency='GBP' AND julianday(o.created_at)>=julianday(?) AND julianday(o.created_at)<julianday(?)";
-  await read('paid_value','Paid order value (GBP)','commerce_read',['orders','commerce_order_details'],"SELECT COALESCE(SUM(o.total_pence),0) value"+condition+" AND o.payment_status='paid'",[period.since,period.until],'pence','Orders created in selected period, currently paid; not accounting revenue');
-  await read('orders','Live orders created','commerce_read',['orders','commerce_order_details'],"SELECT COUNT(*) value"+condition,[period.since,period.until]);
-  await read('refunds','Live refunds recorded (GBP)','commerce_read',['commerce_refunds','orders'],"SELECT COALESCE(SUM(r.amount_pence),0) value FROM commerce_refunds r JOIN orders o ON o.id=r.order_id WHERE r.environment='live' AND o.currency='GBP' AND julianday(r.created_at)>=julianday(?) AND julianday(r.created_at)<julianday(?)",[period.since,period.until],'pence','Refund records created in selected period');
+  const population=commercePopulationSql(tables,'o','customer_email');
+  const condition=" FROM orders o JOIN commerce_order_details d ON d.order_id=o.id WHERE substr(d.stripe_checkout_session_id,1,8)='cs_live_' AND o.currency='GBP' AND julianday(o.created_at)>=julianday(?) AND julianday(o.created_at)<julianday(?) AND "+population;
+  await read('paid_value','Paid order value (GBP)','commerce_read',['orders','commerce_order_details','users','audit_log'],"SELECT COALESCE(SUM(o.total_pence),0) value"+condition+" AND o.payment_status='paid'",[period.since,period.until],'pence','Orders created in selected period, currently paid; not accounting revenue');
+  await read('orders','Live orders created','commerce_read',['orders','commerce_order_details','users','audit_log'],"SELECT COUNT(*) value"+condition,[period.since,period.until]);
+  await read('refunds','Live refunds recorded (GBP)','commerce_read',['commerce_refunds','orders','users','audit_log'],"SELECT COALESCE(SUM(r.amount_pence),0) value FROM commerce_refunds r JOIN orders o ON o.id=r.order_id WHERE r.environment='live' AND o.currency='GBP' AND julianday(r.created_at)>=julianday(?) AND julianday(r.created_at)<julianday(?) AND "+population,[period.since,period.until],'pence','Refund records created in selected period');
   limitations.push('Commerce figures include live GBP orders only. Paid order value is grouped by order creation date and current payment status. Refunds use refund creation date; subtracting these figures is not a cashflow or accounting calculation.');
  }
  if(['management','members'].includes(kind)){

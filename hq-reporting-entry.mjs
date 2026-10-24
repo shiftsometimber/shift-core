@@ -8,7 +8,7 @@ export function reportWorker(fetchImpl=null){
   const notification=path==='/v1/hq/management/report/notifications'||path.startsWith('/v1/hq/management/report/notifications/');
   if(!paths.has(path)&&!notification)return new Response('Not found',{status:404});
   const trusted=request.headers.get('Origin')===origin;
-  const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Vary':'Cookie, Origin','X-Shift-HQ-Reporting':'launch-operations-20261024-v2'};
+  const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Vary':'Cookie, Origin','X-Shift-HQ-Reporting':'launch-operations-20261024-v3'};
   if(trusted)Object.assign(headers,{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true'});
   if(request.method==='OPTIONS'){
    if(!trusted)return new Response(null,{status:403,headers});
@@ -30,7 +30,7 @@ export function reportWorker(fetchImpl=null){
    return new Response(response.body,{status:response.status,headers:combined});
   }catch{return Response.json({ok:false,error:'reporting_unavailable'},{status:503,headers});}
  },async scheduled(event,env,ctx){
-  const work=reconcileNotifications(env,new Date());
+  const work=reconcileNotifications(env,new Date(),{kind:'scheduled',scheduledAt:Number.isFinite(event?.scheduledTime)?new Date(event.scheduledTime).toISOString():null});
   if(ctx?.waitUntil)ctx.waitUntil(work);else return await work;
  }};
 }

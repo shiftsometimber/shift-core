@@ -1,4 +1,5 @@
-import {TEST_ACCOUNT_SQL,reportingWindow} from '../activation-measurement/scorecard.mjs';
+import {excludedMemberSql} from '../hq-report-population.mjs';
+import {reportingWindow} from '../activation-measurement/scorecard.mjs';
 const dateFormat=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'});
 const instant=value=>{if(typeof value==='string'&&/^\d{4}-\d\d-\d\d \d\d:/.test(value))value=value.replace(' ','T')+'Z';const n=new Date(value).getTime();return Number.isFinite(n)?n:null};
 export const londonDay=value=>{const n=instant(value);return n===null?null:Math.floor(Date.parse(dateFormat.format(new Date(n))+'T00:00:00Z')/86400000)};
@@ -64,8 +65,7 @@ const parse=value=>{try{return JSON.parse(value||'{}')}catch{return {}}};
 export async function continuityScorecard(DB,options={}){
  const window=reportingWindow(options),tables=new Set((await DB.prepare("SELECT name FROM sqlite_master WHERE type='table'").all()).results.map(r=>r.name));
  if(!['users','audit_log','product_events'].every(t=>tables.has(t)))return {available:false,...window,status:'unavailable',reason:'First Today exposure evidence is unavailable.'};
- const staff=tables.has('hq_users')?" AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(h.email)=lower(u.email))":'';
- const eligible=`SELECT u.id FROM users u WHERE NOT ${TEST_ACCOUNT_SQL}${staff}`;
+ const eligible=`SELECT u.id FROM users u WHERE NOT ${excludedMemberSql(tables)}`;
  const exposures=(await DB.prepare(`SELECT e.user_id userId,e.occurred_at at FROM product_events e WHERE e.event_name='continuity_today_exposed' AND e.source='member_client' AND e.user_id IN (${eligible})`).all()).results;
  const afterEvents=(await DB.prepare(`SELECT e.user_id userId,e.event_name eventName,e.occurred_at at FROM product_events e WHERE e.event_name IN ('after_treatment_started','after_treatment_week_viewed') AND e.source='member_client' AND e.user_id IN (${eligible})`).all()).results;
  const afterStarts=afterEvents.filter(e=>e.eventName==='after_treatment_started'),afterWeekViews=afterEvents.filter(e=>e.eventName==='after_treatment_week_viewed');

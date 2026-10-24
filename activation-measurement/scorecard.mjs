@@ -1,3 +1,4 @@
+import {excludedMemberSql} from '../hq-report-population.mjs';
 import {acquisitionBreakdown} from '../acquisition-activation/report.mjs';
 // Owner/HQ-only aggregate reporting. No new tracking, tables or customer writes.
 // Read source-of-truth account and audit records, not browser-reported conversions.
@@ -32,12 +33,13 @@ export const COHORT_CTE=`WITH bounds AS (SELECT julianday(?) asof,julianday(?) s
  )`;
 export async function activationScorecard(DB,options={}){
  const window=reportingWindow(options);
- const {results=[]}=await DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name IN ('users','user_auth','audit_log')").all();
+ const {results=[]}=await DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name IN ('users','user_auth','audit_log','hq_users')").all();
  const missingTables=REQUIRED.filter(name=>!results.some(x=>x.name===name));
  if(missingTables.length)return {available:false,missingTables,...window,reason:'Missing evidence is not zero conversions.'};
  // julianday normalises ISO-Z and SQLite timestamps; string comparison would
  // misclassify records within the same day. All stages are bound to this cohort.
- const sql=COHORT_CTE+` SELECT COUNT(*) registered,
+ const tables=new Set(results.map(x=>x.name)),population=excludedMemberSql(tables),cohortCte=COHORT_CTE.replace(TEST_ACCOUNT_SQL,population);
+ const sql=cohortCte+` SELECT COUNT(*) registered,
  COALESCE(SUM(verified IS NOT NULL),0) verified,
  COALESCE(SUM(signed_in IS NOT NULL),0) signed_in,
  COALESCE(SUM(signed_in IS NOT NULL AND first_save>=signed_in),0) first_save,
@@ -49,10 +51,10 @@ export async function activationScorecard(DB,options={}){
  COALESCE(SUM((SELECT asof FROM bounds)>=joined+56 AND week8_return=1),0) week8_returned
  FROM staged`;
  const row=await DB.prepare(sql).bind(window.asOf,window.since).first();
- const excluded=await DB.prepare(`SELECT COUNT(*) count FROM users u JOIN user_auth a ON a.user_id=u.id WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND ${TEST_ACCOUNT_SQL}`).bind(window.since,window.asOf).first();
+ const excluded=await DB.prepare(`SELECT COUNT(*) count FROM users u JOIN user_auth a ON a.user_id=u.id WHERE julianday(u.created_at)>=julianday(?) AND julianday(u.created_at)<julianday(?) AND ${population}`).bind(window.since,window.asOf).first();
  const counts=Object.fromEntries(Object.entries(row||{}).map(([k,v])=>[k,Number(v||0)]));
  const stages=[['account_created','registered'],['email_verified','verified'],['signed_in','signed_in'],['first_successful_save','first_save']].map(([name,key])=>({name,members:counts[key],percentOfRegistered:percentage(counts[key],counts.registered)}));
- return {available:true,version:'activation-cohort-v1',...window,stages,acquisition:await acquisitionBreakdown(DB,window,COHORT_CTE),
+ return {available:true,version:'activation-cohort-v1',...window,stages,acquisition:await acquisitionBreakdown(DB,window,cohortCte),
   retention:{week1:{eligible:counts.week1_eligible,returned:counts.week1_returned,ratePct:percentage(counts.week1_returned,counts.week1_eligible),window:'Days 1–7 after registration; denominator needs eight complete days.'},week4:{eligible:counts.week4_eligible,returned:counts.week4_returned,ratePct:percentage(counts.week4_returned,counts.week4_eligible),window:'Days 21–27 after registration; denominator needs 28 complete days.'},week8:{eligible:counts.week8_eligible,returned:counts.week8_returned,ratePct:percentage(counts.week8_returned,counts.week8_eligible),window:'Days 49–55 after registration; denominator needs 56 complete days. Request a cohort window longer than 56 days.'}},
   excludedKnownTestAccounts:Number(excluded?.count||0),sampleWarning:counts.registered<20?'Small cohort: operational counts, not reliable evidence of programme effectiveness.':null,
   privacy:'Aggregate owner/HQ reporting only. No identities, URLs, health values or notes returned; no third-party transmission.',
