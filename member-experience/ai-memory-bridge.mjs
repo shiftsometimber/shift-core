@@ -1,3 +1,4 @@
+import {whatsappMemory,whatsappPrivacyExport} from '../whatsapp/memory.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 // Shared existing memory stores. All content remains member-private and untrusted.
 const clean=(v,n=900)=>String(v??'').replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,n);
@@ -18,32 +19,40 @@ export async function attachConversationMemory(DB,userId,journey){
   if(!Number.isFinite(Date.parse(boundary)))return journey;
   const historyBoundary=privacy?.updated_at&&Date.parse(privacy.updated_at)>Date.parse(boundary)?privacy.updated_at:boundary;
   const rows=(await DB.prepare("SELECT direction,body,created_at FROM shift_ai_conversations WHERE user_id=? AND ((mode=? AND julianday(created_at)>julianday(?)) OR (mode NOT LIKE 'ask-timber:%' AND julianday(created_at)>julianday(?))) AND julianday(created_at)>=julianday('now','-30 days') ORDER BY id DESC LIMIT 6").bind(userId,'ask-timber:'+consent.id,privacy?.updated_at||'1970-01-01',historyBoundary).all()).results||[];
+  const whatsapp=await whatsappMemory(DB,userId);
+  const whatsappUsed=whatsapp.filter(r=>Date.parse(r.received_at)>Date.parse(historyBoundary)&&!secret.test(r.body));
+  for(const row of whatsappUsed)rows.push({direction:'user',body:row.body,created_at:row.received_at});
+  rows.sort((a,b)=>Date.parse(b.created_at)-Date.parse(a.created_at));rows.splice(10);
   let memories=[];
   try{memories=(await DB.prepare("SELECT memory_key,category,memory_value,source,updated_at FROM shift_ai_memory_v2 WHERE user_id=? AND julianday(updated_at)>julianday(?) AND confidence>=0.68 ORDER BY CASE WHEN source='member_correction' THEN 0 ELSE 1 END,updated_at DESC LIMIT 12").bind(userId,boundary).all()).results||[]}catch{/* Existing memory store may not have been used. */}
   journey.conversationMemory={status:'available',history:rows.reverse().filter(r=>!secret.test(r.body)).map(r=>({role:r.direction==='user'?'user':'assistant',text:clean(r.body,600),at:r.created_at})),preferences:memories.filter(r=>!secret.test(r.memory_value)).map(r=>({key:clean(r.memory_key,80),category:clean(r.category,60),value:clean(r.memory_value,300),source:clean(r.source,40),at:r.updated_at})),meaning:'Prior conversation is context, not verified evidence. Member corrections take priority.'};
-  sessions.set(journey,{DB,userId,consentId:Number(consent.id),privacyVersion:privacy?.updated_at||null});
+  sessions.set(journey,{DB,userId,consentId:Number(consent.id),privacyVersion:privacy?.updated_at||null,whatsappGeneration:whatsappUsed[0]?.generation||null});
  }catch{journey.conversationMemory={status:'unavailable'}}
  return journey;
 }
 export async function saveConversationTurn(access,direction,body){
  if(!access||secret.test(body)||!String(body||'').trim())return false;
- const {DB,userId,consentId,privacyVersion}=access;
+ const {DB,userId,consentId,privacyVersion,whatsappGeneration}=access;
+ const whatsappGuard=whatsappGeneration?' AND EXISTS(SELECT 1 FROM whatsapp_links WHERE user_id=? AND generation=? AND memory_enabled=1)':'';
+ const whatsappArgs=whatsappGeneration?[userId,whatsappGeneration]:[];
  try{
   const result=await DB.prepare(`INSERT INTO shift_ai_conversations(user_id,direction,mode,body,model,created_at)
    SELECT ?,?,?,?,'context-pilot',? WHERE ${latestConsent}=?
    AND (SELECT granted FROM consents WHERE id=?)=1
    AND COALESCE((SELECT auto_memory FROM shift_ai_privacy_settings WHERE user_id=?),1)=1
    AND (SELECT updated_at FROM shift_ai_privacy_settings WHERE user_id=?) IS ?
-   AND COALESCE((SELECT json_extract(preferences,'$.myJourney.setup.paused') FROM member_state WHERE user_id=?),0)=0`)
-   .bind(userId,direction,'ask-timber:'+consentId,clean(body,direction==='user'?900:2800),new Date().toISOString(),userId,consentId,consentId,userId,userId,privacyVersion,userId).run();
+   AND COALESCE((SELECT json_extract(preferences,'$.myJourney.setup.paused') FROM member_state WHERE user_id=?),0)=0${whatsappGuard}`)
+   .bind(userId,direction,'ask-timber:'+consentId,clean(body,direction==='user'?900:2800),new Date().toISOString(),userId,consentId,consentId,userId,userId,privacyVersion,userId,...whatsappArgs).run();
   return Number(result.meta?.changes)===1;
  }catch{return false}
 }
 export async function memoryStillAllowed(access){
  if(!access)return true;
- const {DB,userId,consentId,privacyVersion}=access;
+ const {DB,userId,consentId,privacyVersion,whatsappGeneration}=access;
+ const whatsappGuard=whatsappGeneration?' AND EXISTS(SELECT 1 FROM whatsapp_links WHERE user_id=? AND generation=? AND memory_enabled=1)':'';
+ const whatsappArgs=whatsappGeneration?[userId,whatsappGeneration]:[];
  try{
-  const row=await DB.prepare(`SELECT 1 ok WHERE ${latestConsent}=? AND (SELECT granted FROM consents WHERE id=?)=1 AND COALESCE((SELECT auto_memory FROM shift_ai_privacy_settings WHERE user_id=?),1)=1 AND (SELECT updated_at FROM shift_ai_privacy_settings WHERE user_id=?) IS ? AND COALESCE((SELECT json_extract(preferences,'$.myJourney.setup.paused') FROM member_state WHERE user_id=?),0)=0`).bind(userId,consentId,consentId,userId,userId,privacyVersion,userId).first();
+  const row=await DB.prepare(`SELECT 1 ok WHERE ${latestConsent}=? AND (SELECT granted FROM consents WHERE id=?)=1 AND COALESCE((SELECT auto_memory FROM shift_ai_privacy_settings WHERE user_id=?),1)=1 AND (SELECT updated_at FROM shift_ai_privacy_settings WHERE user_id=?) IS ? AND COALESCE((SELECT json_extract(preferences,'$.myJourney.setup.paused') FROM member_state WHERE user_id=?),0)=0${whatsappGuard}`).bind(userId,consentId,consentId,userId,userId,privacyVersion,userId,...whatsappArgs).first();
   return row?.ok===1;
  }catch{return false}
 }
@@ -58,7 +67,7 @@ export async function appendAiMemoryExport(request,env,response){
    catch(error){if(/no such table/i.test(String(error.message)))return [];throw error}
   };
   const [conversations,memories,privacy]=await Promise.all(['shift_ai_conversations','shift_ai_memory_v2','shift_ai_privacy_settings'].map(read));
-  const data=await response.clone().json();data.aiMemory={conversations,memories,privacy:privacy[0]||null};
+  const data=await response.clone().json();data.aiMemory={conversations,memories,privacy:privacy[0]||null};data.whatsapp=await whatsappPrivacyExport(env.DB,auth.userId);
   const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie');headers.delete('Content-Length');
   return new Response(JSON.stringify(data),{status:response.status,headers});
  }catch{return Response.json({ok:false,error:'export_unavailable',message:'Your export could not include all saved AI conversations. Please retry.'},{status:503,headers:{'Cache-Control':'no-store, private'}})}

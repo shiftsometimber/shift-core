@@ -1,3 +1,5 @@
+import {whatsappRoutes,withWhatsappHQLink} from '../whatsapp/routes.mjs';
+import {retention as whatsappRetention} from '../whatsapp/core.mjs';
 import {repairHomeSpeed} from '../home-speed-repair.mjs';
 import {withPublicResponsePolicyWorker} from '../public-response-policy.mjs';
 import {withRootShareWorker} from '../share-preview/metadata.mjs';
@@ -27,6 +29,7 @@ import {withFitActiveEdit} from './fit-active-edit.mjs';
 const composedWorker = {
  ...core,
  async fetch(request,env,ctx){
+  const whatsapp=await whatsappRoutes(request,env);if(whatsapp)return whatsapp;
   const tablet=await tabletRoutineRoutes(request,env);if(tablet)return tablet;
   const discovery=discoveryRoute(request);if(discovery)return discovery;
   const worksheet=worksheetRoute(request);if(worksheet)return worksheet;
@@ -37,7 +40,7 @@ const composedWorker = {
   const asset=coachingAsset(request);if(asset)return asset;
   const team=await supportTeamRoutes(request,env);if(team)return team;
   const coaching=await coachingRoutes(request,env);if(coaching)return coaching;
-  const response=await withSupportTeamLink(request,await withPublicFontDelivery(request,await withTrustRepair(request,await core.fetch(request,env,ctx))));
+  const response=await withWhatsappHQLink(request,await withSupportTeamLink(request,await withPublicFontDelivery(request,await withTrustRepair(request,await core.fetch(request,env,ctx)))));
   let seed=null;const url=new URL(request.url);
   if(request.method==='GET'&&/^\/member\/dashboard(?:\.html)?$/.test(url.pathname)&&response.status===200&&response.headers.get('Content-Type')?.includes('text/html')){
    url.pathname='/v1/shift-coach';url.search='';
@@ -48,6 +51,7 @@ const composedWorker = {
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);
+  if(env.WHATSAPP_INBOUND_ENABLED==='true')await whatsappRetention(env.DB).catch(()=>console.error('whatsapp_retention_unavailable'));
   const job=runCoachingNight(env).then(r=>console.log('shift_coach_night',JSON.stringify(r))).catch(e=>console.error('shift_coach_night_failed',e.status||'unavailable'));
   if(ctx?.waitUntil)ctx.waitUntil(job);else await job;
  }
