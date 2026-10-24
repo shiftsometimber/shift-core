@@ -20,7 +20,7 @@ export async function runCommunications(env,now=new Date(),{sendEmail=(e,p,to)=>
     else if(eligibility.eligible===null){status='pending';errorCode='eligibility_source_unavailable';out.deferred++;}
     else if(!eligibility.eligible){status='suppressed';errorCode='event_no_longer_eligible';out.suppressed++;}
     else if(p.channel==='email'){
-     if(r.user_id&&!await DB.prepare('SELECT id FROM users WHERE id=? AND lower(email)=?').bind(r.user_id,r.email).first()){status='suppressed';out.suppressed++;}else{const result=await sendEmail(env,p,r.email);if(!result?.messageId||String(result.messageId).startsWith('sim-'))throw Error('missing_real_provider_receipt');provider=String(result.messageId).slice(0,240);status='provider_accepted';out.emailAccepted++;}
+     if(r.user_id&&!await DB.prepare('SELECT u.id FROM users u JOIN user_auth a ON a.user_id=u.id WHERE u.id=? AND lower(u.email)=? AND a.email_verified=1').bind(r.user_id,r.email).first()){status='suppressed';out.suppressed++;}else{const result=await sendEmail(env,p,r.email);if(!result?.messageId||String(result.messageId).startsWith('sim-'))throw Error('missing_real_provider_receipt');provider=String(result.messageId).slice(0,240);status='provider_accepted';out.emailAccepted++;}
     }else{
      const user=await DB.prepare('SELECT u.id,u.email,a.email_verified FROM users u JOIN user_auth a ON a.user_id=u.id WHERE u.id=? AND lower(u.email)=?').bind(r.user_id,r.email).first();
      if(!user||Number(user.email_verified)!==1){status='suppressed';out.suppressed++;}
