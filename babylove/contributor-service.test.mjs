@@ -98,10 +98,10 @@ test('a changed reviewed source holds publication rather than reusing stale fact
   await runBlogQueue(env,{now:Date.parse(s.dueAt),fetcher:changed});assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_articles').get().n,0);assert.equal(env.DB.sqlite.prepare('SELECT state FROM knowledge_blog_submissions').get().state,'draft_publish_hold');
  }finally{env.DB.sqlite.close()}
 });
-test('the shared editorial gateway is used at most once per local day without retries',async()=>{
+test('different articles can receive independent reviews on the same local day',async()=>{
  const {env,key}=await setup();try{
   for(const i of [1,2])await blogRoutes(request(API,key.token,{...payload(),url:'/articles/review-'+i},'review_'+i),env,{}, {now:start,fetcher:baseFetcher});
-  await runBlogQueue(env,{now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start+60000,fetcher:baseFetcher});assert.equal(env.AI.calls,1);assert.equal(env.DB.sqlite.prepare("SELECT count(*) n FROM knowledge_blog_submissions WHERE state='review_waiting_budget'").get().n,1);
+  await runBlogQueue(env,{now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start+60000,fetcher:baseFetcher});assert.equal(env.AI.calls,2);assert.equal(env.DB.sqlite.prepare("SELECT count(*) n FROM knowledge_blog_submissions WHERE state='scheduled'").get().n,2);
  }finally{env.DB.sqlite.close()}
 });
 test('a concurrent CMS edit rolls back all publication SQL and leaves history untouched',async()=>{
@@ -199,12 +199,12 @@ test('changed sources expose their exact URL and retry keeps one record; another
   const r=await blogRoutes(request(API+'/'+x.id+'/retry',key.token,{publishMode:'when_ready'}),env,{}, {now:Date.parse(x.dueAt)+60000,fetcher:f});assert.equal(r.status,202);assert.equal((await r.json()).id,x.id);assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_blog_submissions').get().n,1);
  }finally{env.DB.sqlite.close()}
 });
-test('budget exhaustion remains queued and resumes on the next London day across the clock change',async()=>{
+test('a historical spent review day cannot block a new review or leave a midnight wait',async()=>{
  const {env,key}=await setup();try{
-  for(const i of [1,2])await blogRoutes(request(API,key.token,{...payload(),url:'/articles/budget-'+i},'budget_'+i),env,{}, {now:start,fetcher:baseFetcher});
-  await runBlogQueue(env,{now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start+60000,fetcher:baseFetcher});
-  const waiting=env.DB.sqlite.prepare("SELECT * FROM knowledge_blog_submissions WHERE state='review_waiting_budget'").get();assert.ok(waiting);assert.equal(JSON.parse(waiting.receipt_json).retryAt,'2026-10-24T23:00:00.000Z');
-  await runBlogQueue(env,{now:Date.parse('2026-10-24T23:01:00Z'),fetcher:baseFetcher});const row=env.DB.sqlite.prepare('SELECT * FROM knowledge_blog_submissions WHERE id=?').get(waiting.id);assert.equal(row.state,'scheduled');assert.equal(row.due_at,'2026-10-25T11:00:00.000Z');assert.equal(env.AI.calls,2);
+  env.DB.sqlite.prepare('INSERT INTO knowledge_blog_review_days VALUES(?,?,?)').run('2026-10-24','historical-reviewed-post',new Date(start).toISOString());
+  const x=await (await blogRoutes(request(API,key.token,payload()),env,{}, {now:start,fetcher:baseFetcher})).json();
+  env.DB.sqlite.prepare("UPDATE knowledge_blog_submissions SET state='review_waiting_budget',receipt_json=? WHERE id=?").run(JSON.stringify({retryAt:'2026-10-24T23:00:00.000Z',publishMode:'when_ready'}),x.id);
+  await runBlogQueue(env,{now:start+60000,fetcher:baseFetcher});const row=env.DB.sqlite.prepare('SELECT * FROM knowledge_blog_submissions WHERE id=?').get(x.id);assert.equal(row.state,'scheduled');assert.equal(env.AI.calls,1);assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_blog_review_days').get().n,1);
  }finally{env.DB.sqlite.close()}
 });
 test('explicit when-ready submission publishes after 11 without waiting until tomorrow',async()=>{
@@ -219,16 +219,15 @@ test('independent hold returns the actual editorial issues',async()=>{
 });
 
 test('a contributor can verify its key and capabilities without creating a post',async()=>{
- const {env,key}=await setup();try{const r=await blogRoutes(request(API+'/capabilities',key.token),env,{});assert.equal(r.status,200);const x=await r.json();assert.equal(x.authenticated,true);assert.equal(x.scope,'blogs_only');assert.equal(x.dailyModelAttemptLimit,1);assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_blog_submissions').get().n,0);assert.equal((await blogRoutes(request(API+'/capabilities','wrong'),env,{})).status,401);}finally{env.DB.sqlite.close()}
+ const {env,key}=await setup();try{const r=await blogRoutes(request(API+'/capabilities',key.token),env,{});assert.equal(r.status,200);const x=await r.json();assert.equal(x.authenticated,true);assert.equal(x.scope,'blogs_only');assert.equal(x.dailyModelAttemptLimit,null);assert.equal(x.reviewAllowanceRequired,false);assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_blog_submissions').get().n,0);assert.equal((await blogRoutes(request(API+'/capabilities','wrong'),env,{})).status,401);}finally{env.DB.sqlite.close()}
 });
 
-test('when-ready retry retains its intent through a budget wait and publishes after London midnight, not at eleven',async()=>{
+test('when-ready legacy budget wait retains its intent and publishes on rollover without an eleven am delay',async()=>{
  const {env,key}=await setup();try{
-  await blogRoutes(request(API,key.token,{...payload(),url:'/articles/earlier-reviewed-post'},'earlier'),env,{}, {now:start,fetcher:baseFetcher});await runBlogQueue(env,{now:start,fetcher:baseFetcher});
   const now=Date.parse('2026-10-24T14:00:00Z');const x=await (await blogRoutes(request(API,key.token,payload(),'late'),env,{}, {now,fetcher:baseFetcher})).json();
-  await runBlogQueue(env,{now,fetcher:baseFetcher});
-  const retry=await blogRoutes(request(API+'/'+x.id+'/retry',key.token,{publishMode:'when_ready'}),env,{}, {now:now+60000,fetcher:baseFetcher});assert.equal(retry.status,202);assert.equal((await retry.json()).receipt.publishMode,'when_ready');
-  await runBlogQueue(env,{now:now+120000,fetcher:baseFetcher});let row=env.DB.sqlite.prepare('SELECT * FROM knowledge_blog_submissions WHERE id=?').get(x.id);assert.equal(row.state,'review_waiting_budget');assert.equal(JSON.parse(row.receipt_json).publishMode,'when_ready');
-  const next=Date.parse('2026-10-24T23:01:00Z');await runBlogQueue(env,{now:next,fetcher:baseFetcher});const article=env.DB.sqlite.prepare("SELECT * FROM knowledge_articles WHERE slug='contributor-test'").get();assert.ok(article);assert.equal(article.publish_at,new Date(next).toISOString());assert.equal(env.AI.calls,2);
+  env.DB.sqlite.prepare("UPDATE knowledge_blog_submissions SET state='draft_review_hold' WHERE id=?").run(x.id);
+  const retry=await blogRoutes(request(API+'/'+x.id+'/retry',key.token,{publishMode:'when_ready'}),env,{}, {now,fetcher:baseFetcher});assert.equal(retry.status,202);
+  env.DB.sqlite.prepare("UPDATE knowledge_blog_submissions SET state='review_waiting_budget' WHERE id=?").run(x.id);
+  const next=Date.parse('2026-10-24T23:01:00Z');await runBlogQueue(env,{now:next,fetcher:baseFetcher});const article=env.DB.sqlite.prepare("SELECT * FROM knowledge_articles WHERE slug='contributor-test'").get();assert.ok(article);assert.equal(article.publish_at,new Date(next).toISOString());assert.equal(env.AI.calls,1);
  }finally{env.DB.sqlite.close()}
 });

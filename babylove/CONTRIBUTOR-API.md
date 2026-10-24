@@ -116,3 +116,7 @@ Source holds now include the exact changed source URL and previous/current hashe
 Read-only connection test: `GET /v1/integrations/blog-articles/capabilities` with the bearer key returns 200 with the scope, supported scheduling modes and review capacity, without creating any article. The base collection GET remains unavailable.
 
 When-ready timing correction, 24 October: an explicit retry mode is retained through budget waiting and London-day rollover. Once capacity is available and the review passes, a when-ready post can publish on that queue cycle rather than reverting to the next 11am slot. Normal scheduled posts retain 11am. The dedicated regression includes the 25 October clock-change date.
+
+## Current review policy — owner instruction, 24 October 2026
+
+Matt instructed removal of the arbitrary one-AI-review-per-day restriction. It is removed. Different posts may be reviewed on the same day; historical `review_waiting_budget` records are eligible on the next normal queue cycle without waiting for their old midnight timer. Existing passed reviews are still reused where content and source proofs match. The existing model, gateway, per-request output bound, authenticated submission rate limit, source checks, owner approval for rewrites and publication receipts remain. No new provider, subscription or billing agreement is introduced. Earlier one-per-day budget descriptions above are historical and superseded by this policy. `GET /capabilities` now reports `dailyModelAttemptLimit: null` and `reviewAllowanceRequired: false`.

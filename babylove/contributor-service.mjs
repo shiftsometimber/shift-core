@@ -189,17 +189,14 @@ export async function verifyBlog(env,s,{now=Date.now(),fetcher=fetch}={}){
 export async function runBlogQueue(env,{now=Date.now(),fetcher=fetch}={}){
  if(!enabled(env))return {state:'disabled'};const DB=env.DB;await ensureBlogSchema(DB);const results=[];
  // The existing 15-minute scheduler owns this cycle; no new cron or producer.
- const waiting=(await DB.prepare(`SELECT * FROM knowledge_blog_submissions WHERE (state='review_pending' OR (state='review_waiting_budget' AND json_extract(receipt_json,'$.retryAt')<=?)) ORDER BY created_at LIMIT 1`).bind(stamp(now)).all()).results||[];
+ const waiting=(await DB.prepare(`SELECT * FROM knowledge_blog_submissions WHERE state IN ('review_pending','review_waiting_budget') ORDER BY created_at LIMIT 1`).all()).results||[];
  for(const s of waiting){
   const claim=await DB.prepare(`UPDATE knowledge_blog_submissions SET state='reviewing',updated_at=? WHERE id=? AND state IN ('review_pending','review_waiting_budget')`).bind(stamp(now),s.id).run();if(!claim.meta?.changes)continue;
   try{const a=validateSubmission(parse(s.payload_json)).article,check=await siteChecks(a,{fetcher});if(!check.pass)throw Object.assign(Error('site_checks_failed'),{details:{checks:check.reasons}});const active=await DB.prepare('SELECT active FROM knowledge_blog_keys WHERE id=?').bind(s.key_id).first();if(!active?.active)throw Error('contributor_key_revoked');const hash=await reviewContentHash(a);
    const candidates=(await DB.prepare('SELECT id,payload_json,review_json FROM knowledge_blog_submissions WHERE key_id=? AND slug=? AND review_json IS NOT NULL ORDER BY updated_at DESC LIMIT 20').bind(s.key_id,s.slug).all()).results||[];
    let review=null;
    for(const candidate of candidates){const saved=parse(candidate.review_json);if(saved?.review?.decision==='PASS'&&await reviewContentHash(validateSubmission(parse(candidate.payload_json)).article)===hash&&!changedSources(saved,check.evidence).length){review={...saved,reusedFrom:candidate.id};break;}}
-   if(!review){const dayClaim=await DB.prepare('INSERT OR IGNORE INTO knowledge_blog_review_days(day_key,submission_id,claimed_at) VALUES(?,?,?)').bind(londonParts(now).day,s.id,stamp(now)).run();
-    if(!dayClaim.meta?.changes){const tomorrow=new Date(Date.parse(londonParts(now).day+'T12:00:00Z')+86400000).toISOString().slice(0,10);const midnight=Date.parse(tomorrow+'T00:00:00Z');const retryAt=stamp(midnight-londonParts(midnight).hour*3600000);await setState(DB,s,'review_waiting_budget',['editorial_review_queued_daily_budget'],now,{retryAt,dailyModelAttemptLimit:1,automaticRetry:true,publishMode:parse(s.receipt_json)?.publishMode||a.publishMode||'scheduled'});results.push({id:s.id,state:'review_waiting_budget',retryAt});continue;}
-    review=await independentlyReview(env,a,check.evidence);
-   }
+   if(!review)review=await independentlyReview(env,a,check.evidence);
    const proof={...review,payloadHash:s.payload_hash,checkedAt:stamp(now)};const mode=parse(s.receipt_json)?.publishMode||a.publishMode||'scheduled';const dueAt=londonParts(Date.parse(s.due_at)).day<londonParts(now).day?(mode==='when_ready'?stamp(now):nextRelease(now)):s.due_at;await DB.prepare(`UPDATE knowledge_blog_submissions SET state='scheduled',review_json=?,receipt_json=?,due_at=?,updated_at=? WHERE id=? AND state='reviewing'`).bind(JSON.stringify(proof),JSON.stringify({...pendingReceipt('scheduled'),publishMode:mode}),dueAt,stamp(now),s.id).run();results.push({id:s.id,state:'scheduled'})}catch(e){await setState(DB,s,'draft_review_hold',[safeError(e)],now,{detail:e.details||null});results.push({id:s.id,state:'draft_review_hold'})}
  }
  const due=(await DB.prepare(`SELECT * FROM knowledge_blog_submissions WHERE state='scheduled' AND due_at<=? ORDER BY due_at LIMIT 3`).bind(stamp(now)).all()).results||[];
@@ -225,7 +222,7 @@ async function blogRoutesInner(request,env,ctx,{now=Date.now(),fetcher=fetch,own
  await ensureBlogSchema(env.DB);
  if(contributor){
   const key=await keyFor(request,env.DB);if(!key)return respond({error:'unauthorised'},401);
-  if(m==='GET'&&path===API+'/capabilities')return respond({authenticated:true,scope:'blogs_only',newArticles:true,existingCMSRewrites:'owner_approval_required',sourceManagedRewrites:'owner_source_release_required',defaultSchedule:'11:00 Europe/London',publishModes:['scheduled','when_ready'],queueIntervalMinutes:15,retryEndpoint:API+'/<submission-id>/retry',dailyModelAttemptLimit:1,budgetExhaustion:'queued_not_failed',unchangedPassedReviewReuse:true});
+  if(m==='GET'&&path===API+'/capabilities')return respond({authenticated:true,scope:'blogs_only',newArticles:true,existingCMSRewrites:'owner_approval_required',sourceManagedRewrites:'owner_source_release_required',defaultSchedule:'11:00 Europe/London',publishModes:['scheduled','when_ready'],queueIntervalMinutes:15,retryEndpoint:API+'/<submission-id>/retry',dailyModelAttemptLimit:null,reviewAllowanceRequired:false,unchangedPassedReviewReuse:true});
   if(m==='POST'&&path===API+'/media'){const {uploadBlogMedia}=await import('./contributor-media.mjs');return uploadBlogMedia(request,env,key,{now});}
   const mediaId=path.match(new RegExp('^'+API+'/media/([a-f0-9-]{36})$'));if(m==='GET'&&mediaId){const {blogMediaReceipt}=await import('./contributor-media.mjs');return blogMediaReceipt(env,key,mediaId[1]);}
   if(m==='POST'&&path===API+'/internal-links'){const {submitInternalLinks}=await import('./contributor-links.mjs');return submitInternalLinks(env,key,await readJSON(request),request.headers.get('Idempotency-Key'),{now,fetcher,helpers:{respond,get,submissionView}});}

@@ -136,5 +136,63 @@
     "contentChanged": false,
     "spendCapChanged": false,
     "publicationClaimed": false
+  },
+  "dailyReviewCapRemoved": {
+    "verifiedAt": "2026-10-24T11:11:43.663872+00:00",
+    "ownerInstruction": "Remove the arbitrary review allowance; retain quality and access checks.",
+    "worker": {
+      "id": "1326ad61-7066-47e6-aad1-13b3236dc01c",
+      "source": "wrangler",
+      "strategy": "percentage",
+      "author_email": "matobrien@hotmail.co.uk",
+      "annotations": {
+        "workers/triggered_by": "deployment"
+      },
+      "versions": [
+        {
+          "version_id": "8d48084c-dea6-4b8a-983e-4eb6a0629def",
+          "percentage": 100
+        }
+      ],
+      "created_on": "2026-10-24T11:11:33.444265Z"
+    },
+    "previousVersion": "1f96f785-c404-4267-9361-ab591e55886c",
+    "tests": {
+      "pass": 60,
+      "fail": 0
+    },
+    "dailyReviewCapRemoved": true,
+    "oldBudgetWaitsEligibleNextCycle": true,
+    "contentChanged": false,
+    "newProviderOrBillingAgreement": false,
+    "day4": {
+      "id": "1ac94141-fc41-4cd5-83a1-3742e4b18c18",
+      "state": "review_pending",
+      "reasons_json": "[]",
+      "due_at": "2026-10-24T10:47:38.987Z",
+      "receipt_json": "{\"state\":\"review_pending\",\"reasons\":[],\"checks\":{\"pageLive\":{\"status\":\"pending\",\"reason\":\"Checked after publication.\"},\"imageLoads\":{\"status\":\"pending\",\"reason\":\"Checked after publication.\"},\"internalLinksResolve\":{\"status\":\"pending\",\"reason\":\"Checked after publication.\"},\"canonicalCorrect\":{\"status\":\"pending\",\"reason\":\"Checked after publication.\"},\"blogListing\":{\"status\":\"pending\",\"reason\":\"Checked after publication.\"},\"sitemap\":{\"status\":\"pending\",\"reason\":\"Checked after publication.\"}},\"publishMode\":\"when_ready\"}"
+    },
+    "hostedCapabilities": {
+      "status": 200,
+      "capabilities": {
+        "authenticated": true,
+        "scope": "blogs_only",
+        "newArticles": true,
+        "existingCMSRewrites": "owner_approval_required",
+        "sourceManagedRewrites": "owner_source_release_required",
+        "defaultSchedule": "11:00 Europe/London",
+        "publishModes": [
+          "scheduled",
+          "when_ready"
+        ],
+        "queueIntervalMinutes": 15,
+        "retryEndpoint": "/v1/integrations/blog-articles/<submission-id>/retry",
+        "dailyModelAttemptLimit": null,
+        "reviewAllowanceRequired": false,
+        "unchangedPassedReviewReuse": true
+      },
+      "modelCalls": 0,
+      "published": false
+    }
   }
 }
