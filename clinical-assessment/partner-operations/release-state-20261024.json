@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-24T14:16:00.774Z",
+  "at": "2026-10-24T14:23:42.878Z",
   "timezone": "Europe/London",
   "request": "Create shared HQ professional onboarding/permissions, clinical link and dispensing workspace; match clinician branding",
   "sourceCommit": "8e5c94a146092a6d4db798a94239aeaa2fc78767",
@@ -13,7 +13,7 @@
   "realStaffOnboardingEnabled": false,
   "realClinicalEnabled": false,
   "realDispensingEnabled": false,
-  "productionDatabaseMigrationApplied": false,
+  "productionDatabaseMigrationApplied": true,
   "realInvitationsSent": 0,
   "realNotificationsSent": 0,
   "purchasingChanged": false,
@@ -49,8 +49,9 @@
     "bundleKiB": 265.37
   },
   "pending": [
+    "Owner completes actual MFA enrolment; all 3 current active owners have mfa_enabled=0",
+    "Build/verify authenticated internal commissioning mode with durable synthetic test records; preserve real-service separation",
     "Actual HQ root-navigation insertion (separate active owner/workstream; no root replacement)",
-    "Reviewed additive DB migration and private staff-evidence binding",
     "Staff privacy, retention/hold/deletion policy and tested purge process",
     "Named verified clinical/pharmacy scope reviewers",
     "Actual-session username/MFA/recovery/rate-limit acceptance",
@@ -58,5 +59,18 @@
     "My Shift rendering and live end-to-end order acceptance",
     "Approved communication drafts/trigger policies and delivery integration"
   ],
-  "note": "Working fictional review surfaces and a tested implementation, not a commissioned clinical/pharmacy service or a compliance certification. No new recurring jobs, costs or messages. Existing public/core-main release is separate and untouched."
+  "note": "Working fictional review surfaces and a tested implementation, not a commissioned clinical/pharmacy service or a compliance certification. No new recurring jobs, costs or messages. Existing public/core-main release is separate and untouched.",
+  "internalCommissioning": {
+    "requested": true,
+    "authority": "Matt explicitly requested persistent connected internal operation now, not browser-only demonstrations; no real onboarding/customers yet.",
+    "state": "schema_live_access_preparation",
+    "databaseTablesVerified": 6,
+    "ownerMfa": {
+      "enabled": 0,
+      "activeOwners": 3,
+      "requiredUserAction": "Enrol owner's own authenticator through existing HQ settings; never mark MFA verified without completion."
+    },
+    "schemaLog": "/tmp/hq-partner-schema-live.log",
+    "realServiceActivation": false
+  }
 }
