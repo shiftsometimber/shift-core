@@ -68,6 +68,7 @@ const CURRENT_MAIN_PUBLIC_MAINTENANCE=[
  'reta-styles-data.mjs',
  'gate1-whole-estate-production-sweep.mjs',
  'public-response-policy.test.mjs',
+ 'release/root-share-preview-scope.mjs',
  'tests/root-share-preview.test.mjs'
 ];
 for(const p of CURRENT_MAIN_PUBLIC_MAINTENANCE)APP_PATHS.add(p);
