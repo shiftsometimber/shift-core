@@ -38,6 +38,34 @@ APP_PATHS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-07-authorised-registry-lifecycle-followup.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-07-authorised-enicepatide-emugrobart-registry.json');
+// Reconcile separately reviewed current-main public additions with this legacy
+// aggregate app boundary. Each path remains covered by its own release tests;
+// this list does not relax protected runtime, member-data or configuration checks.
+const CURRENT_MAIN_PUBLIC_MAINTENANCE=[
+ 'causes-partners-teaser.mjs',
+ 'causes-partners/README.md',
+ 'causes-partners/index.html',
+ 'causes-partners/production.mjs',
+ 'causes-partners/public-content.mjs',
+ 'frontend/member/assets/causes/hopeful-outlook-hero.webp',
+ 'release/health-vision-scope-20261021.json',
+ 'release/health-vision-scope-20261021.mjs',
+ 'release/shift-health-vision-20261021/STATUS.json',
+ 'release/shift-health-vision-20261021/checks.json',
+ 'release/shift-health-vision-20261021/health-vision-preservation.json',
+ 'release/shift-health-vision-20261021/live-status-latest.json',
+ 'release/shift-health-vision-20261021/production-bundle-final.log',
+ 'release/shift-health-vision-20261021/source-tests-final.log',
+ 'shift-health-vision-content.mjs',
+ 'tests/causes-partners-teaser.test.mjs',
+ 'tests/causes-public.test.mjs',
+ 'tests/health-vision-scope-20261021.test.mjs',
+ 'tests/timber-shed-public-teaser.test.mjs',
+ 'timber-shed-public-teaser.mjs',
+ 'release/current-runtime-preservation-20261016.mjs',
+ 'reta-styles-data.mjs'
+];
+for(const p of CURRENT_MAIN_PUBLIC_MAINTENANCE)APP_PATHS.add(p);
 export const originalAppHashRef=p=>rankingGrowthHistoricalRef('HEAD',p,undefined,false)!=='HEAD'?rankingGrowthHistoricalRef('HEAD',p,undefined,false):['release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs','tests/watch-ownership-release.test.mjs'].includes(p)?'HEAD':p==='my-timber-pwa/presentation.mjs'?PWA_DISMISS_APPROVED:historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef(ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:'HEAD',p),p),p);
 export function originalMemberWorkerPresentation(source){
  return source.replace("\nexport function memberWorkerHtml(html){\n return html.replace(/(<script\\b[^>]*\\bsrc=[\"'])(\\/(?:app\\.js|register-sw-v3a\\.js)(?:\\?[^\"']*)?)([\"'][^>]*>)/gi,(_,before,src,after)=>before+src+(/[?&](?:amp;)?member_worker=1(?:&|$)/.test(src)?'':(src.includes('?')?'&amp;':'?')+'member_worker=1')+after);\n}\nexport async function memberWorkerAsset(request,response){\n const u=new URL(request.url);\n if(request.method!=='GET'||u.searchParams.get('member_worker')!=='1'||!['/app.js','/register-sw-v3a.js'].includes(u.pathname))return null;\n if(!response.ok||!/(?:javascript|ecmascript)/i.test(response.headers.get('Content-Type')||''))return response;\n const before=await response.text(),legacy=u.pathname==='/app.js'?\"navigator.serviceWorker.register('/service-worker.js')\":\"navigator.serviceWorker.register('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2',{updateViaCache:'none'})\",shared=\"navigator.serviceWorker.register('/shift-push-sw-v1.js',{scope:'/',updateViaCache:'none'})\";\n const h=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])h.delete(k);h.set('Cache-Control','no-store');\n if(before.split(legacy).length!==2)return new Response('Member worker registration source changed; please retry later.',{status:503,headers:h});\n return new Response(before.replace(legacy,shared),{status:response.status,statusText:response.statusText,headers:h});\n}\n",'').replace("\n const memberAsset=await memberWorkerAsset(request,response);if(memberAsset)return memberAsset;",'').replace("\n if(/^\\/member\\//.test(path))html=memberWorkerHtml(html);",'');
