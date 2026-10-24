@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-24T16:55:58.445Z",
+  "at": "2026-10-24T16:57:59.372Z",
   "timezone": "Europe/London",
   "request": "Create shared HQ professional onboarding/permissions, clinical link and dispensing workspace; match clinician branding",
   "sourceCommit": "c80f40eaacd64f72837c3c1e2d0f422b772bbf5e",
@@ -191,6 +191,22 @@
     "providerReadinessEvidence": "partner-proof/activation-prerequisites-read-receipt.json",
     "actualClinicalProviderProfiles": 0,
     "actualDispensingPartnerOrganisations": 0,
-    "remaining": "Named verified prescriber and dispensing partner; actual prescription/currentness/stock integration; central delivery adapter release and WhatsApp provider/template/opt-in. MFA remains deliberately deferred, not weakened."
+    "remaining": "Provider names deliberately TBC for now; not a blocker to independent internal engineering. Real clinical/supply activation will require verified assignments and actual prescription/currentness/stock integration. Central delivery adapter release and WhatsApp provider/template/opt-in remain pending. MFA remains deliberately deferred, not weakened.",
+    "providerNamesDeferred": true
+  },
+  "providerAssignments": {
+    "recordedAt": "2026-10-24T16:57:59.372Z",
+    "authority": "Matt: Keep it as TBC for both",
+    "prescribingClinicianOrGP": {
+      "displayName": "TBC",
+      "status": "unassigned",
+      "verified": false
+    },
+    "dispensingPharmacy": {
+      "displayName": "TBC",
+      "status": "unassigned",
+      "verified": false
+    },
+    "note": "Planning placeholders only. No provider account, permission, registration, appointment or communication is created. Names are deliberately deferred; continue independent engineering without repeatedly requesting them. Real clinical/supply activation still requires verified assignments and functioning integrations."
   }
 }
