@@ -1,0 +1,69 @@
+{
+  "tag": "<link rel=\"stylesheet\" href=\"/assets/whatsapp-chat-v1.css?v=20261024\"><script defer src=\"/assets/whatsapp-chat-v1.js?v=20261024\"></script>",
+  "items": [
+    {
+      "path": "/tools/weight-management-review.html",
+      "file": "page-0.html",
+      "before": "before-0.html",
+      "ext": "html"
+    },
+    {
+      "path": "/assessment-walkthrough.html",
+      "file": "page-1.html",
+      "before": "before-1.html",
+      "ext": "html"
+    },
+    {
+      "path": "/assets/checkout-support-v1/mobile-review.html",
+      "file": "page-2.html",
+      "before": "before-2.html",
+      "ext": "html"
+    },
+    {
+      "path": "/faq/what-is-tap-room.html",
+      "file": "page-3.html",
+      "before": "before-3.html",
+      "ext": "html"
+    },
+    {
+      "path": "/join-my-timber.html",
+      "file": "page-4.html",
+      "before": "before-4.html",
+      "ext": "html"
+    },
+    {
+      "path": "/medicine-preference.html",
+      "file": "page-5.html",
+      "before": "before-5.html",
+      "ext": "html"
+    },
+    {
+      "path": "/order-success.html",
+      "file": "page-6.html",
+      "before": "before-6.html",
+      "ext": "html"
+    },
+    {
+      "path": "/treatment-terms.html",
+      "file": "page-7.html",
+      "before": "before-7.html",
+      "ext": "html"
+    },
+    {
+      "path": "/treatment-assessment-terms.html",
+      "file": "page-8.html",
+      "before": "before-8.html",
+      "ext": "html"
+    },
+    {
+      "path": "/assets/whatsapp-chat-v1.js",
+      "file": "whatsapp-chat-v1.js",
+      "ext": "js"
+    },
+    {
+      "path": "/assets/whatsapp-chat-v1.css",
+      "file": "whatsapp-chat-v1.css",
+      "ext": "css"
+    }
+  ]
+}
