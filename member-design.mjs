@@ -27,6 +27,11 @@ css('#todayBrand>a','display:flex;align-items:center;gap:11px;color:#e7e3da;text
 css('#todayBrand .member-design-mark','width:42px;height:42px;object-fit:contain;display:block;visibility:visible;opacity:1')+
 css('#todayBrand .member-design-account','display:flex;align-items:center;justify-content:center;border:1px solid #707762;background:#707762;color:#000;border-radius:50%;width:44px;height:44px')+
 css('#myTimberApp','position:static;margin:14px auto;max-width:1000px;width:calc(100% - 28px);box-sizing:border-box')+
+// The native shell's earlier hide rule must also win against this scoped theme.
+scope.replace('html ', 'html:has(style#my-timber-native-style) ')+' :is(#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings){display:none!important}\n'+
+css('#todayActions.app-today-v3 .app-today-shortcuts','display:none')+
+css('nav.sst-member-tabs .member-nav-tools a:is([href="/member/dashboard#today"],[href="/member/dashboard#journey"],[href="/member/grub"],[href="/member/fit"])','display:none')+
+css('nav.sst-member-tabs .member-nav-label|nav.sst-member-tabs .member-nav-more>summary','display:none')+
 css('#todayBrand svg|#appBottomNav svg','display:block;visibility:visible;opacity:1;width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round')+
 css('header.site-header|#todayBrand .today-logo','display:none')+
 css('nav.sst-member-tabs','display:none')+
@@ -75,6 +80,7 @@ css('#todayActions.app-today-v3 .today-followthrough','margin:16px 0;gap:14px')+
 css('#todayActions.app-today-v3 .today-support','margin-top:16px')+
 css('#todayActions.app-today-v3 .today-support :is(.mtm-panel,.mtm-care)','background:#e7e3da;color:#050505;border:0')+
 css('main :is(.app-screen-details,.app-refine-detail,.app-settings-section,.app-account-details,.grub-account)','background:#e7e3da;color:#050505;border:0;border-radius:10px;padding:10px 14px')+
+css('main [data-account-deleted]','background:#e7e3da;color:#050505;border:0;border-radius:12px;padding:20px')+
 css('main :is(.app-screen-details,.app-refine-detail,.app-settings-section,.app-account-details,.grub-account) :is(p,summary,h2,h3,a)','color:#050505;-webkit-text-fill-color:#050505')+
 css('main :is(.grub-meta,.sf-metrics)>*','background:#d3d0c5;color:#050505;font-size:12px')+
 css('main .grub-v8-tabs','background:#050505;border:0;border-radius:11px;padding:4px;margin:0 0 14px')+
@@ -164,6 +170,8 @@ export const memberDesignClient=String.raw`(()=>{
   }catch{}
  }
  function compose(){
+  if(document.body.dataset.accountDeleted==='1')return;
+  if(document.body.dataset.appMore==='open'){const more=document.querySelector('nav.sst-member-tabs .member-nav-more');if(more&&!more.open)more.open=true;}
   if(document.body.dataset.memberPage!=='dashboard'){const main=document.querySelector('main'),follow=document.getElementById('dailyCheckinFollowup');if(main&&follow){const card=follow.closest('details')||follow;if(main.contains(card)&&main.lastElementChild!==card)main.append(card);}}
   const root=document.getElementById('todayActions');
   if(root?.classList.contains('app-today-v3')){
@@ -182,7 +190,7 @@ export const memberDesignClient=String.raw`(()=>{
   });
  }
  const schedule=()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;compose()})};
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','style']})},{once:true});else{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','style']})}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','data-app-more','style']})},{once:true});else{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','data-app-more','style']})}
  document.addEventListener('load',event=>{if(event.target.matches?.('.app-tool-frame'))schedule()},true);
  document.addEventListener('sst:today-rendered',schedule);addEventListener('hashchange',schedule);addEventListener('popstate',schedule);
 })();`;

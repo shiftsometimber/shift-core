@@ -10,7 +10,7 @@ function fixture({auditFailure=false,insertFailure=false,tokenFailure=false,reje
  const DB={
   async exec(){if(auditFailure)throw Error('fictional audit failure')},
   prepare(sql){return{bind(...args){return{
-   async first(){if(sql.startsWith('SELECT id,email,first_name'))return{id:901,email:'fictional@example.test',first_name:'Fictional <name>'};return null},
+   async first(){if(sql.startsWith('SELECT u.id,u.email,u.first_name FROM users u JOIN user_auth'))return{id:901,email:'fictional@example.test',first_name:'Fictional <name>'};return null},
    async run(){if(sql.includes('auth_delivery_events')){if(insertFailure)throw Error('fictional insert failure');audits.push(args);return{meta:{changes:1}}}if(tokenFailure)throw Error('token storage unavailable');tokens.push({sql,args});return{meta:{changes:1}}}
   }}}}
  };

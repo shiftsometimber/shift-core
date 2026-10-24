@@ -68,9 +68,9 @@ const aj=JSON.stringify(ax.data),bj=JSON.stringify(bx.data);
 assert(aj.includes(A.email)&&aj.includes('private-a-')&&!aj.includes(B.email)&&!aj.includes('private-b-')&&!aj.includes('83.27'),'privacy export A crossed member boundary');
 assert(bj.includes(B.email)&&bj.includes('private-b-')&&!bj.includes(A.email)&&!bj.includes('private-a-')&&!bj.includes('107.31'),'privacy export B crossed member boundary');
 
-// Deletion request is member-scoped and revokes the active session immediately.
-const del=await call('/v1/privacy/account',{method:'DELETE',cookie:b,body:{}});
-assert(del.r.status===202&&del.data?.status==='received',`privacy deletion request failed ${del.r.status} ${JSON.stringify(del.data)}`);
+// Immediate account deletion is member-scoped and revokes the active session immediately.
+const del=await call('/v1/privacy/account',{method:'DELETE',cookie:b,body:{confirmation:'DELETE_MY_ACCOUNT'}});
+assert(del.r.status===200&&del.data?.status==='deleted'&&del.data?.accountClosed===true,`privacy account deletion failed ${del.r.status} ${JSON.stringify(del.data)}`);
 secureEnvelope(del,'privacy deletion request');
 const afterDelete=await call('/v1/me',{cookie:b});
 assert([401,403].includes(afterDelete.r.status),`deleted-account request did not revoke active session (${afterDelete.r.status})`);

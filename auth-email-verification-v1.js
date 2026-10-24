@@ -55,15 +55,16 @@ async function verifyEmail(request,env){
   if(!token)return verificationFailure(request,env,'verification_missing','That verification link is incomplete.');
 
   const tokenHash=await sha256Hex(token);
-  const row=await env.DB.prepare(`SELECT t.id,t.user_id,t.expires_at,t.used_at,u.email,u.first_name,a.email_verified FROM auth_tokens t JOIN users u ON u.id=t.user_id JOIN user_auth a ON a.user_id=t.user_id WHERE t.token_hash=? AND t.token_type='email_verification' ORDER BY t.id DESC LIMIT 1`).bind(tokenHash).first();
+  const row=await env.DB.prepare(`SELECT t.id,t.user_id,t.expires_at,t.used_at,u.email,u.first_name,a.email_verified FROM auth_tokens t JOIN users u ON u.id=t.user_id JOIN user_auth a ON a.user_id=t.user_id WHERE t.token_hash=? AND t.token_type='email_verification' AND a.password_hash NOT LIKE 'closed$%' ORDER BY t.id DESC LIMIT 1`).bind(tokenHash).first();
   if(!row||row.used_at||new Date(row.expires_at).getTime()<=Date.now())return verificationFailure(request,env,'verification_expired','That verification link has expired or has already been used.');
 
   const stamp=new Date().toISOString();
-  await env.DB.batch([
-    env.DB.prepare('UPDATE user_auth SET email_verified=1,email_verified_at=?,updated_at=? WHERE user_id=?').bind(stamp,stamp,row.user_id),
-    env.DB.prepare('UPDATE auth_tokens SET used_at=? WHERE id=?').bind(stamp,row.id),
+  const committed=await env.DB.batch([
+    env.DB.prepare("UPDATE user_auth SET email_verified=1,email_verified_at=?,updated_at=? WHERE user_id=? AND password_hash NOT LIKE 'closed$%' AND EXISTS(SELECT 1 FROM auth_tokens WHERE id=? AND used_at IS NULL AND julianday(expires_at)>julianday('now'))").bind(stamp,stamp,row.user_id,row.id),
+    env.DB.prepare('UPDATE auth_tokens SET used_at=? WHERE id=? AND changes()=1').bind(stamp,row.id),
     env.DB.prepare("UPDATE auth_tokens SET used_at=? WHERE user_id=? AND token_type='email_verification' AND used_at IS NULL AND id<>?").bind(stamp,row.user_id,row.id)
   ]);
+  if(Number(committed[0]?.meta?.changes)!==1)return verificationFailure(request,env,'verification_expired','That verification link has expired or has already been used.');
   await recordAudit(env.DB,row.user_id,'auth.email_verified',{});
   await sendWelcome(env,{id:row.user_id,email:row.email,firstName:row.first_name});
 
@@ -75,7 +76,7 @@ async function resendVerification(request,env){
   const b=await readJson(request),email=String(b.email||'').trim().toLowerCase();
   const generic={ok:true,message:'If that account still needs verification, a fresh link will be sent shortly.'};
   if(!isEmail(email))return json(generic);
-  const row=await env.DB.prepare('SELECT u.id,u.email,u.first_name,a.email_verified FROM users u JOIN user_auth a ON a.user_id=u.id WHERE lower(u.email)=?').bind(email).first();
+  const row=await env.DB.prepare('SELECT u.id,u.email,u.first_name,a.email_verified FROM users u JOIN user_auth a ON a.user_id=u.id WHERE lower(u.email)=? AND a.password_hash NOT LIKE \'closed$%\'').bind(email).first();
   if(row&&!Number(row.email_verified||0)){
     const delivery=await issueVerification(env,{userId:row.id,email:row.email,firstName:row.first_name},new URL(request.url).origin);
     await recordAudit(env.DB,row.id,'auth.email_verification_resent',{delivery});

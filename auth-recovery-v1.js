@@ -1,3 +1,4 @@
+import {passwordMeetsPolicy,PASSWORD_POLICY_MESSAGE} from './password-policy-v1.js';
 import {recordAuthDelivery} from './auth-delivery-v1.js';
 const RESET_TTL_MS=30*60*1000;
 const DEFAULT_FROM='hello@shiftsometimber.co.uk';
@@ -21,7 +22,7 @@ async function requestPasswordReset(request,env){
   const b=await readJson(request),email=String(b.email||'').trim().toLowerCase();
   const generic={ok:true,message:'If that account exists, reset instructions will be sent shortly.'};
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return cors(json(generic),request,env);
-  const user=await env.DB.prepare('SELECT id,email,first_name FROM users WHERE lower(email)=?').bind(email).first();
+  const user=await env.DB.prepare("SELECT u.id,u.email,u.first_name FROM users u JOIN user_auth a ON a.user_id=u.id WHERE lower(u.email)=? AND a.password_hash NOT LIKE 'closed$%'").bind(email).first();
   if(user){
     const token=randomToken(32),tokenHash=await sha256Hex(token),expiresAt=new Date(Date.now()+RESET_TTL_MS).toISOString(),stamp=new Date().toISOString();
     await env.DB.prepare("UPDATE auth_tokens SET used_at=? WHERE user_id=? AND token_type='password_reset' AND used_at IS NULL").bind(stamp,user.id).run();
@@ -36,7 +37,7 @@ async function requestPasswordReset(request,env){
 
 async function resetPassword(request,env){
   const b=await readJson(request),token=String(b.token||'').trim(),password=String(b.password||'');
-  if(!token||password.length<12)return cors(json({ok:false,error:'invalid_reset',message:'Use the reset link and choose a password of at least 12 characters.'},400),request,env);
+  if(!token||!passwordMeetsPolicy(password))return cors(json({ok:false,error:'invalid_reset',message:PASSWORD_POLICY_MESSAGE},400),request,env);
   const tokenHash=await sha256Hex(token);
   const row=await env.DB.prepare(`SELECT id,user_id,expires_at,used_at FROM auth_tokens WHERE token_hash=? AND token_type='password_reset' ORDER BY id DESC LIMIT 1`).bind(tokenHash).first();
   if(!row||row.used_at||new Date(row.expires_at).getTime()<=Date.now())return cors(json({ok:false,error:'reset_expired',message:'That reset link has expired or has already been used.'},400),request,env);
@@ -45,7 +46,7 @@ async function resetPassword(request,env){
   // following UPDATE is gated by the previous statement's affected-row count;
   // a losing claimant can neither change the password nor revoke sessions.
   const results=await env.DB.batch([
-    env.DB.prepare(`UPDATE auth_tokens SET used_at=? WHERE id=? AND user_id=? AND token_type='password_reset' AND used_at IS NULL AND julianday(expires_at)>julianday('now') AND EXISTS(SELECT 1 FROM user_auth WHERE user_id=?)`).bind(stamp,row.id,row.user_id,row.user_id),
+    env.DB.prepare(`UPDATE auth_tokens SET used_at=? WHERE id=? AND user_id=? AND token_type='password_reset' AND used_at IS NULL AND julianday(expires_at)>julianday('now') AND EXISTS(SELECT 1 FROM user_auth WHERE user_id=? AND password_hash NOT LIKE 'closed$%')`).bind(stamp,row.id,row.user_id,row.user_id),
     env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=? AND changes()=1').bind(hash,stamp,row.user_id),
     env.DB.prepare('UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL AND changes()=1').bind(stamp,row.user_id)
   ]);
@@ -56,10 +57,11 @@ async function resetPassword(request,env){
 async function changePassword(request,env,next,ctx){
   const probe=await next(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!probe.ok)return probe;
   const me=(await probe.json()).user,b=await readJson(request),current=String(b.currentPassword||''),password=String(b.password||'');
-  if(password.length<12)return cors(json({ok:false,error:'weak_password',message:'Please use at least 12 characters.'},400),request,env);
+  if(!passwordMeetsPolicy(password))return cors(json({ok:false,error:'weak_password',message:PASSWORD_POLICY_MESSAGE},400),request,env);
   const auth=await env.DB.prepare('SELECT password_hash FROM user_auth WHERE user_id=?').bind(me.id).first();
   if(!auth||!(await verifyPassword(current,auth.password_hash)))return cors(json({ok:false,error:'invalid_current_password',message:'Your current password is not correct.'},401),request,env);
-  const hash=await hashPassword(password),stamp=new Date().toISOString();await env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=?').bind(hash,stamp,me.id).run();
+  const hash=await hashPassword(password),stamp=new Date().toISOString();const changed=await env.DB.prepare('UPDATE user_auth SET password_hash=?,failed_login_attempts=0,locked_until=NULL,updated_at=? WHERE user_id=? AND password_hash=?').bind(hash,stamp,me.id,auth.password_hash).run();
+  if(Number(changed?.meta?.changes)!==1)return cors(json({ok:false,error:'session_expired'},401),request,env);
   return cors(json({ok:true,message:'Password changed.'}),request,env);
 }
 

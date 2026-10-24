@@ -24,7 +24,9 @@ for(const marker of ["headers.set('X-Shift-Request-Id'","headers.set('Cache-Cont
 for(const marker of ["if (method === 'POST' && path === '/v1/privacy/export')","if (method === 'DELETE' && path === '/v1/privacy/account')","const auth = await requireUser(request, env)","await receiveAccountDeletion(env.DB,auth.user.id)"]) requireText(worker,marker,`privacy boundary ${marker}`);
 
 requireText(worker,"import {receiveAccountDeletion} from './privacy-account-request-v1.js'",'deletion handler import');
-for(const marker of ['await DB.batch([','INSERT INTO data_requests','INSERT INTO hq_tasks','UPDATE user_sessions SET revoked_at=? WHERE user_id=? AND revoked_at IS NULL'])requireText(deletion,marker,'atomic deletion receipt '+marker);
+for(const marker of ['await DB.batch(statements)','INSERT INTO data_requests','ON CONFLICT(user_id) DO UPDATE SET password_hash=excluded.password_hash','closed$','auth_tokens','UPDATE user_sessions SET revoked_at=COALESCE',"status:'deleted'"])requireText(deletion,marker,'atomic immediate account deletion '+marker);
+requireText(worker,"body.confirmation!=='DELETE_MY_ACCOUNT'",'explicit irreversible deletion confirmation');
+if(deletion.includes('INSERT INTO hq_tasks'))fail('Member deletion must complete immediately without an HQ approval queue');
 
 for(const marker of ["httpOnly:true","secure:true","sameSite:'Lax'","exportRequired:true","deleteRequired:true","hqWritesRequired:true","clientExposureForbidden:true","assertMemberBoundary","rejectMaliciousText"]) requireText(security,marker,`security policy ${marker}`);
 
@@ -36,7 +38,7 @@ requireText(analytics,"const a=await auth(request,env,ctx)",'analytics endpoint 
 for(const marker of ["AUDIENCE='shift-production-commissioning'","REPOSITORY='shiftsometimber/shift-core'","ACTOR_ID='315011648'","SYNTHETIC=/^shiftsometimber\\+","ALLOWED_WORKFLOWS","header.alg!=='RS256'","claims.iss!==ISSUER","claims.repository!==REPOSITORY","String(claims.actor_id)!==ACTOR_ID"]) requireText(identity,marker,`commissioning identity restriction ${marker}`);
 forbid(identity,/AUTO_VERIFY_EMAIL|verificationRequired\s*:\s*false[\s\S]*email\.test/i,'commissioning identity must not become generic verification bypass');
 
-for(const marker of ['RESET_TTL_MS=30*60*1000','password.length<12','constantTimeBytesEqual','token_type=\'password_reset\'']) requireText(recovery,marker,`recovery security ${marker}`);
+for(const marker of ['RESET_TTL_MS=30*60*1000','!passwordMeetsPolicy(password)','constantTimeBytesEqual','token_type=\'password_reset\'']) requireText(recovery,marker,`recovery security ${marker}`);
 
 for(const marker of ['PBKDF2','iterations = 100000','HttpOnly','Secure','SameSite=Lax']) requireText(worker,marker,`auth defence ${marker}`);
 

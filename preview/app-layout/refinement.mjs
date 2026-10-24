@@ -109,7 +109,7 @@ export const refinementClient=String.raw`
   }
   if(page==='settings'){
    document.querySelectorAll('#memberDetailsPanel .md-section').forEach(n=>group([n],n.querySelector('h3')?.textContent.trim()||'Details'));
-   document.querySelectorAll('main .tracker-card').forEach(n=>{if(n.closest('.app-refine-detail,#memberDetailsPanel'))return;const title=n.querySelector('h2,h3');if(title)group([n],title.textContent.trim(),'app-settings-section')});
+   document.querySelectorAll('main .tracker-card').forEach(n=>{if(n.matches('[data-account-deletion]')||n.closest('.app-refine-detail,#memberDetailsPanel'))return;const title=n.querySelector('h2,h3');if(title)group([n],title.textContent.trim(),'app-settings-section')});
   }
   if(page==='grub'){
    const recipe=document.querySelector('#grubRecommendation .grub-recipe');

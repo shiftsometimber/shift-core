@@ -1,3 +1,4 @@
+import {passwordMeetsPolicy,PASSWORD_POLICY_MESSAGE} from './password-policy-v1.js';
 import {registrationMetadata} from './acquisition-activation/model.mjs';
 // G5-012 bounded member-registration fast path.
 // Preserves the existing Core registration contract while removing avoidable
@@ -9,9 +10,9 @@ export async function fastMemberRegister(request,env){
   if(request.method!=='POST'||path!=='/v1/auth/register'||!env?.DB)return null;
 
   let body={};
-  try{body=await request.clone().json()}catch{return json({ok:false,error:'invalid_registration',message:'Use a valid email and a password of at least 10 characters.'},400)}
+  try{body=await request.clone().json()}catch{return json({ok:false,error:'invalid_registration',message:PASSWORD_POLICY_MESSAGE},400)}
   const email=String(body.email||'').trim().toLowerCase(),password=String(body.password||'');
-  if(!isEmail(email)||password.length<10)return json({ok:false,error:'invalid_registration',message:'Use a valid email and a password of at least 10 characters.'},400);
+  if(!isEmail(email)||!passwordMeetsPolicy(password))return json({ok:false,error:'invalid_registration',message:PASSWORD_POLICY_MESSAGE},400);
 
   const firstName=clean(body.firstName,100),lastName=clean(body.lastName,100),phone=clean(body.phone,50),dateOfBirth=clean(body.dateOfBirth,20),postcode=clean(body.postcode,20),source=clean(body.source,100)||'website';
   const autoVerify=String(env.AUTO_VERIFY_EMAIL||'true').toLowerCase()==='true';
