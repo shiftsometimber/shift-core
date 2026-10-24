@@ -6,6 +6,7 @@ export const exceptionDDL=[
  `CREATE TABLE IF NOT EXISTS hq_operational_monitor_runs(id TEXT PRIMARY KEY,observed_at TEXT NOT NULL,coverage_json TEXT NOT NULL)`
 ];
 export const exceptionSources=[
+ ['commerce_service_delivery',"SELECT event_key id,updated_at occurred_at FROM commerce_service_delivery WHERE status='unknown' OR (status='attempted' AND julianday(updated_at)<julianday(?,'-1 hour')) OR (status='queued' AND error_code IS NOT NULL)",'Reconcile the exact retained order-mail event and provider evidence. Repair a proven missing binding before any retry; accepted, historical unknown and uncertain attempts require exact review and must not be blindly replayed.',4,true],
  ['hq_tasks',"SELECT CAST(id AS TEXT) id,due_at occurred_at FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND (assigned_to IS NULL OR trim(assigned_to)='')",'Review the original HQ task, confirm whether it is genuine or an authorised test, and assign a named owner plus a next action and due time. Preserve financial, privacy and reviewer history; do not perform erasure merely because a request exists.',4],
  ['data_requests',"SELECT CAST(id AS TEXT) id,received_at occurred_at FROM data_requests WHERE request_type='deletion' AND status NOT IN ('completed','cancelled')",'Review the account-erasure request and the originating authority in HQ. Confirm identity, ownership and retention obligations before any irreversible action. A request or acknowledgement is not completed erasure.',4],
  ['hq_service_job_runs',"SELECT r.id,r.started_at occurred_at FROM hq_service_job_runs r WHERE r.status='failed' AND NOT EXISTS(SELECT 1 FROM hq_service_job_runs newer WHERE newer.job_key=r.job_key AND newer.status='completed' AND julianday(newer.completed_at)>julianday(r.started_at))",'Review the failed scheduled execution and its per-message/provider outcomes. Restore the job, then verify an actual later run. Unknown deliveries require separate reconciliation.',1],
@@ -14,7 +15,7 @@ export const exceptionSources=[
  ['integration_webhooks',"SELECT CAST(id AS TEXT) id,received_at occurred_at FROM integration_webhooks WHERE signature_valid=1 AND processing_error IS NOT NULL AND trim(processing_error)<>''",'Reconcile the signed partner callback against its authoritative order/case and provider receipt. Retry only after proving the earlier attempt did not complete.',1],
  ['stripe_events',"SELECT CAST(id AS TEXT) id,received_at occurred_at FROM stripe_events WHERE processing_error IS NOT NULL AND trim(processing_error)<>''",'Reconcile the retained Stripe event against the payment provider and order. Preserve environment and amounts; do not recreate charges.',1],
  ['medicine_stripe_events',"SELECT CAST(id AS TEXT) id,received_at occurred_at FROM medicine_stripe_events WHERE processing_error IS NOT NULL AND trim(processing_error)<>''",'Reconcile the medicine payment event. Keep payment, clinical and fulfilment outcomes separate; do not recreate charges.',1],
- ['hq_comms_recipients',"SELECT draft_id||':'||lower(email) id,at occurred_at FROM hq_comms_recipients WHERE status='unknown'",'Check the exact approved draft, recipient and provider evidence in Communications. Do not retry an uncertain send.',4]
+ ['hq_comms_recipients',"SELECT draft_id||':'||lower(email) id,at occurred_at FROM hq_comms_recipients WHERE status='unknown' OR (status='pending' AND error_code='eligibility_source_unavailable')",'Check eligibility-source availability and the exact approved draft, recipient and provider evidence in Communications. No transport occurs while eligibility is unavailable. Reconcile any unknown send before retry.',4]
 ];
 const keyFor=async(source,id)=>{const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(id));return source+':'+[...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('')};
 export async function reconcileExceptions(DB,now=new Date()){
@@ -59,7 +60,7 @@ export async function changeException(DB,key,action,note,actor,now=new Date()){
  const at=now.toISOString(),column=action==='resolve'?'resolved':'acknowledged',id=crypto.randomUUID();
  const results=await DB.batch([
   DB.prepare(`UPDATE hq_operational_exceptions SET status=?,${column}_by=?,${column}_at=?${action==='resolve'?',resolution_note=?':''} WHERE event_key=? AND status=?`).bind(column,actor.id,at,...(action==='resolve'?[note.trim()]:[]),key,row.status),
-  DB.prepare(`INSERT INTO hq_operational_exception_audit(id,event_key,actor_id,action,note,at) SELECT ?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM hq_operational_exceptions WHERE event_key=? AND ${column}_by=? AND ${column}_at=?)`).bind(id,key,actor.id,action,note.trim(),at,key,actor.id,at)
+  DB.prepare(`INSERT INTO hq_operational_exception_audit(id,event_key,actor_id,action,note,at) SELECT ?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM hq_operational_exceptions WHERE event_key=? AND ${column}_by=? AND ${column}_at=?) AND changes()=1`).bind(id,key,actor.id,action,note.trim(),at,key,actor.id,at)
  ]);
  return Number(results[0].meta.changes)===1?{status:200,state:column,noMessagesSent:true}:{status:409,error:'exception_changed'};
 }

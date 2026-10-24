@@ -6,7 +6,7 @@ export const serviceJobDDL=[
 ];
 export const serviceJobs={hq_communications:5,support_reminders:5,core_medicines_watch:15,core_intelligence:15,core_radar:15,core_knowledge:15,core_fit_reminders:15,core_article_email:15,core_checkin:15,core_signup_alerts:15,core_treatment:15,core_coaching:15};
 const jobs=serviceJobs;
-const counterKeys=new Set(['emailAccepted','inApp','pushAccepted','unknown','suppressed','delivered','accepted','failed','due','processed','created','candidates','sent','checked','expired','attempted']);
+const counterKeys=new Set(['emailAccepted','inApp','pushAccepted','unknown','suppressed','delivered','accepted','failed','due','processed','created','candidates','sent','checked','expired','attempted','deferred']);
 export async function recordServiceJob(DB,key,scheduledAt,work,clock=()=>new Date()){
  if(!jobs[key])throw Error('unsupported_service_job');
  const id=crypto.randomUUID(),start=clock().toISOString();

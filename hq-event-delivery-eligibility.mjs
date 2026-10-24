@@ -1,7 +1,7 @@
 // Invoked immediately before transport for event-linked drafts only.
 // Existing independently approved manual drafts retain their current path.
 export async function eventDeliveryEligibility(DB,payload,draftId,recipient,now=new Date()){
- try{return await checkEvent(DB,payload,draftId,recipient,now)}catch{return{eligible:false,reason:'event_source_unavailable'}}
+ try{return await checkEvent(DB,payload,draftId,recipient,now)}catch{return{eligible:null,reason:'event_source_unavailable'}}
 }
 async function checkEvent(DB,payload,draftId,recipient,now){
  if(!Object.prototype.hasOwnProperty.call(payload,'notificationEvent'))return{eligible:true};
@@ -50,7 +50,7 @@ export async function clinicalEventEligibility(DB,item,now=new Date()){
   if(item.recipient_kind!=='hq_user'||row.recipient_kind!=='hq'||!['awaiting_review','in_review','needs_information'].includes(row.status))return{eligible:false,reason:'clinical_action_no_longer_required'};
   const assigned=await DB.prepare("SELECT a.hq_user_id FROM clinical_case_assignments a JOIN clinical_hq_staff h ON h.user_id=a.hq_user_id WHERE a.record_id=? AND a.hq_user_id=? AND a.active=1 AND a.expires_at>? AND h.active=1 AND h.role='clinician' AND h.expires_at>? AND h.verified_by IS NOT NULL AND trim(h.verified_by)<>'' AND h.registration_body IS NOT NULL AND trim(h.registration_body)<>'' AND h.registration_number IS NOT NULL AND trim(h.registration_number)<>''").bind(row.record_id,item.recipient_user_id,now.toISOString(),now.toISOString()).first();
   return{eligible:!!assigned,reason:'clinical_assignment_no_longer_active'};
- }catch{return{eligible:false,reason:'clinical_source_unavailable'}}
+ }catch{return{eligible:null,reason:'clinical_source_unavailable'}}
 }
 
 export async function intentSourceEligibility(DB,item,now=new Date()){
