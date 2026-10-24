@@ -42,6 +42,7 @@ APP_PATHS.add('medicines-watch/reviews/2026-10-07-authorised-enicepatide-emugrob
 // aggregate app boundary. Each path remains covered by its own release tests;
 // this list does not relax protected runtime, member-data or configuration checks.
 const CURRENT_MAIN_PUBLIC_MAINTENANCE=[
+ '.github/workflows/whole-estate-route-sweep.yml',
  'causes-partners-teaser.mjs',
  'causes-partners/README.md',
  'causes-partners/index.html',
@@ -63,7 +64,11 @@ const CURRENT_MAIN_PUBLIC_MAINTENANCE=[
  'tests/timber-shed-public-teaser.test.mjs',
  'timber-shed-public-teaser.mjs',
  'release/current-runtime-preservation-20261016.mjs',
- 'reta-styles-data.mjs'
+ 'release/recorded-week-navigation-outer-frame-20261018.mjs',
+ 'reta-styles-data.mjs',
+ 'gate1-whole-estate-production-sweep.mjs',
+ 'public-response-policy.test.mjs',
+ 'tests/root-share-preview.test.mjs'
 ];
 for(const p of CURRENT_MAIN_PUBLIC_MAINTENANCE)APP_PATHS.add(p);
 export const originalAppHashRef=p=>rankingGrowthHistoricalRef('HEAD',p,undefined,false)!=='HEAD'?rankingGrowthHistoricalRef('HEAD',p,undefined,false):['release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs','tests/watch-ownership-release.test.mjs'].includes(p)?'HEAD':p==='my-timber-pwa/presentation.mjs'?PWA_DISMISS_APPROVED:historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef(ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:'HEAD',p),p),p);
