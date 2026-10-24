@@ -76,7 +76,9 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
   if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':ORIGIN,'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type, X-Application-Token, X-Profile-Version, X-Evidence-Kind','Cache-Control':'no-store'}});
   if(!['GET','POST'].includes(request.method))fail(405,'method_not_allowed');if(request.method==='POST'&&request.headers.get('Origin')!==ORIGIN)fail(403,'origin_required');
   if(env.PARTNER_OPERATIONS_ENABLED!=='true')fail(503,'partner_operations_not_commissioned');
-  const p=path.slice(PARTNER_BASE.length).split('/').filter(Boolean);
+  const p=path.slice(PARTNER_BASE.length).split('/').filter(Boolean),internalSetup=env.PARTNER_INTERNAL_SETUP_ONLY==='true';
+  // Internal preparation is not professional onboarding. Token links, files, credentials and supply remain closed in source.
+  if(internalSetup&&(p[0]==='login'||p[0]==='activation'||p[0]==='application'||p[0]==='fulfilment'||p.length>1&&!['action','audit'].includes(p[1])&&p[0]!=='organisations'))fail(503,'professional_onboarding_not_open');
   if(p[0]==='login'&&p[1]==='verify'&&p.length===2&&request.method==='POST'){
    if(env.PARTNER_LOGIN_ENABLED!=='true'||!env.HQ_AUTH)fail(503,'partner_login_not_commissioned');const b=await readJson(request);
    await limitProfessionalAuth(request,env,'mfa',text(b.challenge,200));
@@ -101,11 +103,12 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
    if(!s||!s.passwordSetAt||!['credentials_pending','active'].includes(s.status))fail(401,'invalid_credentials');
    if(typeof b.password!=='string'||b.password.length>128)fail(401,'invalid_credentials');
    // Delegate password verification, sessions and MFA challenges to retained HQ auth.
-   // This route remains separately closed until rate-limit acceptance is complete.
+   // This route remains separately closed until actual-session and recovery acceptance is complete.
    if(!env.HQ_AUTH)fail(503,'hq_authentication_unavailable');return env.HQ_AUTH.fetch(new Request('https://api.shiftsometimber.co.uk/v1/hq/auth/login',{method:'POST',headers:{Origin:ORIGIN,'Content-Type':'application/json'},body:JSON.stringify({email:s.details.email,password:b.password}),redirect:'manual'}));
   }
   const app=p[0]==='application',a=await actorFor(request,env,authenticate,app);if(a.response)return a.response;
   const administrator=admin(a),governor=a.clinicalGovernor||a.pharmacyGovernor;
+  if(internalSetup&&!administrator)fail(403,'internal_owner_access_required');
   if(p[0]==='organisations'){
    if(!administrator)fail(403,'owner_approval_required');
    if(p.length===2&&request.method==='POST'){
@@ -122,7 +125,7 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
   if(p[0]==='fulfilment')return await fulfilmentRoute(request,env,a,p.slice(1),adapters);
   if(!p.length){
    if(!administrator&&!governor)fail(403,'partner_directory_forbidden');
-   if(request.method==='GET'){await audit(env,a,'directory','staff','staff_directory_viewed');return json({staff:(await rows(query(env,'SELECT state_json FROM partner_staff ORDER BY updated_at DESC LIMIT 200'))).map(r=>summary(parse(r))),capabilities:{administrator,clinicalGovernor:!!a.clinicalGovernor,pharmacyGovernor:!!a.pharmacyGovernor}});}
+   if(request.method==='GET'){await audit(env,a,'directory','staff','staff_directory_viewed');return json({staff:(await rows(query(env,'SELECT state_json FROM partner_staff ORDER BY updated_at DESC LIMIT 200'))).map(r=>summary(parse(r))),capabilities:{administrator,internalSetupOnly:internalSetup,clinicalGovernor:!!a.clinicalGovernor,pharmacyGovernor:!!a.pharmacyGovernor}});}
    if(!administrator)fail(403,'owner_approval_required');const b=await readJson(request),id=uid(),date=now(),s=newStaff(b,id,date);
    const organisation=parse(await query(env,'SELECT state_json FROM partner_organisations WHERE id=?',s.orgId).first());if(!organisation||organisation.kind!==(s.kind==='clinician'?'clinical':'pharmacy'))fail(422,'matching_partner_organisation_required');
    const g=authCondition(a,date);const rs=await env.DB.batch([query(env,'INSERT INTO partner_staff SELECT ?,NULL,NULL,?,?,0,?,? WHERE '+g.sql,id,s.kind,s.orgId,JSON.stringify(s),date,...g.args),query(env,'INSERT INTO partner_audit SELECT ?,?,?,0,?,?,?,? WHERE changes()=1',uid(),'staff',id,String(a.id),'application_created','{}',date)]);if(rs[0].meta?.changes!==1)fail(403,'access_revoked');return json(publicStaff(s),201);
@@ -169,7 +172,7 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
    }
   }
   if(p[1]==='action'&&request.method==='POST'&&p.length===2){
-   const b=await readJson(request);if(b.action==='evidence')fail(403,'use_verified_upload_route');
+   const b=await readJson(request);if(internalSetup&&!['details','query','reject','suspend','revoke_grant'].includes(b.action))fail(503,'professional_onboarding_not_open');if(b.action==='evidence')fail(403,'use_verified_upload_route');
    const organisation=['approve','activate','grant'].includes(b.action)?await currentPartner(env,s):null;
    if(b.action==='approve')b.username=s.username||(s.kind==='clinician'?'CLN-':'DSP-')+random().slice(0,12).toUpperCase();
    if(b.action==='activate'){const u=await query(env,'SELECT mfa_enabled,status FROM hq_users WHERE id=?',s.hqUserId).first();b.accountMfaVerified=u?.mfa_enabled===1&&u.status==='active';}

@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-24T14:43:21.269Z",
+  "deployedVersion": "3b73e3b6-79d6-4a98-85ed-05f10f09a141",
+  "checks": [
+    {
+      "shellExact": true,
+      "status": 200
+    },
+    {
+      "unauthenticatedDenied": true,
+      "status": 401
+    },
+    {
+      "unauthenticatedDenied": true,
+      "status": 401
+    },
+    {
+      "unauthenticatedDenied": true,
+      "status": 401
+    },
+    {
+      "crossOriginDenied": true,
+      "status": 403
+    },
+    {
+      "liveBrowserSignedOutDenied": true,
+      "errors": []
+    }
+  ],
+  "actualAuthenticatedWritesVerified": false,
+  "realServiceActivation": false,
+  "messagesSent": 0
+}

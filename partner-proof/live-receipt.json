@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-24T14:14:00.000Z",
+  "at": "2026-10-24T14:43:14.579Z",
   "checks": [
     {
       "path": "/clinical-portal/partners",
@@ -38,6 +38,16 @@
     },
     {
       "path": "/clinical-portal/my-profile",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-portal/commissioning",
+      "status": 200,
+      "exact": true
+    },
+    {
+      "path": "/clinical-assets/partners/commissioning-client.mjs",
       "status": 200,
       "exact": true
     },

@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-24T14:49:42.639Z",
+  "scope": "Local actual partner API and SQLite; fixture HQ identity, not live-session acceptance",
+  "checks": [
+    {
+      "width": 390,
+      "draftSavedAndReloaded": true,
+      "activationAndUploadsHidden": true,
+      "auditVisible": true,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "draftSavedAndReloaded": true,
+      "activationAndUploadsHidden": true,
+      "auditVisible": true,
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

@@ -30,7 +30,7 @@ Dispensing requires a trusted issued-prescription adapter, not a CRM decision. S
 
 ## Commissioning requirements — not silently switched on
 
-The published worker **hard-closes** `PARTNER_OPERATIONS_ENABLED`, `PARTNER_LOGIN_ENABLED`, `PARTNER_FULFILMENT_ENABLED` as well as retaining the existing real clinical gates. Provider flag changes alone cannot activate these features.
+The published worker permits MFA-protected owner/admin **internal setup** only: partner organisations, draft professional records and audit. It source-locks `PARTNER_INTERNAL_SETUP_ONLY:true`, blocks external application/activation links, files, professional approvals and scope grants, and hard-closes login/fulfilment plus the existing real clinical gates. Provider flag changes alone cannot activate a service.
 
 Before a reviewed activation release:
 
@@ -55,7 +55,7 @@ node clinical-assessment/partner-operations/browser-check.mjs
 wrangler deploy --dry-run --config clinical-assessment/wrangler.portal-release.json
 ```
 
-The browser harness uses an existing native Playwright toolchain and only synthetic records. It checks 390/1280px, inner panel padding/overflow, five independent checks, generated username, no-stock denial and fictional acceptance/preparation/dispatch, with zero external browser requests. The published closed API must return 503 even if flags are passed true.
+The browser harness uses an existing native Playwright toolchain and only synthetic records. It checks 390/1280px, inner panel padding/overflow, five independent checks, generated username, no-stock denial and fictional acceptance/preparation/dispatch, with zero external browser requests. The published internal directory requires actual HQ owner/admin MFA; professional onboarding, files, login and fulfilment return 503 even if provider flags are passed true.
 
 ## Persistent internal commissioning — implementation update
 
@@ -73,4 +73,4 @@ Additional checks:
 node clinical-assessment/partner-operations/commissioning-browser.mjs
 ```
 
-All real-service gates and the separate main release are preserved. No messages, invitations, charges, scheduled jobs or customer enrolments are created by these changes.
+Actual partner-directory preparation is now available behind HQ owner/admin MFA. Its UI hides upload, verification and activation controls while the server independently rejects those operations. This is separate from the synthetic order acceptance workspace. All real-service gates and the separate main release are preserved. No messages, invitations, charges, scheduled jobs or customer enrolments are created by these changes.
