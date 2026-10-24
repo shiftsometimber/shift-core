@@ -1,12 +1,12 @@
 {
-  "at": "2026-10-24T16:42:53.918Z",
+  "at": "2026-10-24T16:55:58.445Z",
   "timezone": "Europe/London",
   "request": "Create shared HQ professional onboarding/permissions, clinical link and dispensing workspace; match clinician branding",
-  "sourceCommit": "c22fa52a576bf1fcbf6e2bf4a91e50ca8f35c3d4",
+  "sourceCommit": "c80f40eaacd64f72837c3c1e2d0f422b772bbf5e",
   "branch": "feat/hq-partner-operations-20261024",
   "worker": "shift-hq-clinical-portal",
-  "previousVersion": "da858402-f841-47de-842f-daae37756298",
-  "deployedVersion": "cdc61aee-71e6-4151-addc-3b6680341b1e",
+  "previousVersion": "cdc61aee-71e6-4151-addc-3b6680341b1e",
+  "deployedVersion": "bc8502f5-e89e-445a-b0dc-fb65cfce958f",
   "built": true,
   "reviewSurfacesDeployed": true,
   "liveVerified": true,
@@ -26,14 +26,15 @@
     "professionalProfile": "https://hq.shiftsometimber.co.uk/clinical-portal/my-profile",
     "internalCommissioning": "https://hq.shiftsometimber.co.uk/clinical-portal/commissioning",
     "memberRecords": "https://shiftsometimber.co.uk/member/treatment-records",
-    "notificationReview": "https://hq.shiftsometimber.co.uk/clinical-portal/notifications"
+    "notificationReview": "https://hq.shiftsometimber.co.uk/clinical-portal/notifications",
+    "dispensingOversight": "https://hq.shiftsometimber.co.uk/clinical-portal/dispensing"
   },
   "proof": {
     "nativeTests": {
-      "pass": 141,
+      "pass": 142,
       "fail": 0,
       "skipped": 0,
-      "log": "/tmp/hq-all-channel-tests.log"
+      "log": "/tmp/hq-open-oversight-tests.log"
     },
     "localBrowser": {
       "widths": [
@@ -48,7 +49,8 @@
       "exactRoutes": 19,
       "browserErrors": 0,
       "noStockBlocked": true,
-      "receipt": "partner-proof/live-receipt.json"
+      "receipt": "partner-proof/live-receipt.json",
+      "verifiedAt": "2026-10-24T16:55:58.445Z"
     },
     "bundleKiB": 306.24,
     "internalCommissioning": {
@@ -130,14 +132,14 @@
   "pending": [
     "Matt deliberately defers MFA: actual HQ owner/professional session acceptance waits for his own enrolment, without blocking completed engineering.",
     "A genuine signed-in designated Test member session is needed for production end-to-end member acceptance. No passwords guessed, CAPTCHA bypass, reset or verification messages attempted.",
-    "Root HQ links are implemented in the retained bootstrap, role-tested and published as an asset. Root inclusion remains with the separate active source owner and guarded run 40097051276/source 2ac8456e; last read 15:20UTC showed in_progress. Do not overwrite that worker or merge into its frozen main candidate.",
+    "Root inclusion and the central Communications release remain with their existing separate source owner. Current saved recovery evidence shows run40097051276 failed before runtime and watcher37419 exited; admission repair is under that owner's control. No duplicate release, main merge or shared-root overwrite was attempted.",
     "Actual selected supplier prescription/currentness/stock API contracts and securely configured access are still needed. Manual scoped delivery/exception/return/cancellation code is implemented; no automatic courier callback is claimed.",
     "Agree real staff privacy/retention/legal-hold operating policy and verify the named professional reviewers before real ID/selfie collection or professional approval. Existing design sign-off is accepted, not reopened.",
     "Actual professional username/password/MFA/recovery acceptance remains required before real professional login/onboarding is opened.",
     "New three-channel source records and email/app review drafts are deployed. The shared Communications successor must import the tested careChannelEligibility/careIntentEligibility adapter from this branch before those drafts can pass its delivery gate. See COMMUNICATIONS-INTEGRATION.md. Do not overwrite the active source owner's held root release. WhatsApp still requires selected provider/template/verified number/opt-in and actual receipt acceptance. No messages or invitations were sent.",
     "The wider My Shift dashboard/main release still needs its own production acceptance. This release deploys the actual treatment-record order card and API, not a claim that the separate entire profile/dashboard release completed."
   ],
-  "note": "Private HQ clinician/GP banner, Invite clinician and Invite partner draft preparation deployed. Actual member upload/submission/clinical/pharmacy events now transactionally record three channel intents; private notes do not alert members. Email/app draft preparation uses existing Communications tables and does not approve, schedule, publish or send. A tested explicit care-channel delivery eligibility adapter is prepared for the shared root source owner, but is not deployed in that separate central release. WhatsApp provider/template/opt-in and device push acceptance remain outstanding. 141 tests, 390/1280 actual-route local SQLite browser checks, exact published assets and signed-out/cross-origin denials pass. Genuine signed-in production acceptance is unverified. Real professional onboarding/prescribing/supply remain closed; test cohort, stock, payment, homepage and shared-root holds are preserved.",
+  "note": "Opened actual private read-only dispensing oversight for existing owner/admin MFA sessions; professional accounts cannot use that exception. 142 tests, 390/1280 local actual-route browser acceptance and 19 live-route checks passed. Real supply mutations, clinical activation, onboarding and patient cohort remain unchanged. Read-only live DB checks found zero professional/partner organisation records and four active owners, none MFA-enrolled. Actual prescribing/dispensing connections and central notification delivery are not complete; no real messages, account activations, prescriptions, orders, stock or payments were created. Existing shared release ownership/hold was preserved; no bypass of authentication or medical controls.",
   "internalCommissioning": {
     "requested": true,
     "authority": "Matt explicitly requested persistent connected internal operation now, not browser-only demonstrations; no real onboarding/customers yet.",
@@ -145,7 +147,7 @@
     "databaseTablesVerified": 10,
     "ownerMfa": {
       "enabled": 0,
-      "activeOwners": 3,
+      "activeOwners": 4,
       "requiredUserAction": "Matt explicitly defers his own MFA enrolment; do not repeat it as a blanket engineering blocker or bypass it."
     },
     "schemaLog": "/tmp/hq-partner-schema-live.log",
@@ -176,5 +178,19 @@
     "privateCareEventRecordingEnabled": true
   },
   "invitationDraftPreparationEnabled": true,
-  "privateCareEventRecordingEnabled": true
+  "privateCareEventRecordingEnabled": true,
+  "readOnlyDispensingOversightEnabled": true,
+  "latestActivationRequest": {
+    "at": "2026-10-24T16:55:58.445Z",
+    "request": "I want it all open and live",
+    "scope": "Continue authorised connected private operation; no unseen external communications, actual clinical credentials or service integrations may be invented.",
+    "completed": "Read-only live dispensing queue opened to current owner/admin MFA sessions; all mutation, professional-scope, stock and patient protections retained.",
+    "actualSessionAcceptance": false,
+    "readOnlyChecks": "partner-proof/invitations-notifications-browser-receipt.json",
+    "liveChecks": "partner-proof/live-receipt.json",
+    "providerReadinessEvidence": "partner-proof/activation-prerequisites-read-receipt.json",
+    "actualClinicalProviderProfiles": 0,
+    "actualDispensingPartnerOrganisations": 0,
+    "remaining": "Named verified prescriber and dispensing partner; actual prescription/currentness/stock integration; central delivery adapter release and WhatsApp provider/template/opt-in. MFA remains deliberately deferred, not weakened."
+  }
 }

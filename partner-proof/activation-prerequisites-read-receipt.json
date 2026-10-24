@@ -1,0 +1,106 @@
+{
+  "at": "2026-10-24T16:55:58.445Z",
+  "scope": "Read-only aggregate readiness check; no member records or credentials retrieved",
+  "queries": [
+    {
+      "results": [
+        {
+          "role": "owner",
+          "status": "active",
+          "mfa_enabled": 0,
+          "total": 4
+        },
+        {
+          "role": "owner",
+          "status": "disabled",
+          "mfa_enabled": 0,
+          "total": 12
+        }
+      ],
+      "success": true,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "AMS",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.3215
+        },
+        "duration": 0.3215,
+        "changes": 0,
+        "last_row_id": 3,
+        "changed_db": false,
+        "size_after": 321409024,
+        "rows_read": 32,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    {
+      "results": [],
+      "success": true,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "AMS",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.1292
+        },
+        "duration": 0.1292,
+        "changes": 0,
+        "last_row_id": 3,
+        "changed_db": false,
+        "size_after": 321409024,
+        "rows_read": 2,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    {
+      "results": [],
+      "success": true,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "AMS",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.2645
+        },
+        "duration": 0.2645,
+        "changes": 0,
+        "last_row_id": 3,
+        "changed_db": false,
+        "size_after": 321409024,
+        "rows_read": 2,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    {
+      "results": [],
+      "success": true,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "AMS",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.2895
+        },
+        "duration": 0.2895,
+        "changes": 0,
+        "last_row_id": 3,
+        "changed_db": false,
+        "size_after": 321409024,
+        "rows_read": 531,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    }
+  ],
+  "sharedRecoveryObserved": "run40097051276 failed before runtime; watcher exited; source-owner admission repair remains independent",
+  "communicationsSent": 0,
+  "clinicalSupplyEnabled": false
+}
