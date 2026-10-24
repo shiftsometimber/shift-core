@@ -107,6 +107,7 @@ function install(){if(!document.body)return;frameBody();
  }
  const skip=document.body.querySelector(':scope > a.skip-link,:scope > a[href="#main-content"]');if(skip){if(skip.nextElementSibling!==h)skip.after(h)}else if(h.parentElement!==document.body||document.body.firstElementChild!==h)document.body.prepend(h);
  h.id='shift-site-header';h.dataset.shiftHomeShell='20261024';
+ if(!h.dataset.homeFocusBound){h.querySelector('.menu-trigger')?.addEventListener('click',event=>event.currentTarget.focus(),{capture:true});h.dataset.homeFocusBound='1'}
  const img=h.querySelector('.site-logo img');
  if(img&&!img.dataset.homeLogo){
   img.dataset.homeLogo='1';
