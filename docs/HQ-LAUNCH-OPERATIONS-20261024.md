@@ -46,3 +46,7 @@ Remaining: member/owner live browser acceptance, any newly required exact email 
 ## Operations test-fixture resolution
 
 Further review identified request 246 as the Apple app-review fixture, proved by the auth.apple_review_fixture audit marker and its designated test address. There were no shop, medicine, pharmacy or clinical order/case records. The stale test request was cancelled (completed_at remains null) and the task closed with audited reason; reviewer account, access and data were retained. No erasure or external reply occurred. Pending-request reports and notification intent eligibility now exclude cancelled requests. A new regression test covers cancellation. This supersedes the earlier open-task action without describing it as completed erasure.
+
+## Final v2 verification
+
+The cancellation-aware release was verified live at 2026-10-24T14:10:15.878Z. Code source 1cdc4ba7fd0c311b8b8b6f51a6b3a9627c611a61, bundle 4e24711116c2434e5e067f1f1f8ed79b5830b9f4a8be7f2c90b13947ba10be05, deployed Worker version 9605c6d1-5185-40d2-9fac-7ff0a4bdd5a3. Protected live routes return the v2 marker and anonymous 401. Read-only production evaluation confirms overdue tasks=0, unassigned tasks=0 and pending deletion requests=0. The five-minute schedule was preserved. Eleven focused event/report tests plus the unchanged management acceptance pass; together with the earlier unchanged auth/medicine/refund and navigation/communications suites, 75 focused checks passed across the release.
