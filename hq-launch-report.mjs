@@ -38,7 +38,7 @@ export async function appendLaunchMetrics(DB,report,permissions=[],now=new Date(
   const corrected=await read('overdue_tasks_now','Overdue tasks as of report generation','crm_read',['hq_tasks'],"SELECT COUNT(*) value FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND due_at IS NOT NULL AND julianday(due_at)<julianday(?)",[stamp]);
   if(corrected.status==='available'){overdue.value=corrected.value;overdue.scope='Current snapshot at generation, including time-based due dates';}
  }
- await read('pending_privacy_requests','Pending account-deletion requests','crm_read',['data_requests'],"SELECT COUNT(*) value FROM data_requests WHERE request_type='deletion' AND status<>'completed'");
+ await read('pending_privacy_requests','Pending account-deletion requests','crm_read',['data_requests'],"SELECT COUNT(*) value FROM data_requests WHERE request_type='deletion' AND status NOT IN ('completed','cancelled')");
  await read('unassigned_support','Unassigned open support requests','support_read',['support_tickets'],"SELECT COUNT(*) value FROM support_tickets WHERE status NOT IN ('closed','resolved') AND assigned_hq_user_id IS NULL");
  await read('partner_handovers_waiting','Partner handovers still open','commerce_read',['hq_partner_handovers'],"SELECT COUNT(*) value FROM hq_partner_handovers WHERE status NOT IN ('completed','closed','cancelled')");
  await read('failed_integration_events','Failed or unprocessed pharmacy webhooks','commerce_read',['integration_webhooks'],"SELECT COUNT(*) value FROM integration_webhooks WHERE processed=0 OR (processing_error IS NOT NULL AND trim(processing_error)<>'')");
