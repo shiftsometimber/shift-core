@@ -82,7 +82,8 @@ export async function partnerRoute(request,env,authenticate,adapters={}){
   if(env.PARTNER_OPERATIONS_ENABLED!=='true')fail(503,'partner_operations_not_commissioned');
   const p=path.slice(PARTNER_BASE.length).split('/').filter(Boolean),internalSetup=env.PARTNER_INTERNAL_SETUP_ONLY==='true';
   // Internal preparation is not professional onboarding. Token links, files, credentials and supply remain closed in source.
-  if(internalSetup&&(p[0]==='login'||p[0]==='activation'||p[0]==='application'||p[0]==='fulfilment'||p.length>1&&!['action','audit'].includes(p[1])&&p[0]!=='organisations'))fail(503,'professional_onboarding_not_open');
+  const internalSupplyRead=p[0]==='fulfilment'&&request.method==='GET'&&p.length<=2;
+  if(internalSetup&&(p[0]==='login'||p[0]==='activation'||p[0]==='application'||p[0]==='fulfilment'&&!internalSupplyRead||p.length>1&&!['action','audit'].includes(p[1])&&p[0]!=='organisations'&&!internalSupplyRead))fail(503,'professional_onboarding_not_open');
   if(p[0]==='login'&&p[1]==='verify'&&p.length===2&&request.method==='POST'){
    if(env.PARTNER_LOGIN_ENABLED!=='true'||!env.HQ_AUTH)fail(503,'partner_login_not_commissioned');const b=await readJson(request);
    await limitProfessionalAuth(request,env,'mfa',text(b.challenge,200));
