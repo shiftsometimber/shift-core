@@ -1,12 +1,12 @@
 {
-  "at": "2026-10-24T16:57:59.372Z",
+  "at": "2026-10-24T17:12:22.342Z",
   "timezone": "Europe/London",
   "request": "Create shared HQ professional onboarding/permissions, clinical link and dispensing workspace; match clinician branding",
-  "sourceCommit": "c80f40eaacd64f72837c3c1e2d0f422b772bbf5e",
+  "sourceCommit": "6cc9b3258e651206fa501bc3217d731bd379a09b",
   "branch": "feat/hq-partner-operations-20261024",
   "worker": "shift-hq-clinical-portal",
-  "previousVersion": "cdc61aee-71e6-4151-addc-3b6680341b1e",
-  "deployedVersion": "bc8502f5-e89e-445a-b0dc-fb65cfce958f",
+  "previousVersion": "bc8502f5-e89e-445a-b0dc-fb65cfce958f",
+  "deployedVersion": "b3e80390-3465-4ec6-ba40-030cf7604ba2",
   "built": true,
   "reviewSurfacesDeployed": true,
   "liveVerified": true,
@@ -31,10 +31,10 @@
   },
   "proof": {
     "nativeTests": {
-      "pass": 142,
+      "pass": 154,
       "fail": 0,
       "skipped": 0,
-      "log": "/tmp/hq-open-oversight-tests.log"
+      "log": "/tmp/hq-compatible-channel-all-tests.log"
     },
     "localBrowser": {
       "widths": [
@@ -50,7 +50,7 @@
       "browserErrors": 0,
       "noStockBlocked": true,
       "receipt": "partner-proof/live-receipt.json",
-      "verifiedAt": "2026-10-24T16:55:58.445Z"
+      "verifiedAt": "2026-10-24T17:12:22.342Z"
     },
     "bundleKiB": 306.24,
     "internalCommissioning": {
@@ -94,7 +94,7 @@
     },
     "notificationReview": {
       "actualSavedReportingContractPassed": true,
-      "scope": "Synthetic SQLite plus the saved reporting implementation, not a production trigger/inbox receipt",
+      "scope": "Actual portal preparation functions and an exact byte-matched saved shared delivery-eligibility implementation in local SQLite; no production transport/inbox/device acceptance.",
       "log": "/tmp/hq-partner-notification-contract.log",
       "newSchedule": false,
       "senderAdded": false,
@@ -126,20 +126,41 @@
       "whatsappTransportConfigured": false,
       "nativePushAcceptance": false,
       "messagesSent": 0,
-      "accessTokensCreated": 0
+      "accessTokensCreated": 0,
+      "tbcProviderAssignmentsVisible": true
+    },
+    "canonicalSharedContract": {
+      "at": "2026-10-24T17:12:22.342Z",
+      "sourceCommit": "6cc9b3258e651206fa501bc3217d731bd379a09b",
+      "sharedSource": {
+        "commit": "be44a1cc8470a8fe9526c439fb04257489dffc46",
+        "path": "hq-event-delivery-eligibility.mjs",
+        "snapshot": "/Users/shiftsometimberltd/SST/hq-partner-operations-20261024/partner-proof/contracts/central-delivery-eligibility-be44a.mjs",
+        "sha256": "9f3807182aec905f24bb97271cc03692bf0823abaa9870f24f9a7565a5bbb506",
+        "exact": true
+      },
+      "notificationTests": 21,
+      "allTests": 154,
+      "withdrawalAndAccountIsolation": true,
+      "partialChannelRetryNoDuplicates": true,
+      "legacyDuplicateSuppression": true,
+      "existingAppFeedSqlOnly": true,
+      "actualMemberApiOrNativeDeviceReceipt": false,
+      "centralRuntimeDeployedByThisTask": false,
+      "receipt": "partner-proof/canonical-channel-contract-receipt.json"
     }
   },
   "pending": [
     "Matt deliberately defers MFA: actual HQ owner/professional session acceptance waits for his own enrolment, without blocking completed engineering.",
     "A genuine signed-in designated Test member session is needed for production end-to-end member acceptance. No passwords guessed, CAPTCHA bypass, reset or verification messages attempted.",
-    "Root inclusion and the central Communications release remain with their existing separate source owner. Current saved recovery evidence shows run40097051276 failed before runtime and watcher37419 exited; admission repair is under that owner's control. No duplicate release, main merge or shared-root overwrite was attempted.",
+    "Root inclusion and the central Communications release remain with their separate source owner. The recovered saved successor is run40113641714/source200ff3dd with verifier67863; no duplicate dispatch, main merge or shared-root overwrite was performed.",
     "Actual selected supplier prescription/currentness/stock API contracts and securely configured access are still needed. Manual scoped delivery/exception/return/cancellation code is implemented; no automatic courier callback is claimed.",
     "Agree real staff privacy/retention/legal-hold operating policy and verify the named professional reviewers before real ID/selfie collection or professional approval. Existing design sign-off is accepted, not reopened.",
     "Actual professional username/password/MFA/recovery acceptance remains required before real professional login/onboarding is opened.",
-    "New three-channel source records and email/app review drafts are deployed. The shared Communications successor must import the tested careChannelEligibility/careIntentEligibility adapter from this branch before those drafts can pass its delivery gate. See COMMUNICATIONS-INTEGRATION.md. Do not overwrite the active source owner's held root release. WhatsApp still requires selected provider/template/verified number/opt-in and actual receipt acceptance. No messages or invitations were sent.",
+    "Portal email/app drafts now match the existing source owner's canonical clinical_case_outbox channel contract at be44a1cc. Exact shared-checker tests pass. The independent combined central Communications/reporting successor still needs its own controlled release and actual approved delivery acceptance; do not import the superseded dedicated-source proposal. WhatsApp setup and physical-device receipt remain unverified. No messages sent.",
     "The wider My Shift dashboard/main release still needs its own production acceptance. This release deploys the actual treatment-record order card and API, not a claim that the separate entire profile/dashboard release completed."
   ],
-  "note": "Opened actual private read-only dispensing oversight for existing owner/admin MFA sessions; professional accounts cannot use that exception. 142 tests, 390/1280 local actual-route browser acceptance and 19 live-route checks passed. Real supply mutations, clinical activation, onboarding and patient cohort remain unchanged. Read-only live DB checks found zero professional/partner organisation records and four active owners, none MFA-enrolled. Actual prescribing/dispensing connections and central notification delivery are not complete; no real messages, account activations, prescriptions, orders, stock or payments were created. Existing shared release ownership/hold was preserved; no bypass of authentication or medical controls.",
+  "note": "Deployed visible TBC provider placeholders, complete draft metadata and canonical email/app review references on the private HQ worker. The superseded proposed dedicated-source adapter is not used. Exact shared source be44a1cc SHA256 matches its retained test contract; 21 notification tests and all154 scoped checks pass, plus390/1280 browser fixtures and19 live route checks. Applied the unchanged additive canonical reference/state migration; no clinician, account, prescription or supply row was created. Shared core/reporting ownership and release hold preserved. Actual signed-in production acceptance, automatic messaging/WhatsApp/native-device delivery and real clinical/supply operation are not claimed. No external communications, new schedules, stock, payment or homepage changes.",
   "internalCommissioning": {
     "requested": true,
     "authority": "Matt explicitly requested persistent connected internal operation now, not browser-only demonstrations; no real onboarding/customers yet.",
@@ -157,7 +178,8 @@
       "/tmp/hq-commissioning-schema-live.log",
       "/tmp/hq-auth-limits-schema-live.log",
       "/tmp/hq-invitation-schema-live.json",
-      "/tmp/hq-notification-schema-live.json"
+      "/tmp/hq-notification-schema-live.json",
+      "/tmp/hq-canonical-reference-schema-live.json"
     ]
   },
   "internalPartnerPreparationEnabled": true,
@@ -191,7 +213,7 @@
     "providerReadinessEvidence": "partner-proof/activation-prerequisites-read-receipt.json",
     "actualClinicalProviderProfiles": 0,
     "actualDispensingPartnerOrganisations": 0,
-    "remaining": "Provider names deliberately TBC for now; not a blocker to independent internal engineering. Real clinical/supply activation will require verified assignments and actual prescription/currentness/stock integration. Central delivery adapter release and WhatsApp provider/template/opt-in remain pending. MFA remains deliberately deferred, not weakened.",
+    "remaining": "Provider names stay TBC. Portal event references are aligned and tested against the prepared central canonical checker. Combined central Communications release and genuine approved delivery acceptance remain outstanding, along with actual prescribing/supplier integration and WhatsApp provider/template/opt-in. MFA remains deliberately deferred, not weakened.",
     "providerNamesDeferred": true
   },
   "providerAssignments": {
@@ -207,6 +229,8 @@
       "status": "unassigned",
       "verified": false
     },
-    "note": "Planning placeholders only. No provider account, permission, registration, appointment or communication is created. Names are deliberately deferred; continue independent engineering without repeatedly requesting them. Real clinical/supply activation still requires verified assignments and functioning integrations."
+    "note": "Planning placeholders only. No provider account, permission, registration, appointment or communication is created. Names are deliberately deferred; continue independent engineering without repeatedly requesting them. Real clinical/supply activation still requires verified assignments and functioning integrations.",
+    "displayedInHq": true,
+    "displaySourceCommit": "6cc9b3258e651206fa501bc3217d731bd379a09b"
   }
 }

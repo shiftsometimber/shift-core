@@ -1,0 +1,98 @@
+{
+  "at": "2026-10-24T17:12:22.342Z",
+  "sourceCommit": "6cc9b3258e651206fa501bc3217d731bd379a09b",
+  "worker": "shift-hq-clinical-portal",
+  "version": "b3e80390-3465-4ec6-ba40-030cf7604ba2",
+  "previousVersion": "bc8502f5-e89e-445a-b0dc-fb65cfce958f",
+  "contract": {
+    "commit": "be44a1cc8470a8fe9526c439fb04257489dffc46",
+    "path": "hq-event-delivery-eligibility.mjs",
+    "snapshot": "/Users/shiftsometimberltd/SST/hq-partner-operations-20261024/partner-proof/contracts/central-delivery-eligibility-be44a.mjs",
+    "sha256": "9f3807182aec905f24bb97271cc03692bf0823abaa9870f24f9a7565a5bbb506",
+    "exact": true
+  },
+  "tests": {
+    "pass": 154,
+    "fail": 0,
+    "notificationChecks": 21
+  },
+  "browser": {
+    "receipt": "partner-proof/invitations-notifications-browser-receipt.json",
+    "widths": [
+      390,
+      1280
+    ],
+    "tbcVisible": true,
+    "fixtureIdentityOnly": true
+  },
+  "live": {
+    "receipt": "partner-proof/live-receipt.json",
+    "exactRoutes": 19
+  },
+  "schema": {
+    "migration": "migrations/clinical-casework-v1.sql",
+    "verification": [
+      {
+        "results": [
+          {
+            "name": "clinical_case_state"
+          },
+          {
+            "name": "clinical_hq_staff"
+          },
+          {
+            "name": "clinical_case_events"
+          },
+          {
+            "name": "clinical_case_assignments"
+          }
+        ],
+        "success": true,
+        "meta": {
+          "served_by": "v3-prod",
+          "served_by_region": "WEUR",
+          "served_by_colo": "AMS",
+          "served_by_primary": true,
+          "timings": {
+            "sql_duration_ms": 0.8404
+          },
+          "duration": 0.8404,
+          "changes": 0,
+          "last_row_id": 0,
+          "changed_db": false,
+          "size_after": 321470464,
+          "rows_read": 541,
+          "rows_written": 0,
+          "total_attempts": 1
+        }
+      },
+      {
+        "results": [],
+        "success": true,
+        "meta": {
+          "served_by": "v3-prod",
+          "served_by_region": "WEUR",
+          "served_by_colo": "AMS",
+          "served_by_primary": true,
+          "timings": {
+            "sql_duration_ms": 0.1667
+          },
+          "duration": 0.1667,
+          "changes": 0,
+          "last_row_id": 0,
+          "changed_db": false,
+          "size_after": 321470464,
+          "rows_read": 2,
+          "rows_written": 0,
+          "total_attempts": 1
+        }
+      }
+    ]
+  },
+  "centralSharedRuntimeReleasedByThisTask": false,
+  "memberWorkerChanged": false,
+  "messagesSent": 0,
+  "professionalAccountsCreated": 0,
+  "clinicalOrSupplyEnabled": false,
+  "actualSignedInAcceptance": false
+}
