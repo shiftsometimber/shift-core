@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-24T15:26:46.334Z",
+  "scope": "Local minimal existing-HQ shell fixture; navigation asset only. Live root integration remains held with the shared release.",
+  "checks": [
+    {
+      "role": "owner",
+      "expectedLinks": 3
+    },
+    {
+      "role": "admin",
+      "expectedLinks": 3
+    },
+    {
+      "role": "clinical",
+      "expectedLinks": 0
+    },
+    {
+      "role": "support",
+      "expectedLinks": 0
+    },
+    {
+      "role": "signed_out",
+      "expectedLinks": 0
+    }
+  ],
+  "errors": []
+}
