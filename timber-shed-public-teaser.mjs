@@ -42,5 +42,8 @@ export async function withTimberShedTeaser(request,response){
 // Compose only after the canonical footer has been installed. Preserve the
 // original Worker call sites and historical footer integration tests.
 export async function withSharedFooter(request,response){
- return withCausesTeaser(request,await withTimberShedTeaser(request,await withCanonicalSharedFooter(request,response)));
+ const canonical=await withCanonicalSharedFooter(request,response);
+ // Keep the homepage byte-preserved; new discovery additions need separate approval.
+ if(new URL(request.url).pathname==='/')return canonical;
+ return withCausesTeaser(request,await withTimberShedTeaser(request,canonical));
 }
