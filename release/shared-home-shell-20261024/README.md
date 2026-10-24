@@ -1,0 +1,13 @@
+# Homepage header and footer rule
+
+Matt's controlling instruction, 24 October 2026: every front-end website page uses the homepage header and footer, without page-specific versions. The existing homepage is the master. Account and contextual page controls remain in page content.
+
+The master markup and component CSS are captured in `home-master.json` and `home-master.css`. `home-contract.css` closes inherited font, container-width, inline-logo and responsive sizing overrides. `build.cjs` generates the same component for the existing v42 client and the standalone loader. Both share one window guard. The existing WhatsApp asset only loads that component on legacy pages without v42; its existing functionality is preserved byte-for-byte. Internal APIs, HQ and email-template documents are not website pages and are not changed.
+
+`build-shed.cjs` compiles the same master into a presentation wrapper around the downloaded, unchanged current Shed Worker module. Original fetch/authentication runs first. APIs, POSTs, failed responses and non-HTML are returned by identity. Bindings, feature flags, route ownership and the private test allowlist must remain unchanged. No new route, community activation, messages or private data read is authorised here.
+
+Source checks and read-only browser tests use fresh signed-out contexts, block service workers and analytics, and prevent non-read requests. Browser viewports are 390, 1024 and 1440 pixels; these are not physical-device tests. Geometry tests compare every header/footer element against the homepage at the same width. Interactive tests cover native menu/Escape/focus, accessibility controls and a deliberately corrupted logo. Cookie choices are dismissed by rejecting optional cookies. Earlier incomplete candidates and test failures are retained outside Git in the existing website-review evidence directory; they are not passes.
+
+The release uses existing Pages hosting, reuses its complete current manifest, and changes three shared assets plus one new component asset. All other assets and headers must be preserved. Production phase interlocks and exact Git/source/baseline checks remain mandatory. Native preview assets must match the tested source before publication. The existing Core release, its verifier, routes and runtime are not replaced by this task.
+
+Evidence and final deployment identities are recorded in `/Users/shiftsometimberltd/SST/website-review-evidence-20261023/shared-shell-20261024`. Prepared, tested, deployed and live-verified are separate states; see the final closeout only after live checks pass.

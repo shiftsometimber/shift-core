@@ -87,10 +87,25 @@ function bindNewHeader(h,d,back){const trigger=h.querySelector('.menu-trigger'),
  close.addEventListener('click',shut);back.addEventListener('click',shut);d.addEventListener('click',e=>{if(e.target.closest('a'))shut()});
  document.addEventListener('keydown',e=>{if(d.hidden)return;if(e.key==='Escape')shut();if(e.key==='Tab'){const a=[...d.querySelectorAll('a,button,[tabindex]')].filter(e=>!e.disabled&&e.tabIndex!==-1),first=a[0],last=a.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 }
-function install(){if(!document.body)return;
+function frameBody(){
+ const body=document.body;if(body.dataset.homeFrame)return;
+ const cs=getComputedStyle(body),margin=parseFloat(cs.marginLeft)+parseFloat(cs.marginRight),pad=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom);
+ if(body.getBoundingClientRect().width>=document.documentElement.clientWidth-0.5&&!margin&&!pad)return;
+ const frame=document.createElement('div');frame.dataset.shiftPageContent='preserved';
+ frame.style.cssText='box-sizing:border-box;width:'+(cs.maxWidth==='none'?'calc(100% - '+margin+'px)':'100%')+';max-width:'+cs.maxWidth+';margin:'+cs.marginTop+' auto '+cs.marginBottom+';padding:'+cs.padding+';';
+ for(const child of [...body.childNodes])if(child.nodeType!==1||!child.matches('header.site-header,footer.site-footer,aside.site-drawer,.drawer-backdrop,script,style,link'))frame.append(child);
+ body.prepend(frame);body.dataset.homeFrame='1';
+ for(const [key,value]of Object.entries({width:'100%','max-width':'none',margin:'0',padding:'0','box-sizing':'border-box'}))body.style.setProperty(key,value,'important');
+}
+function install(){if(!document.body)return;frameBody();
  let h=document.querySelector('header.site-header[data-header-v2]');
- if(!h){h=node(master.header);const d=node(master.drawer),back=node(master.backdrop);document.body.prepend(h,d,back);bindNewHeader(h,d,back)}
- if(h.parentElement!==document.body)document.body.prepend(h);
+ if(!h){h=node(master.header);const d=node(master.drawer),back=node(master.backdrop);document.body.prepend(h,d,back);bindNewHeader(h,d,back);h.dataset.homeBound='1'}
+ if(!h.dataset.homeBound&&!document.querySelector('script[src*="/assets/v42.js"]')){
+  let drawer=document.querySelector('#site-drawer'),back=document.querySelector('.drawer-backdrop');
+  if(!drawer){drawer=node(master.drawer);document.body.append(drawer)}if(!back){back=node(master.backdrop);document.body.append(back)}
+  bindNewHeader(h,drawer,back);h.dataset.homeBound='1';
+ }
+ const skip=document.body.querySelector(':scope > a.skip-link,:scope > a[href="#main-content"]');if(skip){if(skip.nextElementSibling!==h)skip.after(h)}else if(h.parentElement!==document.body||document.body.firstElementChild!==h)document.body.prepend(h);
  h.id='shift-site-header';h.dataset.shiftHomeShell='20261024';
  const img=h.querySelector('.site-logo img');
  if(img&&!img.dataset.homeLogo){
@@ -103,10 +118,11 @@ function install(){if(!document.body)return;
  let f=document.querySelector('footer.site-footer');
  if(!f?.dataset.shiftHomeShell){
   const next=node(master.footer);next.dataset.shiftHomeShell='20261024';
-  for(const id of ['toggleLargeText','toggleMotion']){const old=f?.querySelector('#'+id),replacement=next.querySelector('#'+id);if(old&&replacement)replacement.replaceWith(old);else replacement?.addEventListener('click',()=>document.documentElement.classList.toggle(id==='toggleLargeText'?'large-text':'reduce-motion'))}
+  for(const id of ['toggleLargeText','toggleMotion'])next.querySelector('#'+id)?.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();document.documentElement.classList.toggle(id==='toggleLargeText'?'large-text':'reduce-motion')},{capture:true});
   if(f)f.replaceWith(next);else document.body.append(next);f=next;fit(f);
  }
  if(f.parentElement!==document.body)document.body.append(f);
+ for(const extra of document.querySelectorAll('footer'))if(extra!==f){if(extra.querySelector('.footer-brand,.fc-main,.footer-grid'))extra.remove();else for(const duplicate of extra.querySelectorAll('.shift-whatsapp-row,[data-shift-footer-social]'))duplicate.remove()}
  document.documentElement.dataset.shiftHomeShell='20261024';
 }
 const start=()=>{install();let queued=false;new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;install()})}}).observe(document.body,{childList:true,subtree:true})};
