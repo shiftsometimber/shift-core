@@ -1,3 +1,5 @@
+import {appendAnalyticsSnapshots} from './hq-analytics-snapshots.mjs';
+import {activationScorecard} from './activation-measurement/scorecard.mjs';
 import {appendLaunchMetrics} from './hq-launch-report.mjs';
 import {excludedMemberSql,commercePopulationSql} from './hq-report-population.mjs';
 import {hqMemberGpRoute} from './gp-directory/hq-member-gp.mjs';
@@ -42,8 +44,21 @@ export async function managementReport(DB,{permissions=[],start,end,kind='manage
   await read('support','Open support requests','support_read',['support_tickets'],"SELECT COUNT(*) value FROM support_tickets WHERE status NOT IN ('closed','resolved')",[],'count','Current snapshot at generation');
   await read('tasks','Overdue tasks','crm_read',['hq_tasks'],"SELECT COUNT(*) value FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND due_at IS NOT NULL AND julianday(due_at)<julianday(?)",[new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())],'count','Current snapshot at generation');
  }
+ if(['management','growth'].includes(kind)){
+  if(permit(permissions,'intelligence_read'))try{
+   const a=await activationScorecard(DB,{days:90}),scope='Trailing 90-day registration cohort as of '+a.asOf+'; ordered account stages, independent of selected London report dates.';
+   if(!a.available)throw Error('activation_source_unavailable');
+   const registered=a.stages.find(x=>x.name==='account_created')?.members;
+   for(const stage of a.stages){metrics.push({...metric('activation_'+stage.name,'Activation cohort: '+stage.name.replaceAll('_',' '),stage.members,'users, user_auth, audit_log',scope),numerator:stage.members,denominator:registered});}
+   for(const [name,v] of Object.entries(a.retention||{})){if(v.ratePct!=null)metrics.push({...metric('account_return_'+name,'Account return: '+name,v.ratePct,'users, user_auth, audit_log',scope+' '+v.window,'percent'),numerator:v.returned,denominator:v.eligible});else unavailable('account_return_'+name,'Account return: '+name,'No mature eligible account cohort.');}
+   if(a.acquisition?.available){for(const source of a.acquisition.sources)metrics.push(metric('acquisition_'+source.source+'_'+source.medium,'First-touch registrations: '+source.source+' / '+source.medium,source.registered,'audit_log registration acquisition evidence',scope+' '+a.acquisition.model));limitations.push(...a.acquisition.limitations);}
+   else unavailable('first_party_attribution','First-party registration attribution',a.acquisition?.reason||'Source evidence unavailable.');
+   limitations.push(...a.limitations);
+  }catch{unavailable('activation_cohort','Ordered account activation cohort','Activation source query failed or is unavailable.');}
+  else unavailable('activation_cohort','Ordered account activation cohort','Your role cannot access this source.');
+ }
  if(['management','growth'].includes(kind)){unavailable('organic','Organic search visits','Analytics reporting is not connected to HQ.');unavailable('conversion','Search-to-registration conversion','Verified attribution is not connected to HQ.');}
- return await appendLaunchMetrics(DB,{ok:true,kind,period,generatedAt:new Date().toISOString(),metrics,limitations:[...new Set(limitations)],privacy:'Aggregate only. No member identities, health measurements or free text.',definitions:'Unavailable figures are not zero. Cohort and snapshot measures carry their own labelled scope.'},permissions);
+ return await appendAnalyticsSnapshots(DB,await appendLaunchMetrics(DB,{ok:true,kind,period,generatedAt:new Date().toISOString(),metrics,limitations:[...new Set(limitations)],privacy:'Aggregate only. No member identities, health measurements or free text.',definitions:'Unavailable figures are not zero. Cohort and snapshot measures carry their own labelled scope.'},permissions),permissions);
 }
 export async function managementRoute(request,env,ctx,authenticate){
  const memberGp=await hqMemberGpRoute(request,env,ctx,authenticate);if(memberGp)return memberGp;

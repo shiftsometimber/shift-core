@@ -1,3 +1,4 @@
+import {serviceJobHealth} from './hq-service-job-runs.mjs';
 import {commercePopulationSql} from './hq-report-population.mjs';
 // Aggregate-only additions to the existing permissioned HQ report.
 // No account writes, emails, job execution or provider calls occur here.
@@ -72,6 +73,10 @@ export async function appendLaunchMetrics(DB,report,permissions=[],now=new Date(
  await read('owners_without_mfa','Active HQ owners without MFA','*',['hq_users'],"SELECT COUNT(*) value FROM hq_users WHERE status='active' AND role='owner' AND mfa_enabled<>1");
  await read('workflow_failures_24h','General CRM workflow failures (24 hours)','*',['workflow_runs'],"SELECT COUNT(*) value FROM workflow_runs WHERE status='failed' AND julianday(created_at)>=julianday(?,'-24 hours')",[stamp]);
  await read('active_workflows','Active general CRM workflows','*',['workflows'],"SELECT COUNT(*) value FROM workflows WHERE status='active'");
+ if(allowed(permissions,'*')){
+  const jobs=await serviceJobHealth(DB,now);report.schedulerHealth=jobs;
+  for(const job of jobs){if(job.ageMinutes===null)unavailable('job_'+job.job+'_age','Scheduled execution: '+job.job,'No successful retained execution. State: '+job.state);else metrics.push({key:'job_'+job.job+'_age',label:'Minutes since '+job.job+' completed',value:job.ageMinutes,status:'available',unit:'minutes',source:'hq_service_job_runs',scope:'Current execution evidence; expected cadence '+job.cadenceMinutes+' minutes. Last outcome: '+job.lastOutcome+'. This does not prove an unused business integration.'});}
+ }
  await read('operational_exceptions_open','Owned operational exceptions still requiring resolution','*',['hq_operational_exceptions'],"SELECT COUNT(*) value FROM hq_operational_exceptions WHERE status IN ('open','acknowledged')");
  await read('operational_exceptions_overdue','Owned operational exceptions past due','*',['hq_operational_exceptions'],"SELECT COUNT(*) value FROM hq_operational_exceptions WHERE status IN ('open','acknowledged') AND julianday(due_at)<julianday(?)",[stamp]);
  await read('notification_oldest_pending_hours','Age of oldest notification awaiting review','*',['hq_notification_intents'],"SELECT COALESCE((julianday(?)-julianday(MIN(created_at)))*24,0) value FROM hq_notification_intents WHERE state='awaiting_review'",[stamp],'hours');
