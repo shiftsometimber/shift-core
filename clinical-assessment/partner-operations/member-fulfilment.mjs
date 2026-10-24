@@ -15,7 +15,7 @@ async function sessionHash(request,env,memberId){
  let checked=0;for(const m of (request.headers.get('cookie')||'').matchAll(/(?:^|;\s*)sst_session=([^;]+)/g)){
   if(++checked>4)break;let token;try{token=decodeURIComponent(m[1]);}catch{continue;}
   const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(token))),b=>b.toString(16).padStart(2,'0')).join('');
-  if(await q(env,'SELECT 1 ok FROM user_sessions WHERE user_id=? AND token_hash=? AND revoked_at IS NULL AND expires_at>?',memberId,hash,now()).first())return hash;
+  if(await q(env,'SELECT 1 ok FROM user_sessions WHERE user_id=? AND token_hash=? AND revoked_at IS NULL AND julianday(expires_at)>julianday(?)',memberId,hash,now()).first())return hash;
  }
  fail(401,'member_session_required');
 }
@@ -27,7 +27,7 @@ export async function replyToFulfilment(request,env,record,actor,b){
  const row=await q(env,'SELECT state_json FROM partner_fulfilment WHERE order_number=? AND member_id=?',record.order_number,actor.id).first();if(!row)fail(404,'order_not_found');
  const s=JSON.parse(row.state_json);if(s.version!==b.version||s.status!=='query'||s.queryId!==b.queryId||s.memberReply)fail(409,'dispensing_query_changed');
  const date=now(),message=text(b.message,2000),hash=await sessionHash(request,env,actor.id),event=crypto.randomUUID(),next={...s,version:s.version+1,updatedAt:date,memberReply:{queryId:s.queryId,message,createdAt:date}};
- const guard=" AND EXISTS(SELECT 1 FROM clinical_member_records WHERE id=? AND user_id=? AND order_number=?) AND EXISTS(SELECT 1 FROM user_sessions s JOIN user_auth a ON a.user_id=s.user_id WHERE s.user_id=? AND s.token_hash=? AND s.revoked_at IS NULL AND s.expires_at>? AND a.email_verified=1)";
+ const guard=" AND EXISTS(SELECT 1 FROM clinical_member_records WHERE id=? AND user_id=? AND order_number=?) AND EXISTS(SELECT 1 FROM user_sessions s JOIN user_auth a ON a.user_id=s.user_id WHERE s.user_id=? AND s.token_hash=? AND s.revoked_at IS NULL AND julianday(s.expires_at)>julianday(?) AND a.email_verified=1)";
  const result=await env.DB.batch([
   q(env,'UPDATE partner_fulfilment SET state_json=?,version=?,updated_at=? WHERE order_number=? AND member_id=? AND version=?'+guard,JSON.stringify(next),next.version,date,s.orderNumber,actor.id,s.version,record.id,actor.id,s.orderNumber,actor.id,hash,date),
   q(env,"INSERT INTO partner_audit SELECT ?,?,?,(SELECT COALESCE(MAX(version),-1)+1 FROM partner_audit WHERE entity_type='order' AND entity_id=?),?,?,?,? WHERE changes()=1",event,'order',s.orderNumber,s.orderNumber,String(actor.id),'member_fulfilment_reply',JSON.stringify({source:'member_portal',recordId:record.id,queryId:s.queryId,message,orderVersion:next.version}),date),
