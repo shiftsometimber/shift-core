@@ -1,7 +1,7 @@
 import {CONTEXT_BASE,CONTEXT_PATHS} from './seo-context-scope.mjs';
 import {DISCOVERY_BASE,DISCOVERY_PATHS,DISCOVERY_ORIGINAL_PATHS,discoveryPinnedRef,validateDiscoveryComposition,verifyDiscoveryHistory} from './seo-discovery-scope.mjs';
 import assert from 'node:assert/strict';
-import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
+import {execFileSync} from 'node:child_process';
 export const RANKING_BASE='115b4e53279aeffd9b8248909e2dda5bbf768f80';
 export const RANKING_PAYLOAD='d8eb3a87f1e33a77cf22fbe6cd265f51b330b1a7';
 export const RANKING_PAYLOAD_PATHS=["public-seo-approved-data.mjs", "public-seo-approved.mjs", "prescriber-questions.mjs", "shift-coach/worker.mjs", "tests/public-seo-approved.test.mjs"];

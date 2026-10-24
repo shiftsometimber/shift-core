@@ -2,7 +2,7 @@ import {memberRecordingComparisonValue} from './member-recording-repair-20261024
 // Matt's locked 1 October design and request to finish My Timber across web/PWA/app.
 // Bind the six-file presentation delta to its isolated account-backed browser proof.
 import assert from 'node:assert/strict';
-import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
+import {execFileSync} from 'node:child_process';
 export const MEMBER_DESIGN_BASE='e8cbe2238687bd9b9da8a5d694b5b7a73976c1d7';
 export const MEMBER_DESIGN_CANDIDATE='622ab0e45b164de91523d06a9e4b060c54d37453';
 export const MEMBER_DESIGN_RUN=36946742864;

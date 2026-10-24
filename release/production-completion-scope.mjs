@@ -1,6 +1,6 @@
 import {RANKING_PATHS,rankingPinnedRef,validateRankingComposition,verifyRankingHistory} from './approved-ranking-scope.mjs';
 import assert from 'node:assert/strict';
-import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
+import {execFileSync} from 'node:child_process';
 export const COMPLETION_BASE='a224c1ece7c27f157900902ad6866028e17192a1';
 export const COMPLETION_PAYLOAD='fb354901af50d24cb35217ceecd308b8ec7fce77';
 export const COMPLETION_PAYLOAD_PATHS=['.github/workflows/cloudflare-production-promote.yml','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs'];
