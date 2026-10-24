@@ -279,6 +279,7 @@ export function verifyMyShiftComposition({head,receipt}){
  finally{recoveryProjection=previous;}
 }
 export function verifiedCurrentReleaseAdmission(){
+ return withMemberRecordingQualification(()=>{
  const proof=verifyMyShiftRelease(),repair=proof.receipt.releaseRecoveryMaintenance,refs=new Map();
  for(const [path,pin]of Object.entries(ADMISSION_BLOBS)){
   const recording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);
@@ -291,4 +292,5 @@ export function verifiedCurrentReleaseAdmission(){
  }
  for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);
  return {head:proof.head,refs};
+ });
 }

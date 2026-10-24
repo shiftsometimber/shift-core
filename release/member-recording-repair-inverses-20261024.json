@@ -1,7 +1,7 @@
 {
   "release/my-shift-release-scope-20261024.mjs": {
     "original": "b8d22d49ef87cd1357511e1a3e3b7bfc065e7ea1",
-    "current": "5407b85077f2c84f4d928e952d6dfbe024b4be1c",
+    "current": "d1c75b43f115958588e973a19867c8aeb2f2816a",
     "edits": [
       {
         "start": 0,
@@ -69,58 +69,68 @@
         "before": ""
       },
       {
-        "start": 24904,
-        "after": "cording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);\n  const re",
+        "start": 24737,
+        "after": "return withMemberRecordingQualification(()=>{\n ",
         "before": ""
       },
       {
-        "start": 25207,
+        "start": 24940,
+        "after": "\n  const recording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);",
+        "before": ""
+      },
+      {
+        "start": 25254,
         "after": "",
         "before": "git('"
       },
       {
-        "start": 25209,
+        "start": 25256,
         "after": "co",
         "before": "v-pa"
       },
       {
-        "start": 25212,
+        "start": 25259,
         "after": "",
         "before": "se',proof.hea"
       },
       {
-        "start": 25213,
+        "start": 25260,
         "after": "ing",
         "before": "+':'+path)"
       },
       {
-        "start": 25411,
+        "start": 25458,
         "after": "memberRecordingComparisonValue(path,",
         "before": ""
       },
       {
-        "start": 25451,
+        "start": 25498,
         "after": "",
         "before": "n"
       },
       {
-        "start": 25452,
+        "start": 25499,
         "after": "c",
         "before": ""
       },
       {
-        "start": 25454,
+        "start": 25501,
         "after": "ual",
         "before": "ive"
       },
       {
-        "start": 25475,
+        "start": 25522,
         "after": "),proof.head",
         "before": ""
       },
       {
-        "start": 25573,
+        "start": 25620,
         "after": "for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);\n ",
+        "before": ""
+      },
+      {
+        "start": 25726,
+        "after": " });\n",
         "before": ""
       }
     ]
@@ -206,7 +216,7 @@
   },
   "release/app-preflight.mjs": {
     "original": "7a1473994a1f39de23acf68ffc5e93aad44af8f8",
-    "current": "0d40f1234d05084676f4f5c497b57cbeca4722cf",
+    "current": "26c3c4e9ad04b54f4edfc5337e4a869b2084420e",
     "edits": [
       {
         "start": 0,
@@ -215,22 +225,37 @@
       },
       {
         "start": 2128,
-        "after": "const currentReleaseAdmission=withMemberRecordingQualification(()=>{\n",
+        "after": "console.log('[app-preflight] synchronous-source:start');\nconst currentReleaseAdmission=withMemberRecordingQualification(()=>{\n",
         "before": ""
       },
       {
-        "start": 2251,
+        "start": 2308,
         "after": "",
         "before": "currentRele"
       },
       {
-        "start": 2252,
+        "start": 2309,
         "after": "",
         "before": "seA"
       },
       {
-        "start": 2317,
-        "after": ");\nreturn admission;\n}",
+        "start": 2374,
+        "after": ");\nreturn admission;\n});\nconsole.log('[app-preflight] synchronous-source:passed'",
+        "before": ""
+      },
+      {
+        "start": 2554,
+        "after": ");\nconsole.log('[app-preflight] recorded-proofs:start'",
+        "before": ""
+      },
+      {
+        "start": 15035,
+        "after": "console.log('[app-preflight] recorded-proofs:passed');\nconsole.log('[app-preflight] asset-pins:start');\nwithMemberRecordingQualification(()=>{\n",
+        "before": ""
+      },
+      {
+        "start": 16777,
+        "after": "});\nconsole.log('[app-preflight] asset-pins:passed');\n",
         "before": ""
       }
     ]

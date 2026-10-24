@@ -17,6 +17,7 @@ import {FOOTER_PATHS,historicalFooterRef,verifyFooterProof} from './footer-scope
 import {HOME_BANNER_PATHS,HOME_BANNER_PREVIEW,HOME_BANNER_RUN,CREAM_PREVIEW,CREAM_RUN,FOOTER_PREVIEW,FOOTER_RUN} from './home-banner-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {writeFileSync,mkdirSync} from 'node:fs';
 import {PWA_DISMISS_APPROVED,PWA_DISMISS_PATHS,APP_APPROVED,APP_PATHS,ARTICLE_REPAIR_PATHS,ARTICLE_REPAIR_SOURCE,validateAppSource} from './app-scope.mjs';
+console.log('[app-preflight] synchronous-source:start');
 const currentReleaseAdmission=withMemberRecordingQualification(()=>{
 verifyMetricsConnection();
 validateAppSource();
@@ -24,8 +25,10 @@ const admission=verifiedCurrentReleaseAdmission();
 validateRecipeImages();
 return admission;
 });
+console.log('[app-preflight] synchronous-source:passed');
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 const get=createGithubProofGet();
+console.log('[app-preflight] recorded-proofs:start');
 await verifySixTopicSeoProof(get);
 await verifyDeviceHealthProof(get);
 await verifyPublicWordingProof(get);
@@ -97,7 +100,12 @@ const laterWatchPreserved=new Set(LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED);
 git('merge-base','--is-ancestor',retainedMain,'HEAD');
 const panelConsentRepair=new Set(['app-layout-live.mjs','tests/app-layout-live.test.mjs']);
 const myHealthPlanPaths=new Set(['frontend/member/whole-man-intent-os-v1.js','tests/my-health-plan-v2.test.mjs','member-experience/dashboard-tools.mjs','member-experience/tests/dashboard-tools.test.mjs']);
+console.log('[app-preflight] recorded-proofs:passed');
+console.log('[app-preflight] asset-pins:start');
+withMemberRecordingQualification(()=>{
 for(const p of APP_PATHS){if(metricsPreflightPath(p))continue;if(!FIT300_PATHS.has(p)&&!READONLY_ORGANIC_PATHS.has(p)&&!RECIPE_IMAGE_PATHS.has(p)&&!myHealthPlanPaths.has(p)&&!DEVICE_HEALTH_PATHS.has(p)&&!COACH_PATHS.has(p)&&!MEMBER_DESIGN_PATHS.includes(p)&&!MEMBER_LAYOUT_PATHS.includes(p)&&!FOOTER_PATHS.has(p)&&!PWA_DISMISS_PATHS.includes(p)&&!releaseMetadata.has(p)&&!panelConsentRepair.has(p)&&!HOME_BANNER_PATHS.has(p))assert.equal(git('rev-parse',(currentReleaseAdmission.refs.get(p)??(ARTICLE_REPAIR_PATHS.has(p)?ARTICLE_REPAIR_SOURCE:WATCH_CURRENT_PATHS.has(p)?watchCurrentSource(p):TREATMENT_GUIDANCE_PATHS.includes(p)?treatmentGuidanceRef(p):WATCH_REGISTRY_WAVE_PATHS.includes(p)?WATCH_REGISTRY_WAVE_COMMIT:PUBLIC_WORDING_PATHS.includes(p)?PUBLIC_WORDING_PREVIEW:laterWatchPreserved.has(p)?LATER_UNATTRIBUTED_WATCH_RECOVERY_BASE:retainedCurrentMain.has(p)?retainedMain:enobosarmSemaglutidePaths.has(p)?enobosarmSemaglutideCommit:pfizerPdfRepairPaths.has(p)?pfizerPdfRepairCommit:registryOmissionsPaths.has(p)?registryOmissionsCommit:sourceRepairPaths.has(p)?sourceRepairCommit:abbvAsc30Paths.has(p)?abbvAsc30Commit:sgb7342Paths.has(p)?sgb7342Commit:ubt251Paths.has(p)?ubt251Commit:expandedDiscoveryPaths.has(p)?expandedDiscoveryCommit:internationalOmissionsPaths.has(p)?internationalOmissionsCommit:synt101CorrectionPaths.has(p)?synt101CorrectionCommit:broaderDiscoveryPaths.has(p)?broaderDiscoveryCommit:expansionPaths.has(p)?expansionCommit:watchPaths.has(p)?watchCommit:APP_APPROVED))+':'+p),git('rev-parse',historicalFooterRef('HEAD',p)+':'+p),'Approved preview/source changed: '+p)}
+});
+console.log('[app-preflight] asset-pins:passed');
 const candidate=approved;
 const checks=(await get('/commits/'+candidate.head_sha+'/check-runs?per_page=100')).check_runs;
 for(const n of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===n&&c.conclusion==='success'),'Missing candidate check '+n);
