@@ -1,3 +1,4 @@
+import {reuseExactNativeProjection} from './scoped-native-projection-evidence.mjs';
 import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
 import {currentRuntimePreservationHistoricalView,verifyCurrentRuntimePreservation} from './current-runtime-preservation-20261016.mjs';
 import {ciExecutionNativeReaderProvenance,verifyCiExecutionAllowance,ciExecutionHistoricalView,ciExecutionAuthenticatedRead,ciExecutionAuthenticatedContent,ciExecutionAuthenticatedDiff,ciExecutionAuthenticatedAncestor} from './ci-execution-scope-20261014.mjs';
@@ -170,7 +171,16 @@ function verifyReleaseMachineryRepairCurrentProof(c,options={}){
   readDiff:ciExecutionAuthenticatedDiff(options.readDiff??rawDiff,ci),
   isAncestor:ciExecutionAuthenticatedAncestor(options.isAncestor??rawAncestor,ci)},ci);
 }
+const repairNativeProjectionOwner=Object.freeze({});
 export function releaseMachineryRepairHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ if(reader!==null||defaultReader!==true)return constructReleaseMachineryRepairHistoricalView(reader,{defaultReader});
+ return reuseExactNativeProjection(repairNativeProjectionOwner,()=>{
+  const value=constructReleaseMachineryRepairHistoricalView(null,{defaultReader:true});
+  if(!value.ciExecutionContext)return value;
+  return Object.freeze({...value,nativeSource:true,assertCurrent:value.ciExecutionContext.assertCurrent});
+ });
+}
+function constructReleaseMachineryRepairHistoricalView(reader=null,{defaultReader=reader===null}={}){
  const ci=ciExecutionHistoricalView(reader===rawBlob?null:reader);
  if(ci.head===ci.rawHead)return releaseMachineryRepairHistoricalViewOriginal(reader,{defaultReader});
  const inner=releaseMachineryRepairHistoricalViewOriginal(ci.read,{defaultReader:false},ci);

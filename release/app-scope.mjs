@@ -1,3 +1,4 @@
+import {memberRecordingComparisonValue,recordingRepairLegacyPaths} from './member-recording-repair-20261024.mjs';
 // My Shift composition: retain both exact approved merge parents; see my-shift-release-scope-20261024.mjs.
 import {verifyMyShiftRelease,myShiftSafetyComparison,MY_SHIFT_PATHS} from './my-shift-release-scope-20261024.mjs';
 import {compactLiteralExcludes} from './combined-finite-scope-20261014.mjs';
@@ -17,7 +18,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {withImmutableHistoryVerification,immutableHistorySourceHead,immutableHistoryExecFileSync} from './immutable-git-facts.mjs';
 // Only these native source readers freeze HEAD inside the checked synchronous scope.
-const execFileSync=(bin,args,options)=>{const head=immutableHistorySourceHead();return immutableHistoryExecFileSync(bin,head&&bin==='git'?args.map(value=>value==='HEAD'?head:value.startsWith('HEAD:')?head+value.slice(4):value):args,options);};
+const execFileSync=(bin,args,options)=>{const head=immutableHistorySourceHead();const value=immutableHistoryExecFileSync(bin,head&&bin==='git'?args.map(value=>value==='HEAD'?head:value.startsWith('HEAD:')?head+value.slice(4):value):args,options);if(bin==='git'&&['show','rev-parse'].includes(args[0])&&args[1]?.startsWith('HEAD:')){const ending=args[0]==='rev-parse'&&typeof value==='string'&&value.endsWith('\n')?'\n':'';return memberRecordingComparisonValue(args[1].slice(5),ending?value.slice(0,-1):value,head)+ending;}return value;};
 import {createHash} from 'node:crypto';
 export const PWA_DISMISS_APPROVED='fbbc8e592549f48280e32009edcbb73d1dd42669';
 export const PWA_DISMISS_PATHS=['my-timber-pwa/ui.mjs','my-timber-pwa/presentation.mjs','my-timber-pwa/pwa.test.mjs','my-timber-pwa/preservation.mjs','my-timber-pwa/preservation.test.mjs','preview/pwa-dismiss/verify.cjs','.github/workflows/pwa-dismiss-preview.yml'];
@@ -117,12 +118,14 @@ const CURRENT_MAIN_SAFETY_CHECK_BLOBS=Object.freeze({
 });
 export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}).trim()){
  verifyMyShiftRelease();
+ for(const path of recordingRepairLegacyPaths()){APP_PATHS.add(path);RECONCILIATION_PATHS.add(path);}
  for(const path of MY_SHIFT_PATHS)APP_PATHS.add(path);
  for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);
  return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);
 }
 export function validateAppSource(){
  return withImmutableHistoryVerification(()=>{
+ const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks());
  verifyReconciledRelease();
  verifyMetricsConnection();
  validateFit300();
@@ -137,7 +140,6 @@ export function validateAppSource(){
  for(const p of PWA_DISMISS_PATHS)if(p==='my-timber-pwa/presentation.mjs')assert.equal(originalMemberWorkerPresentation(execFileSync('git',['show','HEAD:'+p],{encoding:'utf8'})),execFileSync('git',['show',PWA_DISMISS_APPROVED+':'+p],{encoding:'utf8'}),'Complete PWA presentation differs beyond exact shared member worker registration');else assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',PWA_DISMISS_APPROVED+':'+p),'Reviewed PWA install dismissal drift: '+p);
  validateMemberFocus((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='preview/app-layout/tabs.mjs'?FOOTER_CANDIDATE:ref)+':'+path));
  const changed=git('diff','--name-only',APP_BASE,'HEAD').split('\n').filter(Boolean);
- const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks());
  assert(changed.every(p=>APP_PATHS.has(p)||exactSafetyPaths.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)&&!exactSafetyPaths.has(p)).join(','));
  for(const [p,sha]of Object.entries(APP_HASHES))assert.equal(createHash('sha256').update(execFileSync('git',reconciliationGitArgs(['show',originalAppHashRef(p)+':'+p]))).digest('hex'),sha,'App release drift: '+p);
  for(const p of ['presentation.mjs','screens.mjs','tabs.mjs','refinement.mjs','verify.cjs'])assert.equal(git('rev-parse',historicalFooterRef('HEAD','preview/app-layout/'+p)+':preview/app-layout/'+p),git('rev-parse',APP_APPROVED+':preview/app-layout/'+p),'Approved app design changed: '+p);

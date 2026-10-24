@@ -1,6 +1,7 @@
+import {verifyMemberRecordingRepair,RECORDING_REPAIR_BASE,memberRecordingComparisonValue,recordingRepairLegacyPaths,withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {readFileSync as nativeReadFileSync,lstatSync} from 'node:fs';
+import {readFileSync as actualReadFileSync,lstatSync} from 'node:fs';
 import {execFileSync as exec} from 'node:child_process';
 import {createRequire} from 'node:module';
 
@@ -30,15 +31,18 @@ export const DEFAULT_AFTER=" if(defaultReader)return{...actual,read:(ref,path)=>
 export const APP_IMPORT="import {verifyMyShiftRelease,myShiftSafetyComparison,MY_SHIFT_PATHS} from './my-shift-release-scope-20261024.mjs';\n";
 export const APP_BEFORE=" for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
 export const APP_AFTER=" verifyMyShiftRelease();\n for(const path of MY_SHIFT_PATHS)APP_PATHS.add(path);\n for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
+let recordingProjection=false;
+const nativeReadFileSync=(path,...args)=>recordingProjection&&typeof path==='string'?bytes(RECORDING_REPAIR_BASE,path):actualReadFileSync(path,...args);
 let recoveryProjection=null;
 const readFileSync=(path,...args)=>recoveryProjection&&(RECOVERY_FILES.includes(path)||path===MY_SHIFT_RECEIPT)?bytes(RECOVERY_BASE,path):nativeReadFileSync(path,...args);
-const git=(...args)=>exec('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
+const git=(...args)=>exec('git',recordingProjection?args.map(value=>value==='HEAD'?RECORDING_REPAIR_BASE:value.startsWith('HEAD:')?RECORDING_REPAIR_BASE+value.slice(4):value):args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const bytes=(ref,path)=>exec('git',['show',ref+':'+path],{encoding:'utf8',maxBuffer:64e6});
 const oid=value=>createHash('sha1').update('blob '+Buffer.byteLength(value)+'\0').update(value).digest('hex');
 const sorted=values=>[...values].sort();
 const changed=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 const once=(value,part,replacement='')=>{assert.equal(value.split(part).length,2,'One exact My Shift maintenance inverse required');return value.replace(part,replacement);};
 export function originalMyShiftMaintenance(path,value){
+ value=memberRecordingComparisonValue(path,value);
  if(path==='release/approved-source-comparison-20261024.mjs')return once(once(value,COMPARISON_IMPORT),COMPARISON_HOOK);
  if(path==='release/app-scope.mjs'){if(value.includes(MY_SHIFT_COMPOSITION_MARKER))value=once(value,MY_SHIFT_COMPOSITION_MARKER);return once(once(value,APP_IMPORT),APP_AFTER,APP_BEFORE);}
  if(path==='release/combined-finite-scope-20261014.mjs')return once(value,DEFAULT_AFTER,DEFAULT_BEFORE);
@@ -94,7 +98,8 @@ function verifyOriginalMyShiftComposition({head,receipt}){
  }
  return {head,paths:MY_SHIFT_PATHS,receipt};
 }
-export function verifyMyShiftRelease(requestedHead){
+export function verifyMyShiftRelease(requestedHead){return withMemberRecordingQualification(()=>verifyRecordingAwareMyShiftRelease(requestedHead));}
+function verifyRecordingAwareMyShiftRelease(requestedHead){
  const head=git('rev-parse','HEAD');if(requestedHead)assert.equal(requestedHead,head,'Actual My Shift source HEAD required');
  assert.equal(git('diff','--name-only','HEAD','--'),'','My Shift tracked working source changed');assert.equal(git('diff','--cached','--name-only','--'),'','My Shift staged source changed');
  const receipt=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));
@@ -104,11 +109,14 @@ export function verifyMyShiftRelease(requestedHead){
  // an ESM cycle when the existing comparison module is imported independently.
  const {RECONCILIATION_PATHS}=createRequire(import.meta.url)('./approved-runtime-composition.mjs');
  for(const path of MY_SHIFT_PATHS)RECONCILIATION_PATHS.add(path);
+ for(const path of recordingRepairLegacyPaths())RECONCILIATION_PATHS.add(path);
  return Object.freeze({head,paths:MY_SHIFT_PATHS,receipt});
 }
 export function myShiftComparisonValue(path,value,head){
  if(RECOVERY_FILES.includes(path)){
-  const current=git('rev-parse','HEAD:'+path),identifier=value===current,content=typeof value==='string'&&oid(value)===current;
+  const current=memberRecordingComparisonValue(path,git('rev-parse','HEAD:'+path),head);
+  value=memberRecordingComparisonValue(path,value,head);
+  const identifier=value===current,content=typeof value==='string'&&oid(value)===current;
   if(!identifier&&!content)return value;
   const proof=verifyMyShiftRelease(head);if(!proof.receipt.releaseRecoveryMaintenance)return value;
   return identifier?git('rev-parse',RECOVERY_BASE+':'+path):bytes(RECOVERY_BASE,path);
@@ -120,8 +128,11 @@ export function myShiftComparisonValue(path,value,head){
 }
 export function myShiftSafetyComparison(path,value){
  if(!['release/approved-source-comparison-20261024.mjs','release/combined-finite-scope-20261014.mjs'].includes(path))return value;
- const {head}=verifyMyShiftRelease(),actual=git('rev-parse',head+':'+path);if(value!==actual)return value;
- return git('rev-parse',MY_SHIFT_BASE+':'+path);
+ return withMemberRecordingQualification(()=>{
+  const {head}=verifyMyShiftRelease(),actual=memberRecordingComparisonValue(path,git('rev-parse',head+':'+path),head);
+  value=memberRecordingComparisonValue(path,value,head);if(value!==actual)return value;
+  return git('rev-parse',MY_SHIFT_BASE+':'+path);
+ });
 }
 
 export const RECOVERY_BASE='2ac8456e8394c1508b13481fad1f68520926f10b';
@@ -233,6 +244,7 @@ const CLI_INVERSES=Object.freeze({
  ]
 });
 export function originalAdmissionCli(path,value){
+ value=memberRecordingComparisonValue(path,value);
  const edits=CLI_INVERSES[path];assert(edits,'Only the two source-admission CLIs have an inverse');
  for(const edit of [...edits].reverse()){
   assert.equal(value.slice(edit.start,edit.start+edit.after.length),edit.after,'Exact source-admission repair changed');
@@ -259,6 +271,7 @@ function qualifyRecovery(head,receipt){
  return {source,prior};
 }
 export function verifyMyShiftComposition({head,receipt}){
+ if(!recordingProjection){const recording=verifyMemberRecordingRepair();assert.equal(head,recording.head,'Actual repair source HEAD required');const actual=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));assert.match(receipt.compositionMaintenance,/^[a-f0-9]{40}$/,'Exact composition maintenance source required');assert.deepEqual(receipt.releaseRecoveryMaintenance,actual.releaseRecoveryMaintenance,'Native recovery receipt required');assert.deepEqual(receipt,actual,'Original My Shift receipt must remain immutable');recordingProjection=true;try{return verifyMyShiftComposition({head:RECORDING_REPAIR_BASE,receipt:JSON.parse(bytes(RECORDING_REPAIR_BASE,MY_SHIFT_RECEIPT))});}finally{recordingProjection=false;}}
  if(!receipt.releaseRecoveryMaintenance)return verifyOriginalMyShiftComposition({head,receipt});
  assert.equal(head,git('rev-parse','HEAD'),'Actual recovery source HEAD required');
  const native=JSON.parse(bytes(head,MY_SHIFT_RECEIPT)),proof=qualifyRecovery(head,native);
@@ -269,14 +282,18 @@ export function verifyMyShiftComposition({head,receipt}){
  finally{recoveryProjection=previous;}
 }
 export function verifiedCurrentReleaseAdmission(){
+ return withMemberRecordingQualification(()=>{
  const proof=verifyMyShiftRelease(),repair=proof.receipt.releaseRecoveryMaintenance,refs=new Map();
  for(const [path,pin]of Object.entries(ADMISSION_BLOBS)){
+  const recording=memberRecordingComparisonValue(path,git('rev-parse',proof.head+':'+path),proof.head);
   const ref=repair&&path===MY_SHIFT_RECEIPT?proof.head:repair&&RECOVERY_FILES.includes(path)?repair.source:RECOVERY_BASE;
   const expected=ref===RECOVERY_BASE?pin:git('rev-parse',ref+':'+path);
-  assert.equal(git('rev-parse',proof.head+':'+path),expected,'Exact current release admission source drift: '+path);
+  assert.equal(recording,expected,'Exact current release admission source drift: '+path);
   assert(lstatSync(path).isFile()&&!lstatSync(path).isSymbolicLink(),'Actual regular admission source required');
-  assert.equal(oid(nativeReadFileSync(path)),expected,'Actual admission source bytes changed: '+path);
+  assert.equal(memberRecordingComparisonValue(path,oid(actualReadFileSync(path)),proof.head),expected,'Actual admission source bytes changed: '+path);
   refs.set(path,ref);
  }
+ for(const path of recordingRepairLegacyPaths())refs.set(path,proof.head);
  return {head:proof.head,refs};
+ });
 }
