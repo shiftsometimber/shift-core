@@ -1,3 +1,4 @@
+import {hqMfaOriginAllowed,claimHqMfaChallenge} from './hq-mfa-readiness.mjs';
 import {fastMemberLogin} from './member-login-fastpath-v1.js';
 import {shopRecoveryStatus,retryPendingShopReceipts} from './commerce-stripe-v1.js';
 import {receiveAccountDeletion} from './privacy-account-request-v1.js';
@@ -491,7 +492,7 @@ async function hqMfaLoginVerify(request,env){
   if(!ch)return json({ok:false,error:'invalid_or_expired_challenge'},401);
   const user=await env.DB.prepare('SELECT * FROM hq_users WHERE id=? AND status="active"').bind(ch.hq_user_id).first();
   if(!user||!(await verifyHqTotp(env,user,code)))return json({ok:false,error:'invalid_mfa_code'},401);
-  await env.DB.prepare('UPDATE hq_mfa_challenges SET used_at=? WHERE id=?').bind(isoNow(),ch.id).run(); return createHqSession(env,user);
+  if(!await claimHqMfaChallenge(env.DB,ch.id,isoNow()))return json({ok:false,error:'invalid_or_expired_challenge'},401); return createHqSession(env,user);
 }
 async function createHqSession(env,user){
   const token=randomToken(40),hash=await sha256Hex(token),expires=new Date(Date.now()+8*60*60*1000).toISOString();
@@ -505,18 +506,22 @@ async function hqLogout(request,env){
 }
 async function hqMe(request,env){const access=await requireHqAccess(request,env,null,false);if(access.response)return access.response;return json({ok:true,user:publicHqUser(access.actor),permissions:permissionsForRole(access.actor.role)})}
 async function hqMfaSetup(request,env){
+  if(!hqMfaOriginAllowed(request))return json({ok:false,error:'origin_not_allowed'},403);
   const access=await requireHqAccess(request,env,null,false);if(access.response)return access.response;
+  if(Number(access.actor.mfa_enabled||0)===1)return json({ok:false,error:'mfa_already_enabled',message:'Existing MFA remains enabled. Use the verified recovery process for authenticator replacement.'},409);
   if(!env.HQ_MFA_ENCRYPTION_KEY)return json({ok:false,error:'mfa_encryption_key_missing',message:'Set the HQ_MFA_ENCRYPTION_KEY Worker secret before enabling MFA.'},503);
   const secret=base32Encode(crypto.getRandomValues(new Uint8Array(20))),encrypted=await encryptHqSecret(env,secret);
-  await env.DB.prepare('UPDATE hq_users SET mfa_secret=?,mfa_enabled=0,updated_at=? WHERE id=?').bind(encrypted,isoNow(),access.actor.id).run();
+  const setup=await env.DB.prepare('UPDATE hq_users SET mfa_secret=?,mfa_enabled=0,updated_at=? WHERE id=? AND mfa_enabled=0').bind(encrypted,isoNow(),access.actor.id).run();
+  if(Number(setup.meta?.changes)!==1)return json({ok:false,error:'mfa_setup_changed'},409);
   const issuer=encodeURIComponent('Shift HQ'),label=encodeURIComponent(`Shift HQ:${access.actor.email}`),uri=`otpauth://totp/${label}?secret=${secret}&issuer=${issuer}&algorithm=SHA1&digits=6&period=30`;
   await hqAudit(env,access.actor,'hq.mfa_setup_started','hq_user',String(access.actor.id),{});return json({ok:true,secret,otpauthUri:uri});
 }
 async function hqMfaEnable(request,env){
+  if(!hqMfaOriginAllowed(request))return json({ok:false,error:'origin_not_allowed'},403);
   const access=await requireHqAccess(request,env,null,false);if(access.response)return access.response;
   const b=await readJson(request),code=String(b.code||'').replace(/\D/g,''),row=await env.DB.prepare('SELECT * FROM hq_users WHERE id=?').bind(access.actor.id).first();
   if(!row?.mfa_secret||code.length!==6||!(await verifyHqTotp(env,row,code)))return json({ok:false,error:'invalid_mfa_code'},400);
-  await env.DB.prepare('UPDATE hq_users SET mfa_enabled=1,updated_at=? WHERE id=?').bind(isoNow(),row.id).run();await hqAudit(env,access.actor,'hq.mfa_enabled','hq_user',String(row.id),{});return json({ok:true});
+  const enabled=await env.DB.prepare('UPDATE hq_users SET mfa_enabled=1,updated_at=? WHERE id=? AND mfa_secret=? AND mfa_enabled=0').bind(isoNow(),row.id,row.mfa_secret).run();if(Number(enabled.meta?.changes)!==1)return json({ok:false,error:'mfa_setup_changed'},409);await hqAudit(env,access.actor,'hq.mfa_enabled','hq_user',String(row.id),{});return json({ok:true});
 }
 // Reuse the existing session verifier without running the legacy schema/bootstrap router.
 export async function authenticateWorkHQ(request,env){
