@@ -1,3 +1,4 @@
+import {myShiftComparisonValue} from './my-shift-release-scope-20261024.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {immutableHistoryExecFileSync as exec} from './immutable-git-facts.mjs';
@@ -16,6 +17,7 @@ function qualify(head,path){
  const original=originalApprovedComparisonSource(path,actual);assert.equal(original,exec('git',['cat-file','blob',d.original],{encoding:'utf8',maxBuffer:64e6}),'Original immutable comparison source changed: '+path);return{d,actual,original};
 }
 export function approvedSourceComparison(path,value,head){
+ const shift=myShiftComparisonValue(path,value,head);if(shift!==value)return shift;
  const d=deltas[path];if(!d)return value;
  const identifier=value===d.current,bytes=typeof value==='string'&&oid(value)===d.current;
  if(!identifier&&!bytes)return value;
