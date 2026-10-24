@@ -31,7 +31,7 @@ export const APP_IMPORT="import {verifyMyShiftRelease,myShiftSafetyComparison,MY
 export const APP_BEFORE=" for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(read(path),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
 export const APP_AFTER=" verifyMyShiftRelease();\n for(const path of MY_SHIFT_PATHS)APP_PATHS.add(path);\n for(const [path,expected] of Object.entries(CURRENT_MAIN_SAFETY_CHECK_BLOBS))assert.equal(myShiftSafetyComparison(path,read(path)),expected,'Merged safety-check source drift: '+path);\n return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);";
 let recoveryProjection=null;
-const readFileSync=(path,...args)=>recoveryProjection&&RECOVERY_FILES.includes(path)?bytes(RECOVERY_BASE,path):nativeReadFileSync(path,...args);
+const readFileSync=(path,...args)=>recoveryProjection&&(RECOVERY_FILES.includes(path)||path===MY_SHIFT_RECEIPT)?bytes(RECOVERY_BASE,path):nativeReadFileSync(path,...args);
 const git=(...args)=>exec('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const bytes=(ref,path)=>exec('git',['show',ref+':'+path],{encoding:'utf8',maxBuffer:64e6});
 const oid=value=>createHash('sha1').update('blob '+Buffer.byteLength(value)+'\0').update(value).digest('hex');
