@@ -1,3 +1,4 @@
+// My Shift composition: retain both exact approved merge parents; see my-shift-release-scope-20261024.mjs.
 import {verifyMyShiftRelease,myShiftSafetyComparison,MY_SHIFT_PATHS} from './my-shift-release-scope-20261024.mjs';
 import {compactLiteralExcludes} from './combined-finite-scope-20261014.mjs';
 import {reconciliationGitArgs,reconciliationHistoricalRead,reconciliationPath,RECONCILIATION_PATHS,verifyReconciledRelease,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from './approved-runtime-composition.mjs';
