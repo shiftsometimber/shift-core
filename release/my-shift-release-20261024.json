@@ -27,5 +27,9 @@
     "release/app-scope.mjs",
     "release/combined-finite-scope-20261014.mjs"
   ],
-  "compositionMaintenance": "5997c4d4c248ed8c4635351c6aaf0eef8574345f"
+  "compositionMaintenance": "5997c4d4c248ed8c4635351c6aaf0eef8574345f",
+  "releaseRecoveryMaintenance": {
+    "base": "2ac8456e8394c1508b13481fad1f68520926f10b",
+    "source": "0863d1e6c7b57f3bf0e216206fc742b00a0184eb"
+  }
 }
