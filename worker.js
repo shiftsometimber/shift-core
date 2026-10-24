@@ -1,5 +1,6 @@
 import {sendTrackedCommerceEmail} from './hq-commerce-delivery.mjs';
 import {hqMfaOriginAllowed,claimHqMfaChallenge} from './hq-mfa-readiness.mjs';
+import {passwordMeetsPolicy,PASSWORD_POLICY_MESSAGE} from './password-policy-v1.js';
 import {fastMemberLogin} from './member-login-fastpath-v1.js';
 import {shopRecoveryStatus,retryPendingShopReceipts} from './commerce-stripe-v1.js';
 import {receiveAccountDeletion} from './privacy-account-request-v1.js';
@@ -110,8 +111,8 @@ async function register(request, env) {
   const email = normalizeEmail(body.email);
   const password = String(body.password || '');
 
-  if (!isEmail(email) || password.length < 10) {
-    return json({ ok: false, error: 'invalid_registration', message: 'Use a valid email and a password of at least 10 characters.' }, 400);
+  if (!isEmail(email) || !passwordMeetsPolicy(password)) {
+    return json({ ok: false, error: 'invalid_registration', message: PASSWORD_POLICY_MESSAGE }, 400);
   }
 
   try {
@@ -471,7 +472,7 @@ async function hqBootstrap(request,env){
   if(!isAdmin(request,env))return json({ok:false,error:'bootstrap_unauthorized'},401);
   const count=await env.DB.prepare('SELECT COUNT(*) count FROM hq_users').first(); if(Number(count?.count||0)>0)return json({ok:false,error:'already_bootstrapped'},409);
   const b=await readJson(request),email=normalizeEmail(b.email),name=clean(b.name,200),password=String(b.password||'');
-  if(!isEmail(email)||!name||password.length<12)return json({ok:false,error:'invalid_request',message:'Use a valid email, name and a password of at least 12 characters.'},400);
+  if(!isEmail(email)||!name||!passwordMeetsPolicy(password))return json({ok:false,error:'invalid_request',message:PASSWORD_POLICY_MESSAGE},400);
   const hash=await hashPassword(password);
   const r=await env.DB.prepare(`INSERT INTO hq_users(email,name,password_hash,role,status,mfa_enabled,created_at,updated_at) VALUES(?,?,?,'owner','active',0,?,?)`).bind(email,name,hash,isoNow(),isoNow()).run();
   await hqAudit(env,{id:Number(r.meta?.last_row_id||0)||null},'hq.bootstrap','hq_user',String(r.meta?.last_row_id||''),{}); return json({ok:true},201);
@@ -935,7 +936,7 @@ async function adminRoutes(request, env, path, method) {
   }
   if (method === 'POST' && path === '/v1/hq/users') {
     const b=await readJson(request); const email=normalizeEmail(b.email), name=clean(b.name,200), password=String(b.password||''), role=clean(b.role,40)||'readonly';
-    if(!isEmail(email)||!name||password.length<12||!HQ_ROLES.has(role)) return json({ok:false,error:'invalid_request'},400);
+    if(!isEmail(email)||!name||!passwordMeetsPolicy(password)||!HQ_ROLES.has(role)) return json({ok:false,error:'invalid_request',message:PASSWORD_POLICY_MESSAGE},400);
     const exists=await env.DB.prepare('SELECT id FROM hq_users WHERE lower(email)=?').bind(email).first();
     if(exists) return json({ok:false,error:'email_in_use'},409);
     const hash=await hashPassword(password);
