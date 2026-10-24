@@ -1,3 +1,4 @@
+import {launchKpis} from './hq-launch-kpis.mjs';
 import {appendAnalyticsSnapshots} from './hq-analytics-snapshots.mjs';
 import {activationScorecard} from './activation-measurement/scorecard.mjs';
 import {appendLaunchMetrics} from './hq-launch-report.mjs';
@@ -6,12 +7,8 @@ import {hqMemberGpRoute} from './gp-directory/hq-member-gp.mjs';
 import {gpDirectoryHqRoute} from './gp-directory/hq.mjs';
 import {continuityScorecard} from './continuity-measurement/scorecard.mjs';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
-export function londonMidnight(day){
- if(!/^\d{4}-\d{2}-\d{2}$/.test(day)||new Date(day+'T00:00:00Z').toISOString().slice(0,10)!==day)throw Error('invalid_date');
- const nominal=Date.parse(day+'T00:00:00Z');const fmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
- const parts=Object.fromEntries(fmt.formatToParts(new Date(nominal)).map(x=>[x.type,x.value]));const local=Date.UTC(+parts.year,+parts.month-1,+parts.day,+parts.hour,+parts.minute,+parts.second);return new Date(nominal-(local-nominal)).toISOString();
-}
-export function reportWindow(start,end){const since=londonMidnight(start),endDay=new Date(end+'T00:00:00Z');if(!Number.isFinite(endDay.getTime())||endDay.toISOString().slice(0,10)!==end)throw Error('invalid_date');endDay.setUTCDate(endDay.getUTCDate()+1);const until=londonMidnight(endDay.toISOString().slice(0,10));const days=(Date.parse(until)-Date.parse(since))/86400000;if(days<=0||days>367)throw Error('invalid_range');return{start,end,since,until,timezone:'Europe/London'};}
+import {londonMidnight,reportWindow} from './hq-london-period.mjs';
+export {londonMidnight,reportWindow} from './hq-london-period.mjs';
 const permit=(permissions,p)=>permissions.includes('*')||permissions.includes(p);
 const missing=(reason)=>({status:'unavailable',reason});
 const metric=(key,label,value,source,scope='selected period',unit='count')=>({key,label,value,source,scope,unit,status:'available'});
@@ -58,7 +55,8 @@ export async function managementReport(DB,{permissions=[],start,end,kind='manage
   else unavailable('activation_cohort','Ordered account activation cohort','Your role cannot access this source.');
  }
  if(['management','growth'].includes(kind)){unavailable('organic','Organic search visits','Analytics reporting is not connected to HQ.');unavailable('conversion','Search-to-registration conversion','Verified attribution is not connected to HQ.');}
- return await appendAnalyticsSnapshots(DB,await appendLaunchMetrics(DB,{ok:true,kind,period,generatedAt:new Date().toISOString(),metrics,limitations:[...new Set(limitations)],privacy:'Aggregate only. No member identities, health measurements or free text.',definitions:'Unavailable figures are not zero. Cohort and snapshot measures carry their own labelled scope.'},permissions),permissions);
+ const result=await appendAnalyticsSnapshots(DB,await appendLaunchMetrics(DB,{ok:true,kind,period,generatedAt:new Date().toISOString(),metrics,limitations:[...new Set(limitations)],privacy:'Aggregate only. No member identities, health measurements or free text.',definitions:'Unavailable figures are not zero. Cohort and snapshot measures carry their own labelled scope.'},permissions),permissions);
+ if(kind==='management')result.kpiFramework=launchKpis(result);return result;
 }
 export async function managementRoute(request,env,ctx,authenticate){
  const memberGp=await hqMemberGpRoute(request,env,ctx,authenticate);if(memberGp)return memberGp;

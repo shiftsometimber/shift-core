@@ -1,3 +1,4 @@
+import {londonMidnight} from './hq-london-period.mjs';
 import {serviceJobHealth} from './hq-service-job-runs.mjs';
 import {commercePopulationSql} from './hq-report-population.mjs';
 // Aggregate-only additions to the existing permissioned HQ report.
@@ -20,6 +21,8 @@ export async function appendLaunchMetrics(DB,report,permissions=[],now=new Date(
   const population=commercePopulationSql(tables,'m','email');
   const condition=" FROM medicine_orders m WHERE substr(stripe_checkout_session_id,1,8)='cs_live_' AND currency='GBP' AND julianday(created_at)>=julianday(?) AND julianday(created_at)<julianday(?) AND "+population;
   const medicineOrders=await read('medicine_orders','Live medicine orders created','commerce_read',['medicine_orders','users','audit_log'],'SELECT COUNT(*) value'+condition,bounds,'count',scope);
+  await read('medicine_paid_orders','Paid live medicine orders','commerce_read',['medicine_orders','users','audit_log'],"SELECT COUNT(*) value"+condition+" AND status='paid'",bounds,'count',scope);
+  await read('shop_paid_orders','Paid live shop orders','commerce_read',['orders','commerce_order_details','users','audit_log'],"SELECT COUNT(*) value FROM orders o JOIN commerce_order_details d ON d.order_id=o.id WHERE substr(d.stripe_checkout_session_id,1,8)='cs_live_' AND o.currency='GBP' AND o.payment_status='paid' AND julianday(o.created_at)>=julianday(?) AND julianday(o.created_at)<julianday(?) AND "+commercePopulationSql(tables,'o','customer_email'),bounds,'count',scope);
   const medicinePaid=await read('medicine_paid_value','Paid medicine order value (GBP)','commerce_read',['medicine_orders','users','audit_log'],"SELECT COALESCE(SUM(total_pence),0) value"+condition+" AND status='paid'",bounds,'pence',scope);
   const aggregate=(key,label,parts,unit)=>{
    if(parts.every(m=>m?.status==='available'))metrics.push({key,label,status:'available',value:parts.reduce((sum,m)=>sum+m.value,0),unit,source:parts.map(m=>m.source).join('; '),scope:'Shop plus medicine sources, live GBP orders created in selected period. Distinct channel orders; not accounting revenue.'});
@@ -47,7 +50,14 @@ export async function appendLaunchMetrics(DB,report,permissions=[],now=new Date(
  await read('unassigned_tasks','Unassigned open tasks','crm_read',['hq_tasks'],"SELECT COUNT(*) value FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND (assigned_to IS NULL OR trim(assigned_to)='')");
  const overdue=metrics.find(m=>m.key==='tasks');if(overdue&&allowed(permissions,'crm_read')){
   const corrected=await read('overdue_tasks_now','Overdue tasks as of report generation','crm_read',['hq_tasks'],"SELECT COUNT(*) value FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND due_at IS NOT NULL AND ((length(due_at)=10 AND due_at<?) OR (length(due_at)<>10 AND julianday(due_at)<julianday(?)))",[new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(now),stamp]);
-  if(corrected.status==='available'){overdue.value=corrected.value;overdue.scope='Current snapshot at generation, including time-based due dates';}
+  if(corrected.status==='available'){
+   overdue.value=corrected.value;overdue.scope='Current snapshot at generation; date-only deadlines end at London midnight.';overdue.oldestAgeHours=null;
+   if(corrected.value>0)try{
+    const day=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
+    const rows=(await DB.prepare("SELECT due_at FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND due_at IS NOT NULL AND ((length(due_at)=10 AND due_at<?) OR (length(due_at)<>10 AND julianday(due_at)<julianday(?))) LIMIT 1001").bind(day,stamp).all()).results;
+    if(rows.length<=1000){const deadlines=rows.map(r=>{if(r.due_at.length!==10)return Date.parse(r.due_at);const next=new Date(r.due_at+'T00:00:00Z');next.setUTCDate(next.getUTCDate()+1);return Date.parse(londonMidnight(next.toISOString().slice(0,10)))});if(deadlines.length&&deadlines.every(Number.isFinite))overdue.oldestAgeHours=Math.max(0,(now.getTime()-Math.min(...deadlines))/3600000);}
+   }catch{overdue.ageUnavailable=true}
+  }
  }
  await read('pending_privacy_requests','Pending account-deletion requests','crm_read',['data_requests'],"SELECT COUNT(*) value FROM data_requests WHERE request_type='deletion' AND status NOT IN ('completed','cancelled')");
  await read('unassigned_support','Unassigned open support requests','support_read',['support_tickets'],"SELECT COUNT(*) value FROM support_tickets WHERE status NOT IN ('closed','resolved') AND assigned_hq_user_id IS NULL");
@@ -70,6 +80,10 @@ export async function appendLaunchMetrics(DB,report,permissions=[],now=new Date(
  await read('signup_alert_failures','Signup operator alerts needing attention','*',['member_signup_alerts'],"SELECT COUNT(*) value FROM member_signup_alerts WHERE state NOT IN ('accepted','suppressed')");
  await read('staff_active','Active HQ staff accounts','*',['hq_users'],"SELECT COUNT(*) value FROM hq_users WHERE status='active'");
  await read('staff_without_mfa','Active HQ staff without MFA','*',['hq_users'],"SELECT COUNT(*) value FROM hq_users WHERE status='active' AND mfa_enabled<>1");
+ await read('owners_active','Active HQ owners','*',['hq_users'],"SELECT COUNT(*) value FROM hq_users WHERE status='active' AND role='owner'");
+ await read('historical_unlinked_shop_orders','Historical shop rows without linked accounts','commerce_read',['orders'],"SELECT COUNT(*) value FROM orders WHERE user_id IS NULL",[],'count','All retained environments, including historical test/unclassified cancelled orders; not a live financial-failure count.');
+ await read('unlinked_medicine_orders','Medicine rows without linked accounts','commerce_read',['medicine_orders'],"SELECT COUNT(*) value FROM medicine_orders WHERE user_id IS NULL");
+ await read('unlinked_pharmacy_orders','Pharmacy rows without linked accounts','commerce_read',['pharmacy_orders'],"SELECT COUNT(*) value FROM pharmacy_orders WHERE user_id IS NULL");
  await read('owners_without_mfa','Active HQ owners without MFA','*',['hq_users'],"SELECT COUNT(*) value FROM hq_users WHERE status='active' AND role='owner' AND mfa_enabled<>1");
  await read('workflow_failures_24h','General CRM workflow failures (24 hours)','*',['workflow_runs'],"SELECT COUNT(*) value FROM workflow_runs WHERE status='failed' AND julianday(created_at)>=julianday(?,'-24 hours')",[stamp]);
  await read('active_workflows','Active general CRM workflows','*',['workflows'],"SELECT COUNT(*) value FROM workflows WHERE status='active'");
@@ -87,6 +101,6 @@ export async function appendLaunchMetrics(DB,report,permissions=[],now=new Date(
  await read('notification_job_failures','Notification reconciliation failures (24 hours)','*',['hq_notification_runs'],"SELECT COUNT(*) value FROM hq_notification_runs WHERE status='failed' AND julianday(started_at)>=julianday(?,'-24 hours')",[stamp]);
  await read('notification_job_age_minutes','Minutes since successful notification reconciliation','*',['hq_notification_runs'],"SELECT (julianday(?)-julianday(MAX(completed_at)))*1440 value FROM hq_notification_runs WHERE status='completed'",[stamp],'minutes','Current snapshot; five-minute schedule. No completed run is unavailable, never zero.');
  limitations.push('Readiness counters are current operational snapshots, not customer growth or proof that an unused integration works. New security and delivery aggregates require existing owner/admin permission. No member identities, message bodies, clinical details, endpoints or secrets are returned. All-account MFA enrolment and enforcement are unchanged.');
- report.version='hq-launch-report-v3.1-20261024';
+ report.version='hq-launch-report-v3.2-20261024';
  return report;
 }
