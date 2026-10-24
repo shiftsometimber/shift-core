@@ -9,3 +9,13 @@ test('independent comparison-module import stays cycle-free and native default r
  const script="import {combinedLegacyValidationRead} from './release/combined-finite-scope-20261014.mjs';import {approvedLegacyComparisonValue} from './release/approved-source-comparison-20261024.mjs';const current='3c216ea16a404c0b377f7ac94a4b2716c89e8d2a',raw=()=>current;if(combinedLegacyValidationRead(raw,raw,{defaultReader:true})!==raw)throw Error('Default adapter identity changed');const read=(ref,path)=>approvedLegacyComparisonValue(ref,path,raw(ref,path));console.log(JSON.stringify([read('HEAD','member-experience/entry.mjs'),read('immutable-prior-ref','member-experience/entry.mjs'),read('HEAD','wrangler.jsonc')]));";
  const values=JSON.parse(execFileSync(process.execPath,['--input-type=module','-e',script],{encoding:'utf8'}));assert.deepEqual(values,['cdb3c419760c11c8511e4dfb68ac5a8cab4b8bad','3c216ea16a404c0b377f7ac94a4b2716c89e8d2a','3c216ea16a404c0b377f7ac94a4b2716c89e8d2a']);
 });
+
+test('finite release admission authenticates exact native source and restores every original CLI byte',async()=>{
+ const {verifiedCurrentReleaseAdmission,originalAdmissionCli,RECOVERY_BASE}=await import('../release/my-shift-release-scope-20261024.mjs');const proof=verifiedCurrentReleaseAdmission();assert.equal(proof.head,g('rev-parse','HEAD').trim());assert(proof.refs.has('approved-public-corrections-20261024.mjs'));assert(proof.refs.has('.github/workflows/whole-estate-route-sweep.yml'));assert(!proof.refs.has('wrangler.jsonc'));
+ for(const path of ['release/app-preflight.mjs','scripts/b1-release-scope.mjs']){const value=source(path);assert.equal(originalAdmissionCli(path,value),g('show',RECOVERY_BASE+':'+path));assert.throws(()=>originalAdmissionCli(path,value+'unreviewed'),/original admission|repair changed/);assert.equal(myShiftComparisonValue(path,g('rev-parse','HEAD:'+path).trim(),proof.head),g('rev-parse',RECOVERY_BASE+':'+path).trim());assert.equal(myShiftComparisonValue(path,'forged',proof.head),'forged');}
+});
+test('recovery provenance rejects a changed base, source, unknown field and unreviewed receipt tail',()=>{
+ const head=g('rev-parse','HEAD').trim(),receipt=JSON.parse(source('release/my-shift-release-20261024.json'));assert(receipt.releaseRecoveryMaintenance);
+ for(const patch of [{base:'a'.repeat(40)},{source:'b'.repeat(40)},{unknown:true}])assert.throws(()=>verifyMyShiftComposition({head,receipt:{...receipt,releaseRecoveryMaintenance:{...receipt.releaseRecoveryMaintenance,...patch}}}),/Native recovery receipt/);
+ assert.throws(()=>verifyMyShiftComposition({head,receipt:{...receipt,unreviewed:true}}),/Original My Shift receipt/);
+});
