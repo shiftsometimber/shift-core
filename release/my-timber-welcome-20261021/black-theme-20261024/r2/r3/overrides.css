@@ -1,0 +1,3 @@
+/* The same public welcome states suppress their nested legacy app-only auth/utilities; ready-state app remains untouched. */
+html body[data-member-session="signed-out"]:has(#mtWelcome):is(#mtWelcomePublic,[data-member-session]) :is(main:has(#previewAuth),#myTimberApp,#memberUtilities,#memberSessionStatus),
+html body:not([data-member-session]):not(.member-ready):has(#mtWelcome):is(#mtWelcomePublic,body) :is(main:has(#previewAuth),#myTimberApp,#memberUtilities,#memberSessionStatus){display:none!important}

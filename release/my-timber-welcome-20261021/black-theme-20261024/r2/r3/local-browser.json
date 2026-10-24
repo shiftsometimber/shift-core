@@ -1,0 +1,170 @@
+{
+  "pass": true,
+  "at": "2026-10-24T23:20:56.820Z",
+  "scope": "Focused public-state descendant navigation CSS; authenticated ready-state preservation; original six-case theme/journey proof retained at parent",
+  "cases": 6,
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "signedOut": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "ready": {
+        "welcome": "none",
+        "nav": "flex",
+        "auth": false,
+        "install": "block",
+        "utilities": "block"
+      },
+      "fallback": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "realApiRequests": 0,
+      "syntheticCssTransitionOnly": true
+    },
+    {
+      "engine": "chromium",
+      "width": 430,
+      "signedOut": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "ready": {
+        "welcome": "none",
+        "nav": "flex",
+        "auth": false,
+        "install": "block",
+        "utilities": "block"
+      },
+      "fallback": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "realApiRequests": 0,
+      "syntheticCssTransitionOnly": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "signedOut": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "ready": {
+        "welcome": "none",
+        "nav": "flex",
+        "auth": false,
+        "install": "block",
+        "utilities": "block"
+      },
+      "fallback": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "realApiRequests": 0,
+      "syntheticCssTransitionOnly": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "signedOut": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "ready": {
+        "welcome": "none",
+        "nav": "flex",
+        "auth": false,
+        "install": "block",
+        "utilities": "block"
+      },
+      "fallback": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "realApiRequests": 0,
+      "syntheticCssTransitionOnly": true
+    },
+    {
+      "engine": "webkit",
+      "width": 430,
+      "signedOut": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "ready": {
+        "welcome": "none",
+        "nav": "flex",
+        "auth": false,
+        "install": "block",
+        "utilities": "block"
+      },
+      "fallback": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "realApiRequests": 0,
+      "syntheticCssTransitionOnly": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "signedOut": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "ready": {
+        "welcome": "none",
+        "nav": "flex",
+        "auth": false,
+        "install": "block",
+        "utilities": "block"
+      },
+      "fallback": {
+        "welcome": "block",
+        "nav": "none",
+        "auth": true,
+        "install": "none",
+        "utilities": "none"
+      },
+      "realApiRequests": 0,
+      "syntheticCssTransitionOnly": true
+    }
+  ]
+}
