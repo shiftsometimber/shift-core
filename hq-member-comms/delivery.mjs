@@ -2,7 +2,7 @@ import {eventDeliveryEligibility} from '../hq-event-delivery-eligibility.mjs';
 import {PUSH,emailMessage,hash} from './model.mjs';
 import {sendSupportPush} from '../mental-health-pathway/member/push.mjs';
 export async function runCommunications(env,now=new Date(),{sendEmail=(e,p,to)=>e.EMAIL.send(emailMessage(p,to)),sendPush=sendSupportPush}={}){
- const DB=env.DB,at=now.toISOString(),out={emailAccepted:0,inApp:0,pushAccepted:0,unknown:0,suppressed:0};
+ const DB=env.DB,at=now.toISOString(),out={emailAccepted:0,inApp:0,pushAccepted:0,unknown:0,suppressed:0,deferred:0};
  const drafts=(await DB.prepare("SELECT * FROM hq_comms_drafts WHERE status='scheduled' AND scheduled_at<=? AND scheduled_at>=? ORDER BY scheduled_at LIMIT 10").bind(at,new Date(now.getTime()-86400000).toISOString()).all()).results;
  for(const d of drafts){
   const p=JSON.parse(d.payload_json),actor=await DB.prepare("SELECT id FROM hq_users WHERE id=? AND role='owner' AND status='active'").bind(d.approved_by).first();
@@ -15,8 +15,10 @@ export async function runCommunications(env,now=new Date(),{sendEmail=(e,p,to)=>
    try{
     // Recheck cancellation just before dispatch. A provider request already in flight cannot be recalled.
     const current=await DB.prepare("SELECT id FROM hq_comms_drafts WHERE id=? AND status='scheduled'").bind(d.id).first();
+    const eligibility=current?await eventDeliveryEligibility(DB,p,d.id,r,now):null;
     if(!current){status='suppressed';out.suppressed++;}
-    else if(!(await eventDeliveryEligibility(DB,p,d.id,r,now)).eligible){status='suppressed';errorCode='event_no_longer_eligible';out.suppressed++;}
+    else if(eligibility.eligible===null){status='pending';errorCode='eligibility_source_unavailable';out.deferred++;}
+    else if(!eligibility.eligible){status='suppressed';errorCode='event_no_longer_eligible';out.suppressed++;}
     else if(p.channel==='email'){
      if(r.user_id&&!await DB.prepare('SELECT id FROM users WHERE id=? AND lower(email)=?').bind(r.user_id,r.email).first()){status='suppressed';out.suppressed++;}else{const result=await sendEmail(env,p,r.email);if(!result?.messageId||String(result.messageId).startsWith('sim-'))throw Error('missing_real_provider_receipt');provider=String(result.messageId).slice(0,240);status='provider_accepted';out.emailAccepted++;}
     }else{

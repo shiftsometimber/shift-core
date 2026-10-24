@@ -1,3 +1,4 @@
+import {supportHistoryDDL} from './delivery-history.mjs';
 import {authenticateMember} from '../../member-state-fast-v1.js';
 import {CONSENT,validate,fail,decode,publicState,nextState,validEndpoint,validKey,calendar} from './model.mjs';
 const HEADERS={'Cache-Control':'private, no-store, must-revalidate','Vary':'Cookie','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer'};
@@ -6,7 +7,8 @@ export const readStep=(DB,id)=>DB.prepare('SELECT * FROM my_timber_support_steps
 export const hasConsent=async(DB,id)=>Number((await DB.prepare('SELECT granted FROM consents WHERE user_id=? AND consent_type=? ORDER BY id DESC LIMIT 1').bind(id,CONSENT).first())?.granted)===1;
 const fingerprint=async data=>{const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(data)));return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('')};
 export async function forgetSupport(DB,id,now=new Date().toISOString()){
- await DB.batch([DB.prepare('DELETE FROM my_timber_support_deliveries WHERE endpoint IN (SELECT endpoint FROM my_timber_support_devices WHERE user_id=?)').bind(id),DB.prepare('DELETE FROM my_timber_support_devices WHERE user_id=?').bind(id),DB.prepare('UPDATE my_timber_support_steps SET state_json=NULL,revision=revision+1,operation_id=NULL,operation_hash=NULL,updated_at=? WHERE user_id=?').bind(now,id),DB.prepare('INSERT INTO consents(user_id,consent_type,consent_version,granted,withdrawn_at,created_at) VALUES(?,?,?,0,?,?)').bind(id,CONSENT,'2026-10-23-v1',now,now)]);
+ await DB.prepare(supportHistoryDDL).run();
+ await DB.batch([DB.prepare('DELETE FROM my_timber_support_delivery_history WHERE user_id=?').bind(id),DB.prepare('DELETE FROM my_timber_support_deliveries WHERE endpoint IN (SELECT endpoint FROM my_timber_support_devices WHERE user_id=?)').bind(id),DB.prepare('DELETE FROM my_timber_support_devices WHERE user_id=?').bind(id),DB.prepare('UPDATE my_timber_support_steps SET state_json=NULL,revision=revision+1,operation_id=NULL,operation_hash=NULL,updated_at=? WHERE user_id=?').bind(now,id),DB.prepare('INSERT INTO consents(user_id,consent_type,consent_version,granted,withdrawn_at,created_at) VALUES(?,?,?,0,?,?)').bind(id,CONSENT,'2026-10-23-v1',now,now)]);
 }
 export async function supportApi(request,env,{authenticate=authenticateMember,now=new Date()}={}){
  const url=new URL(request.url),path=url.pathname,root='/v1/my-timber-support';if(![root,root+'/device',root+'/calendar.ics'].includes(path))return json({error:'not_found'},404);
@@ -44,4 +46,4 @@ export async function supportApi(request,env,{authenticate=authenticateMember,no
   return json({ok:true,...publicState(await readStep(DB,id))},201);
  }catch(e){return json({error:e.status?e.message:'support_unavailable'},e.status||503);}
 }
-export async function exportSupport(DB,id){const row=await readStep(DB,id);return{...publicState(row),deviceReminders:(await DB.prepare('SELECT consented_at,background_until FROM my_timber_support_devices WHERE user_id=?').bind(id).all()).results,deliveries:(await DB.prepare('SELECT r.reminder_id,r.status,r.at FROM my_timber_support_deliveries r JOIN my_timber_support_devices d ON d.endpoint=r.endpoint WHERE d.user_id=? ORDER BY r.at DESC').bind(id).all()).results};}
+export async function exportSupport(DB,id){await DB.prepare(supportHistoryDDL).run();const row=await readStep(DB,id);return{...publicState(row),deliveryHistory:(await DB.prepare('SELECT reminder_id,status,at FROM my_timber_support_delivery_history WHERE user_id=? ORDER BY at DESC').bind(id).all()).results,deviceReminders:(await DB.prepare('SELECT consented_at,background_until FROM my_timber_support_devices WHERE user_id=?').bind(id).all()).results,deliveries:(await DB.prepare('SELECT r.reminder_id,r.status,r.at FROM my_timber_support_deliveries r JOIN my_timber_support_devices d ON d.endpoint=r.endpoint WHERE d.user_id=? ORDER BY r.at DESC').bind(id).all()).results};}

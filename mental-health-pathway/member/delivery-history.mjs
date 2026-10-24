@@ -1,0 +1,6 @@
+// Minimal private delivery evidence survives replacement/completion of a reminder.
+// No reminder choice, health note, raw endpoint or encryption material is stored.
+export const supportHistoryDDL=`CREATE TABLE IF NOT EXISTS my_timber_support_delivery_history(user_id INTEGER NOT NULL,reminder_id TEXT NOT NULL,endpoint_hash TEXT NOT NULL,status TEXT NOT NULL,at TEXT NOT NULL,PRIMARY KEY(reminder_id,endpoint_hash),FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)`;
+export async function supportEndpointHash(endpoint){const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(endpoint));return [...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+export async function claimSupportHistory(DB,row,id,at){const hash=await supportEndpointHash(row.endpoint),result=await DB.prepare("INSERT OR IGNORE INTO my_timber_support_delivery_history(user_id,reminder_id,endpoint_hash,status,at) VALUES(?,?,?,'claimed',?)").bind(row.user_id,id,hash,at).run();return{hash,claimed:Number(result.meta.changes)===1}}
+export async function updateSupportHistory(DB,userId,id,hash,status){await DB.prepare('UPDATE my_timber_support_delivery_history SET status=? WHERE user_id=? AND reminder_id=? AND endpoint_hash=?').bind(status,userId,id,hash).run()}
