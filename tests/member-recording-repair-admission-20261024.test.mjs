@@ -4,14 +4,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
-import {verifyMemberRecordingRepair,validateRecordingRepairReceipt,RECORDING_REPAIR_RECEIPT,RECORDING_REPAIR_BLOBS,originalRecordingMaintenance,withMemberRecordingQualification} from '../release/member-recording-repair-20261024.mjs';
+import {verifyMemberRecordingRepair,validateRecordingRepairReceipt,RECORDING_REPAIR_RECEIPT,RECORDING_REPAIR_BLOBS,originalRecordingMaintenance,withMemberRecordingQualification,memberRecordingComparisonValue} from '../release/member-recording-repair-20261024.mjs';
 const receipt=()=>JSON.parse(readFileSync(RECORDING_REPAIR_RECEIPT,'utf8'));
 test('exact native repair and its registration have no unrelated source tail',()=>{const proof=verifyMemberRecordingRepair();assert.equal(proof.paths.length,41);assert.deepEqual(proof.receipt.payloadBlobs,RECORDING_REPAIR_BLOBS);});
-test('authority cannot be expanded to messages, real deletion, Health reads or a new Apple submission',()=>{for(const key of ['messaging','realAccountDeletionTest','personalHealthRead','newAppleSubmission','homepage']){const r=receipt();r.authority[key]=true;assert.throws(()=>validateRecordingRepairReceipt(r));}});
+test('authority cannot be expanded to messages, real deletion, Health reads or a new Apple submission',()=>{for(const key of ['messaging','realAccountDeletionTest','personalHealthRead','newAppleSubmission','homepage','clinicalActivation','realCharge','stockCommitment']){const r=receipt();r.authority[key]=true;assert.throws(()=>validateRecordingRepairReceipt(r));}});
 test('all runtime and acceptance-test pins reject drift',()=>{for(const key of Object.keys(RECORDING_REPAIR_BLOBS)){const r=receipt();r.payloadBlobs[key]='0'.repeat(40);assert.throws(()=>validateRecordingRepairReceipt(r));}});
 test('forged source, provenance and extra receipt fields are rejected',()=>{for(const patch of [{base:'0'.repeat(40)},{payload:'0'.repeat(40)},{registrationSource:'unverified'},{ignoreOldGuards:true}])assert.throws(()=>validateRecordingRepairReceipt({...receipt(),...patch}));const r=receipt();r.registrationSource='a'.repeat(40);assert.throws(()=>verifyMemberRecordingRepair(r),/Native repair receipt/);});
 
-test('qualified maintenance restores every original guard byte and rejects edited adapters',()=>{for(const path of ['release/my-shift-release-scope-20261024.mjs','release/approved-source-comparison-20261024.mjs','release/member-design-scope.mjs','release/app-scope.mjs','.github/workflows/seo-discovery-proof.yml','release/app-preflight.mjs','tests/approved-ranking-release.test.mjs','tests/seo-discovery-release.test.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','tests/recorded-week-navigation-preservation-20261018.test.mjs','release/immutable-git-facts.mjs','release/seo-audit-scope-20261016.mjs','release/food-diary-london-date-scope-20261015.mjs','release/ci-execution-scope-20261014.mjs','release/release-machinery-repair-scope-20261014.mjs']){const value=readFileSync(path,'utf8');assert.equal(typeof originalRecordingMaintenance(path,value),'string');assert.throws(()=>originalRecordingMaintenance(path,value+'unreviewed'));}});
+test('qualified maintenance restores every original guard byte and rejects edited adapters',()=>{for(const path of ['release/my-shift-release-scope-20261024.mjs','release/approved-source-comparison-20261024.mjs','release/member-design-scope.mjs','release/app-scope.mjs','.github/workflows/seo-discovery-proof.yml','release/app-preflight.mjs','tests/approved-ranking-release.test.mjs','tests/seo-discovery-release.test.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','tests/recorded-week-navigation-preservation-20261018.test.mjs','release/immutable-git-facts.mjs','release/seo-audit-scope-20261016.mjs','release/food-diary-london-date-scope-20261015.mjs','release/ci-execution-scope-20261014.mjs','release/release-machinery-repair-scope-20261014.mjs','release/metrics-connection-scope.mjs']){const value=readFileSync(path,'utf8');assert.equal(typeof originalRecordingMaintenance(path,value),'string');assert.throws(()=>originalRecordingMaintenance(path,value+'unreviewed'));}});
 
 test('closed native qualification reuse rejects changed current bytes in an isolated checkout',()=>{
  const fixture=mkdtempSync(tmpdir()+'/recording-qualification-tamper-');
@@ -37,9 +37,10 @@ test('actual current-main safety assertions compose only the qualified native re
   const current=read(path);assert.notEqual(current,expected);
   assert.equal(myShiftSafetyComparison(path,current),expected);
   assert(verifyCurrentMainSafetyChecks().includes(path));
+  const qualifiedRead=p=>memberRecordingComparisonValue(p,read(p));
   const forged=current+'unreviewed';assert.equal(myShiftSafetyComparison(path,forged),forged);
-  assert.throws(()=>verifyCurrentMainSafetyChecks(p=>p===path?forged:read(p)),/Merged safety-check source drift: release\/approved-source-comparison/);
-  assert.throws(()=>verifyCurrentMainSafetyChecks(p=>p==='worker-entry-v6.js'?'0'.repeat(40):read(p)),/Merged safety-check source drift: worker-entry-v6.js/);
+  assert.throws(()=>verifyCurrentMainSafetyChecks(p=>p===path?forged:qualifiedRead(p)),/Merged safety-check source drift: release\/approved-source-comparison/);
+  assert.throws(()=>verifyCurrentMainSafetyChecks(p=>p==='worker-entry-v6.js'?'0'.repeat(40):qualifiedRead(p)),/Merged safety-check source drift: worker-entry-v6.js/);
  });
 });
 
