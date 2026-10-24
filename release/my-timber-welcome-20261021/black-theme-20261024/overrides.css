@@ -1,0 +1,36 @@
+/* Approved My Timber black cover — 24 October 2026. Scoped presentation only. */
+#mtWelcome{background:#050505;color:#e7e3da}
+html body:has(#mtWelcome)[data-member-session="signed-out"],html body:has(#mtWelcome):not([data-member-session]):not(.member-ready){background:#050505!important}
+html body[data-member-session="signed-out"]:has(#mtWelcome):is(#mtWelcomeScope,[data-member-session]):is(#mtWelcomePalette,[data-member-session]):is(#mtWelcomeLayout,[data-member-session]){background:#050505!important}
+#mtWelcome :is(a,button,summary):is(:focus,:focus-visible){outline:3px solid #e7e3da!important;outline-offset:4px!important}
+#mtWelcome .mtw-header{padding-top:16px;padding-bottom:16px;border-color:#707762}
+#mtWelcome .mtw-header img{content:url('/assets/header-logo-20261020.svg');filter:none}
+#mtWelcome .mtw-hero{background:#050505;color:#e7e3da;padding-top:44px;padding-bottom:38px}
+#mtWelcome .mtw-kicker,#mtWelcome h1 span{color:#e7e3da}
+#mtWelcome h1{font-size:clamp(56px,6.3vw,88px);margin-bottom:18px}
+#mtWelcome .mtw-join{background:#707762;color:#050505;border:1px solid #707762;border-radius:12px;padding:8px 24px;min-height:46px;font-size:19px;font-weight:700;line-height:1.35;gap:22px}
+#mtWelcome .mtw-join:hover{background:#e7e3da;border-color:#e7e3da;color:#050505}
+#mtWelcome .mtw-login{min-height:44px}
+#mtWelcome .mtw-phone{background:#050505;border-color:#707762;color:#e7e3da;box-shadow:none}
+#mtWelcome .mtw-speaker{background:#707762}
+#mtWelcome .mtw-phone-brand,#mtWelcome .mtw-mood{border-color:#707762}
+#mtWelcome .mtw-phone-brand span,#mtWelcome figcaption{color:#e7e3da}
+#mtWelcome .mtw-days b{background:#e7e3da;color:#050505}
+#mtWelcome .mtw-days .empty{background:transparent;color:#e7e3da}
+#mtWelcome .mtw-mood b,#mtWelcome .mtw-mood span:nth-child(2) b,#mtWelcome .mtw-mood span:nth-child(3) b{background:#e7e3da;color:#050505}
+#mtWelcome .mtw-meal{background:#050505;color:#e7e3da;border:1px solid #707762}
+#mtWelcome .mtw-benefits{background:#050505;color:#e7e3da;padding-top:20px;padding-bottom:28px;border-top:1px solid #707762;border-bottom:1px solid #707762}
+#mtWelcome .mtw-benefits h2{background:#707762;color:#e7e3da;max-width:1080px;margin:0 auto 24px;padding:8px 12px;border-radius:8px;font-size:26px}
+#mtWelcome .mtw-benefit-grid>div,#mtWelcome .mtw-benefit-grid>div:nth-child(odd){border-color:#707762}
+#mtWelcome .mtw-icon{background:#050505;color:#e7e3da;border:1px solid #707762}
+#mtWelcome .mtw-app-card,#mtWelcome .mtw-soon{background:#050505;color:#e7e3da;border-color:#707762}
+#mtWelcome .mtw-app-card:hover:not(.mtw-soon){background:#050505;border-color:#e7e3da}
+#mtWelcome .mtw-browser-note{color:#e7e3da}
+#mtWelcome #mtwInstallHelp{background:#050505;color:#e7e3da;border-color:#707762}
+#mtWelcome #mtwInstallNow{background:#e7e3da;color:#050505;min-height:44px}
+#mtWelcome .mtw-faqs,#mtWelcome .mtw-faqs details,#mtWelcome .mtw-footer{border-color:#707762}
+#mtWelcome summary{min-height:56px}
+#mtWelcome .mtw-apps h2,#mtWelcome .mtw-life h2{font-size:32px}
+#mtWelcome #mtwCookies{min-height:44px;padding:8px 0}
+@media(max-width:800px){#mtWelcome .mtw-header{padding-top:14px;padding-bottom:14px}#mtWelcome .mtw-hero{padding-top:32px;padding-bottom:32px}}
+@media(max-width:600px){#mtWelcome h1{font-size:56px}#mtWelcome .mtw-join{font-size:19px;padding:8px 20px;min-height:46px}#mtWelcome .mtw-benefits h2{font-size:26px}#mtWelcome .mtw-apps h2,#mtWelcome .mtw-life h2{font-size:28px}}

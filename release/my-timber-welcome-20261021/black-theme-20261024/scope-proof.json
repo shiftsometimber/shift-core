@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-24T22:50:09.370Z",
+  "authority": "Matt24October: Agreed can you deploy the updates here this is priority number1",
+  "changed": [
+    "/assets/my-timber-welcome-20261021.css"
+  ],
+  "exactAppendInverse": true,
+  "allOtherAssetsUnchanged": true,
+  "homepageAssetsUnchanged": true,
+  "authBehaviourUnchanged": true,
+  "existingFooterAndLineIconsPreserved": true,
+  "headersSHA256": "6fc553ead8d1665b52abc24e3fabfe27f54ee0a8168fda63bfd71d1a9e7fc8af",
+  "logo": "Existing cream/green header-logo-20261020.svg used through cover-scoped CSS only",
+  "mainCoreStoreUntouched": true
+}
