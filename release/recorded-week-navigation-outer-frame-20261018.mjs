@@ -445,7 +445,7 @@ function navigationEditorialProofFacts(outer){
   // at every use; repeating the outer working-tree scan here adds no boundary.
   clean:(expected)=>{nativeCurrent();if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
   readFileSync:filename=>{
-   outer.assertCurrent();const full=resolve(filename),prefix=process.cwd()+'/';assert(full.startsWith(prefix),'Only native tracked navigation files may be projected');
+   nativeCurrent();const full=resolve(filename),prefix=process.cwd()+'/';assert(full.startsWith(prefix),'Only native tracked navigation files may be projected');
    const p=full.slice(prefix.length);assert([...fixedPaths,...fixedMaintenance].includes(p),'Exact navigation source path required');
    const actual=readFileSync(full);assert(actual.equals(bytes(outer.rawHead,p)),'Actual current navigation working source changed');
    return bytes(outer.head,p);
