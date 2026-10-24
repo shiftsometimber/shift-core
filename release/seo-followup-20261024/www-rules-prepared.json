@@ -1,5 +1,5 @@
 {
-  "status": "prepared_not_deployed",
+  "status": "deployed_verified",
   "phase": "http_request_dynamic_redirect",
   "insertBefore": "Existing www canonical-host rule; preserve all existing rules unchanged",
   "rules": [
@@ -99,5 +99,13 @@
       },
       "enabled": true
     }
-  ]
+  ],
+  "deployedAt": "2026-10-24T07:41:18.471Z",
+  "deployedVia": "Authenticated SST Mac Safari Cloudflare dashboard",
+  "verification": "evidence/remaining-20261024/www-rules-live-verify.json",
+  "dashboardState": {
+    "usedRules": 7,
+    "availableRules": 10,
+    "sixScopedRulesEnabledBeforeExistingWwwRule": true
+  }
 }

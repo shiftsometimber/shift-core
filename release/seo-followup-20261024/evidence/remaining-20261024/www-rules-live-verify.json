@@ -1,0 +1,1929 @@
+{
+  "pass": true,
+  "at": "2026-10-24T07:41:18.471Z",
+  "dashboard": {
+    "observedOn": "SST Mac authenticated Safari",
+    "usedRules": 7,
+    "availableRules": 10,
+    "order": [
+      "SST legacy www /guides/mounjaro-ultimate-uk-guide to current canonical",
+      "SST legacy www /newsroom to current canonical",
+      "SST legacy www /blog to current canonical",
+      "SST legacy www /waiting-list to current canonical",
+      "SST legacy www /help-centre to current canonical",
+      "SST legacy www treatments to current canonical",
+      "Redirect from WWW to root [Template]"
+    ]
+  },
+  "redirectChecks": [
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/treatments",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/treatments",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/treatments?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/treatments?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/treatments/",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/treatments/",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/treatments/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/treatments/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/treatments/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/treatments",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/treatments",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/treatments",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/treatments",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/treatments?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/treatments?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/treatments?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/treatments?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/treatments/",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/treatments/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/treatments/",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/treatments/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/treatments/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/treatments/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/treatments/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/treatments/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/treatment-centre?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/help-centre",
+      "expected": "https://shiftsometimber.co.uk/help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help-centre",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/help-centre",
+      "expected": "https://shiftsometimber.co.uk/help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help-centre",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/help-centre?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help-centre?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/help-centre?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help-centre?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/help-centre/",
+      "expected": "https://shiftsometimber.co.uk/help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help-centre/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/help-centre/",
+      "expected": "https://shiftsometimber.co.uk/help",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help-centre/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/help-centre/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help-centre/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/help-centre/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/help-centre/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/help-centre",
+      "expected": "https://shiftsometimber.co.uk/help",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/help-centre",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/help-centre",
+      "expected": "https://shiftsometimber.co.uk/help",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/help-centre",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/help-centre?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/help-centre?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/help-centre?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/help-centre?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/help-centre/",
+      "expected": "https://shiftsometimber.co.uk/help",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/help-centre/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/help-centre/",
+      "expected": "https://shiftsometimber.co.uk/help",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/help-centre/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/help-centre/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/help-centre/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/help-centre/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/help-centre/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/help?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/help?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/waiting-list",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/waiting-list",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/waiting-list?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/waiting-list?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/waiting-list/",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/waiting-list/",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/waiting-list/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/waiting-list/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/waiting-list",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/waiting-list",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/waiting-list?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/waiting-list?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/waiting-list/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/waiting-list/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/waiting-list/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/waiting-list/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/waiting-list-journey?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/blog",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/blog",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/blog",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/blog",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/blog?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/blog?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/blog?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/blog?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/blog/",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/blog/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/blog/",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/blog/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/blog/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/blog/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/blog/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/blog/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/blog",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/blog",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/blog",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/blog",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/blog?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/blog?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/blog?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/blog?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/blog/",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/blog/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/blog/",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/blog/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/blog/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/blog/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/blog/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/blog/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/explore-knowledge?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/newsroom",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/newsroom",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/newsroom",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/newsroom",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/newsroom?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/newsroom?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/newsroom?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/newsroom?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/newsroom/",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/newsroom/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/newsroom/",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/newsroom/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/newsroom/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/newsroom/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/newsroom/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/newsroom/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/newsroom",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/newsroom",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/newsroom",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/newsroom",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/newsroom?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/newsroom?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/newsroom?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/newsroom?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/newsroom/",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/newsroom/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/newsroom/",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/newsroom/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/newsroom/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/newsroom/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/newsroom/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/newsroom/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/shift-newsroom?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "expected": "https://shiftsometimber.co.uk/mounjaro",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "expected": "https://shiftsometimber.co.uk/mounjaro",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "expected": "https://shiftsometimber.co.uk/mounjaro",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "expected": "https://shiftsometimber.co.uk/mounjaro",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "expected": "https://shiftsometimber.co.uk/mounjaro",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+      "expected": "https://shiftsometimber.co.uk/mounjaro",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "expected": "https://shiftsometimber.co.uk/mounjaro",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+      "expected": "https://shiftsometimber.co.uk/mounjaro",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro",
+      "finalStatus": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "finalStatus": 200
+    },
+    {
+      "method": "HEAD",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?sst_accept=www-rule",
+      "expected": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "chain": [
+        {
+          "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/?sst_accept=www-rule",
+          "status": 301,
+          "location": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule"
+        },
+        {
+          "url": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "finalURL": "https://shiftsometimber.co.uk/mounjaro?sst_accept=www-rule",
+      "finalStatus": 200
+    }
+  ],
+  "redirectCheckCount": 96,
+  "nonMatchChecks": [
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/treatments/not-the-alias?sst_nonmatch=nested",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments/not-the-alias?sst_nonmatch=nested"
+    },
+    {
+      "method": "POST",
+      "url": "https://www.shiftsometimber.co.uk/treatments?sst_nonmatch=method",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/treatments?sst_nonmatch=method"
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/help-centre/not-the-alias?sst_nonmatch=nested",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre/not-the-alias?sst_nonmatch=nested"
+    },
+    {
+      "method": "POST",
+      "url": "https://www.shiftsometimber.co.uk/help-centre?sst_nonmatch=method",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/help-centre?sst_nonmatch=method"
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list/not-the-alias?sst_nonmatch=nested",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list/not-the-alias?sst_nonmatch=nested"
+    },
+    {
+      "method": "POST",
+      "url": "https://www.shiftsometimber.co.uk/waiting-list?sst_nonmatch=method",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/waiting-list?sst_nonmatch=method"
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/blog/not-the-alias?sst_nonmatch=nested",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog/not-the-alias?sst_nonmatch=nested"
+    },
+    {
+      "method": "POST",
+      "url": "https://www.shiftsometimber.co.uk/blog?sst_nonmatch=method",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/blog?sst_nonmatch=method"
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/newsroom/not-the-alias?sst_nonmatch=nested",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom/not-the-alias?sst_nonmatch=nested"
+    },
+    {
+      "method": "POST",
+      "url": "https://www.shiftsometimber.co.uk/newsroom?sst_nonmatch=method",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/newsroom?sst_nonmatch=method"
+    },
+    {
+      "method": "GET",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/not-the-alias?sst_nonmatch=nested",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide/not-the-alias?sst_nonmatch=nested"
+    },
+    {
+      "method": "POST",
+      "url": "https://www.shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_nonmatch=method",
+      "status": 301,
+      "location": "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide?sst_nonmatch=method"
+    }
+  ],
+  "nonMatchCheckCount": 12,
+  "homepage": {
+    "status": 200,
+    "sha256": "960326ddb022efae0f5c2b0a725da1ba31218c027050b87151c7cd8c8f06fe69",
+    "unchanged": true
+  },
+  "closedPurchase": {
+    "/cart": 404,
+    "/checkout": 404
+  }
+}
