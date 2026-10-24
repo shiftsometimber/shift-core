@@ -124,7 +124,7 @@ function build(event){
   if(token!==generation||!mealCard.isConnected)return;workspaceData=workspace;updateStart();
   const date=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()),chosen=workspace.today?.date===date?workspace.today:null,recipe=chosen?(workspace.recipes||[]).find(r=>r.id===chosen.recipeId):workspace.recommendation?.recipe;
   const selected=!!chosen;mealCard.dataset.mealState=selected?'chosen':recipe?'suggested':'empty';
-  heading.textContent=selected?(recipe?.meal_type==='dinner'?'Tonight, sorted.':'Your meal, sorted.'):'Something good to eat.';eyebrow.textContent=selected?'SHIFT GRUB · CHOSEN BY YOU':'SHIFT GRUB · SUGGESTION';
+  heading.textContent=selected?(recipe?.meal_type==='dinner'?'Tonight, sorted.':'Your meal, sorted.'):'Something good to eat.';eyebrow.textContent=selected?'SHIFT GRUB · CHOSEN BY YOU':'SHIFT GRUB · YOUR NEXT MEAL';
   meta.textContent=recipe?[recipe.name,recipe.minutes&&recipe.minutes+' min'].filter(Boolean).join(' · '):selected?chosen.name:'Find something you’ll look forward to. Choose it in Grub and it’ll be here when you come back.';
   if(recipe)mealCard.dataset.recipeId=recipe.id;
   action.textContent=selected?(recipe?.meal_type==='dinner'?'See tonight’s meal →':'See today’s meal →'):recipe?'Take a look in Grub →':'Find my next meal →';action.href='/member/grub'+(selected?'#today':'#discover');if(selected)copy.append(swap);

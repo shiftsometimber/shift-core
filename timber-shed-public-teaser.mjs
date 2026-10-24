@@ -1,3 +1,5 @@
+import {withCausesTeaser} from './causes-partners-teaser.mjs';
+import {withSharedFooter as withCanonicalSharedFooter} from './shared-footer.mjs';
 // Visible but deliberately non-interactive Timber Shed teaser.
 // No route, link, signup, member data, publication or community activation.
 const tag='<span class="sst-shed-teaser" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
@@ -35,4 +37,13 @@ export async function withTimberShedTeaser(request,response){
  if(next===original)return new Response(original,{status:response.status,statusText:response.statusText,headers:response.headers});
  const headers=new Headers(response.headers);for(const name of ['content-length','etag','last-modified','content-encoding'])headers.delete(name);
  return new Response(next,{status:response.status,statusText:response.statusText,headers});
+}
+
+// Compose only after the canonical footer has been installed. Preserve the
+// original Worker call sites and historical footer integration tests.
+export async function withSharedFooter(request,response){
+ const canonical=await withCanonicalSharedFooter(request,response);
+ // Keep the homepage byte-preserved; new discovery additions need separate approval.
+ if(new URL(request.url).pathname==='/')return canonical;
+ return withCausesTeaser(request,await withTimberShedTeaser(request,canonical));
 }

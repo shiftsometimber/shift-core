@@ -35,9 +35,9 @@
     return `${amount}${suffix} ${n>0?'up':'down'} since your first log.`;
   };
   const metricCard=m=>`<article class="shift-progress-metric ${m.direction==='improving'?'is-improving':''}">
-    <span class="shift-progress-label">${esc(m.label)}</span>
+    <span class="shift-progress-label">Overall · ${esc(m.label)}</span>
     <strong>${esc(formatValue(m))}</strong>
-    <small>${esc(deltaCopy(m))}</small>
+    <small>Latest across your retained records. ${esc(deltaCopy(m))}</small>
   </article>`;
 
   function chartValue(metric,value,units){
@@ -75,18 +75,33 @@ function weightProjection(series, now=Date.now()) {
  return {status:'ready',from:last.on,to:date(28),recordedDays:points.length,weeklyChangeKg:round(mid*7),projection,meaning:'If your recent trend continues. The shaded scenarios use variation in recorded trends; they are not a probability interval or a guaranteed outcome. No target date or treatment recommendation.'};
 }
 
+  // Calendar filters use the member-facing UK day, including BST boundaries.
+  function londonDay(now=Date.now()){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(now));}
   function periodBounds(period,now=Date.now()){
-    const today=new Date(now).toISOString().slice(0,10);
+    const today=londonDay(now),at=Date.parse(today+'T00:00:00Z');
+    const valid=on=>typeof on==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(on)&&Number.isFinite(Date.parse(on+'T00:00:00Z'))&&new Date(on+'T00:00:00Z').toISOString().slice(0,10)===on;
     if(period&&typeof period==='object'){
-      const valid=on=>typeof on==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(on)&&Number.isFinite(Date.parse(on+'T00:00:00Z'))&&new Date(on+'T00:00:00Z').toISOString().slice(0,10)===on;
-      if(!valid(period.from)||!valid(period.to)||period.from>period.to)throw Error('Choose a To date on or after the From date.');
+      if(!valid(period.from)||!valid(period.to)||period.from>period.to)throw Error('Choose valid dates, with To on or after From.');
+      if(period.to>today)throw Error('Choose dates up to today. Future days have not been recorded.');
       return {from:period.from,to:period.to};
     }
-    return {from:period==='all'?'0000-01-01':new Date(Date.parse(today+'T00:00:00Z')-(Number(period)-1)*86400000).toISOString().slice(0,10),to:today};
+    if(period==='all')return {from:'0000-01-01',to:today};
+    if(period==='week'){const offset=(new Date(at).getUTCDay()+6)%7;return {from:new Date(at-offset*86400000).toISOString().slice(0,10),to:today};}
+    if(period==='3months'){const d=new Date(at),month=d.getUTCMonth()-3,first=new Date(Date.UTC(d.getUTCFullYear(),month,1)),lastDay=new Date(Date.UTC(first.getUTCFullYear(),first.getUTCMonth()+1,0)).getUTCDate();return {from:new Date(Date.UTC(first.getUTCFullYear(),first.getUTCMonth(),Math.min(d.getUTCDate(),lastDay))).toISOString().slice(0,10),to:today};}
+    const days=Number(period);if(!Number.isInteger(days)||days<1||days>36600)throw Error('Choose one of the available date ranges.');
+    return {from:new Date(at-(days-1)*86400000).toISOString().slice(0,10),to:today};
+  }
+  // Compare only distinct saved dates selected by the chart. Never estimate a
+  // reading at a period boundary or attribute a change to food or medication.
+  function rangeChangeMarkup(metric,points,units,date){
+    if(points.length<2)return '';
+    const first=points[0],last=points.at(-1),delta=last.value-first.value;
+    const deltaUnits=metric.key==='weight'&&units==='stone_lb'?'lb':units;
+    const change=delta===0?'No change between these recorded readings.':chartValue(metric,Math.abs(delta),deltaUnits)+' '+(delta<0?'down':'up');
+    return '<section class="shift-chart-period-summary" aria-label="Recorded change in this range"><p><span>First recorded · '+esc(date(first.on))+' · '+esc(chartValue(metric,first.value,units))+'</span><span aria-hidden="true"> → </span><span>Latest recorded · '+esc(date(last.on))+' · '+esc(chartValue(metric,last.value,units))+'</span></p><strong>'+esc(change)+'</strong><p>Between your first and latest saved readings in this range. Missing dates are not estimated.</p></section>';
   }
   function progressChartMarkup(metric,units,period,now=Date.now(),width=620,forecast=null){
-    const today=new Date(now).toISOString().slice(0,10),day=86400000;
-    const bounds=periodBounds(period,now);
+    const today=londonDay(now),bounds=periodBounds(period,now);
     const daily=new Map();
     for(const row of metric.series||[]){
       if(!row||typeof row.value!=='number'||!Number.isFinite(row.value)||typeof row.on!=='string')continue;
@@ -107,13 +122,13 @@ function weightProjection(series, now=Date.now()) {
     const dots=points.map((p,i)=>{const label=date(p.on)+': '+chartValue(metric,p.value,units);return '<g class="shift-chart-point" tabindex="'+(i===0?0:-1)+'" role="button" aria-label="'+esc(label)+'" data-on="'+esc(p.on)+'" data-point="'+i+'" data-reading="'+esc(label)+'"><circle class="shift-chart-hit" cx="'+x(p).toFixed(2)+'" cy="'+y(p).toFixed(2)+'" r="22" fill="transparent"/><circle class="shift-chart-dot" cx="'+x(p).toFixed(2)+'" cy="'+y(p).toFixed(2)+'" r="5" fill="#34412c"/></g>';}).join('');
     const extension=extra.length?'<polygon data-trend-scenarios points="'+[...extra.map(p=>({...p,value:p.low})),...extra.slice().reverse().map(p=>({...p,value:p.high}))].map(p=>x({stamp:Date.parse(p.on+'T00:00:00Z')}).toFixed(2)+','+y(p).toFixed(2)).join(' ')+'" fill="#707762" opacity=".15"/><polyline data-informational-projection points="'+extra.map(p=>x({stamp:Date.parse(p.on+'T00:00:00Z')}).toFixed(2)+','+y(p).toFixed(2)).join(' ')+'" fill="none" stroke="#34412c" stroke-width="2" stroke-dasharray="6 5"/>':'';
     const labels=points.length>1?'<text x="'+left+'" y="238">'+esc(date(first.on))+'</text><text x="'+right+'" y="238" text-anchor="end">'+esc(date(extra.at(-1)?.on||last.on))+'</text>':'<text x="'+((left+right)/2)+'" y="238" text-anchor="middle">'+esc(date(first.on))+'</text>';
-    return '<p class="shift-chart-latest"><strong>'+esc(chartValue(metric,last.value,units))+'</strong><span>Latest recorded · '+esc(date(last.on))+'</span></p><svg class="shift-chart-svg" viewBox="0 0 '+w+' 260" role="group" aria-labelledby="shiftChartTitle shiftChartDescription"><title id="shiftChartTitle">'+esc(metric.label)+' over time</title><desc id="shiftChartDescription">'+points.length+' recorded '+(points.length===1?'day':'days')+'. Latest saved reading on each day. '+esc(date(first.on))+' to '+esc(date(last.on))+'.</desc>'+grid+line+extension+dots+labels+'</svg><p class="shift-chart-readout" aria-live="polite">'+(points.length===1?'One reading. Add another when you’re ready.':'Tap a dot to see its reading.')+'</p><details class="shift-chart-records"><summary>See readings</summary><table><thead><tr><th scope="col">Date</th><th scope="col">'+esc(metric.label)+'</th></tr></thead><tbody>'+points.map(p=>'<tr><td>'+esc(date(p.on))+'</td><td>'+esc(chartValue(metric,p.value,units))+'</td></tr>').join('')+'</tbody></table></details>';
+    return '<p class="shift-chart-latest"><strong>'+esc(chartValue(metric,last.value,units))+'</strong><span>Latest recorded · '+esc(date(last.on))+'</span></p>'+rangeChangeMarkup(metric,points,units,date)+'<svg class="shift-chart-svg" viewBox="0 0 '+w+' 260" role="group" aria-labelledby="shiftChartTitle shiftChartDescription"><title id="shiftChartTitle">'+esc(metric.label)+' over time</title><desc id="shiftChartDescription">'+points.length+' recorded '+(points.length===1?'day':'days')+'. Latest saved reading on each day. '+esc(date(first.on))+' to '+esc(date(last.on))+'.</desc>'+grid+line+extension+dots+labels+'</svg><p class="shift-chart-readout" aria-live="polite">'+(points.length===1?'One reading. Add another when you’re ready.':'Tap a dot to see its reading.')+'</p><details class="shift-chart-records"><summary>See readings</summary><table><thead><tr><th scope="col">Date</th><th scope="col">'+esc(metric.label)+'</th></tr></thead><tbody>'+points.map(p=>'<tr><td>'+esc(date(p.on))+'</td><td>'+esc(chartValue(metric,p.value,units))+'</td></tr>').join('')+'</tbody></table></details>';
   }
   const chartStyles='<style>.shift-progress-chart{margin:22px 0;padding:20px;border:1px solid #707762;border-radius:16px;background:#f7f5ef;color:#050505}.shift-chart-controls{display:flex;flex-wrap:wrap;gap:12px}.shift-chart-controls label{flex:1;min-width:140px}.shift-chart-controls select{display:block;width:100%;min-height:44px;font:inherit;padding:8px;margin-top:5px;background:#fff;color:#050505;border:1px solid #707762;border-radius:8px}.shift-chart-latest{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}.shift-chart-latest strong{font-size:30px}.shift-chart-latest span{font-size:14px}.shift-chart-svg{display:block;width:100%;height:auto;overflow:visible;font:12px Arial,sans-serif;color:#050505}.shift-chart-svg text{fill:currentColor}.shift-chart-point{cursor:pointer;outline:none}.shift-chart-point:focus .shift-chart-dot{stroke:#050505;stroke-width:5}.shift-chart-readout{min-height:24px}.shift-chart-records summary{min-height:44px;cursor:pointer;padding:10px 0}.shift-chart-records table{width:100%;border-collapse:collapse}.shift-chart-records td,.shift-chart-records th{text-align:left;padding:8px;border-bottom:1px solid #b8bead}.shift-pattern-sources{display:grid;gap:8px;margin:14px 0}.shift-pattern-sources label{min-height:44px;display:flex;align-items:center;gap:8px}.shift-pattern-panel button{min-height:44px;font:inherit;padding:8px 12px;border:1px solid #707762;border-radius:8px;background:#050505;color:#e7e3da;margin:8px 0}.shift-context-label select{display:block;width:100%;min-height:44px;font:inherit;margin:8px 0}.shift-context-detail{overflow-wrap:anywhere}.shift-chart-svg [data-context-id]{cursor:pointer}.shift-chart-svg [data-context-id]:focus{outline:2px solid #050505}.shift-pattern-panel details summary{min-height:44px;padding:10px 0}.shift-pattern-panel [data-pattern-result]{overflow-wrap:anywhere}.shift-photo-journey label{display:block;margin:12px 0}.shift-photo-journey input,.shift-photo-journey textarea,.shift-photo-journey select{display:block;box-sizing:border-box;width:100%;max-width:100%;min-height:44px;font:inherit}.shift-photo-journey button{min-height:44px;font:inherit;margin:10px 0}.shift-photo-journey summary{min-height:44px;cursor:pointer}.shift-chart-controls select:focus-visible,.shift-chart-records summary:focus-visible{outline:3px solid #707762;outline-offset:3px}@media(max-width:480px){.shift-progress-chart{padding:12px}.shift-chart-latest strong{font-size:26px}}</style>';
   let patternData=null,patternVersion=0;
   function contextMarkers(metric,patterns,period,now=Date.now(),width=620,forecast=null){
     if(!patterns||patterns.status!=='available')return '';
-    const today=new Date(now).toISOString().slice(0,10),bounds=periodBounds(period,now);
+    const today=londonDay(now),bounds=periodBounds(period,now);
     const readings=(metric?.series||[]).filter(r=>typeof r.value==='number'&&Number.isFinite(r.value)&&/^\d{4}-\d{2}-\d{2}$/.test(r.on||'')&&r.on<=today&&r.on>=bounds.from&&r.on<=bounds.to).sort((a,b)=>a.on.localeCompare(b.on));
     const fmt=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'});
     const events=[...patterns.doses.map(d=>({...d,type:'jab',label:d.medicine+' · Jab recorded · '+(d.site||'Site unrecorded')+' · '+(d.dose?'Recorded strength: '+d.dose:'Dose strength not separately recorded')})),...patterns.symptoms.map(s=>({...s,type:'symptom',label:'Symptoms · '+s.note+' · '+(s.timeBasis==='reported_onset'?'Reported start time':'Log time; start time unknown')}))].filter(e=>Number.isFinite(Date.parse(e.at))).map(e=>({...e,on:fmt.format(new Date(e.at))})).filter(e=>e.on<=today&&e.on>=bounds.from&&e.on<=bounds.to).sort((a,b)=>Date.parse(a.at)-Date.parse(b.at));
@@ -126,22 +141,10 @@ function weightProjection(series, now=Date.now()) {
     return '<section aria-label="Jab and symptom context">'+rail+(events.length?'<label class="shift-context-label">Jab or symptom detail<select data-context-event><option value="">Choose a recorded event</option>'+options+'</select></label><p class="shift-context-detail" aria-live="polite"></p>':'<p>No recorded jabs or symptoms in this selected period.</p>')+'</section>';
   }
   function bindContext(host){const select=host.querySelector('[data-context-event]');if(select){select.onchange=()=>{host.querySelector('.shift-context-detail').textContent=select.selectedIndex>0?select.options[select.selectedIndex].textContent:'';};host.querySelectorAll('[data-context-id]').forEach(mark=>{const choose=()=>{select.value=mark.dataset.contextId;select.onchange();if(Number(mark.dataset.contextCount)>1)host.querySelector('.shift-context-detail').textContent+=' · Nearby dates are grouped for tapping. Choose any record in the list.';};mark.onclick=choose;mark.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose();}};});}}
-  function filterPatternDays(section){
-    const from=section.querySelector('[data-pattern-from]').value,to=section.querySelector('[data-pattern-to]').value,status=section.querySelector('[data-pattern-date-status]');
-    try{periodBounds({from,to});}catch(error){status.textContent=error.message;return;}
-    let shown=0;section.querySelectorAll('[data-pattern-days] [data-recorded-on]').forEach(p=>{p.hidden=p.dataset.recordedOn<from||p.dataset.recordedOn>to;if(!p.hidden)shown++;});
-    status.textContent=section.querySelector('[data-pattern-days]')?shown+' recorded context days in the selected dates. Unrecorded days remain unknown.':'Choose the sources below, then Show context to review these dates.';
-  }
-  function mountPatternDateControls(section){
-    const form=document.createElement('form');form.className='shift-chart-custom-dates';form.setAttribute('aria-label','Dates for how I felt');
-    form.innerHTML='<h4>Dates for day-by-day entries</h4><div class="shift-chart-controls"><label>From<input type="date" data-pattern-from required></label><label>To<input type="date" data-pattern-to required></label></div><button type="submit">Show these dates</button><p data-pattern-date-status role="status" aria-live="polite"></p>';
-    const to=new Date().toISOString().slice(0,10);form.querySelector('[data-pattern-from]').value=new Date(Date.parse(to+'T00:00:00Z')-27*86400000).toISOString().slice(0,10);form.querySelector('[data-pattern-to]').value=to;
-    section.querySelector('.shift-pattern-sources').before(form);form.onsubmit=e=>{e.preventDefault();filterPatternDays(section);};
-  }
   function mountPatterns(host){
     const section=document.createElement('section');section.className='shift-progress-chart shift-pattern-panel';
-    section.innerHTML='<h3>SHIFT AI · What stands out</h3><p>Choose the saved records SHIFT can explain. Missing logs stay unknown. This explanation uses the available history from your selected sources; chart dates filter the chart only.</p><div class="shift-pattern-sources">'+[['treatment','Jabs and symptoms'],['food','Food notes and protein snapshots'],['fit','Exercises marked done'],['progress','Steps and sleep readings']].map(([value,label])=>'<label><input type="checkbox" value="'+value+'"> '+label+'</label>').join('')+'</div><button type="button" data-pattern-show>Show context</button><div data-pattern-result aria-live="polite"></div>';
-    host.append(section);mountPatternDateControls(section);let currentSources=[],disposeWeek=null;
+    section.innerHTML='<h3>Jabs, symptoms and your week</h3><p>Choose which saved records to compare. Missing logs stay unknown.</p><div class="shift-pattern-sources">'+[['treatment','Jabs and symptoms'],['food','Food notes and protein snapshots'],['fit','Exercises marked done'],['progress','Steps and sleep readings']].map(([value,label])=>'<label><input type="checkbox" value="'+value+'"> '+label+'</label>').join('')+'</div><button type="button" data-pattern-show>Show context</button><div data-pattern-result aria-live="polite"></div>';
+    host.append(section);let currentSources=[],disposeWeek=null;
     const sources=()=>[...section.querySelectorAll('input:checked')].map(e=>e.value);
     const result=section.querySelector('[data-pattern-result]'),showButton=section.querySelector('[data-pattern-show]');
     const clear=()=>{++patternVersion;disposeWeek?.();disposeWeek=null;patternData=null;currentSources=[];result.replaceChildren();drawChart(host);};
@@ -154,7 +157,7 @@ function weightProjection(series, now=Date.now()) {
         patternData=body.patterns;currentSources=selected;drawChart(host);result.replaceChildren();
         const notices=patternData.observations.length?patternData.observations.map(o=>o.text+' '+o.limitation):['There are not enough comparable recorded days or completed jab windows to describe a repeated pattern yet.'];
         for(const text of notices){const p=document.createElement('p');p.textContent=text;result.append(p)}if(patternData.historyMayBeLimited){const p=document.createElement('p');p.textContent='This view has reached its history limit; some records may be omitted.';result.append(p)}
-        const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='See the recorded context by day';details.dataset.patternDays='';details.append(summary);for(const d of patternData.contextDays){const p=document.createElement('p');p.dataset.recordedOn=d.on;p.textContent=d.on+': '+[d.symptoms===true?'Symptom entry':d.symptoms===false?'Explicit no-symptoms entry':'Symptoms unknown',d.foodNote?'Food note: '+d.foodNote:null,d.foodEaten?.length?'Recorded as eaten: '+d.foodEaten.map(f=>f.food).join('; '):null,d.proteinGrams!==undefined?'Latest protein snapshot: '+d.proteinGrams+' g':null,d.exercisesDone!==undefined?d.exercisesDone+' individual exercises marked done':null,d.steps!==undefined?'Steps: '+d.steps:null,d.sleep_hours!==undefined?'Sleep: '+d.sleep_hours+' hours':null].filter(Boolean).join(' · ');details.append(p)}result.append(details);filterPatternDays(section);
+        const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='See the recorded context by day';details.append(summary);for(const d of patternData.contextDays){const p=document.createElement('p');p.textContent=d.on+': '+[d.symptoms===true?'Symptom entry':d.symptoms===false?'Explicit no-symptoms entry':'Symptoms unknown',d.foodNote?'Food note: '+d.foodNote:null,d.foodEaten?.length?'Recorded as eaten: '+d.foodEaten.map(f=>f.food).join('; '):null,d.proteinGrams!==undefined?'Latest protein snapshot: '+d.proteinGrams+' g':null,d.exercisesDone!==undefined?d.exercisesDone+' individual exercises marked done':null,d.steps!==undefined?'Steps: '+d.steps:null,d.sleep_hours!==undefined?'Sleep: '+d.sleep_hours+' hours':null].filter(Boolean).join(' · ');details.append(p)}result.append(details);
         if(body.weekViewAvailable){
           if(!document.querySelector('link[data-treatment-week]')){const link=document.createElement('link');link.rel='stylesheet';link.href='/assets/member-experience/treatment-week.css';link.dataset.treatmentWeek='v1';document.head.append(link)}
           const slot=document.createElement('div');result.append(slot);
@@ -165,29 +168,41 @@ function weightProjection(series, now=Date.now()) {
     };
   }
 
-  let chartData=null,chartMetric='',chartPeriod='all',chartRange=null,renderVersion=0,showForecast=false,scheduledRender=null;
+  let chartData=null,chartMetric='',chartPeriod='28',chartRange=null,renderVersion=0,showForecast=false,scheduledRender=null;
   function drawChart(host){
     const chart=host.querySelector?.('.shift-progress-chart');if(!chart||!chartData)return;
-    const metrics=chartData.metrics.filter(m=>!['heart_rate','heartRate','hr'].includes(m.key)&&Array.isArray(m.series)&&m.series.length);
+    const metrics=chartData.metrics.filter(m=>Array.isArray(m.series)&&m.series.length);
     if(!metrics.some(m=>m.key===chartMetric))chartMetric=(metrics.find(m=>m.key==='weight')||metrics[0])?.key||'';
     const metric=metrics.find(m=>m.key===chartMetric);if(!metric)return;const estimate=metric.key==='weight'?weightProjection(metric.series):null;const forecast=showForecast&&chartPeriod!=='custom'&&estimate?.status==='ready'?estimate:null;const activePeriod=chartPeriod==='custom'?chartRange:chartPeriod;
-    chart.innerHTML='<h3>Your progress over time</h3><div class="shift-chart-controls"><label>Measure<select data-chart-metric>'+metrics.map(m=>'<option value="'+esc(m.key)+'"'+(m.key===chartMetric?' selected':'')+'>'+esc(m.label)+'</option>').join('')+'</select></label><label>Period<select data-chart-period>'+[['all','All records'],['7','Last 7 days'],['28','Last 4 weeks'],['84','Last 12 weeks'],['custom','Custom dates']].map(([v,label])=>'<option value="'+v+'"'+(v===chartPeriod?' selected':'')+'>'+label+'</option>').join('')+'</select></label></div>'+(chartData.historyMayBeLimited?'<p>This view shows up to 1,000 records from each log.</p>':'')+'<div class="shift-chart-view">'+progressChartMarkup(metric,weightUnits,activePeriod,Date.now(),chart.clientWidth-24,forecast)+contextMarkers(metric,patternData,activePeriod,Date.now(),chart.clientWidth-24,forecast)+'</div>';
+    chart.innerHTML='<h3>Your progress over time</h3><div class="shift-chart-controls"><label>Measure<select data-chart-metric>'+metrics.map(m=>'<option value="'+esc(m.key)+'"'+(m.key===chartMetric?' selected':'')+'>'+esc(m.label)+'</option>').join('')+'</select></label><label>Period<select data-chart-period>'+[['week','This week'],['14','2 weeks'],['28','4 weeks'],['3months','3 months'],['custom','Custom'],['all','All records']].map(([v,label])=>'<option value="'+v+'"'+(v===chartPeriod?' selected':'')+'>'+label+'</option>').join('')+'</select></label></div>'+(chartData.historyMayBeLimited?'<p>This view shows up to 1,000 records from each log.</p>':'')+'<div class="shift-chart-view">'+progressChartMarkup(metric,weightUnits,activePeriod,Date.now(),chart.clientWidth-24,forecast)+contextMarkers(metric,patternData,activePeriod,Date.now(),chart.clientWidth-24,forecast)+'</div>';
     if(metric.key==='weight'&&chartPeriod!=='custom'){chart.insertAdjacentHTML('beforeend','<label class="shift-forecast-toggle"><input type="checkbox" data-weight-forecast '+(showForecast?'checked':'')+'> Show an informational 4-week projection</label><p class="shift-forecast-note">'+esc(showForecast?(estimate.status==='ready'?estimate.meaning:estimate.reason):'Optional. Based only on recorded weights, with no guaranteed outcome or target date.')+'</p>');chart.querySelector('[data-weight-forecast]').onchange=e=>{showForecast=e.target.checked;drawChart(host);chart.querySelector('[data-weight-forecast]').focus();};}
-    mountCustomDates(chart,host);bindContext(host);
+    mountRangeButtons(chart,host);mountCustomDates(chart,host);bindContext(host);
     chart.querySelector('[data-chart-metric]').onchange=e=>{chartMetric=e.target.value;drawChart(host);chart.querySelector('[data-chart-metric]').focus();};
-    chart.querySelector('[data-chart-period]').onchange=e=>{chartPeriod=e.target.value;if(chartPeriod==='custom'&&!chartRange){const to=new Date().toISOString().slice(0,10);chartRange={from:new Date(Date.parse(to+'T00:00:00Z')-27*86400000).toISOString().slice(0,10),to};}drawChart(host);chart.querySelector('[data-chart-period]').focus();};
+    chart.querySelector('[data-chart-period]').onchange=e=>{selectPeriod(e.target.value,host);chart.querySelector('[data-chart-period]').focus();};
     const show=e=>{const point=e.target.closest?.('[data-point]');if(point){chart.querySelector('.shift-chart-readout').textContent=point.dataset.reading;host._choosePhotoDate?.(point.dataset.on);chart.querySelectorAll('[data-point]').forEach(p=>p.setAttribute('tabindex',p===point?'0':'-1'));}};
     chart.onclick=show;if(chart._readingFocus)chart.removeEventListener('focusin',chart._readingFocus);chart._readingFocus=show;chart.addEventListener('focusin',show);
     chart.onkeydown=e=>{const point=e.target.closest?.('[data-point]');if(!point)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();show(e);}if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const points=[...chart.querySelectorAll('[data-point]')],index=points.indexOf(point),next=e.key==='Home'?0:e.key==='End'?points.length-1:Math.max(0,Math.min(points.length-1,index+(e.key==='ArrowRight'?1:-1)));points[next].focus();}};
   }
 
+  function selectPeriod(value,host){
+    chartPeriod=value;
+    if(chartPeriod==='custom'&&!chartRange){const to=londonDay();chartRange={from:new Date(Date.parse(to+'T00:00:00Z')-27*86400000).toISOString().slice(0,10),to};}
+    drawChart(host);
+  }
+  function mountRangeButtons(chart,host){
+    const nav=document.createElement('nav');nav.className='shift-chart-range-buttons';nav.setAttribute('aria-label','Progress date range');
+    for(const [value,label]of [['week','This week'],['14','2 weeks'],['28','4 weeks'],['3months','3 months'],['custom','Custom']]){const button=document.createElement('button');button.type='button';button.dataset.chartRange=value;button.textContent=label;button.setAttribute('aria-pressed',String(chartPeriod===value));button.onclick=()=>{selectPeriod(value,host);if(value==='custom')chart.querySelector('.shift-chart-custom-dates input')?.focus();else chart.querySelector('[data-chart-range="'+value+'"]')?.focus();};nav.append(button);}
+    chart.querySelector('.shift-chart-controls').before(nav);
+  }
+  // The existing PR1392 custom-date flow is carried forward against current
+  // main. Filtering affects the genuine chart/context only, never saved records.
   function mountCustomDates(chart,host){
     if(chartPeriod!=='custom')return;
-    const form=document.createElement('form');form.className='shift-chart-custom-dates';
+    const form=document.createElement('form');form.className='shift-chart-custom-dates';form.setAttribute('aria-label','Custom progress dates');
     form.innerHTML='<div class="shift-chart-controls"><label>From<input type="date" name="from" required></label><label>To<input type="date" name="to" required></label></div><p role="alert" data-date-error></p><button type="submit">Show these dates</button>';
-    form.elements.from.value=chartRange.from;form.elements.to.value=chartRange.to;
+    form.elements.from.value=chartRange.from;form.elements.to.value=chartRange.to;form.elements.from.max=londonDay();form.elements.to.max=londonDay();
     chart.querySelector('.shift-chart-controls').after(form);
-    form.onsubmit=e=>{e.preventDefault();try{const next={from:form.elements.from.value,to:form.elements.to.value};periodBounds(next);chartRange=next;drawChart(host);}catch(error){form.querySelector('[data-date-error]').textContent=error.message;}};
+    form.onsubmit=e=>{e.preventDefault();try{const next={from:form.elements.from.value,to:form.elements.to.value};periodBounds(next);chartRange=next;drawChart(host);host.querySelector('.shift-chart-view')?.scrollIntoView({block:'nearest',behavior:'instant'});}catch(error){form.querySelector('[data-date-error]').textContent=error.message;}};
   }
 
   function photoCalendarTimestamp(on){
@@ -365,11 +380,13 @@ return {readWeightTable,previewMappedWeights};
     return host;
   }
 
+  const sessionAllowsView=()=>!document.body.hasAttribute('data-member-session')||document.body.dataset.memberSession==='ready';
   async function render(){
+    if(!sessionAllowsView())return;
     const host=ensureHost();if(!host||!window.SST_API?.getProgressSummary)return;
     const version=++renderVersion;++patternVersion;patternData=null;clearPrivatePhotos();host.setAttribute('aria-busy','true');
     try{
-      const r=await SST_API.getProgressSummary();const p=r.progress||r;if(version!==renderVersion||document.hidden)return;chartData=null;
+      const r=await SST_API.getProgressSummary();const p=r.progress||r;if(version!==renderVersion||document.hidden||!sessionAllowsView())return;chartData=null;
       weightUnits=['stone_lb','kg','lb'].includes(p.units)?p.units:'stone_lb';
       if(!p||p.state==='empty'){
         host.innerHTML=`<div class="shift-progress-intro"><div><span class="eyebrow">YOUR PROGRESS</span><h3>Your progress story starts with the first check-in.</h3><p>Weight is one signal, not the scoreboard. Shift will bring waist, blood pressure, movement, sleep and mood together here as you log them.</p></div><div class="shift-progress-nudge"><strong>Keep it useful.</strong><span>Add what you know. Leave the rest blank.</span></div></div>`;
@@ -398,11 +415,11 @@ return {readWeightTable,previewMappedWeights};
 
   function queueRender(delay=0){
     clearTimeout(scheduledRender);scheduledRender=null;
-    const host=ensureHost();if(!host||!window.SST_API?.getProgressSummary||document.hidden)return;
+    const host=ensureHost();if(!host||!window.SST_API?.getProgressSummary||document.hidden||!sessionAllowsView())return;
     ++renderVersion;++patternVersion;patternData=null;host.setAttribute('aria-busy','true');
     host.querySelectorAll('.shift-pattern-panel input,.shift-pattern-panel button').forEach(control=>{control.disabled=true;});
     scheduledRender=setTimeout(()=>{scheduledRender=null;render();},delay);
   }
-  function boot(){queueRender();const clear=()=>{clearTimeout(scheduledRender);scheduledRender=null;++renderVersion;++patternVersion;chartData=null;patternData=null;showForecast=false;const host=document.getElementById('shiftProgressStory');clearPrivatePhotos();if(host)host.innerHTML='';};window.addEventListener('pagehide',clear);document.addEventListener('visibilitychange',()=>{if(document.hidden)clear();else if(location.hash==='#visualise')queueRender();});window.addEventListener('hashchange',()=>{if(location.hash==='#visualise')queueRender()});document.addEventListener('click',e=>{if(e.target.closest('.mp-tab[data-panel="visualise"]'))queueRender(120);if(e.target.closest('#saveOriginal,[data-photo-delete]'))setTimeout(render,1800)});}
+  function boot(){queueRender();document.addEventListener('sst:progress-saved',()=>{if(location.hash==='#visualise')queueRender();});const clear=()=>{clearTimeout(scheduledRender);scheduledRender=null;++renderVersion;++patternVersion;chartData=null;patternData=null;showForecast=false;chartRange=null;chartPeriod='28';const host=document.getElementById('shiftProgressStory');clearPrivatePhotos();if(host)host.innerHTML='';};new MutationObserver(()=>{if(!sessionAllowsView())clear();else if(location.hash==='#visualise')queueRender();}).observe(document.body,{attributes:true,attributeFilter:['data-member-session']});window.addEventListener('pagehide',clear);document.addEventListener('visibilitychange',()=>{if(document.hidden)clear();else if(location.hash==='#visualise')queueRender();});window.addEventListener('hashchange',()=>{if(location.hash==='#visualise')queueRender()});document.addEventListener('click',e=>{if(e.target.closest('.mp-tab[data-panel="visualise"]'))queueRender(120);if(e.target.closest('#saveOriginal,[data-photo-delete]'))setTimeout(render,1800)});}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(boot,0),{once:true});else setTimeout(boot,0);
 })();

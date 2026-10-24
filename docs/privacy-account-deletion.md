@@ -1,18 +1,13 @@
-# Account deletion requests
+# Immediate member account deletion
 
-My Timber Settings sends an authenticated request. A successful response means **received**, not erased. It atomically adds the request to `data_requests`, adds an open **Review account deletion request** task to the existing HQ CRM task queue, and revokes all current sessions. Repeat submissions reuse a pending request and open task. No automatic email or blanket customer-record deletion is introduced.
+Confirming **Delete my account now** closes the member account immediately. It is not an HQ approval request. The authenticated DELETE endpoint requires the explicit `DELETE_MY_ACCOUNT` confirmation and returns HTTP 200 with `status: deleted` only after its transaction succeeds.
 
-The HQ operator must review the task and the pending request for that member, verify the appropriate identity and retention requirements, carry out the applicable erasure across the recorded data stores and processors, document retained records and the reason, and respond to the member. Set `data_requests.status` to `completed` and `completed_at` only after actual completion is evidenced; then close the HQ task. A completed task alone is not evidence of deletion. Requests that cannot yet be completed must remain visible with their next action recorded.
+The transaction disables the member credentials, invalidates all reset/verification tokens, revokes every current member session, marks the membership closed, removes the listed optional tracking, plans, food, AI memory/history, photos, device imports and reminder subscriptions, withdraws optional consents as new consent events, removes pending signup alerts and cancels queued member communications. It records completion directly and does not create a review task or send an email. A failed database statement rolls the operation back and cannot return success.
 
-Review the HQ task queue each working day, including older pending `data_requests` which predate this repair. The code change does not certify previous request completion, appoint an operator, or establish that an external processor has deleted data. Those operational checks remain open from the discovery audit.
+A non-loginable authentication tombstone prevents an orphaned account being restored into its old records by ordinary registration. Password reset, email verification and password changes cannot reopen that tombstone, including requests already in progress. Other members and HQ administrator accounts are unaffected.
 
-Optional health-history erasure is a separate immediate, authenticated operation. It retains the account and necessary consent/audit history, and removes optional Pen Day notes and their legacy analytics with other optional health stores. Do not treat that narrower operation as account deletion.
+Account access ends immediately even where existing clinical, order, support, safeguarding or audit records are retained under the established retention policy. Ordinary account identity is automatically anonymised where no listed retained record needs it. Clinical/order records and reported safeguarding evidence are not erased by this member-account operation. Completed deletion entries refer to closure and the specified automatic erasure, not a claim that every retained record or third-party processor copy has been erased.
 
-My Timber PWA check-in subscriptions are device-specific in
-`my_timber_push_devices`. Session revocation pauses delivery immediately; it is
-not erasure of the subscription. Include these device rows and their related
-`my_timber_push_deliveries` rows in account erasure (deliveries first), as well as
-the pre-existing `fit_push_subscriptions` and reminder stores where applicable.
-Device endpoints and encryption material must not be included in ordinary logs
-or screenshots. The PWA control can remove the current device's check-in
-subscription directly without changing unrelated Fit/email choices.
+The member sees **Account deleted**, the immediate sign-out result and a link back to My Timber. No success panel is placed inside a collapsible settings section. Unconfirmed responses show an uncertainty message without claiming deletion or encouraging an automatic destructive replay.
+
+Privacy retention and processor obligations remain operational responsibilities. They do not delay account closure or require an ordinary member to wait for an HQ approval.

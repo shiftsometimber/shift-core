@@ -1,3 +1,4 @@
+import {approvedLegacyComparisonValue} from './approved-source-comparison-20261024.mjs';
 import {assertNavigationOuterChainContext} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import {withImmutableHistoryVerification as withClosedCurrentSourceProof,immutableHistorySourceHead} from './immutable-git-facts.mjs';
 import {verifyCiExecutionAllowance,ciExecutionNativeReaderProvenance} from './ci-execution-scope-20261014.mjs';
@@ -156,7 +157,7 @@ export function combinedFiniteLegacyHistoricalView(reader=null,{defaultReader=re
  const actual=combinedFiniteHistoricalView();
  assert.equal(git('diff','--name-only').trim(),'','Tracked working source changed before legacy projection');
  assert.equal(git('diff','--cached','--name-only').trim(),'','Staged source changed before legacy projection');
- if(defaultReader)return{...actual,currentReaderAuthenticated:true,legacyComparisonOnly:false};
+ if(defaultReader)return{...actual,read:(ref,path)=>approvedLegacyComparisonValue(ref,path,actual.read(ref,path),actual.rawHead),currentReaderAuthenticated:true,legacyComparisonOnly:false};
  assert.equal(typeof reader,'function','A legacy comparison reader is required');
  reader=releaseMachineryRepairLegacyRead(reader,releaseMachineryRepairHistoricalView());
  const current=JSON.parse(rawContent(actual.rawHead,manifest)),c=current.combinedFinite20261014;
@@ -168,7 +169,7 @@ export function combinedFiniteLegacyHistoricalView(reader=null,{defaultReader=re
    if(exactCombinedDirectoryDisplay(headValue,'HEAD',path)!==exactCombinedDirectoryDisplay(aliasValue,actual.rawHead,path))return headValue;
    return exactCombinedDirectoryDisplay(reader(actual.head,path),actual.head,path);
   }
-  return exactCombinedDirectoryDisplay(reader(ref,path),ref,path);
+  return exactCombinedDirectoryDisplay(approvedLegacyComparisonValue(ref,path,reader(ref,path),actual.rawHead),ref,path);
  };
  return{...actual,read,currentReaderAuthenticated:false,legacyComparisonOnly:true};
 }

@@ -7,9 +7,6 @@ const fail=(message,status=400)=>Object.assign(Error(message),{status});
 const consentSQL=type=>`COALESCE((SELECT granted FROM consents WHERE user_id=? AND consent_type='${type}' ORDER BY id DESC LIMIT 1),0)=1`;
 const tracking=consentSQL('my_shift_health_tracking');
 const native=platform=>consentSQL('native_health_import_'+platform);
-const automatic=platform=>consentSQL('native_health_auto_import_'+platform);
-const supportedKinds=['weight','blood_pressure','heart_rate'];
-const syncVersion='native-health-foreground-sync/2026-10-20';
 async function enabled(DB,uid,type){return Number((await DB.prepare('SELECT granted FROM consents WHERE user_id=? AND consent_type=? ORDER BY id DESC LIMIT 1').bind(uid,type).first())?.granted)===1;}
 export function normaliseDeviceReadings(platform,input,now=Date.now()){
  if(!platforms.has(platform)||!Array.isArray(input)||input.length<1||input.length>150)throw fail('Choose between 1 and 150 supported readings.');
@@ -35,8 +32,7 @@ export function normaliseDeviceReadings(platform,input,now=Date.now()){
 export async function readDeviceHealth(DB,uid){
  const row=await DB.prepare("SELECT json_extract(preferences,'$.deviceHealth') state FROM member_state WHERE user_id=?").bind(uid).first();
  const data=row?.state?JSON.parse(row.state):{readings:[]};
- const automaticSync=Object.fromEntries(await Promise.all([...platforms].map(async p=>[p,{...(data.automaticSync?.[p]||{}),enabled:!!data.automaticSync?.[p]?.enabled&&await enabled(DB,uid,'native_health_auto_import_'+p)&&await enabled(DB,uid,'native_health_import_'+p)&&await enabled(DB,uid,'my_shift_health_tracking')}])));
- return {automaticSync,accountId:uid,trackingEnabled:await enabled(DB,uid,'my_shift_health_tracking'),permissions:Object.fromEntries(await Promise.all([...platforms].map(async p=>[p,await enabled(DB,uid,'native_health_import_'+p)]))),readings:data.readings||[],lastImportedAt:data.lastImportedAt||null,limit:500,clinicalMonitoring:false};
+ return {accountId:uid,trackingEnabled:await enabled(DB,uid,'my_shift_health_tracking'),permissions:Object.fromEntries(await Promise.all([...platforms].map(async p=>[p,await enabled(DB,uid,'native_health_import_'+p)]))),readings:data.readings||[],lastImportedAt:data.lastImportedAt||null,limit:500,clinicalMonitoring:false};
 }
 export async function deviceHealthRoutes(request,env){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname.replace(/\/+$/,'')!=='/v1/device-health')return null;
@@ -48,9 +44,9 @@ export async function deviceHealthRoutes(request,env){
   if(!/^application\/json(?:;|$)/i.test(request.headers.get('Content-Type')||''))throw fail('JSON required.',415);
   const text=await request.text();if(new TextEncoder().encode(text).length>60000)throw fail('Import is too large.',413);
   let body;try{body=JSON.parse(text)}catch{throw fail('Invalid import.');}
-  if(!body||typeof body!=='object'||Array.isArray(body)||Object.keys(body).some(k=>!['action','platform','expectedAccountId','agreed','readings','kinds','connectionId'].includes(k)))throw fail('Invalid import.');
+  if(!body||typeof body!=='object'||Array.isArray(body)||Object.keys(body).some(k=>!['action','platform','expectedAccountId','agreed','readings'].includes(k)))throw fail('Invalid import.');
   if(body.expectedAccountId!==auth.userId)throw fail('Your signed-in account changed. Reload and review the import.',409);
-  if(!platforms.has(body.platform)||!['connect','disconnect','import','erase','auto-connect','sync'].includes(body.action))throw fail('Unsupported health action.');
+  if(!platforms.has(body.platform)||!['connect','disconnect','import','erase'].includes(body.action))throw fail('Unsupported health action.');
   const DB=env.DB,uid=auth.userId,now=new Date().toISOString(),type='native_health_import_'+body.platform;
   if(['connect','disconnect'].includes(body.action)){
    const grant=body.action==='connect';if(grant&&body.agreed!==true)throw fail('Explicit health import consent is required.');
@@ -58,42 +54,22 @@ export async function deviceHealthRoutes(request,env){
    const result=await DB.prepare(sql).bind(uid,type,VERSION,grant?1:0,grant?now:null,grant?null:now,now,...(grant?[uid]:[])).run();
    if(result.meta?.changes!==1)throw fail('Switch on optional health tracking before connecting.',409);
    if(grant)await DB.prepare("INSERT INTO member_state(user_id,preferences,updated_at) VALUES(?,'{}',?) ON CONFLICT(user_id) DO NOTHING").bind(uid,now).run();
-   if(!grant)await DB.prepare('INSERT INTO consents(user_id,consent_type,consent_version,granted,withdrawn_at,created_at) VALUES(?,?,?,0,?,?)').bind(uid,'native_health_auto_import_'+body.platform,syncVersion,now,now).run();
    return json(await readDeviceHealth(DB,uid));
   }
-  if(body.action==='auto-connect')await DB.prepare("INSERT INTO member_state(user_id,preferences,updated_at) VALUES(?,'{}',?) ON CONFLICT(user_id) DO NOTHING").bind(uid,now).run();
   const row=await DB.prepare("SELECT json_extract(preferences,'$.deviceHealth') state FROM member_state WHERE user_id=?").bind(uid).first();
   const previous=row?.state||null,current=previous?JSON.parse(previous):{readings:[]};
-  if(body.action==='auto-connect'){
-   if(body.agreed!==true||!Array.isArray(body.kinds)||!body.kinds.length||body.kinds.length>3||new Set(body.kinds).size!==body.kinds.length||body.kinds.some(k=>!supportedKinds.includes(k)))throw fail('Choose reading types and agree to automatic imports.');
-   const config={enabled:true,kinds:body.kinds,connectionId:crypto.randomUUID(),connectedAt:now,lastCheckedAt:null,lastSavedAt:null};
-   const next={...current,automaticSync:{...current.automaticSync,[body.platform]:config}};
-   const encoded=JSON.stringify(next);
-   const update=DB.prepare(`UPDATE member_state SET preferences=json_set(preferences,'$.deviceHealth',json(?)),updated_at=? WHERE user_id=? AND json_extract(preferences,'$.deviceHealth') IS ? AND ${tracking}`).bind(encoded,now,uid,previous,uid);
-   const grants=['native_health_import_','native_health_auto_import_'].map(prefix=>DB.prepare(`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at,created_at) SELECT ?,?,?,1,?,? WHERE EXISTS(SELECT 1 FROM member_state WHERE user_id=? AND json_extract(preferences,'$.deviceHealth') IS ?) AND ${tracking}`).bind(uid,prefix+body.platform,syncVersion,now,now,uid,encoded,uid));
-   const results=await DB.batch([update,...grants]);
-   if(results.some(r=>r.meta?.changes!==1))throw fail('Tracking is off or your connection changed. Reload before connecting.',409);
-   return json(await readDeviceHealth(DB,uid));
-  }
-  const syncing=body.action==='sync',config=current.automaticSync?.[body.platform];
-  if(syncing&&(!config?.enabled||body.connectionId!==config.connectionId))throw fail('Automatic imports are off or this connection changed.',409);
   let next;
   if(body.action==='erase')next={...current,readings:(current.readings||[]).filter(r=>r.platform!==body.platform)};
   else{
-   const incoming=syncing&&Array.isArray(body.readings)&&body.readings.length===0?[]:normaliseDeviceReadings(body.platform,body.readings);
-   if(syncing&&incoming.some(r=>!config.kinds.includes(r.kind)))throw fail('This reading type is not selected for automatic imports.',409);
-   const saved=new Map((current.readings||[]).map(r=>[r.key,r]));
+   const incoming=normaliseDeviceReadings(body.platform,body.readings),saved=new Map((current.readings||[]).map(r=>[r.key,r]));
    for(const r of incoming){const old=saved.get(r.key);if(old&&JSON.stringify({...old,importedAt:undefined})!==JSON.stringify(r))throw fail('An existing source reading changed. Erase its imported copy before reimporting.',409);if(!old)saved.set(r.key,{...r,importedAt:now});}
    if(saved.size>500)throw fail('Your 500-reading limit is reached. Export and erase imported copies before adding more.',409);
-   const added=saved.size-(current.readings||[]).length;
-   next={...current,readings:[...saved.values()].sort((a,b)=>b.at.localeCompare(a.at)),...(incoming.length?{lastImportedAt:now}:{})};
-   if(syncing)next.automaticSync={...current.automaticSync,[body.platform]:{...config,lastCheckedAt:now,lastSavedAt:added?now:config.lastSavedAt||null,lastResult:incoming.length?'checked':'no_readable_data'}};
+   next={readings:[...saved.values()].sort((a,b)=>b.at.localeCompare(a.at)),lastImportedAt:now};
   }
-  const guard=['import','sync'].includes(body.action)?` AND ${tracking} AND ${native(body.platform)}${syncing?' AND '+automatic(body.platform):''}`:'';
-  const statement=DB.prepare(`UPDATE member_state SET preferences=json_set(preferences,'$.deviceHealth',json(?)),updated_at=? WHERE user_id=? AND json_extract(preferences,'$.deviceHealth') IS ?${guard}`).bind(JSON.stringify(next),now,uid,previous,...(['import','sync'].includes(body.action)?[uid,uid,...(syncing?[uid]:[])]:[]));
+  const guard=body.action==='import'?` AND ${tracking} AND ${native(body.platform)}`:'';
+  const statement=DB.prepare(`UPDATE member_state SET preferences=json_set(preferences,'$.deviceHealth',json(?)),updated_at=? WHERE user_id=? AND json_extract(preferences,'$.deviceHealth') IS ?${guard}`).bind(JSON.stringify(next),now,uid,previous,...(body.action==='import'?[uid,uid]:[]));
   const statements=[statement];
   if(body.action==='erase')statements.push(DB.prepare('INSERT INTO consents(user_id,consent_type,consent_version,granted,withdrawn_at,created_at) VALUES(?,?,?,0,?,?)').bind(uid,type,VERSION,now,now));
-  if(body.action==='erase')statements.push(DB.prepare('INSERT INTO consents(user_id,consent_type,consent_version,granted,withdrawn_at,created_at) VALUES(?,?,?,0,?,?)').bind(uid,'native_health_auto_import_'+body.platform,syncVersion,now,now));
   const results=await DB.batch(statements);if(results[0].meta?.changes!==1)throw fail('Tracking was switched off or your records changed. Reload before retrying.',409);
   return json({...await readDeviceHealth(DB,uid),saved:true});
  }catch(e){return json({error:'device_health_not_saved',message:e.status?e.message:'Your device readings could not be verified. Reload before retrying.'},e.status||503);}

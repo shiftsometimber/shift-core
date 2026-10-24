@@ -1,5 +1,6 @@
 import {appExperienceStyles,appExperienceClient} from './member-experience/app-experience.mjs';
-// Original 1 October presentation, with Matt's authorised 15 October usability update.
+import {quickLogStyles,quickLogClient} from './member-experience/quick-log.mjs';
+// Matt's approved 1 October green/black My Timber design. Presentation only.
 // Existing nodes, event handlers, records, API routes and consent own all actions.
 export const memberDesignVersion='20261001';
 const scope='html body[data-member-design="20261001"]:is(#approved-member-design,[data-member-design]):is(#approved-member-palette,[data-member-design]):is(#approved-member-layout,[data-member-design])';
@@ -28,6 +29,11 @@ css('#todayBrand>a','display:flex;align-items:center;gap:11px;color:#e7e3da;text
 css('#todayBrand .member-design-mark','width:42px;height:42px;object-fit:contain;display:block;visibility:visible;opacity:1')+
 css('#todayBrand .member-design-account','display:flex;align-items:center;justify-content:center;border:1px solid #707762;background:#707762;color:#000;border-radius:50%;width:44px;height:44px')+
 css('#myTimberApp','position:static;margin:14px auto;max-width:1000px;width:calc(100% - 28px);box-sizing:border-box')+
+// The native shell's earlier hide rule must also win against this scoped theme.
+scope.replace('html ', 'html:has(style#my-timber-native-style) ')+' :is(#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings){display:none!important}\n'+
+css('#todayActions.app-today-v3 .app-today-shortcuts','display:none')+
+css('nav.sst-member-tabs .member-nav-tools a:is([href="/member/dashboard#today"],[href="/member/dashboard#journey"],[href="/member/grub"],[href="/member/fit"])','display:none')+
+css('nav.sst-member-tabs .member-nav-label|nav.sst-member-tabs .member-nav-more>summary','display:none')+
 css('#todayBrand svg|#appBottomNav svg','display:block;visibility:visible;opacity:1;width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round')+
 css('header.site-header|#todayBrand .today-logo','display:none')+
 css('nav.sst-member-tabs','display:none')+
@@ -76,6 +82,7 @@ css('#todayActions.app-today-v3 .today-followthrough','margin:16px 0;gap:14px')+
 css('#todayActions.app-today-v3 .today-support','margin-top:16px')+
 css('#todayActions.app-today-v3 .today-support :is(.mtm-panel,.mtm-care)','background:#e7e3da;color:#050505;border:0')+
 css('main :is(.app-screen-details,.app-refine-detail,.app-settings-section,.app-account-details,.grub-account)','background:#e7e3da;color:#050505;border:0;border-radius:10px;padding:10px 14px')+
+css('main [data-account-deleted]','background:#e7e3da;color:#050505;border:0;border-radius:12px;padding:20px')+
 css('main :is(.app-screen-details,.app-refine-detail,.app-settings-section,.app-account-details,.grub-account) :is(p,summary,h2,h3,a)','color:#050505;-webkit-text-fill-color:#050505')+
 css('main :is(.grub-meta,.sf-metrics)>*','background:#d3d0c5;color:#050505;font-size:12px')+
 css('main .grub-v8-tabs','background:#050505;border:0;border-radius:11px;padding:4px;margin:0 0 14px')+
@@ -140,15 +147,15 @@ scope+'[data-app-panel="1"] :is(#todayBrand,#appBottomNav,#sst-footer-c,footer,.
 css('main :is(a,button,summary,input,select,textarea):focus-visible','outline:3px solid #050505;outline-offset:3px')+
 css('#appBottomNav :is(a,button):focus-visible|#todayBrand a:focus-visible','outline:3px solid #e7e3da;outline-offset:2px')+
 scope+' [hidden]:is(#approved-member-hidden,[hidden]):is(#approved-member-hidden-rule,[hidden]){display:none!important}\n'+
-'@media print{'+css('#todayBrand|#appBottomNav','display:none')+'}'+appExperienceStyles;
+'@media print{'+css('#todayBrand|#appBottomNav','display:none')+'}'+appExperienceStyles+quickLogStyles;
 
 const paths={today:'M3 11 12 3l9 8M5 10v11h5v-6h4v6h5V10',journey:'M5 20v-5m7 5V9m7 11V4',grub:'M5 3v7m3-7v7M3 3v6a3 3 0 0 0 6 0M6 12v9M18 3v18m0-18c-5 3-5 10 0 10',fit:'M4 8v8m3-11v14m10-14v14m3-11v8M7 12h10',more:'M4 12h.01M12 12h.01M20 12h.01',account:'M16 7a4 4 0 1 0-8 0 4 4 0 0 0 8 0M4 21v-2a8 8 0 0 1 16 0v2'};
 const icon=key=>'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+paths[key]+'"/></svg>';
-const header='<header id="todayBrand" data-member-design-header><a href="/member/dashboard#today"><img class="member-design-mark" src="/fit-v3-images/sst-header-brand-mark-20261001.png" width="42" height="42" alt=""><span>MY TIMBER</span></a><a class="member-design-account" href="/member/settings" aria-label="Your account">'+icon('account')+'</a></header>';
+const header='<header id="todayBrand" data-member-design-header><a href="/member/dashboard#today"><span>MY TIMBER</span></a><button type="button" class="member-design-menu" data-mt-more aria-label="Open My Timber menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></header>';
 const bottom='<nav id="appBottomNav" aria-label="My Timber navigation">'+[['Today','today','/member/dashboard#today'],['Journey','journey','/member/dashboard#journey'],['Grub','grub','/member/grub'],['Fit','fit','/member/fit']].map(([label,key,href])=>'<a href="'+href+'"'+(['grub','fit'].includes(key)?' data-app-open="'+key+'"':'')+'>'+icon(key)+'<span>'+label+'</span></a>').join('')+'<button id="appMore" type="button" aria-expanded="false">'+icon('more')+'<span>More</span></button></nav>';
 export function memberDesignDocument(html){
  if(!html.includes('data-app-layout="preview"')||html.includes('data-member-design="20261001"'))return html;
- return html.replace(/<body([^>]*)>/,(_,attrs)=>'<body'+attrs+' data-member-design="20261001" data-member-experience-ui="20261015">'+header)
+ return html.replace(/<body([^>]*)>/,(_,attrs)=>'<body'+attrs+' data-member-design="20261001">'+header)
   .replace(/<nav id="appBottomNav"[\s\S]*?<\/nav>/,bottom)
   .replace('</body>','<style data-approved-member-design>'+memberDesignStyles+'</style></body>');
 }
@@ -165,16 +172,17 @@ export const memberDesignClient=String.raw`(()=>{
   }catch{}
  }
  function compose(){
+  if(document.body.dataset.accountDeleted==='1')return;
+  if(document.body.dataset.appMore==='open'){const more=document.querySelector('nav.sst-member-tabs .member-nav-more');if(more&&!more.open)more.open=true;}
   if(document.body.dataset.memberPage!=='dashboard'){const main=document.querySelector('main'),follow=document.getElementById('dailyCheckinFollowup');if(main&&follow){const card=follow.closest('details')||follow;if(main.contains(card)&&main.lastElementChild!==card)main.append(card);}}
   const root=document.getElementById('todayActions');
   if(root?.classList.contains('app-today-v3')){
    const nav=root.querySelector('.app-today-shortcuts'),layout=root.querySelector('.today-layout'),next=root.querySelector('.mtm-next'),focus=root.querySelector('.today-focus');
-   const anchor=root.querySelector('.member-coaching-primary')||root.querySelector('.member-today-intro')||nav;
-   if(anchor&&next&&anchor.nextElementSibling!==next)anchor.after(next);
+   if(document.body.dataset.memberExperienceUi!=='20261015'&&nav&&next&&nav.nextElementSibling!==next)nav.after(next);
    if(layout&&focus&&focus.previousElementSibling!==layout)layout.after(focus);
   }
   const tool=document.body.dataset.appTool,hash=location.hash||'#today';
-  if(tool&&tool!==activeTool)activeTool=tool;
+  if(tool&&tool!==activeTool){const previous=activeTool;activeTool=tool;if(previous!==null)window.scrollTo({top:0,left:0,behavior:'instant'});}
   if(tool&&tool!=='today')outerScroll(document.querySelector('#appTool-'+tool+' iframe'));
   document.querySelectorAll('#appBottomNav a').forEach(a=>{
    const u=new URL(a.href),name=u.pathname.split('/').pop();
@@ -184,7 +192,7 @@ export const memberDesignClient=String.raw`(()=>{
   });
  }
  const schedule=()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;compose()})};
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','style']})},{once:true});else{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','style']})}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','data-app-more','style']})},{once:true});else{compose();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-app-tool','data-app-more','style']})}
  document.addEventListener('load',event=>{if(event.target.matches?.('.app-tool-frame'))schedule()},true);
  document.addEventListener('sst:today-rendered',schedule);addEventListener('hashchange',schedule);addEventListener('popstate',schedule);
-})();`+appExperienceClient;
+})();`+appExperienceClient+quickLogClient;

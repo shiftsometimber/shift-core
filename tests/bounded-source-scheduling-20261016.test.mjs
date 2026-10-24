@@ -19,7 +19,7 @@ function fixture(){
  const snapshot=()=>{const cwd=process.cwd();try{process.chdir(repo);return sourceSnapshot();}finally{process.chdir(cwd);}};
  return{root,repo,g,snapshot,proofDir:join(root,'proof'),clean(){rmSync(root,{recursive:true,force:true});}};
 }
-function delayedTask(f,id,code=0,delay=500){
+function delayedTask(f,id,code=0,delay=40){
  const events=join(f.root,'events.ndjson');
  return{id,body:nodeCommand(String.raw`const fs=require('node:fs');const file=${JSON.stringify(events)};fs.appendFileSync(file,JSON.stringify({id:${JSON.stringify(id)},event:'start',pid:process.pid})+'\n');setTimeout(()=>{fs.appendFileSync(file,JSON.stringify({id:${JSON.stringify(id)},event:'finish',pid:process.pid})+'\n');console.log('original stdout '+${JSON.stringify(id)});console.error('original stderr '+${JSON.stringify(id)});process.exit(${code});},${delay});`)};
 }

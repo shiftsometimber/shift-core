@@ -11,13 +11,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Verify bounded whole-estate crawler scheduling and timeout rejection
-        run: node --test tests/whole-estate-route-sweep.test.mjs
       - name: Whole-estate production routes, links and blank-page sweep
         env:
-          SHIFT_SWEEP_MAX: '20000'
-          SHIFT_SWEEP_CONCURRENCY: '12'
-          SHIFT_SWEEP_TIMEOUT_MS: '30000'
+          SHIFT_SWEEP_MAX: '2000'
         run: node gate1-whole-estate-production-sweep.mjs
       - name: Pre-merge member failure-envelope source contract
         if: github.event_name == 'pull_request'

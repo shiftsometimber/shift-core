@@ -88,7 +88,7 @@ test('website editorial completion admitted view rejects a real HEAD move in an 
   g('clone','--shared','--no-checkout',process.cwd(),directory);
   execFileSync('git',['checkout','--detach',head],{cwd:directory,stdio:'pipe'});
   const script=`import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {websiteEditorialCompletionHistoricalView} from './release/website-editorial-scope-20261018.mjs';const v=websiteEditorialCompletionHistoricalView();execFileSync('git',['update-ref','HEAD',${JSON.stringify(c.payload)}]);assert.throws(()=>v.assertCurrent(),/HEAD moved|source drift/);console.log('fresh-head-rejection-pass');`;
-  const result=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:directory,encoding:'utf8',timeout:120000});
+  const result=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:directory,encoding:'utf8',timeout:45000});
   assert.equal(result.status,0,result.stderr||String(result.error));assert.match(result.stdout,/fresh-head-rejection-pass/);
  }finally{rmSync(directory,{recursive:true,force:true});}
 });

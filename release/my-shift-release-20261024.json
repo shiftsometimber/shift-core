@@ -1,0 +1,35 @@
+{
+  "kind": "EXACT_MY_SHIFT_OWNER_APPROVED_RELEASE_20261024",
+  "base": "44ade5dfee81c299008912ac48c8e7f2a1adbe92",
+  "payload": "ea098411391682ee838f2af4af7221b40629d178",
+  "maintenanceSource": "8b70caa13233f75e499a56cdaffbb0001493c863",
+  "approval": {
+    "owner": "Matt",
+    "instruction": "Please do",
+    "scope": "Exact My Shift source registration and guarded deployment; preserve all safety assertions",
+    "homepage": false,
+    "purchasing": false,
+    "clinicalActivation": false,
+    "messaging": false
+  },
+  "payloadBlobs": {
+    "docs/MY-SHIFT-RELEASE-20261024.md": "d26a3d18e3a316282c15a169a1aaa96e5d72f86b",
+    "member-experience/entry.mjs": "3c216ea16a404c0b377f7ac94a4b2716c89e8d2a",
+    "member-experience/my-shift.mjs": "6fa31c6ab75f6d9b7471beb81d3eae72a2aaff68",
+    "member-experience/tests/my-shift.test.mjs": "00c98718adbe67e44ed9a0350dd48460b802856a",
+    "preview/my-shift-browser.mjs": "e848219205047e58a461b4415dc2655a75e0be05",
+    "preview/my-shift-proof/browser-receipt.json": "8b0b8b41489b2342fb09a542f8660f64916eada7"
+  },
+  "maintenancePaths": [
+    "release/my-shift-release-scope-20261024.mjs",
+    "tests/my-shift-release-scope-20261024.test.mjs",
+    "release/approved-source-comparison-20261024.mjs",
+    "release/app-scope.mjs",
+    "release/combined-finite-scope-20261014.mjs"
+  ],
+  "compositionMaintenance": "5997c4d4c248ed8c4635351c6aaf0eef8574345f",
+  "releaseRecoveryMaintenance": {
+    "base": "2ac8456e8394c1508b13481fad1f68520926f10b",
+    "source": "71f60753406a672a0d6c013281b92f959d4026dc"
+  }
+}
