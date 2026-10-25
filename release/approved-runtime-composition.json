@@ -10036,5 +10036,45 @@
     ],
     "maintenanceSource": "37c392ac3695ca95bc0d9e75b3c996d8b6126e20",
     "repairSource": "819081b9b5350f5ab13b7f612cd3cdbc081aedf1"
+  },
+  "approvedNewsTickerIntegration20261025": {
+    "proof": "EXACT_APPROVED_NEWS_TICKER_CURRENT_MAIN_20261025",
+    "base": "55af81540a004cdeedd24eb98c96441d2421b582",
+    "previousTicker": "f3cee7c576d46f4f10981d4c64035deb7608ee03",
+    "paths": [
+      "public-navigation-policy.mjs",
+      "radar-integration-v1.js",
+      "radar-published-ticker-v1.js",
+      "tests/public-ticker-motion.test.mjs",
+      "tests/radar-published-ticker-catchup.test.mjs",
+      "tests/fixtures/radar-catchup-public-edition-20261019.json"
+    ],
+    "maintenancePaths": [
+      "release/approved-news-ticker-frame-20261024.mjs",
+      "release/approved-news-ticker-maintenance-20261024.json",
+      "release/website-editorial-scope-20261018.mjs",
+      "release/approved-runtime-composition.mjs",
+      "tests/website-editorial-scope-20261018.test.mjs",
+      "tests/approved-news-ticker-frame-20261024.test.mjs",
+      "release/health-vision-scope-20261021.mjs",
+      "release/testosterone-scope-20261021.mjs",
+      "tests/health-vision-scope-20261021.test.mjs",
+      "tests/testosterone-release-scope.test.mjs",
+      "release/member-recording-repair-20261024.mjs"
+    ],
+    "scope": {
+      "publicCopyApproval": "Matt20October exact MW-CATCHUP-19OCT-v1 and retained routine factual authority",
+      "publicCopySha256": "cbafd7ef28dc65628a2e7a5c8092b8550138a9a802b9e2768281cdae8259fb60",
+      "completePublicationSnapshotRequired": true,
+      "pendingSourceChangesExcluded": true,
+      "firstActualPublicationPreserved": true,
+      "currentWireClaim": false,
+      "clinicalApprovalGranted": false,
+      "notificationAuthorityGranted": false,
+      "medicineCatalogueChanged": false,
+      "pausedLinkRepairIncluded": false,
+      "homepageMainContentChanged": false
+    },
+    "maintenanceSource": "e987ac0683426f6bfa2870daf60a7f588ca18503"
   }
 }
