@@ -1,3 +1,4 @@
+import {qualifyJoinedSuccessor,withJoinedSuccessorQualification} from './my-timber-joined-look-scope-20261024.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,lstatSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -53,6 +54,7 @@ export const RECORDING_REPAIR_PATHS=Object.freeze(Object.keys(RECORDING_REPAIR_B
 export const RECORDING_REPAIR_REGISTRATION=Object.freeze(["release/member-recording-repair-20261024.mjs", "tests/member-recording-repair-admission-20261024.test.mjs", "release/member-recording-repair-inverses-20261024.json", "release/my-shift-release-scope-20261024.mjs", "release/approved-source-comparison-20261024.mjs", "release/member-design-scope.mjs", "release/app-scope.mjs", ".github/workflows/seo-discovery-proof.yml", "release/app-preflight.mjs", "tests/approved-ranking-release.test.mjs", "tests/seo-discovery-release.test.mjs", "release/recorded-week-navigation-outer-frame-20261018.mjs", "tests/recorded-week-navigation-preservation-20261018.test.mjs", "release/immutable-git-facts.mjs", "release/seo-audit-scope-20261016.mjs", "release/scoped-native-projection-evidence.mjs", "tests/scoped-native-projection-evidence.test.mjs", "release/food-diary-london-date-scope-20261015.mjs", "release/ci-execution-scope-20261014.mjs", "release/release-machinery-repair-scope-20261014.mjs", "release/metrics-connection-scope.mjs", "release/book-voice-scope.mjs", "release/device-health-scope.mjs", "release/finite-growth-scope.mjs", "release/footer-scope.mjs", "release/member-acceptance-scope.mjs", "release/member-consent-repair-scope.mjs", "release/my-timber-progress-journey-scope.mjs", "release/my-timber-week-scope.mjs", "release/organic-followthrough-scope.mjs", "release/photo-acceptance-maintenance-scope.mjs", "release/photo-calendar-scope.mjs", "release/public-wording-scope.mjs", "release/recipe-image-scope.mjs", "release/root-share-completion-scope.mjs", "release/root-share-preview-scope.mjs", "release/seo-context-scope.mjs", "release/seo-discovery-scope.mjs", "release/seo-link-repairs-scope.mjs", "release/seo-technical-scope.mjs", "release/six-topic-seo-scope.mjs", "shift-coach/release-contract.mjs", "medicines-watch/scheduler.test.mjs", "tests/b1-reliability.test.mjs", "release/website-editorial-scope-20261018.mjs", "release/bounded-source-checks-20261016.mjs", "release/shared-header-preview-20261025.mjs", "release/shared-header-preview-preload-20261025.mjs", "tests/shared-header-preview-20261025.test.mjs", "tests/metrics-historical-source-classification-20261025.test.mjs", "release/health-vision-scope-20261021.mjs", "tests/bounded-source-scheduling-20261016.test.mjs", "tests/verified-source-evidence-20261016.test.mjs"]);
 export const RECORDING_REPAIR_RECEIPT='release/member-recording-repair-20261024.json';
 export const RECORDING_REPAIR_AUTHORITY=Object.freeze({"owner": "Matt", "instruction": "Arh ok….. sort then please; SHIFT — BREAK THE BOTTLENECK AND FINISH THE APPROVED WORK: eliminate repeated Git subprocesses and duplicate full-file scans while retaining underlying safety assertions, mutation checks and current-source protection.", "accountDeletion": "Deletion / cancel my account needs to be an immediate thing. Not send it off", "homepage": false, "newAppleSubmission": false, "messaging": false, "realAccountDeletionTest": false, "personalHealthRead": false, "backendCompletion": "Matt: SHIFT — CONSOLIDATE RELEASE OWNERSHIP AND FINISH THE BACKEND", "passwordPolicy": "Owner-approved PR1415 ten characters with capital and special character", "clinicalActivation": false, "realCharge": false, "stockCommitment": false});
+const actualReadFileSync=readFileSync,actualLstatSync=lstatSync;
 const git=(...args)=>immutableHistoryExecFileSync('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const bytes=(ref,path)=>immutableHistoryExecFileSync('git',['show',ref+':'+path],{encoding:'utf8',maxBuffer:64e6});
 const sorted=values=>[...values].sort();
@@ -67,29 +69,35 @@ export function validateRecordingRepairReceipt(receipt){
 }
 let cached=null,qualificationDepth=0;
 export function verifyMemberRecordingRepair(suppliedReceipt){
+ if(!qualificationDepth)return withMemberRecordingQualification(()=>verifyMemberRecordingRepair(suppliedReceipt));
  const frozen=immutableHistorySourceHead(),head=frozen??git('rev-parse','HEAD');
- if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
+ const successor=qualifyJoinedSuccessor(head),legacyHead=successor.legacyHead;
+ successor.assertBinding(head);
+ if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=actualLstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(actualReadFileSync(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
  assert.equal(git('diff','--name-only','HEAD','--'),'','Repair worktree must be clean');
  assert.equal(git('diff','--cached','--name-only','--'),'','Repair index must be clean');
- const receipt=validateRecordingRepairReceipt(JSON.parse(bytes(head,RECORDING_REPAIR_RECEIPT)));
+ // Only old finite comparisons use the independently qualified predecessor.
+ // immutableHistorySourceHead and every proof returned to callers stay actual.
+ const receipt=validateRecordingRepairReceipt(JSON.parse(bytes(legacyHead,RECORDING_REPAIR_RECEIPT)));
  if(suppliedReceipt)assert.deepEqual(suppliedReceipt,receipt,'Native repair receipt must not be substituted');
- for(const [a,b]of [[receipt.base,receipt.payload],[receipt.payload,receipt.registrationSource],[receipt.registrationSource,head]])git('merge-base','--is-ancestor',a,b);
+ for(const [a,b]of [[receipt.base,receipt.payload],[receipt.payload,receipt.registrationSource],[receipt.registrationSource,legacyHead]])git('merge-base','--is-ancestor',a,b);
  assert.deepEqual(changed(receipt.base,receipt.payload),sorted(RECORDING_REPAIR_PATHS),'Only the exact tested member repair payload is allowed');
  assert.deepEqual(changed(receipt.payload,receipt.registrationSource).filter(path=>path!==RECORDING_REPAIR_RECEIPT),sorted(RECORDING_REPAIR_REGISTRATION),'Only the bounded registration module and tests may be added');
- assert.deepEqual(changed(receipt.registrationSource,head),[RECORDING_REPAIR_RECEIPT],'No unreviewed registration tail');
+ assert.deepEqual(changed(receipt.registrationSource,legacyHead),[RECORDING_REPAIR_RECEIPT],'No unreviewed registration tail');
  for(const [path,pin]of Object.entries(RECORDING_REPAIR_BLOBS)){
   assert.equal(git('rev-parse',receipt.payload+':'+path),pin,'Immutable repair payload changed: '+path);
-  assert.equal(git('rev-parse',head+':'+path),pin,'Current repair payload changed: '+path);
+  assert.equal(git('rev-parse',legacyHead+':'+path),pin,'Current repair payload changed: '+path);
  }
- for(const path of RECORDING_REPAIR_REGISTRATION)assert.equal(bytes(head,path),bytes(receipt.registrationSource,path),'Registration source changed: '+path);
+ for(const path of RECORDING_REPAIR_REGISTRATION)assert.equal(bytes(legacyHead,path),bytes(receipt.registrationSource,path),'Registration source changed: '+path);
  for(const path of [...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT]){
-  assert(git('ls-tree',head,'--',path).startsWith('100644 blob '),'Regular repair file required: '+path);
-  const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular worktree file required: '+path);
-  assert.equal(oid(readFileSync(path)),git('rev-parse',head+':'+path),'Actual repair bytes changed: '+path);
+  assert(git('ls-tree',legacyHead,'--',path).startsWith('100644 blob '),'Regular repair file required: '+path);
+  const stat=actualLstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular worktree file required: '+path);
+  const actual=actualReadFileSync(path),comparison=Object.hasOwn(successor.predecessorPins,path)?successor.restoreFile(path,actual):actual;
+  assert.equal(oid(comparison),git('rev-parse',legacyHead+':'+path),'Actual repair bytes changed: '+path);
  }
- for(const [path,data]of Object.entries(inverses))assert.equal(originalRecordingMaintenance(path,bytes(head,path)),bytes(RECORDING_REPAIR_BASE,path),'Every original source assertion must remain: '+path);
- const paths=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT],filePins=Object.freeze(paths.map(path=>Object.freeze([path,git('rev-parse',head+':'+path)])));
- const proof=Object.freeze({head,receipt,paths:RECORDING_REPAIR_PATHS,filePins});if(frozen&&qualificationDepth)cached=proof;return proof;
+ for(const [path,data]of Object.entries(inverses))assert.equal(originalRecordingMaintenance(path,bytes(legacyHead,path)),bytes(RECORDING_REPAIR_BASE,path),'Every original source assertion must remain: '+path);
+ const paths=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT],filePins=Object.freeze(paths.map(path=>Object.freeze([path,oid(actualReadFileSync(path))])));
+ const proof=Object.freeze({head,legacyHead,receipt,paths:RECORDING_REPAIR_PATHS,filePins});if(frozen&&qualificationDepth)cached=proof;return proof;
 }
 // This qualifies a finite successor; it does not replace or bypass the existing
 // production admission, current-main guard, rollback or live acceptance gates.
@@ -101,18 +109,21 @@ export function originalRecordingMaintenance(path,value){
  assert.equal(oid(value),delta.original,'Every original maintenance byte must remain');return value;
 }
 export function memberRecordingComparisonValue(path,value,requestedHead){
- const allowed=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION];if(!allowed.includes(path))return value;
+ if(!qualificationDepth)return withMemberRecordingQualification(()=>memberRecordingComparisonValue(path,value,requestedHead));
  const head=immutableHistorySourceHead()??git('rev-parse','HEAD');
  if(requestedHead&&requestedHead!==head)return value;
- let pin;try{pin=git('rev-parse',head+':'+path);}catch{return value;}
- const identifier=value===pin,content=typeof value==='string'&&oid(value)===pin;if(!identifier&&!content)return value;
+ const successor=qualifyJoinedSuccessor(head);successor.assertBinding(head);
+ value=successor.comparisonValue(path,value);
+ const allowed=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION];if(!allowed.includes(path))return value;
+ let pin;try{pin=git('rev-parse',successor.legacyHead+':'+path);}catch{return value;}
+ const identifier=value===pin,content=(typeof value==='string'||Buffer.isBuffer(value))&&oid(value)===pin;if(!identifier&&!content)return value;
  const proof=verifyMemberRecordingRepair();assert.equal(proof.head,head);
  let old;try{old=git('rev-parse',RECORDING_REPAIR_BASE+':'+path);}catch{return value;}
- return identifier?old:bytes(RECORDING_REPAIR_BASE,path);
+ return identifier?old:Buffer.isBuffer(value)?Buffer.from(bytes(RECORDING_REPAIR_BASE,path)):bytes(RECORDING_REPAIR_BASE,path);
 }
-export function recordingRepairLegacyPaths(){verifyMemberRecordingRepair();return [...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT];}
+export function recordingRepairLegacyPaths(){const proof=verifyMemberRecordingRepair();const successor=qualifyJoinedSuccessor(proof.head);return [...new Set([...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT,...successor.paths])];}
 
 export function withMemberRecordingQualification(callback){
  if(qualificationDepth){qualificationDepth++;try{return callback();}finally{qualificationDepth--;}}
- cached=null;qualificationDepth=1;try{return withImmutableHistoryVerification(callback);}finally{qualificationDepth=0;cached=null;}
+ return withJoinedSuccessorQualification(()=>{cached=null;qualificationDepth=1;try{return withImmutableHistoryVerification(callback);}finally{qualificationDepth=0;cached=null;}});
 }
