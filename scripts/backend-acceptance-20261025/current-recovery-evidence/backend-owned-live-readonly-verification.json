@@ -1,0 +1,293 @@
+{
+  "at": "2026-10-25T20:49:51.982Z",
+  "run": "2026102519371201",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "operationKind": "guarded_local_promotion",
+  "githubRun": null,
+  "productionCommunications": 0,
+  "memberAccountsCreated": 0,
+  "settingsChanged": 0,
+  "owned": {
+    "id": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "version": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+    "createdOn": "2026-10-25T20:17:19.742386Z"
+  },
+  "bindings": [
+    {
+      "name": "ADMIN_API_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "ADMIN_EMAIL_FROM",
+      "type": "plain_text"
+    },
+    {
+      "name": "ADMIN_NOTIFICATION_EMAIL",
+      "type": "plain_text"
+    },
+    {
+      "name": "AI",
+      "type": "ai"
+    },
+    {
+      "name": "ALLOWED_ORIGINS",
+      "type": "plain_text"
+    },
+    {
+      "name": "AUTH_EMAIL_FROM",
+      "type": "plain_text"
+    },
+    {
+      "name": "AUTO_VERIFY_EMAIL",
+      "type": "plain_text"
+    },
+    {
+      "name": "BABYLOVE_WEBHOOK_TOKEN_SHA256",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_CONTENT_BUDGET_VERIFIED",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_CONTENT_GATEWAY",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_EDITORIAL_MODEL",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_EDITORIAL_NOTIFY_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_EDITORIAL_NOTIFY_TEMPLATE",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_EDITORIAL_SUPPORT_MODEL",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_WEBSITE_CONTENT_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH",
+      "type": "plain_text"
+    },
+    {
+      "name": "DB",
+      "type": "d1",
+      "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+      "id": "88f40aed-cb23-4372-8c94-8a73f48bc847"
+    },
+    {
+      "name": "EMAIL",
+      "type": "send_email"
+    },
+    {
+      "name": "EVIDENCE_DESK_ALERT_TO",
+      "type": "plain_text"
+    },
+    {
+      "name": "EVIDENCE_DESK_READ_DB",
+      "type": "d1",
+      "database_id": "8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3",
+      "id": "8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3"
+    },
+    {
+      "name": "EVIDENCE_DESK_READ_ENV",
+      "type": "plain_text"
+    },
+    {
+      "name": "HEALTH_PASSPORT_V1_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "HQ_MFA_ENCRYPTION_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "MEMBER_ASSETS",
+      "type": "assets"
+    },
+    {
+      "name": "MEMBER_EXPERIENCE_V1_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MEMBER_GP_DIRECTORY_V2_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MEMBER_GP_LOOKUP_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MEMBER_SIGNUP_ALERTS_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MY_TIMBER_PWA_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MY_TIMBER_WEEK_VIEW_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MY_TREATMENT_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "ORDER_NOTIFICATION_EMAIL",
+      "type": "plain_text"
+    },
+    {
+      "name": "PUBLIC_SITE_URL",
+      "type": "plain_text"
+    },
+    {
+      "name": "RADAR_ALERT_TO",
+      "type": "plain_text"
+    },
+    {
+      "name": "RADAR_NOTIFICATION_MODE",
+      "type": "plain_text"
+    },
+    {
+      "name": "RADAR_PUBLICATION_EMAIL_SINCE",
+      "type": "plain_text"
+    },
+    {
+      "name": "RADAR_PUBLICATION_EMAIL_TO",
+      "type": "plain_text"
+    },
+    {
+      "name": "SHIFT_AI_CONVERSATION_MEMORY",
+      "type": "plain_text"
+    },
+    {
+      "name": "SHIFT_AI_MODEL",
+      "type": "plain_text"
+    },
+    {
+      "name": "SHIFT_AI_PRACTICAL_CONTEXT",
+      "type": "plain_text"
+    },
+    {
+      "name": "SITE_CONTENT_STATE",
+      "type": "durable_object_namespace"
+    },
+    {
+      "name": "STRIPE_MODE",
+      "type": "plain_text"
+    },
+    {
+      "name": "STRIPE_SECRET_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "STRIPE_WEBHOOK_SECRET",
+      "type": "secret_text"
+    },
+    {
+      "name": "TAP_ROOM_MODERATION_BACKUP",
+      "type": "plain_text"
+    },
+    {
+      "name": "TAP_ROOM_MODERATION_OWNER",
+      "type": "plain_text"
+    },
+    {
+      "name": "TAP_ROOM_P0_EMAIL",
+      "type": "plain_text"
+    },
+    {
+      "name": "TURNSTILE_ALLOWED_HOSTNAMES",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURNSTILE_REQUIRED",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURNSTILE_SECRET_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURNSTILE_SITE_KEY",
+      "type": "secret_text"
+    }
+  ],
+  "routeCount": 121,
+  "schedules": {
+    "schedules": [
+      {
+        "cron": "*/15 * * * *",
+        "created_on": "2026-09-03T21:05:00.180977Z",
+        "modified_on": "2026-10-14T19:39:09.180218Z"
+      }
+    ]
+  },
+  "registrationPreauth": {
+    "status": 400,
+    "error": "turnstile_required",
+    "accountCreated": false,
+    "passwordPolicy": "Not reached through this protected endpoint; unchanged exact source and prior policy evidence retained"
+  },
+  "mfaAnonymous": [
+    {
+      "origin": "https://hq.shiftsometimber.co.uk",
+      "status": 401
+    },
+    {
+      "origin": "https://foreign.example.invalid",
+      "status": 403
+    }
+  ],
+  "deliverySchemas": [
+    {
+      "table": "commerce_service_delivery",
+      "matchedInstalledDefinition": true,
+      "columns": 11
+    },
+    {
+      "table": "commerce_receipt_delivery",
+      "matchedInstalledDefinition": true,
+      "columns": 6
+    },
+    {
+      "table": "auth_delivery_event_links",
+      "matchedInstalledDefinition": true,
+      "columns": 5
+    }
+  ],
+  "schemaWrites": 0,
+  "jobs": [
+    {
+      "job_key": "hq_communications",
+      "status": "completed",
+      "last_completed": "2026-10-25T20:45:09.818Z",
+      "last_scheduled": "2026-10-25T20:45:06.590Z",
+      "outcome": "completed",
+      "counters_json": "{\"emailAccepted\":0,\"inApp\":0,\"pushAccepted\":0,\"unknown\":0,\"suppressed\":0,\"deferred\":0}",
+      "error_code": null
+    },
+    {
+      "job_key": "support_reminders",
+      "status": "completed",
+      "last_completed": "2026-10-25T20:44:10.898Z",
+      "last_scheduled": "2026-10-25T20:40:18.348Z",
+      "outcome": "completed",
+      "counters_json": "{\"accepted\":0,\"suppressed\":0,\"failed\":0}",
+      "error_code": null
+    }
+  ],
+  "coreSchedulerCompleted": false,
+  "schedulerState": "awaiting_actual_automatic_completion",
+  "readonlyBusinessChecksPassed": true,
+  "verified": false
+}

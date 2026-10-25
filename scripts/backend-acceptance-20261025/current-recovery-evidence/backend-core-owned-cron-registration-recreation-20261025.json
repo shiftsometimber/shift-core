@@ -1,0 +1,70 @@
+{
+  "startedAt": "2026-10-25T21:04:15.542886+00:00",
+  "operation": "Recreate only the existing unobserved cron registration after idempotent reconciliation made no change",
+  "before": {
+    "schedules": [
+      {
+        "cron": "*/15 * * * *",
+        "created_on": "2026-09-03T21:05:00.180977Z",
+        "modified_on": "2026-10-14T19:39:09.180218Z"
+      }
+    ]
+  },
+  "owned": {
+    "owned": true,
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+    "operation": "core-local-20261025-approved012-deferral",
+    "operationKind": "guarded_local_promotion",
+    "githubRun": null,
+    "version": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+    "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "createdOn": "2026-10-25T20:17:19.742386Z",
+    "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+    "source012": "Explicitly deferred, not passed",
+    "authenticatedImmutableVersionReused": true
+  },
+  "workerUploads": 0,
+  "routeBindingOrCodeWrites": 0,
+  "forcedJobs": 0,
+  "calls": [
+    "existing_registration_removed",
+    "exact_original_registration_restored"
+  ],
+  "clear": {
+    "schedules": []
+  },
+  "restore": {
+    "schedules": [
+      {
+        "cron": "*/15 * * * *",
+        "created_on": "2026-10-25T21:04:19.623846Z",
+        "modified_on": "2026-10-25T21:04:19.623846Z"
+      }
+    ]
+  },
+  "after": {
+    "schedules": [
+      {
+        "cron": "*/15 * * * *",
+        "created_on": "2026-10-25T21:04:19.623846Z",
+        "modified_on": "2026-10-25T21:04:19.623846Z"
+      }
+    ]
+  },
+  "afterOwned": {
+    "owned": true,
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+    "operation": "core-local-20261025-approved012-deferral",
+    "operationKind": "guarded_local_promotion",
+    "githubRun": null,
+    "version": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+    "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "createdOn": "2026-10-25T20:17:19.742386Z",
+    "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+    "source012": "Explicitly deferred, not passed",
+    "authenticatedImmutableVersionReused": true
+  },
+  "restored": true,
+  "finishedAt": "2026-10-25T21:04:21.791233+00:00",
+  "naturalExecutionVerified": false
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "owned_runtime_deployment",
+  "at": "2026-10-25T20:17:24.103561+00:00",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "run": "2026102519371201",
+  "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+  "versionId": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+  "previousDeploymentId": "5f94dd77-114e-4754-adb0-2732e4a4e329",
+  "previousVersionId": "ac4e60d9-6f40-4bd5-a96f-83d6108dd716",
+  "dataRestored": false,
+  "operationKind": "guarded_local_promotion",
+  "operation": "core-local-20261025-approved012-deferral",
+  "githubRun": null,
+  "historicalSourceRun": 40208490258,
+  "source012Status": "Deferred with explicit Matt approval; incomplete, not passed",
+  "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+  "baseQualifiedBundleSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "canonicalClientSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+  "buildRepairProof": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/core-local-promotion-20261025/canonical-client-build-repair-proof.json",
+  "ownershipEvidence": "Exact ID returned by versions upload, downloaded module SHA verified before traffic; versions deploy of that exact ID, then authenticated one100% provider receipt. Existing triggers/routes preserved."
+}

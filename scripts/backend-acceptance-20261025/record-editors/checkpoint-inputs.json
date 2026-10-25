@@ -1,0 +1,291 @@
+{
+  "auditSource": "/tmp/shift-backend-final-edit-606e6/current-v12-audit.html",
+  "auditSourceSHA256": "9f7850d82ca01be503228831d8decbed2516cf8fc6587e9a54d0c03e25f50e10",
+  "auditOutput": "/workspace/scratch/606e6bb5bd95/outputs/606e6bb5bd95/SHIFT-HQ-Backend-Audit.html",
+  "workbookSource": "/tmp/shift-backend-final-edit-606e6/current-v12-workbook.xlsx",
+  "workbookOutput": "/workspace/scratch/606e6bb5bd95/outputs/606e6bb5bd95/SHIFT-HQ-Launch-KPIs.xlsx",
+  "auditCurrentHeading": "Current action register, KPIs and notification coverage \u2014 25 October 2026, 21:35 UTC",
+  "auditCurrentDateNote": "Checkpoint 25 October 2026, 21:35 UTC. Historical receipts remain below. Core production acceptance is separate from wider business commissioning.",
+  "auditCallout": "Approved Core is deployed and its affected scope verified. Six live member cases and all three installed ledger checks passed. Core scheduler execution remains unverified after trigger repair; exact private provider escalation is prepared. A09 and A16 are closed. Wider business commissioning remains open.",
+  "auditCheckpoint": [
+    "Current completion checkpoint \u2014 25 October 2026, 21:35 UTC",
+    "Core ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9 is serving at 100%, deployment45868df4-c841-4ad2-949d-ef91ebd83689. The existing owner closed affected Core/public/contact/medical/navigation acceptance at20:43 UTC. Frozen55585365 plus the explicitly approved canonical client repair is the deployed source. Newer verification-only maina7b63f7e is preserved, not relabelled as a separate runtime deployment.",
+    "The actual build defect was client function serialization. The first335ec7df deployment was owned-rolled-back toac4e60d9. The corrected4cf23193 bundle retains the qualifiedc5996373 bytes by exact inverse except two authenticated native client bindings. Original32 command receipts remain; Matt explicitly deferred incomplete group012. It did not pass. The competing40227701542 workflow was cancelled before upload.",
+    "On the new release all six original approved11252 member cases passed at20:48 UTC: private account reads, genuine GP directory, details persistence/retry/stale409/reload/restore, check-in/follow-through/consent withdrawal/restoration and account-bound export. Original details and tracking choice were restored. No message, charge, treatment, dispensing or account erasure was requested. Three installed delivery ledgers were rechecked read-only with uniqueness and auth-erasure FK intact.",
+    "Reporting799ba8a2 and accepted24-KPI/83-measure CSV/PDF evidence are preserved. Communications1d281e49, verified21:20 UTC, retains the exact approved original backend module.21:15 natural communications run completed without sends. Exact email/app drafts were unapproved/pending without provider IDs at20:52. A09 and A16 alone are closed. Future automatic Core promotions remain paused pending integration of the tested canonical build and exact-version receipt recipe; this does not undo the verified serving release."
+  ],
+  "auditExactParagraphs": [],
+  "auditParagraphGroups": {
+    "Shared release and prepared source": [
+      "The existing single Core owner deployed and verified frozen55585365538e22a5893e930bbaf70b8c99069d76 with Matt\u2019s explicit012 deferral and canonical serialization repair. Versionca5ca696, deployment45868df4, bundle SHA2564cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc, is the owned production receipt. The first failed335ec7df upload was rolled back under its exact owner; no other component was rolled back.",
+      "The original32 source-command zero-exit receipts, native source authority, exact inverse of the qualified bundle,20 compiled modules/39 sections, seven compiled response cases, actual native client bytes, protected stock, query redaction, original route/binding identities and rollback receipts are retained. Original source012 is explicitly deferred and not passed. The local full Worker bootstrap did not pass on the unchanged baseline and is not claimed passed.",
+      "PR1433 is merged as verification-only maina7b63f7e. Its exact approved presentation mapping and authenticated immutable Git transport preserve original assertions and point-of-use guards. The122-assertion parity fixture and zero Git subprocesses for100 warmed reads are targeted evidence. They are not whole source-group completion. Automatic source workflow40227701542 was cancelled before upload after the ordinary build was proved unsafe for the independent presentation.",
+      "The existing workflow334347571 is paused for future promotions until its maintainer integrates the tested native canonical serialization and staged exact-version promotion/receipt recipe. No original source assertion, current-source mutation check, stock/privacy/homepage guard or branch protection was weakened. This is a tooling dependency for a future promotion, not a reason to repeat this completed release.",
+      "Independent approved presentation successors are preserved. Communications1d281e49 was checked21:20 UTC: worker.js SHA25642ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793 is byte-identical to the accepted backend. Its21:15 natural run completed without sends. A support run scheduled20:50 started21:13 and completed21:13:11. Actual completion, scheduler lateness, provider acceptance and inbox/device receipt remain separate."
+    ],
+    "Release order and bounded outstanding tests": [
+      "Do not repeat the Core promotion or six passed member cases. Preserve the local owned-version verification and first-attempt rollback history. The three installed delivery ledgers have been reverified without DDL, backfill or replay. The public unchallenged registration negative was correctly rejected400 turnstile_required before password validation, with no account created; this is pre-auth security evidence, not a new password-policy pass.",
+      "Core scheduler acceptance remains unresolved after bounded diagnosis. Current handler, expected D1 tables and exact15-minute trigger are present; the trigger was recreated21:04 under exact serving-owner checks. No Core job row appeared through21:31, after the first fully propagated21:30 slot. A Comms20:40 invocation reached its immediate recorder21:29 and completed49 minutes late. The exact private provider support draft and sanitised attachment below are prepared for approval, not submitted. No business job, replay or new communication was forced.",
+      "The six live member cases passed using the existing approved11252 session. The remaining resource-level cross-account denial and order/clinical workflow cases need genuine approved test resources; both approved accounts had no case/shop/pharmacy resource IDs in the16:29 source read. Normal authorised HQ owner login plus a designated secondary test session is needed for privileged role/session revocation. Preserve valid earlier login/logout, expiry, physical-device, reminder and email evidence.",
+      "The real clinical/pharmacy case needs genuine professional/signing/dispensing configuration and an approved no-treatment/no-charge sandbox case. Preserve partner design sign-off and the no-stock position. Matt\u2019s personal MFA enrolment/recovery/fresh login before enforcement is separate from deployed engineering readiness.",
+      "The exact email/app drafts and complete recipients, subjects, bodies and attachments below remain the unchanged approval batch. At20:52 UTC both were draft/unapproved with one pending recipient and no provider ID. Recheck actual approval, attempts, uncertainty, consent and eligibility before an expressly instructed send. Use a consenting test phone for the remaining closed-app alert, private tap and opt-out/revocation case. Do not add a duplicate APNs or native-reminder commissioning project.",
+      "Live finance/fees/settlements and actual accepted costs, account11250 classification, historical orders1\u201311 provenance, the aged-out webhook disposition, mature-cohort/staffed-hour/usefulness inputs, authorised analytics access, the SAME hosted recovery drill and Timber Shed commissioning remain dependencies under their existing actions. Keep missing inputs unavailable. Separate wider Newsroom indexing and Blood Tests headers failures remain with their existing owners, not silently passed by Core closure."
+    ]
+  },
+  "auditTables": {
+    "0": {
+      "Communications": {
+        "1": "1d281e49-5511-47f8-ab8c-46752bad4c99",
+        "2": "Original approved backend16fc07f1; independent presentation successor",
+        "3": "Actual provider original backend bytes verified21:20 UTC.21:15 natural run completed with zero sends. Exact draft/recipient states remained unapproved/pending without provider IDs in the20:52 read."
+      },
+      "Core": {
+        "1": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+        "2": "Frozen55585365 + approved canonical client repair",
+        "3": "100% owned deployment45868df4 at20:17 UTC; affected Core scope verified20:43. Six member cases20:48 and three ledger checks passed. Ten Core natural jobs remain unverified after exact trigger recreation; private provider escalation is prepared. Source012 explicitly deferred, not passed. Future automatic workflow paused for build/receipt integration."
+      }
+    },
+    "1": {
+      "A01": {
+        "3": "Approved internal clinical and dispensing portals are deployed and partner design sign-off is retained. The 21:03 UTC clinical DB read found zero partner_staff, partner_organisations and signing-key rows. Genuine professional/signing configuration was not commissioned. A prescription API remains optional for the approved internal route."
+      },
+      "A02": {
+        "3": "All-role Core MFA readiness is deployed and anonymous setup is denied. Clinical/dispensing roles retain the same process. The21:03 read showed four active owners not enrolled and13 disabled owners preserved. Personal enrolment/recovery and privileged secondary-session checks remain; no password or enforcement changed."
+      },
+      "A11": {
+        "3": "The six original approved11252 cases passed on ownedca5ca696 at20:48 UTC: own identity/private APIs,12 genuine GP matches, details save/idempotent replay/stale409/reload/restore, actual check-in561 and retained follow-through, consent denial/withdrawal/restoration, and account-bound export17 rows. Original member details/tracking choice were restored. Valid earlier login/logout,12-hour expiry and device/reminder evidence is retained.",
+        "5": "Complete remaining order/clinical and actual-resource two-account denials using genuine approved resources; the16:29 source read found no case/shop/pharmacy IDs for11251/11252. Use normal authorised HQ owner login and a designated secondary test session for role/revocation. Approve only genuinely new recovery/verification messages if required. Do not repeat the six passed cases, erase reviewer8573 or replay247."
+      },
+      "A12": {
+        "3": "Original Message-ID-matched Gmail INBOX and valid device proofs are retained. The20:52 read found exactad32fd11 email and6c5c0ba2 app drafts unapproved, recipient states pending, provider IDs absent. Their exact hashes/content are unchanged. The16:55 device read found no registered approved test device. No new message was sent.",
+        "5": "Approve and expressly instruct sending the complete exact Sky drafts in the audit\u2019s exact communications approval batch, then verify inbox/private-link receipt. On a consenting approved test phone, opt in, observe the authorised closed-app alert and private tap, opt out and revoke. Preserve existing native/local-reminder, TestFlight, expiry and physical proofs within their actual scope. Recheck eligibility and retained attempt/uncertainty before dispatch."
+      },
+      "A13": {
+        "3": "Core scheduler wrappers are deployed, but no startup/completion row for any of the ten Core jobs was observed through21:31 UTC, including the first fully propagated21:30 slot after exact trigger recreation21:04. Comms20:40 reached its immediate recorder21:29 and completed21:29:19,49 minutes late; support21:30 completed21:30:30. Failed execution, missing invocation, lateness and actual completion remain distinct. The deployed DDL fix does not resolve the aged-out4 September event provenance.",
+        "5": "Platform owner: obtain approval of the complete private Cloudflare support draft and sanitised attachment in this audit, then have provider support inspect the existing Cron mapping/dispatch. No new charge, duplicate job or unseen communication. Separately, exact medicine_stripe_events retains eventevt_1UBqebHQNi0GiuyKjTl8NF7N, received4September06:31:14.185UTC, unprocessed with its original multiline-DDL error and no stored payload. Stripe reports it aged out; exact-ID Gmail search found none. Recover an existing original delivery/event export or document an owned unrecoverable-provenance disposition after financial/source review. Do not replay, fabricate lineage or mark processed."
+      },
+      "A03": {
+        "3": "The18-family event/recipient/owner/template/eligibility map and Core event/claim/auth-link integration are deployed. Existing direct registration/order emails are retained. Installed ledgers were reverified read-only onca5ca696. Genuine partner, reorder and general-community sources remain uncommissioned; delivery receipt acceptance is approval-gated."
+      },
+      "A05": {
+        "3": "Unified approval, queued, attempted, provider accepted, failed, unknown, suppressed, in-app/open and actual receipt states are deployed. Onca5ca696 the11-column service ledger,6-column composite-unique order receipt ledger and5-column auth-link ledger including erasure FK matched the approved installed definitions. No historical links, sends or replay were invented."
+      }
+    },
+    "3": {
+      "E14": {
+        "4": "Existing saved reminders and distinct in-app/Web Push channels are preserved. The 16:55 UTC read had no registered approved test device. Valid baseline follow-through, consent, saved reminder/export/calendar and cancellation proofs are retained.",
+        "6": "Matt/platform: use an approved consenting test phone for the unproved Web Push opt-in, closed-app alert, private tap and opt-out/revocation case. Retain valid existing native/local-reminder, expiry and physical evidence within its actual scope."
+      },
+      "E03": {
+        "4": "Existing direct order emails and per-recipient unique receipt claims are deployed; installed ledger reverified. No actual Live payment/charge was generated for acceptance.",
+        "6": "Commerce owner supplies an approved isolated payment facility/case without real charge; use exact existing receipt content and recheck actual payment mode/order/recipient.",
+        "5": "Deployed unique order/recipient claims recheck current account, live/test payment and recipient. Unknown acceptance is never blindly replayed. Payment remains distinct from dispatch."
+      },
+      "E09": {
+        "4": "Shop dispatch claim/recipient ledger is deployed and reverified. Genuine carrier-delivery callback configuration/receipt is unavailable.",
+        "6": "Commerce owner connects genuine approved carrier test callbacks. Approve any new exact draft/recipients and observe private status; no fabricated delivery or real fulfilment.",
+        "5": "Deployed CAS and unique order/event claims retain existing dispatch content. Delivery remains separate from dispatch/provider acceptance. No invented carrier receipt."
+      },
+      "E18": {
+        "4": "Immediate-deletion/support-history cancellation source is deployed. Owned Core anonymous allowed-origin401/foreign403 passed; delegated public route denies both unauthenticated callers401. Live11252 consent withdrawal/restoration passed on the new release. Apple246 remains closed;247 is not replayed.",
+        "6": "Use only a genuinely approved isolated account for remaining authenticated closure/resource-isolation acceptance with valid sessions. Preserve prior valid erasure evidence, reviewer access and exact financial/tombstone retention. New confirmation email remains approval-gated."
+      },
+      "E17": {
+        "4": "Core scheduler wrappers are deployed, but no startup/completion row for any of the ten Core jobs was observed through21:31 UTC, including the first fully propagated21:30 slot after exact trigger recreation21:04. Comms20:40 reached its immediate recorder21:29 and completed21:29:19,49 minutes late; support21:30 completed21:30:30. Failed execution, missing invocation, lateness and actual completion remain distinct. The deployed DDL fix does not resolve the aged-out4 September event provenance.",
+        "6": "Platform owner: approve/instruct the exact private provider support draft and attachment; investigate Cron dispatch/mapping, retaining the same serving source/cadence. Resolve the4September historical event separately against original evidence or an audited financial disposition. Acknowledgement remains unresolved."
+      },
+      "E04": {
+        "3": "Stripe event + medicine order; stable medicine:<order>:payment:<event> auth-link reference",
+        "4": "Generic direct medicine mail is retained. Stable medicine event/template links are deployed and the auth-link ledger was reverified. Genuine partner order/payment-facility acceptance remains outstanding.",
+        "5": "Deployed medicine-order-confirmation-v1 member/operator links retain transport identity. Payment is not prescribing. Keep health information inside the authenticated service; new exact recipients/content require approval."
+      },
+      "E07": {
+        "3": "Signed clinical decision/audit + case/record; deployed generic medicine clinical transition links",
+        "4": "Partner design is signed off and internal clinical/dispensing portals are deployed. Genuine named professionals, signing and bounded partner acceptance remain uncommissioned. Generic medicine status is distinct from a prescription.",
+        "5": "Generic clinical-status-v1/auth links are deployed. Canonical assigned partner decision drafts remain versioned in the clinical source. Payment, decision, prescription and fulfilment stay separate. Cancel stale drafts; never infer prescribing."
+      },
+      "E08": {
+        "4": "Approved internal dispensing workflow is deployed. Genuine pharmacy/professional configuration and sandbox acknowledgement/dispensing evidence remain uncommissioned. An external prescription API is optional for the approved internal route.",
+        "5": "Internal partner event/channel drafts retain authentic actor, assigned case/order and event identity. Recheck authorised state, consent and ownership; dedupe event IDs and reconcile unknown results. Neutral notifications require exact approval. No real dispensing."
+      },
+      "E10": {
+        "4": "Refund paid-value reporting and Core shop refund delivery claims are deployed. Live provider refund/fee/settlement source access remains unavailable. No real refund was created for testing."
+      }
+    },
+    "2": {
+      "K03": {
+        "4": "0 in accepted snapshot",
+        "5": "The accepted independent reporting snapshot recorded no overdue open HQ tasks. Operational-exception deadlines remain separate. The London date-only deadline fix is deployed; this dated acceptance is not a fresh privileged live report read."
+      },
+      "K10": {
+        "5": "Retained1\u201324 October2026 independent queries recorded zero live GBP shop/medicine orders in that historical window. The original payment-success-period and service-ledger definition remains incomplete; no current universal zero is claimed."
+      },
+      "K21": {
+        "5": "Owned integration/unknown exception view is deployed. The Core multiline-DDL correction is deployed, but the retained4 September webhook remains unprocessed with original failure and unavailable payload/lineage. Genuine partner source age/receipt data is uncommissioned."
+      },
+      "K22": {
+        "4": "Partial: communications/support; Core unverified",
+        "5": "At21:31 UTC ten Core job keys still have no retained startup/completion record after the21:04 trigger recreation and21:30 slot. Comms20:40 reached its recorder21:29,49 minutes late; support21:30 completed21:30:30. Latest completion age, invocation lateness, missed/unobserved slots and actual failure remain distinct. No Core freshness or zero-failure value is invented."
+      }
+    }
+  },
+  "workbookEdits": {
+    "Management summary": {
+      "A3": "25 October 2026, 21:35 UTC. Core deployed. Six member cases and three ledger checks passed. Core scheduler remains unverified after repair. A09 and A16 closed.",
+      "B30": "Deployed. Scheduler unverified.",
+      "C28": "1d281e49 /240a70f5",
+      "D28": "Comms1d281e49 retains exact approved backend bytes, verified21:20.21:15 ran normally. A20:40 slot started21:29 and completed49 minutes late. Support21:30 completed. New exact drafts remain unapproved; no new sends from this work.",
+      "C30": "ca5ca696 /55585365",
+      "D30": "100% owned deployment45868df4 at20:17 UTC; affected Core scope verified20:43. Six member cases20:48 and three ledger checks passed. Ten Core natural jobs remain unverified after exact trigger recreation; private provider escalation is prepared. Source012 explicitly deferred, not passed. Future automatic workflow paused for build/receipt integration.",
+      "D27": "A16 accepted: 83 measures and 24 original definitions, protected KPI view, owned drill-down, CSV with 83 measures and PDF with 11 pages. Missing inputs remain unavailable.",
+      "D29": "Apple fixture closure preserved. KPI framework and current exports accepted. Other configuration, data, access, notification, scheduler and recovery acceptance remains under the individual actions."
+    },
+    "Launch actions": {
+      "D6": "Approved internal clinical and dispensing portals are deployed and partner design sign-off is retained. The 21:03 UTC clinical DB read found zero partner_staff, partner_organisations and signing-key rows. Genuine professional/signing configuration was not commissioned. A prescription API remains optional for the approved internal route.",
+      "D7": "All-role Core MFA readiness is deployed and anonymous setup is denied. Clinical/dispensing roles retain the same process. The21:03 read showed four active owners not enrolled and13 disabled owners preserved. Personal enrolment/recovery and privileged secondary-session checks remain; no password or enforcement changed.",
+      "D16": "The six original approved11252 cases passed on ownedca5ca696 at20:48 UTC: own identity/private APIs,12 genuine GP matches, details save/idempotent replay/stale409/reload/restore, actual check-in561 and retained follow-through, consent denial/withdrawal/restoration, and account-bound export17 rows. Original member details/tracking choice were restored. Valid earlier login/logout,12-hour expiry and device/reminder evidence is retained.",
+      "D17": "Original Message-ID-matched Gmail INBOX and valid device proofs are retained. The20:52 read found exactad32fd11 email and6c5c0ba2 app drafts unapproved, recipient states pending, provider IDs absent. Their exact hashes/content are unchanged. The16:55 device read found no registered approved test device. No new message was sent.",
+      "H17": "Approve and expressly instruct sending the complete exact Sky drafts in the audit\u2019s exact communications approval batch, then verify inbox/private-link receipt. On a consenting approved test phone, opt in, observe the authorised closed-app alert and private tap, opt out and revoke. Preserve existing native/local-reminder, TestFlight, expiry and physical proofs within their actual scope. Recheck eligibility and retained attempt/uncertainty before dispatch.",
+      "D18": "Core scheduler wrappers are deployed, but no startup/completion row for any of the ten Core jobs was observed through21:31 UTC, including the first fully propagated21:30 slot after exact trigger recreation21:04. Comms20:40 reached its immediate recorder21:29 and completed21:29:19,49 minutes late; support21:30 completed21:30:30. Failed execution, missing invocation, lateness and actual completion remain distinct. The deployed DDL fix does not resolve the aged-out4 September event provenance.",
+      "H16": "Complete remaining order/clinical and actual-resource two-account denials using genuine approved resources; the16:29 source read found no case/shop/pharmacy IDs for11251/11252. Use normal authorised HQ owner login and a designated secondary test session for role/revocation. Approve only genuinely new recovery/verification messages if required. Do not repeat the six passed cases, erase reviewer8573 or replay247.",
+      "D8": "The18-family event/recipient/owner/template/eligibility map and Core event/claim/auth-link integration are deployed. Existing direct registration/order emails are retained. Installed ledgers were reverified read-only onca5ca696. Genuine partner, reorder and general-community sources remain uncommissioned; delivery receipt acceptance is approval-gated.",
+      "D10": "Unified approval, queued, attempted, provider accepted, failed, unknown, suppressed, in-app/open and actual receipt states are deployed. Onca5ca696 the11-column service ledger,6-column composite-unique order receipt ledger and5-column auth-link ledger including erasure FK matched the approved installed definitions. No historical links, sends or replay were invented.",
+      "H18": "Platform owner: obtain approval of the complete private Cloudflare support draft and sanitised attachment in this audit, then have provider support inspect the existing Cron mapping/dispatch. No new charge, duplicate job or unseen communication. Separately, exact medicine_stripe_events retains eventevt_1UBqebHQNi0GiuyKjTl8NF7N, received4September06:31:14.185UTC, unprocessed with its original multiline-DDL error and no stored payload. Stripe reports it aged out; exact-ID Gmail search found none. Recover an existing original delivery/event export or document an owned unrecoverable-provenance disposition after financial/source review. Do not replay, fabricate lineage or mark processed."
+    },
+    "Notifications": {
+      "E19": "Existing saved reminders and distinct in-app/Web Push channels are preserved. The 16:55 UTC read had no registered approved test device. Valid baseline follow-through, consent, saved reminder/export/calendar and cancellation proofs are retained.",
+      "G19": "Matt/platform: use an approved consenting test phone for the unproved Web Push opt-in, closed-app alert, private tap and opt-out/revocation case. Retain valid existing native/local-reminder, expiry and physical evidence within its actual scope.",
+      "E8": "Existing direct order emails and per-recipient unique receipt claims are deployed; installed ledger reverified. No actual Live payment/charge was generated for acceptance.",
+      "G8": "Commerce owner supplies an approved isolated payment facility/case without real charge; use exact existing receipt content and recheck actual payment mode/order/recipient.",
+      "E14": "Shop dispatch claim/recipient ledger is deployed and reverified. Genuine carrier-delivery callback configuration/receipt is unavailable.",
+      "G14": "Commerce owner connects genuine approved carrier test callbacks. Approve any new exact draft/recipients and observe private status; no fabricated delivery or real fulfilment.",
+      "E23": "Immediate-deletion/support-history cancellation source is deployed. Owned Core anonymous allowed-origin401/foreign403 passed; delegated public route denies both unauthenticated callers401. Live11252 consent withdrawal/restoration passed on the new release. Apple246 remains closed;247 is not replayed.",
+      "G23": "Use only a genuinely approved isolated account for remaining authenticated closure/resource-isolation acceptance with valid sessions. Preserve prior valid erasure evidence, reviewer access and exact financial/tombstone retention. New confirmation email remains approval-gated.",
+      "E22": "Core scheduler wrappers are deployed, but no startup/completion row for any of the ten Core jobs was observed through21:31 UTC, including the first fully propagated21:30 slot after exact trigger recreation21:04. Comms20:40 reached its immediate recorder21:29 and completed21:29:19,49 minutes late; support21:30 completed21:30:30. Failed execution, missing invocation, lateness and actual completion remain distinct. The deployed DDL fix does not resolve the aged-out4 September event provenance.",
+      "F8": "Deployed unique order/recipient claims recheck current account, live/test payment and recipient. Unknown acceptance is never blindly replayed. Payment remains distinct from dispatch.",
+      "F14": "Deployed CAS and unique order/event claims retain existing dispatch content. Delivery remains separate from dispatch/provider acceptance. No invented carrier receipt.",
+      "D9": "Stripe event + medicine order; stable medicine:<order>:payment:<event> auth-link reference",
+      "E9": "Generic direct medicine mail is retained. Stable medicine event/template links are deployed and the auth-link ledger was reverified. Genuine partner order/payment-facility acceptance remains outstanding.",
+      "F9": "Deployed medicine-order-confirmation-v1 member/operator links retain transport identity. Payment is not prescribing. Keep health information inside the authenticated service; new exact recipients/content require approval.",
+      "D12": "Signed clinical decision/audit + case/record; deployed generic medicine clinical transition links",
+      "E12": "Partner design is signed off and internal clinical/dispensing portals are deployed. Genuine named professionals, signing and bounded partner acceptance remain uncommissioned. Generic medicine status is distinct from a prescription.",
+      "F12": "Generic clinical-status-v1/auth links are deployed. Canonical assigned partner decision drafts remain versioned in the clinical source. Payment, decision, prescription and fulfilment stay separate. Cancel stale drafts; never infer prescribing.",
+      "E13": "Approved internal dispensing workflow is deployed. Genuine pharmacy/professional configuration and sandbox acknowledgement/dispensing evidence remain uncommissioned. An external prescription API is optional for the approved internal route.",
+      "F13": "Internal partner event/channel drafts retain authentic actor, assigned case/order and event identity. Recheck authorised state, consent and ownership; dedupe event IDs and reconcile unknown results. Neutral notifications require exact approval. No real dispensing.",
+      "E15": "Refund paid-value reporting and Core shop refund delivery claims are deployed. Live provider refund/fee/settlement source access remains unavailable. No real refund was created for testing.",
+      "G22": "Platform owner: approve/instruct the exact private provider support draft and attachment; investigate Cron dispatch/mapping, retaining the same serving source/cadence. Resolve the4September historical event separately against original evidence or an audited financial disposition. Acknowledgement remains unresolved."
+    },
+    "KPI definitions": {
+      "G8": "0 in accepted snapshot",
+      "H8": "The accepted independent reporting snapshot recorded no overdue open HQ tasks. Operational-exception deadlines remain separate. The London date-only deadline fix is deployed; this dated acceptance is not a fresh privileged live report read.",
+      "H15": "Retained1\u201324 October2026 independent queries recorded zero live GBP shop/medicine orders in that historical window. The original payment-success-period and service-ledger definition remains incomplete; no current universal zero is claimed.",
+      "H26": "Owned integration/unknown exception view is deployed. The Core multiline-DDL correction is deployed, but the retained4 September webhook remains unprocessed with original failure and unavailable payload/lineage. Genuine partner source age/receipt data is uncommissioned.",
+      "G27": "Partial: communications/support; Core unverified",
+      "H27": "At21:31 UTC ten Core job keys still have no retained startup/completion record after the21:04 trigger recreation and21:30 slot. Comms20:40 reached its recorder21:29,49 minutes late; support21:30 completed21:30:30. Latest completion age, invocation lateness, missed/unobserved slots and actual failure remain distinct. No Core freshness or zero-failure value is invented."
+    }
+  },
+  "autofitRanges": [
+    [
+      "Management summary",
+      "A3:D3"
+    ],
+    [
+      "Management summary",
+      "A28:D28"
+    ],
+    [
+      "Management summary",
+      "A30:D30"
+    ],
+    [
+      "Launch actions",
+      "A6:H7"
+    ],
+    [
+      "Launch actions",
+      "A16:H18"
+    ],
+    [
+      "Notifications",
+      "A19:G19"
+    ],
+    [
+      "Launch actions",
+      "A8:H10"
+    ],
+    [
+      "Notifications",
+      "A8:G8"
+    ],
+    [
+      "Notifications",
+      "A14:G14"
+    ],
+    [
+      "Notifications",
+      "A22:G23"
+    ],
+    [
+      "Management summary",
+      "A29:D29"
+    ],
+    [
+      "Notifications",
+      "A8:G15"
+    ],
+    [
+      "KPI definitions",
+      "A8:H8"
+    ],
+    [
+      "KPI definitions",
+      "A15:H15"
+    ],
+    [
+      "KPI definitions",
+      "A26:H27"
+    ]
+  ],
+  "inspectRanges": [
+    "'Management summary'!A27:D30",
+    "'Launch actions'!A16:H18"
+  ],
+  "renderRanges": [
+    {
+      "sheet": "Management summary",
+      "range": "A25:D30",
+      "output": "/tmp/shift-backend-final-edit-606e6/management-current.png"
+    },
+    {
+      "sheet": "Launch actions",
+      "range": "A16:H18",
+      "output": "/tmp/shift-backend-final-edit-606e6/actions-current.png"
+    },
+    {
+      "sheet": "Management summary",
+      "range": "A1:D5",
+      "output": "/tmp/shift-backend-final-edit-606e6/header-current.png"
+    },
+    {
+      "sheet": "Notifications",
+      "range": "A8:G15",
+      "output": "/tmp/shift-backend-final-edit-606e6/notification-current.png"
+    },
+    {
+      "sheet": "KPI definitions",
+      "range": "A26:H27",
+      "output": "/tmp/shift-backend-final-edit-606e6/kpi-health-current.png"
+    }
+  ],
+  "auditSupportDraft": {
+    "To": "Cloudflare Workers Support, through the private support channel for SHIFT account 9e5386dcf455be34c582d93f8bfc79e6",
+    "CC": "None",
+    "Subject": "SHIFT shift-core: registered Cron Trigger has no observed scheduled execution after guarded release",
+    "Body": "Hello Cloudflare Workers Support,\n\nPlease investigate the Cron Trigger registration and dispatch for account 9e5386dcf455be34c582d93f8bfc79e6, Worker shift-core, expression */15 * * * *. The Worker is serving version ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9 at 100% under deployment 45868df4-c841-4ad2-949d-ef91ebd83689, created 25 October 2026 at 20:17:19 UTC. Its published handlers include fetch and scheduled. Ordinary authenticated member journeys, the expected database binding and schema, and the serving-version identity have been verified.\n\nOur original schedule was modified on 14 October 2026 at 19:39:09 UTC, during your activation incident npjny9agana8. Your resolution noted that some affected schedules might require redeployment. This is a temporal correlation; we cannot confirm it caused this account's missing executions.\n\nAn idempotent schedule update at 21:02 UTC retained the old timestamp. We therefore removed and recreated only this same registration at 21:04:19 UTC, checking the exact serving deployment before and after. The registration now has that new creation/modification time. We changed no Worker code, route, binding or cadence and did not force or replay a business job.\n\nAs of 25 October 2026 at 21:33 UTC, none of our ten Core job keys has written a startup/completion row. This includes the 21:30 slot, more than 25 minutes after the registration was recreated. The exact serving version was rechecked before and after the read. A communications job scheduled at 20:40 UTC reached the immediate job-recording entry point at 21:29:15 UTC and completed at 21:29:19 UTC, approximately 49 minutes late. Its code captures the start timestamp before database I/O. This establishes delayed handler entry for that invocation; the platform's internal cause remains unknown.\n\nIndependent communications and support Workers have actual scheduled completion records. One support run scheduled at 20:50 UTC recorded its start at 21:13 UTC and completed at 21:13:11 UTC. This proves lateness, rather than completion of every scheduled slot. Our telemetry queries find ordinary Core fetch traffic but no Core scheduler log or durable job record in the observed window. The GraphQL Cron Events endpoint also omitted known communications runs, so we are not treating that endpoint alone as proof of no execution.\n\nPlease check the active registration-to-Worker mapping, Cron dispatch and any account-specific backlog or activation problem. Advise a provider-side repair that preserves the current serving version, routes, bindings and existing 15-minute cadence. Please do not run duplicate business jobs, change credentials, purchase support or otherwise make a charge or commitment on our behalf. No secrets, patient information or member payloads are attached.\n\nThank you,\nMatt",
+    "Attachments": [
+      "backend-core-scheduler-support-evidence-20261025.json"
+    ],
+    "AttachmentSHA256": "e9c663fd4b06a6906a9a74b8990b90959edb8b5670184f7fa576b825cede09a4",
+    "AttachmentContent": "{\n  \"scope\": \"Sanitised private support evidence: no member records, health information, credentials or message payloads\",\n  \"observedAt\": \"2026-10-25T21:33:43.173Z\",\n  \"accountId\": \"9e5386dcf455be34c582d93f8bfc79e6\",\n  \"worker\": \"shift-core\",\n  \"serving\": {\n    \"owned\": true,\n    \"source\": \"55585365538e22a5893e930bbaf70b8c99069d76\",\n    \"operation\": \"core-local-20261025-approved012-deferral\",\n    \"operationKind\": \"guarded_local_promotion\",\n    \"githubRun\": null,\n    \"version\": \"ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9\",\n    \"deploymentId\": \"45868df4-c841-4ad2-949d-ef91ebd83689\",\n    \"createdOn\": \"2026-10-25T20:17:19.742386Z\",\n    \"buildSHA256\": \"4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc\",\n    \"source012\": \"Explicitly deferred, not passed\",\n    \"authenticatedImmutableVersionReused\": true\n  },\n  \"publishedHandlers\": [\n    \"fetch\",\n    \"scheduled\"\n  ],\n  \"expectedDatabaseBindingVerified\": true,\n  \"expectedJobTableAndIndexDefinitionsVerified\": true,\n  \"coreJobRecordCount\": 0,\n  \"coreExpectedJobKeys\": [\n    \"core_medicines_watch\",\n    \"core_intelligence\",\n    \"core_radar\",\n    \"core_knowledge\",\n    \"core_fit_reminders\",\n    \"core_article_email\",\n    \"core_checkin\",\n    \"core_signup_alerts\",\n    \"core_treatment\",\n    \"core_coaching\"\n  ],\n  \"coreMissingJobKeys\": [\n    \"core_medicines_watch\",\n    \"core_intelligence\",\n    \"core_radar\",\n    \"core_knowledge\",\n    \"core_fit_reminders\",\n    \"core_article_email\",\n    \"core_checkin\",\n    \"core_signup_alerts\",\n    \"core_treatment\",\n    \"core_coaching\"\n  ],\n  \"actualOtherWorkerOutcomes\": [\n    {\n      \"job_key\": \"hq_communications\",\n      \"status\": \"completed\",\n      \"scheduled_at\": \"2026-10-25T20:40:06.590Z\",\n      \"started_at\": \"2026-10-25T21:29:15.764Z\",\n      \"completed_at\": \"2026-10-25T21:29:19.510Z\",\n      \"outcome\": \"completed\",\n      \"error_code\": null\n    },\n    {\n      \"job_key\": \"support_reminders\",\n      \"status\": \"completed\",\n      \"scheduled_at\": \"2026-10-25T21:30:18.348Z\",\n      \"started_at\": \"2026-10-25T21:30:29.437Z\",\n      \"completed_at\": \"2026-10-25T21:30:30.693Z\",\n      \"outcome\": \"completed\",\n      \"error_code\": null\n    }\n  ],\n  \"originalSchedule\": [\n    {\n      \"cron\": \"*/15 * * * *\",\n      \"created_on\": \"2026-09-03T21:05:00.180977Z\",\n      \"modified_on\": \"2026-10-14T19:39:09.180218Z\"\n    }\n  ],\n  \"recreatedSchedule\": [\n    {\n      \"cron\": \"*/15 * * * *\",\n      \"created_on\": \"2026-10-25T21:04:19.623846Z\",\n      \"modified_on\": \"2026-10-25T21:04:19.623846Z\"\n    }\n  ],\n  \"registrationMutationCompleted\": \"2026-10-25T21:04:21.791233+00:00\",\n  \"firstFullyPropagatedQuarterHour\": \"2026-10-25T21:30:00Z\",\n  \"coreVersionPreservedAcrossRegistrationRepair\": true,\n  \"forcedBusinessJobs\": 0,\n  \"messagesSentByThisDiagnosis\": 0,\n  \"workerCodeUploadsByThisDiagnosis\": 0,\n  \"observability\": {\n    \"authenticatedDashboardQuerySucceeded\": true,\n    \"ordinaryCoreFetchTrafficObserved\": true,\n    \"schedulerCodesQueried\": [\n      \"shift_scheduled\",\n      \"shift_coach_night\"\n    ],\n    \"schedulerCodeMatchesThrough2116\": 0,\n    \"emptyHistoricalGraphqlNotTreatedAsProofOfZero\": \"Known completed communications runs also missing from that historical endpoint\"\n  },\n  \"officialIncidentCorrelation\": {\n    \"url\": \"https://www.cloudflarestatus.com/incidents/npjny9agana8\",\n    \"originalModificationWithinIncident\": true,\n    \"causeConfirmed\": false,\n    \"note\": \"Official resolution noted some affected schedules may need redeployment. No current global outage is asserted.\"\n  },\n  \"providerInvestigationRequested\": \"Inspect existing Cron registration mapping and dispatch/backlog. Preserve current runtime, routes, bindings, cadence and approval controls; no forced job or paid change.\"\n}\n"
+  }
+}

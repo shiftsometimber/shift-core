@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-25T19:56:19.622Z",
+  "restoredVersion": "ac4e60d9-6f40-4bd5-a96f-83d6108dd716",
+  "deployment": "5f94dd77-114e-4754-adb0-2732e4a4e329",
+  "dataRestored": false,
+  "reason": "Post-deployment gate failed; release remains failed."
+}

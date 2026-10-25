@@ -1,9 +1,37 @@
-const fs=require('fs');
-(async()=>{
- const root='/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024';const o=JSON.parse(fs.readFileSync(root+'/my-timber-owned-runtime-40208490258.json','utf8'));
- if(o.source!=='55585365538e22a5893e930bbaf70b8c99069d76'||String(o.run)!=='40208490258')throw Error('Wrong owned source/run');
- const cfg=fs.readFileSync('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml','utf8');const token=cfg.match(/^oauth_token\s*=\s*"([^"]+)"/m)?.[1];if(!token)throw Error('Existing read session missing');
- const r=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-core/deployments',{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});const data=await r.json();if(!r.ok||!data.success)throw Error('Owned-version metadata read failed '+r.status);
- const d=data.result.deployments.sort((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];if(d.id!==o.deploymentId||d.versions.length!==1||d.versions[0].version_id!==o.versionId||d.versions[0].percentage!==100)throw Error('A different release owns production');
- console.log(JSON.stringify({owned:true,version:o.versionId}));
-})().catch(e=>{console.error(e.message);process.exit(1)});
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const root='/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024';
+const source='55585365538e22a5893e930bbaf70b8c99069d76';
+const build='4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc';
+const dir=root+'/core-local-promotion-20261025/';
+async function guard(){
+ const read=n=>JSON.parse(fs.readFileSync(dir+n,'utf8'));
+ const owned=read('owned-runtime-deployment.json'),proof=read('core-release-verification.json'),live=read('live-worker-proof.json'),repair=read('canonical-client-build-repair-proof.json');
+ assert.equal(owned.kind,'owned_runtime_deployment');assert.equal(owned.source,source);
+ assert.equal(owned.operationKind,'guarded_local_promotion');assert.equal(owned.githubRun,null);
+ assert.equal(owned.operation,'core-local-20261025-approved012-deferral');
+ assert.equal(owned.versionId,'ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9');
+ assert.equal(owned.deploymentId,'45868df4-c841-4ad2-949d-ef91ebd83689');
+ assert.equal(owned.buildSHA256,build);
+ assert.equal(proof.ok,true);assert.equal(proof.source,source);assert.equal(proof.buildSHA256,build);
+ assert.equal(proof.providerReceipt.versionId,owned.versionId);assert.equal(proof.providerReceipt.deploymentId,owned.deploymentId);
+ assert.equal(proof.source32ReceiptsRetained,true);assert.match(proof.source012,/Deferred.*Matt.*not passed/);
+ assert.equal(proof.protectedStockPreserved,true);assert.equal(proof.logQueryRedactionEnabled,true);
+ assert.equal(live.ok,true);assert.equal(live.versionId,owned.versionId);assert.equal(live.liveWorkerSHA256,build);
+ assert.equal(live.canonicalBuildVerification.exactTestedLiveBundle,true);
+ assert.equal(live.canonicalBuildVerification.originalCompiledBytesPreservedByExactInverse,true);
+ assert.equal(repair.ok,true);assert.equal(repair.repairedBundleSHA256,build);
+ assert.equal(repair.entirePriorCompiledBundleUnchanged,true);assert.equal(repair.exactInverseToQualifiedBundle,true);
+ assert.deepEqual(repair.onlyBindingsReplaced,['liveAppClient','memberImageViewerRuntime']);
+ const manager=JSON.parse(fs.readFileSync(root+'/recovery-state.json','utf8')).releaseCoordination.singleReleaseManager;
+ assert.equal(manager.source012Exception.approvedBy,'Matt');assert.equal(manager.source012Exception.notPassed,true);
+ const cfg=fs.readFileSync('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml','utf8');
+ const token=cfg.match(/^oauth_token\s*=\s*"([^"]+)"/m)?.[1];assert(token,'Existing read session missing');
+ const r=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-core/deployments',{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});
+ const data=await r.json();assert(r.ok&&data.success,'Owned provider read failed '+r.status);
+ const d=data.result.deployments.sort((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
+ assert.equal(d.id,owned.deploymentId,'Another release owns production');
+ assert.deepEqual(d.versions,[{version_id:owned.versionId,percentage:100}]);
+ return{owned:true,source,operation:owned.operation,operationKind:owned.operationKind,githubRun:null,version:owned.versionId,deploymentId:d.id,createdOn:d.created_on,buildSHA256:build,source012:'Explicitly deferred, not passed',authenticatedImmutableVersionReused:true};
+}
+module.exports={guard};
+if(require.main===module)guard().then(x=>console.log(JSON.stringify(x))).catch(e=>{console.error(e.message);process.exit(1)});

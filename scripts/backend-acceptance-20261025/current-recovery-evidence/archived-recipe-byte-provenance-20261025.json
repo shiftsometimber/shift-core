@@ -1,0 +1,7 @@
+{
+  "originalQualifiedRecipe": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/core-local-promotion-20261025/canonical-client-build-repair-20261025.mjs",
+  "originalSHA256": "3c9380b969cc2deac4eba271d814c76dfbd9291bc7bdd06ea8fdb30c0d47d5af",
+  "archivePath": "scripts/backend-acceptance-20261025/current-candidate/archived-approved-555-canonical-client-build-repair-20261025.mjs",
+  "archiveSHA256": "84b792989274591ebb287af418b0f752a1fee56157fc0f50c0a4798e4153bdb3",
+  "change": "Only redundant trailing LF bytes removed from archive copy to retain normal repository whitespace. All executable bytes unchanged; original qualified file preserved."
+}

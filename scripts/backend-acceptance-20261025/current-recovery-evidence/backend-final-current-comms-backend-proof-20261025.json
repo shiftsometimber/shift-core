@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-25T21:20:22.603201+00:00",
+  "deployment": {
+    "id": "2fad3393-21bf-4dbd-98ed-0c6869759c38",
+    "source": "api",
+    "strategy": "percentage",
+    "author_email": "matobrien@hotmail.co.uk",
+    "annotations": {
+      "workers/message": "Automatic deployment on upload.",
+      "workers/triggered_by": "upload"
+    },
+    "versions": [
+      {
+        "version_id": "1d281e49-5511-47f8-ab8c-46752bad4c99",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-25T20:59:36.889762Z"
+  },
+  "modules": [
+    {
+      "name": "data.mjs",
+      "sha256": "a8084010757b96f1b08cc145613826c695d40bc3cad166aea2c9218bc8cf2ae3",
+      "bytes": 2018755
+    },
+    {
+      "name": "presentation-entry.mjs",
+      "sha256": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f",
+      "bytes": 130
+    },
+    {
+      "name": "presentation.mjs",
+      "sha256": "6a304c33c1df3dab438487604131790412cc19056aa2d45bd4c8f5dcbc3c525c",
+      "bytes": 2903
+    },
+    {
+      "name": "worker.js",
+      "sha256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
+      "bytes": 334210
+    }
+  ],
+  "approvedBackendUnchanged": true,
+  "productionWrites": 0,
+  "noHistoricalAcceptanceExtendedToChangedCode": true
+}

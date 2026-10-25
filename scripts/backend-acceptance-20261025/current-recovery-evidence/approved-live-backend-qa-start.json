@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-25T20:48:38.558790+00:00",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "run": "2026102519371201",
+  "operationKind": "guarded_local_promotion",
+  "githubRun": null,
+  "ownedVersion": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+  "scriptSHA256": "71bc1f4665ff0b48da926ce1755ecbc8e012cbf5ab67e0b3e7a856ed8d493885",
+  "state": "bounded_actual_service_QA_started_in_existing_approved_session",
+  "newLoginOrReset": false,
+  "messagesRequested": 0,
+  "noClinicalOrFinancialMutations": true
+}

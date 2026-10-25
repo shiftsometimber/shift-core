@@ -1,0 +1,74 @@
+{
+  "at": "2026-10-25T21:39:37.475159+00:00",
+  "sameFilesUpdated": true,
+  "files": [
+    {
+      "path": "/Users/shiftsometimberltd/SST/backend-audit-20261024/SHIFT-HQ-Backend-Audit.html",
+      "bytes": 109456,
+      "sha256": "02d4c3978f2e8b391f938c9791ec2f25109329a3b4e58fa00d78476e71c16b18",
+      "predecessorSHA256": "9f7850d82ca01be503228831d8decbed2516cf8fc6587e9a54d0c03e25f50e10"
+    },
+    {
+      "path": "/Users/shiftsometimberltd/SST/backend-audit-20261024/SHIFT-HQ-Launch-KPIs.xlsx",
+      "bytes": 29031,
+      "sha256": "7e67394b43775273c004c674b0fe284f55db51fa8b144dba53160fb778bb627e",
+      "predecessorSHA256": "a681824e24c916e996885265ddeaafdb45116880b90d97f96049edbe02a0a8c3"
+    }
+  ],
+  "libraryResults": [
+    {
+      "local_path": "/workspace/scratch/606e6bb5bd95/outputs/606e6bb5bd95/SHIFT-HQ-Backend-Audit.html",
+      "purpose": "replace_library_file",
+      "status": "succeeded",
+      "file_id": "file_0000000090b081f9b2c248a1870a3c24",
+      "library_file_id": "libfile_f585d05be1108191beb76d502e8aaad8",
+      "file_name": "SHIFT-HQ-Backend-Audit.html",
+      "local_metadata_applied": true,
+      "path": "/SHIFT-HQ-Backend-Audit.html",
+      "current_version_number": 13
+    },
+    {
+      "local_path": "/workspace/scratch/606e6bb5bd95/outputs/606e6bb5bd95/SHIFT-HQ-Launch-KPIs.xlsx",
+      "purpose": "replace_library_file",
+      "status": "succeeded",
+      "file_id": "file_000000003ee081f9bae9e46ec44d8d64",
+      "library_file_id": "libfile_c23c93ea2cb88191851145882521bf19",
+      "file_name": "SHIFT-HQ-Launch-KPIs.xlsx",
+      "local_metadata_applied": true,
+      "path": "/SHIFT-HQ-Launch-KPIs.xlsx",
+      "current_version_number": 13
+    }
+  ],
+  "acceptance": {
+    "sourceVersion": 12,
+    "closedActions": [
+      "A09",
+      "A16"
+    ],
+    "formulasPreserved": 9,
+    "unrelatedCellsPreserved": true,
+    "nativeFeatureCountsPreserved": true,
+    "sameSheetNamesAndOrder": true,
+    "actionCount": 16,
+    "triggerCount": 18,
+    "originalKpiDefinitionCount": 24,
+    "exactApprovalBatchPreserved": true,
+    "approvalBatchSHA256": "9dc785c5f3ce08c3d1e9093b3289940d4116407dbe1aac4e6397db402d7be77b",
+    "files": {
+      "SHIFT-HQ-Backend-Audit.html": {
+        "bytes": 109456,
+        "sha256": "02d4c3978f2e8b391f938c9791ec2f25109329a3b4e58fa00d78476e71c16b18"
+      },
+      "SHIFT-HQ-Launch-KPIs.xlsx": {
+        "bytes": 29031,
+        "sha256": "7e67394b43775273c004c674b0fe284f55db51fa8b144dba53160fb778bb627e"
+      }
+    }
+  },
+  "backup": "/Users/shiftsometimberltd/SST/backend-audit-20261024/completion-v3/pre-v13-same-file-checkpoint",
+  "closedActions": [
+    "A09",
+    "A16"
+  ],
+  "coreSchedulerVerified": false
+}

@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-25T21:03:24.451847+00:00",
+  "scope": "Current aggregate clinical/staff configuration; no personal identifiers or secrets",
+  "counts": [
+    {
+      "source": "partner_staff",
+      "role": null,
+      "status": null,
+      "mfa_enabled": null,
+      "count": 0
+    },
+    {
+      "source": "partner_organisations",
+      "role": null,
+      "status": null,
+      "mfa_enabled": null,
+      "count": 0
+    },
+    {
+      "source": "clinical_prescriber_signing_keys",
+      "role": null,
+      "status": null,
+      "mfa_enabled": null,
+      "count": 0
+    },
+    {
+      "source": "hq_users",
+      "role": "owner",
+      "status": "active",
+      "mfa_enabled": 0,
+      "count": 4
+    },
+    {
+      "source": "hq_users",
+      "role": "owner",
+      "status": "disabled",
+      "mfa_enabled": 0,
+      "count": 13
+    }
+  ],
+  "messages": 0,
+  "mutations": 0
+}

@@ -1,0 +1,12 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import{createRequire}from'node:module';
+const{guard}=createRequire(import.meta.url)('/tmp/shift-owned-production-read-guard-20261025.cjs');
+const before=await guard();const root='/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024';
+const cfg=fs.readFileSync('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml','utf8'),token=cfg.match(/^oauth_token\s*=\s*"([^"]+)"/m)?.[1];
+const sql="SELECT job_key,status,started_at,scheduled_at,completed_at,outcome,counters_json,error_code FROM hq_service_job_runs r WHERE r.id=(SELECT z.id FROM hq_service_job_runs z WHERE z.job_key=r.job_key ORDER BY z.started_at DESC,z.id DESC LIMIT 1) ORDER BY job_key";
+const r=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/d1/database/88f40aed-cb23-4372-8c94-8a73f48bc847/query',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({sql,params:[]}),signal:AbortSignal.timeout(35000)});
+const j=await r.json();assert(r.ok&&j.success);const jobs=j.result[0].results;
+const keys=['core_medicines_watch','core_intelligence','core_radar','core_knowledge','core_fit_reminders','core_article_email','core_checkin','core_signup_alerts','core_treatment','core_coaching'];
+const after=await guard();assert.deepEqual(after,before);
+const out={at:new Date().toISOString(),source:before.source,owned:before,jobs,expectedKeys:keys,missingKeys:keys.filter(k=>!jobs.some(x=>x.job_key===k)),completedPostRelease:keys.filter(k=>jobs.some(x=>x.job_key===k&&x.status==='completed'&&Date.parse(x.completed_at)>Date.parse(before.createdOn)&&Date.parse(x.scheduled_at)>=Date.parse(before.createdOn))),forcedInvocations:0,businessWrites:0};
+out.verified=out.completedPostRelease.length===keys.length;
+fs.writeFileSync(root+'/backend-core-natural-job-acceptance-20261025.json',JSON.stringify(out,null,2)+'\n');console.log(JSON.stringify(out));

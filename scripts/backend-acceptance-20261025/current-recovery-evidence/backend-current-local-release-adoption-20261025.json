@@ -1,0 +1,84 @@
+{
+  "at": "2026-10-25T21:11:00.795129+00:00",
+  "ownedCore": {
+    "owned": true,
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+    "operation": "core-local-20261025-approved012-deferral",
+    "operationKind": "guarded_local_promotion",
+    "githubRun": null,
+    "version": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+    "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "createdOn": "2026-10-25T20:17:19.742386Z",
+    "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+    "source012": "Explicitly deferred, not passed",
+    "authenticatedImmutableVersionReused": true
+  },
+  "originalWorkflowActiveOrQueued": [],
+  "currentDeployments": {
+    "shift-core": {
+      "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+      "versions": [
+        {
+          "version_id": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+          "percentage": 100
+        }
+      ],
+      "createdOn": "2026-10-25T20:17:19.742386Z"
+    },
+    "shift-hq-member-comms-20261023": {
+      "deploymentId": "2fad3393-21bf-4dbd-98ed-0c6869759c38",
+      "versions": [
+        {
+          "version_id": "1d281e49-5511-47f8-ab8c-46752bad4c99",
+          "percentage": 100
+        }
+      ],
+      "createdOn": "2026-10-25T20:59:36.889762Z"
+    },
+    "shift-programme-member-20261023": {
+      "deploymentId": "91dd68ac-72a3-4801-966e-f6fbc62ac069",
+      "versions": [
+        {
+          "version_id": "d22e3d26-f907-47be-8508-42c47dfcd781",
+          "percentage": 100
+        }
+      ],
+      "createdOn": "2026-10-25T20:59:25.397906Z"
+    },
+    "shift-hq-reporting": {
+      "deploymentId": "fbefbc2f-fe08-4bd1-9f4b-83a566ffcf88",
+      "versions": [
+        {
+          "version_id": "799ba8a2-5e88-4266-a6b8-8a56d6d0a0d2",
+          "percentage": 100
+        }
+      ],
+      "createdOn": "2026-10-24T21:51:35.422579Z"
+    },
+    "shift-mytimber-support-20261023": {
+      "deploymentId": "28d78060-a3ea-45f0-b678-b33da6c656ef",
+      "versions": [
+        {
+          "version_id": "240a70f5-f8b3-4d18-8f8d-11140c65d1b2",
+          "percentage": 100
+        }
+      ],
+      "createdOn": "2026-10-24T16:43:22.593563Z"
+    }
+  },
+  "backendCases": {
+    "passed": 6,
+    "receipt": "approved-live-backend-qa-result.json"
+  },
+  "schemaReadVerification": "backend-owned-live-readonly-verification.json",
+  "scheduler": {
+    "status": "Existing cron recreated21:04, natural outcome not yet verified",
+    "receipt": "backend-core-owned-cron-registration-recreation-20261025.json"
+  },
+  "closedActions": [
+    "A09",
+    "A16"
+  ],
+  "broaderProgrammeComplete": false,
+  "productionWorkerUploadsByBackend": 0
+}

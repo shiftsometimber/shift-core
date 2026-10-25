@@ -1,0 +1,92 @@
+{
+  "state": "completed",
+  "startedAt": "2026-10-25T20:48:38.543Z",
+  "accountId": 11252,
+  "cases": [
+    {
+      "name": "private account identity ignores another account selector",
+      "pass": true,
+      "ownIdentityRetained": true
+    },
+    {
+      "name": "member, state, order and consent reads",
+      "pass": true,
+      "routes": [
+        {
+          "path": "/v1/profile",
+          "status": 200,
+          "private": true
+        },
+        {
+          "path": "/v1/member-state",
+          "status": 200,
+          "private": true
+        },
+        {
+          "path": "/v1/check-ins",
+          "status": 200,
+          "private": true
+        },
+        {
+          "path": "/v1/cases",
+          "status": 200,
+          "private": true
+        },
+        {
+          "path": "/v1/pharmacy/orders",
+          "status": 200,
+          "private": true
+        },
+        {
+          "path": "/v1/consents",
+          "status": 200,
+          "private": true
+        }
+      ]
+    },
+    {
+      "name": "genuine configured GP directory search",
+      "pass": true,
+      "status": 200,
+      "practices": 12,
+      "source": "NHS ODS / Public Health Scotland",
+      "checkedAt": "2026-10-12T20:36:33.200455+00:00"
+    },
+    {
+      "name": "GP/member details persist, reject stale writes and restore safely",
+      "pass": true,
+      "savedAndReopened": true,
+      "successfulOperationIdempotent": true,
+      "staleWriteStatus": 409,
+      "originalDetailsRestored": true
+    },
+    {
+      "name": "live check-in, retained next step and consent withdrawal",
+      "pass": true,
+      "syntheticCheckInId": 561,
+      "retainedFollowup": true,
+      "unconsentedWriteStatus": 409,
+      "withdrawalEnforced": true,
+      "originalTrackingChoiceRestored": true,
+      "humanUsefulnessFeedbackInvented": false
+    },
+    {
+      "name": "authenticated export remains bound to this test account",
+      "pass": true,
+      "status": 200,
+      "ownAccountOnly": true,
+      "checkedOwnedRows": 17,
+      "exportedAt": "2026-10-25T20:48:50.442Z",
+      "healthPayloadRetainedOutsideAuthenticatedService": false
+    }
+  ],
+  "messagesRequested": 0,
+  "chargesOrClinicalWork": 0,
+  "physicalDevice": false,
+  "memberDetailsRestored": true,
+  "syntheticCheckInId": 561,
+  "syntheticFollowupId": "1ec58b30-574f-48bc-9a21-e8d02c445ddb",
+  "originalTrackingChoiceRestored": true,
+  "ok": true,
+  "finishedAt": "2026-10-25T20:48:52.245Z"
+}

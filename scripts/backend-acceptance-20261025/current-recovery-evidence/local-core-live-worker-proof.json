@@ -1,0 +1,144 @@
+{
+  "ok": true,
+  "canonicalBuildVerification": {
+    "exactTestedLiveBundle": true,
+    "originalCompiledBytesPreservedByExactInverse": true,
+    "nativeClientSourceSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+    "actualCoreClientSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+    "compiledResponseCases": 7,
+    "localFullWorkerBootstrap": "Not passed: unchanged baseline could not start in local workerd; production response independently verified"
+  },
+  "deletionBoundary": [
+    {
+      "origin": "https://shiftsometimber.co.uk",
+      "status": 401,
+      "authenticated": false
+    },
+    {
+      "origin": "https://foreign.example.invalid",
+      "status": 403,
+      "authenticated": false
+    }
+  ],
+  "privacyCheckTarget": "Exact owned Core Worker origin; public privacy routes are delegated to independently owned member-comms Worker",
+  "publicDelegatedPrivacyObservation": {
+    "allowedOriginStatus": 401,
+    "foreignOriginStatus": 401,
+    "bothDenied": true,
+    "exactPublicForeign403NotClaimed": true,
+    "owner": "shift-hq-member-comms-20261023"
+  },
+  "at": "2026-10-25T20:22:43.508Z",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "run": "2026102519371201",
+  "versionId": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+  "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+  "liveWorkerSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+  "candidateBundleSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "exactBundleMatch": false,
+  "exactAffectedCompiledModules": {
+    "acquisition-activation/server.mjs": {
+      "sha256": "9ec7a5776c17d717dee8125753512693c2d3613d0afab925f0b2f80dae1fdd3d",
+      "bytes": 4102,
+      "segments": 1
+    },
+    "auth-email-verification-v1.js": {
+      "sha256": "48038207df0678689ba328da6e00edd9306142a7cffc0a76edfcca3c72dcf7a4",
+      "bytes": 14221,
+      "segments": 2
+    },
+    "auth-recovery-v1.js": {
+      "sha256": "c1c243b0c1e4a06755a6b3c50c8ee6c7eb9f179a8e0e411c667840b583f59802",
+      "bytes": 13288,
+      "segments": 1
+    },
+    "member-design.mjs": {
+      "sha256": "215e481cc29a7f6a175a97e091859f0097a199b1c6bd880310b1dff2ea8d3fe7",
+      "bytes": 23803,
+      "segments": 1
+    },
+    "member-experience/account-deletion.mjs": {
+      "sha256": "bab874c870fd5e550b42fd482748435ee5504586f7a8cb7d485e10803a5befed",
+      "bytes": 4613,
+      "segments": 1
+    },
+    "my-timber-pwa/ui.mjs": {
+      "sha256": "714d26b1c259d7fd2b44f7973f7b083249291f709ffc1d5cea5f1567491e02b1",
+      "bytes": 9684,
+      "segments": 1
+    },
+    "preview/app-layout/refinement.mjs": {
+      "sha256": "788edcbb197b3687e9506c8d7d9ac7c04b66bb3c5403846d256920be8e1a752e",
+      "bytes": 12483,
+      "segments": 1
+    },
+    "privacy-account-request-v1.js": {
+      "sha256": "b52e3529c11f649e69e17a225bcdcfda624d9bc554145775e3f715e6c5eac651",
+      "bytes": 7788,
+      "segments": 1
+    },
+    "worker.js": {
+      "sha256": "c966df63b86b48a4bab5c8cadc6d5d61c26f5f5e76ae36f3942205653107f5ef",
+      "bytes": 216940,
+      "segments": 1
+    },
+    "auth-delivery-v1.js": {
+      "sha256": "d076947e0c949b91d1eaa06b86deabf9bf44166d709ed36b99b6b03a4f07028e",
+      "bytes": 2991,
+      "segments": 1
+    },
+    "auth-recovery-page-v1.mjs": {
+      "sha256": "44dd0447dab7551a83e61d74cfb8035aead02a6e2c133386d323e42bc31263a7",
+      "bytes": 2403,
+      "segments": 1
+    },
+    "hq-commerce-delivery.mjs": {
+      "sha256": "0e3a7f8a052fe487b313e99310975315d9bfe83fcd601431f44e09b326b1e731",
+      "bytes": 4934,
+      "segments": 1
+    },
+    "hq-mfa-readiness.mjs": {
+      "sha256": "c008d7d17a90ffb4251a99dc488b4f7f09c234781d7352f956a8c5dfbaf22511",
+      "bytes": 655,
+      "segments": 1
+    },
+    "hq-service-job-runs.mjs": {
+      "sha256": "c163b1fb1fa1b004290c61c9064352779a424e080239037995d19b60eb1ce00a",
+      "bytes": 2737,
+      "segments": 1
+    },
+    "medicine-commerce-v1.js": {
+      "sha256": "e4c306be1f8accfd9200b9347db95a1e35090cfb9612e1e5e9d8445fa0c1d975",
+      "bytes": 74239,
+      "segments": 2
+    },
+    "member-register-fastpath-v2.js": {
+      "sha256": "9b2ff40224e197d0ff37b862bbcfe2405d7c57b0ffd8fdd18c2bd701fe128711",
+      "bytes": 7728,
+      "segments": 1
+    },
+    "password-policy-v1.js": {
+      "sha256": "38e52be707709222eba0fa6770dcd228e4fea0c4ed818e4dfcc58dae36266372",
+      "bytes": 456,
+      "segments": 1
+    },
+    "shift-coach/worker.mjs": {
+      "sha256": "e1a3900529955c83a02d2c37f7396e5413a02d5eeb92b0eee44df23b8644b2fc",
+      "bytes": 4129,
+      "segments": 3
+    },
+    "transactional-email-v1.js": {
+      "sha256": "92dfbf9face04dab0fee5a478b752578b88e2967880f321b8f3c1750d9521dbc",
+      "bytes": 5537,
+      "segments": 1
+    },
+    "worker-entry-v6.js": {
+      "sha256": "1bb9a2a09666b13bb2b53a450c3a66cca151de56c49b799d40b21bcf3f2b1353",
+      "bytes": 56623,
+      "segments": 16
+    }
+  },
+  "productionWrites": 0,
+  "memberRowsRead": 0,
+  "physicalDevice": false
+}

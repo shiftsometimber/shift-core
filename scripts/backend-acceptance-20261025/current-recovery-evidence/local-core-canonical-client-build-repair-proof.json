@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "sourceTree": "04554f2d18bda99982fb1ed6c7cc29d63b633d51",
+  "kind": "SOURCE_EQUIVALENT_CANONICAL_CLIENT_SERIALIZATION_BUILD_REPAIR",
+  "cause": "Bundler changes function.toString serialization; independent presentation explicitly requires original native byte hash.",
+  "baseBundleSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "repairedBundleSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+  "repairedBundleBytes": 33456748,
+  "nativeClientSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+  "nativeClientBytes": 102874,
+  "insertedBytes": 103936,
+  "insertedSHA256": "aede764854b728dab92daae241c55197b86d44a1a3ee7197ed3fd0d6f6e36b0a",
+  "entirePriorCompiledBundleUnchanged": true,
+  "exactInverseToQualifiedBundle": true,
+  "onlyBindingsReplaced": [
+    "liveAppClient",
+    "memberImageViewerRuntime"
+  ],
+  "appFeaturesChanged": false,
+  "independentWorkerWrites": 0,
+  "productionWrites": 0,
+  "originalBrokenRuntimeReproducedInProduction": true,
+  "baselineBrokenAssetSHA256": "0a4dfa8605720e54b0febb847291a6738b44a75965123f883927ee0b1ecece05",
+  "testMethod": "Execute unchanged emitted app-layout and Fit response functions plus exact generated native literal assignments in isolated VM; no Worker bootstrap, network or production resources. Full local workerd bootstrap failed on unchanged baseline and is not claimed passed.",
+  "tests": [
+    {
+      "path": "/assets/my-timber-layout.mjs",
+      "method": "GET",
+      "passed": true,
+      "compiledHandlersExecuted": true,
+      "repairedSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+      "nativeSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+      "privacyHeadersPreserved": true
+    },
+    {
+      "path": "/assets/my-timber-layout.mjs?source-proof=1",
+      "method": "GET",
+      "passed": true,
+      "compiledHandlersExecuted": true,
+      "repairedSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+      "nativeSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+      "privacyHeadersPreserved": true
+    },
+    {
+      "path": "/assets/my-timber-layout-launch.mjs",
+      "method": "GET",
+      "passed": true,
+      "unaffectedResponseIdentical": true
+    },
+    {
+      "path": "/unrelated-compiled-asset.mjs",
+      "method": "GET",
+      "passed": true,
+      "unaffectedResponseIdentical": true
+    },
+    {
+      "path": "/__fixture-tools.mjs",
+      "method": "GET",
+      "passed": true,
+      "unaffectedResponseIdentical": true
+    },
+    {
+      "path": "/assets/my-timber-layout.mjs",
+      "method": "HEAD",
+      "passed": true,
+      "unaffectedResponseIdentical": true
+    },
+    {
+      "path": "/assets/my-timber-layout.mjs",
+      "method": "POST",
+      "passed": true,
+      "unaffectedResponseIdentical": true
+    }
+  ],
+  "at": "2026-10-25T20:12:47.605Z"
+}

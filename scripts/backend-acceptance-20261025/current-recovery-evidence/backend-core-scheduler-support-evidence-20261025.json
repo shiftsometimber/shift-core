@@ -1,0 +1,107 @@
+{
+  "scope": "Sanitised private support evidence: no member records, health information, credentials or message payloads",
+  "observedAt": "2026-10-25T21:33:43.173Z",
+  "accountId": "9e5386dcf455be34c582d93f8bfc79e6",
+  "worker": "shift-core",
+  "serving": {
+    "owned": true,
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+    "operation": "core-local-20261025-approved012-deferral",
+    "operationKind": "guarded_local_promotion",
+    "githubRun": null,
+    "version": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+    "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "createdOn": "2026-10-25T20:17:19.742386Z",
+    "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+    "source012": "Explicitly deferred, not passed",
+    "authenticatedImmutableVersionReused": true
+  },
+  "publishedHandlers": [
+    "fetch",
+    "scheduled"
+  ],
+  "expectedDatabaseBindingVerified": true,
+  "expectedJobTableAndIndexDefinitionsVerified": true,
+  "coreJobRecordCount": 0,
+  "coreExpectedJobKeys": [
+    "core_medicines_watch",
+    "core_intelligence",
+    "core_radar",
+    "core_knowledge",
+    "core_fit_reminders",
+    "core_article_email",
+    "core_checkin",
+    "core_signup_alerts",
+    "core_treatment",
+    "core_coaching"
+  ],
+  "coreMissingJobKeys": [
+    "core_medicines_watch",
+    "core_intelligence",
+    "core_radar",
+    "core_knowledge",
+    "core_fit_reminders",
+    "core_article_email",
+    "core_checkin",
+    "core_signup_alerts",
+    "core_treatment",
+    "core_coaching"
+  ],
+  "actualOtherWorkerOutcomes": [
+    {
+      "job_key": "hq_communications",
+      "status": "completed",
+      "scheduled_at": "2026-10-25T20:40:06.590Z",
+      "started_at": "2026-10-25T21:29:15.764Z",
+      "completed_at": "2026-10-25T21:29:19.510Z",
+      "outcome": "completed",
+      "error_code": null
+    },
+    {
+      "job_key": "support_reminders",
+      "status": "completed",
+      "scheduled_at": "2026-10-25T21:30:18.348Z",
+      "started_at": "2026-10-25T21:30:29.437Z",
+      "completed_at": "2026-10-25T21:30:30.693Z",
+      "outcome": "completed",
+      "error_code": null
+    }
+  ],
+  "originalSchedule": [
+    {
+      "cron": "*/15 * * * *",
+      "created_on": "2026-09-03T21:05:00.180977Z",
+      "modified_on": "2026-10-14T19:39:09.180218Z"
+    }
+  ],
+  "recreatedSchedule": [
+    {
+      "cron": "*/15 * * * *",
+      "created_on": "2026-10-25T21:04:19.623846Z",
+      "modified_on": "2026-10-25T21:04:19.623846Z"
+    }
+  ],
+  "registrationMutationCompleted": "2026-10-25T21:04:21.791233+00:00",
+  "firstFullyPropagatedQuarterHour": "2026-10-25T21:30:00Z",
+  "coreVersionPreservedAcrossRegistrationRepair": true,
+  "forcedBusinessJobs": 0,
+  "messagesSentByThisDiagnosis": 0,
+  "workerCodeUploadsByThisDiagnosis": 0,
+  "observability": {
+    "authenticatedDashboardQuerySucceeded": true,
+    "ordinaryCoreFetchTrafficObserved": true,
+    "schedulerCodesQueried": [
+      "shift_scheduled",
+      "shift_coach_night"
+    ],
+    "schedulerCodeMatchesThrough2116": 0,
+    "emptyHistoricalGraphqlNotTreatedAsProofOfZero": "Known completed communications runs also missing from that historical endpoint"
+  },
+  "officialIncidentCorrelation": {
+    "url": "https://www.cloudflarestatus.com/incidents/npjny9agana8",
+    "originalModificationWithinIncident": true,
+    "causeConfirmed": false,
+    "note": "Official resolution noted some affected schedules may need redeployment. No current global outage is asserted."
+  },
+  "providerInvestigationRequested": "Inspect existing Cron registration mapping and dispatch/backlog. Preserve current runtime, routes, bindings, cadence and approval controls; no forced job or paid change."
+}

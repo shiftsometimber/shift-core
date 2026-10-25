@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-25T21:37:06.632229+00:00",
+  "state": "CORE_DEPLOYED_AFFECTED_SCOPE_VERIFIED_BACKEND_SCHEDULER_UNVERIFIED_PROVIDER_INVESTIGATION_PREPARED",
+  "core": {
+    "owned": true,
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+    "operation": "core-local-20261025-approved012-deferral",
+    "operationKind": "guarded_local_promotion",
+    "githubRun": null,
+    "version": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+    "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "createdOn": "2026-10-25T20:17:19.742386Z",
+    "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+    "source012": "Explicitly deferred, not passed",
+    "authenticatedImmutableVersionReused": true
+  },
+  "memberCasesPassed": 6,
+  "deliverySchemasVerified": 3,
+  "schedulerExpected": 10,
+  "schedulerObserved": 0,
+  "lastNaturalJobObservation": "2026-10-25T21:33:43.173Z",
+  "source012": "Explicitly deferred by Matt, not passed",
+  "originalWorkflowActiveOrQueued": [],
+  "newWatchers": 0,
+  "newWorkerPublishers": 0,
+  "privateProviderSupportDraft": "prepared-provider-scheduler-support-draft-20261025.json",
+  "supportAttachmentSHA256": "e9c663fd4b06a6906a9a74b8990b90959edb8b5670184f7fa576b825cede09a4",
+  "newCommunicationsSent": 0,
+  "closedActions": [
+    "A09",
+    "A16"
+  ],
+  "entireBackendProgrammeComplete": false,
+  "independentEngineeringDisposition": "Current scoped release is deployed. Further Cron dispatch needs provider investigation; exact draft is prepared under Matt communication approval boundary. Other open actions retain real configuration/data/access/device requirements. Original012 and future automatic build integration remain explicitly deferred with existing Core maintainer."
+}

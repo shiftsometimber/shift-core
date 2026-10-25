@@ -1,0 +1,241 @@
+{
+  "ok": true,
+  "scope": "Frozen approved Core source, source-equivalent native client build, affected public/contact/medical/navigation journeys and mandatory source/stock/privacy/owned rollback controls. Wider41-page Newsroom SEO and independent bloods headers remain failed and separate.",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "tree": "04554f2d18bda99982fb1ed6c7cc29d63b633d51",
+  "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+  "providerReceipt": {
+    "kind": "owned_runtime_deployment",
+    "at": "2026-10-25T20:17:24.103561+00:00",
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+    "run": "2026102519371201",
+    "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "versionId": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+    "previousDeploymentId": "5f94dd77-114e-4754-adb0-2732e4a4e329",
+    "previousVersionId": "ac4e60d9-6f40-4bd5-a96f-83d6108dd716",
+    "dataRestored": false,
+    "operationKind": "guarded_local_promotion",
+    "operation": "core-local-20261025-approved012-deferral",
+    "githubRun": null,
+    "historicalSourceRun": 40208490258,
+    "source012Status": "Deferred with explicit Matt approval; incomplete, not passed",
+    "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+    "baseQualifiedBundleSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+    "canonicalClientSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+    "buildRepairProof": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/core-local-promotion-20261025/canonical-client-build-repair-proof.json",
+    "ownershipEvidence": "Exact ID returned by versions upload, downloaded module SHA verified before traffic; versions deploy of that exact ID, then authenticated one100% provider receipt. Existing triggers/routes preserved."
+  },
+  "finalProvider": {
+    "id": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "author_email": "matobrien@hotmail.co.uk",
+    "annotations": {
+      "workers/message": "Matt-approved555 Core release with canonical client serialization repair;012 explicitly deferred",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-25T20:17:19.742386Z"
+  },
+  "source32ReceiptsRetained": true,
+  "source012": "Deferred with explicit Matt approval; not passed",
+  "original20CompiledModules39Sections": "Passed after authenticated exact inverse of the7-case tested canonical build repair; entire prior bundle otherwise unchanged",
+  "actualCoreClientSHA256": "95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585",
+  "coreAnonymousPrivacy": [
+    {
+      "origin": "https://shiftsometimber.co.uk",
+      "status": 401,
+      "authenticated": false
+    },
+    {
+      "origin": "https://foreign.example.invalid",
+      "status": 403,
+      "authenticated": false
+    }
+  ],
+  "logQueryRedactionEnabled": true,
+  "protectedStockPreserved": true,
+  "publicSecurity": [
+    {
+      "path": "/",
+      "methods": [
+        {
+          "method": "GET",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        },
+        {
+          "method": "HEAD",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "path": "/contact",
+      "methods": [
+        {
+          "method": "GET",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        },
+        {
+          "method": "HEAD",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "path": "/articles/weight-loss-medication-eligibility-uk",
+      "methods": [
+        {
+          "method": "GET",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        },
+        {
+          "method": "HEAD",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "path": "/comparisons/medications/saxenda-vs-orlistat",
+      "methods": [
+        {
+          "method": "GET",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        },
+        {
+          "method": "HEAD",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "path": "/work-with-us",
+      "methods": [
+        {
+          "method": "GET",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        },
+        {
+          "method": "HEAD",
+          "checks": {
+            "http200": true,
+            "csp": true,
+            "hsts": true,
+            "xFrameOptions": true
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "independentDeploymentsPreserved": {
+    "shift-programme-member-20261023": {
+      "id": "b9833cb7-bbc1-4ae0-9dff-bf212d33b8ed",
+      "source": "api",
+      "strategy": "percentage",
+      "author_email": "matobrien@hotmail.co.uk",
+      "annotations": {
+        "workers/message": "Automatic deployment on upload.",
+        "workers/triggered_by": "upload"
+      },
+      "versions": [
+        {
+          "version_id": "2bf46c65-3f65-44fa-bb56-8b272cd4871c",
+          "percentage": 100
+        }
+      ],
+      "created_on": "2026-10-25T20:09:19.097172Z"
+    },
+    "shift-hq-member-comms-20261023": {
+      "id": "08b151c8-1a78-47e9-b9b9-336c07dad865",
+      "source": "api",
+      "strategy": "percentage",
+      "author_email": "matobrien@hotmail.co.uk",
+      "annotations": {
+        "workers/message": "Automatic deployment on upload.",
+        "workers/triggered_by": "upload"
+      },
+      "versions": [
+        {
+          "version_id": "a9300cef-56f2-4940-aef7-81572a1f00fa",
+          "percentage": 100
+        }
+      ],
+      "created_on": "2026-10-25T20:09:31.834626Z"
+    }
+  },
+  "latestIndependentClientSHA256": "5417a73675253eff577fc00db14a5192e0296fce4c954e862f045eb09c986254",
+  "medicalBrowserPages": 2,
+  "navigationMetadataPages": 3,
+  "contactBrowserPassed": true,
+  "analyticsConsentSandboxPassed": true,
+  "at": "2026-10-25T20:39:41.895869+00:00",
+  "automaticPromotions": "Paused for specific build/receipt integration; no active publisher",
+  "fullEstateSEO": "Not passed;40of41 page indexing checks failed, plus bloods security headers missing. Not represented as Core acceptance passes.",
+  "productionBusinessDataWrites": 0,
+  "testEnquiriesOrEmailsSent": 0
+}

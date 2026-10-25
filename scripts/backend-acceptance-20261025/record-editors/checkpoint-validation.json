@@ -1,0 +1,26 @@
+{
+  "sourceVersion": 12,
+  "closedActions": [
+    "A09",
+    "A16"
+  ],
+  "formulasPreserved": 9,
+  "unrelatedCellsPreserved": true,
+  "nativeFeatureCountsPreserved": true,
+  "sameSheetNamesAndOrder": true,
+  "actionCount": 16,
+  "triggerCount": 18,
+  "originalKpiDefinitionCount": 24,
+  "exactApprovalBatchPreserved": true,
+  "approvalBatchSHA256": "9dc785c5f3ce08c3d1e9093b3289940d4116407dbe1aac4e6397db402d7be77b",
+  "files": {
+    "SHIFT-HQ-Backend-Audit.html": {
+      "bytes": 109456,
+      "sha256": "02d4c3978f2e8b391f938c9791ec2f25109329a3b4e58fa00d78476e71c16b18"
+    },
+    "SHIFT-HQ-Launch-KPIs.xlsx": {
+      "bytes": 29031,
+      "sha256": "7e67394b43775273c004c674b0fe284f55db51fa8b144dba53160fb778bb627e"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "at": "2026-10-25T20:52:31.567945+00:00",
+  "scope": "Current independent communications exact backend and unsent approval eligibility read",
+  "before": {
+    "id": "869729eb-4b45-48bf-a9b7-1b90d80bbbca",
+    "source": "api",
+    "strategy": "percentage",
+    "author_email": "matobrien@hotmail.co.uk",
+    "annotations": {
+      "workers/message": "Automatic deployment on upload.",
+      "workers/triggered_by": "upload"
+    },
+    "versions": [
+      {
+        "version_id": "598c7f11-dc0c-4cdf-90d2-4965bab48fde",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-25T20:42:14.1173Z"
+  },
+  "productionMutations": 0,
+  "messagesSent": 0,
+  "modules": [
+    {
+      "name": "data.mjs",
+      "bytes": 1988991,
+      "sha256": "6a1c9837277dce0f01c6c60313f8bb8c6e70a4b06a13e7bc076146fb3589f061"
+    },
+    {
+      "name": "presentation-entry.mjs",
+      "bytes": 130,
+      "sha256": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f"
+    },
+    {
+      "name": "presentation.mjs",
+      "bytes": 2903,
+      "sha256": "6a304c33c1df3dab438487604131790412cc19056aa2d45bd4c8f5dcbc3c525c"
+    },
+    {
+      "name": "worker.js",
+      "bytes": 334210,
+      "sha256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793"
+    }
+  ],
+  "drafts": [
+    {
+      "id": "6c5c0ba2-c56d-4c05-aeca-558dc7901b47",
+      "hash": "54f86e27cb3c54a5113b8aa906ff00d03b64a4af2cc55ec46bca951cd81a2818",
+      "status": "draft",
+      "approved_by": null,
+      "approved_at": null,
+      "cancelled_at": null,
+      "scheduled_at": "2026-10-24T17:17:07.546Z"
+    },
+    {
+      "id": "ad32fd11-f45b-4eee-b82b-d71600474748",
+      "hash": "8bdeb1bbd8f8a83ab2028c30d1f806a66ab12abfcd0470da85f686cb283f92b6",
+      "status": "draft",
+      "approved_by": null,
+      "approved_at": null,
+      "cancelled_at": null,
+      "scheduled_at": "2026-10-24T17:17:05.278Z"
+    }
+  ],
+  "recipientStates": [
+    {
+      "draft_id": "6c5c0ba2-c56d-4c05-aeca-558dc7901b47",
+      "status": "pending",
+      "n": 1,
+      "with_provider_id": 0,
+      "latest_at": null
+    },
+    {
+      "draft_id": "ad32fd11-f45b-4eee-b82b-d71600474748",
+      "status": "pending",
+      "n": 1,
+      "with_provider_id": 0,
+      "latest_at": null
+    }
+  ],
+  "after": {
+    "id": "869729eb-4b45-48bf-a9b7-1b90d80bbbca",
+    "source": "api",
+    "strategy": "percentage",
+    "author_email": "matobrien@hotmail.co.uk",
+    "annotations": {
+      "workers/message": "Automatic deployment on upload.",
+      "workers/triggered_by": "upload"
+    },
+    "versions": [
+      {
+        "version_id": "598c7f11-dc0c-4cdf-90d2-4965bab48fde",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-25T20:42:14.1173Z"
+  },
+  "unchangedApprovedBackendVerified": true
+}

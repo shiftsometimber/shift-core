@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-25T21:33:43.173Z",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "owned": {
+    "owned": true,
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+    "operation": "core-local-20261025-approved012-deferral",
+    "operationKind": "guarded_local_promotion",
+    "githubRun": null,
+    "version": "ca5ca696-3fa1-47bc-b1d7-85a2d6d587f9",
+    "deploymentId": "45868df4-c841-4ad2-949d-ef91ebd83689",
+    "createdOn": "2026-10-25T20:17:19.742386Z",
+    "buildSHA256": "4cf231930d6069e637176bf4b9945c9ef5aabbe685f5798c61ba3ee43f9a11bc",
+    "source012": "Explicitly deferred, not passed",
+    "authenticatedImmutableVersionReused": true
+  },
+  "jobs": [
+    {
+      "job_key": "hq_communications",
+      "status": "completed",
+      "started_at": "2026-10-25T21:29:15.764Z",
+      "scheduled_at": "2026-10-25T20:40:06.590Z",
+      "completed_at": "2026-10-25T21:29:19.510Z",
+      "outcome": "completed",
+      "counters_json": "{\"emailAccepted\":0,\"inApp\":0,\"pushAccepted\":0,\"unknown\":0,\"suppressed\":0,\"deferred\":0}",
+      "error_code": null
+    },
+    {
+      "job_key": "support_reminders",
+      "status": "completed",
+      "started_at": "2026-10-25T21:30:29.437Z",
+      "scheduled_at": "2026-10-25T21:30:18.348Z",
+      "completed_at": "2026-10-25T21:30:30.693Z",
+      "outcome": "completed",
+      "counters_json": "{\"accepted\":0,\"suppressed\":0,\"failed\":0}",
+      "error_code": null
+    }
+  ],
+  "expectedKeys": [
+    "core_medicines_watch",
+    "core_intelligence",
+    "core_radar",
+    "core_knowledge",
+    "core_fit_reminders",
+    "core_article_email",
+    "core_checkin",
+    "core_signup_alerts",
+    "core_treatment",
+    "core_coaching"
+  ],
+  "missingKeys": [
+    "core_medicines_watch",
+    "core_intelligence",
+    "core_radar",
+    "core_knowledge",
+    "core_fit_reminders",
+    "core_article_email",
+    "core_checkin",
+    "core_signup_alerts",
+    "core_treatment",
+    "core_coaching"
+  ],
+  "completedPostRelease": [],
+  "forcedInvocations": 0,
+  "businessWrites": 0,
+  "verified": false
+}

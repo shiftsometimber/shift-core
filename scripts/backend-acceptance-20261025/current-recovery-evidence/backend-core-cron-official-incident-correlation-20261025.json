@@ -1,0 +1,70 @@
+{
+  "at": "2026-10-25T21:19:15.928779+00:00",
+  "officialStatusSource": "https://www.cloudflarestatus.com/api/v2/incidents.json",
+  "incidents": [
+    {
+      "id": "3ts1mfzs0khz",
+      "name": "Delayed, missed, and duplicated Workers Cron Triggers",
+      "status": "resolved",
+      "started_at": "2026-10-23T15:27:34.542Z",
+      "resolved_at": "2026-10-23T20:37:06.552Z",
+      "shortlink": "https://www.cloudflarestatus.com/incidents/3ts1mfzs0khz",
+      "updates": [
+        {
+          "at": "2026-10-23T20:37:06.552Z",
+          "status": "resolved",
+          "body": "This incident has been resolved."
+        },
+        {
+          "at": "2026-10-23T20:29:51.871Z",
+          "status": "monitoring",
+          "body": "A fix has been implemented and we are monitoring the results."
+        },
+        {
+          "at": "2026-10-23T15:27:34.806Z",
+          "status": "investigating",
+          "body": "We are investigating reports that some Workers Cron Triggers are running late, being skipped, or running more than once. Affected customers may see scheduled Workers invocations that do not run on time or run more than once. We will post an update as we learn more."
+        }
+      ]
+    },
+    {
+      "id": "npjny9agana8",
+      "name": "Cloudflare Workers - Cron Trigger Activation Issues",
+      "status": "resolved",
+      "started_at": "2026-10-14T05:36:12.243Z",
+      "resolved_at": "2026-10-15T01:29:39.862Z",
+      "shortlink": "https://www.cloudflarestatus.com/incidents/npjny9agana8",
+      "updates": [
+        {
+          "at": "2026-10-15T01:29:39.862Z",
+          "status": "resolved",
+          "body": "Workers Cron Trigger backlogs have cleared and appear healthy. Cron Trigger schedules should be executing as expected. Some schedule redeploys may be required for a small fraction of Workers who were impacted during the incident."
+        },
+        {
+          "at": "2026-10-14T08:14:16.627Z",
+          "status": "monitoring",
+          "body": "We are continuing to monitor for any further issues."
+        },
+        {
+          "at": "2026-10-14T07:23:21.018Z",
+          "status": "identified",
+          "body": "A fix has been identified and is underway"
+        },
+        {
+          "at": "2026-10-14T05:36:12.243Z",
+          "status": "investigating",
+          "body": "Cloudflare is investigating issues with Workers Cron Triggers. Customers who have recently created or modified a Cron Trigger schedule may find that the schedule is not executing as expected. Pre-existing Cron Trigger schedules that have not been recently modified are not affected.\n\nWe are working to identify the cause and mitigate this problem. More updates to follow shortly."
+        }
+      ]
+    }
+  ],
+  "originalCoreSchedule": {
+    "cron": "*/15 * * * *",
+    "created_on": "2026-09-03T21:05:00.180977Z",
+    "modified_on": "2026-10-14T19:39:09.180218Z"
+  },
+  "inference": "Original14October19:39 trigger modification falls inside the official activation incident, whose resolution says some schedules require redeploy. This supports the scoped recreation but does not prove Cloudflare caused the current missing Core executions. No current global incident is asserted.",
+  "scheduleRecreated": "2026-10-25T21:04:19.623846Z",
+  "nextFullyPropagatedQuarterHour": "2026-10-25T21:30:00Z",
+  "newMessages": 0
+}

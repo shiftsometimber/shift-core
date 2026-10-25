@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-25T19:47:35.705199+00:00",
+  "state": "MERGED_NOT_DEPLOYED",
+  "PR": 1433,
+  "feature": "abec633aa4ca9f758ad346f6ac881ec5a1ee0880",
+  "main": "a7b63f7eec6319538a5ab237ca6a4ca062c58441",
+  "tree": "f51441ac815672ded68bcdb03ae3fc2ddec9668c",
+  "runtimeInputTreeIdenticalToFreshBuild": true,
+  "mergeResult": {
+    "sha": "a7b63f7eec6319538a5ab237ca6a4ca062c58441",
+    "merged": true,
+    "message": "Pull Request successfully merged"
+  },
+  "ownership": "Backend completion release coordinator /workspace/scratch/606e6bb5bd95",
+  "noBranchProtectionChanged": true,
+  "estateCrawlStillIndependent": true,
+  "coreUploads": 0,
+  "newWatchers": 0
+}

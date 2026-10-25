@@ -1,0 +1,9 @@
+{
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "approval": "Matt explicitly approved this exact frozen local release and012 deferral; subsequent Yes retained authority for the evidenced canonical serialization repair.",
+  "currentMain": "a7b63f7eec6319538a5ab237ca6a4ca062c58441",
+  "sourceCurrentAtOriginalDeploymentAdmission": "2026-10-25T19:47:25Z",
+  "laterGuardOnlyMerge": "PR1433 at19:47:32Z, after admission. Preserved; not claimed qualified or deployed by this operation.",
+  "maintenanceRetry": "Same frozen approved release; native source, current provider ownership and rollback guards retained. No absorption of unrelated later source.",
+  "at": "2026-10-25T20:16:39.061736+00:00"
+}
