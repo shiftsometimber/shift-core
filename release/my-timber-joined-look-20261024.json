@@ -1,0 +1,38 @@
+{
+  "kind": "EXACT_MY_TIMBER_JOINED_LOOK_20261024",
+  "base": "c13e57924f4da39135b4bc014a47403aa802c674",
+  "payload": "65b3ef4921e31201e50e577bb730bf4a4bf90619",
+  "registrationSource": "37b573b7463a7f5124760fc53f807d3c944afadd",
+  "payloadBlobs": {
+    "frontend/member/member-progress-v1.js": "3f7ec13262b2fe2a800f04bdfce5c0c301f2f26f",
+    "member-design.mjs": "aedd925f8425076639a40ff51c2032d8820502a3",
+    "member-experience/app-experience.mjs": "e4e71d5f692ceb9070406dab5386e7f21208182a",
+    "member-experience/chrome.mjs": "6310cc13dd827cb003999f9269f844b7a92d495b",
+    "member-experience/quick-log.mjs": "cba0efa1963cf16e2f54dea7995b6157c17c59d5",
+    "member-experience/tests/quick-log-browser.mjs": "4d90a4f5bc4be55ec54f92775caf846500c5a1e4",
+    "member-experience/tests/quick-log.test.mjs": "f667469c396faeddc699e7359ba0dc751d8a016c",
+    "preview/app-layout/presentation.mjs": "7712e65e973a35d29360a3db720562060c21c0ae",
+    "preview/member-design/member-feedback-proof.cjs": "841201db4d1968d1d85d2b47ac8daf62ea463eb5",
+    "preview/member-design/verify.cjs": "d78a373e7f2a20917e3562b705e377312a57163e",
+    "preview/member-panel-layout/verify.cjs": "9e960d14fe709ad126618f5ee7512d3935d1c68e",
+    "scripts/verify-my-timber-joined-look-20261024.mjs": "144037fb754c121ad2e0685561b55ce8b81df849",
+    "tests/my-timber-joined-views-20261024.test.mjs": "340d45fa57bca37a5d1f4ba93b459dda4a0a6160"
+  },
+  "maintenanceBlobs": {
+    "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0",
+    "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
+    "release/approved-runtime-composition.mjs": "57ab4146d0b33f2277428b90335718c4fbfebe53",
+    "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
+    "release/member-recording-repair-20261024.mjs": "c1cb16fda3b59fc752d598932d16219718f30f59",
+    "release/my-timber-joined-look-inverses-20261024.json": "2a79968d02815d37985453f4aac330bc12c37f34",
+    "release/my-timber-joined-look-scope-20261024.mjs": "4ce1e28d820aa3477e156c92cd850efded975300"
+  },
+  "authority": {
+    "owner": "Matt",
+    "scope": "Approved My Timber visual refinements and optional existing-endpoint quick logging",
+    "publicHomepage": false,
+    "clinicalActivation": false,
+    "newMessaging": false,
+    "newDeploymentLane": false
+  }
+}
