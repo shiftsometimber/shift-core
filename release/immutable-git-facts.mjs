@@ -1,3 +1,4 @@
+import {createRequire as nativeWorkingSourceRequire} from 'node:module';
 import assert from 'node:assert/strict';
 import {execFileSync as importedExecFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -35,7 +36,23 @@ function execFileSync(bin,args,options){
 
 // Full-content comparison accepts restored bytes without refreshing the index.
 // Return only the byte count, so a source-drift diagnostic never prints content.
-const workingDifferenceSize=()=>execFileSync('git',['--no-optional-locks','-c','diff.autoRefreshIndex=false','diff','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','HEAD','--'],{maxBuffer:64*1024*1024}).length;
+const originalWorkingDifferenceSize=()=>execFileSync('git',['--no-optional-locks','-c','diff.autoRefreshIndex=false','diff','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','HEAD','--'],{maxBuffer:64*1024*1024}).length;
+function workingDifferenceSize(){
+ const scope=immutableHistoryScope;
+ if(scope&&!scope.buildingWorkingChecker){
+  try{
+   if(!scope.nativeWorkingChecker){
+    scope.buildingWorkingChecker=true;
+    try{const native=nativeWorkingSourceRequire(import.meta.url)('./recorded-week-navigation-outer-frame-20261018.mjs');scope.nativeWorkingChecker=native.nativeNavigationFreshSourceChecker(scope.head);}
+    finally{scope.buildingWorkingChecker=false;}
+   }
+   // This is a new complete native tracked-path and metadata scan at every use.
+   // No callback, admission outcome or working-source verdict is cached.
+   scope.nativeWorkingChecker();return 0;
+  }catch{ /* Unsupported or changed native state retains the original Git read. */ }
+ }
+ return originalWorkingDifferenceSize();
+}
 export {workingDifferenceSize as nativeWorkingSourceDifferenceSize};
 
 // Actual immutable Git facts only; caller callbacks and assertion results are never cached.
