@@ -9,7 +9,7 @@
       "originalModule": "worker.mjs",
       "originalSHA256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
       "candidateNewModuleHashes": {
-        "data.mjs": "73e3486dff4b8957140c5626725ffbfa38b3636a28f9f94d3b19f8715c5c7bcd",
+        "data.mjs": "3ee008c412b5e83b0f7d2abeffceaeba44f7b03114c968e4f8370798ca59894d",
         "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
         "presentation-entry.mjs": "5ad1fd42726fcee790c354e240ea4c0c2c00874fa079ae2d156f71791bcbe379"
       }
@@ -19,7 +19,7 @@
       "originalModule": "worker.js",
       "originalSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
       "candidateNewModuleHashes": {
-        "data.mjs": "73e3486dff4b8957140c5626725ffbfa38b3636a28f9f94d3b19f8715c5c7bcd",
+        "data.mjs": "3ee008c412b5e83b0f7d2abeffceaeba44f7b03114c968e4f8370798ca59894d",
         "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
         "presentation-entry.mjs": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f"
       }
@@ -44,6 +44,7 @@
     "header": "Ready-session approved-UI compact header overrides legacy public header; signed-out unchanged",
     "layoutAssetSHA": "f0ebe340a7594095402fc70f5910ff19dc2b895c102bea6eb92a3960ffc0e3e7",
     "productionVerification": "pending",
-    "coreSuccessor": "Retain corrections for both exact old and exact previously approved uncorrected Core styles/layout; any unknown/newer source passes unchanged. Manager must integrate exact repair into source before retiring adapter."
+    "coreSuccessor": "Retain corrections for both exact old and exact previously approved uncorrected Core styles/layout; any unknown/newer source passes unchanged. Manager must integrate exact repair into source before retiring adapter.",
+    "utilityConflict": "Legacy public-feedback compact updater must respect ready approved-UI utility owner; cookie/Ask controls remain in More without ping-pong. All original consent handlers preserved."
   }
 }
