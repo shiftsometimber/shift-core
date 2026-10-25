@@ -71,7 +71,10 @@ export async function withTrustRepair(request,response){
   html=html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i,`<main class="page-template template-legal-utility" id="main-content"><div class="standard-layout"><section class="pagehero"><div class="wrap"><h1>${title}</h1></div></section><section class="content"><div class="wrap prose">${content}</div></section></div></main>`).replace(/<title>[\s\S]*?<\/title>/i,`<title>${title} | Shift Some Timber</title>`).replace(/<link\b(?=[^>]*rel=["']canonical["'])[^>]*>/gi,`<link rel="canonical" href="https://shiftsometimber.co.uk${path}">`);
  }
  html=supportContent(repairHtml(html,path),path);
- if(/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)){
+ // Published SSR pages have already passed the newsroom's publication-only route.
+ // Retain its explicit index policy; legacy pages keep the original quarantine.
+ const publishedNewsroom=headers.get('X-Shift-Newsroom-Renderer')==='radar-ssr-v1'&&headers.get('X-Robots-Tag')?.trim().toLowerCase()==='index, follow';
+ if(/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)&&!publishedNewsroom){
   headers.set('X-Robots-Tag','noindex, follow');
   html=html.replace(/<meta\b(?=[^>]*name=["']robots["'])[^>]*>/gi,'').replace('</head>','<meta name="robots" content="noindex,follow"></head>');
  }

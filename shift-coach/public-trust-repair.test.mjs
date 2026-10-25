@@ -62,3 +62,12 @@ test('withdrawn weight illustrations also leave sign-in and registration while r
  const r=new Response(source,{status:403,headers:{'Content-Type':'text/html'}});assert.equal(await withTrustRepair(req('/member-login'),r),r);
  assert.equal(repairHtml(source,'/'),source);assert.equal(repairHtml(source,'/about'),source);
 });
+
+for(const method of ['GET','HEAD'])test('published newsroom retains renderer index policy: '+method,async()=>{
+ const body=method==='HEAD'?null:html.replace('</head>','<meta name="robots" content="index,follow"></head>');
+ const response=new Response(body,{headers:{'Content-Type':'text/html','X-Shift-Newsroom-Renderer':'radar-ssr-v1','X-Robots-Tag':'index, follow'}});
+ const out=await withTrustRepair(req('/medicine-news/published-update',{method}),response);assert.equal(out.headers.get('X-Robots-Tag'),'index, follow');
+ if(method==='GET'){const text=await out.text();assert(text.includes('<meta name="robots" content="index,follow">'));assert(!text.includes('noindex'));assert(text.includes('<header>KEEP</header>'));assert(text.includes('<footer>KEEP</footer>'));}
+});
+test('renderer marker alone cannot release a quarantined page',async()=>{for(const tag of [null,'noindex, follow']){const headers={'Content-Type':'text/html','X-Shift-Newsroom-Renderer':'radar-ssr-v1'};if(tag)headers['X-Robots-Tag']=tag;const out=await withTrustRepair(req('/medicine-news/held-update'),new Response(html,{headers}));assert.equal(out.headers.get('X-Robots-Tag'),'noindex, follow');assert((await out.text()).includes('noindex,follow'));}});
+test('missing newsroom pages keep error status and original robots policy',async()=>{const response=new Response('Not found',{status:404,headers:{'Content-Type':'text/html','X-Shift-Newsroom-Renderer':'radar-ssr-v1','X-Robots-Tag':'noindex, nofollow'}});assert.equal(await withTrustRepair(req('/medicine-news/missing'),response),response);});

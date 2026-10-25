@@ -282,6 +282,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/recorded-week-navigation-outer-frame-20261018.mjs",
     "release/testosterone-scope-20261021.mjs",
     "release/website-editorial-scope-20261018.mjs",
+    "shift-coach/public-trust-repair.mjs",
+    "shift-coach/public-trust-repair.test.mjs",
     "shift-coach/release.test.mjs",
     "tests/app-client-proof.test.mjs",
     "tests/approved-news-ticker-frame-20261024.test.mjs",
@@ -325,7 +327,9 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/member-details-release.test.mjs": "145863f8207eef11f7ab0b5b914d073c9d4b5cbc",
     "release/app-live-http.mjs": "aa1f309e768d48b6852b82dc0b6ea250c0988fc6",
     "release/independent-presentation-preservation.mjs": "24fe3d73be900a792882be78e47bcf0ffaa3a680",
-    "tests/independent-presentation-preservation.test.mjs": "3f9d1058556a06571643d9729f114320df3dfe33"
+    "tests/independent-presentation-preservation.test.mjs": "3f9d1058556a06571643d9729f114320df3dfe33",
+    "shift-coach/public-trust-repair.mjs": "9101679625e729041c98516eb02544e6930d324a",
+    "shift-coach/public-trust-repair.test.mjs": "038c5dd82edb6039dff84ceff49343c6c581e6f6"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
@@ -335,7 +339,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
   "receiptPath": "release/my-timber-joined-look-20261024.json",
   "authority": {
     "owner": "Matt",
-    "scope": "Approved My Timber visual refinements and optional existing-endpoint quick logging; Matt-approved Core canonical build/staged promotion and owned rollback receipt repair; application payload unchanged",
+    "scope": "Approved My Timber visual refinements and optional existing-endpoint quick logging; Matt-approved Core canonical build/staged promotion and owned rollback receipt repair; application payload unchanged; Matt-approved published Newsroom SSR indexability repair only; no article copy, homepage or member application change",
     "publicHomepage": false,
     "clinicalActivation": false,
     "newMessaging": false,
