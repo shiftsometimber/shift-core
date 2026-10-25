@@ -63,3 +63,16 @@ test('current-main integration rejects changed backend working source without hi
  finally{writeFileSync(path,before);}
  assert(approvedNewsTickerOuterFrame());
 });
+
+import {withImmutableHistoryVerification} from '../release/immutable-git-facts.mjs';
+test('closed native proof reuses only its admitted ticker frame and still authenticates every supplied callback',()=>withImmutableHistoryVerification(()=>{
+ const f=approvedNewsTickerOuterFrame();assert.equal(approvedNewsTickerOuterFrame(),f);let calls=0;
+ const read=(r,p)=>{calls++;return g('rev-parse',r+':'+p)};assert.equal(f.projectRead(read)('HEAD','worker-entry-v6.js'),g('rev-parse',f.base+':worker-entry-v6.js'));assert(calls>=3);
+ assert.throws(()=>approvedNewsTickerOuterFrame().projectRead(()=> 'forged')('HEAD','worker-entry-v6.js'),/source drift/);
+}));
+test('warmed closed ticker proof retains actual working-source mutation rejection',()=>withImmutableHistoryVerification(()=>{
+ const f=approvedNewsTickerOuterFrame(),path='radar-published-ticker-v1.js',before=readFileSync(path);assert.equal(approvedNewsTickerOuterFrame(),f);
+ try{writeFileSync(path,Buffer.concat([before,Buffer.from('\n// owned warmed native mutation\n')]));assert.throws(()=>approvedNewsTickerOuterFrame(),/working|source|tracked|changed/i);}
+ finally{writeFileSync(path,before);}
+}));
+test('closed ticker evidence reuse rejects disappearance of required historical object storage',()=>isolatedTickerProbe("import{approvedNewsTickerOuterFrame}from'./release/approved-news-ticker-frame-20261024.mjs';import{withImmutableHistoryVerification}from'./release/immutable-git-facts.mjs';import{existsSync,renameSync}from'node:fs';import assert from'node:assert/strict';withImmutableHistoryVerification(()=>{const f=approvedNewsTickerOuterFrame();assert.equal(approvedNewsTickerOuterFrame(),f);const loose='.git/objects/'+f.base.slice(0,2)+'/'+f.base.slice(2),path=existsSync(loose)?loose:'.git/objects/pack',park=path+'.park';renameSync(path,park);try{assert.throws(()=>approvedNewsTickerOuterFrame());}finally{renameSync(park,path)}});"));

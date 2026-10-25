@@ -1,3 +1,4 @@
+import {reuseExactNativeProjection} from './scoped-native-projection-evidence.mjs';
 import {immutableHistoryExecFileSync as immutableExecFileSync} from './immutable-git-facts.mjs';
 import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
 import assert from 'node:assert/strict';
@@ -71,7 +72,9 @@ export const APPROVED_NEWS_TICKER_PATHS=Object.freeze(fixed.paths);
 export const APPROVED_NEWS_TICKER_MAINTENANCE=Object.freeze(fixed.maintenancePaths);
 export const approvedTickerPredecessorHead=()=>active?.base??null;
 export const approvedTickerActualHead=()=>active?.rawHead??null;
-export function approvedNewsTickerOuterFrame(){
+const tickerNativeProjectionOwner=Object.freeze({});
+export function approvedNewsTickerOuterFrame(){return reuseExactNativeProjection(tickerNativeProjectionOwner,constructApprovedNewsTickerOuterFrame);}
+function constructApprovedNewsTickerOuterFrame(){
  // Reuse only inside this private synchronous callback with the complete
  // object/ref namespace unchanged on both sides of fresh native source checks.
  if(active){
@@ -172,7 +175,7 @@ function makeTickerFrame(rawHead,base,all,fresh,storageBefore){
    return get(map(a),map(b));
   }finally{assertCurrent()}
  }}
- const frame={rawHead,base:base,assertCurrent,authentic,affected:p=>[...all,LEDGER].some(q=>q===p||q.startsWith(p+'/')),
+ const frame={nativeSource:true,rawHead,base:base,assertCurrent,authentic,affected:p=>[...all,LEDGER].some(q=>q===p||q.startsWith(p+'/')),
   currentContent:(r,p)=>text(r==='HEAD'?rawHead:r,p),
   originalContent:(p,value)=>{assertCurrent();assert.equal(value,text(rawHead,p),'Exact current approvedTicker fixture bytes required');return text(base,p)},
   projectRead:s=>project('read',s),projectContent:s=>project('content',s),projectDiff:s=>binary('diff',s),projectAncestor:s=>binary('ancestor',s)};
@@ -183,18 +186,21 @@ function makeTickerFrame(rawHead,base,all,fresh,storageBefore){
 const INTEGRATION_KEY='approvedNewsTickerIntegration20261025';
 const INTEGRATION_BASE='55af81540a004cdeedd24eb98c96441d2421b582';
 const ORIGINAL_TICKER_HEAD='f3cee7c576d46f4f10981d4c64035deb7608ee03';
-const integrationFixed={proof:'EXACT_APPROVED_NEWS_TICKER_CURRENT_MAIN_20261025',base:INTEGRATION_BASE,previousTicker:ORIGINAL_TICKER_HEAD,paths:fixed.paths,maintenancePaths:fixed.maintenancePaths,scope:fixed.scope};
+const originalIntegrationFixed={proof:'EXACT_APPROVED_NEWS_TICKER_CURRENT_MAIN_20261025',base:INTEGRATION_BASE,previousTicker:ORIGINAL_TICKER_HEAD,paths:fixed.paths,maintenancePaths:fixed.maintenancePaths,scope:fixed.scope};
+const INTEGRATION_REPAIR_BASE='e5dae537630afc2a7c4a24bc8ba3512c1fd7ecb5',INTEGRATION_REPAIR_PATHS=["release/approved-news-ticker-frame-20261024.mjs", "tests/approved-news-ticker-frame-20261024.test.mjs", "release/approved-news-ticker-maintenance-20261024.json", "medicines-watch/scheduler.test.mjs"];
+const integrationFixed={...originalIntegrationFixed,repairBase:INTEGRATION_REPAIR_BASE,repairPaths:INTEGRATION_REPAIR_PATHS};
 function integratedTickerOuterFrame(rawHead,record,storageBefore){
- const c=record[INTEGRATION_KEY],{maintenanceSource,...scope}=c;
+ const c=record[INTEGRATION_KEY],{maintenanceSource,repairSource,...scope}=c;
  assert.deepEqual(scope,integrationFixed,'Only the exact current-main ticker composition is admitted');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.match(repairSource,/^[a-f0-9]{40}$/);assert.deepEqual(JSON.parse(text(INTEGRATION_REPAIR_BASE,LEDGER))[INTEGRATION_KEY],{...originalIntegrationFixed,maintenanceSource},'Every previous integration field must remain exact');assert.equal(text(repairSource,LEDGER),text(INTEGRATION_REPAIR_BASE,LEDGER),'Every complete prior ledger byte must precede bounded repair');
  const fresh=freshChecker(rawHead),original=JSON.parse(text(ORIGINAL_TICKER_HEAD,LEDGER)),oc=original[KEY];
  assert.deepEqual(oc,{...fixed,maintenanceSource:'37c392ac3695ca95bc0d9e75b3c996d8b6126e20',repairSource:'819081b9b5350f5ab13b7f612cd3cdbc081aedf1'},'Original reviewed ticker registration must remain exact');
  const retained=structuredClone(record);delete retained[INTEGRATION_KEY];assert.deepEqual(retained,original,'Every earlier ledger receipt must remain unchanged');
  assert.equal(text(INTEGRATION_BASE,LEDGER),text(fixed.base,LEDGER),'Current main must preserve every earlier non-ticker ledger byte');
  const oldChain=[[fixed.base,fixed.payload,fixed.paths],[fixed.payload,oc.maintenanceSource,fixed.maintenancePaths],[oc.maintenanceSource,fixed.repairBase,[LEDGER]],[fixed.repairBase,'51f6e6d177dfd5acf0ab0a964686d8688e133a40',fixed.repairPaths],['51f6e6d177dfd5acf0ab0a964686d8688e133a40','9071379f77c376a45ce2b774302442ee789b8a0d',[LEDGER]],['9071379f77c376a45ce2b774302442ee789b8a0d',oc.repairSource,fixed.repairPaths],[oc.repairSource,ORIGINAL_TICKER_HEAD,[LEDGER]]];
  for(const[a,b,ps]of oldChain){ancestor(a,b);assert.deepEqual(sorted(diff(a,b)),sorted(ps),'Every original ticker native increment remains required');}
- const all=[...fixed.paths,...fixed.maintenancePaths];
- for(const p of all){
+ const originalAll=[...fixed.paths,...fixed.maintenancePaths],all=[...originalAll,'medicines-watch/scheduler.test.mjs'];
+ for(const p of originalAll){
   const source=fixed.paths.includes(p)?fixed.payload:fixed.repairPaths.includes(p)?oc.repairSource:oc.maintenanceSource;
   assert.equal(oid(ORIGINAL_TICKER_HEAD,p),oid(source,p),'Original ticker source pin changed: '+p);
  }
@@ -203,11 +209,11 @@ function integratedTickerOuterFrame(rawHead,record,storageBefore){
   assert.equal(sha(bytes(ORIGINAL_TICKER_HEAD,p)),row.afterSha256,'Original finite maintenance bytes changed: '+p);
  }
  ancestor(ORIGINAL_TICKER_HEAD,maintenanceSource);ancestor(INTEGRATION_BASE,maintenanceSource);ancestor(maintenanceSource,rawHead);
- assert.deepEqual(sorted(diff(INTEGRATION_BASE,maintenanceSource)),sorted([...all,LEDGER]),'Exact current-main ticker source boundary required');
- assert.deepEqual(diff(maintenanceSource,rawHead),[LEDGER],'Only the exact integration registration may follow source');
+ assert.deepEqual(sorted(diff(INTEGRATION_BASE,maintenanceSource)),sorted([...originalAll,LEDGER]),'Exact current-main ticker source boundary required');
+ assert.deepEqual(diff(maintenanceSource,INTEGRATION_REPAIR_BASE),[LEDGER],'Original exact integration registration remains required');ancestor(INTEGRATION_REPAIR_BASE,repairSource);assert.deepEqual(sorted(diff(INTEGRATION_REPAIR_BASE,repairSource)),sorted(INTEGRATION_REPAIR_PATHS),'Exact native scheduler/projection repair boundary required');ancestor(repairSource,rawHead);assert.deepEqual(diff(repairSource,rawHead),[LEDGER],'Only the exact repair registration may follow source');
  assert.equal(text(maintenanceSource,LEDGER),text(ORIGINAL_TICKER_HEAD,LEDGER),'Every previous complete ledger byte must precede integration');
  for(const p of all){
-  const source=fixed.paths.includes(p)?fixed.payload:maintenanceSource;
+  const source=fixed.paths.includes(p)?fixed.payload:INTEGRATION_REPAIR_PATHS.includes(p)?repairSource:maintenanceSource;
   assert.equal(oid(rawHead,p),oid(source,p),'Exact integrated ticker source drift: '+p);
   assert(readFileSync(p).equals(bytes(rawHead,p)),'Integrated ticker working source drift: '+p);
  }
@@ -218,5 +224,6 @@ function integratedTickerOuterFrame(rawHead,record,storageBefore){
   assert.equal(sha(bytes(rawHead,p)),row.afterSha256,'Exact independently reviewed integration source required: '+p);
  }
  for(const p of fixed.maintenancePaths.filter(p=>!Object.hasOwn(inverse.integration.modified,p)))assert.equal(git('ls-tree',INTEGRATION_BASE,'--',p),'','New integration maintenance source must be additive');
+ const testRepair=inverse.integration.testRepair;assert.equal(testRepair.path,'medicines-watch/scheduler.test.mjs');assert(Buffer.from(testRepair.before,'base64').equals(bytes(INTEGRATION_BASE,testRepair.path)),'Every original scheduler assertion before-image remains exact');assert.equal(sha(bytes(rawHead,testRepair.path)),testRepair.afterSha256,'Exact bounded scheduler test repair required');
  return makeTickerFrame(rawHead,INTEGRATION_BASE,all,fresh,storageBefore);
 }
