@@ -1,3 +1,4 @@
+import {nativeWorkingSourceDifferenceSize} from './immutable-git-facts.mjs';
 import {createRequire} from 'node:module';
 import {verifyHealthVisionExtension} from './health-vision-scope-20261021.mjs';
 import assert from 'node:assert/strict';
@@ -8,7 +9,7 @@ export const TRT_PAYLOAD='77eb4af2334f747ab91a2958f3d59875e8e4e4f4';
 export const TRT_RECEIPT='release/testosterone-scope-20261021.json';
 export const TRT_PATHS=Object.freeze(['public-shell-contract.mjs','shift-health-public.mjs','testosterone-guides.mjs','testosterone-public-content.mjs','tests/public-audit-repair.test.mjs','tests/testosterone-guides.test.mjs','tests/testosterone-public.test.mjs']);
 export const TRT_MAINTENANCE=Object.freeze(['docs/testosterone-expansion-20261021.md','release/testosterone-scope-20261021.mjs','release/website-editorial-scope-20261018.mjs','tests/testosterone-release-scope.test.mjs']);
-const git=(...args)=>execFileSync('git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6}).trimEnd();
+const git=(...args)=>execFileSync('git',['--no-optional-locks','--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const sorted=xs=>[...xs].sort();
 const changed=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 export function verifyTestosteroneExtension(){
@@ -18,7 +19,7 @@ export function verifyTestosteroneExtension(){
  const extension=verifyHealthVisionExtension();
  const actual=approvedTickerPredecessorHead()??git('rev-parse','HEAD'),snapshot=extension.predecessor;
  assert.equal(extension.actual,actual,'Health actual HEAD required');
- assert.equal(git('diff','--name-only','HEAD','--'),'','TRT tracked source changed');
+ assert.equal(nativeWorkingSourceDifferenceSize(),0,'TRT tracked source changed');
  assert.equal(git('diff','--cached','--name-only','--'),'','TRT staged source changed');
  assert.equal(git('for-each-ref','--format=%(refname)','refs/replace'),'','TRT replacement history forbidden');
  for(const row of git('ls-files','-v','-z').split('\0').filter(Boolean))assert(row.startsWith('H '),'TRT hidden source forbidden');

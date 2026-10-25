@@ -8,12 +8,32 @@ import {homedir} from 'node:os';
 // Verification reads must not refresh the caller's index stat cache. Capture
 // the native runner; immutable object commands keep their original cache keys.
 const nativeExecFileSync=importedExecFileSync;
-const execFileSync=(bin,args,options)=>nativeExecFileSync(bin,
- bin==='git'&&Array.isArray(args)&&['diff','diff-files','status','ls-files'].includes(args[0])?['--no-optional-locks',...args]:args,options);
+function execFileSync(bin,args,options){
+ if(!['git','/usr/bin/git'].includes(bin)||!Array.isArray(args))return nativeExecFileSync(bin,args,options);
+ let at=0;
+ while(at<args.length){
+  if(['--no-optional-locks','--no-replace-objects'].includes(args[at])){at++;continue;}
+  if(['-c','-C','--git-dir','--work-tree','--namespace'].includes(args[at])){at+=2;continue;}
+  if(typeof args[at]==='string'&&/^--(?:git-dir|work-tree|namespace)=/.test(args[at])){at++;continue;}
+  break;
+ }
+ const command=args[at];
+ if(command==='diff'){
+  const tail=args.slice(at+1),stop=tail.indexOf('--'),flags=stop<0?tail:tail.slice(0,stop);
+  // Force real content comparison without Porcelain's index auto-refresh.
+  // Native stdout and the caller's original exit-status contract are retained.
+  const addedExit=!flags.some(flag=>['--exit-code','--quiet','--check','--no-index'].includes(flag));
+  const fresh=[...args.slice(0,at),'--no-optional-locks','-c','diff.autoRefreshIndex=false','diff',...(addedExit?['--exit-code']:[]),...tail];
+  try{return nativeExecFileSync(bin,fresh,options);}
+  catch(error){if(addedExit&&error.status===1)return error.stdout;throw error;}
+ }
+ return nativeExecFileSync(bin,['diff-files','status','ls-files'].includes(command)?['--no-optional-locks',...args]:args,options);
+}
 
 // Full-content comparison accepts restored bytes without refreshing the index.
 // Return only the byte count, so a source-drift diagnostic never prints content.
 const workingDifferenceSize=()=>execFileSync('git',['--no-optional-locks','-c','diff.autoRefreshIndex=false','diff','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','HEAD','--'],{maxBuffer:64*1024*1024}).length;
+export {workingDifferenceSize as nativeWorkingSourceDifferenceSize};
 
 // Actual immutable Git facts only; caller callbacks and assertion results are never cached.
 const unsupportedContext=Symbol('unsupported immutable Git context');

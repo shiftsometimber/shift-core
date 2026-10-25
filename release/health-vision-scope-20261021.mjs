@@ -1,3 +1,4 @@
+import {nativeWorkingSourceDifferenceSize} from './immutable-git-facts.mjs';
 import {memberRecordingTickerPredecessorComparisonValue} from './member-recording-repair-20261024.mjs';
 import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
@@ -11,7 +12,7 @@ export const HEALTH_RECEIPT='release/health-vision-scope-20261021.json';
 export const HEALTH_APPROVED_SNAPSHOT='39c703ac068b800bbf4a92a9277e21bd3d7b89e6';
 export const HEALTH_PATHS=Object.freeze(['release/shift-health-vision-20261021/STATUS.json','release/shift-health-vision-20261021/checks.json','release/shift-health-vision-20261021/health-vision-preservation.json','release/shift-health-vision-20261021/live-status-latest.json','release/shift-health-vision-20261021/production-bundle-final.log','release/shift-health-vision-20261021/source-tests-final.log','shift-health-public.mjs','shift-health-vision-content.mjs','tests/testosterone-guides.test.mjs']);
 export const HEALTH_MAINTENANCE=Object.freeze(['release/health-vision-scope-20261021.mjs','release/testosterone-scope-20261021.mjs','release/website-editorial-scope-20261018.mjs','tests/health-vision-scope-20261021.test.mjs']);
-const git=(...args)=>execFileSync('git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6}).trimEnd();
+const git=(...args)=>execFileSync('git',['--no-optional-locks','--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const sorted=x=>[...x].sort(),changed=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 export function verifyHealthVisionExtension(){
  const {approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead,approvedTickerActualHead}=createRequire(import.meta.url)('./approved-news-ticker-frame-20261024.mjs');
@@ -19,7 +20,7 @@ export function verifyHealthVisionExtension(){
  if(ticker){const result=withApprovedTickerPredecessor(ticker,()=>verifyHealthVisionExtension());return Object.freeze({...result,actual:ticker.rawHead});}
  const actual=approvedTickerPredecessorHead()??git('rev-parse','HEAD'),snapshot=HEALTH_APPROVED_SNAPSHOT;
  git('merge-base','--is-ancestor',snapshot,actual);
- assert.equal(git('diff','--name-only','HEAD','--'),'','Health tracked source changed');
+ assert.equal(nativeWorkingSourceDifferenceSize(),0,'Health tracked source changed');
  assert.equal(git('diff','--cached','--name-only','--'),'','Health staged source changed');
  assert.equal(git('for-each-ref','--format=%(refname)','refs/replace'),'','Health replacement history forbidden');
  for(const row of git('ls-files','-v','-z').split('\0').filter(Boolean))assert(row.startsWith('H '),'Health hidden source forbidden');

@@ -1,3 +1,4 @@
+import {nativeWorkingSourceDifferenceSize} from './immutable-git-facts.mjs';
 import {approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead,approvedTickerActualHead} from './approved-news-ticker-frame-20261024.mjs';
 import {HEALTH_PATHS,HEALTH_MAINTENANCE,HEALTH_RECEIPT} from './health-vision-scope-20261021.mjs';
 import {verifyTestosteroneExtension,TRT_BASE,TRT_PATHS,TRT_MAINTENANCE,TRT_RECEIPT} from './testosterone-scope-20261021.mjs';
@@ -16,7 +17,7 @@ const freshWebsiteEditorialCompletionSourceClean=makeFreshCleanHint(),freshWebsi
 function clean(){
  assertGitTrackedSourceVisible('website editorial completion');
  if(freshWebsiteEditorialCompletionSourceClean())return;
- assert.equal(git('diff','--no-renames','--name-only','HEAD','--').trim(),'','Website-editorial-completion source drift: tracked working source changed');
+ assert.equal(nativeWorkingSourceDifferenceSize(),0,'Website-editorial-completion source drift: tracked working source changed');
  assert.equal(git('diff','--no-renames','--cached','--name-only','--').trim(),'','Website-editorial-completion source drift: index source changed');
 }
 function inverse(path,value){
