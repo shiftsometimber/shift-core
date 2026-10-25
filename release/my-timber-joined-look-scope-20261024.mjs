@@ -8,6 +8,7 @@ import {createHash} from 'node:crypto';
 // existing synchronous historical comparison frames update builtin bindings.
 // Qualification never accepts or calls a supplied reader.
 const nativeExecFileSync=execFileSync,nativeReadFileSync=readFileSync,nativeLstatSync=lstatSync,nativeRealpathSync=realpathSync;
+const nativeBufferEquals=Function.prototype.call.bind(Buffer.prototype.equals),nativeBufferFrom=Buffer.from.bind(Buffer);
 
 const SHA=/^[a-f0-9]{40}$/;
 const sorted=values=>[...values].sort();
@@ -51,10 +52,20 @@ function repository(cwd){
  for(const dir of dirs)for(const name of['HEAD','index','config','config.worktree','packed-refs','info/grafts','shallow'])metadata.add(path.join(dir,name));
  try{const ref=run('symbolic-ref','-q','HEAD').trim();for(const dir of dirs)metadata.add(path.join(dir,ref));}catch{}
  for(const line of run('config','--show-origin','--list').split('\n')){const origin=line.split('\t')[0];if(origin.startsWith('file:'))metadata.add(path.resolve(top,origin.slice(5)));}
- const digest=file=>{try{return createHash('sha256').update(nativeReadFileSync(file)).digest('hex');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+ // Reuse deterministic hashes only after a fresh complete native read proves
+ // actual byte equality. No timestamp, inode or earlier approval substitutes
+ // for a current byte read; cached buffers never leave this repository closure.
+ const authenticatedFiles=new Map();
+ const nativeFile=file=>{
+  const bytes=nativeReadFileSync(file),prior=authenticatedFiles.get(file);
+  if(prior&&nativeBufferEquals(bytes,prior.bytes))return prior;
+  const row={bytes,blob:oid(bytes),sha256:createHash('sha256').update(bytes).digest('hex')};
+  authenticatedFiles.set(file,row);return row;
+ };
+ const digest=file=>{try{return nativeFile(file).sha256;}catch(e){if(e.code==='ENOENT')return null;throw e;}};
  const snapshot=()=>({environment:environment(),files:new Map([...metadata].map(file=>[file,digest(file)]))});
  const checkSnapshot=prior=>{assert.equal(environment(),prior.environment,'Native execution environment changed');assert.equal(nativeRealpathSync(cwd),top,'Actual checkout root changed');for(const[file,pin]of prior.files)assert.equal(digest(file),pin,'Native Git HEAD/config/index changed: '+file);};
- return{top,run,bytes,blob,changes,ancestor,tree,snapshot,checkSnapshot,commandCount:()=>commands};
+ return{top,run,bytes,blob,changes,ancestor,tree,snapshot,checkSnapshot,nativeFile,commandCount:()=>commands};
 }
 function clean(repo,head){
  assert.equal(repo.run('rev-parse','HEAD').trim(),head,'Actual source HEAD moved');
@@ -63,14 +74,14 @@ function clean(repo,head){
  const entries=repo.run('ls-files','-v','-z').split('\0').filter(Boolean);
  assert(!entries.some(e=>e[0]==='S'||/^[a-z]$/.test(e[0])),'Hidden assume-unchanged/skip-worktree files are forbidden');
 }
-function physical(repo,head,file,pin,tree){
+function physical(repo,head,file,pin,tree,returnBytes=true){
  const entry=tree.get(file);
  assert(entry&&entry.mode==='100644'&&entry.type==='blob'&&entry.oid===pin,'Regular committed source required: '+file);
  const absolute=path.join(repo.top,file),stat=nativeLstatSync(absolute);
  assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular physical source required: '+file);
- const bytes=nativeReadFileSync(absolute);
- assert.equal(oid(bytes),pin,'Actual current source bytes changed: '+file);
- return bytes;
+ const authenticated=repo.nativeFile(absolute);
+ assert.equal(authenticated.blob,pin,'Actual current source bytes changed: '+file);
+ return returnBytes?nativeBufferFrom(authenticated.bytes):undefined;
 }
 function validateContract(c){
  exactKeys(c,['kind','base','payload','payloadBlobs','payloadStatuses','maintenancePaths','maintenanceExpected','generatedPaths','inversePath','receiptPath','authority'],'Exact finite successor contract required');
@@ -168,7 +179,7 @@ function qualifyFiniteSuccessor(contract,options={}){
    if(!activeQualification||activeQualification.proof.actualHead!==actualHead)this.assertCurrent();
    const actual=physical(repo,actualHead,file,pins[file],currentTree);
    assert(Buffer.isBuffer(currentBytes),'Projection requires the actual full current file bytes');
-   assert(currentBytes.equals(actual),'Projection input must match qualified actual current bytes');
+   assert(nativeBufferEquals(currentBytes,actual),'Projection input must match qualified actual current bytes');
    const restored=originalBuffers.get(file);assert.equal(oid(restored),originalTree.get(file).oid,'Predecessor inverse changed');
    return Buffer.from(restored);
   },
@@ -185,7 +196,7 @@ function qualifyFiniteSuccessor(contract,options={}){
   },
   assertOwnedBytes(){
    repo.checkSnapshot(nativeSnapshot);
-   for(const[file,pin]of Object.entries(pins))physical(repo,actualHead,file,pin,currentTree);
+   for(const[file,pin]of Object.entries(pins))physical(repo,actualHead,file,pin,currentTree,false);
   },
   assertBinding(actual){
    if(actual!==undefined)assert.equal(actual,actualHead,'Actual successor HEAD argument changed');
@@ -265,6 +276,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/website-editorial-scope-20261018.mjs",
     "shift-coach/release.test.mjs",
     "tests/approved-news-ticker-frame-20261024.test.mjs",
+    "tests/joined-native-byte-reuse-20261025.test.mjs",
     "tests/member-recording-repair-admission-20261024.test.mjs",
     "tests/native-restored-source-stats-20261025.test.mjs",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs"
@@ -286,7 +298,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/member-recording-repair-admission-20261024.test.mjs": "df9bd0992c08d2125fa1159dabb720a9b29dbe88",
     "release/testosterone-scope-20261021.mjs": "f5c6a0b2fdefab6a70dc486e697ca7c20b336551",
     "release/website-editorial-scope-20261018.mjs": "b9215815c96d3387eaac2ec752c84f0be9ed3138",
-    "release/my-shift-release-scope-20261024.mjs": "54c0fd7a0f7ea5f96e336e920e7d9045af05d497"
+    "release/my-shift-release-scope-20261024.mjs": "54c0fd7a0f7ea5f96e336e920e7d9045af05d497",
+    "tests/joined-native-byte-reuse-20261025.test.mjs": "78902ef8428ff754d9d79f0d687e94e96207112f"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
