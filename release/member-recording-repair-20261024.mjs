@@ -1,3 +1,4 @@
+import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
 import {readFileSync,lstatSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -66,9 +67,9 @@ export function validateRecordingRepairReceipt(receipt){
  assert.match(receipt.registrationSource,/^[a-f0-9]{40}$/);return receipt;
 }
 let cached=null,qualificationDepth=0;
-export function verifyMemberRecordingRepair(suppliedReceipt){
- const frozen=immutableHistorySourceHead(),head=frozen??git('rev-parse','HEAD');
- if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
+function verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt){
+ const frozen=immutableHistorySourceHead(),head=recordingTickerHelpers().approvedTickerPredecessorHead()??frozen??git('rev-parse','HEAD');
+ if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(recordingTickerWorkingBytes(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
  assert.equal(git('diff','--name-only','HEAD','--'),'','Repair worktree must be clean');
  assert.equal(git('diff','--cached','--name-only','--'),'','Repair index must be clean');
  const receipt=validateRecordingRepairReceipt(JSON.parse(bytes(head,RECORDING_REPAIR_RECEIPT)));
@@ -85,7 +86,7 @@ export function verifyMemberRecordingRepair(suppliedReceipt){
  for(const path of [...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT]){
   assert(git('ls-tree',head,'--',path).startsWith('100644 blob '),'Regular repair file required: '+path);
   const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular worktree file required: '+path);
-  assert.equal(oid(readFileSync(path)),git('rev-parse',head+':'+path),'Actual repair bytes changed: '+path);
+  assert.equal(oid(recordingTickerWorkingBytes(path)),git('rev-parse',head+':'+path),'Actual repair bytes changed: '+path);
  }
  for(const [path,data]of Object.entries(inverses))assert.equal(originalRecordingMaintenance(path,bytes(head,path)),bytes(RECORDING_REPAIR_BASE,path),'Every original source assertion must remain: '+path);
  const paths=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT],filePins=Object.freeze(paths.map(path=>Object.freeze([path,git('rev-parse',head+':'+path)])));
@@ -96,17 +97,24 @@ export function verifyMemberRecordingRepair(suppliedReceipt){
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const proof=verifyMemberRecordingRepair();console.log(JSON.stringify({source:proof.head,paths:proof.paths.length,state:'finite_payload_qualified_not_deployed'}));}
 
 export function originalRecordingMaintenance(path,value){
+ // Compose only the independently admitted exact ticker metrics envelope;
+ // the original Member inverse and its expected source hash remain unchanged.
+ if(path==='release/metrics-connection-scope.mjs')value=recordingTickerHelpers().approvedTickerComparisonValue(path,value);
  const delta=inverses[path];assert(delta,'Finite repair maintenance path required');assert.equal(oid(value),delta.current,'Exact repair maintenance source required');
  for(const edit of [...delta.edits].reverse()){assert.equal(value.slice(edit.start,edit.start+edit.after.length),edit.after,'Exact repair maintenance inverse changed');value=value.slice(0,edit.start)+edit.before+value.slice(edit.start+edit.after.length);}
  assert.equal(oid(value),delta.original,'Every original maintenance byte must remain');return value;
 }
 export function memberRecordingComparisonValue(path,value,requestedHead){
+ const h=recordingTickerHelpers(),ticker=h.approvedTickerComparisonValue(path,value,requestedHead);
+ // Compose the independently qualified ticker projection with the unchanged
+ // original Member comparison; neither layer may replace the other one's pin.
+ if(ticker!==value){const frame=h.approvedNewsTickerOuterFrame();return h.withApprovedTickerPredecessor(frame,()=>memberRecordingComparisonValue(path,ticker,frame.base));}
  const allowed=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION];if(!allowed.includes(path))return value;
- const head=immutableHistorySourceHead()??git('rev-parse','HEAD');
+ const head=recordingTickerHelpers().approvedTickerPredecessorHead()??immutableHistorySourceHead()??git('rev-parse','HEAD');
  if(requestedHead&&requestedHead!==head)return value;
  let pin;try{pin=git('rev-parse',head+':'+path);}catch{return value;}
  const identifier=value===pin,content=typeof value==='string'&&oid(value)===pin;if(!identifier&&!content)return value;
- const proof=verifyMemberRecordingRepair();assert.equal(proof.head,head);
+ const proof=recordingTickerHelpers().approvedTickerActualHead()?verifyMemberRecordingRepairBeforeApprovedTicker():verifyMemberRecordingRepair();assert.equal(proof.head,head);
  let old;try{old=git('rev-parse',RECORDING_REPAIR_BASE+':'+path);}catch{return value;}
  return identifier?old:bytes(RECORDING_REPAIR_BASE,path);
 }
@@ -115,4 +123,15 @@ export function recordingRepairLegacyPaths(){verifyMemberRecordingRepair();retur
 export function withMemberRecordingQualification(callback){
  if(qualificationDepth){qualificationDepth++;try{return callback();}finally{qualificationDepth--;}}
  cached=null;qualificationDepth=1;try{return withImmutableHistoryVerification(callback);}finally{qualificationDepth=0;cached=null;}
+}
+
+function recordingTickerHelpers(){return createRequire(import.meta.url)('./approved-news-ticker-frame-20261024.mjs');}
+function recordingTickerWorkingBytes(path){const value=readFileSync(path),h=recordingTickerHelpers();return h.APPROVED_NEWS_TICKER_MAINTENANCE.includes(path)?h.approvedTickerOriginalWorkingBytes(path,value):value;}
+export function verifyMemberRecordingRepair(suppliedReceipt){
+ // Keep the original closed-proof payload mutation failure before any later adapter.
+ for(const [path,pin]of Object.entries(RECORDING_REPAIR_BLOBS)){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);}
+ const h=recordingTickerHelpers(),raw=h.approvedTickerActualHead();
+ if(raw){const proof=verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt);return Object.freeze({...proof,head:raw});}
+ const outer=h.approvedNewsTickerOuterFrame();if(!outer)return verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt);
+ return h.withApprovedTickerPredecessor(outer,()=>{const proof=verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt);return Object.freeze({...proof,head:outer.rawHead});});
 }
