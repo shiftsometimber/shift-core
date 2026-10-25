@@ -1,4 +1,3 @@
-import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
 import {readFileSync,lstatSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -51,7 +50,7 @@ export const RECORDING_REPAIR_BLOBS=Object.freeze({
   "worker.js": "c0b99177a62e8cf4c9a7e0fa92c962f2614152db"
 });
 export const RECORDING_REPAIR_PATHS=Object.freeze(Object.keys(RECORDING_REPAIR_BLOBS));
-export const RECORDING_REPAIR_REGISTRATION=Object.freeze(["release/member-recording-repair-20261024.mjs", "tests/member-recording-repair-admission-20261024.test.mjs", "release/member-recording-repair-inverses-20261024.json", "release/my-shift-release-scope-20261024.mjs", "release/approved-source-comparison-20261024.mjs", "release/member-design-scope.mjs", "release/app-scope.mjs", ".github/workflows/seo-discovery-proof.yml", "release/app-preflight.mjs", "tests/approved-ranking-release.test.mjs", "tests/seo-discovery-release.test.mjs", "release/recorded-week-navigation-outer-frame-20261018.mjs", "tests/recorded-week-navigation-preservation-20261018.test.mjs", "release/immutable-git-facts.mjs", "release/seo-audit-scope-20261016.mjs", "release/scoped-native-projection-evidence.mjs", "tests/scoped-native-projection-evidence.test.mjs", "release/food-diary-london-date-scope-20261015.mjs", "release/ci-execution-scope-20261014.mjs", "release/release-machinery-repair-scope-20261014.mjs", "release/metrics-connection-scope.mjs", "release/book-voice-scope.mjs", "release/device-health-scope.mjs", "release/finite-growth-scope.mjs", "release/footer-scope.mjs", "release/member-acceptance-scope.mjs", "release/member-consent-repair-scope.mjs", "release/my-timber-progress-journey-scope.mjs", "release/my-timber-week-scope.mjs", "release/organic-followthrough-scope.mjs", "release/photo-acceptance-maintenance-scope.mjs", "release/photo-calendar-scope.mjs", "release/public-wording-scope.mjs", "release/recipe-image-scope.mjs", "release/root-share-completion-scope.mjs", "release/root-share-preview-scope.mjs", "release/seo-context-scope.mjs", "release/seo-discovery-scope.mjs", "release/seo-link-repairs-scope.mjs", "release/seo-technical-scope.mjs", "release/six-topic-seo-scope.mjs", "shift-coach/release-contract.mjs", "medicines-watch/scheduler.test.mjs", "tests/b1-reliability.test.mjs", "release/website-editorial-scope-20261018.mjs", "release/bounded-source-checks-20261016.mjs", "release/shared-header-preview-20261025.mjs", "release/shared-header-preview-preload-20261025.mjs", "tests/shared-header-preview-20261025.test.mjs", "tests/metrics-historical-source-classification-20261025.test.mjs", "release/health-vision-scope-20261021.mjs", "tests/bounded-source-scheduling-20261016.test.mjs", "tests/verified-source-evidence-20261016.test.mjs", "shift-coach/recover-cancelled-release.mjs", "release/growth-adopt-deployment.mjs", "shift-coach/cancelled-release-recovery.test.mjs", "release/foundayo-current-runtime-20261025.mjs", "tests/foundayo-current-runtime-20261025.test.mjs", "tests/fixtures/foundayo-version-public-metadata-20261025.json", "release/continuity-content-20261009.mjs", "release/growth-scope.mjs", "scripts/b1-release-scope.mjs", "tests/continuity-split-sections-20261025.test.mjs", "member-experience/public-preservation.mjs", "release/independent-presentation-pins-20261025.json", "release/independent-presentation-preservation-20261025.mjs", "release/member-details-preservation.mjs"]);
+export const RECORDING_REPAIR_REGISTRATION=Object.freeze(["release/member-recording-repair-20261024.mjs", "tests/member-recording-repair-admission-20261024.test.mjs", "release/member-recording-repair-inverses-20261024.json", "release/my-shift-release-scope-20261024.mjs", "release/approved-source-comparison-20261024.mjs", "release/member-design-scope.mjs", "release/app-scope.mjs", ".github/workflows/seo-discovery-proof.yml", "release/app-preflight.mjs", "tests/approved-ranking-release.test.mjs", "tests/seo-discovery-release.test.mjs", "release/recorded-week-navigation-outer-frame-20261018.mjs", "tests/recorded-week-navigation-preservation-20261018.test.mjs", "release/immutable-git-facts.mjs", "release/seo-audit-scope-20261016.mjs", "release/scoped-native-projection-evidence.mjs", "tests/scoped-native-projection-evidence.test.mjs", "release/food-diary-london-date-scope-20261015.mjs", "release/ci-execution-scope-20261014.mjs", "release/release-machinery-repair-scope-20261014.mjs", "release/metrics-connection-scope.mjs", "release/book-voice-scope.mjs", "release/device-health-scope.mjs", "release/finite-growth-scope.mjs", "release/footer-scope.mjs", "release/member-acceptance-scope.mjs", "release/member-consent-repair-scope.mjs", "release/my-timber-progress-journey-scope.mjs", "release/my-timber-week-scope.mjs", "release/organic-followthrough-scope.mjs", "release/photo-acceptance-maintenance-scope.mjs", "release/photo-calendar-scope.mjs", "release/public-wording-scope.mjs", "release/recipe-image-scope.mjs", "release/root-share-completion-scope.mjs", "release/root-share-preview-scope.mjs", "release/seo-context-scope.mjs", "release/seo-discovery-scope.mjs", "release/seo-link-repairs-scope.mjs", "release/seo-technical-scope.mjs", "release/six-topic-seo-scope.mjs", "shift-coach/release-contract.mjs", "medicines-watch/scheduler.test.mjs", "tests/b1-reliability.test.mjs", "release/website-editorial-scope-20261018.mjs", "release/bounded-source-checks-20261016.mjs", "release/shared-header-preview-20261025.mjs", "release/shared-header-preview-preload-20261025.mjs", "tests/shared-header-preview-20261025.test.mjs", "tests/metrics-historical-source-classification-20261025.test.mjs", "release/health-vision-scope-20261021.mjs", "tests/bounded-source-scheduling-20261016.test.mjs", "tests/verified-source-evidence-20261016.test.mjs", "shift-coach/recover-cancelled-release.mjs", "release/growth-adopt-deployment.mjs", "shift-coach/cancelled-release-recovery.test.mjs", "release/foundayo-current-runtime-20261025.mjs", "tests/foundayo-current-runtime-20261025.test.mjs", "tests/fixtures/foundayo-version-public-metadata-20261025.json", "release/continuity-content-20261009.mjs", "release/growth-scope.mjs", "scripts/b1-release-scope.mjs", "tests/continuity-split-sections-20261025.test.mjs", "member-experience/public-preservation.mjs", "release/independent-presentation-pins-20261025.json", "release/independent-presentation-preservation-20261025.mjs", "release/member-details-preservation.mjs", "release/home-banner-scope.mjs", "tests/home-banner-native-inverse-20261025.test.mjs"]);
 export const RECORDING_REPAIR_RECEIPT='release/member-recording-repair-20261024.json';
 export const RECORDING_REPAIR_AUTHORITY=Object.freeze({"owner": "Matt", "instruction": "Arh ok….. sort then please; SHIFT — BREAK THE BOTTLENECK AND FINISH THE APPROVED WORK: eliminate repeated Git subprocesses and duplicate full-file scans while retaining underlying safety assertions, mutation checks and current-source protection.", "accountDeletion": "Deletion / cancel my account needs to be an immediate thing. Not send it off", "homepage": false, "newAppleSubmission": false, "messaging": false, "realAccountDeletionTest": false, "personalHealthRead": false, "backendCompletion": "Matt: SHIFT — CONSOLIDATE RELEASE OWNERSHIP AND FINISH THE BACKEND", "passwordPolicy": "Owner-approved PR1415 ten characters with capital and special character", "clinicalActivation": false, "realCharge": false, "stockCommitment": false});
 const git=(...args)=>immutableHistoryExecFileSync('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
@@ -67,9 +66,9 @@ export function validateRecordingRepairReceipt(receipt){
  assert.match(receipt.registrationSource,/^[a-f0-9]{40}$/);return receipt;
 }
 let cached=null,qualificationDepth=0;
-function verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt){
- const frozen=immutableHistorySourceHead(),head=recordingTickerHelpers().approvedTickerPredecessorHead()??frozen??git('rev-parse','HEAD');
- if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(recordingTickerWorkingBytes(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
+export function verifyMemberRecordingRepair(suppliedReceipt){
+ const frozen=immutableHistorySourceHead(),head=frozen??git('rev-parse','HEAD');
+ if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
  assert.equal(git('diff','--name-only','HEAD','--'),'','Repair worktree must be clean');
  assert.equal(git('diff','--cached','--name-only','--'),'','Repair index must be clean');
  const receipt=validateRecordingRepairReceipt(JSON.parse(bytes(head,RECORDING_REPAIR_RECEIPT)));
@@ -86,7 +85,7 @@ function verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt){
  for(const path of [...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT]){
   assert(git('ls-tree',head,'--',path).startsWith('100644 blob '),'Regular repair file required: '+path);
   const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular worktree file required: '+path);
-  assert.equal(oid(recordingTickerWorkingBytes(path)),git('rev-parse',head+':'+path),'Actual repair bytes changed: '+path);
+  assert.equal(oid(readFileSync(path)),git('rev-parse',head+':'+path),'Actual repair bytes changed: '+path);
  }
  for(const [path,data]of Object.entries(inverses))assert.equal(originalRecordingMaintenance(path,bytes(head,path)),bytes(RECORDING_REPAIR_BASE,path),'Every original source assertion must remain: '+path);
  const paths=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT],filePins=Object.freeze(paths.map(path=>Object.freeze([path,git('rev-parse',head+':'+path)])));
@@ -97,24 +96,17 @@ function verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt){
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const proof=verifyMemberRecordingRepair();console.log(JSON.stringify({source:proof.head,paths:proof.paths.length,state:'finite_payload_qualified_not_deployed'}));}
 
 export function originalRecordingMaintenance(path,value){
- // Compose only the independently admitted exact ticker metrics envelope;
- // the original Member inverse and its expected source hash remain unchanged.
- if(path==='release/metrics-connection-scope.mjs')value=recordingTickerHelpers().approvedTickerComparisonValue(path,value);
  const delta=inverses[path];assert(delta,'Finite repair maintenance path required');assert.equal(oid(value),delta.current,'Exact repair maintenance source required');
  for(const edit of [...delta.edits].reverse()){assert.equal(value.slice(edit.start,edit.start+edit.after.length),edit.after,'Exact repair maintenance inverse changed');value=value.slice(0,edit.start)+edit.before+value.slice(edit.start+edit.after.length);}
  assert.equal(oid(value),delta.original,'Every original maintenance byte must remain');return value;
 }
 export function memberRecordingComparisonValue(path,value,requestedHead){
- const h=recordingTickerHelpers(),ticker=h.approvedTickerComparisonValue(path,value,requestedHead);
- // Compose the independently qualified ticker projection with the unchanged
- // original Member comparison; neither layer may replace the other one's pin.
- if(ticker!==value){const frame=h.approvedNewsTickerOuterFrame();return h.withApprovedTickerPredecessor(frame,()=>memberRecordingComparisonValue(path,ticker,frame.base));}
  const allowed=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION];if(!allowed.includes(path))return value;
- const head=recordingTickerHelpers().approvedTickerPredecessorHead()??immutableHistorySourceHead()??git('rev-parse','HEAD');
+ const head=immutableHistorySourceHead()??git('rev-parse','HEAD');
  if(requestedHead&&requestedHead!==head)return value;
  let pin;try{pin=git('rev-parse',head+':'+path);}catch{return value;}
  const identifier=value===pin,content=typeof value==='string'&&oid(value)===pin;if(!identifier&&!content)return value;
- const proof=recordingTickerHelpers().approvedTickerActualHead()?verifyMemberRecordingRepairBeforeApprovedTicker():verifyMemberRecordingRepair();assert.equal(proof.head,head);
+ const proof=verifyMemberRecordingRepair();assert.equal(proof.head,head);
  let old;try{old=git('rev-parse',RECORDING_REPAIR_BASE+':'+path);}catch{return value;}
  return identifier?old:bytes(RECORDING_REPAIR_BASE,path);
 }
@@ -123,15 +115,4 @@ export function recordingRepairLegacyPaths(){verifyMemberRecordingRepair();retur
 export function withMemberRecordingQualification(callback){
  if(qualificationDepth){qualificationDepth++;try{return callback();}finally{qualificationDepth--;}}
  cached=null;qualificationDepth=1;try{return withImmutableHistoryVerification(callback);}finally{qualificationDepth=0;cached=null;}
-}
-
-function recordingTickerHelpers(){return createRequire(import.meta.url)('./approved-news-ticker-frame-20261024.mjs');}
-function recordingTickerWorkingBytes(path){const value=readFileSync(path),h=recordingTickerHelpers();return h.APPROVED_NEWS_TICKER_MAINTENANCE.includes(path)?h.approvedTickerOriginalWorkingBytes(path,value):value;}
-export function verifyMemberRecordingRepair(suppliedReceipt){
- // Keep the original closed-proof payload mutation failure before any later adapter.
- for(const [path,pin]of Object.entries(RECORDING_REPAIR_BLOBS)){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(readFileSync(path)),pin,'Actual repair bytes changed: '+path);}
- const h=recordingTickerHelpers(),raw=h.approvedTickerActualHead();
- if(raw){const proof=verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt);return Object.freeze({...proof,head:raw});}
- const outer=h.approvedNewsTickerOuterFrame();if(!outer)return verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt);
- return h.withApprovedTickerPredecessor(outer,()=>{const proof=verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt);return Object.freeze({...proof,head:outer.rawHead});});
 }
