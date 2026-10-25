@@ -2,24 +2,37 @@ const fs=require('fs'),assert=require('assert/strict');
 const {chromium,webkit}=require(process.env.APP_TOOLS+'/node_modules/playwright');
 const base=process.env.PREVIEW_URL,dir='work/staging/generated/app-layout-evidence',fixture=JSON.parse(fs.readFileSync('work/staging/generated/probe.json'));
 const report={source:process.env.GITHUB_SHA,productionWrites:0,cases:[],limits:['Browser viewports, not physical-device certification.','Ask launcher and install card use fixture controls where the isolated preview omits public integrations.']};
+
+const joinedUi=page=>page.evaluate(()=>document.body.dataset.memberExperienceUi==='20261015');
+async function openMore(page){await page.locator('#appMore').click();await page.locator('#memberMoreDialog').waitFor({state:'visible'});}
+
 (async()=>{const pwa=await import('../../my-timber-pwa/presentation.mjs');try{for(const [engine,name] of [[chromium,'chromium'],[webkit,'webkit']]){
  const browser=await engine.launch();try{for(const width of [320,375,1440])for(const view of ['app','web']){
  const ctx=await browser.newContext({viewport:{width,height:812}}),p=await ctx.newPage(),row={engine:name,width,view,checks:[]};report.cases.push(row);
  try{const login=await ctx.request.post(base+'/v1/auth/login',{headers:{Origin:base},data:{email:'probe'+fixture.browserIds[0]+'@example.invalid',password:fixture.password}});assert(login.ok());
  await p.goto(base+'/member/check-in?view='+view);await p.locator('[data-mood]').first().waitFor();await p.locator('[data-consent="necessary"]').click();
- await p.locator('#memberUtilities #sstCookieSettings').waitFor();
+ const joined=await joinedUi(p);row.presentation=joined?'joined-20261015':'original-20261001';if(joined){await openMore(p);await p.locator('#memberMoreUtilities #sstCookieSettings').waitFor();}else await p.locator('#memberUtilities #sstCookieSettings').waitFor();
  // The preview intentionally omits the public Ask service; test the existing launch-control contract without sending a message.
  await p.evaluate(()=>{if(!document.getElementById('askTimberLaunch')){const b=document.createElement('button');b.id='askTimberLaunch';b.textContent='ASK SHIFT';b.style.cssText='position:fixed;bottom:16px;right:16px';b.onclick=()=>b.dataset.clicked='true';document.body.append(b)}});
- await p.locator('#memberUtilities #askTimberLaunch').waitFor();
+ if(joined){await p.locator('#memberMoreUtilities #askTimberLaunch').waitFor({state:'attached'});await p.keyboard.press('Escape');}else await p.locator('#memberUtilities #askTimberLaunch').waitFor();
  for(const mood of await p.locator('[data-mood]').all()){await mood.evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));await mood.click({trial:true});assert(await mood.evaluate(el=>{const r=el.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return hit===el||el.contains(hit)}),'Mood tap unobstructed');}
  for(const id of ['sstCookieSettings','askTimberLaunch'])assert.equal(await p.locator('#'+id).evaluate(el=>getComputedStyle(el).position),'static');
- await p.locator('#sstCookieSettings').click();assert.equal(await p.locator('.cookie-banner-v3a').count(),1);await p.locator('[data-consent="necessary"]').click();await p.locator('#askTimberLaunch').click();
- await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-checkin.png',fullPage:true});row.checks.push('Every mood option reachable; utilities in document flow; cookie settings still reopen');
- await p.goto(base+'/member/dashboard?view='+view+'#today');await p.locator('#appTab-grub').waitFor({timeout:45000});
+ if(joined)await openMore(p);await p.locator('#sstCookieSettings').click();assert.equal(await p.locator('.cookie-banner-v3a').count(),1);await p.locator('[data-consent="necessary"]').click();if(joined){await openMore(p);const ask=p.locator('#memberMoreDialog a[href="/member/ask-timber"]');assert(await ask.isVisible());await ask.click({trial:true});assert.equal(await ask.getAttribute('href'),'/member/ask-timber');assert(!(await p.locator('#askTimberLaunch').isVisible()),'Joined-up UI uses the deliberate Ask Timber link rather than a duplicate launcher');await p.keyboard.press('Escape');}else await p.locator('#askTimberLaunch').click();
+ await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-checkin.png',fullPage:true});row.checks.push('Every mood option reachable; non-floating privacy controls still reopen cookie choices; deliberate Ask entry is reachable without sending a question');
+ await p.goto(base+'/member/dashboard?view='+view+'#today');await p.locator(joined?'#appBottomNav [data-app-open="grub"]':'#appTab-grub').waitFor({timeout:45000});
  // Use the exact production card and stylesheet for this layout-only integration check.
  await p.addStyleTag({content:pwa.styles});
  await p.evaluate(card=>{if(!document.getElementById('myTimberApp'))document.querySelector('main').insertAdjacentHTML('beforebegin',card)},pwa.card);
  for(const status of await p.locator('#previewStatus:empty,#memberSessionStatus:empty').all())assert(!(await status.isVisible()),'Empty status does not reserve a visible strip');
+ if(joined){
+ await openMore(p);assert.equal(await p.locator('#appMore').getAttribute('aria-expanded'),'true');assert(await p.locator('#memberMoreDialog').evaluate(el=>el.matches(':modal')),'More keeps background controls inert');
+ const geometry=await p.locator('#memberMoreDialog').evaluate(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom,viewportWidth:innerWidth,viewportHeight:innerHeight}});row.geometry=geometry;
+ assert(geometry.x>=-1&&geometry.y>=-1&&geometry.right<=geometry.viewportWidth+1&&geometry.bottom<=geometry.viewportHeight+1,'More fits the viewport '+JSON.stringify(geometry));
+ assert(await p.locator('#memberMoreDialog').evaluate(el=>[...el.querySelectorAll('a,button')].filter(control=>control.getClientRects().length&&getComputedStyle(control).visibility!=='hidden').every(control=>control.getBoundingClientRect().height>=44)),'More links and Close remain44px targets');
+ assert(!(await p.locator('#myTimberApp').isVisible()),'Obsolete install card does not cover the joined-up app');
+ await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-menu.png',fullPage:true});
+ await p.keyboard.press('Escape');assert(!(await p.locator('#memberMoreDialog').isVisible()));assert.equal(await p.locator('#appMore').getAttribute('aria-expanded'),'false');assert(await p.locator('#appMore').evaluate(el=>document.activeElement===el),'Escape returns focus to More');row.checks.push('More is a bounded accessible modal; privacy/Ask links remain reachable and Escape restores focus');
+ }else{
  await p.locator('#appMore').click();
  await p.locator('.member-nav-more>summary').click();
  assert.equal(await p.locator('.member-nav-more>div').evaluate(el=>getComputedStyle(el).position),'static');
@@ -31,6 +44,7 @@ const report={source:process.env.GITHUB_SHA,productionWrites:0,cases:[],limits:[
  assert(await p.locator('#myTimberApp summary').evaluate(el=>el.scrollWidth<=el.clientWidth+1),'Install banner text fits');
  }
  row.checks.push('Plans and records expands in flow');await p.screenshot({path:dir+'/feedback-'+name+'-'+width+'-'+view+'-menu.png',fullPage:true});
+ }
  await p.goto(base+'/member/grub?view='+view);await p.locator('#grubReload').waitFor({state:'attached'});
  const account=p.locator('.app-screen-details').filter({has:p.locator('#grubReload')});if(await account.count()&&!(await p.locator('#grubReload').isVisible()))await account.locator('summary').first().click();
  assert(!(await p.locator('#grubSignOut').isVisible()),'Sign out is not adjacent to Reload');await p.locator('.grub-signout>summary').click();await p.locator('#grubSignOut').waitFor();
@@ -39,4 +53,3 @@ const report={source:process.env.GITHUB_SHA,productionWrites:0,cases:[],limits:[
  }catch(e){row.status='fail';row.error=e.message;await p.screenshot({path:dir+'/feedback-failure.png',fullPage:true}).catch(()=>{});throw e}finally{await ctx.close()}
  }}finally{await browser.close()}
 }}finally{fs.writeFileSync(dir+'/member-feedback-report.json',JSON.stringify(report,null,2))}})().catch(e=>{console.error(e);process.exitCode=1});
-
