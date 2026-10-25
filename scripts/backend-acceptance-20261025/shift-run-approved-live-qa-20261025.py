@@ -1,5 +1,5 @@
 import pathlib,json,subprocess,hashlib,datetime
-p=pathlib.Path('/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024');source='9540d180ca4fbed47d96fd9279d901facba77fb5';run=40156799256
+p=pathlib.Path('/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024');source='3de3ebd79d25aed8d2bcf56438f1abd3a8084733';run=40164093646
 watch=json.loads((p/'guarded-release-watch.json').read_text());assert watch.get('verified') is True and watch.get('source')==source and watch.get('run')==run,'Actual guarded production and original independent verification must pass first'
 owned=json.loads((p/('my-timber-owned-runtime-'+str(run)+'.json')).read_text());assert owned['source']==source and str(owned['run'])==str(run)
 r=subprocess.run([str(p/'toolchains/node-v22.16.0-darwin-arm64/bin/node'),'/tmp/shift-owned-production-read-guard-20261025.cjs'],capture_output=True,text=True,timeout=40);assert r.returncode==0,r.stderr

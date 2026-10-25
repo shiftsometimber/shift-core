@@ -1,6 +1,6 @@
 # Owned backend acceptance checkpoint
 
-The existing sole release is Core9540d180 / run40156799256. These are finite one-shots, never another observer or publisher.
+The existing sole release is Core3de3ebd7 / run40164093646. These are finite one-shots, never another observer or publisher.
 
 The two archived original verifiers now retrieve the exact active/owned version through /workers/workers/shift-core/versions/VERSION_ID?include=modules, assert response version identity and before/after deployment ownership. Original compiled-module, routing, contact, homepage, analytics and anonymous-boundary assertions remain.
 
