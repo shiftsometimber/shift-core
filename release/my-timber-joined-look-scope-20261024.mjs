@@ -249,6 +249,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/my-timber-joined-views-20261024.test.mjs": "A"
   },
   "maintenancePaths": [
+    "member-experience/tests/weight-import-mapping-ui.test.mjs",
     "release/app-scope.mjs",
     "release/approved-runtime-composition.mjs",
     "release/member-design-scope.mjs",
@@ -260,7 +261,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/member-recording-repair-20261024.mjs": "37be1c5abf85ec5f7312f6062d749f3274958a4c",
     "release/app-scope.mjs": "8dc607b8e4186b3ef62385b8ad156b0f14557367",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
-    "release/approved-runtime-composition.mjs": "57ab4146d0b33f2277428b90335718c4fbfebe53"
+    "release/approved-runtime-composition.mjs": "57ab4146d0b33f2277428b90335718c4fbfebe53",
+    "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
