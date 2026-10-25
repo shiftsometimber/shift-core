@@ -309,9 +309,13 @@ function nativeLiteralFact(args,options,context){
  nativeFactOutputs.set(key,cached);return cached;
 }
 export function immutableHistoryExecFileSync(bin,args,options){
- if(bin!=='git'||!Array.isArray(args)||args.length!==2||!['show','rev-parse'].includes(args[0])||args.some(value=>typeof value!=='string')||!trustedFactOptions(options)||options?.cwd&&options.cwd!==process.cwd())return execFileSync(bin,args,options);
- if(!/^[a-f0-9]{40}:/.test(args[1]))return execFileSync(bin,args,options);
- const context=nativeFactContext(),fact=context?nativeLiteralFact(args,options,context):null;
+ // Only these two read-only global flags may share the same authenticated
+ // immutable object transport. Replacement contexts still fail closed below;
+ // every unsupported call retains its complete original argv and native errors.
+ const factArgs=Array.isArray(args)&&args.length===4&&args[0]==='--no-optional-locks'&&args[1]==='--no-replace-objects'?args.slice(2):args;
+ if(bin!=='git'||!Array.isArray(factArgs)||factArgs.length!==2||!['show','rev-parse'].includes(factArgs[0])||factArgs.some(value=>typeof value!=='string')||!trustedFactOptions(options)||options?.cwd&&options.cwd!==process.cwd())return execFileSync(bin,args,options);
+ if(!/^[a-f0-9]{40}:/.test(factArgs[1]))return execFileSync(bin,args,options);
+ const context=nativeFactContext(),fact=context?nativeLiteralFact(factArgs,options,context):null;
  if(fact){
   const limit=options?.maxBuffer??1024*1024;
   if(fact.bytes.length<=limit)return options?.encoding&&options.encoding!=='buffer'?fact.bytes.toString(options.encoding):Buffer.from(fact.bytes);

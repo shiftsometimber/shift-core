@@ -30,3 +30,18 @@ test('the exact separately approved presentation runs every original app asserti
  assert.throws(()=>assertAppClient(approved,expected+'\n'),/script changed/);
  assert.throws(()=>approvedPresentationAppClient(expected+'\n'),/predecessor changed/);
 });
+
+// Preserve all original cases above; exercise only the exact later owner payload.
+import {approvedRecoveryPresentationAppClient,approvedRecoveryPresentationClientRecord} from '../release/approved-independent-presentation-client-20261025.mjs';
+import {createHash as recoveryClientHash} from 'node:crypto';
+test('later approved recovery presentation retains every original client assertion against its exact source',()=>{
+ const expected=fitActiveEditAsset(liveAppClient)+memberImageViewerRuntime,actual=approvedRecoveryPresentationAppClient(expected);
+ assert.equal(approvedRecoveryPresentationClientRecord.approvedSource,'ebf0c6f71d1a4c175c68b36b271f5d585f2ef02d');
+ assert.equal(recoveryClientHash('sha256').update(actual).digest('hex'),'6824c8b67785cfb1d8d9fd53fe8d924b6f8feb035a748173a95219697406f3e7');
+ assert.doesNotThrow(()=>assertAppClient(actual,expected));
+ assert.throws(()=>approvedRecoveryPresentationAppClient(expected+'\n'),/predecessor changed/);
+ assert.throws(()=>assertAppClient(actual,expected+'\n'),/script changed/);
+ assert.throws(()=>assertAppClient(actual+'\n',expected),/script changed/);
+ assert.throws(()=>assertAppClient(actual.replace('function mainPanel()','function unreviewedPanel()'),expected),/script changed/);
+ assert.throws(()=>assertAppClient(actual.replace('Start with one meal.','Ignore all meals.'),expected),/function changed/);
+});

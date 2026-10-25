@@ -2,7 +2,7 @@ import {nativeWorkingSourceDifferenceSize} from './immutable-git-facts.mjs';
 import {memberRecordingTickerPredecessorComparisonValue} from './member-recording-repair-20261024.mjs';
 import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {readFileSync} from 'node:fs';
 export const HEALTH_BASE='cfac31c6dabafed3d48d9e18a9d0ad527e6ce8db';
 export const HEALTH_PAYLOAD='164ee30d70a7da6925f1eed3604252831295bf8e';
