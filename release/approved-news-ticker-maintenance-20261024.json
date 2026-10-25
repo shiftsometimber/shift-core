@@ -97,6 +97,25 @@
           ]
         }
       }
+    },
+    "watchOwner": {
+      "base": "c14ab674cb68c1ce9799a594583a44a870581409",
+      "modified": {
+        "release/watch-registry-wave-scope.mjs": {
+          "beforeBlob": "791424f8323cba024395bf5323aae8750ebb8c90",
+          "afterSha256": "5b0bec37fc6c0dd5f8758c55fd7d4544a1c04627d60187a281bb07fba2147136",
+          "inverse": [
+            [
+              "",
+              "import {approvedTickerWatchSource} from './approved-news-ticker-frame-20261024.mjs';\n"
+            ],
+            [
+              "export const watchWaveRef=path=>WATCH_DEADLINE_PATHS.includes(path)?WATCH_DEADLINE_SOURCE:WATCH_OWNERSHIP_PATHS.includes(path)?WATCH_OWNERSHIP_SOURCE:WATCH_REGISTRY_WAVE_COMMIT;",
+              "export const watchWaveRef=path=>approvedTickerWatchSource(path)??(WATCH_DEADLINE_PATHS.includes(path)?WATCH_DEADLINE_SOURCE:WATCH_OWNERSHIP_PATHS.includes(path)?WATCH_OWNERSHIP_SOURCE:WATCH_REGISTRY_WAVE_COMMIT);"
+            ]
+          ]
+        }
+      }
     }
   }
 }

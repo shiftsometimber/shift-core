@@ -90,3 +90,11 @@ test('historical editorial workflow fixture retains actual caller authentication
  assert.throws(()=>websiteEditorialCompletionOriginalSource(path,actual+'\nforged',view),/source|fixture|exact/i);
 });
 import {websiteEditorialCompletionOriginalSource} from '../release/website-editorial-scope-20261018.mjs';
+
+import {watchCurrentSource} from '../shift-coach/release-contract.mjs';
+import {WATCH_OWNERSHIP_PATHS,WATCH_OWNERSHIP_SOURCE,WATCH_DEADLINE_PATHS,WATCH_DEADLINE_SOURCE} from '../release/watch-registry-wave-scope.mjs';
+test('the actual coaching Watch owner resolver selects only the exact reviewed scheduler test source',()=>{
+ const path='medicines-watch/scheduler.test.mjs',source=watchCurrentSource(path);assert.equal(source,'5a90301133438322c442ea87eb8c4676bc3569d6');assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',source+':'+path));
+ for(const p of WATCH_OWNERSHIP_PATHS.filter(p=>p!==path))assert.equal(watchCurrentSource(p),WATCH_DEADLINE_PATHS.includes(p)?WATCH_DEADLINE_SOURCE:WATCH_OWNERSHIP_SOURCE);
+ assert.equal(g('rev-parse','HEAD:shift-coach/release-contract.mjs'),g('rev-parse','55af81540a004cdeedd24eb98c96441d2421b582:shift-coach/release-contract.mjs'),'Every original coaching verifier byte remains exact');
+});
