@@ -1,0 +1,14 @@
+{
+  "base": "6634a80d-dbcc-40b7-91ba-d1236d0d216f",
+  "paths": [
+    "/join-my-timber.html",
+    "/assets/my-timber-onboarding-20261021.css",
+    "/assets/my-timber-onboarding-20261021.js",
+    "/assets/my-timber-onboarding-model-20261021.mjs"
+  ],
+  "allOtherManifestAssetsUnchanged": true,
+  "headersSHA256": "6fc553ead8d1665b52abc24e3fabfe27f54ee0a8168fda63bfd71d1a9e7fc8af",
+  "headersExactSource": "662e4d5c26bfde9994238c5408b722edd4768a9e:release/my-timber-welcome-20261021/black-theme-20261024/r2/r3/_headers",
+  "homepageUnchanged": true,
+  "noCoreWorkersOrAuthHandlersChanged": true
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/join-my-timber.html",
+    "file": "join.html",
+    "before": "ddd963acf01f6e7f89e1a61801965231",
+    "after": "1fa44ad4ea1c5fccb741119c01bfc2c2",
+    "sha256": "7450c1793a762538384765160a6d1eb0835d8f7c1d3beaf5673b0c6b1ad720d3"
+  },
+  {
+    "path": "/assets/my-timber-onboarding-20261021.css",
+    "file": "join.css",
+    "before": "acaed396f36d5b3c732c259aef054f17",
+    "after": "96ff43fb364b8dbcdfcfe2b242fbeea5",
+    "sha256": "e9ac3aaf9a204e9f7e9d291422803fa86b828defeb949296701f581f2198b31f"
+  },
+  {
+    "path": "/assets/my-timber-onboarding-20261021.js",
+    "file": "join.js",
+    "before": "2630f1009eda1ae34c890335d20afe38",
+    "after": "797cd0b7fe977c8c7d67b8f35fc0dddb",
+    "sha256": "cd7e07b96a8edf7f24d28aad01088f1dd1afaaff75e2b7d5110f9990ae846e9d"
+  },
+  {
+    "path": "/assets/my-timber-onboarding-model-20261021.mjs",
+    "file": "model.mjs",
+    "before": "26f97e62e15dc86783df5126e3d6c650",
+    "after": "22fc1ac08d5ec1b37c04414dc61e077f",
+    "sha256": "9af1f769b1aa969641fd9f3445d3a1f97ffdb80db52fb83bfcef22782007956d"
+  }
+]
