@@ -216,8 +216,8 @@ function gitBlobId(bytes){return oid(bytes);}
 function deepFreeze(value){if(value&&typeof value==='object'){for(const child of Object.values(value))deepFreeze(child);Object.freeze(value);}return value;}
 export const JOINED_LOOK_CONTRACT=deepFreeze({
   "kind": "EXACT_MY_TIMBER_JOINED_LOOK_20261024",
-  "base": "2e1eaf56b2f4f446866841b915a96bc64d07e497",
-  "payload": "37aa712983c8fff68ff74a78f45e4d086542709e",
+  "base": "d062c58ec1581cfda4768b4029d85fd1396c2e2b",
+  "payload": "546d4fc072cf37d738fbfb12ef8077229815205a",
   "payloadBlobs": {
     "frontend/member/member-progress-v1.js": "3f7ec13262b2fe2a800f04bdfce5c0c301f2f26f",
     "member-design.mjs": "aedd925f8425076639a40ff51c2032d8820502a3",
@@ -262,11 +262,11 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
   "maintenanceExpected": {
     "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0",
     "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
-    "release/approved-news-ticker-frame-20261024.mjs": "223636e99e25d0d78d2064fc1fcab9739db7e04a",
+    "release/approved-news-ticker-frame-20261024.mjs": "f31b5eee989ed09412815caa13aaf2bae4364b15",
     "release/approved-runtime-composition.mjs": "10877f644f57e58e87fa5e21a8fd1ef7a408e643",
     "release/health-vision-scope-20261021.mjs": "f81d0cd6c7a8230d47611bb46f1e7cb3e23d61b1",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
-    "release/member-recording-repair-20261024.mjs": "e63943205ee315b2808e5ca5e0480b87aaefc6f8"
+    "release/member-recording-repair-20261024.mjs": "ec0491006f4f2b2d089be1138b3e18b1687762f5"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",

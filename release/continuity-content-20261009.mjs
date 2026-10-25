@@ -4,9 +4,21 @@ export const additions={"/clinic-gone-quiet": "<section data-content-review=\"20
 export function preserveContinuityUpgrade(path,input,{required=false}={}){
  const addition=additions[path];if(!addition)return input;
  let html=input.toString('utf8');assert(Buffer.from(html).equals(input),'UTF-8 required');
- const n=html.split(addition).length-1;assert(n<=1,path+' duplicate approved content');
- if(required)assert.equal(n,1,path+' missing exact registered content');
- if(n)html=html.replace(addition,'');
+ // Approved presentation may put layout and growth blocks between these three
+ // fixed sections. Remove only their exact bytes, in their original order;
+ // every intervening/surrounding byte remains in the full-page comparison.
+ const sections=addition.match(/<section(?: [^>]*)?>[\s\S]*?<\/section>/g);
+ assert.equal(sections?.length,3,'Exactly three registered content sections required');
+ assert.equal(sections.join(''),addition,'Every registered content byte required');
+ const counts=sections.map(section=>html.split(section).length-1);
+ assert(counts.every(n=>n<=1),path+' duplicate approved content');
+ const present=counts.some(Boolean);
+ if(required||present)assert(counts.every(n=>n===1),path+' missing exact registered content');
+ if(present){
+  const positions=sections.map(section=>html.indexOf(section));
+  assert(positions.every((position,index)=>index===0||position>positions[index-1]),path+' approved content order changed');
+  for(const section of sections)html=html.replace(section,'');
+ }
  assert(!html.includes('data-content-review="2026-10-09"'),path+' unrecognised content amendment');
  // The two pages keep their original publication dates; normalise only known modified dates.
  const old=path==='/clinic-gone-quiet'?'2026-10-07':'2026-09-17';
