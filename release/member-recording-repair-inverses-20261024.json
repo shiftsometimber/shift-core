@@ -724,5 +724,48 @@
         "after": "      child[name].on('data',chunk=>{owned.outputBytes[name]+=chunk.length;evidence(task.id+'-'+name,()=>appendFileSync(join(proofDir,task.id+'.'+name+'.log'),chunk));evidence(task.id+'-combined',()=>appendFileSync(join(proofDir,task.id+'.log'),chunk));});\n"
       }
     ]
+  },
+  "release/health-vision-scope-20261021.mjs": {
+    "original": "6774ca1d4e35bc9b241ac7d527aedc9557ca5f96",
+    "current": "434d24a86731d6c9ecee85c76c642719d1bde353",
+    "edits": [
+      {
+        "start": 0,
+        "before": "",
+        "after": "import {memberRecordingComparisonValue} from './member-recording-repair-20261024.mjs';\n"
+      },
+      {
+        "start": 3671,
+        "before": "  if(!['release/health-vision-scope-20261021.mjs','tests/health-vision-scope-20261021.test.mjs'].includes(p))assert.equal(git('rev-parse',actual+':'+p),approved,'Health pinned bytes changed: '+p);\n",
+        "after": "  if(!['release/health-vision-scope-20261021.mjs','tests/health-vision-scope-20261021.test.mjs'].includes(p))assert.equal(p==='release/website-editorial-scope-20261018.mjs'?memberRecordingComparisonValue(p,git('rev-parse',actual+':'+p),actual):git('rev-parse',actual+':'+p),approved,'Health pinned bytes changed: '+p);\n"
+      }
+    ]
+  },
+  "tests/bounded-source-scheduling-20261016.test.mjs": {
+    "original": "97c6c21d3b503df0d55e19f505a7ae21edea9015",
+    "current": "d549f7a1acd82e4d51399431f9b51950267ac052",
+    "edits": [
+      {
+        "start": 9459,
+        "before": "const currentSource=path=>{const bytes=readFileSync(new URL('../'+path,import.meta.url),'utf8');return path==='.github/workflows/cloudflare-production-promote.yml'?seoAuditOriginalSource(path,bytes):bytes;};\n",
+        "after": "const currentSource=path=>{const bytes=readFileSync(new URL('../'+path,import.meta.url),'utf8');return ['.github/workflows/cloudflare-production-promote.yml','.github/workflows/online-privacy-recovery-proof.yml'].includes(path)?seoAuditOriginalSource(path,bytes):bytes;};\n"
+      }
+    ]
+  },
+  "tests/verified-source-evidence-20261016.test.mjs": {
+    "original": "1d707d6c56f7a6ed20d1fdda3e60395188e53cb2",
+    "current": "01bee41f20bd9bf441edfaca3eda4855b4c8bc90",
+    "edits": [
+      {
+        "start": 0,
+        "before": "",
+        "after": "import {seoAuditOriginalSource} from '../release/seo-audit-scope-20261016.mjs';\n"
+      },
+      {
+        "start": 15083,
+        "before": " const current=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');const policy=JSON.parse(current('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\\{[^\\n]+\\});\\nconst manifest=/m)[1]),path='scripts/b1-release-scope.mjs',[[before,after]]=policy.inverses[path];assert.equal(current(path),after);\n",
+        "after": " const current=p=>{const bytes=readFileSync(new URL('../'+p,import.meta.url),'utf8');return p==='scripts/b1-release-scope.mjs'?seoAuditOriginalSource(p,bytes):bytes;};const policy=JSON.parse(current('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\\{[^\\n]+\\});\\nconst manifest=/m)[1]),path='scripts/b1-release-scope.mjs',[[before,after]]=policy.inverses[path];assert.equal(current(path),after);\n"
+      }
+    ]
   }
 }

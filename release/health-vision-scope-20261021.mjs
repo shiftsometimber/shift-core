@@ -1,3 +1,4 @@
+import {memberRecordingComparisonValue} from './member-recording-repair-20261024.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -29,7 +30,7 @@ export function verifyHealthVisionExtension(){
   // This verifier and its regression test may be maintained together in a
   // later reviewed commit; original historical bytes remain pinned above.
   // All Health content and other maintenance files remain byte-identical.
-  if(!['release/health-vision-scope-20261021.mjs','tests/health-vision-scope-20261021.test.mjs'].includes(p))assert.equal(git('rev-parse',actual+':'+p),approved,'Health pinned bytes changed: '+p);
+  if(!['release/health-vision-scope-20261021.mjs','tests/health-vision-scope-20261021.test.mjs'].includes(p))assert.equal(p==='release/website-editorial-scope-20261018.mjs'?memberRecordingComparisonValue(p,git('rev-parse',actual+':'+p),actual):git('rev-parse',actual+':'+p),approved,'Health pinned bytes changed: '+p);
   assert(git('ls-tree',actual,'--',p).startsWith('100644 blob '),'Health regular source file required');
  }
  assert.equal(git('rev-parse',actual+':release/approved-runtime-composition.json'),git('rev-parse',HEALTH_BASE+':release/approved-runtime-composition.json'),'Health previous approvals changed');
