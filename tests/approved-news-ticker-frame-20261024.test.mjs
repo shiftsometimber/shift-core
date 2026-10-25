@@ -110,3 +110,14 @@ test('every original editorial fixture path restores the complete earlier source
 test('the original Watch owner remains exact inside the independently admitted historical frame',()=>{const f=approvedNewsTickerOuterFrame(),path='medicines-watch/scheduler.test.mjs';assert.equal(watchCurrentSource(path),WATCH_OWNERSHIP_SOURCE);withApprovedTickerPredecessor(f,()=>assert.equal(watchCurrentSource(path),WATCH_OWNERSHIP_SOURCE));assert.equal(watchCurrentSource(path),WATCH_OWNERSHIP_SOURCE);});
 
 test('the retained native boundary rejects a changed HEAD even with identical tree and working bytes',()=>isolatedTickerProbe("import{approvedNewsTickerOuterFrame}from'./release/approved-news-ticker-frame-20261024.mjs';import{execFileSync}from'node:child_process';import assert from'node:assert/strict';const g=(...a)=>execFileSync('/usr/bin/git',a,{encoding:'utf8'}).trim(),f=approvedNewsTickerOuterFrame(),same=g('commit-tree',g('rev-parse','HEAD^{tree}'),'-p',f.rawHead,'-m','Isolated identical-tree HEAD negative');g('update-ref','HEAD',same);try{assert.throws(()=>f.assertCurrent(),/source|metadata|HEAD/i);}finally{g('update-ref','HEAD',f.rawHead);}assert(approvedNewsTickerOuterFrame());"));
+
+import {RECORDING_REPAIR_REGISTRATION} from '../release/member-recording-repair-20261024.mjs';
+import {APPROVED_NEWS_TICKER_MAINTENANCE} from '../release/approved-news-ticker-frame-20261024.mjs';
+test('overlapping registered helpers retain exact before-images and reject actual or supplied byte mutation',()=>{
+ const paths=RECORDING_REPAIR_REGISTRATION.filter(p=>APPROVED_NEWS_TICKER_MAINTENANCE.includes(p));assert(paths.includes('release/website-editorial-scope-20261018.mjs'));assert(paths.includes('release/health-vision-scope-20261021.mjs'));
+ for(const path of paths){const f=approvedNewsTickerOuterFrame(),before=readFileSync(path);
+  withApprovedTickerPredecessor(f,()=>{assert.equal(approvedTickerOriginalWorkingBytes(path,before).toString(),execFileSync('/usr/bin/git',['show',f.base+':'+path],{encoding:'utf8',maxBuffer:64e6}));assert.throws(()=>approvedTickerOriginalWorkingBytes(path,Buffer.concat([before,Buffer.from('forged')])));});
+  try{writeFileSync(path,Buffer.concat([before,Buffer.from('\n// isolated unapproved helper mutation\n')]));assert.throws(()=>verifyMemberRecordingRepair(),/source|working|changed|tracked|metadata/i);}finally{writeFileSync(path,before);}
+  assert(approvedNewsTickerOuterFrame());
+ }
+});
