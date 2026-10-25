@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-25T10:39:56.493284+00:00",
+  "scope": "Same Website Control project: genuine provider DNS, zone security/configuration, current ruleset, routes, TLS, mail-routing and Worker custom-domain configuration",
+  "encryptedFile": "/Users/shiftsometimberltd/SST/continuity-backup-20261024/sealed-provider-configuration-correction-20261025/SHIFT-Provider-Configuration-Correction-2026-10-25.tar.gz.enc",
+  "receiptFile": "/Users/shiftsometimberltd/SST/continuity-backup-20261024/sealed-provider-configuration-correction-20261025/SHIFT-Provider-Configuration-Correction-2026-10-25.receipt.json",
+  "encryptedBytes": 41408,
+  "encryptedSHA256": "c75c4538a7c0013ffceeb37bcaaba7224f5b801d787062923156eec823112f17",
+  "existingKeyReused": true,
+  "keyDisclosed": false,
+  "hmacVerifiedBeforeIsolatedRestore": true,
+  "tamperCases": [
+    {
+      "case": "changed ciphertext",
+      "rejectedBeforeDecryption": true
+    },
+    {
+      "case": "appended ciphertext",
+      "rejectedBeforeDecryption": true
+    }
+  ],
+  "allCapturedFileHashesRestored": true,
+  "restoredFiles": 5,
+  "dnsRecordsRestored": 18,
+  "zoneSettingsRestored": 56,
+  "managedWorkerDomainsRestoredAsConfiguration": 2,
+  "providerConfiguration403ReadBlockerRetired": true,
+  "legacyFirewallApiStatus": 410,
+  "currentZoneRulesetCaptured": true,
+  "routeRecordsCaptured": 1000,
+  "routeCollectionCompleteness": "Cloudflare official API defines GET /zones/{zone_id}/workers/routes as SinglePage without pagination parameters; all1000 returned route records retained",
+  "oldArchivesChanged": false,
+  "originalSqlPagesAndWorkerProofsPreserved": true,
+  "productionMutations": 0,
+  "externalMessagesSent": 0,
+  "fullHostedRestoreComplete": false,
+  "offsiteServerHashVerified": true,
+  "offsiteDestination": "Existing Website Control/01-Website-Backups/2026-10-24 folder; same project, no second backup programme",
+  "remaining": "Full hosted private-asset/service/business-journey recovery, original unavailable secrets/provider dependencies, off-Mac recovery-key custody and agreed recovery objectives",
+  "offsiteFileId": "id:ITkzDA3dTfwAAAAAAAABTQ",
+  "offsiteVerifiedAt": "2026-10-25T10:50:16.520762+00:00",
+  "offsiteDownloadedBytes": 41408,
+  "offsiteDownloadedSHA256": "c75c4538a7c0013ffceeb37bcaaba7224f5b801d787062923156eec823112f17",
+  "routeCollectionContract": "https://developers.cloudflare.com/api/typescript/resources/workers/subresources/routes/methods/list/"
+}
