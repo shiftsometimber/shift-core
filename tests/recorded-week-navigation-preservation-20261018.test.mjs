@@ -1,3 +1,4 @@
+import {qualifyJoinedSuccessor} from '../release/my-timber-joined-look-scope-20261024.mjs';
 import {websiteEditorialCompletionHistoricalView,websiteEditorialCompletionOriginalSource} from '../release/website-editorial-scope-20261018.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -8,7 +9,7 @@ const policy=JSON.parse(readFileSync(new URL('../release/recorded-week-navigatio
 const git=(...a)=>execFileSync('/usr/bin/git',['--no-replace-objects',...a],{maxBuffer:64e6});
 test('the original two-file navigation payload is literal and restores the accepted source',()=>{
  assert.deepEqual(ACTUAL_NAVIGATION_PATHS,['frontend/member/member-progress-v1.js','member-experience/staging/verify-treatment-week-navigation.mjs']);
- for(const p of ACTUAL_NAVIGATION_PATHS){const value=git('show','HEAD:'+p),restored=assertExactNavigationPayload(p,value);if(restored===null)assert.equal(git('ls-tree',policy.record.base,'--',p).length,0);else assert(restored.equals(git('show',policy.record.base+':'+p)));}
+ for(const p of ACTUAL_NAVIGATION_PATHS){const actual=git('show','HEAD:'+p),value=qualifyJoinedSuccessor().comparisonValue(p,actual),restored=assertExactNavigationPayload(p,value);if(restored===null)assert.equal(git('ls-tree',policy.record.base,'--',p).length,0);else assert(restored.equals(git('show',policy.record.base+':'+p)));}
 });
 test('an extra path cannot acquire navigation authority',()=>assert.throws(()=>assertExactNavigationPayload('worker-entry-v6.js',Buffer.from('x'))));
 test('changed payload bytes, a stale preimage and executable modes are rejected',()=>{

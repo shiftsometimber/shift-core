@@ -259,7 +259,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/my-timber-joined-look-inverses-20261024.json",
     "release/my-timber-joined-look-scope-20261024.mjs",
     "release/recorded-week-navigation-outer-frame-20261018.mjs",
-    "tests/native-restored-source-stats-20261025.test.mjs"
+    "tests/native-restored-source-stats-20261025.test.mjs",
+    "tests/recorded-week-navigation-preservation-20261018.test.mjs"
   ],
   "maintenanceExpected": {
     "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0",
@@ -270,7 +271,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
     "release/member-recording-repair-20261024.mjs": "69074d48545aafdeea7d645523db478abc1200ad",
     "release/recorded-week-navigation-outer-frame-20261018.mjs": "45fb436ebecd433c0b1fc5823f531cef6c1da660",
-    "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817"
+    "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
+    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "c097fb38075a49d26a0b4bd4d817bcbdc0f4a37e"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
