@@ -10099,6 +10099,14 @@
       "tests/approved-news-ticker-frame-20261024.test.mjs",
       "release/approved-news-ticker-maintenance-20261024.json"
     ],
-    "watchOwnerSource": "8447e42a9861d13e868810911bacfcfc0412f953"
+    "watchOwnerSource": "8447e42a9861d13e868810911bacfcfc0412f953",
+    "fixtureBase": "f3fab37561a9167eba0e7df8a38489bd9263bc2a",
+    "fixturePaths": [
+      "release/approved-news-ticker-frame-20261024.mjs",
+      "release/website-editorial-scope-20261018.mjs",
+      "tests/approved-news-ticker-frame-20261024.test.mjs",
+      "release/approved-news-ticker-maintenance-20261024.json"
+    ],
+    "fixtureSource": "507a1d841a4a5ac34b7eca0566a82641e490147e"
   }
 }
