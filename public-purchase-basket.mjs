@@ -79,7 +79,7 @@ const SCRIPT=String.raw`(()=>{'use strict';
  async function load(){
    try{
      const session=new URLSearchParams(location.search).get('session_id');
-     if(/\\/order-success(?:\\.html)?$/.test(location.pathname)&&/^cs_(test|live)_[A-Za-z0-9_]+$/.test(session||'')){
+     if((location.pathname==='/order-success'||location.pathname==='/order-success.html')&&/^cs_(test|live)_[A-Za-z0-9_]+$/.test(session||'')){
        for(const path of ['/v1/commerce/medicine-order-status','/v1/commerce/order-status']){
          const paidResponse=await fetch(API+path+'?session_id='+encodeURIComponent(session),{credentials:'include',cache:'no-store'}).catch(()=>null);
          if(!paidResponse?.ok)continue;
