@@ -13,8 +13,8 @@ export function originalApprovedComparisonSource(path,value){
  assert.equal(oid(value),d.original,'Every original comparison byte must be restored: '+path);return value;
 }
 function qualify(head,path){
- const d=deltas[path];assert(d);assert.equal(git('rev-parse',head+':'+path),d.current,'Approved comparison current source drift: '+path);
- const actual=exec('git',['show',head+':'+path],{encoding:'utf8',maxBuffer:64e6});
+ const d=deltas[path];assert(d);assert.equal(memberRecordingComparisonValue(path,git('rev-parse',head+':'+path),head),d.current,'Approved comparison current source drift: '+path);
+ const actual=memberRecordingComparisonValue(path,exec('git',['show',head+':'+path],{encoding:'utf8',maxBuffer:64e6}),head);
  const original=originalApprovedComparisonSource(path,actual);assert.equal(original,exec('git',['cat-file','blob',d.original],{encoding:'utf8',maxBuffer:64e6}),'Original immutable comparison source changed: '+path);return{d,actual,original};
 }
 export function approvedSourceComparison(path,value,head){

@@ -1,7 +1,7 @@
 import {reconciliationGitArgs} from './approved-runtime-composition.mjs';
 // Owner-authorised foreground imports; exact tested bytes, no physical-device pass inferred.
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const DEVICE_HEALTH_BASE='3a427a6883d25c10b7dd807f505d4b3e7432b8ae';
 export const DEVICE_HEALTH_CANDIDATE='ff5f570b9e80856b558ee1e28a9db33ebda5d505';
 // PR1005: exact required App Store purpose-string addition, not a permission change.

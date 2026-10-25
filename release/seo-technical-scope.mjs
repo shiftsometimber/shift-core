@@ -1,7 +1,7 @@
 import {RANKING_BASE,RANKING_PATHS,discoveryHistoricalRef} from './approved-ranking-scope.mjs';
 import {COMPLETION_BASE,COMPLETION_PATHS,completionPinnedRef,validateCompletionComposition,verifyCompletionHistory} from './production-completion-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const TECHNICAL_BASE='02b2b3f22af72017985c865410f6a5e4484de0f6';
 export const TECHNICAL_PAYLOAD='1190a26dd5383f7435e59081ee7fbc7749253077';
 export const TECHNICAL_PAYLOAD_PATHS=["public-seo-technical-data.mjs","public-seo-technical.mjs","shift-coach/worker.mjs","tests/public-seo-technical.test.mjs"];

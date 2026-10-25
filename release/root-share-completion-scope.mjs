@@ -2,7 +2,7 @@ import {combinedLegacyValidationRead} from './combined-finite-scope-20261014.mjs
 import {weekPhotoTestIfPresent,weekRecoveryIfPresent} from './my-timber-week-scope.mjs';
 import {photoAcceptanceHistoricalView,photoAcceptanceHistoricalFile} from './photo-acceptance-maintenance-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {pathToFileURL} from 'node:url';
 export const ROOT_SHARE_COMPLETION_BASE='f9f79dfb6038c4bf5eb95b06d656a76cef992e0f';
 export const ROOT_SHARE_COMPLETION_SOURCE='3cd5b1e34a131b09987ea5b7ad4278acce632dcc';

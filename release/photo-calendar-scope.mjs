@@ -1,6 +1,6 @@
 import {rootShareCompletionHistoricalView} from './root-share-completion-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {pathToFileURL} from 'node:url';
 export const PHOTO_CALENDAR_BASE="cc3916d88d66c70dd7be7276ba80a16001c2bbd5";
 export const PHOTO_CALENDAR_SOURCE="51752936793508c6e3e7f42f7067baba144e626e";

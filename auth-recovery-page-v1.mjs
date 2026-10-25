@@ -1,3 +1,4 @@
+import {passwordMeetsPolicy,PASSWORD_POLICY_MESSAGE} from './password-policy-v1.js';
 // Narrow repair of the current authoritative Pages reset document. Keep its
 // markup, copy, styles and confirmation journey; restore five logical fallbacks.
 export function repairPasswordResetDocument(html){
@@ -7,8 +8,10 @@ export function repairPasswordResetDocument(html){
   for(const value of ["new URLSearchParams(location.search).get('token')","f.get('password')","f.get('confirm')",'body.message','err.message']){
    script=script.replace(value+" |'",value+" ||'");
   }
+  script=script.replace("if(p.length<12){msg('Please use at least 12 characters.');return}","if(!("+passwordMeetsPolicy.toString()+")(p)){msg("+JSON.stringify(PASSWORD_POLICY_MESSAGE)+");return}");
   return script;
  });
+ if(reset)html=html.replace(/minlength=([\"'])12\1/g,'minlength="10"').replace(/at least 12 characters/g,'at least 10 characters, including one capital letter and one special character');
  if(reset&&!html.includes('data-reset-recovery="v1"')&&html.includes('</head>')){
   html=html.replace(/<body\b/,'<body data-reset-recovery="v1"').replace('</head>',`<style data-reset-recovery="v1">
 body[data-reset-recovery] .auth-shell :is(h2,label,small,p,a){color:#e7e3da!important;-webkit-text-fill-color:#e7e3da!important}

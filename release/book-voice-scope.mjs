@@ -2,7 +2,7 @@ import {metricsHistoricalRead} from './metrics-connection-scope.mjs';
 import {originalFollowThroughPreservation} from './seo-follow-through-preservation.mjs';
 import {originalSixTopicSeoPreservation} from './six-topic-seo-preservation.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import paths from '../editorial/book-voice/payload.json' with {type:'json'};
 export const BOOK_VOICE_PREVIEW='1912c60073ef4f73b2c2ea36c1e7cca76da1579e';
 export const BOOK_VOICE_RUN=37030676727;

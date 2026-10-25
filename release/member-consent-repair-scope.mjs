@@ -1,6 +1,6 @@
 import {rootShareHistoricalView,rootShareHistoricalFile} from './root-share-preview-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {pathToFileURL} from 'node:url';
 export const MEMBER_CONSENT_BASE= "fc196ebeaf47e04fbe5aec8d9ddefc93b9a50a5e";
 export const MEMBER_CONSENT_SOURCE= "9610259f261ff0a125c9af753d447268d7ab2e3d";

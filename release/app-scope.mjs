@@ -18,7 +18,8 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {withImmutableHistoryVerification,immutableHistorySourceHead,immutableHistoryExecFileSync} from './immutable-git-facts.mjs';
 // Only these native source readers freeze HEAD inside the checked synchronous scope.
-const execFileSync=(bin,args,options)=>{const head=immutableHistorySourceHead();const value=immutableHistoryExecFileSync(bin,head&&bin==='git'?args.map(value=>value==='HEAD'?head:value.startsWith('HEAD:')?head+value.slice(4):value):args,options);if(bin==='git'&&['show','rev-parse'].includes(args[0])&&args[1]?.startsWith('HEAD:')){const ending=args[0]==='rev-parse'&&typeof value==='string'&&value.endsWith('\n')?'\n':'';return memberRecordingComparisonValue(args[1].slice(5),ending?value.slice(0,-1):value,head)+ending;}return value;};
+const execFileSync=(bin,args,options)=>{const head=immutableHistorySourceHead();const value=immutableHistoryExecFileSync(bin,head&&bin==='git'?args.map(value=>value==='HEAD'?head:value.startsWith('HEAD:')?head+value.slice(4):value):args,options);if(bin==='git'&&['show','rev-parse'].includes(args[0])&&args[1]?.startsWith('HEAD:')){const ending=args[0]==='rev-parse'&&typeof value==='string'&&value.endsWith('\n')?'\n':'';const compared=memberRecordingComparisonValue(args[1].slice(5),ending?value.slice(0,-1):value,head);return ending?compared+ending:compared;}return value;};
+export {execFileSync as appSourceExecFileSync};
 import {createHash} from 'node:crypto';
 export const PWA_DISMISS_APPROVED='fbbc8e592549f48280e32009edcbb73d1dd42669';
 export const PWA_DISMISS_PATHS=['my-timber-pwa/ui.mjs','my-timber-pwa/presentation.mjs','my-timber-pwa/pwa.test.mjs','my-timber-pwa/preservation.mjs','my-timber-pwa/preservation.test.mjs','preview/pwa-dismiss/verify.cjs','.github/workflows/pwa-dismiss-preview.yml'];

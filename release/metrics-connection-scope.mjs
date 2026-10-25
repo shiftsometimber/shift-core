@@ -1,6 +1,6 @@
 import {LINK_PATHS,linkMarkHistoricalReader,linkHistoricalRead,linkHistoricalRef,linkHistoricalHead,linkChangedPath,linkPreflightPath} from './seo-link-repairs-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {existsSync,readFileSync} from 'node:fs';
 export const METRICS_BASE='a5cca19e89abc04ac8ecb063fcafb4f66004f504';
 export const METRICS_PAYLOAD='82214a6b0219d2ef1c876aedcbc960cb526118fb';

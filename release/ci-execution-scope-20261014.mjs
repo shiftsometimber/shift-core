@@ -1,3 +1,4 @@
+import {reuseExactNativeProjection} from './scoped-native-projection-evidence.mjs';
 import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
 import {verifyFoodDiaryLondonDateRepair,foodDiaryLondonDateHistoricalView,foodDiaryLondonDateAuthenticatedRead,foodDiaryLondonDateAuthenticatedContent,foodDiaryLondonDateAuthenticatedDiff,foodDiaryLondonDateAuthenticatedAncestor,foodDiaryLondonDateReaderProvenance} from './food-diary-london-date-scope-20261015.mjs';
 import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
@@ -69,11 +70,16 @@ function verifyCiExecutionAllowanceCurrentProof(c,options={}){
  verifyFoodDiaryLondonDateRepair(JSON.parse(content(food.rawHead,manifest)).foodDiaryLondonDateRepair20261015,{head:food.rawHead,read:options.read??undefined,readContent:options.readContent??undefined,readDiff:options.readDiff??undefined,isAncestor:options.isAncestor??undefined});
  return verifyCiExecutionAllowanceOriginal(c,{head:food.head,read:((reader)=>reader==null?food.blob:foodDiaryLondonDateAuthenticatedRead(reader,food))(options.read),readContent:((reader)=>reader==null?food.content:foodDiaryLondonDateAuthenticatedContent(reader,food))(options.readContent),readDiff:((reader)=>reader==null?food.diff:foodDiaryLondonDateAuthenticatedDiff(reader,food))(options.readDiff),isAncestor:((reader)=>reader==null?food.ancestor:foodDiaryLondonDateAuthenticatedAncestor(reader,food))(options.isAncestor)},food);
 }
+const ciNativeProjectionOwner=Object.freeze({});
 export function ciExecutionHistoricalView(reader=null,{defaultReader=reader===null}={}){
+ if(reader!==null||defaultReader!==true)return constructCiExecutionHistoricalView(reader,{defaultReader});
+ return reuseExactNativeProjection(ciNativeProjectionOwner,()=>constructCiExecutionHistoricalView(null,{defaultReader:true}));
+}
+function constructCiExecutionHistoricalView(reader=null,{defaultReader=reader===null}={}){
  const food=foodDiaryLondonDateHistoricalView(reader===blob?null:reader,{defaultReader});
  if(food.head===food.rawHead)return ciExecutionHistoricalViewOriginal(reader,{defaultReader});
  const inner=ciExecutionHistoricalViewOriginal(food.read,{defaultReader:false},food),ref=r=>r===food.rawHead?'HEAD':r;
- const view={...inner,rawHead:food.rawHead,affected:p=>food.affected(p)||inner.affected(p),read:(r,p)=>inner.read(ref(r),p),blob:(r,p)=>inner.blob(ref(r),p),content:(r,p)=>inner.content(ref(r),p),assertCurrent:food.assertCurrent,currentContent:content,authentic:food.authentic,nativeAuthentic:food.nativeAuthentic,nativeContentAuthentic:food.nativeContentAuthentic,foodDiaryLondonDateContext:food};
+ const view={...inner,nativeSource:reader===null,rawHead:food.rawHead,affected:p=>food.affected(p)||inner.affected(p),read:(r,p)=>inner.read(ref(r),p),blob:(r,p)=>inner.blob(ref(r),p),content:(r,p)=>inner.content(ref(r),p),assertCurrent:food.assertCurrent,currentContent:content,authentic:food.authentic,nativeAuthentic:food.nativeAuthentic,nativeContentAuthentic:food.nativeContentAuthentic,foodDiaryLondonDateContext:food};
  const foodProof=foodDiaryLondonDateReaderProvenance(food.read);if(nativeFoodReadSources.get(inner)===food.read&&foodProof?.kind==='read'&&foodProof.nativeSource===true&&foodProof.view===food&&view.rawHead===food.rawHead&&view.head===inner.head&&inner.rawHead===food.head)nativeCiReaders.set(view.read,Object.freeze({kind:'read',view}));
  food.assertCurrent();return Object.freeze(view);
 }

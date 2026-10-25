@@ -1,3 +1,4 @@
+import {reuseExactNativeProjection as reuseNativeNavigationProof} from './scoped-native-projection-evidence.mjs';
 import {Buffer as sourceMetadataBuffer} from 'node:buffer';
 import {hash as sourceMetadataHash} from 'node:crypto';
 import {isSharedArrayBuffer as sourceMetadataSharedBacking} from 'node:util/types';
@@ -51,6 +52,7 @@ function waitForNativeIndexWriter(lock,deadline){
  assert(!existsSync(lock),'An actual source-index writer is active');
 }
 function prepareNativeNavigationIndexStats(){
+ if(reusableNavigationChecker(undefined,true))return;
  const root=process.cwd(),index=resolve(root,'.git/index'),lock=resolve(root,'.git/index.lock');
  const entry=lstatSync(index);assert(entry.isFile()&&!entry.isSymbolicLink(),'Ordinary native index required before stat-cache refresh');
  if(existsSync(lock)){
@@ -273,13 +275,27 @@ function makeNativeNavigationFreshTrackedStats(){
  }catch{return null;}
 }
 
+// Retain checkers, never source verdicts. A reused checker still performs the
+// complete native metadata and full tracked-path scan at this call boundary.
+const nativeNavigationCheckers=new Map();
+function reusableNavigationChecker(expected,preparing=false){
+ if(existsSync(resolve(process.cwd(),'.git/index.lock')))return null;
+ const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
+ for(const[key,entry]of nativeNavigationCheckers){
+  if(entry.cwd!==cwd||entry.environment!==environment||!preparing&&entry.expected!==expected)continue;
+  let same=false;try{same=entry.sameMetadata();}catch{}
+  if(!same){nativeNavigationCheckers.delete(key);continue;}
+  entry.check();return entry.check;
+ }return null;
+}
 export function nativeNavigationFreshSourceChecker(expected){
+ const reused=reusableNavigationChecker(expected);if(reused)return reused;
  clean(expected);
  prepareNativeNavigationIndexStats();
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
  let context;try{context=freshSourceContext();}catch{context=null;}
  const freshTrackedStats=context?makeNativeNavigationFreshTrackedStats():null;
- return()=>{
+ const check=()=>{
   assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire],native,'Native navigation source functions changed');
   assert.equal(process.cwd(),cwd,'Navigation source working directory moved');
   assert.equal(JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]])),environment,'Navigation source execution environment changed');
@@ -292,6 +308,12 @@ export function nativeNavigationFreshSourceChecker(expected){
   assert.equal(freshTrackedStats?.()===true?0:git('diff-files','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','--').length,0,'Fresh navigation working source changed');
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed during current-source check');
  };
+ if(context&&freshTrackedStats&&(expected===undefined||typeof expected==='string'&&oid.test(expected))){
+  const key=JSON.stringify([cwd,environment,expected??null]);
+  nativeNavigationCheckers.set(key,{cwd,environment,expected,check,sameMetadata:()=>context.snapshot()===context.entry});
+  while(nativeNavigationCheckers.size>16)nativeNavigationCheckers.delete(nativeNavigationCheckers.keys().next().value);
+ }
+ return check;
 }
 
 function object(ref,p){assert(oid.test(ref));path(p);const id=immutableNavigationFact('git',['rev-parse',ref+':'+p],{maxBuffer:64e6}).toString('utf8').trimEnd();assert(oid.test(id));return id;}
@@ -371,7 +393,22 @@ function receipt(){
  const ownedLines=decoded.logs.toString('utf8').split('\n').flatMap(line=>{const i=line.indexOf('{"kind":"owned_runtime_deployment"');if(i<0)return[];try{return[JSON.parse(line.slice(i))]}catch{return[]}});
  assert.equal(ownedLines.filter(x=>JSON.stringify(x)===JSON.stringify(owned)).length,1);assert.equal(verifiedOwnedRuntime(active,run,job,owned),true);return owned;
 }
+const nativeNavigationProofOwners=new Map();
 function prove(rawHead,editorialOuter=null){
+ if(editorialOuter)assertWebsiteEditorialCompletionView(editorialOuter);
+ const key=JSON.stringify([rawHead,editorialOuter?.rawHead??null,editorialOuter?.head??null]);
+ let owner=nativeNavigationProofOwners.get(key);
+ if(!owner){owner=Object.freeze({});nativeNavigationProofOwners.set(key,owner);while(nativeNavigationProofOwners.size>16)nativeNavigationProofOwners.delete(nativeNavigationProofOwners.keys().next().value);}
+ const check=nativeNavigationFreshSourceChecker(editorialOuter?.rawHead??rawHead);
+ const retained=reuseNativeNavigationProof(owner,()=>{
+  // Every original native assertion runs on a miss. Inputs are private native
+  // facts; no supplied source reader or callback verdict enters this cache.
+  const record=proveOriginal(rawHead,editorialOuter);
+  return record===null?null:Object.freeze({nativeSource:true,assertCurrent:check,record});
+ });
+ return retained?.record??null;
+}
+function proveOriginal(rawHead,editorialOuter=null){
  const {clean:proofClean,readFileSync:proofRead}=editorialOuter?navigationEditorialProofFacts(editorialOuter):{clean,readFileSync};
  const record=JSON.parse(content(rawHead,LEDGER)),c=record[KEY];if(!c)return null;
  const{maintenanceSource,...fixed}=data(c);assert.deepEqual(fixed,policy.record);assert.equal(c.base,BASE);assert.equal(c.payload,PAYLOAD);assert.deepEqual(c.paths,fixedPaths);
@@ -424,14 +461,26 @@ function navigationEditorialProofFacts(outer){
   // at every use; repeating the outer working-tree scan here adds no boundary.
   clean:(expected)=>{nativeCurrent();if(expected!==undefined)assert.equal(expected,outer.head,'Exact admitted navigation predecessor required');return outer.head;},
   readFileSync:filename=>{
-   outer.assertCurrent();const full=resolve(filename),prefix=process.cwd()+'/';assert(full.startsWith(prefix),'Only native tracked navigation files may be projected');
+   nativeCurrent();const full=resolve(filename),prefix=process.cwd()+'/';assert(full.startsWith(prefix),'Only native tracked navigation files may be projected');
    const p=full.slice(prefix.length);assert([...fixedPaths,...fixedMaintenance].includes(p),'Exact navigation source path required');
    const actual=readFileSync(full);assert(actual.equals(bytes(outer.rawHead,p)),'Actual current navigation working source changed');
    return bytes(outer.head,p);
   }
  });
 }
+const nativeNavigationFrameOwner=Object.freeze({});
 export function actualNavigationOuterFrame(){
+ const retained=reuseNativeNavigationProof(nativeNavigationFrameOwner,()=>{
+  // This factory has no supplied readers. Keep the actual privately admitted
+  // frame, not any later projectRead/projectContent callback or its output.
+  const frame=constructActualNavigationOuterFrame();
+  if(frame===null)return null;
+  frame.finish();
+  return Object.freeze({nativeSource:true,assertCurrent:frame.assertCurrent,frame});
+ });
+ return retained?.frame??null;
+}
+function constructActualNavigationOuterFrame(){
  prepareNativeNavigationIndexStats();
  ensureOriginalNavigationHqObjects();
  ensureOriginalNavigationPhotoEvidenceObjects();

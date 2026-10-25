@@ -1,7 +1,7 @@
 import {verifyOrganicOriginalMaleComparison} from './organic-original-comparison-20261014.mjs';
 import {reconciliationHistoricalRef,reconciliationMarkHistoricalReader,reconciliationHistoricalRead,reconciliationHead,reconciliationPath,reconciliationChangedPath,RECONCILIATION_PATHS} from './approved-runtime-composition.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';import {existsSync,readFileSync} from 'node:fs';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';import {existsSync,readFileSync} from 'node:fs';
 export const ORGANIC_BASE="bf3af86de87f0a04568805a2372b4e5124a325c5";
 export const ORGANIC_PAYLOAD="351738995ce8bb0fa191f57cc6e291a31019ae8b";
 export const ORGANIC_PAYLOAD_PATHS=["public-seo-context.mjs", "public-seo-organic-link-data.mjs", "public-seo-organic-links.mjs", "tests/public-seo-organic-links.test.mjs"];
