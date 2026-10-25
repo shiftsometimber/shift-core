@@ -1,0 +1,3 @@
+
+/* Preserve the global cookie control and keep the cover fallback when absent. */
+body[data-member-session="signed-out"]:has(#mtWelcome):has(#sstCookieSettings) #mtWelcome #mtwCookies{display:none!important}

@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-25T22:45:34.407393+00:00",
+  "baseSHA256": "3aa00e170a2e1fced68dff6952c468c69c06a38f7d0babba01b5b50901162b59",
+  "candidateSHA256": "fbe31e415489de92d43f46aa7883bd0e7e0f5bb7f75c54442acd7c1651b2aeec",
+  "exactAppendInversePassed": true,
+  "actualLiveSelectorMatches": 1,
+  "retainedGlobalControlOpensPreferences": true,
+  "candidateRendered": false,
+  "deployed": false
+}
