@@ -269,7 +269,7 @@ jobs:
           node babylove/prepare-public-bundle.mjs
           git diff --exit-code -- babylove/editorial/public-bundle.mjs
       - name: Verify canonical runtime staging
-        run: node --test tests/canonical-runtime-build.test.mjs
+        run: node --test tests/canonical-runtime-build.test.mjs tests/independent-presentation-preservation.test.mjs
       - name: Verify every original production source command with two execution slots
         id: scope
         run: |

@@ -1,3 +1,4 @@
+import {captureIndependentPresentation} from './independent-presentation-preservation.mjs';
 import {canonicalRuntime,uploadedVersion,digest} from './canonical-runtime-build.mjs';
 import {ensureQueryRedaction} from './query-log-redaction.mjs';
 // Record the version returned by this exact CLI invocation. A subsequent
@@ -14,6 +15,9 @@ const before=latestDeployment(JSON.parse(readFileSync('deployment-before.json'))
 const active=latestDeployment(JSON.parse(cli('deployments','list','--json')));
 assert.equal(active.id,before.id,'Runtime moved since capture; stop stale release');
 mkdirSync('b1-runtime-release',{recursive:true});
+const independentOptions={accountId:process.env.CLOUDFLARE_ACCOUNT_ID,token:process.env.CLOUDFLARE_API_TOKEN};
+const independentBefore=await captureIndependentPresentation(independentOptions);
+writeFileSync('b1-runtime-release/independent-presentation-before.json',JSON.stringify(independentBefore,null,2));
 // Build without publishing; restore the native strings before staging traffic.
 cli('deploy','--dry-run','--outdir','b1-runtime-release/staged-runtime');
 const built=canonicalRuntime(readFileSync('b1-runtime-release/staged-runtime/worker.js','utf8'));
@@ -43,4 +47,7 @@ console.log(JSON.stringify(receipt));
 const logPrivacy=await ensureQueryRedaction({accountId:process.env.CLOUDFLARE_ACCOUNT_ID,token:process.env.CLOUDFLARE_API_TOKEN});
 writeFileSync('b1-runtime-release/query-log-redaction.json',JSON.stringify(logPrivacy,null,2));
 console.log(JSON.stringify(logPrivacy));
+const independentAfter=await captureIndependentPresentation(independentOptions);
+assert.deepEqual(independentAfter,independentBefore,'Latest independent presentation must be preserved');
+writeFileSync('b1-runtime-release/independent-presentation-preservation.json',JSON.stringify({ok:true,before:independentBefore,after:independentAfter},null,2));
 if(promotionError)throw promotionError;
