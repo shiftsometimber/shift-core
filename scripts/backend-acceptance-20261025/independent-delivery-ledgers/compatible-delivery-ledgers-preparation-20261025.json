@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-25T13:07:11.789875+00:00",
+  "kind": "INDEPENDENT_COMPATIBLE_ADDITIVE_DELIVERY_SCHEMA_PREPARATION",
+  "guardChange": "Retired source-gate progress is not a dependency of three byte-exact additive compatible schemas. Current-main source identity, current serving owner, approved SQL and uniqueness/FK assertions remain enforced; no Core publication or acceptance waiver.",
+  "mode": "--prepare",
+  "source": "f8f05127c6578a8e9f040e6275d431348b102db6",
+  "run": 40188985851,
+  "approvedSchemaSource": "80a44f8658d42b99cb79a8d2231bc26d34448d01",
+  "servingCompatibility": {
+    "version": "ac4e60d9-6f40-4bd5-a96f-83d6108dd716",
+    "modernVersionContentSHA256": "a3a1ba0bff57832793bb4d23efaa991da2ccdb34e496de79dc7e5469863df550",
+    "serviceAndAuthLinkTablesUnusedByServingRuntime": true,
+    "receiptDDLAlreadyExactlyPresentInServingRuntime": true,
+    "existingReceiptClaimsAndProcessedEventDeduplicationRetained": true
+  },
+  "newWorkerDeployed": false,
+  "messagesSent": 0,
+  "eventsReplayed": 0,
+  "historicalRowsBackfilled": 0,
+  "financialOrMemberDML": 0,
+  "rollbackPolicy": "Retain additive tables; never DROP tables a later release may have used",
+  "sources": [
+    {
+      "path": "hq-commerce-delivery.mjs",
+      "table": "commerce_service_delivery",
+      "sourceBlob": "be4cff15c3c2ed2f5d8eb6505c707f9bba62c2ef",
+      "sqlSHA256": "f7c6017285e1810e78a87a48b8cc4a1fb5a72646b06d010ee69e1d1e43142bee"
+    },
+    {
+      "path": "commerce-stripe-v1.js",
+      "table": "commerce_receipt_delivery",
+      "sourceBlob": "efdf71376e6418241787b0b6a725f272c5da202a",
+      "sqlSHA256": "a8f7cba331662d739d4203943d08aae38e8f318407710d338b1f654e65338429"
+    },
+    {
+      "path": "auth-delivery-v1.js",
+      "table": "auth_delivery_event_links",
+      "sourceBlob": "f1b13f11a706d7ff289bd920595fe17cd5d46ecc",
+      "sqlSHA256": "c2369ce5509a403e8785a924b7ed79cb56dd36658b499c86042d31d9297f63fa"
+    }
+  ],
+  "beforeOwner": {
+    "main": "f8f05127c6578a8e9f040e6275d431348b102db6",
+    "tree": "6ee5b2df4ec3b69ef51bb02de53da5a41288e06d",
+    "run": 40188985851,
+    "retiredRunConclusion": "cancelled",
+    "deployment": "486b4ea3-4fe5-4e79-9792-c67bac1155fe",
+    "version": "ac4e60d9-6f40-4bd5-a96f-83d6108dd716",
+    "approvedSchemaCandidateTree": "533599af22e5f673bc82a3075f75d1b064e8dffd"
+  },
+  "before": [],
+  "prepared": true,
+  "productionMutations": 0,
+  "finishedAt": "2026-10-25T13:07:14.219105+00:00",
+  "ownerTreeLabelCorrection": {
+    "at": "2026-10-25T13:08:52.088060+00:00",
+    "originalLabel": "533599af22e5f673bc82a3075f75d1b064e8dffd",
+    "meaning": "Original returned label was retained schema candidate tree; actual ownership assertion used MAIN_TREE6ee5 correctly. Authenticated immutable main commit re-read confirms6ee5; no DDL repeated.",
+    "actualCurrentMainTree": "6ee5b2df4ec3b69ef51bb02de53da5a41288e06d"
+  }
+}

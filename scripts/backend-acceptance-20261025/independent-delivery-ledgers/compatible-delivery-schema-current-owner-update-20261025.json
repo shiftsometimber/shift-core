@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-25T13:06:28.261041+00:00",
+  "file": "/Users/shiftsometimberltd/SST/hq-launch-operations-20261024/scripts/prepare-compatible-delivery-ledgers-20261025.py",
+  "oldSHA256": "3fd25439b1f822ebcec320d613f735051eff1111eb159b6f28086d067023142c",
+  "newSHA256": "4284e01c4658dd76d001b5cde490d2de1a9ce0594cacf158e279780528e593b6",
+  "workerUpload": false,
+  "messagesSent": 0,
+  "reason": "Safely remove unrelated failed Core-gate coupling only for additive schema preparation; pin authenticated current main and serving owner; match all three source blobs; preserve exact SQL/schema assertions.",
+  "ownerTreeLabelCorrection": true
+}
