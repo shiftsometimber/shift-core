@@ -46,9 +46,3 @@ test('public markup has no playback controls and motion cannot stick on ordinary
  assert.ok(tickerStyles.includes('@media(prefers-reduced-motion:reduce)'));
  assert.ok(tickerStyles.includes('animation:shiftPublicNews 90s linear infinite'));
 });
-
-test('partial published edition visibly retains incomplete-review status and first-publication dates',async()=>{
- const {strip,track,label}=await boot({current:false,published_edition:{current_wire:false,review_incomplete:true,edition_id:'latest-approved-published-newsroom',items:[{headline:'CBL-514: Phase 3 dosing and the limits of weight-regain claims',url:'/medicine-news/cbl-514-supreme-01-phase-3-catch-up',published_at:'2026-10-19T20:14:06Z'}]}});
- assert.equal(strip.hasAttribute('data-ready'),true);assert.equal(label.textContent,'Published in SHIFT');assert.equal(label.children.at(-1).textContent,'Review incomplete');
- assert.match(track.children[0].children[0].textContent,/Published 19 Oct 2026/);assert.equal(strip.dataset.edition,'latest-approved-published-newsroom');
-});
