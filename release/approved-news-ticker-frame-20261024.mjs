@@ -1,3 +1,4 @@
+import {qualifyJoinedSuccessor,withJoinedSuccessorQualification} from './my-timber-joined-look-scope-20261024.mjs';
 import {reuseExactNativeProjection} from './scoped-native-projection-evidence.mjs';
 import {immutableHistoryExecFileSync as immutableExecFileSync} from './immutable-git-facts.mjs';
 import {freshDetachedSourceHead} from './fresh-food-source-head-20261016.mjs';
@@ -9,6 +10,13 @@ import {nativeNavigationFreshSourceChecker} from './recorded-week-navigation-out
 import inverse from './approved-news-ticker-maintenance-20261024.json' with {type:'json'};
 const fixed={"proof":"EXACT_APPROVED_NEWS_TICKER_CANONICAL_20261025","base":"ec139dcc3eeaf137ef4792e4b1c697ac55616d70","payload":"9e45799253792505949dd602c104d9062adc6cc9","approvedPayload":"686abf6a867808bf3a95620b43c8f6ab319df305","paths":["public-navigation-policy.mjs","radar-integration-v1.js","radar-published-ticker-v1.js","tests/public-ticker-motion.test.mjs","tests/radar-published-ticker-catchup.test.mjs","tests/fixtures/radar-catchup-public-edition-20261019.json"],"maintenancePaths":["release/approved-news-ticker-frame-20261024.mjs","release/approved-news-ticker-maintenance-20261024.json","release/website-editorial-scope-20261018.mjs","release/approved-runtime-composition.mjs","tests/website-editorial-scope-20261018.test.mjs","tests/approved-news-ticker-frame-20261024.test.mjs","release/health-vision-scope-20261021.mjs","release/testosterone-scope-20261021.mjs","tests/health-vision-scope-20261021.test.mjs","tests/testosterone-release-scope.test.mjs","release/member-recording-repair-20261024.mjs"],"scope":{"publicCopyApproval":"Matt20October exact MW-CATCHUP-19OCT-v1 and retained routine factual authority","publicCopySha256":"cbafd7ef28dc65628a2e7a5c8092b8550138a9a802b9e2768281cdae8259fb60","completePublicationSnapshotRequired":true,"pendingSourceChangesExcluded":true,"firstActualPublicationPreserved":true,"currentWireClaim":false,"clinicalApprovalGranted":false,"notificationAuthorityGranted":false,"medicineCatalogueChanged":false,"pausedLinkRepairIncluded":false,"homepageMainContentChanged":false},"retainedPrivateProposal":"d062c58ec1581cfda4768b4029d85fd1396c2e2b","retainedPrivateLedgerSha256":"a6eb55a6118830c723da395db1f845dfd7c489151b87ae8ae8c78a3dfd94b7b2"},KEY='approvedNewsTicker20261024',LEDGER='release/approved-runtime-composition.json';
 const MODIFIED_PATHS=["release/website-editorial-scope-20261018.mjs", "release/approved-runtime-composition.mjs", "tests/website-editorial-scope-20261018.test.mjs", "release/health-vision-scope-20261021.mjs", "release/testosterone-scope-20261021.mjs", "tests/health-vision-scope-20261021.test.mjs", "tests/testosterone-release-scope.test.mjs", "release/member-recording-repair-20261024.mjs"];
+const actualReadFileSync=readFileSync;
+const uiProofs=new WeakMap();
+function tickerUiPredecessorBytes(ui,path,value){
+ ui.assertOwnedBytes();
+ const current=actualReadFileSync(path);assert(Buffer.from(value).equals(current),'Actual UI input bytes required before ticker inverse');
+ return Object.hasOwn(ui.predecessorPins,path)?ui.restoreFile(path,current):current;
+}
 const sorted=x=>[...x].sort(),sha=x=>createHash('sha256').update(x).digest('hex');
 const git=(...args)=>(args.length===2&&['show','rev-parse'].includes(args[0])&&/^[a-f0-9]{40}:/.test(args[1])?immutableExecFileSync('git',args,{encoding:'utf8',maxBuffer:64e6}):execFileSync('/usr/bin/git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6})).trimEnd();
 const actual=()=>freshDetachedSourceHead()??git('rev-parse','HEAD');
@@ -74,46 +82,49 @@ export const APPROVED_NEWS_TICKER_MAINTENANCE=Object.freeze(fixed.maintenancePat
 export const approvedTickerPredecessorHead=()=>active?.base??null;
 export const approvedTickerActualHead=()=>active?.rawHead??null;
 const tickerNativeProjectionOwner=Object.freeze({});
-export function approvedNewsTickerOuterFrame(){return reuseExactNativeProjection(tickerNativeProjectionOwner,constructApprovedNewsTickerOuterFrame);}
+export function approvedNewsTickerOuterFrame(){return withJoinedSuccessorQualification(()=>reuseExactNativeProjection(tickerNativeProjectionOwner,constructApprovedNewsTickerOuterFrame));}
 function constructApprovedNewsTickerOuterFrame(){
  if(active){
   active.assertCurrent();const expected=privateFrameStorage.get(active),before=storageSignature();
   if(expected!==null&&expected!==undefined&&before===expected){active.assertCurrent();if(storageSignature()===before)return active;}
  }
- const storageBefore=storageSignature(),rawHead=actual(),record=JSON.parse(text(rawHead,LEDGER)),c=record[KEY];if(!c)return null;
+ const storageBefore=storageSignature(),rawHead=actual(),ui=qualifyJoinedSuccessor(rawHead),snapshotHead=ui.legacyHead;
+ ui.assertOwnedBytes();
+ const record=JSON.parse(text(snapshotHead,LEDGER)),c=record[KEY];if(!c)return null;
  const fresh=freshChecker(rawHead),{maintenanceSource,...scope}=c;
  assert.deepEqual(scope,fixed,'Only the exact canonical approvedTicker scope is admitted');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
  const all=[...fixed.paths,...fixed.maintenancePaths];assert.equal(new Set(all).size,all.length);
- for(const[a,b,ps]of[[fixed.base,fixed.payload,fixed.paths],[fixed.payload,maintenanceSource,fixed.maintenancePaths],[maintenanceSource,rawHead,[LEDGER]]]){
+ for(const[a,b,ps]of[[fixed.base,fixed.payload,fixed.paths],[fixed.payload,maintenanceSource,fixed.maintenancePaths],[maintenanceSource,snapshotHead,[LEDGER]]]){
   ancestor(a,b);assert.deepEqual(sorted(diff(a,b)),sorted(ps),'Exact canonical approvedTicker native increment required');
  }
  ancestor(fixed.retainedPrivateProposal,fixed.payload); // reconciled merge must retain private evidence ancestry
  assert.equal(sha(bytes(fixed.retainedPrivateProposal,LEDGER)),fixed.retainedPrivateLedgerSha256,'Every earlier private proposal receipt remains immutable');
  assert.equal(text(maintenanceSource,LEDGER),text(fixed.base,LEDGER),'Every actual production ledger byte must precede ticker registration');
  const modeMaps=new Map();
- for(const[ref,list]of[[rawHead,[...all,LEDGER]],[fixed.payload,fixed.paths],[fixed.approvedPayload,fixed.paths],[maintenanceSource,fixed.maintenancePaths],[fixed.base,[...Object.keys(inverse.modified),LEDGER]]]){
+ for(const[ref,list]of[[snapshotHead,[...all,LEDGER]],[fixed.payload,fixed.paths],[fixed.approvedPayload,fixed.paths],[maintenanceSource,fixed.maintenancePaths],[fixed.base,[...Object.keys(inverse.modified),LEDGER]]]){
   const rows=execFileSync('/usr/bin/git',['--no-replace-objects','ls-tree','-z',ref,'--',...list],{encoding:'utf8',maxBuffer:64e6}).split('\0');assert.equal(rows.pop(),'');const map=new Map();
   for(const row of rows){const m=/^(100644) blob ([a-f0-9]{40})\t(.+)$/.exec(row);assert(m&&list.includes(m[3])&&!map.has(m[3]),'Exact unique regular native mode row required');map.set(m[3],m[2]);}
   assert.deepEqual(sorted([...map.keys()]),sorted(list),'Every original native source mode remains required');modeMaps.set(ref,map);
  }
  const facts={blob:(r,p)=>{const value=modeMaps.get(r)?.get(p);assert(value,'Exact native immutable path required');return value},content:(r,p)=>{const value=text(r,p);assert.equal(oid(r,p),modeMaps.get(r)?.get(p),'Native source identity changed');return value}};
- assert.deepEqual(sorted(diff(fixed.base,rawHead)),sorted([...all,LEDGER]),'Unrelated approvedTicker source change');
+ assert.deepEqual(sorted(diff(fixed.base,snapshotHead)),sorted([...all,LEDGER]),'Unrelated approvedTicker source change');
  for(const p of all){
   const source=fixed.paths.includes(p)?fixed.payload:maintenanceSource;
-  assert.equal(facts.blob(rawHead,p),facts.blob(source,p),'Exact reviewed approvedTicker blob required: '+p);
+  assert.equal(facts.blob(snapshotHead,p),facts.blob(source,p),'Exact reviewed approvedTicker blob required: '+p);
   if(fixed.paths.includes(p))assert.equal(facts.blob(source,p),facts.blob(fixed.approvedPayload,p),'Every exact approved runtime payload byte remains required');
-  assert(readFileSync(p).equals(Buffer.from(facts.content(rawHead,p))),'Current approvedTicker working bytes changed');
+  assert(tickerUiPredecessorBytes(ui,p,actualReadFileSync(p)).equals(Buffer.from(facts.content(snapshotHead,p))),'Current approvedTicker working bytes changed');
  }
  assert.deepEqual(sorted(Object.keys(inverse.modified)),sorted(MODIFIED_PATHS),'Every original guard/test whole before-image remains required');
  for(const[p,row]of Object.entries(inverse.modified)){
   assert(Buffer.from(row.before,'base64').equals(Buffer.from(facts.content(fixed.base,p))),'Whole original guard/test source must restore: '+p);
-  assert.equal(sha(Buffer.from(facts.content(rawHead,p))),row.afterSha256,'Exact finite maintenance source required: '+p);
+  assert.equal(sha(Buffer.from(facts.content(snapshotHead,p))),row.afterSha256,'Exact finite maintenance source required: '+p);
  }
  for(const p of fixed.maintenancePaths.filter(p=>!Object.hasOwn(inverse.modified,p)))assert.equal(git('ls-tree',fixed.base,'--',p),'','New maintenance source must be additive');
  const prior=JSON.parse(text(fixed.base,LEDGER)),retained=structuredClone(record);delete retained[KEY];assert.deepEqual(retained,prior,'Every prior approval, failure and receipt must remain exact');
- return makeTickerFrame(rawHead,fixed.base,all,fresh,storageBefore);
+ return makeTickerFrame(rawHead,fixed.base,all,fresh,storageBefore,ui,snapshotHead);
 }
-export function withApprovedTickerPredecessor(frame,callback){
+export function withApprovedTickerPredecessor(frame,callback){return withJoinedSuccessorQualification(()=>withApprovedTickerPredecessorAtUi(frame,callback));}
+function withApprovedTickerPredecessorAtUi(frame,callback){
  assert(frames.has(frame),'Independent finite approvedTicker admission required');frame.assertCurrent();
  const previous=active;active=frame;
  try{const value=callback();assert(!value||typeof value.then!=='function','Historical source projection must remain synchronous');return value}
@@ -127,23 +138,29 @@ export function approvedTickerPredecessorLedger(){
 export function approvedTickerOriginalLedger(value){const f=approvedNewsTickerOuterFrame();if(!f)return value;f.assertCurrent();assert.equal(value,text(f.rawHead,LEDGER).trimEnd(),'Exact current ledger fixture required');return text(f.base,LEDGER).trimEnd();}
 export function approvedTickerOriginalFixtureHead(){const f=approvedNewsTickerOuterFrame();if(!f)return actual();f.assertCurrent();return f.base;}
 
-export function approvedTickerOriginalWorkingBytes(path,value){assert(active,'Independent current ticker qualification required');active.assertCurrent();const raw=Buffer.from(text(active.rawHead,path));assert(Buffer.from(value).equals(raw),'Exact current ticker working bytes required');const prior=Buffer.from(text(active.base,path));active.assertCurrent();return prior;}
+export function approvedTickerOriginalWorkingBytes(path,value){assert(active,'Independent current ticker qualification required');active.assertCurrent();const raw=Buffer.from(text(active.rawHead,path));assert(Buffer.from(value).equals(raw),'Exact current ticker working bytes required');
+ const ui=uiProofs.get(active);assert(ui,'Independent actual UI proof required');const snapshot=tickerUiPredecessorBytes(ui,path,Buffer.from(value));assert(snapshot.equals(Buffer.from(text(active.comparisonHead,path))),'Exact UI predecessor bytes required before ticker inverse');
+ const prior=Buffer.from(text(active.base,path));active.assertCurrent();return prior;}
 
 // Project only genuine changed current values after the complete independent native addendum.
 // Foreign heads/values and the actual member-registration module keep their original path.
-export function approvedTickerComparisonValue(path,value,requestedHead){
+export function approvedTickerComparisonValue(path,value,requestedHead){return withJoinedSuccessorQualification(()=>approvedTickerComparisonValueAtUi(path,value,requestedHead));}
+function approvedTickerComparisonValueAtUi(path,value,requestedHead){
  if(path==='release/member-recording-repair-20261024.mjs'||![...fixed.paths,...fixed.maintenancePaths].includes(path)||typeof value!=='string')return value;
  const raw=actual();if(requestedHead&&requestedHead!==raw)return value;
  let pin;try{pin=oid(raw,path);}catch{return value;}const identifier=value===pin,body=!identifier&&value===text(raw,path);if(!identifier&&!body)return value;
- const f=approvedNewsTickerOuterFrame();if(!f)return value;f.assertCurrent();let prior;try{prior=identifier?oid(f.base,path):text(f.base,path);}catch{return value;}f.assertCurrent();return prior;
+ const f=approvedNewsTickerOuterFrame();if(!f)return value;f.assertCurrent();
+ const ui=uiProofs.get(f);assert(ui,'Independent actual UI proof required');
+ const snapshot=ui.comparisonValue(path,value),expected=identifier?oid(f.comparisonHead,path):text(f.comparisonHead,path);assert.equal(snapshot,expected,'Authenticated exact UI predecessor input required');
+ let prior;try{prior=identifier?oid(f.base,path):text(f.base,path);}catch{return value;}f.assertCurrent();return prior;
 }
 
-function makeTickerFrame(rawHead,base,all,fresh,storageBefore){
+function makeTickerFrame(rawHead,base,all,fresh,storageBefore,ui,snapshotHead){
  function assertCurrent(){
   // The original native checker binds expected HEAD at construction and rechecks
   // HEAD/ref/index/config/environment and working source on every boundary.
   // Avoid a second Git HEAD subprocess for the same unchanged identity assertion.
-  fresh();
+  ui.assertOwnedBytes();fresh();
  }
  function authentic(v,r,p,kind='read'){
   const ref=r==='HEAD'?rawHead:r,body=text(ref,p),id=oid(ref,p);
@@ -165,11 +182,11 @@ function makeTickerFrame(rawHead,base,all,fresh,storageBefore){
    return get(map(a),map(b));
   }finally{assertCurrent()}
  }}
- const frame={nativeSource:true,rawHead,base:base,assertCurrent,authentic,affected:p=>[...all,LEDGER].some(q=>q===p||q.startsWith(p+'/')),
+ const frame={nativeSource:true,rawHead,comparisonHead:snapshotHead,base:base,assertCurrent,authentic,affected:p=>[...all,LEDGER].some(q=>q===p||q.startsWith(p+'/')),
   currentContent:(r,p)=>text(r==='HEAD'?rawHead:r,p),
   originalContent:(p,value)=>{assertCurrent();assert.equal(value,text(rawHead,p),'Exact current approvedTicker fixture bytes required');return text(base,p)},
   projectRead:s=>project('read',s),projectContent:s=>project('content',s),projectDiff:s=>binary('diff',s),projectAncestor:s=>binary('ancestor',s)};
  const storageAfter=storageSignature();privateFrameStorage.set(frame,storageBefore!==null&&storageAfter===storageBefore?storageAfter:null);
- frames.add(frame);assertCurrent();return Object.freeze(frame);
+ uiProofs.set(frame,ui);frames.add(frame);assertCurrent();return Object.freeze(frame);
 }
 
