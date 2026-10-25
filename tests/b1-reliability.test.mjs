@@ -27,7 +27,7 @@ function fixture(hooks={}){
  const request=(path,body,id=1)=>new Request('https://preview.example.invalid'+path,{method:body===undefined?'GET':'POST',headers:{cookie:'sst_session=session-'+id,Origin:'https://preview.example.invalid','Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
  const save=(body,id=1)=>{const r=request('/v1/member-state',body,id);return fastMemberStateRoute(new Request(r,{method:'PATCH'}),env)};
  const read=async(id=1)=>(await(await fastMemberStateRoute(request('/v1/member-state',undefined,id),env)).json()).state;
- const reset=(password='new-fictional-password',token='reset-1')=>handleAuthRecovery(request('/v1/auth/reset-password',{password,token}),env,{},()=>{throw Error('Unexpected fallback')});
+ const reset=(password='New-fictional-password',token='reset-1')=>handleAuthRecovery(request('/v1/auth/reset-password',{password,token}),env,{},()=>{throw Error('Unexpected fallback')});
  const token=(value='reset-1',expiry=new Date(Date.now()+600000).toISOString())=>sql.prepare('INSERT INTO auth_tokens(user_id,token_hash,token_type,expires_at) VALUES(1,?,\'password_reset\',?)').run(sha(value),expiry);
  const login=(password,id=1)=>fastMemberLogin(request('/v1/auth/login',{email:`b1-${id===1?'one':'two'}@example.invalid`,password}),env);
  return{sql,DB,env,request,save,read,reset,token,login};
@@ -70,7 +70,7 @@ test('WR01 account isolation and expired/revoked sessions protect stored work',a
 });
 test('WR02 concurrent reset has exactly one winner, only winner password works and own sessions revoked',async()=>{
  const f=fixture({afterRead:barrier(/^SELECT id,user_id,expires_at,used_at FROM auth_tokens/)});f.token();await f.save({myWhy:{preserved:true}});
- const passwords=['new-fictional-password-A','new-fictional-password-B'],r=await Promise.all(passwords.map(p=>f.reset(p))),winner=r.findIndex(x=>x.status===200);assert.deepEqual(r.map(x=>x.status).sort(),[200,400]);
+ const passwords=['New-fictional-password-A','New-fictional-password-B'],r=await Promise.all(passwords.map(p=>f.reset(p))),winner=r.findIndex(x=>x.status===200);assert.deepEqual(r.map(x=>x.status).sort(),[200,400]);
  const stored=f.sql.prepare('SELECT password_hash FROM user_auth WHERE user_id=1').get().password_hash;assert(matches(passwords[winner],stored));assert(!matches(passwords[1-winner],stored));
  assert(f.sql.prepare('SELECT revoked_at FROM user_sessions WHERE user_id=1').get().revoked_at);assert.equal(f.sql.prepare('SELECT revoked_at FROM user_sessions WHERE user_id=2').get().revoked_at,null);
  assert.equal((await f.reset()).status,400);assert.equal((await f.login('old-fictional-password')).status,401);assert.equal((await f.login(passwords[winner])).status,200);assert.equal(JSON.parse(f.sql.prepare('SELECT my_why FROM member_state WHERE user_id=1').get().my_why).preserved,true);f.sql.close();
@@ -82,7 +82,7 @@ for(const point of ['UPDATE auth_tokens','UPDATE user_auth','UPDATE user_session
 });
 test('WR02 invalid, expired, malformed expiry, missing and weak inputs cannot change authentication',async()=>{
  const f=fixture();f.token('expired','2000-01-01T00:00:00Z');f.token('bad-date','not-a-date');const before=f.sql.prepare('SELECT * FROM user_auth').all();
- for(const [password,token] of [['new-fictional-password','unknown'],['new-fictional-password','expired'],['new-fictional-password','bad-date'],['new-fictional-password',''],['short','expired']])assert.equal((await f.reset(password,token)).status,400);
+ for(const [password,token] of [['New-fictional-password','unknown'],['New-fictional-password','expired'],['New-fictional-password','bad-date'],['New-fictional-password',''],['short','expired']])assert.equal((await f.reset(password,token)).status,400);
  assert.deepEqual(f.sql.prepare('SELECT * FROM user_auth').all(),before);assert.equal(f.sql.prepare('SELECT COUNT(*) n FROM user_sessions WHERE revoked_at IS NOT NULL').get().n,0);f.sql.close();
 });
 test('WR02 token expiry after initial read/before atomic claim is enforced',async()=>{
@@ -90,15 +90,15 @@ test('WR02 token expiry after initial read/before atomic claim is enforced',asyn
 });
 test('WR02 dropped success acknowledgement does not permit second reset; new password still signs in',async()=>{
  const hooks={},f=fixture(hooks);f.token();let armed=true;hooks.afterCommit=()=>{if(armed){armed=false;throw Error('reset acknowledgement lost')}};
- await assert.rejects(f.reset(),/acknowledgement lost/);assert.equal((await f.reset('different-fictional-password')).status,400);assert.equal(f.sql.prepare("SELECT COUNT(*) n FROM audit_log WHERE user_id=1 AND action='auth.login'").get().n,0);
+ await assert.rejects(f.reset(),/acknowledgement lost/);assert.equal((await f.reset('Different-fictional-password')).status,400);assert.equal(f.sql.prepare("SELECT COUNT(*) n FROM audit_log WHERE user_id=1 AND action='auth.login'").get().n,0);
  assert.equal(f.sql.prepare('SELECT COUNT(*) n FROM user_sessions WHERE user_id=2 AND revoked_at IS NULL').get().n,1);
- assert.equal((await f.login('new-fictional-password')).status,200);f.sql.close();
+ assert.equal((await f.login('New-fictional-password')).status,200);f.sql.close();
 });
 test('WR02 real request path records mail outcomes, keeps enumeration response generic and supersedes old links',async()=>{
  const f=fixture(),mail=[];f.env.EMAIL={send:async m=>{mail.push(m);return{messageId:'synthetic-provider-id'}}};
  const request=email=>handleAuthRecovery(f.request('/v1/auth/request-password-reset',{email}),f.env,{},()=>null);
  const a=await request('b1-one@example.invalid'),unknown=await request('missing@example.invalid');assert.deepEqual(await a.json(),await unknown.json());assert.equal(mail.length,1);
- const firstToken=new URL(mail[0].text.match(/https:\/\/\S+/)[0]).searchParams.get('token');assert.equal(new URL(mail[0].text.match(/https:\/\/\S+/)[0]).origin,f.env.PUBLIC_SITE_URL);await request('b1-one@example.invalid');assert.equal((await f.reset('new-fictional-password',firstToken)).status,400);
+ const firstToken=new URL(mail[0].text.match(/https:\/\/\S+/)[0]).searchParams.get('token');assert.equal(new URL(mail[0].text.match(/https:\/\/\S+/)[0]).origin,f.env.PUBLIC_SITE_URL);await request('b1-one@example.invalid');assert.equal((await f.reset('New-fictional-password',firstToken)).status,400);
  assert.equal(f.sql.prepare("SELECT status FROM auth_delivery_events WHERE provider_id='synthetic-provider-id'").get().status,'sent');
  f.env.EMAIL={send:async()=>{throw Object.assign(Error('provider unavailable'),{code:'synthetic_provider_outage'})}};assert.equal((await request('b1-one@example.invalid')).status,200);assert.equal(f.sql.prepare('SELECT status FROM auth_delivery_events ORDER BY id DESC LIMIT 1').get().status,'failed');
  delete f.env.EMAIL;assert.equal((await request('b1-one@example.invalid')).status,200);assert.equal(f.sql.prepare('SELECT status FROM auth_delivery_events ORDER BY id DESC LIMIT 1').get().status,'binding_missing');f.sql.close();
@@ -108,12 +108,12 @@ test('a login checked against the old password cannot mint a session after reset
  let release,entered;const held=new Promise(r=>release=r),reached=new Promise(r=>entered=r);
  const f=fixture({beforeBatch:async statements=>{if(statements.some(s=>s.sql.startsWith('INSERT INTO user_sessions'))){entered();await held}}});
  f.token();const login=f.login('old-fictional-password');await reached;
- assert.equal((await f.reset('new-fictional-password')).status,200);release();
+ assert.equal((await f.reset('New-fictional-password')).status,200);release();
  const late=await login;assert.notEqual(late.status,200,'Old credential validation must not survive a committed reset');
  assert.equal(f.sql.prepare('SELECT COUNT(*) n FROM user_sessions WHERE user_id=1 AND revoked_at IS NULL').get().n,0);
  assert.equal(f.sql.prepare("SELECT COUNT(*) n FROM audit_log WHERE user_id=1 AND action='auth.login'").get().n,0);
  assert.equal(f.sql.prepare('SELECT COUNT(*) n FROM user_sessions WHERE user_id=2 AND revoked_at IS NULL').get().n,1);
- assert.equal((await f.login('new-fictional-password')).status,200);f.sql.close();
+ assert.equal((await f.login('New-fictional-password')).status,200);f.sql.close();
 });
 
 import worker from '../worker.js';
@@ -123,7 +123,7 @@ test('legacy trailing-slash login shares reset-race protection',async()=>{
  const f=fixture({beforeBatch:async statements=>{if(statements.some(s=>s.sql.startsWith('INSERT INTO user_sessions'))){entered();await held}}});
  const prepare=f.DB.prepare.bind(f.DB);f.DB.prepare=s=>{const st=prepare(s);if(s.includes('FROM sqlite_master'))st.first=async function(){return{count:this.args.length}};return st};
  f.token();const login=worker.fetch(f.request('/v1/auth/login/',{email:'b1-one@example.invalid',password:'old-fictional-password'}),f.env,{});await reached;
- assert.equal((await f.reset('new-fictional-password')).status,200);release();assert.equal((await login).status,401);
+ assert.equal((await f.reset('New-fictional-password')).status,200);release();assert.equal((await login).status,401);
  assert.equal(f.sql.prepare('SELECT COUNT(*) n FROM user_sessions WHERE user_id=1 AND revoked_at IS NULL').get().n,0);f.sql.close();
 });
 test('hosted reset/login probe exercises the real handlers and verifies a fresh session',async()=>{
