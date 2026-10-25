@@ -286,6 +286,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/canonical-runtime-build.test.mjs",
     "tests/combined-original-gp-object-20261014.test.mjs",
     "tests/joined-native-byte-reuse-20261025.test.mjs",
+    "tests/member-details-release.test.mjs",
     "tests/member-recording-repair-admission-20261024.test.mjs",
     "tests/native-restored-source-stats-20261025.test.mjs",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs"
@@ -317,7 +318,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     ".github/workflows/cloudflare-production-promote.yml": "b01a7707ab1fb76c6aafe7f44f68f30fc034f259",
     "release/member-runtime-deploy.mjs": "35b5f29096e47b93e31f41925c54cdc08fedddd2",
     "release/canonical-runtime-build.mjs": "913a2cf6e16735051471c2e26036a5b8ae9842c9",
-    "tests/canonical-runtime-build.test.mjs": "8b9edf9ec6c2f5d175879a43de78cb2ba36b8117"
+    "tests/canonical-runtime-build.test.mjs": "8b9edf9ec6c2f5d175879a43de78cb2ba36b8117",
+    "tests/member-details-release.test.mjs": "145863f8207eef11f7ab0b5b914d073c9d4b5cbc"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
