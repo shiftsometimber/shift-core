@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-25T12:24:29.960790+00:00",
+  "approvedUI": "075f5dfd3e5d6931bf256d0011dc0dffe4178fc7",
+  "base": "f8f05127c6578a8e9f040e6275d431348b102db6",
+  "authority": "Matt requests independent My Timber release for testing, with release manager continuing separately",
+  "workers": {
+    "shift-programme-member-20261023": {
+      "priorVersion": "a669982c-d3a5-4628-87ac-3e2adc43d7fe",
+      "originalModule": "worker.mjs",
+      "originalSHA256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
+      "candidateNewModuleHashes": {
+        "data.mjs": "caccdf504c3111258d4dab45dd3b9908a217061b249f506a5c9c4e364754e05f",
+        "presentation.mjs": "23c9c9a6b40139ce26890277c088cbb6f74069c7bd6bffa49193e8783b030252",
+        "presentation-entry.mjs": "5ad1fd42726fcee790c354e240ea4c0c2c00874fa079ae2d156f71791bcbe379"
+      }
+    },
+    "shift-hq-member-comms-20261023": {
+      "priorVersion": "af65ece5-3a22-4758-8bf0-9d129b1a6d8d",
+      "originalModule": "worker.js",
+      "originalSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
+      "candidateNewModuleHashes": {
+        "data.mjs": "caccdf504c3111258d4dab45dd3b9908a217061b249f506a5c9c4e364754e05f",
+        "presentation.mjs": "23c9c9a6b40139ce26890277c088cbb6f74069c7bd6bffa49193e8783b030252",
+        "presentation-entry.mjs": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f"
+      }
+    }
+  },
+  "checks": {
+    "adapterAssertions": 34,
+    "actualOriginalWorkerPreservationCases": 20,
+    "ChromiumWebKit390And1440SyntheticUIAssertions": 48,
+    "actualCurrentlyServedGrubFitClients": true,
+    "productionMemberWrites": 0
+  }
+}
