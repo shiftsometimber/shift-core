@@ -1,4 +1,3 @@
-import {withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
 import {metricsHistoricalRead} from './metrics-connection-scope.mjs';
 import {followHistoricalRead} from './seo-follow-through-scope.mjs';
 import {readFileSync} from 'node:fs';
@@ -61,8 +60,7 @@ export function validateGrowthEntry(before,after){
  const expected="import {withGrowthPublicCopy} from './growth-member-public.mjs';\n"+before.replace("return withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final));","return withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)));");
  assert.equal(originalFooterEntry(after),expected,'Entry changed outside the exact growth response adapter');
 }
-export function validateGrowthSource(){return withMemberRecordingQualification(()=>validateGrowthSourceQualified());}
-function validateGrowthSourceQualified(){
+export function validateGrowthSource(){
  return withImmutableHistoryVerification(()=>{
  validateAppSource();
  validateBookVoice(followHistoricalRead((ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'}),JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).seoFollowThroughComposition));

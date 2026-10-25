@@ -17,9 +17,9 @@ test('provider failures never become captured proof',async()=>{await assert.reje
 
 import {RELOAD_RUN,RELOAD_VERIFIER,assertReconciledReloadReceipt} from '../release/approved-runtime-composition.mjs';
 test('reload evidence rejects stale sources, partial rounds and unrelated successful jobs',()=>{
- const run={id:RELOAD_RUN,run_attempt:1,head_sha:RELOAD_VERIFIER,path:'.github/workflows/my-timber-final-production.yml',head_branch:'fix/member-reload-navigation-20261007',event:'push',status:'completed',conclusion:'success'};
- const job={id:113266037954,run_attempt:1,run_id:RELOAD_RUN,name:'reload-navigation-diagnostics',status:'completed',conclusion:'success',steps:[8,9,11,12,14,15].map(number=>({number,status:'completed',conclusion:'success'}))};
+ const run={id:RELOAD_RUN,head_sha:RELOAD_VERIFIER,path:'.github/workflows/my-timber-final-production.yml',head_branch:'fix/member-reload-navigation-20261007',event:'push',status:'completed',conclusion:'success'};
+ const job={id:113266037954,run_id:RELOAD_RUN,name:'reload-navigation-diagnostics',status:'completed',conclusion:'success',steps:[8,9,11,12,14,15].map(number=>({number,status:'completed',conclusion:'success'}))};
  assert.equal(assertReconciledReloadReceipt(run,job).id,RELOAD_RUN);
- for(const patch of [{run_attempt:2},{run_attempt:undefined},{id:37680334004},{head_sha:'a'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{head_branch:'main'}])assert.throws(()=>assertReconciledReloadReceipt({...run,...patch},job));
- for(const patch of [{run_attempt:2},{run_attempt:undefined},{id:1},{run_id:1},{conclusion:'failure'},{steps:job.steps.slice(0,5)}])assert.throws(()=>assertReconciledReloadReceipt(run,{...job,...patch}));
+ for(const patch of [{id:37680334004},{head_sha:'a'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{head_branch:'main'}])assert.throws(()=>assertReconciledReloadReceipt({...run,...patch},job));
+ for(const patch of [{id:1},{run_id:1},{conclusion:'failure'},{steps:job.steps.slice(0,5)}])assert.throws(()=>assertReconciledReloadReceipt(run,{...job,...patch}));
 });

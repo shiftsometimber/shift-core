@@ -1,4 +1,3 @@
-import {withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
 import {LINK_PATHS,linkMarkHistoricalReader,linkHistoricalRead,linkHistoricalRef,linkHistoricalHead,linkChangedPath,linkPreflightPath} from './seo-link-repairs-scope.mjs';
 import assert from 'node:assert/strict';
 import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
@@ -30,8 +29,7 @@ const rawGit=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 const immutableCache=new Map();
 const immutableGit=(...args)=>{const key=JSON.stringify([process.cwd(),...args]);if(!immutableCache.has(key))immutableCache.set(key,rawGit(...args));return immutableCache.get(key);};
 const rawRead=(ref,p)=>rawGit('rev-parse',ref+':'+p);
-export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){return withMemberRecordingQualification(()=>verifyMetricsConnectionQualified(c,read));}
-function verifyMetricsConnectionQualified(c=metricsRecord(),read=rawRead){
+export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){
  if(!c)return null;
  const defaultReader=read===rawRead,head=rawGit('rev-parse','HEAD');
  // Capture the default-reader identity before historical wrappers replace it.

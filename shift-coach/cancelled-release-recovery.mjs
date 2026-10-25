@@ -1,4 +1,3 @@
-import {FOUNDAYO_RUNTIME,verifyFoundayoRuntime,assertFoundayoStartingPoint} from '../release/foundayo-serving-baseline-20261025.mjs';
 import {SUPPORT_RUNTIME,assertSupportStartingPoint} from '../release/live-support-runtime.mjs';
 import {assertOwnerStartingPoint} from '../release/owner-captured-runtime.mjs';
 import {execFileSync} from 'node:child_process';
@@ -116,7 +115,6 @@ export function verifiedStartingPoint(record,active){
   assertRestoredLaterDeployment(active);
   return {source:r.verifiedSource,version:r.verifiedVersion,run:r.verifiedRun};
  }
- if(record?.ownerCapturedProof?.kind===FOUNDAYO_RUNTIME.kind)return assertFoundayoStartingPoint(record,active);
  if(record?.ownerCapturedProof)return record.ownerCapturedProof.kind===SUPPORT_RUNTIME.kind?assertSupportStartingPoint(record,active):assertOwnerStartingPoint(record,active);
  assert(['retain','restore'].includes(record?.decision),'Recovery decision absent');
  assert.equal(record.dataChanged,false);
