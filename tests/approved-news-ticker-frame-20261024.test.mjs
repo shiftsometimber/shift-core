@@ -105,3 +105,5 @@ test('every original editorial fixture path restores the complete earlier source
  const view=websiteEditorialCompletionHistoricalView(),source=readFileSync('release/website-editorial-scope-20261018.mjs','utf8'),line=source.split('\n').find(x=>x.startsWith('const policy=')),policy=JSON.parse(line.slice('const policy='.length,-1));
  for(const path of exactEditorialFixturePaths){const actual=readFileSync(path,'utf8');assert.equal(websiteEditorialCompletionOriginalSource(path,actual,view),execFileSync('/usr/bin/git',['show',policy.base+':'+path],{encoding:'utf8',maxBuffer:64e6}));assert.throws(()=>websiteEditorialCompletionOriginalSource(path,actual+'\nforged',view),/source|fixture|exact/i);}
 }));
+
+test('the original Watch owner remains exact inside the independently admitted historical frame',()=>{const f=approvedNewsTickerOuterFrame(),path='medicines-watch/scheduler.test.mjs';assert.equal(watchCurrentSource(path),'5a90301133438322c442ea87eb8c4676bc3569d6');withApprovedTickerPredecessor(f,()=>assert.equal(watchCurrentSource(path),WATCH_OWNERSHIP_SOURCE));assert.equal(watchCurrentSource(path),'5a90301133438322c442ea87eb8c4676bc3569d6');});

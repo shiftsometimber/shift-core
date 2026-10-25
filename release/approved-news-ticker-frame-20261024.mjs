@@ -257,7 +257,7 @@ export function approvedTickerEditorialFixture(path,value,requestedHead){
 }
 
 export function approvedTickerWatchSource(path){
- if(path!=='medicines-watch/scheduler.test.mjs')return null;
+ if(path!=='medicines-watch/scheduler.test.mjs'||active)return null;
  const f=approvedNewsTickerOuterFrame();if(!f)return null;f.assertCurrent();
  const c=JSON.parse(text(f.rawHead,LEDGER))[INTEGRATION_KEY],source=c?.repairSource;
  assert.equal(source,'5a90301133438322c442ea87eb8c4676bc3569d6','Only the exact independently tested scheduler repair source is admitted');
