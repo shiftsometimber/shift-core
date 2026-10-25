@@ -13,6 +13,7 @@ enum NavigationPolicy {
               c.port == nil || c.port == 443 else { return .deny }
         let authority = raw.components(separatedBy:"//").dropFirst().joined(separator:"//").components(separatedBy:"/").first ?? ""
         guard !authority.components(separatedBy:"?")[0].components(separatedBy:"#")[0].contains("%") else { return .deny }
+        if host.lowercased() == "shiftsometimber.co.uk", ["/timber-shed", "/timber-shed/"].contains(c.path) { return .externalPage }
         return host.lowercased() == "shiftsometimber.co.uk" ? .internalPage : .externalPage
     }
 }

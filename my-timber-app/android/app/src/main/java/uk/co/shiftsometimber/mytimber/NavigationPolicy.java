@@ -18,6 +18,8 @@ public final class NavigationPolicy {
                 return u.getSchemeSpecificPart().isEmpty() ? Decision.DENY : Decision.EXTERNAL;
             if (!scheme.equals("https") || u.getHost() == null || u.getUserInfo() != null) return Decision.DENY;
             if (u.getRawAuthority().contains("%") || (u.getPort() != -1 && u.getPort() != 443)) return Decision.DENY;
+            if (u.getHost().equalsIgnoreCase("shiftsometimber.co.uk")
+                && ("/timber-shed".equals(u.getPath()) || "/timber-shed/".equals(u.getPath()))) return Decision.EXTERNAL;
             return u.getHost().equalsIgnoreCase("shiftsometimber.co.uk") ? Decision.INTERNAL : Decision.EXTERNAL;
         } catch (Exception ignored) { return Decision.DENY; }
     }
