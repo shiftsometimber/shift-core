@@ -86,3 +86,16 @@ withMemberRecordingQualification(()=>{
   execFileSync(process.execPath,['--input-type=module','-e',code],{cwd:fixture,encoding:'utf8',maxBuffer:64e6});
  }finally{rmSync(fixture,{recursive:true,force:true});}
 });
+
+test('actual HEAD source adapter retains original font bytes and existing string/newline contracts',async()=>{
+ const {appSourceExecFileSync}=await import('../release/app-scope.mjs');
+ const path='preview/home-banner/assets/barlow-condensed-700.ttf';
+ withMemberRecordingQualification(()=>{
+  const actual=appSourceExecFileSync('git',['show','HEAD:'+path]);
+  const native=execFileSync('git',['show','HEAD:'+path]);
+  assert(Buffer.isBuffer(actual));assert.deepEqual(actual,native);
+  assert.equal(createHash('sha256').update(actual).digest('hex'),'7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7');
+  assert.equal(appSourceExecFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}),execFileSync('git',['rev-parse','HEAD:'+path],{encoding:'utf8'}));
+  assert.equal(appSourceExecFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}),execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}));
+ });
+});
