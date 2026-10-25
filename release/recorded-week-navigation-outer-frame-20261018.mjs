@@ -1,4 +1,4 @@
-import {withJoinedSuccessorQualification as withNavigationActualSourceQualification} from './my-timber-joined-look-scope-20261024.mjs';
+import {withMemberRecordingQualification as withNavigationActualSourceQualification} from './member-recording-repair-20261024.mjs';
 import {reuseExactNativeProjection as reuseNativeNavigationProof} from './scoped-native-projection-evidence.mjs';
 import {Buffer as sourceMetadataBuffer} from 'node:buffer';
 import {hash as sourceMetadataHash} from 'node:crypto';
@@ -489,14 +489,17 @@ function navigationEditorialProofFacts(outer){
 }
 const nativeNavigationFrameOwner=Object.freeze({});
 export function actualNavigationOuterFrame(){
- const retained=reuseNativeNavigationProof(nativeNavigationFrameOwner,()=>withNavigationActualSourceQualification(()=>{
+ const retained=reuseNativeNavigationProof(nativeNavigationFrameOwner,()=>{
+  prepareNativeNavigationIndexStats();
+  return withNavigationActualSourceQualification(()=>{
   // This factory has no supplied readers. Keep the actual privately admitted
   // frame, not any later projectRead/projectContent callback or its output.
   const frame=constructActualNavigationOuterFrame();
   if(frame===null)return null;
   frame.finish();
   return Object.freeze({nativeSource:true,assertCurrent:frame.assertCurrent,frame});
- }));
+ });
+ });
  return retained?.frame??null;
 }
 function constructActualNavigationOuterFrame(){

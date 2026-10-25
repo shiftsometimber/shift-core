@@ -289,7 +289,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/health-vision-scope-20261021.mjs": "5cdf60687e7b6a5a859da3723fcc4656c78f6ad1",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
     "release/member-recording-repair-20261024.mjs": "143cd952ff0a7451f9f03ce4b9b1fb7bec022a36",
-    "release/recorded-week-navigation-outer-frame-20261018.mjs": "113971dd2b3621e4fbb69a5740be8349db47a7e5",
+    "release/recorded-week-navigation-outer-frame-20261018.mjs": "0af8c5ecb9883fd2af642c7184d6094774f503db",
     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs": "c097fb38075a49d26a0b4bd4d817bcbdc0f4a37e",
     "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353",
