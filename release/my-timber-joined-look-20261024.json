@@ -1,8 +1,8 @@
 {
   "kind": "EXACT_MY_TIMBER_JOINED_LOOK_20261024",
-  "base": "e31adb6a2e669a9bca8511a0735accd15cc79a7f",
-  "payload": "498ed2541ae2b83949bb3c6101e7fa125c749f90",
-  "registrationSource": "7a43cf46330ed356574f50c88d160e104d6c96e2",
+  "base": "9540d180ca4fbed47d96fd9279d901facba77fb5",
+  "payload": "054b84d4906e7db821895ea1bbf4a44ce56957dd",
+  "registrationSource": "1600d32e039f24d02819d847365045377e6e844f",
   "payloadBlobs": {
     "frontend/member/member-progress-v1.js": "3f7ec13262b2fe2a800f04bdfce5c0c301f2f26f",
     "member-design.mjs": "aedd925f8425076639a40ff51c2032d8820502a3",
@@ -23,9 +23,9 @@
     "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
     "release/approved-runtime-composition.mjs": "57ab4146d0b33f2277428b90335718c4fbfebe53",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
-    "release/member-recording-repair-20261024.mjs": "d223274a9d18be19d750a044801c374e15ba55c4",
-    "release/my-timber-joined-look-inverses-20261024.json": "a77242a9a07f2152931f2dce653108a7f886671c",
-    "release/my-timber-joined-look-scope-20261024.mjs": "d11cb86590bf61d5bfb4a3c269ed4ade71e3503d"
+    "release/member-recording-repair-20261024.mjs": "33c17bf7107f03ddcd274e9dd3c68b9d6d59be3a",
+    "release/my-timber-joined-look-inverses-20261024.json": "46acd2f618c0bcef76175b1e57b1ff96dae85587",
+    "release/my-timber-joined-look-scope-20261024.mjs": "b3742ee2424401c40e277a5320e77f2dbb393a1f"
   },
   "authority": {
     "owner": "Matt",

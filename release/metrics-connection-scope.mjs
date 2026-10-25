@@ -60,6 +60,12 @@ export function metricsHistoricalRef(ref,p){
  if(ref==='HEAD'&&METRICS_EXISTING.has(p)&&ensure())return METRICS_BASE;return linkHistoricalRef(ref,p);
 }
 export function metricsChangedPath(status,path){
+ // This exact verifier was added at COACH_BASE and modified at METRICS_BASE.
+ // Authenticate the complete metrics source, then retain the outer current-M
+ // assertion; only this existing named historical A witness changes frames.
+ if(status==='A'&&path==='release/book-voice-scope.mjs'&&METRICS_PATHS.has(path)&&ensure()){
+  assert.equal(linkChangedPath('M',path),true,'Exact current modified Book verifier required');return true;
+ }
  if(linkChangedPath(status,path))return true;
  if(!METRICS_PATHS.has(path)||!ensure())return false;
  const added=['release/live-request-retry.cjs','release/live-request-retry.test.mjs',METRICS_MANIFEST,'release/metrics-connection-scope.mjs','release/metrics-inline-preservation.mjs','acquisition-activation/ai-referrals.test.mjs','acquisition-activation/metrics-release.test.mjs'].includes(path);
