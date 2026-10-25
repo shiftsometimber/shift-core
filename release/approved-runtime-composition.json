@@ -10091,6 +10091,14 @@
       "tests/approved-news-ticker-frame-20261024.test.mjs",
       "release/approved-news-ticker-maintenance-20261024.json"
     ],
-    "postRepairSource": "82ab43a5cb3b2b8e2a2e860c914f1eeb5b15153b"
+    "postRepairSource": "82ab43a5cb3b2b8e2a2e860c914f1eeb5b15153b",
+    "watchOwnerBase": "c14ab674cb68c1ce9799a594583a44a870581409",
+    "watchOwnerPaths": [
+      "release/approved-news-ticker-frame-20261024.mjs",
+      "release/watch-registry-wave-scope.mjs",
+      "tests/approved-news-ticker-frame-20261024.test.mjs",
+      "release/approved-news-ticker-maintenance-20261024.json"
+    ],
+    "watchOwnerSource": "8447e42a9861d13e868810911bacfcfc0412f953"
   }
 }
