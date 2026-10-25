@@ -98,3 +98,10 @@ test('the actual coaching Watch owner resolver selects only the exact reviewed s
  for(const p of WATCH_OWNERSHIP_PATHS.filter(p=>p!==path))assert.equal(watchCurrentSource(p),WATCH_DEADLINE_PATHS.includes(p)?WATCH_DEADLINE_SOURCE:WATCH_OWNERSHIP_SOURCE);
  assert.equal(g('rev-parse','HEAD:shift-coach/release-contract.mjs'),g('rev-parse','55af81540a004cdeedd24eb98c96441d2421b582:shift-coach/release-contract.mjs'),'Every original coaching verifier byte remains exact');
 });
+
+const exactEditorialFixturePaths=[".github/workflows/cloudflare-production-promote.yml", "scheduled-knowledge-v1.js", "wrangler.jsonc", "release/accepted-uk-grub-preservation-20261017.mjs", "release/current-runtime-preservation-20261016.mjs", "worker-entry-v6.js", "fit-expansion-authority-v1.mjs", "g2-011-progress-story-production.mjs", "member-experience/tests/weight-import-mapping-ui.test.mjs", "release/approved-runtime-composition.mjs", "release/seo-audit-scope-20261016.mjs", "tests/seo-audit-scope-20261016.test.mjs"];
+
+test('every original editorial fixture path restores the complete earlier source and still rejects forged actual bytes',()=>withImmutableHistoryVerification(()=>{
+ const view=websiteEditorialCompletionHistoricalView(),source=readFileSync('release/website-editorial-scope-20261018.mjs','utf8'),line=source.split('\n').find(x=>x.startsWith('const policy=')),policy=JSON.parse(line.slice('const policy='.length,-1));
+ for(const path of exactEditorialFixturePaths){const actual=readFileSync(path,'utf8');assert.equal(websiteEditorialCompletionOriginalSource(path,actual,view),g('show',policy.base+':'+path)+'\n');assert.throws(()=>websiteEditorialCompletionOriginalSource(path,actual+'\nforged',view),/source|fixture|exact/i);}
+}));

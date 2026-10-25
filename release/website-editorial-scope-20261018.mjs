@@ -198,7 +198,7 @@ function websiteEditorialCompletionOriginalSourceBeforeApprovedTicker(path,bytes
   const restored=inverse(path,inverseBytes);assert.equal(restored,content(policy.base,path),'Website-editorial-completion source drift: whole pre-daily fixture source required');return restored;
  }
  assert(!policy.paths.includes(path)&&!policy.maintenancePaths.includes(path),'Website-editorial-completion source drift: added source has no historical fixture');
- assert.equal(bytes,content(policy.base,path),'Website-editorial-completion source drift: unrelated fixture source changed');return bytes;
+ assert.equal(inverseBytes,content(policy.base,path),'Website-editorial-completion source drift: unrelated fixture source changed');return inverseBytes;
 }
 
 // A separately admitted finite increment is projected only after fresh native

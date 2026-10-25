@@ -116,6 +116,36 @@
           ]
         }
       }
+    },
+    "fixtureCoverage": {
+      "base": "f3fab37561a9167eba0e7df8a38489bd9263bc2a",
+      "snapshot": "a78f893a30d41e4542dfd53c08dcdb77f88090e4",
+      "paths": [
+        ".github/workflows/cloudflare-production-promote.yml",
+        "scheduled-knowledge-v1.js",
+        "wrangler.jsonc",
+        "release/accepted-uk-grub-preservation-20261017.mjs",
+        "release/current-runtime-preservation-20261016.mjs",
+        "worker-entry-v6.js",
+        "fit-expansion-authority-v1.mjs",
+        "g2-011-progress-story-production.mjs",
+        "member-experience/tests/weight-import-mapping-ui.test.mjs",
+        "release/approved-runtime-composition.mjs",
+        "release/seo-audit-scope-20261016.mjs",
+        "tests/seo-audit-scope-20261016.test.mjs"
+      ],
+      "modified": {
+        "release/website-editorial-scope-20261018.mjs": {
+          "beforeBlob": "f2af8369631401e405bfcbaf5750a40139a4d70c",
+          "afterSha256": "47b3b59104fb00b3e90250451e6a3c37d674413d396db6c281524b22fd0742d1",
+          "inverse": [
+            [
+              "assert.equal(bytes,content(policy.base,path),'Website-editorial-completion source drift: unrelated fixture source changed');return bytes;",
+              "assert.equal(inverseBytes,content(policy.base,path),'Website-editorial-completion source drift: unrelated fixture source changed');return inverseBytes;"
+            ]
+          ]
+        }
+      }
     }
   }
 }
