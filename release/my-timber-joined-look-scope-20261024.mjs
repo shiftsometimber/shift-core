@@ -264,6 +264,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/app-scope.mjs",
     "release/approved-news-ticker-frame-20261024.mjs",
     "release/approved-runtime-composition.mjs",
+    "release/combined-original-gp-object-20261014.mjs",
     "release/health-vision-scope-20261021.mjs",
     "release/immutable-git-facts.mjs",
     "release/member-design-scope.mjs",
@@ -276,6 +277,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/website-editorial-scope-20261018.mjs",
     "shift-coach/release.test.mjs",
     "tests/approved-news-ticker-frame-20261024.test.mjs",
+    "tests/combined-original-gp-object-20261014.test.mjs",
     "tests/joined-native-byte-reuse-20261025.test.mjs",
     "tests/member-recording-repair-admission-20261024.test.mjs",
     "tests/native-restored-source-stats-20261025.test.mjs",
@@ -299,7 +301,9 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/testosterone-scope-20261021.mjs": "f5c6a0b2fdefab6a70dc486e697ca7c20b336551",
     "release/website-editorial-scope-20261018.mjs": "b9215815c96d3387eaac2ec752c84f0be9ed3138",
     "release/my-shift-release-scope-20261024.mjs": "54c0fd7a0f7ea5f96e336e920e7d9045af05d497",
-    "tests/joined-native-byte-reuse-20261025.test.mjs": "78902ef8428ff754d9d79f0d687e94e96207112f"
+    "tests/joined-native-byte-reuse-20261025.test.mjs": "78902ef8428ff754d9d79f0d687e94e96207112f",
+    "release/combined-original-gp-object-20261014.mjs": "cddbe4430c3d4f66d7f4a63b752f3b12789b54b6",
+    "tests/combined-original-gp-object-20261014.test.mjs": "c9aa5890ac7ca86e570b91e9e7932b137343f224"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
