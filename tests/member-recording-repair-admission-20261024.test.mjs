@@ -60,3 +60,29 @@ test('original comparison qualifier accepts only exact native-qualified reader w
   assert.equal(approvedSourceComparison(path,pin,'200ff3dd4c4e01505f418e31149389da0f81fe80'),pin);
  });
 });
+
+test('retained real native frames recheck supplied callbacks and changed working source',()=>{
+ const fixture=mkdtempSync(tmpdir()+'/native-frame-retained-');
+ try{
+  execFileSync('git',['clone','--quiet','--no-hardlinks',process.cwd(),fixture],{encoding:'utf8',maxBuffer:64e6});
+  const code=String.raw`import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {withMemberRecordingQualification} from './release/member-recording-repair-20261024.mjs';
+import {actualNavigationOuterFrame,assertActualNavigationFrame} from './release/recorded-week-navigation-outer-frame-20261018.mjs';
+const head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
+withMemberRecordingQualification(()=>{
+ const frames=[];for(let i=0;i<3;i++){const f=actualNavigationOuterFrame();assertActualNavigationFrame(f);f.finish();frames.push(f);}
+ assert.equal(frames[1],frames[2]);assert(Object.isFrozen(frames[2].record));
+ let calls=0,corrupt=false;
+ const source=(r,p)=>{calls++;return corrupt?'0'.repeat(40):execFileSync('git',['rev-parse',(r==='HEAD'?head:r)+':'+p],{encoding:'utf8'}).trim();};
+ const projected=frames[2].projectRead(source),path='wrangler.jsonc';
+ assert.equal(projected('HEAD',path),frames[2].blob('HEAD',path));const beforeCalls=calls;
+ assert.equal(projected('HEAD',path),frames[2].blob('HEAD',path));assert(calls>beforeCalls,'Supplied readers must run on every access');
+ corrupt=true;assert.throws(()=>projected('HEAD',path),/source|supplied|changed|drift/i);
+ const working='docs/privacy-account-deletion.md',before=readFileSync(working);
+ try{writeFileSync(working,Buffer.concat([before,Buffer.from('\nIsolated native frame source mutation\n')]));assert.throws(()=>frames[2].finish(),/source|working|changed/i);}finally{writeFileSync(working,before);}
+});`;
+  execFileSync(process.execPath,['--input-type=module','-e',code],{cwd:fixture,encoding:'utf8',maxBuffer:64e6});
+ }finally{rmSync(fixture,{recursive:true,force:true});}
+});
