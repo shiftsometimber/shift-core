@@ -97,6 +97,9 @@ function verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt){
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const proof=verifyMemberRecordingRepair();console.log(JSON.stringify({source:proof.head,paths:proof.paths.length,state:'finite_payload_qualified_not_deployed'}));}
 
 export function originalRecordingMaintenance(path,value){
+ // Compose only the independently admitted exact ticker metrics envelope;
+ // the original Member inverse and its expected source hash remain unchanged.
+ if(path==='release/metrics-connection-scope.mjs')value=recordingTickerHelpers().approvedTickerComparisonValue(path,value);
  const delta=inverses[path];assert(delta,'Finite repair maintenance path required');assert.equal(oid(value),delta.current,'Exact repair maintenance source required');
  for(const edit of [...delta.edits].reverse()){assert.equal(value.slice(edit.start,edit.start+edit.after.length),edit.after,'Exact repair maintenance inverse changed');value=value.slice(0,edit.start)+edit.before+value.slice(edit.start+edit.after.length);}
  assert.equal(oid(value),delta.original,'Every original maintenance byte must remain');return value;
