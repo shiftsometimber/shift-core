@@ -76,7 +76,7 @@ let cached=null,qualificationDepth=0;
 function verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt){
  const frozen=immutableHistorySourceHead(),head=recordingTickerHelpers().approvedTickerPredecessorHead()??qualifyJoinedSuccessor().legacyHead;
  if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(recordingTickerWorkingBytes(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
- assert.equal(git('diff','--name-only','HEAD','--'),'','Repair worktree must be clean');
+ assert.equal(git('--no-optional-locks','-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--patch','--binary','HEAD','--').length,0,'Repair worktree must be clean');
  assert.equal(git('diff','--cached','--name-only','--'),'','Repair index must be clean');
  const receipt=validateRecordingRepairReceipt(JSON.parse(bytes(head,RECORDING_REPAIR_RECEIPT)));
  if(suppliedReceipt)assert.deepEqual(suppliedReceipt,receipt,'Native repair receipt must not be substituted');

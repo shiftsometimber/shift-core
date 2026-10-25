@@ -58,7 +58,7 @@ function repository(cwd){
 }
 function clean(repo,head){
  assert.equal(repo.run('rev-parse','HEAD').trim(),head,'Actual source HEAD moved');
- assert.equal(repo.run('diff','--no-ext-diff','--name-only','HEAD','--').trim(),'','Tracked worktree source is dirty');
+ assert.equal(repo.run('-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--patch','--binary','HEAD','--').length,0,'Tracked worktree source is dirty');
  assert.equal(repo.run('diff','--no-ext-diff','--cached','--name-only','--').trim(),'','Index source is dirty');
  const entries=repo.run('ls-files','-v','-z').split('\0').filter(Boolean);
  assert(!entries.some(e=>e[0]==='S'||/^[a-z]$/.test(e[0])),'Hidden assume-unchanged/skip-worktree files are forbidden');
@@ -273,12 +273,12 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/approved-runtime-composition.mjs": "10877f644f57e58e87fa5e21a8fd1ef7a408e643",
     "release/health-vision-scope-20261021.mjs": "f81d0cd6c7a8230d47611bb46f1e7cb3e23d61b1",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
-    "release/member-recording-repair-20261024.mjs": "69074d48545aafdeea7d645523db478abc1200ad",
-    "release/recorded-week-navigation-outer-frame-20261018.mjs": "d103fd84f609ac55f6876eaaf348a7d32a6dd1f5",
+    "release/member-recording-repair-20261024.mjs": "143cd952ff0a7451f9f03ce4b9b1fb7bec022a36",
+    "release/recorded-week-navigation-outer-frame-20261018.mjs": "45c9cad9ff5cf2e135af235a04292c7109ba02a2",
     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs": "c097fb38075a49d26a0b4bd4d817bcbdc0f4a37e",
     "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353",
-    "release/immutable-git-facts.mjs": "2e3a3987907d23eb7129d1050ba3f248a63f5266",
+    "release/immutable-git-facts.mjs": "1228d44122726d4eb457cefce40dc9b45ea1530e",
     "tests/approved-news-ticker-frame-20261024.test.mjs": "a030138c2a7a33b1a6a13daa803252b48b5f6a79",
     "tests/member-recording-repair-admission-20261024.test.mjs": "df9bd0992c08d2125fa1159dabb720a9b29dbe88"
   },

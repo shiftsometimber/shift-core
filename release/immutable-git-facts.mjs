@@ -11,6 +11,10 @@ const nativeExecFileSync=importedExecFileSync;
 const execFileSync=(bin,args,options)=>nativeExecFileSync(bin,
  bin==='git'&&Array.isArray(args)&&['diff','diff-files','status','ls-files'].includes(args[0])?['--no-optional-locks',...args]:args,options);
 
+// Full-content comparison accepts restored bytes without refreshing the index.
+// Return only the byte count, so a source-drift diagnostic never prints content.
+const workingDifferenceSize=()=>execFileSync('git',['--no-optional-locks','-c','diff.autoRefreshIndex=false','diff','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','HEAD','--'],{maxBuffer:64*1024*1024}).length;
+
 // Actual immutable Git facts only; caller callbacks and assertion results are never cached.
 const unsupportedContext=Symbol('unsupported immutable Git context');
 function fileContext(path){
@@ -72,7 +76,7 @@ export function withImmutableHistoryVerification(callback){
  for(const key of immutableBlobBytes.keys())if(!key.startsWith('native-context-'))immutableBlobBytes.delete(key);
  const cwd=process.cwd(),head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
  assertGitTrackedSourceVisible('entry');
- assert.equal(execFileSync('git',['diff','--name-only','HEAD','--'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source');
+ assert.equal(workingDifferenceSize(),0,'Immutable history verification requires clean tracked source');
  assert.equal(execFileSync('git',['diff','--cached','--name-only','--'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source: staged source drift');
  const scopeReplacements=replacementState();
  const repository=repositoryContext();
@@ -83,7 +87,7 @@ export function withImmutableHistoryVerification(callback){
   assert.equal(process.cwd(),cwd,'Verification working directory changed');
   assertGitTrackedSourceVisible('exit');
   assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),head,'Source HEAD changed during immutable history verification');
-  assert.equal(execFileSync('git',['diff','--name-only','HEAD','--'],{encoding:'utf8'}).trim(),'','Working source changed during immutable history verification');
+  assert.equal(workingDifferenceSize(),0,'Working source changed during immutable history verification');
   assert.equal(execFileSync('git',['diff','--cached','--name-only','--'],{encoding:'utf8'}).trim(),'','Working source changed during immutable history verification: staged source drift');
   assert.deepEqual(replacementState(),scopeReplacements,'Git replacement state changed during immutable history verification');
  }

@@ -39,7 +39,7 @@ function clean(expected){
  const root=process.cwd(),dir=resolve(root,'.git');assert.equal(realpathSync(root),root);assert.equal(realpathSync(dir),dir);assert(lstatSync(dir).isDirectory()&&!lstatSync(dir).isSymbolicLink());
  for(const p of ['commondir','gitdir','info/grafts','objects/info/alternates','shallow'])assert(!existsSync(resolve(dir,p)),'Native source drift: ordinary complete native source required: '+p);
  assert.equal(text('rev-parse','--show-toplevel'),root);assert.equal(text('rev-parse','--git-common-dir'),'.git');assert.equal(text('for-each-ref','--format=%(refname)','refs/replace'),'');
- assert.equal(text('diff','--no-renames','--name-only','HEAD','--'),'','Native navigation working source changed');assert.equal(text('diff','--no-renames','--cached','--name-only','--'),'','Native navigation staged source changed');
+ assert.equal(git('-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--patch','--binary','HEAD','--').length,0,'Native navigation working source changed');assert.equal(text('diff','--no-renames','--cached','--name-only','--'),'','Native navigation staged source changed');
  for(const row of git('ls-files','-v','-z').toString('utf8').split('\0').filter(Boolean))assert(row.startsWith('H '),'Hidden/sparse/assume-unchanged source is forbidden');
  const h=head();assert(oid.test(h));if(expected)assert.equal(h,expected,'Actual navigation HEAD moved');return h;
 }
