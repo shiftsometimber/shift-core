@@ -1,4 +1,3 @@
-import {approvedTickerOriginalLedger,approvedTickerOriginalFixtureHead} from '../release/approved-news-ticker-frame-20261024.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync,spawnSync} from 'node:child_process';
@@ -7,8 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {verifyTestosteroneExtension,TRT_BASE,TRT_PAYLOAD} from '../release/testosterone-scope-20261021.mjs';
 import {verifyWebsiteEditorialCompletion} from '../release/website-editorial-scope-20261018.mjs';
-const nativeGit=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
-const git=(...a)=>{const value=nativeGit(...a);return a.length===2&&a[0]==='show'&&a[1]==='HEAD:release/approved-runtime-composition.json'?approvedTickerOriginalLedger(value):value;};
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const record=()=>JSON.parse(git('show','HEAD:release/approved-runtime-composition.json')).websiteEditorialCompletion20261018;
 test('exact approved TRT delta retains original approval ledger and no production credit',()=>{
  const r=verifyTestosteroneExtension();

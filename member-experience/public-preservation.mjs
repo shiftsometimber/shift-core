@@ -1,3 +1,4 @@
+import {independentPresentationEvidence,assertIndependentPresentationsPreserved} from '../release/independent-presentation-preservation-20261025.mjs';
 import {stripFoodGuideDiscovery} from '../food-supplement-guide/production.mjs';
 import {preserveApprovedRootShare} from '../release/root-share-public-preservation.mjs';
 import {preserveContinuityUpgrade} from '../release/continuity-content-20261009.mjs';
@@ -63,6 +64,8 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const rawBody=Buffer.from(await r.arrayBuffer());
+ const independentPresentation=independentPresentationEvidence(path,rawBody,r.headers);
+ if(independentPresentation){const sha256=hash(rawBody);pages.push({path,status:r.status,sha256,bytes:rawBody.length,actualSha256:sha256,actualBytes:rawBody.length,independentPresentation});continue;}
  const supportPreserved=preserveSupportRecovery(path,preserveApprovedRootShare(path,rawBody,{required:Boolean(before)}),{required:Boolean(before)});
  const foodPreserved=Buffer.from(stripFoodGuideDiscovery(supportPreserved.toString('utf8'),path));
  const body=preserveTabletWording(path,preservePillarChrome(path,preserveApprovedLinks(path,preserveOrganicLinks(path,preserveContinuityUpgrade(path,foodPreserved,{required:Boolean(before)}))),{required:Boolean(before)}));
@@ -86,7 +89,7 @@ for(const path of paths){
 // A merge or successful deploy alone cannot satisfy these approved changes.
 const organicDelivery=before?await verifyOrganicDelivery():null;
 let comparison='baseline';
-try{if(before)comparison=assertPublicPagesPreserved(pages,JSON.parse(readFileSync(before)).pages);}
+try{if(before){const baseline=JSON.parse(readFileSync(before)).pages;const legacy=assertIndependentPresentationsPreserved(pages,baseline);comparison=assertPublicPagesPreserved(legacy,baseline.filter(x=>!x.independentPresentation));}}
 catch(error){writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,comparison:'failed',error:error.message},null,2));throw error;}
 writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,comparison,organicDelivery},null,2));
 console.log(before?'PASS: all '+paths.length+' public/login responses preserve existing content; exact approved Continuity entries and Life Back link are checked before comparison.':'Captured all '+paths.length+' public/login response hashes, including full raw-body hashes.');

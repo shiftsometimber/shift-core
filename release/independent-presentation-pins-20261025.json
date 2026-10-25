@@ -1,0 +1,63 @@
+{
+  "/help": {
+    "source": "6531ea52419c6eceba8e21b044d94059536a5981",
+    "mainSHA256": "b422cd85abc93240827540ef975e8035575a7cc12d368db5e0f2826d88975bf0",
+    "mainBytes": 23185,
+    "styleSHA256": "36c9b5858772c0a4f28f2a944d6a93009bf6335a436ab79ef51bb0c3c9ba7372",
+    "styleBytes": 21635,
+    "styleOpen": "<style data-help-guided-style>",
+    "versionHeader": "x-shift-help-version",
+    "version": "20261021-guided-v1"
+  },
+  "/shift-health": {
+    "source": "d5752db9b60edfaa1cb4fd35233b599045e6fd7a",
+    "mainSHA256": "65c545d84012a1abe7f8e359d577aa2db6f82b4968cdf48b54e21b13ff12eb80",
+    "mainBytes": 581727,
+    "styleSHA256": "3a50017fd5ffff7282c591f66ff3c53bc26e9403839ed13c27700bbd3d5c7d78",
+    "styleBytes": 10158,
+    "styleOpen": "<style data-health-presentation=\"20261021\">",
+    "versionHeader": "x-shift-health-presentation",
+    "version": "20261021",
+    "approvedOriginalMainSHA256": "818f1d4ba01024bc1a8d286b907a22a8a880a06c8799ac4e6cabac1fa79a13b7",
+    "preservedExistingProductionAppendixSHA256": "4d330322772b8dd64060b8a802e4dbb9162ce20ce85d9c912993c56019c15a47",
+    "appendixAuthority": "Existing production appendix retained byte-for-byte; no new content publication or design-approval claim."
+  },
+  "/treatment-centre": {
+    "source": "ff9dc923a51328cccd51fd9c9b2a137026a6f769",
+    "mainSHA256": "59f0cc2ed22de216e48832398de070c90e47e61de608fd558977529d51d5b8e2",
+    "mainBytes": 4903,
+    "styleSHA256": "28b4030a4f45962a941ada9cc4aab7863e90c85e097a35ee6101319069faac6b",
+    "styleBytes": 12559,
+    "styleOpen": "<style data-treatments-version-style>",
+    "versionHeader": "x-shift-treatments-version",
+    "version": "20261021-fuller-v3",
+    "approvedEmbeddedImageSourceMainSHA256": "fffbc7bc72cd45a2fd1f541ecf52ad85c35b358cd50cdc5be9f0f9e504b634f5",
+    "approvedImageContent": [
+      {
+        "path": "/treatment-centre/images/fe2ff3512cc1688c25bc7b8058450467f3049e8b3cf0941a97e116bea5226efb.jpg",
+        "bytes": 157337,
+        "sha256": "fe2ff3512cc1688c25bc7b8058450467f3049e8b3cf0941a97e116bea5226efb"
+      },
+      {
+        "path": "/treatment-centre/images/56321dd493410978e34f16ab00cbbcac3caee2ba8bed33e335e5c67f785ef9ca.jpg",
+        "bytes": 158918,
+        "sha256": "56321dd493410978e34f16ab00cbbcac3caee2ba8bed33e335e5c67f785ef9ca"
+      },
+      {
+        "path": "/treatment-centre/images/cb825ce0efda57ce6a88e29ef265dc6ccea5e7c1bff06972e81ce4a3f9e93543.jpg",
+        "bytes": 118618,
+        "sha256": "cb825ce0efda57ce6a88e29ef265dc6ccea5e7c1bff06972e81ce4a3f9e93543"
+      },
+      {
+        "path": "/treatment-centre/images/b02b36dc2dc10cf97eac7ba5856d267e08f07eaacc07abb0a306ab87adf8bd86.jpg",
+        "bytes": 317208,
+        "sha256": "b02b36dc2dc10cf97eac7ba5856d267e08f07eaacc07abb0a306ab87adf8bd86"
+      },
+      {
+        "path": "/treatment-centre/images/b4116c30eb1c59c86592c0631a0d6f5136ef4e393e0b98231bcd4cf16f668fab.jpg",
+        "bytes": 133036,
+        "sha256": "b4116c30eb1c59c86592c0631a0d6f5136ef4e393e0b98231bcd4cf16f668fab"
+      }
+    ]
+  }
+}

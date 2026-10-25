@@ -1,4 +1,3 @@
-import {createRequire} from 'node:module';
 import {verifyHealthVisionExtension} from './health-vision-scope-20261021.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -12,11 +11,8 @@ const git=(...args)=>execFileSync('git',['--no-replace-objects',...args],{encodi
 const sorted=xs=>[...xs].sort();
 const changed=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 export function verifyTestosteroneExtension(){
- const {approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead,approvedTickerActualHead}=createRequire(import.meta.url)('./approved-news-ticker-frame-20261024.mjs');
- const ticker=approvedTickerPredecessorHead()?null:approvedNewsTickerOuterFrame();
- if(ticker){const result=withApprovedTickerPredecessor(ticker,()=>verifyTestosteroneExtension());return Object.freeze({...result,actual:ticker.rawHead});}
  const extension=verifyHealthVisionExtension();
- const actual=approvedTickerPredecessorHead()??git('rev-parse','HEAD'),snapshot=extension.predecessor;
+ const actual=git('rev-parse','HEAD'),snapshot=extension.predecessor;
  assert.equal(extension.actual,actual,'Health actual HEAD required');
  assert.equal(git('diff','--name-only','HEAD','--'),'','TRT tracked source changed');
  assert.equal(git('diff','--cached','--name-only','--'),'','TRT staged source changed');
@@ -39,6 +35,6 @@ export function verifyTestosteroneExtension(){
  }
  assert.equal(git('rev-parse',snapshot+':release/approved-runtime-composition.json'),git('rev-parse',TRT_BASE+':release/approved-runtime-composition.json'),'TRT previous approvals changed');
  assert.equal(readFileSync(TRT_RECEIPT,'utf8').trimEnd(),git('show',snapshot+':'+TRT_RECEIPT),'TRT working receipt changed');
- assert.equal(git('rev-parse','HEAD'),approvedTickerActualHead()??actual,'TRT HEAD moved');
+ assert.equal(git('rev-parse','HEAD'),actual,'TRT HEAD moved');
  return Object.freeze({actual,predecessor:TRT_BASE,payload:TRT_PAYLOAD,productionVerified:false});
 }

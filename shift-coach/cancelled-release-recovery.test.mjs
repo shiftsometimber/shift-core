@@ -413,3 +413,6 @@ test('exact owned Continuity rollback retains only the original successful runti
 
 // Exercise the finite serving-baseline extension in the unchanged original source command.
 await import('../tests/foundayo-current-runtime-20261025.test.mjs');
+
+// The original guarded source command also executes the exact presentation preservation negatives.
+await import('../tests/continuity-split-sections-20261025.test.mjs');

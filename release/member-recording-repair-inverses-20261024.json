@@ -371,15 +371,25 @@
   },
   "release/metrics-connection-scope.mjs": {
     "original": "fdd3bcdd2eec45a5d554a1fec56a4f03f9164d40",
-    "current": "651542a8346b3fe528595633d289266d99c6e05d",
+    "current": "ddb7633efea03c774f6843cf30c4ad1c30d06eee",
     "edits": [
       {
-        "start": 213,
+        "start": 0,
+        "before": "",
+        "after": "import {withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';\n"
+      },
+      {
+        "start": 302,
         "before": "import {execFileSync} from 'node:child_process';\n",
         "after": "import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';\n"
       },
       {
-        "start": 6441,
+        "start": 3806,
+        "before": "export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){\n",
+        "after": "export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){return withMemberRecordingQualification(()=>verifyMetricsConnectionQualified(c,read));}\nfunction verifyMetricsConnectionQualified(c=metricsRecord(),read=rawRead){\n"
+      },
+      {
+        "start": 6692,
         "before": "",
         "after": " // This exact verifier was added at COACH_BASE and modified at METRICS_BASE.\n // Authenticate the complete metrics source, then retain the outer current-M\n // assertion; only this existing named historical A witness changes frames.\n if(status==='A'&&path==='release/book-voice-scope.mjs'&&METRICS_PATHS.has(path)&&ensure()){\n  assert.equal(linkChangedPath('M',path),true,'Exact current modified Book verifier required');return true;\n }\n"
       }
@@ -827,12 +837,97 @@
   },
   "shift-coach/cancelled-release-recovery.test.mjs": {
     "original": "1af34558ae3580f4fd20a08587f28f9c3b7dc9c5",
-    "current": "1e8bc2a08a194649bbcf5c5bbfd257666c572b49",
+    "current": "898984918946e263ca0604c6512c00da60d6d848",
     "edits": [
       {
         "start": 55312,
         "before": "",
-        "after": "\n// Exercise the finite serving-baseline extension in the unchanged original source command.\nawait import('../tests/foundayo-current-runtime-20261025.test.mjs');\n"
+        "after": "\n// Exercise the finite serving-baseline extension in the unchanged original source command.\nawait import('../tests/foundayo-current-runtime-20261025.test.mjs');\n\n// The original guarded source command also executes the exact presentation preservation negatives.\nawait import('../tests/continuity-split-sections-20261025.test.mjs');\n"
+      }
+    ]
+  },
+  "release/growth-scope.mjs": {
+    "original": "738d344f13b8348b135cac03d8bb02496fad09af",
+    "current": "d3391033b94f9e7cdeb5b489c87a03c1e55b3380",
+    "edits": [
+      {
+        "start": 0,
+        "before": "",
+        "after": "import {withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';\n"
+      },
+      {
+        "start": 6578,
+        "before": "export function validateGrowthSource(){\n",
+        "after": "export function validateGrowthSource(){return withMemberRecordingQualification(()=>validateGrowthSourceQualified());}\nfunction validateGrowthSourceQualified(){\n"
+      }
+    ]
+  },
+  "scripts/b1-release-scope.mjs": {
+    "original": "a53db85e3a63f2b492154cd493b0239961e082b2",
+    "current": "9d216f12d7492203d1ee1bfb9ca4e00d8c1b9e3f",
+    "edits": [
+      {
+        "start": 0,
+        "before": "",
+        "after": "import {withMemberRecordingQualification} from '../release/member-recording-repair-20261024.mjs';\n"
+      },
+      {
+        "start": 20167,
+        "before": "export function verifyScope(){\n",
+        "after": "export function verifyScope(){return withMemberRecordingQualification(()=>verifyScopeQualified());}\nfunction verifyScopeQualified(){\n"
+      }
+    ]
+  },
+  "release/continuity-content-20261009.mjs": {
+    "original": "00d181cfa4d8ce3b2295816e68e292623f9fe3ba",
+    "current": "14b34b3a4d26a7ff6d7dff4d55c05a3373bcc11f",
+    "edits": [
+      {
+        "start": 6061,
+        "before": " const n=html.split(addition).length-1;assert(n<=1,path+' duplicate approved content');\n if(required)assert.equal(n,1,path+' missing exact registered content');\n if(n)html=html.replace(addition,'');\n",
+        "after": " // Approved presentation may put layout and growth blocks between these three\n // fixed sections. Remove only their exact bytes, in their original order;\n // every intervening/surrounding byte remains in the full-page comparison.\n const sections=addition.match(/<section(?: [^>]*)?>[\\s\\S]*?<\\/section>/g);\n assert.equal(sections?.length,3,'Exactly three registered content sections required');\n assert.equal(sections.join(''),addition,'Every registered content byte required');\n const counts=sections.map(section=>html.split(section).length-1);\n assert(counts.every(n=>n<=1),path+' duplicate approved content');\n const present=counts.some(Boolean);\n if(required||present)assert(counts.every(n=>n===1),path+' missing exact registered content');\n if(present){\n  const positions=sections.map(section=>html.indexOf(section));\n  assert(positions.every((position,index)=>index===0||position>positions[index-1]),path+' approved content order changed');\n  for(const section of sections)html=html.replace(section,'');\n }\n"
+      }
+    ]
+  },
+  "release/member-details-preservation.mjs": {
+    "original": "a8c1a01a6cab08613b1d1482b168da76739c6bf2",
+    "current": "d98baadd81cd0b049de824ea9ccf9939cc3b681b",
+    "edits": [
+      {
+        "start": 634,
+        "before": "",
+        "after": "// This exact already-approved responsive title rule is a CSS selector, not a\n// second banner. Retain it in every returned byte and full-page comparison;\n// hide only that exact literal from the older substring duplicate detector.\nconst reviewedHomeTitleRule='html body #main-content.template-home #sst-home-route-title{font-size:clamp(24.3px,2.88vw,46.8px)!important}';\nconst reviewedHomeTitleMarker='/*SHIFT_REVIEWED_HOME_TITLE_RULE_20261025*/';\nexport function removeReviewedHomeBanner(html,options){\n assert(!html.includes(reviewedHomeTitleMarker),'Unexpected homepage preservation marker');\n const count=html.split(reviewedHomeTitleRule).length-1;assert(count<=1,'Duplicate reviewed homepage title rule');\n if(!count)return removeHomeBanner(html,options);\n const result=removeHomeBanner(html.replace(reviewedHomeTitleRule,reviewedHomeTitleMarker),options);\n assert.equal(result.split(reviewedHomeTitleMarker).length,2,'Reviewed homepage title rule must survive banner removal');\n return result.replace(reviewedHomeTitleMarker,reviewedHomeTitleRule);\n}\n"
+      },
+      {
+        "start": 2096,
+        "before": " const original=removeCreamNavigation(restoreHomeFont(path,removeCatalogueBenefits(body.toString('utf8'),path)));const text=path==='/'?removeHomeBanner(original):original;body=Buffer.from(text);let before=text;\n",
+        "after": " const original=removeCreamNavigation(restoreHomeFont(path,removeCatalogueBenefits(body.toString('utf8'),path)));const text=path==='/'?removeReviewedHomeBanner(original):original;body=Buffer.from(text);let before=text;\n"
+      },
+      {
+        "start": 3437,
+        "before": " assert.equal(path==='/'?removeHomeBanner(removeCreamNavigation(stabilisePublicHtml(path,before))):removeCreamNavigation(stabilisePublicHtml(path,before)),text,'Unknown startup transformation: '+path);\n",
+        "after": " assert.equal(path==='/'?removeReviewedHomeBanner(removeCreamNavigation(stabilisePublicHtml(path,before))):removeCreamNavigation(stabilisePublicHtml(path,before)),text,'Unknown startup transformation: '+path);\n"
+      }
+    ]
+  },
+  "member-experience/public-preservation.mjs": {
+    "original": "d33dc751c6a5f5b92f071015c7dc013e072b3db6",
+    "current": "da17733e99887d36aa8e90962acb8fe85499882d",
+    "edits": [
+      {
+        "start": 0,
+        "before": "",
+        "after": "import {independentPresentationEvidence,assertIndependentPresentationsPreserved} from '../release/independent-presentation-preservation-20261025.mjs';\n"
+      },
+      {
+        "start": 5580,
+        "before": "",
+        "after": " const independentPresentation=independentPresentationEvidence(path,rawBody,r.headers);\n if(independentPresentation){const sha256=hash(rawBody);pages.push({path,status:r.status,sha256,bytes:rawBody.length,actualSha256:sha256,actualBytes:rawBody.length,independentPresentation});continue;}\n"
+      },
+      {
+        "start": 8468,
+        "before": "try{if(before)comparison=assertPublicPagesPreserved(pages,JSON.parse(readFileSync(before)).pages);}\n",
+        "after": "try{if(before){const baseline=JSON.parse(readFileSync(before)).pages;const legacy=assertIndependentPresentationsPreserved(pages,baseline);comparison=assertPublicPagesPreserved(legacy,baseline.filter(x=>!x.independentPresentation));}}\n"
       }
     ]
   }

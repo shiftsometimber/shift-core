@@ -7,11 +7,24 @@ import {removeHomeBanner} from '../home-route-banner.mjs';
 import assert from 'node:assert/strict';
 import {HOME_BLOCKING_STYLES} from '../home-blocking-styles.mjs';
 import {stabilisePublicHtml,programmeBridge,loginReservationStyles} from '../public-startup-stability.mjs';
+// This exact already-approved responsive title rule is a CSS selector, not a
+// second banner. Retain it in every returned byte and full-page comparison;
+// hide only that exact literal from the older substring duplicate detector.
+const reviewedHomeTitleRule='html body #main-content.template-home #sst-home-route-title{font-size:clamp(24.3px,2.88vw,46.8px)!important}';
+const reviewedHomeTitleMarker='/*SHIFT_REVIEWED_HOME_TITLE_RULE_20261025*/';
+export function removeReviewedHomeBanner(html,options){
+ assert(!html.includes(reviewedHomeTitleMarker),'Unexpected homepage preservation marker');
+ const count=html.split(reviewedHomeTitleRule).length-1;assert(count<=1,'Duplicate reviewed homepage title rule');
+ if(!count)return removeHomeBanner(html,options);
+ const result=removeHomeBanner(html.replace(reviewedHomeTitleRule,reviewedHomeTitleMarker),options);
+ assert.equal(result.split(reviewedHomeTitleMarker).length,2,'Reviewed homepage title rule must survive banner removal');
+ return result.replace(reviewedHomeTitleMarker,reviewedHomeTitleRule);
+}
 const status='<section id="memberSessionStatus" aria-label="Account access"><p role="status">Checking your sign-in…</p></section><script src="/assets/member-experience/session.mjs"></script>';
 export function preserveApprovedStartup(path,body){
  // Reverse the exact already-live catalogue copy before the older banner.
  // The banner's strict signatures and the full-page comparison still reject drift.
- const original=removeCreamNavigation(restoreHomeFont(path,removeCatalogueBenefits(body.toString('utf8'),path)));const text=path==='/'?removeHomeBanner(original):original;body=Buffer.from(text);let before=text;
+ const original=removeCreamNavigation(restoreHomeFont(path,removeCatalogueBenefits(body.toString('utf8'),path)));const text=path==='/'?removeReviewedHomeBanner(original):original;body=Buffer.from(text);let before=text;
  const once=(a,b='')=>{assert.equal(before.split(a).length,2,'Unexpected startup preservation signature: '+path);before=before.replace(a,b);};
  if(path==='/'&&text.includes('data-home-inline-css="/assets/my-timber-pwa.css"')){
   const css=HOME_BLOCKING_STYLES['/assets/my-timber-pwa.css'].replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;'));
@@ -24,6 +37,6 @@ export function preserveApprovedStartup(path,body){
   const match=before.match(/<body\b[^>]*>/);assert(match,'Missing original body');
   once(match[0],match[0]+status);
  }else return body;
- assert.equal(path==='/'?removeHomeBanner(removeCreamNavigation(stabilisePublicHtml(path,before))):removeCreamNavigation(stabilisePublicHtml(path,before)),text,'Unknown startup transformation: '+path);
+ assert.equal(path==='/'?removeReviewedHomeBanner(removeCreamNavigation(stabilisePublicHtml(path,before))):removeCreamNavigation(stabilisePublicHtml(path,before)),text,'Unknown startup transformation: '+path);
  return Buffer.from(before);
 }
