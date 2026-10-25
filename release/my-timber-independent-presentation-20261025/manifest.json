@@ -9,7 +9,7 @@
       "originalModule": "worker.mjs",
       "originalSHA256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
       "candidateNewModuleHashes": {
-        "data.mjs": "0e314c4d89ea0ae8aa5f74cb39eee364b2ac9a2187aa6e3ba43ea1d4a3f3ff0c",
+        "data.mjs": "f5ac554c93ed6063884d3831046fcf09dd0f8bab7ffc33901e424981601f9c2e",
         "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
         "presentation-entry.mjs": "5ad1fd42726fcee790c354e240ea4c0c2c00874fa079ae2d156f71791bcbe379"
       }
@@ -19,7 +19,7 @@
       "originalModule": "worker.js",
       "originalSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
       "candidateNewModuleHashes": {
-        "data.mjs": "0e314c4d89ea0ae8aa5f74cb39eee364b2ac9a2187aa6e3ba43ea1d4a3f3ff0c",
+        "data.mjs": "f5ac554c93ed6063884d3831046fcf09dd0f8bab7ffc33901e424981601f9c2e",
         "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
         "presentation-entry.mjs": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f"
       }
