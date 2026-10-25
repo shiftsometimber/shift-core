@@ -6,6 +6,8 @@ coord=Path('/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/rec
 source=json.loads((root/'source.json').read_text())
 assert source['head']!='52747058070c9f265fba1edc9baacf3fcf8aedb2'
 manifest=json.loads((Path(source['sourceDirectory'])/'manifest.json').read_text())
+assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=source['repository'],text=True).strip()==source['head']
+assert not subprocess.check_output(['git','status','--porcelain'],cwd=source['repository'],text=True).strip()
 assert json.loads((root/'adapter-verification.json').read_text())['passed'];assert json.loads((root/'integration-adapter-verification.json').read_text())['pass']
 assert json.loads((root/'original-worker-preservation-verification.json').read_text())['passed']
 browser=json.loads((root/'candidate-full-runtime.json').read_text());assert len(browser['rows'])==4 and all(not x['uncaughtErrors'] and x['quickLogCancelDraftSingleSaveReceiptJourneyRefresh'] for x in browser['rows'])
@@ -78,6 +80,6 @@ for path,name in [('/member/dashboard','dashboard'),('/member/grub','grub'),('/m
  assert 'data-my-timber-approved-chrome' in html and '/assets/member-experience/chrome.mjs' not in ''.join(re.findall(r'<script\\b[^>]*>',html))
  if name=='dashboard':assert 'data-my-timber-approved-progress' in html and 'data-my-timber-approved-tools' in html
  (root/('live-'+name+'.html')).write_bytes(body);live.append({'path':path,'http':status,'inlineApprovedChrome':True,'inlineApprovedProgress':name=='dashboard','sha256':hashlib.sha256(body).hexdigest()})
-status,body=public('/assets/my-timber-layout.mjs');assert status==200;assert hashlib.sha256(body).hexdigest()=='f0ebe340a7594095402fc70f5910ff19dc2b895c102bea6eb92a3960ffc0e3e7'
+status,body=public('/assets/my-timber-layout.mjs');assert status==200;assert hashlib.sha256(body).hexdigest()=='66c340f4af1bb9ba47fdda476119802acafe9b34630e80d57228b05f0d71e816'
 state.update({'state':'DEPLOYED_TAB_HEADER_COACH_CORRECTION_LIVE_BROWSER_PENDING','verifiedAt':stamp(),'livePages':live,'actualApprovedLayoutAssetExact':True,'allOriginalWorkerModulesByteIdentical':True,'allSettingsBindingsSchedulesAndRoutesUnchanged':True,'homepageByteIdentical':True,'anonymousApiBoundariesIdentical':True,'coreDeploymentUnchanged':get(workers+'shift-core/deployments')==coreBefore,'PagesWrites':0,'newWorkers':0})
 write_state();print(json.dumps({'state':state['state'],'workers':{k:v['deployment']['versions'] for k,v in state['workers'].items()},'routesChanged':0,'coreUnchanged':state['coreDeploymentUnchanged']}),flush=True)
