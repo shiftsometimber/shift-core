@@ -1,0 +1,225 @@
+{
+  "id": "ac4e60d9-6f40-4bd5-a96f-83d6108dd716",
+  "metadata": {
+    "created_on": "2026-10-18T21:25:01.963465Z",
+    "source": "wrangler"
+  },
+  "resources": {
+    "script": {
+      "etag": "f5bb76b149f326b66a9bb6465d71f18642e3959e32caf0f47718360d63ce4f02"
+    },
+    "bindings": [
+      {
+        "name": "ADMIN_API_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "ADMIN_EMAIL_FROM",
+        "text": "hq@shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "name": "ADMIN_NOTIFICATION_EMAIL",
+        "text": "hq@shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "name": "AI",
+        "project": "<catalog>",
+        "type": "ai"
+      },
+      {
+        "name": "ALLOWED_ORIGINS",
+        "text": "https://shiftsometimber.co.uk,https://www.shiftsometimber.co.uk,https://shiftsometimber.com,https://www.shiftsometimber.com,https://hq.shiftsometimber.co.uk,https://v23.projectshift.pages.dev,https://23v.projectshift.pages.dev",
+        "type": "plain_text"
+      },
+      {
+        "name": "AUTH_EMAIL_FROM",
+        "text": "hello@shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "name": "AUTO_VERIFY_EMAIL",
+        "text": "false",
+        "type": "plain_text"
+      },
+      {
+        "name": "BABYLOVE_WEBHOOK_TOKEN_SHA256",
+        "text": "ab300f37dbd07d803773ecd6a8bd8f8225d60fbfa67e897af124fa809f34f088",
+        "type": "plain_text"
+      },
+      {
+        "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+        "id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+        "name": "DB",
+        "type": "d1"
+      },
+      {
+        "name": "EMAIL",
+        "type": "send_email"
+      },
+      {
+        "name": "EVIDENCE_DESK_ALERT_TO",
+        "text": "hq@shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "database_id": "8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3",
+        "id": "8cbbd1f2-86bb-47a3-9b1a-e4735c3252c3",
+        "name": "EVIDENCE_DESK_READ_DB",
+        "type": "d1"
+      },
+      {
+        "name": "EVIDENCE_DESK_READ_ENV",
+        "text": "non-production",
+        "type": "plain_text"
+      },
+      {
+        "name": "HEALTH_PASSPORT_V1_ENABLED",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "HQ_MFA_ENCRYPTION_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "MEMBER_ASSETS",
+        "type": "assets"
+      },
+      {
+        "name": "MEMBER_EXPERIENCE_V1_ENABLED",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "MEMBER_GP_DIRECTORY_V2_ENABLED",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "MEMBER_GP_LOOKUP_ENABLED",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "MEMBER_SIGNUP_ALERTS_ENABLED",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "MY_TIMBER_PWA_ENABLED",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "MY_TIMBER_WEEK_VIEW_ENABLED",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "MY_TREATMENT_ENABLED",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "ORDER_NOTIFICATION_EMAIL",
+        "text": "orders@shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "name": "PUBLIC_SITE_URL",
+        "text": "https://shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "name": "RADAR_ALERT_TO",
+        "text": "hq@shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "name": "RADAR_NOTIFICATION_MODE",
+        "text": "publication_only",
+        "type": "plain_text"
+      },
+      {
+        "name": "RADAR_PUBLICATION_EMAIL_SINCE",
+        "text": "2026-09-17T10:32:14Z",
+        "type": "plain_text"
+      },
+      {
+        "name": "RADAR_PUBLICATION_EMAIL_TO",
+        "text": "matt@shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "name": "SHIFT_AI_CONVERSATION_MEMORY",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "name": "SHIFT_AI_MODEL",
+        "text": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "type": "plain_text"
+      },
+      {
+        "name": "SHIFT_AI_PRACTICAL_CONTEXT",
+        "text": "true",
+        "type": "plain_text"
+      },
+      {
+        "class_name": "SiteContentState",
+        "name": "SITE_CONTENT_STATE",
+        "namespace_id": "a3b0a3b3ff5d4308899d9fa2650f69eb",
+        "type": "durable_object_namespace"
+      },
+      {
+        "name": "STRIPE_MODE",
+        "text": "test",
+        "type": "plain_text"
+      },
+      {
+        "name": "STRIPE_SECRET_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "STRIPE_WEBHOOK_SECRET",
+        "type": "secret_text"
+      },
+      {
+        "name": "TAP_ROOM_MODERATION_BACKUP",
+        "text": "Linda O'Brien",
+        "type": "plain_text"
+      },
+      {
+        "name": "TAP_ROOM_MODERATION_OWNER",
+        "text": "Matt O'Brien",
+        "type": "plain_text"
+      },
+      {
+        "name": "TAP_ROOM_P0_EMAIL",
+        "text": "hq@shiftsometimber.co.uk",
+        "type": "plain_text"
+      },
+      {
+        "name": "TURNSTILE_ALLOWED_HOSTNAMES",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURNSTILE_REQUIRED",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURNSTILE_SECRET_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURNSTILE_SITE_KEY",
+        "type": "secret_text"
+      }
+    ]
+  },
+  "annotations": {
+    "workers/message": "SEO Foundayo redirect hotfix 7c174e982f0549fad5cf526bfe3c64f9fcfe950d; exact live base 0e4a765e7a360d705e2424264e0bcfcc1d6652be"
+  }
+}

@@ -216,8 +216,8 @@ function gitBlobId(bytes){return oid(bytes);}
 function deepFreeze(value){if(value&&typeof value==='object'){for(const child of Object.values(value))deepFreeze(child);Object.freeze(value);}return value;}
 export const JOINED_LOOK_CONTRACT=deepFreeze({
   "kind": "EXACT_MY_TIMBER_JOINED_LOOK_20261024",
-  "base": "9540d180ca4fbed47d96fd9279d901facba77fb5",
-  "payload": "054b84d4906e7db821895ea1bbf4a44ce56957dd",
+  "base": "2e1eaf56b2f4f446866841b915a96bc64d07e497",
+  "payload": "37aa712983c8fff68ff74a78f45e4d086542709e",
   "payloadBlobs": {
     "frontend/member/member-progress-v1.js": "3f7ec13262b2fe2a800f04bdfce5c0c301f2f26f",
     "member-design.mjs": "aedd925f8425076639a40ff51c2032d8820502a3",
@@ -251,18 +251,22 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
   "maintenancePaths": [
     "member-experience/tests/weight-import-mapping-ui.test.mjs",
     "release/app-scope.mjs",
+    "release/approved-news-ticker-frame-20261024.mjs",
     "release/approved-runtime-composition.mjs",
+    "release/health-vision-scope-20261021.mjs",
     "release/member-design-scope.mjs",
     "release/member-recording-repair-20261024.mjs",
     "release/my-timber-joined-look-inverses-20261024.json",
     "release/my-timber-joined-look-scope-20261024.mjs"
   ],
   "maintenanceExpected": {
-    "release/member-recording-repair-20261024.mjs": "33c17bf7107f03ddcd274e9dd3c68b9d6d59be3a",
+    "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0",
     "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
+    "release/approved-news-ticker-frame-20261024.mjs": "223636e99e25d0d78d2064fc1fcab9739db7e04a",
+    "release/approved-runtime-composition.mjs": "10877f644f57e58e87fa5e21a8fd1ef7a408e643",
+    "release/health-vision-scope-20261021.mjs": "f81d0cd6c7a8230d47611bb46f1e7cb3e23d61b1",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
-    "release/approved-runtime-composition.mjs": "57ab4146d0b33f2277428b90335718c4fbfebe53",
-    "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0"
+    "release/member-recording-repair-20261024.mjs": "e63943205ee315b2808e5ca5e0480b87aaefc6f8"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
