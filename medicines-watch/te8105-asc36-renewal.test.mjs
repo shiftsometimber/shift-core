@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import receipt from './reviews/2026-10-12-authorised-te8105-asc36-renewal.json' with {type:'json'};
 import baseline from './reviews/2026-10-12-pre-renewal-wording-hashes.json' with {type:'json'};
+import correction from './reviews/2026-10-18-approved-zenagamtide-switch.json' with {type:'json'};
 import {industry,industrySources} from './industry.mjs';
 import {registrySources,changes} from './credibility.mjs';
 import {medicines,sources} from './data.mjs';
@@ -11,8 +12,22 @@ import {catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const clean=entries=>entries.map(({reviewedAt,...entry})=>({...entry,additionalEvidence:entry.additionalEvidence?.map(({reviewedAt,...link})=>link)}));
 test('12 October renewal advances one source and two fully reread summaries, preserving all medical wording',()=>{
- assert.equal(hash(clean(industry)),baseline.programmeWordingSha256);
- assert.equal(hash(registrySources.map(({reviewedAt,...source})=>source)),baseline.registrySha256);
+ // Retain the original 12 October whole-catalogue hashes through the exact,
+ // separately approved 18 October correction, without excluding any source.
+ const programmeBeforeCorrection=industry.map(entry=>{
+  if(entry.id!=='zenagamtide')return entry;
+  assert.equal(entry.limitations.split(correction.after).length,2);
+  assert.ok(!entry.limitations.includes(correction.before));
+  return {...entry,limitations:entry.limitations.replace(correction.after,correction.before)};
+ });
+ assert.equal(hash(clean(programmeBeforeCorrection)),baseline.programmeWordingSha256);
+ const registryBeforeCorrection=registrySources.map(source=>{
+  if(source.id!==correction.source.id)return source;
+  assert.deepEqual(source,correction.source);
+  assert.equal(correction.beforeSource.id,source.id);
+  return correction.beforeSource;
+ });
+ assert.equal(hash(registryBeforeCorrection.map(({reviewedAt,...source})=>source)),baseline.registrySha256);
  assert.deepEqual(receipt.sourceRenewals.map(item=>item.id),['registry-nct07857473']);
  assert.deepEqual(receipt.programmeSummaryReviews.map(item=>item.id),['te8105','asc36-oral']);
  for(const review of receipt.programmeSummaryReviews){
