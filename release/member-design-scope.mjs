@@ -1,4 +1,4 @@
-import {memberRecordingComparisonValue} from './member-recording-repair-20261024.mjs';
+import {memberRecordingComparisonValue,withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
 // Matt's locked 1 October design and request to finish My Timber across web/PWA/app.
 // Bind the six-file presentation delta to its isolated account-backed browser proof.
 import assert from 'node:assert/strict';
@@ -22,6 +22,9 @@ export function validateMemberDesignPayload(read,changed){
  for(const path of MEMBER_DESIGN_PATHS)assert.equal(read('HEAD',path),read(MEMBER_DESIGN_CANDIDATE,path),'Approved member design drift: '+path);
 }
 export function validateMemberDesignSource(){
+ return withMemberRecordingQualification(()=>validateMemberDesignSourceAtQualifiedPredecessor());
+}
+function validateMemberDesignSourceAtQualifiedPredecessor(){
  const git=(...args)=>{const value=execFileSync('git',args,{encoding:'utf8'}).trim();return args[0]==='rev-parse'&&args[1]?.startsWith('HEAD:')?memberRecordingComparisonValue(args[1].slice(5),value):value;};
  git('merge-base','--is-ancestor',MEMBER_DESIGN_BASE,MEMBER_DESIGN_CANDIDATE);
  git('merge-base','--is-ancestor',MEMBER_DESIGN_CANDIDATE,'HEAD');
