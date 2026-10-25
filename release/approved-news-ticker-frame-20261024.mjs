@@ -86,10 +86,14 @@ export function approvedNewsTickerOuterFrame(){
  const {maintenanceSource,repairSource,...scope}=c;assert.deepEqual(scope,fixed,'Only the exact finite approvedTicker scope is admitted');
  assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
  assert.match(repairSource,/^[a-f0-9]{40}$/);
+ const previousRegistration='9071379f77c376a45ce2b774302442ee789b8a0d',previousRepair='51f6e6d177dfd5acf0ab0a964686d8688e133a40';
+ assert.deepEqual(JSON.parse(text(previousRegistration,LEDGER))[KEY],{...fixed,maintenanceSource,repairSource:previousRepair},'Every preceding namespace-repair registration field remains exact');
+ assert.equal(text(repairSource,LEDGER),text(previousRegistration,LEDGER),'The complete preceding ledger must remain present before the message-only repair is registered');
+
  const {repairBase,repairPaths,...originalFixed}=fixed;
  assert.deepEqual(JSON.parse(text(repairBase,LEDGER))[KEY],{...originalFixed,maintenanceSource},'Every original ticker registration field must remain exact');
 
- for(const[a,b,ps]of[[fixed.base,fixed.payload,fixed.paths],[fixed.payload,maintenanceSource,fixed.maintenancePaths],[maintenanceSource,fixed.repairBase,[LEDGER]],[fixed.repairBase,repairSource,fixed.repairPaths],[repairSource,rawHead,[LEDGER]]]){
+ for(const[a,b,ps]of[[fixed.base,fixed.payload,fixed.paths],[fixed.payload,maintenanceSource,fixed.maintenancePaths],[maintenanceSource,fixed.repairBase,[LEDGER]],[fixed.repairBase,previousRepair,fixed.repairPaths],[previousRepair,previousRegistration,[LEDGER]],[previousRegistration,repairSource,fixed.repairPaths],[repairSource,rawHead,[LEDGER]]]){
   ancestor(a,b);assert.deepEqual(sorted(diff(a,b)),sorted(ps),'Exact approvedTicker native increment required');
  }
  const all=[...fixed.paths,...fixed.maintenancePaths];
@@ -125,7 +129,7 @@ export function approvedNewsTickerOuterFrame(){
  }
  function project(kind,source){return(r,p)=>{
   assertCurrent();try{
-   const get=ref=>{if(!source)return kind==='read'?oid(ref,p):text(ref,p);const v=source(ref,p);assert(authentic(v,ref,p,kind),'unauthentic supplied approvedTicker source: '+ref+':'+p);return v};
+   const get=ref=>{if(!source)return kind==='read'?oid(ref,p):text(ref,p);const v=source(ref,p);assert(authentic(v,ref,p,kind),'Approved ticker source drift: unauthentic supplied approvedTicker source: '+ref+':'+p);return v};
    if(r==='HEAD'||r===rawHead||r===fixed.base){if(source){get('HEAD');get(rawHead)}return get(fixed.base)}
    return get(r);
   }finally{assertCurrent()}
