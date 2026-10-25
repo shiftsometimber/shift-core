@@ -807,6 +807,18 @@ async function activePurchaseBasket(request, env) {
   const attempts = [];
   for (const row of rows.results || []) {
     const item = {channel:row.channel,state:row.state,canResume:false};
+    // Labels come only from this authenticated member's existing order.
+    if (row.channel === "medicine") {
+      const order = await env.DB.prepare(
+        "SELECT medicine_name,strength_label FROM medicine_orders WHERE order_number=? AND user_id=?"
+      ).bind(row.order_number,user.id).first().catch(()=>null);
+      if (order) item.label = [order.medicine_name,order.strength_label].filter(Boolean).join(" · ").slice(0,120);
+    } else {
+      const order = await env.DB.prepare(
+        "SELECT COUNT(*) lines,COALESCE(SUM(quantity),0) units FROM commerce_order_items WHERE order_id=(SELECT id FROM orders WHERE order_number=? AND user_id=?)"
+      ).bind(row.order_number,user.id).first().catch(()=>null);
+      if (order?.units>0) item.label = "Timber Mill · " + Math.min(99,Number(order.units)) + " item(s)";
+    }
     if (row.state === "open" && row.session_id && row.checkout_url) {
       if (!resume) item.canResume = true; // Actual Stripe status must be checked on tap.
       else {
