@@ -1,12 +1,8 @@
 // Optional Core site basket: intentionally not injected into My Timber or home.
-const PATHS=new Set([
- "/start-here","/treatment-centre","/treatment-order","/selected-order",
- "/mounjaro","/wegovy","/wegovy-injection","/wegovy-tablet",
- "/orlistat","/foundayo","/shop","/timber-mill",
- "/order-success"
-]);
+// Public site pages share the basket. Private My Timber/member/HQ surfaces do not.
 export function isPurchaseBasketPage(path){
- return PATHS.has(String(path||"").replace(/\.html$/,"").replace(/\/+$/,"")||"/");
+ const value=(String(path||"").replace(/\.html$/,"").replace(/\/+$/,"")||"/");
+ return !/^\/(?:v1|api|assets|member|my-timber|hq|admin|app|shift-me|health-passport)(?:\/|$)/i.test(value);
 }
 const SCRIPT=String.raw`(()=>{'use strict';
  if(window.__shiftPurchaseBasketInitialised)return;
@@ -59,7 +55,7 @@ const SCRIPT=String.raw`(()=>{'use strict';
    const title=document.createElement('h2');title.textContent='Your saved basket';inner.appendChild(title);
    if(state.remote.length){
      for(const item of state.remote){
-       paragraph(item.channel==='medicine'?'Treatment checkout':'Timber Mill checkout');
+       paragraph(item.label|| (item.channel==='medicine'?'Treatment checkout':'Timber Mill checkout'));
        paragraph('An existing payment attempt is saved. We will check it before reopening Stripe.','sst-note');
        if(item.state==='open'){
          addButton('Resume secure payment',()=>resume(item.channel));
@@ -68,7 +64,7 @@ const SCRIPT=String.raw`(()=>{'use strict';
        }
      }
    }else if(state.local){
-     paragraph('Treatment selection saved on this device.');
+     paragraph(saved.slug.replace(/-/g,' ').replace(/\b\w/g,function(x){return x.toUpperCase()})+' — selection saved on this device.');
      addButton('Review selection',()=>{
        const url='/'+saved.slug+'?variant='+encodeURIComponent(String(saved.variantId));
        location.assign(url);
@@ -138,8 +134,8 @@ export async function withPurchaseBasket(request,response){
  if(request.method!=="GET"||!isPurchaseBasketPage(new URL(request.url).pathname)||
     !response||response.status!==200||!String(response.headers.get("Content-Type")||"").includes("text/html"))return response;
  const original=await response.text();
- if(!/<\/body>/i.test(original)||original.includes("/assets/shift-purchase-basket-v1.js"))return new Response(original,{status:response.status,statusText:response.statusText,headers:response.headers});
- const html=original.replace(/<\/body>/i,'<script defer src="/assets/shift-purchase-basket-v1.js"></script></body>');
+ if(!/<\/body>/i.test(original)||original.includes("shift-purchase-basket-v1.js"))return new Response(original,{status:response.status,statusText:response.statusText,headers:response.headers});
+ const html=original.replace(/<\/body>/i,'<script defer src="https://api.shiftsometimber.co.uk/assets/shift-purchase-basket-v1.js"></script></body>');
  const headers=new Headers(response.headers);headers.delete("Content-Length");headers.delete("ETag");
  headers.set("Cache-Control","private, no-cache, must-revalidate");
  return new Response(html,{status:response.status,statusText:response.statusText,headers});
