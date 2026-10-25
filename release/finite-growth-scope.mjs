@@ -1,6 +1,6 @@
 import {memberConsentHistoricalView,memberConsentHistoricalFile} from './member-consent-repair-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const FINITE_GROWTH_BASE='009b3a4a6f53a9545c73270ad1869e96f1e1a7d8';
 export const FINITE_GROWTH_SOURCE='98b2c9237d5a37edf8cc7b0cde63fedd8de81ba0';
 export const FINITE_GROWTH_APPROVED_SOURCE='221405a7344a5b2cdf30681d6620d2bd9a32855c';

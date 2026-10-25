@@ -103,3 +103,26 @@ test('parallel stat-only index refresh can finish, while sustained writers and c
   assert.equal(result.status,0,result.stderr||String(result.error));assert.match(result.stdout,/transient-stat-reader-completed-real-source-drift-and-sustained-writer-rejected/);
  }finally{rmSync(directory,{recursive:true,force:true});}
 });
+
+test('recreated native checkers reject working-byte and hidden-index mutation after warm reuse',()=>nativeSourceFixture(({root,run,head})=>{
+ nativeNavigationFreshSourceChecker(head)();
+ nativeNavigationFreshSourceChecker(head)();
+ writeFileSync(join(root,'source.txt'),'unreviewed\n');
+ assert.throws(()=>nativeNavigationFreshSourceChecker(head)());
+ writeFileSync(join(root,'source.txt'),'approved\n');
+ run('update-index','--skip-worktree','source.txt');
+ assert.throws(()=>nativeNavigationFreshSourceChecker(head)());
+}));
+test('a new legitimate metadata context never rebases an existing native checker',()=>nativeSourceFixture(({run,head})=>{
+ const original=nativeNavigationFreshSourceChecker(head);original();
+ run('config','core.logAllRefUpdates','false');
+ const fresh=nativeNavigationFreshSourceChecker(head);fresh();
+ assert.throws(original,/metadata changed/);
+}));
+test('recreated native checkers cannot accept a new HEAD under a stale expected source',()=>nativeSourceFixture(({root,run,head})=>{
+ nativeNavigationFreshSourceChecker(head)();
+ writeFileSync(join(root,'source.txt'),'new committed source\n');run('add','source.txt');
+ run('-c','user.name=SHIFT finite source check','-c','user.email=source-check@invalid.example','commit','-m','New source');
+ assert.throws(()=>nativeNavigationFreshSourceChecker(head)());
+ nativeNavigationFreshSourceChecker(run('rev-parse','HEAD'))();
+}));

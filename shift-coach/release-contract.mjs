@@ -1,3 +1,4 @@
+import {withMemberRecordingQualification} from '../release/member-recording-repair-20261024.mjs';
 import {approvedSourceComparison} from '../release/approved-source-comparison-20261024.mjs';
 import {withImmutableHistoryVerification,immutableHistoryExecFileSync,nativeReconciliationSourceRead} from '../release/approved-runtime-composition.mjs';
 import {immutableHistorySourceHead} from '../release/immutable-git-facts.mjs';
@@ -224,7 +225,10 @@ export function ensureReviewedHistory(run=execFileSync){
   catch{run('git',['fetch','--no-tags','origin',ref],{stdio:'pipe'});run('git',['cat-file','-e',ref+'^{commit}'],{stdio:'ignore'});}
  }
 }
-export function verifyCoachingRelease({requireLaunch=false}={}){
+export function verifyCoachingRelease(options={}){
+ return withMemberRecordingQualification(()=>verifyCoachingReleaseOriginal(options));
+}
+function verifyCoachingReleaseOriginal({requireLaunch=false}={}){
  return withImmutableHistoryVerification(()=>{
  verifyMetricsConnection();
  ensureReviewedHistory();

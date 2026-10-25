@@ -32,7 +32,7 @@ test('verification and invalid-link states are explained in the entry UI',()=>{
 
 test('password minimum stays aligned with the live member registration contract',async()=>{
   const register=await readFile(new URL('../member-register-fastpath-v2.js',import.meta.url),'utf8');
-  assert.match(register,/password\.length<10/);
+  assert.match(register,/!passwordMeetsPolicy\(password\)/);
   assert.match(html,/minlength="10"/);
   assert.doesNotMatch(html,/minlength="12"/);
 });

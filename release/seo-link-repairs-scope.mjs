@@ -1,7 +1,7 @@
 import {reconciliationMarkHistoricalReader,reconciliationHistoricalRead} from './approved-runtime-composition.mjs';
 import {ORGANIC_PATHS,organicHistoricalRead,organicHistoricalHead,organicHistoricalRef,organicChangedPath,organicPreflightPath} from './organic-followthrough-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';import {existsSync,readFileSync} from 'node:fs';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';import {existsSync,readFileSync} from 'node:fs';
 export const LINK_BASE='7b4a62f08461e8b3b971067183036bd43c5b97e4';
 export const LINK_PAYLOAD='494f7b75193904f631bd3a269e8dacb32e98df9e';
 export const LINK_PAYLOAD_PATHS=["public-seo-context.mjs", "public-seo-link-repairs.mjs", "tests/public-seo-link-repairs.test.mjs"];

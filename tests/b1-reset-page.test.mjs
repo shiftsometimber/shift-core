@@ -1,3 +1,4 @@
+import {passwordMeetsPolicy,PASSWORD_POLICY_MESSAGE} from '../password-policy-v1.js';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {runInNewContext} from 'node:vm';
@@ -32,8 +33,14 @@ test('B1-N01 failure message, retry control and validation are preserved',async(
  const mismatch=runtime(repairPasswordResetDocument(original),{confirm:'different-password'});await mismatch.submit();assert.equal(mismatch.message.textContent,'Passwords do not match.');assert.equal(mismatch.requests.length,0);
 });
 test('B1-N01 repair is idempotent and changes no other document or route',async()=>{
- const fixed=repairPasswordResetDocument(original);assert.equal(repairPasswordResetDocument(fixed),fixed);assert.equal(fixed.replaceAll(' ||\'', ' |\''),original);
+ const fixed=repairPasswordResetDocument(original);assert.equal(repairPasswordResetDocument(fixed),fixed);const originalRule="if(p.length<12){msg('Please use at least 12 characters.');return}",currentRule="if(!("+passwordMeetsPolicy.toString()+")(p)){msg("+JSON.stringify(PASSWORD_POLICY_MESSAGE)+");return}";assert.equal(fixed.replace(currentRule,originalRule).replaceAll(' ||\'', ' |\''),original);
  const unrelated='<script>const flags=1 | 2;</script><p>No stock available today</p>';assert.equal(repairPasswordResetDocument(unrelated),unrelated);
  const other=new Response(original,{headers:{'Content-Type':'text/html'}});assert.equal(await repairPasswordResetResponse(other,new Request('https://shiftsometimber.co.uk/programme')),other);
  const r=await repairPasswordResetResponse(new Response(original,{headers:{'Content-Type':'text/html','ETag':'old'}}),new Request('https://shiftsometimber.co.uk/reset-password.html?token=fictional'));assert.equal(await r.text(),fixed);assert.equal(r.headers.get('ETag'),null);assert.equal(r.headers.get('Cache-Control'),'no-store');
+});
+
+test('owner-approved reset policy accepts ten characters and rejects missing complexity',async()=>{
+ const html=repairPasswordResetDocument(original);
+ const accepted=runtime(html,{password:'Abcdefgh!1'});await accepted.submit();assert.equal(accepted.requests.length,1);
+ for(const password of ['Abcdefg!1','abcdefgh!1','Abcdefgh12','Abcdefgh 1']){const rejected=runtime(html,{password});await rejected.submit();assert.equal(rejected.requests.length,0);assert.equal(rejected.message.textContent,PASSWORD_POLICY_MESSAGE);}
 });

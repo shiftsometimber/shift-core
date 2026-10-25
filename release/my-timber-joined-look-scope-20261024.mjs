@@ -216,8 +216,8 @@ function gitBlobId(bytes){return oid(bytes);}
 function deepFreeze(value){if(value&&typeof value==='object'){for(const child of Object.values(value))deepFreeze(child);Object.freeze(value);}return value;}
 export const JOINED_LOOK_CONTRACT=deepFreeze({
   "kind": "EXACT_MY_TIMBER_JOINED_LOOK_20261024",
-  "base": "16a2446bdf537c6bd65e85acef067d31f00c7a08",
-  "payload": "075f5dfd3e5d6931bf256d0011dc0dffe4178fc7",
+  "base": "c13e57924f4da39135b4bc014a47403aa802c674",
+  "payload": "65b3ef4921e31201e50e577bb730bf4a4bf90619",
   "payloadBlobs": {
     "frontend/member/member-progress-v1.js": "3f7ec13262b2fe2a800f04bdfce5c0c301f2f26f",
     "member-design.mjs": "aedd925f8425076639a40ff51c2032d8820502a3",
@@ -258,8 +258,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/my-timber-joined-look-scope-20261024.mjs"
   ],
   "maintenanceExpected": {
-    "release/member-recording-repair-20261024.mjs": "37be1c5abf85ec5f7312f6062d749f3274958a4c",
-    "release/app-scope.mjs": "8dc607b8e4186b3ef62385b8ad156b0f14557367",
+    "release/member-recording-repair-20261024.mjs": "c1cb16fda3b59fc752d598932d16219718f30f59",
+    "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
     "release/approved-runtime-composition.mjs": "57ab4146d0b33f2277428b90335718c4fbfebe53",
     "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0"

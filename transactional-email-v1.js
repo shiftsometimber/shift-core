@@ -51,15 +51,16 @@ async function auditDelivery(env,detail){
 }
 const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-export async function sendTransactionalEmail(env,{to,subject,text,html,eventType,userId=null,internalNotify=false,includeMatt=false}){
+export async function sendTransactionalEmail(env,{to,subject,text,html,eventType,userId=null,internalNotify=false,includeMatt=false,eventReference=null,templateVersion=null}){
   const isSupport=eventType==='support'||eventType==='interest_notify';
   const sender=isSupport?SHIFT_MAILBOXES.support:String(env.TRANSACTIONAL_EMAIL_FROM||DEFAULT_FROM);
   const recipients=[to,...(internalNotify?internalRecipients(eventType,includeMatt):[])].filter(Boolean);
   const unique=[...new Set(recipients.map(x=>String(x).trim().toLowerCase()))];
   const results=[];
   for(const email of unique){
+    const eventLink=eventReference?{eventReference,templateVersion,recipientRole:email===String(to||'').trim().toLowerCase()?'member':'operator'}:{};
     if(!env.EMAIL){
-      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'binding_missing'});
+      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'binding_missing',...eventLink});
       results.push({email,status:'binding_missing',auditRecorded,receiptVerified:false});
       continue;
     }
@@ -71,11 +72,11 @@ export async function sendTransactionalEmail(env,{to,subject,text,html,eventType
         text:String(text||''),html:String(html||'')
       });
       const providerId=result?.id||result?.messageId||null;
-      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'sent',providerId});
+      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'sent',providerId,...eventLink});
       results.push({email,status:'sent',providerId,auditRecorded,receiptVerified:false});
     }catch(e){
       const errorCode=String(e?.code||e?.name||'delivery_error').replace(/[^a-zA-Z0-9_.:-]/g,'_').slice(0,120);
-      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'failed',errorCode});
+      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'failed',errorCode,...eventLink});
       console.error('transactional_email_failed',eventType,errorCode);
       results.push({email,status:'failed',errorCode,auditRecorded,receiptVerified:false});
     }

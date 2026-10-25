@@ -1,3 +1,4 @@
+import {reuseExactNativeProjection} from './scoped-native-projection-evidence.mjs';
 import {withImmutableHistoryVerification as withClosedCurrentSourceProof} from './immutable-git-facts.mjs';
 import {seoAuditHistoricalView,seoAuditOriginalSource} from './seo-audit-scope-20261016.mjs';
 import assert from 'node:assert/strict';
@@ -91,10 +92,15 @@ function foodDiaryLondonDateHistoricalViewOriginal(reader=null,{defaultReader=re
  const nativeSource=privateW===null&&sourceReader===foodNativeFacts.blob;
  admittedViews.add(view);view.read=nativeSource?(r,p)=>useView(view,()=>view.blob(r,p)):foodDiaryLondonDateAuthenticatedRead(sourceReader,view);assertCurrent();Object.freeze(view);for(const kind of['read','blob','content','diff','ancestor'])admittedReaders.set(view[kind],Object.freeze({kind,view,...(kind==='read'?{nativeSource}:{})}));return view;
 }
+const foodNativeProjectionOwner=Object.freeze({});
 export function foodDiaryLondonDateHistoricalView(reader=null,options={}){
+ if(reader!==null||Reflect.ownKeys(options).some(key=>key!=='defaultReader')||options.defaultReader===false)return constructFoodDiaryLondonDateHistoricalView(reader,options);
+ return reuseExactNativeProjection(foodNativeProjectionOwner,()=>constructFoodDiaryLondonDateHistoricalView(null,options));
+}
+function constructFoodDiaryLondonDateHistoricalView(reader=null,options={}){
  const seo=seoAuditHistoricalView(reader);if(!seo)return foodDiaryLondonDateHistoricalViewOriginal(reader,options);
  const inner=foodDiaryLondonDateHistoricalViewOriginal(reader===null?null:seo.read,{defaultReader:false},seo),ref=r=>r===seo.rawHead?'HEAD':r;
- const view={...inner,rawHead:seo.rawHead,affected:p=>seo.affected(p)||inner.affected(p),assertCurrent:seo.assertCurrent,currentContent:seo.currentContent,authentic:seo.nativeAuthentic,nativeAuthentic:seo.nativeAuthentic,nativeContentAuthentic:seo.nativeContentAuthentic,blob:(r,p)=>inner.blob(ref(r),p),content:(r,p)=>inner.content(ref(r),p),diff:(a,b)=>inner.diff(ref(a),ref(b)),ancestor:(a,b)=>inner.ancestor(ref(a),ref(b))};
+ const view={...inner,nativeSource:reader===null,rawHead:seo.rawHead,affected:p=>seo.affected(p)||inner.affected(p),assertCurrent:seo.assertCurrent,currentContent:seo.currentContent,authentic:seo.nativeAuthentic,nativeAuthentic:seo.nativeAuthentic,nativeContentAuthentic:seo.nativeContentAuthentic,blob:(r,p)=>inner.blob(ref(r),p),content:(r,p)=>inner.content(ref(r),p),diff:(a,b)=>inner.diff(ref(a),ref(b)),ancestor:(a,b)=>inner.ancestor(ref(a),ref(b))};
  admittedViews.add(view);view.read=reader===null?(r,p)=>useView(view,()=>view.blob(r,p)):(r,p)=>inner.read(ref(r),p);Object.freeze(view);
  for(const kind of ['read','blob','content','diff','ancestor'])admittedReaders.set(view[kind],Object.freeze({kind,view,...(kind==='read'?{nativeSource:reader===null}:{})}));
  seo.assertCurrent();return view;

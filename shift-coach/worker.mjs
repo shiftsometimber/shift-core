@@ -1,3 +1,4 @@
+import {recordServiceJob} from '../hq-service-job-runs.mjs';
 import {repairHomeSpeed} from '../home-speed-repair.mjs';
 import {withPublicResponsePolicyWorker} from '../public-response-policy.mjs';
 import {withRootShareWorker} from '../share-preview/metadata.mjs';
@@ -48,7 +49,7 @@ const composedWorker = {
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);
-  const job=runCoachingNight(env).then(r=>console.log('shift_coach_night',JSON.stringify(r))).catch(e=>console.error('shift_coach_night_failed',e.status||'unavailable'));
+  const job=recordServiceJob(env.DB,'core_coaching',new Date(controller.scheduledTime || Date.now()).toISOString(),()=>runCoachingNight(env)).then(r=>console.log('shift_coach_night',JSON.stringify(r))).catch(e=>console.error('shift_coach_night_failed',e.status||'unavailable'));
   if(ctx?.waitUntil)ctx.waitUntil(job);else await job;
  }
 };

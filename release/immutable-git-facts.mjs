@@ -70,7 +70,7 @@ export function withImmutableHistoryVerification(callback){
  assert.equal(execFileSync('git',['diff','--cached','--name-only','--'],{encoding:'utf8'}).trim(),'','Immutable history verification requires clean tracked source: staged source drift');
  const scopeReplacements=replacementState();
  const repository=repositoryContext();
- immutableHistoryScope={cwd,head,environment:immutableEnvironmentSignature(),replacements:scopeReplacements,repository,marker:repositoryMarker(repository),factsFresh:true};
+ immutableHistoryScope={token:Object.freeze({}),cwd,head,environment:immutableEnvironmentSignature(),replacements:scopeReplacements,repository,marker:repositoryMarker(repository),factsFresh:true};
  try{const value=callback();assert(!value||typeof value.then!=='function','Immutable history verification must be synchronous');return value;}
  finally{
   immutableHistoryScope=null;
@@ -271,3 +271,6 @@ export function immutableHistoryExecFileSync(bin,args,options){
  // freshly: a scoped blob cache cannot authenticate mutable donor objects.
  return execFileSync(bin,args,options);
 }
+
+// An opaque identity for this actual synchronous native scope; never a caller verdict.
+export const immutableHistorySourceToken=()=>immutableHistoryScope?.token??null;

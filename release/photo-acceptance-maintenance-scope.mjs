@@ -1,6 +1,6 @@
 import {myTimberWeekHistoricalView,myTimberWeekHistoricalFile,weekRuntimeIfPresent,weekWorkflowIfPresent,weekRootIfPresent} from './my-timber-week-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {pathToFileURL} from 'node:url';
 export const PHOTO_ACCEPTANCE_BASE='77a1f511ee93243351b4b885fb604f33ac623d4d';
 export const PHOTO_ACCEPTANCE_SOURCE='301c8ae0f8d004e3d3abc8379a22121738ae0989';

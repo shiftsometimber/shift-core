@@ -1,7 +1,7 @@
 import {reconciliationHistoricalRef} from './approved-runtime-composition.mjs';
 import {CONTEXT_PATHS,contextPinnedRef,validateContextComposition,verifyContextHistory} from './seo-context-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const DISCOVERY_BASE='5c6bec0e59d914b234dffac400da9b6f3c0f1578';
 export const DISCOVERY_PAYLOAD='506dfd63d9267c936ab31c2a8ae167b3717b49f5';
 export const DISCOVERY_PAYLOAD_PATHS=["public-seo-discovery.mjs", "shift-coach/worker.mjs", "tests/public-seo-discovery.test.mjs"];

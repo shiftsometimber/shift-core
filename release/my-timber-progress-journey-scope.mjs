@@ -2,7 +2,7 @@ import {finiteGrowthHistoricalView} from './finite-growth-scope.mjs';
 import {TREATMENT_COMPILED_PATHS,TREATMENT_COMPILED_MAINTENANCE,verifyTreatmentCompiledComposition} from './my-treatment-compiled-scope.mjs';
 import {CONTACT_RUNTIME_PATHS,CONTACT_RUNTIME_MAINT,verifyContactRuntimeComposition} from './contact-rollback-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const MY_TIMBER_PROGRESS_BASE="7da4c5406a59bcd929240bd72cb5c7a7b96c8b60";
 export const MY_TIMBER_PROGRESS_SOURCE="d3060df666e56055aaf727362e634cc8c727b09b";
 export const MY_TIMBER_PROGRESS_PATHS=Object.freeze([
