@@ -10083,6 +10083,14 @@
       "release/approved-news-ticker-maintenance-20261024.json",
       "medicines-watch/scheduler.test.mjs"
     ],
-    "repairSource": "5a90301133438322c442ea87eb8c4676bc3569d6"
+    "repairSource": "5a90301133438322c442ea87eb8c4676bc3569d6",
+    "postRepairBase": "e8487e269490d16508f9ba8e60116cb993452c17",
+    "postRepairPaths": [
+      "release/approved-news-ticker-frame-20261024.mjs",
+      "release/website-editorial-scope-20261018.mjs",
+      "tests/approved-news-ticker-frame-20261024.test.mjs",
+      "release/approved-news-ticker-maintenance-20261024.json"
+    ],
+    "postRepairSource": "82ab43a5cb3b2b8e2a2e860c914f1eeb5b15153b"
   }
 }
