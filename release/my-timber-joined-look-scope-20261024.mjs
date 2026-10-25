@@ -257,7 +257,9 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/member-design-scope.mjs",
     "release/member-recording-repair-20261024.mjs",
     "release/my-timber-joined-look-inverses-20261024.json",
-    "release/my-timber-joined-look-scope-20261024.mjs"
+    "release/my-timber-joined-look-scope-20261024.mjs",
+    "release/recorded-week-navigation-outer-frame-20261018.mjs",
+    "tests/native-restored-source-stats-20261025.test.mjs"
   ],
   "maintenanceExpected": {
     "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0",
@@ -266,7 +268,9 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/approved-runtime-composition.mjs": "10877f644f57e58e87fa5e21a8fd1ef7a408e643",
     "release/health-vision-scope-20261021.mjs": "f81d0cd6c7a8230d47611bb46f1e7cb3e23d61b1",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
-    "release/member-recording-repair-20261024.mjs": "69074d48545aafdeea7d645523db478abc1200ad"
+    "release/member-recording-repair-20261024.mjs": "69074d48545aafdeea7d645523db478abc1200ad",
+    "release/recorded-week-navigation-outer-frame-20261018.mjs": "45fb436ebecd433c0b1fc5823f531cef6c1da660",
+    "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
