@@ -10075,6 +10075,14 @@
       "pausedLinkRepairIncluded": false,
       "homepageMainContentChanged": false
     },
-    "maintenanceSource": "e987ac0683426f6bfa2870daf60a7f588ca18503"
+    "maintenanceSource": "e987ac0683426f6bfa2870daf60a7f588ca18503",
+    "repairBase": "e5dae537630afc2a7c4a24bc8ba3512c1fd7ecb5",
+    "repairPaths": [
+      "release/approved-news-ticker-frame-20261024.mjs",
+      "tests/approved-news-ticker-frame-20261024.test.mjs",
+      "release/approved-news-ticker-maintenance-20261024.json",
+      "medicines-watch/scheduler.test.mjs"
+    ],
+    "repairSource": "5a90301133438322c442ea87eb8c4676bc3569d6"
   }
 }
