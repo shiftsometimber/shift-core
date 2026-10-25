@@ -1,3 +1,4 @@
+import {fitEntryNavigation} from './fit-entry-navigation.mjs';
 import {savedFitReviewRuntime} from './fit-saved-review.mjs';
 import {fitSessionCues} from './fit-session-cues.mjs';
 import {fitRuntime as baseFitRuntime} from './fit-runtime.mjs';
@@ -172,4 +173,5 @@ const cueHooks=[
  ['      if (effort) adjustSession(effort);','      if (effort) {adjustSession(effort);refreshSessionCue(effort.closest(".sf-session"));}'],
  ];
  for(const [hook,replacement]of cueHooks){if(!fitRuntime.includes(hook))throw Error('Fit session cue integration hook missing');fitRuntime=fitRuntime.replace(hook,replacement)}
+ fitRuntime = fitEntryNavigation(fitRuntime);
  export {fitRuntime};

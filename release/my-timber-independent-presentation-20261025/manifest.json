@@ -2,15 +2,15 @@
   "at": "2026-10-25T12:24:29.960790+00:00",
   "approvedUI": "075f5dfd3e5d6931bf256d0011dc0dffe4178fc7",
   "base": "f8f05127c6578a8e9f040e6275d431348b102db6",
-  "authority": "Matt: Agreed \u2026. Let\u2019s go live. Approval covers the revised six-page private member layout shown in the immediately preceding preview.",
+  "authority": "Matt approved the six-page member web release, then requested the circled S, one working far-right menu and close/minimise, Fit entry at the top, Support subline spacing, a programme-relevant cover illustration and the Timber Shed community doorway. No store release or homepage change.",
   "workers": {
     "shift-programme-member-20261023": {
       "priorVersion": "a669982c-d3a5-4628-87ac-3e2adc43d7fe",
       "originalModule": "worker.mjs",
       "originalSHA256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
       "candidateNewModuleHashes": {
-        "data.mjs": "7658804b9b2b375c21f8684baa2e4804d0efdf506d49d2d23c0002c64570f094",
-        "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
+        "data.mjs": "6a1c9837277dce0f01c6c60313f8bb8c6e70a4b06a13e7bc076146fb3589f061",
+        "presentation.mjs": "6a304c33c1df3dab438487604131790412cc19056aa2d45bd4c8f5dcbc3c525c",
         "presentation-entry.mjs": "5ad1fd42726fcee790c354e240ea4c0c2c00874fa079ae2d156f71791bcbe379"
       }
     },
@@ -19,21 +19,19 @@
       "originalModule": "worker.js",
       "originalSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
       "candidateNewModuleHashes": {
-        "data.mjs": "7658804b9b2b375c21f8684baa2e4804d0efdf506d49d2d23c0002c64570f094",
-        "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
+        "data.mjs": "6a1c9837277dce0f01c6c60313f8bb8c6e70a4b06a13e7bc076146fb3589f061",
+        "presentation.mjs": "6a304c33c1df3dab438487604131790412cc19056aa2d45bd4c8f5dcbc3c525c",
         "presentation-entry.mjs": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f"
       }
     }
   },
   "checks": {
-    "existingFocusAndFitHandoffTests": 10,
-    "syntheticDomBrowserChecks": 6,
     "adapterIdempotenceAndNonGETPages": 3,
     "unknownFutureAssetPassThrough": true,
-    "allOtherAssetsAndDocumentsUnchanged": true,
+    "otherAssetsUnchanged": true,
     "productionMemberWrites": 0
   },
-  "updatedAt": "2026-10-25T19:39:53.728Z",
+  "updatedAt": "2026-10-25T20:38:36.782Z",
   "delivery": "Existing2 Worker source-only wrapper; no route, Pages, binding, API or schedule changes.3 approved HTML documents include source-pinned chrome/progress scripts only while the old Core stylesheet is present. Canonical external delivery resumes without mutation on newer Core.",
   "routeLimitObserved": 1000,
   "routesChanged": 0,
@@ -56,9 +54,9 @@
     "productionMemberWrites": 0
   },
   "recovery": {
-    "layoutAssetSHA256": "5417a73675253eff577fc00db14a5192e0296fce4c954e862f045eb09c986254",
-    "scope": "Six-tab presentation using canonical controls and real member records; no synthetic production data",
-    "behaviourLimits": "Four-outcome learning adaptation, corrected dated recall and member-owned prescriber-note workflow remain separate production acceptance work; preview demonstrates proposed behaviour."
+    "layoutAssetSHA256": "3daae846b89e7390a5c18a4479645e95efe50ae3899a3bc63fe358f3082d5aef",
+    "scope": "Requested header, menu, Fit scroll and Support spacing fixes, existing Shed doorway and illustrative cover phone",
+    "behaviourLimits": "Learning adaptation, dated recall and member-owned prescriber-note workflow remain separate acceptance work. Navigation UI QA uses a synthetic signed-in fixture."
   },
   "refinementReview": {
     "status": "REVIEWED_APPROVED_FOR_DEPLOYMENT",
@@ -67,5 +65,13 @@
     "previewDataExcluded": true,
     "approvedAt": "2026-10-25T20:08:24.536448+00:00",
     "reviewedLayoutAssetSHA256": "5417a73675253eff577fc00db14a5192e0296fce4c954e862f045eb09c986254"
+  },
+  "navigationFollowup": {
+    "state": "CANDIDATE_CHECKED",
+    "baseSource": "91c5667b218a42abb1f1a4b0bb3678b0bea4e114",
+    "fitAssetSHA256": "6d556de5873ec9a7719a03a7078aba85db8de30463053bc18d4e9ea8d3703106",
+    "fitPreimageSHA256": "cf3b04bbd0a341b061597bdfab18d51e07041f61a1238a9501a2d403d7420f69",
+    "community": "Existing private Timber Shed pilot entry only; no community runtime change",
+    "cover": "Only the illustrative phone changed; no invented member data or demonstrated learning counts"
   }
 }

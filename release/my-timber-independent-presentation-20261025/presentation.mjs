@@ -6,7 +6,7 @@ export async function presentationAsset(request,env){
  const response=await env.CORE.fetch(request);
  if(response.status!==200)return response;
  const bytes=await response.arrayBuffer(),actual=await sha(bytes);
- if(actual!==entry.beforeSHA&&actual!=='95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585')return new Response(bytes,response);
+ if(actual!==entry.beforeSHA&&!(path==='/assets/my-timber-layout.mjs'&&actual==='95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585'))return new Response(bytes,response);
  const headers=new Headers(response.headers);headers.set('Content-Type',entry.type);headers.set('Cache-Control','no-store');
  headers.set('X-Shift-My-Timber-Presentation',presentationVersion);
  for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
