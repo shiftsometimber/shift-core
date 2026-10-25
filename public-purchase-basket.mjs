@@ -144,7 +144,7 @@ export async function withPurchaseBasket(request,response){
     !response||response.status!==200||!String(response.headers.get("Content-Type")||"").includes("text/html"))return response;
  const original=await response.text();
  if(!/<\/body>/i.test(original)||original.includes("shift-purchase-basket-v1.js"))return new Response(original,{status:response.status,statusText:response.statusText,headers:response.headers});
- const html=original.replace(/<\/body>/i,'<script defer src="https://api.shiftsometimber.co.uk/assets/shift-purchase-basket-v1.js"></script></body>');
+ const html=original.replace(/<\/body>/i,'<script defer src="/assets/shift-purchase-basket-v1.js"></script></body>');
  const headers=new Headers(response.headers);headers.delete("Content-Length");headers.delete("ETag");
  headers.set("Cache-Control","private, no-cache, must-revalidate");
  return new Response(html,{status:response.status,statusText:response.statusText,headers});
