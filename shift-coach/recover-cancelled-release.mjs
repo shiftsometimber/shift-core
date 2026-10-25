@@ -1,3 +1,4 @@
+import {FOUNDAYO_RUNTIME,verifyFoundayoRuntime,assertFoundayoStartingPoint} from '../release/foundayo-serving-baseline-20261025.mjs';
 import {GRUB_RANKING_FINAL_CSS_OWNED_ROLLBACK,verifyCurrentGrubRankingFinalCssOwnedRollbackWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
 import {GRUB_RANKING_CSS_OWNED_ROLLBACK,verifyCurrentGrubRankingCssOwnedRollbackWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_RANKING_RUNTIME,verifyCurrentAcceptedGrubRankingRuntimeWindow,acceptedGrubRankingCurrentStartingPoint,assertSameAcceptedGrubRankingCurrentWindow} from '../release/accepted-current-runtime-starting-point-20261017.mjs';
@@ -75,7 +76,11 @@ let grubRankingCssOwnedRollbackProof;
 let ukGrubSpeedOwnedRollbackProof;
 let ukGrubOwnedRollbackProof;
 let verifiedOwnedRollbackProof,restoredMaleObesityRuntimeProof,decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof,restoredLaterRuntimeProof,restoredToolRuntimeProof,restoredPassportRuntimeProof,restoredContinuityRuntimeProof;
-if(preserveCurrentRuntime){
+if(before.id===FOUNDAYO_RUNTIME.deployment){
+ ownerCapturedProof=await verifyFoundayoRuntime(before,version);
+ const unchanged=active();assert.deepEqual(unchanged,before,'Runtime moved during exact owner Foundayo baseline verification');
+ decision='retain';
+}else if(preserveCurrentRuntime){
  if(before.id===GRUB_RANKING_FINAL_CSS_OWNED_ROLLBACK.deployment.id){
   grubRankingCssOwnedRollbackProof=await verifyCurrentGrubRankingFinalCssOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'recovery'});
   ownedProof={run:grubRankingCssOwnedRollbackProof.predecessorRun,source:grubRankingCssOwnedRollbackProof.source,version:grubRankingCssOwnedRollbackProof.version};
