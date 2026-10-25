@@ -1,3 +1,4 @@
+import {retrospectiveSources} from './retrospective-catchup.mjs';
 import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import {industrySources} from './industry.mjs';
@@ -80,7 +81,7 @@ const smpc = (id, title, product, updatedAt, requiredTerms) => source(
 // reviewedFingerprint is intentionally absent until the exact source body has
 // been retrieved and fingerprinted using monitor.mjs. A 403/empty response is
 // not evidence of unchanged content, even if a researcher could read the page.
-export const sources = [
+const sourcesBeforeRetrospective = [
   ...industrySources,
   ...credibilitySources,
   govuk('mounjaro-mhra', 'MHRA: tirzepatide weight-management authorisation',
@@ -141,6 +142,8 @@ export const sources = [
     '2026-07-23', ['retatrutide', 'Phase 3', 'investigational'],
     { evidenceType: 'Trial sponsor announcement; not an authorisation' }),
 ];
+
+export const sources=retrospectiveSources(sourcesBeforeRetrospective);
 
 export const medicines = [
   {

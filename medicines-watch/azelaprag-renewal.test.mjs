@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -7,13 +8,16 @@ import {industry} from './industry.mjs';
 import {evidenceQueue} from './evidence-desk.mjs';
 import {projectSourceHealth} from './monitor.mjs';
 
-const allSources=detailedSources;
+const allSources=sourcesBeforeRetrospective(detailedSources);
 const reviewedSources=[...receipt.sources,...receipt.registrySources];
 const observation=(source,time)=>({
  id:source.id,source_url:source.url,check_url:source.checkUrl,
  last_attempt_at:new Date(time).toISOString(),last_success_at:new Date(time).toISOString(),
  attempt_status:'succeeded',last_http_status:200,last_fingerprint:source.reviewedFingerprint,last_withdrawn:0,
 });
+
+const retrospectiveCurrent_industry=industry;
+
 
 test('azelaprag renewal requires actual unchanged primary-source review',()=>{
  assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');
@@ -39,6 +43,10 @@ test('azelaprag renewal requires actual unchanged primary-source review',()=>{
 });
 
 test('azelaprag renewal clears only its due work and preserves separate queues',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+
+
  const time=Date.parse(receipt.reviewedAt);
  const sourcesAtReview=allSources.filter(source=>!['registry-nct07808073','registry-nct07866066'].includes(source.id));
  const health={sources:reviewedSources.map(review=>{

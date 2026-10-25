@@ -1,8 +1,13 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import renewal from './reviews/2026-10-11-authorised-rgt-vct-source-renewal.json' with {type:'json'};
 import {sources} from './data.mjs';
 import {industry} from './industry.mjs';
+
+const retrospectiveCurrent_industry=industry;
+
+const retrospectiveCurrent_sources=sources;
 
 test('six overdue RGT-075 and VCT220 registry sources are renewed only after factual review',()=>{
  assert.equal(renewal.registrySources.length,6);
@@ -44,6 +49,10 @@ test('source renewal does not silently renew the separate programme-summary queu
 });
 
 test('renewal preserves ZP6590 pending-delayed uncertainty and all source counts',()=>{
+ // Preserve this dated review receipt against its exact before-image.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+
  assert.equal(sources.length,204);
  const zp=sources.find(source=>source.id==='zealand-zp6590-pipeline');
  assert.ok(zp);

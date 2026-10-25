@@ -1,3 +1,4 @@
+import {industryBeforeRetrospective,sourcesBeforeRetrospective} from './retrospective-catchup.mjs';
 import {programmeSummaryQueueAtReceipt,catalogueBeforeSuccessor} from './review-history-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -11,6 +12,10 @@ const expected={
  'bivamelagon-rhythm-20250709':{url:'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon',checkUrl:'https://ir.rhythmtx.com/node/12446/pdf',fingerprint:'9f0faf3cb0d4f6b24e93601eee0a6090ef2f604e8e22b3cc9315dd3e67343805'},
  'rm718-rhythm-20260804':{url:'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-preliminary-data-phase-2-trial',checkUrl:'https://ir.rhythmtx.com/node/13501/pdf',fingerprint:'d10fbca2dfa163968fa0dd3fc406d5a15118fbe5b1d23339455e54ebb3805fa6'}
 };
+
+const retrospectiveCurrent_industry=industry;
+const retrospectiveCurrent_sources=sources;
+const retrospectiveCurrent_registrySources=registrySources;
 
 test('Rhythm public evidence links stay fixed while only official PDF check routes replace denied HTML checks',()=>{
  assert.equal(receipt.publicationStatus,'owner_authorised_source_monitor_repair');assert.equal(receipt.clinicalApproval,null);assert.equal(receipt.industryComplete,false);
@@ -30,6 +35,11 @@ test('reviewed fingerprints are the immutable exact bytes of both complete offic
 });
 
 test('source-route repair preserves catalogue, claims, queues and unresolved ZP6590 boundaries',()=>{
+ // Dated receipt assertions use its exact pre-19-October catalogue; current invariants remain separate.
+ const industry=industryBeforeRetrospective(retrospectiveCurrent_industry);
+ const sources=sourcesBeforeRetrospective(retrospectiveCurrent_sources);
+ const registrySources=sourcesBeforeRetrospective(retrospectiveCurrent_registrySources);
+
  assert.equal(medicines.length+industry.length,119);assert.equal(sources.length,204);assert.equal(registrySources.length,139);assert.equal(programmeSummaryQueueAtReceipt([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,69);
  assert.deepEqual(receipt.monitoring,{sourceCountBefore:204,sourceCountAfter:204,configuredSourceReviewQueueBefore:0,configuredSourceReviewQueueAfter:0,priorCompletedReviews:39,completedReviewsAfter:40,programmeSummaryFactualReviewNeeded:69,thresholdsChanged:false,successesSeeded:false,expected:receipt.monitoring.expected});
  assert.equal(receipt.preserved.zp6590VerificationPending,true);assert.equal(receipt.preserved.zp6590CheckDelayed,true);assert.equal(receipt.preserved.monitoringFinished,false);
