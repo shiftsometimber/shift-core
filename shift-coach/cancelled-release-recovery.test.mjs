@@ -410,3 +410,6 @@ test('exact owned Continuity rollback retains only the original successful runti
  for(const patch of [{decision:'restore'},{run:1},{dataChanged:true},{customerRecordsRead:1},{ownedProof:{}},{restoredContinuityRuntimeProof:{...proof,failedDeployment:'other'}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},f.a));
  assert.throws(()=>verifiedStartingPoint(record,{...f.a,id:'other'}));
 });
+
+// Exercise the finite serving-baseline extension in the unchanged original source command.
+await import('../tests/foundayo-current-runtime-20261025.test.mjs');

@@ -1,3 +1,4 @@
+import {FOUNDAYO_RUNTIME,verifyFoundayoRuntimeWindow,foundayoStartingPoint,assertSameFoundayoWindow} from './foundayo-current-runtime-20261025.mjs';
 import {GRUB_RANKING_FINAL_CSS_OWNED_ROLLBACK,verifyCurrentGrubRankingFinalCssOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {GRUB_RANKING_CSS_OWNED_ROLLBACK,verifyCurrentGrubRankingCssOwnedRollbackWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
 import {ACCEPTED_GRUB_RANKING_RUNTIME,ACCEPTED_GRUB_RANKING_RUNTIME_KIND,ACCEPTED_GRUB_FULL_RUNTIME_KIND,verifyCurrentAcceptedGrubRankingRuntimeWindow,acceptedGrubRankingCurrentStartingPoint,assertSameAcceptedGrubRankingCurrentWindow} from './accepted-current-runtime-starting-point-20261017.mjs';
@@ -35,7 +36,13 @@ const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 const baselineRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
 let point;
-if(active.id===GRUB_RANKING_FINAL_CSS_OWNED_ROLLBACK.deployment.id){
+if(active.id===FOUNDAYO_RUNTIME.deployment){
+ assert(baselineRecord.foundayoServingProof,'Exact approved Foundayo recovery proof required');
+ foundayoStartingPoint(baselineRecord.foundayoServingProof,active);
+ const refreshed=await verifyFoundayoRuntimeWindow({proof:historicalProof,wrangler,stage:'adoption'});
+ assertSameFoundayoWindow(baselineRecord.foundayoServingProof,refreshed);
+ point=foundayoStartingPoint(refreshed,active);
+}else if(active.id===GRUB_RANKING_FINAL_CSS_OWNED_ROLLBACK.deployment.id){
  assert(baselineRecord.grubRankingCssOwnedRollbackProof,'Exact failed39124533926 owned final-CSS restoration receipt required');
  ownedRollbackStartingPoint(baselineRecord.grubRankingCssOwnedRollbackProof,active);
  const refreshedProof=await verifyCurrentGrubRankingFinalCssOwnedRollbackWindow({proof:historicalProof,wrangler,stage:'adoption'});
@@ -111,10 +118,13 @@ if(active.id===GRUB_RANKING_FINAL_CSS_OWNED_ROLLBACK.deployment.id){
  point=await exactPhotoStartingPoint(baselineRecord,active,JSON.parse(wrangler('versions','view',PHOTO_CANCELLED.version,'--json')),get,getLogs,getArtifact,inventory,freshSnapshot);
  mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/photo-baseline-starting-point.json',JSON.stringify(point,null,2));
 }else point=verifiedStartingPoint(baselineRecord,active);
-if(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).currentRuntimePreservation20261016&&point.kind!==ACCEPTED_CURRENT_RUNTIME_KIND)assertPreservedRuntimeLineage(point);
+if(JSON.parse(readFileSync('release/approved-runtime-composition.json','utf8')).currentRuntimePreservation20261016&&point.kind!==ACCEPTED_CURRENT_RUNTIME_KIND&&point.kind!==FOUNDAYO_RUNTIME.kind)assertPreservedRuntimeLineage(point);
 const BASE=point.source,VERSION=point.version;
 let receipt={id:null};
-if(point.kind===ACCEPTED_GRUB_RANKING_RUNTIME_KIND){
+if(point.kind===FOUNDAYO_RUNTIME.kind){
+ // Exact immutable serving code/bindings and fresh stock were independently rechecked above.
+ // This was an owner-authorised local release, not a successful hosted promotion.
+}else if(point.kind===ACCEPTED_GRUB_RANKING_RUNTIME_KIND){
  receipt={id:ACCEPTED_GRUB_RANKING_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_GRUB_RANKING_RUNTIME_KIND,originalReleaseStatus:ACCEPTED_GRUB_RANKING_RUNTIME.status,featureAcceptance:false,clinicalContractActivated:false};
 }else if(point.kind===ACCEPTED_GRUB_FULL_RUNTIME_KIND){
  receipt={id:ACCEPTED_GRUB_FULL_RUNTIME.run,conclusion:'success',evidenceKind:ACCEPTED_GRUB_FULL_RUNTIME_KIND,originalReleaseStatus:ACCEPTED_GRUB_FULL_RUNTIME.status,featureAcceptance:false,clinicalContractActivated:false};
