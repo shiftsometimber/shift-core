@@ -185,6 +185,10 @@ export function assertWebsiteEditorialCompletionView(view){assert(admittedViews.
 export function websiteEditorialCompletionOriginalSource(path,bytes,view=websiteEditorialCompletionHistoricalView()){
  assertWebsiteEditorialCompletionView(view);
  assert.equal(bytes,content(view.rawHead,path),'Website-editorial-completion source drift: exact current fixture source required');
+ // The admitted factory verifies the complete actual extension, then runs its
+ // unchanged historical assertions at this exact immutable TRT predecessor.
+ // Authenticate every supplied raw-current byte above before the same projection.
+ if(!TRT_PATHS.includes(path))bytes=content(TRT_BASE,path);
  if(path===ledger){
   const actual=JSON.parse(bytes),current=actual[key],{maintenanceSource,...fixed}=current??{};
   assert.deepEqual(fixed,policy.record,'Website-editorial-completion source drift: exact fixture record required');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);

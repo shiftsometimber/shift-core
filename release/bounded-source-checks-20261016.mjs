@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {originalHeaderPreviewCommandEnv} from './shared-header-preview-20261025.mjs';
 import {sourceAuthority,productionContext,makeScopeEvidence} from './verified-source-evidence-20261016.mjs';
 import {spawn,execFileSync} from 'node:child_process';
 import {mkdirSync,readFileSync,writeFileSync,appendFileSync,renameSync,existsSync} from 'node:fs';
@@ -7,6 +8,21 @@ import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+// Read-only progress from the owned child tree, without Git scans, commands,
+// arguments, credentials or test payloads. Missing diagnostics never change gates.
+function sourceChildProcesses(root){
+ if(process.platform!=='linux')return {available:false,reason:'linux-proc-unavailable'};
+ const rows=[],queued=[root],seen=new Set();
+ while(queued.length&&seen.size<64){
+  const pid=queued.shift();if(seen.has(pid))continue;seen.add(pid);
+  try{
+   const stat=readFileSync('/proc/'+pid+'/stat','utf8'),close=stat.lastIndexOf(')'),values=stat.slice(close+2).trim().split(/\s+/);
+   rows.push({pid,command:stat.slice(stat.indexOf('(')+1,close),state:values[0],startTick:values[19],cpuTicks:Number(values[11])+Number(values[12]),completedChildCpuTicks:Number(values[13])+Number(values[14]),wait:readFileSync('/proc/'+pid+'/wchan','utf8').trim()});
+   queued.push(...readFileSync('/proc/'+pid+'/task/'+pid+'/children','utf8').trim().split(/\s+/).filter(Boolean).map(Number));
+  }catch{}
+ }
+ return {available:rows.length>0,truncated:queued.length>0,rows};
+}
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64*1024*1024});
 const gitBlob=bytes=>createHash('sha1').update('blob '+Buffer.byteLength(bytes)+'\0').update(bytes).digest('hex');
 export function sourceSnapshot(){
@@ -51,7 +67,7 @@ export async function runBoundedChecks(tasks,{proofDir,poolId,snapshot=sourceSna
  const state=()=>({poolId,maxConcurrent:2,active,cancelled,finishedAt,sourceBefore,sourceAfter,sourceUnchanged,evidenceFailed:errors.length>0,errors,results,events});
  const evidence=(operation,fn)=>{try{return fn();}catch(error){errors.push({operation,code:typeof error.code==='string'?error.code:'EVIDENCE_ERROR'});return undefined;}};
  const save=()=>evidence('status',()=>{writeFileSync(join(proofDir,'status.json.tmp'),JSON.stringify(state(),null,2)+'\n');renameSync(join(proofDir,'status.json.tmp'),join(proofDir,'status.json'));});
- const record=(event,details={})=>{events.push({at:now(),event,active,...details});save();evidence('progress',()=>process.stdout.write('['+poolId+'] '+event+(details.id?' '+details.id:'')+' active='+active+'\n'));};
+ const record=(event,details={})=>{events.push({at:now(),event,active,...details});save();evidence('progress',()=>process.stdout.write('['+poolId+'] '+event+(details.id?' '+details.id:'')+' active='+active+(details.status?' status='+details.status+' exitCode='+details.exitCode:'')+(details.childProgress?' childProgress='+JSON.stringify(details.childProgress):'')+'\n'));};
  writeFileSync(join(proofDir,'commands.json'),JSON.stringify({poolId,maxConcurrent:2,tasks},null,2)+'\n');
  for(const task of tasks)for(const suffix of ['.stdout.log','.stderr.log','.log','.outputs'])writeFileSync(join(proofDir,task.id+suffix),'');
  save();
@@ -64,7 +80,7 @@ export async function runBoundedChecks(tasks,{proofDir,poolId,snapshot=sourceSna
   }
  }
  const onTerm=()=>stop('SIGTERM'),onInt=()=>stop('SIGINT');process.on('SIGTERM',onTerm);process.on('SIGINT',onInt);
- const heartbeat=setInterval(()=>record('heartbeat',{running:[...children.keys()]}),30000);heartbeat.unref();
+ const heartbeat=setInterval(()=>record('heartbeat',{running:[...children.keys()],childProgress:[...children].map(([id,owned])=>({id,stdoutBytes:owned.outputBytes.stdout,stderrBytes:owned.outputBytes.stderr,processes:sourceChildProcesses(owned.child.pid)}))}),30000);heartbeat.unref();
  try{
   record('started');
   await new Promise(resolveDone=>{
@@ -93,12 +109,12 @@ export async function runBoundedChecks(tasks,{proofDir,poolId,snapshot=sourceSna
      record('command-finished',{id:task.id,status:result.status,exitCode:code,signal});pump();
     };
     try{
-     const child=spawn('bash',['--noprofile','--norc','-e','-o','pipefail','-c',task.body],{env:{...env,GITHUB_OUTPUT:join(proofDir,task.id+'.outputs')},stdio:['ignore','pipe','pipe'],detached:true});
-     owned={child,escalation:null};children.set(task.id,owned);result.pid=child.pid??null;record('command-started',{id:task.id,pid:result.pid});
+     const child=spawn('bash',['--noprofile','--norc','-e','-o','pipefail','-c',task.body],{env:{...originalHeaderPreviewCommandEnv(task,env,poolId),GITHUB_OUTPUT:join(proofDir,task.id+'.outputs')},stdio:['ignore','pipe','pipe'],detached:true});
+     owned={child,escalation:null,outputBytes:{stdout:0,stderr:0}};children.set(task.id,owned);result.pid=child.pid??null;record('command-started',{id:task.id,pid:result.pid});
      child.once('error',error=>finish(null,null,typeof error.code==='string'?error.code:'SPAWN_ERROR'));
      child.once('close',(code,signal)=>finish(code,signal));
      for(const name of ['stdout','stderr']){
-      child[name].on('data',chunk=>{evidence(task.id+'-'+name,()=>appendFileSync(join(proofDir,task.id+'.'+name+'.log'),chunk));evidence(task.id+'-combined',()=>appendFileSync(join(proofDir,task.id+'.log'),chunk));});
+      child[name].on('data',chunk=>{owned.outputBytes[name]+=chunk.length;evidence(task.id+'-'+name,()=>appendFileSync(join(proofDir,task.id+'.'+name+'.log'),chunk));evidence(task.id+'-combined',()=>appendFileSync(join(proofDir,task.id+'.log'),chunk));});
       child[name].on('error',error=>errors.push({operation:task.id+'-'+name,code:typeof error.code==='string'?error.code:'STREAM_ERROR'}));
      }
     }catch(error){finish(null,null,typeof error.code==='string'?error.code:'SPAWN_ERROR');}
