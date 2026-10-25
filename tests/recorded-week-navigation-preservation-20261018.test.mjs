@@ -1,3 +1,17 @@
+import {spawn as spawnNavigationChild} from 'node:child_process';
+// Keep the original child deadline/output bounds while allowing the test
+// runner to drain its own streams and IPC during native child verification.
+function runNavigationChild(args,{cwd,timeout,maxBuffer}){
+ return new Promise(resolve=>{
+  const child=spawnNavigationChild(process.execPath,args,{cwd,stdio:['ignore','pipe','pipe']});
+  const chunks={stdout:[],stderr:[]},sizes={stdout:0,stderr:0};let error=null,killTimer;
+  const stop=code=>{if(error)return;error=Object.assign(new Error(code),{code});child.kill('SIGTERM');killTimer=setTimeout(()=>child.kill('SIGKILL'),250);};
+  const timer=setTimeout(()=>stop('ETIMEDOUT'),timeout);
+  for(const name of ['stdout','stderr'])child[name].on('data',bytes=>{sizes[name]+=bytes.length;if(sizes[name]>maxBuffer)stop('ENOBUFS');else chunks[name].push(bytes);});
+  child.once('error',e=>{error=e;});
+  child.once('close',code=>{clearTimeout(timer);clearTimeout(killTimer);resolve({status:error?null:code,error,stdout:Buffer.concat(chunks.stdout).toString('utf8'),stderr:Buffer.concat(chunks.stderr).toString('utf8')});});
+ });
+}
 import {qualifyJoinedSuccessor} from '../release/my-timber-joined-look-scope-20261024.mjs';
 import {websiteEditorialCompletionHistoricalView,websiteEditorialCompletionOriginalSource} from '../release/website-editorial-scope-20261018.mjs';
 import test from 'node:test';
@@ -89,7 +103,7 @@ test('a supplied navigation reader cannot hide changed working source inside a c
   execFileSync('git',['clone','--no-hardlinks','--no-checkout',process.cwd(),directory],{stdio:'pipe'});
   execFileSync('git',['checkout','--detach','HEAD'],{cwd:directory,stdio:'pipe'});
   const script="import assert from 'node:assert/strict';import {readFileSync,writeFileSync,appendFileSync} from 'node:fs';import {execFileSync} from 'node:child_process';import {withImmutableHistoryVerification} from './release/immutable-git-facts.mjs';import {actualNavigationOuterFrame} from './release/recorded-week-navigation-outer-frame-20261018.mjs';withImmutableHistoryVerification(()=>{const frame=actualNavigationOuterFrame();assert(frame);const p='scheduled-knowledge-v1.js',before=readFileSync(p);try{assert.throws(()=>frame.projectRead((r,path)=>{appendFileSync(p,'\\n// transient supplied-reader working change\\n');return execFileSync('git',['rev-parse',(r==='HEAD'?frame.rawHead:r)+':'+path],{encoding:'utf8'}).trim();})('HEAD','wrangler.jsonc'),/working|source drift|clean|tracked/i);}finally{writeFileSync(p,before);}assert.equal(execFileSync('git',['diff','--no-renames','--name-only','HEAD','--'],{encoding:'utf8'}).trim(),'');});console.log('transient-callback-drift-rejected');";
-  const result=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:directory,encoding:'utf8',timeout:45000,maxBuffer:64e6});
+  const result=await runNavigationChild(['--input-type=module','-e',script],{cwd:directory,timeout:45000,maxBuffer:64e6});
   assert.equal(result.status,0,result.stderr||String(result.error));assert.match(result.stdout,/transient-callback-drift-rejected/);
  }finally{rmSync(directory,{recursive:true,force:true});}
 });
@@ -100,7 +114,7 @@ test('parallel stat-only index refresh can finish, while sustained writers and c
  try{
   execFileSync('git',['clone','--no-hardlinks','--no-checkout',process.cwd(),directory],{stdio:'pipe'});execFileSync('git',['checkout','--detach','HEAD'],{cwd:directory,stdio:'pipe'});
   const script="import assert from 'node:assert/strict';import {existsSync,readFileSync,writeFileSync,rmSync} from 'node:fs';import {spawn} from 'node:child_process';import {actualNavigationOuterFrame} from './release/recorded-week-navigation-outer-frame-20261018.mjs';\nconst lock='.git/index.lock',pause=new Int32Array(new SharedArrayBuffer(4));\nasync function transient(change,body){\n const workerCode=\"import{writeFileSync,rmSync}from'node:fs';writeFileSync('.git/index.lock','controlled native stat-refresh fixture');\"+(change?\"writeFileSync('scheduled-knowledge-v1.js','changed while an index writer is active\\\\n');\":\"\")+\"setTimeout(()=>{rmSync('.git/index.lock');},150);\";\n const worker=spawn(process.execPath,['--input-type=module','-e',workerCode],{stdio:'pipe'}),deadline=Date.now()+1500;\n while(!existsSync(lock)&&Date.now()<deadline)Atomics.wait(pause,0,0,10);\n assert(existsSync(lock),'The concurrent writer fixture must actually hold the index lock');\n try{body();}finally{await new Promise(resolve=>worker.once('close',resolve));}\n}\nawait transient(false,()=>{const frame=actualNavigationOuterFrame();assert(frame);frame.assertCurrent();frame.finish();});\nconst file='scheduled-knowledge-v1.js',before=readFileSync(file);try{await transient(true,()=>assert.throws(()=>actualNavigationOuterFrame(),error=>error instanceof assert.AssertionError&&String(error.actual).includes(file)));}finally{writeFileSync(file,before);}\nwriteFileSync(lock,'controlled sustained writer');try{assert.throws(()=>actualNavigationOuterFrame(),/source-index writer is active/);}finally{rmSync(lock);}\nconsole.log('transient-stat-reader-completed-real-source-drift-and-sustained-writer-rejected');\n";
-  const result=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:directory,encoding:'utf8',timeout:45000,maxBuffer:64e6});
+  const result=await runNavigationChild(['--input-type=module','-e',script],{cwd:directory,timeout:45000,maxBuffer:64e6});
   assert.equal(result.status,0,result.stderr||String(result.error));assert.match(result.stdout,/transient-stat-reader-completed-real-source-drift-and-sustained-writer-rejected/);
  }finally{rmSync(directory,{recursive:true,force:true});}
 });

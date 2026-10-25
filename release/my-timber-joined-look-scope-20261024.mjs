@@ -291,7 +291,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/member-recording-repair-20261024.mjs": "143cd952ff0a7451f9f03ce4b9b1fb7bec022a36",
     "release/recorded-week-navigation-outer-frame-20261018.mjs": "ca72d494fe184454f2ead322799f338cace09ce5",
     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
-    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "c097fb38075a49d26a0b4bd4d817bcbdc0f4a37e",
+    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "70d95c71c321360f8694257b8dd6924bca0478d3",
     "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353",
     "release/immutable-git-facts.mjs": "976cf129e5721e18ab068d721053babed2e94f87",
     "tests/approved-news-ticker-frame-20261024.test.mjs": "a030138c2a7a33b1a6a13daa803252b48b5f6a79",
