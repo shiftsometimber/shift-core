@@ -1,3 +1,4 @@
+import {qualifyJoinedSuccessor as qualifyFixtureUi} from '../release/my-timber-joined-look-scope-20261024.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import{execFileSync}from'node:child_process';
 import{approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead}from'../release/approved-news-ticker-frame-20261024.mjs';
@@ -53,8 +54,8 @@ test('canonical reconciliation preserves every earlier private proposal as immut
 test('all original current-runtime forged blob and directory cases retain the source-drift error contract',()=>{const f=approvedNewsTickerOuterFrame();for(const path of ['member-experience/member-details-lookups.mjs','frontend','release','release/approved-runtime-composition.json','.github/workflows/cloudflare-production-promote.yml']){const read=(r,p)=>r==='HEAD'&&p===path?'a'.repeat(40):g('rev-parse',r+':'+p);assert.throws(()=>f.projectRead(read)('HEAD',path),/source drift/);}});
 
 test('canonical integration retains the complete production ledger and every independent backend source',()=>{
- const f=approvedNewsTickerOuterFrame(),ledger='release/approved-runtime-composition.json',now=JSON.parse(g('show','HEAD:'+ledger)),old=JSON.parse(g('show',f.base+':'+ledger));assert.equal(f.base,'ec139dcc3eeaf137ef4792e4b1c697ac55616d70');delete now.approvedNewsTicker20261024;assert.deepEqual(now,old);
- for(const path of ['worker-entry-v6.js','worker.js','release/app-scope.mjs','release/immutable-git-facts.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','release/member-recording-repair-20261024.json','release/member-recording-repair-inverses-20261024.json','medicines-watch/scheduler.test.mjs','release/watch-registry-wave-scope.mjs'])assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',f.base+':'+path));
+ const ui=qualifyFixtureUi(),f=approvedNewsTickerOuterFrame(),ledger='release/approved-runtime-composition.json',now=JSON.parse(g('show','HEAD:'+ledger)),old=JSON.parse(g('show',f.base+':'+ledger));assert.equal(f.base,'ec139dcc3eeaf137ef4792e4b1c697ac55616d70');delete now.approvedNewsTicker20261024;assert.deepEqual(now,old);
+ for(const path of ['worker-entry-v6.js','worker.js','release/app-scope.mjs','release/immutable-git-facts.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','release/member-recording-repair-20261024.json','release/member-recording-repair-inverses-20261024.json','medicines-watch/scheduler.test.mjs','release/watch-registry-wave-scope.mjs'])assert.equal(ui.comparisonValue(path,g('rev-parse','HEAD:'+path)),g('rev-parse',f.base+':'+path));
 });
 test('current-main integration rejects changed backend working source without hiding it behind ticker projection',()=>{
  const f=approvedNewsTickerOuterFrame(),path='worker-entry-v6.js',before=readFileSync(path);

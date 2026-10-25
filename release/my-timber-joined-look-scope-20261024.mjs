@@ -8,6 +8,7 @@ import {createHash} from 'node:crypto';
 // existing synchronous historical comparison frames update builtin bindings.
 // Qualification never accepts or calls a supplied reader.
 const nativeExecFileSync=execFileSync,nativeReadFileSync=readFileSync,nativeLstatSync=lstatSync,nativeRealpathSync=realpathSync;
+const nativeBufferEquals=Function.prototype.call.bind(Buffer.prototype.equals),nativeBufferFrom=Buffer.from.bind(Buffer);
 
 const SHA=/^[a-f0-9]{40}$/;
 const sorted=values=>[...values].sort();
@@ -28,11 +29,11 @@ function repository(cwd){
  const overrides=Object.keys(process.env).filter(k=>/^GIT_(?:DIR|WORK_TREE|INDEX_FILE|OBJECT_DIRECTORY|ALTERNATE_OBJECT_DIRECTORIES|COMMON_DIR|CONFIG|CONFIG_PARAMETERS|CONFIG_COUNT|CONFIG_KEY_|CONFIG_VALUE_)/.test(k));
  assert.equal(overrides.length,0,'Git source overrides are forbidden: '+overrides.join(','));
  let commands=0;
- const run=(...args)=>{commands++;return nativeExecFileSync('git',['--no-replace-objects',...args],{cwd,encoding:'utf8',maxBuffer:64*1024*1024,stdio:['ignore','pipe','pipe']});};
+ const run=(...args)=>{commands++;return nativeExecFileSync('git',['--no-optional-locks','--no-replace-objects',...args],{cwd,encoding:'utf8',maxBuffer:64*1024*1024,stdio:['ignore','pipe','pipe']});};
  const top=nativeRealpathSync(run('rev-parse','--show-toplevel').trim());
  assert.equal(nativeRealpathSync(cwd),top,'Run qualification from the actual checkout root');
  assert.equal(run('for-each-ref','--format=%(refname)','refs/replace').trim(),'','Replacement Git history is forbidden');
- const bytes=(ref,file)=>nativeExecFileSync('git',['--no-replace-objects','show',ref+':'+safePath(file)],{cwd,maxBuffer:64*1024*1024,stdio:['ignore','pipe','pipe']});
+ const bytes=(ref,file)=>nativeExecFileSync('git',['--no-optional-locks','--no-replace-objects','show',ref+':'+safePath(file)],{cwd,maxBuffer:64*1024*1024,stdio:['ignore','pipe','pipe']});
  const blob=(ref,file)=>run('rev-parse',ref+':'+safePath(file)).trim();
  const changes=(a,b)=>run('diff','--no-renames','--name-status',a,b).trim().split('\n').filter(Boolean).map(line=>{
   const parts=line.split('\t');assert.equal(parts.length,2,'Renamed or malformed path rejected');
@@ -51,26 +52,36 @@ function repository(cwd){
  for(const dir of dirs)for(const name of['HEAD','index','config','config.worktree','packed-refs','info/grafts','shallow'])metadata.add(path.join(dir,name));
  try{const ref=run('symbolic-ref','-q','HEAD').trim();for(const dir of dirs)metadata.add(path.join(dir,ref));}catch{}
  for(const line of run('config','--show-origin','--list').split('\n')){const origin=line.split('\t')[0];if(origin.startsWith('file:'))metadata.add(path.resolve(top,origin.slice(5)));}
- const digest=file=>{try{return createHash('sha256').update(nativeReadFileSync(file)).digest('hex');}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+ // Reuse deterministic hashes only after a fresh complete native read proves
+ // actual byte equality. No timestamp, inode or earlier approval substitutes
+ // for a current byte read; cached buffers never leave this repository closure.
+ const authenticatedFiles=new Map();
+ const nativeFile=file=>{
+  const bytes=nativeReadFileSync(file),prior=authenticatedFiles.get(file);
+  if(prior&&nativeBufferEquals(bytes,prior.bytes))return prior;
+  const row={bytes,blob:oid(bytes),sha256:createHash('sha256').update(bytes).digest('hex')};
+  authenticatedFiles.set(file,row);return row;
+ };
+ const digest=file=>{try{return nativeFile(file).sha256;}catch(e){if(e.code==='ENOENT')return null;throw e;}};
  const snapshot=()=>({environment:environment(),files:new Map([...metadata].map(file=>[file,digest(file)]))});
  const checkSnapshot=prior=>{assert.equal(environment(),prior.environment,'Native execution environment changed');assert.equal(nativeRealpathSync(cwd),top,'Actual checkout root changed');for(const[file,pin]of prior.files)assert.equal(digest(file),pin,'Native Git HEAD/config/index changed: '+file);};
- return{top,run,bytes,blob,changes,ancestor,tree,snapshot,checkSnapshot,commandCount:()=>commands};
+ return{top,run,bytes,blob,changes,ancestor,tree,snapshot,checkSnapshot,nativeFile,commandCount:()=>commands};
 }
 function clean(repo,head){
  assert.equal(repo.run('rev-parse','HEAD').trim(),head,'Actual source HEAD moved');
- assert.equal(repo.run('diff','--no-ext-diff','--name-only','HEAD','--').trim(),'','Tracked worktree source is dirty');
+ assert.equal(repo.run('-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--patch','--binary','HEAD','--').length,0,'Tracked worktree source is dirty');
  assert.equal(repo.run('diff','--no-ext-diff','--cached','--name-only','--').trim(),'','Index source is dirty');
  const entries=repo.run('ls-files','-v','-z').split('\0').filter(Boolean);
  assert(!entries.some(e=>e[0]==='S'||/^[a-z]$/.test(e[0])),'Hidden assume-unchanged/skip-worktree files are forbidden');
 }
-function physical(repo,head,file,pin,tree){
+function physical(repo,head,file,pin,tree,returnBytes=true){
  const entry=tree.get(file);
  assert(entry&&entry.mode==='100644'&&entry.type==='blob'&&entry.oid===pin,'Regular committed source required: '+file);
  const absolute=path.join(repo.top,file),stat=nativeLstatSync(absolute);
  assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular physical source required: '+file);
- const bytes=nativeReadFileSync(absolute);
- assert.equal(oid(bytes),pin,'Actual current source bytes changed: '+file);
- return bytes;
+ const authenticated=repo.nativeFile(absolute);
+ assert.equal(authenticated.blob,pin,'Actual current source bytes changed: '+file);
+ return returnBytes?nativeBufferFrom(authenticated.bytes):undefined;
 }
 function validateContract(c){
  exactKeys(c,['kind','base','payload','payloadBlobs','payloadStatuses','maintenancePaths','maintenanceExpected','generatedPaths','inversePath','receiptPath','authority'],'Exact finite successor contract required');
@@ -168,7 +179,7 @@ function qualifyFiniteSuccessor(contract,options={}){
    if(!activeQualification||activeQualification.proof.actualHead!==actualHead)this.assertCurrent();
    const actual=physical(repo,actualHead,file,pins[file],currentTree);
    assert(Buffer.isBuffer(currentBytes),'Projection requires the actual full current file bytes');
-   assert(currentBytes.equals(actual),'Projection input must match qualified actual current bytes');
+   assert(nativeBufferEquals(currentBytes,actual),'Projection input must match qualified actual current bytes');
    const restored=originalBuffers.get(file);assert.equal(oid(restored),originalTree.get(file).oid,'Predecessor inverse changed');
    return Buffer.from(restored);
   },
@@ -185,7 +196,7 @@ function qualifyFiniteSuccessor(contract,options={}){
   },
   assertOwnedBytes(){
    repo.checkSnapshot(nativeSnapshot);
-   for(const[file,pin]of Object.entries(pins))physical(repo,actualHead,file,pin,currentTree);
+   for(const[file,pin]of Object.entries(pins))physical(repo,actualHead,file,pin,currentTree,false);
   },
   assertBinding(actual){
    if(actual!==undefined)assert.equal(actual,actualHead,'Actual successor HEAD argument changed');
@@ -250,16 +261,28 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
   },
   "maintenancePaths": [
     "member-experience/tests/weight-import-mapping-ui.test.mjs",
+    "release/app-client-proof.mjs",
     "release/app-scope.mjs",
+    "release/approved-independent-presentation-client-20261025.mjs",
     "release/approved-news-ticker-frame-20261024.mjs",
     "release/approved-runtime-composition.mjs",
+    "release/combined-original-gp-object-20261014.mjs",
     "release/health-vision-scope-20261021.mjs",
+    "release/immutable-git-facts.mjs",
     "release/member-design-scope.mjs",
     "release/member-recording-repair-20261024.mjs",
+    "release/my-shift-release-scope-20261024.mjs",
     "release/my-timber-joined-look-inverses-20261024.json",
     "release/my-timber-joined-look-scope-20261024.mjs",
     "release/recorded-week-navigation-outer-frame-20261018.mjs",
+    "release/testosterone-scope-20261021.mjs",
+    "release/website-editorial-scope-20261018.mjs",
     "shift-coach/release.test.mjs",
+    "tests/app-client-proof.test.mjs",
+    "tests/approved-news-ticker-frame-20261024.test.mjs",
+    "tests/combined-original-gp-object-20261014.test.mjs",
+    "tests/joined-native-byte-reuse-20261025.test.mjs",
+    "tests/member-recording-repair-admission-20261024.test.mjs",
     "tests/native-restored-source-stats-20261025.test.mjs",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs"
   ],
@@ -268,13 +291,25 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
     "release/approved-news-ticker-frame-20261024.mjs": "8dc057d931a8e5d9dae70e473665aaf931218430",
     "release/approved-runtime-composition.mjs": "10877f644f57e58e87fa5e21a8fd1ef7a408e643",
-    "release/health-vision-scope-20261021.mjs": "f81d0cd6c7a8230d47611bb46f1e7cb3e23d61b1",
+    "release/health-vision-scope-20261021.mjs": "5cdf60687e7b6a5a859da3723fcc4656c78f6ad1",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
-    "release/member-recording-repair-20261024.mjs": "69074d48545aafdeea7d645523db478abc1200ad",
-    "release/recorded-week-navigation-outer-frame-20261018.mjs": "45fb436ebecd433c0b1fc5823f531cef6c1da660",
+    "release/member-recording-repair-20261024.mjs": "143cd952ff0a7451f9f03ce4b9b1fb7bec022a36",
+    "release/recorded-week-navigation-outer-frame-20261018.mjs": "ca72d494fe184454f2ead322799f338cace09ce5",
     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
-    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "c097fb38075a49d26a0b4bd4d817bcbdc0f4a37e",
-    "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353"
+    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "70d95c71c321360f8694257b8dd6924bca0478d3",
+    "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353",
+    "release/immutable-git-facts.mjs": "976cf129e5721e18ab068d721053babed2e94f87",
+    "tests/approved-news-ticker-frame-20261024.test.mjs": "a030138c2a7a33b1a6a13daa803252b48b5f6a79",
+    "tests/member-recording-repair-admission-20261024.test.mjs": "df9bd0992c08d2125fa1159dabb720a9b29dbe88",
+    "release/testosterone-scope-20261021.mjs": "f5c6a0b2fdefab6a70dc486e697ca7c20b336551",
+    "release/website-editorial-scope-20261018.mjs": "b9215815c96d3387eaac2ec752c84f0be9ed3138",
+    "release/my-shift-release-scope-20261024.mjs": "54c0fd7a0f7ea5f96e336e920e7d9045af05d497",
+    "tests/joined-native-byte-reuse-20261025.test.mjs": "78902ef8428ff754d9d79f0d687e94e96207112f",
+    "release/combined-original-gp-object-20261014.mjs": "cddbe4430c3d4f66d7f4a63b752f3b12789b54b6",
+    "tests/combined-original-gp-object-20261014.test.mjs": "c9aa5890ac7ca86e570b91e9e7932b137343f224",
+    "release/approved-independent-presentation-client-20261025.mjs": "26cd3ccd397516615bfde34669dfd9feaecf59b1",
+    "release/app-client-proof.mjs": "6a7d9defa3f018299a09d0b4189138ec6d0d3bf1",
+    "tests/app-client-proof.test.mjs": "dbefca0d649376b5e71abb71fcd60a66eb0ec19a"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",

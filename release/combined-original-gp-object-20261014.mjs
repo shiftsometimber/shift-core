@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 export const ORIGINAL_GP_SOURCE='fd2782d745295ee9fd80a28ed7eae642aedc566d';
 export const ORIGINAL_GP_TREE='4663a5fd968343c29e70322d148e7dc8d598f094';
 export const ORIGINAL_GP_BLOBS=Object.freeze({'hq-management-entry.mjs':'f14b4245a0b8a7db2b59ee993e4f30ddb080700d','hq-management-api.mjs':'0fe7b82f4a082d575c09ecf9034962251898cabf'});
-const rawGit=args=>execFileSync('git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6});
+const rawGit=args=>execFileSync('git',['--no-optional-locks','--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6});
 const fileState=path=>existsSync(path)?createHash('sha256').update(readFileSync(path)).digest('hex'):null;
 function transportState(git,state){
  assert.equal(git(['for-each-ref','refs/replace','--format=%(refname)']).trim(),'','Original GP provenance rejects replacement objects');

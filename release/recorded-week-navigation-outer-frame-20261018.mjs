@@ -1,3 +1,4 @@
+import {withMemberRecordingQualification as withNavigationActualSourceQualification} from './member-recording-repair-20261024.mjs';
 import {reuseExactNativeProjection as reuseNativeNavigationProof} from './scoped-native-projection-evidence.mjs';
 import {Buffer as sourceMetadataBuffer} from 'node:buffer';
 import {hash as sourceMetadataHash} from 'node:crypto';
@@ -33,13 +34,21 @@ function data(v,seen=new Set()){
  for(const[k,d]of Object.entries(Object.getOwnPropertyDescriptors(v))){if(Array.isArray(v)&&k==='length')continue;assert(Object.hasOwn(d,'value')&&!d.get&&!d.set);out[k]=data(d.value,seen);}
  seen.delete(v);return out;
 }
+function nativeNavigationWorkingSourceNames(){
+ const changed=git('-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--patch','--binary','HEAD','--');
+ if(changed.length===0)return '';
+ // Filename-only output includes stat-only paths on this Git version. It is
+ // diagnostic only after real full-content drift was established above.
+ const names=text('-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--name-only','HEAD','--');
+ return names||'[working source changed during native comparison]';
+}
 function clean(expected){
  assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire],native,'Native navigation source functions changed');
  assert(!Object.keys(process.env).some(k=>/^GIT_/.test(k)&&k!=='GIT_PAGER'),'Git source selectors are forbidden');
  const root=process.cwd(),dir=resolve(root,'.git');assert.equal(realpathSync(root),root);assert.equal(realpathSync(dir),dir);assert(lstatSync(dir).isDirectory()&&!lstatSync(dir).isSymbolicLink());
  for(const p of ['commondir','gitdir','info/grafts','objects/info/alternates','shallow'])assert(!existsSync(resolve(dir,p)),'Native source drift: ordinary complete native source required: '+p);
  assert.equal(text('rev-parse','--show-toplevel'),root);assert.equal(text('rev-parse','--git-common-dir'),'.git');assert.equal(text('for-each-ref','--format=%(refname)','refs/replace'),'');
- assert.equal(text('diff','--no-renames','--name-only','HEAD','--'),'','Native navigation working source changed');assert.equal(text('diff','--no-renames','--cached','--name-only','--'),'','Native navigation staged source changed');
+ assert.equal(nativeNavigationWorkingSourceNames(),'','Native navigation working source changed');assert.equal(text('diff','--no-renames','--cached','--name-only','--'),'','Native navigation staged source changed');
  for(const row of git('ls-files','-v','-z').toString('utf8').split('\0').filter(Boolean))assert(row.startsWith('H '),'Hidden/sparse/assume-unchanged source is forbidden');
  const h=head();assert(oid.test(h));if(expected)assert.equal(h,expected,'Actual navigation HEAD moved');return h;
 }
@@ -71,19 +80,10 @@ function prepareNativeNavigationIndexStats(){
  // A bounded one-second boundary avoids endlessly rehashing an unchanged tree.
  const wait=Math.floor(lstatSync(index).mtimeMs/1000)*1000+1001-Date.now();
  if(wait>0&&wait<=1100)Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,wait);
- const deadline=process.hrtime.bigint()+1100000000n;
- for(;;){
-  try{git('update-index','--refresh');break;}
-  catch(error){
-   const stderr=String(error.stderr??'');
-   if(!/Unable to create[^\n]*index\.lock[^\n]*File exists/.test(stderr)||process.hrtime.bigint()>=deadline)throw error;
-   waitForNativeIndexWriter(lock,deadline);
-   assert.equal(head(),rawHead,'Actual HEAD moved during a competing stat refresh');
-   assert(git('ls-files','--stage','-z').equals(staged),'Logical staged source changed during a competing stat refresh');
-   assert(git('ls-files','-v','-z').equals(visible),'Source visibility changed during a competing stat refresh');
-   clean(rawHead);
-  }
- }
+ // Stat descriptors may be rebound only after complete actual body
+ // authentication below. Verification itself never writes the native index.
+ // Preserve the original lock deadline and all logical-source assertions.
+ waitForNativeIndexWriter(lock,process.hrtime.bigint()+1100000000n);
  assert.equal(head(),rawHead,'Actual HEAD moved during stat-cache preparation');
  assert(git('ls-files','--stage','-z').equals(staged),'Logical staged source changed during stat-cache preparation');
  assert(git('ls-files','-v','-z').equals(visible),'Source visibility changed during stat-cache preparation');
@@ -494,12 +494,15 @@ function navigationEditorialProofFacts(outer){
 const nativeNavigationFrameOwner=Object.freeze({});
 export function actualNavigationOuterFrame(){
  const retained=reuseNativeNavigationProof(nativeNavigationFrameOwner,()=>{
+  prepareNativeNavigationIndexStats();
+  return withNavigationActualSourceQualification(()=>{
   // This factory has no supplied readers. Keep the actual privately admitted
   // frame, not any later projectRead/projectContent callback or its output.
   const frame=constructActualNavigationOuterFrame();
   if(frame===null)return null;
   frame.finish();
   return Object.freeze({nativeSource:true,assertCurrent:frame.assertCurrent,frame});
+ });
  });
  return retained?.frame??null;
 }

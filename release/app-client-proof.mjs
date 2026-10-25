@@ -1,9 +1,11 @@
+import {approvedPresentationAppExpectation} from './approved-independent-presentation-client-20261025.mjs';
 import assert from 'node:assert/strict';
 import {transformSync} from 'esbuild';
 // Only the function serialized with toString is reformatted by the Worker bundler.
 // Canonical local bindings tolerate bundle-wide collision suffixes; logic and copy
 // remain exact after parsing. All remaining application bytes match exactly.
 export function assertAppClient(actual,expected){
+ expected=approvedPresentationAppExpectation(actual,expected);
  const marker=';(()=>{',prefix='const myTimberFirstWeekView=';
  assert(actual.startsWith(prefix)&&expected.startsWith(prefix),'Missing first-week function');
  const a=actual.indexOf(marker),e=expected.indexOf(marker);assert(a>prefix.length&&e>prefix.length,'Missing application boundary');

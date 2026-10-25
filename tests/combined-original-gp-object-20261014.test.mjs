@@ -1,4 +1,5 @@
 import {COMBINED_FINITE_MAINTENANCE,COMBINED_FINITE_RECORD} from '../release/combined-finite-scope-20261014.mjs';
+import {readFileSync,writeFileSync} from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {ensureCombinedOriginalGpSource,ORIGINAL_GP_SOURCE,ORIGINAL_GP_TREE,ORIGINAL_GP_BLOBS} from '../release/combined-original-gp-object-20261014.mjs';
@@ -34,3 +35,12 @@ test('actual admitted source retains immutable GP provenance and raw Git source 
 });
 
 test('historical path admission includes exactly the current registered maintenance, including the two original-GP transport paths',()=>{assert.deepEqual([...COMBINED_FINITE_MAINTENANCE].sort(),[...COMBINED_FINITE_RECORD.maintenancePaths].sort());for(const path of ['release/combined-original-gp-object-20261014.mjs','tests/combined-original-gp-object-20261014.test.mjs'])assert.equal(COMBINED_FINITE_MAINTENANCE.includes(path),true);});
+
+test('native GP provenance checks preserve exact index bytes after restoring identical tracked content',()=>{
+ const file='worker-entry-v6.js',bytes=readFileSync(file),index=readFileSync('.git/index');
+ writeFileSync(file,bytes);
+ const result=ensureCombinedOriginalGpSource();
+ assert.equal(result.source,ORIGINAL_GP_SOURCE);
+ assert.deepEqual(readFileSync(file),bytes,'The restored source must remain exact');
+ assert.deepEqual(readFileSync('.git/index'),index,'Read-only GP provenance must not refresh index metadata');
+});
