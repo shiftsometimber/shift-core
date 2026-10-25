@@ -16,7 +16,7 @@ export async function presentationDocument(request,response){
  const path=new URL(request.url).pathname.replace(/\.html$/,'').replace(/\/+$/,''),rules=documents[path];
  if(request.method!=='GET'||!rules||response.status!==200||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
  const before=await response.text();
- if(!before.includes('data-member-experience="v1"')||!before.includes('data-member-design="20261001"'))return new Response(before,response);
+ if(!before.includes(rules[0][0])||!before.includes('data-member-experience="v1"')||!before.includes('data-member-design="20261001"'))return new Response(before,response);
  for(const [oldValue,newValue]of rules){
   if(oldValue===newValue){if(before.split(oldValue).length!==2)return new Response(before,response);}
   else if(before.split(oldValue).length!==2&&before.split(newValue).length!==2)return new Response(before,response);
