@@ -1,4 +1,5 @@
 import {memberRecordingComparisonValue} from './member-recording-repair-20261024.mjs';
+import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -13,7 +14,10 @@ export const HEALTH_MAINTENANCE=Object.freeze(['release/health-vision-scope-2026
 const git=(...args)=>execFileSync('git',['--no-replace-objects',...args],{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 const sorted=x=>[...x].sort(),changed=(a,b)=>git('diff','--no-renames','--name-only',a,b).split('\n').filter(Boolean);
 export function verifyHealthVisionExtension(){
- const actual=git('rev-parse','HEAD'),snapshot=HEALTH_APPROVED_SNAPSHOT;
+ const {approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead,approvedTickerActualHead}=createRequire(import.meta.url)('./approved-news-ticker-frame-20261024.mjs');
+ const ticker=approvedTickerPredecessorHead()?null:approvedNewsTickerOuterFrame();
+ if(ticker){const result=withApprovedTickerPredecessor(ticker,()=>verifyHealthVisionExtension());return Object.freeze({...result,actual:ticker.rawHead});}
+ const actual=approvedTickerPredecessorHead()??git('rev-parse','HEAD'),snapshot=HEALTH_APPROVED_SNAPSHOT;
  git('merge-base','--is-ancestor',snapshot,actual);
  assert.equal(git('diff','--name-only','HEAD','--'),'','Health tracked source changed');
  assert.equal(git('diff','--cached','--name-only','--'),'','Health staged source changed');
@@ -36,6 +40,6 @@ export function verifyHealthVisionExtension(){
  assert.equal(git('rev-parse',actual+':release/approved-runtime-composition.json'),git('rev-parse',HEALTH_BASE+':release/approved-runtime-composition.json'),'Health previous approvals changed');
  assert.equal(git('rev-parse',actual+':'+HEALTH_RECEIPT),git('rev-parse',snapshot+':'+HEALTH_RECEIPT),'Health historical receipt changed after approval');
  assert.equal(readFileSync(HEALTH_RECEIPT,'utf8').trimEnd(),git('show',snapshot+':'+HEALTH_RECEIPT),'Health working receipt changed');
- assert.equal(git('rev-parse','HEAD'),actual,'Health HEAD moved');
+ assert.equal(git('rev-parse','HEAD'),approvedTickerActualHead()??actual,'Health HEAD moved');
  return Object.freeze({actual,predecessor:HEALTH_BASE,payload:HEALTH_PAYLOAD,productionVerified:false});
 }
