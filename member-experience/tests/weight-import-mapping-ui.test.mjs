@@ -1,3 +1,5 @@
+import {withMemberRecordingQualification} from '../../release/member-recording-repair-20261024.mjs';
+import {joinedLookPredecessorFile} from '../../release/my-timber-joined-look-scope-20261024.mjs';
 import {actualNavigationOuterFrame,assertExactNavigationPayload} from '../../release/recorded-week-navigation-outer-frame-20261018.mjs';
 import {currentRuntimePreservationHistoricalView} from '../../release/current-runtime-preservation-20261016.mjs';
 import {withImmutableHistoryVerification} from '../../release/immutable-git-facts.mjs';
@@ -7,11 +9,15 @@ import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 const read=p=>readFileSync(p,'utf8'),ui=read('frontend/member/member-progress-v1.js'),module=read('member-experience/weight-import-mapping.mjs');
 const retained=JSON.parse(read('release/combined-csv-ui-original-20261014.json'));
+const withQualifiedCsvPredecessor=callback=>withMemberRecordingQualification(()=>{
+ const comparison=joinedLookPredecessorFile(retained.path,Buffer.from(ui));
+ return callback(comparison.bytes.toString('utf8'));
+});
 test('the browser uses exact immutable reviewed CSV parser bytes, isolated from other Progress helpers',()=>{
  const embedded='  const explicitWeightMapping=(()=>{\n'+module.replaceAll('export function ','function ')+'\nreturn {readWeightTable,previewMappedWeights};\n})();\n';
  assert.equal(ui.split(embedded).length,2);
 });
-test('CSV UI changes only the existing optional weight-import component',()=>withImmutableHistoryVerification(()=>{
+test('CSV UI changes only the existing optional weight-import component',()=>withQualifiedCsvPredecessor(ui=>withImmutableHistoryVerification(()=>{
  const navigation=actualNavigationOuterFrame();
  try{
  // Authenticate and invert only the exact separately approved navigation bytes.
@@ -21,7 +27,7 @@ test('CSV UI changes only the existing optional weight-import component',()=>wit
  const restored=progress.slice(0,start)+retained.originalFunction+progress.slice(end);
  assert.equal(restored,execFileSync('git',['show',retained.base+':'+retained.path],{encoding:'utf8'}));
  }finally{navigation?.finish();}
-}));
+})));
 test('mapping must be explicit, shows converted dates and kilograms, and uses only the established confirmed import boundary',()=>{
  for(const name of ['dateColumn','weightColumn','dateFormat','unit'])assert.match(ui,new RegExp('data-map="'+name+'" required><option value="">'));
  assert.match(ui,/Converted readings to import/);assert.match(ui,/Date \(YYYY-MM-DD\)/);assert.match(ui,/Weight \(kg\)/);
