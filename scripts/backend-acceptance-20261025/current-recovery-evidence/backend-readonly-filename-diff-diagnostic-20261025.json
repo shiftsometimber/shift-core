@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-25T13:37:45.955717+00:00",
+  "scope": "Private one-file native Git diagnostic only, not actual source/production acceptance",
+  "rows": [
+    {
+      "case": "restored_name_only",
+      "exitCode": 0,
+      "stdout": "",
+      "indexChanged": false,
+      "stderrBytes": 0
+    },
+    {
+      "case": "restored_name_only_exit_code",
+      "exitCode": 0,
+      "stdout": "",
+      "indexChanged": false,
+      "stderrBytes": 0
+    },
+    {
+      "case": "changed_name_only_exit_code",
+      "exitCode": 1,
+      "stdout": "file.txt\n",
+      "indexChanged": false,
+      "stderrBytes": 0
+    }
+  ],
+  "conclusion": "For named working-source checks only, autorefreshfalse plus native --exit-code --name-only returns exact filenames, accepts restored bytes and keeps index bytes unchanged. Catch only status1 as dirty stdout; propagate all other native failures. Generic commit comparisons must remain original.",
+  "relevance": "b945 parallel-refresh test now genuinely rejects changed scheduled-knowledge source, but its actual2462 byte count loses the original required filename diagnostic. Restore that diagnostic through actual native content comparison, retaining the same rejection; do not loosen the test."
+}

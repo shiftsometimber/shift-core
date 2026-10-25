@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-25T13:14:54.690150+00:00",
+  "source": "42901ccb237593d37f17617afc48f88ebceb649f",
+  "qualification": "release-index-complete-qualification-20261025.json",
+  "observedFailures": [
+    "not ok 6 - mutating an included configuration file refreshes warmed directory output without changing its parent config",
+    "not ok 11 - warmed directory maxBuffer errors preserve the exact native error and unsupported options retain their native semantics",
+    "not ok 25 - unknown objects/paths, path aliases and caller buffer errors retain original command diagnostics",
+    "not ok 26 - unsupported options and literal HEAD/branch references always execute native commands freshly",
+    "not ok 29 - native blob output with a mismatched object digest rejects before admission",
+    "not ok 30 - cached native blob bytes are hash-checked again before reuse",
+    "not ok 31 - real Git fixture reduces native subprocesses and elapsed time across shared immutable blobs",
+    "not ok 33 - temporary Git namespace and executable environment changes cannot reuse generic cached facts",
+    "not ok 40 - mutating an included configuration file refreshes warmed directory output without changing its parent config",
+    "not ok 45 - warmed directory maxBuffer errors preserve the exact native error and unsupported options retain their native semantics"
+  ],
+  "sourceEdits": 0,
+  "owner": "Existing sole manager retains implementation and admission",
+  "readOnlyDiagnosis": [
+    {
+      "file": "release/immutable-git-facts.mjs",
+      "lines": "2,10,11",
+      "fact": "const nativeExecFileSync=importedExecFileSync captures the original native function. Existing mandatory tests replace cp.execFileSync and call syncBuiltinESMExports; the captured const bypasses their authentic native-call/error/hash instrumentation. This explains missing captured errors, digest mismatch not intercepted and zero native-call counts. Retain the live imported ESM binding directly instead of freezing it; preserve every original assertion."
+    },
+    {
+      "file": "release/immutable-git-facts.mjs",
+      "lines": "21-28",
+      "fact": "Global diff rewrite changes even commit-to-commit native commands: failure33 proves original git diff --name-only <two hashes> error is changed to prefixed config/exit-code command. Commit-to-commit filename diffs do not need working-index repair. Limit actual full-content zero checks to identified working-source assertions; retain exact generic native diagnostics/args and caller options."
+    }
+  ],
+  "regressions59": "Actual59/59 passed; new8 failures are separate mandatory guards and are not waived.",
+  "backendIndependentCompletion": "Three ledgers installed/verified; source checkpoint10714d39; no Core upload or messages.",
+  "duplicateSourceScanHotspot": {
+    "actualExistingSample": "release429-full012-followup-20261025.json",
+    "sampleAt": "2026-10-25T13:15:22.928Z",
+    "callChain": "memberRecordingComparisonValue:115 calls qualifyJoinedSuccessor (activeFiniteSuccessorProof:200 invokes assertOwnedBytes) and explicitly ui.assertOwnedBytes again; each assertOwnedBytes:188 iterates every pin and full physical source. Nested historical raw readers repeatedly hit this same scope.",
+    "next": "Remove exact duplicate immediate scan and reuse authenticated source-read facts only while same source/native-state checks remain valid. Keep point-of-use changed bytes rejection, every caller callback, full entry/exit source assertions, HEAD/index/config/replacement/hidden-flag mutation checks. This is a measured original012 cost, not parent heartbeat or test completion.",
+    "sourceEditsFromBackend": 0
+  },
+  "terminalGuardResult": {
+    "at": "2026-10-25T13:20:49.799139+00:00",
+    "state": "failed",
+    "pass": 93,
+    "fail": 12,
+    "total": 105,
+    "elapsedSeconds": 346.2764913330001,
+    "failedTestNames": [
+      "not ok 6 - mutating an included configuration file refreshes warmed directory output without changing its parent config",
+      "not ok 11 - warmed directory maxBuffer errors preserve the exact native error and unsupported options retain their native semantics",
+      "not ok 25 - unknown objects/paths, path aliases and caller buffer errors retain original command diagnostics",
+      "not ok 26 - unsupported options and literal HEAD/branch references always execute native commands freshly",
+      "not ok 29 - native blob output with a mismatched object digest rejects before admission",
+      "not ok 30 - cached native blob bytes are hash-checked again before reuse",
+      "not ok 31 - real Git fixture reduces native subprocesses and elapsed time across shared immutable blobs",
+      "not ok 33 - temporary Git namespace and executable environment changes cannot reuse generic cached facts",
+      "not ok 40 - mutating an included configuration file refreshes warmed directory output without changing its parent config",
+      "not ok 45 - warmed directory maxBuffer errors preserve the exact native error and unsupported options retain their native semantics",
+      "not ok 79 - a supplied navigation reader cannot hide changed working source inside a closed proof",
+      "not ok 80 - parallel stat-only index refresh can finish, while sustained writers and changed source still fail"
+    ],
+    "notWaived": true
+  }
+}

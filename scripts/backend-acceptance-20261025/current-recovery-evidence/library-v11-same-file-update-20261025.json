@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-25T13:23:41.929410+00:00",
+  "nativeLibraryVersion": 11,
+  "auditLibraryFile": "libfile_f585d05be1108191beb76d502e8aaad8",
+  "workbookLibraryFile": "libfile_c23c93ea2cb88191851145882521bf19",
+  "sameFilesPreserved": true,
+  "priorMacVersionRetained": "/Users/shiftsometimberltd/SST/backend-audit-20261024/completion-v3/pre-v11-same-file-checkpoint",
+  "files": [
+    {
+      "name": "SHIFT-HQ-Backend-Audit.html",
+      "bytes": 100508,
+      "sha256": "61f5b1a14b8ef95e276760a0d65c33f1b20d66c6ec0976dfc95892ed315d8ca6"
+    },
+    {
+      "name": "SHIFT-HQ-Launch-KPIs.xlsx",
+      "bytes": 28261,
+      "sha256": "bbed318fbe86a2d15ce2ab42ddada4ccdc106e4075915f8ff2ee6f23696d246f"
+    }
+  ],
+  "coreDeployedVerified": false,
+  "deliverySchemasVerified": true,
+  "closedActions": [
+    "A09",
+    "A16"
+  ],
+  "originalFormulaDefinitionsPreserved": true,
+  "exactApprovalBatchPreserved": true
+}

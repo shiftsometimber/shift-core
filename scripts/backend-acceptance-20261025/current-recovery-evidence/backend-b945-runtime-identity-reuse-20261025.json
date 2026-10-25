@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-25T13:36:06.439703+00:00",
+  "source": "b945a722bde50d3f221e7cff757d677d7bb0f544",
+  "tree": "42fef3f21f6975951a23c3e70d8f2c02bab14c4b",
+  "bytes": 33352812,
+  "SHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "actualFreshFileHashed": true,
+  "originalIndependent20Logical39Sections8AdverseQualificationsReusable": true,
+  "reason": "Identical full compiled golden and unchanged independent verifier; current-source admission and actual production version/ownership still mandatory.",
+  "productionAcceptanceExecuted": false
+}
