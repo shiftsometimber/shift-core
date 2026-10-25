@@ -78,6 +78,15 @@ const SCRIPT=String.raw`(()=>{'use strict';
  }
  async function load(){
    try{
+     const session=new URLSearchParams(location.search).get('session_id');
+     if(/\\/order-success(?:\\.html)?$/.test(location.pathname)&&/^cs_(test|live)_[A-Za-z0-9_]+$/.test(session||'')){
+       for(const path of ['/v1/commerce/medicine-order-status','/v1/commerce/order-status']){
+         const paidResponse=await fetch(API+path+'?session_id='+encodeURIComponent(session),{credentials:'include',cache:'no-store'}).catch(()=>null);
+         if(!paidResponse?.ok)continue;
+         const proof=await paidResponse.json().catch(()=>null);
+         if(proof?.ok&&(proof.paymentStatus==='paid'||proof.status==='paid')){saved=null;persist(null);break;}
+       }
+     }
      const response=await fetch(API+'/v1/commerce/active-checkout',{credentials:'include',cache:'no-store'});
      if(!response.ok){account='';attempts=[];render();return}
      const body=await response.json();
