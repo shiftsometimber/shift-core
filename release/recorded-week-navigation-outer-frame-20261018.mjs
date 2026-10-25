@@ -33,13 +33,17 @@ function data(v,seen=new Set()){
  for(const[k,d]of Object.entries(Object.getOwnPropertyDescriptors(v))){if(Array.isArray(v)&&k==='length')continue;assert(Object.hasOwn(d,'value')&&!d.get&&!d.set);out[k]=data(d.value,seen);}
  seen.delete(v);return out;
 }
+function nativeNavigationWorkingSourceNames(){
+ try{return text('-c','diff.autoRefreshIndex=false','diff','--exit-code','--no-ext-diff','--no-textconv','--no-renames','--name-only','HEAD','--');}
+ catch(error){if(error.status===1)return error.stdout.toString('utf8').trimEnd();throw error;}
+}
 function clean(expected){
  assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire],native,'Native navigation source functions changed');
  assert(!Object.keys(process.env).some(k=>/^GIT_/.test(k)&&k!=='GIT_PAGER'),'Git source selectors are forbidden');
  const root=process.cwd(),dir=resolve(root,'.git');assert.equal(realpathSync(root),root);assert.equal(realpathSync(dir),dir);assert(lstatSync(dir).isDirectory()&&!lstatSync(dir).isSymbolicLink());
  for(const p of ['commondir','gitdir','info/grafts','objects/info/alternates','shallow'])assert(!existsSync(resolve(dir,p)),'Native source drift: ordinary complete native source required: '+p);
  assert.equal(text('rev-parse','--show-toplevel'),root);assert.equal(text('rev-parse','--git-common-dir'),'.git');assert.equal(text('for-each-ref','--format=%(refname)','refs/replace'),'');
- assert.equal(git('-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--patch','--binary','HEAD','--').length,0,'Native navigation working source changed');assert.equal(text('diff','--no-renames','--cached','--name-only','--'),'','Native navigation staged source changed');
+ assert.equal(nativeNavigationWorkingSourceNames(),'','Native navigation working source changed');assert.equal(text('diff','--no-renames','--cached','--name-only','--'),'','Native navigation staged source changed');
  for(const row of git('ls-files','-v','-z').toString('utf8').split('\0').filter(Boolean))assert(row.startsWith('H '),'Hidden/sparse/assume-unchanged source is forbidden');
  const h=head();assert(oid.test(h));if(expected)assert.equal(h,expected,'Actual navigation HEAD moved');return h;
 }
