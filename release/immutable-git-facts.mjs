@@ -1,9 +1,15 @@
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {execFileSync as importedExecFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {readFileSync,lstatSync,readdirSync,readlinkSync,realpathSync} from 'node:fs';
 import {resolve,isAbsolute,dirname} from 'node:path';
 import {homedir} from 'node:os';
+
+// Verification reads must not refresh the caller's index stat cache. Capture
+// the native runner; immutable object commands keep their original cache keys.
+const nativeExecFileSync=importedExecFileSync;
+const execFileSync=(bin,args,options)=>nativeExecFileSync(bin,
+ bin==='git'&&Array.isArray(args)&&['diff','diff-files','status','ls-files'].includes(args[0])?['--no-optional-locks',...args]:args,options);
 
 // Actual immutable Git facts only; caller callbacks and assertion results are never cached.
 const unsupportedContext=Symbol('unsupported immutable Git context');

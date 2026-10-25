@@ -28,11 +28,11 @@ function repository(cwd){
  const overrides=Object.keys(process.env).filter(k=>/^GIT_(?:DIR|WORK_TREE|INDEX_FILE|OBJECT_DIRECTORY|ALTERNATE_OBJECT_DIRECTORIES|COMMON_DIR|CONFIG|CONFIG_PARAMETERS|CONFIG_COUNT|CONFIG_KEY_|CONFIG_VALUE_)/.test(k));
  assert.equal(overrides.length,0,'Git source overrides are forbidden: '+overrides.join(','));
  let commands=0;
- const run=(...args)=>{commands++;return nativeExecFileSync('git',['--no-replace-objects',...args],{cwd,encoding:'utf8',maxBuffer:64*1024*1024,stdio:['ignore','pipe','pipe']});};
+ const run=(...args)=>{commands++;return nativeExecFileSync('git',['--no-optional-locks','--no-replace-objects',...args],{cwd,encoding:'utf8',maxBuffer:64*1024*1024,stdio:['ignore','pipe','pipe']});};
  const top=nativeRealpathSync(run('rev-parse','--show-toplevel').trim());
  assert.equal(nativeRealpathSync(cwd),top,'Run qualification from the actual checkout root');
  assert.equal(run('for-each-ref','--format=%(refname)','refs/replace').trim(),'','Replacement Git history is forbidden');
- const bytes=(ref,file)=>nativeExecFileSync('git',['--no-replace-objects','show',ref+':'+safePath(file)],{cwd,maxBuffer:64*1024*1024,stdio:['ignore','pipe','pipe']});
+ const bytes=(ref,file)=>nativeExecFileSync('git',['--no-optional-locks','--no-replace-objects','show',ref+':'+safePath(file)],{cwd,maxBuffer:64*1024*1024,stdio:['ignore','pipe','pipe']});
  const blob=(ref,file)=>run('rev-parse',ref+':'+safePath(file)).trim();
  const changes=(a,b)=>run('diff','--no-renames','--name-status',a,b).trim().split('\n').filter(Boolean).map(line=>{
   const parts=line.split('\t');assert.equal(parts.length,2,'Renamed or malformed path rejected');
@@ -254,12 +254,15 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/approved-news-ticker-frame-20261024.mjs",
     "release/approved-runtime-composition.mjs",
     "release/health-vision-scope-20261021.mjs",
+    "release/immutable-git-facts.mjs",
     "release/member-design-scope.mjs",
     "release/member-recording-repair-20261024.mjs",
     "release/my-timber-joined-look-inverses-20261024.json",
     "release/my-timber-joined-look-scope-20261024.mjs",
     "release/recorded-week-navigation-outer-frame-20261018.mjs",
     "shift-coach/release.test.mjs",
+    "tests/approved-news-ticker-frame-20261024.test.mjs",
+    "tests/member-recording-repair-admission-20261024.test.mjs",
     "tests/native-restored-source-stats-20261025.test.mjs",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs"
   ],
@@ -271,10 +274,13 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/health-vision-scope-20261021.mjs": "f81d0cd6c7a8230d47611bb46f1e7cb3e23d61b1",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
     "release/member-recording-repair-20261024.mjs": "69074d48545aafdeea7d645523db478abc1200ad",
-    "release/recorded-week-navigation-outer-frame-20261018.mjs": "45fb436ebecd433c0b1fc5823f531cef6c1da660",
+    "release/recorded-week-navigation-outer-frame-20261018.mjs": "d103fd84f609ac55f6876eaaf348a7d32a6dd1f5",
     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs": "c097fb38075a49d26a0b4bd4d817bcbdc0f4a37e",
-    "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353"
+    "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353",
+    "release/immutable-git-facts.mjs": "2e3a3987907d23eb7129d1050ba3f248a63f5266",
+    "tests/approved-news-ticker-frame-20261024.test.mjs": "a030138c2a7a33b1a6a13daa803252b48b5f6a79",
+    "tests/member-recording-repair-admission-20261024.test.mjs": "df9bd0992c08d2125fa1159dabb720a9b29dbe88"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",

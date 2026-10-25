@@ -71,19 +71,10 @@ function prepareNativeNavigationIndexStats(){
  // A bounded one-second boundary avoids endlessly rehashing an unchanged tree.
  const wait=Math.floor(lstatSync(index).mtimeMs/1000)*1000+1001-Date.now();
  if(wait>0&&wait<=1100)Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,wait);
- const deadline=process.hrtime.bigint()+1100000000n;
- for(;;){
-  try{git('update-index','--refresh');break;}
-  catch(error){
-   const stderr=String(error.stderr??'');
-   if(!/Unable to create[^\n]*index\.lock[^\n]*File exists/.test(stderr)||process.hrtime.bigint()>=deadline)throw error;
-   waitForNativeIndexWriter(lock,deadline);
-   assert.equal(head(),rawHead,'Actual HEAD moved during a competing stat refresh');
-   assert(git('ls-files','--stage','-z').equals(staged),'Logical staged source changed during a competing stat refresh');
-   assert(git('ls-files','-v','-z').equals(visible),'Source visibility changed during a competing stat refresh');
-   clean(rawHead);
-  }
- }
+ // Stat descriptors may be rebound only after complete actual body
+ // authentication below. Verification itself never writes the native index.
+ // Preserve the original lock deadline and all logical-source assertions.
+ waitForNativeIndexWriter(lock,process.hrtime.bigint()+1100000000n);
  assert.equal(head(),rawHead,'Actual HEAD moved during stat-cache preparation');
  assert(git('ls-files','--stage','-z').equals(staged),'Logical staged source changed during stat-cache preparation');
  assert(git('ls-files','-v','-z').equals(visible),'Source visibility changed during stat-cache preparation');
