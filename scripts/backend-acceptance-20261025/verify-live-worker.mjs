@@ -1,3 +1,4 @@
+import {verifyApprovedCompiledModules} from './compiled-module-identity-20261025.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -18,8 +19,7 @@ const scriptModules=versionData.result.modules?.filter(m=>/\.(?:mjs|js)$/.test(m
 await active();
 const candidate=fs.readFileSync('/Users/shiftsometimberltd/SST/backend-consolidated-build-20261024/bundle-current/worker.js','utf8');
 assert.equal(sha(candidate),'5e0a543df9348fe3f1a922c36a673e10f24e05ee2264d5e33e6038030ec47a37','Prepared candidate compilation changed');
-function block(code,path){const markers=[...code.matchAll(/^\/\/ ([a-zA-Z0-9_./@+-]+\.(?:js|mjs|json))\n/gm)];const hits=markers.map((m,i)=>({m,i})).filter(x=>x.m[1]===path);assert.equal(hits.length,1,path+' module identity');const {m,i}=hits[0];return code.slice(m.index,markers[i+1]?.index??code.length);}
-const modules={};for(const path of ["acquisition-activation/server.mjs","auth-email-verification-v1.js","auth-recovery-v1.js","member-design.mjs","member-experience/account-deletion.mjs","my-timber-pwa/ui.mjs","preview/app-layout/refinement.mjs","privacy-account-request-v1.js","worker.js","auth-delivery-v1.js","auth-recovery-page-v1.mjs","hq-commerce-delivery.mjs","hq-mfa-readiness.mjs","hq-service-job-runs.mjs","medicine-commerce-v1.js","member-register-fastpath-v2.js","password-policy-v1.js","shift-coach/worker.mjs","transactional-email-v1.js","worker-entry-v6.js"]){const actual=block(live,path),expected=block(candidate,path);assert.equal(actual,expected,'Deployed implementation differs: '+path);modules[path]=sha(actual);}
+const modules=verifyApprovedCompiledModules(live,candidate);
 const deletionBoundary=[];for(const [origin,status]of [['https://shiftsometimber.co.uk',401],['https://foreign.example.invalid',403]]){const response=await fetch('https://api.shiftsometimber.co.uk/v1/privacy/account',{method:'DELETE',credentials:'omit',redirect:'manual',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({confirmation:'DELETE_MY_ACCOUNT'}),signal:AbortSignal.timeout(30000)});assert.equal(response.status,status,'Anonymous account deletion boundary '+origin);deletionBoundary.push({origin,status:response.status,authenticated:false});}
 await active();const proof={ok:true,deletionBoundary,at:new Date().toISOString(),source:owned.source,run:owned.run,versionId:owned.versionId,deploymentId:owned.deploymentId,liveWorkerSHA256:sha(live),candidateBundleSHA256:sha(candidate),exactBundleMatch:live===candidate,exactAffectedCompiledModules:modules,productionWrites:0,memberRowsRead:0,physicalDevice:false};
 fs.writeFileSync(new URL('./live-worker-proof.json',import.meta.url),JSON.stringify(proof,null,2)+'\n');console.log(JSON.stringify(proof));
