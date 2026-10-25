@@ -1,4 +1,4 @@
-import {assets,documents,presentationVersion,knownApprovedStyles} from './data.mjs';
+import {assets,documents,presentationVersion,knownApprovedStyles,layoutAppendRule} from './data.mjs';
 const sha=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
 export async function presentationAsset(request,env){
  const path=new URL(request.url).pathname,entry=assets[path];
@@ -6,11 +6,13 @@ export async function presentationAsset(request,env){
  const response=await env.CORE.fetch(request);
  if(response.status!==200)return response;
  const bytes=await response.arrayBuffer(),actual=await sha(bytes);
- if(actual!==entry.beforeSHA&&!(path==='/assets/my-timber-layout.mjs'&&actual==='95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585'))return new Response(bytes,response);
+ const appendOnly=path==='/assets/my-timber-layout.mjs'&&actual===layoutAppendRule.beforeSHA;
+ if(actual!==entry.beforeSHA&&!(path==='/assets/my-timber-layout.mjs'&&actual==='95a6d37c781137b01fdc79bcd2d81b4f09f48e82c489e141705a04927de36585')&&!appendOnly)return new Response(bytes,response);
+ let body=entry.body;if(appendOnly){const suffix=new TextEncoder().encode(layoutAppendRule.suffix),joined=new Uint8Array(bytes.byteLength+suffix.byteLength);joined.set(new Uint8Array(bytes));joined.set(suffix,bytes.byteLength);body=joined;}
  const headers=new Headers(response.headers);headers.set('Content-Type',entry.type);headers.set('Cache-Control','no-store');
  headers.set('X-Shift-My-Timber-Presentation',presentationVersion);
  for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
- return new Response(entry.body,{status:200,headers});
+ return new Response(body,{status:200,headers});
 }
 export async function presentationDocument(request,response){
  const path=new URL(request.url).pathname.replace(/\.html$/,'').replace(/\/+$/,''),rules=documents[path];

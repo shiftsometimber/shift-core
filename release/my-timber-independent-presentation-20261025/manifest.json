@@ -9,8 +9,8 @@
       "originalModule": "worker.mjs",
       "originalSHA256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
       "candidateNewModuleHashes": {
-        "data.mjs": "578115e4129bb7b2af70c270536ad42344ed8308924badc7b8a63bfce0981d6b",
-        "presentation.mjs": "6a304c33c1df3dab438487604131790412cc19056aa2d45bd4c8f5dcbc3c525c",
+        "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+        "presentation.mjs": "5b87498f0fd0a69363177f71502a96a42790f5072178ac653d8de6fdf5c7ad9f",
         "presentation-entry.mjs": "5ad1fd42726fcee790c354e240ea4c0c2c00874fa079ae2d156f71791bcbe379"
       }
     },
@@ -19,8 +19,8 @@
       "originalModule": "worker.js",
       "originalSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
       "candidateNewModuleHashes": {
-        "data.mjs": "578115e4129bb7b2af70c270536ad42344ed8308924badc7b8a63bfce0981d6b",
-        "presentation.mjs": "6a304c33c1df3dab438487604131790412cc19056aa2d45bd4c8f5dcbc3c525c",
+        "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+        "presentation.mjs": "5b87498f0fd0a69363177f71502a96a42790f5072178ac653d8de6fdf5c7ad9f",
         "presentation-entry.mjs": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f"
       }
     }
@@ -31,7 +31,7 @@
     "otherAssetsUnchanged": true,
     "productionMemberWrites": 0
   },
-  "updatedAt": "2026-10-25T22:22:39.910Z",
+  "updatedAt": "2026-10-25T23:45:11.658Z",
   "delivery": "Existing2 Worker source-only wrapper; no route, Pages, binding, API or schedule changes.3 approved HTML documents include source-pinned chrome/progress scripts only while the old Core stylesheet is present. Canonical external delivery resumes without mutation on newer Core.",
   "routeLimitObserved": 1000,
   "routesChanged": 0,
@@ -52,7 +52,8 @@
     "productionMemberWrites": 0
   },
   "recovery": {
-    "layoutAssetSHA256": "91c3ee6007d5bb1ac853258d11745c700617032f1eb756c263b310abdb97d8d5",
+    "layoutAssetSHA256": "b1f3033fe624c41eb96c859bd9d0fe30831de71b32409dce044251e1092d2c77",
+    "legacyLayoutAssetSHA256": "91c3ee6007d5bb1ac853258d11745c700617032f1eb756c263b310abdb97d8d5",
     "scope": "Requested header, menu, Fit scroll and Support spacing fixes, existing Shed doorway and illustrative cover phone",
     "behaviourLimits": "Learning adaptation, dated recall and member-owned prescriber-note workflow remain separate acceptance work. Navigation UI QA uses a synthetic signed-in fixture."
   },
@@ -108,5 +109,12 @@
       ],
       "scope": "Actual source functions and control identity; not a real-account/device or production-learning test"
     }
+  },
+  "layoutCompatibility": {
+    "beforeSHA256": "0a4dfa8605720e54b0febb847291a6738b44a75965123f883927ee0b1ecece05",
+    "afterSHA256": "b1f3033fe624c41eb96c859bd9d0fe30831de71b32409dce044251e1092d2c77",
+    "preservesCurrentCoreBytes": true,
+    "oneAppendOnly": true,
+    "unknownFutureSourcePassesThrough": true
   }
 }
