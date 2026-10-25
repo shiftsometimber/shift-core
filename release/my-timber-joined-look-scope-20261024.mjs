@@ -260,17 +260,20 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/my-timber-joined-views-20261024.test.mjs": "A"
   },
   "maintenancePaths": [
+    ".github/workflows/cloudflare-production-promote.yml",
     "member-experience/tests/weight-import-mapping-ui.test.mjs",
     "release/app-client-proof.mjs",
     "release/app-scope.mjs",
     "release/approved-independent-presentation-client-20261025.mjs",
     "release/approved-news-ticker-frame-20261024.mjs",
     "release/approved-runtime-composition.mjs",
+    "release/canonical-runtime-build.mjs",
     "release/combined-original-gp-object-20261014.mjs",
     "release/health-vision-scope-20261021.mjs",
     "release/immutable-git-facts.mjs",
     "release/member-design-scope.mjs",
     "release/member-recording-repair-20261024.mjs",
+    "release/member-runtime-deploy.mjs",
     "release/my-shift-release-scope-20261024.mjs",
     "release/my-timber-joined-look-inverses-20261024.json",
     "release/my-timber-joined-look-scope-20261024.mjs",
@@ -280,6 +283,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "shift-coach/release.test.mjs",
     "tests/app-client-proof.test.mjs",
     "tests/approved-news-ticker-frame-20261024.test.mjs",
+    "tests/canonical-runtime-build.test.mjs",
     "tests/combined-original-gp-object-20261014.test.mjs",
     "tests/joined-native-byte-reuse-20261025.test.mjs",
     "tests/member-recording-repair-admission-20261024.test.mjs",
@@ -309,7 +313,11 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/combined-original-gp-object-20261014.test.mjs": "c9aa5890ac7ca86e570b91e9e7932b137343f224",
     "release/approved-independent-presentation-client-20261025.mjs": "6f5881c8d6787f7f38ed5136e9197a04f24f9128",
     "release/app-client-proof.mjs": "6a7d9defa3f018299a09d0b4189138ec6d0d3bf1",
-    "tests/app-client-proof.test.mjs": "3941a29d52582f0a31a69bfcc3c56801e31c9e9f"
+    "tests/app-client-proof.test.mjs": "3941a29d52582f0a31a69bfcc3c56801e31c9e9f",
+    ".github/workflows/cloudflare-production-promote.yml": "ff6238fd550b2379ab62c021133f6fe0eeacfa4b",
+    "release/member-runtime-deploy.mjs": "35b5f29096e47b93e31f41925c54cdc08fedddd2",
+    "release/canonical-runtime-build.mjs": "913a2cf6e16735051471c2e26036a5b8ae9842c9",
+    "tests/canonical-runtime-build.test.mjs": "8b9edf9ec6c2f5d175879a43de78cb2ba36b8117"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
@@ -319,7 +327,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
   "receiptPath": "release/my-timber-joined-look-20261024.json",
   "authority": {
     "owner": "Matt",
-    "scope": "Approved My Timber visual refinements and optional existing-endpoint quick logging",
+    "scope": "Approved My Timber visual refinements and optional existing-endpoint quick logging; Matt-approved Core canonical build/staged promotion and owned rollback receipt repair; application payload unchanged",
     "publicHomepage": false,
     "clinicalActivation": false,
     "newMessaging": false,
