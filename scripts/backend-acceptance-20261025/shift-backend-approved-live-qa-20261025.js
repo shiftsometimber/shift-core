@@ -1,0 +1,43 @@
+(async()=>{
+ const result=window.__shiftBackendLiveQA20261025={state:'running',startedAt:new Date().toISOString(),accountId:null,cases:[],messagesRequested:0,chargesOrClinicalWork:0,physicalDevice:false};
+ const check=(ok,message)=>{if(!ok)throw Error(message)};
+ const run=async(name,fn)=>{try{const detail=await fn();result.cases.push({name,pass:true,...detail})}catch(e){result.cases.push({name,pass:false,error:String(e.message).slice(0,240)})}};
+ const http=async(path,options={})=>{const r=await fetch(location.origin+path,{credentials:'include',cache:'no-store',redirect:'manual',signal:AbortSignal.timeout(30000),...options,headers:{'Content-Type':'application/json',...options.headers}});let b=null;try{b=await r.json()}catch{}return{status:r.status,body:b,private:/(?:no-store|private)/i.test(r.headers.get('cache-control')||'')}};
+ const success=x=>{check(x.status>=200&&x.status<300,'HTTP '+x.status+' '+(x.body?.error||''));return x.body};
+ const patchDetails=(details,revision,operationId)=>http('/v1/member/details',{method:'PATCH',body:JSON.stringify({details,revision,operationId})});
+ const inputKeys=['firstName','lastName','phone','dateOfBirth','postcode','address1','address2','town','county','gpPractice','gpPostcode','gpCode','gpAddress','gpSelectionMode'];
+ const pick=d=>Object.fromEntries(inputKeys.map(k=>[k,d[k]||'']));
+ const same=(a,b)=>inputKeys.every(k=>(a[k]||'')===(b[k]||''));
+ try{
+  const identity=success(await http('/v1/me'));const id=Number(identity.user?.id);check([11251,11252].includes(id),'Existing approved test identity required');check(identity.user.source==='owner_authorised_internal_test','Explicit internal-test provenance required before writes');result.accountId=id;
+  await run('private account identity ignores another account selector',async()=>{const other=success(await http('/v1/me?userId='+(id===11252?11251:11252)));check(Number(other.user?.id)===id,'Account selector altered identity');return{ownIdentityRetained:true}});
+  await run('member, state, order and consent reads',async()=>{const rows=[];for(const path of ['/v1/profile','/v1/member-state','/v1/check-ins','/v1/cases','/v1/pharmacy/orders','/v1/consents']){const r=await http(path);success(r);check(r.private,'Private/no-store required: '+path);rows.push({path,status:r.status,private:r.private})}return{routes:rows}});
+  await run('genuine configured GP directory search',async()=>{const r=await http('/v1/member/details/gp-search?q=medical');const b=success(r);check(r.private,'GP results must remain private');check(Array.isArray(b.practices)&&b.practices.length>0,'Configured practice directory returned no test results');return{status:r.status,practices:b.practices.length,source:b.source||b.provenance||null,checkedAt:b.checkedAt||null}});
+  await run('GP/member details persist, reject stale writes and restore safely',async()=>{
+   const before=success(await http('/v1/member/details'));check(/^[a-f0-9]{64}$/.test(before.revision),'Fresh details revision required');const original=pick(before.details);const marker='SHIFT launch QA — not a real practice';const changed={...original,gpPractice:marker,gpPostcode:'',gpCode:'',gpAddress:'Authorised synthetic acceptance only',gpSelectionMode:'manual'};const operation=crypto.randomUUID();let committed=false,after;
+   try{
+    const response=await patchDetails(changed,before.revision,operation);after=success(response);committed=true;check(same(after.details,changed),'Saved GP/member details differ');check(after.revision!==before.revision,'Successful write must advance its revision');
+    const replay=success(await patchDetails(changed,before.revision,operation));check(replay.revision===after.revision,'Exact successful operation replay changed the revision');
+    const stale=await patchDetails(original,before.revision,crypto.randomUUID());check(stale.status===409&&stale.body?.error==='details_changed','Stale competing write was not rejected');
+    const reopened=success(await http('/v1/member/details'));check(same(reopened.details,changed),'Reload did not retain the saved details');
+   }finally{
+    const current=success(await http('/v1/member/details'));
+    if(current.details.gpPractice===marker){check(same(current.details,changed),'Another writer changed this record; automatic restore paused');success(await patchDetails(original,current.revision,crypto.randomUUID()));const restored=success(await http('/v1/member/details'));check(same(restored.details,original),'Original details were not restored');result.memberDetailsRestored=true;}
+    else if(committed){check(same(current.details,original),'Another writer owns current details; do not overwrite');result.memberDetailsRestored=true;}
+   }
+   return{savedAndReopened:true,successfulOperationIdempotent:true,staleWriteStatus:409,originalDetailsRestored:result.memberDetailsRestored===true};
+  });
+  await run('live check-in, retained next step and consent withdrawal',async()=>{
+   const initial=success(await http('/v1/check-ins/follow-up'));check(typeof initial.trackingEnabled==='boolean','Authoritative tracking state required');const original=initial.trackingEnabled;const type='my_shift_health_tracking';const consent=async granted=>{const r=await http('/v1/consents',{method:'POST',body:JSON.stringify({type,granted,version:'backend-launch-qa-20261025'})});success(r)};const note='Authorised launch QA '+crypto.randomUUID()+'; synthetic check-in, no patient data.';
+   try{
+    await consent(false);const before=success(await http('/v1/check-ins')).checkIns;const denied=await http('/v1/check-ins',{method:'POST',body:JSON.stringify({mood:'OK',note})});check(denied.status===409&&denied.body?.error==='health_consent_required','Tracking without consent was not denied');check(success(await http('/v1/check-ins')).checkIns.length===before.length,'Denied write changed check-ins');
+    await consent(true);const saved=success(await http('/v1/check-ins',{method:'POST',body:JSON.stringify({mood:'OK',note,checkedAt:'2000-01-01T00:00:00Z',source:'authorised-backend-launch-qa'})}));check(Number.isInteger(saved.checkIn?.id)&&saved.nextStep?.id,'Actual saved check-in and next-step IDs required');check(saved.checkIn.checkedAt!=='2000-01-01T00:00:00Z','Server must supply actual save time');const reopened=success(await http('/v1/check-ins'));check(reopened.checkIns.some(x=>x.id===saved.checkIn.id&&x.note===note),'Actual check-in was not retained');const action=success(await http('/v1/check-ins/follow-up?actionId='+encodeURIComponent(saved.nextStep.id)));check(action.trackingEnabled===true&&action.followUp?.id===saved.nextStep.id,'Saved next step was not retained');result.syntheticCheckInId=saved.checkIn.id;result.syntheticFollowupId=saved.nextStep.id;
+    await consent(false);const withdrawn=success(await http('/v1/check-ins/follow-up?actionId='+encodeURIComponent(saved.nextStep.id)));check(withdrawn.trackingEnabled===false&&withdrawn.followUp===null,'Withdrawn tracking still exposes the optional next step');const blocked=await http('/v1/check-ins',{method:'POST',body:JSON.stringify({mood:'OK',note:'Blocked consent QA save'})});check(blocked.status===409,'Consent withdrawal did not block a new save');
+   }finally{if(original)await consent(true);const restored=success(await http('/v1/check-ins/follow-up'));check(restored.trackingEnabled===original,'Original effective tracking choice was not restored');result.originalTrackingChoiceRestored=true;}
+   return{syntheticCheckInId:result.syntheticCheckInId,retainedFollowup:true,unconsentedWriteStatus:409,withdrawalEnforced:true,originalTrackingChoiceRestored:true,humanUsefulnessFeedbackInvented:false};
+  });
+  await run('authenticated export remains bound to this test account',async()=>{const r=await http('/v1/privacy/export',{method:'POST',body:'{}'});const b=success(r);check(r.private,'Export must be private/no-store');check(Number(b.user?.id)===id,'Export identity differs');let rows=0;for(const key of ['assessments','cases','checkIns','consents','progress','pharmacyOrders'])for(const row of b[key]||[]){if(row.user_id!=null)check(Number(row.user_id)===id,'Foreign account row in export');rows++}return{status:r.status,ownAccountOnly:true,checkedOwnedRows:rows,exportedAt:b.exportedAt||null,healthPayloadRetainedOutsideAuthenticatedService:false}});
+  const last=success(await http('/v1/me'));check(Number(last.user?.id)===id,'Test changed the active member identity');result.state='completed';result.ok=result.cases.every(x=>x.pass);
+ }catch(e){result.state='failed';result.ok=false;result.error=String(e.message).slice(0,240)}
+ result.finishedAt=new Date().toISOString();
+})();'Prepared bounded live QA transaction started only by the guarded runner';

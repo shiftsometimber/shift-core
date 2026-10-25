@@ -1,3 +1,4 @@
+throw new Error('RETIRED: the earlier unversioned download was latest upload, not serving code. Full new-version acceptance is required; use exact version-bound readers.');
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';

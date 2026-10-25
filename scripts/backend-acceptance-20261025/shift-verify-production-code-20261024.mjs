@@ -1,0 +1,27 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';
+const root='/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024',sha=b=>createHash('sha256').update(b).digest('hex'),curl=url=>execFileSync('curl',['-fsS','--max-time','45',url],{encoding:'utf8',maxBuffer:64e6});
+try{
+ let cfg=fs.readFileSync('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml','utf8');
+ const expiry=Date.parse(cfg.match(/^expiration_time\s*=\s*"([^"]+)"/m)?.[1]||'');
+ if(Number.isFinite(expiry)&&expiry<=Date.now()+60000){execFileSync('node',['/Users/shiftsometimberltd/SST/seo-contact-full-native-20261023/node_modules/wrangler/bin/wrangler.js','deployments','list','--config','wrangler.jsonc','--json'],{cwd:'/Users/shiftsometimberltd/SST/seo-contact-full-native-20261023',stdio:'pipe',timeout:60000});cfg=fs.readFileSync('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml','utf8');}
+ const token=cfg.match(/^oauth_token\s*=\s*"([^"]+)"/m)?.[1];assert(token,'Existing Wrangler read session unavailable');
+ const base='https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6';
+ async function api(path){const r=await fetch(base+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(45000)});assert(r.ok,'Cloudflare read failed: '+r.status);const d=await r.json();assert(d.success,'Cloudflare response unsuccessful');return d.result;}
+ async function active(){const data=await api('/workers/scripts/shift-core/deployments');assert(Array.isArray(data.deployments)&&data.deployments.length,'Active deployment records unavailable');const d=[...data.deployments].sort((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert(d.versions?.length===1&&d.versions[0].percentage===100,'Active Worker traffic is not one owned version');return {deploymentId:d.id,versionId:d.versions[0].version_id,createdOn:d.created_on};}
+ const activeWorkerDeployment=await active();
+ const exactVersion=await api('/workers/workers/shift-core/versions/'+activeWorkerDeployment.versionId+'?include=modules');assert.equal(exactVersion.id,activeWorkerDeployment.versionId,'Content version does not match active version');
+ const scriptModules=exactVersion.modules?.filter(m=>/\.(?:js|mjs)$/.test(m.name));assert(scriptModules?.length,'Exact version script modules unavailable');
+ const code=scriptModules.map(m=>{assert.equal(typeof m.content_base64,'string','Version module body unavailable');return Buffer.from(m.content_base64,'base64').toString('utf8');}).join('');
+ assert.deepEqual(await active(),activeWorkerDeployment,'Active deployment changed while reading exact version');
+ assert(code.includes('approved-1403-1404-20261024'),'Approved code marker missing from live Worker');
+
+ const candidate=fs.readFileSync('/tmp/shift-approved-release-bundle-20261024/worker.js','utf8');
+ const table=(text,name)=>{const start=text.indexOf('var '+name+' =');assert(start>=0,'Routing declaration missing: '+name);const ending=name==='CONTACT_TYPES'?']);':'\n});',end=text.indexOf(ending,start);assert(end>start&&end-start<10000,'Routing declaration shape changed: '+name);return text.slice(start,end+ending.length);};
+ const tables={};for(const name of ['CONTACT_TYPES','SHIFT_MAILBOXES','ROUTING']){const actual=table(code,name),expected=table(candidate,name);assert.equal(actual,expected,'Deployed routing table differs: '+name);tables[name]=sha(actual);}
+ const contact=curl('https://shiftsometimber.co.uk/contact'),handler=fs.readFileSync(root+'/expected-contact-handler.js','utf8');assert(/<script\b[^>]+\bsrc=["']\/site-config-v3a\.js(?:\?[^"']*)?["']/.test(contact),'Contact page no longer loads the expected client');const contactClient=curl('https://shiftsometimber.co.uk/site-config-v3a.js');assert(contactClient.includes(handler),'Deployed contact acknowledgement client differs');
+ fs.writeFileSync(root+'/analytics-events-v31b.js',curl('https://shiftsometimber.co.uk/analytics-events-v31b.js'));execFileSync('node',['/tmp/shift-recovery-analytics-sandbox-20261024.mjs'],{stdio:'pipe',timeout:30000});
+ const h1=s=>[...s.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)].map(x=>x[1]);assert.deepEqual(h1(curl('https://shiftsometimber.co.uk/')),h1(fs.readFileSync(root+'/baseline-3.txt','utf8')),'Homepage heading changed');
+ const auth=execFileSync('curl',['-sS','--max-time','45','-w','\n%{http_code}','https://api.shiftsometimber.co.uk/v1/me'],{encoding:'utf8',maxBuffer:2e6}),status=Number(auth.slice(auth.lastIndexOf('\n')+1));assert([401,403].includes(status),'Anonymous member API no longer denies access');
+ assert.deepEqual(await active(),activeWorkerDeployment,'Active deployment changed during verification');
+ fs.writeFileSync(root+'/production-code-and-synthetic-verification.json',JSON.stringify({ok:true,activeWorkerDeployment,liveWorkerSHA256:sha(code),candidateBundleSHA256:sha(candidate),exactBundleMatch:code===candidate,exactRoutingTables:tables,exactContactAcknowledgementHandler:true,liveAnalyticsSandbox:true,homepageHeadingPreserved:true,anonymousMemberAPI:status,testEnquiriesSent:0,networkAnalyticsEventsSent:0,at:new Date().toISOString()},null,2));console.log('PASS independent live code, routing, consent, homepage and anonymous authentication checks.');
+}catch(error){fs.writeFileSync(root+'/production-code-and-synthetic-verification.json',JSON.stringify({ok:false,error:error.message,at:new Date().toISOString()},null,2));throw error;}
