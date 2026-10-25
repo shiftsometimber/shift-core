@@ -1,4 +1,3 @@
-import {approvedTickerPredecessorLedger} from '../release/approved-news-ticker-frame-20261024.mjs';
 import '../daily-content/engine.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -8,7 +7,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {verifyWebsiteEditorialCompletion,websiteEditorialCompletionHistoricalView,websiteEditorialCompletionOriginalSource,assertWebsiteEditorialCompletionView,WEBSITE_EDITORIAL_COMPLETION_PATHS,WEBSITE_EDITORIAL_COMPLETION_MAINTENANCE} from '../release/website-editorial-scope-20261018.mjs';
 const g=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:64e6}),head=g('rev-parse','HEAD').trim(),manifest='release/approved-runtime-composition.json';
-const blob=(r,p)=>g('rev-parse',r+':'+p).trim(),content=(r,p)=>g('show',r+':'+p),record=approvedTickerPredecessorLedger(),c=record.websiteEditorialCompletion20261018;
+const blob=(r,p)=>g('rev-parse',r+':'+p).trim(),content=(r,p)=>g('show',r+':'+p),record=JSON.parse(content(head,manifest)),c=record.websiteEditorialCompletion20261018;
 
 test('website editorial native admission binds the exact twelve-path implementation and standing routine scope',()=>{
  assert(c);assert.equal(verifyWebsiteEditorialCompletion(c),c);assert.equal(c.paths.length,12);
@@ -86,7 +85,7 @@ test('website editorial completion retains actual supplied-reader calls through 
 test('website editorial completion admitted view rejects a real HEAD move in an isolated native clone',()=>{
  const directory=mkdtempSync(path.join(os.tmpdir(),'coding-completion-head-move-'));
  try{
-  g('clone','--no-hardlinks','--no-checkout',process.cwd(),directory);
+  g('clone','--shared','--no-checkout',process.cwd(),directory);
   execFileSync('git',['checkout','--detach',head],{cwd:directory,stdio:'pipe'});
   const script=`import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {websiteEditorialCompletionHistoricalView} from './release/website-editorial-scope-20261018.mjs';const v=websiteEditorialCompletionHistoricalView();execFileSync('git',['update-ref','HEAD',${JSON.stringify(c.payload)}]);assert.throws(()=>v.assertCurrent(),/HEAD moved|source drift/);console.log('fresh-head-rejection-pass');`;
   const result=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:directory,encoding:'utf8',timeout:45000});
