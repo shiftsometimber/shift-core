@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-25T16:07:01.759212+00:00",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "run": 40208490258,
+  "identity": "All three previously source-verified installed ledger files are byte-identical in the actual current merged source",
+  "files": [
+    {
+      "path": "hq-commerce-delivery.mjs",
+      "previouslyVerifiedMainBlob": "be4cff15c3c2ed2f5d8eb6505c707f9bba62c2ef",
+      "currentMergedSourceBlob": "be4cff15c3c2ed2f5d8eb6505c707f9bba62c2ef",
+      "equal": true
+    },
+    {
+      "path": "commerce-stripe-v1.js",
+      "previouslyVerifiedMainBlob": "efdf71376e6418241787b0b6a725f272c5da202a",
+      "currentMergedSourceBlob": "efdf71376e6418241787b0b6a725f272c5da202a",
+      "equal": true
+    },
+    {
+      "path": "auth-delivery-v1.js",
+      "previouslyVerifiedMainBlob": "f1b13f11a706d7ff289bd920595fe17cd5d46ecc",
+      "currentMergedSourceBlob": "f1b13f11a706d7ff289bd920595fe17cd5d46ecc",
+      "equal": true
+    }
+  ],
+  "gitProcesses": 1,
+  "newDDL": 0,
+  "businessDML": 0,
+  "messages": 0,
+  "postOwnedOriginalHelperRetained": true
+}

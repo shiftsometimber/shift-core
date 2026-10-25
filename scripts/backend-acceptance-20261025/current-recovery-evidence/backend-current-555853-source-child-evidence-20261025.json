@@ -1,0 +1,83 @@
+{
+  "at": "2026-10-25T16:18:55.569087+00:00",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "run": 40208490258,
+  "job": 121214546905,
+  "observedPassedIds": [
+    "production-step-004"
+  ],
+  "latestMeasuredChildProgress": [
+    {
+      "at": "Sun, 25 Oct 2026 16:02:21 GMT",
+      "children": [
+        {
+          "id": "production-step-012",
+          "stdoutBytes": 36199,
+          "stderrBytes": 0,
+          "cpuTicks": 7181,
+          "completedChildCpuTicks": 1565
+        },
+        {
+          "id": "production-step-005",
+          "stdoutBytes": 41,
+          "stderrBytes": 0,
+          "cpuTicks": 7183,
+          "completedChildCpuTicks": 1154
+        }
+      ]
+    },
+    {
+      "at": "Sun, 25 Oct 2026 16:01:51 GMT",
+      "children": [
+        {
+          "id": "production-step-012",
+          "stdoutBytes": 36199,
+          "stderrBytes": 0,
+          "cpuTicks": 4316,
+          "completedChildCpuTicks": 1389
+        },
+        {
+          "id": "production-step-005",
+          "stdoutBytes": 41,
+          "stderrBytes": 0,
+          "cpuTicks": 4337,
+          "completedChildCpuTicks": 951
+        }
+      ]
+    }
+  ],
+  "lastCommands": [
+    {
+      "at": "Sun, 25 Oct 2026 15:46:50 GMT",
+      "text": "[production-bounded] command-started production-step-004 active=1"
+    },
+    {
+      "at": "Sun, 25 Oct 2026 16:01:00 GMT",
+      "text": "[production-bounded] command-finished production-step-004 active=0 status=passed exitCode=0"
+    },
+    {
+      "at": "Sun, 25 Oct 2026 16:01:00 GMT",
+      "text": "[production-bounded] command-started production-step-012 active=1"
+    },
+    {
+      "at": "Sun, 25 Oct 2026 16:01:00 GMT",
+      "text": "[production-bounded] command-started production-step-005 active=2"
+    }
+  ],
+  "acceptance": "Only individual returned passed/exit0 accepted; whole pool/source check remains pending",
+  "newWatchers": 0,
+  "appPreflightStageEvidence": {
+    "observed005StdoutBytes": 41,
+    "exactKnownFirstMarker": "[app-preflight] synchronous-source:start\n",
+    "markerUtf8Bytes": 41,
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+    "sourceFile": "release/app-preflight.mjs",
+    "line": 20,
+    "boundedStage": "First observed marker precedes lines21\u201327. No stage-passed marker has been observed; buffered stdout prevents proving the exact current inner call.",
+    "limitation": "Byte count narrows emitted evidence, not an execution stack. Does not prove which synchronous call is active, or exclude later buffered output. No stage pass inferred.",
+    "rejectedHypothesis": "growth-preflight line26 asset loop is later, not established as the active obstruction",
+    "action": "Preserve current run. No source modification or extra qualifier/profile launched.",
+    "firstObservedStage": "synchronous-source:start",
+    "stdoutMayBeBuffered": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-25T16:21:01.933437+00:00",
+  "visibleExistingHQSurface": {
+    "origin": "https://hq.shiftsometimber.co.uk",
+    "title": "Shift HQ",
+    "visiblePasswordFields": 1,
+    "apiFunctionNames": [
+      "loadHqUsers",
+      "installPartnerWorkflowsHQ",
+      "installPartnersHQ",
+      "installGpDirectoryHQ",
+      "installGpMemberEditorHQ",
+      "installManagementHQ"
+    ]
+  },
+  "uiReadError": null,
+  "newLoginOrReset": false,
+  "credentialsRead": false,
+  "mutations": 0,
+  "scope": "Existing UI only; does not infer a fresh API401 or claim all sessions unavailable"
+}

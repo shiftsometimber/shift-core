@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-25T16:05:22.460631+00:00",
+  "helper": "/tmp/shift-current320-status-once.py",
+  "change": "Retain already observed original child finish/start rows across virtualised log views, strictly same source/run/job",
+  "beforeSHA": "68e1886dd6dea12706c25f63ba0b54855a5b8b7ccba0806a6258209da3ebca71",
+  "afterSHA": "efd1f93954d5302ee4ba869986d299b219ab171525e53d99c0d59ebebd9e47ef",
+  "inverseEqual": true,
+  "newWatchers": 0,
+  "sourceAcceptanceUnchanged": true,
+  "noPublicationOrRetry": true
+}

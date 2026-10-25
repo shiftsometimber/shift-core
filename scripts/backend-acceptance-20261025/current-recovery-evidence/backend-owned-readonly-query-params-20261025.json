@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-25T16:03:40.513795+00:00",
+  "helper": "/tmp/shift-backend-owned-live-readonly-20261025.mjs",
+  "beforeSHA": "7117791d30b60ebb99a894cf382c22f13971c31fd046492c2e8d6c69bd2af62a",
+  "afterSHA": "9486345e5b8cc8b5f4289b792c88858ce5502e6d2e0588627e8d37e78f338995",
+  "change": "Explicit empty D1 query params array for existing SELECT/WITH-only reader",
+  "inverseEqual": true,
+  "allAssertionsDeadlinesAndOwnershipGuardsUnchanged": true,
+  "state": "PREPARED_NOT_EXECUTED_PENDING_OWNED_VERIFIER",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "run": 40208490258
+}

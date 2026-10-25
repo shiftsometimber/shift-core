@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-25T16:23:18.718292+00:00",
+  "scope": "Fresh production configuration and all HQ role/enrolment counts only",
+  "worker": "shift-clinical-records",
+  "ownerBeforeAndAfter": {
+    "deploymentId": "3b102aa1-30dd-4664-9567-c5bcd25b0867",
+    "version": "31a80b9e-dffe-4bf2-8443-e217ab909661"
+  },
+  "DB": {
+    "name": "DB",
+    "type": "d1",
+    "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847"
+  },
+  "counts": [
+    {
+      "source": "partner_staff",
+      "role": null,
+      "status": null,
+      "mfa_enabled": null,
+      "count": 0
+    },
+    {
+      "source": "partner_organisations",
+      "role": null,
+      "status": null,
+      "mfa_enabled": null,
+      "count": 0
+    },
+    {
+      "source": "clinical_prescriber_signing_keys",
+      "role": null,
+      "status": null,
+      "mfa_enabled": null,
+      "count": 0
+    },
+    {
+      "source": "hq_users",
+      "role": "owner",
+      "status": "active",
+      "mfa_enabled": 0,
+      "count": 4
+    },
+    {
+      "source": "hq_users",
+      "role": "owner",
+      "status": "disabled",
+      "mfa_enabled": 0,
+      "count": 13
+    }
+  ],
+  "existingReadSessionRefreshed": true,
+  "designApprovalRetained": true,
+  "messagesSent": 0,
+  "productionMutations": 0,
+  "personalMFAChanged": false
+}

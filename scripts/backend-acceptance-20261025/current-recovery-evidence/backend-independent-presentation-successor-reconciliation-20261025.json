@@ -1,0 +1,254 @@
+{
+  "at": "2026-10-25T13:55:45.796344+00:00",
+  "source": "cce036bd7e513fd3f032b9d25fd4297bec23f8af",
+  "existingOwnerProject": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025",
+  "receipt": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/integration-deployment.json",
+  "recoveredRelease": {
+    "at": "2026-10-25T13:42:06.146901+00:00",
+    "state": "DEPLOYED_AND_PRODUCTION_UI_VERIFIED_SYNTHETIC_ACCOUNT",
+    "source": {
+      "head": "cce036bd7e513fd3f032b9d25fd4297bec23f8af",
+      "branch": "fix/my-timber-independent-presentation-20261025",
+      "repository": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/source-worktree",
+      "merged": false,
+      "sourceOnly": true,
+      "sourceDirectory": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/source-worktree/release/my-timber-independent-presentation-20261025",
+      "at": "2026-10-25T12:24:32.973257+00:00",
+      "previousHead": "9f43961e5347dc48b9171642c596a571f9b02f22",
+      "updatedAt": "2026-10-25T13:41:57.000291+00:00"
+    },
+    "workers": {
+      "shift-programme-member-20261023": {
+        "state": "provider_verified",
+        "priorDeployment": {
+          "id": "7ba10f6d-ef10-4a21-a876-d83f066c7d86",
+          "source": "api",
+          "strategy": "percentage",
+          "author_email": "matobrien@hotmail.co.uk",
+          "annotations": {
+            "workers/message": "Automatic deployment on upload.",
+            "workers/triggered_by": "upload"
+          },
+          "versions": [
+            {
+              "version_id": "ca8572fa-3a19-4fb0-8737-a0447f7e157b",
+              "percentage": 100
+            }
+          ],
+          "created_on": "2026-10-25T12:38:48.009346Z"
+        },
+        "originalRollbackDeployment": {
+          "id": "ba98e462-1e61-4b1b-a53e-39521ceb1829",
+          "source": "wrangler",
+          "strategy": "percentage",
+          "author_email": "matobrien@hotmail.co.uk",
+          "annotations": {
+            "workers/message": "Automatic deployment on upload.",
+            "workers/triggered_by": "upload"
+          },
+          "versions": [
+            {
+              "version_id": "a669982c-d3a5-4628-87ac-3e2adc43d7fe",
+              "percentage": 100
+            }
+          ],
+          "created_on": "2026-10-23T19:08:14.469735Z"
+        },
+        "originalModule": "worker.mjs",
+        "originalSHA256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
+        "settingsBefore": {
+          "placement": {},
+          "compatibility_date": "2026-08-09",
+          "compatibility_flags": [
+            "nodejs_compat",
+            "global_fetch_strictly_public"
+          ],
+          "usage_model": "standard",
+          "tags": [],
+          "tail_consumers": [],
+          "logpush": false,
+          "annotations": {
+            "workers/triggered_by": "upload"
+          },
+          "bindings": [
+            {
+              "environment": "production",
+              "name": "CORE",
+              "service": "shift-core",
+              "type": "service"
+            },
+            {
+              "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+              "id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+              "name": "DB",
+              "type": "d1"
+            },
+            {
+              "name": "MEMBER_EXPERIENCE_V1_ENABLED",
+              "text": "true",
+              "type": "plain_text"
+            }
+          ]
+        },
+        "schedulesBefore": {
+          "schedules": []
+        },
+        "deployment": {
+          "id": "118cc954-c3d7-4cec-81f7-7dec773413a9",
+          "source": "api",
+          "strategy": "percentage",
+          "author_email": "matobrien@hotmail.co.uk",
+          "annotations": {
+            "workers/message": "Automatic deployment on upload.",
+            "workers/triggered_by": "upload"
+          },
+          "versions": [
+            {
+              "version_id": "e5f30e4d-832a-47a0-8427-53f08e03ded3",
+              "percentage": 100
+            }
+          ],
+          "created_on": "2026-10-25T13:42:23.340225Z"
+        }
+      },
+      "shift-hq-member-comms-20261023": {
+        "state": "provider_verified",
+        "priorDeployment": {
+          "id": "c9339da1-5d56-4789-a88c-020f3018b979",
+          "source": "api",
+          "strategy": "percentage",
+          "author_email": "matobrien@hotmail.co.uk",
+          "annotations": {
+            "workers/message": "Automatic deployment on upload.",
+            "workers/triggered_by": "upload"
+          },
+          "versions": [
+            {
+              "version_id": "3a063470-7a19-47a0-9138-d24348b40570",
+              "percentage": 100
+            }
+          ],
+          "created_on": "2026-10-25T12:38:59.720233Z"
+        },
+        "originalRollbackDeployment": {
+          "id": "b8d60b7c-8d04-4115-bc5c-6848e0d4d86d",
+          "source": "wrangler",
+          "strategy": "percentage",
+          "author_email": "matobrien@hotmail.co.uk",
+          "annotations": {
+            "workers/message": "Automatic deployment on upload.",
+            "workers/triggered_by": "upload"
+          },
+          "versions": [
+            {
+              "version_id": "af65ece5-3a22-4758-8bf0-9d129b1a6d8d",
+              "percentage": 100
+            }
+          ],
+          "created_on": "2026-10-24T21:51:18.011406Z"
+        },
+        "originalModule": "worker.js",
+        "originalSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
+        "settingsBefore": {
+          "placement": {},
+          "compatibility_date": "2026-10-23",
+          "compatibility_flags": [
+            "nodejs_compat"
+          ],
+          "usage_model": "standard",
+          "tags": [
+            "hq-notification-nav-20261024"
+          ],
+          "tail_consumers": [],
+          "logpush": false,
+          "annotations": {
+            "workers/triggered_by": "upload"
+          },
+          "bindings": [
+            {
+              "environment": "production",
+              "name": "CORE",
+              "service": "shift-core",
+              "type": "service"
+            },
+            {
+              "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+              "id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+              "name": "DB",
+              "type": "d1"
+            },
+            {
+              "allowed_sender_addresses": [
+                "hq@shiftsometimber.co.uk"
+              ],
+              "name": "EMAIL",
+              "type": "send_email"
+            },
+            {
+              "environment": "production",
+              "name": "HQ",
+              "service": "shift-hq",
+              "type": "service"
+            },
+            {
+              "environment": "production",
+              "name": "SUPPORT",
+              "service": "shift-mytimber-support-20261023",
+              "type": "service"
+            }
+          ]
+        },
+        "schedulesBefore": {
+          "schedules": [
+            {
+              "cron": "*/5 * * * *",
+              "created_on": "2026-10-23T13:33:47.644279Z",
+              "modified_on": "2026-10-23T13:33:47.644279Z"
+            }
+          ]
+        },
+        "deployment": {
+          "id": "d22c4917-e40f-4d01-b658-c7567c9eabf7",
+          "source": "api",
+          "strategy": "percentage",
+          "author_email": "matobrien@hotmail.co.uk",
+          "annotations": {
+            "workers/message": "Automatic deployment on upload.",
+            "workers/triggered_by": "upload"
+          },
+          "versions": [
+            {
+              "version_id": "088701fd-ff43-43c3-9f32-ecf9edcf77b5",
+              "percentage": 100
+            }
+          ],
+          "created_on": "2026-10-25T13:42:35.143037Z"
+        }
+      }
+    },
+    "routesChanged": 0,
+    "productionMemberWrites": 0,
+    "communicationsSent": 0,
+    "verifiedAt": "2026-10-25T13:42:54.769065+00:00",
+    "browserVerifiedAt": "2026-10-25T13:45:54.916057+00:00",
+    "browserCases": 4,
+    "actualAnonymousCases": 2,
+    "allOriginalWorkerModulesByteIdentical": true,
+    "allSettingsBindingsSchedulesAndRoutesUnchanged": true,
+    "homepageByteIdentical": true,
+    "coreDeploymentUnchanged": true,
+    "limitations": [
+      "Genuine signed-in saved-account acceptance not performed: all save operations in browser tests were synthetic and no real member data was read or written.",
+      "Installed physical PWA/native app acceptance and store approval remain separate; Google download hold unchanged.",
+      "Core/backend release remains owned by IP Release Manager; no Core source/main/workflow/publisher changes made."
+    ],
+    "rollbackScript": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/rollback-integration.py",
+    "rollbackExecuted": false
+  },
+  "independentExactVersionRead": "backend-communications-successor-code-identity-20261025.json",
+  "communicationsOriginalWorkerModuleByteIdentical": true,
+  "originalCommsWorkerSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
+  "newCommunicationsVersion": "088701fd-ff43-43c3-9f32-ecf9edcf77b5",
+  "backendAcceptanceScope": "Presentation source/synthetic account layout and genuine anonymous boundaries are valid for their scope. Do not substitute for remaining real11252 Core/GP/consent, actual staff/session, delivery/device/partner acceptance. Preserve new worker version and owned rollback; do not reupload/rollback af65.",
+  "newPublishersFromBackend": 0
+}

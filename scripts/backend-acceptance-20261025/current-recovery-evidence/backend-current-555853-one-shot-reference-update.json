@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-25T15:56:13.709933+00:00",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "run": 40208490258,
+  "state": "PREPARED_NOT_EXECUTED_PENDING_SAME_OWNED_VERIFIER",
+  "helpers": [
+    {
+      "helper": "/tmp/shift-backend-owned-live-readonly-20261025.mjs",
+      "referenceOnly": true,
+      "inverseEqual": true,
+      "beforeSHA": "0bd943386b145474cf5a2cc4b7a95082a5e28d344f31017a5023f7b96b2f3c17",
+      "afterSHA": "7117791d30b60ebb99a894cf382c22f13971c31fd046492c2e8d6c69bd2af62a"
+    },
+    {
+      "helper": "/tmp/shift-owned-production-read-guard-20261025.cjs",
+      "referenceOnly": true,
+      "inverseEqual": true,
+      "beforeSHA": "56da52531228fc7df7975dac8c4e47c5fe1125e666cd797d71eb106d12187294",
+      "afterSHA": "f28649a5e6efbb73db2d618b1388194a3db229b5c8368deda38cf422c51b22ee"
+    },
+    {
+      "helper": "/tmp/shift-run-approved-live-qa-20261025.py",
+      "referenceOnly": true,
+      "inverseEqual": true,
+      "beforeSHA": "6bc1ec181531af426ddeb788c79edb2925aedb98ba0a70c8741c4662e27dbf06",
+      "afterSHA": "e5b3f415ad9d70978f722b959b82af6d7e25f677f62996f1b3fa417bc226e887"
+    }
+  ],
+  "newWatchers": 0,
+  "uploads": 0
+}

@@ -1,27 +1,22 @@
 {
-  "at": "2026-10-25T12:17:48.453000+00:00",
-  "sourceReference": "f8f05127c6578a8e9f040e6275d431348b102db6",
-  "runReference": 40188985851,
-  "state": "RETIRED_RUN_REFERENCES_PREPARED_CHECKS_NOT_ACCEPTANCE",
-  "reason": "Original run cancelled before upload after four regressions reproduced. Initial isolated86d repair fixes2of4; latest source66ad8355 under the existing manager is not admitted or deployed.",
-  "goldenSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
-  "files": [
-    {
-      "file": "shift-backend-owned-live-readonly-20261025.mjs",
-      "sha256": "0bd943386b145474cf5a2cc4b7a95082a5e28d344f31017a5023f7b96b2f3c17"
-    },
-    {
-      "file": "shift-owned-production-read-guard-20261025.cjs",
-      "sha256": "56da52531228fc7df7975dac8c4e47c5fe1125e666cd797d71eb106d12187294"
-    },
-    {
-      "file": "shift-run-approved-live-qa-20261025.py",
-      "sha256": "6bc1ec181531af426ddeb788c79edb2925aedb98ba0a70c8741c4662e27dbf06"
-    }
-  ],
-  "acceptanceExecuted": false,
-  "productionD1Writes": 0,
-  "CoreUploads": 0,
-  "newWatchers": 0,
-  "next": "Retarget only exactsource/run references after actual successor admission and recheck full runtime identity. Originalsolewatcher must verifyownedproduction before3schemas/full6membercases/10naturalCorecompletions. Never execute retired-run helpers as current acceptance."
+  "at": "2026-10-25T16:35:35.960926+00:00",
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "run": 40208490258,
+  "state": "PREPARED_PENDING_SAME_OWNED_PRODUCTION_VERIFIER",
+  "guardedWatchObserved": {
+    "phase": "monitoring_original_guarded_workflow",
+    "workflowStatus": "in_progress",
+    "conclusion": null,
+    "deployed": false,
+    "verified": false,
+    "checkedAt": "2026-10-25T16:34:53.678419+00:00",
+    "run": 40208490258,
+    "source": "55585365538e22a5893e930bbaf70b8c99069d76"
+  },
+  "referenceInverseProof": "../current-recovery-evidence/backend-current-555853-one-shot-reference-update.json",
+  "queryParamsSupplement": "../current-recovery-evidence/backend-owned-readonly-query-params-20261025.json",
+  "installedLedgers": "Installed13:07; exact three source blobs also match current555853; no backfill/replay",
+  "qaScript": "shift-backend-approved-live-qa-20261025.js",
+  "helperScope": "Existing one-shot readers/tests only; no second publisher, watcher, login reset or unseen communication",
+  "retiredF8fReceipt": "backend-current-f8f-one-shot-reference-update.json remains historical only"
 }

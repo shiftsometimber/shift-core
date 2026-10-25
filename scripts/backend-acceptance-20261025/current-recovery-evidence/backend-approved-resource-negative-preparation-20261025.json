@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-25T16:28:40.633777+00:00",
+  "scope": "Read-only schema preparation for genuine cross-account resource denial on approved11251/11252 only",
+  "state": "PREPARED_NOT_RUN_ON_NEW_CORE",
+  "schemas": [
+    {
+      "name": "cases",
+      "sql": "CREATE TABLE cases (     id INTEGER PRIMARY KEY AUTOINCREMENT,     user_id INTEGER NOT NULL,     assessment_id INTEGER,     reference TEXT UNIQUE,     status TEXT NOT NULL DEFAULT 'submitted',     service_type TEXT,     pharmacy_status TEXT,     payment_status TEXT DEFAULT 'not_required',     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,     FOREIGN KEY (user_id) REFERENCES users(id),     FOREIGN KEY (assessment_id) REFERENCES assessments(id) )"
+    },
+    {
+      "name": "orders",
+      "sql": "CREATE TABLE orders (id INTEGER PRIMARY KEY AUTOINCREMENT,order_number TEXT NOT NULL UNIQUE,user_id INTEGER,customer_email TEXT,customer_name TEXT,product_id INTEGER,quantity INTEGER NOT NULL DEFAULT 1,subtotal_pence INTEGER NOT NULL DEFAULT 0,total_pence INTEGER NOT NULL DEFAULT 0,currency TEXT NOT NULL DEFAULT 'GBP',status TEXT NOT NULL DEFAULT 'new',payment_status TEXT NOT NULL DEFAULT 'pending',notes TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(user_id) REFERENCES users(id),FOREIGN KEY(product_id) REFERENCES products(id))"
+    },
+    {
+      "name": "pharmacy_orders",
+      "sql": "CREATE TABLE pharmacy_orders (   id INTEGER PRIMARY KEY AUTOINCREMENT,    case_id INTEGER NOT NULL,   user_id INTEGER NOT NULL,    provider TEXT,   external_order_id TEXT,   external_patient_id TEXT,    medication_name TEXT,   medication_strength TEXT,   quantity TEXT,    prescription_status TEXT NOT NULL DEFAULT 'pending',   pharmacy_status TEXT NOT NULL DEFAULT 'not_sent',    submitted_at TEXT,   accepted_at TEXT,   dispensed_at TEXT,   dispatched_at TEXT,   delivered_at TEXT,    tracking_number TEXT,   tracking_url TEXT,    provider_response TEXT,    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,    FOREIGN KEY (case_id) REFERENCES cases(id),   FOREIGN KEY (user_id) REFERENCES users(id) )"
+    }
+  ],
+  "productionMutations": 0,
+  "messagesSent": 0,
+  "resourceIDsReadAt": "2026-10-25T16:29:47.996019+00:00",
+  "approvedTestResourceIdentities": [],
+  "healthPayloadRead": false,
+  "financialOperations": 0,
+  "testAccountsCreated": 0,
+  "source": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "limitation": "No nonexistent or invented foreign resource is counted as account-isolation acceptance."
+}

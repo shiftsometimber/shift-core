@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-25T16:15:58.144800+00:00",
+  "change": "Persist all deduplicated original start/finish rows for this exact source/run/job; keep display at last16",
+  "beforeSHA": "efd1f93954d5302ee4ba869986d299b219ab171525e53d99c0d59ebebd9e47ef",
+  "afterSHA": "a02027e535a54d5b6ef1a399c1a8e2588b96e6993e02433148860fbe899e7fb2",
+  "inverseEqual": true,
+  "sourceAcceptanceUnchanged": true,
+  "newWatchers": 0
+}
