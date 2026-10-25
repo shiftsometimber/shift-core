@@ -794,6 +794,48 @@ async function webhook(request, env, ctx) {
   return json({ ok: true });
 }
 
+// Read-only basket recovery. Never create a second checkout while an existing
+// attempt may have been accepted by Stripe.
+async function activePurchaseBasket(request, env) {
+  const user = await member(request, env);
+  if (!user) return json({ok:false,error:"unauthorised"},401,cors(request));
+  await ensureCheckoutAttempts(env.DB);
+  const rows = await env.DB.prepare(
+    "SELECT channel,state,session_id,checkout_url,order_number,created_at FROM checkout_attempts WHERE user_id=? AND active=1 AND channel IN ('medicine','apparel') ORDER BY created_at DESC LIMIT 2"
+  ).bind(user.id).all();
+  const resume = new URL(request.url).searchParams.get("resume") === "1";
+  const attempts = [];
+  for (const row of rows.results || []) {
+    const item = {channel:row.channel,state:row.state,canResume:false};
+    if (row.state === "open" && row.session_id && row.checkout_url) {
+      if (!resume) item.canResume = true; // Actual Stripe status must be checked on tap.
+      else {
+        try {
+          const response = await fetch("https://api.stripe.com/v1/checkout/sessions/" + encodeURIComponent(row.session_id), {
+            headers:{authorization:"Bearer " + env.STRIPE_SECRET_KEY},
+            signal:AbortSignal.timeout(7000)
+          });
+          const session = response.ok ? await response.json() : null;
+          if (session?.id === row.session_id && session.status === "open" &&
+              session.payment_status !== "paid" &&
+              new URL(row.checkout_url).hostname === "checkout.stripe.com") {
+            item.canResume = true;
+            item.checkoutUrl = row.checkout_url;
+          } else {
+            item.reason = session?.status === "expired" ? "checkout_expired" : "checkout_not_confirmed";
+          }
+        } catch {item.reason = "checkout_status_unavailable";}
+      }
+    } else item.reason = "checkout_requires_reconciliation";
+    attempts.push(item);
+  }
+  return json({
+    ok:true,
+    accountReference:await sha256("basket-owner:" + user.id),
+    attempts
+  },200,cors(request));
+}
+
 async function orderStatus(request, env) {
   const id = clean(new URL(request.url).searchParams.get("session_id"), 200);
   if (!/^cs_(test|live)_[A-Za-z0-9_]+$/.test(id))
@@ -884,6 +926,7 @@ export async function medicineCommerceRoutes(request, env, ctx) {
       cors(request),
     );
   }
+  if (request.method === "GET" && path === "/v1/commerce/active-checkout") return activePurchaseBasket(request,env);
   if (request.method === "GET" && path === "/v1/commerce/medicine-order-status")
     return orderStatus(request, env);
   if(request.method==='GET'&&path==='/v1/commerce/medicine-clinical-context')return clinicalContext(request,env);
