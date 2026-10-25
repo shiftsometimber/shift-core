@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-25T11:29:58.722193+00:00",
+  "replacementSource": "626e0e395c2216bd44c80f9b01673251ce4197ff",
+  "tree": "6ee5b2df4ec3b69ef51bb02de53da5a41288e06d",
+  "runtimeSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "actualFreshFileHashVerified": true,
+  "original20Logical39SectionAnd8NegativeVerifierReceiptsReusable": true,
+  "reason": "Exact full compiled bytes match c599; verifier implementation and golden unchanged. No old whole-source pass reused. Actual merged source/run references remain required before live acceptance.",
+  "main": "f8f05127c6578a8e9f040e6275d431348b102db6",
+  "pr": {
+    "state": "closed",
+    "merged": true,
+    "head": "626e0e395c2216bd44c80f9b01673251ce4197ff",
+    "merge": "f8f05127c6578a8e9f040e6275d431348b102db6"
+  },
+  "activeProduction": [
+    {
+      "run": 40188985851,
+      "source": "f8f05127c6578a8e9f040e6275d431348b102db6",
+      "name": "Cloudflare Production Promote",
+      "event": "push"
+    }
+  ]
+}

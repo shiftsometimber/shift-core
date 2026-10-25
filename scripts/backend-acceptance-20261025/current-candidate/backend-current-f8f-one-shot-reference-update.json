@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-25T11:31:16.353101+00:00",
+  "source": "f8f05127c6578a8e9f040e6275d431348b102db6",
+  "run": 40188985851,
+  "featureSource": "626e0e395c2216bd44c80f9b01673251ce4197ff",
+  "goldenSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "files": [
+    {
+      "file": "/tmp/shift-backend-owned-live-readonly-20261025.mjs",
+      "oldSHA256": "8aab203d16ec1c881b8abd2a87d3cc914e18a5f0d2ec1caa7eec341fff537955",
+      "newSHA256": "0bd943386b145474cf5a2cc4b7a95082a5e28d344f31017a5023f7b96b2f3c17",
+      "sourceReferences": 1,
+      "runReferences": 1,
+      "inverseExact": true
+    },
+    {
+      "file": "/tmp/shift-owned-production-read-guard-20261025.cjs",
+      "oldSHA256": "ebf821a01b9eb4242445e3404c288056cbe6368d737983618d347bd7619061dc",
+      "newSHA256": "56da52531228fc7df7975dac8c4e47c5fe1125e666cd797d71eb106d12187294",
+      "sourceReferences": 1,
+      "runReferences": 2,
+      "inverseExact": true
+    },
+    {
+      "file": "/tmp/shift-run-approved-live-qa-20261025.py",
+      "oldSHA256": "e08e1d2b4db19aa2b63effc5afda0ea256d142e7f00a17a8ef3436ad60f08334",
+      "newSHA256": "6bc1ec181531af426ddeb788c79edb2925aedb98ba0a70c8741c4662e27dbf06",
+      "sourceReferences": 1,
+      "runReferences": 1,
+      "inverseExact": true
+    }
+  ],
+  "assertionsChanged": false,
+  "deadlinesChanged": false,
+  "newWatchers": 0,
+  "productionWrites": 0,
+  "acceptanceExecuted": false,
+  "next": "After SAME original observer verifies actual owned f8f production, execute original3 additive schemas, full6 approved-member cases and10 natural scheduler completion reads. No message sends or treatment/charge/erasure/MFA changes."
+}
