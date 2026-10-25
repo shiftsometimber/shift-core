@@ -216,8 +216,8 @@ function gitBlobId(bytes){return oid(bytes);}
 function deepFreeze(value){if(value&&typeof value==='object'){for(const child of Object.values(value))deepFreeze(child);Object.freeze(value);}return value;}
 export const JOINED_LOOK_CONTRACT=deepFreeze({
   "kind": "EXACT_MY_TIMBER_JOINED_LOOK_20261024",
-  "base": "c13e57924f4da39135b4bc014a47403aa802c674",
-  "payload": "65b3ef4921e31201e50e577bb730bf4a4bf90619",
+  "base": "e31adb6a2e669a9bca8511a0735accd15cc79a7f",
+  "payload": "498ed2541ae2b83949bb3c6101e7fa125c749f90",
   "payloadBlobs": {
     "frontend/member/member-progress-v1.js": "3f7ec13262b2fe2a800f04bdfce5c0c301f2f26f",
     "member-design.mjs": "aedd925f8425076639a40ff51c2032d8820502a3",
@@ -258,7 +258,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/my-timber-joined-look-scope-20261024.mjs"
   ],
   "maintenanceExpected": {
-    "release/member-recording-repair-20261024.mjs": "c1cb16fda3b59fc752d598932d16219718f30f59",
+    "release/member-recording-repair-20261024.mjs": "d223274a9d18be19d750a044801c374e15ba55c4",
     "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
     "release/approved-runtime-composition.mjs": "57ab4146d0b33f2277428b90335718c4fbfebe53",
