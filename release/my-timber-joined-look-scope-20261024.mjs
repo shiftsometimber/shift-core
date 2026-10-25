@@ -261,6 +261,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
   },
   "maintenancePaths": [
     ".github/workflows/cloudflare-production-promote.yml",
+    "medicine-commerce-v1.js",
     "medicines-watch/credibility.mjs",
     "medicines-watch/credibility.test.mjs",
     "medicines-watch/industry.mjs",
@@ -268,6 +269,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "medicines-watch/reviews/2026-10-18-approved-zenagamtide-switch.json",
     "medicines-watch/te8105-asc36-renewal.test.mjs",
     "member-experience/tests/weight-import-mapping-ui.test.mjs",
+    "public-purchase-basket.mjs",
     "release/app-client-proof.mjs",
     "release/app-live-http.mjs",
     "release/app-scope.mjs",
@@ -297,13 +299,17 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/combined-original-gp-object-20261014.test.mjs",
     "tests/independent-presentation-preservation.test.mjs",
     "tests/joined-native-byte-reuse-20261025.test.mjs",
+    "tests/late-watch-composition.test.mjs",
     "tests/member-details-release.test.mjs",
     "tests/member-recording-repair-admission-20261024.test.mjs",
     "tests/native-restored-source-stats-20261025.test.mjs",
-    "tests/recorded-week-navigation-preservation-20261018.test.mjs"
+    "tests/purchase-basket.test.mjs",
+    "tests/recorded-week-navigation-preservation-20261018.test.mjs",
+    "worker-entry-v6.js"
   ],
   "maintenanceExpected": {
     ".github/workflows/cloudflare-production-promote.yml": "b8b30ebd01a4f9163f70b1d299841c03803ecb55",
+    "medicine-commerce-v1.js": "305fd65c29ca635f3f54a3682ff0029b7e7fac70",
     "medicines-watch/credibility.mjs": "befa1ba1016ff1733f3cc9ce06d76f7bd077c186",
     "medicines-watch/credibility.test.mjs": "5d40e7fdcf8e8f7a1a1c27b17faacfaa92c31569",
     "medicines-watch/industry.mjs": "1796dd89e9aa581f45748d5d9d4de067b2aec2a1",
@@ -311,6 +317,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "medicines-watch/reviews/2026-10-18-approved-zenagamtide-switch.json": "b9340819c1f663439718208aa39b6d856be398b9",
     "medicines-watch/te8105-asc36-renewal.test.mjs": "70d87b5e9a1206636ebfe76d7de8efb619f9c3da",
     "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0",
+    "public-purchase-basket.mjs": "ef14697e8c08019c34f53a5b8f7a97533c49ac65",
     "release/app-client-proof.mjs": "6a7d9defa3f018299a09d0b4189138ec6d0d3bf1",
     "release/app-live-http.mjs": "aa1f309e768d48b6852b82dc0b6ea250c0988fc6",
     "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
@@ -338,10 +345,13 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/combined-original-gp-object-20261014.test.mjs": "c9aa5890ac7ca86e570b91e9e7932b137343f224",
     "tests/independent-presentation-preservation.test.mjs": "3f9d1058556a06571643d9729f114320df3dfe33",
     "tests/joined-native-byte-reuse-20261025.test.mjs": "78902ef8428ff754d9d79f0d687e94e96207112f",
+    "tests/late-watch-composition.test.mjs": "eff9e673410c4bd7b72c62561a7c100a28005285",
     "tests/member-details-release.test.mjs": "145863f8207eef11f7ab0b5b914d073c9d4b5cbc",
     "tests/member-recording-repair-admission-20261024.test.mjs": "df9bd0992c08d2125fa1159dabb720a9b29dbe88",
     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
-    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "70d95c71c321360f8694257b8dd6924bca0478d3"
+    "tests/purchase-basket.test.mjs": "d16aa90ae4b73a2b4a0ee4ddfbceea293952565a",
+    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "70d95c71c321360f8694257b8dd6924bca0478d3",
+    "worker-entry-v6.js": "4434faf74942037dc8ef88699e4b4260af9722c3"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
@@ -374,6 +384,25 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
       "sourceReviewDate": "2026-10-18",
       "monitorSuccessSeeded": false,
       "otherProgrammeSourceOrReviewDatesChanged": false
+    },
+    "preservedAlreadyServingSource": {
+      "source": "2c0595fca78f380e35942e14f7589f6f3cd6eb5b",
+      "providerVersion": "3c06f999-7001-4478-9057-8816671a19ee",
+      "providerDeployment": "ea340366-7634-4cb5-b9f3-036cc436d908",
+      "scope": "Preserve exact4alreadyapproved/deployedbasketfiles; no newbasketimplementation or checkoutacceptanceclaim",
+      "paths": [
+        "medicine-commerce-v1.js",
+        "public-purchase-basket.mjs",
+        "tests/purchase-basket.test.mjs",
+        "worker-entry-v6.js"
+      ]
+    },
+    "originalIntegrationCaseEnvelope": {
+      "scope": "Use existing closed native source qualification around each original complete real-composition case; all original assertion body bytes retained; fresh per-call native owned bytes and callback checks plus entry/exit integrity unchanged",
+      "paths": [
+        "tests/late-watch-composition.test.mjs"
+      ],
+      "assertionsRemoved": 0
     }
   }
 });
