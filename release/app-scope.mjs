@@ -1,4 +1,4 @@
-import {memberRecordingComparisonValue,recordingRepairLegacyPaths} from './member-recording-repair-20261024.mjs';
+import {memberRecordingComparisonValue,recordingRepairLegacyPaths,withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
 // My Shift composition: retain both exact approved merge parents; see my-shift-release-scope-20261024.mjs.
 import {verifyMyShiftRelease,myShiftSafetyComparison,MY_SHIFT_PATHS} from './my-shift-release-scope-20261024.mjs';
 import {compactLiteralExcludes} from './combined-finite-scope-20261014.mjs';
@@ -125,7 +125,7 @@ export function verifyCurrentMainSafetyChecks(read=(path)=>execFileSync('git',['
  return Object.keys(CURRENT_MAIN_SAFETY_CHECK_BLOBS);
 }
 export function validateAppSource(){
- return withImmutableHistoryVerification(()=>{
+ return withMemberRecordingQualification(()=>withImmutableHistoryVerification(()=>{
  const exactSafetyPaths=new Set(verifyCurrentMainSafetyChecks());
  verifyReconciledRelease();
  verifyMetricsConnection();
@@ -148,5 +148,5 @@ export function validateAppSource(){
  assert.equal(execFileSync('git',['show','HEAD:my-timber-pwa/service-worker.mjs'],{encoding:'utf8'}).replace(" const panel=['/member/fit','/member/grub','/member/life-back'].includes(u.pathname)&&u.searchParams.get('app_panel')==='1'&&['app','web'].includes(u.searchParams.get('view'))&&u.searchParams.size===2;\n if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||(u.search&&!panel))return;"," if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||u.search)return;"),execFileSync('git',['show',FOOTER_CANDIDATE+':my-timber-pwa/service-worker.mjs'],{encoding:'utf8'}),'Service worker differs beyond exact authenticated inline panel fetch');
  assert.equal(git('diff',APP_BASE,'HEAD','--','member-experience','my-timber-pwa','migrations',':(exclude)my-timber-pwa/verify-live.mjs',':(exclude)member-experience/orders.mjs',':(exclude)member-experience/tablet-routine.mjs',':(exclude)member-experience/tablet-routine-client.mjs',':(exclude)member-experience/ai-site-knowledge.mjs',':(exclude)member-experience/ai-stream.mjs',':(exclude)member-experience/tests/lookup-continuation.test.mjs',':(exclude)member-experience/tests/continuity-measurement.test.mjs',':(exclude)member-experience/public-preservation.mjs',':(exclude)member-experience/verify-production-member.mjs',':(exclude)member-experience/dashboard-tools.mjs',':(exclude)member-experience/tests/dashboard-tools.test.mjs',...[...RECONCILIATION_PATHS].filter(reconciliationPath).map(p=>':(exclude)'+p),...[...DEVICE_HEALTH_PATHS].map(p=>':(exclude)'+p),...[...FOOTER_RUNTIME_PATHS].map(p=>':(exclude)'+p),...PWA_DISMISS_PATHS.map(p=>':(exclude)'+p),...MEMBER_FOCUS_PATHS.map(p=>':(exclude)'+p),...[...RECIPE_IMAGE_PATHS].map(p=>':(exclude)'+p)),'','Protected runtime, data and PWA source changed');
  assert.equal(withoutCoachEntrypoint(readFileSync('wrangler.jsonc','utf8')),execFileSync('git',['show',APP_BASE+':wrangler.jsonc'],{encoding:'utf8'}),'Protected configuration changed outside the separately pinned coaching entrypoint');
- });
+ }));
 }

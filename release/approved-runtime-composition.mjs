@@ -1,3 +1,4 @@
+import {withJoinedSuccessorQualification} from './my-timber-joined-look-scope-20261024.mjs';
 import {APPROVED_NEWS_TICKER_PATHS,APPROVED_NEWS_TICKER_MAINTENANCE} from './approved-news-ticker-frame-20261024.mjs';
 import {ACTUAL_NAVIGATION_PATHS,ACTUAL_NAVIGATION_MAINTENANCE,actualNavigationChangedPath} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import {CURRENT_RUNTIME_PRESERVATION_PATHS,CURRENT_RUNTIME_PRESERVATION_MAINTENANCE} from './current-runtime-preservation-20261016.mjs';
@@ -2273,7 +2274,7 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 }
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
- return withImmutableHistoryVerification(()=>verifyReconciledReleaseOriginal(read));
+ return withJoinedSuccessorQualification(()=>withImmutableHistoryVerification(()=>verifyReconciledReleaseOriginal(read)));
 }
 function verifyReconciledReleaseOriginal(read){
  const memberDefaultRead=read===defaultReconciliationRead;
