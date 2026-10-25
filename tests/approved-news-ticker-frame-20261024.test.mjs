@@ -4,7 +4,7 @@ import{approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTicker
 const g=(...a)=>execFileSync('/usr/bin/git',a,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 test('finite approvedTicker source admission retains actual native identity and every prior receipt',()=>{
  const f=approvedNewsTickerOuterFrame();assert(f);assert.equal(f.rawHead,g('rev-parse','HEAD'));assert.notEqual(f.base,f.rawHead);
- const ledger='release/approved-runtime-composition.json',current=JSON.parse(g('show','HEAD:'+ledger)),prior=JSON.parse(g('show',f.base+':'+ledger));delete current.approvedNewsTicker20261024;assert.deepEqual(current,prior);
+ const ledger='release/approved-runtime-composition.json',current=JSON.parse(g('show','HEAD:'+ledger)),prior=JSON.parse(g('show',f.base+':'+ledger));delete current.approvedNewsTicker20261024;delete current.approvedNewsTickerIntegration20261025;assert.deepEqual(current,prior);
  assert.equal(approvedTickerPredecessorHead(),null);withApprovedTickerPredecessor(f,()=>assert.equal(approvedTickerPredecessorHead(),f.base));assert.equal(approvedTickerPredecessorHead(),null);
  assert.throws(()=>withApprovedTickerPredecessor({...f},()=>{}),/Independent/);
 });
@@ -31,7 +31,7 @@ import {approvedTickerOriginalLedger,approvedTickerOriginalFixtureHead} from '..
 
 import {verifyMemberRecordingRepair} from '../release/member-recording-repair-20261024.mjs';
 import {approvedTickerOriginalWorkingBytes} from '../release/approved-news-ticker-frame-20261024.mjs';
-test('member native repair rejects any unqualified tail and retains its actual current source after exact ticker admission',()=>{const f=approvedNewsTickerOuterFrame(),proof=verifyMemberRecordingRepair();assert.equal(proof.head,g('rev-parse','HEAD'));assert.equal(proof.paths.length,20);const path='release/member-recording-repair-20261024.mjs',raw=Buffer.from(g('show','HEAD:'+path)+'\n');assert.throws(()=>approvedTickerOriginalWorkingBytes(path,raw));withApprovedTickerPredecessor(f,()=>{assert.equal(approvedTickerOriginalWorkingBytes(path,raw).toString().trimEnd(),g('show',f.base+':'+path));assert.throws(()=>approvedTickerOriginalWorkingBytes(path,Buffer.concat([raw,Buffer.from('forged')])));});});
+test('member native repair rejects any unqualified tail and retains its actual current source after exact ticker admission',()=>{const f=approvedNewsTickerOuterFrame(),proof=verifyMemberRecordingRepair();assert.equal(proof.head,g('rev-parse','HEAD'));assert.equal(proof.paths.length,41);assert.equal(g('diff','--name-only','200ff3dd4c4e01505f418e31149389da0f81fe80','8551b285de1b808c810d49163b5cea5a3b98e575').split('\n').length,20);const path='release/member-recording-repair-20261024.mjs',raw=Buffer.from(g('show','HEAD:'+path)+'\n');assert.throws(()=>approvedTickerOriginalWorkingBytes(path,raw));withApprovedTickerPredecessor(f,()=>{assert.equal(approvedTickerOriginalWorkingBytes(path,raw).toString().trimEnd(),g('show',f.base+':'+path));assert.throws(()=>approvedTickerOriginalWorkingBytes(path,Buffer.concat([raw,Buffer.from('forged')])));});});
 
 import {approvedTickerComparisonValue} from '../release/approved-news-ticker-frame-20261024.mjs';
 test('exact current admission maps only native approved changed pins and preserves foreign values and heads',()=>{const f=approvedNewsTickerOuterFrame(),path='release/health-vision-scope-20261021.mjs',pin=g('rev-parse','HEAD:'+path),old=g('rev-parse',f.base+':'+path);assert.notEqual(pin,old);assert.equal(approvedTickerComparisonValue(path,pin,f.rawHead),old);assert.equal(approvedTickerComparisonValue(path,pin+'forged',f.rawHead),pin+'forged');assert.equal(approvedTickerComparisonValue(path,pin,f.base),pin);});
@@ -51,3 +51,15 @@ test('changed unrelated ref namespace falls back to the complete original constr
 test('the bounded provenance repair retains every original ticker registration field',()=>{const raw=JSON.parse(g('show','HEAD:release/approved-runtime-composition.json')).approvedNewsTicker20261024,{repairBase,repairPaths,repairSource,...before}=raw;assert.equal(repairBase,'07850862f8d4cf56a4d73473c6320a33c64b624e');assert.deepEqual(repairPaths,['release/approved-news-ticker-frame-20261024.mjs','tests/approved-news-ticker-frame-20261024.test.mjs']);assert.match(repairSource,/^[a-f0-9]{40}$/);assert.deepEqual(before,JSON.parse(g('show',repairBase+':release/approved-runtime-composition.json')).approvedNewsTicker20261024);});
 
 test('all original current-runtime forged blob and directory cases retain the source-drift error contract',()=>{const f=approvedNewsTickerOuterFrame();for(const path of ['member-experience/member-details-lookups.mjs','frontend','release','release/approved-runtime-composition.json','.github/workflows/cloudflare-production-promote.yml']){const read=(r,p)=>r==='HEAD'&&p===path?'a'.repeat(40):g('rev-parse',r+':'+p);assert.throws(()=>f.projectRead(read)('HEAD',path),/source drift/);}});
+
+test('current-main integration retains the original complete ticker ledger and every independent backend source',()=>{
+ const f=approvedNewsTickerOuterFrame(),ledger='release/approved-runtime-composition.json',now=JSON.parse(g('show','HEAD:'+ledger)),old=JSON.parse(g('show','f3cee7c576d46f4f10981d4c64035deb7608ee03:'+ledger));
+ assert.equal(f.base,'55af81540a004cdeedd24eb98c96441d2421b582');delete now.approvedNewsTickerIntegration20261025;assert.deepEqual(now,old);
+ for(const path of ['worker-entry-v6.js','worker.js','release/app-scope.mjs','release/immutable-git-facts.mjs','release/recorded-week-navigation-outer-frame-20261018.mjs','release/member-recording-repair-20261024.json'])assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',f.base+':'+path));
+});
+test('current-main integration rejects changed backend working source without hiding it behind ticker projection',()=>{
+ const f=approvedNewsTickerOuterFrame(),path='worker-entry-v6.js',before=readFileSync(path);
+ try{writeFileSync(path,Buffer.concat([before,Buffer.from('\n// owned native integration negative\n')]));assert.throws(()=>f.projectRead()('HEAD',path),/source|working|tracked|changed/i);}
+ finally{writeFileSync(path,before);}
+ assert(approvedNewsTickerOuterFrame());
+});

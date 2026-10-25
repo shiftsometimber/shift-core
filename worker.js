@@ -1,3 +1,6 @@
+import {sendTrackedCommerceEmail} from './hq-commerce-delivery.mjs';
+import {hqMfaOriginAllowed,claimHqMfaChallenge} from './hq-mfa-readiness.mjs';
+import {passwordMeetsPolicy,PASSWORD_POLICY_MESSAGE} from './password-policy-v1.js';
 import {fastMemberLogin} from './member-login-fastpath-v1.js';
 import {shopRecoveryStatus,retryPendingShopReceipts} from './commerce-stripe-v1.js';
 import {receiveAccountDeletion} from './privacy-account-request-v1.js';
@@ -108,8 +111,8 @@ async function register(request, env) {
   const email = normalizeEmail(body.email);
   const password = String(body.password || '');
 
-  if (!isEmail(email) || password.length < 10) {
-    return json({ ok: false, error: 'invalid_registration', message: 'Use a valid email and a password of at least 10 characters.' }, 400);
+  if (!isEmail(email) || !passwordMeetsPolicy(password)) {
+    return json({ ok: false, error: 'invalid_registration', message: PASSWORD_POLICY_MESSAGE }, 400);
   }
 
   try {
@@ -469,7 +472,7 @@ async function hqBootstrap(request,env){
   if(!isAdmin(request,env))return json({ok:false,error:'bootstrap_unauthorized'},401);
   const count=await env.DB.prepare('SELECT COUNT(*) count FROM hq_users').first(); if(Number(count?.count||0)>0)return json({ok:false,error:'already_bootstrapped'},409);
   const b=await readJson(request),email=normalizeEmail(b.email),name=clean(b.name,200),password=String(b.password||'');
-  if(!isEmail(email)||!name||password.length<12)return json({ok:false,error:'invalid_request',message:'Use a valid email, name and a password of at least 12 characters.'},400);
+  if(!isEmail(email)||!name||!passwordMeetsPolicy(password))return json({ok:false,error:'invalid_request',message:PASSWORD_POLICY_MESSAGE},400);
   const hash=await hashPassword(password);
   const r=await env.DB.prepare(`INSERT INTO hq_users(email,name,password_hash,role,status,mfa_enabled,created_at,updated_at) VALUES(?,?,?,'owner','active',0,?,?)`).bind(email,name,hash,isoNow(),isoNow()).run();
   await hqAudit(env,{id:Number(r.meta?.last_row_id||0)||null},'hq.bootstrap','hq_user',String(r.meta?.last_row_id||''),{}); return json({ok:true},201);
@@ -492,7 +495,7 @@ async function hqMfaLoginVerify(request,env){
   if(!ch)return json({ok:false,error:'invalid_or_expired_challenge'},401);
   const user=await env.DB.prepare('SELECT * FROM hq_users WHERE id=? AND status="active"').bind(ch.hq_user_id).first();
   if(!user||!(await verifyHqTotp(env,user,code)))return json({ok:false,error:'invalid_mfa_code'},401);
-  await env.DB.prepare('UPDATE hq_mfa_challenges SET used_at=? WHERE id=?').bind(isoNow(),ch.id).run(); return createHqSession(env,user);
+  if(!await claimHqMfaChallenge(env.DB,ch.id,isoNow()))return json({ok:false,error:'invalid_or_expired_challenge'},401); return createHqSession(env,user);
 }
 async function createHqSession(env,user){
   const token=randomToken(40),hash=await sha256Hex(token),expires=new Date(Date.now()+8*60*60*1000).toISOString();
@@ -506,18 +509,22 @@ async function hqLogout(request,env){
 }
 async function hqMe(request,env){const access=await requireHqAccess(request,env,null,false);if(access.response)return access.response;return json({ok:true,user:publicHqUser(access.actor),permissions:permissionsForRole(access.actor.role)})}
 async function hqMfaSetup(request,env){
+  if(!hqMfaOriginAllowed(request))return json({ok:false,error:'origin_not_allowed'},403);
   const access=await requireHqAccess(request,env,null,false);if(access.response)return access.response;
+  if(Number(access.actor.mfa_enabled||0)===1)return json({ok:false,error:'mfa_already_enabled',message:'Existing MFA remains enabled. Use the verified recovery process for authenticator replacement.'},409);
   if(!env.HQ_MFA_ENCRYPTION_KEY)return json({ok:false,error:'mfa_encryption_key_missing',message:'Set the HQ_MFA_ENCRYPTION_KEY Worker secret before enabling MFA.'},503);
   const secret=base32Encode(crypto.getRandomValues(new Uint8Array(20))),encrypted=await encryptHqSecret(env,secret);
-  await env.DB.prepare('UPDATE hq_users SET mfa_secret=?,mfa_enabled=0,updated_at=? WHERE id=?').bind(encrypted,isoNow(),access.actor.id).run();
+  const setup=await env.DB.prepare('UPDATE hq_users SET mfa_secret=?,mfa_enabled=0,updated_at=? WHERE id=? AND mfa_enabled=0').bind(encrypted,isoNow(),access.actor.id).run();
+  if(Number(setup.meta?.changes)!==1)return json({ok:false,error:'mfa_setup_changed'},409);
   const issuer=encodeURIComponent('Shift HQ'),label=encodeURIComponent(`Shift HQ:${access.actor.email}`),uri=`otpauth://totp/${label}?secret=${secret}&issuer=${issuer}&algorithm=SHA1&digits=6&period=30`;
   await hqAudit(env,access.actor,'hq.mfa_setup_started','hq_user',String(access.actor.id),{});return json({ok:true,secret,otpauthUri:uri});
 }
 async function hqMfaEnable(request,env){
+  if(!hqMfaOriginAllowed(request))return json({ok:false,error:'origin_not_allowed'},403);
   const access=await requireHqAccess(request,env,null,false);if(access.response)return access.response;
   const b=await readJson(request),code=String(b.code||'').replace(/\D/g,''),row=await env.DB.prepare('SELECT * FROM hq_users WHERE id=?').bind(access.actor.id).first();
   if(!row?.mfa_secret||code.length!==6||!(await verifyHqTotp(env,row,code)))return json({ok:false,error:'invalid_mfa_code'},400);
-  await env.DB.prepare('UPDATE hq_users SET mfa_enabled=1,updated_at=? WHERE id=?').bind(isoNow(),row.id).run();await hqAudit(env,access.actor,'hq.mfa_enabled','hq_user',String(row.id),{});return json({ok:true});
+  const enabled=await env.DB.prepare('UPDATE hq_users SET mfa_enabled=1,updated_at=? WHERE id=? AND mfa_secret=? AND mfa_enabled=0').bind(isoNow(),row.id,row.mfa_secret).run();if(Number(enabled.meta?.changes)!==1)return json({ok:false,error:'mfa_setup_changed'},409);await hqAudit(env,access.actor,'hq.mfa_enabled','hq_user',String(row.id),{});return json({ok:true});
 }
 // Reuse the existing session verifier without running the legacy schema/bootstrap router.
 export async function authenticateWorkHQ(request,env){
@@ -929,7 +936,7 @@ async function adminRoutes(request, env, path, method) {
   }
   if (method === 'POST' && path === '/v1/hq/users') {
     const b=await readJson(request); const email=normalizeEmail(b.email), name=clean(b.name,200), password=String(b.password||''), role=clean(b.role,40)||'readonly';
-    if(!isEmail(email)||!name||password.length<12||!HQ_ROLES.has(role)) return json({ok:false,error:'invalid_request'},400);
+    if(!isEmail(email)||!name||!passwordMeetsPolicy(password)||!HQ_ROLES.has(role)) return json({ok:false,error:'invalid_request',message:PASSWORD_POLICY_MESSAGE},400);
     const exists=await env.DB.prepare('SELECT id FROM hq_users WHERE lower(email)=?').bind(email).first();
     if(exists) return json({ok:false,error:'email_in_use'},409);
     const hash=await hashPassword(password);
@@ -1317,10 +1324,11 @@ async function adminRoutes(request, env, path, method) {
     const order=await env.DB.prepare(`SELECT o.*,p.name product_name,d.size FROM orders o LEFT JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.id=?`).bind(id).first();
     if(!order)return json({ok:false,error:'order_not_found'},404);
     const tracking=clean(b.trackingReference,200),carrier=clean(b.carrier,100),existing=parseJsonObject(order.notes),notes=JSON.stringify({...existing,trackingReference:tracking||existing.trackingReference||'',carrier:carrier||existing.carrier||'',fulfilmentUpdatedBy:hqActor.email,fulfilmentUpdatedAt:isoNow()});
-    await env.DB.prepare('UPDATE orders SET status=?,notes=?,updated_at=? WHERE id=?').bind(status,notes,isoNow(),id).run();
+    const statusChange=await env.DB.prepare('UPDATE orders SET status=?,notes=?,updated_at=? WHERE id=? AND status=? AND updated_at IS ?').bind(status,notes,isoNow(),id,order.status,order.updated_at??null).run();
+    if(Number(statusChange.meta.changes)!==1)return json({ok:false,error:'order_changed',message:'This order changed in another session. Reload it before updating.'},409);
     await updateOrderReferenceStatus(env.DB,order.order_number,status);
     await hqAudit(env,hqActor,'commerce.order_status_updated','order',String(id),{orderNumber:order.order_number,status,trackingReference:tracking,carrier});
-    if(status==='dispatched'&&order.customer_email&&env.EMAIL)await sendDispatchEmail(env,{...order,trackingReference:tracking,carrier}).catch(e=>console.warn('dispatch_email_failed',e?.message));
+    if(status==='dispatched'&&order.status!=='dispatched'&&order.customer_email)await sendDispatchEmail(env,{...order,trackingReference:tracking,carrier}).catch(e=>console.warn('dispatch_email_failed',e?.message));
     return json({ok:true,orderNumber:order.order_number,status});
   }
 
@@ -1332,10 +1340,10 @@ async function adminRoutes(request, env, path, method) {
     const form=new URLSearchParams();form.set('payment_intent',order.stripe_payment_intent_id);form.set('metadata[order_number]',order.order_number);if(reason)form.set('metadata[hq_reason]',reason);
     const response=await fetch('https://api.stripe.com/v1/refunds',{method:'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/x-www-form-urlencoded','Idempotency-Key':`hq-refund-${order.order_number}`},body:form}),refund=await response.json().catch(()=>null);
     if(!response.ok||!refund?.id)return json({ok:false,error:'stripe_refund_failed',message:clean(refund?.error?.message||'Stripe did not accept the refund.',300)},502);
-    await env.DB.batch([env.DB.prepare(`INSERT OR IGNORE INTO commerce_refunds(order_id,stripe_refund_id,amount_pence,reason,environment,created_by,created_at) VALUES(?,?,?,?,?,?,?)`).bind(id,refund.id,Number(refund.amount||order.total_pence),reason,mode,hqActor.email,isoNow()),env.DB.prepare(`UPDATE orders SET status='refunded',payment_status='refunded',updated_at=? WHERE id=?`).bind(isoNow(),id)]);
+    const refundWrite=await env.DB.batch([env.DB.prepare(`INSERT OR IGNORE INTO commerce_refunds(order_id,stripe_refund_id,amount_pence,reason,environment,created_by,created_at) VALUES(?,?,?,?,?,?,?)`).bind(id,refund.id,Number(refund.amount||order.total_pence),reason,mode,hqActor.email,isoNow()),env.DB.prepare(`UPDATE orders SET status='refunded',payment_status='refunded',updated_at=? WHERE id=?`).bind(isoNow(),id)]);
     await updateOrderReferenceStatus(env.DB,order.order_number,'refunded');
     const amountPence=Number(refund.amount||order.total_pence);let refundEmailSent=false;
-    if(order.customer_email&&env.EMAIL){try{await sendRefundEmail(env,{...order,amountPence,environment:mode});refundEmailSent=true}catch(e){console.warn('refund_email_failed',e?.message)}}
+    if(Number(refundWrite[0].meta.changes)===1&&order.customer_email){try{const delivery=await sendRefundEmail(env,{...order,amountPence,environment:mode});refundEmailSent=delivery.status==='provider_accepted'}catch(e){console.warn('refund_email_failed',e?.message)}}
     await hqAudit(env,hqActor,'commerce.order_refunded','order',String(id),{orderNumber:order.order_number,refundId:refund.id,amountPence,environment:mode,refundEmailSent});return json({ok:true,orderNumber:order.order_number,refundId:refund.id,amountPence,environment:mode,refundEmailSent});
   }
 
@@ -1344,7 +1352,9 @@ async function adminRoutes(request, env, path, method) {
     const id=Number(refundEmailMatch[1]),order=await env.DB.prepare(`SELECT o.*,p.name product_name,d.size,d.stripe_checkout_session_id,COALESCE((SELECT SUM(r.amount_pence) FROM commerce_refunds r WHERE r.order_id=o.id),o.total_pence) amountPence FROM orders o LEFT JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.id=?`).bind(id).first();
     if(!order)return json({ok:false,error:'order_not_found'},404);if(order.payment_status!=='refunded')return json({ok:false,error:'order_not_refunded'},409);if(!order.customer_email)return json({ok:false,error:'customer_email_missing'},409);if(!env.EMAIL)return json({ok:false,error:'email_not_configured'},503);
     const environment=String(order.stripe_checkout_session_id||'').startsWith('cs_live_')?'live':String(order.stripe_checkout_session_id||'').startsWith('cs_test_')?'test':'manual';
-    await sendRefundEmail(env,{...order,environment});await hqAudit(env,hqActor,'commerce.refund_email_sent','order',String(id),{orderNumber:order.order_number,environment});return json({ok:true,orderNumber:order.order_number});
+    let prior;try{prior=await env.DB.prepare('SELECT status,error_code FROM commerce_service_delivery WHERE event_key=?').bind('shop:'+id+':refund').first()}catch{}
+    if(!prior||prior.status!=='queued'||prior.error_code!=='email_binding_unavailable')return json({ok:false,error:'delivery_review_required',message:'Review the original delivery evidence and approve the exact draft and recipients in HQ Communications. An uncertain or accepted email cannot be blindly resent.'},409);
+    const delivery=await sendRefundEmail(env,{...order,environment});if(delivery.status!=='provider_accepted')return json({ok:false,error:'delivery_not_accepted',deliveryStatus:delivery.status},409);await hqAudit(env,hqActor,'commerce.refund_email_provider_accepted','order',String(id),{orderNumber:order.order_number,environment});return json({ok:true,orderNumber:order.order_number});
   }
 
   if (method === 'POST' && path === '/v1/hq/orders') {
@@ -1594,14 +1604,14 @@ function emailEscape(value){return String(value??'').replace(/[&<>"']/g,c=>({'&'
 async function sendDispatchEmail(env,order){
   const detail=[order.carrier,order.trackingReference].filter(Boolean).join(' · '),key=clean(order.carrier,100).toLowerCase(),trackUrl=key.includes('royal mail')?'https://www.royalmail.com/track-your-item':key.includes('dpd')?'https://track.dpd.co.uk':key.includes('evri')?'https://www.evri.com/track-a-parcel':key.includes('ups')?'https://www.ups.com/track':key.includes('dhl')?'https://www.dhl.com/gb-en/home/tracking.html':key.includes('yodel')?'https://www.yodel.co.uk/track':'',tracking=detail?`<div style="margin:24px 0;padding:18px;border-radius:14px;background:#707762;color:#050505"><strong>Delivery details</strong><br>${emailEscape(detail)}${trackUrl?`<br><a href="${trackUrl}" style="display:inline-block;margin-top:10px;color:#050505;font-weight:900">Track your order →</a>`:''}</div>`:'';
   const html=`<!doctype html><html><body style="margin:0;background:#050505;color:#E7E3DA;font-family:Arial,sans-serif"><div style="max-width:640px;margin:auto;padding:32px 20px"><img src="https://shiftsometimber.co.uk/assets/start-here-approved-logo.png?v=1" width="560" alt="Shift Some Timber" style="display:block;width:100%;height:auto;border:0;border-bottom:2px solid #707762;padding-bottom:20px"><p style="margin:32px 0 8px;color:#899078;font-weight:900;letter-spacing:.12em">ORDER UPDATE</p><h1 style="font-size:38px;margin:0 0 20px">It’s on the way.</h1><p style="font-size:17px;line-height:1.7">Your ${emailEscape(order.product_name||'Shift order')} has been dispatched.</p>${tracking}<p style="line-height:1.7">Order <strong>${emailEscape(order.order_number)}</strong></p><p><a href="https://shiftsometimber.co.uk/member/dashboard#orders" style="display:inline-block;background:#899078;color:#050505;text-decoration:none;font-weight:900;padding:13px 18px;border-radius:999px">View in My Shift</a></p><div style="margin-top:30px;padding-top:18px;border-top:1px solid #707762;color:#aaa69d;font-size:12px">Questions? orders@shiftsometimber.co.uk</div></div></body></html>`;
-  await env.EMAIL.send({from:{email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'},to:order.customer_email,subject:`Your Shift order is on the way · ${order.order_number}`,html,text:`Your Shift order ${order.order_number} has been dispatched.${detail?` ${detail}.`:''} View it in My Shift: https://shiftsometimber.co.uk/member/dashboard#orders`});
+  return sendTrackedCommerceEmail(env,{order,type:'dispatch',message:{from:{email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'},to:order.customer_email,subject:`Your Shift order is on the way · ${order.order_number}`,html,text:`Your Shift order ${order.order_number} has been dispatched.${detail?` ${detail}.`:''} View it in My Shift: https://shiftsometimber.co.uk/member/dashboard#orders`}});
 }
 
 export async function sendRefundEmail(env,order){
   const amount=(Number(order.amountPence||order.total_pence||0)/100).toFixed(2),name=clean(String(order.customer_name||'').split(/\s+/)[0],80)||'there',testNote=order.environment==='test'?`<div style="margin:0 0 22px;padding:12px 16px;border:1px solid #707762;border-radius:12px;color:#E7E3DA"><strong>Test order:</strong> no real money has moved.</div>`:'';
   const html=`<!doctype html><html><body style="margin:0;background:#050505;color:#E7E3DA;font-family:Arial,sans-serif"><div style="display:none;max-height:0;overflow:hidden;opacity:0">Refund processed for ${emailEscape(order.order_number)}</div><div style="max-width:640px;margin:auto;padding:32px 20px"><img src="https://shiftsometimber.co.uk/assets/start-here-approved-logo.png?v=1" width="560" alt="Shift Some Timber" style="display:block;width:100%;height:auto;border:0;border-bottom:2px solid #707762;padding-bottom:20px"><p style="margin:32px 0 8px;color:#899078;font-weight:900;letter-spacing:.12em">REFUND CONFIRMED</p><h1 style="font-size:38px;line-height:1.08;margin:0 0 20px;color:#E7E3DA">Your refund is on its way.</h1>${testNote}<p style="font-size:17px;line-height:1.7;color:#E7E3DA">Hi ${emailEscape(name)}, we’ve processed a refund of <strong>£${amount}</strong> for your Shift order.</p><div style="margin:24px 0;padding:20px;border-radius:16px;background:#707762;color:#050505"><p style="margin:0 0 8px;font-size:13px;font-weight:800">ORDER REFERENCE</p><p style="margin:0 0 18px;font-size:22px;font-weight:900">${emailEscape(order.order_number)}</p><p style="margin:0 0 8px"><strong>${emailEscape(order.product_name||'Shift order')}</strong>${order.size?` · Size ${emailEscape(order.size)}`:''}</p><p style="margin:0;font-size:20px;font-weight:900">Refund: £${amount}</p></div><h2 style="margin:28px 0 10px;font-size:21px;color:#E7E3DA">When will it arrive?</h2><p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#E7E3DA">The refund is being returned to the <strong>original payment method</strong>. Most appear sooner, but please allow <strong>up to 10 working days</strong> for your bank or card provider to show it.</p><p style="margin:22px 0"><a href="https://shiftsometimber.co.uk/member/dashboard#orders" style="display:inline-block;background:#899078;color:#050505;text-decoration:none;font-weight:900;padding:13px 18px;border-radius:999px">View your order in My Shift</a></p><div style="margin-top:30px;padding-top:18px;border-top:1px solid #707762;color:#aaa69d;font-size:12px;line-height:1.6">Questions? Email <a href="mailto:orders@shiftsometimber.co.uk" style="color:#E7E3DA">orders@shiftsometimber.co.uk</a><br>Shift Some Timber Ltd · Company no. 17393135</div></div></body></html>`;
   const text=`Shift Some Timber refund confirmed\n\nHi ${name},\n\nWe have processed a refund of £${amount} for order ${order.order_number}.\n\nThe refund is being returned to the original payment method. Most appear sooner, but please allow up to 10 working days for your bank or card provider to show it.\n\nView your order: https://shiftsometimber.co.uk/member/dashboard#orders\nQuestions: orders@shiftsometimber.co.uk${order.environment==='test'?'\n\nThis was a test order. No real money has moved.':''}`;
-  await env.EMAIL.send({from:{email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'},to:order.customer_email,subject:`Your Shift refund has been processed · ${order.order_number}`,html,text});
+  return sendTrackedCommerceEmail(env,{order,type:'refund',message:{from:{email:'orders@shiftsometimber.co.uk',name:'Shift Some Timber Orders'},to:order.customer_email,subject:`Your Shift refund has been processed · ${order.order_number}`,html,text}});
 }
 
 function corsHeaders(request, env) {

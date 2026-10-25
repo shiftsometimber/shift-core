@@ -2,7 +2,7 @@ import {currentRuntimePreservationHistoricalView} from './current-runtime-preser
 import {withImmutableHistoryVerification} from './immutable-git-facts.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:8e6}).trim();
 const recipeImageNativeGit=git;
 const manifest=JSON.parse(readFileSync(new URL('./recipe-image-manifest.json',import.meta.url)));

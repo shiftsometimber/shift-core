@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const PUBLIC_WORDING_PREVIEW='a3e2ebb4c585b0731e12511bf0325e6425ddc7b2';
 export const PUBLIC_WORDING_RUN=37006333678;
 export const WATCH_HSTS_PUBLIC_WORDING_SOURCE='04c50b99d155a9720b59b2e089b670de8523cadb';

@@ -1,3 +1,4 @@
+import {reuseExactNativeProjection} from './scoped-native-projection-evidence.mjs';
 import {currentRuntimePreservationHistoricalView,currentRuntimePreservationAuthenticatedRead,currentRuntimePreservationAuthenticatedContent,currentRuntimePreservationAuthenticatedDiff,currentRuntimePreservationAuthenticatedAncestor} from './current-runtime-preservation-20261016.mjs';
 import {readSeoNativeImmutableFacts} from './seo-native-immutable-facts-20261016.mjs';
 import assert from 'node:assert/strict';
@@ -68,7 +69,12 @@ export function verifySeoAuditRepair(c,options={}){
   readDiff:options.readDiff===undefined?week.diff:currentRuntimePreservationAuthenticatedDiff(options.readDiff,week),
   isAncestor:options.isAncestor===undefined?week.ancestor:currentRuntimePreservationAuthenticatedAncestor(options.isAncestor,week)},seoRecordedWeekFrame(week));
 }
+const seoNativeProjectionOwner=Object.freeze({});
 export function seoAuditHistoricalView(reader=null){
+ if(reader!==null)return constructSeoAuditHistoricalView(reader);
+ return reuseExactNativeProjection(seoNativeProjectionOwner,()=>constructSeoAuditHistoricalView(null));
+}
+function constructSeoAuditHistoricalView(reader=null){
  const week=currentRuntimePreservationHistoricalView(reader);
  if(week.head===week.rawHead)return seoAuditHistoricalViewOriginal(reader);
  const supplied=reader===null?null:currentRuntimePreservationAuthenticatedRead(reader,week);

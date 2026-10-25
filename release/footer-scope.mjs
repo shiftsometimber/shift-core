@@ -3,7 +3,7 @@ import {WATCH_OWNERSHIP_SOURCE,originalWatchOwnershipEntry} from './watch-regist
 // Matt's explicit 1 October instruction: approved footer on every website/PWA/app page.
 // Exact footer payload only. Historical runtime comparisons still check pre-footer bytes.
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const FOOTER_BASE='baec2cef3dbaf993ba00a3c10927d6dc6062a532';
 export const FOOTER_CANDIDATE='59b7d1da00fe4ada0e66d64954d99fee6ae35916';
 export const FOOTER_PROOF_RUN=36921225349;

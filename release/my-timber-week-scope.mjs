@@ -32,7 +32,7 @@ export const WEEK_PHOTO_FILE_OLD="export function photoAcceptanceHistoricalFile(
 export const WEEK_PHOTO_FILE_NEW="export function photoAcceptanceHistoricalFile(p,bytes){const week=myTimberWeekHistoricalView();bytes=myTimberWeekHistoricalFile(p,bytes);const v=photoAcceptanceHistoricalView();assert.equal(bytes,git('show',week.head+':'+p),'Actual current photo maintenance file required');return week.head===v.head?bytes:git('show',v.head+':'+p);}";
 export const WEEK_ROOT_IMPORT="import {weekPhotoTestIfPresent,weekRecoveryIfPresent} from './my-timber-week-scope.mjs';\n";
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 import {pathToFileURL} from 'node:url';
 export const MY_TIMBER_WEEK_BASE="9167d3ae3ffd0ba81da115ea0578637ede5ef832";
 export const MY_TIMBER_WEEK_SOURCE="e80ab18db5046f7c13ad1b5cdd28beb4cac57c35";

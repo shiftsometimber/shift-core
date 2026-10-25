@@ -1,3 +1,4 @@
+import {recordServiceJob} from './hq-service-job-runs.mjs';
 import {approvedTelemetryAsset,approvedComparisonAnswer} from './approved-public-corrections-20261024.mjs';
 import {causesPublicRoute} from './causes-partners/production.mjs';
 import {publicHttpsRedirect} from './public-https-redirect.mjs';
@@ -1017,20 +1018,21 @@ const worker = {
       // Production promotion seeds reviewed URL replacements before the new
       // runtime is exposed.  An invocation already in flight on the previous
       // runtime must not switch that row back to its older configuration.
-      const medicinesWatch = await checkSources(env, { allowSourceReplacement: false }).catch((error) => ({
+      const observedJob = (key, work) => recordServiceJob(env.DB, key, new Date(controller.scheduledTime || Date.now()).toISOString(), work);
+      const medicinesWatch = await observedJob('core_medicines_watch', () => checkSources(env, { allowSourceReplacement: false })).catch((error) => ({
         medicinesWatch: "check_failed",
         message: error?.message || "scheduled_job_failed",
       }));
       const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email", "my-timber-checkin", "member-signup-alerts", "my-treatment"];
       const settled = await Promise.allSettled([
-        runScheduledIntelligence(env),
-        runRadarScheduledScan(env),
-        runKnowledgeFlywheel(env, { limit: 1000 }),
-        runFitMorningReminders(env),
-        notifyArticlePublication(env),
-        env.MY_TIMBER_PWA_ENABLED==='true'?runPwaReminders(env):Promise.resolve({disabled:true}),
-        retryPendingSignupAlerts(env),
-        env.MY_TREATMENT_ENABLED==='true'?runTreatmentReminders(env):Promise.resolve({disabled:true}),
+        observedJob('core_intelligence', () => runScheduledIntelligence(env)),
+        observedJob('core_radar', () => runRadarScheduledScan(env)),
+        observedJob('core_knowledge', () => runKnowledgeFlywheel(env, { limit: 1000 })),
+        observedJob('core_fit_reminders', () => runFitMorningReminders(env)),
+        observedJob('core_article_email', () => notifyArticlePublication(env)),
+        observedJob('core_checkin', () => env.MY_TIMBER_PWA_ENABLED==='true'?runPwaReminders(env):Promise.resolve({disabled:true})),
+        observedJob('core_signup_alerts', () => retryPendingSignupAlerts(env)),
+        observedJob('core_treatment', () => env.MY_TREATMENT_ENABLED==='true'?runTreatmentReminders(env):Promise.resolve({disabled:true})),
       ]);
       const scheduled = settled.map((result, index) =>
         result.status === "fulfilled"

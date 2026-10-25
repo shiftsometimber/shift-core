@@ -2,11 +2,17 @@ export async function ensureAuthDelivery(DB){await DB.exec(`CREATE TABLE IF NOT 
 // Audit persistence is observational. An outage must not turn an already
 // accepted email into a failed send or invalidate its token through a retry.
 // Token/password/session writes remain fail closed in their owning handlers.
-export async function recordAuthDelivery(DB,{userId=null,email,eventType,status,providerId=null,errorCode=null}){
+export async function recordAuthDelivery(DB,{userId=null,email,eventType,status,providerId=null,errorCode=null,eventReference=null,templateVersion=null,recipientRole=null}){
  try{
   await ensureAuthDelivery(DB);
   const emailHash=await sha256(String(email||'').trim().toLowerCase());
-  await DB.prepare(`INSERT INTO auth_delivery_events(user_id,email_hash,event_type,status,provider_id,error_code,created_at) VALUES(?,?,?,?,?,?,CURRENT_TIMESTAMP)`).bind(userId,emailHash,eventType,status,providerId,errorCode).run();
+  const result=await DB.prepare(`INSERT INTO auth_delivery_events(user_id,email_hash,event_type,status,provider_id,error_code,created_at) VALUES(?,?,?,?,?,?,CURRENT_TIMESTAMP)`).bind(userId,emailHash,eventType,status,providerId,errorCode).run();
+  if(eventReference!==null){
+   if(!/^[A-Za-z0-9_:./-]{1,180}$/.test(eventReference)||!/^[-A-Za-z0-9_.]{1,80}$/.test(templateVersion||'')||!['member','operator'].includes(recipientRole))throw Error('invalid_delivery_link');
+   const deliveryId=Number(result?.meta?.last_row_id);if(!Number.isSafeInteger(deliveryId)||deliveryId<1)throw Error('delivery_reference_unavailable');
+   await DB.prepare(`CREATE TABLE IF NOT EXISTS auth_delivery_event_links(delivery_event_id INTEGER PRIMARY KEY,event_reference TEXT NOT NULL,template_version TEXT NOT NULL,recipient_role TEXT NOT NULL,recorded_at TEXT NOT NULL,FOREIGN KEY(delivery_event_id) REFERENCES auth_delivery_events(id) ON DELETE CASCADE)`).run();
+   await DB.prepare('INSERT INTO auth_delivery_event_links VALUES(?,?,?,?,CURRENT_TIMESTAMP)').bind(deliveryId,eventReference,templateVersion,recipientRole).run();
+  }
   return{recorded:true};
  }catch{
   console.warn('auth_delivery_audit_unavailable');

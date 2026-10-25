@@ -1,6 +1,6 @@
 import {reconciliationHistoricalRef} from './approved-runtime-composition.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
 export const CONTEXT_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
 export const CONTEXT_PAYLOAD='25efa17b1b21bea5c140b87707041eb728865e38';
 export const CONTEXT_PAYLOAD_PATHS= ["public-seo-context-data.mjs", "public-seo-context.mjs", "shift-coach/worker.mjs", "tests/public-seo-context.test.mjs"];

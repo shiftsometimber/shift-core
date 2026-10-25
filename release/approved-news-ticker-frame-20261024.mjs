@@ -81,7 +81,9 @@ export function approvedNewsTickerOuterFrame(){
   }
  }
  const storageBefore=storageSignature();
- const rawHead=actual(),record=JSON.parse(text(rawHead,LEDGER)),c=record[KEY];if(!c)return null;
+  const rawHead=actual(),record=JSON.parse(text(rawHead,LEDGER));
+  if(record[INTEGRATION_KEY])return integratedTickerOuterFrame(rawHead,record,storageBefore);
+  const c=record[KEY];if(!c)return null;
  const fresh=freshChecker(rawHead);
  const {maintenanceSource,repairSource,...scope}=c;assert.deepEqual(scope,fixed,'Only the exact finite approvedTicker scope is admitted');
  assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
@@ -121,33 +123,7 @@ export function approvedNewsTickerOuterFrame(){
  for(const p of fixed.maintenancePaths.filter(p=>!Object.hasOwn(inverse.modified,p)))assert.equal(git('ls-tree',fixed.base,'--',p),'','New maintenance source must be additive');
  const prior=JSON.parse(text(fixed.base,LEDGER)),retained=structuredClone(record);delete retained[KEY];
  assert.deepEqual(retained,prior,'Every prior approval, failure and receipt must remain exact');
- function assertCurrent(){assert.equal(actual(),rawHead,'ApprovedTicker native HEAD moved');fresh();}
- function authentic(v,r,p,kind='read'){
-  const ref=r==='HEAD'?rawHead:r,body=text(ref,p),id=oid(ref,p);
-  if(v===body||kind==='read'&&v===id)return true;
-  const prefix='tree '+ref+':'+p+'\n';return body.startsWith(prefix)&&v===body.replace(prefix,'tree '+r+':'+p+'\n');
- }
- function project(kind,source){return(r,p)=>{
-  assertCurrent();try{
-   const get=ref=>{if(!source)return kind==='read'?oid(ref,p):text(ref,p);const v=source(ref,p);assert(authentic(v,ref,p,kind),'Approved ticker source drift: unauthentic supplied approvedTicker source: '+ref+':'+p);return v};
-   if(r==='HEAD'||r===rawHead||r===fixed.base){if(source){get('HEAD');get(rawHead)}return get(fixed.base)}
-   return get(r);
-  }finally{assertCurrent()}
- }}
- function binary(kind,source){return(a,b)=>{
-  assertCurrent();try{
-   const raw=r=>r==='HEAD'?rawHead:r,map=r=>r==='HEAD'||r===rawHead||r===fixed.base?fixed.base:r;
-   const get=(x,y)=>{const v=kind==='diff'?diff(raw(x),raw(y)):ancestor(raw(x),raw(y));if(source){const supplied=source(x,y);if(kind==='diff')assert.deepEqual(sorted(supplied),sorted(v),'Supplied approvedTicker native diff changed');else assert.notEqual(supplied,false,'Supplied approvedTicker native ancestry changed')}return v};
-   if(source&&(b==='HEAD'||b===rawHead||b===fixed.base)){get(a,'HEAD');get(a,rawHead)}
-   return get(map(a),map(b));
-  }finally{assertCurrent()}
- }}
- const frame={rawHead,base:fixed.base,assertCurrent,authentic,affected:p=>[...all,LEDGER].some(q=>q===p||q.startsWith(p+'/')),
-  currentContent:(r,p)=>text(r==='HEAD'?rawHead:r,p),
-  originalContent:(p,value)=>{assertCurrent();assert.equal(value,text(rawHead,p),'Exact current approvedTicker fixture bytes required');return text(fixed.base,p)},
-  projectRead:s=>project('read',s),projectContent:s=>project('content',s),projectDiff:s=>binary('diff',s),projectAncestor:s=>binary('ancestor',s)};
- const storageAfter=storageSignature();privateFrameStorage.set(frame,storageBefore!==null&&storageAfter===storageBefore?storageAfter:null);
- frames.add(frame);assertCurrent();return Object.freeze(frame);
+  return makeTickerFrame(rawHead,fixed.base,all,fresh,storageBefore);
 }
 export function withApprovedTickerPredecessor(frame,callback){
  assert(frames.has(frame),'Independent finite approvedTicker admission required');frame.assertCurrent();
@@ -172,4 +148,75 @@ export function approvedTickerComparisonValue(path,value,requestedHead){
  const raw=actual();if(requestedHead&&requestedHead!==raw)return value;
  let pin;try{pin=oid(raw,path);}catch{return value;}const identifier=value===pin,body=!identifier&&value===text(raw,path);if(!identifier&&!body)return value;
  const f=approvedNewsTickerOuterFrame();if(!f)return value;f.assertCurrent();let prior;try{prior=identifier?oid(f.base,path):text(f.base,path);}catch{return value;}f.assertCurrent();return prior;
+}
+
+function makeTickerFrame(rawHead,base,all,fresh,storageBefore){
+ function assertCurrent(){assert.equal(actual(),rawHead,'ApprovedTicker native HEAD moved');fresh();}
+ function authentic(v,r,p,kind='read'){
+  const ref=r==='HEAD'?rawHead:r,body=text(ref,p),id=oid(ref,p);
+  if(v===body||kind==='read'&&v===id)return true;
+  const prefix='tree '+ref+':'+p+'\n';return body.startsWith(prefix)&&v===body.replace(prefix,'tree '+r+':'+p+'\n');
+ }
+ function project(kind,source){return(r,p)=>{
+  assertCurrent();try{
+   const get=ref=>{if(!source)return kind==='read'?oid(ref,p):text(ref,p);const v=source(ref,p);assert(authentic(v,ref,p,kind),'Approved ticker source drift: unauthentic supplied approvedTicker source: '+ref+':'+p);return v};
+   if(r==='HEAD'||r===rawHead||r===base){if(source){get('HEAD');get(rawHead)}return get(base)}
+   return get(r);
+  }finally{assertCurrent()}
+ }}
+ function binary(kind,source){return(a,b)=>{
+  assertCurrent();try{
+   const raw=r=>r==='HEAD'?rawHead:r,map=r=>r==='HEAD'||r===rawHead||r===base?base:r;
+   const get=(x,y)=>{const v=kind==='diff'?diff(raw(x),raw(y)):ancestor(raw(x),raw(y));if(source){const supplied=source(x,y);if(kind==='diff')assert.deepEqual(sorted(supplied),sorted(v),'Supplied approvedTicker native diff changed');else assert.notEqual(supplied,false,'Supplied approvedTicker native ancestry changed')}return v};
+   if(source&&(b==='HEAD'||b===rawHead||b===base)){get(a,'HEAD');get(a,rawHead)}
+   return get(map(a),map(b));
+  }finally{assertCurrent()}
+ }}
+ const frame={rawHead,base:base,assertCurrent,authentic,affected:p=>[...all,LEDGER].some(q=>q===p||q.startsWith(p+'/')),
+  currentContent:(r,p)=>text(r==='HEAD'?rawHead:r,p),
+  originalContent:(p,value)=>{assertCurrent();assert.equal(value,text(rawHead,p),'Exact current approvedTicker fixture bytes required');return text(base,p)},
+  projectRead:s=>project('read',s),projectContent:s=>project('content',s),projectDiff:s=>binary('diff',s),projectAncestor:s=>binary('ancestor',s)};
+ const storageAfter=storageSignature();privateFrameStorage.set(frame,storageBefore!==null&&storageAfter===storageBefore?storageAfter:null);
+ frames.add(frame);assertCurrent();return Object.freeze(frame);
+}
+
+const INTEGRATION_KEY='approvedNewsTickerIntegration20261025';
+const INTEGRATION_BASE='55af81540a004cdeedd24eb98c96441d2421b582';
+const ORIGINAL_TICKER_HEAD='f3cee7c576d46f4f10981d4c64035deb7608ee03';
+const integrationFixed={proof:'EXACT_APPROVED_NEWS_TICKER_CURRENT_MAIN_20261025',base:INTEGRATION_BASE,previousTicker:ORIGINAL_TICKER_HEAD,paths:fixed.paths,maintenancePaths:fixed.maintenancePaths,scope:fixed.scope};
+function integratedTickerOuterFrame(rawHead,record,storageBefore){
+ const c=record[INTEGRATION_KEY],{maintenanceSource,...scope}=c;
+ assert.deepEqual(scope,integrationFixed,'Only the exact current-main ticker composition is admitted');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
+ const fresh=freshChecker(rawHead),original=JSON.parse(text(ORIGINAL_TICKER_HEAD,LEDGER)),oc=original[KEY];
+ assert.deepEqual(oc,{...fixed,maintenanceSource:'37c392ac3695ca95bc0d9e75b3c996d8b6126e20',repairSource:'819081b9b5350f5ab13b7f612cd3cdbc081aedf1'},'Original reviewed ticker registration must remain exact');
+ const retained=structuredClone(record);delete retained[INTEGRATION_KEY];assert.deepEqual(retained,original,'Every earlier ledger receipt must remain unchanged');
+ assert.equal(text(INTEGRATION_BASE,LEDGER),text(fixed.base,LEDGER),'Current main must preserve every earlier non-ticker ledger byte');
+ const oldChain=[[fixed.base,fixed.payload,fixed.paths],[fixed.payload,oc.maintenanceSource,fixed.maintenancePaths],[oc.maintenanceSource,fixed.repairBase,[LEDGER]],[fixed.repairBase,'51f6e6d177dfd5acf0ab0a964686d8688e133a40',fixed.repairPaths],['51f6e6d177dfd5acf0ab0a964686d8688e133a40','9071379f77c376a45ce2b774302442ee789b8a0d',[LEDGER]],['9071379f77c376a45ce2b774302442ee789b8a0d',oc.repairSource,fixed.repairPaths],[oc.repairSource,ORIGINAL_TICKER_HEAD,[LEDGER]]];
+ for(const[a,b,ps]of oldChain){ancestor(a,b);assert.deepEqual(sorted(diff(a,b)),sorted(ps),'Every original ticker native increment remains required');}
+ const all=[...fixed.paths,...fixed.maintenancePaths];
+ for(const p of all){
+  const source=fixed.paths.includes(p)?fixed.payload:fixed.repairPaths.includes(p)?oc.repairSource:oc.maintenanceSource;
+  assert.equal(oid(ORIGINAL_TICKER_HEAD,p),oid(source,p),'Original ticker source pin changed: '+p);
+ }
+ for(const[p,row]of Object.entries(inverse.modified)){
+  assert(Buffer.from(row.before,'base64').equals(bytes(fixed.base,p)),'Every original whole guard/test before-image remains exact: '+p);
+  assert.equal(sha(bytes(ORIGINAL_TICKER_HEAD,p)),row.afterSha256,'Original finite maintenance bytes changed: '+p);
+ }
+ ancestor(ORIGINAL_TICKER_HEAD,maintenanceSource);ancestor(INTEGRATION_BASE,maintenanceSource);ancestor(maintenanceSource,rawHead);
+ assert.deepEqual(sorted(diff(INTEGRATION_BASE,maintenanceSource)),sorted([...all,LEDGER]),'Exact current-main ticker source boundary required');
+ assert.deepEqual(diff(maintenanceSource,rawHead),[LEDGER],'Only the exact integration registration may follow source');
+ assert.equal(text(maintenanceSource,LEDGER),text(ORIGINAL_TICKER_HEAD,LEDGER),'Every previous complete ledger byte must precede integration');
+ for(const p of all){
+  const source=fixed.paths.includes(p)?fixed.payload:maintenanceSource;
+  assert.equal(oid(rawHead,p),oid(source,p),'Exact integrated ticker source drift: '+p);
+  assert(readFileSync(p).equals(bytes(rawHead,p)),'Integrated ticker working source drift: '+p);
+ }
+ for(const ref of [ORIGINAL_TICKER_HEAD,rawHead])for(const p of [...all,LEDGER])assert(git('ls-tree',ref,'--',p).startsWith('100644 blob '),'Every original regular source mode remains required: '+p);
+ assert.deepEqual(sorted(Object.keys(inverse.integration.modified)),sorted(Object.keys(inverse.modified)),'The same bounded original guard/test set must be retained');
+ for(const[p,row]of Object.entries(inverse.integration.modified)){
+  assert(Buffer.from(row.before,'base64').equals(bytes(INTEGRATION_BASE,p)),'Whole current-main guard/test before-image required: '+p);
+  assert.equal(sha(bytes(rawHead,p)),row.afterSha256,'Exact independently reviewed integration source required: '+p);
+ }
+ for(const p of fixed.maintenancePaths.filter(p=>!Object.hasOwn(inverse.integration.modified,p)))assert.equal(git('ls-tree',INTEGRATION_BASE,'--',p),'','New integration maintenance source must be additive');
+ return makeTickerFrame(rawHead,INTEGRATION_BASE,all,fresh,storageBefore);
 }
