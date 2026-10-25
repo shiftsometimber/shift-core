@@ -1,0 +1,84 @@
+{
+  "at": "2026-10-25T19:05:11.631499+00:00",
+  "base": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "source": "0fa844f6cf9db2989828d33bd5e9b31572ac4677",
+  "registration": "f2f9edcf8259cfbca9f3ca14cf0b3e5d77662692",
+  "paths": [
+    "release/health-vision-scope-20261021.mjs",
+    "release/immutable-git-facts.mjs",
+    "release/my-timber-joined-look-20261024.json",
+    "release/my-timber-joined-look-scope-20261024.mjs",
+    "release/testosterone-scope-20261021.mjs"
+  ],
+  "nativeAdmissionExit": 0,
+  "nativeAdmissionOutput": "{\"source\":\"0fa844f6cf9db2989828d33bd5e9b31572ac4677\",\"paths\":39}\n",
+  "error": "",
+  "originalHealthTrtAssertionsByteIdentical": true,
+  "allFallbacksKeepOriginalArgv": true,
+  "retentionLimitsUnchanged": true,
+  "runtimeFilesChanged": 0,
+  "diagnosticOnly": true,
+  "pushed": false,
+  "activeSourceChanged": false,
+  "updatedAt": "2026-10-25T19:14:45.660436+00:00",
+  "state": "PRIVATE_FINITE_FIX_TARGETED_VERIFIED_NOT_ADMITTED",
+  "exactCause": "Health/TRT raw node:child_process wrappers supply --no-optional-locks and --no-replace-objects, bypassing authenticated immutable fact transport; repeated literal40SHA show/rev-parse spawn new Git processes. Live diff/ancestry/HEAD/index/replace checks intentionally remain native.",
+  "proposal": "Only route these exact immutable argv through same provenance-checked transport; preserve complete original argv on every fallback, no replaced-context reuse. All original Health/TRT assertion lines unchanged. No runtime application source changes.",
+  "qualification": "read-only-argv-transport-qualification.json",
+  "activeRun": 40208490258,
+  "activeSource": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "activeCandidateChanged": false,
+  "recommendation": "Do not cancel progressing32/33 current release. This isolated proposal has not proved a speedup and is not approved source admission evidence.",
+  "smallCapacityExperiment": "Native-qualified only; original case did not return within90sec. Instrumentation5500 calls85sec confirmed stable native context with1755 misses/3100 hits; no acceptance claimed. Capacity changes and instrumentation removed from final isolated transport proposal.",
+  "newWatchers": 0,
+  "newPublishers": 0,
+  "originalArticleRegression": {
+    "exit": 0,
+    "seconds": 168.56,
+    "pass": 1
+  },
+  "originalHealthTrtRegressions": {
+    "exit": 0,
+    "seconds": 149.16,
+    "pass": 7,
+    "fail": 0,
+    "skip": 0
+  },
+  "nativeArgvParity": {
+    "assertions": 122,
+    "warmReads": 100,
+    "gitSubprocessesForWarmReads": 0,
+    "receipt": "read-only-argv-native-parity-and-process-count.json"
+  },
+  "originalUnflaggedHelperByteInverse": true,
+  "runtime": {
+    "at": "2026-10-25T19:13:47.853585+00:00",
+    "source": "0fa844f6cf9db2989828d33bd5e9b31572ac4677",
+    "command": [
+      "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/toolchains/node-v22.16.0-darwin-arm64/bin/node",
+      "/Users/shiftsometimberltd/SST/release-final-frame-20261024/node_modules/wrangler/bin/wrangler.js",
+      "deploy",
+      "--dry-run",
+      "--config",
+      "wrangler.jsonc",
+      "--outdir",
+      "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/profiles/current-555853-bounded-20261025/read-only-argv-compiled-runtime"
+    ],
+    "immutableArchive": "/var/folders/3c/51t04mg562x471053v1fq7t40000gn/T/shift-backend-argv-runtime-tn72lfwe",
+    "exit": 0,
+    "seconds": 4.909,
+    "productionWrites": 0,
+    "bytes": 33352812,
+    "sha256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+    "byteIdenticalApprovedRuntime": true
+  },
+  "broaderAdverseDiagnostic": {
+    "observedIndividualPasses": 60,
+    "observedFailures": [],
+    "includesRepeatedImportedTests": true,
+    "wholeGroupPass": false,
+    "own180SecondBoundReached": true,
+    "receipt": "original-adverse-result.json"
+  },
+  "remainingQualification": "No actual end-to-end speedup benchmark or whole current-source production gate claimed. Existing current555 release remains frozen/32passes; do not cancel it or treat isolated patch as admitted."
+}

@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-25T19:13:47.853585+00:00",
+  "source": "0fa844f6cf9db2989828d33bd5e9b31572ac4677",
+  "command": [
+    "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/toolchains/node-v22.16.0-darwin-arm64/bin/node",
+    "/Users/shiftsometimberltd/SST/release-final-frame-20261024/node_modules/wrangler/bin/wrangler.js",
+    "deploy",
+    "--dry-run",
+    "--config",
+    "wrangler.jsonc",
+    "--outdir",
+    "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/profiles/current-555853-bounded-20261025/read-only-argv-compiled-runtime"
+  ],
+  "immutableArchive": "/var/folders/3c/51t04mg562x471053v1fq7t40000gn/T/shift-backend-argv-runtime-tn72lfwe",
+  "exit": 0,
+  "seconds": 4.909,
+  "productionWrites": 0,
+  "bytes": 33352812,
+  "sha256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "byteIdenticalApprovedRuntime": true
+}

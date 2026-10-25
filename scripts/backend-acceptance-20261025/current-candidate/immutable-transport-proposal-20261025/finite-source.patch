@@ -1,0 +1,105 @@
+diff --git a/release/health-vision-scope-20261021.mjs b/release/health-vision-scope-20261021.mjs
+index 5cdf6068..6d3a5272 100644
+--- a/release/health-vision-scope-20261021.mjs
++++ b/release/health-vision-scope-20261021.mjs
+@@ -2,7 +2,7 @@ import {nativeWorkingSourceDifferenceSize} from './immutable-git-facts.mjs';
+ import {memberRecordingTickerPredecessorComparisonValue} from './member-recording-repair-20261024.mjs';
+ import {createRequire} from 'node:module';
+ import assert from 'node:assert/strict';
+-import {execFileSync} from 'node:child_process';
++import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
+ import {readFileSync} from 'node:fs';
+ export const HEALTH_BASE='cfac31c6dabafed3d48d9e18a9d0ad527e6ce8db';
+ export const HEALTH_PAYLOAD='164ee30d70a7da6925f1eed3604252831295bf8e';
+diff --git a/release/immutable-git-facts.mjs b/release/immutable-git-facts.mjs
+index 976cf129..3f883916 100644
+--- a/release/immutable-git-facts.mjs
++++ b/release/immutable-git-facts.mjs
+@@ -309,9 +309,13 @@ function nativeLiteralFact(args,options,context){
+  nativeFactOutputs.set(key,cached);return cached;
+ }
+ export function immutableHistoryExecFileSync(bin,args,options){
+- if(bin!=='git'||!Array.isArray(args)||args.length!==2||!['show','rev-parse'].includes(args[0])||args.some(value=>typeof value!=='string')||!trustedFactOptions(options)||options?.cwd&&options.cwd!==process.cwd())return execFileSync(bin,args,options);
+- if(!/^[a-f0-9]{40}:/.test(args[1]))return execFileSync(bin,args,options);
+- const context=nativeFactContext(),fact=context?nativeLiteralFact(args,options,context):null;
++ // Only these two read-only global flags may share the same authenticated
++ // immutable object transport. Replacement contexts still fail closed below;
++ // every unsupported call retains its complete original argv and native errors.
++ const factArgs=Array.isArray(args)&&args.length===4&&args[0]==='--no-optional-locks'&&args[1]==='--no-replace-objects'?args.slice(2):args;
++ if(bin!=='git'||!Array.isArray(factArgs)||factArgs.length!==2||!['show','rev-parse'].includes(factArgs[0])||factArgs.some(value=>typeof value!=='string')||!trustedFactOptions(options)||options?.cwd&&options.cwd!==process.cwd())return execFileSync(bin,args,options);
++ if(!/^[a-f0-9]{40}:/.test(factArgs[1]))return execFileSync(bin,args,options);
++ const context=nativeFactContext(),fact=context?nativeLiteralFact(factArgs,options,context):null;
+  if(fact){
+   const limit=options?.maxBuffer??1024*1024;
+   if(fact.bytes.length<=limit)return options?.encoding&&options.encoding!=='buffer'?fact.bytes.toString(options.encoding):Buffer.from(fact.bytes);
+diff --git a/release/my-timber-joined-look-20261024.json b/release/my-timber-joined-look-20261024.json
+index 6e8d7c69..463f37f2 100644
+--- a/release/my-timber-joined-look-20261024.json
++++ b/release/my-timber-joined-look-20261024.json
+@@ -2,7 +2,7 @@
+   "kind": "EXACT_MY_TIMBER_JOINED_LOOK_20261024",
+   "base": "2daf52de65e94d979917a187cb1a44e6fcf10137",
+   "payload": "d4c95b3209323df0cdf7bad569c8f72d08c6944a",
+-  "registrationSource": "f48261976b645b181979588f1e7d27c4845b1ba1",
++  "registrationSource": "f2f9edcf8259cfbca9f3ca14cf0b3e5d77662692",
+   "payloadBlobs": {
+     "frontend/member/member-progress-v1.js": "3f7ec13262b2fe2a800f04bdfce5c0c301f2f26f",
+     "member-design.mjs": "aedd925f8425076639a40ff51c2032d8820502a3",
+@@ -26,15 +26,15 @@
+     "release/approved-news-ticker-frame-20261024.mjs": "8dc057d931a8e5d9dae70e473665aaf931218430",
+     "release/approved-runtime-composition.mjs": "10877f644f57e58e87fa5e21a8fd1ef7a408e643",
+     "release/combined-original-gp-object-20261014.mjs": "cddbe4430c3d4f66d7f4a63b752f3b12789b54b6",
+-    "release/health-vision-scope-20261021.mjs": "5cdf60687e7b6a5a859da3723fcc4656c78f6ad1",
+-    "release/immutable-git-facts.mjs": "976cf129e5721e18ab068d721053babed2e94f87",
++    "release/health-vision-scope-20261021.mjs": "6d3a527207f13d2afc6eee39ad9077a7999635a3",
++    "release/immutable-git-facts.mjs": "3f88391636f095fa21290ede946d8e2f18da5a5e",
+     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
+     "release/member-recording-repair-20261024.mjs": "143cd952ff0a7451f9f03ce4b9b1fb7bec022a36",
+     "release/my-shift-release-scope-20261024.mjs": "54c0fd7a0f7ea5f96e336e920e7d9045af05d497",
+     "release/my-timber-joined-look-inverses-20261024.json": "c9ffca9cec00cdc631f0a813c4ee76c6ccf48e2c",
+-    "release/my-timber-joined-look-scope-20261024.mjs": "6cf36a7944fa92fce5d6af1ce1b69f5c0cc44521",
++    "release/my-timber-joined-look-scope-20261024.mjs": "638985b890458692ca17992c16f92d99d94e4604",
+     "release/recorded-week-navigation-outer-frame-20261018.mjs": "ca72d494fe184454f2ead322799f338cace09ce5",
+-    "release/testosterone-scope-20261021.mjs": "f5c6a0b2fdefab6a70dc486e697ca7c20b336551",
++    "release/testosterone-scope-20261021.mjs": "21ab2ba6b67467aec92d666e18f5c8d2026f6088",
+     "release/website-editorial-scope-20261018.mjs": "b9215815c96d3387eaac2ec752c84f0be9ed3138",
+     "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353",
+     "tests/app-client-proof.test.mjs": "dbefca0d649376b5e71abb71fcd60a66eb0ec19a",
+diff --git a/release/my-timber-joined-look-scope-20261024.mjs b/release/my-timber-joined-look-scope-20261024.mjs
+index 6cf36a79..638985b8 100644
+--- a/release/my-timber-joined-look-scope-20261024.mjs
++++ b/release/my-timber-joined-look-scope-20261024.mjs
+@@ -291,17 +291,17 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
+     "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
+     "release/approved-news-ticker-frame-20261024.mjs": "8dc057d931a8e5d9dae70e473665aaf931218430",
+     "release/approved-runtime-composition.mjs": "10877f644f57e58e87fa5e21a8fd1ef7a408e643",
+-    "release/health-vision-scope-20261021.mjs": "5cdf60687e7b6a5a859da3723fcc4656c78f6ad1",
++    "release/health-vision-scope-20261021.mjs": "6d3a527207f13d2afc6eee39ad9077a7999635a3",
+     "release/member-design-scope.mjs": "8b98c99b5aa91ac12171152f665f99aff417140d",
+     "release/member-recording-repair-20261024.mjs": "143cd952ff0a7451f9f03ce4b9b1fb7bec022a36",
+     "release/recorded-week-navigation-outer-frame-20261018.mjs": "ca72d494fe184454f2ead322799f338cace09ce5",
+     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
+     "tests/recorded-week-navigation-preservation-20261018.test.mjs": "70d95c71c321360f8694257b8dd6924bca0478d3",
+     "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353",
+-    "release/immutable-git-facts.mjs": "976cf129e5721e18ab068d721053babed2e94f87",
++    "release/immutable-git-facts.mjs": "3f88391636f095fa21290ede946d8e2f18da5a5e",
+     "tests/approved-news-ticker-frame-20261024.test.mjs": "a030138c2a7a33b1a6a13daa803252b48b5f6a79",
+     "tests/member-recording-repair-admission-20261024.test.mjs": "df9bd0992c08d2125fa1159dabb720a9b29dbe88",
+-    "release/testosterone-scope-20261021.mjs": "f5c6a0b2fdefab6a70dc486e697ca7c20b336551",
++    "release/testosterone-scope-20261021.mjs": "21ab2ba6b67467aec92d666e18f5c8d2026f6088",
+     "release/website-editorial-scope-20261018.mjs": "b9215815c96d3387eaac2ec752c84f0be9ed3138",
+     "release/my-shift-release-scope-20261024.mjs": "54c0fd7a0f7ea5f96e336e920e7d9045af05d497",
+     "tests/joined-native-byte-reuse-20261025.test.mjs": "78902ef8428ff754d9d79f0d687e94e96207112f",
+diff --git a/release/testosterone-scope-20261021.mjs b/release/testosterone-scope-20261021.mjs
+index f5c6a0b2..21ab2ba6 100644
+--- a/release/testosterone-scope-20261021.mjs
++++ b/release/testosterone-scope-20261021.mjs
+@@ -2,7 +2,7 @@ import {nativeWorkingSourceDifferenceSize} from './immutable-git-facts.mjs';
+ import {createRequire} from 'node:module';
+ import {verifyHealthVisionExtension} from './health-vision-scope-20261021.mjs';
+ import assert from 'node:assert/strict';
+-import {execFileSync} from 'node:child_process';
++import {immutableHistoryExecFileSync as execFileSync} from './immutable-git-facts.mjs';
+ import {readFileSync} from 'node:fs';
+ export const TRT_BASE='a78f893a30d41e4542dfd53c08dcdb77f88090e4';
+ export const TRT_PAYLOAD='77eb4af2334f747ab91a2958f3d59875e8e4e4f4';

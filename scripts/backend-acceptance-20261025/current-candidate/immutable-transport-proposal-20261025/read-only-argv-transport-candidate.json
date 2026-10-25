@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-25T19:05:11.631499+00:00",
+  "base": "55585365538e22a5893e930bbaf70b8c99069d76",
+  "source": "0fa844f6cf9db2989828d33bd5e9b31572ac4677",
+  "registration": "f2f9edcf8259cfbca9f3ca14cf0b3e5d77662692",
+  "paths": [
+    "release/health-vision-scope-20261021.mjs",
+    "release/immutable-git-facts.mjs",
+    "release/my-timber-joined-look-20261024.json",
+    "release/my-timber-joined-look-scope-20261024.mjs",
+    "release/testosterone-scope-20261021.mjs"
+  ],
+  "nativeAdmissionExit": 0,
+  "nativeAdmissionOutput": "{\"source\":\"0fa844f6cf9db2989828d33bd5e9b31572ac4677\",\"paths\":39}\n",
+  "error": "",
+  "originalHealthTrtAssertionsByteIdentical": true,
+  "allFallbacksKeepOriginalArgv": true,
+  "retentionLimitsUnchanged": true,
+  "runtimeFilesChanged": 0,
+  "diagnosticOnly": true,
+  "pushed": false,
+  "activeSourceChanged": false
+}

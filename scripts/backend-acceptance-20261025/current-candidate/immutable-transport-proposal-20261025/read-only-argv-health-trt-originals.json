@@ -1,0 +1,20 @@
+{
+  "startedAt": "2026-10-25T19:09:40.073822+00:00",
+  "source": "0fa844f6cf9db2989828d33bd5e9b31572ac4677",
+  "command": [
+    "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/toolchains/node-v22.16.0-darwin-arm64/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/health-vision-scope-20261021.test.mjs",
+    "tests/testosterone-release-scope.test.mjs"
+  ],
+  "boundedSeconds": 180,
+  "activeReleaseChanged": false,
+  "pid": 86988,
+  "endedAt": "2026-10-25T19:12:09.238637+00:00",
+  "elapsedSeconds": 149.16,
+  "timedStop": false,
+  "exit": 0,
+  "stdout": "TAP version 13\n# Subtest: approved Health presentation is pinned to actual native source and preserves prior approvals\nok 1 - approved Health presentation is pinned to actual native source and preserves prior approvals\n  ---\n  duration_ms: 15750.030584\n  type: 'test'\n  ...\n# Subtest: new hub has weight route after bloods and TRT while all 14 guide outputs remain exact\nok 2 - new hub has weight route after bloods and TRT while all 14 guide outputs remain exact\n  ---\n  duration_ms: 32.912833\n  type: 'test'\n  ...\n# Subtest: later unrelated commits are distinct from the approved Health increment; Health bytes remain protected\nok 3 - later unrelated commits are distinct from the approved Health increment; Health bytes remain protected\n  ---\n  duration_ms: 28743.138042\n  type: 'test'\n  ...\n# Subtest: exact approved TRT delta retains original approval ledger and no production credit\nok 4 - exact approved TRT delta retains original approval ledger and no production credit\n  ---\n  duration_ms: 15597.303\n  type: 'test'\n  ...\n# Subtest: original historical editorial checks still execute against their pinned predecessor\nok 5 - original historical editorial checks still execute against their pinned predecessor\n  ---\n  duration_ms: 34857.394375\n  type: 'test'\n  ...\n# Subtest: forged TRT callback bytes cannot be hidden by historical projection\nok 6 - forged TRT callback bytes cannot be hidden by historical projection\n  ---\n  duration_ms: 27106.514333\n  type: 'test'\n  ...\n# Subtest: real source tampering and unrelated committed changes fail in isolated checkout\nok 7 - real source tampering and unrelated committed changes fail in isolated checkout\n  ---\n  duration_ms: 26648.971375\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 148968.611625\n",
+  "stderr": ""
+}

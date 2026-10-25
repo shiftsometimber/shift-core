@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-25T19:08:44.355461+00:00",
+  "source": "0fa844f6cf9db2989828d33bd5e9b31572ac4677",
+  "exit": 0,
+  "elapsedSeconds": 1.377,
+  "stdout": "{\"assertions\":122,\"cacheWarmReads\":100,\"gitSubprocessesForWarmReads\":0,\"explicitNoReplaceSemanticsPreserved\":true,\"diagnosticOnly\":true}\n",
+  "stderr": "fatal: path 'missing' does not exist in '615264a7ad6185f227d47f38cd3a27e130b2574c'\nfatal: path 'missing' does not exist in '615264a7ad6185f227d47f38cd3a27e130b2574c'\nfatal: path 'file.bin' exists on disk, but not in '0000000000000000000000000000000000000000'\nfatal: path 'file.bin' exists on disk, but not in '0000000000000000000000000000000000000000'\n",
+  "fixtureOnly": true,
+  "activeReleaseChanged": false
+}
