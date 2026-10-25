@@ -314,7 +314,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/approved-independent-presentation-client-20261025.mjs": "6f5881c8d6787f7f38ed5136e9197a04f24f9128",
     "release/app-client-proof.mjs": "6a7d9defa3f018299a09d0b4189138ec6d0d3bf1",
     "tests/app-client-proof.test.mjs": "3941a29d52582f0a31a69bfcc3c56801e31c9e9f",
-    ".github/workflows/cloudflare-production-promote.yml": "ff6238fd550b2379ab62c021133f6fe0eeacfa4b",
+    ".github/workflows/cloudflare-production-promote.yml": "b01a7707ab1fb76c6aafe7f44f68f30fc034f259",
     "release/member-runtime-deploy.mjs": "35b5f29096e47b93e31f41925c54cdc08fedddd2",
     "release/canonical-runtime-build.mjs": "913a2cf6e16735051471c2e26036a5b8ae9842c9",
     "tests/canonical-runtime-build.test.mjs": "8b9edf9ec6c2f5d175879a43de78cb2ba36b8117"
