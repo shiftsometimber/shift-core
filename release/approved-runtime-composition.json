@@ -9993,8 +9993,8 @@
   },
   "approvedNewsTicker20261024": {
     "proof": "EXACT_APPROVED_NEWS_TICKER_CANONICAL_20261025",
-    "base": "0bb11142973e4b6808152b45d6cb0e8422c4e904",
-    "payload": "9dd1ec6a640c99bfd0d7013a16a22db18516f25d",
+    "base": "ec139dcc3eeaf137ef4792e4b1c697ac55616d70",
+    "payload": "9e45799253792505949dd602c104d9062adc6cc9",
     "approvedPayload": "686abf6a867808bf3a95620b43c8f6ab319df305",
     "paths": [
       "public-navigation-policy.mjs",
@@ -10030,8 +10030,8 @@
       "pausedLinkRepairIncluded": false,
       "homepageMainContentChanged": false
     },
-    "retainedPrivateProposal": "09c465d9942b4224f6b2e8789ef36f8f93077bf0",
-    "retainedPrivateLedgerSha256": "72bfdd9c664d3c266eb6b7b309fd8f04ec98caebee75d9847f08f55b468d5235",
-    "maintenanceSource": "e2f6d55f774102dc778297d17e5ae295c6ecdf42"
+    "retainedPrivateProposal": "d062c58ec1581cfda4768b4029d85fd1396c2e2b",
+    "retainedPrivateLedgerSha256": "a6eb55a6118830c723da395db1f845dfd7c489151b87ae8ae8c78a3dfd94b7b2",
+    "maintenanceSource": "533db1491012be47248c68455ec3b8d38d0f390f"
   }
 }
