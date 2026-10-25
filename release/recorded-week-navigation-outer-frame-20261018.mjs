@@ -35,8 +35,12 @@ function data(v,seen=new Set()){
  seen.delete(v);return out;
 }
 function nativeNavigationWorkingSourceNames(){
- try{return text('-c','diff.autoRefreshIndex=false','diff','--exit-code','--no-ext-diff','--no-textconv','--no-renames','--name-only','HEAD','--');}
- catch(error){if(error.status===1)return error.stdout.toString('utf8').trimEnd();throw error;}
+ const changed=git('-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--patch','--binary','HEAD','--');
+ if(changed.length===0)return '';
+ // Filename-only output includes stat-only paths on this Git version. It is
+ // diagnostic only after real full-content drift was established above.
+ const names=text('-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--name-only','HEAD','--');
+ return names||'[working source changed during native comparison]';
 }
 function clean(expected){
  assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire],native,'Native navigation source functions changed');
