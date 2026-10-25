@@ -867,5 +867,21 @@
         "after": "export function verifyScope(){return withMemberRecordingQualification(()=>verifyScopeQualified());}\nfunction verifyScopeQualified(){\n"
       }
     ]
+  },
+  "tests/owner-captured-runtime.test.mjs": {
+    "original": "45d29f603f9e4d031b89bb467f5ec8b881416506",
+    "current": "a3634db94c33002bff25edded90a0ab26cba9517",
+    "edits": [
+      {
+        "start": 3602,
+        "before": " const run={id:RELOAD_RUN,head_sha:RELOAD_VERIFIER,path:'.github/workflows/my-timber-final-production.yml',head_branch:'fix/member-reload-navigation-20261007',event:'push',status:'completed',conclusion:'success'};\n const job={id:113266037954,run_id:RELOAD_RUN,name:'reload-navigation-diagnostics',status:'completed',conclusion:'success',steps:[8,9,11,12,14,15].map(number=>({number,status:'completed',conclusion:'success'}))};\n",
+        "after": " const run={id:RELOAD_RUN,run_attempt:1,head_sha:RELOAD_VERIFIER,path:'.github/workflows/my-timber-final-production.yml',head_branch:'fix/member-reload-navigation-20261007',event:'push',status:'completed',conclusion:'success'};\n const job={id:113266037954,run_attempt:1,run_id:RELOAD_RUN,name:'reload-navigation-diagnostics',status:'completed',conclusion:'success',steps:[8,9,11,12,14,15].map(number=>({number,status:'completed',conclusion:'success'}))};\n"
+      },
+      {
+        "start": 4126,
+        "before": " for(const patch of [{id:37680334004},{head_sha:'a'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{head_branch:'main'}])assert.throws(()=>assertReconciledReloadReceipt({...run,...patch},job));\n for(const patch of [{id:1},{run_id:1},{conclusion:'failure'},{steps:job.steps.slice(0,5)}])assert.throws(()=>assertReconciledReloadReceipt(run,{...job,...patch}));\n",
+        "after": " for(const patch of [{run_attempt:2},{run_attempt:undefined},{id:37680334004},{head_sha:'a'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{head_branch:'main'}])assert.throws(()=>assertReconciledReloadReceipt({...run,...patch},job));\n for(const patch of [{run_attempt:2},{run_attempt:undefined},{id:1},{run_id:1},{conclusion:'failure'},{steps:job.steps.slice(0,5)}])assert.throws(()=>assertReconciledReloadReceipt(run,{...job,...patch}));\n"
+      }
+    ]
   }
 }
