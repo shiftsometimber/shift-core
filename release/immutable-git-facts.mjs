@@ -5,11 +5,11 @@ import {readFileSync,lstatSync,readdirSync,readlinkSync,realpathSync} from 'node
 import {resolve,isAbsolute,dirname} from 'node:path';
 import {homedir} from 'node:os';
 
-// Verification reads must not refresh the caller's index stat cache. Capture
-// the native runner; immutable object commands keep their original cache keys.
-const nativeExecFileSync=importedExecFileSync;
+// Preserve the original live native runner binding, including interception and
+// exact errors for immutable object commands. Only recognised working-tree
+// filename reads need a content comparison that cannot refresh the index.
 function execFileSync(bin,args,options){
- if(!['git','/usr/bin/git'].includes(bin)||!Array.isArray(args))return nativeExecFileSync(bin,args,options);
+ if(!['git','/usr/bin/git'].includes(bin)||!Array.isArray(args))return importedExecFileSync(bin,args,options);
  let at=0;
  while(at<args.length){
   if(['--no-optional-locks','--no-replace-objects'].includes(args[at])){at++;continue;}
@@ -17,17 +17,20 @@ function execFileSync(bin,args,options){
   if(typeof args[at]==='string'&&/^--(?:git-dir|work-tree|namespace)=/.test(args[at])){at++;continue;}
   break;
  }
- const command=args[at];
- if(command==='diff'){
-  const tail=args.slice(at+1),stop=tail.indexOf('--'),flags=stop<0?tail:tail.slice(0,stop);
-  // Force real content comparison without Porcelain's index auto-refresh.
-  // Native stdout and the caller's original exit-status contract are retained.
-  const addedExit=!flags.some(flag=>['--exit-code','--quiet','--check','--no-index'].includes(flag));
-  const fresh=[...args.slice(0,at),'--no-optional-locks','-c','diff.autoRefreshIndex=false','diff',...(addedExit?['--exit-code']:[]),...tail];
-  try{return nativeExecFileSync(bin,fresh,options);}
-  catch(error){if(addedExit&&error.status===1)return error.stdout;throw error;}
+ const command=args[at],tail=args.slice(at+1),stop=tail.indexOf('--'),before=stop<0?tail:tail.slice(0,stop);
+ const operands=before.filter(value=>!value.startsWith('-'));
+ const workingNames=command==='diff'&&before.includes('--name-only')&&
+  before.every(value=>['--name-only','--no-renames','--no-ext-diff','--no-textconv','HEAD'].includes(value))&&
+  (operands.length===0||operands.length===1&&operands[0]==='HEAD')&&
+  (stop<0||stop===tail.length-1);
+ if(!workingNames)return importedExecFileSync(bin,args,options);
+ const fresh=[...args.slice(0,at),'--no-optional-locks','-c','diff.autoRefreshIndex=false','diff','--exit-code',...tail];
+ try{return importedExecFileSync(bin,fresh,options);}
+ catch(error){
+  if(error.status===1)return error.stdout;
+  // A failed native read retains the original command and diagnostic contract.
+  return importedExecFileSync(bin,args,options);
  }
- return nativeExecFileSync(bin,['diff-files','status','ls-files'].includes(command)?['--no-optional-locks',...args]:args,options);
 }
 
 // Full-content comparison accepts restored bytes without refreshing the index.
