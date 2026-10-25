@@ -136,7 +136,7 @@ export const tickerClient = String.raw`(function bootTicker() {
         const link = document.createElement('a'); link.href = url.pathname + url.search + url.hash; link.textContent = label; copy.append(link);
       }
       if (!copy.childElementCount) return;
-      if (edition) {strip.querySelector('.shift-news-label').textContent = 'Published in SHIFT'; strip.dataset.edition = edition.edition_id;}
+      if (edition) {const label = strip.querySelector('.shift-news-label'); label.textContent = 'Published in SHIFT'; if (edition.review_incomplete === true) {label.append(document.createElement('br')); const note = document.createElement('small'); note.textContent = 'Review incomplete'; label.append(note);} strip.dataset.edition = edition.edition_id;}
       const duplicate = copy.cloneNode(true); duplicate.setAttribute('aria-hidden','true');
       duplicate.querySelectorAll('a').forEach(link => link.tabIndex = -1);
       track.replaceChildren(copy, duplicate); strip.setAttribute('data-ready', '');

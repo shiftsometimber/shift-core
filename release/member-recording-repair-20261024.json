@@ -45,7 +45,7 @@
     "worker-entry-v6.js": "cc2d7dd76a495c88c2a42575a61dc62a7e9babed",
     "worker.js": "c0b99177a62e8cf4c9a7e0fa92c962f2614152db"
   },
-  "registrationSource": "f8b59eec286ec35eb63d9e7aa3191e48df8c82bc",
+  "registrationSource": "28be63d34b0b4d0e5ad640966e6ad16070ae9688",
   "authority": {
     "owner": "Matt",
     "instruction": "Arh ok\u2026.. sort then please; SHIFT \u2014 BREAK THE BOTTLENECK AND FINISH THE APPROVED WORK: eliminate repeated Git subprocesses and duplicate full-file scans while retaining underlying safety assertions, mutation checks and current-source protection.",

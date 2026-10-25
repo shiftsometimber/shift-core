@@ -1,3 +1,5 @@
+import {withJoinedSuccessorQualification} from './my-timber-joined-look-scope-20261024.mjs';
+import {APPROVED_NEWS_TICKER_PATHS,APPROVED_NEWS_TICKER_MAINTENANCE} from './approved-news-ticker-frame-20261024.mjs';
 import {ACTUAL_NAVIGATION_PATHS,ACTUAL_NAVIGATION_MAINTENANCE,actualNavigationChangedPath} from './recorded-week-navigation-outer-frame-20261018.mjs';
 import {CURRENT_RUNTIME_PRESERVATION_PATHS,CURRENT_RUNTIME_PRESERVATION_MAINTENANCE} from './current-runtime-preservation-20261016.mjs';
 import {WEBSITE_EDITORIAL_COMPLETION_PATHS,WEBSITE_EDITORIAL_COMPLETION_MAINTENANCE} from './website-editorial-scope-20261018.mjs';
@@ -2272,7 +2274,7 @@ export function verifyGithubProofEpipeRetry(c,{head,read,diff,ancestor,content=(
 }
 
 export function verifyReconciledRelease(read=defaultReconciliationRead){
- return withImmutableHistoryVerification(()=>verifyReconciledReleaseOriginal(read));
+ return withJoinedSuccessorQualification(()=>withImmutableHistoryVerification(()=>verifyReconciledReleaseOriginal(read)));
 }
 function verifyReconciledReleaseOriginal(read){
  const memberDefaultRead=read===defaultReconciliationRead;
@@ -3134,3 +3136,5 @@ for(const p of [...CURRENT_RUNTIME_PRESERVATION_PATHS,...CURRENT_RUNTIME_PRESERV
 
 export const ACTUAL_NAVIGATION_ADDITIONAL_PATHS=Object.freeze([...ACTUAL_NAVIGATION_PATHS,...ACTUAL_NAVIGATION_MAINTENANCE].filter(p=>!RECONCILIATION_PATHS.has(p)));
 for(const p of ACTUAL_NAVIGATION_ADDITIONAL_PATHS)RECONCILIATION_PATHS.add(p);
+
+for(const p of [...APPROVED_NEWS_TICKER_PATHS,...APPROVED_NEWS_TICKER_MAINTENANCE])RECONCILIATION_PATHS.add(p);
