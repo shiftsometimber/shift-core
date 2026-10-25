@@ -1,3 +1,4 @@
+import {nativeWorkingSourceDifferenceSize} from './immutable-git-facts.mjs';
 import {verifyMemberRecordingRepair,RECORDING_REPAIR_BASE,memberRecordingComparisonValue,recordingRepairLegacyPaths,withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -101,7 +102,7 @@ function verifyOriginalMyShiftComposition({head,receipt}){
 export function verifyMyShiftRelease(requestedHead){return withMemberRecordingQualification(()=>verifyRecordingAwareMyShiftRelease(requestedHead));}
 function verifyRecordingAwareMyShiftRelease(requestedHead){
  const head=git('rev-parse','HEAD');if(requestedHead)assert.equal(requestedHead,head,'Actual My Shift source HEAD required');
- assert.equal(git('diff','--name-only','HEAD','--'),'','My Shift tracked working source changed');assert.equal(git('diff','--cached','--name-only','--'),'','My Shift staged source changed');
+ assert.equal(nativeWorkingSourceDifferenceSize(),0,'My Shift tracked working source changed');assert.equal(git('diff','--cached','--name-only','--'),'','My Shift staged source changed');
  const receipt=JSON.parse(bytes(head,MY_SHIFT_RECEIPT));
  verifyMyShiftComposition({head,receipt});
  // Register only after native qualification of both exact finite increments.

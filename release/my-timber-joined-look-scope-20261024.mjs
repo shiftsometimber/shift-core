@@ -257,6 +257,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/immutable-git-facts.mjs",
     "release/member-design-scope.mjs",
     "release/member-recording-repair-20261024.mjs",
+    "release/my-shift-release-scope-20261024.mjs",
     "release/my-timber-joined-look-inverses-20261024.json",
     "release/my-timber-joined-look-scope-20261024.mjs",
     "release/recorded-week-navigation-outer-frame-20261018.mjs",
@@ -284,7 +285,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "tests/approved-news-ticker-frame-20261024.test.mjs": "a030138c2a7a33b1a6a13daa803252b48b5f6a79",
     "tests/member-recording-repair-admission-20261024.test.mjs": "df9bd0992c08d2125fa1159dabb720a9b29dbe88",
     "release/testosterone-scope-20261021.mjs": "f5c6a0b2fdefab6a70dc486e697ca7c20b336551",
-    "release/website-editorial-scope-20261018.mjs": "b9215815c96d3387eaac2ec752c84f0be9ed3138"
+    "release/website-editorial-scope-20261018.mjs": "b9215815c96d3387eaac2ec752c84f0be9ed3138",
+    "release/my-shift-release-scope-20261024.mjs": "54c0fd7a0f7ea5f96e336e920e7d9045af05d497"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
