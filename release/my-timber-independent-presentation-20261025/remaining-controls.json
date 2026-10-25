@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-25T22:22:39.927592+00:00",
+  "mealLabel": {
+    "state": "CANDIDATE_CHECKED",
+    "rule": "Only an actual connected.meal.recipeId and an existing same-origin Grub meal anchor get Show me this meal. Anchor, destination, listeners and other actions stay intact."
+  },
+  "journey": {
+    "state": "SOURCE_PREPARED_NOT_CORE_DEPLOYED",
+    "source": "frontend/member/member-progress-v1.js",
+    "liveOwner": "Core",
+    "rules": [
+      "Since you started until seven calendar days of genuine dated history; then Last 7 days",
+      "The option actually filters rolling seven days, preserving gaps and excluding invalid/future values",
+      "What I notice appears before latest weight and plot, including honest single-reading wording",
+      "Manual/custom ranges survive refresh; session clearing resets range choices",
+      "No inferred symptom or treatment causes"
+    ]
+  },
+  "publicMenus": {
+    "state": "EXISTING_SOON_MARKER_RETAINED",
+    "reason": "Public/Core integration and homepage remain under their existing owner. No public community launch has been performed."
+  },
+  "checks": {
+    "passed": 8,
+    "checks": [
+      "Day two and day six retain Since you started; calendar day seven becomes Last 7 days",
+      "Old invalid, nonnumeric and future rows do not age the range",
+      "The quick range really uses seven rolling calendar days, including Sunday and BST changes",
+      "What I notice precedes the weight headline and plot, and keeps a real rise and gaps",
+      "One reading has an honest observation; duplicate days, future and out-of-window rows stay excluded",
+      "Stone/pound change uses pounds and does not imply a boundary reading",
+      "Manual/custom range selection survives refresh; account/session clearing resets its flag",
+      "Only an actual chosen meal gets Show me this meal; the same anchor, href and handler remain"
+    ],
+    "scope": "Actual source functions and control identity; not a real-account/device or production-learning test"
+  }
+}

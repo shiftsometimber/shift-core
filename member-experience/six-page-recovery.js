@@ -51,6 +51,11 @@
   updateHero();
   // Only rearrange canonical controls. All save handlers and validation remain attached.
   const next=root.querySelector('.mtm-next');root.classList.toggle('mt-r-has-next',!!connected?.next?.loopId&&!!next);
+  // A chosen meal already has a canonical Grub destination. Keep its link and
+  // listeners; generic browsing and every movement action retain their labels.
+  const mealAction=next?.querySelector('a.mt-now-action[href]');
+  if(connected?.meal?.recipeId&&mealAction){try{const target=new URL(mealAction.href,location.origin);if(target.origin===location.origin&&target.pathname==='/member/grub'&&mealAction.textContent!=='Show me this meal')mealAction.textContent='Show me this meal'}catch{}}
+
  }
  function updateHero(){const h=$('#mtRememberedHero');if(!h)return;const goal=connected?.lifeBack?.goal,exact=typeof goal==='string'&&goal.trim()&&goal!=='Your personal goal',off=hiddenHeadline||headlinePreference==='off';const heading=h.querySelector('h1'),title=off?'Your day. Your pace.':exact?'You said: “'+goal+'”':'Tell me one thing. I’ll use it.';if(heading.textContent!==title)heading.textContent=title;const masked=!!exact&&!off&&!quoteRevealed;heading.classList.toggle('mt-r-quote-masked',masked);if(masked)heading.setAttribute('aria-hidden','true');else heading.removeAttribute('aria-hidden');let reveal=h.querySelector('[data-mt-reveal]');if(!reveal){reveal=el('button','mt-r-reveal','Tap to show your words');reveal.type='button';reveal.dataset.mtReveal='';reveal.onclick=()=>{quoteRevealed=true;updateHero()};heading.after(reveal)}reveal.hidden=!masked;const sub=off?'One useful thing is enough.':exact?'Let’s find one small step that fits.':'What would make today a little easier?';if(h.querySelector('.mt-r-sub').textContent!==sub)h.querySelector('.mt-r-sub').textContent=sub;
  const meta=$('#mtMemoryControls');meta.hidden=!exact||headlinePreference==='off';const source=$('#mtMemorySource'),sourceText=exact?'Your saved goal':'';if(source.textContent!==sourceText)source.textContent=sourceText;const hide=$('#mtHideHeadline'),hideText=hiddenHeadline?'Show headline':'Hide headline';if(hide.textContent!==hideText)hide.textContent=hideText;hide.setAttribute('aria-pressed',String(hiddenHeadline));}
