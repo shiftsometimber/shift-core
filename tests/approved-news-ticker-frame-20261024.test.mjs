@@ -103,5 +103,5 @@ const exactEditorialFixturePaths=[".github/workflows/cloudflare-production-promo
 
 test('every original editorial fixture path restores the complete earlier source and still rejects forged actual bytes',()=>withImmutableHistoryVerification(()=>{
  const view=websiteEditorialCompletionHistoricalView(),source=readFileSync('release/website-editorial-scope-20261018.mjs','utf8'),line=source.split('\n').find(x=>x.startsWith('const policy=')),policy=JSON.parse(line.slice('const policy='.length,-1));
- for(const path of exactEditorialFixturePaths){const actual=readFileSync(path,'utf8');assert.equal(websiteEditorialCompletionOriginalSource(path,actual,view),g('show',policy.base+':'+path)+'\n');assert.throws(()=>websiteEditorialCompletionOriginalSource(path,actual+'\nforged',view),/source|fixture|exact/i);}
+ for(const path of exactEditorialFixturePaths){const actual=readFileSync(path,'utf8');assert.equal(websiteEditorialCompletionOriginalSource(path,actual,view),execFileSync('/usr/bin/git',['show',policy.base+':'+path],{encoding:'utf8',maxBuffer:64e6}));assert.throws(()=>websiteEditorialCompletionOriginalSource(path,actual+'\nforged',view),/source|fixture|exact/i);}
 }));
