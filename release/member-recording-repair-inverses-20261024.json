@@ -743,28 +743,33 @@
   },
   "tests/bounded-source-scheduling-20261016.test.mjs": {
     "original": "97c6c21d3b503df0d55e19f505a7ae21edea9015",
-    "current": "d549f7a1acd82e4d51399431f9b51950267ac052",
+    "current": "2568e04a00e3268705d8dbe48ef917e85cc32a9e",
     "edits": [
       {
-        "start": 9459,
+        "start": 0,
+        "before": "",
+        "after": "import {approvedSourceComparison} from '../release/approved-source-comparison-20261024.mjs';\n"
+      },
+      {
+        "start": 9552,
         "before": "const currentSource=path=>{const bytes=readFileSync(new URL('../'+path,import.meta.url),'utf8');return path==='.github/workflows/cloudflare-production-promote.yml'?seoAuditOriginalSource(path,bytes):bytes;};\n",
-        "after": "const currentSource=path=>{const bytes=readFileSync(new URL('../'+path,import.meta.url),'utf8');return ['.github/workflows/cloudflare-production-promote.yml','.github/workflows/online-privacy-recovery-proof.yml'].includes(path)?seoAuditOriginalSource(path,bytes):bytes;};\n"
+        "after": "const currentSource=path=>{const bytes=readFileSync(new URL('../'+path,import.meta.url),'utf8');return path==='.github/workflows/cloudflare-production-promote.yml'?seoAuditOriginalSource(path,bytes):path==='.github/workflows/online-privacy-recovery-proof.yml'?approvedSourceComparison(path,bytes):bytes;};\n"
       }
     ]
   },
   "tests/verified-source-evidence-20261016.test.mjs": {
     "original": "1d707d6c56f7a6ed20d1fdda3e60395188e53cb2",
-    "current": "01bee41f20bd9bf441edfaca3eda4855b4c8bc90",
+    "current": "8fd4f3f97bdd2a924c160006088acd409ea3fcc6",
     "edits": [
       {
         "start": 0,
         "before": "",
-        "after": "import {seoAuditOriginalSource} from '../release/seo-audit-scope-20261016.mjs';\n"
+        "after": "import {approvedSourceComparison} from '../release/approved-source-comparison-20261024.mjs';\n"
       },
       {
-        "start": 15083,
+        "start": 15096,
         "before": " const current=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');const policy=JSON.parse(current('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\\{[^\\n]+\\});\\nconst manifest=/m)[1]),path='scripts/b1-release-scope.mjs',[[before,after]]=policy.inverses[path];assert.equal(current(path),after);\n",
-        "after": " const current=p=>{const bytes=readFileSync(new URL('../'+p,import.meta.url),'utf8');return p==='scripts/b1-release-scope.mjs'?seoAuditOriginalSource(p,bytes):bytes;};const policy=JSON.parse(current('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\\{[^\\n]+\\});\\nconst manifest=/m)[1]),path='scripts/b1-release-scope.mjs',[[before,after]]=policy.inverses[path];assert.equal(current(path),after);\n"
+        "after": " const current=p=>{const bytes=readFileSync(new URL('../'+p,import.meta.url),'utf8');return p==='scripts/b1-release-scope.mjs'?approvedSourceComparison(p,bytes):bytes;};const policy=JSON.parse(current('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\\{[^\\n]+\\});\\nconst manifest=/m)[1]),path='scripts/b1-release-scope.mjs',[[before,after]]=policy.inverses[path];assert.equal(current(path),after);\n"
       }
     ]
   }

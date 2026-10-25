@@ -1,4 +1,4 @@
-import {seoAuditOriginalSource} from '../release/seo-audit-scope-20261016.mjs';
+import {approvedSourceComparison} from '../release/approved-source-comparison-20261024.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,mkdtempSync,mkdirSync,writeFileSync,rmSync,symlinkSync,chmodSync,realpathSync} from 'node:fs';
@@ -98,7 +98,7 @@ test('strict original-source mode forces full assertions and cannot grant eviden
 });
 
 test('source reuse restores every original B1 assertion and leaves the entire fresh stock snapshot body literal',()=>{
- const current=p=>{const bytes=readFileSync(new URL('../'+p,import.meta.url),'utf8');return p==='scripts/b1-release-scope.mjs'?seoAuditOriginalSource(p,bytes):bytes;};const policy=JSON.parse(current('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\{[^\n]+\});\nconst manifest=/m)[1]),path='scripts/b1-release-scope.mjs',[[before,after]]=policy.inverses[path];assert.equal(current(path),after);
+ const current=p=>{const bytes=readFileSync(new URL('../'+p,import.meta.url),'utf8');return p==='scripts/b1-release-scope.mjs'?approvedSourceComparison(p,bytes):bytes;};const policy=JSON.parse(current('release/food-diary-london-date-scope-20261015.mjs').match(/^const policy=(\{[^\n]+\});\nconst manifest=/m)[1]),path='scripts/b1-release-scope.mjs',[[before,after]]=policy.inverses[path];assert.equal(current(path),after);
  let restored=after;for(const[a,b]of[...policy.sourceProofOriginalB1Inverse].reverse()){assert(b&&restored.split(b).length===2);restored=restored.replace(b,()=>a);}assert.equal(restored,before);assert.equal(before.slice(before.indexOf('async function snapshot(phase)')),after.slice(after.indexOf('async function snapshot(phase)')));
  const runner=current('release/bounded-source-checks-20261016.mjs');assert(runner.includes("env:{...process.env,SHIFT_ORIGINAL_SOURCE_SCOPE:'1'}"));assert(runner.includes('assert.deepEqual(sourceAuthority(),authorityBefore'));assert(runner.indexOf('if(!result.passed)throw Error')<runner.indexOf('const evidence=makeScopeEvidence'));assert(current('.github/workflows/cloudflare-production-promote.yml').includes('      - name: Retain completed source proofs before runtime operations\n        uses: actions/upload-artifact@v4'));
 });
