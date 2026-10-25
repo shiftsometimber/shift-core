@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-25T08:06:31.258Z",
+  "admittedMain": "3208183e9cfcd456348474503732abd4db29c871",
+  "goldenSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "cases": [
+    {
+      "name": "current exact20 logical39 sections",
+      "pass": true
+    },
+    {
+      "name": "later segment tamper auth-email-verification-v1.js",
+      "pass": true
+    },
+    {
+      "name": "later segment tamper medicine-commerce-v1.js",
+      "pass": true
+    },
+    {
+      "name": "later segment tamper worker-entry-v6.js",
+      "pass": true
+    },
+    {
+      "name": "extra identical section",
+      "pass": true
+    },
+    {
+      "name": "missing later section",
+      "pass": true
+    },
+    {
+      "name": "changed reference",
+      "pass": true
+    },
+    {
+      "name": "execution order changed",
+      "pass": true
+    }
+  ],
+  "allPassed": true,
+  "productionWrites": 0
+}

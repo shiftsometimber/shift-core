@@ -1,0 +1,39 @@
+{
+  "source": "8ad691488cd003c899f4c8cfbb7439a97f8a3e49",
+  "tree": "533599af22e5f673bc82a3075f75d1b064e8dffd",
+  "compiledFile": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/fresh-current8ad-approved-runtime-bundle/worker.js",
+  "bytes": 33352812,
+  "sha256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "sourceMap": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/fresh-current8ad-approved-runtime-bundle/worker.js.map",
+  "sourceMapSHA256": "bd2989e840ea68a84574bebe47b72b7d8afa41fb8cfd30140d349d27cc25df10",
+  "archiveBuildRoot": "/var/folders/3c/51t04mg562x471053v1fq7t40000gn/T/shift-exact8ad-verified-archive-lahoe76z",
+  "at": "2026-10-25T07:48:46.741213+00:00",
+  "seconds": 10.5,
+  "sourceFiles": 12495,
+  "immutableGitArchiveSource": true,
+  "exactEvidenceOnlyLinksPreservedWithoutFollowing": [
+    [
+      "evidence/recipe-image-worker/worker-b",
+      "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-b"
+    ],
+    [
+      "evidence/recipe-image-worker/worker-d",
+      "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-d"
+    ],
+    [
+      "evidence/recipe-image-worker/worker-e",
+      "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-e"
+    ],
+    [
+      "evidence/recipe-image-worker/worker-f",
+      "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-f"
+    ],
+    [
+      "evidence/recipe-image-worker/worker-g",
+      "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-g"
+    ]
+  ],
+  "originalCheckoutEdited": false,
+  "productionWrites": 0,
+  "currentMainOrDeploymentClaimed": false
+}

@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-25T08:08:03.639994+00:00",
+  "source": "3208183e9cfcd456348474503732abd4db29c871",
+  "sameTreeSource": "8ad691488cd003c899f4c8cfbb7439a97f8a3e49",
+  "sourceRootOnlyChanged": true,
+  "allOriginalAssertionsAndPinsUnchanged": true,
+  "prepareExit": 0,
+  "productionWrites": 0,
+  "browserRuns": 0,
+  "networkRequests": 0,
+  "liveAcceptanceNotExecuted": true
+}

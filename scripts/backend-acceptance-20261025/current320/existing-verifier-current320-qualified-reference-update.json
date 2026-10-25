@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-25T08:01:22.108065+00:00",
+  "admittedMain": "3208183e9cfcd456348474503732abd4db29c871",
+  "qualifiedSameTreeSource": "8ad691488cd003c899f4c8cfbb7439a97f8a3e49",
+  "tree": "533599af22e5f673bc82a3075f75d1b064e8dffd",
+  "currentGoldenSHA256": "c5996373bf39c09a73628a438938e69db286c320ac0f94c226a6743ef445218d",
+  "currentGoldenBytes": 33352812,
+  "nativeRepositoryInputsVerified": 524,
+  "logicalModuleChecksRetained": 20,
+  "allCurrentEmittedSections": 39,
+  "original26SectionHelperPreserved": true,
+  "originalBrowserCasesRetained": 10,
+  "originalExactPublicAssetsRetained": 4,
+  "originalSourcePrivacyOwnershipBrowserAndDeadlinesRecoverExactly": true,
+  "changes": [
+    {
+      "path": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/immediate-deletion-proof/verify-live-worker.mjs",
+      "beforeSHA256": "73d2457f56f968c15baa1b02ada430664a90c8146c58765ca7564eac0309b2f4",
+      "afterSHA256": "b789e02cf87becf57942a4b1168ce91cda96892608499e91cbb1118a6a90ff10",
+      "allOriginalAssertionsAndDeadlinesRecoverExactly": true
+    },
+    {
+      "path": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/immediate-deletion-proof/verify-live-delivered-browser.mjs",
+      "beforeSHA256": "67b37ed97b94b9be8444bcce80a12857194fdf28f25bb5d6167e024056269c95",
+      "afterSHA256": "c03aac4ea3782e8dc63f223a9fe6e56de257cc17379de4c6fa60452ef2e0a9f6",
+      "allOriginalAssertionsAndDeadlinesRecoverExactly": true
+    },
+    {
+      "path": "/tmp/shift-my-timber-owned-live-20261024.py",
+      "beforeSHA256": "199fccab804d1f0d673d93228698349bf7896ff8d182ed59ba91edc57840806f",
+      "afterSHA256": "4d677056750ead51fdcb36427b4f6210cd8f5ae282bc1fc9e44db1a0a008839a",
+      "allOriginalAssertionsAndDeadlinesRecoverExactly": true
+    }
+  ],
+  "productionMutation": false,
+  "newObserverStarted": false,
+  "actualProductionAcceptance": false
+}

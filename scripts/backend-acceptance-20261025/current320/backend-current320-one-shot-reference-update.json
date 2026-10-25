@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-25T08:06:51.325927+00:00",
+  "source": "3208183e9cfcd456348474503732abd4db29c871",
+  "run": 40173686025,
+  "helpers": [
+    {
+      "path": "/tmp/shift-backend-owned-live-readonly-20261025.mjs",
+      "originalSHA256": "8c5738c53126deea00fad7bc7eedd76d377e7087789017312be06302c5a7a568",
+      "currentSHA256": "8aab203d16ec1c881b8abd2a87d3cc914e18a5f0d2ec1caa7eec341fff537955",
+      "sourceAndRunOnly": true
+    },
+    {
+      "path": "/tmp/shift-owned-production-read-guard-20261025.cjs",
+      "originalSHA256": "4a2514180ef0f87be1ed15df01a8346cb572838e4c51945e4e628d9e28cf6d10",
+      "currentSHA256": "ebf821a01b9eb4242445e3404c288056cbe6368d737983618d347bd7619061dc",
+      "sourceAndRunOnly": true
+    },
+    {
+      "path": "/tmp/shift-run-approved-live-qa-20261025.py",
+      "originalSHA256": "3b76a2030e8ab0ed2b634e076ae100625d35572038464cbd438fbfa20aae1f7e",
+      "currentSHA256": "e08e1d2b4db19aa2b63effc5afda0ea256d142e7f00a17a8ef3436ad60f08334",
+      "sourceAndRunOnly": true
+    }
+  ],
+  "checksUnchanged": true,
+  "executedAgainstProduction": false
+}
