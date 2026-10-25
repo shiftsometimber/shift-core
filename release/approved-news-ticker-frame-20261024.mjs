@@ -147,7 +147,7 @@ export function approvedTickerOriginalWorkingBytes(path,value){assert(active,'In
 // Project only genuine changed current values after the complete independent native addendum.
 // Foreign heads/values and the actual member-registration module keep their original path.
 export function approvedTickerComparisonValue(path,value,requestedHead){
- if(path==='release/member-recording-repair-20261024.mjs'||![...fixed.paths,...fixed.maintenancePaths].includes(path)||typeof value!=='string')return value;
+ if(path==='release/member-recording-repair-20261024.mjs'||![...fixed.paths,...fixed.maintenancePaths,...INTEGRATION_REPAIR_PATHS].includes(path)||typeof value!=='string')return value;
  const raw=actual();if(requestedHead&&requestedHead!==raw)return value;
  let pin;try{pin=oid(raw,path);}catch{return value;}const identifier=value===pin,body=!identifier&&value===text(raw,path);if(!identifier&&!body)return value;
  const f=approvedNewsTickerOuterFrame();if(!f)return value;f.assertCurrent();let prior;try{prior=identifier?oid(f.base,path):text(f.base,path);}catch{return value;}f.assertCurrent();return prior;
@@ -188,11 +188,14 @@ const INTEGRATION_BASE='55af81540a004cdeedd24eb98c96441d2421b582';
 const ORIGINAL_TICKER_HEAD='f3cee7c576d46f4f10981d4c64035deb7608ee03';
 const originalIntegrationFixed={proof:'EXACT_APPROVED_NEWS_TICKER_CURRENT_MAIN_20261025',base:INTEGRATION_BASE,previousTicker:ORIGINAL_TICKER_HEAD,paths:fixed.paths,maintenancePaths:fixed.maintenancePaths,scope:fixed.scope};
 const INTEGRATION_REPAIR_BASE='e5dae537630afc2a7c4a24bc8ba3512c1fd7ecb5',INTEGRATION_REPAIR_PATHS=["release/approved-news-ticker-frame-20261024.mjs", "tests/approved-news-ticker-frame-20261024.test.mjs", "release/approved-news-ticker-maintenance-20261024.json", "medicines-watch/scheduler.test.mjs"];
-const integrationFixed={...originalIntegrationFixed,repairBase:INTEGRATION_REPAIR_BASE,repairPaths:INTEGRATION_REPAIR_PATHS};
+const previousIntegrationFixed={...originalIntegrationFixed,repairBase:INTEGRATION_REPAIR_BASE,repairPaths:INTEGRATION_REPAIR_PATHS};
+const POST_REPAIR_BASE='e8487e269490d16508f9ba8e60116cb993452c17',POST_REPAIR_PATHS=["release/approved-news-ticker-frame-20261024.mjs", "release/website-editorial-scope-20261018.mjs", "tests/approved-news-ticker-frame-20261024.test.mjs", "release/approved-news-ticker-maintenance-20261024.json"];
+const integrationFixed={...previousIntegrationFixed,postRepairBase:POST_REPAIR_BASE,postRepairPaths:POST_REPAIR_PATHS};
 function integratedTickerOuterFrame(rawHead,record,storageBefore){
- const c=record[INTEGRATION_KEY],{maintenanceSource,repairSource,...scope}=c;
+ const c=record[INTEGRATION_KEY],{maintenanceSource,repairSource,postRepairSource,...scope}=c;
  assert.deepEqual(scope,integrationFixed,'Only the exact current-main ticker composition is admitted');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
  assert.match(repairSource,/^[a-f0-9]{40}$/);assert.deepEqual(JSON.parse(text(INTEGRATION_REPAIR_BASE,LEDGER))[INTEGRATION_KEY],{...originalIntegrationFixed,maintenanceSource},'Every previous integration field must remain exact');assert.equal(text(repairSource,LEDGER),text(INTEGRATION_REPAIR_BASE,LEDGER),'Every complete prior ledger byte must precede bounded repair');
+ assert.match(postRepairSource,/^[a-f0-9]{40}$/);assert.deepEqual(JSON.parse(text(POST_REPAIR_BASE,LEDGER))[INTEGRATION_KEY],{...previousIntegrationFixed,maintenanceSource,repairSource},'Every preceding scheduler/integration field remains exact');assert.equal(text(postRepairSource,LEDGER),text(POST_REPAIR_BASE,LEDGER),'Every preceding whole ledger byte must be retained before boundary repair');
  const fresh=freshChecker(rawHead),original=JSON.parse(text(ORIGINAL_TICKER_HEAD,LEDGER)),oc=original[KEY];
  assert.deepEqual(oc,{...fixed,maintenanceSource:'37c392ac3695ca95bc0d9e75b3c996d8b6126e20',repairSource:'819081b9b5350f5ab13b7f612cd3cdbc081aedf1'},'Original reviewed ticker registration must remain exact');
  const retained=structuredClone(record);delete retained[INTEGRATION_KEY];assert.deepEqual(retained,original,'Every earlier ledger receipt must remain unchanged');
@@ -210,10 +213,10 @@ function integratedTickerOuterFrame(rawHead,record,storageBefore){
  }
  ancestor(ORIGINAL_TICKER_HEAD,maintenanceSource);ancestor(INTEGRATION_BASE,maintenanceSource);ancestor(maintenanceSource,rawHead);
  assert.deepEqual(sorted(diff(INTEGRATION_BASE,maintenanceSource)),sorted([...originalAll,LEDGER]),'Exact current-main ticker source boundary required');
- assert.deepEqual(diff(maintenanceSource,INTEGRATION_REPAIR_BASE),[LEDGER],'Original exact integration registration remains required');ancestor(INTEGRATION_REPAIR_BASE,repairSource);assert.deepEqual(sorted(diff(INTEGRATION_REPAIR_BASE,repairSource)),sorted(INTEGRATION_REPAIR_PATHS),'Exact native scheduler/projection repair boundary required');ancestor(repairSource,rawHead);assert.deepEqual(diff(repairSource,rawHead),[LEDGER],'Only the exact repair registration may follow source');
+ assert.deepEqual(diff(maintenanceSource,INTEGRATION_REPAIR_BASE),[LEDGER],'Original exact integration registration remains required');ancestor(INTEGRATION_REPAIR_BASE,repairSource);assert.deepEqual(sorted(diff(INTEGRATION_REPAIR_BASE,repairSource)),sorted(INTEGRATION_REPAIR_PATHS),'Exact native scheduler/projection repair boundary required');ancestor(repairSource,POST_REPAIR_BASE);assert.deepEqual(diff(repairSource,POST_REPAIR_BASE),[LEDGER],'Original exact scheduler repair registration remains required');ancestor(POST_REPAIR_BASE,postRepairSource);assert.deepEqual(sorted(diff(POST_REPAIR_BASE,postRepairSource)),sorted(POST_REPAIR_PATHS),'Exact scheduler-pin and historical-fixture boundary repair required');ancestor(postRepairSource,rawHead);assert.deepEqual(diff(postRepairSource,rawHead),[LEDGER],'Only the exact boundary repair registration may follow source');
  assert.equal(text(maintenanceSource,LEDGER),text(ORIGINAL_TICKER_HEAD,LEDGER),'Every previous complete ledger byte must precede integration');
  for(const p of all){
-  const source=fixed.paths.includes(p)?fixed.payload:INTEGRATION_REPAIR_PATHS.includes(p)?repairSource:maintenanceSource;
+  const source=fixed.paths.includes(p)?fixed.payload:POST_REPAIR_PATHS.includes(p)?postRepairSource:INTEGRATION_REPAIR_PATHS.includes(p)?repairSource:maintenanceSource;
   assert.equal(oid(rawHead,p),oid(source,p),'Exact integrated ticker source drift: '+p);
   assert(readFileSync(p).equals(bytes(rawHead,p)),'Integrated ticker working source drift: '+p);
  }
@@ -221,9 +224,26 @@ function integratedTickerOuterFrame(rawHead,record,storageBefore){
  assert.deepEqual(sorted(Object.keys(inverse.integration.modified)),sorted(Object.keys(inverse.modified)),'The same bounded original guard/test set must be retained');
  for(const[p,row]of Object.entries(inverse.integration.modified)){
   assert(Buffer.from(row.before,'base64').equals(bytes(INTEGRATION_BASE,p)),'Whole current-main guard/test before-image required: '+p);
-  assert.equal(sha(bytes(rawHead,p)),row.afterSha256,'Exact independently reviewed integration source required: '+p);
+  assert.equal(sha(bytes(POST_REPAIR_BASE,p)),row.afterSha256,'Exact independently reviewed preceding integration source required: '+p);
  }
  for(const p of fixed.maintenancePaths.filter(p=>!Object.hasOwn(inverse.integration.modified,p)))assert.equal(git('ls-tree',INTEGRATION_BASE,'--',p),'','New integration maintenance source must be additive');
+ for(const[p,row]of Object.entries(inverse.integration.postRepair.modified)){
+  assert.equal(oid(POST_REPAIR_BASE,p),row.beforeBlob,'Exact whole original fixture adapter required');let restored=text(rawHead,p);assert.equal(sha(Buffer.from(restored)),row.afterSha256,'Exact bounded fixture adapter required');for(const[a,b]of [...row.inverse].reverse()){assert(b&&restored.split(b).length===2,'Every literal fixture boundary inverse must remain exact');restored=restored.replace(b,()=>a)}assert.equal(restored,text(POST_REPAIR_BASE,p),'Every original fixture-adapter assertion byte must restore');
+ }
  const testRepair=inverse.integration.testRepair;assert.equal(testRepair.path,'medicines-watch/scheduler.test.mjs');assert(Buffer.from(testRepair.before,'base64').equals(bytes(INTEGRATION_BASE,testRepair.path)),'Every original scheduler assertion before-image remains exact');assert.equal(sha(bytes(rawHead,testRepair.path)),testRepair.afterSha256,'Exact bounded scheduler test repair required');
  return makeTickerFrame(rawHead,INTEGRATION_BASE,all,fresh,storageBefore);
+}
+
+// Preserve the actual caller-byte assertion first. Only the native admitted
+// current-main workflow may supply the exact original editorial after-image to
+// its unchanged whole-file inverse. No production workflow byte is changed.
+export function approvedTickerEditorialFixture(path,value,requestedHead){
+ const workflow='.github/workflows/cloudflare-production-promote.yml';
+ if(path!==workflow||!active)return value;
+ active.assertCurrent();assert.equal(active.base,INTEGRATION_BASE,'Exact current-main editorial fixture context required');
+ assert.equal(requestedHead,active.base,'Exact native inner fixture head required');
+ assert.equal(value,text(active.base,path),'Actual qualified current workflow bytes must remain exact');
+ const snapshot='a78f893a30d41e4542dfd53c08dcdb77f88090e4';
+ ancestor(snapshot,active.base);assert(git('ls-tree',snapshot,'--',path).startsWith('100644 blob '),'Original regular editorial workflow source required');
+ const result=text(snapshot,path);active.assertCurrent();return result;
 }

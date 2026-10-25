@@ -76,3 +76,17 @@ test('warmed closed ticker proof retains actual working-source mutation rejectio
  finally{writeFileSync(path,before);}
 }));
 test('closed ticker evidence reuse rejects disappearance of required historical object storage',()=>isolatedTickerProbe("import{approvedNewsTickerOuterFrame}from'./release/approved-news-ticker-frame-20261024.mjs';import{withImmutableHistoryVerification}from'./release/immutable-git-facts.mjs';import{existsSync,renameSync}from'node:fs';import assert from'node:assert/strict';withImmutableHistoryVerification(()=>{const f=approvedNewsTickerOuterFrame();assert.equal(approvedNewsTickerOuterFrame(),f);const loose='.git/objects/'+f.base.slice(0,2)+'/'+f.base.slice(2),path=existsSync(loose)?loose:'.git/objects/pack',park=path+'.park';renameSync(path,park);try{assert.throws(()=>approvedNewsTickerOuterFrame());}finally{renameSync(park,path)}});"));
+
+test('reviewed scheduler test pin projects only exact current bytes after native admission',()=>{
+ const f=approvedNewsTickerOuterFrame(),path='medicines-watch/scheduler.test.mjs',pin=g('rev-parse','HEAD:'+path),prior=g('rev-parse',f.base+':'+path);
+ assert.notEqual(pin,prior);assert.equal(approvedTickerComparisonValue(path,pin,f.rawHead),prior);
+ assert.equal(approvedTickerComparisonValue(path,pin+'forged',f.rawHead),pin+'forged');assert.equal(approvedTickerComparisonValue(path,pin,f.base),pin);
+});
+test('historical editorial workflow fixture retains actual caller authentication and every original inverse',()=>{
+ const f=approvedNewsTickerOuterFrame(),view=websiteEditorialCompletionHistoricalView(),path='.github/workflows/cloudflare-production-promote.yml',actual=g('show','HEAD:'+path)+'\n';
+ const restored=websiteEditorialCompletionOriginalSource(path,actual,view);
+ const source=readFileSync('release/website-editorial-scope-20261018.mjs','utf8'),line=source.split('\n').find(x=>x.startsWith('const policy=')),policy=JSON.parse(line.slice('const policy='.length,-1));
+ assert.equal(restored,g('show',policy.base+':'+path)+'\n');assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',f.base+':'+path),'Every actual production workflow byte remains unchanged');
+ assert.throws(()=>websiteEditorialCompletionOriginalSource(path,actual+'\nforged',view),/source|fixture|exact/i);
+});
+import {websiteEditorialCompletionOriginalSource} from '../release/website-editorial-scope-20261018.mjs';

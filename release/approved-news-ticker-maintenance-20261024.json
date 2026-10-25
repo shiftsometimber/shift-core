@@ -74,6 +74,29 @@
       "path": "medicines-watch/scheduler.test.mjs",
       "before": "aW1wb3J0IGFzc2VydCBmcm9tICdub2RlOmFzc2VydC9zdHJpY3QnOwppbXBvcnQgeyByZWFkRmlsZVN5bmMgfSBmcm9tICdub2RlOmZzJzsKaW1wb3J0IHRlc3QgZnJvbSAnbm9kZTp0ZXN0JzsKCmNvbnN0IGVudHJ5ID0gcmVhZEZpbGVTeW5jKG5ldyBVUkwoJy4uL3dvcmtlci1lbnRyeS12Ni5qcycsIGltcG9ydC5tZXRhLnVybCksICd1dGY4Jyk7CmNvbnN0IHN0YXJ0ID0gZW50cnkuaW5kZXhPZignICBhc3luYyBzY2hlZHVsZWQoY29udHJvbGxlciwgZW52LCBjdHgpIHsnKTsKY29uc3QgZW5kID0gZW50cnkuaW5kZXhPZignXG4gIH0sXG59OycsIHN0YXJ0KTsKY29uc3Qgc2NoZWR1bGVkID0gZW50cnkuc2xpY2Uoc3RhcnQsIGVuZCk7Cgp0ZXN0KCdNZWRpY2luZXMgV2F0Y2ggcnVucyBiZWZvcmUgc2hhcmVkIHNjaGVkdWxlZCBqb2JzJywgKCkgPT4gewogIGFzc2VydC5vayhzdGFydCA+PSAwICYmIGVuZCA+IHN0YXJ0LCAnc2NoZWR1bGVkIGhhbmRsZXIgbXVzdCByZW1haW4gZGlzY292ZXJhYmxlJyk7CiAgY29uc3Qgd2F0Y2ggPSBzY2hlZHVsZWQuaW5kZXhPZignYXdhaXQgY2hlY2tTb3VyY2VzKGVudiwgeyBhbGxvd1NvdXJjZVJlcGxhY2VtZW50OiBmYWxzZSB9KScpOwogIGNvbnN0IHNoYXJlZCA9IHNjaGVkdWxlZC5pbmRleE9mKCdQcm9taXNlLmFsbFNldHRsZWQoWycpOwogIGFzc2VydC5vayh3YXRjaCA+PSAwLCAnc2NoZWR1bGVkIGhhbmRsZXIgbXVzdCBpbnZva2UgdGhlIFdhdGNoJyk7CiAgYXNzZXJ0Lm9rKHNoYXJlZCA+IHdhdGNoLCAnV2F0Y2ggbXVzdCBjb21wbGV0ZSBiZWZvcmUgRDEtaGVhdnkgc2libGluZyBqb2JzIGJlZ2luJyk7CiAgYXNzZXJ0LmVxdWFsKChzY2hlZHVsZWQubWF0Y2goL2NoZWNrU291cmNlc1woZW52LC9nKSB8fCBbXSkubGVuZ3RoLCAxKTsKfSk7Cgp0ZXN0KCdzY2hlZHVsZWQgc2libGluZyBmYWlsdXJlcyBhcmUgaXNvbGF0ZWQgYW5kIG5hbWVkJywgKCkgPT4gewogIGFzc2VydC5tYXRjaChzY2hlZHVsZWQsIC9zdGF0dXM6ICJyZWplY3RlZCIvKTsKICBmb3IgKGNvbnN0IG5hbWUgb2YgWydpbnRlbGxpZ2VuY2UnLCAncmFkYXInLCAna25vd2xlZGdlJywgJ2ZpdC1yZW1pbmRlcnMnXSkgewogICAgYXNzZXJ0Lm9rKHNjaGVkdWxlZC5pbmNsdWRlcygnIicgKyBuYW1lICsgJyInKSwgbmFtZSk7CiAgfQogIGFzc2VydC5kb2VzTm90TWF0Y2goc2NoZWR1bGVkLCAvUHJvbWlzZVwuYWxsXChcWy8pOwp9KTsK",
       "afterSha256": "d96ec0fe8738c8f606ecbc9e6f9f1df706c09678bce652a39304c40239998d0f"
+    },
+    "postRepair": {
+      "base": "e8487e269490d16508f9ba8e60116cb993452c17",
+      "modified": {
+        "release/website-editorial-scope-20261018.mjs": {
+          "beforeBlob": "4f140e89969ac65f3d91c55df173547d085ce60d",
+          "afterSha256": "7e27ce4c9bc681d6d69ddf428c5064655ea5a7087a9bb538d1595737b492bbfb",
+          "inverse": [
+            [
+              "approvedTickerActualHead} from './approved-news-ticker-frame-20261024.mjs'",
+              "approvedTickerActualHead,approvedTickerEditorialFixture} from './approved-news-ticker-frame-20261024.mjs'"
+            ],
+            [
+              " assert.equal(bytes,content(view.rawHead,path),'Website-editorial-completion source drift: exact current fixture source required');",
+              " assert.equal(bytes,content(view.rawHead,path),'Website-editorial-completion source drift: exact current fixture source required');\n const inverseBytes=approvedTickerEditorialFixture(path,bytes,view.rawHead);"
+            ],
+            [
+              "const restored=inverse(path,bytes);assert.equal(restored,content(policy.base,path)",
+              "const restored=inverse(path,inverseBytes);assert.equal(restored,content(policy.base,path)"
+            ]
+          ]
+        }
+      }
     }
   }
 }

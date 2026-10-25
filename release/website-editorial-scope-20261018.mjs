@@ -1,4 +1,4 @@
-import {approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead,approvedTickerActualHead} from './approved-news-ticker-frame-20261024.mjs';
+import {approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead,approvedTickerActualHead,approvedTickerEditorialFixture} from './approved-news-ticker-frame-20261024.mjs';
 import {HEALTH_PATHS,HEALTH_MAINTENANCE,HEALTH_RECEIPT} from './health-vision-scope-20261021.mjs';
 import {verifyTestosteroneExtension,TRT_BASE,TRT_PATHS,TRT_MAINTENANCE,TRT_RECEIPT} from './testosterone-scope-20261021.mjs';
 import assert from 'node:assert/strict';
@@ -186,6 +186,7 @@ export function assertWebsiteEditorialCompletionView(view){assert(admittedViews.
 function websiteEditorialCompletionOriginalSourceBeforeApprovedTicker(path,bytes,view=websiteEditorialCompletionHistoricalView()){
  assertWebsiteEditorialCompletionView(view);
  assert.equal(bytes,content(view.rawHead,path),'Website-editorial-completion source drift: exact current fixture source required');
+ const inverseBytes=approvedTickerEditorialFixture(path,bytes,view.rawHead);
  if(path===ledger){
   const actual=JSON.parse(bytes),current=actual[key],{maintenanceSource,...fixed}=current??{};
   assert.deepEqual(fixed,policy.record,'Website-editorial-completion source drift: exact fixture record required');assert.match(maintenanceSource,/^[a-f0-9]{40}$/);
@@ -194,7 +195,7 @@ function websiteEditorialCompletionOriginalSourceBeforeApprovedTicker(path,bytes
  }
  if(TRT_PATHS.includes(path)){return content(policy.base,path);}
  if(Object.hasOwn(policy.inverses,path)){
-  const restored=inverse(path,bytes);assert.equal(restored,content(policy.base,path),'Website-editorial-completion source drift: whole pre-daily fixture source required');return restored;
+  const restored=inverse(path,inverseBytes);assert.equal(restored,content(policy.base,path),'Website-editorial-completion source drift: whole pre-daily fixture source required');return restored;
  }
  assert(!policy.paths.includes(path)&&!policy.maintenancePaths.includes(path),'Website-editorial-completion source drift: added source has no historical fixture');
  assert.equal(bytes,content(policy.base,path),'Website-editorial-completion source drift: unrelated fixture source changed');return bytes;
