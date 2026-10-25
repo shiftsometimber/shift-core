@@ -241,7 +241,7 @@ function navigationTrackedStatKernel(){
  }catch{navigationTrackedStatAddon=null;}
  return navigationTrackedStatAddon;
 }
-function makeNativeNavigationFreshTrackedStats(){
+function makeNativeNavigationFreshTrackedStats(authenticateWorkingBytes=false){
  try{
   const kernel=navigationTrackedStatKernel();if(!kernel||!kernel.intact())return null;
   const root=process.cwd(),index=resolve(root,'.git/index'),before=readFileSync(index),indexState=lstatSync(index,{bigint:true});
@@ -260,14 +260,28 @@ function makeNativeNavigationFreshTrackedStats(){
    const m=/^  ctime: (\d+):(\d+)\n  mtime: (\d+):(\d+)\n  dev: (\d+)\tino: (\d+)\n  uid: (\d+)\tgid: (\d+)\n  size: (\d+)\tflags: ([0-9a-f]+)\n/.exec(raw.subarray(end+1,end+301).toString('utf8'));assert(m&&m[10]==='0');
    const mode=parseInt(h[1],8);assert([0o100644,0o100755,0o120000].includes(mode));
    const full=resolve(root,p);assert(full.startsWith(root+'/'));
-   row(mode,full,[Number(m[5]),Number(m[6]),Number(m[7]),Number(m[8]),Number(m[9]),Number(m[1]),Number(m[2]),Number(m[3]),Number(m[4])]);
+   if(authenticateWorkingBytes){
+    // A test may restore exact bytes while changing ctime. Authenticate the
+    // complete actual body against its unchanged index blob before rebinding
+    // stat descriptors; never reuse a successful source verdict.
+    const before=lstatSync(full,{bigint:true});
+    assert.equal(Number(before.mode)&0o170000,mode&0o170000);
+    if(mode!==0o120000)assert.equal(Number(before.mode)&0o777,mode&0o777);
+    const body=mode===0o120000?Buffer.from(readlinkSync(full)):readFileSync(full);
+    assert.equal(createHash('sha1').update('blob '+body.length+'\0').update(body).digest('hex'),h[2],'Actual tracked body changed while rebinding source stats');
+    const after=lstatSync(full,{bigint:true});
+    for(const key of ['dev','ino','mode','uid','gid','size','ctimeNs','mtimeNs'])assert.equal(after[key],before[key],'Tracked source changed during stat authentication');
+    const seconds=Number(after.ctimeNs/1000000000n>after.mtimeNs/1000000000n?after.ctimeNs/1000000000n:after.mtimeNs/1000000000n);
+    assert(seconds<Math.floor(Date.now()/1000),'Mature authenticated native source stats required');
+    row(mode,full,[Number(after.dev&0xffffffffn),Number(after.ino&0xffffffffn),Number(after.uid),Number(after.gid),Number(after.size),Number(after.ctimeNs/1000000000n),Number(after.ctimeNs%1000000000n),Number(after.mtimeNs/1000000000n),Number(after.mtimeNs%1000000000n)]);
+   }else row(mode,full,[Number(m[5]),Number(m[6]),Number(m[7]),Number(m[8]),Number(m[9]),Number(m[1]),Number(m[2]),Number(m[3]),Number(m[4])]);
    let d=dirname(full);while(d!==root){assert(d.startsWith(root+'/'));directories.add(d);d=dirname(d);}
    at=end+1+Buffer.byteLength(m[0]);
   }
   assert(seen.size>0&&seen.size<=100000&&directories.size<=100000);
   for(const d of directories)row(0o040000,d);
   const header=Buffer.alloc(12);header.writeUInt32LE(0x3156414e);header.writeUInt32LE(records.length,4);
-  const seconds=Number(indexState.mtimeNs/1000000000n);assert(Number.isSafeInteger(seconds)&&seconds>0&&seconds<=0xffffffff);header.writeUInt32LE(seconds,8);
+  const seconds=authenticateWorkingBytes?Math.floor(Date.now()/1000):Number(indexState.mtimeNs/1000000000n);assert(Number.isSafeInteger(seconds)&&seconds>0&&seconds<=0xffffffff);header.writeUInt32LE(seconds,8);
   const facts=Buffer.concat([header,...records]);assert(facts.length<=32e6);
   const sameIndex=()=>{const s=lstatSync(index,{bigint:true});return s.isFile()&&!s.isSymbolicLink()&&s.dev===indexState.dev&&s.ino===indexState.ino&&s.mode===indexState.mode&&s.size===indexState.size&&s.ctimeNs===indexState.ctimeNs&&s.mtimeNs===indexState.mtimeNs&&readFileSync(index).equals(before);};
   assert(sameIndex());
@@ -294,7 +308,8 @@ export function nativeNavigationFreshSourceChecker(expected){
  prepareNativeNavigationIndexStats();
  const cwd=process.cwd(),environment=JSON.stringify(Object.keys(process.env).sort().map(k=>[k,process.env[k]]));
  let context;try{context=freshSourceContext();}catch{context=null;}
- const freshTrackedStats=context?makeNativeNavigationFreshTrackedStats():null;
+ let freshTrackedStats=context?makeNativeNavigationFreshTrackedStats():null;
+ let nextStatsRebindSecond=0;
  const check=()=>{
   assert.deepEqual([execFileSync,readFileSync,lstatSync,readlinkSync,readdirSync,realpathSync,createHash,process.cwd,mkdtempSync,chmodSync,writeFileSync,tmpdir,createRequire],native,'Native navigation source functions changed');
   assert.equal(process.cwd(),cwd,'Navigation source working directory moved');
@@ -305,7 +320,15 @@ export function nativeNavigationFreshSourceChecker(expected){
   // receives a fresh native scan of every indexed path and parent before and
   // after caller reads; any uncertainty retains the exact original Git diff.
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed');
-  assert.equal(freshTrackedStats?.()===true?0:git('diff-files','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','--').length,0,'Fresh navigation working source changed');
+  if(freshTrackedStats?.()!==true){
+   assert.equal(git('diff-files','--patch','--binary','--no-ext-diff','--no-textconv','--no-renames','--').length,0,'Fresh navigation working source changed');
+   const second=Math.floor(Date.now()/1000);
+   if(second>nextStatsRebindSecond){
+    nextStatsRebindSecond=second;
+    const rebound=makeNativeNavigationFreshTrackedStats(true);
+    if(rebound?.()===true)freshTrackedStats=rebound;
+   }
+  }
   assert.equal(context.snapshot(),context.entry,'Native navigation source metadata changed during current-source check');
  };
  if(context&&freshTrackedStats&&(expected===undefined||typeof expected==='string'&&oid.test(expected))){
