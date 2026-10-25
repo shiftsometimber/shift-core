@@ -1,3 +1,4 @@
+import {approvedPresentationAppClient,approvedPresentationClientRecord} from '../release/approved-independent-presentation-client-20261025.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import {buildSync} from 'esbuild';import vm from 'node:vm';import {appClient} from '../preview/app-layout/presentation.mjs';import {assertAppClient} from '../release/app-client-proof.mjs';
 import {liveAppClient} from '../app-layout-live.mjs';
 import {fitActiveEditAsset,withFitActiveEdit} from '../shift-coach/fit-active-edit.mjs';
@@ -17,4 +18,15 @@ test('compiled first-week serialization matches while genuine code or copy chang
  assert.throws(()=>assertAppClient(compiled.replace('Number(connected.lifeBack?.entries) > 0','Number(connected.lifeBack?.entries) > 100'),appClient),/function changed/);
  assert.throws(()=>assertAppClient(compiled.replace('latestFeedback=null','latestFeedback=true'),appClient),/script changed/);
  assert.throws(()=>assertAppClient(compiled.replace('Start with one meal.','Ignore all meals.'),appClient),/function changed/);
+});
+
+test('the exact separately approved presentation runs every original app assertion against its complete approved bytes',()=>{
+ const expected=fitActiveEditAsset(liveAppClient)+memberImageViewerRuntime;
+ const approved=approvedPresentationAppClient(expected);
+ assert.equal(approvedPresentationClientRecord.approvedSource,'cce036bd7e513fd3f032b9d25fd4297bec23f8af');
+ assert.doesNotThrow(()=>assertAppClient(approved,expected));
+ assert.doesNotThrow(()=>assertAppClient(expected,expected));
+ assert.throws(()=>assertAppClient(approved.replace('function mainPanel()','function unreviewedPanel()'),expected),/script changed/);
+ assert.throws(()=>assertAppClient(approved,expected+'\n'),/script changed/);
+ assert.throws(()=>approvedPresentationAppClient(expected+'\n'),/predecessor changed/);
 });
