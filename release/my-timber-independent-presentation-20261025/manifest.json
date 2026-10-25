@@ -2,14 +2,14 @@
   "at": "2026-10-25T12:24:29.960790+00:00",
   "approvedUI": "075f5dfd3e5d6931bf256d0011dc0dffe4178fc7",
   "base": "f8f05127c6578a8e9f040e6275d431348b102db6",
-  "authority": "Matt: Get them previewed, deployed and then we dig into detail. Today, Journey, Grub, Fit, Support and Stuff.",
+  "authority": "Matt: Agreed \u2026. Let\u2019s go live. Approval covers the revised six-page private member layout shown in the immediately preceding preview.",
   "workers": {
     "shift-programme-member-20261023": {
       "priorVersion": "a669982c-d3a5-4628-87ac-3e2adc43d7fe",
       "originalModule": "worker.mjs",
       "originalSHA256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
       "candidateNewModuleHashes": {
-        "data.mjs": "6b272400a3b616da181373702c25160dbf950dd86f4c5b7b10887c06dbab2503",
+        "data.mjs": "7658804b9b2b375c21f8684baa2e4804d0efdf506d49d2d23c0002c64570f094",
         "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
         "presentation-entry.mjs": "5ad1fd42726fcee790c354e240ea4c0c2c00874fa079ae2d156f71791bcbe379"
       }
@@ -19,7 +19,7 @@
       "originalModule": "worker.js",
       "originalSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
       "candidateNewModuleHashes": {
-        "data.mjs": "6b272400a3b616da181373702c25160dbf950dd86f4c5b7b10887c06dbab2503",
+        "data.mjs": "7658804b9b2b375c21f8684baa2e4804d0efdf506d49d2d23c0002c64570f094",
         "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
         "presentation-entry.mjs": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f"
       }
@@ -33,7 +33,7 @@
     "allOtherAssetsAndDocumentsUnchanged": true,
     "productionMemberWrites": 0
   },
-  "updatedAt": "2026-10-25T19:05:57.206Z",
+  "updatedAt": "2026-10-25T19:39:53.728Z",
   "delivery": "Existing2 Worker source-only wrapper; no route, Pages, binding, API or schedule changes.3 approved HTML documents include source-pinned chrome/progress scripts only while the old Core stylesheet is present. Canonical external delivery resumes without mutation on newer Core.",
   "routeLimitObserved": 1000,
   "routesChanged": 0,
@@ -48,17 +48,24 @@
     "tabReturn": "Canonical Today selection clears tool query/visibility; Journey hash owns main panel; save from embedded tool returns to Today without two visible owners."
   },
   "priorChecks": {
-    "adapterAssertions": 34,
-    "actualOriginalWorkerPreservationCases": 20,
-    "ChromiumWebKit390And1440SyntheticUIAssertions": 48,
-    "actualCurrentlyServedGrubFitClients": true,
-    "productionMemberWrites": 0,
-    "exactDeliveryChromiumWebKit3901440": 48,
-    "unknownNewCoreHTMLPassThroughPages": 3
+    "existingFocusAndFitHandoffTests": 10,
+    "syntheticDomBrowserChecks": 6,
+    "adapterIdempotenceAndNonGETPages": 3,
+    "unknownFutureAssetPassThrough": true,
+    "allOtherAssetsAndDocumentsUnchanged": true,
+    "productionMemberWrites": 0
   },
   "recovery": {
-    "layoutAssetSHA256": "6824c8b67785cfb1d8d9fd53fe8d924b6f8feb035a748173a95219697406f3e7",
+    "layoutAssetSHA256": "5417a73675253eff577fc00db14a5192e0296fce4c954e862f045eb09c986254",
     "scope": "Six-tab presentation using canonical controls and real member records; no synthetic production data",
     "behaviourLimits": "Four-outcome learning adaptation, corrected dated recall and member-owned prescriber-note workflow remain separate production acceptance work; preview demonstrates proposed behaviour."
+  },
+  "refinementReview": {
+    "status": "REVIEWED_APPROVED_FOR_DEPLOYMENT",
+    "internalApp": true,
+    "medicineAndDose": "Member-recorded private data retained",
+    "previewDataExcluded": true,
+    "approvedAt": "2026-10-25T20:08:24.536448+00:00",
+    "reviewedLayoutAssetSHA256": "5417a73675253eff577fc00db14a5192e0296fce4c954e862f045eb09c986254"
   }
 }
