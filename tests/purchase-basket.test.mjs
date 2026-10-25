@@ -17,6 +17,7 @@ test('public asset is read-only and contains a user-scoped basket, not medical o
  assert.match(response.headers.get('content-type'),/application\/javascript/);
  const js=await response.text();
  assert.match(js,/sst-purchase-basket-v1/);
+ assert.doesNotThrow(()=>new Function(js),'browser basket script should parse');
  assert.match(js,/accountReference/);
  assert.match(js,/checkout\.stripe\.com/);
  assert.doesNotMatch(js,/(localStorage\.setItem\([^)]*(?:serviceWeight|serviceHeight|cardNumber|verificationToken))/i);
@@ -29,7 +30,7 @@ test('one script is injected without altering the HTML body or responses on othe
  const result=await withPurchaseBasket(req,resp());
  const html=await result.text();
  assert.match(html,/Unchanged<\/main>/);
- assert.match(html,/api\.shiftsometimber\.co\.uk\/assets\/shift-purchase-basket-v1\.js/);
+ assert.match(html,/src="\/assets\/shift-purchase-basket-v1\.js"/);
  assert.equal(result.headers.has('ETag'),false);
  assert.equal(result.headers.get('cache-control'),'private, no-cache, must-revalidate');
  const repeated=await withPurchaseBasket(req,new Response(html,{headers:{'Content-Type':'text/html'}}));
