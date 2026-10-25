@@ -259,6 +259,7 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/my-timber-joined-look-inverses-20261024.json",
     "release/my-timber-joined-look-scope-20261024.mjs",
     "release/recorded-week-navigation-outer-frame-20261018.mjs",
+    "shift-coach/release.test.mjs",
     "tests/native-restored-source-stats-20261025.test.mjs",
     "tests/recorded-week-navigation-preservation-20261018.test.mjs"
   ],
@@ -272,7 +273,8 @@ export const JOINED_LOOK_CONTRACT=deepFreeze({
     "release/member-recording-repair-20261024.mjs": "69074d48545aafdeea7d645523db478abc1200ad",
     "release/recorded-week-navigation-outer-frame-20261018.mjs": "45fb436ebecd433c0b1fc5823f531cef6c1da660",
     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
-    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "c097fb38075a49d26a0b4bd4d817bcbdc0f4a37e"
+    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "c097fb38075a49d26a0b4bd4d817bcbdc0f4a37e",
+    "shift-coach/release.test.mjs": "023ab5a0ed37819e37408b05a4dd1f8f09318353"
   },
   "generatedPaths": [
     "release/my-timber-joined-look-inverses-20261024.json",
