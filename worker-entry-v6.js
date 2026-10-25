@@ -82,6 +82,7 @@ import { sportClubhouseRoutes } from "./sport-clubhouse-v1.js";
 import { privacyHealthErasureRoute } from "./privacy-health-erasure-route-v1.js";
 import { accountDeletionPublicRoute } from "./app-store-public-v1.js";
 import { commerceStripeRoutes } from "./commerce-stripe-v1.js";
+import {purchaseBasketAsset,withPurchaseBasket} from './public-purchase-basket.mjs';
 import { medicineCommerceRoutes } from "./medicine-commerce-v1.js";
 import {
   fastMemberStateRoute,
@@ -589,6 +590,7 @@ const worker = {
       return Response.redirect(requestUrl, 301);
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
+    const basketScript=purchaseBasketAsset(request);if(basketScript)return basketScript;
     const oralPage = await oralPublicRoute(request,env); if(oralPage){if(oralPage.status===200&&request.method==='GET')ctx.waitUntil(notifyArticlePublication(env));return oralPage;}
     const articlePage = await babyLovePublicRoute(request,env); if(articlePage)return withPublicSeoCloseout(articlePage,request);
     const dynamicArticlePage = await dynamicBabyLovePublicRoute(request,env); if(dynamicArticlePage)return withPublicSeoCloseout(dynamicArticlePage,request);
@@ -1216,6 +1218,6 @@ export default {
     const response = await withPublicSeoCloseout(await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx))))),request);
     const final=await withFoodGuideDiscovery(request,await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env)));
     const corrected=await approvedComparisonAnswer(request,final);
-    return withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,corrected):corrected)))),request);
+    return withPurchaseBasket(request,await withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,corrected):corrected)))),request));
   },
 };
