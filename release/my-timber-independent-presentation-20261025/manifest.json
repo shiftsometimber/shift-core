@@ -9,8 +9,8 @@
       "originalModule": "worker.mjs",
       "originalSHA256": "d18b2020322ebdf24fcb0dcd3147e1b578d41f4d8fb2360afae4182796750d7e",
       "candidateNewModuleHashes": {
-        "data.mjs": "a57000016a9ee95293789e962891a3f5a654fa6d89c0dd4ba2a4209d96126940",
-        "presentation.mjs": "f8fcff1ea376bbb5b8a19fae1d2aac7102adea3d7152980a614ede49b501593b",
+        "data.mjs": "73e3486dff4b8957140c5626725ffbfa38b3636a28f9f94d3b19f8715c5c7bcd",
+        "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
         "presentation-entry.mjs": "5ad1fd42726fcee790c354e240ea4c0c2c00874fa079ae2d156f71791bcbe379"
       }
     },
@@ -19,8 +19,8 @@
       "originalModule": "worker.js",
       "originalSHA256": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
       "candidateNewModuleHashes": {
-        "data.mjs": "a57000016a9ee95293789e962891a3f5a654fa6d89c0dd4ba2a4209d96126940",
-        "presentation.mjs": "f8fcff1ea376bbb5b8a19fae1d2aac7102adea3d7152980a614ede49b501593b",
+        "data.mjs": "73e3486dff4b8957140c5626725ffbfa38b3636a28f9f94d3b19f8715c5c7bcd",
+        "presentation.mjs": "830905d258e87b7fabec217a3d6fc6dc5562c3828ee053ebe0526f998f4cacc7",
         "presentation-entry.mjs": "a77952426b9b27d76343c37bba782af5bb592b383a120342fafea39140f5216f"
       }
     }
@@ -34,8 +34,16 @@
     "exactDeliveryChromiumWebKit3901440": 48,
     "unknownNewCoreHTMLPassThroughPages": 3
   },
-  "updatedAt": "2026-10-25T12:36:23.945063+00:00",
+  "updatedAt": "2026-10-25T13:13:13.595424+00:00",
   "delivery": "Existing2 Worker source-only wrapper; no route, Pages, binding, API or schedule changes.3 approved HTML documents include source-pinned chrome/progress scripts only while the old Core stylesheet is present. Canonical external delivery resumes without mutation on newer Core.",
   "routeLimitObserved": 1000,
-  "routesChanged": 0
+  "routesChanged": 0,
+  "liveIntegrationRepair": {
+    "toolHost": "Sibling of Today panel, never a hidden descendant",
+    "coach": "Existing observer respects approved coaching container; no API/data changes",
+    "header": "Ready-session approved-UI compact header overrides legacy public header; signed-out unchanged",
+    "layoutAssetSHA": "f0ebe340a7594095402fc70f5910ff19dc2b895c102bea6eb92a3960ffc0e3e7",
+    "productionVerification": "pending",
+    "coreSuccessor": "Retain corrections for both exact old and exact previously approved uncorrected Core styles/layout; any unknown/newer source passes unchanged. Manager must integrate exact repair into source before retiring adapter."
+  }
 }
