@@ -1,3 +1,5 @@
+import {connectPreparedOption} from './support-prepared-options.mjs';
+import {memberSupportContactRoutes} from './member-support-contact.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
 import {score,areas,hasPersonalGoal} from './life-back/model.mjs';
@@ -17,12 +19,12 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  if(input.action==='goal'){
   if(input.revision!==next.revision)fail('Your goal changed in another tab. Reload before changing it.',409);
   const goal=String(input.goal||'').trim();if(!hasPersonalGoal(goal)||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
-  if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId}
+  if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId;next.goalChangedAt=at}
  }else if(input.action==='focus'){
   if(input.revision!==next.revision)fail('Your goal or step changed in another tab. Reload before saving.',409);
   if(input.goal!==undefined){
    const goal=String(input.goal).trim();if(!hasPersonalGoal(goal)||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
-   if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId}
+   if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId;next.goalChangedAt=at}
   }
   focusNextShift(next,input,at);
  }else if(input.action==='start-shift'){
@@ -53,7 +55,9 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  next.revision++;next.operations=[...next.operations,input.operationId].slice(-100);return next;
 }
 export async function lifeBackRoutes(request,env){
- if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname!=='/v1/life-back')return null;
+ if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return null;
+ if(new URL(request.url).pathname==='/v1/member-support')return memberSupportContactRoutes(request,env);
+ if(new URL(request.url).pathname!=='/v1/life-back')return null;
  if(!['GET','POST'].includes(request.method))return json({error:'Method not allowed'},405);
  if(request.method==='POST'&&request.headers.get('Origin')!==new URL(request.url).origin)return json({error:'Use this page to save your check-in.'},403);
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
@@ -70,6 +74,7 @@ export async function lifeBackRoutes(request,env){
   for(let attempt=0;attempt<4;attempt++){
    const old=prefs.lifeBack?.progress||emptyLifeBack(),next=applyLifeBackOperation(old,input);
    if(next.revision===old.revision)return json({ok:true,accountId:auth.userId,progress:supportView(old)});
+   await connectPreparedOption(env.DB,prefs,next,old,{...input,authenticatedUserId:auth.userId});
    const result=await env.DB.prepare("UPDATE member_state SET preferences=json_set(CASE WHEN json_type(preferences,'$.lifeBack')='object' THEN preferences ELSE json_set(preferences,'$.lifeBack',json('{}')) END,'$.lifeBack.progress',json(?)),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1").bind(JSON.stringify(next),new Date().toISOString(),auth.userId,old.revision,auth.userId).run();
    if(result.meta.changes===1)return json({ok:true,accountId:auth.userId,progress:supportView(next)},201);
    if(!await trackingConsent(env.DB,auth.userId))return json({error:'Health tracking was switched off before this save.',code:'health_consent_required'},409);

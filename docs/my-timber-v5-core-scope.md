@@ -1,5 +1,7 @@
 # My Timber v5: scoped core implementation
 
+> Historical v5 scope and evidence are preserved below. The Version 6 approved service additions section is current and overrides earlier scope/availability statements. Current release checks and limits are in my-timber-v6-core-evidence.json; no release is claimed.
+
 Authorised order: Matt's My-Timber-Work-Order-FINAL-v5-26oct.docx, 26 October 2026.
 
 The member support relationship leads. Existing black, cream and ash-green six-page presentation is retained. This first phase adds a useful try route and connects prepared practical help, member feedback, readable memory, continuity and finishing to the existing consented Life Back record. It does not launch the Shed or a human service.
@@ -35,3 +37,13 @@ Every feedback answer changes appropriate follow-through; helped may repeat a us
 Matt has confirmed that he owns non-clinical member enquiries, is online every day, and will reply within one working day. Member presentation: “Message Matt at any time. Matt replies within one working day.” This is asynchronous support; it does not imply a live or emergency response, a clinical service, or confirmed 24/7 Shed moderation.
 
 This supersedes the earlier unresolved human-owner/response-target decision. The existing HQ queue and claim/reply source are available for integration; no production ticket was created or assigned and no response-time delivery was newly verified. New implementation remains under the current deployment hold.
+
+## Version 6 approved service additions
+
+The latest approved support-service message overrides v5. Human support is app/account only, with a reference, Matt as owner and replies within one working day. Never show 24/7 or instant coverage. Away wording remains a draft for approval and no backup person is assigned.
+
+New modules: support-records.mjs, support-review.mjs, support-service-client.mjs, support-prepared-options.mjs and member-support-contact.mjs within member-experience. Add focused support-service tests. Scoped edits extend the existing support-plan modules, Life Back route, and shift-coach/support.mjs and support-team.mjs. The existing six-page-recovery.mjs Contact SHIFT row is renamed Message Matt and points to the private app/account thread; urgent and prescriber rows keep their precedence. Existing member, consent, revision and HQ-role checks remain. The only added API route is /v1/member-support, backed by the existing support_tickets table; it sends no emails and requires no optional health-tracking consent. APP references identify app/account threads; legacy COACH records remain distinct.
+
+Five saved items are editable/removable through the same member record. Helpful counts derive from source answers. Personal reviews use fixed rules with dated sources and require deliberate plan acceptance. Default fortnightly; weekly, calendar monthly, only on request and never are available. Selected intervals affect review due dates; no external notification delivery is claimed. Prepared member food uses the governed catalogue with existing Grub preferences; movement uses only that member's saved active Fit plan. No matching option means an honest review-choices state, not an invented personalised session or meal.
+
+The latest work order is My-Timber-Work-Order-FINAL-v6-26oct.docx. C1-C10, F1-F5, R1-R5, H1-H3 and S1-S9 require separate evidence, including actual browser acceptance at 320, 360, 390 and 430 pixels. These source changes are not deployed or represented as a working member service.

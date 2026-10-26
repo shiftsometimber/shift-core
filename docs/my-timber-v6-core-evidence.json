@@ -1,0 +1,214 @@
+{
+  "at": "2026-10-26T20:18:28.005Z",
+  "state": "V6_CORE_SERVICE_SOURCE_PREPARED_NOT_RELEASE_QUALIFIED",
+  "authority": "Matt's approved Go ahead: My Timber support service message. Latest message takes precedence over v5. No deployment until every applicable check passes and Matt says go.",
+  "branch": "feat/my-timber-support-experience-20261026",
+  "parent": "32909269872fe4d7ce58af6fad4bc1e0234cd59c",
+  "candidateIdentity": "Resolve git commit containing this file; exact resulting SHA is in the source checkpoint. This file cannot self-hash.",
+  "workOrder": {
+    "library_file_id": "libfile_1c68e69ce5f48191b01b7269752c392e",
+    "version": 0,
+    "name": "My-Timber-Work-Order-FINAL-v6-26oct.docx",
+    "renderedPages": 10,
+    "allPagesVisuallyChecked": true
+  },
+  "sourceValidation": {
+    "focusedAndAffectedTests": {
+      "status": "PASS",
+      "tests": 90,
+      "passed": 90,
+      "failed": 0,
+      "receipt": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/my-timber-loop-20261026/v6-service-preparation/final-service-tests.log",
+      "limit": "Source, route and isolated database fixtures; not browser, deployed API or independent member evidence."
+    },
+    "emittedRuntimeParse": {
+      "status": "PASS",
+      "limit": "Syntax parse only."
+    },
+    "workerDryBuild": {
+      "status": "PASS",
+      "receipt": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/my-timber-loop-20261026/v6-service-preparation/dry-build.log",
+      "limit": "Wrangler --dry-run only; no provider release."
+    }
+  },
+  "releaseChecks": {
+    "C1": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "The standalone signed-out try route and usable fictional options are prepared. Actual under-one-minute use, entry-to-registration and return through the browser remain unverified."
+    },
+    "C2": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "All three Not for me adaptations have source/fixture coverage. Required before/after browser screenshots for Wrong time, Too much effort and Don't like the idea are outstanding."
+    },
+    "C3": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Dated source/correction/retirement logic is covered by source tests. No rendered-phone proof of the exact reason line and quote privacy for this candidate."
+    },
+    "C4": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Four outcomes, revision, consent, expected-account and persistence are covered by route/model tests using isolated synthetic data. Full refreshed member-interface behaviour is unverified."
+    },
+    "C5": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Private memory corrections/deletions have source and fresh-read tests. Actual interface acceptance is outstanding; related Shed-post removal is a phase-2 dependency and is not built."
+    },
+    "C6": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Editable member-owned notes and deliberate local download are prepared; no automatic send exists. Actual browser editing/download/copy is not qualified."
+    },
+    "C7": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "One-tap inline rough-day action without streak/count is prepared. Actual phone-width interaction remains unverified."
+    },
+    "C8": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Earlier live urgent-help receipts remain historical evidence for their exact source. The new candidate has no fresh phone tap/order acceptance."
+    },
+    "C9": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Member-confirmed changes, preserved history and chosen cadence have source/route coverage. Complete changed-circumstances and return journey in the member interface remains unverified."
+    },
+    "C10": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Member-confirmed finish/resume and own helpful history are prepared with source tests. Complete finish/keep-plan/return interface is unverified."
+    },
+    "F1": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: F1 checks original goal/difficulty dates, corrections, deletion and stopped recall. Real member-interface refresh/account switching remains outstanding."
+    },
+    "F2": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: F2 retains the actual offer separately from the member correction and deletes the source. Browser editing/deletion and subsequent rendered review remain unverified."
+    },
+    "F3": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: F3/F4 correct/delete source feedback and re-derive review/helpfulness; negative practical options are excluded by prepared-option logic. Full UI correction-to-next-offer journey remains unverified."
+    },
+    "F4": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: F3/F4/F5 prove helpful counts derive from source answers, not acceptance/opening. Rendered counts and refreshed finishing history remain unverified."
+    },
+    "F5": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: F5/R3/R4 cover accepted-plan edits/deletion, stopped reviews and no inferred trying/helpfulness. Actual interface changes/refresh remain unverified."
+    },
+    "R1": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: R1/R2 trace exact member quotes/dates and omit unreported history. Actual review rendering/privacy remains unverified."
+    },
+    "R2": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: R1/R2 test instruction-like member text as quoted data and fixed rules with no causal inference. No external AI call is used for this review. Browser acceptance remains outstanding."
+    },
+    "R3": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: R3 covers fortnightly default, weekly, calendar month-end, on-request and never; R4 checks acceptance. Actual member preference change/refresh and displayed due review remain unverified."
+    },
+    "R4": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: R4 requires checked/edited acceptance and rejects stale review IDs; acceptance never marks tried/helpful. Browser form and refresh acceptance remain outstanding."
+    },
+    "R5": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: R5 covers reported win, open difficulty, prescriber questions and returning. Complete rendered examples remain unverified."
+    },
+    "H1": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: authenticated source routes tested with isolated DB/HQ session fixture through member request, private reference, HQ claim/reply, member receipt, other-account isolation and member resolution. No real ticket or live staff reply sent. Actual member/HQ browser round trip remains unverified."
+    },
+    "H2": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: H2 covers app/account contact with optional health tracking off; rejects foreign origin/account and treatment requests; no health attachment. Actual session-switch/draft-clearing browser check remains outstanding."
+    },
+    "H3": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "support-service.test.mjs: H3 covers Matt/one-working-day normal policy and replacement by configured away copy; no instant/24-7 promise. Away draft is unapproved, backup unassigned, actual away member display not browser-qualified."
+    },
+    "S1": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. Private community matching across tabs has not been built or verified."
+    },
+    "S2": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. Five distinct real consenting members and threshold-gated Shed label/count are requirements, not implemented evidence."
+    },
+    "S3": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. No invented member content has been created; SHIFT-labelled starter-thread flow is unbuilt."
+    },
+    "S4": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. Deliberate preview-to-post sharing and post-removal controls are unbuilt."
+    },
+    "S5": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. Private author feedback about real marks is unbuilt."
+    },
+    "S6": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. Moderation review/report/block end-to-end readiness is not established."
+    },
+    "S7": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. Ask Timber pointing to eligible peer threads is unbuilt."
+    },
+    "S8": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. New Shed account/sign-out isolation is unqualified. The signed-out try flow uses no member API/data."
+    },
+    "S9": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Phase 2 not started. No new notifications were implemented or sent. New Shed/quoted-content discretion must be verified in the actual interface."
+    }
+  },
+  "sharedChecks": {
+    "browserWidths": {
+      "status": "BLOCKED",
+      "required": [
+        320,
+        360,
+        390,
+        430
+      ],
+      "reason": "No permitted accessible preview/browser path is currently available for the changed candidate. A previous local/file preview access was denied; no workaround attempted."
+    },
+    "contrast": {
+      "status": "BLOCKED",
+      "reason": "Existing approved cream/black presentation preserved; actual rendered small text and complete changed pages still require acceptance."
+    }
+  },
+  "service": {
+    "owner": "Matt O'Brien",
+    "humanScope": "App and account questions only",
+    "replyTarget": "Within one working day",
+    "reviewDefault": "fortnightly",
+    "reviewChoices": [
+      "fortnightly",
+      "weekly",
+      "monthly",
+      "on-request",
+      "never"
+    ],
+    "awayMessage": "Draft in v6, not approved for publication",
+    "backup": "Unassigned"
+  },
+  "implementationLimits": [
+    "No external review scheduler or notification delivery has been added or claimed.",
+    "Prepared food honours canonical saved Grub constraints and instructions; full selected-meal/shopping handoff still requires actual UI acceptance.",
+    "Prepared movement uses only the member's saved active Fit plan; no matching plan/session produces an honest review-choices state.",
+    "Related Shed post deletion, moderation and community loop remain phase 2.",
+    "No independent men have yet established that the experience removes a hassle and earns a return."
+  ],
+  "largestRemainingGap": "One complete refreshed member-visible support journey, including the private HQ reply, at 320-430px in a permitted actual browser. Tests/dry build are insufficient.",
+  "phase2ShedStarted": false,
+  "phase3ProposalsBuilt": false,
+  "newProductionDeployments": 0,
+  "newRealMemberWrites": 0,
+  "communicationsSent": 0,
+  "costsIncurred": 0,
+  "homepageChanged": false,
+  "publicNavigationChanged": false,
+  "nativeAppsChanged": false,
+  "googleDownloadHold": "preserved",
+  "mainMergeClaimed": false
+}

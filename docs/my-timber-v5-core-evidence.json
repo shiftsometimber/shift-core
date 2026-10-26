@@ -63,5 +63,7 @@
   "homepageChanged": false,
   "nativeAppsChanged": false,
   "googleDownloadHold": "preserved",
-  "preservedInitialTestFailure": "Initial run lacked an already installed dependency in the isolated checkout. Receipt retained; reuse of identical-lock installed dependencies resolved it without changing tests."
+  "preservedInitialTestFailure": "Initial run lacked an already installed dependency in the isolated checkout. Receipt retained; reuse of identical-lock installed dependencies resolved it without changing tests.",
+  "currentScopeSupersededBy": "my-timber-v6-core-evidence.json",
+  "historicalEvidencePreserved": true
 }

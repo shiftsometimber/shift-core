@@ -1,3 +1,5 @@
+import {applyRecordOperation,memberRecordView,reportedHelpful} from './support-records.mjs';
+import {applyReviewOperation,personalReview,reviewPreferences,reviewPreference} from './support-review.mjs';
 // Member-owned everyday support. Uses the existing consented Life Back record.
 // No inference about treatment, clinical readings, notifications or human availability.
 export const supportChoices = Object.freeze({
@@ -20,11 +22,11 @@ export const practicalActions = Object.freeze({
   pause:{kind:'confidence',title:'One less thing to carry today.',name:'Let one ordinary job wait',time:'A moment, with no catch-up task',items:[],steps:['Choose one non-urgent job you can leave for later.','Keep only the next manageable thing in view.'],fallback:'If you need help beyond a practical step, open Support.',href:'/member/dashboard?timber=support#today',label:'Open Support'}
 });
 const fail=(message,status=400)=>{throw Object.assign(Error(message),{status});};
-const stateOf=s=>s.memberSupport||(s.memberSupport={memories:[],stage:'keeping-going',cadence:'when-i-open'});
+const stateOf=s=>s.memberSupport||(s.memberSupport={memories:[],stage:'keeping-going',cadence:'fortnightly'});
 const clean=(value,max=180)=>typeof value==='string'&&value.trim().length<=max?value.trim():fail('Keep your words within '+max+' characters.');
 const needRevision=(s,i)=>{if(i.revision!==s.revision)fail('Your support changed in another tab. Reload before saving.',409);};
 const shifts=s=>[...(s.shiftHistory||[]),...(s.nextShift?[s.nextShift]:[])];
-export function helpfulRoutines(s){const groups=new Map();for(const a of shifts(s)){if(a.goalId!==s.goalId)continue;const reviews=(a.reviews||[]).filter(r=>r.outcome==='helped');if(!reviews.length)continue;const key=a.practical?.key||a.title,g=groups.get(key)||{title:a.practical?.name||a.title,href:a.href,dates:[]};g.dates.push(...reviews.map(r=>r.at));groups.set(key,g);}return [...groups.values()].map(g=>({...g,count:g.dates.length,at:g.dates.at(-1)}));}
+export const helpfulRoutines=reportedHelpful;
 export function rememberedSupport(s,at=new Date().toISOString()){
   const m=(s.memberSupport?.memories||[]).findLast(m=>!m.retiredAt&&m.id===s.nextShift?.practical?.memoryId);
   return m&&Date.parse(at)-Date.parse(m.at)<=7*86400000?{id:m.id,text:m.text,at:m.at,correctedAt:m.correctedAt||null}:null;
@@ -60,9 +62,11 @@ export function reviewPracticalSupport(s,input,at){
   return true;
 }
 export function applySupportOperation(s,input,at){
-  if(!['support-start','support-memory','entry-delete','support-circumstance','support-finish','support-resume','support-note','support-obstacle'].includes(input.action))return false;
+  if(!['support-start','support-accept-step','support-memory','entry-delete','support-circumstance','support-finish','support-resume','support-note','support-obstacle','support-record','support-review-preference','support-review-request','support-review-accept'].includes(input.action))return false;
   needRevision(s,input);const support=stateOf(s);
-  if(input.action==='support-start'){
+  if(applyRecordOperation(s,input,at)||applyReviewOperation(s,input,at)){
+    // Existing authenticated revision and consent controls guard these edits too.
+  }else if(input.action==='support-start'){
     const choice=supportChoices[input.choice];if(!choice)fail('Choose a starting point.');
     if(support.memories.length>=10000)fail('Your saved history is full. Contact support before adding another entry.',409);
     const text=input.words===undefined?choice.label:clean(input.words);if(!text)fail('Choose or tell Timber one difficulty.');
@@ -70,6 +74,11 @@ export function applySupportOperation(s,input,at){
     support.memories.push(memory);support.reviewAnchorAt=support.reviewAnchorAt||at;archive(s,at,'member-changed-starting-point');
     offer(s,choice.action,input.operationId,at,memory.id,'Prepared around the difficulty you chose.');
     support.response='You told me what is difficult. Here is one thing ready to use.';
+  }else if(input.action==='support-accept-step'){
+    if(s.nextShift?.id!==input.shiftId)fail('Your step changed. Reload before keeping it.',409);
+    s.nextShift.acceptedAt=at;
+    support.agreedPlan={id:input.operationId,text:s.nextShift.practical?.name||s.nextShift.title,at,sourceOfferIds:[s.nextShift.id]};
+    support.response='Your plan is saved. You can say later whether you tried it and whether it helped.';
   }else if(input.action==='support-memory'){
     const m=support.memories.find(m=>m.id===input.memoryId);if(!m)fail('This entry is no longer available.',404);
     if(input.remove===true){support.memories=support.memories.filter(m=>m.id!==input.memoryId);for(const a of shifts(s))if(a.practical?.memoryId===input.memoryId)a.practical.memoryId=null;support.response='Your private entry is removed. A post you chose to share in the Shed is separate.';}
@@ -80,7 +89,7 @@ export function applySupportOperation(s,input,at){
     for(const a of shifts(s))if(a.checkinId===input.entryId){a.checkinId=null;a.reason='The source entry was removed. Choose what would help now.';}
   }else if(input.action==='support-circumstance'){
     if(input.confirmed!==true||!['starting','continuing','changing','stopped','returning'].includes(input.stage))fail('Confirm the situation that applies to you.');
-    if(!['when-i-open','weekly','fortnightly'].includes(input.cadence))fail('Choose a review rhythm.');
+    if(!reviewPreferences.includes(input.cadence))fail('Choose a review rhythm.');
     support.stage=input.stage;support.cadence=input.cadence;support.confirmedAt=at;
     support.response='Your history and useful routines stay with you. Continuing treatment is equally welcome.';
   }else if(input.action==='support-finish'){
@@ -108,10 +117,6 @@ export function applySupportOperation(s,input,at){
   return true;
 }
 export function supportSummary(s,at=new Date().toISOString()){
-  const support=s.memberSupport||{};
-  const helpful=helpfulRoutines(s),last=support.lastFeedback;
-  const interval=support.cadence==='weekly'?7:support.cadence==='fortnightly'?14:0;
-  const reviewDue=!!support.reviewAnchorAt&&Date.parse(at)-Date.parse(support.reviewedAt||support.reviewAnchorAt)>=interval*86400000;
-  const review=[...(helpful.length?['You marked '+helpful.map(a=>a.title).join('; ')+' helpful.']:[]),...(last&&last.outcome!=='helped'?['Your latest answer about '+last.title+' was “'+({'not-fit':'not for me','not-helped':'tried it, didn’t help','not-tried':'didn’t get round to it','skip':'skip'}[last.outcome]||last.outcome)+'” on '+last.at.slice(0,10)+'.']:[]),...(s.nextShift?.reason?[s.nextShift.reason]:[])];
-  return {memory:rememberedSupport(s,at),helpful,response:support.response||null,stage:support.stage||'keeping-going',cadence:support.cadence||'when-i-open',reviewDue,review,finished:support.finished||null};
+ const support=s.memberSupport||{},review=personalReview(s,at);
+ return {memory:rememberedSupport(s,at),records:memberRecordView(s),helpful:helpfulRoutines(s),response:support.response||null,stage:support.stage||'keeping-going',cadence:reviewPreference(s),reviewDue:!!review,personalReview:review,finished:support.finished||null};
 }
