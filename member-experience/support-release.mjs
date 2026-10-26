@@ -7,6 +7,8 @@ import {supportTeamRoutes} from '../shift-coach/support-team.mjs';
 import {supportPlanRoutes} from './support-plan-pages.mjs';
 import {withSupportMarkup} from './support-markup.mjs';
 import {withSupportLayout} from './support-layout.mjs';
+import {shedSupportRoutes} from './shed-support-loop.mjs';
+import {shedPageRoutes} from './shed-support-ui.mjs';
 const trusted=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
 const aliases={'/v1/life-back/member-support':'/v1/member-support','/v1/life-back/check-in':'/v1/check-ins','/member/life-back/support-inbox':'/hq/coaching-support','/v1/life-back/support-inbox':'/v1/hq/support/coaching','/assets/member-experience/programme-support-inbox.mjs':'/assets/shift-coach-support.mjs'};
 const apiPaths=new Set(['/v1/life-back','/v1/member-support','/v1/check-ins','/v1/hq/support/coaching',...Object.keys(aliases).filter(p=>p.startsWith('/v1/'))]);
@@ -19,14 +21,16 @@ export function wrapSupportService(original){return {
   if(apiPaths.has(path)&&request.method==='OPTIONS')return new Response(null,{status:cross||origin===u.origin?204:403,headers:cross?{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'}:{}});
   let routed=request;const route=aliases[path]||path;if(route!==path){const url=new URL(request.url);url.pathname=route;routed=new Request(url,request);}
   let response;
-  if(route==='/v1/life-back')response=await lifeBackRoutes(request,env);
+  if(path.startsWith('/v1/life-back/shed'))response=await shedSupportRoutes(request,env);
+  else if(path==='/member/life-back/shed'||path.startsWith('/assets/member-experience/programme-shed'))response=shedPageRoutes(request);
+  else if(route==='/v1/life-back')response=await lifeBackRoutes(request,env);
   else if(route==='/v1/member-support')response=await memberSupportContactRoutes(routed,env);
   else if(route==='/v1/check-ins')response=await memberHealthRoutes(routed,env);
   else if(['/hq/coaching-support','/v1/hq/support/coaching','/assets/shift-coach-support.mjs'].includes(route))response=await supportInboxLinks(await supportTeamRoutes(routed,env));
   else response=supportPlanRoutes(request,env);
   if(response){
    if(cross&&apiPaths.has(path)){const h=new Headers(response.headers);h.set('Access-Control-Allow-Origin',origin);h.set('Access-Control-Allow-Credentials','true');h.append('Vary','Origin');return new Response(response.body,{status:response.status,headers:h});}
-   return response;
+   return withSupportMarkup(request,response);
   }
   return withSupportLayout(request,await withSupportMarkup(request,await original.fetch(request,env,ctx)));
  }

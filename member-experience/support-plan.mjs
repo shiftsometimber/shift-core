@@ -71,7 +71,7 @@ export function applySupportOperation(s,input,at){
     if(support.memories.length>=10000)fail('Your saved history is full. Contact support before adding another entry.',409);
     const text=input.words===undefined?choice.label:clean(input.words);if(!text)fail('Choose or tell Timber one difficulty.');
     const memory={id:input.operationId,at,text,choice:input.choice,source:input.words===undefined?'Your selected answer':'Your own words'};
-    support.memories.push(memory);support.reviewAnchorAt=support.reviewAnchorAt||at;archive(s,at,'member-changed-starting-point');
+    support.memories.push(memory);support.pendingObstacle=null;support.reviewAnchorAt=support.reviewAnchorAt||at;archive(s,at,'member-changed-starting-point');
     offer(s,choice.action,input.operationId,at,memory.id,'Prepared around the difficulty you chose.');
     support.response='You told me what is difficult. Here is one thing ready to use.';
   }else if(input.action==='support-accept-step'){

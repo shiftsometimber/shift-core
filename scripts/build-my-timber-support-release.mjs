@@ -21,9 +21,21 @@ for(const p of plans){
  const target=path.join(out,'candidate-'+p.name);fs.mkdirSync(target,{recursive:true});
  for(const n of fs.readdirSync(path.join(out,p.before)))fs.copyFileSync(path.join(out,p.before,n),path.join(target,n));
  const original=path.join(target,'presentation-entry.mjs'),old=fs.readFileSync(original,'utf8');
- if(!old.includes('export default wrapPresentation(original);'))throw new Error('Unexpected deployed entry for '+p.name);
- fs.writeFileSync(original,old.replace('export default wrapPresentation(original);',"import {"+p.factory+"} from './"+p.addon+"';export default "+p.factory+"(wrapPresentation(original));"));
- fs.copyFileSync(path.join(out,p.addon),path.join(target,p.addon));
+ const owned='export default '+p.factory+'(wrapPresentation(original));';
+ if(old.includes(owned)){
+  if(old.split(owned).length!==2||!old.includes("from './"+p.addon+"'"))throw new Error('Unexpected existing support wrapper for '+p.name);
+ }else{
+  if(!old.includes('export default wrapPresentation(original);'))throw new Error('Unexpected deployed entry for '+p.name);
+  fs.writeFileSync(original,old.replace('export default wrapPresentation(original);',"import {"+p.factory+"} from './"+p.addon+"';"+owned));
+ }
+ // Keep the current implementation as the normal-member path while the exact
+ // candidate is qualified using only the reserved synthetic sessions.
+ const prior=path.join(out,p.before,p.addon);
+ if(!fs.existsSync(prior))throw new Error('Current support implementation is required for gated acceptance');
+ fs.copyFileSync(prior,path.join(target,p.addon.replace('.mjs','-prior.mjs')));
+ fs.copyFileSync(path.join(out,p.addon),path.join(target,p.addon.replace('.mjs','-next.mjs')));
+ fs.copyFileSync(path.join(root,'member-experience/support-release-gate.mjs'),path.join(target,'support-release-gate.mjs'));
+ fs.writeFileSync(path.join(target,p.addon),"import {"+p.factory+" as before} from './"+p.addon.replace('.mjs','-prior.mjs')+"';import {"+p.factory+" as after} from './"+p.addon.replace('.mjs','-next.mjs')+"';import {gateV6Owner} from './support-release-gate.mjs';export function "+p.factory+"(original){return gateV6Owner(before(original),after(original));}\n");
  const files=fs.readdirSync(target).sort().map(n=>{const b=fs.readFileSync(path.join(target,n));return {name:n,bytes:b.length,gzip:gzipSync(b).length,sha256:createHash('sha256').update(b).digest('hex')};});
  manifest.candidates[p.name]={directory:target,mainModule:'presentation-entry.mjs',files,totalGzip:files.reduce((n,f)=>n+f.gzip,0)};
  if(manifest.candidates[p.name].totalGzip>10*1024*1024)throw new Error('Existing paid Worker gzip limit exceeded');

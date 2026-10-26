@@ -1,4 +1,5 @@
 import {connectPreparedOption} from './support-prepared-options.mjs';
+import {attachShedEvidence} from './shed-support-loop.mjs';
 import {memberSupportContactRoutes} from './member-support-contact.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
@@ -75,6 +76,8 @@ export async function lifeBackRoutes(request,env){
    const old=prefs.lifeBack?.progress||emptyLifeBack(),next=applyLifeBackOperation(old,input);
    if(next.revision===old.revision)return json({ok:true,accountId:auth.userId,progress:supportView(old)});
    await connectPreparedOption(env.DB,prefs,next,old,{...input,authenticatedUserId:auth.userId});
+   // Community availability cannot block a member's private everyday support.
+   await attachShedEvidence(env.DB,prefs,next,auth.userId,env).catch(()=>{});
    const result=await env.DB.prepare("UPDATE member_state SET preferences=json_set(CASE WHEN json_type(preferences,'$.lifeBack')='object' THEN preferences ELSE json_set(preferences,'$.lifeBack',json('{}')) END,'$.lifeBack.progress',json(?)),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1").bind(JSON.stringify(next),new Date().toISOString(),auth.userId,old.revision,auth.userId).run();
    if(result.meta.changes===1)return json({ok:true,accountId:auth.userId,progress:supportView(next)},201);
    if(!await trackingConsent(env.DB,auth.userId))return json({error:'Health tracking was switched off before this save.',code:'health_consent_required'},409);

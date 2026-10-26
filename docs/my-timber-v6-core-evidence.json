@@ -1,6 +1,23 @@
 {
   "at": "2026-10-26T20:18:28.005Z",
   "state": "V6_CORE_SERVICE_SOURCE_PREPARED_NOT_RELEASE_QUALIFIED",
+  "singleReleaseContinuation": {
+    "at": "2026-10-26T23:10:26.984Z",
+    "controllingInstruction": "Matt: finish all remaining v6 work as one release; automate live browser/phone-width checks using test accounts only; do not expose unfinished features to members; finish support round trip and merge PR1439.",
+    "branch": "feat/my-timber-v6-complete-20261026",
+    "base": "b2c81f0b69d8643434e3c8e36a6b1dc889767341",
+    "awayTemplateApproved": "Matt's away until [date]. Messages are saved and he'll reply when he's back. For treatment questions, contact your prescriber or pharmacist. If it's urgent, call 999, NHS 111 or Samaritans 116 123.",
+    "awayMode": "Inactive until an actual return date is configured. No placeholder or unconditional normal reply promise is shown while away.",
+    "cover": "Linda; no new account invitation or message sent",
+    "moderationOwner": "Matt, with reports checked within one working day, per his reply to the specific coverage question",
+    "syntheticAccounts": "Dan11258, Lee11259; separate restricted HQ operator and fictional moderator11273. Reserved example.invalid emails. No real-member content used.",
+    "completed": ["Live Chromium and WebKit width smoke captured at320/360/390/430; content-readiness limitations retained", "Live core journey: all feedback outcomes and three Not for me reasons persist; memory correction/deletion, goal correction, kept-plan distinctions, all review preferences and deliberate review acceptance observed", "39 focused source checks pass including Shed moderation/preview/report/block/threshold/isolation and deployment selector"],
+    "foundAndPrepared": ["Prescriber-note download selected an earlier form; corrected selector", "Late-finish meal selection now caps preparation at10minutes while preserving tighter preferences", "No simpler matching meal leaves out the new cooking job", "New starting point clears old obstacle prompt", "Reason detail quotes the actual dated source answer", "Shed support loop reuses moderation source34bc20b7; previews, actual consented marks, private matching, account isolation and separate post removal prepared"],
+    "releaseSafety": "Candidate owner wrappers select the new implementation only for reserved authenticated synthetic sessions. Normal members retain the current implementation until final enablement. Shed defaults off for real members.",
+    "deployment": "Prepared, not yet deployed",
+    "next": "Commit the exact candidate, upload test-gated owner modules, execute browser support round trip and remaining named checks, repair failures, then complete canonical integration. Do not claim full32-pass or member availability from source tests.",
+    "priorRootEvidence": "Historical preparation snapshot below retained unchanged; this continuation supersedes its old phase and away/cover assumptions."
+  },
   "authority": "Matt's approved Go ahead: My Timber support service message. Latest message takes precedence over v5. No deployment until every applicable check passes and Matt says go.",
   "branch": "feat/my-timber-support-experience-20261026",
   "parent": "32909269872fe4d7ce58af6fad4bc1e0234cd59c",

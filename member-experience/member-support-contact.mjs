@@ -4,11 +4,8 @@ import {accountThreadSubject,publicThread,supportThread} from '../shift-coach/su
 const headers={'Cache-Control':'no-store, private','Vary':'Cookie','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow'};
 const json=(data,status=200)=>Response.json(data,{status,headers});
 const fail=(message,status)=>{throw Object.assign(Error(message),{status});};
-export const normalMemberSupportPolicy={owner:'Matt',scope:'App and account questions only',availability:'Matt checks app and account questions daily.',replyTarget:'Within one working day',urgentMonitoring:false};
-export function memberSupportPolicy(env){
- const away=env.MEMBER_SUPPORT_AWAY==='true',message=String(env.MEMBER_SUPPORT_AWAY_MESSAGE||'').trim();
- return {...normalMemberSupportPolicy,away,replyTarget:away?null:normalMemberSupportPolicy.replyTarget,awayMessage:away?(message||'Support availability is being updated. Please check here before expecting a reply.'):null,awayMessageConfigured:!away||!!message};
-}
+import {memberSupportPolicy} from './support-policy.mjs';
+export {memberSupportPolicy,normalMemberSupportPolicy} from './support-policy.mjs';
 export async function memberSupportContactRoutes(request,env){
  if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname!=='/v1/member-support')return null;
  if(!['GET','POST'].includes(request.method))return json({error:'Method not allowed'},405);
