@@ -10,9 +10,20 @@ const root=process.cwd(),out=path.resolve(process.argv[2]||'');
 if(!process.argv[2]||!fs.existsSync(path.join(out,'provider-baseline.json')))throw new Error('Pass the directory containing the current provider baseline');
 const require=createRequire(path.join(root,'package.json')),esbuild=require('esbuild');
 const source=await import(pathToFileURL(path.join(root,'grub-expansion-serving-manifest-v1.mjs')));
-const plugin={name:'exact-governed-manifest',setup(build){build.onLoad({filter:/grub-expansion-serving-manifest-v1\.mjs$/},()=>({contents:Object.entries(source).map(([k,v])=>'export const '+k+'='+JSON.stringify(v)+';').join('\n'),loader:'js'}));}};
-const result=await esbuild.build({stdin:{contents:"export {wrapSupportService} from './member-experience/support-release.mjs'",resolveDir:root},bundle:true,write:false,format:'esm',platform:'neutral',target:'es2022',minify:true,plugins:[plugin]});
+const plugin={name:'exact-governed-manifest',setup(build){
+ build.onLoad({filter:/grub-expansion-serving-manifest-v1\.mjs$/},()=>({contents:Object.entries(source).map(([k,v])=>'export const '+k+'='+JSON.stringify(v)+';').join('\n'),loader:'js'}));
+ build.onLoad({filter:/grub-uk-full-publication-20261018\.mjs$/},async args=>{
+  const values=await import(pathToFileURL(args.path));
+  if(Object.values(values).some(v=>!v||typeof v!=='object'))throw new Error('Only static catalogue data may be packed');
+  const data=JSON.stringify(values),encoded=gzipSync(Buffer.from(data)).toString('base64');
+  fs.writeFileSync(path.join(out,'packed-catalogue-proof.json'),JSON.stringify({source:args.path,jsonSHA256:createHash('sha256').update(data).digest('hex'),jsonBytes:Buffer.byteLength(data),packedBytes:encoded.length,contentChanged:false},null,2));
+  const decode="const packed=await new Response(new Blob([Uint8Array.from(atob("+JSON.stringify(encoded)+"),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).json();";
+  return {contents:decode+Object.keys(values).map(k=>'export const '+k+'=packed.'+k+';').join('\n'),loader:'js'};
+ });
+}};
+const result=await esbuild.build({stdin:{contents:"export {wrapSupportService} from './member-experience/support-release.mjs'",resolveDir:root},bundle:true,write:false,format:'esm',platform:'neutral',target:'es2022',minify:true,metafile:true,plugins:[plugin]});
 const service=result.outputFiles[0].contents;
+fs.writeFileSync(path.join(out,'bundle-input-sizes.json'),JSON.stringify(Object.entries(Object.values(result.metafile.outputs)[0].inputs).sort((a,b)=>b[1].bytesInOutput-a[1].bytesInOutput).slice(0,15),null,2));
 fs.writeFileSync(path.join(out,'support-service.mjs'),service);
 fs.copyFileSync(path.join(root,'member-experience/support-markup.mjs'),path.join(out,'support-markup.mjs'));
 const plans=[{name:'programme',before:'before',addon:'support-service.mjs',factory:'wrapSupportService'},{name:'member-document',before:'before-hq',addon:'support-markup.mjs',factory:'wrapSupportMarkup'}];
@@ -30,7 +41,8 @@ for(const p of plans){
  }
  // Keep the current implementation as the normal-member path while the exact
  // candidate is qualified using only the reserved synthetic sessions.
- const prior=path.join(out,p.before,p.addon);
+ const current=path.join(out,p.before,p.addon);
+ const prior=fs.readFileSync(current,'utf8').includes('gateV6Owner')?path.join(out,p.before,p.addon.replace('.mjs','-prior.mjs')):current;
  if(!fs.existsSync(prior))throw new Error('Current support implementation is required for gated acceptance');
  fs.copyFileSync(prior,path.join(target,p.addon.replace('.mjs','-prior.mjs')));
  fs.copyFileSync(path.join(out,p.addon),path.join(target,p.addon.replace('.mjs','-next.mjs')));
@@ -38,6 +50,7 @@ for(const p of plans){
  fs.writeFileSync(path.join(target,p.addon),"import {"+p.factory+" as before} from './"+p.addon.replace('.mjs','-prior.mjs')+"';import {"+p.factory+" as after} from './"+p.addon.replace('.mjs','-next.mjs')+"';import {gateV6Owner} from './support-release-gate.mjs';export function "+p.factory+"(original){return gateV6Owner(before(original),after(original));}\n");
  const files=fs.readdirSync(target).sort().map(n=>{const b=fs.readFileSync(path.join(target,n));return {name:n,bytes:b.length,gzip:gzipSync(b).length,sha256:createHash('sha256').update(b).digest('hex')};});
  manifest.candidates[p.name]={directory:target,mainModule:'presentation-entry.mjs',files,totalGzip:files.reduce((n,f)=>n+f.gzip,0)};
+ if(files.reduce((n,f)=>n+f.bytes,0)>60*1024*1024)throw new Error('Worker uncompressed safety budget exceeded');
  if(manifest.candidates[p.name].totalGzip>10*1024*1024)throw new Error('Existing paid Worker gzip limit exceeded');
 }
 fs.writeFileSync(path.join(out,'build-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
