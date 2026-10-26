@@ -1,0 +1,65 @@
+{
+  "kind": "EXACT_MY_TIMBER_USEFUL_LOOP_20261026",
+  "base": "3a401235d1a6ae26374dfe33611c0cd9eda93b91",
+  "payload": "f942fd263e9c306ce66749cb9bec45b3ed5d5b2d",
+  "payloadBlobs": {
+    ".github/workflows/cloudflare-production-promote.yml": "c3c57d08a12e638283925820914e79050e1067de",
+    "app-layout-live.mjs": "d1aec81f9336a80dd4c878f6368f7099a02da9fb",
+    "frontend/member/member-my-timber-problem-v1.js": "e86f087086f96a5f83342e94b8ee5033410710b7",
+    "frontend/member/member-progress-v1.js": "7031f5d854e8199fa049335f53c0fb810a4a0397",
+    "member-experience/checkin-followup-client.mjs": "53288454e5b821de9e669a06ac01607a6aef8fd5",
+    "member-experience/checkin-followup.mjs": "c922edc20bd3860ff20d1033f0f9f575213208ad",
+    "member-experience/journey-context.mjs": "8ad95932b6344e8b25b22d0c7525342534a23d97",
+    "member-experience/life-back-routes.mjs": "043cab4db06efc8967b40b1635b7f0808ff6dc48",
+    "member-experience/life-back/client.mjs": "884806f97e45b087124277687fb6d739719e127c",
+    "member-experience/life-back/next-shift.mjs": "69bfcad3f29302bb1fcbc26560f78efde129173f",
+    "member-experience/six-page-recovery.mjs": "979a4948151a0de127869dead5aa4fe7b6b7f92b",
+    "member-experience/tests/checkin-followup.test.mjs": "f84a3e3c09a50aa9436b6f20d17bba6fd37fa3c2",
+    "member-experience/tests/next-shift-loop.test.mjs": "d111c9241ca5a76ae4d2710c1f991fc551a10fd1",
+    "release/canonical-runtime-build.mjs": "76afa8b23952bffbd69b37ea66ba38a7cd3082b6",
+    "scripts/verify-my-timber-safety-live.mjs": "88e446ea8110f014122287e2a2a14bd02e5836b2",
+    "tests/canonical-runtime-build.test.mjs": "f5139eb26f84d7793d332b41c5e45e29657849d7"
+  },
+  "payloadStatuses": {
+    ".github/workflows/cloudflare-production-promote.yml": "M",
+    "app-layout-live.mjs": "M",
+    "frontend/member/member-my-timber-problem-v1.js": "M",
+    "frontend/member/member-progress-v1.js": "M",
+    "member-experience/checkin-followup-client.mjs": "M",
+    "member-experience/checkin-followup.mjs": "M",
+    "member-experience/journey-context.mjs": "M",
+    "member-experience/life-back-routes.mjs": "M",
+    "member-experience/life-back/client.mjs": "M",
+    "member-experience/life-back/next-shift.mjs": "M",
+    "member-experience/six-page-recovery.mjs": "A",
+    "member-experience/tests/checkin-followup.test.mjs": "M",
+    "member-experience/tests/next-shift-loop.test.mjs": "M",
+    "release/canonical-runtime-build.mjs": "M",
+    "scripts/verify-my-timber-safety-live.mjs": "A",
+    "tests/canonical-runtime-build.test.mjs": "M"
+  },
+  "maintenancePaths": [
+    "release/my-timber-joined-look-scope-20261024.mjs",
+    "release/my-timber-loop-contract-20261026.json",
+    "release/my-timber-loop-inverses-20261026.json",
+    "tests/my-timber-loop-qualification-20261026.test.mjs",
+    "tests/my-timber-progress-journey-composition.test.mjs"
+  ],
+  "maintenanceExpected": {
+    "release/my-timber-joined-look-scope-20261024.mjs": "5130d94e38c03684aa0105639bd3216555a8385a",
+    "tests/my-timber-loop-qualification-20261026.test.mjs": "3bbdac7307da8aa58299a388627ef5e693bed3d2",
+    "tests/my-timber-progress-journey-composition.test.mjs": "e975b8e63a0f2cb8d1a0547334b6c988007d4583"
+  },
+  "generatedPaths": [
+    "release/my-timber-loop-contract-20261026.json",
+    "release/my-timber-loop-inverses-20261026.json"
+  ],
+  "inversePath": "release/my-timber-loop-inverses-20261026.json",
+  "receiptPath": "release/my-timber-loop-20261026.json",
+  "authority": {
+    "instruction": "Matt26October: finish and prove My Timber useful loop including outstanding safety/privacy and Journey A/B requirements",
+    "existingReleaseAuthority": "Approved six private screens and instructed go live; no repeated central-owner or sign-off requirement",
+    "scope": "Sixteen frozen product/workflow/test paths plus exact source-qualification maintenance only",
+    "holds": "No external message, homepage edit, stock change, clinical activation, community launch, store release or spending"
+  }
+}
