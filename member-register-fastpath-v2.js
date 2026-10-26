@@ -1,3 +1,5 @@
+import {normalise} from './my-timber-registration-model.mjs';
+import {onboardingStatements} from './my-timber-registration-state.mjs';
 import {passwordMeetsPolicy,PASSWORD_POLICY_MESSAGE} from './password-policy-v1.js';
 import {registrationMetadata} from './acquisition-activation/model.mjs';
 // G5-012 bounded member-registration fast path.
@@ -14,8 +16,17 @@ export async function fastMemberRegister(request,env){
   const email=String(body.email||'').trim().toLowerCase(),password=String(body.password||'');
   if(!isEmail(email)||!passwordMeetsPolicy(password))return json({ok:false,error:'invalid_registration',message:PASSWORD_POLICY_MESSAGE},400);
 
+  const hasOnboarding=Object.prototype.hasOwnProperty.call(body,'onboarding');
+  let onboarding=null;
+  if(hasOnboarding){
+    try{
+      if(JSON.stringify(body.onboarding).length>4096)throw Error('Setup is too large.');
+      onboarding=normalise(body.onboarding);
+      if(!['terms','adult_self_declaration'].every(type=>Array.isArray(body.consents)&&body.consents.some(c=>c.type===type&&c.granted===true)))throw Error('Confirm the terms and age declaration.');
+    }catch{return json({ok:false,error:'invalid_onboarding',message:'Please check your setup choices and required declarations.'},400)}
+  }
   const firstName=clean(body.firstName,100),lastName=clean(body.lastName,100),phone=clean(body.phone,50),dateOfBirth=clean(body.dateOfBirth,20),postcode=clean(body.postcode,20),source=clean(body.source,100)||'website';
-  const autoVerify=String(env.AUTO_VERIFY_EMAIL||'true').toLowerCase()==='true';
+  const autoVerify=!hasOnboarding&&String(env.AUTO_VERIFY_EMAIL||'true').toLowerCase()==='true';
   const rememberMe=body?.rememberMe===true,ttlMs=rememberMe?90*24*60*60*1000:12*60*60*1000;
   const now=new Date().toISOString(),expires=new Date(Date.now()+ttlMs).toISOString();
   const token=randomToken(32),ip=request.headers.get('CF-Connecting-IP')||'';
@@ -44,14 +55,16 @@ export async function fastMemberRegister(request,env){
       env.DB.prepare(`INSERT OR IGNORE INTO member_status(user_id,lifecycle_stage,membership_status,source,last_activity_at) VALUES(?,?,?,?,?)`).bind(user.id,'registered','none',source,now),
       env.DB.prepare(`INSERT OR IGNORE INTO member_state(user_id) VALUES(?)`).bind(user.id)
     ];
+    if(onboarding)ops.push(...onboardingStatements(env.DB,user.id,onboarding,now));
     if(Array.isArray(body.consents))for(const c of body.consents.slice(0,20))ops.push(env.DB.prepare(`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at) VALUES(?,?,?,?,?)`).bind(user.id,clean(c?.type,80)||'unspecified',clean(c?.version,50),c?.granted?1:0,c?.granted?now:null));
     ops.push(
       env.DB.prepare(`INSERT INTO audit_log(user_id,action,entity_type,entity_id,metadata,ip_address,created_at) VALUES(?,?,?,?,?,?,?)`).bind(user.id,'auth.register','user',String(user.id),registrationMetadata(body,Date.parse(now)),ipHashRaw?`sha256:${ipHashRaw}`:null,now),
       env.DB.prepare(`INSERT INTO user_sessions(user_id,token_hash,expires_at,last_used_at,created_at) VALUES(?,?,?,?,?)`).bind(user.id,sessionHash,expires,now,now)
     );
     await env.DB.batch(ops);
-    const response=json({ok:true,user:publicUser(user),emailVerified:autoVerify,remembered:rememberMe},201,{'X-Shift-Register-Path':'fast-v2'});clearLegacyHostCookie(response,request);response.headers.append('Set-Cookie',sessionCookie(token,expires,request,rememberMe));return response;
+    const response=json({ok:true,user:publicUser(user),emailVerified:autoVerify,remembered:rememberMe,...(onboarding?{onboardingSaved:true}:{})},201,{'X-Shift-Register-Path':'fast-v2'});clearLegacyHostCookie(response,request);response.headers.append('Set-Cookie',sessionCookie(token,expires,request,rememberMe));return response;
   }catch(e){
+    if(hasOnboarding){console.warn('my_timber_registration_transaction_failed');return json({ok:false,error:'registration_not_saved',message:'Your account and setup could not be saved. Please try again.'},503);}
     console.warn('fast_member_register_fallback',String(e?.message||e).slice(0,240));
     return null;
   }
