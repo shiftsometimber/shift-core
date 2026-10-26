@@ -24,7 +24,7 @@ This source branch starts from the already released Core source `75165fcc83836be
 
 The completed signed-in production-route and desktop Safari receipts are in the existing `release-recovery-evidence-20261024/my-timber-loop-20261026` record. They use synthetic functional records, not participant outcome data. Broader hosted qualification of PR1439 and its main-branch integration remain a separate source status; neither is implied by these offline example checks.
 
-The canonical owner's later strict safety check and clean telephone URI must be reconciled before a future Core emission is released. Do not replace the currently serving independent Worker with an older branch build.
+This branch also reconciles the canonical client to the already serving clean telephone URI and retains the canonical owner's stricter safety check. Two focused safety checks and the existing canonical build tests pass; no new production upload is implied. Do not replace the currently serving independent Worker with an older branch build.
 
 ## Approval boundaries
 

@@ -6,6 +6,7 @@ export function verifySafetyRuntime(client){
  for(const marker of safetyMarkers)assert(client.includes(marker),'Delivered My Timber safety/privacy requirement missing: '+marker);
  assert(client.includes("if(detail==='symptoms')c.append(urgent())"),'Side-effects card must contain direct urgent help');
  assert(client.includes('headlinePreference')&&client.includes('preferenceOwner'),'Headline choice must be account scoped');
+ for(const phone of ['tel:999','tel:111','tel:116123'])assert(client.includes("'"+phone+"'")||client.includes('"'+phone+'"'),'Urgent-help link must be a clean telephone URI: '+phone);
  new Function(client);
  return {markers:safetyMarkers.length,sideEffectsUrgentHelp:true,accountScopedHeadline:true};
 }
