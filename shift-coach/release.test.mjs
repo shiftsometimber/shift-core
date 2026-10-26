@@ -1,16 +1,25 @@
-import {foodDiaryLondonDateOriginalProductionWorkflow} from '../release/food-diary-london-date-scope-20261015.mjs';
-import {WATCH_FACTUAL_UPDATE_PATHS} from '../release/approved-runtime-composition.mjs';
-import {COMPOSITION_BASE,COMPOSITION_SOURCE,COMPOSITION_PATHS,reconciliationRecord,withImmutableHistoryVerification} from '../release/approved-runtime-composition.mjs';
-import {ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH,ensureReviewedHistory,REVIEWED_HISTORY_REFS,COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES} from './release-contract.mjs';
+import {withImmutableHistoryVerification} from '../release/immutable-git-facts.mjs';
+import {withJoinedSuccessorQualification} from '../release/my-timber-joined-look-scope-20261024.mjs';
+import {createRequire} from 'node:module';
+// Load unchanged native verifiers inside their existing closed source contexts.
+const nativeB1Modules=withJoinedSuccessorQualification(()=>withImmutableHistoryVerification(()=>{
+ const require=createRequire(import.meta.url);
+ return {food:require('../release/food-diary-london-date-scope-20261015.mjs'),composition:require('../release/approved-runtime-composition.mjs'),contract:require('./release-contract.mjs')};
+}));
+const {foodDiaryLondonDateOriginalProductionWorkflow}=nativeB1Modules.food;
+const {WATCH_FACTUAL_UPDATE_PATHS}=nativeB1Modules.composition;
+const {COMPOSITION_BASE,COMPOSITION_SOURCE,COMPOSITION_PATHS,reconciliationRecord}=nativeB1Modules.composition;
+const {ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH,ensureReviewedHistory,REVIEWED_HISTORY_REFS,COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES}=nativeB1Modules.contract;
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingPins,validateCoachingSource as rawValidateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
+const {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingPins,validateCoachingSource:rawValidateCoachingSource,assertLaunchDecisions}=nativeB1Modules.contract;
 const validateCoachingSource=(...args)=>withImmutableHistoryVerification(()=>rawValidateCoachingSource(...args));
 // Reuse only native immutable projections inside each synchronous configuration
 // case. Every original assertion and fresh supplied-reader boundary still runs.
-const configurationSourceTest=(name,body)=>test(name,()=>withImmutableHistoryVerification(body));
+const configurationSourceTest=(name,body)=>test(name,()=>withJoinedSuccessorQualification(()=>withImmutableHistoryVerification(body)));
+const closedSourceTest=configurationSourceTest;
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
 test('already-live catalogue copy is reversed before strict homepage banner preservation',async()=>{
@@ -39,14 +48,14 @@ test('bounded member evidence requires the exact successful run, source, workflo
  assert.doesNotThrow(()=>assertMemberDiagnosticsReceipt(receipt));
  for(const change of [{id:37216938437},{head_sha:'a'.repeat(40)},{path:'.github/workflows/other.yml'},{head_branch:'main'},{event:'pull_request'},{status:'in_progress'},{conclusion:'failure'}])assert.throws(()=>assertMemberDiagnosticsReceipt({...receipt,...change}));
 });
-test('read-only article closeout cannot be changed, deleted or widened by repinning',()=>{
+closedSourceTest('read-only article closeout cannot be changed, deleted or widened by repinning',()=>{
  const m={...manifest,applicationCommit:'a'.repeat(40)};
  assert.doesNotThrow(()=>assertCoachingChangedPath('M',ARTICLE_CLOSEOUT_PATH));
  for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,ARTICLE_CLOSEOUT_PATH));
  assert.throws(()=>assertCoachingChangedPath('M','.github/workflows/other-article-writer.yml'),/Unlisted/);
  assert.throws(()=>validateCoachingSource((ref,path)=>ref===ARTICLE_CLOSEOUT_SOURCE&&path===ARTICLE_CLOSEOUT_PATH?'reviewed-check':path,m),/Read-only article closeout source drift/);
 });
-test('merged article composition preserves exact baseline bytes and rejects unexpected statuses',()=>{
+closedSourceTest('merged article composition preserves exact baseline bytes and rejects unexpected statuses',()=>{
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]){
   const status=COACH_ARTICLE_ADDITIONS.has(p)?'A':'M';
   assert.doesNotThrow(()=>assertCoachingChangedPath(status,p));
@@ -56,7 +65,7 @@ test('merged article composition preserves exact baseline bytes and rejects unex
   assert.throws(()=>validateCoachingSource((ref,path)=>ref===COACH_ARTICLE_BASE&&path===p?'prior-article':path,m),/Merged article repair source drift/);
  }
 });
-test('merged My Health Plan member asset is retained exactly and cannot be widened by repinning',()=>{
+closedSourceTest('merged My Health Plan member asset is retained exactly and cannot be widened by repinning',()=>{
  const p='frontend/member/whole-man-intent-os-v1.js',m={...manifest,applicationCommit:'a'.repeat(40)};
  assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
  for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
@@ -64,9 +73,9 @@ test('merged My Health Plan member asset is retained exactly and cannot be widen
 });
 configurationSourceTest('normal production configuration includes the coach with exactly one entrypoint-only change',()=>{assertCoachingConfiguration(config,before);assert.equal(config,readFileSync('wrangler.coaching.jsonc','utf8'));assert.equal(withoutCoachEntrypoint(config),before);});
 configurationSourceTest('configuration drift, a lost wrapper, extra bindings and duplicate entrypoints fail closed',()=>{for(const bad of [before,config+'\n',config.replace('"STRIPE_MODE": "test"','"STRIPE_MODE": "live"'),config.replace('"DB"','"OTHER_DB"'),config.replace('"main":','"main": "shift-coach/worker.mjs", "main":')])assert.throws(()=>assertCoachingConfiguration(bad,before));});
-test('every coaching and release integration source has an exact pin; any drift fails',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)},read=(ref,p)=>p;assert.doesNotThrow(()=>validateCoachingSource(read,m));for(const p of m.pinnedPaths)assert.throws(()=>validateCoachingPins((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Coaching release source drift/);assert.throws(()=>validateCoachingPins(read,{...m,pinnedPaths:m.pinnedPaths.slice(1)}),/Exact coaching path list required/);});
-test('the exact current Watch files remain pinned and historical review bytes are only used for named integrations',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)};for(const p of WATCH_CURRENT_PATHS)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Current Watch source drift|Approved composition source \/ boundary drift|Approved factual Watch source drift|factual Watch source drift|Approved backlog source drift: medicines-watch\/|Backlog maintenance source drift: \.github\/workflows\/medicines-watch-check\.yml|ZP6590 registry-review-date source drift|SRSD384 review-renewal source drift|Watch programme-summary queue source drift|RGT\/VCT source-renewal source drift|Backlog maintenance source drift: two-source freshness payload|Alnylam RNAi discovery source drift|Taldefgrobep\/ATTAIN-MAINTAIN renewal source drift/);assert.equal(coachingHistoricalRef('HEAD','wrangler.jsonc'),COACH_BASE);for(const p of ['worker-entry-v6.js','frontend/member/my-timber-preview.html','member-design.mjs','unknown.mjs'])assert.equal(coachingHistoricalRef('HEAD',p),'HEAD');});
-test('launch preserves privacy and purpose gates; exact owner acceptance never claims independent review',()=>{
+closedSourceTest('every coaching and release integration source has an exact pin; any drift fails',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)},read=(ref,p)=>p;assert.doesNotThrow(()=>validateCoachingSource(read,m));for(const p of m.pinnedPaths)assert.throws(()=>validateCoachingPins((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Coaching release source drift/);assert.throws(()=>validateCoachingPins(read,{...m,pinnedPaths:m.pinnedPaths.slice(1)}),/Exact coaching path list required/);});
+closedSourceTest('the exact current Watch files remain pinned and historical review bytes are only used for named integrations',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)};for(const p of WATCH_CURRENT_PATHS)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Current Watch source drift|Approved composition source \/ boundary drift|Approved factual Watch source drift|factual Watch source drift|Approved backlog source drift: medicines-watch\/|Backlog maintenance source drift: \.github\/workflows\/medicines-watch-check\.yml|ZP6590 registry-review-date source drift|SRSD384 review-renewal source drift|Watch programme-summary queue source drift|RGT\/VCT source-renewal source drift|Backlog maintenance source drift: two-source freshness payload|Alnylam RNAi discovery source drift|Taldefgrobep\/ATTAIN-MAINTAIN renewal source drift/);assert.equal(coachingHistoricalRef('HEAD','wrangler.jsonc'),COACH_BASE);for(const p of ['worker-entry-v6.js','frontend/member/my-timber-preview.html','member-design.mjs','unknown.mjs'])assert.equal(coachingHistoricalRef('HEAD',p),'HEAD');});
+closedSourceTest('launch preserves privacy and purpose gates; exact owner acceptance never claims independent review',()=>{
  assert.equal(assertLaunchDecisions(manifest),true);
  assert.equal(typeof manifest.decisions.independentAcceptance.approved,'boolean');
  const ownerOnly=structuredClone(manifest);ownerOnly.decisions.independentAcceptance.approved=false;
@@ -76,9 +85,9 @@ test('launch preserves privacy and purpose gates; exact owner acceptance never c
  const independent=structuredClone(noOwner);independent.decisions.independentAcceptance={approved:true,decidedBy:'Synthetic independent fixture',decidedAt:'Synthetic fixture only',evidence:'Synthetic fixture only'};assert.equal(assertLaunchDecisions(independent),true);
  assert.throws(()=>assertLaunchDecisions({...manifest,completeV2:true}));
 });
-test('production path keeps the existing rollback/deploy checks and checks launch before any production work',()=>{const wf=foodDiaryLondonDateOriginalProductionWorkflow(readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8'));assert(wf.includes('"shift-coach/**"'));assert(wf.indexOf('node shift-coach/release-contract.mjs --require-launch')<wf.indexOf('node release/growth-preflight.mjs'));assert(wf.includes('node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs'));assert.equal((wf.match(/node release\/member-runtime-deploy\.mjs/g)||[]).length,1);for(const s of ['Capture current Worker deployment for rollback','Verify exact current main before production mutations','Restore the captured runtime if a post-deployment gate failed'])assert(wf.includes(s));});
+closedSourceTest('production path keeps the existing rollback/deploy checks and checks launch before any production work',()=>{const wf=foodDiaryLondonDateOriginalProductionWorkflow(readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8'));assert(wf.includes('"shift-coach/**"'));assert(wf.indexOf('node shift-coach/release-contract.mjs --require-launch')<wf.indexOf('node release/growth-preflight.mjs'));assert(wf.includes('node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs'));assert.equal((wf.match(/node release\/member-runtime-deploy\.mjs/g)||[]).length,1);for(const s of ['Capture current Worker deployment for rollback','Verify exact current main before production mutations','Restore the captured runtime if a post-deployment gate failed'])assert(wf.includes(s));});
 
-test('composed book release accepts only exact named additions and modifications; unrelated paths and deletion fail',()=>{
+closedSourceTest('composed book release accepts only exact named additions and modifications; unrelated paths and deletion fail',()=>{
  for(const path of COACH_COMPOSED_BOOK_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));if(path==='release/book-voice-scope.mjs')assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));else assert.throws(()=>assertCoachingChangedPath('M',path));assert.equal(coachingHistoricalRef('HEAD',path),path==='release/book-voice-scope.mjs'?'c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6':manifest.seoFollowThroughComposition.maintenancePaths.includes(path)?manifest.seoFollowThroughComposition.base:'HEAD');}
  for(const path of COACH_COMPOSED_BOOK_CHANGES){let status='M';try{execFileSync('git',['cat-file','-e',COACH_BASE+':'+path],{stdio:'ignore'});}catch{status='A';}assert.doesNotThrow(()=>assertCoachingChangedPath(status,path));assert.throws(()=>assertCoachingChangedPath('D',path));assert.equal(coachingHistoricalRef('HEAD',path),manifest.seoFollowThroughComposition.maintenancePaths.includes(path)?manifest.seoFollowThroughComposition.base:'HEAD');}
  for(const path of ['editorial/book-voice/unreviewed.mjs','unknown.mjs'])assert.throws(()=>assertCoachingChangedPath('M',path),/Unlisted/);
@@ -95,31 +104,31 @@ test('latest registry-wave proof and exact composed Watch bytes remain mandatory
  for(const path of WATCH_COMPOSED_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));if(WATCH_FACTUAL_UPDATE_PATHS.includes(path))assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));else assert.throws(()=>assertCoachingChangedPath('M',path));}
 });
 
-test('missing reviewed preview history is fetched by its exact immutable identity and still fails if unavailable',()=>{
+closedSourceTest('missing reviewed preview history is fetched by its exact immutable identity and still fails if unavailable',()=>{
  const calls=[],present=new Set([REVIEWED_HISTORY_REFS[0]]);
  ensureReviewedHistory((bin,args)=>{calls.push(args);if(args[0]==='cat-file'&&!present.has(args[2].replace('^{commit}','')))throw Error('missing');if(args[0]==='fetch')present.add(args[3]);});
  assert.deepEqual(calls.filter(a=>a[0]==='fetch'),REVIEWED_HISTORY_REFS.slice(1).map(ref=>['fetch','--no-tags','origin',ref]));
  assert.throws(()=>ensureReviewedHistory((bin,args)=>{throw Error(args[0]==='fetch'?'fetch unavailable':'missing')}),/fetch unavailable/);
 });
-test('retained current-main continuity alias cannot be silently widened by repinning',()=>{
+closedSourceTest('retained current-main continuity alias cannot be silently widened by repinning',()=>{
  const p='public-continuity.mjs',m={...manifest,applicationCommit:'a'.repeat(40)};
  assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
  for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
  assert.throws(()=>validateCoachingSource((ref,path)=>ref===(reconciliationRecord()?COMPOSITION_SOURCE:'71383ce716abc9c8c937e48c87f59a2e9fe2d618')&&path===p?'prior-alias':path,m),/Merged continuity alias source drift|Approved composition source \/ boundary drift/);
 });
 
-test('merged health safety corrections and their evidence remain independently pinned',()=>{
+closedSourceTest('merged health safety corrections and their evidence remain independently pinned',()=>{
  const m={...manifest,applicationCommit:'a'.repeat(40)};
  for(const p of ['docs/content-review/2026-10-03-health-safety.json','frontend/member/shift-health-catalogue-v1.js','shift-health-public-content.mjs','tests/testosterone-public.test.mjs'])assert.throws(()=>validateCoachingSource((ref,path)=>ref==='7bd5fb37d7bbce66fa5e728f59304843817128bf'&&path===p?'prior-safety':path,m),/Merged health-safety source drift/);
 });
-test('merged living Health Plan test is an exact addition and cannot be silently changed by repinning',()=>{
+closedSourceTest('merged living Health Plan test is an exact addition and cannot be silently changed by repinning',()=>{
  const p='tests/my-health-plan-v2.test.mjs',m={...manifest,applicationCommit:'a'.repeat(40)};
  assert.doesNotThrow(()=>assertCoachingChangedPath('A',p));
  for(const status of ['M','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='5bf5a7febae1a6bab3a549507306669456a8aaa6'&&path===p?'changed-test':path,m),/Merged My Health Plan v2 test source drift/);
 });
 
-test('merged public-copy receipts are exact additions with independently immutable bytes',()=>{
+closedSourceTest('merged public-copy receipts are exact additions with independently immutable bytes',()=>{
  const m={...manifest,applicationCommit:'a'.repeat(40)};
  for(const p of ['docs/content-review/2026-10-03-public-copy-preview.json','docs/content-review/2026-10-03-public-copy-residual.json']){
   assert.doesNotThrow(()=>assertCoachingChangedPath('A',p));
@@ -128,7 +137,7 @@ test('merged public-copy receipts are exact additions with independently immutab
  }
 });
 
-test('current-shell Health Plan mount preserves only the exact named dashboard changes',()=>{
+closedSourceTest('current-shell Health Plan mount preserves only the exact named dashboard changes',()=>{
  const m={...manifest,applicationCommit:'a'.repeat(40)};
  for(const p of ['member-experience/dashboard-tools.mjs','member-experience/tests/dashboard-tools.test.mjs']){
   assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
@@ -152,7 +161,7 @@ test('reload evidence requires its own completed successful live source, branch,
  for(const change of [{id:37454715343},{head_sha:'a'.repeat(40)},{path:'.github/workflows/other.yml'},{head_branch:'main'},{event:'pull_request'},{status:'in_progress'},{conclusion:'failure'}])assert.throws(()=>assertMemberReloadReceipt({...receipt,...change}));
 });
 
-test('live homepage verifier reverses only exact catalogue text before its strict banner check',()=>{
+closedSourceTest('live homepage verifier reverses only exact catalogue text before its strict banner check',()=>{
  const source=readFileSync('release/home-banner-live.cjs','utf8');
  assert(source.includes("const html=removeCatalogueBenefits(restoreHomeFont('/',await (await fetch('https://shiftsometimber.co.uk/')).text()),'/');removeHomeBanner(html,{required:true});verifyApprovedHome(html);"));
  assert(source.includes("assert.equal(state.overflow,false)"));
