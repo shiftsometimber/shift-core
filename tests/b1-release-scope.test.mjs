@@ -4,7 +4,24 @@ import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,WATCH_HSTS_PUBLIC_WORDING_SO
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {TREATMENT_GUIDANCE_PREVIEW,TREATMENT_GUIDANCE_PATHS,ADULT_INTAKE_SOURCE,ADULT_INTAKE_PATHS,validateTreatmentGuidance} from '../release/treatment-guidance-scope.mjs';
-import {readFileSync} from 'node:fs';
+import {readFileSync as nativeRuntimeFixtureReadFileSync} from 'node:fs';
+import {withJoinedSuccessorQualification as withRuntimeFixtureQualification} from '../release/my-timber-joined-look-scope-20261024.mjs';
+const runtimeFixturePath='release/member-runtime-deploy.mjs',runtimeFixtureURL=new URL('../release/member-runtime-deploy.mjs',import.meta.url).href;
+let runtimeFixtureUi=null;
+const readFileSync=(source,encoding)=>{
+ const actual=nativeRuntimeFixtureReadFileSync(source,encoding);
+ if(runtimeFixtureUi&&source instanceof URL&&source.href===runtimeFixtureURL){
+  assert.equal(encoding,'utf8','Exact original runtime fixture encoding required');
+  return runtimeFixtureUi.restoreFile(runtimeFixturePath,Buffer.from(actual,'utf8')).toString('utf8');
+ }
+ return actual;
+};
+const historicalRuntimeFixtureTest=(name,body)=>test(name,()=>withRuntimeFixtureQualification(ui=>{
+ assert.equal(runtimeFixtureUi,null,'Historical runtime fixture scope must not leak');
+ assert(Object.hasOwn(ui.predecessorPins,runtimeFixturePath),'Exact admitted runtime wrapper before-image required');
+ ui.assertOwnedBytes();runtimeFixtureUi=ui;
+ try{return body();}finally{runtimeFixtureUi=null;ui.assertOwnedBytes();}
+}));
 import {validateScope,assertPreserved,RELEASE_PATHS,APPROVED_ORDER_FILES,validateNiceTimeout,NICE_TIMEOUT_PATHS} from '../scripts/b1-release-scope.mjs';
 const manifest=JSON.parse(readFileSync(new URL('../release/b1-runtime-only.json',import.meta.url)));
 const workflow=foodDiaryLondonDateOriginalProductionWorkflow(readFileSync(new URL('../.github/workflows/cloudflare-production-promote.yml',import.meta.url),'utf8'));
@@ -23,7 +40,7 @@ test('every legacy publication, seed and migration step is unreachable for runti
  const source=readFileSync(new URL('../health-passport/production-release.mjs',import.meta.url),'utf8');
  assert.ok(source.indexOf("if(process.env.PASSPORT_SCHEMA_READ_ONLY==='true')assertSchema(existing,source)")<source.indexOf("if(!existing.length)cli("));
 });
-test('gates, fresh source check, rollback capture and exactly one deploy remain ordered',()=>{
+historicalRuntimeFixtureTest('gates, fresh source check, rollback capture and exactly one deploy remain ordered',()=>{
  const scope=workflow.indexOf('id: scope'),deploy=workflow.indexOf('node release/member-runtime-deploy.mjs');
  assert.equal(workflow.match(/node release\/member-runtime-deploy.mjs/g)?.length,1);
  const deployWrapper=readFileSync(new URL('../release/member-runtime-deploy.mjs',import.meta.url),'utf8');
