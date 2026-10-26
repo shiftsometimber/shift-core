@@ -1,11 +1,11 @@
 import {withImmutableHistoryVerification} from '../release/immutable-git-facts.mjs';
-import {withJoinedSuccessorQualification} from '../release/my-timber-joined-look-scope-20261024.mjs';
+import {withMemberRecordingQualification} from '../release/member-recording-repair-20261024.mjs';
 import {createRequire} from 'node:module';
 // Load unchanged native verifiers inside their existing closed source contexts.
-const nativeB1Modules=withJoinedSuccessorQualification(()=>withImmutableHistoryVerification(()=>{
+const nativeB1Modules=withMemberRecordingQualification(()=>{
  const require=createRequire(import.meta.url);
  return {food:require('../release/food-diary-london-date-scope-20261015.mjs'),composition:require('../release/approved-runtime-composition.mjs'),contract:require('./release-contract.mjs')};
-}));
+});
 const {foodDiaryLondonDateOriginalProductionWorkflow}=nativeB1Modules.food;
 const {WATCH_FACTUAL_UPDATE_PATHS}=nativeB1Modules.composition;
 const {COMPOSITION_BASE,COMPOSITION_SOURCE,COMPOSITION_PATHS,reconciliationRecord}=nativeB1Modules.composition;
@@ -18,7 +18,7 @@ const {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_
 const validateCoachingSource=(...args)=>withImmutableHistoryVerification(()=>rawValidateCoachingSource(...args));
 // Reuse only native immutable projections inside each synchronous configuration
 // case. Every original assertion and fresh supplied-reader boundary still runs.
-const configurationSourceTest=(name,body)=>test(name,()=>withJoinedSuccessorQualification(()=>withImmutableHistoryVerification(body)));
+const configurationSourceTest=(name,body)=>test(name,()=>withMemberRecordingQualification(body));
 const closedSourceTest=configurationSourceTest;
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
