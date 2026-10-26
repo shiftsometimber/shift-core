@@ -106,7 +106,7 @@ export function markNextShift(state,input,at){
 export function nextShiftCard(progress){
  const a=progress?.nextShift;
  if(!a||a.goalId!==progress.goalId)return null;
- return {title:a.title,detail:a.detail,href:a.kind==='clinic-quiet'?actions['clinic-quiet'].href:a.href,label:a.kind==='clinic-quiet'?actions['clinic-quiet'].label:a.label,loopId:a.id,loopStatus:a.status,reason:a.reason,goal:a.goal,awaitingChoice:!!a.awaitingChoice,evidence:{helpfulAnswers:[...(progress.shiftHistory||[]),a].filter(s=>s.goalId===progress.goalId).flatMap(s=>s.reviews||[]).filter(r=>r.outcome==='helped').length}};
+ return {title:a.title,detail:a.detail,href:a.kind==='clinic-quiet'?actions['clinic-quiet'].href:a.href,label:a.kind==='clinic-quiet'?actions['clinic-quiet'].label:a.label,loopId:a.awaitingChoice?null:a.id,loopStatus:a.status,reason:a.reason,goal:a.goal,awaitingChoice:!!a.awaitingChoice,evidence:{helpfulAnswers:[...(progress.shiftHistory||[]),a].filter(s=>s.goalId===progress.goalId).flatMap(s=>s.reviews||[]).filter(r=>r.outcome==='helped').length}};
 }
 export function lifeBackUsage(progress){
  const entries=progress?.entries||[],shifts=[...(progress?.shiftHistory||[]),...(progress?.nextShift?[progress.nextShift]:[])];

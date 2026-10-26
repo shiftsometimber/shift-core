@@ -69,3 +69,9 @@ test('corrected remembered words retain their original date, survive reload and 
  assert.throws(()=>applyLifeBackOperation(corrected,{...input,operationId:'foreign-correct-operation',revision:corrected.revision,entryId:'another-members-entry'}),e=>e.status===404);
  const cleared=applyLifeBackOperation(corrected,{...input,operationId:'clear-words-operation',revision:corrected.revision,note:''});assert.equal(cleared.entries[0].win,'');
 });
+
+test('exhausted rejected ideas become a choice rather than an impossible feedback task',()=>{
+ let s=check(goal());for(let i=0;i<8&&!s.nextShift.awaitingChoice;i++)s=applyLifeBackOperation(s,{action:'shift-feedback',operationId:'exhaust-ideas-operation-'+i,shiftId:s.nextShift.id,outcome:'not-helped'},at);
+ assert(s.nextShift.awaitingChoice);assert.equal(nextShiftCard(s).loopId,null);assert.match(nextShiftCard(s).href,/more-for-today/);
+ assert.throws(()=>applyLifeBackOperation(s,{action:'shift-feedback',operationId:'exhausted-review-operation',shiftId:s.nextShift.id,outcome:'not-helped'},at),e=>e.status===409);
+});
