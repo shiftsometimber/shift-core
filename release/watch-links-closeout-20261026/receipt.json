@@ -1,0 +1,64 @@
+{
+  "source": "b7af0b303face8b068c410119651cbfb84ef6be5",
+  "at": "2026-10-26T23:35:46.106Z",
+  "state": "DEPLOYED_AND_LIVE_VERIFIED",
+  "worker": "shift-treatments-presentation-20261021",
+  "deployment": "36f1da02-3b3c-4a51-a16e-9622dfa8d844",
+  "version": "00e41f3d-5f1a-4b07-827b-cf6ebf78b5be",
+  "originalModuleHashes": {
+    "previews/treatments-v3/content.mjs": "7b80ce9ea79da2d1cbeeebddecebd434951b5ca50a905fb57146cbce4e60b167",
+    "release/treatments-presentation-20261021/image-delivery.mjs": "f5f639d9f898507b9e27a709896c62cd6aae48e812d9a65be2728b0bf11b7857",
+    "release/treatments-presentation-20261021/worker.mjs": "6d05fb21749abe2beee03c4cd5992f73f96f447451259b99a67baa5231dd8903"
+  },
+  "addedModuleHashes": {
+    "release/watch-links-closeout-20261026/entry.mjs": "d5e859585727b1d85baf5a8ba28ff5451241ba85abb15392d0a6b881e77bf895",
+    "release/watch-links-closeout-20261026/links.mjs": "4938d6d57da0218cdb8bd4b7ca4a946bc95c477369bc35a260a724e84bb6637a"
+  },
+  "routesAdded": 0,
+  "originalModulesSettingsSchedulesRoutesPreserved": true,
+  "coreUnchanged": true,
+  "liveCases": [
+    {
+      "path": "/",
+      "status": 200,
+      "exactExpectedBytes": true
+    },
+    {
+      "path": "/treatment-centre",
+      "status": 200,
+      "exactExpectedBytes": true
+    },
+    {
+      "path": "/treatment-centre/mounjaro",
+      "status": 404,
+      "exactExpectedBytes": true
+    },
+    {
+      "path": "/treatment-centre/medicines-watch",
+      "status": 200,
+      "exactExpectedBytes": true
+    },
+    {
+      "path": "/treatment-centre/medicines-watch?q=wegovy",
+      "status": 200,
+      "exactExpectedBytes": true
+    },
+    {
+      "path": "/v1/me",
+      "status": 401,
+      "exactExpectedBytes": true
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "filteredReviewLinkClearsFilterAndReachesRealCard": true
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "filteredReviewLinkClearsFilterAndReachesRealCard": true
+    }
+  ],
+  "realMemberWrites": 0,
+  "communicationsSent": 0
+}
