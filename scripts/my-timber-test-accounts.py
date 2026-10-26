@@ -31,8 +31,16 @@ def query(sql, params=()):
 if sys.argv[1:] == ['inspect']:
     print(json.dumps({name: query('PRAGMA table_info('+name+')') for name in ['users','user_auth','user_sessions','member_status','member_state','consents','hq_users','hq_sessions']}, indent=2))
     raise SystemExit
+if sys.argv[1:] == ['reset']:
+    for email in EMAILS[:2]:
+        rows=query('SELECT u.id,m.source FROM users u JOIN member_status m ON m.user_id=u.id WHERE u.email=?',[email])
+        if len(rows)!=1 or rows[0]['source']!=TAG:
+            raise RuntimeError('Only reserved synthetic fixtures may be reset')
+        query("UPDATE member_state SET preferences=json_remove(preferences,'$.lifeBack') WHERE user_id=? AND EXISTS(SELECT 1 FROM member_status m WHERE m.user_id=member_state.user_id AND m.source=?)",[rows[0]['id'],TAG])
+    print(json.dumps({'state':'ONLY_SYNTHETIC_LIFE_BACK_FIXTURES_RESET','realMemberWrites':0}))
+    raise SystemExit
 if sys.argv[1:] != ['prepare']:
-    raise SystemExit('Use inspect or prepare')
+    raise SystemExit('Use inspect, prepare or reset')
 STATE.mkdir(mode=0o700, exist_ok=True)
 os.chmod(STATE, 0o700)
 credential_path = STATE / 'synthetic-sessions.json'

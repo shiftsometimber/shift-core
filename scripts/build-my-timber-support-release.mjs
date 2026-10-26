@@ -6,19 +6,17 @@ import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import {pathToFileURL} from 'node:url';
 import {createRequire} from 'node:module';
+import {shareCatalogue} from './share-my-timber-catalogue.mjs';
+import {UK_FULL_PUBLICATION} from '../grub-uk-full-publication-20261018.mjs';
 const root=process.cwd(),out=path.resolve(process.argv[2]||'');
 if(!process.argv[2]||!fs.existsSync(path.join(out,'provider-baseline.json')))throw new Error('Pass the directory containing the current provider baseline');
 const require=createRequire(path.join(root,'package.json')),esbuild=require('esbuild');
 const source=await import(pathToFileURL(path.join(root,'grub-expansion-serving-manifest-v1.mjs')));
 const plugin={name:'exact-governed-manifest',setup(build){
+ build.onResolve({filter:/^\.\/support-service-prior\.mjs$/},()=>({path:'./support-service-prior.mjs',external:true}));
  build.onLoad({filter:/grub-expansion-serving-manifest-v1\.mjs$/},()=>({contents:Object.entries(source).map(([k,v])=>'export const '+k+'='+JSON.stringify(v)+';').join('\n'),loader:'js'}));
  build.onLoad({filter:/grub-uk-full-publication-20261018\.mjs$/},async args=>{
-  const values=await import(pathToFileURL(args.path));
-  if(Object.values(values).some(v=>!v||typeof v!=='object'))throw new Error('Only static catalogue data may be packed');
-  const data=JSON.stringify(values),encoded=gzipSync(Buffer.from(data)).toString('base64');
-  fs.writeFileSync(path.join(out,'packed-catalogue-proof.json'),JSON.stringify({source:args.path,jsonSHA256:createHash('sha256').update(data).digest('hex'),jsonBytes:Buffer.byteLength(data),packedBytes:encoded.length,contentChanged:false},null,2));
-  const decode="const packed=await new Response(new Blob([Uint8Array.from(atob("+JSON.stringify(encoded)+"),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('gzip'))).json();";
-  return {contents:decode+Object.keys(values).map(k=>'export const '+k+'=packed.'+k+';').join('\n'),loader:'js'};
+  return {contents:"export {UK_FULL_PUBLICATION} from './support-service-prior.mjs';",loader:'js'};
  });
 }};
 const result=await esbuild.build({stdin:{contents:"export {wrapSupportService} from './member-experience/support-release.mjs'",resolveDir:root},bundle:true,write:false,format:'esm',platform:'neutral',target:'es2022',minify:true,metafile:true,plugins:[plugin]});
@@ -44,7 +42,11 @@ for(const p of plans){
  const current=path.join(out,p.before,p.addon);
  const prior=fs.readFileSync(current,'utf8').includes('gateV6Owner')?path.join(out,p.before,p.addon.replace('.mjs','-prior.mjs')):current;
  if(!fs.existsSync(prior))throw new Error('Current support implementation is required for gated acceptance');
- fs.copyFileSync(prior,path.join(target,p.addon.replace('.mjs','-prior.mjs')));
+ if(p.name==='programme'){
+  const shared=shareCatalogue(fs.readFileSync(prior,'utf8'),UK_FULL_PUBLICATION);
+  fs.writeFileSync(path.join(target,p.addon.replace('.mjs','-prior.mjs')),shared.source);
+  fs.writeFileSync(path.join(out,'shared-catalogue-proof.json'),JSON.stringify(shared.proof,null,2));
+ }else fs.copyFileSync(prior,path.join(target,p.addon.replace('.mjs','-prior.mjs')));
  fs.copyFileSync(path.join(out,p.addon),path.join(target,p.addon.replace('.mjs','-next.mjs')));
  fs.copyFileSync(path.join(root,'member-experience/support-release-gate.mjs'),path.join(target,'support-release-gate.mjs'));
  fs.writeFileSync(path.join(target,p.addon),"import {"+p.factory+" as before} from './"+p.addon.replace('.mjs','-prior.mjs')+"';import {"+p.factory+" as after} from './"+p.addon.replace('.mjs','-next.mjs')+"';import {gateV6Owner} from './support-release-gate.mjs';export function "+p.factory+"(original){return gateV6Owner(before(original),after(original));}\n");

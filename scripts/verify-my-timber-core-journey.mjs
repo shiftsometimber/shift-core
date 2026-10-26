@@ -10,7 +10,7 @@ const check=(v,m)=>{if(!v)throw Error(m);};
 const receipt=()=>fs.writeFileSync(path.join(root,'core-journey-receipt.json'),JSON.stringify({at:new Date().toISOString(),target:base,syntheticOnly:true,externalCommunicationsSent:0,physicalPhoneTested:false,cases:results},null,2)+'\n');
 async function run(name,engine){
  const b=await engine.launch({headless:true});const c=await b.newContext({baseURL:base,viewport:{width:390,height:844},hasTouch:true,isMobile:true,acceptDownloads:true,serviceWorkers:'block'});
- const user=sessions.members[0];check(sessions.tag==='my_timber_release_test_v6'&&user.email==='my-timber-v6-dan@example.invalid','Synthetic identity required');
+ const user=sessions.members[name==='chromium'?0:1];check(sessions.tag==='my_timber_release_test_v6'&&['my-timber-v6-dan@example.invalid','my-timber-v6-lee@example.invalid'].includes(user.email),'Synthetic identity required');
  await c.addCookies([{name:'sst_session',value:user.token,url:base,httpOnly:true,secure:true,sameSite:'Lax'}]);
  await c.route('**/v1/events',r=>r.abort());const page=await c.newPage();page.setDefaultTimeout(15000);
  const api=async(url,body)=>{const r=body?await c.request.post(url,{data:body,headers:{Origin:base}}):await c.request.get(url);const d=await r.json();check(r.ok(),url+' HTTP '+r.status()+' '+(d.error||''));return d;};
