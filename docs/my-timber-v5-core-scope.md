@@ -29,3 +29,9 @@ No homepage/public-navigation, payments, orders, clinical flow, catalogue, nativ
 C1–C10 plus S1–S9 is 19 checks. Existing finite live synthetic-data/API and desktop-Safari evidence is preserved for its exact source. New source/model/API tests do not establish phone rendering, the complete first-visit-to-returning-member interface, staffed support, a community launch or independent usefulness.
 
 Every feedback answer changes appropriate follow-through; helped may repeat a useful routine, and not-tried may keep a step. Five community marks must represent five distinct consenting real members. A small pilot cannot establish exclusive market claims. Remaining literal contradictions in the work order are recorded here rather than silently treated as completed implementation.
+
+## Named human support: Matt’s subsequent decision
+
+Matt has confirmed that he owns non-clinical member enquiries, is online every day, and will reply within one working day. Member presentation: “Message Matt at any time. Matt replies within one working day.” This is asynchronous support; it does not imply a live or emergency response, a clinical service, or confirmed 24/7 Shed moderation.
+
+This supersedes the earlier unresolved human-owner/response-target decision. The existing HQ queue and claim/reply source are available for integration; no production ticket was created or assigned and no response-time delivery was newly verified. New implementation remains under the current deployment hold.
