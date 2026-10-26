@@ -270,6 +270,8 @@ jobs:
           git diff --exit-code -- babylove/editorial/public-bundle.mjs
       - name: Verify canonical runtime staging
         run: node --test tests/canonical-runtime-build.test.mjs tests/independent-presentation-preservation.test.mjs
+      - name: Verify approved My Timber loop source and ownership boundaries
+        run: node --test tests/my-timber-loop-qualification-20261026.test.mjs member-experience/tests/next-shift-loop.test.mjs member-experience/tests/checkin-followup.test.mjs tests/progress-charts.test.mjs
       - name: Verify every original production source command with two execution slots
         id: scope
         run: |
