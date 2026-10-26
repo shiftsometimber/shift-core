@@ -27,6 +27,12 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
   startNextShift(next,input,at);
  }else if(input.action==='shift-feedback'){
   reviewNextShift(next,input,at);
+ }else if(input.action==='entry-note'){
+  if(input.revision!==next.revision)fail('Your history changed. Reload before correcting your words.',409);
+  const entry=next.entries.find(e=>e.id===input.entryId);
+  if(!entry)fail('This saved entry is no longer available.',404);
+  if(typeof input.note!=='string'||input.note.trim().length>180)fail('Keep your words under 180 characters.');
+  entry.win=input.note.trim();entry.correctedAt=at;
  }else if(input.action==='shift-status'){
   markNextShift(next,input,at);
  }else if(input.action==='checkin'){

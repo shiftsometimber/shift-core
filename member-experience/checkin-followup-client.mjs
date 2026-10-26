@@ -15,7 +15,7 @@ export const checkinFollowupStyles=`
 `;
 export const checkinFollowupRuntime=String.raw`(()=>{
  'use strict';
- const labels={'helped':'It helped','not-fit':'It did not fit','not-tried':'I have not tried it yet','skip':'Skip this question'};
+ const labels={'helped':'It helped','not-fit':'Not for me','not-helped':'Tried it, didn’t help','not-tried':'I have not tried it yet','skip':'Skip this question'};
  let host,record,pending=false,generation=0,offered=null,dirty=false,operation=null;
  const element=(tag,text)=>{const e=document.createElement(tag);if(text)e.textContent=text;return e};
  const params=new URLSearchParams(location.search),step=params.get('step'),shift=params.get('shift');
@@ -52,7 +52,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
      record=fromLife(action,saved.progress.nextShift?.id===record.id);
     }else{
      const saved=await request(endpoint(),{actionId:record.id,revision:record.revision,outcome:selected.value});record=saved.followUp;
-     if(record.action.loopId&&['helped','not-fit'].includes(record.feedback))record.active=false;
+     if(record.action.loopId&&['helped','not-fit','not-helped'].includes(record.feedback))record.active=false;
     }
     dirty=false;operation=null;render();host.querySelector('details').open=true;document.dispatchEvent(new CustomEvent('sst:action-reviewed'));
    }catch(e){status.textContent=e.status===401?'Please sign in again before saving feedback.':e.message;if(e.status===409){operation=null;const retry=element('button','Reload saved step');retry.type='button';retry.addEventListener('click',()=>{dirty=false;load()});status.append(retry)}}

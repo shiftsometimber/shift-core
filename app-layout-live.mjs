@@ -2,10 +2,11 @@ import {webToolsAsset,webToolsClient,webToolsPresentation} from './member-inline
 // The approved presentation only. No preview Worker, fixture, database or auth route.
 import {appPresentation,appClient} from './preview/app-layout/presentation.mjs';
 import {memberDesignDocument,memberDesignClient} from './member-design.mjs';
+import {sixPageRecoveryRuntime} from './member-experience/six-page-recovery.mjs';
 const routes=/^\/member\/(dashboard|grub|fit|life-back|check-in|settings|saved|plans|orders|ask-timber)$/;
 export const appAsset='/assets/my-timber-layout.mjs';
 export const launchAsset='/assets/my-timber-layout-launch.mjs';
-export const liveAppClient=appClient+memberDesignClient;
+export const liveAppClient=appClient+memberDesignClient+'\n'+sixPageRecoveryRuntime;
 export const launchClient=`(()=>{if(matchMedia('(display-mode: standalone)').matches||navigator.standalone===true){const u=new URL(location.href);if(!u.searchParams.has('view')){u.searchParams.set('view','app');location.replace(u.href)}}})();`;
 export function livePresentation(html,path,embedded=false){
  const after=appPresentation(html,path,embedded);

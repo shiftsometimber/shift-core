@@ -1,8 +1,8 @@
 import {connectedDay} from './journey-context.mjs';
 import {reviewNextShift} from './life-back/next-shift.mjs';
-export const followupOutcomes=['helped','not-fit','not-tried','skip'];
+export const followupOutcomes=['helped','not-fit','not-helped','not-tried','skip'];
 const consentSQL="(SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1";
-const shape=row=>row?{id:row.id,checkInId:row.checkin_id,action:JSON.parse(row.action_json),createdAt:row.created_at,feedback:row.feedback,revision:row.revision,reviewedAt:row.reviewed_at}:null;
+const shape=row=>row?{id:row.id,checkInId:row.checkin_id,action:JSON.parse(row.action_json),createdAt:row.created_at,feedback:JSON.parse(row.action_json).feedbackOutcome||row.feedback,revision:row.revision,reviewedAt:row.reviewed_at}:null;
 const fail=(message,status)=>{throw Object.assign(Error(message),{status})};
 export async function saveCheckinWithAction(DB,userId,index,note,at){
  const day=await connectedDay(DB,userId);
@@ -24,7 +24,8 @@ export async function reviewCheckinAction(DB,userId,input){
  if(typeof input.actionId!=='string'||input.actionId.length>80||!Number.isInteger(input.revision)||input.revision<0||!followupOutcomes.includes(input.outcome))fail('Choose an available answer for this saved next step.',400);
  const read=()=>DB.prepare('SELECT a.* FROM daily_checkin_actions a JOIN check_ins c ON c.id=a.checkin_id AND c.user_id=a.user_id WHERE a.id=? AND a.user_id=? AND c.case_id IS NULL').bind(input.actionId,userId).first();
  const before=await read();if(!before)fail('This saved next step is no longer available.',404);
- if(before.revision===input.revision+1&&before.feedback===input.outcome)return shape(before);
+ if(before.revision===input.revision+1&&shape(before).feedback===input.outcome)return shape(before);
+ const storedOutcome=input.outcome==='not-helped'?'not-fit':input.outcome;
  const at=new Date().toISOString(),action=JSON.parse(before.action_json);
  if(action.loopId){
   const prefs=JSON.parse((await DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(userId).first())?.preferences||'{}');
@@ -35,13 +36,13 @@ export async function reviewCheckinAction(DB,userId,input){
   next.revision++;next.operations=[...(next.operations||[]),operationId].slice(-100);
   const results=await DB.batch([
    DB.prepare("UPDATE member_state SET preferences=json_set(preferences,'$.lifeBack.progress',json(?)),updated_at=? WHERE user_id=? AND json_extract(preferences,'$.lifeBack.progress.revision')=? AND "+consentSQL+" AND EXISTS(SELECT 1 FROM daily_checkin_actions WHERE id=? AND user_id=? AND revision=?)").bind(JSON.stringify(next),at,userId,old.revision,userId,input.actionId,userId,input.revision),
-   DB.prepare("UPDATE daily_checkin_actions SET feedback=?,reviewed_at=?,revision=revision+1 WHERE id=? AND user_id=? AND revision=? AND "+consentSQL+" AND EXISTS(SELECT 1 FROM member_state WHERE user_id=? AND json_extract(preferences,'$.lifeBack.progress.revision')=? AND json_extract(preferences,'$.lifeBack.progress.operations[#-1]')=?)").bind(input.outcome,at,input.actionId,userId,input.revision,userId,userId,next.revision,operationId)
+   DB.prepare("UPDATE daily_checkin_actions SET feedback=?,action_json=json_set(action_json,'$.feedbackOutcome',?),reviewed_at=?,revision=revision+1 WHERE id=? AND user_id=? AND revision=? AND "+consentSQL+" AND EXISTS(SELECT 1 FROM member_state WHERE user_id=? AND json_extract(preferences,'$.lifeBack.progress.revision')=? AND json_extract(preferences,'$.lifeBack.progress.operations[#-1]')=?)").bind(storedOutcome,input.outcome,at,input.actionId,userId,input.revision,userId,userId,next.revision,operationId)
   ]);
   if(results.some(r=>r.meta.changes!==1))fail('Your step or tracking choice changed. Reload before answering.',409);
   return shape(await read());
  }
- const result=await DB.prepare('UPDATE daily_checkin_actions SET feedback=?,reviewed_at=?,revision=revision+1 WHERE id=? AND user_id=? AND revision=? AND '+consentSQL).bind(input.outcome,new Date().toISOString(),input.actionId,userId,input.revision,userId).run();
+ const result=await DB.prepare("UPDATE daily_checkin_actions SET feedback=?,action_json=json_set(action_json,'$.feedbackOutcome',?),reviewed_at=?,revision=revision+1 WHERE id=? AND user_id=? AND revision=? AND "+consentSQL).bind(storedOutcome,input.outcome,new Date().toISOString(),input.actionId,userId,input.revision,userId).run();
  const after=await read();
- if(result.meta.changes!==1&&!(after?.revision===input.revision+1&&after.feedback===input.outcome))fail('Your feedback or tracking choice changed. Reload before answering.',409);
+ if(result.meta.changes!==1&&!(after?.revision===input.revision+1&&shape(after).feedback===input.outcome))fail('Your feedback or tracking choice changed. Reload before answering.',409);
  return shape(after);
 }
