@@ -1,3 +1,4 @@
+import zenagamtideSwitchCorrection from './reviews/2026-10-18-approved-zenagamtide-switch.json' with {type:'json'};
 import teAscRenewal from './reviews/2026-10-12-authorised-te8105-asc36-renewal.json' with {type:'json'};
 import gzcAsc30Maritide from './reviews/2026-10-12-authorised-gzc8072-asc30-maritide.json' with {type:'json'};
 import rhythmPdfAlternatives from './reviews/2026-10-12-authorised-rhythm-pdf-alternatives.json' with {type:'json'};
@@ -517,4 +518,4 @@ export const industry = [...originalIndustry.map(e => {
   const renewed=teAscRenewal.programmeSummaryReviews.find(r=>r.id===e.id);
   if(!renewed)return e;
   return {...e,reviewedAt:renewed.reviewedAt,additionalEvidence:(e.additionalEvidence||[]).map(link=>({...link,reviewedAt:renewed.reviewedAt}))};
- });
+ }).map(e=>e.id==='zenagamtide'?{...e,limitations:e.limitations.replace(zenagamtideSwitchCorrection.before,zenagamtideSwitchCorrection.after)}:e);

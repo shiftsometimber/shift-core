@@ -2,7 +2,7 @@
   "kind": "EXACT_MY_TIMBER_JOINED_LOOK_20261024",
   "base": "2daf52de65e94d979917a187cb1a44e6fcf10137",
   "payload": "d4c95b3209323df0cdf7bad569c8f72d08c6944a",
-  "registrationSource": "458752629d1e4002acf1d47b84a95b081130009d",
+  "registrationSource": "b5c61d02205547927520ebb416c1a2c5d27b2320",
   "payloadBlobs": {
     "frontend/member/member-progress-v1.js": "3f7ec13262b2fe2a800f04bdfce5c0c301f2f26f",
     "member-design.mjs": "aedd925f8425076639a40ff51c2032d8820502a3",
@@ -20,7 +20,16 @@
   },
   "maintenanceBlobs": {
     ".github/workflows/cloudflare-production-promote.yml": "b8b30ebd01a4f9163f70b1d299841c03803ecb55",
+    "medicine-commerce-v1.js": "305fd65c29ca635f3f54a3682ff0029b7e7fac70",
+    "medicines-watch/credibility.mjs": "befa1ba1016ff1733f3cc9ce06d76f7bd077c186",
+    "medicines-watch/credibility.test.mjs": "5d40e7fdcf8e8f7a1a1c27b17faacfaa92c31569",
+    "medicines-watch/industry.mjs": "1796dd89e9aa581f45748d5d9d4de067b2aec2a1",
+    "medicines-watch/overdue-registry-access-renewal.test.mjs": "0eda1b70400c36e5445fc106096a7cb881e07336",
+    "medicines-watch/reviews/2026-10-18-approved-zenagamtide-switch.json": "b9340819c1f663439718208aa39b6d856be398b9",
+    "medicines-watch/scheduler.test.mjs": "a126f4478470720d5248c4e548b1a508852fc984",
+    "medicines-watch/te8105-asc36-renewal.test.mjs": "70d87b5e9a1206636ebfe76d7de8efb619f9c3da",
     "member-experience/tests/weight-import-mapping-ui.test.mjs": "658f6987024d9ca8bab3d5700fa24c9d383aebf0",
+    "public-purchase-basket.mjs": "ef14697e8c08019c34f53a5b8f7a97533c49ac65",
     "release/app-client-proof.mjs": "6a7d9defa3f018299a09d0b4189138ec6d0d3bf1",
     "release/app-live-http.mjs": "aa1f309e768d48b6852b82dc0b6ea250c0988fc6",
     "release/app-scope.mjs": "6aec44ca381912259785148c7821d13272c75056",
@@ -36,8 +45,8 @@
     "release/member-recording-repair-20261024.mjs": "143cd952ff0a7451f9f03ce4b9b1fb7bec022a36",
     "release/member-runtime-deploy.mjs": "988003feeb72dd04cbaf7258c6a3e6a50784734c",
     "release/my-shift-release-scope-20261024.mjs": "54c0fd7a0f7ea5f96e336e920e7d9045af05d497",
-    "release/my-timber-joined-look-inverses-20261024.json": "1c2ace5807659bb9159e8174278ad64067c50a43",
-    "release/my-timber-joined-look-scope-20261024.mjs": "a004be8a3794017af81b879ed4aadb4eef7c06fc",
+    "release/my-timber-joined-look-inverses-20261024.json": "bd6f106e916670ac5efb6389c9a7b57b6276fad0",
+    "release/my-timber-joined-look-scope-20261024.mjs": "ff25a415bcda12799b8d6543c5eee661a004698a",
     "release/recorded-week-navigation-outer-frame-20261018.mjs": "ca72d494fe184454f2ead322799f338cace09ce5",
     "release/testosterone-scope-20261021.mjs": "21ab2ba6b67467aec92d666e18f5c8d2026f6088",
     "release/website-editorial-scope-20261018.mjs": "b9215815c96d3387eaac2ec752c84f0be9ed3138",
@@ -50,10 +59,13 @@
     "tests/combined-original-gp-object-20261014.test.mjs": "c9aa5890ac7ca86e570b91e9e7932b137343f224",
     "tests/independent-presentation-preservation.test.mjs": "3f9d1058556a06571643d9729f114320df3dfe33",
     "tests/joined-native-byte-reuse-20261025.test.mjs": "78902ef8428ff754d9d79f0d687e94e96207112f",
+    "tests/late-watch-composition.test.mjs": "636f279c31c591d5e9d2ae0593e69219ef5f7ab3",
     "tests/member-details-release.test.mjs": "145863f8207eef11f7ab0b5b914d073c9d4b5cbc",
     "tests/member-recording-repair-admission-20261024.test.mjs": "df9bd0992c08d2125fa1159dabb720a9b29dbe88",
     "tests/native-restored-source-stats-20261025.test.mjs": "1dfbf84d8d9f5569d718d345399237aaca2d4817",
-    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "70d95c71c321360f8694257b8dd6924bca0478d3"
+    "tests/purchase-basket.test.mjs": "d16aa90ae4b73a2b4a0ee4ddfbceea293952565a",
+    "tests/recorded-week-navigation-preservation-20261018.test.mjs": "70d95c71c321360f8694257b8dd6924bca0478d3",
+    "worker-entry-v6.js": "4434faf74942037dc8ef88699e4b4260af9722c3"
   },
   "authority": {
     "owner": "Matt",
@@ -61,6 +73,73 @@
     "publicHomepage": false,
     "clinicalActivation": false,
     "newMessaging": false,
-    "newDeploymentLane": false
+    "newDeploymentLane": false,
+    "medicinesEvidenceCorrection": {
+      "instruction": "Matt18October16:28BST Deploy; continued fixanddeploy25October",
+      "approvedPR": 1379,
+      "approvedSource": "8b53e773fd4c02ef14ac40dc1dfea3362553d791",
+      "cardSHA256": "f76e2362a6545494635bafa008e41485392b1c5e99253fb97668f609d6a45452",
+      "exactSixPaths": [
+        "medicines-watch/credibility.mjs",
+        "medicines-watch/credibility.test.mjs",
+        "medicines-watch/industry.mjs",
+        "medicines-watch/overdue-registry-access-renewal.test.mjs",
+        "medicines-watch/reviews/2026-10-18-approved-zenagamtide-switch.json",
+        "medicines-watch/te8105-asc36-renewal.test.mjs"
+      ],
+      "clinicalApproval": null,
+      "wholeProgrammeReviewRenewed": false,
+      "sourceReviewDate": "2026-10-18",
+      "monitorSuccessSeeded": false,
+      "otherProgrammeSourceOrReviewDatesChanged": false
+    },
+    "preservedAlreadyServingSource": {
+      "source": "2c0595fca78f380e35942e14f7589f6f3cd6eb5b",
+      "providerVersion": "3c06f999-7001-4478-9057-8816671a19ee",
+      "providerDeployment": "ea340366-7634-4cb5-b9f3-036cc436d908",
+      "scope": "Preserve exact4alreadyapproved/deployedbasketfiles; no newbasketimplementation or checkoutacceptanceclaim",
+      "paths": [
+        "medicine-commerce-v1.js",
+        "public-purchase-basket.mjs",
+        "tests/purchase-basket.test.mjs",
+        "worker-entry-v6.js"
+      ]
+    },
+    "originalIntegrationCaseEnvelope": {
+      "scope": "Both complete original cases run inside existing closed native and immutable-history contexts. Every original assertion body, supplied callback and fresh HEAD read is byte unchanged; source/index/config/environment/replacement/mutation fences preserved. No verifier function modified.",
+      "paths": [
+        "tests/late-watch-composition.test.mjs"
+      ],
+      "assertionsRemoved": 0,
+      "assertionBodies": [
+        {
+          "name": "real release composition keeps prior ownership and all fresh-reader drift checks",
+          "bodySHA256": "41b7dff24aa745ef9ae3fbcbfd47e85a8d23d5a208cf0c688532599a5b5e85ad",
+          "bodyByteUnchanged": true
+        },
+        {
+          "name": "real biomarker composition retains previous verified runtime and rejects all fresh-reader drift",
+          "bodySHA256": "c54dc724b24d3861327a6055897bd0c499b2e2c926e2b34f781004fb3c83f05a",
+          "bodyByteUnchanged": true
+        }
+      ],
+      "closedModuleLoad": {
+        "exports": "Same native approved-runtime-composition module; same named bindings",
+        "initialisation": "Synchronous native Node createRequire within existing native and immutable-history contexts",
+        "completeOriginalFileExactInverse": true,
+        "assertionsAndCallbacksChanged": false,
+        "verifierFunctionsChanged": false,
+        "diagnosticReceipt": "zenagamtide-closed-module-load-diagnostic-20261025.json"
+      }
+    },
+    "originalSchedulerTestBeforeImage": {
+      "source": "2c0595fca78f380e35942e14f7589f6f3cd6eb5b",
+      "runtimeBlob": "4434faf74942037dc8ef88699e4b4260af9722c3",
+      "beforeRuntimeBlob": "cc2d7dd76a495c88c2a42575a61dc62a7e9babed",
+      "paths": [
+        "medicines-watch/scheduler.test.mjs"
+      ],
+      "scope": "Test-only inverse of exact three already-serving basket fetch additions; original scheduler assertions and execution of actual handler unchanged; no production runtime edit"
+    }
   }
 }

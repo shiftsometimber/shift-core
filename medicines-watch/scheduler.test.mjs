@@ -6,6 +6,18 @@ import test from 'node:test';
 
 const actualEntry = readFileSync(new URL('../worker-entry-v6.js', import.meta.url), 'utf8');
 let entry=actualEntry;
+// Authenticate the complete already-serving basket runtime and reverse only
+// its exact three fetch additions before the retained observation-era proof.
+if(createHash('sha1').update('blob '+Buffer.byteLength(entry)+'\0').update(entry).digest('hex')==='4434faf74942037dc8ef88699e4b4260af9722c3'){
+ const inverse=[
+  ["import {purchaseBasketAsset,withPurchaseBasket} from './public-purchase-basket.mjs';\n",''],
+  ["    const basketScript=purchaseBasketAsset(request);if(basketScript)return basketScript;\n",''],
+  ['    return withPurchaseBasket(request,await withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED===\'true\'?await withPwa(request,corrected):corrected)))),request));',
+   '    return withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED===\'true\'?await withPwa(request,corrected):corrected)))),request);']
+ ];
+ for(const [after,before] of inverse){assert.equal(entry.split(after).length,2,'Exact serving basket boundary required');entry=entry.replace(after,before);}
+ assert.equal(createHash('sha1').update('blob '+Buffer.byteLength(entry)+'\0').update(entry).digest('hex'),'cc2d7dd76a495c88c2a42575a61dc62a7e9babed','Entire observation runtime before-image required');
+}
 const observedWatch="await observedJob('core_medicines_watch', () => checkSources(env, { allowSourceReplacement: false }))";
 if(entry.includes(observedWatch)){
   // Authenticate the entire independently approved instrumented runtime before
