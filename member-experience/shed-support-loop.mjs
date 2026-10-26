@@ -116,6 +116,15 @@ export async function shedSupportRoutes(request,env){
   }
   if(!participation.joined||!participation.adultAccess)fail('Join the Shed before posting or marking a tip.',403);
   if(await activeForumRestriction(DB,uid,at))fail('Your community access is restricted. Open community settings.',403);
+  if(input.action==='moderate-tip'){
+   const moderator=await DB.prepare('SELECT user_id FROM timber_shed_forum_moderators WHERE user_id=? AND active=1').bind(uid).first();if(!moderator)fail('Moderator access is required.',403);
+   const approveURL=new URL(request.url);approveURL.pathname='/v1/timber-shed/forum/moderate';
+   const approval=await forum(new Request(approveURL,{method:'POST',headers:{Origin:approveURL.origin,'Content-Type':'application/json'},body:JSON.stringify({postId:input.postId,action:'approve'})}),fenv);
+   if(!approval.ok)return approval;
+   const post=await DB.prepare('SELECT p.*,t.category FROM timber_shed_forum_posts p JOIN timber_shed_support_tips t ON t.post_id=p.id WHERE p.id=?').bind(input.postId).first();
+   if(post&&post.user_id!==uid&&categories.has(post.category)&&!unsafeStep.test(post.title+' '+post.body))await DB.prepare('UPDATE timber_shed_support_tips SET reviewed_by=?,reviewed_at=? WHERE post_id=?').bind(uid,at,post.id).run();
+   return json({ok:true,message:'Post reviewed. Only eligible everyday steps can enter practical suggestions.'});
+  }
   if(input.action==='tip-feedback'){
    if(!['helped','not-fit','not-helped','not-tried'].includes(input.outcome)||input.reason&&!['timing','effort','idea'].includes(input.reason))fail('Choose what happened.');
    const post=await DB.prepare(`SELECT p.id FROM timber_shed_forum_posts p WHERE p.id=? AND p.status='approved' AND p.user_id<>? AND ${visiblePostSQL('p',uid)}`).bind(input.postId,uid).first();if(!post)fail('This tip is no longer available.',404);

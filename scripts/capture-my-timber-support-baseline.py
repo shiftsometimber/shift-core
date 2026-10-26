@@ -1,6 +1,6 @@
 """Read-only capture of the two current owners for one scoped candidate."""
 from pathlib import Path
-import email,hashlib,json,re,sys,urllib.request
+import email,hashlib,json,re,sys,urllib.request,subprocess
 root=Path.cwd();out=Path(sys.argv[1]).resolve()
 assert not out.exists(),'Use the existing capture; inspect it before repeating.'
 old=json.loads((root.parent/'support-service-release/provider-baseline.json').read_text())
@@ -20,5 +20,6 @@ def capture(row,folder):
 out.mkdir(parents=True)
 baseline=capture(old,out/'before');baseline['routePath']=old['routePath'];baseline['memberDocumentOwner']=capture(old['memberDocumentOwner'],out/'before-hq')
 (out/'provider-baseline.json').write_text(json.dumps(baseline,indent=2)+'\n')
-with urllib.request.urlopen('https://shiftsometimber.co.uk/assets/my-timber-layout.mjs',timeout=30) as r:(out/'live-layout-before.mjs').write_bytes(r.read())
+asset=subprocess.run(['curl','-fsS','--max-time','30','https://shiftsometimber.co.uk/assets/my-timber-layout.mjs'],capture_output=True,check=True)
+(out/'live-layout-before.mjs').write_bytes(asset.stdout)
 print(json.dumps({'state':'CAPTURED_CURRENT_OWNERS','workers':{baseline['worker']:baseline['deployment']['id'],baseline['memberDocumentOwner']['worker']:baseline['memberDocumentOwner']['deployment']['id']},'writesToProduction':0}))

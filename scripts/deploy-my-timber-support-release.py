@@ -51,7 +51,7 @@ for name,b in plans:
  candidate=build['candidates'][name];files={f['name']:(Path(candidate['directory'])/f['name']).read_bytes() for f in candidate['files']}
  assert {n:sha(v) for n,v in files.items()}=={f['name']:f['sha256'] for f in candidate['files']},'Candidate bytes changed'
  for n,v in current.items():
-  if n not in ['presentation-entry.mjs','support-service.mjs','support-markup.mjs']:assert files[n]==v,'Existing module changed: '+n
+  if n not in ['presentation-entry.mjs','support-service.mjs','support-markup.mjs','support-service-next.mjs','support-markup-next.mjs','support-release-gate.mjs']:assert files[n]==v,'Existing module changed: '+n
  state['workers'][worker]={'state':'prepared','beforeDeployment':dep,'settings':settings,'schedules':schedules,'candidateHashes':{n:sha(v) for n,v in files.items()}}
  prepared.append((worker,files))
 save()

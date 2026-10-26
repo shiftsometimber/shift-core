@@ -9,6 +9,7 @@ import {withSupportMarkup} from './support-markup.mjs';
 import {withSupportLayout} from './support-layout.mjs';
 import {shedSupportRoutes} from './shed-support-loop.mjs';
 import {shedPageRoutes} from './shed-support-ui.mjs';
+import {isReservedV6AcceptanceRequest} from './support-release-gate.mjs';
 const trusted=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
 const aliases={'/v1/life-back/member-support':'/v1/member-support','/v1/life-back/check-in':'/v1/check-ins','/member/life-back/support-inbox':'/hq/coaching-support','/v1/life-back/support-inbox':'/v1/hq/support/coaching','/assets/member-experience/programme-support-inbox.mjs':'/assets/shift-coach-support.mjs'};
 const apiPaths=new Set(['/v1/life-back','/v1/member-support','/v1/check-ins','/v1/hq/support/coaching',...Object.keys(aliases).filter(p=>p.startsWith('/v1/'))]);
@@ -17,6 +18,9 @@ export function wrapSupportService(original){return {
  ...original,
  async fetch(request,env,ctx){
   const u=new URL(request.url),path=u.pathname,origin=request.headers.get('Origin');
+  // Finite browser qualification of the approved away state. This header has no
+  // effect for a real member, even after the release is globally enabled.
+  if(request.headers.get('X-My-Timber-Acceptance-Scenario')==='away'&&await isReservedV6AcceptanceRequest(request,env))env={...env,MEMBER_SUPPORT_AWAY:'true',MEMBER_SUPPORT_AWAY_RETURN_ON:'2030-01-02',MEMBER_SUPPORT_COVER_ACTIVE:'true'};
   const cross=trusted.has(origin)&&origin!==u.origin;
   if(apiPaths.has(path)&&request.method==='OPTIONS')return new Response(null,{status:cross||origin===u.origin?204:403,headers:cross?{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'GET, POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'}:{}});
   let routed=request;const route=aliases[path]||path;if(route!==path){const url=new URL(request.url);url.pathname=route;routed=new Request(url,request);}
