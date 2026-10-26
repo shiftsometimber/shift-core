@@ -1,0 +1,32 @@
+// Prepare a scoped add-on for the two existing Worker owners. Never publish here.
+// Preserve every downloaded baseline module; wrap only the existing entry module.
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
+import {pathToFileURL} from 'node:url';
+import {createRequire} from 'node:module';
+const root=process.cwd(),out=path.resolve(process.argv[2]||'');
+if(!process.argv[2]||!fs.existsSync(path.join(out,'provider-baseline.json')))throw new Error('Pass the directory containing the current provider baseline');
+const require=createRequire(path.join(root,'package.json')),esbuild=require('esbuild');
+const source=await import(pathToFileURL(path.join(root,'grub-expansion-serving-manifest-v1.mjs')));
+const plugin={name:'exact-governed-manifest',setup(build){build.onLoad({filter:/grub-expansion-serving-manifest-v1\.mjs$/},()=>({contents:Object.entries(source).map(([k,v])=>'export const '+k+'='+JSON.stringify(v)+';').join('\n'),loader:'js'}));}};
+const result=await esbuild.build({stdin:{contents:"export {wrapSupportService} from './member-experience/support-release.mjs'",resolveDir:root},bundle:true,write:false,format:'esm',platform:'neutral',target:'es2022',minify:true,plugins:[plugin]});
+const service=result.outputFiles[0].contents;
+fs.writeFileSync(path.join(out,'support-service.mjs'),service);
+fs.copyFileSync(path.join(root,'member-experience/support-markup.mjs'),path.join(out,'support-markup.mjs'));
+const plans=[{name:'programme',before:'before',addon:'support-service.mjs',factory:'wrapSupportService'},{name:'member-document',before:'before-hq',addon:'support-markup.mjs',factory:'wrapSupportMarkup'}];
+const manifest={at:new Date().toISOString(),candidates:{}};
+for(const p of plans){
+ const target=path.join(out,'candidate-'+p.name);fs.mkdirSync(target,{recursive:true});
+ for(const n of fs.readdirSync(path.join(out,p.before)))fs.copyFileSync(path.join(out,p.before,n),path.join(target,n));
+ const original=path.join(target,'presentation-entry.mjs'),old=fs.readFileSync(original,'utf8');
+ if(!old.includes('export default wrapPresentation(original);'))throw new Error('Unexpected deployed entry for '+p.name);
+ fs.writeFileSync(original,old.replace('export default wrapPresentation(original);',"import {"+p.factory+"} from './"+p.addon+"';export default "+p.factory+"(wrapPresentation(original));"));
+ fs.copyFileSync(path.join(out,p.addon),path.join(target,p.addon));
+ const files=fs.readdirSync(target).sort().map(n=>{const b=fs.readFileSync(path.join(target,n));return {name:n,bytes:b.length,gzip:gzipSync(b).length,sha256:createHash('sha256').update(b).digest('hex')};});
+ manifest.candidates[p.name]={directory:target,mainModule:'presentation-entry.mjs',files,totalGzip:files.reduce((n,f)=>n+f.gzip,0)};
+ if(manifest.candidates[p.name].totalGzip>10*1024*1024)throw new Error('Existing paid Worker gzip limit exceeded');
+}
+fs.writeFileSync(path.join(out,'build-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+console.log(JSON.stringify(manifest,null,2));

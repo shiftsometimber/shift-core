@@ -59,7 +59,7 @@ export async function lifeBackRoutes(request,env){
  if(new URL(request.url).pathname==='/v1/member-support')return memberSupportContactRoutes(request,env);
  if(new URL(request.url).pathname!=='/v1/life-back')return null;
  if(!['GET','POST'].includes(request.method))return json({error:'Method not allowed'},405);
- if(request.method==='POST'&&request.headers.get('Origin')!==new URL(request.url).origin)return json({error:'Use this page to save your check-in.'},403);
+ if(request.method==='POST'&&![new URL(request.url).origin,'https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(request.headers.get('Origin')))return json({error:'Use this page to save your check-in.'},403);
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
  try{
   const read=async()=>parse((await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first())?.preferences);

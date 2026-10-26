@@ -1,5 +1,5 @@
 import {loadGrubCatalogue} from './grub-routes.mjs';
-import {usableCatalogue,emptyGrub,shoppingForWeek} from './grub-workspace.mjs';
+import {usableCatalogue,emptyGrub,shoppingForWeek,mealFamily} from './grub-workspace.mjs';
 import {recommendationFor,grubMemberContext} from './grub-intelligence.mjs';
 import {allOffers} from './support-records.mjs';
 const toText=v=>typeof v==='string'?v:v?.text||v?.instruction||'';
@@ -8,7 +8,15 @@ export function prepareFoodFromRecords(prefs,s,recipes,previous,input={}){
  const a=s.nextShift;if(!a?.practical||a.kind!=='food')return;
  const state=structuredClone(prefs.grubV2||emptyGrub()),context=grubMemberContext(prefs);
  const rejected=new Set(allOffers(s).filter(o=>(o.reviews||[]).some(r=>['not-fit','not-helped'].includes(r.outcome))).map(o=>o.practical?.recipeId).filter(Boolean));
- const pool=recipes.filter(r=>!rejected.has(r.id));
+ const rejectedFormats=new Set(allOffers(s).filter(o=>(o.reviews||[]).some(r=>r.outcome==='not-fit'&&r.reason==='idea')).map(o=>recipes.find(r=>r.id===o.practical?.recipeId)).filter(Boolean).map(mealFamily));
+ let pool=recipes.filter(r=>!rejected.has(r.id)&&!rejectedFormats.has(mealFamily(r)));
+ const prior=recipes.find(r=>r.id===previous?.nextShift?.practical?.recipeId);
+ if(a.practical.key==='assembly'&&prior){
+  pool=pool.filter(r=>r.cook_minutes===0&&Number.isFinite(r.minutes)&&Number.isFinite(prior.minutes)&&(r.minutes<prior.minutes||r.minutes<=prior.minutes&&r.ingredients.length<prior.ingredients.length));
+  if(!pool.length){
+   a.kind='support';a.title='No extra cooking job tonight.';a.detail='Keep your familiar fallback';a.practical={key:'pause',kind:'support',memoryId:a.practical.memoryId,title:a.title,name:a.detail,time:'You can leave the new idea for now',items:[],steps:['Use a familiar meal already available that suits your needs.','Leave the new meal idea for another day. There is nothing to catch up.'],href:'/member/grub',label:'Keep tonight manageable',fallback:'Your existing agreed plan is still available.',source:'no_simpler_matching_recipe'};a.reason='You asked for less effort. I could not find a simpler matching meal in your saved choices, so I have left out the new cooking task.';a.awaitingChoice=false;s.memberSupport.response=a.reason;return;
+  }
+ }
  if(state.options?.effort==='five')context.maxMinutes=Math.min(context.maxMinutes||Infinity,5);
  if(a.practical.key==='assembly')state.options={...state.options,effort:'no-cook'};
  if(input.outcome==='helped'&&previous?.nextShift?.practical?.recipeId)state.recommendation={recipeId:previous.nextShift.practical.recipeId};
@@ -16,7 +24,7 @@ export function prepareFoodFromRecords(prefs,s,recipes,previous,input={}){
  if(!r){unavailable(a,selected.message,'/member/grub');return;}
  const servings=Number.isInteger(selected.servings)&&selected.servings>=1&&selected.servings<=8?selected.servings:r.servings;
  const items=shoppingForWeek([{recipeId:r.id,servings}],pool).map(i=>i.text);
- a.practical={...a.practical,pending:false,recipeId:r.id,name:r.name,time:(r.minutes!==null?'About '+r.minutes+' minutes · ':'')+'serves '+servings,items,steps:r.method.map(toText).filter(Boolean),source:'published_catalogue',sourcePreferencesRevision:prefs.grubV2?.revision||0,allergens:r.allergens,allergenNote:r.allergen_note,foodSafety:r.food_safety,fallback:'If this does not fit, use a familiar meal that suits your needs or review your food choices. Check ingredients and product labels.'};
+ a.practical={...a.practical,pending:false,recipeId:r.id,name:r.name,minutes:r.minutes,ingredientCount:r.ingredients.length,time:(r.minutes!==null?'About '+r.minutes+' minutes · ':'')+'serves '+servings,items,steps:r.method.map(toText).filter(Boolean),source:'published_catalogue',sourcePreferencesRevision:prefs.grubV2?.revision||0,allergens:r.allergens,allergenNote:r.allergen_note,foodSafety:r.food_safety,fallback:'If this does not fit, use a familiar meal that suits your needs or review your food choices. Check ingredients and product labels.'};
  a.detail=r.name;a.reason=[a.reason,...selected.reasons,'This is the reviewed recipe and ingredient list, using your saved Grub choices.'].filter(Boolean).join(' ');
  a.awaitingChoice=false;
 }

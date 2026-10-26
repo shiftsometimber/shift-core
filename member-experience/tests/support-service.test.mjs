@@ -9,7 +9,22 @@ import {prepareFoodFromRecords,prepareMovementFromPlan} from '../support-prepare
 import {fixture} from '../../health-passport/fixture.mjs';
 import {supportTeamRoutes} from '../../shift-coach/support-team.mjs';
 import {createHash} from 'node:crypto';
+import {memberHealthRoutes} from '../health-routes.mjs';
+import {supportPlanHTML} from '../support-plan-pages.mjs';
 const at='2026-10-01T12:00:00Z';
+test('the standalone support page loads the same-origin account adapter before its consent-dependent client',()=>{
+ assert.match(supportPlanHTML,/window.SST_API_BASE=location.origin/);
+ const adapter=supportPlanHTML.indexOf('src="/api-adapter-v33d.js"'),consent=supportPlanHTML.indexOf('src="/assets/member-experience/health.mjs"');
+ assert(adapter>=0&&consent>adapter);
+});
+test('the Today feeling save rejects a changed account and reads back from the existing check-in record',async t=>{
+ const f=fixture({seed:false});t.after(()=>f.close());f.db.prepare('UPDATE consents SET granted=1 WHERE user_id=1').run();
+ const feeling=account=>new Request('https://shiftsometimber.co.uk/v1/check-ins',{method:'POST',headers:{Cookie:'sst_session=test-only-member-1','Content-Type':'application/json'},body:JSON.stringify({mood:'Good',expectedAccount:account})});
+ assert.equal((await memberHealthRoutes(feeling(2),f.env)).status,409);assert.equal(f.db.prepare('SELECT count(*) n FROM check_ins').get().n,0);
+ assert.equal((await memberHealthRoutes(feeling(1),f.env)).status,201);
+ const r=await lifeBackRoutes(new Request('https://shiftsometimber.co.uk/v1/life-back',{headers:{Cookie:'sst_session=test-only-member-1'}}),f.env);
+ assert.equal((await r.json()).day.mood.label,'Good');
+});
 const op=(s,action,rest={},date=at)=>applyLifeBackOperation(s,{action,revision:s.revision,operationId:'service-'+crypto.randomUUID(),...rest},date);
 const start=()=>op(emptyLifeBack(),'support-start',{choice:'late'});
 const feedback=(s,outcome,date=at)=>op(s,'shift-feedback',{shiftId:s.nextShift.id,outcome},date);
@@ -135,4 +150,16 @@ test('prepared movement uses the member’s saved session without changing presc
  s.nextShift.reviews.push({outcome:'not-helped',at});s.shiftHistory=[s.nextShift];s.nextShift=structuredClone(s.nextShift);s.nextShift.id='new-step';s.nextShift.reviews=[];
  prepareMovementFromPlan(s,plan,12);assert.equal(s.nextShift.practical.name,'Saved mobility session');
  const missing=op(emptyLifeBack(),'support-start',{choice:'movement'});prepareMovementFromPlan(missing,null,null);assert.equal(missing.nextShift.practical.pending,true);
+});
+test('less effort is a measurable reduction, or Timber honestly leaves out the new cooking task',()=>{
+ const recipes=[recipe('everyday-ham-sandwich','Ham sandwich','Ham'),recipe('everyday-tuna-sandwich','Tuna sandwich','Tuna')];
+ let s=start();prepareFoodFromRecords({},s,recipes,null);const previous=structuredClone(s);
+ s=op(s,'shift-feedback',{shiftId:s.nextShift.id,outcome:'not-fit',reason:'effort'});
+ prepareFoodFromRecords({},s,recipes,previous,{reason:'effort'});
+ assert.equal(s.nextShift.kind,'support');assert.match(s.memberSupport.response,/could not find a simpler matching meal/);assert.equal(reportedHelpful(s).length,0);
+});
+test('not liking the idea excludes its food format, not just the particular filling',()=>{
+ const recipes=[recipe('everyday-ham-sandwich','Ham sandwich','Ham'),recipe('everyday-tuna-sandwich','Tuna sandwich','Tuna'),{...recipe('industrial-rice-beans','Bean rice bowl','Beans'),ingredients:[{item:'Rice',amount:'100g'},{item:'Beans',amount:'100g'}],food_format:'rice'}];
+ let s=start();prepareFoodFromRecords({},s,recipes,null);const previous=structuredClone(s);s=op(s,'shift-feedback',{shiftId:s.nextShift.id,outcome:'not-fit',reason:'idea'});prepareFoodFromRecords({},s,recipes,previous,{reason:'idea'});
+ assert.equal(s.nextShift.practical.recipeId,'industrial-rice-beans');
 });
