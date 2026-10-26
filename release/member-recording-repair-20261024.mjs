@@ -56,8 +56,10 @@ export const RECORDING_REPAIR_REGISTRATION=Object.freeze(["release/member-record
 export const RECORDING_REPAIR_RECEIPT='release/member-recording-repair-20261024.json';
 export const RECORDING_REPAIR_AUTHORITY=Object.freeze({"owner": "Matt", "instruction": "Arh ok….. sort then please; SHIFT — BREAK THE BOTTLENECK AND FINISH THE APPROVED WORK: eliminate repeated Git subprocesses and duplicate full-file scans while retaining underlying safety assertions, mutation checks and current-source protection.", "accountDeletion": "Deletion / cancel my account needs to be an immediate thing. Not send it off", "homepage": false, "newAppleSubmission": false, "messaging": false, "realAccountDeletionTest": false, "personalHealthRead": false, "backendCompletion": "Matt: SHIFT — CONSOLIDATE RELEASE OWNERSHIP AND FINISH THE BACKEND", "passwordPolicy": "Owner-approved PR1415 ten characters with capital and special character", "clinicalActivation": false, "realCharge": false, "stockCommitment": false});
 const actualReadFileSync=readFileSync,actualLstatSync=lstatSync;
-function joinedRecordingPredecessorBytes(path,value){
- const proof=qualifyJoinedSuccessor();proof.assertOwnedBytes();
+function joinedRecordingPredecessorBytes(path,value,ownedReadProof){
+ // An internal native read loop authenticates all owned bytes at both boundaries.
+ // Each projected file still performs its original fresh physical byte assertion.
+ const proof=ownedReadProof??qualifyJoinedSuccessor();if(!ownedReadProof)proof.assertOwnedBytes();
  return Object.hasOwn(proof.predecessorPins,path)?proof.restoreFile(path,value):value;
 }
 const git=(...args)=>immutableHistoryExecFileSync('git',args,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
@@ -75,7 +77,7 @@ export function validateRecordingRepairReceipt(receipt){
 let cached=null,qualificationDepth=0;
 function verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt){
  const frozen=immutableHistorySourceHead(),head=recordingTickerHelpers().approvedTickerPredecessorHead()??qualifyJoinedSuccessor().legacyHead;
- if(frozen&&qualificationDepth&&cached?.head===head){for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(recordingTickerWorkingBytes(path)),pin,'Actual repair bytes changed: '+path);}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
+ if(frozen&&qualificationDepth&&cached?.head===head){const ownedReadProof=qualifyJoinedSuccessor();ownedReadProof.assertOwnedBytes();try{for(const [path,pin]of cached.filePins){const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(recordingTickerWorkingBytes(path,ownedReadProof)),pin,'Actual repair bytes changed: '+path);}}finally{ownedReadProof.assertOwnedBytes();}if(suppliedReceipt)assert.deepEqual(suppliedReceipt,cached.receipt,'Native repair receipt must not be substituted');return cached;}
  assert.equal(git('--no-optional-locks','-c','diff.autoRefreshIndex=false','diff','--no-ext-diff','--no-textconv','--no-renames','--patch','--binary','HEAD','--').length,0,'Repair worktree must be clean');
  assert.equal(git('diff','--cached','--name-only','--'),'','Repair index must be clean');
  const receipt=validateRecordingRepairReceipt(JSON.parse(bytes(head,RECORDING_REPAIR_RECEIPT)));
@@ -89,11 +91,12 @@ function verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt){
   assert.equal(git('rev-parse',head+':'+path),pin,'Current repair payload changed: '+path);
  }
  for(const path of RECORDING_REPAIR_REGISTRATION)assert.equal(bytes(head,path),bytes(receipt.registrationSource,path),'Registration source changed: '+path);
- for(const path of [...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT]){
+ const ownedReadProof=qualifyJoinedSuccessor();ownedReadProof.assertOwnedBytes();
+ try{for(const path of [...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT]){
   assert(git('ls-tree',head,'--',path).startsWith('100644 blob '),'Regular repair file required: '+path);
   const stat=lstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular worktree file required: '+path);
-  assert.equal(oid(recordingTickerWorkingBytes(path)),git('rev-parse',head+':'+path),'Actual repair bytes changed: '+path);
- }
+  assert.equal(oid(recordingTickerWorkingBytes(path,ownedReadProof)),git('rev-parse',head+':'+path),'Actual repair bytes changed: '+path);
+ }}finally{ownedReadProof.assertOwnedBytes();}
  for(const [path,data]of Object.entries(inverses))assert.equal(originalRecordingMaintenance(path,bytes(head,path)),bytes(RECORDING_REPAIR_BASE,path),'Every original source assertion must remain: '+path);
  const paths=[...RECORDING_REPAIR_PATHS,...RECORDING_REPAIR_REGISTRATION,RECORDING_REPAIR_RECEIPT],filePins=Object.freeze(paths.map(path=>Object.freeze([path,git('rev-parse',head+':'+path)])));
  const proof=Object.freeze({head,receipt,paths:RECORDING_REPAIR_PATHS,filePins});if(frozen&&qualificationDepth)cached=proof;return proof;
@@ -165,12 +168,12 @@ export function withMemberRecordingQualification(callback){
 }
 
 function recordingTickerHelpers(){return createRequire(import.meta.url)('./approved-news-ticker-frame-20261024.mjs');}
-function recordingTickerWorkingBytes(path){const value=actualReadFileSync(path),h=recordingTickerHelpers();return h.APPROVED_NEWS_TICKER_MAINTENANCE.includes(path)?h.approvedTickerOriginalWorkingBytes(path,value):joinedRecordingPredecessorBytes(path,value);}
+function recordingTickerWorkingBytes(path,ownedReadProof){const value=actualReadFileSync(path),h=recordingTickerHelpers();return h.APPROVED_NEWS_TICKER_MAINTENANCE.includes(path)?h.approvedTickerOriginalWorkingBytes(path,value):joinedRecordingPredecessorBytes(path,value,ownedReadProof);}
 export function verifyMemberRecordingRepair(suppliedReceipt){
  if(!qualificationDepth)return withMemberRecordingQualification(()=>verifyMemberRecordingRepair(suppliedReceipt));
  const ui=qualifyJoinedSuccessor();ui.assertOwnedBytes();
  // Keep the original closed-proof payload mutation failure before any later adapter.
- for(const [path,pin]of Object.entries(RECORDING_REPAIR_BLOBS)){const stat=actualLstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(joinedRecordingPredecessorBytes(path,actualReadFileSync(path))),pin,'Actual repair bytes changed: '+path);}
+ try{for(const [path,pin]of Object.entries(RECORDING_REPAIR_BLOBS)){const stat=actualLstatSync(path);assert(stat.isFile()&&!stat.isSymbolicLink(),'Regular repair file required: '+path);assert.equal(oid(joinedRecordingPredecessorBytes(path,actualReadFileSync(path),ui)),pin,'Actual repair bytes changed: '+path);}}finally{ui.assertOwnedBytes();}
  const h=recordingTickerHelpers(),raw=h.approvedTickerActualHead();
  if(raw){const proof=verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt);return Object.freeze({...proof,head:raw});}
  const outer=h.approvedNewsTickerOuterFrame();if(!outer)return verifyMemberRecordingRepairBeforeApprovedTicker(suppliedReceipt);
