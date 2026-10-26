@@ -36,7 +36,7 @@ const forumEnv=(env,DB)=>({...env,DB,MEMBER_EXPERIENCE_V1_ENABLED:'true',TIMBER_
 const privateProgress=async(DB,uid)=>{const row=await DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(uid).first();return JSON.parse(row?.preferences||'{}').lifeBack?.progress||{};};
 export function privateSituation(progress){
  const s=progress.memberSupport||{};
- if(['changing','stopped','finished'].includes(s.stage))return 'after-treatment';
+ if(['changing','stopped'].includes(s.stage))return 'after-treatment';
  if(s.stage==='returning')return 'returning';
  const m=(s.memories||[]).findLast(x=>!x.retiredAt);
  return situations.has(m?.choice)?m.choice:'general';
@@ -147,6 +147,8 @@ export async function shedSupportRoutes(request,env){
    const draft=await DB.prepare('SELECT * FROM timber_shed_support_drafts WHERE id=? AND user_id=? AND expires_at>?').bind(input.draftId,uid,at).first();if(!draft)fail('This preview expired. Prepare it again.',409);
    if(draft.published_at)return json({ok:true,id:draft.id,status:'pending',duplicate:true});
    if(!participation.healthConsent)fail('Review the sharing consent first.',403);
+   const quota=await DB.prepare('SELECT COUNT(*) n FROM timber_shed_forum_posts WHERE user_id=? AND created_at>=?').bind(uid,new Date(Date.now()-86400000).toISOString()).first();
+   if(Number(quota?.n||0)>=5)fail('The daily sharing limit is five posts. Your preview stays private.',429);
    const screening=screenForumText({title:draft.title,body:draft.body});
    await DB.batch([DB.prepare("INSERT INTO timber_shed_forum_posts(id,user_id,room_id,title,body,status,created_at) VALUES(?,?,?,?,?,'pending',?)").bind(draft.id,uid,draft.room_id,draft.title,draft.body,at),DB.prepare('INSERT INTO timber_shed_bouncer_screenings(post_id,policy_version,model_name,severity,priority,categories_json,screened_at) VALUES(?,?,?,?,?,?,?)').bind(draft.id,screening.policyVersion,null,screening.severity,screening.priority,JSON.stringify(screening.categories),at),DB.prepare('INSERT INTO timber_shed_support_tips(post_id,user_id,source_id,offer_id,category,action_key,recipe_id,situation) VALUES(?,?,?,?,?,?,?,?)').bind(draft.id,uid,draft.source_id,draft.offer_id,draft.category,draft.action_key,draft.recipe_id,draft.situation),DB.prepare('UPDATE timber_shed_support_drafts SET published_at=? WHERE id=? AND user_id=? AND published_at IS NULL').bind(at,draft.id,uid)]);
    return json({ok:true,id:draft.id,status:'pending',message:'Saved exactly as previewed. It stays private until moderation.'},201);
