@@ -15,6 +15,8 @@ const before=latestDeployment(JSON.parse(readFileSync('deployment-before.json'))
 const active=latestDeployment(JSON.parse(cli('deployments','list','--json')));
 assert.equal(active.id,before.id,'Runtime moved since capture; stop stale release');
 mkdirSync('b1-runtime-release',{recursive:true});
+// Read the zone before building/uploading; this version-only release adds no routes.
+execFileSync('python3',['scripts/cloudflare-route-capacity.py','check','--intent','content-only','--report','b1-runtime-release/route-capacity.json'],{stdio:'inherit'});
 const independentOptions={accountId:process.env.CLOUDFLARE_ACCOUNT_ID,token:process.env.CLOUDFLARE_API_TOKEN};
 const independentBefore=await captureIndependentPresentation(independentOptions);
 writeFileSync('b1-runtime-release/independent-presentation-before.json',JSON.stringify(independentBefore,null,2));
