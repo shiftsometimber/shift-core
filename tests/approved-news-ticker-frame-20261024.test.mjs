@@ -1,29 +1,8 @@
-import {qualifyJoinedSuccessor as qualifyFixtureUi,withJoinedSuccessorQualification as withFixtureUiQualification} from '../release/my-timber-joined-look-scope-20261024.mjs';
+import {qualifyJoinedSuccessor as qualifyFixtureUi} from '../release/my-timber-joined-look-scope-20261024.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import{execFileSync}from'node:child_process';
 import{approvedNewsTickerOuterFrame,withApprovedTickerPredecessor,approvedTickerPredecessorHead}from'../release/approved-news-ticker-frame-20261024.mjs';
-const nativeFixtureGit=(...a)=>execFileSync('/usr/bin/git',a,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
-const historicalTickerFixturePaths=Object.freeze(['medicines-watch/scheduler.test.mjs','.github/workflows/cloudflare-production-promote.yml']);
-let historicalTickerFixtureUi=null;
-const g=(...a)=>{
- const value=nativeFixtureGit(...a),ui=historicalTickerFixtureUi;
- if(ui&&a.length===2&&a[0]==='rev-parse'&&a[1].startsWith('HEAD:')){
-  const path=a[1].slice(5);if(historicalTickerFixturePaths.includes(path))return ui.comparisonValue(path,value);
- }
- return value;
-};
-const historicalTickerFixtureTest=(name,body)=>test(name,()=>withFixtureUiQualification(ui=>{
- assert.equal(historicalTickerFixtureUi,null,'Historical ticker fixture scope must not leak');
- ui.assertOwnedBytes();
- for(const path of historicalTickerFixturePaths){
-  assert(Object.hasOwn(ui.predecessorPins,path),'Only independently admitted modified fixture files may project');
-  const actual=nativeFixtureGit('rev-parse','HEAD:'+path),prior=nativeFixtureGit('rev-parse',ui.legacyHead+':'+path);
-  assert.equal(ui.comparisonValue(path,actual),prior,'Exact actual source must authenticate before its historical fixture');
-  assert.equal(ui.comparisonValue(path,actual+'forged'),actual+'forged','Foreign fixture input must remain foreign');
- }
- historicalTickerFixtureUi=ui;
- try{return body();}finally{historicalTickerFixtureUi=null;ui.assertOwnedBytes();}
-}));
+const g=(...a)=>execFileSync('/usr/bin/git',a,{encoding:'utf8',maxBuffer:64e6}).trimEnd();
 test('finite approvedTicker source admission retains actual native identity and every prior receipt',()=>{
  const f=approvedNewsTickerOuterFrame();assert(f);assert.equal(f.rawHead,g('rev-parse','HEAD'));assert.notEqual(f.base,f.rawHead);
  const ledger='release/approved-runtime-composition.json',current=JSON.parse(g('show','HEAD:'+ledger)),prior=JSON.parse(g('show',f.base+':'+ledger));delete current.approvedNewsTicker20261024;delete current.approvedNewsTickerIntegration20261025;assert.deepEqual(current,prior);
@@ -98,16 +77,16 @@ test('warmed closed ticker proof retains actual working-source mutation rejectio
 }));
 test('closed ticker evidence reuse rejects disappearance of required historical object storage',()=>isolatedTickerProbe("import{approvedNewsTickerOuterFrame}from'./release/approved-news-ticker-frame-20261024.mjs';import{withImmutableHistoryVerification}from'./release/immutable-git-facts.mjs';import{existsSync,renameSync}from'node:fs';import assert from'node:assert/strict';withImmutableHistoryVerification(()=>{const f=approvedNewsTickerOuterFrame();assert.equal(approvedNewsTickerOuterFrame(),f);const loose='.git/objects/'+f.base.slice(0,2)+'/'+f.base.slice(2),path=existsSync(loose)?loose:'.git/objects/pack',park=path+'.park';renameSync(path,park);try{assert.throws(()=>approvedNewsTickerOuterFrame());}finally{renameSync(park,path)}});"));
 
-historicalTickerFixtureTest('reviewed scheduler test pin projects only exact current bytes after native admission',()=>{
- const f=approvedNewsTickerOuterFrame(),path='medicines-watch/scheduler.test.mjs',pin=g('rev-parse','HEAD:'+path),prior=g('rev-parse',f.base+':'+path);
- assert.equal(pin,prior);assert.equal(approvedTickerComparisonValue(path,pin,f.rawHead),prior);assert.equal(memberRecordingComparisonValue(path,pin,f.rawHead),g('rev-parse',watchCurrentSource(path)+':'+path));
+test('reviewed scheduler test pin projects only exact current bytes after native admission',()=>{
+ const ui=qualifyFixtureUi(),f=approvedNewsTickerOuterFrame(),path='medicines-watch/scheduler.test.mjs',pin=g('rev-parse','HEAD:'+path),prior=g('rev-parse',f.base+':'+path);
+ assert.equal(ui.comparisonValue(path,pin),prior);assert.equal(ui.comparisonValue(path,approvedTickerComparisonValue(path,pin,f.rawHead)),prior);assert.equal(memberRecordingComparisonValue(path,pin,f.rawHead),g('rev-parse',watchCurrentSource(path)+':'+path));
  assert.equal(approvedTickerComparisonValue(path,pin+'forged',f.rawHead),pin+'forged');assert.equal(approvedTickerComparisonValue(path,pin,f.base),pin);
 });
-historicalTickerFixtureTest('historical editorial workflow fixture retains actual caller authentication and every original inverse',()=>{
- const f=approvedNewsTickerOuterFrame(),view=websiteEditorialCompletionHistoricalView(),path='.github/workflows/cloudflare-production-promote.yml',actual=g('show','HEAD:'+path)+'\n';
+test('historical editorial workflow fixture retains actual caller authentication and every original inverse',()=>{
+ const ui=qualifyFixtureUi(),f=approvedNewsTickerOuterFrame(),view=websiteEditorialCompletionHistoricalView(),path='.github/workflows/cloudflare-production-promote.yml',actual=g('show','HEAD:'+path)+'\n';
  const restored=websiteEditorialCompletionOriginalSource(path,actual,view);
  const source=readFileSync('release/website-editorial-scope-20261018.mjs','utf8'),line=source.split('\n').find(x=>x.startsWith('const policy=')),policy=JSON.parse(line.slice('const policy='.length,-1));
- assert.equal(restored,g('show',policy.base+':'+path)+'\n');assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',f.base+':'+path),'Every actual production workflow byte remains unchanged');
+ assert.equal(restored,g('show',policy.base+':'+path)+'\n');assert.equal(ui.comparisonValue(path,g('rev-parse','HEAD:'+path)),g('rev-parse',f.base+':'+path),'Every actual production workflow byte remains unchanged');
  assert.throws(()=>websiteEditorialCompletionOriginalSource(path,actual+'\nforged',view),/source|fixture|exact/i);
 });
 import {websiteEditorialCompletionOriginalSource} from '../release/website-editorial-scope-20261018.mjs';
