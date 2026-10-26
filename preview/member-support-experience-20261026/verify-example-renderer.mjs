@@ -31,6 +31,7 @@ for(const tab of ['today','journey','grub','fit','support','stuff']){
  app.click('tab',{page:tab});assert(app.nodes['#screen'].innerHTML.includes('<h1'));
  fs.writeFileSync(root+'snapshot-'+tab+'.html',app.nodes['#screen'].innerHTML);pass('complete '+tab+' markup renders');
 }
+app.click('tab',{page:'support'});assert(app.nodes['#screen'].innerHTML.indexOf('Need urgent help?')<app.nodes['#screen'].innerHTML.indexOf('ASK TIMBER'));app.click('symptoms');assert.match(app.nodes['#modal'].innerHTML,/Need urgent help/);assert.match(app.nodes['#modal'].innerHTML,/tel:999/);assert.match(app.nodes['#modal'].innerHTML,/tel:111/);assert.match(app.nodes['#modal'].innerHTML,/samaritans.org/);pass('urgent routes are prominent on Support and present inside symptom detail');app.click('close');
 app.click('tab',{page:'journey'});app.change('chartCase','gaps');assert.equal((app.nodes['#screen'].innerHTML.match(/<line /g)||[]).length,2);pass('gaps example does not connect missing dates');
 for(const metric of ['weight','waist','bp','energy','sleep']){app.change('measure',metric);assert.match(app.nodes['#screen'].innerHTML,/<svg viewBox=/);}pass('five chart measures render with units and record tables');
 const report={at:new Date().toISOString(),scope:'Offline renderer and synthetic model only. Browser launch unavailable; cloud workspace preview blocked by URL policy. No visual acceptance or live AI claim.',cases,productionWrites:0,communicationsSent:0};

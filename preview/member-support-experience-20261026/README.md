@@ -16,7 +16,7 @@ node verify-example-renderer.mjs
 
 Open the generated `My-Timber-Try-and-Return.html` for review. The generated file is a review artifact, not a public route or account application.
 
-The six model tests and nineteen offline renderer/DOM-contract cases passed. These are not browser geometry, physical-phone or human-usefulness checks. The available local browser runner had no installed browser executable, and the cloud browser refused the workspace URL under its security policy. No workaround was attempted. Visual/phone acceptance of this new preview remains outstanding.
+The six model tests and twenty offline renderer/DOM-contract cases passed. These are not browser geometry, physical-phone or human-usefulness checks. The available local browser runner had no installed browser executable, and the cloud browser refused the workspace URL under its security policy. No workaround was attempted. Visual/phone acceptance of this new preview remains outstanding.
 
 ## Preserve the live foundation
 
