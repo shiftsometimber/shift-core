@@ -10,7 +10,7 @@ const op=(s,action,rest={},date=at)=>applyLifeBackOperation(s,{action,revision:s
 const start=choice=>op(emptyLifeBack(),'support-start',{choice:choice||'late'});
 
 test('C1 new signed-out route supplies only labelled general examples and no member state',async()=>{
- const env={MEMBER_EXPERIENCE_V1_ENABLED:'true'},url='https://stage/my-timber/try';
+ const env={MEMBER_EXPERIENCE_V1_ENABLED:'true'},url='https://stage/member/get-started/try';
  const r=supportPlanRoutes(new Request(url),env),html=await r.text();
  assert.equal(r.status,200);assert.match(html,/fictional examples/i);assert.match(html,/data-try-choice="late"/);assert.match(html,/support-try.mjs/);
  assert.doesNotMatch(supportTryRuntime,/fetch\(|localStorage|sessionStorage|sendBeacon/);

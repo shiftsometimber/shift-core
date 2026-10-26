@@ -21,7 +21,7 @@ test('the scoped support release passes protected public, clinical and commerce 
 });
 test('member markup keeps existing account scripts and cookies and adds the support client only once',async()=>{
  const scheduled=()=>{};const original={scheduled,fetch:async()=>new Response('<html><body><script src="/existing-account.js"></script></body></html>',{headers:{'Content-Type':'text/html','Set-Cookie':'existing=value; Secure; HttpOnly'}})};
- const wrapped=wrapSupportMarkup(original),request=new Request('https://shiftsometimber.co.uk/member/dashboard');const r=await wrapped.fetch(request,{},{}),html=await r.clone().text();assert.match(html,/existing-account.js/);assert.equal(r.headers.get('Set-Cookie'),'existing=value; Secure; HttpOnly');assert.equal((html.match(/src="\/assets\/member-experience\/support-plan.mjs"/g)||[]).length,1);
+ const wrapped=wrapSupportMarkup(original),request=new Request('https://shiftsometimber.co.uk/member/dashboard');const r=await wrapped.fetch(request,{},{}),html=await r.clone().text();assert.match(html,/existing-account.js/);assert.equal(r.headers.get('Set-Cookie'),'existing=value; Secure; HttpOnly');assert.equal((html.match(/src="\/assets\/member-experience\/programme-support-plan.mjs"/g)||[]).length,1);
  const twice=await wrapSupportMarkup({fetch:async()=>r}).fetch(request,{},{});assert.equal(await twice.text(),html);
 });
 test('the existing website origins have CORS preflight while an unrelated site is rejected',async()=>{
