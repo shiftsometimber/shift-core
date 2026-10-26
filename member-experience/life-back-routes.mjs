@@ -3,6 +3,8 @@ import {trackingConsent} from './health-routes.mjs';
 import {score,areas,hasPersonalGoal} from './life-back/model.mjs';
 import {advanceNextShift,focusNextShift,markNextShift,startNextShift,reviewNextShift,resetNextShift,lifeBackUsage} from './life-back/next-shift.mjs';
 import {connectedDay} from './journey-context.mjs';
+import {applySupportOperation,supportSummary} from './support-plan.mjs';
+const supportView=progress=>({...progress,supportSummary:supportSummary(progress)});
 const headers={'Cache-Control':'no-store','Vary':'Cookie','X-Content-Type-Options':'nosniff'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
 const parse=v=>{try{return JSON.parse(v||'{}')}catch{return {}}};
@@ -33,6 +35,8 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
   if(!entry)fail('This saved entry is no longer available.',404);
   if(typeof input.note!=='string'||input.note.trim().length>180)fail('Keep your words under 180 characters.');
   entry.win=input.note.trim();entry.correctedAt=at;
+ }else if(applySupportOperation(next,input,at)){
+  // Scoped member-owned support operations use the existing API guards.
  }else if(input.action==='shift-status'){
   markNextShift(next,input,at);
  }else if(input.action==='checkin'){
@@ -56,17 +60,18 @@ export async function lifeBackRoutes(request,env){
  try{
   const read=async()=>parse((await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first())?.preferences);
   let prefs=await read();
-  if(request.method==='GET')return json({progress:prefs.lifeBack?.progress||emptyLifeBack(),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(prefs.lifeBack?.progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+  if(request.method==='GET')return json({accountId:auth.userId,progress:supportView(prefs.lifeBack?.progress||emptyLifeBack()),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(prefs.lifeBack?.progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
   const raw=await request.text();if(raw.length>8000)return json({error:'Check-in is too large.'},413);
   let input;try{input=JSON.parse(raw)}catch{return json({error:'Invalid check-in.'},400)}
   if(!input||typeof input!=='object'||Array.isArray(input))return json({error:'Invalid check-in.'},400);
+  if(input.expectedAccount!==undefined&&String(input.expectedAccount)!==String(auth.userId))return json({error:'Your signed-in account changed. Reload before saving.'},409);
   if(!await trackingConsent(env.DB,auth.userId))return json({error:'Optional health tracking is off. Review your choice before saving.',code:'health_consent_required'},409);
   await env.DB.prepare('INSERT OR IGNORE INTO member_state(user_id) VALUES(?)').bind(auth.userId).run();
   for(let attempt=0;attempt<4;attempt++){
    const old=prefs.lifeBack?.progress||emptyLifeBack(),next=applyLifeBackOperation(old,input);
-   if(next.revision===old.revision)return json({ok:true,progress:old});
+   if(next.revision===old.revision)return json({ok:true,accountId:auth.userId,progress:supportView(old)});
    const result=await env.DB.prepare("UPDATE member_state SET preferences=json_set(CASE WHEN json_type(preferences,'$.lifeBack')='object' THEN preferences ELSE json_set(preferences,'$.lifeBack',json('{}')) END,'$.lifeBack.progress',json(?)),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1").bind(JSON.stringify(next),new Date().toISOString(),auth.userId,old.revision,auth.userId).run();
-   if(result.meta.changes===1)return json({ok:true,progress:next},201);
+   if(result.meta.changes===1)return json({ok:true,accountId:auth.userId,progress:supportView(next)},201);
    if(!await trackingConsent(env.DB,auth.userId))return json({error:'Health tracking was switched off before this save.',code:'health_consent_required'},409);
    prefs=await read();
   }

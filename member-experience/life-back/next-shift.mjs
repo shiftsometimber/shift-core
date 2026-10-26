@@ -1,4 +1,5 @@
 // One account-backed, non-clinical action. No AI inference, treatment changes or analytics payloads.
+import {reviewPracticalSupport} from '../support-plan.mjs';
 export const supportNeeds=['auto','food','movement','routine','confidence','clinic-quiet','coming-off','steady'];
 export const feedbackOutcomes=['helped','not-fit','not-helped','not-tried','skip'];
 const actions={
@@ -93,6 +94,7 @@ export function reviewNextShift(state,input,at){
  const active=state.nextShift;
  if(!active||active.id!==input.shiftId||!feedbackOutcomes.includes(input.outcome))fail('Your next Shift changed. Reload before answering.',409);
  if(active.awaitingChoice)fail('Choose another support topic before reviewing a new step.',409);
+ if(reviewPracticalSupport(state,input,at))return;
  const entry={id:null,ratings:state.entries.findLast(e=>e.goalId===state.goalId)?.ratings||{}};
  advanceNextShift(state,{operationId:input.operationId,shiftFeedback:{shiftId:input.shiftId,outcome:input.outcome}},entry,at);
 }
@@ -106,7 +108,7 @@ export function markNextShift(state,input,at){
 export function nextShiftCard(progress){
  const a=progress?.nextShift;
  if(!a||a.goalId!==progress.goalId)return null;
- return {title:a.title,detail:a.detail,href:a.kind==='clinic-quiet'?actions['clinic-quiet'].href:a.href,label:a.kind==='clinic-quiet'?actions['clinic-quiet'].label:a.label,loopId:a.awaitingChoice?null:a.id,loopStatus:a.status,reason:a.reason,goal:a.goal,awaitingChoice:!!a.awaitingChoice,evidence:{helpfulAnswers:[...(progress.shiftHistory||[]),a].filter(s=>s.goalId===progress.goalId).flatMap(s=>s.reviews||[]).filter(r=>r.outcome==='helped').length}};
+ return {practical:a.practical||null,title:a.title,detail:a.detail,href:a.kind==='clinic-quiet'?actions['clinic-quiet'].href:a.href,label:a.kind==='clinic-quiet'?actions['clinic-quiet'].label:a.label,loopId:a.awaitingChoice?null:a.id,loopStatus:a.status,reason:a.reason,goal:a.goal,awaitingChoice:!!a.awaitingChoice,evidence:{helpfulAnswers:[...(progress.shiftHistory||[]),a].filter(s=>s.goalId===progress.goalId).flatMap(s=>s.reviews||[]).filter(r=>r.outcome==='helped').length}};
 }
 export function lifeBackUsage(progress){
  const entries=progress?.entries||[],shifts=[...(progress?.shiftHistory||[]),...(progress?.nextShift?[progress.nextShift]:[])];
