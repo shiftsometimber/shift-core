@@ -5,7 +5,7 @@ import {memberImageViewerRuntime} from '../shift-coach/member-image-viewer.mjs';
 export const digest=value=>createHash('sha256').update(value).digest('hex');
 export function canonicalRuntime(bundle){
  assert.equal(bundle.split('export {').length,2,'Expected one module export block');
- for(const declaration of ['var liveAppClient = appClient + memberDesignClient;','var memberImageViewerRuntime ='])
+ for(const declaration of ['var liveAppClient = appClient + memberDesignClient + "\\n" + sixPageRecoveryRuntime;','var memberImageViewerRuntime ='])
   assert.equal(bundle.split(declaration).length,2,'Expected one native client binding');
  const insertion='// Native client serialization retained across bundling.\n'+'liveAppClient = '+JSON.stringify(liveAppClient)+';\nmemberImageViewerRuntime = '+JSON.stringify(memberImageViewerRuntime)+';\n';
  const result=bundle.replace('export {',insertion+'export {');
