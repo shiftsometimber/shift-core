@@ -29,3 +29,5 @@ test('the existing website origins have CORS preflight while an unrelated site i
  for(const origin of ['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']){const r=await wrapped.fetch(new Request('https://api.shiftsometimber.co.uk/v1/life-back',{method:'OPTIONS',headers:{Origin:origin}}),{},{});assert.equal(r.status,204);assert.equal(r.headers.get('Access-Control-Allow-Origin'),origin);}
  assert.equal((await wrapped.fetch(new Request('https://api.shiftsometimber.co.uk/v1/life-back',{method:'OPTIONS',headers:{Origin:'https://unrelated.invalid'}}),{},{})).status,403);
 });
+
+test('existing programme route prefixes reach private support and check-in auth without new provider routes',async()=>{const wrapped=wrapSupportService({fetch:async()=>new Response('fallback',{status:404})});for(const path of ['/v1/life-back/member-support','/v1/life-back/check-in','/v1/life-back/support-inbox']){const r=await wrapped.fetch(new Request('https://shiftsometimber.co.uk'+path),{MEMBER_EXPERIENCE_V1_ENABLED:'true'},{});assert.ok([401,403].includes(r.status),path+' stays private');}});

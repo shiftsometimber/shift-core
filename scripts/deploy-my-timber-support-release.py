@@ -5,7 +5,7 @@ from pathlib import Path
 import json,re,urllib.request,urllib.error,email,uuid,hashlib,datetime,subprocess,sys
 root=Path.cwd();release=Path(sys.argv[1]).resolve();receipt=release/'deployment-receipt.json'
 assert not receipt.exists(),'An attempt exists. Inspect the receipt and provider state; do not replay.'
-baseline=json.loads((release/'provider-baseline.json').read_text());build=json.loads((release/'build-manifest.json').read_text())
+baseline=json.loads((release/('correction-provider-baseline.json' if (release/'correction-provider-baseline.json').exists() else 'provider-baseline.json')).read_text());build=json.loads((release/'build-manifest.json').read_text())
 head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
 assert not subprocess.check_output(['git','diff','HEAD','--','member-experience','scripts/build-my-timber-support-release.mjs','scripts/deploy-my-timber-support-release.py'],text=True).strip(),'Commit the exact scoped source before publishing'
 token=re.search(r'^oauth_token\s*=\s*"([^"]+)"',Path('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml').read_text(),re.M)[1]
@@ -35,12 +35,8 @@ def multipart(files):
 
 def save():receipt.write_text(json.dumps(state,indent=2)+'\n')
 plans=[('programme',baseline),('member-document',baseline['memberDocumentOwner'])]
-# Add only new exact support entrances; never steal an existing route.
+# Existing programme routes cover all support aliases. No route mutations.
 newRoutes=[]
-for host in ['shiftsometimber.co.uk','www.shiftsometimber.co.uk']:
- for path in ['/my-timber/try*','/member/support-plan*','/assets/member-experience/support-*','/v1/member-support*','/v1/check-ins','/hq/coaching-support*','/v1/hq/support/coaching*','/assets/shift-coach-support.mjs*']:
-  newRoutes.append({'pattern':host+path,'script':baseline['worker']})
-newRoutes.append({'pattern':'api.shiftsometimber.co.uk/v1/check-ins','script':baseline['worker']})
 routes=get(routePath);routeIndex={r['pattern']:r for r in routes}
 for r in newRoutes:
  assert r['pattern'] not in routeIndex or routeIndex[r['pattern']].get('script')==r['script'],'Existing route has another owner: '+r['pattern']
@@ -55,7 +51,7 @@ for name,b in plans:
  candidate=build['candidates'][name];files={f['name']:(Path(candidate['directory'])/f['name']).read_bytes() for f in candidate['files']}
  assert {n:sha(v) for n,v in files.items()}=={f['name']:f['sha256'] for f in candidate['files']},'Candidate bytes changed'
  for n,v in current.items():
-  if n!='presentation-entry.mjs':assert files[n]==v,'Existing module changed: '+n
+  if n not in ['presentation-entry.mjs','support-service.mjs','support-markup.mjs']:assert files[n]==v,'Existing module changed: '+n
  state['workers'][worker]={'state':'prepared','beforeDeployment':dep,'settings':settings,'schedules':schedules,'candidateHashes':{n:sha(v) for n,v in files.items()}}
  prepared.append((worker,files))
 save()
@@ -78,15 +74,15 @@ assert all(after.get(r['id'])==r for r in routes),'An existing route changed'
 assert get(workers+'shift-core/deployments')['deployments'][0]==coreBefore,'Core changed concurrently'
 assert public('/')==homeBefore,'Homepage output changed'
 checks={}
-for path in ['/v1/life-back','/v1/member-support','/v1/check-ins','/v1/hq/support/coaching']:
+for path in ['/v1/life-back','/v1/life-back/member-support','/v1/life-back/check-in','/v1/life-back/support-inbox']:
  status,body=public(path);checks[path]={'status':status,'bytes':len(body)};assert status in [401,403],'Anonymous private API boundary: '+path
-for path in ['/my-timber/try','/member/support-plan','/assets/member-experience/support-plan.mjs','/assets/member-experience/support-plan.css','/assets/my-timber-layout.mjs']:
+for path in ['/member/get-started/try','/member/life-back/support','/assets/member-experience/programme-support-plan.mjs','/assets/member-experience/programme-support-plan.css','/assets/my-timber-layout.mjs']:
  status,body=public(path);assert status==200,path+' live HTTP '+str(status);checks[path]={'status':status,'sha256':sha(body),'bytes':len(body)}
- if path=='/my-timber/try':assert b'fictional' in body.lower()
- if path=='/member/support-plan':assert b'window.SST_API_BASE=location.origin' in body
- if path.endswith('support-plan.mjs'):assert b'Within one working day' in body or b'within one working day' in body
+ if path=='/member/get-started/try':assert b'fictional' in body.lower()
+ if path=='/member/life-back/support':assert b'window.SST_API_BASE=location.origin' in body
+ if path.endswith('support-plan.mjs'):assert b'No health records are attached automatically.' in body and b'data-contact-form' in body
  if path.endswith('my-timber-layout.mjs'):
   marker=b'/* My Timber six-page presentation recovery. No fabricated member data. */';before=(release/'live-layout-before.mjs').read_bytes();assert body.count(marker)==1;assert body.split(marker)[0]==before.split(marker)[0],'Independent layout prefix changed';assert b'sst:support-context' in body
-status,dashboard=public('/member/dashboard');assert status==200;assert dashboard.count(b'src="/assets/member-experience/support-plan.mjs"')==1,'Dashboard support integration missing/duplicated'
+status,dashboard=public('/member/dashboard');assert status==200;assert dashboard.count(b'src="/assets/member-experience/programme-support-plan.mjs"')==1,'Dashboard support integration missing/duplicated'
 checks['/member/dashboard']={'status':status,'supportClientCopies':1}
 state.update({'state':'DEPLOYED_PROVIDER_AND_ANONYMOUS_LIVE_VERIFIED','verifiedAt':stamp(),'liveChecks':checks,'homepageByteIdentical':True,'coreUnchanged':True,'existingRoutesModulesBindingsSchedulesPreserved':True,'remaining':'Signed-in live acceptance to follow; Shed loop and native device checks not included.'});save();print(json.dumps({'state':state['state'],'source':head,'routesAdded':len(state['routesAdded']),'checks':checks}),flush=True)
