@@ -2,7 +2,7 @@
   "at": "2026-10-26T20:18:28.005Z",
   "state": "HISTORICAL_FIELDS_SUPERSEDED_SEE_SINGLE_RELEASE_CONTINUATION",
   "singleReleaseContinuation": {
-    "at": "2026-10-27T06:27:37.172562+00:00",
+    "at": "2026-10-27T06:36:56.714129+00:00",
     "state": "SOURCE_REPAIRED_NOT_MEMBER_RELEASED",
     "parentSource": "f5ce4ddf3e3c03b982d76a99b394335b252bb74c",
     "sourceTests": {
@@ -39,19 +39,46 @@
     "realShedEnabled": false,
     "normalLoginFixLive": false,
     "candidateDeployment": {
-      "source": "353939230fdb8bf1a8c13b648e55dfebead89cc8",
+      "source": "aa8e14e87d99647e5a602bdaa3667eb06ec9a7ca",
       "state": "DEPLOYED_PROVIDER_AND_ANONYMOUS_LIVE_VERIFIED",
-      "programme": "e7e4210e-3013-40d0-bd18-c55cb1064488",
-      "memberDocument": "508bdbff-7dee-4aa0-bad4-afbdf6b1ef49",
       "testAccountsOnly": true,
-      "routesAdded": 0
+      "routesAdded": 0,
+      "workers": {
+        "shift-programme-member-20261023": "53bf8fc5-d779-4a29-8565-ecab1ea1208d",
+        "shift-hq-member-comms-20261023": "8e075388-4c12-45ab-8465-9eb2ebd2af46"
+      }
     },
-    "browserJob": {
-      "pid": 74693,
-      "script": "../v6-live-acceptance/check-full-conversation-ui.mjs",
-      "receipt": "../v6-live-acceptance/full-conversation-ui-receipt.json",
-      "limitations": "Does not establish reply/appeal round trip or ordinary password login."
-    }
+    "fullConversationBrowserEvidence": {
+      "at": "2026-10-27T06:31:50.835Z",
+      "syntheticOnly": true,
+      "cases": [
+        {
+          "engine": "chromium",
+          "status": "PASS",
+          "widths": [
+            320,
+            360,
+            390,
+            430
+          ],
+          "draftIsolation": true,
+          "replyAppealRoundTrip": "NOT_TESTED"
+        },
+        {
+          "engine": "webkit",
+          "status": "PASS",
+          "widths": [
+            320,
+            360,
+            390,
+            430
+          ],
+          "draftIsolation": true,
+          "replyAppealRoundTrip": "NOT_TESTED"
+        }
+      ]
+    },
+    "next": "Register an additive finite source successor from f5ce4ddf to the current product source; retain the prior receipt unchanged. Complete live reply/appeal round trip, reconcile remaining CI failures, pass broader qualification and merge PR1439. Canonical login fix and real-member enablement are not deployed."
   },
   "authority": "Matt's approved Go ahead: My Timber support service message. Latest message takes precedence over v5. No deployment until every applicable check passes and Matt says go.",
   "branch": "feat/my-timber-support-experience-20261026",
