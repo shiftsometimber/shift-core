@@ -17,7 +17,7 @@ export function renderContent(path,query,products=[]){
  const sort=selectedSort(products,query.get('sort'));
  html=html.replace(/<select id="shop-sort"[\s\S]*?<\/select>/,'<select id="shop-sort" name="sort" aria-describedby="shop-sort-note">'+sortChoices.map(([id,label])=>'<option value="'+id+'"'+(sort===id?' selected':'')+'>'+esc(label)+'</option>').join('')+'</select>');
  html=html.replace('</div>\n        <div class="shop-summary">','<button class="sst-action" type="submit">Apply filters <span aria-hidden="true">→</span></button></form>\n        <div class="shop-summary">');
- const sortMessage=sort.startsWith('price-')&&!sortAvailable(products,sort)?'Prices are being confirmed. Showing A–Z for now.':sort==='popular'&&!sortAvailable(products,sort)?'Sales figures are being added. Showing A–Z for now.':'';
+ const sortMessage=sort.startsWith('price-')&&!sortAvailable(products,sort)?'Prices are being confirmed. Showing A–Z for now.':sort==='popular'&&!sortAvailable(products,sort)?'Sales figures are being added. Showing A–Z for now.':sort==='rating'&&!sortAvailable(products,sort)?'Ratings are being added. Showing A–Z for now.':'';
  html=html.replace('<div class="shop-summary">','<p id="shop-sort-note" class="shop-pack"'+(sortMessage?'':' hidden')+' style="margin-bottom:18px">'+sortMessage+'</p><div class="shop-summary">');
  html=html.replace('8 products</p>',rows.length+' of '+products.length+' proposed products</p>');
  html=html.replace('<button type="button" id="shop-reset" class="cursor-interaction">Clear filters</button>','<a href="/shift-health/supplements-nutrition#shop-categories">Clear filters</a>');
