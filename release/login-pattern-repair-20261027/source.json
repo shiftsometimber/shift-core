@@ -1,0 +1,18 @@
+{
+  "scope": "Fix empty password pattern on existing /member-login only; registration policy and Turnstile unchanged; no v6 feature activation",
+  "target": "shift-core",
+  "baselineDeployment": "7ee7bde1-afa1-4673-8435-552e3bc4e71b",
+  "baselineVersions": [
+    {
+      "version_id": "f5b5a028-3eff-49d8-9388-c2880e5dcad7",
+      "percentage": 100
+    }
+  ],
+  "originalModuleHashes": {
+    "worker.js": "3c782f7f2c4aa7cf7da65f8b29eb37f83470d5f8c1627360d0c2d58f695d8088"
+  },
+  "sourceTests": 4,
+  "normalPasswordLoginEndToEnd": "NOT_VERIFIED_HEADLESS_TURNSTILE_CHALLENGE",
+  "originalRuntimeModulesChanged": false,
+  "newRoutes": 0
+}
