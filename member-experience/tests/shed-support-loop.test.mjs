@@ -52,6 +52,7 @@ test('S4/S6: exact deliberate preview, no attached health record, approval, repo
 });
 test('S2/S5: threshold uses distinct, consented, current real marks; tests, staff and self marks do not count',async t=>{
  const f=setup(t);for(const id of [1,2,3])await f.join(id);
+ f.db.prepare('UPDATE member_state SET preferences=? WHERE user_id=2').run(JSON.stringify({lifeBack:{progress:{memberSupport:{memories:[{choice:'late'}]}}}}));
  const draft=(await f.call({action:'preview',offerId:'own-helpful-offer',category:'routine',title:'An everyday planning shortcut',body:'Put the ingredients together before work and keep a familiar fallback for the late finish.'})).body.preview;
  await f.call({action:'publish',draftId:draft.id,confirmed:true});await f.call({postId:draft.id,action:'approve'},3,'/forum/moderate');await f.call({action:'review-tip',postId:draft.id},3);
  assert.equal((await f.call({action:'tip-feedback',postId:draft.id,outcome:'helped',consent:true},2)).status,200);
@@ -61,10 +62,10 @@ test('S2/S5: threshold uses distinct, consented, current real marks; tests, staf
   const feedback='fixture-real-mark-'+id;
   f.db.prepare('INSERT INTO users(id,email) VALUES(?,?)').run(id,'fixture-'+id+'@example.test');f.db.prepare('INSERT INTO user_auth VALUES(?,1)').run(id);f.db.prepare('INSERT INTO member_status VALUES(?,?)').run(id,'member');f.db.prepare('INSERT INTO member_state(user_id,preferences) VALUES(?,?)').run(id,'{}');
   f.db.prepare('INSERT INTO timber_shed_v6test_support_trials VALUES(?,?,?,?,?,?)').run(draft.id,id,feedback,'helped',null,new Date().toISOString());f.db.prepare('INSERT INTO timber_shed_v6test_support_marks VALUES(?,?,?,?)').run(draft.id,id,feedback,new Date().toISOString());
-  const visible=(await f.call()).body.posts[0];assert.equal(visible?.label,id===14?'From the Shed':undefined);assert.equal(visible?.helpedCount,id===14?5:undefined);
+  const visible=(await f.call(undefined,2)).body.posts[0];assert.equal(visible?.label,id===14?'From the Shed':undefined);assert.equal(visible?.helpedCount,id===14?5:undefined);
  }
  author=(await f.call()).body;assert.equal(author.mine[0].helped_another,1);
- f.db.prepare("UPDATE timber_shed_v6test_support_trials SET outcome='not-helped' WHERE user_id=10").run();assert.equal((await f.call()).body.posts[0].label,undefined);
+ f.db.prepare("UPDATE timber_shed_v6test_support_trials SET outcome='not-helped' WHERE user_id=10").run();assert.equal((await f.call(undefined,2)).body.posts[0].label,undefined);
  assert.equal(shedThreshold({}),5);assert.equal(shedThreshold({TIMBER_SHED_HELPED_MINIMUM:'1'}),5);
  assert.equal(publicTip({status:'approved',tip_reviewed_at:'now',real_marks:10,title:'Change your dose',body:'A dose tip'},5).label,undefined);
 });

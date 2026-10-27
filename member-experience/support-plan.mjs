@@ -94,7 +94,9 @@ export function applySupportOperation(s,input,at){
     support.response='Your history and useful routines stay with you. Continuing treatment is equally welcome.';
   }else if(input.action==='support-finish'){
     if(input.confirmed!==true)fail('Choose whether you have finished this stage.');
+    if(input.cadence!==undefined&&!reviewPreferences.includes(input.cadence))fail('Choose an available review rhythm.');
     support.finished={at,goalId:s.goalId,words:clean(input.words||''),plan:clean(input.plan||'',1000),routines:helpfulRoutines(s)};
+    if(input.cadence!==undefined)support.cadence=input.cadence;
     support.stage='finished';support.response='You chose to finish this stage. Keep what worked, and come back whenever it helps.';
   }else if(input.action==='support-resume'){
     support.stage='returning';support.returnedAt=at;support.response='Good to see you. Your history is here. Choose what would help now.';
