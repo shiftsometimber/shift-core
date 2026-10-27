@@ -1,0 +1,46 @@
+{
+  "source": "905bae25f7d3afce3d676f7e6a1445e77552273b",
+  "workflowRun": 40588701303,
+  "verifiedAt": "2026-10-27T21:41:59Z",
+  "result": "success",
+  "providerBytesVerified": true,
+  "ownedRoutesVerified": 11,
+  "zoneRouteCount": 890,
+  "newRoutes": 0,
+  "savedHqDrafts": [
+    "whey",
+    "clear",
+    "creatine",
+    "skill",
+    "sticks",
+    "tablets",
+    "crunch",
+    "chunky"
+  ],
+  "olivitApiConnected": false,
+  "purchasingEnabled": false,
+  "focusedTestsPassed": 9,
+  "browserFixturePassed": true,
+  "browserLivePassed": true,
+  "viewports": [
+    1440,
+    736,
+    390,
+    320
+  ],
+  "pageErrors": [],
+  "retainedServices": [
+    "shift-core",
+    "shift-blog-publisher",
+    "shift-hq-member-comms-20261023",
+    "shift-programme-member-20261023"
+  ],
+  "evidenceArtifact": 12771793672,
+  "evidenceArtifactSHA256": "219485a3eadc68ae62e15897b425f2fa72062bd101f8fbf6df485934f35cc77b",
+  "featureOrder": [
+    "Weight management",
+    "Bloods",
+    "Testosterone",
+    "Supplements & Nutrition"
+  ]
+}

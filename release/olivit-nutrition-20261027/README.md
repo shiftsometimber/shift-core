@@ -4,7 +4,7 @@ Matt approved the fuller-dad family park hero, image-led Health hub, nutrition s
 
 ## Current checkpoint
 
-- Latest requested adjustment (27 October): the four feature cards read Weight management → Bloods → Testosterone → Supplements & Nutrition. Prepared and source-tested; live verification for this reorder follows in the same release lane. Card-specific typography is retained when moving between rows.
+- Latest requested adjustment (27 October): the four feature cards read Weight management → Bloods → Testosterone → Supplements & Nutrition. **Deployed and verified** from `905bae25f7d3afce3d676f7e6a1445e77552273b` in [release 40588701303](https://github.com/shiftsometimber/shift-core/actions/runs/40588701303). Nine focused tests and compiled/live Chrome checks at all four widths pass, including the exact four-card order. Card-specific typography, pictures and colours are retained. No new routes.
 
 - Approved visual source: latest family-park mock-up, including fuller dad; not the earlier plain nutrition section.
 - Read-only provider preflight: passed (run 40580631795). 889 routes before this release.
