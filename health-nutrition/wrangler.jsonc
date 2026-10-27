@@ -1,0 +1,16 @@
+{
+  "name": "shift-health-nutrition-20261027",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "services": [
+    {"binding":"CORE","service":"shift-core"},
+    {"binding":"BLOG","service":"shift-blog-publisher"},
+    {"binding":"HQ","service":"shift-hq-member-comms-20261023"}
+  ],
+  "d1_databases": [
+    {"binding":"DB","database_name":"shift-core","database_id":"88f40aed-cb23-4372-8c94-8a73f48bc847"}
+  ],
+  "observability": {"enabled": false}
+}
