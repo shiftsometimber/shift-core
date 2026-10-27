@@ -24,7 +24,7 @@ export function renderContent(path,query,products=[]){
  return {content:html,title:'Supplements & Nutrition | SHIFT Health',description:'Explore SHIFT’s proposed Supplements & Nutrition range. Food first, practical everyday extras and clear information about how each product fits your journey.'};
 }
 export function renderDocument(shell,path,query,products=[]){
- const view=renderContent(path,query,products);if(!view)return null;
+  const view=renderContent(path,query,products);if(!view)return null;
  if(!/<main\b[\s\S]*?<\/main>/i.test(shell))throw Error('Existing public shell has no main element');
  const canonical='https://shiftsometimber.co.uk'+path+(query.get('product')?'?product='+encodeURIComponent(query.get('product')):'');
  let html=shell.replace(/<main\b[\s\S]*?<\/main>/i,()=>'<main id="main-content" data-shift-health-approved="20261027"><div id="shift-health-range" class="sst-window">'+view.content+'</div></main>');
@@ -32,5 +32,8 @@ export function renderDocument(shell,path,query,products=[]){
  // Programme-specific structured data must not describe the new storefront.
  html=html.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'');
  html=html.replace('</head>','<title>'+esc(view.title)+'</title><meta name="description" content="'+esc(view.description)+'"><link rel="canonical" href="'+esc(canonical)+'"><meta property="og:title" content="'+esc(view.title)+'"><meta property="og:description" content="'+esc(view.description)+'"><meta property="og:url" content="'+esc(canonical)+'"><meta property="og:type" content="website"><meta property="og:image" content="https://shiftsometimber.co.uk/shift-health/assets/'+(path==='/shift-health'?'family-park':'nutrition-kitchen')+'.webp"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">'+JSON.stringify({'@context':'https://schema.org','@type':'CollectionPage',name:view.title,url:canonical}).replace(/</g,'\\u003c')+'</script><style data-health-nutrition="20261027">'+styles+'\n#shift-health-range .category-option{display:inline-block;border:1px solid #707762;border-radius:30px;padding:10px 15px;min-height:44px;font-size:13px}#shift-health-range .category-option[aria-current]{background:#e7e3da;color:#050505}#shift-health-range form.shop-toolbar{grid-template-columns:2fr 1fr 1fr 1fr}#shift-health-range .shop-toolbar>button{grid-column:1/-1;justify-self:start}@media(max-width:820px){#shift-health-range form.shop-toolbar{grid-template-columns:1fr 1fr}}\n</style></head>');
+ // The accepted shell has strong presentation rules. Keep this approved
+ // component scoped above those rules without changing the shared chrome.
+ html=html.replace(/(<style data-health-nutrition="20261027">)([\s\S]*?)(<\/style>)/,(_,open,css,close)=>open+css.replace(/(?<!#main-content )#shift-health-range/g,'#main-content #shift-health-range').replace(/([\w-]+)\s*:\s*([^;{}]+)([;}])/g,(_,property,value,end)=>property+':'+value.trim()+(value.includes('!important')?'':'!important')+end)+'#main-content #shift-health-range #shop-categories{scroll-margin-top:180px!important}'+close);
  return html;
 }

@@ -15,6 +15,7 @@ jobs:
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,5 +23,41 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Inspect existing route and binding ownership (read only)
-        run: node release/olivit-nutrition-20261027/provider-preflight.mjs
+      - name: Install pinned compiler and browser driver
+        run: |
+          npm ci --ignore-scripts
+          npm install --prefix "$RUNNER_TEMP/shift-browser" --no-save --ignore-scripts puppeteer-core@25.12.0
+          node -e "require('node:assert/strict').equal(require('./node_modules/wrangler/package.json').version,'4.112.0')"
+          echo "SHIFT_PUPPETEER_MODULE=$RUNNER_TEMP/shift-browser/node_modules/puppeteer-core" >> "$GITHUB_ENV"
+          echo "SHIFT_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
+          test -x "$(command -v google-chrome)"
+      - name: Verify catalogue persistence, permissions and public boundaries
+        run: node --test health-nutrition/feature.test.mjs
+      - name: Prepare exact isolated runtime and save HQ draft records
+        id: prepare
+        run: node release/olivit-nutrition-20261027/release.mjs prepare
+      - name: Verify compiled pages and HQ editor in browser fixtures before traffic
+        env:
+          SHIFT_COMPILED_WORKER: ${{ github.workspace }}/health-nutrition-release/build/worker.js
+          SHIFT_BROWSER_EVIDENCE: health-nutrition-release/browser-fixture
+        run: node health-nutrition/browser-qa.mjs
+      - name: Promote only the captured Health and HQ catalogue routes
+        id: promote
+        run: node release/olivit-nutrition-20261027/release.mjs promote
+      - name: Verify provider bytes, HQ drafts and retained services
+        run: node release/olivit-nutrition-20261027/release.mjs verify
+      - name: Verify both live pages, filters, images and HQ navigation in Chrome
+        env:
+          SHIFT_BROWSER_EVIDENCE: health-nutrition-release/browser-live
+        run: node health-nutrition/browser-qa.mjs --live
+      - name: Restore only route assignments still owned by this release on failure
+        if: ${{ always() && (failure() || cancelled()) && steps.prepare.outcome == 'success' }}
+        run: node release/olivit-nutrition-20261027/release.mjs rollback
+      - name: Retain provider receipts and browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: health-nutrition-approved-${{ github.run_id }}
+          path: health-nutrition-release/
+          if-no-files-found: warn
+          retention-days: 90

@@ -3,6 +3,7 @@ import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
 const account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed',database='88f40aed-cb23-4372-8c94-8a73f48bc847',script='shift-health-nutrition-20261027';
 const dir='health-nutrition-release',config='health-nutrition/wrangler.jsonc',base='afa38107c8d663dc233114982039a8814ca64229';
 mkdirSync(dir,{recursive:true});
@@ -36,6 +37,9 @@ if(action==='prepare'){
  save('route-plan',routePlan);save('routes-before',before);save('retained-before',retainedBefore);save('worker-before',previous);
  const buildDir=resolve(dir,'build');cli('deploy','--dry-run','--outdir',buildDir);
  const candidate=[buildDir+'/worker.js',buildDir+'/worker.mjs'].find(existsSync);assert(candidate,'Prepared bundle missing');
+ const {default:compiled}=await import(pathToFileURL(candidate));
+ const nativeClient=await compiled.fetch(new Request('https://shiftsometimber.co.uk/shift-health/assets/hq-nutrition.js'),{});
+ assert.equal(await nativeClient.text(),readFileSync('health-nutrition/hq-client.js','utf8'),'Compilation altered the HQ browser client');
  const buildSHA256=hash(readFileSync(candidate));save('build',{candidate,buildSHA256,source:process.env.GITHUB_SHA});
  await seedDrafts();
  const output=cli('deploy',candidate,'--no-bundle','--keep-vars');writeFileSync(dir+'/worker-upload.log',output);
