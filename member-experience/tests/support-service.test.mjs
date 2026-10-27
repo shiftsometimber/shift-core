@@ -163,3 +163,11 @@ test('not liking the idea excludes its food format, not just the particular fill
  let s=start();prepareFoodFromRecords({},s,recipes,null);const previous=structuredClone(s);s=op(s,'shift-feedback',{shiftId:s.nextShift.id,outcome:'not-fit',reason:'idea'});prepareFoodFromRecords({},s,recipes,previous,{reason:'idea'});
  assert.equal(s.nextShift.practical.recipeId,'industrial-rice-beans');
 });
+
+test('R2 dated gaps, weight fluctuations and a reported symptom never become a causal review',()=>{
+ const s=start();s.entries=[{id:'first-win',at:'2026-10-01T10:00:00Z',goalId:s.goalId,win:'The stairs felt easier.'},{id:'later-win',at:'2026-10-18T10:00:00Z',goalId:s.goalId,win:'My familiar routine fitted this week.'}];
+ s.memberSupport.memories=[{id:'own-symptom-words',at:'2026-10-14T12:00:00Z',text:'I logged constipation this week.',choice:'late'}];
+ s.savedReadings=[{at:'2026-10-01',kg:95.3},{at:'2026-10-14',kg:94.8},{at:'2026-10-18',kg:95.4}];const before=JSON.stringify(s.savedReadings),r=personalReview(s,'2026-10-20T12:00:00Z',true);
+ assert.deepEqual(r.quotes.map(q=>q.at),['2026-10-01T10:00:00Z','2026-10-18T10:00:00Z','2026-10-14T12:00:00Z']);assert.equal(JSON.stringify(s.savedReadings),before);
+ assert.doesNotMatch(r.observations.join(' ')+r.introduction+r.proposedPlan,/caused|due to|because of|change your dose|normal blood pressure|high blood pressure/i);
+});

@@ -62,7 +62,10 @@ async function matchingPosts(DB,uid,situation,category,minimum){
  return rows.map(r=>publicTip(r,minimum));
 }
 export async function attachShedEvidence(DB,preferences,progress,userId,env={}){
- const a=progress.nextShift;if(!a?.practical||a.practical.pending)return;
+ const a=progress.nextShift;if(!a?.practical)return;
+ // Community evidence is checked at each fresh read, never trusted as a saved count.
+ delete a.practical.shedPostId;delete a.practical.shedLabel;delete a.practical.shedHelpedCount;
+ if(a.practical.pending)return;
  const access=await shedAccess(DB,userId,env);if(!access.enabled)return;
  const participation=await forumParticipation(access.DB,userId,new Date().toISOString(),forumEnv(env,access.DB));if(!participation.joined)return;
  const bad=new Set(allOffers(progress).filter(o=>o.reviews?.some(r=>['not-fit','not-helped'].includes(r.outcome))).map(o=>o.practical?.shedPostId).filter(Boolean));
@@ -92,14 +95,15 @@ export async function shedSupportRoutes(request,env){
   const participation=await forumParticipation(DB,uid,at,fenv);
   if(request.method==='GET'){
    if(!participation.joined)return json({available:true,accountId:uid,synthetic:access.synthetic,joined:false,policy:SHED_POLICY,moderation:{owner:'Matt',reply:'Reports checked within one working day',continuous:false}});
-   const progress=await privateProgress(env.DB,uid),situation=privateSituation(progress),tab=url.searchParams.get('tab');
-   const category=tab==='grub'?'meal':tab==='fit'?'movement':null;
-   const posts=await matchingPosts(DB,uid,situation,category,shedThreshold(env));
+   const progress=await privateProgress(env.DB,uid),tab=url.searchParams.get('tab'),topic=url.searchParams.get('topic');
+   const careOnly=tab==='ask'&&topic==='care',situation=tab==='ask'&&situations.has(topic)?topic:privateSituation(progress);
+   const category=tab==='grub'?'meal':tab==='fit'||tab==='ask'&&topic==='movement'?'movement':null;
+   const posts=careOnly?[]:await matchingPosts(DB,uid,situation,category,shedThreshold(env));
    const mine=(await DB.prepare(`SELECT p.id,p.title,p.status,t.source_id,t.offer_id,((${realMarks})>0) helped_another FROM timber_shed_forum_posts p JOIN timber_shed_support_tips t ON t.post_id=p.id WHERE p.user_id=? AND p.status<>'withdrawn' ORDER BY p.created_at DESC LIMIT 100`).bind(uid).all()).results||[];
    const peers=(await DB.prepare('SELECT pr.display_name,pe.topic FROM timber_shed_support_peers pe JOIN timber_shed_forum_profiles pr ON pr.user_id=pe.user_id WHERE pe.user_id<>? AND pe.topic=? AND NOT EXISTS(SELECT 1 FROM timber_shed_forum_blocks b WHERE b.blocker_id=? AND b.blocked_id=pe.user_id OR b.blocker_id=pe.user_id AND b.blocked_id=?) LIMIT 3').bind(uid,situation,uid,uid).all()).results||[];
    const moderator=!!await DB.prepare('SELECT user_id FROM timber_shed_forum_moderators WHERE user_id=? AND active=1').bind(uid).first();
    const helpful=allOffers(progress).filter(a=>a.reviews?.some(r=>r.outcome==='helped')).map(a=>({id:a.id,title:a.practical?.name||a.title,feedbackId:a.reviews.findLast(r=>r.outcome==='helped').operationId,shedPostId:a.practical?.shedPostId||null}));
-   return json({available:true,accountId:uid,synthetic:access.synthetic,joined:true,title:situation==='returning'?'The Shed kept your seat':situation==='after-treatment'?'Men who have been there':'Men like me',posts,starter:posts.length?null:starterThreads[category==='movement'?'movement':situation],mine,peers,helpful,moderator,peerNotice:'Peer experience, not clinical advice. Your situation is matched privately and is not shown to other members.'});
+   return json({available:true,accountId:uid,synthetic:access.synthetic,joined:true,careOnly,title:situation==='returning'?'The Shed kept your seat':situation==='after-treatment'?'Men who have been there':'Men like me',posts,starter:careOnly||posts.length?null:starterThreads[category==='movement'?'movement':situation],mine,peers,helpful,moderator,peerNotice:'Peer experience, not clinical advice. Your situation is matched privately and is not shown to other members.'});
   }
   if(!request.headers.get('Content-Type')?.startsWith('application/json'))return json({error:'Use the Shed form'},415);
   const raw=await request.text();if(raw.length>4096)return json({error:'Keep your submission short'},413);

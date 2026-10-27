@@ -65,7 +65,10 @@ export async function lifeBackRoutes(request,env){
  try{
   const read=async()=>parse((await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first())?.preferences);
   let prefs=await read();
-  if(request.method==='GET')return json({accountId:auth.userId,progress:supportView(prefs.lifeBack?.progress||emptyLifeBack()),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(prefs.lifeBack?.progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+  if(request.method==='GET'){
+   const progress=prefs.lifeBack?.progress||emptyLifeBack();await attachShedEvidence(env.DB,prefs,progress,auth.userId,env).catch(()=>{});
+   return json({accountId:auth.userId,progress:supportView(progress),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+  }
   const raw=await request.text();if(raw.length>8000)return json({error:'Check-in is too large.'},413);
   let input;try{input=JSON.parse(raw)}catch{return json({error:'Invalid check-in.'},400)}
   if(!input||typeof input!=='object'||Array.isArray(input))return json({error:'Invalid check-in.'},400);

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fixture} from '../../health-passport/fixture.mjs';
-import {shedSupportRoutes,shedSupportSchema,shedThreshold,shedDatabase,starterThreads,publicTip} from '../shed-support-loop.mjs';
+import {shedSupportRoutes,shedSupportSchema,shedThreshold,shedDatabase,starterThreads,publicTip,attachShedEvidence} from '../shed-support-loop.mjs';
 import {SHED_POLICY} from '../timber-shed-governance.mjs';
 function setup(t){
  const f=fixture({seed:false});t.after(()=>f.close());
@@ -28,6 +28,9 @@ test('S1/S3/S8: cold start is SHIFT-labelled, matches privately and remains sign
  const f=setup(t);assert.equal((await f.join(1)).status,201);
  const own=await f.call();assert.equal(own.status,200);assert.equal(own.body.starter.source,'from SHIFT');assert.equal(own.body.starter.title,starterThreads.late.title);
  assert.doesNotMatch(JSON.stringify(own.body),/PRIVATE OWN WORDS|PRIVATE MEDICINE|PRIVATE GOAL/);
+ const budget=await f.call(undefined,1,'?tab=ask&topic=budget');assert.equal(budget.body.starter.title,starterThreads.budget.title);
+ const move=await f.call(undefined,1,'?tab=fit');assert.equal(move.body.starter.title,starterThreads.movement.title);
+ const care=await f.call(undefined,1,'?tab=ask&topic=care');assert.equal(care.body.careOnly,true);assert.deepEqual(care.body.posts,[]);assert.equal(care.body.starter,null);
  const anonymous=await shedSupportRoutes(new Request('https://shiftsometimber.co.uk/v1/life-back/shed'),f.env);assert.equal(anonymous.status,401);
  const wrong=await shedSupportRoutes(new Request('https://shiftsometimber.co.uk/v1/life-back/shed',{method:'POST',headers:{Origin:'https://shiftsometimber.co.uk',Cookie:'sst_session=test-only-member-1','Content-Type':'application/json'},body:JSON.stringify({action:'peer',expectedAccount:2,visible:true,topic:'general'})}),f.env);assert.equal(wrong.status,409);
 });
@@ -65,7 +68,10 @@ test('S2/S5: threshold uses distinct, consented, current real marks; tests, staf
   const visible=(await f.call(undefined,2)).body.posts[0];assert.equal(visible?.label,id===14?'From the Shed':undefined);assert.equal(visible?.helpedCount,id===14?5:undefined);
  }
  author=(await f.call()).body;assert.equal(author.mine[0].helped_another,1);
+ const prepared={nextShift:{practical:{key:'eggs',shedLabel:'From the Shed',shedHelpedCount:100},reviews:[]},memberSupport:{memories:[{choice:'late'}]}};
+ await attachShedEvidence(f.env.DB,{},prepared,2,f.env);assert.equal(prepared.nextShift.practical.shedHelpedCount,5);
  f.db.prepare("UPDATE timber_shed_v6test_support_trials SET outcome='not-helped' WHERE user_id=10").run();assert.equal((await f.call(undefined,2)).body.posts[0].label,undefined);
+ await attachShedEvidence(f.env.DB,{},prepared,2,f.env);assert.equal(prepared.nextShift.practical.shedLabel,undefined);assert.equal(prepared.nextShift.practical.shedHelpedCount,undefined);
  assert.equal(shedThreshold({}),5);assert.equal(shedThreshold({TIMBER_SHED_HELPED_MINIMUM:'1'}),5);
  assert.equal(publicTip({status:'approved',tip_reviewed_at:'now',real_marks:10,title:'Change your dose',body:'A dose tip'},5).label,undefined);
 });
