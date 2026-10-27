@@ -18,9 +18,9 @@ export function shedMemberClient(){
   if(!ready()||!data)return;if(!data.available){if(root)root.innerHTML='<p>The Timber Shed is not open yet. Your private My Timber support stays available.</p>';return;}
   document.querySelectorAll('a[data-mt-shed],a[href="/member/timber-shed"],a[href="/timber-shed"]').forEach(a=>{a.href='/member/life-back/shed';a.target='_blank';a.rel='noopener';});
   if(!root){
-   const old=document.querySelector('[data-shed-context]');old?.remove();
+   const old=document.querySelector('[data-shed-context]'),keepOpen=old?.dataset.shedTab===tab()&&old.open;old?.remove();
    const current=tab(),host=current==='today'?document.getElementById('mtSupportPlanToday'):current==='journey'?document.querySelector('main'):current==='support'||current==='stuff'?document.getElementById('mtUtility'):document.querySelector('main');
-   if(!host)return;const el=document.createElement('details');el.dataset.shedContext='1';el.dataset.shedTab=current;el.className='shed-context';
+   if(!host)return;const el=document.createElement('details');el.dataset.shedContext='1';el.dataset.shedTab=current;el.className='shed-context';el.open=!!keepOpen;
    const p=data.posts?.[0],href='/member/life-back/shed'+(['grub','fit','ask'].includes(current)?'?tab='+current:'')+(p?'#shed-post-'+encodeURIComponent(p.id):data.joined?'#shed-starter':'');el.innerHTML='<summary>'+esc(data.title||'Men like me')+'</summary>'+peerNotice+(data.joined?(p?'<p>'+esc(p.title)+' · '+esc(p.display_name)+'</p>':starter(data.starter)):'<p>Read or share everyday experiences with other men. Joining the Shed is optional.</p>')+'<a href="'+esc(href)+'">'+(current==='ask'&&data.joined?(p?'Open this peer tip':'Read this SHIFT starting point'):'Open the Timber Shed')+'</a>'+(['support','journey'].includes(current)&&data.peers?.length?'<p>Men who have been there · opted-in peers, not advisers or staff.</p>'+data.peers.map(peer=>'<p>'+esc(peer.display_name)+' · peer</p>').join(''):'');
    if(current==='ask'&&data.careOnly)el.innerHTML='<summary>Treatment questions</summary><p>Your own prescriber or pharmacist is the right place for medicine, dose or symptom questions. Peer tips are not shown as treatment advice.</p><a href="/member/treatment">Open my treatment contacts</a> · <a href="/member/dashboard?timber=support#today">Open Support</a>';
    host.append(el);return;

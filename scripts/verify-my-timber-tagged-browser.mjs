@@ -6,7 +6,7 @@ const dir='../v6-live-acceptance',s=JSON.parse(fs.readFileSync(dir+'/synthetic-s
 if(s.tag!=='my_timber_release_test_v6')throw Error('Reserved test guard');
 const tag=crypto.randomUUID(),events=[],tails=[];
 const save=()=>fs.writeFileSync(dir+'/resource-'+name+'-receipt.json',JSON.stringify({at:new Date().toISOString(),syntheticOnly:true,realMemberEventsSubscribed:false,events},null,2)+'\n');
-for(const worker of ['shift-programme-member-20261023','shift-hq-member-comms-20261023']){
+for(const worker of ['shift-programme-member-20261023','shift-hq-member-comms-20261023','shift-core']){
  const p=spawn('./node_modules/.bin/wrangler',['tail',worker,'--format','json','--header','X-My-Timber-Release-Test:'+tag],{stdio:['ignore','pipe','ignore']});tails.push(p);let buffer='',depth=0,quote=false,escape=false;
  p.stdout.on('data',chunk=>{for(const c of chunk.toString()){
   if(!depth){if(c!=='{')continue;buffer='{';depth=1;continue;}
