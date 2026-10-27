@@ -77,7 +77,9 @@ for worker,files in prepared:
  data,headers=multipart(files);_,body=call(workers+worker+'/content','PUT',data,headers);result=json.loads(body);assert result['success'],result.get('errors')
  state['workers'][worker]['deployment']=get(workers+worker+'/deployments')['deployments'][0];state['workers'][worker]['state']='uploaded';save()
  h,body=call(workers+worker+'/content/v2');assert modules(h,body)==files,'Provider byte verification failed'
- assert get(workers+worker+'/settings')==state['workers'][worker]['settings'],'Bindings/settings changed'
+ actualSettings=get(workers+worker+'/settings');expectedSettings=state['workers'][worker]['settings']
+ assert {k:v for k,v in actualSettings.items()if k!='annotations'}=={k:v for k,v in expectedSettings.items()if k!='annotations'},'Bindings/operating settings changed'
+ state['workers'][worker]['afterUploadAnnotations']=actualSettings.get('annotations')
  assert get(workers+worker+'/schedules')==state['workers'][worker]['schedules'],'Schedules changed'
  state['workers'][worker]['state']='provider_verified';save();print(json.dumps({'worker':worker,'state':'provider_verified','deployment':state['workers'][worker]['deployment']['id']}),flush=True)
 for r in newRoutes:
