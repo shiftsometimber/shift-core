@@ -5,11 +5,40 @@ on:
 permissions:
   contents: read
   actions: read
-concurrency:
-  group: cloudflare-production-promote
-  cancel-in-progress: false
 jobs:
+  retire-obsolete-pretraffic-check:
+    if: ${{ github.event.head_commit.message == 'Recover obsolete pretraffic browser check' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Retire only the exact obsolete check if route promotion has not begun
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const root='https://api.github.com/repos/shiftsometimber/shift-core/actions';
+          const headers={Authorization:'Bearer '+process.env.GH_TOKEN,Accept:'application/vnd.github+json'};
+          const run=await (await fetch(root+'/runs/40584500157',{headers})).json();
+          assert.equal(run.head_sha,'9b567e1e999afff69f7b69c2a839cadbdc01f2b2');
+          if(run.status!=='in_progress'){console.log('Obsolete check already stopped.');process.exit(0);}
+          const jobs=await (await fetch(root+'/runs/40584500157/jobs',{headers})).json();
+          const job=jobs.jobs.find(j=>j.name==='release');
+          assert(job.steps.find(s=>s.name==='Prepare exact isolated runtime and save HQ draft records')?.conclusion==='success');
+          assert.equal(job.steps.find(s=>s.name==='Promote only the captured Health and HQ catalogue routes')?.status,'pending','Do not interrupt a traffic-writing step');
+          assert.equal(job.steps.find(s=>s.name==='Verify compiled pages and HQ editor in browser fixtures before traffic')?.status,'in_progress');
+          const response=await fetch(root+'/runs/40584500157/cancel',{method:'POST',headers});assert.equal(response.status,202);
+          console.log('Cancelled only obsolete pretraffic browser check 40584500157.');
+          JS
   release:
+    needs: retire-obsolete-pretraffic-check
+    if: ${{ always() && contains(fromJSON('["success","skipped"]'), needs.retire-obsolete-pretraffic-check.result) }}
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -37,6 +66,7 @@ jobs:
         id: prepare
         run: node release/olivit-nutrition-20261027/release.mjs prepare
       - name: Verify compiled pages and HQ editor in browser fixtures before traffic
+        timeout-minutes: 3
         env:
           SHIFT_COMPILED_WORKER: ${{ github.workspace }}/health-nutrition-release/build/worker.js
           SHIFT_BROWSER_EVIDENCE: health-nutrition-release/browser-fixture
@@ -47,6 +77,7 @@ jobs:
       - name: Verify provider bytes, HQ drafts and retained services
         run: node release/olivit-nutrition-20261027/release.mjs verify
       - name: Verify both live pages, filters, images and HQ navigation in Chrome
+        timeout-minutes: 3
         env:
           SHIFT_BROWSER_EVIDENCE: health-nutrition-release/browser-live
         run: node health-nutrition/browser-qa.mjs --live
