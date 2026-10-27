@@ -1,0 +1,30 @@
+name: Nightly article correction snapshot
+on:
+  push:
+    branches: [fix/nightly-article-review-20261027]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    if: github.actor_id == '315011648' || github.actor == 'codex'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Read exact live article rows and receipts
+        run: |
+          mkdir -p nightly-article-proof
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,title,slug,category,author,status,summary,body,seo_title,publish_at,updated_at FROM knowledge_articles WHERE slug IN ('what-to-eat-on-mounjaro','testosterone-blood-test-timing') ORDER BY slug; SELECT source_id,slug,payload_hash,created_at FROM babylove_receipts WHERE slug IN ('what-to-eat-on-mounjaro','testosterone-blood-test-timing') ORDER BY slug;" > nightly-article-proof/live-rows.json
+          node -e "const fs=require('fs'),c=require('crypto');const x=JSON.parse(fs.readFileSync('nightly-article-proof/live-rows.json'));const rows=x[0].results||[];fs.writeFileSync('nightly-article-proof/summary.json',JSON.stringify({at:new Date().toISOString(),rows:rows.map(r=>({id:r.id,slug:r.slug,title:r.title,author:r.author,status:r.status,publish_at:r.publish_at,updated_at:r.updated_at,body_sha256:c.createHash('sha256').update(r.body).digest('hex'),body_bytes:Buffer.byteLength(r.body)})),receipts:x[1]?.results||[]},null,2));"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nightly-article-correction-snapshot
+          path: nightly-article-proof/
+          retention-days: 7
