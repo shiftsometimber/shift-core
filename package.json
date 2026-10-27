@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
+    "deploy": "python3 scripts/cloudflare-route-capacity.py check --intent routes --config wrangler.jsonc && wrangler deploy",
     "check": "node --check worker.js && node m04-route-readiness-gate.mjs && node m04-commissioning-ops-source-gate.mjs && node g5-012-login-fastpath-gate.mjs && node production-commissioning-independence-gate.mjs",
     "check:toolchain": "node toolchain-source-gate.mjs",
     "test:commerce": "node --test tests/commerce-stripe-v1.test.mjs",
