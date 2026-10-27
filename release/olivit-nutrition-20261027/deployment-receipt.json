@@ -1,0 +1,22 @@
+{
+  "source": "bc3933f60819b0efbea47a37617006d9aacbd57f",
+  "workflowRun": 40585248724,
+  "verifiedAt": "2026-10-27T21:17:22Z",
+  "result": "success",
+  "providerBytesVerified": true,
+  "ownedRoutesVerified": 11,
+  "zoneRouteCount": 890,
+  "newRoutes": 1,
+  "savedHqDrafts": ["whey", "clear", "creatine", "skill", "sticks", "tablets", "crunch", "chunky"],
+  "olivitApiConnected": false,
+  "purchasingEnabled": false,
+  "focusedTestsPassed": 9,
+  "browserFixturePassed": true,
+  "browserLivePassed": true,
+  "independentMacLiveCheckPassed": true,
+  "viewports": [1440, 736, 390, 320],
+  "pageErrors": [],
+  "retainedServices": ["shift-core", "shift-blog-publisher", "shift-hq-member-comms-20261023", "shift-programme-member-20261023"],
+  "evidenceArtifact": 12772241053,
+  "evidenceArtifactSHA256": "1b6764a1f0671fc2bd2da05baac1cf224217187b45698381e4e6b928f82f030a"
+}
