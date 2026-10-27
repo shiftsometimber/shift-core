@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-10-27T17:53:46.079Z",
+  "results": [
+    {
+      "width": 390,
+      "passed": true,
+      "viewport": 390,
+      "documentWidth": 390,
+      "sectionWidth": 350,
+      "sectionRight": 370,
+      "cardCount": 8,
+      "cardOverflow": false,
+      "colours": [
+        {
+          "background": "rgb(5, 5, 5)",
+          "text": "rgb(231, 227, 218)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        }
+      ],
+      "links": [
+        "/member/grub"
+      ]
+    },
+    {
+      "width": 1440,
+      "passed": true,
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "sectionWidth": 1160,
+      "sectionRight": 1300,
+      "cardCount": 8,
+      "cardOverflow": false,
+      "colours": [
+        {
+          "background": "rgb(5, 5, 5)",
+          "text": "rgb(231, 227, 218)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        },
+        {
+          "background": "rgb(231, 227, 218)",
+          "text": "rgb(5, 5, 5)"
+        }
+      ],
+      "links": [
+        "/member/grub"
+      ]
+    }
+  ],
+  "errors": [],
+  "blockedRequests": 0
+}
