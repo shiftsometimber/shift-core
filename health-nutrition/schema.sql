@@ -1,0 +1,38 @@
+CREATE TABLE IF NOT EXISTS supplement_products (
+ id TEXT PRIMARY KEY,
+ name TEXT NOT NULL,
+ brand TEXT NOT NULL,
+ category TEXT NOT NULL,
+ format TEXT NOT NULL,
+ description TEXT NOT NULL DEFAULT '',
+ shift_says TEXT NOT NULL DEFAULT '',
+ illustrated_pack TEXT,
+ illustrated_flavour TEXT,
+ source_url TEXT NOT NULL,
+ image_source TEXT,
+ supplier_pack TEXT,
+ supplier_sku TEXT,
+ ean TEXT,
+ trade_price_pence INTEGER,
+ retail_price_pence INTEGER,
+ delivery_cost_pence INTEGER,
+ vat_rate REAL,
+ stock_quantity INTEGER,
+ internal_notes TEXT,
+ status TEXT NOT NULL DEFAULT 'draft' CHECK(status='draft'),
+ visibility TEXT NOT NULL DEFAULT 'hidden' CHECK(visibility IN ('hidden','proposed')),
+ sale_enabled INTEGER NOT NULL DEFAULT 0 CHECK(sale_enabled=0),
+ sort_order INTEGER NOT NULL DEFAULT 0,
+ revision INTEGER NOT NULL DEFAULT 1,
+ updated_by TEXT NOT NULL DEFAULT 'approved-olivit-release-20261027',
+ created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS supplement_product_history (
+ product_id TEXT NOT NULL,
+ revision INTEGER NOT NULL,
+ changed_by TEXT NOT NULL,
+ record_json TEXT NOT NULL,
+ created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(product_id,revision)
+);

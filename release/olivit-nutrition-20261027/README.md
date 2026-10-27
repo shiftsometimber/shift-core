@@ -1,0 +1,26 @@
+# Approved SHIFT Health / Supplements & Nutrition
+
+Matt approved the fuller-dad family park hero, image-led Health hub, nutrition storefront and deployment of both pages on 27 October 2026. The current scope also saves eight real draft catalogue records in HQ, with separate supplier references, illustrative packs and editable “SHIFT says…” notes.
+
+## Current checkpoint
+
+- Approved visual source: latest family-park mock-up, including fuller dad; not the earlier plain nutrition section.
+- Read-only provider preflight: passed (run 40580631795). 889 routes before this release.
+- Implementation: `health-nutrition/`; isolated presentation Worker delegates unchanged Health routes to the accepted blog publisher and preserves the accepted HQ communications document before adding its catalogue extension.
+- Existing Core, clinical/device pages, My Timber presentation and HQ communications Worker bytes remain untouched.
+- Nine focused tests pass: real SQLite saves and history, role and origin boundaries, stale-write rejection, public/private data separation, server filtering and delegation.
+- Not deployed at this checkpoint. Responsive browser checks and the owned release remain outstanding.
+
+## Catalogue truth
+
+Eight proposed products are idempotently seeded into dedicated `supplement_products` and `supplement_product_history` tables. All are drafts, all have purchasing disabled, and retail/trade prices, supplier SKUs, EANs, VAT and stock start as unknown. Supplier packs are stored separately from illustrated packaging: the supplier page and photo can describe different variants. No invented sample retail prices are deployed.
+
+HQ provides a separate Supplements & Nutrition section plus the requested Bloods, TRT, Fertility, Sleep, Other and Food folders. The latter show matching records from the existing catalogues; they do not activate new services or create medicine stock. Draft commercial values are internal planning fields only.
+
+Olivit account is active at discount level 5 on non-promotional products. API credentials/docs, exact variants and labels, stock/price feed, dropship terms and delivered margin remain pending. Ben Gulwell was emailed with Matt’s approval on 27 October; sent copy verified. Do not resend.
+
+## Release and recovery
+
+The scoped workflow uses the existing `cloudflare-production-promote` concurrency group. It verifies current source, captures exact predecessor routes and retained service versions, verifies prepared provider bytes, saves the product drafts, and promotes only the eight Health presentation aliases/prefixes, two HQ document aliases and one new HQ supplements API route. Only one route is added. Route capacity and existing owners are checked before upload. No existing route outside that set may change.
+
+On failure, restore only routes still owned by this release to their captured predecessors. Never roll back someone else’s deployment or route. Keep saved draft records: do not delete data or overwrite HQ edits during reruns. Provider receipts and browser evidence are retained by the workflow.
