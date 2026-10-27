@@ -1,0 +1,60 @@
+name: Good to Talk ticker correction
+on:
+  push:
+    branches: [codex/mental-health-pathway-20261023]
+    paths:
+      - mental-health-pathway/ticker*
+      - mental-health-pathway/member/worker.mjs
+      - .github/workflows/good-to-talk-ticker-20261027.yml
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  correction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Install exact existing test dependencies and isolated browser driver
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm install --prefix "$RUNNER_TEMP/ticker-browser" --no-save --ignore-scripts --no-audit --no-fund puppeteer-core@25.12.0
+          echo "SHIFT_PUPPETEER_MODULE=$RUNNER_TEMP/ticker-browser/node_modules/puppeteer-core" >> "$GITHUB_ENV"
+          echo "SHIFT_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Verify original support and pathway contracts plus the ticker correction
+        run: node --test tests/support-followthrough.test.mjs tests/mental-health-pathway.test.mjs mental-health-pathway/ticker.test.mjs
+      - name: Stage exact serving-byte correction and prove unchanged support behaviour
+        id: prepare
+        run: node mental-health-pathway/ticker-release.mjs prepare
+      - name: Promote only the inspected Good to Talk component version
+        id: promote
+        run: node mental-health-pathway/ticker-release.mjs promote
+      - name: Verify complete live responses, route ownership and retained services
+        run: node mental-health-pathway/ticker-release.mjs verify
+      - name: Verify live mobile and desktop layout and absence of ticker requests
+        run: node mental-health-pathway/ticker-browser.cjs
+      - name: Restore only the version still owned by this correction on failure
+        if: ${{ always() && (failure() || cancelled()) }}
+        run: node mental-health-pathway/ticker-release.mjs rollback
+      - name: Retain public screenshots and correction receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: good-to-talk-ticker-${{ github.run_id }}
+          path: |
+            mental-health-ticker-release/*.json
+            mental-health-ticker-release/*.png
+            mental-health-ticker-release/public-*.html
+          if-no-files-found: warn
+          retention-days: 90

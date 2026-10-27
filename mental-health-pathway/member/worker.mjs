@@ -1,3 +1,4 @@
+import {stripMentalHealthTicker} from '../ticker.mjs';
 import {page,styles,client,dashboardClient} from './content.mjs';
 import {supportApi,json,forgetSupport,exportSupport} from './api.mjs';
 import {authenticateMember} from '../../member-state-fast-v1.js';
@@ -16,6 +17,7 @@ export function enhanceDashboard(html){
  return html.replace(/<\/main>/i,card+'</main>').replace('</body>','<script src="/member/support/dashboard.js" defer></script></body>');
 }
 export function enhanceHub(html){
+ html=stripMentalHealthTicker(html);
  const marker='<details id="find-professional-help">';if(!html.includes(marker)||html.includes('data-support-followthrough'))return html;
  return html.replace(marker,'<p data-support-followthrough><a href="/member/support">Save a next step and optional reminder in My Timber</a>. Your appointment notes stay on this page and are not copied into your account.</p>'+marker);
 }
