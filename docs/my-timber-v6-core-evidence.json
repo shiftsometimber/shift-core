@@ -37,7 +37,21 @@
       "No external communications, costs or real accounts"
     ],
     "realShedEnabled": false,
-    "normalLoginFixLive": false
+    "normalLoginFixLive": false,
+    "candidateDeployment": {
+      "source": "353939230fdb8bf1a8c13b648e55dfebead89cc8",
+      "state": "DEPLOYED_PROVIDER_AND_ANONYMOUS_LIVE_VERIFIED",
+      "programme": "e7e4210e-3013-40d0-bd18-c55cb1064488",
+      "memberDocument": "508bdbff-7dee-4aa0-bad4-afbdf6b1ef49",
+      "testAccountsOnly": true,
+      "routesAdded": 0
+    },
+    "browserJob": {
+      "pid": 74693,
+      "script": "../v6-live-acceptance/check-full-conversation-ui.mjs",
+      "receipt": "../v6-live-acceptance/full-conversation-ui-receipt.json",
+      "limitations": "Does not establish reply/appeal round trip or ordinary password login."
+    }
   },
   "authority": "Matt's approved Go ahead: My Timber support service message. Latest message takes precedence over v5. No deployment until every applicable check passes and Matt says go.",
   "branch": "feat/my-timber-support-experience-20261026",

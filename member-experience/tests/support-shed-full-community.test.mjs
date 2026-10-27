@@ -4,3 +4,8 @@ test('the reused conversation client retains replies and independent appeals ins
  const r=fullShedPageRoutes(new Request('https://shift.test/member/life-back/shed/conversations'));assert.equal(r.status,200);assert((await r.text()).includes('data-member-session="pending"'));assert.equal(fullShedPageRoutes(new Request('https://shift.test/')),null);
 });
 test('the production name-preserving bundle retains the exact full conversation runtime',async()=>{const b=await build({entryPoints:['member-experience/shed-full-community.mjs'],bundle:true,write:false,format:'esm',platform:'neutral',keepNames:true,minify:true});const module=await import('data:text/javascript;base64,'+Buffer.from(b.outputFiles[0].text).toString('base64'));assert.equal(module.fullShedRuntime,fullShedRuntime);assert.equal(module.fullShedHTML,fullShedHTML);});
+
+test('the production support router serves the full conversation page through its existing prefix',async()=>{
+ const {wrapSupportService}=await import('../support-release.mjs');const owner=wrapSupportService({fetch:async()=>new Response('fallback',{status:404})});
+ const response=await owner.fetch(new Request('https://shiftsometimber.co.uk/member/life-back/shed/conversations'),{},{});assert.equal(response.status,200);assert((await response.text()).includes('id="fullShedRoot"'));
+});

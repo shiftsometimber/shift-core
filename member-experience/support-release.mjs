@@ -26,7 +26,7 @@ export function wrapSupportService(original){return {
   let routed=request;const route=aliases[path]||path;if(route!==path){const url=new URL(request.url);url.pathname=route;routed=new Request(url,request);}
   let response;
   if(path.startsWith('/v1/life-back/shed'))response=await shedSupportRoutes(request,env);
-  else if(path==='/member/life-back/shed'||path.startsWith('/assets/member-experience/programme-shed'))response=shedPageRoutes(request);
+  else if(path==='/member/life-back/shed'||path.startsWith('/member/life-back/shed/')||path.startsWith('/assets/member-experience/programme-shed'))response=shedPageRoutes(request);
   else if(route==='/v1/life-back')response=await lifeBackRoutes(request,env);
   else if(route==='/v1/member-support')response=await memberSupportContactRoutes(routed,env);
   else if(route==='/v1/check-ins')response=await memberHealthRoutes(routed,env);
