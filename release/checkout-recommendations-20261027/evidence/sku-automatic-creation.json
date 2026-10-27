@@ -1,0 +1,48 @@
+{
+  "verifiedAt": "2026-10-27T23:13:00.287Z",
+  "source": "9d7f7e20b47bd5a969ff612c525a5db2b1bfb530",
+  "automaticHooks": [
+    "catalogue_sku_insert_medicine_products",
+    "catalogue_sku_insert_medicine_variants",
+    "catalogue_sku_insert_products",
+    "catalogue_sku_insert_supplement_products"
+  ],
+  "skuCounts": [
+    {
+      "source_table": "medicine_products",
+      "count": 7
+    },
+    {
+      "source_table": "medicine_variants",
+      "count": 39
+    },
+    {
+      "source_table": "products",
+      "count": 18
+    },
+    {
+      "source_table": "supplement_products",
+      "count": 8
+    }
+  ],
+  "existingMappingsPreserved": true,
+  "runtimeUnchanged": true,
+  "routesUnchanged": true,
+  "purchasingEnabled": false,
+  "liveComponent": {
+    "id": "c5d576b2-f02c-42f2-b7ee-54aa29e23d89",
+    "source": "wrangler",
+    "strategy": "percentage",
+    "annotations": {
+      "workers/message": "",
+      "workers/triggered_by": "deployment"
+    },
+    "versions": [
+      {
+        "version_id": "2361f9d3-5b68-4921-8a6b-1263d5442d9b",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-27T23:11:06.324117Z"
+  }
+}

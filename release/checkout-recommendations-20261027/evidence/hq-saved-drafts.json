@@ -1,0 +1,92 @@
+{
+  "verified": true,
+  "count": 8,
+  "ids": [
+    "chunky",
+    "clear",
+    "creatine",
+    "crunch",
+    "skill",
+    "sticks",
+    "tablets",
+    "whey"
+  ],
+  "products": [
+    {
+      "id": "chunky",
+      "status": "draft",
+      "sale_enabled": 0,
+      "revision": 1,
+      "sku": "SST-I-00000065"
+    },
+    {
+      "id": "clear",
+      "status": "draft",
+      "sale_enabled": 0,
+      "revision": 2,
+      "sku": "SST-I-00000066"
+    },
+    {
+      "id": "creatine",
+      "status": "draft",
+      "sale_enabled": 0,
+      "revision": 1,
+      "sku": "SST-I-00000067"
+    },
+    {
+      "id": "crunch",
+      "status": "draft",
+      "sale_enabled": 0,
+      "revision": 1,
+      "sku": "SST-I-00000068"
+    },
+    {
+      "id": "skill",
+      "status": "draft",
+      "sale_enabled": 0,
+      "revision": 1,
+      "sku": "SST-I-00000069"
+    },
+    {
+      "id": "sticks",
+      "status": "draft",
+      "sale_enabled": 0,
+      "revision": 1,
+      "sku": "SST-I-00000070"
+    },
+    {
+      "id": "tablets",
+      "status": "draft",
+      "sale_enabled": 0,
+      "revision": 1,
+      "sku": "SST-I-00000071"
+    },
+    {
+      "id": "whey",
+      "status": "draft",
+      "sale_enabled": 0,
+      "revision": 2,
+      "sku": "SST-I-00000072"
+    }
+  ],
+  "skuCounts": [
+    {
+      "source_table": "medicine_products",
+      "count": 7
+    },
+    {
+      "source_table": "medicine_variants",
+      "count": 39
+    },
+    {
+      "source_table": "products",
+      "count": 18
+    },
+    {
+      "source_table": "supplement_products",
+      "count": 8
+    }
+  ],
+  "apiConnected": false,
+  "purchasingEnabled": false
+}

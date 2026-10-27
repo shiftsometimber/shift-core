@@ -1,6 +1,6 @@
 # Optional checkout extras
 
-Built source; not deployed and not sales-enabled. See the existing project checkpoint at `release/olivit-nutrition-20261027/README.md` for live state, constraints and release dependencies.
+Recommendation presentation, HQ SKU display and automatic SKU creation are live. The mixed-payment backend remains prepared but not deployed or sales-enabled. See the existing project checkpoint at `release/olivit-nutrition-20261027/README.md` for live state, constraints and release dependencies.
 
 ## Behaviour
 

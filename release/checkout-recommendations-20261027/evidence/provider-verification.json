@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "source": "7871557c41e2a82f77deee8143ec64df91c4938b",
+  "versionId": "2361f9d3-5b68-4921-8a6b-1263d5442d9b",
+  "retainedServices": {
+    "shift-core": {
+      "deploymentId": "8414e6c6-d286-4f6f-a36d-d4e066f700f6",
+      "versionId": "149f02a8-0b45-4e36-a6f9-425330476d36"
+    },
+    "shift-blog-publisher": {
+      "deploymentId": "1326ad61-7066-47e6-aad1-13b3236dc01c",
+      "versionId": "8d48084c-dea6-4b8a-983e-4eb6a0629def"
+    },
+    "shift-hq-member-comms-20261023": {
+      "deploymentId": "500649b9-fc86-452e-bf9d-652607443c2b",
+      "versionId": "0f676ad1-9f6a-47ae-a7f1-fb2b83ce2378"
+    },
+    "shift-programme-member-20261023": {
+      "deploymentId": "c61f52d0-dcfc-411b-a1d0-9fa8d6b3e297",
+      "versionId": "242ac60e-44d4-4259-abfc-a0bb91a28369"
+    },
+    "shift-treatment-options-presentation-20261022": {
+      "deploymentId": "5aad97d7-93b0-4959-9397-b7fad8d757ff",
+      "versionId": "89bc4281-610b-418a-aee0-9e5a46c9c3e2"
+    }
+  },
+  "routesVerified": 14,
+  "hqDraftsVerified": 8,
+  "purchasingEnabled": false,
+  "skuRegistryVerified": true
+}
