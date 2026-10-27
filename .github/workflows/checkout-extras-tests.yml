@@ -1,0 +1,25 @@
+name: Checkout recommendations and mixed basket tests
+on:
+  pull_request:
+    paths:
+      - 'checkout-extras/**'
+      - 'public-purchase-basket.mjs'
+      - 'medicine-commerce-v1.js'
+      - 'frontend/medicine-front-door/medicine-front-door.js'
+      - 'health-nutrition/**'
+      - '.github/workflows/checkout-extras-tests.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check exact browser source and transactional behaviour
+        run: |
+          node checkout-extras/build-assets.mjs --check
+          node --test checkout-extras/feature.test.mjs checkout-extras/medicine-integration.test.mjs tests/checkout-recovery.test.mjs tests/medicine-commerce-v1.test.mjs tests/purchase-basket.test.mjs health-nutrition/feature.test.mjs

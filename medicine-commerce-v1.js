@@ -1,3 +1,5 @@
+import {BasketError,selection,appendExtras} from './checkout-extras/model.mjs';
+import {quoteExtras,extraGuards,reserveExtras,settlementExtras,extrasRoutes,supplementsWebhook} from './checkout-extras/server.mjs';
 import {ensureCheckoutAttempts,acquireCheckoutAttempt,prepareCheckoutAttempt,requestCheckoutSession,checkoutProblem} from './checkout-attempt-v1.mjs';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
@@ -533,11 +535,13 @@ export async function reconcileExpiredReservations(env) {
     if(session.id!==order.stripe_checkout_session_id||session.status!=='expired'||session.payment_status==='paid')continue;
     await ensureOrderReferenceRegistry(env.DB);await ensureCheckoutAttempts(env.DB);
     const date=now(),condition="EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND status IN ('pending','checkout_open'))";
+    const extraOrder=await env.DB.prepare('SELECT order_number FROM supplement_checkout_orders WHERE order_number=?').bind(order.order_number).first().catch(error=>{if(String(error.message).includes('no such table'))return null;throw error;});
+    const extraStatements=extraOrder?await settlementExtras(env.DB,order.order_number,{failed:true,session}):[];
     const result=await env.DB.batch([
       env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=? AND ${condition}`).bind(date,order.variant_id,order.id),
       env.DB.prepare(`UPDATE order_reference_registry SET status='expired',updated_at=? WHERE order_number=? AND ${condition}`).bind(date,order.order_number,order.id),
       env.DB.prepare(`UPDATE checkout_attempts SET active=0,state='expired',updated_at=? WHERE order_number=? AND ${condition}`).bind(date,order.order_number,order.id),
-      env.DB.prepare("UPDATE medicine_orders SET status='expired',updated_at=? WHERE id=? AND status IN ('pending','checkout_open')").bind(date,order.id)
+      env.DB.prepare("UPDATE medicine_orders SET status='expired',updated_at=? WHERE id=? AND status IN ('pending','checkout_open')").bind(date,order.id),...extraStatements
     ]);count+=Number(result[3]?.meta?.changes||0);
   }
   return count;
@@ -625,7 +629,7 @@ function stripeForm(order, item, user, env) {
     put = (k, v) => form.append(k, String(v));
   put("mode", "payment");
   put("expires_at", Math.floor(Date.now() / 1000) + 30 * 60);
-  put("payment_method_types[0]", "card");
+
   put(
     "success_url",
     `${siteUrl(env)}/order-success?session_id={CHECKOUT_SESSION_ID}`,
@@ -669,7 +673,8 @@ async function checkout(request, env) {
   const eligibility=insulinEligibility(eligibilityItem.form,input.insulinUse)||bmiEligibility(eligibilityItem,input.eligibility);
   if(eligibility)return json({ok:false,error:eligibility.error,message:eligibility.message},eligibility.status,cors(request));
   const reorderNumber=clean(input?.reorderOfOrderNumber,80),verificationToken=clean(input?.verificationToken,160),verificationHash=verificationToken?await sha256(verificationToken):'';
-  const acquired=await acquireCheckoutAttempt(env.DB,{userId:user.id,channel:'medicine',selection:{variantId,reorderNumber,verificationHash,discountCode:clean(input?.discountCode,80).toUpperCase()}});
+  let extras;try{extras=selection(input?.extras||[]);}catch(error){return json({ok:false,error:error.code,message:error.message},error.status,cors(request));}
+  const acquired=await acquireCheckoutAttempt(env.DB,{userId:user.id,channel:'medicine',selection:{variantId,reorderNumber,verificationHash,discountCode:clean(input?.discountCode,80).toUpperCase(),...(extras.length?{extras}:{})}});
   if(acquired.conflict)return json(checkoutProblem({error:'checkout_selection_conflict'}),409,cors(request));
   let attempt=acquired.attempt;
   const reject=async(error,status=409,message)=>{
@@ -692,13 +697,17 @@ async function checkout(request, env) {
     if(!linkedIntake)return reject('verified_assessment_reference_required',409,'The pharmacy assessment reference must be confirmed before payment.');
     const item=await env.DB.prepare(`SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.name,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first();
     const truth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+    if(input.expectedTreatmentPence!==undefined&&input.expectedTreatmentPence!==item?.selling_price_pence)return reject('treatment_price_changed',409,'Your treatment price changed. Review the basket before paying.');
     if(!truth?.canBuy)return reject('out_of_stock',409,'Currently out of stock.');
     const offer=await discount(env,input?.discountCode,Number(item.selling_price_pence));
     if(input?.discountCode&&!offer)return reject('invalid_discount_code',400);
+    let extraQuote;try{extraQuote=await quoteExtras(env,extras);}catch(error){if(error instanceof BasketError)return reject(error.code,error.status,error.message);throw error;}
+    const extraGuard=extraGuards(extraQuote);
     const order={orderNumber:attempt.order_number,totalPence:Number(item.selling_price_pence)-Number(offer?.amount||0)},date=now();
     await ensureOrderReferenceRegistry(env.DB);
-    const availableSql=`EXISTS(SELECT 1 FROM medicine_inventory WHERE variant_id=? AND stock_on_hand-reserved>0)`+(verification?` AND EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?) AND NOT EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE user_id=? AND partner_reference=? AND used_at IS NOT NULL)`:'');
-    attempt=await prepareCheckoutAttempt(env.DB,attempt,{availableSql,availableArgs:[variantId,...(verification?[verificationHash,user.id,variantId,date,user.id,verification.partner_reference]:[])],form:stripeForm(order,item,user,env),statements:guard=>[
+    const availableSql=extraGuard.sql+` AND EXISTS(SELECT 1 FROM medicine_inventory WHERE variant_id=? AND stock_on_hand-reserved>0)`+(verification?` AND EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?) AND NOT EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE user_id=? AND partner_reference=? AND used_at IS NOT NULL)`:'');
+    attempt=await prepareCheckoutAttempt(env.DB,attempt,{availableSql,availableArgs:[...extraGuard.args,variantId,...(verification?[verificationHash,user.id,variantId,date,user.id,verification.partner_reference]:[])],form:appendExtras(stripeForm(order,item,user,env),extraQuote),statements:guard=>[
+      ...reserveExtras(env.DB,extraQuote,order.orderNumber,user.id,'medicine',guard),
       env.DB.prepare(`INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,clinical_intake_reference,created_at,updated_at) SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? WHERE ${guard}`).bind(order.orderNumber,user.id,user.email,item.medicine_id,variantId,item.name,item.strength_label,item.selling_price_pence,offer?.code||null,offer?.amount||0,order.totalPence,reorderOf?.id||null,verification?date:null,linkedIntake.public_reference,date,date),
       env.DB.prepare(`INSERT INTO order_reference_registry(order_number,channel,user_id,source_table,source_id,status,created_at,updated_at) SELECT ?,'medicine',?,'medicine_orders',(SELECT id FROM medicine_orders WHERE order_number=?),'pending',?,? WHERE ${guard}`).bind(order.orderNumber,user.id,order.orderNumber,date,date),
       env.DB.prepare(`UPDATE medicine_inventory SET reserved=reserved+1,updated_at=? WHERE variant_id=? AND ${guard}`).bind(date,variantId),
@@ -714,7 +723,9 @@ async function checkout(request, env) {
     env.DB.prepare("UPDATE order_reference_registry SET status='checkout_open',updated_at=? WHERE order_number=? AND status='pending'").bind(date,attempt.order_number)
   ]);
   const order=await env.DB.prepare('SELECT total_pence FROM medicine_orders WHERE order_number=? AND user_id=?').bind(attempt.order_number,user.id).first();
-  return json({ok:true,checkoutUrl:session.url,orderNumber:attempt.order_number,totalPence:order.total_pence},201,cors(request));
+  const extraOrder=extras.length?await env.DB.prepare('SELECT total_pence FROM supplement_checkout_orders WHERE order_number=?').bind(attempt.order_number).first():null;
+  if(extraOrder)await env.DB.prepare('UPDATE supplement_checkout_orders SET stripe_session_id=? WHERE order_number=?').bind(session.id,attempt.order_number).run();
+  return json({ok:true,checkoutUrl:session.url,orderNumber:attempt.order_number,totalPence:order.total_pence+Number(extraOrder?.total_pence||0)},201,cors(request));
 }
 
 async function webhook(request, env, ctx) {
@@ -758,7 +769,7 @@ async function webhook(request, env, ctx) {
   try {
     const stamp = now(), statements = [];
     const paid = ["checkout.session.completed", "checkout.session.async_payment_succeeded"].includes(event.type) && session.payment_status === "paid";
-    const failed = ["checkout.session.expired", "checkout.session.async_payment_failed", "payment_intent.payment_failed"].includes(event.type);
+    const failed = ["checkout.session.expired", "checkout.session.async_payment_failed"].includes(event.type);
     // Conditions are evaluated inside the transaction, not against the earlier read.
     // Distinct Stripe events and concurrent deliveries must settle one order only once.
     const payable = "status IN ('pending','checkout_open','failed','expired')";
@@ -775,6 +786,11 @@ async function webhook(request, env, ctx) {
         env.DB.prepare(`UPDATE order_reference_registry SET status='failed',updated_at=? WHERE order_number=? AND EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${reserved})`).bind(stamp,number,order.id),
         env.DB.prepare(`UPDATE medicine_orders SET status='failed',updated_at=? WHERE id=? AND ${reserved}`).bind(stamp,order.id)
       );
+    }
+    const extraOrder=await env.DB.prepare('SELECT * FROM supplement_checkout_orders WHERE order_number=?').bind(number).first().catch(error=>{if(String(error.message).includes('no such table'))return null;throw error;});
+    if(extraOrder){
+      if(paid&&(session.amount_total!==order.total_pence+extraOrder.total_pence||session.currency!=='gbp'))throw Error('mixed_payment_amount_mismatch');
+      statements.push(...await settlementExtras(env.DB,number,{paid,failed,session}));
     }
     if(paid||event.type==='checkout.session.expired')statements.push(env.DB.prepare("UPDATE checkout_attempts SET active=0,state=?,updated_at=? WHERE order_number=?").bind(paid?'paid':'expired',stamp,number));
     // The event is complete only when order, inventory and registry commit together.
@@ -801,7 +817,7 @@ async function activePurchaseBasket(request, env) {
   if (!user) return json({ok:false,error:"unauthorised"},401,cors(request));
   await ensureCheckoutAttempts(env.DB);
   const rows = await env.DB.prepare(
-    "SELECT channel,state,session_id,checkout_url,order_number,created_at FROM checkout_attempts WHERE user_id=? AND active=1 AND channel IN ('medicine','apparel') ORDER BY created_at DESC LIMIT 2"
+    "SELECT channel,state,session_id,checkout_url,order_number,created_at FROM checkout_attempts WHERE user_id=? AND active=1 AND channel IN ('medicine','apparel','supplements') ORDER BY created_at DESC LIMIT 3"
   ).bind(user.id).all();
   const resume = new URL(request.url).searchParams.get("resume") === "1";
   const attempts = [];
@@ -813,6 +829,9 @@ async function activePurchaseBasket(request, env) {
         "SELECT medicine_name,strength_label FROM medicine_orders WHERE order_number=? AND user_id=?"
       ).bind(row.order_number,user.id).first().catch(()=>null);
       if (order) item.label = [order.medicine_name,order.strength_label].filter(Boolean).join(" · ").slice(0,120);
+    } else if(row.channel==='supplements'){
+      const order=await env.DB.prepare('SELECT quote_json FROM supplement_checkout_orders WHERE order_number=? AND user_id=?').bind(row.order_number,user.id).first();
+      if(order)item.label='Supplements & Nutrition · '+JSON.parse(order.quote_json).items.reduce((sum,p)=>sum+p.quantity,0)+' item(s)';
     } else {
       const order = await env.DB.prepare(
         "SELECT COUNT(*) lines,COALESCE(SUM(quantity),0) units FROM commerce_order_items WHERE order_id=(SELECT id FROM orders WHERE order_number=? AND user_id=?)"
@@ -925,6 +944,8 @@ async function pharmacyStatus(request, env) {
 }
 
 export async function medicineCommerceRoutes(request, env, ctx) {
+  const extraResponse=await extrasRoutes(request,env,{member,json,cors,body,siteUrl,sha256});if(extraResponse)return extraResponse;
+  if(request.method==='POST'&&new URL(request.url).pathname==='/v1/commerce/stripe/webhook'){const response=await supplementsWebhook(request,env,{validSignature,json});if(response)return response;}
   const path = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
   const memberWrites=["/v1/commerce/medicine-checkout","/v1/commerce/medicine-prepay-verification","/v1/commerce/medicine-clinical-intake","/v1/commerce/medicine-clinical-intake-resume"];
   if(request.method==='POST'&&memberWrites.includes(path)&&request.headers.has('Origin')&&!ALLOWED_ORIGINS.has(request.headers.get('Origin')))return json({ok:false,error:'origin_not_allowed'},403);

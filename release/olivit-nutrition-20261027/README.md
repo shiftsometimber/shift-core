@@ -14,6 +14,19 @@ Matt approved the fuller-dad family park hero, image-led Health hub, nutrition s
 - Runtime source is `health-nutrition/`. Public pages: https://shiftsometimber.co.uk/shift-health and https://shiftsometimber.co.uk/shift-health/supplements-nutrition. HQ: Orders & products → Supplements & Nutrition.
 - Earlier successful releases: initial pages/HQ 40585248724; feature reorder 40588701303; expanded sorting 40591338188. Current behaviour supersedes the disabled price/popularity choices in the latter.
 
+## Checkout recommendations — built, not deployed
+
+Matt authorised building optional checkout recommendations and a mixed basket on 27 October 2026. This follow-up is isolated in `checkout-extras/` and the existing medicine, public basket and HQ integration files. The accepted live source above remains unchanged.
+
+- Two HQ-controlled suggestions maximum, using existing SHIFT says notes; free My Timber support and an immediate Continue without extras. Nothing preselected. Default suggestions are protein convenience formats, not personalised clinical recommendations.
+- Treatment plus several supplement products and quantities use one Stripe Checkout Session and one order reference. Supplement-only checkout is also implemented. The pharmacy and supplement records remain separate for stock, fulfilment and reconciliation. Existing apparel checkout is retained separately.
+- Exact server-priced packs, one delivery charge per supplier parcel, combined treatment/extras total, account ownership, revision/stock checks, atomic reservations, paid webhook settlement and expired-session recovery are implemented. Clinical verification remains mandatory for treatment.
+- HQ can choose recommendation switches and priority, edit the SHIFT says notes and read supplement order records. These controls cannot activate draft products.
+- Purchasing stays off by default (`SUPPLEMENTS_CHECKOUT_ENABLED` unset/false), with no confirmed offer records seeded. Existing eight catalogue drafts stay locked. Olivit API/authentication, real stock/price feed, delivery coverage/tariff, verified labels/VAT and fulfilment transport remain unconfirmed. No supplier order, real payment or external email was created in testing.
+- Tests and Chrome fixture receipts live in `checkout-extras/evidence/`; these are synthetic-data checks, not live payment or supplier acceptance. A separate draft PR preserves the release owner's merge responsibility.
+
+The coordinated release must install the additive migration with the current catalogue, then publish Core's API/basket asset, the front-door client, and the Health/HQ component together. Do not push this source through the previous Health-only deployment lane. Before enabling sales, connect Olivit fulfilment and tracking, validate real SKU/pack/labels/prices/stock/delivery and delivered margin, complete sandbox payment/refund/email/address/end-to-end supplier checks, then obtain the scoped production release approval. Pending products can be shown as Explore only.
+
 ## Catalogue truth
 
 Eight proposed products are idempotently seeded into dedicated `supplement_products` and `supplement_product_history` tables. All are drafts, all have purchasing disabled, and retail/trade prices, supplier SKUs, EANs, VAT and stock start as unknown. Supplier packs are stored separately from illustrated packaging: the supplier page and photo can describe different variants. No invented sample retail prices are deployed.
