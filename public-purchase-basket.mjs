@@ -1,3 +1,4 @@
+import {liveSupportClient} from './checkout-extras/live-support.mjs';
 import {extrasClient} from './checkout-extras/client.mjs';
 // Optional Core site basket: intentionally not injected into My Timber or home.
 // Public site pages share the basket. Private My Timber/member/HQ surfaces do not.
@@ -139,7 +140,7 @@ const SCRIPT=String.raw`(()=>{'use strict';
 export function purchaseBasketAsset(request){
  const path=new URL(request.url).pathname;
  if(request.method!=="GET"||path!=="/assets/shift-purchase-basket-v1.js")return null;
- return new Response(extrasClient+'\n'+SCRIPT,{headers:{"Content-Type":"application/javascript; charset=utf-8","Cache-Control":"public, max-age=300","X-Content-Type-Options":"nosniff"}});
+ return new Response(extrasClient+'\n'+SCRIPT+'\n'+liveSupportClient,{headers:{"Content-Type":"application/javascript; charset=utf-8","Cache-Control":"public, max-age=300","X-Content-Type-Options":"nosniff"}});
 }
 export async function withPurchaseBasket(request,response){
  if(request.method!=="GET"||!isPurchaseBasketPage(new URL(request.url).pathname)||

@@ -23,8 +23,50 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Capture exact serving owners and catalogue structure without changing production
-        run: node release/checkout-recommendations-20261027/inspect.mjs
+      - name: Install pinned compiler and existing-browser driver
+        run: |
+          npm ci --ignore-scripts
+          npm install --prefix "$RUNNER_TEMP/shift-browser" --no-save --ignore-scripts puppeteer-core@25.12.0
+          echo "SHIFT_PUPPETEER_MODULE=$RUNNER_TEMP/shift-browser/node_modules/puppeteer-core" >> "$GITHUB_ENV"
+          echo "SHIFT_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
+          test -x "$(command -v google-chrome)"
+      - name: Verify exact browser source, checkout guards and immutable SKUs
+        run: |
+          node checkout-extras/build-assets.mjs --check
+          node --test checkout-extras/feature.test.mjs checkout-extras/medicine-integration.test.mjs tests/checkout-recovery.test.mjs tests/medicine-commerce-v1.test.mjs tests/purchase-basket.test.mjs health-nutrition/feature.test.mjs
+      - name: Prepare exact component and save HQ SKU identities
+        id: prepare
+        run: node release/checkout-recommendations-20261027/release.mjs prepare
+      - name: Check compiled Health and HQ records before promotion
+        timeout-minutes: 3
+        env:
+          SHIFT_COMPILED_WORKER: ${{ github.workspace }}/checkout-release/build/worker.js
+          SHIFT_BROWSER_EVIDENCE: checkout-release/health-fixture
+        run: node health-nutrition/browser-qa.mjs
+      - name: Check new recommendations inside the actual treatment support screen
+        timeout-minutes: 3
+        env:
+          SHIFT_COMPILED_WORKER: ${{ github.workspace }}/checkout-release/build/worker.js
+          SHIFT_BROWSER_EVIDENCE: checkout-release/recommendations-fixture
+        run: node checkout-extras/live-browser-qa.mjs
+      - name: Promote only the prepared presentation component and captured routes
+        id: promote
+        run: node release/checkout-recommendations-20261027/release.mjs promote
+      - name: Verify exact provider bytes, saved SKUs and retained checkout services
+        run: node release/checkout-recommendations-20261027/release.mjs verify
+      - name: Verify deployed recommendations and existing clinical holds on desktop and mobile
+        timeout-minutes: 3
+        env:
+          SHIFT_BROWSER_EVIDENCE: checkout-release/recommendations-live
+        run: node checkout-extras/live-browser-qa.mjs --live
+      - name: Verify deployed Health pages, filters and HQ wrapper
+        timeout-minutes: 3
+        env:
+          SHIFT_BROWSER_EVIDENCE: checkout-release/health-live
+        run: node health-nutrition/browser-qa.mjs --live
+      - name: Restore only this release's version and route assignments on failure
+        if: ${{ always() && (failure() || cancelled()) && steps.prepare.outcome == 'success' }}
+        run: node release/checkout-recommendations-20261027/release.mjs rollback
       - uses: actions/upload-artifact@v4
         if: always()
         with:

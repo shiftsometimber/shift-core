@@ -1,3 +1,4 @@
+import {registerCatalogueSkus,supplementSkuMap} from '../checkout-extras/skus.mjs';
 import {categories} from './catalogue.mjs';
 export const json=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const clean=(v,n)=>String(v??'').trim().slice(0,n);
@@ -31,8 +32,9 @@ export async function hqRoute(request,env){
   return cors(json({ok:true,orders:results.map(({quote_json,...order})=>({...order,items:JSON.parse(quote_json).items.map(({id,name,pack,quantity})=>({id,name,pack,quantity}))}))}),request);
  }
  if(path==='/v1/hq/supplements'&&method==='GET'){
+  const skus=await supplementSkuMap(env.DB);
   const {results=[]}=await env.DB.prepare('SELECT * FROM supplement_products ORDER BY sort_order,id').all();
-  return cors(json({ok:true,products:results,canManage:manage,integration:{supplier:'Olivit',apiConnected:false,dropshipTermsConfirmed:false,purchasingEnabled:false}}),request);
+  return cors(json({ok:true,products:results.map(p=>({...p,shift_sku:skus[p.id]})),canManage:manage,integration:{supplier:'Olivit',apiConnected:false,dropshipTermsConfirmed:false,purchasingEnabled:false}}),request);
  }
  const match=path.match(/^\/v1\/hq\/supplements\/([a-z0-9-]{1,80})$/);
  if(!match||method!=='PATCH')return cors(json({error:'not_found'},404),request);
@@ -45,6 +47,6 @@ export async function hqRoute(request,env){
   env.DB.prepare("INSERT OR IGNORE INTO supplement_product_history(product_id,revision,changed_by,record_json) SELECT id,revision,?,json_object('checkout_recommendation',checkout_recommendation,'checkout_priority',checkout_priority,'name',name,'description',description,'shift_says',shift_says,'category',category,'visibility',visibility,'trade_price_pence',trade_price_pence,'retail_price_pence',retail_price_pence,'delivery_cost_pence',delivery_cost_pence,'supplier_sku',supplier_sku,'supplier_pack',supplier_pack,'stock_quantity',stock_quantity,'vat_rate',vat_rate,'internal_notes',internal_notes) FROM supplement_products WHERE id=? AND revision=?").bind(who,id,body.revision+1)
  ]);
  if(updated[0].meta.changes!==1)return cors(json({error:'record_changed',message:'This record changed. Refresh before saving.'},409),request);
- const product=await env.DB.prepare('SELECT * FROM supplement_products WHERE id=?').bind(id).first();
+ const product=await env.DB.prepare('SELECT * FROM supplement_products WHERE id=?').bind(id).first();const skus=await supplementSkuMap(env.DB);product.shift_sku=skus[id];
  return cors(json({ok:true,product}),request);
 }
