@@ -4,7 +4,9 @@ if(/^\/(?:hq|admin|v1|api)(?:\/|$)/.test(location.pathname)||window.__shiftHomeS
 window.__shiftHomeShell=true;
  for(const [key,cls]of [['sst_large_text','large-text'],['sst_reduce_motion','reduce-motion']])try{if(localStorage.getItem(key)==='1')document.documentElement.classList.add(cls)}catch{}
 const master=__MASTER__,css=__CSS__;
-const style=document.createElement('style');style.id='shift-home-shell-20261024';style.textContent=css;document.head.append(style);
+// The homepage is frozen: apply the approved heading colour only elsewhere.
+const footerHeadingColour=/^\/(?:index(?:\.html?)?)?$/.test(location.pathname)?'':'\nhtml body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main h2{color:#707762!important;-webkit-text-fill-color:#707762!important}';
+const style=document.createElement('style');style.id='shift-home-shell-20261024';style.textContent=css+footerHeadingColour;document.head.append(style);
 function node(html){const t=document.createElement('template');t.innerHTML=html;return t.content.firstElementChild}
 function fit(footer){const nav=footer.querySelector('[data-shift-footer-social]'),row=footer.querySelector('[data-whatsapp-contact]');if(!nav||!row)return;const size=()=>{const a=[...nav.querySelectorAll('a')].map(a=>a.getBoundingClientRect());if(a.length)row.style.setProperty('--shift-chat-width',Math.ceil(Math.max(...a.map(a=>a.right))-Math.min(...a.map(a=>a.left)))+'px')};size();new ResizeObserver(size).observe(nav)}
 function bindNewHeader(h,d,back){const trigger=h.querySelector('.menu-trigger'),close=d.querySelector('.drawer-close');let prior;
