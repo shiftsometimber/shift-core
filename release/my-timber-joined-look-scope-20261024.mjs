@@ -298,10 +298,10 @@ function qualifyLoopAndRetainedJoined(actualHead){
   assertBinding(actual){root.assertBinding(actual);repo.checkSnapshot(snapshot);}
  };return Object.freeze(proof);
 }
-export function qualifyJoinedSuccessor(actualHead){return activeFiniteSuccessorProof(JOINED_LOOK_CONTRACT,actualHead)||qualifyLatestSupportSuccessor(actualHead);}
+export function qualifyJoinedSuccessor(actualHead){return activeFiniteSuccessorProof(JOINED_LOOK_CONTRACT,actualHead)||qualifyFinalSupportSuccessor(actualHead);}
 export function withJoinedSuccessorQualification(callback,actualHead){
  assert.equal(typeof callback,'function','Synchronous qualification callback required');const active=activeFiniteSuccessorProof(JOINED_LOOK_CONTRACT,actualHead);if(active)return callback(active);
- const proof=qualifyLatestSupportSuccessor(actualHead);activeQualification={key:contractKey(JOINED_LOOK_CONTRACT),proof};
+ const proof=qualifyFinalSupportSuccessor(actualHead);activeQualification={key:contractKey(JOINED_LOOK_CONTRACT),proof};
  try{const value=callback(proof);assert(!value||typeof value.then!=='function','Finite qualification scope must be synchronous');return value;}
  finally{try{proof.assertCurrent();}finally{activeQualification=null;}}
 }
@@ -392,4 +392,40 @@ function qualifyLatestSupportSuccessor(actualHead){
  const repo=repository(process.cwd()),head=actualHead??repo.run('rev-parse','HEAD').trim();
  try{repo.ancestor(SUPPORT_CONTINUATION_CONTRACT.payload,head);}catch(e){if(e.status===1)return qualifyCurrentSupportSuccessor(actualHead);throw e;}
  return qualifySupportContinuation(actualHead);
+}
+
+// Final additive delivery repair: authenticate exact current bytes and retain
+// all four immutable earlier receipts. No original assertions are removed.
+const SUPPORT_FINAL_CONTRACT=deepFreeze(JSON.parse(nativeReadFileSync(new URL('./my-timber-support-final-contract-20261027.json',import.meta.url),'utf8')));
+function qualifyFinalSupport(actualHead){
+ const root=qualifyFiniteSuccessor(SUPPORT_FINAL_CONTRACT,actualHead===undefined?{}:{actualHead}),repo=repository(process.cwd());
+ assert.equal(root.legacyHead,'847f0e8853101512f309c2ce329c06bf3b17063d','Exact retained qualified repair receipt required');
+ const continuation=frozenSupportPredecessor(repo,SUPPORT_CONTINUATION_CONTRACT,root.legacyHead);
+ assert.equal(continuation.c.base,'f5ce4ddf3e3c03b982d76a99b394335b252bb74c','Exact retained support receipt required');
+ const support=frozenSupportPredecessor(repo,SUPPORT_SUCCESSOR_CONTRACT,continuation.c.base);
+ assert.equal(support.c.base,'75165fcc83836be66af0848c82dc97543d5a6f39','Exact retained useful-loop receipt required');
+ const loop=frozenSupportPredecessor(repo,LOOP_SUCCESSOR_CONTRACT,support.c.base);
+ assert.equal(loop.c.base,'3a401235d1a6ae26374dfe33611c0cd9eda93b91','Exact retained main source required');
+ const joined=frozenSupportPredecessor(repo,JOINED_LOOK_CONTRACT,loop.c.base),legacyHead=joined.c.base;
+ const pins=Object.freeze({...joined.pins,...loop.pins,...support.pins,...continuation.pins,...root.pins}),paths=Object.freeze(Object.keys(pins).sort()),currentTree=repo.tree(root.actualHead,paths);
+ for(const prior of[joined,loop,support,continuation])assert.equal(currentTree.get(prior.c.receiptPath)?.oid,prior.pins[prior.c.receiptPath],'Earlier approval receipts remain byte unchanged');
+ const modified=[...new Set([...joined.modified,...loop.modified,...support.modified,...continuation.modified,...Object.keys(root.predecessorPins)])],originalTree=repo.tree(legacyHead,modified),originals=new Map(),predecessorPins={};
+ for(const file of modified){const entry=originalTree.get(file);if(!entry)continue;const bytes=repo.bytes(legacyHead,file);assert.equal(oid(bytes),entry.oid,'Original retained source changed');originals.set(file,bytes);predecessorPins[file]=entry.oid;}
+ for(const[file,pin]of Object.entries(pins))physical(repo,root.actualHead,file,pin,currentTree,false);
+ root.assertCurrent();const snapshot=repo.snapshot();
+ const assertOwned=()=>{root.assertOwnedBytes();repo.checkSnapshot(snapshot);for(const[file,pin]of Object.entries(pins))physical(repo,root.actualHead,file,pin,currentTree,false);};
+ const proof={actualHead:root.actualHead,head:root.actualHead,legacyHead,comparisonHead:legacyHead,payload:root.payload,registrationSource:root.registrationSource,paths,pins,predecessorPins:Object.freeze(predecessorPins),
+  currentFactsAuthenticated:true,currentReaderAuthenticated:false,legacyComparisonOnly:true,productionDeployed:false,retainedPredecessor:loop.c.base,supportPredecessor:support.c.base,supportContinuation:continuation.c.base,supportFinalPredecessor:root.legacyHead,retainedOriginalReceiptUnchanged:true,
+  nativeCommandCount:()=>root.nativeCommandCount()+repo.commandCount(),
+  restoreFile(file,currentBytes){safePath(file);assert(originals.has(file),'Only an owned modified file may be projected: '+file);if(!activeQualification||activeQualification.proof!==proof)this.assertCurrent();const actual=physical(repo,root.actualHead,file,pins[file],currentTree);assert(Buffer.isBuffer(currentBytes),'Actual complete current bytes required');assert(nativeBufferEquals(currentBytes,actual),'Projection input must match qualified actual current bytes');return nativeBufferFrom(originals.get(file));},
+  comparisonValue(file,value){safePath(file);if(!Object.hasOwn(predecessorPins,file))return value;const identifier=value===pins[file],content=(typeof value==='string'||Buffer.isBuffer(value))&&oid(nativeBufferFrom(value))===pins[file];if(!identifier&&!content)return value;const restored=this.restoreFile(file,physical(repo,root.actualHead,file,pins[file],currentTree));return identifier?predecessorPins[file]:Buffer.isBuffer(value)?restored:restored.toString('utf8');},
+  assertCurrent(){root.assertCurrent();assertOwned();},assertOwnedBytes:assertOwned,
+  assertBinding(actual){root.assertBinding(actual);repo.checkSnapshot(snapshot);}
+ };return Object.freeze(proof);
+}
+function qualifyFinalSupportSuccessor(actualHead){
+ if(actualHead!==undefined&&typeof actualHead!=='string')return qualifyLatestSupportSuccessor(actualHead);
+ const repo=repository(process.cwd()),head=actualHead??repo.run('rev-parse','HEAD').trim();
+ try{repo.ancestor(SUPPORT_FINAL_CONTRACT.payload,head);}catch(e){if(e.status===1)return qualifyLatestSupportSuccessor(actualHead);throw e;}
+ return qualifyFinalSupport(actualHead);
 }
