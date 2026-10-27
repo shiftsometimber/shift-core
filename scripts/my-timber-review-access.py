@@ -6,7 +6,7 @@ import base64, datetime, hashlib, json, os, re, secrets, urllib.request
 
 root=Path(__file__).resolve().parent.parent
 folder=root.parent/'v6-live-acceptance'
-email='my-timber-v6-dan@example.invalid'
+email='my-timber-v6-review@example.invalid'
 tag='my_timber_release_test_v6'
 token=re.search(r'^oauth_token\s*=\s*"([^"]+)"',Path('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml').read_text(),re.M)[1]
 baseline=json.loads((root.parent/'support-service-release/provider-baseline.json').read_text())

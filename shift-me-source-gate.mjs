@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {plannedCoreRouteCovers} from './release/cloudflare-route-coverage.mjs';
 const route=fs.readFileSync('shift-me-v1.js','utf8');
 const canonicalEntry=fs.readFileSync('worker-entry-v6.js','utf8');
 const canonicalEntryCompact=canonicalEntry.replace(/"/g,"'").replace(/\s+/g,'');
@@ -59,6 +60,6 @@ const checks=[
  ['forest/cream constitution',creatorCss.includes('--sm-forest:#09271d')&&creatorCss.includes('--sm-cream:#f4f1e8')],
  ['adult character guard',route.includes('ADULT UK bloke aged 35 to 55')&&route.includes('child/baby proportions')&&route.includes('oversized head')],
  ['four directed views',route.includes("view:['Front','Left side','Back','Right side']")&&creator.includes("view:['Front','Left side','Back','Right side']")],
- ['canonical routes publish creator assets on both hosts',['shift-me-api-v1.js','member-shift-me-premium-v1.js','member-shift-me-premium-v1.css'].every(a=>canonicalConfig.includes(`shiftsometimber.co.uk/${a}*`)&&canonicalConfig.includes(`www.shiftsometimber.co.uk/${a}*`))]
+ ['canonical routes publish creator assets on both hosts',['shift-me-api-v1.js','member-shift-me-premium-v1.js','member-shift-me-premium-v1.css'].every(a=>['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].every(host=>plannedCoreRouteCovers(canonicalConfig,host,'/'+a)))]
 ];
 const failed=checks.filter(([,ok])=>!ok);for(const[name,ok]of checks)console.log(`${ok?'PASS':'FAIL'} ${name}`);if(failed.length){console.error(`Shift Me source gate failed: ${failed.map(([n])=>n).join(', ')}`);process.exit(1)}console.log(`Shift Me source gate PASS (${checks.length}/${checks.length})`);

@@ -1,6 +1,6 @@
 // Acceptance runs use normal sessions. This selector changes no authentication
 // rules and grants no permissions; the selected handlers still authenticate.
-const memberEmails=new Set(['my-timber-v6-dan@example.invalid','my-timber-v6-lee@example.invalid','my-timber-v6-moderator@example.invalid']);
+const memberEmails=new Set(['my-timber-v6-dan@example.invalid','my-timber-v6-lee@example.invalid','my-timber-v6-moderator@example.invalid','my-timber-v6-review@example.invalid']);
 const hash=async raw=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(raw))),b=>b.toString(16).padStart(2,'0')).join('');
 export async function isReservedV6AcceptanceRequest(request,env){
  const cookies=request.headers.get('Cookie')||'';

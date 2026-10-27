@@ -12,7 +12,7 @@ BASE = ROOT.parent
 STATE = BASE / 'v6-live-acceptance'
 ACCOUNT_ID = '9e5386dcf455be34c582d93f8bfc79e6'
 TAG = 'my_timber_release_test_v6'
-EMAILS = ['my-timber-v6-dan@example.invalid', 'my-timber-v6-lee@example.invalid','my-timber-v6-moderator@example.invalid']
+EMAILS = ['my-timber-v6-dan@example.invalid', 'my-timber-v6-lee@example.invalid','my-timber-v6-moderator@example.invalid','my-timber-v6-review@example.invalid']
 HQ_EMAIL = 'my-timber-v6-operator@example.invalid'
 token = re.search(r'^oauth_token\s*=\s*"([^"]+)"', Path('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml').read_text(), re.M)[1]
 baseline = json.loads((BASE / 'support-service-release/provider-baseline.json').read_text())
@@ -48,7 +48,7 @@ old = json.loads(credential_path.read_text()) if credential_path.exists() else {
 at = datetime.datetime.now(datetime.timezone.utc)
 expires = (at + datetime.timedelta(hours=12)).isoformat()
 accounts = []
-for name, email in zip(['Dan','Lee','Fictional moderator'], EMAILS):
+for name, email in zip(['Dan','Lee','Fictional moderator','Programme review'], EMAILS):
     rows = query('SELECT u.id,u.email,m.source FROM users u LEFT JOIN member_status m ON m.user_id=u.id WHERE u.email=?', [email])
     if rows and rows[0]['source'] != TAG:
         raise RuntimeError('Reserved test address belongs to an unrecognised account; no mutation made')
@@ -62,7 +62,7 @@ for name, email in zip(['Dan','Lee','Fictional moderator'], EMAILS):
     query('UPDATE users SET date_of_birth=? WHERE id=? AND email=?', ['1990-01-01',uid,email])
     if not query('SELECT id FROM user_auth WHERE user_id=?',[uid]):
         query('INSERT INTO user_auth(user_id,password_hash,email_verified,email_verified_at,created_at,updated_at) VALUES(?,?,1,?,?,?)',[uid,'disabled-synthetic-login-'+secrets.token_hex(32),at.isoformat(),at.isoformat(),at.isoformat()])
-    previous = next((x for x in old.get('members',[])+([old['moderator']] if old.get('moderator') else []) if x.get('id')==uid), None)
+    previous = next((x for x in old.get('members',[])+([old['moderator']] if old.get('moderator') else [])+([old['review']] if old.get('review') else []) if x.get('id')==uid), None)
     session = previous['token'] if previous else secrets.token_urlsafe(40)
     digest = hashlib.sha256(session.encode()).hexdigest()
     query('INSERT INTO user_sessions(user_id,token_hash,expires_at,created_at) VALUES(?,?,?,?) ON CONFLICT(token_hash) DO UPDATE SET expires_at=excluded.expires_at,revoked_at=NULL', [uid,digest,expires,at.isoformat()])
@@ -83,7 +83,7 @@ import subprocess
 schema+=subprocess.check_output(['node','--input-type=module','-e',"import {shedSupportSchema} from './member-experience/shed-support-loop.mjs';process.stdout.write(shedSupportSchema)"],cwd=ROOT,text=True)
 query(re.sub(r'\btimber_shed_', 'timber_shed_v6test_',schema))
 query('INSERT OR IGNORE INTO timber_shed_v6test_forum_moderators(user_id,active,created_at) VALUES(?,1,?)',[accounts[2]['id'],at.isoformat()])
-data={'tag':TAG,'expiresAt':expires,'members':accounts[:2],'moderator':accounts[2],'hq':{**hq,'token':session},'communicationsSent':0}
+data={'tag':TAG,'expiresAt':expires,'members':accounts[:2],'moderator':accounts[2],'review':accounts[3],'hq':{**hq,'token':session},'communicationsSent':0}
 fd=os.open(credential_path,os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600)
 with os.fdopen(fd,'w') as stream:
     json.dump(data,stream)

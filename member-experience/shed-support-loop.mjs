@@ -1,6 +1,8 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
+import {trackingConsent} from './health-routes.mjs';
+import {grantShedPilotAccess} from './shed-pilot-access.mjs';
 import {createTimberShedForumRoutes,validateForumInput} from './timber-shed-forum-routes.mjs';
-import {forumParticipation,saveForumParticipation,SHED_POLICY} from './timber-shed-governance.mjs';
+import {forumParticipation,saveForumParticipation,SHED_MEMBER_SUPPORT_POLICY as SHED_POLICY} from './timber-shed-governance.mjs';
 import {screenForumText} from './timber-shed-community-bouncer.mjs';
 import {activeForumRestriction,visiblePostSQL} from './timber-shed-forum-protection.mjs';
 import {allOffers} from './support-records.mjs';
@@ -9,7 +11,7 @@ import {runTimberShedRetention} from './timber-shed-retention.mjs';
 const headers={'Cache-Control':'no-store, private','Vary':'Cookie','X-Robots-Tag':'noindex, nofollow','X-Content-Type-Options':'nosniff'};
 const json=(value,status=200)=>Response.json(value,{status,headers});
 const fail=(text,status=400)=>{throw Object.assign(Error(text),{status});};
-const testEmails=new Set(['my-timber-v6-dan@example.invalid','my-timber-v6-lee@example.invalid','my-timber-v6-moderator@example.invalid']);
+const testEmails=new Set(['my-timber-v6-dan@example.invalid','my-timber-v6-lee@example.invalid','my-timber-v6-moderator@example.invalid','my-timber-v6-review@example.invalid']);
 const categories=new Set(['meal','movement','routine']);
 const situations=new Set(['late','budget','energy','routine','movement','after-treatment','returning','general']);
 // This limits eligibility for a practical tip. Ordinary peer conversations still
@@ -33,7 +35,7 @@ export async function shedAccess(DB,userId,env){
  return {enabled:synthetic||env.MY_TIMBER_SHED_ENABLED==='true',synthetic,DB:shedDatabase(DB,synthetic)};
 }
 const forumEnv=(env,DB)=>({...env,DB,MEMBER_EXPERIENCE_V1_ENABLED:'true',TIMBER_SHED_PRIVATE_ENABLED:'true',TIMBER_SHED_FORUM_ENABLED:'true',TIMBER_SHED_FORUM_PILOT_APPROVED:'true',TIMBER_SHED_RETENTION_ENABLED:'true',TIMBER_SHED_GOVERNANCE_APPROVED_VERSION:SHED_POLICY.version,TIMBER_SHED_ROUTINE_AUTOPUBLISH_ENABLED:'false',TIMBER_SHED_AI_MODERATION_ENABLED:'false'});
-const privateProgress=async(DB,uid)=>{const row=await DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(uid).first();return JSON.parse(row?.preferences||'{}').lifeBack?.progress||{};};
+export const privateProgress=async(DB,uid)=>{if(!await trackingConsent(DB,uid))return {};const row=await DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(uid).first();return JSON.parse(row?.preferences||'{}').lifeBack?.progress||{};};
 export function privateSituation(progress){
  const s=progress.memberSupport||{};
  if(['changing','stopped'].includes(s.stage))return 'after-treatment';
@@ -103,20 +105,22 @@ export async function shedSupportRoutes(request,env){
    const peers=(await DB.prepare('SELECT pr.display_name,pe.topic FROM timber_shed_support_peers pe JOIN timber_shed_forum_profiles pr ON pr.user_id=pe.user_id WHERE pe.user_id<>? AND pe.topic=? AND NOT EXISTS(SELECT 1 FROM timber_shed_forum_blocks b WHERE b.blocker_id=? AND b.blocked_id=pe.user_id OR b.blocker_id=pe.user_id AND b.blocked_id=?) LIMIT 3').bind(uid,situation,uid,uid).all()).results||[];
    const moderator=!!await DB.prepare('SELECT user_id FROM timber_shed_forum_moderators WHERE user_id=? AND active=1').bind(uid).first();
    const helpful=allOffers(progress).filter(a=>a.reviews?.some(r=>r.outcome==='helped')).map(a=>({id:a.id,title:a.practical?.name||a.title,feedbackId:a.reviews.findLast(r=>r.outcome==='helped').operationId,shedPostId:a.practical?.shedPostId||null}));
-   return json({available:true,accountId:uid,synthetic:access.synthetic,joined:true,careOnly,title:situation==='returning'?'The Shed kept your seat':situation==='after-treatment'?'Men who have been there':'Men like me',posts,starter:careOnly||posts.length?null:starterThreads[category==='movement'?'movement':situation],mine,peers,helpful,moderator,peerNotice:'Peer experience, not clinical advice. Your situation is matched privately and is not shown to other members.'});
+   return json({available:true,accountId:uid,synthetic:access.synthetic,joined:true,healthConsent:participation.healthConsent,careOnly,title:situation==='returning'?'The Shed kept your seat':situation==='after-treatment'?'Men who have been there':'Men like me',posts,starter:careOnly||posts.length?null:starterThreads[category==='movement'?'movement':situation],mine,peers,helpful,moderator,peerNotice:'Peer experience, not clinical advice. Your situation is matched privately and is not shown to other members.'});
   }
   if(!request.headers.get('Content-Type')?.startsWith('application/json'))return json({error:'Use the Shed form'},415);
   const raw=await request.text();if(raw.length>4096)return json({error:'Keep your submission short'},413);
   let input;try{input=JSON.parse(raw)}catch{return json({error:'Invalid request'},400);}
   if(String(input.expectedAccount)!==String(uid))return json({error:'Your account changed. Reload before saving.'},409);
   if(input.action==='join'){
-   if(input.rulesAccepted!==true||input.privacyAcknowledged!==true||input.healthConsent!==true||input.version!==SHED_POLICY.version)fail('Check the current community rules and privacy choices.');
+   if(input.rulesAccepted!==true||input.privacyAcknowledged!==true||typeof input.healthConsent!=='boolean'||input.version!==SHED_POLICY.version)fail('Check the current community rules and privacy choices.');
    const eligibility=await env.DB.prepare('SELECT u.date_of_birth,a.email_verified FROM users u JOIN user_auth a ON a.user_id=u.id WHERE u.id=?').bind(uid).first();
    const dob=new Date(eligibility?.date_of_birth+'T12:00:00Z'),cut=new Date();cut.setUTCFullYear(cut.getUTCFullYear()-18);
    if(eligibility?.email_verified!==1||!Number.isFinite(dob.getTime())||dob>cut)fail('The Shed is for verified adult members.',403);
+   if(participation.disclosureConsentRecorded&&input.healthConsent===false)fail('Use Leave the community to withdraw sharing consent. You can then rejoin without posting.',409);
    if(validateForumInput('profile',{displayName:input.displayName}))fail('Choose a separate community name, 3 to 24 characters.');
-   await DB.batch([DB.prepare('INSERT OR IGNORE INTO timber_shed_adult_access(user_id,evidence_method,evidence_reference,verified_by,verified_at,expires_at,revoked_at) VALUES(?,?,?,?,?,?,NULL)').bind(uid,'verified-adult-account','member-explicit-join',uid,at,new Date(Date.now()+365*86400000).toISOString()),DB.prepare('INSERT OR IGNORE INTO timber_shed_forum_profiles(user_id,display_name,created_at) VALUES(?,?,?)').bind(uid,input.displayName,at)]);
-   await saveForumParticipation(DB,uid,{healthConsent:true},at,fenv);return json({ok:true,joined:true},201);
+   if(!await grantShedPilotAccess(DB,uid,at,new Date(Date.now()+365*86400000).toISOString()))fail('The small Shed pilot is full or your community access needs review. Your private My Timber support stays available.',403);
+   await DB.prepare('INSERT OR IGNORE INTO timber_shed_forum_profiles(user_id,display_name,created_at) VALUES(?,?,?)').bind(uid,input.displayName,at).run();
+   await saveForumParticipation(DB,uid,{healthConsent:input.healthConsent},at,fenv);return json({ok:true,joined:true},201);
   }
   if(!participation.joined||!participation.adultAccess)fail('Join the Shed before posting or marking a tip.',403);
   if(await activeForumRestriction(DB,uid,at))fail('Your community access is restricted. Open community settings.',403);
@@ -138,6 +142,7 @@ export async function shedSupportRoutes(request,env){
    await DB.batch(ops);return json({ok:true,message:input.outcome==='not-fit'||input.outcome==='not-helped'?'Your answer is saved. This tip is left out of your next matches.':input.outcome==='not-tried'?'No problem. It can stay here for another moment.':'Your own helpful feedback is saved.'});
   }
   if(input.action==='preview'){
+   if(!participation.healthConsent)fail('You can read without posting. Review your community sharing choice before preparing a post.',403);
    const progress=await privateProgress(env.DB,uid),offer=allOffers(progress).find(a=>a.id===input.offerId&&a.reviews?.some(r=>r.outcome==='helped'));
    if(!offer)fail('Choose something you actually reported helpful.',409);
    const title=String(input.title||''),body=String(input.body||''),category=input.category;
@@ -167,6 +172,7 @@ export async function shedSupportRoutes(request,env){
   }
   if(input.action==='peer'){
    if(input.visible===false){await DB.prepare('DELETE FROM timber_shed_support_peers WHERE user_id=?').bind(uid).run();return json({ok:true});}
+   if(!participation.healthConsent)fail('Review your community sharing choice before making an experience visible.',403);
    if(input.visible!==true||!situations.has(input.topic))fail('Choose the experience you want to be visible for.');
    await DB.prepare('INSERT INTO timber_shed_support_peers(user_id,topic,opted_in_at) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET topic=excluded.topic,opted_in_at=excluded.opted_in_at').bind(uid,input.topic,at).run();return json({ok:true});
   }

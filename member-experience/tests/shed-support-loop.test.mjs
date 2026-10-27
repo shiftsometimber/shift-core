@@ -4,13 +4,14 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fixture} from '../../health-passport/fixture.mjs';
 import {shedSupportRoutes,shedSupportSchema,shedThreshold,shedDatabase,starterThreads,publicTip,attachShedEvidence} from '../shed-support-loop.mjs';
-import {SHED_POLICY} from '../timber-shed-governance.mjs';
+import {SHED_MEMBER_SUPPORT_POLICY as SHED_POLICY} from '../timber-shed-governance.mjs';
 function setup(t){
  const f=fixture({seed:false});t.after(()=>f.close());
  f.db.exec(`ALTER TABLE users ADD COLUMN date_of_birth TEXT;CREATE TABLE user_auth(user_id INTEGER PRIMARY KEY,email_verified INTEGER);CREATE TABLE member_status(user_id INTEGER PRIMARY KEY,source TEXT);CREATE TABLE hq_users(id INTEGER PRIMARY KEY,email TEXT);`);
  f.db.prepare('INSERT INTO users(id,email,first_name,date_of_birth) VALUES(?,?,?,?)').run(3,'my-timber-v6-moderator@example.invalid','Fictional moderator','1990-01-01');
  for(const [id,name]of [[1,'dan'],[2,'lee'],[3,'moderator']]){
   f.db.prepare('UPDATE users SET email=?,date_of_birth=? WHERE id=?').run('my-timber-v6-'+name+'@example.invalid','1990-01-01',id);
+  f.db.prepare('INSERT INTO consents(user_id,consent_type,granted) VALUES(?,?,1)').run(id,'my_shift_health_tracking');
   f.db.prepare('INSERT INTO member_status VALUES(?,?)').run(id,'my_timber_release_test_v6');f.db.prepare('INSERT INTO user_auth VALUES(?,1)').run(id);
  }
  f.db.prepare('INSERT INTO user_sessions(id,user_id,token_hash,expires_at) VALUES(?,?,?,?)').run(3,3,createHash('sha256').update('test-only-member-3').digest('hex'),'2099-01-01T00:00:00Z');
@@ -74,4 +75,16 @@ test('S2/S5: threshold uses distinct, consented, current real marks; tests, staf
  await attachShedEvidence(f.env.DB,{},prepared,2,f.env);assert.equal(prepared.nextShift.practical.shedLabel,undefined);assert.equal(prepared.nextShift.practical.shedHelpedCount,undefined);
  assert.equal(shedThreshold({}),5);assert.equal(shedThreshold({TIMBER_SHED_HELPED_MINIMUM:'1'}),5);
  assert.equal(publicTip({status:'approved',tip_reviewed_at:'now',real_marks:10,title:'Change your dose',body:'A dose tip'},5).label,undefined);
+});
+
+test('a read-only community member can join without disclosure consent; posting still needs it',async t=>{
+ const f=setup(t);const joined=await f.call({action:'join',version:SHED_POLICY.version,displayName:'ReadOnlyPeer',rulesAccepted:true,privacyAcknowledged:true,healthConsent:false});assert.equal(joined.status,201);
+ const overview=(await f.call()).body;assert.equal(overview.joined,true);assert.equal(overview.healthConsent,false);
+ assert.equal((await f.call({action:'preview',offerId:'own-helpful-offer',category:'meal',title:'An ordinary meal shortcut',body:'These deliberately typed words stay private.'})).status,403);
+ assert.equal((await f.call({action:'peer',visible:true,topic:'after-treatment'})).status,403);
+});
+test('turning optional tracking off stops matching from the private record',async t=>{
+ const f=setup(t);await f.join(1);assert.equal((await f.call()).body.starter.title,starterThreads.late.title);
+ f.db.prepare('INSERT INTO consents(user_id,consent_type,granted) VALUES(?,?,0)').run(1,'my_shift_health_tracking');
+ const overview=(await f.call()).body;assert.equal(overview.starter.title,starterThreads.general.title);assert.deepEqual(overview.helpful,[]);assert.doesNotMatch(JSON.stringify(overview),/PRIVATE OWN WORDS|PRIVATE MEDICINE/);
 });
