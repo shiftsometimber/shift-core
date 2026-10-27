@@ -1,0 +1,59 @@
+{
+  "source": "1608d3e1ef0f533a27abc88561680e3bc937d955",
+  "workflowRun": 40591338188,
+  "verifiedAt": "2026-10-27T22:01:50Z",
+  "result": "success",
+  "providerBytesVerified": true,
+  "ownedRoutesVerified": 11,
+  "zoneRouteCount": 890,
+  "newRoutes": 0,
+  "savedHqDrafts": [
+    "whey",
+    "clear",
+    "creatine",
+    "skill",
+    "sticks",
+    "tablets",
+    "crunch",
+    "chunky"
+  ],
+  "olivitApiConnected": false,
+  "purchasingEnabled": false,
+  "focusedTestsPassed": 10,
+  "browserFixturePassed": true,
+  "browserLivePassed": true,
+  "viewports": [
+    1440,
+    736,
+    390,
+    320
+  ],
+  "pageErrors": [],
+  "retainedServices": [
+    "shift-core",
+    "shift-blog-publisher",
+    "shift-hq-member-comms-20261023",
+    "shift-programme-member-20261023"
+  ],
+  "evidenceArtifact": 12773279183,
+  "evidenceArtifactSHA256": "508aee08eeca31997a98bcc9ffee98bfe598b5b99be8f8000dd8d9e2512459da",
+  "featureOrder": [
+    "Weight management",
+    "Bloods",
+    "Testosterone",
+    "Supplements & Nutrition"
+  ],
+  "sortChoices": [
+    "range",
+    "name",
+    "name-desc",
+    "price-up",
+    "price-down",
+    "newest",
+    "popular"
+  ],
+  "defaultSort": "name-ascending",
+  "priceSortingAvailable": false,
+  "popularitySortingAvailable": false,
+  "existingWorkerStagedBeforePromotion": true
+}
