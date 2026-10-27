@@ -1,84 +1,59 @@
 {
-  "at": "2026-10-26T20:18:28.005Z",
-  "state": "HISTORICAL_FIELDS_SUPERSEDED_SEE_SINGLE_RELEASE_CONTINUATION",
+  "at": "2026-10-27T08:50:40.425218+00:00",
+  "state": "MEMBER_SERVICE_LIVE_VERIFIED_SHED_HELD_CANONICAL_PR_OPEN",
   "singleReleaseContinuation": {
-    "at": "2026-10-27T06:36:56.714129+00:00",
-    "state": "SOURCE_REPAIRED_NOT_MEMBER_RELEASED",
-    "parentSource": "f5ce4ddf3e3c03b982d76a99b394335b252bb74c",
-    "sourceTests": {
-      "passed": 169,
-      "failed": 0,
-      "receipt": "../v6-live-acceptance/current-support-source-tests.log"
-    },
-    "retainedEvidence": {
-      "phoneWidthsAndSafety": 72,
-      "communityEntrancesAndIsolation": 24,
-      "privacyCases": 12,
-      "note": "Earlier exact-candidate browser evidence; new full-conversation adapter still requires browser qualification."
-    },
-    "prepared": [
-      "Effective wildcard route checks repair the two stale route gates without adding routes",
-      "Complete inherited forum UI restored behind conversations route, including replies and independent appeals, scoped to session-owned DOM",
-      "Optional tracking off stops private-record matching; read-only community joining supported",
-      "Pilot capacity guard prevents an eleventh join from disabling existing ten",
-      "Separate fictional review account prepared; ordinary password login still unverified"
-    ],
-    "remaining": [
-      "Qualify full conversation/reply/appeal interface in live browsers",
-      "Register an additive finite successor to f5ce4ddf before pushing these application changes; preserve original qualification receipts",
-      "Reconcile other failed PR1439 checks, pass broader qualification, merge and release canonical login fix",
-      "Verify ordinary review-account login and supply full previews",
-      "Matt separately confirms Shed house rules, moderator hours, escalation/reporting and independent appeal coverage before real Shed activation"
-    ],
-    "holds": [
-      "No real-member rollout of unfinished features",
-      "Homepage and public navigation preserved",
-      "Google download hold preserved",
-      "No external communications, costs or real accounts"
-    ],
-    "realShedEnabled": false,
-    "normalLoginFixLive": false,
-    "candidateDeployment": {
-      "source": "aa8e14e87d99647e5a602bdaa3667eb06ec9a7ca",
-      "state": "DEPLOYED_PROVIDER_AND_ANONYMOUS_LIVE_VERIFIED",
-      "testAccountsOnly": true,
-      "routesAdded": 0,
-      "workers": {
-        "shift-programme-member-20261023": "53bf8fc5-d779-4a29-8565-ecab1ea1208d",
-        "shift-hq-member-comms-20261023": "8e075388-4c12-45ab-8465-9eb2ebd2af46"
+    "at": "2026-10-27T08:50:40.425218+00:00",
+    "state": "MEMBER_SERVICE_LIVE_VERIFIED_SHED_HELD_CANONICAL_PR_OPEN",
+    "authorisedMemberServiceLive": true,
+    "sourceIntegration": "PR1439 open; additive final qualification and broader checks required before merge",
+    "sourceAtActivation": "5359ca69b9f2dd991c921baeaa4d2a8eab6eeafd",
+    "servingWorkers": {
+      "shift-programme-member-20261023": {
+        "version": "242ac60e-44d4-4259-abfc-a0bb91a28369",
+        "deployment": "c61f52d0-dcfc-411b-a1d0-9fa8d6b3e297"
+      },
+      "shift-hq-member-comms-20261023": {
+        "version": "0f676ad1-9f6a-47ae-a7f1-fb2b83ce2378",
+        "deployment": "500649b9-fc86-452e-bf9d-652607443c2b"
       }
     },
-    "fullConversationBrowserEvidence": {
-      "at": "2026-10-27T06:31:50.835Z",
-      "syntheticOnly": true,
-      "cases": [
-        {
-          "engine": "chromium",
-          "status": "PASS",
-          "widths": [
-            320,
-            360,
-            390,
-            430
-          ],
-          "draftIsolation": true,
-          "replyAppealRoundTrip": "NOT_TESTED"
-        },
-        {
-          "engine": "webkit",
-          "status": "PASS",
-          "widths": [
-            320,
-            360,
-            390,
-            430
-          ],
-          "draftIsolation": true,
-          "replyAppealRoundTrip": "NOT_TESTED"
-        }
-      ]
+    "coreLoginRepair": {
+      "version": "149f02a8-0b45-4e36-a6f9-425330476d36",
+      "deployment": "8414e6c6-d286-4f6f-a36d-d4e066f700f6",
+      "nativeOriginalModuleHashes": {
+        "canonical-worker.js": "e14b8c9c522433ebc7e97db4b07ca7be1bd816f9684d207b21e5b0098a763877"
+      },
+      "canonicalSourceMatchesServingAssignment": true,
+      "normalFormValidation": "PASS",
+      "ordinaryPasswordLogin": "BLOCKED_AUTOMATED_TURNSTILE; no security bypass or injected-cookie login pass claimed"
     },
-    "next": "Register an additive finite source successor from f5ce4ddf to the current product source; retain the prior receipt unchanged. Complete live reply/appeal round trip, reconcile remaining CI failures, pass broader qualification and merge PR1439. Canonical login fix and real-member enablement are not deployed."
+    "postActivation": {
+      "status": "PASS",
+      "cases": 21,
+      "evidence": "../v6-live-acceptance/post-activation-browser-receipt.json"
+    },
+    "realShedEnabled": false,
+    "realShedSchemaInstalled": false,
+    "realAwayActivated": false,
+    "homepageByteIdentical": true,
+    "healthByteIdentical": true,
+    "bindingsAssetsSchedulesPreserved": true,
+    "routesAdded": 0,
+    "realMemberDatabaseWritesByVerification": 0,
+    "communicationsSent": 0,
+    "costsIncurred": 0,
+    "retiredFault": {
+      "cause": "Reconstructed content/v2 Core export differed from its immutable native version, breaking serialized browser code.",
+      "resolved": "Original native Core restored; login repair reapplied to exact immutable modules; six pages, 72 width/safety and 21 post-activation checks subsequently passed.",
+      "evidence": "../v6-login-pattern-release/deployment-receipt.json"
+    },
+    "remaining": [
+      "Finish final source qualification and merge PR1439 after broader checks pass.",
+      "Matt separately confirms Shed owner/rules/hours/escalation/reporting/independent review; real roles/schema then need activation and finite live check.",
+      "Ordinary password sign-in needs the existing interactive security check in a normal browser; automated browsers timed out and protection was retained.",
+      "Voluntary real-member usefulness pilot after go-live; no efficacy or exclusivity claim."
+    ],
+    "next": "Qualify and push final source; retain live service while broader integration and separate Shed operation are pending."
   },
   "authority": "Matt's approved Go ahead: My Timber support service message. Latest message takes precedence over v5. No deployment until every applicable check passes and Matt says go.",
   "branch": "feat/my-timber-support-experience-20261026",
@@ -112,148 +87,189 @@
   },
   "releaseChecks": {
     "C1": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "The standalone signed-out try route and usable fictional options are prepared. Actual under-one-minute use, entry-to-registration and return through the browser remain unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/community-entrances-receipt.json",
+      "evidenceAndLimit": "Signed-out fictional useful result under one minute, without account or member data. Synthetic qualification; no claim of actual member benefit."
     },
     "C2": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "All three Not for me adaptations have source/fixture coverage. Required before/after browser screenshots for Wrong time, Too much effort and Don't like the idea are outstanding."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/core-journey-candidate.log",
+      "evidenceAndLimit": "All three optional rejection reasons produce distinct prepared offers. Synthetic qualification; no claim of actual member benefit."
     },
     "C3": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Dated source/correction/retirement logic is covered by source tests. No rendered-phone proof of the exact reason line and quote privacy for this candidate."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Dated actual source, reason, correction/deletion; privacy receipt covers quote controls. Synthetic qualification; no claim of actual member benefit."
     },
     "C4": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Four outcomes, revision, consent, expected-account and persistence are covered by route/model tests using isolated synthetic data. Full refreshed member-interface behaviour is unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/core-journey-candidate.log",
+      "evidenceAndLimit": "All four feedback outcomes, next offer, refresh and account separation. Synthetic qualification; no claim of actual member benefit."
     },
     "C5": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Private memory corrections/deletions have source and fresh-read tests. Actual interface acceptance is outstanding; related Shed-post removal is a phase-2 dependency and is not built."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Private memory correction/deletion after refresh; separate related-post removal in shed-browser-actions.log. Synthetic qualification; no claim of actual member benefit."
     },
     "C6": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Editable member-owned notes and deliberate local download are prepared; no automatic send exists. Actual browser editing/download/copy is not qualified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/core-journey-candidate.log",
+      "evidenceAndLimit": "Editable own note and deliberate download; current bounded-note contents also covered by prescriber-note.test.mjs. Synthetic qualification; no claim of actual member benefit."
     },
     "C7": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "One-tap inline rough-day action without streak/count is prepared. Actual phone-width interaction remains unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "One-tap rough-day route, no streak or count. Synthetic qualification; no claim of actual member benefit."
     },
     "C8": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Earlier live urgent-help receipts remain historical evidence for their exact source. The new candidate has no fresh phone tap/order acceptance."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/safety-widths-receipt.json",
+      "evidenceAndLimit": "Urgent phone links above Ask Timber and within side-effects help. Synthetic qualification; no claim of actual member benefit."
     },
     "C9": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Member-confirmed changes, preserved history and chosen cadence have source/route coverage. Complete changed-circumstances and return journey in the member interface remains unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Confirmed changed circumstances, retained history, chosen rhythm and no invented helpfulness. Synthetic qualification; no claim of actual member benefit."
     },
     "C10": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Member-confirmed finish/resume and own helpful history are prepared with source tests. Complete finish/keep-plan/return interface is unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Own progress, useful routines, checked keeping plan, fallback, lighter rhythm and return. Synthetic qualification; no claim of actual member benefit."
     },
     "F1": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: F1 checks original goal/difficulty dates, corrections, deletion and stopped recall. Real member-interface refresh/account switching remains outstanding."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Goal/difficulty dates, correction, deletion, refresh and account separation. Synthetic qualification; no claim of actual member benefit."
     },
     "F2": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: F2 retains the actual offer separately from the member correction and deletes the source. Browser editing/deletion and subsequent rendered review remain unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Actual offer/reason retained separately from member corrections; deletion stops derived review use. Synthetic qualification; no claim of actual member benefit."
     },
     "F3": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: F3/F4 correct/delete source feedback and re-derive review/helpfulness; negative practical options are excluded by prepared-option logic. Full UI correction-to-next-offer journey remains unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Tried/said feedback correct/delete and exclusion of unsuccessful approaches. Synthetic qualification; no claim of actual member benefit."
     },
     "F4": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: F3/F4/F5 prove helpful counts derive from source answers, not acceptance/opening. Rendered counts and refreshed finishing history remain unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Helpful history changes only from the member source answers/corrections/deletions. Synthetic qualification; no claim of actual member benefit."
     },
     "F5": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: F5/R3/R4 cover accepted-plan edits/deletion, stopped reviews and no inferred trying/helpfulness. Actual interface changes/refresh remain unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Accepted plan and review choices correct/delete without invented trying or benefit. Synthetic qualification; no claim of actual member benefit."
     },
     "R1": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: R1/R2 trace exact member quotes/dates and omit unreported history. Actual review rendering/privacy remains unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Only reported words/dates, including a new account without fabricated history. Synthetic qualification; no claim of actual member benefit."
     },
     "R2": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: R1/R2 test instruction-like member text as quoted data and fixed rules with no causal inference. No external AI call is used for this review. Browser acceptance remains outstanding."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Instruction-like text remains quoted data; no causes or invented wins. Synthetic qualification; no claim of actual member benefit."
     },
     "R3": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: R3 covers fortnightly default, weekly, calendar month-end, on-request and never; R4 checks acceptance. Actual member preference change/refresh and displayed due review remain unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Fortnightly default, weekly, calendar month, on-request and never. Synthetic qualification; no claim of actual member benefit."
     },
     "R4": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: R4 requires checked/edited acceptance and rejects stale review IDs; acceptance never marks tried/helpful. Browser form and refresh acceptance remain outstanding."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Viewing does not accept a plan; deliberate acceptance required. Synthetic qualification; no claim of actual member benefit."
     },
     "R5": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: R5 covers reported win, open difficulty, prescriber questions and returning. Complete rendered examples remain unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Recognition, open difficulty, prescriber questions and disrupted-week recovery. Synthetic qualification; no claim of actual member benefit."
     },
     "H1": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: authenticated source routes tested with isolated DB/HQ session fixture through member request, private reference, HQ claim/reply, member receipt, other-account isolation and member resolution. No real ticket or live staff reply sent. Actual member/HQ browser round trip remains unverified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/support-roundtrip.log",
+      "evidenceAndLimit": "Test member request/reference, authorised restricted operator reply and correct member-only refresh; companion WebKit receipt retained. Synthetic qualification; no claim of actual member benefit."
     },
     "H2": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: H2 covers app/account contact with optional health tracking off; rejects foreign origin/account and treatment requests; no health attachment. Actual session-switch/draft-clearing browser check remains outstanding."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/support-roundtrip-webkit.log",
+      "evidenceAndLimit": "App/account scope, tracking off, no health attachment, thread/draft isolation; post-activation browser receipt repeats draft isolation. Synthetic qualification; no claim of actual member benefit."
     },
     "H3": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "support-service.test.mjs: H3 covers Matt/one-working-day normal policy and replacement by configured away copy; no instant/24-7 promise. Away draft is unapproved, backup unassigned, actual away member display not browser-qualified."
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/safety-widths-receipt.json",
+      "evidenceAndLimit": "Matt/within one working day normally; approved fictional away and Linda cover; real away inactive. Synthetic qualification; no claim of actual member benefit."
     },
     "S1": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. Private community matching across tabs has not been built or verified."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/community-entrances-receipt.json",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     },
     "S2": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. Five distinct real consenting members and threshold-gated Shed label/count are requirements, not implemented evidence."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/current-support-source-tests.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     },
     "S3": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. No invented member content has been created; SHIFT-labelled starter-thread flow is unbuilt."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/shed-browser-complete.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     },
     "S4": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. Deliberate preview-to-post sharing and post-removal controls are unbuilt."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/current-support-source-tests.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     },
     "S5": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. Private author feedback about real marks is unbuilt."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/current-support-source-tests.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     },
     "S6": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. Moderation review/report/block end-to-end readiness is not established."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/current-support-source-tests.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     },
     "S7": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. Ask Timber pointing to eligible peer threads is unbuilt."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/community-entrances-receipt.json",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     },
     "S8": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. New Shed account/sign-out isolation is unqualified. The signed-out try flow uses no member API/data."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/community-chromium-finish.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     },
     "S9": {
-      "status": "BLOCKED",
-      "evidenceAndLimit": "Phase 2 not started. No new notifications were implemented or sent. New Shed/quoted-content discretion must be verified in the actual interface."
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/feedback-privacy-receipt.json",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
     }
   },
   "sharedChecks": {
     "browserWidths": {
-      "status": "BLOCKED",
-      "required": [
+      "status": "PASS",
+      "widths": [
         320,
         360,
         390,
         430
       ],
-      "reason": "No permitted accessible preview/browser path is currently available for the changed candidate. A previous local/file preview access was denied; no workaround attempted."
+      "engines": [
+        "Chromium",
+        "WebKit"
+      ],
+      "evidence": "../v6-live-acceptance/safety-widths-receipt.json",
+      "passed": 72,
+      "physicalPhoneTested": false
     },
-    "contrast": {
-      "status": "BLOCKED",
-      "reason": "Existing approved cream/black presentation preserved; actual rendered small text and complete changed pages still require acceptance."
+    "criticalContrast": {
+      "status": "PASS",
+      "minimum": 4.5,
+      "cases": 3,
+      "evidence": "../v6-live-acceptance/critical-contrast-receipt.json",
+      "scope": "Agreed safety line, source metadata and footer; no claim of a complete independent accessibility audit."
     }
   },
   "service": {
@@ -278,7 +294,7 @@
     "Related Shed post deletion, moderation and community loop remain phase 2.",
     "No independent men have yet established that the experience removes a hassle and earns a return."
   ],
-  "largestRemainingGap": "One complete refreshed member-visible support journey, including the private HQ reply, at 320-430px in a permitted actual browser. Tests/dry build are insufficient.",
+  "largestRemainingGap": "Real-member Shed operation remains unauthorised/unprovisioned; canonical PR integration remains open. Real-person usefulness needs the voluntary pilot.",
   "phase2ShedStarted": false,
   "phase3ProposalsBuilt": false,
   "newProductionDeployments": 0,
@@ -1485,6 +1501,157 @@
           ]
         }
       }
+    },
+    {
+      "at": "2026-10-26T20:18:28.005Z",
+      "state": "HISTORICAL_FIELDS_SUPERSEDED_SEE_SINGLE_RELEASE_CONTINUATION",
+      "releaseChecks": {
+        "C1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "The standalone signed-out try route and usable fictional options are prepared. Actual under-one-minute use, entry-to-registration and return through the browser remain unverified."
+        },
+        "C2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "All three Not for me adaptations have source/fixture coverage. Required before/after browser screenshots for Wrong time, Too much effort and Don't like the idea are outstanding."
+        },
+        "C3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Dated source/correction/retirement logic is covered by source tests. No rendered-phone proof of the exact reason line and quote privacy for this candidate."
+        },
+        "C4": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Four outcomes, revision, consent, expected-account and persistence are covered by route/model tests using isolated synthetic data. Full refreshed member-interface behaviour is unverified."
+        },
+        "C5": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Private memory corrections/deletions have source and fresh-read tests. Actual interface acceptance is outstanding; related Shed-post removal is a phase-2 dependency and is not built."
+        },
+        "C6": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Editable member-owned notes and deliberate local download are prepared; no automatic send exists. Actual browser editing/download/copy is not qualified."
+        },
+        "C7": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "One-tap inline rough-day action without streak/count is prepared. Actual phone-width interaction remains unverified."
+        },
+        "C8": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Earlier live urgent-help receipts remain historical evidence for their exact source. The new candidate has no fresh phone tap/order acceptance."
+        },
+        "C9": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Member-confirmed changes, preserved history and chosen cadence have source/route coverage. Complete changed-circumstances and return journey in the member interface remains unverified."
+        },
+        "C10": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Member-confirmed finish/resume and own helpful history are prepared with source tests. Complete finish/keep-plan/return interface is unverified."
+        },
+        "F1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F1 checks original goal/difficulty dates, corrections, deletion and stopped recall. Real member-interface refresh/account switching remains outstanding."
+        },
+        "F2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F2 retains the actual offer separately from the member correction and deletes the source. Browser editing/deletion and subsequent rendered review remain unverified."
+        },
+        "F3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F3/F4 correct/delete source feedback and re-derive review/helpfulness; negative practical options are excluded by prepared-option logic. Full UI correction-to-next-offer journey remains unverified."
+        },
+        "F4": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F3/F4/F5 prove helpful counts derive from source answers, not acceptance/opening. Rendered counts and refreshed finishing history remain unverified."
+        },
+        "F5": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F5/R3/R4 cover accepted-plan edits/deletion, stopped reviews and no inferred trying/helpfulness. Actual interface changes/refresh remain unverified."
+        },
+        "R1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R1/R2 trace exact member quotes/dates and omit unreported history. Actual review rendering/privacy remains unverified."
+        },
+        "R2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R1/R2 test instruction-like member text as quoted data and fixed rules with no causal inference. No external AI call is used for this review. Browser acceptance remains outstanding."
+        },
+        "R3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R3 covers fortnightly default, weekly, calendar month-end, on-request and never; R4 checks acceptance. Actual member preference change/refresh and displayed due review remain unverified."
+        },
+        "R4": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R4 requires checked/edited acceptance and rejects stale review IDs; acceptance never marks tried/helpful. Browser form and refresh acceptance remain outstanding."
+        },
+        "R5": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R5 covers reported win, open difficulty, prescriber questions and returning. Complete rendered examples remain unverified."
+        },
+        "H1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: authenticated source routes tested with isolated DB/HQ session fixture through member request, private reference, HQ claim/reply, member receipt, other-account isolation and member resolution. No real ticket or live staff reply sent. Actual member/HQ browser round trip remains unverified."
+        },
+        "H2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: H2 covers app/account contact with optional health tracking off; rejects foreign origin/account and treatment requests; no health attachment. Actual session-switch/draft-clearing browser check remains outstanding."
+        },
+        "H3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: H3 covers Matt/one-working-day normal policy and replacement by configured away copy; no instant/24-7 promise. Away draft is unapproved, backup unassigned, actual away member display not browser-qualified."
+        },
+        "S1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Private community matching across tabs has not been built or verified."
+        },
+        "S2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Five distinct real consenting members and threshold-gated Shed label/count are requirements, not implemented evidence."
+        },
+        "S3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. No invented member content has been created; SHIFT-labelled starter-thread flow is unbuilt."
+        },
+        "S4": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Deliberate preview-to-post sharing and post-removal controls are unbuilt."
+        },
+        "S5": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Private author feedback about real marks is unbuilt."
+        },
+        "S6": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Moderation review/report/block end-to-end readiness is not established."
+        },
+        "S7": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Ask Timber pointing to eligible peer threads is unbuilt."
+        },
+        "S8": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. New Shed account/sign-out isolation is unqualified. The signed-out try flow uses no member API/data."
+        },
+        "S9": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. No new notifications were implemented or sent. New Shed/quoted-content discretion must be verified in the actual interface."
+        }
+      },
+      "sharedChecks": {
+        "browserWidths": {
+          "status": "BLOCKED",
+          "required": [
+            320,
+            360,
+            390,
+            430
+          ],
+          "reason": "No permitted accessible preview/browser path is currently available for the changed candidate. A previous local/file preview access was denied; no workaround attempted."
+        },
+        "contrast": {
+          "status": "BLOCKED",
+          "reason": "Existing approved cream/black presentation preserved; actual rendered small text and complete changed pages still require acceptance."
+        }
+      },
+      "reason": "Superseded preparation status; historical evidence retained."
     }
   ]
 }
