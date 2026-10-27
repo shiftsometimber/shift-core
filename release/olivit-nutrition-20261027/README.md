@@ -4,7 +4,9 @@ Matt approved the fuller-dad family park hero, image-led Health hub, nutrition s
 
 ## Current checkpoint
 
-- Latest adjustment: alphabetical default range; A–Z, Z–A, ascending/descending price, newest and most-popular choices. Price and popularity options are unavailable until verified public prices and real sales data exist. Newest uses creation date, not edit date. Source tests pass (10); deployment checks pending.
+- Latest instruction: all seven sort choices selectable now. Price/popularity selections remain selected and use a clearly explained A–Z fallback while data is pending. Prepared and source-tested (10 pass); deployment verification pending. This supersedes the previous disabled-option behaviour.
+
+- Latest adjustment: alphabetical default range; A–Z, Z–A, ascending/descending price, newest and most-popular choices. Price and popularity options are unavailable until verified public prices and real sales data exist. Newest uses creation date, not edit date. **Deployed and verified** from `1608d3e1ef0f533a27abc88561680e3bc937d955` in [release 40591338188](https://github.com/shiftsometimber/shift-core/actions/runs/40591338188). Ten source tests and compiled/live Chrome checks at 1440, 736, 390 and 320 px pass with zero page errors. All seven menu choices, default A–Z and applied Z–A ordering are browser-verified; unavailable price/popularity choices are explicitly disabled.
 - Existing-Worker updates now use version upload before browser checks and an explicit guarded promotion afterwards. Preparation verifies that the active deployment does not move; unchanged route owners are not rewritten.
 
 - Latest requested adjustment (27 October): the four feature cards read Weight management → Bloods → Testosterone → Supplements & Nutrition. **Deployed and verified** from `905bae25f7d3afce3d676f7e6a1445e77552273b` in [release 40588701303](https://github.com/shiftsometimber/shift-core/actions/runs/40588701303). Nine focused tests and compiled/live Chrome checks at all four widths pass, including the exact four-card order. Card-specific typography, pictures and colours are retained. No new routes.

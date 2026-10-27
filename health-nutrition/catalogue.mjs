@@ -4,7 +4,7 @@ export const sortChoices=[['range','Our range (Aâ€“Z)'],['name','Product name Aâ
 const price=p=>Number.isSafeInteger(p.public_price_pence)&&p.public_price_pence>=0?p.public_price_pence:null;
 const sales=p=>Number.isSafeInteger(p.paid_units)&&p.paid_units>=0?p.paid_units:null;
 export function sortAvailable(products,id){return id.startsWith('price-')?products.some(p=>price(p)!==null):id==='popular'?products.some(p=>(sales(p)||0)>0):true;}
-export function selectedSort(products,value){return sortChoices.some(([id])=>id===value)&&sortAvailable(products,value)?value:'range';}
+export function selectedSort(products,value){return sortChoices.some(([id])=>id===value)?value:'range';}
 export async function publicProducts(DB){
  const {results=[]}=await DB.prepare("SELECT id,name,brand,category,format,description,shift_says,illustrated_pack,illustrated_flavour,visibility,created_at,updated_at FROM supplement_products WHERE visibility='proposed' AND status='draft' ORDER BY sort_order,id").all();
  return results;
