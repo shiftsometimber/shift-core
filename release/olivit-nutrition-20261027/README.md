@@ -4,12 +4,17 @@ Matt approved the fuller-dad family park hero, image-led Health hub, nutrition s
 
 ## Current checkpoint
 
+- Latest requested adjustment (27 October): the four feature cards read Weight management → Bloods → Testosterone → Supplements & Nutrition. Prepared and source-tested; live verification for this reorder follows in the same release lane. Card-specific typography is retained when moving between rows.
+
 - Approved visual source: latest family-park mock-up, including fuller dad; not the earlier plain nutrition section.
 - Read-only provider preflight: passed (run 40580631795). 889 routes before this release.
 - Implementation: `health-nutrition/`; isolated presentation Worker delegates unchanged Health routes to the accepted blog publisher and preserves the accepted HQ communications document before adding its catalogue extension.
 - Existing Core, clinical/device pages, My Timber presentation and HQ communications Worker bytes remain untouched.
 - Nine focused tests pass: real SQLite saves and history, role and origin boundaries, stale-write rejection, public/private data separation, server filtering and delegation.
-- Not deployed at this checkpoint. Responsive browser checks and the owned release remain outstanding.
+- **Deployed and verified** from `bc3933f60819b0efbea47a37617006d9aacbd57f` in [successful release 40585248724](https://github.com/shiftsometimber/shift-core/actions/runs/40585248724). Both live pages, filters, images, product details and HQ navigation pass Chrome checks at 1440, 736, 390 and 320 px with zero page errors. A separate Mac Chrome live check also passes.
+- Exact provider bytes, all 11 owned routes, eight saved HQ drafts and all four retained service deployments verified. Final zone route count: 890 (one addition).
+- Public pages: https://shiftsometimber.co.uk/shift-health and https://shiftsometimber.co.uk/shift-health/supplements-nutrition. HQ: Orders & products → Supplements & Nutrition.
+- The one-time obsolete pretraffic-check recovery job has been removed from this closeout source; the production queue and bounded browser-step timeouts remain. Runtime code matches the verified deployment.
 
 ## Catalogue truth
 
