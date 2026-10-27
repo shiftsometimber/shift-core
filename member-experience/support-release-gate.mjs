@@ -24,3 +24,6 @@ export function gateV6Owner(before,after){return {...before,async fetch(request,
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.append('Vary','Cookie');
  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
 }};}
+
+// The qualified successor must retain the established browser/runtime repairs.
+export function composeV6Owner(beforeFactory,afterFactory,original){const inherited=beforeFactory(original);return gateV6Owner(inherited,afterFactory(inherited));}

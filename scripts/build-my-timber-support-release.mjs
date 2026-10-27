@@ -50,7 +50,7 @@ for(const p of plans){
  }else fs.copyFileSync(prior,path.join(target,p.addon.replace('.mjs','-prior.mjs')));
  fs.copyFileSync(path.join(out,p.addon),path.join(target,p.addon.replace('.mjs','-next.mjs')));
  fs.copyFileSync(path.join(root,'member-experience/support-release-gate.mjs'),path.join(target,'support-release-gate.mjs'));
- fs.writeFileSync(path.join(target,p.addon),"import {"+p.factory+" as before} from './"+p.addon.replace('.mjs','-prior.mjs')+"';import {"+p.factory+" as after} from './"+p.addon.replace('.mjs','-next.mjs')+"';import {gateV6Owner} from './support-release-gate.mjs';export function "+p.factory+"(original){return gateV6Owner(before(original),after(original));}\n");
+ fs.writeFileSync(path.join(target,p.addon),"import {"+p.factory+" as before} from './"+p.addon.replace('.mjs','-prior.mjs')+"';import {"+p.factory+" as after} from './"+p.addon.replace('.mjs','-next.mjs')+"';import {composeV6Owner} from './support-release-gate.mjs';export function "+p.factory+"(original){return composeV6Owner(before,after,original);}\n");
  const files=fs.readdirSync(target).sort().map(n=>{const b=fs.readFileSync(path.join(target,n));return {name:n,bytes:b.length,gzip:gzipSync(b).length,sha256:createHash('sha256').update(b).digest('hex')};});
  manifest.candidates[p.name]={directory:target,mainModule:'presentation-entry.mjs',files,totalGzip:files.reduce((n,f)=>n+f.gzip,0)};
  if(files.reduce((n,f)=>n+f.bytes,0)>60*1024*1024)throw new Error('Worker uncompressed safety budget exceeded');

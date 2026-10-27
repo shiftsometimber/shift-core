@@ -1,3 +1,4 @@
+import {addTimberShedTeaser} from '../timber-shed-public-teaser.mjs';
 import {restoreHomeFont} from '../shift-coach/public-font-delivery.mjs';
 import {removeCatalogueBenefits} from '../catalogue-benefits.mjs';
 import {removeCreamNavigation} from '../cream-navigation.mjs';
@@ -37,6 +38,18 @@ export function preserveApprovedStartup(path,body){
   const match=before.match(/<body\b[^>]*>/);assert(match,'Missing original body');
   once(match[0],match[0]+status);
  }else return body;
- assert.equal(path==='/'?removeReviewedHomeBanner(removeCreamNavigation(stabilisePublicHtml(path,before))):removeCreamNavigation(stabilisePublicHtml(path,before)),text,'Unknown startup transformation: '+path);
+ let replay=path==='/'?removeReviewedHomeBanner(removeCreamNavigation(stabilisePublicHtml(path,before))):removeCreamNavigation(stabilisePublicHtml(path,before));
+ // The separately approved public teaser is applied after startup stability.
+ // Retain the exact stylesheet and every surrounding byte; reconstruct only
+ // that known transform order rather than requiring startup CSS to be last.
+ if(path==='/member-login'){
+  const fixture='<html><head></head><body><nav class="desktop-nav"></nav><aside id="site-drawer"><nav></nav></aside><footer class="site-footer"><h2>Support</h2><a href="/member/dashboard">My Timber</a></footer></body></html>';
+  const teaser=addTimberShedTeaser(fixture,path).match(/<style id="sst-timber-shed-teaser-css">[\s\S]*?<\/style>/)?.[0],reservation='<style data-login-reservation>'+loginReservationStyles+'</style>';
+  if(teaser&&text.includes(reservation+teaser)){
+   assert.equal(replay.split(teaser).length,2);assert.equal(replay.split(reservation).length,2);
+   replay=replay.replace(reservation,'').replace(teaser,reservation+teaser);
+  }
+ }
+ assert.equal(replay,text,'Unknown startup transformation: '+path);
  return Buffer.from(before);
 }

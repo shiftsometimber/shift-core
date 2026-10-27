@@ -1,3 +1,4 @@
+import {healthVisionMain,healthVisionStyle} from './shift-health-vision-content.mjs';
 import {hubMain} from './shift-health-public-content.mjs';
 const originalGrid=hubMain.match(/<section class="wrap grid"[\s\S]*?<\/section>/)?.[0];
 const card=originalGrid?.match(/<article class="card" id="testosterone">[\s\S]*?<\/article>/)?.[0];
@@ -12,6 +13,14 @@ export function promoteTestosteroneCard(html){
 export function preserveHealthCardOrder(path,input){
  if(path!=='/shift-health')return input;
  const html=input.toString('utf8');
+ // The independently approved Health vision replaces the old grid completely.
+ // Authenticate its entire native main prefix and style, then retain every byte
+ // of the complete response for the existing before/after comparison.
+ if(html.includes('data-health-vision="20261021"')){
+  const mains=[...html.matchAll(/<main\b[^>]*>([\s\S]*?)<\/main>/g)];
+  if(mains.length!==1||!mains[0][1].startsWith(healthVisionMain)||html.split(healthVisionStyle).length!==2)throw Error('Health vision differs from approved source');
+  return input;
+ }
  if(html.includes(featuredGrid))return Buffer.from(html.replace(featuredGrid,originalGrid));
  if(html.includes(originalGrid))return input;
  throw Error('Health grid differs from both authorised orders');
