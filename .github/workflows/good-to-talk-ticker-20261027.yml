@@ -29,6 +29,7 @@ jobs:
           node-version: '22.16.0'
       - name: Install exact existing test dependencies and isolated browser driver
         run: |
+          git fetch --no-tags --depth=1 origin 81ef613101a2c86104b3a7f803fc7c03a5e342c0
           npm ci --ignore-scripts --no-audit --no-fund
           npm install --prefix "$RUNNER_TEMP/ticker-browser" --no-save --ignore-scripts --no-audit --no-fund puppeteer-core@25.12.0
           echo "SHIFT_PUPPETEER_MODULE=$RUNNER_TEMP/ticker-browser/node_modules/puppeteer-core" >> "$GITHUB_ENV"
