@@ -26,14 +26,14 @@ jobs:
           import assert from 'node:assert/strict';
           import {createHash} from 'node:crypto';
           async function cf(path){const r=await fetch('https://api.cloudflare.com/client/v4'+path,{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});const j=await r.json();assert(r.ok&&j.success,JSON.stringify(j.errors));return j.result;}
-          const account=process.env.CLOUDFLARE_ACCOUNT_ID,name='shift-blog-publisher',root='/accounts/'+account+'/workers/';
+          const account=process.env.CLOUDFLARE_ACCOUNT_ID,name='shift-mytimber-support-20261023',root='/accounts/'+account+'/workers/';
           const deployments=await cf(root+'scripts/'+name+'/deployments');
           const active=deployments.deployments.toSorted((a,b)=>b.created_on.localeCompare(a.created_on))[0];
           assert.equal(active.versions.length,1);assert.equal(active.versions[0].percentage,100);
           const version=await cf(root+'workers/'+name+'/versions/'+active.versions[0].version_id+'?include=modules');
           const routes=await cf('/zones/66ec3268950adcfc837b7b8b2f8356ed/workers/routes');
           console.log(JSON.stringify({active,moduleNames:version.modules.map(m=>({name:m.name,content_type:m.content_type,bytes:Buffer.from(m.content_base64,'base64').length})),versionKeys:Object.keys(version),configKeys:Object.keys(version.config||{}),resourceKeys:Object.keys(version.resources||{}),routes:routes.filter(r=>/mental-health|good-to-talk/.test(r.pattern)),routeCount:routes.length},null,2));
-          for(const m of version.modules.filter(m=>/\\.(mjs|js)$/.test(m.name))){
+          for(const m of version.modules.filter(m=>m.name.endsWith('.js')||m.name.endsWith('.mjs'))){
             const text=Buffer.from(m.content_base64,'base64').toString();
             console.log('MODULE',m.name,'sha256',createHash('sha256').update(text).digest('hex'));
             console.log('EXPORT_END',text.slice(-1600));
