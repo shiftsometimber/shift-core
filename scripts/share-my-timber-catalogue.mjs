@@ -23,7 +23,8 @@ export function shareCatalogue(source,expected){
 export function shareOwnerCatalogue(owner,prior,expected){
  const shared=shareCatalogue(owner,expected),alias='__myTimberExactFullCatalogue',statement="\nimport {UK_FULL_PUBLICATION as "+alias+"} from './worker.mjs';\n";
  if(prior.includes(statement)){
-  if(prior.split(statement).length!==2||prior.includes(JSON.stringify(expected.proof)))throw Error('Unexpected previously shared catalogue');
+  const assignments=[...prior.matchAll(new RegExp('=\\s*(?:Object\\.freeze\\(\\s*)?'+alias+'(?:\\s*\\))?\\s*[,;]','g'))];
+  if(prior.split(statement).length!==2||prior.split(alias).length!==3||assignments.length!==1)throw Error('Unexpected previously shared catalogue');
   return {owner:shared.source,prior,proof:{owner:shared.proof,priorAlreadyShared:true,priorSHA256:createHash('sha256').update(prior).digest('hex')}};
  }
  if(prior.includes(alias))throw Error('Shared catalogue identifier collision');
