@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import {pathToFileURL} from 'node:url';
 import {createRequire} from 'node:module';
-import {shareCatalogue} from './share-my-timber-catalogue.mjs';
+import {shareOwnerCatalogue} from './share-my-timber-catalogue.mjs';
 import {UK_FULL_PUBLICATION} from '../grub-uk-full-publication-20261018.mjs';
 const root=process.cwd(),out=path.resolve(process.argv[2]||'');
 if(!process.argv[2]||!fs.existsSync(path.join(out,'provider-baseline.json')))throw new Error('Pass the directory containing the current provider baseline');
@@ -43,8 +43,9 @@ for(const p of plans){
  const prior=fs.readFileSync(current,'utf8').includes('gateV6Owner')?path.join(out,p.before,p.addon.replace('.mjs','-prior.mjs')):current;
  if(!fs.existsSync(prior))throw new Error('Current support implementation is required for gated acceptance');
  if(p.name==='programme'){
-  const shared=shareCatalogue(fs.readFileSync(prior,'utf8'),UK_FULL_PUBLICATION);
-  fs.writeFileSync(path.join(target,p.addon.replace('.mjs','-prior.mjs')),shared.source);
+  const ownerPath=path.join(target,'worker.mjs'),shared=shareOwnerCatalogue(fs.readFileSync(ownerPath,'utf8'),fs.readFileSync(prior,'utf8'),UK_FULL_PUBLICATION);
+  fs.writeFileSync(ownerPath,shared.owner);
+  fs.writeFileSync(path.join(target,p.addon.replace('.mjs','-prior.mjs')),shared.prior);
   fs.writeFileSync(path.join(out,'shared-catalogue-proof.json'),JSON.stringify(shared.proof,null,2));
  }else fs.copyFileSync(prior,path.join(target,p.addon.replace('.mjs','-prior.mjs')));
  fs.copyFileSync(path.join(out,p.addon),path.join(target,p.addon.replace('.mjs','-next.mjs')));

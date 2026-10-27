@@ -50,7 +50,23 @@ for name,b in plans:
  h,body=call(workers+worker+'/content/v2');current=modules(h,body);assert {n:sha(v) for n,v in current.items()}==b['moduleHashes'],'Live source advanced: '+worker
  candidate=build['candidates'][name];files={f['name']:(Path(candidate['directory'])/f['name']).read_bytes() for f in candidate['files']}
  assert {n:sha(v) for n,v in files.items()}=={f['name']:f['sha256'] for f in candidate['files']},'Candidate bytes changed'
+ shared=json.loads((release/'shared-catalogue-proof.json').read_text()) if name=='programme' else None
  for n,v in current.items():
+  if shared and n=='worker.mjs':
+   assert shared['owner']['sourceSHA256']==sha(v),'Original owner changed'
+   binding=shared['owner']['binding'];assert re.fullmatch(r'[A-Za-z_$][A-Za-z0-9_$]*',binding)
+   addition=('\nexport {'+binding+' as UK_FULL_PUBLICATION};\n').encode()
+   assert files[n]==v or files[n]==v+addition,'Owner changed beyond one native export'
+   continue
+  if shared and n=='support-service-prior.mjs':
+   assert shared['priorSHA256']==sha(v),'Original support module changed'
+   if shared['priorAlreadyShared']:assert files[n]==v
+   else:
+    start,end=shared['literalStart'],shared['literalEnd'];literal=v[start:end]
+    assert sha(literal)==shared['literalSHA256'],'Shared literal changed'
+    assert shared['reference']=='__myTimberExactFullCatalogue' and shared['importStatement']=="\nimport {UK_FULL_PUBLICATION as __myTimberExactFullCatalogue} from './worker.mjs';\n"
+    assert files[n]==v[:start]+shared['reference'].encode()+v[end:]+shared['importStatement'].encode(),'Support functions changed'
+   continue
   if n not in ['presentation-entry.mjs','support-service.mjs','support-markup.mjs','support-service-next.mjs','support-markup-next.mjs','support-release-gate.mjs']:assert files[n]==v,'Existing module changed: '+n
  state['workers'][worker]={'state':'prepared','beforeDeployment':dep,'settings':settings,'schedules':schedules,'candidateHashes':{n:sha(v) for n,v in files.items()}}
  prepared.append((worker,files))
