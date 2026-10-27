@@ -53,7 +53,7 @@ export function reviewPracticalSupport(s,input,at){
     support.response='You said '+a.practical.name+' helped. It is here to use again if it still fits.';
     offer(s,a.practical.key,input.operationId,at,null,'You marked this helpful on '+at.slice(0,10)+'.');return true;
   }
-  const movement=a.kind==='movement';
+  const movement=a.kind==='movement'||a.practical.preparedKind==='movement';
   const candidates=outcome==='not-helped'?(movement?['differentMovement','pause']:['earlier','flexible','shop','breakfast','pause']):reason==='timing'?['earlier','flexible','breakfast']:reason==='effort'?(movement?['pause','differentMovement']:['assembly','breakfast','pause']):(movement?['differentMovement','pause']:['eggs','shop','flexible','pause']);
   const bad=rejected(s),key=candidates.find(k=>k!==a.practical.key&&!bad.has(k));
   support.response=outcome==='not-helped'?'You tried it and said it did not help. I have changed the approach.':reason==='timing'?'You said the timing was wrong. I have moved the job to an earlier moment.':reason==='effort'?'You said it took too much effort. I have taken work out of the next option.':reason==='idea'?'You did not like the idea. Here is a different option.':'That did not fit. Here is another option; you can tell me why if you want.';

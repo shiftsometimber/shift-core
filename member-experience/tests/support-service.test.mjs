@@ -5,7 +5,7 @@ import {memberRecordView,feedbackRecords,reportedHelpful} from '../support-recor
 import {personalReview,reviewIsDue,reviewPreference} from '../support-review.mjs';
 import {memberSupportContactRoutes,memberSupportPolicy} from '../member-support-contact.mjs';
 import {accountThreadSubject,publicThread,supportThread} from '../../shift-coach/support.mjs';
-import {prepareFoodFromRecords,prepareMovementFromPlan} from '../support-prepared-options.mjs';
+import {prepareFoodFromRecords,prepareMovementFromPlan,prepareTimingFromPrevious} from '../support-prepared-options.mjs';
 import {fixture} from '../../health-passport/fixture.mjs';
 import {supportTeamRoutes} from '../../shift-coach/support-team.mjs';
 import {createHash} from 'node:crypto';
@@ -170,4 +170,11 @@ test('R2 dated gaps, weight fluctuations and a reported symptom never become a c
  s.savedReadings=[{at:'2026-10-01',kg:95.3},{at:'2026-10-14',kg:94.8},{at:'2026-10-18',kg:95.4}];const before=JSON.stringify(s.savedReadings),r=personalReview(s,'2026-10-20T12:00:00Z',true);
  assert.deepEqual(r.quotes.map(q=>q.at),['2026-10-01T10:00:00Z','2026-10-18T10:00:00Z','2026-10-14T12:00:00Z']);assert.equal(JSON.stringify(s.savedReadings),before);
  assert.doesNotMatch(r.observations.join(' ')+r.introduction+r.proposedPlan,/caused|due to|because of|change your dose|normal blood pressure|high blood pressure/i);
+});
+
+test('wrong timing keeps a prepared meal or session ready, and movement never turns into a dinner task',()=>{
+ let s=op(emptyLifeBack(),'support-start',{choice:'movement'});prepareMovementFromPlan(s,{sessions:[{title:'My saved strength session',exercises:[{name:'Sit to stand',sets:2,reps:6}]}]},12);const before=structuredClone(s),steps=structuredClone(s.nextShift.practical.steps);
+ s=op(s,'shift-feedback',{shiftId:s.nextShift.id,outcome:'not-fit',reason:'timing'});assert.equal(prepareTimingFromPrevious(s,before,{reason:'timing'}),true);assert.equal(s.nextShift.practical.name,'My saved strength session');assert.deepEqual(s.nextShift.practical.steps,steps);assert.equal(s.nextShift.practical.title,'Same session. A better moment.');assert.equal(s.nextShift.practical.label,'Show me this session');
+ s=op(s,'shift-feedback',{shiftId:s.nextShift.id,outcome:'not-fit',reason:'idea'});assert.equal(s.nextShift.kind,'movement');assert.equal(s.nextShift.practical.key,'differentMovement');
+ let food=start();prepareFoodFromRecords({},food,[recipe('everyday-tuna-sandwich','Tuna sandwich','Tuna')],null);const meal=structuredClone(food);food=op(food,'shift-feedback',{shiftId:food.nextShift.id,outcome:'not-fit',reason:'timing'});assert.equal(prepareTimingFromPrevious(food,meal,{reason:'timing'}),true);assert.equal(food.nextShift.practical.recipeId,meal.nextShift.practical.recipeId);assert.deepEqual(food.nextShift.practical.items,meal.nextShift.practical.items);
 });

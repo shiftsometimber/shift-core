@@ -48,12 +48,24 @@ export function prepareMovementFromPlan(s,plan,planId){
  const exercises=[...(Array.isArray(session.exercises)?session.exercises:[]),...blocks.flatMap(b=>b.exercises||b.items||[])];
  const steps=exercises.map(e=>[e.name||e.title,e.prescription||[e.sets?e.sets+' sets':null,e.reps?e.reps+' reps':null,e.seconds?e.seconds+' seconds':null].filter(Boolean).join(' · '),...(Array.isArray(e.instructions)?e.instructions:[])].filter(Boolean).join(' — ')).filter(Boolean);
  if(!steps.length){unavailable(a,'Your saved Fit session is available in Fit. Review its original instructions and easier alternatives there.','/member/fit');return;}
- a.practical={...a.practical,pending:false,sessionKey:selected.key,planId,name:session.title||session.name||'Your saved Fit session',time:'Your saved session · use its existing effort and limitations',items:session.equipment||plan.equipment||[],steps,fallback:'Open Fit for its easier alternatives. Your saved safety choices stay in place.',source:'own_saved_fit_plan'};
+ a.practical={...a.practical,pending:false,label:'Show me this session',sessionKey:selected.key,planId,name:session.title||session.name||'Your saved Fit session',time:'Your saved session · use its existing effort and limitations',items:session.equipment||plan.equipment||[],steps,fallback:'Open Fit for its easier alternatives. Your saved safety choices stay in place.',source:'own_saved_fit_plan'};
  a.detail=a.practical.name;a.reason='Prepared from your own saved Fit plan. Your equipment, effort and limitations have not been changed.';a.awaitingChoice=false;
 }
+export function prepareTimingFromPrevious(next,previous,input){
+ const a=next.nextShift,old=previous?.nextShift?.practical;
+ if(a?.practical?.key!=='earlier'||!old||old.pending||!old.steps?.length||!(input.reason==='timing'||input.outcome==='helped'&&old.key==='earlier'))return false;
+ const preparedKind=old.preparedKind||old.kind||previous.nextShift.kind,noun=preparedKind==='movement'?'session':preparedKind==='food'?'meal':'plan',title='Same '+noun+'. A better moment.';
+ a.practical={...structuredClone(old),key:'earlier',preparedKind,title,memoryId:a.practical.memoryId};
+ a.title=title;a.detail=old.name;a.href=old.href;a.label=old.label;a.awaitingChoice=false;
+ a.reason='You said the timing was wrong. I have kept '+old.name+' and its instructions ready for a time you choose, so you do not have to start again.';
+ if(input.outcome==='helped')a.reason='You said this better-timed '+noun+' helped. I have kept the useful version ready.';
+ return true;
+}
+
 export async function connectPreparedOption(DB,prefs,next,previous,input){
  if(!['support-start','shift-feedback','support-obstacle','support-record'].includes(input.action)||next.nextShift?.id===previous.nextShift?.id)return;
  const a=next.nextShift;if(!a?.practical)return;
+ if(prepareTimingFromPrevious(next,previous,input))return;
  if(a.kind==='food'){
   try{prepareFoodFromRecords(prefs,next,usableCatalogue(await loadGrubCatalogue(DB)),previous,input);}
   catch{unavailable(a,'The reviewed recipe library is unavailable. Your existing food plan is unchanged.','/member/grub');}
