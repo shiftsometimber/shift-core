@@ -1191,7 +1191,7 @@ async function recordLegacyJourneyEvent(request, env, ctx, path, body) {
   }
 }
 
-export default {
+const memberSupportCanonicalBase = {
   ...worker,
   fetch: async function publicFetch(request, env, ctx) {
     const httpsRedirect=publicHttpsRedirect(request);if(httpsRedirect)return httpsRedirect;
@@ -1221,3 +1221,7 @@ export default {
     return withPurchaseBasket(request,await withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,corrected):corrected)))),request));
   },
 };
+
+// Approved My Timber v6 composition; public and scheduled handlers are retained.
+import {composeMyTimberSupport} from './member-experience/support-canonical-worker.mjs';
+export default composeMyTimberSupport(memberSupportCanonicalBase);
