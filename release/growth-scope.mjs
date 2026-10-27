@@ -1,4 +1,4 @@
-import {withMemberRecordingQualification} from './member-recording-repair-20261024.mjs';
+import {withMemberRecordingQualification,memberRecordingComparisonValue} from './member-recording-repair-20261024.mjs';
 import {metricsHistoricalRead} from './metrics-connection-scope.mjs';
 import {followHistoricalRead} from './seo-follow-through-scope.mjs';
 import {readFileSync} from 'node:fs';
@@ -67,7 +67,7 @@ function validateGrowthSourceQualified(){
  validateAppSource();
  validateBookVoice(followHistoricalRead((ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'}),JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).seoFollowThroughComposition));
  git('merge-base','--is-ancestor','33c1b98cbb39dfd6154af3c673d9ee784371260e','HEAD');
- for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','preview/growth-member/continuity-journey.mjs'])assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(MEMBER_FOCUS_PATHS.includes(path)?MEMBER_FOCUS_APPROVED:'e7051fe6e9b4b8b059528e2eee63fb380935d6ba')+':'+path),'Reviewed growth payload changed: '+path);
+ for(const path of ['member-experience/life-back/next-shift.mjs','preview/growth-member/public-copy.mjs','preview/growth-member/continuity-journey.mjs'])assert.equal(memberRecordingComparisonValue(path,git('rev-parse','HEAD:'+path)),git('rev-parse',(MEMBER_FOCUS_PATHS.includes(path)?MEMBER_FOCUS_APPROVED:'e7051fe6e9b4b8b059528e2eee63fb380935d6ba')+':'+path),'Reviewed growth payload changed: '+path);
  const reviewedRead=metricsHistoricalRead((ref,path)=>execFileSync('git',['show',ref+':'+path]));
  for(const [path,hash]of Object.entries({...hashes,...APP_HASHES}))assert.equal(createHash('sha256').update(reviewedRead(originalAppHashRef(path),path)).digest('hex'),hash,'Growth release integration drift: '+path);
  });

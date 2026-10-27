@@ -85,7 +85,7 @@ function physical(repo,head,file,pin,tree,returnBytes=true){
 }
 function validateContract(c){
  exactKeys(c,['kind','base','payload','payloadBlobs','payloadStatuses','maintenancePaths','maintenanceExpected','generatedPaths','inversePath','receiptPath','authority'],'Exact finite successor contract required');
- assert(['EXACT_MY_TIMBER_JOINED_LOOK_20261024','EXACT_MY_TIMBER_USEFUL_LOOP_20261026'].includes(c.kind),'Unknown successor kind');
+ assert(['EXACT_MY_TIMBER_JOINED_LOOK_20261024','EXACT_MY_TIMBER_USEFUL_LOOP_20261026','EXACT_MY_TIMBER_SUPPORT_SERVICE_20261027'].includes(c.kind),'Unknown successor kind');
  for(const ref of[c.base,c.payload])assert.match(ref,SHA,'Exact commit required');
  const payload=list(Object.keys(c.payloadBlobs)),maintenance=list(c.maintenancePaths),generated=list(c.generatedPaths);
  assert.deepEqual(Object.keys(c.payloadStatuses).sort(),payload,'Payload status coverage must be exact');
@@ -298,11 +298,64 @@ function qualifyLoopAndRetainedJoined(actualHead){
   assertBinding(actual){root.assertBinding(actual);repo.checkSnapshot(snapshot);}
  };return Object.freeze(proof);
 }
-export function qualifyJoinedSuccessor(actualHead){return activeFiniteSuccessorProof(JOINED_LOOK_CONTRACT,actualHead)||qualifyLoopAndRetainedJoined(actualHead);}
+export function qualifyJoinedSuccessor(actualHead){return activeFiniteSuccessorProof(JOINED_LOOK_CONTRACT,actualHead)||qualifyCurrentSupportSuccessor(actualHead);}
 export function withJoinedSuccessorQualification(callback,actualHead){
  assert.equal(typeof callback,'function','Synchronous qualification callback required');const active=activeFiniteSuccessorProof(JOINED_LOOK_CONTRACT,actualHead);if(active)return callback(active);
- const proof=qualifyLoopAndRetainedJoined(actualHead);activeQualification={key:contractKey(JOINED_LOOK_CONTRACT),proof};
+ const proof=qualifyCurrentSupportSuccessor(actualHead);activeQualification={key:contractKey(JOINED_LOOK_CONTRACT),proof};
  try{const value=callback(proof);assert(!value||typeof value.then!=='function','Finite qualification scope must be synchronous');return value;}
  finally{try{proof.assertCurrent();}finally{activeQualification=null;}}
 }
 export function joinedLookPredecessorFile(file,currentBytes,actualHead){const proof=qualifyJoinedSuccessor(actualHead);return Object.freeze({head:proof.actualHead,legacyHead:proof.legacyHead,currentReaderAuthenticated:false,legacyComparisonOnly:true,bytes:proof.restoreFile(file,currentBytes)});}
+
+const SUPPORT_SUCCESSOR_CONTRACT=deepFreeze(JSON.parse(nativeReadFileSync(new URL('./my-timber-support-contract-20261027.json',import.meta.url),'utf8')));
+// Authenticate each earlier receipt as immutable history, without substituting
+// an old checkout or caller-supplied reader for actual current source facts.
+function frozenSupportPredecessor(repo,contract,head){
+ const c=validateContract(structuredClone(contract)),paths=[...Object.keys(c.payloadBlobs),...c.maintenancePaths,c.receiptPath],tree=repo.tree(head,paths),r=JSON.parse(repo.bytes(head,c.receiptPath).toString('utf8'));
+ exactKeys(r,['kind','base','payload','registrationSource','payloadBlobs','maintenanceBlobs','authority'],'Exact retained receipt fields required');
+ assert.equal(r.kind,c.kind);assert.equal(r.base,c.base);assert.equal(r.payload,c.payload);assert.deepEqual(r.payloadBlobs,c.payloadBlobs);assert.deepEqual(r.authority,c.authority);
+ assert.match(r.registrationSource,SHA);assert.deepEqual(Object.keys(r.maintenanceBlobs).sort(),list(c.maintenancePaths));
+ for(const pin of Object.values(r.maintenanceBlobs))assert.match(pin,SHA);
+ for(const[a,b]of[[c.base,c.payload],[c.payload,r.registrationSource],[r.registrationSource,head]])repo.ancestor(a,b);
+ const changes=repo.changes(c.base,c.payload);assert.deepEqual(changes.map(x=>x.path).sort(),Object.keys(c.payloadBlobs).sort(),'Retained payload path drift');for(const change of changes)assert.equal(change.status,c.payloadStatuses[change.path]);
+ assert.deepEqual(repo.changes(c.payload,r.registrationSource).map(x=>x.path).sort(),list(c.maintenancePaths),'Retained maintenance path drift');
+ assert.deepEqual(repo.changes(r.registrationSource,head),[{status:'A',path:c.receiptPath}],'Retained registration tail drift');
+ assert.deepEqual(repo.changes(c.base,head).map(x=>x.path).sort(),paths.slice().sort(),'Unlisted source in retained predecessor');
+ const payloadTree=repo.tree(c.payload,Object.keys(c.payloadBlobs)),registrationTree=repo.tree(r.registrationSource,c.maintenancePaths);
+ for(const[file,pin]of Object.entries(c.payloadBlobs))assert.equal(payloadTree.get(file)?.oid,pin,'Retained payload pin changed: '+file);
+ for(const[file,pin]of Object.entries(r.maintenanceBlobs)){assert.equal(registrationTree.get(file)?.oid,pin,'Retained registration pin changed: '+file);if(Object.hasOwn(c.maintenanceExpected,file))assert.equal(pin,c.maintenanceExpected[file],'Retained implementation changed: '+file);}
+ const pins={...c.payloadBlobs,...r.maintenanceBlobs,[c.receiptPath]:tree.get(c.receiptPath)?.oid};
+ for(const[file,pin]of Object.entries(pins)){const entry=tree.get(file);assert(entry?.mode==='100644'&&entry.type==='blob'&&entry.oid===pin,'Regular retained source required: '+file);}
+ const inverse=JSON.parse(repo.bytes(head,c.inversePath).toString('utf8'));exactKeys(inverse,['kind','base','files'],'Exact retained inverse required');assert.equal(inverse.kind,c.kind);assert.equal(inverse.base,c.base);
+ const modified=repo.changes(c.base,head).filter(x=>x.status==='M').map(x=>x.path).sort();assert.deepEqual(Object.keys(inverse.files).sort(),modified,'Every retained modification needs its inverse');const before=repo.tree(c.base,modified);
+ for(const[file,row]of Object.entries(inverse.files)){exactKeys(row,['originalBlob','originalBase64'],'Complete retained original required');const bytes=nativeBufferFrom(row.originalBase64,'base64');assert.equal(bytes.toString('base64'),row.originalBase64);assert.equal(oid(bytes),row.originalBlob);assert.equal(row.originalBlob,before.get(file)?.oid,'Retained inverse must match immutable source: '+file);}
+ return{head,c,pins,modified};
+}
+function qualifySupportAndRetainedHistory(actualHead){
+ const root=qualifyFiniteSuccessor(SUPPORT_SUCCESSOR_CONTRACT,actualHead===undefined?{}:{actualHead}),repo=repository(process.cwd());
+ assert.equal(root.legacyHead,'75165fcc83836be66af0848c82dc97543d5a6f39','Exact retained useful-loop receipt required');
+ const loop=frozenSupportPredecessor(repo,LOOP_SUCCESSOR_CONTRACT,root.legacyHead);
+ assert.equal(loop.c.base,'3a401235d1a6ae26374dfe33611c0cd9eda93b91','Exact retained main source required');
+ const joined=frozenSupportPredecessor(repo,JOINED_LOOK_CONTRACT,loop.c.base),legacyHead=joined.c.base;
+ const pins=Object.freeze({...joined.pins,...loop.pins,...root.pins}),paths=Object.freeze(Object.keys(pins).sort()),currentTree=repo.tree(root.actualHead,paths);
+ for(const prior of[joined,loop])assert.equal(currentTree.get(prior.c.receiptPath)?.oid,prior.pins[prior.c.receiptPath],'Earlier approval receipts remain byte unchanged');
+ const modified=[...new Set([...joined.modified,...loop.modified,...Object.keys(root.predecessorPins)])],originalTree=repo.tree(legacyHead,modified),originals=new Map(),predecessorPins={};
+ for(const file of modified){const entry=originalTree.get(file);if(!entry)continue;const bytes=repo.bytes(legacyHead,file);assert.equal(oid(bytes),entry.oid,'Original retained source changed');originals.set(file,bytes);predecessorPins[file]=entry.oid;}
+ for(const[file,pin]of Object.entries(pins))physical(repo,root.actualHead,file,pin,currentTree,false);
+ root.assertCurrent();const snapshot=repo.snapshot();
+ const assertOwned=()=>{root.assertOwnedBytes();repo.checkSnapshot(snapshot);for(const[file,pin]of Object.entries(pins))physical(repo,root.actualHead,file,pin,currentTree,false);};
+ const proof={actualHead:root.actualHead,head:root.actualHead,legacyHead,comparisonHead:legacyHead,payload:root.payload,registrationSource:root.registrationSource,paths,pins,predecessorPins:Object.freeze(predecessorPins),
+  currentFactsAuthenticated:true,currentReaderAuthenticated:false,legacyComparisonOnly:true,productionDeployed:false,retainedPredecessor:loop.c.base,supportPredecessor:root.legacyHead,retainedOriginalReceiptUnchanged:true,
+  nativeCommandCount:()=>root.nativeCommandCount()+repo.commandCount(),
+  restoreFile(file,currentBytes){safePath(file);assert(originals.has(file),'Only an owned modified file may be projected: '+file);if(!activeQualification||activeQualification.proof!==proof)this.assertCurrent();const actual=physical(repo,root.actualHead,file,pins[file],currentTree);assert(Buffer.isBuffer(currentBytes),'Actual complete current bytes required');assert(nativeBufferEquals(currentBytes,actual),'Projection input must match qualified actual current bytes');return nativeBufferFrom(originals.get(file));},
+  comparisonValue(file,value){safePath(file);if(!Object.hasOwn(predecessorPins,file))return value;const identifier=value===pins[file],content=(typeof value==='string'||Buffer.isBuffer(value))&&oid(nativeBufferFrom(value))===pins[file];if(!identifier&&!content)return value;const restored=this.restoreFile(file,physical(repo,root.actualHead,file,pins[file],currentTree));return identifier?predecessorPins[file]:Buffer.isBuffer(value)?restored:restored.toString('utf8');},
+  assertCurrent(){root.assertCurrent();assertOwned();},assertOwnedBytes:assertOwned,
+  assertBinding(actual){root.assertBinding(actual);repo.checkSnapshot(snapshot);}
+ };return Object.freeze(proof);
+}
+function qualifyCurrentSupportSuccessor(actualHead){
+ if(actualHead!==undefined&&typeof actualHead!=='string')return qualifyLoopAndRetainedJoined(actualHead);
+ const repo=repository(process.cwd()),head=actualHead??repo.run('rev-parse','HEAD').trim();
+ try{repo.ancestor(SUPPORT_SUCCESSOR_CONTRACT.payload,head);}catch(e){if(e.status===1)return qualifyLoopAndRetainedJoined(actualHead);throw e;}
+ return qualifySupportAndRetainedHistory(actualHead);
+}
