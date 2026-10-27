@@ -1,13 +1,21 @@
 export const categories=[['all','All products'],['protein','Protein'],['creatine','Creatine'],['hydration','Hydration'],['snacks','Protein snacks'],['sleep','Sleep & winding down'],['vitamins','Vitamins & everyday nutrition']];
 export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export const sortChoices=[['range','Our range (A–Z)'],['name','Product name A–Z'],['name-desc','Product name Z–A'],['price-up','Price: low to high'],['price-down','Price: high to low'],['newest','Newest'],['popular','Most popular']];
+const price=p=>Number.isSafeInteger(p.public_price_pence)&&p.public_price_pence>=0?p.public_price_pence:null;
+const sales=p=>Number.isSafeInteger(p.paid_units)&&p.paid_units>=0?p.paid_units:null;
+export function sortAvailable(products,id){return id.startsWith('price-')?products.some(p=>price(p)!==null):id==='popular'?products.some(p=>(sales(p)||0)>0):true;}
+export function selectedSort(products,value){return sortChoices.some(([id])=>id===value)&&sortAvailable(products,value)?value:'range';}
 export async function publicProducts(DB){
- const {results=[]}=await DB.prepare("SELECT id,name,brand,category,format,description,shift_says,illustrated_pack,illustrated_flavour,visibility,updated_at FROM supplement_products WHERE visibility='proposed' AND status='draft' ORDER BY sort_order,id").all();
+ const {results=[]}=await DB.prepare("SELECT id,name,brand,category,format,description,shift_says,illustrated_pack,illustrated_flavour,visibility,created_at,updated_at FROM supplement_products WHERE visibility='proposed' AND status='draft' ORDER BY sort_order,id").all();
  return results;
 }
 export function filteredProducts(products,query){
  const category=query.get('category')||'all',brand=query.get('brand')||'all',format=query.get('format')||'all',q=(query.get('q')||'').trim().toLocaleLowerCase('en-GB');
  const rows=products.filter(p=>(category==='all'||category===p.category)&&(brand==='all'||brand===p.brand)&&(format==='all'||format===p.format)&&(!q||[p.name,p.brand,p.illustrated_pack].join(' ').toLocaleLowerCase('en-GB').includes(q)));
- if(query.get('sort')==='name')rows.sort((a,b)=>a.name.localeCompare(b.name,'en-GB'));
+ const sort=selectedSort(products,query.get('sort')),alpha=(a,b)=>a.name.localeCompare(b.name,'en-GB',{numeric:true,sensitivity:'base'})||String(a.id).localeCompare(String(b.id));
+ const compareKnown=(a,b,get,direction)=>{const x=get(a),y=get(b);return x===null?(y===null?alpha(a,b):1):y===null?-1:direction*(x-y)||alpha(a,b);};
+ const created=p=>{const raw=String(p.created_at||''),value=Date.parse(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(raw)?raw.replace(' ','T')+'Z':raw);return Number.isFinite(value)?value:null;};
+ rows.sort(sort==='name-desc'?(a,b)=>-alpha(a,b):sort==='price-up'?(a,b)=>compareKnown(a,b,price,1):sort==='price-down'?(a,b)=>compareKnown(a,b,price,-1):sort==='newest'?(a,b)=>compareKnown(a,b,created,-1):sort==='popular'?(a,b)=>compareKnown(a,b,sales,-1):alpha);
  return rows;
 }
 export const productURL=id=>'/shift-health/supplements-nutrition?product='+encodeURIComponent(id);

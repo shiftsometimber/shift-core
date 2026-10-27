@@ -42,16 +42,23 @@ if(action==='prepare'){
  assert.equal(await nativeClient.text(),readFileSync('health-nutrition/hq-client.js','utf8'),'Compilation altered the HQ browser client');
  const buildSHA256=hash(readFileSync(candidate));save('build',{candidate,buildSHA256,source:process.env.GITHUB_SHA});
  await seedDrafts();
- const output=cli('deploy',candidate,'--no-bundle','--keep-vars');writeFileSync(dir+'/worker-upload.log',output);
+ // Existing installations already carry traffic: upload without promoting.
+ // A first installation has no routes until the promote step below.
+ if(!previous)assert(!before.some(r=>r.script===script),'A new Worker cannot already own live routes');
+ const output=previous?cli('versions','upload',candidate,'--no-bundle'):cli('deploy',candidate,'--no-bundle','--keep-vars');writeFileSync(dir+'/worker-upload.log',output);
  const ids=[...output.matchAll(/(?:Current |Worker )?Version ID:\s*([a-f0-9-]{36})/g)];assert.equal(ids.length,1,'Cannot identify uploaded Worker version');const versionId=ids[0][1];save('staged',{versionId,buildSHA256,previous});
  await verifyBytes(versionId,buildSHA256);assert.deepEqual(await retained(),retainedBefore,'An existing service changed');
+ if(previous)assert.equal((await deployments(script)).id,previous.id,'Preparing an update must not change live traffic');
  console.log('Prepared exact isolated Worker and verified eight saved HQ drafts. No routes changed.');
 }else if(action==='promote'){
  await sourceCurrent();const stage=JSON.parse(readFileSync(dir+'/staged.json')),before=JSON.parse(readFileSync(dir+'/routes-before.json')),routePlan=JSON.parse(readFileSync(dir+'/route-plan.json'));
  const now=await routes();for(const change of routePlan.changes)assert.deepEqual(now.find(x=>x.pattern===change.pattern)||null,change.before,'Route moved before promotion');
- assert.deepEqual(await retained(),JSON.parse(readFileSync(dir+'/retained-before.json')),'Retained service moved before promotion');assert.equal((await deployments(script)).versions[0].version_id,stage.versionId);
+ assert.deepEqual(await retained(),JSON.parse(readFileSync(dir+'/retained-before.json')),'Retained service moved before promotion');
+ const active=await deployments(script);if(stage.previous)assert.equal(active.id,stage.previous.id,'Component moved before promotion');else assert.equal(active.versions[0].version_id,stage.versionId);
  save('intent',{...stage,source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID,plan:routePlan});
- for(const change of routePlan.changes){if(change.before)await cf('/zones/'+zone+'/workers/routes/'+change.before.id,'PUT',{pattern:change.pattern,script});else await cf('/zones/'+zone+'/workers/routes','POST',{pattern:change.pattern,script});}
+ if(stage.previous)writeFileSync(dir+'/version-promotion.log',cli('versions','deploy',stage.versionId+'@100%','--yes'));
+ assert.equal((await deployments(script)).versions[0].version_id,stage.versionId,'Prepared version must own the component before route promotion');
+ for(const change of routePlan.changes){if(change.before?.script===script)continue;if(change.before)await cf('/zones/'+zone+'/workers/routes/'+change.before.id,'PUT',{pattern:change.pattern,script});else await cf('/zones/'+zone+'/workers/routes','POST',{pattern:change.pattern,script});}
  const after=await routes();for(const change of routePlan.changes)assert.equal(after.find(x=>x.pattern===change.pattern)?.script,script);
  const scope=new Set(routePlan.changes.map(x=>x.pattern));for(const row of before.filter(x=>!scope.has(x.pattern)))assert.deepEqual(after.find(x=>x.id===row.id),row,'Unrelated route changed');
  save('promoted',{source:process.env.GITHUB_SHA,versionId:stage.versionId,buildSHA256:stage.buildSHA256,routeCount:after.length});

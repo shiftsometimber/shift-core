@@ -1,6 +1,6 @@
 import {hubTemplate,shopTemplate} from './templates.mjs';
 import {styles} from './styles.mjs';
-import {categories,esc,filteredProducts,productCard,productDetail} from './catalogue.mjs';
+import {categories,esc,filteredProducts,productCard,productDetail,sortChoices,sortAvailable,selectedSort} from './catalogue.mjs';
 export function renderContent(path,query,products=[]){
  if(path==='/shift-health')return {content:hubTemplate,title:'Men’s Health: Energy, Sleep & Wellbeing | SHIFT Health',description:'Straight-talking health information and practical support for ordinary men. Explore bloods, energy, sleep, wellbeing and everyday nutrition.'};
  const selected=query.get('product');
@@ -11,10 +11,13 @@ export function renderContent(path,query,products=[]){
  html=html.replace('<div class="shop-toolbar">','<form class="shop-toolbar" method="get" action="/shift-health/supplements-nutrition"><input type="hidden" name="category" value="'+esc(category)+'">');
  html=html.replace('id="shop-search"','id="shop-search" name="q" value="'+esc(query.get('q')||'')+'"');
  html=html.replace('id="shop-brand"','id="shop-brand" name="brand"').replace('id="shop-format"','id="shop-format" name="format"').replace('id="shop-sort"','id="shop-sort" name="sort"');
- for(const [name,options] of [['brand',['all','Applied Nutrition','Skill Nutrition','BioTechUSA']],['format',['all','powder','sachets','tablets','bars']],['sort',['range','name']]]){
+ for(const [name,options] of [['brand',['all','Applied Nutrition','Skill Nutrition','BioTechUSA']],['format',['all','powder','sachets','tablets','bars']]]){
   html=html.replace(new RegExp('(<select id="shop-'+name+'"[\\s\\S]*?<\\/select>)'),select=>select.replace(/<option(?: value="([^"]*)")?>([^<]*)<\/option>/g,(all,value,text)=>'<option value="'+esc(value??text)+'"'+((query.get(name)||options[0])===(value??text)?' selected':'')+'>'+text+'</option>'));
  }
+ const sort=selectedSort(products,query.get('sort'));
+ html=html.replace(/<select id="shop-sort"[\s\S]*?<\/select>/,'<select id="shop-sort" name="sort" aria-describedby="shop-sort-note">'+sortChoices.map(([id,label])=>'<option value="'+id+'"'+(sort===id?' selected':'')+(sortAvailable(products,id)?'':' disabled')+'>'+esc(label)+'</option>').join('')+'</select>');
  html=html.replace('</div>\n        <div class="shop-summary">','<button class="sst-action" type="submit">Apply filters <span aria-hidden="true">→</span></button></form>\n        <div class="shop-summary">');
+ html=html.replace('<div class="shop-summary">','<p id="shop-sort-note" class="shop-pack" style="margin-bottom:18px">'+(!sortAvailable(products,'price-up')?'Price sorting will be available when prices are confirmed. ':'')+(!sortAvailable(products,'popular')?'Most popular will be available once we have sales data.':'')+'</p><div class="shop-summary">');
  html=html.replace('8 products</p>',rows.length+' of '+products.length+' proposed products</p>');
  html=html.replace('<button type="button" id="shop-reset" class="cursor-interaction">Clear filters</button>','<a href="/shift-health/supplements-nutrition#shop-categories">Clear filters</a>');
  html=html.replace('<div class="shop-grid" id="shop-grid"></div>','<div class="shop-grid" id="shop-grid">'+rows.map(productCard).join('')+'</div>');
