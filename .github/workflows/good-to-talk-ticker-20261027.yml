@@ -8,6 +8,7 @@ on:
       - .github/workflows/good-to-talk-ticker-20261027.yml
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: cloudflare-production-promote
   cancel-in-progress: false

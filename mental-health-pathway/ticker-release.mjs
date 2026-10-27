@@ -40,10 +40,21 @@ async function publicPage(path){const r=await fetch('https://shiftsometimber.co.
 async function stagedVersion(){const state=load('staged'),v=await version(state.versionId);assert.equal(digest(moduleBytes(v)),state.candidateSHA256);return {state,v};}
 async function promoteVersion(id,message){return cf(root+'scripts/'+script+'/deployments','POST',{strategy:'percentage',versions:[{version_id:id,percentage:100}],annotations:{'workers/message':message}});}
 async function unchanged(state){assert.deepEqual(await routeList(),state.routes,'Route assignments changed');assert.deepEqual(await schedules(),state.schedules,'Reminder schedule changed');assert.deepEqual(await retained(),state.retained,'An independent service changed');}
+async function inspectedBaseline(before){
+  assert.equal(before.versions[0].version_id,baseline.version,'Serving component moved since inspection');
+  if(before.id===baseline.deployment)return;
+  // A successful owned rollback creates a new deployment of the same exact
+  // version. Authenticate that receipt rather than accepting an arbitrary move.
+  assert.equal(before.annotations?.['workers/message'],'Restore captured Good to Talk component after failed correction verification');
+  const get=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,Accept:'application/vnd.github+json'},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json();};
+  const run=await get('/actions/runs/40592601888');assert.equal(run.head_sha,'969454f99d7118ae1029b2b8f2f871da1731a870');assert.equal(run.status,'completed');assert.equal(run.conclusion,'failure');
+  const job=(await get('/actions/runs/40592601888/jobs')).jobs.find(j=>j.id===122500390772);assert(job);const rollback=job.steps.find(s=>s.name==='Restore only the version still owned by this correction on failure');assert.equal(rollback?.conclusion,'success');
+  assert(Date.parse(before.created_on)>=Date.parse(rollback.started_at)&&Date.parse(before.created_on)<=Date.parse(rollback.completed_at),'Current deployment is not the evidenced owned rollback');
+}
 
 const action=process.argv[2];
 if(action==='prepare'){
-  await sourceCurrent();const before=await active();assert.equal(before.id,baseline.deployment,'Serving component moved since inspection');assert.equal(before.versions[0].version_id,baseline.version);
+  await sourceCurrent();const before=await active();await inspectedBaseline(before);
   const v=await version(baseline.version),bytes=moduleBytes(v);assert.equal(bytes.length,baseline.bytes);assert.equal(digest(bytes),baseline.sha256,'Exact serving bytes required');
   const text=bytes.toString('utf8'),hook='function enhanceHub(html) {\n',next=hook+'  html = stripMentalHealthTicker(html);\n';
   assert.equal(text.split(hook).length,2,'One native public-hub function required');assert(!text.includes('stripMentalHealthTicker'));
