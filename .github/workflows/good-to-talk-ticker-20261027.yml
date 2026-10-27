@@ -32,7 +32,7 @@ jobs:
           assert.equal(active.versions.length,1);assert.equal(active.versions[0].percentage,100);
           const version=await cf(root+'workers/'+name+'/versions/'+active.versions[0].version_id+'?include=modules');
           const routes=await cf('/zones/66ec3268950adcfc837b7b8b2f8356ed/workers/routes');
-          console.log(JSON.stringify({active,moduleNames:version.modules.map(m=>({name:m.name,content_type:m.content_type,bytes:Buffer.from(m.content_base64,'base64').length})),versionKeys:Object.keys(version),config:version.config,resources:version.resources,routes:routes.filter(r=>/mental-health|good-to-talk/.test(r.pattern)),routeCount:routes.length},null,2));
+          console.log(JSON.stringify({active,moduleNames:version.modules.map(m=>({name:m.name,content_type:m.content_type,bytes:Buffer.from(m.content_base64,'base64').length})),versionKeys:Object.keys(version),configKeys:Object.keys(version.config||{}),resourceKeys:Object.keys(version.resources||{}),routes:routes.filter(r=>/mental-health|good-to-talk/.test(r.pattern)),routeCount:routes.length},null,2));
           for(const m of version.modules.filter(m=>/\\.(mjs|js)$/.test(m.name))){
             const text=Buffer.from(m.content_base64,'base64').toString();
             console.log('MODULE',m.name,'sha256',createHash('sha256').update(text).digest('hex'));
