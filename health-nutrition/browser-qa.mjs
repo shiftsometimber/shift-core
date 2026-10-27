@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {DatabaseSync} from 'node:sqlite';
+import {migrateCheckoutExtras} from '../checkout-extras/migrate.mjs';
 const {default:worker}=await import(process.env.SHIFT_COMPILED_WORKER||'./worker.mjs');
 const require=createRequire(import.meta.url);
 const puppeteer=require(process.env.SHIFT_PUPPETEER_MODULE||'/Users/shiftsometimberltd/.npm/_npx/4b4c857f6efdfb61/node_modules/puppeteer/lib/puppeteer/puppeteer.js');
@@ -11,7 +12,8 @@ const errors=[],results=[];
 try{
  const db=new DatabaseSync(':memory:');db.exec(fs.readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));const seed=JSON.parse(fs.readFileSync(new URL('./seed.json',import.meta.url)));for(const p of seed){const keys=Object.keys(p);db.prepare('INSERT INTO supplement_products('+keys.join(',')+') VALUES('+keys.map(()=>'?').join(',')+')').run(...keys.map(k=>p[k]));}
  const wrap=(sql,args=[])=>({bind:(...a)=>wrap(sql,a),async all(){return {results:db.prepare(sql).all(...args)}},async first(){return db.prepare(sql).get(...args)||null},async run(){return {meta:{changes:db.prepare(sql).run(...args).changes}}}});
- const DB={prepare:wrap,async batch(statements){db.exec('BEGIN');try{const r=[];for(const s of statements)r.push(await s.run());db.exec('COMMIT');return r;}catch(e){db.exec('ROLLBACK');throw e}}};
+ const DB={prepare:wrap,async exec(sql){db.exec(sql)},async batch(statements){db.exec('BEGIN');try{const r=[];for(const s of statements)r.push(await s.run());db.exec('COMMIT');return r;}catch(e){db.exec('ROLLBACK');throw e}}};
+ await migrateCheckoutExtras(DB);
  const capture=await browser.newPage();await capture.setBypassServiceWorker(true);const initial=await capture.goto('https://shiftsometimber.co.uk/shift-health',{waitUntil:'domcontentloaded',timeout:45000});assert.equal(initial.status(),200,'Accepted live Health shell unavailable');
  // Use the real Necessary only control in this disposable test session.
  await capture.waitForFunction(()=>[...document.querySelectorAll('button')].some(x=>x.textContent.trim()==='Necessary only'),{timeout:10000}).catch(()=>{});

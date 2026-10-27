@@ -1,3 +1,5 @@
+import {liveSupportClient} from './checkout-extras/live-support.mjs';
+import {extrasClient} from './checkout-extras/client.mjs';
 // Optional Core site basket: intentionally not injected into My Timber or home.
 // Public site pages share the basket. Private My Timber/member/HQ surfaces do not.
 export function isPurchaseBasketPage(path){
@@ -26,7 +28,7 @@ const SCRIPT=String.raw`(()=>{'use strict';
  }
  saved=read();
  const style=document.createElement('style');
- style.textContent='#sstBasketFab{position:fixed;right:18px;top:88px;z-index:980;border:2px solid #E7E3DA;border-radius:50%;width:52px;height:52px;background:#050505;color:#E7E3DA;box-shadow:0 4px 18px #0004;display:flex;align-items:center;justify-content:center;cursor:pointer}#sstBasketFab svg{width:25px;height:25px}#sstBasketFab[hidden]{display:none}#sstBasketCount{position:absolute;right:-5px;top:-7px;min-width:22px;height:22px;padding:0 5px;border-radius:12px;background:#707762;color:white;font:700 13px/22px system-ui;text-align:center}#sstBasketPanel{border:1px solid #707762;border-radius:18px;padding:0;width:min(440px,calc(100vw - 28px));max-height:calc(100dvh - 40px);overflow:auto;background:#E7E3DA;color:#050505;box-shadow:0 12px 40px #0006}#sstBasketPanel::backdrop{background:#0009}#sstBasketInner{padding:24px;font:16px/1.5 system-ui,-apple-system,sans-serif}#sstBasketInner h2{font:800 27px/1.1 system-ui;margin:4px 0 18px}#sstBasketInner p{margin:12px 0}#sstBasketInner button,#sstBasketInner a.sst-action{display:block;box-sizing:border-box;width:100%;padding:12px;margin:10px 0;border:0;border-radius:10px;text-align:center;text-decoration:none;background:#050505;color:#E7E3DA;font:700 15px/1.3 system-ui;cursor:pointer}#sstBasketInner button.secondary{background:transparent;color:#050505;border:1px solid #707762}#sstBasketInner .sst-note{font-size:14px;color:#353a32}#sstBasketStatus{min-height:20px}#sstBasketFab:focus-visible,#sstBasketInner button:focus-visible,#sstBasketInner a:focus-visible{outline:3px solid #707762;outline-offset:3px}@media(max-width:620px){#sstBasketFab{top:auto;bottom:18px;right:15px}}';
+ style.textContent='#sstBasketFab{position:fixed;right:18px;top:88px;z-index:980;border:2px solid #E7E3DA;border-radius:50%;width:52px;height:52px;background:#050505;color:#E7E3DA;box-shadow:0 4px 18px #0004;display:flex;align-items:center;justify-content:center;cursor:pointer}#sstBasketFab svg{width:25px;height:25px}#sstBasketFab[hidden]{display:none}#sstBasketCount{position:absolute;right:-5px;top:-7px;min-width:22px;height:22px;padding:0 5px;border-radius:12px;background:#707762;color:#050505;font:700 13px/22px system-ui;text-align:center}#sstBasketPanel{border:1px solid #707762;border-radius:18px;padding:0;width:min(440px,calc(100vw - 28px));max-height:calc(100dvh - 40px);overflow:auto;background:#E7E3DA;color:#050505;box-shadow:0 12px 40px #0006}#sstBasketPanel::backdrop{background:#0009}#sstBasketInner{padding:24px;font:16px/1.5 system-ui,-apple-system,sans-serif}#sstBasketInner h2{font:800 27px/1.1 system-ui;margin:4px 0 18px}#sstBasketInner p{margin:12px 0}#sstBasketInner button,#sstBasketInner a.sst-action{display:block;box-sizing:border-box;width:100%;padding:12px;margin:10px 0;border:0;border-radius:10px;text-align:center;text-decoration:none;background:#050505;color:#E7E3DA;font:700 15px/1.3 system-ui;cursor:pointer}#sstBasketInner button.secondary{background:transparent;color:#050505;border:1px solid #707762}#sstBasketInner .sst-note{font-size:14px;color:#353a32}#sstBasketStatus{min-height:20px}#sstBasketFab:focus-visible,#sstBasketInner button:focus-visible,#sstBasketInner a:focus-visible{outline:3px solid #707762;outline-offset:3px}@media(max-width:620px){#sstBasketFab{top:auto;bottom:18px;right:15px}}';
  document.head.appendChild(style);
  const fab=document.createElement('button');fab.id='sstBasketFab';fab.type='button';fab.hidden=true;
  fab.setAttribute('aria-label','Open saved basket');
@@ -44,13 +46,13 @@ const SCRIPT=String.raw`(()=>{'use strict';
    const p=document.createElement('p');p.textContent=value;if(klass)p.className=klass;inner.appendChild(p);return p;
  }
  function shown(){
-   const remote=attempts.filter(a=>a&&['medicine','apparel'].includes(a.channel));
+   const remote=attempts.filter(a=>a&&['medicine','apparel','supplements'].includes(a.channel));
    const local=!!(account&&saved&&saved.owner===account);
    return {remote,local,count:Math.max(local?1:0,remote.length)};
  }
  function render(){
    const state=shown();fab.hidden=!state.count;
-   document.getElementById('sstBasketCount').textContent=String(state.count);
+   document.getElementById('sstBasketCount').textContent=String(state.count);fab.dataset.baseCount=String(state.count);
    inner.replaceChildren();
    const title=document.createElement('h2');title.textContent='Your saved basket';inner.appendChild(title);
    if(state.remote.length){
@@ -75,6 +77,7 @@ const SCRIPT=String.raw`(()=>{'use strict';
    }
    if(notice)paragraph(notice,'sst-note');
    addButton('Close',()=>panel.close(),true);
+   document.dispatchEvent(new CustomEvent('sst:basket-rendered',{detail:{account,locked:state.remote.length>0}}));
  }
  async function load(){
    try{
@@ -84,7 +87,7 @@ const SCRIPT=String.raw`(()=>{'use strict';
          const paidResponse=await fetch(API+path+'?session_id='+encodeURIComponent(session),{credentials:'include',cache:'no-store'}).catch(()=>null);
          if(!paidResponse?.ok)continue;
          const proof=await paidResponse.json().catch(()=>null);
-         if(proof?.ok&&(proof.paymentStatus==='paid'||proof.status==='paid')){saved=null;persist(null);break;}
+         if(proof?.ok&&(proof.paymentStatus==='paid'||proof.status==='paid')){saved=null;persist(null);if(path.includes('medicine'))document.dispatchEvent(new CustomEvent('sst:basket-paid'));break;}
        }
      }
      const response=await fetch(API+'/v1/commerce/active-checkout',{credentials:'include',cache:'no-store'});
@@ -137,7 +140,7 @@ const SCRIPT=String.raw`(()=>{'use strict';
 export function purchaseBasketAsset(request){
  const path=new URL(request.url).pathname;
  if(request.method!=="GET"||path!=="/assets/shift-purchase-basket-v1.js")return null;
- return new Response(SCRIPT,{headers:{"Content-Type":"application/javascript; charset=utf-8","Cache-Control":"public, max-age=300","X-Content-Type-Options":"nosniff"}});
+ return new Response(extrasClient+'\n'+SCRIPT+'\n'+liveSupportClient,{headers:{"Content-Type":"application/javascript; charset=utf-8","Cache-Control":"public, max-age=300","X-Content-Type-Options":"nosniff"}});
 }
 export async function withPurchaseBasket(request,response){
  if(request.method!=="GET"||!isPurchaseBasketPage(new URL(request.url).pathname)||

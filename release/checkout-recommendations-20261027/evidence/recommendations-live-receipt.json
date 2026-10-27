@@ -1,0 +1,46 @@
+{
+  "live": true,
+  "verifiedAt": "2026-10-27T23:11:25.603Z",
+  "results": [
+    {
+      "width": 1440,
+      "pageErrors": 0,
+      "productCards": 2,
+      "shiftSays": true,
+      "noBuyButtons": true,
+      "originalSkipWorks": true,
+      "recentBloodsPreserved": true,
+      "orderingHoldPreserved": true
+    },
+    {
+      "width": 736,
+      "pageErrors": 0,
+      "productCards": 2,
+      "shiftSays": true,
+      "noBuyButtons": true,
+      "originalSkipWorks": true,
+      "recentBloodsPreserved": true,
+      "orderingHoldPreserved": true
+    },
+    {
+      "width": 390,
+      "pageErrors": 0,
+      "productCards": 2,
+      "shiftSays": true,
+      "noBuyButtons": true,
+      "originalSkipWorks": true,
+      "recentBloodsPreserved": true,
+      "orderingHoldPreserved": true
+    },
+    {
+      "width": 320,
+      "pageErrors": 0,
+      "productCards": 2,
+      "shiftSays": true,
+      "noBuyButtons": true,
+      "originalSkipWorks": true,
+      "recentBloodsPreserved": true,
+      "orderingHoldPreserved": true
+    }
+  ]
+}

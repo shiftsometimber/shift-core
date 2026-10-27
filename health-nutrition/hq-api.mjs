@@ -1,3 +1,4 @@
+import {registerCatalogueSkus,supplementSkuMap} from '../checkout-extras/skus.mjs';
 import {categories} from './catalogue.mjs';
 export const json=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const clean=(v,n)=>String(v??'').trim().slice(0,n);
@@ -8,6 +9,7 @@ export function validateDraft(body){
  if(Object.hasOwn(body,'category')){if(!categories.some(([id])=>id!=='all'&&id===body.category))throw Error('Invalid category');data.category=body.category;}
  if(Object.hasOwn(body,'format')){if(!['powder','sachets','tablets','bars','capsules','other'].includes(body.format))throw Error('Invalid format');data.format=body.format;}
  if(Object.hasOwn(body,'visibility')){if(!['hidden','proposed'].includes(body.visibility))throw Error('Invalid visibility');data.visibility=body.visibility;}
+ for(const key of ['checkout_recommendation','checkout_priority'])if(Object.hasOwn(body,key)){const value=body[key];if(!Number.isSafeInteger(value)||value<0||value>(key==='checkout_recommendation'?1:10000))throw Error('Invalid '+key);data[key]=value;}
  for(const key of ['trade_price_pence','retail_price_pence','delivery_cost_pence','stock_quantity'])if(Object.hasOwn(body,key)){const value=body[key];if(value!==null&&(!Number.isSafeInteger(value)||value<0||value>1e8))throw Error('Invalid '+key);data[key]=value;}
  if(Object.hasOwn(body,'vat_rate')){const v=body.vat_rate;if(v!==null&&(!Number.isFinite(v)||v<0||v>100))throw Error('Invalid VAT rate');data.vat_rate=v;}
  if(Object.hasOwn(body,'sale_enabled')&&body.sale_enabled!==0&&body.sale_enabled!==false)throw Error('Purchasing is not connected');
@@ -25,9 +27,14 @@ export async function hqRoute(request,env){
  const identity=await auth.json(),user=identity.user||{},permissions=identity.permissions||[];
  const manage=['owner','admin','operations'].includes(user.role),read=manage||permissions.includes('*')||permissions.includes('commerce_read');
  if(!read||method==='PATCH'&&!manage)return cors(json({error:'forbidden'},403),request);
+ if(path==='/v1/hq/supplements/orders'&&method==='GET'){
+  const {results=[]}=await env.DB.prepare('SELECT order_number,channel,total_pence,status,quote_json,created_at FROM supplement_checkout_orders ORDER BY created_at DESC,id DESC LIMIT 100').all();
+  return cors(json({ok:true,orders:results.map(({quote_json,...order})=>({...order,items:JSON.parse(quote_json).items.map(({id,name,pack,quantity})=>({id,name,pack,quantity}))}))}),request);
+ }
  if(path==='/v1/hq/supplements'&&method==='GET'){
+  const skus=await supplementSkuMap(env.DB);
   const {results=[]}=await env.DB.prepare('SELECT * FROM supplement_products ORDER BY sort_order,id').all();
-  return cors(json({ok:true,products:results,canManage:manage,integration:{supplier:'Olivit',apiConnected:false,dropshipTermsConfirmed:false,purchasingEnabled:false}}),request);
+  return cors(json({ok:true,products:results.map(p=>({...p,shift_sku:skus[p.id]})),canManage:manage,integration:{supplier:'Olivit',apiConnected:false,dropshipTermsConfirmed:false,purchasingEnabled:false}}),request);
  }
  const match=path.match(/^\/v1\/hq\/supplements\/([a-z0-9-]{1,80})$/);
  if(!match||method!=='PATCH')return cors(json({error:'not_found'},404),request);
@@ -37,9 +44,9 @@ export async function hqRoute(request,env){
  const id=match[1],who=String(user.id||user.email||'hq-user'),keys=Object.keys(data);
  const updated=await env.DB.batch([
   env.DB.prepare('UPDATE supplement_products SET '+keys.map(k=>k+'=?').join(',')+",revision=revision+1,updated_at=CURRENT_TIMESTAMP,updated_by=? WHERE id=? AND revision=?").bind(...keys.map(k=>data[k]),who,id,body.revision),
-  env.DB.prepare("INSERT OR IGNORE INTO supplement_product_history(product_id,revision,changed_by,record_json) SELECT id,revision,?,json_object('name',name,'description',description,'shift_says',shift_says,'category',category,'visibility',visibility,'trade_price_pence',trade_price_pence,'retail_price_pence',retail_price_pence,'delivery_cost_pence',delivery_cost_pence,'supplier_sku',supplier_sku,'supplier_pack',supplier_pack,'stock_quantity',stock_quantity,'vat_rate',vat_rate,'internal_notes',internal_notes) FROM supplement_products WHERE id=? AND revision=?").bind(who,id,body.revision+1)
+  env.DB.prepare("INSERT OR IGNORE INTO supplement_product_history(product_id,revision,changed_by,record_json) SELECT id,revision,?,json_object('checkout_recommendation',checkout_recommendation,'checkout_priority',checkout_priority,'name',name,'description',description,'shift_says',shift_says,'category',category,'visibility',visibility,'trade_price_pence',trade_price_pence,'retail_price_pence',retail_price_pence,'delivery_cost_pence',delivery_cost_pence,'supplier_sku',supplier_sku,'supplier_pack',supplier_pack,'stock_quantity',stock_quantity,'vat_rate',vat_rate,'internal_notes',internal_notes) FROM supplement_products WHERE id=? AND revision=?").bind(who,id,body.revision+1)
  ]);
  if(updated[0].meta.changes!==1)return cors(json({error:'record_changed',message:'This record changed. Refresh before saving.'},409),request);
- const product=await env.DB.prepare('SELECT * FROM supplement_products WHERE id=?').bind(id).first();
+ const product=await env.DB.prepare('SELECT * FROM supplement_products WHERE id=?').bind(id).first();const skus=await supplementSkuMap(env.DB);product.shift_sku=skus[id];
  return cors(json({ok:true,product}),request);
 }

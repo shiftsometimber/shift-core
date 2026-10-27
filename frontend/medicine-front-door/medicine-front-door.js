@@ -49,7 +49,11 @@ async function loadCatalogue(){
         let reorder=null;try{reorder=JSON.parse(sessionStorage.getItem('sst-treatment-reorder:'+variantId)||'null')}catch{}
         let reorderOfOrderNumber;
         if(reorder){const context=await fetch(API+'/v1/commerce/medicine-clinical-context',{credentials:'include',cache:'no-store'});if(context.ok&&(await context.json()).accountReference===reorder.accountReference)reorderOfOrderNumber=reorder.orderNumber;}
-        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,reorderOfOrderNumber,verificationToken:verification.token,...(window.SHIFT_SERVICE_ELIGIBILITY?.()||{})})}),result=await response.json();
+        // Review optional extras after verification, before creating a payment.
+        if(!window.SHIFT_EXTRAS)throw Error('Your basket is still loading. Try again before opening payment.');
+        const extras=await window.SHIFT_EXTRAS.review(true);
+        if(extras===null){button.disabled=false;return;}
+        const response=await fetch(`${API}/v1/commerce/medicine-checkout`,{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({variantId,extras,expectedTreatmentPence:window.SHIFT_EXTRAS.treatmentPrice(),reorderOfOrderNumber,verificationToken:verification.token,...(window.SHIFT_SERVICE_ELIGIBILITY?.()||{})})}),result=await response.json();
         if(response.status===401){const back=new URL(location.href);back.searchParams.set('variant',String(variantId));location.assign('/member-login?returnTo='+encodeURIComponent(back.pathname+back.search));return;}
         if(!response.ok||!result.checkoutUrl)throw Error(result.message||result.error||'Checkout could not be opened');
         location.assign(result.checkoutUrl);

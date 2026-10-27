@@ -1,0 +1,74 @@
+{
+  "verifiedAt": "2026-10-27T22:52:22.054Z",
+  "environment": "Chrome fixture, synthetic commerce only",
+  "results": [
+    {
+      "width": 1440,
+      "pageErrors": 0,
+      "checks": [
+        "two optional recommendations",
+        "nothing preselected",
+        "multiple extras and quantity changes",
+        "one supplier delivery charge",
+        "selection survives reload",
+        "skip",
+        "draft Explore only",
+        "Escape cancels",
+        "stale product removable",
+        "account isolation",
+        "no horizontal overflow"
+      ]
+    },
+    {
+      "width": 736,
+      "pageErrors": 0,
+      "checks": [
+        "two optional recommendations",
+        "nothing preselected",
+        "multiple extras and quantity changes",
+        "one supplier delivery charge",
+        "selection survives reload",
+        "skip",
+        "draft Explore only",
+        "Escape cancels",
+        "stale product removable",
+        "account isolation",
+        "no horizontal overflow"
+      ]
+    },
+    {
+      "width": 390,
+      "pageErrors": 0,
+      "checks": [
+        "two optional recommendations",
+        "nothing preselected",
+        "multiple extras and quantity changes",
+        "one supplier delivery charge",
+        "selection survives reload",
+        "skip",
+        "draft Explore only",
+        "Escape cancels",
+        "stale product removable",
+        "account isolation",
+        "no horizontal overflow"
+      ]
+    },
+    {
+      "width": 320,
+      "pageErrors": 0,
+      "checks": [
+        "two optional recommendations",
+        "nothing preselected",
+        "multiple extras and quantity changes",
+        "one supplier delivery charge",
+        "selection survives reload",
+        "skip",
+        "draft Explore only",
+        "Escape cancels",
+        "stale product removable",
+        "account isolation",
+        "no horizontal overflow"
+      ]
+    }
+  ]
+}

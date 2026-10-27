@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS supplement_products (
  status TEXT NOT NULL DEFAULT 'draft' CHECK(status='draft'),
  visibility TEXT NOT NULL DEFAULT 'hidden' CHECK(visibility IN ('hidden','proposed')),
  sale_enabled INTEGER NOT NULL DEFAULT 0 CHECK(sale_enabled=0),
+ checkout_recommendation INTEGER NOT NULL DEFAULT 0 CHECK(checkout_recommendation IN (0,1)),
+ checkout_priority INTEGER NOT NULL DEFAULT 100 CHECK(checkout_priority BETWEEN 0 AND 10000),
  sort_order INTEGER NOT NULL DEFAULT 0,
  revision INTEGER NOT NULL DEFAULT 1,
  updated_by TEXT NOT NULL DEFAULT 'approved-olivit-release-20261027',

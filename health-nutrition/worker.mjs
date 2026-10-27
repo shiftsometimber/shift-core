@@ -1,3 +1,5 @@
+import {purchaseBasketAsset} from '../public-purchase-basket.mjs';
+import {liveRecommendationRoute} from '../checkout-extras/live-adapter.mjs';
 import {images} from './images.mjs';
 import {publicProducts} from './catalogue.mjs';
 import {renderDocument} from './public.mjs';
@@ -7,6 +9,8 @@ const stamp='health-nutrition-approved-20261027';
 const respond=(body,status=200,type='text/html; charset=utf-8')=>new Response(body,{status,headers:{'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Shift-Health-Release':stamp}});
 export default {async fetch(request,env,ctx){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';
+ const basket=purchaseBasketAsset(request);if(basket)return basket;
+ const recommendation=await liveRecommendationRoute(request,env);if(recommendation)return recommendation;
  if(url.hostname==='api.shiftsometimber.co.uk')return hqRoute(request,env);
  if(url.hostname==='hq.shiftsometimber.co.uk'){
   const response=await env.HQ.fetch(request);

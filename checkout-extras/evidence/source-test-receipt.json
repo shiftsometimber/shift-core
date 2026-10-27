@@ -1,0 +1,32 @@
+{
+  "status": "built-and-tested-not-deployed",
+  "baseCommit": "28fbf9d434b2f661c7e35eb818e625d34d74fbca",
+  "testsPassed": 53,
+  "testsFailed": 0,
+  "data": "synthetic fixtures only",
+  "olivitConnected": false,
+  "salesEnabled": false,
+  "productionChanges": false,
+  "sourceSHA256": {
+    "checkout-extras/README.md": "2414b7e4cdd1a572c639876a9e541f095abf471ce903f0d8875a62b8717ee387",
+    "checkout-extras/browser-qa.mjs": "b2dd04e246af1e7fdd38cd25cc2be352a2cdafa38290ab1bcbc4316512c2d3fe",
+    "checkout-extras/build-assets.mjs": "934002c2bb3cd2be8a7c87a5891ababa68f472e5eed32adbf76e760247e4570f",
+    "checkout-extras/client.js": "638c8274725f50a0ed3c8b0d30f423c55160582a72412be102a8add5eeac2d60",
+    "checkout-extras/client.mjs": "dc3eb1205e2492ba3072374d9de768de54b4cec9b6aed4d3335e4633863b1a76",
+    "checkout-extras/feature.test.mjs": "2595769f27950ab7a19e82f6d0346a81eae10aa6f523ce63821b0c09ec253505",
+    "checkout-extras/medicine-integration.test.mjs": "b6263df01a2eb1932ac59c26479a19d8a64f3002ecc77b78aa153e9d0f692e61",
+    "checkout-extras/migrate.mjs": "c697bc11946c05b8eed409eec64b5098922c01570596f097ad279d6825c787c7",
+    "checkout-extras/model.mjs": "9937e8ba55883b9f42fa8070357f23fd9dff508ac43a75db69e31bb1ac2ba511",
+    "checkout-extras/schema.mjs": "566cced8fd73e6f456e7e1ab13c44379f0c6feccbd8787636343632250e2886e",
+    "checkout-extras/server.mjs": "dd5461c4bbde5e8a8d4db1ea8aef224ac1047b6e7d207a08bee0f561adc53262",
+    "frontend/medicine-front-door/medicine-front-door.js": "e41e52cd32cb03791582f7eeee95f066c6709a79b5e3bb3ece2338dcfbd0ebdd",
+    "health-nutrition/catalogue.mjs": "fa082daf3b98a93de068d0ffbff477d4620ad319fe4baad5593707d05fd0b06f",
+    "health-nutrition/hq-api.mjs": "473ea62aa73ccebaeb8ea915bd7f05849ed9d5c0c4456a6ab182f96a5f8ff353",
+    "health-nutrition/hq-client.js": "977e99d63387ede76d825a9c8c1c978f61366b32e6a545fa99a2972d2781e342",
+    "health-nutrition/hq-client.mjs": "22108254cbdbe071ecd65fc6dbb21d36a0a40265aea1edb33934458ab51c5fb5",
+    "health-nutrition/schema.sql": "f5c9fa6a152b5daa1b54e76d1a46b94542662ad41f47d2a88a88b85cdadb4d3c",
+    "medicine-commerce-v1.js": "32906b1aec7bd2b537b111ebcadd291c9b3ca27e03f089eebaefab9ee1cbac32",
+    "public-purchase-basket.mjs": "418eb2e6a0bbb7fadd15deaf387e08a90f5dfb007d75b7f08a8ee15f659f5a72"
+  },
+  "browserAssetSHA256": "4a2a959e240e0f1c2afcb976dc6475352ef35400d26b7d56e81b8317d3d92bca"
+}
