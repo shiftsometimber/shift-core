@@ -4,11 +4,10 @@ Matt approved the fuller-dad family park hero, image-led Health hub, nutrition s
 
 ## Current checkpoint
 
-- Latest request: add Highest rated as an eighth selectable sort choice. Uses verified five-star averages, with review count to break ties and unrated items last; pending ratings use an explained A–Z fallback. Prepared and source-tested; live verification pending.
 
-- **Deployed and verified:** `1d36d19664995f757a8bea6afd7796885a719bbf`, [release 40592039823](https://github.com/shiftsometimber/shift-core/actions/runs/40592039823).
-- All seven sort choices are selectable. Our range defaults to A–Z; A–Z, Z–A and creation-date ordering work. Price and popularity selections persist and show an explained A–Z fallback until confirmed public prices or real sales figures exist. No invented prices or popularity metrics.
-- Ten focused source tests pass. Compiled and live Chrome checks pass at 1440, 736, 390 and 320 px with zero page errors. Mobile checks apply both price choices and Most popular, verify the selected option persists, and confirm the honest fallback.
+- **Deployed and verified:** `a4b8f173e3900e2f0062b3d7483a1d910b9ef2bf`, [release 40592806016](https://github.com/shiftsometimber/shift-core/actions/runs/40592806016).
+- All eight sort choices are selectable. Our range defaults to A–Z; A–Z, Z–A and creation-date ordering work. Price, popularity and Highest rated selections persist and show an explained A–Z fallback until confirmed public prices, real sales figures or published ratings exist. Highest rated orders by average review score, using review count to break ties and placing unrated products last. No invented prices or popularity metrics.
+- Ten focused source tests pass. Compiled and live Chrome checks pass at 1440, 736, 390 and 320 px with zero page errors. Mobile checks apply both price choices, Most popular and Highest rated, verify the selected option persists, and confirm the honest fallback.
 - Feature cards remain Weight management → Bloods → Testosterone → Supplements & Nutrition. Approved pictures, colours, individual typography and the fuller-dad family park hero remain intact.
 - Eight HQ drafts, exact provider bytes and all 11 owned routes verified. Zone route count is 890; these follow-up releases add no routes. Core, the accepted publisher, My Timber and underlying HQ communications deployments are retained.
 - Existing-Worker updates stage a version before browser checks, verify live deployment identity is unchanged during preparation, and promote the exact verified version afterwards. No-op route assignments are skipped.
