@@ -21,6 +21,9 @@ export async function registerCatalogueSkus(DB){
    DB.prepare(`INSERT OR IGNORE INTO catalogue_skus(source_table,source_id,sku,legacy_sku) SELECT ?,CAST(id AS TEXT),${native},${native} FROM ${table} ORDER BY id`).bind(table),
    DB.prepare("UPDATE catalogue_skus SET sku=printf('SST-I-%08d',id) WHERE sku IS NULL")
   ]);
+  const newNative=columns.some(c=>c.name==='sku')?"NULLIF(TRIM(NEW.sku),'')":'NULL';
+  // The same database transaction that creates an item allocates its identity.
+  await DB.exec(`CREATE TRIGGER IF NOT EXISTS catalogue_sku_insert_${table} AFTER INSERT ON ${table} BEGIN INSERT OR IGNORE INTO catalogue_skus(source_table,source_id,sku,legacy_sku) VALUES('${table}',CAST(NEW.id AS TEXT),${newNative},${newNative}); UPDATE catalogue_skus SET sku=printf('SST-I-%08d',id) WHERE source_table='${table}' AND source_id=CAST(NEW.id AS TEXT) AND sku IS NULL; SELECT CASE WHEN NOT EXISTS(SELECT 1 FROM catalogue_skus WHERE source_table='${table}' AND source_id=CAST(NEW.id AS TEXT) AND sku IS NOT NULL) THEN RAISE(ABORT,'A unique SHIFT SKU is required') END; END;`);
   const missing=await DB.prepare(`SELECT COUNT(*) n FROM ${table} p LEFT JOIN catalogue_skus s ON s.source_table=? AND s.source_id=CAST(p.id AS TEXT) WHERE s.sku IS NULL`).bind(table).first();
   if(Number(missing.n)!==0)throw Error('Existing catalogue SKU collision requires review: '+table);
  }

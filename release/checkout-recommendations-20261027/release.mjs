@@ -44,7 +44,18 @@ async function rollback(){if(!existsSync(dir+'/intent.json')){console.log('No ro
  const active=await deployments(script,true);if(intent.previous?.versions?.[0]?.version_id&&active?.versions?.[0]?.version_id===intent.versionId)cli('versions','deploy',intent.previous.versions[0].version_id+'@100%','--yes');
  save('rollback',{restored,draftRecordsRetained:true});console.log('Restored only owned route assignments. Saved draft records retained.');}
 const action=process.argv[2];
-if(action==='prepare'){
+if(action==='sku-hooks'){
+ await sourceCurrent();const routesBefore=await routes(),versionsBefore=await retained(),componentBefore=await deployments(script);
+ const mappingsBefore=(await db('SELECT source_table,source_id,sku FROM catalogue_skus ORDER BY source_table,source_id'))[0].results;
+ const counts=await registerCatalogueSkus(DB);
+ const mappingsAfter=(await db('SELECT source_table,source_id,sku FROM catalogue_skus ORDER BY source_table,source_id'))[0].results;
+ for(const before of mappingsBefore)assert.deepEqual(mappingsAfter.find(p=>p.source_table===before.source_table&&p.source_id===before.source_id),before,'Existing SKU changed');
+ const triggers=(await db("SELECT name FROM sqlite_master WHERE type='trigger' AND name LIKE 'catalogue_sku_insert_%' ORDER BY name"))[0].results;
+ for(const table of ['products','medicine_products','medicine_variants','supplement_products'])assert(triggers.some(t=>t.name==='catalogue_sku_insert_'+table),'Missing automatic SKU hook for '+table);
+ assert.deepEqual(await routes(),routesBefore);assert.deepEqual(await retained(),versionsBefore);assert.deepEqual(await deployments(script),componentBefore);
+ save('sku-automatic-creation',{verifiedAt:new Date().toISOString(),source:process.env.GITHUB_SHA,automaticHooks:triggers.map(p=>p.name),skuCounts:counts,existingMappingsPreserved:true,runtimeUnchanged:true,routesUnchanged:true,purchasingEnabled:false,liveComponent:componentBefore});
+ console.log('PASS automatic SKU allocation on all four catalogue types; all existing codes, live versions and routes retained.');
+}else if(action==='prepare'){
  await sourceCurrent();const before=await routes(),retainedBefore=await retained(),routePlan=plan(before),previous=await deployments(script,true);
  save('route-plan',routePlan);save('routes-before',before);save('retained-before',retainedBefore);save('worker-before',previous);
  const buildDir=resolve(dir,'build');cli('deploy','--dry-run','--outdir',buildDir);
