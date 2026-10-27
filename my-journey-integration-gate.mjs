@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {plannedCoreRouteCovers} from './release/cloudflare-route-coverage.mjs';
 
 const need = (ok, message) => {
   if (!ok) throw new Error(`My Journey integration gate: ${message}`);
@@ -49,13 +50,8 @@ for (const marker of [
   "'/member-my-journey-v1.css'",
   "path.startsWith('/v1/journey/')",
 ]) has(workerNormalised, marker.replace(/\s+/g, ''));
-for (const marker of [
-  'shiftsometimber.co.uk/member-my-journey-v1.js*',
-  'shiftsometimber.co.uk/member-my-journey-v1.css*',
-  'shiftsometimber.co.uk/member-my-journey-checkin-v1.js*',
-  'shiftsometimber.co.uk/member-my-journey-checkin-v1.css*',
-  'shiftsometimber.co.uk/member-treatment-journey-v1.js*',
-]) has(config, marker);
+for(const asset of ['/member-my-journey-v1.js','/member-my-journey-v1.css','/member-my-journey-checkin-v1.js','/member-my-journey-checkin-v1.css','/member-treatment-journey-v1.js'])
+ need(['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].every(host=>plannedCoreRouteCovers(config,host,asset)),'production routes cover '+asset);
 
 // The browser adapter exposes one modular API surface rather than reviving
 // separate Progress, Check-in and Life Back destinations.

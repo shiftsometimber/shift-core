@@ -25,10 +25,11 @@ export async function connectedDay(DB,userId,prefs,date=ukDate()){
    // Explicitly selected Life Back support supersedes an older standalone offer.
    if((linked&&linked===progress?.nextShift?.id)||(!linked&&(!progress?.nextShift||row.created_at>=progress.nextShift.createdAt))){
     next={...offered,dailyActionId:row.id};
-    if(row.feedback==='not-fit')next={...next,title:'Choose a smaller step',detail:'That step did not fit. Pick food, movement or a quieter day from More for today.',href:'/member/dashboard#more-for-today',label:'Choose what fits now',dailyActionId:null};
+    if((offered.feedbackOutcome||row.feedback)==='not-helped')next={...next,title:'Try a different practical approach',detail:'You tried that step and said it did not help. Choose a different kind of everyday support; you do not need to repeat it.',href:'/member/dashboard#more-for-today',label:'Choose a different approach',dailyActionId:null};
+    if((offered.feedbackOutcome||row.feedback)==='not-fit')next={...next,title:'Choose a smaller step',detail:'That step did not fit. Pick food, movement or a quieter day from More for today.',href:'/member/dashboard#more-for-today',label:'Choose what fits now',dailyActionId:null};
     if(row.feedback==='helped')next={...next,title:'Keep the useful part',detail:'You said this step helped. Open it again if it still fits today, or choose something else.',dailyActionId:null};
    }
   }
  }
- return {date,meal,week:reflectionWeek(state.entries,date),weekMeals:prefs.grubV2?.week?.length||0,weekMovement:{done:weekMovement.filter(e=>e.status==='done').length,skipped:weekMovement.filter(e=>e.status==='skipped').length},movement:{done,skipped},lifeBack:{score:s.score,change:s.change,at:last?.at||null,win:state.win,recordedWin:[...state.entries].reverse().find(e=>e.win)?.win||null,goal:state.goal,entries:state.entries.length},mood:mood?{label:['Tough day','Struggling','OK','Good','Brilliant'][mood.wellbeing_score-1],at:mood.submitted_at}:null,next};
+ return {date,meal,week:reflectionWeek(state.entries,date),weekMeals:prefs.grubV2?.week?.length||0,weekMovement:{done:weekMovement.filter(e=>e.status==='done').length,skipped:weekMovement.filter(e=>e.status==='skipped').length},movement:{done,skipped},lifeBack:{score:s.score,change:s.change,at:last?.at||null,win:state.win,recordedWin:[...state.entries].reverse().find(e=>e.win)?.win||null,rememberedWords:(()=>{const e=[...state.entries].reverse().find(e=>e.win);return e?{entryId:e.id,text:e.win,at:e.at,correctedAt:e.correctedAt||null}:null})(),revision:progress?.revision||0,goal:state.goal,entries:state.entries.length},mood:mood?{label:['Tough day','Struggling','OK','Good','Brilliant'][mood.wellbeing_score-1],at:mood.submitted_at}:null,next};
 }

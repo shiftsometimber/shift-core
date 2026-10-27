@@ -44,3 +44,34 @@ test('helpful feedback retains the adjusted task that actually helped',()=>{
  s=check(s,'helpful-check-operation',{shiftFeedback:{shiftId:s.nextShift.id,outcome:'helped'}});
  assert.equal(s.nextShift.detail,helpful.detail);assert.equal(s.nextShift.title,helpful.title);
 });
+
+test('tried but unhelpful selects a different kind of practical step and persists the exact answer',()=>{
+ let s=check(goal());const original=s.nextShift;
+ s=applyLifeBackOperation(s,{action:'shift-feedback',operationId:'unhelpful-review-operation',shiftId:original.id,outcome:'not-helped'},at);
+ assert.notEqual(s.nextShift.title,original.title);assert.match(s.nextShift.reason,/tried it.*different practical approach/);
+ assert.equal(s.shiftHistory[0].reviews.at(-1).outcome,'not-helped');assert.equal(s.shiftHistory[0].attemptedAt,at);
+ assert.equal(s.shiftHistory[0].completedAt,undefined);
+ assert.deepEqual(nextShiftCard(JSON.parse(JSON.stringify(s))),nextShiftCard(s));
+});
+test('rejected advice is not offered again after a topic change and return',()=>{
+ let s=check(goal());const rejected=s.nextShift;
+ s=applyLifeBackOperation(s,{action:'shift-feedback',operationId:'negative-review-operation',shiftId:rejected.id,outcome:'not-helped'},at);
+ s=applyLifeBackOperation(s,{action:'focus',operationId:'movement-focus-operation',revision:s.revision,supportNeed:'movement'},at);
+ s=applyLifeBackOperation(s,{action:'focus',operationId:'food-return-operation',revision:s.revision,supportNeed:'food'},at);
+ assert.notEqual(s.nextShift.detail,rejected.detail);assert.equal(s.nextShift.kind,'food');
+});
+test('corrected remembered words retain their original date, survive reload and reject stale or foreign entry IDs',()=>{
+ let s=check(goal(),'saved-words-operation',{win:'A late dinner was awkward'});const original=s.entries[0];
+ const input={action:'entry-note',operationId:'correct-words-operation',revision:s.revision,entryId:original.id,note:'An early dinner fitted better'};
+ const corrected=applyLifeBackOperation(s,input,'2026-09-18T13:00:00Z');
+ assert.equal(corrected.entries[0].at,original.at);assert.equal(corrected.entries[0].win,input.note);assert.equal(JSON.parse(JSON.stringify(corrected)).entries[0].win,input.note);
+ assert.throws(()=>applyLifeBackOperation(corrected,{...input,operationId:'stale-correct-operation'}),e=>e.status===409);
+ assert.throws(()=>applyLifeBackOperation(corrected,{...input,operationId:'foreign-correct-operation',revision:corrected.revision,entryId:'another-members-entry'}),e=>e.status===404);
+ const cleared=applyLifeBackOperation(corrected,{...input,operationId:'clear-words-operation',revision:corrected.revision,note:''});assert.equal(cleared.entries[0].win,'');
+});
+
+test('exhausted rejected ideas become a choice rather than an impossible feedback task',()=>{
+ let s=check(goal());for(let i=0;i<8&&!s.nextShift.awaitingChoice;i++)s=applyLifeBackOperation(s,{action:'shift-feedback',operationId:'exhaust-ideas-operation-'+i,shiftId:s.nextShift.id,outcome:'not-helped'},at);
+ assert(s.nextShift.awaitingChoice);assert.equal(nextShiftCard(s).loopId,null);assert.match(nextShiftCard(s).href,/more-for-today/);
+ assert.throws(()=>applyLifeBackOperation(s,{action:'shift-feedback',operationId:'exhausted-review-operation',shiftId:s.nextShift.id,outcome:'not-helped'},at),e=>e.status===409);
+});

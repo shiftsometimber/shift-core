@@ -15,7 +15,7 @@ export const checkinFollowupStyles=`
 `;
 export const checkinFollowupRuntime=String.raw`(()=>{
  'use strict';
- const labels={'helped':'It helped','not-fit':'It did not fit','not-tried':'I have not tried it yet','skip':'Skip this question'};
+ const labels={'helped':'It helped','not-fit':'Not for me','not-helped':'Tried it, didn’t help','not-tried':'I have not tried it yet','skip':'Skip this question'};
  let host,record,pending=false,generation=0,offered=null,dirty=false,operation=null;
  const element=(tag,text)=>{const e=document.createElement(tag);if(text)e.textContent=text;return e};
  const params=new URLSearchParams(location.search),step=params.get('step'),shift=params.get('shift');
@@ -27,7 +27,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
   catch(e){if(e.name==='AbortError')throw Error('The request timed out. Reload to check your saved answer before retrying.');throw e}finally{clearTimeout(timer)}
  }
  function actionLink(a,r=record){const link=element('a',a.label||'Open this next step');const u=new URL(typeof a.href==='string'&&/^\/(?!\/)/.test(a.href)?a.href:'/member/dashboard#today',location.origin);if(r)u.searchParams.set(r.source==='life-back'?'shift':'step',r.id);link.href=u.pathname+u.search+u.hash;return link}
- function fromLife(action,active){if(action.kind==='clinic-quiet')action={...action,href:'/clinic-gone-quiet',label:'Prepare with the clinic-quiet guide'};return {source:'life-back',id:action.id,action,createdAt:action.createdAt,feedback:action.reviews?.at(-1)?.outcome,active};}
+ function fromLife(action,active){if(action.kind==='clinic-quiet')action={...action,href:'/clinic-gone-quiet',label:'Prepare with the clinic-quiet guide'};return {source:'life-back',id:action.id,action,createdAt:action.createdAt,feedback:action.reviews?.at(-1)?.outcome,active:active&&!action.awaitingChoice};}
  function currentDestination(a){const path=new URL(a.href,location.origin).pathname;return path===location.pathname.replace('/staging/member-connected/','/member/');}
  function render(edit=false){
   document.dispatchEvent(new CustomEvent('sst:daily-feedback',{detail:record}));host.replaceChildren();host.hidden=!record;if(!record)return;
@@ -36,6 +36,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
   if(!tool)details.append(actionLink(record.action));
   const status=element('p');status.id='dailyFeedbackStatus';status.setAttribute('role','status');status.setAttribute('aria-live','polite');
   if(record.feedback&&!edit){status.textContent='Feedback saved: '+labels[record.feedback]+'.';details.append(status);if(record.active!==false){const update=element('button','Update answer');update.type='button';update.addEventListener('click',()=>render(true));details.append(update)}const back=element('a','See your next step on Today →');back.href='/member/dashboard#today';details.append(back);return}
+  if(record.action.awaitingChoice){details.append(element('p','Choose another support topic when you are ready.'),actionLink(record.action));return;}
   if(record.active===false){details.append(element('p','This step has moved on. Open Today for your current step.'));return;}
   const form=element('form'),choices=element('fieldset');choices.append(element('legend','What happened?'));
   for(const [value,label]of Object.entries(labels)){const row=element('label'),input=element('input');input.type='radio';input.name='dailyFeedback';input.value=value;input.required=true;input.checked=record.feedback===value;row.append(input,element('span',label));choices.append(row)}
@@ -52,7 +53,7 @@ export const checkinFollowupRuntime=String.raw`(()=>{
      record=fromLife(action,saved.progress.nextShift?.id===record.id);
     }else{
      const saved=await request(endpoint(),{actionId:record.id,revision:record.revision,outcome:selected.value});record=saved.followUp;
-     if(record.action.loopId&&['helped','not-fit'].includes(record.feedback))record.active=false;
+     if(record.action.loopId&&['helped','not-fit','not-helped'].includes(record.feedback))record.active=false;
     }
     dirty=false;operation=null;render();host.querySelector('details').open=true;document.dispatchEvent(new CustomEvent('sst:action-reviewed'));
    }catch(e){status.textContent=e.status===401?'Please sign in again before saving feedback.':e.message;if(e.status===409){operation=null;const retry=element('button','Reload saved step');retry.type='button';retry.addEventListener('click',()=>{dirty=false;load()});status.append(retry)}}

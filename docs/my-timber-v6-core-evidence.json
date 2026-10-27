@@ -1,0 +1,1657 @@
+{
+  "at": "2026-10-27T08:50:40.425218+00:00",
+  "state": "MEMBER_SERVICE_LIVE_VERIFIED_SHED_HELD_CANONICAL_PR_OPEN",
+  "singleReleaseContinuation": {
+    "at": "2026-10-27T08:50:40.425218+00:00",
+    "state": "MEMBER_SERVICE_LIVE_VERIFIED_SHED_HELD_CANONICAL_PR_OPEN",
+    "authorisedMemberServiceLive": true,
+    "sourceIntegration": "PR1439 open; additive final qualification and broader checks required before merge",
+    "sourceAtActivation": "5359ca69b9f2dd991c921baeaa4d2a8eab6eeafd",
+    "servingWorkers": {
+      "shift-programme-member-20261023": {
+        "version": "242ac60e-44d4-4259-abfc-a0bb91a28369",
+        "deployment": "c61f52d0-dcfc-411b-a1d0-9fa8d6b3e297"
+      },
+      "shift-hq-member-comms-20261023": {
+        "version": "0f676ad1-9f6a-47ae-a7f1-fb2b83ce2378",
+        "deployment": "500649b9-fc86-452e-bf9d-652607443c2b"
+      }
+    },
+    "coreLoginRepair": {
+      "version": "149f02a8-0b45-4e36-a6f9-425330476d36",
+      "deployment": "8414e6c6-d286-4f6f-a36d-d4e066f700f6",
+      "nativeOriginalModuleHashes": {
+        "canonical-worker.js": "e14b8c9c522433ebc7e97db4b07ca7be1bd816f9684d207b21e5b0098a763877"
+      },
+      "canonicalSourceMatchesServingAssignment": true,
+      "normalFormValidation": "PASS",
+      "ordinaryPasswordLogin": "BLOCKED_AUTOMATED_TURNSTILE; no security bypass or injected-cookie login pass claimed"
+    },
+    "postActivation": {
+      "status": "PASS",
+      "cases": 21,
+      "evidence": "../v6-live-acceptance/post-activation-browser-receipt.json"
+    },
+    "realShedEnabled": false,
+    "realShedSchemaInstalled": false,
+    "realAwayActivated": false,
+    "homepageByteIdentical": true,
+    "healthByteIdentical": true,
+    "bindingsAssetsSchedulesPreserved": true,
+    "routesAdded": 0,
+    "realMemberDatabaseWritesByVerification": 0,
+    "communicationsSent": 0,
+    "costsIncurred": 0,
+    "retiredFault": {
+      "cause": "Reconstructed content/v2 Core export differed from its immutable native version, breaking serialized browser code.",
+      "resolved": "Original native Core restored; login repair reapplied to exact immutable modules; six pages, 72 width/safety and 21 post-activation checks subsequently passed.",
+      "evidence": "../v6-login-pattern-release/deployment-receipt.json"
+    },
+    "remaining": [
+      "Finish final source qualification and merge PR1439 after broader checks pass.",
+      "Matt separately confirms Shed owner/rules/hours/escalation/reporting/independent review; real roles/schema then need activation and finite live check.",
+      "Ordinary password sign-in needs the existing interactive security check in a normal browser; automated browsers timed out and protection was retained.",
+      "Voluntary real-member usefulness pilot after go-live; no efficacy or exclusivity claim."
+    ],
+    "next": "Qualify and push final source; retain live service while broader integration and separate Shed operation are pending."
+  },
+  "authority": "Matt's approved Go ahead: My Timber support service message. Latest message takes precedence over v5. No deployment until every applicable check passes and Matt says go.",
+  "branch": "feat/my-timber-support-experience-20261026",
+  "parent": "32909269872fe4d7ce58af6fad4bc1e0234cd59c",
+  "candidateIdentity": "Resolve git commit containing this file; exact resulting SHA is in the source checkpoint. This file cannot self-hash.",
+  "workOrder": {
+    "library_file_id": "libfile_1c68e69ce5f48191b01b7269752c392e",
+    "version": 0,
+    "name": "My-Timber-Work-Order-FINAL-v6-26oct.docx",
+    "renderedPages": 10,
+    "allPagesVisuallyChecked": true
+  },
+  "sourceValidation": {
+    "focusedAndAffectedTests": {
+      "status": "PASS",
+      "tests": 90,
+      "passed": 90,
+      "failed": 0,
+      "receipt": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/my-timber-loop-20261026/v6-service-preparation/final-service-tests.log",
+      "limit": "Source, route and isolated database fixtures; not browser, deployed API or independent member evidence."
+    },
+    "emittedRuntimeParse": {
+      "status": "PASS",
+      "limit": "Syntax parse only."
+    },
+    "workerDryBuild": {
+      "status": "PASS",
+      "receipt": "/Users/shiftsometimberltd/SST/release-recovery-evidence-20261024/my-timber-loop-20261026/v6-service-preparation/dry-build.log",
+      "limit": "Wrangler --dry-run only; no provider release."
+    }
+  },
+  "releaseChecks": {
+    "C1": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/community-entrances-receipt.json",
+      "evidenceAndLimit": "Signed-out fictional useful result under one minute, without account or member data. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C2": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/core-journey-candidate.log",
+      "evidenceAndLimit": "All three optional rejection reasons produce distinct prepared offers. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C3": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Dated actual source, reason, correction/deletion; privacy receipt covers quote controls. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C4": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/core-journey-candidate.log",
+      "evidenceAndLimit": "All four feedback outcomes, next offer, refresh and account separation. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C5": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Private memory correction/deletion after refresh; separate related-post removal in shed-browser-actions.log. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C6": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/core-journey-candidate.log",
+      "evidenceAndLimit": "Editable own note and deliberate download; current bounded-note contents also covered by prescriber-note.test.mjs. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C7": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "One-tap rough-day route, no streak or count. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C8": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/safety-widths-receipt.json",
+      "evidenceAndLimit": "Urgent phone links above Ask Timber and within side-effects help. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C9": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Confirmed changed circumstances, retained history, chosen rhythm and no invented helpfulness. Synthetic qualification; no claim of actual member benefit."
+    },
+    "C10": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Own progress, useful routines, checked keeping plan, fallback, lighter rhythm and return. Synthetic qualification; no claim of actual member benefit."
+    },
+    "F1": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Goal/difficulty dates, correction, deletion, refresh and account separation. Synthetic qualification; no claim of actual member benefit."
+    },
+    "F2": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Actual offer/reason retained separately from member corrections; deletion stops derived review use. Synthetic qualification; no claim of actual member benefit."
+    },
+    "F3": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Tried/said feedback correct/delete and exclusion of unsuccessful approaches. Synthetic qualification; no claim of actual member benefit."
+    },
+    "F4": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Helpful history changes only from the member source answers/corrections/deletions. Synthetic qualification; no claim of actual member benefit."
+    },
+    "F5": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/record-controls-corrected.log",
+      "evidenceAndLimit": "Accepted plan and review choices correct/delete without invented trying or benefit. Synthetic qualification; no claim of actual member benefit."
+    },
+    "R1": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Only reported words/dates, including a new account without fabricated history. Synthetic qualification; no claim of actual member benefit."
+    },
+    "R2": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Instruction-like text remains quoted data; no causes or invented wins. Synthetic qualification; no claim of actual member benefit."
+    },
+    "R3": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Fortnightly default, weekly, calendar month, on-request and never. Synthetic qualification; no claim of actual member benefit."
+    },
+    "R4": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Viewing does not accept a plan; deliberate acceptance required. Synthetic qualification; no claim of actual member benefit."
+    },
+    "R5": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/personal-review.log",
+      "evidenceAndLimit": "Recognition, open difficulty, prescriber questions and disrupted-week recovery. Synthetic qualification; no claim of actual member benefit."
+    },
+    "H1": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/support-roundtrip.log",
+      "evidenceAndLimit": "Test member request/reference, authorised restricted operator reply and correct member-only refresh; companion WebKit receipt retained. Synthetic qualification; no claim of actual member benefit."
+    },
+    "H2": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/support-roundtrip-webkit.log",
+      "evidenceAndLimit": "App/account scope, tracking off, no health attachment, thread/draft isolation; post-activation browser receipt repeats draft isolation. Synthetic qualification; no claim of actual member benefit."
+    },
+    "H3": {
+      "status": "PASS",
+      "evidence": "../v6-live-acceptance/safety-widths-receipt.json",
+      "evidenceAndLimit": "Matt/within one working day normally; approved fictional away and Linda cover; real away inactive. Synthetic qualification; no claim of actual member benefit."
+    },
+    "S1": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/community-entrances-receipt.json",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    },
+    "S2": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/current-support-source-tests.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    },
+    "S3": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/shed-browser-complete.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    },
+    "S4": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/current-support-source-tests.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    },
+    "S5": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/current-support-source-tests.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    },
+    "S6": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/current-support-source-tests.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    },
+    "S7": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/community-entrances-receipt.json",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    },
+    "S8": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/community-chromium-finish.log",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    },
+    "S9": {
+      "status": "PASS_TEST_NAMESPACE",
+      "evidence": "../v6-live-acceptance/feedback-privacy-receipt.json",
+      "evidenceAndLimit": "Qualified synthetic routes/fixtures and member interface; independent appeal/reply also passed WebKit in full-community-roundtrip-focused.log. Real-member Shed remains off pending separate operating approval; actual benefit and real helpful-mark accrual are unproved."
+    }
+  },
+  "sharedChecks": {
+    "browserWidths": {
+      "status": "PASS",
+      "widths": [
+        320,
+        360,
+        390,
+        430
+      ],
+      "engines": [
+        "Chromium",
+        "WebKit"
+      ],
+      "evidence": "../v6-live-acceptance/safety-widths-receipt.json",
+      "passed": 72,
+      "physicalPhoneTested": false
+    },
+    "criticalContrast": {
+      "status": "PASS",
+      "minimum": 4.5,
+      "cases": 3,
+      "evidence": "../v6-live-acceptance/critical-contrast-receipt.json",
+      "scope": "Agreed safety line, source metadata and footer; no claim of a complete independent accessibility audit."
+    }
+  },
+  "service": {
+    "owner": "Matt O'Brien",
+    "humanScope": "App and account questions only",
+    "replyTarget": "Within one working day",
+    "reviewDefault": "fortnightly",
+    "reviewChoices": [
+      "fortnightly",
+      "weekly",
+      "monthly",
+      "on-request",
+      "never"
+    ],
+    "awayMessage": "Draft in v6, not approved for publication",
+    "backup": "Unassigned"
+  },
+  "implementationLimits": [
+    "No external review scheduler or notification delivery has been added or claimed.",
+    "Prepared food honours canonical saved Grub constraints and instructions; full selected-meal/shopping handoff still requires actual UI acceptance.",
+    "Prepared movement uses only the member's saved active Fit plan; no matching plan/session produces an honest review-choices state.",
+    "Related Shed post deletion, moderation and community loop remain phase 2.",
+    "No independent men have yet established that the experience removes a hassle and earns a return."
+  ],
+  "largestRemainingGap": "Real-member Shed operation remains unauthorised/unprovisioned; canonical PR integration remains open. Real-person usefulness needs the voluntary pilot.",
+  "phase2ShedStarted": false,
+  "phase3ProposalsBuilt": false,
+  "newProductionDeployments": 0,
+  "newRealMemberWrites": 0,
+  "communicationsSent": 0,
+  "costsIncurred": 0,
+  "homepageChanged": false,
+  "publicNavigationChanged": false,
+  "nativeAppsChanged": false,
+  "googleDownloadHold": "preserved",
+  "mainMergeClaimed": false,
+  "singleReleaseHistory": [
+    {
+      "at": "2026-10-26T23:10:26.984Z",
+      "controllingInstruction": "Matt: finish all remaining v6 work as one release; automate live browser/phone-width checks using test accounts only; do not expose unfinished features to members; finish support round trip and merge PR1439.",
+      "branch": "feat/my-timber-v6-complete-20261026",
+      "base": "b2c81f0b69d8643434e3c8e36a6b1dc889767341",
+      "awayTemplateApproved": "Matt's away until [date]. Messages are saved and he'll reply when he's back. For treatment questions, contact your prescriber or pharmacist. If it's urgent, call 999, NHS 111 or Samaritans 116 123.",
+      "awayMode": "Inactive until an actual return date is configured. No placeholder or unconditional normal reply promise is shown while away.",
+      "cover": "Linda; no new account invitation or message sent",
+      "moderationOwner": "Matt, with reports checked within one working day, per his reply to the specific coverage question",
+      "syntheticAccounts": "Dan11258, Lee11259; separate restricted HQ operator and fictional moderator11273. Reserved example.invalid emails. No real-member content used.",
+      "completed": [
+        "Live Chromium and WebKit width smoke captured at320/360/390/430; content-readiness limitations retained",
+        "Live core journey: all feedback outcomes and three Not for me reasons persist; memory correction/deletion, goal correction, kept-plan distinctions, all review preferences and deliberate review acceptance observed",
+        "39 focused source checks pass including Shed moderation/preview/report/block/threshold/isolation and deployment selector"
+      ],
+      "foundAndPrepared": [
+        "Prescriber-note download selected an earlier form; corrected selector",
+        "Late-finish meal selection now caps preparation at10minutes while preserving tighter preferences",
+        "No simpler matching meal leaves out the new cooking job",
+        "New starting point clears old obstacle prompt",
+        "Reason detail quotes the actual dated source answer",
+        "Shed support loop reuses moderation source34bc20b7; previews, actual consented marks, private matching, account isolation and separate post removal prepared"
+      ],
+      "releaseSafety": "Candidate owner wrappers select the new implementation only for reserved authenticated synthetic sessions. Normal members retain the current implementation until final enablement. Shed defaults off for real members.",
+      "deployment": "Prepared, not yet deployed",
+      "next": "Commit the exact candidate, upload test-gated owner modules, execute browser support round trip and remaining named checks, repair failures, then complete canonical integration. Do not claim full32-pass or member availability from source tests.",
+      "priorRootEvidence": "Historical preparation snapshot below retained unchanged; this continuation supersedes its old phase and away/cover assumptions."
+    },
+    {
+      "at": "2026-10-27T00:40:43.483Z",
+      "source": "8c83bd1e4d03d3840b092629cebbf34e97750099",
+      "state": "TEST_CANDIDATE_DEPLOYED_COMPLETION_CHECKS_RUNNING",
+      "decisions": {
+        "supportOwner": "Matt",
+        "scope": "App and account questions only",
+        "reply": "Within one working day",
+        "cover": "Linda, only when explicitly activated",
+        "shedModerator": "Matt",
+        "awayTemplateApproved": true,
+        "realAwayActive": false,
+        "returnDateNotInvented": true,
+        "testAccountsPrepared": true
+      },
+      "deployment": {
+        "source": "8c83bd1e4d03d3840b092629cebbf34e97750099",
+        "state": "DEPLOYED_PROVIDER_AND_ANONYMOUS_LIVE_VERIFIED",
+        "workers": {
+          "shift-programme-member-20261023": {
+            "id": "6219b17b-5c18-41af-ab30-3c7b612d1303",
+            "state": "provider_verified"
+          },
+          "shift-hq-member-comms-20261023": {
+            "id": "ea2e45ca-49fe-40ba-97c1-cd493ef6b4a2",
+            "state": "provider_verified"
+          }
+        },
+        "zeroNewRoutes": true,
+        "homepageUnchanged": true,
+        "coreUnchanged": true,
+        "realMemberReleaseEnabled": false,
+        "realShedEnabled": false,
+        "realShedSchemaInstalled": false
+      },
+      "verified": {
+        "sourceTests": 43,
+        "coreFeedback": [
+          "All four outcomes persisted in Chromium and WebKit",
+          "All three Not for me reasons change the next offer"
+        ],
+        "records": [
+          "Own words corrected and deleted",
+          "Offer correction retained separately; offer deleted and excluded from later review",
+          "Feedback corrected and deleted; helpful history updated",
+          "Agreed plan corrected/deleted; review opt-out preserved"
+        ],
+        "review": [
+          "Traceable quotations and dates",
+          "All four review response types in both engines",
+          "Member instructions remain attributed words, not instructions to Timber",
+          "Member chooses finishing, sees reported progress and helpful routines, selects a lighter rhythm, and can return"
+        ],
+        "humanSupport": [
+          "Chromium and WebKit private member-to-test-operator-to-member round trips",
+          "Tracking off does not block app/account help",
+          "Normal and approved away state rendered; real away left inactive"
+        ],
+        "shed": [
+          "Exact preview and explicit publication",
+          "Human review before visibility",
+          "Reports reach the review queue",
+          "Test marks excluded and no invented author achievement"
+        ],
+        "qualification": "Synthetic records only; actual live browser interfaces in Chromium and WebKit. This does not establish clinical effectiveness or independent member usefulness."
+      },
+      "outstanding": [
+        "Finish the remaining Shed context, block, related-post removal and account-switch browser cases",
+        "Complete the final page-width and quoted-headline privacy controls",
+        "Capture the missing before screenshots for the three feedback reasons",
+        "Deploy and qualify the prepared current-count/Ask-context refinements",
+        "Repair the exact obsolete source-pin failure, complete broader qualification and merge PR 1439",
+        "Confirm Shed operating arrangements before real-member activation"
+      ],
+      "safeguards": {
+        "realMemberDataRead": false,
+        "externalCommunicationsSent": 0,
+        "newCostsAgreed": 0,
+        "homepageChanged": false,
+        "publicNavigationChanged": false,
+        "googleDownloadHold": "preserved",
+        "physicalPhoneClaimed": false,
+        "realHumanReplyClaimed": false
+      },
+      "receipts": {
+        "browser-receipt.json": {
+          "at": "2026-10-26T22:47:19.474Z",
+          "cases": [
+            {
+              "id": "C1-chromium",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-C1-first-minute.png"
+            },
+            {
+              "id": "member-interface-chromium",
+              "status": "OBSERVED",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-start.png"
+            },
+            {
+              "id": "chromium-support-plan-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-plan-320.png"
+            },
+            {
+              "id": "chromium-today-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-today-320.png"
+            },
+            {
+              "id": "chromium-journey-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-journey-320.png"
+            },
+            {
+              "id": "chromium-grub-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-grub-320.png"
+            },
+            {
+              "id": "chromium-fit-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-fit-320.png"
+            },
+            {
+              "id": "chromium-support-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-320.png"
+            },
+            {
+              "id": "chromium-stuff-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-stuff-320.png"
+            },
+            {
+              "id": "chromium-support-plan-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-plan-360.png"
+            },
+            {
+              "id": "chromium-today-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-today-360.png"
+            },
+            {
+              "id": "chromium-journey-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-journey-360.png"
+            },
+            {
+              "id": "chromium-grub-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-grub-360.png"
+            },
+            {
+              "id": "chromium-fit-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-fit-360.png"
+            },
+            {
+              "id": "chromium-support-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-360.png"
+            },
+            {
+              "id": "chromium-stuff-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-stuff-360.png"
+            },
+            {
+              "id": "chromium-support-plan-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-plan-390.png"
+            },
+            {
+              "id": "chromium-today-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-today-390.png"
+            },
+            {
+              "id": "chromium-journey-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-journey-390.png"
+            },
+            {
+              "id": "chromium-grub-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-grub-390.png"
+            },
+            {
+              "id": "chromium-fit-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-fit-390.png"
+            },
+            {
+              "id": "chromium-support-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-390.png"
+            },
+            {
+              "id": "chromium-stuff-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-stuff-390.png"
+            },
+            {
+              "id": "chromium-support-plan-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-plan-430.png"
+            },
+            {
+              "id": "chromium-today-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-today-430.png"
+            },
+            {
+              "id": "chromium-journey-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-journey-430.png"
+            },
+            {
+              "id": "chromium-grub-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-grub-430.png"
+            },
+            {
+              "id": "chromium-fit-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-fit-430.png"
+            },
+            {
+              "id": "chromium-support-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-support-430.png"
+            },
+            {
+              "id": "chromium-stuff-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-stuff-430.png"
+            },
+            {
+              "id": "C1-webkit",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-C1-first-minute.png"
+            },
+            {
+              "id": "member-interface-webkit",
+              "status": "OBSERVED",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-start.png"
+            },
+            {
+              "id": "webkit-support-plan-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-plan-320.png"
+            },
+            {
+              "id": "webkit-today-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-today-320.png"
+            },
+            {
+              "id": "webkit-journey-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-journey-320.png"
+            },
+            {
+              "id": "webkit-grub-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-grub-320.png"
+            },
+            {
+              "id": "webkit-fit-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-fit-320.png"
+            },
+            {
+              "id": "webkit-support-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-320.png"
+            },
+            {
+              "id": "webkit-stuff-320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-stuff-320.png"
+            },
+            {
+              "id": "webkit-support-plan-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-plan-360.png"
+            },
+            {
+              "id": "webkit-today-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-today-360.png"
+            },
+            {
+              "id": "webkit-journey-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-journey-360.png"
+            },
+            {
+              "id": "webkit-grub-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-grub-360.png"
+            },
+            {
+              "id": "webkit-fit-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-fit-360.png"
+            },
+            {
+              "id": "webkit-support-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-360.png"
+            },
+            {
+              "id": "webkit-stuff-360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-stuff-360.png"
+            },
+            {
+              "id": "webkit-support-plan-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-plan-390.png"
+            },
+            {
+              "id": "webkit-today-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-today-390.png"
+            },
+            {
+              "id": "webkit-journey-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-journey-390.png"
+            },
+            {
+              "id": "webkit-grub-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-grub-390.png"
+            },
+            {
+              "id": "webkit-fit-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-fit-390.png"
+            },
+            {
+              "id": "webkit-support-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-390.png"
+            },
+            {
+              "id": "webkit-stuff-390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-stuff-390.png"
+            },
+            {
+              "id": "webkit-support-plan-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-plan-430.png"
+            },
+            {
+              "id": "webkit-today-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-today-430.png"
+            },
+            {
+              "id": "webkit-journey-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-journey-430.png"
+            },
+            {
+              "id": "webkit-grub-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-grub-430.png"
+            },
+            {
+              "id": "webkit-fit-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-fit-430.png"
+            },
+            {
+              "id": "webkit-support-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-support-430.png"
+            },
+            {
+              "id": "webkit-stuff-430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-stuff-430.png"
+            }
+          ]
+        },
+        "core-journey-receipt.json": {
+          "at": "2026-10-26T23:36:45.795Z",
+          "cases": [
+            {
+              "engine": "chromium",
+              "id": "C2:timing",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C2-timing.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C2:effort",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C2-effort.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C2:idea",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C2-idea.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C4:helped",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C4-helped.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C4:not-fit",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C4-not-fit.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C4:not-helped",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C4-not-helped.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C4:not-tried",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C4-not-tried.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F1:memory-correct",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-F1-memory-correct.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F1:memory-delete",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-F1-memory-delete.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F1:goal-correct",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-F1-goal-correct.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F4:keep-not-helped",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-F4-keep-not-helped.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F5:plan-correct",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-F5-plan-correct.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R3:weekly",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-R3-weekly.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R3:monthly",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-R3-monthly.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R3:on-request",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-R3-on-request.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R3:never",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-R3-never.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R3:fortnightly",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-R3-fortnightly.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R4:review-accept",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-R4-review-accept.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C6:edit-download",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C6-edit-download.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C9:change",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C9-change.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C10:finish",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-core-C10-finish.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "core-journey",
+              "status": "FAIL",
+              "error": "page.waitForResponse: Timeout 15000ms exceeded while waiting for event \"response\""
+            },
+            {
+              "engine": "webkit",
+              "id": "C2:timing",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C2-timing.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C2:effort",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C2-effort.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C2:idea",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C2-idea.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C4:helped",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C4-helped.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C4:not-fit",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C4-not-fit.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C4:not-helped",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C4-not-helped.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C4:not-tried",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C4-not-tried.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F1:memory-correct",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-F1-memory-correct.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F1:memory-delete",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-F1-memory-delete.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F1:goal-correct",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-F1-goal-correct.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F4:keep-not-helped",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-F4-keep-not-helped.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F5:plan-correct",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-F5-plan-correct.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R3:weekly",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-R3-weekly.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R3:monthly",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-R3-monthly.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R3:on-request",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-R3-on-request.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R3:never",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-R3-never.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R3:fortnightly",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-R3-fortnightly.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R4:review-accept",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-R4-review-accept.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C6:edit-download",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C6-edit-download.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C9:change",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C9-change.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C10:finish",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-core-C10-finish.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "core-journey",
+              "status": "FAIL",
+              "error": "page.waitForResponse: Timeout 15000ms exceeded while waiting for event \"response\""
+            }
+          ]
+        },
+        "record-controls-receipt.json": {
+          "at": "2026-10-26T23:48:10.530Z",
+          "cases": [
+            {
+              "engine": "chromium",
+              "id": "C3:own-answer-dated",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-C3-own-answer-dated.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F2:original-and-correction",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-F2-original-and-correction.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F3:correction-updates-helpful",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-F3-correction-updates-helpful.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F3:delete",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-F3-delete.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F2:delete-excluded-from-review",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-F2-delete-excluded-from-review.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F5:plan-delete",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-F5-plan-delete.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F5:preference-remove-stays-off",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-F5-preference-remove-stays-off.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "F1:goal-delete",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-F1-goal-delete.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C7:rough-day",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-record-C7-rough-day.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C3:own-answer-dated",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-record-C3-own-answer-dated.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F2:original-and-correction",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-record-F2-original-and-correction.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F3:correction-updates-helpful",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-record-F3-correction-updates-helpful.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F3:delete",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-record-F3-delete.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F2:delete-excluded-from-review",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-record-F2-delete-excluded-from-review.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F5:preference-remove-stays-off",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-record-F5-preference-remove-stays-off.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C7:rough-day",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-record-C7-rough-day.png"
+            }
+          ]
+        },
+        "support-roundtrip-receipt.json": {
+          "at": "2026-10-26T23:40:37.688Z",
+          "cases": [
+            {
+              "engine": "webkit",
+              "id": "H1",
+              "status": "PASS"
+            },
+            {
+              "engine": "webkit",
+              "id": "H2",
+              "status": "PASS"
+            }
+          ]
+        },
+        "personal-review-receipt.json": {
+          "at": "2026-10-27T00:14:14.457Z",
+          "cases": [
+            {
+              "engine": "chromium",
+              "id": "F1:goal-save",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-F1-goal-save.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R1:no-invented-history",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-R1-no-invented-history.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R1:traceable-words-and-dates",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-R1-traceable-words-and-dates.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R5:revisit-difficulty",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-R5-revisit-difficulty.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R2:input-is-a-quote-not-an-instruction",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-R2-input-is-a-quote-not-an-instruction.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R5:recognise-reported-win",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-R5-recognise-reported-win.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R5:prescriber-questions",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-R5-prescriber-questions.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R5:return-without-judgement",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-R5-return-without-judgement.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "R4:viewing-is-not-agreement",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-R4-viewing-is-not-agreement.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C10:own-progress-helpful-routines-and-lighter-review",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-C10-own-progress-helpful-routines-and-lighter-review.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C10:return",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-review-C10-return.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "F1:goal-save",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-F1-goal-save.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R1:traceable-words-and-dates",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-R1-traceable-words-and-dates.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R5:revisit-difficulty",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-R5-revisit-difficulty.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R2:input-is-a-quote-not-an-instruction",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-R2-input-is-a-quote-not-an-instruction.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R5:recognise-reported-win",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-R5-recognise-reported-win.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R5:prescriber-questions",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-R5-prescriber-questions.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R5:return-without-judgement",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-R5-return-without-judgement.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "R4:viewing-is-not-agreement",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-R4-viewing-is-not-agreement.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C10:own-progress-helpful-routines-and-lighter-review",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-C10-own-progress-helpful-routines-and-lighter-review.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C10:return",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-review-C10-return.png"
+            }
+          ]
+        },
+        "shed-browser-receipt.json": {
+          "at": "2026-10-27T00:34:36.897Z",
+          "cases": [
+            {
+              "engine": "chromium",
+              "id": "S2:test-marks-excluded",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-shed-S2-test-marks-excluded.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "S5:no-invented-author-result",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-shed-S5-no-invented-author-result.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "S6:report-reaches-queue",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-shed-S6-report-reaches-queue.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "S1:today",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-shed-S1-today.png"
+            },
+            {
+              "engine": "chromium",
+              "status": "FAIL",
+              "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-shed-context] > summary')\u001b[22m\n\u001b[2m    - locator resolved to <summary>Men like me</summary>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 \u00d7 waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <p>Necessary storage keeps the site working. SHIFT m\u2026</p> from <section role=\"dialog\" class=\"cookie-banner-v3a\" aria-label=\"Cookie choices\">\u2026</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"cookie-actions-v3a\">\u2026</div> from <section role=\"dialog\" class=\"cookie-banner-v3a\" aria-label=\"Cookie choices\">\u2026</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m  2 \u00d7 retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <p>Necessary storage keeps the site working. SHIFT m\u2026</p> from <section role=\"dialog\" class=\"cookie-banner-v3a\" aria-label=\"Cookie choices\">\u2026</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m  10 \u00d7 retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <p>Necessary storage keeps the site working. SHIFT m\u2026</p> from <section role=\"dialog\" class=\"cookie-banner-v3a\" aria-label=\"Cookie choices\">\u2026</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"cookie-actions-v3a\">\u2026</div> from <section role=\"dialog\" class=\"cookie-banner-v3a\" aria-label=\"Cookie choices\">\u2026</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <p>Necessary storage keeps the site working. SHIFT m\u2026</p> from <section role=\"dialog\" class=\"cookie-banner-v3a\" aria-label=\"Cookie choices\">\u2026</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <p>Necessary storage keeps the site working. SHIFT m\u2026</p> from <section role=\"dialog\" class=\"cookie-banner-v3a\" aria-label=\"Cookie choices\">\u2026</section> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n"
+            },
+            {
+              "engine": "webkit",
+              "id": "S2:test-marks-excluded",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-shed-S2-test-marks-excluded.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "S5:no-invented-author-result",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-shed-S5-no-invented-author-result.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "S6:report-reaches-queue",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-shed-S6-report-reaches-queue.png"
+            },
+            {
+              "engine": "webkit",
+              "status": "FAIL",
+              "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-shed-context]') to be visible\u001b[22m\n"
+            }
+          ]
+        },
+        "safety-widths-receipt.json": {
+          "at": "2026-10-27T00:34:20.298Z",
+          "cases": [
+            {
+              "engine": "chromium",
+              "id": "C8:support-urgent-first",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-safety-C8-support-urgent-first.png"
+            },
+            {
+              "engine": "chromium",
+              "id": "C8:side-effects-urgent",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/chromium-safety-C8-side-effects-urgent.png"
+            },
+            {
+              "engine": "chromium",
+              "status": "FAIL",
+              "error": "locator.waitFor: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-contact-form]') to be visible\u001b[22m\n"
+            },
+            {
+              "engine": "webkit",
+              "id": "C8:support-urgent-first",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-C8-support-urgent-first.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "C8:side-effects-urgent",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-C8-side-effects-urgent.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "H3:normal",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-H3-normal.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "H3:away",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-H3-away.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:support-plan",
+              "status": "FAIL",
+              "error": "locator.click: Error: strict mode violation: locator('#mtSupportMemory summary') resolved to 3 elements:\n    1) <summary>What Timber knows</summary> aka locator('summary').filter({ hasText: 'What Timber knows' })\n    2) <summary>What was offered and why</summary> aka getByText('What was offered and why')\n    3) <summary>My feedback answers</summary> aka getByText('My feedback answers')\n\nCall log:\n\u001b[2m  - waiting for locator('#mtSupportMemory summary')\u001b[22m\n"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:today:320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-today-320.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:today:360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-today-360.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:today:390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-today-390.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:today:430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-today-430.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:journey:320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-journey-320.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:journey:360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-journey-360.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:journey:390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-journey-390.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:journey:430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-journey-430.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:grub:320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-grub-320.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:grub:360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-grub-360.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:grub:390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-grub-390.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:grub:430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-grub-430.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:fit:320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-fit-320.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:fit:360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-fit-360.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:fit:390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-fit-390.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:fit:430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-fit-430.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:support:320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-support-320.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:support:360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-support-360.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:support:390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-support-390.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:support:430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-support-430.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:stuff",
+              "status": "FAIL",
+              "error": "locator.waitFor: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#mtUtility').first() to be visible\u001b[22m\n"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:shed:320",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-shed-320.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:shed:360",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-shed-360.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:shed:390",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-shed-390.png"
+            },
+            {
+              "engine": "webkit",
+              "id": "width:shed:430",
+              "status": "PASS",
+              "screenshot": "/Users/shiftsometimberltd/SST/my-timber-independent-presentation-20261025/v6-live-acceptance/screens/webkit-safety-width-shed-430.png"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "at": "2026-10-26T20:18:28.005Z",
+      "state": "HISTORICAL_FIELDS_SUPERSEDED_SEE_SINGLE_RELEASE_CONTINUATION",
+      "releaseChecks": {
+        "C1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "The standalone signed-out try route and usable fictional options are prepared. Actual under-one-minute use, entry-to-registration and return through the browser remain unverified."
+        },
+        "C2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "All three Not for me adaptations have source/fixture coverage. Required before/after browser screenshots for Wrong time, Too much effort and Don't like the idea are outstanding."
+        },
+        "C3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Dated source/correction/retirement logic is covered by source tests. No rendered-phone proof of the exact reason line and quote privacy for this candidate."
+        },
+        "C4": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Four outcomes, revision, consent, expected-account and persistence are covered by route/model tests using isolated synthetic data. Full refreshed member-interface behaviour is unverified."
+        },
+        "C5": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Private memory corrections/deletions have source and fresh-read tests. Actual interface acceptance is outstanding; related Shed-post removal is a phase-2 dependency and is not built."
+        },
+        "C6": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Editable member-owned notes and deliberate local download are prepared; no automatic send exists. Actual browser editing/download/copy is not qualified."
+        },
+        "C7": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "One-tap inline rough-day action without streak/count is prepared. Actual phone-width interaction remains unverified."
+        },
+        "C8": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Earlier live urgent-help receipts remain historical evidence for their exact source. The new candidate has no fresh phone tap/order acceptance."
+        },
+        "C9": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Member-confirmed changes, preserved history and chosen cadence have source/route coverage. Complete changed-circumstances and return journey in the member interface remains unverified."
+        },
+        "C10": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Member-confirmed finish/resume and own helpful history are prepared with source tests. Complete finish/keep-plan/return interface is unverified."
+        },
+        "F1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F1 checks original goal/difficulty dates, corrections, deletion and stopped recall. Real member-interface refresh/account switching remains outstanding."
+        },
+        "F2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F2 retains the actual offer separately from the member correction and deletes the source. Browser editing/deletion and subsequent rendered review remain unverified."
+        },
+        "F3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F3/F4 correct/delete source feedback and re-derive review/helpfulness; negative practical options are excluded by prepared-option logic. Full UI correction-to-next-offer journey remains unverified."
+        },
+        "F4": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F3/F4/F5 prove helpful counts derive from source answers, not acceptance/opening. Rendered counts and refreshed finishing history remain unverified."
+        },
+        "F5": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: F5/R3/R4 cover accepted-plan edits/deletion, stopped reviews and no inferred trying/helpfulness. Actual interface changes/refresh remain unverified."
+        },
+        "R1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R1/R2 trace exact member quotes/dates and omit unreported history. Actual review rendering/privacy remains unverified."
+        },
+        "R2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R1/R2 test instruction-like member text as quoted data and fixed rules with no causal inference. No external AI call is used for this review. Browser acceptance remains outstanding."
+        },
+        "R3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R3 covers fortnightly default, weekly, calendar month-end, on-request and never; R4 checks acceptance. Actual member preference change/refresh and displayed due review remain unverified."
+        },
+        "R4": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R4 requires checked/edited acceptance and rejects stale review IDs; acceptance never marks tried/helpful. Browser form and refresh acceptance remain outstanding."
+        },
+        "R5": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: R5 covers reported win, open difficulty, prescriber questions and returning. Complete rendered examples remain unverified."
+        },
+        "H1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: authenticated source routes tested with isolated DB/HQ session fixture through member request, private reference, HQ claim/reply, member receipt, other-account isolation and member resolution. No real ticket or live staff reply sent. Actual member/HQ browser round trip remains unverified."
+        },
+        "H2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: H2 covers app/account contact with optional health tracking off; rejects foreign origin/account and treatment requests; no health attachment. Actual session-switch/draft-clearing browser check remains outstanding."
+        },
+        "H3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "support-service.test.mjs: H3 covers Matt/one-working-day normal policy and replacement by configured away copy; no instant/24-7 promise. Away draft is unapproved, backup unassigned, actual away member display not browser-qualified."
+        },
+        "S1": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Private community matching across tabs has not been built or verified."
+        },
+        "S2": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Five distinct real consenting members and threshold-gated Shed label/count are requirements, not implemented evidence."
+        },
+        "S3": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. No invented member content has been created; SHIFT-labelled starter-thread flow is unbuilt."
+        },
+        "S4": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Deliberate preview-to-post sharing and post-removal controls are unbuilt."
+        },
+        "S5": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Private author feedback about real marks is unbuilt."
+        },
+        "S6": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Moderation review/report/block end-to-end readiness is not established."
+        },
+        "S7": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. Ask Timber pointing to eligible peer threads is unbuilt."
+        },
+        "S8": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. New Shed account/sign-out isolation is unqualified. The signed-out try flow uses no member API/data."
+        },
+        "S9": {
+          "status": "BLOCKED",
+          "evidenceAndLimit": "Phase 2 not started. No new notifications were implemented or sent. New Shed/quoted-content discretion must be verified in the actual interface."
+        }
+      },
+      "sharedChecks": {
+        "browserWidths": {
+          "status": "BLOCKED",
+          "required": [
+            320,
+            360,
+            390,
+            430
+          ],
+          "reason": "No permitted accessible preview/browser path is currently available for the changed candidate. A previous local/file preview access was denied; no workaround attempted."
+        },
+        "contrast": {
+          "status": "BLOCKED",
+          "reason": "Existing approved cream/black presentation preserved; actual rendered small text and complete changed pages still require acceptance."
+        }
+      },
+      "reason": "Superseded preparation status; historical evidence retained."
+    }
+  ]
+}

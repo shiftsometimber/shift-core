@@ -24,7 +24,7 @@ test('failure to write the action rolls back the check-in; no half-save',async t
 });
 test('feedback persists, retries are idempotent, stale changes conflict and explicit updates work',async t=>{
  const f=setup(t),{nextStep}=await save(f);
- for(const outcome of ['helped','not-fit','not-tried','skip']){
+ for(const outcome of ['helped','not-fit','not-helped','not-tried','skip']){
   const before=await read(f);const first=await review(f,before,outcome);assert.equal(first.status,200);const after=(await first.json()).followUp;
   assert.equal(after.feedback,outcome);assert.equal(after.revision,before.revision+1);assert.ok(after.reviewedAt);assert.deepEqual(await read(f),after);
   assert.equal((await review(f,before,outcome)).status,200);assert.equal((await read(f)).revision,after.revision);

@@ -1,9 +1,10 @@
 import {boundary} from './safety.mjs';
+export const accountThreadSubject='My Timber app and account help [thread-v1]';
 export const threadSubject='My Timber everyday coaching help [thread-v1]';
 // Only authenticated team code sets this subject. Legacy member text that
 // resembles JSON is still plain request text, never a forged team reply.
 export function supportThread(ticket){
- if(ticket.subject!==threadSubject)return{format:'shift-coach-thread-1',request:ticket.body||'',replies:[],confirmation:null};
+ if(![threadSubject,accountThreadSubject].includes(ticket.subject))return{format:'shift-coach-thread-1',request:ticket.body||'',replies:[],confirmation:null};
  const thread=JSON.parse(ticket.body);
  if(thread?.format!=='shift-coach-thread-1'||typeof thread.request!=='string'||!Array.isArray(thread.replies)||thread.replies.length>20||thread.replies.some(r=>typeof r.id!=='string'||typeof r.text!=='string'||typeof r.author!=='string'||!Number.isInteger(r.actorId)||!Number.isFinite(Date.parse(r.at))))throw Object.assign(Error('support_thread_unavailable'),{status:503});
  return thread;

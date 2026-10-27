@@ -1,11 +1,15 @@
 import {createHash} from 'node:crypto';
+import {qualifyJoinedSuccessor} from '../release/my-timber-joined-look-scope-20261024.mjs';
 import {recordServiceJob} from '../hq-service-job-runs.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 const actualEntry = readFileSync(new URL('../worker-entry-v6.js', import.meta.url), 'utf8');
-let entry=actualEntry;
+// Authenticate the complete current support source before applying the retained
+// historical spelling proof. The executable scheduled-handler tests below still
+// exercise actualEntry, including every current sibling and recording call.
+let entry=qualifyJoinedSuccessor().comparisonValue('worker-entry-v6.js',actualEntry);
 // Authenticate the complete already-serving basket runtime and reverse only
 // its exact three fetch additions before the retained observation-era proof.
 if(createHash('sha1').update('blob '+Buffer.byteLength(entry)+'\0').update(entry).digest('hex')==='4434faf74942037dc8ef88699e4b4260af9722c3'){

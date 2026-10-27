@@ -57,6 +57,7 @@ export async function memberHealthRoutes(request,env){
   const raw=await request.clone().text();if(raw.length>200000)return json({error:'request_too_large'},413);
   try{body=JSON.parse(raw)}catch{return json({error:'invalid_json'},400)}
   if(!body||typeof body!=='object'||Array.isArray(body))return json({error:'invalid_request'},400);
+  if(body.expectedAccount!==undefined&&String(body.expectedAccount)!==String(auth.userId))return json({error:'account_changed',message:'Your signed-in account changed. Reload before saving.'},409);
   // Clearing is an erasure operation, not a new health-data save.
   if(protectedWrite&&method==='PATCH'&&body.clear===true)return null;
   if(!await trackingConsent(env.DB,auth.userId))return json({error:'health_consent_required',message:'Optional health tracking is off. Review your choice before saving.'},409);

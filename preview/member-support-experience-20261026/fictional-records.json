@@ -1,0 +1,3113 @@
+{
+  "fictionalMember": "Dan",
+  "assumptions": "Works late; no wearable or daily logging required; treatment is with his own provider. These are invented records, not real member data.",
+  "records": [
+    {
+      "day": 1,
+      "kind": "member words",
+      "text": "Late finishes are where dinner goes wrong."
+    },
+    {
+      "day": 1,
+      "kind": "accepted plan",
+      "text": "Chicken loaded wrap. An idea to try, not a meal recorded as eaten."
+    },
+    {
+      "day": 2,
+      "kind": "follow-up",
+      "text": "Didn\u2019t get round to it. No failure recorded; the idea stays available."
+    },
+    {
+      "day": 5,
+      "kind": "meal feedback",
+      "text": "Quick dinner helped."
+    },
+    {
+      "day": 9,
+      "kind": "member words",
+      "text": "Evening workouts aren\u2019t going to happen."
+    },
+    {
+      "day": 11,
+      "kind": "walk feedback",
+      "text": "Five-minute lunchtime walk helped."
+    },
+    {
+      "day": 12,
+      "kind": "meal feedback",
+      "text": "Quick dinner helped."
+    },
+    {
+      "day": 18,
+      "kind": "walk feedback",
+      "text": "Five-minute lunchtime walk helped."
+    },
+    {
+      "day": 22,
+      "kind": "meal feedback",
+      "text": "Quick dinner helped."
+    },
+    {
+      "day": 25,
+      "kind": "walk feedback",
+      "text": "Five-minute lunchtime walk helped."
+    },
+    {
+      "day": 26,
+      "kind": "member win",
+      "text": "Stairs felt easier."
+    },
+    {
+      "day": 29,
+      "kind": "member treatment update",
+      "text": "My treatment finishes next week. Bit worried about what happens after.",
+      "memberEnteredEndDate": "2026-11-05"
+    },
+    {
+      "day": 29,
+      "kind": "accepted plan",
+      "text": "Five-minute lunchtime walk planned again. Follow-up unanswered on day thirty."
+    }
+  ],
+  "scenarioDates": {
+    "day1": "2026-10-01",
+    "day2": "2026-10-02",
+    "day30": "2026-10-30"
+  },
+  "trustRules": [
+    "Hide headline is an on-screen preview control; production must retain the member privacy preference.",
+    "Never include personal quotes or sensitive context in push-notification previews or lock-screen content.",
+    "Retire resolved problem quotes; do not repeat the same quote day after day. Day-two Helped demonstrates retiring the old dinner-problem headline.",
+    "Every quote and count must have a member source. Timing must use the member-entered date.",
+    "Timber is AI support. Notes belong to the member and must never send automatically."
+  ],
+  "graphDatasets": {
+    "weight": [
+      {
+        "day": 1,
+        "value": 95.3
+      },
+      {
+        "day": 2,
+        "value": 95.1
+      },
+      {
+        "day": 3,
+        "value": 95.4
+      },
+      {
+        "day": 4,
+        "value": 95.0
+      },
+      {
+        "day": 5,
+        "value": 94.9
+      },
+      {
+        "day": 6,
+        "value": 94.8
+      },
+      {
+        "day": 7,
+        "value": 95.0
+      },
+      {
+        "day": 8,
+        "value": 94.7
+      },
+      {
+        "day": 9,
+        "value": 94.5
+      },
+      {
+        "day": 10,
+        "value": 94.6
+      },
+      {
+        "day": 11,
+        "value": 94.4
+      },
+      {
+        "day": 12,
+        "value": 94.6
+      },
+      {
+        "day": 13,
+        "value": 94.3
+      },
+      {
+        "day": 14,
+        "value": 94.5
+      },
+      {
+        "day": 15,
+        "value": 94.4
+      },
+      {
+        "day": 16,
+        "value": 94.2
+      },
+      {
+        "day": 17,
+        "value": 94.0
+      },
+      {
+        "day": 18,
+        "value": 94.2
+      },
+      {
+        "day": 19,
+        "value": 93.9
+      },
+      {
+        "day": 20,
+        "value": 94.1
+      },
+      {
+        "day": 21,
+        "value": 93.8
+      },
+      {
+        "day": 22,
+        "value": 93.9
+      },
+      {
+        "day": 23,
+        "value": 93.7
+      },
+      {
+        "day": 24,
+        "value": 93.8
+      },
+      {
+        "day": 25,
+        "value": 93.6
+      },
+      {
+        "day": 26,
+        "value": 93.7
+      },
+      {
+        "day": 27,
+        "value": 93.4
+      },
+      {
+        "day": 28,
+        "value": 93.5
+      },
+      {
+        "day": 29,
+        "value": 93.3
+      },
+      {
+        "day": 30,
+        "value": 93.2
+      }
+    ],
+    "waist": [
+      {
+        "day": 1,
+        "value": 108
+      },
+      {
+        "day": 2,
+        "value": 107.9
+      },
+      {
+        "day": 8,
+        "value": 108.1
+      },
+      {
+        "day": 15,
+        "value": 107.2
+      },
+      {
+        "day": 22,
+        "value": 106.9
+      },
+      {
+        "day": 30,
+        "value": 105.5
+      }
+    ],
+    "bp": [
+      {
+        "day": 1,
+        "value": 136,
+        "second": 86
+      },
+      {
+        "day": 2,
+        "value": 135,
+        "second": 86
+      },
+      {
+        "day": 5,
+        "value": 138,
+        "second": 87
+      },
+      {
+        "day": 9,
+        "value": 134,
+        "second": 85
+      },
+      {
+        "day": 13,
+        "value": 135,
+        "second": 86
+      },
+      {
+        "day": 18,
+        "value": 131,
+        "second": 84
+      },
+      {
+        "day": 24,
+        "value": 133,
+        "second": 83
+      },
+      {
+        "day": 30,
+        "value": 128,
+        "second": 82
+      }
+    ],
+    "energy": [
+      {
+        "day": 1,
+        "value": 4
+      },
+      {
+        "day": 2,
+        "value": 4
+      },
+      {
+        "day": 3,
+        "value": 5
+      },
+      {
+        "day": 4,
+        "value": 4
+      },
+      {
+        "day": 5,
+        "value": 5
+      },
+      {
+        "day": 6,
+        "value": 4
+      },
+      {
+        "day": 7,
+        "value": 5
+      },
+      {
+        "day": 8,
+        "value": 4
+      },
+      {
+        "day": 9,
+        "value": 5
+      },
+      {
+        "day": 10,
+        "value": 5
+      },
+      {
+        "day": 11,
+        "value": 5
+      },
+      {
+        "day": 12,
+        "value": 6
+      },
+      {
+        "day": 13,
+        "value": 5
+      },
+      {
+        "day": 14,
+        "value": 5
+      },
+      {
+        "day": 15,
+        "value": 6
+      },
+      {
+        "day": 16,
+        "value": 5
+      },
+      {
+        "day": 17,
+        "value": 6
+      },
+      {
+        "day": 18,
+        "value": 6
+      },
+      {
+        "day": 19,
+        "value": 5
+      },
+      {
+        "day": 20,
+        "value": 6
+      },
+      {
+        "day": 21,
+        "value": 6
+      },
+      {
+        "day": 22,
+        "value": 6
+      },
+      {
+        "day": 23,
+        "value": 7
+      },
+      {
+        "day": 24,
+        "value": 6
+      },
+      {
+        "day": 25,
+        "value": 7
+      },
+      {
+        "day": 26,
+        "value": 6
+      },
+      {
+        "day": 27,
+        "value": 7
+      },
+      {
+        "day": 28,
+        "value": 7
+      },
+      {
+        "day": 29,
+        "value": 6
+      },
+      {
+        "day": 30,
+        "value": 7
+      }
+    ],
+    "sleep": [
+      {
+        "day": 1,
+        "value": 5.5
+      },
+      {
+        "day": 2,
+        "value": 5.8
+      },
+      {
+        "day": 3,
+        "value": 5.6
+      },
+      {
+        "day": 4,
+        "value": 6.0
+      },
+      {
+        "day": 5,
+        "value": 5.7
+      },
+      {
+        "day": 6,
+        "value": 6.0
+      },
+      {
+        "day": 7,
+        "value": 5.8
+      },
+      {
+        "day": 8,
+        "value": 5.9
+      },
+      {
+        "day": 9,
+        "value": 6.1
+      },
+      {
+        "day": 10,
+        "value": 6.0
+      },
+      {
+        "day": 11,
+        "value": 6.3
+      },
+      {
+        "day": 12,
+        "value": 6.2
+      },
+      {
+        "day": 13,
+        "value": 6.0
+      },
+      {
+        "day": 14,
+        "value": 6.4
+      },
+      {
+        "day": 15,
+        "value": 6.2
+      },
+      {
+        "day": 16,
+        "value": 6.5
+      },
+      {
+        "day": 17,
+        "value": 6.4
+      },
+      {
+        "day": 18,
+        "value": 6.2
+      },
+      {
+        "day": 19,
+        "value": 6.6
+      },
+      {
+        "day": 20,
+        "value": 6.5
+      },
+      {
+        "day": 21,
+        "value": 6.7
+      },
+      {
+        "day": 22,
+        "value": 6.5
+      },
+      {
+        "day": 23,
+        "value": 6.9
+      },
+      {
+        "day": 24,
+        "value": 6.6
+      },
+      {
+        "day": 25,
+        "value": 7.0
+      },
+      {
+        "day": 26,
+        "value": 6.8
+      },
+      {
+        "day": 27,
+        "value": 6.9
+      },
+      {
+        "day": 28,
+        "value": 7.1
+      },
+      {
+        "day": 29,
+        "value": 6.8
+      },
+      {
+        "day": 30,
+        "value": 7.0
+      }
+    ]
+  },
+  "graphContext": "Matt requested five fictional data sets to populate the charts. These values and their frequency are invented for demonstration; members are not required to record this often.",
+  "starterExample": {
+    "medicineEntries": [
+      {
+        "day": 1,
+        "medicine": "Mounjaro",
+        "dose": "2.5 mg"
+      },
+      {
+        "day": 8,
+        "medicine": "Mounjaro",
+        "dose": "2.5 mg"
+      },
+      {
+        "day": 15,
+        "medicine": "Mounjaro",
+        "dose": "2.5 mg"
+      },
+      {
+        "day": 22,
+        "medicine": "Mounjaro",
+        "dose": "2.5 mg"
+      }
+    ],
+    "symptomEntries": [
+      {
+        "day": 2,
+        "symptom": "Nausea",
+        "severity": "Mild"
+      },
+      {
+        "day": 2,
+        "symptom": "Reflux",
+        "severity": "Mild"
+      },
+      {
+        "day": 3,
+        "symptom": "Nausea",
+        "severity": "Mild"
+      },
+      {
+        "day": 9,
+        "symptom": "Nausea",
+        "severity": "Mild"
+      },
+      {
+        "day": 16,
+        "symptom": "Constipation",
+        "severity": "Bothersome"
+      },
+      {
+        "day": 17,
+        "symptom": "Constipation",
+        "severity": "Bothersome"
+      },
+      {
+        "day": 18,
+        "symptom": "Constipation",
+        "severity": "Bothersome"
+      },
+      {
+        "day": 19,
+        "symptom": "Constipation",
+        "severity": "Mild"
+      },
+      {
+        "day": 20,
+        "symptom": "Constipation",
+        "severity": "Member reported resolved"
+      },
+      {
+        "day": 23,
+        "symptom": "Nausea",
+        "severity": "Mild"
+      },
+      {
+        "day": 30,
+        "symptom": "Reflux",
+        "severity": "Mild"
+      }
+    ],
+    "practicalChoices": [
+      {
+        "day": 3,
+        "type": "food",
+        "text": "Soup and toast was easy."
+      },
+      {
+        "day": 10,
+        "type": "movement",
+        "text": "Ten minutes of stretching was manageable."
+      },
+      {
+        "day": 14,
+        "type": "movement",
+        "text": "A bit of gardening felt good."
+      },
+      {
+        "day": 20,
+        "type": "quiet day",
+        "text": "A quiet day was what I needed."
+      },
+      {
+        "day": 26,
+        "type": "movement",
+        "text": "A short bike ride helped clear my head."
+      }
+    ],
+    "win": {
+      "day": 27,
+      "text": "My jeans feel a bit looser."
+    },
+    "graphDatasets": {
+      "weight": [
+        {
+          "day": 1,
+          "value": 95.3
+        },
+        {
+          "day": 2,
+          "value": 95.6
+        },
+        {
+          "day": 3,
+          "value": 95.0
+        },
+        {
+          "day": 4,
+          "value": 94.9
+        },
+        {
+          "day": 5,
+          "value": 94.6
+        },
+        {
+          "day": 6,
+          "value": 94.7
+        },
+        {
+          "day": 7,
+          "value": 94.5
+        },
+        {
+          "day": 8,
+          "value": 94.4
+        },
+        {
+          "day": 9,
+          "value": 94.6
+        },
+        {
+          "day": 10,
+          "value": 94.2
+        },
+        {
+          "day": 11,
+          "value": 94.1
+        },
+        {
+          "day": 12,
+          "value": 94.3
+        },
+        {
+          "day": 13,
+          "value": 94.0
+        },
+        {
+          "day": 14,
+          "value": 93.9
+        },
+        {
+          "day": 15,
+          "value": 94.0
+        },
+        {
+          "day": 16,
+          "value": 94.2
+        },
+        {
+          "day": 17,
+          "value": 94.6
+        },
+        {
+          "day": 18,
+          "value": 94.8
+        },
+        {
+          "day": 19,
+          "value": 94.7
+        },
+        {
+          "day": 20,
+          "value": 94.5
+        },
+        {
+          "day": 21,
+          "value": 94.3
+        },
+        {
+          "day": 22,
+          "value": 94.2
+        },
+        {
+          "day": 23,
+          "value": 94.1
+        },
+        {
+          "day": 24,
+          "value": 94.3
+        },
+        {
+          "day": 25,
+          "value": 94.1
+        },
+        {
+          "day": 26,
+          "value": 93.9
+        },
+        {
+          "day": 27,
+          "value": 93.8
+        },
+        {
+          "day": 28,
+          "value": 93.7
+        },
+        {
+          "day": 29,
+          "value": 93.8
+        },
+        {
+          "day": 30,
+          "value": 93.6
+        }
+      ],
+      "waist": [
+        {
+          "day": 1,
+          "value": 108
+        },
+        {
+          "day": 2,
+          "value": 107.9
+        },
+        {
+          "day": 8,
+          "value": 108.1
+        },
+        {
+          "day": 15,
+          "value": 107.2
+        },
+        {
+          "day": 22,
+          "value": 106.9
+        },
+        {
+          "day": 30,
+          "value": 105.5
+        }
+      ],
+      "bp": [
+        {
+          "day": 1,
+          "value": 136,
+          "second": 86
+        },
+        {
+          "day": 2,
+          "value": 135,
+          "second": 86
+        },
+        {
+          "day": 5,
+          "value": 138,
+          "second": 87
+        },
+        {
+          "day": 9,
+          "value": 134,
+          "second": 85
+        },
+        {
+          "day": 13,
+          "value": 135,
+          "second": 86
+        },
+        {
+          "day": 18,
+          "value": 131,
+          "second": 84
+        },
+        {
+          "day": 24,
+          "value": 133,
+          "second": 83
+        },
+        {
+          "day": 30,
+          "value": 128,
+          "second": 82
+        }
+      ],
+      "energy": [
+        {
+          "day": 1,
+          "value": 5
+        },
+        {
+          "day": 2,
+          "value": 4
+        },
+        {
+          "day": 3,
+          "value": 4
+        },
+        {
+          "day": 4,
+          "value": 5
+        },
+        {
+          "day": 5,
+          "value": 5
+        },
+        {
+          "day": 6,
+          "value": 6
+        },
+        {
+          "day": 7,
+          "value": 5
+        },
+        {
+          "day": 8,
+          "value": 4
+        },
+        {
+          "day": 9,
+          "value": 5
+        },
+        {
+          "day": 10,
+          "value": 5
+        },
+        {
+          "day": 11,
+          "value": 6
+        },
+        {
+          "day": 12,
+          "value": 5
+        },
+        {
+          "day": 13,
+          "value": 6
+        },
+        {
+          "day": 14,
+          "value": 6
+        },
+        {
+          "day": 15,
+          "value": 5
+        },
+        {
+          "day": 16,
+          "value": 3
+        },
+        {
+          "day": 17,
+          "value": 3
+        },
+        {
+          "day": 18,
+          "value": 4
+        },
+        {
+          "day": 19,
+          "value": 4
+        },
+        {
+          "day": 20,
+          "value": 5
+        },
+        {
+          "day": 21,
+          "value": 6
+        },
+        {
+          "day": 22,
+          "value": 5
+        },
+        {
+          "day": 23,
+          "value": 4
+        },
+        {
+          "day": 24,
+          "value": 5
+        },
+        {
+          "day": 25,
+          "value": 6
+        },
+        {
+          "day": 26,
+          "value": 6
+        },
+        {
+          "day": 27,
+          "value": 7
+        },
+        {
+          "day": 28,
+          "value": 6
+        },
+        {
+          "day": 29,
+          "value": 6
+        },
+        {
+          "day": 30,
+          "value": 7
+        }
+      ],
+      "sleep": [
+        {
+          "day": 1,
+          "value": 5.5
+        },
+        {
+          "day": 2,
+          "value": 5.8
+        },
+        {
+          "day": 3,
+          "value": 5.6
+        },
+        {
+          "day": 4,
+          "value": 6.0
+        },
+        {
+          "day": 5,
+          "value": 5.7
+        },
+        {
+          "day": 6,
+          "value": 6.0
+        },
+        {
+          "day": 7,
+          "value": 5.8
+        },
+        {
+          "day": 8,
+          "value": 5.9
+        },
+        {
+          "day": 9,
+          "value": 6.1
+        },
+        {
+          "day": 10,
+          "value": 6.0
+        },
+        {
+          "day": 11,
+          "value": 6.3
+        },
+        {
+          "day": 12,
+          "value": 6.2
+        },
+        {
+          "day": 13,
+          "value": 6.0
+        },
+        {
+          "day": 14,
+          "value": 6.4
+        },
+        {
+          "day": 15,
+          "value": 6.2
+        },
+        {
+          "day": 16,
+          "value": 6.5
+        },
+        {
+          "day": 17,
+          "value": 6.4
+        },
+        {
+          "day": 18,
+          "value": 6.2
+        },
+        {
+          "day": 19,
+          "value": 6.6
+        },
+        {
+          "day": 20,
+          "value": 6.5
+        },
+        {
+          "day": 21,
+          "value": 6.7
+        },
+        {
+          "day": 22,
+          "value": 6.5
+        },
+        {
+          "day": 23,
+          "value": 6.9
+        },
+        {
+          "day": 24,
+          "value": 6.6
+        },
+        {
+          "day": 25,
+          "value": 7.0
+        },
+        {
+          "day": 26,
+          "value": 6.8
+        },
+        {
+          "day": 27,
+          "value": 6.9
+        },
+        {
+          "day": 28,
+          "value": 7.1
+        },
+        {
+          "day": 29,
+          "value": 6.8
+        },
+        {
+          "day": 30,
+          "value": 7.0
+        }
+      ]
+    },
+    "note": "All records are invented to demonstrate the interface. A rise is not labelled normal, and symptom causes or dosing decisions are not inferred. Only the four entered doses are shown; unlogged later treatment is unknown."
+  },
+  "clinicalCopySources": [
+    "https://www.nhs.uk/medicines/tirzepatide/",
+    "https://www.medicines.org.uk/emc/product/15481/pil"
+  ],
+  "journeyReviewCases": {
+    "starter": {
+      "label": "1 \u00b7 Starting 2.5 mg: bump & symptoms",
+      "short": "Starting 2.5 mg",
+      "graphDatasets": {
+        "weight": [
+          {
+            "day": 1,
+            "value": 95.3
+          },
+          {
+            "day": 2,
+            "value": 95.6
+          },
+          {
+            "day": 3,
+            "value": 95.0
+          },
+          {
+            "day": 4,
+            "value": 94.9
+          },
+          {
+            "day": 5,
+            "value": 94.6
+          },
+          {
+            "day": 6,
+            "value": 94.7
+          },
+          {
+            "day": 7,
+            "value": 94.5
+          },
+          {
+            "day": 8,
+            "value": 94.4
+          },
+          {
+            "day": 9,
+            "value": 94.6
+          },
+          {
+            "day": 10,
+            "value": 94.2
+          },
+          {
+            "day": 11,
+            "value": 94.1
+          },
+          {
+            "day": 12,
+            "value": 94.3
+          },
+          {
+            "day": 13,
+            "value": 94.0
+          },
+          {
+            "day": 14,
+            "value": 93.9
+          },
+          {
+            "day": 15,
+            "value": 94.0
+          },
+          {
+            "day": 16,
+            "value": 94.2
+          },
+          {
+            "day": 17,
+            "value": 94.6
+          },
+          {
+            "day": 18,
+            "value": 94.8
+          },
+          {
+            "day": 19,
+            "value": 94.7
+          },
+          {
+            "day": 20,
+            "value": 94.5
+          },
+          {
+            "day": 21,
+            "value": 94.3
+          },
+          {
+            "day": 22,
+            "value": 94.2
+          },
+          {
+            "day": 23,
+            "value": 94.1
+          },
+          {
+            "day": 24,
+            "value": 94.3
+          },
+          {
+            "day": 25,
+            "value": 94.1
+          },
+          {
+            "day": 26,
+            "value": 93.9
+          },
+          {
+            "day": 27,
+            "value": 93.8
+          },
+          {
+            "day": 28,
+            "value": 93.7
+          },
+          {
+            "day": 29,
+            "value": 93.8
+          },
+          {
+            "day": 30,
+            "value": 93.6
+          }
+        ],
+        "waist": [
+          {
+            "day": 1,
+            "value": 108
+          },
+          {
+            "day": 2,
+            "value": 107.9
+          },
+          {
+            "day": 8,
+            "value": 108.1
+          },
+          {
+            "day": 15,
+            "value": 107.2
+          },
+          {
+            "day": 22,
+            "value": 106.9
+          },
+          {
+            "day": 30,
+            "value": 105.5
+          }
+        ],
+        "bp": [
+          {
+            "day": 1,
+            "value": 136,
+            "second": 86
+          },
+          {
+            "day": 2,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 5,
+            "value": 138,
+            "second": 87
+          },
+          {
+            "day": 9,
+            "value": 134,
+            "second": 85
+          },
+          {
+            "day": 13,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 18,
+            "value": 131,
+            "second": 84
+          },
+          {
+            "day": 24,
+            "value": 133,
+            "second": 83
+          },
+          {
+            "day": 30,
+            "value": 128,
+            "second": 82
+          }
+        ],
+        "energy": [
+          {
+            "day": 1,
+            "value": 5
+          },
+          {
+            "day": 2,
+            "value": 4
+          },
+          {
+            "day": 3,
+            "value": 4
+          },
+          {
+            "day": 4,
+            "value": 5
+          },
+          {
+            "day": 5,
+            "value": 5
+          },
+          {
+            "day": 6,
+            "value": 6
+          },
+          {
+            "day": 7,
+            "value": 5
+          },
+          {
+            "day": 8,
+            "value": 4
+          },
+          {
+            "day": 9,
+            "value": 5
+          },
+          {
+            "day": 10,
+            "value": 5
+          },
+          {
+            "day": 11,
+            "value": 6
+          },
+          {
+            "day": 12,
+            "value": 5
+          },
+          {
+            "day": 13,
+            "value": 6
+          },
+          {
+            "day": 14,
+            "value": 6
+          },
+          {
+            "day": 15,
+            "value": 5
+          },
+          {
+            "day": 16,
+            "value": 3
+          },
+          {
+            "day": 17,
+            "value": 3
+          },
+          {
+            "day": 18,
+            "value": 4
+          },
+          {
+            "day": 19,
+            "value": 4
+          },
+          {
+            "day": 20,
+            "value": 5
+          },
+          {
+            "day": 21,
+            "value": 6
+          },
+          {
+            "day": 22,
+            "value": 5
+          },
+          {
+            "day": 23,
+            "value": 4
+          },
+          {
+            "day": 24,
+            "value": 5
+          },
+          {
+            "day": 25,
+            "value": 6
+          },
+          {
+            "day": 26,
+            "value": 6
+          },
+          {
+            "day": 27,
+            "value": 7
+          },
+          {
+            "day": 28,
+            "value": 6
+          },
+          {
+            "day": 29,
+            "value": 6
+          },
+          {
+            "day": 30,
+            "value": 7
+          }
+        ],
+        "sleep": [
+          {
+            "day": 1,
+            "value": 5.5
+          },
+          {
+            "day": 2,
+            "value": 5.8
+          },
+          {
+            "day": 3,
+            "value": 5.6
+          },
+          {
+            "day": 4,
+            "value": 6.0
+          },
+          {
+            "day": 5,
+            "value": 5.7
+          },
+          {
+            "day": 6,
+            "value": 6.0
+          },
+          {
+            "day": 7,
+            "value": 5.8
+          },
+          {
+            "day": 8,
+            "value": 5.9
+          },
+          {
+            "day": 9,
+            "value": 6.1
+          },
+          {
+            "day": 10,
+            "value": 6.0
+          },
+          {
+            "day": 11,
+            "value": 6.3
+          },
+          {
+            "day": 12,
+            "value": 6.2
+          },
+          {
+            "day": 13,
+            "value": 6.0
+          },
+          {
+            "day": 14,
+            "value": 6.4
+          },
+          {
+            "day": 15,
+            "value": 6.2
+          },
+          {
+            "day": 16,
+            "value": 6.5
+          },
+          {
+            "day": 17,
+            "value": 6.4
+          },
+          {
+            "day": 18,
+            "value": 6.2
+          },
+          {
+            "day": 19,
+            "value": 6.6
+          },
+          {
+            "day": 20,
+            "value": 6.5
+          },
+          {
+            "day": 21,
+            "value": 6.7
+          },
+          {
+            "day": 22,
+            "value": 6.5
+          },
+          {
+            "day": 23,
+            "value": 6.9
+          },
+          {
+            "day": 24,
+            "value": 6.6
+          },
+          {
+            "day": 25,
+            "value": 7.0
+          },
+          {
+            "day": 26,
+            "value": 6.8
+          },
+          {
+            "day": 27,
+            "value": 6.9
+          },
+          {
+            "day": 28,
+            "value": 7.1
+          },
+          {
+            "day": 29,
+            "value": 6.8
+          },
+          {
+            "day": 30,
+            "value": 7.0
+          }
+        ]
+      },
+      "goal": "My jeans feel a bit looser.",
+      "quote": "The weight went up and I\u2019ve felt rough.",
+      "pattern": "Bump and symptom entries, with treatment dates.",
+      "feedback": [
+        {
+          "day": 3,
+          "type": "food",
+          "text": "Soup and toast was easy."
+        },
+        {
+          "day": 10,
+          "type": "movement",
+          "text": "Ten minutes of stretching was manageable."
+        },
+        {
+          "day": 14,
+          "type": "movement",
+          "text": "A bit of gardening felt good."
+        },
+        {
+          "day": 20,
+          "type": "quiet day",
+          "text": "A quiet day was what I needed."
+        },
+        {
+          "day": 26,
+          "type": "movement",
+          "text": "A short bike ride helped clear my head."
+        }
+      ]
+    },
+    "gaps": {
+      "label": "2 \u00b7 Quiet days & gaps",
+      "short": "Quiet days & gaps",
+      "graphDatasets": {
+        "weight": [
+          {
+            "day": 1,
+            "value": 95.3
+          },
+          {
+            "day": 2,
+            "value": 95.4
+          },
+          {
+            "day": 5,
+            "value": 95.0
+          },
+          {
+            "day": 12,
+            "value": 94.8
+          },
+          {
+            "day": 20,
+            "value": 94.9
+          },
+          {
+            "day": 30,
+            "value": 94.5
+          }
+        ],
+        "waist": [
+          {
+            "day": 1,
+            "value": 108
+          },
+          {
+            "day": 2,
+            "value": 107.9
+          },
+          {
+            "day": 30,
+            "value": 105.5
+          }
+        ],
+        "bp": [
+          {
+            "day": 1,
+            "value": 136,
+            "second": 86
+          },
+          {
+            "day": 2,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 5,
+            "value": 138,
+            "second": 87
+          },
+          {
+            "day": 30,
+            "value": 128,
+            "second": 82
+          }
+        ],
+        "energy": [
+          {
+            "day": 1,
+            "value": 5
+          },
+          {
+            "day": 2,
+            "value": 4
+          },
+          {
+            "day": 5,
+            "value": 5
+          },
+          {
+            "day": 12,
+            "value": 5
+          },
+          {
+            "day": 20,
+            "value": 5
+          },
+          {
+            "day": 30,
+            "value": 7
+          }
+        ],
+        "sleep": [
+          {
+            "day": 1,
+            "value": 5.5
+          },
+          {
+            "day": 2,
+            "value": 5.8
+          },
+          {
+            "day": 5,
+            "value": 5.7
+          },
+          {
+            "day": 12,
+            "value": 6.2
+          },
+          {
+            "day": 20,
+            "value": 6.5
+          },
+          {
+            "day": 30,
+            "value": 7.0
+          }
+        ]
+      },
+      "goal": "I got back to it without starting over.",
+      "quote": "I haven\u2019t had time to log much.",
+      "pattern": "Sparse readings: missing days stay blank.",
+      "feedback": [
+        {
+          "day": 5,
+          "offered": "Daily food logging",
+          "outcome": "Didn\u2019t fit",
+          "why": "Too much admin",
+          "change": "Optional notes only"
+        },
+        {
+          "day": 20,
+          "offered": "Saved shopping list",
+          "outcome": "Helped",
+          "why": "Less to work out"
+        }
+      ]
+    },
+    "flat": {
+      "label": "3 \u00b7 A flatter fortnight",
+      "short": "A flatter fortnight",
+      "graphDatasets": {
+        "weight": [
+          {
+            "day": 1,
+            "value": 95.3
+          },
+          {
+            "day": 2,
+            "value": 95.2
+          },
+          {
+            "day": 3,
+            "value": 95.0
+          },
+          {
+            "day": 4,
+            "value": 94.8
+          },
+          {
+            "day": 5,
+            "value": 94.7
+          },
+          {
+            "day": 6,
+            "value": 94.6
+          },
+          {
+            "day": 7,
+            "value": 94.5
+          },
+          {
+            "day": 8,
+            "value": 94.4
+          },
+          {
+            "day": 9,
+            "value": 94.3
+          },
+          {
+            "day": 10,
+            "value": 94.2
+          },
+          {
+            "day": 11,
+            "value": 94.1
+          },
+          {
+            "day": 12,
+            "value": 94.0
+          },
+          {
+            "day": 13,
+            "value": 94.1
+          },
+          {
+            "day": 14,
+            "value": 94.0
+          },
+          {
+            "day": 15,
+            "value": 94.1
+          },
+          {
+            "day": 16,
+            "value": 94.0
+          },
+          {
+            "day": 17,
+            "value": 94.1
+          },
+          {
+            "day": 18,
+            "value": 94.0
+          },
+          {
+            "day": 19,
+            "value": 94.0
+          },
+          {
+            "day": 20,
+            "value": 94.1
+          },
+          {
+            "day": 21,
+            "value": 94.0
+          },
+          {
+            "day": 22,
+            "value": 94.1
+          },
+          {
+            "day": 23,
+            "value": 94.0
+          },
+          {
+            "day": 24,
+            "value": 94.0
+          },
+          {
+            "day": 25,
+            "value": 94.1
+          },
+          {
+            "day": 26,
+            "value": 94.0
+          },
+          {
+            "day": 27,
+            "value": 94.1
+          },
+          {
+            "day": 28,
+            "value": 94.0
+          },
+          {
+            "day": 29,
+            "value": 94.0
+          },
+          {
+            "day": 30,
+            "value": 94.1
+          }
+        ],
+        "waist": [
+          {
+            "day": 1,
+            "value": 108
+          },
+          {
+            "day": 2,
+            "value": 107.9
+          },
+          {
+            "day": 8,
+            "value": 108.1
+          },
+          {
+            "day": 15,
+            "value": 107.2
+          },
+          {
+            "day": 22,
+            "value": 106.9
+          },
+          {
+            "day": 30,
+            "value": 105.5
+          }
+        ],
+        "bp": [
+          {
+            "day": 1,
+            "value": 136,
+            "second": 86
+          },
+          {
+            "day": 2,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 5,
+            "value": 138,
+            "second": 87
+          },
+          {
+            "day": 9,
+            "value": 134,
+            "second": 85
+          },
+          {
+            "day": 13,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 18,
+            "value": 131,
+            "second": 84
+          },
+          {
+            "day": 24,
+            "value": 133,
+            "second": 83
+          },
+          {
+            "day": 30,
+            "value": 128,
+            "second": 82
+          }
+        ],
+        "energy": [
+          {
+            "day": 1,
+            "value": 5
+          },
+          {
+            "day": 2,
+            "value": 4
+          },
+          {
+            "day": 3,
+            "value": 4
+          },
+          {
+            "day": 4,
+            "value": 5
+          },
+          {
+            "day": 5,
+            "value": 5
+          },
+          {
+            "day": 6,
+            "value": 6
+          },
+          {
+            "day": 7,
+            "value": 5
+          },
+          {
+            "day": 8,
+            "value": 4
+          },
+          {
+            "day": 9,
+            "value": 5
+          },
+          {
+            "day": 10,
+            "value": 5
+          },
+          {
+            "day": 11,
+            "value": 6
+          },
+          {
+            "day": 12,
+            "value": 5
+          },
+          {
+            "day": 13,
+            "value": 6
+          },
+          {
+            "day": 14,
+            "value": 6
+          },
+          {
+            "day": 15,
+            "value": 5
+          },
+          {
+            "day": 16,
+            "value": 3
+          },
+          {
+            "day": 17,
+            "value": 3
+          },
+          {
+            "day": 18,
+            "value": 4
+          },
+          {
+            "day": 19,
+            "value": 4
+          },
+          {
+            "day": 20,
+            "value": 5
+          },
+          {
+            "day": 21,
+            "value": 6
+          },
+          {
+            "day": 22,
+            "value": 5
+          },
+          {
+            "day": 23,
+            "value": 4
+          },
+          {
+            "day": 24,
+            "value": 5
+          },
+          {
+            "day": 25,
+            "value": 6
+          },
+          {
+            "day": 26,
+            "value": 6
+          },
+          {
+            "day": 27,
+            "value": 7
+          },
+          {
+            "day": 28,
+            "value": 6
+          },
+          {
+            "day": 29,
+            "value": 6
+          },
+          {
+            "day": 30,
+            "value": 7
+          }
+        ],
+        "sleep": [
+          {
+            "day": 1,
+            "value": 5.5
+          },
+          {
+            "day": 2,
+            "value": 5.8
+          },
+          {
+            "day": 3,
+            "value": 5.6
+          },
+          {
+            "day": 4,
+            "value": 6.0
+          },
+          {
+            "day": 5,
+            "value": 5.7
+          },
+          {
+            "day": 6,
+            "value": 6.0
+          },
+          {
+            "day": 7,
+            "value": 5.8
+          },
+          {
+            "day": 8,
+            "value": 5.9
+          },
+          {
+            "day": 9,
+            "value": 6.1
+          },
+          {
+            "day": 10,
+            "value": 6.0
+          },
+          {
+            "day": 11,
+            "value": 6.3
+          },
+          {
+            "day": 12,
+            "value": 6.2
+          },
+          {
+            "day": 13,
+            "value": 6.0
+          },
+          {
+            "day": 14,
+            "value": 6.4
+          },
+          {
+            "day": 15,
+            "value": 6.2
+          },
+          {
+            "day": 16,
+            "value": 6.5
+          },
+          {
+            "day": 17,
+            "value": 6.4
+          },
+          {
+            "day": 18,
+            "value": 6.2
+          },
+          {
+            "day": 19,
+            "value": 6.6
+          },
+          {
+            "day": 20,
+            "value": 6.5
+          },
+          {
+            "day": 21,
+            "value": 6.7
+          },
+          {
+            "day": 22,
+            "value": 6.5
+          },
+          {
+            "day": 23,
+            "value": 6.9
+          },
+          {
+            "day": 24,
+            "value": 6.6
+          },
+          {
+            "day": 25,
+            "value": 7.0
+          },
+          {
+            "day": 26,
+            "value": 6.8
+          },
+          {
+            "day": 27,
+            "value": 6.9
+          },
+          {
+            "day": 28,
+            "value": 7.1
+          },
+          {
+            "day": 29,
+            "value": 6.8
+          },
+          {
+            "day": 30,
+            "value": 7.0
+          }
+        ]
+      },
+      "goal": "I\u2019m sleeping a little better.",
+      "quote": "The scales don\u2019t seem to be moving.",
+      "pattern": "Early change followed by a flatter period.",
+      "feedback": [
+        {
+          "day": 10,
+          "offered": "More frequent weigh-ins",
+          "outcome": "Didn\u2019t help",
+          "why": "Made me focus on every reading",
+          "change": "Weekly review and own reported wins"
+        },
+        {
+          "day": 25,
+          "offered": "A bedtime routine",
+          "outcome": "Helped",
+          "why": "Easier to switch off"
+        }
+      ]
+    },
+    "mixed": {
+      "label": "4 \u00b7 Mixed feedback & variety",
+      "short": "Mixed feedback & variety",
+      "graphDatasets": {
+        "weight": [
+          {
+            "day": 1,
+            "value": 95.3
+          },
+          {
+            "day": 2,
+            "value": 95.5
+          },
+          {
+            "day": 3,
+            "value": 95.2
+          },
+          {
+            "day": 4,
+            "value": 95.3
+          },
+          {
+            "day": 5,
+            "value": 95.0
+          },
+          {
+            "day": 6,
+            "value": 95.2
+          },
+          {
+            "day": 7,
+            "value": 95.4
+          },
+          {
+            "day": 8,
+            "value": 95.0
+          },
+          {
+            "day": 9,
+            "value": 95.2
+          },
+          {
+            "day": 10,
+            "value": 94.9
+          },
+          {
+            "day": 11,
+            "value": 95.1
+          },
+          {
+            "day": 12,
+            "value": 95.2
+          },
+          {
+            "day": 13,
+            "value": 94.9
+          },
+          {
+            "day": 14,
+            "value": 95.1
+          },
+          {
+            "day": 15,
+            "value": 94.8
+          },
+          {
+            "day": 16,
+            "value": 94.9
+          },
+          {
+            "day": 17,
+            "value": 95.1
+          },
+          {
+            "day": 18,
+            "value": 94.8
+          },
+          {
+            "day": 19,
+            "value": 95.0
+          },
+          {
+            "day": 20,
+            "value": 94.6
+          },
+          {
+            "day": 21,
+            "value": 94.8
+          },
+          {
+            "day": 22,
+            "value": 95.0
+          },
+          {
+            "day": 23,
+            "value": 94.7
+          },
+          {
+            "day": 24,
+            "value": 94.8
+          },
+          {
+            "day": 25,
+            "value": 94.5
+          },
+          {
+            "day": 26,
+            "value": 94.7
+          },
+          {
+            "day": 27,
+            "value": 94.9
+          },
+          {
+            "day": 28,
+            "value": 94.6
+          },
+          {
+            "day": 29,
+            "value": 94.7
+          },
+          {
+            "day": 30,
+            "value": 94.4
+          }
+        ],
+        "waist": [
+          {
+            "day": 1,
+            "value": 108
+          },
+          {
+            "day": 2,
+            "value": 107.9
+          },
+          {
+            "day": 8,
+            "value": 108.1
+          },
+          {
+            "day": 15,
+            "value": 107.2
+          },
+          {
+            "day": 22,
+            "value": 106.9
+          },
+          {
+            "day": 30,
+            "value": 105.5
+          }
+        ],
+        "bp": [
+          {
+            "day": 1,
+            "value": 136,
+            "second": 86
+          },
+          {
+            "day": 2,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 5,
+            "value": 138,
+            "second": 87
+          },
+          {
+            "day": 9,
+            "value": 134,
+            "second": 85
+          },
+          {
+            "day": 13,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 18,
+            "value": 131,
+            "second": 84
+          },
+          {
+            "day": 24,
+            "value": 133,
+            "second": 83
+          },
+          {
+            "day": 30,
+            "value": 128,
+            "second": 82
+          }
+        ],
+        "energy": [
+          {
+            "day": 1,
+            "value": 5
+          },
+          {
+            "day": 2,
+            "value": 4
+          },
+          {
+            "day": 3,
+            "value": 4
+          },
+          {
+            "day": 4,
+            "value": 5
+          },
+          {
+            "day": 5,
+            "value": 5
+          },
+          {
+            "day": 6,
+            "value": 6
+          },
+          {
+            "day": 7,
+            "value": 5
+          },
+          {
+            "day": 8,
+            "value": 4
+          },
+          {
+            "day": 9,
+            "value": 5
+          },
+          {
+            "day": 10,
+            "value": 5
+          },
+          {
+            "day": 11,
+            "value": 6
+          },
+          {
+            "day": 12,
+            "value": 5
+          },
+          {
+            "day": 13,
+            "value": 6
+          },
+          {
+            "day": 14,
+            "value": 6
+          },
+          {
+            "day": 15,
+            "value": 5
+          },
+          {
+            "day": 16,
+            "value": 3
+          },
+          {
+            "day": 17,
+            "value": 3
+          },
+          {
+            "day": 18,
+            "value": 4
+          },
+          {
+            "day": 19,
+            "value": 4
+          },
+          {
+            "day": 20,
+            "value": 5
+          },
+          {
+            "day": 21,
+            "value": 6
+          },
+          {
+            "day": 22,
+            "value": 5
+          },
+          {
+            "day": 23,
+            "value": 4
+          },
+          {
+            "day": 24,
+            "value": 5
+          },
+          {
+            "day": 25,
+            "value": 6
+          },
+          {
+            "day": 26,
+            "value": 6
+          },
+          {
+            "day": 27,
+            "value": 7
+          },
+          {
+            "day": 28,
+            "value": 6
+          },
+          {
+            "day": 29,
+            "value": 6
+          },
+          {
+            "day": 30,
+            "value": 7
+          }
+        ],
+        "sleep": [
+          {
+            "day": 1,
+            "value": 5.5
+          },
+          {
+            "day": 2,
+            "value": 5.8
+          },
+          {
+            "day": 3,
+            "value": 5.6
+          },
+          {
+            "day": 4,
+            "value": 6.0
+          },
+          {
+            "day": 5,
+            "value": 5.7
+          },
+          {
+            "day": 6,
+            "value": 6.0
+          },
+          {
+            "day": 7,
+            "value": 5.8
+          },
+          {
+            "day": 8,
+            "value": 5.9
+          },
+          {
+            "day": 9,
+            "value": 6.1
+          },
+          {
+            "day": 10,
+            "value": 6.0
+          },
+          {
+            "day": 11,
+            "value": 6.3
+          },
+          {
+            "day": 12,
+            "value": 6.2
+          },
+          {
+            "day": 13,
+            "value": 6.0
+          },
+          {
+            "day": 14,
+            "value": 6.4
+          },
+          {
+            "day": 15,
+            "value": 6.2
+          },
+          {
+            "day": 16,
+            "value": 6.5
+          },
+          {
+            "day": 17,
+            "value": 6.4
+          },
+          {
+            "day": 18,
+            "value": 6.2
+          },
+          {
+            "day": 19,
+            "value": 6.6
+          },
+          {
+            "day": 20,
+            "value": 6.5
+          },
+          {
+            "day": 21,
+            "value": 6.7
+          },
+          {
+            "day": 22,
+            "value": 6.5
+          },
+          {
+            "day": 23,
+            "value": 6.9
+          },
+          {
+            "day": 24,
+            "value": 6.6
+          },
+          {
+            "day": 25,
+            "value": 7.0
+          },
+          {
+            "day": 26,
+            "value": 6.8
+          },
+          {
+            "day": 27,
+            "value": 6.9
+          },
+          {
+            "day": 28,
+            "value": 7.1
+          },
+          {
+            "day": 29,
+            "value": 6.8
+          },
+          {
+            "day": 30,
+            "value": 7.0
+          }
+        ]
+      },
+      "goal": "Cooking feels less of a chore.",
+      "quote": "I need things that fit a late shift.",
+      "pattern": "Different responses lead to different next steps.",
+      "feedback": [
+        {
+          "day": 4,
+          "offered": "Batch cooking",
+          "outcome": "Didn\u2019t fit",
+          "why": "Time",
+          "change": "A quick meal on the day"
+        },
+        {
+          "day": 8,
+          "offered": "Evening workout",
+          "outcome": "Didn\u2019t try",
+          "why": "Late shift",
+          "change": "Ask timing preference, no failure recorded"
+        },
+        {
+          "day": 14,
+          "offered": "Recipe recommendations",
+          "outcome": "Tried; didn\u2019t help",
+          "why": "Shopping was the sticking point",
+          "change": "A short shopping list"
+        },
+        {
+          "day": 21,
+          "offered": "Shopping shortcut",
+          "outcome": "Helped",
+          "why": "Less to organise"
+        },
+        {
+          "day": 26,
+          "offered": "Five minutes of mobility at home",
+          "outcome": "Helped",
+          "why": "Manageable format"
+        }
+      ]
+    },
+    "change": {
+      "label": "5 \u00b7 Treatment ends; support stays",
+      "short": "Treatment ends; support stays",
+      "graphDatasets": {
+        "weight": [
+          {
+            "day": 1,
+            "value": 95.3
+          },
+          {
+            "day": 2,
+            "value": 95.4
+          },
+          {
+            "day": 3,
+            "value": 95.1
+          },
+          {
+            "day": 4,
+            "value": 95.2
+          },
+          {
+            "day": 5,
+            "value": 95.3
+          },
+          {
+            "day": 6,
+            "value": 95.1
+          },
+          {
+            "day": 7,
+            "value": 95.2
+          },
+          {
+            "day": 8,
+            "value": 94.9
+          },
+          {
+            "day": 9,
+            "value": 95.0
+          },
+          {
+            "day": 10,
+            "value": 95.1
+          },
+          {
+            "day": 11,
+            "value": 94.9
+          },
+          {
+            "day": 12,
+            "value": 95.0
+          },
+          {
+            "day": 13,
+            "value": 94.7
+          },
+          {
+            "day": 14,
+            "value": 94.8
+          },
+          {
+            "day": 15,
+            "value": 94.9
+          },
+          {
+            "day": 16,
+            "value": 94.7
+          },
+          {
+            "day": 17,
+            "value": 94.8
+          },
+          {
+            "day": 18,
+            "value": 94.5
+          },
+          {
+            "day": 19,
+            "value": 94.6
+          },
+          {
+            "day": 20,
+            "value": 94.7
+          },
+          {
+            "day": 21,
+            "value": 94.5
+          },
+          {
+            "day": 22,
+            "value": 94.6
+          },
+          {
+            "day": 23,
+            "value": 94.3
+          },
+          {
+            "day": 24,
+            "value": 94.4
+          },
+          {
+            "day": 25,
+            "value": 94.5
+          },
+          {
+            "day": 26,
+            "value": 94.3
+          },
+          {
+            "day": 27,
+            "value": 94.4
+          },
+          {
+            "day": 28,
+            "value": 94.1
+          },
+          {
+            "day": 29,
+            "value": 94.2
+          },
+          {
+            "day": 30,
+            "value": 94.3
+          }
+        ],
+        "waist": [
+          {
+            "day": 1,
+            "value": 108
+          },
+          {
+            "day": 2,
+            "value": 107.9
+          },
+          {
+            "day": 8,
+            "value": 108.1
+          },
+          {
+            "day": 15,
+            "value": 107.2
+          },
+          {
+            "day": 22,
+            "value": 106.9
+          },
+          {
+            "day": 30,
+            "value": 105.5
+          }
+        ],
+        "bp": [
+          {
+            "day": 1,
+            "value": 136,
+            "second": 86
+          },
+          {
+            "day": 2,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 5,
+            "value": 138,
+            "second": 87
+          },
+          {
+            "day": 9,
+            "value": 134,
+            "second": 85
+          },
+          {
+            "day": 13,
+            "value": 135,
+            "second": 86
+          },
+          {
+            "day": 18,
+            "value": 131,
+            "second": 84
+          },
+          {
+            "day": 24,
+            "value": 133,
+            "second": 83
+          },
+          {
+            "day": 30,
+            "value": 128,
+            "second": 82
+          }
+        ],
+        "energy": [
+          {
+            "day": 1,
+            "value": 5
+          },
+          {
+            "day": 2,
+            "value": 4
+          },
+          {
+            "day": 3,
+            "value": 4
+          },
+          {
+            "day": 4,
+            "value": 5
+          },
+          {
+            "day": 5,
+            "value": 5
+          },
+          {
+            "day": 6,
+            "value": 6
+          },
+          {
+            "day": 7,
+            "value": 5
+          },
+          {
+            "day": 8,
+            "value": 4
+          },
+          {
+            "day": 9,
+            "value": 5
+          },
+          {
+            "day": 10,
+            "value": 5
+          },
+          {
+            "day": 11,
+            "value": 6
+          },
+          {
+            "day": 12,
+            "value": 5
+          },
+          {
+            "day": 13,
+            "value": 6
+          },
+          {
+            "day": 14,
+            "value": 6
+          },
+          {
+            "day": 15,
+            "value": 5
+          },
+          {
+            "day": 16,
+            "value": 3
+          },
+          {
+            "day": 17,
+            "value": 3
+          },
+          {
+            "day": 18,
+            "value": 4
+          },
+          {
+            "day": 19,
+            "value": 4
+          },
+          {
+            "day": 20,
+            "value": 5
+          },
+          {
+            "day": 21,
+            "value": 6
+          },
+          {
+            "day": 22,
+            "value": 5
+          },
+          {
+            "day": 23,
+            "value": 4
+          },
+          {
+            "day": 24,
+            "value": 5
+          },
+          {
+            "day": 25,
+            "value": 6
+          },
+          {
+            "day": 26,
+            "value": 6
+          },
+          {
+            "day": 27,
+            "value": 7
+          },
+          {
+            "day": 28,
+            "value": 6
+          },
+          {
+            "day": 29,
+            "value": 6
+          },
+          {
+            "day": 30,
+            "value": 7
+          }
+        ],
+        "sleep": [
+          {
+            "day": 1,
+            "value": 5.5
+          },
+          {
+            "day": 2,
+            "value": 5.8
+          },
+          {
+            "day": 3,
+            "value": 5.6
+          },
+          {
+            "day": 4,
+            "value": 6.0
+          },
+          {
+            "day": 5,
+            "value": 5.7
+          },
+          {
+            "day": 6,
+            "value": 6.0
+          },
+          {
+            "day": 7,
+            "value": 5.8
+          },
+          {
+            "day": 8,
+            "value": 5.9
+          },
+          {
+            "day": 9,
+            "value": 6.1
+          },
+          {
+            "day": 10,
+            "value": 6.0
+          },
+          {
+            "day": 11,
+            "value": 6.3
+          },
+          {
+            "day": 12,
+            "value": 6.2
+          },
+          {
+            "day": 13,
+            "value": 6.0
+          },
+          {
+            "day": 14,
+            "value": 6.4
+          },
+          {
+            "day": 15,
+            "value": 6.2
+          },
+          {
+            "day": 16,
+            "value": 6.5
+          },
+          {
+            "day": 17,
+            "value": 6.4
+          },
+          {
+            "day": 18,
+            "value": 6.2
+          },
+          {
+            "day": 19,
+            "value": 6.6
+          },
+          {
+            "day": 20,
+            "value": 6.5
+          },
+          {
+            "day": 21,
+            "value": 6.7
+          },
+          {
+            "day": 22,
+            "value": 6.5
+          },
+          {
+            "day": 23,
+            "value": 6.9
+          },
+          {
+            "day": 24,
+            "value": 6.6
+          },
+          {
+            "day": 25,
+            "value": 7.0
+          },
+          {
+            "day": 26,
+            "value": 6.8
+          },
+          {
+            "day": 27,
+            "value": 6.9
+          },
+          {
+            "day": 28,
+            "value": 7.1
+          },
+          {
+            "day": 29,
+            "value": 6.8
+          },
+          {
+            "day": 30,
+            "value": 7.0
+          }
+        ]
+      },
+      "goal": "I\u2019ve still got a plan that fits my week.",
+      "quote": "My treatment has ended. What stays?",
+      "pattern": "Member-reported treatment ending, with support retained.",
+      "feedback": [
+        {
+          "day": 22,
+          "offered": "Treatment status update",
+          "outcome": "Member reported treatment ended",
+          "why": "No assumption about why or a future dose"
+        },
+        {
+          "day": 25,
+          "offered": "Familiar meal and shopping plan",
+          "outcome": "Helped",
+          "why": "Something I can carry on with"
+        }
+      ]
+    }
+  },
+  "learningContract": {
+    "helped": "Build on the useful thing while preserving variety.",
+    "didNotFit": "Change timing, effort or format using the stated reason.",
+    "triedDidNotHelp": "Change the approach; do not offer the rejected suggestion again.",
+    "didNotTry": "Ask what got in the way neutrally; no failure or completion inferred.",
+    "record": "Store suggestion identity, category, offered/accepted dates, outcome and reason; each interpretation must retain provenance.",
+    "acceptance": [
+      "Feedback changes the next eligible suggestion in the required way.",
+      "Same-account feedback and rejection history survive refresh.",
+      "Two accounts cannot read or affect each other\u2019s memory, logs or suggestions.",
+      "Resolved or hidden quotes are not repeated inappropriately.",
+      "Push and lock-screen previews contain no personal quotes or sensitive context."
+    ],
+    "productionStatus": "Unverified; this disconnected preview is not production acceptance."
+  },
+  "claimsRule": "No unverified nobody-else or unique-aftercare market claim.",
+  "latestFeedback": {
+    "internalAppOnly": true,
+    "labels": [
+      "Helped",
+      "Not for me",
+      "Tried it, didn\u2019t help",
+      "Didn\u2019t get round to it"
+    ],
+    "journeyDay30Order": [
+      "What I notice",
+      "Everyday win",
+      "Measurements and chart"
+    ],
+    "day2WarmLine": "You don\u2019t have to work it all out today. A note about how you feel is enough.",
+    "supportIcons": {
+      "scales": "scale",
+      "wobble": "cloud"
+    },
+    "liveEvidenceRule": "Counts must be deduplicated dated replies belonging to the current account, not accepted plans or inferred completion. Rejected options must be explicitly recorded before claiming they were left out. Treatment dates and medicine/dose come from member entries. Without evidence, use neutral copy or ask one question."
+  }
+}

@@ -292,6 +292,8 @@ jobs:
           git diff --exit-code -- babylove/editorial/public-bundle.mjs
       - name: Verify canonical runtime staging
         run: node --test tests/canonical-runtime-build.test.mjs tests/independent-presentation-preservation.test.mjs
+      - name: Verify approved My Timber loop source and ownership boundaries
+        run: node --test --test-concurrency=1 tests/my-timber-loop-qualification-20261026.test.mjs tests/my-timber-support-qualification-20261027.test.mjs member-experience/tests/support-*.test.mjs member-experience/tests/shed-support-*.test.mjs member-experience/tests/prescriber-note.test.mjs member-experience/tests/shared-catalogue-build.test.mjs member-experience/tests/next-shift-loop.test.mjs member-experience/tests/checkin-followup.test.mjs tests/progress-charts.test.mjs tests/canonical-runtime-build.test.mjs
       - name: Verify every original production source command with two execution slots
         id: scope
         run: |
@@ -851,6 +853,9 @@ jobs:
           path: heading-proof/
       - name: Verify corrected homepage sharing image and exact page preservation live
         run: node release/root-share-preview-live.mjs after
+      - name: Verify approved My Timber safety and privacy delivery
+        run: node scripts/verify-my-timber-safety-live.mjs
+
       - name: Verify exact live app assets and website isolation
         run: node release/app-live-http.mjs
       - name: Verify approved growth copy live on desktop and phone viewport

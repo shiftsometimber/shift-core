@@ -1,0 +1,33 @@
+{
+  "kind": "EXACT_MY_TIMBER_SUPPORT_SERVICE_20261027",
+  "base": "847f0e8853101512f309c2ce329c06bf3b17063d",
+  "payload": "3125d5dae3696cf9d87d0d3b2ee7dc4f1851d366",
+  "registrationSource": "064936d31dc687790063aa06c99569489e1112a3",
+  "payloadBlobs": {
+    "docs/my-timber-v6-core-evidence.json": "b253d3362ffd608365891066f3e1023135af9462",
+    "docs/my-timber-v6-service-handover-20261027.md": "1be6cad0ae0385cb94925a5d31bca0cd825ffe86",
+    "frontend/member/my-timber-preview.html": "f7920d59a64d659fc1fd0a447f827f61b6ace911",
+    "member-experience/support-release-gate.mjs": "bb681840ccd4677f2745349281fe3f64c9c5d6d8",
+    "member-experience/tests/support-health-preservation.test.mjs": "559ebf43ceae5c84da404be69ec402a6962a14ed",
+    "member-experience/tests/support-inherited-runtime.test.mjs": "d3882ea48a98a524b5bc6dad5feaed475ec812ab",
+    "release/member-details-preservation.mjs": "9a0a9c2c88677cfec2c5ec27750a5745b7d330d4",
+    "scripts/activate-my-timber-member-service.py": "4f44f08c7cdad884af26ddd90444108971cfc407",
+    "scripts/build-my-timber-support-release.mjs": "b3a6d614a1ec99e603376c1a3fb9d7ac6c3a08ed",
+    "scripts/deploy-my-timber-support-release.py": "e160417c02426671128c25f17101d3d1e719ea6e",
+    "testosterone-hub-order.mjs": "ae62ccbf87973839b4f7a8792151be8d8e47c56d"
+  },
+  "maintenanceBlobs": {
+    "member-experience/tests/support-final-qualification.test.mjs": "02f4ab77d83c9c128f9a881d3b32a212389d42ff",
+    "release/my-timber-joined-look-scope-20261024.mjs": "1b031d8240273bf2f3d71fe495d882b5e15f348b",
+    "release/my-timber-support-final-contract-20261027.json": "75c36f08d77abf3a01bd348addfe986038f8b0a4",
+    "release/my-timber-support-final-inverses-20261027.json": "d0a8c3caaf09e44d9690909bf6a5daf3ef704a0f",
+    "scripts/register-my-timber-support-final.mjs": "195b49fbcdb7300a5dc79c2286d7d4479a7e93d9"
+  },
+  "authority": {
+    "instruction": "Matt: own and complete My Timber v6, full Shed loop and all remaining checks, retain the current approved release work and remove the obsolete release-manager bottleneck",
+    "existingReleaseAuthority": "Repeated deploy/go-live authority; validate each named check before activating new member features",
+    "scope": "Verified live service, preserved native browser delivery and exact canonical login; finite public-preservation/metadata compatibility repairs; retain all earlier receipts and assertions",
+    "retainedRoutingSource": "afa38107c8d663dc233114982039a8814ca64229",
+    "holds": "Homepage approval, internal-member privacy, Google-download hold, no external communications, no spending; Shed operating approval remains conditional"
+  }
+}

@@ -1,6 +1,7 @@
 // One account-backed, non-clinical action. No AI inference, treatment changes or analytics payloads.
+import {reviewPracticalSupport} from '../support-plan.mjs';
 export const supportNeeds=['auto','food','movement','routine','confidence','clinic-quiet','coming-off','steady'];
-export const feedbackOutcomes=['helped','not-fit','not-tried','skip'];
+export const feedbackOutcomes=['helped','not-fit','not-helped','not-tried','skip'];
 const actions={
  food:{kind:'food',title:'Choose one straightforward meal',detail:'Open Grub, choose one reviewed recipe you can manage and keep it for today. One meal is enough.',href:'/member/grub#today',label:'Choose my meal in Grub'},
  movement:{kind:'movement',title:'Make a small movement plan',detail:'Open your existing Fit plan and choose one manageable activity. Keep your saved limitations in place; this does not change your programme.',href:'/member/fit',label:'Review my activity in Fit'},
@@ -28,8 +29,13 @@ const alternatives={
  steady:{...actions.steady,title:'Find one thing getting in the way',detail:'Look at your saved goal and name one practical obstacle this week. Choose one small adjustment that could make it easier; you do not have to repeat a step that was not useful.'}
 };
 const sameAction=(a,b)=>a?.title===b?.title&&a?.detail===b?.detail&&a?.href===b?.href;
-function adjustedAction(active,kind){
- return [simpler[kind],alternatives[kind],actions[kind]].find(a=>!sameAction(a,active));
+function adjustedAction(active,kind,state,outcome='not-fit'){
+ const rejected=[...(state.shiftHistory||[]),...(active?[active]:[])].filter(a=>(a.reviews||[]).some(r=>['not-fit','not-helped'].includes(r.outcome)));
+ const topic=kind==='clinic-quiet'||kind==='coming-off'?'your next prescriber conversation':'your everyday '+kind+' support';
+ const preparation={...actions[kind],title:'Name the practical obstacle',detail:'For '+topic+', note the one practical obstacle that matters today: time, cost, access or preparation. You choose what to tackle; no treatment change is suggested.'};
+ const contact={...actions[kind],title:'Choose the support that fits now',detail:'For '+topic+', decide whether you want a practical idea, help preparing a question or a quieter day. Choose the kind of support before taking another step.'};
+ const choices=outcome==='not-helped'?[alternatives[kind],preparation,contact,simpler[kind],actions[kind]]:[simpler[kind],alternatives[kind],preparation,contact,actions[kind]];
+ return choices.find(a=>a&&!sameAction(a,active)&&!rejected.some(r=>sameAction(a,r)))||{...actions[kind],title:'Choose another kind of support',detail:'The ideas offered so far did not fit. Choose a different support topic when you are ready. There is no catch-up task.',href:'/member/dashboard#more-for-today',label:'Choose what would help',awaitingChoice:true};
 }
 const fail=(message,status=400)=>{throw Object.assign(Error(message),{status})};
 export function chooseSupport(ratings,requested='auto'){
@@ -53,15 +59,16 @@ export function advanceNextShift(state,input,entry,at){
    const review={operationId:input.operationId,checkinId:entry.id,at,outcome:feedback.outcome};
    active.reviews=[...(active.reviews||[]),review];
    entry.shiftFeedback={shiftId:active.id,outcome:feedback.outcome};
-   if(feedback.outcome==='helped')active.attemptedAt=active.attemptedAt||at;
+   if(['helped','not-helped'].includes(feedback.outcome))active.attemptedAt=active.attemptedAt||at;
   }
   if(!changed&&(!feedback||['not-tried','skip'].includes(feedback.outcome)))return;
   archive(state,active,at,changed?'support-changed':'reviewed');
  }
  const outcome=feedback?.outcome;
- const kind=!changed&&active&&['helped','not-fit'].includes(outcome)?active.kind:chooseSupport(entry.ratings,requested);
- const action=outcome==='not-fit'&&!changed?adjustedAction(active,kind):outcome==='helped'&&!changed?{kind:active.kind,title:active.title,detail:active.detail,href:active.href,label:active.label}:actions[kind];
- state.nextShift={...action,id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:entry.id,status:'planned',reviews:[],reason:changed?'Chosen from the support topic you selected.':outcome==='helped'?'You said this helped. Keep the useful part.':outcome==='not-fit'?(sameAction(action,simpler[kind])?'You said it did not fit. This step is smaller.':'You said it did not fit. Try a different practical approach.'):requested==='auto'?'Chosen from your own check-in, not a medical assessment.':'Chosen from the support topic you selected.'};
+ const kind=!changed&&active&&['helped','not-fit','not-helped'].includes(outcome)?active.kind:chooseSupport(entry.ratings,requested);
+ let action=['not-fit','not-helped'].includes(outcome)&&!changed?adjustedAction(active,kind,state,outcome):outcome==='helped'&&!changed?{kind:active.kind,title:active.title,detail:active.detail,href:active.href,label:active.label}:actions[kind];
+ if((state.shiftHistory||[]).some(a=>sameAction(a,action)&&(a.reviews||[]).some(r=>['not-fit','not-helped'].includes(r.outcome))))action=adjustedAction(active,kind,state,outcome);
+ state.nextShift={...action,id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:entry.id,status:'planned',reviews:[],reason:changed?'Chosen from the support topic you selected.':outcome==='helped'?'You said this helped. Keep the useful part.':outcome==='not-helped'?'You tried it and said it did not help. This is a different practical approach.':outcome==='not-fit'?(sameAction(action,simpler[kind])?'You said it did not fit. This step is smaller.':'You said it did not fit. Try a different practical approach.'):requested==='auto'?'Chosen from your own check-in, not a medical assessment.':'Chosen from the support topic you selected.'};
 }
 export function startNextShift(state,input,at){
  if(!['food','movement'].includes(input.kind))fail('Choose food or movement.');
@@ -75,7 +82,7 @@ export function focusNextShift(state,input,at){
  if(input.approach!==undefined&&input.approach!=='different')fail('Choose an available approach.');
  if(input.approach==='different'){
   const active=state.nextShift;if(!active||active.kind!==kind)fail('Your step changed. Reload before choosing another approach.',409);
-  const action=[alternatives[kind],actions[kind],simpler[kind]].find(a=>!sameAction(a,active));
+  const action=adjustedAction(active,kind,state,'not-helped');
   archive(state,active,at,'member-chose-alternative');
   state.supportNeed=kind;
   state.nextShift={...action,id:input.operationId+'-next',goalId:state.goalId,goal:state.goal,createdAt:at,checkinId:null,status:'planned',reviews:[],reason:'You asked for a different practical approach. Your earlier step is kept in your history.'};
@@ -86,6 +93,8 @@ export function focusNextShift(state,input,at){
 export function reviewNextShift(state,input,at){
  const active=state.nextShift;
  if(!active||active.id!==input.shiftId||!feedbackOutcomes.includes(input.outcome))fail('Your next Shift changed. Reload before answering.',409);
+ if(active.awaitingChoice)fail('Choose another support topic before reviewing a new step.',409);
+ if(reviewPracticalSupport(state,input,at))return;
  const entry={id:null,ratings:state.entries.findLast(e=>e.goalId===state.goalId)?.ratings||{}};
  advanceNextShift(state,{operationId:input.operationId,shiftFeedback:{shiftId:input.shiftId,outcome:input.outcome}},entry,at);
 }
@@ -99,7 +108,7 @@ export function markNextShift(state,input,at){
 export function nextShiftCard(progress){
  const a=progress?.nextShift;
  if(!a||a.goalId!==progress.goalId)return null;
- return {title:a.title,detail:a.detail,href:a.kind==='clinic-quiet'?actions['clinic-quiet'].href:a.href,label:a.kind==='clinic-quiet'?actions['clinic-quiet'].label:a.label,loopId:a.id,loopStatus:a.status,reason:a.reason,goal:a.goal};
+ return {practical:a.practical||null,title:a.title,detail:a.detail,href:a.kind==='clinic-quiet'?actions['clinic-quiet'].href:a.href,label:a.kind==='clinic-quiet'?actions['clinic-quiet'].label:a.label,loopId:a.awaitingChoice?null:a.id,loopStatus:a.status,reason:a.reason,goal:a.goal,awaitingChoice:!!a.awaitingChoice,evidence:{helpfulAnswers:[...(progress.shiftHistory||[]),a].filter(s=>s.goalId===progress.goalId).flatMap(s=>s.reviews||[]).filter(r=>r.outcome==='helped').length}};
 }
 export function lifeBackUsage(progress){
  const entries=progress?.entries||[],shifts=[...(progress?.shiftHistory||[]),...(progress?.nextShift?[progress.nextShift]:[])];

@@ -1,0 +1,26 @@
+import fs from 'node:fs';import path from 'node:path';import {createRequire} from 'node:module';
+const require=createRequire('/Users/shiftsometimberltd/SST/shift-rollout-grub-safety-20261006/package.json'),{chromium,webkit}=require('playwright');
+const root=path.resolve(import.meta.dirname,'../..','v6-live-acceptance'),s=JSON.parse(fs.readFileSync(path.join(root,'synthetic-sessions.json'),'utf8')),base='https://shiftsometimber.co.uk',cases=[];
+const check=(v,m)=>{if(!v)throw Error(m);};const receipt=()=>fs.writeFileSync(path.join(root,'safety-widths-receipt.json'),JSON.stringify({at:new Date().toISOString(),syntheticOnly:true,physicalPhoneTested:false,cases},null,2)+'\n');
+for(const [engine,type] of [['chromium',chromium],['webkit',webkit]]){
+ const b=await type.launch({headless:true}),c=await b.newContext({baseURL:base,viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});await c.addCookies([{name:'sst_session',value:s.members[0].token,url:base,httpOnly:true,secure:true,sameSite:'Lax'}]);await c.route('**/v1/events',r=>r.abort());const p=await c.newPage();p.setDefaultTimeout(25000);
+ const record=async(id,details={})=>{const screenshot=path.join(root,'screens',engine+'-safety-'+id.replaceAll(':','-')+'.png');await p.screenshot({path:screenshot,fullPage:true});cases.push({engine,id,status:'PASS',...details,screenshot});receipt();console.log(JSON.stringify({engine,id,status:'PASS',...details}));};
+ try{
+  const profile=await(await c.request.get('/v1/profile')).json();check(profile.profile.source===s.tag,'Reserved account');
+  await p.goto('/member/dashboard?timber=support#today');await p.locator('#mtUtility a[href="tel:999"]').waitFor();
+  const necessary=p.getByRole('button',{name:'Necessary only',exact:true});if(await necessary.isVisible())await necessary.click();
+  const urgent=p.locator('#mtUtility');for(const number of ['999','111','116123'])check(await urgent.locator('a[href="tel:'+number+'"]').isVisible(),'Urgent link not visible '+number);
+  check(await p.evaluate(()=>{const root=document.querySelector('#mtUtility'),a=root.querySelector('a[href="tel:999"]'),ask=root.querySelector('a[href="/member/ask-timber"]');return !!(a.compareDocumentPosition(ask)&Node.DOCUMENT_POSITION_FOLLOWING);}),'Urgent route below Ask Timber');await record('C8:support-urgent-first');
+  await p.getByText('Side effects or feeling unwell',{exact:true}).click();for(const number of ['999','111','116123'])await p.locator('#mtUtility a[href="tel:'+number+'"]').waitFor();await record('C8:side-effects-urgent');
+  await p.goto('/member/life-back/support#contact');await p.locator('[data-contact-form]').waitFor();const normal=await p.locator('#mtContactContent').innerText();check(normal.includes('Matt')&&normal.includes('Within one working day')&&!/24\/7|instant/i.test(normal),'Normal availability incorrect');await record('H3:normal');
+  await c.setExtraHTTPHeaders({'X-My-Timber-Acceptance-Scenario':'away'});await p.reload();await p.locator('[data-contact-form]').waitFor();const away=await p.locator('#mtContactContent').innerText();check(/Matt[’']s away until/.test(away)&&away.includes('2030')&&away.includes('Linda'),'Approved away state or cover absent');check(!/Within one working day|\[date\]|24\/7|instant/i.test(away),'Away state kept false promise');await record('H3:away',{fictionalAcceptanceDate:'2030-01-02',realAwayActivated:false});await c.setExtraHTTPHeaders({});
+  for(const [tab,url,selector] of [['support-plan','/member/life-back/support','#supportPlanMain h1'],['today','/member/dashboard#today','#mtSupportPlanToday'],['journey','/member/dashboard#visualise','#panel-visualise'],['grub','/member/grub','main'],['fit','/member/fit','main'],['support','/member/dashboard?timber=support#today','#mtUtility h1'],['stuff','/member/dashboard?timber=stuff#today','#mtUtility h1'],['shed','/member/life-back/shed','#shedJoin,#shedShare']]){
+   try{await p.goto(url,{waitUntil:'domcontentloaded'});await p.locator(tab==='support'||tab==='stuff'?'#mtUtility':selector).first().waitFor({state:tab==='shed'?'attached':'visible'});await p.waitForFunction(()=>document.body.dataset.memberSession==='ready');if(tab!=='shed')await p.getByRole('link',{name:'Today',exact:true}).last().waitFor();const body=await p.locator('body').innerText();check(body.length>150,'Page content not loaded');
+    if(tab==='support-plan'){await p.locator('#mtSupportMemory > summary').click();}
+    for(const width of [320,360,390,430]){await p.setViewportSize({width,height:844});const over=await p.evaluate(()=>({document:document.documentElement.scrollWidth,body:document.body.scrollWidth,viewport:innerWidth}));check(over.document<=width+1&&over.body<=width+1,tab+' overflow '+JSON.stringify(over));await record('width:'+tab+':'+width,{width,contentLoaded:true,overflow:over});}
+   }catch(e){cases.push({engine,id:'width:'+tab,status:'FAIL',error:e.message,body:(await p.locator('body').innerText()).slice(0,1200)});receipt();console.log(JSON.stringify(cases.at(-1)));}
+  }
+ }catch(e){cases.push({engine,status:'FAIL',error:e.message,body:(await p.locator('body').innerText()).slice(0,2000)});receipt();console.log(JSON.stringify(cases.at(-1)));}
+ finally{await c.close();await b.close();}
+}
+process.exitCode=cases.some(x=>x.status==='FAIL')?1:0;

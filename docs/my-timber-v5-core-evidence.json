@@ -1,0 +1,69 @@
+{
+  "at": "2026-10-26T19:16:00.719784+00:00",
+  "state": "CORE_SOURCE_PREPARED_NOT_RELEASE_QUALIFIED",
+  "authority": "Matt supplied v5 as current work order; subsequent questions request nuts-and-bolts scope. Deployment remains paused.",
+  "branch": "feat/my-timber-support-experience-20261026",
+  "base": "6b08f22f9e00c51304ca230498d0a7569b4938ec",
+  "sourceValidation": {
+    "focusedAndAffectedTestsPassed": 76,
+    "newSupportScenariosWithinThatCount": 9,
+    "finalClientRefinementSourceAndEntryTestsPassed": 18,
+    "emittedRuntimeStringsParse": true,
+    "finalWorkerDryBuild": true,
+    "browserVisualAcceptance": false,
+    "newDeployedApiAcceptance": false
+  },
+  "releaseChecks": {
+    "C1": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "General try route and instructions implemented; under-one-minute real-browser and signup-to-return acceptance not performed."
+    },
+    "C2": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "All three server adaptations pass; actual before/after phone screenshots not obtained."
+    },
+    "C3": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Actual dated source, retirement and corrections pass model/API checks; new rendered flow unverified."
+    },
+    "C4": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Actual route functions with isolated synthetic databases pass persistence, consent and expected-account guards; not new deployed/UI proof."
+    },
+    "C5": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Memory edit/delete and fresh API read pass. Related Shed-post removal is not implemented in phase1."
+    },
+    "C6": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Editable own note and deliberate local download prepared. Actual browser download/copy unverified."
+    },
+    "C7": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Immediate inline rough-day action prepared. Actual browser one-tap check outstanding."
+    },
+    "C8": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Existing live urgent-help receipts preserved. New candidate has no new actual phone acceptance."
+    },
+    "C9": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Confirmed stages and selected in-app review cadence persist in API tests. New interface and real continuation route not qualified."
+    },
+    "C10": {
+      "status": "BLOCKED",
+      "evidenceAndLimit": "Member-confirmed finish, own words, keep-plan, helpful routines and return implemented/tested. Actual interface acceptance outstanding."
+    }
+  },
+  "largestRemainingGap": "A complete member-visible support relationship is not qualified. Prepared help uses the explicitly selected difficulty and general examples; canonical saved Grub/Fit preference matching, real UI journey and service coverage must be completed before stronger personalised-support claims.",
+  "phase2ShedStarted": false,
+  "newProductionDeployments": 0,
+  "communicationsSent": 0,
+  "humanAvailabilityCommitted": false,
+  "homepageChanged": false,
+  "nativeAppsChanged": false,
+  "googleDownloadHold": "preserved",
+  "preservedInitialTestFailure": "Initial run lacked an already installed dependency in the isolated checkout. Receipt retained; reuse of identical-lock installed dependencies resolved it without changing tests.",
+  "currentScopeSupersededBy": "my-timber-v6-core-evidence.json",
+  "historicalEvidencePreserved": true
+}

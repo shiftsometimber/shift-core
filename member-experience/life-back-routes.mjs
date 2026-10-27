@@ -1,8 +1,13 @@
+import {connectPreparedOption} from './support-prepared-options.mjs';
+import {attachShedEvidence} from './shed-support-loop.mjs';
+import {memberSupportContactRoutes} from './member-support-contact.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
 import {score,areas,hasPersonalGoal} from './life-back/model.mjs';
 import {advanceNextShift,focusNextShift,markNextShift,startNextShift,reviewNextShift,resetNextShift,lifeBackUsage} from './life-back/next-shift.mjs';
 import {connectedDay} from './journey-context.mjs';
+import {applySupportOperation,supportSummary} from './support-plan.mjs';
+const supportView=progress=>({...progress,supportSummary:supportSummary(progress)});
 const headers={'Cache-Control':'no-store','Vary':'Cookie','X-Content-Type-Options':'nosniff'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
 const parse=v=>{try{return JSON.parse(v||'{}')}catch{return {}}};
@@ -15,18 +20,26 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  if(input.action==='goal'){
   if(input.revision!==next.revision)fail('Your goal changed in another tab. Reload before changing it.',409);
   const goal=String(input.goal||'').trim();if(!hasPersonalGoal(goal)||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
-  if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId}
+  if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId;next.goalChangedAt=at}
  }else if(input.action==='focus'){
   if(input.revision!==next.revision)fail('Your goal or step changed in another tab. Reload before saving.',409);
   if(input.goal!==undefined){
    const goal=String(input.goal).trim();if(!hasPersonalGoal(goal)||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
-   if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId}
+   if(goal!==next.goal){resetNextShift(next,at);next.goal=goal;next.goalId=input.operationId;next.goalChangedAt=at}
   }
   focusNextShift(next,input,at);
  }else if(input.action==='start-shift'){
   startNextShift(next,input,at);
  }else if(input.action==='shift-feedback'){
   reviewNextShift(next,input,at);
+ }else if(input.action==='entry-note'){
+  if(input.revision!==next.revision)fail('Your history changed. Reload before correcting your words.',409);
+  const entry=next.entries.find(e=>e.id===input.entryId);
+  if(!entry)fail('This saved entry is no longer available.',404);
+  if(typeof input.note!=='string'||input.note.trim().length>180)fail('Keep your words under 180 characters.');
+  entry.win=input.note.trim();entry.correctedAt=at;
+ }else if(applySupportOperation(next,input,at)){
+  // Scoped member-owned support operations use the existing API guards.
  }else if(input.action==='shift-status'){
   markNextShift(next,input,at);
  }else if(input.action==='checkin'){
@@ -43,24 +56,33 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  next.revision++;next.operations=[...next.operations,input.operationId].slice(-100);return next;
 }
 export async function lifeBackRoutes(request,env){
- if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname!=='/v1/life-back')return null;
+ if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true')return null;
+ if(new URL(request.url).pathname==='/v1/member-support')return memberSupportContactRoutes(request,env);
+ if(new URL(request.url).pathname!=='/v1/life-back')return null;
  if(!['GET','POST'].includes(request.method))return json({error:'Method not allowed'},405);
- if(request.method==='POST'&&request.headers.get('Origin')!==new URL(request.url).origin)return json({error:'Use this page to save your check-in.'},403);
+ if(request.method==='POST'&&![new URL(request.url).origin,'https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(request.headers.get('Origin')))return json({error:'Use this page to save your check-in.'},403);
  const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
  try{
   const read=async()=>parse((await env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(auth.userId).first())?.preferences);
   let prefs=await read();
-  if(request.method==='GET')return json({progress:prefs.lifeBack?.progress||emptyLifeBack(),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(prefs.lifeBack?.progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+  if(request.method==='GET'){
+   const progress=prefs.lifeBack?.progress||emptyLifeBack();await attachShedEvidence(env.DB,prefs,progress,auth.userId,env).catch(()=>{});
+   return json({accountId:auth.userId,progress:supportView(progress),legacyEntries:prefs.lifeBack?.entries||[],usage:lifeBackUsage(progress),journey:prefs.myJourney||{},day:await connectedDay(env.DB,auth.userId,prefs)});
+  }
   const raw=await request.text();if(raw.length>8000)return json({error:'Check-in is too large.'},413);
   let input;try{input=JSON.parse(raw)}catch{return json({error:'Invalid check-in.'},400)}
   if(!input||typeof input!=='object'||Array.isArray(input))return json({error:'Invalid check-in.'},400);
+  if(input.expectedAccount!==undefined&&String(input.expectedAccount)!==String(auth.userId))return json({error:'Your signed-in account changed. Reload before saving.'},409);
   if(!await trackingConsent(env.DB,auth.userId))return json({error:'Optional health tracking is off. Review your choice before saving.',code:'health_consent_required'},409);
   await env.DB.prepare('INSERT OR IGNORE INTO member_state(user_id) VALUES(?)').bind(auth.userId).run();
   for(let attempt=0;attempt<4;attempt++){
    const old=prefs.lifeBack?.progress||emptyLifeBack(),next=applyLifeBackOperation(old,input);
-   if(next.revision===old.revision)return json({ok:true,progress:old});
+   if(next.revision===old.revision)return json({ok:true,accountId:auth.userId,progress:supportView(old)});
+   await connectPreparedOption(env.DB,prefs,next,old,{...input,authenticatedUserId:auth.userId});
+   // Community availability cannot block a member's private everyday support.
+   await attachShedEvidence(env.DB,prefs,next,auth.userId,env).catch(()=>{});
    const result=await env.DB.prepare("UPDATE member_state SET preferences=json_set(CASE WHEN json_type(preferences,'$.lifeBack')='object' THEN preferences ELSE json_set(preferences,'$.lifeBack',json('{}')) END,'$.lifeBack.progress',json(?)),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1").bind(JSON.stringify(next),new Date().toISOString(),auth.userId,old.revision,auth.userId).run();
-   if(result.meta.changes===1)return json({ok:true,progress:next},201);
+   if(result.meta.changes===1)return json({ok:true,accountId:auth.userId,progress:supportView(next)},201);
    if(!await trackingConsent(env.DB,auth.userId))return json({error:'Health tracking was switched off before this save.',code:'health_consent_required'},409);
    prefs=await read();
   }
