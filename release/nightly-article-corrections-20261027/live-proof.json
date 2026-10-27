@@ -1,0 +1,30 @@
+{
+  "version": "nightly-article-correction-20261027-v1",
+  "verifiedAt": "2026-10-27T23:55:44Z",
+  "workflowRun": 40605366408,
+  "article": {
+    "id": 44,
+    "slug": "what-to-eat-on-mounjaro",
+    "url": "https://shiftsometimber.co.uk/articles/what-to-eat-on-mounjaro",
+    "source": "babylovegrowth",
+    "publishAtPreserved": "2026-10-27T04:00:09.979Z",
+    "beforeBodySha256": "ab0c88fc1b1467d5fff08a8510a098e0c67738a4451557ae6cd75b5426e67b1e",
+    "afterBodySha256": "2a43b64d5f75a2d497e232e23a7a267f5c6d03540c2088947bb6ba3f945a9b20"
+  },
+  "change": "Removed wording that could imply active prescribing partners and stated that SHIFT does not currently provide or book prescribing.",
+  "liveChecks": {
+    "http200": true,
+    "correctedTextPresent": true,
+    "oldPartnerWordingAbsent": true,
+    "datePublishedPreserved": true,
+    "sourceHeader": "babylovegrowth",
+    "cspPresent": true,
+    "hstsPresent": true,
+    "xFrameOptionsPresent": true
+  },
+  "clinicalSafetyWordingChanged": false,
+  "remainingGates": [
+    "Qualified clinical review of proposed urgent pancreatitis wording",
+    "Editorial ownership decision and qualified review before consolidating or refocusing testosterone-blood-test-timing"
+  ]
+}
