@@ -50,6 +50,7 @@ export function originalMyShiftMaintenance(path,value){
  return value;
 }
 export function originalMyShiftEntry(value){
+ value=memberRecordingComparisonValue('member-experience/entry.mjs',value);
  assert.equal(oid(value),MY_SHIFT_BLOBS['member-experience/entry.mjs'],'Exact approved My Shift route source required');
  value=once(value,"import {myShiftHTML,myShiftStyles,myShiftRuntime} from './my-shift.mjs';\n");
  value=once(value,"  if(['/member/my-shift','/member/my-shift.html','/my-shift'].includes(path))return new Response(request.method==='HEAD'?null:myShiftHTML(env),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});\n  const shiftAsset={'/assets/member-experience/my-shift.mjs':[myShiftRuntime,'text/javascript'],'/assets/member-experience/my-shift.css':[myShiftStyles,'text/css']}[path];\n  if(shiftAsset)return new Response(request.method==='HEAD'?null:shiftAsset[0],{headers:{...privateHeaders,'Content-Type':shiftAsset[1]+'; charset=utf-8','Vary':'Cookie'}});\n");
