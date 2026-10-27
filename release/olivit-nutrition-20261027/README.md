@@ -4,22 +4,14 @@ Matt approved the fuller-dad family park hero, image-led Health hub, nutrition s
 
 ## Current checkpoint
 
-- Latest instruction: all seven sort choices selectable now. Price/popularity selections remain selected and use a clearly explained A–Z fallback while data is pending. Prepared and source-tested (10 pass); deployment verification pending. This supersedes the previous disabled-option behaviour.
-
-- Latest adjustment: alphabetical default range; A–Z, Z–A, ascending/descending price, newest and most-popular choices. Price and popularity options are unavailable until verified public prices and real sales data exist. Newest uses creation date, not edit date. **Deployed and verified** from `1608d3e1ef0f533a27abc88561680e3bc937d955` in [release 40591338188](https://github.com/shiftsometimber/shift-core/actions/runs/40591338188). Ten source tests and compiled/live Chrome checks at 1440, 736, 390 and 320 px pass with zero page errors. All seven menu choices, default A–Z and applied Z–A ordering are browser-verified; unavailable price/popularity choices are explicitly disabled.
-- Existing-Worker updates now use version upload before browser checks and an explicit guarded promotion afterwards. Preparation verifies that the active deployment does not move; unchanged route owners are not rewritten.
-
-- Latest requested adjustment (27 October): the four feature cards read Weight management → Bloods → Testosterone → Supplements & Nutrition. **Deployed and verified** from `905bae25f7d3afce3d676f7e6a1445e77552273b` in [release 40588701303](https://github.com/shiftsometimber/shift-core/actions/runs/40588701303). Nine focused tests and compiled/live Chrome checks at all four widths pass, including the exact four-card order. Card-specific typography, pictures and colours are retained. No new routes.
-
-- Approved visual source: latest family-park mock-up, including fuller dad; not the earlier plain nutrition section.
-- Read-only provider preflight: passed (run 40580631795). 889 routes before this release.
-- Implementation: `health-nutrition/`; isolated presentation Worker delegates unchanged Health routes to the accepted blog publisher and preserves the accepted HQ communications document before adding its catalogue extension.
-- Existing Core, clinical/device pages, My Timber presentation and HQ communications Worker bytes remain untouched.
-- Nine focused tests pass: real SQLite saves and history, role and origin boundaries, stale-write rejection, public/private data separation, server filtering and delegation.
-- **Deployed and verified** from `bc3933f60819b0efbea47a37617006d9aacbd57f` in [successful release 40585248724](https://github.com/shiftsometimber/shift-core/actions/runs/40585248724). Both live pages, filters, images, product details and HQ navigation pass Chrome checks at 1440, 736, 390 and 320 px with zero page errors. A separate Mac Chrome live check also passes.
-- Exact provider bytes, all 11 owned routes, eight saved HQ drafts and all four retained service deployments verified. Final zone route count: 890 (one addition).
-- Public pages: https://shiftsometimber.co.uk/shift-health and https://shiftsometimber.co.uk/shift-health/supplements-nutrition. HQ: Orders & products → Supplements & Nutrition.
-- The one-time obsolete pretraffic-check recovery job has been removed from this closeout source; the production queue and bounded browser-step timeouts remain. Runtime code matches the verified deployment.
+- **Deployed and verified:** `1d36d19664995f757a8bea6afd7796885a719bbf`, [release 40592039823](https://github.com/shiftsometimber/shift-core/actions/runs/40592039823).
+- All seven sort choices are selectable. Our range defaults to A–Z; A–Z, Z–A and creation-date ordering work. Price and popularity selections persist and show an explained A–Z fallback until confirmed public prices or real sales figures exist. No invented prices or popularity metrics.
+- Ten focused source tests pass. Compiled and live Chrome checks pass at 1440, 736, 390 and 320 px with zero page errors. Mobile checks apply both price choices and Most popular, verify the selected option persists, and confirm the honest fallback.
+- Feature cards remain Weight management → Bloods → Testosterone → Supplements & Nutrition. Approved pictures, colours, individual typography and the fuller-dad family park hero remain intact.
+- Eight HQ drafts, exact provider bytes and all 11 owned routes verified. Zone route count is 890; these follow-up releases add no routes. Core, the accepted publisher, My Timber and underlying HQ communications deployments are retained.
+- Existing-Worker updates stage a version before browser checks, verify live deployment identity is unchanged during preparation, and promote the exact verified version afterwards. No-op route assignments are skipped.
+- Runtime source is `health-nutrition/`. Public pages: https://shiftsometimber.co.uk/shift-health and https://shiftsometimber.co.uk/shift-health/supplements-nutrition. HQ: Orders & products → Supplements & Nutrition.
+- Earlier successful releases: initial pages/HQ 40585248724; feature reorder 40588701303; expanded sorting 40591338188. Current behaviour supersedes the disabled price/popularity choices in the latter.
 
 ## Catalogue truth
 
