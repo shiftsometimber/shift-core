@@ -1,6 +1,10 @@
 # SHIFT Health testing and wellbeing — 28 October 2026
 
-The selected range contains thirteen tests, three supplements and four proposed combinations. The latest visual instruction is to remove the white photographic backgrounds and place the original product boxes and tests directly on SHIFT cream product panels, with ash green instruction panels and black page styling. Use “our testing partner” in customer and HQ copy. Source identity remains in private database provenance and the original product packaging photographs.
+The selected range contains thirteen tests, three supplements and four proposed combinations. The current design uses proportionate cream product panels, ash green instruction panels and original product-specific explanations across the six agreed questions. Supplier wordmarks are removed from the seventeen revised public photos. Source identity and the unchanged original photographs remain in private provenance. Customer and HQ copy uses “our testing partner”.
+
+## Current release
+
+The public range and integrated HQ controls are live. The current version is `109fc39a-57f4-4662-85b8-65180f6ba30d` from immutable source `c4031b76bd04cf4ea2eb9d5e5bd8d6afd86a5e00`. All twenty public product pages, factual schema, the smaller Health grid card and edited photography passed live checks. Google accepted the twenty-one-URL testing sitemap; indexing is not claimed. The corrected Send now test reached Gmail with exact matching CSV bytes and passing SPF/DKIM/DMARC. The scheduled test also reached Gmail with HQ closed and exact matching attachment bytes; it was accepted at 23:53:32 for the 23:52 request during initial activation. Both statuses and provider references persisted after a fresh HQ reload. Real partner delivery remains gated on the template, codes and destination. Purchasing remains zero stock, TBC and disabled. The sections below retain historical evidence; `fulfilment-production-receipt.json` records current acceptance.
 
 ## Completed
 
@@ -130,3 +134,14 @@ Fifty-nine focused checks pass. Desktop review confirmed the lab and home-test p
 The immutable runtime source bd579d914173efa216de8486c608f900789afbd4 is live as version 66758ec1-3f3d-414a-bee0-20b1ee63f761, deployment aa27ef55-10ed-4eee-a696-6d6c91608130. The bounded publication helper at 6365c04dcc65e832b3a7ab6932fd5f1fcb00ee00 completed exit 0. All twenty product pages, seventeen edited photos, the twenty-one-URL sitemap, authentication/CORS boundaries, retained bindings/routes and five preserved page main-content hashes passed. Google accepted the scoped testing sitemap at 23:42:57 UK time; fetch/indexing is pending, not claimed complete.
 
 The first authorised synthetic Send now test was accepted by the service and received in the Gmail inbox with SPF, DKIM and DMARC passing. Exact attachment verification caught a material issue: the documented base64 string attachment was delivered as encoded text. The receipt records the failing hash honestly. The transport is being corrected to explicit binary bytes, with fourteen targeted tests passing including BOM, Unicode, quoting and CRLF preservation. No real customer order was created, paid, exported or emailed. The next prepared synthetic batch is not scheduled or sent yet.
+
+
+### Final delivery acceptance completed — 28 October 2026
+
+The binary attachment patch is deployed and verified: source c4031b76bd04cf4ea2eb9d5e5bd8d6afd86a5e00, version 109fc39a-57f4-4662-85b8-65180f6ba30d, deployment ed1efdb1-d507-4f15-b7d8-edff90cba4de. Only the transport module changed; the other twenty-seven runtime modules, seven public main-content hashes, bindings and schedule stayed unchanged. The bounded release exited 0.
+
+Corrected immediate batch TEST-20261028-d4236f97 and scheduled batch TEST-20261028-9ab1493f both reached the verified Gmail inbox. Each received CSV is 414 bytes and has SHA-256 1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51, exactly matching HQ's reviewed attachment. Both MIME parses had zero defects and SPF/DKIM/DMARC passed. The scheduled test ran with the HQ page closed; it was accepted 92.764 seconds after the chosen time during the first scheduler activation window. This timing is recorded, not represented as an exact-minute guarantee.
+
+The final D1 readback at 23:57:47 UK time confirms one attempt per synthetic batch, submitted/sent statuses, zero outstanding mail, zero synthetic canonical customer orders and all twenty products still draft/sale-disabled. A fresh authenticated HQ reload shows all three labelled test-history rows with persisted provider references. The first test's encoding failure remains in the receipt; it was not silently overwritten or resent under the same batch ID. No real partner mail, payment, dispatch, clinical result or acknowledgement was created. Final partner template, product codes and destination are the remaining launch dependencies. No real-order test is represented as completed.
+
+The local preview is stopped. The portable review is updated in place to version 6. Public source work, live release evidence and delivery receipts are saved on the existing feature branch; the retired shared handover is not recreated.

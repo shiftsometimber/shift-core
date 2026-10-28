@@ -1,136 +1,146 @@
 {
   "stage": "verified",
-  "sourceCommit": "cc2855e88eaf29b64e9887a33b5d315f465d6223",
-  "deploymentId": "4697f5c6-7061-423e-9f96-a1259a4d04ca",
-  "versionId": "dcbf654a-81db-42ad-a550-b3e3e9dff8ca",
-  "hqUrl": "https://hq.shiftsometimber.co.uk/",
-  "hqHash": "testing-orders",
-  "authChecks": [
-    {
-      "endpoint": "/",
-      "unauthenticatedStatus": 401
-    },
-    {
-      "endpoint": "/queue",
-      "unauthenticatedStatus": 401
-    },
-    {
-      "endpoint": "/batches",
-      "unauthenticatedStatus": 401
-    }
-  ],
-  "crossOriginWriteStatus": 403,
-  "clientSha256": "eb8be5695536a50ad844156e84fbff35ec9d31016bbbb9a10f0bf72e3e6aa83b",
-  "customerPages": [
-    {
-      "path": "/",
-      "status": 200,
-      "mainUnchanged": true
-    },
-    {
-      "path": "/shift-health",
-      "status": 200,
-      "mainUnchanged": true
-    },
-    {
-      "path": "/shift-health/supplements-nutrition",
-      "status": 200,
-      "mainUnchanged": true
-    },
-    {
-      "path": "/shift-health/blood-tests",
-      "status": 200,
-      "mainUnchanged": true
-    },
-    {
-      "path": "/my-timber",
-      "status": 200,
-      "mainUnchanged": true
-    },
-    {
-      "path": "/shift-health/testing",
-      "status": 200,
-      "mainUnchanged": true
-    },
-    {
-      "path": "/shift-health/testing/prostate-health",
-      "status": 200,
-      "mainUnchanged": true
-    }
-  ],
-  "bindingsUnchanged": true,
-  "oldRoutesUnchanged": true,
-  "routeCount": 894,
-  "databaseCounts": {
-    "batches": 0,
-    "tests": 13,
-    "extras": 7
-  },
-  "emailSendingEnabled": false,
+  "sourceCommit": "c4031b76bd04cf4ea2eb9d5e5bd8d6afd86a5e00",
+  "deploymentId": "ed1efdb1-d507-4f15-b7d8-edff90cba4de",
+  "versionId": "109fc39a-57f4-4662-85b8-65180f6ba30d",
+  "emailSendingEnabled": true,
   "purchasingEnabled": false,
-  "checkedAt": "2026-10-28T21:38:12.613286+00:00",
-  "testsPassed": 43,
-  "syntheticBrowser": {
-    "csvBatchCreated": true,
-    "csvDownloaded": true,
-    "csvSha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51",
-    "emailDraftReviewed": true,
-    "configRevisionsSaved": true,
-    "historyReviewed": true,
-    "mobileViewportWidth": 375,
-    "mobileScrollWidth": 375
-  },
-  "mimeCheck": {
-    "independentPythonParser": true,
-    "defects": 0,
-    "exactCsvAttachment": true,
-    "testRecipient": "shiftsometimber@gmail.com",
-    "draftOnly": true
-  },
-  "emailsSent": 0,
-  "liveSignedInBrowserCheck": {
-    "attempted": true,
-    "secureCredentialEntry": true,
-    "browserAuthResult": "submitted",
-    "visibleResult": "Matt O'Brien \u00b7 owner; Shift HQ is securely signed in to live Shift Core.",
-    "verifiedSignedIn": true,
-    "retried": true,
-    "retryExplicitlyRequestedByUser": true,
-    "gateBypassed": false,
-    "queueLoaded": true,
-    "setupSaved": true,
-    "setupRevision": 2,
-    "setupValuesUnchanged": true,
-    "partnerTemplateConfirmed": false,
-    "deliveryConfirmed": false,
-    "syntheticBatchId": "TEST-20261028-05622d18",
-    "syntheticRows": 2,
-    "syntheticCustomerOrderCreated": false,
-    "paymentCreated": false,
-    "emailDraftDownloaded": true,
-    "emailDraftXUnsent": "1",
-    "emailDraftRecipient": "shiftsometimber@gmail.com",
-    "mimeDefects": 0,
-    "csvAttachmentCount": 1,
-    "csvSha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51",
-    "historyPersistedAfterReload": true,
-    "submissionRecorded": false,
+  "partnerSetupConfirmed": false,
+  "hqUrl": "https://hq.shiftsometimber.co.uk/#testing-orders",
+  "priorPreparationRelease": {
+    "stage": "verified",
+    "sourceCommit": "cc2855e88eaf29b64e9887a33b5d315f465d6223",
+    "deploymentId": "4697f5c6-7061-423e-9f96-a1259a4d04ca",
+    "versionId": "dcbf654a-81db-42ad-a550-b3e3e9dff8ca",
+    "hqUrl": "https://hq.shiftsometimber.co.uk/",
+    "hqHash": "testing-orders",
+    "authChecks": [
+      {
+        "endpoint": "/",
+        "unauthenticatedStatus": 401
+      },
+      {
+        "endpoint": "/queue",
+        "unauthenticatedStatus": 401
+      },
+      {
+        "endpoint": "/batches",
+        "unauthenticatedStatus": 401
+      }
+    ],
+    "crossOriginWriteStatus": 403,
+    "clientSha256": "eb8be5695536a50ad844156e84fbff35ec9d31016bbbb9a10f0bf72e3e6aa83b",
+    "customerPages": [
+      {
+        "path": "/",
+        "status": 200,
+        "mainUnchanged": true
+      },
+      {
+        "path": "/shift-health",
+        "status": 200,
+        "mainUnchanged": true
+      },
+      {
+        "path": "/shift-health/supplements-nutrition",
+        "status": 200,
+        "mainUnchanged": true
+      },
+      {
+        "path": "/shift-health/blood-tests",
+        "status": 200,
+        "mainUnchanged": true
+      },
+      {
+        "path": "/my-timber",
+        "status": 200,
+        "mainUnchanged": true
+      },
+      {
+        "path": "/shift-health/testing",
+        "status": 200,
+        "mainUnchanged": true
+      },
+      {
+        "path": "/shift-health/testing/prostate-health",
+        "status": 200,
+        "mainUnchanged": true
+      }
+    ],
+    "bindingsUnchanged": true,
+    "oldRoutesUnchanged": true,
+    "routeCount": 894,
+    "databaseCounts": {
+      "batches": 0,
+      "tests": 13,
+      "extras": 7
+    },
+    "emailSendingEnabled": false,
+    "purchasingEnabled": false,
+    "checkedAt": "2026-10-28T21:38:12.613286+00:00",
+    "testsPassed": 43,
+    "syntheticBrowser": {
+      "csvBatchCreated": true,
+      "csvDownloaded": true,
+      "csvSha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51",
+      "emailDraftReviewed": true,
+      "configRevisionsSaved": true,
+      "historyReviewed": true,
+      "mobileViewportWidth": 375,
+      "mobileScrollWidth": 375
+    },
+    "mimeCheck": {
+      "independentPythonParser": true,
+      "defects": 0,
+      "exactCsvAttachment": true,
+      "testRecipient": "shiftsometimber@gmail.com",
+      "draftOnly": true
+    },
     "emailsSent": 0,
-    "proof": "shift-hq-live-history-1793226363195.jpg",
-    "recordedAt": "2026-10-28T22:26:23.957285+00:00"
+    "liveSignedInBrowserCheck": {
+      "attempted": true,
+      "secureCredentialEntry": true,
+      "browserAuthResult": "submitted",
+      "visibleResult": "Matt O'Brien · owner; Shift HQ is securely signed in to live Shift Core.",
+      "verifiedSignedIn": true,
+      "retried": true,
+      "retryExplicitlyRequestedByUser": true,
+      "gateBypassed": false,
+      "queueLoaded": true,
+      "setupSaved": true,
+      "setupRevision": 2,
+      "setupValuesUnchanged": true,
+      "partnerTemplateConfirmed": false,
+      "deliveryConfirmed": false,
+      "syntheticBatchId": "TEST-20261028-05622d18",
+      "syntheticRows": 2,
+      "syntheticCustomerOrderCreated": false,
+      "paymentCreated": false,
+      "emailDraftDownloaded": true,
+      "emailDraftXUnsent": "1",
+      "emailDraftRecipient": "shiftsometimber@gmail.com",
+      "mimeDefects": 0,
+      "csvAttachmentCount": 1,
+      "csvSha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51",
+      "historyPersistedAfterReload": true,
+      "submissionRecorded": false,
+      "emailsSent": 0,
+      "proof": "shift-hq-live-history-1793226363195.jpg",
+      "recordedAt": "2026-10-28T22:26:23.957285+00:00"
+    },
+    "priorSignedInBrowserAttempt": {
+      "attempted": true,
+      "secureCredentialEntry": true,
+      "browserAuthResult": "submitted",
+      "visibleResult": "invalid_credentials",
+      "verifiedSignedIn": false,
+      "retried": false,
+      "gateBypassed": false,
+      "nextStep": "Manual sign-in to the existing HQ tab, then genuine load/save acceptance.",
+      "recordedAt": "2026-10-28T22:13:01.898999+00:00"
+    },
+    "databaseCountsNote": "Counts recorded at deployment before the authorised live synthetic acceptance test. The later test created one labelled synthetic batch, no canonical customer order or payment."
   },
-  "priorSignedInBrowserAttempt": {
-    "attempted": true,
-    "secureCredentialEntry": true,
-    "browserAuthResult": "submitted",
-    "visibleResult": "invalid_credentials",
-    "verifiedSignedIn": false,
-    "retried": false,
-    "gateBypassed": false,
-    "nextStep": "Manual sign-in to the existing HQ tab, then genuine load/save acceptance.",
-    "recordedAt": "2026-10-28T22:13:01.898999+00:00"
-  },
-  "databaseCountsNote": "Counts recorded at deployment before the authorised live synthetic acceptance test. The later test created one labelled synthetic batch, no canonical customer order or payment.",
   "integratedDeliveryRelease": {
     "sourceCommit": "bd579d914173efa216de8486c608f900789afbd4",
     "publicationHelperCommit": "6365c04dcc65e832b3a7ab6932fd5f1fcb00ee00",
@@ -165,7 +175,7 @@
     "submittedAt": "2026-10-28T23:42:57.344Z"
   },
   "liveMailAcceptance": {
-    "status": "Attachment regression found and being corrected",
+    "status": "Verified immediate and scheduled Gmail delivery with exact CSV attachments",
     "firstBatch": "TEST-20261028-05622d18",
     "providerId": "<tjPw5yUme5UEsnaXdnnA0JsVA5PtoKeMnhNE@shiftsometimber.co.uk>",
     "gmailMessageId": "1a184e63da59fa8d",
@@ -179,6 +189,116 @@
     "receivedAttachmentSha256": "f3ac3d1229544c2207109d286a7c822f45d51a69e98239c7292617bb76663ce0",
     "finding": "The documented base64 attachment string was delivered literally. Change to explicit ArrayBuffer bytes and verify inbox attachment again. Only synthetic rows were sent.",
     "nextPreparedBatch": "TEST-20261028-9ab1493f",
-    "emailsSent": 1
+    "emailsSent": 3,
+    "correctedImmediate": {
+      "batchId": "TEST-20261028-d4236f97",
+      "providerId": "<MxUEpAKNyPFtYaGrTLGo8xFHvRFGdrNmbnXg@shiftsometimber.co.uk>",
+      "gmailMessageId": "1a184ebf59e3186c",
+      "acceptedAt": "2026-10-28T23:50:13.392Z",
+      "attachmentBytes": 414,
+      "sha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51",
+      "matchesReviewedCsv": true,
+      "mimeDefects": 0,
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass",
+      "attemptCount": 1
+    },
+    "scheduled": {
+      "batchId": "TEST-20261028-9ab1493f",
+      "sendAt": "2026-10-28T23:52:00.000Z",
+      "approvedFromLiveHQ": true,
+      "hqPageClosedDuringDueTime": true,
+      "statusAt235240": "scheduled",
+      "attemptCountAt235240": 0,
+      "status": "sent",
+      "providerId": "<pixAQMYCEeSf7mBRSRUIy3QbYCjnWLec3bTo@shiftsometimber.co.uk>",
+      "acceptedAt": "2026-10-28T23:53:32.764Z",
+      "gmailMessageId": "1a184eef87830888",
+      "attachmentBytes": 414,
+      "sha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51",
+      "matchesReviewedCsv": true,
+      "mimeDefects": 0,
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass",
+      "attemptCount": 1,
+      "initialActivationDelaySeconds": 92.764
+    },
+    "firstTestRegressionRetained": true,
+    "noRealPartnerEmails": true,
+    "persistedHistoryVerifiedAfterReload": true
+  },
+  "transportFixRelease": {
+    "sourceCommit": "c4031b76bd04cf4ea2eb9d5e5bd8d6afd86a5e00",
+    "deploymentId": "ed1efdb1-d507-4f15-b7d8-edff90cba4de",
+    "versionId": "109fc39a-57f4-4662-85b8-65180f6ba30d",
+    "moduleSha256": "6586685702f7f7a12f3d695cec53f3c47598f67dedbbf9b29e6775a3cb52d5e3",
+    "checkedAt": "2026-10-28T23:48:23.776075+00:00",
+    "otherModulesUnchanged": 27,
+    "sevenPublicMainHashesUnchanged": true,
+    "bindingsUnchanged": true,
+    "schedulesUnchanged": true,
+    "exitCode": 0,
+    "elapsedSeconds": 28.76,
+    "targetedTestsPassed": 14
+  },
+  "crawlReadiness": {
+    "robotsTxtStatus": 200,
+    "testingPathAllowed": true,
+    "collectionAndProstateStatus": 200,
+    "robotsMeta": "index,follow,max-image-preview:large",
+    "xRobotsTag": null,
+    "canonicalUrlsCorrect": true,
+    "googleIndexingClaimed": false
+  },
+  "checkedAt": "2026-10-28T23:57:47.357472+00:00",
+  "finalDatabaseReadback": {
+    "checkedAt": "2026-10-28T23:57:47.357472+00:00",
+    "syntheticMailRows": [
+      {
+        "batch_id": "TEST-20261028-05622d18",
+        "status": "sent",
+        "send_at": "2026-10-28T23:43:57.341Z",
+        "provider_id": "<tjPw5yUme5UEsnaXdnnA0JsVA5PtoKeMnhNE@shiftsometimber.co.uk>",
+        "accepted_at": "2026-10-28T23:43:57.341Z",
+        "failure_code": null,
+        "attempt_count": 1,
+        "batch_status": "submitted",
+        "csv_sha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51"
+      },
+      {
+        "batch_id": "TEST-20261028-9ab1493f",
+        "status": "sent",
+        "send_at": "2026-10-28T23:52:00.000Z",
+        "provider_id": "<pixAQMYCEeSf7mBRSRUIy3QbYCjnWLec3bTo@shiftsometimber.co.uk>",
+        "accepted_at": "2026-10-28T23:53:32.764Z",
+        "failure_code": null,
+        "attempt_count": 1,
+        "batch_status": "submitted",
+        "csv_sha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51"
+      },
+      {
+        "batch_id": "TEST-20261028-d4236f97",
+        "status": "sent",
+        "send_at": "2026-10-28T23:50:13.392Z",
+        "provider_id": "<MxUEpAKNyPFtYaGrTLGo8xFHvRFGdrNmbnXg@shiftsometimber.co.uk>",
+        "accepted_at": "2026-10-28T23:50:13.392Z",
+        "failure_code": null,
+        "attempt_count": 1,
+        "batch_status": "submitted",
+        "csv_sha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51"
+      }
+    ],
+    "checks": {
+      "synthetic_customer_orders": 0,
+      "outstanding_mail": 0,
+      "draft_products": 20
+    },
+    "deploymentId": "ed1efdb1-d507-4f15-b7d8-edff90cba4de",
+    "versionId": "109fc39a-57f4-4662-85b8-65180f6ba30d",
+    "crons": [
+      "* * * * *"
+    ]
   }
 }
