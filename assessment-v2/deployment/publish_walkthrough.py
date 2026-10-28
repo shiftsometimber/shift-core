@@ -37,7 +37,7 @@ def api(p,method='GET',data=None,headers=None,token=None):
  if method!='GET':guard()
  h={'Authorization':'Bearer '+(token or TOKEN),**(headers or {})}
  if isinstance(data,(dict,list)):data=json.dumps(data).encode();h['Content-Type']='application/json'
- _,_,b=request('https://api.cloudflare.com/client/v4'+p,method,data,h);j=json.loads(b);assert j.get('success'),j.get('errors');return j['result']
+ _,_,b=request('https://api.cloudflare.com/client/v4'+p,method,data,h);j=json.loads(b);assert j.get('success'),j.get('errors');return j.get('result')
 def fetch(url,method='GET'):
  return request(url,method,headers={'User-Agent':'SHIFT-approved-assessment-release','Cache-Control':'no-cache'})
 def page():return api(PROJECT)
