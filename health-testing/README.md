@@ -1,44 +1,46 @@
-# Newfoundland Home Testing — 28 October 2026
+# SHIFT Health testing and wellbeing — 28 October 2026
 
-User instruction: build the testing section under SHIFT Health and add the seven tests to the backend using Newfoundland's website. The call's selected range is Diabetes (lab), Heart Health (lab, coming soon), Male Hormone (lab, coming soon), and Cholesterol, Thyroid, Iron and Vitamin D (home self-tests).
+The selected range contains thirteen tests, three supplements and four proposed combinations. The latest visual instruction is to keep the real product box and test photographs unchanged and apply SHIFT black, cream and ash green to the surrounding pages, cards and instruction panels. Use “our testing partner” in customer and HQ copy. Source identity remains in private database provenance and the original product packaging photographs.
 
 ## Completed
 
-- Built `/shift-health/testing` and seven server-rendered detail pages using the existing Health/Nutrition Worker and accepted shared shell.
-- Added one Home Testing section to the approved Health hub. Existing Bloods panels, supplements, homepage, member tools and clinical routes delegate or render as before.
-- Added a Home Testing catalogue view under HQ's existing Orders & products navigation. Authorised staff can save supplier codes, trade/retail/delivery figures, VAT and internal notes with revision control and an audit trail.
-- Created and verified seven live D1 records in `testing_products` as drafts. `status='draft'` and `sale_enabled=0` are enforced by database constraints. All supplier codes and SHIFT prices remain null.
-- Supplier public retail references are stored separately from commercial prices and never rendered as SHIFT prices.
-- Lab results remain with Newfoundland Health Hub. No medical results are collected or transferred by this feature.
-- No purchase, Stripe, stock-reservation or CSV dispatch endpoint was added or activated.
+- Built `/shift-health/testing` and twenty detailed product pages within the accepted Health/Nutrition wrapper. The range contains Testosterone and Diabetes lab tests; coming-soon PSA, Male Hormone and Heart Health lab tests; and Bowel Health, Prostate Health, Male Fertility, Cholesterol, Vitamin D, Iron Deficiency, Thyroid and Kidney Health self-tests.
+- Added Multivitamin, Vitamin D and Iron supplements, plus proposed General Health, General Health Combo, Vitamin D Combo and Iron Deficiency Combo products. Pack quantities and SHIFT commercial terms remain to be confirmed.
+- Added product galleries, purpose, suitability, contents, sample-specific illustrated steps, results, limitations and FAQs. Fifty-six original source photographs are optimised and embedded once in `media-data.mjs`; `media.mjs` maps each product and instruction step to its actual photograph. No generated replacement boxes, recolouring or relabelling is used. `media-sources.json` retains private photo provenance.
+- Kept the existing Health hub, Bloods panels, nutrition, homepage and member routes. One reversible testing block is inserted into the accepted Health hub. The public Worker retains the real shared publisher shell.
+- Extended the authenticated HQ catalogue to all twenty draft products. Staff can edit supplier codes, trade/retail/delivery figures, VAT and internal notes with revision control and audit history. Supplier identity and source links are omitted from the HQ client projection.
+- Applied the idempotent migration to the existing live D1 database and immediately verified thirteen records in `testing_products` and seven in `testing_range_extras`. Every record remains `status='draft'` and `sale_enabled=0`, enforced by database constraints. Supplier codes and SHIFT trade/retail prices are null. The migration updates source facts without overwriting staff commercial fields.
+- The public pages offer product information only. No purchase, payment, stock reservation, result-import or order-dispatch endpoint was added. Lab reports remain in our testing partner’s secure results portal.
 
 ## Source and preservation
 
-Candidate base: `a4b8f173e3900e2f0062b3d7483a1d910b9ef2bf`, `release/olivit-health-approved-20261027`. This is the approved Health/Nutrition wrapper source, not the older `main` Health implementation. Only `health-nutrition/public.mjs`, `health-nutrition/worker.mjs` and the new `health-testing/` directory belong to this change. Preserve subsequent component owners' changes when preparing publication. Do not deploy the old core Worker or alter its entry point, bindings, cron, secrets or routes.
+The approved wrapper base is `a4b8f173e3900e2f0062b3d7483a1d910b9ef2bf` on `release/olivit-health-approved-20261027`, not the older `main` Health implementation. This feature changes only `health-nutrition/public.mjs`, `health-nutrition/worker.mjs` and `health-testing/`. Preserve later work from other component owners when preparing publication. Do not deploy the old core Worker or change its entry point, bindings, cron, secrets or unrelated routes.
 
-The main repository was inspected through individual GitHub file reads. Automatic approval review prohibited a full clone under SST resource restrictions. No dependency installations or replacement repository were used.
+Individual GitHub files were used. Automatic approval review prohibited a full clone under SST resource restrictions. No dependency installation or replacement repository was used. Remote D1 work ran through the existing SST managed-check helper and reused the cached Wrangler installation.
 
 ## Validation
 
 `node --test health-testing/feature.test.mjs health-nutrition/feature.test.mjs`
 
-18 focused checks passed, covering the exact range, SQL idempotence, draft-only constraints, public privacy projection, HQ permission/origin checks, revision conflicts, audit records, source-rendered pages and preservation of existing routes. Browser review covered the desktop listing, a detail page, anchor/detail links and all seven mobile cards at a 390px frame width. No horizontal overflow was observed. The review file uses a simplified navigation shell; production rendering retains the real shell supplied by the existing publisher.
+All nineteen focused checks passed. They cover the expanded range, draft-only constraints, idempotence, commercial-field preservation, privacy projection, HQ authentication/origin/revision checks, audit records, all twenty-one public routes, image coverage and preservation of existing Health/Nutrition routes.
 
-## Publication still requires Matt's explicit production approval
+Browser review confirmed that the original prostate box and device photographs load, that all four original instruction photos load, and that the portable review can open the detail page and scroll to its instructions. A 390px mobile frame rendered without horizontal overflow (375px body including the browser scrollbar). The portable review uses a simplified navigation shell; production rendering retains the existing publisher’s real shell.
 
-The website and HQ extension have not been published. The seven draft records already exist in the live database. Publishing this candidate must not enable purchasing or dispatch.
+`node health-testing/preview.mjs` regenerates static review routes, original photo assets and the self-contained `review.html`. Its twenty product links and in-page anchors work without a web server; it has no backend write functionality. The screenshot `product-colours-review.jpg` records the corrected real-product treatment. Older screenshots represent superseded layouts.
 
-After approval, use the established manual Cloudflare deployment workflow for the existing `shift-health-nutrition-20261027` service, preserving its current source and bindings. Read the actual route map before making changes. The testing public and HQ routes must resolve to this wrapper:
+## Publication requires Matt’s explicit production approval
 
-- `shiftsometimber.co.uk/shift-health/testing*` (plus any existing www alias convention)
+The expanded draft catalogue is saved in D1. The public website and HQ extension have not been published. Publication must keep purchasing and dispatch disabled.
+
+After approval, use the established manual Cloudflare workflow for the existing `shift-health-nutrition-20261027` service. Read the actual route map first, preserve the current bindings/source, and route only the testing public and HQ requests through this wrapper:
+
+- `shiftsometimber.co.uk/shift-health/testing*`, following the existing www alias convention
+- `shiftsometimber.co.uk/shift-health/assets/testing-*.webp`
 - `shiftsometimber.co.uk/shift-health/assets/hq-testing.js`
 - `api.shiftsometimber.co.uk/v1/hq/testing*`
-- Existing Health hub and HQ root routes retain their current ownership.
 
-Prefer existing broader matching routes where already present; do not add duplicate routes or transfer unrelated traffic. The SQL migration is idempotent and must not overwrite staff edits. Check the returned `X-Shift-Health-Release: health-nutrition-newfoundland-20261028`, the seven public detail pages, desktop/mobile layout, actual authenticated HQ load/save, and unchanged Bloods/nutrition/homepage behavior after deployment. Do not claim production verification before those checks.
+Reuse broader matching routes if already present; do not transfer unrelated traffic. Existing Health hub and HQ root retain their current ownership. After publication, verify `X-Shift-Health-Release: health-testing-range-20261028`, all twenty product pages, original images, desktop/mobile layout, actual authenticated HQ load/save, and unchanged Bloods/nutrition/homepage behaviour. Do not claim production verification until those checks run.
 
-## Source facts
+## Product facts
 
-Each record includes its exact Newfoundland product URL and the date checked. Heart Health and Male Hormone remain coming soon even though the separate single-marker Testosterone product is available. That product is not a substitute for the recommended Male Hormone panel.
-
-`review.html` is a self-contained review of the actual testing renderer. Its seven detail links work without a server. It does not take orders or change backend data.
+Each private catalogue record retains the original product URL and date checked. Testosterone is separate from the coming-soon Male Hormone panel; the home Prostate Health self-test is separate from the coming-soon PSA lab test. Stool, urine and semen products have their own collection instructions. The supplier’s original device photos and printed instructions have not been recoloured or altered. NHS guidance accompanies the relevant limitations; marketing accuracy claims and endorsements were not copied.

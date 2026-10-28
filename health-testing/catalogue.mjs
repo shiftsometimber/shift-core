@@ -1,42 +1,61 @@
-// Newfoundland's seven recommendations from the 28 October 2026 call.
-// Supplier retail references are evidence, never SHIFT selling or trade prices.
-export const checkedOn = '2026-10-28';
-export const partner = 'Newfoundland';
-const rows = [
-  {id:'diabetes',name:'Diabetes',type:'lab',state:'available',markers:['HbA1c'],reference:3999,
-    description:'A laboratory test of HbA1c, which reflects average blood glucose over the previous two to three months.',
-    resultTime:'Newfoundland quotes 2–5 working days for laboratory results. Follow the timing supplied with your kit.',
-    limit:'HbA1c is a longer-term measure. It does not show your blood glucose at this moment or explain every symptom.',source:'diabetes'},
-  {id:'heart-health',name:'Heart Health',type:'lab',state:'coming_soon',markers:['Total cholesterol','HDL cholesterol','LDL cholesterol','Triglycerides','Non-HDL cholesterol'],reference:null,
-    description:'A laboratory lipid panel covering several cholesterol measures and triglycerides, giving more detail than the total-cholesterol self-test.',
-    resultTime:'Result timing will be confirmed when this test launches.',
-    limit:'These blood markers are one part of the picture. This is not a complete assessment of your heart or a test for acute chest symptoms.',source:'heart-health'},
-  {id:'male-hormone',name:'Male Hormone',type:'lab',state:'coming_soon',markers:['Testosterone','Free testosterone','Luteinising hormone (LH)','Follicle stimulating hormone (FSH)','Oestradiol','Prolactin','Sex hormone binding globulin (SHBG)','Albumin'],reference:null,
-    description:'A laboratory panel of hormones and related markers, including total and free testosterone, LH, FSH, oestradiol, prolactin, SHBG and albumin.',
-    resultTime:'Result timing will be confirmed when this test launches.',
-    limit:'A hormone panel needs the right sampling and clinical context. One result does not establish a diagnosis or mean you need testosterone treatment.',source:'male-hormone'},
-  {id:'cholesterol',name:'Cholesterol',type:'home',state:'available',markers:['Total cholesterol'],reference:1299,
-    description:'A finger-prick self-test that uses a colour chart to show the band your total cholesterol falls into. Read the result at home.',
-    resultTime:'Around 2 minutes; read the colour chart within the window in the kit instructions.',
-    limit:'This self-test checks total cholesterol. It does not provide the separate HDL, LDL and triglyceride results of the Heart Health lab panel.',source:'cholesterol'},
-  {id:'thyroid',name:'Thyroid',type:'home',state:'available',markers:['Thyroid stimulating hormone (TSH)'],reference:999,
-    description:'A finger-prick self-test for TSH, used as an indicator of a possible underactive thyroid.',
-    resultTime:'Around 10 minutes. Follow the reading window in the kit instructions.',
-    limit:'This is not a full thyroid panel. A self-test result needs appropriate medical follow-up and does not explain every cause of tiredness or weight change.',source:'thyroid'},
-  {id:'iron',name:'Iron',type:'home',state:'available',markers:['Ferritin'],reference:799,
-    description:'A finger-prick self-test for ferritin, a protein associated with stored iron. The result is read at home.',
-    resultTime:'Around 5 minutes. Follow the reading window in the kit instructions.',
-    limit:'A ferritin self-test is not a full blood count and cannot investigate every cause of anaemia or tiredness.',source:'iron-deficiency'},
-  {id:'vitamin-d',name:'Vitamin D',type:'home',state:'available',markers:['Vitamin D'],reference:799,
-    description:'A finger-prick self-test that checks vitamin D and lets you read your result at home using the supplied guide.',
-    resultTime:'Around 10 minutes. Follow the reading window in the kit instructions.',
-    limit:'Follow the supplied result guide. A self-test alone does not determine which supplements or doses are suitable for you.',source:'vitamin-d'}
+// Supplier identity and source URLs are private provenance, not storefront branding.
+export const checkedOn='2026-10-28';
+export const partner='Newfoundland';
+const labResult='Usually 2–5 working days for analysis and reporting; follow the turnaround confirmed with your kit.';
+const blood='Finger-prick blood sample';
+const psaLimit='PSA can be raised for several reasons. A raised result does not diagnose prostate cancer, and a low result cannot rule it out. Discuss the benefits and limits of PSA testing with your GP.';
+const rows=[
+ {id:'testosterone',name:'Testosterone',type:'lab',state:'available',markers:['Total testosterone'],reference:3999,source:'testosterone',sample:blood,minutes:null,
+ description:'A laboratory check of total testosterone, using a small blood sample collected at home.',
+ purpose:'A focused look at one hormone marker, with a laboratory result to discuss in the context of how you feel.',
+ audience:'People considering a total-testosterone check as part of a conversation about their health.',
+ limit:'This measures total testosterone, not the wider Male Hormone panel. One result does not establish a diagnosis or mean you need testosterone treatment.'},
+ {id:'diabetes',name:'Diabetes',type:'lab',state:'available',markers:['HbA1c'],reference:3999,source:'diabetes',sample:blood,minutes:null,
+ description:'A laboratory HbA1c test reflecting your average blood glucose over the previous two to three months.',
+ purpose:'A longer view of blood-sugar health, rather than a reading of blood glucose at this moment.',
+ audience:'People exploring HbA1c testing or discussing longer-term blood-sugar monitoring with a healthcare professional.',
+ limit:'HbA1c does not explain every symptom or replace an assessment. If you already have diabetes, follow the monitoring plan agreed with your care team.'},
+ {id:'psa-lab',name:'PSA',type:'lab',state:'coming_soon',markers:['Prostate-specific antigen (PSA)'],reference:null,source:'psa-lab',sample:blood,minutes:null,
+ description:'A forthcoming laboratory PSA test, collected at home and returned for analysis.',purpose:'A laboratory route for checking the PSA marker.',audience:'People considering a PSA check after discussing its benefits and limitations with their GP.',limit:psaLimit,guidance:'https://www.nhs.uk/tests-and-treatments/psa-test/'},
+ {id:'male-hormone',name:'Male Hormone',type:'lab',state:'coming_soon',markers:['Testosterone','Free testosterone','Luteinising hormone (LH)','Follicle stimulating hormone (FSH)','Oestradiol','Prolactin','Sex hormone binding globulin (SHBG)','Albumin'],reference:null,source:'male-hormone',sample:blood,minutes:null,
+ description:'A forthcoming laboratory panel of hormones and related markers, including total and free testosterone.',purpose:'A wider hormonal picture than the single-marker Testosterone lab test.',audience:'People exploring a broader hormone panel with appropriate clinical context.',limit:'Hormone results need the right sampling and clinical context. A panel does not establish the cause of every symptom or automatically indicate treatment.'},
+ {id:'heart-health',name:'Heart Health',type:'lab',state:'coming_soon',markers:['Total cholesterol','HDL cholesterol','LDL cholesterol','Triglycerides','Non-HDL cholesterol'],reference:null,source:'heart-health',sample:blood,minutes:null,
+ description:'A forthcoming laboratory lipid panel covering several cholesterol measures and triglycerides.',purpose:'More detailed blood-fat measurements than the total-cholesterol self-test.',audience:'People considering a fuller lipid profile as part of understanding their wider health.',limit:'These blood markers are one part of the picture. This is not a complete assessment of your heart or a test for acute chest symptoms.'},
+ {id:'bowel-health',name:'Bowel Health',type:'home',state:'available',markers:['Hidden blood in stool (FIT)'],reference:999,source:'bowel-health',sample:'Stool sample',minutes:5,
+ description:'A home FIT self-test that checks a small stool sample for blood you may not be able to see.',purpose:'Checks for hidden blood in a stool sample, with the result read from the test device at home.',audience:'People looking to understand a home FIT check and its limitations. If you have bowel symptoms, speak to your GP.',limit:'Blood can have several causes. This test cannot diagnose or rule out bowel cancer and does not replace NHS screening or assessment of symptoms.',guidance:'https://www.nhs.uk/tests-and-treatments/bowel-cancer-screening/'},
+ {id:'prostate-health',name:'Prostate Health',type:'home',state:'available',markers:['Prostate-specific antigen (PSA)'],reference:1299,source:'prostate-health',sample:blood,minutes:5,
+ description:'A finger-prick PSA self-test, completed and read at home in around five minutes.',purpose:'A home check of the PSA marker. It is separate from the forthcoming PSA laboratory test.',audience:'People considering a PSA check and wanting to understand what it can and cannot tell them. Discuss suitability with your GP.',limit:psaLimit,guidance:'https://www.nhs.uk/tests-and-treatments/psa-test/'},
+ {id:'male-fertility',name:'Male Fertility',type:'home',state:'available',markers:['Sperm concentration'],reference:1249,source:'male-fertility',sample:'Semen sample',minutes:5,
+ description:'A semen self-test that checks sperm concentration as one indicator of male fertility.',purpose:'A focused home check of sperm concentration using the supplied collection and test equipment.',audience:'People exploring a first home sperm-concentration check while planning a family.',limit:'Sperm concentration is only one part of fertility. This is not a full semen analysis, which also looks at features such as sperm movement and shape.',guidance:'https://www.nhs.uk/conditions/low-sperm-count/'},
+ {id:'cholesterol',name:'Cholesterol',type:'home',state:'available',markers:['Total cholesterol'],reference:1299,source:'cholesterol',sample:blood,minutes:2,
+ description:'A finger-prick self-test that shows the band your total cholesterol falls into, using a colour guide.',purpose:'A quick home check of total cholesterol, read using the supplied colour chart.',audience:'People who want to understand a total-cholesterol self-test before deciding their next step.',limit:'This checks total cholesterol. It does not give the separate HDL, LDL and triglyceride results of the Heart Health lab panel.'},
+ {id:'vitamin-d',name:'Vitamin D',type:'home',state:'available',markers:['Vitamin D'],reference:799,source:'vitamin-d',sample:blood,minutes:10,
+ description:'A finger-prick vitamin D self-test, with a result read at home using the supplied guide.',purpose:'Checks vitamin D using a small blood sample and a home test device.',audience:'People considering a vitamin D check and wanting clear information about how the test works.',limit:'A self-test alone does not determine which supplement or dose is suitable for you. Follow the supplied guide and seek advice about a result that concerns you.'},
+ {id:'iron',name:'Iron Deficiency',type:'home',state:'available',markers:['Ferritin'],reference:799,source:'iron-deficiency',sample:blood,minutes:5,
+ description:'A ferritin self-test using a finger-prick sample. Ferritin is a protein associated with stored iron.',purpose:'A focused home ferritin check, rather than a full blood count.',audience:'People exploring a ferritin self-test as part of understanding their iron status.',limit:'This is not a full blood count and cannot investigate every cause of anaemia or tiredness. A result is not an automatic reason to start iron supplements.'},
+ {id:'thyroid',name:'Thyroid',type:'home',state:'available',markers:['Thyroid stimulating hormone (TSH)'],reference:999,source:'thyroid',sample:blood,minutes:10,
+ description:'A finger-prick self-test for TSH, used as an indicator of a possible underactive thyroid.',purpose:'A focused TSH check, with the result read from the kit at home.',audience:'People exploring a TSH self-test and its place in a wider conversation about thyroid health.',limit:'This is not a full thyroid panel. It cannot explain every cause of tiredness or weight change, and a result needs the right medical context.'},
+ {id:'kidney-health',name:'Kidney Health',type:'home',state:'available',markers:['Albumin in urine'],reference:799,source:'kidney-health',sample:'Urine sample',minutes:3,
+ description:'A urine self-test that checks for increased albumin, a marker that may need further assessment.',purpose:'A focused urine-albumin check, completed at home.',audience:'People exploring a urine-albumin self-test as one part of understanding kidney health.',limit:'This is not a complete kidney-function assessment. A result cannot establish or exclude chronic kidney disease on its own.'}
 ];
-export const tests = Object.freeze(rows.map(p=>Object.freeze({...p,sku:'SST-NF-'+p.id.toUpperCase(),
-  sourceUrl:'https://www.newfoundland.io/products/'+p.source,sample:'Finger-prick blood sample collected at home',
-  resultsAccess:p.type==='lab'?'Newfoundland Health Hub':'Read at home using the kit instructions',
-  supplierSku:null,tradePricePence:null,retailPricePence:null,saleEnabled:false})));
-export const byId = Object.fromEntries(tests.map(p=>[p.id,p]));
-export const esc = v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export const testPath = id=>'/shift-health/testing'+(id?'/'+encodeURIComponent(id):'');
-export const methodLabel = p=>p.type==='lab'?'Lab test':'Home self-test';
+const finish=p=>Object.freeze({...p,sku:'SST-NF-'+p.id.toUpperCase(),sourceUrl:'https://www.newfoundland.io/products/'+p.source,
+ resultTime:p.type==='lab'?(p.state==='coming_soon'?'Timing to be confirmed at launch':labResult):'Around '+p.minutes+' minutes after running the test; follow the supplied reading window.',
+ resultsAccess:p.type==='lab'?"Our testing partner’s secure results portal":'Read at home using the kit instructions',supplierSku:null,tradePricePence:null,retailPricePence:null,saleEnabled:false});
+export const tests=Object.freeze(rows.map(finish));
+export const supplements=Object.freeze([
+ {id:'multivitamin',name:'Multivitamin',type:'supplement',state:'available',markers:['30+ vitamins, minerals and nutrients'],reference:1299,source:'multi-vitamin-supplement',sample:'Capsules',description:'A capsule supplement containing a blend of vitamins, minerals and other nutrients.',purpose:'An optional addition to everyday food, with the final label checked before ordering opens.',audience:'People considering a multivitamin and checking whether its ingredients fit their needs.',limit:'Food comes first. Check the final ingredients, allergens and directions, including overlap with any supplements you already take.',pack:'Supplier listing: 60 capsules; suitable for vegans.'},
+ {id:'vitamin-d-supplement',name:'Vitamin D Supplement',type:'supplement',state:'available',markers:['Vitamin D3'],reference:999,source:'vitamin-d-supplement',sample:'Supplement',description:'A vegan vitamin D3 supplement listed at 1,000 IU per serving.',purpose:'Optional vitamin D supplementation, with the final label and directions shown before sale.',audience:'People checking a vitamin D supplement against their own needs and existing supplements.',limit:'Check the final label and directions. A test result alone does not set the right dose for you.',pack:'Pack details and final directions will be confirmed before ordering opens.'},
+ {id:'iron-supplement',name:'Iron Supplement',type:'supplement',state:'available',markers:['Iron bisglycinate'],reference:999,source:'iron-supplement',sample:'Capsules',description:'An iron bisglycinate supplement listed with 20 mg of elemental iron per capsule.',purpose:'An optional iron supplement for people for whom iron supplementation is appropriate.',audience:'People who have checked whether an iron supplement is suitable with a healthcare professional.',limit:'Not everyone needs extra iron. Do not treat a home test as a complete assessment of the cause of low iron.',pack:'Supplier listing: 60 capsules; suitable for vegans.'}
+].map(p=>Object.freeze({...p,sku:'SST-NF-'+p.id.toUpperCase(),sourceUrl:'https://www.newfoundland.io/products/'+p.source,resultTime:'Follow the final product label',resultsAccess:'Product label and directions',supplierSku:null,tradePricePence:null,retailPricePence:null,saleEnabled:false})));
+export const bundles=Object.freeze([
+ {id:'general-health-bundle',name:'General Health',source:'general-health',components:['thyroid','vitamin-d','iron','cholesterol','kidney-health'],description:'Five home self-tests, brought together: thyroid, vitamin D, iron, cholesterol and kidney health.'},
+ {id:'general-health-combo',name:'General Health Combo',source:'general-health-combo',components:['thyroid','vitamin-d','iron','cholesterol','kidney-health','multivitamin'],description:'The five General Health self-tests with an optional multivitamin in the same proposed bundle.'},
+ {id:'vitamin-d-combo',name:'Vitamin D Combo',source:'vitamin-d-combo',components:['vitamin-d','vitamin-d-supplement'],description:'Vitamin D testing, a supplement and follow-up testing brought together. Final quantities and timing will be confirmed.'},
+ {id:'iron-combo',name:'Iron Deficiency Combo',source:'iron-deficiency-combo',components:['iron','iron-supplement'],description:'Iron-deficiency testing, an iron supplement and follow-up testing brought together. Check that supplementation is appropriate for you.'}
+].map(p=>Object.freeze({...p,type:'bundle',state:'available',markers:[],reference:null,sku:'SST-NF-'+p.id.toUpperCase(),sourceUrl:'https://www.newfoundland.io/products/'+p.source,sample:'See individual products',resultTime:'Varies by included test',resultsAccess:'Read each product’s instructions',purpose:'A convenient grouping of individual products, with their own instructions and limitations.',audience:'People who want to compare the included products together before choosing.',limit:'A bundle is not a complete health assessment or a personalised recommendation. Supplements remain optional; final contents and quantities must be confirmed.',supplierSku:null,tradePricePence:null,retailPricePence:null,saleEnabled:false})));
+export const rangeProducts=Object.freeze([...tests,...supplements,...bundles]);
+export const byId=Object.fromEntries(tests.map(p=>[p.id,p]));
+export const rangeById=Object.fromEntries(rangeProducts.map(p=>[p.id,p]));
+export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export const testPath=id=>'/shift-health/testing'+(id?'/'+encodeURIComponent(id):'');
+export const methodLabel=p=>({lab:'Lab-test',home:'Self-test',supplement:'Supplement',bundle:'Combo & bundle'}[p.type]);

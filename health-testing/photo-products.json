@@ -1,0 +1,102 @@
+[
+  {
+    "id": "testosterone",
+    "type": "lab",
+    "sourceUrl": "https://www.newfoundland.io/products/testosterone"
+  },
+  {
+    "id": "diabetes",
+    "type": "lab",
+    "sourceUrl": "https://www.newfoundland.io/products/diabetes"
+  },
+  {
+    "id": "psa-lab",
+    "type": "lab",
+    "sourceUrl": "https://www.newfoundland.io/products/psa-lab"
+  },
+  {
+    "id": "male-hormone",
+    "type": "lab",
+    "sourceUrl": "https://www.newfoundland.io/products/male-hormone"
+  },
+  {
+    "id": "heart-health",
+    "type": "lab",
+    "sourceUrl": "https://www.newfoundland.io/products/heart-health"
+  },
+  {
+    "id": "bowel-health",
+    "type": "home",
+    "sourceUrl": "https://www.newfoundland.io/products/bowel-health"
+  },
+  {
+    "id": "prostate-health",
+    "type": "home",
+    "sourceUrl": "https://www.newfoundland.io/products/prostate-health"
+  },
+  {
+    "id": "male-fertility",
+    "type": "home",
+    "sourceUrl": "https://www.newfoundland.io/products/male-fertility"
+  },
+  {
+    "id": "cholesterol",
+    "type": "home",
+    "sourceUrl": "https://www.newfoundland.io/products/cholesterol"
+  },
+  {
+    "id": "vitamin-d",
+    "type": "home",
+    "sourceUrl": "https://www.newfoundland.io/products/vitamin-d"
+  },
+  {
+    "id": "iron",
+    "type": "home",
+    "sourceUrl": "https://www.newfoundland.io/products/iron-deficiency"
+  },
+  {
+    "id": "thyroid",
+    "type": "home",
+    "sourceUrl": "https://www.newfoundland.io/products/thyroid"
+  },
+  {
+    "id": "kidney-health",
+    "type": "home",
+    "sourceUrl": "https://www.newfoundland.io/products/kidney-health"
+  },
+  {
+    "id": "multivitamin",
+    "type": "supplement",
+    "sourceUrl": "https://www.newfoundland.io/products/multi-vitamin-supplement"
+  },
+  {
+    "id": "vitamin-d-supplement",
+    "type": "supplement",
+    "sourceUrl": "https://www.newfoundland.io/products/vitamin-d-supplement"
+  },
+  {
+    "id": "iron-supplement",
+    "type": "supplement",
+    "sourceUrl": "https://www.newfoundland.io/products/iron-supplement"
+  },
+  {
+    "id": "general-health-bundle",
+    "type": "bundle",
+    "sourceUrl": "https://www.newfoundland.io/products/general-health"
+  },
+  {
+    "id": "general-health-combo",
+    "type": "bundle",
+    "sourceUrl": "https://www.newfoundland.io/products/general-health-combo"
+  },
+  {
+    "id": "vitamin-d-combo",
+    "type": "bundle",
+    "sourceUrl": "https://www.newfoundland.io/products/vitamin-d-combo"
+  },
+  {
+    "id": "iron-combo",
+    "type": "bundle",
+    "sourceUrl": "https://www.newfoundland.io/products/iron-deficiency-combo"
+  }
+]

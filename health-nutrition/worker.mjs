@@ -1,3 +1,4 @@
+import {productImageData} from '../health-testing/media-data.mjs';
 import {images} from './images.mjs';
 import {publicProducts} from './catalogue.mjs';
 import {renderDocument} from './public.mjs';
@@ -5,7 +6,7 @@ import {hqRoute} from './hq-api.mjs';
 import {hqClient} from './hq-client.mjs';
 import {testingHQRoute} from '../health-testing/hq-api.mjs';
 import {hqTestingClient} from '../health-testing/hq-client.mjs';
-const stamp='health-nutrition-newfoundland-20261028';
+const stamp='health-testing-range-20261028';
 const respond=(body,status=200,type='text/html; charset=utf-8')=>new Response(body,{status,headers:{'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Shift-Health-Release':stamp}});
 export default {async fetch(request,env,ctx){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';
@@ -20,7 +21,7 @@ export default {async fetch(request,env,ctx){
  if(path==='/shift-health/assets/hq-testing.js'){const response=['GET','HEAD'].includes(request.method)?respond(request.method==='HEAD'?null:hqTestingClient,200,'application/javascript; charset=utf-8'):respond('Method not allowed',405,'text/plain');response.headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');return response;}
  if(path==='/shift-health/assets/hq-nutrition.js'){const response=['GET','HEAD'].includes(request.method)?respond(request.method==='HEAD'?null:hqClient,200,'application/javascript; charset=utf-8'):respond('Method not allowed',405,'text/plain');response.headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');return response;}
  const asset=path.match(/^\/shift-health\/assets\/([a-z0-9-]+)\.webp$/);
- if(asset){if(!['GET','HEAD'].includes(request.method))return respond('Method not allowed',405,'text/plain');const source=images[asset[1]];if(!source)return respond('Not found',404,'text/plain');const [header,data]=source.split(',');const bytes=Uint8Array.from(atob(data),c=>c.charCodeAt(0));const response=respond(request.method==='HEAD'?null:bytes,200,header.slice(5).split(';')[0]);response.headers.set('Cache-Control','public, max-age=86400');return response;}
+ if(asset){if(!['GET','HEAD'].includes(request.method))return respond('Method not allowed',405,'text/plain');const source=asset[1].startsWith('testing-')?productImageData[asset[1].slice(8)]:images[asset[1]];if(!source)return respond('Not found',404,'text/plain');const [header,data]=source.split(',');const bytes=Uint8Array.from(atob(data),c=>c.charCodeAt(0));const response=respond(request.method==='HEAD'?null:bytes,200,header.slice(5).split(';')[0]);response.headers.set('Cache-Control','public, max-age=86400');return response;}
  if(!['/shift-health','/shift-health.html','/shift-health/supplements-nutrition'].includes(path)&&path!=='/shift-health/testing'&&!path.startsWith('/shift-health/testing/'))return env.BLOG.fetch(request);
  if(!['GET','HEAD'].includes(request.method))return respond('Method not allowed',405,'text/plain');
  const canonicalPath=path==='/shift-health.html'?'/shift-health':path;

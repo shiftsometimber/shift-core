@@ -1,21 +1,117 @@
 {
   "verifiedOn": "2026-10-28",
-  "operation": "Remote D1 schema creation, idempotent draft inserts and immediate SELECT verification",
-  "table": "testing_products",
-  "verifiedCount": 7,
+  "operation": "Remote D1 idempotent catalogue expansion and immediate SELECT verification",
+  "tables": {
+    "testing_products": 13,
+    "testing_range_extras": 7
+  },
+  "verifiedCount": 20,
   "allStatus": "draft",
   "allSaleEnabled": false,
   "allSupplierCodes": null,
   "allTradePrices": null,
   "allShiftRetailPrices": null,
   "records": [
-    {"id":"diabetes","type":"lab","supplierState":"available"},
-    {"id":"heart-health","type":"lab","supplierState":"coming_soon"},
-    {"id":"male-hormone","type":"lab","supplierState":"coming_soon"},
-    {"id":"cholesterol","type":"home","supplierState":"available"},
-    {"id":"thyroid","type":"home","supplierState":"available"},
-    {"id":"iron","type":"home","supplierState":"available"},
-    {"id":"vitamin-d","type":"home","supplierState":"available"}
+    {
+      "id": "testosterone",
+      "type": "lab",
+      "supplierState": "available"
+    },
+    {
+      "id": "diabetes",
+      "type": "lab",
+      "supplierState": "available"
+    },
+    {
+      "id": "psa-lab",
+      "type": "lab",
+      "supplierState": "coming_soon"
+    },
+    {
+      "id": "male-hormone",
+      "type": "lab",
+      "supplierState": "coming_soon"
+    },
+    {
+      "id": "heart-health",
+      "type": "lab",
+      "supplierState": "coming_soon"
+    },
+    {
+      "id": "bowel-health",
+      "type": "home",
+      "supplierState": "available"
+    },
+    {
+      "id": "prostate-health",
+      "type": "home",
+      "supplierState": "available"
+    },
+    {
+      "id": "male-fertility",
+      "type": "home",
+      "supplierState": "available"
+    },
+    {
+      "id": "cholesterol",
+      "type": "home",
+      "supplierState": "available"
+    },
+    {
+      "id": "vitamin-d",
+      "type": "home",
+      "supplierState": "available"
+    },
+    {
+      "id": "iron",
+      "type": "home",
+      "supplierState": "available"
+    },
+    {
+      "id": "thyroid",
+      "type": "home",
+      "supplierState": "available"
+    },
+    {
+      "id": "kidney-health",
+      "type": "home",
+      "supplierState": "available"
+    },
+    {
+      "id": "multivitamin",
+      "type": "supplement",
+      "supplierState": "available"
+    },
+    {
+      "id": "vitamin-d-supplement",
+      "type": "supplement",
+      "supplierState": "available"
+    },
+    {
+      "id": "iron-supplement",
+      "type": "supplement",
+      "supplierState": "available"
+    },
+    {
+      "id": "general-health-bundle",
+      "type": "bundle",
+      "supplierState": "available"
+    },
+    {
+      "id": "general-health-combo",
+      "type": "bundle",
+      "supplierState": "available"
+    },
+    {
+      "id": "vitamin-d-combo",
+      "type": "bundle",
+      "supplierState": "available"
+    },
+    {
+      "id": "iron-combo",
+      "type": "bundle",
+      "supplierState": "available"
+    }
   ],
   "applicationDeployed": false,
   "purchasingEnabled": false,

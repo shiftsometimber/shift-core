@@ -36,3 +36,35 @@ CREATE TABLE IF NOT EXISTS testing_product_history (
  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
  PRIMARY KEY(product_id,revision)
 );
+
+CREATE TABLE IF NOT EXISTS testing_range_extras (
+ id TEXT PRIMARY KEY,
+ sku TEXT NOT NULL UNIQUE,
+ name TEXT NOT NULL,
+ partner TEXT NOT NULL DEFAULT 'Newfoundland',
+ test_type TEXT NOT NULL CHECK(test_type IN ('supplement','bundle')),
+ supplier_state TEXT NOT NULL CHECK(supplier_state IN ('available','coming_soon')),
+ markers_json TEXT NOT NULL,
+ description TEXT NOT NULL,
+ sample TEXT NOT NULL,
+ result_time TEXT NOT NULL,
+ results_access TEXT NOT NULL,
+ limitations TEXT NOT NULL,
+ source_url TEXT NOT NULL,
+ source_checked TEXT NOT NULL,
+ supplier_retail_reference_pence INTEGER,
+ supplier_sku TEXT,
+ trade_price_pence INTEGER,
+ retail_price_pence INTEGER,
+ delivery_cost_pence INTEGER,
+ vat_rate REAL,
+ internal_notes TEXT,
+ status TEXT NOT NULL DEFAULT 'draft' CHECK(status='draft'),
+ sale_enabled INTEGER NOT NULL DEFAULT 0 CHECK(sale_enabled=0),
+ revision INTEGER NOT NULL DEFAULT 1,
+ sort_order INTEGER NOT NULL DEFAULT 0,
+ created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_by TEXT
+);
+CREATE TABLE IF NOT EXISTS testing_extra_history (product_id TEXT NOT NULL REFERENCES testing_range_extras(id),revision INTEGER NOT NULL,changed_by TEXT NOT NULL,record_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(product_id,revision));
