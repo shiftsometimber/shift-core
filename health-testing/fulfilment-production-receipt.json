@@ -1,0 +1,92 @@
+{
+  "stage": "verified",
+  "sourceCommit": "cc2855e88eaf29b64e9887a33b5d315f465d6223",
+  "deploymentId": "4697f5c6-7061-423e-9f96-a1259a4d04ca",
+  "versionId": "dcbf654a-81db-42ad-a550-b3e3e9dff8ca",
+  "hqUrl": "https://hq.shiftsometimber.co.uk/",
+  "hqHash": "testing-orders",
+  "authChecks": [
+    {
+      "endpoint": "/",
+      "unauthenticatedStatus": 401
+    },
+    {
+      "endpoint": "/queue",
+      "unauthenticatedStatus": 401
+    },
+    {
+      "endpoint": "/batches",
+      "unauthenticatedStatus": 401
+    }
+  ],
+  "crossOriginWriteStatus": 403,
+  "clientSha256": "eb8be5695536a50ad844156e84fbff35ec9d31016bbbb9a10f0bf72e3e6aa83b",
+  "customerPages": [
+    {
+      "path": "/",
+      "status": 200,
+      "mainUnchanged": true
+    },
+    {
+      "path": "/shift-health",
+      "status": 200,
+      "mainUnchanged": true
+    },
+    {
+      "path": "/shift-health/supplements-nutrition",
+      "status": 200,
+      "mainUnchanged": true
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "status": 200,
+      "mainUnchanged": true
+    },
+    {
+      "path": "/my-timber",
+      "status": 200,
+      "mainUnchanged": true
+    },
+    {
+      "path": "/shift-health/testing",
+      "status": 200,
+      "mainUnchanged": true
+    },
+    {
+      "path": "/shift-health/testing/prostate-health",
+      "status": 200,
+      "mainUnchanged": true
+    }
+  ],
+  "bindingsUnchanged": true,
+  "oldRoutesUnchanged": true,
+  "routeCount": 894,
+  "databaseCounts": {
+    "batches": 0,
+    "tests": 13,
+    "extras": 7
+  },
+  "emailSendingEnabled": false,
+  "purchasingEnabled": false,
+  "checkedAt": "2026-10-28T21:38:12.613286+00:00",
+  "testsPassed": 43,
+  "syntheticBrowser": {
+    "csvBatchCreated": true,
+    "csvDownloaded": true,
+    "csvSha256": "1a457ba725b50b49bfe3d7f7fbd01e910c2144625f12eab6295566908a8ffe51",
+    "emailDraftReviewed": true,
+    "configRevisionsSaved": true,
+    "historyReviewed": true,
+    "mobileViewportWidth": 375,
+    "mobileScrollWidth": 375
+  },
+  "mimeCheck": {
+    "independentPythonParser": true,
+    "defects": 0,
+    "exactCsvAttachment": true,
+    "testRecipient": "shiftsometimber@gmail.com",
+    "draftOnly": true
+  },
+  "emailsSent": 0,
+  "liveSignedInBrowserCheck": "Pending: the live HQ browser is signed out. No session has been created or bypassed."
+}
