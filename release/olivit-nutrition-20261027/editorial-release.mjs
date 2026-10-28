@@ -110,10 +110,10 @@ if(action==='prepare'){
  const active=await deployment(script);
  if(active.versions[0].version_id!==predecessor){
   const current=await cf('/accounts/'+account+'/workers/workers/'+script+'/versions/'+active.versions[0].version_id+'?include=modules');
-  const modules=(current.modules||[]).filter(m=>/\.(mjs|js)$/.test(m.name));
-  assert.equal(modules.length,1,'Cannot safely capture current serving bundle');
-  const bytes=Buffer.from(modules[0].content_base64,'base64');writeFileSync(dir+'/current-serving-worker.mjs',bytes);
-  save('current-serving',{deployment:active,buildSHA256:hash(bytes),metadata:current.metadata,topLevelKeys:Object.keys(current),resourceKeys:Object.keys(current.resources||{}),bindings:normalizeBindings(current.resources?.bindings||[]),scriptRuntime:current.resources?.script_runtime,routes:await routes(),retained:await retained()});
+  const modules=current.modules||[];assert(modules.length>0,'Current version contains no modules');
+  mkdirSync(dir+'/current-serving-modules',{recursive:true});
+  const captured=modules.map((module,index)=>{const bytes=Buffer.from(module.content_base64,'base64'),file='current-serving-modules/'+index+'.bin';writeFileSync(dir+'/'+file,bytes);return {name:module.name,type:module.type,file,bytes:bytes.length,sha256:hash(bytes)};});
+  save('current-serving',{deployment:active,modules:captured,metadata:current.metadata,topLevelKeys:Object.keys(current),resourceKeys:Object.keys(current.resources||{}),scriptMetadata:current.resources?.script,bindings:normalizeBindings(current.resources?.bindings||[]),scriptRuntime:current.resources?.script_runtime,routes:await routes(),retained:await retained()});
   throw Error('Captured newer serving component for integration; no upload or promotion performed');
  }
  await version(predecessor,predecessorBytes);
