@@ -1,0 +1,107 @@
+{
+  "reviewedCommit": "623288fdf9022d68d94caab43a3d9fe5c51d9c7d",
+  "approval": "Matt: publish (28 October 2026, Europe/London)",
+  "service": "shift-health-nutrition-20261027",
+  "retainedVersion": "2361f9d3-5b68-4921-8a6b-1263d5442d9b",
+  "retainedModuleSha256": "09d6ed280227a434b55902ad99f9e009b562fedc3d495471ecc6ab6be1fd3252",
+  "mainModule": "testing-production-entry.mjs",
+  "routesToAdd": [
+    "api.shiftsometimber.co.uk/v1/hq/testing*"
+  ],
+  "stockQuantity": 0,
+  "pricePence": null,
+  "purchasingEnabled": false,
+  "testsPassed": 29,
+  "modules": [
+    {
+      "path": "health-testing/production.mjs",
+      "sha256": "46a2aa32412519ec5f0fc18ae8119264436aa1a4d9898228656cac068fb3994f",
+      "size": 2429
+    },
+    {
+      "path": "health-nutrition/worker.mjs",
+      "sha256": "f695d61e506ff8a3300d4ee1793bf150844628f2168e7df3fe16f07e9e25f9b0",
+      "size": 4534
+    },
+    {
+      "path": "health-testing/storefront.mjs",
+      "sha256": "75a3147aeb256d2cc0eddf58edcb3dcff6c49fc2ae110e87449469b394156e06",
+      "size": 5144
+    },
+    {
+      "path": "health-testing/catalogue.mjs",
+      "sha256": "eb947e9bf2cf1bae27cf7e403746771cdc523f45152f5774453a8c746d26ed91",
+      "size": 14147
+    },
+    {
+      "path": "health-testing/specifications.mjs",
+      "sha256": "5aee421dc7587c589729600213931733c033ed1f152c2f0fae7954892781cb61",
+      "size": 5423
+    },
+    {
+      "path": "health-testing/media-data.mjs",
+      "sha256": "eb7ac9d7a310234441dc837efc5e5222cef38070160c9a63325377957dd072b7",
+      "size": 1180494
+    },
+    {
+      "path": "health-nutrition/images.mjs",
+      "sha256": "1f454c9f390e6390d8be5cc366e4d8f49b0a2e4c7cafe5a00d161307f305b7fe",
+      "size": 643679
+    },
+    {
+      "path": "health-nutrition/catalogue.mjs",
+      "sha256": "c7aa65224d4cde01176bdd0a421f7706ca8342bcf788f824063c6fbd0a806e38",
+      "size": 5677
+    },
+    {
+      "path": "health-nutrition/public.mjs",
+      "sha256": "78c779109214adf250001c5078cdbd5799fd8ac422b5e7bc42235e80f3511c68",
+      "size": 8140
+    },
+    {
+      "path": "health-nutrition/templates.mjs",
+      "sha256": "a8e0d2286d981aebc4706aebbf7436a6a38c2115c69b12e79ee4d191f364d4ee",
+      "size": 11252
+    },
+    {
+      "path": "health-nutrition/styles.mjs",
+      "sha256": "93fd513f4caaf5515132522ab6d61fdd0b9f159ac24281b4abc8161a1d0a4280",
+      "size": 49227
+    },
+    {
+      "path": "health-testing/public.mjs",
+      "sha256": "f8ae6745a5d55ac906b2f34fdeaf5b8c36f8e43da5cb193d48015d88985a8b31",
+      "size": 20048
+    },
+    {
+      "path": "health-testing/media.mjs",
+      "sha256": "9c648a68ec6a8b4ff3166373f50c1405e7b0b6d9c7ef8a603df96ea29ca95d27",
+      "size": 3478
+    },
+    {
+      "path": "health-testing/styles.mjs",
+      "sha256": "46ab4ed9a57c9d0fcb067fc2e1b2f6b9392239b1dc1379de27eb588c579288ce",
+      "size": 18748
+    },
+    {
+      "path": "health-nutrition/hq-api.mjs",
+      "sha256": "8c9b58c403255916190eb70b740395cf637ff81f1ecbbb3747faca2226378ccd",
+      "size": 5753
+    },
+    {
+      "path": "health-nutrition/hq-client.mjs",
+      "sha256": "d11515ea7c139192c3f63be2abc1cf660d8fe502961975efb6092c2039c3d58d",
+      "size": 12672
+    },
+    {
+      "path": "health-testing/hq-api.mjs",
+      "sha256": "dd7dd582ad7119b44df502c6aef4223562a1ac18eb2e96b4b4374c2b3b7f845d",
+      "size": 4898
+    },
+    {
+      "path": "health-testing/hq-client.mjs",
+      "sha256": "4c41c4ff28640d6103a73f9c41409208de1655ac410b834cdbfdd8030e9ecb29",
+      "size": 5391
+    }
+  ]
+}
