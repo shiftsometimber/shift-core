@@ -47,6 +47,17 @@ Matt made organic acquisition imperative given the advertising competition. A fo
 - Then inspect the published guide URLs and measure non-brand impressions, clicks, and useful actions over settled reporting windows. Keep the distinction between indexed pages, search visibility, traffic and sign-ups/orders. No recurring job or watcher was created.
 - Primary sitemap guidance: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap . The immediate route to audience value remains specific useful questions and comparisons around protein, creatine, hydration and snack choices, backed by visible sources and genuine experience; no unresearched search-volume or competitor-spend claims are made.
 
+## Scoped production delegation — 28 October 2026
+
+Matt replied **“Yes please”** to the prepared supplement content/SEO/sitemap release and indexing next step. This is the specific delegation previously requested in this chat. The former production-authority wait is superseded for this operation only. Final supplier facts, sale activation, clinical changes, payments and external communications remain held.
+
+- Approved runtime: `5e2462443bd4a32c5ec7ec52c1c6e9cb6b396915`; review/checkpoint head `84cc457ec98bc94fc504023e8bc6f6a9abede094`; 72-check and four-width browser receipt `40789307809` remains reusable because the runtime trees are unchanged.
+- Ownership check: established Olivit checkpoint and serving checkout receipts read; current GitHub `main` remains `afa38107c8d663dc233114982039a8814ca64229`, review branch remains `84cc457…`. No active production deployment was found; the existing whole-estate route sweep is retained. Current Mac AGENTS was read and the source/recovery/status locations checked without executing tests, rebuilding or reviving the stale working copy. No newer shared release-control record was found in those known locations.
+- Finite release branch: `release/olivit-editorial-approved-20261028`, based on the review head. Added scoped release driver `release/olivit-nutrition-20261027/editorial-release.mjs` and workflow `.github/workflows/olivit-editorial-approved-20261028.yml`; the existing checkpoint is the third release-only change. No runtime source is changed by this packaging.
+- Uses the existing `cloudflare-production-promote` concurrency group with cancellation disabled. Requires the exact captured predecessor version/bytes before staging; checks immutable reviewed runtime trees and prior successful CI; captures all route ownership, retained service versions and catalogue/SKU hashes. Performs no database migration, catalogue write or route mutation. Newer serving work causes a stop before promotion.
+- Build/upload uses the pinned compiler. Staged bytes/bindings and read-only rendering against the real catalogue are checked before promotion. After promotion, verify all eight real pages at four widths, the nine-URL sitemap, held purchasing, provider bytes and unchanged routes/catalogue/SKUs/recommendations/services. Rollback may restore only this component while its current active version is still the version promoted by this run.
+- Next: follow the actual release job to its result; submit only the successfully verified live sitemap through Search Console and retain that submission result. Inspect the published guide URLs without claiming submission guarantees indexing. No watcher, schedule or outreach is created.
+
 ## Earlier Health presentation watermark (retained evidence)
 
 
