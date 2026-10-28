@@ -100,6 +100,16 @@ function frameBody(){
  body.prepend(frame);body.dataset.homeFrame='1';
  for(const [key,value]of Object.entries({width:'100%','max-width':'none',margin:'0',padding:'0','box-sizing':'border-box'}))body.style.setProperty(key,value,'important');
 }
+function orderDrawer(){
+ if(/^\/(?:index(?:\.html?)?)?$/.test(location.pathname))return;
+ const nav=document.querySelector('#site-drawer nav');if(!nav)return;
+ const children=[...nav.children],links=children.filter(e=>e.tagName==='A');
+ const first=['/start-here','/programme','/shift-health','/treatment-centre','/member/dashboard'];
+ const rank=e=>{const i=first.indexOf(e.getAttribute('href'));return i<0?first.length:i};
+ const sorted=[...links].sort((a,b)=>rank(a)-rank(b)||a.textContent.trim().localeCompare(b.textContent.trim(),'en-GB',{sensitivity:'base'}));
+ if(links.every((e,i)=>e===sorted[i]))return;
+ let i=0;nav.replaceChildren(...children.map(e=>e.tagName==='A'?sorted[i++]:e));
+}
 function install(){if(!document.body)return;frameBody();
  let h=document.querySelector('header.site-header[data-header-v2]');
  if(!h){h=node(master.header);const d=node(master.drawer),back=node(master.backdrop);document.body.prepend(h,d,back);bindNewHeader(h,d,back);h.dataset.homeBound='1'}
@@ -127,6 +137,7 @@ function install(){if(!document.body)return;frameBody();
  }
  if(f.parentElement!==document.body)document.body.append(f);
  for(const extra of document.querySelectorAll('footer'))if(extra!==f){if(extra.querySelector('.footer-brand,.fc-main,.footer-grid'))extra.remove();else for(const duplicate of extra.querySelectorAll('.shift-whatsapp-row,[data-shift-footer-social]'))duplicate.remove()}
+ orderDrawer();
  document.documentElement.dataset.shiftHomeShell='20261024';
 }
 const start=()=>{install();let queued=false;new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;install()})}}).observe(document.body,{childList:true,subtree:true})};
