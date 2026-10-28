@@ -2,6 +2,18 @@
 
 Matt approved the fuller-dad family park hero, image-led Health hub, nutrition storefront and deployment of both pages on 27 October 2026. The current scope also saves eight real draft catalogue records in HQ, with separate supplier references, illustrative packs and editable “SHIFT says…” notes.
 
+## Product explanations — approved implementation, 28 October 2026
+
+Matt approved applying the fuller explanations to the eight supplement items after reviewing `SHIFT-Olivit-Review-and-Product-Copy.html` and confirming that credible, useful detail must earn trust for the new brand. This is presentation/editorial scope only; it does not authorise supplier sales activation, pricing, orders or external communications.
+
+- Implemented in isolated branch `work/olivit-product-detail-20261028`, based on the exact PR #1441 head `8c82a4a8857e472a8895b40a871e40dd264adfbf`.
+- Adds the approved purpose, practical fit, limits, suitability, FAQs and dated source links for all eight existing identities, plus the approved storefront choice guide. Black, cream and ash styling remains scoped to the Health component.
+- Updated summaries and SHIFT says notes replace only the original seed wording; subsequent HQ edits are retained. Static ingredient explanations bind to the reviewed ID/name/brand so a repurposed catalogue item cannot inherit the wrong guide.
+- No catalogue migration, live data write, sale offer, runtime route, payment, clinical or supplier integration is changed. The illustrative pack mismatches remain explicitly unconfirmed; no final SKU/pack is invented.
+- Local validation: 16 focused editorial, catalogue, security and purchasing-hold tests pass. The existing browser verifier now covers all eight detail pages at 1440, 736, 390 and 320 px, including FAQs, sources, loaded images, contrast and overflow. Its run result is recorded below when available; adding checks is not evidence they passed.
+- Current release-owner source/control record could not be resolved from the recorded Mac working copy; its Git pointer is stale. It was not restored. GitHub reported no running or queued workflows during the pre-edit check. Existing source/merge/release ownership remains in force.
+- Next action: finish the branch's existing CI lane, retain the browser evidence and hand the exact tested source to the established release owner. Do not push this change through the older Health-only lane: PR #1441 includes the serving checkout recommendation presentation that must be preserved.
+
 ## Earlier Health presentation watermark (retained evidence)
 
 

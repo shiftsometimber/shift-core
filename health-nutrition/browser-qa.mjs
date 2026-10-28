@@ -39,6 +39,23 @@ try{
   await Promise.all([page.waitForNavigation({waitUntil:'domcontentloaded'}),page.click('a[href="?category=creatine#shop-categories"]')]);assert.equal(await page.$$eval('.shop-item',xs=>xs.length),2);
   await page.select('#shop-brand','Skill Nutrition');await page.$eval('form.shop-toolbar button',x=>x.scrollIntoView({block:'center'}));await Promise.all([page.waitForNavigation({waitUntil:'domcontentloaded'}),page.click('form.shop-toolbar button')]);assert.equal(await page.$$eval('.shop-item',xs=>xs.length),1);
   await Promise.all([page.waitForNavigation({waitUntil:'domcontentloaded'}),page.click('.shop-item h3 a')]);await fit(page);assert.match(await page.$eval('#shift-health-range h1',x=>x.textContent),/Micronised Creatine/);assert(await page.$('.shift-says'));assert(!await page.$('[data-add]'));
+  const editorialProducts=[];
+  for(const product of seed){
+   await page.goto('https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product='+product.id,{waitUntil:'domcontentloaded'});await fit(page);
+   assert.equal(await page.$eval('.product-content h1',x=>x.textContent),product.name);
+   assert((await page.$$('.supplement-topic')).length>=5);
+   assert(await page.$('.supplement-sources time[datetime="2026-10-28"]'));
+   assert.equal((await page.$$('.supplement-questions details[open]')).length,0);
+   const first=await page.$('.supplement-questions summary');await first.evaluate(x=>x.scrollIntoView({block:'center'}));await first.click();
+   assert.equal((await page.$$('.supplement-questions details[open]')).length,1);
+   assert.match(await page.$eval('.range-notice',x=>x.innerText),/Not yet available to order/);
+   assert(!await page.$('[data-add]'));
+   assert.equal(await page.$eval('.supplement-topic',x=>getComputedStyle(x).backgroundColor),'rgb(231, 227, 218)');
+   assert.equal(await page.$eval('.supplement-topic',x=>getComputedStyle(x).color),'rgb(5, 5, 5)');
+   if([1440,390].includes(width)&&product.id==='whey')await (await page.$('#shift-health-range')).screenshot({path:out+'/product-whey-'+width+'.png'});
+   editorialProducts.push(product.id);
+  }
+  results.push({width,editorialProducts,allProductGuides:true,sourcesVisible:true,nativeQuestionsWork:true,approvedContrast:true});
   await page.goto('https://shiftsometimber.co.uk/shift-health/supplements-nutrition?category=sleep',{waitUntil:'domcontentloaded'});assert.equal(await page.$$eval('.shop-item',xs=>xs.length),0);assert.match(await page.$eval('#shop-empty',x=>x.innerText),/More everyday support/);
   results.push({width,hub:true,images:true,colours:true,shop:true,filters:true,productDetails:true,purchasingDisabled:true});await page.close();
  }

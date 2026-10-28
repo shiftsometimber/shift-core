@@ -22,4 +22,23 @@ jobs:
       - name: Check exact browser source and transactional behaviour
         run: |
           node checkout-extras/build-assets.mjs --check
-          node --test checkout-extras/feature.test.mjs checkout-extras/medicine-integration.test.mjs tests/checkout-recovery.test.mjs tests/medicine-commerce-v1.test.mjs tests/purchase-basket.test.mjs health-nutrition/feature.test.mjs
+          node --test checkout-extras/feature.test.mjs checkout-extras/medicine-integration.test.mjs tests/checkout-recovery.test.mjs tests/medicine-commerce-v1.test.mjs tests/purchase-basket.test.mjs health-nutrition/feature.test.mjs health-nutrition/editorial.test.mjs
+      - name: Compile the isolated Health presentation for browser checks
+        run: |
+          npm ci --ignore-scripts
+          npm install --prefix "$RUNNER_TEMP/shift-browser" --no-save --ignore-scripts puppeteer-core@25.12.0
+          node node_modules/wrangler/bin/wrangler.js deploy --dry-run --config health-nutrition/wrangler.jsonc --outdir "$RUNNER_TEMP/shift-health-editorial"
+          echo "SHIFT_PUPPETEER_MODULE=$RUNNER_TEMP/shift-browser/node_modules/puppeteer-core" >> "$GITHUB_ENV"
+          echo "SHIFT_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
+          echo "SHIFT_COMPILED_WORKER=$RUNNER_TEMP/shift-health-editorial/worker.js" >> "$GITHUB_ENV"
+      - name: Check all eight product pages at desktop and mobile widths without changing production
+        env:
+          SHIFT_BROWSER_EVIDENCE: health-nutrition-release/browser-editorial
+        run: node health-nutrition/browser-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: health-nutrition-editorial-${{ github.run_id }}
+          path: health-nutrition-release/browser-editorial/
+          if-no-files-found: warn
+          retention-days: 30
