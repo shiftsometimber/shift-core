@@ -1,9 +1,9 @@
 {
   "candidate": "0b2bcbe69af2587335f3ecb73f1fff0325640e46",
   "branch": "feature/prepurchase-assessment-20261028",
-  "recordedAt": "2026-10-28T21:07:27.033578+00:00",
+  "recordedAt": "2026-10-28T21:48:08.057902+00:00",
   "userApproval": "Approved design and explicitly requested deployment on 28 October 2026, Europe/London.",
-  "state": "prepared_not_published_or_deployed",
+  "state": "deployed_public_walkthrough_verified",
   "checks": {
     "tests": 52,
     "passed": 52,
@@ -115,9 +115,72 @@
   "publicationBlock": {
     "action": "git push origin HEAD:refs/heads/feature/prepurchase-assessment-20261028",
     "automaticReview": "Rejected because this publishes source to a public GitHub repository and deploy was not accepted as explicit approval of that separate source-publication side effect. Do not retry through another tool, remote device, API or indirect upload.",
-    "remoteBranchCheck": "GitHub branch search returned no matching branch after rejection."
+    "remoteBranchCheck": "GitHub branch search returned no matching branch after rejection.",
+    "status": "Resolved by explicit user permission; connector publication verified"
   },
-  "liveObservations": {
+  "releaseReconciliation": {
+    "macSourceLink": "/Users/shiftsometimberltd/SST/WORKSPACE/01 - Source repository/shift-core points to absent /Users/shiftsometimberltd/SST/shift-core",
+    "retainedTaskGit": "Existing Mac source/task links were absent; no source checkout was restored. Publication used the existing CI release credential with the finite one-page manifest workflow.",
+    "sourceBranch": "Prepared assessment branch descends from the assessment review line; it is not the whole current production estate. Preserve current provider source, manifests, Health, My Timber, homepage and release ownership.",
+    "workflow": "Read existing production and finite Pages publication source. Do not run its stale pinned predecessors against current production."
+  },
+  "nextAction": "Complete for the approved public walkthrough. Do not replay publication. Clinical-entry/backend/provider activation remains separately gated.",
+  "sideEffects": {
+    "productionWrites": 1,
+    "routeChanges": 0,
+    "clinicalActivation": false,
+    "paymentActivation": false,
+    "stockChanges": false,
+    "externalMessages": 0,
+    "productionPagesDeployments": 1,
+    "workerWrites": 0,
+    "dataWrites": 0,
+    "rollbackRequired": false
+  },
+  "sourcePublication": {
+    "explicitlyAuthorised": true,
+    "runtimeCommit": "b511f05809923da1d9fd74d45f844594e5e8d76b",
+    "tree": "3152fe90251679a396857eecfd74135210664dcf",
+    "branch": "feature/prepurchase-assessment-20261028",
+    "implementationByteTreeMatchesLocal": true
+  },
+  "deployment": {
+    "scope": [
+      "/assessment-walkthrough.html"
+    ],
+    "approvedRuntimeSHA256": "6e2dbb9d649f4c1074baa75f51ca60c9576108e330f005ac16b9c077ed8e3a66",
+    "retainedManifestAssets": 859,
+    "stageCommit": "4847790772cd53ffd10d32c78d77f459ba64b003",
+    "stageRun": 40773622240,
+    "currentPagesBaseline": "bf87f7b6-467c-4553-9784-ee1910ba44ae",
+    "workflow": ".github/workflows/assessment-guided-publication.yml",
+    "concurrency": "cloudflare-production-promote",
+    "clinicalEntryAndBackend": "Not activated or replaced by this public walkthrough publication",
+    "credentials": "Existing CI Cloudflare API token; the expired Mac OAuth credential was not altered",
+    "guardTests": 10,
+    "productionCommit": "11a2f36d04fd72eedda99449cd8297c917334bf6",
+    "productionRun": 40774854353,
+    "productionRunConclusion": "success",
+    "productionDeployment": "e128f7ac-b439-4bfb-b66a-c27fb3af224a",
+    "liveURL": "https://shiftsometimber.co.uk/assessment-walkthrough",
+    "liveBrowserVisualCheck": true,
+    "liveScreenshot": "assessment-v2/review/assessment-guided-live-20261028.jpg",
+    "effectiveHeaderContractsCompared": 865,
+    "protectedPublicResponsesUnchanged": [
+      "/",
+      "/start-here",
+      "/shift-health/testing",
+      "/my-timber",
+      "/treatment-assessment"
+    ],
+    "artifact": {
+      "id": 12853014919,
+      "sha256": "e2cd79020e6488ac44b162917ad4bd7ebdfe6b1a18f774644dcedc205e1980f1"
+    },
+    "evidenceDirectory": "assessment-v2/deployment/evidence-20261028"
+  },
+  "filesScope": "Hashes of the approved implementation snapshot before deployment documentation updates.",
+  "preDeploymentObservations": {
     "assessmentWalkthrough": {
       "status": 200,
       "sha256": "53ca8bdc1eda1971ed15e9b1931249bc2bf644f8a568a5a39941cedfa6db2dad",
@@ -137,20 +200,5 @@
       "release": "health-testing-range-20261028",
       "sha256": "033b5b21c7b3a0c97f498fb5953a0ab8a2af1f85323750d9c9c990788a4bd1c5"
     }
-  },
-  "releaseReconciliation": {
-    "macSourceLink": "/Users/shiftsometimberltd/SST/WORKSPACE/01 - Source repository/shift-core points to absent /Users/shiftsometimberltd/SST/shift-core",
-    "retainedTaskGit": "Existing olivit task Git link also points into the absent source. No clone, restore, install or production command was attempted.",
-    "sourceBranch": "Prepared assessment branch descends from the assessment review line; it is not the whole current production estate. Preserve current provider source, manifests, Health, My Timber, homepage and release ownership.",
-    "workflow": "Read existing production and finite Pages publication source. Do not run its stale pinned predecessors against current production."
-  },
-  "nextAction": "Obtain explicit permission for public source publication. Then reconcile the exact current serving source and use the existing scoped deployment/rollback controls. Do not deploy this stale whole-site branch or activate clinical/provider, payment or stock settings.",
-  "sideEffects": {
-    "productionWrites": 0,
-    "routeChanges": 0,
-    "clinicalActivation": false,
-    "paymentActivation": false,
-    "stockChanges": false,
-    "externalMessages": 0
   }
 }

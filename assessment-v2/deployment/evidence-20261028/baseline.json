@@ -1,0 +1,29 @@
+{
+  "deployment": {
+    "id": "bf87f7b6-467c-4553-9784-ee1910ba44ae",
+    "url": "https://bf87f7b6.projectshift.pages.dev",
+    "environment": "production",
+    "created_on": "2026-10-25T22:56:46.343977Z",
+    "latest_stage": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-10-25T22:56:51.882345Z",
+      "status": "success"
+    },
+    "deployment_trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "f7b551b35959519908fb80e3fdf34ae97bee28c4",
+        "commit_message": "Deduplicate signed-out cover cookie choices",
+        "commit_dirty": false
+      }
+    },
+    "uses_functions": false
+  },
+  "productionBranch": "main",
+  "source": "b511f05809923da1d9fd74d45f844594e5e8d76b",
+  "headerSourceCommit": "f7b551b35959519908fb80e3fdf34ae97bee28c4",
+  "headerSourceSHA256": "6fc553ead8d1665b52abc24e3fabfe27f54ee0a8168fda63bfd71d1a9e7fc8af",
+  "at": "2026-10-28T21:38:47.534256+00:00"
+}

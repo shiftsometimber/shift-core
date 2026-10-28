@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "at": "2026-10-28T21:39:50.395185+00:00",
+  "deployment": "e6610682-0e03-4b27-a66d-6240ab9af575",
+  "bodySHA256": "6e2dbb9d649f4c1074baa75f51ca60c9576108e330f005ac16b9c077ed8e3a66",
+  "effectiveHeaderContractsChecked": 865,
+  "sourceHeadersFromCurrentDeploymentCommit": "f7b551b35959519908fb80e3fdf34ae97bee28c4",
+  "manifestExact": true,
+  "onlyChangedPath": "/assessment-walkthrough.html"
+}

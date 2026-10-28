@@ -1,0 +1,10 @@
+{
+  "effectiveContractsCompared": 865,
+  "passed": 865,
+  "failed": 0,
+  "sourceFileSHA256": "567cc356995982954dd31cf4c4a52b20ae8b48146bef9707fe6a17728ea63da8",
+  "originalEvidence": "GitHub Actions artifact 12853014919, header-comparison.json",
+  "artifactSHA256": "e2cd79020e6488ac44b162917ad4bd7ebdfe6b1a18f774644dcedc205e1980f1",
+  "scope": "860 existing asset paths plus 5 public routes",
+  "previewPolicy": "Only the default additional Cloudflare preview noindex was accepted as stronger; security/cache weakening was rejected."
+}

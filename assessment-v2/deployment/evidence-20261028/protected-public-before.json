@@ -1,0 +1,77 @@
+{
+  "/": {
+    "status": 200,
+    "sha256": "a491b2a868aa5aadaca3261bbd79f02f873b1e7a4038414f00afa1077c096bb8",
+    "bytes": 206721,
+    "headers": {
+      "x-shift-catalogue-benefits": "20261006",
+      "x-shift-contrast-safety": "public-contrast-20260917-r2",
+      "x-shift-font-delivery": "approved-glyph-subset-v1",
+      "x-shift-lounge-chrome": "v1",
+      "x-shift-public-shell": "public-shell-20260917-preview1",
+      "x-shift-shared-footer": "approved-c-20261001",
+      "x-shift-startup-layout": "stable-v1",
+      "x-shift-ticker-policy": "public-news-20260917-r4"
+    }
+  },
+  "/start-here": {
+    "status": 200,
+    "sha256": "c286615741ad6a0b3a4c01cec2ef792fcf71e7d7d82220535fbf3e1592853fb2",
+    "bytes": 138026,
+    "headers": {
+      "x-shift-accuracy-repair": "v1",
+      "x-shift-contrast-safety": "public-contrast-20260917-r2",
+      "x-shift-lounge-chrome": "v1",
+      "x-shift-public-shell": "public-shell-20260917-preview1",
+      "x-shift-questions-version": "20261022-brand-v1",
+      "x-shift-shared-footer": "approved-c-20261001",
+      "x-shift-start-version": "20261021-welcome-v1",
+      "x-shift-startup-layout": "stable-v1",
+      "x-shift-ticker-policy": "public-news-20260917-r4",
+      "x-shift-treatment-cards-version": "20261022-cream-v1"
+    }
+  },
+  "/shift-health/testing": {
+    "status": 200,
+    "sha256": "570ce53c2e09e2e423d0af0efea9d9cfa22d355e1f71dce4a9669d2d2fad16c3",
+    "bytes": 188831,
+    "headers": {
+      "x-shift-health-release": "health-testing-range-20261028"
+    }
+  },
+  "/my-timber": {
+    "status": 200,
+    "sha256": "9eb221cbabc7f3a2245d1e688a94f1606d1e5b70285bdea30fac71bf0a7aae27",
+    "bytes": 427708,
+    "headers": {
+      "x-shift-communications": "20261024-hq-prescription-eligibility-v3",
+      "x-shift-contrast-safety": "public-contrast-20260917-r2",
+      "x-shift-frontend-authority": "pages:cos-live-recovery-20260909-r2",
+      "x-shift-member-design": "approved-20261001",
+      "x-shift-my-timber-presentation": "my-timber-six-pages-20261025",
+      "x-shift-programme-source": "0bbf4acfd71d86a51ffffc211dc55961d5a47b36",
+      "x-shift-shared-footer": "approved-c-20261001",
+      "x-shift-startup-layout": "stable-v1",
+      "x-shift-support-followthrough": "20261024-followthrough-heartbeat-v2",
+      "x-shift-ticker-policy": "public-news-20260917-r4",
+      "x-shift-trust-repair": "2026-10-03"
+    }
+  },
+  "/treatment-assessment": {
+    "status": 200,
+    "sha256": "65110da694e7acdfe6daedd081282ff306d179624238856a8426cf34f2cccbac",
+    "bytes": 64719,
+    "headers": {
+      "x-shift-accuracy-repair": "v1",
+      "x-shift-catalogue-source": "live",
+      "x-shift-contrast-safety": "public-contrast-20260917-r2",
+      "x-shift-lounge-chrome": "v1",
+      "x-shift-public-shell": "public-shell-20260917-preview1",
+      "x-shift-shared-footer": "approved-c-20261001",
+      "x-shift-startup-layout": "stable-v1",
+      "x-shift-ticker-policy": "public-news-20260917-r4",
+      "x-shift-treatment-options-design": "20261022-options-preview-v3-inline-switch",
+      "x-shift-treatment-options-version": "20261022-options-live-v1"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "e6610682-0e03-4b27-a66d-6240ab9af575",
+  "url": "https://e6610682.projectshift.pages.dev",
+  "environment": "preview",
+  "created_on": "2026-10-28T21:39:02.790456Z",
+  "latest_stage": {
+    "name": "queued",
+    "started_on": null,
+    "ended_on": null,
+    "status": "idle"
+  },
+  "deployment_trigger": {
+    "type": "ad_hoc",
+    "metadata": {
+      "branch": "assessment-guided-review-20261028",
+      "commit_hash": "b511f05809923da1d9fd74d45f844594e5e8d76b",
+      "commit_message": "Approved compact assessment and guided design; orders closed",
+      "commit_dirty": false
+    }
+  },
+  "uses_functions": null
+}

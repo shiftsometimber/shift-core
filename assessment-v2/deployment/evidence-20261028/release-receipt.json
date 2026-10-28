@@ -1,0 +1,42 @@
+{
+  "state": "deployed_public_walkthrough_verified",
+  "sourceCommit": "b511f05809923da1d9fd74d45f844594e5e8d76b",
+  "stageRun": 40773622240,
+  "publishRun": 40774854353,
+  "publishCommit": "11a2f36d04fd72eedda99449cd8297c917334bf6",
+  "artifactId": 12853014919,
+  "artifactSHA256": "e2cd79020e6488ac44b162917ad4bd7ebdfe6b1a18f774644dcedc205e1980f1",
+  "production": {
+    "id": "e128f7ac-b439-4bfb-b66a-c27fb3af224a",
+    "url": "https://e128f7ac.projectshift.pages.dev",
+    "environment": "production",
+    "created_on": "2026-10-28T21:47:48.235706Z",
+    "latest_stage": {
+      "name": "queued",
+      "started_on": null,
+      "ended_on": null,
+      "status": "idle"
+    },
+    "deployment_trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "b511f05809923da1d9fd74d45f844594e5e8d76b",
+        "commit_message": "Approved compact assessment and guided design; orders closed",
+        "commit_dirty": false
+      }
+    },
+    "uses_functions": null
+  },
+  "liveBrowser": {
+    "verifiedURL": "https://shiftsometimber.co.uk/assessment-walkthrough",
+    "designVisuallyInspected": true,
+    "screenshot": "assessment-v2/review/assessment-guided-live-20261028.jpg",
+    "screenshotSHA256": "a372396a1af8774da48bdf6cedd8adca1987783d97be446ffbf718b6e7dc0f6f"
+  },
+  "scope": "Existing public fictional walkthrough only; clinical-entry/backend activation not deployed",
+  "clinicalActivation": false,
+  "paymentActivation": false,
+  "stockChanges": false,
+  "externalMessages": 0
+}

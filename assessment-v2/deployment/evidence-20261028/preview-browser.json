@@ -1,0 +1,18 @@
+{
+  "accepted": true,
+  "preview": "e6610682-0e03-4b27-a66d-6240ab9af575",
+  "origin": "https://e6610682.projectshift.pages.dev",
+  "source": "b511f05809923da1d9fd74d45f844594e5e8d76b",
+  "cases": [
+    "Hosted desktop visual inspection of the approved design",
+    "Empty questionnaire blocked at review",
+    "Fictional starting case loads complete answers",
+    "Grouped conditions, history and medicines preserved in full prescriber review",
+    "Review unlocks GP and evidence step",
+    "Treatment order/payment action remains disabled"
+  ],
+  "responsiveEvidence": "Exact approved source previously inspected at 390px and 320px; hosted source SHA256 matches",
+  "limits": [
+    "No physical Safari/iPhone acceptance or clinical/provider activation claimed"
+  ]
+}

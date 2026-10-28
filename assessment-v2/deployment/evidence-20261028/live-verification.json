@@ -1,0 +1,56 @@
+{
+  "source": "b511f05809923da1d9fd74d45f844594e5e8d76b",
+  "deployment": "e128f7ac-b439-4bfb-b66a-c27fb3af224a",
+  "baseline": "bf87f7b6-467c-4553-9784-ee1910ba44ae",
+  "at": "2026-10-28T21:48:08.057902+00:00",
+  "changedPaths": [
+    "/assessment-walkthrough.html"
+  ],
+  "unchangedManifestAssets": 859,
+  "checks": {
+    "/assessment-walkthrough": {
+      "status": 200,
+      "sha256": "480a4780f4c91b107d3a111cc50eb22162b4cdc12a219366a6ed4df580e2c797",
+      "bytes": 108032,
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow"
+    },
+    "/assessment-walkthrough.html": {
+      "status": 200,
+      "sha256": "480a4780f4c91b107d3a111cc50eb22162b4cdc12a219366a6ed4df580e2c797",
+      "bytes": 108032,
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow"
+    },
+    "/": {
+      "status": 200,
+      "sha256": "a491b2a868aa5aadaca3261bbd79f02f873b1e7a4038414f00afa1077c096bb8",
+      "unchanged": true
+    },
+    "/start-here": {
+      "status": 200,
+      "sha256": "c286615741ad6a0b3a4c01cec2ef792fcf71e7d7d82220535fbf3e1592853fb2",
+      "unchanged": true
+    },
+    "/shift-health/testing": {
+      "status": 200,
+      "sha256": "570ce53c2e09e2e423d0af0efea9d9cfa22d355e1f71dce4a9669d2d2fad16c3",
+      "unchanged": true
+    },
+    "/my-timber": {
+      "status": 200,
+      "sha256": "9eb221cbabc7f3a2245d1e688a94f1606d1e5b70285bdea30fac71bf0a7aae27",
+      "unchanged": true
+    },
+    "/treatment-assessment": {
+      "status": 200,
+      "sha256": "65110da694e7acdfe6daedd081282ff306d179624238856a8426cf34f2cccbac",
+      "unchanged": true
+    }
+  },
+  "workerWrites": 0,
+  "routeChanges": 0,
+  "dataWrites": 0,
+  "clinicalActivation": false,
+  "paymentActivation": false
+}
