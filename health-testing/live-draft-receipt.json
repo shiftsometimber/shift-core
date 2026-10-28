@@ -1,0 +1,24 @@
+{
+  "verifiedOn": "2026-10-28",
+  "operation": "Remote D1 schema creation, idempotent draft inserts and immediate SELECT verification",
+  "table": "testing_products",
+  "verifiedCount": 7,
+  "allStatus": "draft",
+  "allSaleEnabled": false,
+  "allSupplierCodes": null,
+  "allTradePrices": null,
+  "allShiftRetailPrices": null,
+  "records": [
+    {"id":"diabetes","type":"lab","supplierState":"available"},
+    {"id":"heart-health","type":"lab","supplierState":"coming_soon"},
+    {"id":"male-hormone","type":"lab","supplierState":"coming_soon"},
+    {"id":"cholesterol","type":"home","supplierState":"available"},
+    {"id":"thyroid","type":"home","supplierState":"available"},
+    {"id":"iron","type":"home","supplierState":"available"},
+    {"id":"vitamin-d","type":"home","supplierState":"available"}
+  ],
+  "applicationDeployed": false,
+  "purchasingEnabled": false,
+  "orderDispatchEnabled": false,
+  "externalCommunicationsSent": false
+}
