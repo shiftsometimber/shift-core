@@ -15,7 +15,9 @@ import urllib.request
 import uuid
 
 COMMIT=sys.argv[1]
+RESUME=sys.argv[2] if len(sys.argv)>2 else None
 assert re.fullmatch('[a-f0-9]{40}',COMMIT)
+assert RESUME is None or re.fullmatch('[a-f0-9-]{36}',RESUME)
 ACCOUNT='9e5386dcf455be34c582d93f8bfc79e6'
 DB='accounts/'+ACCOUNT+'/d1/database/88f40aed-cb23-4372-8c94-8a73f48bc847/query'
 BASE='accounts/'+ACCOUNT+'/workers/scripts/shift-health-nutrition-20261027'
@@ -52,7 +54,15 @@ settings=cf('GET',BASE+'/settings')
 schedules_before=cf('GET',BASE+'/schedules')['schedules']
 assert not schedules_before,schedules_before
 owned_bindings=[{'type':'send_email','name':'EMAIL','allowed_sender_addresses':['orders@shiftsometimber.co.uk']},{'type':'plain_text','name':'TESTING_FULFILMENT_MAIL_ENABLED','text':'true'},{'type':'plain_text','name':'TESTING_FULFILMENT_SCHEDULER_ENABLED','text':'true'}]
-assert not any(b['name'] in {x['name'] for x in owned_bindings} for b in settings['bindings'])
+def binding_set(bindings):return sorted(json.dumps(b,sort_keys=True) for b in bindings)
+if RESUME:
+ latest=cf('GET',BASE+'/versions')['items'][0]
+ assert latest['id']==RESUME,latest['id']
+ saved=cf('GET',BASE+'/versions/'+RESUME)
+ assert saved['annotations']['workers/tag']=='testing-mail-20261028'
+ assert binding_set([b for b in settings['bindings'] if b['name'] in {x['name'] for x in owned_bindings}])==binding_set(owned_bindings)
+ settings['bindings']=[b for b in settings['bindings'] if b['name'] not in {x['name'] for x in owned_bindings}]
+else:assert not any(b['name'] in {x['name'] for x in owned_bindings} for b in settings['bindings'])
 new_bindings=settings['bindings']+owned_bindings
 raw,kind=cf('GET',BASE,raw=True)
 message=email.message_from_bytes(('Content-Type: '+kind+'\r\nMIME-Version: 1.0\r\n\r\n').encode()+raw,policy=policy.default)
@@ -71,6 +81,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:incoming=dict(
 allowed={'health-testing/hq-api.mjs','health-testing/hq-client.mjs','health-testing/production.mjs','health-nutrition/worker.mjs','health-testing/fulfilment-api.mjs','health-testing/fulfilment-model.mjs','health-testing/hq-fulfilment.mjs','health-testing/fulfilment-source.mjs','health-testing/fulfilment-mail-model.mjs','health-testing/fulfilment-delivery.mjs','health-nutrition/public.mjs','health-testing/public.mjs','health-testing/styles.mjs','health-testing/media.mjs','health-testing/media-data.mjs','health-testing/product-context.mjs','health-testing/seo.mjs'}
 changed=[name for name,data in incoming.items() if old_hashes.get(name)!=sha(data)]
 assert set(changed)<=allowed,changed
+if RESUME:assert not changed,changed
 modules.update(incoming)
 assert sha(modules['retained-health-nutrition.mjs'])==release['retainedLegacySha256']
 
@@ -81,7 +92,7 @@ for line in schema.splitlines(True):
 assert not buffer.strip()
 for statement in statements:
  assert re.match(r'^(CREATE (?:UNIQUE )?(?:TABLE|INDEX) IF NOT EXISTS testing_fulfilment_|INSERT OR IGNORE INTO testing_fulfilment_config)',statement),statement[:100]
- cf('POST',DB,{'sql':statement})
+ if not RESUME:cf('POST',DB,{'sql':statement})
 config=cf('POST',DB,{'sql':"SELECT id,revision,template_confirmed,delivery_confirmed,delivery_method,destination FROM testing_fulfilment_config"})[0]['results'][0]
 batch_count=cf('POST',DB,{'sql':"SELECT COUNT(*) n FROM testing_fulfilment_batches"})[0]['results'][0]['n']
 assert config['template_confirmed']==0 and config['delivery_confirmed']==0
@@ -95,10 +106,12 @@ boundary='shift-csv-'+uuid.uuid4().hex;upload=[]
 for name,value,kind in [('metadata',json.dumps(metadata).encode(),'application/json')]+[(name,value,'application/javascript+module') for name,value in modules.items()]:
  upload.extend([('--'+boundary+'\r\nContent-Disposition: form-data; name="'+name+'"'+('; filename="'+name+'"' if name!='metadata' else '')+'\r\nContent-Type: '+kind+'\r\n\r\n').encode(),value,b'\r\n'])
 upload.append(('--'+boundary+'--\r\n').encode())
-candidate=cf('POST',BASE+'/versions',b''.join(upload),'multipart/form-data; boundary='+boundary)
+candidate=cf('GET',BASE+'/versions/'+RESUME) if RESUME else cf('POST',BASE+'/versions',b''.join(upload),'multipart/form-data; boundary='+boundary)
 emit('version_uploaded',versionId=candidate['id'],changedModules=changed)
 assert cf('GET',BASE+'/deployments')['deployments'][0]['id']==before_deployment['id']
-assert cf('GET',BASE+'/settings')['bindings']==settings['bindings']
+# Cloudflare publishes the uploaded version's binding metadata immediately,
+# before changing production traffic. Compare the complete expected set.
+assert binding_set(cf('GET',BASE+'/settings')['bindings'])==binding_set(new_bindings)
 deployment=cf('POST',BASE+'/deployments',{'strategy':'percentage','versions':[{'version_id':candidate['id'],'percentage':100}],'annotations':{'workers/message':'Deploy HQ testing Send now / Send later. Public purchasing stays disabled; partner setup remains unconfirmed.'}})
 emit('deployed',deploymentId=deployment['id'],versionId=candidate['id'])
 try:
