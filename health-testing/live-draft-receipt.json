@@ -110,7 +110,7 @@
       "supplierState": "available"
     }
   ],
-  "applicationDeployed": false,
+  "applicationDeployed": true,
   "purchasingEnabled": false,
   "orderDispatchEnabled": false,
   "externalCommunicationsSent": false,
@@ -119,5 +119,17 @@
     "products": 20,
     "resultTimesMatchAuditedSeed": true,
     "sourceCorrectionApplied": "General Health source is /products/wellness"
+  },
+  "websiteRelease": {
+    "sourceCommit": "cc11024bd85f01a8eae29f9059649b1cbaae0a1c",
+    "deploymentId": "6590597d-805c-4aad-8266-91aaa0f2810e",
+    "versionId": "efdd68cd-a700-4894-b40c-4f5f494b2e87",
+    "verifiedAt": "2026-10-28T20:37:58.200879+00:00",
+    "url": "https://shiftsometimber.co.uk/shift-health/testing",
+    "all20ProductPagesVerified": true,
+    "stockQuantity": 0,
+    "price": "TBC",
+    "purchasingEnabled": false,
+    "retainedRuntimePreserved": true
   }
 }

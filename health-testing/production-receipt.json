@@ -1,0 +1,208 @@
+{
+  "stage": "verified",
+  "deploymentId": "6590597d-805c-4aad-8266-91aaa0f2810e",
+  "versionId": "efdd68cd-a700-4894-b40c-4f5f494b2e87",
+  "sourceCommit": "cc11024bd85f01a8eae29f9059649b1cbaae0a1c",
+  "url": "https://shiftsometimber.co.uk/shift-health/testing",
+  "products": [
+    {
+      "path": "/shift-health/testing/testosterone",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/diabetes",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/psa-lab",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/male-hormone",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/heart-health",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/bowel-health",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/prostate-health",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/male-fertility",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/cholesterol",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/vitamin-d",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/iron",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/thyroid",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/kidney-health",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/multivitamin",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/vitamin-d-supplement",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/iron-supplement",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/general-health-bundle",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/general-health-combo",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/vitamin-d-combo",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    },
+    {
+      "path": "/shift-health/testing/iron-combo",
+      "status": 200,
+      "stockQuantity": 0,
+      "price": "TBC",
+      "purchaseDisabled": true
+    }
+  ],
+  "imageCount": 42,
+  "searchVerified": true,
+  "closedPurchaseStatus": 409,
+  "unauthenticatedHQStatus": 401,
+  "preserved": [
+    {
+      "path": "/",
+      "unchangedMain": true,
+      "status": 200
+    },
+    {
+      "path": "/shift-health",
+      "unchangedMain": true,
+      "status": 200
+    },
+    {
+      "path": "/shift-health/supplements-nutrition",
+      "unchangedMain": true,
+      "status": 200
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "unchangedMain": true,
+      "status": 200
+    },
+    {
+      "path": "/my-timber",
+      "unchangedMain": true,
+      "status": 200
+    }
+  ],
+  "bindingsUnchanged": true,
+  "oldRoutesUnchanged": true,
+  "createdRoutes": [
+    {
+      "id": "49a2d63f40ae41cc82a0a28e852230bf",
+      "pattern": "api.shiftsometimber.co.uk/v1/hq/testing*",
+      "script": "shift-health-nutrition-20261027",
+      "request_limit_fail_open": false
+    }
+  ],
+  "routeCount": 894,
+  "draftDatabaseRows": 20,
+  "purchasingEnabled": false,
+  "checkedAt": "2026-10-28T20:37:58.200879+00:00",
+  "browser": {
+    "rangeOpened": true,
+    "rangeUrl": "https://shiftsometimber.co.uk/shift-health/testing",
+    "searchProstateMatches": 2,
+    "prostateDetailOpened": true,
+    "prostateImageLoaded": true,
+    "prostatePrice": "TBC",
+    "prostateStockQuantity": 0,
+    "prostateBasketDisabled": true
+  },
+  "hqValidation": {
+    "unauthenticatedAccessDenied": true,
+    "privilegedBrowserLoadSave": "Not exercised in this website publication; authenticated permissions, revision control and save behavior passed focused source tests."
+  }
+}

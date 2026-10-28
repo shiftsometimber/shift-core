@@ -28,9 +28,9 @@ Browser review confirmed that the original prostate box and device photographs l
 
 `node health-testing/preview.mjs` regenerates static review routes, original photo assets and the self-contained `review.html`. Its twenty product links and in-page anchors work without a web server; it has no backend write functionality. The screenshot `product-colours-review.jpg` records the corrected real-product treatment. Older screenshots represent superseded layouts.
 
-## Publication requires Matt’s explicit production approval
+## Publication approved and completed — 28 October 2026
 
-The expanded draft catalogue is saved in D1. The public website and HQ extension have not been published. Publication must keep purchasing and dispatch disabled.
+Matt explicitly instructed “publish” after reviewing the storefront. The range and twenty detail pages are now live at https://shiftsometimber.co.uk/shift-health/testing. The testing HQ extension and narrow API route are deployed. The draft catalogue remains sale-disabled in D1. Purchasing and dispatch remain disabled. The production receipt below supersedes earlier pre-publication notes.
 
 After approval, use the established manual Cloudflare workflow for the existing `shift-health-nutrition-20261027` service. Read the actual route map first, preserve the current bindings/source, and route only the testing public and HQ requests through this wrapper:
 
@@ -78,3 +78,9 @@ Browser acceptance for the storefront: search `HbA1c` returned one Diabetes prod
 Matt explicitly instructed “publish” after reviewing commit `623288fdf9022d68d94caab43a3d9fe5c51d9c7d`. Live preflight found newer basket/recommendation work in the deployed Health/Nutrition module. The publication composition therefore retains that entire exact deployed module (SHA-256 and version recorded in `publication-manifest.json`) and delegates every unowned request to it unchanged. It handles only the new testing pages/assets/API, adds one testing discovery block to the retained Health hub and appends the testing HQ script alongside the retained extensions. The existing public wildcard routes cover the new pages and assets; only the narrow testing HQ API route needs adding. Three additional publication-preservation checks pass, for twenty-nine focused passes across the retained evidence.
 
 The deployment uses immutable individual source files in memory, without a repository clone, dependency installation, new Mac workspace or old core Worker deployment. Publication does not activate stock, prices, payments or fulfilment.
+
+## Verified production receipt
+
+The 28 October publication succeeded: deployment `6590597d-805c-4aad-8266-91aaa0f2810e`, version `efdd68cd-a700-4894-b40c-4f5f494b2e87`, source commit `cc11024bd85f01a8eae29f9059649b1cbaae0a1c`. `production-receipt.json` records all twenty live HTTP 200 product pages, forty-two live product/instruction images, successful server search, a real closed-purchase HTTP 409, authenticated-boundary HTTP 401 for the testing HQ API, and all twenty D1 rows remaining draft/sale-disabled. The five baseline main-content hashes matched after removing the one authorised testing hub block. Existing routes and service bindings remained unchanged; one narrow testing HQ API route was added, taking the route count to 894. The exact prior deployed Health/Nutrition module, including newer basket and recommendation work, is retained inside the production composition.
+
+The managed release completed with exit 0 in 46.13 seconds and process-group cleanup. No Mac repository clone, permanent working directory, dependency installation or browser session was created. No external communications were sent. A cloud-browser check opened the live main page, searched “prostate” (two matches), followed the Prostate Health link and confirmed the real image, TBC price, zero stock and disabled basket control. The live page was kept open for Matt. Privileged HQ browser load/save was not exercised in this website publication; the source-level authentication, revision and save checks passed.
