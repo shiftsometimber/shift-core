@@ -24,6 +24,20 @@ def save(n,x):
 def load(n):return json.loads((OUT/n).read_text())
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def guard():
+ if os.environ.get('GITHUB_ACTIONS')=='true':
+  assert os.environ.get('GITHUB_REPOSITORY')=='shiftsometimber/shift-core'
+  assert os.environ.get('GITHUB_REF')=='refs/heads/feature/prepurchase-assessment-20261028'
+  gh_token=os.environ['GITHUB_TOKEN']
+  def gh(s):
+   _,_,b=request('https://api.github.com/repos/shiftsometimber/shift-core'+s,headers={'Authorization':'Bearer '+gh_token,'Accept':'application/vnd.github+json','User-Agent':'SHIFT-publication-guard'});return json.loads(b)
+  runs=gh('/actions/runs?status=in_progress&per_page=50');assert runs['total_count']<=50,'Production interlock must cover all active runs'
+  jobs=[]
+  for run in runs['workflow_runs']:
+   if run['name']=='Cloudflare Production Promote':
+    for job in gh('/actions/runs/'+str(run['id'])+'/jobs?per_page=100')['jobs']:
+     if job['name']=='promote' and job['status']=='in_progress':
+      steps=[{'number':x['number'],'status':x['status']} for x in job.get('steps',[])];assert not any(x['number']>=25 and x['status'] in ['in_progress','completed'] for x in steps),'Active Core has captured public baselines; serialise mutation';jobs.append({'id':job['id'],'steps':steps})
+  save('production-phase.json',{'source':SOURCE,'checkedAtEpoch':time.time(),'query':'/actions/runs?status=in_progress&per_page=50','activePromotionBaselinesCaptured':False,'promotionJobs':jobs,'authentication':'existing CI GitHub token; memory only'})
  g=load('production-phase.json');assert 0<=time.time()-g['checkedAtEpoch']<120,'Refresh established production-phase interlock'
  assert g['source']==SOURCE and g['activePromotionBaselinesCaptured'] is False
  assert g['query']=='/actions/runs?status=in_progress&per_page=50'
@@ -90,6 +104,14 @@ def preview():
  missing=api('/pages/assets/check-missing','POST',{'hashes':list(m.values())},auth,jwt);assert set(missing)<=set([ASSET_HASH]),'Existing manifest assets unexpectedly unavailable'
  if ASSET_HASH in missing:api('/pages/assets/upload','POST',[{'key':ASSET_HASH,'value':__import__('base64').b64encode(source_check()).decode(),'metadata':{'contentType':'text/html; charset=utf-8'},'base64':True}],auth,jwt)
  api('/pages/assets/upsert-hashes','POST',{'hashes':list(m.values())},auth,jwt);same_base();data,headers=multipart(m,'assessment-guided-review-20261028');save('preview-intent.json',{'baseline':BASE,'at':now(),'source':SOURCE});d=api(PROJECT+'/deployments','POST',data,headers);save('preview.json',simple(d));print(json.dumps(simple(d)))
+def wait_deployment(kind):
+ d=load(kind+'.json')
+ for _ in range(45):
+  current=api(PROJECT+'/deployments/'+d['id']);stage=current['latest_stage'];print(json.dumps({'deployment':d['id'],'stage':stage['name'],'status':stage['status']}),flush=True)
+  if stage['status']=='success' and stage['name']=='deploy':return
+  assert stage['status'] not in ['failure','canceled'],'Provider rejected this deployment'
+  time.sleep(2)
+ raise AssertionError('Provider deployment did not reach a terminal success')
 def inspect():
  d=load('preview.json');print(json.dumps(simple(api(PROJECT+'/deployments/'+d['id']))))
 def verify_preview():
@@ -112,7 +134,7 @@ def verify_preview():
  save('header-comparison.json',rows);failed=[r for r in rows if not r['match']];assert not failed,[(r['path'],r.get('before'),r.get('preview')) for r in failed[:8]]
  save('preview-verification.json',{'pass':True,'at':now(),'deployment':d['id'],'bodySHA256':BODY_SHA,'effectiveHeaderContractsChecked':len(rows),'sourceHeadersFromCurrentDeploymentCommit':HEADER_SOURCE,'manifestExact':True,'onlyChangedPath':ASSET});print(json.dumps(load('preview-verification.json')))
 def publish():
- source_check();same_base();guard();q=load('preview-verification.json');v=load('preview-browser.json');d=load('preview.json');assert q['pass'] is True and q['deployment']==d['id'];assert v['preview']==d['id'] and v['accepted'] is True
+ source_check();same_base();guard();assert api(PROJECT+'/deployments/'+BASE+'/files')['files']==load('manifest-before.json'),'Current provider manifest must match the admitted baseline';q=load('preview-verification.json');v=load('preview-browser.json');d=load('preview.json');assert q['pass'] is True and q['deployment']==d['id'];assert v['preview']==d['id'] and v['accepted'] is True
  assert not (OUT/'production-intent.json').exists(),'Reconcile any uncertain production attempt before retry'
  m=load('manifest-candidate.json');assert_scope(load('manifest-before.json'),m);data,headers=multipart(m,load('baseline.json')['productionBranch']);same_base();save('production-intent.json',{'baseline':BASE,'source':SOURCE,'at':now(),'preview':d['id'],'manifestSHA256':sha(json.dumps(m,sort_keys=True).encode())});result=api(PROJECT+'/deployments','POST',data,headers);save('production.json',simple(result));print(json.dumps(simple(result)))
 def verify():
@@ -129,5 +151,7 @@ def rollback():
  d=load('production.json');assert page()['canonical_deployment']['id']==d['id'],'Only own the current deployment';guard();save('rollback-intent.json',{'owned':d['id'],'restore':BASE,'at':now()});r=api(PROJECT+'/deployments/'+BASE+'/rollback','POST');save('rollback.json',simple(r));assert page()['canonical_deployment']['id']==BASE;print(json.dumps({'restored':BASE,'owned':d['id']}))
 if __name__=='__main__':
  OUT.mkdir(parents=True,exist_ok=True)
- cfg=(Path.home()/'Library/Preferences/.wrangler/config/default.toml').read_text();TOKEN=re.search(r'oauth_token\s*=\s*"([^"]+)"',cfg)[1]
- {'prepare':prepare,'preview':preview,'inspect':inspect,'verify-preview':verify_preview,'publish':publish,'verify':verify,'rollback':rollback}[sys.argv[1]]()
+ TOKEN=os.environ.get('CLOUDFLARE_API_TOKEN')
+ if not TOKEN:
+  cfg=(Path.home()/'Library/Preferences/.wrangler/config/default.toml').read_text();TOKEN=re.search(r'oauth_token\s*=\s*"([^"]+)"',cfg)[1]
+ {'prepare':prepare,'preview':preview,'inspect':inspect,'wait-preview':lambda:wait_deployment('preview'),'wait-production':lambda:wait_deployment('production'),'verify-preview':verify_preview,'publish':publish,'verify':verify,'rollback':rollback}[sys.argv[1]]()

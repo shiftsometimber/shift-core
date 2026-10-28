@@ -1,0 +1,96 @@
+name: Approved assessment page publication
+on:
+  push:
+    branches: [feature/prepurchase-assessment-20261028]
+    paths:
+      - '.github/workflows/assessment-guided-publication.yml'
+      - 'assessment-v2/deployment/ci-phase.json'
+      - 'assessment-v2/deployment/publish_walkthrough.py'
+      - 'assessment-v2/deployment/test_publish_walkthrough.py'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  assessment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+      ASSESSMENT_RELEASE_DIR: ${{ github.workspace }}/assessment-release-output
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: assessment-v2/deployment
+      - id: plan
+        name: Read the exact finite release phase
+        run: |
+          python3 - <<'PY'
+          import json,os,re
+          p=json.load(open('assessment-v2/deployment/ci-phase.json'));assert p['phase'] in ['stage','publish']
+          if p['phase']=='publish':
+              assert isinstance(p['stageRunId'],int) and p['stageRunId']>0
+              assert re.fullmatch('[a-f0-9]{40}',p['stageSha'])
+              assert p['browser']['accepted'] is True
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('phase='+p['phase']+'\n')
+              f.write('run_id='+str(p.get('stageRunId',0))+'\n')
+              f.write('stage_sha='+p.get('stageSha','')+'\n')
+          PY
+      - name: Verify finite release guards
+        run: python3 -m unittest discover -s assessment-v2/deployment -p 'test_*.py' -v
+      - name: Prepare and verify the hosted assessment preview
+        if: steps.plan.outputs.phase == 'stage'
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN"
+          python3 assessment-v2/deployment/publish_walkthrough.py prepare
+          python3 assessment-v2/deployment/publish_walkthrough.py preview
+          python3 assessment-v2/deployment/publish_walkthrough.py wait-preview
+          python3 assessment-v2/deployment/publish_walkthrough.py verify-preview
+      - uses: actions/download-artifact@v4
+        if: steps.plan.outputs.phase == 'publish'
+        with:
+          name: assessment-guided-stage-${{ steps.plan.outputs.stage_sha }}
+          run-id: ${{ steps.plan.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: assessment-release-output
+      - name: Admit the exact successful stage and recorded browser review
+        if: steps.plan.outputs.phase == 'publish'
+        run: |
+          python3 - <<'PY'
+          import json,os,urllib.request,pathlib
+          p=json.load(open('assessment-v2/deployment/ci-phase.json'))
+          u='https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+str(p['stageRunId'])
+          with urllib.request.urlopen(urllib.request.Request(u,headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'Accept':'application/vnd.github+json'}),timeout=25) as r:d=json.load(r)
+          assert d['head_sha']==p['stageSha'] and d['head_branch']=='feature/prepurchase-assessment-20261028'
+          assert d['status']=='completed' and d['conclusion']=='success'
+          assert d['path']=='.github/workflows/assessment-guided-publication.yml'
+          out=pathlib.Path(os.environ['ASSESSMENT_RELEASE_DIR']);preview=json.load(open(out/'preview.json'))
+          assert p['browser']['preview']==preview['id']
+          assert p['browser']['source']=='b511f05809923da1d9fd74d45f844594e5e8d76b'
+          assert p['browser']['origin']==preview['url']
+          (out/'preview-browser.json').write_text(json.dumps(p['browser']))
+          PY
+      - name: Publish the admitted page and verify production preservation
+        if: steps.plan.outputs.phase == 'publish'
+        run: |
+          python3 assessment-v2/deployment/publish_walkthrough.py publish
+          python3 assessment-v2/deployment/publish_walkthrough.py wait-production
+          python3 assessment-v2/deployment/publish_walkthrough.py verify
+      - name: Restore only this owned Pages deployment if verification fails
+        if: failure() && steps.plan.outputs.phase == 'publish'
+        run: |
+          if test -f assessment-release-output/production.json; then
+            python3 assessment-v2/deployment/publish_walkthrough.py rollback
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: assessment-guided-${{ steps.plan.outputs.phase }}-${{ github.sha }}
+          path: assessment-release-output
+          if-no-files-found: warn
+          retention-days: 14
