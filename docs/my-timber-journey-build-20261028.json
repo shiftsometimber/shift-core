@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-28T00:12:44.175Z",
+  "base": "b11b5d5c7761d6d0bd8085f571194e21c0f11857",
+  "esbuild": "0.28.1",
+  "target": "es2022",
+  "baseline": {
+    "bytes": 22255485,
+    "gzipBytes": 1971990,
+    "sha256": "1a3e859caa3b8fd978962aa33e09575963f6603d90e8db826410c5ade191d010",
+    "inputs": 90
+  },
+  "candidate": {
+    "bytes": 22312705,
+    "gzipBytes": 1991129,
+    "sha256": "c344babc320875069efe15d836891dbadf29f741bf080bee9734aecfd5fe98c1",
+    "inputs": 95
+  },
+  "gzipDeltaBytes": 19139,
+  "boundary": "Standalone support-service compilation with the existing governed-manifest freeze. Not provider-baseline composition, release qualification or deployment."
+}
