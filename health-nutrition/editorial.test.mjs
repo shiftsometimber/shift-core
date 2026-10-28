@@ -59,7 +59,7 @@ test('approved replacements preserve newer HQ copy and refuse to attach to a rep
   const edited={...original,description:'Our current HQ description',shift_says:'Our current HQ recommendation'};
   assert.equal(editorialPresentation(edited).description,edited.description);
   assert.equal(editorialPresentation(edited).shift_says,edited.shift_says);
-  for(const changed of [{...original,brand:'Different manufacturer'},{...original,name:'Different product'},{...original,id:'another-id'}]){
+  for(const changed of [{...original,brand:'Different manufacturer'},{...original,name:'Different product'},{...original,id:'another-id'},{...original,illustrated_pack:'Different pack'},{...original,illustrated_flavour:'Different flavour'}]){
     assert.equal(productEditorial(changed),null);
     assert.equal(editorialGuide(changed),'');
     assert.equal(editorialPresentation(changed),changed);

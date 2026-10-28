@@ -20,7 +20,9 @@ const editorial = {
         "label": "GB nutrition and health claims register",
         "url": "https://www.gov.uk/government/publications/great-britain-nutrition-and-health-claims-nhc-register"
       }
-    ]
+    ],
+    "illustratedPack": "825 g",
+    "illustratedFlavour": "Banana milkshake"
   },
   "clear": {
     "name": "Clear Whey Protein",
@@ -40,7 +42,9 @@ const editorial = {
         "label": "GB nutrition and health claims register",
         "url": "https://www.gov.uk/government/publications/great-britain-nutrition-and-health-claims-nhc-register"
       }
-    ]
+    ],
+    "illustratedPack": "875 g",
+    "illustratedFlavour": "Orange squash"
   },
   "creatine": {
     "name": "Creatine Monohydrate",
@@ -64,7 +68,9 @@ const editorial = {
         "label": "NIH: creatine and exercise",
         "url": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/"
       }
-    ]
+    ],
+    "illustratedPack": "1 kg",
+    "illustratedFlavour": "Unflavoured"
   },
   "skill": {
     "name": "Micronised Creatine",
@@ -88,7 +94,9 @@ const editorial = {
         "label": "NIH: creatine and exercise",
         "url": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/"
       }
-    ]
+    ],
+    "illustratedPack": "500 g",
+    "illustratedFlavour": "Orange"
   },
   "sticks": {
     "name": "Bodyfuel Hydration Sticks",
@@ -104,7 +112,9 @@ const editorial = {
         "label": "NHS: Water, drinks and hydration",
         "url": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/water-drinks-nutrition/"
       }
-    ]
+    ],
+    "illustratedPack": "7 × 7 g",
+    "illustratedFlavour": "Blue raspberry"
   },
   "tablets": {
     "name": "Bodyfuel Hydration Tablets",
@@ -124,7 +134,9 @@ const editorial = {
         "label": "NHS: Water, drinks and hydration",
         "url": "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/water-drinks-nutrition/"
       }
-    ]
+    ],
+    "illustratedPack": "6 × 20 tablets",
+    "illustratedFlavour": "Orange"
   },
   "crunch": {
     "name": "Protein Crunch Bars",
@@ -140,7 +152,9 @@ const editorial = {
         "label": "Applied Nutrition: Crunch Protein Bar",
         "url": "https://appliednutrition.uk/products/protein-crunch-bar-62grams"
       }
-    ]
+    ],
+    "illustratedPack": "12 × 62 g",
+    "illustratedFlavour": "Chocolate peanut"
   },
   "chunky": {
     "name": "Chunky Protein Bars",
@@ -156,15 +170,17 @@ const editorial = {
         "label": "BioTechUSA: Chunky Protein Bar",
         "url": "https://shop.biotechusa.com/products/chunky-protein-bar-50-g"
       }
-    ]
+    ],
+    "illustratedPack": "20 × 50 g",
+    "illustratedFlavour": "Triple chocolate"
   }
 };
 
-// Bind static ingredient explanations to the reviewed product identity. A repurposed
+// Bind static ingredient explanations to the reviewed product and illustrated variant. A repurposed
 // catalogue ID must never inherit another product's allergy or benefit information.
 export function productEditorial(product) {
   const entry=editorial[product.id];
-  return entry && entry.name===product.name && entry.brand===product.brand ? entry : null;
+  return entry && entry.name===product.name && entry.brand===product.brand && entry.illustratedPack===product.illustrated_pack && entry.illustratedFlavour===product.illustrated_flavour ? entry : null;
 }
 // Keep subsequent HQ edits. Only replace the original brief seed copy with the
 // fuller approved summary/note; do not write or migrate live catalogue records.
