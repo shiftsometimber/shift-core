@@ -1,0 +1,66 @@
+{
+  "method": "Built-in image-editing tool, transparent background extraction; alpha-edge cleanup and WebP packaging in prepare-cutouts.mjs.",
+  "prompt": "Use case: background-extraction. Remove ONLY the uniform pale white/light-grey photographic studio background from this original product photograph and replace it with true transparent alpha. Keep every product box, test device, bottle, pipette and physical component in exactly the same position, proportions, colours and layout. Preserve all original printed text, branding, small symbols, labels and numbers as photographed. Do NOT redraw, restyle, invent, correct or change any packaging text or device. Keep white plastic and white print ON products opaque. Remove the empty background between objects too. Clean precise edges with no white halo, no white shadows, no white rectangular background and no new backdrop. Isolate the COMPLETE group of original photographed products. This transparent cutout will sit directly on a dark ash-green brand panel.",
+  "edits": [
+    {
+      "id": "bowel-health",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-de01fe5c-0927-4cb5-a8f9-fbc1954a439c.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/ce311e6d3287c308fab41aec296da0b1fe6e23a5-2085x1800.jpg"
+    },
+    {
+      "id": "prostate-health",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-af79a248-c4c8-4524-a8f2-27240ed1b3e4.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/090917c555a5cd1140477799296497b0846b8e27-2085x1800.jpg"
+    },
+    {
+      "id": "male-fertility",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-92940b4e-57bd-4410-a5b9-5d48b403d35e.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/c857eff65dd517b702bc419bf0b335e8dde679e9-2085x1800.jpg"
+    },
+    {
+      "id": "cholesterol",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-329e1f76-e852-4616-9c9a-1d4d9abfcd7f.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/4b1eb0f18dd6dc94ba111b5b033f4e3f2914c434-2085x1800.jpg"
+    },
+    {
+      "id": "vitamin-d",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-25c91a1d-db29-48e3-ab15-95f3375ebe77.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/efc4460d9af64833ef13977dd3812150ab92aed2-2085x1800.jpg"
+    },
+    {
+      "id": "iron",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-b2b4f709-4bce-4efc-b5d1-7bdb028ebb3e.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/8dd6b11ff3ff53fcdadd826aaea62151c02748e7-2085x1800.jpg"
+    },
+    {
+      "id": "thyroid",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-ef7de181-6ff1-439e-b694-adbf4241f0a4.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/2db2b4fb89808d9d97cbc23052f3a4fe37d79bd4-2085x1800.jpg"
+    },
+    {
+      "id": "kidney-health",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-a5661eb9-0bbe-4211-952b-a44bd4860de4.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/90ae894aa6f07b4214c8efd6a4a8d215f551d6ec-2085x1800.jpg"
+    },
+    {
+      "id": "multivitamin",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-c2896e30-ae89-4cb8-9550-91e4a7a9cd03.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/f8a52122b3f7119512a87abff240446019562f85-2780x2400.jpg"
+    },
+    {
+      "id": "vitamin-d-supplement",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-a3144f44-4e12-476b-a13a-42854215e6d9.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/40330067b6a8b9bf3a9429659a086422c49576b0-2780x2400.jpg"
+    },
+    {
+      "id": "iron-supplement",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-90113e7e-f70c-4a1e-a07e-9cbfc8f52c04.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/8298df91d6384f098d2e0398c4578a9e4eb3536d-2780x2400.jpg"
+    },
+    {
+      "id": "general-health-combo",
+      "path": "/workspace/scratch/bab73d2417ba/generated_images/exec-8494e501-9474-4392-80b1-745e2cbd2475.png",
+      "source_url": "https://cdn.sanity.io/images/5w0zqrlb/production/8a5557f99053654b1d14a9f6ca0234489e59794a-2780x2400.jpg"
+    }
+  ]
+}

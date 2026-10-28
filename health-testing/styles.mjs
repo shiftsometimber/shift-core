@@ -57,13 +57,17 @@ export const testingStyle=String.raw`
 #shift-health-range .nft-product-copy{padding-top:12px}
 #shift-health-range .nft-product-copy h1{font-size:clamp(40px,5vw,66px);line-height:1.02;text-wrap:balance}
 #shift-health-range .nft-gallery{display:grid;grid-template-columns:1fr;gap:14px;min-width:0}
-#shift-health-range .nft-photo{margin:0;padding:20px;background:#E7E3DA;border:1px solid #707762;border-radius:10px;overflow:hidden}
-#shift-health-range .nft-photo img{display:block;width:100%;height:350px;object-fit:contain}
+#shift-health-range .nft-photo{margin:0;padding:32px;background:#707762;border:1px solid #707762;border-radius:10px;overflow:hidden}
+#shift-health-range .nft-photo img{display:block;width:100%;height:auto;max-height:350px;object-fit:contain}
 #shift-health-range .nft-photo-secondary{background:#707762;padding:15px}
 #shift-health-range .nft-photo-secondary img{height:165px}
 #shift-health-range .nft-image-note,#shift-health-range .nft-small,#shift-health-range .nft-partner-note{font-size:12px;line-height:1.6}
-#shift-health-range .nft-card-photo{display:block;padding:22px;background:#E7E3DA;border-bottom:1px solid #707762}
+#shift-health-range .nft-card-photo{display:block;padding:22px;background:#707762;border-bottom:1px solid #707762}
 #shift-health-range .nft-card-photo img{display:block;width:100%;height:185px;object-fit:contain}
+#shift-health-range .nft-product-composite{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:center;min-height:350px}
+#shift-health-range .nft-photo .nft-product-composite img{height:140px;min-width:0}
+#shift-health-range .nft-card-photo .nft-product-composite{min-height:185px;gap:8px}
+#shift-health-range .nft-card-photo .nft-product-composite img{height:82px}
 #shift-health-range .nft-range-photo{margin:0;padding:24px;background:#707762;border-radius:10px}
 #shift-health-range .nft-range-photo img{width:100%;height:300px;object-fit:contain;display:block}
 #shift-health-range .nft-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #707762;border-bottom:1px solid #707762;margin:24px 0;gap:16px;padding:18px 0}
@@ -72,7 +76,7 @@ export const testingStyle=String.raw`
 #shift-health-range .nft-section-copy{max-width:740px;margin-bottom:28px}
 #shift-health-range .nft-instructions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding:0;list-style:none}
 #shift-health-range .nft-instructions li{border:1px solid #707762;border-radius:9px;padding:18px}
-#shift-health-range .nft-step-photo{height:170px;background:#E7E3DA;border-radius:7px;margin-bottom:20px;padding:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#shift-health-range .nft-step-photo{height:170px;background:#707762;border-radius:7px;margin-bottom:20px;padding:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 #shift-health-range .nft-step-photo img{width:100%;height:100%;object-fit:contain;display:block}
 #shift-health-range .nft-instructions h3{font-size:21px}
 #shift-health-range .nft-instructions p{font-size:14px}
@@ -81,7 +85,7 @@ export const testingStyle=String.raw`
 #shift-health-range .nft-detail-grid article{scroll-margin-top:150px;min-width:0}
 #shift-health-range .nft-care{margin:24px 0}
 @media(max-width:1000px){#shift-health-range .nft-instructions{grid-template-columns:repeat(2,minmax(0,1fr))}#shift-health-range .nft-product-hero{gap:28px}}
-@media(max-width:700px){#shift-health-range .nft-product-hero{grid-template-columns:1fr}#shift-health-range .nft-photo img{height:280px}#shift-health-range .nft-photo-secondary img{height:140px}#shift-health-range .nft-facts{grid-template-columns:1fr 1fr}#shift-health-range .nft-range-photo img{height:220px}#shift-health-range .nft-instructions{grid-template-columns:1fr}#shift-health-range .nft-step-photo{height:210px}}
+@media(max-width:700px){#shift-health-range .nft-product-hero{grid-template-columns:1fr}#shift-health-range .nft-photo img{height:auto;max-height:280px}#shift-health-range .nft-photo-secondary img{height:140px}#shift-health-range .nft-facts{grid-template-columns:1fr 1fr}#shift-health-range .nft-range-photo img{height:220px}#shift-health-range .nft-instructions{grid-template-columns:1fr}#shift-health-range .nft-step-photo{height:210px}}
 @media(max-width:900px){#shift-health-range .nft-hero{gap:28px;grid-template-columns:1.3fr 1fr}#shift-health-range .nft-lab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#shift-health-range .nft-hub{align-items:start;flex-direction:column}}
 @media(max-width:620px){#shift-health-range .nft{padding-top:18px}#shift-health-range .nft-hero{grid-template-columns:1fr;padding-top:8px;gap:30px}#shift-health-range .nft-hero-note{padding:25px}#shift-health-range .nft-grid,#shift-health-range .nft-how,#shift-health-range .nft-detail-grid,#shift-health-range .nft-process{grid-template-columns:1fr}#shift-health-range .nft-section-heading{display:block}#shift-health-range .nft-section{padding:38px 0}#shift-health-range .nft h1{font-size:49px}#shift-health-range .nft-next,#shift-health-range .nft-hub{padding:25px}#shift-health-range .nft-actions{display:grid}#shift-health-range .nft-button{width:100%}#shift-health-range .nft-card-end{flex-direction:row}}
 `;

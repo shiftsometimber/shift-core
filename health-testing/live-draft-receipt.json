@@ -116,5 +116,11 @@
   "applicationDeployed": false,
   "purchasingEnabled": false,
   "orderDispatchEnabled": false,
-  "externalCommunicationsSent": false
+  "externalCommunicationsSent": false,
+  "stagedProvenanceCorrection": {
+    "id": "general-health-bundle",
+    "sourceUrl": "https://www.newfoundland.io/products/wellness",
+    "liveSync": "pending",
+    "reason": "Cloudflare authentication error 10000 on the bounded source URL update; no database change."
+  }
 }

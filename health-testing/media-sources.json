@@ -175,8 +175,13 @@
       "steps": {}
     },
     "general-health-bundle": {
+      "sourceUrl": "https://www.newfoundland.io/products/wellness",
       "gallery": [
-        "https://cdn.sanity.io/images/5w0zqrlb/production/4ce25f9f6db85075a93e076266d9da68aaf494bc-400x316.png"
+        "https://cdn.sanity.io/images/5w0zqrlb/production/efc4460d9af64833ef13977dd3812150ab92aed2-2085x1800.jpg",
+        "https://cdn.sanity.io/images/5w0zqrlb/production/4b1eb0f18dd6dc94ba111b5b033f4e3f2914c434-2085x1800.jpg",
+        "https://cdn.sanity.io/images/5w0zqrlb/production/2db2b4fb89808d9d97cbc23052f3a4fe37d79bd4-2085x1800.jpg",
+        "https://cdn.sanity.io/images/5w0zqrlb/production/8dd6b11ff3ff53fcdadd826aaea62151c02748e7-2085x1800.jpg",
+        "https://cdn.sanity.io/images/5w0zqrlb/production/90ae894aa6f07b4214c8efd6a4a8d215f551d6ec-2085x1800.jpg"
       ],
       "steps": {}
     },
@@ -217,7 +222,6 @@
     "https://cdn.sanity.io/images/5w0zqrlb/production/40330067b6a8b9bf3a9429659a086422c49576b0-2780x2400.jpg": "photo-b98dbb34cc94",
     "https://cdn.sanity.io/images/5w0zqrlb/production/42a8472e336caf9d134f063c5f4e834683aad6da-686x646.png": "photo-d4ed7ed43552",
     "https://cdn.sanity.io/images/5w0zqrlb/production/4b1eb0f18dd6dc94ba111b5b033f4e3f2914c434-2085x1800.jpg": "photo-354909a23c25",
-    "https://cdn.sanity.io/images/5w0zqrlb/production/4ce25f9f6db85075a93e076266d9da68aaf494bc-400x316.png": "photo-fddc0796c81d",
     "https://cdn.sanity.io/images/5w0zqrlb/production/53b031ca63c11c9c96b48e351cb49362c74830cd-2780x2400.jpg": "photo-952c5e2a8910",
     "https://cdn.sanity.io/images/5w0zqrlb/production/56a31eab9d7a9f4ea07d26fbdfb94e9e2b8ccc68-2800x2637.png": "photo-47d4b9690405",
     "https://cdn.sanity.io/images/5w0zqrlb/production/5c8cf572621fed68cd03c71e6f3618be44677ea7-2800x2417.png": "photo-04014865cae5",
