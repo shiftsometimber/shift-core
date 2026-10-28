@@ -88,5 +88,15 @@
     "draftOnly": true
   },
   "emailsSent": 0,
-  "liveSignedInBrowserCheck": "Pending: the live HQ browser is signed out. No session has been created or bypassed."
+  "liveSignedInBrowserCheck": {
+    "attempted": true,
+    "secureCredentialEntry": true,
+    "browserAuthResult": "submitted",
+    "visibleResult": "invalid_credentials",
+    "verifiedSignedIn": false,
+    "retried": false,
+    "gateBypassed": false,
+    "nextStep": "Manual sign-in to the existing HQ tab, then genuine load/save acceptance.",
+    "recordedAt": "2026-10-28T22:13:01.898999+00:00"
+  }
 }
