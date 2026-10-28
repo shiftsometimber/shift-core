@@ -107,7 +107,15 @@ async function rollback(){
 const action=process.argv[2];
 if(action==='prepare'){
  await sourceCurrent();
- const active=await deployment(script);assert.equal(active.versions[0].version_id,predecessor,'Current serving component has newer work; integrate it before release');
+ const active=await deployment(script);
+ if(active.versions[0].version_id!==predecessor){
+  const current=await cf('/accounts/'+account+'/workers/workers/'+script+'/versions/'+active.versions[0].version_id+'?include=modules');
+  const modules=(current.modules||[]).filter(m=>/\.(mjs|js)$/.test(m.name));
+  assert.equal(modules.length,1,'Cannot safely capture current serving bundle');
+  const bytes=Buffer.from(modules[0].content_base64,'base64');writeFileSync(dir+'/current-serving-worker.mjs',bytes);
+  save('current-serving',{deployment:active,buildSHA256:hash(bytes),metadata:current.metadata,topLevelKeys:Object.keys(current),resourceKeys:Object.keys(current.resources||{}),bindings:normalizeBindings(current.resources?.bindings||[]),scriptRuntime:current.resources?.script_runtime,routes:await routes(),retained:await retained()});
+  throw Error('Captured newer serving component for integration; no upload or promotion performed');
+ }
  await version(predecessor,predecessorBytes);
  const before={source:process.env.GITHUB_SHA,approvedReview:reviewed,previous:active,routes:await routes(),retained:await retained(),catalogue:await catalogueState(),public:await publicState()};assertOwned(before.routes);save('before',before);
  const buildDir=resolve(dir,'build');cli('deploy','--dry-run','--outdir',buildDir);
