@@ -1,6 +1,6 @@
 # SHIFT Health testing and wellbeing — 28 October 2026
 
-The selected range contains thirteen tests, three supplements and four proposed combinations. The latest visual instruction is to remove the white photographic backgrounds and place the original product boxes and tests directly on SHIFT ash-green panels, with cream and black page styling. Use “our testing partner” in customer and HQ copy. Source identity remains in private database provenance and the original product packaging photographs.
+The selected range contains thirteen tests, three supplements and four proposed combinations. The latest visual instruction is to remove the white photographic backgrounds and place the original product boxes and tests directly on SHIFT cream product panels, with ash green instruction panels and black page styling. Use “our testing partner” in customer and HQ copy. Source identity remains in private database provenance and the original product packaging photographs.
 
 ## Completed
 
@@ -20,9 +20,9 @@ Individual GitHub files were used. Automatic approval review prohibited a full c
 
 ## Validation
 
-`node --test health-testing/feature.test.mjs health-nutrition/feature.test.mjs`
+`node --test health-testing/*.test.mjs health-nutrition/feature.test.mjs`
 
-All nineteen focused checks passed. They cover the expanded range, draft-only constraints, idempotence, commercial-field preservation, privacy projection, HQ authentication/origin/revision checks, audit records, all twenty-one public routes, image coverage and preservation of existing Health/Nutrition routes.
+All twenty-three focused checks passed. They cover the expanded range, draft-only constraints, idempotence, commercial-field preservation, privacy projection, HQ authentication/origin/revision checks, audit records, all twenty-one public routes, image coverage and preservation of existing Health/Nutrition routes.
 
 Browser review confirmed that the original prostate box and device photographs load, that all four original instruction photos load, and that the portable review can open the detail page and scroll to its instructions. A 390px mobile frame rendered without horizontal overflow (375px body including the browser scrollbar). The portable review uses a simplified navigation shell; production rendering retains the existing publisher’s real shell.
 
@@ -47,6 +47,16 @@ Each private catalogue record retains the original product URL and date checked.
 
 ## Background-removal revision
 
-The 28 October follow-up removes the embedded white backgrounds, changes all photo panels to ash green, and removes the second stacked product view. Twelve background-extraction edits were packaged with transparent alpha; the other images already had alpha. Browser review checked all twenty range images, the corrected General Health collection, the Prostate Health detail and its photographed steps.
+The 28 October follow-up removes the embedded white backgrounds, uses cream product panels and ash-green instruction panels, and removes the second stacked product view. Twelve background-extraction edits were packaged with transparent alpha; the other images already had alpha. Browser review checked all twenty range images, the corrected General Health collection, the Prostate Health detail and its photographed steps.
 
-General Health private source provenance is corrected in source and the next migration to `https://www.newfoundland.io/products/wellness`. A bounded attempt to sync that one private URL into D1 returned Cloudflare authentication error 10000 on 28 October; no database change was made by that attempt. Refresh the existing authorised Cloudflare session before the next catalogue sync. The earlier twenty verified draft records remain saved; no website or HQ publication was performed.
+General Health source provenance is corrected to `https://www.newfoundland.io/products/wellness`. The audited migration was applied successfully to D1 on 28 October. All twenty stored result times match the audited seed and all twenty records remain draft and sale-disabled. The earlier authentication failure is resolved. No website or HQ publication was performed.
+
+## Approved cream treatment and individual-page audit
+
+Matt approved the cream product background example and instructed the treatment to continue across the range. All product galleries, cards and range photography panels now use cream; the photographed instruction panels remain ash green.
+
+All twenty current partner product pages were fetched and checked on 28 October. `content-audit.json` records their exact URLs, source hashes, verified facts and remaining launch/label/quantity confirmations. `specifications.mjs` is the shared source for product-specific kit contents and collection, running and reading steps. NHS primary guidance supports the PSA, FIT and fertility limitations.
+
+The main corrections distinguish the fertility one-hour preparation wait from the five-minute result; enforce the cholesterol two-minute wait and subsequent thirty-second reading window; keep urine/stool/blood methods distinct; specify the correct buffer amounts; and confirm all three supplements contain sixty capsules, are listed as vegan and have a one-capsule published daily serving. No exact combo quantities, retest intervals, full supplement labels or coming-soon turnaround promises are invented. General Health Combo includes the multivitamin within its listed contents.
+
+Twenty-three checks pass, including four content regressions for the medically material differences above. Browser review confirmed all twenty card links, the corrected fertility detail, all four instruction photos and a mobile body width of 375px with no horizontal overflow. `verified-instructions-review.jpg` and `product-colours-review.jpg` record the final draft.

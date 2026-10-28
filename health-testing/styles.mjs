@@ -57,18 +57,18 @@ export const testingStyle=String.raw`
 #shift-health-range .nft-product-copy{padding-top:12px}
 #shift-health-range .nft-product-copy h1{font-size:clamp(40px,5vw,66px);line-height:1.02;text-wrap:balance}
 #shift-health-range .nft-gallery{display:grid;grid-template-columns:1fr;gap:14px;min-width:0}
-#shift-health-range .nft-photo{margin:0;padding:32px;background:#707762;border:1px solid #707762;border-radius:10px;overflow:hidden}
+#shift-health-range .nft-photo{margin:0;padding:32px;background:#E7E3DA;border:1px solid #E7E3DA;border-radius:10px;overflow:hidden}
 #shift-health-range .nft-photo img{display:block;width:100%;height:auto;max-height:350px;object-fit:contain}
-#shift-health-range .nft-photo-secondary{background:#707762;padding:15px}
+#shift-health-range .nft-photo-secondary{background:#E7E3DA;padding:15px}
 #shift-health-range .nft-photo-secondary img{height:165px}
 #shift-health-range .nft-image-note,#shift-health-range .nft-small,#shift-health-range .nft-partner-note{font-size:12px;line-height:1.6}
-#shift-health-range .nft-card-photo{display:block;padding:22px;background:#707762;border-bottom:1px solid #707762}
+#shift-health-range .nft-card-photo{display:block;padding:22px;background:#E7E3DA;border-bottom:1px solid #707762}
 #shift-health-range .nft-card-photo img{display:block;width:100%;height:185px;object-fit:contain}
 #shift-health-range .nft-product-composite{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:center;min-height:350px}
 #shift-health-range .nft-photo .nft-product-composite img{height:140px;min-width:0}
 #shift-health-range .nft-card-photo .nft-product-composite{min-height:185px;gap:8px}
 #shift-health-range .nft-card-photo .nft-product-composite img{height:82px}
-#shift-health-range .nft-range-photo{margin:0;padding:24px;background:#707762;border-radius:10px}
+#shift-health-range .nft-range-photo{margin:0;padding:24px;background:#E7E3DA;border-radius:10px}
 #shift-health-range .nft-range-photo img{width:100%;height:300px;object-fit:contain;display:block}
 #shift-health-range .nft-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #707762;border-bottom:1px solid #707762;margin:24px 0;gap:16px;padding:18px 0}
 #shift-health-range .nft-facts span{display:block;font-size:11px;margin-bottom:9px}

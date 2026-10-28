@@ -1,0 +1,596 @@
+{
+  "checkedOn": "2026-10-28",
+  "scope": "20 individual product pages; public product specifications, methods and availability. No clinical certification or contractual service claim is implied.",
+  "sources": "Direct current product HTML and public product-page text. Core PSA, FIT and fertility limitations cross-checked against NHS guidance.",
+  "clinicalSources": [
+    "https://www.nhs.uk/tests-and-treatments/psa-test/",
+    "https://www.nhs.uk/tests-and-treatments/bowel-cancer-screening/",
+    "https://www.nhs.uk/conditions/low-sperm-count/"
+  ],
+  "corrections": [
+    "Fertility: explicitly allow a one-hour semen preparation wait before the five-minute result.",
+    "Cholesterol: read after two minutes within the following thirty seconds.",
+    "Kidney: urine tip exposure for ten to fifteen seconds, then cap and lay flat; no blood/buffer process.",
+    "Iron: one buffer drop, distinct from two for Prostate Health and Vitamin D; Thyroid uses two blood drops and two buffer drops.",
+    "Prostate: five minutes is the test reading time, not total collection and testing time.",
+    "All supplements: 60 capsules, vegan and one-capsule published daily serving verified; strengths stated without inventing full labels.",
+    "General Health Combo includes a multivitamin within the bundle; remove wording implying an optional item inside the advertised pack.",
+    "Coming-soon lab panels retain timing to be confirmed; no forty-eight-hour promise.",
+    "General Health source URL is /products/wellness."
+  ],
+  "notClaimed": [
+    "Partner shipping cut-offs or free delivery are not SHIFT delivery terms.",
+    "No supplier accuracy percentages, NHS approval, laboratory accreditation or GP-review entitlement are republished.",
+    "No copied promotional claims guaranteeing supplement effects."
+  ],
+  "backendSync": {
+    "status": "applied_and_verified",
+    "verifiedOn": "2026-10-28",
+    "products": 20,
+    "allDraft": true,
+    "saleEnabled": false,
+    "verification": "All twenty result_time fields match the audited seed; draft and sale-disabled status verified immediately after the idempotent migration."
+  },
+  "products": [
+    {
+      "id": "testosterone",
+      "sourceUrl": "https://www.newfoundland.io/products/testosterone",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "42d0f05ee98beec0a0f94394d96f69eda1d9a70d64dfdbb18a7b992ed307c51d",
+      "verified": {
+        "name": "Testosterone",
+        "type": "lab",
+        "state": "available",
+        "markers": [
+          "Total testosterone"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Usually 2–5 working days for analysis and reporting; follow the turnaround confirmed with your kit.",
+        "kit": [
+          "Lancet and finger-prick blood collection equipment",
+          "Prepaid sample-return packaging",
+          "Product-specific collection instructions"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "diabetes",
+      "sourceUrl": "https://www.newfoundland.io/products/diabetes",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "7ebc6aebaa219981c5be56ef09cf1dd535103a0b9cc878fa05f59e9a03dfbc0a",
+      "verified": {
+        "name": "Diabetes",
+        "type": "lab",
+        "state": "available",
+        "markers": [
+          "HbA1c"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Usually 2–5 working days for analysis and reporting; follow the turnaround confirmed with your kit.",
+        "kit": [
+          "Lancet and finger-prick blood collection equipment",
+          "Prepaid sample-return packaging",
+          "Product-specific collection instructions"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "psa-lab",
+      "sourceUrl": "https://www.newfoundland.io/products/psa-lab",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "933fe83dac173c32cfa74a612aa7495185d32acad7fb41996ed0c2beea97b40f",
+      "verified": {
+        "name": "PSA",
+        "type": "lab",
+        "state": "coming_soon",
+        "markers": [
+          "Prostate-specific antigen (PSA)"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Timing to be confirmed at launch",
+        "kit": [
+          "Lancet and finger-prick blood collection equipment",
+          "Prepaid sample-return packaging",
+          "Product-specific collection instructions"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2–5 working days."
+      ]
+    },
+    {
+      "id": "male-hormone",
+      "sourceUrl": "https://www.newfoundland.io/products/male-hormone",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "8ecfc3c4b2513f9c17dad23a438c030da6745b5b449531120e949f912c99d567",
+      "verified": {
+        "name": "Male Hormone",
+        "type": "lab",
+        "state": "coming_soon",
+        "markers": [
+          "Testosterone",
+          "Free testosterone",
+          "Luteinising hormone (LH)",
+          "Follicle stimulating hormone (FSH)",
+          "Oestradiol",
+          "Prolactin",
+          "Sex hormone binding globulin (SHBG)",
+          "Albumin"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Timing to be confirmed at launch",
+        "kit": [
+          "Lancet and finger-prick blood collection equipment",
+          "Prepaid sample-return packaging",
+          "Product-specific collection instructions"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2–5 working days."
+      ]
+    },
+    {
+      "id": "heart-health",
+      "sourceUrl": "https://www.newfoundland.io/products/heart-health",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "113b9073eec7bd46b9ee6a81c1d5cb7a96b6f8d0fe711c3864d2322f3e654979",
+      "verified": {
+        "name": "Heart Health",
+        "type": "lab",
+        "state": "coming_soon",
+        "markers": [
+          "Total cholesterol",
+          "HDL cholesterol",
+          "LDL cholesterol",
+          "Triglycerides",
+          "Non-HDL cholesterol"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Timing to be confirmed at launch",
+        "kit": [
+          "Lancet and finger-prick blood collection equipment",
+          "Prepaid sample-return packaging",
+          "Product-specific collection instructions"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2–5 working days."
+      ]
+    },
+    {
+      "id": "bowel-health",
+      "sourceUrl": "https://www.newfoundland.io/products/bowel-health",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "dd954582e7033b157dea8ed92737eaae16dbf9463e6929764a4e7ffdcd61ab26",
+      "verified": {
+        "name": "Bowel Health",
+        "type": "home",
+        "state": "available",
+        "markers": [
+          "Hidden blood in stool (FIT)"
+        ],
+        "sample": "Stool sample",
+        "resultTime": "Read 5 minutes after running the test; follow the supplied reading window.",
+        "kit": [
+          "Stool collection paper",
+          "Sample tube with collection applicator and buffer",
+          "Self-test device",
+          "Instructions and result guide"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "prostate-health",
+      "sourceUrl": "https://www.newfoundland.io/products/prostate-health",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "2e6dd5715184d22d447c76851d8702dc9c587483f7f1bd7039ed2299e88225f5",
+      "verified": {
+        "name": "Prostate Health",
+        "type": "home",
+        "state": "available",
+        "markers": [
+          "Prostate-specific antigen (PSA)"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Read 5 minutes after running the test; follow the supplied reading window.",
+        "kit": [
+          "Self-test device",
+          "Lancet and collection pipette",
+          "Buffer solution",
+          "Instructions and result guide"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "male-fertility",
+      "sourceUrl": "https://www.newfoundland.io/products/male-fertility",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "121729a91b39c9eda9c5e1f97a18ce2f3d917799f77749391cce59425c8d2e5f",
+      "verified": {
+        "name": "Male Fertility",
+        "type": "home",
+        "state": "available",
+        "markers": [
+          "Sperm concentration"
+        ],
+        "sample": "Semen sample",
+        "resultTime": "Leave the collected semen sample to stand for 1 hour before preparing the test. Read the result 5 minutes after adding the prepared sample to the device.",
+        "kit": [
+          "Semen collection cup",
+          "Semen transfer device",
+          "Buffer solution and self-test device",
+          "Instructions and result guide"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "cholesterol",
+      "sourceUrl": "https://www.newfoundland.io/products/cholesterol",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "a7c87505ae525425be5622aba47f031c2e26f8f4a1d5cd0427250f591d815b88",
+      "verified": {
+        "name": "Cholesterol",
+        "type": "home",
+        "state": "available",
+        "markers": [
+          "Total cholesterol"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Wait 2 minutes after applying the blood sample. Within the following 30 seconds, match the result against the sliding colour chart. Follow the supplied reading instructions.",
+        "kit": [
+          "Cholesterol self-test card",
+          "Lancet and blood collection equipment",
+          "Sliding colour chart",
+          "Instructions and result guide"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "vitamin-d",
+      "sourceUrl": "https://www.newfoundland.io/products/vitamin-d",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "3c7b8af118ca44b463ac5d9201f6a808a5f8f191211969f693432f79faebfc87",
+      "verified": {
+        "name": "Vitamin D",
+        "type": "home",
+        "state": "available",
+        "markers": [
+          "Vitamin D"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Read 10 minutes after running the test; follow the supplied reading window.",
+        "kit": [
+          "Self-test device",
+          "Lancet and blood collection equipment",
+          "Buffer solution",
+          "Instructions and result guide"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "iron",
+      "sourceUrl": "https://www.newfoundland.io/products/iron-deficiency",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "e07c1e4cc9b7e8d20ff3700c7eff6852e2fa67dfde4e4b3b60165f0f1a9d71ea",
+      "verified": {
+        "name": "Iron Deficiency",
+        "type": "home",
+        "state": "available",
+        "markers": [
+          "Ferritin"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Read 5 minutes after running the test; follow the supplied reading window.",
+        "kit": [
+          "Self-test device",
+          "Lancet and blood collection equipment",
+          "Buffer solution",
+          "Instructions and result guide"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "thyroid",
+      "sourceUrl": "https://www.newfoundland.io/products/thyroid",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "6b5f12a20a97a2e79c23b767e22a35955ffcf2613fe56ec37338b9feda101f4e",
+      "verified": {
+        "name": "Thyroid",
+        "type": "home",
+        "state": "available",
+        "markers": [
+          "Thyroid stimulating hormone (TSH)"
+        ],
+        "sample": "Finger-prick blood sample",
+        "resultTime": "Read 10 minutes after running the test; follow the supplied reading window.",
+        "kit": [
+          "Self-test device",
+          "Lancet and blood collection equipment",
+          "Buffer solution",
+          "Instructions and result guide"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "kidney-health",
+      "sourceUrl": "https://www.newfoundland.io/products/kidney-health",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "963b904a0cd29a2643a98ff1e375bf484bab9227b8fceb2e78b6fea4ec90fa43",
+      "verified": {
+        "name": "Kidney Health",
+        "type": "home",
+        "state": "available",
+        "markers": [
+          "Albumin in urine"
+        ],
+        "sample": "Urine sample",
+        "resultTime": "Read 3 minutes after running the test; follow the supplied reading window.",
+        "kit": [
+          "Urine self-test device with cap",
+          "Instructions and result guide"
+        ],
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": null
+      },
+      "openItems": [
+        "Final supplied leaflet/version and SHIFT operational/retail terms."
+      ]
+    },
+    {
+      "id": "multivitamin",
+      "sourceUrl": "https://www.newfoundland.io/products/multi-vitamin-supplement",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "6ef600248374243075713f02afacf93c72a42b58bc96f4d41675421078839ea1",
+      "verified": {
+        "name": "Multivitamin",
+        "type": "supplement",
+        "state": "available",
+        "markers": [
+          "30+ vitamins, minerals and nutrients"
+        ],
+        "sample": "Capsules",
+        "resultTime": "Follow the final product label",
+        "kit": null,
+        "pack": "60 capsules; listed as suitable for vegans.",
+        "strength": "30+ vitamins, minerals and nutrients",
+        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional’s advice.",
+        "components": null
+      },
+      "openItems": [
+        "Complete final ingredients, allergens and warnings; do not invent absent label detail."
+      ]
+    },
+    {
+      "id": "vitamin-d-supplement",
+      "sourceUrl": "https://www.newfoundland.io/products/vitamin-d-supplement",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "19f8031eec9d6e1935e4139a5622dd7ca76a43e933b7696a9457a6f41feaa689",
+      "verified": {
+        "name": "Vitamin D Supplement",
+        "type": "supplement",
+        "state": "available",
+        "markers": [
+          "Vitamin D3"
+        ],
+        "sample": "Capsules",
+        "resultTime": "Follow the final product label",
+        "kit": null,
+        "pack": "60 capsules; listed as suitable for vegans.",
+        "strength": "Stated strength: 1,000 IU of vitamin D3",
+        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional’s advice.",
+        "components": null
+      },
+      "openItems": [
+        "Complete final ingredients, allergens and warnings; do not invent absent label detail."
+      ]
+    },
+    {
+      "id": "iron-supplement",
+      "sourceUrl": "https://www.newfoundland.io/products/iron-supplement",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "93d1b3d72856a420da759ff758445aa188cdd3e42aa67b40bde120eaa948f377",
+      "verified": {
+        "name": "Iron Supplement",
+        "type": "supplement",
+        "state": "available",
+        "markers": [
+          "Iron bisglycinate"
+        ],
+        "sample": "Capsules",
+        "resultTime": "Follow the final product label",
+        "kit": null,
+        "pack": "60 capsules; listed as suitable for vegans.",
+        "strength": "Stated strength: 20 mg elemental iron as iron bisglycinate",
+        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional’s advice.",
+        "components": null
+      },
+      "openItems": [
+        "Complete final ingredients, allergens and warnings; do not invent absent label detail."
+      ]
+    },
+    {
+      "id": "general-health-bundle",
+      "sourceUrl": "https://www.newfoundland.io/products/wellness",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "909247b192ea98fa678f6d50cd0afaddbe9d91e200bf3131934f20663a89e540",
+      "verified": {
+        "name": "General Health",
+        "type": "bundle",
+        "state": "available",
+        "markers": [],
+        "sample": "See individual products",
+        "resultTime": "Varies by included test",
+        "kit": null,
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": [
+          "thyroid",
+          "vitamin-d",
+          "iron",
+          "cholesterol",
+          "kidney-health"
+        ]
+      },
+      "openItems": [
+        "Final SHIFT pack quantities and retail terms; for retest combos, exact retest interval."
+      ]
+    },
+    {
+      "id": "general-health-combo",
+      "sourceUrl": "https://www.newfoundland.io/products/general-health-combo",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "a901ae6e03d071574c074ce7cabef0461d0df1c811ab858dd3fdf1c12cb70971",
+      "verified": {
+        "name": "General Health Combo",
+        "type": "bundle",
+        "state": "available",
+        "markers": [],
+        "sample": "See individual products",
+        "resultTime": "Varies by included test",
+        "kit": null,
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": [
+          "thyroid",
+          "vitamin-d",
+          "iron",
+          "cholesterol",
+          "kidney-health",
+          "multivitamin"
+        ]
+      },
+      "openItems": [
+        "Final SHIFT pack quantities and retail terms; for retest combos, exact retest interval."
+      ]
+    },
+    {
+      "id": "vitamin-d-combo",
+      "sourceUrl": "https://www.newfoundland.io/products/vitamin-d-combo",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "cf9d4833afcac6a9b8f95723891ff6246975f425b46989cd70959e4b4efd42c9",
+      "verified": {
+        "name": "Vitamin D Combo",
+        "type": "bundle",
+        "state": "available",
+        "markers": [],
+        "sample": "See individual products",
+        "resultTime": "Varies by included test",
+        "kit": null,
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": [
+          "vitamin-d",
+          "vitamin-d-supplement"
+        ]
+      },
+      "openItems": [
+        "Final SHIFT pack quantities and retail terms; for retest combos, exact retest interval."
+      ]
+    },
+    {
+      "id": "iron-combo",
+      "sourceUrl": "https://www.newfoundland.io/products/iron-deficiency-combo",
+      "checkedOn": "2026-10-28",
+      "sourceSha256": "21d8e29a32f9febaabcd0c6b3358c4e694d24ca8f35bd0f7e83a47c23f13668d",
+      "verified": {
+        "name": "Iron Deficiency Combo",
+        "type": "bundle",
+        "state": "available",
+        "markers": [],
+        "sample": "See individual products",
+        "resultTime": "Varies by included test",
+        "kit": null,
+        "pack": null,
+        "strength": null,
+        "serving": null,
+        "components": [
+          "iron",
+          "iron-supplement"
+        ]
+      },
+      "openItems": [
+        "Final SHIFT pack quantities and retail terms; for retest combos, exact retest interval."
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "verifiedOn": "2026-10-28",
-  "operation": "Remote D1 idempotent catalogue expansion and immediate SELECT verification",
+  "operation": "Audited product facts synced by idempotent migration and immediately verified for all twenty draft records",
   "tables": {
     "testing_products": 13,
     "testing_range_extras": 7
@@ -8,9 +8,6 @@
   "verifiedCount": 20,
   "allStatus": "draft",
   "allSaleEnabled": false,
-  "allSupplierCodes": null,
-  "allTradePrices": null,
-  "allShiftRetailPrices": null,
   "records": [
     {
       "id": "testosterone",
@@ -117,10 +114,10 @@
   "purchasingEnabled": false,
   "orderDispatchEnabled": false,
   "externalCommunicationsSent": false,
-  "stagedProvenanceCorrection": {
-    "id": "general-health-bundle",
-    "sourceUrl": "https://www.newfoundland.io/products/wellness",
-    "liveSync": "pending",
-    "reason": "Cloudflare authentication error 10000 on the bounded source URL update; no database change."
+  "commercialFields": "Existing commercial fields preserved; no prices or supplier codes were set or activated by this update.",
+  "auditedFacts": {
+    "products": 20,
+    "resultTimesMatchAuditedSeed": true,
+    "sourceCorrectionApplied": "General Health source is /products/wellness"
   }
 }
