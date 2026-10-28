@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {fulfilmentFixture} from './fulfilment-fixture.mjs';
 import {fulfilmentRoute} from './fulfilment-api.mjs';
 import {processDueDeliveries,deliveryAction} from './fulfilment-delivery.mjs';
-import {londonSchedule} from './fulfilment-mail-model.mjs';
+import {londonSchedule,providerMessage} from './fulfilment-mail-model.mjs';
 const root='https://api.shiftsometimber.co.uk/v1/hq/testing/fulfilment';
 async function call(f,path='',method='GET',body){const response=await fulfilmentRoute(new Request(root+path,{method,headers:{Origin:'https://hq.shiftsometimber.co.uk','Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)}),f.env);return {status:response.status,body:await response.json()};}
 function fixture(){const f=fulfilmentFixture(),sent=[];f.env.TESTING_FULFILMENT_MAIL_ENABLED='true';f.env.TESTING_FULFILMENT_SCHEDULER_ENABLED='true';f.env.EMAIL={send:async message=>{sent.push(message);return {messageId:'fixture-provider-'+sent.length};}};return {...f,sent};}
@@ -14,8 +14,13 @@ const stored=(f,b)=>f.db.prepare('SELECT * FROM testing_fulfilment_mail WHERE ba
 
 test('send now uses the reviewed Gmail envelope and exact CSV, records acceptance once, and never creates a customer order',async()=>{
  const f=fixture(),b=await batch(f),body=await approval(f,b);body.to='wrong@example.invalid';const result=await send(f,b,body);assert.equal(result.status,200);assert.equal(f.sent.length,1);const m=f.sent[0];assert.deepEqual(m.to,['shiftsometimber@gmail.com']);assert.equal(m.from.email,'orders@shiftsometimber.co.uk');assert.equal(m.replyTo,'partners@shiftsometimber.co.uk');assert.match(m.text,/TEST-ONLY-001/);
- assert.equal(Buffer.from(m.attachments[0].content,'base64').toString('utf8'),f.db.prepare('SELECT csv_text FROM testing_fulfilment_batches WHERE id=?').get(b.id).csv_text);assert.equal(stored(f,b).status,'sent');assert.equal(stored(f,b).provider_id,'fixture-provider-1');assert.equal(f.db.prepare('SELECT status FROM testing_fulfilment_batches WHERE id=?').get(b.id).status,'submitted');
+ assert(m.attachments[0].content instanceof ArrayBuffer);assert.equal(Buffer.from(m.attachments[0].content).toString('utf8'),f.db.prepare('SELECT csv_text FROM testing_fulfilment_batches WHERE id=?').get(b.id).csv_text);assert.equal(stored(f,b).status,'sent');assert.equal(stored(f,b).provider_id,'fixture-provider-1');assert.equal(f.db.prepare('SELECT status FROM testing_fulfilment_batches WHERE id=?').get(b.id).status,'submitted');
  assert.equal((await send(f,b,body)).status,200);assert.equal(f.sent.length,1);assert.equal(f.db.prepare('SELECT COUNT(*) n FROM orders').get().n,3);
+});
+test('provider attachment bytes preserve the CSV BOM, Unicode, quoted fields and CRLF without a second encoding',()=>{
+ const csv='\uFEFF"Recipient","Address"\r\n"José O’Brien","3, Test Road"\r\n',batch={mode:'test',csv_text:csv};
+ const message=providerMessage(batch,{from:'orders@shiftsometimber.co.uk',replyTo:'partners@shiftsometimber.co.uk',to:['shiftsometimber@gmail.com'],subject:'TEST ONLY',body:'Synthetic test',attachments:[{filename:'TEST-ONLY.csv'}]});
+ assert(message.attachments[0].content instanceof ArrayBuffer);assert.deepEqual(new Uint8Array(message.attachments[0].content),new TextEncoder().encode(csv));
 });
 test('a fresh review and confirmed partner setup are required; recipient overrides cannot redirect real orders',async()=>{
  const f=fixture(),b=await batch(f,true);let body=await approval(f,b);body.confirmReviewed=false;assert.equal((await send(f,b,body)).status,409);body=await approval(f,b);body.reviewHash='tampered';assert.equal((await send(f,b,body)).status,409);

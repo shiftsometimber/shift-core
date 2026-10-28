@@ -35,6 +35,8 @@ export function londonSchedule(date,time,now=Date.now(),offsetChoice){
 }
 export function providerMessage(batch,envelope){
  if(batch.mode==='test'&&(envelope.to.length!==1||envelope.to[0]!==testRecipient))throw mailFail('Synthetic emails can only go to the SHIFT Gmail test account.',409);
- const bytes=new TextEncoder().encode(batch.csv_text);let raw='';for(let i=0;i<bytes.length;i+=8192)raw+=String.fromCharCode(...bytes.subarray(i,i+8192));
- return {from:{email:envelope.from,name:'SHIFT Health'},replyTo:envelope.replyTo,to:envelope.to,subject:envelope.subject,text:envelope.body,attachments:[{filename:envelope.attachments[0].filename,type:'text/csv; charset=utf-8',disposition:'attachment',content:btoa(raw)}]};
+ // Send explicit binary bytes. The live binding treated a base64 string as
+ // literal text despite the documented string example; binary is unambiguous.
+ const bytes=new TextEncoder().encode(batch.csv_text);
+ return {from:{email:envelope.from,name:'SHIFT Health'},replyTo:envelope.replyTo,to:envelope.to,subject:envelope.subject,text:envelope.body,attachments:[{filename:envelope.attachments[0].filename,type:'text/csv; charset=utf-8',disposition:'attachment',content:bytes.buffer}]};
 }

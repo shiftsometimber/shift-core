@@ -1,0 +1,9 @@
+{
+  "expectedLiveVersion": "66758ec1-3f3d-414a-bee0-20b1ee63f761",
+  "retainedLegacySha256": "09d6ed280227a434b55902ad99f9e009b562fedc3d495471ecc6ab6be1fd3252",
+  "previousModuleSha256": "670337fd4cd2df72b841d780e2abd5c5ef17d7c7f731b4df783fdd6ecc400661",
+  "moduleSha256": "6586685702f7f7a12f3d695cec53f3c47598f67dedbbf9b29e6775a3cb52d5e3",
+  "moduleSize": 3875,
+  "targetedTestsPassed": 14,
+  "runtimeScope": "Only CSV attachment binary transport; no schema, public content, route, binding or schedule changes."
+}
