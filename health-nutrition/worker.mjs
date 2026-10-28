@@ -3,6 +3,7 @@ import {liveRecommendationRoute} from '../checkout-extras/live-adapter.mjs';
 import {images} from './images.mjs';
 import {publicProducts} from './catalogue.mjs';
 import {renderDocument} from './public.mjs';
+import {supplementSitemapPath,supplementSitemap} from './seo.mjs';
 import {hqRoute} from './hq-api.mjs';
 import {hqClient} from './hq-client.mjs';
 const stamp='health-nutrition-approved-20261027';
@@ -20,6 +21,11 @@ export default {async fetch(request,env,ctx){
   return new Response(request.method==='HEAD'?null:html,{status:response.status,headers});
  }
  if(path==='/shift-health/assets/hq-nutrition.js'){const response=['GET','HEAD'].includes(request.method)?respond(request.method==='HEAD'?null:hqClient,200,'application/javascript; charset=utf-8'):respond('Method not allowed',405,'text/plain');response.headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');return response;}
+ if(path===supplementSitemapPath&&['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(url.hostname)){
+  if(!['GET','HEAD'].includes(request.method))return respond('Method not allowed',405,'text/plain');
+  try{const xml=supplementSitemap(await publicProducts(env.DB));return respond(request.method==='HEAD'?null:xml,200,'application/xml; charset=utf-8');}
+  catch{return respond('The supplement sitemap is temporarily unavailable. Please try again shortly.',503,'text/plain; charset=utf-8');}
+ }
  const asset=path.match(/^\/shift-health\/assets\/([a-z0-9-]+)\.webp$/);
  if(asset){if(!['GET','HEAD'].includes(request.method))return respond('Method not allowed',405,'text/plain');const source=images[asset[1]];if(!source)return respond('Not found',404,'text/plain');const [header,data]=source.split(',');const bytes=Uint8Array.from(atob(data),c=>c.charCodeAt(0));const response=respond(request.method==='HEAD'?null:bytes,200,header.slice(5).split(';')[0]);response.headers.set('Cache-Control','public, max-age=86400');return response;}
  if(!['/shift-health','/shift-health.html','/shift-health/supplements-nutrition'].includes(path))return env.BLOG.fetch(request);

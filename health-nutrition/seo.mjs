@@ -3,6 +3,15 @@ import {productEditorial} from './editorial.mjs';
 const origin='https://shiftsometimber.co.uk';
 const rangePath='/shift-health/supplements-nutrition';
 const productURL=id=>origin+rangePath+'?product='+encodeURIComponent(id);
+export const supplementSitemapPath='/shift-health/supplements-nutrition-sitemap.xml';
+
+// The caller uses the same public catalogue projection as the visible range.
+// List reviewed educational pages only, without filter variants or sale claims.
+export function supplementSitemap(products){
+ const locations=new Set([origin+rangePath,...products.filter(p=>productEditorial(p)).map(p=>productURL(p.id))]);
+ const xmlEscape=value=>value.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+ return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+[...locations].map(loc=>'  <url><loc>'+xmlEscape(loc)+'</loc></url>').join('\n')+'\n</urlset>\n';
+}
 
 // Metadata describes the visible educational guide. It is not a sale offer.
 const searchCopy={

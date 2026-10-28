@@ -6,10 +6,40 @@ import worker from './worker.mjs';
 import {renderDocument,renderContent} from './public.mjs';
 import {validateDraft,hqRoute} from './hq-api.mjs';
 import {filteredProducts} from './catalogue.mjs';
+import {supplementSitemapPath} from './seo.mjs';
 const seed=JSON.parse(fs.readFileSync(new URL('./seed.json',import.meta.url)));
 const shell='<html><head><title>Old</title><meta property="og:title" content="Old"><link rel="canonical" href="https://example.com"><script type="application/ld+json">{"@type":"Product"}</script></head><body><header>real navigation</header><main>old hub</main><footer>real footer and consent</footer></body></html>';
 function database(){const db=new DatabaseSync(':memory:');db.exec(fs.readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));for(const row of seed){const keys=Object.keys(row);db.prepare('INSERT INTO supplement_products ('+keys.join(',')+') VALUES ('+keys.map(()=>'?').join(',')+')').run(...keys.map(k=>row[k]));}const wrap=(sql,values=[])=>({bind:(...args)=>wrap(sql,args),async all(){return {results:db.prepare(sql).all(...values)}},async first(){return db.prepare(sql).get(...values)||null},async run(){const r=db.prepare(sql).run(...values);return {meta:{changes:r.changes}}}});return {prepare:wrap,async exec(sql){db.exec(sql)},async batch(statements){db.exec('BEGIN');try{const r=[];for(const s of statements)r.push(await s.run());db.exec('COMMIT');return r;}catch(e){db.exec('ROLLBACK');throw e}},db};}
 const request=(path,body,origin='https://hq.shiftsometimber.co.uk')=>new Request('https://api.shiftsometimber.co.uk'+path,{method:body?'PATCH':'GET',headers:{Origin:origin,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
+
+test('supplement sitemap advertises the range and all eight readable guides using only the public projection',async()=>{
+ const DB=database(),env={DB,BLOG:{fetch:async()=>new Response(shell)}},url='https://shiftsometimber.co.uk'+supplementSitemapPath;
+ DB.db.prepare('UPDATE supplement_products SET internal_notes=?,supplier_sku=?,trade_price_pence=?').run('PRIVATE_NOTE','PRIVATE_SKU',987654321);
+ const response=await worker.fetch(new Request(url+'?category=creatine'),env),xml=await response.text();
+ assert.equal(response.status,200);assert.match(response.headers.get('Content-Type'),/^application\/xml/);
+ const locations=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+ assert.deepEqual(locations,['https://shiftsometimber.co.uk/shift-health/supplements-nutrition',...seed.map(p=>'https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product='+p.id)]);
+ assert(!/PRIVATE|987654321|category=|sale_enabled|supplier|<lastmod>/.test(xml));
+ for(const location of locations)assert.equal((await worker.fetch(new Request(location),env)).status,200);
+});
+
+test('supplement sitemap removes hidden and repurposed items instead of publishing stale static guides',async()=>{
+ const DB=database(),env={DB},url='https://shiftsometimber.co.uk'+supplementSitemapPath;
+ DB.db.prepare("UPDATE supplement_products SET visibility='hidden' WHERE id='whey'").run();
+ DB.db.prepare("UPDATE supplement_products SET illustrated_flavour='A different formulation' WHERE id='skill'").run();
+ const xml=await (await worker.fetch(new Request(url),env)).text();
+ assert.equal((xml.match(/<loc>/g)||[]).length,7);
+ assert(!xml.includes('?product=whey'));assert(!xml.includes('?product=skill'));assert(xml.includes('?product=clear'));
+});
+
+test('supplement sitemap supports HEAD, rejects writes, fails honestly and leaves the root sitemap with its owner',async()=>{
+ const DB=database(),url='https://shiftsometimber.co.uk'+supplementSitemapPath;
+ let response=await worker.fetch(new Request(url,{method:'HEAD'}),{DB});
+ assert.equal(response.status,200);assert.equal(await response.text(),'');assert.match(response.headers.get('Content-Type'),/^application\/xml/);
+ response=await worker.fetch(new Request(url,{method:'POST'}),{});assert.equal(response.status,405);
+ for(const method of ['GET','HEAD']){response=await worker.fetch(new Request(url,{method}),{DB:{prepare(){throw Error('unavailable')}}});assert.equal(response.status,503);}
+ const retained=new Response('existing root sitemap');response=await worker.fetch(new Request('https://shiftsometimber.co.uk/sitemap.xml'),{BLOG:{fetch:async()=>retained}});assert.equal(response,retained);
+});
 test('sorts use names, creation dates, verified public prices and real paid units with unknowns last',()=>{
  const products=[{id:'b',name:'Beta',created_at:'2026-10-02 12:00:00',public_price_pence:1000,paid_units:4},{id:'a',name:'Alpha',created_at:'2026-10-01 12:00:00',public_price_pence:2000,paid_units:9},{id:'c',name:'Charlie',created_at:null,public_price_pence:null,paid_units:null}];
  const order=sort=>filteredProducts(products,new URLSearchParams(sort?'sort='+sort:'')).map(p=>p.id);

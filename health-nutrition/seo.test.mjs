@@ -2,12 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {renderDocument,renderContent} from './public.mjs';
-import {productSearchMetadata} from './seo.mjs';
+import {productSearchMetadata,supplementSitemap} from './seo.mjs';
 
 const products=JSON.parse(fs.readFileSync(new URL('./seed.json',import.meta.url)));
 const shell='<html lang="en-GB"><head><meta name="robots" content="index,follow"><title>Old</title></head><body><header>Navigation</header><main>old</main><footer>Footer</footer></body></html>';
 const render=query=>renderDocument(shell,'/shift-health/supplements-nutrition',new URLSearchParams(query),products);
 const graph=html=>JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+
+test('supplement sitemap has unique canonical guide URLs without filter noise or fabricated modification dates',()=>{
+ const xml=supplementSitemap([...products,...products,{...products[0],id:'not-reviewed'}]);
+ const locations=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+ assert.equal(locations.length,9);assert.equal(new Set(locations).size,9);
+ assert(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>'));
+ assert(!/category=|sort=|not-reviewed|lastmod|priority|changefreq|Offer|PRIVATE/.test(xml));
+});
 
 test('each reviewed item has unique useful search copy, its own canonical and a matching product image',()=>{
  const titles=new Set(),descriptions=new Set();
