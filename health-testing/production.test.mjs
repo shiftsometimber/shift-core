@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {composeTesting} from './production.mjs';
-const shell='<html><head></head><body><main id="main-content"><div id="shift-health-range"><section class="sst-linkline">Retained Health</section></div></main><script src="/existing-basket.js"></script></body></html>';
+const shell='<html><head></head><body><main id="main-content"><div id="shift-health-range"><nav class="sst-health-grid" aria-label="Explore your health"></nav><section class="sst-linkline">Retained Health</section></div></main><script src="/existing-basket.js"></script></body></html>';
 test('publication composes around the exact retained worker and delegates every unowned request unchanged',async()=>{
  const response=new Response('retained exact response'),calls=[];
  const worker=composeTesting({fetch:async(...args)=>{calls.push(args);return response;}});
@@ -12,7 +12,7 @@ test('publication composes around the exact retained worker and delegates every 
 test('Health and HQ get only the testing discovery additions while retaining basket and nutrition scripts',async()=>{
  const worker=composeTesting({fetch:async()=>new Response(shell,{headers:{'Content-Type':'text/html'}})});
  const hub=await (await worker.fetch(new Request('https://shiftsometimber.co.uk/shift-health'),{},{})).text();
- assert(hub.includes('Retained Health'));assert(hub.includes('/existing-basket.js'));assert.equal((hub.match(/class="nft-hub"/g)||[]).length,1);
+ assert.equal((hub.match(/sst-testing-route/g)||[]).length,1);assert(hub.includes('Retained Health'));assert(hub.includes('/existing-basket.js'));assert.equal((hub.match(/class="nft-hub"/g)||[]).length,1);
  const hq=await (await worker.fetch(new Request('https://hq.shiftsometimber.co.uk/'),{},{})).text();
  assert(hq.includes('/existing-basket.js'));assert.equal((hq.match(/assets\/hq-testing.js/g)||[]).length,1);
 });

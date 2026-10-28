@@ -1,0 +1,215 @@
+{
+  "expectedLiveVersion": "dcbf654a-81db-42ad-a550-b3e3e9dff8ca",
+  "retainedLegacySha256": "09d6ed280227a434b55902ad99f9e009b562fedc3d495471ecc6ab6be1fd3252",
+  "service": "shift-health-nutrition-20261027",
+  "migration": "health-testing/fulfilment-mail-schema.sql",
+  "modules": [
+    {
+      "path": "health-testing/production.mjs",
+      "sha256": "d983f9ac5ea102198ccd3fb710f073406799a7796551b67754d7958bf81dc042",
+      "size": 2910
+    },
+    {
+      "path": "health-nutrition/worker.mjs",
+      "sha256": "2eab1fb2996b8778f45689e682ebe29897bc216029f5be941b52a3796f877c11",
+      "size": 5280
+    },
+    {
+      "path": "health-testing/hq-fulfilment.mjs",
+      "sha256": "aaad2006c84ac76e2ea823ea3a5c924def5438559916c2687151fa344ac57f69",
+      "size": 33717
+    },
+    {
+      "path": "health-testing/storefront.mjs",
+      "sha256": "75a3147aeb256d2cc0eddf58edcb3dcff6c49fc2ae110e87449469b394156e06",
+      "size": 5144
+    },
+    {
+      "path": "health-testing/catalogue.mjs",
+      "sha256": "eb947e9bf2cf1bae27cf7e403746771cdc523f45152f5774453a8c746d26ed91",
+      "size": 14147
+    },
+    {
+      "path": "health-testing/specifications.mjs",
+      "sha256": "5aee421dc7587c589729600213931733c033ed1f152c2f0fae7954892781cb61",
+      "size": 5423
+    },
+    {
+      "path": "health-testing/media-data.mjs",
+      "sha256": "75b0773bee518a3256f4081229e1e3b3b7d3c660c29f0cbbbae4746f18a20478",
+      "size": 3879644
+    },
+    {
+      "path": "health-nutrition/images.mjs",
+      "sha256": "1f454c9f390e6390d8be5cc366e4d8f49b0a2e4c7cafe5a00d161307f305b7fe",
+      "size": 643679
+    },
+    {
+      "path": "health-nutrition/catalogue.mjs",
+      "sha256": "c7aa65224d4cde01176bdd0a421f7706ca8342bcf788f824063c6fbd0a806e38",
+      "size": 5677
+    },
+    {
+      "path": "health-nutrition/public.mjs",
+      "sha256": "d057b90ccf9d2fb00231e07fd0bf60b512689a4fffefd26dd119e4bae3e36bb1",
+      "size": 8218
+    },
+    {
+      "path": "health-nutrition/templates.mjs",
+      "sha256": "a8e0d2286d981aebc4706aebbf7436a6a38c2115c69b12e79ee4d191f364d4ee",
+      "size": 11252
+    },
+    {
+      "path": "health-nutrition/styles.mjs",
+      "sha256": "93fd513f4caaf5515132522ab6d61fdd0b9f159ac24281b4abc8161a1d0a4280",
+      "size": 49227
+    },
+    {
+      "path": "health-testing/public.mjs",
+      "sha256": "8572a88b46b1fed50cc544cce85f4d48bcc7b114cdd8860d39228c60d4565fa2",
+      "size": 23848
+    },
+    {
+      "path": "health-testing/media.mjs",
+      "sha256": "55fcd70b18a83c70aabb911ee5cb6aa3cab3d9a79d0a58b7e45f521ca1ab155c",
+      "size": 4031
+    },
+    {
+      "path": "health-testing/styles.mjs",
+      "sha256": "4c0f4a1aa0a86c8316e71aaff62ee6686c41767e9e20a86d4d43eb8b7193b298",
+      "size": 24555
+    },
+    {
+      "path": "health-nutrition/hq-api.mjs",
+      "sha256": "8c9b58c403255916190eb70b740395cf637ff81f1ecbbb3747faca2226378ccd",
+      "size": 5753
+    },
+    {
+      "path": "health-nutrition/hq-client.mjs",
+      "sha256": "d11515ea7c139192c3f63be2abc1cf660d8fe502961975efb6092c2039c3d58d",
+      "size": 12672
+    },
+    {
+      "path": "health-testing/hq-api.mjs",
+      "sha256": "bdf8dd494e92b570ff1b5cb45da9bad61d76d7b00d267600745e5b8c60074862",
+      "size": 5633
+    },
+    {
+      "path": "health-testing/fulfilment-api.mjs",
+      "sha256": "a386137c45382a91dac7cf3ed2fd1a13b336fefe93bc75cd7db021bb5b1da2a4",
+      "size": 19142
+    },
+    {
+      "path": "health-testing/fulfilment-model.mjs",
+      "sha256": "b1ccb99c488fd732cbda1f5e92d1f4f3173e6d9701de1d1a76577ded32fea123",
+      "size": 9553
+    },
+    {
+      "path": "health-testing/hq-client.mjs",
+      "sha256": "79038cc6e2ea600345765099f4f7b3df3e83982303d935dc47f87388a2ed1e31",
+      "size": 5470
+    },
+    {
+      "path": "health-testing/fulfilment-source.mjs",
+      "sha256": "41cbd2bf5c35cdb0e614932cbe6b38dd01c30398512b5f521c64840de4a0b58e",
+      "size": 4080
+    },
+    {
+      "path": "health-testing/fulfilment-mail-model.mjs",
+      "sha256": "670337fd4cd2df72b841d780e2abd5c5ef17d7c7f731b4df783fdd6ecc400661",
+      "size": 3817
+    },
+    {
+      "path": "health-testing/fulfilment-delivery.mjs",
+      "sha256": "57f60803c23731069e81973335184dde55562ac876447373e6090aa2dd0fb2a9",
+      "size": 12073
+    },
+    {
+      "path": "health-testing/product-context.mjs",
+      "sha256": "5a377cd1f17b972104171577fa345f3f7119cdd10b019f5b5e917732e0c0a53e",
+      "size": 40117
+    },
+    {
+      "path": "health-testing/seo.mjs",
+      "sha256": "1a7a7a099b8276e7182742bb0f09b8f014b0cb4ea0eb16e9f633be6c3f06a61f",
+      "size": 3211
+    }
+  ],
+  "routesToAdd": [],
+  "emailSendingEnabled": true,
+  "purchasingEnabled": false,
+  "testRecipient": "shiftsometimber@gmail.com",
+  "schemaStatus": "Awaiting partner template and codes",
+  "testsPassed": 59,
+  "browserPreview": {
+    "queue": true,
+    "testBatch": true,
+    "csvDownloadedAndHashMatched": true,
+    "emailDraftPreview": true,
+    "setupSavedTwice": true,
+    "history": true,
+    "mobileWidth": 375,
+    "mobileScrollWidth": 375,
+    "desktopNewDesign": true
+  },
+  "mimeValidation": {
+    "pythonEmailParser": true,
+    "csvBytesMatchAttachment": true,
+    "testRecipientVerified": true,
+    "draftOnly": true,
+    "emailsSent": 0,
+    "actualSending": "Pending authorised live Gmail transport tests after deployment"
+  },
+  "schedulerCron": "* * * * *",
+  "productIds": [
+    "testosterone",
+    "diabetes",
+    "psa-lab",
+    "male-hormone",
+    "heart-health",
+    "bowel-health",
+    "prostate-health",
+    "male-fertility",
+    "cholesterol",
+    "vitamin-d",
+    "iron",
+    "thyroid",
+    "kidney-health",
+    "multivitamin",
+    "vitamin-d-supplement",
+    "iron-supplement",
+    "general-health-bundle",
+    "general-health-combo",
+    "vitamin-d-combo",
+    "iron-combo"
+  ],
+  "brandlessImages": [
+    "/shift-health/assets/testing-brandless-product-testosterone.webp",
+    "/shift-health/assets/testing-brandless-product-diabetes.webp",
+    "/shift-health/assets/testing-brandless-product-psa-lab.webp",
+    "/shift-health/assets/testing-brandless-product-male-hormone.webp",
+    "/shift-health/assets/testing-brandless-product-heart-health.webp",
+    "/shift-health/assets/testing-brandless-cutout-prostate-health.webp",
+    "/shift-health/assets/testing-brandless-cutout-bowel-health.webp",
+    "/shift-health/assets/testing-brandless-cutout-male-fertility.webp",
+    "/shift-health/assets/testing-brandless-cutout-cholesterol.webp",
+    "/shift-health/assets/testing-brandless-cutout-vitamin-d.webp",
+    "/shift-health/assets/testing-brandless-cutout-iron.webp",
+    "/shift-health/assets/testing-brandless-cutout-thyroid.webp",
+    "/shift-health/assets/testing-brandless-cutout-kidney-health.webp",
+    "/shift-health/assets/testing-brandless-cutout-multivitamin.webp",
+    "/shift-health/assets/testing-brandless-cutout-vitamin-d-supplement.webp",
+    "/shift-health/assets/testing-brandless-cutout-iron-supplement.webp",
+    "/shift-health/assets/testing-brandless-photo-a98835f86b48.webp"
+  ],
+  "publicRevision": {
+    "sixProductExplanations": 20,
+    "uniqueProductMetadata": 20,
+    "faqMatchesVisibleCopy": true,
+    "schemaHasNoUnconfirmedOffers": true,
+    "testingSitemapUrls": 21,
+    "smallHealthGridCard": true,
+    "brandlessPhotos": 17,
+    "bundleImages": "Composed from checked individual product photos; generated bundle labels rejected."
+  }
+}

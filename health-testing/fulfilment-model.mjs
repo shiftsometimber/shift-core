@@ -60,8 +60,8 @@ export function emailDraft(batch){
 }
 const base64=value=>{const bytes=new TextEncoder().encode(value);let out='';for(let i=0;i<bytes.length;i+=8192)out+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(out).match(/.{1,76}/g)?.join('\r\n')||'';};
 const mimeHeader=value=>{const parts=[];let piece='';for(const char of value){if(new TextEncoder().encode(piece+char).length>42){parts.push('=?UTF-8?B?'+base64(piece).replaceAll('\r\n','')+'?=');piece=char;}else piece+=char;}if(piece)parts.push('=?UTF-8?B?'+base64(piece).replaceAll('\r\n','')+'?=');return parts.join('\r\n ');};
-export function emailFile(batch){
- const draft=emailDraft(batch);if(!draft.to.length)throw Error('The email recipient has not been confirmed.');
+export function emailFile(batch,reviewed){
+ const draft=reviewed||emailDraft(batch);if(!draft.to.length)throw Error('The email recipient has not been confirmed.');
  const boundary='shift-review-'+batch.id.replace(/[^a-z0-9-]/gi,'');
- return ['X-Unsent: 1','To: '+draft.to.join(', '),'Cc:','Subject: '+mimeHeader(draft.subject),'MIME-Version: 1.0','Content-Type: multipart/mixed; boundary="'+boundary+'"','', '--'+boundary,'Content-Type: text/plain; charset=UTF-8','Content-Transfer-Encoding: base64','',base64(draft.body),'--'+boundary,'Content-Type: text/csv; charset=UTF-8; name="'+draft.attachments[0].filename+'"','Content-Disposition: attachment; filename="'+draft.attachments[0].filename+'"','Content-Transfer-Encoding: base64','',base64(batch.csv_text),'--'+boundary+'--',''].join('\r\n');
+ return ['X-Unsent: 1',...(draft.from?['From: '+draft.from,'Reply-To: '+draft.replyTo]:[]),'To: '+draft.to.join(', '),'Cc:','Subject: '+mimeHeader(draft.subject),'MIME-Version: 1.0','Content-Type: multipart/mixed; boundary="'+boundary+'"','', '--'+boundary,'Content-Type: text/plain; charset=UTF-8','Content-Transfer-Encoding: base64','',base64(draft.body),'--'+boundary,'Content-Type: text/csv; charset=UTF-8; name="'+draft.attachments[0].filename+'"','Content-Disposition: attachment; filename="'+draft.attachments[0].filename+'"','Content-Transfer-Encoding: base64','',base64(batch.csv_text),'--'+boundary+'--',''].join('\r\n');
 }

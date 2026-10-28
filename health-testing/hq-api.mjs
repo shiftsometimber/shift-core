@@ -1,3 +1,4 @@
+import {mailAvailability} from './fulfilment-delivery.mjs';
 import {fulfilmentRoute} from './fulfilment-api.mjs';
 import {rangeById} from './catalogue.mjs';
 import {cors,json} from '../health-nutrition/hq-api.mjs';
@@ -30,7 +31,7 @@ export async function testingHQRoute(request,env){
  if(path==='/v1/hq/testing'&&method==='GET'){
   const {results=[]}=await env.DB.prepare('SELECT * FROM testing_products UNION ALL SELECT * FROM testing_range_extras ORDER BY sort_order,id').all();
   const fulfilment=await env.DB.prepare('SELECT template_confirmed,delivery_confirmed FROM testing_fulfilment_config WHERE id=1').first();
-  return cors(json({ok:true,products:results.map(({source_url,partner,...row})=>({...row,partner:'Testing partner'})),canManage:manage,integration:{supplier:'Testing partner',fulfilment:'daily_csv',fulfilmentWorkspaceAvailable:true,supplierCodesConfirmed:results.filter(p=>p.supplier_state==='available').every(p=>Boolean(p.supplier_sku)),orderExportEnabled:Boolean(fulfilment?.template_confirmed&&fulfilment?.delivery_confirmed),partnerTemplateConfirmed:Boolean(fulfilment?.template_confirmed),submissionDestinationConfirmed:Boolean(fulfilment?.delivery_confirmed),emailSendingEnabled:false,purchasingEnabled:false,labResults:'Testing partner secure results portal'}}),request);
+  return cors(json({ok:true,products:results.map(({source_url,partner,...row})=>({...row,partner:'Testing partner'})),canManage:manage,integration:{supplier:'Testing partner',fulfilment:'daily_csv',fulfilmentWorkspaceAvailable:true,supplierCodesConfirmed:results.filter(p=>p.supplier_state==='available').every(p=>Boolean(p.supplier_sku)),orderExportEnabled:Boolean(fulfilment?.template_confirmed&&fulfilment?.delivery_confirmed),partnerTemplateConfirmed:Boolean(fulfilment?.template_confirmed),submissionDestinationConfirmed:Boolean(fulfilment?.delivery_confirmed),emailSendingEnabled:mailAvailability(env).enabled,purchasingEnabled:false,labResults:'Testing partner secure results portal'}}),request);
  }
  const match=path.match(/^\/v1\/hq\/testing\/([a-z0-9-]{1,80})$/);
  if(!match||method!=='PATCH')return cors(json({error:'not_found'},404),request);

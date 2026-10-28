@@ -45,7 +45,7 @@
           "Total testosterone"
         ],
         "sample": "Finger-prick blood sample",
-        "resultTime": "Usually 2–5 working days for analysis and reporting; follow the turnaround confirmed with your kit.",
+        "resultTime": "Usually 2\u20135 working days for analysis and reporting; follow the turnaround confirmed with your kit.",
         "kit": [
           "Lancet and finger-prick blood collection equipment",
           "Prepaid sample-return packaging",
@@ -73,7 +73,7 @@
           "HbA1c"
         ],
         "sample": "Finger-prick blood sample",
-        "resultTime": "Usually 2–5 working days for analysis and reporting; follow the turnaround confirmed with your kit.",
+        "resultTime": "Usually 2\u20135 working days for analysis and reporting; follow the turnaround confirmed with your kit.",
         "kit": [
           "Lancet and finger-prick blood collection equipment",
           "Prepaid sample-return packaging",
@@ -113,7 +113,7 @@
         "components": null
       },
       "openItems": [
-        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2–5 working days."
+        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2\u20135 working days."
       ]
     },
     {
@@ -148,7 +148,7 @@
         "components": null
       },
       "openItems": [
-        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2–5 working days."
+        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2\u20135 working days."
       ]
     },
     {
@@ -180,7 +180,7 @@
         "components": null
       },
       "openItems": [
-        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2–5 working days."
+        "Final launch date, pack specification and turnaround; source conflicts between 48 hours and 2\u20135 working days."
       ]
     },
     {
@@ -430,7 +430,7 @@
         "kit": null,
         "pack": "60 capsules; listed as suitable for vegans.",
         "strength": "30+ vitamins, minerals and nutrients",
-        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional’s advice.",
+        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional\u2019s advice.",
         "components": null
       },
       "openItems": [
@@ -454,7 +454,7 @@
         "kit": null,
         "pack": "60 capsules; listed as suitable for vegans.",
         "strength": "Stated strength: 1,000 IU of vitamin D3",
-        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional’s advice.",
+        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional\u2019s advice.",
         "components": null
       },
       "openItems": [
@@ -478,7 +478,7 @@
         "kit": null,
         "pack": "60 capsules; listed as suitable for vegans.",
         "strength": "Stated strength: 20 mg elemental iron as iron bisglycinate",
-        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional’s advice.",
+        "serving": "Published serving: one capsule daily. Follow the final label or your healthcare professional\u2019s advice.",
         "components": null
       },
       "openItems": [
@@ -592,5 +592,38 @@
         "Final SHIFT pack quantities and retail terms; for retest combos, exact retest interval."
       ]
     }
-  ]
+  ],
+  "contextRevision": {
+    "checkedOn": "2026-10-28",
+    "scope": "Original six-question explanations for all twenty items; SEO/AEO structured factual text and source links; brandless product media.",
+    "primaryClinicalSources": [
+      "https://www.nhs.uk/tests-and-treatments/psa-test/",
+      "https://www.nhs.uk/conditions/bowel-cancer/",
+      "https://www.nhs.uk/conditions/low-sperm-count/",
+      "https://www.nhs.uk/conditions/high-cholesterol/cholesterol-levels/",
+      "https://www.nhs.uk/conditions/vitamins-and-minerals/vitamin-d/",
+      "https://www.nhs.uk/conditions/iron-deficiency-anaemia/",
+      "https://www.nhs.uk/conditions/underactive-thyroid-hypothyroidism/diagnosis/",
+      "https://www.nhs.uk/conditions/kidney-disease/diagnosis/",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC10357891/"
+    ],
+    "distinctions": [
+      "Single total testosterone versus broader planned Male Hormone panel",
+      "HbA1c versus current glucose",
+      "Home PSA threshold versus quantitative laboratory PSA; neither rules out cancer",
+      "Sperm concentration versus full semen analysis or contraception confirmation",
+      "Total cholesterol band versus full lipid profile",
+      "Ferritin versus full blood count and underlying cause",
+      "TSH versus full thyroid work-up",
+      "Urine albumin versus eGFR or laboratory ACR",
+      "Vitamin D supplement 1000 IU / 25 micrograms versus NHS routine 10 micrograms advice",
+      "Iron supplement 20 mg elemental iron; added vitamin C quantity unconfirmed",
+      "All supplements: 60 capsules, published one daily; full final labels pending",
+      "Bundle quantities, savings and follow-up timings remain unconfirmed"
+    ],
+    "mediaManifest": "health-testing/brandless-media.json",
+    "generatedBundleImagesUsed": false,
+    "clinicalReviewClaimed": false,
+    "structuredData": "Product / FAQPage / BreadcrumbList / WebPage / CollectionPage; no fabricated Offer, rating, review or clinical endorsement"
+  }
 }

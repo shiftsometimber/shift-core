@@ -1,0 +1,163 @@
+{
+  "assets": [
+    {
+      "key": "brandless-product-testosterone",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-321330fd-5e4e-4250-9db3-e5dbe97e8dfb.png",
+      "target": "health-testing/assets/brandless-product-testosterone.webp",
+      "width": 940,
+      "height": 1672,
+      "sha256": "3acffb60b5cd24f351631d5303df34352325397267759f12e3cb0a9336b41e90",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-product-diabetes",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-05b6acff-1763-436e-8501-eedb18f158c1.png",
+      "target": "health-testing/assets/brandless-product-diabetes.webp",
+      "width": 940,
+      "height": 1672,
+      "sha256": "f24e23e52d0d04bdf4eac924bb24e506e5742520d24987f7ac66ab154e295767",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-product-psa-lab",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-bbe8cff8-eff2-4f57-bf81-408f861b2163.png",
+      "target": "health-testing/assets/brandless-product-psa-lab.webp",
+      "width": 946,
+      "height": 1662,
+      "sha256": "f168b543c3d9902ea21c09e8b662de829b86c4f659726324b6b14dd22cc4586e",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-product-male-hormone",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-c0a32a15-fcff-4598-bc4a-3d7c9625768d.png",
+      "target": "health-testing/assets/brandless-product-male-hormone.webp",
+      "width": 944,
+      "height": 1666,
+      "sha256": "6197e161f6aab3d5a0cbab049df774c7ed5f3a4bfc0726518edd2f9d7e7de393",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-product-heart-health",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-d82d9573-825a-44e6-a5ac-e497e8b159bf.png",
+      "target": "health-testing/assets/brandless-product-heart-health.webp",
+      "width": 939,
+      "height": 1676,
+      "sha256": "35e9d33356c3f5bf277919a16baaa5e6ab5f91dc94a1f2364d160c72ed08df6f",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-prostate-health",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-f8335cd2-2e7f-401f-969c-e1759db2815c.png",
+      "target": "health-testing/assets/brandless-cutout-prostate-health.webp",
+      "width": 2064,
+      "height": 762,
+      "sha256": "cbc0466056d2db62b1908e51577ab30410f083f9d5a207264a4f5c7f76943b61",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-bowel-health",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-16a2dfa6-b662-4c4e-bdb0-d0d679cc8228.png",
+      "target": "health-testing/assets/brandless-cutout-bowel-health.webp",
+      "width": 1710,
+      "height": 920,
+      "sha256": "84f7b9ae29a41e60700468be19b3e93fb541c76026f42d9701e2dce57e6fd079",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-male-fertility",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-a4dfc3f8-d6d7-492f-85de-e94393e833bb.png",
+      "target": "health-testing/assets/brandless-cutout-male-fertility.webp",
+      "width": 1604,
+      "height": 981,
+      "sha256": "c43f1442634884c8ca4ef95e718faeeffe30e1ac7c0f4c318894e40d300617fe",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-cholesterol",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-4fa0b31c-c05e-4a85-ad3e-2b59b761198f.png",
+      "target": "health-testing/assets/brandless-cutout-cholesterol.webp",
+      "width": 1744,
+      "height": 902,
+      "sha256": "b5b6ec5d5aa0af249e98d11394d54be573ec1078e56250f54711f78387887c8a",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-vitamin-d",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-f2d157b5-f7ee-4349-9ccf-fdb6e33f0ce9.png",
+      "target": "health-testing/assets/brandless-cutout-vitamin-d.webp",
+      "width": 1662,
+      "height": 946,
+      "sha256": "96fe38224610a44829a196271d284a7c755935edbc292ef4c659ff4f2e399664",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-iron",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-ec6a99c5-f916-43bc-8043-4100167a3910.png",
+      "target": "health-testing/assets/brandless-cutout-iron.webp",
+      "width": 1666,
+      "height": 944,
+      "sha256": "c38ca7b6d1bc0fcc6d0dc6a3d410efbc3efc0e48f6e0087a7e0f2e79b93982d8",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-thyroid",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-1c17aa7e-9a10-40d8-8fdc-d104eb65db64.png",
+      "target": "health-testing/assets/brandless-cutout-thyroid.webp",
+      "width": 1717,
+      "height": 916,
+      "sha256": "1528e5a3945e0298fd1a9bbd3a9d11dafa9b92978c6c46a4ae9f141e8bca9a88",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-kidney-health",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-9e3fa761-351d-4d68-8991-1fbc6b65a895.png",
+      "target": "health-testing/assets/brandless-cutout-kidney-health.webp",
+      "width": 2123,
+      "height": 741,
+      "sha256": "f3e9f408272d56a6f6ddcccbdeb9df2c45832bfe3a72bd613fa322a30ecb7f03",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-multivitamin",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-40d93fc8-cd45-4fed-b8a1-369c2a75d183.png",
+      "target": "health-testing/assets/brandless-cutout-multivitamin.webp",
+      "width": 914,
+      "height": 1721,
+      "sha256": "48b4d9614ec7f92b1edc05ed3ca9c75bf9bc196c3d511354ba82c6d6124579ac",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-vitamin-d-supplement",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-25e02dc7-c0c1-446b-83d9-73aadbaf0ec9.png",
+      "target": "health-testing/assets/brandless-cutout-vitamin-d-supplement.webp",
+      "width": 949,
+      "height": 1658,
+      "sha256": "aa9db5f56bcc13640cc01a634473b08eef70e68a4f75c975431cfec4c254cb32",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-cutout-iron-supplement",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-4aad6cb0-06eb-4bc7-a2dc-d6d70cfbe937.png",
+      "target": "health-testing/assets/brandless-cutout-iron-supplement.webp",
+      "width": 921,
+      "height": 1708,
+      "sha256": "ec61d1f4e1caacfe2fa110a15ce560743bbf61b125ccee92e042cb2435e6b827",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    },
+    {
+      "key": "brandless-photo-a98835f86b48",
+      "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-58e600ac-1e64-49b5-81c5-594fedf88f7b.png",
+      "target": "health-testing/assets/brandless-photo-a98835f86b48.webp",
+      "width": 1537,
+      "height": 1023,
+      "sha256": "f751f77d4d9a8785f02e825daa396ef26033d3bee92746ce02c50a296617cda6",
+      "edit": "Remove supplier wordmark; retain actual product and remaining label. Built-in imagegen. WebP compression only afterwards."
+    }
+  ],
+  "rejected": [
+    "exec-455e90cd-82ca-477c-96a4-ea07d40ff3a8.png",
+    "exec-fdc0f4f0-8338-4999-b783-4d8c279d3ac9.png",
+    "exec-ba2616cf-feeb-4ad2-8da4-1df76fe8444a.png"
+  ],
+  "rejectionReason": "Generated bundle labels introduced unverified doses or text; use page-native collections of the verified single-product edits instead."
+}

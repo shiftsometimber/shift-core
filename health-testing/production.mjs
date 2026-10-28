@@ -1,3 +1,4 @@
+import {processDueDeliveries} from './fulfilment-delivery.mjs';
 import testingWorker from '../health-nutrition/worker.mjs';
 import {addTestingLink} from './public.mjs';
 import {testingStyle} from './styles.mjs';
@@ -8,7 +9,7 @@ const scopedStyle=testingStyle.replace(/#shift-health-range/g,'#main-content #sh
 // The retained argument is the exact currently deployed Health/Nutrition
 // module, not an older repository reconstruction. Unowned requests use its
 // response unchanged, including live purchase basket and recommendation work.
-export function composeTesting(retained){return {async fetch(request,env,ctx){
+export function composeTesting(retained){return {async scheduled(controller,env,ctx){await processDueDeliveries(env);if(retained.scheduled)await retained.scheduled(controller,env,ctx);},async fetch(request,env,ctx){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';
  const publicHost=['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(url.hostname);
  const testingPublic=publicHost&&(path==='/shift-health/testing'||path.startsWith('/shift-health/testing/')||path.startsWith('/shift-health/assets/testing-')||path==='/shift-health/assets/hq-testing.js'||path==='/shift-health/assets/hq-testing-fulfilment.js');
