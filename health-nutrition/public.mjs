@@ -3,8 +3,9 @@ import {styles} from './styles.mjs';
 import {categories,esc,filteredProducts,productCard,productDetail,sortChoices,sortAvailable,selectedSort} from './catalogue.mjs';
 import {testingContent,addTestingLink} from '../health-testing/public.mjs';
 import {testingStyle} from '../health-testing/styles.mjs';
+import {storefrontClient} from '../health-testing/storefront.mjs';
 export function renderContent(path,query,products=[]){
- if(path==='/shift-health/testing'||path.startsWith('/shift-health/testing/'))return testingContent(path);
+ if(path==='/shift-health/testing'||path.startsWith('/shift-health/testing/'))return testingContent(path,query);
  if(path==='/shift-health')return {content:addTestingLink(hubTemplate),title:'Men’s Health: Energy, Sleep & Wellbeing | SHIFT Health',description:'Straight-talking health information and practical support for ordinary men. Explore bloods, home testing, energy, sleep, wellbeing and everyday nutrition.'};
  const selected=query.get('product');
  if(selected){const p=products.find(x=>x.id===selected);return p?{content:productDetail(p),title:p.name+' | Supplements & Nutrition | SHIFT',description:p.description}:null;}
@@ -42,5 +43,6 @@ export function renderDocument(shell,path,query,products=[]){
  // The accepted shell has strong presentation rules. Keep this approved
  // component scoped above those rules without changing the shared chrome.
  html=html.replace(/(<style data-health-nutrition="20261027">)([\s\S]*?)(<\/style>)/,(_,open,css,close)=>open+css.replace(/(?<!#main-content )#shift-health-range/g,'#main-content #shift-health-range').replace(/([\w-]+)\s*:\s*([^;{}]+)([;}])/g,(_,property,value,end)=>property+':'+value.trim()+(value.includes('!important')?'':'!important')+end)+'#main-content #shift-health-range #shop-categories{scroll-margin-top:180px!important}'+close);
+ if(path==='/shift-health/testing'||path.startsWith('/shift-health/testing/'))html=html.replace('</body>','<script data-testing-storefront>'+storefrontClient+'</script></body>');
  return html;
 }

@@ -30,8 +30,8 @@ test('migration creates the expanded durable drafts, preserves later staff edits
  assert.equal(DB.db.prepare("SELECT internal_notes FROM testing_products WHERE id='iron'").get().internal_notes,'Keep my edit');
  assert.throws(()=>DB.db.exec("UPDATE testing_products SET sale_enabled=1 WHERE id='iron'"));assert.throws(()=>DB.db.exec("UPDATE testing_products SET status='active' WHERE id='iron'"));
 });
-test('all twenty-one public pages render without JS, preserve accepted shell and omit private pricing and transactions',()=>{
- for(const path of testingPaths){const html=renderDocument(shell,path,new URLSearchParams());assert(html.includes('accepted navigation'));assert(html.includes('accepted footer and consent'));assert.equal((html.match(/<h1>/g)||[]).length,1);assert.equal((html.match(/rel="canonical"/g)||[]).length,1);assert(html.includes('https://shiftsometimber.co.uk'+path));assert(!/newfoundland|Add to (?:cart|basket)|Checkout|supplier_sku|3999|£39\.99|trade_price_pence|"@type":"Product"/i.test(html));}
+test('all twenty-one pages preserve the shell and private pricing, and only offer disabled purchase controls',()=>{
+ for(const path of testingPaths){const html=renderDocument(shell,path,new URLSearchParams());assert(html.includes('accepted navigation'));assert(html.includes('accepted footer and consent'));assert.equal((html.match(/<h1>/g)||[]).length,1);assert.equal((html.match(/rel="canonical"/g)||[]).length,1);assert(html.includes('https://shiftsometimber.co.uk'+path));assert(!/newfoundland|Checkout|supplier_sku|3999|£39\.99|trade_price_pence|"@type":"Product"/i.test(html));}
  const h=testingContent('/shift-health/testing').content;assert.equal((h.match(/data-test="/g)||[]).length,20);assert.equal((h.match(/<span class="nft-state">Coming soon<\/span>/g)||[]).length,3);
  assert.equal(testingContent('/shift-health/testing/missing'),null);
  assert(testingContent('/shift-health/testing/diabetes').content.includes('testing partner’s secure results portal'));
