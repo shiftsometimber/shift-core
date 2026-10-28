@@ -10,6 +10,7 @@ import re
 import runpy
 import sqlite3
 import sys
+import time
 import urllib.error
 import urllib.request
 import uuid
@@ -117,7 +118,13 @@ emit('deployed',deploymentId=deployment['id'],versionId=candidate['id'])
 try:
  checks=[]
  for suffix in ['', '/queue','/batches']:
-  response=public('https://api.shiftsometimber.co.uk/v1/hq/testing/fulfilment'+suffix,origin='https://hq.shiftsometimber.co.uk')
+  deadline=time.monotonic()+45
+  while True:
+   response=public('https://api.shiftsometimber.co.uk/v1/hq/testing/fulfilment'+suffix,origin='https://hq.shiftsometimber.co.uk')
+   if response['status']==401 and 'csv-mail-20261028' in json.dumps(response['headers']):break
+   if time.monotonic()>=deadline:
+    emit('release_visibility_failed',endpoint=suffix,status=response['status'],headers=response['headers']);break
+   time.sleep(2)
   assert response['status']==401,(suffix,response['status'])
   assert 'csv-mail-20261028' in json.dumps(response['headers'])
   checks.append({'endpoint':suffix or '/','unauthenticatedStatus':response['status']})
