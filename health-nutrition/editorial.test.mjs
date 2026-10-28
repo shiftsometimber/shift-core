@@ -77,3 +77,12 @@ test('HQ text stays escaped and only the storefront receives the choice guide',(
   assert(renderContent('/shift-health/supplements-nutrition',new URLSearchParams(),products).content.includes('Start with your day.'));
   assert(!renderContent('/shift-health',new URLSearchParams(),products).content.includes('supplement-storefront-guide'));
 });
+
+test('a previously rendered Health shell cannot override new panels or duplicate the owned stylesheet',()=>{
+  const shell='<html><head><style id="retained-chrome">header{padding:10px}</style></head><body><header>Header</header><main>old</main><footer>Footer</footer></body></html>';
+  const first=renderDocument(shell,'/shift-health',new URLSearchParams(),products);
+  const second=renderDocument(first,'/shift-health/supplements-nutrition',new URLSearchParams({product:'whey'}),products);
+  assert.equal((second.match(/<style data-health-nutrition=/g)||[]).length,1);
+  assert.equal((second.match(/id="retained-chrome"/g)||[]).length,1);
+  assert(second.includes('#main-content #shift-health-range .supplement-topic{padding:25px!important;background:#E7E3DA!important;color:#050505!important;'));
+});
