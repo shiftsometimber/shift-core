@@ -80,20 +80,20 @@ form.onsubmit=async event=>{
   if(!variantId){status.textContent='Choose a treatment before starting verification.';return;}
   busy=true;button.disabled=true;status.textContent='Sending securely to the pharmacy partner…';
   try{
-    const data=new FormData(form);data.set('submissionId',submissionId);
+    const data=new FormData(form);for(const key of [...data.keys()])if(key.startsWith('choice_'))data.delete(key);data.set('submissionId',submissionId);
     const {response,result}=await call('/v1/commerce/medicine-clinical-intake',{method:'POST',body:data});
     if(result.intakeReference){showResult(result);if(!response.ok)return;}
     if(!response.ok){
-      if(result.field)(document.getElementById('clinical_'+result.field)||form.elements.namedItem(result.field))?.focus();
+      if(result.field)(document.querySelector('[data-choice-for="'+result.field+'"]')||document.getElementById('clinical_'+result.field)||form.elements.namedItem(result.field))?.focus();
       throw Error(result.message||'The assessment could not be submitted. Your answers remain on this page.');
     }
     if(result.verified&&result.verificationToken)return;
     await waitFor(result.intakeReference);
   }catch(error){if(!error.staleView&&epoch===pageEpoch)status.textContent=error.name==='TimeoutError'?'The connection was interrupted. Keep this page open and retry the same submission; its reference prevents another send.':error.message;}
-  finally{if(epoch===pageEpoch){busy=false;button.disabled=stopped;}}
+  finally{if(epoch===pageEpoch){busy=false;button.disabled=stopped;window.SHIFT_PURCHASE_JOURNEY?.refreshAccess();}}
 };
 async function initialise(){
-  const epoch=++pageEpoch;++contactReadSequence;stopped=false;busy=false;form.hidden=true;
+  const epoch=++pageEpoch;++contactReadSequence;stopped=false;busy=false;form.hidden=true;window.SHIFT_PURCHASE_JOURNEY?.setAccountReady(false);
   try{
     const {response,result}=await call('/v1/commerce/medicine-clinical-context');
     if(!response.ok)throw Error('Your account could not be checked. Retry this page.');
@@ -122,7 +122,7 @@ async function initialise(){
     }
     node('selectionStatus').textContent=selected?'Your preference: '+selected.medicineName+' · '+selected.strengthLabel+' — subject to prescriber approval':'Choose an available treatment and dose before starting.';
     if(!selected||selected.status!=='available'||!result.assessmentAvailable){status.textContent='Assessment is not open for this selection. No information has been sent and no payment has been taken.';form.hidden=true;return;}
-    form.hidden=false;form.querySelector('button[type="submit"]').disabled=!result.emailVerified;previous.onchange();window.SHIFT_EXPANDED_ASSESSMENT?.refresh();
+    form.hidden=false;form.querySelector('button[type="submit"]').disabled=true;previous.onchange();window.SHIFT_EXPANDED_ASSESSMENT?.refresh();window.SHIFT_PURCHASE_JOURNEY?.setAccountReady(result.emailVerified===true&&result.assessmentAvailable===true);
   }catch(error){if(!stopped&&!error.staleView&&epoch===pageEpoch)status.textContent=error.message||'Your assessment could not load. Retry this page; nothing has been sent.';}
 }
 async function reuseContactDetails(){

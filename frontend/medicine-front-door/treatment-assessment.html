@@ -5,14 +5,37 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>Clinical verification · Shift Some Timber</title>
-  <link rel="stylesheet" href="/clinical-intake-v1.css">
+  <link rel="stylesheet" href="/clinical-intake-v1.css?v=assessment-guided-20261028">
 </head>
 <body>
 <main class="clinical-main">
-  <p aria-label="Treatment journey">CHOOSE → ACCOUNT → ASSESSMENT → VERIFY → PAY → PRESCRIBER REVIEW</p>
-  <h1>Your clinical assessment.</h1><p class="prescribing-notice"><strong>Prescription-only medicine.</strong> Your medicine and dose selection is a preference. Our prescribing clinician must assess you and approve any prescription. They may request more information, suggest an alternative or decide treatment is unsuitable. Completing this assessment or making a payment does not guarantee a prescription.</p>
-  <p>Your health, GP, identity and clothed body images go securely to the commissioned pharmacy partner. Shift does not store the image files. Payment stays locked until this step is accepted.</p>
-  <p>Verification checks your details and evidence. The clinician makes the separate prescribing decision. They may need to contact you or independently check information.</p>
+  <header class="assessment-header">
+    <a class="assessment-brand" href="/start-here" aria-label="SHIFT Some Timber home"><span class="brand-word">SHIFT<small>SOME TIMBER</small></span></a>
+    <div class="assessment-context">YOUR TREATMENT JOURNEY<span>Clinical assessment</span></div>
+  </header>
+  <section class="assessment-hero" aria-labelledby="assessmentTitle">
+    <div>
+      <p class="eyebrow">YOUR SHIFT ASSESSMENT</p>
+      <h1 id="assessmentTitle">Let’s get to<br>know you.</h1>
+      <p class="hero-intro">Your health. Your treatment history. A few clear steps to give the prescribing team the full picture.</p>
+    </div>
+    <aside class="hero-note">
+      <span class="hero-emblem" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M8 32 31 9M12 9h19v19M8 21V9h12"/></svg></span>
+      <p class="eyebrow">BEFORE YOU BUY</p>
+      <h2>The right questions.<br>For your next move.</h2>
+      <p>A prescribing clinician reviews your answers and decides whether treatment is suitable. Any medicine and dose need their approval. A prescription is not guaranteed.</p>
+    </aside>
+  </section>
+  <ol class="pathway-stages" aria-label="Treatment journey">
+    <li id="journeyStage1" class="is-active" aria-current="step"><span class="pathway-number">01</span><div><b>Your questionnaire</b><small>Complete it. Check it.</small></div></li>
+    <li id="journeyStage2"><span class="pathway-number">02</span><div><b>GP &amp; evidence</b><small>The details that matter.</small></div></li>
+    <li id="journeyStage3"><span class="pathway-number">03</span><div><b>Treatment request</b><small>Review the medicine and price.</small></div></li>
+  </ol>
+  <details class="clinical-disclosure"><summary>What you’ll need and how prescribing works</summary>
+    <p class="prescribing-notice"><strong>Prescription-only medicine.</strong> Your medicine and dose selection is a preference. Our prescribing clinician must assess you and approve any prescription. They may request more information, suggest an alternative or decide treatment is unsuitable. Completing this assessment or making a payment does not guarantee a prescription.</p>
+    <p>Review your answers, then continue to your GP details and evidence checks. Payment stays locked until the required checks are accepted.</p><p>You will need your medicine details and treatment dates. At the next step, have your GP practice and the identity and measurement evidence requested by the clinical team ready. These checks help protect your safety; no prescription is guaranteed.</p>
+    <p>Verification checks your details and evidence. The clinician makes the separate prescribing decision. They may need to contact you or independently check information.</p>
+  </details>
   <p id="accountStatus" role="status">Checking your My Timber account…</p>
   <p id="selectionStatus"></p>
   <div id="assessmentActions" hidden>
@@ -22,7 +45,7 @@
   </div>
   <form id="assessment" class="clinical-form" enctype="multipart/form-data" hidden>
     <input name="variantId" id="variantId" type="hidden">
-    <fieldset><legend>Your contact details</legend>
+    <fieldset data-questionnaire-details><legend>Your contact details</legend>
       <p>Use your saved contact details or enter your current details. Your verified account email is used for contact. Changes here apply to this assessment.</p>
       <button id="useContactDetails" type="button">Use contact details saved in My Timber</button>
       <p id="savedContactStatus" role="status" aria-live="polite"></p>
@@ -35,25 +58,15 @@
       <label>Town or city<input name="patientTown" autocomplete="address-level2" maxlength="100" required></label>
       <label>Postcode<input name="patientPostcode" autocomplete="postal-code" maxlength="12" required></label>
     </fieldset>
-    <fieldset><legend>Your health</legend>
+    <fieldset data-questionnaire-details><legend>Your health</legend>
       <label>Date of birth<input name="dateOfBirth" type="date" required></label>
       <label>Height (cm)<input name="heightCm" type="number" min="100" max="250" required></label>
       <label>Weight (kg)<input name="weightKg" type="number" min="30" max="400" step="0.1" required></label>
       <label>Do you have a diagnosed weight-related condition?<select name="weightRelatedCondition" required><option value="">Choose one</option><option value="no">No</option><option value="yes">Yes</option></select></label>
-      <label>Other conditions and relevant clinical history (enter “None” if none)<textarea name="conditions" required aria-describedby="answerSizeHelp"></textarea></label>
-      <label>Current medicine summary (include “None” if none)<textarea name="medicines" required aria-describedby="answerSizeHelp"></textarea></label>
-      <p id="answerSizeHelp">Use these boxes for a short summary, with full details in the questions below. If you need more space, contact the clinical team securely; do not leave out relevant information.</p>
       <label>Do you currently take insulin?<select name="insulinUse" required><option value="">Choose one</option><option value="no">No</option><option value="yes">Yes</option></select></label>
       <p>If you take insulin, you cannot use SHIFT’s weight-management injection service. This applies to new and repeat orders. Speak to the clinician who manages your diabetes about suitable options. Do not stop or reduce insulin to qualify. <a href="/shift-health">Explore SHIFT Health</a> for wider health guides and practical support.</p>
     </fieldset>
-    <div id="expandedAssessment"></div>
-    <fieldset><legend>Identity and body check</legend><p>These images support clinical checks. The prescribing team must independently verify your identity and measurements; photos alone do not verify BMI. Please remain fully clothed.</p>
-      <label>Photo ID<input name="photoId" type="file" accept="image/jpeg,image/png,image/heic,image/heif" required></label>
-      <label>Clothed front image<input name="bodyFront" type="file" accept="image/jpeg,image/png,image/heic,image/heif" required></label>
-      <label>Clothed side image<input name="bodySide" type="file" accept="image/jpeg,image/png,image/heic,image/heif" required></label>
-      <label><input name="imageConsent" type="checkbox" required> I consent to these images being sent to the pharmacy partner for clinical checks.</label>
-    </fieldset>
-    <fieldset><legend>Previous treatment</legend>
+    <fieldset data-questionnaire-details><legend>Previous treatment</legend>
       <label>Used weight-loss medicine before?<select name="previousTreatment" id="previousTreatment" required><option value="">Choose one</option><option value="no">No</option><option value="yes">Yes</option></select></label>
       <div id="previousDetails" hidden>
         <label>Medicine<input name="previousMedicine"></label>
@@ -61,6 +74,10 @@
         <label>Last dose date<input name="lastDoseDate" type="date"></label>
       </div>
     </fieldset>
+    <input type="hidden" name="conditions">
+    <input type="hidden" name="medicines">
+    <div id="expandedAssessment"></div>
+    <fieldset id="verificationChecks" hidden disabled><legend>GP and evidence checks</legend><p>Your questionnaire comes first. Now confirm your GP and sharing permissions, then provide the requested evidence. The clinical team may need a two-way consultation or further information. Photos alone are not independent BMI verification.</p>
     <fieldset><legend>Your GP</legend>
       <label>GP name<input name="gpName" required></label>
       <label>Practice<input name="gpPractice" required></label>
@@ -68,14 +85,21 @@
       <label>Postcode<input name="gpPostcode" required></label>
       <label><input name="gpContactConsent" type="checkbox" required> I give the pharmacy partner permission to contact my GP.</label>
     </fieldset>
+    <fieldset><legend>Identity and body check</legend><p>These images support clinical checks. The prescribing team must independently verify your identity and measurements; photos alone do not verify BMI. Please remain fully clothed.</p>
+      <label>Photo ID<input name="photoId" type="file" accept="image/jpeg,image/png,image/heic,image/heif" required></label>
+      <label>Clothed front image<input name="bodyFront" type="file" accept="image/jpeg,image/png,image/heic,image/heif" required></label>
+      <label>Clothed side image<input name="bodySide" type="file" accept="image/jpeg,image/png,image/heic,image/heif" required></label>
+      <label><input name="imageConsent" type="checkbox" required> I consent to these images being sent to the pharmacy partner for clinical checks.</label>
+    </fieldset>
+    </fieldset>
     <label><input name="answersConfirmed" type="checkbox" required> I confirm my answers are complete and accurate.</label>
-    <button type="submit">Verify my details before payment</button>
+    <button type="submit" disabled>Send for clinical verification before payment</button>
     <p id="draftHelp">Answers stay on this page until submitted. Refreshing or closing it can lose unsent answers and selected files. Submitted assessments can be reopened securely with the same account; health answers are not saved in browser storage.</p>
   </form>
   <p id="status" role="status" aria-live="polite"></p>
 </main>
-<script src="/assessment-questions-v2.js?v=20261020"></script>
-<script src="/treatment-assessment.js?v=assessment-v2-20261020"></script>
+<script src="/assessment-questions-v2.js?v=assessment-guided-20261028"></script>
+<script src="/treatment-assessment.js?v=assessment-guided-20261028"></script>
 <script defer src="/assets/member-experience/gp-form.mjs"></script>
 </body>
 </html>

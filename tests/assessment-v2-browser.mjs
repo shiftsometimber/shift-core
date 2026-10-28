@@ -16,24 +16,25 @@ for(const [engine,width]of [[chromium,390],[chromium,1440],[webkit,390]]){
   await page.getByRole('button',{name:'Show fictional '+name+' case'}).click();
   const p=await page.evaluate(()=>window.SHIFT_EXPANDED_ASSESSMENT.payload());
   assert.equal(p.prescribingAcknowledged,true);assert.equal(p.answers.forMyself,'Yes');
-  assert.equal('doseHistory'in p.answers,name!=='starting');assert.equal('repeatChanges'in p.answers,name==='repeat');
+  assert.equal('timeOnDose'in p.answers,name!=='starting');assert.equal('heightMeasuredAt'in p.answers,false);
   await page.getByRole('button',{name:'Review clinical answers'}).click();
   assert.match(await page.locator('#clinicalSummary').textContent(),/prescribing approval: pending/);
   assert.match(await page.locator('#clinicalSummary').textContent(),/Fictional Alex Example/);
   report.cases.push({engine:engine.name(),width,case:name+' case and complete pending handover',passed:true});
  }
+ await page.getByText('Explore a medicine preference',{exact:true}).click();
  for(const [key,name]of [['wegovy-tablet','Wegovy tablets'],['foundayo','Foundayo tablets'],['orlistat','Orlistat capsules']]){
   await page.locator('#demoMedicine').selectOption(key);await page.getByRole('button',{name:'Review clinical answers'}).click();
   assert.match(await page.locator('#clinicalSummary').textContent(),new RegExp(name));
-  assert.equal((await page.evaluate(()=>window.SHIFT_EXPANDED_ASSESSMENT.payload())).answers.preference,'I have a preference to discuss');
+  assert.match(await page.locator('#clinicalSummary').textContent(),/Medicine preference:/);
   report.cases.push({engine:engine.name(),width,case:name+' preference reaches the pending prescriber summary',passed:true});
  }
- await page.evaluate(()=>{document.getElementById('clinical_pancreas').value='Not sure';document.getElementById('clinical_pancreasDetails').value='<img src=x onerror=alert(1)>';document.getElementById('clinical_pregnancyPossible').value='Yes';document.getElementById('clinical_urgentSymptoms').value='Not sure';window.SHIFT_EXPANDED_ASSESSMENT.refresh();});
- let payload=await page.evaluate(()=>window.SHIFT_EXPANDED_ASSESSMENT.payload());assert.equal(payload.answers.pancreasDetails,'<img src=x onerror=alert(1)>');assert.equal(payload.answers.contraception,'None reported in this fictional example.');
+ await page.evaluate(()=>{document.getElementById('clinical_medicalHistory').value='Not sure';document.getElementById('clinical_medicalHistoryDetails').value='<img src=x onerror=alert(1)>';document.getElementById('clinical_pregnancyPossible').value='Yes';document.getElementById('clinical_urgentSymptoms').value='Not sure';window.SHIFT_EXPANDED_ASSESSMENT.refresh();});
+ let payload=await page.evaluate(()=>window.SHIFT_EXPANDED_ASSESSMENT.payload());assert.equal(payload.answers.medicalHistoryDetails,'<img src=x onerror=alert(1)>');assert.equal(payload.answers.contraception,'None reported in this fictional example.');
  await page.getByRole('button',{name:'Review clinical answers'}).click();assert.equal(await page.locator('#clinicalSummary img').count(),0);
  assert.match(await page.locator('#expandedAssessment').textContent(),/Do not wait for an online assessment/);
- await page.evaluate(()=>{document.getElementById('clinical_pancreas').value='No';document.getElementById('clinical_pregnancyPossible').value='No';window.SHIFT_EXPANDED_ASSESSMENT.refresh();});
- payload=await page.evaluate(()=>window.SHIFT_EXPANDED_ASSESSMENT.payload());assert.equal(payload.answers.pancreasDetails,undefined);assert.equal(payload.answers.contraception,undefined);
+ await page.evaluate(()=>{document.getElementById('clinical_medicalHistory').value='None of the above';document.getElementById('clinical_pregnancyPossible').value='No';window.SHIFT_EXPANDED_ASSESSMENT.refresh();});
+ payload=await page.evaluate(()=>window.SHIFT_EXPANDED_ASSESSMENT.payload());assert.equal(payload.answers.medicalHistoryDetails,undefined);assert.equal(payload.answers.contraception,undefined);
  assert.equal(await page.evaluate(()=>localStorage.length+sessionStorage.length),0);
  assert.deepEqual(network,['https://assessment.test/assessment-walkthrough']);assert.deepEqual(errors,[]);
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));

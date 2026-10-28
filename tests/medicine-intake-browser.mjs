@@ -41,6 +41,18 @@ for(const [engine,width]of [[chromium,380],[chromium,1440],[webkit,380]]){
  assert.equal(profileReads,0);assert.equal(await page.locator('[name=patientPhone]').inputValue(),'');assert.equal(await page.locator('[name=gpPractice]').inputValue(),'');
  await page.getByRole('button',{name:'Use contact details saved in My Timber'}).click();await page.waitForFunction(()=>document.querySelector('[name=patientPhone]').value==='01610000000');
  assert.equal(profileReads,1);assert.equal(await page.locator('[name=gpPractice]').inputValue(),'');
+ async function reviewQuestionnaire(){
+  await page.evaluate(()=>{
+   const form=document.getElementById('assessment');
+   for(const [name,value]of Object.entries({dateOfBirth:'1981-08-03',weightRelatedCondition:'no',conditions:'None declared — synthetic',medicines:'None declared — synthetic',insulinUse:'no',previousTreatment:'no'})){form.elements[name].value=value;form.elements[name].dispatchEvent(new Event('change',{bubbles:true}));}
+   for(const [label,value]of [['Centimetres','180'],['Whole kilograms','100']]){const select=document.querySelector('select[aria-label="'+label+'"]');select.value=value;select.dispatchEvent(new Event('change',{bubbles:true}));}
+   for(const {id,type,options}of window.SHIFT_ASSESSMENT.QUESTIONS){document.getElementById('clinical_'+id).value=type==='multi'?JSON.stringify(['None of the above']):options?(options.includes('No')?'No':options.includes('None of the above')?'None of the above':options[0]):type==='date'?'2026-10-19':'Synthetic detail';}
+   document.getElementById('clinical_forMyself').value='Yes';document.getElementById('clinical_inUK').value='Yes';document.getElementById('clinical_gpSharingChoice').value='Yes';document.getElementById('prescribingAcknowledged').checked=true;window.SHIFT_EXPANDED_ASSESSMENT.refresh();
+  });
+  await page.getByRole('button',{name:'Review clinical answers',exact:true}).click();
+  await page.getByRole('button',{name:'Continue to GP and evidence checks',exact:true}).click();
+ }
+ await reviewQuestionnaire();
  await page.getByRole('button',{name:'Use GP details saved in My Timber',exact:true}).click();await page.getByRole('button',{name:'Use these GP details',exact:true}).waitFor();assert.equal(await page.locator('[name=gpPractice]').inputValue(),'');
  await page.getByRole('button',{name:'Use these GP details',exact:true}).click();assert.equal(await page.locator('[name=gpPractice]').inputValue(),'Synthetic Practice');assert.equal(profileReads,2);
  assert.equal(await page.locator('[name=gpContactConsent]').isChecked(),false);assert.equal(await page.locator('[name=imageConsent]').isChecked(),false);
@@ -51,15 +63,16 @@ for(const [engine,width]of [[chromium,380],[chromium,1440],[webkit,380]]){
  assert.equal(await page.locator('[name=gpAddress]').inputValue(),'1 Directory Street, Test town');
  await page.locator('[name=gpAddress]').fill('Manual corrected GP address');assert.equal(await page.locator('[name=gpAddress]').inputValue(),'Manual corrected GP address');assert.equal(await page.locator('[name=gpContactConsent]').isChecked(),false);
  report.cases.push({engine:engine.name(),width,case:'actual GP component directory selection and manual override retain member control and separate consent',passed:true});
- await page.locator('[name=dateOfBirth]').fill('1981-08-03');await page.locator('[name=heightCm]').fill('180');await page.locator('[name=weightKg]').fill('100');
+ await page.locator('[name=dateOfBirth]').fill('1981-08-03');await page.getByLabel('Centimetres',{exact:true}).selectOption('180');await page.getByLabel('Whole kilograms',{exact:true}).selectOption('100');
  await page.locator('[name=weightRelatedCondition]').selectOption('no');await page.locator('[name=conditions]').fill('None declared — synthetic');await page.locator('[name=medicines]').fill('None declared — synthetic');await page.locator('[name=insulinUse]').selectOption('no');
  await page.locator('#previousTreatment').selectOption('yes');assert.equal(await page.locator('[name=previousDose]').isDisabled(),false);
  await page.locator('[name=previousMedicine]').fill('Stale medicine');await page.locator('#previousTreatment').selectOption('no');assert.equal(await page.locator('[name=previousDose]').isDisabled(),true);
+ await reviewQuestionnaire();
  await page.locator('[name=gpName]').fill('Dr Synthetic');
  for(const name of ['photoId','bodyFront','bodySide'])await page.locator('[name='+name+']').setInputFiles({name:name+'.jpg',mimeType:'image/jpeg',buffer:Buffer.from([255,216,255,217])});
  await page.evaluate(()=>{
-  for(const {id,type,options}of window.SHIFT_ASSESSMENT.QUESTIONS){const el=document.getElementById('clinical_'+id);el.value=options?(options.includes('No')?'No':options[0]):type==='date'?'2026-10-19':'Synthetic detail';}
-  document.getElementById('clinical_forMyself').value='Yes';document.getElementById('clinical_inUK').value='Yes';document.getElementById('prescribingAcknowledged').checked=true;window.SHIFT_EXPANDED_ASSESSMENT.refresh();
+  for(const {id,type,options}of window.SHIFT_ASSESSMENT.QUESTIONS){const el=document.getElementById('clinical_'+id);el.value=type==='multi'?JSON.stringify(['None of the above']):options?(options.includes('No')?'No':options.includes('None of the above')?'None of the above':options[0]):type==='date'?'2026-10-19':'Synthetic detail';}
+  document.getElementById('clinical_forMyself').value='Yes';document.getElementById('clinical_inUK').value='Yes';document.getElementById('clinical_gpSharingChoice').value='Yes';document.getElementById('prescribingAcknowledged').checked=true;window.SHIFT_EXPANDED_ASSESSMENT.refresh();
  });
  for(const name of ['gpContactConsent','imageConsent','answersConfirmed'])await page.locator('[name='+name+']').check();
  const stored=await page.evaluate(()=>JSON.stringify(Object.entries(sessionStorage)));

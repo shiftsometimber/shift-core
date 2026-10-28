@@ -1,0 +1,156 @@
+{
+  "candidate": "0b2bcbe69af2587335f3ecb73f1fff0325640e46",
+  "branch": "feature/prepurchase-assessment-20261028",
+  "recordedAt": "2026-10-28T21:07:27.033578+00:00",
+  "userApproval": "Approved design and explicitly requested deployment on 28 October 2026, Europe/London.",
+  "state": "prepared_not_published_or_deployed",
+  "checks": {
+    "tests": 52,
+    "passed": 52,
+    "failed": 0,
+    "report": "/workspace/scratch/7edaa687c3c9/guided-form-final-tests.txt"
+  },
+  "files": {
+    "assessment-v2/README.md": {
+      "bytes": 7237,
+      "sha256": "0a2b5715a64384ac1b88d7fc292b44418522a8abfb8aba85342dd9476ef674bf"
+    },
+    "assessment-v2/browser-runtime.js": {
+      "bytes": 20059,
+      "sha256": "357a37bd7cc06e36cd3f3133be4519548c973dd85ce773efc6b8c282482b9c09"
+    },
+    "assessment-v2/build.mjs": {
+      "bytes": 5603,
+      "sha256": "a767f65efe111b322e9e5805eccc55ca353cf10fcc29b1365c5defcfe27dd08a"
+    },
+    "assessment-v2/compact-v5-reference.json": {
+      "bytes": 15409,
+      "sha256": "a915c573b8257dd6f3e5cd842e41452afb559cbfde18c3fd0a3744eeab16f35c"
+    },
+    "assessment-v2/purchase-journey.js": {
+      "bytes": 14050,
+      "sha256": "6e56295c5622721420a8bffc9ab97e142e982f5461883a50945113a30900b67e"
+    },
+    "assessment-v2/review/assessment-design-desktop-20261028.jpg": {
+      "bytes": 76330,
+      "sha256": "754bd0300c0fc176b71ef4c77076767457d9cb687ba88c1ab615899df0195505"
+    },
+    "assessment-v2/review/assessment-design-narrow-20261028.jpg": {
+      "bytes": 87377,
+      "sha256": "9ffd78794b413870649f274e819019cc316677b7b84d81d22fa35cabac694d4e"
+    },
+    "assessment-v2/review/assessment-guided-mobile-20261028.jpg": {
+      "bytes": 88633,
+      "sha256": "0758c70eca0d1e46cd96065ad5ef97c3f11ccb31f351447af33f125d592608a5"
+    },
+    "assessment-v2/review/assessment-guided-overview-20261028.jpg": {
+      "bytes": 82902,
+      "sha256": "7aea3c57d8e206060e20f0325617d0d9f4897d056f4d8452b397147b93ad7dae"
+    },
+    "assessment-v2/schema.mjs": {
+      "bytes": 17484,
+      "sha256": "d90fa75411471cae9d96f99cac62652fab0b0cfda8b3bcca65840e0c34b457bc"
+    },
+    "frontend/medicine-front-door/assessment-questions-v2.js": {
+      "bytes": 56560,
+      "sha256": "e8b267452b11ad75e8cb313047d4b161b328b30e0cf53bcee80216a1732c13b7"
+    },
+    "frontend/medicine-front-door/treatment-assessment.html": {
+      "bytes": 9226,
+      "sha256": "5b008f16d43ced1d97041bdd58340bc35d041f6b6eaaa8371f04e1d06a371277"
+    },
+    "frontend/medicine-front-door/treatment-assessment.js": {
+      "bytes": 13343,
+      "sha256": "04f4f0bf6c1ed78a78ef4080f521a9a8a70cb7bdee0c12657e09166087029176"
+    },
+    "frontend/member/assessment-questions-v2.js": {
+      "bytes": 56560,
+      "sha256": "e8b267452b11ad75e8cb313047d4b161b328b30e0cf53bcee80216a1732c13b7"
+    },
+    "frontend/member/assessment-walkthrough.html": {
+      "bytes": 84935,
+      "sha256": "6e2dbb9d649f4c1074baa75f51ca60c9576108e330f005ac16b9c077ed8e3a66"
+    },
+    "frontend/member/clinical-intake-v1.css": {
+      "bytes": 22937,
+      "sha256": "16fe352814984ffed2b7d13c6f585c05dfbb3c104572a7b45d4d92d8a4793ea6"
+    },
+    "frontend/member/treatment-assessment.html": {
+      "bytes": 9226,
+      "sha256": "5b008f16d43ced1d97041bdd58340bc35d041f6b6eaaa8371f04e1d06a371277"
+    },
+    "frontend/member/treatment-assessment.js": {
+      "bytes": 13343,
+      "sha256": "04f4f0bf6c1ed78a78ef4080f521a9a8a70cb7bdee0c12657e09166087029176"
+    },
+    "public-assessment-v2/assessment-walkthrough.html": {
+      "bytes": 84935,
+      "sha256": "6e2dbb9d649f4c1074baa75f51ca60c9576108e330f005ac16b9c077ed8e3a66"
+    },
+    "public-assessment-v2/medicine-preference.html": {
+      "bytes": 12042,
+      "sha256": "9814f037a9fb543f3d859d874f1b742d092278eb5d9dde0cea677f13d51e6243"
+    },
+    "tests/assessment-v2-browser.mjs": {
+      "bytes": 4937,
+      "sha256": "915ce3f62c6ce90215de7e04e2f0f9eef4bff552d137a5b15d39e36e9a965a32"
+    },
+    "tests/assessment-v2.test.mjs": {
+      "bytes": 4535,
+      "sha256": "fe804d3a4f0ebb49950eae4b73cfc5e957d90474a9d116cb615fa1a8008d905e"
+    },
+    "tests/medicine-intake-browser.mjs": {
+      "bytes": 14860,
+      "sha256": "f973a1af0caf3dcc812cef3a9faec644786191015617708dde26160e3612b2a1"
+    },
+    "tests/medicine-intake-sqlite.test.mjs": {
+      "bytes": 13673,
+      "sha256": "8ef299a997bd03711c01f6d8d28c21f21942fb525f95cc97443edf5040b6cc3c"
+    },
+    "tests/prepurchase-assessment-dom.mjs": {
+      "bytes": 15778,
+      "sha256": "ccbd82b310e384c476b4faaec37dc8f3a2cee13dbdba2d767bc3a9ebf5484b90"
+    }
+  },
+  "publicationBlock": {
+    "action": "git push origin HEAD:refs/heads/feature/prepurchase-assessment-20261028",
+    "automaticReview": "Rejected because this publishes source to a public GitHub repository and deploy was not accepted as explicit approval of that separate source-publication side effect. Do not retry through another tool, remote device, API or indirect upload.",
+    "remoteBranchCheck": "GitHub branch search returned no matching branch after rejection."
+  },
+  "liveObservations": {
+    "assessmentWalkthrough": {
+      "status": 200,
+      "sha256": "53ca8bdc1eda1971ed15e9b1931249bc2bf644f8a568a5a39941cedfa6db2dad",
+      "schema": "shift-assessment-v2-2026-10-20",
+      "guidedCards": false
+    },
+    "clinicalCss": {
+      "status": 200,
+      "sha256": "d28d49e53d11d644f75a8a374eff67819d473a41ef4eb0ee44f2b58242ea1f59",
+      "authority": "git:frontend/member/clinical-intake-v1.css"
+    },
+    "assessmentRuntime": {
+      "status": 404
+    },
+    "healthTesting": {
+      "status": 200,
+      "release": "health-testing-range-20261028",
+      "sha256": "033b5b21c7b3a0c97f498fb5953a0ab8a2af1f85323750d9c9c990788a4bd1c5"
+    }
+  },
+  "releaseReconciliation": {
+    "macSourceLink": "/Users/shiftsometimberltd/SST/WORKSPACE/01 - Source repository/shift-core points to absent /Users/shiftsometimberltd/SST/shift-core",
+    "retainedTaskGit": "Existing olivit task Git link also points into the absent source. No clone, restore, install or production command was attempted.",
+    "sourceBranch": "Prepared assessment branch descends from the assessment review line; it is not the whole current production estate. Preserve current provider source, manifests, Health, My Timber, homepage and release ownership.",
+    "workflow": "Read existing production and finite Pages publication source. Do not run its stale pinned predecessors against current production."
+  },
+  "nextAction": "Obtain explicit permission for public source publication. Then reconcile the exact current serving source and use the existing scoped deployment/rollback controls. Do not deploy this stale whole-site branch or activate clinical/provider, payment or stock settings.",
+  "sideEffects": {
+    "productionWrites": 0,
+    "routeChanges": 0,
+    "clinicalActivation": false,
+    "paymentActivation": false,
+    "stockChanges": false,
+    "externalMessages": 0
+  }
+}
