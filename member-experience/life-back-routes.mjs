@@ -7,6 +7,7 @@ import {score,areas,hasPersonalGoal} from './life-back/model.mjs';
 import {advanceNextShift,focusNextShift,markNextShift,startNextShift,reviewNextShift,resetNextShift,lifeBackUsage} from './life-back/next-shift.mjs';
 import {connectedDay} from './journey-context.mjs';
 import {applySupportOperation,supportSummary} from './support-plan.mjs';
+import {applyJourneyOperation} from './journey-records.mjs';
 const supportView=progress=>({...progress,supportSummary:supportSummary(progress)});
 const headers={'Cache-Control':'no-store','Vary':'Cookie','X-Content-Type-Options':'nosniff'};
 const json=(body,status=200)=>Response.json(body,{status,headers});
@@ -16,7 +17,7 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
  const next=structuredClone(current||emptyLifeBack());
  const fail=(message,status=400)=>{throw Object.assign(Error(message),{status})};
  if(!/^[a-zA-Z0-9-]{16,80}$/.test(input.operationId||''))fail('Refresh this page before saving.');
- if(next.operations.includes(input.operationId)||next.entries.some(e=>e.id===input.operationId))return next;
+ if(next.operations.includes(input.operationId)||next.entries.some(e=>e.id===input.operationId)||next.journey?.records?.some(e=>e.id===input.operationId))return next;
  if(input.action==='goal'){
   if(input.revision!==next.revision)fail('Your goal changed in another tab. Reload before changing it.',409);
   const goal=String(input.goal||'').trim();if(!hasPersonalGoal(goal)||goal.length>70)fail('Write a personal goal in 70 characters or fewer.');
@@ -38,6 +39,8 @@ export function applyLifeBackOperation(current,input,at=new Date().toISOString()
   if(!entry)fail('This saved entry is no longer available.',404);
   if(typeof input.note!=='string'||input.note.trim().length>180)fail('Keep your words under 180 characters.');
   entry.win=input.note.trim();entry.correctedAt=at;
+ }else if(applyJourneyOperation(next,input,at)){
+  // The same account, revision, consent and owned-JSON write guard applies.
  }else if(applySupportOperation(next,input,at)){
   // Scoped member-owned support operations use the existing API guards.
  }else if(input.action==='shift-status'){
@@ -73,7 +76,11 @@ export async function lifeBackRoutes(request,env){
   let input;try{input=JSON.parse(raw)}catch{return json({error:'Invalid check-in.'},400)}
   if(!input||typeof input!=='object'||Array.isArray(input))return json({error:'Invalid check-in.'},400);
   if(input.expectedAccount!==undefined&&String(input.expectedAccount)!==String(auth.userId))return json({error:'Your signed-in account changed. Reload before saving.'},409);
-  if(!await trackingConsent(env.DB,auth.userId))return json({error:'Optional health tracking is off. Review your choice before saving.',code:'health_consent_required'},409);
+  const journeyAction=String(input.action||'').startsWith('journey-');
+  if(journeyAction&&input.expectedAccount===undefined)return json({error:'Reload your Journey before saving.'},409);
+  const erasure=input.action==='journey-delete',displayChoice=input.action==='journey-view',needsTracking=!erasure&&!displayChoice;
+  if(needsTracking&&!await trackingConsent(env.DB,auth.userId))return json({error:'Optional health tracking is off. Review your choice before saving.',code:'health_consent_required'},409);
+  if(journeyAction&&needsTracking&&prefs.myJourney?.setup?.paused===true)return json({error:'Your Journey tracking is paused. Resume it in Journey setup before adding records.'},409);
   await env.DB.prepare('INSERT OR IGNORE INTO member_state(user_id) VALUES(?)').bind(auth.userId).run();
   for(let attempt=0;attempt<4;attempt++){
    const old=prefs.lifeBack?.progress||emptyLifeBack(),next=applyLifeBackOperation(old,input);
@@ -81,9 +88,10 @@ export async function lifeBackRoutes(request,env){
    await connectPreparedOption(env.DB,prefs,next,old,{...input,authenticatedUserId:auth.userId});
    // Community availability cannot block a member's private everyday support.
    await attachShedEvidence(env.DB,prefs,next,auth.userId,env).catch(()=>{});
-   const result=await env.DB.prepare("UPDATE member_state SET preferences=json_set(CASE WHEN json_type(preferences,'$.lifeBack')='object' THEN preferences ELSE json_set(preferences,'$.lifeBack',json('{}')) END,'$.lifeBack.progress',json(?)),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1").bind(JSON.stringify(next),new Date().toISOString(),auth.userId,old.revision,auth.userId).run();
+   const guard=!needsTracking?'':" AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1"+(journeyAction?" AND COALESCE(json_extract(preferences,'$.myJourney.setup.paused'),0)<>1":'');
+   const result=await env.DB.prepare("UPDATE member_state SET preferences=json_set(CASE WHEN json_type(preferences,'$.lifeBack')='object' THEN preferences ELSE json_set(preferences,'$.lifeBack',json('{}')) END,'$.lifeBack.progress',json(?)),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=?"+guard).bind(JSON.stringify(next),new Date().toISOString(),auth.userId,old.revision,...(!needsTracking?[]:[auth.userId])).run();
    if(result.meta.changes===1)return json({ok:true,accountId:auth.userId,progress:supportView(next)},201);
-   if(!await trackingConsent(env.DB,auth.userId))return json({error:'Health tracking was switched off before this save.',code:'health_consent_required'},409);
+   if(needsTracking&&!await trackingConsent(env.DB,auth.userId))return json({error:'Health tracking was switched off before this save.',code:'health_consent_required'},409);
    prefs=await read();
   }
   return json({error:'Your history changed in another tab. Reload and try again.'},409);
