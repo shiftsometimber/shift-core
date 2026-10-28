@@ -13,6 +13,11 @@ export const editorialStyles = `
 #shift-health-range .supplement-questions details p{margin:0 0 18px;font-size:16px;line-height:1.65;max-width:72ch;color:inherit}
 #shift-health-range .supplement-free-support{padding:25px;background:#E7E3DA;color:#050505;border:1px solid #707762;border-radius:10px}
 #shift-health-range .supplement-free-support .sst-action{margin-top:6px;background:#050505;color:#E7E3DA;border-color:#050505;min-height:48px}
+#shift-health-range .supplement-comparisons{padding:25px;margin:0 0 30px;border:1px solid #707762;border-radius:10px}
+#shift-health-range .supplement-comparisons h2{font-size:25px;line-height:1.25;margin:0 0 14px}
+#shift-health-range .supplement-comparisons p{font-size:16px;line-height:1.65;margin:0 0 10px}
+#shift-health-range .supplement-comparisons ul{padding-left:20px;margin:0}
+#shift-health-range .supplement-comparisons a{display:inline-block;min-height:44px;padding:10px 0;text-decoration:underline;text-underline-offset:3px}
 #shift-health-range .supplement-sources{margin:30px 0 10px;padding:25px;border:1px solid #707762;border-radius:10px;overflow-wrap:anywhere}
 #shift-health-range .supplement-sources p,#shift-health-range .supplement-sources li{font-size:15px;line-height:1.65;color:#E7E3DA}
 #shift-health-range .supplement-sources ul{margin:12px 0 0;padding-left:20px}

@@ -22,7 +22,7 @@ jobs:
       - name: Check exact browser source and transactional behaviour
         run: |
           node checkout-extras/build-assets.mjs --check
-          node --test checkout-extras/feature.test.mjs checkout-extras/medicine-integration.test.mjs tests/checkout-recovery.test.mjs tests/medicine-commerce-v1.test.mjs tests/purchase-basket.test.mjs health-nutrition/feature.test.mjs health-nutrition/editorial.test.mjs
+          node --test checkout-extras/feature.test.mjs checkout-extras/medicine-integration.test.mjs tests/checkout-recovery.test.mjs tests/medicine-commerce-v1.test.mjs tests/purchase-basket.test.mjs health-nutrition/feature.test.mjs health-nutrition/editorial.test.mjs health-nutrition/seo.test.mjs
       - name: Compile the isolated Health presentation for browser checks
         run: |
           npm ci --ignore-scripts
