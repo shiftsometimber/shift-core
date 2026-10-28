@@ -1,0 +1,136 @@
+{
+  "expectedLiveVersion": "efdd68cd-a700-4894-b40c-4f5f494b2e87",
+  "retainedLegacySha256": "09d6ed280227a434b55902ad99f9e009b562fedc3d495471ecc6ab6be1fd3252",
+  "service": "shift-health-nutrition-20261027",
+  "migration": "health-testing/fulfilment-schema.sql",
+  "modules": [
+    {
+      "path": "health-testing/production.mjs",
+      "sha256": "204720da482948a3b433444501d25fbdb4ac54fbd504fc6e6e32008ea5de2abc",
+      "size": 2709
+    },
+    {
+      "path": "health-nutrition/worker.mjs",
+      "sha256": "d8960245602549f5ae472f54ca35209e6baf953e1cfb57e78ae3e879204e9492",
+      "size": 4988
+    },
+    {
+      "path": "health-testing/hq-fulfilment.mjs",
+      "sha256": "2553fbf1ee6e5adc30aa1501783b0f732941255d1cc87c227a647163d9953f30",
+      "size": 27691
+    },
+    {
+      "path": "health-testing/storefront.mjs",
+      "sha256": "75a3147aeb256d2cc0eddf58edcb3dcff6c49fc2ae110e87449469b394156e06",
+      "size": 5144
+    },
+    {
+      "path": "health-testing/catalogue.mjs",
+      "sha256": "eb947e9bf2cf1bae27cf7e403746771cdc523f45152f5774453a8c746d26ed91",
+      "size": 14147
+    },
+    {
+      "path": "health-testing/specifications.mjs",
+      "sha256": "5aee421dc7587c589729600213931733c033ed1f152c2f0fae7954892781cb61",
+      "size": 5423
+    },
+    {
+      "path": "health-testing/media-data.mjs",
+      "sha256": "eb7ac9d7a310234441dc837efc5e5222cef38070160c9a63325377957dd072b7",
+      "size": 1180494
+    },
+    {
+      "path": "health-nutrition/images.mjs",
+      "sha256": "1f454c9f390e6390d8be5cc366e4d8f49b0a2e4c7cafe5a00d161307f305b7fe",
+      "size": 643679
+    },
+    {
+      "path": "health-nutrition/catalogue.mjs",
+      "sha256": "c7aa65224d4cde01176bdd0a421f7706ca8342bcf788f824063c6fbd0a806e38",
+      "size": 5677
+    },
+    {
+      "path": "health-nutrition/public.mjs",
+      "sha256": "78c779109214adf250001c5078cdbd5799fd8ac422b5e7bc42235e80f3511c68",
+      "size": 8140
+    },
+    {
+      "path": "health-nutrition/templates.mjs",
+      "sha256": "a8e0d2286d981aebc4706aebbf7436a6a38c2115c69b12e79ee4d191f364d4ee",
+      "size": 11252
+    },
+    {
+      "path": "health-nutrition/styles.mjs",
+      "sha256": "93fd513f4caaf5515132522ab6d61fdd0b9f159ac24281b4abc8161a1d0a4280",
+      "size": 49227
+    },
+    {
+      "path": "health-testing/public.mjs",
+      "sha256": "f8ae6745a5d55ac906b2f34fdeaf5b8c36f8e43da5cb193d48015d88985a8b31",
+      "size": 20048
+    },
+    {
+      "path": "health-testing/media.mjs",
+      "sha256": "9c648a68ec6a8b4ff3166373f50c1405e7b0b6d9c7ef8a603df96ea29ca95d27",
+      "size": 3478
+    },
+    {
+      "path": "health-testing/styles.mjs",
+      "sha256": "46ab4ed9a57c9d0fcb067fc2e1b2f6b9392239b1dc1379de27eb588c579288ce",
+      "size": 18748
+    },
+    {
+      "path": "health-nutrition/hq-api.mjs",
+      "sha256": "8c9b58c403255916190eb70b740395cf637ff81f1ecbbb3747faca2226378ccd",
+      "size": 5753
+    },
+    {
+      "path": "health-nutrition/hq-client.mjs",
+      "sha256": "d11515ea7c139192c3f63be2abc1cf660d8fe502961975efb6092c2039c3d58d",
+      "size": 12672
+    },
+    {
+      "path": "health-testing/hq-api.mjs",
+      "sha256": "bf225a45c7ef9a7d403790a8ca49959f1ad2e83ecd8e62fa86167a6fa7f9f85d",
+      "size": 5549
+    },
+    {
+      "path": "health-testing/fulfilment-api.mjs",
+      "sha256": "a6260417cf04a9e66a14d5fd1c9db81bd20b7ea03be0f5a01e5989bfeef47e48",
+      "size": 21388
+    },
+    {
+      "path": "health-testing/fulfilment-model.mjs",
+      "sha256": "d4dc7120019ef3730f4d83cefa203255b0a057afd608f45ffae5f67b87a0b41f",
+      "size": 9466
+    },
+    {
+      "path": "health-testing/hq-client.mjs",
+      "sha256": "7850e149fbf14a5963c341efc349e33308b460b035c8a5702f2c734b42f26e2c",
+      "size": 5472
+    }
+  ],
+  "routesToAdd": [],
+  "emailSendingEnabled": false,
+  "purchasingEnabled": false,
+  "testRecipient": "shiftsometimber@gmail.com",
+  "schemaStatus": "Awaiting partner template and codes",
+  "testsPassed": 43,
+  "browserPreview": {
+    "queue": true,
+    "testBatch": true,
+    "csvDownloadedAndHashMatched": true,
+    "emailDraftPreview": true,
+    "setupSavedTwice": true,
+    "history": true,
+    "mobileWidth": 375,
+    "mobileScrollWidth": 375
+  },
+  "mimeValidation": {
+    "pythonEmailParser": true,
+    "csvBytesMatchAttachment": true,
+    "testRecipientVerified": true,
+    "draftOnly": true,
+    "emailsSent": 0
+  }
+}

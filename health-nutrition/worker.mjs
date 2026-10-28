@@ -1,3 +1,4 @@
+import {hqTestingFulfilmentClient} from '../health-testing/hq-fulfilment.mjs';
 import {testingPurchaseRoute} from '../health-testing/storefront.mjs';
 import {productImageData} from '../health-testing/media-data.mjs';
 import {images} from './images.mjs';
@@ -19,6 +20,7 @@ export default {async fetch(request,env,ctx){
   const html=(await response.text()).replace('</body>','<script type="module" src="https://shiftsometimber.co.uk/shift-health/assets/hq-nutrition.js"></script><script type="module" src="https://shiftsometimber.co.uk/shift-health/assets/hq-testing.js"></script></body>');
   return new Response(request.method==='HEAD'?null:html,{status:response.status,headers});
  }
+ if(path==='/shift-health/assets/hq-testing-fulfilment.js'){const response=['GET','HEAD'].includes(request.method)?respond(request.method==='HEAD'?null:hqTestingFulfilmentClient,200,'application/javascript; charset=utf-8'):respond('Method not allowed',405,'text/plain');response.headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');return response;}
  if(path==='/shift-health/assets/hq-testing.js'){const response=['GET','HEAD'].includes(request.method)?respond(request.method==='HEAD'?null:hqTestingClient,200,'application/javascript; charset=utf-8'):respond('Method not allowed',405,'text/plain');response.headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');return response;}
  if(path==='/shift-health/assets/hq-nutrition.js'){const response=['GET','HEAD'].includes(request.method)?respond(request.method==='HEAD'?null:hqClient,200,'application/javascript; charset=utf-8'):respond('Method not allowed',405,'text/plain');response.headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');return response;}
  const purchase=path.match(/^\/shift-health\/testing\/([a-z0-9-]+)\/purchase$/);

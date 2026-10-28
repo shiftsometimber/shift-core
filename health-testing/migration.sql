@@ -70,6 +70,81 @@ CREATE TABLE IF NOT EXISTS testing_range_extras (
 );
 CREATE TABLE IF NOT EXISTS testing_extra_history (product_id TEXT NOT NULL REFERENCES testing_range_extras(id),revision INTEGER NOT NULL,changed_by TEXT NOT NULL,record_json TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(product_id,revision));
 
+CREATE TABLE IF NOT EXISTS testing_fulfilment_config (
+ id INTEGER PRIMARY KEY CHECK(id=1),
+ revision INTEGER NOT NULL DEFAULT 1,
+ template_name TEXT NOT NULL DEFAULT 'Awaiting partner template',
+ columns_json TEXT NOT NULL,
+ delimiter TEXT NOT NULL DEFAULT ',',
+ utf8_bom INTEGER NOT NULL DEFAULT 0 CHECK(utf8_bom IN (0,1)),
+ template_confirmed INTEGER NOT NULL DEFAULT 0 CHECK(template_confirmed IN (0,1)),
+ delivery_method TEXT NOT NULL DEFAULT 'unconfirmed' CHECK(delivery_method IN ('unconfirmed','email','upload')),
+ destination TEXT,
+ delivery_confirmed INTEGER NOT NULL DEFAULT 0 CHECK(delivery_confirmed IN (0,1)),
+ updated_by TEXT,
+ updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+INSERT OR IGNORE INTO testing_fulfilment_config(id,columns_json) VALUES(1,'[{"header":"Order reference","source":"order_reference","required":true},{"header":"Product code","source":"supplier_sku","required":true},{"header":"Quantity","source":"quantity","required":true},{"header":"Recipient","source":"recipient","required":true},{"header":"Address line 1","source":"address_line1","required":true},{"header":"Address line 2","source":"address_line2","required":false},{"header":"Town / city","source":"city","required":true},{"header":"County / region","source":"region","required":false},{"header":"Postcode","source":"postcode","required":true},{"header":"Country","source":"country","required":true}]');
+CREATE TABLE IF NOT EXISTS testing_fulfilment_batches (
+ seq INTEGER PRIMARY KEY AUTOINCREMENT,
+ id TEXT NOT NULL UNIQUE,
+ request_key TEXT NOT NULL UNIQUE,
+ request_hash TEXT NOT NULL,
+ mode TEXT NOT NULL CHECK(mode IN ('live','test')),
+ status TEXT NOT NULL DEFAULT 'prepared' CHECK(status IN ('prepared','submitted','acknowledged','cancelled')),
+ revision INTEGER NOT NULL DEFAULT 1,
+ config_revision INTEGER NOT NULL,
+ config_json TEXT NOT NULL,
+ snapshot_json TEXT NOT NULL,
+ csv_text TEXT NOT NULL,
+ csv_sha256 TEXT NOT NULL,
+ row_count INTEGER NOT NULL,
+ order_count INTEGER NOT NULL,
+ created_by TEXT NOT NULL,
+ created_at TEXT NOT NULL,
+ submitted_by TEXT,
+ submitted_at TEXT,
+ submission_reference TEXT,
+ acknowledged_by TEXT,
+ acknowledged_at TEXT,
+ acknowledgement_reference TEXT,
+ cancelled_by TEXT,
+ cancelled_at TEXT,
+ cancellation_reason TEXT
+);
+CREATE TABLE IF NOT EXISTS testing_fulfilment_items (
+ batch_id TEXT NOT NULL REFERENCES testing_fulfilment_batches(id),
+ source_line_id INTEGER NOT NULL,
+ source_order_id INTEGER NOT NULL,
+ order_reference TEXT NOT NULL,
+ active INTEGER NOT NULL DEFAULT 1 CHECK(active IN (0,1)),
+ PRIMARY KEY(batch_id,source_line_id)
+);
+CREATE UNIQUE INDEX IF NOT EXISTS testing_fulfilment_once ON testing_fulfilment_items(source_line_id) WHERE active=1;
+CREATE INDEX IF NOT EXISTS testing_fulfilment_order ON testing_fulfilment_items(source_order_id,active);
+CREATE TABLE IF NOT EXISTS testing_fulfilment_tracking (
+ batch_id TEXT NOT NULL REFERENCES testing_fulfilment_batches(id),
+ source_order_id INTEGER NOT NULL,
+ status TEXT NOT NULL DEFAULT 'awaiting_confirmation' CHECK(status IN ('awaiting_confirmation','accepted','dispatched','exception')),
+ revision INTEGER NOT NULL DEFAULT 1,
+ carrier TEXT,
+ tracking_reference TEXT,
+ partner_reference TEXT,
+ note TEXT,
+ updated_by TEXT NOT NULL,
+ updated_at TEXT NOT NULL,
+ PRIMARY KEY(batch_id,source_order_id)
+);
+CREATE TABLE IF NOT EXISTS testing_fulfilment_events (
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ batch_id TEXT,
+ event TEXT NOT NULL,
+ actor TEXT NOT NULL,
+ detail_json TEXT NOT NULL DEFAULT '{}',
+ created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS testing_fulfilment_event_batch ON testing_fulfilment_events(batch_id,id);
+
 INSERT INTO testing_products (id,sku,name,partner,test_type,supplier_state,markers_json,description,sample,result_time,results_access,limitations,source_url,source_checked,supplier_retail_reference_pence,sort_order) VALUES ('testosterone','SST-NF-TESTOSTERONE','Testosterone','Newfoundland','lab','available','["Total testosterone"]','A laboratory check of total testosterone, using a small blood sample collected at home.','Finger-prick blood sample','Usually 2–5 working days for analysis and reporting; follow the turnaround confirmed with your kit.','Our testing partner’s secure results portal','This measures total testosterone, not the wider Male Hormone panel. One result does not establish a diagnosis or mean you need testosterone treatment.','https://www.newfoundland.io/products/testosterone','2026-10-28',3999,0) ON CONFLICT(id) DO UPDATE SET name=excluded.name,supplier_state=excluded.supplier_state,markers_json=excluded.markers_json,description=excluded.description,sample=excluded.sample,result_time=excluded.result_time,results_access=excluded.results_access,limitations=excluded.limitations,source_url=excluded.source_url,source_checked=excluded.source_checked,supplier_retail_reference_pence=excluded.supplier_retail_reference_pence,sort_order=excluded.sort_order,revision=testing_products.revision+1,updated_at=CURRENT_TIMESTAMP WHERE testing_products.name IS NOT excluded.name OR testing_products.supplier_state IS NOT excluded.supplier_state OR testing_products.markers_json IS NOT excluded.markers_json OR testing_products.description IS NOT excluded.description OR testing_products.sample IS NOT excluded.sample OR testing_products.result_time IS NOT excluded.result_time OR testing_products.results_access IS NOT excluded.results_access OR testing_products.limitations IS NOT excluded.limitations OR testing_products.source_url IS NOT excluded.source_url OR testing_products.source_checked IS NOT excluded.source_checked OR testing_products.supplier_retail_reference_pence IS NOT excluded.supplier_retail_reference_pence OR testing_products.sort_order IS NOT excluded.sort_order;
 INSERT INTO testing_products (id,sku,name,partner,test_type,supplier_state,markers_json,description,sample,result_time,results_access,limitations,source_url,source_checked,supplier_retail_reference_pence,sort_order) VALUES ('diabetes','SST-NF-DIABETES','Diabetes','Newfoundland','lab','available','["HbA1c"]','A laboratory HbA1c test reflecting your average blood glucose over the previous two to three months.','Finger-prick blood sample','Usually 2–5 working days for analysis and reporting; follow the turnaround confirmed with your kit.','Our testing partner’s secure results portal','HbA1c does not explain every symptom or replace an assessment. If you already have diabetes, follow the monitoring plan agreed with your care team.','https://www.newfoundland.io/products/diabetes','2026-10-28',3999,1) ON CONFLICT(id) DO UPDATE SET name=excluded.name,supplier_state=excluded.supplier_state,markers_json=excluded.markers_json,description=excluded.description,sample=excluded.sample,result_time=excluded.result_time,results_access=excluded.results_access,limitations=excluded.limitations,source_url=excluded.source_url,source_checked=excluded.source_checked,supplier_retail_reference_pence=excluded.supplier_retail_reference_pence,sort_order=excluded.sort_order,revision=testing_products.revision+1,updated_at=CURRENT_TIMESTAMP WHERE testing_products.name IS NOT excluded.name OR testing_products.supplier_state IS NOT excluded.supplier_state OR testing_products.markers_json IS NOT excluded.markers_json OR testing_products.description IS NOT excluded.description OR testing_products.sample IS NOT excluded.sample OR testing_products.result_time IS NOT excluded.result_time OR testing_products.results_access IS NOT excluded.results_access OR testing_products.limitations IS NOT excluded.limitations OR testing_products.source_url IS NOT excluded.source_url OR testing_products.source_checked IS NOT excluded.source_checked OR testing_products.supplier_retail_reference_pence IS NOT excluded.supplier_retail_reference_pence OR testing_products.sort_order IS NOT excluded.sort_order;
 INSERT INTO testing_products (id,sku,name,partner,test_type,supplier_state,markers_json,description,sample,result_time,results_access,limitations,source_url,source_checked,supplier_retail_reference_pence,sort_order) VALUES ('psa-lab','SST-NF-PSA-LAB','PSA','Newfoundland','lab','coming_soon','["Prostate-specific antigen (PSA)"]','A forthcoming laboratory PSA test, collected at home and returned for analysis.','Finger-prick blood sample','Timing to be confirmed at launch','Our testing partner’s secure results portal','PSA can be raised for several reasons. A raised result does not diagnose prostate cancer, and a low result cannot rule it out. Discuss the benefits and limits of PSA testing with your GP.','https://www.newfoundland.io/products/psa-lab','2026-10-28',NULL,2) ON CONFLICT(id) DO UPDATE SET name=excluded.name,supplier_state=excluded.supplier_state,markers_json=excluded.markers_json,description=excluded.description,sample=excluded.sample,result_time=excluded.result_time,results_access=excluded.results_access,limitations=excluded.limitations,source_url=excluded.source_url,source_checked=excluded.source_checked,supplier_retail_reference_pence=excluded.supplier_retail_reference_pence,sort_order=excluded.sort_order,revision=testing_products.revision+1,updated_at=CURRENT_TIMESTAMP WHERE testing_products.name IS NOT excluded.name OR testing_products.supplier_state IS NOT excluded.supplier_state OR testing_products.markers_json IS NOT excluded.markers_json OR testing_products.description IS NOT excluded.description OR testing_products.sample IS NOT excluded.sample OR testing_products.result_time IS NOT excluded.result_time OR testing_products.results_access IS NOT excluded.results_access OR testing_products.limitations IS NOT excluded.limitations OR testing_products.source_url IS NOT excluded.source_url OR testing_products.source_checked IS NOT excluded.source_checked OR testing_products.supplier_retail_reference_pence IS NOT excluded.supplier_retail_reference_pence OR testing_products.sort_order IS NOT excluded.sort_order;

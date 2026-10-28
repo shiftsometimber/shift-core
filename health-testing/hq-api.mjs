@@ -1,3 +1,4 @@
+import {fulfilmentRoute} from './fulfilment-api.mjs';
 import {rangeById} from './catalogue.mjs';
 import {cors,json} from '../health-nutrition/hq-api.mjs';
 export function validateTestingDraft(body){
@@ -15,6 +16,7 @@ export function validateTestingDraft(body){
  return data;
 }
 export async function testingHQRoute(request,env){
+ if(/^\/v1\/hq\/testing\/fulfilment(?:\/|$)/.test(new URL(request.url).pathname))return fulfilmentRoute(request,env);
  const origin=request.headers.get('Origin'),path=new URL(request.url).pathname.replace(/\/+$/,''),method=request.method;
  if(method==='OPTIONS')return origin==='https://hq.shiftsometimber.co.uk'?cors(new Response(null,{status:204}),request):json({error:'forbidden'},403);
  if(!['GET','PATCH'].includes(method))return json({error:'method_not_allowed'},405);
@@ -27,7 +29,8 @@ export async function testingHQRoute(request,env){
  if(!read||(method==='PATCH'&&!manage))return cors(json({error:'forbidden'},403),request);
  if(path==='/v1/hq/testing'&&method==='GET'){
   const {results=[]}=await env.DB.prepare('SELECT * FROM testing_products UNION ALL SELECT * FROM testing_range_extras ORDER BY sort_order,id').all();
-  return cors(json({ok:true,products:results.map(({source_url,partner,...row})=>({...row,partner:'Testing partner'})),canManage:manage,integration:{supplier:'Testing partner',fulfilment:'daily_csv',supplierCodesConfirmed:false,orderExportEnabled:false,purchasingEnabled:false,labResults:'Testing partner secure results portal'}}),request);
+  const fulfilment=await env.DB.prepare('SELECT template_confirmed,delivery_confirmed FROM testing_fulfilment_config WHERE id=1').first();
+  return cors(json({ok:true,products:results.map(({source_url,partner,...row})=>({...row,partner:'Testing partner'})),canManage:manage,integration:{supplier:'Testing partner',fulfilment:'daily_csv',fulfilmentWorkspaceAvailable:true,supplierCodesConfirmed:results.filter(p=>p.supplier_state==='available').every(p=>Boolean(p.supplier_sku)),orderExportEnabled:Boolean(fulfilment?.template_confirmed&&fulfilment?.delivery_confirmed),partnerTemplateConfirmed:Boolean(fulfilment?.template_confirmed),submissionDestinationConfirmed:Boolean(fulfilment?.delivery_confirmed),emailSendingEnabled:false,purchasingEnabled:false,labResults:'Testing partner secure results portal'}}),request);
  }
  const match=path.match(/^\/v1\/hq\/testing\/([a-z0-9-]{1,80})$/);
  if(!match||method!=='PATCH')return cors(json({error:'not_found'},404),request);

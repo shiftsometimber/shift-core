@@ -11,7 +11,7 @@ const scopedStyle=testingStyle.replace(/#shift-health-range/g,'#main-content #sh
 export function composeTesting(retained){return {async fetch(request,env,ctx){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';
  const publicHost=['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(url.hostname);
- const testingPublic=publicHost&&(path==='/shift-health/testing'||path.startsWith('/shift-health/testing/')||path.startsWith('/shift-health/assets/testing-')||path==='/shift-health/assets/hq-testing.js');
+ const testingPublic=publicHost&&(path==='/shift-health/testing'||path.startsWith('/shift-health/testing/')||path.startsWith('/shift-health/assets/testing-')||path==='/shift-health/assets/hq-testing.js'||path==='/shift-health/assets/hq-testing-fulfilment.js');
  const testingAPI=url.hostname==='api.shiftsometimber.co.uk'&&(path==='/v1/hq/testing'||path.startsWith('/v1/hq/testing/'));
  if(testingPublic||testingAPI)return testingWorker.fetch(request,env,ctx);
  const response=await retained.fetch(request,env,ctx);
@@ -24,6 +24,7 @@ export function composeTesting(retained){return {async fetch(request,env,ctx){
  if(request.method==='HEAD')return new Response(null,{status:response.status,headers});
  let html=await response.text();
  if(hub)html=addTestingLink(html).replace('</head>','<style data-shift-testing-hub>'+scopedStyle+'</style></head>');
+ if(hq&&!html.includes('/shift-health/assets/hq-testing-fulfilment.js'))html=html.replace('</body>','<script type="module" src="https://shiftsometimber.co.uk/shift-health/assets/hq-testing-fulfilment.js"></script></body>');
  if(hq&&!html.includes('/shift-health/assets/hq-testing.js'))html=html.replace('</body>','<script type="module" src="https://shiftsometimber.co.uk/shift-health/assets/hq-testing.js"></script></body>');
  return new Response(html,{status:response.status,headers});
 }};}
