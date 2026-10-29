@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-10-29T22:14:17.797Z",
+  "checks": [
+    {
+      "page": "testosterone",
+      "assetSha256": "1eea86432b855521d971e67880dc980a88095ac94c6399e69a3013367ec49e49",
+      "oneH1": true,
+      "ctaTargetExists": true,
+      "allOriginalIdsRetained": true,
+      "originalGuideAndControlsRetained": true,
+      "runtimeAndMediaPassed": true
+    },
+    {
+      "page": "bloods",
+      "assetSha256": "c2d9e2093b4037bc93a02f43f41cabdddfd42007655439160c2c8e83d5bc7f63",
+      "oneH1": true,
+      "ctaTargetExists": true,
+      "allOriginalIdsRetained": true,
+      "originalGuideAndControlsRetained": true,
+      "runtimeAndMediaPassed": true
+    },
+    {
+      "page": "hair",
+      "assetSha256": "c8efba044fa180cfc6c8871f493da4a217df0f46c8abf6d6828ff2f34fc8908b",
+      "oneH1": true,
+      "ctaTargetExists": true,
+      "allOriginalIdsRetained": true,
+      "originalGuideAndControlsRetained": true,
+      "runtimeAndMediaPassed": true
+    },
+    {
+      "page": "pressure",
+      "assetSha256": "2f28da96a967920433a76fc52ffbd8a19ca5fc76d6c5ddecc63e7efec3c11f85",
+      "oneH1": true,
+      "ctaTargetExists": true,
+      "allOriginalIdsRetained": true,
+      "originalGuideAndControlsRetained": true,
+      "runtimeAndMediaPassed": true
+    },
+    {
+      "page": "mental",
+      "assetSha256": "82d44e3e9e484c7abc784e4bdcebb790aa793a44b9f2b89c43c32d9da2d5c238",
+      "oneH1": true,
+      "ctaTargetExists": true,
+      "allOriginalIdsRetained": true,
+      "originalGuideAndControlsRetained": true,
+      "runtimeAndMediaPassed": true
+    },
+    {
+      "page": "sleep",
+      "assetSha256": "5835af8256821b617f9e6f054725f43320e633386dc920d7bdb8e78c56c7389b",
+      "oneH1": true,
+      "ctaTargetExists": true,
+      "allOriginalIdsRetained": true,
+      "originalGuideAndControlsRetained": true,
+      "runtimeAndMediaPassed": true
+    },
+    {
+      "page": "supplements",
+      "assetSha256": "41052b45ba9f33b87e6a7ee17a5d5d2cd1bc05f44ee1602fc5f7d91eedbf4a9b",
+      "oneH1": true,
+      "ctaTargetExists": true,
+      "allOriginalIdsRetained": true,
+      "originalGuideAndControlsRetained": true,
+      "runtimeAndMediaPassed": true
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "testosterone": {
+    "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-d0a481fc-b0dc-495f-bb52-b1740eda23af.png",
+    "file": "health-page-heroes/assets/testosterone-approved-20261029.webp",
+    "sha256": "1eea86432b855521d971e67880dc980a88095ac94c6399e69a3013367ec49e49",
+    "bytes": 207604,
+    "width": 1859,
+    "height": 846,
+    "processing": "PNG to WebP compression only. Original approved composition retained."
+  },
+  "bloods": {
+    "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-a2e5fa5d-e43d-4a03-8c31-25b5dcb04fcb.png",
+    "file": "health-page-heroes/assets/bloods-approved-20261029.webp",
+    "sha256": "c2d9e2093b4037bc93a02f43f41cabdddfd42007655439160c2c8e83d5bc7f63",
+    "bytes": 172146,
+    "width": 1860,
+    "height": 845,
+    "processing": "PNG to WebP compression only. Original approved composition retained."
+  },
+  "hair": {
+    "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-bb294259-b7c0-446b-8463-bdc335fd406f.png",
+    "file": "health-page-heroes/assets/hair-approved-20261029.webp",
+    "sha256": "c8efba044fa180cfc6c8871f493da4a217df0f46c8abf6d6828ff2f34fc8908b",
+    "bytes": 173566,
+    "width": 1860,
+    "height": 846,
+    "processing": "PNG to WebP compression only. Original approved composition retained."
+  },
+  "pressure": {
+    "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-d70dab4b-80d1-4b4d-ab83-f8e200c3c0e6.png",
+    "file": "health-page-heroes/assets/pressure-approved-20261029.webp",
+    "sha256": "2f28da96a967920433a76fc52ffbd8a19ca5fc76d6c5ddecc63e7efec3c11f85",
+    "bytes": 174050,
+    "width": 1860,
+    "height": 846,
+    "processing": "PNG to WebP compression only. Original approved composition retained."
+  },
+  "mental": {
+    "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-ec10120a-6c24-4f13-ba30-2b86f85dbb69.png",
+    "file": "health-page-heroes/assets/mental-approved-20261029.webp",
+    "sha256": "82d44e3e9e484c7abc784e4bdcebb790aa793a44b9f2b89c43c32d9da2d5c238",
+    "bytes": 162698,
+    "width": 1859,
+    "height": 846,
+    "processing": "PNG to WebP compression only. Original approved composition retained."
+  },
+  "sleep": {
+    "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-8543c775-a4b1-44a2-b533-4d8251b6fc2d.png",
+    "file": "health-page-heroes/assets/sleep-approved-20261029.webp",
+    "sha256": "5835af8256821b617f9e6f054725f43320e633386dc920d7bdb8e78c56c7389b",
+    "bytes": 149284,
+    "width": 1860,
+    "height": 846,
+    "processing": "PNG to WebP compression only. Original approved composition retained."
+  },
+  "supplements": {
+    "source": "/workspace/scratch/bab73d2417ba/generated_images/exec-d63c64ef-6547-4217-9d6f-9a17d46dccd5.png",
+    "file": "health-page-heroes/assets/supplements-approved-20261029.webp",
+    "sha256": "41052b45ba9f33b87e6a7ee17a5d5d2cd1bc05f44ee1602fc5f7d91eedbf4a9b",
+    "bytes": 151266,
+    "width": 1859,
+    "height": 846,
+    "processing": "PNG to WebP compression only. Original approved composition retained."
+  }
+}
