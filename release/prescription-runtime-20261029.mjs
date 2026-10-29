@@ -121,7 +121,7 @@ export async function execute(){
   assert.equal((await active()).id,original.id,'Deployment moved before staging');
   // All existing resources, including secrets and assets, inherit from the
   // immutable serving version rather than an un-deployed latest upload.
-  const body={main_module:'shift-prescription-entry.mjs',modules,bindings:snapshot.version.resources.bindings.map(b=>({name:b.name,type:'inherit',version_id:PREDECESSOR})),compatibility_date:snapshot.immutable.compatibility_date,compatibility_flags:snapshot.immutable.compatibility_flags,assets:snapshot.immutable.assets,usage_model:snapshot.immutable.usage_model,annotations:{'workers/message':'Matt-approved prescription lifecycle '+source,'workers/tag':'prescription-'+process.env.GITHUB_RUN_ID}};
+  const body={main_module:'shift-prescription-entry.mjs',modules,bindings:snapshot.version.resources.bindings.map(b=>({name:b.name,type:'inherit',version_id:PREDECESSOR})),compatibility_date:snapshot.immutable.compatibility_date,compatibility_flags:snapshot.immutable.compatibility_flags,keep_assets:true,usage_model:snapshot.immutable.usage_model,annotations:{'workers/message':'Matt-approved prescription lifecycle '+source,'workers/tag':'prescription-'+process.env.GITHUB_RUN_ID}};
   const uploaded=await api(beta+'/versions?deploy=false','POST',body);writeFileSync(out+'/uploaded.json',JSON.stringify({source,version:uploaded.id,manifest}));
   const version=await api(legacy+'/versions/'+uploaded.id);assertPreservedVersion(originalVersion,version);
   const saved=await api(beta+'/versions/'+uploaded.id+'?include=modules');
