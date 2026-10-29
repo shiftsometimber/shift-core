@@ -1,0 +1,43 @@
+{
+  "expectedLiveVersion": "a4d58fe3-46d8-42a9-9000-980a5b8266e2",
+  "retainedLegacySha256": "2c00b58193a7feba510ed17e9fc76d7760b992a71e189400302d0d647f3c9314",
+  "modules": {
+    "health-testing/public.mjs": {
+      "previousSha256": "e3ddd3e3cc2cc21ad3eac8a7bb253ca617d8da1b278eb12456403cd2882b8c9d",
+      "sha256": "711d15f492d28fb9f62e257de7770b9a0123bbc41f368063872a6f8f6625539c",
+      "size": 24664
+    },
+    "health-testing/styles.mjs": {
+      "previousSha256": "cb11353f472c3a69723d733133212d3cb338ea0fbad9f9343e9d693dbafb54b6",
+      "sha256": "a3d903821b54def45fe25bc892ded33684239d6273a63192cb62f832ac453c51",
+      "size": 31466
+    },
+    "health-testing/hero-media.mjs": {
+      "previousSha256": "6005b5b889758ed2e702d6eef3ea61c6f5bd6d850f6e464eba06888ce4d5bdf6",
+      "sha256": "39de7eb4cb98fcd042f4c3f99a4f0328cf7fdcef303e9f081b89b27ea67abbb7",
+      "size": 262198
+    }
+  },
+  "asset": {
+    "path": "/shift-health/assets/testing-hero-garden-approved-20261029.webp",
+    "file": "health-testing/assets/hero-garden-approved-20261029.webp",
+    "sha256": "2841cee97a3d83cc2b8ab726811e9b831c02f44ee6d7fbd9a60993d3515ccfc5",
+    "bytes": 196502,
+    "width": 1860,
+    "height": 846
+  },
+  "scope": "Approved collection hero and its collection share image only. Preserve all twenty product pages, factual copy, zero-stock/TBC purchasing, current card CSS, HQ/email, bindings, cron, routes and retained nutrition work.",
+  "approval": "Matt: BRILLIANT ..... after seeing the full garden hero.",
+  "checks": {
+    "allTwentyDetailPagesExact": true,
+    "collectionAfterHeroExact": true,
+    "allPurchasesDisabled": true,
+    "sitemapUrls": 21,
+    "previewDesktopReviewed": true,
+    "previewMobileClientWidth": 375,
+    "previewMobileScrollWidth": 375,
+    "headingCount": 1,
+    "photoLoaded": true,
+    "realCta": "#range"
+  }
+}

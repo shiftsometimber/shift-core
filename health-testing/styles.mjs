@@ -213,4 +213,47 @@ export const testingStyle=String.raw`
 #shift-health-range .nft-card .nft-card-price{display:block}
 #shift-health-range .nft-card .nft-card-end{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
 #shift-health-range .nft-card-lab .nft-card-photo,#shift-health-range .nft-card-supplement .nft-card-photo{display:flex;align-items:center;justify-content:center;padding:20px 14px;border-bottom:0;border-right:1px solid #707762}
+
+/* Approved garden hero; the photograph remains exact, with accessible HTML copy. */
+#shift-health-range .nft-garden-hero{display:block;position:relative;isolation:isolate;min-height:545px;gap:0;padding:0;margin:0;border:1px solid #707762;border-radius:12px;overflow:hidden;background:#050505;color:#E7E3DA}
+#shift-health-range .nft-garden-photo{position:absolute;right:0;top:0;bottom:0;width:56.3%;margin:0;overflow:hidden;background:#050505}
+#shift-health-range .nft-garden-photo img{display:block;position:absolute;right:0;top:0;height:100%;width:auto;max-width:none;object-fit:contain}
+#shift-health-range .nft-garden-photo:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#050505 0%,rgba(5,5,5,.65) 3%,rgba(5,5,5,0) 13%)}
+#shift-health-range .nft-garden-copy{position:relative;z-index:2;width:55%;padding:34px 22px 28px 40px;color:#E7E3DA}
+#shift-health-range .nft-garden-brand{font-size:15px;font-weight:700;line-height:1.3;letter-spacing:.19em;margin:0 0 24px;color:#E7E3DA}
+#shift-health-range .nft-garden-hero .nft-eyebrow{font-size:10px;line-height:1.3;letter-spacing:.2em;margin:0 0 15px;color:#E7E3DA}
+#shift-health-range .nft-garden-hero h1{font-size:clamp(40px,4.1vw,53px);line-height:1.02;letter-spacing:-.04em;font-weight:800;margin:0 0 18px;color:#E7E3DA;max-width:600px}
+#shift-health-range .nft-garden-hero .nft-lede{font-size:15px;line-height:1.45;max-width:430px;margin:0 0 23px;color:#E7E3DA}
+#shift-health-range .nft-garden-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:355px;margin:0 0 25px;padding:0;list-style:none;color:#E7E3DA}
+#shift-health-range .nft-garden-benefits li{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;font-size:12px;line-height:1.3;min-width:0;margin:0;padding:0;background:transparent;color:#E7E3DA}
+#shift-health-range .nft-garden-benefits svg{width:35px;height:35px;display:block;flex-shrink:0}
+#shift-health-range .nft-garden-cta{display:flex;align-items:center;justify-content:center;width:290px;max-width:100%;min-height:54px;padding:13px 24px;border:1px solid #707762;border-radius:999px;background:#707762;color:#E7E3DA;font-size:20px;font-weight:700;line-height:1.3;text-decoration:none}
+#shift-health-range .nft-garden-cta:focus-visible{outline:3px solid #E7E3DA;outline-offset:5px}
+#shift-health-range .nft-garden-stock{font-size:12px;line-height:1.5;margin:12px 0 0;color:#E7E3DA}
+#shift-health-range .nft-garden-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:0;padding:24px 0;border-bottom:1px solid #707762;color:#E7E3DA}
+#shift-health-range .nft-garden-counts>div{display:flex;gap:12px;align-items:center;justify-content:center;min-width:0}
+#shift-health-range .nft-garden-counts strong{font-size:30px;line-height:1;letter-spacing:-.04em;color:#E7E3DA}
+#shift-health-range .nft-garden-counts span{font-size:12px;line-height:1.35;color:#E7E3DA}
+@media(max-width:1000px){#shift-health-range .nft-garden-hero{min-height:520px}#shift-health-range .nft-garden-copy{width:57%;padding:28px 15px 26px 26px}#shift-health-range .nft-garden-hero h1{font-size:42px}#shift-health-range .nft-garden-photo{width:51%}#shift-health-range .nft-garden-photo img{right:-20%}}
+@media(max-width:700px){
+#shift-health-range .nft-garden-hero{display:flex;flex-direction:column;min-height:0;gap:0;border-radius:10px}
+#shift-health-range .nft-garden-photo{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:1.237;flex:0 0 auto;order:0}
+#shift-health-range .nft-garden-photo img{right:0;height:100%;width:auto}
+#shift-health-range .nft-garden-photo:after{background:linear-gradient(0deg,#050505,rgba(5,5,5,0) 15%)}
+#shift-health-range .nft-garden-copy{order:1;width:100%;padding:18px 22px 26px}
+#shift-health-range .nft-garden-brand{font-size:12px;margin-bottom:17px}
+#shift-health-range .nft-garden-hero .nft-eyebrow{font-size:9px;margin-bottom:13px}
+#shift-health-range .nft-garden-hero h1{font-size:clamp(28px,8vw,36px);line-height:1.05;margin-bottom:18px}
+#shift-health-range .nft-garden-hero .nft-lede{font-size:14px;line-height:1.5;margin-bottom:22px}
+#shift-health-range .nft-garden-benefits{gap:10px;margin-bottom:24px}
+#shift-health-range .nft-garden-benefits li{font-size:10px;line-height:1.4;gap:8px}
+#shift-health-range .nft-garden-benefits svg{width:29px;height:29px}
+#shift-health-range .nft-garden-cta{width:100%;font-size:20px;min-height:52px;padding:12px}
+#shift-health-range .nft-garden-stock{font-size:11px;margin-top:11px}
+#shift-health-range .nft-garden-counts{gap:10px;padding:20px 0}
+#shift-health-range .nft-garden-counts>div{flex-direction:column;gap:7px;text-align:center}
+#shift-health-range .nft-garden-counts strong{font-size:27px}
+#shift-health-range .nft-garden-counts span{font-size:10px}
+}
 `;
+
