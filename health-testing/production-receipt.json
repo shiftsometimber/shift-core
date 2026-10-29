@@ -212,5 +212,29 @@
     "checkedAt": "2026-10-28T21:38:12.613286+00:00",
     "emailSendingEnabled": false,
     "purchasingEnabled": false
+  },
+  "heroRevision": {
+    "sourceCommit": "9c040cee5e28ed7f2faad51d078017af7d0cdb01",
+    "deploymentId": "90aab67f-8fcb-4ea5-a8f4-d4edfab5510e",
+    "versionId": "5e88d263-92bc-4167-b114-809ad29d37c9",
+    "checkedAt": "2026-10-29T00:16:47.173591+00:00",
+    "heroSha256": "880f070c70e0b2b2e3798dd8c26a08453efb2705781cb8bcf656260d307a00cf",
+    "retainedNutritionSha256": "2c00b58193a7feba510ed17e9fc76d7760b992a71e189400302d0d647f3c9314",
+    "unmodifiedRuntimeModules": 24,
+    "sevenPublicMainHashesPreservedOutsideHero": true,
+    "bindingsUnchanged": true,
+    "schedulesUnchanged": true,
+    "focusedTestsPassed": 9,
+    "mobileWidth": 375,
+    "mobileScrollWidth": 375,
+    "portableReviewVersion": 7,
+    "freshPublicReadback29October": {
+      "pageStatus": 200,
+      "imageStatus": 200,
+      "imageHashMatches": true,
+      "revisedHeroPresent": true,
+      "oldCollageAbsent": true
+    },
+    "liveBrowserScreenshot": "Timed out; no live visual acceptance claimed. Desktop and mobile preview inspected before publication."
   }
 }
