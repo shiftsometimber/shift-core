@@ -32,5 +32,5 @@ test('invalid dependencies and URLs fail instead of falling through to an uninte
  assert.throws(()=>scheduledEditorialFetcher({}, {}, {}),/scheduled_public_worker_missing/);
  assert.throws(()=>scheduledEditorialFetcher({fetch(){}},{},{},null),/scheduled_network_fetch_missing/);
  const fetcher=scheduledEditorialFetcher({fetch(){}},{},{},async()=>new Response());
- assert.throws(()=>fetcher('not a URL'),/Invalid URL/);
+ assert.throws(()=>fetcher('not a URL'),/(?:Invalid URL|Failed to parse URL)/);
 });
