@@ -18,8 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Inspect current Health ownership without changing production
-        run: node release/health-cards-20261029/preflight.mjs
+      - name: Stage exact approved card modules, promote and verify the bounded Health change
+        run: node release/health-cards-20261029/deploy.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
