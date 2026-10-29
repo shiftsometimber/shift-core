@@ -52,6 +52,7 @@ export { SiteContentState } from "./site-content-state-v1.js";
 import hq from "./hq-ai-v2.js";
 import { runScheduledIntelligence } from "./scheduled-intelligence.js";
 import { runKnowledgeFlywheel } from "./scheduled-knowledge-v1.js";
+import {scheduledEditorialFetcher} from "./scheduled-public-fetch-v1.mjs";
 import { memberCommissioningRoute } from "./member-commissioning-v1.js";
 import { shiftVisualiseV2Routes } from "./shift-visualise-v2.js";
 import { memberPracticalRoutes } from "./member-practical-v1.js";
@@ -1021,6 +1022,11 @@ const worker = {
       // runtime is exposed.  An invocation already in flight on the previous
       // runtime must not switch that row back to its older configuration.
       const observedJob = (key, work) => recordServiceJob(env.DB, key, new Date(controller.scheduledTime || Date.now()).toISOString(), work);
+      // Public SHIFT reads must stay inside this Worker invocation. A network
+      // request to the same routed hostname re-enters shift-core and prevents
+      // the editorial inventory from completing. External primary evidence
+      // continues through the normal network fetch path.
+      const editorialFetch = scheduledEditorialFetcher(worker,env,ctx);
       const medicinesWatch = await observedJob('core_medicines_watch', () => checkSources(env, { allowSourceReplacement: false })).catch((error) => ({
         medicinesWatch: "check_failed",
         message: error?.message || "scheduled_job_failed",
@@ -1029,7 +1035,7 @@ const worker = {
       const settled = await Promise.allSettled([
         observedJob('core_intelligence', () => runScheduledIntelligence(env)),
         observedJob('core_radar', () => runRadarScheduledScan(env)),
-        observedJob('core_knowledge', () => runKnowledgeFlywheel(env, { limit: 1000 })),
+        observedJob('core_knowledge', () => runKnowledgeFlywheel(env, { limit: 1000, fetcher: editorialFetch })),
         observedJob('core_fit_reminders', () => runFitMorningReminders(env)),
         observedJob('core_article_email', () => notifyArticlePublication(env)),
         observedJob('core_checkin', () => env.MY_TIMBER_PWA_ENABLED==='true'?runPwaReminders(env):Promise.resolve({disabled:true})),
