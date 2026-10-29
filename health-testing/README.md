@@ -162,3 +162,10 @@ The hero revision published successfully as deployment 90aab67f-8fcb-4ea5-a8f4-d
 ## Nested card layout correction — 29 October 2026
 
 The shared shell applies full height, hidden overflow and cream backgrounds to every class containing “-card”, including photo/copy/price subpanels. This stretched the product photo panel and clipped the text. The isolated stylesheet correction resets nested panel sizing, restores black copy panels with cream text, and preserves all content. Live desktop inspection confirmed the Bowel Health image panel reduced from 715.59px to 192px and the copy panel expanded from a clipped 46px to a visible 352.83px. The exact mobile viewport was not re-exercised; the responsible rules are shared across viewport sizes. Deployment a5694279-9aad-4626-9c56-812cbeb2d11b, version a4d58fe3-46d8-42a9-9000-980a5b8266e2 changed only the testing stylesheet. The other twenty-eight modules, seven public main-content hashes, bindings and schedule remained unchanged. Live screenshot: testing-cards-corrected-20261029.jpg.
+
+
+## Further hero casting revision — 29 October 2026 (prepared, not deployed)
+
+Matt requested a substantially larger, bald or bearded ordinary bloke without fashion-catalogue styling. Built-in imagegen revised the home photograph to a visibly heavier bald, bearded man in a plain charcoal T-shirt, with his torso and waist clearly visible. The new versioned asset is health-testing/assets/hero-home-20261029-v3.webp (1448×1086, 124220 bytes). The exact prompt and asset hash are recorded in hero-v3-release.json. Only hero-media.mjs changes in the runtime graph; the current shared card CSS remains protected by its exact hash. Six existing SEO/storefront checks pass, and the release helper parses successfully.
+
+This revision is saved but has not been published: the publishing Mac did not respond to the required read-only AGENTS.md call and the request timed out. No production execution was started. hero-v3-status.json records this boundary. Recheck current device instructions and live Worker version before the scoped publish; the previously verified v2 hero and corrected cards remain the last known live state.

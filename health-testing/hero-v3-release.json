@@ -1,0 +1,27 @@
+{
+  "expectedLiveVersion": "a4d58fe3-46d8-42a9-9000-980a5b8266e2",
+  "retainedLegacySha256": "2c00b58193a7feba510ed17e9fc76d7760b992a71e189400302d0d647f3c9314",
+  "preservedCardStylesSha256": "cb11353f472c3a69723d733133212d3cb338ea0fbad9f9343e9d693dbafb54b6",
+  "modules": {
+    "health-testing/hero-media.mjs": {
+      "previousSha256": "6005b5b889758ed2e702d6eef3ea61c6f5bd6d850f6e464eba06888ce4d5bdf6",
+      "sha256": "2968928beca66b3cc9b818dc2f5ee12e51a1ce7ab2de5b793a81f5eeacbe030d",
+      "size": 165842
+    }
+  },
+  "asset": {
+    "path": "/shift-health/assets/testing-hero-home-20261029-v3.webp",
+    "file": "health-testing/assets/hero-home-20261029-v3.webp",
+    "sha256": "386ab91c8bea1816cb977a1267518549a7dbea4dbfa7eb3aa858b880ef06fc74",
+    "bytes": 124220,
+    "width": 1448,
+    "height": 1086
+  },
+  "generation": {
+    "tool": "Built-in imagegen",
+    "source": "generated_images/exec-95b4d0cf-ebac-4746-b8dd-3316cc397ddd.png",
+    "prompt": "Use case: photorealistic-natural. Asset: SHIFT Health website testing hero, landscape 4:3. Edit target: the supplied kitchen photograph. Make the man substantially heavier and more everyday: a bald, full-bearded British man around 50, with a very large rounded belly clearly visible above his lap, broad waist, thick upper arms, rounded cheeks and double chin. His build should read as a big man, roughly 22–24 stone at average height, portrayed naturally and respectfully. Remove the olive overshirt entirely; dress him in a plain, slightly washed charcoal short-sleeve T-shirt and ordinary dark joggers, with realistic folds over his belly. Frame a little wider and lower so his substantial torso, waist and thighs remain visible; hold the folded leaflet higher toward his chest so it does not conceal his body. Keep the bald head, greying beard, believable face, seated reading action, mug, unprinted envelope, natural daylight and cream/olive palette. Make the domestic kitchen a little more ordinary and lived-in: simple worktop and everyday objects, natural soft imperfections rather than a styled interior. Candid, thoughtful, relaxed documentary photo, ordinary man taking a quiet moment at home. No pose to camera, no fashion catalogue styling, no advertising-model smile, no athletic physique, no luxury kitchen, no medical procedure, no product boxes or invented test equipment, no logos, no readable text, no caricature. Preserve realistic hands, anatomy, lighting and photographic detail.",
+    "postProcessing": "PNG to WebP compression only; no resizing or image editing."
+  },
+  "scope": "Replace only the testing collection hero and collection share image with a visibly heavier bald, bearded man in everyday clothing. Preserve the corrected testing cards and all other live modules, content and operations."
+}

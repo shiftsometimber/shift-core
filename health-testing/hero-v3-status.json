@@ -1,0 +1,24 @@
+{
+  "stage": "prepared_not_deployed",
+  "reason": "Publishing device did not respond to the required read-only AGENTS.md check. Remote request timed out; no production execution or mutation was started.",
+  "remoteCallId": "92da1730-7e7e-4cfe-9a90-dacc5086d03a",
+  "lastKnownLiveVersion": "a4d58fe3-46d8-42a9-9000-980a5b8266e2",
+  "asset": {
+    "path": "/shift-health/assets/testing-hero-home-20261029-v3.webp",
+    "file": "health-testing/assets/hero-home-20261029-v3.webp",
+    "sha256": "386ab91c8bea1816cb977a1267518549a7dbea4dbfa7eb3aa858b880ef06fc74",
+    "bytes": 124220,
+    "width": 1448,
+    "height": 1086
+  },
+  "checksPassed": 6,
+  "checks": [
+    "SEO and schema",
+    "collection/sitemap rendering",
+    "TBC/zero-stock purchase controls",
+    "search and category behaviour",
+    "purchase rejection",
+    "all twenty product detail pages"
+  ],
+  "nextStep": "Read current device instructions, inspect current live Worker and update the expected version if needed; run the scoped hero-v3 publisher through the existing managed check. Preserve any newer live work."
+}
