@@ -1,0 +1,63 @@
+name: Public review cloud readiness
+on:
+  push:
+    branches: [fix/review-footer-colour-20261027]
+    paths: [.github/workflows/public-review-cloud-20261029.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: public-review-cloud-readiness-20261029
+  cancel-in-progress: false
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run exact newsroom regressions without installation
+        run: node --test tests/radar-newsroom-page-v1.test.mjs tests/radar-newsroom-sort-v1.test.mjs
+      - name: Read current deployment ownership and publication dates without mutations
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const cf='https://api.cloudflare.com/client/v4',repo='https://api.github.com/repos/shiftsometimber/shift-core';
+          const get=async(url,token)=>{const r=await fetch(url,{headers:token?{Authorization:'Bearer '+token,'User-Agent':'SHIFT-approved-public-review'}:{},signal:AbortSignal.timeout(25000),redirect:'error'});const body=await r.json();if(!r.ok||body.success===false)throw Error('Read failed HTTP '+r.status+' '+url);return body.result??body};
+          assert(process.env.CLOUDFLARE_API_TOKEN,'Existing Cloudflare credential unavailable');
+          const a='/accounts/9e5386dcf455be34c582d93f8bfc79e6',token=process.env.CLOUDFLARE_API_TOKEN;
+          const project=await get(cf+a+'/pages/projects/projectshift',token);
+          const d=project.canonical_deployment;assert(d?.id,'Current Pages deployment missing');
+          const detail=await get(cf+a+'/pages/projects/projectshift/deployments/'+d.id,token);
+          const main=await get(repo+'/branches/main',process.env.GITHUB_TOKEN);
+          const runs=await get(repo+'/actions/runs?status=in_progress&per_page=50',process.env.GITHUB_TOKEN);
+          const promotions=[];
+          for(const run of runs.workflow_runs.filter(x=>x.name==='Cloudflare Production Promote')){
+            const jobs=await get(repo+'/actions/runs/'+run.id+'/jobs?per_page=100',process.env.GITHUB_TOKEN);
+            for(const j of jobs.jobs.filter(x=>x.name==='promote'&&x.status==='in_progress'))promotions.push({run:run.id,job:j.id,started:j.started_at,currentStep:j.steps.find(s=>s.status==='in_progress')?.number,publicBaselineCaptured:j.steps.some(s=>s.number>=25&&['in_progress','completed'].includes(s.status))});
+          }
+          const workers={};
+          for(const name of ['shift-core','shift-latest-news-ticker-20261024']){
+            const r=await get(cf+a+'/workers/scripts/'+name+'/deployments',token);
+            workers[name]=r.deployments?.[0];
+          }
+          const routes=await get(cf+'/zones/66ec3268950adcfc837b7b8b2f8356ed/workers/routes',token);
+          const news=await get('https://shiftsometimber.co.uk/v1/radar/news');
+          const story=news.items.find(x=>x.id===1263);
+          const report={at:new Date().toISOString(),candidate:process.env.GITHUB_SHA,currentMain:main.commit.sha,productionWrites:0,pages:{id:d.id,url:d.url,created:d.created_on,trigger:d.deployment_trigger,status:d.latest_stage?.status,files:detail.files},workers,ownedRoutes:routes.filter(x=>['shift-core','shift-latest-news-ticker-20261024'].includes(x.script)),promotions,story:story?{id:story.id,published:story.metadata.datePublished,modified:story.metadata.dateModified}:null};
+          fs.mkdirSync('public-review-cloud-evidence',{recursive:true});fs.writeFileSync('public-review-cloud-evidence/baseline.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify({...report,pages:{...report.pages,files:undefined,fileCount:Object.keys(detail.files||{}).length},workers:Object.fromEntries(Object.entries(workers).map(([k,v])=>[k,{id:v?.id,created:v?.created_on,versions:v?.versions}]))},null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-review-cloud-readiness-${{ github.sha }}
+          path: public-review-cloud-evidence/
+          if-no-files-found: warn
+          retention-days: 30
