@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 
@@ -60,17 +60,6 @@ export async function execute(){
   // Do not race a newer branch/main state or publish a candidate with failed checks.
   const main=await gh('/branches/main');assert.equal(main.commit.sha,'2260675faf5ae8c3adbf52ff2a4f1a8427a91884','Main moved; reconcile first');
   const pr=await gh('/pulls/1450');assert.equal(pr.head.sha,source);assert.equal(pr.state,'open');
-  const required=['Shift Member Frontend Source Gate','Shift Master Integration Gate','Readiness repair and preservation','Shift Conversion Closure Gate','Shift Whole-Estate Route Sweep','Native health bridge — account and privacy proof'];
-  const deadline=Date.now()+600000;
-  while(true){
-    const runs=(await gh('/actions/runs?head_sha='+source+'&per_page=100')).workflow_runs;
-    const chosen=required.map(name=>runs.filter(r=>r.name===name&&r.event==='pull_request').sort((a,b)=>b.id-a.id)[0]);
-    const failed=chosen.find(r=>r?.status==='completed'&&!['success','skipped'].includes(r.conclusion));
-    assert(!failed,'Required release check failed: '+failed?.name+' '+failed?.html_url);
-    if(chosen.every(r=>r?.status==='completed'&&r.conclusion==='success')){writeFileSync(out+'/required-checks.json',JSON.stringify(chosen.map(r=>({id:r.id,name:r.name,head:r.head_sha,conclusion:r.conclusion})),null,2));break;}
-    assert(Date.now()<deadline,'Required checks did not finish within the release budget');
-    console.log('Waiting for current checks: '+chosen.filter(r=>r?.status!=='completed').map(r=>r?.name||'not started').join(', '));await new Promise(r=>setTimeout(r,10000));
-  }
   const original=await active();assert.equal(original.id,snapshot.deployment.id);
   const originalVersion=await api(legacy+'/versions/'+PREDECESSOR);assertPreservedVersion(snapshot.version,originalVersion);
   const settings=await api(legacy+'/script-settings');same(settings,snapshot.settings,'Worker settings changed');
@@ -87,10 +76,11 @@ export async function execute(){
 
   // Execute the actual candidate modules in isolated workerd. No production
   // database, email, payment or provider binding enters this control.
-  const {Miniflare}=await import(pathToFileURL(process.env.RX_MINIFLARE+'/dist/src/index.js'));
-  const mf=new Miniflare({modules:true,modulesRoot:resolve(out),scriptPath:resolve(out+'/shift-prescription-entry.mjs'),compatibilityDate:snapshot.immutable.compatibility_date,compatibilityFlags:snapshot.immutable.compatibility_flags,d1Databases:['DB'],durableObjects:{SITE_CONTENT_STATE:{className:'SiteContentState',useSQLite:true}},bindings:{PHARMACY_INTEGRATION_SECRET:'synthetic-release-secret'},outboundService:()=>{throw Error('Network is forbidden in compiled prescription control');}});
+  const {Miniflare,convertV4MiniflareOptions}=await import(pathToFileURL(process.env.RX_MINIFLARE+'/dist/src/index.js'));
+  const options={modules:true,modulesRoot:resolve(out),scriptPath:resolve(out+'/shift-prescription-entry.mjs'),compatibilityDate:snapshot.immutable.compatibility_date,compatibilityFlags:snapshot.immutable.compatibility_flags,d1Databases:['DB'],durableObjects:{SITE_CONTENT_STATE:{className:'SiteContentState',useSQLite:true}},bindings:{PHARMACY_INTEGRATION_SECRET:'synthetic-release-secret'},outboundService:()=>{throw Error('Network is forbidden in compiled prescription control');}};
+  const mf=new Miniflare(convertV4MiniflareOptions(options));
   try{
-    const db=await mf.getD1Database('DB');
+    const db=typeof mf.getD1Database==='function'?await mf.getD1Database('DB'):(await mf.getBindings()).DB;
     const callback=body=>mf.dispatchFetch('https://api.shiftsometimber.co.uk/v1/integrations/pharmacy/treatment-status',{method:'POST',headers:{Authorization:'Bearer synthetic-release-secret','Content-Type':'application/json'},body:JSON.stringify(body)});
     assert.equal((await callback({orderNumber:'SYNTHETIC-MISSING',status:'approved'})).status,404);
     await db.prepare("INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,total_pence,status,clinical_status,prescription_workflow_version) VALUES('SYNTHETIC-RX',42,'nobody@example.test',1,11,'Synthetic medicine','Test strength',100,100,'paid','approved',1)").run();
@@ -103,6 +93,18 @@ export async function execute(){
     const denied=await mf.dispatchFetch('https://api.shiftsometimber.co.uk/v1/treatment/orders');assert.equal(denied.status,401);assert.equal(denied.headers.get('X-Shift-Prescription-Source'),source);
     writeFileSync(out+'/compiled-control.json',JSON.stringify({source,modules:manifest,syntheticLifecycle:'passed',skippedStageBlocked:true,receiptStored:true,replayIdempotent:true,anonymousDenied:true,externalCalls:0}));
   }finally{await mf.dispose();}
+
+  const required=['Shift Member Frontend Source Gate','Shift Master Integration Gate','Readiness repair and preservation','Shift Conversion Closure Gate','Shift Whole-Estate Route Sweep','Native health bridge — account and privacy proof'];
+  const deadline=Date.now()+600000;
+  while(true){
+    const runs=(await gh('/actions/runs?head_sha='+source+'&per_page=100')).workflow_runs;
+    const chosen=required.map(name=>runs.filter(r=>r.name===name&&r.event==='pull_request').sort((a,b)=>b.id-a.id)[0]);
+    const failed=chosen.find(r=>r?.status==='completed'&&!['success','skipped'].includes(r.conclusion));
+    assert(!failed,'Required release check failed: '+failed?.name+' '+failed?.html_url);
+    if(chosen.every(r=>r?.status==='completed'&&r.conclusion==='success')){writeFileSync(out+'/required-checks.json',JSON.stringify(chosen.map(r=>({id:r.id,name:r.name,head:r.head_sha,conclusion:r.conclusion})),null,2));break;}
+    assert(Date.now()<deadline,'Required checks did not finish within the release budget');
+    console.log('Waiting for current checks: '+chosen.filter(r=>r?.status!=='completed').map(r=>r?.name||'not started').join(', '));await new Promise(r=>setTimeout(r,10000));
+  }
 
   const publicPaths=['/','/member-login','/member/dashboard','/treatment-assessment','/terms'];
   const publicSnapshots=[];
@@ -143,4 +145,15 @@ export async function execute(){
     throw error;
   }
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await execute();
+async function rollbackInterrupted(){
+  const out='prescription-release-evidence',file=out+'/promotion-intent.json';if(!existsSync(file))return;
+  const intent=JSON.parse(readFileSync(file));assert.equal(intent.source,process.env.GITHUB_SHA);assert.equal(intent.previousVersion,PREDECESSOR);
+  const base='https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-core/deployments';
+  const headers={Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,'Content-Type':'application/json'};
+  const response=await fetch(base,{headers});assert(response.ok);const current=(await response.json()).result.deployments[0];
+  if(current.versions.length!==1||current.versions[0].version_id!==intent.version)return;
+  if(existsSync(out+'/owned-deployment.json'))assert.equal(current.id,JSON.parse(readFileSync(out+'/owned-deployment.json')).deployment,'A newer deployment owns traffic; refuse rollback');
+  const restored=await fetch(base,{method:'POST',headers,body:JSON.stringify({strategy:'percentage',versions:[{version_id:PREDECESSOR,percentage:100}],annotations:{'workers/message':'Restore only interrupted owned prescription promotion'}})});assert(restored.ok);
+  writeFileSync(out+'/interrupted-rollback.json',JSON.stringify({source:intent.source,restoredVersion:PREDECESSOR}));
+}
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){if(process.argv[2]==='rollback')await rollbackInterrupted();else await execute();}

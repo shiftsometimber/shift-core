@@ -56,6 +56,11 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           RX_MINIFLARE: ${{ runner.temp }}/rx-workerd/node_modules/miniflare
         run: node release/prescription-runtime-20261029.mjs
+      - name: Restore only an interrupted owned promotion
+        if: ${{ always() && (failure() || cancelled()) }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node release/prescription-runtime-20261029.mjs rollback
       - uses: actions/upload-artifact@v4
         if: always()
         with:
