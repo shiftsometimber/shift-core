@@ -61,7 +61,8 @@ async function exerciseActualScheduled({watchFails=false,siblingFails=false}={})
  const names=['runScheduledIntelligence','runRadarScheduledScan','runKnowledgeFlywheel','runFitMorningReminders','notifyArticlePublication','runPwaReminders','retryPendingSignupAlerts','runTreatmentReminders'];
  const siblings=names.map(name=>async()=>{events.push(name);if(siblingFails&&name==='runRadarScheduledScan')throw Error('owned_radar_failure');return{processed:1}});
  const output={log(...args){logs.push(args)},error(...args){logs.push(args)}};
- const handler=new Function('recordServiceJob','checkSources',...names,'console','return ({'+actualScheduled+'\n}}).scheduled;')(recordServiceJob,checkSources,...siblings,output);
+ const scheduledEditorialFetcher=()=>async()=>new Response('synthetic_public_page');
+ const handler=new Function('recordServiceJob','checkSources',...names,'scheduledEditorialFetcher','worker','console','return ({'+actualScheduled+'\n}}).scheduled;')(recordServiceJob,checkSources,...siblings,scheduledEditorialFetcher,{},output);
  await handler({scheduledTime:1792800000000},{DB,MY_TIMBER_PWA_ENABLED:'true',MY_TREATMENT_ENABLED:'true'},{waitUntil(job){pending.push(job)}});
  await watchStarted;assert.deepEqual(events,['watch-start'],'No sibling can start while the actual Watch is pending');release();await Promise.all(pending);
  assert.equal(events.filter(x=>x==='watch-start').length,1);assert(events.indexOf('watch-end')<events.indexOf('runScheduledIntelligence'));
