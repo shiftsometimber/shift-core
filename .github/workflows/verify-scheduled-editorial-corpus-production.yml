@@ -62,7 +62,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for attempt in $(seq 1 20); do
+          for attempt in $(seq 1 1); do
             npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT id,job_key,started_at,completed_at,status,outcome,error_code FROM hq_service_job_runs WHERE job_key='core_knowledge' AND started_at >= '$DEPLOYED_AT' ORDER BY started_at DESC LIMIT 1" > scheduled-editorial-production-proof/scheduled-job.json
             npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT COUNT(*) AS n, SUM(CASE WHEN state='published_site' THEN 1 ELSE 0 END) AS published FROM knowledge_editorial_page_meta" > scheduled-editorial-production-proof/corpus-count.json || true
             if node --input-type=module <<'JS'
@@ -81,7 +81,11 @@ jobs:
           JS
               exit 0
             fi
-            sleep 60
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT event_type,release_day,details_json,created_at FROM knowledge_editorial_events WHERE created_at >= '$DEPLOYED_AT' ORDER BY created_at DESC LIMIT 20" > scheduled-editorial-production-proof/editorial-events.json || true
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT state,COUNT(*) AS n FROM knowledge_editorial_briefs GROUP BY state ORDER BY state" > scheduled-editorial-production-proof/brief-counts.json || true
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT job_key,state,reason,started_at,finished_at FROM knowledge_editorial_jobs ORDER BY started_at DESC LIMIT 20" > scheduled-editorial-production-proof/editorial-jobs.json || true
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT release_day,slug,state,reason,due_at,updated_at FROM knowledge_editorial_releases ORDER BY updated_at DESC LIMIT 20" > scheduled-editorial-production-proof/editorial-releases.json || true
+            npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT day_key,status,target_url,reason,created_at,completed_at FROM knowledge_daily_content_runs ORDER BY created_at DESC LIMIT 20" > scheduled-editorial-production-proof/legacy-daily-runs.json || true
           done
           echo 'The owned deployment is live, but no completed post-deployment core_knowledge cycle with populated corpus was observed.'
           exit 1
