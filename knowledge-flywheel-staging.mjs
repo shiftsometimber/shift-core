@@ -44,7 +44,7 @@ await DB.prepare(`INSERT INTO ai_knowledge_chunks(id,document_id,content) VALUES
 const entry=fs.readFileSync('worker-entry-v6.js','utf8');
 const entryCompact=entry.replace(/"/g,"'").replace(/\s+/g,'');
 assert.ok(entryCompact.includes("import{runKnowledgeFlywheel}from'./scheduled-knowledge-v1.js'"));
-assert.ok(entryCompact.includes('runKnowledgeFlywheel(env,{limit:1000})'));
+assert.ok(entryCompact.includes('runKnowledgeFlywheel(env,{limit:1000,fetcher:editorialFetch})'));
 
 // 1) Approved CMS content automatically becomes canonical graph knowledge.
 let result=await runKnowledgeFlywheel({DB},{limit:250});
