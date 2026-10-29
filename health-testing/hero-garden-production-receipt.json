@@ -1,0 +1,47 @@
+{
+  "stage": "verified",
+  "sourceCommit": "2fd9330da215ff618214f7f5474b127b4e8eecd1",
+  "deploymentId": "5607599b-634d-4f29-9c96-33b3d3d34152",
+  "versionId": "dd57a1b3-82d0-40aa-840f-30b20d77d231",
+  "changedModules": [
+    "health-testing/hero-media.mjs",
+    "health-testing/styles.mjs",
+    "health-testing/public.mjs"
+  ],
+  "heroSha256": "2841cee97a3d83cc2b8ab726811e9b831c02f44ee6d7fbd9a60993d3515ccfc5",
+  "publicContentPreservedOutsideHero": [
+    "/",
+    "/shift-health",
+    "/shift-health/testing",
+    "/shift-health/testing/prostate-health",
+    "/shift-health/testing/sitemap.xml",
+    "/shift-health/supplements-nutrition",
+    "/my-timber"
+  ],
+  "unchangedOtherModules": 26,
+  "bindingsUnchanged": true,
+  "schedulesUnchanged": true,
+  "checkedAt": "2026-10-29T21:15:39.090480+00:00",
+  "url": "https://shiftsometimber.co.uk/shift-health/testing",
+  "managedCheck": {
+    "pid": 16691,
+    "exitCode": 0,
+    "elapsedSeconds": 43.28
+  },
+  "approval": {
+    "quote": "BRILLIANT .....",
+    "version": "Garden hero shown in the immediately preceding assistant image."
+  },
+  "browser": {
+    "liveDesktop": true,
+    "previewMobile": {
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "photoLoaded": true,
+      "headingCount": 1
+    },
+    "liveScreenshot": "testing-garden-hero-live-20261029.jpg"
+  },
+  "purchasing": "All twenty products remain zero stock, TBC and disabled.",
+  "portableReviewVersion": 8
+}
