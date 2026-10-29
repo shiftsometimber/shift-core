@@ -10,7 +10,7 @@ export const PERFORMANCE_SNIPPETS=Object.freeze({
     description:'Do Wegovy side effects go away? They often ease over time, but timing varies. See common effects, warning signs and when to get medical help.'
   },
   '/articles/nhs-weight-loss-drugs':{
-    title:'NHS Weight-Loss Drugs: Eligibility & Access in the UK | SHIFT',
+    title:'NHS Weight-Loss Medicines: Why Access Varies by Service and Area',
     description:'Can you get weight-loss medication on the NHS? See current eligibility, England’s phased access, GP questions and what support to ask for if you do not qualify.'
   }
 });
