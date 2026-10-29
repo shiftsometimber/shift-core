@@ -202,4 +202,15 @@ export const testingStyle=String.raw`
 #shift-health-range .nft-range-hero-photo figcaption{padding:18px 22px;font-size:16px;line-height:1.4}
 #shift-health-range .nft-range-hero-photo figcaption strong,#shift-health-range .nft-range-hero-photo figcaption span{display:block}
 @media(max-width:700px){#shift-health-range .nft-range-hero-photo figcaption{padding:16px 20px}}
+
+/* Isolate product cards from the shared shell's substring card selectors. */
+#shift-health-range .nft-card{height:auto;min-height:0;gap:0;padding:0;color:#E7E3DA}
+#shift-health-range .nft-card :is([class*="nft-card-"]){height:auto;min-height:0;max-height:none;overflow:visible;background:transparent;border:0;padding:0;position:static;gap:0}
+#shift-health-range .nft-card .nft-card-photo{flex:0 0 auto;background:#E7E3DA;padding:18px 14px;overflow:hidden;border-bottom:1px solid #707762}
+#shift-health-range .nft-card .nft-card-copy{flex:1 0 auto;height:auto;min-height:0;padding:22px;background:#050505;color:#E7E3DA}
+#shift-health-range .nft-card .nft-card-copy :is(p,h3,a,span,strong,div){color:#E7E3DA;-webkit-text-fill-color:#E7E3DA}
+#shift-health-range .nft-card .nft-card-commerce{display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding:5px 0 18px;border-bottom:1px solid #707762}
+#shift-health-range .nft-card .nft-card-price{display:block}
+#shift-health-range .nft-card .nft-card-end{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+#shift-health-range .nft-card-lab .nft-card-photo,#shift-health-range .nft-card-supplement .nft-card-photo{display:flex;align-items:center;justify-content:center;padding:20px 14px;border-bottom:0;border-right:1px solid #707762}
 `;
