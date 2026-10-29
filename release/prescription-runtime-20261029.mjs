@@ -21,7 +21,7 @@ export function assertPredecessor(snapshot){
 export function assertPreservedVersion(before,after){
   const bindings=x=>x.resources.bindings.slice().sort((a,b)=>a.name.localeCompare(b.name));
   same(bindings(before),bindings(after),'Every live binding must remain identical');
-  const runtime=v=>{const r=structuredClone(v.resources.script_runtime);if(r.assets)r.assets={...r.assets,html_handling:r.assets.html_handling??'auto-trailing-slash',not_found_handling:r.assets.not_found_handling??'none'};return r;};
+  const runtime=v=>{const r=structuredClone(v.resources.script_runtime);if(r.migrations){const m=r.migrations;assert.equal(m.old_tag,m.new_tag,'Storage migration tag must not change');assert(m.new_tag);for(const [key,value]of Object.entries(m))if(!['old_tag','new_tag'].includes(key))assert(value===null||(Array.isArray(value)&&value.length===0),'A storage migration must not run: '+key);r.migration_tag=m.new_tag;delete r.migrations;}if(r.assets)r.assets={...r.assets,html_handling:r.assets.html_handling??'auto-trailing-slash',not_found_handling:r.assets.not_found_handling??'none'};return r;};
   same(runtime(before),runtime(after),'Every effective runtime setting must remain identical');
 }
 export function wrapperSource(entry,source,tracker){
