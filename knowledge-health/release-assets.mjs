@@ -5,6 +5,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {hash} from './release-helpers.mjs';
 const require=createRequire(import.meta.url),blake3=require('blake3-wasm');
+export const assetHash=(bytes,file)=>blake3.hash(bytes.toString('base64')+path.extname(file).slice(1)).toString('hex').slice(0,32);
 const mime={'.js':'application/javascript','.mjs':'application/javascript','.css':'text/css; charset=utf-8','.html':'text/html; charset=utf-8','.svg':'image/svg+xml','.txt':'text/plain; charset=utf-8','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg'};
 const code=/\.(?:js|mjs|css|svg|txt)$/;
 export async function uploadPreservedAssets({cf,account,name,save}){
@@ -23,9 +24,8 @@ export async function uploadPreservedAssets({cf,account,name,save}){
  const manifest={},byHash=new Map();
  for(const file of readdirSync(root,{recursive:true})){
   const absolute=path.join(root,file);if(!statSync(absolute).isFile())continue;
-  const bytes=readFileSync(absolute),extension=path.extname(file).slice(1);
-  const value=blake3.hash(bytes.toString('base64')+extension).toString('hex').slice(0,32);
-  manifest['/'+file.split(path.sep).join('/')]={hash:value,size:bytes.length};byHash.set(value,{file:absolute,extension,bytes:bytes.length});
+  const bytes=readFileSync(absolute),value=assetHash(bytes,file);
+  manifest['/'+file.split(path.sep).join('/')]={hash:value,size:bytes.length};byHash.set(value,{file:absolute,bytes:bytes.length});
  }
  const session=await cf('/accounts/'+account+'/workers/scripts/'+name+'/assets-upload-session','POST',{manifest});
  assert(session.jwt);const buckets=session.buckets||[],missing=buckets.flat();
