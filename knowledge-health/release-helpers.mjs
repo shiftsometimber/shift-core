@@ -32,10 +32,14 @@ export function entryModule(main){
  assert(main&&!main.includes('..')&&!main.startsWith('/'),'Invalid captured entry');
  return 'import original from '+JSON.stringify('./'+main)+';\nimport {withHealthKnowledgeWorker} from "./knowledge-health/production.mjs";\nexport * from '+JSON.stringify('./'+main)+';\nexport default withHealthKnowledgeWorker(original);\n';
 }
-export function metadataFor(current,settings,main,source){
+export function metadataFor(current,settings,main,source,activeVersion){
+ assert.match(activeVersion||'',/^[a-f0-9-]{36}$/,'An exact deployed version is required for binding inheritance');
  const runtime=current.resources?.script_runtime||{};
- const metadata={main_module:main,compatibility_date:runtime.compatibility_date||settings.compatibility_date,compatibility_flags:runtime.compatibility_flags||settings.compatibility_flags||[],bindings:settings.bindings.map(b=>b.type==='secret_text'?{type:'inherit',name:b.name,version_id:'latest'}:b),annotations:{'workers/message':'Matt approved the 50-topic Knowledge expansion; preserve all other active modules and routes.','workers/commit_sha':source}};
- for(const k of ['usage_model','limits','placement','observability','tail_consumers','logpush','cache_options'])if(settings[k]!==undefined)metadata[k]=settings[k];
- if(settings.assets)metadata.keep_assets=true;
+ // The Workers /workers/{name}/versions JSON API accepts an explicit binding
+ // version. The older /scripts/{name}/versions endpoint accepts only "latest".
+ const metadata={main_module:main,compatibility_date:runtime.compatibility_date||settings.compatibility_date,compatibility_flags:runtime.compatibility_flags||settings.compatibility_flags||[],bindings:settings.bindings.map(b=>({type:'inherit',name:b.name,version_id:activeVersion})),annotations:{'workers/message':'Matt approved the 50-topic Knowledge expansion; source '+source+'; preserve all other active modules and routes.','workers/tag':'knowledge-'+source.slice(0,12)}};
+ for(const k of ['usage_model','limits','placement','cache_options'])if(settings[k]!==undefined)metadata[k]=settings[k];
+ if(current.assets)metadata.assets=current.assets;
+ if(current.exports)metadata.exports=current.exports;
  return metadata;
 }

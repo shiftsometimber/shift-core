@@ -61,23 +61,18 @@ try{
   else assert.equal(changes.length,0,name+' should have no Ask changes');
   const modules=[...retained,...payload,{name:'knowledge-health-entry.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(entryModule(oldMain)).toString('base64')}];
   assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
-  const metadata=metadataFor(current,settings,'knowledge-health-entry.mjs',process.env.GITHUB_SHA);
-  if(settings.bindings.some(b=>b.type==='secret_text')){
-   const versions=await cf('/accounts/'+account+'/workers/scripts/'+name+'/versions');
-   assert.equal(versions.items?.[0]?.id||versions[0]?.id,previousVersion,'Do not inherit secrets across an unowned staged version '+name);
-  }
-  const state={name,deployment,previousVersion,oldMain,modules,metadata,changes,originalHashes:summaries(current.modules)};
+  const metadata=metadataFor(current,settings,'knowledge-health-entry.mjs',process.env.GITHUB_SHA,previousVersion);
+  const state={name,deployment,previousVersion,oldMain,modules,metadata,changes,assets:current.assets,originalHashes:summaries(current.modules)};
   captured.push(state);
  }
  save('before',{source:process.env.GITHUB_SHA,version,routes:beforeRoutes,serving,workers:captured.map(s=>({name:s.name,deployment:s.deployment,mainModule:s.oldMain,moduleHashes:s.originalHashes,changes:s.changes})),baselineHashes:Object.entries(baselines).map(([path,page])=>({path,mainSHA256:hash(main(page.body))}))});
  // Stage every owner first. A failed stage never changes live traffic.
  for(const state of captured){
   assert.equal((await active(state.name)).id,state.deployment.id,'Current owner moved before upload '+state.name);
-  const form=new FormData();form.set('metadata',new Blob([JSON.stringify(state.metadata)],{type:'application/json'}));
-  for(const module of state.modules)form.set(module.name,new Blob([Buffer.from(module.content_base64,'base64')],{type:module.content_type||(/\.(mjs|js)$/.test(module.name)?'application/javascript+module':'application/octet-stream')}),module.name);
-  const uploaded=await cf('/accounts/'+account+'/workers/scripts/'+state.name+'/versions?bindings_inherit=strict','POST',form);state.versionId=uploaded.id;assert(state.versionId);
+  const uploaded=await cf('/accounts/'+account+'/workers/workers/'+state.name+'/versions?deploy=false','POST',{...state.metadata,modules:state.modules});state.versionId=uploaded.id;assert(state.versionId);
   const staged=await cf('/accounts/'+account+'/workers/workers/'+state.name+'/versions/'+state.versionId+'?include=modules');
   assert.deepEqual(summaries(staged.modules).sort((a,b)=>a.name.localeCompare(b.name)),summaries(state.modules).sort((a,b)=>a.name.localeCompare(b.name)),'Staged module bytes differ '+state.name);
+  assert.deepEqual(staged.assets,state.assets,'Existing static-asset configuration changed '+state.name);
   console.log('KNOWLEDGE_STAGED '+JSON.stringify({name:state.name,versionId:state.versionId,previousVersion:state.previousVersion,retainedModules:state.originalHashes.length,askChanges:state.changes.length}));
  }
  assert.deepEqual(await routeList(),beforeRoutes,'Routes moved during staging');

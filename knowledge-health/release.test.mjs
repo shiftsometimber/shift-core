@@ -44,7 +44,9 @@ test('serving owner selection handles scheme-specific and more specific path rul
 });
 test('new entry retains every named export and provider configuration without exposing secrets',()=>{
  const entry=entryModule('nested/current.mjs');assert(entry.includes('export * from "./nested/current.mjs"'));assert(entry.includes('withHealthKnowledgeWorker(original)'));
- const settings={compatibility_date:'2026-08-09',bindings:[{name:'KEY',type:'secret_text'},{name:'DB',type:'d1',id:'existing'}],observability:{enabled:true},assets:{existing:true}};
- const metadata=metadataFor({},settings,'knowledge-health-entry.mjs','source');
- assert.deepEqual(metadata.bindings,[{name:'KEY',type:'inherit',version_id:'latest'},{name:'DB',type:'d1',id:'existing'}]);assert.equal(metadata.keep_assets,true);assert.deepEqual(metadata.observability,settings.observability);
+ const settings={compatibility_date:'2026-08-09',bindings:[{name:'KEY',type:'secret_text'},{name:'DB',type:'d1',id:'existing'}]};
+ const active='e4391604-f970-4621-9311-319456b5c4ba',assets={config:{run_worker_first:true}};
+ const metadata=metadataFor({assets},settings,'knowledge-health-entry.mjs','source',active);
+ assert.deepEqual(metadata.bindings,[{name:'KEY',type:'inherit',version_id:active},{name:'DB',type:'inherit',version_id:active}]);assert.deepEqual(metadata.assets,assets);
+ assert.throws(()=>metadataFor({},settings,'knowledge-health-entry.mjs','source'));
 });
