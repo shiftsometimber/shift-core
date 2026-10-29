@@ -1,11 +1,14 @@
+import {productSearchMetadata,pageStructuredData} from './seo.mjs';
+import {editorialPresentation,storefrontGuideHTML} from './editorial.mjs';
+import {editorialStyles} from './editorial-styles.mjs';
 import {hubTemplate,shopTemplate} from './templates.mjs';
 import {styles} from './styles.mjs';
 import {categories,esc,filteredProducts,productCard,productDetail,sortChoices,sortAvailable,selectedSort} from './catalogue.mjs';
 export function renderContent(path,query,products=[]){
  if(path==='/shift-health')return {content:hubTemplate,title:'Men’s Health: Energy, Sleep & Wellbeing | SHIFT Health',description:'Straight-talking health information and practical support for ordinary men. Explore bloods, energy, sleep, wellbeing and everyday nutrition.'};
  const selected=query.get('product');
- if(selected){const p=products.find(x=>x.id===selected);return p?{content:productDetail(p),title:p.name+' | Supplements & Nutrition | SHIFT',description:p.description}:null;}
- let html=shopTemplate;
+ if(selected){const p=products.find(x=>x.id===selected);if(!p)return null;const metadata=productSearchMetadata(p);return {content:productDetail(p,products),title:metadata?.title||p.name+' | Supplements & Nutrition | SHIFT',description:metadata?.description||editorialPresentation(p).description};}
+ let html=shopTemplate.replace('<nav class="shop-categories"',storefrontGuideHTML+'<nav class="shop-categories"');
  const rows=filteredProducts(products,query),category=query.get('category')||'all';
  html=html.replace('<nav class="shop-categories" aria-label="Product categories" id="shop-categories"></nav>','<nav class="shop-categories" aria-label="Product categories" id="shop-categories">'+categories.map(([id,label])=>'<a class="category-option" '+(id===category?'aria-current="page" ':'')+'href="?category='+id+'#shop-categories">'+esc(label)+'</a>').join('')+'</nav>');
  html=html.replace('<div class="shop-toolbar">','<form class="shop-toolbar" method="get" action="/shift-health/supplements-nutrition"><input type="hidden" name="category" value="'+esc(category)+'">');
@@ -25,17 +28,23 @@ export function renderContent(path,query,products=[]){
  if(!rows.length)html=html.replace('id="shop-empty" hidden','id="shop-empty"');
  if(['sleep','vitamins'].includes(category))html=html.replace('No matching products.','More everyday support is on the way.').replace('Try another category or clear your filters.','We’re putting this part of the range together. Explore our other categories in the meantime.');
  html=html.replace('<button type="button" class="sst-action cursor-interaction" data-action="clear-filters">See the whole range →</button>','<a class="sst-action" href="/shift-health/supplements-nutrition">See the whole range →</a>');
- return {content:html,title:'Supplements & Nutrition | SHIFT Health',description:'Explore SHIFT’s proposed Supplements & Nutrition range. Food first, practical everyday extras and clear information about how each product fits your journey.'};
+ return {content:html,title:'Supplements & Nutrition | SHIFT Health',description:'Compare SHIFT’s proposed whey protein, creatine, hydration mixes and protein snacks. Understand their uses, limitations and everyday fit. Food first; extras optional.'};
 }
 export function renderDocument(shell,path,query,products=[]){
   const view=renderContent(path,query,products);if(!view)return null;
  if(!/<main\b[\s\S]*?<\/main>/i.test(shell))throw Error('Existing public shell has no main element');
  const canonical='https://shiftsometimber.co.uk'+path+(query.get('product')?'?product='+encodeURIComponent(query.get('product')):'');
+ const schemaProducts=query.get('product')?products:filteredProducts(products,query);
+ const structured=pageStructuredData(path,query,view,schemaProducts);
+ const shareImage=structured['@graph'][0].image;
  let html=shell.replace(/<main\b[\s\S]*?<\/main>/i,()=>'<main id="main-content" data-shift-health-approved="20261027"><div id="shift-health-range" class="sst-window">'+view.content+'</div></main>');
  html=html.replace(/<title>[\s\S]*?<\/title>/gi,'').replace(/<meta\b[^>]*(?:name|property)=["'](?:description|og:[^"']+|twitter:[^"']+)["'][^>]*>/gi,'').replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/gi,'');
  // Programme-specific structured data must not describe the new storefront.
  html=html.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'');
- html=html.replace('</head>','<title>'+esc(view.title)+'</title><meta name="description" content="'+esc(view.description)+'"><link rel="canonical" href="'+esc(canonical)+'"><meta property="og:title" content="'+esc(view.title)+'"><meta property="og:description" content="'+esc(view.description)+'"><meta property="og:url" content="'+esc(canonical)+'"><meta property="og:type" content="website"><meta property="og:image" content="https://shiftsometimber.co.uk/shift-health/assets/'+(path==='/shift-health'?'family-park':'nutrition-kitchen')+'.webp"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">'+JSON.stringify({'@context':'https://schema.org','@type':'CollectionPage',name:view.title,url:canonical}).replace(/</g,'\\u003c')+'</script><style data-health-nutrition="20261027">'+styles+'\n#shift-health-range .category-option{display:inline-block;border:1px solid #707762;border-radius:30px;padding:10px 15px;min-height:44px;font-size:13px}#shift-health-range .category-option[aria-current]{background:#e7e3da;color:#050505}#shift-health-range form.shop-toolbar{grid-template-columns:2fr 1fr 1fr 1fr}#shift-health-range .shop-toolbar>button{grid-column:1/-1;justify-self:start}@media(max-width:820px){#shift-health-range form.shop-toolbar{grid-template-columns:1fr 1fr}}\n</style></head>');
+ // A captured Health shell may already carry this component's stylesheet.
+ // Replace only that owned style so the new guide is scoped exactly once.
+ html=html.replace(/<style\b[^>]*data-health-nutrition=["']20261027["'][^>]*>[\s\S]*?<\/style>/gi,'');
+ html=html.replace('</head>','<title>'+esc(view.title)+'</title><meta name="description" content="'+esc(view.description)+'"><link rel="canonical" href="'+esc(canonical)+'"><meta property="og:title" content="'+esc(view.title)+'"><meta property="og:description" content="'+esc(view.description)+'"><meta property="og:url" content="'+esc(canonical)+'"><meta property="og:type" content="website"><meta property="og:image" content="'+esc(shareImage)+'"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'+esc(view.title)+'"><meta name="twitter:description" content="'+esc(view.description)+'"><meta name="twitter:image" content="'+esc(shareImage)+'"><script type="application/ld+json">'+JSON.stringify(structured).replace(/</g,'\\u003c')+'</script><style data-health-nutrition="20261027">'+styles+editorialStyles+'\n#shift-health-range .category-option{display:inline-block;border:1px solid #707762;border-radius:30px;padding:10px 15px;min-height:44px;font-size:13px}#shift-health-range .category-option[aria-current]{background:#e7e3da;color:#050505}#shift-health-range form.shop-toolbar{grid-template-columns:2fr 1fr 1fr 1fr}#shift-health-range .shop-toolbar>button{grid-column:1/-1;justify-self:start}@media(max-width:820px){#shift-health-range form.shop-toolbar{grid-template-columns:1fr 1fr}}\n</style></head>');
  // The accepted shell has strong presentation rules. Keep this approved
  // component scoped above those rules without changing the shared chrome.
  html=html.replace(/(<style data-health-nutrition="20261027">)([\s\S]*?)(<\/style>)/,(_,open,css,close)=>open+css.replace(/(?<!#main-content )#shift-health-range/g,'#main-content #shift-health-range').replace(/([\w-]+)\s*:\s*([^;{}]+)([;}])/g,(_,property,value,end)=>property+':'+value.trim()+(value.includes('!important')?'':'!important')+end)+'#main-content #shift-health-range #shop-categories{scroll-margin-top:180px!important}'+close);

@@ -1,0 +1,7 @@
+{
+  "verified": true,
+  "previousFullSettingsHash": "4e06c586b66078a322265e7a1ee1e45a1393d4061cc2f86b466035ec9d51bb2e",
+  "reconstructedOriginalHash": "4e06c586b66078a322265e7a1ee1e45a1393d4061cc2f86b466035ec9d51bb2e",
+  "ignoredField": "annotations",
+  "reason": "Version creation changes its message/tag/trigger metadata; functional settings and exact bindings match the prior full fingerprint."
+}

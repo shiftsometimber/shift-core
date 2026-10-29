@@ -1,0 +1,135 @@
+{
+  "passed": true,
+  "live": true,
+  "results": [
+    {
+      "supplementSitemap": true,
+      "canonicalLocations": 9,
+      "scope": "live"
+    },
+    {
+      "width": 1440,
+      "editorialProducts": [
+        "whey",
+        "clear",
+        "creatine",
+        "skill",
+        "sticks",
+        "tablets",
+        "crunch",
+        "chunky"
+      ],
+      "allProductGuides": true,
+      "sourcesVisible": true,
+      "searchMetadata": true,
+      "breadcrumbs": true,
+      "comparisonLinks": true,
+      "nativeQuestionsWork": true,
+      "approvedContrast": true
+    },
+    {
+      "width": 1440,
+      "hub": true,
+      "images": true,
+      "colours": true,
+      "shop": true,
+      "filters": true,
+      "productDetails": true,
+      "purchasingDisabled": true
+    },
+    {
+      "width": 736,
+      "editorialProducts": [
+        "whey",
+        "clear",
+        "creatine",
+        "skill",
+        "sticks",
+        "tablets",
+        "crunch",
+        "chunky"
+      ],
+      "allProductGuides": true,
+      "sourcesVisible": true,
+      "searchMetadata": true,
+      "breadcrumbs": true,
+      "comparisonLinks": true,
+      "nativeQuestionsWork": true,
+      "approvedContrast": true
+    },
+    {
+      "width": 736,
+      "hub": true,
+      "images": true,
+      "colours": true,
+      "shop": true,
+      "filters": true,
+      "productDetails": true,
+      "purchasingDisabled": true
+    },
+    {
+      "width": 390,
+      "editorialProducts": [
+        "whey",
+        "clear",
+        "creatine",
+        "skill",
+        "sticks",
+        "tablets",
+        "crunch",
+        "chunky"
+      ],
+      "allProductGuides": true,
+      "sourcesVisible": true,
+      "searchMetadata": true,
+      "breadcrumbs": true,
+      "comparisonLinks": true,
+      "nativeQuestionsWork": true,
+      "approvedContrast": true
+    },
+    {
+      "width": 390,
+      "hub": true,
+      "images": true,
+      "colours": true,
+      "shop": true,
+      "filters": true,
+      "productDetails": true,
+      "purchasingDisabled": true
+    },
+    {
+      "width": 320,
+      "editorialProducts": [
+        "whey",
+        "clear",
+        "creatine",
+        "skill",
+        "sticks",
+        "tablets",
+        "crunch",
+        "chunky"
+      ],
+      "allProductGuides": true,
+      "sourcesVisible": true,
+      "searchMetadata": true,
+      "breadcrumbs": true,
+      "comparisonLinks": true,
+      "nativeQuestionsWork": true,
+      "approvedContrast": true
+    },
+    {
+      "width": 320,
+      "hub": true,
+      "images": true,
+      "colours": true,
+      "shop": true,
+      "filters": true,
+      "productDetails": true,
+      "purchasingDisabled": true
+    },
+    {
+      "liveHQNavigation": true
+    }
+  ],
+  "errors": []
+}

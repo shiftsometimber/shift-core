@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {DatabaseSync} from 'node:sqlite';
 import {migrateCheckoutExtras} from '../checkout-extras/migrate.mjs';
+import {supplementSitemapPath} from './seo.mjs';
 const {default:worker}=await import(process.env.SHIFT_COMPILED_WORKER||'./worker.mjs');
 const require=createRequire(import.meta.url);
 const puppeteer=require(process.env.SHIFT_PUPPETEER_MODULE||'/Users/shiftsometimberltd/.npm/_npx/4b4c857f6efdfb61/node_modules/puppeteer/lib/puppeteer/puppeteer.js');
@@ -23,6 +24,12 @@ try{
  const env={DB,BLOG:{fetch:async()=>new Response(shell,{headers:{'Content-Type':'text/html'}})},CORE:{fetch:async()=>Response.json({user:{id:42,role:'owner'}})},HQ:{fetch:async()=>new Response(hqFixture,{headers:{'Content-Type':'text/html'}})}};
  async function pageFor(width,fixture=false){const page=await browser.newPage();await page.setBypassServiceWorker(true);await page.setViewport({width,height:1050,deviceScaleFactor:1});page.on('pageerror',error=>errors.push(error.message));if(!live||fixture){await page.setRequestInterception(true);page.on('request',async r=>{try{const u=new URL(r.url());const mocked=(u.hostname==='shiftsometimber.co.uk'&&(u.pathname==='/shift-health'||u.pathname==='/shift-health/supplements-nutrition'||u.pathname.startsWith('/shift-health/assets/')))||(fixture&&['hq.shiftsometimber.co.uk','api.shiftsometimber.co.uk'].includes(u.hostname));if(mocked){const headers={...r.headers()};if(u.hostname==='api.shiftsometimber.co.uk')headers.origin='https://hq.shiftsometimber.co.uk';const request=new Request(r.url(),{method:r.method(),headers,body:['GET','HEAD'].includes(r.method())?undefined:r.postData()});const response=await worker.fetch(request,env);await r.respond({status:response.status,headers:Object.fromEntries(response.headers),body:Buffer.from(await response.arrayBuffer())});}else await r.continue();}catch(e){errors.push(e.message);await r.abort();}});}return page;}
  async function fit(page){await page.$eval('#shift-health-range',r=>r.querySelectorAll('img').forEach(i=>i.loading='eager'));await page.waitForFunction(()=>[...document.querySelectorAll('#shift-health-range img')].every(i=>i.complete&&i.naturalWidth>0),{timeout:20000});const v=await page.evaluate(()=>({w:innerWidth,scroll:document.documentElement.scrollWidth,main:document.querySelector('#shift-health-range').getBoundingClientRect().width}));assert(v.scroll<=v.w+1,JSON.stringify(v));}
+ const sitemapURL='https://shiftsometimber.co.uk'+supplementSitemapPath;
+ const sitemapResponse=live?await fetch(sitemapURL):await worker.fetch(new Request(sitemapURL),env);
+ assert.equal(sitemapResponse.status,200);assert.match(sitemapResponse.headers.get('Content-Type'),/^application\/xml/);
+ const sitemapXML=await sitemapResponse.text(),sitemapLocations=[...sitemapXML.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+ assert.deepEqual(sitemapLocations,['https://shiftsometimber.co.uk/shift-health/supplements-nutrition',...seed.map(p=>'https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product='+p.id)]);
+ results.push({supplementSitemap:true,canonicalLocations:sitemapLocations.length,scope:live?'live':'compiled fixture'});
  for(const width of [1440,736,390,320]){
   const page=await pageFor(width);const response=await page.goto('https://shiftsometimber.co.uk/shift-health',{waitUntil:'domcontentloaded',timeout:45000});assert.equal(response.status(),200);await fit(page);
   assert.deepEqual(await page.$$eval('.sst-health-grid .sst-health-route',xs=>xs.map(x=>x.lastElementChild.textContent)),['Bloods','Energy & testosterone','Fertility','Hair & skin','Heart health','Mental wellbeing','Sleep','Supplements & Nutrition']);
@@ -39,6 +46,29 @@ try{
   await Promise.all([page.waitForNavigation({waitUntil:'domcontentloaded'}),page.click('a[href="?category=creatine#shop-categories"]')]);assert.equal(await page.$$eval('.shop-item',xs=>xs.length),2);
   await page.select('#shop-brand','Skill Nutrition');await page.$eval('form.shop-toolbar button',x=>x.scrollIntoView({block:'center'}));await Promise.all([page.waitForNavigation({waitUntil:'domcontentloaded'}),page.click('form.shop-toolbar button')]);assert.equal(await page.$$eval('.shop-item',xs=>xs.length),1);
   await Promise.all([page.waitForNavigation({waitUntil:'domcontentloaded'}),page.click('.shop-item h3 a')]);await fit(page);assert.match(await page.$eval('#shift-health-range h1',x=>x.textContent),/Micronised Creatine/);assert(await page.$('.shift-says'));assert(!await page.$('[data-add]'));
+  const editorialProducts=[];
+  for(const product of seed){
+   await page.goto('https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product='+product.id,{waitUntil:'domcontentloaded'});await fit(page);
+   assert.equal(await page.$eval('.product-content h1',x=>x.textContent),product.name);
+   const graph=await page.$eval('script[type="application/ld+json"]',x=>JSON.parse(x.textContent)['@graph']);
+   assert.equal(graph[0]['@type'],'WebPage');
+   assert.equal(graph[0].url,'https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product='+product.id);
+   assert.equal(graph.find(x=>x['@type']==='BreadcrumbList').itemListElement.length,3);
+   assert.equal((await page.$$('.supplement-comparisons a')).length,1);
+   assert.match(await page.title(),/SHIFT$/);
+   assert((await page.$$('.supplement-topic')).length>=5);
+   assert(await page.$('.supplement-sources time[datetime="2026-10-28"]'));
+   assert.equal((await page.$$('.supplement-questions details[open]')).length,0);
+   const first=await page.$('.supplement-questions summary');await first.evaluate(x=>x.scrollIntoView({block:'center'}));await first.click();
+   assert.equal((await page.$$('.supplement-questions details[open]')).length,1);
+   assert.match(await page.$eval('.range-notice',x=>x.innerText),/Not yet available to order/);
+   assert(!await page.$('[data-add]'));
+   assert.equal(await page.$eval('.supplement-topic',x=>getComputedStyle(x).backgroundColor),'rgb(231, 227, 218)');
+   assert.equal(await page.$eval('.supplement-topic',x=>getComputedStyle(x).color),'rgb(5, 5, 5)');
+   if([1440,390].includes(width)&&product.id==='whey')await (await page.$('#shift-health-range')).screenshot({path:out+'/product-whey-'+width+'.png'});
+   editorialProducts.push(product.id);
+  }
+  results.push({width,editorialProducts,allProductGuides:true,sourcesVisible:true,searchMetadata:true,breadcrumbs:true,comparisonLinks:true,nativeQuestionsWork:true,approvedContrast:true});
   await page.goto('https://shiftsometimber.co.uk/shift-health/supplements-nutrition?category=sleep',{waitUntil:'domcontentloaded'});assert.equal(await page.$$eval('.shop-item',xs=>xs.length),0);assert.match(await page.$eval('#shop-empty',x=>x.innerText),/More everyday support/);
   results.push({width,hub:true,images:true,colours:true,shop:true,filters:true,productDetails:true,purchasingDisabled:true});await page.close();
  }
