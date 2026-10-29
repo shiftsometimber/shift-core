@@ -36,7 +36,6 @@ import {newsSitemapDates,setSitemapDate} from './radar-editorial-trust-v1.js';
 import { addNewsroomMenu, NEWSROOM_MENU_SCRIPT } from './radar-newsroom-menu-v1.js';
 import { withNewsroomReading } from './radar-newsroom-discovery-v1.js';
 import {withPublicSeoCloseout} from './public-seo-closeout.mjs';
-import {withPublicHtmlCorrections} from './public-html-corrections.mjs';
 import {withKnowledgeAssetRepair} from './knowledge-heading-repair.mjs';
 import { grubWorkspaceRoutes } from "./member-experience/grub-routes.mjs";
 import {lifeBackRoutes} from './member-experience/life-back-routes.mjs';
@@ -1219,7 +1218,6 @@ export default {
     const response = await withPublicSeoCloseout(await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx))))),request);
     const final=await withFoodGuideDiscovery(request,await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env)));
     const corrected=await approvedComparisonAnswer(request,final);
-    const delivered=withPurchaseBasket(request,await withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,corrected):corrected)))),request));
-    return withPublicHtmlCorrections(request,await delivered);
+    return withPurchaseBasket(request,await withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,corrected):corrected)))),request));
   },
 };
