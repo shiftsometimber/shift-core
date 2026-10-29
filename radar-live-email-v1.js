@@ -8,6 +8,15 @@ const comparable=s=>String(s).replace(/\s+/g,' ').replace(/\s+([.,;:!?])/g,'$1')
 const enabled=env=>env.RADAR_NOTIFICATION_MODE==='publication_only'&&!env.RADAR_SUPPRESS_NOTIFICATIONS;
 const recipient=env=>String(env.RADAR_PUBLICATION_EMAIL_TO||'').trim();
 const iso=()=>new Date().toISOString();
+// An explicit per-article owner hold is independent of publication approval.
+// Keep it in the existing decision record, so scheduled recovery cannot send
+// a notification merely because an article has subsequently gone live.
+export const publicationEmailHeld=row=>/(?:^|\n)\[publication-email:hold\](?:\n|$)/.test(String(row?.review_note||''));
+const publicationEmailHoldSql="instr(char(10)||COALESCE(e.review_note,'')||char(10),char(10)||'[publication-email:hold]'||char(10))=0";
+async function holdQueuedEmail(env,id,token=null){
+ await env.DB.prepare("UPDATE radar_live_email SET status='held',last_error='owner_communication_hold' WHERE event_id=? AND status IN ('queued','failed','checking')"+(token?' AND claim_token=?':'')).bind(...(token?[id,token]:[id])).run();
+ return{sent:false,reason:'owner_communication_hold'};
+}
 export const LIVE_EMAIL_SCHEMA=`CREATE TABLE IF NOT EXISTS radar_live_email(event_id INTEGER PRIMARY KEY,recipient TEXT NOT NULL,content_json TEXT NOT NULL,evidence_json TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'queued',attempts INTEGER NOT NULL DEFAULT 0,next_attempt_at TEXT NOT NULL,claim_token TEXT,claimed_at TEXT,sent_at TEXT,provider_message_id TEXT,last_error TEXT,created_at TEXT NOT NULL)`;
 async function audit(env,id,action,detail){await env.DB.prepare('INSERT INTO radar_audit(event_id,action,actor,detail_json) VALUES(?,?,?,?)').bind(id,action,'radar_publication_email',JSON.stringify(detail)).run()}
 export function liveArticleEmail(row){
@@ -27,6 +36,7 @@ export async function queueLiveArticleEmail(env,id){
  const to=recipient(env);if(!/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(to))return{queued:false,reason:'recipient_not_configured'};
  await env.DB.prepare(LIVE_EMAIL_SCHEMA).run();const row=await currentArticle(env.DB,id);
  if(!row||row.status!=='published'||await pendingSourceChange(env.DB,id))return{queued:false,reason:'not_currently_published'};
+ if(publicationEmailHeld(row))return{queued:false,reason:'owner_communication_hold'};
  liveArticleEmail(row);
  const result=await env.DB.prepare("INSERT OR IGNORE INTO radar_live_email(event_id,recipient,content_json,evidence_json,next_attempt_at,created_at) SELECT ?,?,?,?,?,? WHERE EXISTS (SELECT 1 FROM radar_events WHERE id=? AND status='published' AND content_package_json=? AND source_evidence_json=?)").bind(id,to,row.content_package_json,row.source_evidence_json,iso(),iso(),id,row.content_package_json,row.source_evidence_json).run();
  return{queued:Number(result.meta?.changes)>0};
@@ -34,12 +44,14 @@ export async function queueLiveArticleEmail(env,id){
 export async function deliverLiveArticleEmail(env,id,{fetcher=fetch}={}){
  if(!enabled(env))return{sent:false,reason:'disabled'};
  if(!env.EMAIL?.send)return{sent:false,reason:'email_binding_unavailable'};
+ if(publicationEmailHeld(await currentArticle(env.DB,id)))return holdQueuedEmail(env,id);
  const token=crypto.randomUUID(),now=iso();
  const claimed=await env.DB.prepare("UPDATE radar_live_email SET status='checking',claim_token=?,claimed_at=?,attempts=attempts+1 WHERE event_id=? AND attempts<5 AND ((status IN ('queued','failed') AND next_attempt_at<=?) OR (status='checking' AND julianday(claimed_at)<julianday('now','-10 minutes'))) ").bind(token,now,id,now).run();
  if(!claimed.meta?.changes)return{sent:false,reason:'not_due_or_already_claimed'};
  let sending=false;
  try{
   const job=await env.DB.prepare('SELECT * FROM radar_live_email WHERE event_id=?').bind(id).first(),row=await currentArticle(env.DB,id);
+  if(publicationEmailHeld(row))return holdQueuedEmail(env,id,token);
   if(!row||row.status!=='published'||row.content_package_json!==job.content_json||row.source_evidence_json!==job.evidence_json||await pendingSourceChange(env.DB,id)){
    await env.DB.prepare("UPDATE radar_live_email SET status='cancelled',last_error='article_changed_or_withdrawn' WHERE event_id=? AND claim_token=?").bind(id,token).run();return{sent:false,reason:'article_changed_or_withdrawn'};
   }
@@ -48,7 +60,8 @@ export async function deliverLiveArticleEmail(env,id,{fetcher=fetch}={}){
   const body=await response.text(),text=body.replace(/<[^>]*>/g,' ').replace(/&#39;|&apos;/g,"'").replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ');
   if(!body.includes(message.original?'data-publisher-original':'data-shift-take')||!comparable(text).includes(comparable(message.title))||(!message.original&&!comparable(text).includes(comparable(message.take.replace(/ \(https:\/\/[^)]+\)/g,'')))))throw Error('public_page_copy_not_ready');
   if(await pendingSourceChange(env.DB,id))throw Error('source_changed_before_email');
-  const ready=await env.DB.prepare("UPDATE radar_live_email SET status='sending' WHERE event_id=? AND claim_token=? AND status='checking' AND EXISTS (SELECT 1 FROM radar_events e WHERE e.id=radar_live_email.event_id AND e.status='published' AND e.content_package_json=radar_live_email.content_json AND e.source_evidence_json=radar_live_email.evidence_json)").bind(id,token).run();
+  if(publicationEmailHeld(await currentArticle(env.DB,id)))return holdQueuedEmail(env,id,token);
+  const ready=await env.DB.prepare("UPDATE radar_live_email SET status='sending' WHERE event_id=? AND claim_token=? AND status='checking' AND EXISTS (SELECT 1 FROM radar_events e WHERE e.id=radar_live_email.event_id AND e.status='published' AND e.content_package_json=radar_live_email.content_json AND e.source_evidence_json=radar_live_email.evidence_json AND "+publicationEmailHoldSql+")").bind(id,token).run();
   if(!ready.meta?.changes)return{sent:false,reason:'article_changed_before_email'};
   sending=true;
   const result=await env.EMAIL.send({from:{email:String(env.ADMIN_EMAIL_FROM||'hq@shiftsometimber.co.uk'),name:'SHIFT Newsroom'},to:job.recipient,subject:message.subject,text:message.text,html:message.html});
@@ -75,3 +88,4 @@ export async function runLiveArticleEmails(env,{limit=5,fetcher=fetch}={}){
  const deliveries=[];for(const job of results)deliveries.push(await deliverLiveArticleEmail(env,job.event_id,{fetcher}));
  return{sent:deliveries.filter(x=>x.sent).length,deliveries};
 }
+
