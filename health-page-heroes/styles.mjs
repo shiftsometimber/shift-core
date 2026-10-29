@@ -39,5 +39,7 @@ html body main#main-content#main-content#main-content a.shh-cta{width:100%;font-
 html body main#main-content#main-content#main-content .shh-note{font-size:11px;margin-top:11px}
 html body main#main-content#main-content#main-content a.shh-urgent{font-size:13px;margin:0 0 18px;order:-1}
 }
+html body main#main-content#main-content#main-content :is(#prompt-heading,#compare-blood-tests,#understand,#your-next-step,#shop-categories){scroll-margin-top:150px}
+
 `;
 export const heroStyle=css.replace(/([a-z-]+):([^;{}]+)(?=[;}])/g,(_,key,value)=>key+':'+value.trim()+' !important');

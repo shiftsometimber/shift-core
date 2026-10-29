@@ -60,8 +60,8 @@
     {
       "source": "health-page-heroes/styles.mjs",
       "name": "health-page-heroes/styles.mjs",
-      "sha256": "3e3705940f101cba7c33a1a87f695726fceb0a086e45f96ccc622423872bd896",
-      "size": 7144
+      "sha256": "ca8e00bd0b716e6b29675471f8ac6293c9e2104e7a7778ca46edb8a172902234",
+      "size": 7311
     },
     {
       "source": "health-page-heroes/media-all.mjs",
@@ -113,9 +113,9 @@
     }
   ],
   "routing": "Seven page families on main and www HTTPS hostnames; exact canonical routes plus query-compatible prefix routes. Existing specific child routes retain precedence and unmatched child paths pass through to the original service.",
-  "expectedCurrentDeployment": "8ae368ce-96df-496b-95b5-af7d76fd2f22",
+  "expectedCurrentDeployment": "2b9ba3f0-1adf-4673-a405-e4d159ac7610",
   "expectedCurrentModuleHashes": {
-    "approved-health-heroes-entry.mjs": "3085c39541173f320bda10dd99802bd8587a0a29963b678a7c080f6f156b2f42",
+    "approved-health-heroes-entry.mjs": "4b06aa5c81886189f52ecf1b928e65d3994a97c61c78f38b82537c209578f245",
     "health-page-heroes/runtime.mjs": "fd25a64b4b080c447cc7798d7ba4718464a92e0675cf7ead3adc3479205ba916",
     "health-page-heroes/heroes.mjs": "3d9ef44f2ec598598df1c649b8145de5106869aea8694c10b871e34fa4a0a87e",
     "health-page-heroes/styles.mjs": "3e3705940f101cba7c33a1a87f695726fceb0a086e45f96ccc622423872bd896",
