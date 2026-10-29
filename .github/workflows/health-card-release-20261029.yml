@@ -1,0 +1,28 @@
+name: Approved nine-card Health release
+on:
+  push:
+    branches: [release/health-cards-approved-20261029]
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Inspect current Health ownership without changing production
+        run: node release/health-cards-20261029/preflight.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: health-card-release-${{ github.run_id }}
+          path: health-card-evidence/
+          retention-days: 90
