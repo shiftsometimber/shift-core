@@ -1,4 +1,5 @@
 import {requestTreatmentPatterns,patternAnswer} from './member-experience/treatment-patterns.mjs';
+import {healthKnowledgeAnswer,healthKnowledgeEvidence} from './knowledge-health/evidence.mjs';
 import {publicSiteStreamMessages} from './public-site-stream.mjs';
 import {publicAnswerCache} from './member-experience/ai-public-answer-cache.mjs';
 import {fastPublicAnswer,savedFactKind,savedFactAnswer} from './member-experience/ai-fast-answers.mjs';
@@ -80,6 +81,8 @@ export async function askTimberRoutes(request,env){
   if(quick)return json({ok:true,requestId,mode:'grounded',journeyUsed:false,...quick},200,request);
   const factKind=contextPilot?savedFactKind(message):null;
   const reviewedDirect=directReviewedAnswer(message);
+  const healthDirect=!wantsJourney&&!body?.history?.length?healthKnowledgeAnswer(message):null;
+  if(healthDirect)return json({ok:true,requestId,mode:'source_checked_health',...healthDirect},200,request);
   if(reviewedDirect&&!wantsJourney)return json({ok:true,requestId,mode:'reviewed_direct',confidence:'medium',...reviewedDirect},200,request);
   const requestParts=splitRequestParts(message);
   const [retrievedEvidence,journey]=await Promise.all([factKind?Promise.resolve([]):retrieveForParts(env,message,requestParts),requestMemberJourney(request,env,{...body,useJourney:wantsJourney},{memory:contextPilot&&env.SHIFT_AI_CONVERSATION_MEMORY==='true'})]);
@@ -251,7 +254,7 @@ async function retrieveForParts(env,message,parts){
     const key=String(item?.citation||item?.title||'')+'|'+clean(item?.content,240);
     if(seen.has(key))continue;seen.add(key);merged.push(item);
   }
-  const items=[...reviewedFoodEvidence(message),...foundationEvidence(message),...site,...reviewedSiteEvidence(message),...merged].slice(0,12);
+  const items=[...healthKnowledgeEvidence(message),...reviewedFoodEvidence(message),...foundationEvidence(message),...site,...reviewedSiteEvidence(message),...merged].slice(0,12);
   return items.length?items:contextPilotEnabled(env)?externalKnowledge(message,{fetcher:env.SHIFT_AI_EXTERNAL_FETCH||fetch}):[];
 }
 function reviewedSiteEvidence(query){const q=String(query||'').toLowerCase();return [...CLINIC_GONE_QUIET_PACK,...REVIEWED_SITE_EVIDENCE].filter(item=>item.terms.some(term=>q.includes(term))).map(item=>({title:item.title,content:item.content,authority:75,reviewState:'verified',citation:item.url,provenance:[{ref:item.url}]}));}
