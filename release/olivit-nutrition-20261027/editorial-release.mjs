@@ -109,7 +109,12 @@ async function rollback(){
  console.log('Restored only this component to its captured previous version.');
 }
 const action=process.argv[2];
-if(action==='prepare'){
+if(action==='settings'){
+ const settings=await cf('/accounts/'+account+'/workers/scripts/'+script+'/settings');
+ const safe=Object.fromEntries(Object.entries(settings).filter(([key])=>!['bindings','env'].includes(key)));
+ save('settings-structure',{keys:Object.keys(settings),nonBindingSettings:safe,bindingNames:(settings.bindings||[]).map(b=>({name:b.name,type:b.type}))});
+ console.log(JSON.stringify({keys:Object.keys(settings),nonBindingSettings:safe}));
+}else if(action==='prepare'){
  await sourceCurrent();
  const active=await deployment(script);assert.equal(active.versions[0].version_id,predecessor,'Serving composition changed again; preserve newer work before release');
  const current=await cf('/accounts/'+account+'/workers/workers/'+script+'/versions/'+predecessor+'?include=modules');
