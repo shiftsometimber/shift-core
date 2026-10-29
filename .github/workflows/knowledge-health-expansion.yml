@@ -43,5 +43,5 @@ jobs:
         if: always()
         with:
           name: knowledge-health-release-${{ github.run_id }}
-          path: knowledge-health-evidence/
+          path: knowledge-health-evidence/*.json
           retention-days: 90

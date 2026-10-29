@@ -1,0 +1,51 @@
+// Use Wrangler's content-addressing algorithm; keep completion tokens in memory.
+import assert from 'node:assert/strict';
+import {cpSync,mkdirSync,readdirSync,readFileSync,statSync,writeFileSync} from 'node:fs';
+import path from 'node:path';
+import {createRequire} from 'node:module';
+import {hash} from './release-helpers.mjs';
+const require=createRequire(import.meta.url),blake3=require('blake3-wasm');
+const mime={'.js':'application/javascript','.mjs':'application/javascript','.css':'text/css; charset=utf-8','.html':'text/html; charset=utf-8','.svg':'image/svg+xml','.txt':'text/plain; charset=utf-8','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg'};
+const code=/\.(?:js|mjs|css|svg|txt)$/;
+export async function uploadPreservedAssets({cf,account,name,save}){
+ const root='knowledge-health-evidence/current-assets';mkdirSync(root,{recursive:true});cpSync('frontend/member',root,{recursive:true});
+ const files=readdirSync(root,{recursive:true}).filter(file=>statSync(path.join(root,file)).isFile());
+ const checks=[],captures=[...files.filter(file=>code.test(file)).map(file=>'/'+file),'/assets/my-timber-layout.mjs'];
+ // Preserve newer public text assets byte-for-byte, including the separately
+ // deployed My Timber module; never substitute a login page for a source asset.
+ for(let i=0;i<captures.length;i+=8)await Promise.all(captures.slice(i,i+8).map(async pathname=>{
+  const response=await fetch('https://shiftsometimber.co.uk'+pathname,{redirect:'manual',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});
+  const type=response.headers.get('content-type')||'';
+  if(response.status!==200||type.includes('text/html'))return;
+  const bytes=Buffer.from(await response.arrayBuffer()),file=path.join(root,pathname.slice(1));assert(bytes.length<=25*1024*1024);
+  mkdirSync(path.dirname(file),{recursive:true});writeFileSync(file,bytes);checks.push({path:pathname,sha256:hash(bytes),contentType:type});
+ }));
+ const manifest={},byHash=new Map();
+ for(const file of readdirSync(root,{recursive:true})){
+  const absolute=path.join(root,file);if(!statSync(absolute).isFile())continue;
+  const bytes=readFileSync(absolute),extension=path.extname(file).slice(1);
+  const value=blake3.hash(bytes.toString('base64')+extension).toString('hex').slice(0,32);
+  manifest['/'+file.split(path.sep).join('/')]={hash:value,size:bytes.length};byHash.set(value,{file:absolute,extension,bytes:bytes.length});
+ }
+ const session=await cf('/accounts/'+account+'/workers/scripts/'+name+'/assets-upload-session','POST',{manifest});
+ assert(session.jwt);const buckets=session.buckets||[],missing=buckets.flat();
+ // All photographs/move images already belong to the existing source asset
+ // set. A new uncached binary is outside this text-content release.
+ for(const value of missing){const file=byHash.get(value);assert(file,'Unknown requested asset');assert(code.test(file.file),'An uncached binary would expand this Knowledge release: '+file.file);}
+ let completion=missing.length?null:session.jwt;
+ for(const bucket of buckets){
+  const form=new FormData();
+  for(const value of bucket){const file=byHash.get(value);form.append(value,new File([readFileSync(file.file).toString('base64')],value,{type:mime[path.extname(file.file)]||'application/octet-stream'}),value);}
+  const result=await cf('/accounts/'+account+'/workers/assets/upload?base64=true','POST',form,session.jwt);if(result.jwt)completion=result.jwt;
+ }
+ assert(completion,'Assets upload did not return a completion token');
+ save('assets',{fileCount:Object.keys(manifest).length,manifestSHA256:hash(JSON.stringify(manifest)),uploaded:missing.length,preservedLiveTextAssets:checks});
+ console.log('KNOWLEDGE_ASSETS '+JSON.stringify({files:Object.keys(manifest).length,uploaded:missing.length,preservedLiveTextAssets:checks.length}));
+ return {jwt:completion,checks};
+}
+export async function verifyPreservedAssets(checks){
+ for(let i=0;i<checks.length;i+=8)await Promise.all(checks.slice(i,i+8).map(async check=>{
+  const response=await fetch('https://shiftsometimber.co.uk'+check.path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});
+  assert.equal(response.status,200,check.path);assert.equal(hash(Buffer.from(await response.arrayBuffer())),check.sha256,'Live asset changed '+check.path);
+ }));
+}

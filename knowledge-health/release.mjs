@@ -7,6 +7,7 @@ import {guides,existing,version} from './content.mjs';
 import {ASSET} from './render.mjs';
 import {hash,routeOwner,patchAskModule,entryModule,metadataFor} from './release-helpers.mjs';
 import {get,main,cards,verifyLive} from './verify-live.mjs';
+import {uploadPreservedAssets,verifyPreservedAssets} from './release-assets.mjs';
 const account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed';
 const dir='knowledge-health-evidence';mkdirSync(dir,{recursive:true});
 const save=(name,value)=>writeFileSync(dir+'/'+name+'.json',JSON.stringify(value,null,2));
@@ -15,9 +16,9 @@ const payloadFiles=['content.mjs','expansion-content.mjs','evidence.mjs','produc
 const payload=payloadFiles.map(file=>({name:'knowledge-health/'+file,content_type:'application/javascript+module',content_base64:readFileSync('knowledge-health/'+file).toString('base64')}));
 assert(process.env.CLOUDFLARE_API_TOKEN,'Release credential missing');
 assert.equal(process.env.GITHUB_REF,'refs/heads/work/knowledge-health-expansion-20261029');
-async function cf(path,method='GET',body){
+async function cf(path,method='GET',body,bearer=process.env.CLOUDFLARE_API_TOKEN){
  const form=body instanceof FormData;
- const response=await fetch('https://api.cloudflare.com/client/v4'+path,{method,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,...(body&&!form?{'Content-Type':'application/json'}:{})},body:form?body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(60000)});
+ const response=await fetch('https://api.cloudflare.com/client/v4'+path,{method,headers:{Authorization:'Bearer '+bearer,...(body&&!form?{'Content-Type':'application/json'}:{})},body:form?body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(60000)});
  const data=await response.json();assert(response.ok&&data.success,'Provider '+method+' '+path+' failed '+JSON.stringify(data.errors?.map(e=>({code:e.code,message:e.message}))));return data.result;
 }
 const routeList=()=>cf('/zones/'+zone+'/workers/routes');
@@ -63,17 +64,23 @@ try{
   const modules=[...retained,...payload,{name:'knowledge-health-entry.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(entryModule(oldMain)).toString('base64')}];
   assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
   const metadata=metadataFor(current,settings,'knowledge-health-entry.mjs',process.env.GITHUB_SHA,previousVersion);
-  const state={name,deployment,previousVersion,oldMain,modules,metadata,changes,assets:current.assets,originalHashes:summaries(current.modules)};
+  const state={name,deployment,previousVersion,oldMain,modules,metadata,changes,assets:current.assets,bindings:current.bindings,originalHashes:summaries(current.modules)};
   captured.push(state);
  }
  save('before',{source:process.env.GITHUB_SHA,version,routes:beforeRoutes,serving,workers:captured.map(s=>({name:s.name,deployment:s.deployment,mainModule:s.oldMain,moduleHashes:s.originalHashes,changes:s.changes})),baselineHashes:Object.entries(baselines).map(([path,page])=>({path,mainSHA256:hash(main(page.body))}))});
  // Stage every owner first. A failed stage never changes live traffic.
  for(const state of captured){
   assert.equal((await active(state.name)).id,state.deployment.id,'Current owner moved before upload '+state.name);
+  if(state.assets){
+   assert.equal(state.name,'shift-core','Unexpected asset-bearing owner');
+   const assets=await uploadPreservedAssets({cf,account,name:state.name,save});
+   state.assetChecks=assets.checks;state.metadata.assets={...state.assets,jwt:assets.jwt};delete state.metadata.keep_assets;
+  }
   const uploaded=await cf('/accounts/'+account+'/workers/workers/'+state.name+'/versions?deploy=false','POST',{...state.metadata,modules:state.modules});state.versionId=uploaded.id;assert(state.versionId);
   const staged=await cf('/accounts/'+account+'/workers/workers/'+state.name+'/versions/'+state.versionId+'?include=modules');
   assert.deepEqual(summaries(staged.modules).sort((a,b)=>a.name.localeCompare(b.name)),summaries(state.modules).sort((a,b)=>a.name.localeCompare(b.name)),'Staged module bytes differ '+state.name);
   assert.deepEqual(staged.assets,state.assets,'Existing static-asset configuration changed '+state.name);
+  assert.deepEqual([...(staged.bindings||[])].sort((a,b)=>a.name.localeCompare(b.name)),[...(state.bindings||[])].sort((a,b)=>a.name.localeCompare(b.name)),'Active bindings changed '+state.name);
   console.log('KNOWLEDGE_STAGED '+JSON.stringify({name:state.name,versionId:state.versionId,previousVersion:state.previousVersion,retainedModules:state.originalHashes.length,askChanges:state.changes.length}));
  }
  assert.deepEqual(await routeList(),beforeRoutes,'Routes moved during staging');
@@ -89,9 +96,10 @@ try{
  // Bounded propagation wait; no second upload or unowned rollback on failure.
  for(let n=0;n<10;n++){const page=await get('/knowledge');if(page.headers['x-shift-health-knowledge']===version)break;await new Promise(resolve=>setTimeout(resolve,1500));}
  const live=await verifyLive(baselines);
+ for(const state of captured)if(state.assetChecks)await verifyPreservedAssets(state.assetChecks);
  assert.deepEqual(await routeList(),beforeRoutes,'The release must change zero routes');
  for(const state of captured)assert.equal((await active(state.name)).versions[0].version_id,state.versionId,'Another owner followed this release '+state.name);
- const receipt={...live,source:process.env.GITHUB_SHA,routeCount:beforeRoutes.length,routesChanged:0,workers:captured.map(s=>({name:s.name,versionId:s.versionId,previousVersion:s.previousVersion,retainedModules:s.originalHashes.length,askChanges:s.changes.length})),verifiedAt:new Date().toISOString()};
+ const receipt={...live,source:process.env.GITHUB_SHA,routeCount:beforeRoutes.length,routesChanged:0,preservedLiveAssets:captured.reduce((n,s)=>n+(s.assetChecks?.length||0),0),workers:captured.map(s=>({name:s.name,versionId:s.versionId,previousVersion:s.previousVersion,retainedModules:s.originalHashes.length,askChanges:s.changes.length})),verifiedAt:new Date().toISOString()};
  save('receipt',receipt);console.log('KNOWLEDGE_RELEASE '+JSON.stringify(receipt));
 }catch(error){
  save('failure',{message:error.message,stack:error.stack,promoted:promoted.map(s=>({name:s.name,versionId:s.versionId,previousVersion:s.previousVersion}))});
