@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Use a temporary owned prefix for actual-Worker preview, with guaranteed cleanup.
+# Verify the exact generated Worker under supported redirect semantics, then on the real preview.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
@@ -86,8 +86,8 @@ jobs:
       - name: Load the exact prior rollback receipt before reusing the scoped Worker
         uses: actions/download-artifact@v4
         with:
-          name: public-review-cloud-readiness-bfe6c3d469195a1297ca6ee8eb499f92e1af08ab
-          run-id: 40866557698
+          name: public-review-cloud-readiness-e091f566ed8058cd06613454043dd8068a863c08
+          run-id: 40867545912
           github-token: ${{ github.token }}
           path: previous-public-review/
       - name: Validate, release scoped public fixes and verify or roll back owned routes
