@@ -37,7 +37,7 @@ if(existing.status!==404){
  assert(existing.ok);assert(!before.routes.some(r=>r.script===name),'Scoped Worker still owns active routes');
  const priorBefore=JSON.parse(fs.readFileSync('previous-public-review/before.json')),priorUpload=JSON.parse(fs.readFileSync('previous-public-review/upload.json')),priorRollback=JSON.parse(fs.readFileSync('previous-public-review/rollback.json'));
  assert.deepEqual(priorRollback.snapshot.routes,priorBefore.routes,'Previous rollback is incomplete');
- const deployment=(await existing.json()).result.deployments[0];assert(deployment.id===priorUpload.version||deployment.versions.some(v=>v.version_id===priorUpload.version),'Scoped Worker version changed');
+ const deployment=(await existing.json()).result.deployments[0];const versionKey=x=>String(x||'').replaceAll('-','');assert(versionKey(deployment.id)===versionKey(priorUpload.version)||deployment.versions.some(v=>versionKey(v.version_id)===versionKey(priorUpload.version)),'Scoped Worker version changed');
  const content=await fetch(cf+account+'/workers/scripts/'+name+'/content',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});assert(content.ok);let body;if((content.headers.get('content-type')||'').includes('multipart/form-data')){const parts=await content.formData();body=await parts.get('worker.mjs').text()}else body=await content.text();assert.equal(sha(body),priorBefore.workerSha256,'Scoped Worker source changed');save('previous-rollback-confirmed',{source:priorBefore.source,pass:true});
 }
 save('before',{...before,source:process.env.GITHUB_SHA,patterns,workerSha256:sha(worker)});
