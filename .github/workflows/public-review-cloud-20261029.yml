@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Await rendered component readiness; background requests do not establish UI readiness.
+# Preserve exact Worker ownership across Cloudflare compact/UUID ID representations.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
