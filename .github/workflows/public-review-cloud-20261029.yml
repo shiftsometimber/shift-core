@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Run syntax-checked diagnostic against the exact unused Worker receipt.
+# Wait for bounded route propagation while preserving exact rollback ownership.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
