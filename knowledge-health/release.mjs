@@ -42,7 +42,7 @@ try{
  for(const path of ['/','/shift-health','/shift-health/testing','/shift-health/blood-tests','/shift-health/testosterone-energy','/shift-health/trt-explained','/shift-health/sleep-apnoea','/shift-health/supplements-nutrition','/shift-health/erectile-dysfunction']){
   const page=await get(path);assert.equal(page.status,200,'Existing page unavailable '+path);assert(main(page.body),'Existing main missing '+path);baselines[path]=page;
  }
- assert.equal(cards(baselines['/shift-health'].body).length,9,'Approved nine-card layer missing before staging');
+ assert.equal(cards(baselines['/shift-health'].body).length,10,'Current approved ten-card layer missing before staging');
  for(const name of names){
   const settings=await cf('/accounts/'+account+'/workers/scripts/'+name+'/settings');
   const deployment=await active(name),previousVersion=deployment.versions[0].version_id;

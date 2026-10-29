@@ -1,15 +1,20 @@
 // Use Wrangler's content-addressing algorithm; keep completion tokens in memory.
 import assert from 'node:assert/strict';
-import {cpSync,mkdirSync,readdirSync,readFileSync,statSync,writeFileSync} from 'node:fs';
+import {mkdirSync,readdirSync,readFileSync,statSync,writeFileSync} from 'node:fs';
 import path from 'node:path';
 import {createRequire} from 'node:module';
+import {execFileSync} from 'node:child_process';
 import {hash} from './release-helpers.mjs';
 const require=createRequire(import.meta.url),blake3=require('blake3-wasm');
 export const assetHash=(bytes,file)=>blake3.hash(bytes.toString('base64')+path.extname(file).slice(1)).toString('hex').slice(0,32);
 const mime={'.js':'application/javascript','.mjs':'application/javascript','.css':'text/css; charset=utf-8','.html':'text/html; charset=utf-8','.svg':'image/svg+xml','.txt':'text/plain; charset=utf-8','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg'};
 const code=/\.(?:js|mjs|css|svg|txt)$/;
 export async function uploadPreservedAssets({cf,account,name,save}){
- const root='knowledge-health-evidence/current-assets';mkdirSync(root,{recursive:true});cpSync('frontend/member',root,{recursive:true});
+ const root='knowledge-health-evidence/current-assets';mkdirSync(root,{recursive:true});
+ execFileSync('git',['fetch','--no-tags','origin','main'],{stdio:'inherit'});
+ const assetSource=execFileSync('git',['rev-parse','FETCH_HEAD'],{encoding:'utf8'}).trim();
+ const archive=execFileSync('git',['archive',assetSource,'frontend/member'],{maxBuffer:800*1024*1024});
+ execFileSync('tar',['-x','--strip-components=2','-C',root],{input:archive});
  const files=readdirSync(root,{recursive:true}).filter(file=>statSync(path.join(root,file)).isFile());
  const checks=[],captures=[...files.filter(file=>code.test(file)).map(file=>'/'+file),'/assets/my-timber-layout.mjs'];
  // Preserve newer public text assets byte-for-byte, including the separately
@@ -39,8 +44,8 @@ export async function uploadPreservedAssets({cf,account,name,save}){
   const result=await cf('/accounts/'+account+'/workers/assets/upload?base64=true','POST',form,session.jwt);if(result.jwt)completion=result.jwt;
  }
  assert(completion,'Assets upload did not return a completion token');
- save('assets',{fileCount:Object.keys(manifest).length,manifestSHA256:hash(JSON.stringify(manifest)),uploaded:missing.length,preservedLiveTextAssets:checks});
- console.log('KNOWLEDGE_ASSETS '+JSON.stringify({files:Object.keys(manifest).length,uploaded:missing.length,preservedLiveTextAssets:checks.length}));
+ save('assets',{assetSource,fileCount:Object.keys(manifest).length,manifestSHA256:hash(JSON.stringify(manifest)),uploaded:missing.length,preservedLiveTextAssets:checks});
+ console.log('KNOWLEDGE_ASSETS '+JSON.stringify({assetSource,files:Object.keys(manifest).length,uploaded:missing.length,preservedLiveTextAssets:checks.length}));
  return {jwt:completion,checks};
 }
 export async function verifyPreservedAssets(checks){
