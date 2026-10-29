@@ -1,6 +1,6 @@
 // Use Wrangler's content-addressing algorithm; keep completion tokens in memory.
 import assert from 'node:assert/strict';
-import {mkdirSync,readdirSync,readFileSync,statSync,writeFileSync} from 'node:fs';
+import {mkdirSync,readdirSync,readFileSync,statSync} from 'node:fs';
 import path from 'node:path';
 import {createRequire} from 'node:module';
 import {execFileSync} from 'node:child_process';
@@ -9,6 +9,17 @@ const require=createRequire(import.meta.url),blake3=require('blake3-wasm');
 export const assetHash=(bytes,file)=>blake3.hash(bytes.toString('base64')+path.extname(file).slice(1)).toString('hex').slice(0,32);
 const mime={'.js':'application/javascript','.mjs':'application/javascript','.css':'text/css; charset=utf-8','.html':'text/html; charset=utf-8','.svg':'image/svg+xml','.txt':'text/plain; charset=utf-8','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg'};
 const code=/\.(?:js|mjs|css|svg|txt)$/;
+export async function captureLiveAssetChecks(captures,fetcher=fetch){
+ const checks=[];
+ for(let i=0;i<captures.length;i+=8)await Promise.all(captures.slice(i,i+8).map(async pathname=>{
+  const response=await fetcher('https://shiftsometimber.co.uk'+pathname,{redirect:'manual',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});
+  const type=response.headers.get('content-type')||'';
+  if(response.status!==200||type.includes('text/html'))return;
+  const bytes=Buffer.from(await response.arrayBuffer());assert(bytes.length<=25*1024*1024);
+  checks.push({path:pathname,sha256:hash(bytes),contentType:type});
+ }));
+ return checks;
+}
 export async function uploadPreservedAssets({cf,account,name,save}){
  const root='knowledge-health-evidence/current-assets';mkdirSync(root,{recursive:true});
  execFileSync('git',['fetch','--no-tags','origin','main'],{stdio:'inherit'});
@@ -16,16 +27,11 @@ export async function uploadPreservedAssets({cf,account,name,save}){
  const archive=execFileSync('git',['archive',assetSource,'frontend/member'],{maxBuffer:800*1024*1024});
  execFileSync('tar',['-x','--strip-components=2','-C',root],{input:archive});
  const files=readdirSync(root,{recursive:true}).filter(file=>statSync(path.join(root,file)).isFile());
- const checks=[],captures=[...files.filter(file=>code.test(file)).map(file=>'/'+file),'/assets/my-timber-layout.mjs'];
- // Preserve newer public text assets byte-for-byte, including the separately
- // deployed My Timber module; never substitute a login page for a source asset.
- for(let i=0;i<captures.length;i+=8)await Promise.all(captures.slice(i,i+8).map(async pathname=>{
-  const response=await fetch('https://shiftsometimber.co.uk'+pathname,{redirect:'manual',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});
-  const type=response.headers.get('content-type')||'';
-  if(response.status!==200||type.includes('text/html'))return;
-  const bytes=Buffer.from(await response.arrayBuffer()),file=path.join(root,pathname.slice(1));assert(bytes.length<=25*1024*1024);
-  mkdirSync(path.dirname(file),{recursive:true});writeFileSync(file,bytes);checks.push({path:pathname,sha256:hash(bytes),contentType:type});
- }));
+ const captures=[...files.filter(file=>code.test(file)).map(file=>'/'+file),'/assets/my-timber-layout.mjs'];
+ // The retained runtime transforms some raw assets when serving them. Capture
+ // delivered bytes for verification; do not feed transformed bytes back into
+ // the raw asset namespace and apply the same transformation a second time.
+ const checks=await captureLiveAssetChecks(captures);
  const manifest={},byHash=new Map();
  for(const file of readdirSync(root,{recursive:true})){
   const absolute=path.join(root,file);if(!statSync(absolute).isFile())continue;

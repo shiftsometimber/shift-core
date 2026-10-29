@@ -105,6 +105,7 @@ try{
  // Bounded propagation wait; no second upload or unowned rollback on failure.
  for(let n=0;n<10;n++){const page=await get('/knowledge');if(page.headers['x-shift-health-knowledge']===version)break;await new Promise(resolve=>setTimeout(resolve,1500));}
  const live=await verifyLive(baselines);
+ save('live-pages',live);
  for(const state of captured)if(state.assetChecks)await verifyPreservedAssets(state.assetChecks);
  assert.deepEqual(await routeList(),beforeRoutes,'The release must change zero routes');
  for(const state of captured)assert.equal((await active(state.name)).versions[0].version_id,state.versionId,'Another owner followed this release '+state.name);
