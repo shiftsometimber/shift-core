@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
-import {resolve} from 'node:path';
+import {readFileSync,writeFileSync,mkdirSync,existsSync,readdirSync,statSync} from 'node:fs';
+import {resolve,extname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 
 export const PREDECESSOR='149f02a8-0b45-4e36-a6f9-425330476d36';
@@ -55,7 +55,7 @@ export async function execute(){
     const r=await fetch(url,{method,headers:{...headers,...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(60000)});
     const j=await r.json();assert(r.ok&&j.success,'Cloudflare '+method+' failed HTTP '+r.status+': '+JSON.stringify(j.errors));return j.result;
   };
-  const active=async()=>{const d=(await api(legacy+'/deployments')).deployments[0];assert.equal(d.versions.length,1);assert.equal(d.versions[0].percentage,100);return d;};
+  const active=async()=>{const d=(await api(legacy+'/deployments')).deployments[0];assert.equal(d.versions.reduce((n,v)=>n+v.percentage,0),100);return d;};
   const gh=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,'User-Agent':'SHIFT-prescription-release'},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json();};
   // Do not race a newer branch/main state or publish a candidate with failed checks.
   const main=await gh('/branches/main');assert.equal(main.commit.sha,'2260675faf5ae8c3adbf52ff2a4f1a8427a91884','Main moved; reconcile first');
@@ -117,11 +117,37 @@ export async function execute(){
   const publicPaths=['/','/member-login','/member/dashboard','/treatment-assessment','/terms'];
   const publicSnapshots=[];
   for(const path of publicPaths){const r=await fetch('https://shiftsometimber.co.uk'+path,{redirect:'manual',signal:AbortSignal.timeout(30000)});const b=Buffer.from(await r.arrayBuffer());publicSnapshots.push({path,status:r.status,sha256:digest(b)});}
+  // Check the existing browser code and styles as well as the public pages.
+  const assetPaths=readdirSync('frontend/member').filter(p=>/\.(?:js|mjs|css)$/.test(p)&&p!=='member-treatment-journey-v1.js').map(p=>'/'+p);
+  const browserAssets=[];
+  const checkAssets=async(overrides=null)=>{
+    const paths=overrides?browserAssets.map(x=>x.path):assetPaths,queue=[...paths],results=[];
+    await Promise.all(Array.from({length:6},async()=>{while(queue.length){const path=queue.shift();const r=await fetch('https://shiftsometimber.co.uk'+path,{headers:overrides||{},redirect:'manual',signal:AbortSignal.timeout(30000)});const bytes=Buffer.from(await r.arrayBuffer());if(overrides){const expected=browserAssets.find(x=>x.path===path);assert.equal(r.status,expected.status,path);assert.equal(digest(bytes),expected.sha256,'Existing browser asset changed: '+path);}else if(r.status===200)results.push({path,status:r.status,sha256:digest(bytes)});}}));
+    if(!overrides)browserAssets.push(...results);
+  };
+  await checkAssets();writeFileSync(out+'/browser-assets-before.json',JSON.stringify(browserAssets));
   const beforeCatalog=await fetch('https://api.shiftsometimber.co.uk/v1/catalogue/medicines',{signal:AbortSignal.timeout(30000)});const catalogStatus=beforeCatalog.status,catalog=await beforeCatalog.text();
   assert.equal((await active()).id,original.id,'Deployment moved before staging');
+  // The provider requires an explicit asset upload for version creation.
+  // Repackage the existing Git-authoritative asset tree; the tracker override
+  // remains the sole application asset change in this PR.
+  const manifestAssets={},byHash=new Map(),assetDir=resolve('frontend/member');
+  function collect(dir,prefix=''){
+    for(const name of readdirSync(dir)){if(name.startsWith('.'))continue;const file=dir+'/'+name,path=prefix+'/'+name,stat=statSync(file);if(stat.isDirectory()){collect(file,path);continue;}
+      const bytes=readFileSync(file),hash=createHash('sha256').update(bytes.toString('base64')+extname(name).slice(1)).digest('hex').slice(0,32);
+      manifestAssets[path]={hash,size:bytes.length};byHash.set(hash,file);
+    }
+  }
+  collect(assetDir);writeFileSync(out+'/asset-manifest.json',JSON.stringify(manifestAssets));
+  const session=await api(legacy+'/assets-upload-session','POST',{manifest:manifestAssets});let assetJwt=session.jwt;
+  const mime={js:'application/javascript',mjs:'application/javascript',css:'text/css',html:'text/html',json:'application/json',svg:'image/svg+xml',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',gif:'image/gif',ico:'image/x-icon',woff:'font/woff',woff2:'font/woff2',ttf:'font/ttf'};
+  for(const bucket of session.buckets||[]){const form=new FormData();for(const hash of bucket){const file=byHash.get(hash);assert(file);form.set(hash,new File([readFileSync(file).toString('base64')],hash,{type:mime[extname(file).slice(1)]||'application/octet-stream'}));}
+    const r=await fetch(account+'/workers/assets/upload?base64=true',{method:'POST',headers:{Authorization:'Bearer '+session.jwt},body:form,signal:AbortSignal.timeout(60000)}),j=await r.json();assert(r.ok&&j.success,'Static asset attachment failed '+r.status);if(j.result?.jwt)assetJwt=j.result.jwt;
+  }
+  assert(assetJwt);console.log('Prepared explicit existing asset manifest: '+Object.keys(manifestAssets).length+' files');
   // All existing resources, including secrets and assets, inherit from the
   // immutable serving version rather than an un-deployed latest upload.
-  const body={main_module:'shift-prescription-entry.mjs',modules,bindings:snapshot.version.resources.bindings.map(b=>({name:b.name,type:'inherit',version_id:PREDECESSOR})),compatibility_date:snapshot.immutable.compatibility_date,compatibility_flags:snapshot.immutable.compatibility_flags,keep_assets:true,usage_model:snapshot.immutable.usage_model,annotations:{'workers/message':'Matt-approved prescription lifecycle '+source,'workers/tag':'prescription-'+process.env.GITHUB_RUN_ID}};
+  const body={main_module:'shift-prescription-entry.mjs',modules,bindings:snapshot.version.resources.bindings.map(b=>({name:b.name,type:'inherit',version_id:PREDECESSOR})),compatibility_date:snapshot.immutable.compatibility_date,compatibility_flags:snapshot.immutable.compatibility_flags,assets:{...snapshot.immutable.assets,jwt:assetJwt},usage_model:snapshot.immutable.usage_model,annotations:{'workers/message':'Matt-approved prescription lifecycle '+source,'workers/tag':'prescription-'+process.env.GITHUB_RUN_ID}};
   const uploaded=await api(beta+'/versions?deploy=false','POST',body);writeFileSync(out+'/uploaded.json',JSON.stringify({source,version:uploaded.id,manifest}));
   const version=await api(legacy+'/versions/'+uploaded.id);assertPreservedVersion(originalVersion,version);
   const saved=await api(beta+'/versions/'+uploaded.id+'?include=modules');
@@ -132,6 +158,15 @@ export async function execute(){
   try{
     writeFileSync(out+'/promotion-intent.json',JSON.stringify({source,previousDeployment:original.id,previousVersion:PREDECESSOR,version:uploaded.id}));
     assert.equal((await gh('/branches/main')).commit.sha,main.commit.sha,'Main moved before promotion');
+    // Keep normal traffic on the predecessor while the candidate is checked
+    // with an explicit version override, before promoting it to 100 percent.
+    const zero=await api(legacy+'/deployments','POST',{strategy:'percentage',versions:[{version_id:PREDECESSOR,percentage:100},{version_id:uploaded.id,percentage:0}],annotations:{'workers/message':'Prescription candidate at zero percent for exact preservation checks'}});
+    owned=zero.id;writeFileSync(out+'/owned-deployment.json',JSON.stringify({source,deployment:owned,version:uploaded.id,previousVersion:PREDECESSOR,percentage:0}));
+    const override={'Cloudflare-Workers-Version-Overrides':'shift-core="'+uploaded.id+'"'};
+    let staged=false;for(let attempt=0;attempt<20;attempt++){const r=await fetch('https://shiftsometimber.co.uk/member-treatment-journey-v1.js?stage='+source,{headers:override,signal:AbortSignal.timeout(30000)});if(r.headers.get('X-Shift-Prescription-Source')===source){assert.equal(await r.text(),tracker);staged=true;break;}await r.arrayBuffer();await new Promise(resolve=>setTimeout(resolve,1000));}assert(staged,'Candidate version override was not applied');
+    for(const before of publicSnapshots){const r=await fetch('https://shiftsometimber.co.uk'+before.path,{headers:override,redirect:'manual',signal:AbortSignal.timeout(30000)});assert.equal(r.status,before.status);assert.equal(digest(Buffer.from(await r.arrayBuffer())),before.sha256,'Staged public response changed: '+before.path);}
+    await checkAssets(override);assert.equal((await active()).id,owned,'Another deployment owns traffic');
+    writeFileSync(out+'/zero-percent-proof.json',JSON.stringify({source,version:uploaded.id,browserAssetsVerified:browserAssets.length,publicPagesVerified:publicSnapshots.length,normalTrafficOnPredecessor:true}));
     const d=await api(legacy+'/deployments','POST',{strategy:'percentage',versions:[{version_id:uploaded.id,percentage:100}],annotations:{'workers/message':'Matt-approved prescription lifecycle '+source}});
     owned=d.id;writeFileSync(out+'/owned-deployment.json',JSON.stringify({source,deployment:owned,version:uploaded.id,previousVersion:PREDECESSOR}));
     const checks=[];
@@ -142,11 +177,11 @@ export async function execute(){
     for(const before of publicSnapshots){const r=await fetch('https://shiftsometimber.co.uk'+before.path,{redirect:'manual',signal:AbortSignal.timeout(30000)});assert.equal(r.status,before.status,before.path);assert.equal(digest(Buffer.from(await r.arrayBuffer())),before.sha256,'Unrelated public response changed: '+before.path);}
     const afterCatalog=await fetch('https://api.shiftsometimber.co.uk/v1/catalogue/medicines',{signal:AbortSignal.timeout(30000)});assert.equal(afterCatalog.status,catalogStatus);assert.equal(await afterCatalog.text(),catalog,'Catalogue changed');
     assert.equal((await active()).id,owned);assertPreservedVersion(originalVersion,await api(legacy+'/versions/'+uploaded.id));same(await api(legacy+'/script-settings'),settings,'Worker settings changed');
-    writeFileSync(out+'/verified-live.json',JSON.stringify({source,deployment:owned,version:uploaded.id,previousVersion:PREDECESSOR,checks,anonymousDenied:true,publicResponsesExact:publicSnapshots,cataloguePreserved:true,bindingsPreserved:true,originalModulesPreserved:true,partnerActivated:false,verifiedAt:new Date().toISOString()},null,2));
+    writeFileSync(out+'/verified-live.json',JSON.stringify({source,deployment:owned,version:uploaded.id,previousVersion:PREDECESSOR,checks,browserAssetsVerified:browserAssets.length,anonymousDenied:true,publicResponsesExact:publicSnapshots,cataloguePreserved:true,bindingsPreserved:true,originalModulesPreserved:true,partnerActivated:false,verifiedAt:new Date().toISOString()},null,2));
     console.log('VERIFIED prescription lifecycle '+source+' deployment '+owned);
   }catch(error){
     const current=await active();
-    if(current.versions[0].version_id===uploaded.id&&(owned===null||current.id===owned)){
+    if(current.versions.some(v=>v.version_id===uploaded.id)&&(owned===null||current.id===owned)){
       const rollback=await api(legacy+'/deployments','POST',{strategy:'percentage',versions:[{version_id:PREDECESSOR,percentage:100}],annotations:{'workers/message':'Prescription verification failed; restore owned predecessor without data restoration'}});
       assert.equal((await active()).versions[0].version_id,PREDECESSOR);writeFileSync(out+'/rollback.json',JSON.stringify({source,deployment:rollback.id,restoredVersion:PREDECESSOR,error:error.message}));
     }
@@ -159,7 +194,7 @@ async function rollbackInterrupted(){
   const base='https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-core/deployments';
   const headers={Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,'Content-Type':'application/json'};
   const response=await fetch(base,{headers});assert(response.ok);const current=(await response.json()).result.deployments[0];
-  if(current.versions.length!==1||current.versions[0].version_id!==intent.version)return;
+  if(!current.versions.some(v=>v.version_id===intent.version))return;
   if(existsSync(out+'/owned-deployment.json'))assert.equal(current.id,JSON.parse(readFileSync(out+'/owned-deployment.json')).deployment,'A newer deployment owns traffic; refuse rollback');
   const restored=await fetch(base,{method:'POST',headers,body:JSON.stringify({strategy:'percentage',versions:[{version_id:PREDECESSOR,percentage:100}],annotations:{'workers/message':'Restore only interrupted owned prescription promotion'}})});assert(restored.ok);
   writeFileSync(out+'/interrupted-rollback.json',JSON.stringify({source:intent.source,restoredVersion:PREDECESSOR}));
