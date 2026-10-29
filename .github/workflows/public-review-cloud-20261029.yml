@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Verify the exact generated Worker under supported redirect semantics, then on the real preview.
+# Validate the real Worker preview before spending time on unchanged browser cases.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
@@ -86,8 +86,8 @@ jobs:
       - name: Load the exact prior rollback receipt before reusing the scoped Worker
         uses: actions/download-artifact@v4
         with:
-          name: public-review-cloud-readiness-e091f566ed8058cd06613454043dd8068a863c08
-          run-id: 40867545912
+          name: public-review-cloud-readiness-7ad242b14230228e3a44dfa336bb0a49a7bfe612
+          run-id: 40868302159
           github-token: ${{ github.token }}
           path: previous-public-review/
       - name: Validate, release scoped public fixes and verify or roll back owned routes
