@@ -48,7 +48,7 @@ jobs:
           import assert from 'node:assert/strict';
           import {readFileSync,writeFileSync} from 'node:fs';
           const rows=JSON.parse(readFileSync('scheduled-editorial-production-proof/deployments.json','utf8'));
-          const latest=rows[0];
+          const latest=rows.at(-1);
           assert.equal(latest.versions?.length,1);
           assert.equal(latest.versions[0].version_id,process.env.VERSION_ID);
           assert.equal(latest.versions[0].percentage,100);
