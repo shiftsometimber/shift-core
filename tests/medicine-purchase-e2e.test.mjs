@@ -162,14 +162,20 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.equal(journeyComplete.status,200);
     assert.equal((await journeyComplete.json()).completed,1);
 
-    for(const status of ['dispensing','dispatched']){
-      const transition=await medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/treatment-status',{orderNumber:checkout.orderNumber,status}),env,{});
+    const skippedPrescription=await medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/treatment-status',{orderNumber:checkout.orderNumber,status:'dispensing',eventReference:'skip-event',prescriptionReference:'rx-e2e',occurredAt:'2026-09-06T12:00:00Z'}),env,{});
+    assert.equal(skippedPrescription.status,409);
+    for(const status of ['prescription_signed','sent_to_pharmacy','pharmacy_received','dispensing','dispatched']){
+      const transition=await medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/treatment-status',{orderNumber:checkout.orderNumber,status,eventReference:'event-'+status,prescriptionReference:'rx-e2e',occurredAt:'2026-09-06T12:00:00.000Z',...(status==='prescription_signed'?{signedRecordReference:'signed-record-e2e',prescriberReference:'prescriber-e2e',prescription:{medicineName:'Mounjaro',strengthLabel:'2.5 mg',formulation:'Injection',directions:'As prescribed',quantity:'1 pen'}}:{}),...(status==='pharmacy_received'?{pharmacyReceiptReference:'receipt-e2e'}:{})}),env,{});
       assert.equal(transition.status,200,status);
     }
-    const fulfilled=await medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/treatment-status',{orderNumber:checkout.orderNumber,status:'fulfilled',reorderEligibleAt:'2026-09-01T00:00:00.000Z'}),env,{});
+    const fulfilled=await medicineCommerceRoutes(partnerRequest('/v1/integrations/pharmacy/treatment-status',{orderNumber:checkout.orderNumber,status:'fulfilled',eventReference:'event-fulfilled',prescriptionReference:'rx-e2e',occurredAt:'2026-09-06T12:00:00.000Z',reorderEligibleAt:'2026-09-01T00:00:00.000Z'}),env,{});
     assert.equal(fulfilled.status,200);
     tracker=await (await medicineCommerceRoutes(memberRequest('/v1/treatment/orders'),env,{})).json();
     assert.equal(tracker.orders[0].clinicalStatus,'fulfilled');
+    assert.equal(tracker.orders[0].prescription.reference,'rx-e2e');
+    assert.equal(tracker.orders[0].prescription.pharmacyReceivedAt,'2026-09-06T12:00:00.000Z');
+    assert.ok(!JSON.stringify(tracker).includes('signed-record-e2e'));
+    assert.equal((await DB.prepare('SELECT pharmacy_receipt_reference FROM medicine_orders WHERE order_number=?').bind(checkout.orderNumber).first()).pharmacy_receipt_reference,'receipt-e2e');
     assert.equal(tracker.orders[0].journeySetupRequired,false);
     assert.equal(tracker.orders[0].journeySetupComplete,true);
     assert.equal(tracker.orders[0].canReorder,true);
@@ -181,6 +187,12 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.deepEqual(JSON.parse(storedIntake.evidence_manifest_json),{photoId:true,bodyFront:true,bodySide:true});
     assert.equal(storedIntake.gp_contact_consent,1);
     assert.equal(storedIntake.status,'verified');
+    const changedPrescription={medicineName:'Clinician-selected alternative',strengthLabel:'Changed strength'};
+    await DB.prepare('UPDATE medicine_orders SET prescription_json=? WHERE order_number=?').bind(JSON.stringify(changedPrescription),checkout.orderNumber).run();
+    const unsafeRepeat=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,reorderOfOrderNumber:checkout.orderNumber,insulinUse:'no',eligibility:{heightCm:173,weightKg:92.4,weightRelatedCondition:'no'}})}),env,{});
+    assert.equal(unsafeRepeat.status,409);
+    assert.equal((await unsafeRepeat.json()).error,'repeat_requires_clinical_reconciliation');
+
   }finally{
     globalThis.fetch=outbound;
     DB.close();
@@ -365,3 +377,4 @@ test('unknown and duplicated answers cannot be silently dropped',async()=>{
     const duplicate=completeIntake();duplicate.append('medicines','contradictory second answer');assert.equal((await submit(duplicate)).status,400);assert.equal(calls.length,0);
   });
 });
+

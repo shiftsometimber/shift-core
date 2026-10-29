@@ -1,5 +1,7 @@
 # Pharmacy → My Timber integration contract V1
 
+The 29 October 2026 shared prescription receipt stages and provisional callback contract are specified in [PRESCRIPTION-WORKFLOW-V1.md](PRESCRIPTION-WORKFLOW-V1.md). New workflow-version-1 orders require signed, sent and pharmacy-received confirmations before dispensing.
+
 Medicines must remain out of stock until this contract has passed against the chosen pharmacy and live-mode Stripe configuration.
 
 ## Member journey
@@ -75,6 +77,9 @@ Allowed states:
 - `declined`
 - `refund_pending`
 - `refunded`
+- `prescription_signed`
+- `sent_to_pharmacy`
+- `pharmacy_received`
 - `dispensing`
 - `dispatched`
 - `fulfilled`
@@ -188,3 +193,4 @@ These are **reviewable proposed prompts**, not displayed additions, approved cli
 | Joined GP/assessment browser journeys | 24/24 passed using the actual GP runtime, Chromium 380/1440 and WebKit 380; terminal 2026-10-16T22:26:27.942Z. Explicit contact reuse and saved-GP request/confirmation, directory/manual selection, separate unticked consent, conditional answers, one submission, refresh, real browser Back, secure same-case clarification, stock closure and stale cross-account contact-response suppression. Earlier 15-case receipt and insecure-fixture failure remain retained for their original source. | Synthetic routes/responses; page lifecycle/account-change simulation is labelled. No physical device, live account or real partner acceptance. |
 | Required release checks / merge / production | Standard source admission rejected the unregistered paths as expected; original failure retained. A bounded direct registration against accepted GP code has a genuine native Git admission PASS (private 4c77dc30/89b5b83c, 5.044 seconds); nine release-safety and 14 privacy checks pass. The later explicit-GP-reuse changes still need final source registration and qualification. | No deployed or live questionnaire claim; prior-source proofs do not qualify a changed candidate automatically. |
 | Genuine partner test | Not run; required provider contract/access absent | Questionnaire completeness and full integration readiness remain unproved. |
+

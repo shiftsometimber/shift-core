@@ -1,0 +1,25 @@
+name: Prescription workflow checks
+on:
+  pull_request:
+    paths:
+      - 'prescription-workflow-v1.mjs'
+      - 'medicine-commerce-v1.js'
+      - 'frontend/member/member-treatment-journey-v1.js'
+      - 'tests/prescription-workflow-v1.test.mjs'
+      - 'tests/medicine-purchase-e2e.test.mjs'
+      - '.github/workflows/prescription-workflow-check.yml'
+jobs:
+  receipts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check prescription module and member client syntax
+        run: |
+          node --check prescription-workflow-v1.mjs
+          node --check medicine-commerce-v1.js
+          node --check frontend/member/member-treatment-journey-v1.js
+      - name: Verify synthetic lifecycle and existing medicine regressions
+        run: node --test tests/prescription-workflow-v1.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/medicine-intake-sqlite.test.mjs tests/pharmacy-handover-v1.test.mjs tests/medicine-intake-continuity.test.mjs tests/medicine-stripe-retry-v1.test.mjs
