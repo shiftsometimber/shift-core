@@ -21,7 +21,12 @@ export function assertPredecessor(snapshot){
 export function assertPreservedVersion(before,after){
   const bindings=x=>x.resources.bindings.slice().sort((a,b)=>a.name.localeCompare(b.name));
   same(bindings(before),bindings(after),'Every live binding must remain identical');
-  const runtime=v=>{const r=structuredClone(v.resources.script_runtime);if(r.migrations){const m=r.migrations;assert.equal(m.old_tag,m.new_tag,'Storage migration tag must not change');assert(m.new_tag);for(const [key,value]of Object.entries(m))if(!['old_tag','new_tag'].includes(key))assert(value===null||(Array.isArray(value)&&value.length===0),'A storage migration must not run: '+key);r.migration_tag=m.new_tag;delete r.migrations;}if(r.assets)r.assets={...r.assets,html_handling:r.assets.html_handling??'auto-trailing-slash',not_found_handling:r.assets.not_found_handling??'none'};return r;};
+  // A fresh version without migrations omits the prior migration-tag receipt.
+  // It must not carry any migration operation, and every existing namespace
+  // binding has already been compared in full above.
+  assert(!after.resources.script_runtime.migrations,'Candidate must not contain storage migrations');
+  const priorTag=before.resources.script_runtime.migration_tag;
+  const runtime=v=>{const r=structuredClone(v.resources.script_runtime);if(r.migration_tag===undefined&&priorTag!==undefined)r.migration_tag=priorTag;if(r.assets)r.assets={...r.assets,html_handling:r.assets.html_handling??'auto-trailing-slash',not_found_handling:r.assets.not_found_handling??'none'};return r;};
   same(runtime(before),runtime(after),'Every effective runtime setting must remain identical');
 }
 export function wrapperSource(entry,source,tracker){
@@ -148,7 +153,7 @@ export async function execute(){
   assert(assetJwt);console.log('Prepared explicit existing asset manifest: '+Object.keys(manifestAssets).length+' files');
   // All existing resources, including secrets and assets, inherit from the
   // immutable serving version rather than an un-deployed latest upload.
-  const body={migrations:{old_tag:snapshot.version.resources.script_runtime.migration_tag,new_tag:snapshot.version.resources.script_runtime.migration_tag,steps:[]},main_module:'shift-prescription-entry.mjs',modules,bindings:snapshot.version.resources.bindings.map(b=>({name:b.name,type:'inherit',version_id:PREDECESSOR})),compatibility_date:snapshot.immutable.compatibility_date,compatibility_flags:snapshot.immutable.compatibility_flags,assets:{...snapshot.immutable.assets,jwt:assetJwt},usage_model:snapshot.immutable.usage_model,annotations:{'workers/message':'Matt-approved prescription lifecycle '+source,'workers/tag':'prescription-'+process.env.GITHUB_RUN_ID}};
+  const body={main_module:'shift-prescription-entry.mjs',modules,bindings:snapshot.version.resources.bindings.map(b=>({name:b.name,type:'inherit',version_id:PREDECESSOR})),compatibility_date:snapshot.immutable.compatibility_date,compatibility_flags:snapshot.immutable.compatibility_flags,assets:{...snapshot.immutable.assets,jwt:assetJwt},usage_model:snapshot.immutable.usage_model,annotations:{'workers/message':'Matt-approved prescription lifecycle '+source,'workers/tag':'prescription-'+process.env.GITHUB_RUN_ID}};
   const uploaded=await api(beta+'/versions?deploy=false','POST',body);writeFileSync(out+'/uploaded.json',JSON.stringify({source,version:uploaded.id,manifest}));
   const version=await api(legacy+'/versions/'+uploaded.id);assertPreservedVersion(originalVersion,version);
   const saved=await api(beta+'/versions/'+uploaded.id+'?include=modules');
@@ -173,7 +178,7 @@ export async function execute(){
     owned=d.id;writeFileSync(out+'/owned-deployment.json',JSON.stringify({source,deployment:owned,version:uploaded.id,previousVersion:PREDECESSOR}));
     const checks=[];
     for(const host of ['shiftsometimber.co.uk','www.shiftsometimber.co.uk']){
-      const r=await fetch('https://'+host+'/member-treatment-journey-v1.js?release='+source,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);assert.equal(await r.text(),tracker);assert.equal(r.headers.get('X-Shift-Prescription-Source'),source);checks.push({host,trackerExact:true});
+      let response;for(let attempt=0;attempt<30;attempt++){const r=await fetch('https://'+host+'/member-treatment-journey-v1.js?release='+source,{signal:AbortSignal.timeout(30000)});if(r.headers.get('X-Shift-Prescription-Source')===source){response=r;break;}await r.arrayBuffer();await new Promise(resolve=>setTimeout(resolve,1000));}assert(response,'Production propagation did not reach '+host);assert.equal(response.status,200);assert.equal(await response.text(),tracker);checks.push({host,trackerExact:true});
     }
     const denied=await fetch('https://api.shiftsometimber.co.uk/v1/treatment/orders',{signal:AbortSignal.timeout(30000)});assert.equal(denied.status,401);assert.equal(denied.headers.get('X-Shift-Prescription-Source'),source);
     for(const before of publicSnapshots){const r=await fetch('https://shiftsometimber.co.uk'+before.path,{redirect:'manual',signal:AbortSignal.timeout(30000)});assert.equal(r.status,before.status,before.path);assert.equal(digest(Buffer.from(await r.arrayBuffer())),before.sha256,'Unrelated public response changed: '+before.path);}
