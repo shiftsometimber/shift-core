@@ -43,7 +43,7 @@ export async function deliverLiveArticleEmail(env,id,{fetcher=fetch}={}){
   if(!row||row.status!=='published'||row.content_package_json!==job.content_json||row.source_evidence_json!==job.evidence_json||await pendingSourceChange(env.DB,id)){
    await env.DB.prepare("UPDATE radar_live_email SET status='cancelled',last_error='article_changed_or_withdrawn' WHERE event_id=? AND claim_token=?").bind(id,token).run();return{sent:false,reason:'article_changed_or_withdrawn'};
   }
-  const message=liveArticleEmail(row),response=await fetcher(message.url,{redirect:'error',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)});
+  const message=liveArticleEmail(row),response=await fetcher(message.url,{redirect:'manual',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)});
   if(!response.ok)throw Error('public_page_http_'+response.status);
   const body=await response.text(),text=body.replace(/<[^>]*>/g,' ').replace(/&#39;|&apos;/g,"'").replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ');
   if(!body.includes(message.original?'data-publisher-original':'data-shift-take')||!comparable(text).includes(comparable(message.title))||(!message.original&&!comparable(text).includes(comparable(message.take.replace(/ \(https:\/\/[^)]+\)/g,'')))))throw Error('public_page_copy_not_ready');
