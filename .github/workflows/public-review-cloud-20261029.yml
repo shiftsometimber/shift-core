@@ -83,6 +83,13 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/public-review-runtime" --no-audit --no-fund playwright@1.56.1
           "$RUNNER_TEMP/public-review-runtime/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Load the exact prior rollback receipt before reusing the scoped Worker
+        uses: actions/download-artifact@v4
+        with:
+          name: public-review-cloud-readiness-37e08d45abeb40bbea7feca27c8e7d06c42e58bb
+          run-id: 40865187731
+          github-token: ${{ github.token }}
+          path: previous-public-review/
       - name: Validate, release scoped public fixes and verify or roll back owned routes
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
