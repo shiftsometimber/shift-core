@@ -71,8 +71,9 @@ async function main(){
  }
  const after=mode==='--apply'?first('SELECT id,slug,status,body,publish_at,updated_at FROM knowledge_articles WHERE id=? AND slug=?',[ARTICLE_ID,SLUG]):{...before,body:corrected};
  assert.equal(hash(after.body),afterHash);assert.equal(after.publish_at,before.publish_at);
- mkdirSync('nightly-article-proof',{recursive:true});
- writeFileSync('nightly-article-proof/mounjaro-injection-sites-correction.json',JSON.stringify({ok:true,mode,id:ARTICLE_ID,slug:SLUG,publish_at:after.publish_at,before_sha256:BEFORE_SHA256,after_sha256:afterHash,updated_at:after.updated_at,copy_approval_required:true,qualified_clinical_review_required:true},null,2)+'\n');
+ const proofDir=process.env.PROOF_DIR||'nightly-article-proof';
+ mkdirSync(proofDir,{recursive:true});
+ writeFileSync(proofDir+'/mounjaro-injection-sites-correction.json',JSON.stringify({ok:true,mode,id:ARTICLE_ID,slug:SLUG,publish_at:after.publish_at,before_sha256:BEFORE_SHA256,after_sha256:afterHash,updated_at:after.updated_at,copy_approval_required:true,qualified_clinical_review_required:true},null,2)+'\n');
  console.log(JSON.stringify({ok:true,mode,id:ARTICLE_ID,slug:SLUG,beforeSha256:BEFORE_SHA256,afterSha256:afterHash,publishAt:after.publish_at}));
 }
 if(process.argv[1]&&pathToFileURL(process.argv[1]).href===import.meta.url)await main();
