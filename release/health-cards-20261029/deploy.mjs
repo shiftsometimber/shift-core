@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import path from 'node:path';
 import {cards,transformHTML,extractLinks,release} from './cards.mjs';
 const account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed',worker='shift-health-nutrition-20261027';
 const dir='health-card-evidence';fs.mkdirSync(dir,{recursive:true});
@@ -17,8 +18,17 @@ try{
  const settings=await cf('/accounts/'+account+'/workers/scripts/'+worker+'/settings');
  const original=await cf('/accounts/'+account+'/workers/workers/'+worker+'/versions/'+oldId+'?include=modules');
  assert(original.modules?.length,'Provider did not return the active modules');
- const js=original.modules.filter(m=>/\.(js|mjs)$/.test(m.name));assert.equal(js.length,1,'Preserve only a known single-module predecessor');
- const oldMain=js[0].name;assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
+ const js=original.modules.filter(m=>/\.(js|mjs)$/.test(m.name));
+ // Preserve the current wrapper graph, including the independently deployed
+ // Fertility fix. Prefer the provider entry point; otherwise require a unique
+ // unreferenced ES module entry in the exact captured module graph.
+ const referenced=new Set();
+ for(const m of js){const code=Buffer.from(m.content_base64,'base64').toString('utf8');for(const match of code.matchAll(/\b(?:from\s*|import\s*)["']([^"']+)["']/g)){const spec=match[1];if(spec.startsWith('.'))referenced.add(path.posix.normalize(path.posix.join(path.posix.dirname(m.name),spec)));}}
+ const roots=js.filter(m=>!referenced.has(m.name));
+ const explicit=original.main_module||original.metadata?.main_module||original.resources?.script?.main_module||settings.main_module;
+ if(!explicit)assert.equal(roots.length,1,'Ambiguous active Worker entry point: '+JSON.stringify({keys:Object.keys(original),modules:js.map(m=>m.name),roots:roots.map(m=>m.name)}));
+ const oldMain=explicit||roots[0].name;assert(js.some(m=>m.name===oldMain),'Provider entry point missing');assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
+ console.log('Preserving Health entry '+oldMain+' and all '+original.modules.length+' existing modules.');
  const baseline=await getPage(),{grid,links}=extractLinks(baseline.html),candidate=transformHTML(baseline.html);
  assert.equal(stripOwn(candidate,grid),baseline.html,'Only the nine-card grid and its scoped style/schema may change');
  assert.equal(transformHTML(candidate),candidate);assert.equal((candidate.match(/class="shc-card"/g)||[]).length,9);
