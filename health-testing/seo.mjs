@@ -1,3 +1,4 @@
+import {testingHeroKey} from './hero-media.mjs';
 import {rangeProducts,rangeById,checkedOn,testPath,methodLabel} from './catalogue.mjs';
 import {productMedia,imagePath} from './media.mjs';
 import {contextFor} from './product-context.mjs';
@@ -8,7 +9,7 @@ export function testingSEO(path){
  const p=rangeById[path.replace('/shift-health/testing/','')],url=origin+path;
  const trail=[['Home','/'],['SHIFT Health','/shift-health'],['Testing & Wellbeing','/shift-health/testing'],...(p?[[p.name,path]]:[])];
  const graph=[organization,{'@type':'BreadcrumbList','@id':url+'#breadcrumbs',itemListElement:trail.map(([name,path],i)=>({'@type':'ListItem',position:i+1,name,item:origin+path}))}];
- let image=origin+imagePath(productMedia['prostate-health'].gallery[0]);
+ let image=origin+imagePath(testingHeroKey);
  if(p){
   const context=contextFor(p.id),name=p.name+(['lab','home'].includes(p.type)?' '+methodLabel(p):'');image=origin+imagePath(productMedia[p.id].gallery[0]);
   graph.push({'@type':'WebPage','@id':url+'#webpage',url,name:name+' | SHIFT Health',description:context.short,inLanguage:'en-GB',dateModified:checkedOn,publisher:{'@id':organization['@id']},breadcrumb:{'@id':url+'#breadcrumbs'},mainEntity:{'@id':url+'#product'},citation:context.evidence.map(([,url])=>url)});

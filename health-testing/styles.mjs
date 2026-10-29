@@ -195,4 +195,11 @@ export const testingStyle=String.raw`
 #shift-health-range .nft-card-photo .nft-product-composite{min-height:0;height:155px}
 #shift-health-range .nft-card-photo .nft-product-composite img{height:70px}
 #shift-health-range .nft-card-photo .nft-product-composite[data-count="2"] img{height:145px}
+
+/* The testing collection leads with a human home scene. Product cards retain their accepted imagery. */
+#shift-health-range .nft-range-hero-photo{margin:0;border-radius:10px;overflow:hidden;background:#E7E3DA;color:#050505;min-width:0}
+#shift-health-range .nft-range-hero-photo>img{display:block;width:100%;height:auto;aspect-ratio:1448/1086;object-fit:cover}
+#shift-health-range .nft-range-hero-photo figcaption{padding:18px 22px;font-size:16px;line-height:1.4}
+#shift-health-range .nft-range-hero-photo figcaption strong,#shift-health-range .nft-range-hero-photo figcaption span{display:block}
+@media(max-width:700px){#shift-health-range .nft-range-hero-photo figcaption{padding:16px 20px}}
 `;

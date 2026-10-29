@@ -1,3 +1,4 @@
+import {testingHeroKey,testingHeroImage} from './hero-media.mjs';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {renderDocument} from '../health-nutrition/public.mjs';
 import {rangeProducts} from './catalogue.mjs';
@@ -10,13 +11,13 @@ writeFileSync(new URL('./.openai/hosting.json',root),JSON.stringify({static:{dir
 console.log(root.pathname);
 
 import {productImageData} from './media-data.mjs';
-for(const [key,uri] of Object.entries(productImageData)){const dir=new URL('./dist/shift-health/assets/',root);mkdirSync(dir,{recursive:true});writeFileSync(new URL('testing-'+key+'.webp',dir),Buffer.from(uri.split(',')[1],'base64'));}
+for(const [key,uri] of Object.entries({...productImageData,[testingHeroKey]:testingHeroImage})){const dir=new URL('./dist/shift-health/assets/',root);mkdirSync(dir,{recursive:true});writeFileSync(new URL('testing-'+key+'.webp',dir),Buffer.from(uri.split(',')[1],'base64'));}
 
 // One portable review with all pages and the original product photographs.
 const views=Object.fromEntries(['',...rangeProducts.map(p=>p.id)].map(id=>[id,testingContent('/shift-health/testing'+(id?'/'+id:''))]));
 const json=value=>JSON.stringify(value).replaceAll('<','\\u003c');
 const script=`<script>
-const reviewViews=${json(views)},reviewImages=${json(productImageData)};
+const reviewViews=${json(views)},reviewImages=${json({...productImageData,[testingHeroKey]:testingHeroImage})};
 function showReview(){
  const id=location.hash.startsWith('#test=')?decodeURIComponent(location.hash.slice(6)):'';
  const view=reviewViews[id]||reviewViews[''];

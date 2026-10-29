@@ -145,3 +145,12 @@ Corrected immediate batch TEST-20261028-d4236f97 and scheduled batch TEST-202610
 The final D1 readback at 23:57:47 UK time confirms one attempt per synthetic batch, submitted/sent statuses, zero outstanding mail, zero synthetic canonical customer orders and all twenty products still draft/sale-disabled. A fresh authenticated HQ reload shows all three labelled test-history rows with persisted provider references. The first test's encoding failure remains in the receipt; it was not silently overwritten or resent under the same batch ID. No real partner mail, payment, dispatch, clinical result or acknowledgement was created. Final partner template, product codes and destination are the remaining launch dependencies. No real-order test is represented as completed.
 
 The local preview is stopped. The portable review is updated in place to version 6. Public source work, live release evidence and delivery receipts are saved on the existing feature branch; the retired shared handover is not recreated.
+
+
+## Testing collection hero revision — 29 October 2026
+
+Matt rejected the product collage hero while approving the rest of the range. The first lifestyle draft was also rejected as too lean and polished. The revised built-in imagegen photograph shows a visibly heavier, bald, bearded middle-aged man reading a plain leaflet at his kitchen table, in the requested ash-green/cream setting. It depicts no test procedure, result or invented product packaging. The final WebP is health-testing/assets/hero-home-20261029-v2.webp; the generation brief and original path are recorded in hero-release.json.
+
+Only the collection hero, its styling, image asset and collection share image change. Existing headline, CTAs, counts, product cards, twenty detailed product pages, clinical content, zero-stock/TBC controls and HQ fulfilment remain accepted. Nine focused preservation/search/closed-purchase checks pass. Browser review confirmed desktop framing and a 331px-wide image in a mobile document with matching 375px client/scroll widths.
+
+Live preflight found a newer nutrition deployment f8977f16-49a8-4f72-bef1-314e0a6d845b. Its exact retained module hash 2c00b58193a7feba510ed17e9fc76d7760b992a71e189400302d0d647f3c9314 is preserved. The four edited existing modules match their live baseline, and the release copies every other current runtime module unchanged. No route, binding, schedule, database or email change is part of this revision.

@@ -1,0 +1,48 @@
+{
+  "expectedLiveVersion": "f8977f16-49a8-4f72-bef1-314e0a6d845b",
+  "retainedLegacySha256": "2c00b58193a7feba510ed17e9fc76d7760b992a71e189400302d0d647f3c9314",
+  "modules": {
+    "health-testing/public.mjs": {
+      "previousSha256": "8572a88b46b1fed50cc544cce85f4d48bcc7b114cdd8860d39228c60d4565fa2",
+      "sha256": "e3ddd3e3cc2cc21ad3eac8a7bb253ca617d8da1b278eb12456403cd2882b8c9d",
+      "size": 23855
+    },
+    "health-testing/styles.mjs": {
+      "previousSha256": "4c0f4a1aa0a86c8316e71aaff62ee6686c41767e9e20a86d4d43eb8b7193b298",
+      "sha256": "17a7720a1aaed8efe0aa9a6f12aa5dada419934ff1c798770c9dafb7f045bec5",
+      "size": 25250
+    },
+    "health-testing/seo.mjs": {
+      "previousSha256": "1a7a7a099b8276e7182742bb0f09b8f014b0cb4ea0eb16e9f633be6c3f06a61f",
+      "sha256": "14e6a1bf16f86f395ea539a9f8804505f31bb69645c1b968a4478633cf1f04de",
+      "size": 3232
+    },
+    "health-nutrition/worker.mjs": {
+      "previousSha256": "2eab1fb2996b8778f45689e682ebe29897bc216029f5be941b52a3796f877c11",
+      "sha256": "10ca2b8e925f8cbeb65527633a08e114e8c85a3e9a4098f1d6309d25aab0ce40",
+      "size": 5416
+    },
+    "health-testing/hero-media.mjs": {
+      "previousSha256": null,
+      "sha256": "6005b5b889758ed2e702d6eef3ea61c6f5bd6d850f6e464eba06888ce4d5bdf6",
+      "size": 181215
+    }
+  },
+  "asset": {
+    "path": "/shift-health/assets/testing-hero-home-20261029-v2.webp",
+    "file": "health-testing/assets/hero-home-20261029-v2.webp",
+    "sha256": "880f070c70e0b2b2e3798dd8c26a08453efb2705781cb8bcf656260d307a00cf",
+    "bytes": 135728,
+    "width": 1448,
+    "height": 1086
+  },
+  "generation": {
+    "tool": "Built-in imagegen",
+    "source": "generated_images/exec-17d7135f-8e9a-4c6a-b33c-738637ef1af0.png",
+    "prompt": "Edit the home scene: replace the lean, polished man with a visibly heavy, bald, middle-aged British bloke with a full dark-and-grey beard, rounded face, double chin, thick arms and clearly large rounded belly. Roughly 19\u201321 stone at average height. Plain ash-green overshirt and charcoal tee, reading an unprinted leaflet at his kitchen table. Preserve natural window light, home, mug, envelope, landscape framing and photographic quality. Respectful, relatable, unposed; no fashion-model casting, medical procedure, results, labels, logos or caricature.",
+    "postProcessing": "PNG to WebP compression only; no resizing or image editing.",
+    "rejectedFirstDraft": "The first home-scene draft was rejected by the user as too lean and polished; it was never published."
+  },
+  "scope": "Replace only the testing collection hero and its collection share image; preserve all products, copy, HQ/mail, purchases, bindings, schedules and newest retained nutrition runtime.",
+  "checksPassed": 9
+}

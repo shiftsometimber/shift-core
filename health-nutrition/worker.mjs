@@ -1,3 +1,4 @@
+import {testingHeroKey,testingHeroImage} from '../health-testing/hero-media.mjs';
 import {testingSitemap} from '../health-testing/seo.mjs';
 import {hqTestingFulfilmentClient} from '../health-testing/hq-fulfilment.mjs';
 import {testingPurchaseRoute} from '../health-testing/storefront.mjs';
@@ -28,7 +29,7 @@ export default {async fetch(request,env,ctx){
  const purchase=path.match(/^\/shift-health\/testing\/([a-z0-9-]+)\/purchase$/);
  if(purchase)return testingPurchaseRoute(request,purchase[1]);
  const asset=path.match(/^\/shift-health\/assets\/([a-z0-9-]+)\.webp$/);
- if(asset){if(!['GET','HEAD'].includes(request.method))return respond('Method not allowed',405,'text/plain');const source=asset[1].startsWith('testing-')?productImageData[asset[1].slice(8)]:images[asset[1]];if(!source)return respond('Not found',404,'text/plain');const [header,data]=source.split(',');const bytes=Uint8Array.from(atob(data),c=>c.charCodeAt(0));const response=respond(request.method==='HEAD'?null:bytes,200,header.slice(5).split(';')[0]);response.headers.set('Cache-Control','public, max-age=86400');return response;}
+ if(asset){if(!['GET','HEAD'].includes(request.method))return respond('Method not allowed',405,'text/plain');const source=asset[1]==='testing-'+testingHeroKey?testingHeroImage:asset[1].startsWith('testing-')?productImageData[asset[1].slice(8)]:images[asset[1]];if(!source)return respond('Not found',404,'text/plain');const [header,data]=source.split(',');const bytes=Uint8Array.from(atob(data),c=>c.charCodeAt(0));const response=respond(request.method==='HEAD'?null:bytes,200,header.slice(5).split(';')[0]);response.headers.set('Cache-Control','public, max-age=86400');return response;}
  if(!['/shift-health','/shift-health.html','/shift-health/supplements-nutrition'].includes(path)&&path!=='/shift-health/testing'&&!path.startsWith('/shift-health/testing/'))return env.BLOG.fetch(request);
  if(!['GET','HEAD'].includes(request.method))return respond('Method not allowed',405,'text/plain');
  const canonicalPath=path==='/shift-health.html'?'/shift-health':path;
