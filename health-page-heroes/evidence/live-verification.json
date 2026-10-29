@@ -1,0 +1,413 @@
+{
+  "browserCheckedAt": "2026-10-29T22:45:59.064Z",
+  "pages": [
+    {
+      "page": "testosterone",
+      "url": "https://shiftsometimber.co.uk/shift-health/testosterone-energy",
+      "availability": null,
+      "cta": "#prompt-heading",
+      "h1Count": 1,
+      "heading": "Low energy?\nLook at the bigger picture.",
+      "hero": "testosterone",
+      "horizontalOverflow": false,
+      "ids": [
+        "shh-title",
+        "prompt-heading",
+        "availability",
+        "assessment",
+        "results-context",
+        "trt",
+        "fertility",
+        "monitoring",
+        "gp-preparation",
+        "journey",
+        "urgent-help",
+        "evidence"
+      ],
+      "imageLoaded": true,
+      "imageURL": "/shift-health/testosterone-energy?shift_hero=20261029-approved-v1-testosterone-1eea86432b85",
+      "imageWidth": 1859,
+      "targetPresent": true,
+      "urgentLink": null
+    },
+    {
+      "page": "bloods",
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "availability": null,
+      "cta": "#compare-blood-tests",
+      "h1Count": 1,
+      "heading": "Less guesswork.\nA clearer picture.",
+      "hero": "bloods",
+      "horizontalOverflow": false,
+      "ids": [
+        "shh-title",
+        "upper-arm-collection",
+        "upper-arm-heading",
+        "compare-blood-tests",
+        "tab-baseline",
+        "tab-advanced",
+        "tab-complete",
+        "panel-baseline",
+        "panel-advanced",
+        "panel-complete",
+        "shift-bloods-real-film"
+      ],
+      "imageLoaded": true,
+      "imageURL": "/shift-health/blood-tests?shift_hero=20261029-approved-v1-bloods-c2d9e2093b40",
+      "imageWidth": 1860,
+      "targetPresent": true,
+      "urgentLink": null
+    },
+    {
+      "page": "hair",
+      "url": "https://shiftsometimber.co.uk/shift-health/hair-loss",
+      "availability": "AVAILABILITY\nNo stock available today\nNO ORDER OR BOOKING CAN BE MADE ON THIS PAGE. THE GUIDE BELOW EXPLAINS THE INTENDED ROUTE. PROVIDER, PRODUCT, PRICE AND FOLLOW-UP ARRANGEMENTS MUST BE CONFIRMED BEFORE ORDERING OPENS.",
+      "cta": "#understand",
+      "h1Count": 1,
+      "heading": "Hair changes?\nStart with clear information.",
+      "hero": "hair",
+      "horizontalOverflow": false,
+      "ids": [
+        "shh-title",
+        "understand",
+        "included",
+        "decide",
+        "evidence",
+        "journey",
+        "process",
+        "questions"
+      ],
+      "imageLoaded": true,
+      "imageURL": "/shift-health/hair-loss?shift_hero=20261029-approved-v1-hair-c8efba044fa1",
+      "imageWidth": 1860,
+      "targetPresent": true,
+      "urgentLink": null
+    },
+    {
+      "page": "pressure",
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+      "availability": "AVAILABILITY\nNo stock available today\nNO ORDER OR BOOKING CAN BE MADE ON THIS PAGE. THE GUIDE BELOW EXPLAINS THE INTENDED ROUTE. PROVIDER, PRODUCT, PRICE AND FOLLOW-UP ARRANGEMENTS MUST BE CONFIRMED BEFORE ORDERING OPENS.",
+      "cta": "#understand",
+      "h1Count": 1,
+      "heading": "Home blood pressure.\nUnderstand your numbers.",
+      "hero": "pressure",
+      "horizontalOverflow": false,
+      "ids": [
+        "shh-title",
+        "understand",
+        "included",
+        "decide",
+        "evidence",
+        "journey",
+        "process",
+        "questions"
+      ],
+      "imageLoaded": true,
+      "imageURL": "/shift-health/blood-pressure-monitor?shift_hero=20261029-approved-v1-pressure-2f28da96a967",
+      "imageWidth": 1860,
+      "targetPresent": true,
+      "urgentLink": null
+    },
+    {
+      "page": "mental",
+      "url": "https://shiftsometimber.co.uk/mens-mental-health",
+      "availability": null,
+      "cta": "#your-next-step",
+      "h1Count": 1,
+      "heading": "You don\u2019t need\nthe perfect words.",
+      "hero": "mental",
+      "horizontalOverflow": false,
+      "ids": [
+        "shh-title",
+        "ft-urgent-title",
+        "your-next-step",
+        "gtt-path-title",
+        "find-professional-help",
+        "prepare-conversation",
+        "gtt-privacy",
+        "gtt-notes",
+        "gtt-changed",
+        "gtt-impact",
+        "gtt-support",
+        "gtt-want",
+        "gtt-tool-status",
+        "while-you-wait",
+        "gt-routes",
+        "wellbeing-library",
+        "gt-library-title",
+        "gt-search-form",
+        "gt-search",
+        "gt-clear",
+        "gt-count",
+        "gt-empty",
+        "gt-reset",
+        "gt-all-topics",
+        "gt-more",
+        "life-gets-bloody-hard-v30o2",
+        "shift-depth-mental-health-start",
+        "self-help-v30o3",
+        "proper-help-v30o4",
+        "helping-mate-v30o5",
+        "gt-sources"
+      ],
+      "imageLoaded": true,
+      "imageURL": "/mens-mental-health?shift_hero=20261029-approved-v1-mental-82d44e3e9e48",
+      "imageWidth": 1859,
+      "targetPresent": true,
+      "urgentLink": "/mental-health/urgent-mental-health-help"
+    },
+    {
+      "page": "sleep",
+      "url": "https://shiftsometimber.co.uk/shift-health/sleep-apnoea",
+      "availability": "AVAILABILITY\nNo stock available today\nNO ORDER OR BOOKING CAN BE MADE ON THIS PAGE. THE GUIDE BELOW EXPLAINS THE INTENDED ROUTE. PROVIDER, PRODUCT, PRICE AND FOLLOW-UP ARRANGEMENTS MUST BE CONFIRMED BEFORE ORDERING OPENS.",
+      "cta": "#understand",
+      "h1Count": 1,
+      "heading": "Still tired after sleep?\nFind your next step.",
+      "hero": "sleep",
+      "horizontalOverflow": false,
+      "ids": [
+        "shh-title",
+        "understand",
+        "included",
+        "decide",
+        "evidence",
+        "journey",
+        "process",
+        "questions"
+      ],
+      "imageLoaded": true,
+      "imageURL": "/shift-health/sleep-apnoea?shift_hero=20261029-approved-v1-sleep-5835af825682",
+      "imageWidth": 1860,
+      "targetPresent": true,
+      "urgentLink": null
+    },
+    {
+      "page": "supplements",
+      "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition",
+      "availability": null,
+      "cta": "#shop-categories",
+      "h1Count": 1,
+      "heading": "Supplements.\nUnderstand what you\u2019re taking.",
+      "hero": "supplements",
+      "horizontalOverflow": false,
+      "ids": [
+        "shift-health-range",
+        "sst-shop",
+        "shh-title",
+        "shop-categories",
+        "shop-search",
+        "shop-brand",
+        "shop-format",
+        "shop-sort",
+        "shop-sort-note",
+        "shop-count",
+        "shop-grid",
+        "shop-empty",
+        "shop-empty-title",
+        "shop-empty-copy"
+      ],
+      "imageLoaded": true,
+      "imageURL": "/shift-health/supplements-nutrition?shift_hero=20261029-approved-v1-supplements-41052b45ba9f",
+      "imageWidth": 1859,
+      "targetPresent": true,
+      "urgentLink": null
+    }
+  ],
+  "buttons": [
+    {
+      "page": "testosterone",
+      "url": "https://shiftsometimber.co.uk/shift-health/testosterone-energy#prompt-heading",
+      "imageLoaded": true,
+      "scrollMargin": "150px",
+      "targetTop": 150
+    },
+    {
+      "page": "bloods",
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-tests#compare-blood-tests",
+      "imageLoaded": true,
+      "scrollMargin": "150px",
+      "targetTop": 150
+    },
+    {
+      "page": "hair",
+      "url": "https://shiftsometimber.co.uk/shift-health/hair-loss#understand",
+      "imageLoaded": true,
+      "scrollMargin": "150px",
+      "targetTop": 150
+    },
+    {
+      "page": "pressure",
+      "url": "https://shiftsometimber.co.uk/shift-health/blood-pressure-monitor#understand",
+      "imageLoaded": true,
+      "scrollMargin": "150px",
+      "targetTop": 150
+    },
+    {
+      "page": "mental",
+      "url": "https://shiftsometimber.co.uk/mens-mental-health#your-next-step",
+      "imageLoaded": true,
+      "scrollMargin": "150px",
+      "targetTop": 150
+    },
+    {
+      "page": "sleep",
+      "url": "https://shiftsometimber.co.uk/shift-health/sleep-apnoea#understand",
+      "imageLoaded": true,
+      "scrollMargin": "150px",
+      "targetTop": 150
+    },
+    {
+      "page": "supplements",
+      "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition#shop-categories",
+      "imageLoaded": true,
+      "scrollMargin": "150px",
+      "targetTop": 150
+    }
+  ],
+  "liveIds": {
+    "testosterone": [
+      "shh-title",
+      "prompt-heading",
+      "availability",
+      "assessment",
+      "results-context",
+      "trt",
+      "fertility",
+      "monitoring",
+      "gp-preparation",
+      "journey",
+      "urgent-help",
+      "evidence"
+    ],
+    "bloods": [
+      "shh-title",
+      "upper-arm-collection",
+      "upper-arm-heading",
+      "compare-blood-tests",
+      "tab-baseline",
+      "tab-advanced",
+      "tab-complete",
+      "panel-baseline",
+      "panel-advanced",
+      "panel-complete",
+      "shift-bloods-real-film"
+    ],
+    "hair": [
+      "shh-title",
+      "understand",
+      "included",
+      "decide",
+      "evidence",
+      "journey",
+      "process",
+      "questions"
+    ],
+    "pressure": [
+      "shh-title",
+      "understand",
+      "included",
+      "decide",
+      "evidence",
+      "journey",
+      "process",
+      "questions"
+    ],
+    "mental": [
+      "shh-title",
+      "ft-urgent-title",
+      "your-next-step",
+      "gtt-path-title",
+      "find-professional-help",
+      "prepare-conversation",
+      "gtt-privacy",
+      "gtt-notes",
+      "gtt-changed",
+      "gtt-impact",
+      "gtt-support",
+      "gtt-want",
+      "gtt-tool-status",
+      "while-you-wait",
+      "gt-routes",
+      "wellbeing-library",
+      "gt-library-title",
+      "gt-search-form",
+      "gt-search",
+      "gt-clear",
+      "gt-count",
+      "gt-empty",
+      "gt-reset",
+      "gt-all-topics",
+      "gt-more",
+      "life-gets-bloody-hard-v30o2",
+      "shift-depth-mental-health-start",
+      "self-help-v30o3",
+      "proper-help-v30o4",
+      "helping-mate-v30o5",
+      "gt-sources"
+    ],
+    "sleep": [
+      "shh-title",
+      "understand",
+      "included",
+      "decide",
+      "evidence",
+      "journey",
+      "process",
+      "questions"
+    ],
+    "supplements": [
+      "shift-health-range",
+      "sst-shop",
+      "shh-title",
+      "shop-categories",
+      "shop-search",
+      "shop-brand",
+      "shop-format",
+      "shop-sort",
+      "shop-sort-note",
+      "shop-count",
+      "shop-grid",
+      "shop-empty",
+      "shop-empty-title",
+      "shop-empty-copy"
+    ]
+  },
+  "supplementsDetail": {
+    "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=clear",
+    "closedOrdering": true,
+    "context": "SHIFT Health\n/\nSupplements & Nutrition\n/\nClear Whey Protein\nAPPLIED NUTRITION\nClear Whey Protein\n\nA fruit-style protein drink when you would rather skip the milky shake.\n\nSHIFT SAYS\u2026\nPrefer a fruit-style drink? This offers another way to include protein. Clear describes the drink, not a dairy-free recipe.\nPart of our proposed range.\n\nNot yet available to order. Prices, pack options and delivery details are being confirmed.\n\nPackaging shown: 875 g \u00b7 Orange squash. The final range may differ.\n\nBack to the range\n\u2192\nWhy it might fit\n\nNot everyone wants a thick shake. A clear-style drink may be a format you prefer around an ordinary day or your act",
+    "h1": "Clear Whey Protein",
+    "heroInserted": false
+  },
+  "testingGardenHeroVerified": true,
+  "contentPreservation": [
+    {
+      "page": "testosterone",
+      "originalIdsRetained": true
+    },
+    {
+      "page": "bloods",
+      "originalIdsRetained": true
+    },
+    {
+      "page": "hair",
+      "originalIdsRetained": true
+    },
+    {
+      "page": "pressure",
+      "originalIdsRetained": true
+    },
+    {
+      "page": "mental",
+      "originalIdsRetained": true
+    },
+    {
+      "page": "sleep",
+      "originalIdsRetained": true
+    },
+    {
+      "page": "supplements",
+      "originalIdsRetained": true
+    }
+  ]
+}
