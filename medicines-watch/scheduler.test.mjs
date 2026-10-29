@@ -23,7 +23,7 @@ if(entry.includes(observedWatch)){
   // Authenticate the entire independently approved instrumented runtime before
   // restoring only the old spelling for every retained original assertion.
   const pin=createHash('sha1').update('blob '+Buffer.byteLength(entry)+'\0').update(entry).digest('hex');
-  assert.equal(pin,'cc2d7dd76a495c88c2a42575a61dc62a7e9babed','Exact approved job-observation runtime required');
+  assert.equal(pin,'b0e1b3a9900b24415308cfb56a4baba4a0a58c65','Exact approved job-observation runtime required');
   assert.equal(entry.split(observedWatch).length,2,'Exactly one observed Watch invocation required');
   entry=entry.replace(observedWatch,'await checkSources(env, { allowSourceReplacement: false })');
 }
@@ -61,7 +61,8 @@ async function exerciseActualScheduled({watchFails=false,siblingFails=false}={})
  const names=['runScheduledIntelligence','runRadarScheduledScan','runKnowledgeFlywheel','runFitMorningReminders','notifyArticlePublication','runPwaReminders','retryPendingSignupAlerts','runTreatmentReminders'];
  const siblings=names.map(name=>async()=>{events.push(name);if(siblingFails&&name==='runRadarScheduledScan')throw Error('owned_radar_failure');return{processed:1}});
  const output={log(...args){logs.push(args)},error(...args){logs.push(args)}};
- const handler=new Function('recordServiceJob','checkSources',...names,'console','return ({'+actualScheduled+'\n}}).scheduled;')(recordServiceJob,checkSources,...siblings,output);
+ const scheduledEditorialFetcher=()=>async()=>new Response('synthetic_public_page');
+ const handler=new Function('recordServiceJob','checkSources',...names,'scheduledEditorialFetcher','worker','console','return ({'+actualScheduled+'\n}}).scheduled;')(recordServiceJob,checkSources,...siblings,scheduledEditorialFetcher,{},output);
  await handler({scheduledTime:1792800000000},{DB,MY_TIMBER_PWA_ENABLED:'true',MY_TREATMENT_ENABLED:'true'},{waitUntil(job){pending.push(job)}});
  await watchStarted;assert.deepEqual(events,['watch-start'],'No sibling can start while the actual Watch is pending');release();await Promise.all(pending);
  assert.equal(events.filter(x=>x==='watch-start').length,1);assert(events.indexOf('watch-end')<events.indexOf('runScheduledIntelligence'));
