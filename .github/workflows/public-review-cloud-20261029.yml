@@ -54,6 +54,30 @@ jobs:
           fs.mkdirSync('public-review-cloud-evidence',{recursive:true});fs.writeFileSync('public-review-cloud-evidence/baseline.json',JSON.stringify(report,null,2));
           console.log(JSON.stringify({...report,pages:{...report.pages,files:undefined,fileCount:Object.keys(detail.files||{}).length},workers:Object.fromEntries(Object.entries(workers).map(([k,v])=>[k,{id:v?.id,created:v?.created_on,versions:v?.versions}]))},null,2));
           NODE
+      - name: Reconcile only changed shell bytes against the current live assets
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import vm from 'node:vm';
+          const sha=s=>createHash('sha256').update(s).digest('hex');
+          const oldRef='580e6b4bdde5014820daf3c817d5a82d1c4f541a';
+          const api='https://api.github.com/repos/shiftsometimber/shift-core/contents/release/shared-home-shell-20261024/home-shell-client.js?ref='+oldRef;
+          const response=await fetch(api,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,'User-Agent':'SHIFT-cloud-source-reconciliation'}});assert(response.ok);
+          const old=Buffer.from((await response.json()).content,'base64').toString();
+          const next=fs.readFileSync('release/shared-home-shell-20261024/home-shell-client.js','utf8');
+          const report={at:new Date().toISOString(),productionWrites:0,source:process.env.GITHUB_SHA,assets:[]};
+          for(const name of ['v42.js','home-shell-v1.js']){
+            const url='https://shiftsometimber.co.uk/assets/'+name;
+            const r=await fetch(url,{headers:{'Cache-Control':'no-cache'},redirect:'error',signal:AbortSignal.timeout(25000)});assert(r.ok);
+            const live=await r.text();assert.equal(live.split(old).length,2,'The exact original shell must occur once in current '+name);
+            const candidate=live.replace(old,next);new vm.Script(candidate);
+            const index=live.indexOf(old);assert.equal(candidate.slice(0,index),live.slice(0,index));assert.equal(candidate.slice(index+next.length),live.slice(index+old.length));
+            fs.writeFileSync('public-review-cloud-evidence/current-'+name,live);fs.writeFileSync('public-review-cloud-evidence/candidate-'+name,candidate);
+            report.assets.push({url,currentSha256:sha(live),candidateSha256:sha(candidate),prefixAndSuffixPreserved:true});
+          }
+          fs.writeFileSync('public-review-cloud-evidence/asset-reconciliation.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          NODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
