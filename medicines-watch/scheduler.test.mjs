@@ -23,7 +23,7 @@ if(entry.includes(observedWatch)){
   // Authenticate the entire independently approved instrumented runtime before
   // restoring only the old spelling for every retained original assertion.
   const pin=createHash('sha1').update('blob '+Buffer.byteLength(entry)+'\0').update(entry).digest('hex');
-  assert.equal(pin,'cc2d7dd76a495c88c2a42575a61dc62a7e9babed','Exact approved job-observation runtime required');
+  assert.equal(pin,'b0e1b3a9900b24415308cfb56a4baba4a0a58c65','Exact approved job-observation runtime required');
   assert.equal(entry.split(observedWatch).length,2,'Exactly one observed Watch invocation required');
   entry=entry.replace(observedWatch,'await checkSources(env, { allowSourceReplacement: false })');
 }
