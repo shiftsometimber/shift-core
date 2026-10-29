@@ -46,6 +46,7 @@ try{
   const settings=await cf('/accounts/'+account+'/workers/scripts/'+name+'/settings');
   const deployment=await active(name),previousVersion=deployment.versions[0].version_id;
   const current=await cf('/accounts/'+account+'/workers/workers/'+name+'/versions/'+previousVersion+'?include=modules');
+  console.log('KNOWLEDGE_PROVIDER_STRUCTURE '+JSON.stringify({name,keys:Object.keys(current),resourceKeys:Object.keys(current.resources||{}),runtimeKeys:Object.keys(current.resources?.script_runtime||{}),scriptKeys:Object.keys(current.resources?.script||{}),settingsAssetsKeys:Object.keys(settings.assets||{}),versionAssetsKeys:Object.keys(current.assets||{}),runtimeAssetsKeys:Object.keys(current.resources?.script_runtime?.assets||{})}));
   const oldMain=current.main_module||current.metadata?.main_module||current.resources?.script?.main_module||settings.main_module;
   assert(oldMain&&current.modules.some(m=>m.name===oldMain),'Current entry not identified '+name);
   assert(!current.modules.some(m=>m.name.startsWith('knowledge-health/')||m.name==='knowledge-health-entry.mjs'),'Knowledge layer already present; inspect its receipt before another release');

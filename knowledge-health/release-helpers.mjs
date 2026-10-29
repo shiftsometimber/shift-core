@@ -35,11 +35,14 @@ export function entryModule(main){
 export function metadataFor(current,settings,main,source,activeVersion){
  assert.match(activeVersion||'',/^[a-f0-9-]{36}$/,'An exact deployed version is required for binding inheritance');
  const runtime=current.resources?.script_runtime||{};
+ const bindings=current.bindings||current.resources?.bindings||settings.bindings;
  // The Workers /workers/{name}/versions JSON API accepts an explicit binding
  // version. The older /scripts/{name}/versions endpoint accepts only "latest".
- const metadata={main_module:main,compatibility_date:runtime.compatibility_date||settings.compatibility_date,compatibility_flags:runtime.compatibility_flags||settings.compatibility_flags||[],bindings:settings.bindings.map(b=>({type:'inherit',name:b.name,version_id:activeVersion})),annotations:{'workers/message':'Matt approved the 50-topic Knowledge expansion; source '+source+'; preserve all other active modules and routes.','workers/tag':'knowledge-'+source.slice(0,12)}};
- for(const k of ['usage_model','limits','placement','cache_options'])if(settings[k]!==undefined)metadata[k]=settings[k];
- if(current.assets)metadata.assets=current.assets;
+ const metadata={main_module:main,compatibility_date:current.compatibility_date||runtime.compatibility_date||settings.compatibility_date,compatibility_flags:current.compatibility_flags||runtime.compatibility_flags||settings.compatibility_flags||[],bindings:bindings.map(b=>({type:'inherit',name:b.name,version_id:activeVersion})),annotations:{'workers/message':'Matt approved the 50-topic Knowledge expansion; source '+source+'; preserve all other active modules and routes.','workers/tag':'knowledge-'+source.slice(0,12)}};
+ for(const k of ['usage_model','limits','placement','cache_options'])if(current[k]!==undefined||runtime[k]!==undefined||settings[k]!==undefined)metadata[k]=current[k]??runtime[k]??settings[k];
+ const assets=current.assets||runtime.assets||settings.assets;
+ if(assets)metadata.assets=assets;
+ if(bindings.some(b=>b.type==='assets'))metadata.keep_assets=true;
  if(current.exports)metadata.exports=current.exports;
  return metadata;
 }
