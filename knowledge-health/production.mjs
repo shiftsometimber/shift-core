@@ -19,7 +19,8 @@ export function withHealthKnowledgeWorker(worker){return {...worker,async fetch(
  const cleaned=cleanRequest(request);
  if(guide||fertility){
   const shellUrl=new URL(url);shellUrl.pathname='/knowledge';shellUrl.search='';
-  const shell=await worker.fetch(new Request(shellUrl,{method:'GET',headers:cleaned.headers}),env,ctx);
+  const shellRequest=new Request(shellUrl,{method:'GET',headers:cleaned.headers});
+  const shell=env?.SHIFT_KNOWLEDGE_SHELL?await env.SHIFT_KNOWLEDGE_SHELL.fetch(shellRequest):await worker.fetch(shellRequest,env,ctx);
   if(shell.status!==200||!String(shell.headers.get('content-type')||'').includes('text/html'))return new Response('The guide is temporarily unavailable. Please try again.',{status:503,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store'}});
   const original=await shell.text(),html=guide?renderGuide(original,path):renderFertility(original);
   if(!html)return new Response('The guide is temporarily unavailable. Please try again.',{status:503,headers:{'cache-control':'no-store'}});

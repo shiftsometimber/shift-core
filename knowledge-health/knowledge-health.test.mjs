@@ -71,6 +71,12 @@ test('GET and HEAD agree, stale validators are removed, security headers survive
 test('a failed shell is not falsely presented as a successful guide',async()=>{
  const worker=withHealthKnowledgeWorker({async fetch(){return new Response('Unavailable',{status:503});}});assert.equal((await worker.fetch(request(guides[0].path),{},{})).status,503);
 });
+test('fertility can obtain the shared public layout across its existing Worker boundary',async()=>{
+ const seen=[],worker=withHealthKnowledgeWorker({async fetch(){return new Response('Not owned here',{status:404});}});
+ const env={SHIFT_KNOWLEDGE_SHELL:{async fetch(r){seen.push(new URL(r.url).pathname);return new Response(shell,{headers:{'content-type':'text/html; charset=utf-8'}});}}};
+ const result=await worker.fetch(request('/shift-health/fertility'),env,{});
+ assert.equal(result.status,200);assert.deepEqual(seen,['/knowledge']);assert((await result.text()).includes('Thinking about a family?'));
+});
 test('fifty concise answers share their source data and do not hijack mixed or dosing questions',()=>{
  for(const a of answers){const result=healthKnowledgeAnswer(a.question);assert(result,a.id);assert(result.sources.length);assert.equal(result.journeyUsed,false);assert.deepEqual(result.keyPoints,[]);assert.deepEqual(result.nextSteps,[]);assert.deepEqual(result.followUps,[]);assert.match(result.answer,/\[1\]/);assert(result.answer.includes(origin+a.path));assert(result.sources.every(s=>s.reviewState==='source_checked'));}
  for(const q of ['What dose of TRT should I inject?','Does TRT affect fertility and should I stop my dose?','What is my saved goal?','Can I have a kebab?','What is the latest retatrutide approval?'])assert.equal(healthKnowledgeAnswer(q),null,q);

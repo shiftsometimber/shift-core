@@ -64,7 +64,13 @@ try{
   const modules=[...retained,...payload,{name:'knowledge-health-entry.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(entryModule(oldMain)).toString('base64')}];
   assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
   const metadata=metadataFor(current,settings,'knowledge-health-entry.mjs',process.env.GITHUB_SHA,previousVersion);
-  const state={name,deployment,previousVersion,oldMain,modules,metadata,changes,assets:current.assets,bindings:current.bindings,originalHashes:summaries(current.modules)};
+  const addedBindings=[];
+  if(name==='shift-health-nutrition-20261027'){
+   const existingShell=current.bindings.find(b=>b.name==='SHIFT_KNOWLEDGE_SHELL');
+   if(existingShell)assert.equal(existingShell.service,'shift-core','Unexpected shared Knowledge layout owner');
+   else{const binding={name:'SHIFT_KNOWLEDGE_SHELL',type:'service',service:'shift-core'};metadata.bindings.push(binding);addedBindings.push(binding);}
+  }
+  const state={name,deployment,previousVersion,oldMain,modules,metadata,changes,assets:current.assets,bindings:current.bindings,addedBindings,originalHashes:summaries(current.modules)};
   captured.push(state);
  }
  save('before',{source:process.env.GITHUB_SHA,version,routes:beforeRoutes,serving,workers:captured.map(s=>({name:s.name,deployment:s.deployment,mainModule:s.oldMain,moduleHashes:s.originalHashes,changes:s.changes})),baselineHashes:Object.entries(baselines).map(([path,page])=>({path,mainSHA256:hash(main(page.body))}))});
@@ -80,7 +86,10 @@ try{
   const staged=await cf('/accounts/'+account+'/workers/workers/'+state.name+'/versions/'+state.versionId+'?include=modules');
   assert.deepEqual(summaries(staged.modules).sort((a,b)=>a.name.localeCompare(b.name)),summaries(state.modules).sort((a,b)=>a.name.localeCompare(b.name)),'Staged module bytes differ '+state.name);
   assert.deepEqual(staged.assets,state.assets,'Existing static-asset configuration changed '+state.name);
-  assert.deepEqual([...(staged.bindings||[])].sort((a,b)=>a.name.localeCompare(b.name)),[...(state.bindings||[])].sort((a,b)=>a.name.localeCompare(b.name)),'Active bindings changed '+state.name);
+  const addedNames=new Set(state.addedBindings.map(b=>b.name));
+  assert.deepEqual([...(staged.bindings||[])].filter(b=>!addedNames.has(b.name)).sort((a,b)=>a.name.localeCompare(b.name)),[...(state.bindings||[])].sort((a,b)=>a.name.localeCompare(b.name)),'Existing active bindings changed '+state.name);
+  assert.equal(staged.bindings.length,state.bindings.length+state.addedBindings.length);
+  for(const binding of state.addedBindings){const actual=staged.bindings.find(b=>b.name===binding.name);assert.equal(actual?.type,'service');assert.equal(actual?.service,'shift-core');}
   console.log('KNOWLEDGE_STAGED '+JSON.stringify({name:state.name,versionId:state.versionId,previousVersion:state.previousVersion,retainedModules:state.originalHashes.length,askChanges:state.changes.length}));
  }
  assert.deepEqual(await routeList(),beforeRoutes,'Routes moved during staging');
