@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {mkdirSync,writeFileSync} from 'node:fs';
+import {mkdirSync,realpathSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 
 export const ARTICLE_ID=47;
@@ -76,4 +76,4 @@ async function main(){
  writeFileSync(proofDir+'/mounjaro-injection-sites-correction.json',JSON.stringify({ok:true,mode,id:ARTICLE_ID,slug:SLUG,publish_at:after.publish_at,before_sha256:BEFORE_SHA256,after_sha256:afterHash,updated_at:after.updated_at,copy_approval_required:true,qualified_clinical_review_required:true},null,2)+'\n');
  console.log(JSON.stringify({ok:true,mode,id:ARTICLE_ID,slug:SLUG,beforeSha256:BEFORE_SHA256,afterSha256:afterHash,publishAt:after.publish_at}));
 }
-if(process.argv[1]&&pathToFileURL(process.argv[1]).href===import.meta.url)await main();
+if(process.argv[1]&&pathToFileURL(realpathSync(process.argv[1])).href===import.meta.url)await main();
