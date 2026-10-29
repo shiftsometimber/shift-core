@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Preserve exact Worker ownership across Cloudflare compact/UUID ID representations.
+# Verify original provider module bytes through the documented content/v2 API.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
