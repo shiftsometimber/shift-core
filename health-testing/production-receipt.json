@@ -236,5 +236,29 @@
       "oldCollageAbsent": true
     },
     "liveBrowserScreenshot": "Timed out; no live visual acceptance claimed. Desktop and mobile preview inspected before publication."
+  },
+  "cardLayoutFix": {
+    "sourceCommit": "ebcfbdafc015ce2f3a440e66dee23e3b9a5b4c73",
+    "deploymentId": "a5694279-9aad-4626-9c56-812cbeb2d11b",
+    "versionId": "a4d58fe3-46d8-42a9-9000-980a5b8266e2",
+    "checkedAt": "2026-10-29T07:54:49.238813+00:00",
+    "cause": "Shared substring card CSS applied height:100%, overflow:hidden and cream backgrounds to nested product panels.",
+    "liveBefore": {
+      "imagePanelHeight": 715.59,
+      "copyPanelHeight": 46,
+      "copyPanelBackground": "cream"
+    },
+    "liveAfter": {
+      "imagePanelHeight": 192,
+      "copyPanelHeight": 352.83,
+      "copyOverflow": "visible",
+      "copyBackground": "black",
+      "copyColour": "cream"
+    },
+    "unchangedOtherModules": 28,
+    "sevenPublicMainHashesUnchanged": true,
+    "bindingsUnchanged": true,
+    "schedulesUnchanged": true,
+    "mobileSpecificLiveCheck": false
   }
 }
