@@ -1,0 +1,98 @@
+[
+  {
+    "pattern": "https://shiftsometimber.co.uk/shift-health/testosterone-energy",
+    "before": null
+  },
+  {
+    "pattern": "https://www.shiftsometimber.co.uk/shift-health/testosterone-energy",
+    "before": null
+  },
+  {
+    "pattern": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+    "before": {
+      "id": "e10bd5345f41475785637466ddb7ded2",
+      "pattern": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+      "script": "shift-public-presentation-batch-20261022",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://www.shiftsometimber.co.uk/shift-health/blood-tests",
+    "before": {
+      "id": "9e26cf4b0fef4daf894645711e0dfd23",
+      "pattern": "https://www.shiftsometimber.co.uk/shift-health/blood-tests",
+      "script": "shift-public-presentation-batch-20261022",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://shiftsometimber.co.uk/shift-health/hair-loss",
+    "before": {
+      "id": "13db9a5ff2ad4d2397aee36526068801",
+      "pattern": "https://shiftsometimber.co.uk/shift-health/hair-loss",
+      "script": "shift-public-presentation-batch-20261022",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://www.shiftsometimber.co.uk/shift-health/hair-loss",
+    "before": {
+      "id": "cdd7a8ce5d134dd78575d5413057a301",
+      "pattern": "https://www.shiftsometimber.co.uk/shift-health/hair-loss",
+      "script": "shift-public-presentation-batch-20261022",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+    "before": {
+      "id": "76e236c5edd94d8eb7dc4be91deebdbc",
+      "pattern": "https://shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+      "script": "shift-public-presentation-batch-20261022",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://www.shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+    "before": {
+      "id": "fe1ce0d78c6448818d6e5c83e404865d",
+      "pattern": "https://www.shiftsometimber.co.uk/shift-health/blood-pressure-monitor",
+      "script": "shift-public-presentation-batch-20261022",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://shiftsometimber.co.uk/mens-mental-health",
+    "before": null
+  },
+  {
+    "pattern": "https://www.shiftsometimber.co.uk/mens-mental-health",
+    "before": null
+  },
+  {
+    "pattern": "https://shiftsometimber.co.uk/shift-health/sleep-apnoea",
+    "before": {
+      "id": "d943a64a8f5c48c39216807d6a1fc3d1",
+      "pattern": "https://shiftsometimber.co.uk/shift-health/sleep-apnoea",
+      "script": "shift-public-presentation-batch-20261022",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://www.shiftsometimber.co.uk/shift-health/sleep-apnoea",
+    "before": {
+      "id": "7d8bc4e22ed54448b1365ad5f627d07d",
+      "pattern": "https://www.shiftsometimber.co.uk/shift-health/sleep-apnoea",
+      "script": "shift-public-presentation-batch-20261022",
+      "request_limit_fail_open": false
+    }
+  },
+  {
+    "pattern": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition",
+    "before": null
+  },
+  {
+    "pattern": "https://www.shiftsometimber.co.uk/shift-health/supplements-nutrition",
+    "before": null
+  }
+]

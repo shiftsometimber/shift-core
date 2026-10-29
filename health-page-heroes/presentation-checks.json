@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-29T22:27:22.271Z",
+  "calls": [
+    {
+      "id": "testosterone",
+      "service": "BLOG"
+    },
+    {
+      "id": "bloods",
+      "service": "PRESENTATION"
+    },
+    {
+      "id": "hair",
+      "service": "PRESENTATION"
+    },
+    {
+      "id": "pressure",
+      "service": "PRESENTATION"
+    },
+    {
+      "id": "mental",
+      "service": "SUPPORT"
+    },
+    {
+      "id": "sleep",
+      "service": "PRESENTATION"
+    },
+    {
+      "id": "supplements",
+      "service": "NUTRITION"
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,116 @@
+{
+  "worker": "shift-health-heroes-20261029",
+  "version": "20261029-approved-v1",
+  "entry": "approved-health-heroes-entry.mjs",
+  "approval": "Matt: Please can you deploy all - signed off",
+  "bindings": [
+    {
+      "name": "BLOG",
+      "type": "service",
+      "service": "shift-blog-publisher",
+      "environment": "production"
+    },
+    {
+      "name": "PRESENTATION",
+      "type": "service",
+      "service": "shift-public-presentation-batch-20261022",
+      "environment": "production"
+    },
+    {
+      "name": "SUPPORT",
+      "type": "service",
+      "service": "shift-mytimber-support-20261023",
+      "environment": "production"
+    },
+    {
+      "name": "NUTRITION",
+      "type": "service",
+      "service": "shift-health-nutrition-20261027",
+      "environment": "production"
+    }
+  ],
+  "pages": [
+    "/shift-health/testosterone-energy",
+    "/shift-health/blood-tests",
+    "/shift-health/hair-loss",
+    "/shift-health/blood-pressure-monitor",
+    "/mens-mental-health",
+    "/shift-health/sleep-apnoea",
+    "/shift-health/supplements-nutrition"
+  ],
+  "modules": [
+    {
+      "source": "health-page-heroes/presentation-entry.mjs",
+      "name": "approved-health-heroes-entry.mjs",
+      "sha256": "3085c39541173f320bda10dd99802bd8587a0a29963b678a7c080f6f156b2f42",
+      "size": 611
+    },
+    {
+      "source": "health-page-heroes/runtime.mjs",
+      "name": "health-page-heroes/runtime.mjs",
+      "sha256": "fd25a64b4b080c447cc7798d7ba4718464a92e0675cf7ead3adc3479205ba916",
+      "size": 1643
+    },
+    {
+      "source": "health-page-heroes/heroes.mjs",
+      "name": "health-page-heroes/heroes.mjs",
+      "sha256": "3d9ef44f2ec598598df1c649b8145de5106869aea8694c10b871e34fa4a0a87e",
+      "size": 8226
+    },
+    {
+      "source": "health-page-heroes/styles.mjs",
+      "name": "health-page-heroes/styles.mjs",
+      "sha256": "3e3705940f101cba7c33a1a87f695726fceb0a086e45f96ccc622423872bd896",
+      "size": 7144
+    },
+    {
+      "source": "health-page-heroes/media-all.mjs",
+      "name": "health-page-heroes/media-all.mjs",
+      "sha256": "e5c14db5a38f01c2b6b66696b2f15b6183b44cf8c932bc2d521d5bffd2154604",
+      "size": 389
+    },
+    {
+      "source": "health-page-heroes/media/testosterone.mjs",
+      "name": "health-page-heroes/media/testosterone.mjs",
+      "sha256": "0a2e3964f82ba340bdd1eb0327cb0a15ebe2c047a6356d67d44825282ab96954",
+      "size": 276940
+    },
+    {
+      "source": "health-page-heroes/media/bloods.mjs",
+      "name": "health-page-heroes/media/bloods.mjs",
+      "sha256": "353dabb7e1095362497c02c886e7978d5a4318956818762958c185dc91233054",
+      "size": 229660
+    },
+    {
+      "source": "health-page-heroes/media/hair.mjs",
+      "name": "health-page-heroes/media/hair.mjs",
+      "sha256": "c4dfd4a7f89ac84619be7646abcd7d2eac0905d3f9e62b3684dd70c7047936b2",
+      "size": 231556
+    },
+    {
+      "source": "health-page-heroes/media/pressure.mjs",
+      "name": "health-page-heroes/media/pressure.mjs",
+      "sha256": "2c86b556e0236dd100ddd36ff3c796f05ab3e851407a83abc38aaf46a5f21f55",
+      "size": 232200
+    },
+    {
+      "source": "health-page-heroes/media/mental.mjs",
+      "name": "health-page-heroes/media/mental.mjs",
+      "sha256": "169d69309a9b4778f9bd680fdc1ffd06eed8ff7ac9391ecd1a8e735fc78f90ea",
+      "size": 217064
+    },
+    {
+      "source": "health-page-heroes/media/sleep.mjs",
+      "name": "health-page-heroes/media/sleep.mjs",
+      "sha256": "c0c9188e26722e5fc54a799ede856b27b18b11e377b375b17c5164a9ce87acdd",
+      "size": 199180
+    },
+    {
+      "source": "health-page-heroes/media/supplements.mjs",
+      "name": "health-page-heroes/media/supplements.mjs",
+      "sha256": "a78385fd6faa7fc55daf1fb4b2be1defcb4a67e3e4109165ff95688adf4540bd",
+      "size": 201820
+    }
+  ],
+  "routing": "Only the 14 HTTPS canonical page routes (seven pages, two hostnames). Existing publishers and their module graphs remain untouched."
+}
