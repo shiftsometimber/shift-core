@@ -1,3 +1,4 @@
+import {configuredWorkerRouteCovers as coversRoute} from './scripts/configured-worker-route.mjs';
 import fs from 'node:fs';
 let failed=false;const must=(ok,msg)=>{if(!ok){console.error('FAIL '+msg);failed=true}else console.log('PASS '+msg)};
 const js=fs.readFileSync('frontend/member/member-my-timber-problem-v1.js','utf8');
@@ -19,7 +20,7 @@ must(css.includes('min-height:48px')&&css.includes('@media(max-width:760px)'),'T
 for(const asset of ['/member-my-timber-problem-v1.js','/member-today-premium-v1.css']){
   must(shell.includes(asset),`member shell injects ${asset}`);
   must(workerNormalised.includes(`'${asset}'`),`Shift Core publishes ${asset}`);
-  must(wrangler.includes(`shiftsometimber.co.uk${asset}*`)&&wrangler.includes(`www.shiftsometimber.co.uk${asset}*`),`production routes cover ${asset}`);
+  must(coversRoute(wrangler,'shiftsometimber.co.uk',asset)&&coversRoute(wrangler,'www.shiftsometimber.co.uk',asset),`production routes cover ${asset}`);
 }
 must(fs.existsSync('frontend/member/member-product-v33d.js'),'existing member product runtime remains in place; no parallel product architecture');
 if(failed)process.exit(1);

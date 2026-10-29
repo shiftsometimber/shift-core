@@ -1,5 +1,7 @@
 name: Prescription workflow checks
 on:
+  push:
+    branches: [codex/shared-prescription-workflow-20261029]
   pull_request:
     paths:
       - 'prescription-workflow-v1.mjs'
@@ -22,4 +24,24 @@ jobs:
           node --check medicine-commerce-v1.js
           node --check frontend/member/member-treatment-journey-v1.js
       - name: Verify synthetic lifecycle and existing medicine regressions
-        run: node --test tests/prescription-workflow-v1.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/medicine-intake-sqlite.test.mjs tests/pharmacy-handover-v1.test.mjs tests/medicine-intake-continuity.test.mjs tests/medicine-stripe-retry-v1.test.mjs
+        run: node --test tests/configured-worker-route.test.mjs tests/prescription-workflow-v1.test.mjs tests/medicine-commerce-v1.test.mjs tests/medicine-purchase-e2e.test.mjs tests/medicine-intake-sqlite.test.mjs tests/pharmacy-handover-v1.test.mjs tests/medicine-intake-continuity.test.mjs tests/medicine-stripe-retry-v1.test.mjs
+
+  provider-readiness:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Capture serving runtime without production writes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/prescription-release-readiness.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prescription-readiness-${{ github.sha }}
+          path: prescription-release-evidence/
+          retention-days: 7
