@@ -12,6 +12,9 @@ import {shedPageRoutes} from './shed-support-ui.mjs';
 import {isReservedV6AcceptanceRequest} from './support-release-gate.mjs';
 import {journeyDataRoutes} from './journey-data.mjs';
 import {journeyPageRoutes} from './journey-page.mjs';
+import {shopPageRoutes} from './shop-routes.mjs';
+import {shopNavigationAsset,withShopNavigation} from './shop-navigation.mjs';
+import {memberBasketRoutes} from './shop-basket.mjs';
 const trusted=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
 const aliases={'/v1/life-back/member-support':'/v1/member-support','/v1/life-back/check-in':'/v1/check-ins','/member/life-back/support-inbox':'/hq/coaching-support','/v1/life-back/support-inbox':'/v1/hq/support/coaching','/assets/member-experience/programme-support-inbox.mjs':'/assets/shift-coach-support.mjs'};
 const apiPaths=new Set(['/v1/life-back','/v1/life-back/journey','/v1/member-support','/v1/check-ins','/v1/hq/support/coaching',...Object.keys(aliases).filter(p=>p.startsWith('/v1/'))]);
@@ -34,11 +37,13 @@ export function wrapSupportService(original){return {
   else if(route==='/v1/member-support')response=await memberSupportContactRoutes(routed,env);
   else if(route==='/v1/check-ins')response=await memberHealthRoutes(routed,env);
   else if(['/hq/coaching-support','/v1/hq/support/coaching','/assets/shift-coach-support.mjs'].includes(route))response=await supportInboxLinks(await supportTeamRoutes(routed,env));
-  else response=journeyPageRoutes(request,env)||supportPlanRoutes(request,env);
+  else response=journeyPageRoutes(request,env)||supportPlanRoutes(request,env)||
+    (env.MEMBER_EXPERIENCE_V1_ENABLED==='true'&&shopNavigationAsset(request))||
+    await memberBasketRoutes(request,env)||await shopPageRoutes(request,env);
   if(response){
    if(cross&&apiPaths.has(path)){const h=new Headers(response.headers);h.set('Access-Control-Allow-Origin',origin);h.set('Access-Control-Allow-Credentials','true');h.append('Vary','Origin');return new Response(response.body,{status:response.status,headers:h});}
-   return withSupportMarkup(request,response);
+   return withShopNavigation(request,await withSupportMarkup(request,response),env);
   }
-  return withSupportLayout(request,await withSupportMarkup(request,await original.fetch(request,env,ctx)));
+  return withShopNavigation(request,await withSupportLayout(request,await withSupportMarkup(request,await original.fetch(request,env,ctx))),env);
  }
 };}
