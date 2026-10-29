@@ -1,0 +1,149 @@
+{
+  "siteUrl": "sc-domain:shiftsometimber.co.uk",
+  "submission": {
+    "siteUrl": "sc-domain:shiftsometimber.co.uk",
+    "attempted": 1,
+    "submitted": 1,
+    "failed": 0,
+    "results": [
+      {
+        "sitemapUrl": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition-sitemap.xml",
+        "accepted": true,
+        "confirmed": true,
+        "lastSubmitted": "2026-10-29T00:11:53.604Z",
+        "isPending": true,
+        "isSitemapsIndex": false,
+        "warnings": "0",
+        "errors": "0"
+      }
+    ],
+    "message": "Submitted 1 of 1 sitemap(s) to Search Console for sc-domain:shiftsometimber.co.uk. Submitting queues a download; it does not index the URLs.",
+    "actions": [
+      "Re-check list_sitemaps in a few hours: warnings and errors appear only after Google has downloaded the sitemap."
+    ]
+  },
+  "sitemapAfterSubmission": {
+    "path": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition-sitemap.xml",
+    "lastSubmitted": "2026-10-29T00:11:53.604Z",
+    "isPending": false,
+    "isSitemapsIndex": false,
+    "type": "sitemap",
+    "lastDownloaded": "2026-10-29T00:11:54.877Z",
+    "warnings": "0",
+    "errors": "0",
+    "contents": [
+      {
+        "type": "web",
+        "submitted": "9",
+        "indexed": null
+      }
+    ]
+  },
+  "indexing": {
+    "siteUrl": "sc-domain:shiftsometimber.co.uk",
+    "count": 9,
+    "succeeded": 9,
+    "failed": 0,
+    "skipped": 0,
+    "quotaExhausted": false,
+    "quota": {
+      "count": 17,
+      "limit": 2000,
+      "remaining": 1983
+    },
+    "results": [
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=ymYc6x01ntjHGBvL9h_5Zw&utm_medium=link&utm_source=api"
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=whey",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=qqSvkwpmt0aVBwSI7AmZPQ&utm_medium=link&utm_source=api"
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=clear",
+        "verdict": "NEUTRAL",
+        "coverageState": "Discovered - currently not indexed",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=XxHTlgHoE7BbPUXLpeylRQ&utm_medium=link&utm_source=api"
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=creatine",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=2O-PbaWFKhzTH5rktLCEcA&utm_medium=link&utm_source=api"
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=skill",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=ephOODZWBwWPTdJo2pbEyA&utm_medium=link&utm_source=api"
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=sticks",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=hq4cDvYiZpuY_YrLW6D5rA&utm_medium=link&utm_source=api"
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=tablets",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=LgFag_JP8KS1BSxIDgRImA&utm_medium=link&utm_source=api"
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=crunch",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=lJ4YFwYWiKmcCftIGGDr1A&utm_medium=link&utm_source=api"
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/supplements-nutrition?product=chunky",
+        "verdict": "NEUTRAL",
+        "coverageState": "Discovered - currently not indexed",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": null,
+        "googleCanonical": null,
+        "userCanonical": null,
+        "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:shiftsometimber.co.uk&id=p_vPYFAbPAxUPk3YUWTKmA&utm_medium=link&utm_source=api"
+      }
+    ]
+  },
+  "meaning": "Sitemap accepted and fetched. All nine URL inspections succeeded; none yet reports indexed. No ranking or AI-citation claim.",
+  "checkedOn": "2026-10-29"
+}
