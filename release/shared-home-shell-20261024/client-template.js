@@ -4,7 +4,9 @@ if(/^\/(?:hq|admin|v1|api)(?:\/|$)/.test(location.pathname)||window.__shiftHomeS
 window.__shiftHomeShell=true;
  for(const [key,cls]of [['sst_large_text','large-text'],['sst_reduce_motion','reduce-motion']])try{if(localStorage.getItem(key)==='1')document.documentElement.classList.add(cls)}catch{}
 const master=__MASTER__,css=__CSS__;
-const style=document.createElement('style');style.id='shift-home-shell-20261024';style.textContent=css;document.head.append(style);
+// The homepage is frozen: apply the approved heading colour only elsewhere.
+const footerHeadingColour=/^\/(?:index(?:\.html?)?)?$/.test(location.pathname)?'':'\nhtml body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c .fc-main h2{color:#707762!important;-webkit-text-fill-color:#707762!important;font-size:19px!important}';
+const style=document.createElement('style');style.id='shift-home-shell-20261024';style.textContent=css+footerHeadingColour;document.head.append(style);
 function node(html){const t=document.createElement('template');t.innerHTML=html;return t.content.firstElementChild}
 function fit(footer){const nav=footer.querySelector('[data-shift-footer-social]'),row=footer.querySelector('[data-whatsapp-contact]');if(!nav||!row)return;const size=()=>{const a=[...nav.querySelectorAll('a')].map(a=>a.getBoundingClientRect());if(a.length)row.style.setProperty('--shift-chat-width',Math.ceil(Math.max(...a.map(a=>a.right))-Math.min(...a.map(a=>a.left)))+'px')};size();new ResizeObserver(size).observe(nav)}
 function bindNewHeader(h,d,back){const trigger=h.querySelector('.menu-trigger'),close=d.querySelector('.drawer-close');let prior;
@@ -22,6 +24,16 @@ function frameBody(){
  for(const child of [...body.childNodes])if(child.nodeType!==1||!child.matches('header.site-header,footer.site-footer,aside.site-drawer,.drawer-backdrop,script,style,link'))frame.append(child);
  body.prepend(frame);body.dataset.homeFrame='1';
  for(const [key,value]of Object.entries({width:'100%','max-width':'none',margin:'0',padding:'0','box-sizing':'border-box'}))body.style.setProperty(key,value,'important');
+}
+function orderDrawer(){
+ if(/^\/(?:index(?:\.html?)?)?$/.test(location.pathname))return;
+ const nav=document.querySelector('#site-drawer nav');if(!nav)return;
+ const children=[...nav.children],links=children.filter(e=>e.tagName==='A');
+ const first=['/start-here','/programme','/shift-health','/treatment-centre','/member/dashboard'];
+ const rank=e=>{const i=first.indexOf(e.getAttribute('href'));return i<0?first.length:i};
+ const sorted=[...links].sort((a,b)=>rank(a)-rank(b)||a.textContent.trim().localeCompare(b.textContent.trim(),'en-GB',{sensitivity:'base'}));
+ if(links.every((e,i)=>e===sorted[i]))return;
+ let i=0;nav.replaceChildren(...children.map(e=>e.tagName==='A'?sorted[i++]:e));
 }
 function install(){if(!document.body)return;frameBody();
  let h=document.querySelector('header.site-header[data-header-v2]');
@@ -50,6 +62,7 @@ function install(){if(!document.body)return;frameBody();
  }
  if(f.parentElement!==document.body)document.body.append(f);
  for(const extra of document.querySelectorAll('footer'))if(extra!==f){if(extra.querySelector('.footer-brand,.fc-main,.footer-grid'))extra.remove();else for(const duplicate of extra.querySelectorAll('.shift-whatsapp-row,[data-shift-footer-social]'))duplicate.remove()}
+ orderDrawer();
  document.documentElement.dataset.shiftHomeShell='20261024';
 }
 const start=()=>{install();let queued=false;new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;install()})}}).observe(document.body,{childList:true,subtree:true})};
