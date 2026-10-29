@@ -1,0 +1,52 @@
+{
+  "recordId": "retatrutide-publication-email-hold-20261029",
+  "checkedAt": "2026-10-29T09:18:10.741Z",
+  "scope": "Private preparation for factual Lilly retatrutide Newsroom/ticker publication, existing HQ event 1569",
+  "repository": "shiftsometimber/shift-core",
+  "base": "afa38107c8d663dc233114982039a8814ca64229",
+  "componentCommit": "78ad551b4181f2a750a27278bb5bde38dfa6bf78",
+  "branch": "fix/radar-owner-email-hold-20261029",
+  "files": [
+    "radar-live-email-v1.js",
+    "tests/radar-owner-email-hold.test.mjs"
+  ],
+  "moduleBlob": "f0b33251fc006199c5314259b93f7ae5d6c9b8f4",
+  "testBlob": "bede87c0ce3bd1d69352d32235cdd425c0e8302a",
+  "test": {
+    "runtime": "Node v24.22.1",
+    "command": "node --test owner-email-hold.test.mjs",
+    "pass": 12,
+    "fail": 0,
+    "skip": 0,
+    "exitCode": 0,
+    "durationMs": 173.270757,
+    "boundary": "Actual module and unchanged source-review/publisher dependencies; in-memory SQLite and fictional addresses only. Local import paths mapped to repository locations when stored. Full original CI/integration suites not run."
+  },
+  "verification": {
+    "remoteModuleBytesMatch": true,
+    "remoteTestBodyMatches": true,
+    "twoFileDiffConfirmed": true,
+    "homepageChanged": false,
+    "publicationFencesChanged": false,
+    "globalNotificationModeChanged": false
+  },
+  "state": {
+    "prepared": true,
+    "testedFocused": true,
+    "merged": false,
+    "deployed": false,
+    "publicArticleVerified": false,
+    "emailSent": false,
+    "releaseJob": null
+  },
+  "existingArticleRecord": {
+    "id": 1569,
+    "content": "Saved original fact-checked article/ticker; decision note includes explicit hold and this technical handover",
+    "status": "ready_for_review",
+    "sourceIssue": "HQ stores 27 October; actual primary announcement is 28 October. Metadata correction remains distinct from source retrieval and public publication date.",
+    "communications": "No email approved. Do not publish using current unsuppressed publisher. Hold token has no runtime effect before this component is actually deployed."
+  },
+  "next": "Release manager must reconcile current source/active operations, complete original regression/integration/rollback gates and integrate/deploy only this component. Then resolve source metadata through existing guarded route, publish approved article/ticker and verify visible body/sources/date/indexability/Newsroom/ticker plus no email queued/sent.",
+  "coordinationAccess": "Current IP release-manager shared record could not be located by name/purpose searches or accessible workspace listings; no delivery to another chat or active release claimed. Handover stored in existing HQ article record and supplied in this chat.",
+  "sourceReviewDates": "No catalogue/factual review/successful monitor watermarks bulk renewed."
+}
