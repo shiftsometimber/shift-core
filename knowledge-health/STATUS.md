@@ -1,73 +1,67 @@
-# SHIFT Knowledge health expansion — complete 50-topic candidate
+# SHIFT Knowledge health expansion — deployed and verified
 
-29 October 2026. Version: 2026-10-29-v2.
-Owner: current Knowledge build conversation.
+29 October 2026. Content version: 2026-10-29-v2.
 
-Scope: broaden Knowledge, the wider website and SHIFT AI / Ask Timber across
-testosterone/TRT, bloods, testing, fertility, sleep and supplements.
+## Release
 
-Base: 8150c2daee76f05bc3c2293f6a251a82438e48d6 on shiftsometimber/shift-core.
+Matt explicitly authorised publication with “Please push and deploy this”.
+The reviewed public copy is live across Knowledge, the wider website and Ask
+Timber. Source checking is separate from clinical review: no clinician-reviewed
+status is claimed. Visual/mobile browser acceptance remains unverified because
+the browser service timed out; HTTP and API verification are complete.
+
+Repository: shiftsometimber/shift-core.
 Branch: work/knowledge-health-expansion-20261029.
+Deployed source commit: 7a0fa31651df29469e0a91b75ba2905c1651f5a1.
+Successful workflow: https://github.com/shiftsometimber/shift-core/actions/runs/40974742324.
+Live verification completed: 2026-10-29T23:43:00.160Z.
+Provider versions and the complete receipt are in release-receipt-20261029.json.
 
-## Built
+## Published
 
-- All 50 topics in roadmap.json have a guide route and matching FAQ / Ask answer.
-  There are 42 complete new source-checked guide drafts, including the 32
-  additional drafts requested in this turn, and eight retained existing guides.
-  Every new guide has at least five substantive sections and 300 words.
-  The eight existing article bodies have not been rewritten in this change.
-- Six Knowledge sections, alphabetically ordered cards, search and topic
-  selection. All 45 original public article cards are retained; existing URLs
-  remain available. Link counts include intentional cross-listing.
-- Fifty sourced short answers, searchable by question and grouped into six areas.
-  Each is checked through the actual Ask route without model/private-data calls.
-- Relevant-passage evidence retrieval for all topics in the existing shared
-  public/member Ask route. Specific subject signals outrank broad headings;
-  a personal or mixed query cannot take an exact-question answer shortcut.
-  Two relevant guide passages are retrieved alongside the answer and sources.
-- Fertility has its own starting page, all eight fertility guide links, and the
-  corrected Health shortcut. Erectile-dysfunction information links to the broader
-  sexual-health explanation without assuming that testosterone is the cause.
-- Related reading on Health, test, hormone, sleep and supplement pages.
-  Additive sitemap entries and metadata match the visible content.
-- Full-copy review includes all new guides, all 50 answers, the 50-topic coverage
-  map, fertility wording, Ask prompts, FAQ heading and every service-panel variant.
+- Six areas: testosterone/TRT, bloods, testing, fertility, sleep and supplements.
+- All 50 planned topics have a guide route and a matching FAQ / Ask answer:
+  42 complete new guides and eight retained existing guides.
+- Knowledge search and topic selection retain all 45 original public article
+  cards. Existing guide bodies and URLs remain available.
+- Fifty sourced short answers and relevant-passage retrieval are active in the
+  shared Ask route. The existing origin, urgent, medicine-status, privacy and
+  personal-context guards retain precedence.
+- A new fertility starting page links all eight fertility guides.
+- Related reading is added to Health, test, hormone, sleep and supplement pages.
+  Sitemap additions and metadata match the published guides.
 
-## Verified
+## Verification
 
-- 89 checks pass, zero fail; one existing opt-in real-model evaluation is skipped.
-  These include all 50 exact questions through the real Ask endpoint, 32 ordinary
-  query examples with the right leading evidence, deeper passage selection,
-  search/FAQ filters, metadata, routes, preservation, CORS, urgent handling,
-  consent and privacy regressions.
-- Full production Worker dry-run compiles. A dry-run is not a deployment.
-- 48 rendered review documents pass heading/canonical/anchor/duplicate-ID checks,
-  including 42 new guide pages, Knowledge, fertility, FAQ and Ask previews.
-- Browser service previously timed out. No successful visual/mobile browser
-  acceptance is claimed. Do not retry the same stalled browser path blindly.
+- CI: 96 checks passed, zero failed; one opt-in real-model evaluation was skipped.
+  The full production Worker dry-run compiled successfully.
+- Every one of the 42 new guide URLs returned 200 and its complete approved copy.
+- All 50 canonical questions passed through the live /v1/ai/chat endpoint with
+  the approved answer, sources and source_checked_health mode.
+- Knowledge, FAQ, Ask, fertility, sitemap and the new JavaScript asset passed.
+  Hostile-origin and urgent-question guards passed.
+- The homepage and existing service content were preserved. All ten current
+  Health cards and all 102 captured public asset responses were preserved.
+- Seven existing Workers received the bounded Knowledge layer. Their active
+  modules, bindings and named exports were preserved, with only the reviewed
+  Ask additions and the Health-to-Core shell service binding added.
+- All 915 Cloudflare routes were preserved; zero route rules were added/changed.
+- Separate post-deployment HTTP checks confirmed live Knowledge, fertility,
+  a TRT/fertility guide, FAQ, Ask and Health pages, plus a sourced Ask response.
 
-## Release state
+## Release history and boundaries
 
-The user authorised the implementation and then completing the remaining topics.
-The complete copy is now concrete and reviewable. Source checking is separate from
-clinical review; no new clinician-reviewed status is claimed.
+Earlier attempts either stopped before promotion or rolled back after detecting
+a fertility layout handoff failure or a doubly transformed asset. Those issues
+were corrected before the successful release above. The earlier push rejection
+was superseded by Matt's explicit instruction to push and deploy this version.
 
-Matt's standing instruction requires explicit sign-off of final public wording
-before publication. No deployment, live Ask activation or database seeding has
-occurred. Existing medicine-status, safety and private-context precedence remains.
+The release uses the current live provider modules and latest asset source to
+preserve concurrent site work. It is on the release branch; no merge to main is
+claimed. Existing public header/footer/ticker responses are retained.
 
-The earlier GitHub push was rejected by automatic approval review: remote
-transmission / branch creation was not explicitly authorised. No remote handover
-is claimed. Do not retry or bypass that rejection using another tool or route.
-
-No homepage changes, new Cloudflare route rules, customer-record writes, messages,
-purchases or changes to partner/service availability were made.
-
-## Next release actions
-
-Obtain the required clinical/content review and Matt's version-specific wording
-sign-off. Restore browser acceptance when available. Obtain explicit permission
-for the blocked remote handover. Before an authorised release, refresh production
-source once, preserve concurrent changes and deploy this same candidate through
-the existing release route. Verify real pages, sitemap and Ask responses before
-calling it live.
+No customer-record writes, messages, purchases, scheduled jobs, new route rules
+or changes to partner/service availability were made. Browser visual acceptance
+and clinical review are not claimed. The complete-copy HTML release record was
+updated with this receipt; build-review.mjs remains the pre-release preview
+generator.
