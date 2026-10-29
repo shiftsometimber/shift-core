@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Diagnose the exact public feed mapping before releasing any routes.
+# Run syntax-checked diagnostic against the exact unused Worker receipt.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
