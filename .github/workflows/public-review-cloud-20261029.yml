@@ -1,4 +1,5 @@
 name: Approved public review cloud release
+# Await rendered component readiness; background requests do not establish UI readiness.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
