@@ -1,4 +1,4 @@
-export const release='health-cards-approved-20261029-h6-w1-finish';
+export const release='health-cards-approved-20261029-h6-w1-desktop';
 export const cards=[
  {key:'bloods',label:'Bloods',title:'A clearer picture.',eyebrow:'SHIFT HEALTH · BLOODS',copy:'Explore blood tests, what they can tell you and what happens next.',cta:'Explore blood tests',alt:'An ordinary man at home, with two sealed sample tubes in the foreground.'},
  {key:'energy',label:'Energy & testosterone',title:'Energy & testosterone.',copy:'Understand changes in energy, strength and sex drive. Explore testing and assessment.',cta:'Explore the guide',alt:'A man with his padel racket beside the court.'},
@@ -51,6 +51,13 @@ export const css=`
 #main-content #shift-health-range .sst-features>article:only-child{grid-column:1/-1!important}
 @media(max-width:820px){#main-content #shift-health-range .shh-hero h1{font-size:clamp(38px,10.8vw,60px)!important;margin-bottom:20px!important}#main-content #shift-health-range .shh-hero .sst-health-hero-copy>p{font-size:16px!important;margin-bottom:24px!important}#main-content #shift-health-range .shh-hero figcaption{font-size:14px!important;padding:12px 14px!important}#main-content #shift-health-range .shh-chooser{margin-top:28px!important}}
 `;
+export const desktopCss=`
+@media(min-width:821px){
+#main-content #shift-health-range .shh-hero{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)!important;align-items:center!important;gap:32px!important}
+#main-content #shift-health-range .shh-hero h1{font-size:clamp(40px,4.2vw,60px)!important;margin-bottom:20px!important}
+#main-content #shift-health-range .shh-hero .sst-health-hero-copy>p{font-size:18px!important;line-height:1.5!important;margin-bottom:0!important}
+}
+`;
 export const bottomCss=`
 #main-content #shift-health-range .sst-linkline.shh-useful{display:block!important;margin:30px 0 0!important;padding:0!important;border:0!important}
 #main-content #shift-health-range .shh-useful h2{font:700 30px/1.15 Arial,Helvetica,sans-serif!important;letter-spacing:-.03em!important;color:#E7E3DA!important;margin:0 0 18px!important;padding:0!important}
@@ -76,6 +83,7 @@ const weightPattern=/<article\b[^>]*class=["'][^"']*\bsst-feature-weight-managem
 const chooserPattern=/<header class="shh-chooser"[^>]*>[\s\S]*?<\/header>/g;
 const stylePattern=/<style data-health-card-styles="20261029">[\s\S]*?<\/style>/g;
 const bottomStylePattern=/<style data-health-bottom-styles="20261029">[\s\S]*?<\/style>/g;
+const desktopStylePattern=/<style data-health-desktop-styles="20261029">[\s\S]*?<\/style>/g;
 const usefulPattern=/<section\b[^>]*class=["'][^"']*\bsst-linkline\b[^"']*["'][^>]*>[\s\S]*?<\/section>/g;
 const freePattern=/<section\b[^>]*class=["'][^"']*\bsst-free\b[^"']*["'][^>]*>[\s\S]*?<\/section>/g;
 const lineArrow='<svg class="shh-line-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -119,7 +127,7 @@ function polishClosingSections(html){
  return out;
 }
 export function outsideApprovedScope(html){
- return removeDuplicateFeatures(removeCategorySchema(html).replace(stylePattern,'').replace(bottomStylePattern,'').replace(heroPattern,'__APPROVED_HEADER__').replace(chooserPattern,'').replace(/<nav\b[^>]*class=["'][^"']*\bsst-health-grid\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi,'__APPROVED_GRID__').replace(weightPattern,'').replace(usefulPattern,'__USEFUL_LINKS__').replace(freePattern,'__MY_TIMBER__'));
+ return removeDuplicateFeatures(removeCategorySchema(html).replace(stylePattern,'').replace(bottomStylePattern,'').replace(desktopStylePattern,'').replace(heroPattern,'__APPROVED_HEADER__').replace(chooserPattern,'').replace(/<nav\b[^>]*class=["'][^"']*\bsst-health-grid\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi,'__APPROVED_GRID__').replace(weightPattern,'').replace(usefulPattern,'__USEFUL_LINKS__').replace(freePattern,'__MY_TIMBER__'));
 }
 export function approvedLinks(html){
  const {links}=extractLinks(html);
@@ -137,7 +145,7 @@ export function transformHTML(html){
  const chooser='<header class="shh-chooser"><h2>What would you like to sort?</h2><p>Choose a starting point.</p></header>';
  const newGrid='<nav class="sst-health-grid shc-grid" aria-label="Explore your health" data-health-card-release="'+release+'">'+cards.map((c,i)=>'<a class="shc-card" href="'+esc(decode(links[i].href))+'" aria-labelledby="shc-label-'+c.key+' shc-title-'+c.key+'"><img class="shc-photo" src="/shift-health/assets/cards-20261029/'+c.key+'.webp" alt="'+esc(c.alt)+'" width="1586" height="992" loading="lazy" decoding="async"><div class="shc-copy"><p class="shc-eyebrow" id="shc-label-'+c.key+'">'+esc(c.eyebrow||'SHIFT HEALTH')+'</p><h2 class="shc-title" id="shc-title-'+c.key+'">'+esc(c.title)+'</h2><p class="shc-description">'+esc(c.copy)+'</p><span class="shc-cta">'+esc(c.cta)+' <span aria-hidden="true">→</span></span></div></a>').join('')+'</nav>';
  const schema={'@context':'https://schema.org','@type':'ItemList','@id':categorySchemaId,name:'SHIFT Health categories',itemListElement:cards.map((c,i)=>({'@type':'ListItem',position:i+1,name:c.label,url:'https://shiftsometimber.co.uk'+decode(links[i].href)}))};
- const out=polishClosingSections(removeDuplicateFeatures(removeCategorySchema(html).replace(stylePattern,'').replace(bottomStylePattern,'').replace(chooserPattern,'').replace(heroes[0][0],()=>hero).replace(grid,()=>chooser+newGrid).replace(weightPattern,'').replace('</head>','<style data-health-card-styles="20261029">'+css+'</style><style data-health-bottom-styles="20261029">'+bottomCss+'</style><script type="application/ld+json">'+JSON.stringify(schema).replaceAll('<','\\u003c')+'</script></head>')));
+ const out=polishClosingSections(removeDuplicateFeatures(removeCategorySchema(html).replace(stylePattern,'').replace(bottomStylePattern,'').replace(desktopStylePattern,'').replace(chooserPattern,'').replace(heroes[0][0],()=>hero).replace(grid,()=>chooser+newGrid).replace(weightPattern,'').replace('</head>','<style data-health-card-styles="20261029">'+css+'</style><style data-health-bottom-styles="20261029">'+bottomCss+'</style><style data-health-desktop-styles="20261029">'+desktopCss+'</style><script type="application/ld+json">'+JSON.stringify(schema).replaceAll('<','\\u003c')+'</script></head>')));
  if(outsideApprovedScope(out)!==outsideApprovedScope(html))throw Error('The change extends beyond the approved Health header, grid and removal of duplicate features');
  return out;
 }

@@ -1,4 +1,10 @@
-# Approved SHIFT Health hub cleanup and closing sections
+# SHIFT Health desktop-only hero correction
+
+Matt confirmed that H6 is right on mobile but far too large in MacBook browsers. Above 820 CSS pixels, put the full collage beside the introduction in a balanced two-column layout. The photograph scales naturally to roughly half its former width, preserving the full image without cropping. The desktop headline and introduction scale with the narrower column. At 820 pixels and below, this stylesheet does not apply and the previously approved stacked mobile layout remains unchanged.
+
+This follow-up adds one separate `@media(min-width:821px)` stylesheet and advances the release marker. All other delivered HTML and existing styles must be byte-for-byte identical. The deployment enforces that restriction against a fresh live baseline before staging. All ten cards, their images, wording and destinations, the cleaned-up closing sections, the shared navigation/footer and the home page are preserved.
+
+## Previous hub cleanup
 
 Latest follow-up: Matt confirmed that H6 feels right on his phone, so its existing markup, wording, image and sizing stay exactly as deployed. The unpublished smaller-header draft is shelved.
 

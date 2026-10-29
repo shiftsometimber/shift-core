@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-import {cards,photoAssets,transformHTML,extractLinks,approvedLinks,outsideApprovedScope,introduction,removeDuplicateFeatures} from './cards.mjs';
+import {cards,photoAssets,transformHTML,extractLinks,approvedLinks,outsideApprovedScope,introduction,removeDuplicateFeatures,desktopCss} from './cards.mjs';
 const dir=new URL('./',import.meta.url);
 const localCurrent=new URL('h6-baseline.html',dir),localLegacy=new URL('baseline.html',dir);
 let current;
@@ -34,8 +34,10 @@ if(extractLinks(current).links.length===10){
  const hero=s=>s.match(/<section class="sst-health-hero shh-hero"[^>]*>[\s\S]*?<\/section>/)?.[0];
  assert.equal(hero(out),hero(current),'Keep the existing H6 wording and image');
  const style=s=>s.match(/<style data-health-card-styles="20261029">[\s\S]*?<\/style>/)?.[0];
- assert.equal(style(out),style(current),'Keep the existing header size and all current styles');
- const closingScope=s=>s.replace(/data-health-card-release="[^"]+"/,'data-health-card-release="VERSION"').replace(/<style data-health-bottom-styles="20261029">[\s\S]*?<\/style>/,'').replace(/<section\b[^>]*class="[^"]*\bsst-linkline\b[^"]*"[^>]*>[\s\S]*?<\/section>/,'__USEFUL_LINKS__').replace(/<section\b[^>]*class="[^"]*\bsst-free\b[^"]*"[^>]*>[\s\S]*?<\/section>/,'__MY_TIMBER__');
+ assert.equal(style(out),style(current),'Keep the existing mobile header and card styles');
+ const withoutDesktop=s=>s.replace(/data-health-card-release="[^"]+"/,'data-health-card-release="VERSION"').replace(/<style data-health-desktop-styles="20261029">[\s\S]*?<\/style>/,'');
+ if(current.includes('data-health-bottom-styles="20261029"'))assert.equal(withoutDesktop(out),withoutDesktop(current),'Only add the desktop-specific stylesheet');
+ const closingScope=s=>withoutDesktop(s).replace(/<style data-health-bottom-styles="20261029">[\s\S]*?<\/style>/,'').replace(/<section\b[^>]*class="[^"]*\bsst-linkline\b[^"]*"[^>]*>[\s\S]*?<\/section>/,'__USEFUL_LINKS__').replace(/<section\b[^>]*class="[^"]*\bsst-free\b[^"]*"[^>]*>[\s\S]*?<\/section>/,'__MY_TIMBER__');
  assert.equal(closingScope(out),closingScope(removeDuplicateFeatures(current)),'Only remove the four selected duplicate sections and polish the two closing sections');
  for(const cls of ['sst-linkline','sst-free']){
   const pattern=new RegExp('<section\\b[^>]*class="[^"]*\\b'+cls+'\\b[^"]*"[^>]*>[\\s\\S]*?<\\/section>');
@@ -49,8 +51,11 @@ if(extractLinks(current).links.length===10){
 }
 assert.equal(extractLinks(out).links[2].href,'/shift-health/testing/male-fertility');
 assert.equal(extractLinks(out).links[9].href,'/mens-weight-management');
+assert.equal((out.match(/data-health-desktop-styles="20261029"/g)||[]).length,1);
+assert(desktopCss.trim().startsWith('@media(min-width:821px){'));
+assert.equal((desktopCss.match(/@media/g)||[]).length,1);
 for(const c of photoAssets)assert(fs.statSync(new URL('assets/'+c.file,dir)).size>0);
 assert.throws(()=>transformHTML(current.replace(/<section class="sst-health-hero(?: shh-hero)?"/,'<section class="unrecognised-hero"')));
 assert.throws(()=>transformHTML(current.replace('href="/shift-health/testing/male-fertility"','href="//unexpected.example/fertility"')));
 fs.writeFileSync(new URL('h6-candidate.html',dir),out);
-console.log('PASS removal of four duplicate sections and empty rows; four SVG line icons; closing copy and links preserved; exact H6 markup and sizing, all ten cards and remaining HTML preserved; valid schemas and idempotence.');
+console.log('PASS desktop-only hero stylesheet; mobile styles, all content, ten cards and closing sections unchanged; valid schemas and idempotence.');
