@@ -21,7 +21,8 @@ export function assertPredecessor(snapshot){
 export function assertPreservedVersion(before,after){
   const bindings=x=>x.resources.bindings.slice().sort((a,b)=>a.name.localeCompare(b.name));
   same(bindings(before),bindings(after),'Every live binding must remain identical');
-  same(before.resources.script_runtime,after.resources.script_runtime,'Every runtime setting must remain identical');
+  const runtime=v=>{const r=structuredClone(v.resources.script_runtime);if(r.assets)r.assets={...r.assets,html_handling:r.assets.html_handling??'auto-trailing-slash',not_found_handling:r.assets.not_found_handling??'none'};return r;};
+  same(runtime(before),runtime(after),'Every effective runtime setting must remain identical');
 }
 export function wrapperSource(entry,source,tracker){
   assert.equal(entry,'my-timber-login-pattern-fix-20261027.mjs');assert.match(source,/^[a-f0-9]{40}$/);
@@ -147,10 +148,11 @@ export async function execute(){
   assert(assetJwt);console.log('Prepared explicit existing asset manifest: '+Object.keys(manifestAssets).length+' files');
   // All existing resources, including secrets and assets, inherit from the
   // immutable serving version rather than an un-deployed latest upload.
-  const body={main_module:'shift-prescription-entry.mjs',modules,bindings:snapshot.version.resources.bindings.map(b=>({name:b.name,type:'inherit',version_id:PREDECESSOR})),compatibility_date:snapshot.immutable.compatibility_date,compatibility_flags:snapshot.immutable.compatibility_flags,assets:{...snapshot.immutable.assets,jwt:assetJwt},usage_model:snapshot.immutable.usage_model,annotations:{'workers/message':'Matt-approved prescription lifecycle '+source,'workers/tag':'prescription-'+process.env.GITHUB_RUN_ID}};
+  const body={migrations:{old_tag:snapshot.version.resources.script_runtime.migration_tag,new_tag:snapshot.version.resources.script_runtime.migration_tag,steps:[]},main_module:'shift-prescription-entry.mjs',modules,bindings:snapshot.version.resources.bindings.map(b=>({name:b.name,type:'inherit',version_id:PREDECESSOR})),compatibility_date:snapshot.immutable.compatibility_date,compatibility_flags:snapshot.immutable.compatibility_flags,assets:{...snapshot.immutable.assets,jwt:assetJwt},usage_model:snapshot.immutable.usage_model,annotations:{'workers/message':'Matt-approved prescription lifecycle '+source,'workers/tag':'prescription-'+process.env.GITHUB_RUN_ID}};
   const uploaded=await api(beta+'/versions?deploy=false','POST',body);writeFileSync(out+'/uploaded.json',JSON.stringify({source,version:uploaded.id,manifest}));
   const version=await api(legacy+'/versions/'+uploaded.id);assertPreservedVersion(originalVersion,version);
   const saved=await api(beta+'/versions/'+uploaded.id+'?include=modules');
+  same(saved.assets,snapshot.immutable.assets,'Complete effective asset configuration changed');
   same(saved.modules.map(m=>({name:m.name,sha256:digest(Buffer.from(m.content_base64,'base64'))})).sort((a,b)=>a.name.localeCompare(b.name)),manifest.slice().sort((a,b)=>a.name.localeCompare(b.name)),'Uploaded complete modules differ');
   assert.equal((await active()).id,original.id,'Deployment moved while staging');same(await api(legacy+'/script-settings'),settings,'Worker settings changed while staging');
   assert.equal((await gh('/pulls/1450')).head.sha,source,'Candidate branch moved');
