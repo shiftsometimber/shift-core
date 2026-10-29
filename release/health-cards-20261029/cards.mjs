@@ -1,4 +1,4 @@
-export const release='health-cards-approved-20261029';
+export const release='health-cards-approved-20261029-r2';
 export const cards=[
  {key:'bloods',label:'Bloods',title:'A clearer picture.',eyebrow:'SHIFT HEALTH · BLOODS',copy:'Explore blood tests, what they can tell you and what happens next.',cta:'Explore blood tests',alt:'An ordinary man at home, with two sealed sample tubes in the foreground.'},
  {key:'energy',label:'Energy & testosterone',title:'Energy & testosterone.',copy:'Understand changes in energy, strength and sex drive. Explore testing and assessment.',cta:'Explore the guide',alt:'A man with his padel racket beside the court.'},
@@ -15,7 +15,8 @@ const decode=s=>s.replaceAll('&amp;','&').replaceAll('&#38;','&').replaceAll('&n
 export function extractLinks(html){
  const grids=[...html.matchAll(/<nav\b[^>]*class=["'][^"']*\bsst-health-grid\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi)];
  if(grids.length!==1)throw Error('Expected one live Health category grid');
- const links=[...grids[0][0].matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(m=>({href:m[1].match(/\bhref=["']([^"']+)["']/i)?.[1],label:decode((m[2].match(/<span[^>]*>([^<>]*)<\/span>\s*$/i)||[])[1]||'')}));
+ const own=grids[0][0].includes('data-health-card-release="health-cards-approved-20261029');
+ const links=[...grids[0][0].matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map((m,i)=>({href:m[1].match(/\bhref=["']([^"']+)["']/i)?.[1],label:own&&m[2].includes('id="shc-title-'+cards[i]?.key+'"')?cards[i].label:decode((m[2].match(/<span[^>]*>([^<>]*)<\/span>\s*$/i)||[])[1]||'')}));
  if(links.length!==9)throw Error('Expected exactly nine current category links');
  for(let i=0;i<cards.length;i++)if(links[i].label.toLowerCase()!==cards[i].label.toLowerCase()||!links[i].href?.startsWith('/')||links[i].href.startsWith('//'))throw Error('Unexpected category destination or order: '+links[i].label);
  return{grid:grids[0][0],links};
@@ -37,7 +38,10 @@ export const css=`
 @media(max-width:360px){#main-content #shift-health-range .shc-grid .shc-card{padding:20px!important;min-height:370px!important}#main-content #shift-health-range .shc-grid .shc-copy{width:72%!important}#main-content #shift-health-range .shc-grid .shc-title{font-size:29px!important}#main-content #shift-health-range .shc-grid .shc-description{font-size:15px!important}#main-content #shift-health-range .shc-grid .shc-cta{font-size:13px!important;padding:11px 13px!important}}
 `;
 export function transformHTML(html){
- if(html.includes('data-health-card-release="'+release+'"'))return html;
+ if(html.includes('data-health-card-release="health-cards-approved-20261029')){
+  extractLinks(html);
+  return html.replace(/data-health-card-release="health-cards-approved-20261029[^"']*"/,'data-health-card-release="'+release+'"').replace(/<style data-health-card-styles="20261029">[\s\S]*?<\/style>/,'<style data-health-card-styles="20261029">'+css+'</style>');
+ }
  const {grid,links}=extractLinks(html);
  const newGrid='<nav class="sst-health-grid shc-grid" aria-label="Explore your health" data-health-card-release="'+release+'">'+cards.map((c,i)=>'<a class="shc-card" href="'+esc(decode(links[i].href))+'" aria-labelledby="shc-label-'+c.key+' shc-title-'+c.key+'"><img class="shc-photo" src="/shift-health/assets/cards-20261029/'+c.key+'.webp" alt="'+esc(c.alt)+'" width="1586" height="992" loading="lazy" decoding="async"><div class="shc-copy"><p class="shc-eyebrow" id="shc-label-'+c.key+'">'+esc(c.eyebrow||'SHIFT HEALTH')+'</p><h2 class="shc-title" id="shc-title-'+c.key+'">'+esc(c.title)+'</h2><p class="shc-description">'+esc(c.copy)+'</p><span class="shc-cta">'+esc(c.cta)+' <span aria-hidden="true">→</span></span></div></a>').join('')+'</nav>';
  const schema={'@context':'https://schema.org','@type':'ItemList','@id':'https://shiftsometimber.co.uk/shift-health#health-categories',name:'SHIFT Health categories',itemListElement:cards.map((c,i)=>({'@type':'ListItem',position:i+1,name:c.label,url:'https://shiftsometimber.co.uk'+decode(links[i].href)}))};

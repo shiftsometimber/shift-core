@@ -27,17 +27,27 @@ try{
  const roots=js.filter(m=>!referenced.has(m.name));
  const explicit=original.main_module||original.metadata?.main_module||original.resources?.script?.main_module||settings.main_module;
  if(!explicit)assert.equal(roots.length,1,'Ambiguous active Worker entry point: '+JSON.stringify({keys:Object.keys(original),modules:js.map(m=>m.name),roots:roots.map(m=>m.name)}));
- const oldMain=explicit||roots[0].name;assert(js.some(m=>m.name===oldMain),'Provider entry point missing');assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
+ let oldMain=explicit||roots[0].name;
+ let baseModules=original.modules;
+ if(oldMain==='health-approved-overlay.mjs'){
+  const ownSource=Buffer.from(js.find(m=>m.name===oldMain).content_base64,'base64').toString('utf8');
+  assert(ownSource.includes('X-Shift-Health-Cards'),'Unrecognised module using the approved overlay name');
+  const predecessor=ownSource.match(/^import original from ['"]\.\/([^'"]+)['"]/m)?.[1];assert(predecessor,'Approved overlay predecessor missing');
+  oldMain=predecessor;
+  baseModules=original.modules.filter(m=>m.name!=='health-approved-overlay.mjs'&&m.name!=='health-approved-cards.mjs'&&!m.name.startsWith('health-approved-assets/'));
+ }
+ assert(js.some(m=>m.name===oldMain),'Provider entry point missing');assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
  console.log('Preserving Health entry '+oldMain+' and all '+original.modules.length+' existing modules.');
  const baseline=await getPage(),{grid,links}=extractLinks(baseline.html),candidate=transformHTML(baseline.html);
- assert.equal(stripOwn(candidate,grid),baseline.html,'Only the nine-card grid and its scoped style/schema may change');
+ assert.equal(stripOwn(candidate,grid),stripOwn(baseline.html,grid),'Only the nine-card grid and its scoped style/schema may change');
+ assert.deepEqual(extractLinks(candidate).links,links,'Preserve the current nine destinations on both initial and follow-up updates');
  assert.equal(transformHTML(candidate),candidate);assert.equal((candidate.match(/class="shc-card"/g)||[]).length,9);
  const homeBefore=await getPage('/');const mainBefore=homeBefore.html.match(/<main\b[\s\S]*?<\/main>/i)?.[0];assert(mainBefore,'Homepage main missing');
  fs.writeFileSync(dir+'/health-before.html',baseline.html);fs.writeFileSync(dir+'/health-candidate.html',candidate);
  save('before',{source:process.env.GITHUB_SHA,worker,deployment:beforeDeployment,routes:beforeRoutes,bindings:settings.bindings.map(x=>({name:x.name,type:x.type})),moduleHashes:original.modules.map(m=>({name:m.name,hash:hash(Buffer.from(m.content_base64,'base64'))})),homeMainSHA256:hash(mainBefore)});
  const prefix='release/health-cards-20261029/';
  const runtime=fs.readFileSync(prefix+'overlay.mjs','utf8').replaceAll('./original-health.mjs','./'+oldMain).replaceAll('./cards.mjs','./health-approved-cards.mjs').replaceAll('./cards/','./health-approved-assets/');
- const modules=[...original.modules,{name:'health-approved-overlay.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(runtime).toString('base64')},{name:'health-approved-cards.mjs',content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+'cards.mjs').toString('base64')},...cards.map(c=>({name:'health-approved-assets/'+c.key+'.webp',content_type:'application/octet-stream',content_base64:fs.readFileSync(prefix+'assets/'+c.key+'.webp').toString('base64')}))];
+ const modules=[...baseModules,{name:'health-approved-overlay.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(runtime).toString('base64')},{name:'health-approved-cards.mjs',content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+'cards.mjs').toString('base64')},...cards.map(c=>({name:'health-approved-assets/'+c.key+'.webp',content_type:'application/octet-stream',content_base64:fs.readFileSync(prefix+'assets/'+c.key+'.webp').toString('base64')}))];
  assert.equal(new Set(modules.map(m=>m.name)).size,modules.length,'New module names must be unique');
  const resources=original.resources?.script_runtime||{};
  const metadata={main_module:'health-approved-overlay.mjs',compatibility_date:resources.compatibility_date||settings.compatibility_date,compatibility_flags:resources.compatibility_flags||settings.compatibility_flags||[],bindings:settings.bindings.map(b=>b.type==='secret_text'?{type:'inherit',name:b.name,version_id:'latest'}:b),annotations:{'workers/message':'Matt approved nine photographic Health cards; preserve current Fertility fix and all other pages.','workers/commit_sha':process.env.GITHUB_SHA}};
