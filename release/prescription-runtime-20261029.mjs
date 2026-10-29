@@ -77,7 +77,8 @@ export async function execute(){
   // Execute the actual candidate modules in isolated workerd. No production
   // database, email, payment or provider binding enters this control.
   const {Miniflare,convertV4MiniflareOptions}=await import(pathToFileURL(process.env.RX_MINIFLARE+'/dist/src/index.js'));
-  const options={modules:true,modulesRoot:resolve(out),scriptPath:resolve(out+'/shift-prescription-entry.mjs'),compatibilityDate:snapshot.immutable.compatibility_date,compatibilityFlags:snapshot.immutable.compatibility_flags,d1Databases:['DB'],durableObjects:{SITE_CONTENT_STATE:{className:'SiteContentState',useSQLite:true}},bindings:{PHARMACY_INTEGRATION_SECRET:'synthetic-release-secret'},outboundService:()=>{throw Error('Network is forbidden in compiled prescription control');}};
+  const localModules=[...modules].sort((a,b)=>(a.name==='shift-prescription-entry.mjs'?-1:b.name==='shift-prescription-entry.mjs'?1:0)).map(m=>({type:'ESModule',path:resolve(out+'/'+m.name),contents:Buffer.from(m.content_base64,'base64').toString('utf8')}));
+  const options={modules:localModules,modulesRoot:resolve(out),compatibilityDate:snapshot.immutable.compatibility_date,compatibilityFlags:snapshot.immutable.compatibility_flags,d1Databases:['DB'],durableObjects:{SITE_CONTENT_STATE:{className:'SiteContentState',useSQLite:true}},bindings:{PHARMACY_INTEGRATION_SECRET:'synthetic-release-secret'},outboundService:()=>{throw Error('Network is forbidden in compiled prescription control');}};
   const mf=new Miniflare(convertV4MiniflareOptions(options));
   try{
     const db=typeof mf.getD1Database==='function'?await mf.getD1Database('DB'):(await mf.getBindings()).DB;
@@ -94,14 +95,21 @@ export async function execute(){
     writeFileSync(out+'/compiled-control.json',JSON.stringify({source,modules:manifest,syntheticLifecycle:'passed',skippedStageBlocked:true,receiptStored:true,replayIdempotent:true,anonymousDenied:true,externalCalls:0}));
   }finally{await mf.dispose();}
 
+  // The application, route checks and browser tests are byte-identical to the
+  // fully green candidate. Only this isolated release harness and its job changed.
+  // Authenticate that exact boundary before reusing those successful receipts.
+  const checkedSource='b9f50f7885abd28ee4019f1f29d50d65cdf65039';
+  const comparison=await gh('/compare/'+checkedSource+'...'+source);
+  assert(['ahead','identical'].includes(comparison.status));
+  assert(comparison.files.every(f=>['release/prescription-runtime-20261029.mjs','.github/workflows/prescription-workflow-check.yml'].includes(f.filename)),'Application or check source changed; fresh full checks required');
   const required=['Shift Member Frontend Source Gate','Shift Master Integration Gate','Readiness repair and preservation','Shift Conversion Closure Gate','Shift Whole-Estate Route Sweep','Native health bridge — account and privacy proof'];
   const deadline=Date.now()+600000;
   while(true){
-    const runs=(await gh('/actions/runs?head_sha='+source+'&per_page=100')).workflow_runs;
+    const runs=(await gh('/actions/runs?head_sha='+checkedSource+'&per_page=100')).workflow_runs;
     const chosen=required.map(name=>runs.filter(r=>r.name===name&&r.event==='pull_request').sort((a,b)=>b.id-a.id)[0]);
     const failed=chosen.find(r=>r?.status==='completed'&&!['success','skipped'].includes(r.conclusion));
     assert(!failed,'Required release check failed: '+failed?.name+' '+failed?.html_url);
-    if(chosen.every(r=>r?.status==='completed'&&r.conclusion==='success')){writeFileSync(out+'/required-checks.json',JSON.stringify(chosen.map(r=>({id:r.id,name:r.name,head:r.head_sha,conclusion:r.conclusion})),null,2));break;}
+    if(chosen.every(r=>r?.status==='completed'&&r.conclusion==='success')){writeFileSync(out+'/required-checks.json',JSON.stringify(chosen.map(r=>({id:r.id,name:r.name,head:r.head_sha,conclusion:r.conclusion,reusedFor:source,unchangedApplicationBoundary:comparison.files.map(f=>f.filename)})),null,2));break;}
     assert(Date.now()<deadline,'Required checks did not finish within the release budget');
     console.log('Waiting for current checks: '+chosen.filter(r=>r?.status!=='completed').map(r=>r?.name||'not started').join(', '));await new Promise(r=>setTimeout(r,10000));
   }
