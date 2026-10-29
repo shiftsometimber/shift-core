@@ -1,3 +1,4 @@
+import {configuredWorkerRouteCovers as coversRoute} from './scripts/configured-worker-route.mjs';
 import fs from 'node:fs';
 
 const need = (ok, message) => {
@@ -55,7 +56,10 @@ for (const marker of [
   'shiftsometimber.co.uk/member-my-journey-checkin-v1.js*',
   'shiftsometimber.co.uk/member-my-journey-checkin-v1.css*',
   'shiftsometimber.co.uk/member-treatment-journey-v1.js*',
-]) has(config, marker);
+]) {
+  const path='/'+marker.split('/').slice(1).join('/').replace(/\*$/,'');
+  for(const host of ['shiftsometimber.co.uk','www.shiftsometimber.co.uk'])need(coversRoute(config,host,path),`production routes do not cover ${host}${path}`);
+}
 
 // The browser adapter exposes one modular API surface rather than reviving
 // separate Progress, Check-in and Life Back destinations.

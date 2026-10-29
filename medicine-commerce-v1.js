@@ -1,3 +1,4 @@
+import {PRESCRIPTION_STATES,ensurePrescriptionSchema,applyPrescriptionEvent,memberPrescription} from './prescription-workflow-v1.mjs';
 import {ensureCheckoutAttempts,acquireCheckoutAttempt,prepareCheckoutAttempt,requestCheckoutSession,checkoutProblem} from './checkout-attempt-v1.mjs';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
@@ -14,6 +15,7 @@ const CLINICAL_CONSENT_VERSION = "medicine-clinical-intake-v1-2026-09-06";
 const MAX_CLINICAL_FILE_BYTES = 8 * 1024 * 1024;
 const CLINICAL_FILE_TYPES = new Set(["image/jpeg", "image/png", "image/heic", "image/heif"]);
 const CLINICAL_STATES = new Set([
+  ...PRESCRIPTION_STATES,
   "assessment_pending",
   "more_information_required",
   "approved",
@@ -27,7 +29,10 @@ const CLINICAL_STATES = new Set([
 const CLINICAL_TRANSITIONS = Object.freeze({
   assessment_pending: new Set(["more_information_required", "approved", "declined"]),
   more_information_required: new Set(["assessment_pending", "approved", "declined"]),
-  approved: new Set(["dispensing", "declined", "refund_pending"]),
+  approved: new Set(["prescription_signed", "dispensing", "declined", "refund_pending"]),
+  prescription_signed: new Set(["sent_to_pharmacy", "declined", "refund_pending"]),
+  sent_to_pharmacy: new Set(["pharmacy_received", "declined", "refund_pending"]),
+  pharmacy_received: new Set(["dispensing", "declined", "refund_pending"]),
   declined: new Set(["refund_pending", "refunded"]),
   refund_pending: new Set(["refunded"]),
   dispensing: new Set(["dispatched", "refund_pending"]),
@@ -483,14 +488,18 @@ function journeyComplete(preferences) {
 
 function memberTreatmentView(order, setupComplete) {
   const clinicalStatus = order.clinical_status || "not_started";
+  const prescription=memberPrescription(order);
   const clarificationRequired = clinicalStatus === 'more_information_required';
   const clinicalIntakeRequired = order.status === "paid" && !clarificationRequired && clinicalStatus === "assessment_pending" && !order.clinical_intake_submitted_at;
-  const setupRequired = Boolean(Number(order.journey_setup_required)) && ["approved", "dispensing", "dispatched", "fulfilled"].includes(clinicalStatus) && !setupComplete;
+  const setupRequired = Boolean(Number(order.journey_setup_required)) && ["approved", ...PRESCRIPTION_STATES].includes(clinicalStatus) && !setupComplete;
   const copy = {
     not_started: ["Payment not confirmed", "Your clinical assessment starts after payment is confirmed."],
     assessment_pending: clinicalIntakeRequired ? ["Clinical checks required", "Complete the compulsory health, GP, ID and body-image checks so the pharmacy partner can review your order."] : ["Clinical assessment in progress", "The pharmacy partner has your information and is reviewing it. My Shift will show the outcome here."],
     more_information_required: ["The clinical team needs more information", "Open the secure pharmacy questions for this assessment. Your earlier submission stays attached; no new assessment or payment is needed."],
     approved: setupRequired ? ["Approved — set up My Journey", "Take two minutes to set your starting point before ongoing support and reordering open."] : ["Treatment approved", "Weekly support is ready in My Timber."],
+    prescription_signed: ["Prescription issued", "Your clinician has signed your prescription. It is awaiting confirmed handover to the pharmacy."],
+    sent_to_pharmacy: ["Prescription sent to pharmacy", "Your prescription has been sent. We are waiting for the pharmacy to confirm receipt."],
+    pharmacy_received: ["Received by pharmacy", "The pharmacy has confirmed receipt of your prescription."],
     declined: ["Treatment not approved", "The clinical team decided this treatment is not suitable. Refund progress will appear here."],
     refund_pending: ["Refund being processed", "The payment is being returned through the original payment method."],
     refunded: ["Refund completed", "The payment has been returned through the original payment method."],
@@ -501,8 +510,11 @@ function memberTreatmentView(order, setupComplete) {
   return {
     orderNumber: order.order_number,
     variantId: Number(order.variant_id),
-    medicineName: order.medicine_name,
-    strengthLabel: order.strength_label,
+    medicineName: prescription?.medicine?.medicineName || order.medicine_name,
+    strengthLabel: prescription?.medicine?.strengthLabel || order.strength_label,
+    requestedMedicineName: order.medicine_name,
+    requestedStrengthLabel: order.strength_label,
+    prescription,
     totalPence: Number(order.total_pence),
     currency: order.currency,
     paymentStatus: order.status,
@@ -515,7 +527,7 @@ function memberTreatmentView(order, setupComplete) {
     clarificationRequired,
     journeySetupComplete: setupComplete,
     reorderEligibleAt: order.reorder_eligible_at || null,
-    canReorder: setupComplete && clinicalStatus === "fulfilled" && Boolean(order.reorder_eligible_at) && Number.isFinite(Date.parse(order.reorder_eligible_at)) && Date.parse(order.reorder_eligible_at) <= Date.now(),
+    canReorder: (!prescription || (prescription.medicine?.medicineName === order.medicine_name && prescription.medicine?.strengthLabel === order.strength_label)) && setupComplete && clinicalStatus === "fulfilled" && Boolean(order.reorder_eligible_at) && Number.isFinite(Date.parse(order.reorder_eligible_at)) && Date.parse(order.reorder_eligible_at) <= Date.now(),
     createdAt: order.created_at,
     updatedAt: order.updated_at,
   };
@@ -662,6 +674,7 @@ async function checkout(request, env) {
   const mode=String(env.STRIPE_MODE||'test').toLowerCase(),key=String(env.STRIPE_SECRET_KEY);
   if(!['test','live'].includes(mode)||!key.startsWith(mode==='live'?'sk_live_':'sk_test_'))return json({ok:false,error:'stripe_mode_mismatch'},503,cors(request));
   await schema(env);
+  await ensurePrescriptionSchema(env.DB);
   const input=await body(request),variantId=Number(input?.variantId);
   if(!Number.isInteger(variantId)||variantId<1)return json({ok:false,error:'invalid_variant'},400,cors(request));
   const eligibilityItem=await env.DB.prepare('SELECT m.form,m.name FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id WHERE v.id=?').bind(variantId).first();
@@ -679,9 +692,11 @@ async function checkout(request, env) {
   if(attempt.state==='preparing'){
     let reorderOf=null,verification=null;
     if(reorderNumber){
-      reorderOf=await env.DB.prepare('SELECT id,variant_id,clinical_status,reorder_eligible_at FROM medicine_orders WHERE order_number=? AND user_id=?').bind(reorderNumber,user.id).first();
+      reorderOf=await env.DB.prepare('SELECT id,variant_id,medicine_name,strength_label,prescription_reference,prescription_json,clinical_status,reorder_eligible_at FROM medicine_orders WHERE order_number=? AND user_id=?').bind(reorderNumber,user.id).first();
       if(!reorderOf||reorderOf.clinical_status!=='fulfilled'||!reorderOf.reorder_eligible_at||!Number.isFinite(Date.parse(reorderOf.reorder_eligible_at))||Date.parse(reorderOf.reorder_eligible_at)>Date.now())return reject('reorder_not_eligible');
       if(Number(reorderOf.variant_id)!==variantId)return reject('reorder_variant_mismatch',400);
+      const previousPrescription=memberPrescription(reorderOf);
+      if(previousPrescription&&(previousPrescription.medicine?.medicineName!==reorderOf.medicine_name||previousPrescription.medicine?.strengthLabel!==reorderOf.strength_label))return reject('repeat_requires_clinical_reconciliation',409,'Your prescribed treatment differs from the original request. Contact your clinical team before requesting a repeat.');
     }
     {
       if(!verificationToken)return reject('prepay_verification_required',409,'Complete verification before payment.');
@@ -699,7 +714,7 @@ async function checkout(request, env) {
     await ensureOrderReferenceRegistry(env.DB);
     const availableSql=`EXISTS(SELECT 1 FROM medicine_inventory WHERE variant_id=? AND stock_on_hand-reserved>0)`+(verification?` AND EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?) AND NOT EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE user_id=? AND partner_reference=? AND used_at IS NOT NULL)`:'');
     attempt=await prepareCheckoutAttempt(env.DB,attempt,{availableSql,availableArgs:[variantId,...(verification?[verificationHash,user.id,variantId,date,user.id,verification.partner_reference]:[])],form:stripeForm(order,item,user,env),statements:guard=>[
-      env.DB.prepare(`INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,clinical_intake_reference,created_at,updated_at) SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? WHERE ${guard}`).bind(order.orderNumber,user.id,user.email,item.medicine_id,variantId,item.name,item.strength_label,item.selling_price_pence,offer?.code||null,offer?.amount||0,order.totalPence,reorderOf?.id||null,verification?date:null,linkedIntake.public_reference,date,date),
+      env.DB.prepare(`INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,clinical_intake_reference,prescription_workflow_version,created_at,updated_at) SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,?,1,?,? WHERE ${guard}`).bind(order.orderNumber,user.id,user.email,item.medicine_id,variantId,item.name,item.strength_label,item.selling_price_pence,offer?.code||null,offer?.amount||0,order.totalPence,reorderOf?.id||null,verification?date:null,linkedIntake.public_reference,date,date),
       env.DB.prepare(`INSERT INTO order_reference_registry(order_number,channel,user_id,source_table,source_id,status,created_at,updated_at) SELECT ?,'medicine',?,'medicine_orders',(SELECT id FROM medicine_orders WHERE order_number=?),'pending',?,? WHERE ${guard}`).bind(order.orderNumber,user.id,order.orderNumber,date,date),
       env.DB.prepare(`UPDATE medicine_inventory SET reserved=reserved+1,updated_at=? WHERE variant_id=? AND ${guard}`).bind(date,variantId),
       ...(verification?[env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=? WHERE token_hash=? AND ${guard}`).bind(date,verificationHash)]:[])
@@ -901,6 +916,7 @@ async function pharmacyStatus(request, env) {
   const [a, b] = await Promise.all([sha256(supplied), sha256(String(env.PHARMACY_INTEGRATION_SECRET))]);
   if (!supplied || a !== b) return json({ ok: false, error: "unauthorised" }, 401);
   await schema(env);
+  await ensurePrescriptionSchema(env.DB);
   const input = await body(request), orderNumber = clean(input?.orderNumber, 80), next = clean(input?.status, 60);
   const reasonCode = clean(input?.reasonCode, 60);
   if (!orderNumber || !CLINICAL_STATES.has(next) || (reasonCode && !/^[a-z0-9_:-]+$/i.test(reasonCode)))
@@ -908,6 +924,12 @@ async function pharmacyStatus(request, env) {
   const order = await env.DB.prepare(`SELECT * FROM medicine_orders WHERE order_number=?`).bind(orderNumber).first();
   if (!order) return json({ ok: false, error: "order_not_found" }, 404);
   const current = order.clinical_status || "not_started";
+  if(PRESCRIPTION_STATES.includes(next) && (Number(order.prescription_workflow_version)===1 || ['prescription_signed','sent_to_pharmacy','pharmacy_received'].includes(next))) {
+    await ensureOrderReferenceRegistry(env.DB);
+    const result=await applyPrescriptionEvent(env.DB,order,input);
+    // Receipt updates appear in My Timber. This adds no new outbound emails.
+    return json(result,result.ok?200:result.httpStatus||400);
+  }
   if(current===next)return json({ok:true,orderNumber,status:next,duplicate:true});
   if (current !== next && !CLINICAL_TRANSITIONS[current]?.has(next))
     return json({ ok: false, error: "invalid_status_transition", current, requested: next }, 409);
@@ -964,3 +986,4 @@ export async function medicineCommerceRoutes(request, env, ctx) {
   return null;
 }
 export const medicineCommerceInternals = { journeyComplete, memberTreatmentView, clinicalTransitions: CLINICAL_TRANSITIONS };
+
