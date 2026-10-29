@@ -12,7 +12,8 @@ const account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2
 const script='shift-health-nutrition-20261027',dir='health-editorial-release',config='health-nutrition/wrangler.jsonc';
 const branch='release/olivit-editorial-approved-20261028',reviewBranch='work/olivit-product-detail-20261028';
 const reviewed='84cc457ec98bc94fc504023e8bc6f6a9abede094',main='afa38107c8d663dc233114982039a8814ca64229';
-const predecessor='2361f9d3-5b68-4921-8a6b-1263d5442d9b',predecessorBytes='09d6ed280227a434b55902ad99f9e009b562fedc3d495471ecc6ab6be1fd3252';
+const predecessor='109fc39a-57f4-4662-85b8-65180f6ba30d',predecessorBytes='09d6ed280227a434b55902ad99f9e009b562fedc3d495471ecc6ab6be1fd3252';
+const replacedModule='retained-health-nutrition.mjs';
 const expectedTrees=['ef09cbb58bdfad6aa5936a63c4c8d8d3d7cda2bf','c0c39e4c4f489b3d7b62860f312a823e6d67dfa5','139a8e03733dffaa36e518bdcc57fc66ab9eee16'];
 mkdirSync(dir,{recursive:true});
 const save=(name,data)=>writeFileSync(dir+'/'+name+'.json',JSON.stringify(data,null,2)+'\n');
@@ -49,14 +50,16 @@ async function retained(){
  }
  return result;
 }
-const normalizeBindings=bindings=>bindings.map(b=>b.type==='service'?{name:b.name,type:b.type,service:b.service,environment:b.environment||'production'}:b.type==='d1'?{name:b.name,type:b.type,id:b.id||b.database_id}:{name:b.name,type:b.type}).sort((a,b)=>a.name.localeCompare(b.name));
-const expectedBindings=normalizeBindings([{name:'DB',type:'d1',id:database},{name:'BLOG',type:'service',service:'shift-blog-publisher'},{name:'CORE',type:'service',service:'shift-core'},{name:'HQ',type:'service',service:'shift-hq-member-comms-20261023'}]);
+const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
+const fingerprint=value=>hash(JSON.stringify(stable(value)));
+const manifest=current=>current.modules.map(m=>[m.name,hash(Buffer.from(m.content_base64,'base64'))]).sort((a,b)=>a[0]<b[0]?-1:a[0]>b[0]?1:0);
+const versionConfig=current=>Object.fromEntries(['main_module','compatibility_date','usage_model','assets','cache_options','containers','exports','limits','package_dependencies','placement'].filter(key=>current[key]!==undefined).map(key=>[key,current[key]]).concat([['compatibility_flags',current.compatibility_flags||[]],['bindings',(current.bindings||[]).toSorted((a,b)=>a.name.localeCompare(b.name))]]));
+const scriptState=async()=>({settings:fingerprint(await cf('/accounts/'+account+'/workers/scripts/'+script+'/settings')),schedules:fingerprint(await cf('/accounts/'+account+'/workers/scripts/'+script+'/schedules'))});
 async function version(id,expectedHash){
  const current=await cf('/accounts/'+account+'/workers/workers/'+script+'/versions/'+id+'?include=modules');
- assert.equal(current.id,id);const modules=current.modules.filter(m=>/\.(mjs|js)$/.test(m.name));assert.equal(modules.length,1);
- assert.equal(hash(Buffer.from(modules[0].content_base64,'base64')),expectedHash,'Provider bytes differ');
- assert.deepEqual(normalizeBindings(current.resources.bindings),expectedBindings,'Staged bindings differ from retained component');
- assert.equal(current.resources.script_runtime.compatibility_date,'2026-10-01');
+ assert.equal(current.id,id);const before=load('before'),expected=before.moduleManifest.map(([name,sha])=>[name,name===replacedModule?expectedHash:sha]);
+ assert.deepEqual(manifest(current),expected,'An unowned module changed, or prepared supplement bytes differ');
+ assert.equal(fingerprint(versionConfig(current)),before.versionConfiguration,'Current version configuration/bindings changed');
  return current;
 }
 async function db(sql,params=[]){
@@ -73,26 +76,27 @@ async function catalogueState(){
 }
 async function publicState(){
  const result={};
- for(const path of ['/assets/shift-purchase-basket-v1.js','/shift-health/assets/checkout-recommendations.json']){
+ for(const path of ['/assets/shift-purchase-basket-v1.js','/shift-health/assets/checkout-recommendations.json','/shift-health/testing','/shift-health/testing/diabetes','/shift-health/testing/sitemap.xml','/shift-health/assets/hq-testing-fulfilment.js']){
   const response=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(25000),cache:'no-store'});assert.equal(response.status,200);
-  const body=await response.text();if(path.endsWith('.json')){const data=JSON.parse(body);assert.equal(data.salesEnabled,false);assert.equal(data.items.length,2);assert(data.items.every(p=>p.available===false&&!Object.hasOwn(p,'unitPence')));}
+  const body=await response.text();if(path.endsWith('checkout-recommendations.json')){const data=JSON.parse(body);assert.equal(data.salesEnabled,false);assert.equal(data.items.length,2);assert(data.items.every(p=>p.available===false&&!Object.hasOwn(p,'unitPence')));}
   result[path]=hash(body);
  }
  return result;
 }
 function assertOwned(rows){
- const patterns=['api.shiftsometimber.co.uk/v1/hq/supplements*','api.shiftsometimber.co.uk/v1/commerce/basket-quote'];
+ const patterns=['api.shiftsometimber.co.uk/v1/hq/supplements*','api.shiftsometimber.co.uk/v1/commerce/basket-quote','api.shiftsometimber.co.uk/v1/hq/testing*'];
  for(const host of ['shiftsometimber.co.uk','www.shiftsometimber.co.uk']){
   patterns.push(host+'/assets/shift-purchase-basket-v1.js');for(const suffix of ['*','','/','.html'])patterns.push(host+'/shift-health'+suffix);
  }
  for(const path of ['/','/index.html'])patterns.push('hq.shiftsometimber.co.uk'+path);
  for(const pattern of patterns)assert.equal(rows.find(r=>r.pattern===pattern)?.script,script,'Route ownership changed: '+pattern);
- assert.equal(rows.filter(r=>r.script===script).length,14,'Component acquired an unreviewed route');
+ assert.equal(rows.filter(r=>r.script===script).length,15,'Component acquired an unreviewed route');
 }
 async function unchanged(before,expectedDeployment){
  const now=await routes();assertOwned(now);assert.deepEqual(now,before.routes,'A route changed during this release');
  assert.deepEqual(await retained(),before.retained,'A retained service changed');assert.deepEqual(await catalogueState(),before.catalogue,'Live catalogue changed');
  assert.deepEqual(await publicState(),before.public,'Basket or recommendations changed');
+ assert.deepEqual(await scriptState(),before.scriptState,'Worker settings or fulfilment schedules changed');
  assert.equal((await deployment(script)).id,expectedDeployment,'Component ownership changed');
 }
 async function rollback(){
@@ -107,20 +111,17 @@ async function rollback(){
 const action=process.argv[2];
 if(action==='prepare'){
  await sourceCurrent();
- const active=await deployment(script);
- if(active.versions[0].version_id!==predecessor){
-  const current=await cf('/accounts/'+account+'/workers/workers/'+script+'/versions/'+active.versions[0].version_id+'?include=modules');
-  const modules=current.modules||[];assert(modules.length>0,'Current version contains no modules');
-  mkdirSync(dir+'/current-serving-modules',{recursive:true});
-  const captured=modules.map((module,index)=>{const bytes=Buffer.from(module.content_base64,'base64'),file='current-serving-modules/'+index+'.bin';writeFileSync(dir+'/'+file,bytes);return {name:module.name,type:module.type,file,bytes:bytes.length,sha256:hash(bytes)};});
-  save('current-serving',{deployment:active,modules:captured,metadata:current.metadata,topLevelKeys:Object.keys(current),resourceKeys:Object.keys(current.resources||{}),scriptMetadata:current.resources?.script,bindings:normalizeBindings(current.resources?.bindings||[]),scriptRuntime:current.resources?.script_runtime,routes:await routes(),retained:await retained()});
-  throw Error('Captured newer serving component for integration; no upload or promotion performed');
- }
+ const active=await deployment(script);assert.equal(active.versions[0].version_id,predecessor,'Serving composition changed again; preserve newer work before release');
+ const current=await cf('/accounts/'+account+'/workers/workers/'+script+'/versions/'+predecessor+'?include=modules');
+ assert.equal(hash(JSON.stringify(manifest(current))),'286c0d11214cbc74b1e743cbd47b5f6049b1afca8c048e57f5b19f52044e8e0c','Captured serving module manifest changed');
+ assert.equal(current.main_module,'testing-production-entry.mjs');
+ const before={source:process.env.GITHUB_SHA,approvedReview:reviewed,previous:active,moduleManifest:manifest(current),versionConfiguration:fingerprint(versionConfig(current)),scriptState:await scriptState(),routes:await routes(),retained:await retained(),catalogue:await catalogueState(),public:await publicState()};assertOwned(before.routes);save('before',before);
  await version(predecessor,predecessorBytes);
- const before={source:process.env.GITHUB_SHA,approvedReview:reviewed,previous:active,routes:await routes(),retained:await retained(),catalogue:await catalogueState(),public:await publicState()};assertOwned(before.routes);save('before',before);
  const buildDir=resolve(dir,'build');cli('deploy','--dry-run','--outdir',buildDir);
  const candidate=[buildDir+'/worker.js',buildDir+'/worker.mjs'].find(existsSync);assert(candidate,'Prepared bundle missing');
- const {default:compiled}=await import(pathToFileURL(candidate));
+ const compositionDir=resolve(dir,'composition');mkdirSync(compositionDir,{recursive:true});
+ for(const module of current.modules){assert(!module.name.startsWith('/')&&!module.name.split('/').includes('..'),'Unsafe provider module path');const target=resolve(compositionDir,module.name);mkdirSync(resolve(target,'..'),{recursive:true});writeFileSync(target,module.name===replacedModule?readFileSync(candidate):Buffer.from(module.content_base64,'base64'));}
+ const {default:compiled}=await import(pathToFileURL(resolve(compositionDir,current.main_module)));
  const shell=await fetch('https://shiftsometimber.co.uk/shift-health',{signal:AbortSignal.timeout(25000)});assert.equal(shell.status,200);const html=await shell.text();
  const env={DB,BLOG:{fetch:async()=>new Response(html,{headers:{'Content-Type':'text/html'}})}};
  const products=await publicProducts(DB);assert.equal(products.length,8);
@@ -131,8 +132,12 @@ if(action==='prepare'){
  const response=await compiled.fetch(new Request('https://shiftsometimber.co.uk'+supplementSitemapPath),env);assert.equal(response.status,200);assert.equal(((await response.text()).match(/<loc>/g)||[]).length,9);
  const buildSHA256=hash(readFileSync(candidate));save('build',{source:process.env.GITHUB_SHA,buildSHA256,candidate,realCatalogueReadOnlySmoke:true,reviewedRuntimeTrees:expectedTrees});
  await unchanged(before,active.id);
- const output=cli('versions','upload',candidate,'--no-bundle');writeFileSync(dir+'/upload.log',output);
- const ids=[...output.matchAll(/(?:Current |Worker )?Version ID:\s*([a-f0-9-]{36})/g)];assert.equal(ids.length,1,'Cannot identify staged version');const versionId=ids[0][1];save('staged',{versionId,buildSHA256,source:process.env.GITHUB_SHA});
+ const payload={};for(const key of ['main_module','compatibility_date','compatibility_flags','usage_model','assets','cache_options','containers','exports','limits','package_dependencies','placement'])if(current[key]!==undefined)payload[key]=current[key];
+ payload.bindings=(current.bindings||[]).map(binding=>({name:binding.name,type:'inherit',version_id:predecessor}));
+ payload.modules=current.modules.map(module=>module.name===replacedModule?{...module,content_base64:readFileSync(candidate).toString('base64')}:module);
+ payload.annotations={'workers/message':'Approved Olivit guide/SEO/sitemap update; preserve Testing & Wellbeing, fulfilment, settings, schedules and purchasing holds.','workers/tag':'olivit-editorial-20261028'};
+ const uploaded=await cf('/accounts/'+account+'/workers/workers/'+script+'/versions?deploy=false','POST',payload);
+ const versionId=uploaded.id;assert.match(versionId||'',/^[a-f0-9-]{36}$/);save('staged',{versionId,buildSHA256,source:process.env.GITHUB_SHA,preservedModules:current.modules.length-1,replacedModule});
  await version(versionId,buildSHA256);await unchanged(before,active.id);
  console.log('PASS exact approved runtime staged; live traffic, all routes, catalogue, checkout recommendations and retained services unchanged.');
 }else if(action==='promote'){
@@ -145,6 +150,6 @@ if(action==='prepare'){
 }else if(action==='verify'){
  await sourceCurrent();const before=load('before'),stage=load('staged'),promoted=load('promoted');await version(stage.versionId,stage.buildSHA256);await unchanged(before,promoted.deploymentId);
  const response=await fetch('https://shiftsometimber.co.uk'+supplementSitemapPath,{signal:AbortSignal.timeout(25000),cache:'no-store'});assert.equal(response.status,200);assert.match(response.headers.get('Content-Type'),/^application\/xml/);assert.equal(((await response.text()).match(/<loc>/g)||[]).length,9);
- save('verified',{ok:true,at:new Date().toISOString(),source:process.env.GITHUB_SHA,versionId:stage.versionId,buildSHA256:stage.buildSHA256,routesUnchanged:true,catalogueUnchanged:true,skuUnchanged:true,purchasingEnabled:false,recommendationsUnchanged:true,retainedServices:before.retained,sitemapLocations:9,liveBrowserEvidence:dir+'/browser-live/results.json'});
+ save('verified',{ok:true,at:new Date().toISOString(),source:process.env.GITHUB_SHA,versionId:stage.versionId,buildSHA256:stage.buildSHA256,routesUnchanged:true,catalogueUnchanged:true,testingAndFulfilmentModulesUnchanged:true,settingsAndSchedulesUnchanged:true,skuUnchanged:true,purchasingEnabled:false,recommendationsUnchanged:true,retainedServices:before.retained,sitemapLocations:9,liveBrowserEvidence:dir+'/browser-live/results.json'});
  console.log('PASS exact provider bytes, current ownership, live sitemap, retained services, unchanged catalogue/SKUs and held sales.');
 }else if(action==='rollback')await rollback();else throw Error('Expected prepare, promote, verify or rollback');

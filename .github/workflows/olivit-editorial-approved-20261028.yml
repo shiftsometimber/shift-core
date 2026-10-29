@@ -39,7 +39,7 @@ jobs:
         timeout-minutes: 3
         env:
           SHIFT_BROWSER_EVIDENCE: health-editorial-release/browser-live
-        run: node health-nutrition/browser-qa.mjs --live
+        run: node release/olivit-nutrition-20261027/browser-integrated.mjs
       - name: Verify provider bytes and preservation after live browser checks
         run: node release/olivit-nutrition-20261027/editorial-release.mjs verify
       - name: Restore only our own promoted component if verification fails

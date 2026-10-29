@@ -58,6 +58,16 @@ Matt replied **“Yes please”** to the prepared supplement content/SEO/sitemap
 - Build/upload uses the pinned compiler. Staged bytes/bindings and read-only rendering against the real catalogue are checked before promotion. After promotion, verify all eight real pages at four widths, the nine-URL sitemap, held purchasing, provider bytes and unchanged routes/catalogue/SKUs/recommendations/services. Rollback may restore only this component while its current active version is still the version promoted by this run.
 - Next: follow the actual release job to its result; submit only the successfully verified live sitemap through Search Console and retain that submission result. Inspect the published guide URLs without claiming submission guarantees indexing. No watcher, schedule or outreach is created.
 
+## Serving composition reconciled — 29 October 2026
+
+Matt repeated **“Deploy please”** during execution. The first release guard stopped before any upload/promotion because the live Health component had a newer version. The follow-up read-only capture found Testing & Wellbeing and fulfilment work, including the CSV-encoding fix, already composed around the exact old supplement bundle.
+
+- Captured current predecessor: version `109fc39a-57f4-4662-85b8-65180f6ba30d`, deployment `ed1efdb1-d507-4f15-b7d8-edff90cba4de`, created 28 October at 23:48 UK time. It has 28 modules, entry `testing-production-entry.mjs` and 15 owned routes, including the testing API. Its `retained-health-nutrition.mjs` is exactly the old verified supplement bundle, SHA256 `09d6ed280227a434b55902ad99f9e009b562fedc3d495471ecc6ab6be1fd3252`.
+- Finite diagnostic runs 40790260189, 40790486222 and 40790640684 made no promotion. The successful capture is artifact 12861152948, SHA256 `e06442232eaba9acc7952fff5f342027c0267e7f807fa0e78be69cecd2d4986e`. The first two failures exposed the stale predecessor receipt and the changed multipart packaging; they are not release successes.
+- Corrected release replaces **only** `retained-health-nutrition.mjs` with the already-tested new supplement bundle. It preserves all other 27 modules byte-for-byte, the current entry point, 15 routes, exact-version inherited bindings, runtime configuration, worker settings and fulfilment schedules. The old single-bundle promotion plan above is superseded; no Testing & Wellbeing code, imagery, mail handling or service is overwritten.
+- Before promotion, import the complete captured composition with the new supplement module and run the read-only real-catalogue guide/sitemap smoke. Afterwards, the same product/browser verifier is extended only to expect the existing ninth Testing & Wellbeing hub card and its cream colour. All prior eight-product checks remain intact. Testing pages, sitemap and fulfilment-client bytes are also compared before/after.
+- Runtime source trees remain identical to the 72-check receipt. This integration changes only release packaging and preservation checks. Follow the next actual job to final provider/browser verification, then submit the live supplement sitemap.
+
 ## Earlier Health presentation watermark (retained evidence)
 
 
