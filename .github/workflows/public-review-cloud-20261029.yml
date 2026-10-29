@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Verify original provider module bytes through the documented content/v2 API.
+# Use a temporary owned prefix for actual-Worker preview, with guaranteed cleanup.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
@@ -86,8 +86,8 @@ jobs:
       - name: Load the exact prior rollback receipt before reusing the scoped Worker
         uses: actions/download-artifact@v4
         with:
-          name: public-review-cloud-readiness-37e08d45abeb40bbea7feca27c8e7d06c42e58bb
-          run-id: 40865187731
+          name: public-review-cloud-readiness-bfe6c3d469195a1297ca6ee8eb499f92e1af08ab
+          run-id: 40866557698
           github-token: ${{ github.token }}
           path: previous-public-review/
       - name: Validate, release scoped public fixes and verify or roll back owned routes
