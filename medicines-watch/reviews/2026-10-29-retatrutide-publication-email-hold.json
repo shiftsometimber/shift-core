@@ -46,7 +46,162 @@
     "sourceIssue": "HQ stores 27 October; actual primary announcement is 28 October. Metadata correction remains distinct from source retrieval and public publication date.",
     "communications": "No email approved. Do not publish using current unsuppressed publisher. Hold token has no runtime effect before this component is actually deployed."
   },
-  "next": "Release manager must reconcile current source/active operations, complete original regression/integration/rollback gates and integrate/deploy only this component. Then resolve source metadata through existing guarded route, publish approved article/ticker and verify visible body/sources/date/indexability/Newsroom/ticker plus no email queued/sent.",
-  "coordinationAccess": "Current IP release-manager shared record could not be located by name/purpose searches or accessible workspace listings; no delivery to another chat or active release claimed. Handover stored in existing HQ article record and supplied in this chat.",
-  "sourceReviewDates": "No catalogue/factual review/successful monitor watermarks bulk renewed."
+  "next": "Current next actions are in currentPass.nextActions; no exclusive release-owner wait. Original tests, source gates, no-email restrictions and rollback controls retained.",
+  "coordinationAccess": "Historical morning release-manager search retained as a past limitation only; no current exclusive-owner requirement inferred.",
+  "sourceReviewDates": "No catalogue/factual review/successful monitor watermarks bulk renewed.",
+  "currentPass": {
+    "checkedAt": "2026-10-29T17:37:55.908Z",
+    "status": "partial",
+    "main": "2260675faf5ae8c3adbf52ff2a4f1a8427a91884",
+    "ownership": "Latest instruction permits independent work; absence of a release manager is not a blocker. Required original composition/integration/rollback gates and the no-email hold remain actual dependencies.",
+    "configuredSourcePass": {
+      "endpoint": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+      "method": "GET; confirmed SELECT-only reader in monitor.mjs",
+      "http": 200,
+      "lastMonitorAttempt": "2026-10-29T17:00:41.268Z",
+      "sources": 204,
+      "factualReviewDue": 204,
+      "monitorCurrent": 202,
+      "monitorChanged": 0,
+      "monitorFailed": 2,
+      "fullyReviewedConfiguredSourcesThisRun": 0,
+      "reviewDatesObserved": {
+        "oldest": "2026-10-05T17:48:30Z",
+        "newest": "2026-10-18T13:00:05.543428+00:00"
+      },
+      "failures": [
+        {
+          "id": "zealand-zp6590-pipeline",
+          "error": "http_403",
+          "lastSuccessAt": null,
+          "preserve": "verification_pending/check_delayed and overdue overlap; no renewal"
+        },
+        {
+          "id": "ganlee-gzc8072-20260907",
+          "error": "http_404",
+          "lastSuccessAt": "2026-10-27T12:32:26.481Z",
+          "next": "Find independently reviewable Gan & Lee replacement without seeding success or changing baseline before review"
+        }
+      ]
+    },
+    "coverage": {
+      "retrospectiveWindow": "Retain 10 October onward plus all older programme-specific windows and 19 October catch-up; not reset to today",
+      "lastConfiguredFactualReviewObserved": "18 October; not a publication watermark",
+      "latestMedicineNewsDateInRetrievedNewsroom": "19 October 2026 (oral VK2735/ACHIEVE-4 among others); complete archive disposition not established",
+      "latestGeneralNewsDateInRetrievedNewsroom": "24 October 2026; Parliament, not a medicine evidence review",
+      "ticker": {
+        "page": "https://shiftsometimber.co.uk/knowledge",
+        "serverAndLiveBrowserVerified": true,
+        "visible": [
+          "Read the latest published stories →",
+          "Medicine news and evidence →"
+        ],
+        "result": "Generic fallback, no medicine-news coverage watermark"
+      },
+      "retatrutide": {
+        "eventId": 1569,
+        "sourceDate": "2026-10-28",
+        "ageDays": 1,
+        "http": 404,
+        "url": "https://shiftsometimber.co.uk/medicine-news/retatrutide-ozempic-transcend-t2d-2-october-2026",
+        "presentInNewsroom": false,
+        "stage": "Prepared exact article/ticker; unpublished. Current main email module is original f600efa7a4c2e9a916c781b020e2007e7a3b7e9e, without private hold fix; metadata still needs guarded source-date repair.",
+        "next": "Integrate bounded email-hold fix through original gates, correct source metadata, then publish and verify full body/source/date/indexability/Newsroom/ticker/no email"
+      },
+      "PR1388": {
+        "open": true,
+        "draft": true,
+        "head": "4a38ad0b67e86a860ef336de97d9f38426c5eb9d",
+        "medicineRun": 39321981810,
+        "medicineTerminal": "failure",
+        "integrationRun": 39321981674,
+        "integrationTerminal": "success",
+        "routeRun": 39321981758,
+        "routeTerminal": "failure",
+        "note": "Actual terminal states freshly read; no unchanged retries. Full review JSON retrieval returned empty content despite valid blob 0c01ff8a9f0f14f6ff3d23e8f6e3ff3acc9a88bd; per-item public reconciliation incomplete."
+      }
+    },
+    "discovery": {
+      "datedQuery": "(obesity OR overweight) AND AREA[LastUpdatePostDate]RANGE[2026-10-10,2026-10-29]",
+      "datedPages": 3,
+      "datedRecordsFetched": 300,
+      "datedHasMore": true,
+      "broadQuery": "(obesity OR overweight) AND (oral OR muscle OR combination OR hypogonadism)",
+      "broadPages": 3,
+      "broadRecordsFetched": 300,
+      "broadHasMore": true,
+      "limitations": "Fetched records are not fully reviewed programmes. Preliminary dedup against available main catalogue/industry and partial proposal text is incomplete: registry baselines reside in imports and full PR evidence was inaccessible. No claim that all unmatched rows are new or relevant. Registry history pages not reviewed this run.",
+      "primaryReads": [
+        {
+          "url": "https://lilly.gcs-web.com/news-releases/news-release-details/lillys-retatrutide-delivered-greater-a1c-reduction-and-more",
+          "publicationDate": "2026-10-28",
+          "quality": "Sponsor topline; full peer review pending",
+          "finding": "TRANSCEND-T2D-2 sponsor comparison is not against obesity-dose Wegovy or tirzepatide. Investigational/unapproved."
+        },
+        {
+          "url": "https://lilly.gcs-web.com/news-releases/news-release-details/lilly-reports-third-quarter-2026-financial-results-raises-full",
+          "publicationDate": "2026-10-29",
+          "quality": "Original sponsor quarterly release",
+          "finding": "EloraTZP Phase 3 starts planned Q4 2026; not actual initiation or new human outcomes. Oral orforglipron references recap prior evidence, not new UK access.",
+          "next": "Reconcile original 30 September EloraTZP announcement against captured HQ story and public disposition; original linked redirect returned empty and direct page inaccessible this run."
+        },
+        {
+          "url": "https://clinicaltrials.gov/api/v2/studies/NCT06260722",
+          "recordUpdate": "2026-09-28",
+          "finding": "Phase 3 active/not recruiting, actual primary completion 27 August, 1250 estimated enrolment, no posted registry results. Sponsor 1298 participants remains separate."
+        },
+        {
+          "url": "https://clinicaltrials.gov/api/v2/studies/NCT07393360",
+          "recordUpdate": "2026-03-23",
+          "quality": "Sponsor-submitted registry protocol, not outcomes",
+          "finding": "MYO-PRESERVE, recruiting randomized placebo-controlled FSMP adjunct study; 144 estimated, actual start 11 December 2025, estimated December 2026 completion, no posted results. Muscle mass and strength endpoints remain planned.",
+          "next": "Provisional privately retained nutrition/muscle lead; finish proposal dedup before adoption. No supplement efficacy or catalogue source count inferred."
+        }
+      ]
+    },
+    "trtBlood": {
+      "result": "Bounded primary evidence/source bank refreshed; no verified new UK authorisation/access/supply change established",
+      "sources": [
+        {
+          "url": "https://www.medicines.org.uk/emc/product/6808/smpc",
+          "textRevision": "2025-01-14",
+          "emcUpdated": "2025-01-27",
+          "finding": "This specific Testogel 50 mg sachet page is marked Discontinued. Status-change date unknown; not a new 29 October withdrawal and not all testosterone products. No supply or treatment switch inferred."
+        },
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/cen.14929",
+          "firstPublication": "2023-07-01",
+          "finding": "UK joint statement: contextual symptoms plus appropriate sampling/assay interpretation; low testosterone needs repeat confirmation. Night-shift sampling requires specialist judgement."
+        },
+        {
+          "url": "https://www.nhs.uk/tests-and-treatments/nhs-health-check/",
+          "publicationDate": null,
+          "finding": "Free NHS Health Check for eligible adults 40–74, exclusions apply; not an indiscriminate annual blood panel."
+        }
+      ],
+      "site": {
+        "bloodsPage": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+        "bloodsState": "Coming soon, ordering closed; Complete professional venous sample. Does not prove laboratory scope/clinical service.",
+        "testosteronePageHttp": 200
+      },
+      "seoIntents": [
+        "Why might a low testosterone result need repeating?",
+        "Does working nights affect a testosterone blood test?",
+        "NHS Health Check or symptom-led blood tests: what is the difference?"
+      ],
+      "seoGate": "Use existing Organic Growth owner/pages; no duplicate post commissioned, no volumes/rankings invented. Laboratory/UKAS exact scope and partner capability remain unverified. No public clinical/service claims changed."
+    },
+    "delivery": {
+      "deployedCorrectionsThisRun": 0,
+      "publicationsThisRun": 0,
+      "emailActionsThisRun": 0,
+      "noSuccessfulWatermarkAdvanced": true,
+      "notificationReceipt": "Not inspected; chat report separate from technical receipt"
+    },
+    "nextActions": [
+      "Resolve the bounded no-email publication dependency and source-date repair through the retained original gates; publish/verify retatrutide.",
+      "Review GZC8072 official replacement and continue overdue factual reviews without bulk date renewal.",
+      "Continue registry pagination/history/proposal dedup and exact per-item retrospective disposition; incorporate TRT/blood intent evidence through existing Organic Growth records."
+    ]
+  }
 }
