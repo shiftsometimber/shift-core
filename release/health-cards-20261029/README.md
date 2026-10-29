@@ -1,4 +1,14 @@
-# Approved SHIFT Health H6 header and W1 tenth card
+# Approved SHIFT Health hub cleanup and closing sections
+
+Latest follow-up: Matt confirmed that H6 feels right on his phone, so its existing markup, wording, image and sizing stay exactly as deployed. The unpublished smaller-header draft is shelved.
+
+Matt supplied four screenshots and explicitly requested removal of the older Bloods, Testosterone & Energy, Supplements & Nutrition, and Testing & Wellbeing feature sections because the ten approved topic cards now cover them. Remove those four sections and their empty rows, preserving the ten card blocks byte for byte.
+
+Matt also requested removal of the emoji arrows and a more polished bottom of the hub. The existing Useful places links become three equal-width outlined link cards on desktop and three aligned rows on mobile, using decorative SVG line arrows. The existing free My Timber section becomes a compact cream callout with a black action button. Its wording and the four destinations are unchanged. This styling is in a separate scoped stylesheet and does not change H6, the cards or the shared site footer.
+
+The automated checks verify the exact existing H6 markup and stylesheet, all ten card blocks, removal of the four selected duplicate sections and empty rows, four semantic closing links with SVG icons, unchanged closing wording and destinations, valid schema, idempotence and preserved HTML outside this scope. The guarded provider deployment retains current independent module layers, bindings and routes and restores only its own version if verification fails. The home page remains untouched.
+
+## Earlier H6 and W1 approval
 
 Matt selected header H6 after reviewing six complete visual concepts. H6 uses the approved two-panel everyday-life collage, the headline “Men’s health. Made clearer.”, the full introduction in `cards.mjs`, the existing caption “A little more life in the everyday.” and “What would you like to sort?” above the cards. The introduction incorporates Matt’s requested “clear information and carefully selected solutions”.
 

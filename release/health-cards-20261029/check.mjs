@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-import {cards,photoAssets,transformHTML,extractLinks,approvedLinks,outsideApprovedScope,introduction} from './cards.mjs';
+import {cards,photoAssets,transformHTML,extractLinks,approvedLinks,outsideApprovedScope,introduction,removeDuplicateFeatures} from './cards.mjs';
 const dir=new URL('./',import.meta.url);
 const localCurrent=new URL('h6-baseline.html',dir),localLegacy=new URL('baseline.html',dir);
 let current;
@@ -20,17 +20,37 @@ for(const source of [current,...(legacy?[legacy]:[]),out]){
  assert.equal((candidate.match(/class="shh-chooser"/g)||[]).length,1);
  assert.equal((candidate.match(/header-h6\.webp/g)||[]).length,1);
  assert(!/<article\b[^>]*class="[^"]*sst-feature-weight-management/.test(candidate));
- assert(candidate.includes('sst-feature-bloods'));
+ assert(!/<article\b[^>]*class="[^"]*sst-feature-(?:bloods|testosterone|nutrition)/.test(candidate));
+ assert(!/<section\b[^>]*class="[^"]*\bnft-hub\b/.test(candidate));
+ assert(!/<div\b[^>]*class="[^"]*\bsst-features\b[^\"]*">\s*<\/div>/.test(candidate));
  const schemas=[...candidate.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(x=>JSON.parse(x[1]));
  const categories=schemas.filter(x=>x['@id']==='https://shiftsometimber.co.uk/shift-health#health-categories');
  assert.equal(categories.length,1);assert.equal(categories[0].itemListElement.length,10);
 }
 const anchors=s=>[...extractLinks(s).grid.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)].map(x=>x[0]);
 assert.deepEqual(anchors(out).slice(0,9),anchors(current).slice(0,9),'The nine signed-off cards remain byte-for-byte identical');
+if(extractLinks(current).links.length===10){
+ assert.deepEqual(anchors(out),anchors(current),'All ten signed-off cards remain byte-for-byte identical');
+ const hero=s=>s.match(/<section class="sst-health-hero shh-hero"[^>]*>[\s\S]*?<\/section>/)?.[0];
+ assert.equal(hero(out),hero(current),'Keep the existing H6 wording and image');
+ const style=s=>s.match(/<style data-health-card-styles="20261029">[\s\S]*?<\/style>/)?.[0];
+ assert.equal(style(out),style(current),'Keep the existing header size and all current styles');
+ const closingScope=s=>s.replace(/data-health-card-release="[^"]+"/,'data-health-card-release="VERSION"').replace(/<style data-health-bottom-styles="20261029">[\s\S]*?<\/style>/,'').replace(/<section\b[^>]*class="[^"]*\bsst-linkline\b[^"]*"[^>]*>[\s\S]*?<\/section>/,'__USEFUL_LINKS__').replace(/<section\b[^>]*class="[^"]*\bsst-free\b[^"]*"[^>]*>[\s\S]*?<\/section>/,'__MY_TIMBER__');
+ assert.equal(closingScope(out),closingScope(removeDuplicateFeatures(current)),'Only remove the four selected duplicate sections and polish the two closing sections');
+ for(const cls of ['sst-linkline','sst-free']){
+  const pattern=new RegExp('<section\\b[^>]*class="[^"]*\\b'+cls+'\\b[^"]*"[^>]*>[\\s\\S]*?<\\/section>');
+  const oldBlock=current.match(pattern)?.[0],newBlock=out.match(pattern)?.[0];assert(oldBlock&&newBlock);
+  const text=s=>s.replace(/<[^>]*>/g,' ').replace(/&#(?:x(?:2197|fe0e|fe0f)|8599|65038|65039);/gi,'').replace(/[\u2197\uFE0E\uFE0F]/g,'').replace(/\s+/g,' ').trim();
+  assert.equal(text(newBlock),text(oldBlock),'Keep the exact closing-section wording');
+  assert.deepEqual([...newBlock.matchAll(/href="([^"]+)"/g)].map(x=>x[1]),[...oldBlock.matchAll(/href="([^"]+)"/g)].map(x=>x[1]));
+  assert(!/[\u2197\uFE0E\uFE0F]/.test(newBlock),'No emoji arrow characters in closing links');
+ }
+ assert.equal((out.match(/<svg class="shh-line-arrow"/g)||[]).length,4);
+}
 assert.equal(extractLinks(out).links[2].href,'/shift-health/testing/male-fertility');
 assert.equal(extractLinks(out).links[9].href,'/mens-weight-management');
 for(const c of photoAssets)assert(fs.statSync(new URL('assets/'+c.file,dir)).size>0);
 assert.throws(()=>transformHTML(current.replace(/<section class="sst-health-hero(?: shh-hero)?"/,'<section class="unrecognised-hero"')));
 assert.throws(()=>transformHTML(current.replace('href="/shift-health/testing/male-fertility"','href="//unexpected.example/fertility"')));
 fs.writeFileSync(new URL('h6-candidate.html',dir),out);
-console.log('PASS H6 copy and photograph, W1 tenth card, ten current destinations, nine exact approved cards, removal of duplicate weight feature, all other HTML preserved, valid unique schemas, idempotence and refusal of an unexpected source.');
+console.log('PASS removal of four duplicate sections and empty rows; four SVG line icons; closing copy and links preserved; exact H6 markup and sizing, all ten cards and remaining HTML preserved; valid schemas and idempotence.');

@@ -43,11 +43,20 @@ try{
  assert(js.some(m=>m.name===oldMain),'Provider entry point missing');assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
  console.log('Preserving Health entry '+oldMain+' and all '+original.modules.length+' existing modules.');
  const baseline=await getPage(),beforeLinks=extractLinks(baseline.html).links,links=approvedLinks(baseline.html),candidate=transformHTML(baseline.html);
- assert.equal(outsideApprovedScope(candidate),outsideApprovedScope(baseline.html),'Only H6, the ten-card grid and the duplicate weight feature may change');
+ assert.equal(outsideApprovedScope(candidate),outsideApprovedScope(baseline.html),'Only the selected duplicate features and the two closing sections may change');
  assert.deepEqual(extractLinks(candidate).links,links,'Retain the current category destinations and migrate the existing weight-management link');
  assert.deepEqual(links.slice(0,9),beforeLinks.slice(0,9),'Preserve all nine approved category destinations');
- if(beforeLinks.length===9){const anchors=s=>[...extractLinks(s).grid.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)].map(x=>x[0]);if(baseline.html.includes('class="shc-card"'))assert.deepEqual(anchors(candidate).slice(0,9),anchors(baseline.html),'Preserve the nine approved cards byte for byte');}
+ assert.equal(beforeLinks.length,10,'This follow-up starts from the deployed ten-card layout');
+ const anchors=s=>[...extractLinks(s).grid.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g)].map(x=>x[0]);
+ assert.deepEqual(anchors(candidate),anchors(baseline.html),'Preserve all ten approved cards byte for byte');
+ const hero=s=>s.match(/<section class="sst-health-hero shh-hero"[^>]*>[\s\S]*?<\/section>/)?.[0];
+ assert(hero(baseline.html));assert.equal(hero(candidate),hero(baseline.html),'Keep the current H6 header');
+ const cardStyle=s=>s.match(/<style data-health-card-styles="20261029">[\s\S]*?<\/style>/)?.[0];
+ assert.equal(cardStyle(candidate),cardStyle(baseline.html),'Keep H6 sizing and all ten card styles');
  assert(candidate.includes(introduction));assert(!/<article\b[^>]*class="[^"]*sst-feature-weight-management/.test(candidate));
+ assert(!/<article\b[^>]*class="[^"]*sst-feature-(?:bloods|testosterone|nutrition)/.test(candidate));
+ assert(!/<section\b[^>]*class="[^"]*\bnft-hub\b/.test(candidate));
+ assert.equal((candidate.match(/<svg class="shh-line-arrow"/g)||[]).length,4);
  assert.equal(transformHTML(candidate),candidate);assert.equal((candidate.match(/class="shc-card"/g)||[]).length,10);
  const homeBefore=await getPage('/');const mainBefore=homeBefore.html.match(/<main\b[\s\S]*?<\/main>/i)?.[0];assert(mainBefore,'Homepage main missing');
  fs.writeFileSync(dir+'/health-before.html',baseline.html);fs.writeFileSync(dir+'/health-candidate.html',candidate);
@@ -57,7 +66,7 @@ try{
  const modules=[...baseModules,{name:'health-approved-overlay.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(runtime).toString('base64')},{name:'health-approved-cards.mjs',content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+'cards.mjs').toString('base64')},...photoAssets.map(c=>({name:'health-approved-assets/'+c.file,content_type:'application/octet-stream',content_base64:fs.readFileSync(prefix+'assets/'+c.file).toString('base64')}))];
  assert.equal(new Set(modules.map(m=>m.name)).size,modules.length,'New module names must be unique');
  const resources=original.resources?.script_runtime||{};
- const metadata={main_module:entryMain,compatibility_date:resources.compatibility_date||settings.compatibility_date,compatibility_flags:resources.compatibility_flags||settings.compatibility_flags||[],bindings:settings.bindings.map(b=>b.type==='secret_text'?{type:'inherit',name:b.name,version_id:'latest'}:b),annotations:{'workers/message':'Matt approved H6 Health introduction and W1 weight-loss card; preserve the nine approved cards and current runtime.','workers/commit_sha':process.env.GITHUB_SHA}};
+ const metadata={main_module:entryMain,compatibility_date:resources.compatibility_date||settings.compatibility_date,compatibility_flags:resources.compatibility_flags||settings.compatibility_flags||[],bindings:settings.bindings.map(b=>b.type==='secret_text'?{type:'inherit',name:b.name,version_id:'latest'}:b),annotations:{'workers/message':'Matt approved removal of four duplicate Health features and polish of the closing links; retain current H6 size and all ten cards.','workers/commit_sha':process.env.GITHUB_SHA}};
  for(const k of ['usage_model','limits','placement','observability','tail_consumers','logpush','cache_options'])if(settings[k]!==undefined)metadata[k]=settings[k];
  if(settings.assets)metadata.keep_assets=true;
  if(settings.bindings.some(x=>x.type==='secret_text')){const versions=await cf('/accounts/'+account+'/workers/scripts/'+worker+'/versions');assert.equal(versions.items?.[0]?.id||versions[0]?.id,oldId,'Secrets may only inherit from the captured active version');}
@@ -69,7 +78,7 @@ try{
  assert.equal((await active()).id,beforeDeployment.id,'Staging changed live traffic');assert.deepEqual(await routes(),beforeRoutes,'Routes changed during staging');
  const current=await getPage();assert.equal(current.html,baseline.html,'Hub changed while preparing; preserve the newer owner instead');
  save('staged',{source:process.env.GITHUB_SHA,versionId,previousVersion:oldId,modules:modules.map(m=>({name:m.name,sha256:hash(Buffer.from(m.content_base64,'base64'))})),destinations:links});
- await cf('/accounts/'+account+'/workers/scripts/'+worker+'/deployments','POST',{strategy:'percentage',versions:[{version_id:versionId,percentage:100}],annotations:{'workers/message':'Deploy Matt’s approved H6 introduction and W1 tenth card'}});promoted=true;
+ await cf('/accounts/'+account+'/workers/scripts/'+worker+'/deployments','POST',{strategy:'percentage',versions:[{version_id:versionId,percentage:100}],annotations:{'workers/message':'Deploy Matt’s approved Health hub cleanup and closing-section polish'}});promoted=true;
  assert.equal((await active()).versions[0].version_id,versionId);
  let live;for(let i=0;i<10;i++){live=await getPage();if(live.r.headers.get('X-Shift-Health-Cards')===release)break;await new Promise(resolve=>setTimeout(resolve,2000));}
  assert.equal(live.r.headers.get('X-Shift-Health-Cards'),release,'Live response does not carry the approved card version');assert.equal(live.html,candidate,'Delivered HTML differs from the exact candidate');
@@ -77,7 +86,7 @@ try{
  const destinations=await Promise.all(links.map(async link=>{const r=await fetch('https://shiftsometimber.co.uk'+link.href,{method:'HEAD',redirect:'follow',signal:AbortSignal.timeout(45000)});assert.equal(r.status,200,'Existing category destination failed '+link.href);return{href:link.href,status:r.status};}));
  assert.deepEqual(await routes(),beforeRoutes,'This release must add or alter zero routes');
  const homeAfter=await getPage('/');assert.equal(hash(homeAfter.html.match(/<main\b[\s\S]*?<\/main>/i)?.[0]||''),hash(mainBefore),'Homepage main changed');
- fs.writeFileSync(dir+'/health-live.html',live.html);const receipt={verified:true,source:process.env.GITHUB_SHA,worker,versionId,previousVersion:oldId,approvedHeader:'H6',approvedNewCard:'W1',cardCount:10,routeCount:beforeRoutes.length,routesChanged:0,homeMainPreserved:true,hubOutsideApprovedScopePreserved:true,nineApprovedCardsPreserved:true,duplicateWeightFeatureRemoved:true,checks,destinations,verifiedAt:new Date().toISOString()};save('receipt',receipt);console.log('HEALTH_CARD_RELEASE '+JSON.stringify(receipt));
+ fs.writeFileSync(dir+'/health-live.html',live.html);const receipt={verified:true,source:process.env.GITHUB_SHA,worker,versionId,previousVersion:oldId,approvedHeader:'H6',approvedNewCard:'W1',cardCount:10,routeCount:beforeRoutes.length,routesChanged:0,homeMainPreserved:true,hubOutsideApprovedScopePreserved:true,allTenApprovedCardsPreserved:true,headerSizingPreserved:true,duplicateWeightFeatureRemoved:true,duplicateFeaturesRemoved:['Bloods','Testosterone & Energy','Supplements & Nutrition','Testing & Wellbeing'],closingSectionsPolished:true,svgLineIcons:4,checks,destinations,verifiedAt:new Date().toISOString()};save('receipt',receipt);console.log('HEALTH_CARD_RELEASE '+JSON.stringify(receipt));
 }catch(error){
  save('failure',{message:error.message,promoted,versionId});
  if(promoted&&(await active()).versions[0].version_id===versionId){await cf('/accounts/'+account+'/workers/scripts/'+worker+'/deployments','POST',{strategy:'percentage',versions:[{version_id:beforeDeployment.versions[0].version_id,percentage:100}],annotations:{'workers/message':'Restore captured Health predecessor after H6/W1 verification failure'}});console.log('Restored only this release’s Health version; routes and data retained.');}
