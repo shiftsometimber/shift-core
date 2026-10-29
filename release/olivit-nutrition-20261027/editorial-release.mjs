@@ -54,7 +54,8 @@ const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==
 const fingerprint=value=>hash(JSON.stringify(stable(value)));
 const manifest=current=>current.modules.map(m=>[m.name,hash(Buffer.from(m.content_base64,'base64'))]).sort((a,b)=>a[0]<b[0]?-1:a[0]>b[0]?1:0);
 const versionConfig=current=>Object.fromEntries(['main_module','compatibility_date','usage_model','assets','cache_options','containers','exports','limits','package_dependencies','placement'].filter(key=>current[key]!==undefined).map(key=>[key,current[key]]).concat([['compatibility_flags',current.compatibility_flags||[]],['bindings',(current.bindings||[]).toSorted((a,b)=>a.name.localeCompare(b.name))]]));
-const scriptState=async()=>({settings:fingerprint(await cf('/accounts/'+account+'/workers/scripts/'+script+'/settings')),schedules:fingerprint(await cf('/accounts/'+account+'/workers/scripts/'+script+'/schedules'))});
+const functionalSettings=settings=>Object.fromEntries(Object.entries(settings).filter(([key])=>key!=='annotations'));
+const scriptState=async()=>({settings:fingerprint(functionalSettings(await cf('/accounts/'+account+'/workers/scripts/'+script+'/settings'))),schedules:fingerprint(await cf('/accounts/'+account+'/workers/scripts/'+script+'/schedules'))});
 async function version(id,expectedHash){
  const current=await cf('/accounts/'+account+'/workers/workers/'+script+'/versions/'+id+'?include=modules');
  assert.equal(current.id,id);const before=load('before'),expected=before.moduleManifest.map(([name,sha])=>[name,name===replacedModule?expectedHash:sha]);
@@ -114,6 +115,25 @@ if(action==='settings'){
  const safe=Object.fromEntries(Object.entries(settings).filter(([key])=>!['bindings','env'].includes(key)));
  save('settings-structure',{keys:Object.keys(settings),nonBindingSettings:safe,bindingNames:(settings.bindings||[]).map(b=>({name:b.name,type:b.type}))});
  console.log(JSON.stringify({keys:Object.keys(settings),nonBindingSettings:safe}));
+}else if(action==='resume'){
+ await sourceCurrent();const before=load('before'),stage=load('staged');
+ assert.equal(before.source,'fc2e26180587bd8b1c008d7346e4195e186ad7dd');assert.equal(stage.source,before.source);
+ assert.equal(stage.versionId,'f8977f16-49a8-4f72-bef1-314e0a6d845b');assert.equal(stage.buildSHA256,'2c00b58193a7feba510ed17e9fc76d7760b992a71e189400302d0d647f3c9314');
+ assert.equal(hash(readFileSync(resolve(dir,'build/worker.js'))),stage.buildSHA256);
+ assert.equal(hash(JSON.stringify(before.moduleManifest)),'286c0d11214cbc74b1e743cbd47b5f6049b1afca8c048e57f5b19f52044e8e0c');
+ const active=await deployment(script);assert.equal(active.id,before.previous.id);assert.equal(active.versions[0].version_id,predecessor);
+ const current=await version(predecessor,predecessorBytes);await version(stage.versionId,stage.buildSHA256);
+ const settings=await cf('/accounts/'+account+'/workers/scripts/'+script+'/settings');
+ // Prove the original full settings fingerprint is reproduced by restoring
+ // only the captured predecessor's version annotations. Keep every functional
+ // setting and the complete bindings in the comparison.
+ const originalSettings={...settings,annotations:current.annotations||{}};
+ assert.equal(fingerprint(originalSettings),before.scriptState.settings,'Settings difference is not solely version annotation metadata');
+ save('annotation-only-reconciliation',{verified:true,previousFullSettingsHash:before.scriptState.settings,reconstructedOriginalHash:fingerprint(originalSettings),ignoredField:'annotations',reason:'Version creation changes its message/tag/trigger metadata; functional settings and exact bindings match the prior full fingerprint.'});
+ before.scriptState.settings=fingerprint(functionalSettings(settings));save('before',before);
+ await unchanged(before,active.id);
+ save('resumed',{source:process.env.GITHUB_SHA,reusedStageSource:stage.source,reusedRun:40791403427,versionId:stage.versionId,buildSHA256:stage.buildSHA256,preservedModules:27,noRepeatedCompileOrUpload:true});
+ console.log('PASS reused exact staged composition; settings difference proven annotation-only; all functional settings, schedules and live ownership preserved.');
 }else if(action==='prepare'){
  await sourceCurrent();
  const active=await deployment(script);assert.equal(active.versions[0].version_id,predecessor,'Serving composition changed again; preserve newer work before release');

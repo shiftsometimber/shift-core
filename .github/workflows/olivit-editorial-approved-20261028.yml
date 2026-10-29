@@ -32,18 +32,22 @@ jobs:
           echo "SHIFT_PUPPETEER_MODULE=$RUNNER_TEMP/shift-browser/node_modules/puppeteer-core" >> "$GITHUB_ENV"
           echo "SHIFT_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
       - name: Verify exact prior evidence, capture serving ownership and stage the approved version
-        run: node release/olivit-nutrition-20261027/editorial-release.mjs settings
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 40791403427
+          name: olivit-editorial-approved-40791403427
+          path: health-editorial-release/
+      - name: Reuse the prepared composition and reconcile version annotations
+        run: node release/olivit-nutrition-20261027/editorial-release.mjs resume
       - name: Promote the captured Health component only
-        if: ${{ false }}
         run: node release/olivit-nutrition-20261027/editorial-release.mjs promote
       - name: Verify all eight live guides, sitemap and purchasing holds in Chrome
-        if: ${{ false }}
         timeout-minutes: 3
         env:
           SHIFT_BROWSER_EVIDENCE: health-editorial-release/browser-live
         run: node release/olivit-nutrition-20261027/browser-integrated.mjs
       - name: Verify provider bytes and preservation after live browser checks
-        if: ${{ false }}
         run: node release/olivit-nutrition-20261027/editorial-release.mjs verify
       - name: Restore only our own promoted component if verification fails
         if: ${{ always() && (failure() || cancelled()) }}
