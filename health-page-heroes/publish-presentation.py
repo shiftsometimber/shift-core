@@ -45,7 +45,12 @@ try:
  existing=cf('GET',base+'/settings')
 except urllib.error.HTTPError as error:
  if error.code!=404:raise
-else:raise AssertionError('Hero worker already exists; inspect its current release before updating')
+ assert not release.get('expectedCurrentDeployment'),'Expected hero publisher is missing'
+else:
+ assert release.get('expectedCurrentDeployment'),'Hero worker already exists; inspect its current release before updating'
+ assert cf('GET',base+'/deployments')['deployments'][0]['id']==release['expectedCurrentDeployment'],'Hero deployment changed'
+ assert signatures(graph(*cf('GET',base,raw=True)))==release['expectedCurrentModuleHashes'],'Hero modules changed'
+ assert sorted((b['name'],b['type'],b.get('service')) for b in existing['bindings'])==sorted((b['name'],b['type'],b.get('service')) for b in release['bindings']),'Hero bindings changed'
 modules={}
 for spec in release['modules']:
  data=source(spec['source']);assert sha(data)==spec['sha256'] and len(data)==spec['size'],spec['source'];modules[spec['name']]=(data,'application/javascript+module')
@@ -55,6 +60,7 @@ for name,data,kind in [('metadata',json.dumps(metadata).encode(),'application/js
  parts.extend([('--'+boundary+'\r\nContent-Disposition: form-data; name="'+name+'"'+('; filename="'+name+'"' if name!='metadata' else '')+'\r\nContent-Type: '+kind+'\r\n\r\n').encode(),data,b'\r\n'])
 parts.append(('--'+boundary+'--\r\n').encode())
 emit('preflight',sourceCommit=COMMIT,worker=release['worker'],moduleCount=len(modules),routes=len(routes),existingPublishersUntouched=True)
+if release.get('expectedCurrentDeployment'):assert cf('GET',base+'/deployments')['deployments'][0]['id']==release['expectedCurrentDeployment'],'Hero deployment changed before upload'
 created=cf('PUT',base,b''.join(parts),'multipart/form-data; boundary='+boundary)
 deployment=cf('GET',base+'/deployments')['deployments'][0];assert len(deployment['versions'])==1 and deployment['versions'][0]['percentage']==100
 version=deployment['versions'][0]['version_id'];settings=cf('GET',base+'/settings')
@@ -73,7 +79,7 @@ try:
   now=routes_by_pattern().get(spec['pattern']);before=spec['before'];payload={'pattern':spec['pattern'],'script':release['worker'],'request_limit_fail_open':False}
   if before:
    assert now and now['id']==before['id'] and now['script']==before['script'],('Route changed',spec['pattern'])
-   cf('PUT',zone+'/'+before['id'],payload)
+   if now['script']!=release['worker']:cf('PUT',zone+'/'+before['id'],payload)
   else:
    assert now is None,('Route appeared',spec['pattern']);cf('POST',zone,payload)
  current=routes_by_pattern();published=[current[s['pattern']] for s in routes];assert all(r['script']==release['worker'] for r in published)

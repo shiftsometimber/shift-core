@@ -4,7 +4,7 @@ Matt signed off deployment of all seven page heroes. The active release is `pres
 
 The dedicated `shift-health-heroes-20261029` publisher calls each page's existing service, then replaces only its old hero. It serves the approved photographs, live HTML copy and real page anchors. Four existing upstream services continue to own all page guides, metadata, product content and availability controls. Their modules, bindings, named exports and schedules are not changed.
 
-Only 14 exact HTTPS page routes are used: seven canonical paths on the main and www hostnames. `route-baseline.json` records the previous owners. The publisher checks ownership before each route change and restores its own route changes on a failed release. No schedule or messaging capability is added.
+The seven page families use 14 exact HTTPS canonical routes and 14 prefix routes across the main and www hostnames. Prefix routes allow query-string images and category filters; specific child routes retain precedence and other child paths pass through to the original service. `route-baseline.json` records the previous owners. The publisher checks ownership before each route change and restores its own route changes on a failed release. No schedule or messaging capability is added.
 
 The seven pages are testosterone and energy, blood tests, hair loss, blood pressure monitoring, men's mental health, sleep apnoea, and supplements and nutrition. The previously published testing collection hero remains with its current publisher.
 
