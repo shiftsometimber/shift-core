@@ -22,7 +22,7 @@
         "SHIFT_AI_MODEL"
       ],
       "compatibility_date": "2026-08-09",
-      "deployment": "1326ad61-7066-47e6-aad1-13b3236dc01c",
+      "deployment": "ef53ba2e-4bf3-4158-959d-9cca5432eb65",
       "moduleHashes": {
         "worker.js": "b7d406c35f54a034b8fa54c264ad3d02e5279147ea96f26619698a14e8ac0961"
       },
@@ -65,8 +65,8 @@
         {
           "source": "health-page-heroes/styles.mjs",
           "name": "health-page-heroes/styles.mjs",
-          "sha256": "3b6d08e088d8578ff2cc36941f380e5d5e790a0ea55e89b9d04237c5201866c2",
-          "size": 6994
+          "sha256": "3e3705940f101cba7c33a1a87f695726fceb0a086e45f96ccc622423872bd896",
+          "size": 7144
         },
         {
           "source": "health-page-heroes/media-worker-0.mjs",
@@ -134,8 +134,8 @@
         {
           "source": "health-page-heroes/styles.mjs",
           "name": "health-page-heroes/styles.mjs",
-          "sha256": "3b6d08e088d8578ff2cc36941f380e5d5e790a0ea55e89b9d04237c5201866c2",
-          "size": 6994
+          "sha256": "3e3705940f101cba7c33a1a87f695726fceb0a086e45f96ccc622423872bd896",
+          "size": 7144
         },
         {
           "source": "health-page-heroes/media-worker-1.mjs",
@@ -264,8 +264,8 @@
         {
           "source": "health-page-heroes/styles.mjs",
           "name": "health-page-heroes/styles.mjs",
-          "sha256": "3b6d08e088d8578ff2cc36941f380e5d5e790a0ea55e89b9d04237c5201866c2",
-          "size": 6994
+          "sha256": "3e3705940f101cba7c33a1a87f695726fceb0a086e45f96ccc622423872bd896",
+          "size": 7144
         },
         {
           "source": "health-page-heroes/media-worker-2.mjs",
@@ -350,8 +350,8 @@
         {
           "source": "health-page-heroes/styles.mjs",
           "name": "health-page-heroes/styles.mjs",
-          "sha256": "3b6d08e088d8578ff2cc36941f380e5d5e790a0ea55e89b9d04237c5201866c2",
-          "size": 6994
+          "sha256": "3e3705940f101cba7c33a1a87f695726fceb0a086e45f96ccc622423872bd896",
+          "size": 7144
         },
         {
           "source": "health-page-heroes/media-worker-3.mjs",
@@ -367,5 +367,13 @@
         }
       ]
     }
-  ]
+  ],
+  "priorAttempt": {
+    "sourceCommit": "32a13b790b1ff323c29a8fa89dda15ccfa2b29c5",
+    "worker": "shift-blog-publisher",
+    "deploymentId": "7b8e2851-9dad-4798-8c23-6efda796a1de",
+    "versionId": "068a6717-7d6a-48e6-bf1f-90c8932ca43d",
+    "result": "Read-only verification returned HTTP 502. Prior version restored.",
+    "rollbackDeploymentId": "ef53ba2e-4bf3-4158-959d-9cca5432eb65"
+  }
 }

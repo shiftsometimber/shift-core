@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Publish the approved page heroes around the exact current Worker module graphs."""
-import datetime,email,hashlib,json,re,runpy,sys,time,urllib.request,uuid
+import datetime,email,hashlib,json,re,runpy,sys,time,urllib.request,urllib.error,uuid
 from email import policy
 COMMIT=sys.argv[1]
 assert re.fullmatch('[a-f0-9]{40}',COMMIT)
@@ -12,7 +12,13 @@ def sha(data):return hashlib.sha256(data).hexdigest()
 def cf(method,path,data=None,kind='application/json',raw=False):
  if data is not None and not isinstance(data,bytes):data=json.dumps(data).encode()
  request=urllib.request.Request('https://api.cloudflare.com/client/v4/'+path,method=method,data=data,headers={'Authorization':'Bearer '+TOKEN,'Content-Type':kind})
- with urllib.request.urlopen(request,timeout=60) as response:body=response.read();content_type=response.headers.get('Content-Type','')
+ for attempt in range(4):
+  try:
+   with urllib.request.urlopen(request,timeout=60) as response:body=response.read();content_type=response.headers.get('Content-Type','')
+   break
+  except urllib.error.HTTPError as error:
+   if method!='GET' or error.code not in [429,500,502,503,504] or attempt==3:raise
+   emit('read_retry',path=path,status=error.code,attempt=attempt+1);time.sleep(2**(attempt+1))
  if raw:return body,content_type
  value=json.loads(body);assert value.get('success'),value.get('errors');return value['result']
 def source(path):
