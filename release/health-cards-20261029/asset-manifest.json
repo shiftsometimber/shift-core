@@ -1,47 +1,57 @@
-{
-  "bloods": {
-    "source": "exec-db5c3fe3-220a-4424-8981-4c1909b12272.png",
+[
+  {
+    "file": "bloods.webp",
     "bytes": 57052,
     "sha256": "3928334837a37f3150e483946b93faae60166588339032398ad400301bd81736"
   },
-  "energy": {
-    "source": "exec-7b24a51a-794f-45be-9f43-a99d6e1d7247.png",
+  {
+    "file": "energy.webp",
     "bytes": 72260,
     "sha256": "bf262880acc54d04f8dc15c01e2f5c44d1d1faaebfe645e867b3f8835ca278b5"
   },
-  "fertility": {
-    "source": "exec-1e89ea93-c161-4f86-8d59-bc605d97a7ed.png",
+  {
+    "file": "fertility.webp",
     "bytes": 119262,
     "sha256": "8391e176d8907cdbf8e1b062ceaa2d849ee5b6a4cf3b3a6450eddda266402f70"
   },
-  "hair": {
-    "source": "exec-402bf377-4c14-4b58-a73d-94f2529c47ce.png",
+  {
+    "file": "hair.webp",
     "bytes": 77106,
     "sha256": "7ec84326c83b6cd030e6b0ba72fa0a19f71bb32e32172375b6268a3a873ba8de"
   },
-  "heart": {
-    "source": "exec-7242a2c2-e345-4cb5-86c8-98c0704ed557.png",
+  {
+    "file": "header-h6.webp",
+    "bytes": 299472,
+    "sha256": "0dd30dc3a3bb899e398b5308d27277f72ccc90fd44e7d874bfbdbf46e18697a6"
+  },
+  {
+    "file": "heart.webp",
     "bytes": 120346,
     "sha256": "bd92d4747c7254e849cd7e8b9340e6da5d04a1ded681a67b8c46dbb108755e74"
   },
-  "mental": {
-    "source": "exec-438a92a2-31bf-4faf-bc20-f499346066bd.png",
+  {
+    "file": "mental.webp",
     "bytes": 131298,
     "sha256": "24fdb52af5e9402f06da9df807528b3a6f38d90ab700a3c1a0babb9ceaff907f"
   },
-  "sleep": {
-    "source": "exec-fc8a6daf-e63c-452e-b015-c357035a45ca.png",
-    "bytes": 57804,
-    "sha256": "b9e91cb75681690d7c8f6d5d32447ed0c4e8a8e7f470e212dea3c96f06b5c17b"
-  },
-  "nutrition": {
-    "source": "exec-97c40ba1-19c7-4e18-963b-62476f309692.png",
+  {
+    "file": "nutrition.webp",
     "bytes": 92772,
     "sha256": "63ec3123ebe97bcd7a59c5245017b31a2be829b5a8af4edef1ae3ab73d875e26"
   },
-  "testing": {
-    "source": "exec-d4e50e41-e559-4d0f-b88b-bad464e9d82e.png",
+  {
+    "file": "sleep.webp",
+    "bytes": 57804,
+    "sha256": "b9e91cb75681690d7c8f6d5d32447ed0c4e8a8e7f470e212dea3c96f06b5c17b"
+  },
+  {
+    "file": "testing.webp",
     "bytes": 71780,
     "sha256": "002dafe5725129bd8970365b2a2d4d9a819e0ad3eb6345210253893359f2bf5d"
+  },
+  {
+    "file": "weight.webp",
+    "bytes": 148476,
+    "sha256": "a0d232663d781bd8038c9fd3e57d23b745d8e778e1b5881e8799da627ff0d9ad"
   }
-}
+]

@@ -1,4 +1,4 @@
-name: Approved nine-card Health release
+name: Approved SHIFT Health header and cards
 on:
   push:
     branches: [release/health-cards-approved-20261029]
@@ -18,7 +18,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Stage exact approved card modules, promote and verify the bounded Health change
+      - name: Check approved H6 and W1 scope
+        run: node release/health-cards-20261029/check.mjs
+      - name: Stage exact approved presentation modules, promote and verify the bounded Health change
         run: node release/health-cards-20261029/deploy.mjs
       - uses: actions/upload-artifact@v4
         if: always()
@@ -26,3 +28,4 @@ jobs:
           name: health-card-release-${{ github.run_id }}
           path: health-card-evidence/
           retention-days: 90
+
