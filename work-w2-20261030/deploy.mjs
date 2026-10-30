@@ -7,6 +7,7 @@ import {transform,version,assetPath,mainHTML} from './runtime.mjs';
 import {media} from './media.mjs';
 import {check} from './check.mjs';
 import {browserCheck} from './browser.mjs';
+import {waitForDeployment} from './release-state.mjs';
 const account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed',prefix='work-w2-20261030/',dir='work-w2-evidence',name='shift-seo-followup-v3-20261024';
 fs.mkdirSync(dir,{recursive:true});
 const save=(n,v)=>fs.writeFileSync(dir+'/'+n+'.json',JSON.stringify(v,null,2)),hash=v=>createHash('sha256').update(v).digest('hex');
@@ -58,7 +59,10 @@ try{
  assert.equal((await active()).id,deployment.id,'Staging changed ordinary traffic');assert.deepEqual(await routes(),beforeRoutes,'Routes changed during preparation');
  for(const p of paths)assert.equal((await get(p)).html,baselines[p].html,'Work changed during preparation '+p);
  save('staged',{source:process.env.GITHUB_SHA,name,previousVersion,versionId:state.versionId,retainedModules:current.modules.length});
- await cf('/accounts/'+account+'/workers/scripts/'+name+'/deployments','POST',{strategy:'percentage',versions:[{version_id:previousVersion,percentage:100},{version_id:state.versionId,percentage:0}],annotations:{'workers/message':'Verify selected Work W2 at zero ordinary traffic'}});state.zeroDeployment=(await active()).id;assert.equal(serving(await active()),previousVersion);
+ const zeroVersions=[{version_id:previousVersion,percentage:100},{version_id:state.versionId,percentage:0}];
+ const zeroCreated=await cf('/accounts/'+account+'/workers/scripts/'+name+'/deployments','POST',{strategy:'percentage',versions:zeroVersions,annotations:{'workers/message':'Verify selected Work W2 at zero ordinary traffic'}});
+ assert(zeroCreated.id,'Zero-traffic creation receipt missing');state.zeroDeployment=zeroCreated.id;
+ await waitForDeployment(active,{id:zeroCreated.id,versions:zeroVersions},{previousIds:[deployment.id]});
  const override=name+'="'+state.versionId+'"';
  async function verify(overrides){
   for(const p of paths){let b;for(let attempt=1;attempt<=30;attempt++){b=await get(p,overrides);if(b.status!==200||b.headers.get('X-Shift-Work-W2')===version)break;if(attempt<30)await new Promise(r=>setTimeout(r,1500));}assert.equal(b.status,baselines[p].status,'Status changed '+p);assert.equal(b.location,baselines[p].location,'Redirect changed '+p);if(b.status===200){assert.equal(b.headers.get('X-Shift-Work-W2'),version,'W2 marker missing '+p);check(baselines[p].html,b.html);}assert.equal(hash(b.html),hash(candidates[p]),'Exact candidate mismatch '+p);}
@@ -70,12 +74,16 @@ try{
  save('zero-traffic',{verified:true,checks,protectedPages:protectedPaths.length,existingCodeAssets:preservedAssets.length,browser});
  if(process.env.WORK_W2_PREVIEW_ONLY==='1'){
   assert.equal((await active()).id,state.zeroDeployment,'Owner changed during preview');
-  await promote(previousVersion,'Finish W2 visual preview with ordinary traffic unchanged');
+  const restored=await promote(previousVersion,'Finish W2 visual preview with ordinary traffic unchanged');
+  await waitForDeployment(active,{id:restored.id,versions:[{version_id:previousVersion,percentage:100}]},{previousIds:[state.zeroDeployment]});
   save('preview',{verified:true,productionPublished:false,source:process.env.GITHUB_SHA,versionId:state.versionId,previousVersion,checks,browser});
   console.log('WORK_W2_PREVIEW '+JSON.stringify({verified:true,productionPublished:false,source:process.env.GITHUB_SHA,versionId:state.versionId,previousVersion}));process.exit(0);
  }
  assert.equal((await active()).id,state.zeroDeployment,'Owner changed before promotion');assert.deepEqual(await routes(),beforeRoutes);
- try{await promote(state.versionId,'Deploy Matt’s selected SHIFT for Work W2 black');}finally{promoted=serving(await active())===state.versionId;}
+ try{
+  const published=await promote(state.versionId,'Deploy Matt’s selected SHIFT for Work W2 black');state.productionDeployment=published.id;
+  await waitForDeployment(active,{id:published.id,versions:[{version_id:state.versionId,percentage:100}]},{previousIds:[state.zeroDeployment]});promoted=true;
+ }catch(error){promoted=serving(await active())===state.versionId;throw error;}
  assert(promoted);await verify();
  const liveBrowser=await browserCheck({label:'live'});
  assert.deepEqual(await routes(),beforeRoutes);assert.equal(serving(await active()),state.versionId);
