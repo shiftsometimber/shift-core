@@ -57,8 +57,10 @@ try{
  assert.equal((await get('/ask-timber')).html,baseline.html,'Ask page changed during preparation');
  save('staged',{versionId,previousVersion,moduleCount:modules.length,retainedModules:originalHashes.length});
  await promote(worker,versionId,'Deploy Matt’s selected A4 Ask Timber layout');promoted=true;
- let live;for(let n=0;n<10;n++){live=await get('/ask-timber');if(live.headers.get('x-shift-ask-design')===release)break;await new Promise(r=>setTimeout(r,1500));}
- assert.equal(live.headers.get('x-shift-ask-design'),release);assert.equal(live.html,candidate,'Actual delivered HTML must equal exact tested candidate');
+ let live;for(let n=0;n<10;n++){live=await get('/ask-timber');if(live.headers.get('x-shift-ask-design')===release&&live.html===candidate)break;await new Promise(r=>setTimeout(r,1500));}
+ fs.writeFileSync(dir+'/observed.html',live.html);
+ if(live.html!==candidate){let at=0;while(at<Math.min(live.html.length,candidate.length)&&live.html[at]===candidate[at])at++;save('candidate-mismatch',{at,beforeSHA256:hash(baseline.html),actualSHA256:hash(live.html),expectedSHA256:hash(candidate),actualLength:live.html.length,expectedLength:candidate.length,actual:live.html.slice(Math.max(0,at-100),at+400),expected:candidate.slice(Math.max(0,at-100),at+400)});}
+ assert.equal(live.headers.get('x-shift-ask-design'),release);assert.equal(hash(live.html),hash(candidate),'Actual delivered HTML must equal exact tested candidate');
  check(baseline.html,live.html);
  const assets=[];for(const k of topics){const r=await fetch('https://shiftsometimber.co.uk'+assetBase+k+'.webp');assert.equal(r.status,200);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(fs.readFileSync(prefix+'assets/'+k+'.webp')));assets.push(k);}
  const guideAssets=[...candidate.matchAll(/<img[^>]*src="(\/shift-health\/assets\/cards-20261029\/[^"?]+)"/g)].map(m=>m[1]);assert.equal(guideAssets.length,6);
