@@ -40,6 +40,15 @@ jobs:
           node --test medicines-watch/scheduler.test.mjs
       - name: Install exact Wrangler toolchain
         run: npm install --no-audit --no-fund
+      - name: Inspect editorial schema read-only
+        run: |
+          mkdir -p scheduled-editorial-production-proof
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "PRAGMA table_info(knowledge_editorial_page_meta)" > scheduled-editorial-production-proof/page-meta-schema.json
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT sql FROM sqlite_master WHERE type='table' AND name IN ('knowledge_editorial_page_meta','knowledge_editorial_events','knowledge_editorial_briefs','knowledge_editorial_jobs','knowledge_editorial_releases')" > scheduled-editorial-production-proof/editorial-schema.json
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT event_type,release_day,details_json,created_at FROM knowledge_editorial_events ORDER BY created_at DESC LIMIT 20" > scheduled-editorial-production-proof/editorial-events.json || true
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT state,COUNT(*) AS n FROM knowledge_editorial_briefs GROUP BY state ORDER BY state" > scheduled-editorial-production-proof/brief-counts.json || true
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --json --command "SELECT job_key,state,reason,started_at,finished_at FROM knowledge_editorial_jobs ORDER BY started_at DESC LIMIT 20" > scheduled-editorial-production-proof/editorial-jobs.json || true
+
       - name: Verify the owned core deployment is still serving
         run: |
           mkdir -p scheduled-editorial-production-proof
