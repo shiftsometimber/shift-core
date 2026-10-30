@@ -94,7 +94,7 @@ jobs:
           import {readFileSync} from 'node:fs';
           const receipt=JSON.parse(readFileSync('b1-runtime-release/owned-runtime-deployment.json','utf8'));
           const rows=JSON.parse(readFileSync('b1-runtime-release/deployments-after.json','utf8'));
-          const latest=rows[0];
+          const latest=rows.at(-1);
           assert.equal(receipt.source,process.env.GITHUB_SHA);
           assert.equal(latest.id,receipt.deploymentId);
           assert.equal(latest.versions?.length,1);
@@ -133,8 +133,14 @@ jobs:
           echo 'No completed post-deployment core_knowledge cycle with a populated corpus was observed.'
           exit 1
       - name: Roll back this owned runtime if verification fails
-        if: ${{ always() && steps.runtime_deploy.outcome == 'success' && failure() }}
-        run: node release/member-details-rollback.mjs
+        if: ${{ always() && failure() }}
+        shell: bash
+        run: |
+          if [ -f b1-runtime-release/owned-runtime-deployment.json ]; then
+            node release/member-details-rollback.mjs
+          else
+            echo 'No owned runtime mutation receipt; rollback is not required.'
+          fi
       - name: Retain deployment and rollback evidence
         if: always()
         uses: actions/upload-artifact@v4
