@@ -1,0 +1,159 @@
+{
+  "readOnly": true,
+  "source": "eb45c54756b3bde3d9dc2c3406a67ce636f785a5",
+  "capturedAt": "2026-10-30T13:13:05.285Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/shift-for-work",
+      "route": {
+        "id": "efb7b6a9e14e4cf79d7738616ad03374",
+        "pattern": "shiftsometimber.co.uk/shift-for-work",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-for-work/",
+      "route": {
+        "id": "4fab2261bcc449609cf42e777e00877e",
+        "pattern": "shiftsometimber.co.uk/shift-for-work/",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-for-work.html",
+      "route": {
+        "id": "450b57e5ed1a4222a7579323a1df2726",
+        "pattern": "shiftsometimber.co.uk/shift-for-work*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-for-work?work-w2=1",
+      "route": {
+        "id": "450b57e5ed1a4222a7579323a1df2726",
+        "pattern": "shiftsometimber.co.uk/shift-for-work*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-for-work/?work-w2=1",
+      "route": {
+        "id": "450b57e5ed1a4222a7579323a1df2726",
+        "pattern": "shiftsometimber.co.uk/shift-for-work*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-for-work.html?work-w2=1",
+      "route": {
+        "id": "450b57e5ed1a4222a7579323a1df2726",
+        "pattern": "shiftsometimber.co.uk/shift-for-work*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-for-work/assets/workplace-w2-20261030.webp",
+      "route": {
+        "id": "450b57e5ed1a4222a7579323a1df2726",
+        "pattern": "shiftsometimber.co.uk/shift-for-work*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-for-work/client.js",
+      "route": {
+        "id": "450b57e5ed1a4222a7579323a1df2726",
+        "pattern": "shiftsometimber.co.uk/shift-for-work*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-seo-followup-v3-20261024",
+      "deployment": {
+        "id": "4780f7eb-497a-45c7-a37c-aa9f9c1a346f",
+        "source": "api",
+        "strategy": "percentage",
+        "author_email": "matobrien@hotmail.co.uk",
+        "annotations": {
+          "workers/message": "Publish Matt’s approved 50-topic Knowledge expansion only",
+          "workers/triggered_by": "deployment"
+        },
+        "versions": [
+          {
+            "version_id": "72beec73-6306-4f3a-9037-58f821b80214",
+            "percentage": 100
+          }
+        ],
+        "created_on": "2026-10-29T23:42:32.398625Z"
+      },
+      "main": "knowledge-health-entry.mjs",
+      "modules": [
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "release/seo-followup-20261024/worker.mjs",
+          "bytes": 2066
+        }
+      ],
+      "bindings": [
+        {
+          "name": "CORE",
+          "type": "service",
+          "service": "shift-core"
+        },
+        {
+          "name": "HELP",
+          "type": "service",
+          "service": "shift-help-guided-presentation-20261021"
+        },
+        {
+          "name": "MAP",
+          "type": "service",
+          "service": "shift-blog-publisher"
+        },
+        {
+          "name": "WORK",
+          "type": "service",
+          "service": "shift-final-pages-presentation-20261021"
+        }
+      ]
+    }
+  ]
+}
