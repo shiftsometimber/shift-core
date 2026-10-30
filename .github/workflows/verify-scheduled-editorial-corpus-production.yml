@@ -1,4 +1,5 @@
 name: Verify Scheduled Editorial Corpus Production
+# Read the durable corpus failure receipt after guarded rollback.
 
 on:
   push:
