@@ -41,7 +41,7 @@ try{
   if(owned){const code=Buffer.from(owned.content_base64,'base64').toString('utf8');assert(code.includes("headers.set('X-Shift-Programme-Interface',release)"),'Unexpected Programme interface layer');const predecessor=code.match(/^import original from ['"]\.\.\/([^'"]+)['"]/m)?.[1];assert(predecessor&&!predecessor.includes('..'),'Original Programme predecessor missing');oldMain=predecessor;baseModules=current.modules.filter(m=>!m.name.startsWith('programme-interface/'));if(providerMain!=='programme-interface/overlay.mjs')entryMain=providerMain;}
   assert(baseModules.some(m=>m.name===oldMain));assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
   const runtime=fs.readFileSync(prefix+'overlay.mjs','utf8').replaceAll('./original.mjs','../'+oldMain);
-  const additions=['layout.mjs','styles.mjs','runtime.mjs'].map(n=>({name:'programme-interface/'+n,content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+n).toString('base64')}));
+  const additions=['layout.mjs','styles.mjs','runtime.mjs','runtime-v1.mjs'].map(n=>({name:'programme-interface/'+n,content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+n).toString('base64')}));
   additions.push({name:'programme-interface/overlay.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(runtime).toString('base64')});
   for(const key of ownAssets)additions.push({name:'programme-interface/assets/'+key,content_type:'application/octet-stream',content_base64:fs.readFileSync(prefix+'assets/'+key).toString('base64')});
   const modules=[...baseModules,...additions];assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
@@ -79,7 +79,7 @@ try{
  for(let i=0;i<preservedAssets.length;i+=8)await Promise.all(preservedAssets.slice(i,i+8).map(async a=>{const r=await smoke(a.path);assert.equal(r.status,200);assert.equal(hash(Buffer.from(await r.arrayBuffer())),a.sha256,'Zero-traffic version changed existing static asset '+a.path);}));
  for(const [p,before]of Object.entries(protectedPages)){const r=await smoke(p);assert.equal(r.status,200);assert.equal(mainHTML(await r.text()),mainHTML(before.html),'Zero-traffic protected page changed '+p);}
  for(const key of ownAssets){const r=await smoke(assetBase+key);assert.equal(r.status,200);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(fs.readFileSync(prefix+'assets/'+key)));}
- {const r=await smoke(assetBase+'runtime.js');assert.equal(r.status,200);assert.equal(await r.text(),runtime,'Delivered image framing runtime differs');}
+ {const r=await smoke(assetBase+'runtime-v2.js');assert.equal(r.status,200);assert.equal(await r.text(),runtime,'Delivered image framing runtime differs');}
  for(const state of states){assert.equal((await active(state.name)).id,state.zeroDeployment,'Owner changed during zero-traffic verification');try{await promote(state.name,state.versionId,'Deploy the approved real My Timber screen on Programme');}finally{if(servingVersion(await active(state.name))===state.versionId)promoted.push(state);}assert(promoted.includes(state),'Promotion not observed');}
  let live;for(let n=0;n<12;n++){live=await get('/programme');if(live.headers.get('X-Shift-Programme-Interface')===release&&live.html===candidate)break;await new Promise(r=>setTimeout(r,1500));}
  fs.writeFileSync(dir+'/observed.html',live.html);assert.equal(live.headers.get('X-Shift-Programme-Interface'),release);assert.equal(hash(live.html),hash(candidate),'Delivered Programme HTML differs from exact tested candidate');check(baseline.html,live.html);
