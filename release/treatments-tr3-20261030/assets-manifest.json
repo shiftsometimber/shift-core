@@ -1,0 +1,26 @@
+[
+  {
+    "path": "release/treatments-tr3-20261030/assets/hero.webp",
+    "bytes": 85172,
+    "sha256": "deab7fa2bdd490359fb500c55b663321844d641acca1a820ecf1d17d2b9e807b",
+    "gitBlobSHA": "71b27bfcb82977594d056eed6ad8a36010f42d4d"
+  },
+  {
+    "path": "release/treatments-tr3-20261030/assets/support.webp",
+    "bytes": 50810,
+    "sha256": "a100d02f034a15d7b5bfa28e313fa271f55a4aa9f9132c18204dd5679d7a19e1",
+    "gitBlobSHA": "da506ba037f2401f5cbf77af2c25104fc0969dcb"
+  },
+  {
+    "path": "release/treatments-tr3-20261030/assets/understanding.webp",
+    "bytes": 78878,
+    "sha256": "0a4121c0e58a9ea3efd867167bd5583f6e3897336763ca4878e09a5d4929f1c6",
+    "gitBlobSHA": "3a67c0d73756dbae02c763110b327add45249b87"
+  },
+  {
+    "path": "release/treatments-tr3-20261030/assets/weight.webp",
+    "bytes": 82834,
+    "sha256": "fd7474520e57ded63d2f76dd511fa9342d42035b855c0db0f1b5e38741928d4a",
+    "gitBlobSHA": "e7b43ba7801dfecbcb0af4096f08e5e676c4cb9e"
+  }
+]
