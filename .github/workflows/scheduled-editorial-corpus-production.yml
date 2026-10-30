@@ -36,6 +36,7 @@ jobs:
         run: |
           node --check scheduled-public-fetch-v1.mjs
           node --check scheduled-knowledge-v1.js
+          node --check daily-content/editorial.mjs
           node --test scheduled-public-fetch-v1.test.mjs
           node knowledge-flywheel-staging.mjs
           grep -q "corpus_failed" daily-content/editorial.mjs
