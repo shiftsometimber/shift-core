@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import css from './styles.mjs';
-import {transformHTML,outsideScope,scripts,mainHTML,topics,release} from './layout.mjs';
+import {transformHTML,outsideScope,scripts,mainHTML,topics,release,clientURL} from './layout.mjs';
 export function check(before,after=transformHTML(before,css)){
  assert.equal(outsideScope(after),outsideScope(before),'Preserve all document bytes outside the approved Ask main and new style');
- assert.deepEqual(scripts(after),scripts(before),'Every existing script retained exactly');
+ const existingScripts=s=>scripts(s).filter(tag=>!tag.includes('src="'+clientURL+'"'));
+ assert.deepEqual(existingScripts(after),existingScripts(before),'Every existing script retained exactly');
+ assert.equal(scripts(after).filter(tag=>tag.includes('src="'+clientURL+'"')).length,1,'Connect the wider prompt buttons once');
  assert.equal(transformHTML(after,css),after,'A4 must be idempotent');
  const old=mainHTML(before),now=mainHTML(after);
  for(const id of ['timberForm','timberQuestion','timberSubmit','timberCount','timberResponse','atg-suggestions','atg-topic-status','atg-reset','atg-compose-eyebrow','atg-input-hint'])assert.equal((now.match(new RegExp('id="'+id+'"','g'))||[]).length,1,'Keep one '+id);

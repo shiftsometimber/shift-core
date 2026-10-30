@@ -4,7 +4,8 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {routeOwner,metadataFor} from '../../knowledge-health/release-helpers.mjs';
 import css from './styles.mjs';
-import {transformHTML,mainHTML,assetBase,topics,release} from './layout.mjs';
+import {transformHTML,mainHTML,assetBase,topics,release,clientURL} from './layout.mjs';
+import {promptClient} from './prompts.mjs';
 import {check} from './check.mjs';
 const account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed';
 const prefix='release/ask-timber-a4-20261030/',dir='ask-a4-evidence';fs.mkdirSync(dir,{recursive:true});
@@ -23,27 +24,29 @@ try{
  before=await active(worker);const previousVersion=before.versions[0].version_id;
  const current=await cf('/accounts/'+account+'/workers/workers/'+worker+'/versions/'+previousVersion+'?include=modules'),settings=await cf('/accounts/'+account+'/workers/scripts/'+worker+'/settings');
  assert(current.modules?.length,'Provider module capture missing');
- assert(!current.modules.some(m=>m.name.startsWith('ask-a4/')),'A4 already present; inspect release before repeating');
  assert(!current.assets&&!settings.assets,'Unexpected static assets; preserve with an explicit asset transfer before deployment');
  const js=current.modules.filter(m=>/\.(mjs|js)$/.test(m.name));const referenced=new Set();
  for(const m of js){const code=Buffer.from(m.content_base64,'base64').toString('utf8');for(const match of code.matchAll(/\b(?:from\s*|import\s*)["']([^"']+)["']/g)){const spec=match[1];if(spec.startsWith('.'))referenced.add(path.posix.normalize(path.posix.join(path.posix.dirname(m.name),spec)));}}
  const roots=js.filter(m=>!referenced.has(m.name));
  const explicit=current.main_module||current.metadata?.main_module||current.resources?.script?.main_module||settings.main_module;
  if(!explicit)assert.equal(roots.length,1,'Current entry point is ambiguous');
- const oldMain=explicit||roots[0].name;assert(current.modules.some(m=>m.name===oldMain));
+ const providerMain=explicit||roots[0].name;let oldMain=providerMain,entryMain='ask-a4/overlay.mjs',baseModules=current.modules;
+ const owned=current.modules.find(m=>m.name==='ask-a4/overlay.mjs');
+ if(owned){const code=Buffer.from(owned.content_base64,'base64').toString('utf8');assert(code.includes("headers.set('X-Shift-Ask-Design',release)"),'Unexpected owned layer');const predecessor=code.match(/^import original from ['"]\.\.\/([^'"]+)['"]/m)?.[1];assert(predecessor&&!predecessor.includes('..'),'Original Ask predecessor missing');oldMain=predecessor;baseModules=current.modules.filter(m=>!m.name.startsWith('ask-a4/'));if(providerMain!=='ask-a4/overlay.mjs')entryMain=providerMain;}
+ assert(baseModules.some(m=>m.name===oldMain));
  const baseline=await get('/ask-timber'),candidate=transformHTML(baseline.html,css),checks=check(baseline.html,candidate);
  const clientBefore=await get('/ask-timber/client.js');
  assert(clientBefore.html.includes('timberQuestion')&&clientBefore.html.includes('data-topic'),'Existing guided question client missing');
  const homeBefore=mainHTML((await get('/')).html),healthBefore=mainHTML((await get('/shift-health')).html);assert(homeBefore&&healthBefore);
- const originalHashes=current.modules.map(m=>({name:m.name,sha256:hash(Buffer.from(m.content_base64,'base64'))}));
+ const originalHashes=baseModules.map(m=>({name:m.name,sha256:hash(Buffer.from(m.content_base64,'base64'))}));
  save('before',{source:process.env.GITHUB_SHA,worker,previousVersion,oldMain,routeCount:beforeRoutes.length,moduleHashes:originalHashes,checks,clientSHA256:hash(clientBefore.html),homepageMainSHA256:hash(homeBefore),healthMainSHA256:hash(healthBefore)});
  fs.writeFileSync(dir+'/before.html',baseline.html);fs.writeFileSync(dir+'/candidate.html',candidate);
  const overlay=fs.readFileSync(prefix+'overlay.mjs','utf8').replaceAll('./original.mjs','../'+oldMain);
- const additions=['layout.mjs','styles.mjs'].map(n=>({name:'ask-a4/'+n,content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+n).toString('base64')}));
+ const additions=['layout.mjs','styles.mjs','prompts.mjs'].map(n=>({name:'ask-a4/'+n,content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+n).toString('base64')}));
  additions.push({name:'ask-a4/overlay.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(overlay).toString('base64')});
  for(const k of topics)additions.push({name:'ask-a4/assets/'+k+'.webp',content_type:'application/octet-stream',content_base64:fs.readFileSync(prefix+'assets/'+k+'.webp').toString('base64')});
- const modules=[...current.modules,...additions];assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
- const metadata=metadataFor(current,settings,'ask-a4/overlay.mjs',process.env.GITHUB_SHA,previousVersion);
+ const modules=[...baseModules,...additions];assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
+ const metadata=metadataFor(current,settings,entryMain,process.env.GITHUB_SHA,previousVersion);
  metadata.annotations={'workers/message':'Matt selected A4: question first, compact photographic topic controls; preserve current Ask answers, all modules and routes.','workers/tag':'ask-a4-'+process.env.GITHUB_SHA.slice(0,12)};
  assert.equal((await active(worker)).id,before.id,'Current serving version changed before staging');
  const uploaded=await cf('/accounts/'+account+'/workers/workers/'+worker+'/versions?deploy=false','POST',{...metadata,modules});versionId=uploaded.id;assert(versionId);
@@ -61,6 +64,7 @@ try{
  const guideAssets=[...candidate.matchAll(/<img[^>]*src="(\/shift-health\/assets\/cards-20261029\/[^"?]+)"/g)].map(m=>m[1]);assert.equal(guideAssets.length,6);
  for(const asset of guideAssets){const r=await fetch('https://shiftsometimber.co.uk'+asset,{method:'HEAD'});assert.equal(r.status,200,'Existing guide image unavailable '+asset);}
  assert.equal((await get('/ask-timber/client.js')).html,clientBefore.html,'Keep original guided question client byte for byte');
+ assert.equal((await get(clientURL)).html,promptClient,'Deliver the exact bounded wider-health prompt connector');
  assert.equal(mainHTML((await get('/')).html),homeBefore,'Homepage untouched');assert.equal(mainHTML((await get('/shift-health')).html),healthBefore,'Health hub untouched');
  assert.deepEqual(await routes(),beforeRoutes,'No route changes');assert.equal((await active(worker)).versions[0].version_id,versionId);
  fs.writeFileSync(dir+'/live.html',live.html);

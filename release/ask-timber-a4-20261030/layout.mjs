@@ -1,6 +1,8 @@
 export const release='ask-timber-a4-20261030';
 export const assetBase='/ask-timber/assets/a4-20261030/';
 export const topics=['food','movement','weight','wellbeing'];
+export const clientURL=assetBase+'prompts.js';
+export const addClient=html=>html.includes('src="'+clientURL+'"')?html:html.replace(/<\/body>/i,()=>'<script defer src="'+clientURL+'"></script></body>');
 export const guideImages=['energy','bloods','testing','fertility','sleep','nutrition'];
 export const mainHTML=html=>html.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0];
 export const scripts=html=>[...html.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/gi)].map(m=>m[0]);
@@ -12,7 +14,7 @@ export function element(html,tag,needle){
  throw Error('Unclosed '+tag);
 }
 export function transformHTML(html,css){
- if(html.includes('data-ask-a4="'+release+'"'))return html;
+ if(html.includes('data-ask-a4="'+release+'"'))return addClient(html);
  const main=mainHTML(html);if(!main?.includes('data-ask-guided-version="20261021"'))throw Error('Unrecognised current Ask Timber layout');
  let hero=element(main,'section','class="atg-hero"');
  let wider=element(main,'section','id="wider-health-topics"');
@@ -41,6 +43,6 @@ export function transformHTML(html,css){
  wider=wider.replace(/(<button\b[^>]*class="kh-prompt"[^>]*>)/g,tag=>tag+'<img src="/shift-health/assets/cards-20261029/'+guideImages[index++]+'.webp" alt="" width="960" height="640" loading="lazy" decoding="async">');
  if(index!==6)throw Error('Preserve exactly six wider health prompt controls');
  const newMain='<main class="atg" id="main-content" data-ask-guided-version="20261021" data-ask-a4="'+release+'"><div class="atg-wrap">'+hero+composer+response+start+wider+bottom+'</div></main>';
- return html.replace(main,()=>newMain).replace(/<\/head>/i,()=>'<style data-ask-a4-style="'+release+'">'+css+'</style></head>');
+ return addClient(html.replace(main,()=>newMain).replace(/<\/head>/i,()=>'<style data-ask-a4-style="'+release+'">'+css+'</style></head>'));
 }
-export const outsideScope=html=>html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i,'<main>APPROVED ASK A4</main>').replace(/<style data-ask-a4-style="[^"]*">[\s\S]*?<\/style>/g,'');
+export const outsideScope=html=>html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i,'<main>APPROVED ASK A4</main>').replace(/<style data-ask-a4-style="[^"]*">[\s\S]*?<\/style>/g,'').replace(/<script defer src="\/ask-timber\/assets\/a4-20261030\/prompts\.js"><\/script>/g,'');

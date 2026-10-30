@@ -1,7 +1,8 @@
 import original from './original.mjs';
 export * from './original.mjs';
 import css from './styles.mjs';
-import {transformHTML,assetBase,release} from './layout.mjs';
+import {transformHTML,assetBase,release,clientURL} from './layout.mjs';
+import {promptClient} from './prompts.mjs';
 import food from './assets/food.webp';
 import movement from './assets/movement.webp';
 import weight from './assets/weight.webp';
@@ -9,6 +10,7 @@ import wellbeing from './assets/wellbeing.webp';
 const photos={food,movement,weight,wellbeing};
 export default {...original,async fetch(request,env,ctx){
  const url=new URL(request.url),key=url.pathname.startsWith(assetBase)?url.pathname.slice(assetBase.length).replace(/\.webp$/,''):null;
+ if(url.pathname===clientURL&&['GET','HEAD'].includes(request.method))return new Response(request.method==='HEAD'?null:promptClient,{headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
  if(key&&photos[key]&&url.pathname===assetBase+key+'.webp'&&['GET','HEAD'].includes(request.method))return new Response(request.method==='HEAD'?null:photos[key],{headers:{'Content-Type':'image/webp','Cache-Control':'public,max-age=31536000,immutable','X-Content-Type-Options':'nosniff'}});
  const response=await original.fetch(request,env,ctx);
  if(url.pathname.replace(/\/+$/,'')!=='/ask-timber'||request.method!=='GET'||response.status!==200||!response.headers.get('Content-Type')?.includes('text/html'))return response;

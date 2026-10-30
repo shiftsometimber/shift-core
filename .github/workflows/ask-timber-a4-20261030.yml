@@ -25,6 +25,7 @@ jobs:
           node --check release/ask-timber-a4-20261030/styles.mjs
           node --check release/ask-timber-a4-20261030/overlay.mjs
           node --check release/ask-timber-a4-20261030/check.mjs
+          node --check release/ask-timber-a4-20261030/prompts.mjs
           node --check release/ask-timber-a4-20261030/deploy.mjs
       - name: Stage, preserve current runtime and verify approved A4
         run: node release/ask-timber-a4-20261030/deploy.mjs
