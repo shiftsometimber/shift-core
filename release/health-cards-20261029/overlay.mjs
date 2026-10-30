@@ -12,7 +12,8 @@ import nutrition from './cards/nutrition.webp';
 import testing from './cards/testing.webp';
 import weight from './cards/weight.webp';
 import headerH6 from './cards/header-h6.webp';
-const assets={bloods,energy,fertility,hair,heart,mental,sleep,nutrition,testing,weight,'header-h6':headerH6};
+import headerR5 from './cards/header-r5.webp';
+const assets={bloods,energy,fertility,hair,heart,mental,sleep,nutrition,testing,weight,'header-h6':headerH6,'header-r5':headerR5};
 export default {...original,async fetch(request,env,ctx){
  const url=new URL(request.url);
  if(!['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(url.hostname))return original.fetch(request,env,ctx);

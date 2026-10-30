@@ -1,4 +1,4 @@
-export const release='health-cards-approved-20261029-h6-w1-desktop';
+export const release='health-cards-approved-20261029-r5';
 export const cards=[
  {key:'bloods',label:'Bloods',title:'A clearer picture.',eyebrow:'SHIFT HEALTH · BLOODS',copy:'Explore blood tests, what they can tell you and what happens next.',cta:'Explore blood tests',alt:'An ordinary man at home, with two sealed sample tubes in the foreground.'},
  {key:'energy',label:'Energy & testosterone',title:'Energy & testosterone.',copy:'Understand changes in energy, strength and sex drive. Explore testing and assessment.',cta:'Explore the guide',alt:'A man with his padel racket beside the court.'},
@@ -58,6 +58,24 @@ export const desktopCss=`
 #main-content #shift-health-range .shh-hero .sst-health-hero-copy>p{font-size:18px!important;line-height:1.5!important;margin-bottom:0!important}
 }
 `;
+export const r5Css=`
+#main-content #shift-health-range .shh-hero.shr-hero{display:flex!important;position:relative!important;isolation:isolate!important;overflow:hidden!important;box-sizing:border-box!important;align-items:center!important;min-height:400px!important;padding:36px!important;gap:0!important;border:1px solid #353a30!important;border-radius:14px!important;background:#050505!important}
+#main-content #shift-health-range .shr-hero::before{content:''!important;position:absolute!important;inset:0!important;z-index:-1!important;pointer-events:none!important;background:linear-gradient(90deg,rgba(5,5,5,.22),rgba(5,5,5,.12) 45%,transparent 70%)!important}
+#main-content #shift-health-range .shr-hero .sst-health-hero-copy{position:relative!important;z-index:1!important;width:48%!important;max-width:520px!important;min-width:0!important;border:0!important;padding:0!important;margin:0!important}
+#main-content #shift-health-range .shr-hero .sst-overline{margin-bottom:16px!important}
+#main-content #shift-health-range .shr-hero h1{font-size:clamp(38px,4.2vw,56px)!important;margin-bottom:20px!important}
+#main-content #shift-health-range .shr-hero .sst-health-hero-copy>p{font-size:18px!important;line-height:1.5!important;margin:0!important}
+#main-content #shift-health-range .shr-hero .sst-health-hero-photo{position:absolute!important;inset:0!important;z-index:-2!important;width:100%!important;height:100%!important;margin:0!important;border:0!important;border-radius:0!important}
+#main-content #shift-health-range .shr-hero .sst-health-hero-photo img{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;max-height:none!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:right top!important}
+@media(max-width:820px){
+#main-content #shift-health-range .shh-hero.shr-hero{display:block!important;min-height:0!important;padding:210px 22px 24px!important}
+#main-content #shift-health-range .shr-hero .sst-health-hero-photo{height:250px!important;bottom:auto!important}
+#main-content #shift-health-range .shr-hero::before{background:linear-gradient(180deg,transparent 0,transparent 120px,#050505 245px)!important}
+#main-content #shift-health-range .shr-hero .sst-health-hero-copy{width:100%!important;max-width:none!important}
+#main-content #shift-health-range .shr-hero h1{font-size:clamp(34px,10vw,42px)!important;margin-bottom:18px!important}
+#main-content #shift-health-range .shr-hero .sst-health-hero-copy>p{font-size:16px!important;line-height:1.5!important}
+}
+`;
 export const bottomCss=`
 #main-content #shift-health-range .sst-linkline.shh-useful{display:block!important;margin:30px 0 0!important;padding:0!important;border:0!important}
 #main-content #shift-health-range .shh-useful h2{font:700 30px/1.15 Arial,Helvetica,sans-serif!important;letter-spacing:-.03em!important;color:#E7E3DA!important;margin:0 0 18px!important;padding:0!important}
@@ -77,13 +95,15 @@ export const bottomCss=`
 @media(max-width:820px){#main-content #shift-health-range .shh-useful h2{font-size:26px!important}#main-content #shift-health-range .shh-useful .sst-actions{grid-template-columns:1fr!important;gap:10px!important}#main-content #shift-health-range .shh-useful .sst-action{min-height:66px!important;padding:18px!important}#main-content #shift-health-range .sst-free.shh-free{grid-template-columns:1fr!important;gap:22px!important;padding:24px!important}#main-content #shift-health-range .shh-free>.sst-action{width:100%!important}}
 `;
 export const introduction='SHIFT Health brings together clear information and carefully selected solutions for men’s health. From weight management and health tests to sleep, energy, heart health and wellbeing, explore your options and find the support that’s right for you.';
-export const photoAssets=[...cards.map(c=>({key:c.key,file:c.key+'.webp',url:'/shift-health/assets/cards-20261029/'+c.key+'.webp'})),{key:'header-h6',file:'header-h6.webp',url:'/shift-health/assets/cards-20261029/header-h6.webp'}];
+export const photoAssets=[...cards.map(c=>({key:c.key,file:c.key+'.webp',url:'/shift-health/assets/cards-20261029/'+c.key+'.webp'})),{key:'header-h6',file:'header-h6.webp',url:'/shift-health/assets/cards-20261029/header-h6.webp'},{key:'header-r5',file:'header-r5.webp',url:'/shift-health/assets/cards-20261029/header-r5.webp'}];
 const heroPattern=/<section\b[^>]*class=["'][^"']*\bsst-health-hero\b[^"']*["'][^>]*>[\s\S]*?<\/section>/gi;
 const weightPattern=/<article\b[^>]*class=["'][^"']*\bsst-feature-weight-management\b[^"']*["'][^>]*>[\s\S]*?<\/article>/gi;
 const chooserPattern=/<header class="shh-chooser"[^>]*>[\s\S]*?<\/header>/g;
 const stylePattern=/<style data-health-card-styles="20261029">[\s\S]*?<\/style>/g;
 const bottomStylePattern=/<style data-health-bottom-styles="20261029">[\s\S]*?<\/style>/g;
 const desktopStylePattern=/<style data-health-desktop-styles="20261029">[\s\S]*?<\/style>/g;
+const r5StylePattern=/<style data-health-r5-styles="20261030">[\s\S]*?<\/style>/g;
+export const outsideR5Scope=html=>html.replace(heroPattern,'__APPROVED_HERO__').replace(r5StylePattern,'').replace(/data-health-card-release="[^"]+"/,'data-health-card-release="VERSION"');
 const usefulPattern=/<section\b[^>]*class=["'][^"']*\bsst-linkline\b[^"']*["'][^>]*>[\s\S]*?<\/section>/g;
 const freePattern=/<section\b[^>]*class=["'][^"']*\bsst-free\b[^"']*["'][^>]*>[\s\S]*?<\/section>/g;
 const lineArrow='<svg class="shh-line-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -127,7 +147,7 @@ function polishClosingSections(html){
  return out;
 }
 export function outsideApprovedScope(html){
- return removeDuplicateFeatures(removeCategorySchema(html).replace(stylePattern,'').replace(bottomStylePattern,'').replace(desktopStylePattern,'').replace(heroPattern,'__APPROVED_HEADER__').replace(chooserPattern,'').replace(/<nav\b[^>]*class=["'][^"']*\bsst-health-grid\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi,'__APPROVED_GRID__').replace(weightPattern,'').replace(usefulPattern,'__USEFUL_LINKS__').replace(freePattern,'__MY_TIMBER__'));
+ return removeDuplicateFeatures(removeCategorySchema(html).replace(stylePattern,'').replace(bottomStylePattern,'').replace(desktopStylePattern,'').replace(r5StylePattern,'').replace(heroPattern,'__APPROVED_HEADER__').replace(chooserPattern,'').replace(/<nav\b[^>]*class=["'][^"']*\bsst-health-grid\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi,'__APPROVED_GRID__').replace(weightPattern,'').replace(usefulPattern,'__USEFUL_LINKS__').replace(freePattern,'__MY_TIMBER__'));
 }
 export function approvedLinks(html){
  const {links}=extractLinks(html);
@@ -141,11 +161,11 @@ export function approvedLinks(html){
 export function transformHTML(html){
  const {grid}=extractLinks(html),links=approvedLinks(html);
  const heroes=[...html.matchAll(heroPattern)];if(heroes.length!==1)throw Error('Expected exactly one existing Health introduction');
- const hero='<section class="sst-health-hero shh-hero" data-health-header-release="H6"><div class="sst-health-hero-copy"><span class="sst-overline">SHIFT HEALTH</span><h1>Men’s health.<br>Made clearer.</h1><p>'+esc(introduction)+'</p></div><figure class="sst-health-hero-photo"><img src="/shift-health/assets/cards-20261029/header-h6.webp" fetchpriority="high" alt="Everyday life: a couple walking along a village high street, and a man stretching gently beside a garden bench." width="1610" height="977"><figcaption>A little more life in the everyday.</figcaption></figure></section>';
+ const hero='<section class="sst-health-hero shh-hero shr-hero" data-health-header-release="R5"><div class="sst-health-hero-copy"><span class="sst-overline">SHIFT HEALTH</span><h1>Men’s health.<br>Made clearer.</h1><p>'+esc(introduction)+'</p></div><figure class="sst-health-hero-photo"><img src="/shift-health/assets/cards-20261029/header-r5.webp" fetchpriority="high" alt="A dad and his teenage son preparing dinner together in a home kitchen." width="2016" height="780"></figure></section>';
  const chooser='<header class="shh-chooser"><h2>What would you like to sort?</h2><p>Choose a starting point.</p></header>';
  const newGrid='<nav class="sst-health-grid shc-grid" aria-label="Explore your health" data-health-card-release="'+release+'">'+cards.map((c,i)=>'<a class="shc-card" href="'+esc(decode(links[i].href))+'" aria-labelledby="shc-label-'+c.key+' shc-title-'+c.key+'"><img class="shc-photo" src="/shift-health/assets/cards-20261029/'+c.key+'.webp" alt="'+esc(c.alt)+'" width="1586" height="992" loading="lazy" decoding="async"><div class="shc-copy"><p class="shc-eyebrow" id="shc-label-'+c.key+'">'+esc(c.eyebrow||'SHIFT HEALTH')+'</p><h2 class="shc-title" id="shc-title-'+c.key+'">'+esc(c.title)+'</h2><p class="shc-description">'+esc(c.copy)+'</p><span class="shc-cta">'+esc(c.cta)+' <span aria-hidden="true">→</span></span></div></a>').join('')+'</nav>';
  const schema={'@context':'https://schema.org','@type':'ItemList','@id':categorySchemaId,name:'SHIFT Health categories',itemListElement:cards.map((c,i)=>({'@type':'ListItem',position:i+1,name:c.label,url:'https://shiftsometimber.co.uk'+decode(links[i].href)}))};
- const out=polishClosingSections(removeDuplicateFeatures(removeCategorySchema(html).replace(stylePattern,'').replace(bottomStylePattern,'').replace(desktopStylePattern,'').replace(chooserPattern,'').replace(heroes[0][0],()=>hero).replace(grid,()=>chooser+newGrid).replace(weightPattern,'').replace('</head>','<style data-health-card-styles="20261029">'+css+'</style><style data-health-bottom-styles="20261029">'+bottomCss+'</style><style data-health-desktop-styles="20261029">'+desktopCss+'</style><script type="application/ld+json">'+JSON.stringify(schema).replaceAll('<','\\u003c')+'</script></head>')));
+ const out=polishClosingSections(removeDuplicateFeatures(removeCategorySchema(html).replace(stylePattern,'').replace(bottomStylePattern,'').replace(desktopStylePattern,'').replace(r5StylePattern,'').replace(chooserPattern,'').replace(heroes[0][0],()=>hero).replace(grid,()=>chooser+newGrid).replace(weightPattern,'').replace('</head>','<style data-health-card-styles="20261029">'+css+'</style><style data-health-bottom-styles="20261029">'+bottomCss+'</style><style data-health-desktop-styles="20261029">'+desktopCss+'</style><style data-health-r5-styles="20261030">'+r5Css+'</style><script type="application/ld+json">'+JSON.stringify(schema).replaceAll('<','\\u003c')+'</script></head>')));
  if(outsideApprovedScope(out)!==outsideApprovedScope(html))throw Error('The change extends beyond the approved Health header, grid and removal of duplicate features');
  return out;
 }

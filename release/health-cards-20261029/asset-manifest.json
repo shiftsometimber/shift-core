@@ -25,6 +25,11 @@
     "sha256": "0dd30dc3a3bb899e398b5308d27277f72ccc90fd44e7d874bfbdbf46e18697a6"
   },
   {
+    "file": "header-r5.webp",
+    "bytes": 128416,
+    "sha256": "d455db2f6f55228f774fceb577a1a625dd0c7c01112cebfc2ba9d0fb25c9c83b"
+  },
+  {
     "file": "heart.webp",
     "bytes": 120346,
     "sha256": "bd92d4747c7254e849cd7e8b9340e6da5d04a1ded681a67b8c46dbb108755e74"
