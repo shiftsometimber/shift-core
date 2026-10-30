@@ -12,17 +12,19 @@ export async function browserCheck({headers={},html,asset,dir='work-w2-evidence'
    await page.route('**/v1/contact',route=>{contactRequests++;return route.abort();});
    if(html)await page.route('https://shiftsometimber.co.uk/shift-for-work',route=>route.fulfill({status:200,contentType:'text/html; charset=utf-8',body:html}));
    if(asset)await page.route('https://shiftsometimber.co.uk'+assetPath,route=>route.fulfill({status:200,contentType:'image/webp',body:asset}));
-   await page.goto('https://shiftsometimber.co.uk/shift-for-work',{waitUntil:'networkidle',timeout:60000});
+   await page.goto('https://shiftsometimber.co.uk/shift-for-work',{waitUntil:'domcontentloaded',timeout:60000});
    await page.locator('.ww2-photo img').waitFor({state:'visible'});
+   await page.waitForFunction(()=>{const img=document.querySelector('.ww2-photo img');return img?.complete&&img.naturalWidth>0;},{timeout:30000});
+   await page.waitForFunction(()=>document.querySelector('#shift-work-enquiry button[type="submit"]')?.disabled===false,{timeout:30000});
    await page.evaluate(()=>document.fonts.ready);
    const layout=await page.evaluate(()=>{
     const rect=selector=>{const r=document.querySelector(selector).getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom};};
     const img=document.querySelector('.ww2-photo img');
     return {viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,headings:document.querySelectorAll('main h1').length,ticker:!!document.querySelector('#shift-public-news'),imageLoaded:img.complete&&img.naturalWidth>0,background:getComputedStyle(document.querySelector('main')).backgroundColor,copy:rect('.ww2-copy'),photo:rect('.ww2-photo'),benefits:rect('.ww2-benefits')};
    });
+   await page.screenshot({path:dir+'/'+label+'-'+viewport.width+'.png',fullPage:true});
    assert.equal(layout.background,'rgb(5, 5, 5)');assert.equal(layout.headings,1);assert.equal(layout.ticker,false);assert(layout.imageLoaded);assert(layout.scrollWidth<=viewport.width,'Horizontal overflow '+viewport.width);
    if(viewport.width>760)assert(layout.photo.x>layout.copy.x+layout.copy.width-1,'Desktop split layout');else assert(layout.photo.y>=layout.copy.bottom,'Mobile reading order');
-   await page.screenshot({path:dir+'/'+label+'-'+viewport.width+'.png',fullPage:true});
    await page.getByRole('link',{name:'Talk to us about SHIFT for Work',exact:true}).click();
    await page.locator('#work-enquiry[open]').waitFor({state:'visible'});
    await page.locator('#work-name').waitFor({state:'visible'});

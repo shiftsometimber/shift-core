@@ -84,9 +84,8 @@
         "id": "4780f7eb-497a-45c7-a37c-aa9f9c1a346f",
         "source": "api",
         "strategy": "percentage",
-        "author_email": "matobrien@hotmail.co.uk",
         "annotations": {
-          "workers/message": "Publish Matt’s approved 50-topic Knowledge expansion only",
+          "workers/message": "Publish Matt\u2019s approved 50-topic Knowledge expansion only",
           "workers/triggered_by": "deployment"
         },
         "versions": [
