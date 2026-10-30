@@ -1,0 +1,38 @@
+name: Start Here ST1 design
+on:
+  push:
+    branches: [design/start-here-st1-20261030]
+    paths: ['release/start-here-st1-20261030/**', '.github/workflows/start-here-st1-20261030.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Check ST1 source syntax
+        run: |
+          node --check release/start-here-st1-20261030/layout.mjs
+          node --check release/start-here-st1-20261030/styles.mjs
+          node --check release/start-here-st1-20261030/overlay.mjs
+          node --check release/start-here-st1-20261030/check.mjs
+          node --check release/start-here-st1-20261030/deploy.mjs
+      - name: Install the locked asset hashing dependency
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Stage and verify Start Here ST1
+        run: node release/start-here-st1-20261030/deploy.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: start-here-st1-${{ github.run_id }}
+          path: start-here-st1-evidence/
+          retention-days: 90

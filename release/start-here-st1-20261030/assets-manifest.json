@@ -1,0 +1,42 @@
+[
+  {
+    "name": "hero",
+    "file": "release/start-here-st1-20261030/assets/hero.webp",
+    "source": "/workspace/scratch/6d0cb88d1a53/generated_images/exec-f53fdc2e-667b-40f9-9b3a-9c23b4c6e934.png",
+    "width": 1440,
+    "height": 720,
+    "bytes": 190830,
+    "sha256": "3bb7877e9377bcc30051b2c8c4565571288d78815962a152257f433a2efa2d1e",
+    "gitBlobSHA": "946d517b41f9b1693518c50c957fcb6122e61ff8"
+  },
+  {
+    "name": "support",
+    "file": "release/start-here-st1-20261030/assets/support.webp",
+    "source": "/workspace/scratch/6d0cb88d1a53/generated_images/exec-e5b3b647-d885-4f6e-b3b9-0d004ba44ccc.png",
+    "width": 640,
+    "height": 800,
+    "bytes": 55420,
+    "sha256": "d6404e5c0ed8b78999df7f12ed45af83c42ddf37a4d8d1c3d6c275e6a1b10a41",
+    "gitBlobSHA": "7e1ccd0079a8e1d81cede2ee3e0bfed1bb0dad17"
+  },
+  {
+    "name": "weight",
+    "file": "release/start-here-st1-20261030/assets/weight.webp",
+    "source": "/workspace/scratch/6d0cb88d1a53/generated_images/exec-9e9898ee-9577-4582-9045-bf244b506e99.png",
+    "width": 640,
+    "height": 800,
+    "bytes": 82402,
+    "sha256": "6cfa128505d53e754959bb06e00a1fc90536b724d5bd52ea3b13ce429f27c9b8",
+    "gitBlobSHA": "b3f135c14398314fae6ad6931158d15360e7c6d0"
+  },
+  {
+    "name": "blood",
+    "file": "release/start-here-st1-20261030/assets/blood.webp",
+    "source": "/workspace/scratch/6d0cb88d1a53/generated_images/exec-bad45975-80ff-4c72-b93f-4b4cd14e866e.png",
+    "width": 800,
+    "height": 533,
+    "bytes": 50374,
+    "sha256": "a8d7459c556384340fbf8f033100c11508ce666f21a4d1ab689d400cad795826",
+    "gitBlobSHA": "0345e24059815b2234779e5fce543f3645a678a4"
+  }
+]
