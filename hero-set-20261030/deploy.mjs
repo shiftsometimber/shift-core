@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {routeOwner} from '../knowledge-health/release-helpers.mjs';
+import {routeOwner} from './route-owner.mjs';
 import {uploadPreservedAssets} from '../knowledge-health/release-assets.mjs';
 import {pages} from './payload.mjs';
 import {transform,version,assetPrefix} from './runtime.mjs';
@@ -37,6 +37,7 @@ try{
  assert.equal(assetOwner?.script,'shift-health-nutrition-20261027','Asset owner changed; inspect before continuing');
  const previous=JSON.parse(fs.readFileSync(prefix+'current-preflight.json','utf8'));
  for(const owner of servingOwners)assert.deepEqual(owner.route,previous.serving.find(s=>s.path===owner.path)?.owner,'Page owner changed '+owner.path);
+ for(const owner of previous.additionalOwners||[])assert.deepEqual(beforeRoutes.find(r=>r.id===owner.id),owner,'Alias owner changed '+owner.pattern);
  const baselines={},candidates={},checks=[];
  for(let i=0;i<pages.length;i+=6)await Promise.all(pages.slice(i,i+6).map(async p=>{const b=await get(p.path);baselines[p.path]=b;const c=transform(b.html,p).html;candidates[p.path]=c;checks.push(check(b.html,c,p));fs.writeFileSync(dir+'/'+p.id+'-before.html',b.html);fs.writeFileSync(dir+'/'+p.id+'-candidate.html',c);}));
  const protectedPaths=['/','/shift-health','/ask-timber','/knowledge','/explore-knowledge','/programme','/start-here','/member-login','/member/dashboard','/shift-health/testing','/shift-health/blood-tests'];
@@ -50,7 +51,7 @@ try{
  for(const b of [...Object.values(baselines),...Object.values(protectedPages)])for(const m of b.html.matchAll(/(?:src|href)=["'](\/[^"']+\.(?:js|mjs|css)(?:\?[^"']*)?)["']/g))codePaths.add(m[1]);
  const preservedAssets=[],unavailableBefore=[];
  const capturePaths=[...codePaths];for(let i=0;i<capturePaths.length;i+=8)await Promise.all(capturePaths.slice(i,i+8).map(async p=>{const r=await fetch('https://shiftsometimber.co.uk'+p,{signal:AbortSignal.timeout(45000)});if(r.status!==200||r.headers.get('Content-Type')?.includes('text/html')){unavailableBefore.push({path:p,status:r.status});return;}preservedAssets.push({path:p,sha256:hash(Buffer.from(await r.arrayBuffer()))});}));
- for(const name of new Set([...servingOwners.map(s=>s.route.script),assetOwner.script])){
+ for(const name of new Set([...servingOwners.map(s=>s.route.script),...(previous.additionalOwners||[]).map(s=>s.script),assetOwner.script])){
   const deployment=await active(name),previousVersion=serving(deployment);assert.equal(deployment.versions.length,1,'Another traffic split exists '+name);
   const current=await cf('/accounts/'+account+'/workers/workers/'+name+'/versions/'+previousVersion+'?include=modules'),settings=await cf('/accounts/'+account+'/workers/scripts/'+name+'/settings');
   assert(current.modules?.length);assert(!current.modules.some(m=>m.name.startsWith(prefix)),'Hero release already exists; reconcile before retry');

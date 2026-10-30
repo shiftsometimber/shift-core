@@ -75,9 +75,9 @@
     {
       "path": "/weight-loss-support-for-men",
       "owner": {
-        "id": "41cd4ea2bf484f498930c6c7e1671f24",
-        "pattern": "https://shiftsometimber.co.uk/weight-loss-support-for-men*",
-        "script": "shift-public-answers",
+        "id": "1503485c054f4128846e7c275b434e9c",
+        "pattern": "shiftsometimber.co.uk/weight-loss-support-for-men",
+        "script": "shift-support-presentation-20261022",
         "request_limit_fail_open": false
       }
     },
@@ -120,9 +120,9 @@
     {
       "path": "/mens-weight-management",
       "owner": {
-        "id": "244fd3cfc2dd4ef9a2b9b77f92e38eda",
-        "pattern": "https://shiftsometimber.co.uk/mens-weight-management*",
-        "script": "shift-public-answers",
+        "id": "55618462548e473bb017aa93a0931882",
+        "pattern": "https://shiftsometimber.co.uk/mens-weight-management",
+        "script": "shift-public-presentation-batch-20261022",
         "request_limit_fail_open": false
       }
     },
@@ -267,5 +267,21 @@
     "pattern": "shiftsometimber.co.uk/shift-health*",
     "script": "shift-health-nutrition-20261027",
     "request_limit_fail_open": false
+  },
+  "additionalOwners": [
+    {
+      "id": "41cd4ea2bf484f498930c6c7e1671f24",
+      "pattern": "https://shiftsometimber.co.uk/weight-loss-support-for-men*",
+      "script": "shift-public-answers",
+      "request_limit_fail_open": false
+    }
+  ],
+  "routingAudit": {
+    "runId": 41052619422,
+    "source": "484578cdf978608cf82ed8a9076722a6fedf73be",
+    "correctedPaths": [
+      "/weight-loss-support-for-men",
+      "/mens-weight-management"
+    ]
   }
 }
