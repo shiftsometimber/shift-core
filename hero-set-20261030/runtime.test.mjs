@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {pages,style} from './payload.mjs';
 import {transform,wrap,version} from './runtime.mjs';
-import {check} from './check.mjs';
+import {check,waitForHero} from './check.mjs';
 
 const page=pages.find(p=>p.id==='mot');
 const original='<!doctype html><html><head><style data-existing>body{color:inherit}</style></head><body><header>Existing navigation</header><main id="main-content"><section class="productHero"><h1>Existing Health MOT</h1><div class="availability">Ordering is not open</div><div class="actions"><a href="/contact">Ask about availability</a></div></section><section id="included"><h2>Included</h2><p>Existing information</p></section></main><footer>Existing footer</footer></body></html>';
@@ -55,4 +55,16 @@ test('a query alias is rendered only by the component assigned to that alias',as
  assert.equal(await plain.text(),original);assert.equal(plain.headers.get('X-Shift-Hero-Set'),null);
  const query=await worker.fetch(new Request('https://shiftsometimber.co.uk'+page.path+'?source=member'),{},{});
  check(original,await query.text(),page);
+});
+
+test('rollout verification waits through previous edge responses and still checks the exact page',async()=>{
+ const candidate=transform(original,page).html;let reads=0,pauses=0;
+ const result=await waitForHero(async()=>({html:++reads<3?original:candidate,headers:new Headers(reads<3?{}:{'X-Shift-Hero-Set':version})}),version,page.path,{maxAttempts:4,pause:async()=>{pauses++;}});
+ assert.equal(result.attempts,3);assert.equal(pauses,2);check(original,result.response.html,page);
+});
+
+test('rollout verification fails if the expected version never arrives',async()=>{
+ let reads=0;
+ await assert.rejects(()=>waitForHero(async()=>{reads++;return {html:original,headers:new Headers()};},version,page.path,{maxAttempts:3,pause:async()=>{}}),/Hero marker missing.*bounded propagation wait/);
+ assert.equal(reads,3);
 });

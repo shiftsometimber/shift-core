@@ -2,6 +2,15 @@ import assert from 'node:assert/strict';
 import {byTag,byClass,classes,transform} from './runtime.mjs';
 export const mainHTML=html=>byTag(html,'main')?.html;
 const scripts=html=>[...html.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/gi)].map(m=>m[0]);
+export async function waitForHero(read,expectedVersion,label,{maxAttempts=30,pause=()=>new Promise(r=>setTimeout(r,1500))}={}){
+ let response;
+ for(let attempt=1;attempt<=maxAttempts;attempt++){
+  response=await read();
+  if(response.headers.get('X-Shift-Hero-Set')===expectedVersion)return {response,attempts:attempt};
+  if(attempt<maxAttempts)await pause();
+ }
+ assert.equal(response.headers.get('X-Shift-Hero-Set'),expectedVersion,'Hero marker missing '+label+' after bounded propagation wait');
+}
 export function check(before,after,page){
  const original=mainHTML(before),updated=mainHTML(after);assert(original&&updated);
  assert.equal((updated.match(/<h1\b/gi)||[]).length,1,page.path+' must have one heading');
