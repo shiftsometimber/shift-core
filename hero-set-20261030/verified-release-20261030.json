@@ -1,0 +1,576 @@
+{
+  "workflowRunId": 41054972132,
+  "workflowUrl": "https://github.com/shiftsometimber/shift-core/actions/runs/41054972132",
+  "artifactId": 12975889270,
+  "deploymentReceipt": {
+    "verified": true,
+    "source": "9f04f33ac3009ed943f09a0e818c58494e683f7e",
+    "release": "hero-set-20261030-v1",
+    "workers": [
+      {
+        "name": "shift-public-presentation-batch-20261022",
+        "versionId": "bc778a26-15cf-45c7-a5f3-3e6f91e9cda6",
+        "previousVersion": "6a27fd9a-42c7-4423-af73-4a45adaae1fd",
+        "retainedModules": 13
+      },
+      {
+        "name": "shift-health-nutrition-20261027",
+        "versionId": "4c33ed04-d7f3-471e-99c8-597d33ad1377",
+        "previousVersion": "76017710-a3b6-4b02-9dc0-1664c8d5ef01",
+        "retainedModules": 50
+      },
+      {
+        "name": "shift-treatments-presentation-20261021",
+        "versionId": "7739cdf1-6c79-4025-a918-5aecd1733256",
+        "previousVersion": "fa0def39-a530-4fdb-88ee-2fbbc40494b6",
+        "retainedModules": 12
+      },
+      {
+        "name": "shift-life-presentation-20261022",
+        "versionId": "ecb221d2-aa48-43d5-ad16-f76ccdc3ad88",
+        "previousVersion": "a7d2a554-f5eb-44ef-8571-3c89e88c82d5",
+        "retainedModules": 2
+      },
+      {
+        "name": "shift-quiet-presentation-20261022",
+        "versionId": "0aa6de35-65b7-434b-b008-304a857a199a",
+        "previousVersion": "74a0cc66-1cf7-4e8f-9508-b9378076b346",
+        "retainedModules": 2
+      },
+      {
+        "name": "shift-support-presentation-20261022",
+        "versionId": "d9d0d5f5-ac22-4b54-bc70-5fe78e9d868f",
+        "previousVersion": "2b006f38-2c96-4fdc-bf9d-30f985d4c198",
+        "retainedModules": 2
+      },
+      {
+        "name": "shift-provider-presentation-20261022",
+        "versionId": "cbfbe09a-0bca-4f4a-910e-54de21a20c7e",
+        "previousVersion": "1eb91592-08c3-44f2-8e1e-daf5426cb759",
+        "retainedModules": 2
+      },
+      {
+        "name": "shift-blog-publisher",
+        "versionId": "c957d193-eab9-4ed8-92d5-b863c317dd4c",
+        "previousVersion": "9ff10738-ee53-434b-897c-c08b45ffc881",
+        "retainedModules": 15
+      },
+      {
+        "name": "shift-about-presentation-20261022",
+        "versionId": "10ef7c2e-6634-4191-ba3e-1e75b6c74631",
+        "previousVersion": "78fd58c7-5a02-4289-aa1b-c868d3e21507",
+        "retainedModules": 5
+      },
+      {
+        "name": "shift-husband-presentation-20261022",
+        "versionId": "c12e1959-6e9f-43a0-9919-2df17692b3a5",
+        "previousVersion": "5fb52243-cad8-4d64-998b-e06eef3e8b85",
+        "retainedModules": 2
+      },
+      {
+        "name": "shift-core",
+        "versionId": "62f73fb4-35a4-4905-b9ec-1e4a69153709",
+        "previousVersion": "2f6d3946-f707-4ced-b58d-d6d63e8e1f6a",
+        "retainedModules": 14
+      },
+      {
+        "name": "shift-newsroom-presentation-20261022",
+        "versionId": "5aa9b8ea-4ed9-4c84-b3a6-ebcd6628d97b",
+        "previousVersion": "d8ee9c90-7d57-42f2-8279-7d50b3030b2d",
+        "retainedModules": 5
+      },
+      {
+        "name": "shift-work-with-us-presentation-20261022",
+        "versionId": "0d5fcdda-f2d0-4bf7-a4fd-21cf11668d8d",
+        "previousVersion": "6494492b-8aaf-4493-b42e-31f836d45c6a",
+        "retainedModules": 4
+      },
+      {
+        "name": "shift-public-answers",
+        "versionId": "bcb84987-eb3d-4b7d-bfdd-c60dfc684e3f",
+        "previousVersion": "8c1db022-d815-4964-b0e3-60798c445627",
+        "retainedModules": 1
+      }
+    ],
+    "pages": [
+      {
+        "id": "mot",
+        "path": "/shift-health/health-mot",
+        "asset": "mot"
+      },
+      {
+        "id": "measure",
+        "path": "/shift-health/shift-measure",
+        "asset": "measure"
+      },
+      {
+        "id": "smoking",
+        "path": "/shift-health/stop-smoking",
+        "asset": "smoking"
+      },
+      {
+        "id": "confidence",
+        "path": "/shift-health/erectile-dysfunction",
+        "asset": "confidence"
+      },
+      {
+        "id": "fertility",
+        "path": "/shift-health/fertility",
+        "asset": "fertility"
+      },
+      {
+        "id": "research",
+        "path": "/treatment-centre/medicines-watch",
+        "asset": "research"
+      },
+      {
+        "id": "life-back",
+        "path": "/life-back",
+        "asset": "life-back"
+      },
+      {
+        "id": "continuity",
+        "path": "/clinic-gone-quiet",
+        "asset": "continuity"
+      },
+      {
+        "id": "free-support",
+        "path": "/weight-loss-support-for-men",
+        "asset": "free-support"
+      },
+      {
+        "id": "switching",
+        "path": "/provider-switch",
+        "asset": "switching"
+      },
+      {
+        "id": "male-obesity",
+        "path": "/male-obesity",
+        "asset": "weight-health"
+      },
+      {
+        "id": "weight-management",
+        "path": "/mens-weight-management",
+        "asset": "weight-management"
+      },
+      {
+        "id": "about",
+        "path": "/about",
+        "asset": null
+      },
+      {
+        "id": "partner-support",
+        "path": "/husband-help",
+        "asset": "partner-support"
+      },
+      {
+        "id": "community",
+        "path": "/our-causes-partners",
+        "asset": "community"
+      },
+      {
+        "id": "newsroom",
+        "path": "/shift-newsroom",
+        "asset": "newsroom"
+      },
+      {
+        "id": "retatrutide",
+        "path": "/guides/retatrutide-uk-guide",
+        "asset": "research"
+      },
+      {
+        "id": "wegovy-costs",
+        "path": "/articles/wegovy-cost-uk",
+        "asset": "treatment-costs"
+      },
+      {
+        "id": "testosterone-weight",
+        "path": "/articles/testosterone-weight-men",
+        "asset": "weight-health"
+      },
+      {
+        "id": "mot-guide",
+        "path": "/guides/mens-health-mot-guide",
+        "asset": "mot"
+      },
+      {
+        "id": "work-with-us",
+        "path": "/work-with-us",
+        "asset": "partnerships"
+      },
+      {
+        "id": "partner-with-us",
+        "path": "/partner-with-us",
+        "asset": "partnerships"
+      },
+      {
+        "id": "corporate-wellbeing",
+        "path": "/corporate-wellbeing",
+        "asset": "workplace"
+      },
+      {
+        "id": "provider-pilot",
+        "path": "/my-timber-for-providers",
+        "asset": "workplace"
+      },
+      {
+        "id": "nhs-private",
+        "path": "/nhs-vs-private",
+        "asset": "treatment-choices"
+      },
+      {
+        "id": "surgery-options",
+        "path": "/surgery-comparison-centre",
+        "asset": "surgery-options"
+      },
+      {
+        "id": "treatment-comparison",
+        "path": "/compare-weight-loss-treatments",
+        "asset": "treatment-choices"
+      }
+    ],
+    "superseded": [
+      "/knowledge",
+      "/explore-knowledge"
+    ],
+    "routeCount": 915,
+    "routesChanged": 0,
+    "checks": [
+      {
+        "path": "/shift-health/erectile-dysfunction",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/shift-health/health-mot",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/shift-health/shift-measure",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/shift-health/stop-smoking",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/shift-health/fertility",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/treatment-centre/medicines-watch",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/mens-weight-management",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/provider-switch",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/life-back",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/weight-loss-support-for-men",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/male-obesity",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/clinic-gone-quiet",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/our-causes-partners",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/husband-help",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/guides/retatrutide-uk-guide",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/about",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/articles/wegovy-cost-uk",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/shift-newsroom",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/corporate-wellbeing",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/my-timber-for-providers",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/partner-with-us",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/guides/mens-health-mot-guide",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/articles/testosterone-weight-men",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/work-with-us",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/nhs-vs-private",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/surgery-comparison-centre",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      },
+      {
+        "path": "/compare-weight-loss-treatments",
+        "oneHeading": true,
+        "outsideHeroPreserved": true,
+        "scriptsPreserved": true,
+        "shellPreserved": true,
+        "existingContextPreserved": true,
+        "ctaValid": true,
+        "idempotent": true
+      }
+    ],
+    "protectedPages": [
+      "/",
+      "/shift-health",
+      "/ask-timber",
+      "/knowledge",
+      "/explore-knowledge",
+      "/programme",
+      "/start-here",
+      "/member-login",
+      "/member/dashboard",
+      "/shift-health/testing",
+      "/shift-health/blood-tests",
+      "/shift-health/testing/testosterone",
+      "/shift-health/testing/diabetes",
+      "/shift-health/testing/psa-lab",
+      "/shift-health/testing/male-hormone",
+      "/shift-health/testing/heart-health",
+      "/shift-health/testing/bowel-health",
+      "/shift-health/testing/prostate-health",
+      "/shift-health/testing/male-fertility",
+      "/shift-health/testing/cholesterol",
+      "/shift-health/testing/vitamin-d",
+      "/shift-health/testing/iron",
+      "/shift-health/testing/thyroid",
+      "/shift-health/testing/kidney-health",
+      "/shift-health/testing/multivitamin",
+      "/shift-health/testing/vitamin-d-supplement",
+      "/shift-health/testing/iron-supplement",
+      "/shift-health/testing/general-health-bundle",
+      "/shift-health/testing/general-health-combo",
+      "/shift-health/testing/vitamin-d-combo",
+      "/shift-health/testing/iron-combo"
+    ],
+    "photographsVerified": 20,
+    "existingCodeAssetsPreserved": 210,
+    "verifiedAt": "2026-10-30T12:26:51.339Z"
+  },
+  "browserReview": {
+    "checkedAt": "2026-10-30T12:31:47.949Z",
+    "viewportWidth": 1363,
+    "pages": [
+      {
+        "url": "https://shiftsometimber.co.uk/shift-health/stop-smoking",
+        "imageLoaded": true,
+        "horizontalOverflow": false,
+        "heroHeight": 540,
+        "approvedCavapooImage": true,
+        "cta": {
+          "url": "https://shiftsometimber.co.uk/shift-health/stop-smoking#understand",
+          "targetVisible": true
+        }
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+        "imageLoaded": true,
+        "horizontalOverflow": false,
+        "headingCount": 1,
+        "article": {
+          "author": "Matt O'Brien",
+          "datePublished": "2026-05-04",
+          "dateModified": "2026-10-22",
+          "headline": "Men's health MOT: what's checked and is it worth it?"
+        }
+      }
+    ]
+  }
+}
