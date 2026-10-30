@@ -14,8 +14,11 @@ export async function browserCheck({headers={},html,asset,dir='work-w2-evidence'
    if(asset)await page.route('https://shiftsometimber.co.uk'+assetPath,route=>route.fulfill({status:200,contentType:'image/webp',body:asset}));
    await page.goto('https://shiftsometimber.co.uk/shift-for-work',{waitUntil:'domcontentloaded',timeout:60000});
    await page.locator('.ww2-photo img').waitFor({state:'visible'});
-   await page.waitForFunction(()=>{const img=document.querySelector('.ww2-photo img');return img?.complete&&img.naturalWidth>0;},{timeout:30000});
-   await page.waitForFunction(()=>document.querySelector('#shift-work-enquiry button[type="submit"]')?.disabled===false,{timeout:30000});
+   await page.waitForFunction(()=>{const img=document.querySelector('.ww2-photo img');return img?.complete&&img.naturalWidth>0;},null,{timeout:30000});
+   await page.waitForFunction(()=>document.querySelector('#shift-work-enquiry button[type="submit"]')?.disabled===false,null,{timeout:30000});
+   await page.waitForLoadState('load',{timeout:30000});
+   const cookieChoice=page.getByRole('button',{name:'Necessary only',exact:true});
+   if(await cookieChoice.isVisible())await cookieChoice.click();
    await page.evaluate(()=>document.fonts.ready);
    const layout=await page.evaluate(()=>{
     const rect=selector=>{const r=document.querySelector(selector).getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom};};

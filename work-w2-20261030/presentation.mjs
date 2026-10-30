@@ -35,7 +35,7 @@ ${root} .fw-steps :is(h3,p){color:#e7e3da!important}
 ${root} .fw-step-title>span{background:#707762!important;color:#fffdf7!important}
 ${root} .fw-steps li>svg{color:#9da58d!important}
 ${root} .fw-enquiry-wrap{padding:0!important}
-${root} .fw-enquiry{border:1px solid #707762!important;border-radius:12px!important;color:#e7e3da!important;background:#050505!important;overflow:hidden!important}
+${root} .fw-enquiry{border:1px solid #707762!important;border-radius:12px!important;color:#e7e3da!important;background:#050505!important;overflow:hidden!important;scroll-margin-top:96px!important}
 ${root} .fw-enquiry>summary{padding:20px 24px!important;color:#e7e3da!important;background:#11130f!important}
 ${root} .sw-enquiry{padding:24px!important;color:#e7e3da!important}
 ${root} .sw-enquiry-copy :is(h2,p,a){color:#e7e3da!important}
