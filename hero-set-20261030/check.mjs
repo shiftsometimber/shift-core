@@ -18,7 +18,11 @@ export function check(before,after,page){
  if(page.id==='research'&&!original.includes('id="research-directory"'))retained=retained.replace(' id="research-directory"','');
  if(!/\bid=["']main-content["']/.test(original.slice(0,original.indexOf('>')+1)))retained=retained.replace(' id="main-content"','');
  assert.equal(retained,expected,'Content outside the replaced hero changed '+page.path);
- const proposed=transform(before,page);assert.equal(after,proposed.html,'Delivered bytes differ '+page.path);
+ const proposed=transform(before,page);
+ if(after!==proposed.html){
+  let offset=0;while(offset<Math.min(after.length,proposed.html.length)&&after[offset]===proposed.html[offset])offset++;
+  throw Error('Delivered bytes differ '+page.path+' at '+offset+'; actual '+JSON.stringify(after.slice(Math.max(0,offset-100),offset+300))+'; expected '+JSON.stringify(proposed.html.slice(Math.max(0,offset-100),offset+300)));
+ }
  if(proposed.retainedContext)assert(after.includes(proposed.retainedContext),'Existing opening context lost '+page.path);
  assert.equal(transform(after,page).html,after,'Repeated transform must be idempotent');
  if(page.target.startsWith('#'))assert(after.includes('id="'+page.target.slice(1)+'"')||after.includes("id='"+page.target.slice(1)+"'"),'CTA target missing');
