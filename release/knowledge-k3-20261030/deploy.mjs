@@ -33,23 +33,25 @@ try{
   const deployment=await active(name),previousVersion=servingVersion(deployment);assert.equal(deployment.versions.length,1,'Another staged traffic split already exists '+name);
   const current=await cf('/accounts/'+account+'/workers/workers/'+name+'/versions/'+previousVersion+'?include=modules'),settings=await cf('/accounts/'+account+'/workers/scripts/'+name+'/settings');
   assert(current.modules?.length,'Current modules missing '+name);
-  assert(!current.modules.some(m=>m.name.startsWith('knowledge-k3/')),'K3 already present; inspect its receipt before reapplying');
   const js=current.modules.filter(m=>/\.(mjs|js)$/.test(m.name)),referenced=new Set();
   for(const m of js){const code=Buffer.from(m.content_base64,'base64').toString('utf8');for(const match of code.matchAll(/\b(?:from\s*|import\s*)["']([^"']+)["']/g)){const spec=match[1];if(spec.startsWith('.'))referenced.add(path.posix.normalize(path.posix.join(path.posix.dirname(m.name),spec)));}}
-  const roots=js.filter(m=>!referenced.has(m.name)),explicit=current.main_module||current.metadata?.main_module||current.resources?.script?.main_module||settings.main_module;if(!explicit)assert.equal(roots.length,1,'Ambiguous existing entry '+name);const oldMain=explicit||roots[0].name;assert(current.modules.some(m=>m.name===oldMain));assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
+  const roots=js.filter(m=>!referenced.has(m.name)),explicit=current.main_module||current.metadata?.main_module||current.resources?.script?.main_module||settings.main_module;if(!explicit)assert.equal(roots.length,1,'Ambiguous existing entry '+name);const providerMain=explicit||roots[0].name;let oldMain=providerMain,entryMain='knowledge-k3/overlay.mjs',baseModules=current.modules;
+  const owned=current.modules.find(m=>m.name==='knowledge-k3/overlay.mjs');
+  if(owned){const code=Buffer.from(owned.content_base64,'base64').toString('utf8');assert(code.includes("headers.set('X-Shift-Knowledge-Design',release)"),'Unexpected K3 layer');const predecessor=code.match(/^import original from ['"]\.\.\/([^'"]+)['"]/m)?.[1];assert(predecessor&&!predecessor.includes('..'),'Original K3 predecessor missing');oldMain=predecessor;baseModules=current.modules.filter(m=>!m.name.startsWith('knowledge-k3/'));if(providerMain!=='knowledge-k3/overlay.mjs')entryMain=providerMain;}
+  assert(baseModules.some(m=>m.name===oldMain));assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
   const runtime=fs.readFileSync(prefix+'overlay.mjs','utf8').replaceAll('./original.mjs','../'+oldMain);
   const additions=['layout.mjs','styles.mjs'].map(n=>({name:'knowledge-k3/'+n,content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+n).toString('base64')}));
   additions.push({name:'knowledge-k3/overlay.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(runtime).toString('base64')});
   for(const key of ownAssets)additions.push({name:'knowledge-k3/assets/'+key+'.webp',content_type:'application/octet-stream',content_base64:fs.readFileSync(prefix+'assets/'+key+'.webp').toString('base64')});
-  const modules=[...current.modules,...additions];assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
+  const modules=[...baseModules,...additions];assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
   const resources=current.resources?.script_runtime||{},bindings=current.bindings||settings.bindings;
-  const metadata={main_module:'knowledge-k3/overlay.mjs',compatibility_date:current.compatibility_date||resources.compatibility_date||settings.compatibility_date,compatibility_flags:current.compatibility_flags||resources.compatibility_flags||settings.compatibility_flags||[],bindings:bindings.map(b=>({type:'inherit',name:b.name,version_id:previousVersion})),annotations:{'workers/message':'Matt approved K3 with correctly oriented iPad; preserve current runtime, assets, bindings and routes.','workers/tag':'knowledge-k3-'+process.env.GITHUB_SHA.slice(0,12)}};
+  const metadata={main_module:entryMain,compatibility_date:current.compatibility_date||resources.compatibility_date||settings.compatibility_date,compatibility_flags:current.compatibility_flags||resources.compatibility_flags||settings.compatibility_flags||[],bindings:bindings.map(b=>({type:'inherit',name:b.name,version_id:previousVersion})),annotations:{'workers/message':'Matt approved K3 with correctly oriented iPad; preserve current runtime, assets, bindings and routes.','workers/tag':'knowledge-k3-'+process.env.GITHUB_SHA.slice(0,12)}};
   for(const k of ['usage_model','limits','placement','cache_options','observability','tail_consumers','logpush'])if(current[k]!==undefined||resources[k]!==undefined||settings[k]!==undefined)metadata[k]=current[k]??resources[k]??settings[k];
   const assets=current.assets||resources.assets||settings.assets;
   // Pin every resource binding to the actual serving version through the
   // version-addressed API. Never inherit from an unrelated latest upload.
   if(assets)metadata.assets=assets;
-  states.push({name,deployment,previousVersion,current,settings,modules,metadata,assets,bindings,oldMain});
+  states.push({name,deployment,previousVersion,current,settings,modules,metadata,assets,bindings,oldMain,retainedModules:baseModules.length});
  }
  save('before',{source:process.env.GITHUB_SHA,serving,routeCount:beforeRoutes.length,checks,workers:states.map(s=>({name:s.name,previousVersion:s.previousVersion,oldMain:s.oldMain,assetConfig:s.assets,moduleHashes:snapshots(s.current.modules),bindings:s.bindings.map(b=>({name:b.name,type:b.type}))})),protectedPages:Object.entries(protectedPages).map(([p,b])=>({path:p,mainSHA256:hash(mainHTML(b.html))})),preservedAssets,preExistingUnavailableAssets});
  for(const state of states){

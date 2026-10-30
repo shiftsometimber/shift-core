@@ -3,9 +3,9 @@ K3{margin:0!important;padding:0!important;background:#050505!important;color:#e7
 K3 *{box-sizing:border-box!important;font-family:Arial,Helvetica,sans-serif!important}
 K3 .kh-wrap{max-width:1208px!important;padding:20px 24px 0!important;margin:0 auto!important}
 K3 .kh-hero{position:relative!important;isolation:isolate!important;overflow:hidden!important;min-height:320px!important;margin:0!important;padding:22px 24px!important;background:#050505!important;border:0!important;border-radius:0!important}
-K3 .k3-hero-photo{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:right center!important;z-index:-2!important;margin:0!important}
+K3 .k3-hero-photo{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-height:none!important;min-height:0!important;object-fit:cover!important;object-position:right center!important;z-index:-2!important;margin:0!important;padding:0!important;border:0!important;background:none!important;isolation:auto!important}
 K3 .kh-hero::after{content:''!important;position:absolute!important;inset:0!important;background:linear-gradient(90deg,rgba(5,5,5,.15),transparent 72%)!important;z-index:-1!important;pointer-events:none!important}
-K3 .k3-hero-copy{position:relative!important;max-width:55%!important;padding:0!important;margin:0!important;background:none!important}
+K3 .k3-hero-copy{position:relative!important;max-width:55%!important;padding:0!important;margin:0!important;border:0!important;background:none!important;isolation:auto!important;overflow:visible!important}
 K3 .kh-eyebrow{font-size:11px!important;line-height:1.4!important;font-weight:700!important;letter-spacing:.12em!important;margin:0 0 8px!important;color:#c0c9af!important}
 K3 .kh-hero h1{font-size:clamp(36px,4vw,52px)!important;line-height:1.02!important;font-weight:800!important;letter-spacing:-.045em!important;margin:0 0 13px!important;max-width:none!important;color:#e7e3da!important}
 K3 .kh-lead{font-size:17px!important;line-height:1.45!important;margin:0 0 12px!important;max-width:none!important;color:#e7e3da!important}
@@ -24,6 +24,7 @@ K3 .kh-section h2{font-size:27px!important;font-weight:700!important;line-height
 K3 .kh-section>p{font-size:13px!important;line-height:1.45!important;color:#bcc4b1!important;margin:0 0 12px!important}
 K3 .kh-grid{display:grid!important;grid-template-columns:1fr!important;gap:0!important;margin:0!important;padding:0!important}
 K3 :is(.kh-card,.kh-legacy article){display:grid!important;grid-template-columns:210px minmax(0,1fr)!important;align-items:center!important;gap:24px!important;min-width:0!important;min-height:148px!important;padding:15px 0!important;margin:0!important;border:0!important;border-bottom:1px solid #414936!important;border-radius:0!important;background:transparent!important;color:#e7e3da!important;-webkit-text-fill-color:#e7e3da!important;box-shadow:none!important}
+K3 [data-kh-card]::before,K3 [data-kh-card]::after{content:none!important;display:none!important}
 K3 .k3-guide-photo{display:block!important;width:210px!important;height:118px!important;max-width:100%!important;object-fit:cover!important;object-position:center!important;margin:0!important;border:0!important;border-radius:3px!important}
 K3 .k3-row-copy{display:grid!important;grid-template-columns:minmax(0,1fr) max-content!important;column-gap:24px!important;align-items:center!important;min-width:0!important;margin:0!important;padding:0!important;background:none!important}
 K3 .k3-row-copy :is(h3,p,a,small,span,strong){color:#e7e3da!important;-webkit-text-fill-color:#e7e3da!important}
