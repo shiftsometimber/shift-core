@@ -19,8 +19,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.16.0'
-      - name: Read current Knowledge owners and runtime configuration
-        run: node release/knowledge-k3-20261030/preflight.mjs
+      - name: Check K3 source syntax
+        run: |
+          node --check release/knowledge-k3-20261030/layout.mjs
+          node --check release/knowledge-k3-20261030/styles.mjs
+          node --check release/knowledge-k3-20261030/overlay.mjs
+          node --check release/knowledge-k3-20261030/check.mjs
+          node --check release/knowledge-k3-20261030/deploy.mjs
+      - name: Stage and verify Matt's approved K3 design
+        run: node release/knowledge-k3-20261030/deploy.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
