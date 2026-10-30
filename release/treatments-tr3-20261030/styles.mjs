@@ -5,7 +5,7 @@ ${p} *{box-sizing:border-box}
 ${p} .tv-wrap{width:min(1160px,calc(100% - 64px))!important;max-width:1160px!important;margin-inline:auto!important;padding-inline:0!important}
 ${p} .tv-hero{position:relative!important;display:block!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:#050505!important;isolation:isolate!important;overflow:hidden!important}
 ${p} .tv-hero>img{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;min-height:0!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:80% 10%!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;z-index:0!important}
-${p} .tv-hero:before{content:''!important;display:block!important;position:absolute!important;inset:0!important;background:linear-gradient(90deg,rgba(5,5,5,.45),rgba(5,5,5,.15) 44%,transparent 70%)!important;z-index:1!important;pointer-events:none!important}
+${p} .tv-hero:before{content:''!important;display:block!important;position:absolute!important;inset:0!important;background:linear-gradient(90deg,rgba(5,5,5,.72),rgba(5,5,5,.78) 48%,rgba(5,5,5,.62) 59%,rgba(5,5,5,.08) 74%,transparent 87%)!important;z-index:1!important;pointer-events:none!important}
 ${p} .tv-hero:after{content:none!important;display:none!important}
 ${p} .tv-hero .tv-wrap{position:relative!important;z-index:2!important;display:flex!important;align-items:center!important;min-height:360px!important;height:auto!important;padding-block:28px!important;background:none!important;border:0!important}
 ${p} .tv-hero-copy{position:relative!important;width:64%!important;max-width:744px!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:none!important;isolation:auto!important}
@@ -15,7 +15,7 @@ ${p} .tv-kicker{font:700 11px/1.4 Arial,Helvetica,sans-serif!important;letter-sp
 ${p} .tv-actions{display:flex!important;flex-wrap:wrap!important;gap:12px!important;margin:0!important;padding:0!important}
 ${p} .tv-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:0!important;min-height:44px!important;max-width:100%!important;padding:12px 20px!important;border:1px solid #E7E3DA!important;border-radius:5px!important;background:#E7E3DA!important;color:#050505!important;-webkit-text-fill-color:#050505!important;font:700 14px/1.25 Arial,Helvetica,sans-serif!important;letter-spacing:0!important;text-decoration:none!important;text-align:center!important;box-shadow:none!important;white-space:normal!important}
 ${p} .tv-button svg{display:none!important}
-${p} .tv-hero .tv-button:not(.tv-alt){background:#707762!important;border-color:#707762!important;color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
+${p} .tv-hero .tv-button:not(.tv-alt){background:linear-gradient(rgba(5,5,5,.18),rgba(5,5,5,.18)),#707762!important;border-color:#707762!important;color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
 ${p} .tv-hero .tv-alt{background:transparent!important;color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important}
 ${p} .tv-button:focus-visible{outline:3px solid #9fa68c!important;outline-offset:4px!important}
 ${p} .tv-cream{background:#050505!important;color:#E7E3DA!important;margin:0!important;padding:0!important}
@@ -29,7 +29,7 @@ ${p} .tv-card .tv-kicker,${p} .tv-support .tv-kicker{grid-column:2!important;gri
 ${p} .tv-card h2,${p} .tv-support h2{grid-column:2!important;grid-row:2!important;font:700 24px/1.14 Arial,Helvetica,sans-serif!important;letter-spacing:-.025em!important;color:#E7E3DA!important;margin:0!important;padding:0!important}
 ${p} .tv-card p:not(.tv-kicker),${p} .tv-support p:not(.tv-kicker){grid-column:2!important;grid-row:3!important;align-self:start!important;font:400 15px/1.5 Arial,Helvetica,sans-serif!important;color:#E7E3DA!important;margin:0!important;padding:0!important}
 ${p} .tv-card .tv-button,${p} .tv-support .tv-button{grid-column:3!important;grid-row:1/4!important;justify-self:stretch!important;align-self:center!important}
-${p} .tv-support{background:#707762!important;padding:16px!important;border:0!important;grid-template-columns:calc(29% - 11px) minmax(0,1fr) 220px!important}
+${p} .tv-support{background:linear-gradient(rgba(5,5,5,.18),rgba(5,5,5,.18)),#707762!important;padding:16px!important;border:0!important;grid-template-columns:calc(29% - 11px) minmax(0,1fr) 220px!important}
 ${p} .tv-useful{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:0!important;margin:0!important;padding:18px 0!important;border:0!important;border-bottom:1px solid #707762!important;background:#050505!important}
 ${p} .tv-useful .tv-button{background:transparent!important;color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important;border:0!important;border-radius:0!important;min-height:36px!important;padding:8px 22px!important;font-weight:400!important;text-decoration:underline!important;text-underline-offset:4px!important}
 ${p} .tv-useful .tv-button+.tv-button{border-left:1px solid #707762!important}
