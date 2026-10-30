@@ -20,6 +20,15 @@ async function get(p,overrides){const r=await fetch('https://shiftsometimber.co.
 const snapshots=ms=>ms.map(m=>({name:m.name,sha256:hash(Buffer.from(m.content_base64,'base64'))})).sort((a,b)=>a.name.localeCompare(b.name));
 const sort=bs=>[...(bs||[])].sort((a,b)=>a.name.localeCompare(b.name));
 const states=[],promoted=[];let beforeRoutes;
+if(process.env.HERO_ROUTE_AUDIT==='1'){
+ const currentRoutes=await routes();
+ const candidates=pages.map(p=>({path:p.path,routes:currentRoutes.filter(r=>{
+  const pattern=r.pattern.replace(/^https?:\/\//,'').split('*').map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('.*');
+  return new RegExp('^'+pattern+'$').test('shiftsometimber.co.uk'+p.path);
+ })}));
+ save('route-audit',{readOnly:true,source:process.env.GITHUB_SHA,routeCount:currentRoutes.length,candidates});
+ console.log('HERO_ROUTE_AUDIT '+JSON.stringify({readOnly:true,routeCount:currentRoutes.length,candidates}));process.exit(0);
+}
 try{
  assert.equal(pages.length,27);assert(!pages.some(p=>['/knowledge','/explore-knowledge','/ask-timber','/shift-health'].includes(p.path)),'Later approved designs must be protected');
  beforeRoutes=await routes();
