@@ -15,3 +15,9 @@ A preliminary attempt to wrap the blog publisher was restored to its previous ve
 ## Verified production release
 
 Source `516e15348ea8555ffae067e965f271988acb76f7`; deployment `8200cc90-a94e-4dc4-bf4b-4a0a010b77ec`; version `17dee107-6fa5-47c9-a071-83a6119633ff`. All seven public images loaded; every CTA was clicked and its destination verified below the fixed header. Supplements filtering and a product detail page were checked, with ordering still closed. The existing testing garden hero was also verified. API and browser receipts, plus a live screenshot, are saved alongside this release.
+
+## Latest styling correction
+
+Matt requested a black SHIFT Bloods background and smaller gaps above each item hero. Source `dcf5f1b50529b7855e49957c7ad6b2da2ad4d5a7` changes only `health-page-heroes/styles.mjs` and `health-testing/styles.mjs` in the exact current production graphs. The knowledge expansion, H6/header assets, product data and operations remain intact. No route, binding, named handler or schedule was changed.
+
+Live verification covered the seven page heroes, the testing range and a testing product detail. Each has an 8px gap after its preceding breadcrumb or availability row. All nine main content fragments are byte-for-byte unchanged. Nine mobile layouts were checked without horizontal overflow. All three Bloods panels were switched and their cream backgrounds and black text verified; the black page sections have cream text. See the production receipt and evidence files for the exact versions and screenshots. Future releases must retain the latest complete Worker graphs; the older twelve-module presentation manifest is historical.

@@ -1,0 +1,32 @@
+{
+  "surface": {
+    "background": "rgb(5, 5, 5)",
+    "faqBackground": "rgb(231, 227, 218)",
+    "faqText": "rgb(5, 5, 5)",
+    "footnote": "rgb(231, 227, 218)",
+    "knowledgeLink": "rgb(231, 227, 218)",
+    "process": "rgb(231, 227, 218)",
+    "sectionHeading": "rgb(231, 227, 218)"
+  },
+  "panels": [
+    {
+      "tab": "Advanced",
+      "background": "rgb(231, 227, 218)",
+      "heading": "Advanced Health",
+      "text": "rgb(5, 5, 5)"
+    },
+    {
+      "tab": "Complete",
+      "background": "rgb(231, 227, 218)",
+      "heading": "Complete Health",
+      "text": "rgb(5, 5, 5)"
+    },
+    {
+      "tab": "Baseline",
+      "background": "rgb(231, 227, 218)",
+      "heading": "Baseline Health",
+      "text": "rgb(5, 5, 5)"
+    }
+  ],
+  "screenshot": "bloods-black-compact-live-1793319265413.jpg"
+}

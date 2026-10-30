@@ -1,1 +1,24 @@
-{"commit":"516e15348ea8555ffae067e965f271988acb76f7","tree":"f30e7e62ed8acdbd79c94b130c252b1b7372cc55","branch":"feat/approved-health-heroes-20261029"}
+{
+  "commit": "dcf5f1b50529b7855e49957c7ad6b2da2ad4d5a7",
+  "tree": "c53ae8aacf9ac437faa747ca48780795150ae95a",
+  "branch": "fix/bloods-black-compact-health-heroes-20261029",
+  "scope": "Stylesheets only; both current Worker graphs are retained.",
+  "receipt": "health-page-heroes/layout-theme-production-receipt.json",
+  "runtimes": [
+    {
+      "worker": "shift-health-heroes-20261029",
+      "entry": "knowledge-health-entry.mjs",
+      "deploymentId": "609415b3-a90d-42aa-8f28-483f0fbd13d4",
+      "versionId": "92f21754-3362-4446-9962-b30528660a86",
+      "changedModule": "health-page-heroes/styles.mjs"
+    },
+    {
+      "worker": "shift-health-nutrition-20261027",
+      "entry": "knowledge-health-entry.mjs",
+      "deploymentId": "0ff45447-8473-41f1-97d4-e99bc58b90c1",
+      "versionId": "0efd51c9-2375-43e5-8b09-c909a13f0330",
+      "changedModule": "health-testing/styles.mjs"
+    }
+  ],
+  "previousHeroSourceCommit": "516e15348ea8555ffae067e965f271988acb76f7"
+}
