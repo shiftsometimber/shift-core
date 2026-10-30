@@ -255,5 +255,11 @@ export const testingStyle=String.raw`
 #shift-health-range .nft-garden-counts strong{font-size:27px}
 #shift-health-range .nft-garden-counts span{font-size:10px}
 }
+/* Compact the introduction above the testing hero and product photographs. */
+#shift-health-range .nft.nft.nft{padding-top:0!important}
+#shift-health-range .nft-breadcrumb.nft-breadcrumb.nft-breadcrumb{align-items:center;min-height:32px!important;margin:0 0 8px!important;padding:4px 0!important;line-height:1.4}
+#shift-health-range .nft-shop-announcement.nft-shop-announcement{min-height:30px!important;margin:0 0 8px!important;padding:6px 0!important}
+#shift-health-range .nft .nft-product-hero.nft-product-hero{padding-top:8px!important}
+@media(max-width:700px){#shift-health-range .nft-breadcrumb.nft-breadcrumb.nft-breadcrumb{min-height:44px!important}}
 `;
 

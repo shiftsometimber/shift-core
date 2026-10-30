@@ -1,0 +1,122 @@
+[
+  {
+    "worker": "shift-health-heroes-20261029",
+    "entry": "knowledge-health-entry.mjs",
+    "entryHeaders": {
+      "Cf-Entrypoint": "knowledge-health-entry.mjs"
+    },
+    "settingKeys": [
+      "placement",
+      "compatibility_date",
+      "compatibility_flags",
+      "usage_model",
+      "tags",
+      "tail_consumers",
+      "logpush",
+      "annotations",
+      "bindings"
+    ],
+    "rootSource": [
+      [
+        "knowledge-health-entry.mjs",
+        "import original from \"./approved-health-heroes-entry.mjs\";\nimport {withHealthKnowledgeWorker} from \"./knowledge-health/production.mjs\";\nexport * from \"./approved-health-heroes-entry.mjs\";\nexport default withHealthKnowledgeWorker(original);\n"
+      ]
+    ],
+    "types": {
+      "knowledge-health/production.mjs": "text/plain",
+      "health-page-heroes/media/bloods.mjs": "text/plain",
+      "health-page-heroes/media/hair.mjs": "text/plain",
+      "health-page-heroes/media/supplements.mjs": "text/plain",
+      "health-page-heroes/media/testosterone.mjs": "text/plain",
+      "health-page-heroes/media/mental.mjs": "text/plain",
+      "knowledge-health/content.mjs": "text/plain",
+      "knowledge-health/evidence.mjs": "text/plain",
+      "knowledge-health/expansion-content.mjs": "text/plain",
+      "knowledge-health/render.mjs": "text/plain",
+      "health-page-heroes/heroes.mjs": "text/plain",
+      "health-page-heroes/media-all.mjs": "text/plain",
+      "health-page-heroes/media/sleep.mjs": "text/plain",
+      "health-page-heroes/runtime.mjs": "text/plain",
+      "health-page-heroes/styles.mjs": "text/plain",
+      "knowledge-health-entry.mjs": "text/plain",
+      "approved-health-heroes-entry.mjs": "text/plain",
+      "health-page-heroes/media/pressure.mjs": "text/plain",
+      "knowledge-health/client.mjs": "text/plain"
+    }
+  },
+  {
+    "worker": "shift-health-nutrition-20261027",
+    "entry": "knowledge-health-entry.mjs",
+    "entryHeaders": {
+      "Cf-Entrypoint": "knowledge-health-entry.mjs"
+    },
+    "settingKeys": [
+      "placement",
+      "compatibility_date",
+      "compatibility_flags",
+      "usage_model",
+      "tags",
+      "tail_consumers",
+      "logpush",
+      "annotations",
+      "bindings"
+    ],
+    "rootSource": [
+      [
+        "knowledge-health-entry.mjs",
+        "import original from \"./health-approved-overlay.mjs\";\nimport {withHealthKnowledgeWorker} from \"./knowledge-health/production.mjs\";\nexport * from \"./health-approved-overlay.mjs\";\nexport default withHealthKnowledgeWorker(original);\n"
+      ]
+    ],
+    "types": {
+      "health-nutrition/styles.mjs": "text/plain",
+      "health-testing/fulfilment-mail-model.mjs": "text/plain",
+      "health-testing/production.mjs": "text/plain",
+      "health-approved-assets/heart.webp": "text/plain",
+      "health-nutrition/images.mjs": "text/plain",
+      "health-testing/seo.mjs": "text/plain",
+      "health-testing/storefront.mjs": "text/plain",
+      "health-approved-assets/bloods.webp": "text/plain",
+      "health-approved-assets/header-h6.webp": "text/plain",
+      "health-approved-cards.mjs": "text/plain",
+      "health-approved-overlay.mjs": "text/plain",
+      "health-testing/catalogue.mjs": "text/plain",
+      "health-testing/fulfilment-delivery.mjs": "text/plain",
+      "health-testing/hq-client.mjs": "text/plain",
+      "health-testing/media.mjs": "text/plain",
+      "health-approved-assets/sleep.webp": "text/plain",
+      "health-approved-assets/testing.webp": "text/plain",
+      "health-nutrition/public.mjs": "text/plain",
+      "health-nutrition/templates.mjs": "text/plain",
+      "health-testing/fulfilment-api.mjs": "text/plain",
+      "health-testing/hero-media.mjs": "text/plain",
+      "health-testing/hq-api.mjs": "text/plain",
+      "health-testing/product-context.mjs": "text/plain",
+      "health-testing/fulfilment-model.mjs": "text/plain",
+      "health-testing/fulfilment-source.mjs": "text/plain",
+      "health-testing/public.mjs": "text/plain",
+      "health-testing/styles.mjs": "text/plain",
+      "knowledge-health-entry.mjs": "text/plain",
+      "knowledge-health/evidence.mjs": "text/plain",
+      "knowledge-health/expansion-content.mjs": "text/plain",
+      "knowledge-health/production.mjs": "text/plain",
+      "health-nutrition/catalogue.mjs": "text/plain",
+      "health-nutrition/hq-api.mjs": "text/plain",
+      "health-nutrition/hq-client.mjs": "text/plain",
+      "health-testing/hq-fulfilment.mjs": "text/plain",
+      "health-testing/media-data.mjs": "text/plain",
+      "health-testing/specifications.mjs": "text/plain",
+      "knowledge-health/content.mjs": "text/plain",
+      "health-approved-assets/mental.webp": "text/plain",
+      "health-approved-assets/nutrition.webp": "text/plain",
+      "health-approved-assets/weight.webp": "text/plain",
+      "health-nutrition/worker.mjs": "text/plain",
+      "knowledge-health/client.mjs": "text/plain",
+      "health-approved-assets/fertility.webp": "text/plain",
+      "knowledge-health/render.mjs": "text/plain",
+      "retained-health-nutrition.mjs": "text/plain",
+      "testing-production-entry.mjs": "text/plain",
+      "health-approved-assets/energy.webp": "text/plain",
+      "health-approved-assets/hair.webp": "text/plain"
+    }
+  }
+]

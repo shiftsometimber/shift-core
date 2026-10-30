@@ -1,0 +1,140 @@
+{
+  "approval": "Matt: Shift bloods background needs to be black. On each item page, close the gap between the ticker and hero image.",
+  "scope": "Stylesheets only; preserve current workers, clinical and product content, shared navigation, rules and schedules.",
+  "workers": [
+    {
+      "worker": "shift-health-heroes-20261029",
+      "deployment": "2d8eae34-1ae1-44e3-a4d5-01abd9b27841",
+      "versions": [
+        {
+          "version_id": "351a224f-acad-4521-b89b-e18975e7ee28",
+          "percentage": 100
+        }
+      ],
+      "moduleHashes": {
+        "health-page-heroes/media/supplements.mjs": "a78385fd6faa7fc55daf1fb4b2be1defcb4a67e3e4109165ff95688adf4540bd",
+        "health-page-heroes/styles.mjs": "ca8e00bd0b716e6b29675471f8ac6293c9e2104e7a7778ca46edb8a172902234",
+        "health-page-heroes/heroes.mjs": "3d9ef44f2ec598598df1c649b8145de5106869aea8694c10b871e34fa4a0a87e",
+        "knowledge-health/client.mjs": "ad1fabef15ba1c964d617165d75acb79c0045473f96e065b7ded43ee6d6dc954",
+        "knowledge-health/expansion-content.mjs": "37a2ef8ef7a6d0dec4689736e7fd6c696103d4774c2df752f5ded6a3e7919a13",
+        "knowledge-health/production.mjs": "401a8cddc5e46779978b3863c9ee3bd9fb50588716f0c1d60414fa7ce98c9bab",
+        "knowledge-health/render.mjs": "710f95954405e63f040a4e8d78c4484a31ee87e3a7a2e31d37f73e40b6924781",
+        "health-page-heroes/media/bloods.mjs": "353dabb7e1095362497c02c886e7978d5a4318956818762958c185dc91233054",
+        "health-page-heroes/media/pressure.mjs": "2c86b556e0236dd100ddd36ff3c796f05ab3e851407a83abc38aaf46a5f21f55",
+        "health-page-heroes/media/testosterone.mjs": "0a2e3964f82ba340bdd1eb0327cb0a15ebe2c047a6356d67d44825282ab96954",
+        "knowledge-health/content.mjs": "71f1db39fac06c4b10c28c0c28752b8a34122eb9bacd10a8a80e2c9a7f30ba4c",
+        "health-page-heroes/media-all.mjs": "e5c14db5a38f01c2b6b66696b2f15b6183b44cf8c932bc2d521d5bffd2154604",
+        "health-page-heroes/media/hair.mjs": "c4dfd4a7f89ac84619be7646abcd7d2eac0905d3f9e62b3684dd70c7047936b2",
+        "health-page-heroes/media/mental.mjs": "169d69309a9b4778f9bd680fdc1ffd06eed8ff7ac9391ecd1a8e735fc78f90ea",
+        "health-page-heroes/runtime.mjs": "fd25a64b4b080c447cc7798d7ba4718464a92e0675cf7ead3adc3479205ba916",
+        "knowledge-health-entry.mjs": "0dfbb10acaed4e161c81a69c773265b749c59ad6e240157b591e91788dc4c695",
+        "knowledge-health/evidence.mjs": "f52e9b52b8a6dcb01d664c5b96baa377237410fee29daed8090a5373e3f2d647",
+        "approved-health-heroes-entry.mjs": "4b06aa5c81886189f52ecf1b928e65d3994a97c61c78f38b82537c209578f245",
+        "health-page-heroes/media/sleep.mjs": "c0c9188e26722e5fc54a799ede856b27b18b11e377b375b17c5164a9ce87acdd"
+      },
+      "bindingNames": [
+        "BLOG",
+        "NUTRITION",
+        "PRESENTATION",
+        "SUPPORT"
+      ],
+      "schedules": [],
+      "compatibility_date": "2026-10-01",
+      "entry": "knowledge-health-entry.mjs",
+      "stylesheet": {
+        "source": "health-page-heroes/styles.mjs",
+        "name": "health-page-heroes/styles.mjs",
+        "previousSha256": "ca8e00bd0b716e6b29675471f8ac6293c9e2104e7a7778ca46edb8a172902234",
+        "sha256": "c51ccb5a0666664ae4295e30043eeb19214f0e73a6435c6bece4aedf3341bbfd",
+        "size": 9527
+      }
+    },
+    {
+      "worker": "shift-health-nutrition-20261027",
+      "deployment": "bfd171d2-27e9-42ee-9b00-10a2285380fa",
+      "versions": [
+        {
+          "version_id": "500e918b-7d40-4b69-8c89-283786801161",
+          "percentage": 100
+        }
+      ],
+      "moduleHashes": {
+        "health-testing/fulfilment-source.mjs": "41cbd2bf5c35cdb0e614932cbe6b38dd01c30398512b5f521c64840de4a0b58e",
+        "health-testing/production.mjs": "d983f9ac5ea102198ccd3fb710f073406799a7796551b67754d7958bf81dc042",
+        "health-approved-assets/testing.webp": "002dafe5725129bd8970365b2a2d4d9a819e0ad3eb6345210253893359f2bf5d",
+        "health-nutrition/catalogue.mjs": "c7aa65224d4cde01176bdd0a421f7706ca8342bcf788f824063c6fbd0a806e38",
+        "health-nutrition/images.mjs": "1f454c9f390e6390d8be5cc366e4d8f49b0a2e4c7cafe5a00d161307f305b7fe",
+        "health-testing/fulfilment-mail-model.mjs": "6586685702f7f7a12f3d695cec53f3c47598f67dedbbf9b29e6775a3cb52d5e3",
+        "health-testing/media.mjs": "55fcd70b18a83c70aabb911ee5cb6aa3cab3d9a79d0a58b7e45f521ca1ab155c",
+        "health-testing/specifications.mjs": "5aee421dc7587c589729600213931733c033ed1f152c2f0fae7954892781cb61",
+        "knowledge-health-entry.mjs": "f44435cb1fa1a20e0058f5dd3a9eddcb8030656e0b6b12e966853fd76d1c0938",
+        "knowledge-health/production.mjs": "401a8cddc5e46779978b3863c9ee3bd9fb50588716f0c1d60414fa7ce98c9bab",
+        "health-approved-assets/bloods.webp": "3928334837a37f3150e483946b93faae60166588339032398ad400301bd81736",
+        "health-nutrition/hq-client.mjs": "d11515ea7c139192c3f63be2abc1cf660d8fe502961975efb6092c2039c3d58d",
+        "health-nutrition/public.mjs": "d057b90ccf9d2fb00231e07fd0bf60b512689a4fffefd26dd119e4bae3e36bb1",
+        "health-nutrition/styles.mjs": "93fd513f4caaf5515132522ab6d61fdd0b9f159ac24281b4abc8161a1d0a4280",
+        "health-nutrition/worker.mjs": "10ca2b8e925f8cbeb65527633a08e114e8c85a3e9a4098f1d6309d25aab0ce40",
+        "health-testing/hero-media.mjs": "39de7eb4cb98fcd042f4c3f99a4f0328cf7fdcef303e9f081b89b27ea67abbb7",
+        "health-testing/hq-api.mjs": "bdf8dd494e92b570ff1b5cb45da9bad61d76d7b00d267600745e5b8c60074862",
+        "health-testing/hq-fulfilment.mjs": "aaad2006c84ac76e2ea823ea3a5c924def5438559916c2687151fa344ac57f69",
+        "health-testing/public.mjs": "711d15f492d28fb9f62e257de7770b9a0123bbc41f368063872a6f8f6625539c",
+        "health-testing/seo.mjs": "14e6a1bf16f86f395ea539a9f8804505f31bb69645c1b968a4478633cf1f04de",
+        "knowledge-health/content.mjs": "71f1db39fac06c4b10c28c0c28752b8a34122eb9bacd10a8a80e2c9a7f30ba4c",
+        "testing-production-entry.mjs": "4feb5c6f48035d412812d0367d3e8ac29c97ab208fbf306704f16ce026fae4cc",
+        "health-approved-assets/mental.webp": "24fdb52af5e9402f06da9df807528b3a6f38d90ab700a3c1a0babb9ceaff907f",
+        "health-testing/hq-client.mjs": "79038cc6e2ea600345765099f4f7b3df3e83982303d935dc47f87388a2ed1e31",
+        "health-testing/media-data.mjs": "75b0773bee518a3256f4081229e1e3b3b7d3c660c29f0cbbbae4746f18a20478",
+        "knowledge-health/render.mjs": "710f95954405e63f040a4e8d78c4484a31ee87e3a7a2e31d37f73e40b6924781",
+        "health-approved-assets/weight.webp": "a0d232663d781bd8038c9fd3e57d23b745d8e778e1b5881e8799da627ff0d9ad",
+        "health-testing/fulfilment-api.mjs": "a386137c45382a91dac7cf3ed2fd1a13b336fefe93bc75cd7db021bb5b1da2a4",
+        "health-testing/fulfilment-delivery.mjs": "57f60803c23731069e81973335184dde55562ac876447373e6090aa2dd0fb2a9",
+        "knowledge-health/client.mjs": "ad1fabef15ba1c964d617165d75acb79c0045473f96e065b7ded43ee6d6dc954",
+        "retained-health-nutrition.mjs": "47ea8ed7bab6c0281bcef53187efd50bad323116a30b4aa82d2a39ff6a7da279",
+        "health-approved-assets/energy.webp": "bf262880acc54d04f8dc15c01e2f5c44d1d1faaebfe645e867b3f8835ca278b5",
+        "health-approved-assets/heart.webp": "bd92d4747c7254e849cd7e8b9340e6da5d04a1ded681a67b8c46dbb108755e74",
+        "health-approved-assets/sleep.webp": "b9e91cb75681690d7c8f6d5d32447ed0c4e8a8e7f470e212dea3c96f06b5c17b",
+        "knowledge-health/expansion-content.mjs": "37a2ef8ef7a6d0dec4689736e7fd6c696103d4774c2df752f5ded6a3e7919a13",
+        "health-approved-assets/header-h6.webp": "0dd30dc3a3bb899e398b5308d27277f72ccc90fd44e7d874bfbdbf46e18697a6",
+        "health-approved-overlay.mjs": "34aff5d068887833b0717ca5d9bb1fdc1eabb4ddef1162d7c24312c745f5e3ae",
+        "health-nutrition/hq-api.mjs": "8c9b58c403255916190eb70b740395cf637ff81f1ecbbb3747faca2226378ccd",
+        "health-nutrition/templates.mjs": "7b7727ede71989d289c572400d88d5eec587d933fb0d04b35131e180daada3c8",
+        "health-testing/product-context.mjs": "5a377cd1f17b972104171577fa345f3f7119cdd10b019f5b5e917732e0c0a53e",
+        "health-testing/storefront.mjs": "75a3147aeb256d2cc0eddf58edcb3dcff6c49fc2ae110e87449469b394156e06",
+        "health-testing/styles.mjs": "a3d903821b54def45fe25bc892ded33684239d6273a63192cb62f832ac453c51",
+        "knowledge-health/evidence.mjs": "f52e9b52b8a6dcb01d664c5b96baa377237410fee29daed8090a5373e3f2d647",
+        "health-approved-cards.mjs": "5844f8bdcac29384056662ec38f65de12fab08bf334918e7653d569e53a9c7de",
+        "health-approved-assets/fertility.webp": "8391e176d8907cdbf8e1b062ceaa2d849ee5b6a4cf3b3a6450eddda266402f70",
+        "health-approved-assets/hair.webp": "7ec84326c83b6cd030e6b0ba72fa0a19f71bb32e32172375b6268a3a873ba8de",
+        "health-approved-assets/nutrition.webp": "63ec3123ebe97bcd7a59c5245017b31a2be829b5a8af4edef1ae3ab73d875e26",
+        "health-testing/catalogue.mjs": "eb947e9bf2cf1bae27cf7e403746771cdc523f45152f5774453a8c746d26ed91",
+        "health-testing/fulfilment-model.mjs": "b1ccb99c488fd732cbda1f5e92d1f4f3173e6d9701de1d1a76577ded32fea123"
+      },
+      "bindingNames": [
+        "BLOG",
+        "CORE",
+        "DB",
+        "EMAIL",
+        "HQ",
+        "SHIFT_KNOWLEDGE_SHELL",
+        "TESTING_FULFILMENT_MAIL_ENABLED",
+        "TESTING_FULFILMENT_SCHEDULER_ENABLED"
+      ],
+      "schedules": [
+        {
+          "cron": "* * * * *",
+          "created_on": "2026-10-28T23:42:34.421311Z",
+          "modified_on": "2026-10-28T23:42:34.421311Z"
+        }
+      ],
+      "compatibility_date": "2026-10-01",
+      "entry": "knowledge-health-entry.mjs",
+      "stylesheet": {
+        "source": "health-testing/styles.mjs",
+        "name": "health-testing/styles.mjs",
+        "previousSha256": "a3d903821b54def45fe25bc892ded33684239d6273a63192cb62f832ac453c51",
+        "sha256": "c2fe933ad65dfd049a1fe2b100383f32db3857a1cce58315c4c4d0e76cc85d0a",
+        "size": 32126
+      }
+    }
+  ]
+}

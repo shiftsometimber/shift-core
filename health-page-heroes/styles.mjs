@@ -41,5 +41,22 @@ html body main#main-content#main-content#main-content a.shh-urgent{font-size:13p
 }
 html body main#main-content#main-content#main-content :is(#prompt-heading,#compare-blood-tests,#understand,#your-next-step,#shop-categories){scroll-margin-top:150px}
 
+/* Keep the page introduction compact above each approved hero. */
+html body main#main-content#main-content#main-content:has(.shh-hero){padding-top:0;margin-top:0}
+html body main#main-content#main-content#main-content .shh-hero{margin-top:8px}
+html body main#main-content#main-content#main-content:has(.shh-hero)>:is(a.back,a.th-back){display:flex;align-items:center;min-height:32px;margin:0;padding:4px 0;line-height:1.4}
+html body main#main-content#main-content#main-content:has(.shh-hero) :is(.crumbs,.sst-breadcrumb){display:flex;align-items:center;min-height:32px;margin-top:0;margin-bottom:0;padding-top:4px;padding-bottom:4px;line-height:1.4}
+html body main#main-content#main-content#main-content[data-shift-bloods] .bloods-availability{padding:6px 12px;line-height:1.4}
+@media(max-width:700px){html body main#main-content#main-content#main-content:has(.shh-hero)>:is(a.back,a.th-back),html body main#main-content#main-content#main-content:has(.shh-hero) :is(.crumbs,.sst-breadcrumb){min-height:44px}}
+
+/* Bloods uses the same black page surface as the SHIFT Health range. */
+html body main#main-content#main-content#main-content[data-shift-bloods] .hero-copy>.hero-footnote{-webkit-text-fill-color:#E7E3DA}
+html body main#main-content#main-content#main-content[data-shift-bloods]{background:#050505;color:#E7E3DA}
+html body main#main-content#main-content#main-content[data-shift-bloods] :is(.bloods-availability,.crumbs,.crumbs a,.crumbs span,.hero-copy>.hero-footnote,.section-heading,.process,.process article,.connection,.kh-addition,.kh-wrap,.kh-related){color:#E7E3DA}
+html body main#main-content#main-content#main-content[data-shift-bloods] :is(.section-heading,.process,.connection,.kh-addition) :is(h2,h3,p,span,strong,li){color:#E7E3DA;-webkit-text-fill-color:#E7E3DA}
+html body main#main-content#main-content#main-content[data-shift-bloods] .kh-related a{color:#E7E3DA;-webkit-text-fill-color:#E7E3DA;border-color:#707762}
+html body main#main-content#main-content#main-content[data-shift-bloods] :is(.test-panel,.faqs details){background:#E7E3DA;color:#050505;border-color:#707762}
+html body main#main-content#main-content#main-content[data-shift-bloods] .connection .button{border-color:#707762}
+
 `;
 export const heroStyle=css.replace(/([a-z-]+):([^;{}]+)(?=[;}])/g,(_,key,value)=>key+':'+value.trim()+' !important');
