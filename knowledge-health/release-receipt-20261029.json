@@ -1,0 +1,586 @@
+{
+  "version": "2026-10-29-v2",
+  "at": "2026-10-29T23:42:34.940Z",
+  "guides": [
+    {
+      "id": "T02",
+      "path": "/guides/trt-and-fertility",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "B02",
+      "path": "/guides/common-blood-tests-explained",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "B01",
+      "path": "/guides/blood-test-results-explained",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "C01",
+      "path": "/guides/home-tests-and-laboratory-tests",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "C02",
+      "path": "/guides/psa-tests-explained",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "E02",
+      "path": "/guides/home-sleep-assessment",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "D01",
+      "path": "/guides/male-fertility-where-to-start",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "D02",
+      "path": "/guides/home-sperm-tests-explained",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F01",
+      "path": "/guides/do-i-need-supplements",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "T05",
+      "path": "/guides/trt-monitoring-and-follow-up",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F02",
+      "path": "/guides/how-to-compare-supplements",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "T08",
+      "path": "/guides/low-sex-drive-and-erection-changes",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "B03",
+      "path": "/guides/hba1c-and-blood-glucose",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "B05",
+      "path": "/guides/iron-ferritin-and-full-blood-count",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "B07",
+      "path": "/guides/liver-and-kidney-blood-tests",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "B06",
+      "path": "/guides/thyroid-tests-tsh-and-t4",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "B08",
+      "path": "/guides/vitamin-d-and-b12-testing",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "C04",
+      "path": "/guides/preparing-and-posting-a-test-sample",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "C03",
+      "path": "/guides/home-test-accuracy-and-false-results",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "C05",
+      "path": "/guides/blood-sample-collection-methods",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "C06",
+      "path": "/guides/fit-bowel-tests-and-symptoms",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "D03",
+      "path": "/guides/semen-analysis-concentration-movement-shape",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "C08",
+      "path": "/guides/invalid-or-unclear-home-test-result",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "C07",
+      "path": "/guides/urine-albumin-and-kidney-tests",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "D05",
+      "path": "/guides/fertility-and-your-medicines-list",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "D04",
+      "path": "/guides/planning-a-family-and-everyday-health",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "D07",
+      "path": "/guides/anabolic-steroids-and-fertility-support",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "D06",
+      "path": "/guides/post-vasectomy-testing-and-clearance",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "E05",
+      "path": "/guides/caffeine-alcohol-and-sleep",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "E04",
+      "path": "/guides/shift-work-and-unrefreshing-sleep",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "E03",
+      "path": "/guides/sleep-routine-and-persistent-insomnia",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "D08",
+      "path": "/guides/fertility-emotional-and-relationship-support",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "E06",
+      "path": "/guides/cpap-comfort-routine-and-support",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F04",
+      "path": "/guides/creatine-monohydrate-evidence-and-purpose",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "E07",
+      "path": "/guides/sleep-trackers-and-wearable-limits",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "E08",
+      "path": "/guides/daytime-sleepiness-driving-and-work",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F06",
+      "path": "/guides/iron-supplements-and-unexplained-tiredness",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F05",
+      "path": "/guides/vitamin-d-uk-seasonal-advice",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F08",
+      "path": "/guides/collagen-supplements-evidence",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F07",
+      "path": "/guides/electrolytes-and-everyday-hydration",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F09",
+      "path": "/guides/magnesium-and-sleep-supplement-claims",
+      "status": 200,
+      "fullCopy": true
+    },
+    {
+      "id": "F10",
+      "path": "/guides/testosterone-booster-claims-and-evidence",
+      "status": 200,
+      "fullCopy": true
+    }
+  ],
+  "answers": [
+    {
+      "id": "T01",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "T02",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "B01",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "B02",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "C01",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "C02",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "D02",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "E01",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "D01",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F02",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "E02",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F01",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "T05",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "B05",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "T08",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "B06",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "B03",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "C04",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "B07",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "B08",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "C03",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "C06",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "C07",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "C05",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "C08",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "D03",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "D04",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "D05",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "D06",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "E03",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "E04",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "D08",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "D07",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "E05",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "E06",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "E08",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "E07",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F06",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F05",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F07",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F04",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F08",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "T03",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F10",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F09",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "T04",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "B04",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "T06",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "T07",
+      "mode": "source_checked_health"
+    },
+    {
+      "id": "F03",
+      "mode": "source_checked_health"
+    }
+  ],
+  "pages": [
+    {
+      "path": "/ask-timber",
+      "status": 200
+    },
+    {
+      "path": "/explore-knowledge",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "preserved": true
+    },
+    {
+      "path": "/shift-health",
+      "status": 200,
+      "preserved": true
+    },
+    {
+      "path": "/shift-health/testing",
+      "status": 200,
+      "preserved": true
+    },
+    {
+      "path": "/shift-health/blood-tests",
+      "status": 200,
+      "preserved": true
+    },
+    {
+      "path": "/shift-health/testosterone-energy",
+      "status": 200,
+      "preserved": true
+    },
+    {
+      "path": "/shift-health/trt-explained",
+      "status": 200,
+      "preserved": true
+    },
+    {
+      "path": "/shift-health/sleep-apnoea",
+      "status": 200,
+      "preserved": true
+    },
+    {
+      "path": "/shift-health/supplements-nutrition",
+      "status": 200,
+      "preserved": true
+    },
+    {
+      "path": "/shift-health/erectile-dysfunction",
+      "status": 200,
+      "preserved": true
+    }
+  ],
+  "verified": true,
+  "noCustomerWrites": true,
+  "originGuard": true,
+  "urgentGuard": true,
+  "visualBrowserQA": "not_verified",
+  "source": "7a0fa31651df29469e0a91b75ba2905c1651f5a1",
+  "routeCount": 915,
+  "routesChanged": 0,
+  "preservedLiveAssets": 102,
+  "workers": [
+    {
+      "name": "shift-core",
+      "versionId": "8ce40a76-91ac-4633-8aac-f13c14bfe373",
+      "previousVersion": "15777a76-4b92-48ac-a2c1-ba4c2b274f0a",
+      "retainedModules": 1,
+      "askChanges": 1
+    },
+    {
+      "name": "shift-blog-publisher",
+      "versionId": "212c8a14-46c0-470c-a7f5-e9772bfec3ae",
+      "previousVersion": "8d48084c-dea6-4b8a-983e-4eb6a0629def",
+      "retainedModules": 1,
+      "askChanges": 0
+    },
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "6a27fd9a-42c7-4423-af73-4a45adaae1fd",
+      "previousVersion": "4afa3eb0-e578-47fa-8894-3e1c2d298a61",
+      "retainedModules": 6,
+      "askChanges": 0
+    },
+    {
+      "name": "shift-ask-guided-presentation-20261021",
+      "versionId": "2c8f22bb-bcc3-4be5-8693-a64da10f1e2d",
+      "previousVersion": "d67bd0c7-be9f-4a56-8946-acf4c2415aaa",
+      "retainedModules": 1,
+      "askChanges": 1
+    },
+    {
+      "name": "shift-seo-followup-v3-20261024",
+      "versionId": "72beec73-6306-4f3a-9037-58f821b80214",
+      "previousVersion": "ad8109a8-6e22-4f6e-9f32-e28767fb9522",
+      "retainedModules": 1,
+      "askChanges": 0
+    },
+    {
+      "name": "shift-health-nutrition-20261027",
+      "versionId": "649d8494-9323-420e-ae4c-5d69ff7a813f",
+      "previousVersion": "47adc500-4b27-4972-824c-38a78563366d",
+      "retainedModules": 42,
+      "askChanges": 0
+    },
+    {
+      "name": "shift-health-heroes-20261029",
+      "versionId": "351a224f-acad-4521-b89b-e18975e7ee28",
+      "previousVersion": "17dee107-6fa5-47c9-a071-83a6119633ff",
+      "retainedModules": 12,
+      "askChanges": 0
+    }
+  ],
+  "verifiedAt": "2026-10-29T23:43:00.160Z",
+  "workflowUrl": "https://github.com/shiftsometimber/shift-core/actions/runs/40974742324",
+  "workflowRunId": 40974742324,
+  "branch": "work/knowledge-health-expansion-20261029",
+  "checks": {
+    "passed": 96,
+    "failed": 0,
+    "skipped": 1
+  },
+  "clinicalReview": "not_completed",
+  "visualBrowserAcceptance": "not_verified"
+}

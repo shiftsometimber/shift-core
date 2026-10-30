@@ -1,4 +1,5 @@
 import {recordServiceJob} from '../hq-service-job-runs.mjs';
+import {withHealthKnowledgeWorker} from '../knowledge-health/production.mjs';
 import {repairHomeSpeed} from '../home-speed-repair.mjs';
 import {withPublicResponsePolicyWorker} from '../public-response-policy.mjs';
 import {withRootShareWorker} from '../share-preview/metadata.mjs';
@@ -54,7 +55,7 @@ const composedWorker = {
  }
 };
 
-const publicWorker=withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker)));
+const publicWorker=withHealthKnowledgeWorker(withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker))));
 // Evaluate the already-approved CSS against the settled outer document.
 export default {...publicWorker,async fetch(request,...args){
  const response=await publicWorker.fetch(request,...args);

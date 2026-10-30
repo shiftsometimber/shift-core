@@ -1,0 +1,452 @@
+[
+  {
+    "id": "T01",
+    "topic": "testosterone",
+    "title": "Low testosterone symptoms: what else could explain them?",
+    "note": "Existing URL retained and surfaced; a matching sourced FAQ and Ask answer is included. Existing article body has not been rewritten in this change.",
+    "path": "/shift-health/low-testosterone-symptoms",
+    "coverage": "existing_guide_retained",
+    "question": "I’m always shattered. Does that mean low testosterone?"
+  },
+  {
+    "id": "T02",
+    "topic": "testosterone",
+    "title": "TRT and fertility: the conversation to have before treatment",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/trt-and-fertility",
+    "coverage": "complete_new_draft",
+    "question": "Could TRT affect having children?"
+  },
+  {
+    "id": "T03",
+    "topic": "testosterone",
+    "title": "Testosterone blood tests: preparation, repeat tests, total and free testosterone",
+    "note": "Existing URL retained and surfaced; a matching sourced FAQ and Ask answer is included. Existing article body has not been rewritten in this change.",
+    "path": "/shift-health/testosterone-blood-tests",
+    "coverage": "existing_guide_retained",
+    "question": "Why might testosterone blood tests need repeating?"
+  },
+  {
+    "id": "T04",
+    "topic": "testosterone",
+    "title": "TRT explained: assessment, benefits, risks, gels and injections",
+    "note": "Existing URL retained and surfaced; a matching sourced FAQ and Ask answer is included. Existing article body has not been rewritten in this change.",
+    "path": "/shift-health/trt-explained",
+    "coverage": "existing_guide_retained",
+    "question": "How are gels and injections chosen for TRT?"
+  },
+  {
+    "id": "T05",
+    "topic": "testosterone",
+    "title": "TRT follow-up: monitoring, reviews and changing provider",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/trt-monitoring-and-follow-up",
+    "coverage": "complete_new_draft",
+    "question": "What follow-up should TRT include?"
+  },
+  {
+    "id": "T06",
+    "topic": "testosterone",
+    "title": "Private TRT costs: what is included in the price?",
+    "note": "Existing URL retained and surfaced; a matching sourced FAQ and Ask answer is included. Existing article body has not been rewritten in this change.",
+    "path": "/shift-health/trt-costs-uk",
+    "coverage": "existing_guide_retained",
+    "question": "What should I check when comparing private TRT costs?"
+  },
+  {
+    "id": "T07",
+    "topic": "testosterone",
+    "title": "Weight and testosterone: understanding the relationship",
+    "note": "Existing URL retained and surfaced; a matching sourced FAQ and Ask answer is included. Existing article body has not been rewritten in this change.",
+    "path": "/articles/testosterone-weight-men",
+    "coverage": "existing_guide_retained",
+    "question": "How are weight and testosterone related?"
+  },
+  {
+    "id": "T08",
+    "topic": "testosterone",
+    "title": "Lower sex drive or erection changes: where to start",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/low-sex-drive-and-erection-changes",
+    "coverage": "complete_new_draft",
+    "question": "Do erection problems or low sex drive always mean low testosterone?"
+  },
+  {
+    "id": "B01",
+    "topic": "bloods",
+    "title": "Blood test results explained: numbers, ranges and context",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/blood-test-results-explained",
+    "coverage": "complete_new_draft",
+    "question": "Can you tell me whether my blood results are OK?"
+  },
+  {
+    "id": "B02",
+    "topic": "bloods",
+    "title": "What do common blood tests actually check?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/common-blood-tests-explained",
+    "coverage": "complete_new_draft",
+    "question": "Does a blood test check everything?"
+  },
+  {
+    "id": "B03",
+    "topic": "bloods",
+    "title": "HbA1c and blood glucose: what is the difference?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/hba1c-and-blood-glucose",
+    "coverage": "complete_new_draft",
+    "question": "What is the difference between HbA1c and blood glucose?"
+  },
+  {
+    "id": "B04",
+    "topic": "bloods",
+    "title": "Cholesterol results: total, HDL, LDL and triglycerides",
+    "note": "Existing URL retained and surfaced; a matching sourced FAQ and Ask answer is included. Existing article body has not been rewritten in this change.",
+    "path": "/articles/cholesterol-men",
+    "coverage": "existing_guide_retained",
+    "question": "What do total, HDL, LDL and triglycerides mean on a cholesterol report?"
+  },
+  {
+    "id": "B05",
+    "topic": "bloods",
+    "title": "Iron, ferritin and full blood count: different pieces of the picture",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/iron-ferritin-and-full-blood-count",
+    "coverage": "complete_new_draft",
+    "question": "What is the difference between ferritin and a full blood count?"
+  },
+  {
+    "id": "B06",
+    "topic": "bloods",
+    "title": "Thyroid tests: TSH, thyroid hormones and symptoms",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/thyroid-tests-tsh-and-t4",
+    "coverage": "complete_new_draft",
+    "question": "Does a home TSH test check my whole thyroid?"
+  },
+  {
+    "id": "B07",
+    "topic": "bloods",
+    "title": "Liver and kidney blood tests: what they can and cannot show",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/liver-and-kidney-blood-tests",
+    "coverage": "complete_new_draft",
+    "question": "What can liver and kidney blood tests tell me?"
+  },
+  {
+    "id": "B08",
+    "topic": "bloods",
+    "title": "Vitamin D and B12 testing: when might a check be useful?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/vitamin-d-and-b12-testing",
+    "coverage": "complete_new_draft",
+    "question": "Does everyone need vitamin D or B12 blood tests?"
+  },
+  {
+    "id": "C01",
+    "topic": "testing",
+    "title": "Home self-test, home sample or clinic test: what is the difference?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/home-tests-and-laboratory-tests",
+    "coverage": "complete_new_draft",
+    "question": "Is a home blood test the same as a lab test?"
+  },
+  {
+    "id": "C02",
+    "topic": "testing",
+    "title": "PSA and prostate testing: benefits, limits and next steps",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/psa-tests-explained",
+    "coverage": "complete_new_draft",
+    "question": "Does a high PSA mean prostate cancer?"
+  },
+  {
+    "id": "C03",
+    "topic": "testing",
+    "title": "How reliable are home tests? False results and useful questions",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/home-test-accuracy-and-false-results",
+    "coverage": "complete_new_draft",
+    "question": "How accurate are home tests?"
+  },
+  {
+    "id": "C04",
+    "topic": "testing",
+    "title": "Preparing a sample: fasting, timing, medicines and posting",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/preparing-and-posting-a-test-sample",
+    "coverage": "complete_new_draft",
+    "question": "Do I need to fast or stop medicines before a blood test?"
+  },
+  {
+    "id": "C05",
+    "topic": "testing",
+    "title": "Finger-prick, upper-arm and venous collection compared",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/blood-sample-collection-methods",
+    "coverage": "complete_new_draft",
+    "question": "Are finger-prick, upper-arm and venous blood samples interchangeable?"
+  },
+  {
+    "id": "C06",
+    "topic": "testing",
+    "title": "Bowel FIT testing: what it checks and when symptoms need a GP",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/fit-bowel-tests-and-symptoms",
+    "coverage": "complete_new_draft",
+    "question": "Can a negative FIT result rule out bowel cancer?"
+  },
+  {
+    "id": "C07",
+    "topic": "testing",
+    "title": "Urine albumin tests and kidney health: understanding the limits",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/urine-albumin-and-kidney-tests",
+    "coverage": "complete_new_draft",
+    "question": "Is a urine albumin test a complete kidney check?"
+  },
+  {
+    "id": "C08",
+    "topic": "testing",
+    "title": "Invalid, unclear or unexpected home result: what happens next?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/invalid-or-unclear-home-test-result",
+    "coverage": "complete_new_draft",
+    "question": "Does an invalid home test mean negative?"
+  },
+  {
+    "id": "D01",
+    "topic": "fertility",
+    "title": "Male fertility: where to start and when to ask for help",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/male-fertility-where-to-start",
+    "coverage": "complete_new_draft",
+    "question": "We’re trying for a baby. When should we ask for help?"
+  },
+  {
+    "id": "D02",
+    "topic": "fertility",
+    "title": "Can a home sperm test tell me whether I am fertile?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/home-sperm-tests-explained",
+    "coverage": "complete_new_draft",
+    "question": "Can a home sperm test prove I’m fertile?"
+  },
+  {
+    "id": "D03",
+    "topic": "fertility",
+    "title": "Semen analysis explained: concentration, movement and shape",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/semen-analysis-concentration-movement-shape",
+    "coverage": "complete_new_draft",
+    "question": "What does a full semen analysis measure?"
+  },
+  {
+    "id": "D04",
+    "topic": "fertility",
+    "title": "Planning a family: food, smoking, alcohol, sleep and realistic expectations",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/planning-a-family-and-everyday-health",
+    "coverage": "complete_new_draft",
+    "question": "Can lifestyle changes guarantee better fertility?"
+  },
+  {
+    "id": "D05",
+    "topic": "fertility",
+    "title": "Fertility and medicines: what to tell your GP or specialist",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/fertility-and-your-medicines-list",
+    "coverage": "complete_new_draft",
+    "question": "Should I stop a medicine if I am worried about fertility?"
+  },
+  {
+    "id": "D06",
+    "topic": "fertility",
+    "title": "After a vasectomy: why the correct follow-up test matters",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/post-vasectomy-testing-and-clearance",
+    "coverage": "complete_new_draft",
+    "question": "Can a home sperm kit give clearance after a vasectomy?"
+  },
+  {
+    "id": "D07",
+    "topic": "fertility",
+    "title": "Past anabolic steroid use and fertility: asking for specialist help",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/anabolic-steroids-and-fertility-support",
+    "coverage": "complete_new_draft",
+    "question": "Can past anabolic steroid use affect fertility?"
+  },
+  {
+    "id": "D08",
+    "topic": "fertility",
+    "title": "When trying for a baby is affecting your head or relationship",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/fertility-emotional-and-relationship-support",
+    "coverage": "complete_new_draft",
+    "question": "Where can I get emotional support during fertility assessment?"
+  },
+  {
+    "id": "E01",
+    "topic": "sleep",
+    "title": "Snoring or sleep apnoea: when should I ask for help?",
+    "note": "Existing URL retained and surfaced; a matching sourced FAQ and Ask answer is included. Existing article body has not been rewritten in this change.",
+    "path": "/articles/sleep-apnoea-weight-men",
+    "coverage": "existing_guide_retained",
+    "question": "My partner says I stop breathing in my sleep. What next?"
+  },
+  {
+    "id": "E02",
+    "topic": "sleep",
+    "title": "What happens during a home sleep assessment?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/home-sleep-assessment",
+    "coverage": "complete_new_draft",
+    "question": "What happens in a home sleep assessment?"
+  },
+  {
+    "id": "E03",
+    "topic": "sleep",
+    "title": "Struggling to sleep: a practical evening routine and when to get help",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/sleep-routine-and-persistent-insomnia",
+    "coverage": "complete_new_draft",
+    "question": "When should I get help for insomnia?"
+  },
+  {
+    "id": "E04",
+    "topic": "sleep",
+    "title": "Shift work, late nights and unrefreshing sleep",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/shift-work-and-unrefreshing-sleep",
+    "coverage": "complete_new_draft",
+    "question": "How can I manage sleep around shift work?"
+  },
+  {
+    "id": "E05",
+    "topic": "sleep",
+    "title": "Caffeine, alcohol and sleep: what is worth changing?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/caffeine-alcohol-and-sleep",
+    "coverage": "complete_new_draft",
+    "question": "Can caffeine and alcohol affect sleep?"
+  },
+  {
+    "id": "E06",
+    "topic": "sleep",
+    "title": "Living with CPAP: comfort, routine and who can help",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/cpap-comfort-routine-and-support",
+    "coverage": "complete_new_draft",
+    "question": "What should I do if my CPAP mask leaks or feels uncomfortable?"
+  },
+  {
+    "id": "E07",
+    "topic": "sleep",
+    "title": "Sleep trackers and wearables: useful clues, clear limits",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/sleep-trackers-and-wearable-limits",
+    "coverage": "complete_new_draft",
+    "question": "Can a sleep tracker diagnose a sleep disorder?"
+  },
+  {
+    "id": "E08",
+    "topic": "sleep",
+    "title": "Daytime sleepiness, driving and safety at work",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/daytime-sleepiness-driving-and-work",
+    "coverage": "complete_new_draft",
+    "question": "Can I drive if I am struggling to stay awake?"
+  },
+  {
+    "id": "F01",
+    "topic": "supplements",
+    "title": "Do I actually need supplements? Start with food and your situation",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/do-i-need-supplements",
+    "coverage": "complete_new_draft",
+    "question": "Do I need supplements because I’m taking weight-management treatment?"
+  },
+  {
+    "id": "F02",
+    "topic": "supplements",
+    "title": "Before you buy: labels, serving sizes, overlap and claims",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/how-to-compare-supplements",
+    "coverage": "complete_new_draft",
+    "question": "What should I check before buying a supplement?"
+  },
+  {
+    "id": "F03",
+    "topic": "supplements",
+    "title": "Protein powders and bars: when can they be practical?",
+    "note": "Existing URL retained and surfaced; a matching sourced FAQ and Ask answer is included. Existing article body has not been rewritten in this change.",
+    "path": "/articles/protein-for-men-weight-management",
+    "coverage": "existing_guide_retained",
+    "question": "Do I need protein powder or bars to get enough protein?"
+  },
+  {
+    "id": "F04",
+    "topic": "supplements",
+    "title": "Creatine monohydrate: purpose, evidence and realistic expectations",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/creatine-monohydrate-evidence-and-purpose",
+    "coverage": "complete_new_draft",
+    "question": "What is creatine monohydrate useful for?"
+  },
+  {
+    "id": "F05",
+    "topic": "supplements",
+    "title": "Vitamin D: UK seasonal advice and avoiding overlap",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/vitamin-d-uk-seasonal-advice",
+    "coverage": "complete_new_draft",
+    "question": "What is the NHS vitamin D advice for UK adults?"
+  },
+  {
+    "id": "F06",
+    "topic": "supplements",
+    "title": "Iron supplements: why tiredness alone is not a reason to start",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/iron-supplements-and-unexplained-tiredness",
+    "coverage": "complete_new_draft",
+    "question": "Should I take iron because I feel tired?"
+  },
+  {
+    "id": "F07",
+    "topic": "supplements",
+    "title": "Electrolytes and hydration: do you need more than a drink?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/electrolytes-and-everyday-hydration",
+    "coverage": "complete_new_draft",
+    "question": "Do I need electrolyte supplements every day?"
+  },
+  {
+    "id": "F08",
+    "topic": "supplements",
+    "title": "Collagen supplements: what does the evidence actually support?",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/collagen-supplements-evidence",
+    "coverage": "complete_new_draft",
+    "question": "Do collagen supplements have strong evidence for skin ageing?"
+  },
+  {
+    "id": "F09",
+    "topic": "supplements",
+    "title": "Magnesium and sleep supplements: checking the promises",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/magnesium-and-sleep-supplement-claims",
+    "coverage": "complete_new_draft",
+    "question": "Is magnesium a proven treatment for insomnia?"
+  },
+  {
+    "id": "F10",
+    "topic": "supplements",
+    "title": "Testosterone boosters: claims, evidence and questions to ask",
+    "note": "Full source-checked guide, FAQ and Ask evidence included in this release candidate. Clinical review and publication sign-off outstanding.",
+    "path": "/guides/testosterone-booster-claims-and-evidence",
+    "coverage": "complete_new_draft",
+    "question": "Are testosterone booster supplements the same as TRT?"
+  }
+]
