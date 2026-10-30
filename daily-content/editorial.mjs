@@ -328,7 +328,7 @@ export async function runWebsiteEditorialCycle(env,{fetcher=fetch,now=Date.now()
  await ensureEditorialSchema(env.DB);const stamp=new Date(now).toISOString();await seedBriefs(env.DB,stamp);const recovery=await recoverInterruptedEditorialJobs(env.DB,now);
  // Release first: generation/crawl latency must never gate a ready14:00 article.
  const publication=await publishDueEditorial(env,{fetcher,now});
- let corpus;try{corpus=await refreshEditorialCorpus(env,{fetcher,now});}catch(e){corpus={status:'failed',reason:e.message};}
+ let corpus;try{corpus=await refreshEditorialCorpus(env,{fetcher,now});}catch(e){const reason=String(e?.message||'corpus_refresh_failed').slice(0,160);corpus={status:'failed',reason};await editorialEvent(env.DB,'corpus_failed',londonParts(now).day,{reason},stamp).catch(()=>{});}
  const generation=corpus.inventoryChecked?await generateEditorialArticle(env,{fetcher,now}):{status:'waiting_for_initial_public_inventory',reason:'existing_intent_owners_must_be_indexed_before_generation'};
  const counts=await env.DB.prepare(`SELECT state,count(*) n FROM knowledge_editorial_briefs GROUP BY state`).all();
  return {status:'completed',policy:POLICY,publication,corpus,generation,recovery,briefCounts:counts.results||[],readyBufferRequired:7,upcomingBriefsRequired:30,completionClaim:false};
