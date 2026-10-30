@@ -1,0 +1,38 @@
+name: Approved SHIFT hero set release
+on:
+  push:
+    branches: [release/hero-set-20261030]
+    paths: ['hero-set-20261030/**', '.github/workflows/hero-set-release-20261030.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Check approved release syntax
+        run: |
+          node --check hero-set-20261030/runtime.mjs
+          node --check hero-set-20261030/payload.mjs
+          node --check hero-set-20261030/media.mjs
+          node --check hero-set-20261030/check.mjs
+          node --check hero-set-20261030/deploy.mjs
+      - name: Install locked asset hashing dependency
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify and deploy the approved hero batch
+        run: node hero-set-20261030/deploy.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hero-set-release-${{ github.run_id }}
+          path: hero-set-evidence/
+          retention-days: 90

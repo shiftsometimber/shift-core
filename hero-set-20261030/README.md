@@ -1,0 +1,13 @@
+# Newfoundland worker recovery — approved hero release
+
+Matt requested takeover on 30 October 2026 and completion of the approved deployment, following “Deploy in one go please!!” for the saved hero previews. The original prepared modules and photographs have been recovered from the Newfoundland worker's `health-hero-next-20261030/release` directory without changing that directory. Its successful preflight is run 41036851000, commit de4bba8c953f81c3ae990fcec930619037c0871d. It captured 29 page mappings and 13 existing resource owners; it did not deploy the redesign.
+
+The current release contains the same prepared presentation for 27 pages. `/knowledge` and `/explore-knowledge` are superseded by the later separately approved and verified K3 release (run 41041022215, source 32a0c9ac785b090c2faba1af4f8eeed637bdbe35). They are protected, together with Ask Timber A4, SHIFT Health, the homepage, member entry, testing catalogue and every testing product linked by that catalogue. The burnt-orange cavapoo photograph is retained. The Health MOT photograph uses a tablet. No images are regenerated.
+
+Local checks passed on all 27 live baselines: every byte outside the replaced hero/explicitly superseded opening photograph, all scripts, page head, navigation/footer, existing opening context, and CTA targets are preserved. Article dates and author details are included in retained context. Existing availability and ordering restrictions remain. No product, price, inventory, clinical, member or order changes are authorised by this presentation release.
+
+The deployment uses the existing `cloudflare-production-promote` concurrency group. It captures current serving versions afresh, preserves every module, binding and existing asset configuration, stages the new entry layer without changing route rules, verifies it with zero ordinary traffic, then promotes the batch. Exact live page outputs, images, retained code assets and protected pages must pass. Failure restores only versions changed by this release when they are still serving; it does not overwrite another release. Deployment records are retained in the workflow artifact.
+
+The public website request does not authorise emails, supplier submissions, costs, bookings or commitments. HQ “Send now”/“Send later” functionality and any supplier order handoff must not be exercised with real records as a verification step.
+
+Current state: recovered; 27 local page-preservation checks passed; production release pending the verified workflow. The final workflow receipt, provider versions, source commit and live browser review must be recorded here before reporting completion.

@@ -1,0 +1,271 @@
+{
+  "serving": [
+    {
+      "path": "/shift-health/health-mot",
+      "owner": {
+        "id": "1ca2eb38f2f341d5a67fbf101b12c141",
+        "pattern": "https://shiftsometimber.co.uk/shift-health/health-mot",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-health/shift-measure",
+      "owner": {
+        "id": "abc5ecb6e159466ca368f8ea8efde4c2",
+        "pattern": "https://shiftsometimber.co.uk/shift-health/shift-measure",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-health/stop-smoking",
+      "owner": {
+        "id": "d82aebba027943049cd97f194efcecac",
+        "pattern": "https://shiftsometimber.co.uk/shift-health/stop-smoking",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-health/erectile-dysfunction",
+      "owner": {
+        "id": "ee2a57114a9d4c6ea3263a1c648bdd6f",
+        "pattern": "https://shiftsometimber.co.uk/shift-health/erectile-dysfunction",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-health/fertility",
+      "owner": {
+        "id": "0497079db5bd46ec809b6e6a37518ee9",
+        "pattern": "shiftsometimber.co.uk/shift-health*",
+        "script": "shift-health-nutrition-20261027",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-centre/medicines-watch",
+      "owner": {
+        "id": "51aed08df428467bb2a0ce06b5b39a27",
+        "pattern": "shiftsometimber.co.uk/treatment-centre*",
+        "script": "shift-treatments-presentation-20261021",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/life-back",
+      "owner": {
+        "id": "68da0c10d2f748bd95c9f493f1b7ad91",
+        "pattern": "shiftsometimber.co.uk/life-back",
+        "script": "shift-life-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/clinic-gone-quiet",
+      "owner": {
+        "id": "30772adeffda4cd3bb98bc6ba3d65b65",
+        "pattern": "shiftsometimber.co.uk/clinic-gone-quiet",
+        "script": "shift-quiet-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/weight-loss-support-for-men",
+      "owner": {
+        "id": "41cd4ea2bf484f498930c6c7e1671f24",
+        "pattern": "https://shiftsometimber.co.uk/weight-loss-support-for-men*",
+        "script": "shift-public-answers",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/provider-switch",
+      "owner": {
+        "id": "a30f99b05a334b68b0dc289098c9a1b1",
+        "pattern": "shiftsometimber.co.uk/provider-switch",
+        "script": "shift-provider-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/explore-knowledge",
+      "owner": {
+        "id": "32a586e686c749ebbd21abc52d33eb53",
+        "pattern": "shiftsometimber.co.uk/explore-knowledge*",
+        "script": "shift-blog-publisher",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/knowledge",
+      "owner": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/male-obesity",
+      "owner": {
+        "id": "682a26fb9b7e46218dbf894b2077c389",
+        "pattern": "shiftsometimber.co.uk/male-obesity",
+        "script": "shift-blog-publisher",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/mens-weight-management",
+      "owner": {
+        "id": "244fd3cfc2dd4ef9a2b9b77f92e38eda",
+        "pattern": "https://shiftsometimber.co.uk/mens-weight-management*",
+        "script": "shift-public-answers",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/about",
+      "owner": {
+        "id": "e47f0b3fe91a4b86bfb07b0df9146df0",
+        "pattern": "shiftsometimber.co.uk/about*",
+        "script": "shift-about-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/husband-help",
+      "owner": {
+        "id": "41a5de8265cb40688dd4d29979ac76dd",
+        "pattern": "shiftsometimber.co.uk/husband-help",
+        "script": "shift-husband-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/our-causes-partners",
+      "owner": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-newsroom",
+      "owner": {
+        "id": "1e426b50e9394a80a9857f5e644f4963",
+        "pattern": "shiftsometimber.co.uk/shift-newsroom*",
+        "script": "shift-newsroom-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide",
+      "owner": {
+        "id": "68146ae2ea094be49800cce9678a388a",
+        "pattern": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/articles/wegovy-cost-uk",
+      "owner": {
+        "id": "9bc59942ab3f4b8b8c90d04e370cb3ce",
+        "pattern": "https://shiftsometimber.co.uk/articles/wegovy-cost-uk",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/articles/testosterone-weight-men",
+      "owner": {
+        "id": "d5c599cbf9874b9392e47b1c8bc6f7a2",
+        "pattern": "https://shiftsometimber.co.uk/articles/testosterone-weight-men",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/guides/mens-health-mot-guide",
+      "owner": {
+        "id": "ea6ccf217d2b4271bb5e52798d4a0580",
+        "pattern": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/work-with-us",
+      "owner": {
+        "id": "b6a71b687da540b8abd0b4313e1268fc",
+        "pattern": "shiftsometimber.co.uk/work-with-us*",
+        "script": "shift-work-with-us-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/partner-with-us",
+      "owner": {
+        "id": "1e26521142f64b8ebe5d0044017e2569",
+        "pattern": "https://shiftsometimber.co.uk/partner-with-us",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/corporate-wellbeing",
+      "owner": {
+        "id": "efd5316279374deeab20aee1a48472e0",
+        "pattern": "https://shiftsometimber.co.uk/corporate-wellbeing",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/my-timber-for-providers",
+      "owner": {
+        "id": "5db39d01fa44434ba215c808e89395ca",
+        "pattern": "https://shiftsometimber.co.uk/my-timber-for-providers",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/nhs-vs-private",
+      "owner": {
+        "id": "c4bfa2dcd4bc402486c1a52820a7b229",
+        "pattern": "https://shiftsometimber.co.uk/nhs-vs-private",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/surgery-comparison-centre",
+      "owner": {
+        "id": "cbad83cb7d684a4692cc95770e22ebd0",
+        "pattern": "https://shiftsometimber.co.uk/surgery-comparison-centre",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/compare-weight-loss-treatments",
+      "owner": {
+        "id": "3f4b6b16a33949d580f20aaaea22bc86",
+        "pattern": "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "assetOwner": {
+    "id": "0497079db5bd46ec809b6e6a37518ee9",
+    "pattern": "shiftsometimber.co.uk/shift-health*",
+    "script": "shift-health-nutrition-20261027",
+    "request_limit_fail_open": false
+  }
+}
