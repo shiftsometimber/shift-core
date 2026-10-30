@@ -33,8 +33,10 @@ export async function browserCheck({headers={},html,asset,dir='work-w2-evidence'
    await page.locator('#work-name').waitFor({state:'visible'});
    assert.equal(await page.locator('#shift-work-enquiry').getAttribute('action'),'/v1/contact');
    assert.equal(await page.locator('#shift-work-enquiry [required]').count(),6);
-   const form=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,background:getComputedStyle(document.querySelector('form[data-work-enquiry]')).backgroundColor,text:getComputedStyle(document.querySelector('#work-name')).color,input:getComputedStyle(document.querySelector('#work-name')).backgroundColor}));
+   const form=await page.evaluate(()=>{const copy=document.querySelector('.sw-enquiry-copy').getBoundingClientRect(),fields=document.querySelector('form[data-work-enquiry]').getBoundingClientRect();return {scrollWidth:document.documentElement.scrollWidth,background:getComputedStyle(document.querySelector('form[data-work-enquiry]')).backgroundColor,text:getComputedStyle(document.querySelector('#work-name')).color,input:getComputedStyle(document.querySelector('#work-name')).backgroundColor,copy:{x:copy.x,y:copy.y,height:copy.height,bottom:copy.bottom},fields:{x:fields.x,y:fields.y,height:fields.height},rowGap:getComputedStyle(document.querySelector('.sw-enquiry-grid')).rowGap,gridAutoRows:getComputedStyle(document.querySelector('.sw-enquiry-grid')).gridAutoRows};});
+   await page.screenshot({path:dir+'/'+label+'-enquiry-viewport-'+viewport.width+'.png',fullPage:false});
    assert(form.scrollWidth<=viewport.width,'Enquiry overflow '+viewport.width);assert.equal(form.text,'rgb(231, 227, 218)');assert.equal(form.input,'rgb(5, 5, 5)');
+   if(viewport.width<=760){assert(form.fields.y>=form.copy.bottom,'Mobile form follows the introduction');assert(form.fields.y-form.copy.bottom<=28,'No empty gap above the mobile form');}
    await page.screenshot({path:dir+'/'+label+'-enquiry-'+viewport.width+'.png',fullPage:true});
    assert.equal(contactRequests,0,'No enquiry submitted');
    results.push({viewport,layout,form,enquiryOpens:true,contactRequests});await context.close();

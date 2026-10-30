@@ -38,6 +38,7 @@ ${root} .fw-enquiry-wrap{padding:0!important}
 ${root} .fw-enquiry{border:1px solid #707762!important;border-radius:12px!important;color:#e7e3da!important;background:#050505!important;overflow:hidden!important;scroll-margin-top:96px!important}
 ${root} .fw-enquiry>summary{padding:20px 24px!important;color:#e7e3da!important;background:#11130f!important}
 ${root} .sw-enquiry{padding:24px!important;color:#e7e3da!important}
+${root} .sw-enquiry-grid{width:100%!important;max-width:none!important;margin:0!important;grid-auto-rows:auto!important;align-items:start!important}
 ${root} .sw-enquiry-copy :is(h2,p,a){color:#e7e3da!important}
 ${root} form[data-work-enquiry]{background:#11130f!important;color:#e7e3da!important;border:1px solid #3d4434!important;border-radius:12px!important;padding:24px!important}
 ${root} .sw-fields :is(label,label span){color:#e7e3da!important}
