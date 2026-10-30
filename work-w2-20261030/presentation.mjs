@@ -58,6 +58,9 @@ ${root} .sw-status{color:#e7e3da!important}
  ${root} .ww2-round svg{width:32px!important;height:32px!important}
  ${root} .ww2-benefits p{font-size:15px!important}
 }
+@media(max-width:960px){
+ ${root} .sw-enquiry-grid{grid-template-columns:1fr!important;gap:24px!important}
+}
 @media(max-width:760px){
  ${root}{padding-inline:20px!important;padding-bottom:24px!important}
  ${root} .ww2-hero{grid-template-columns:1fr!important;gap:24px!important;padding:28px 0 26px!important}
