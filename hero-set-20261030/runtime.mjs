@@ -54,8 +54,14 @@ function hero(p){
  return '<section class="nhh-hero'+(p.compact?' nhh-compact':'')+(p.quote?' nhh-letter':'')+'" data-next-hero="'+p.id+'" aria-labelledby="'+title+'" style="--nhh-position:'+p.position+'">'+photo+'<div class="nhh-copy"><p class="nhh-brand">'+esc(p.brand)+'</p><p class="nhh-eyebrow">'+esc(p.eyebrow)+'</p><h1 id="'+title+'">'+p.headline.map(esc).join('<br>')+'</h1><p class="nhh-lede">'+esc(p.copy)+'</p><ul class="nhh-benefits">'+p.labels.map((x,i)=>'<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p.icons[i]+'</svg><span>'+esc(x)+'</span></li>').join('')+'</ul><a class="nhh-cta" href="'+esc(p.target)+'">'+esc(p.cta)+'</a><p class="nhh-note">'+esc(p.note)+'</p></div>'+letter+'</section>';
 }
 const hasId=(s,id)=>new RegExp('\\bid\\s*=\\s*["\']'+id.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'["\']').test(s);
+function finalStyle(html){
+ // An inner serving layer may already add our stylesheet before an outer
+ // page layer appends its own. Keep this release's exact styles last.
+ const ownStyle=new RegExp('<style data-hero-set-style="'+version+'">[\\s\\S]*?<\\/style>','g');
+ return html.replace(ownStyle,'').replace('</head>','<style data-hero-set-style="'+version+'">'+style+'</style></head>');
+}
 export function transform(html,p,{checkTarget=true}={}){
- if(html.includes('data-next-hero="'+p.id+'"'))return {html,changed:false};
+ if(html.includes('data-next-hero="'+p.id+'"')){const result=finalStyle(html);return {html:result,changed:result!==html};}
  const main=byTag(html,'main');if(!main)throw Error('No main '+p.path);
  const beforeMain=html.slice(0,main.start),afterMain=html.slice(main.end),body=main.html;
  const node=byClass(body,classes[p.id]);if(!node)throw Error('Hero structure changed '+p.path);
@@ -76,7 +82,7 @@ export function transform(html,p,{checkTarget=true}={}){
  }
  const open=byTag(updated,'main');if(!attr(updated.slice(open.start,open.openEnd),'id'))updated=updated.slice(0,open.openEnd-1)+' id="main-content">'+updated.slice(open.openEnd);
  let result=beforeMain+updated+afterMain;
- if(!result.includes('data-hero-set-style'))result=result.replace('</head>','<style data-hero-set-style="'+version+'">'+style+'</style></head>');
+ result=finalStyle(result);
  if((updated.match(/<h1\b/gi)||[]).length!==1)throw Error('Expected one page heading '+p.path);
  return {html:result,changed:true,removedHero:node.html,retainedContext:context};
 }

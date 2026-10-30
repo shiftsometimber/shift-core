@@ -24,6 +24,7 @@ jobs:
           node --check hero-set-20261030/media.mjs
           node --check hero-set-20261030/check.mjs
           node --check hero-set-20261030/deploy.mjs
+          node --test hero-set-20261030/runtime.test.mjs
       - name: Install locked asset hashing dependency
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Verify and deploy the approved hero batch
