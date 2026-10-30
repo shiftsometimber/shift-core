@@ -1,0 +1,260 @@
+{
+  "verified": true,
+  "source": "0324f9b35a2ae9dd274dfb766a367f63c3234bfa",
+  "release": "work-w2-20261030-v1",
+  "page": "/shift-for-work",
+  "selected": "W2 black",
+  "name": "shift-seo-followup-v3-20261024",
+  "versionId": "6760bc8f-d298-4417-ac07-db0c832a6a23",
+  "previousVersion": "72beec73-6306-4f3a-9037-58f821b80214",
+  "retainedModules": 8,
+  "bindingsPreserved": 4,
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/shift-for-work",
+      "oneHeading": true,
+      "sharedShellPreserved": true,
+      "enquiryPreserved": true,
+      "scriptsPreserved": true,
+      "remainingContentPreserved": true,
+      "noTicker": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-for-work/",
+      "oneHeading": true,
+      "sharedShellPreserved": true,
+      "enquiryPreserved": true,
+      "scriptsPreserved": true,
+      "remainingContentPreserved": true,
+      "noTicker": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-for-work?work-w2=1",
+      "oneHeading": true,
+      "sharedShellPreserved": true,
+      "enquiryPreserved": true,
+      "scriptsPreserved": true,
+      "remainingContentPreserved": true,
+      "noTicker": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-for-work/?work-w2=1",
+      "oneHeading": true,
+      "sharedShellPreserved": true,
+      "enquiryPreserved": true,
+      "scriptsPreserved": true,
+      "remainingContentPreserved": true,
+      "noTicker": true,
+      "idempotent": true
+    }
+  ],
+  "protectedPages": [
+    "/",
+    "/programme",
+    "/start-here",
+    "/shift-health",
+    "/ask-timber",
+    "/knowledge",
+    "/explore-knowledge",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-health/stop-smoking"
+  ],
+  "existingCodeAssetsPreserved": 86,
+  "photographSHA256": "1da4589e94bb5a51e278f3d908172dd9c85556f9d417d65ccee6f18da18215d7",
+  "browser": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "layout": {
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "ticker": false,
+        "imageLoaded": true,
+        "background": "rgb(5, 5, 5)",
+        "copy": {
+          "x": 51.828125,
+          "y": 165.53125,
+          "width": 541.515625,
+          "height": 433.78125,
+          "bottom": 599.3125
+        },
+        "photo": {
+          "x": 625.34375,
+          "y": 102,
+          "width": 747.8125,
+          "height": 560.859375,
+          "bottom": 662.859375
+        },
+        "benefits": {
+          "x": 51.828125,
+          "y": 690.859375,
+          "width": 1321.34375,
+          "height": 150,
+          "bottom": 840.859375
+        }
+      },
+      "form": {
+        "scrollWidth": 1425,
+        "background": "rgb(17, 19, 15)",
+        "text": "rgb(231, 227, 218)",
+        "input": "rgb(5, 5, 5)",
+        "copy": {
+          "x": 76.828125,
+          "y": 185.359375,
+          "height": 191.8125,
+          "bottom": 377.171875
+        },
+        "fields": {
+          "x": 600.609375,
+          "y": 185.359375,
+          "height": 535.890625
+        },
+        "rowGap": "35px",
+        "gridAutoRows": "auto"
+      },
+      "enquiryOpens": true,
+      "contactRequests": 0
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "ticker": false,
+        "imageLoaded": true,
+        "background": "rgb(5, 5, 5)",
+        "copy": {
+          "x": 27.640625,
+          "y": 90,
+          "width": 303.171875,
+          "height": 428.703125,
+          "bottom": 518.703125
+        },
+        "photo": {
+          "x": 354.8125,
+          "y": 165.390625,
+          "width": 370.546875,
+          "height": 277.90625,
+          "bottom": 443.296875
+        },
+        "benefits": {
+          "x": 27.640625,
+          "y": 546.703125,
+          "width": 697.71875,
+          "height": 180.59375,
+          "bottom": 727.296875
+        }
+      },
+      "form": {
+        "scrollWidth": 753,
+        "background": "rgb(17, 19, 15)",
+        "text": "rgb(231, 227, 218)",
+        "input": "rgb(5, 5, 5)",
+        "copy": {
+          "x": 52.640625,
+          "y": 185.296875,
+          "height": 191.8125,
+          "bottom": 377.109375
+        },
+        "fields": {
+          "x": 52.640625,
+          "y": 401.109375,
+          "height": 535.890625
+        },
+        "rowGap": "24px",
+        "gridAutoRows": "auto"
+      },
+      "enquiryOpens": true,
+      "contactRequests": 0
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "ticker": false,
+        "imageLoaded": true,
+        "background": "rgb(5, 5, 5)",
+        "copy": {
+          "x": 20,
+          "y": 92,
+          "width": 335,
+          "height": 327.15625,
+          "bottom": 419.15625
+        },
+        "photo": {
+          "x": 20,
+          "y": 443.15625,
+          "width": 335,
+          "height": 251.25,
+          "bottom": 694.40625
+        },
+        "benefits": {
+          "x": 20,
+          "y": 720.40625,
+          "width": 335,
+          "height": 349.9375,
+          "bottom": 1070.34375
+        }
+      },
+      "form": {
+        "scrollWidth": 375,
+        "background": "rgb(17, 19, 15)",
+        "text": "rgb(231, 227, 218)",
+        "input": "rgb(5, 5, 5)",
+        "copy": {
+          "x": 37,
+          "y": 179.53125,
+          "height": 235.5625,
+          "bottom": 415.09375
+        },
+        "fields": {
+          "x": 37,
+          "y": 435.09375,
+          "height": 926.09375
+        },
+        "rowGap": "20px",
+        "gridAutoRows": "auto"
+      },
+      "enquiryOpens": true,
+      "contactRequests": 0
+    }
+  ],
+  "verifiedAt": "2026-10-30T13:43:08.427Z",
+  "workflow": {
+    "runId": 41065345503,
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/41065345503",
+    "artifactId": 12983450098,
+    "artifactName": "work-w2-41065345503"
+  },
+  "browserReview": {
+    "url": "https://shiftsometimber.co.uk/shift-for-work",
+    "version": "work-w2-20261030-v1",
+    "viewport": 1363,
+    "scrollWidth": 1348,
+    "imageLoaded": true,
+    "oneHeading": true,
+    "noTicker": true,
+    "background": "rgb(5, 5, 5)",
+    "screenshot": "shift-for-work-w2-live-1793367882958.jpg",
+    "reviewedAt": "2026-10-30T13:45:29.021Z"
+  }
+}
