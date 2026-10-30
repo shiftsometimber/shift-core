@@ -14,7 +14,11 @@ export function element(html,tag,needle){
  throw Error('Unclosed '+tag);
 }
 export function transformHTML(html,css){
- if(html.includes('data-ask-a4="'+release+'"'))return addClient(html);
+ if(html.includes('data-ask-a4="'+release+'"')){
+  const style=html.match(/<style data-ask-a4-style="[^"]*">[\s\S]*?<\/style>/)?.[0];
+  if(!style)throw Error('Current A4 stylesheet missing');
+  return addClient(html.replace(style,()=>'<style data-ask-a4-style="'+release+'">'+css+'</style>'));
+ }
  const main=mainHTML(html);if(!main?.includes('data-ask-guided-version="20261021"'))throw Error('Unrecognised current Ask Timber layout');
  let hero=element(main,'section','class="atg-hero"');
  let wider=element(main,'section','id="wider-health-topics"');

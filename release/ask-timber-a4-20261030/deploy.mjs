@@ -35,6 +35,8 @@ try{
  if(owned){const code=Buffer.from(owned.content_base64,'base64').toString('utf8');assert(code.includes("headers.set('X-Shift-Ask-Design',release)"),'Unexpected owned layer');const predecessor=code.match(/^import original from ['"]\.\.\/([^'"]+)['"]/m)?.[1];assert(predecessor&&!predecessor.includes('..'),'Original Ask predecessor missing');oldMain=predecessor;baseModules=current.modules.filter(m=>!m.name.startsWith('ask-a4/'));if(providerMain!=='ask-a4/overlay.mjs')entryMain=providerMain;}
  assert(baseModules.some(m=>m.name===oldMain));
  const baseline=await get('/ask-timber'),candidate=transformHTML(baseline.html,css),checks=check(baseline.html,candidate);
+ assert(!/Georgia|Times New Roman/.test(css),'Restore the established Arial font throughout A4');
+ if(baseline.html.includes('data-ask-a4="'+release+'"'))assert.equal(mainHTML(candidate),mainHTML(baseline.html),'Font restoration must preserve the entire A4 main markup');
  const clientBefore=await get('/ask-timber/client.js');
  assert(clientBefore.html.includes('timberQuestion')&&clientBefore.html.includes('data-topic'),'Existing guided question client missing');
  const homeBefore=mainHTML((await get('/')).html),healthBefore=mainHTML((await get('/shift-health')).html);assert(homeBefore&&healthBefore);
