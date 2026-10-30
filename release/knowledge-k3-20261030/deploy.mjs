@@ -3,12 +3,13 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {routeOwner} from '../../knowledge-health/release-helpers.mjs';
+import {uploadPreservedAssets} from '../../knowledge-health/release-assets.mjs';
 import css from './styles.mjs';
 import {release,assetBase,ownAssets,mainHTML,transformHTML} from './layout.mjs';
 import {check} from './check.mjs';
 const account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed',prefix='release/knowledge-k3-20261030/',dir='knowledge-k3-evidence';fs.mkdirSync(dir,{recursive:true});
 const save=(n,v)=>fs.writeFileSync(dir+'/'+n+'.json',JSON.stringify(v,null,2)),hash=v=>createHash('sha256').update(v).digest('hex');
-async function cf(p,method='GET',body){const isForm=body instanceof FormData;const r=await fetch('https://api.cloudflare.com/client/v4'+p,{method,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,...(body&&!isForm?{'Content-Type':'application/json'}:{})},body:isForm?body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(60000)});const j=await r.json();assert(r.ok&&j.success,'Provider request failed '+method+' '+p+' '+JSON.stringify(j.errors));return j.result;}
+async function cf(p,method='GET',body,bearer=process.env.CLOUDFLARE_API_TOKEN){const isForm=body instanceof FormData;const r=await fetch('https://api.cloudflare.com/client/v4'+p,{method,headers:{Authorization:'Bearer '+bearer,...(body&&!isForm?{'Content-Type':'application/json'}:{})},body:isForm?body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(60000)});const j=await r.json();assert(r.ok&&j.success,'Provider request failed '+method+' '+p+' '+JSON.stringify(j.errors));return j.result;}
 const routes=()=>cf('/zones/'+zone+'/workers/routes');
 async function active(name){const r=await cf('/accounts/'+account+'/workers/scripts/'+name+'/deployments');const d=r.deployments.sort((a,b)=>b.created_on.localeCompare(a.created_on))[0];assert.equal(d.versions.filter(v=>v.percentage===100).length,1);assert(d.versions.every(v=>v.percentage===0||v.percentage===100));return d;}
 const servingVersion=d=>d.versions.find(v=>v.percentage===100).version_id;
@@ -53,6 +54,7 @@ try{
  save('before',{source:process.env.GITHUB_SHA,serving,routeCount:beforeRoutes.length,checks,workers:states.map(s=>({name:s.name,previousVersion:s.previousVersion,oldMain:s.oldMain,assetConfig:s.assets,moduleHashes:snapshots(s.current.modules),bindings:s.bindings.map(b=>({name:b.name,type:b.type}))})),protectedPages:Object.entries(protectedPages).map(([p,b])=>({path:p,mainSHA256:hash(mainHTML(b.html))})),preservedAssets,preExistingUnavailableAssets});
  for(const state of states){
   assert.equal((await active(state.name)).id,state.deployment.id,'Serving version changed before staging '+state.name);
+  if(state.assets){assert.equal(state.name,'shift-core');const assets=await uploadPreservedAssets({cf,account,name:state.name,save});state.metadata.assets={...state.assets,jwt:assets.jwt};state.assetChecks=assets.checks;for(const a of assets.checks)if(!preservedAssets.some(x=>x.path===a.path))preservedAssets.push(a);}
   const uploaded=await cf('/accounts/'+account+'/workers/workers/'+state.name+'/versions?deploy=false','POST',{...state.metadata,modules:state.modules});state.versionId=uploaded.id;assert(state.versionId);
   const staged=await cf('/accounts/'+account+'/workers/workers/'+state.name+'/versions/'+state.versionId+'?include=modules');
   assert.deepEqual(snapshots(staged.modules),snapshots(state.modules),'Every uploaded module byte must match '+state.name);
