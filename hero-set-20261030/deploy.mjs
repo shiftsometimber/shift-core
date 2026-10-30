@@ -38,6 +38,13 @@ try{
  const previous=JSON.parse(fs.readFileSync(prefix+'current-preflight.json','utf8'));
  for(const owner of servingOwners)assert.deepEqual(owner.route,previous.serving.find(s=>s.path===owner.path)?.owner,'Page owner changed '+owner.path);
  for(const owner of previous.additionalOwners||[])assert.deepEqual(beforeRoutes.find(r=>r.id===owner.id),owner,'Alias owner changed '+owner.pattern);
+ const ownerNames=new Set([...servingOwners.map(s=>s.route.script),...(previous.additionalOwners||[]).map(s=>s.script),assetOwner.script]);
+ const scopes=new Map([...ownerNames].map(name=>[name,new Set()]));
+ for(const page of pages)for(const pathname of [page.path,page.path+'/',page.path+'.html'])for(const query of [false,true]){
+  const owner=routeOwner(beforeRoutes,'https://shiftsometimber.co.uk'+pathname+(query?'?hero-scope=1':''));
+  assert(scopes.has(owner?.script),'Uncaptured alias owner '+pathname+' '+owner?.script);
+  scopes.get(owner.script).add(pathname+(query?'?':''));
+ }
  const baselines={},candidates={},checks=[];
  for(let i=0;i<pages.length;i+=6)await Promise.all(pages.slice(i,i+6).map(async p=>{const b=await get(p.path);baselines[p.path]=b;const c=transform(b.html,p).html;candidates[p.path]=c;checks.push(check(b.html,c,p));fs.writeFileSync(dir+'/'+p.id+'-before.html',b.html);fs.writeFileSync(dir+'/'+p.id+'-candidate.html',c);}));
  const protectedPaths=['/','/shift-health','/ask-timber','/knowledge','/explore-knowledge','/programme','/start-here','/member-login','/member/dashboard','/shift-health/testing','/shift-health/blood-tests'];
@@ -51,7 +58,7 @@ try{
  for(const b of [...Object.values(baselines),...Object.values(protectedPages)])for(const m of b.html.matchAll(/(?:src|href)=["'](\/[^"']+\.(?:js|mjs|css)(?:\?[^"']*)?)["']/g))codePaths.add(m[1]);
  const preservedAssets=[],unavailableBefore=[];
  const capturePaths=[...codePaths];for(let i=0;i<capturePaths.length;i+=8)await Promise.all(capturePaths.slice(i,i+8).map(async p=>{const r=await fetch('https://shiftsometimber.co.uk'+p,{signal:AbortSignal.timeout(45000)});if(r.status!==200||r.headers.get('Content-Type')?.includes('text/html')){unavailableBefore.push({path:p,status:r.status});return;}preservedAssets.push({path:p,sha256:hash(Buffer.from(await r.arrayBuffer()))});}));
- for(const name of new Set([...servingOwners.map(s=>s.route.script),...(previous.additionalOwners||[]).map(s=>s.script),assetOwner.script])){
+ for(const name of ownerNames){
   const deployment=await active(name),previousVersion=serving(deployment);assert.equal(deployment.versions.length,1,'Another traffic split exists '+name);
   const current=await cf('/accounts/'+account+'/workers/workers/'+name+'/versions/'+previousVersion+'?include=modules'),settings=await cf('/accounts/'+account+'/workers/scripts/'+name+'/settings');
   assert(current.modules?.length);assert(!current.modules.some(m=>m.name.startsWith(prefix)),'Hero release already exists; reconcile before retry');
@@ -61,7 +68,8 @@ try{
   if(!explicit)assert.equal(roots.length,1,'Ambiguous existing entry '+name);const oldMain=explicit||roots[0].name;
   assert(current.modules.some(m=>m.name===oldMain));assert(!oldMain.includes('..')&&!oldMain.startsWith('/'));
   const assetHost=name===assetOwner.script;
-  const entry='import original from "../'+oldMain+'";\nexport * from "../'+oldMain+'";\nimport {wrap} from "./runtime.mjs";\n'+(assetHost?'import {media} from "./media.mjs";\n':'')+'export default wrap(original'+(assetHost?',media':'')+');\n';
+  const ownedPaths=[...scopes.get(name)].sort();
+  const entry='import original from "../'+oldMain+'";\nexport * from "../'+oldMain+'";\nimport {wrap} from "./runtime.mjs";\n'+(assetHost?'import {media} from "./media.mjs";\n':'')+'export default wrap(original,'+(assetHost?'media':'null')+','+JSON.stringify(ownedPaths)+');\n';
   const additions=['runtime.mjs','payload.mjs',...(assetHost?['media.mjs']:[])].map(n=>({name:prefix+n,content_type:'application/javascript+module',content_base64:fs.readFileSync(prefix+n).toString('base64')}));
   additions.push({name:prefix+'entry.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(entry).toString('base64')});
   const modules=[...current.modules,...additions];assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
@@ -69,7 +77,7 @@ try{
   const metadata={main_module:prefix+'entry.mjs',compatibility_date:current.compatibility_date||resources.compatibility_date||settings.compatibility_date,compatibility_flags:current.compatibility_flags||resources.compatibility_flags||settings.compatibility_flags||[],bindings:bindings.map(b=>({type:'inherit',name:b.name,version_id:previousVersion})),annotations:{'workers/message':'Matt approved hero set: preserve current modules, content, assets and routes; retain later K3.','workers/tag':'hero-set-'+process.env.GITHUB_SHA.slice(0,12)}};
   for(const k of ['usage_model','limits','placement','cache_options','observability','tail_consumers','logpush'])if(current[k]!==undefined||resources[k]!==undefined||settings[k]!==undefined)metadata[k]=current[k]??resources[k]??settings[k];
   const existingAssets=current.assets||resources.assets||settings.assets;if(existingAssets)metadata.assets=existingAssets;
-  states.push({name,deployment,previousVersion,current,settings,modules,metadata,assets:existingAssets,bindings,oldMain});
+  states.push({name,deployment,previousVersion,current,settings,modules,metadata,assets:existingAssets,bindings,oldMain,ownedPaths});
  }
  save('before',{source:process.env.GITHUB_SHA,servingOwners,routeCount:beforeRoutes.length,checks,workers:states.map(s=>({name:s.name,previousVersion:s.previousVersion,oldMain:s.oldMain,moduleHashes:snapshots(s.current.modules),bindingTypes:s.bindings.map(b=>({name:b.name,type:b.type}))})),protectedPaths,preservedAssets,unavailableBefore,assetChecks:assets});
  for(const state of states){

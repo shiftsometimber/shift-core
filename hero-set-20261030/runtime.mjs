@@ -86,11 +86,12 @@ export function transform(html,p,{checkTarget=true}={}){
  if((updated.match(/<h1\b/gi)||[]).length!==1)throw Error('Expected one page heading '+p.path);
  return {html:result,changed:true,removedHero:node.html,retainedContext:context};
 }
-export function wrap(original,assetHandler=null){
+export function wrap(original,assetHandler=null,ownedPaths=null){
  return {...original,async fetch(request,env,ctx){
   const url=new URL(request.url),read=['GET','HEAD'].includes(request.method);
   if(read&&assetHandler&&url.pathname.startsWith(assetPrefix)){const r=assetHandler(url.pathname.slice(assetPrefix.length));if(r)return new Response(request.method==='HEAD'?null:r,{headers:{'Content-Type':'image/webp','Cache-Control':'public, max-age=31536000, immutable','X-Content-Type-Options':'nosniff'}});}
-  const p=pages.find(p=>[p.path,p.path+'/',p.path+'.html'].includes(url.pathname));
+  const ownsPath=ownedPaths===null||ownedPaths.includes(url.pathname+(url.search?'?':''));
+  const p=ownsPath?pages.find(p=>[p.path,p.path+'/',p.path+'.html'].includes(url.pathname)):null;
   const response=await original.fetch(request,env,ctx);
   if(!p||!read||response.status!==200||!(response.headers.get('content-type')||'').includes('text/html'))return response;
   const body=await response.text();let output;try{output=transform(body,p);}catch(error){console.error('Hero presentation retained original',p.id,error.message);return new Response(request.method==='HEAD'?null:body,response);}

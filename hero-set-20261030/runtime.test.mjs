@@ -33,3 +33,26 @@ test('exact-delivery checks still reject a changed approved hero',()=>{
  const result=transform(original,page).html;
  assert.throws(()=>check(original,result.replace('aria-labelledby="nhh-title-mot"','aria-labelledby="wrong-title"'),page),/Delivered bytes differ/);
 });
+
+test('a nested unowned page remains intact until its final renderer has added article metadata',async()=>{
+ const metadata='<script type="application/ld+json">{"@type":"Article","author":"Original author","datePublished":"2026-05-04"}</script>';
+ const inner=wrap({fetch:async()=>new Response(original,{headers:{'Content-Type':'text/html'}})},null,[]);
+ const renderer={async fetch(request,env,ctx){
+  const body=await (await inner.fetch(request,env,ctx)).text();
+  const preserved=body.includes('<h1>Existing Health MOT</h1>');
+  return new Response(body.replace('</head>',(preserved?metadata:'<script type="application/ld+json">{"author":"Changed"}</script>')+'</head>'),{headers:{'Content-Type':'text/html'}});
+ }};
+ const outer=wrap(renderer,null,[page.path]);
+ const response=await outer.fetch(new Request('https://shiftsometimber.co.uk'+page.path),{},{});
+ const actual=await response.text(),baseline=original.replace('</head>',metadata+'</head>');
+ check(baseline,actual,page);
+ assert(actual.includes(metadata));
+});
+
+test('a query alias is rendered only by the component assigned to that alias',async()=>{
+ const worker=wrap({fetch:async()=>new Response(original,{headers:{'Content-Type':'text/html'}})},null,[page.path+'?']);
+ const plain=await worker.fetch(new Request('https://shiftsometimber.co.uk'+page.path),{},{});
+ assert.equal(await plain.text(),original);assert.equal(plain.headers.get('X-Shift-Hero-Set'),null);
+ const query=await worker.fetch(new Request('https://shiftsometimber.co.uk'+page.path+'?source=member'),{},{});
+ check(original,await query.text(),page);
+});
