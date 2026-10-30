@@ -1,0 +1,28 @@
+name: SHIFT hero set preflight
+on:
+  push:
+    branches: [release/hero-set-20261030]
+    paths: ['hero-set-20261030/capture.mjs', '.github/workflows/hero-set-preflight-20261030.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node hero-set-20261030/capture.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hero-set-preflight-${{ github.run_id }}
+          path: hero-set-evidence/
+          retention-days: 30

@@ -1,0 +1,859 @@
+[
+  {
+    "id": "mot",
+    "path": "/shift-health/health-mot",
+    "kind": "product",
+    "name": "Health MOT",
+    "brand": "SHIFT HEALTH",
+    "eyebrow": "SHIFT HEALTH MOT",
+    "headline": [
+      "SHIFT Health MOT.",
+      "A clearer picture."
+    ],
+    "copy": "Understand the proposed health check, what it may cover and how the route would work.",
+    "labels": [
+      "What it covers",
+      "How it works",
+      "What comes next"
+    ],
+    "icons": [
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "cta": "Explore the proposed check",
+    "target": "#included",
+    "note": "No stock available · Ordering is not open.",
+    "position": "75% 38%",
+    "alt": "A bald, bearded man using a tablet at his kitchen table in morning light.",
+    "asset": "mot"
+  },
+  {
+    "id": "measure",
+    "path": "/shift-health/shift-measure",
+    "kind": "product",
+    "name": "SHIFT Measure",
+    "brand": "SHIFT HEALTH",
+    "eyebrow": "THE SHIFT MEASURE",
+    "headline": [
+      "Measure what matters.",
+      "See the pattern."
+    ],
+    "copy": "Understand waist measurement, keep a useful record and connect the numbers to your own progress.",
+    "labels": [
+      "Waist measurement",
+      "Progress over time",
+      "Your next step"
+    ],
+    "icons": [
+      "<rect x=\"3\" y=\"7\" width=\"18\" height=\"10\" rx=\"2\"/><path d=\"M7 7v5M11 7v3M15 7v5M19 7v3\"/>",
+      "<path d=\"M5 2h10l4 4v16H5zM14 2v5h5M8 11h8M8 15h8M8 19h5\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "cta": "Explore SHIFT Measure",
+    "target": "#understand",
+    "note": "No stock available · This guide explains the intended route.",
+    "position": "76% 40%",
+    "alt": "A man putting a soft tape measure into his bag in a leisure-centre changing area.",
+    "asset": "measure"
+  },
+  {
+    "id": "smoking",
+    "path": "/shift-health/stop-smoking",
+    "kind": "product",
+    "name": "Stop Smoking",
+    "brand": "SHIFT HEALTH",
+    "eyebrow": "STOP-SMOKING PATHWAY",
+    "headline": [
+      "Stop smoking.",
+      "Start with a plan."
+    ],
+    "copy": "Explore the proposed pathway, practical support and the questions to ask about your options.",
+    "labels": [
+      "Your options",
+      "Practical support",
+      "Next steps"
+    ],
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<circle cx=\"8\" cy=\"6\" r=\"3\"/><circle cx=\"17\" cy=\"8\" r=\"2.5\"/><path d=\"M2 22v-6a6 6 0 0 1 12 0v6M15 14a5 5 0 0 1 7 4v4\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "cta": "Explore the pathway",
+    "target": "#understand",
+    "note": "No ordering or booking is available on this page.",
+    "position": "76% 35%",
+    "alt": "A bearded man walking a burnt-orange cavapoo beside a British canal.",
+    "asset": "smoking"
+  },
+  {
+    "id": "confidence",
+    "path": "/shift-health/erectile-dysfunction",
+    "kind": "product",
+    "name": "Erection & Confidence",
+    "brand": "SHIFT HEALTH",
+    "eyebrow": "ERECTION & CONFIDENCE",
+    "headline": [
+      "Erection worries?",
+      "Start with understanding."
+    ],
+    "copy": "Understand erection difficulties, the wider health context and the questions to take to a useful conversation.",
+    "labels": [
+      "Health context",
+      "Your options",
+      "Next steps"
+    ],
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "cta": "Understand the pathway",
+    "target": "#understand",
+    "note": "No ordering or booking is available on this page.",
+    "position": "78% 40%",
+    "alt": "A man and his partner sharing a relaxed conversation on the sofa at home.",
+    "asset": "confidence"
+  },
+  {
+    "id": "fertility",
+    "path": "/shift-health/fertility",
+    "kind": "fertility",
+    "name": "Fertility",
+    "brand": "SHIFT HEALTH",
+    "eyebrow": "MALE FERTILITY",
+    "headline": [
+      "Male fertility.",
+      "Start with understanding."
+    ],
+    "copy": "Thinking about a family? Understand male fertility, the limits of a home test and how to prepare for an assessment.",
+    "labels": [
+      "Male fertility",
+      "Test limits",
+      "Getting advice"
+    ],
+    "icons": [
+      "<circle cx=\"8\" cy=\"6\" r=\"3\"/><circle cx=\"17\" cy=\"8\" r=\"2.5\"/><path d=\"M2 22v-6a6 6 0 0 1 12 0v6M15 14a5 5 0 0 1 7 4v4\"/>",
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "cta": "Explore male fertility",
+    "target": "#fertility-guides",
+    "note": "Information first. You do not need to buy a test to start.",
+    "position": "80% 35%",
+    "alt": "A man and his partner talking during a walk through a local park.",
+    "asset": "fertility"
+  },
+  {
+    "id": "research",
+    "path": "/treatment-centre/medicines-watch",
+    "kind": "research",
+    "name": "Medicines & Research Watch",
+    "brand": "SHIFT TREATMENTS",
+    "eyebrow": "MEDICINES & RESEARCH WATCH",
+    "headline": [
+      "New medicines.",
+      "Clearer context."
+    ],
+    "copy": "Explore UK status, research findings and their limits, with the sources and context kept close.",
+    "labels": [
+      "UK status",
+      "The evidence",
+      "What to watch"
+    ],
+    "icons": [
+      "<path d=\"M5 2h10l4 4v16H5zM14 2v5h5M8 11h8M8 15h8M8 19h5\"/>",
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "cta": "Explore medicines & research",
+    "target": "#research-directory",
+    "note": "Research and information listings · Not products to order.",
+    "position": "78% 48%",
+    "alt": "Hands comparing reference books and research papers in a bright library.",
+    "asset": "research"
+  },
+  {
+    "id": "life-back",
+    "name": "Life Back",
+    "brand": "SHIFT SOME TIMBER",
+    "eyebrow": "LIFE BACK",
+    "headline": [
+      "What do you want",
+      "your life back for?"
+    ],
+    "copy": "Family, hobbies or feeling more like yourself. Give your reasons a place alongside the numbers.",
+    "labels": [
+      "Your reasons",
+      "Small steps",
+      "Real life"
+    ],
+    "icons": [
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "cta": "Explore Life Back",
+    "target": "https://shiftsometimber.co.uk/life-back",
+    "note": "Your reasons. Your pace.",
+    "position": "78% 25%",
+    "alt": "A dad helping his teenage daughter get her bicycle ready for a day out.",
+    "path": "/life-back",
+    "asset": "life-back"
+  },
+  {
+    "id": "continuity",
+    "route": "/clinic-gone-quiet",
+    "asset": "continuity",
+    "group": "Support and continuity",
+    "eyebrow": "WHEN THE CLINIC GOES QUIET",
+    "headline": [
+      "Clinic gone quiet?",
+      "Keep your story together."
+    ],
+    "copy": "Keep practical support in My Timber, organise the questions you need to ask and find a useful next step.",
+    "labels": [
+      "Your records",
+      "Everyday support",
+      "Your next step"
+    ],
+    "cta": "Find your next step",
+    "note": "Practical support. Treatment questions go to your own prescriber.",
+    "target": "#continuity-now-title",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man checking his phone on a bench at a small railway station.",
+    "path": "/clinic-gone-quiet"
+  },
+  {
+    "id": "free-support",
+    "route": "/weight-loss-support-for-men",
+    "asset": "free-support",
+    "group": "Support and continuity",
+    "eyebrow": "FREE WEIGHT-LOSS SUPPORT FOR MEN",
+    "headline": [
+      "Weight-loss support.",
+      "For the week you have."
+    ],
+    "copy": "Food, movement and useful small steps, with free My Timber support before, during and after treatment.",
+    "labels": [
+      "Food",
+      "Movement",
+      "Everyday support"
+    ],
+    "cta": "Explore free My Timber",
+    "note": "Your treatment can be elsewhere. Your support can be here.",
+    "target": "https://shiftsometimber.co.uk/member/dashboard",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man using a tablet during a workshop lunch break.",
+    "path": "/weight-loss-support-for-men"
+  },
+  {
+    "id": "switching",
+    "route": "/provider-switch",
+    "asset": "switching",
+    "group": "Support and continuity",
+    "eyebrow": "CHANGING PROVIDER",
+    "headline": [
+      "Changing provider?",
+      "Keep your story together."
+    ],
+    "copy": "Bring your useful records and questions together, then keep your everyday support running through My Timber.",
+    "labels": [
+      "Your records",
+      "Useful questions",
+      "Next steps"
+    ],
+    "cta": "Prepare for a provider change",
+    "note": "A practical starting point for your next conversation.",
+    "target": "#continuity-now-title",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man reviewing his tablet at an outdoor café table.",
+    "path": "/provider-switch"
+  },
+  {
+    "id": "knowledge-entry",
+    "route": "/explore-knowledge",
+    "asset": "knowledge",
+    "group": "Knowledge and health",
+    "eyebrow": "SHIFT KNOWLEDGE",
+    "headline": [
+      "Straight answers.",
+      "A useful next step."
+    ],
+    "copy": "Explore weight, energy, bloods, testing, fertility, sleep and supplements. Start with the question that matters to you.",
+    "labels": [
+      "Understand",
+      "Compare",
+      "Find your next step"
+    ],
+    "cta": "Find the guide you need",
+    "note": "Straightforward information. No purchase needed.",
+    "target": "#kp-search-form",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man reading on a tablet in a bright public library.",
+    "path": "/explore-knowledge"
+  },
+  {
+    "id": "knowledge-library",
+    "route": "/knowledge",
+    "asset": "knowledge",
+    "group": "Knowledge and health",
+    "compact": true,
+    "eyebrow": "THE KNOWLEDGE LIBRARY",
+    "headline": [
+      "Useful answers.",
+      "For more of life."
+    ],
+    "copy": "Find practical guides across men's health, food, movement, testing and the everyday questions in between.",
+    "labels": [
+      "Find your topic",
+      "Understand the context",
+      "Ask better questions"
+    ],
+    "cta": "Search the guides",
+    "note": "Bloods, testing, fertility, sleep, supplements and everyday health.",
+    "target": "#bloods",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man reading on a tablet in a bright public library.",
+    "path": "/knowledge"
+  },
+  {
+    "id": "male-obesity",
+    "route": "/male-obesity",
+    "asset": "weight-health",
+    "group": "Knowledge and health",
+    "eyebrow": "MALE OBESITY · WEIGHT AND HEALTH",
+    "headline": [
+      "Male obesity.",
+      "A useful next step."
+    ],
+    "copy": "Weight is part of the picture. Understand the health context, explore the options and choose a practical place to start.",
+    "labels": [
+      "Understand the picture",
+      "Explore your options",
+      "Practical support"
+    ],
+    "cta": "Explore your next step",
+    "note": "Useful context for the week you actually have.",
+    "target": "#choose-next",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man tying a walking shoe on a low wall beside a recreation ground.",
+    "path": "/male-obesity"
+  },
+  {
+    "id": "weight-management",
+    "route": "/mens-weight-management",
+    "asset": "weight-management",
+    "group": "Knowledge and health",
+    "eyebrow": "MEN'S WEIGHT MANAGEMENT",
+    "headline": [
+      "Weight management.",
+      "Built around real life."
+    ],
+    "copy": "Connect treatment information, food, movement and ongoing support to the things you want to get back to.",
+    "labels": [
+      "Food and movement",
+      "Treatment information",
+      "Ongoing support"
+    ],
+    "cta": "Explore weight-management support",
+    "note": "The numbers matter. So does the life around them.",
+    "target": "#build-your-next-useful-step",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man fitting a wooden planter together at an outdoor workbench.",
+    "path": "/mens-weight-management"
+  },
+  {
+    "id": "about",
+    "route": "/about",
+    "asset": null,
+    "group": "People and community",
+    "eyebrow": "MATT'S STORY · WHY SHIFT EXISTS",
+    "headline": [
+      "My story.",
+      "Why I built SHIFT."
+    ],
+    "copy": "The health worries, everyday changes and unanswered questions behind Shift Some Timber. In Matt's own words.",
+    "labels": [
+      "Lived experience",
+      "Plain explanations",
+      "Practical support"
+    ],
+    "cta": "Read my story",
+    "note": "Matt O’Brien · Founder, Shift Some Timber",
+    "quote": "I wish I’d found somewhere like this when I was trying to get my own head round it all.",
+    "target": "#story",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "",
+    "path": "/about"
+  },
+  {
+    "id": "partner-support",
+    "route": "/husband-help",
+    "asset": "partner-support",
+    "group": "People and community",
+    "eyebrow": "HELPING SOMEONE YOU CARE ABOUT",
+    "headline": [
+      "Be on his side.",
+      "Find what actually helps."
+    ],
+    "copy": "Useful support can be small and practical. Explore how to listen, make life easier and respect his choices.",
+    "labels": [
+      "Listen",
+      "Make life easier",
+      "Respect his choices"
+    ],
+    "cta": "Find a useful way to help",
+    "note": "For partners, family and the people in his corner.",
+    "target": "#nhh-content-start",
+    "anchor_plan": {
+      "selector": "main h2",
+      "first_only": true,
+      "id": "nhh-content-start"
+    },
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A couple choosing a tray of plants together at a garden centre.",
+    "path": "/husband-help"
+  },
+  {
+    "id": "community",
+    "route": "/our-causes-partners",
+    "asset": "community",
+    "group": "People and community",
+    "eyebrow": "OUR CAUSES AND PARTNERS",
+    "headline": [
+      "Life is bigger",
+      "than the scales."
+    ],
+    "copy": "Food, mental health, pain, recovery and connection. Find specialist support and explore the causes we want to stand alongside.",
+    "labels": [
+      "Specialist support",
+      "Community",
+      "The wider picture"
+    ],
+    "cta": "Explore causes and support",
+    "note": "Illustrative community scene; no partner affiliation is implied.",
+    "target": "#find-support",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "Three adults gathering training cones and footballs at a local pitch.",
+    "path": "/our-causes-partners"
+  },
+  {
+    "id": "newsroom",
+    "route": "/shift-newsroom",
+    "asset": "newsroom",
+    "group": "Reading and research",
+    "compact": true,
+    "eyebrow": "SHIFT NEWSROOM",
+    "headline": [
+      "Health news.",
+      "Made clearer."
+    ],
+    "copy": "Find the story, understand its context and follow the sources behind the headline.",
+    "labels": [
+      "What happened",
+      "What it means",
+      "What comes next"
+    ],
+    "cta": "Read the latest stories",
+    "note": "Keep the dates, evidence and useful limits in view.",
+    "target": "#nr-feed",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man using a tablet at a bright shared reading table.",
+    "path": "/shift-newsroom"
+  },
+  {
+    "id": "retatrutide",
+    "route": "/guides/retatrutide-uk-guide",
+    "asset": "research-existing",
+    "group": "Reading and research",
+    "compact": true,
+    "eyebrow": "RETATRUTIDE · RESEARCH EXPLAINED",
+    "headline": [
+      "Retatrutide in the UK.",
+      "Understand the research."
+    ],
+    "copy": "Read the findings alongside their limits, with UK context and the underlying sources kept close.",
+    "labels": [
+      "The research",
+      "UK context",
+      "Useful questions"
+    ],
+    "cta": "Read the research guide",
+    "note": "Research information, not an offer of treatment.",
+    "target": "#status",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "Hands comparing reference books and research papers in a bright library.",
+    "path": "/guides/retatrutide-uk-guide"
+  },
+  {
+    "id": "wegovy-costs",
+    "route": "/articles/wegovy-cost-uk",
+    "asset": "treatment-costs",
+    "group": "Reading and research",
+    "compact": true,
+    "eyebrow": "WEGOVY COSTS · THE WHOLE PICTURE",
+    "headline": [
+      "Wegovy costs in the UK.",
+      "Look beyond the first price."
+    ],
+    "copy": "Compare the ongoing cost, what is included and the support around the treatment, using the same useful questions.",
+    "labels": [
+      "Ongoing cost",
+      "What is included",
+      "Support and supply"
+    ],
+    "cta": "Read the cost guide",
+    "note": "Costs and availability can change. Check the current details.",
+    "target": "#how-much-does-wegovy-cost-over-a-year",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man reviewing his tablet with a calculator on the side table.",
+    "path": "/articles/wegovy-cost-uk"
+  },
+  {
+    "id": "testosterone-weight",
+    "route": "/articles/testosterone-weight-men",
+    "asset": "weight-health",
+    "group": "Reading and research",
+    "compact": true,
+    "eyebrow": "TESTOSTERONE AND WEIGHT",
+    "headline": [
+      "Testosterone and weight:",
+      "which comes first?"
+    ],
+    "copy": "Read the relationship in context, with the evidence and useful questions explained in plain English.",
+    "labels": [
+      "The relationship",
+      "Testing context",
+      "Next questions"
+    ],
+    "cta": "Read the article",
+    "note": "Keep the bigger health picture in view.",
+    "target": "#nhh-content-start",
+    "anchor_plan": {
+      "selector": "main h2",
+      "first_only": true,
+      "id": "nhh-content-start"
+    },
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man tying a walking shoe on a low wall beside a recreation ground.",
+    "path": "/articles/testosterone-weight-men"
+  },
+  {
+    "id": "mot-guide",
+    "route": "/guides/mens-health-mot-guide",
+    "asset": "mot-tablet-existing",
+    "group": "Reading and research",
+    "compact": true,
+    "eyebrow": "MEN'S HEALTH MOT GUIDE",
+    "headline": [
+      "Men's health MOT:",
+      "what is actually checked?"
+    ],
+    "copy": "Understand what different health checks cover, where their limits sit and what questions to ask before choosing one.",
+    "labels": [
+      "What is covered",
+      "Useful limits",
+      "What comes next"
+    ],
+    "cta": "Read the health MOT guide",
+    "note": "An information guide. Different checks cover different things.",
+    "target": "#practical-step-1",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A bald, bearded man using a tablet at his kitchen table in morning light.",
+    "path": "/guides/mens-health-mot-guide"
+  },
+  {
+    "id": "work-with-us",
+    "route": "/work-with-us",
+    "asset": "partnerships",
+    "group": "Working with SHIFT",
+    "eyebrow": "WORK WITH SHIFT",
+    "headline": [
+      "Build something",
+      "useful for men."
+    ],
+    "copy": "Explore a practical role in a platform built around ordinary men's health and the support that stays useful.",
+    "labels": [
+      "Shared purpose",
+      "Practical delivery",
+      "Clear responsibilities"
+    ],
+    "cta": "Explore working with SHIFT",
+    "note": "A useful fit starts with a clear conversation.",
+    "target": "#opportunity",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "Three adults discussing a tablet around a small-business workbench.",
+    "path": "/work-with-us"
+  },
+  {
+    "id": "partner-with-us",
+    "route": "/partner-with-us",
+    "asset": "partnerships",
+    "group": "Working with SHIFT",
+    "eyebrow": "PARTNER WITH SHIFT",
+    "headline": [
+      "Partnerships with",
+      "a useful purpose."
+    ],
+    "copy": "Understand the fit, the responsibilities and how a product or service could make the platform better for the men using it.",
+    "labels": [
+      "A clear fit",
+      "Useful products",
+      "Responsible delivery"
+    ],
+    "cta": "Explore a partnership",
+    "note": "Partnership information and enquiries.",
+    "target": "https://shiftsometimber.co.uk/contact?type=Partnership#contact-form",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "Three adults discussing a tablet around a small-business workbench.",
+    "path": "/partner-with-us"
+  },
+  {
+    "id": "corporate-wellbeing",
+    "route": "/corporate-wellbeing",
+    "asset": "workplace",
+    "group": "Working with SHIFT",
+    "eyebrow": "WORKPLACE WELLBEING",
+    "headline": [
+      "Health support that",
+      "fits working life."
+    ],
+    "copy": "Explore practical men's health resources and future employer opportunities built around real working days.",
+    "labels": [
+      "Everyday habits",
+      "Useful resources",
+      "Workplace engagement"
+    ],
+    "cta": "Explore workplace support",
+    "note": "Educational resources, not a replacement for occupational health.",
+    "target": "https://shiftsometimber.co.uk/shift-for-work",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man checking his phone during a break beside a workshop.",
+    "path": "/corporate-wellbeing"
+  },
+  {
+    "id": "provider-pilot",
+    "route": "/my-timber-for-providers",
+    "asset": "workplace",
+    "group": "Working with SHIFT",
+    "eyebrow": "MY TIMBER · PROVIDER PILOT",
+    "headline": [
+      "Keep practical support",
+      "around treatment."
+    ],
+    "copy": "Explore how My Timber could support food, movement and check-ins alongside your own clinical relationship.",
+    "labels": [
+      "Everyday support",
+      "Continuity",
+      "Provider pilot"
+    ],
+    "cta": "Explore the provider pilot",
+    "note": "Clinical decisions and monitoring remain with the clinical provider.",
+    "target": "https://shiftsometimber.co.uk/partner-with-us?type=my-timber-provider-pilot",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man checking his phone during a break beside a workshop.",
+    "path": "/my-timber-for-providers"
+  },
+  {
+    "id": "nhs-private",
+    "route": "/nhs-vs-private",
+    "asset": "treatment-choices",
+    "group": "Comparing the routes",
+    "eyebrow": "NHS AND PRIVATE TREATMENT",
+    "headline": [
+      "NHS or private?",
+      "Understand your routes."
+    ],
+    "copy": "Compare access, cost and follow-up, then prepare the questions that matter to your own circumstances.",
+    "labels": [
+      "Access",
+      "Cost",
+      "Follow-up"
+    ],
+    "cta": "Compare the routes",
+    "note": "Use the same useful questions for each route.",
+    "target": "#compareNP",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man standing thoughtfully in a leafy public courtyard.",
+    "path": "/nhs-vs-private"
+  },
+  {
+    "id": "surgery-options",
+    "route": "/surgery-comparison-centre",
+    "asset": "surgery-options",
+    "group": "Comparing the routes",
+    "eyebrow": "WEIGHT-LOSS SURGERY COMPARISON",
+    "headline": [
+      "Weight-loss surgery.",
+      "See the whole picture."
+    ],
+    "copy": "Explore the procedures, their trade-offs and the care around them before a more useful conversation with a specialist.",
+    "labels": [
+      "The procedure",
+      "The trade-offs",
+      "Aftercare"
+    ],
+    "cta": "Compare surgery options",
+    "note": "Compare the whole journey, including what comes afterwards.",
+    "target": "#compareSurgery",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man looking across a quiet reservoir towards wooded hills.",
+    "path": "/surgery-comparison-centre"
+  },
+  {
+    "id": "treatment-comparison",
+    "route": "/compare-weight-loss-treatments",
+    "asset": "treatment-choices",
+    "group": "Comparing the routes",
+    "eyebrow": "COMPARE WEIGHT-LOSS TREATMENTS",
+    "headline": [
+      "Weight-loss treatment.",
+      "Compare the options."
+    ],
+    "copy": "Understand the different routes and their trade-offs without pretending one answer fits every man.",
+    "labels": [
+      "Different routes",
+      "Useful trade-offs",
+      "Your next questions"
+    ],
+    "cta": "Compare treatment options",
+    "note": "Clear information for a better-informed conversation.",
+    "target": "#mounjaro-vs-wegovy",
+    "brand": "SHIFT SOME TIMBER",
+    "position": "78% 35%",
+    "icons": [
+      "<path d=\"M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM12 7a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2\"/>",
+      "<path d=\"M9 3H5v19h14V3h-4M9 2h6v4H9zM8 10l1 1 2-2M13 10h3M8 15l1 1 2-2M13 15h3\"/>",
+      "<path d=\"M11 2v20M4 5h12l4 3-4 3H4zM20 14H8l-4 3 4 3h12z\"/>"
+    ],
+    "alt": "A man standing thoughtfully in a leafy public courtyard.",
+    "path": "/compare-weight-loss-treatments"
+  }
+]
