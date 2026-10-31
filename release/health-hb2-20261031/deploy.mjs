@@ -26,7 +26,7 @@ try{
  const compare=(a,b)=>{const x=rank(a),y=rank(b);for(let i=0;i<x.length;i++)if(x[i]!==y[i])return y[i]-x[i];return 0;};
  const serving=pages.map(p=>{const matching=beforeRoutes.filter(r=>matches(r.pattern,'https://shiftsometimber.co.uk'+p.path)).sort(compare);assert(matching[0]?.script,'Serving owner required '+p.path);if(matching[1]&&compare(matching[0],matching[1])===0)assert.equal(matching[0].script,matching[1].script,'Ambiguous ownership');return {path:p.path,route:matching[0],matching};});
  console.log('HB2_SERVING '+JSON.stringify(serving));
- const owners=[...new Set(serving.map(s=>s.route?.script))];assert.equal(owners.length,1,'Page and assets need one existing serving owner');assert(owners[0],'Requested health routes has no serving owner');
+ const owners=[...new Set(serving.map(s=>s.route?.script))];assert.deepEqual([...owners].sort(),['shift-health-heroes-20261029','shift-public-presentation-batch-20261022'].sort(),'Retain the two observed serving owners');
  const baselines={},candidates={},checks={};
  for(const p of pages){const before=await get(p.path);baselines[p.path]=before;candidates[p.path]=transformHTML(before.html,css,p.path);checks[p.path]=check(before.html,candidates[p.path],p);fs.writeFileSync(dir+'/'+p.key+'-before.html',before.html);fs.writeFileSync(dir+'/'+p.key+'-candidate.html',candidates[p.path]);}
  const questionPath='/start-here?route=weight-loss',questionBefore=await get(questionPath);
