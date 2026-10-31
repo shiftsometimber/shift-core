@@ -28,3 +28,10 @@ test('private practical prompt retains privacy and useful depth alongside safegu
  assert.match(PRACTICAL_JUDGEMENT_RULES,/Never disclose another member/);
  assert.match(PRACTICAL_JUDGEMENT_RULES,/70-140 words/);
 });
+
+test('Matt hand-off has no inference, data access, delivery claim or confidentiality promise',async()=>{
+ for(const message of ['Can you contact Matt for me now? Have you told him?','Could you please message Matt?','Have you already told him?']){
+  const response=await askTimberRoutes(new Request('https://shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message})}),{});
+  const body=await response.json();assert.equal(body.mode,'human_handoff');assert.equal(body.journeyUsed,false);assert.match(body.answer,/haven't sent/);assert.doesNotMatch(body.answer,/between (?:you and me|us)|confidential/i);
+ }
+});
