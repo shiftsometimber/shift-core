@@ -1,0 +1,658 @@
+{
+  "readOnly": true,
+  "source": "d86d39d920d6531e584733e9f9d71829ec40dc2f",
+  "capturedAt": "2026-10-31T17:55:48.864Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/about",
+      "route": {
+        "id": "e47f0b3fe91a4b86bfb07b0df9146df0",
+        "pattern": "shiftsometimber.co.uk/about*",
+        "script": "shift-about-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/about?presentation=1",
+      "route": {
+        "id": "e47f0b3fe91a4b86bfb07b0df9146df0",
+        "pattern": "shiftsometimber.co.uk/about*",
+        "script": "shift-about-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/about/",
+      "route": {
+        "id": "e47f0b3fe91a4b86bfb07b0df9146df0",
+        "pattern": "shiftsometimber.co.uk/about*",
+        "script": "shift-about-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/about/?presentation=1",
+      "route": {
+        "id": "e47f0b3fe91a4b86bfb07b0df9146df0",
+        "pattern": "shiftsometimber.co.uk/about*",
+        "script": "shift-about-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/about.html",
+      "route": {
+        "id": "e47f0b3fe91a4b86bfb07b0df9146df0",
+        "pattern": "shiftsometimber.co.uk/about*",
+        "script": "shift-about-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/about.html?presentation=1",
+      "route": {
+        "id": "e47f0b3fe91a4b86bfb07b0df9146df0",
+        "pattern": "shiftsometimber.co.uk/about*",
+        "script": "shift-about-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/contact",
+      "route": {
+        "id": "cb1e7650e46c421db5c7b99f9f4c4eed",
+        "pattern": "shiftsometimber.co.uk/contact*",
+        "script": "shift-contact-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/contact?presentation=1",
+      "route": {
+        "id": "cb1e7650e46c421db5c7b99f9f4c4eed",
+        "pattern": "shiftsometimber.co.uk/contact*",
+        "script": "shift-contact-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/contact/",
+      "route": {
+        "id": "cb1e7650e46c421db5c7b99f9f4c4eed",
+        "pattern": "shiftsometimber.co.uk/contact*",
+        "script": "shift-contact-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/contact/?presentation=1",
+      "route": {
+        "id": "cb1e7650e46c421db5c7b99f9f4c4eed",
+        "pattern": "shiftsometimber.co.uk/contact*",
+        "script": "shift-contact-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/contact.html",
+      "route": {
+        "id": "cb1e7650e46c421db5c7b99f9f4c4eed",
+        "pattern": "shiftsometimber.co.uk/contact*",
+        "script": "shift-contact-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/contact.html?presentation=1",
+      "route": {
+        "id": "cb1e7650e46c421db5c7b99f9f4c4eed",
+        "pattern": "shiftsometimber.co.uk/contact*",
+        "script": "shift-contact-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/newsroom",
+      "route": {
+        "id": "aa45b808822142e49ef0f70510080ab7",
+        "pattern": "shiftsometimber.co.uk/newsroom",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/newsroom?presentation=1",
+      "route": {
+        "id": "5e800b5c4afe4bf19eb5593001e76607",
+        "pattern": "shiftsometimber.co.uk/newsroom*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/newsroom/",
+      "route": {
+        "id": "6078776908dc484b92a55ea7e6fbc236",
+        "pattern": "shiftsometimber.co.uk/newsroom/",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/newsroom/?presentation=1",
+      "route": {
+        "id": "5e800b5c4afe4bf19eb5593001e76607",
+        "pattern": "shiftsometimber.co.uk/newsroom*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/newsroom.html",
+      "route": {
+        "id": "5e800b5c4afe4bf19eb5593001e76607",
+        "pattern": "shiftsometimber.co.uk/newsroom*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/newsroom.html?presentation=1",
+      "route": {
+        "id": "5e800b5c4afe4bf19eb5593001e76607",
+        "pattern": "shiftsometimber.co.uk/newsroom*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-newsroom",
+      "route": {
+        "id": "1e426b50e9394a80a9857f5e644f4963",
+        "pattern": "shiftsometimber.co.uk/shift-newsroom*",
+        "script": "shift-newsroom-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-newsroom?presentation=1",
+      "route": {
+        "id": "1e426b50e9394a80a9857f5e644f4963",
+        "pattern": "shiftsometimber.co.uk/shift-newsroom*",
+        "script": "shift-newsroom-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-newsroom/",
+      "route": {
+        "id": "1e426b50e9394a80a9857f5e644f4963",
+        "pattern": "shiftsometimber.co.uk/shift-newsroom*",
+        "script": "shift-newsroom-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-newsroom/?presentation=1",
+      "route": {
+        "id": "1e426b50e9394a80a9857f5e644f4963",
+        "pattern": "shiftsometimber.co.uk/shift-newsroom*",
+        "script": "shift-newsroom-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-newsroom.html",
+      "route": {
+        "id": "1e426b50e9394a80a9857f5e644f4963",
+        "pattern": "shiftsometimber.co.uk/shift-newsroom*",
+        "script": "shift-newsroom-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-newsroom.html?presentation=1",
+      "route": {
+        "id": "1e426b50e9394a80a9857f5e644f4963",
+        "pattern": "shiftsometimber.co.uk/shift-newsroom*",
+        "script": "shift-newsroom-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/clinic-gone-quiet",
+      "route": {
+        "id": "30772adeffda4cd3bb98bc6ba3d65b65",
+        "pattern": "shiftsometimber.co.uk/clinic-gone-quiet",
+        "script": "shift-quiet-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/clinic-gone-quiet?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/clinic-gone-quiet/",
+      "route": {
+        "id": "7e35e590c6c341e8b076ebd5339fb074",
+        "pattern": "shiftsometimber.co.uk/clinic-gone-quiet/",
+        "script": "shift-quiet-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/clinic-gone-quiet/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/clinic-gone-quiet.html",
+      "route": {
+        "id": "05d459c7bdda46ef9007efbfe2836602",
+        "pattern": "shiftsometimber.co.uk/clinic-gone-quiet.html",
+        "script": "shift-quiet-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/clinic-gone-quiet.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/life-back",
+      "route": {
+        "id": "68da0c10d2f748bd95c9f493f1b7ad91",
+        "pattern": "shiftsometimber.co.uk/life-back",
+        "script": "shift-life-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/life-back?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/life-back/",
+      "route": {
+        "id": "19a27153d9d242cabb311dd16266dd97",
+        "pattern": "shiftsometimber.co.uk/life-back/",
+        "script": "shift-life-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/life-back/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/life-back.html",
+      "route": {
+        "id": "bad031b5a40e4b198a6669f2a90ca860",
+        "pattern": "shiftsometimber.co.uk/life-back.html",
+        "script": "shift-life-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/life-back.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/approved-pages-20261031/life-back-mosaic.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/approved-pages-20261031/continuity-notebook.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-about-presentation-20261022",
+      "versionId": "10ef7c2e-6634-4191-ba3e-1e75b6c74631",
+      "deploymentId": "ccab2b09-239f-4142-b607-a4b788774d97",
+      "main": "hero-set-20261030/entry.mjs",
+      "modules": [
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 290
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "previews/about-presentation/about-additions.mjs",
+          "bytes": 6393
+        },
+        {
+          "name": "previews/about-presentation/page.mjs",
+          "bytes": 2010
+        },
+        {
+          "name": "previews/about-presentation/production-worker.mjs",
+          "bytes": 2253
+        },
+        {
+          "name": "previews/about-presentation/style.mjs",
+          "bytes": 6281
+        },
+        {
+          "name": "previews/about-presentation/ticker.mjs",
+          "bytes": 643
+        }
+      ],
+      "bindingCount": 1
+    },
+    {
+      "name": "shift-contact-presentation-20261022",
+      "versionId": "4b57735c-8423-4598-be99-d12bc9aed3f3",
+      "deploymentId": "36a945ce-9f36-4df9-a038-7f939ef3ff6a",
+      "main": "previews/contact-presentation/worker.mjs",
+      "modules": [
+        {
+          "name": "previews/contact-presentation/style.mjs",
+          "bytes": 10263
+        },
+        {
+          "name": "previews/contact-presentation/worker.mjs",
+          "bytes": 2511
+        }
+      ],
+      "bindingCount": 1
+    },
+    {
+      "name": "shift-seo-followup-v3-20261024",
+      "versionId": "6760bc8f-d298-4417-ac07-db0c832a6a23",
+      "deploymentId": "66bfe69e-ca56-4a08-8512-cf907ec099a4",
+      "main": "work-w2-20261030/entry.mjs",
+      "modules": [
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "release/seo-followup-20261024/worker.mjs",
+          "bytes": 2066
+        },
+        {
+          "name": "work-w2-20261030/entry.mjs",
+          "bytes": 209
+        },
+        {
+          "name": "work-w2-20261030/media.mjs",
+          "bytes": 99771
+        },
+        {
+          "name": "work-w2-20261030/presentation.mjs",
+          "bytes": 9991
+        },
+        {
+          "name": "work-w2-20261030/runtime.mjs",
+          "bytes": 4207
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-newsroom-presentation-20261022",
+      "versionId": "5aa9b8ea-4ed9-4c84-b3a6-ebcd6628d97b",
+      "deploymentId": "c5d05e22-b359-4f76-8b9e-8033486a146a",
+      "main": "hero-set-20261030/entry.mjs",
+      "modules": [
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 350
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "previews/newsroom-presentation/client.mjs",
+          "bytes": 3572
+        },
+        {
+          "name": "previews/newsroom-presentation/page.mjs",
+          "bytes": 8267
+        },
+        {
+          "name": "previews/newsroom-presentation/production-worker.mjs",
+          "bytes": 3034
+        },
+        {
+          "name": "previews/newsroom-presentation/style.mjs",
+          "bytes": 13016
+        },
+        {
+          "name": "radar-newsroom-sort-v1.js",
+          "bytes": 2003
+        }
+      ],
+      "bindingCount": 1
+    },
+    {
+      "name": "shift-quiet-presentation-20261022",
+      "versionId": "da0c32d5-6eec-46b5-9358-eaacdaa38c5e",
+      "deploymentId": "fcae32fb-110a-4a7e-b109-423357c3d97b",
+      "main": "continuity-c1/overlay.mjs",
+      "modules": [
+        {
+          "name": "continuity-c1/layout.mjs",
+          "bytes": 900
+        },
+        {
+          "name": "continuity-c1/overlay.mjs",
+          "bytes": 1049
+        },
+        {
+          "name": "continuity-c1/styles.mjs",
+          "bytes": 20713
+        },
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 268
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "previews/quiet-presentation/style.mjs",
+          "bytes": 8403
+        },
+        {
+          "name": "previews/quiet-presentation/worker.mjs",
+          "bytes": 3448
+        }
+      ],
+      "bindingCount": 1
+    },
+    {
+      "name": "shift-core",
+      "versionId": "e1e0b62b-d314-4ae3-9b79-810dc095ddc8",
+      "deploymentId": "350c71c0-8e1c-4f9d-826c-a1fad8157f27",
+      "main": "tools-ct3-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "tools-ct3-20261031/entry.mjs",
+          "bytes": 213
+        },
+        {
+          "name": "tools-ct3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "tools-ct3-20261031/media.mjs",
+          "bytes": 166743
+        },
+        {
+          "name": "tools-ct3-20261031/presentation.mjs",
+          "bytes": 15801
+        },
+        {
+          "name": "tools-ct3-20261031/runtime.mjs",
+          "bytes": 3429
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33694226
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    },
+    {
+      "name": "shift-life-presentation-20261022",
+      "versionId": "7f572aaf-bfe8-46be-a44b-c39247d177fd",
+      "deploymentId": "3d8b3a1e-cecb-4b4d-bf89-12aed89dbd89",
+      "main": "public-pb3/overlay.mjs",
+      "modules": [
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 242
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "previews/life-presentation/style.mjs",
+          "bytes": 11250
+        },
+        {
+          "name": "previews/life-presentation/worker.mjs",
+          "bytes": 3404
+        },
+        {
+          "name": "public-pb3/layout.mjs",
+          "bytes": 1957
+        },
+        {
+          "name": "public-pb3/overlay.mjs",
+          "bytes": 1288
+        },
+        {
+          "name": "public-pb3/styles.mjs",
+          "bytes": 31868
+        }
+      ],
+      "bindingCount": 1
+    }
+  ],
+  "captures": [
+    {
+      "key": "about",
+      "status": 200,
+      "bytes": 73674
+    },
+    {
+      "key": "contact",
+      "status": 200,
+      "bytes": 56681
+    },
+    {
+      "key": "newsroom",
+      "status": 200,
+      "bytes": 317115
+    },
+    {
+      "key": "continuity",
+      "status": 200,
+      "bytes": 120517
+    },
+    {
+      "key": "life-back",
+      "status": 200,
+      "bytes": 132586
+    }
+  ]
+}
