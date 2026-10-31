@@ -39,7 +39,7 @@ jobs:
           git fetch --no-tags origin main
           test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
           actual="$(git diff --name-only HEAD^ HEAD | sort)"
-          expected="$(printf '%s\n' '.github/workflows/bloods-navigation-retirement-release.yml' 'public-bloods/approved-faq.test.mjs' 'public-bloods/shift-bloods-marketing-worker.mjs' 'public-bloods/shift-bloods-public.mjs' 'release/bloods-navigation-retirement-deploy.mjs' | sort)"
+          expected="$(printf '%s\\n' '.github/workflows/bloods-navigation-retirement-release.yml' 'release/bloods-navigation-retirement-deploy.mjs' | sort)"
           test "$actual" = "$expected"
       - name: Install locked release toolchain
         run: npm ci --ignore-scripts --no-audit --no-fund
