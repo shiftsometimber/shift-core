@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+const account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;
+assert(account&&token,'Existing deployment credential required');
+const base='https://api.cloudflare.com/client/v4/accounts/'+account;
+const api=async path=>{const r=await fetch(base+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(45000)});assert(r.ok,'Provider read failed: '+r.status+' '+path);const j=await r.json();assert(j.success);return j.result;};
+const deployments=await api('/workers/scripts/shift-core/deployments');
+const rows=deployments.deployments??deployments;assert(Array.isArray(rows));
+const active=[...rows].sort((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
+assert(active?.versions?.length===1&&active.versions[0].percentage===100,'One serving version required');
+const versionId=active.versions[0].version_id;
+const version=await api('/workers/workers/shift-core/versions/'+versionId+'?include=modules');
+const settings=await api('/workers/scripts/shift-core/settings');
+const versions=await api('/workers/scripts/shift-core/versions');
+const modules=version.modules??version.resources?.modules;
+assert(Array.isArray(modules),'Provider must return serving module bytes');
+const dir='evidence/ask-timber-point-release';mkdirSync(dir,{recursive:true});
+const sha=x=>createHash('sha256').update(x).digest('hex');
+const inventory={deploymentId:active.id,versionId,versionKeys:Object.keys(version),resourceKeys:Object.keys(version.resources??{}),runtime:version.resources?.script_runtime,latestUpload:(versions.items??versions.versions??versions)[0]?.id,settingsKeys:Object.keys(settings),bindingTypes:[...new Set((version.resources?.bindings??settings.bindings??[]).map(b=>b.type))],modules:[]};
+for(let i=0;i<modules.length;i++){const m=modules[i];assert(m.content_base64,'Module bytes absent');const content=Buffer.from(m.content_base64,'base64');writeFileSync(dir+'/module-'+i+'.bin',content);inventory.modules.push({name:m.name,keys:Object.keys(m),bytes:content.length,sha256:sha(content),index:i});}
+writeFileSync(dir+'/inspection.json',JSON.stringify(inventory,null,2));
+writeFileSync('/tmp/ask-timber-serving-metadata.json',JSON.stringify({active,version,settings,versions}));
+console.log(JSON.stringify(inventory,null,2));
