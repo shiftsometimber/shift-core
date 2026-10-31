@@ -6,7 +6,9 @@ Design: Arial on black, purposeful cream panels, substantial page-specific graph
 
 Release gates: capture actual current route owners and Workers; preserve actual modules, bindings and assets; stage with zero ordinary traffic; verify original content and protected pages; inspect phone and desktop screenshots against the selected work before promotion; then verify live. Routes remain unchanged.
 
-Status: implementation complete; staged visual review pending.
+Status: visual review passed at source `7134baf5e9ea781523adf7b1cdc00254978914d7`; production verification pending.
+
+Final preview: workflow run 41252014439, artifact 13061756149. All 84 browser checks passed, including normal and query URLs at 1440, 768 and 390 pixels. Desktop and phone views, including complete page layouts, were inspected. The exact 22 presentation and photograph module inputs are pinned in reviewed-source.json. Production publication refuses changed module inputs. Image assets are promoted before their consuming presentation pages.
 
 ## Observed regression during comparison
 

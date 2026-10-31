@@ -1,0 +1,60 @@
+{
+  "visualReviewPassed": true,
+  "reviewedSource": "7134baf5e9ea781523adf7b1cdc00254978914d7",
+  "browserChecks": 84,
+  "pages": [
+    "mot",
+    "finder",
+    "roadmap",
+    "medication",
+    "trees",
+    "commercial",
+    "reviews",
+    "disclosure",
+    "advertising",
+    "contributors",
+    "media",
+    "press",
+    "partners",
+    "promise"
+  ],
+  "viewports": [
+    1440,
+    768,
+    390
+  ],
+  "manualReview": [
+    "All fourteen desktop hero and initial content views",
+    "All fourteen complete desktop page layouts",
+    "All fourteen phone hero views and complete page layouts",
+    "Photo subject, representation, relevance and framing",
+    "No lost original text, links, data keys or scripts"
+  ],
+  "moduleHashes": {
+    "runtime.mjs": "edbd957c7bfe3688376841251a53cfaaecdd151159ac8fdbf35bb7c87e8102f6",
+    "presentation.mjs": "58c75e028d7dcd83c68b6cf452c530be4958071e8eaf42cacde0ff7e571579c4",
+    "html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "config.mjs": "5eda317483d7590e6a937105807cf10e00a5df3ac75eb8208d07038b6728ac84",
+    "graphics.mjs": "6db3f49a5ba2ccb05504f220288ff1db680c04e50332ae35f5f69b3d30c4f2f1",
+    "media.mjs": "59eb016db4feed2c761fa3c6c550889eca438f87bcf91e5eaf958c1bcbabef11",
+    "restored-media.mjs": "d9289e7f6bd2a2e0cae3252f9a5b03f24305842ee2569760dea0fd933e8048b7",
+    "restore-downloads-0.mjs": "87e10bc02412496ed78445755cf52121c3d690f222ef4de65a3440b8212c77ad",
+    "restore-family-0.mjs": "c10a2907258ea11e199d9c288e284a3fa4a25af3f173def8d9212baf9c217b31",
+    "restore-community-0.mjs": "06cd09e604a0eb2572cd2dc3849b19feab09e7196e623f93c76f7b82453b0062",
+    "restore-provider-0.mjs": "dedf2dddf492ce071935a4858dd7124c73b73ffe39a8fee0bd3ffa928cf56d14",
+    "restore-pending-0.mjs": "73bacebb2a59bb27fff7b10eab319e50656aab6dcb9205e3c19765aad2801ece",
+    "restore-pending-1.mjs": "147d0575e2ec32a6240c0d433669c7c697de6babd6a538ae219eff6537ac3089",
+    "restore-selected-0.mjs": "99d3112dcbfbac8594d596808ec3c0d6b0ab429d1354d738f2f056dd4806475f",
+    "restore-selected-1.mjs": "30564a9afeee3c37960ba58e29c58706bed0cd0df457e07fde7d579284261900",
+    "photo-mot.mjs": "9c32d3e85460186e90ad885f10b67b8359fa67484a2013928d05715ad5ab52c4",
+    "photo-roadmap.mjs": "ee63de509fa642bee1507b7a56495b7fc3c12bb0744c6380ea265ad270bbda30",
+    "photo-research.mjs": "babd38eef415d025419fcf09bce38dbb8b99424ccb3c240b1ff8b0e87e7e3425",
+    "photo-contributors.mjs": "012c6b690a45b03117b63e1ea1ca4ac61b80c872837ad316293cbddf1373dafc",
+    "photo-media.mjs": "e1f580f054625ae3b2dde12874fbce3cd815d7dd0c41866339b3116447e7e26c",
+    "photo-partners.mjs": "f03bc41b14209494bd867c4de71770e591b49cb242f8721669067538d4989673",
+    "photo-promise.mjs": "d91682069800e5de50735352d1627d2d91a488ac24783c7f77e2b3a544e2b61f"
+  },
+  "workflowRun": 41252014439,
+  "artifact": 13061756149,
+  "reviewNote": "Final desktop and mobile captures inspected; complete original content retained; hierarchy, photo relevance and representation, image framing, panel alignment, long-page balance and Promise numbering accepted for delegated release."
+}

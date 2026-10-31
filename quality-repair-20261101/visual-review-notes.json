@@ -16,5 +16,10 @@
     "Distinct commercial and advertising statements",
     "Visible illustrative-image captions"
   ],
-  "status": "Final refinement preview pending"
+  "status": "Visual review passed; production verification pending",
+  "finalReviewedSource": "7134baf5e9ea781523adf7b1cdc00254978914d7",
+  "finalWorkflowRun": 41252014439,
+  "finalArtifact": 13061756149,
+  "finalBrowserChecks": 84,
+  "finalContentIssues": 0
 }
