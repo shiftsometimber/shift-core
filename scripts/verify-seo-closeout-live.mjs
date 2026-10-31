@@ -1,5 +1,6 @@
 import {withLiveRequestRetry} from '../release/live-request-retry.cjs';
 import {NOINDEX_SITEMAP_PATHS} from '../public-seo-technical-data.mjs';
+import {VERIFIED_REOPENED_NEWSROOM_PATHS} from '../public-seo-technical.mjs';
 import assert from 'node:assert/strict';
 import {writeFile} from 'node:fs/promises';
 import {healthSlugs} from '../shift-health-public.mjs';
@@ -23,7 +24,11 @@ const sitemap=await fetchText('/sitemap.xml');assert.equal(sitemap.response.stat
 const locations=[...sitemap.text.matchAll(/<loc>(https:\/\/shiftsometimber\.co\.uk[^<]+)<\/loc>/g)].map(match=>new URL(match[1]).pathname);
 const indexedNewsPaths=locations.filter(path=>/^\/medicine-news\/[^/]+$/.test(path));
 const knownNoindexNews=NOINDEX_SITEMAP_PATHS.filter(path=>/^\/medicine-news\/[^/]+$/.test(path));
-for(const path of NOINDEX_SITEMAP_PATHS)assert(!locations.includes(path),'Noindex URL remains in sitemap: '+path);
+const reopenedNews=new Set(VERIFIED_REOPENED_NEWSROOM_PATHS);
+for(const path of NOINDEX_SITEMAP_PATHS.filter(path=>!reopenedNews.has(path)))
+ assert(!locations.includes(path),'Unreviewed legacy exclusion entered sitemap: '+path);
+for(const path of reopenedNews)
+ assert(locations.includes(path),'Approved, live-indexable public article missing from sitemap: '+path);
 const newsPaths=[...new Set([...indexedNewsPaths,...knownNoindexNews])];
 assert.ok(newsPaths.length>=166,`Expected at least 166 newsroom articles; found ${newsPaths.length}`);
 const newsroomFailures=[];
@@ -31,7 +36,16 @@ for(let start=0;start<newsPaths.length;start+=12){
   await Promise.all(newsPaths.slice(start,start+12).map(async path=>{
     const {response,text}=await fetchText(path);if(response.status!==200){newsroomFailures.push(`${path}: HTTP ${response.status}`);return;}
     let records;try{records=jsonLd(text)}catch(error){newsroomFailures.push(`${path}: invalid JSON-LD ${error.message}`);return;}
-    if(knownNoindexNews.includes(path)&&!(response.headers.get('x-robots-tag')?.includes('noindex')||/<meta\b(?=[^>]*name=["']robots["'])(?=[^>]*content=["'][^"']*noindex)[^>]*>/i.test(text)))newsroomFailures.push(`${path}: archive noindex restriction lost`);
+    // The 6 October exclusion snapshot predated the approved Newsroom SSR repair.
+    // Assert current live indexability only for the 33 individually reviewed, published URLs;
+    // the remaining 131 historical exclusions continue to be absent from the sitemap.
+    if(reopenedNews.has(path)){
+      if(/noindex/i.test(response.headers.get('x-robots-tag')||'')||/<meta\b(?=[^>]*name=["'](?:robots|googlebot|bingbot)["'])(?=[^>]*content=["'][^"']*noindex)[^>]*>/i.test(text))newsroomFailures.push(`${path}: noindex unexpectedly returned`);
+      const canonicalTags=[...text.matchAll(/<link\b(?=[^>]*rel=["']canonical["'])[^>]*>/gi)].map(match=>match[0]);
+      const actualCanonical=canonicalTags[0]?.match(/\bhref=["']([^"']+)["']/i)?.[1];
+      if(canonicalTags.length!==1||actualCanonical!==origin+path)newsroomFailures.push(`${path}: canonical mismatch`);
+      if(response.headers.get('x-shift-newsroom-renderer')!=='radar-ssr-v1')newsroomFailures.push(`${path}: renderer missing`);
+    }
     const orgs=records.flatMap(organizations);
     if(!orgs.length)newsroomFailures.push(`${path}: no Organization`);
     else if(orgs.some(org=>org.logo?.url!=='https://shiftsometimber.co.uk/assets/shift-wordmark.png'))newsroomFailures.push(`${path}: Organization.logo incomplete`);

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {repairTechnicalHtml,repairTechnicalSitemap,withTechnicalSeo} from '../public-seo-technical.mjs';
+import {repairTechnicalHtml,repairTechnicalSitemap,withTechnicalSeo,VERIFIED_REOPENED_NEWSROOM_PATHS} from '../public-seo-technical.mjs';
 import {ARTICLE_IDENTITY_REPAIRS,NOINDEX_SITEMAP_PATHS,LOGO_ARTICLE_PATHS} from '../public-seo-technical-data.mjs';
 const origin='https://shiftsometimber.co.uk';
 test('all 102 article identities use existing unique canonical pages',()=>{
@@ -20,14 +20,31 @@ test('publisher logos, real article images, FAQs and malformed JSON remain untou
  }
  assert.equal(repairTechnicalHtml('<script type="application/ld+json">{broken}</script>','/mental-health/feeling-low'),'<script type="application/ld+json">{broken}</script>');
 });
-test('sitemap removes the 163 prior exclusions plus the exact quarantined Reta briefing and retains unknown future publications',()=>{
+test('sitemap only restores the 33 independently verified published indexable newsroom owners',()=>{
  assert.equal(NOINDEX_SITEMAP_PATHS.length,164);assert.equal(new Set(NOINDEX_SITEMAP_PATHS).size,164);
+ assert.equal(VERIFIED_REOPENED_NEWSROOM_PATHS.length,33);
+ assert.equal(new Set(VERIFIED_REOPENED_NEWSROOM_PATHS).size,33);
+ for(const path of VERIFIED_REOPENED_NEWSROOM_PATHS){
+  assert(NOINDEX_SITEMAP_PATHS.includes(path),'Recovered URL must originate in prior exclusion list');
+  assert.match(path,/^\/medicine-news\/[a-z0-9-]+$/);
+ }
+ const quarantined='/medicine-news/retatrutide-fakes-research-is-not-a-treatment-offer';
+ assert(NOINDEX_SITEMAP_PATHS.includes(quarantined));
+ assert(VERIFIED_REOPENED_NEWSROOM_PATHS.includes(quarantined),'Later publication approval supersedes historical quarantine');
  const keep=['/','/start-here','/new-future-article'];
  const entries=path=>'<url><loc>'+origin+path+'</loc><lastmod>2026-10-06</lastmod></url>';
- const xml='<urlset>'+[...NOINDEX_SITEMAP_PATHS,...keep].map(entries).join('')+'</urlset>';
- const expected='<urlset>'+keep.map(entries).join('')+'</urlset>';
- assert.equal(repairTechnicalSitemap(xml),expected);assert.equal(repairTechnicalSitemap(expected),expected);
+ const before=[...NOINDEX_SITEMAP_PATHS,...keep].map(entries);
+ const expected=[...NOINDEX_SITEMAP_PATHS.filter(path=>VERIFIED_REOPENED_NEWSROOM_PATHS.includes(path)),...keep].map(entries);
+ const xml='<urlset>'+before.join('')+'</urlset>';
+ const after='<urlset>'+expected.join('')+'</urlset>';
+ assert.equal(repairTechnicalSitemap(xml),after);
+ assert.equal(repairTechnicalSitemap(after),after);
+ assert(after.includes('<loc>'+origin+quarantined+'</loc>'));
+ const originalExcluded=NOINDEX_SITEMAP_PATHS.filter(path=>!VERIFIED_REOPENED_NEWSROOM_PATHS.includes(path));
+ assert.equal(originalExcluded.length,131);
+ for(const path of originalExcluded)assert(!after.includes('<loc>'+origin+path+'</loc>'),path);
 });
+
 test('protected pages, HEAD, POST, failures and other origins pass through',async()=>{
  for(const [path,method,status,host] of [['/','GET',200,origin],['/start-here','GET',200,origin],['/member/dashboard','GET',200,origin],['/mental-health/feeling-low','HEAD',200,origin],['/mental-health/feeling-low','POST',200,origin],['/mental-health/feeling-low','GET',404,origin],['/mental-health/feeling-low','GET',200,'https://example.com']]){
   const r=new Response('preserved',{status,headers:{'Content-Type':'text/html'}});assert.equal(await withTechnicalSeo(r,new Request(host+path,{method})),r);
