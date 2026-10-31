@@ -47,10 +47,13 @@ jobs:
           for(const id of ['2ed3de9a-f697-459a-9fb1-475e0b814764','8a7e03bb-7ced-421e-aba8-87bca1494ff2']){
             const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/workers/shift-core/versions/'+id+'?include=modules',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});
             assert(r.ok);const d=await r.json();assert(d.success);assert.equal(d.result.id,id);
-            const modules=d.result.modules.filter(m=>/\.(mjs|js)$/.test(m.name));assert.equal(modules.length,1);
-            const bytes=Buffer.from(modules[0].content_base64,'base64');writeFileSync('october-release-proof/'+id+'.js',bytes);
-            console.log(JSON.stringify({version:id,sha256:createHash('sha256').update(bytes).digest('hex'),metadata:d.result.metadata}));
+            const modules=d.result.modules;assert(modules.length>0);writeFileSync('october-release-proof/'+id+'.json',JSON.stringify(d.result));
+            for(let i=0;i<modules.length;i++)writeFileSync('october-release-proof/'+id+'-module-'+i,Buffer.from(modules[i].content_base64,'base64'));
+            console.log(JSON.stringify({version:id,modules:modules.map(m=>({name:m.name,type:m.type,sha256:createHash('sha256').update(Buffer.from(m.content_base64,'base64')).digest('hex')}))}));
           }
+          const dr=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-bloods-public/deployments',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});assert(dr.ok);const dd=await dr.json();assert(dd.success);writeFileSync('october-release-proof/bloods-deployments.json',JSON.stringify(dd.result));
+          const latest=[...dd.result.deployments].sort((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert.equal(latest.versions.length,1);assert.equal(latest.versions[0].percentage,100);
+          const vid=latest.versions[0].version_id,rr=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/workers/shift-bloods-public/versions/'+vid+'?include=modules',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});assert(rr.ok);const bd=await rr.json();assert(bd.success);writeFileSync('october-release-proof/bloods-current.json',JSON.stringify(bd.result));console.log(JSON.stringify({bloodsVersion:vid,modules:bd.result.modules.map(m=>m.name)}));
           JS
           exit 1 # Capture-only qualification: never upload until current Tools delta is reconciled.
       - name: Run approved repair regressions and retained build preservation checks
