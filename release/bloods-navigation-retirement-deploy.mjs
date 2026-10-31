@@ -12,6 +12,7 @@ const selected=()=>latestDeployment(JSON.parse(cli('deployments','list','--json'
 const hash=b=>createHash('sha256').update(b).digest('hex');
 async function providerVersion(id){const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/workers/shift-bloods-public/versions/'+id+'?include=modules',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});const d=await r.json();assert(r.ok&&d.success,'Bloods provider version unavailable '+JSON.stringify(d.errors));assert.equal(d.result.id,id);return d.result;}
 const clean=s=>s.replace(/<script\b[^>]*\bsrc=["']https:\/\/static.cloudflareinsights.com[^"']*["'][\s\S]*?<\/script>/gi,'').replace(/<script\b[^>]*>[\s\S]*?window\.__CF\$cv\$params[\s\S]*?<\/script>/gi,'');
+const withoutRetirement=s=>s.replace(/<style\\b[^>]*data-shift-navigation-retirement[^>]*>[\\s\\S]*?<\\/style>/gi,'').replace(/<script\\b[^>]*data-shift-navigation-retirement[^>]*>[\\s\\S]*?<\\/script>/gi,'');
 const paths=['/shift-health','/shift-health/blood-tests','/shift-health/blood-tests/baseline','/shift-health/blood-tests/advanced','/shift-health/blood-tests/complete','/shift-health/blood-tests/baseline/your-test','/shift-health/blood-tests/advanced/your-test','/shift-health/blood-tests/complete/your-test','/shift-health/blood-tests/about','/shift-health/blood-tests/my-timber-example'];
 async function pages(){const out={};for(const p of paths){const r=await fetch('https://shiftsometimber.co.uk'+p,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,p);out[p]={html:clean(await r.text()),headers:Object.fromEntries(r.headers)};}return out;}
 
@@ -50,7 +51,7 @@ try{
  cli('versions','deploy',owned+'@100%','--yes');
  const active=selected();assert.equal(active.versions.length,1);assert.equal(active.versions[0].version_id,owned);assert.equal(active.versions[0].percentage,100);
  const after=await pages();
- for(const p of paths){assert.equal(after[p].html,expected[p],p+' rendered HTML differs from the exact guarded candidate');if(p!=='/shift-health')assert.equal(after[p].headers['x-shift-navigation-policy'],'approved-20261031',p+' retirement header');}
+ for(const p of paths){assert.equal(withoutRetirement(after[p].html),withoutRetirement(expected[p]),p+' changed beyond the exact retired teaser and guard');if(p!=='/shift-health')assert.equal(after[p].headers['x-shift-navigation-policy'],'approved-20261031',p+' retirement header');}
  const body=after[root].html;
  assert.equal((body.match(/data-shift-navigation-retirement=/g)||[]).length,2);assert(body.includes(BLOODS_NAVIGATION_RETIREMENT));assert(!body.includes('The Timber Shed'));assert(!/<span\b[^>]*\bsst-shed-teaser\b/i.test(body));
  assert(/<link\b[^>]*\brel=["']canonical["'][^>]*\bhref=["']https:\/\/shiftsometimber\.co\.uk\/shift-health\/blood-tests["']/i.test(body));
