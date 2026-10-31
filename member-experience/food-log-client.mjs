@@ -2,7 +2,7 @@ export function foodLogPresentation(log){
  if(log?.status!=='available')return null;
  const labels={kcal:['Energy','kcal'],proteinG:['Protein','g'],carbsG:['Carbohydrate','g'],fatG:['Fat','g'],fibreG:['Fibre','g'],waterMl:['Water logged here','ml']};
  const lines=period=>Object.entries(labels).flatMap(([key,[name,unit]])=>{const value=period.nutrition[key];return value?[`${name}: ${value.total.toLocaleString('en-GB')} ${unit} · amounts in ${value.recordedEntries} of ${period.entryCount} entries${value.missingEntries?' ('+value.missingEntries+' missing an amount)':''}.`]:[]});
- return {today:{heading:'Today · '+log.today.entryCount+' food '+(log.today.entryCount===1?'entry':'entries'),lines:lines(log.today)},last7Days:{heading:'Last seven days · '+log.last7Days.entryCount+' entries across '+log.last7Days.loggedDays+' days',lines:lines(log.last7Days)},note:'Totals cover what you logged. Missing food or amounts stay unknown; a logged day may be incomplete.',estimateNote:log.last7Days.estimatedEntries?'Photo-derived nutrition remains an estimate.':null};
+ return {today:{heading:'Today · '+log.today.entryCount+' food '+(log.today.entryCount===1?'entry':'entries'),lines:lines(log.today)},last7Days:{heading:'Last seven days · '+log.last7Days.entryCount+' '+(log.last7Days.entryCount===1?'entry':'entries')+' across '+log.last7Days.loggedDays+' '+(log.last7Days.loggedDays===1?'day':'days'),lines:lines(log.last7Days)},note:'Totals cover what you logged. Missing food or amounts stay unknown; a logged day may be incomplete.',estimateNote:log.last7Days.estimatedEntries?'Photo-derived nutrition remains an estimate.':null};
 }
 
 // An acknowledged save is separate from refreshing a view. Responses from an

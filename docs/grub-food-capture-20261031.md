@@ -92,8 +92,13 @@ retries, deletion, consent/pause and changes during reads, account separation,
 London dates, missing-versus-zero amounts, full-range totals beyond display
 limits, current AI facts and cancelled/mismatched-account view responses.
 Hosted checks additionally exercise the actual Ask Timber route and shared
-brain. Browser acceptance and the current CI run must be read separately from
-these implementation statements. Photo processing remains inactive; no
+brain. The first logging proof at 76ae5783730faa43935b0618f1e38c63dd1de615
+passed 133 checks with one pre-existing opt-in model probe skipped; the Worker
+build passed. Regression checks identified summary requests added to the old
+UI-only asset; the corrected version serves a separate read-only food-log asset
+and keeps that original asset byte-for-byte unchanged. No guard was weakened.
+Browser acceptance and the current CI run must be read separately from these
+implementation statements. Photo processing remains inactive; no
 additional processor, agreement, paid inference or production release is
 activated by this logging work.
 
@@ -224,3 +229,12 @@ Grub 320 px frame and 390 px packet-to-save path were also inspected. These
 are fictional interface harnesses, not physical-device acceptance.
 
 Production promotion of the unchanged source base had already failed at run 41223877184 before this feature branch. This source preparation is not a production deployment or App Store release. The feature branch is retained at `feature/grub-food-capture-20261031`; main, live runtime and store state have not been changed.
+
+Logging browser check: the real local API/SQLite fixture rendered two saved
+entries, 300 kcal and 18 g protein with one missing amount, and the actual diary
+loaded those records. The save click could not proceed in the HTTP-only QA
+origin because crypto.randomUUID is unavailable there. A QA-only shim was
+prepared and the preview restarted; the local environment then disconnected
+before the save/deletion flow could be rechecked. This is not live or installed-
+device acceptance. The authenticated save/delete/shared-brain route checks above
+are separate automated evidence. No real member record or model call was used.
