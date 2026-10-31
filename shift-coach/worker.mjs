@@ -1,5 +1,5 @@
-import {foodCaptureRoutes} from '../member-experience/food-capture.mjs';
 import {recordServiceJob} from '../hq-service-job-runs.mjs';
+import {foodCaptureRoutes} from '../member-experience/food-capture.mjs';
 import {withHealthKnowledgeWorker} from '../knowledge-health/production.mjs';
 import {withDynamicBabyLoveDiscovery} from '../babylove/dynamic-public.mjs';
 import {repairHomeSpeed} from '../home-speed-repair.mjs';

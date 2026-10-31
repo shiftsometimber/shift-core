@@ -1,3 +1,6 @@
+import {CONVERSATION_BOUNDARIES} from './ask-timber-conversation-rules.mjs';
+import {shiftInference} from './shift-ai-capabilities.mjs';
+import {shiftResearch} from './member-experience/ai-research.mjs';
 import {requestTreatmentPatterns,patternAnswer} from './member-experience/treatment-patterns.mjs';
 import {healthKnowledgeAnswer,healthKnowledgeEvidence} from './knowledge-health/evidence.mjs';
 import {publicSiteStreamMessages} from './public-site-stream.mjs';
@@ -59,6 +62,12 @@ export async function askTimberRoutes(request,env){
     console.log('ask_timber_safe_redirect',JSON.stringify({requestId,category:urgent.category}));
     return json({ok:true,requestId,mode:'safety',...urgent},200,request);
   }
+  // This assistant has no messaging action: give a factual hand-off rather than
+  // asking the model to invent a delivery receipt or privacy guarantee.
+  if(/\b(?:(?:can|could|will|would) you (?:please )?(?:contact|message|tell|alert|notify|email|call)\s+matt|have you (?:already )?(?:contacted|messaged|told|alerted|notified|emailed|called)\s+(?:matt|him))\b/i.test(message))return json({ok:true,requestId,mode:'human_handoff',confidence:'high',journeyUsed:false,answer:"I haven't sent a message to Matt through this chat. Ask Timber can't contact him on your behalf. Use the support option in My Timber to send your message yourself; I can help you put it into words.",keyPoints:[],nextSteps:[],followUps:[],sources:[],limitations:'Signposting does not send a message or confirm that anyone has been alerted.'},200,request);
+  // Explicit public research runs after safety/handoff, before journey or
+  // inference. Retrieved citation metadata is never promoted to health advice.
+  if(body.research===true)return json({requestId,...await shiftResearch(env,message,{type:body.researchType,signal:request.signal})},200,request);
   // Member-requested recorded-pattern answers use verified facts, not model inference.
   // Preserve urgent handling above and the existing authentication/consent boundary.
   if(body.usePatterns===true){
@@ -133,10 +142,10 @@ export async function askTimberRoutes(request,env){
       const streamedMessages=messages.map(m=>({...m,content:m.content.replace(/Return valid JSON only\./g,'Return only the answer as natural prose.').replace(/Return the required JSON\./g,'Return only the answer as natural prose.')}));
       streamedMessages.push({role:'user',content:'Return only the answer as plain text, not JSON. Preserve all privacy and safety rules. '+(sources.length?'Cite the supplied evidence with these literal numbered markers: '+sources.map(s=>'['+s.id+']').join(', ')+'. Put the marker immediately after the claim it supports; never use empty brackets. Saved member records are not medical evidence.':'No general evidence sources were supplied. Do not invent citations or health claims.')});
       const selectedMessages=publicSiteStreamMessages({message,evidence,journeyUsed,history,original:streamedMessages});
-      const upstream=await openInference(()=>env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages:selectedMessages,max_tokens:420,temperature:0.2,stream:true},{gateway:{id:'shift-ai',skipCache:true}}),{signal:request.signal,timeoutMs:selectedMessages===streamedMessages?3000:5000});
+      const upstream=await openInference(()=>shiftInference(env,{messages:selectedMessages,max_tokens:420,temperature:0.2,stream:true},{model:env.SHIFT_AI_MODEL||MODEL_FALLBACK,options:{gateway:{id:'shift-ai',skipCache:true}},signal:request.signal}),{signal:request.signal,timeoutMs:selectedMessages===streamedMessages?3000:5000});
       return answerStream(upstream,{headers:cors(request),requestId,access,request,onComplete:answer=>publicCache?.write(answer),meta:{confidence:confidenceFor(evidence,'medium'),journeyUsed,sources,limitations:evidence.some(x=>x.reviewState==='external_unreviewed')?'Includes external NHS information not clinically reviewed by SHIFT. General information, not an individual assessment.':'General information, not an individual assessment.'}});
     }
-    const result=await env.AI.run(env.SHIFT_AI_MODEL||MODEL_FALLBACK,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}},{gateway:{id:'shift-ai',skipCache:true}});
+    const result=await shiftInference(env,{messages,max_tokens:contextPilot?600:900,temperature:0.2,response_format:{type:'json_schema',json_schema:answerSchema}},{model:env.SHIFT_AI_MODEL||MODEL_FALLBACK,options:{gateway:{id:'shift-ai',skipCache:true}},signal:request.signal});
     const raw=result?.response??result?.result?.response??result?.choices?.[0]?.message?.content??result?.output_text??'';
     const generated=parseAnswer(raw);
     if(typeof generated?.answer!=='string'||!generated.answer.trim())throw new Error('invalid_model_response');
@@ -205,6 +214,7 @@ function directReviewedAnswer(message){
 function systemPrompt(){return `You are Ask Timber, the evidence-led information assistant for Shift Some Timber, a UK men's health and weight-management service.
 Your job is to give a direct, useful, warm answer in plain British English. Sound human and calm, never salesy, flippant or overfamiliar.
 
+${CONVERSATION_BOUNDARIES}
 NON-NEGOTIABLE RULES:
 1. Use only the REVIEWED EVIDENCE for general health facts and PRIVATE MEMBER JOURNEY for this member’s saved records. Never add facts from memory. Unavailable medicine fields are unknown, not permission to infer. Always state any source limitations relevant to the question, with review/check dates when discussing current medicine status.
 2. Every material health claim must cite one or more supplied sources inline as [1], [2], etc.

@@ -1,4 +1,6 @@
 import core from './worker.js';
+import {shiftInference} from './shift-ai-capabilities.mjs';
+import {askTimberRoutes} from './ask-timber-v1.js';
 import {JOURNEY_RULES} from './member-experience/ai-context.mjs';
 import v5 from './shift-ai-v5.js';
 import {buildShiftBrainContext} from './shift-brain-v1.js';
@@ -22,6 +24,9 @@ export default{async fetch(request,env,ctx){
 async function chat(request,env,ctx){
   const a=await auth(request,env,ctx);if(a.response)return a.response;
   const body=await read(request),message=String(body.message||'').trim().slice(0,7000);if(!message)return json({ok:false,error:'message_required'},400);
+  // The member assistant uses the same research/safety route as Ask Timber,
+  // after its normal authentication. No second evidence engine or memory copy.
+  if(body.research===true)return askTimberRoutes(new Request(new URL('/v1/ai/chat',request.url),{method:'POST',headers:request.headers,body:JSON.stringify({message,research:true,researchType:body.researchType,useJourney:false,personalisation:false}),signal:request.signal}),env);
   const uid=Number(a.user.id),gear=selectShoulderGear(message),brain=await buildShiftBrainContext(env,uid,message,{knowledgeLimit:8}),history=await recentHistory(env.DB,uid,20);
   const boundary=await privacyBoundary(env.DB,uid);
   const personalAllowed=brain.journey.status==='available'&&boundary.available;
@@ -33,7 +38,7 @@ async function chat(request,env,ctx){
   if(env.AI){
     try{
       const selected=env.SHIFT_AI_MODEL||MODEL;
-      const result=await env.AI.run(selected,{messages:[{role:'system',content:systemPrompt(brain,gear,noAdvice)},...(personalAllowed?recent(history):[]).map(x=>({role:x.direction==='user'?'user':'assistant',content:x.body})),{role:'user',content:message}],max_tokens:1400,temperature:gear.gear==='safety'?.12:gear.gear==='listen'?.5:.62});
+      const result=await shiftInference(env,{messages:[{role:'system',content:systemPrompt(brain,gear,noAdvice)},...(personalAllowed?recent(history):[]).map(x=>({role:x.direction==='user'?'user':'assistant',content:x.body})),{role:'user',content:message}],max_tokens:1400,temperature:gear.gear==='safety'?.12:gear.gear==='listen'?.5:.62},{model:selected,signal:request.signal});
       answer=String(result?.response||result?.result?.response||'').trim();model=selected;
     }catch(e){console.warn('shift_ai_v6_failed',e?.message);}
   }

@@ -1,4 +1,4 @@
-name: Grub food capture proof
+name: Shift AI food and research proof
 on:
   push:
     branches: ['feature/grub-food-capture-20261031']
@@ -9,6 +9,14 @@ on:
       - 'member-experience/food-diary-client.mjs'
       - 'member-experience/journey-portability.mjs'
       - 'member-experience/tests/food-capture.test.mjs'
+      - 'member-experience/ai-research.mjs'
+      - 'member-experience/ai-public-retrieval.mjs'
+      - 'member-experience/tests/shift-ai-capabilities.test.mjs'
+      - 'shift-ai*.js'
+      - 'shift-ai-capabilities.mjs'
+      - 'ask-timber-v1.js'
+      - 'frontend/member/assets/ask-timber-v1.*'
+      - 'tests/shift-ai-research-route.test.mjs'
       - '.github/workflows/grub-food-capture-proof.yml'
 permissions:
   contents: read
@@ -36,8 +44,14 @@ jobs:
           node --check member-experience/food-diary-client.mjs
           node --check member-experience/journey-portability.mjs
           node --check shift-coach/worker.mjs
+          node --check shift-ai-capabilities.mjs
+          node --check member-experience/ai-research.mjs
+          node --check member-experience/ai-public-retrieval.mjs
+          node --check ask-timber-v1.js
+          node --check shift-ai-v6.js
+          node --check frontend/member/assets/ask-timber-v1.js
       - name: Check food capture and real diary compatibility
-        run: node --test member-experience/tests/food-capture.test.mjs member-experience/tests/food-diary-london-date-20261015.test.mjs member-experience/tests/journey-portability.test.mjs
+        run: node --test member-experience/tests/food-capture.test.mjs member-experience/tests/food-diary-london-date-20261015.test.mjs member-experience/tests/journey-portability.test.mjs member-experience/tests/shift-ai-capabilities.test.mjs tests/shift-ai-research-route.test.mjs tests/ask-timber-conversation-boundaries.test.mjs tests/ask-timber-public.test.mjs
       - name: Build the actual Worker without uploading or changing production
         run: npx wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/grub-worker-build"
       - name: Check existing member regression suite

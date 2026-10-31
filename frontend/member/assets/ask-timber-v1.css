@@ -69,3 +69,10 @@
 #timberForm{background:#e7e3da!important;color:#050505!important}
 #timberForm :is(label,span,small){color:#050505!important}
 #timberResponse .at-confidence{color:#050505!important}
+.at-research-choice{margin-top:12px;padding-top:12px;border-top:1px solid #707762;display:grid;gap:8px}
+.at-research-choice label{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:44px}
+.at-research-choice input[type=checkbox]{width:22px;height:22px;accent-color:#707762}
+.at-research-choice select{min-height:44px;max-width:100%;background:#e7e3da;color:#050505;border:1px solid #707762;padding:8px;border-radius:4px}
+.at-research-choice p{margin:0;font-size:14px;line-height:1.45}
+.at-research-choice :is(input,select):focus-visible{outline:3px solid #707762;outline-offset:3px}
+#timberResponse .at-source small{display:block;font-size:13px;line-height:1.4;color:#34392d}

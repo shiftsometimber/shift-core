@@ -1,6 +1,63 @@
-# Grub food entry
+# Shift AI: food capture and research
 
 Matt authorised the Cal AI-inspired Grub work on 31 October 2026.
+He subsequently instructed that both food recognition and the MediSearch-style
+research capability belong inside Shift AI. No competitor trial, subscription
+or integration is part of this implementation.
+
+## Shared Shift AI implementation
+
+`shift-ai-capabilities.mjs` is the shared inference boundary used by the existing
+Shift AI assistant, Ask Timber and Grub. Existing text model selection and
+gateway options are preserved. Calls have a 15-second delivery deadline, honour
+request cancellation and never retry automatically. This is our product and
+orchestration code; it does not claim to train a foundation model from scratch.
+
+Food vision supports an internal `SHIFT_AI_VISION` Worker service binding as
+well as the previously prepared Workers AI adapter. The service receives only
+`task`, resized image, caption and output limit at a fixed internal path; it
+receives no member cookie, identifier or journey. It must implement
+`POST https://shift-ai.internal/recognise-food`, return JSON food items and
+optional nutrition, and comply with the same per-scan consent and review flow.
+No internal vision service has been provisioned or claimed as running.
+No additional photo processor, model licence or spend has been activated.
+
+## Research inside Ask Timber
+
+The existing question form now offers **Find research and sources**, with all
+research, evidence review and randomised-trial filters. It calls the existing
+`/v1/ai/chat` route with explicit `research:true`. The authenticated Shift AI
+chat route can delegate the same opt-in to that route. Urgent signposting and
+truthful Matt handoff still take precedence. Normal chat behaviour, saved
+journey permissions and common conversation boundaries remain in place.
+
+Research supports fixed general topics: GLP-1 medicines, testosterone,
+nutrition/protein, sleep, sleep apnoea, walking and weight management. Only
+server-owned topic terms reach NCBI E-utilities; no member wording, blood
+results, identifiers, chat history or private record is sent. Requests use
+fixed HTTPS endpoints with redirects rejected. The existing D1 binding stores
+generic public citation metadata for six hours and enforces at least 600 ms
+between individual upstream request starts across isolates. Empty, unavailable
+and throttled results are distinguished, and UK source links remain usable.
+
+Cards show original PubMed URLs and PMIDs, indexed publication dates, journal
+and study type. Requested IDs are checked against returned IDs. Obvious
+retracted/correction records are excluded from the index response. This is
+not a complete independent retraction check, critical appraisal, systematic
+review, diagnosis or prescribing service. Abstracts/full papers are not copied,
+and metadata is not fed to the model as clinical evidence. The interface links
+NCBI's required policies/disclaimer and labels references as unappraised.
+Research mode makes no inference call and can return guidance without AI.
+
+Authoritative implementation references checked 31 October 2026:
+- https://eutilities.github.io/site/API_Key/usageandkey/
+- https://www.ncbi.nlm.nih.gov/home/about/policies/
+- https://dataguide.nlm.nih.gov/eutilities/utilities.html
+- https://www.nice.org.uk/guidance/ng246
+- https://www.nhs.uk/conditions/male-menopause/
+- https://www.nhs.uk/conditions/sleep-apnoea/
+
+## Grub
 
 The existing private food diary is extended with description, packet lookup,
 photo-recognition preparation, explicit portion review, recent foods and a
@@ -20,6 +77,9 @@ No daily calorie target, punitive streak or clinical recommendation is added.
   Open Food Facts. The fixed upstream receives no session, member identifier,
   meal description or photograph. Results include attribution and remain
   editable; community product data does not establish allergy safety.
+  Public product data is cached for 24 hours. Uncached lookups are spaced at
+  least 4.1 seconds apart across members/isolates, below the product API's
+  15 requests/minute limit. Member consent and daily limits apply on cache hits.
 - Packet values retain their stated 100 g / 100 ml basis. A member supplies
   the amount eaten before copying nutrition into the diary. Name-only logging
   is available without numerical tracking.
@@ -39,7 +99,20 @@ No daily calorie target, punitive streak or clinical recommendation is added.
 
 ## Photo activation requires a separate decision
 
-Photo inference is OFF without all of these values:
+Photo inference remains OFF without explicit existing configuration approval.
+The canonical Shift AI configuration is:
+
+```
+SHIFT_AI_FOOD_PHOTOS_ENABLED=true
+SHIFT_AI_VISION_BUDGET_APPROVED=true
+SHIFT_AI_VISION_TERMS_APPROVED=true
+```
+
+Then either bind the approved internal `SHIFT_AI_VISION` implementation or
+select the prepared Workers AI adapter with
+`SHIFT_AI_VISION_MODEL=@cf/meta/llama-3.2-11b-vision-instruct`.
+Unrecognised model names are rejected. The former Grub values remain accepted
+for compatibility, with canonical Shift AI values taking precedence:
 
 ```
 GRUB_CAPTURE_VISION_ENABLED=true

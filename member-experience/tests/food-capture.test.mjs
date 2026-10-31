@@ -88,10 +88,30 @@ test('packet lookup sends only the validated barcode to a fixed upstream and ret
  const e=await fixture();try{let calls=0;const response=await foodCaptureRoutes(req({mode:'barcode',barcode:'3017620422003'}),e,{fetcher:async(url,options)=>{calls++;assert.match(url,/^https:\/\/world.openfoodfacts.org\/api\/v3\/product\/3017620422003\?/);assert.match(options.headers['User-Agent'],/MyTimber/);assert.equal(options.redirect,'error');assert.equal('Cookie'in options.headers,false);return Response.json(product);}});assert.equal(response.status,200);assert.equal(calls,1);assert.equal((await response.json()).draft.food,'Fixture Synthetic porridge');}finally{e.sql.close();}
 });
 test('missing products and provider errors preserve the manual entry route',async()=>{
- const e=await fixture();try{for(const status of[404,429,500]){const r=await foodCaptureRoutes(req({mode:'barcode',barcode:'3017620422003'}),e,{fetcher:async()=>new Response('',{status})});assert.equal(r.status,status===404?404:503);assert.match((await r.json()).message,/enter|describe/i);}}finally{e.sql.close();}
+ for(const status of[404,429,500]){const e=await fixture();try{const r=await foodCaptureRoutes(req({mode:'barcode',barcode:'3017620422003'}),e,{fetcher:async()=>new Response('',{status})});assert.equal(r.status,status===404?404:503);assert.match((await r.json()).message,/enter|describe/i);}finally{e.sql.close();}}
 });
-test('barcode lookup limits are per member and do not store the barcode or food',async()=>{
+test('barcode lookup counters are per member and contain no barcode or food',async()=>{
  const e=await fixture();try{const day=new Date().toISOString().slice(0,10);e.sql.prepare('UPDATE member_state SET preferences=? WHERE user_id=1').run(JSON.stringify({other:'retained',grubBarcodeUsage:{day,calls:30}}));let calls=0;const fetcher=async()=>{calls++;return Response.json(product)};assert.equal((await foodCaptureRoutes(req({mode:'barcode',barcode:'3017620422003'}),e,{fetcher})).status,429);assert.equal((await foodCaptureRoutes(req({mode:'barcode',barcode:'3017620422003'},{user:2}),e,{fetcher})).status,200);assert.equal(calls,1);assert.match(e.sql.prepare('SELECT preferences FROM member_state WHERE user_id=1').get().preferences,/retained/);assert(!JSON.stringify(e.sql.prepare('SELECT preferences FROM member_state').all()).includes('3017620422003'));}finally{e.sql.close();}
+});
+test('public packet cache is shared while uncached upstream calls have an aggregate throttle',async()=>{
+ const e=await fixture();try{
+  let calls=0;const fetcher=async()=>{calls++;return Response.json(product)};
+  assert.equal((await foodCaptureRoutes(req({mode:'barcode',barcode:'3017620422003'}),e,{fetcher})).status,200);
+  assert.equal((await foodCaptureRoutes(req({mode:'barcode',barcode:'3017620422003'},{user:2}),e,{fetcher})).status,200);assert.equal(calls,1);
+  assert.equal((await foodCaptureRoutes(req({mode:'barcode',barcode:'5000159484695'},{user:2}),e,{fetcher})).status,429);assert.equal(calls,1);
+  const publicRows=JSON.stringify(e.sql.prepare('SELECT * FROM shift_ai_public_cache').all());assert(!/capture-1|one@example|userId/.test(publicRows));
+  e.sql.exec('UPDATE consents SET granted=0 WHERE user_id=2');assert.equal((await foodCaptureRoutes(req({mode:'barcode',barcode:'3017620422003'},{user:2}),e,{fetcher})).status,409);
+ }finally{e.sql.close();}
+});
+test('Grub can use an approved Shift AI service binding with no vendor model call or member identity',async()=>{
+ const e=await fixture();try{
+  Object.assign(e,{SHIFT_AI_FOOD_PHOTOS_ENABLED:'true',SHIFT_AI_VISION_BUDGET_APPROVED:'true',SHIFT_AI_VISION_TERMS_APPROVED:'true',SHIFT_AI_VISION:{fetch:async request=>{
+   assert.equal(request.url,'https://shift-ai.internal/recognise-food');assert.equal(request.headers.get('Cookie'),null);const payload=await request.json();assert.deepEqual(Object.keys(payload).sort(),['caption','image','maxOutputTokens','task']);return Response.json({items:['Beans on toast'],nutrition:{proteinG:12}});
+  }}});
+  assert.equal(captureCapabilities(e).photo,true);assert.equal(captureCapabilities(e).photoProcessor,'Shift AI');
+  const result=await(await foodCaptureRoutes(req(photo),e)).json();assert.equal(result.draft.food,'Beans on toast');assert.equal(result.draft.requiresReview,true);
+  assert(!e.sql.prepare('SELECT preferences FROM member_state WHERE user_id=1').get().preferences.includes('Beans'));
+ }finally{e.sql.close();}
 });
 test('photo calls never implicitly accept a model licence or spend without approval flags',async()=>{
  const e=await fixture();try{let calls=0;e.AI={run:async()=>{calls++;}};assert.equal((await foodCaptureRoutes(req(photo),e)).status,503);assert.equal(calls,0);const {capabilities}=await(await foodCaptureRoutes(req(),e)).json();assert.equal(capabilities.photo,false);}finally{e.sql.close();}
