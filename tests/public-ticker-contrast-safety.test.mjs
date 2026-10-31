@@ -91,7 +91,11 @@ test('retired teaser stays absent after legacy client bundles mutate the rendere
   assert.equal((twice.match(/data-shift-navigation-retirement/g)||[]).length,2);
   assert.match(once,new RegExp(navigationSafetyVersion));
   assert.match(once,/\.sst-shed-teaser\{display:none!important\}/);
-  assert.match(once,/MutationObserver\(remove\)/);
+  assert.match(once,/MutationObserver\(retire\)/);
   assert.match(once,/querySelectorAll\('\.sst-shed-teaser'\)/);
+  assert.match(once,/node\.hidden=true/);
+  assert.match(once,/node\.setAttribute\('aria-hidden','true'\)/);
+  assert.match(once,/node\.textContent=''/);
+  assert.doesNotMatch(once,/node\.remove\(\)/);
   assert.match(once,/<main>Keep this public content\.<\/main>/);
 });

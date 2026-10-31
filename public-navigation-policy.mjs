@@ -160,11 +160,11 @@ export function removeRetiredShedTeasers(html) {
 export const navigationSafetyVersion='public-navigation-20261031-r2';
 export const navigationSafetyStyles='.sst-shed-teaser{display:none!important}';
 export const navigationSafetyClient=String.raw`(function retireTimberShedClient(){
-  function remove(){document.querySelectorAll('.sst-shed-teaser').forEach(node=>node.remove())}
-  remove();
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',remove,{once:true});
-  new MutationObserver(remove).observe(document.documentElement,{childList:true,subtree:true});
-  setTimeout(remove,0);setTimeout(remove,250);
+  function retire(){for(const node of document.querySelectorAll('.sst-shed-teaser')){node.hidden=true;node.setAttribute('aria-hidden','true');if(node.textContent)node.textContent=''}}
+  retire();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',retire,{once:true});
+  new MutationObserver(retire).observe(document.documentElement,{childList:true,subtree:true});
+  setTimeout(retire,0);setTimeout(retire,250);
 })();`;
 export async function withPublicTicker(request, response) {
   if (!response.ok || !['GET','HEAD'].includes(request.method) || !/text\/html/i.test(response.headers.get('Content-Type') || '')) return response;
