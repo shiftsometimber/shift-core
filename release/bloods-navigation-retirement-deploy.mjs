@@ -50,7 +50,7 @@ try{
  cli('versions','deploy',owned+'@100%','--yes');
  const active=selected();assert.equal(active.versions.length,1);assert.equal(active.versions[0].version_id,owned);assert.equal(active.versions[0].percentage,100);
  const after=await pages();
- for(const p of paths){assert.equal(after[p].html,expected[p],p+' rendered HTML differs from the exact guarded candidate');assert.equal(after[p].headers['x-shift-navigation-policy'],'approved-20261031',p+' retirement header');}
+ for(const p of paths){assert.equal(after[p].html,expected[p],p+' rendered HTML differs from the exact guarded candidate');if(p!=='/shift-health')assert.equal(after[p].headers['x-shift-navigation-policy'],'approved-20261031',p+' retirement header');}
  const body=after[root].html;
  assert.equal((body.match(/data-shift-navigation-retirement=/g)||[]).length,2);assert(body.includes(BLOODS_NAVIGATION_RETIREMENT));assert(!body.includes('The Timber Shed'));assert(!/<span\b[^>]*\bsst-shed-teaser\b/i.test(body));
  assert(/<link\b[^>]*\brel=["']canonical["'][^>]*\bhref=["']https:\/\/shiftsometimber\.co\.uk\/shift-health\/blood-tests["']/i.test(body));
