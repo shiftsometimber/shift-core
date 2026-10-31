@@ -1,0 +1,277 @@
+{
+  "readOnly": true,
+  "source": "44f23a42c304f3ed6fb57d7ab431b3591dc387b6",
+  "capturedAt": "2026-10-31T21:30:16.705Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/community",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/community?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/community/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/community/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/community.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/community.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/community-cm3-20261031/workshop.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-core",
+      "versionId": "b0f14f5c-a50f-484e-ad86-b3db852a6db4",
+      "deploymentId": "23f20a48-12a5-4fbc-a20f-aceb227b62e7",
+      "main": "family-fd3-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "continuity-polish-20261031/entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "continuity-polish-20261031/runtime.mjs",
+          "bytes": 15893
+        },
+        {
+          "name": "continuity-review-20261031/entry.mjs",
+          "bytes": 333
+        },
+        {
+          "name": "continuity-review-20261031/handoff.mjs",
+          "bytes": 10583
+        },
+        {
+          "name": "continuity-review-20261031/html.mjs",
+          "bytes": 18542
+        },
+        {
+          "name": "continuity-review-20261031/runtime.mjs",
+          "bytes": 4667
+        },
+        {
+          "name": "downloads-dr3-20261031/config.mjs",
+          "bytes": 490
+        },
+        {
+          "name": "downloads-dr3-20261031/entry.mjs",
+          "bytes": 357
+        },
+        {
+          "name": "downloads-dr3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "downloads-dr3-20261031/media.mjs",
+          "bytes": 105015
+        },
+        {
+          "name": "downloads-dr3-20261031/presentation.mjs",
+          "bytes": 8305
+        },
+        {
+          "name": "downloads-dr3-20261031/runtime.mjs",
+          "bytes": 3948
+        },
+        {
+          "name": "family-fd3-20261031/config.mjs",
+          "bytes": 493
+        },
+        {
+          "name": "family-fd3-20261031/entry.mjs",
+          "bytes": 373
+        },
+        {
+          "name": "family-fd3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "family-fd3-20261031/media.mjs",
+          "bytes": 250912
+        },
+        {
+          "name": "family-fd3-20261031/presentation.mjs",
+          "bytes": 7722
+        },
+        {
+          "name": "family-fd3-20261031/runtime.mjs",
+          "bytes": 3288
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 526
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/media.mjs",
+          "bytes": 442353
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "provider-causes-20261031/config.mjs",
+          "bytes": 1335
+        },
+        {
+          "name": "provider-causes-20261031/entry.mjs",
+          "bytes": 928
+        },
+        {
+          "name": "provider-causes-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "provider-causes-20261031/media.mjs",
+          "bytes": 146475
+        },
+        {
+          "name": "provider-causes-20261031/presentation.mjs",
+          "bytes": 4297
+        },
+        {
+          "name": "provider-causes-20261031/query-hero.mjs",
+          "bytes": 9768
+        },
+        {
+          "name": "provider-causes-20261031/query-payload.mjs",
+          "bytes": 19723
+        },
+        {
+          "name": "provider-causes-20261031/runtime.mjs",
+          "bytes": 4498
+        },
+        {
+          "name": "provider-causes-20261031/styles.mjs",
+          "bytes": 14876
+        },
+        {
+          "name": "selected-pages-20261031/config.mjs",
+          "bytes": 977
+        },
+        {
+          "name": "selected-pages-20261031/entry.mjs",
+          "bytes": 351
+        },
+        {
+          "name": "selected-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "selected-pages-20261031/media.mjs",
+          "bytes": 381765
+        },
+        {
+          "name": "selected-pages-20261031/presentation.mjs",
+          "bytes": 35535
+        },
+        {
+          "name": "selected-pages-20261031/runtime.mjs",
+          "bytes": 5707
+        },
+        {
+          "name": "tools-ct3-20261031/entry.mjs",
+          "bytes": 213
+        },
+        {
+          "name": "tools-ct3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "tools-ct3-20261031/media.mjs",
+          "bytes": 166743
+        },
+        {
+          "name": "tools-ct3-20261031/presentation.mjs",
+          "bytes": 15801
+        },
+        {
+          "name": "tools-ct3-20261031/runtime.mjs",
+          "bytes": 3429
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33697546
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    }
+  ],
+  "captures": [
+    {
+      "key": "community",
+      "status": 200,
+      "bytes": 43013
+    }
+  ]
+}
