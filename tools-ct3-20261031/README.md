@@ -1,0 +1,7 @@
+# Calculators & Tools — CT3
+
+Matt selected CT3 on 31 October 2026. This authorises the shown black, cream and ash-green design: the selected couple photograph, compact hero, prominent check-in and alphabetical tool grid. The existing shared header/footer, calculator pages, formulas, unit controls, source explanations and functional links must be preserved. No ticker is shown on Tools, following the existing page-level rule. No new route rules, clinical logic, transactions, emails or account changes are included.
+
+State: selected; implementation and guarded verification in progress. The accepted layout is implemented natively in HTML/CSS; the whole-page mockup is not used as a website image. The selected photograph is prepared separately as a compressed asset.
+
+The isolated branch is `release/tools-ct3-20261031`, based on W2 completion commit `528e1b2d8d95a557736f148780b796707d894f07`. W2 and the completed 27-page hero release remain complete. Deployment uses the existing `cloudflare-production-promote` concurrency group. Current route owners and serving versions are read afresh; all existing modules, bindings, assets and routes are preserved. Stage with zero ordinary traffic, verify exact content and links plus desktop/tablet/mobile rendering, promote only this release, verify live, and restore only its own predecessor on failure. Provider creation receipts and bounded propagation waits preserve the previously verified ownership safeguards.

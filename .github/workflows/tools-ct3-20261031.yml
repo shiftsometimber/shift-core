@@ -1,0 +1,42 @@
+name: Approved Calculators and Tools CT3
+on:
+  push:
+    branches: [release/tools-ct3-20261031]
+    paths: ['tools-ct3-20261031/**', '.github/workflows/tools-ct3-20261031.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  tools-ct3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Read current route owners
+        if: contains(github.event.head_commit.message, '[tools preflight]')
+        run: node tools-ct3-20261031/capture.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: Check and release selected CT3
+        if: "!contains(github.event.head_commit.message, '[tools preflight]')"
+        run: |
+          npm install --prefix tools-ct3-tools --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          node --check tools-ct3-20261031/runtime.mjs
+          node --check tools-ct3-20261031/deploy.mjs
+          node --test tools-ct3-20261031/*.test.mjs
+          node tools-ct3-20261031/deploy.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PLAYWRIGHT_CHANNEL: chrome
+          TOOLS_CT3_PREVIEW_ONLY: ${{ contains(github.event.head_commit.message, '[tools preview]') && '1' || '' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tools-ct3-${{ github.run_id }}
+          path: tools-ct3-evidence/
+          retention-days: 90
