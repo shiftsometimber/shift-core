@@ -1,0 +1,43 @@
+name: Fourteen page visual quality correction
+on:
+  push:
+    branches: [release/quality-repair-20261101]
+    paths: ['quality-repair-20261101/**', '.github/workflows/quality-repair-20261101.yml']
+permissions:
+  contents: read
+concurrency:
+  group: ${{ contains(github.event.head_commit.message, '[pages preflight]') && 'quality-repair-read-only-preflight' || 'cloudflare-production-promote' }}
+  cancel-in-progress: false
+jobs:
+  selected-pages:
+    if: "!contains(github.event.head_commit.message, '[audit only]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Read current owners and page structures
+        if: contains(github.event.head_commit.message, '[pages preflight]')
+        run: node quality-repair-20261101/capture.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: Check and release Fourteen page visual quality correction
+        if: "!contains(github.event.head_commit.message, '[pages preflight]')"
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm install --prefix selected-pages-tools --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          node --check quality-repair-20261101/runtime.mjs
+          node --check quality-repair-20261101/deploy.mjs
+          node --test quality-repair-20261101/*.test.mjs
+          node quality-repair-20261101/deploy.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SELECTED_PAGES_PREVIEW_ONLY: ${{ contains(github.event.head_commit.message, '[pages preview]') && '1' || '' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quality-repair-${{ github.run_id }}
+          path: quality-repair-evidence/
+          retention-days: 90
