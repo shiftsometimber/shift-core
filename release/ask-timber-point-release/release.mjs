@@ -7,7 +7,7 @@ const manifest=JSON.parse(readFileSync('release/ask-timber-point-release/patches
 const account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;
 assert(account&&token);assert.equal(process.env.GITHUB_REF,'refs/heads/fix/ask-timber-live-patch-20261031');
 const apiBase='https://api.cloudflare.com/client/v4/accounts/'+account;
-const api=async(path,options={})=>{const r=await fetch(apiBase+path,{...options,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',...options.headers},signal:AbortSignal.timeout(90000)});const j=await r.json();if(!r.ok||!j.success)throw Error('Provider operation failed '+r.status+' '+path+' '+JSON.stringify(j.errors));return j.result;};
+const api=async(path,options={})=>{const r=await fetch(apiBase+path,{...options,headers:{Authorization:'Bearer '+token,...(options.body instanceof FormData?{}:{'Content-Type':'application/json'}),...options.headers},signal:AbortSignal.timeout(90000)});const j=await r.json();if(!r.ok||!j.success)throw Error('Provider operation failed '+r.status+' '+path+' '+JSON.stringify(j.errors));return j.result;};
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const runtimePaths=['ask-timber-v1.js','ask-timber-conversation-rules.mjs','member-experience/ai-practical-context.mjs','member-experience/ai-public-answer-cache.mjs','public-site-stream.mjs'];
 assert.equal(git('diff','--name-only',manifest.candidate,'HEAD','--',...runtimePaths),'','Runtime differs from hosted-acceptance source');
@@ -30,12 +30,16 @@ const expectedModules=version.modules.map(m=>({...m,...(m===originalModule?{cont
 const receipt={at:new Date().toISOString(),run:process.env.GITHUB_RUN_ID,source:manifest.candidate,releaseSource:git('rev-parse','HEAD'),originalDeploymentId:originalDeployment.id,originalVersionId,moduleProof:patched.proof,modulesPreserved:version.modules.length-1,customerDataAccess:false,databaseWrites:false,routeChanges:false,notificationsSent:false,stageOnly:true};
 const save=()=>writeFileSync(dir+'/release.json',JSON.stringify(receipt,null,2));save();
 const settingBefore=await api('/workers/scripts/shift-core/settings');
-// All bindings, including secrets and assets, inherit from the CAPTURED SERVING
-// version by ID. Never inherit from a later unpromoted upload.
-const payload={keep_assets:true,main_module:version.main_module,compatibility_date:version.compatibility_date,compatibility_flags:version.compatibility_flags,modules:expectedModules,bindings:version.bindings.map(b=>({type:'inherit',name:b.name,version_id:originalVersionId})),annotations:{'workers/message':'Ask Timber only; exact six source-proven edits; source '+manifest.candidate,'workers/tag':'ask-timber-'+process.env.GITHUB_RUN_ID}};
+// The multipart version endpoint can retain assets but inherits bindings from
+// latest only. Require latest to be the captured serving version under the
+// shared release lock, then recheck immediately before upload.
+const payload={keep_assets:true,usage_model:version.usage_model,main_module:version.main_module,compatibility_date:version.compatibility_date,compatibility_flags:version.compatibility_flags,modules:expectedModules,bindings:version.bindings.map(b=>({type:'inherit',name:b.name})),annotations:{'workers/message':'Ask Timber only; exact six source-proven edits; source '+manifest.candidate,'workers/tag':'ask-timber-'+process.env.GITHUB_RUN_ID}};
 for(const field of ['assets','limits','placement'])if(version[field]!==undefined)payload[field]=version[field];
 assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved before staging');
-const staged=await api('/workers/workers/shift-core/versions?deploy=false',{method:'POST',body:JSON.stringify(payload)});assert(staged.id);receipt.stagedVersionId=staged.id;save();
+const versions=await api('/workers/scripts/shift-core/versions');const latest=[...(versions.items??versions)].sort((a,b)=>b.number-a.number)[0];assert.equal(latest.id,originalVersionId,'Latest upload must be the captured serving version to retain assets and secrets');
+const form=new FormData();form.set('metadata',new Blob([JSON.stringify({...payload,modules:undefined})],{type:'application/json'}));for(const m of expectedModules)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type}),m.name);
+assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved immediately before upload');
+const staged=await api('/workers/scripts/shift-core/versions',{method:'POST',body:form});assert(staged.id);receipt.stagedVersionId=staged.id;save();
 const stagedRead=await api('/workers/workers/shift-core/versions/'+staged.id+'?include=modules');
 assert.deepEqual(stagedRead.modules,expectedModules,'Provider-stored code differs');
 assert.deepEqual(stagedRead.bindings,version.bindings,'Serving bindings changed');
