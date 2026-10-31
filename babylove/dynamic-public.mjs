@@ -14,6 +14,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const slugify=s=>String(s).toLowerCase().replace(/&amp;/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,100);
 function safeUrl(raw){try{const u=new URL(String(raw),'https://shiftsometimber.co.uk');return ['http:','https:'].includes(u.protocol)?u.href:'#'}catch{return'#'}}
 function safeHref(raw){const value=String(raw);return /^#[a-z0-9_-]+$/i.test(value)?value:safeUrl(value)}
+export function articleSource(row){if(row?.editorial)return 'shift-editorial';return row?.source_id==='shift-contributor'?'shift-contributor':'babylovegrowth'}
 // Matt's 15 October approval: qualify only these exact existing exchange links.
 // The article, destination and displayed label must all match; no body/date writes.
 const QUALIFIED_EXCHANGE_LINKS=Object.freeze({
@@ -27,8 +28,8 @@ function exchangeLinkRel(slug,url,label){
 }
 function inline(raw,slug=''){
  let s=esc(raw);
- s=s.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g,(_,alt,url)=>'<img loading="lazy" src="'+esc(proxiedImage(url,slug))+'" alt="'+alt+'">');
- s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*|#[a-z0-9_-]+)\)/gi,(_,label,url)=>'<a href="'+esc(safeHref(url))+'"'+(String(url).startsWith('http')?' rel="'+exchangeLinkRel(slug,url,label)+'"':'')+'>'+label+'</a>');
+ s=s.replace(/!\[([^\]]*)\]\((https?:\/\/(?:[^\s()]|\([^()\s]*\))+?)\)/g,(_,alt,url)=>'<img loading="lazy" src="'+esc(proxiedImage(url,slug))+'" alt="'+alt+'">');
+ s=s.replace(/\[([^\]]+)\]\((https?:\/\/(?:[^\s()]|\([^()\s]*\))+|\/[^\s)]*|#[a-z0-9_-]+)\)/gi,(_,label,url)=>'<a href="'+esc(safeHref(url))+'"'+(String(url).startsWith('http')?' rel="'+exchangeLinkRel(slug,url,label)+'"':'')+'>'+label+'</a>');
  s=s.replace(/`([^`]+)`/g,'<code>$1</code>');
  s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
  s=s.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g,'<em>$1</em>');
@@ -60,7 +61,7 @@ export async function dynamicBabyLovePublication(env,slug){
 }
 export function representativeImage(row){
  // Use an image already in the published copy, never a fabricated article image.
- for(const match of String(row.body||'').matchAll(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g)){
+ for(const match of String(row.body||'').matchAll(/!\[([^\]]*)\]\((https?:\/\/(?:[^\s()]|\([^()\s]*\))+?)\)/g)){
   if(trustedImage(match[2]))return {url:new URL(proxiedImage(match[2],row.slug),'https://shiftsometimber.co.uk').href,alt:match[1]};
  }
  return null;
@@ -113,7 +114,7 @@ export async function dynamicBabyLovePublicRoute(request,env){
  const loaded=performance.now();
  if(u.hostname!=='shiftsometimber.co.uk'||u.pathname.endsWith('/'))return Response.redirect('https://shiftsometimber.co.uk/articles/'+row.slug,301);
  const body=request.method==='HEAD'?null:articleHTML(row);
- return withArticleResponsePolicy(new Response(body,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store, must-revalidate','X-Content-Type-Options':'nosniff','X-Shift-Article-Source':row.editorial?'shift-editorial':'babylovegrowth','Server-Timing':'article_db;dur='+(loaded-started).toFixed(1)+', article_render;dur='+(performance.now()-loaded).toFixed(1)}}));
+ return withArticleResponsePolicy(new Response(body,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store, must-revalidate','X-Content-Type-Options':'nosniff','X-Shift-Article-Source':articleSource(row),'Server-Timing':'article_db;dur='+(loaded-started).toFixed(1)+', article_render;dur='+(performance.now()-loaded).toFixed(1)}}));
 }
 export async function withDynamicBabyLoveDiscovery(response,request,env){
  const u=new URL(request.url),path=u.pathname.replace(/\.html$/,'').replace(/\/$/,'');if(!HOSTS.has(u.hostname)||request.method!=='GET'||!response.ok||!['/knowledge','/explore-knowledge','/sitemap.xml'].includes(path)||!env.DB)return response;
