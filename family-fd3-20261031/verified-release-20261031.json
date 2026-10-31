@@ -1,0 +1,646 @@
+{
+  "verified": true,
+  "source": "5999e09ea11715a53feabdb05f0766d26ab1816f",
+  "release": "family-fd3-20261031-v1",
+  "pages": [
+    {
+      "key": "family",
+      "path": "/family-discussion-guide",
+      "selected": "FD3"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "3a331c2f-2edb-4ed9-a529-ec25d6063dea",
+      "previousVersion": "6f5383f9-dbda-4482-b129-f793afe62051",
+      "retainedModules": 35,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "3258a9a2-043e-40a3-9c50-33e9804ef782",
+      "previousVersion": "372c1d85-a828-456d-be20-b4379717398c",
+      "retainedModules": 39,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 52
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/family-discussion-guide",
+      "key": "family",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/family-discussion-guide?presentation=1",
+      "key": "family",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/downloads-resources",
+    "/downloads-resources?presentation=1"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 211,
+  "photographs": [
+    {
+      "path": "/assets/family-fd3-20261031/family-walk.webp",
+      "sha256": "61c6f0015b1962e84c034d260e37e835a7065b07f53d48be0fa1ae36fb0b94c4"
+    }
+  ],
+  "browser": [
+    {
+      "page": "family",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 56.59375,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 56.59375,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 56.59375,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 56.59375,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 56.59375,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 56.59375,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": false,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 109.78125,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": true,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 109.78125,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": false,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "family",
+      "query": true,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "family-fd3-20261031-v1",
+        "key": "family",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "planners": [
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          },
+          {
+            "height": 83.1875,
+            "href": "/my-weight-loss-roadmap#tab-family",
+            "text": "Use my personalised family planner"
+          }
+        ],
+        "sections": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-31T21:21:19.312Z"
+}
