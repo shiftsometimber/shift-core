@@ -39,6 +39,20 @@ jobs:
           pins={"bloods-approved-faq-20261031.mjs":"2289f9a938e10e8161f4642d8a4e3fa6e05cdcff","public-seo-technical.mjs":"8b947984fe76b5a2c803e7676d4e30aa5ca0bd01","radar-integration-v1.js":"b52451478f4f17278887884ae56b1bceb9590514","radar-official-intake-v1.js":"409c0acf8f7d5debc00689c4dc6d241e4f6d1267","tests/bloods-approved-faq-20261031.test.mjs":"e8867a2f7909f5e75cb66fa5547167c8529b5a80","tests/public-seo-technical.test.mjs":"cf8d0b6fd40bf505ccb1e70710bc368e3fb70494","tests/radar-official-intake-v1.test.mjs":"39f0108c41a3be9f2de553f156f7950952f71a9b"}
           for path,sha in pins.items():assert subprocess.check_output(['git','rev-parse','HEAD:'+path],text=True).strip()==sha,path
           PY
+      - name: Capture current selected Tools runtime for source reconciliation only
+        run: |
+          mkdir -p october-release-proof
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';import {createHash} from 'node:crypto';
+          for(const id of ['2ed3de9a-f697-459a-9fb1-475e0b814764','8a7e03bb-7ced-421e-aba8-87bca1494ff2']){
+            const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/workers/shift-core/versions/'+id+'?include=modules',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});
+            assert(r.ok);const d=await r.json();assert(d.success);assert.equal(d.result.id,id);
+            const modules=d.result.modules.filter(m=>/\\.(mjs|js)$/.test(m.name));assert.equal(modules.length,1);
+            const bytes=Buffer.from(modules[0].content_base64,'base64');writeFileSync('october-release-proof/'+id+'.js',bytes);
+            console.log(JSON.stringify({version:id,sha256:createHash('sha256').update(bytes).digest('hex'),metadata:d.result.metadata}));
+          }
+          JS
+          exit 1 # Capture-only qualification: never upload until current Tools delta is reconciled.
       - name: Run approved repair regressions and retained build preservation checks
         run: |
           npm ci --no-audit --no-fund
