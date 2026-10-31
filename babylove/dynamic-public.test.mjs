@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFileSync} from 'node:fs';
-import {renderMarkdown,dynamicBabyLovePublicRoute,withDynamicBabyLoveDiscovery,articleModifiedDate} from './dynamic-public.mjs';
+import {renderMarkdown,dynamicBabyLovePublicRoute,withDynamicBabyLoveDiscovery,articleModifiedDate,articleSource} from './dynamic-public.mjs';
 
 function env(row,queries=[]){
  return {DB:{prepare(sql){queries.push(sql);return{args:[],bind(...v){this.args=v;return this},async first(){return sql.includes("a.status='published'")&&row?.status==='published'?row:null},async all(){return{results:row?.status==='published'?[row]:[]}}}}}};
@@ -13,6 +13,19 @@ test('safe markdown renderer handles headings tables links and escapes raw html'
 });
 test('published BabyLove receipt renders on generic article route',async()=>{
  const r=await dynamicBabyLovePublicRoute(new Request('https://shiftsometimber.co.uk/articles/mounjaro-cost-uk'),env(row));assert.equal(r.status,200);const html=await r.text();assert.match(html,/Mounjaro Cost in the UK/);assert.match(html,/canonical/);assert.match(html,/X-Shift-Article-Source|Published/);
+});
+test('evidence links with balanced parentheses retain their complete destination',()=>{
+ const url='https://www.thelancet.com/journals/eclinm/article/PIIS2589-5370(25)00614-5/fulltext';
+ const html=renderMarkdown('[Primary paper]('+url+')');
+ assert.ok(html.includes('href="'+url+'"'));assert.match(html,/>Primary paper<\/a>/);
+});
+test('public source header preserves the authenticated receipt route',async()=>{
+ assert.equal(articleSource(row),'babylovegrowth');
+ assert.equal(articleSource({...row,source_id:'shift-contributor'}),'shift-contributor');
+ assert.equal(articleSource({...row,source_id:'untrusted-value'}),'babylovegrowth');
+ assert.equal(articleSource({...row,source_id:'shift-contributor',editorial:true}),'shift-editorial');
+ const direct=await dynamicBabyLovePublicRoute(new Request('https://shiftsometimber.co.uk/articles/mounjaro-cost-uk'),env({...row,source_id:'shift-contributor'}));
+ assert.equal(direct.headers.get('X-Shift-Article-Source'),'shift-contributor');
 });
 test('drafts and unrelated paths are not claimed',async()=>{
  assert.equal(await dynamicBabyLovePublicRoute(new Request('https://shiftsometimber.co.uk/articles/mounjaro-cost-uk'),env({...row,status:'draft'})),null);
