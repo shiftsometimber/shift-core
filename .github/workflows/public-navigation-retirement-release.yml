@@ -1,0 +1,86 @@
+name: Public navigation retirement release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public-navigation-policy.mjs'
+      - 'tests/public-ticker-contrast-safety.test.mjs'
+      - '.github/workflows/public-navigation-retirement-release.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Require exact current main
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+      - name: Install locked release toolchain
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify focused navigation policy and retained public contracts
+        run: |
+          node --check public-navigation-policy.mjs
+          node --test tests/public-ticker-contrast-safety.test.mjs tests/public-navigation-policy.test.mjs tests/public-ticker-preservation.test.mjs
+          node scripts/b1-release-scope.mjs
+      - name: Capture rollback deployment and affected live pages
+        run: |
+          set -euo pipefail
+          mkdir -p navigation-retirement-evidence
+          npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+          for path in work-with-us knowledge shift-health/blood-tests; do
+            curl -fsS "https://shiftsometimber.co.uk/${path}" > "navigation-retirement-evidence/before-${path//\//-}.html"
+          done
+      - name: Deploy current main through the owned runtime release
+        id: deploy
+        run: node release/member-runtime-deploy.mjs
+      - name: Wait for route propagation
+        run: sleep 10
+      - name: Verify navigation retirement, indexing and security headers
+        run: |
+          set -euo pipefail
+          for path in work-with-us knowledge shift-health/blood-tests; do
+            body="navigation-retirement-evidence/after-${path//\//-}.html"
+            headers="navigation-retirement-evidence/after-${path//\//-}.headers"
+            curl -fsS -D "${headers}" "https://shiftsometimber.co.uk/${path}" -o "${body}"
+            ! grep -Eqi 'sst-shed-teaser|The Timber Shed[^<]{0,20}SOON' "${body}"
+            ! grep -Eqi '<meta[^>]+(?:name=["'"'"']robots["'"'"'][^>]+content=["'"'"'][^"'"'"']*noindex|content=["'"'"'][^"'"'"']*noindex[^"'"'"']*["'"'"'][^>]+name=["'"'"']robots)' "${body}"
+            grep -Eqi '<link[^>]+rel=["'"'"']canonical["'"'"']' "${body}"
+            grep -Eqi '^x-shift-navigation-policy: approved-20261031' "${headers}"
+          done
+          for path in work-with-us shift-health/blood-tests; do
+            headers="navigation-retirement-evidence/after-${path//\//-}.headers"
+            grep -Eqi '^content-security-policy:' "${headers}"
+            grep -Eqi '^strict-transport-security:' "${headers}"
+            grep -Eqi '^x-frame-options:' "${headers}"
+          done
+      - name: Restore captured runtime after a failed deployed verification
+        if: ${{ failure() && steps.deploy.outcome == 'success' }}
+        run: node release/member-details-rollback.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-navigation-retirement-${{ github.run_id }}
+          path: |
+            deployment-before.json
+            navigation-retirement-evidence/
+            b1-runtime-release/
+          retention-days: 30
