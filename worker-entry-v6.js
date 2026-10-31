@@ -1211,7 +1211,7 @@ export default {
       const u=new URL(request.url);u.pathname='/programme';u.search='';
       return worker.fetch(new Request(u,{method:'GET',headers:request.headers}),env,ctx);
     });
-    if(guide)return withSharedFooter(request,await withPublicShellContract(request,guide));
+    if(guide)return withDynamicBabyLoveDiscovery(await withSharedFooter(request,await withPublicShellContract(request,guide)),request,env);
     const appStorePublic=accountDeletionPublicRoute(request); if(appStorePublic)return withSharedFooter(request,appStorePublic);
     if(env.MY_TIMBER_PWA_ENABLED==='true'){
       const pwa=pwaAssets(request)||await pwaReminderRoutes(request,env);

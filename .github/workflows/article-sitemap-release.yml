@@ -41,6 +41,7 @@ jobs:
             'babylove/dynamic-public.test.mjs',
             'release/bounded-discovery-release-gate-20261031.mjs',
             'shift-coach/release-contract.mjs',
+            'worker-entry-v6.js',
           }
           assert changed==expected,(changed,expected)
           PY
