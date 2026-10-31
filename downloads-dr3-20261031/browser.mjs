@@ -26,6 +26,7 @@ export async function browserCheck({headers={},dir='downloads-dr3-evidence',labe
    assert(cards.every(c=>c.height>=44&&c.colour==='rgb(5, 5, 5)'));assert.equal(new Set(cards.map(c=>c.href)).size,6);
    if(viewport.width<=600){const a=await page.locator('.dr-copy').boundingBox(),b=await page.locator('.dr-photo').boundingBox();assert(b.y>=a.y+a.height,'Mobile photo follows copy');const c=await page.locator('.resource-card-v3b2').nth(0).boundingBox(),d=await page.locator('.resource-card-v3b2').nth(1).boundingBox();assert(d.y>=c.y+c.height,'Single-column mobile resource cards');}
    for(const card of cards){const response=await context.request.get('https://shiftsometimber.co.uk'+card.href,{maxRedirects:4});assert.equal(response.status(),200,'Printable destination available '+card.href);assert((await response.text()).includes('<main'),'Printable page content '+card.href);}
+   const containment=await page.locator('.dr-group').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect(),list=e.querySelector('.dr-resource-list').getBoundingClientRect();return {fits:list.bottom<=r.bottom,decoration:getComputedStyle(e,'::before').content};}));assert(containment.every(c=>c.fits&&c.decoration==='none'),'Resource panels contain their cards without legacy decoration');
    behaviour.resources=cards;
    results.push({page:item.key,query,viewport,navigationAttempts,layout,behaviour});await page.close();
   }

@@ -6,13 +6,19 @@ export {release as version};
 export function transform(html,key){
  if(html.includes('data-approved-release="'+release+'"'))return html;
  if(key!=='downloads')throw Error('Unapproved page');
+ if(html.includes('data-approved-pages="downloads"')){
+  const root='html body main#main-content#main-content#main-content#main-content#main-content#main-content[data-approved-pages="downloads"]';
+  const main=mainHTML(html);const updated=main.replace(/data-approved-release="[^"]+"/,'data-approved-release="'+release+'"').replaceAll('dr-cards','dr-resource-list');
+  return html.replace(main,updated).replace(/<style data-approved-page-style="downloads-dr3-20261031-[^"]+">[\s\S]*?<\/style>/,'<style data-approved-page-style="'+release+'">'+css.replaceAll('MAIN',root)+'</style>');
+ }
+
  const old=mainHTML(html);if(!old)throw Error('Missing main');
  const grid=byClass(old,'resource-grid-v3b2'),note=byClass(old,'download-note-v3b2');if(!grid||!note)throw Error('Resource layout missing');
  const cards=[];let remaining=grid.html.slice(grid.html.indexOf('>')+1,grid.html.lastIndexOf('</div>'));
  while(remaining.trim()){const card=byClass(remaining,'resource-card-v3b2');if(!card)throw Error('Unknown resource markup');cards.push(card.html);remaining=remaining.slice(card.end);}
  if(cards.length!==6)throw Error('Expected all six existing resources');
  const groups=[{title:'Appointments',copy:'Get ready for your next conversation.',ids:[0,1]},{title:'Treatment decisions',copy:'Prepare your questions and check your provider.',ids:[2,3,4]},{title:'Keeping going',copy:'Plan for long-term maintenance.',ids:[5]}];
- const body=groups.map((g,i)=>'<section class="dr-group" aria-labelledby="dr-group-'+i+'">'+groupHeader(g,i)+'<div class="dr-cards">'+g.ids.map(j=>cards[j].replace('<div class="resource-card-v3b2">','<div class="resource-card-v3b2">'+icon(j))).join('')+'</div></section>').join('');
+ const body=groups.map((g,i)=>'<section class="dr-group" aria-labelledby="dr-group-'+i+'">'+groupHeader(g,i)+'<div class="dr-resource-list">'+g.ids.map(j=>cards[j].replace('<div class="resource-card-v3b2">','<div class="resource-card-v3b2">'+icon(j))).join('')+'</div></section>').join('');
  const open=old.slice(0,old.indexOf('>')+1).replace('<main','<main data-approved-pages="downloads" data-approved-release="'+release+'"');
  const main=open+hero+'<div class="dr-resources">'+body+note.html+'</div></main>';
  const root='html body main#main-content#main-content#main-content#main-content#main-content#main-content[data-approved-pages="downloads"]';
