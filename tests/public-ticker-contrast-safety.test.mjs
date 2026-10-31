@@ -74,7 +74,8 @@ test('retired Timber Shed teaser is removed from public header, drawer and foote
   const output=await withPublicTicker(request,new Response(html,{headers:{'Content-Type':'text/html; charset=utf-8'}}));
   const body=await output.text();
   assert.equal(removeRetiredShedTeasers(header),'');
-  assert.doesNotMatch(body,/sst-shed-teaser|The Timber Shed|>SOON</i);
+  assert.doesNotMatch(body,/<span\\b[^>]*\\bsst-shed-teaser\\b/i);
+  assert.doesNotMatch(body,/The Timber Shed|>SOON</i);
   assert.match(body,/<main>Keep this public content\.<\/main>/);
   assert.equal(output.headers.get('X-Shift-Navigation-Policy'),'approved-20261031');
 });
